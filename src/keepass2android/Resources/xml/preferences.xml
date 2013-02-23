@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 
+     
+ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
+
+  Keepass2Android is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  Keepass2Android is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceScreen
+	  android:key="@string/db_key"
+	  android:title="@string/database" 
+	  android:summary="@string/menu_db_settings">
+		<Preference
+		  android:key="@string/algorithm_key"
+		  android:title="@string/algorithm"
+		  android:enabled="false"/>
+		<keepass2android.settings.RoundsPreference
+		  android:key="@string/rounds_key"
+		  android:persistent="false"
+		  android:title="@string/rounds"
+		  android:dialogLayout="@layout/database_settings"
+		  android:positiveButtonText="@string/entry_save"
+		  android:negativeButtonText="@string/entry_cancel"/>
+ 
+		  <EditTextPreference
+                android:title="@string/default_username"
+                android:summary="@string/default_username_summary"
+                android:persistent="false"
+                android:key="@string/default_username_key"/>
+	</PreferenceScreen>
+	
+	<PreferenceScreen
+	  android:key="@string/app_key"
+	  android:title="@string/application"
+	  android:summary="@string/application_settings">
+		<CheckBoxPreference
+			android:key="@string/keyfile_key"
+			android:title="@string/remember_keyfile_title"
+			android:summary="@string/remember_keyfile_summary"
+			android:defaultValue="@bool/keyfile_default"/>
+		<ListPreference
+		  android:key="@string/clipboard_timeout_key"
+		  android:title="@string/clipboard_timeout"
+		  android:summary="@string/clipboard_timeout_summary"
+		  android:entries="@array/clipboard_timeout_options"
+		  android:entryValues="@array/clipboard_timeout_values"
+		  android:dialogTitle="@string/clipboard_timeout"
+		  android:defaultValue="@string/clipboard_timeout_default"/>
+		<ListPreference
+		  android:key="@string/app_timeout_key"
+		  android:title="@string/app_timeout"
+		  android:summary="@string/app_timeout_summary"
+		  android:entries="@array/clipboard_timeout_options"
+		  android:entryValues="@array/clipboard_timeout_values"
+		  android:dialogTitle="@string/app_timeout"
+		  android:defaultValue="@string/clipboard_timeout_default"/>
+		<CheckBoxPreference
+		  android:key="@string/maskpass_key"
+		  android:title="@string/maskpass_title"
+		  android:summary="@string/maskpass_summary"
+		  android:defaultValue="@bool/maskpass_default"/>
+		<CheckBoxPreference
+		  android:key="@string/TanExpiresOnUse_key"
+		  android:title="@string/TanExpiresOnUse_title"
+		  android:summary="@string/TanExpiresOnUse_summary"
+		  android:defaultValue="@bool/TanExpiresOnUse_default"/>
+		
+		<ListPreference
+		  android:key="@string/list_size_key"
+		  android:title="@string/list_size_title"
+		  android:summary="@string/list_size_summary"
+		  android:entries="@array/list_size_options"
+		  android:entryValues="@array/list_size_values"
+		  android:dialogTitle="@string/list_size_summary"
+		  android:defaultValue="@string/list_size_default"/>
+		 <CheckBoxPreference
+		 	android:enabled="true"
+			  android:persistent="true"
+			  android:summary="@string/UseFileTransactions_summary"
+			  android:defaultValue="true"
+			  android:title="@string/UseFileTransactions_title"
+			  android:key="@string/UseFileTransactions_key" /> 
+			  
+		 <CheckBoxPreference
+		 android:enabled="true"
+			  android:persistent="true"
+			  android:summary="@string/QuickUnlockDefaultEnabled_summary"
+			  android:defaultValue="true"
+			  android:title="@string/QuickUnlockDefaultEnabled_title"
+			  android:key="@string/QuickUnlockDefaultEnabled_key" />
+		 <EditTextPreference
+			  android:enabled="true"
+			  android:persistent="true"
+			  android:summary="@string/QuickUnlockLength_summary"
+			  android:numeric="integer"
+			  android:defaultValue="3"
+			  android:title="@string/QuickUnlockLength_title"
+			  android:key="@string/QuickUnlockLength_key" />
+		 <EditTextPreference
+			  android:enabled="true"
+			  android:persistent="true"
+			  android:summary="@string/BinaryDirectory_summary"
+			  android:defaultValue="@string/BinaryDirectory_default"
+			  android:title="@string/BinaryDirectory_title"
+			  android:key="@string/BinaryDirectory_key" />	  
+			  
+	</PreferenceScreen>
+</PreferenceScreen>

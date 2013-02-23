@@ -1,6 +1,8 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
   Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  
+  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -32,6 +34,44 @@ using KeePassLibSD;
 
 namespace KeePassLib.Serialization
 {
+	
+	[System.Serializable]
+	public class InvalidDataException: Exception
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:InvalidDataExceptionException"/> class
+		/// </summary>
+		public InvalidDataException ()
+		{
+		}
+		
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:InvalidDataExceptionException"/> class
+		/// </summary>
+		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
+		public InvalidDataException (string message) : base (message)
+		{
+		}
+		
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:InvalidDataExceptionException"/> class
+		/// </summary>
+		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
+		/// <param name="inner">The exception that is the cause of the current exception. </param>
+		public InvalidDataException (string message, Exception inner) : base (message, inner)
+		{
+		}
+		
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:InvalidDataExceptionException"/> class
+		/// </summary>
+		/// <param name="context">The contextual information about the source or destination.</param>
+		/// <param name="info">The object that holds the serialized object data.</param>
+		protected InvalidDataException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base (info, context)
+		{
+		}
+	}
+
 	public sealed class HashedBlockStream : Stream
 	{
 		private const int m_nDefaultBufferSize = 1024 * 1024; // 1 MB

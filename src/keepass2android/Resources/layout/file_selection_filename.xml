@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/filename_form">
+        <TextView
+            android:id="@+id/label_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/label_open_by_filename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:text="@string/enter_filename" />
+        <ImageButton
+            android:id="@+id/browse_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_folder_small"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/label_open_by_filename" />
+        <EditText
+            android:id="@+id/file_filename"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:inputType="textNoSuggestions"
+            android:layout_below="@id/label_open_by_filename"
+            android:layout_toLeftOf="@id/browse_button" />
+        <TextView
+            android:id="@+id/label_open_by_filename_details"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/file_filename"
+            android:text="@string/enter_filename_details_file" />
+        <Button
+            android:id="@+id/open"
+            android:text="@string/menu_open"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/label_open_by_filename_details"
+            android:width="100sp" />
+        <Button
+            android:id="@+id/create"
+            android:text="@string/menu_create"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/label_open_by_filename_details"
+            android:layout_toRightOf="@id/open"
+            android:width="100sp" />
+        <Button
+            android:id="@+id/fnv_cancel"
+            android:text="@string/cancel"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/label_open_by_filename_details"
+            android:layout_toRightOf="@id/create"
+            android:width="100sp" />
+    </RelativeLayout>
+    <Button
+        android:text="@string/start_open_file"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/GreenButton"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/start_open_file"
+        android:layout_below="@id/filename_form"
+        android:minHeight="45dp" />
+    <Button
+        android:text="@string/start_open_url"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/BlueButton"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/start_open_file"
+        android:id="@+id/start_open_url"
+        android:minHeight="45dp" />
+    <Button
+        android:text="@string/start_create"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/YellowButton"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/start_open_url"
+        android:id="@+id/start_create"
+        android:minHeight="45dp" />
+</RelativeLayout>

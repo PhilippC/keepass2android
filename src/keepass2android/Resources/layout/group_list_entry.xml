@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ 
+     
+ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
+
+  Keepass2Android is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  Keepass2Android is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:stretchColumns="1">
+	<TableRow android:layout_width="fill_parent"
+	  android:gravity="center_vertical"
+	  android:layout_height="wrap_content">
+		<ImageView android:id="@+id/group_icon"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:padding="5dp"
+		  android:scaleType="fitXY"
+		  android:src="@drawable/ic99_blank"/>
+		<TextView android:id="@+id/group_text"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:paddingTop="2dp"
+		  android:paddingBottom="2dp"
+		  style="@style/GroupTextLarge"/>
+		<View/>
+		<TextView android:id="@+id/group_label"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  style="@style/GroupLabel"
+		  android:text="@string/group"/>
+	</TableRow>
+</TableLayout>

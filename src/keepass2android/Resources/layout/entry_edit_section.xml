@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keepass2android.view.EntryEditSection xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:inputType="text"
+        android:hint="@string/field_name" />
+    <CheckBox
+        android:id="@+id/protection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:text="@string/protection" />
+    <ImageButton
+        android:id="@+id/delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/title"
+        android:src="@android:drawable/ic_delete"
+        android:scaleType="centerCrop" />
+    <EditText
+        android:id="@+id/value"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/delete"
+        android:inputType="textMultiLine"
+        android:hint="@string/field_value" />
+    <ImageView
+        android:id="@+id/divider_comment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/value"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_dark" />
+</keepass2android.view.EntryEditSection>

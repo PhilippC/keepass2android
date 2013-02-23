@@ -1,6 +1,8 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
   Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  
+  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -59,18 +61,7 @@ namespace KeePassLib.Keys
 		/// </summary>
 		public KcpUserAccount()
 		{
-			// Test if ProtectedData is supported -- throws an exception
-			// when running on an old system (Windows 98 / ME).
-			byte[] pbDummyData = new byte[128];
-			ProtectedData.Protect(pbDummyData, m_pbEntropy,
-				DataProtectionScope.CurrentUser);
-
-			byte[] pbKey = LoadUserKey(false);
-			if(pbKey == null) pbKey = CreateUserKey();
-			if(pbKey == null) throw new SecurityException(KLRes.UserAccountKeyError);
-
-			m_pbKeyData = new ProtectedBinary(true, pbKey);
-			Array.Clear(pbKey, 0, pbKey.Length);
+			throw new NotSupportedException("DataProtection not supported on MonoForAndroid!");
 		}
 
 		// public void Clear()
@@ -100,13 +91,7 @@ namespace KeePassLib.Keys
 #if !KeePassLibSD
 			try
 			{
-				string strFilePath = GetUserKeyFilePath(false);
-				byte[] pbProtectedKey = File.ReadAllBytes(strFilePath);
-
-				pbKey = ProtectedData.Unprotect(pbProtectedKey, m_pbEntropy,
-					DataProtectionScope.CurrentUser);
-
-				Array.Clear(pbProtectedKey, 0, pbProtectedKey.Length);
+				throw new NotSupportedException("DataProtection not supported on MonoForAndroid!");
 			}
 			catch(Exception exLoad)
 			{
@@ -126,18 +111,7 @@ namespace KeePassLib.Keys
 #if !KeePassLibSD
 			try
 			{
-				string strFilePath = GetUserKeyFilePath(true);
-
-				byte[] pbRandomKey = CryptoRandom.Instance.GetRandomBytes(64);
-				byte[] pbProtectedKey = ProtectedData.Protect(pbRandomKey,
-					m_pbEntropy, DataProtectionScope.CurrentUser);
-
-				File.WriteAllBytes(strFilePath, pbProtectedKey);
-
-				Array.Clear(pbProtectedKey, 0, pbProtectedKey.Length);
-				Array.Clear(pbRandomKey, 0, pbRandomKey.Length);
-
-				pbKey = LoadUserKey(true);
+				throw new NotSupportedException("DataProtection not supported on MonoForAndroid!");
 			}
 			catch(Exception) { pbKey = null; }
 #endif

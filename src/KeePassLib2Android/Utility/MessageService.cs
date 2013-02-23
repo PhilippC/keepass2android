@@ -1,6 +1,8 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
   Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  
+  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,7 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
-using System.Windows.Forms;
+
 using System.Diagnostics;
 
 using KeePassLib.Resources;
@@ -29,17 +31,36 @@ using KeePassLib.Serialization;
 
 namespace KeePassLib.Utility
 {
+	public enum MessageBoxButtons
+	{
+		OK, OKCancel, AbortRetryIgnore, YesNoCancel, YesNo, RetryCancel
+	}
+	public enum MessageBoxIcon
+	{
+		Information, Warning, Error, Question
+	}
+	public enum MessageBoxDefaultButton
+	{
+		Button1, Button2, Button3
+	}
+
+	public enum DialogResult
+	{
+		Yes, No, Cancel, Retry, Abort
+	}
+
+
 	public sealed class MessageServiceEventArgs : EventArgs
 	{
 		private string m_strTitle = string.Empty;
 		private string m_strText = string.Empty;
-		private MessageBoxButtons m_msgButtons = MessageBoxButtons.OK;
-		private MessageBoxIcon m_msgIcon = MessageBoxIcon.None;
+		//private MessageBoxButtons m_msgButtons = MessageBoxButtons.OK;
+		//private MessageBoxIcon m_msgIcon = MessageBoxIcon.None;
 
 		public string Title { get { return m_strTitle; } }
 		public string Text { get { return m_strText; } }
-		public MessageBoxButtons Buttons { get { return m_msgButtons; } }
-		public MessageBoxIcon Icon { get { return m_msgIcon; } }
+		//public MessageBoxButtons Buttons { get { return m_msgButtons; } }
+		//public MessageBoxIcon Icon { get { return m_msgIcon; } }
 
 		public MessageServiceEventArgs() { }
 
@@ -48,8 +69,7 @@ namespace KeePassLib.Utility
 		{
 			m_strTitle = (strTitle ?? string.Empty);
 			m_strText = (strText ?? string.Empty);
-			m_msgButtons = msgButtons;
-			m_msgIcon = msgIcon;
+
 		}
 	}
 
@@ -62,14 +82,12 @@ namespace KeePassLib.Utility
 		private const MessageBoxIcon m_mbiWarning = MessageBoxIcon.Warning;
 		private const MessageBoxIcon m_mbiFatal = MessageBoxIcon.Error;
 
-		private const MessageBoxOptions m_mboRtl = (MessageBoxOptions.RtlReading |
-			MessageBoxOptions.RightAlign);
 #else
 		private const MessageBoxIcon m_mbiInfo = MessageBoxIcon.Asterisk;
 		private const MessageBoxIcon m_mbiWarning = MessageBoxIcon.Exclamation;
 		private const MessageBoxIcon m_mbiFatal = MessageBoxIcon.Hand;
 #endif
-		private const MessageBoxIcon m_mbiQuestion = MessageBoxIcon.Question;
+		//private const MessageBoxIcon m_mbiQuestion = MessageBoxIcon.Question;
 
 		public static string NewLine
 		{
@@ -159,13 +177,13 @@ namespace KeePassLib.Utility
 		}
 
 #if !KeePassLibSD
-		internal static Form GetTopForm()
+		/*internal static Form GetTopForm()
 		{
 			FormCollection fc = Application.OpenForms;
 			if((fc == null) || (fc.Count == 0)) return null;
 
 			return fc[fc.Count - 1];
-		}
+		}*/
 #endif
 
 		private static DialogResult SafeShowMessageBox(string strText, string strTitle,
@@ -174,7 +192,14 @@ namespace KeePassLib.Utility
 #if KeePassLibSD
 			return MessageBox.Show(strText, strTitle, mb, mi, mdb);
 #else
-			IWin32Window wnd = null;
+
+			if (mb == MessageBoxButtons.OK)
+			{
+				//Android.Widget.Toast toast = ..
+			}
+			//this might help: http://www.gregshackles.com/2011/04/using-background-threads-in-mono-for-android-applications/
+			throw new NotImplementedException();
+			/*IWin32Window wnd = null;
 			try
 			{
 				Form f = GetTopForm();
@@ -203,11 +228,12 @@ namespace KeePassLib.Utility
 			if(StrUtil.RightToLeft)
 				return MessageBox.Show(strText, strTitle, mb, mi, mdb, m_mboRtl);
 			return MessageBox.Show(strText, strTitle, mb, mi, mdb);
+			*/
 #endif
 		}
 
 #if !KeePassLibSD
-		internal delegate DialogResult SafeShowMessageBoxInternalDelegate(IWin32Window iParent,
+	/*	internal delegate DialogResult SafeShowMessageBoxInternalDelegate(IWin32Window iParent,
 			string strText, string strTitle, MessageBoxButtons mb, MessageBoxIcon mi,
 			MessageBoxDefaultButton mdb);
 
@@ -218,7 +244,7 @@ namespace KeePassLib.Utility
 			if(StrUtil.RightToLeft)
 				return MessageBox.Show(iParent, strText, strTitle, mb, mi, mdb, m_mboRtl);
 			return MessageBox.Show(iParent, strText, strTitle, mb, mi, mdb);
-		}
+		}*/
 #endif
 
 		public static void ShowInfo(params object[] vLines)
@@ -284,8 +310,9 @@ namespace KeePassLib.Utility
 			try
 			{
 #if !KeePassLibSD
-				Clipboard.Clear();
-				Clipboard.SetText(ObjectsToMessage(vLines, true));
+				/* nicht benoetigt - hoffentlich :-)
+Clipboard.Clear();
+Clipboard.SetText(ObjectsToMessage(vLines, true));*/
 #else
 				Clipboard.SetDataObject(ObjectsToMessage(vLines, true));
 #endif
@@ -312,10 +339,10 @@ namespace KeePassLib.Utility
 
 			if(MessageService.MessageShowing != null)
 				MessageService.MessageShowing(null, new MessageServiceEventArgs(
-					strTitleEx, strTextEx, mbb, m_mbiQuestion));
+					strTitleEx, strTextEx, mbb, MessageBoxIcon.Question));
 
 			DialogResult dr = SafeShowMessageBox(strTextEx, strTitleEx, mbb,
-				m_mbiQuestion, MessageBoxDefaultButton.Button1);
+			                                     MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
 			--m_uCurrentMessageCount;
 			return dr;
@@ -330,10 +357,10 @@ namespace KeePassLib.Utility
 
 			if(MessageService.MessageShowing != null)
 				MessageService.MessageShowing(null, new MessageServiceEventArgs(
-					strTitleEx, strTextEx, MessageBoxButtons.YesNo, m_mbiQuestion));
+					strTitleEx, strTextEx, MessageBoxButtons.YesNo, MessageBoxIcon.Question));
 
 			DialogResult dr = SafeShowMessageBox(strTextEx, strTitleEx,
-				MessageBoxButtons.YesNo, m_mbiQuestion, bDefaultToYes ?
+			                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, bDefaultToYes ?
 				MessageBoxDefaultButton.Button1 : MessageBoxDefaultButton.Button2);
 
 			--m_uCurrentMessageCount;

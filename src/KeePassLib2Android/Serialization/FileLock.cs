@@ -1,6 +1,8 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
   Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  
+  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -137,7 +139,7 @@ namespace KeePassLib.Serialization
 					if(!v[0].StartsWith(LockFileHeader)) { Debug.Assert(false); return null; }
 					return new LockFileInfo(v[1], v[2], v[3], v[4], v[5]);
 				}
-				catch(FileNotFoundException) { }
+				catch(Java.IO.FileNotFoundException) { }
 				catch(Exception) { Debug.Assert(false); }
 				finally { if(s != null) s.Close(); }
 

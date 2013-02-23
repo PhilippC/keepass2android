@@ -1,6 +1,8 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
   Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  
+  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -43,6 +45,49 @@ namespace KeePassLib.Serialization
 	/// </summary>
 	public sealed partial class KdbxFile
 	{
+		private class ColorTranslator
+		{
+			public static Color FromHtml(String colorString)
+			{
+				Color color;
+				
+				if (colorString.StartsWith("#"))
+				{
+					colorString = colorString.Substring(1);
+				}
+				if (colorString.EndsWith(";"))
+				{
+					colorString = colorString.Substring(0, colorString.Length - 1);
+				}
+				
+				int red, green, blue;
+				switch (colorString.Length)
+				{
+				case 6:
+					red = int.Parse(colorString.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+					green = int.Parse(colorString.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+					blue = int.Parse(colorString.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+					color = Color.FromArgb(red, green, blue);
+					break;
+				case 3:
+					red = int.Parse(colorString.Substring(0, 1), System.Globalization.NumberStyles.HexNumber);
+					green = int.Parse(colorString.Substring(1, 1), System.Globalization.NumberStyles.HexNumber);
+					blue = int.Parse(colorString.Substring(2, 1), System.Globalization.NumberStyles.HexNumber);
+					color = Color.FromArgb(red, green, blue);
+					break;
+				case 1:
+					red = green = blue = int.Parse(colorString.Substring(0, 1), System.Globalization.NumberStyles.HexNumber);
+					color = Color.FromArgb(red, green, blue);
+					break;
+				default:
+					throw new ArgumentException("Invalid color: " + colorString);
+				}
+				return color;
+			}
+
+		}
+
+
 		private enum KdbContext
 		{
 			Null,

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
+
+  Keepass2Android is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  Keepass2Android is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_lock"
+        android:icon="@android:drawable/ic_lock_lock"
+        android:title="@string/menu_lock"
+        android:showAsAction="ifRoom"
+    />
+    <item android:id="@+id/menu_toggle_pass"
+        android:title="@string/show_password"
+        android:icon="@android:drawable/ic_menu_view"
+        android:showAsAction="ifRoom"
+    />
+    <!--item android:id="@+id/menu_donate"
+        android:title="@string/menu_donate"
+        android:showAsAction="ifRoom"
+    /-->
+    <item android:id="@+id/menu_goto_url"
+        android:title="@string/menu_url"
+        android:showAsAction="ifRoom"
+    />
+    <!--item android:id="@+id/menu_copy_user"
+        android:title="@string/menu_copy_user"
+        android:showAsAction="ifRoom"
+    />
+    <item android:id="@+id/menu_copy_pass"
+        android:title="@string/menu_copy_pass"
+        android:showAsAction="ifRoom"
+    /-->
+</menu>

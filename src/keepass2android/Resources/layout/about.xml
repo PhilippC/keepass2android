@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:id="@+id/about_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AboutText" />
+    <ImageView
+        android:id="@+id/divider1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/about_title"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_dark" />
+    <TextView
+        android:id="@+id/version_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider1"
+        android:text="@string/version_label" />
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider1"
+        android:layout_alignParentRight="true" />
+    <ImageView
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/version_title"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_dark" />
+    <TextView
+        android:id="@+id/homepage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider2"
+        android:text="@string/about_homepage" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/homepage_short"
+        android:layout_below="@id/divider2"
+        android:layout_alignParentRight="true"
+        android:autoLink="web" />
+    <TextView
+        android:id="@+id/feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/homepage"
+        android:text="@string/about_feedback" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/issues"
+        android:layout_below="@id/homepage"
+        android:layout_alignParentRight="true"
+        android:autoLink="web" />
+    <ImageView
+        android:id="@+id/divider3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feedback"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_dark" />
+    <TextView
+        android:id="@+id/disclaimer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider3"
+        android:text="@string/disclaimer_formal" />
+    <Button
+        android:id="@+id/about_button"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/disclaimer"
+        android:layout_centerHorizontal="true"
+        android:text="@android:string/ok"
+        android:width="100sp" />
+    <TextView
+        android:id="@+id/Credit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/about_button"
+        android:text="@string/CreditsText" />
+</RelativeLayout>

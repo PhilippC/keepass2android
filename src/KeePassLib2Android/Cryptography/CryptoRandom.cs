@@ -1,6 +1,8 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
   Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  
+  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -22,7 +24,6 @@ using System.Security;
 using System.Security.Cryptography;
 using System.IO;
 using System.Diagnostics;
-using System.Windows.Forms;
 using System.Drawing;
 
 using KeePassLib.Native;
@@ -137,13 +138,6 @@ namespace KeePassLib.Cryptography
 			pb = TimeUtil.PackTime(DateTime.Now);
 			ms.Write(pb, 0, pb.Length);
 
-#if !KeePassLibSD
-			Point pt = Cursor.Position;
-			pb = MemUtil.UInt32ToBytes((uint)pt.X);
-			ms.Write(pb, 0, pb.Length);
-			pb = MemUtil.UInt32ToBytes((uint)pt.Y);
-			ms.Write(pb, 0, pb.Length);
-#endif
 
 			pb = MemUtil.UInt32ToBytes((uint)rWeak.Next());
 			ms.Write(pb, 0, pb.Length);

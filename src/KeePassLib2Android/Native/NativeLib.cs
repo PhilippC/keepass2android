@@ -1,6 +1,8 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
   Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  
+  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -90,13 +92,14 @@ namespace KeePassLib.Native
 			m_platID = Environment.OSVersion.Platform;
 
 #if !KeePassLibSD
-			// Mono returns PlatformID.Unix on Mac OS X, workaround this
+			/*// Mono returns PlatformID.Unix on Mac OS X, workaround this
+			//fails on Anroid
 			if(m_platID.Value == PlatformID.Unix)
 			{
 				if((RunConsoleApp("uname", null) ?? string.Empty).Trim().Equals(
 					"Darwin", StrUtil.CaseIgnoreCmp))
 					m_platID = PlatformID.MacOSX;
-			}
+			}*/
 #endif
 
 			return m_platID.Value;

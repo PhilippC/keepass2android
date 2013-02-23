@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:id="@+id/search_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_label" />
+    <ImageButton
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_search"
+        android:layout_below="@id/search_label"
+        android:layout_alignParentRight="true" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search_hint"
+        android:layout_toLeftOf="@id/search_button"
+        android:singleLine="true"
+        android:layout_below="@id/search_label"
+        android:id="@+id/searchEditText" />
+    <ScrollView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchEditText"
+        android:id="@+id/scrollView1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/linearLayout1">
+            <CheckBox
+                android:text="@string/regular_expression"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbRegEx" />
+            <TextView
+                android:id="@+id/search_in_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_in" />
+            <CheckBox
+                android:text="@string/entry_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbSearchInTitle" />
+            <CheckBox
+                android:text="@string/entry_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbSearchInUrl" />
+            <CheckBox
+                android:text="@string/entry_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbSearchInUsername" />
+            <CheckBox
+                android:text="@string/entry_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbSearchInPassword" />
+            <CheckBox
+                android:text="@string/entry_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbSearchInNotes" />
+            <CheckBox
+                android:text="@string/entry_extra_strings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbSearchInOtherStrings" />
+            <CheckBox
+                android:text="@string/entry_tags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbSearchInTags" />
+            <CheckBox
+                android:text="@string/hint_group_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbSearchInGroupName" />
+            <TextView
+                android:id="@+id/search_in_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_options" />
+            <CheckBox
+                android:text="@string/caseSensitive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/scrollView1"
+                android:id="@+id/cbCaseSensitive" />
+            <CheckBox
+                android:text="@string/excludeExpiredEntries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cbCaseSensitive"
+                android:id="@+id/cbExcludeExpiredEntries" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
