@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>KeePassLib2Android</RootNamespace>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AssemblyName>KeePassLib2Android</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <ConsolePause>False</ConsolePause>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Resources\KLRes.Generated.cs" />
+    <Compile Include="Resources\KSRes.Generated.cs" />
+    <Compile Include="Collections\AutoTypeConfig.cs" />
+    <Compile Include="Collections\ProtectedBinaryDictionary.cs" />
+    <Compile Include="Collections\ProtectedStringDictionary.cs" />
+    <Compile Include="Collections\PwObjectList.cs" />
+    <Compile Include="Collections\PwObjectPool.cs" />
+    <Compile Include="Collections\StringDictionaryEx.cs" />
+    <Compile Include="Cryptography\Cipher\CipherPool.cs" />
+    <Compile Include="Cryptography\Cipher\Salsa20Cipher.cs" />
+    <Compile Include="Cryptography\Cipher\StandardAesEngine.cs" />
+    <Compile Include="Cryptography\CryptoRandom.cs" />
+    <Compile Include="Cryptography\CryptoRandomStream.cs" />
+    <Compile Include="Cryptography\Cipher\ICipherEngine.cs" />
+    <Compile Include="Cryptography\HashingStreamEx.cs" />
+    <Compile Include="Cryptography\HmacOtp.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\CharSetBasedGenerator.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\CustomPwGenerator.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\CustomPwGeneratorPool.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\PatternBasedGenerator.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\PwCharSet.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\PwProfile.cs" />
+    <Compile Include="Cryptography\PopularPasswords.cs" />
+    <Compile Include="Cryptography\QualityEstimation.cs" />
+    <Compile Include="Cryptography\SelfTest.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\PwGenerator.cs" />
+    <Compile Include="PwCustomIcon.cs" />
+    <Compile Include="PwDatabase.cs" />
+    <Compile Include="PwDefs.cs" />
+    <Compile Include="PwDeletedObject.cs" />
+    <Compile Include="PwEntry.cs" />
+    <Compile Include="PwEnums.cs" />
+    <Compile Include="PwGroup.cs" />
+    <Compile Include="PwUuid.cs" />
+    <Compile Include="Interfaces\IStructureItem.cs" />
+    <Compile Include="Interfaces\IUIOperations.cs" />
+    <Compile Include="Interfaces\IXmlSerializerEx.cs" />
+    <Compile Include="Interfaces\IDeepCloneable.cs" />
+    <Compile Include="Interfaces\IStatusLogger.cs" />
+    <Compile Include="Interfaces\ITimeLogger.cs" />
+    <Compile Include="Keys\KcpCustomKey.cs" />
+    <Compile Include="Keys\KeyProvider.cs" />
+    <Compile Include="Keys\KeyProviderPool.cs" />
+    <Compile Include="Keys\KeyValidator.cs" />
+    <Compile Include="Keys\KeyValidatorPool.cs" />
+    <Compile Include="Keys\UserKeyType.cs" />
+    <Compile Include="Keys\KcpKeyFile.cs" />
+    <Compile Include="Keys\IUserKey.cs" />
+    <Compile Include="Keys\KcpPassword.cs" />
+    <Compile Include="Keys\KcpUserAccount.cs" />
+    <Compile Include="Keys\CompositeKey.cs" />
+    <Compile Include="Native\NativeMethods.cs" />
+    <Compile Include="Native\NativeLib.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\XorredBuffer.cs" />
+    <Compile Include="Security\ProtectedBinary.cs" />
+    <Compile Include="Security\ProtectedString.cs" />
+    <Compile Include="Serialization\BinaryReaderEx.cs" />
+    <Compile Include="Serialization\FileLock.cs" />
+    <Compile Include="Serialization\FileTransactionEx.cs" />
+    <Compile Include="Serialization\HashedBlockStream.cs" />
+    <Compile Include="Serialization\IOConnection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\KdbxFile.cs" />
+    <Compile Include="Serialization\KdbxFile.Read.cs" />
+    <Compile Include="Serialization\KdbxFile.Read.Streamed.cs" />
+    <Compile Include="Serialization\KdbxFile.Write.cs" />
+    <Compile Include="Serialization\IOConnectionInfo.cs" />
+    <Compile Include="Serialization\OldFormatException.cs" />
+    <Compile Include="Translation\KPControlCustomization.cs" />
+    <Compile Include="Translation\KPFormCustomization.cs" />
+    <Compile Include="Translation\KPStringTable.cs" />
+    <Compile Include="Translation\KPStringTableItem.cs" />
+    <Compile Include="Translation\KPTranslation.cs" />
+    <Compile Include="Translation\KPTranslationProperties.cs" />
+    <Compile Include="Utility\AppLogEx.cs" />
+    <Compile Include="Utility\GfxUtil.cs" />
+    <Compile Include="Utility\MemUtil.cs" />
+    <Compile Include="Utility\MessageService.cs" />
+    <Compile Include="Utility\StrUtil.cs" />
+    <Compile Include="Utility\UrlUtil.cs" />
+    <Compile Include="Utility\TimeUtil.cs" />
+    <Compile Include="Delegates\Handlers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="KeePassLib.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+</Project>
