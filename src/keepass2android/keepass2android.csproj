@@ -40,6 +40,7 @@
     <ConsolePause>False</ConsolePause>
     <DeployExternal>True</DeployExternal>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
