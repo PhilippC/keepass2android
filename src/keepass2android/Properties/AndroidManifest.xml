@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="0.5 beta" package="keepass2android.keepass2android" android:installLocation="preferExternal">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" android:versionName="0.5.1 beta" package="keepass2android.keepass2android" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher"></application>
 	<uses-permission android:name="android.permission.VIBRATE" />
