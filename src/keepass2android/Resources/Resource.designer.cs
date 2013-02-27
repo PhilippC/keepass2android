@@ -1108,9 +1108,6 @@ namespace keepass2android
 			// aapt resource value: 0x7f05001f
 			public const int about_homepage = 2131034143;
 			
-			// aapt resource value: 0x7f0500ea
-			public const int about_twitter = 2131034346;
-			
 			// aapt resource value: 0x7f050022
 			public const int accept = 2131034146;
 			
@@ -1251,9 +1248,6 @@ namespace keepass2android
 			
 			// aapt resource value: 0x7f0500cb
 			public const int enter_filename_details_create_import = 2131034315;
-			
-			// aapt resource value: 0x7f0500eb
-			public const int enter_filename_details_file = 2131034347;
 			
 			// aapt resource value: 0x7f0500ca
 			public const int enter_filename_details_url = 2131034314;
