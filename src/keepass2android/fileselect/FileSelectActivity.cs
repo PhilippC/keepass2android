@@ -124,10 +124,15 @@ namespace keepass2android
 			openFileButton.Click += openFileButtonClick;
 			//OPEN URL
 			Button openUrlButton = (Button)FindViewById(Resource.Id.start_open_url);
+
+#if NoNet
+			openUrlButton.Visibility = ViewStates.Gone;
+#endif
+
 			EventHandler openUrlButtonClick = (object sender, EventArgs e) => 
 			{
 				if (currentAction == CurrentAction.OpenURL)
-					return;
+				return;
 				currentAction = CurrentAction.OpenURL;
 				fnform.Visibility = ViewStates.Visible;
 				openButton.Visibility = ViewStates.Visible;
@@ -138,6 +143,7 @@ namespace keepass2android
 				enterFilenameDetails.Visibility = enterFilenameDetails.Text == "" ? ViewStates.Gone : ViewStates.Visible;
 			};
 			openUrlButton.Click += openUrlButtonClick;
+
 			//CREATE NEW
 			Button createNewButton = (Button)FindViewById(Resource.Id.start_create);
 			EventHandler createNewButtonClick = (object sender, EventArgs e) => 

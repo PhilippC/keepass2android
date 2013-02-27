@@ -29,11 +29,31 @@ using Android.Widget;
 
 namespace keepass2android
 {
-	///Application class for Keepass2Android: Contains static Database variable to be used by all components.
-#if RELEASE 
-	[Application(Debuggable=false, Label="@string/app_name")] 
+#if NoNet
+	public static class AppNames
+	{
+		public const string AppName = "@string/app_name_nonet";
+		public const string AppNameShort = "@string/short_app_name_nonet";
+		public const string AppLauncherTitle = "@string/short_app_name_nonet";
+	}
 #else
-	[Application(Debuggable=true, Label="@string/app_name")]
+	public static class AppNames
+	{
+		public const string AppName = "@string/app_name";
+		public const string AppNameShort = "@string/short_app_name";
+		public const string AppLauncherTitle = "@string/app_name";
+	}
+#endif
+
+	///Application class for Keepass2Android: Contains static Database variable to be used by all components.
+#if NoNet
+	[Application(Debuggable=false, Label=AppNames.AppName)]
+#else
+	#if RELEASE 
+	[Application(Debuggable=false, Label=AppNames.AppName)] 
+	#else
+	[Application(Debuggable=true, Label=AppNames.AppName)]
+	#endif
 #endif
 	public class App : Application {
 
