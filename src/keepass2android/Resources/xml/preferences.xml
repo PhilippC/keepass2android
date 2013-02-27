@@ -37,7 +37,6 @@
  
 		  <EditTextPreference
                 android:title="@string/default_username"
-                android:summary="@string/default_username_summary"
                 android:persistent="false"
                 android:key="@string/default_username_key"/>
 	</PreferenceScreen>

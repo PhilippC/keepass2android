@@ -37,8 +37,7 @@
             android:id="@+id/label_open_by_filename_details"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/file_filename"
-            android:text="@string/enter_filename_details_file" />
+            android:layout_below="@id/file_filename"/>
         <Button
             android:id="@+id/open"
             android:text="@string/menu_open"
