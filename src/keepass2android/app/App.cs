@@ -29,26 +29,30 @@ using Android.Widget;
 
 namespace keepass2android
 {
-	public static class AppNameResolver
+#if NoNet
+	public static class AppNames
 	{
-		public static string AppName
-		{
-			get { return "@string/app_name";}
-		}
-		public static string AppNameShort
-		{
-			get { return "@string/app_name_short";}
-		}
+		public const string AppName = "@string/app_name_nonet";
+		public const string AppNameShort = "@string/short_app_name_nonet";
+		public const string AppLauncherTitle = "@string/short_app_name_nonet";
 	}
+#else
+	public static class AppNames
+	{
+		public const string AppName = "@string/app_name";
+		public const string AppNameShort = "@string/short_app_name";
+		public const string AppLauncherTitle = "@string/app_name";
+	}
+#endif
 
 	///Application class for Keepass2Android: Contains static Database variable to be used by all components.
 #if NoNet
-	[Application(Debuggable=false, Label=AppNameResolver.AppName)]
+	[Application(Debuggable=false, Label=AppNames.AppName)]
 #else
 	#if RELEASE 
-		[Application(Debuggable=false, Label="@string/app_name")] 
+	[Application(Debuggable=false, Label=AppNames.AppName)] 
 	#else
-		[Application(Debuggable=true, Label="@string/app_name")]
+	[Application(Debuggable=true, Label=AppNames.AppName)]
 	#endif
 #endif
 	public class App : Application {

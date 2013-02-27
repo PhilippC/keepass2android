@@ -41,6 +41,11 @@
     <DeployExternal>True</DeployExternal>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="UseManifestNet.bat" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -51,6 +56,12 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <DefineConstants>NoNet</DefineConstants>
     <DeployExternal>True</DeployExternal>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="UseManifestNoNet.bat" workingdir="" />
+      </CustomCommands>
+    </CustomCommands>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
