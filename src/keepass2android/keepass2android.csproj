@@ -50,6 +50,7 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <DefineConstants>NoNet</DefineConstants>
+    <DeployExternal>True</DeployExternal>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
