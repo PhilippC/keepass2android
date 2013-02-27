@@ -118,7 +118,7 @@ namespace keepass2android
 				// Set the initial value of the filename
 				EditText filename = (EditText)FindViewById(Resource.Id.file_filename);
 				filename.Text = Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path);
-				enterFilenameDetails.Text = GetString(Resource.String.enter_filename_details_file);
+				enterFilenameDetails.Text = "";//GetString(Resource.String.enter_filename_details_file);
 				enterFilenameDetails.Visibility = enterFilenameDetails.Text == "" ? ViewStates.Gone : ViewStates.Visible;
 			};
 			openFileButton.Click += openFileButtonClick;
@@ -151,7 +151,7 @@ namespace keepass2android
 				// Set the initial value of the filename
 				EditText filename = (EditText)FindViewById(Resource.Id.file_filename);
 				filename.Text = Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path);
-				enterFilenameDetails.Text = GetString(Resource.String.enter_filename_details_create);
+				enterFilenameDetails.Text = "";//GetString(Resource.String.enter_filename_details_create);
 				enterFilenameDetails.Visibility = enterFilenameDetails.Text == "" ? ViewStates.Gone : ViewStates.Visible;
 			};
 			createNewButton.Click += createNewButtonClick;

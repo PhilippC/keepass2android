@@ -22,7 +22,7 @@
     <string name="donate_url"><![CDATA[https://www.paypal.com/TODO]]></string>
     <string name="homepage">http://keepass2android.codeplex.com</string>
     <string name="homepage_short">keepass2android.codeplex.com</string>
-    <string name="issues">http://keepass2android.codeplex</string>
+    <string name="issues">http://keepass2android.codeplex.com</string>
     <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
     <string name="oi_filemanager_web">https://openintents.googlecode.com/files/FileManager-2.0.2.apk</string>
    
@@ -51,6 +51,7 @@
     
     <string name="QuickUnlockDefaultEnabled_key">Enable_QuickUnlock_by_default</string>
 	<string name="QuickUnlockLength_key">QuickUnlockLength</string>
+	<string name="QuickUnlockLength_default">3</string>
 	
 	<string name="UseFileTransactions_key">UseFileTransactions</string>
 	

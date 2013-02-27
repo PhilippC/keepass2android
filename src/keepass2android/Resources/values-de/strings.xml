@@ -3,8 +3,9 @@
 <resources>
   <string name="about_feedback">Issue-Tracker</string>
   <string name="about_homepage">Website</string>
-  <string name="AboutText">Keepass2Android ist die Implementierung des KeePass password manager für die Android Plattform.</string>
-  <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
+  <string name="AboutText">Keepass2Android ist ein Passwortmanager mit Lese- und Schreib-Zugriff auf KeePass 2.x Datenbanken.</string>
+  <string name="CreditsText">Die Benutzeroberfläche basiert auf einem Port von Keepassdroid (entwickelt von Brian Pellin) nach Mono for Android. Der Code für die Datenbank-Operationen nutzt eine angepasste Version einer Bibliothek aus KeePass (entwickelt von Dominik Reichl).
+Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
   <string name="accept">Akzeptieren</string>
   <string name="add_entry">Eintrag hinzufügen</string>
   <string name="add_group">Gruppe hinzufügen</string>
@@ -13,13 +14,12 @@
   <string name="algorithm_colon">Algorithmus</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="library_name">KeePassLib2Android</string>
   <string name="app_timeout">Anwendungssperre</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Einstellungen</string>
   <string name="brackets">Klammern</string>
-  <string name="browser_intall_text">Um diese Funktion zu nutzen, bitten wir Sie einen externen Dateimanager herunterzuladen, welchen Sie über GooglePlay oder direkt von der Entwickler-Webseite herunterladen können. Aufgrund einiger Beschränkungen kann der Dateimanager nicht vollkommen genutzt werden.</string>
+  <string name="browser_intall_text">Um diese Funktion nutzen zu können, benötigen Sie den OI File Manager, den Sie über Google Play bzw. direkt von der Entwicklerwebsite herunterladen können. Aufgrund einiger Eigenheiten des Dateimanagers kann es bei der ersten Benutzung zu Einschränkungen kommen.</string>
   <string name="building_search_idx">Indexiere vor der Suche…</string>
   <string name="cancel">Abbr.</string>
   <string name="ClearClipboard">Zwischenablage geleert…</string>
@@ -35,7 +35,7 @@
   <string name="decrypting_entry">Entschlüsselt</string>
   <string name="default_checkbox">Als Standard-Datenbank benutzen</string>
   <string name="digits">Zahlen</string>
-  <string name="disclaimer_formal">Keepass2Android, Copyright 2013 Philipp Crocoll. Alle Rechte vorbehalten. Wir tragen keine Verantwortung und geben auch keine Garantie bei der Nutzung der Anwendung; Die Anwendung ist kostenlos und wird unter den GPL v2 (und weiteren Versionen) Bedingungen verbreitet.</string>
+  <string name="disclaimer_formal">Keepass2Android, Copyright 2013 Philipp Crocoll. Alle Rechte vorbehalten. Der Autor übernimmt keine Verantwortung gibt KEINERLEI GARANTIE bei der Nutzung der Anwendung; Die Anwendung ist kostenlos und kann unter den Bedingungen der GPL v2 oder später verbreitet werden.</string>
   <string name="ellipsis">…</string>
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
   <string name="entry_accessed">Letzter Zugriff</string>
@@ -90,7 +90,7 @@
   <string name="hint_login_pass">Kennwort</string>
   <string name="hint_title">Name</string>
   <string name="hint_url">Adresse</string>
-  <string name="hint_override_url">override url</string>
+  <string name="hint_override_url">Override URL</string>
   <string name="hint_tags">Tag1, Tag2</string>
   <string name="hint_username">Benutzername</string>
   <string name="install_from_market">GooglePlay</string>
@@ -173,22 +173,18 @@
   <string name="start_open_file">Datei öffnen...</string>
   <string name="start_create">Neue Datenbank erstellen...</string>
   <string name="start_open_url">URL öffnen...</string>
-  <string name="start_create_import">Import file to new database...</string>
-  <string name="enter_filename_details_file"> </string>
+  <string name="start_create_import">Datei in neue Datenbank importieren...</string>
   <string name="enter_filename_details_url">Die vollständige URL muss einschließlich Protokoll, z.B. http://, angegeben werden.</string>
-  <string name="enter_filename_details_create_import">File to import will be selected in the next step.</string>
+  <string name="enter_filename_details_create_import">Zu importierende Datei wird im nächsten Schritt gewählt.</string>
   <string name="enable_quickunlock">QuickUnlock aktivieren</string>
   <string name="QuickUnlock_label">Gib die letzten %1$d Zeichen deines Passworts ein:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Datenbank schließen</string>
-  <string name="QuickUnlockDefaultEnabled_key">Enable_QuickUnlock_by_default</string>
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock standardmäßig aktiviert</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definiert, ob QuickUnlock standardmäßig aktiviert ist oder nicht.</string>
-  <string name="QuickUnlockLength_key">QuickUnlockLength</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
-  <string name="QuickUnlockLength_default">3</string>
   <string name="BinaryDirectory_title">Verzeichnis für Datei-Anhänge</string>
   <string name="BinaryDirectory_summary">Verzeichnis, in dem Dateianlagen gespeichert werden.</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
@@ -202,7 +198,6 @@
   <string name="add_extra_string">Zusätzliches Feld hinzufügen</string>
   <string name="database_loaded_quickunlock_enabled">Datenbank geladen, QuickUnlock aktiviert.</string>
   <string name="credentials_dialog_title">Serverzugangsdaten eingeben</string>
-  <string name="UseFileTransactions_key">UseFileTransactions</string>
   <string name="UseFileTransactions_title">Dateitransaktionen</string>
   <string name="UseFileTransactions_summary">Dateitransaktionen beim Schreiben von Datenbank-Dateien verwenden</string>
   <string name="AskOverwriteBinary">Möchtest du den vorhandenen Anhang mit dem gleichen Namen überschreiben?</string>
