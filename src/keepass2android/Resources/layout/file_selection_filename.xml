@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_below="@id/label_open_by_filename_details"
-            android:width="100sp" />
+            android:minWidth="100sp" />
         <Button
             android:id="@+id/create"
             android:text="@string/menu_create"
@@ -52,15 +52,15 @@
             android:layout_width="wrap_content"
             android:layout_below="@id/label_open_by_filename_details"
             android:layout_toRightOf="@id/open"
-            android:width="100sp" />
+            android:minWidth="100sp" />
         <Button
             android:id="@+id/fnv_cancel"
-            android:text="@string/cancel"
+            android:text="@android:string/cancel"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_below="@id/label_open_by_filename_details"
             android:layout_toRightOf="@id/create"
-            android:width="100sp" />
+            android:minWidth="100sp" />
     </RelativeLayout>
     <Button
         android:text="@string/start_open_file"
