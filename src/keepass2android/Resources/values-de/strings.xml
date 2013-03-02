@@ -166,7 +166,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="regular_expression">Regulärer Ausdruck</string>
   <string name="TanExpiresOnUse_title">Tan verfällt bei Verwendung</string>
   <string name="TanExpiresOnUse_summary">TAN Einträge als abgelaufen markieren, wenn sie geöffnet werden</string>
-  <string name="kp2a_findUrl">Keepass2Android: Passwort suchen</string>
+  <string name="kp2a_findUrl">Passwort suchen (KP2A)</string>
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
   <string name="search_options">Optionen</string>
   <string name="caseSensitive">Groß-/Kleinschreibung beachten</string>

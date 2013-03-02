@@ -34,8 +34,14 @@ using KeePassLib.Serialization;
 namespace keepass2android
 {
 
-	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/Base")]
-	[IntentFilter(new [] { Intent.ActionSend }, Categories=new[]{Intent.CategoryDefault}, DataMimeType="text/plain")]
+	[Activity (Label = "@string/app_name", 
+	           ConfigurationChanges=ConfigChanges.Orientation|
+	           ConfigChanges.KeyboardHidden, 
+	           Theme="@style/Base")]
+	[IntentFilter(new [] { Intent.ActionSend }, 
+		Label = "@string/kp2a_findUrl", 
+		Categories=new[]{Intent.CategoryDefault}, 
+		DataMimeType="text/plain")]
 	public class FileSelectActivity : ListActivity
 	{
 
