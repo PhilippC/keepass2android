@@ -17,7 +17,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout">Anwendungssperre</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="application">Anwendung</string>
-  <string name="application_settings">Einstellungen</string>
+  <string name="application_settings">Anwendungs-Einstellungen</string>
   <string name="brackets">Klammern</string>
   <string name="browser_intall_text">Um diese Funktion nutzen zu können, benötigen Sie den OI File Manager, den Sie über Google Play bzw. direkt von der Entwicklerwebsite herunterladen können. Aufgrund einiger Eigenheiten des Dateimanagers kann es bei der ersten Benutzung zu Einschränkungen kommen.</string>
   <string name="building_search_idx">Indexiere vor der Suche…</string>
@@ -113,7 +113,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_copy_pass">Kennwort kopieren</string>
   <string name="menu_copy_user">Benutzername kopieren</string>
   <string name="menu_create">Erstellen</string>
-  <string name="menu_app_settings">Anwendungs-Einstellungen</string>
+  <string name="menu_app_settings">Einstellungen</string>
   <string name="menu_db_settings">Datenbank-Einstellungen</string>
   <string name="menu_delete">Löschen</string>
   <string name="menu_donate">Spenden</string>
