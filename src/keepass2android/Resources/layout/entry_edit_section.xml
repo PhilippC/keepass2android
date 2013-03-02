@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
     <EditText
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:inputType="text"
