@@ -108,8 +108,7 @@ namespace keepass2android.view
 			case MENU_DELETE:
 				Handler handler = new Handler();
 				DeleteGroup task = new DeleteGroup(Context, App.getDB(), mPw, mAct, new GroupBaseActivity.AfterDeleteGroup(handler, mAct));
-				ProgressTask pt = new ProgressTask(mAct, task, Resource.String.saving_database);
-				pt.run();
+				task.start();
 				return true;
 			default:
 				return false;

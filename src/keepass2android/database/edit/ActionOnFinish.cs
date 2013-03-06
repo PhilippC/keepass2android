@@ -40,6 +40,11 @@ namespace keepass2android
 			this.actionToPerform = actionToPerform;
 		}
 
+		public ActionOnFinish(ActionToPerformOnFinsh actionToPerform, OnFinish finish) : base(finish)
+		{
+			this.actionToPerform = actionToPerform;
+		}
+
 		public ActionOnFinish(ActionToPerformOnFinsh actionToPerform, Handler handler) : base(handler)
 		{
 			this.actionToPerform = actionToPerform;

@@ -35,7 +35,7 @@ namespace keepass2android
 		private Handler mHandler;
 		private RunnableOnFinish mTask;
 		private ProgressDialog mPd;
-		
+
 		public ProgressTask(Context ctx, RunnableOnFinish task, int messageId) {
 			mCtx = ctx;
 			mTask = task;

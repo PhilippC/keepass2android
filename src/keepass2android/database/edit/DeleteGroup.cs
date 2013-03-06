@@ -31,14 +31,12 @@ using KeePassLib;
 namespace keepass2android
 {
 	
-	public class DeleteGroup : RunnableOnFinish {
+	public class DeleteGroup : DeleteRunnable {
 		
-		private Database mDb;
 		private PwGroup mGroup;
 		private GroupBaseActivity mAct;
-		private bool mDontSave;
-		private Context mCtx;
-		
+		protected bool mDontSave;
+
 		public DeleteGroup(Context ctx, Database db, PwGroup group, GroupBaseActivity act, OnFinish finish):base(finish) {
 			setMembers(ctx, db, group, act, false);
 		}
@@ -46,23 +44,35 @@ namespace keepass2android
 		public DeleteGroup(Context ctx, Database db, PwGroup group, GroupBaseActivity act, OnFinish finish, bool dontSave):base(finish) {
 			setMembers(ctx, db, group, act, dontSave);
 		}
-		
-		
+
 		public DeleteGroup(Context ctx, Database db, PwGroup group, OnFinish finish, bool dontSave):base(finish) {
 			setMembers(ctx, db, group, null, dontSave);
 		}
 		
 		private void setMembers(Context ctx, Database db, PwGroup group, GroupBaseActivity act, bool dontSave) {
-			mCtx = ctx;
-			mDb = db;
+			base.setMembers(ctx, db);
+
 			mGroup = group;
 			mAct = act;
 			mDontSave = dontSave;
-			
-			mFinish = new AfterDelete(mFinish, mDb, mGroup);
+
 		}
-		
-		
+
+		public override bool CanRecycle
+		{
+			get
+			{
+				return CanRecycleGroup(mGroup);
+			}
+		}
+
+		protected override int QuestionsResourceId
+		{
+			get
+			{
+				return Resource.String.AskDeletePermanentlyGroup;
+			}
+		}
 		
 		
 		public override void run() {
@@ -73,43 +83,39 @@ namespace keepass2android
 			
 			PwDatabase pd = mDb.pm;
 			PwGroup pgRecycleBin = pd.RootGroup.FindGroup(pd.RecycleBinUuid, true);
-			bool bShiftPressed = false;
-			
-			bool bPermanent = true; //indicates whether we delete permanently or not
-			//TODO use settings to enable Recycle Bin App-wide?
-			if(pd.RecycleBinEnabled == false) bPermanent = true;
-			else if(bShiftPressed) bPermanent = true;
-			else if(pgRecycleBin == null) { }
-			else if(pg == pgRecycleBin) bPermanent = true;
-			else if(pg.IsContainedIn(pgRecycleBin)) bPermanent = true;
-			else if(pgRecycleBin.IsContainedIn(pg)) bPermanent = true;
-			
-			if(bPermanent)
-			{
-				/* TODO KPDesktop?
-				string strText = KPRes.DeleteGroupInfo + MessageService.NewParagraph +
-					KPRes.DeleteGroupQuestion;
-				if(!MessageService.AskYesNo(strText, KPRes.DeleteGroupTitle))
-					return;
-					*/
-			}
 			
 			pgParent.Groups.Remove(pg);
 			
-			if(bPermanent)
+			if ((DeletePermanently) || (!CanRecycle))
 			{
 				pg.DeleteAllObjects(pd);
 				
 				PwDeletedObject pdo = new PwDeletedObject(pg.Uuid, DateTime.Now);
 				pd.DeletedObjects.Add(pdo);
+				mFinish = new AfterDeletePermanently(mFinish, mDb, mGroup);
 			}
 			else // Recycle
 			{
 				bool bDummy = false;
-				EnsureRecycleBin(ref pgRecycleBin, pd, ref bDummy, mCtx);
+				EnsureRecycleBin(ref pgRecycleBin, ref bDummy);
 				
 				pgRecycleBin.AddGroup(pg, true, true);
 				pg.Touch(false);
+				mFinish = new ActionOnFinish((success, message) => 
+				                             {
+					if ( success ) {
+						// Mark new parent (Recycle bin) dirty
+						PwGroup parent = mGroup.ParentGroup;
+						if ( parent != null ) {
+							mDb.dirty.Add(parent);
+						}
+						//Mark old parent dirty:
+						mDb.dirty.Add(pgParent);
+					} else {
+						// Let's not bother recovering from a failure to save a deleted group.  It is too much work.
+						App.setShutdown();
+					}
+				}, this.mFinish);
 			}
 
 			// Save
@@ -118,39 +124,13 @@ namespace keepass2android
 			
 		}
 
-		public static void EnsureRecycleBin(ref PwGroup pgRecycleBin,
-		                                     PwDatabase pdContext, ref bool bGroupListUpdateRequired, Context ctx)
-		{
-			if(pdContext == null) { return; }
-			
-			if(pgRecycleBin == pdContext.RootGroup)
-			{
-				pgRecycleBin = null;
-			}
-			
-			if(pgRecycleBin == null)
-			{
-				pgRecycleBin = new PwGroup(true, true, ctx.GetString(Resource.String.RecycleBin),
-				                           PwIcon.TrashBin);
-				pgRecycleBin.EnableAutoType = false;
-				pgRecycleBin.EnableSearching = false;
-				pgRecycleBin.IsExpanded = false;
-				pdContext.RootGroup.AddGroup(pgRecycleBin, true);
-				
-				pdContext.RecycleBinUuid = pgRecycleBin.Uuid;
-				
-				bGroupListUpdateRequired = true;
-			}
-			else { System.Diagnostics.Debug.Assert(pgRecycleBin.Uuid.EqualsValue(pdContext.RecycleBinUuid)); }
-		}
-
 		
-		private class AfterDelete : OnFinish {
+		private class AfterDeletePermanently : OnFinish {
 			Database mDb;
 
 			PwGroup mGroup;
 
-			public AfterDelete(OnFinish finish, Database db, PwGroup group):base(finish) {
+			public AfterDeletePermanently(OnFinish finish, Database db, PwGroup group):base(finish) {
 				this.mDb = db;
 				this.mGroup = group;
 			}
@@ -160,7 +140,7 @@ namespace keepass2android
 					// Remove from group global
 					mDb.groups.Remove(mGroup.Uuid);
 					
-					// Remove group from the dirty global (if it is present), not a big deal if this fails
+					// Remove group from the dirty global (if it is present), not a big deal if this fails (doesn't throw)
 					mDb.dirty.Remove(mGroup);
 					
 					// Mark parent dirty

@@ -30,12 +30,10 @@ using KeePassLib;
 
 namespace keepass2android
 {
-	public class DeleteEntry : RunnableOnFinish {
+	public class DeleteEntry : DeleteRunnable {
 		
-		private Database mDb;
 		private PwEntry mEntry;
-		private Context mCtx;
-		
+
 		public DeleteEntry(Context ctx, Database db, PwEntry entry, OnFinish finish):base(finish) {
 			mCtx = ctx;
 			mDb = db;
@@ -43,12 +41,27 @@ namespace keepass2android
 			
 		}
 
-		
+		public override bool CanRecycle
+		{
+			get
+			{
+				return CanRecycleGroup(mEntry.ParentGroup);
+			}
+		}
+
+		protected override int QuestionsResourceId
+		{
+			get
+			{
+				return Resource.String.AskDeletePermanentlyEntry;
+			}
+		}
+
 		public override void run() {
 
 			PwDatabase pd = mDb.pm;
+
 			PwGroup pgRecycleBin = pd.RootGroup.FindGroup(pd.RecycleBinUuid, true);
-			bool bShiftPressed = false;
 
 			bool bUpdateGroupList = false;
 			DateTime dtNow = DateTime.Now;
@@ -58,72 +71,55 @@ namespace keepass2android
 			{
 				pgParent.Entries.Remove(pe);
 				
-				bool bPermanent = true;
-				if(pd.RecycleBinEnabled == false) bPermanent = true;
-				else if(bShiftPressed) bPermanent = true;
-				else if(pgRecycleBin == null) { } // Recycle
-				else if(pgParent == pgRecycleBin) bPermanent = true;
-				else if(pgParent.IsContainedIn(pgRecycleBin)) bPermanent = true;
-				
-				if(bPermanent)
-				{
-				/* TODO KP Desktop
-				if(!MessageService.AskYesNo(bSingle ? KPRes.DeleteEntriesQuestionSingle :
-					                            KPRes.DeleteEntriesQuestion, bSingle ? KPRes.DeleteEntriesTitleSingle :
-					                            KPRes.DeleteEntriesTitle))
-						return;
-*/
-					
 
+				if ((DeletePermanently) || (!CanRecycle))
+				{
 					PwDeletedObject pdo = new PwDeletedObject(pe.Uuid, dtNow);
 					pd.DeletedObjects.Add(pdo);
+
+					mFinish = new ActionOnFinish( (success, message) => 
+					                             {
+						if ( success ) {
+							// Mark parent dirty
+							if ( pgParent != null ) {
+								mDb.dirty.Add(pgParent);
+							}
+						} else {
+							// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
+							App.setShutdown();
+						}
+
+					});
 				}
 				else // Recycle
 				{
-					DeleteGroup.EnsureRecycleBin(ref pgRecycleBin, pd, ref bUpdateGroupList, mCtx);
+					EnsureRecycleBin(ref pgRecycleBin, ref bUpdateGroupList);
 					
 					pgRecycleBin.AddEntry(pe, true, true);
 					pe.Touch(false);
+
+					mFinish = new ActionOnFinish( (success, message) => 
+					                             {
+						if ( success ) {
+							// Mark previous parent dirty
+							if ( pgParent != null ) {
+								mDb.dirty.Add(pgParent);
+							}
+							// Mark new parent dirty
+							mDb.dirty.Add(pgRecycleBin);
+						} else {
+							// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
+							App.setShutdown();
+						}
+						
+					}, this.mFinish);
 				}
 			}
-			
-			// Save
-			mFinish = new AfterDelete(mFinish, pgParent, mEntry, mDb);
-			
+
 			// Commit database
 			SaveDB save = new SaveDB(mCtx, mDb, mFinish, false);
 			save.run();
 			
-			
-		}
-		
-		private class AfterDelete : OnFinish {
-			
-			private PwGroup mParent;
-			private PwEntry mEntry;
-			Database mDb;
-			
-			public AfterDelete(OnFinish finish, PwGroup parent, PwEntry entry, Database db):base(finish) {
-				mParent = parent;
-				mEntry = entry;
-				mDb = db;
-			}
-			
-			public override void run() {
-				if ( mSuccess ) {
-					// Mark parent dirty
-					if ( mParent != null ) {
-						mDb.dirty.Add(mParent);
-					}
-				} else {
-					// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
-					App.setShutdown();
-
-				}
-				
-				base.run();
-				
-			}
 			
 		}
 		

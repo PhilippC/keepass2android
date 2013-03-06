@@ -128,6 +128,8 @@
   <string name="menu_url">Go to URL</string>
   <string name="minus">Minus</string>
   <string name="never">Never</string>
+  <string name="yes">Yes</string>
+  <string name="no">No</string>
   <string name="no_keys">No entries in the database or group.</string>
   <string name="no_results">No search results</string>
   <string name="no_url_handler">No handler for this url.</string>
@@ -207,6 +209,9 @@
   <string name="AskOverwriteBinary_no">Rename</string>
   <string name="AttachFailed">Failed to add file attachment.</string>
   <string name="RecycleBin">Recycle Bin</string>
+  <string name="AskDeletePermanentlyEntry">Do you want to delete this entry permanently? Press No to recycle.</string>
+  <string name="AskDeletePermanentlyGroup">Do you want to delete this group permanently? Press No to recycle.</string>
+  <string name="AskDeletePermanently_title">Delete permanently?</string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconds</item>
     <item>1 minute</item>
