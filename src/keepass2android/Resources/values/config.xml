@@ -53,6 +53,8 @@
 	<string name="QuickUnlockLength_key">QuickUnlockLength</string>
 	<string name="QuickUnlockLength_default">3</string>
 	
+	<string name="UsageCount_key"></string>
+	
 	<string name="UseFileTransactions_key">UseFileTransactions</string>
 	
     <string name="clipboard_timeout_default">300000</string>

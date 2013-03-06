@@ -85,6 +85,13 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+
+			long usageCount = prefs.GetLong(GetString(Resource.String.UsageCount_key), 0);
+
+			ISharedPreferencesEditor edit = prefs.Edit();
+			edit.PutLong(GetString(Resource.String.UsageCount_key), usageCount+1);
+			EditorCompat.apply(edit);
+
 			mShowPassword = ! prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
 			
 			base.OnCreate(savedInstanceState);
