@@ -14,6 +14,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="algorithm_colon">Algorithmus</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
+  <string name="app_name_nonet">Keepass2Android Offline</string>
+  <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Anwendungssperre</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="application">Anwendung</string>
@@ -127,6 +129,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_url">URL öffnen</string>
   <string name="minus">Bindestrich</string>
   <string name="never">Nie</string>
+  <string name="yes">Ja</string>
+  <string name="no">Nein</string>
   <string name="no_keys">Keine Einträge in dieser Datenbank oder Gruppe.</string>
   <string name="no_results">Keine Suchergebnisse</string>
   <string name="no_url_handler">Kein Handler zum Öffnen der URL vorhanden.</string>
@@ -206,6 +210,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AskOverwriteBinary_no">Umbenennen</string>
   <string name="AttachFailed">Fehler beim Hinzufügen des Anhangs.</string>
   <string name="RecycleBin">Papierkorb</string>
+  <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Drücke nein, um ihn in den Papierkorb zu verschieben.</string>
+  <string name="AskDeletePermanentlyGroup">Soll diese Gruppe endgültig gelöscht werden? Drücke nein, um sie in den Papierkorb zu verschieben.</string>
+  <string name="AskDeletePermanently_title">Endgültig löschen?</string>
   <string-array name="clipboard_timeout_options">
     <item>30 Sekunden</item>
     <item>1 Minute</item>
