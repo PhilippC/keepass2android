@@ -31,7 +31,7 @@ using keepass2android.search;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/short_app_name")]			
+	[Activity (Label = "@string/short_app_name", Theme="@style/Base")]			
 	public class SearchActivity : LifecycleDebugActivity
 	{
 		bool GetCheckBoxValue(int resId)
