@@ -47,6 +47,7 @@ namespace keepass2android
 		public const Android.App.Result EXIT_CLOSE_AFTER_SEARCH = Android.App.Result.FirstUser+6;
 		public const Android.App.Result EXIT_CHANGE_DB = Android.App.Result.FirstUser+7;
 		public const Android.App.Result EXIT_FORCE_LOCK_AND_CHANGE_DB = Android.App.Result.FirstUser+8;
+		public const Android.App.Result EXIT_RELOAD_DB = Android.App.Result.FirstUser+9;
 
 		protected override void OnCreate (Bundle bundle)
 		{

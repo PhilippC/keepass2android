@@ -50,12 +50,17 @@ namespace keepass2android
 		{
 			
 		}
-
-		protected override void OnResume() {
+			
+		protected override void OnResume()
+		{
 			base.OnResume();
 			
-			TimeoutHelper.checkShutdown(this, mIoc);
+			if (TimeoutHelper.checkShutdown(this, mIoc))
+				return;
+			
+			App.getDB().CheckForOpenFileChanged(this);
 		}
+
 	}
 }
 

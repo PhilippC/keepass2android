@@ -239,7 +239,29 @@ namespace keepass2android
 					App.getDB().Locked = false;
 					LaunchNextActivity();
 					break;
+				case KeePass.EXIT_RELOAD_DB:
+					//if the activity was killed, fill password/keyfile so the user can directly hit load again
+					if (App.getDB().Loaded)
+					{
+						if (App.getDB().pm.MasterKey.ContainsType(typeof(KcpPassword)))
+						{
 
+							KcpPassword kcpPassword = (KcpPassword)App.getDB().pm.MasterKey.GetUserKey(typeof(KcpPassword));
+							String password = kcpPassword.Password.ReadString();
+
+							setEditText(Resource.Id.password, password);
+						
+						}
+						if (App.getDB().pm.MasterKey.ContainsType(typeof(KcpKeyFile)))
+						{
+							
+							KcpKeyFile kcpKeyfile = (KcpKeyFile)App.getDB().pm.MasterKey.GetUserKey(typeof(KcpKeyFile));
+
+							setEditText(Resource.Id.pass_keyfile, kcpKeyfile.Path);
+						}
+					}
+					unloadDatabase();
+					break;
 				case Android.App.Result.Ok:
 					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE) {
 						String filename = data.DataString;

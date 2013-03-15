@@ -1021,6 +1021,12 @@ namespace keepass2android
 			// aapt resource value: 0x7f0500eb
 			public const int AskOverwriteBinary_yes = 2131034347;
 			
+			// aapt resource value: 0x7f0500f3
+			public const int AskReloadFile = 2131034355;
+			
+			// aapt resource value: 0x7f0500f2
+			public const int AskReloadFile_title = 2131034354;
+			
 			// aapt resource value: 0x7f0500ed
 			public const int AttachFailed = 2131034349;
 			

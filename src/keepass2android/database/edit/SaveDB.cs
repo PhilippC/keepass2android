@@ -53,6 +53,8 @@ namespace keepass2android
 			if (! mDontSave) {
 				try {
 					mDb.SaveData (mCtx);
+					if (mDb.mIoc.IsLocalFile())
+						mDb.mLastChangeDate = System.IO.File.GetLastWriteTimeUtc(mDb.mIoc.Path);
 				} catch (Exception e) {
 					/* TODO KPDesktop:
 					 * catch(Exception exSave)

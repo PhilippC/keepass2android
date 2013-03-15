@@ -43,12 +43,14 @@ namespace keepass2android
 		public PwGroup root;
 		public PwDatabase pm;
 		public IOConnectionInfo mIoc;
+		public DateTime mLastChangeDate;
 		public SearchDbHelper searchHelper;
 		
 		public DrawableFactory drawFactory = new DrawableFactory();
 		
 		private bool loaded = false;
 
+		private bool mReloadRequested = false;
 
 		public bool Loaded {
 			get { return loaded;}
@@ -73,26 +75,78 @@ namespace keepass2android
 			}
 		}
 		
-	
+		public bool DidOpenFileChange()
+		{
+			if ((Loaded == false) || (mIoc.IsLocalFile() == false))
+			{
+				return false;
+			}
+			return System.IO.File.GetLastWriteTimeUtc(mIoc.Path) > mLastChangeDate;
+		}
+
+		public void CheckForOpenFileChanged(Activity activity)
+		{
+			if (DidOpenFileChange())
+			{
+				if (mReloadRequested)
+				{
+
+					activity.SetResult(KeePass.EXIT_RELOAD_DB);
+					activity.Finish();
+				}
+				AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+				builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
+				
+				builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
+				
+				builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
+				                                                                                                                    {
+					mReloadRequested = true;
+					activity.SetResult(KeePass.EXIT_RELOAD_DB);
+					activity.Finish();
+
+				}));
+				
+				builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
+				                                                                                                                   {
+
+				}));
+				
+
+				Dialog dialog = builder.Create();
+				dialog.Show();
+			}
+		}
 		
-		public void LoadData (Context ctx, IOConnectionInfo iocInfo, String password, String keyfile, UpdateStatus status)
+		public void LoadData(Context ctx, IOConnectionInfo iocInfo, String password, String keyfile, UpdateStatus status)
 		{
 			mIoc = iocInfo;
 
-			KeePassLib.PwDatabase pwDatabase = new KeePassLib.PwDatabase ();
+			KeePassLib.PwDatabase pwDatabase = new KeePassLib.PwDatabase();
 
-			KeePassLib.Keys.CompositeKey key = new KeePassLib.Keys.CompositeKey ();
-			key.AddUserKey (new KeePassLib.Keys.KcpPassword (password));
-			if (!String.IsNullOrEmpty (keyfile)) {
+			KeePassLib.Keys.CompositeKey key = new KeePassLib.Keys.CompositeKey();
+			key.AddUserKey(new KeePassLib.Keys.KcpPassword(password));
+			if (!String.IsNullOrEmpty(keyfile))
+			{
 
-				try { key.AddUserKey(new KeePassLib.Keys.KcpKeyFile(keyfile)); }
-				catch(Exception)
+				try
+				{
+					key.AddUserKey(new KeePassLib.Keys.KcpKeyFile(keyfile));
+				} catch (Exception)
 				{
 					throw new KeyFileException();
 				}
 			}
 			
 			pwDatabase.Open(iocInfo, key, status);
+
+			if (iocInfo.IsLocalFile())
+			{
+				mLastChangeDate = System.IO.File.GetLastWriteTimeUtc(iocInfo.Path);
+			} else
+			{
+				mLastChangeDate  = DateTime.MinValue;
+			}
 
 			root = pwDatabase.RootGroup;
 			populateGlobals(root);
@@ -210,6 +264,7 @@ namespace keepass2android
 			mIoc = null;
 			loaded = false;
 			locked = false;
+			mReloadRequested = false;
 		}
 		
 		public void markAllGroupsAsDirty() {

@@ -91,13 +91,15 @@ namespace keepass2android
 			return ioc.GetDisplayName() != other.GetDisplayName();
 		}
 		
-		public static void checkShutdown(Activity act, IOConnectionInfo ioc) {
+		public static bool checkShutdown(Activity act, IOConnectionInfo ioc) {
 			if ((  App.getDB().Loaded && (App.isShutdown() || App.getDB().Locked) ) 
 			    || (iocChanged(ioc, App.getDB().mIoc))) //file was changed from ActionSend-Intent
 			{
 				act.SetResult(KeePass.EXIT_LOCK);
 				act.Finish();
+				return true;
 			}
+			return false;
 		}
 	}
 }
