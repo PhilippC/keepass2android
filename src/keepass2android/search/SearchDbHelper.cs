@@ -120,7 +120,7 @@ namespace keepass2android
 				{
 					continue;
 				}
-				if (otherHost.Equals(host, StringComparison.InvariantCultureIgnoreCase))
+				if (host.IndexOf(otherHost, StringComparison.InvariantCultureIgnoreCase) > -1)
 				{
 					pgResults.AddEntry(entry, false);
 				}
