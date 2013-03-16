@@ -66,7 +66,8 @@ namespace keepass2android
 			db.root = db.pm.RootGroup;
 			db.mIoc = mIoc;
 			db.Loaded = true;
-			
+			db.searchHelper = new SearchDbHelper(mCtx);
+
 			// Add a couple default groups
 			AddGroup internet = AddGroup.getInstance(mCtx, db, "Internet", 1, db.pm.RootGroup, null, true);
 			internet.run();
