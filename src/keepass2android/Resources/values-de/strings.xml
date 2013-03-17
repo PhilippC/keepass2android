@@ -213,6 +213,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Drücke nein, um ihn in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyGroup">Soll diese Gruppe endgültig gelöscht werden? Drücke nein, um sie in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanently_title">Endgültig löschen?</string>
+  <string name="AskReloadFile_title">Datei neu laden?</string>
+  <string name="AskReloadFile">Die gerade geöffnete Datei wurde von einem anderen Programm geändert. Möchtest du sie neu laden?</string>
+  <string name="AskDiscardChanges">Möchtest du die gerade gemachten Änderungen wirklich verwerfen? (Der Buttom zum Speichern befindet sich oberhalb des Formulars.)</string>
+  <string name="AskDiscardChanges_title">Änderungen verwerfen?</string>
   <string-array name="clipboard_timeout_options">
     <item>30 Sekunden</item>
     <item>1 Minute</item>
