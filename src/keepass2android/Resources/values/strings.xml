@@ -214,6 +214,8 @@
   <string name="AskDeletePermanently_title">Delete permanently?</string>
   <string name="AskReloadFile_title">Reload file?</string>
   <string name="AskReloadFile">The file which is currently open was changed by another program. Do you want to reload it?</string>
+  <string name="AskDiscardChanges">Do you really want to discard the changes made? (The Save button is at the top of the form.)</string>
+  <string name="AskDiscardChanges_title">Discard changes?</string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconds</item>
     <item>1 minute</item>

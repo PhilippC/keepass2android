@@ -33,6 +33,8 @@ namespace keepass2android.view
 {
 	public class EntryEditSection : RelativeLayout 
 	{
+		public event EventHandler ContentChanged;
+
 		public EntryEditSection (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
@@ -62,6 +64,9 @@ namespace keepass2android.view
 			
 			CheckBox cb = (CheckBox) FindViewById(Resource.Id.protection);
 			cb.Checked = value.IsProtected;
+			cb.CheckedChange += (sender, e) => {if (ContentChanged != null)
+				ContentChanged(this, new EventArgs());
+			};
 		}
 
 		public ImageButton getDeleteButton()
@@ -73,8 +78,12 @@ namespace keepass2android.view
 		{
 			if (str != null)
 			{
-				TextView tvTitle = (TextView)FindViewById(resId);
-				tvTitle.Text = str;
+				TextView tv = (TextView)FindViewById(resId);
+				tv.Text = str;
+				tv.TextChanged += (sender, e) => {
+					if (ContentChanged != null)
+						ContentChanged(this, new EventArgs());
+				};
 			}
 			
 		}

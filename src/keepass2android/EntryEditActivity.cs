@@ -52,6 +52,8 @@ namespace keepass2android
 		private PwIcon mSelectedIconID;
 		private PwUuid mSelectedCustomIconID = PwUuid.Zero;
 		private bool mSelectedIcon = false;
+
+		bool mEntryModified;
 		
 		public static void Launch(Activity act, PwEntry pw) {
 			Intent i = new Intent(act, typeof(EntryEditActivity));
@@ -145,6 +147,7 @@ namespace keepass2android
 				}
 			}*/
 				mIsNew = true;
+				mEntryModified = true;
 
 			} else {
 
@@ -356,7 +359,9 @@ namespace keepass2android
 				ees.setData("", new ProtectedString(false, ""));
 				ees.getDeleteButton().Click += (senderEes, eEes) => deleteAdvancedString((View)senderEes);
 				container.AddView(ees);
-				
+
+				mEntryModified = true;
+
 				// Scroll bottom
 				scroll.Post(() => {
 						scroll.FullScroll(FocusSearchDirection.Down);
@@ -374,7 +379,7 @@ namespace keepass2android
 						mEntry.ExpiryTime = DateTime.Now;
 				}
 				updateExpires();
-				
+				mEntryModified = true;
 			};
 			
 		}
@@ -446,7 +451,38 @@ namespace keepass2android
 			{
 				Toast.MakeText(this, GetString(Resource.String.AttachFailed)+" "+exAttach.Message, ToastLength.Long).Show();
 			}
+			mEntryModified = true;
 			populateBinaries();
+		}
+
+		public override void OnBackPressed()
+		{
+			if (mEntryModified == false)
+			{
+				base.OnBackPressed();
+			} else
+			{
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.SetTitle(GetString(Resource.String.AskDiscardChanges_title));
+				
+				builder.SetMessage(GetString(Resource.String.AskDiscardChanges));
+				
+				builder.SetPositiveButton(GetString(Android.Resource.String.Yes), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
+				                                                                                                                  {
+					Finish();
+					
+				}));
+				
+				builder.SetNegativeButton(GetString(Android.Resource.String.No), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
+				                                                                                                                 {
+					
+				}));
+				
+				
+				Dialog dialog = builder.Create();
+				dialog.Show();
+			}
+
 		}
 		
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -463,6 +499,7 @@ namespace keepass2android
 				ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
 				//TODO: custom image
 				currIconButton.SetImageResource(Icons.iconToResId(mSelectedIconID));
+				mEntryModified = true;
 				break;
 				
 			case RESULT_OK_PASSWORD_GENERATOR:
@@ -472,7 +509,7 @@ namespace keepass2android
 				
 				password.Text = generatedPassword;
 				confPassword.Text = generatedPassword;
-				
+				mEntryModified = true;
 				break;
 			case (int)Result.Ok:
 					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE)
@@ -511,6 +548,7 @@ namespace keepass2android
 				binaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuDelete),null, null, null);
 				binaryButton.Click += (object sender, EventArgs e) => 
 				{
+					mEntryModified = true;
 					Button btnSender = (Button)(sender);
 					mEntry.Binaries.Remove(key);
 					populateBinaries();
@@ -632,6 +670,7 @@ namespace keepass2android
 				if (!PwDefs.IsStandardField(key)) {
 					EntryEditSection ees = (EntryEditSection) LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
 					ees.setData(key, pair.Value);
+					ees.ContentChanged += (sender, e) => {mEntryModified=true;};
 					ees.getDeleteButton().Click += (sender, e) => deleteAdvancedString((View)sender);
 					container.AddView(ees);
 				}
@@ -652,7 +691,7 @@ namespace keepass2android
 		public void deleteAdvancedString(View view) {
 			EntryEditSection section = (EntryEditSection) view.Parent;
 			LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
-			
+			mEntryModified = true;
 			for (int i = 0; i < container.ChildCount; i++) {
 				EntryEditSection ees = (EntryEditSection) container.GetChildAt(i);
 				if (ees == section) {
@@ -714,6 +753,7 @@ namespace keepass2android
 		private void populateText(int viewId, String text) {
 			TextView tv = (TextView) FindViewById(viewId);
 			tv.Text = text;
+			tv.TextChanged += (sender, e) => {mEntryModified = true;};
 		}
 		
 		private class AfterSave : OnFinish {

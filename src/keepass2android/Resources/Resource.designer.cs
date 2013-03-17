@@ -1009,6 +1009,12 @@ namespace keepass2android
 			// aapt resource value: 0x7f0500f1
 			public const int AskDeletePermanently_title = 2131034353;
 			
+			// aapt resource value: 0x7f0500f4
+			public const int AskDiscardChanges = 2131034356;
+			
+			// aapt resource value: 0x7f0500f5
+			public const int AskDiscardChanges_title = 2131034357;
+			
 			// aapt resource value: 0x7f0500e9
 			public const int AskOverwriteBinary = 2131034345;
 			
