@@ -212,6 +212,10 @@
   <string name="AskDeletePermanentlyEntry">Czy chcesz trwale usunąć ten wpis? Wciśnij nie aby przesunąć do kosza.</string>
   <string name="AskDeletePermanentlyGroup">Czy chcesz trwale usunąć tę grupę? Wciśnij nie aby przesunąć do kosza.</string>
   <string name="AskDeletePermanently_title">Trwale usunąć?</string>
+  <string name="AskReloadFile_title">Przeładowanie pliku?</string>
+  <string name="AskReloadFile">Plik, który jest obecnie otwarty został zmieniony przez inny program. Czy chcesz go ponownie załadować?</string>
+  <string name="AskDiscardChanges">Czy na pewno chcesz odrzucić dokonane zmiany? (Przycisk Zapisz jest w górnej części formularza)</string>
+  <string name="AskDiscardChanges_title">Odrzuć zmiany?</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
     <item>1 minuta</item>
