@@ -278,22 +278,6 @@ namespace keepass2android
 		
 	}
 
-	/*
-		public void LoadData (Context mCtx, string mFileName, string mPass, string mKey, UpdateStatus mStatus)
-		{
-			KeePassLib.PwDatabase pwDatabase = new KeePassLib.PwDatabase();
-			KeePassLib.Serialization.IOConnectionInfo iocInfo = KeePassLib.Serialization.IOConnectionInfo.FromPath("/sdcard/keepass2androidtest.kdbx");
-			KeePassLib.Serialization.IOConnectionInfo iocInfoSave = KeePassLib.Serialization.IOConnectionInfo.FromPath("/sdcard/keepass2androidtestSaved.kdbx");
-			KeePassLib.Keys.CompositeKey key = new KeePassLib.Keys.CompositeKey();
-			key.AddUserKey(new KeePassLib.Keys.KcpPassword("test"));
-			
-			pwDatabase.Open(iocInfo, key, new LogToButton(this));
-			pwDatabase.RootGroup.AddGroup(new KeePassLib.PwGroup(true, true, "generatedFromKp2ANeu", KeePassLib.PwIcon.Folder), true);
-			pwDatabase.SaveAs(iocInfoSave,false,new LogToButton(this));
-			pwDatabase.Close();
-			//KeePassLib.Serialization.KdbxFile f = new KeePassLib.Serialization.KdbxFile(pwDatabase);
-		}
-*/
 
 }
 

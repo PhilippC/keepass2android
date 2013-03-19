@@ -343,7 +343,8 @@ namespace keepass2android
 				if (mSuccess) {
 					// Add to recent files
 					FileDbHelper dbHelper = App.fileDbHelper;
-					
+
+					//TODO: getFilename always returns "" -> bug?
 					dbHelper.createFile(mIoc, getFilename());
 					
 					GroupActivity.Launch(activty);
