@@ -37,7 +37,10 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/Base")]			
+	[Activity (Label = "@string/app_name", 
+	           ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, 
+	           Theme="@style/Base")]
+
 	public class PasswordActivity : LockingActivity {
 		bool mShowPassword = false;
 

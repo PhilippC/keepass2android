@@ -33,7 +33,7 @@ namespace keepass2android
 		DataScheme="file",
 		DataMimeType="*/*",
 		DataHost="*",
-		DataPathPattern=".*\\.kdbx", //TODO http://stackoverflow.com/questions/3400072/pathpattern-to-match-file-extension-does-not-work-if-a-period-exists-elsewhere-i
+		DataPathPattern=".*kdbx", //TODO http://stackoverflow.com/questions/3400072/pathpattern-to-match-file-extension-does-not-work-if-a-period-exists-elsewhere-i
 	//http://stackoverflow.com/questions/1733195/android-intent-filter-for-a-particular-file-extension
 		Categories=new[]{Intent.CategoryDefault, Intent.CategoryBrowsable})]
 	public class KeePass : LifecycleDebugActivity
