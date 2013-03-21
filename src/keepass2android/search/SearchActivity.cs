@@ -67,34 +67,42 @@ namespace keepass2android
 
 			btnSearch.Click += (object sender, EventArgs e) => 
 			{
-				String searchString = ((EditText)FindViewById(Resource.Id.searchEditText)).Text;
-				if (String.IsNullOrWhiteSpace(searchString))
-					return;
+				PerformSearch();
+			};
 
-				SearchParameters spNew = new SearchParameters();
-
-				Intent searchIntent = new Intent(this, typeof(SearchResults));
-				searchIntent.PutExtra("SearchInTitles", GetCheckBoxValue(Resource.Id.cbSearchInTitle));
-				searchIntent.PutExtra("SearchInUrls", GetCheckBoxValue(Resource.Id.cbSearchInUrl));
-				searchIntent.PutExtra("SearchInPasswords", GetCheckBoxValue(Resource.Id.cbSearchInPassword));
-				searchIntent.PutExtra("SearchInUserNames", GetCheckBoxValue(Resource.Id.cbSearchInUsername));
-				searchIntent.PutExtra("SearchInNotes", GetCheckBoxValue(Resource.Id.cbSearchInNotes));
-				searchIntent.PutExtra("SearchInGroupNames", GetCheckBoxValue(Resource.Id.cbSearchInGroupName));
-				searchIntent.PutExtra("SearchInOther", GetCheckBoxValue(Resource.Id.cbSearchInOtherStrings));
-				searchIntent.PutExtra("SearchInTags", GetCheckBoxValue(Resource.Id.cbSearchInTags));
-				searchIntent.PutExtra("RegularExpression", GetCheckBoxValue(Resource.Id.cbRegEx));
-				searchIntent.PutExtra("CaseSensitive", GetCheckBoxValue(Resource.Id.cbCaseSensitive));
-				searchIntent.PutExtra("ExcludeExpired", GetCheckBoxValue(Resource.Id.cbExcludeExpiredEntries));
-				searchIntent.PutExtra(SearchManager.Query, searchString);
-
-				StartActivityForResult(searchIntent,0);
-				Finish();
-
+			FindViewById<EditText>(Resource.Id.searchEditText).EditorAction += (object sender, TextView.EditorActionEventArgs e) => 
+			{
+				if (e.ActionId == Android.Views.InputMethods.ImeAction.Search) {
+					PerformSearch();
+				}
 			};
 		}
 		void populateCheckBox(int resId, bool value)
 		{
 			((CheckBox) FindViewById(resId)).Checked = value;
+		}
+
+		void PerformSearch()
+		{
+			String searchString = ((EditText)FindViewById(Resource.Id.searchEditText)).Text;
+			if (String.IsNullOrWhiteSpace(searchString))
+				return;
+			SearchParameters spNew = new SearchParameters();
+			Intent searchIntent = new Intent(this, typeof(SearchResults));
+			searchIntent.PutExtra("SearchInTitles", GetCheckBoxValue(Resource.Id.cbSearchInTitle));
+			searchIntent.PutExtra("SearchInUrls", GetCheckBoxValue(Resource.Id.cbSearchInUrl));
+			searchIntent.PutExtra("SearchInPasswords", GetCheckBoxValue(Resource.Id.cbSearchInPassword));
+			searchIntent.PutExtra("SearchInUserNames", GetCheckBoxValue(Resource.Id.cbSearchInUsername));
+			searchIntent.PutExtra("SearchInNotes", GetCheckBoxValue(Resource.Id.cbSearchInNotes));
+			searchIntent.PutExtra("SearchInGroupNames", GetCheckBoxValue(Resource.Id.cbSearchInGroupName));
+			searchIntent.PutExtra("SearchInOther", GetCheckBoxValue(Resource.Id.cbSearchInOtherStrings));
+			searchIntent.PutExtra("SearchInTags", GetCheckBoxValue(Resource.Id.cbSearchInTags));
+			searchIntent.PutExtra("RegularExpression", GetCheckBoxValue(Resource.Id.cbRegEx));
+			searchIntent.PutExtra("CaseSensitive", GetCheckBoxValue(Resource.Id.cbCaseSensitive));
+			searchIntent.PutExtra("ExcludeExpired", GetCheckBoxValue(Resource.Id.cbExcludeExpiredEntries));
+			searchIntent.PutExtra(SearchManager.Query, searchString);
+			StartActivityForResult(searchIntent, 0);
+			Finish();
 		}
 	}
 }
