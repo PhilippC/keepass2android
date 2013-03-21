@@ -28,14 +28,6 @@ using keepass2android.view;
 namespace keepass2android
 {
 	[Activity (Label = AppNames.AppName, MainLauncher = true, Theme="@style/Base")]
-	[IntentFilter (new[]{Intent.ActionView},
-		Label=AppNames.AppLauncherTitle,
-		DataScheme="file",
-		DataMimeType="*/*",
-		DataHost="*",
-		DataPathPattern=".*kdbx", //TODO http://stackoverflow.com/questions/3400072/pathpattern-to-match-file-extension-does-not-work-if-a-period-exists-elsewhere-i
-	//http://stackoverflow.com/questions/1733195/android-intent-filter-for-a-particular-file-extension
-		Categories=new[]{Intent.CategoryDefault, Intent.CategoryBrowsable})]
 	public class KeePass : LifecycleDebugActivity
 	{
 		public const Android.App.Result EXIT_NORMAL = Android.App.Result.FirstUser;

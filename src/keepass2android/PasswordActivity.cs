@@ -298,6 +298,7 @@ namespace keepass2android
 
 			mIoConnection = new IOConnectionInfo();
 
+
 			if (action != null && action.Equals(VIEW_INTENT))
 			{
 				mIoConnection.Path = i.DataString;
@@ -310,7 +311,7 @@ namespace keepass2android
 					return;
 				}
 
-				mIoConnection.Path = URLDecoder.Decode(mIoConnection.Path.Substring(7, mIoConnection.Path.Length));
+				mIoConnection.Path = URLDecoder.Decode(mIoConnection.Path.Substring(7));
 				
 				if (mIoConnection.Path.Length == 0)
 				{
