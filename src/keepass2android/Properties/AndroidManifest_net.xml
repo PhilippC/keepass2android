@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="5" 
-			android:versionName="0.6.1 beta" 
+			android:versionCode="6" 
+			android:versionName="0.6.2 beta" 
 			package="keepass2android.keepass2android" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">

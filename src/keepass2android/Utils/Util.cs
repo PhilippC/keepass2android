@@ -26,6 +26,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Content.PM;
 
 namespace keepass2android
 {
@@ -50,6 +51,11 @@ namespace keepass2android
 		
 		public static void gotoUrl(Context context, int resId)  {
 			gotoUrl(context, context.GetString(resId));
+		}
+
+		public static void gotoMarket(Context context)
+		{
+			gotoUrl(context, context.GetString(Resource.String.MarketURL)+context.PackageName);
 		}
 		
 		public static String getEditText(Activity act, int resId) {

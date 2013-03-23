@@ -31,6 +31,7 @@ using System.Text.RegularExpressions;
 using KeePassLib.Collections;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
+using Android.Util;
 
 namespace keepass2android
 {
@@ -105,7 +106,7 @@ namespace keepass2android
 			return UrlUtil.GetHost(url.Trim());
 		}
 
-		public PwGroup searchForHost(Database database, String url)
+		public PwGroup searchForHost(Database database, String url, bool allowSubdomains)
 		{
 			String host = extractHost(url);
 			string strGroupName = mCtx.GetString(Resource.String.search_results) + " (\"" + host + "\")";
@@ -116,6 +117,8 @@ namespace keepass2android
 			foreach (PwEntry entry in database.entries.Values)
 			{
 				String otherHost = extractHost(entry.Strings.ReadSafe(PwDefs.UrlField));
+				if ((allowSubdomains) && (otherHost.StartsWith("www.")))
+					otherHost = otherHost.Substring(4); //remove "www."
 				if (String.IsNullOrWhiteSpace(otherHost))
 				{
 					continue;

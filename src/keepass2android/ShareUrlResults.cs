@@ -95,6 +95,7 @@ namespace keepass2android
 		
 		private void query(String url)
 		{
+			//first: search for exact url
 			try
 			{
 				mGroup = mDb.SearchForExactUrl(url);
@@ -104,11 +105,25 @@ namespace keepass2android
 				Finish();
 				return;
 			}
+			//if no results, search for host (e.g. "accounts.google.com")
 			if (mGroup.Entries.Count() == 0)
 			{
 				try
 				{
-					mGroup = mDb.SearchForHost(url);
+					mGroup = mDb.SearchForHost(url, false);
+				} catch (Exception e)
+				{
+					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+					Finish();
+					return;
+				}
+			}
+			//if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
+			if (mGroup.Entries.Count() == 0)
+			{
+				try
+				{
+					mGroup = mDb.SearchForHost(url, true);
 				} catch (Exception e)
 				{
 					Toast.MakeText(this, e.Message, ToastLength.Long).Show();

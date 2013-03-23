@@ -198,8 +198,8 @@ namespace keepass2android
 			
 		}
 
-		public PwGroup SearchForHost(String url) {
-			PwGroup group = searchHelper.searchForHost(this, url);
+		public PwGroup SearchForHost(String url, bool allowSubdomains) {
+			PwGroup group = searchHelper.searchForHost(this, url, allowSubdomains);
 			
 			return group;
 			

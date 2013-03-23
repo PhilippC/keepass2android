@@ -219,7 +219,27 @@ namespace keepass2android
 			case Resource.Id.menu_sort:
 				toggleSort();
 				return true;
-				
+			case Resource.Id.menu_rate:
+				try {
+					Util.gotoMarket(this);
+				} catch (ActivityNotFoundException) {
+					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+				}
+				return true;
+			case Resource.Id.menu_suggest_improvements:
+				try {
+					Util.gotoUrl(this, Resource.String.SuggestionsURL);
+				} catch (ActivityNotFoundException) {
+					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+				}
+				return true;
+			case Resource.Id.menu_translate:
+				try {
+					Util.gotoUrl(this, Resource.String.TranslationURL);
+				} catch (ActivityNotFoundException) {
+					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+				}
+				return true;	
 			}
 			
 			return base.OnOptionsItemSelected(item);

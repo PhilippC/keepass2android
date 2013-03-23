@@ -24,6 +24,8 @@ using Android.Widget;
 using Android.OS;
 
 using keepass2android.view;
+using Android.Preferences;
+using Android.Content.PM;
 
 namespace keepass2android
 {
@@ -54,10 +56,59 @@ namespace keepass2android
 		}
 		
 
-		protected override void OnStart() {
+		protected override void OnStart()
+		{
 			base.OnStart();
-			Android.Util.Log.Debug("DEBUG","KeePass.OnStart");
-			startFileSelect();
+			Android.Util.Log.Debug("DEBUG", "KeePass.OnStart");
+
+			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+
+			bool showChangeLog = false;
+			try
+			{
+				PackageInfo packageInfo = PackageManager.GetPackageInfo(PackageName, 0);
+				int lastInfoVersionCode = prefs.GetInt(GetString(Resource.String.LastInfoVersionCode_key), 0);
+				if (packageInfo.VersionCode > lastInfoVersionCode)
+				{
+					showChangeLog = true;
+
+					ISharedPreferencesEditor edit = prefs.Edit();
+					edit.PutInt(GetString(Resource.String.LastInfoVersionCode_key), packageInfo.VersionCode);
+					EditorCompat.apply(edit);
+				}
+				
+			} catch (PackageManager.NameNotFoundException)
+			{
+
+			}
+
+			if (showChangeLog)
+			{
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.SetTitle(GetString(Resource.String.ChangeLog_title));
+				
+				builder.SetMessage(GetString(Resource.String.ChangeLog));
+
+				builder.SetPositiveButton(Android.Resource.String.Ok,new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt)=>{}));
+
+				Dialog dialog = builder.Create();
+				dialog.DismissEvent += (object sender, EventArgs e) => 
+				{
+					startFileSelect();
+				};
+				dialog.Show();
+
+
+
+			} else
+			{
+				startFileSelect();
+			}
+
+
+
+
+
 		}
 		
 		private void startFileSelect() {
@@ -72,7 +123,7 @@ namespace keepass2android
 		
 
 		protected override void OnDestroy() {
-			Android.Util.Log.Debug("DEBUG","KeePass.OnDestry"+IsFinishing.ToString());
+			Android.Util.Log.Debug("DEBUG","KeePass.OnDestroy"+IsFinishing.ToString());
 			base.OnDestroy();
 		}
 
