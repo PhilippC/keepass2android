@@ -217,6 +217,23 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AskReloadFile">Die gerade geöffnete Datei wurde von einem anderen Programm geändert. Möchtest du sie neu laden?</string>
   <string name="AskDiscardChanges">Möchtest du die gerade gemachten Änderungen wirklich verwerfen? (Der Buttom zum Speichern befindet sich oberhalb des Formulars.)</string>
   <string name="AskDiscardChanges_title">Änderungen verwerfen?</string>
+  <string name="suggest_improvements">Verbesserungen vorschlagen</string>
+  <string name="rate_app">Diese App bewerten</string>
+  <string name="translate_app">KP2A übersetzen</string>
+  <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog"><b>Version 0.6.2</b>\n
+* Google Drive/Dropbox/... Integration: Nutze die offizielle Google Drive oder Dropbox App und öffne daraus deine .kdbx-Datei. Das wird KP2A starten.\n
+* Verbesserter Such-Dialog \n
+* Verbesserte Suche bei \"Teilen\" mit Subdomains\n
+* Optionen für Feedback, Bewerten und Übersetzen zum Menü hinzugefügt\n
+\n
+<b>Version 0.6.1</b>\n
+* Erkennung, wenn sich eine Datenbank im Hingrund ändert (z.B. durch eine Sync-App)\n
+* Suche aus dem Browser verbessert\n
+* Bestätigungsdialog, wenn Änderungen verworfen werden sollen\n
+\n
+<b>Version 0.6</b>\n
+Erstes öffentliches Release</string>
   <string-array name="clipboard_timeout_options">
     <item>30 Sekunden</item>
     <item>1 Minute</item>
