@@ -246,22 +246,35 @@ namespace KeePassLib.Keys
 			ulong uNumRounds)
 		{
 			Debug.Assert((pbOriginalKey32 != null) && (pbOriginalKey32.Length == 32));
-			if(pbOriginalKey32 == null) throw new ArgumentNullException("pbOriginalKey32");
-			if(pbOriginalKey32.Length != 32) throw new ArgumentException();
+			if (pbOriginalKey32 == null)
+				throw new ArgumentNullException("pbOriginalKey32");
+			if (pbOriginalKey32.Length != 32)
+				throw new ArgumentException();
 
 			Debug.Assert((pbKeySeed32 != null) && (pbKeySeed32.Length == 32));
-			if(pbKeySeed32 == null) throw new ArgumentNullException("pbKeySeed32");
-			if(pbKeySeed32.Length != 32) throw new ArgumentException();
+			if (pbKeySeed32 == null)
+				throw new ArgumentNullException("pbKeySeed32");
+			if (pbKeySeed32.Length != 32)
+				throw new ArgumentException();
 
 			byte[] pbNewKey = new byte[32];
 			Array.Copy(pbOriginalKey32, pbNewKey, pbNewKey.Length);
 
 			// Try to use the native library first
-			if(NativeLib.TransformKey256(pbNewKey, pbKeySeed32, uNumRounds))
-				return (new SHA256Managed()).ComputeHash(pbNewKey);
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
+			if (NativeLib.TransformKey256(pbNewKey, pbKeySeed32, uNumRounds))
+			{
+				sw.Stop();
+				Android.Util.Log.Debug("DEBUG", "Native transform:" +sw.ElapsedMilliseconds+"ms");
+				return pbNewKey;
+			}
 
+			sw.Restart();
 			if(TransformKeyManaged(pbNewKey, pbKeySeed32, uNumRounds) == false)
 				return null;
+			sw.Stop();
+			Android.Util.Log.Debug("DEBUG", "Managed transform:" +sw.ElapsedMilliseconds+"ms");
 
 			SHA256Managed sha256 = new SHA256Managed();
 			return sha256.ComputeHash(pbNewKey);

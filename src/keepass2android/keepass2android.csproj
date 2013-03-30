@@ -259,6 +259,9 @@
     <None Include="Resources\values-vi\strings.xml">
       <Visible>False</Visible>
     </None>
+    <None Include="..\java\kp2akeytransform\libs\mips\libfinal-key.so">
+      <Link>libs\mips\libfinal-key.so</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic00.png" />
@@ -627,11 +630,19 @@
     <Folder Include="Resources\values-zh-rTW\" />
     <Folder Include="SupportLib\" />
     <Folder Include="Assets\" />
+    <Folder Include="libs\" />
+    <Folder Include="libs\armeabi-v7a\" />
+    <Folder Include="libs\armeabi\" />
+    <Folder Include="libs\mips\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj">
+      <Project>{A57B3ACE-5634-469A-88C4-858BB409F356}</Project>
+      <Name>kp2akeytransform</Name>
     </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>
@@ -645,5 +656,15 @@
   </ProjectExtensions>
   <ItemGroup>
     <AndroidJavaLibrary Include="SupportLib\android-support-v4.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi\libfinal-key.so">
+      <Link>libs\armeabi\libfinal-key.so</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidNativeLibrary>
+    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi-v7a\libfinal-key.so">
+      <Link>libs\armeabi-v7a\libfinal-key.so</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidNativeLibrary>
   </ItemGroup>
 </Project>

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePassLib2Android", "KeePa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "keepass2android", "keepass2android\keepass2android.csproj", "{A6CF8A86-37C1-4197-80FE-519DE2C842F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kp2akeytransform", "kp2akeytransform\kp2akeytransform.csproj", "{A57B3ACE-5634-469A-88C4-858BB409F356}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,24 @@ Global
 		{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}.Release|x64.Build.0 = Release|Any CPU
 		{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}.ReleaseNoNet|Any CPU.ActiveCfg = ReleaseNoNet|Any CPU
 		{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}.ReleaseNoNet|Any CPU.Build.0 = ReleaseNoNet|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Win32.Build.0 = Debug|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|x64.Build.0 = Debug|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Win32.ActiveCfg = Release|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Win32.Build.0 = Release|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|x64.ActiveCfg = Release|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|x64.Build.0 = Release|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.ReleaseNoNet|Any CPU.ActiveCfg = Debug|Any CPU
+		{A57B3ACE-5634-469A-88C4-858BB409F356}.ReleaseNoNet|Any CPU.Build.0 = Debug|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

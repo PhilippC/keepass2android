@@ -162,19 +162,20 @@ namespace KeePassLib.Native
 		{
 			if(m_bAllowNative == false) return false;
 
-			KeyValuePair<IntPtr, IntPtr> kvp = PrepareArrays256(pBuf256, pKey256);
-			bool bResult = false;
-
 			try
 			{
-				bResult = NativeMethods.TransformKey(kvp.Key, kvp.Value, uRounds);
+				//Android.Util.Log.Debug("DEBUG", "4+1"+new Kp2atest.TestClass().Add1(4));
+				Com.Keepassdroid.Crypto.Finalkey.NativeFinalKey key = new Com.Keepassdroid.Crypto.Finalkey.NativeFinalKey();
+
+				byte[] newKey = key.TransformMasterKey(pKey256, pBuf256, (int)uRounds);
+				Array.Copy(newKey, pBuf256, newKey.Length);
 			}
-			catch(Exception) { bResult = false; }
+			catch(Exception e) 
+			{ 
+				return false; 
+			}
 
-			if(bResult) GetBuffers256(kvp, pBuf256, pKey256);
-
-			NativeLib.FreeArrays(kvp);
-			return bResult;
+			return true;
 		}
 
 		/// <summary>

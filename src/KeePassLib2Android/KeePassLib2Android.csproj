@@ -149,4 +149,10 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj">
+      <Project>{A57B3ACE-5634-469A-88C4-858BB409F356}</Project>
+      <Name>kp2akeytransform</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
