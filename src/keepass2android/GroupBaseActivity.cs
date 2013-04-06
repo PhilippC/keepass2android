@@ -189,7 +189,7 @@ namespace keepass2android
 		
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
-			/*case Resource.Id.menu_donate:
+			case Resource.Id.menu_donate:
 				try {
 					Util.gotoUrl(this, Resource.String.donate_url);
 				} catch (ActivityNotFoundException) {
@@ -197,7 +197,7 @@ namespace keepass2android
 					return false;
 				}
 				
-				return true;*/
+				return true;
 			case Resource.Id.menu_lock:
 				App.setShutdown();
 				SetResult(KeePass.EXIT_LOCK);

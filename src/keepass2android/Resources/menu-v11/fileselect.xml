@@ -16,10 +16,7 @@
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--item android:id="@+id/menu_donate"
-        android:title="@string/menu_donate"
-        android:showAsAction="ifRoom"
-    /-->
+    
     <item android:id="@+id/menu_about"
         android:title="@string/menu_about"
         android:icon="@android:drawable/ic_menu_help"
@@ -30,5 +27,9 @@
         android:icon="@android:drawable/ic_menu_preferences"
         android:showAsAction="ifRoom"
         
+    />
+    <item android:id="@+id/menu_donate"
+        android:title="@string/menu_donate"
+        android:showAsAction="ifRoom"
     />
 </menu>

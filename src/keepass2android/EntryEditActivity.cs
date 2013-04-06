@@ -589,7 +589,7 @@ namespace keepass2android
 		
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
-			/*case Resource.Id.menu_donate:
+			case Resource.Id.menu_donate:
 				try {
 					Util.gotoUrl(this, Resource.String.donate_url);
 				} catch (ActivityNotFoundException) {
@@ -597,7 +597,7 @@ namespace keepass2android
 					return false;
 				}
 				
-				return true;*/
+				return true;
 			case Resource.Id.menu_toggle_pass:
 				if ( mShowPassword ) {
 					item.SetTitle(Resource.String.show_password);

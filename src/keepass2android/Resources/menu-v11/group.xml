@@ -26,10 +26,10 @@
         android:title="@string/menu_lock"
         android:showAsAction="ifRoom"
     />
-    <!--item android:id="@+id/menu_donate"
+    <item android:id="@+id/menu_donate"
         android:title="@string/menu_donate"
         android:showAsAction="ifRoom"
-    /-->
+    />
     <item android:id="@+id/menu_app_settings"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/menu_app_settings"

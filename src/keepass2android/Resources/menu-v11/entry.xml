@@ -26,10 +26,10 @@
         android:icon="@android:drawable/ic_menu_view"
         android:showAsAction="ifRoom"
     />
-    <!--item android:id="@+id/menu_donate"
+    <item android:id="@+id/menu_donate"
         android:title="@string/menu_donate"
         android:showAsAction="ifRoom"
-    /-->
+    />
     <item android:id="@+id/menu_goto_url"
         android:title="@string/menu_url"
         android:showAsAction="ifRoom"

@@ -86,8 +86,11 @@ namespace keepass2android
 			{
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.SetTitle(GetString(Resource.String.ChangeLog_title));
-				
-				builder.SetMessage(GetString(Resource.String.ChangeLog));
+				String[] changeLog = {
+					GetString(Resource.String.ChangeLog_0_7),
+					GetString(Resource.String.ChangeLog)
+					 };
+				builder.SetMessage(ConcatChangeLog(changeLog));
 
 				builder.SetPositiveButton(Android.Resource.String.Ok,new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt)=>{}));
 
@@ -109,6 +112,18 @@ namespace keepass2android
 
 
 
+		}
+
+		string ConcatChangeLog(string[] changeLog)
+		{
+			string res = "";
+			foreach (string c in changeLog)
+			{
+				res += c;
+				while (res.EndsWith("\n\n") == false)
+					res += "\n";
+			}
+			return res;
 		}
 		
 		private void startFileSelect() {

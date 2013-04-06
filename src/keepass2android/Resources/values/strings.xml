@@ -120,7 +120,7 @@
   <string name="menu_app_settings">Settings</string>
   <string name="menu_db_settings">Database settings</string>
   <string name="menu_delete">Delete</string>
-  <string name="menu_donate">Donate</string>
+  <string name="menu_donate">Donate a beer...</string>
   <string name="menu_edit">Edit</string>
   <string name="menu_hide_password">Hide Password</string>
   <string name="menu_homepage">Go to Homepage</string>
@@ -228,6 +228,10 @@
   <string name="rate_app">Rate this app</string>
   <string name="translate_app">Translate KP2A</string>
   <string name="ChangeLog_title">Change log</string>
+  <string name="ChangeLog_0_7"><b>Version 0.7 (preview)</b>\n
+* Increased loading speed: key transformations now 10x faster!\n
+* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
+* Added option to donate a beer or something else (see menu)</string>
   <string name="ChangeLog"><b>Version 0.6.2</b>\n
 * Google Drive/Dropbox/... integration: Use the official Google Drive or Dropbox App and open any .kdbx-file. This will now bring up KP2A.\n
 * Improved Search Dialog \n

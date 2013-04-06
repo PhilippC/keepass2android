@@ -831,41 +831,44 @@ namespace keepass2android
 			// aapt resource value: 0x7f0c0084
 			public const int linearLayout1 = 2131492996;
 			
+			// aapt resource value: 0x7f0c00a0
+			public const int menu_about = 2131493024;
+			
 			// aapt resource value: 0x7f0c009f
-			public const int menu_about = 2131493023;
+			public const int menu_app_settings = 2131493023;
 			
 			// aapt resource value: 0x7f0c009e
-			public const int menu_app_settings = 2131493022;
-			
-			// aapt resource value: 0x7f0c009d
-			public const int menu_cancel_edit = 2131493021;
-			
-			// aapt resource value: 0x7f0c00a1
-			public const int menu_change_master_key = 2131493025;
-			
-			// aapt resource value: 0x7f0c0098
-			public const int menu_goto_url = 2131493016;
-			
-			// aapt resource value: 0x7f0c0099
-			public const int menu_lock = 2131493017;
-			
-			// aapt resource value: 0x7f0c009b
-			public const int menu_rate = 2131493019;
-			
-			// aapt resource value: 0x7f0c00a0
-			public const int menu_search = 2131493024;
+			public const int menu_cancel_edit = 2131493022;
 			
 			// aapt resource value: 0x7f0c00a2
-			public const int menu_sort = 2131493026;
-			
-			// aapt resource value: 0x7f0c009a
-			public const int menu_suggest_improvements = 2131493018;
+			public const int menu_change_master_key = 2131493026;
 			
 			// aapt resource value: 0x7f0c0097
-			public const int menu_toggle_pass = 2131493015;
+			public const int menu_donate = 2131493015;
+			
+			// aapt resource value: 0x7f0c0099
+			public const int menu_goto_url = 2131493017;
+			
+			// aapt resource value: 0x7f0c009a
+			public const int menu_lock = 2131493018;
 			
 			// aapt resource value: 0x7f0c009c
-			public const int menu_translate = 2131493020;
+			public const int menu_rate = 2131493020;
+			
+			// aapt resource value: 0x7f0c00a1
+			public const int menu_search = 2131493025;
+			
+			// aapt resource value: 0x7f0c00a3
+			public const int menu_sort = 2131493027;
+			
+			// aapt resource value: 0x7f0c009b
+			public const int menu_suggest_improvements = 2131493019;
+			
+			// aapt resource value: 0x7f0c0098
+			public const int menu_toggle_pass = 2131493016;
+			
+			// aapt resource value: 0x7f0c009d
+			public const int menu_translate = 2131493021;
 			
 			// aapt resource value: 0x7f0c0069
 			public const int ok = 2131492969;
@@ -1125,8 +1128,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f0700eb
 			public const int BinaryDirectory_title = 2131165419;
 			
+			// aapt resource value: 0x7f070110
+			public const int ChangeLog = 2131165456;
+			
 			// aapt resource value: 0x7f07010f
-			public const int ChangeLog = 2131165455;
+			public const int ChangeLog_0_7 = 2131165455;
 			
 			// aapt resource value: 0x7f07010e
 			public const int ChangeLog_title = 2131165454;

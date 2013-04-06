@@ -559,7 +559,7 @@ namespace keepass2android
 
 		public override bool OnOptionsItemSelected(Android.Views.IMenuItem item) {
 			switch (item.ItemId) {
-			/*case Resource.Id.menu_donate:
+			case Resource.Id.menu_donate:
 				try {
 					Util.gotoUrl(this, Resource.String.donate_url);
 				} catch (ActivityNotFoundException) {
@@ -568,7 +568,7 @@ namespace keepass2android
 				}
 				
 				return true;
-			*/	
+			
 			case Resource.Id.menu_about:
 				AboutDialog dialog = new AboutDialog(this);
 				dialog.Show();

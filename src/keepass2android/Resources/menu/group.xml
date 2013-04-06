@@ -16,10 +16,10 @@
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--item android:id="@+id/menu_donate"
+    <item android:id="@+id/menu_donate"
         android:icon="@android:drawable/ic_menu_share"
         android:title="@string/menu_donate"
-    /-->
+    />
     <item android:id="@+id/menu_lock"
         android:icon="@android:drawable/ic_lock_lock"
         android:title="@string/menu_lock"
