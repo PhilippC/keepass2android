@@ -85,13 +85,22 @@
 		  android:entryValues="@array/list_size_values"
 		  android:dialogTitle="@string/list_size_summary"
 		  android:defaultValue="@string/list_size_default"/>
-		 <CheckBoxPreference
+		  
+		<CheckBoxPreference
 		 	android:enabled="true"
 			  android:persistent="true"
-			  android:summary="@string/UseFileTransactions_summary"
-			  android:defaultValue="true"
-			  android:title="@string/UseFileTransactions_title"
-			  android:key="@string/UseFileTransactions_key" /> 
+			  android:summary="@string/ShowCopyToClipboardNotification_summary"
+			  android:defaultValue="@bool/CopyToClipboardNotification_default"
+			  android:title="@string/ShowCopyToClipboardNotification_title"
+			  android:key="@string/CopyToClipboardNotification_key" /> 
+		<CheckBoxPreference
+		 	android:enabled="true"
+			  android:persistent="true"
+			  android:summary="@string/ShowKp2aKeyboardNotification_summary"
+			  android:defaultValue="@bool/UseKp2aKeyboard_default"
+			  android:title="@string/ShowKp2aKeyboardNotification_title"
+			  android:key="@string/UseKp2aKeyboard_key" /> 
+			  
 			  
 		 <CheckBoxPreference
 		 android:enabled="true"
@@ -115,6 +124,13 @@
 			  android:defaultValue="@string/BinaryDirectory_default"
 			  android:title="@string/BinaryDirectory_title"
 			  android:key="@string/BinaryDirectory_key" />	  
+		 <CheckBoxPreference
+		 	android:enabled="true"
+			  android:persistent="true"
+			  android:summary="@string/UseFileTransactions_summary"
+			  android:defaultValue="true"
+			  android:title="@string/UseFileTransactions_title"
+			  android:key="@string/UseFileTransactions_key" /> 
 			  
 	</PreferenceScreen>
 </PreferenceScreen>

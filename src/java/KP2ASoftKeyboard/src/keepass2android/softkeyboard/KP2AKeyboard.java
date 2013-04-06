@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import keepass2android.kbbridge.StringForTyping;
 import keepass2android.softkeyboard.R;
 
 /**
@@ -449,14 +450,14 @@ public class KP2AKeyboard extends InputMethodService implements
 			
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			String title = "Keepass2Android";
-			HashMap<String, String> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
+			List<StringForTyping> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
 			
 			final ArrayList<String> items = new ArrayList<String>();
 			final ArrayList<String> values = new ArrayList<String>();
-			for (HashMap.Entry<String, String> entry : availableFields.entrySet()) 
+			for (StringForTyping entry : availableFields) 
 			{
-				String key = entry.getKey();
-				String value = entry.getValue();
+				String key = entry.displayName;
+				String value = entry.value;
 				items.add(key);
 				values.add(value);
 			}

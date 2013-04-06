@@ -206,6 +206,11 @@
   <string name="credentials_dialog_title">Enter server credentials</string>
   <string name="UseFileTransactions_title">File transactions</string>
   <string name="UseFileTransactions_summary">Use file transactions for writing databases</string>
+  <string name="ShowCopyToClipboardNotification_title">Clipboard notifications</string>
+  <string name="ShowCopyToClipboardNotification_summary">Make username and password accessible through the notification bar and clipboard. Beware of password sniffers!</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
+  
   <string name="AskOverwriteBinary">Do you want to overwrite the existing binary with the same name?</string>
   <string name="AskOverwriteBinary_title">Overwrite existing binary?</string>
   <string name="AskOverwriteBinary_yes">Overwrite</string>

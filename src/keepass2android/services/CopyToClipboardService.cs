@@ -154,34 +154,44 @@ namespace keepass2android
 
 			String entryName = entry.Strings.ReadSafe(PwDefs.TitleField);
 
-			if (entry.Strings.ReadSafe(PwDefs.PasswordField).Length > 0)
+			ISharedPreferences prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(this);
+			if (prefs.GetBoolean(GetString(Resource.String.CopyToClipboardNotification_key), Resources.GetBoolean(Resource.Boolean.CopyToClipboardNotification_default)))
 			{
-				// only show notification if password is available
-				Notification password = GetNotification(Intents.COPY_PASSWORD, Resource.String.copy_password, Resource.Drawable.notify, entryName);
 
-				password.DeleteIntent = createDeleteIntent(NOTIFY_PASSWORD);
-				mNM.Notify(NOTIFY_PASSWORD, password);
-				mNumElementsToWaitFor++;
+				if (entry.Strings.ReadSafe(PwDefs.PasswordField).Length > 0)
+				{
+					// only show notification if password is available
+					Notification password = GetNotification(Intents.COPY_PASSWORD, Resource.String.copy_password, Resource.Drawable.notify, entryName);
 
+					password.DeleteIntent = createDeleteIntent(NOTIFY_PASSWORD);
+					mNM.Notify(NOTIFY_PASSWORD, password);
+					mNumElementsToWaitFor++;
+
+				}
+				
+				if (entry.Strings.ReadSafe(PwDefs.UserNameField).Length > 0)
+				{
+					// only show notification if username is available
+					Notification username = GetNotification(Intents.COPY_USERNAME, Resource.String.copy_username, Resource.Drawable.notify, entryName);
+					username.DeleteIntent = createDeleteIntent(NOTIFY_USERNAME);
+					mNumElementsToWaitFor++;
+					mNM.Notify(NOTIFY_USERNAME, username);
+				}
 			}
-			
-			if (entry.Strings.ReadSafe(PwDefs.UserNameField).Length > 0)
-			{
-				// only show notification if username is available
-				Notification username = GetNotification(Intents.COPY_USERNAME, Resource.String.copy_username, Resource.Drawable.notify, entryName);
-				username.DeleteIntent = createDeleteIntent(NOTIFY_USERNAME);
-				mNumElementsToWaitFor++;
-				mNM.Notify(NOTIFY_USERNAME, username);
-			}
 
-			//keyboard
-			if (makeAccessibleForKeyboard(entry))
+			if (prefs.GetBoolean(GetString(Resource.String.UseKp2aKeyboard_key), Resources.GetBoolean(Resource.Boolean.UseKp2aKeyboard_default)))
 			{
-				// only show notification if username is available
-				Notification keyboard = GetNotification(Intents.CHECK_KEYBOARD, Resource.String.available_through_keyboard, Resource.Drawable.notify_keyboard, entryName);
-				keyboard.DeleteIntent = createDeleteIntent(NOTIFY_KEYBOARD);
-				mNumElementsToWaitFor++;
-				mNM.Notify(NOTIFY_KEYBOARD, keyboard);
+
+				//keyboard
+				if (makeAccessibleForKeyboard(entry))
+				{
+					// only show notification if username is available
+					Notification keyboard = GetNotification(Intents.CHECK_KEYBOARD, Resource.String.available_through_keyboard, Resource.Drawable.notify_keyboard, entryName);
+					keyboard.DeleteIntent = createDeleteIntent(NOTIFY_KEYBOARD);
+					mNumElementsToWaitFor++;
+					mNM.Notify(NOTIFY_KEYBOARD, keyboard);
+				}
+
 			}
 
 			if (mNumElementsToWaitFor == 0)
@@ -189,7 +199,7 @@ namespace keepass2android
 				StopSelf();
 				return;
 			}
-			
+
 			mCopyToClipBroadcastReceiver = new CopyToClipboardBroadcastReceiver(entry, this);
 			
 			IntentFilter filter = new IntentFilter();
