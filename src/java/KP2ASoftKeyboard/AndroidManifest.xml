@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-        package="keepass2android.softkeyboard">
-    <uses-sdk android:targetSdkVersion="14" android:minSdkVersion="11"/>
+        package="keepass2android.softkeyboard" android:versionCode="1">
+    <uses-sdk android:targetSdkVersion="14" android:minSdkVersion="8"/>
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"

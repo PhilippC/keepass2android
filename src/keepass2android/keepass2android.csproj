@@ -583,6 +583,8 @@
     <AndroidResource Include="Resources\values-zh-rCN\strings.xml" />
     <AndroidResource Include="Resources\values-zh-rTW\strings.xml" />
     <AndroidResource Include="Resources\drawable\ic_launcher_gray.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\notify_keyboard.png" />
+    <AndroidResource Include="Resources\drawable\notify_keyboard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -643,6 +645,10 @@
     <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj">
       <Project>{A57B3ACE-5634-469A-88C4-858BB409F356}</Project>
       <Name>kp2akeytransform</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj">
+      <Project>{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}</Project>
+      <Name>Kp2aKeyboardBinding</Name>
     </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>

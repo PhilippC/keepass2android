@@ -28,6 +28,9 @@
   <string name="clipboard_timeout_summary">Time before clearing clipboard after copying username or password</string>
   <string name="copy_username">Select to copy username to clipboard</string>
   <string name="copy_password">Select to copy password to clipboard</string>
+  <string name="available_through_keyboard">Entry is available through KP2A Keyboard</string>
+  <string name="not_possible_im_picker">Could not open dialog to select input method. Please activate keyboard manually.</string>
+  <string name="please_activate_keyboard">Please enable the Keepass2Android keyboard in your system settings.</string>
   <string name="creating_db_key">Creating database key…</string>
   <string name="current_group">Current Group</string>
   <string name="current_group_root">Current Group: Root</string>

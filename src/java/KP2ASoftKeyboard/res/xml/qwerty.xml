@@ -68,8 +68,10 @@
     </Row>
     
     <Row android:rowEdgeFlags="bottom">
-        <Key android:codes="-101" android:keyIcon="@drawable/sym_keyboard_done" 
-                android:keyWidth="20%p" android:keyEdgeFlags="left"/>
+        <Key android:codes="-101" android:keyIcon="@drawable/sym_keyboard_kp2a" 
+                android:keyWidth="15%p" android:keyEdgeFlags="left"/>
+        <Key android:codes="-102" android:keyIcon="@drawable/sym_keyboard" 
+                android:keyWidth="15%p"/>
         <Key android:codes="-2" android:keyLabel="123" android:keyWidth="15%p"/>
         <Key android:codes="32" android:keyIcon="@drawable/sym_keyboard_space" 
                 android:keyWidth="30%p" android:isRepeatable="true"/>

@@ -24,6 +24,9 @@
     <!-- Symbols that are commonly considered word separators in this language -->
     <string name="word_separators">\u0020.,;:!?\n()[]*&amp;@{}/&lt;&gt;_+=|&quot;</string>
     
+    <string name="change_entry">Select another entry</string>
+    <string name="open_entry">Select entry</string>
+    
     <!-- Labels on soft keys -->
     <string name="label_go_key">Go</string>
     <string name="label_next_key">Next</string>

@@ -35,6 +35,7 @@ namespace keepass2android
 		
 		public const String COPY_USERNAME = "keepass2android.copy_username";
 		public const String COPY_PASSWORD = "keepass2android.copy_password";
+		public const String CHECK_KEYBOARD = "keepass2android.check_keyboard";
 		
 		public const String FILE_BROWSE = "org.openintents.action.PICK_FILE";
 		public const int REQUEST_CODE_FILE_BROWSE = 987321;

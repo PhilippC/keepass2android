@@ -27,11 +27,12 @@ public class LatinKeyboardView extends KeyboardView {
 
     static final int KEYCODE_OPTIONS = -100;
     static final int KEYCODE_KP2A = -101;
+    static final int KEYCODE_SELECT_IME = -102;
 
     public LatinKeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-
+    
     public LatinKeyboardView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
