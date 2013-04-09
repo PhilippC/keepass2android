@@ -57,6 +57,15 @@ namespace keepass2android
 		{
 			gotoUrl(context, context.GetString(Resource.String.MarketURL)+context.PackageName);
 		}
+
+		public static void gotoDonateUrl(Context context)
+		{
+			string donateUrl = context.GetString(Resource.String.donate_url, 
+			                         new Java.Lang.Object[]{context.Resources.Configuration.Locale.Language,
+															context.PackageName
+			});
+			gotoUrl(context, donateUrl);
+		}
 		
 		public static String getEditText(Activity act, int resId) {
 			TextView te =  (TextView) act.FindViewById(resId);

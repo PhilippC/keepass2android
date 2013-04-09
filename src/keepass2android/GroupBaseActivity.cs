@@ -191,7 +191,7 @@ namespace keepass2android
 			switch ( item.ItemId ) {
 			case Resource.Id.menu_donate:
 				try {
-					Util.gotoUrl(this, Resource.String.donate_url);
+						Util.gotoDonateUrl(this);
 				} catch (ActivityNotFoundException) {
 					Toast.MakeText(this, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
 					return false;

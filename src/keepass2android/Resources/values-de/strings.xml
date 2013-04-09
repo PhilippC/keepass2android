@@ -5,7 +5,7 @@
   <string name="about_homepage">Website</string>
   <string name="AboutText">Keepass2Android ist ein Passwortmanager mit Lese- und Schreib-Zugriff auf KeePass 2.x Datenbanken.</string>
   <string name="CreditsText">Die Benutzeroberfläche basiert auf einem Port von Keepassdroid (entwickelt von Brian Pellin) nach Mono for Android. Der Code für die Datenbank-Operationen nutzt eine angepasste Version einer Bibliothek aus KeePass (entwickelt von Dominik Reichl).
-Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
+Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird nach den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
   <string name="accept">Akzeptieren</string>
   <string name="add_entry">Eintrag hinzufügen</string>
   <string name="add_group">Gruppe hinzufügen</string>
@@ -22,13 +22,16 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="application_settings">Anwendungs-Einstellungen</string>
   <string name="brackets">Klammern</string>
   <string name="browser_intall_text">Um diese Funktion nutzen zu können, benötigen Sie den OI File Manager, den Sie über Google Play bzw. direkt von der Entwicklerwebsite herunterladen können. Aufgrund einiger Eigenheiten des Dateimanagers kann es bei der ersten Benutzung zu Einschränkungen kommen.</string>
-  <string name="building_search_idx">Indexiere vor der Suche…</string>
+  <string name="building_search_idx">Suchindex erzeugen…</string>
   <string name="cancel">Abbr.</string>
-  <string name="ClearClipboard">Zwischenablage geleert…</string>
+  <string name="ClearClipboard">Zwischenablage geleert.</string>
   <string name="clipboard_timeout">Zwischenablagesperre</string>
   <string name="clipboard_timeout_summary">Zeiteinstellung der Zwischenablagesperre während sie inaktiv ist.</string>
   <string name="copy_username">Benutzername in die Zwischenablage kopieren</string>
   <string name="copy_password">Kennwort in die Zwischenablage kopieren</string>
+  <string name="available_through_keyboard">Eintrag ist über die KP2A-Tastatur verfügbar</string>
+  <string name="not_possible_im_picker">Konnte Dialog zum Auswählen der Eingabemethode nicht öffnen. Bitte aktiviere die Tastatur selbst.</string>
+  <string name="please_activate_keyboard">Bitte Keepass2Android Tastatur in den Einstellungen aktivieren.</string>
   <string name="creating_db_key">Datenbank-Schlüsseldatei erzeugen\u2026</string>
   <string name="current_group">Aktuelle Gruppe</string>
   <string name="current_group_root">Start</string>
@@ -95,7 +98,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_override_url">Override URL</string>
   <string name="hint_tags">Tag1, Tag2</string>
   <string name="hint_username">Benutzername</string>
-  <string name="install_from_market">GooglePlay</string>
+  <string name="install_from_market">Vom Play Store installieren</string>
   <string name="install_from_website">Website</string>
   <string name="InvalidPassword">Kennwort oder Schlüsseldatei ist falsch.</string>
   <string name="invalid_algorithm">Ungültiger Algorithmus.</string>
@@ -118,7 +121,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_app_settings">Einstellungen</string>
   <string name="menu_db_settings">Datenbank-Einstellungen</string>
   <string name="menu_delete">Löschen</string>
-  <string name="menu_donate">Spenden</string>
+  <string name="menu_donate">Spendiere ein Bier...</string>
   <string name="menu_edit">Ändern</string>
   <string name="menu_hide_password">Kennwort verstecken</string>
   <string name="menu_homepage">Webseite</string>
@@ -204,6 +207,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="credentials_dialog_title">Serverzugangsdaten eingeben</string>
   <string name="UseFileTransactions_title">Dateitransaktionen</string>
   <string name="UseFileTransactions_summary">Dateitransaktionen beim Schreiben von Datenbank-Dateien verwenden</string>
+  <string name="ShowCopyToClipboardNotification_title">Zwischenablage-Benachrichtigungen</string>
+  <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
   <string name="AskOverwriteBinary">Möchtest du den vorhandenen Anhang mit dem gleichen Namen überschreiben?</string>
   <string name="AskOverwriteBinary_title">Vorhandenen Anhang überschreiben?</string>
   <string name="AskOverwriteBinary_yes">Überschreiben</string>
@@ -221,6 +228,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="rate_app">Diese App bewerten</string>
   <string name="translate_app">KP2A übersetzen</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
+* Erhöhte Ladegeschwindigkeit: Schlüsseltransformationen sind jetzt 10x schneller!\n
+* Neu: Keepass2Android Software-Tastatur: Wechsle zu dieser Tastatur, um deine Zugangsdaten einzugeben. Das schützt vor Zwischenablage-basierten Passwort-Sniffern! (du kannst die bisherigen Benachrichtigungen für das Kopieren in die Zwischenablage in den Einstellungen deaktivieren)\n
+* Option eingefügt, um mir ein Bier oder was anderes zu spendieren (s. Menü)</string>
   <string name="ChangeLog"><b>Version 0.6.2</b>\n
 * Google Drive/Dropbox/... Integration: Nutze die offizielle Google Drive oder Dropbox App und öffne daraus deine .kdbx-Datei. Das wird KP2A starten.\n
 * Verbesserter Such-Dialog \n

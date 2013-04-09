@@ -4,12 +4,17 @@
   <string name="about_feedback">Připomínky</string>
   <string name="about_homepage">Domovská stránka</string>
   <string name="AboutText">Keepass2Android je Android implementace správce hesel KeePass.</string>
+  <string name="CreditsText">Uživatelské rozhraní je založeno na portu KeepassDroid (vyvinul Brian Pellin). Kód pro databázové operace je vychází z kódu pro KeePass (napsal Dominik Reichl). Logo Android robota vychází z verze sdílené Googlem a je upraveno a použito dle podmínek popsaných v licenci Creative Commons 3.0.</string>
   <string name="accept">Přijat</string>
   <string name="add_entry">Přidat záznam</string>
   <string name="add_group">Přidat skupinu</string>
   <string name="add_group_title">Přidat skupinu</string>
   <string name="algorithm">Algoritmus</string>
   <string name="algorithm_colon">Algoritmus</string>
+  <string name="app_name">Keepass2Android</string>
+  <string name="short_app_name">KP2A</string>
+  <string name="app_name_nonet">Keepass2Android Offline</string>
+  <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Časový limit aplikace</string>
   <string name="app_timeout_summary">Čas před zamknutím databáze, když je aplikace neaktivní.</string>
   <string name="application">Aplikace</string>
@@ -23,6 +28,9 @@
   <string name="clipboard_timeout_summary">Čas před vyčištěním schránky po zkopírování jména nebo hesla</string>
   <string name="copy_username">Kopírovat uživatelské jméno do schránky</string>
   <string name="copy_password">Kopírovat heslo do schránky</string>
+  <string name="available_through_keyboard">Vstup je k dispozici prostřednictvím KP2A klávesnice</string>
+  <string name="not_possible_im_picker">Nepodařilo se otevřít dialog pro výběr vstupní metody. Aktivujte klávesnici ručně.</string>
+  <string name="please_activate_keyboard">Prosím, povolte Keepass2Android klávesnici v nastavení systému.</string>
   <string name="creating_db_key">Vytvářím databázový klíč…</string>
   <string name="current_group">Aktuální skupina</string>
   <string name="current_group_root">Aktuální skupina: Kořen</string>
@@ -32,11 +40,14 @@
   <string name="default_checkbox">Použít jako výchozí databázi</string>
   <string name="digits">Čísla</string>
   <string name="disclaimer_formal">Keepass2Android dodáván BEZ JAKÉKOLIV ZÁRUKY; Toto je free software zdarma, a je možná jeho redistribuce pod podmínkou licence GPL verze 2 nebo novější.</string>
+  <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Zadejte názvev souboru databáze</string>
   <string name="entry_accessed">Poslední přístup</string>
   <string name="entry_and_or">Zadejte heslo a/nebo soubor s klíčem pro odemknutí databáze</string>
   <string name="entry_cancel">Storno</string>
   <string name="entry_comment">Poznámky</string>
+  <string name="entry_tags">Štítky</string>
+  <string name="entry_override_url">Přepsat adresu URL</string>
   <string name="entry_confpassword">Potvrďte heslo</string>
   <string name="entry_created">Vytvořeno</string>
   <string name="entry_expires">Vyprší</string>
@@ -45,7 +56,10 @@
   <string name="entry_password">Heslo</string>
   <string name="entry_save">Uložit</string>
   <string name="entry_title">Název</string>
+  <string name="entry_url">Adresa URL</string>
   <string name="entry_user_name">Uživatelské jméno</string>
+  <string name="entry_extra_strings">Doplňková textová pole</string>
+  <string name="entry_binaries">Přiložené soubory</string>
   <string name="error_arc4">ArcFour stream šifra není podporována.</string>
   <string name="error_can_not_handle_uri">Keepass2Android nemůže zpracovat tuto uri.</string>
   <string name="error_could_not_create_group">Chyba při vytváření skupiny.</string>
@@ -79,16 +93,23 @@
   <string name="hint_pass">heslo</string>
   <string name="hint_login_pass">Heslo</string>
   <string name="hint_title">název</string>
+  <string name="hint_url">adresa url</string>
+  <string name="hint_override_url">přepsat adresu url</string>
+  <string name="hint_tags">štítek1, štítek2</string>
   <string name="hint_username">uživatelské jméno</string>
   <string name="install_from_market">Instalovat z Play</string>
   <string name="install_from_website">Instalovat z webu</string>
   <string name="InvalidPassword">Chybné heslo nebo klíčový soubor.</string>
+  <string name="invalid_algorithm">Neplatný algoritmus.</string>
   <string name="invalid_db_sig">Databázový formát nelze rozpoznat.</string>
+  <string name="keyfile_does_not_exist">Klíčový soubor neexistuje.</string>
+  <string name="keyfile_is_empty">Klíčový soubor je prázdný.</string>
   <string name="length">Délka</string>
   <string name="list_size_title">Velikost seznamu skupin</string>
   <string name="list_size_summary">Velikost textu v seznamu skupin</string>
   <string name="loading_database">Načítám databázi…</string>
   <string name="lowercase">Malá písmena</string>
+  <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Skrýt heslo</string>
   <string name="maskpass_summary">Skrýt heslo jako výchozí</string>
   <string name="menu_about">O aplikaci</string>
@@ -99,7 +120,7 @@
   <string name="menu_app_settings">Nastavení</string>
   <string name="menu_db_settings">Nastavení databáze</string>
   <string name="menu_delete">Smazat</string>
-  <string name="menu_donate">Přispět</string>
+  <string name="menu_donate">Přispějte na pivo...</string>
   <string name="menu_edit">Změnit</string>
   <string name="menu_hide_password">Skrýt heslo</string>
   <string name="menu_homepage">Jít na domovskou stránku</string>
@@ -110,6 +131,8 @@
   <string name="menu_url">Jdi na URL</string>
   <string name="minus">Mínus</string>
   <string name="never">Nikdy</string>
+  <string name="yes">Ano</string>
+  <string name="no">Ne</string>
   <string name="no_keys">Žádný záznam v databázi nebo ve skupině.</string>
   <string name="no_results">žádný výsledek hledání</string>
   <string name="no_url_handler">Žádný handler pro toto url.</string>
@@ -123,10 +146,12 @@
   <string name="remember_keyfile_summary">Pamatovat si umístění klíčového souboru</string>
   <string name="remember_keyfile_title">Uložit klíčový soubor</string>
   <string name="remove_from_filelist">Odstranit</string>
+  <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Kořen</string>
   <string name="rounds">Počet zašifrování</string>
   <string name="rounds_explaination">Vyšší počet opakování šifrování zvýší bezpečnost proti hrubému útoku, ale může výrazně zpomalit načítání a ukládání.</string>
   <string name="rounds_hint">opakování</string>
+  <string name="default_username">Výchozí uživatelské jméno pro nové položky</string>
   <string name="saving_database">Ukládám databázi…</string>
   <string name="space">Místo</string>
   <string name="search_label">Hledat</string>
@@ -134,12 +159,92 @@
   <string name="sort_name">Seřadit podle jména</string>
   <string name="sort_db">Seřadit podle DB</string>
   <string name="special">Speciální</string>
+  <string name="search_hint">Co najít</string>
+  <string name="search_results">Výsledky hledání</string>
+  <string name="search_in">Hledat v</string>
+  <string name="twofish">Twofish</string>
   <string name="underline">Podtrženo</string>
   <string name="unsupported_db_version">Nepodporovaná verze databáze.</string>
   <string name="uppercase">Velká písmena</string>
   <string name="warning_read_only">Vaše SD karta je v módu jen pro čtení. Nebudete moct ukládat změny v databázi.</string>
   <string name="warning_unmounted">Vaše SD karta není momentálně připojena v zařízení. Nebudete moct načíst nebo vytvořit databázi.</string>
   <string name="version_label">Verze</string>
+  <string name="regular_expression">Regulární výraz</string>
+  <string name="TanExpiresOnUse_title">Tan vyprší při použití</string>
+  <string name="TanExpiresOnUse_summary">Při použití označovat vypršelé TAN položky</string>
+  <string name="kp2a_findUrl">Keepass2Android: Najít heslo</string>
+  <string name="excludeExpiredEntries">Vyloučit neplatné položky</string>
+  <string name="search_options">Možnosti</string>
+  <string name="caseSensitive">Malá a velká písmena</string>
+  <string name="start_open_file">Otevřít soubor...</string>
+  <string name="start_create">Vytvořte novou databázi...</string>
+  <string name="start_open_url">Otevřít adresu URL...</string>
+  <string name="start_create_import">Importovat soubor do nové databáze...</string>
+  <string name="enter_filename_details_url">Úplná adresa URL musí obsahovat protokol, např. http://.</string>
+  <string name="enter_filename_details_create_import">V dalším kroku bude vybrán soubor pro import.</string>
+  <string name="enable_quickunlock">Povolit RychléOdemknutí</string>
+  <string name="QuickUnlock_label">Zadejte poslední %1$ d znaky hesla:</string>
+  <string name="QuickUnlock_button">RychléOdemknutí!</string>
+  <string name="QuickUnlock_lockButton">Zavřít databázi</string>
+  <string name="QuickUnlockDefaultEnabled_title">Ve výchozím nastavení povolit RychléOdemknutí</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Definuje, zda RychléOdemknutí je ve výchozím nastavení povoleno, nebo ne.</string>
+  <string name="QuickUnlockLength_title">Délka klíče pro RychléOdemknutí</string>
+  <string name="QuickUnlockLength_summary">Maximální počet znaků používaných jako heslo pro RychléOdemknutí.</string>
+  <string name="QuickUnlock_fail">RychléOdemknutí se nezdařilo: nesprávné heslo!</string>
+  <string name="BinaryDirectory_title">Adresář souborů s přílohami</string>
+  <string name="BinaryDirectory_summary">Adresář,  do kterého jsou ukládány přílohy souborů.</string>
+  <string name="SaveAttachment_doneMessage">Uložit soubor do %1$ .</string>
+  <string name="SaveAttachment_Failed">Nelze uložit přílohu do %1$ .</string>
+  <string name="error_invalid_expiry_date">Neplatný formát datumu a času pro datum vypršení!</string>
+  <string name="error_string_key">Název pole je vyžadována pro každý řetězec.</string>
+  <string name="field_name">Název pole</string>
+  <string name="field_value">Hodnota pole</string>
+  <string name="protection">Ochrana paměti</string>
+  <string name="add_binary">Přidáte soubor jako přílohu...</string>
+  <string name="add_extra_string">Přidat další řetězec</string>
+  <string name="database_loaded_quickunlock_enabled">Databáze načtena, RychléOdemknutí povoleno.</string>
+  <string name="credentials_dialog_title">Zadejte pověření pro server</string>
+  <string name="UseFileTransactions_title">Transakce souboru</string>
+  <string name="UseFileTransactions_summary">Použít transakční metodu zápisu do databáze</string>
+  <string name="ShowCopyToClipboardNotification_title">Upozornění schránky</string>
+  <string name="ShowCopyToClipboardNotification_summary">Zpřístupnění uživatelského jména a hesla prostřednictvím oznamovacího oblasti a schránky. Pozor na skenery hesel!</string>
+  <string name="ShowKp2aKeyboardNotification_title">Oznámení klávesnice KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Zpřístupněte celý záznam prostřednictvím klávesnice KP2A (doporučeno).</string>
+  <string name="AskOverwriteBinary">Chcete přepsat existující binární soubor se stejným názvem?</string>
+  <string name="AskOverwriteBinary_title">Přepsat existující binární soubor?</string>
+  <string name="AskOverwriteBinary_yes">Přepsat</string>
+  <string name="AskOverwriteBinary_no">Přejmenovat</string>
+  <string name="AttachFailed">Nepodařilo se přidat soubor jako přílohu.</string>
+  <string name="RecycleBin">Koš</string>
+  <string name="AskDeletePermanentlyEntry">Chcete trvale odstranit tuto položku? Stisk Ne ji znovu obnoví.</string>
+  <string name="AskDeletePermanentlyGroup">Chcete trvale odstranit tuto skupinu? Stisk Ne ji znovu obnoví.</string>
+  <string name="AskDeletePermanently_title">Natrvalo odstranit?</string>
+  <string name="AskReloadFile_title">Znovu načíst soubor?</string>
+  <string name="AskReloadFile">Soubor, který je v současné době otevřen byl změněn jiným programem. Přejete si jej znovu načíst?</string>
+  <string name="AskDiscardChanges">Opravdu chcete zrušit provedené změny? (Tlačítko Uložit je v horní části formuláře.)</string>
+  <string name="AskDiscardChanges_title">Chcete zahodit změny?</string>
+  <string name="suggest_improvements">Navrhnout nebo hlasovat pro vylepšení</string>
+  <string name="rate_app">Ohodnoťte tuto aplikaci</string>
+  <string name="translate_app">Přeložit KP2A</string>
+  <string name="ChangeLog_title">Protokol změn</string>
+  <string name="ChangeLog_0_7"><b>Verze 0.7</b>\n
+* Zrychlení načítání: klíčové transformace jsou nyní 10x rychlejší!\n
+* Přidán Keepass2Android soft-keyboard: Přepněte se na tuto klávesnici pro vložení údajů pověření. Ochraňuje před útoky založenými na skenování schránky (vypněte starý systém upozornění  v nastavení)\n
+* Doplněna menu položka Přispět na pivo</string>
+  <string name="ChangeLog"><b>Verze 0.6.2</b>\n
+* Integrace Google Drive/Dropbox/... : Využívá oficiální Google Drive nebo Dropbox aplikace k otevření .kdbx-soubor, poté spustí KP2A.\n
+* Vylepšení Vyhledávací dialog \n
+* Vylepšené výsledky hledání pro Sdílené adresy Share URL s pod-doménami\n
+* Doplnení možností pro připomínky a hodnocení aplikace\n
+\n
+<b>Verze 0.6.1</b>\n
+* Detekce změn databáze na pozadí (i.e. např. díky synchronizaci)\n
+* Vylepšeno vyhledávání adres URL z prohlížeče\n
+* Potvrzovací dialog zahození změn\n
+\n
+<b>Verze 0.6</b>\n
+První veřejné vydání
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
     <item>1 minuta</item>
@@ -152,8 +257,8 @@
     <item>Velký</item>
   </string-array>
   <string-array name="cred_remember_modes">
-    <item>Do not remember username and password</item>
-    <item>Remember username only</item>
-    <item>Remember username and password</item>
+    <item>Nepamatovat si uživatelské jméno a heslo</item>
+    <item>Pamatovat si jen uživatelské jméno</item>
+    <item>Pamatovat si uživatelské jméno a heslo</item>
   </string-array>
 </resources>

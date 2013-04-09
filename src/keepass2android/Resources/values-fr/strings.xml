@@ -4,22 +4,50 @@
   <string name="about_feedback">Commentaires </string>
   <string name="about_homepage">Site web </string>
   <string name="AboutText">Keepass2Android est un portage du logiciel KeePass Password Manager. Pour l\'instant, vous devez créer une base de données avec le logiciel KeePass sur votre ordinateur puis la transférer sur la carte mémoire de votre appareil mobile.</string>
+  <string name="CreditsText">L\'interface est basée sur un port de KeepassDroid, développée par Brian Pellin. Le code pour les opérations sur la base de donnée est basé sur Keepass, de Dominik Reichl. Le robot Android est une modification d\'une œuvre de Google, utilisée selon les  termes de la licence Creative Commons 3.0 BY.</string>
+  <string name="accept">Accepter</string>
   <string name="add_entry">Ajouter une entrée</string>
   <string name="add_group">Ajouter un groupe</string>
   <string name="add_group_title">Ajouter un groupe</string>
   <string name="algorithm">Algorithme</string>
   <string name="algorithm_colon">Algorithme </string>
+  <string name="app_name">Keepass2Android</string>
+  <string name="short_app_name">KP2A</string>
+  <string name="app_name_nonet">Keepass2Android Hors-ligne</string>
+  <string name="short_app_name_nonet">KP2A Hors-ligne</string>
+  <string name="app_timeout">Délai de verrouillage de l\'application</string>
+  <string name="app_timeout_summary">Délai avant de bloquer la base de donnée lorsque l\'application est inactive.</string>
+  <string name="application">Application</string>
+  <string name="application_settings">Paramètres de l\'application</string>
+  <string name="brackets">Parenthèses, accolades et crochets</string>
+  <string name="browser_intall_text">Le programme requiert Open Intents File Manager pour parcourir les fichiers, cliquez ci-dessous pour l\'installer. Quelques problèmes peuvent apparaître la première fois !</string>
+  <string name="building_search_idx">Construction de l\'index de recherche…</string>
   <string name="cancel">Annuler</string>
   <string name="ClearClipboard">Presse-papier nettoyé.</string>
+  <string name="clipboard_timeout">Délai de purge du presse-papiers</string>
   <string name="clipboard_timeout_summary">Temps avant d\'effacer le presse-papiers après avoir copié le nom d\'utilisateur ou le mot de passe</string>
+  <string name="copy_username">Cliquez pour copier le nom d\'utilisateur</string>
+  <string name="copy_password">Cliquez pour copier le mot de passe</string>
+  <string name="available_through_keyboard">L\'entrée est disponible via le clavier KP2A</string>
+  <string name="not_possible_im_picker">L\'ouverture de la fenêtre de sélection de la méthode de saisie a échoué. Merci de choisir votre clavier manuellement.</string>
+  <string name="please_activate_keyboard">Merci d\'activer le clavier Keepass2Android dans vos paramètres systèmes.</string>
+  <string name="creating_db_key">Création de la clé pour la base de données...</string>
   <string name="current_group">Groupe actuel</string>
   <string name="current_group_root">Groupe actuel : Racine</string>
+  <string name="database">Base de données</string>
+  <string name="decrypting_db">Déchiffrement du contenu de la base de données...</string>
+  <string name="decrypting_entry">Déchiffrement de l\'entrée</string>
+  <string name="default_checkbox">Utiliser comme base de données par défaut</string>
+  <string name="digits">Chiffres</string>
   <string name="disclaimer_formal">Keepass2Android n\'offre ABSOLUMENT AUCUNE GARANTIE; il s\'agit d\'un logiciel gratuit, et vous pouvez le redistribuer sous les conditions de la licenceGPL v2 ou ultérieure.</string>
+  <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Entrez le nom de fichier de la base de données</string>
   <string name="entry_accessed">Accédé</string>
   <string name="entry_and_or">Entrez un mot de passe et/ou une clé de fichier pour déverrouiller votre base de données</string>
   <string name="entry_cancel">Annuler</string>
   <string name="entry_comment">Commentaires</string>
+  <string name="entry_tags">Étiquettes</string>
+  <string name="entry_override_url">Outrepasser l\'URL</string>
   <string name="entry_confpassword">Confirmer mot de passe</string>
   <string name="entry_created">Créée</string>
   <string name="entry_expires">Expire</string>
@@ -28,10 +56,14 @@
   <string name="entry_password">Mot de passe</string>
   <string name="entry_save">Enregistrer</string>
   <string name="entry_title">Nom</string>
+  <string name="entry_url">URL</string>
   <string name="entry_user_name">Nom d\'utilisateur </string>
   <string name="entry_extra_strings">Champs chaines de caractères supplémentaire</string>
+  <string name="entry_binaries">Pièces jointes</string>
+  <string name="error_arc4">L\'algorithme de chiffrement ArcFour n\'est pas pris en charge.</string>
   <string name="error_can_not_handle_uri">Keepass2Android ne peut pas gérer cette URI.</string>
   <string name="error_could_not_create_group">Erreur de création de groupe.</string>
+  <string name="error_could_not_create_parent">Création du répertoire parent impossible.</string>
   <string name="error_database_exists">Ce fichier existe déjà.</string>
   <string name="error_database_settings">Impossible de déterminer les paramètres de la base de données.</string>
   <string name="error_failed_to_launch_link">Echec lors de l\'ouverture du lien.</string>
@@ -45,30 +77,50 @@
   <string name="error_pass_gen_type">Au moins 1 type de génération de mot de passe doit être sélectionné</string>
   <string name="error_pass_match">Les mots de passe ne correspondent pas.</string>
   <string name="error_rounds_not_number">La série doit être un nombre.</string>
+  <string name="error_rounds_too_large">Nombre trop gros. Réglage à 2147483648.</string>
   <string name="error_title_required">Le titre est obligatoire.</string>
+  <string name="error_wrong_length">Entrez un entier positif dans le champ \"longueur\"</string>
   <string name="FileNotFound">Fichier non trouvé.</string>
   <string name="file_browser">Gestionnaire de fichiers</string>
+  <string name="generate_password">Générer un mot de passe</string>
   <string name="group">Groupe</string>
   <string name="hint_comment">commentaire</string>
   <string name="hint_conf_pass">confirmez mot de passe</string>
   <string name="hint_generated_password">mot de passe généré</string>
   <string name="hint_group_name">Nom de groupe</string>
   <string name="hint_keyfile">clé de fichier</string>
+  <string name="hint_length">longueur</string>
   <string name="hint_pass">mot de passe</string>
   <string name="hint_login_pass">Mot de passe</string>
   <string name="hint_title">nom</string>
+  <string name="hint_url">url</string>
+  <string name="hint_override_url">outrepasser l\'url</string>
+  <string name="hint_tags">étiquette1, étiquette2</string>
   <string name="hint_username">Nom d\'utilisateur</string>
+  <string name="install_from_market">Installé depuis le Play Store</string>
+  <string name="install_from_website">Installer depuis le Web</string>
   <string name="InvalidPassword">Mot de passe ou clé de fichier incorrect.</string>
+  <string name="invalid_algorithm">Algorithme non valide.</string>
+  <string name="invalid_db_sig">Format de la base de données non reconnu.</string>
+  <string name="keyfile_does_not_exist">La clé de chiffrement n\'existe pas.</string>
   <string name="keyfile_is_empty">Le fichier de clés est vide.</string>
+  <string name="length">Longueur</string>
+  <string name="list_size_title">Taille de la liste des groupes</string>
+  <string name="list_size_summary">Taille du texte dans la liste des groupes</string>
   <string name="loading_database">Chargement de la base de données…</string>
+  <string name="lowercase">Minuscules</string>
+  <string name="MaskedPassword">*****</string>
+  <string name="maskpass_title">Cacher le mot de passe</string>
+  <string name="maskpass_summary">Toujours masquer les mots de passe</string>
   <string name="menu_about">A propos</string>
   <string name="menu_change_key">Modifier la Clé maître</string>
   <string name="menu_copy_pass">Copier mot de passe</string>
   <string name="menu_copy_user">Copier Utilisateur</string>
   <string name="menu_create">Créer</string>
+  <string name="menu_app_settings">Paramètres</string>
   <string name="menu_db_settings">Préférences</string>
   <string name="menu_delete">Supprimer</string>
-  <string name="menu_donate">Faire un Don</string>
+  <string name="menu_donate">Faire don d\'une bière...</string>
   <string name="menu_edit">Modifier</string>
   <string name="menu_hide_password">Masquer le mot de passe</string>
   <string name="menu_homepage">Aller à la page d\'accueil</string>
@@ -77,6 +129,7 @@
   <string name="menu_rename">Renommer</string>
   <string name="menu_search">Rechercher</string>
   <string name="menu_url">Aller à l\'adresse URL</string>
+  <string name="minus">Moins</string>
   <string name="never">Jamais</string>
   <string name="yes">Oui</string>
   <string name="no">Non</string>
@@ -84,31 +137,127 @@
   <string name="no_results">Aucun résultat pour cette recherche</string>
   <string name="no_url_handler">Aucun gestionnaire pour cette url.</string>
   <string name="open_recent">bases de données récemment ouvertes (cliquez pour ouvrir) </string>
+  <string name="omitbackup_title">Ne pas chercher dans les sauvegardes et la corbeille</string>
+  <string name="omitbackup_summary">Omettre les groupes \"Sauvegarde\" et \"Corbeille\" des résultats de recherche</string>
   <string name="pass_filename">Nom de fichier de base de données KeePass </string>
   <string name="password_title">Entrez le mot de passe de la base de données</string>
   <string name="progress_create">Création d\'une nouvelle base de données…</string>
   <string name="progress_title">En cours…</string>
+  <string name="remember_keyfile_summary">Se rappeler de la localisation des fichiers clés</string>
+  <string name="remember_keyfile_title">Enregistrer le fichier clé</string>
+  <string name="remove_from_filelist">Supprimer</string>
+  <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Racine</string>
   <string name="rounds">Niveau du cryptage</string>
   <string name="rounds_explaination">Un niveau de cryptage supérieur assure une protection supplémentaire contre les attaques de force brute, mais peut considérablement ralentir le chargement et la sauvegarde.</string>
   <string name="rounds_hint">niveaux</string>
+  <string name="default_username">Nom d\'utilisateur par défaut pour les nouvelles entrées</string>
   <string name="saving_database">Enregistrement de la base de données…</string>
+  <string name="space">Espace</string>
   <string name="search_label">Rechercher</string>
   <string name="show_password">Afficher le mot de passe</string>
+  <string name="sort_name">Trier par nom</string>
+  <string name="sort_db">Trier par date de création</string>
+  <string name="special">Spéciaux</string>
+  <string name="search_hint">Rechercher</string>
+  <string name="search_results">Résultats de la recherche</string>
+  <string name="search_in">Chercher dans</string>
+  <string name="twofish">Twofish</string>
+  <string name="underline">Tiret bas</string>
+  <string name="unsupported_db_version">Version de base de données non pris en charge.</string>
+  <string name="uppercase">Majuscule</string>
+  <string name="warning_read_only">Votre carte SD est en lecture seule. Vous serez sans doute dans l\'impossibilité de sauvegarder les modifications de votre base de données.</string>
+  <string name="warning_unmounted">Votre carte SD n\'est pas montée. Vous ne pourrez pas créer ou charger votre base de données.</string>
+  <string name="version_label">Version</string>
+  <string name="regular_expression">Expression régulière</string>
+  <string name="TanExpiresOnUse_title">TAN expire lors de l\'utilisation</string>
+  <string name="TanExpiresOnUse_summary">Marquer les entrées TAN expirées lors de leur utilisation</string>
+  <string name="kp2a_findUrl">KeePass2Android : Trouver le mot de passe</string>
+  <string name="excludeExpiredEntries">Exclure les entrées arrivées à expiration</string>
+  <string name="search_options">Options</string>
+  <string name="caseSensitive">Sensible à la casse</string>
+  <string name="start_open_file">Ouvrir...</string>
+  <string name="start_create">Créer une nouvelle base de données...</string>
+  <string name="start_open_url">Ouvrir l\'URL...</string>
+  <string name="start_create_import">Importer le fichier dans une nouvelle base de données...</string>
+  <string name="enter_filename_details_url">L\'URL complète doit être spécifié, y compris le protocole comme http:// ou https://.</string>
+  <string name="enter_filename_details_create_import">Les fichiers à importer seront choisis à la prochaine étape.</string>
+  <string name="enable_quickunlock">Activer QuickUnlock</string>
+  <string name="QuickUnlock_label">Entrez les %1$d derniers caractères de votre mot de passe :</string>
+  <string name="QuickUnlock_button">QuickUnlock !</string>
+  <string name="QuickUnlock_lockButton">Ferme la base de données</string>
+  <string name="QuickUnlockDefaultEnabled_title">Activer QuickUnlock par défaut</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Définit si QuickUnlock est activé par défaut ou non.</string>
+  <string name="QuickUnlockLength_title">Longueur de la clé QuickUnlock</string>
+  <string name="QuickUnlockLength_summary">Nombre maximal de caractères utilisés comme mot de passe QuickUnlock.</string>
+  <string name="QuickUnlock_fail">Échec du déverrouillage rapide : mot de passe incorrect !</string>
+  <string name="BinaryDirectory_title">Dossier des pièces jointes</string>
+  <string name="BinaryDirectory_summary">Répertoire où les fichiers joints seront sauvés.</string>
+  <string name="SaveAttachment_doneMessage">Enregistrement du fichier dans %1$s.</string>
+  <string name="SaveAttachment_Failed">Impossible d\'enregistrer la pièce jointe vers %1$s.</string>
+  <string name="error_invalid_expiry_date">Format de la date ou de l\'heure d\'expiration invalide !</string>
+  <string name="error_string_key">Un nom de champ est requis pour chaque chaîne de caractères.</string>
+  <string name="field_name">Nom du champ</string>
+  <string name="field_value">Valeur du champ</string>
+  <string name="protection">Protection de la mémoire</string>
+  <string name="add_binary">Ajouter une pièce jointe...</string>
+  <string name="add_extra_string">Ajouter une chaîne de caractère supplémentaire</string>
+  <string name="database_loaded_quickunlock_enabled">Base de donnée chargée, QuickUnlock activé.</string>
+  <string name="credentials_dialog_title">Entrez les certificats du serveur</string>
+  <string name="UseFileTransactions_title">File transactions</string>
+  <string name="UseFileTransactions_summary">Utiliser les opérations sur les fichiers pour écrire les bases de données</string>
+  <string name="ShowCopyToClipboardNotification_title">Barre de notification et presse-papiers</string>
+  <string name="ShowCopyToClipboardNotification_summary">Rend le nom d\'utilisateur et le mot de passe accessibles via la barre de notification et le presse-papiers. Attention au sniffers de mot de passes !</string>
+  <string name="ShowKp2aKeyboardNotification_title">Barre de notification et clavier KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Rend l\'entrée pleinement accessible via le clavier KP2A (recommandé).</string>
+  <string name="AskOverwriteBinary">Voulez-vous écraser le fichier existant en utilisant le même nom ?</string>
+  <string name="AskOverwriteBinary_title">Écraser le fichier existant ?</string>
+  <string name="AskOverwriteBinary_yes">Écraser</string>
+  <string name="AskOverwriteBinary_no">Renommer</string>
+  <string name="AttachFailed">Impossible d\'ajouter la pièce jointe.</string>
+  <string name="RecycleBin">Corbeille</string>
+  <string name="AskDeletePermanentlyEntry">Voulez-vous supprimer cette entrée définitivement ? Appuyez sur Non pour mettre à la corbeille.</string>
+  <string name="AskDeletePermanentlyGroup">Voulez-vous supprimer ce groupe définitivement? Appuyez sur Non pour mettre à la corbeille.</string>
+  <string name="AskDeletePermanently_title">Supprimer définitivement ?</string>
+  <string name="AskReloadFile_title">Recharger le fichier ?</string>
+  <string name="AskReloadFile">Le fichier qui est actuellement utilisé a été modifié par un autre programme. Voulez-vous le recharger ?</string>
+  <string name="AskDiscardChanges">Voulez-vous vraiment ne pas prendre en compte les modifications ? (Le bouton Enregistrer est en haut du formulaire.)</string>
+  <string name="AskDiscardChanges_title">Ignorer les modifications ?</string>
+  <string name="suggest_improvements">Faire des suggestions ou votez pour des améliorations</string>
+  <string name="rate_app">Noter cette application</string>
+  <string name="translate_app">Traduire KP2A</string>
+  <string name="ChangeLog_title">Journal des modifications</string>
+  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
+* Amélioration de la vitesse de démarrage : la transformation des clés est désormais 10x plus rapide !\n
+* Ajout du clavier Keepass2Android : basculez vers celui-ci pour entrer les mots de passe et vous protéger des sniffers de presse-papiers (désactiver les anciennes notifications dans les options)\n
+* Ajout de la possibilité de donner une bière (ou autre... voir le menu)</string>
+  <string name="ChangeLog"><b>Version 0.6.2</b>\n
+* Intégration de Google Drive, Dropbox etc. : utilisez les applications officielles  Google Drive ou Dropbox puis ouvrez n\'importe quel fichier .kdbx. KP2A sera désormais lancé automatiquement ;\n
+* Amélioration de la fenêtre de recherche ;\n
+* Amélioration de la recherche via la fonction \"Partager\" lorsqu\'il y a des sous-domaines ;\n
+* Ajout d\'une entrée de menu pour les rapports de bugs, la notation et la traduction de l\'application.\n
+\n
+<b>Version 0.6.1</b>\n
+* Détection des modifications de la base de donnée en arrière-plan (c\'est à dire dû à une application de synchronisation) ;\n
+* Amélioration de la recherche des URLs depuis le navigateur ;\n
+* Ajout d\'une fenêtre de confirmation si l\'on veut abandonner les changements.\n
+\n
+<b>Version 0.6</b>\n
+Première version publique</string>
   <string-array name="clipboard_timeout_options">
-    <item>30 seconds</item>
+    <item>30 secondes</item>
     <item>1 minute</item>
     <item>5 minutes</item>
-    <item>Never</item>
+    <item>Jamais</item>
   </string-array>
   <string-array name="list_size_options">
-    <item>Small</item>
-    <item>Medium</item>
+    <item>Petit</item>
+    <item>Moyen</item>
     <item>Large</item>
   </string-array>
   <string-array name="cred_remember_modes">
-    <item>Do not remember username and password</item>
-    <item>Remember username only</item>
-    <item>Remember username and password</item>
+    <item>Ne pas se souvenir des identifiants</item>
+    <item>Ne se rappeler que du nom d\'utilisateur</item>
+    <item>Se rappeler du nom d\'utilisateur et du mot de passe</item>
   </string-array>
 </resources>

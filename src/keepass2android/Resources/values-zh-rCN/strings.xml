@@ -116,7 +116,6 @@
   <string name="menu_app_settings">设置</string>
   <string name="menu_db_settings">数据库设置</string>
   <string name="menu_delete">删除</string>
-  <string name="menu_donate">捐赠</string>
   <string name="menu_edit">编辑</string>
   <string name="menu_hide_password">隐藏密码</string>
   <string name="menu_homepage">到主页</string>
@@ -166,7 +165,7 @@
   <string name="warning_unmounted">你的SD卡目前尚未挂载在您的设备上。你将无法加载或创建您的数据库。</string>
   <string name="version_label">版本</string>
   <string name="regular_expression">正则表达式</string>
-  <string name="TanExpiresOnUse_title">TAN ( Transaction Authentication Numbers  ) 使用到期</string>
+  <string name="TanExpiresOnUse_title">TAN  使用到期</string>
   <string name="kp2a_findUrl">Keepass2Android： 查找密码</string>
   <string name="excludeExpiredEntries">排除过期的条目</string>
   <string name="search_options">选项</string>

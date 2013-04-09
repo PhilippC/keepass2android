@@ -228,7 +228,7 @@
   <string name="rate_app">Rate this app</string>
   <string name="translate_app">Translate KP2A</string>
   <string name="ChangeLog_title">Change log</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7 (preview)</b>\n
+  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
 * Increased loading speed: key transformations now 10x faster!\n
 * Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
 * Added option to donate a beer or something else (see menu)</string>

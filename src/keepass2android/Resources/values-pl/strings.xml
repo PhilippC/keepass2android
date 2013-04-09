@@ -28,6 +28,9 @@
   <string name="clipboard_timeout_summary">Czas po którym zostanie zapomniana nazwa użytkownika i hasło ze schowka</string>
   <string name="copy_username">Kopiuj nazwę użytkownika do schowka</string>
   <string name="copy_password">Kopiuj hasło do schowka</string>
+  <string name="available_through_keyboard">Wpis jest dostępny za pośrednictwem klawiatury KP2A</string>
+  <string name="not_possible_im_picker">Nie można otworzyć okna dialogowo by wybrać metodę wprowadzania. Prosimy aktywować klawiaturę ręcznie.</string>
+  <string name="please_activate_keyboard">Proszę włączyć obsługę klawiatury Keepass2Android w ustawieniach systemu.</string>
   <string name="creating_db_key">Tworzenie klucza bazy danych…</string>
   <string name="current_group">Aktualna grupa</string>
   <string name="current_group_root">Aktualna grupa: Root</string>
@@ -118,7 +121,7 @@ Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/
   <string name="menu_app_settings">Ustawienia</string>
   <string name="menu_db_settings">Ustawienia bazy danych</string>
   <string name="menu_delete">Usuń</string>
-  <string name="menu_donate">Wesprzyj mnie</string>
+  <string name="menu_donate">Kup mi piwo...</string>
   <string name="menu_edit">Edytuj</string>
   <string name="menu_hide_password">Ukryj hasło</string>
   <string name="menu_homepage">Przejdź do strony domowej</string>
@@ -204,6 +207,10 @@ Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/
   <string name="credentials_dialog_title">Wprowadź poświadczenia serwera</string>
   <string name="UseFileTransactions_title">Transakcje na plikach</string>
   <string name="UseFileTransactions_summary">Użycie transakcji dla zapisu bazy danych</string>
+  <string name="ShowCopyToClipboardNotification_title">Powiadomienia schowka</string>
+  <string name="ShowCopyToClipboardNotification_summary">Udostępnij nazwę użytkownika i hasło za pośrednictwem paska powiadomień i schowka. Uważaj na sniffery haseł!</string>
+  <string name="ShowKp2aKeyboardNotification_title">Powiadomienia klawiatury KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Udostępnij cały wpis za pośrednictwem klawiatury KP2A (zalecane).</string>
   <string name="AskOverwriteBinary">Czy chcesz zastąpić istniejący plik binarny o tej samej nazwie?</string>
   <string name="AskOverwriteBinary_title">Czy zastąpić istniejący plik binarny?</string>
   <string name="AskOverwriteBinary_yes">Zastąp</string>
@@ -217,6 +224,12 @@ Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/
   <string name="AskReloadFile">Plik, który jest obecnie otwarty został zmieniony przez inny program. Czy chcesz go ponownie załadować?</string>
   <string name="AskDiscardChanges">Czy na pewno chcesz odrzucić dokonane zmiany? (Przycisk Zapisz jest w górnej części formularza)</string>
   <string name="AskDiscardChanges_title">Odrzuć zmiany?</string>
+  <string name="suggest_improvements">Zasugeruj udoskonalenia lub głosuj na zasugerowane</string>
+  <string name="rate_app">Oceń aplikację</string>
+  <string name="translate_app">Tłumacz KP2A</string>
+  <string name="ChangeLog_title">Lista zmian</string>
+  <string name="ChangeLog_0_7"><b>Wersji 0.7</b> \n * zwiększona szybkość ładowania: najważniejsze transformacje teraz 10 x szybciej! \n * dodana klawiatura Keepass2Android: Przełącz na tą klawiaturę pod kątem wprowadzania poświadczeń. Zabezpiecza przed snifferami haseł ze schowka (Wyłącz stary typ powiadomienia o haslach w schowku w opcjach) \n * dodano opcję do postawienia mi piwa lub czegoś innego (patrz w menu)</string>
+  <string name="ChangeLog"><b>Wersja 0.6.2</b> \n * Integracja z Google Drive/Dropbox /... Otwieraj bazy z Google Drive lub aplikacji Dropbox (rozszerzenie .kdbx). \n * ulepszone okno dialogowe Szukaj \n * poprawa wyników wyszukiwania z adresu URL z subdomenami \n * dodano opcje, aby przekazywać informacje zwrotne i tłumaczenie aplikacji w menu \n \n \n <b>wersja 0.6.1</b> /n * wykrywanie zmian bazy danych w tle (np. z powodu aktywności aplikacji Synchronizacja) \n * ulepszone wyszukiwanie adresów URL z przegladarki \n * okno potwierdzania niezapisywania zmian \n \n <b>wersja 0.6</b> pierwsze publiczne wydanie   </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
     <item>1 minuta</item>
