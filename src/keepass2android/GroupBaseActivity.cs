@@ -29,6 +29,7 @@ using Android.Widget;
 using KeePassLib;
 using Android.Preferences;
 using keepass2android.view;
+using Android.Graphics.Drawables;
 
 namespace keepass2android
 {
@@ -115,42 +116,56 @@ namespace keepass2android
 		
 		protected void setGroupTitle()
 		{
-			Button tv = (Button)FindViewById(Resource.Id.group_name);
-			if (tv == null)
-				return;
-			
-			if (mGroup != null)
+			String name = mGroup.Name;
+			String titleText;
+			bool clickable = (mGroup != null) && (mGroup.IsVirtual == false) && (mGroup.ParentGroup != null);
+			if (!String.IsNullOrEmpty(name))
 			{
-				String name = mGroup.Name;
-				if (!String.IsNullOrEmpty(name))
-				{
-					tv.Text = name;
-				} else
-				{
-					tv.Text = GetText(Resource.String.root);
-				}
-				
-
-			}
-
-			if ((mGroup != null) && (mGroup.IsVirtual == false) && (mGroup.ParentGroup != null))
-			{
-				tv.Click += (object sender, EventArgs e) => 
-				{
-					Finish();
-				};
+				titleText = name;
 			} else
 			{
-				tv.SetCompoundDrawables(null, null, null, null);
-				tv.Clickable = false;
+				titleText = GetText(Resource.String.root);
+			}
+
+			//see if the button for SDK Version < 11 is there
+			Button tv = (Button)FindViewById(Resource.Id.group_name);
+			if (tv != null)
+			{
+				if (mGroup != null)
+				{
+					tv.Text = titleText;
+				}
+
+				if (clickable)
+				{
+					tv.Click += (object sender, EventArgs e) => 
+					{
+						Finish();
+					};
+				} else
+				{
+					tv.SetCompoundDrawables(null, null, null, null);
+					tv.Clickable = false;
+				}
+			}
+			//ICS?
+			if (ActionBar != null)
+			{
+				ActionBar.Title = titleText;
+				if (clickable)
+					ActionBar.SetDisplayHomeAsUpEnabled(true);
 			}
 		}
 
 		
 		protected void setGroupIcon() {
 			if (mGroup != null) {
+				Drawable drawable = App.getDB().drawFactory.getIconDrawable(Resources, App.getDB().pm, mGroup.IconId, mGroup.CustomIconUuid);
 				ImageView iv = (ImageView) FindViewById(Resource.Id.icon);
-				App.getDB().drawFactory.assignDrawableTo(iv, Resources, App.getDB().pm, mGroup.IconId, mGroup.CustomIconUuid);
+				if (iv != null)
+					iv.SetImageDrawable(drawable);
+				if (ActionBar != null)
+					ActionBar.SetIcon(drawable);
 			}
 		}
 		
@@ -240,6 +255,12 @@ namespace keepass2android
 					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
 				}
 				return true;	
+			case Android.Resource.Id.Home:
+				//Currently the action bar only displays the home button when we come from a previous activity.
+				//So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
+				//http://developer.android.com/training/implementing-navigation/ancestral.html
+				Finish();
+				return true;
 			}
 			
 			return base.OnOptionsItemSelected(item);

@@ -580,6 +580,10 @@
     <AndroidResource Include="Resources\values-zh-rCN\strings.xml" />
     <AndroidResource Include="Resources\values-zh-rTW\strings.xml" />
     <AndroidResource Include="Resources\drawable\ic_launcher_gray.png" />
+    <AndroidResource Include="Resources\layout-v11\group_add_entry.xml" />
+    <AndroidResource Include="Resources\layout-v11\entry_view.xml" />
+    <AndroidResource Include="Resources\layout-v11\entry_edit.xml" />
+    <AndroidResource Include="Resources\layout-v11\SaveButton.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

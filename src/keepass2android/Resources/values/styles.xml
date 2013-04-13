@@ -22,79 +22,41 @@
     <style name="NoTitleBar" parent="android:Theme.NoTitleBar"></style>
     <style name="Dialog" parent="android:Theme.Dialog"></style>
 	<style name="GroupTextSmall" parent="android:Theme">
-		<item name="@android:textColor">@color/group</item>
 		<item name="@android:textSize">15sp</item>
 	</style>
 	<style name="GroupText" parent="android:Theme">
-		<item name="@android:textColor">@color/group</item>
 		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="GroupTextLarge" parent="android:Theme">
-		<item name="@android:textColor">@color/group</item>
-		<item name="@android:textSize">28sp</item>
+	
 	</style>
 	<style name="ElementTextSmall">
-		<item name="@android:textSize">15sp</item>
 	</style>
 	<style name="ElementText">
-		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="ElementTextLarge">
-		<item name="@android:textSize">28sp</item>
 	</style>
 	<style name="GroupLabel">
-		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="WhiteOnBlack">
-		<item name="@android:background">#666666</item>
-		<item name="@android:textColor">@android:color/primary_text_dark</item>
-		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="GroupAndEntryHeader">
-		<item name="@android:background">#000066</item>
-		<item name="@android:textColor">#ffffff</item>
-		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="WhiteOnBlackSmall" parent="WhiteOnBlack">
-		<item name="@android:textSize">12sp</item>
 	</style>
 	<style name="WhiteOnDarkSmall" parent="WhiteOnBlack">
-		<item name="@android:textSize">12sp</item>
-		<item name="@android:background">#222222</item>
 	</style>
 	<style name="EntryFieldHeader" parent="WhiteOnDarkSmall">
-		<item name="@android:textSize">12sp</item>
 	</style>
 	<style name="ElementTextTitle" parent="WhiteOnBlack">
-		<item name="@android:textColor">@color/group</item>
-		<item name="@android:background">@android:color/transparent</item>
 	</style>
 	<style name="EntryItem">
-		<item name="@android:padding">5sp</item>
 	</style>
 	
 	<style name="EntryFieldHeader">
-        <item name="android:drawableBottom">@drawable/section_header</item>
-        <item name="android:drawablePadding">1dp</item>
-        <item name="android:layout_marginBottom">3dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:paddingLeft">4dp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/emphasis</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="@android:background">@android:color/transparent</item>
     </style>
 
 	<style name="ExtraFieldHeader">
-        <item name="android:drawablePadding">1dp</item>
-        <item name="android:layout_marginBottom">3dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:paddingLeft">4dp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/emphasis2</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="@android:background">@android:color/transparent</item>
+
     </style>
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal" />
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:divider="?android:attr/dividerVertical"
+        android:layout_alignParentBottom="true"
+        android:dividerPadding="12dp">
+        <FrameLayout
+            style="?android:actionButtonStyle"
+            android:id="@+id/entry_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="20dp"
+                android:drawableLeft="@android:drawable/ic_menu_edit"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/menu_edit" />
+        </FrameLayout>
+    </LinearLayout>
+    
+    <ImageView
+        android:id="@+id/entry_divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_bar"
+        android:scaleType="fitXY"
+        android:tint="@color/blue_highlight"
+        android:src="@android:drawable/divider_horizontal_bright" />
+    <ScrollView
+        android:id="@+id/entry_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/entry_divider2"
+        android:layout_below="@id/title_block"
+        android:fillViewport="true"
+        android:scrollbarStyle="insideOverlay">
+        <keepass2android.view.EntryContentsView
+            android:id="@+id/entry_contents"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent" />
+    </ScrollView>
+</RelativeLayout>

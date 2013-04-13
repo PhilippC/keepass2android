@@ -20,69 +20,32 @@
     <style name="NoTitleBar" parent="android:Theme.Holo.Light"></style>
     <style name="Dialog" parent="android:Theme.Holo.Light.Dialog"></style>
 	<style name="GroupTextSmall" parent="android:Theme.Holo.Light">
-		<item name="@android:textColor">@color/group</item>
-		<item name="@android:textSize">15sp</item>
 	</style>
 	<style name="GroupText" parent="android:Theme.Holo.Light">
-		<item name="@android:textColor">@color/group</item>
-		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="GroupTextLarge" parent="android:Theme.Holo.Light">
-		<item name="@android:textColor">@color/group</item>
-		<item name="@android:textSize">28sp</item>
 	</style>
 	<style name="ElementTextSmall">
-		<item name="@android:textSize">15sp</item>
 	</style>
 	<style name="ElementText">
-		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="ElementTextLarge">
-		<item name="@android:textSize">28sp</item>
 	</style>
 	<style name="GroupLabel">
-		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="WhiteOnBlack">
-		<item name="@android:background">#666666</item>
-		<item 
-name="@android:textColor">@android:color/primary_text_dark</item>
-		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="WhiteOnBlackSmall" parent="WhiteOnBlack">
-		<item name="@android:textSize">12sp</item>
 	</style>
 	<style name="WhiteOnDarkSmall" parent="WhiteOnBlack">
-		<item name="@android:textSize">12sp</item>
-		<item name="@android:textColor">@color/group</item>
 	</style>
 	<style name="ElementTextTitle" parent="WhiteOnBlack">
-		<item name="@android:textColor">@color/group</item>
 	</style>
 	<style name="EntryItem">
-		<item name="@android:padding">5sp</item>
-		<item name="@android:textColor">@color/group</item>
 	</style>
 	<style name="EntryFieldHeader" parent="android:Widget.Holo.Light.TextView">
-        <item name="android:drawableBottom">@drawable/section_header</item>
-        <item name="android:drawablePadding">1dp</item>
-        <item name="android:layout_marginBottom">3dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:paddingLeft">4dp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/emphasis</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
 	<style name="ExtraFieldHeader" parent="android:Widget.Holo.Light.TextView">
-        <item name="android:drawablePadding">1dp</item>
-        <item name="android:layout_marginBottom">3dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:paddingLeft">4dp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/emphasis2</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 </resources>

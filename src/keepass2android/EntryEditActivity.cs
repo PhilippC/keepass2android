@@ -74,7 +74,7 @@ namespace keepass2android
 
 		private ScrollView scroll;
 		
-		protected override void OnCreate(Bundle savedInstanceState) 
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			mShowPassword = ! prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
@@ -85,23 +85,25 @@ namespace keepass2android
 			
 			// Likely the app has been killed exit the activity
 			Database db = App.getDB();
-			if ( ! db.Open ) {
+			if (! db.Open)
+			{
 				Finish();
 				return;
 			}
 			
 			Intent i = Intent;
-			String uuidBytes =  i.GetStringExtra(KEY_ENTRY);
+			String uuidBytes = i.GetStringExtra(KEY_ENTRY);
 
 			PwUuid entryId = PwUuid.Zero;
 			if (uuidBytes != null)
 				entryId = new KeePassLib.PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
 
 			PwGroup parentGroup = null;
-			if ( entryId == PwUuid.Zero ) {
+			if (entryId == PwUuid.Zero)
+			{
 				String groupId = i.GetStringExtra(KEY_PARENT);
 
-				parentGroup = db.groups[new PwUuid(MemUtil.HexStringToByteArray(groupId))];
+				parentGroup = db.groups [new PwUuid(MemUtil.HexStringToByteArray(groupId))];
 
 				mEntryInDatabase = new PwEntry(true, true);
 				mEntryInDatabase.Strings.Set(PwDefs.UserNameField, new ProtectedString(
@@ -121,8 +123,8 @@ namespace keepass2android
 				pwe.ExpiryTime = DateTime.Now.AddDays(nExpireDays);
 			}*/
 
-				if((parentGroup.IconId != PwIcon.Folder) && (parentGroup.IconId != PwIcon.FolderOpen) &&
-				   (parentGroup.IconId != PwIcon.FolderPackage))
+				if ((parentGroup.IconId != PwIcon.Folder) && (parentGroup.IconId != PwIcon.FolderOpen) &&
+					(parentGroup.IconId != PwIcon.FolderPackage))
 				{
 					mEntryInDatabase.IconId = parentGroup.IconId; // Inherit icon from group
 				}
@@ -149,11 +151,12 @@ namespace keepass2android
 				mIsNew = true;
 				mEntryModified = true;
 
-			} else {
+			} else
+			{
 
 				System.Diagnostics.Debug.Assert(entryId != null);
 				
-				mEntryInDatabase =  db.entries[entryId];
+				mEntryInDatabase = db.entries [entryId];
 				mIsNew = false;
 				
 
@@ -165,14 +168,14 @@ namespace keepass2android
 			View scrollView = FindViewById(Resource.Id.entry_scroll);
 			scrollView.ScrollBarStyle = ScrollbarStyles.InsideInset;
 			
-			ImageButton iconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
+			ImageButton iconButton = (ImageButton)FindViewById(Resource.Id.icon_button);
 			iconButton.Click += (sender, evt) => {
 				IconPickerActivity.Launch(this);
 			};
 		
 
 			// Generate password button
-			Button generatePassword = (Button) FindViewById(Resource.Id.generate_button);
+			Button generatePassword = (Button)FindViewById(Resource.Id.generate_button);
 			generatePassword.Click += (object sender, EventArgs e) => {
 
 				GeneratePasswordActivity.Launch(this);
@@ -182,7 +185,20 @@ namespace keepass2android
 
 
 			// Save button
-			Button save = (Button) FindViewById(Resource.Id.entry_save);
+			View save = FindViewById(Resource.Id.entry_save);
+			if (save == null)
+			{
+
+				ActionBar.SetCustomView(Resource.Layout.SaveButton);
+				ActionBar.SetDisplayShowCustomEnabled(true);
+				ActionBar.SetDisplayShowTitleEnabled(false);  
+				ActionBar.SetDisplayUseLogoEnabled(false);
+				ActionBar.SetDisplayShowHomeEnabled(false);
+				ActionBar.SetDisplayOptions(ActionBarDisplayOptions.ShowCustom,
+				                            ActionBarDisplayOptions.ShowCustom);
+				save = FindViewById(Resource.Id.entry_save);
+
+			}
 			save.Click += (object sender, EventArgs e) => 
 			{
 				
@@ -381,7 +397,8 @@ namespace keepass2android
 				updateExpires();
 				mEntryModified = true;
 			};
-			
+
+
 		}
 
 		void addBinaryOrAsk(string filename)

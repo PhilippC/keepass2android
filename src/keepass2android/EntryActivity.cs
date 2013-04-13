@@ -76,7 +76,7 @@ namespace keepass2android
 		}
 		
 		protected void setupEditButtons() {
-			Button edit = (Button) FindViewById(Resource.Id.entry_edit);
+			View edit =  FindViewById(Resource.Id.entry_edit);
 			edit.Click += (sender, e) => {
 					EntryEditActivity.Launch(this, mEntry);
 			};
@@ -333,14 +333,19 @@ namespace keepass2android
 		protected void fillData(bool trimList)
 		{
 			ImageView iv = (ImageView)FindViewById(Resource.Id.entry_icon);
-			App.getDB().drawFactory.assignDrawableTo(iv, Resources, App.getDB().pm, mEntry.IconId, mEntry.CustomIconUuid);
+			if (iv != null)
+			{
+				App.getDB().drawFactory.assignDrawableTo(iv, Resources, App.getDB().pm, mEntry.IconId, mEntry.CustomIconUuid);
+			}
 			
 			//populateText(Resource.Id.entry_title, mEntry.Strings.ReadSafe(PwDefs.TitleField));
 			var button = ((Button)FindViewById(Resource.Id.entry_title));
-			button.Text = mEntry.Strings.ReadSafe(PwDefs.TitleField);
-			button.Click += (object sender, EventArgs e) => {
-				Finish(); };
-
+			if (button != null)
+			{
+				button.Text = mEntry.Strings.ReadSafe(PwDefs.TitleField);
+				button.Click += (object sender, EventArgs e) => {
+					Finish(); };
+			}
 			populateText(Resource.Id.entry_user_name, Resource.Id.entry_user_name_label, mEntry.Strings.ReadSafe(PwDefs.UserNameField));
 			
 			populateText(Resource.Id.entry_url, Resource.Id.entry_url_label, mEntry.Strings.ReadSafe(PwDefs.UrlField));
