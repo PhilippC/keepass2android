@@ -15,8 +15,9 @@
         android:divider="?android:attr/dividerVertical"
         android:layout_alignParentBottom="true"
         android:dividerPadding="12dp">
+   
         <FrameLayout
-            style="?android:actionButtonStyle"
+            style="@style/BottomBarActionButton"
             android:id="@+id/entry_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/menu_edit" />
         </FrameLayout>
+        
     </LinearLayout>
     
     <ImageView
@@ -47,7 +49,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/entry_divider2"
-        android:layout_below="@id/title_block"
         android:fillViewport="true"
         android:scrollbarStyle="insideOverlay">
         <keepass2android.view.EntryContentsView

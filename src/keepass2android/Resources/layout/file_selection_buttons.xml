@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/label_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/warning_read_only"
+        android:visibility="visible" />
+    <Button
+        android:text="@string/start_open_file"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_open_file"
+        android:minHeight="45dp"
+        android:drawableTop="@drawable/collections_collection" />
+    <Button
+        android:text="@string/start_open_url"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_open_url"
+        android:minHeight="45dp"
+        android:drawableTop="@drawable/location_web_site" />
+    <Button
+        android:text="@string/start_create"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_create"
+        android:minHeight="45dp"
+        android:drawableTop="@drawable/collections_new_label" />
+</LinearLayout>

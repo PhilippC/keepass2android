@@ -28,10 +28,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using keepass2android.view;
+using Android.Content.PM;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/kp2a_findUrl")]		
+	[Activity (Label = "@string/kp2a_findUrl", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/Base")]		
 	public class ShareUrlResults : GroupBaseActivity
 	{
 

@@ -42,6 +42,7 @@
     <string name="timeout_key">timeout_key</string>
 	<string name="TanExpiresOnUse_key">TanExpiresOnUse_key</string>
     <string name="default_username_key">defaultUsername</string>
+    <string name="database_name_key">databaseName</string>
     <string name="BinaryDirectory_key">binaryDirectory</string>
     <string name="BinaryDirectory_default">/mnt/sdcard/keepass2android/binaries/</string>
     <bool name="maskpass_default">true</bool>
@@ -69,7 +70,7 @@
     	<item>300000</item>
     	<item>-1</item>
     </string-array>
-    <string name="list_size_default">28</string>
+    <string name="list_size_default">20</string>
     <string-array name="list_size_values">
     	<item>15</item>
     	<item>20</item>

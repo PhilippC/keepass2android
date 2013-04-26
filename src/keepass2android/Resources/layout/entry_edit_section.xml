@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<keepass2android.view.EntryEditSection xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
     <EditText
@@ -37,4 +37,4 @@
         android:layout_below="@id/value"
         android:scaleType="fitXY"
         android:src="@android:drawable/divider_horizontal_dark" />
-</keepass2android.view.EntryEditSection>
+</LinearLayout>

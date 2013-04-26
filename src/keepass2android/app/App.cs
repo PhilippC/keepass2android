@@ -65,6 +65,10 @@ namespace keepass2android
 		private static Database db;
 		private static bool shutdown = false;
 
+		/// <summary>
+		/// See comments to EntryEditActivityState.
+		/// </summary>
+		internal static EntryEditActivityState entryEditActivityState = null;
 		
 		public static FileDbHelper fileDbHelper;
 		

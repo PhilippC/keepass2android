@@ -55,7 +55,14 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.QuickUnlock);
 
-			((TextView)FindViewById(Resource.Id.qu_filename)).Text = mIoc.GetDisplayName();
+			if (App.getDB().pm.Name != "")
+			{
+				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Invisible;
+				((TextView)FindViewById(Resource.Id.qu_filename)).Text = App.getDB().pm.Name;
+			} else
+			{
+				((TextView)FindViewById(Resource.Id.qu_filename)).Text = mIoc.Path;
+			}
 
 
 			TextView txtLabel = (TextView)FindViewById(Resource.Id.QuickUnlock_label);

@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    android:orientation="vertical"
     android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/filename_form">
-        <TextView
-            android:id="@+id/label_warning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:visibility="invisible" />
         <TextView
             android:id="@+id/label_open_by_filename"
             android:layout_width="wrap_content"
@@ -62,31 +57,4 @@
             android:layout_toRightOf="@id/create"
             android:minWidth="100sp" />
     </RelativeLayout>
-    <Button
-        android:text="@string/start_open_file"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/GreenButton"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/start_open_file"
-        android:layout_below="@id/filename_form"
-        android:minHeight="45dp" />
-    <Button
-        android:text="@string/start_open_url"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/BlueButton"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/start_open_file"
-        android:id="@+id/start_open_url"
-        android:minHeight="45dp" />
-    <Button
-        android:text="@string/start_create"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/YellowButton"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/start_open_url"
-        android:id="@+id/start_create"
-        android:minHeight="45dp" />
-</RelativeLayout>
+</LinearLayout>

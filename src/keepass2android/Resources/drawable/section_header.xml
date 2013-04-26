@@ -4,5 +4,5 @@
     android:shape="rectangle">
     <size android:width="1000dp" android:height="2px" />
     <solid 
-        android:color="@color/emphasis"/>
+        android:color="@color/light_gray"/>
 </shape>

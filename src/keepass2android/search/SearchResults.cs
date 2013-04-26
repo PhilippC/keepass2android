@@ -54,10 +54,12 @@ namespace keepass2android.search
 			if ( ! mDb.Open ) {
 				Finish();
 			}
-			
+
 			query(getSearch(Intent));
 
+
 		}
+
 
 		private void query (SearchParameters searchParams)
 		{

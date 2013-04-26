@@ -23,6 +23,10 @@
 	  android:key="@string/db_key"
 	  android:title="@string/database" 
 	  android:summary="@string/menu_db_settings">
+		<EditTextPreference
+                android:title="@string/database_name"
+                android:persistent="false"
+                android:key="@string/database_name_key"/>
 		<Preference
 		  android:key="@string/algorithm_key"
 		  android:title="@string/algorithm"
@@ -39,6 +43,7 @@
                 android:title="@string/default_username"
                 android:persistent="false"
                 android:key="@string/default_username_key"/>
+          
 	</PreferenceScreen>
 	
 	<PreferenceScreen

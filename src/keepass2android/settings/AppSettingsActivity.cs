@@ -92,7 +92,33 @@ namespace keepass2android
 					ProgressTask pt = new ProgressTask(this, save, Resource.String.saving_database);
 					pt.run();
 				};
+
+				Preference databaseName = FindPreference(GetString(Resource.String.database_name_key));
+				((EditTextPreference)databaseName).EditText.Text = db.pm.Name;
+				((EditTextPreference)databaseName).Text = db.pm.Name;
+				databaseName.PreferenceChange += (object sender, Preference.PreferenceChangeEventArgs e) => 
+				{
+					DateTime previousNameChanged = db.pm.NameChanged;
+					String previousName = db.pm.Name;
+					db.pm.Name = e.NewValue.ToString();
+					
+					Handler handler = new Handler();
+					
+					SaveDB save = new SaveDB(this, App.getDB(), new ActionOnFinish( (success, message) => 
+					                                                               {
+						if (!success)
+						{
+							db.pm.Name = previousName;
+							db.pm.NameChanged = previousNameChanged;
+							Toast.MakeText(this, message, ToastLength.Long).Show();
+						}
+					}));
+					ProgressTask pt = new ProgressTask(this, save, Resource.String.saving_database);
+					pt.run();
+				};
 				
+
+
 				setRounds(db, rounds);
 				
 				Preference algorithm = FindPreference(GetString(Resource.String.algorithm_key));

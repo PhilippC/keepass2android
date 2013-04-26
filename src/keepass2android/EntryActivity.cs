@@ -38,6 +38,7 @@ using Android.Content.PM;
 using KeePassLib.Security;
 using keepass2android.view;
 using Android.Webkit;
+using Android.Graphics;
 
 namespace keepass2android
 {
@@ -46,11 +47,11 @@ namespace keepass2android
 		public const String KEY_ENTRY = "entry";
 		public const String KEY_REFRESH_POS = "refresh_pos";
 		public const String KEY_CLOSE_AFTER_CREATE = "close_after_create";
-
+		
 		public static void Launch(Activity act, PwEntry pw, int pos) {
 			Launch(act, pw, pos, false);
 		}
-
+		
 		public static void Launch(Activity act, PwEntry pw, int pos, bool closeAfterCreate) {
 			Intent i;
 			
@@ -63,14 +64,14 @@ namespace keepass2android
 			
 			act.StartActivityForResult(i,0);
 		}
-
+		
 		protected PwEntry mEntry;
-	
+		
 		private bool mShowPassword;
 		private int mPos;
-
 		
-
+		
+		
 		protected void setEntryView() {
 			SetContentView(Resource.Layout.entry_view);
 		}
@@ -78,28 +79,28 @@ namespace keepass2android
 		protected void setupEditButtons() {
 			View edit =  FindViewById(Resource.Id.entry_edit);
 			edit.Click += (sender, e) => {
-					EntryEditActivity.Launch(this, mEntry);
+				EntryEditActivity.Launch(this, mEntry);
 			};
 		}
 		
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-
+			
 			long usageCount = prefs.GetLong(GetString(Resource.String.UsageCount_key), 0);
-
+			
 			ISharedPreferencesEditor edit = prefs.Edit();
 			edit.PutLong(GetString(Resource.String.UsageCount_key), usageCount+1);
 			EditorCompat.apply(edit);
-
+			
 			mShowPassword = ! prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
 			
 			base.OnCreate(savedInstanceState);
 			setEntryView();
 			
 			Context appCtx = ApplicationContext;
-
-
+			
+			
 			Database db = App.getDB();
 			// Likely the app has been killed exit the activity 
 			if (! db.Loaded)
@@ -113,11 +114,11 @@ namespace keepass2android
 			Intent i = Intent;
 			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(i.GetStringExtra(KEY_ENTRY)));
 			mPos = i.GetIntExtra(KEY_REFRESH_POS, -1);
-
+			
 			bool closeAfterCreate = i.GetBooleanExtra(KEY_CLOSE_AFTER_CREATE, false);
-
+			
 			mEntry = db.entries [uuid];
-
+			
 			
 			
 			// Refresh Menu contents in case onCreateMenuOptions was called before mEntry was set
@@ -141,26 +142,26 @@ namespace keepass2android
 			fillData(false);
 			
 			setupEditButtons();
-
+			
 			Intent showNotIntent = new Intent(this, typeof(CopyToClipboardService));
 			Intent.SetAction(Intents.SHOW_NOTIFICATION);
 			showNotIntent.PutExtra(KEY_ENTRY, mEntry.Uuid.ToHexString());
-
+			
 			StartService(showNotIntent);
-
+			
 			Android.Util.Log.Debug("DEBUG", "Requesting copy to clipboard for Uuid=" + mEntry.Uuid.ToHexString());
-
+			
 			/*foreach (PwUuid key in App.getDB().entries.Keys)
 			{
 				Android.Util.Log.Debug("DEBUG",key.ToHexString() + " -> " + App.getDB().entries[key].Uuid.ToHexString());
 			}*/
-
+			
 			if (closeAfterCreate)
 			{
 				Finish();
 			}
 		}
-
+		
 		private class AfterSave : OnFinish {
 			
 			public AfterSave(Handler handler):base(handler) {
@@ -168,18 +169,18 @@ namespace keepass2android
 			}
 			
 			public override void run() {
-
+				
 				base.run();
 			}
 			
 		};
 		
 		
-
+		
 		private String getDateTime(System.DateTime dt) {
 			return dt.ToString ("g", CultureInfo.CurrentUICulture);
 		}
-
+		
 		String concatTags(List<string> tags)
 		{
 			StringBuilder sb = new StringBuilder();
@@ -192,7 +193,7 @@ namespace keepass2android
 				sb.Remove(sb.Length-2,2);
 			return sb.ToString();
 		}
-
+		
 		void populateExtraStrings(bool trimList)
 		{
 			ViewGroup extraGroup = (ViewGroup)FindViewById(Resource.Id.extra_strings);
@@ -206,7 +207,8 @@ namespace keepass2android
 				String key = pair.Key;
 				if (!PwDefs.IsStandardField(key))
 				{
-					View view = new EntrySection(this, null, key, pair.Value.ReadString());
+					//View view = new EntrySection(this, null, key, pair.Value.ReadString());
+					View view = CreateEditSection(key, pair.Value.ReadString());
 					extraGroup.AddView(view);
 					hasExtraFields = true;
 				}
@@ -214,16 +216,38 @@ namespace keepass2android
 			FindViewById(Resource.Id.entry_extra_strings_label).Visibility = hasExtraFields ? ViewStates.Visible : ViewStates.Gone;
 		}
 
+		View CreateEditSection(string key, string value)
+		{
+			LinearLayout layout = new LinearLayout(this, null);
+			layout.Orientation = Orientation.Vertical;
+			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
+			layoutParams.SetMargins(10,0,0,0);
+			layout.LayoutParameters = layoutParams;
+			View viewInflated = LayoutInflater.Inflate(Resource.Layout.entry_extrastring_title,null);
+			TextView keyView = (TextView)viewInflated;
+			if (key != null)
+				keyView.Text = key;
+
+			layout.AddView(keyView);
+			TextView valueView = (TextView)LayoutInflater.Inflate(Resource.Layout.entry_extrastring_value, null);
+			if (value != null)
+				valueView.Text = value;
+			valueView.Typeface = Typeface.Monospace;
+			valueView.SetTextIsSelectable(true);
+			layout.AddView(valueView);
+			return layout;
+		}
+		
 		string writeBinaryToFile(string key)
 		{
 			ProtectedBinary pb = mEntry.Binaries.Get(key);
 			System.Diagnostics.Debug.Assert(pb != null); if(pb == null) throw new ArgumentException();
-
+			
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key),GetString(Resource.String.BinaryDirectory_default));
-		
+			
 			var targetFile = new Java.IO.File(binaryDirectory,key);
-
+			
 			Java.IO.File parent = targetFile.ParentFile;
 			
 			if (parent == null || (parent.Exists() && ! parent.IsDirectory))
@@ -247,24 +271,24 @@ namespace keepass2android
 				}
 			}
 			string filename = targetFile.AbsolutePath;
-
+			
 			byte[] pbData = pb.ReadData();
 			try { System.IO.File.WriteAllBytes(filename, pbData); }
 			catch(Exception exWrite)
 			{
 				Toast.MakeText(this, GetString(Resource.String.SaveAttachment_Failed, new Java.Lang.Object[]{ filename})
-									+exWrite.Message,ToastLength.Long).Show();
+				               +exWrite.Message,ToastLength.Long).Show();
 				return null;
 			}
 			finally
 			{
 				MemUtil.ZeroByteArray(pbData);
 			}
-
+			
 			return filename;
-
+			
 		}
-
+		
 		void openBinaryFile(string filename)
 		{
 			String theMIMEType = getMimeType(filename);
@@ -284,7 +308,7 @@ namespace keepass2android
 				}
 			}
 		}
-
+		
 		void populateBinaries(bool trimList)
 		{
 			ViewGroup binariesGroup = (ViewGroup)FindViewById(Resource.Id.binaries);
@@ -303,21 +327,21 @@ namespace keepass2android
 				{
 					Button btnSender = (Button)(sender);
 					string newFilename = writeBinaryToFile(btnSender.Text);
-
+					
 					if (newFilename != null)
 					{
 						Toast.MakeText(this, GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[]{newFilename}), ToastLength.Short).Show();			
 						openBinaryFile(newFilename);
 					}
-
+					
 				};
 				binariesGroup.AddView(binaryButton,layoutParams);
-
+				
 				
 			}
 			FindViewById(Resource.Id.entry_binaries_label).Visibility = mEntry.Binaries.UCount > 0 ? ViewStates.Visible : ViewStates.Gone;
 		}
-
+		
 		// url = file path or whatever suitable URL you want.
 		public static String getMimeType(String url)
 		{
@@ -346,6 +370,11 @@ namespace keepass2android
 				button.Click += (object sender, EventArgs e) => {
 					Finish(); };
 			}
+			if (ActionBar != null)
+			{
+				ActionBar.Title = mEntry.Strings.ReadSafe(PwDefs.TitleField);
+				ActionBar.SetDisplayHomeAsUpEnabled(true);
+			}
 			populateText(Resource.Id.entry_user_name, Resource.Id.entry_user_name_label, mEntry.Strings.ReadSafe(PwDefs.UserNameField));
 			
 			populateText(Resource.Id.entry_url, Resource.Id.entry_url_label, mEntry.Strings.ReadSafe(PwDefs.UrlField));
@@ -364,22 +393,22 @@ namespace keepass2android
 				populateText(Resource.Id.entry_expires, Resource.Id.entry_expires_label, Resource.String.never);
 			}
 			populateText(Resource.Id.entry_comment, Resource.Id.entry_comment_label, mEntry.Strings.ReadSafe(PwDefs.NotesField));
-
+			
 			populateText(Resource.Id.entry_tags, Resource.Id.entry_tags_label, concatTags(mEntry.Tags));
-
+			
 			populateText(Resource.Id.entry_override_url, Resource.Id.entry_override_url_label, mEntry.OverrideUrl);
-
+			
 			populateExtraStrings(trimList);
-
+			
 			populateBinaries(trimList);
-
-
+			
+			
 		}
 		
 		private void populateText(int viewId, int headerViewId,int resId) {
 			View header = FindViewById(headerViewId);
 			TextView tv = (TextView)FindViewById(viewId);
-
+			
 			header.Visibility = tv.Visibility = ViewStates.Visible;
 			tv.SetText (resId);
 		}
@@ -396,10 +425,10 @@ namespace keepass2android
 			{
 				header.Visibility = tv.Visibility = ViewStates.Visible;
 				tv.Text = text;
-
+				
 			}
 		}
-
+		
 		void requiresRefresh ()
 		{
 			Intent ret = new Intent ();
@@ -419,7 +448,7 @@ namespace keepass2android
 		
 		public override bool OnCreateOptionsMenu(IMenu menu) {
 			base.OnCreateOptionsMenu(menu);
-
+			
 			MenuInflater inflater = MenuInflater;
 			inflater.Inflate(Resource.Menu.entry, menu);
 			
@@ -429,7 +458,7 @@ namespace keepass2android
 			} else {
 				togglePassword.SetTitle(Resource.String.show_password);
 			}
-
+			
 			IMenuItem gotoUrl = menu.FindItem(Resource.Id.menu_goto_url);
 			//Disabled IMenuItem copyUser = menu.FindItem(Resource.Id.menu_copy_user);
 			//Disabled IMenuItem copyPass = menu.FindItem(Resource.Id.menu_copy_pass);
@@ -471,7 +500,7 @@ namespace keepass2android
 		
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
-			/*case Resource.Id.menu_donate:
+				/*case Resource.Id.menu_donate:
 				try {
 					Util.gotoUrl(this, Resource.String.donate_url);
 				} catch (ActivityNotFoundException) {
@@ -480,34 +509,34 @@ namespace keepass2android
 				}
 				
 				return true;*/
-			case Resource.Id.menu_toggle_pass:
-				if ( mShowPassword ) {
-					item.SetTitle(Resource.String.show_password);
-					mShowPassword = false;
-				} else {
-					item.SetTitle(Resource.String.menu_hide_password);
-					mShowPassword = true;
-				}
-				setPasswordStyle();
-				
-				return true;
-				
-			case Resource.Id.menu_goto_url:
-				String url;
-				url = mEntry.Strings.ReadSafe (PwDefs.UserNameField);
-				
-				// Default http:// if no protocol specified
-				if ( ! url.Contains("://") ) {
-					url = "http://" + url;
-				}
-				
-				try {
-					Util.gotoUrl(this, url);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
-				return true;
-				/* TODO: required?
+				case Resource.Id.menu_toggle_pass:
+					if ( mShowPassword ) {
+						item.SetTitle(Resource.String.show_password);
+						mShowPassword = false;
+					} else {
+						item.SetTitle(Resource.String.menu_hide_password);
+						mShowPassword = true;
+					}
+					setPasswordStyle();
+					
+					return true;
+					
+				case Resource.Id.menu_goto_url:
+					String url;
+					url = mEntry.Strings.ReadSafe (PwDefs.UserNameField);
+					
+					// Default http:// if no protocol specified
+					if ( ! url.Contains("://") ) {
+						url = "http://" + url;
+					}
+					
+					try {
+						Util.gotoUrl(this, url);
+					} catch (ActivityNotFoundException) {
+						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+					}
+					return true;
+					/* TODO: required?
 			case Resource.Id.menu_copy_user:
 				timeoutCopyToClipboard(mEntry.Strings.ReadSafe (PwDefs.UserNameField));
 				return true;
@@ -516,38 +545,44 @@ namespace keepass2android
 				timeoutCopyToClipboard(mEntry.Strings.ReadSafe (PwDefs.UserNameField));
 				return true;
 				*/
-			case Resource.Id.menu_rate:
-				try {
+				case Resource.Id.menu_rate:
+					try {
 						Util.gotoMarket(this);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
+					} catch (ActivityNotFoundException) {
+						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+					}
 					return true;
-			case Resource.Id.menu_suggest_improvements:
-				try {
+				case Resource.Id.menu_suggest_improvements:
+					try {
 						Util.gotoUrl(this, Resource.String.SuggestionsURL);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
+					} catch (ActivityNotFoundException) {
+						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+					}
 					return true;
-			case Resource.Id.menu_lock:
-				App.setShutdown();
-				SetResult(KeePass.EXIT_LOCK);
-				Finish();
-				return true;
-			case Resource.Id.menu_translate:
-				try {
-					Util.gotoUrl(this, Resource.String.TranslationURL);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
-				return true;
+				case Resource.Id.menu_lock:
+					App.setShutdown();
+					SetResult(KeePass.EXIT_LOCK);
+					Finish();
+					return true;
+				case Resource.Id.menu_translate:
+					try {
+						Util.gotoUrl(this, Resource.String.TranslationURL);
+					} catch (ActivityNotFoundException) {
+						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+					}
+					return true;
+				case Android.Resource.Id.Home:
+					//Currently the action bar only displays the home button when we come from a previous activity.
+					//So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
+					//http://developer.android.com/training/implementing-navigation/ancestral.html
+					Finish();
+					return true;
 			}
-
+			
 			
 			return base.OnOptionsItemSelected(item);
 		}
 	}
-
+	
 }
 

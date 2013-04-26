@@ -88,7 +88,6 @@
     <Compile Include="Utils\Util.cs" />
     <Compile Include="Utils\Interaction.cs" />
     <Compile Include="intents\Intents.cs" />
-    <Compile Include="views\FileNameView.cs" />
     <Compile Include="fileselect\BrowserDialog.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="timers\Timeout.cs" />
@@ -158,6 +157,8 @@
     <Compile Include="services\QuickUnlockForegroundService.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="database\edit\DeleteRunnable.cs" />
+    <Compile Include="views\FileSelectButtons.cs" />
+    <Compile Include="EntryEditActivityState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -187,9 +188,6 @@
       <Visible>False</Visible>
     </None>
     <None Include="settings\RoundsPreference %28Kopie%29.cs">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\layout-v11\entry_view_contents.xml">
       <Visible>False</Visible>
     </None>
     <None Include="Resources\drawable\new_group.xcf">
@@ -257,6 +255,24 @@
       <Visible>False</Visible>
     </None>
     <None Include="Resources\values-vi\strings.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\drawable-hdpi\Thumbs.db">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\drawable-ldpi\Thumbs.db">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\drawable-mdpi\Thumbs.db">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\drawable-xhdpi\Thumbs.db">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\drawable-xxhdpi\Thumbs.db">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\layout-v14\entry_view_contents.xml">
       <Visible>False</Visible>
     </None>
   </ItemGroup>
@@ -518,12 +534,9 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\values-v11\styles.xml" />
-    <AndroidResource Include="Resources\values-v11\colors.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_eye_open.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_eye_open.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_eye_open.png" />
-    <AndroidResource Include="Resources\layout-v11\entry_view_contents.xml" />
     <AndroidResource Include="Resources\layout\search.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_search.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_search.png" />
@@ -580,10 +593,44 @@
     <AndroidResource Include="Resources\values-zh-rCN\strings.xml" />
     <AndroidResource Include="Resources\values-zh-rTW\strings.xml" />
     <AndroidResource Include="Resources\drawable\ic_launcher_gray.png" />
-    <AndroidResource Include="Resources\layout-v11\group_add_entry.xml" />
-    <AndroidResource Include="Resources\layout-v11\entry_view.xml" />
-    <AndroidResource Include="Resources\layout-v11\entry_edit.xml" />
-    <AndroidResource Include="Resources\layout-v11\SaveButton.xml" />
+    <AndroidResource Include="Resources\drawable\ic_menu_add_field_holo_light.png" />
+    <AndroidResource Include="Resources\drawable\ic_menu_remove_field_holo_light.png" />
+    <AndroidResource Include="Resources\drawable\navigation_cancel.png" />
+    <AndroidResource Include="Resources\values-v14\styles.xml" />
+    <AndroidResource Include="Resources\values-v14\colors.xml" />
+    <AndroidResource Include="Resources\layout-v14\entry_view_contents.xml" />
+    <AndroidResource Include="Resources\layout-v14\group_add_entry.xml" />
+    <AndroidResource Include="Resources\layout-v14\entry_view.xml" />
+    <AndroidResource Include="Resources\layout-v14\entry_edit.xml" />
+    <AndroidResource Include="Resources\layout-v14\SaveButton.xml" />
+    <AndroidResource Include="Resources\layout-v14\entry_edit_section.xml" />
+    <AndroidResource Include="Resources\layout-v14\generate_password.xml" />
+    <AndroidResource Include="Resources\layout-v14\icon_picker.xml" />
+    <AndroidResource Include="Resources\layout-v14\password.xml" />
+    <AndroidResource Include="Resources\layout\InViewButton.xml" />
+    <AndroidResource Include="Resources\drawable\collections_collection.png" />
+    <AndroidResource Include="Resources\drawable\collections_new_label.png" />
+    <AndroidResource Include="Resources\drawable\location_web_site.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\collections_collection.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\location_web_site.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\collections_new_label.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\collections_collection.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\collections_new_label.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\location_web_site.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\collections_collection.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\collections_new_label.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\location_web_site.png" />
+    <AndroidResource Include="Resources\layout\file_selection_buttons.xml" />
+    <AndroidResource Include="Resources\drawable\device_access_not_secure.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\device_access_not_secure.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_remove_field_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\device_access_not_secure.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_menu_remove_field_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\device_access_not_secure.png" />
+    <AndroidResource Include="Resources\layout-v14\QuickUnlock_Unused.xml" />
+    <AndroidResource Include="Resources\layout\entry_view_test.xml" />
+    <AndroidResource Include="Resources\layout\entry_extrastring_title.xml" />
+    <AndroidResource Include="Resources\layout\entry_extrastring_value.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -602,14 +649,12 @@
     <Folder Include="settings\" />
     <Folder Include="password\" />
     <Folder Include="compat\" />
-    <Folder Include="Resources\layout-v11\" />
     <Folder Include="Resources\menu-v11\" />
     <Folder Include="Resources\drawable-hdpi\" />
     <Folder Include="Resources\drawable-ldpi\" />
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Resources\values-v11\" />
     <Folder Include="Resources\drawable-v11\" />
     <Folder Include="Resources\values-de\" />
     <Folder Include="Resources\values-ca\" />
@@ -631,6 +676,8 @@
     <Folder Include="Resources\values-zh-rTW\" />
     <Folder Include="SupportLib\" />
     <Folder Include="Assets\" />
+    <Folder Include="Resources\values-v14\" />
+    <Folder Include="Resources\layout-v14\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">

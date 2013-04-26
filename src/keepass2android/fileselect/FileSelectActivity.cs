@@ -45,13 +45,6 @@ namespace keepass2android
 	public class FileSelectActivity : ListActivity
 	{
 
-
-		enum CurrentAction { None, OpenFile, OpenURL, Create, CreateImport };
-
-
-
-		CurrentAction currentAction = CurrentAction.None;
-
 		public FileSelectActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
@@ -65,22 +58,147 @@ namespace keepass2android
 
 		public const String UrlToSearch_key = "UrlToSearch";
 		const String BundleKey_UrlToSearchFor = "UrlToSearch";
-		const string BundleKey_CurrentAction = "CurrentAction";
 		const string BundleKey_RecentMode = "RecentMode";
 
 		private FileDbHelper mDbHelper;
 		private String mUrlToSearch;
 		
 		private bool recentMode = false;
-
+		view.FileSelectButtons fileSelectButtons;
 		bool createdWithActivityResult = false;
-
 
 		IOConnectionInfo loadIoc(string defaultFileName)
 		{
 			return mDbHelper.cursorToIoc(mDbHelper.fetchFileByName(defaultFileName));
 		}
-		
+
+		void ShowFilenameDialog(bool showOpenButton, bool showCreateButton, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.SetView(LayoutInflater.Inflate(Resource.Layout.file_selection_filename, null));
+			Dialog dialog = builder.Create();
+			dialog.Show();
+
+			Button openButton = (Button)dialog.FindViewById(Resource.Id.open);
+			Button createButton = (Button)dialog.FindViewById(Resource.Id.create);
+			TextView enterFilenameDetails = (TextView)dialog.FindViewById(Resource.Id.label_open_by_filename_details);
+			openButton.Visibility = showOpenButton ? ViewStates.Visible : ViewStates.Gone;
+			createButton.Visibility = showCreateButton ? ViewStates.Visible : ViewStates.Gone;
+			// Set the initial value of the filename
+			EditText editFilename = (EditText)dialog.FindViewById(Resource.Id.file_filename);
+			editFilename.Text = defaultFilename;
+			enterFilenameDetails.Text = detailsText;
+			enterFilenameDetails.Visibility = enterFilenameDetails.Text == "" ? ViewStates.Gone : ViewStates.Visible;
+
+			// Open button
+			
+			openButton.Click += ( sender, evt) => {
+				String fileName = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
+				
+				IOConnectionInfo ioc = new IOConnectionInfo() { 
+					Path = fileName
+				};
+				
+				LaunchPasswordActivityForIoc(ioc);
+			};
+			
+			
+			
+			// Create button
+			createButton.Click += (sender, evt) => {
+				String filename = Util.getEditText(this,
+				                                   Resource.Id.file_filename);
+				
+				//TODO: allow non-local files?
+				
+				// Make sure file name exists
+				if (filename.Length == 0)
+				{
+					Toast
+						.MakeText(this,
+						          Resource.String.error_filename_required,
+						          ToastLength.Long).Show();
+					return;
+				}
+				
+				// Try to create the file
+				Java.IO.File file = new Java.IO.File(filename);
+				try
+				{
+					if (file.Exists())
+					{
+						Toast.MakeText(this,
+						               Resource.String.error_database_exists,
+						               ToastLength.Long).Show();
+						return;
+					}
+					Java.IO.File parent = file.ParentFile;
+					
+					if (parent == null || (parent.Exists() && ! parent.IsDirectory))
+					{
+						Toast.MakeText(this,
+						               Resource.String.error_invalid_path,
+						               ToastLength.Long).Show();
+						return;
+					}
+					
+					if (! parent.Exists())
+					{
+						// Create parent dircetory
+						if (! parent.Mkdirs())
+						{
+							Toast.MakeText(this,
+							               Resource.String.error_could_not_create_parent,
+							               ToastLength.Long).Show();
+							return;
+							
+						}
+					}
+					
+					file.CreateNewFile();
+				} catch (Java.IO.IOException ex)
+				{
+					Toast.MakeText(
+						this,
+						GetText(Resource.String.error_file_not_create) + " "
+						+ ex.LocalizedMessage,
+						ToastLength.Long).Show();
+					return;
+				}
+				
+				// Prep an object to collect a password once the database has
+				// been created
+				CollectPassword password = new CollectPassword(
+					new LaunchGroupActivity(IOConnectionInfo.FromPath(filename), this), this);
+				
+				// Create the new database
+				CreateDB create = new CreateDB(this, IOConnectionInfo.FromPath(filename), password, true);
+				ProgressTask createTask = new ProgressTask(
+					this, create,
+					Resource.String.progress_create);
+				createTask.run();
+				
+				
+			};
+			
+			Button cancelButton = (Button)dialog.FindViewById(Resource.Id.fnv_cancel);
+			cancelButton.Click += (sender, e) => { 
+				dialog.Dismiss();
+			};
+			
+			ImageButton browseButton = (ImageButton)dialog.FindViewById(Resource.Id.browse_button);
+			if (!showBrowseButton)
+			{
+				browseButton.Visibility = ViewStates.Invisible;
+			}
+			browseButton.Click += (sender, evt) => {
+				string filename = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
+				
+				Util.showBrowseDialog(filename, this, requestCodeBrowse);
+				
+			};
+
+		}		
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -98,34 +216,30 @@ namespace keepass2android
 			if (mDbHelper.hasRecentFiles())
 			{
 				recentMode = true;
+
 				SetContentView(Resource.Layout.file_selection);
+				fileSelectButtons = new keepass2android.view.FileSelectButtons(this);
+				((ListView)FindViewById(Android.Resource.Id.List)).AddFooterView(
+					fileSelectButtons);
+
 			} else
 			{
 				SetContentView(Resource.Layout.file_selection_no_recent);
-
+				fileSelectButtons = (view.FileSelectButtons)FindViewById(Resource.Id.file_select);
 			}
 
-			View fnform = FindViewById(Resource.Id.filename_form);
-			fnform.Visibility = ViewStates.Gone;
 
-			Button openButton = (Button)FindViewById(Resource.Id.open);
-			Button createButton = (Button)FindViewById(Resource.Id.create);
-			TextView enterFilenameDetails = (TextView)FindViewById(Resource.Id.label_open_by_filename_details);
-			//OPEN FILE
+
 			Button openFileButton = (Button)FindViewById(Resource.Id.start_open_file);
+
+
 			EventHandler openFileButtonClick = (object sender, EventArgs e) => 
 			{
-				if (currentAction == CurrentAction.OpenFile)
-					return;
-				currentAction = CurrentAction.OpenFile;
-				fnform.Visibility = ViewStates.Visible;
-				openButton.Visibility = ViewStates.Visible;
-				createButton.Visibility = ViewStates.Gone;
-				// Set the initial value of the filename
-				EditText filename = (EditText)FindViewById(Resource.Id.file_filename);
-				filename.Text = Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path);
-				enterFilenameDetails.Text = "";//GetString(Resource.String.enter_filename_details_file);
-				enterFilenameDetails.Visibility = enterFilenameDetails.Text == "" ? ViewStates.Gone : ViewStates.Visible;
+				string defaultFilename = Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path);
+				string detailsText = "";
+				ShowFilenameDialog(true, false, true, defaultFilename, detailsText, Intents.REQUEST_CODE_FILE_BROWSE_FOR_OPEN);
+
+				                   
 			};
 			openFileButton.Click += openFileButtonClick;
 			//OPEN URL
@@ -137,16 +251,7 @@ namespace keepass2android
 
 			EventHandler openUrlButtonClick = (object sender, EventArgs e) => 
 			{
-				if (currentAction == CurrentAction.OpenURL)
-				return;
-				currentAction = CurrentAction.OpenURL;
-				fnform.Visibility = ViewStates.Visible;
-				openButton.Visibility = ViewStates.Visible;
-				createButton.Visibility = ViewStates.Gone;
-				EditText filename = (EditText)FindViewById(Resource.Id.file_filename);
-				filename.Text = "";
-				enterFilenameDetails.Text = GetString(Resource.String.enter_filename_details_url);
-				enterFilenameDetails.Visibility = enterFilenameDetails.Text == "" ? ViewStates.Gone : ViewStates.Visible;
+				ShowFilenameDialog(true, false, false, "", GetString(Resource.String.enter_filename_details_url), Intents.REQUEST_CODE_FILE_BROWSE_FOR_OPEN);
 			};
 			openUrlButton.Click += openUrlButtonClick;
 
@@ -154,17 +259,7 @@ namespace keepass2android
 			Button createNewButton = (Button)FindViewById(Resource.Id.start_create);
 			EventHandler createNewButtonClick = (object sender, EventArgs e) => 
 			{
-				if (currentAction == CurrentAction.Create)
-					return;
-				currentAction = CurrentAction.Create;
-				fnform.Visibility = ViewStates.Visible;
-				openButton.Visibility = ViewStates.Gone;
-				createButton.Visibility = ViewStates.Visible;
-				// Set the initial value of the filename
-				EditText filename = (EditText)FindViewById(Resource.Id.file_filename);
-				filename.Text = Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path);
-				enterFilenameDetails.Text = "";//GetString(Resource.String.enter_filename_details_create);
-				enterFilenameDetails.Visibility = enterFilenameDetails.Text == "" ? ViewStates.Gone : ViewStates.Visible;
+				ShowFilenameDialog(false, true, true, Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path), "", Intents.REQUEST_CODE_FILE_BROWSE_FOR_CREATE);
 			};
 			createNewButton.Click += createNewButtonClick;
 
@@ -172,10 +267,6 @@ namespace keepass2android
 			Button createImportButton = (Button)FindViewById(Resource.Id.start_create_import);
 			createImportButton.Click += (object sender, EventArgs e) => 
 			{
-				if (currentAction == CurrentAction.CreateImport)
-					return;
-				currentAction = CurrentAction.CreateImport;
-				fnform.Visibility = ViewStates.Visible;
 				openButton.Visibility = ViewStates.Gone;
 				createButton.Visibility = ViewStates.Visible;
 				enterFilenameDetails.Text = GetString(Resource.String.enter_filename_details_create_import);
@@ -185,115 +276,6 @@ namespace keepass2android
 				filename.Text = Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path);
 
 			};*/
-			// Open button
-
-			openButton.Click += ( sender, evt) => {
-				String fileName = Util.getEditText(this, Resource.Id.file_filename);				
-
-				IOConnectionInfo ioc = new IOConnectionInfo() { 
-					Path = fileName
-				};
-
-				LaunchPasswordActivityForIoc(ioc);
-			};
-
-				
-			
-			// Create button
-		
-			createButton.Click += (sender, evt) => {
-				String filename = Util.getEditText(this,
-					                                   Resource.Id.file_filename);
-					
-				//TODO: allow non-local files?
-
-				// Make sure file name exists
-				if (filename.Length == 0)
-				{
-					Toast
-							.MakeText(this,
-							          Resource.String.error_filename_required,
-							          ToastLength.Long).Show();
-					return;
-				}
-					
-				// Try to create the file
-				Java.IO.File file = new Java.IO.File(filename);
-				try
-				{
-					if (file.Exists())
-					{
-						Toast.MakeText(this,
-							               Resource.String.error_database_exists,
-							               ToastLength.Long).Show();
-						return;
-					}
-					Java.IO.File parent = file.ParentFile;
-						
-					if (parent == null || (parent.Exists() && ! parent.IsDirectory))
-					{
-						Toast.MakeText(this,
-							               Resource.String.error_invalid_path,
-						               ToastLength.Long).Show();
-						return;
-					}
-						
-					if (! parent.Exists())
-					{
-						// Create parent dircetory
-						if (! parent.Mkdirs())
-						{
-							Toast.MakeText(this,
-								               Resource.String.error_could_not_create_parent,
-							               ToastLength.Long).Show();
-							return;
-								
-						}
-					}
-						
-					file.CreateNewFile();
-				} catch (Java.IO.IOException ex)
-				{
-					Toast.MakeText(
-							this,
-							GetText(Resource.String.error_file_not_create) + " "
-						+ ex.LocalizedMessage,
-						ToastLength.Long).Show();
-					return;
-				}
-					
-				// Prep an object to collect a password once the database has
-				// been created
-				CollectPassword password = new CollectPassword(
-						new LaunchGroupActivity(IOConnectionInfo.FromPath(filename), this), this);
-					
-				// Create the new database
-				CreateDB create = new CreateDB(this, IOConnectionInfo.FromPath(filename), password, true);
-				ProgressTask createTask = new ProgressTask(
-						this, create,
-						Resource.String.progress_create);
-				createTask.run();
-					
-					
-			};
-
-			Button cancelButton = (Button)FindViewById(Resource.Id.fnv_cancel);
-			cancelButton.Click += (sender, e) => { 
-				currentAction = CurrentAction.None;
-				fnform.Visibility = ViewStates.Gone;
-				EditText editText = (EditText)FindViewById(Resource.Id.file_filename);
-				InputMethodManager imm = (InputMethodManager)GetSystemService(
-					Context.InputMethodService);
-				imm.HideSoftInputFromWindow(editText.WindowToken, 0);
-			};
-
-			ImageButton browseButton = (ImageButton)FindViewById(Resource.Id.browse_button);
-			browseButton.Click += (sender, evt) => {
-				string filename = Util.getEditText(this, Resource.Id.file_filename);
-
-				Util.showBrowseDialog(filename, this);
-					
-			};
 
 			fillData();
 			
@@ -301,29 +283,18 @@ namespace keepass2android
 
 			if (savedInstanceState != null)
 			{
-				CurrentAction newCurrentAction = (CurrentAction)savedInstanceState.GetInt(BundleKey_CurrentAction, (int)currentAction);
 				mUrlToSearch = savedInstanceState.GetString(BundleKey_UrlToSearchFor, null);
 				recentMode = savedInstanceState.GetBoolean(BundleKey_RecentMode, recentMode);
 
-				if (newCurrentAction == CurrentAction.OpenFile)
-				{
-					openFileButtonClick(openFileButton, new EventArgs());
-				} else if (newCurrentAction == CurrentAction.OpenURL)
-				{
-					openUrlButtonClick(openUrlButton, new EventArgs());
-			
-				} else if (newCurrentAction == CurrentAction.Create)
-				{
-					createNewButtonClick(createNewButton, new EventArgs());
-				}
+
 			}
+
 		}
 
 
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			outState.PutInt(BundleKey_CurrentAction, (int)currentAction);
 			outState.PutString(BundleKey_UrlToSearchFor, mUrlToSearch);
 			outState.PutBoolean(BundleKey_RecentMode, recentMode);
 		}
@@ -387,6 +358,8 @@ namespace keepass2android
 			// Now create a simple cursor adapter and set it to display
 			SimpleCursorAdapter notes = new SimpleCursorAdapter(this,
 			                                                    Resource.Layout.file_row, filesCursor, from, to);
+
+
 			ListAdapter = notes;
 		}
 
@@ -456,7 +429,9 @@ namespace keepass2android
 			
 			fillData();
 			
-			if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE && resultCode == Result.Ok) {
+			if ( (requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_CREATE
+			      || requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_OPEN)
+			    && resultCode == Result.Ok) {
 				String filename = data.DataString;
 				if (filename != null) {
 					if (filename.StartsWith("file://")) {
@@ -464,10 +439,20 @@ namespace keepass2android
 					}
 					
 					filename = Java.Net.URLDecoder.Decode(filename);
-					
-					EditText fn = (EditText) FindViewById(Resource.Id.file_filename);
-					fn.Text = filename;
-					
+
+					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_OPEN)
+					{
+						IOConnectionInfo ioc = new IOConnectionInfo() { 
+							Path = filename
+						};
+						
+						LaunchPasswordActivityForIoc(ioc);
+					}
+
+					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_CREATE)
+					{
+						ShowFilenameDialog(false, true, true, filename, "", Intents.REQUEST_CODE_FILE_BROWSE_FOR_CREATE);
+					}
 				}
 				
 			}
@@ -488,8 +473,8 @@ namespace keepass2android
 				Finish();
 			}
 
-			view.FileNameView fnv = (view.FileNameView)FindViewById(Resource.Id.file_select);
-			fnv.updateExternalStorageWarning();
+
+			fileSelectButtons.updateExternalStorageWarning();
 
 			if (!createdWithActivityResult)
 			{
