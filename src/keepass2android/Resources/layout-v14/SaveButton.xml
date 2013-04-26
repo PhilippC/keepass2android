@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?android:actionButtonStyle"
+    android:id="@+id/entry_save"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1">
+    <TextView
+        style="?android:actionBarTabTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingRight="20dp"
+        android:drawableLeft="@drawable/navigation_accept"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:text="@string/entry_save" />
+</FrameLayout>

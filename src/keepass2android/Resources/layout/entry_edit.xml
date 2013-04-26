@@ -39,8 +39,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/entry_title"
-                style="@style/EntryFieldHeader"
-                 />
+                style="@style/EntryFieldHeader" />
             <ImageButton
                 android:id="@+id/icon_button"
                 android:layout_width="wrap_content"

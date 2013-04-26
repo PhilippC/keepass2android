@@ -38,7 +38,10 @@ namespace keepass2android
 		public const String CHECK_KEYBOARD = "keepass2android.check_keyboard";
 		
 		public const String FILE_BROWSE = "org.openintents.action.PICK_FILE";
-		public const int REQUEST_CODE_FILE_BROWSE = 987321;
+		public const int REQUEST_CODE_FILE_BROWSE_FOR_OPEN = 987321;
+		public const int REQUEST_CODE_FILE_BROWSE_FOR_CREATE = 987322;
+		public const int REQUEST_CODE_FILE_BROWSE_FOR_BINARY = 987323;
+		public const int REQUEST_CODE_FILE_BROWSE_FOR_KEYFILE = 987324;
 
 		public const String SHOW_NOTIFICATION = "keepass2android.show_notification";
 	}

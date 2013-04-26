@@ -62,7 +62,7 @@ namespace keepass2android.view
 			LayoutInflater inflater = (LayoutInflater) Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.group_add_entry, this);
 			
-			Button addEntry = (Button) FindViewById(Resource.Id.add_entry);
+			View addEntry = FindViewById(Resource.Id.add_entry);
 			addEntry.Visibility = ViewStates.Invisible;
 
 		}

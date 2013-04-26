@@ -58,7 +58,12 @@ namespace keepass2android.view
 			inflater.Inflate(Resource.Layout.entry_section, this);
 			
 			setText(Resource.Id.title, title);
+
+			FindViewById<TextView>(Resource.Id.value).Invalidate();
 			setText(Resource.Id.value, value);
+			//TODO: this seems to cause a bug when rotating the device (and the activity gets destroyed)
+			//After recreating the activity, the value fields all have the same content.
+			FindViewById<TextView>(Resource.Id.value).SetTextIsSelectable(true);
 		}
 		
 		private void setText(int resId, String str) {

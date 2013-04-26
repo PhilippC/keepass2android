@@ -57,7 +57,7 @@ namespace keepass2android
 			iv.SetImageDrawable (draw);
 		}
 			
-		private Drawable getIconDrawable (Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
+		public Drawable getIconDrawable (Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
 		{
 			if (customIconId != PwUuid.Zero) {
 				return getIconDrawable (res, db, customIconId);

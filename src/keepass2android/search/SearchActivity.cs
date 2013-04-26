@@ -31,7 +31,7 @@ using keepass2android.search;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/short_app_name", Theme="@style/Base")]			
+	[Activity (Label = "@string/app_name", Theme="@style/Base")]			
 	public class SearchActivity : LifecycleDebugActivity
 	{
 		bool GetCheckBoxValue(int resId)
@@ -62,8 +62,6 @@ namespace keepass2android
 			populateCheckBox(Resource.Id.cbExcludeExpiredEntries, sp.ExcludeExpired);
 
 			ImageButton btnSearch = (ImageButton)FindViewById(Resource.Id.search_button);
-
-			//TODO: "Enter"-Key should run the search
 
 			btnSearch.Click += (object sender, EventArgs e) => 
 			{

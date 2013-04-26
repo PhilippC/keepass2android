@@ -31,7 +31,7 @@ using KeePassLib.Security;
 
 namespace keepass2android.view
 {
-	public class EntryEditSection : RelativeLayout 
+	public class EntryEditSection : LinearLayout 
 	{
 		public event EventHandler ContentChanged;
 
@@ -58,15 +58,20 @@ namespace keepass2android.view
 		}
 				
 		
-		public void setData(String title, ProtectedString value) {
+		public void setData(String title, ProtectedString value)
+		{
 			setText(Resource.Id.title, title);
 			setText(Resource.Id.value, value.ReadString());
 			
-			CheckBox cb = (CheckBox) FindViewById(Resource.Id.protection);
-			cb.Checked = value.IsProtected;
-			cb.CheckedChange += (sender, e) => {if (ContentChanged != null)
-				ContentChanged(this, new EventArgs());
-			};
+			CheckBox cb = (CheckBox)FindViewById(Resource.Id.protection);
+			if (cb != null)
+			{
+				cb.Checked = value.IsProtected;
+				cb.CheckedChange += (sender, e) => {
+					if (ContentChanged != null)
+						ContentChanged(this, new EventArgs());
+				};
+			}
 		}
 
 		public ImageButton getDeleteButton()

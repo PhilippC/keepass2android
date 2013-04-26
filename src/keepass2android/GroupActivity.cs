@@ -126,11 +126,9 @@ namespace keepass2android
 			} else {
 				SetContentView (new GroupViewOnlyView (this));
 			}
-			Log.Warn (TAG, "Set view");
-			
 			if (addGroupEnabled) {
 				// Add Group button
-				Button addGroup = (Button)FindViewById (Resource.Id.add_group);
+				View addGroup = FindViewById (Resource.Id.add_group);
 				addGroup.Click += (object sender, EventArgs e) => {
 					GroupEditActivity.Launch (this, mGroup);
 				};
@@ -138,7 +136,7 @@ namespace keepass2android
 			
 			if (addEntryEnabled) {
 				// Add Entry button
-				Button addEntry = (Button)FindViewById (Resource.Id.add_entry);
+				View addEntry = FindViewById (Resource.Id.add_entry);
 				addEntry.Click += (object sender, EventArgs e) => {
 					EntryEditActivity.Launch (this, mGroup);
 

@@ -266,7 +266,7 @@ namespace keepass2android
 					unloadDatabase();
 					break;
 				case Android.App.Result.Ok:
-					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE) {
+					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_KEYFILE) {
 						String filename = data.DataString;
 						if (filename != null) {
 							if (filename.StartsWith("file://")) {
@@ -447,7 +447,7 @@ namespace keepass2android
 						
 					try
 					{
-						StartActivityForResult(intent, Intents.REQUEST_CODE_FILE_BROWSE);
+						StartActivityForResult(intent, Intents.REQUEST_CODE_FILE_BROWSE_FOR_KEYFILE);
 					} catch (ActivityNotFoundException)
 					{
 						BrowserDialog diag = new BrowserDialog(this);

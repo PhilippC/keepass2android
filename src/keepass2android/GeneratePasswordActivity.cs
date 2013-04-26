@@ -67,7 +67,7 @@ namespace keepass2android
 
 
 
-			Button acceptButton = (Button) FindViewById(Resource.Id.accept_button);
+			View acceptButton = FindViewById(Resource.Id.accept_button);
 			acceptButton.Click += (object sender, EventArgs e) => {
 					EditText password = (EditText) FindViewById(Resource.Id.password);
 					
@@ -80,7 +80,7 @@ namespace keepass2android
 			};
 
 			
-			Button cancelButton = (Button) FindViewById(Resource.Id.cancel_button);
+			View cancelButton = FindViewById(Resource.Id.cancel_button);
 			cancelButton.Click += (object sender, EventArgs e) => 
 			{
 					SetResult(Result.Canceled);

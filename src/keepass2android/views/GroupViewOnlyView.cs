@@ -59,6 +59,8 @@ namespace keepass2android.view
 				
 				View divider2 = FindViewById(Resource.Id.divider2);
 				divider2.Visibility = ViewStates.Invisible;
+
+				FindViewById(Resource.Id.bottom_bar).Visibility = ViewStates.Invisible;
 				
 				View list = FindViewById(Android.Resource.Id.List);
 				LayoutParams lp = (RelativeLayout.LayoutParams) list.LayoutParameters;

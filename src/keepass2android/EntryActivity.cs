@@ -38,6 +38,7 @@ using Android.Content.PM;
 using KeePassLib.Security;
 using keepass2android.view;
 using Android.Webkit;
+using Android.Graphics;
 
 namespace keepass2android
 {
@@ -76,7 +77,7 @@ namespace keepass2android
 		}
 		
 		protected void setupEditButtons() {
-			Button edit = (Button) FindViewById(Resource.Id.entry_edit);
+			View edit =  FindViewById(Resource.Id.entry_edit);
 			edit.Click += (sender, e) => {
 					EntryEditActivity.Launch(this, mEntry);
 			};
@@ -206,7 +207,8 @@ namespace keepass2android
 				String key = pair.Key;
 				if (!PwDefs.IsStandardField(key))
 				{
-					View view = new EntrySection(this, null, key, pair.Value.ReadString());
+					//View view = new EntrySection(this, null, key, pair.Value.ReadString());
+					View view = CreateEditSection(key, pair.Value.ReadString());
 					extraGroup.AddView(view);
 					hasExtraFields = true;
 				}
@@ -214,6 +216,28 @@ namespace keepass2android
 			FindViewById(Resource.Id.entry_extra_strings_label).Visibility = hasExtraFields ? ViewStates.Visible : ViewStates.Gone;
 		}
 
+		View CreateEditSection(string key, string value)
+		{
+			LinearLayout layout = new LinearLayout(this, null);
+			layout.Orientation = Orientation.Vertical;
+			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
+			layoutParams.SetMargins(10,0,0,0);
+			layout.LayoutParameters = layoutParams;
+			View viewInflated = LayoutInflater.Inflate(Resource.Layout.entry_extrastring_title,null);
+			TextView keyView = (TextView)viewInflated;
+			if (key != null)
+				keyView.Text = key;
+
+			layout.AddView(keyView);
+			TextView valueView = (TextView)LayoutInflater.Inflate(Resource.Layout.entry_extrastring_value, null);
+			if (value != null)
+				valueView.Text = value;
+			valueView.Typeface = Typeface.Monospace;
+			valueView.SetTextIsSelectable(true);
+			layout.AddView(valueView);
+			return layout;
+		}
+		
 		string writeBinaryToFile(string key)
 		{
 			ProtectedBinary pb = mEntry.Binaries.Get(key);
@@ -333,14 +357,24 @@ namespace keepass2android
 		protected void fillData(bool trimList)
 		{
 			ImageView iv = (ImageView)FindViewById(Resource.Id.entry_icon);
+			if (iv != null)
+			{
 			App.getDB().drawFactory.assignDrawableTo(iv, Resources, App.getDB().pm, mEntry.IconId, mEntry.CustomIconUuid);
+			}
 			
 			//populateText(Resource.Id.entry_title, mEntry.Strings.ReadSafe(PwDefs.TitleField));
 			var button = ((Button)FindViewById(Resource.Id.entry_title));
+			if (button != null)
+			{
 			button.Text = mEntry.Strings.ReadSafe(PwDefs.TitleField);
 			button.Click += (object sender, EventArgs e) => {
 				Finish(); };
-
+			}
+			if (ActionBar != null)
+			{
+				ActionBar.Title = mEntry.Strings.ReadSafe(PwDefs.TitleField);
+				ActionBar.SetDisplayHomeAsUpEnabled(true);
+			}
 			populateText(Resource.Id.entry_user_name, Resource.Id.entry_user_name_label, mEntry.Strings.ReadSafe(PwDefs.UserNameField));
 			
 			populateText(Resource.Id.entry_url, Resource.Id.entry_url_label, mEntry.Strings.ReadSafe(PwDefs.UrlField));
@@ -537,6 +571,12 @@ namespace keepass2android
 					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
 				}
 				return true;
+				case Android.Resource.Id.Home:
+					//Currently the action bar only displays the home button when we come from a previous activity.
+					//So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
+					//http://developer.android.com/training/implementing-navigation/ancestral.html
+					Finish();
+					return true;
 			}
 
 			

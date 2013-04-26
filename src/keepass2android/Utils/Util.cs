@@ -88,7 +88,7 @@ namespace keepass2android
 		}
 		
 
-		public static void showBrowseDialog(string filename, Activity act)
+		public static void showBrowseDialog(string filename, Activity act, int requestCodeBrowse)
 		{
 			if (Interaction.isIntentAvailable(act, Intents.FILE_BROWSE))
 			{
@@ -96,7 +96,7 @@ namespace keepass2android
 				i.SetData(Android.Net.Uri.Parse("file://" + filename));
 				try
 				{
-					act.StartActivityForResult(i, Intents.REQUEST_CODE_FILE_BROWSE);
+					act.StartActivityForResult(i, requestCodeBrowse);
 				}
 				catch (ActivityNotFoundException)
 				{
