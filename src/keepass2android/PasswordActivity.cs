@@ -267,7 +267,7 @@ namespace keepass2android
 					break;
 				case Android.App.Result.Ok:
 					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_KEYFILE) {
-						String filename = data.DataString;
+						string filename = Util.IntentToFilename(data);
 						if (filename != null) {
 							if (filename.StartsWith("file://")) {
 								filename = filename.Substring(7);
@@ -431,34 +431,18 @@ namespace keepass2android
 			ImageButton browse = (ImageButton)FindViewById(Resource.Id.browse_button);
 			browse.Click += (object sender, EventArgs evt) => 
 			{
-				if (Interaction.isIntentAvailable(this, Intents.FILE_BROWSE))
+				string filename = null;
+				if (!String.IsNullOrEmpty(mIoConnection.Path))
 				{
-					Intent intent = new Intent(Intents.FILE_BROWSE);
-						
-					if (!String.IsNullOrEmpty(mIoConnection.Path))
+					File keyfile = new File(mIoConnection.Path);
+					File parent = keyfile.ParentFile;
+					if (parent != null)
 					{
-						File keyfile = new File(mIoConnection.Path);
-						File parent = keyfile.ParentFile;
-						if (parent != null)
-						{
-							intent.SetData(Android.Net.Uri.Parse("file://" + parent.AbsolutePath));
-						}
+						filename = parent.AbsolutePath;
 					}
-						
-					try
-					{
-						StartActivityForResult(intent, Intents.REQUEST_CODE_FILE_BROWSE_FOR_KEYFILE);
-					} catch (ActivityNotFoundException)
-					{
-						BrowserDialog diag = new BrowserDialog(this);
-						diag.Show();
-					}
-				} else
-				{
-					BrowserDialog diag = new BrowserDialog(this);
-					diag.Show();
 				}
-					
+				Util.showBrowseDialog(filename, this, Intents.REQUEST_CODE_FILE_BROWSE_FOR_KEYFILE, false);
+
 			};
 			
 			retrieveSettings();

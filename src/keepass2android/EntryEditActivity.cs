@@ -614,7 +614,7 @@ namespace keepass2android
 			case (int)Result.Ok:
 					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_BINARY)
 					{
-						String filename = data.DataString;
+						string filename = Util.IntentToFilename(data);
 						if (filename != null) {
 							if (filename.StartsWith("file://")) {
 								filename = filename.Substring(7);
@@ -666,7 +666,7 @@ namespace keepass2android
 			addBinaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuAdd) , null, null, null);
 			addBinaryButton.Click += (object sender, EventArgs e) => 
 			{
-				Util.showBrowseDialog("/mnt/sdcard", this, Intents.REQUEST_CODE_FILE_BROWSE_FOR_BINARY);
+				Util.showBrowseDialog("/mnt/sdcard", this, Intents.REQUEST_CODE_FILE_BROWSE_FOR_BINARY, false);
 
 			};
 			binariesGroup.AddView(addBinaryButton,layoutParams);

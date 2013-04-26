@@ -88,12 +88,20 @@ namespace keepass2android
 		}
 		
 
-		public static void showBrowseDialog(string filename, Activity act, int requestCodeBrowse)
+		public static void showBrowseDialog(string filename, Activity act, int requestCodeBrowse, bool forSaving)
 		{
+			if ((!forSaving) && (Interaction.isIntentAvailable(act, Intent.ActionGetContent))) {
+				Intent i = new Intent(Intent.ActionGetContent);
+				i.SetType("file/*");
+
+				act.StartActivityForResult(i, requestCodeBrowse);
+				return;
+			}
 			if (Interaction.isIntentAvailable(act, Intents.FILE_BROWSE))
 			{
 				Intent i = new Intent(Intents.FILE_BROWSE);
-				i.SetData(Android.Net.Uri.Parse("file://" + filename));
+				if (filename != null)
+					i.SetData(Android.Net.Uri.Parse("file://" + filename));
 				try
 				{
 					act.StartActivityForResult(i, requestCodeBrowse);
@@ -109,6 +117,14 @@ namespace keepass2android
 				BrowserDialog diag = new BrowserDialog(act);
 				diag.Show();
 			}
+		}
+
+		public static string IntentToFilename(Intent data)
+		{
+			String filename = data.Data.Path;
+			if (String.IsNullOrEmpty(filename))
+			 	filename = data.DataString;
+			return filename;
 		}
 
 		

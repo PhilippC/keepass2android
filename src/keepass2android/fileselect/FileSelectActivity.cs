@@ -194,7 +194,7 @@ namespace keepass2android
 			browseButton.Click += (sender, evt) => {
 				string filename = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
 				
-				Util.showBrowseDialog(filename, this, requestCodeBrowse);
+				Util.showBrowseDialog(filename, this, requestCodeBrowse, showCreateButton);
 				
 			};
 
@@ -415,6 +415,8 @@ namespace keepass2android
 
 		}
 
+
+
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
@@ -432,7 +434,7 @@ namespace keepass2android
 			if ( (requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_CREATE
 			      || requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_OPEN)
 			    && resultCode == Result.Ok) {
-				String filename = data.DataString;
+				string filename = Util.IntentToFilename(data);
 				if (filename != null) {
 					if (filename.StartsWith("file://")) {
 						filename = filename.Substring(7);
