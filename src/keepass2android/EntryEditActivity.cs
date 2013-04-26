@@ -427,7 +427,6 @@ namespace keepass2android
 				
 				TextView keyView = (TextView)view.FindViewById(Resource.Id.title);
 				String key = keyView.Text;
-				Android.Util.Log.Debug("DEBUG","------------- " + index.ToString()+ " " + key);
 
 				if (String.IsNullOrEmpty(key))
 					continue;
@@ -823,7 +822,6 @@ namespace keepass2android
 				
 				if (!PwDefs.IsStandardField(key)) {
 					var ees = CreateExtraStringView(pair);
-					Android.Util.Log.Debug("DEBUG", "aiding key " +key);
 					container.AddView(ees);
 				}
 			}
