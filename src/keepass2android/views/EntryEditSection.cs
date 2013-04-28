@@ -63,15 +63,7 @@ namespace keepass2android.view
 			setText(Resource.Id.title, title);
 			setText(Resource.Id.value, value.ReadString());
 			
-			CheckBox cb = (CheckBox)FindViewById(Resource.Id.protection);
-			if (cb != null)
-			{
-				cb.Checked = value.IsProtected;
-				cb.CheckedChange += (sender, e) => {
-					if (ContentChanged != null)
-						ContentChanged(this, new EventArgs());
-				};
-			}
+
 		}
 
 		public ImageButton getDeleteButton()

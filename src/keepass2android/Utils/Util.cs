@@ -128,6 +128,11 @@ namespace keepass2android
 		}
 
 		
+		public static bool HasActionBar(Activity activity)
+		{
+			//Actionbar is available since 11, but the layout has its own "pseudo actionbar" until 13
+			return ((int)Android.OS.Build.VERSION.SdkInt >= 14) && (activity.ActionBar != null);
+		}
 	}
 }
 

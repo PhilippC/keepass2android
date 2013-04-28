@@ -221,7 +221,7 @@ namespace keepass2android
 			View save = FindViewById(Resource.Id.entry_save);
 			if (save == null)
 			{
-
+				//save is not part of layout for API >= 14 -> use action bar
 				ActionBar.SetCustomView(Resource.Layout.SaveButton);
 				ActionBar.SetDisplayShowCustomEnabled(true);
 				ActionBar.SetDisplayShowTitleEnabled(false);  
@@ -434,16 +434,11 @@ namespace keepass2android
 				TextView valueView = (TextView)view.FindViewById(Resource.Id.value);
 				String value = valueView.Text;
 				
-				CheckBox cb = (CheckBox)view.FindViewById(Resource.Id.protection);
-				
+
 				bool protect = true;
 				ProtectedString initialString = State.mEntryInDatabase.Strings.Get(key);
 				if (initialString != null)
 					protect = initialString.IsProtected;
-				if (cb != null) //Checkbox removed for ICS (for clarity)
-				{
-					protect = cb.Checked;
-				}
 				entry.Strings.Set(key, new ProtectedString(protect, value));
 			}
 			
@@ -787,15 +782,6 @@ namespace keepass2android
 			((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
 			((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.mEntryModified = true;
 			ees.FindViewById(Resource.Id.delete).Click += (sender, e) => deleteAdvancedString((View)sender);
-			CheckBox cb = (CheckBox)ees.FindViewById(Resource.Id.protection);
-			if (cb != null)
-			{
-				cb.Checked = pair.Value.IsProtected;
-				cb.CheckedChange += (sender, e) => 
-				{
-					State.mEntryModified = true;
-				};
-			}
 			return ees;
 		}
 		

@@ -87,6 +87,7 @@ namespace keepass2android
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.SetTitle(GetString(Resource.String.ChangeLog_title));
 				String[] changeLog = {
+					GetString(Resource.String.ChangeLog_0_8),
 					GetString(Resource.String.ChangeLog_0_7),
 					GetString(Resource.String.ChangeLog)
 					 };

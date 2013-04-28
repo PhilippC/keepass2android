@@ -39,6 +39,7 @@ using KeePassLib.Security;
 using keepass2android.view;
 using Android.Webkit;
 using Android.Graphics;
+using Java.IO;
 
 namespace keepass2android
 {
@@ -233,20 +234,26 @@ namespace keepass2android
 			if (value != null)
 				valueView.Text = value;
 			valueView.Typeface = Typeface.Monospace;
-			valueView.SetTextIsSelectable(true);
+
+			if ((int)Android.OS.Build.VERSION.SdkInt >= 11)
+				valueView.SetTextIsSelectable(true);
 			layout.AddView(valueView);
 			return layout;
 		}
 		
-		string writeBinaryToFile(string key)
+		Android.Net.Uri writeBinaryToFile(string key, bool writeToCacheDirectory)
 		{
 			ProtectedBinary pb = mEntry.Binaries.Get(key);
-			System.Diagnostics.Debug.Assert(pb != null); if(pb == null) throw new ArgumentException();
+			System.Diagnostics.Debug.Assert(pb != null);
+			if (pb == null)
+				throw new ArgumentException();
 
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-			string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key),GetString(Resource.String.BinaryDirectory_default));
+			string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key), GetString(Resource.String.BinaryDirectory_default));
+			if (writeToCacheDirectory)
+				binaryDirectory = CacheDir.Path;
 		
-			var targetFile = new Java.IO.File(binaryDirectory,key);
+			var targetFile = new Java.IO.File(binaryDirectory, key);
 
 			Java.IO.File parent = targetFile.ParentFile;
 			
@@ -260,7 +267,7 @@ namespace keepass2android
 			
 			if (! parent.Exists())
 			{
-				// Create parent dircetory
+				// Create parent directory
 				if (! parent.Mkdirs())
 				{
 					Toast.MakeText(this,
@@ -271,32 +278,42 @@ namespace keepass2android
 				}
 			}
 			string filename = targetFile.AbsolutePath;
+			Android.Net.Uri fileUri = Android.Net.Uri.FromFile(targetFile);
 
 			byte[] pbData = pb.ReadData();
-			try { System.IO.File.WriteAllBytes(filename, pbData); }
-			catch(Exception exWrite)
+			try
+			{
+				System.IO.File.WriteAllBytes(filename, pbData);
+			} catch (Exception exWrite)
 			{
 				Toast.MakeText(this, GetString(Resource.String.SaveAttachment_Failed, new Java.Lang.Object[]{ filename})
-									+exWrite.Message,ToastLength.Long).Show();
+					+ exWrite.Message, ToastLength.Long).Show();
 				return null;
-			}
-			finally
+			} finally
 			{
 				MemUtil.ZeroByteArray(pbData);
 			}
-
-			return filename;
+			Toast.MakeText(this, GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[]{filename}), ToastLength.Short).Show();			
+			if (writeToCacheDirectory)
+			{
+				return Android.Net.Uri.Parse("content://" + AttachmentContentProvider.AUTHORITY + "/"
+				                              + filename);
+			}
+			else
+			{
+				return fileUri;
+			}
 
 		}
 
-		void openBinaryFile(string filename)
+		void openBinaryFile(Android.Net.Uri uri)
 		{
-			String theMIMEType = getMimeType(filename);
+			String theMIMEType = getMimeType(uri.Path);
 			if (theMIMEType != null)
 			{
 				Intent theIntent = new Intent(Intent.ActionView);
 				theIntent.AddFlags(ActivityFlags.NewTask | ActivityFlags.ExcludeFromRecents);
-				theIntent.SetDataAndType(Android.Net.Uri.FromFile(new Java.IO.File(filename)), theMIMEType);
+				theIntent.SetDataAndType(uri, theMIMEType);
 				try
 				{
 					StartActivity(theIntent);
@@ -326,13 +343,29 @@ namespace keepass2android
 				binaryButton.Click += (object sender, EventArgs e) => 
 				{
 					Button btnSender = (Button)(sender);
-					string newFilename = writeBinaryToFile(btnSender.Text);
 
-					if (newFilename != null)
-					{
-						Toast.MakeText(this, GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[]{newFilename}), ToastLength.Short).Show();			
-						openBinaryFile(newFilename);
-					}
+					AlertDialog.Builder builder = new AlertDialog.Builder(this);
+					builder.SetTitle(GetString(Resource.String.SaveAttachmentDialog_title));
+					
+					builder.SetMessage(GetString(Resource.String.SaveAttachmentDialog_text));
+					
+					builder.SetPositiveButton(GetString(Resource.String.SaveAttachmentDialog_save), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
+					                                                                                                                    {
+						writeBinaryToFile(btnSender.Text, false);
+					}));
+					
+					builder.SetNegativeButton(GetString(Resource.String.SaveAttachmentDialog_open), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
+					                                                                                                                   {
+						Android.Net.Uri newUri = writeBinaryToFile(btnSender.Text, true);
+						if (newUri != null)
+						{
+							openBinaryFile(newUri);
+						}
+					}));
+
+					Dialog dialog = builder.Create();
+					dialog.Show();
+
 
 				};
 				binariesGroup.AddView(binaryButton,layoutParams);
@@ -370,7 +403,7 @@ namespace keepass2android
 			button.Click += (object sender, EventArgs e) => {
 				Finish(); };
 			}
-			if (ActionBar != null)
+			if (Util.HasActionBar(this))
 			{
 				ActionBar.Title = mEntry.Strings.ReadSafe(PwDefs.TitleField);
 				ActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -497,7 +530,38 @@ namespace keepass2android
 				password.TransformationMethod = PasswordTransformationMethod.Instance;
 			}
 		}
+		protected override void OnResume()
+		{
+			ClearCache();
+			base.OnResume();
+		}
 		
+		public void ClearCache() {
+			try {
+				File dir = CacheDir;
+				if (dir != null && dir.IsDirectory) {
+					deleteDir(dir);
+				}
+			} catch (Exception e) {
+
+			}
+		}
+		
+		public static bool deleteDir(File dir) {
+			if (dir != null && dir.IsDirectory) {
+				String[] children = dir.List();
+				for (int i = 0; i < children.Length; i++) {
+					bool success = deleteDir(new File(dir, children[i]));
+					if (!success) {
+						return false;
+					}
+				}
+			}
+			
+			// The directory is now empty so delete it
+			return dir.Delete();
+		}
+
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
 			case Resource.Id.menu_donate:

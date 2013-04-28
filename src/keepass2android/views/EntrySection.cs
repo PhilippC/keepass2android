@@ -63,7 +63,8 @@ namespace keepass2android.view
 			setText(Resource.Id.value, value);
 			//TODO: this seems to cause a bug when rotating the device (and the activity gets destroyed)
 			//After recreating the activity, the value fields all have the same content.
-			FindViewById<TextView>(Resource.Id.value).SetTextIsSelectable(true);
+			if ((int)Android.OS.Build.VERSION.SdkInt >= 11)
+				FindViewById<TextView>(Resource.Id.value).SetTextIsSelectable(true);
 		}
 		
 		private void setText(int resId, String str) {

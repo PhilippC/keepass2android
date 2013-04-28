@@ -106,8 +106,8 @@ namespace keepass2android
 			
 			// Create button
 			createButton.Click += (sender, evt) => {
-				String filename = Util.getEditText(this,
-				                                   Resource.Id.file_filename);
+				String filename = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
+
 				
 				//TODO: allow non-local files?
 				

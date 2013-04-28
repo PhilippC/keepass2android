@@ -149,7 +149,7 @@ namespace keepass2android
 				}
 			}
 			//ICS?
-			if (ActionBar != null)
+			if (Util.HasActionBar(this))
 			{
 				ActionBar.Title = titleText;
 				if (clickable)
@@ -164,7 +164,7 @@ namespace keepass2android
 				ImageView iv = (ImageView) FindViewById(Resource.Id.icon);
 				if (iv != null)
 					iv.SetImageDrawable(drawable);
-				if (ActionBar != null)
+				if (Util.HasActionBar(this))
 					ActionBar.SetIcon(drawable);
 			}
 		}

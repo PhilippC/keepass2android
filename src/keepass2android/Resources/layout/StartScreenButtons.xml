@@ -6,14 +6,12 @@
         android:text="@string/start_open_file"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/GreenButton"
         android:layout_alignParentLeft="true"
         android:id="@+id/start_open_file" />
     <Button
         android:text="@string/start_open_url"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/BlueButton"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/start_open_file"
         android:id="@+id/start_open_url" />
@@ -21,7 +19,6 @@
         android:text="@string/start_create"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/YellowButton"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/start_open_url"
         android:id="@+id/start_create" />
@@ -29,7 +26,6 @@
         android:text="@string/start_create_import"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/RedButton"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/start_create"
         android:id="@+id/start_create_import" />

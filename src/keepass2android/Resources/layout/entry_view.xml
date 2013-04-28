@@ -45,7 +45,6 @@
             android:text="@string/menu_edit"
             android:layout_width="fill_parent"
             android:drawableLeft="@android:drawable/ic_menu_edit"
-            android:background="@drawable/GreenButton"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true" />
