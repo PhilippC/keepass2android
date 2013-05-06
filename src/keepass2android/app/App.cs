@@ -35,6 +35,7 @@ namespace keepass2android
 		public const string AppName = "@string/app_name_nonet";
 		public const string AppNameShort = "@string/short_app_name_nonet";
 		public const string AppLauncherTitle = "@string/short_app_name_nonet";
+		public const string PackagePart = "keepass2android_nonet";
 	}
 #else
 	public static class AppNames
@@ -42,6 +43,7 @@ namespace keepass2android
 		public const string AppName = "@string/app_name";
 		public const string AppNameShort = "@string/short_app_name";
 		public const string AppLauncherTitle = "@string/app_name";
+		public const string PackagePart = "keepass2android";
 	}
 #endif
 

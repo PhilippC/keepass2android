@@ -638,6 +638,7 @@
     <AndroidResource Include="Resources\layout\entry_extrastring_title.xml" />
     <AndroidResource Include="Resources\layout\entry_extrastring_value.xml" />
     <AndroidResource Include="Resources\drawable-v11\ic_launcher_gray.png" />
+    <AndroidResource Include="Resources\values-nb\strings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

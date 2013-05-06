@@ -1179,14 +1179,17 @@ namespace keepass2android
 			// aapt resource value: 0x7f0700ed
 			public const int BinaryDirectory_title = 2131165421;
 			
-			// aapt resource value: 0x7f070117
-			public const int ChangeLog = 2131165463;
+			// aapt resource value: 0x7f070118
+			public const int ChangeLog = 2131165464;
 			
-			// aapt resource value: 0x7f070116
-			public const int ChangeLog_0_7 = 2131165462;
+			// aapt resource value: 0x7f070117
+			public const int ChangeLog_0_7 = 2131165463;
 			
 			// aapt resource value: 0x7f070115
 			public const int ChangeLog_0_8 = 2131165461;
+			
+			// aapt resource value: 0x7f070116
+			public const int ChangeLog_keptDonate = 2131165462;
 			
 			// aapt resource value: 0x7f070114
 			public const int ChangeLog_title = 2131165460;
@@ -1976,20 +1979,20 @@ namespace keepass2android
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f0a0019
-			public const int AdditionalStringLayout = 2131361817;
-			
-			// aapt resource value: 0x7f0a0012
-			public const int Base = 2131361810;
+			// aapt resource value: 0x7f0a001a
+			public const int AdditionalStringLayout = 2131361818;
 			
 			// aapt resource value: 0x7f0a0013
-			public const int BottomBarActionButton = 2131361811;
+			public const int Base = 2131361811;
+			
+			// aapt resource value: 0x7f0a0014
+			public const int BottomBarActionButton = 2131361812;
 			
 			// aapt resource value: 0x7f0a0001
 			public const int Dialog = 2131361793;
 			
-			// aapt resource value: 0x7f0a0010
-			public const int EditEntryButton = 2131361808;
+			// aapt resource value: 0x7f0a0011
+			public const int EditEntryButton = 2131361809;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int ElementText = 2131361798;
@@ -2009,8 +2012,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0a000f
 			public const int EntryItem = 2131361807;
 			
-			// aapt resource value: 0x7f0a0011
-			public const int ExtraFieldHeader = 2131361809;
+			// aapt resource value: 0x7f0a0012
+			public const int ExtraFieldHeader = 2131361810;
 			
 			// aapt resource value: 0x7f0a000a
 			public const int GroupAndEntryHeader = 2131361802;
@@ -2027,26 +2030,26 @@ namespace keepass2android
 			// aapt resource value: 0x7f0a0002
 			public const int GroupTextSmall = 2131361794;
 			
-			// aapt resource value: 0x7f0a001a
-			public const int MinusButton = 2131361818;
+			// aapt resource value: 0x7f0a0010
+			public const int MinusButton = 2131361808;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int NoTitleBar = 2131361792;
 			
+			// aapt resource value: 0x7f0a0017
+			public const int TextAppearance_EditEntry = 2131361815;
+			
 			// aapt resource value: 0x7f0a0016
-			public const int TextAppearance_EditEntry = 2131361814;
+			public const int TextAppearance_EditEntry_LabelSmall = 2131361814;
 			
 			// aapt resource value: 0x7f0a0015
-			public const int TextAppearance_EditEntry_LabelSmall = 2131361813;
-			
-			// aapt resource value: 0x7f0a0014
-			public const int TextAppearance_EditEntry_Small = 2131361812;
-			
-			// aapt resource value: 0x7f0a0017
-			public const int TextAppearance_EditEntry_Value = 2131361815;
+			public const int TextAppearance_EditEntry_Small = 2131361813;
 			
 			// aapt resource value: 0x7f0a0018
-			public const int TextAppearance_SmallHeading = 2131361816;
+			public const int TextAppearance_EditEntry_Value = 2131361816;
+			
+			// aapt resource value: 0x7f0a0019
+			public const int TextAppearance_SmallHeading = 2131361817;
 			
 			// aapt resource value: 0x7f0a0009
 			public const int WhiteOnBlack = 2131361801;

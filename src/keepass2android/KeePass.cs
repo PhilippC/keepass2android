@@ -26,6 +26,9 @@ using Android.OS;
 using keepass2android.view;
 using Android.Preferences;
 using Android.Content.PM;
+using Android.Text;
+using Android.Text.Util;
+using Android.Text.Method;
 
 namespace keepass2android
 {
@@ -91,16 +94,21 @@ namespace keepass2android
 					GetString(Resource.String.ChangeLog_0_7),
 					GetString(Resource.String.ChangeLog)
 					 };
-				builder.SetMessage(ConcatChangeLog(changeLog));
 
 				builder.SetPositiveButton(Android.Resource.String.Ok,new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt)=>{}));
-
+				
+				builder.SetMessage("temp");
 				Dialog dialog = builder.Create();
 				dialog.DismissEvent += (object sender, EventArgs e) => 
 				{
 					startFileSelect();
 				};
 				dialog.Show();
+				TextView message = (TextView) dialog.FindViewById(Android.Resource.Id.Message);
+
+				message.MovementMethod = LinkMovementMethod.Instance;
+				message.TextFormatted = Html.FromHtml(ConcatChangeLog(changeLog));
+				message.LinksClickable = true;
 
 
 
@@ -118,13 +126,30 @@ namespace keepass2android
 		string ConcatChangeLog(string[] changeLog)
 		{
 			string res = "";
+			bool isFirst = true;
 			foreach (string c in changeLog)
 			{
 				res += c;
+				if (isFirst)
+				{
+					if (res.EndsWith("\n") == false)
+						res += "\n";
+					string donateUrl = GetString(Resource.String.donate_url, 
+					                                     new Java.Lang.Object[]{Resources.Configuration.Locale.Language,
+						PackageName
+					});
+					res += " * <a href=\""+donateUrl
+						+"\">"+
+						GetString(Resource.String.ChangeLog_keptDonate)
+							+"<a/>";
+					isFirst = false;
+				}
+			
 				while (res.EndsWith("\n\n") == false)
 					res += "\n";
 			}
-			return res;
+			return res.Replace("\n","<br>");
+
 		}
 		
 		private void startFileSelect() {

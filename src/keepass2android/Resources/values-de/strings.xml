@@ -152,6 +152,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="rounds">Schlüsseltransformationen</string>
   <string name="rounds_explaination">Je höher die Anzahl der Schlüsseltransformationen, desto besser ist der Schutz gegen Wörterbuch- oder Brute-Force-Angriffe. Allerdings dauert dann auch das Laden und Speichern der Datenbank entsprechend länger.</string>
   <string name="rounds_hint">Schlüsseltransformationen</string>
+  <string name="database_name">Datenbankname</string>
   <string name="default_username">Standard-Benutzername für neue Einträge</string>
   <string name="saving_database">Speichere Datenbank\u2026</string>
   <string name="space">Leerzeichen</string>
@@ -194,6 +195,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
   <string name="BinaryDirectory_title">Verzeichnis für Datei-Anhänge</string>
   <string name="BinaryDirectory_summary">Verzeichnis, in dem Dateianlagen gespeichert werden.</string>
+  <string name="SaveAttachmentDialog_title">Anhang speichern</string>
+  <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
+  <string name="SaveAttachmentDialog_save">Auf SD-Karte speichern</string>
+  <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
   <string name="SaveAttachment_Failed">Datei konnte nicht unter %1$s gespeichert werden.</string>
   <string name="error_invalid_expiry_date">Ungültiges Datums-/Zeitformat für Ablaufdatum!</string>
@@ -228,6 +233,14 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="rate_app">Diese App bewerten</string>
   <string name="translate_app">KP2A übersetzen</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog_0_8"><b>Version 0.8</b>\n 
+* Verbesserte Benutzeroberfläche, vor allem für Android 4.x-Geräte\n 
+* Möglichkeit, Dateimanager zur Auswahl von existierenden Dateien zu verwenden\n
+* Sicherer Weg zum Öffnen von Anhängen hinzugefügt (über das Cache-Verzeichnis)\n
+* Bugs beim Editieren von Einträgen gefixt\n 
+* vermutlich neue Bugs eingeführt :-)
+</string>
+  <string name="ChangeLog_keptDonate">Möglichkeit, ein Bier zu spendieren (oder was anderes) verlängert</string>
   <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
 * Erhöhte Ladegeschwindigkeit: Schlüsseltransformationen sind jetzt 10x schneller!\n
 * Neu: Keepass2Android Software-Tastatur: Wechsle zu dieser Tastatur, um deine Zugangsdaten einzugeben. Das schützt vor Zwischenablage-basierten Passwort-Sniffern! (du kannst die bisherigen Benachrichtigungen für das Kopieren in die Zwischenablage in den Einstellungen deaktivieren)\n

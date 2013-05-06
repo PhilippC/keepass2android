@@ -137,6 +137,8 @@
   <string name="warning_read_only">Ваша карта пам’яті зараз у режимі тільки для читання. Ви не зможете зберегти зміни до вашої бази даних.</string>
   <string name="warning_unmounted">Ваша карта пам’яті зараз не змонтована на телефоні. Ви не зможете завантажити або створити базу даних.</string>
   <string name="version_label">Версія</string>
+  <string name="start_open_url">Відкрити URL...</string>
+  <string name="QuickUnlock_lockButton">Закрити базу даних</string>
   <string-array name="clipboard_timeout_options">
     <item>30 секунд</item>
     <item>1 хвилина</item>

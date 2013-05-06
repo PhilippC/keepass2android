@@ -152,6 +152,7 @@ Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/
   <string name="rounds">Złożoność szyfrowania</string>
   <string name="rounds_explaination">Większa złożoność szyfrowania zapewnia dodatkowe zabezpieczenie przed atakiem brute force, ale może spowolnić wczytywanie i zapisywanie bazy danych.</string>
   <string name="rounds_hint">złożoność</string>
+  <string name="database_name">Nazwa bazy danych</string>
   <string name="default_username">Domyślna nazwa użytkownika dla nowych wpisów</string>
   <string name="saving_database">Zapisywanie bazy danych…</string>
   <string name="space">Spacja</string>
@@ -194,6 +195,10 @@ Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/
   <string name="QuickUnlock_fail">Nie powiodło się Szybkie_Odblokowanie: niepoprawne hasło!</string>
   <string name="BinaryDirectory_title">Katalog plików załączników</string>
   <string name="BinaryDirectory_summary">Katalog w którym są zapisywane pliki załączników.</string>
+  <string name="SaveAttachmentDialog_title">Zapissz załącznik</string>
+  <string name="SaveAttachmentDialog_text">Wybierz gdzie zapisać załącznik.</string>
+  <string name="SaveAttachmentDialog_save">Zapisz na karcie SD</string>
+  <string name="SaveAttachmentDialog_open">Zapisz do pamięci podręcznej i Otwórz</string>
   <string name="SaveAttachment_doneMessage">Zapisz plik %1$s.</string>
   <string name="SaveAttachment_Failed">Nie można zapisać załącznik do %1$s.</string>
   <string name="error_invalid_expiry_date">Nieprawny format daty/godziny dla czasu wygaśnięcia!</string>
@@ -228,6 +233,8 @@ Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/
   <string name="rate_app">Oceń aplikację</string>
   <string name="translate_app">Tłumacz KP2A</string>
   <string name="ChangeLog_title">Lista zmian</string>
+  <string name="ChangeLog_0_8"><b>Wersja 0.8</b> \n * ulepszony interfejs użytkownika, szczególnie w urządzeniach z Androidem 4.x\n * Teraz zezwala na używanie innych menadźerów plików w celu wyboru pllików\n * dodano bezpieczniejszy sposób otwierania załączników (w katalogu pamięci podręcznej) \n * Naprawiono błędy w aktywności \"Edit\"\n * prawdopodobnie wprowadzono nowe błędy :-) 
+</string>
   <string name="ChangeLog_0_7"><b>Wersji 0.7</b> \n * zwiększona szybkość ładowania: najważniejsze transformacje teraz 10 x szybciej! \n * dodana klawiatura Keepass2Android: Przełącz na tą klawiaturę pod kątem wprowadzania poświadczeń. Zabezpiecza przed snifferami haseł ze schowka (Wyłącz stary typ powiadomienia o haslach w schowku w opcjach) \n * dodano opcję do postawienia mi piwa lub czegoś innego (patrz w menu)</string>
   <string name="ChangeLog"><b>Wersja 0.6.2</b> \n * Integracja z Google Drive/Dropbox /... Otwieraj bazy z Google Drive lub aplikacji Dropbox (rozszerzenie .kdbx). \n * ulepszone okno dialogowe Szukaj \n * poprawa wyników wyszukiwania z adresu URL z subdomenami \n * dodano opcje, aby przekazywać informacje zwrotne i tłumaczenie aplikacji w menu \n \n \n <b>wersja 0.6.1</b> /n * wykrywanie zmian bazy danych w tle (np. z powodu aktywności aplikacji Synchronizacja) \n * ulepszone wyszukiwanie adresów URL z przegladarki \n * okno potwierdzania niezapisywania zmian \n \n <b>wersja 0.6</b> pierwsze publiczne wydanie   </string>
   <string-array name="clipboard_timeout_options">

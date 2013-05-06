@@ -10,6 +10,8 @@
   <string name="add_group_title">Legg til gruppe</string>
   <string name="algorithm">Algoritme</string>
   <string name="algorithm_colon">Algoritme</string>
+  <string name="app_name">Keepass2Android</string>
+  <string name="short_app_name">KP2A</string>
   <string name="app_timeout">Programtidsavbrot</string>
   <string name="app_timeout_summary">Tid før databasen blir låst når programmet ikkje er i bruk.</string>
   <string name="application">Program</string>
@@ -31,6 +33,7 @@
   <string name="default_checkbox">Standarddatabasen</string>
   <string name="digits">Tal</string>
   <string name="disclaimer_formal">Keepass2Android kjem med INGEN SOM HELST GARANTI. Dette er eit fritt program. Du er velkomen til å redistribuera det i samsvar med vilkåra til GPL utgåve 2 eller nyare.</string>
+  <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Skriv filnamnet til databasen</string>
   <string name="entry_accessed">Brukt</string>
   <string name="entry_and_or">Skriv inn passordet og/eller nøkkelfil for å låsa opp databasen</string>
@@ -109,6 +112,8 @@
   <string name="menu_search">Søk</string>
   <string name="menu_url">Gå til adressa</string>
   <string name="never">Aldri</string>
+  <string name="yes">Ja</string>
+  <string name="no">Nei</string>
   <string name="no_keys">Ingen oppføringar i databasen eller gruppa.</string>
   <string name="no_results">Ingen søkjeresultat</string>
   <string name="no_url_handler">Ingen behandlar for denne adressa.</string>
@@ -122,6 +127,7 @@
   <string name="remember_keyfile_summary">Hugsar staden til nøkkelfilene</string>
   <string name="remember_keyfile_title">Lagra nøkkelfila</string>
   <string name="remove_from_filelist">Ta vekk</string>
+  <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Rot</string>
   <string name="rounds">Krypteringsomgangar</string>
   <string name="rounds_explaination">Fleire krypteringsomgangar gjev tilleggsvern mot rå makt-åtak, men kan òg gjera lasting og lagring mykje tregare.</string>
@@ -133,6 +139,7 @@
   <string name="sort_name">Sorter etter namn</string>
   <string name="sort_db">DB-sortering</string>
   <string name="special">Spesial</string>
+  <string name="twofish">Twofish</string>
   <string name="underline">Understreking</string>
   <string name="unsupported_db_version">Kan ikkje bruka databaseutgåva.</string>
   <string name="uppercase">Store bokstavar</string>
