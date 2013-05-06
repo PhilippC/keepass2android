@@ -21,7 +21,7 @@ namespace keepass2android
 		private const String CLASS_NAME = "AttachmentContentProvider";
 		
 		// The authority is the symbolic name for the provider class
-		public const String AUTHORITY = "keepass2android.provider";
+		public const String AUTHORITY = "keepass2android."+AppNames.PackagePart+".provider";
 
 
 		public override bool OnCreate() {
