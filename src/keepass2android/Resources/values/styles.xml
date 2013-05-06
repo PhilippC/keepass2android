@@ -72,7 +72,9 @@
 	<style name="EntryItem">
 		<item name="@android:padding">5sp</item>
 	</style>
-	
+	<style name="MinusButton">
+        <item name="android:src">@drawable/ic_menu_remove_field_holo_light</item>
+    </style>
 	<style name="EntryFieldHeader">
         <item name="android:drawableBottom">@drawable/section_header</item>
         <item name="android:drawablePadding">1dp</item>
