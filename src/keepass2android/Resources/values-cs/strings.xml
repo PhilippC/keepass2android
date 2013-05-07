@@ -151,6 +151,7 @@
   <string name="rounds">Počet zašifrování</string>
   <string name="rounds_explaination">Vyšší počet opakování šifrování zvýší bezpečnost proti hrubému útoku, ale může výrazně zpomalit načítání a ukládání.</string>
   <string name="rounds_hint">opakování</string>
+  <string name="database_name">Jméno databáze</string>
   <string name="default_username">Výchozí uživatelské jméno pro nové položky</string>
   <string name="saving_database">Ukládám databázi…</string>
   <string name="space">Místo</string>
@@ -193,6 +194,10 @@
   <string name="QuickUnlock_fail">RychléOdemknutí se nezdařilo: nesprávné heslo!</string>
   <string name="BinaryDirectory_title">Adresář souborů s přílohami</string>
   <string name="BinaryDirectory_summary">Adresář,  do kterého jsou ukládány přílohy souborů.</string>
+  <string name="SaveAttachmentDialog_title">Uložit přílohu</string>
+  <string name="SaveAttachmentDialog_text">Prosím vyberte, kam chcete přílohu uložit.</string>
+  <string name="SaveAttachmentDialog_save">Uložit na SD kartu</string>
+  <string name="SaveAttachmentDialog_open">Uložit do mezipaměti a otevřít</string>
   <string name="SaveAttachment_doneMessage">Uložit soubor do %1$ .</string>
   <string name="SaveAttachment_Failed">Nelze uložit přílohu do %1$ .</string>
   <string name="error_invalid_expiry_date">Neplatný formát datumu a času pro datum vypršení!</string>
@@ -227,6 +232,14 @@
   <string name="rate_app">Ohodnoťte tuto aplikaci</string>
   <string name="translate_app">Přeložit KP2A</string>
   <string name="ChangeLog_title">Protokol změn</string>
+  <string name="ChangeLog_0_8"><b>Verze 0.8</b>\n
+* Vylepšené uživatelské rozhraní, obzvláště pro  zařízení s Android 4.x\n
+* Volitelná volba správce souborů pro výběr existujících souborů\n
+* Přidán bezpečnější způsob otevírání příloh (za pomocí adresáře mezipaměti)\n
+* opraveny chyby v Editaci aktivit\n
+* pravděpodobně zaneseny nové chyby  :-)
+</string>
+  <string name="ChangeLog_keptDonate">Rozšíření možnosti darovat pivo nebo něco jiného</string>
   <string name="ChangeLog_0_7"><b>Verze 0.7</b>\n
 * Zrychlení načítání: klíčové transformace jsou nyní 10x rychlejší!\n
 * Přidán Keepass2Android soft-keyboard: Přepněte se na tuto klávesnici pro vložení údajů pověření. Ochraňuje před útoky založenými na skenování schránky (vypněte starý systém upozornění  v nastavení)\n

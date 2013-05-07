@@ -151,6 +151,7 @@
   <string name="rounds">Niveau du cryptage</string>
   <string name="rounds_explaination">Un niveau de cryptage supérieur assure une protection supplémentaire contre les attaques de force brute, mais peut considérablement ralentir le chargement et la sauvegarde.</string>
   <string name="rounds_hint">niveaux</string>
+  <string name="database_name">Nom de la base de données</string>
   <string name="default_username">Nom d\'utilisateur par défaut pour les nouvelles entrées</string>
   <string name="saving_database">Enregistrement de la base de données…</string>
   <string name="space">Espace</string>
@@ -193,6 +194,10 @@
   <string name="QuickUnlock_fail">Échec du déverrouillage rapide : mot de passe incorrect !</string>
   <string name="BinaryDirectory_title">Dossier des pièces jointes</string>
   <string name="BinaryDirectory_summary">Répertoire où les fichiers joints seront sauvés.</string>
+  <string name="SaveAttachmentDialog_title">Enregistrer la pièce jointe</string>
+  <string name="SaveAttachmentDialog_text">Veuillez sélectionner où enregistrer la pièce jointe.</string>
+  <string name="SaveAttachmentDialog_save">Enregistrer sur la carte SD</string>
+  <string name="SaveAttachmentDialog_open">Enregistrer pour mettre en cache et ouvrir</string>
   <string name="SaveAttachment_doneMessage">Enregistrement du fichier dans %1$s.</string>
   <string name="SaveAttachment_Failed">Impossible d\'enregistrer la pièce jointe vers %1$s.</string>
   <string name="error_invalid_expiry_date">Format de la date ou de l\'heure d\'expiration invalide !</string>
@@ -227,6 +232,14 @@
   <string name="rate_app">Noter cette application</string>
   <string name="translate_app">Traduire KP2A</string>
   <string name="ChangeLog_title">Journal des modifications</string>
+  <string name="ChangeLog_0_8"><b>Version 0.8</b> \n
+* Interface utilisateur améliorée pour les terminaux Android 4.x\n
+* Autorise l\'utilisation d\'un gestionnaires de fichiers pour sélectionner un fichier existant\n
+* Ajoute un moyen plus sûr d\'ouvrir des pièces jointes (via le répertoire de cache)\n
+* Corrige des bugs dans l\'activité d\'édition\n
+* Introduit probablement de nouveaux bogues :-)\n
+\n</string>
+  <string name="ChangeLog_keptDonate">Possibilité élargie de faire un don d\'une bière ou autre chose</string>
   <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
 * Amélioration de la vitesse de démarrage : la transformation des clés est désormais 10x plus rapide !\n
 * Ajout du clavier Keepass2Android : basculez vers celui-ci pour entrer les mots de passe et vous protéger des sniffers de presse-papiers (désactiver les anciennes notifications dans les options)\n

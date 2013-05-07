@@ -233,6 +233,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="rate_app">Diese App bewerten</string>
   <string name="translate_app">KP2A übersetzen</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n
+* KP2A Offline and \"Online\" können wieder parallel zueinander installiert werden\n
+* Neue Übersetzungen hinzugefügt (Danke an alle Helfer!)
+</string>
   <string name="ChangeLog_0_8"><b>Version 0.8</b>\n 
 * Verbesserte Benutzeroberfläche, vor allem für Android 4.x-Geräte\n 
 * Möglichkeit, Dateimanager zur Auswahl von existierenden Dateien zu verwenden\n

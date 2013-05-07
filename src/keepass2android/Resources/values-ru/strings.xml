@@ -151,6 +151,7 @@
   <string name="rounds">Проходы шифрования</string>
   <string name="rounds_explaination">Больше проходов – выше стойкость базы к подбору пароля, но медленнее открытие и сохранение</string>
   <string name="rounds_hint">проходы</string>
+  <string name="database_name">Название базы данных</string>
   <string name="default_username">Имя пользователя по умолчанию для новых записей</string>
   <string name="saving_database">Сохранение базы…</string>
   <string name="space">П р о б е л</string>
@@ -193,6 +194,10 @@
   <string name="QuickUnlock_fail">БыстраяРазблокировка не удалась: неправильный пароль!</string>
   <string name="BinaryDirectory_title">Каталог файлов-вложений</string>
   <string name="BinaryDirectory_summary">Каталог для сохранения вложенных файлов.</string>
+  <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
+  <string name="SaveAttachmentDialog_text">Пожалуйста выберите, куда следует сохранить вложение.</string>
+  <string name="SaveAttachmentDialog_save">Сохранить на карту памяти</string>
+  <string name="SaveAttachmentDialog_open">Сохранить в кэш и открыть</string>
   <string name="SaveAttachment_doneMessage">Файл сохранён в %1$s.</string>
   <string name="SaveAttachment_Failed">Не удалось сохранить вложение в %1$s.</string>
   <string name="error_invalid_expiry_date">Неверный формат даты/времени для срока окончания!</string>
@@ -227,6 +232,18 @@
   <string name="rate_app">Оцените это приложение</string>
   <string name="translate_app">Переведите KP2A</string>
   <string name="ChangeLog_title">Список изменений</string>
+  <string name="ChangeLog_0_8_1"><b>Версия 0.8.1</b> \n
+* KP2A Offline и «Online» снова могут быть установлены совместно\n
+* добавлены новые переводы (спасибо всем участникам!)
+</string>
+  <string name="ChangeLog_0_8"><b>Версия 0.8</b>\n
+* Улучшен интерфейс, особенно на устройствах Android 4.x\n
+* Разрешено использование избранных файловых менеджеров для выбора существующего файла\n
+* Добавлен безопасный способ открытия вложений (из кэша)\n
+* Исправлены ошибки в диалоге Редактирования\n
+* Возможно, добавлены новые баги :-)
+</string>
+  <string name="ChangeLog_keptDonate">Расширенная возможность пожертвовать пиво или что-то другое</string>
   <string name="ChangeLog_0_7"><b>Версия 0.7</b>\n
 * Увеличилась скорость загрузки: Основные преобразования теперь в 10 раз быстрее!\n
 * добавлена программная клавиатура Keepass2Android: Переключитесь на эту клавиатуру для ввода учетных данных. Защищает вас перехватчиков пароля из буфера обмена (отключите старые уведомления буфера обмена в настройках)\n

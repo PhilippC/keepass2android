@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="8" 
-			android:versionName="0.7" 
-			package="keepass2android.keepass2android_nonet">
+			android:versionCode="11" 
+			android:versionName="0.8.1" 
+			package="keepass2android.keepass2android_nonet"
+			android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">
 		<activity android:configChanges="keyboardHidden|orientation" android:label="@string/app_name_nonet" android:theme="@style/Base" android:name="keepass2android.PasswordActivity" >
