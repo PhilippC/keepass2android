@@ -15,7 +15,7 @@ using Android.Net;
 
 namespace keepass2android
 {
-	[ContentProvider(new string[]{"keepass2android.provider"})] 
+	[ContentProvider(new string[]{"keepass2android."+AppNames.PackagePart+".provider"})] 
 	public class AttachmentContentProvider : ContentProvider {
 		
 		private const String CLASS_NAME = "AttachmentContentProvider";
