@@ -90,14 +90,14 @@ namespace keepass2android
 
 		public static void showBrowseDialog(string filename, Activity act, int requestCodeBrowse, bool forSaving)
 		{
-			if ((!forSaving) && (Interaction.isIntentAvailable(act, Intent.ActionGetContent))) {
+			if ((!forSaving) && (Interaction.isIntentAvailable(act, Intent.ActionGetContent, "file/*"))) {
 				Intent i = new Intent(Intent.ActionGetContent);
 				i.SetType("file/*");
 
 				act.StartActivityForResult(i, requestCodeBrowse);
 				return;
 			}
-			if (Interaction.isIntentAvailable(act, Intents.FILE_BROWSE))
+			if (Interaction.isIntentAvailable(act, Intents.FILE_BROWSE, null))
 			{
 				Intent i = new Intent(Intents.FILE_BROWSE);
 				if (filename != null)

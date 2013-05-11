@@ -44,12 +44,16 @@ namespace keepass2android
 	 * @return True if an Intent with the specified action can be sent and
 	 *         responded to, false otherwise.
 	 */
-		public static bool isIntentAvailable(Context context, String action) {
+		public static bool isIntentAvailable(Context context, String action, String type) {
 			PackageManager packageManager = context.PackageManager;
 			Intent intent = new Intent(action);
+			if (type != null)
+				intent.SetType(type); 
 			IList<ResolveInfo> list =
 				packageManager.QueryIntentActivities(intent,
 				                                     PackageInfoFlags.MatchDefaultOnly);
+			foreach (ResolveInfo i in list)
+				Android.Util.Log.Debug("DEBUG", i.ActivityInfo.ApplicationInfo.PackageName);
 			return list.Count > 0;
 		}
 	}
