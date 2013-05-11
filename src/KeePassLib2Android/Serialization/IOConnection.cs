@@ -119,13 +119,6 @@ namespace KeePassLib.Serialization
 
 		internal static void ConfigureWebClient(WebClient wc)
 		{
-			// Not implemented and ignored in Mono < 2.10
-			try
-			{
-				wc.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-			}
-			catch(NotImplementedException) { }
-			catch(Exception) { Debug.Assert(false); }
 
 			try
 			{
@@ -189,22 +182,50 @@ namespace KeePassLib.Serialization
 				ValidateServerCertificate;
 		}
 
-		private static IOWebClient CreateWebClient(IOConnectionInfo ioc)
+		private static IOWebClient CreateWebClient(IOConnectionInfo ioc, bool digestAuth)
 		{
 			PrepareWebAccess();
 
 			IOWebClient wc = new IOWebClient();
 			ConfigureWebClient(wc);
 
-			if((ioc.UserName.Length > 0) || (ioc.Password.Length > 0))
+			if ((ioc.UserName.Length > 0) || (ioc.Password.Length > 0))
+			{
+				//set the credentials without a cache (in case the cache below fails:
 				wc.Credentials = new NetworkCredential(ioc.UserName, ioc.Password);
+
+				if (digestAuth)
+				{
+					//try to use the credential cache to access with Digest support:
+					try
+					{
+						var credentialCache = new CredentialCache(); 
+
+						credentialCache.Add(
+						                    new Uri(new Uri(ioc.Path).GetLeftPart(UriPartial.Authority)),
+						                    "Digest",
+						                    new NetworkCredential(ioc.UserName, ioc.Password)
+						); 
+
+						
+						wc.Credentials = credentialCache;
+					} catch (NotImplementedException e)
+					{ 
+						Android.Util.Log.Debug("DEBUG", e.ToString());
+					} catch (Exception e)
+					{ 
+						Android.Util.Log.Debug("DEBUG", e.ToString());
+						Debug.Assert(false); 
+					}
+				}
+			}
 			else if(NativeLib.IsUnix()) // Mono requires credentials
 				wc.Credentials = new NetworkCredential("anonymous", string.Empty);
 
 			return wc;
 		}
 
-		private static WebRequest CreateWebRequest(IOConnectionInfo ioc)
+		private static WebRequest CreateWebRequest(IOConnectionInfo ioc, bool digestAuth)
 		{
 			PrepareWebAccess();
 
@@ -212,7 +233,21 @@ namespace KeePassLib.Serialization
 			ConfigureWebRequest(req);
 
 			if((ioc.UserName.Length > 0) || (ioc.Password.Length > 0))
+			{
 				req.Credentials = new NetworkCredential(ioc.UserName, ioc.Password);
+
+				if (digestAuth)
+				{
+					var credentialCache = new CredentialCache(); 
+					credentialCache.Add( 
+					                    new Uri(new Uri(ioc.Path).GetLeftPart(UriPartial.Authority)), // request url's host
+					                    "Digest",  // authentication type 
+					                    new NetworkCredential(ioc.UserName, ioc.Password) // credentials 
+					                    ); 
+					
+					req.Credentials = credentialCache;
+				}
+			}
 			else if(NativeLib.IsUnix()) // Mono requires credentials
 				req.Credentials = new NetworkCredential("anonymous", string.Empty);
 
@@ -221,15 +256,27 @@ namespace KeePassLib.Serialization
 
 		public static Stream OpenRead(IOConnectionInfo ioc)
 		{
-			if(StrUtil.IsDataUri(ioc.Path))
+			if (StrUtil.IsDataUri(ioc.Path))
 			{
 				byte[] pbData = StrUtil.DataUriToData(ioc.Path);
-				if(pbData != null) return new MemoryStream(pbData, false);
+				if (pbData != null)
+					return new MemoryStream(pbData, false);
 			}
 
-			if(ioc.IsLocalFile()) return OpenReadLocal(ioc);
+			if (ioc.IsLocalFile())
+				return OpenReadLocal(ioc);
 
-			return CreateWebClient(ioc).OpenRead(new Uri(ioc.Path));
+			try
+			{ 
+				return CreateWebClient(ioc, false).OpenRead(new Uri(ioc.Path));
+			} catch (WebException ex)
+			{
+				if ((ex.Response is HttpWebResponse) && (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized))
+					return CreateWebClient(ioc, true).OpenRead(new Uri(ioc.Path));
+				else
+					throw ex;
+			}
+
 		}
 #else
 		public static Stream OpenRead(IOConnectionInfo ioc)
@@ -248,20 +295,20 @@ namespace KeePassLib.Serialization
 
 		class UploadOnCloseMemoryStream: MemoryStream
 		{
-			System.Net.WebClient webClient;
+			IOConnectionInfo ioc;
 			string method;
 			Uri destinationFilePath;
 			
-			public UploadOnCloseMemoryStream(System.Net.WebClient _webClient, string _method, Uri _destinationFilePath)
+			public UploadOnCloseMemoryStream(IOConnectionInfo _ioc, string _method, Uri _destinationFilePath)
 			{
-				this.webClient = _webClient;
+				ioc = _ioc;
 				this.method = _method;
 				this.destinationFilePath = _destinationFilePath;
 			}
 
-			public UploadOnCloseMemoryStream(System.Net.WebClient _webClient, Uri _destinationFilePath)
+			public UploadOnCloseMemoryStream(IOConnectionInfo _ioc, Uri _destinationFilePath)
 			{
-				this.webClient = _webClient;
+				this.ioc = _ioc;
 				this.method = null;
 				this.destinationFilePath = _destinationFilePath;
 			}
@@ -269,6 +316,21 @@ namespace KeePassLib.Serialization
 			public override void Close()
 			{
 				base.Close();
+				try
+				{
+					uploadData(IOConnection.CreateWebClient(ioc, false));
+				} catch (WebException ex)
+				{
+					if ((ex.Response is HttpWebResponse) && (((HttpWebResponse) ex.Response).StatusCode == HttpStatusCode.Unauthorized))
+						uploadData(IOConnection.CreateWebClient(ioc, true));
+					else
+						throw ex;
+				}
+				
+			}
+
+			void uploadData(WebClient webClient)
+			{
 				if (method != null)
 				{
 					webClient.UploadData(destinationFilePath, method, this.ToArray());
@@ -276,7 +338,6 @@ namespace KeePassLib.Serialization
 				{
 					webClient.UploadData(destinationFilePath, this.ToArray());
 				}
-				
 			}
 		}
 
@@ -293,9 +354,9 @@ namespace KeePassLib.Serialization
 			if(NativeLib.IsUnix() && (uri.Scheme.Equals(Uri.UriSchemeHttp,
 				StrUtil.CaseIgnoreCmp) || uri.Scheme.Equals(Uri.UriSchemeHttps,
 				StrUtil.CaseIgnoreCmp)))
-				return new UploadOnCloseMemoryStream(CreateWebClient(ioc), WebRequestMethods.Http.Put, uri);
+				return new UploadOnCloseMemoryStream(ioc, WebRequestMethods.Http.Put, uri);
 
-			return new UploadOnCloseMemoryStream(CreateWebClient(ioc), uri);
+			return new UploadOnCloseMemoryStream(ioc, uri);
 		}
 #else
 		public static Stream OpenWrite(IOConnectionInfo ioc)
@@ -352,25 +413,45 @@ namespace KeePassLib.Serialization
 			return true;
 		}
 
+		delegate void DoWithRequest(WebRequest req);
+
+
+		static void RepeatWithDigestOnFail(IOConnectionInfo ioc, DoWithRequest f)
+		{
+			WebRequest req = CreateWebRequest(ioc, false);
+			try{
+				f(req);
+			}
+			catch (WebException ex)
+			{
+				if ((ex.Response is HttpWebResponse) && (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized))
+				{
+					req = CreateWebRequest(ioc, true);
+					f(req);
+				}
+			}
+		}
+
 		public static void DeleteFile(IOConnectionInfo ioc)
 		{
 			if(ioc.IsLocalFile()) { File.Delete(ioc.Path); return; }
 
 #if !KeePassLibSD
-			WebRequest req = CreateWebRequest(ioc);
-			if(req != null)
-			{
-				if(req is HttpWebRequest) req.Method = "DELETE";
-				else if(req is FtpWebRequest) req.Method = WebRequestMethods.Ftp.DeleteFile;
-				else if(req is FileWebRequest)
+			RepeatWithDigestOnFail(ioc, (WebRequest req) => {
+				if(req != null)
 				{
-					File.Delete(UrlUtil.FileUrlToPath(ioc.Path));
-					return;
-				}
-				else req.Method = WrmDeleteFile;
+					if(req is HttpWebRequest) req.Method = "DELETE";
+					else if(req is FtpWebRequest) req.Method = WebRequestMethods.Ftp.DeleteFile;
+					else if(req is FileWebRequest)
+					{
+						File.Delete(UrlUtil.FileUrlToPath(ioc.Path));
+						return;
+					}
+					else req.Method = WrmDeleteFile;
 
-				DisposeResponse(req.GetResponse(), true);
-			}
+					DisposeResponse(req.GetResponse(), true);
+				}
+			});
 #endif
 		}
 
@@ -388,8 +469,7 @@ namespace KeePassLib.Serialization
 			if(iocFrom.IsLocalFile()) { File.Move(iocFrom.Path, iocTo.Path); return; }
 
 #if !KeePassLibSD
-			WebRequest req = CreateWebRequest(iocFrom);
-			if(req != null)
+			RepeatWithDigestOnFail(iocFrom, (WebRequest req)=> { if(req != null)
 			{
 				if(req is HttpWebRequest)
 				{
@@ -415,6 +495,8 @@ namespace KeePassLib.Serialization
 
 				DisposeResponse(req.GetResponse(), true);
 			}
+			});
+			
 #endif
 
 			// using(Stream sIn = IOConnection.OpenRead(iocFrom))
@@ -435,9 +517,11 @@ namespace KeePassLib.Serialization
 		{
 			try
 			{
-				WebRequest req = CreateWebRequest(ioc);
-				req.Method = strMethod;
-				DisposeResponse(req.GetResponse(), true);
+				RepeatWithDigestOnFail(ioc, (WebRequest req)=> {
+					req.Method = strMethod;
+					DisposeResponse(req.GetResponse(), true);
+			
+				});
 			}
 			catch(Exception) { return false; }
 
