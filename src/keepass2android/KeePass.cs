@@ -29,6 +29,7 @@ using Android.Content.PM;
 using Android.Text;
 using Android.Text.Util;
 using Android.Text.Method;
+using KeePassLib.Serialization;
 
 namespace keepass2android
 {
@@ -161,6 +162,8 @@ namespace keepass2android
 
 			StartActivityForResult(intent, 0);
 			Finish();
+
+
 		}
 		
 

@@ -587,7 +587,7 @@ namespace keepass2android
 				
 			case Resource.Id.menu_goto_url:
 				String url;
-				url = mEntry.Strings.ReadSafe (PwDefs.UserNameField);
+				url = mEntry.Strings.ReadSafe (PwDefs.UrlField);
 				
 				// Default http:// if no protocol specified
 				if ( ! url.Contains("://") ) {
