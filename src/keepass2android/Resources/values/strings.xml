@@ -234,6 +234,10 @@
   <string name="rate_app">Rate this app</string>
   <string name="translate_app">Translate KP2A</string>
   <string name="ChangeLog_title">Change log</string>
+  <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
+* Support for Digest Authentication in WebDAV
+* Bugfixes (OI File manager, Open URL)
+</string>
   <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n
 * KP2A Offline and "Online" can be installed both again\n
 * Added new translations (thanks to all contributors!)
