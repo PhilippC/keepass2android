@@ -38,6 +38,10 @@ namespace keepass2android
 			return float.Parse(prefs.GetString(ctx.GetString(Resource.String.list_size_key), ctx.GetString(Resource.String.list_size_default)));
 			
 		}
+		public static float getListDetailTextSize(Context ctx) {
+			return (float)Math.Round(getListTextSize(ctx)*3.0f/4.0f);
+			
+		}
 	}
 
 }

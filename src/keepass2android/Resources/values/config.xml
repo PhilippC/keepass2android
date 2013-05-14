@@ -41,6 +41,7 @@
     <string name="sort_key">sort_key</string>
     <string name="timeout_key">timeout_key</string>
 	<string name="TanExpiresOnUse_key">TanExpiresOnUse_key</string>
+	<string name="ShowUsernameInList_key">ShowUsernameInList_key</string>
     <string name="default_username_key">defaultUsername</string>
     <string name="database_name_key">databaseName</string>
     <string name="BinaryDirectory_key">binaryDirectory</string>
@@ -50,6 +51,7 @@
     <bool name="sort_default">true</bool>
     <bool name="omitbackup_default">true</bool>
     <bool name="TanExpiresOnUse_default">true</bool>
+    <bool name="ShowUsernameInList_default">true</bool>
     
     <string name="QuickUnlockDefaultEnabled_key">Enable_QuickUnlock_by_default</string>
 	<string name="QuickUnlockLength_key">QuickUnlockLength</string>

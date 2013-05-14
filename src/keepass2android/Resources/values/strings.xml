@@ -173,6 +173,8 @@
   <string name="regular_expression">Regular expression</string>
   <string name="TanExpiresOnUse_title">Tan expires on use</string>
   <string name="TanExpiresOnUse_summary">Mark TAN entries expired when using them</string>
+  <string name="ShowUsernameInList_title">Display username in list</string>
+  <string name="ShowUsernameInList_summary">Display usernames below entry titles. Useful for multiple accounts or TANs.</string>
   <string name="kp2a_findUrl">Keepass2Android: Find password</string>
   <string name="excludeExpiredEntries">Exclude expired entries</string>
   <string name="search_options">Options</string>
@@ -235,7 +237,7 @@
   <string name="translate_app">Translate KP2A</string>
   <string name="ChangeLog_title">Change log</string>
   <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
-* Support for Digest Authentication in WebDAV
+* Support for Digest Authentication in WebDAV\n
 * Bugfixes (OI File manager, Open URL)
 </string>
   <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n

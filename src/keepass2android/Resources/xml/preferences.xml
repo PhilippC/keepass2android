@@ -82,6 +82,12 @@
 		  android:summary="@string/TanExpiresOnUse_summary"
 		  android:defaultValue="@bool/TanExpiresOnUse_default"/>
 		
+		<CheckBoxPreference
+		  android:key="@string/ShowUsernameInList_key"
+		  android:title="@string/ShowUsernameInList_title"
+		  android:summary="@string/ShowUsernameInList_summary"
+		  android:defaultValue="@bool/ShowUsernameInList_default"/>
+		
 		<ListPreference
 		  android:key="@string/list_size_key"
 		  android:title="@string/list_size_title"

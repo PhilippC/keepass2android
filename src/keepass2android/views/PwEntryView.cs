@@ -28,6 +28,7 @@ using Android.Widget;
 using KeePassLib;
 using Android.Text;
 using Android.Text.Style;
+using Android.Preferences;
 
 namespace keepass2android.view
 {
@@ -37,7 +38,11 @@ namespace keepass2android.view
 		protected GroupBaseActivity mAct;
 		protected PwEntry mPw;
 		private TextView mTv;
+		private TextView mTvDetails;
 		private int mPos;
+
+		bool mShowDetail;
+
 		protected const int MENU_OPEN = Menu.First;
 		private const int MENU_DELETE = MENU_OPEN + 1;
 		
@@ -60,7 +65,12 @@ namespace keepass2android.view
 			View ev = View.Inflate(mAct, Resource.Layout.entry_list_entry, null);
 			mTv = (TextView)ev.FindViewById(Resource.Id.entry_text);
 			mTv.TextSize = PrefsUtil.getListTextSize(act);
-			
+
+			mTvDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
+			mTvDetails.TextSize = PrefsUtil.getListDetailTextSize(act);
+
+			mShowDetail = PreferenceManager.GetDefaultSharedPreferences(act).GetBoolean(act.GetString(Resource.String.ShowUsernameInList_key), Resources.GetBoolean(Resource.Boolean.ShowUsernameInList_default));
+
 			populateView(ev, pw, pos);
 			
 			LayoutParams lp = new LayoutParams(LayoutParams.FillParent, LayoutParams.WrapContent);
@@ -93,7 +103,25 @@ namespace keepass2android.view
 			}
 			mTv.TextFormatted = str;
 
+			String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
 
+
+			if ((mShowDetail == false) || (String.IsNullOrEmpty(detail)))
+			{
+				mTvDetails.Visibility = ViewStates.Gone;
+			}
+			else
+			{
+				var strDetail = new SpannableString(detail);
+				
+				if (isExpired)
+				{
+					strDetail.SetSpan(new StrikethroughSpan(), 0, detail.Length, SpanTypes.ExclusiveExclusive);
+				}
+				mTvDetails.TextFormatted = strDetail;
+
+				mTvDetails.Visibility = ViewStates.Visible;
+			}
 		}
 		
 		public void convertView(PwEntry pw, int pos)
