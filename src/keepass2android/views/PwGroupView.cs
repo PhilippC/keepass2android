@@ -90,6 +90,8 @@ namespace keepass2android.view
 		
 		private void launchGroup() {
 			GroupActivity.Launch(mAct, mPw);
+			mAct.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
+
 		}
 		
 		public override void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo) {

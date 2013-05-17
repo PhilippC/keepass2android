@@ -160,7 +160,12 @@ namespace keepass2android
 			cv.OnCreateMenu(menu, menuInfo);
 		}
 		
-		
+		public override void OnBackPressed()
+		{
+			base.OnBackPressed();
+			if ((mGroup != null) && (mGroup.ParentGroup != null))
+				OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+		}
 		
 		public override bool OnContextItemSelected(IMenuItem item) {
 			Android.Widget.AdapterView.AdapterContextMenuInfo acmi = (Android.Widget.AdapterView.AdapterContextMenuInfo)item.MenuInfo;

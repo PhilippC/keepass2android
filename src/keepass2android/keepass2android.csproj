@@ -639,6 +639,10 @@
     <AndroidResource Include="Resources\layout\entry_extrastring_value.xml" />
     <AndroidResource Include="Resources\drawable-v11\ic_launcher_gray.png" />
     <AndroidResource Include="Resources\values-nb\strings.xml" />
+    <AndroidResource Include="Resources\anim\anim_enter.xml" />
+    <AndroidResource Include="Resources\anim\anim_leave.xml" />
+    <AndroidResource Include="Resources\anim\anim_enter_back.xml" />
+    <AndroidResource Include="Resources\anim\anim_leave_back.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -690,6 +694,7 @@
     <Folder Include="libs\mips\" />
     <Folder Include="Resources\values-v14\" />
     <Folder Include="Resources\layout-v14\" />
+    <Folder Include="Resources\anim\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">

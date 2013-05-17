@@ -386,7 +386,13 @@ namespace keepass2android
 			}
 			return type;
 		}
-		
+
+		public override void OnBackPressed()
+		{
+			base.OnBackPressed();
+			OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+		}
+
 		protected void fillData(bool trimList)
 		{
 			ImageView iv = (ImageView)FindViewById(Resource.Id.entry_icon);
@@ -640,6 +646,8 @@ namespace keepass2android
 					//So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
 					//http://developer.android.com/training/implementing-navigation/ancestral.html
 					Finish();
+					OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+
 					return true;
 			}
 

@@ -260,6 +260,8 @@ namespace keepass2android
 				//So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
 				//http://developer.android.com/training/implementing-navigation/ancestral.html
 				Finish();
+				OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+
 				return true;
 			}
 			
