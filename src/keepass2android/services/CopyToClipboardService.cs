@@ -74,18 +74,12 @@ namespace keepass2android
 			Android.Util.Log.Debug("DEBUG","Received intent to provide access to entry");
 			
 			String uuidBytes =  intent.GetStringExtra(EntryActivity.KEY_ENTRY);
+			bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KEY_CLOSE_AFTER_CREATE, false);
 			
 			PwUuid entryId = PwUuid.Zero;
 			if (uuidBytes != null)
 				entryId = new KeePassLib.PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
 			
-			/*Android.Util.Log.Debug("DEBUG","Uuid="+uuidBytes);
-			
-				
-				foreach (PwUuid key in App.getDB().entries.Keys)
-				{
-					Android.Util.Log.Debug("DEBUG",key.ToHexString() + " -> " + App.getDB().entries[key].Uuid.ToHexString());
-				}*/
 			PwEntry entry;
 			try
 			{
@@ -98,7 +92,7 @@ namespace keepass2android
 				return StartCommandResult.NotSticky;
 			}
 			
-			displayAccessNotifications(entry);
+			displayAccessNotifications(entry, closeAfterCreate);
 
 
 			return StartCommandResult.RedeliverIntent;
@@ -143,7 +137,7 @@ namespace keepass2android
 			return PendingIntent.GetBroadcast(this, requestCode, intent, PendingIntentFlags.CancelCurrent);
 		}
 
-		public void displayAccessNotifications(PwEntry entry)
+		public void displayAccessNotifications(PwEntry entry, bool closeAfterCreate)
 		{
 			// Notification Manager
 			mNM = (NotificationManager)GetSystemService(NotificationService);
@@ -190,6 +184,13 @@ namespace keepass2android
 					keyboard.DeleteIntent = createDeleteIntent(NOTIFY_KEYBOARD);
 					mNumElementsToWaitFor++;
 					mNM.Notify(NOTIFY_KEYBOARD, keyboard);
+
+                    //if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
+                    // automatically bring up the Keyboard selection dialog
+                    if (closeAfterCreate)
+                    {
+                        ActivateKp2aKeyboard(this);        
+                    }
 				}
 
 			}
@@ -347,7 +348,6 @@ namespace keepass2android
 
 
 		
-
 		class CopyToClipboardBroadcastReceiver: BroadcastReceiver
 		{
 			CopyToClipboardService mService;
@@ -379,39 +379,10 @@ namespace keepass2android
 					}
 				} else if (action.Equals(Intents.CHECK_KEYBOARD))
 				{
-					string currentIme = Android.Provider.Settings.Secure.GetString(
-						mService.ContentResolver, 
-						Android.Provider.Settings.Secure.DefaultInputMethod);
-
-					string kp2aIme = mService.PackageName+"/keepass2android.softkeyboard.KP2AKeyboard";
-
-					InputMethodManager imeManager = (InputMethodManager)mService.ApplicationContext.GetSystemService(Context.InputMethodService); 
-
-					if (currentIme == kp2aIme)
-					{
-						imeManager.ToggleSoftInput(ShowSoftInputFlags.Explicit, HideSoftInputFlags.None);
-						return;
-					}
-
-					IList<InputMethodInfo> inputMethodProperties = imeManager.EnabledInputMethodList;
-
-					if (!inputMethodProperties.Any(imi => imi.Id.Equals(kp2aIme)))
-					{
-						Toast.MakeText(mService, Resource.String.please_activate_keyboard, ToastLength.Long).Show();
-						Intent settingsIntent = new Intent(Android.Provider.Settings.ActionInputMethodSettings);
-						settingsIntent.SetFlags(ActivityFlags.NewTask);
-						mService.StartActivity(settingsIntent);
-					}
-					else
-					{
-						if (imeManager != null) {
-							imeManager.ShowInputMethodPicker();
-						} else {
-							Toast.MakeText(mService, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
-						}
-					}
+                    CopyToClipboardService.ActivateKp2aKeyboard(mService);
 				}
 			}
+
 		};
 
 		class NotificationDeletedBroadcastReceiver: BroadcastReceiver
@@ -432,6 +403,47 @@ namespace keepass2android
 			}
 			#endregion
 		}
-	}
+
+        internal static void ActivateKp2aKeyboard(CopyToClipboardService service)
+        {
+            string currentIme = Android.Provider.Settings.Secure.GetString(
+                                service.ContentResolver,
+                                Android.Provider.Settings.Secure.DefaultInputMethod);
+
+            string kp2aIme = service.PackageName + "/keepass2android.softkeyboard.KP2AKeyboard";
+
+            InputMethodManager imeManager = (InputMethodManager)service.ApplicationContext.GetSystemService(Context.InputMethodService);
+
+            if (currentIme == kp2aIme)
+            {
+                imeManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.None);
+            }
+            else
+            {
+
+                IList<InputMethodInfo> inputMethodProperties = imeManager.EnabledInputMethodList;
+
+                if (!inputMethodProperties.Any(imi => imi.Id.Equals(kp2aIme)))
+                {
+                    Toast.MakeText(service, Resource.String.please_activate_keyboard, ToastLength.Long).Show();
+                    Intent settingsIntent = new Intent(Android.Provider.Settings.ActionInputMethodSettings);
+                    settingsIntent.SetFlags(ActivityFlags.NewTask);
+                    service.StartActivity(settingsIntent);
+                }
+                else
+                {
+                    if (imeManager != null)
+                    {
+                        imeManager.ShowInputMethodPicker();
+                    }
+                    else
+                    {
+                        Toast.MakeText(service, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
+                    }
+                }
+            }
+        }
+        
+    }
 }
 

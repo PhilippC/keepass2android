@@ -147,6 +147,7 @@ namespace keepass2android
 			Intent showNotIntent = new Intent(this, typeof(CopyToClipboardService));
 			Intent.SetAction(Intents.SHOW_NOTIFICATION);
 			showNotIntent.PutExtra(KEY_ENTRY, mEntry.Uuid.ToHexString());
+			showNotIntent.PutExtra(KEY_CLOSE_AFTER_CREATE, closeAfterCreate);
 
 			StartService(showNotIntent);
 
