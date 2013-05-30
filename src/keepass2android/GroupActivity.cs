@@ -45,11 +45,11 @@ namespace keepass2android
 		
 		private const String TAG = "Group Activity:";
 		
-		public static void Launch(Activity act, IAppTask appTask) {
+		public static void Launch(Activity act, AppTask appTask) {
 			Launch(act, null, appTask);
 		}
 		
-		public static void Launch (Activity act, PwGroup g, IAppTask appTask)
+		public static void Launch (Activity act, PwGroup g, AppTask appTask)
 		{
 			Intent i;
 			

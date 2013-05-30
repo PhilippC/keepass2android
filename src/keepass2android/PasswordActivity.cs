@@ -87,7 +87,7 @@ namespace keepass2android
 			ioc.CredSaveMode  = (IOCredSaveMode)i.GetIntExtra(KEY_SERVERCREDMODE, (int) IOCredSaveMode.NoSave);
 		}
 
-		public static void Launch(Activity act, String fileName, IAppTask appTask)  {
+		public static void Launch(Activity act, String fileName, AppTask appTask)  {
 			Java.IO.File dbFile = new Java.IO.File(fileName);
 			if ( ! dbFile.Exists() ) {
 				throw new Java.IO.FileNotFoundException();
@@ -108,7 +108,7 @@ namespace keepass2android
 		}
 
 
-		public static void Launch(Activity act, IOConnectionInfo ioc, IAppTask appTask)
+		public static void Launch(Activity act, IOConnectionInfo ioc, AppTask appTask)
 		{
 			if (ioc.IsLocalFile())
 			{
@@ -279,7 +279,7 @@ namespace keepass2android
 			
 		}
 
-		internal IAppTask mAppTask;
+		internal AppTask mAppTask;
 		
 		protected override void OnCreate(Bundle savedInstanceState)
 		{

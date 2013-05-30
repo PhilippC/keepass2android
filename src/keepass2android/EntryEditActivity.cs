@@ -73,6 +73,8 @@ namespace keepass2android
 		private ScrollView scroll;
 
 		bool mCloseForReload;
+
+		AppTask mAppTask;
 		
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -85,6 +87,8 @@ namespace keepass2android
 				reload();
 				return;
 			}
+
+			mAppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			SetContentView(Resource.Layout.entry_edit);
 			mCloseForReload = false;
@@ -234,9 +238,7 @@ namespace keepass2android
 			}
 			save.Click += (object sender, EventArgs e) => 
 			{
-				OnFinish onFinish = new AfterSave(new Handler(), this);
-
-				SaveEntry(onFinish);
+				SaveEntry();
 
 			};
 		
@@ -284,7 +286,7 @@ namespace keepass2android
 
 		}
 
-		void SaveEntry(OnFinish onFinish)
+		void SaveEntry()
 		{
 			Database db = App.getDB();
 			EntryEditActivity act = this;
@@ -358,9 +360,7 @@ namespace keepass2android
 			if(bUndoBackup) newEntry.History.RemoveAt(newEntry.History.UCount - 1);
 			
 			newEntry.MaintainBackups(db.pm);
-			
-			
-			
+
 			//if ( newEntry.Strings.ReadSafe (PwDefs.TitleField).Equals(State.mEntry.Strings.ReadSafe (PwDefs.TitleField)) ) {
 			//	SetResult(KeePass.EXIT_REFRESH);
 			//} else {
@@ -368,15 +368,30 @@ namespace keepass2android
 			SetResult(KeePass.EXIT_REFRESH_TITLE);
 			//}
 			
-			RunnableOnFinish task;
-			
-			
+			RunnableOnFinish runnable;
+
+			ActionOnFinish closeOrShowError = new ActionOnFinish((success, message) => {
+				if (success)
+				{
+					Finish();
+				} else
+				{
+					OnFinish.displayMessage(this, message);
+				}
+			});
+
+			ActionOnFinish afterAddEntry = new ActionOnFinish((success, message) => 
+			{
+				if (success)
+					mAppTask.AfterAddNewEntry(this);
+			},closeOrShowError);
+
 			if ( State.mIsNew ) {
-				task = AddEntry.getInstance(this, App.getDB(), newEntry, State.parentGroup, onFinish);
+				runnable = AddEntry.getInstance(this, App.getDB(), newEntry, State.parentGroup, afterAddEntry);
 			} else {
-				task = new UpdateEntry(this, App.getDB(), initialEntry, newEntry, onFinish);
+				runnable = new UpdateEntry(this, App.getDB(), initialEntry, newEntry, closeOrShowError);
 			}
-			ProgressTask pt = new ProgressTask(act, task, Resource.String.saving_database);
+			ProgressTask pt = new ProgressTask(act, runnable, Resource.String.saving_database);
 			pt.run();
 			
 
@@ -533,6 +548,12 @@ namespace keepass2android
 			}
 			State.mEntryModified = true;
 			populateBinaries();
+		}
+
+		protected override void OnSaveInstanceState(Bundle outState)
+		{
+			base.OnSaveInstanceState(outState);
+			mAppTask.ToBundle(outState);
 		}
 
 		public override void OnBackPressed()
@@ -901,22 +922,6 @@ namespace keepass2android
 
 		}
 
-		private class AfterSave : OnFinish {
-			Activity act;
-			public AfterSave(Handler handler, Activity act): base(handler) {
-				this.act = act;
-			}
-			
-
-			public override void run() {
-				if ( mSuccess ) {
-					act.Finish();
-				} else {
-					displayMessage(act);
-				}
-			}
-			
-		}
 		
 	}
 

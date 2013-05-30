@@ -78,11 +78,15 @@ namespace keepass2android
 		}
 		
 		protected void displayMessage(Context ctx) {
-			if ( mMessage != null && mMessage.Length > 0 ) {
-				Toast.MakeText(ctx, mMessage, ToastLength.Long).Show();
-			}
+			displayMessage(ctx, mMessage);
 		}
 
+		public static void displayMessage(Context ctx, string message)
+		{
+			if ( !String.IsNullOrEmpty(message) ) {
+				Toast.MakeText(ctx, message, ToastLength.Long).Show();
+			}
+		}
 	}
 }
 

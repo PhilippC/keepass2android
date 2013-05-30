@@ -50,7 +50,7 @@ namespace keepass2android
 		public const String KEY_CLOSE_AFTER_CREATE = "close_after_create";
 
 
-		public static void Launch(Activity act, PwEntry pw, int pos, IAppTask appTask) {
+		public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask) {
 			Intent i;
 			
 			i = new Intent(act, typeof(EntryActivity));
@@ -69,7 +69,7 @@ namespace keepass2android
 		private bool mShowPassword;
 		private int mPos;
 
-		IAppTask mAppTask;
+		AppTask mAppTask;
 		
 
 		protected void setEntryView() {

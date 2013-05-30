@@ -63,7 +63,7 @@ namespace keepass2android
 		
 		protected PwGroup mGroup;
 
-		internal IAppTask mAppTask;
+		internal AppTask mAppTask;
 		
 		protected override void OnResume() {
 			base.OnResume();

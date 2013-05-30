@@ -64,7 +64,7 @@ namespace keepass2android
 		view.FileSelectButtons fileSelectButtons;
 		bool createdWithActivityResult = false;
 
-		internal IAppTask mAppTask;
+		internal AppTask mAppTask;
 
 		IOConnectionInfo loadIoc(string defaultFileName)
 		{

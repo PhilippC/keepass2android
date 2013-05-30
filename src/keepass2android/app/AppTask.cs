@@ -62,131 +62,48 @@ namespace keepass2android
 	}
 
 	/// <summary>
-	/// interface for "tasks": this are things the user wants to do and which require several activities
+	/// base class for "tasks": this are things the user wants to do and which require several activities
 	/// </summary>
-	public interface IAppTask
+	public abstract class AppTask
 	{
 		/// <summary>
 		/// Loads the parameters of the task from the given bundle
 		/// </summary>
-		void Setup(Bundle b);
+		public virtual void Setup(Bundle b)
+		{}
 
 		/// <summary>
 		/// Returns the parameters of the task for storage in a bundle or intent
 		/// </summary>
 		/// <value>The extras.</value>
-		IEnumerable<IExtra> Extras { get;}
-
-		void AfterUnlockDatabase(PasswordActivity act);
-
-		bool CloseEntryActivityAfterCreate
-		{
-			get;
-		}
-	}
-
-	/// <summary>
-	/// Implementation of IAppTask for "no task currently active" (Null pattern)
-	/// </summary>
-	public class NullTask: IAppTask
-	{
-		
-		public void Setup(Bundle b)
-		{
-		}
-
-		public IEnumerable<IExtra> Extras 
-		{ 
+		public virtual IEnumerable<IExtra> Extras { 
 			get
 			{
 				yield break;
 			}
 		}
 
-		
-		public void AfterUnlockDatabase(PasswordActivity act)
+		public virtual void AfterUnlockDatabase(PasswordActivity act)
 		{
 			GroupActivity.Launch(act, this);
 		}
-		public bool CloseEntryActivityAfterCreate
+
+		public virtual void AfterAddNewEntry(EntryEditActivity entryEditActivity)
+		{
+		}
+
+		public virtual bool CloseEntryActivityAfterCreate
 		{
 			get { return false;}
 		}
-	}
 
-	/// <summary>
-	/// User is about to search an entry for a given URL
-	/// </summary>
-	public class SearchUrlTask: IAppTask
-	{
-		public const String UrlToSearch_key = "UrlToSearch";
-
-		public string UrlToSearchFor
-		{
-			get;
-			set;
-		}
-
-		public void Setup(Bundle b)
-		{
-			UrlToSearchFor = b.GetString(UrlToSearch_key);
-		}
-		public IEnumerable<IExtra> Extras 
-		{ 
-			get
-			{
-				yield return new StringExtra() { Key=UrlToSearch_key, Value = UrlToSearchFor };
-			}
-		}
-		public void AfterUnlockDatabase(PasswordActivity act)
-		{
-			ShareUrlResults.Launch(act, this);
-		}
-		public bool CloseEntryActivityAfterCreate
-		{
-			get { return true;}
-		}
-	}
-
-	
-	/// <summary>
-	/// User is about to select an entry for use in another app
-	/// </summary>
-	public class SelectEntryTask: IAppTask
-	{
-		public void Setup(Bundle b)
-		{
-		}
-		public IEnumerable<IExtra> Extras 
-		{ 
-			get
-			{
-				yield break;
-			}
-		}
-		public void AfterUnlockDatabase(PasswordActivity act)
-		{
-			GroupActivity.Launch(act, this);
-		}
-		public bool CloseEntryActivityAfterCreate
-		{
-			//keypoint here: close the app after selecting the entry
-			get { return true;}
-		}
-	}
-
-	/// <summary>
-	/// 
-	/// </summary>
-	public static class AppTask
-	{
 		public const String AppTask_key = "KP2A_APPTASK";
 
 		/// <summary>
 		/// Should be used in OnCreate to (re)create a task
 		/// if savedInstanceState is not null, the task is recreated from there. Otherwise it's taken from the intent.
 		/// </summary>
-		public static IAppTask GetTaskInOnCreate(Bundle savedInstanceState, Intent intent)
+		public static AppTask GetTaskInOnCreate(Bundle savedInstanceState, Intent intent)
 		{
 			if (savedInstanceState != null)
 			{
@@ -198,12 +115,12 @@ namespace keepass2android
 			}
 		}
 
-		public static IAppTask CreateFromIntent(Intent i)
+		public static AppTask CreateFromIntent(Intent i)
 		{
 			return CreateFromBundle(i.Extras);
 		}
 
-		public static IAppTask CreateFromBundle(Bundle b)
+		public static AppTask CreateFromBundle(Bundle b)
 		{
 			if (b == null)
 				return new NullTask();
@@ -219,7 +136,7 @@ namespace keepass2android
 			{
 				if (taskType == type.Name)
 				{
-					IAppTask task = (IAppTask)Activator.CreateInstance(type);
+					AppTask task = (AppTask)Activator.CreateInstance(type);
 					task.Setup(b);
 					return task;
 				}
@@ -231,11 +148,11 @@ namespace keepass2android
 		/// <summary>
 		/// Adds the extras of the task to the intent
 		/// </summary>
-		public static void ToIntent(this IAppTask task, Intent intent)
+		public void ToIntent(Intent intent)
 		{
-			AppTask.GetTypeExtra(task.GetType()).ToIntent(intent);
+			AppTask.GetTypeExtra(GetType()).ToIntent(intent);
 
-			foreach (IExtra extra in task.Extras)
+			foreach (IExtra extra in Extras)
 			{
 				extra.ToIntent(intent);
 			}
@@ -244,11 +161,11 @@ namespace keepass2android
 		/// <summary>
 		/// Adds the extras of the task to the bundle
 		/// </summary>
-		public static void ToBundle(this IAppTask task, Bundle bundle)
+		public void ToBundle(Bundle bundle)
 		{
-			AppTask.GetTypeExtra(task.GetType()).ToBundle(bundle);
+			AppTask.GetTypeExtra(GetType()).ToBundle(bundle);
 
-			foreach (IExtra extra in task.Extras)
+			foreach (IExtra extra in Extras)
 			{
 				extra.ToBundle(bundle);
 			}
@@ -263,6 +180,95 @@ namespace keepass2android
 			return new StringExtra() { Key="KP2A_APP_TASK_TYPE", Value=type.Name};
 		}
 
+	}
+
+	/// <summary>
+	/// Implementation of AppTask for "no task currently active" (Null pattern)
+	/// </summary>
+	public class NullTask: AppTask
+	{
+
+	}
+
+	/// <summary>
+	/// User is about to search an entry for a given URL
+	/// </summary>
+	public class SearchUrlTask: AppTask
+	{
+		public const String UrlToSearch_key = "UrlToSearch";
+
+		public string UrlToSearchFor
+		{
+			get;
+			set;
+		}
+
+		public override void Setup(Bundle b)
+		{
+			UrlToSearchFor = b.GetString(UrlToSearch_key);
+		}
+		public override IEnumerable<IExtra> Extras 
+		{ 
+			get
+			{
+				yield return new StringExtra() { Key=UrlToSearch_key, Value = UrlToSearchFor };
+			}
+		}
+		public override void AfterUnlockDatabase(PasswordActivity act)
+		{
+			ShareUrlResults.Launch(act, this);
+		}
+		public override bool CloseEntryActivityAfterCreate
+		{
+			get { return true;}
+		}
+	}
+
+	
+	/// <summary>
+	/// User is about to select an entry for use in another app
+	/// </summary>
+	public class SelectEntryTask: AppTask
+	{
+
+		public override bool CloseEntryActivityAfterCreate
+		{
+			//keypoint here: close the app after selecting the entry
+			get { return true;}
+		}
+	}
+
+	
+	/// <summary>
+	/// User is about to create a new entry. The task might already "know" some information about the contents.
+	/// </summary>
+	public class CreateEntryThenCloseTask: AppTask
+	{
+		public const String Url_key = "CreateEntry_Url";
+
+		public string Url
+		{
+			get;
+			set;
+		}
+
+		public override void Setup(Bundle b)
+		{
+			Url = b.GetString(Url_key);
+		}
+		public override IEnumerable<IExtra> Extras 
+		{ 
+			get
+			{
+				yield return new StringExtra() { Key = Url_key, Value = Url };
+				yield break;
+			}
+		}
+		public override bool CloseEntryActivityAfterCreate
+		{
+			//if the user selects an entry before creating the new one, we're not closing the app
+			get { return false;}
+		}
 	}
 }
 
