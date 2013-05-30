@@ -87,7 +87,7 @@ namespace keepass2android
 			ioc.CredSaveMode  = (IOCredSaveMode)i.GetIntExtra(KEY_SERVERCREDMODE, (int) IOCredSaveMode.NoSave);
 		}
 
-		public static void Launch(Activity act, String fileName, String urlToSearchFor)  {
+		public static void Launch(Activity act, String fileName, IAppTask appTask)  {
 			Java.IO.File dbFile = new Java.IO.File(fileName);
 			if ( ! dbFile.Exists() ) {
 				throw new Java.IO.FileNotFoundException();
@@ -96,7 +96,7 @@ namespace keepass2android
 			
 			Intent i = new Intent(act, typeof(PasswordActivity));
 			i.PutExtra(KEY_FILENAME, fileName);
-			i.PutExtra(FileSelectActivity.UrlToSearch_key, urlToSearchFor);		
+			appTask.ToIntent(i);
 			act.StartActivityForResult(i, 0);
 			
 		}
@@ -108,18 +108,18 @@ namespace keepass2android
 		}
 
 
-		public static void Launch(Activity act, IOConnectionInfo ioc, String urlToSearchFor)
+		public static void Launch(Activity act, IOConnectionInfo ioc, IAppTask appTask)
 		{
 			if (ioc.IsLocalFile())
 			{
-				Launch(act, ioc.Path, urlToSearchFor);
+				Launch(act, ioc.Path, appTask);
 				return;
 			}
 
 			Intent i = new Intent(act, typeof(PasswordActivity));
 			PutIoConnectionToIntent(ioc, i);
 
-			i.PutExtra(FileSelectActivity.UrlToSearch_key, urlToSearchFor);		
+			appTask.ToIntent(i);
 
 			act.StartActivityForResult(i, 0);
 			
@@ -127,13 +127,8 @@ namespace keepass2android
 
 		public void LaunchNextActivity()
 		{
+			mAppTask.AfterUnlockDatabase(this);
 
-			if (String.IsNullOrEmpty(mUrlToSearchFor))
-				GroupActivity.Launch(this);
-			else
-			{
-				ShareUrlResults.Launch(this, mUrlToSearchFor);
-			}
 		}
 
 		void unloadDatabase()
@@ -284,7 +279,7 @@ namespace keepass2android
 			
 		}
 
-		internal string mUrlToSearchFor;
+		internal IAppTask mAppTask;
 		
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -342,7 +337,7 @@ namespace keepass2android
 				}
 			}
 
-			this.mUrlToSearchFor = i.GetStringExtra(FileSelectActivity.UrlToSearch_key);
+			mAppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			SetContentView(Resource.Layout.password);
 			populateView();
@@ -448,6 +443,12 @@ namespace keepass2android
 			retrieveSettings();
 
 
+		}
+
+		protected override void OnSaveInstanceState(Bundle outState)
+		{
+			base.OnSaveInstanceState(outState);
+			mAppTask.ToBundle(outState);
 		}
 		
 		protected override void OnResume() {

@@ -49,11 +49,8 @@ namespace keepass2android
 		public const String KEY_REFRESH_POS = "refresh_pos";
 		public const String KEY_CLOSE_AFTER_CREATE = "close_after_create";
 
-		public static void Launch(Activity act, PwEntry pw, int pos) {
-			Launch(act, pw, pos, false);
-		}
 
-		public static void Launch(Activity act, PwEntry pw, int pos, bool closeAfterCreate) {
+		public static void Launch(Activity act, PwEntry pw, int pos, IAppTask appTask) {
 			Intent i;
 			
 			i = new Intent(act, typeof(EntryActivity));
@@ -61,7 +58,8 @@ namespace keepass2android
 			
 			i.PutExtra(KEY_ENTRY, pw.Uuid.ToHexString());
 			i.PutExtra(KEY_REFRESH_POS, pos);
-			i.PutExtra(KEY_CLOSE_AFTER_CREATE, closeAfterCreate);
+
+			appTask.ToIntent(i);
 			
 			act.StartActivityForResult(i,0);
 		}
@@ -71,6 +69,7 @@ namespace keepass2android
 		private bool mShowPassword;
 		private int mPos;
 
+		IAppTask mAppTask;
 		
 
 		protected void setEntryView() {
@@ -116,12 +115,12 @@ namespace keepass2android
 			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(i.GetStringExtra(KEY_ENTRY)));
 			mPos = i.GetIntExtra(KEY_REFRESH_POS, -1);
 
-			bool closeAfterCreate = i.GetBooleanExtra(KEY_CLOSE_AFTER_CREATE, false);
+			mAppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+
+			bool closeAfterCreate = mAppTask.CloseEntryActivityAfterCreate;
 
 			mEntry = db.entries [uuid];
 
-			
-			
 			// Refresh Menu contents in case onCreateMenuOptions was called before mEntry was set
 			ActivityCompat.invalidateOptionsMenu(this);
 			

@@ -160,6 +160,7 @@
     <Compile Include="views\FileSelectButtons.cs" />
     <Compile Include="EntryEditActivityState.cs" />
     <Compile Include="AttachmentContentProvider.cs" />
+    <Compile Include="app\AppTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

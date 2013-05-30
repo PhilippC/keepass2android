@@ -56,16 +56,15 @@ namespace keepass2android
 
 		private const int CMENU_CLEAR = Menu.First;
 
-		public const String UrlToSearch_key = "UrlToSearch";
-		const String BundleKey_UrlToSearchFor = "UrlToSearch";
 		const string BundleKey_RecentMode = "RecentMode";
 
 		private FileDbHelper mDbHelper;
-		private String mUrlToSearch;
-		
+
 		private bool recentMode = false;
 		view.FileSelectButtons fileSelectButtons;
 		bool createdWithActivityResult = false;
+
+		internal IAppTask mAppTask;
 
 		IOConnectionInfo loadIoc(string defaultFileName)
 		{
@@ -205,11 +204,16 @@ namespace keepass2android
 			base.OnCreate(savedInstanceState);
 
 			Android.Util.Log.Debug("DEBUG", "FileSelect.OnCreate");
+			Android.Util.Log.Debug("DEBUG", "FileSelect:apptask="+Intent.GetStringExtra("KP2A_APP_TASK_TYPE"));
 
 			if (Intent.Action == Intent.ActionSend)
-				mUrlToSearch = Intent.GetStringExtra(Intent.ExtraText);
+			{
+				mAppTask = new SearchUrlTask() { UrlToSearchFor = Intent.GetStringExtra(Intent.ExtraText) };
+			}
 			else
-				mUrlToSearch = Intent.GetStringExtra(UrlToSearch_key);
+			{
+				mAppTask = AppTask.CreateFromIntent(Intent);
+			}
 
 
 			mDbHelper = App.fileDbHelper;
@@ -283,7 +287,7 @@ namespace keepass2android
 
 			if (savedInstanceState != null)
 			{
-				mUrlToSearch = savedInstanceState.GetString(BundleKey_UrlToSearchFor, null);
+				mAppTask = AppTask.CreateFromBundle(savedInstanceState);
 				recentMode = savedInstanceState.GetBoolean(BundleKey_RecentMode, recentMode);
 
 
@@ -295,18 +299,18 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			outState.PutString(BundleKey_UrlToSearchFor, mUrlToSearch);
+			mAppTask.ToBundle(outState);
 			outState.PutBoolean(BundleKey_RecentMode, recentMode);
 		}
 		
 		private class LaunchGroupActivity : FileOnFinish {
 
-			FileSelectActivity activty;
+			FileSelectActivity activity;
 			private IOConnectionInfo mIoc;
 			
-			public LaunchGroupActivity(IOConnectionInfo ioc, FileSelectActivity activty): base(null) {
+			public LaunchGroupActivity(IOConnectionInfo ioc, FileSelectActivity activity): base(null) {
 
-				this.activty = activty;
+				this.activity = activity;
 				mIoc = ioc;
 			}
 			
@@ -318,7 +322,7 @@ namespace keepass2android
 					//TODO: getFilename always returns "" -> bug?
 					dbHelper.createFile(mIoc, getFilename());
 					
-					GroupActivity.Launch(activty);
+					GroupActivity.Launch(activity, activity.mAppTask);
 					
 				} else {
 					IOConnection.DeleteFile(mIoc);
@@ -380,7 +384,7 @@ namespace keepass2android
 					ioc.UserName = username;
 					ioc.Password = password;
 					ioc.CredSaveMode = (IOCredSaveMode)credentialRememberMode;
-					PasswordActivity.Launch(this, ioc, mUrlToSearch);
+					PasswordActivity.Launch(this, ioc, mAppTask);
 				}));
 				builder.SetView(LayoutInflater.Inflate(Resource.Layout.url_credentials, null));
 				builder.SetNeutralButton(GetString(Android.Resource.String.Cancel), 
@@ -395,7 +399,7 @@ namespace keepass2android
 			{
 				try
 				{
-					PasswordActivity.Launch(this, ioc, mUrlToSearch);
+					PasswordActivity.Launch(this, ioc, mAppTask);
 				} catch (Java.IO.FileNotFoundException)
 				{
 					Toast.MakeText(this,     Resource.String.FileNotFound, ToastLength.Long).Show();
@@ -482,7 +486,7 @@ namespace keepass2android
 			{
 				if ((Intent.Action == Intent.ActionSend) && (App.getDB().Loaded))
 				{
-					PasswordActivity.Launch(this, App.getDB().mIoc , mUrlToSearch);
+					PasswordActivity.Launch(this, App.getDB().mIoc , mAppTask);
 				} else
 				{
 					
@@ -498,7 +502,7 @@ namespace keepass2android
 						{
 							try
 							{
-								PasswordActivity.Launch(this, loadIoc(defaultFileName), mUrlToSearch);
+								PasswordActivity.Launch(this, loadIoc(defaultFileName), mAppTask);
 							} catch (Exception e)
 							{
 								Toast.MakeText(this, e.Message, ToastLength.Long);

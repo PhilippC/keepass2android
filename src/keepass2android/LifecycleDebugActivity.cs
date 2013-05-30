@@ -69,6 +69,7 @@ namespace keepass2android
 		{
 			base.OnCreate(bundle);
 			Android.Util.Log.Debug("DEBUG",ClassName+".OnCreate");
+			Android.Util.Log.Debug("DEBUG", ClassName+":apptask="+Intent.GetStringExtra("KP2A_APP_TASK_TYPE"));
 		}
 
 		protected override void OnDestroy()

@@ -40,7 +40,7 @@ namespace keepass2android
 
 		public virtual void LaunchActivityForEntry(KeePassLib.PwEntry pwEntry, int pos)
 		{
-			EntryActivity.Launch(this, pwEntry, pos, false);
+			EntryActivity.Launch(this, pwEntry, pos, mAppTask);
 		}
 		public GroupBaseActivity ()
 		{
@@ -52,10 +52,18 @@ namespace keepass2android
 		{
 			
 		}
+
+		protected override void OnSaveInstanceState(Bundle outState)
+		{
+			base.OnSaveInstanceState(outState);
+			mAppTask.ToBundle(outState);
+		}
 		
 		private ISharedPreferences prefs;
 		
 		protected PwGroup mGroup;
+
+		internal IAppTask mAppTask;
 		
 		protected override void OnResume() {
 			base.OnResume();
@@ -90,6 +98,8 @@ namespace keepass2android
 		
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
+
+			mAppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			// Likely the app has been killed exit the activity 
 			if ( ! App.getDB().Loaded ) {

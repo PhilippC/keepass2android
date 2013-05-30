@@ -46,39 +46,38 @@ namespace keepass2android
 		{
 		}
 
-		public static void Launch(Activity act, string urlToSearchFor)
+		public static void Launch(Activity act, SearchUrlTask task)
 		{
 			Intent i = new Intent(act, typeof(ShareUrlResults));
-			i.PutExtra(Intent.ExtraText, urlToSearchFor);
+			task.ToIntent(i);
 			act.StartActivityForResult(i, 0);
-
 		}
 
 
 		private Database mDb;
 
 		
-		protected override void OnCreate(Bundle bundle)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(bundle);
+			base.OnCreate(savedInstanceState);
 
 			SetResult(KeePass.EXIT_CLOSE_AFTER_SEARCH);
-			
+
 			mDb = App.getDB();
 
-			String searchUrl = getSearchUrl(Intent);
+			String searchUrl = ((SearchUrlTask)mAppTask).UrlToSearchFor;
 			
 			if (!mDb.Loaded)
 			{
 				Intent intent = new Intent(this, typeof(FileSelectActivity));
-				intent.PutExtra(FileSelectActivity.UrlToSearch_key, searchUrl);
+				mAppTask.ToIntent(intent);
 				StartActivityForResult(intent, 0);
 
 				Finish();
 			}
 			else if (mDb.Locked)
 			{
-				PasswordActivity.Launch(this,mDb.mIoc, searchUrl);
+				PasswordActivity.Launch(this,mDb.mIoc, mAppTask);
 				Finish();
 			}
 			else
@@ -88,9 +87,15 @@ namespace keepass2android
 			
 		}
 
+		protected override void OnSaveInstanceState(Bundle outState)
+		{
+			base.OnSaveInstanceState(outState);
+			mAppTask.ToBundle(outState);
+		}
+
 		public override void LaunchActivityForEntry(KeePassLib.PwEntry pwEntry, int pos)
 		{
-			EntryActivity.Launch(this, pwEntry, pos, true);
+			base.LaunchActivityForEntry(pwEntry, pos);
 			Finish();
 		}
 		
@@ -133,7 +138,7 @@ namespace keepass2android
 				}
 			}
 			
-			
+			//show results:
 			if (mGroup == null || (mGroup.Entries.Count() < 1))
 			{
 				SetContentView(new GroupEmptyView(this));
@@ -146,6 +151,7 @@ namespace keepass2android
 			
 			ListAdapter = new PwGroupListAdapter(this, mGroup);
 
+			//if there is exactly one match: open the entry
 			if (mGroup.Entries.Count() == 1)
 			{
 				LaunchActivityForEntry(mGroup.Entries.Single(),0);
