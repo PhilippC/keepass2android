@@ -31,6 +31,7 @@ using Android.Preferences;
 using KeePassLib;
 using KeePassLib.Utility;
 using Android.Views.InputMethods;
+using KeePass.Util.Spr;
 
 namespace keepass2android
 {
@@ -152,7 +153,7 @@ namespace keepass2android
 			if (prefs.GetBoolean(GetString(Resource.String.CopyToClipboardNotification_key), Resources.GetBoolean(Resource.Boolean.CopyToClipboardNotification_default)))
 			{
 
-				if (entry.Strings.ReadSafe(PwDefs.PasswordField).Length > 0)
+				if (GetStringAndReplacePlaceholders(entry, PwDefs.PasswordField).Length > 0)
 				{
 					// only show notification if password is available
 					Notification password = GetNotification(Intents.COPY_PASSWORD, Resource.String.copy_password, Resource.Drawable.notify, entryName);
@@ -163,7 +164,7 @@ namespace keepass2android
 
 				}
 				
-				if (entry.Strings.ReadSafe(PwDefs.UserNameField).Length > 0)
+				if (GetStringAndReplacePlaceholders(entry, PwDefs.UserNameField).Length > 0)
 				{
 					// only show notification if username is available
 					Notification username = GetNotification(Intents.COPY_USERNAME, Resource.String.copy_username, Resource.Drawable.notify, entryName);
@@ -237,7 +238,8 @@ namespace keepass2android
 			int i=0;
 			foreach (string key in keys)
 			{
-				String value = entry.Strings.ReadSafe(key);
+				String value = GetStringAndReplacePlaceholders(entry, key);
+
 				if (value.Length > 0)
 				{
 					kbdataBuilder.AddPair(GetString(resIds[i]), value);
@@ -249,9 +251,12 @@ namespace keepass2android
 			foreach (var pair in entry.Strings)
 			{
 				String key = pair.Key;
-				
+
+				var value = GetStringAndReplacePlaceholders(entry, key);
+
+
 				if (!PwDefs.IsStandardField(key)) {
-					kbdataBuilder.AddPair(pair.Key, entry.Strings.ReadSafe(pair.Key));
+					kbdataBuilder.AddPair(pair.Key, value);
 				}
 			}
 
@@ -261,6 +266,13 @@ namespace keepass2android
 
 			return hasData;
 
+		}
+
+		static string GetStringAndReplacePlaceholders(PwEntry entry, string key)
+		{
+			String value = entry.Strings.ReadSafe(key);
+			value = SprEngine.Compile(value, new SprContext(entry, App.getDB().pm, SprCompileFlags.All));
+			return value;
 		}
 
 		public void OnWaitElementDeleted(int itemId)
@@ -365,14 +377,14 @@ namespace keepass2android
 				
 				if (action.Equals(Intents.COPY_USERNAME))
 				{
-					String username = mEntry.Strings.ReadSafe(PwDefs.UserNameField);
+					String username = GetStringAndReplacePlaceholders(mEntry, PwDefs.UserNameField);
 					if (username.Length > 0)
 					{
 						mService.timeoutCopyToClipboard(username);
 					}
 				} else if (action.Equals(Intents.COPY_PASSWORD))
 				{
-					String password = mEntry.Strings.ReadSafe(PwDefs.PasswordField);
+					String password = GetStringAndReplacePlaceholders(mEntry, PwDefs.PasswordField);
 					if (password.Length > 0)
 					{
 						mService.timeoutCopyToClipboard(password);

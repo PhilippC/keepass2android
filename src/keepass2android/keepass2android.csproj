@@ -162,6 +162,11 @@
     <Compile Include="EntryEditActivityState.cs" />
     <Compile Include="AttachmentContentProvider.cs" />
     <Compile Include="app\AppTask.cs" />
+    <Compile Include="Utils\Spr\SprContext.cs" />
+    <Compile Include="Utils\Spr\SprEncoding.cs" />
+    <Compile Include="Utils\Spr\SprEngine.cs" />
+    <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
+    <Compile Include="Utils\EntryUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -701,6 +706,7 @@
     <Folder Include="Resources\values-v14\" />
     <Folder Include="Resources\layout-v14\" />
     <Folder Include="Resources\anim\" />
+    <Folder Include="Utils\Spr\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
