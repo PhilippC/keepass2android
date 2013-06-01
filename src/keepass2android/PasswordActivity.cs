@@ -34,6 +34,7 @@ using Android.Content.PM;
 using Android.Text.Method;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
+using Android.Views.InputMethods;
 
 namespace keepass2android
 {
@@ -341,7 +342,13 @@ namespace keepass2android
 			
 			SetContentView(Resource.Layout.password);
 			populateView();
-			
+
+			EditText passwordEdit = FindViewById<EditText>(Resource.Id.password);
+
+
+			passwordEdit.RequestFocus();
+			Window.SetSoftInputMode(SoftInput.StateVisible);
+
 			Button confirmButton = (Button)FindViewById(Resource.Id.pass_ok);
 			confirmButton.Click += (object sender, EventArgs e) => 
 			{

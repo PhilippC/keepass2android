@@ -111,6 +111,13 @@
 			  android:defaultValue="@bool/UseKp2aKeyboard_default"
 			  android:title="@string/ShowKp2aKeyboardNotification_title"
 			  android:key="@string/UseKp2aKeyboard_key" /> 
+		<CheckBoxPreference
+		 	android:enabled="true"
+			  android:persistent="true"
+			  android:summary="@string/OpenKp2aKeyboardAutomatically_summary"
+			  android:defaultValue="@bool/OpenKp2aKeyboardAutomatically_default"
+			  android:title="@string/OpenKp2aKeyboardAutomatically_title"
+			  android:key="@string/OpenKp2aKeyboardAutomatically_key" /> 
 			  
 			  
 		 <CheckBoxPreference

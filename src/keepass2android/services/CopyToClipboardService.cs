@@ -187,7 +187,7 @@ namespace keepass2android
 
                     //if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
                     // automatically bring up the Keyboard selection dialog
-                    if (closeAfterCreate)
+					if ((closeAfterCreate) && (prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)) == true))
                     {
                         ActivateKp2aKeyboard(this);        
                     }

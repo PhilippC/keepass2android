@@ -71,6 +71,9 @@
 	<string name="UseKp2aKeyboard_key">ShowKp2aKeyboardNotification</string>
 	<bool name="UseKp2aKeyboard_default">true</bool>
 	
+	<string name="OpenKp2aKeyboardAutomatically_key">OpenKp2aKeyboardAutomatically</string>
+	<bool name="OpenKp2aKeyboardAutomatically_default">true</bool>
+	
     <string name="clipboard_timeout_default">300000</string>
     <string-array name="clipboard_timeout_values">
     	<item>30000</item>
