@@ -89,7 +89,7 @@ namespace keepass2android
 							App.setShutdown();
 						}
 
-					});
+					}, this.mFinish);
 				}
 				else // Recycle
 				{
