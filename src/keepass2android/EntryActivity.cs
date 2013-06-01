@@ -254,7 +254,10 @@ namespace keepass2android
 			if (writeToCacheDirectory)
 				binaryDirectory = CacheDir.Path;
 		
-			var targetFile = new Java.IO.File(binaryDirectory, key);
+			string filepart = key;
+			if (writeToCacheDirectory)
+				filepart = filepart.Replace(" ", "");
+			var targetFile = new Java.IO.File(binaryDirectory, filepart);
 
 			Java.IO.File parent = targetFile.ParentFile;
 			
