@@ -195,7 +195,7 @@ namespace keepass2android
 			startedWithActivityResult = true;
 			Android.Util.Log.Debug("DEBUG","PasswordActivity.OnActivityResult "+resultCode+"/"+requestCode);
 
-			if (resultCode != KeePass.EXIT_CLOSE_AFTER_SEARCH)
+			if (resultCode != KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE)
 			{
 				//Stop service when app activity is left
 				StopService(new Intent(this, typeof(CopyToClipboardService)));
@@ -229,8 +229,8 @@ namespace keepass2android
 				case KeePass.EXIT_CHANGE_DB:
 					lockAndClose();
 					break;
-				case KeePass.EXIT_CLOSE_AFTER_SEARCH:
-					SetResult(KeePass.EXIT_CLOSE_AFTER_SEARCH);
+				case KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE:
+					SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
 					Finish();
 					break;
 				case KeePass.EXIT_QUICK_UNLOCK:

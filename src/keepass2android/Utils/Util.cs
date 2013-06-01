@@ -44,8 +44,23 @@ namespace keepass2android
 		
 		public static void gotoUrl(Context context, String url) {
 			if ( url != null && url.Length > 0 ) {
-				Android.Net.Uri uri = Android.Net.Uri.Parse(url);
-				context.StartActivity(new Intent(Intent.ActionView, uri));
+
+				if (url.StartsWith("androidapp://"))
+				{
+					string packageName = url.Substring("androidapp://".Length);
+					Intent startKp2aIntent = context.PackageManager.GetLaunchIntentForPackage(packageName);
+					if (startKp2aIntent != null)
+					{
+						startKp2aIntent.AddCategory(Intent.CategoryLauncher);
+						startKp2aIntent.AddFlags(ActivityFlags.NewTask);
+						context.StartActivity(startKp2aIntent);
+					}
+				}
+				else
+				{
+					Android.Net.Uri uri = Android.Net.Uri.Parse(url);
+					context.StartActivity(new Intent(Intent.ActionView, uri));
+				}
 			}
 		}
 		

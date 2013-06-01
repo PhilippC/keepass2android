@@ -58,6 +58,19 @@ namespace keepass2android
 			base.OnSaveInstanceState(outState);
 			mAppTask.ToBundle(outState);
 		}
+
+		
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult(requestCode, resultCode, data);
+
+			if (resultCode == KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE)
+			{
+				SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
+				Finish();
+			}
+
+		}
 		
 		private ISharedPreferences prefs;
 		

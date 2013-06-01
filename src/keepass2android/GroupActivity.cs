@@ -67,6 +67,7 @@ namespace keepass2android
 			if ( g != null ) {
 				i.PutExtra(KEY_ENTRY, g.Uuid.ToHexString());
 			}
+			appTask.ToIntent(i);
 
 			act.StartActivityForResult(i,0);
 		}
@@ -138,7 +139,7 @@ namespace keepass2android
 				// Add Entry button
 				View addEntry = FindViewById (Resource.Id.add_entry);
 				addEntry.Click += (object sender, EventArgs e) => {
-					EntryEditActivity.Launch (this, mGroup);
+					EntryEditActivity.Launch (this, mGroup, mAppTask);
 
 				};
 			}
@@ -188,8 +189,9 @@ namespace keepass2android
 				pt.run();
 				break;
 				
-			case Result.Canceled:
-			default:
+				case Result.Canceled:
+				default:
+					base.OnActivityResult(requestCode, resultCode, data);
 				break;
 			}
 		}

@@ -7,6 +7,7 @@
   <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
   <string name="accept">Accept</string>
   <string name="add_entry">Add entry</string>
+  <string name="add_url_entry">Create entry for URL</string>
   <string name="add_group">Add group</string>
   <string name="add_group_title">Add Group</string>
   <string name="algorithm">Algorithm</string>
@@ -163,6 +164,8 @@
   <string name="search_hint">Find what</string>
   <string name="search_results">Search results</string>
   <string name="search_in">Search in</string>
+  <string name="select_other_entry">Select another entry</string>
+  <string name="select_group_then_add">Open the desired group, then press "%1$s"!</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Underline</string>
   <string name="unsupported_db_version">Unsupported database version.</string>

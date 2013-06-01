@@ -34,6 +34,7 @@
         <Command type="BeforeBuild" command="UseManifestNet.bat" />
       </CustomCommands>
     </CustomCommands>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -644,6 +645,10 @@
     <AndroidResource Include="Resources\anim\anim_leave.xml" />
     <AndroidResource Include="Resources\anim\anim_enter_back.xml" />
     <AndroidResource Include="Resources\anim\anim_leave_back.xml" />
+    <AndroidResource Include="Resources\layout\searchurlresults.xml" />
+    <AndroidResource Include="Resources\layout\searchurlresults_empty.xml" />
+    <AndroidResource Include="Resources\layout-v14\searchurlresults.xml" />
+    <AndroidResource Include="Resources\layout-v14\searchurlresults_empty.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

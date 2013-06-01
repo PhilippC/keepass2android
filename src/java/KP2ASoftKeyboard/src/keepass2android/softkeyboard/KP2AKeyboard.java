@@ -76,6 +76,8 @@ public class KP2AKeyboard extends InputMethodService implements
 
 	private String mWordSeparators;
 
+	private String mClientPackageName;
+
 	/**
 	 * Main initialization of the input method component. Be sure to call to
 	 * super class.
@@ -154,6 +156,8 @@ public class KP2AKeyboard extends InputMethodService implements
 			// Clear shift states.
 			mMetaState = 0;
 		}
+		
+		mClientPackageName = attribute.packageName;
 
 		mPredictionOn = false;
 		mCompletionOn = false;
@@ -466,7 +470,7 @@ public class KP2AKeyboard extends InputMethodService implements
 			if (keepass2android.kbbridge.KeyboardData.entryName == null)
 			{
 				items.add(getString(R.string.open_entry));
-				values.add("");				
+				values.add("KP2ASPECIAL_SelectEntryTask");
 			}
 			else
 			{
@@ -474,6 +478,13 @@ public class KP2AKeyboard extends InputMethodService implements
 				items.add(getString(R.string.change_entry));
 				values.add("");
 			}
+			
+			if ((mClientPackageName != null) && (mClientPackageName != ""))
+			{
+				items.add(getString(R.string.open_entry_for_app,mClientPackageName));
+				values.add("KP2ASPECIAL_SearchUrlTask");
+			}
+			
 			builder.setTitle(title);
 
 			// builder.setMessage("What do you want to type securely?");
@@ -481,13 +492,21 @@ public class KP2AKeyboard extends InputMethodService implements
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int item) {
 
-							if (item == items.size() - 1) {
+							if (values.get(item).startsWith("KP2ASPECIAL")) {
 								//change entry
 								Intent startKp2aIntent = getPackageManager().getLaunchIntentForPackage(getApplicationContext().getPackageName());
+								//Intent startKp2aIntent = getPackageManager().getLaunchIntentForPackage("keepass2android.keepass2android");
 								if (startKp2aIntent != null)
 								{
 									startKp2aIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-									startKp2aIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+									startKp2aIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |  Intent.FLAG_ACTIVITY_CLEAR_TASK);
+									String value = values.get(item);
+									String taskName = value.substring("KP2ASPECIAL_".length()); 
+									startKp2aIntent.putExtra("KP2A_APPTASK", taskName);
+									if (taskName.equals("SearchUrlTask"))
+									{
+										startKp2aIntent.putExtra("UrlToSearch", "androidapp://"+mClientPackageName);
+									}
 									startActivity(startKp2aIntent);
 									Settings.Secure.getString(
 											   getContentResolver(), 

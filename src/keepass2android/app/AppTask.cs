@@ -19,6 +19,8 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using System.Collections.Generic;
+using KeePassLib;
+using KeePassLib.Security;
 
 namespace keepass2android
 {
@@ -88,7 +90,7 @@ namespace keepass2android
 			GroupActivity.Launch(act, this);
 		}
 
-		public virtual void AfterAddNewEntry(EntryEditActivity entryEditActivity)
+		public virtual void AfterAddNewEntry(EntryEditActivity entryEditActivity, PwEntry newEntry)
 		{
 		}
 
@@ -97,6 +99,12 @@ namespace keepass2android
 			get { return false;}
 		}
 
+		
+		public virtual void PrepareNewEntry(PwEntry newEntry)
+		{
+			
+		}
+		
 		public const String AppTask_key = "KP2A_APPTASK";
 
 		/// <summary>
@@ -105,14 +113,17 @@ namespace keepass2android
 		/// </summary>
 		public static AppTask GetTaskInOnCreate(Bundle savedInstanceState, Intent intent)
 		{
+			AppTask task;
 			if (savedInstanceState != null)
 			{
-				return AppTask.CreateFromBundle(savedInstanceState);
+				task = AppTask.CreateFromBundle(savedInstanceState);
 			}
 			else
 			{
-				return AppTask.CreateFromIntent(intent);
+				task = AppTask.CreateFromIntent(intent);
 			}
+			Android.Util.Log.Debug("DEBUG", "Loaded task " + task.ToString());
+			return task;
 		}
 
 		public static AppTask CreateFromIntent(Intent i)
@@ -125,24 +136,23 @@ namespace keepass2android
 			if (b == null)
 				return new NullTask();
 
-			string taskType = b.GetString("KP2A_APP_TASK_TYPE");
+			string taskType = b.GetString(AppTask_key);
 
 			if (string.IsNullOrEmpty(taskType))
 				return new NullTask();
 
-			Type[] types = {typeof(SearchUrlTask), typeof(NullTask)};
-
-			foreach (Type type in types)
+			try 
 			{
-				if (taskType == type.Name)
-				{
-					AppTask task = (AppTask)Activator.CreateInstance(type);
-					task.Setup(b);
-					return task;
-				}
+				AppTask task = (AppTask)Activator.CreateInstance(Type.GetType("keepass2android."+taskType));
+				task.Setup(b);
+				return task;
+			}
+			catch (Exception e)
+			{
+				Android.Util.Log.Debug("DEBUG", "Cannot convert " + taskType + " in task: " + e.ToString());
+				return new NullTask();
 			}
 
-			return new NullTask();
 		}
 
 		/// <summary>
@@ -177,7 +187,7 @@ namespace keepass2android
 		/// </summary>
 		static IExtra GetTypeExtra(Type type)
 		{
-			return new StringExtra() { Key="KP2A_APP_TASK_TYPE", Value=type.Name};
+			return new StringExtra() { Key=AppTask_key, Value=type.Name};
 		}
 
 	}
@@ -264,6 +274,21 @@ namespace keepass2android
 				yield break;
 			}
 		}
+		
+		
+		public override void PrepareNewEntry(PwEntry newEntry)
+		{
+			newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, Url));
+					
+		}
+
+		public override void AfterAddNewEntry(EntryEditActivity entryEditActivity, PwEntry newEntry)
+		{
+			EntryActivity.Launch(entryEditActivity, newEntry, -1, new SelectEntryTask());
+			entryEditActivity.SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
+			//no need to call Finish here, that's done in EntryEditActivity ("closeOrShowError")	
+		}
+		
 		public override bool CloseEntryActivityAfterCreate
 		{
 			//if the user selects an entry before creating the new one, we're not closing the app

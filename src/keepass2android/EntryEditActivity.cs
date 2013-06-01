@@ -53,20 +53,24 @@ namespace keepass2android
 			get { return App.entryEditActivityState; }
 		}
 
-		public static void Launch(Activity act, PwEntry pw) {
+		public static void Launch(Activity act, PwEntry pw, AppTask appTask) {
 			Intent i = new Intent(act, typeof(EntryEditActivity));
 			
 			i.PutExtra(KEY_ENTRY, pw.Uuid.ToHexString());
 			
+			appTask.ToIntent(i);
+
 			act.StartActivityForResult(i, 0);
 		}
 		
-		public static void Launch(Activity act, PwGroup pw) {
+		public static void Launch(Activity act, PwGroup pw, AppTask appTask) {
 			Intent i = new Intent(act, typeof(EntryEditActivity));
 			
 			PwGroup parent = pw;
 			i.PutExtra(KEY_PARENT, parent.Uuid.ToHexString());
-			
+
+			appTask.ToIntent(i);
+
 			act.StartActivityForResult(i, 0);
 		}
 
@@ -170,6 +174,7 @@ namespace keepass2android
 					}
 				}
 			}*/
+					mAppTask.PrepareNewEntry(State.mEntryInDatabase);
 					State.mIsNew = true;
 					State.mEntryModified = true;
 					
@@ -383,7 +388,7 @@ namespace keepass2android
 			ActionOnFinish afterAddEntry = new ActionOnFinish((success, message) => 
 			{
 				if (success)
-					mAppTask.AfterAddNewEntry(this);
+					mAppTask.AfterAddNewEntry(this, newEntry);
 			},closeOrShowError);
 
 			if ( State.mIsNew ) {

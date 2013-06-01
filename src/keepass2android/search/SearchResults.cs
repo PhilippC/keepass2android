@@ -37,7 +37,6 @@ namespace keepass2android.search
 	{
 		private Database mDb;
 
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);

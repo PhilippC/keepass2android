@@ -61,7 +61,7 @@ namespace keepass2android
 		{
 			base.OnCreate(savedInstanceState);
 
-			SetResult(KeePass.EXIT_CLOSE_AFTER_SEARCH);
+			SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
 
 			mDb = App.getDB();
 
@@ -137,25 +137,41 @@ namespace keepass2android
 					return;
 				}
 			}
-			
+			//if there is exactly one match: open the entry
+			if (mGroup.Entries.Count() == 1)
+			{
+				LaunchActivityForEntry(mGroup.Entries.Single(),0);
+				return;
+			}
+
 			//show results:
 			if (mGroup == null || (mGroup.Entries.Count() < 1))
 			{
-				SetContentView(new GroupEmptyView(this));
+				//SetContentView(new GroupEmptyView(this));
+				SetContentView(Resource.Layout.searchurlresults_empty);
 			} else
 			{
-				SetContentView(new GroupViewOnlyView(this));
+				SetContentView(Resource.Layout.searchurlresults);
+				//SetContentView(new GroupViewOnlyView(this));
 			}
 			
 			setGroupTitle();
 			
 			ListAdapter = new PwGroupListAdapter(this, mGroup);
 
-			//if there is exactly one match: open the entry
-			if (mGroup.Entries.Count() == 1)
-			{
-				LaunchActivityForEntry(mGroup.Entries.Single(),0);
-			}
+			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
+			selectOtherEntry.Click += (object sender, EventArgs e) => {
+				GroupActivity.Launch (this, new SelectEntryTask());
+			};
+
+			
+			View createUrlEntry = FindViewById (Resource.Id.add_url_entry);
+			createUrlEntry.Click += (object sender, EventArgs e) => {
+				GroupActivity.Launch (this, new CreateEntryThenCloseTask() { Url = url } );
+				Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[]{GetString(Resource.String.add_entry)}), ToastLength.Long ).Show();
+			};
+
+
 		}
 		
 		private String getSearchUrl(Intent queryIntent) {

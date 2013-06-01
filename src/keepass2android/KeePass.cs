@@ -42,14 +42,17 @@ namespace keepass2android
 		public const Android.App.Result EXIT_REFRESH_TITLE = Android.App.Result.FirstUser+3;
 		public const Android.App.Result EXIT_FORCE_LOCK = Android.App.Result.FirstUser+4;
 		public const Android.App.Result EXIT_QUICK_UNLOCK = Android.App.Result.FirstUser+5;
-		public const Android.App.Result EXIT_CLOSE_AFTER_SEARCH = Android.App.Result.FirstUser+6;
+		public const Android.App.Result EXIT_CLOSE_AFTER_TASK_COMPLETE = Android.App.Result.FirstUser+6;
 		public const Android.App.Result EXIT_CHANGE_DB = Android.App.Result.FirstUser+7;
 		public const Android.App.Result EXIT_FORCE_LOCK_AND_CHANGE_DB = Android.App.Result.FirstUser+8;
 		public const Android.App.Result EXIT_RELOAD_DB = Android.App.Result.FirstUser+9;
 
+		AppTask mAppTask;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+			mAppTask = AppTask.GetTaskInOnCreate(bundle, Intent);
 			Android.Util.Log.Debug("DEBUG","KeePass.OnCreate");
 		}
 
@@ -161,9 +164,11 @@ namespace keepass2android
 			//Intent intent = new Intent(this, typeof(SearchActivity));
 			//Intent intent = new Intent(this, typeof(QuickUnlock));
 
+			mAppTask.ToIntent(intent);
+
+
 			StartActivityForResult(intent, 0);
 			Finish();
-
 
 		}
 		

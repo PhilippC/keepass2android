@@ -79,7 +79,7 @@ namespace keepass2android
 		protected void setupEditButtons() {
 			View edit =  FindViewById(Resource.Id.entry_edit);
 			edit.Click += (sender, e) => {
-					EntryEditActivity.Launch(this, mEntry);
+					EntryEditActivity.Launch(this, mEntry,mAppTask);
 			};
 		}
 		
@@ -159,6 +159,7 @@ namespace keepass2android
 
 			if (closeAfterCreate)
 			{
+				SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
 				Finish();
 			}
 		}

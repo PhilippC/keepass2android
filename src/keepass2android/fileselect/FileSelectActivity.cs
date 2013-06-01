@@ -204,7 +204,7 @@ namespace keepass2android
 			base.OnCreate(savedInstanceState);
 
 			Android.Util.Log.Debug("DEBUG", "FileSelect.OnCreate");
-			Android.Util.Log.Debug("DEBUG", "FileSelect:apptask="+Intent.GetStringExtra("KP2A_APP_TASK_TYPE"));
+			Android.Util.Log.Debug("DEBUG", "FileSelect:apptask="+Intent.GetStringExtra("KP2A_APPTASK"));
 
 			if (Intent.Action == Intent.ActionSend)
 			{
@@ -427,7 +427,7 @@ namespace keepass2android
 
 			createdWithActivityResult = true;
 
-			if (resultCode == KeePass.EXIT_CLOSE_AFTER_SEARCH)
+			if (resultCode == KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE)
 			{
 				Finish();
 				return;

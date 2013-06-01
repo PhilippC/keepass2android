@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <keepass2android.view.GroupHeaderView
+        android:id="@+id/group_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        style="@style/GroupAndEntryHeader">
+        <Button
+            android:id="@+id/select_other_entry"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/select_other_entry" />
+        <Button
+            android:id="@+id/add_url_entry"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/select_other_entry"
+            android:layout_alignParentBottom="true"
+            android:text="@string/add_url_entry" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_bar"
+        android:scaleType="fitXY"
+        android:tint="@color/blue_highlight"
+        android:src="@android:drawable/divider_horizontal_dark" />
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/divider2"
+        android:layout_below="@id/group_header" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@android:id/list"
+        android:text="@string/no_results" />
+</RelativeLayout>
