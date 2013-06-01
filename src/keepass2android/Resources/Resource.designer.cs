@@ -1278,23 +1278,26 @@ namespace keepass2android
 			// aapt resource value: 0x7f0800f5
 			public const int BinaryDirectory_title = 2131230965;
 			
+			// aapt resource value: 0x7f080125
+			public const int ChangeLog = 2131231013;
+			
 			// aapt resource value: 0x7f080124
-			public const int ChangeLog = 2131231012;
-			
-			// aapt resource value: 0x7f080123
-			public const int ChangeLog_0_7 = 2131231011;
-			
-			// aapt resource value: 0x7f080121
-			public const int ChangeLog_0_8 = 2131231009;
-			
-			// aapt resource value: 0x7f080120
-			public const int ChangeLog_0_8_1 = 2131231008;
-			
-			// aapt resource value: 0x7f08011f
-			public const int ChangeLog_0_8_2 = 2131231007;
+			public const int ChangeLog_0_7 = 2131231012;
 			
 			// aapt resource value: 0x7f080122
-			public const int ChangeLog_keptDonate = 2131231010;
+			public const int ChangeLog_0_8 = 2131231010;
+			
+			// aapt resource value: 0x7f080121
+			public const int ChangeLog_0_8_1 = 2131231009;
+			
+			// aapt resource value: 0x7f080120
+			public const int ChangeLog_0_8_2 = 2131231008;
+			
+			// aapt resource value: 0x7f08011f
+			public const int ChangeLog_0_8_3 = 2131231007;
+			
+			// aapt resource value: 0x7f080123
+			public const int ChangeLog_keptDonate = 2131231011;
 			
 			// aapt resource value: 0x7f08011e
 			public const int ChangeLog_title = 2131231006;

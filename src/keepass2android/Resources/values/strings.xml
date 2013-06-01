@@ -241,6 +241,15 @@
   <string name="rate_app">Rate this app</string>
   <string name="translate_app">Translate KP2A</string>
   <string name="ChangeLog_title">Change log</string>
+  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
+* Username/TAN index displayed in entry list (see settings)\n
+* Entries can be created if search from browser doesn\'t return results\n
+* KP2A keyboard provides possibility to search for credentials for current app\n
+* App automatically closes after selecting an entry for use in keyboard\n
+* Keyboard selection dialog automatically opens after search for URL (see settings)\n
+* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
+* minor bug fixes
+  </string>
   <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
 * Support for Digest Authentication in WebDAV\n
 * Bugfixes (OI File manager, Open URL)
