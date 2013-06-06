@@ -4,6 +4,7 @@
   <string name="word_separators">\u0020.,;:!?\n()[]*&amp;@{}/&lt;&gt;_+=|\"</string>
   <string name="change_entry">Vyberte další položku</string>
   <string name="open_entry">Vybrat položku</string>
+  <string name="open_entry_for_app">Hledat položky s \"%1$s\"</string>
   <string name="label_go_key">Jít</string>
   <string name="label_next_key">Další</string>
   <string name="label_send_key">Odeslat</string>

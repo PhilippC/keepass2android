@@ -8,6 +8,7 @@
 Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird nach den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
   <string name="accept">Akzeptieren</string>
   <string name="add_entry">Eintrag hinzufügen</string>
+  <string name="add_url_entry">Eintrag für URL anlegen</string>
   <string name="add_group">Gruppe hinzufügen</string>
   <string name="add_group_title">Gruppe hinzufügen</string>
   <string name="algorithm">Algorithmus</string>
@@ -164,6 +165,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="search_hint">Suchbegriff(e)</string>
   <string name="search_results">Suchergebnisse</string>
   <string name="search_in">Suche in</string>
+  <string name="select_other_entry">Anderen Eintrag wählen</string>
+  <string name="select_group_then_add">Gehe zur gewünschten Gruppe, dann drücke \"%1$s\"!</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Unterstrichen</string>
   <string name="unsupported_db_version">Datenbankversion wird nicht unterstützt.</string>
@@ -174,6 +177,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="regular_expression">Regulärer Ausdruck</string>
   <string name="TanExpiresOnUse_title">Tan verfällt bei Verwendung</string>
   <string name="TanExpiresOnUse_summary">TAN Einträge als abgelaufen markieren, wenn sie geöffnet werden</string>
+  <string name="ShowUsernameInList_title">Zeige Benutzernamen in Liste</string>
+  <string name="ShowUsernameInList_summary">Zeige Benutzernamen unter den Titeln der Einträge. Hilfreich bei mehreren Accounts für einen Dienst oder bei TANs.</string>
   <string name="kp2a_findUrl">Passwort suchen (KP2A)</string>
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
   <string name="search_options">Optionen</string>
@@ -216,6 +221,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
   <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Tastatur-Aktivierung</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zur Auswahl der Tastatur automatisch anzeigen, wenn ein Eintrag nach Suche über die KP2A-Tastatur verfügbar ist.</string>
   <string name="AskOverwriteBinary">Möchtest du den vorhandenen Anhang mit dem gleichen Namen überschreiben?</string>
   <string name="AskOverwriteBinary_title">Vorhandenen Anhang überschreiben?</string>
   <string name="AskOverwriteBinary_yes">Überschreiben</string>
@@ -233,6 +240,17 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="rate_app">Diese App bewerten</string>
   <string name="translate_app">KP2A übersetzen</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
+* Benutzername/TAN index wird in Liste der Einträge angezeigt (s. Einstellungen)\n
+* Einträge können neu angelegt werden, wenn Suche aus Browser kein Ergebnis gebracht hat\n
+* KP2A-Tastatur erlaubt Suche nach Zugangsdaten für die aktive App\n
+* App schließt sich automatisch nach Auswahl eines Eintrags über die Tastatur\n
+* Dialog zur Tastatur-Auswahl öffnet sich automatisch nach Suche nach einer URL (s. Einstellungen)\n
+* Platzhalter in Eintragsfeldern werden ersetzt vor dem Kopieren (die meisten Platzhalter werden unterstützt)\n
+* kleinere Bug-Fixes</string>
+  <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
+* Unterstützung für Digest Authentication in WebDAV\n
+* Bugfixes (OI File manager, URL öffnen)</string>
   <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n
 * KP2A Offline and \"Online\" können wieder parallel zueinander installiert werden\n
 * Neue Übersetzungen hinzugefügt (Danke an alle Helfer!)

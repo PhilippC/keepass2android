@@ -47,6 +47,7 @@
   <string name="entry_cancel">Cancelar</string>
   <string name="entry_comment">Comentario</string>
   <string name="entry_tags">Etiquetas</string>
+  <string name="entry_override_url">Reemplazar URL</string>
   <string name="entry_confpassword">Confirmar contraseña</string>
   <string name="entry_created">Creación</string>
   <string name="entry_expires">Caducidad</string>
@@ -93,6 +94,7 @@
   <string name="hint_login_pass">Contraseña</string>
   <string name="hint_title">combre</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">reemplazar url</string>
   <string name="hint_tags">etiqueta1, etiqueta2</string>
   <string name="hint_username">nombre de usuario</string>
   <string name="install_from_market">Instalar desde Market</string>
@@ -158,6 +160,7 @@
   <string name="sort_name">Ordenar por nombre</string>
   <string name="sort_db">Orden de BD</string>
   <string name="special">Especial</string>
+  <string name="search_hint">Busqueda</string>
   <string name="search_results">Resultados de búsqueda</string>
   <string name="search_in">Buscar en</string>
   <string name="twofish">Twofish</string>
@@ -168,9 +171,12 @@
   <string name="warning_unmounted">Actualmente su tarjeta SD no está montada en el dispositivo. No podrá cargar o crear su base de datos.</string>
   <string name="version_label">Versión</string>
   <string name="regular_expression">Expresión común</string>
+  <string name="TanExpiresOnUse_title">Tan caduca con el uso</string>
+  <string name="TanExpiresOnUse_summary">Marcar entradas TAN vencidas al usarlas</string>
   <string name="kp2a_findUrl">Keepass2Android: Buscar contraseña</string>
   <string name="excludeExpiredEntries">Excluir las entradas caducadas</string>
   <string name="search_options">Opciones</string>
+  <string name="caseSensitive">Distingue mayúsculas</string>
   <string name="start_open_file">Abrir el archivo...</string>
   <string name="start_create">Crear nueva base de datos...</string>
   <string name="start_open_url">Abrir URL...</string>
@@ -195,16 +201,40 @@
   <string name="SaveAttachment_doneMessage">Guardar el archivo en %1$ s.</string>
   <string name="SaveAttachment_Failed">No se puede guardar el archivo adjunto en %1$ s.</string>
   <string name="error_invalid_expiry_date">¡Formato de fecha/hora no válida para establecer fecha de caducidad!</string>
+  <string name="error_string_key">Se requiere un nombre en cada entrada.</string>
   <string name="field_name">Nombre del campo</string>
   <string name="field_value">Valor del campo</string>
   <string name="protection">Protección de memoria</string>
   <string name="add_binary">Agregar archivo adjunto...</string>
+  <string name="add_extra_string">Agregar una cadena</string>
   <string name="database_loaded_quickunlock_enabled">Base de datos cargada, Desbloqueo Rápido habilitado.</string>
   <string name="credentials_dialog_title">Escriba las credenciales de servidor</string>
   <string name="UseFileTransactions_title">Archivo de movimientos</string>
   <string name="UseFileTransactions_summary">Utilizar el archivo de movimientos para escribir las bases de datos</string>
   <string name="ShowCopyToClipboardNotification_title">Notificaciones del portapapeles</string>
+  <string name="ShowCopyToClipboardNotification_summary">Hacer accesible a través de la barra de notificación y portapapeles el nombre de usuario y contraseña. Cuidado con sniffers!</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificación de teclado KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Hacer toda la entrada accesible a través del teclado de KP2A (recomendado).</string>
+  <string name="AskOverwriteBinary">¿Desea sobrescribir el binario existente con el mismo nombre?</string>
+  <string name="AskOverwriteBinary_title">¿Sobrescribir binario existente?</string>
+  <string name="AskOverwriteBinary_yes">Sobrescribir</string>
+  <string name="AskOverwriteBinary_no">Renombar</string>
+  <string name="AttachFailed">Error al agregar el archivo adjunto.</string>
+  <string name="RecycleBin">Papelera de reciclaje</string>
+  <string name="AskDeletePermanentlyEntry">¿Desea eliminar esta entrada de forma permanente? Presione No para reciclar.</string>
+  <string name="AskDeletePermanentlyGroup">¿Desea eliminar este grupo de forma permanente? Presione No para reciclar.</string>
+  <string name="AskDeletePermanently_title">Borrar permanentemente?</string>
+  <string name="AskReloadFile_title">¿Volver a cargar el archivo?</string>
+  <string name="AskReloadFile">El archivo que está actualmente abierto fue modificado por otro programa. ¿Desea la recarga?</string>
+  <string name="AskDiscardChanges">¿Realmente desea descartar los cambios realizados? (El botón Guardar se encuentra en la parte superior del formulario.)</string>
+  <string name="AskDiscardChanges_title">¿Descartar cambios?</string>
+  <string name="suggest_improvements">Sugerir o votar para mejoras</string>
+  <string name="rate_app">Calificar esta aplicación</string>
+  <string name="translate_app">Traducir KP2A</string>
   <string name="ChangeLog_title">Registro de cambios</string>
+  <string name="ChangeLog_0_8_1"><b>Versión 0.8.1</b> \n 
+* KP2A Offline y \"Online\" pueden instalarse de nuevo\n 
+* Nuevas traducciones añadidas (gracias a todos los contribuyentes!) </string>
   <string name="ChangeLog_0_8"><b>Versión 0.8</b> \n 
 *Mejorada la interfaz de usuario, especialmente para dispositivos Android 4.x\n
 *Se permite la selección de archivos ya existentes mediante gestores de archivos\n
@@ -212,6 +242,24 @@
 *Corrección de errores durante la edición\n
 *Introducidos probablemente nuevos errores :-)</string>
   <string name="ChangeLog_keptDonate">Ofrecemos la posibilidad de donarnos una cerveza u otra cosa</string>
+  <string name="ChangeLog_0_7"><b>Versión 0.7</b> \n 
+* Velocidad de carga aumentada: transformaciones de llaves 10 veces más rápido! \n 
+* Nuevo Teclado Keepass2Android: cambia a este teclado para introducir credenciales. Le protege de sniffers de contraseñas basados en el portapapeles (desactiva las notificaciones anteriores del portapapeles en las opciones) \n 
+* Añadida opción de donar una cerveza u otra cosa (ver menú)
+</string>
+  <string name="ChangeLog"><b>Versión 0.6.2</b> \n 
+* Integración con Google Drive/Dropbox /... : Utilice las Apps oficiales de Google Drive o Dropbox para abrir cualquier archivo de .kdbx. Esto abrirá ahora KP2A.\n 
+* Cuadro de búsqueda mejorado \n 
+* Resultados de la búsqueda mejorados para URLs compartidas con subdominios\n 
+* Opciones para enviar retroalimentación, calificar y traducir la aplicación en el menú\n 
+\n 
+<b>versión 0.6.1</b> \n 
+* Detecta cuando cambia la base de datos en el fondo (es decir, debido a la actividad de una aplicación de sincronización) \n 
+* Búsqueda de URLs del navegador\n 
+* Diálogo de confirmación cuando se deshaga de cambios\n
+ \n 
+<b>versión 0.6</b> \n 
+Publicación inicial</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>

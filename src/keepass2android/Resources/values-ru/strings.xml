@@ -7,6 +7,7 @@
   <string name="CreditsText">Пользовательский интерфейс на основе порта KeepassDroid, разработанной Брайан Пеллин. Код для операций базы данных основан на KeePass Доминик Райхль. Android робот воспроизводён или модифицирован или изменение от работы, созданной и опубликованной Google и используются в соответствии с условиями, описанными в лицензии Creative Commons 3.0 Attribution.</string>
   <string name="accept">Принять</string>
   <string name="add_entry">Новая запись</string>
+  <string name="add_url_entry">Создать запись для URL</string>
   <string name="add_group">Новая группа</string>
   <string name="add_group_title">Новая группа</string>
   <string name="algorithm">Алгоритм</string>
@@ -163,6 +164,8 @@
   <string name="search_hint">Что найти</string>
   <string name="search_results">Результаты поиска</string>
   <string name="search_in">Поиск в</string>
+  <string name="select_other_entry">Выбрать другую запись</string>
+  <string name="select_group_then_add">Откройте требуемую группу, а затем нажмите \"%1$s\"!</string>
   <string name="twofish">Twofish</string>
   <string name="underline">_Подчёркивание_</string>
   <string name="unsupported_db_version">Неподдерживаемая версия базы</string>
@@ -173,6 +176,8 @@
   <string name="regular_expression">Регулярное выражение</string>
   <string name="TanExpiresOnUse_title">TAN устаревают при использовании</string>
   <string name="TanExpiresOnUse_summary">Помечать TAN записи как устаревшие при их использовании</string>
+  <string name="ShowUsernameInList_title">Отображать имя пользователя в списке</string>
+  <string name="ShowUsernameInList_summary">Отображать имена пользователей под заголовками. Полезно для множественных аккаунтов или TAN.</string>
   <string name="kp2a_findUrl">Keepass2Android: Найти пароль</string>
   <string name="excludeExpiredEntries">Исключить просроченные записи</string>
   <string name="search_options">Параметры</string>
@@ -183,7 +188,7 @@
   <string name="start_create_import">Импорт файла в новую базу данных...</string>
   <string name="enter_filename_details_url">Необходимо указать полный URL, включая протокол, например http://.</string>
   <string name="enter_filename_details_create_import">На следующем шаге будет выбран файл для импорта.</string>
-  <string name="enable_quickunlock">Включите БыструюРазблокировку</string>
+  <string name="enable_quickunlock">Включить БыструюРазблокировку</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
   <string name="QuickUnlock_button">БыстраяРазблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть базу данных</string>
@@ -215,6 +220,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Сделать имя пользователя и пароль доступными через панель уведомлений и буфер обмена. Остерегайтесь перехватчиков паролей!</string>
   <string name="ShowKp2aKeyboardNotification_title">Уведомления клавиатуры KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Сделайте всю запись доступной через клавиатуру KP2A (рекомендуется).</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Диалог выбора клавиатуры</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Открывать диалог выбора клавиатуры, когда запись доступна через клавиатуру KP2A после поиска.</string>
   <string name="AskOverwriteBinary">Вы хотите перезаписать существующий двоичный файл с тем же именем?</string>
   <string name="AskOverwriteBinary_title">Перезаписать существующий двоичный файл?</string>
   <string name="AskOverwriteBinary_yes">Перезаписать</string>
@@ -232,6 +239,19 @@
   <string name="rate_app">Оцените это приложение</string>
   <string name="translate_app">Переведите KP2A</string>
   <string name="ChangeLog_title">Список изменений</string>
+  <string name="ChangeLog_0_8_3"><b>Версия 0.8.3</b>\n
+* Отображение имени пользователя/TAN в списке записей (см. в настройках)\n
+* Записи могут быть созданы, если поиск из браузера ничего не вернул\n
+* Клавиатура KP2A предоставляет возможность искать записи для текущего приложения\n
+* Приложение автоматически закроется после выбора пункта с помощью клавиатуры\n
+* Диалог выбора клавиатуры автоматически открывается после поиска URL (см. настройки)\n
+* Подстановочные знаки в полях ввода заменяются перед копированием (поддерживается большинство подстановочных знаков)\n
+* Исправлены мелкие ошибки
+  </string>
+  <string name="ChangeLog_0_8_2"><b>Версия 0.8.2</b>\n
+* Поддержка Digest аутентификации в WebDAV\n
+* Исправления ошибок (OI File manager, Открыть URL)
+</string>
   <string name="ChangeLog_0_8_1"><b>Версия 0.8.1</b> \n
 * KP2A Offline и «Online» снова могут быть установлены совместно\n
 * добавлены новые переводы (спасибо всем участникам!)

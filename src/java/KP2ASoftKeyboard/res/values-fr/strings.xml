@@ -4,6 +4,7 @@
   <string name="word_separators">\u0020.,;:!?\n()[]*&amp;@{}/&lt;&gt;_+=|\"</string>
   <string name="change_entry">Choisir une autre entrée</string>
   <string name="open_entry">Choisir une entrée</string>
+  <string name="open_entry_for_app">Rechercher une entrée avec \"%1$s\"</string>
   <string name="label_go_key">Go</string>
   <string name="label_next_key">Suivant</string>
   <string name="label_send_key">Envoyer</string>

@@ -7,6 +7,7 @@
   <string name="CreditsText">Uživatelské rozhraní je založeno na portu KeepassDroid (vyvinul Brian Pellin). Kód pro databázové operace je vychází z kódu pro KeePass (napsal Dominik Reichl). Logo Android robota vychází z verze sdílené Googlem a je upraveno a použito dle podmínek popsaných v licenci Creative Commons 3.0.</string>
   <string name="accept">Přijat</string>
   <string name="add_entry">Přidat záznam</string>
+  <string name="add_url_entry">Vytvořit položku pro adresu URL</string>
   <string name="add_group">Přidat skupinu</string>
   <string name="add_group_title">Přidat skupinu</string>
   <string name="algorithm">Algoritmus</string>
@@ -163,6 +164,8 @@
   <string name="search_hint">Co najít</string>
   <string name="search_results">Výsledky hledání</string>
   <string name="search_in">Hledat v</string>
+  <string name="select_other_entry">Vyberte další položku</string>
+  <string name="select_group_then_add">Otevřete požadovanou skupinu a poté stiskněte \"%1$s\"!</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Podtrženo</string>
   <string name="unsupported_db_version">Nepodporovaná verze databáze.</string>
@@ -173,6 +176,8 @@
   <string name="regular_expression">Regulární výraz</string>
   <string name="TanExpiresOnUse_title">Tan vyprší při použití</string>
   <string name="TanExpiresOnUse_summary">Při použití označovat vypršelé TAN položky</string>
+  <string name="ShowUsernameInList_title">Zobrazit uživatelské jméno v seznamu</string>
+  <string name="ShowUsernameInList_summary">Zobrazit uživatelská jména pod titulky položek . Užitečné pro vícenásobné účty nebo TANy.</string>
   <string name="kp2a_findUrl">Keepass2Android: Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit neplatné položky</string>
   <string name="search_options">Možnosti</string>
@@ -215,6 +220,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Zpřístupnění uživatelského jména a hesla prostřednictvím oznamovacího oblasti a schránky. Pozor na skenery hesel!</string>
   <string name="ShowKp2aKeyboardNotification_title">Oznámení klávesnice KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Zpřístupněte celý záznam prostřednictvím klávesnice KP2A (doporučeno).</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Dialog pro výběr klávesnice</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Dialog pro výběr vstupu pomocí klávesnice je po hledání k dispozici prostřednictvím KP2A klávesnice.</string>
   <string name="AskOverwriteBinary">Chcete přepsat existující binární soubor se stejným názvem?</string>
   <string name="AskOverwriteBinary_title">Přepsat existující binární soubor?</string>
   <string name="AskOverwriteBinary_yes">Přepsat</string>
@@ -232,6 +239,23 @@
   <string name="rate_app">Ohodnoťte tuto aplikaci</string>
   <string name="translate_app">Přeložit KP2A</string>
   <string name="ChangeLog_title">Protokol změn</string>
+  <string name="ChangeLog_0_8_3"><b>Verze 0.8.3</b>\n
+* Uživatelské jméno/TAN index je zobrazen v seznamu položek (viz nastavení)\n
+* Pokud hledání z prohlížeče nenalezne žádný záznam, je možno vytvořit nové polžky\n
+* KP2A klávesnice nabízí možnost hledání jména/hesla pro aktuálně používanou aplikaci\n
+* Aplikace se automaticky zavře po výběru položky pro použití v klávesnici\n
+* Dialog výběru klávesnice se automaticky otevírá po hledání adresy URL (viz nastavení)\n
+* Zástupné a popisné položky ve vstupních polích  jsou nahrazeny před kopírováním (většina popisků podporována)\n
+* opravy drobných chyb
+  </string>
+  <string name="ChangeLog_0_8_2"><b>Verze 0.8.2</b>\n
+* podpora pro ověřování algoritmem Digest Authentication pro WebDAV\n
+* Opravy chyb (správce souborů, otevřít adresu URL)
+</string>
+  <string name="ChangeLog_0_8_1"><b>Verze 0.8.1</b>\n
+* KP2A Offline a \"Online\" mohou opět být nainstalovány společně\n
+* Přidány nové překlady (díky všem přispěvatelům!)
+</string>
   <string name="ChangeLog_0_8"><b>Verze 0.8</b>\n
 * Vylepšené uživatelské rozhraní, obzvláště pro  zařízení s Android 4.x\n
 * Volitelná volba správce souborů pro výběr existujících souborů\n

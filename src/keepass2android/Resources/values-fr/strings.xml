@@ -7,6 +7,7 @@
   <string name="CreditsText">L\'interface est basée sur un port de KeepassDroid, développée par Brian Pellin. Le code pour les opérations sur la base de donnée est basé sur Keepass, de Dominik Reichl. Le robot Android est une modification d\'une œuvre de Google, utilisée selon les  termes de la licence Creative Commons 3.0 BY.</string>
   <string name="accept">Accepter</string>
   <string name="add_entry">Ajouter une entrée</string>
+  <string name="add_url_entry">Créer une entrée pour l\'URL</string>
   <string name="add_group">Ajouter un groupe</string>
   <string name="add_group_title">Ajouter un groupe</string>
   <string name="algorithm">Algorithme</string>
@@ -25,7 +26,7 @@
   <string name="cancel">Annuler</string>
   <string name="ClearClipboard">Presse-papier nettoyé.</string>
   <string name="clipboard_timeout">Délai de purge du presse-papiers</string>
-  <string name="clipboard_timeout_summary">Temps avant d\'effacer le presse-papiers après avoir copié le nom d\'utilisateur ou le mot de passe</string>
+  <string name="clipboard_timeout_summary">Temps avant d\'effacer le presse-papiers lorsque des identifiants ont été copiés</string>
   <string name="copy_username">Cliquez pour copier le nom d\'utilisateur</string>
   <string name="copy_password">Cliquez pour copier le mot de passe</string>
   <string name="available_through_keyboard">L\'entrée est disponible via le clavier KP2A</string>
@@ -105,7 +106,7 @@
   <string name="keyfile_does_not_exist">La clé de chiffrement n\'existe pas.</string>
   <string name="keyfile_is_empty">Le fichier de clés est vide.</string>
   <string name="length">Longueur</string>
-  <string name="list_size_title">Taille de la liste des groupes</string>
+  <string name="list_size_title">Texte de la liste des groupes</string>
   <string name="list_size_summary">Taille du texte dans la liste des groupes</string>
   <string name="loading_database">Chargement de la base de données…</string>
   <string name="lowercase">Minuscules</string>
@@ -139,7 +140,7 @@
   <string name="open_recent">bases de données récemment ouvertes (cliquez pour ouvrir) </string>
   <string name="omitbackup_title">Ne pas chercher dans les sauvegardes et la corbeille</string>
   <string name="omitbackup_summary">Omettre les groupes \"Sauvegarde\" et \"Corbeille\" des résultats de recherche</string>
-  <string name="pass_filename">Nom de fichier de base de données KeePass </string>
+  <string name="pass_filename">Base de données KeePass</string>
   <string name="password_title">Entrez le mot de passe de la base de données</string>
   <string name="progress_create">Création d\'une nouvelle base de données…</string>
   <string name="progress_title">En cours…</string>
@@ -163,6 +164,8 @@
   <string name="search_hint">Rechercher</string>
   <string name="search_results">Résultats de la recherche</string>
   <string name="search_in">Chercher dans</string>
+  <string name="select_other_entry">Sélectionner une autre entrée</string>
+  <string name="select_group_then_add">Ouvrez le groupe désiré, puis appuyez sur \"%1$s\" !</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Tiret bas</string>
   <string name="unsupported_db_version">Version de base de données non pris en charge.</string>
@@ -173,6 +176,8 @@
   <string name="regular_expression">Expression régulière</string>
   <string name="TanExpiresOnUse_title">TAN expire lors de l\'utilisation</string>
   <string name="TanExpiresOnUse_summary">Marquer les entrées TAN expirées lors de leur utilisation</string>
+  <string name="ShowUsernameInList_title">Afficher le nom d\'utilisateur dans la liste</string>
+  <string name="ShowUsernameInList_summary">Afficher les noms d\'utilisateurs sous les titres des entrées. Utile si vous avez plusieurs comptes ou des TANs.</string>
   <string name="kp2a_findUrl">KeePass2Android : Trouver le mot de passe</string>
   <string name="excludeExpiredEntries">Exclure les entrées arrivées à expiration</string>
   <string name="search_options">Options</string>
@@ -208,13 +213,15 @@
   <string name="add_binary">Ajouter une pièce jointe...</string>
   <string name="add_extra_string">Ajouter une chaîne de caractère supplémentaire</string>
   <string name="database_loaded_quickunlock_enabled">Base de donnée chargée, QuickUnlock activé.</string>
-  <string name="credentials_dialog_title">Entrez les certificats du serveur</string>
+  <string name="credentials_dialog_title">Entrez vos identifiants pour le serveur</string>
   <string name="UseFileTransactions_title">File transactions</string>
   <string name="UseFileTransactions_summary">Utiliser les opérations sur les fichiers pour écrire les bases de données</string>
   <string name="ShowCopyToClipboardNotification_title">Barre de notification et presse-papiers</string>
   <string name="ShowCopyToClipboardNotification_summary">Rend le nom d\'utilisateur et le mot de passe accessibles via la barre de notification et le presse-papiers. Attention au sniffers de mot de passes !</string>
   <string name="ShowKp2aKeyboardNotification_title">Barre de notification et clavier KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Rend l\'entrée pleinement accessible via le clavier KP2A (recommandé).</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Boîte de sélection de clavier</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Ouvrir la boîte de sélection de clavier quand une entrée est disponible avec le clavier KP2A après la recherche.</string>
   <string name="AskOverwriteBinary">Voulez-vous écraser le fichier existant en utilisant le même nom ?</string>
   <string name="AskOverwriteBinary_title">Écraser le fichier existant ?</string>
   <string name="AskOverwriteBinary_yes">Écraser</string>
@@ -232,6 +239,22 @@
   <string name="rate_app">Noter cette application</string>
   <string name="translate_app">Traduire KP2A</string>
   <string name="ChangeLog_title">Journal des modifications</string>
+  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
+* Nom d\'utilisateur/TAN affiché dans la liste des entrées (voir les préférences)\n
+* Les entrées peuvent être créées lorsqu\'elles ne sont pas trouvées\n
+* Le clavier KP2A permet de chercher les identifiants pour l\'application courante\n
+* L\'application se ferme automatiquement après la sélection d\'identifiants via le clavier\n
+* La fenêtre de sélection du clavier s\'ouvre automatiquement après la recherche d\'une URL (voir préférences)\n
+* Les <i>placeholders</i> compris dans les champs sont remplacés avant la copie (un grand nombre de <i>placeholders</i> sont supportés.)\n
+* Résolution de bugs mineurs</string>
+  <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
+* Support pour la Digest Authentication avec WebDAV\n
+* Résolution de bugs (OI File manager, Open URL)
+</string>
+  <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b> \n 
+* KP2A en mode hors connexion et \"En ligne\" peuvent être installés de nouveau\n 
+* Ajouté de nouvelles traductions (Merci à tous les contributeurs!) 
+</string>
   <string name="ChangeLog_0_8"><b>Version 0.8</b> \n
 * Interface utilisateur améliorée pour les terminaux Android 4.x\n
 * Autorise l\'utilisation d\'un gestionnaires de fichiers pour sélectionner un fichier existant\n
