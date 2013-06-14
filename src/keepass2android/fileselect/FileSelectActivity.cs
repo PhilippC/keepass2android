@@ -171,10 +171,11 @@ namespace keepass2android
 					new LaunchGroupActivity(IOConnectionInfo.FromPath(filename), this), this);
 				
 				// Create the new database
-				CreateDB create = new CreateDB(this, IOConnectionInfo.FromPath(filename), password, true);
+				CreateDB create = new CreateDB(App.Kp2a, this, IOConnectionInfo.FromPath(filename), password, true);
 				ProgressTask createTask = new ProgressTask(
+                    App.Kp2a,
 					this, create,
-					Resource.String.progress_create);
+					UiStringKey.progress_create);
 				createTask.run();
 				
 				
@@ -216,7 +217,7 @@ namespace keepass2android
 			}
 
 
-			mDbHelper = App.fileDbHelper;
+			mDbHelper = App.Kp2a.fileDbHelper;
 			if (mDbHelper.hasRecentFiles())
 			{
 				recentMode = true;
@@ -317,7 +318,7 @@ namespace keepass2android
 			public override void run() {
 				if (mSuccess) {
 					// Add to recent files
-					FileDbHelper dbHelper = App.fileDbHelper;
+					FileDbHelper dbHelper = App.Kp2a.fileDbHelper;
 
 					//TODO: getFilename always returns "" -> bug?
 					dbHelper.createFile(mIoc, getFilename());
@@ -484,9 +485,9 @@ namespace keepass2android
 
 			if (!createdWithActivityResult)
 			{
-				if ((Intent.Action == Intent.ActionSend) && (App.getDB().Loaded))
+				if ((Intent.Action == Intent.ActionSend) && (App.Kp2a.GetDb().Loaded))
 				{
-					PasswordActivity.Launch(this, App.getDB().mIoc , mAppTask);
+					PasswordActivity.Launch(this, App.Kp2a.GetDb().mIoc , mAppTask);
 				} else
 				{
 					

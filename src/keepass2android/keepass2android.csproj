@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -77,13 +77,12 @@
     <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="icons\DrawableFactory.cs" />
+    <Compile Include="icons\Icons.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KeePass.cs" />
-    <Compile Include="database\edit\OnFinish.cs" />
-    <Compile Include="database\edit\FileOnFinish.cs" />
     <Compile Include="app\App.cs" />
-    <Compile Include="Database.cs" />
     <Compile Include="fileselect\FileSelectActivity.cs" />
     <Compile Include="fileselect\FileDbHelper.cs" />
     <Compile Include="Utils\Util.cs" />
@@ -92,12 +91,6 @@
     <Compile Include="fileselect\BrowserDialog.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="timers\Timeout.cs" />
-    <Compile Include="database\edit\LoadDB.cs" />
-    <Compile Include="database\edit\RunnableOnFinish.cs" />
-    <Compile Include="UpdateStatus.cs" />
-    <Compile Include="ProgressTask.cs" />
-    <Compile Include="icons\DrawableFactory.cs" />
-    <Compile Include="search\SearchDbHelper.cs" />
     <Compile Include="GroupActivity.cs" />
     <Compile Include="GroupBaseActivity.cs" />
     <Compile Include="LockCloseListActivity.cs" />
@@ -111,16 +104,10 @@
     <Compile Include="settings\PrefsUtil.cs" />
     <Compile Include="views\PwEntryView.cs" />
     <Compile Include="views\GroupHeaderView.cs" />
-    <Compile Include="PwUuidEqualityComparer.cs" />
-    <Compile Include="icons\Icons.cs" />
     <Compile Include="BitmapDrawableCompat.cs" />
     <Compile Include="GroupEditActivity.cs" />
-    <Compile Include="database\edit\AddGroup.cs" />
-    <Compile Include="database\edit\SaveDB.cs" />
     <Compile Include="EntryEditActivity.cs" />
     <Compile Include="LockCloseActivity.cs" />
-    <Compile Include="database\edit\AddEntry.cs" />
-    <Compile Include="database\edit\UpdateEntry.cs" />
     <Compile Include="EntryActivity.cs" />
     <Compile Include="GeneratePasswordActivity.cs" />
     <Compile Include="password\PasswordGenerator.cs" />
@@ -134,20 +121,13 @@
     <Compile Include="LockingPreferenceActivity.cs" />
     <Compile Include="SetPasswordDialog.cs" />
     <Compile Include="CancelDialog.cs" />
-    <Compile Include="database\edit\SetPassword.cs" />
-    <Compile Include="database\edit\CreateDB.cs" />
     <Compile Include="AboutDialog.cs" />
     <Compile Include="settings\AppSettingsActivity.cs" />
     <Compile Include="settings\RoundsPreference.cs" />
-    <Compile Include="KeyFileException.cs" />
     <Compile Include="PasswordActivity.cs" />
-    <Compile Include="database\edit\DeleteGroup.cs" />
-    <Compile Include="PwGroupEqualityFromIdComparer.cs" />
-    <Compile Include="database\edit\DeleteEntry.cs" />
     <Compile Include="search\SearchResults.cs" />
     <Compile Include="compat\EditorCompat.cs" />
     <Compile Include="compat\ActivityCompat.cs" />
-    <Compile Include="database\edit\ActionOnFinish.cs" />
     <Compile Include="ShareUrlResults.cs" />
     <Compile Include="services\TimeoutService.cs" />
     <Compile Include="services\CopyToClipboardService.cs" />
@@ -157,7 +137,6 @@
     <Compile Include="LifecycleDebugActivity.cs" />
     <Compile Include="services\QuickUnlockForegroundService.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="database\edit\DeleteRunnable.cs" />
     <Compile Include="views\FileSelectButtons.cs" />
     <Compile Include="EntryEditActivityState.cs" />
     <Compile Include="AttachmentContentProvider.cs" />
@@ -657,61 +636,16 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="database\" />
-    <Folder Include="database\edit\" />
-    <Folder Include="app\" />
-    <Folder Include="fileselect\" />
-    <Folder Include="Utils\" />
-    <Folder Include="intents\" />
-    <Folder Include="views\" />
-    <Folder Include="timeout\" />
-    <Folder Include="timers\" />
-    <Folder Include="services\" />
-    <Folder Include="icons\" />
-    <Folder Include="search\" />
-    <Folder Include="settings\" />
-    <Folder Include="password\" />
-    <Folder Include="compat\" />
-    <Folder Include="Resources\menu-v11\" />
-    <Folder Include="Resources\drawable-hdpi\" />
-    <Folder Include="Resources\drawable-ldpi\" />
-    <Folder Include="Resources\drawable-mdpi\" />
-    <Folder Include="Resources\drawable-xhdpi\" />
-    <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Resources\drawable-v11\" />
-    <Folder Include="Resources\values-de\" />
-    <Folder Include="Resources\values-ca\" />
-    <Folder Include="Resources\values-cs\" />
-    <Folder Include="Resources\values-da\" />
-    <Folder Include="Resources\values-es\" />
-    <Folder Include="Resources\values-fr\" />
-    <Folder Include="Resources\values-hu\" />
-    <Folder Include="Resources\values-it\" />
-    <Folder Include="Resources\values-ja\" />
-    <Folder Include="Resources\values-nl\" />
-    <Folder Include="Resources\values-nn\" />
-    <Folder Include="Resources\values-pl\" />
-    <Folder Include="Resources\values-pt-rBR\" />
-    <Folder Include="Resources\values-ru\" />
-    <Folder Include="Resources\values-sk\" />
-    <Folder Include="Resources\values-uk\" />
-    <Folder Include="Resources\values-zh-rCN\" />
-    <Folder Include="Resources\values-zh-rTW\" />
-    <Folder Include="SupportLib\" />
     <Folder Include="Assets\" />
-    <Folder Include="libs\" />
-    <Folder Include="libs\armeabi-v7a\" />
-    <Folder Include="libs\armeabi\" />
-    <Folder Include="libs\mips\" />
-    <Folder Include="Resources\values-v14\" />
-    <Folder Include="Resources\layout-v14\" />
-    <Folder Include="Resources\anim\" />
-    <Folder Include="Utils\Spr\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kp2aBusinessLogic\Kp2aBusinessLogic.csproj">
+      <Project>{53a9cb7f-6553-4bc0-b56b-9410bb2e59aa}</Project>
+      <Name>Kp2aBusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj">
       <Project>{A57B3ACE-5634-469A-88C4-858BB409F356}</Project>

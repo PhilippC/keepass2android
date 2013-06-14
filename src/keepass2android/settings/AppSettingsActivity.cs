@@ -52,7 +52,7 @@ namespace keepass2android
 				bool value = (bool) e.NewValue;
 				
 				if ( ! value ) {
-					FileDbHelper helper = App.fileDbHelper;
+					FileDbHelper helper = App.Kp2a.fileDbHelper;
 					
 					helper.deleteAllKeys();
 				}
@@ -60,12 +60,12 @@ namespace keepass2android
 				return;
 			};
 			
-			Database db = App.getDB();
+			Database db = App.Kp2a.GetDb();
 			if ( db.Open ) {
 				Preference rounds = FindPreference(GetString(Resource.String.rounds_key));
 				rounds.PreferenceChange += (object sender, Preference.PreferenceChangeEventArgs e) => 
 				{
-					setRounds(App.getDB(), e.Preference);
+					setRounds(App.Kp2a.GetDb(), e.Preference);
 					return;
 				};
 
@@ -80,7 +80,7 @@ namespace keepass2android
 				
 					Handler handler = new Handler();
 
-					SaveDB save = new SaveDB(this, App.getDB(), new ActionOnFinish( (success, message) => 
+					SaveDB save = new SaveDB(this, App.Kp2a.GetDb(), new ActionOnFinish( (success, message) => 
 					                                                         {
 						if (!success)
 						{
@@ -89,7 +89,7 @@ namespace keepass2android
 							Toast.MakeText(this, message, ToastLength.Long).Show();
 						}
 					}));
-					ProgressTask pt = new ProgressTask(this, save, Resource.String.saving_database);
+					ProgressTask pt = new ProgressTask(App.Kp2a, this, save, UiStringKey.saving_database);
 					pt.run();
 				};
 
@@ -104,7 +104,7 @@ namespace keepass2android
 					
 					Handler handler = new Handler();
 					
-					SaveDB save = new SaveDB(this, App.getDB(), new ActionOnFinish( (success, message) => 
+					SaveDB save = new SaveDB(this, App.Kp2a.GetDb(), new ActionOnFinish( (success, message) => 
 					                                                               {
 						if (!success)
 						{
@@ -113,7 +113,7 @@ namespace keepass2android
 							Toast.MakeText(this, message, ToastLength.Long).Show();
 						}
 					}));
-					ProgressTask pt = new ProgressTask(this, save, Resource.String.saving_database);
+                    ProgressTask pt = new ProgressTask(App.Kp2a, this, save, UiStringKey.saving_database);
 					pt.run();
 				};
 				

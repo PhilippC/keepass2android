@@ -50,7 +50,7 @@ namespace keepass2android
 
 		EntryEditActivityState State
 		{
-			get { return App.entryEditActivityState; }
+			get { return App.Kp2a.entryEditActivityState; }
 		}
 
 		public static void Launch(Activity act, PwEntry pw, AppTask appTask) {
@@ -98,7 +98,7 @@ namespace keepass2android
 			mCloseForReload = false;
 
 			// Likely the app has been killed exit the activity
-			Database db = App.getDB();
+			Database db = App.Kp2a.GetDb();
 			if (! db.Open)
 			{
 				Finish();
@@ -113,7 +113,7 @@ namespace keepass2android
 
 			} else
 			{
-				App.entryEditActivityState = new EntryEditActivityState();
+				App.Kp2a.entryEditActivityState = new EntryEditActivityState();
 				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 				State.mShowPassword = ! prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
 			
@@ -293,7 +293,7 @@ namespace keepass2android
 
 		void SaveEntry()
 		{
-			Database db = App.getDB();
+			Database db = App.Kp2a.GetDb();
 			EntryEditActivity act = this;
 			
 			if (!validateBeforeSaving())
@@ -392,11 +392,11 @@ namespace keepass2android
 			},closeOrShowError);
 
 			if ( State.mIsNew ) {
-				runnable = AddEntry.getInstance(this, App.getDB(), newEntry, State.parentGroup, afterAddEntry);
+				runnable = AddEntry.getInstance(this, App.Kp2a.GetDb(), newEntry, State.parentGroup, afterAddEntry);
 			} else {
-				runnable = new UpdateEntry(this, App.getDB(), initialEntry, newEntry, closeOrShowError);
+				runnable = new UpdateEntry(this, App.Kp2a.GetDb(), initialEntry, newEntry, closeOrShowError);
 			}
-			ProgressTask pt = new ProgressTask(act, runnable, Resource.String.saving_database);
+            ProgressTask pt = new ProgressTask(App.Kp2a, act, runnable, UiStringKey.saving_database);
 			pt.run();
 			
 
@@ -404,7 +404,7 @@ namespace keepass2android
 
 		void UpdateEntryFromUi(PwEntry entry)
 		{
-			Database db = App.getDB();
+			Database db = App.Kp2a.GetDb();
 			EntryEditActivity act = this;
 
 			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(db.pm.MemoryProtection.ProtectTitle,
@@ -625,7 +625,7 @@ namespace keepass2android
 				String generatedPassword = data.GetStringExtra("keepass2android.password.generated_password");
 				
 				byte[] password = StrUtil.Utf8.GetBytes(generatedPassword);
-				State.mEntry.Strings.Set(PwDefs.PasswordField, new ProtectedString(App.getDB().pm.MemoryProtection.ProtectPassword,
+				State.mEntry.Strings.Set(PwDefs.PasswordField, new ProtectedString(App.Kp2a.GetDb().pm.MemoryProtection.ProtectPassword,
 			                                                            password));
 				MemUtil.ZeroByteArray(password);
 
@@ -813,7 +813,7 @@ namespace keepass2android
 		
 		private void fillData() {
 			ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-			App.getDB().drawFactory.assignDrawableTo(currIconButton, Resources, App.getDB().pm, State.mEntry.IconId, State.mEntry.CustomIconUuid);
+			App.Kp2a.GetDb().drawableFactory.assignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().pm, State.mEntry.IconId, State.mEntry.CustomIconUuid);
 			
 			populateText(Resource.Id.entry_title, State.mEntry.Strings.ReadSafe (PwDefs.TitleField));
 			populateText(Resource.Id.entry_user_name, State.mEntry.Strings.ReadSafe (PwDefs.UserNameField));

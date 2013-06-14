@@ -66,7 +66,7 @@ namespace keepass2android
 		
 		private void timeout(Context context) {
 			Log.Debug(TAG, "Timeout");
-			App.setShutdown();
+            App.Kp2a.SetShutdown();
 			
 			NotificationManager nm = (NotificationManager) GetSystemService(NotificationService);
 			nm.CancelAll();

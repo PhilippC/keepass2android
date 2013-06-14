@@ -43,7 +43,7 @@ namespace keepass2android.settings
 			
 			mRoundsView = (TextView) view.FindViewById(Resource.Id.rounds);
 			
-			Database db = App.getDB();
+			Database db = App.Kp2a.GetDb();
 			mPM = db.pm;
 			ulong numRounds = mPM.KeyEncryptionRounds;
 			mRoundsView.Text = numRounds.ToString();
@@ -84,8 +84,8 @@ namespace keepass2android.settings
 				mPM.KeyEncryptionRounds = rounds;
 
 				Handler handler = new Handler();
-				SaveDB save = new SaveDB(Context, App.getDB(), new AfterSave(Context, handler, oldRounds, this));
-				ProgressTask pt = new ProgressTask(Context, save, Resource.String.saving_database);
+				SaveDB save = new SaveDB(Context, App.Kp2a.GetDb(), new AfterSave(Context, handler, oldRounds, this));
+				ProgressTask pt = new ProgressTask(App.Kp2a, Context, save, UiStringKey.saving_database);
 				pt.run();
 				
 			}

@@ -134,7 +134,7 @@ namespace keepass2android
 
 		void unloadDatabase()
 		{
-			App.getDB().Clear();
+			App.Kp2a.GetDb().Clear();
 			StopService(new Intent(this, typeof(QuickUnlockForegroundService)));
 		}
 
@@ -142,8 +142,8 @@ namespace keepass2android
 		{
 			SetResult(KeePass.EXIT_LOCK);
 			setEditText(Resource.Id.password, "");
-			if (App.getDB().QuickUnlockEnabled)
-				App.getDB().Locked = true;
+			if (App.Kp2a.GetDb().QuickUnlockEnabled)
+				App.Kp2a.GetDb().Locked = true;
 			else
 			{
 				unloadDatabase();
@@ -159,18 +159,18 @@ namespace keepass2android
 
 		bool tryStartQuickUnlock()
 		{
-			if (!App.getDB().QuickUnlockEnabled)
+			if (!App.Kp2a.GetDb().QuickUnlockEnabled)
 				return false;
 
-			if (App.getDB().pm.MasterKey.ContainsType(typeof(KcpPassword)) == false)
+			if (App.Kp2a.GetDb().pm.MasterKey.ContainsType(typeof(KcpPassword)) == false)
 				return false;
-			KcpPassword kcpPassword = (KcpPassword)App.getDB().pm.MasterKey.GetUserKey(typeof(KcpPassword));
+			KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().pm.MasterKey.GetUserKey(typeof(KcpPassword));
 			String password = kcpPassword.Password.ReadString();
 
 			if (password.Length == 0)
 				return false;
 
-			App.getDB().Locked = true;
+			App.Kp2a.GetDb().Locked = true;
 
 			Intent i = new Intent(this, typeof(QuickUnlock));
 			PutIoConnectionToIntent(mIoConnection, i);
@@ -181,7 +181,7 @@ namespace keepass2android
 
 		public void StartQuickUnlockForegroundService()
 		{
-			if (App.getDB().QuickUnlockEnabled)
+			if (App.Kp2a.GetDb().QuickUnlockEnabled)
 			{
 				StartService(new Intent(this, typeof(QuickUnlockForegroundService)));
 			}
@@ -235,26 +235,26 @@ namespace keepass2android
 					Finish();
 					break;
 				case KeePass.EXIT_QUICK_UNLOCK:
-					App.getDB().Locked = false;
+					App.Kp2a.GetDb().Locked = false;
 					LaunchNextActivity();
 					break;
 				case KeePass.EXIT_RELOAD_DB:
 					//if the activity was killed, fill password/keyfile so the user can directly hit load again
-					if (App.getDB().Loaded)
+					if (App.Kp2a.GetDb().Loaded)
 					{
-						if (App.getDB().pm.MasterKey.ContainsType(typeof(KcpPassword)))
+						if (App.Kp2a.GetDb().pm.MasterKey.ContainsType(typeof(KcpPassword)))
 						{
 
-							KcpPassword kcpPassword = (KcpPassword)App.getDB().pm.MasterKey.GetUserKey(typeof(KcpPassword));
+							KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().pm.MasterKey.GetUserKey(typeof(KcpPassword));
 							String password = kcpPassword.Password.ReadString();
 
 							setEditText(Resource.Id.password, password);
 						
 						}
-						if (App.getDB().pm.MasterKey.ContainsType(typeof(KcpKeyFile)))
+						if (App.Kp2a.GetDb().pm.MasterKey.ContainsType(typeof(KcpKeyFile)))
 						{
 							
-							KcpKeyFile kcpKeyfile = (KcpKeyFile)App.getDB().pm.MasterKey.GetUserKey(typeof(KcpKeyFile));
+							KcpKeyFile kcpKeyfile = (KcpKeyFile)App.Kp2a.GetDb().pm.MasterKey.GetUserKey(typeof(KcpKeyFile));
 
 							setEditText(Resource.Id.pass_keyfile, kcpKeyfile.Path);
 						}
@@ -367,15 +367,15 @@ namespace keepass2android
 				unloadDatabase();
 				
 				// Clear the shutdown flag
-				App.clearShutdown();
+				App.Kp2a.clearShutdown();
 
 				CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
-				App.getDB().QuickUnlockEnabled = cbQuickUnlock.Checked;
-				App.getDB().QuickUnlockKeyLength = int.Parse(prefs.GetString(GetString(Resource.String.QuickUnlockLength_key), GetString(Resource.String.QuickUnlockLength_default)));
+				App.Kp2a.GetDb().QuickUnlockEnabled = cbQuickUnlock.Checked;
+				App.Kp2a.GetDb().QuickUnlockKeyLength = int.Parse(prefs.GetString(GetString(Resource.String.QuickUnlockLength_key), GetString(Resource.String.QuickUnlockLength_default)));
 				
 				Handler handler = new Handler();
-				LoadDB task = new LoadDB(App.getDB(), this, mIoConnection, pass, key, new AfterLoad(handler, this));
-				ProgressTask pt = new ProgressTask(this, task, Resource.String.loading_database);
+				LoadDB task = new LoadDB(App.Kp2a, this, mIoConnection, pass, key, new AfterLoad(handler, this));
+				ProgressTask pt = new ProgressTask(App.Kp2a, this, task, UiStringKey.loading_database);
 				pt.run();
 			};
 			
@@ -463,20 +463,20 @@ namespace keepass2android
 			
 			// If the application was shutdown make sure to clear the password field, if it
 			// was saved in the instance state
-			if (App.isShutdown()) {
+			if (App.Kp2a.isShutdown()) {
 				lockDatabase();
 			}
 
 			// Clear the shutdown flag
-			App.clearShutdown();
+            App.Kp2a.clearShutdown();
 
 			if (startedWithActivityResult)
 				return;
 
-			if (App.getDB().Loaded && (App.getDB().mIoc != null)
-			    && (mIoConnection != null) && (App.getDB().mIoc.GetDisplayName() == mIoConnection.GetDisplayName()))
+			if (App.Kp2a.GetDb().Loaded && (App.Kp2a.GetDb().mIoc != null)
+			    && (mIoConnection != null) && (App.Kp2a.GetDb().mIoc.GetDisplayName() == mIoConnection.GetDisplayName()))
 			{
-				if (App.getDB().Locked == false)
+				if (App.Kp2a.GetDb().Locked == false)
 				{
 					LaunchNextActivity();
 				}
@@ -499,7 +499,7 @@ namespace keepass2android
 		
 		private String getKeyFile(String filename) {
 			if ( mRememberKeyfile ) {
-				FileDbHelper dbHelp = App.fileDbHelper;
+                FileDbHelper dbHelp = App.Kp2a.fileDbHelper;
 				
 				String keyfile = dbHelp.getFileByName(filename);
 				

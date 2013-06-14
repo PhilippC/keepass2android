@@ -42,7 +42,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			mIoc = App.getDB().mIoc;
+			mIoc = App.Kp2a.GetDb().mIoc;
 		}
 		
 		public LockCloseListActivity (IntPtr javaReference, JniHandleOwnership transfer)
@@ -58,7 +58,7 @@ namespace keepass2android
 			if (TimeoutHelper.checkShutdown(this, mIoc))
 				return;
 			
-			App.getDB().CheckForOpenFileChanged(this);
+			App.Kp2a.CheckForOpenFileChanged(this);
 		}
 
 	}

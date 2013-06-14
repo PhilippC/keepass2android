@@ -47,7 +47,7 @@ namespace keepass2android.search
 			
 			SetResult(KeePass.EXIT_NORMAL);
 			
-			mDb = App.getDB();
+			mDb = App.Kp2a.GetDb();
 			
 			// Likely the app has been killed exit the activity 
 			if ( ! mDb.Open ) {

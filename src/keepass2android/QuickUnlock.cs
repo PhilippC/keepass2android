@@ -44,7 +44,7 @@ namespace keepass2android
 			base.OnCreate(bundle);
 
 			Intent i = Intent;
-			mIoc = App.getDB().mIoc;
+			mIoc = App.Kp2a.GetDb().mIoc;
 
 			if (mIoc == null)
 			{
@@ -55,10 +55,10 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.QuickUnlock);
 
-			if (App.getDB().pm.Name != "")
+			if (App.Kp2a.GetDb().pm.Name != "")
 			{
 				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Invisible;
-				((TextView)FindViewById(Resource.Id.qu_filename)).Text = App.getDB().pm.Name;
+				((TextView)FindViewById(Resource.Id.qu_filename)).Text = App.Kp2a.GetDb().pm.Name;
 			} else
 			{
 				((TextView)FindViewById(Resource.Id.qu_filename)).Text = mIoc.Path;
@@ -68,7 +68,7 @@ namespace keepass2android
 			TextView txtLabel = (TextView)FindViewById(Resource.Id.QuickUnlock_label);
 
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-			int quickUnlockLength = App.getDB().QuickUnlockKeyLength;
+			int quickUnlockLength = App.Kp2a.GetDb().QuickUnlockKeyLength;
 
 			txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[]{quickUnlockLength});
 
@@ -84,7 +84,7 @@ namespace keepass2android
 			Button btnUnlock = (Button)FindViewById(Resource.Id.QuickUnlock_button);
 			btnUnlock.Click += (object sender, EventArgs e) => 
 			{
-				KcpPassword kcpPassword = (KcpPassword)App.getDB().pm.MasterKey.GetUserKey(typeof(KcpPassword));
+				KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().pm.MasterKey.GetUserKey(typeof(KcpPassword));
 				String password = kcpPassword.Password.ReadString();
 				String expectedPasswordPart = password.Substring(Math.Max(0,password.Length-quickUnlockLength),Math.Min(password.Length, quickUnlockLength));
 				if (pwd.Text == expectedPasswordPart)
@@ -112,7 +112,7 @@ namespace keepass2android
 		{
 			base.OnResume();
 
-			if ( ! App.getDB().Loaded ) {
+			if ( ! App.Kp2a.GetDb().Loaded ) {
 				SetResult(KeePass.EXIT_CHANGE_DB);
 				Finish();
 				return;

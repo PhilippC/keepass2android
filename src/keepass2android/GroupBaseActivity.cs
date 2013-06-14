@@ -91,7 +91,7 @@ namespace keepass2android
 		}
 
 		public void refreshIfDirty() {
-			Database db = App.getDB();
+			Database db = App.Kp2a.GetDb();
 			if ( db.dirty.Contains(mGroup) ) {
 				db.dirty.Remove(mGroup);
 				BaseAdapter adapter = (BaseAdapter) ListAdapter;
@@ -115,7 +115,7 @@ namespace keepass2android
 			mAppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			// Likely the app has been killed exit the activity 
-			if ( ! App.getDB().Loaded ) {
+			if ( ! App.Kp2a.GetDb().Loaded ) {
 				Finish();
 				return;
 			}
@@ -183,7 +183,7 @@ namespace keepass2android
 		
 		protected void setGroupIcon() {
 			if (mGroup != null) {
-				Drawable drawable = App.getDB().drawFactory.getIconDrawable(Resources, App.getDB().pm, mGroup.IconId, mGroup.CustomIconUuid);
+				Drawable drawable = App.Kp2a.GetDb().drawableFactory.getIconDrawable(Resources, App.Kp2a.GetDb().pm, mGroup.IconId, mGroup.CustomIconUuid);
 				ImageView iv = (ImageView) FindViewById(Resource.Id.icon);
 				if (iv != null)
 					iv.SetImageDrawable(drawable);
@@ -237,7 +237,7 @@ namespace keepass2android
 				
 				return true;
 			case Resource.Id.menu_lock:
-				App.setShutdown();
+				App.Kp2a.SetShutdown();
 				SetResult(KeePass.EXIT_LOCK);
 				Finish();
 				return true;
@@ -303,7 +303,7 @@ namespace keepass2android
 			ActivityCompat.invalidateOptionsMenu(this);
 			
 			// Mark all groups as dirty now to refresh them on load
-			Database db = App.getDB();
+			Database db = App.Kp2a.GetDb();
 			db.markAllGroupsAsDirty();
 			// We'll manually refresh this group so we can remove it
 			db.dirty.Remove(mGroup);
@@ -349,7 +349,7 @@ namespace keepass2android
 						Toast.MakeText(act,  "Unrecoverable error: " + mMessage, ToastLength.Long).Show();
 					});
 
-					App.setShutdown();
+					App.Kp2a.SetShutdown();
 					act.Finish();
 				}
 			}

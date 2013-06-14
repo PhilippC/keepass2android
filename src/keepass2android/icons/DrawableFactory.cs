@@ -33,7 +33,7 @@ using Android.Graphics;
 
 namespace keepass2android
 {
-	public class DrawableFactory
+	public class DrawableFactory: IDrawableFactory
 	{
 		private static Drawable blank = null;
 		private static int blankWidth = -1;

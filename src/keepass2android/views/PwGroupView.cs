@@ -75,7 +75,7 @@ namespace keepass2android.view
 			mPw = pw;
 			
 			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.group_icon);
-			App.getDB().drawFactory.assignDrawableTo(iv, Resources, App.getDB().pm, pw.IconId, pw.CustomIconUuid);
+			App.Kp2a.GetDb().drawableFactory.assignDrawableTo(iv, Resources, App.Kp2a.GetDb().pm, pw.IconId, pw.CustomIconUuid);
 			
 			mTv.Text = pw.Name;
 		}
@@ -109,7 +109,7 @@ namespace keepass2android.view
 			
 			case MENU_DELETE:
 				Handler handler = new Handler();
-				DeleteGroup task = new DeleteGroup(Context, App.getDB(), mPw, mAct, new GroupBaseActivity.AfterDeleteGroup(handler, mAct));
+				DeleteGroup task = new DeleteGroup(Context, App.Kp2a, mPw, mAct, new GroupBaseActivity.AfterDeleteGroup(handler, mAct));
 				task.start();
 				return true;
 			default:

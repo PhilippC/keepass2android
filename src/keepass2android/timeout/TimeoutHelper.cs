@@ -46,14 +46,14 @@ namespace keepass2android
 			
 			EditorCompat.apply(edit);
 			
-			if ( App.getDB().Open ) {
+			if ( App.Kp2a.GetDb().Open ) {
 				Timeout.start(act);
 			}
 			
 		}
 		
 		public static void resume(Activity act) {
-			if ( App.getDB().Loaded ) {
+			if ( App.Kp2a.GetDb().Loaded ) {
 				Timeout.cancel(act);
 			}
 			
@@ -81,7 +81,7 @@ namespace keepass2android
 			long diff = cur_time - timeout_start;
 			if (diff >= timeout) {
 				// We have timed out
-				App.setShutdown();
+                App.Kp2a.SetShutdown();
 			}
 		}
 
@@ -92,8 +92,8 @@ namespace keepass2android
 		}
 		
 		public static bool checkShutdown(Activity act, IOConnectionInfo ioc) {
-			if ((  App.getDB().Loaded && (App.isShutdown() || App.getDB().Locked) ) 
-			    || (iocChanged(ioc, App.getDB().mIoc))) //file was changed from ActionSend-Intent
+			if ((  App.Kp2a.GetDb().Loaded && (App.Kp2a.isShutdown() || App.Kp2a.GetDb().Locked) ) 
+			    || (iocChanged(ioc, App.Kp2a.GetDb().mIoc))) //file was changed from ActionSend-Intent
 			{
 				act.SetResult(KeePass.EXIT_LOCK);
 				act.Finish();

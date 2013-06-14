@@ -54,7 +54,7 @@ namespace keepass2android
 			Intent i;
 			
 			// Need to use PwDatabase since group may be null
-			PwDatabase db = App.getDB ().pm;
+            PwDatabase db = App.Kp2a.GetDb().pm;
 
 			if (db == null) {
 				// Reached if db is null
@@ -85,7 +85,7 @@ namespace keepass2android
 		protected void setupButtons()
 		{
 			addGroupEnabled = true;
-			addEntryEnabled = !mGroup.Uuid.EqualsValue(App.getDB().root.Uuid);
+			addEntryEnabled = !mGroup.Uuid.EqualsValue(App.Kp2a.GetDb().root.Uuid);
 		}
 		
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -103,7 +103,7 @@ namespace keepass2android
 			
 			PwUuid id = retrieveGroupId (intent);
 			
-			Database db = App.getDB ();
+			Database db = App.Kp2a.GetDb();
 			if (id == null) {
 				mGroup = db.root;
 			} else {
@@ -184,8 +184,8 @@ namespace keepass2android
 				int GroupIconID = data.Extras.GetInt(GroupEditActivity.KEY_ICON_ID);
 				GroupBaseActivity act = this;
 				Handler handler = new Handler();
-				AddGroup task = AddGroup.getInstance(this, App.getDB(), GroupName, GroupIconID, mGroup, new RefreshTask(handler, this), false);
-				ProgressTask pt = new ProgressTask(act, task, Resource.String.saving_database);
+				AddGroup task = AddGroup.getInstance(this, App.Kp2a.GetDb(), GroupName, GroupIconID, mGroup, new RefreshTask(handler, this), false);
+                ProgressTask pt = new ProgressTask(App.Kp2a, act, task, UiStringKey.saving_database);
 				pt.run();
 				break;
 				

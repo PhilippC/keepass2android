@@ -63,7 +63,7 @@ namespace keepass2android
 
 			SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
 
-			mDb = App.getDB();
+			mDb = App.Kp2a.GetDb();
 
 			String searchUrl = ((SearchUrlTask)mAppTask).UrlToSearchFor;
 			

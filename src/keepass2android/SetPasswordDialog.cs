@@ -82,8 +82,8 @@ namespace keepass2android
 					
 				}
 				
-				SetPassword sp = new SetPassword(Context, App.getDB(), pass, keyfile, new AfterSave(this, mFinish, new Handler()));
-				ProgressTask pt = new ProgressTask(Context, sp, Resource.String.saving_database);
+				SetPassword sp = new SetPassword(Context, App.Kp2a.GetDb(), pass, keyfile, new AfterSave(this, mFinish, new Handler()));
+				ProgressTask pt = new ProgressTask(App.Kp2a, Context, sp, UiStringKey.saving_database);
 				pt.run();
 			};
 				

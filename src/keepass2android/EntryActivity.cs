@@ -101,7 +101,7 @@ namespace keepass2android
 			Context appCtx = ApplicationContext;
 
 
-			Database db = App.getDB();
+			Database db = App.Kp2a.GetDb();
 			// Likely the app has been killed exit the activity 
 			if (! db.Loaded)
 			{
@@ -135,8 +135,8 @@ namespace keepass2android
 				mEntry.Touch(true);
 				requiresRefresh();
 				Handler handler = new Handler();
-				UpdateEntry update = new UpdateEntry(this, App.getDB(), backupEntry, mEntry, new AfterSave(handler));
-				ProgressTask pt = new ProgressTask(this, update, Resource.String.saving_database);
+				UpdateEntry update = new UpdateEntry(this, App.Kp2a.GetDb(), backupEntry, mEntry, null);
+                ProgressTask pt = new ProgressTask(App.Kp2a, this, update, UiStringKey.saving_database);
 				pt.run();
 			}
 			fillData(false);
@@ -152,9 +152,9 @@ namespace keepass2android
 
 			Android.Util.Log.Debug("DEBUG", "Requesting copy to clipboard for Uuid=" + mEntry.Uuid.ToHexString());
 
-			/*foreach (PwUuid key in App.getDB().entries.Keys)
+			/*foreach (PwUuid key in App.Kp2a.GetDb().entries.Keys)
 			{
-				Android.Util.Log.Debug("DEBUG",key.ToHexString() + " -> " + App.getDB().entries[key].Uuid.ToHexString());
+				Android.Util.Log.Debug("DEBUG",key.ToHexString() + " -> " + App.Kp2a.GetDb().entries[key].Uuid.ToHexString());
 			}*/
 
 			if (closeAfterCreate)
@@ -163,20 +163,6 @@ namespace keepass2android
 				Finish();
 			}
 		}
-
-		private class AfterSave : OnFinish {
-			
-			public AfterSave(Handler handler):base(handler) {
-				
-			}
-			
-			public override void run() {
-
-				base.run();
-			}
-			
-		};
-		
 		
 
 		private String getDateTime(System.DateTime dt) {
@@ -402,7 +388,7 @@ namespace keepass2android
 			ImageView iv = (ImageView)FindViewById(Resource.Id.entry_icon);
 			if (iv != null)
 			{
-			App.getDB().drawFactory.assignDrawableTo(iv, Resources, App.getDB().pm, mEntry.IconId, mEntry.CustomIconUuid);
+			App.Kp2a.GetDb().drawableFactory.assignDrawableTo(iv, Resources, App.Kp2a.GetDb().pm, mEntry.IconId, mEntry.CustomIconUuid);
 			}
 			
 			//populateText(Resource.Id.entry_title, mEntry.Strings.ReadSafe(PwDefs.TitleField));
@@ -634,7 +620,7 @@ namespace keepass2android
 				}
 					return true;
 			case Resource.Id.menu_lock:
-				App.setShutdown();
+                App.Kp2a.SetShutdown();
 				SetResult(KeePass.EXIT_LOCK);
 				Finish();
 				return true;

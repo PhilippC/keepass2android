@@ -84,7 +84,7 @@ namespace keepass2android
 			PwEntry entry;
 			try
 			{
-				entry = App.getDB().entries[entryId];
+				entry = App.Kp2a.GetDb().entries[entryId];
 			}
 			catch(Exception)
 			{
@@ -271,7 +271,7 @@ namespace keepass2android
 		static string GetStringAndReplacePlaceholders(PwEntry entry, string key)
 		{
 			String value = entry.Strings.ReadSafe(key);
-			value = SprEngine.Compile(value, new SprContext(entry, App.getDB().pm, SprCompileFlags.All));
+			value = SprEngine.Compile(value, new SprContext(entry, App.Kp2a.GetDb().pm, SprCompileFlags.All));
 			return value;
 		}
 

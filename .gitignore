@@ -26,3 +26,5 @@
 /src/java/KP2ASoftKeyboard/projectzip
 /src/java/KP2ASoftKeyboard/createProjectZip.bat
 Thumbs.db
+
+/src/monodroid-unittesting/*.suo
