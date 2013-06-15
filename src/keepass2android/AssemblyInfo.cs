@@ -14,7 +14,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   You should have received a copy of the GNU General Public License
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
-using Android.App;
+
+
 
 
 

@@ -15,17 +15,6 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Graphics.Drawables;
 using Android.Content.Res;
 using Android.Graphics;
@@ -35,7 +24,7 @@ namespace keepass2android
 	
 	public class BitmapDrawableCompat {
 
-		public static BitmapDrawable getBitmapDrawable(Resources res, Bitmap bitmap) {
+		public static BitmapDrawable GetBitmapDrawable(Resources res, Bitmap bitmap) {
 			return new BitmapDrawable(res, bitmap);
 		}
 		

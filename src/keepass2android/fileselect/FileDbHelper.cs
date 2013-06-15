@@ -16,16 +16,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+using System.Globalization;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Database;
 using Android.Database.Sqlite;
 using KeePassLib.Serialization;
@@ -34,47 +26,43 @@ namespace keepass2android
 {
 	public class FileDbHelper {
 		
-		public const String LAST_FILENAME = "lastFile";
-		public const String LAST_KEYFILE = "lastKey";
+		public const String LastFilename = "lastFile";
+		public const String LastKeyfile = "lastKey";
 		
-		private const String DATABASE_NAME = "keepass2android";
-		private const String FILE_TABLE = "files";
-		private const int DATABASE_VERSION = 1;
+		private const String DatabaseName = "keepass2android";
+		private const String FileTable = "files";
+		private const int DatabaseVersion = 1;
 		
-		private const int MAX_FILES = 5;
+		private const int MaxFiles = 5;
 		
-		public const String KEY_FILE_ID = "_id";
-		public const String KEY_FILE_FILENAME = "fileName";
-		public const String KEY_FILE_USERNAME = "username";
-		public const String KEY_FILE_PASSWORD = "password";
-		public const String KEY_FILE_CREDSAVEMODE = "credSaveMode";
-		public const String KEY_FILE_KEYFILE = "keyFile";
-		public const String KEY_FILE_UPDATED = "updated";
+		public const String KeyFileId = "_id";
+		public const String KeyFileFilename = "fileName";
+		public const String KeyFileUsername = "username";
+		public const String KeyFilePassword = "password";
+		public const String KeyFileCredsavemode = "credSaveMode";
+		public const String KeyFileKeyfile = "keyFile";
+		public const String KeyFileUpdated = "updated";
 		
-		private const String DATABASE_CREATE = 
-			"create table " + FILE_TABLE + " ( " + KEY_FILE_ID + " integer primary key autoincrement, " 
-				+ KEY_FILE_FILENAME + " text not null, " 
-				+ KEY_FILE_KEYFILE + " text, "
-				+ KEY_FILE_USERNAME + " text, "
-				+ KEY_FILE_PASSWORD + " text, "
-				+ KEY_FILE_CREDSAVEMODE + " integer not null,"
-				+ KEY_FILE_UPDATED + " integer not null);";
+		private const String DatabaseCreate = 
+			"create table " + FileTable + " ( " + KeyFileId + " integer primary key autoincrement, " 
+				+ KeyFileFilename + " text not null, " 
+				+ KeyFileKeyfile + " text, "
+				+ KeyFileUsername + " text, "
+				+ KeyFilePassword + " text, "
+				+ KeyFileCredsavemode + " integer not null,"
+				+ KeyFileUpdated + " integer not null);";
 		
-		private readonly Android.Content.Context mCtx;
+		private readonly Context mCtx;
 		private DatabaseHelper mDbHelper;
 		private SQLiteDatabase mDb;
 		
 		private class DatabaseHelper : SQLiteOpenHelper {
-			private readonly Android.Content.Context mCtx;
-			
-			public DatabaseHelper(Android.Content.Context ctx): base(ctx, DATABASE_NAME, null, DATABASE_VERSION) {
-
-				mCtx = ctx;
+		    public DatabaseHelper(Context ctx): base(ctx, FileDbHelper.DatabaseName, null, DatabaseVersion) {
 			}
 			
 			
 			public override void OnCreate(SQLiteDatabase db) {
-				db.ExecSQL(DATABASE_CREATE);
+				db.ExecSQL(DatabaseCreate);
 			
 			}
 			
@@ -89,27 +77,27 @@ namespace keepass2android
 			mCtx = ctx;
 		}
 		
-		public FileDbHelper open() {
+		public FileDbHelper Open() {
 			mDbHelper = new DatabaseHelper(mCtx);
 			mDb = mDbHelper.WritableDatabase;
 			return this;
 		}
 		
-		public bool isOpen() {
+		public bool IsOpen() {
 			return mDb.IsOpen;
 		}
 		
-		public void close() {
+		public void Close() {
 			mDb.Close();
 		}
 		
-		public long createFile(IOConnectionInfo ioc, String keyFile) {
+		public long CreateFile(IOConnectionInfo ioc, String keyFile) {
 			
 			// Check to see if this filename is already used
 			ICursor cursor;
 			try {
-				cursor = mDb.Query(true, FILE_TABLE, new String[] {KEY_FILE_ID}, 
-				KEY_FILE_FILENAME + "=?", new String[] {ioc.Path}, null, null, null, null);
+				cursor = mDb.Query(true, FileTable, new[] {KeyFileId}, 
+				KeyFileFilename + "=?", new[] {ioc.Path}, null, null, null, null);
 			} catch (Exception ) {
 				return -1;
 			}
@@ -126,34 +114,34 @@ namespace keepass2android
 			// If there is an existing entry update it
 			if ( cursor.Count > 0 ) {
 				cursor.MoveToFirst();
-				long id = cursor.GetLong(cursor.GetColumnIndexOrThrow(KEY_FILE_ID));
+				long id = cursor.GetLong(cursor.GetColumnIndexOrThrow(KeyFileId));
 				
-				ContentValues vals = new ContentValues();
-				vals.Put(KEY_FILE_KEYFILE, keyFile);
-				vals.Put(KEY_FILE_UPDATED, Java.Lang.JavaSystem.CurrentTimeMillis());
+				var vals = new ContentValues();
+				vals.Put(KeyFileKeyfile, keyFile);
+				vals.Put(KeyFileUpdated, Java.Lang.JavaSystem.CurrentTimeMillis());
 
-				vals.Put(KEY_FILE_USERNAME, iocToStore.UserName);
-				vals.Put(KEY_FILE_PASSWORD, iocToStore.Password);
-				vals.Put(KEY_FILE_CREDSAVEMODE, (int)iocToStore.CredSaveMode);
+				vals.Put(KeyFileUsername, iocToStore.UserName);
+				vals.Put(KeyFilePassword, iocToStore.Password);
+				vals.Put(KeyFileCredsavemode, (int)iocToStore.CredSaveMode);
 				
-				result = mDb.Update(FILE_TABLE, vals, KEY_FILE_ID + " = " + id, null);
+				result = mDb.Update(FileTable, vals, KeyFileId + " = " + id, null);
 				
 				// Otherwise add the new entry
 			} else {
-				ContentValues vals = new ContentValues();
-				vals.Put(KEY_FILE_FILENAME, ioc.Path);
-				vals.Put(KEY_FILE_KEYFILE, keyFile);
-				vals.Put(KEY_FILE_USERNAME, iocToStore.UserName);
-				vals.Put(KEY_FILE_PASSWORD, iocToStore.Password);
-				vals.Put(KEY_FILE_CREDSAVEMODE, (int)iocToStore.CredSaveMode);
-				vals.Put(KEY_FILE_UPDATED, Java.Lang.JavaSystem.CurrentTimeMillis());
+				var vals = new ContentValues();
+				vals.Put(KeyFileFilename, ioc.Path);
+				vals.Put(KeyFileKeyfile, keyFile);
+				vals.Put(KeyFileUsername, iocToStore.UserName);
+				vals.Put(KeyFilePassword, iocToStore.Password);
+				vals.Put(KeyFileCredsavemode, (int)iocToStore.CredSaveMode);
+				vals.Put(KeyFileUpdated, Java.Lang.JavaSystem.CurrentTimeMillis());
 				
-				result = mDb.Insert(FILE_TABLE, null, vals);
+				result = mDb.Insert(FileTable, null, vals);
 				
 			}
 			// Delete all but the last five records
 			try {
-				deleteAllBut(MAX_FILES);
+				DeleteAllBut(MaxFiles);
 			} catch (Exception ex) {
 				Android.Util.Log.Error("ex",ex.StackTrace); 
 
@@ -165,53 +153,53 @@ namespace keepass2android
 			
 		}
 		
-		private void deleteAllBut(int limit) {
-			ICursor cursor = mDb.Query(FILE_TABLE, new String[] {KEY_FILE_UPDATED}, null, null, null, null, KEY_FILE_UPDATED);
+		private void DeleteAllBut(int limit) {
+			ICursor cursor = mDb.Query(FileTable, new[] {KeyFileUpdated}, null, null, null, null, KeyFileUpdated);
 			
 			if ( cursor.Count > limit ) {
 				cursor.MoveToFirst();
-				long time = cursor.GetLong(cursor.GetColumnIndexOrThrow(KEY_FILE_UPDATED));
+				long time = cursor.GetLong(cursor.GetColumnIndexOrThrow(KeyFileUpdated));
 				
-				mDb.ExecSQL("DELETE FROM " + FILE_TABLE + " WHERE " + KEY_FILE_UPDATED + "<" + time + ";");
+				mDb.ExecSQL("DELETE FROM " + FileTable + " WHERE " + KeyFileUpdated + "<" + time + ";");
 			}
 			
 			cursor.Close();
 			
 		}
 		
-		public void deleteAllKeys() {
-			ContentValues vals = new ContentValues();
-			vals.Put(KEY_FILE_KEYFILE, "");
+		public void DeleteAllKeys() {
+			var vals = new ContentValues();
+			vals.Put(KeyFileKeyfile, "");
 			
-			mDb.Update(FILE_TABLE, vals, null, null);
+			mDb.Update(FileTable, vals, null, null);
 		}
 		
-		public void deleteFile(String filename) {
-			mDb.Delete(FILE_TABLE, KEY_FILE_FILENAME + " = ?", new String[] {filename});
+		public void DeleteFile(String filename) {
+			mDb.Delete(FileTable, KeyFileFilename + " = ?", new[] {filename});
 		}
 
-		static string[] getColumnList()
+		static string[] GetColumnList()
 		{
-			return new String[] {
-				KEY_FILE_ID,
-				KEY_FILE_FILENAME,
-				KEY_FILE_KEYFILE,
-				KEY_FILE_USERNAME,
-				KEY_FILE_PASSWORD,
-				KEY_FILE_CREDSAVEMODE
+			return new[] {
+				KeyFileId,
+				KeyFileFilename,
+				KeyFileKeyfile,
+				KeyFileUsername,
+				KeyFilePassword,
+				KeyFileCredsavemode
 			};
 		}		
 		
-		public ICursor fetchAllFiles() {
-			ICursor ret;
-			ret = mDb.Query(FILE_TABLE, getColumnList(),
-					null, null, null, null, KEY_FILE_UPDATED + " DESC", MAX_FILES.ToString());
-			return ret;
+		public ICursor FetchAllFiles()
+		{
+		    ICursor ret = mDb.Query(FileTable, GetColumnList(),
+		                            null, null, null, null, KeyFileUpdated + " DESC", MaxFiles.ToString(CultureInfo.InvariantCulture));
+		    return ret;
 		}
-		
-		public ICursor fetchFile(long fileId) {
-			ICursor cursor = mDb.Query(true, FILE_TABLE, getColumnList(),
-			KEY_FILE_ID + "=" + fileId, null, null, null, null, null);
+
+	    public ICursor FetchFile(long fileId) {
+			ICursor cursor = mDb.Query(true, FileTable, GetColumnList(),
+			KeyFileId + "=" + fileId, null, null, null, null, null);
 			
 			if ( cursor != null ) {
 				cursor.MoveToFirst();
@@ -221,11 +209,11 @@ namespace keepass2android
 			
 		}
 
-		public ICursor fetchFileByName(string fileName)
+		public ICursor FetchFileByName(string fileName)
 		{
 
-			ICursor cursor = mDb.Query(true, FILE_TABLE, getColumnList(),
-			                           KEY_FILE_FILENAME + " like " + DatabaseUtils.SqlEscapeString(fileName) , null, null, null, null, null);
+			ICursor cursor = mDb.Query(true, FileTable, GetColumnList(),
+			                           KeyFileFilename + " like " + DatabaseUtils.SqlEscapeString(fileName) , null, null, null, null, null);
 
 			if ( cursor != null ) {
 				cursor.MoveToFirst();
@@ -235,9 +223,9 @@ namespace keepass2android
 
 		}
 		
-		public String getFileByName(String name) {
-			ICursor cursor = mDb.Query(true, FILE_TABLE, getColumnList(),
-			KEY_FILE_FILENAME + "= ?", new String[] {name}, null, null, null, null);
+		public String GetFileByName(String name) {
+			ICursor cursor = mDb.Query(true, FileTable, GetColumnList(),
+			KeyFileFilename + "= ?", new[] {name}, null, null, null, null);
 			
 			if ( cursor == null ) {
 				return "";
@@ -246,7 +234,7 @@ namespace keepass2android
 			String keyfileFilename;
 			
 			if ( cursor.MoveToFirst() ) {
-				keyfileFilename = cursor.GetString(cursor.GetColumnIndexOrThrow(KEY_FILE_KEYFILE));
+				keyfileFilename = cursor.GetString(cursor.GetColumnIndexOrThrow(KeyFileKeyfile));
 			} else {
 				// Cursor is empty
 				keyfileFilename = "";
@@ -255,8 +243,8 @@ namespace keepass2android
 			return keyfileFilename;
 		}
 		
-		public bool hasRecentFiles() {
-			ICursor cursor = fetchAllFiles();
+		public bool HasRecentFiles() {
+			ICursor cursor = FetchAllFiles();
 			
 			bool hasRecent = cursor.Count > 0;
 			cursor.Close();
@@ -264,24 +252,24 @@ namespace keepass2android
 			return hasRecent; 
 		}
 
-		public IOConnectionInfo cursorToIoc(Android.Database.ICursor cursor)
+		public IOConnectionInfo CursorToIoc(ICursor cursor)
 		{
 			if (cursor == null)
 				return null;
-			IOConnectionInfo ioc = new IOConnectionInfo();
-			ioc.Path = cursor.GetString(cursor
-			                                .GetColumnIndexOrThrow(FileDbHelper.KEY_FILE_FILENAME));
+			var ioc = new IOConnectionInfo
+			    {
+			        Path = cursor.GetString(cursor
+			                                    .GetColumnIndexOrThrow(KeyFileFilename)),
+			        UserName = cursor.GetString(cursor
+			                                        .GetColumnIndexOrThrow(KeyFileUsername)),
+			        Password = cursor.GetString(cursor
+			                                        .GetColumnIndexOrThrow(KeyFilePassword)),
+			        CredSaveMode = (IOCredSaveMode) cursor.GetInt(cursor
+			                                                          .GetColumnIndexOrThrow(KeyFileCredsavemode)),
+			        CredProtMode = IOCredProtMode.Obf
+			    };
 
-			ioc.UserName = cursor.GetString(cursor
-			                                .GetColumnIndexOrThrow(FileDbHelper.KEY_FILE_USERNAME));
-
-			ioc.Password = cursor.GetString(cursor
-			                                .GetColumnIndexOrThrow(FileDbHelper.KEY_FILE_PASSWORD));
-
-			ioc.CredSaveMode = (IOCredSaveMode)cursor.GetInt(cursor
-			                                                    .GetColumnIndexOrThrow(FileDbHelper.KEY_FILE_CREDSAVEMODE));
-			ioc.CredProtMode = IOCredProtMode.Obf;
-			ioc.Obfuscate(false);
+		    ioc.Obfuscate(false);
 			return ioc;
 		}
 	}

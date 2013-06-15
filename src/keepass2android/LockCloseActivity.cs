@@ -15,29 +15,19 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib.Serialization;
 
 namespace keepass2android
 {
 	public class LockCloseActivity : LockingActivity {
 
-		IOConnectionInfo mIoc;
+		IOConnectionInfo _ioc;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			mIoc = App.Kp2a.GetDb().mIoc;
+			_ioc = App.Kp2a.GetDb().Ioc;
 		}
 
 
@@ -45,7 +35,7 @@ namespace keepass2android
 		{
 			base.OnResume();
 
-			if (TimeoutHelper.checkShutdown(this, mIoc))
+			if (TimeoutHelper.CheckShutdown(this, _ioc))
 				return;
 
 			App.Kp2a.CheckForOpenFileChanged(this);

@@ -15,16 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib;
 using KeePassLib.Keys;
 
@@ -32,40 +23,40 @@ namespace keepass2android
 {
 	public class SetPassword : RunnableOnFinish {
 		
-		private String mPassword;
-		private String mKeyfile;
-		private Database mDb;
-		private bool mDontSave;
-		private Context mCtx;
+		private readonly String _password;
+		private readonly String _keyfile;
+		private readonly Database _db;
+		private readonly bool _dontSave;
+		private readonly Context _ctx;
 		
 		public SetPassword(Context ctx, Database db, String password, String keyfile, OnFinish finish): base(finish) {
-			mCtx = ctx;
-			mDb = db;
-			mPassword = password;
-			mKeyfile = keyfile;
-			mDontSave = false;
+			_ctx = ctx;
+			_db = db;
+			_password = password;
+			_keyfile = keyfile;
+			_dontSave = false;
 		}
 		
 		public SetPassword(Context ctx, Database db, String password, String keyfile, OnFinish finish, bool dontSave): base(finish) {
-			mCtx = ctx;
-			mDb = db;
-			mPassword = password;
-			mKeyfile = keyfile;
-			mDontSave = dontSave;
+			_ctx = ctx;
+			_db = db;
+			_password = password;
+			_keyfile = keyfile;
+			_dontSave = dontSave;
 		}
 		
 		
-		public override void run ()
+		public override void Run ()
 		{
-			PwDatabase pm = mDb.pm;
+			PwDatabase pm = _db.KpDatabase;
 			CompositeKey newKey = new CompositeKey ();
-			if (String.IsNullOrEmpty (mPassword) == false) {
-				newKey.AddUserKey (new KcpPassword (mPassword)); 
+			if (String.IsNullOrEmpty (_password) == false) {
+				newKey.AddUserKey (new KcpPassword (_password)); 
 			}
-			if (String.IsNullOrEmpty (mKeyfile) == false) {
+			if (String.IsNullOrEmpty (_keyfile) == false) {
 				try {
-					newKey.AddUserKey (new KcpKeyFile (mKeyfile));
-				} catch (Exception exKF) {
+					newKey.AddUserKey (new KcpKeyFile (_keyfile));
+				} catch (Exception) {
 					//TODO MessageService.ShowWarning (strKeyFile, KPRes.KeyFileError, exKF);
 					return;
 				}
@@ -78,29 +69,29 @@ namespace keepass2android
 			pm.MasterKey = newKey;
 
 			// Save Database
-			mFinish = new AfterSave(previousKey, previousMasterKeyChanged, pm, mFinish);
-			SaveDB save = new SaveDB(mCtx, mDb, mFinish, mDontSave);
-			save.run();
+			OnFinishToRun = new AfterSave(previousKey, previousMasterKeyChanged, pm, OnFinishToRun);
+			SaveDb save = new SaveDb(_ctx, _db, OnFinishToRun, _dontSave);
+			save.Run();
 		}
 		
 		private class AfterSave : OnFinish {
-			private CompositeKey mBackup;
-			private DateTime mPreviousKeyChanged;
-			private PwDatabase mDb;
+			private readonly CompositeKey _backup;
+			private readonly DateTime _previousKeyChanged;
+			private PwDatabase _db;
 			
 			public AfterSave(CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnFinish finish): base(finish) {
-				mPreviousKeyChanged = previousKeyChanged;
-				mBackup = backup;
-				mDb = db;
+				_previousKeyChanged = previousKeyChanged;
+				_backup = backup;
+				_db = db;
 			}
 			
-			public override void run() {
-				if ( ! mSuccess ) {
-					mDb.MasterKey = mBackup;
-					mDb.MasterKeyChanged = mPreviousKeyChanged;
+			public override void Run() {
+				if ( ! Success ) {
+					_db.MasterKey = _backup;
+					_db.MasterKeyChanged = _previousKeyChanged;
 				}
 				
-				base.run();
+				base.Run();
 			}
 			
 		}

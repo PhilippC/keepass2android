@@ -15,48 +15,38 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace keepass2android
 {
 
 	public abstract class RunnableOnFinish  {
 		
-		public OnFinish mFinish;
-		public UpdateStatus mStatus;
-		
-		public RunnableOnFinish(OnFinish finish) {
-			mFinish = finish;
+		public OnFinish OnFinishToRun;
+		public UpdateStatus Status;
+
+		protected RunnableOnFinish(OnFinish finish) {
+			OnFinishToRun = finish;
 		}
 		
-		protected void finish(bool result, String message) {
-			if ( mFinish != null ) {
-				mFinish.setResult(result, message);
-				mFinish.run();
+		protected void Finish(bool result, String message) {
+			if ( OnFinishToRun != null ) {
+				OnFinishToRun.SetResult(result, message);
+				OnFinishToRun.Run();
 			}
 		}
 		
-		protected void finish(bool result) {
-			if ( mFinish != null ) {
-				mFinish.setResult(result);
-				mFinish.run();
+		protected void Finish(bool result) {
+			if ( OnFinishToRun != null ) {
+				OnFinishToRun.SetResult(result);
+				OnFinishToRun.Run();
 			}
 		}
 		
-		public void setStatus(UpdateStatus status) {
-			mStatus = status;
+		public void SetStatus(UpdateStatus status) {
+			Status = status;
 		}
 		
-		abstract public void run();
+		abstract public void Run();
 	}
 }
 

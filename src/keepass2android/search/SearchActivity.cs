@@ -16,15 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using KeePassLib;
 using keepass2android.search;
@@ -44,38 +38,35 @@ namespace keepass2android
 			base.OnCreate(bundle);
 			SetContentView(Resource.Layout.search);
 			SearchParameters sp = new SearchParameters();
-			populateCheckBox(Resource.Id.cbSearchInTitle, sp.SearchInTitles);
-			populateCheckBox(Resource.Id.cbSearchInUsername, sp.SearchInUserNames);
-			populateCheckBox(Resource.Id.cbSearchInNotes, sp.SearchInNotes);
-			populateCheckBox(Resource.Id.cbSearchInPassword, sp.SearchInPasswords);
-			populateCheckBox(Resource.Id.cbSearchInTags, sp.SearchInTags);
-			populateCheckBox(Resource.Id.cbSearchInGroupName, sp.SearchInGroupNames);
-			populateCheckBox(Resource.Id.cbSearchInUrl, sp.SearchInUrls);
-			populateCheckBox(Resource.Id.cbSearchInOtherStrings, sp.SearchInOther);
-			populateCheckBox(Resource.Id.cbRegEx, sp.RegularExpression);
+			PopulateCheckBox(Resource.Id.cbSearchInTitle, sp.SearchInTitles);
+			PopulateCheckBox(Resource.Id.cbSearchInUsername, sp.SearchInUserNames);
+			PopulateCheckBox(Resource.Id.cbSearchInNotes, sp.SearchInNotes);
+			PopulateCheckBox(Resource.Id.cbSearchInPassword, sp.SearchInPasswords);
+			PopulateCheckBox(Resource.Id.cbSearchInTags, sp.SearchInTags);
+			PopulateCheckBox(Resource.Id.cbSearchInGroupName, sp.SearchInGroupNames);
+			PopulateCheckBox(Resource.Id.cbSearchInUrl, sp.SearchInUrls);
+			PopulateCheckBox(Resource.Id.cbSearchInOtherStrings, sp.SearchInOther);
+			PopulateCheckBox(Resource.Id.cbRegEx, sp.RegularExpression);
 
 			StringComparison sc = sp.ComparisonMode;
 			bool caseSensitive = ((sc != StringComparison.CurrentCultureIgnoreCase) &&
 			                             (sc != StringComparison.InvariantCultureIgnoreCase) &&
 			                             (sc != StringComparison.OrdinalIgnoreCase));
-			populateCheckBox(Resource.Id.cbCaseSensitive, caseSensitive);
-			populateCheckBox(Resource.Id.cbExcludeExpiredEntries, sp.ExcludeExpired);
+			PopulateCheckBox(Resource.Id.cbCaseSensitive, caseSensitive);
+			PopulateCheckBox(Resource.Id.cbExcludeExpiredEntries, sp.ExcludeExpired);
 
 			ImageButton btnSearch = (ImageButton)FindViewById(Resource.Id.search_button);
 
-			btnSearch.Click += (object sender, EventArgs e) => 
-			{
-				PerformSearch();
-			};
+			btnSearch.Click += (sender, e) => PerformSearch();
 
-			FindViewById<EditText>(Resource.Id.searchEditText).EditorAction += (object sender, TextView.EditorActionEventArgs e) => 
+			FindViewById<EditText>(Resource.Id.searchEditText).EditorAction += (sender, e) => 
 			{
 				if (e.ActionId == Android.Views.InputMethods.ImeAction.Search) {
 					PerformSearch();
 				}
 			};
 		}
-		void populateCheckBox(int resId, bool value)
+		void PopulateCheckBox(int resId, bool value)
 		{
 			((CheckBox) FindViewById(resId)).Checked = value;
 		}
@@ -85,7 +76,6 @@ namespace keepass2android
 			String searchString = ((EditText)FindViewById(Resource.Id.searchEditText)).Text;
 			if (String.IsNullOrWhiteSpace(searchString))
 				return;
-			SearchParameters spNew = new SearchParameters();
 			Intent searchIntent = new Intent(this, typeof(SearchResults));
 			searchIntent.PutExtra("SearchInTitles", GetCheckBoxValue(Resource.Id.cbSearchInTitle));
 			searchIntent.PutExtra("SearchInUrls", GetCheckBoxValue(Resource.Id.cbSearchInUrl));

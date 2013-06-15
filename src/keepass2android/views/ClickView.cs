@@ -16,29 +16,21 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 
 namespace keepass2android.view
 {
 	public abstract class ClickView : LinearLayout {
-
-		public ClickView (IntPtr javaReference, JniHandleOwnership transfer)
+		protected ClickView (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 			
 		}
 
-		public ClickView(Context context) :base(context)
+		protected ClickView(Context context) :base(context)
 		{
 		}
 		

@@ -16,34 +16,21 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace keepass2android
 {
 
 	public abstract class FileOnFinish : OnFinish {
-		private String mFilename = "";
-				
-		public FileOnFinish(FileOnFinish finish):base(finish) {
+		private String _filename = "";
+
+		protected FileOnFinish(FileOnFinish finish):base(finish) {
 		}
-		
-		public void setFilename(String filename) {
-			mFilename = filename;
+
+		public string Filename
+		{
+			get { return _filename; }
+			set { _filename = value; }
 		}
-		
-		public String getFilename() {
-			return mFilename;
-		}
-		
 	}
 }
 

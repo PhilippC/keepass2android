@@ -16,16 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace keepass2android
 {
@@ -45,7 +36,7 @@ namespace keepass2android
 		protected override void OnPause() {
 			base.OnPause();
 			
-			TimeoutHelper.pause(this);
+			TimeoutHelper.Pause(this);
 		}
 
 		protected override void OnDestroy()
@@ -57,7 +48,7 @@ namespace keepass2android
 		protected override void OnResume() {
 			base.OnResume();
 			
-			TimeoutHelper.resume(this);
+			TimeoutHelper.Resume(this);
 		}
 	}
 }

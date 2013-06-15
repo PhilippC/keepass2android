@@ -15,7 +15,6 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 using System;
-using Android.App;
 using Android.Content;
 using Android.OS;
 using System.Collections.Generic;
@@ -105,7 +104,7 @@ namespace keepass2android
 			
 		}
 		
-		public const String AppTask_key = "KP2A_APPTASK";
+		public const String AppTaskKey = "KP2A_APPTASK";
 
 		/// <summary>
 		/// Should be used in OnCreate to (re)create a task
@@ -116,13 +115,13 @@ namespace keepass2android
 			AppTask task;
 			if (savedInstanceState != null)
 			{
-				task = AppTask.CreateFromBundle(savedInstanceState);
+				task = CreateFromBundle(savedInstanceState);
 			}
 			else
 			{
-				task = AppTask.CreateFromIntent(intent);
+				task = CreateFromIntent(intent);
 			}
-			Android.Util.Log.Debug("DEBUG", "Loaded task " + task.ToString());
+			Android.Util.Log.Debug("DEBUG", "Loaded task " + task);
 			return task;
 		}
 
@@ -136,20 +135,23 @@ namespace keepass2android
 			if (b == null)
 				return new NullTask();
 
-			string taskType = b.GetString(AppTask_key);
+			string taskType = b.GetString(AppTaskKey);
 
 			if (string.IsNullOrEmpty(taskType))
 				return new NullTask();
 
-			try 
+			try
 			{
-				AppTask task = (AppTask)Activator.CreateInstance(Type.GetType("keepass2android."+taskType));
+			    Type type = Type.GetType("keepass2android." + taskType);
+                if (type == null)
+                    return new NullTask();
+				AppTask task = (AppTask)Activator.CreateInstance(type);
 				task.Setup(b);
 				return task;
 			}
 			catch (Exception e)
 			{
-				Android.Util.Log.Debug("DEBUG", "Cannot convert " + taskType + " in task: " + e.ToString());
+				Android.Util.Log.Debug("DEBUG", "Cannot convert " + taskType + " in task: " + e);
 				return new NullTask();
 			}
 
@@ -160,7 +162,7 @@ namespace keepass2android
 		/// </summary>
 		public void ToIntent(Intent intent)
 		{
-			AppTask.GetTypeExtra(GetType()).ToIntent(intent);
+			GetTypeExtra(GetType()).ToIntent(intent);
 
 			foreach (IExtra extra in Extras)
 			{
@@ -173,7 +175,7 @@ namespace keepass2android
 		/// </summary>
 		public void ToBundle(Bundle bundle)
 		{
-			AppTask.GetTypeExtra(GetType()).ToBundle(bundle);
+			GetTypeExtra(GetType()).ToBundle(bundle);
 
 			foreach (IExtra extra in Extras)
 			{
@@ -187,7 +189,7 @@ namespace keepass2android
 		/// </summary>
 		static IExtra GetTypeExtra(Type type)
 		{
-			return new StringExtra() { Key=AppTask_key, Value=type.Name};
+			return new StringExtra { Key=AppTaskKey, Value=type.Name};
 		}
 
 	}
@@ -205,7 +207,7 @@ namespace keepass2android
 	/// </summary>
 	public class SearchUrlTask: AppTask
 	{
-		public const String UrlToSearch_key = "UrlToSearch";
+		public const String UrlToSearchKey = "UrlToSearch";
 
 		public string UrlToSearchFor
 		{
@@ -215,13 +217,13 @@ namespace keepass2android
 
 		public override void Setup(Bundle b)
 		{
-			UrlToSearchFor = b.GetString(UrlToSearch_key);
+			UrlToSearchFor = b.GetString(UrlToSearchKey);
 		}
 		public override IEnumerable<IExtra> Extras 
 		{ 
 			get
 			{
-				yield return new StringExtra() { Key=UrlToSearch_key, Value = UrlToSearchFor };
+				yield return new StringExtra { Key=UrlToSearchKey, Value = UrlToSearchFor };
 			}
 		}
 		public override void AfterUnlockDatabase(PasswordActivity act)
@@ -254,7 +256,7 @@ namespace keepass2android
 	/// </summary>
 	public class CreateEntryThenCloseTask: AppTask
 	{
-		public const String Url_key = "CreateEntry_Url";
+		public const String UrlKey = "CreateEntry_Url";
 
 		public string Url
 		{
@@ -264,14 +266,13 @@ namespace keepass2android
 
 		public override void Setup(Bundle b)
 		{
-			Url = b.GetString(Url_key);
+			Url = b.GetString(UrlKey);
 		}
 		public override IEnumerable<IExtra> Extras 
 		{ 
 			get
 			{
-				yield return new StringExtra() { Key = Url_key, Value = Url };
-				yield break;
+				yield return new StringExtra { Key = UrlKey, Value = Url };
 			}
 		}
 		
@@ -285,7 +286,7 @@ namespace keepass2android
 		public override void AfterAddNewEntry(EntryEditActivity entryEditActivity, PwEntry newEntry)
 		{
 			EntryActivity.Launch(entryEditActivity, newEntry, -1, new SelectEntryTask());
-			entryEditActivity.SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
+			entryEditActivity.SetResult(KeePass.ExitCloseAfterTaskComplete);
 			//no need to call Finish here, that's done in EntryEditActivity ("closeOrShowError")	
 		}
 		

@@ -15,15 +15,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.Text.Method;
 using Android.Util;
@@ -37,19 +30,19 @@ namespace keepass2android.view
 		public TextViewSelect (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
-			initialize();
+			Initialize();
 		}
 
 
 		public TextViewSelect(Context context): base(context, null, Android.Resource.Attribute.TextViewStyle) {
-			initialize();
+			Initialize();
 		}
 		
 		public TextViewSelect(Context context, IAttributeSet attrs): base(context, attrs, Android.Resource.Attribute.TextViewStyle) {
-			initialize();
+			Initialize();
 		}
 
-		void initialize ()
+		void Initialize ()
 		{
 			Focusable = true;
 			FocusableInTouchMode = true;
@@ -57,7 +50,7 @@ namespace keepass2android.view
 		
 		public TextViewSelect(Context context, IAttributeSet attrs, int defStyle): base(context, attrs, defStyle) {
 
-			initialize ();
+			Initialize ();
 		}
 		
 		

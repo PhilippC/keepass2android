@@ -16,16 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace keepass2android
 {
@@ -43,20 +36,20 @@ namespace keepass2android
 		}
 
 
-		string className = null;
+		string _className;
 		string ClassName
 		{
 			get {
-				if (className == null)
-					className = this.GetType().Name;
-				return className;
+				if (_className == null)
+					_className = GetType().Name;
+				return _className;
 			}
 		}
 		
 		protected override void OnResume()
 		{
 			base.OnResume();
-			TimeoutHelper.resume(this);
+			TimeoutHelper.Resume(this);
 			Android.Util.Log.Debug("DEBUG",ClassName+".OnResume");
 		}
 		
@@ -82,7 +75,7 @@ namespace keepass2android
 		protected override void OnPause()
 		{
 			base.OnPause();
-			TimeoutHelper.pause(this);
+			TimeoutHelper.Pause(this);
 			Android.Util.Log.Debug("DEBUG",ClassName+".OnPause");
 		}
 		

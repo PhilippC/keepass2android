@@ -17,13 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Preferences;
@@ -36,19 +30,19 @@ namespace keepass2android
 	public class PwGroupListAdapter : BaseAdapter 
 	{
 		
-		private GroupBaseActivity mAct;
-		private PwGroup mGroup;
-		private List<PwGroup> groupsForViewing;
-		private List<PwEntry> entriesForViewing;
+		private readonly GroupBaseActivity _act;
+		private readonly PwGroup _group;
+		private List<PwGroup> _groupsForViewing;
+		private List<PwEntry> _entriesForViewing;
 
-		private ISharedPreferences prefs;
+		private readonly ISharedPreferences _prefs;
 		
 		public PwGroupListAdapter(GroupBaseActivity act, PwGroup group) {
-			mAct = act;
-			mGroup = group;
-			prefs = PreferenceManager.GetDefaultSharedPreferences(act);
+			_act = act;
+			_group = group;
+			_prefs = PreferenceManager.GetDefaultSharedPreferences(act);
 			
-			filterAndSort();
+			FilterAndSort();
 			
 		}
 		
@@ -56,41 +50,41 @@ namespace keepass2android
 		public override void NotifyDataSetChanged() {
 			base.NotifyDataSetChanged();
 			
-			filterAndSort();
+			FilterAndSort();
 		}
 		
 		
 		public override void NotifyDataSetInvalidated() {
 			base.NotifyDataSetInvalidated();
 			
-			filterAndSort();
+			FilterAndSort();
 		}
 		
-		private void filterAndSort() {
-			entriesForViewing = new List<PwEntry>();
+		private void FilterAndSort() {
+			_entriesForViewing = new List<PwEntry>();
 
-			foreach (PwEntry entry in mGroup.Entries)
+			foreach (PwEntry entry in _group.Entries)
 			{
-				entriesForViewing.Add(entry);
+				_entriesForViewing.Add(entry);
 			}
 			
-			bool sortLists = prefs.GetBoolean(mAct.GetString(Resource.String.sort_key),	mAct.Resources.GetBoolean(Resource.Boolean.sort_default)); 
+			bool sortLists = _prefs.GetBoolean(_act.GetString(Resource.String.sort_key),	_act.Resources.GetBoolean(Resource.Boolean.sort_default)); 
 			if ( sortLists ) 
 			{
-				groupsForViewing = new List<PwGroup>(mGroup.Groups);
-				groupsForViewing.Sort( (PwGroup x,PwGroup y) => { return String.Compare (x.Name, y.Name, true); });
-				entriesForViewing.Sort( (PwEntry x, PwEntry y) => 
+				_groupsForViewing = new List<PwGroup>(_group.Groups);
+				_groupsForViewing.Sort( (x, y) => { return String.Compare (x.Name, y.Name, true); });
+				_entriesForViewing.Sort( (x, y) => 
 				                       { 
 					String nameX = x.Strings.ReadSafe(PwDefs.TitleField);
 					String nameY = y.Strings.ReadSafe(PwDefs.TitleField);
 					if (nameX.ToLower() != nameY.ToLower())
-						return String.Compare (nameX,nameY,true); 
+						return String.Compare(nameX, nameY, StringComparison.OrdinalIgnoreCase); 
 					else
 						return x.CreationTime.CompareTo(y.CreationTime);
 				}
 				);
 			} else {
-				groupsForViewing =  new List<PwGroup>(mGroup.Groups);
+				_groupsForViewing =  new List<PwGroup>(_group.Groups);
 			}
 		}
 		
@@ -98,7 +92,7 @@ namespace keepass2android
 		{
 			get{
 			
-				return groupsForViewing.Count + entriesForViewing.Count;
+				return _groupsForViewing.Count + _entriesForViewing.Count;
 			}
 		}
 		
@@ -111,42 +105,42 @@ namespace keepass2android
 		}
 		
 		public override View GetView(int position, View convertView, ViewGroup parent) {
-			int size = groupsForViewing.Count;
+			int size = _groupsForViewing.Count;
 			
 			if ( position < size ) { 
-				return createGroupView(position, convertView);
+				return CreateGroupView(position, convertView);
 			} else {
-				return createEntryView(position - size, convertView);
+				return CreateEntryView(position - size, convertView);
 			}
 		}
 		
-		private View createGroupView(int position, View convertView) {
-			PwGroup g = groupsForViewing[position];
+		private View CreateGroupView(int position, View convertView) {
+			PwGroup g = _groupsForViewing[position];
 			PwGroupView gv;
 			
 			if (convertView == null || !(convertView is PwGroupView)) {
 				
-				gv = PwGroupView.getInstance(mAct, g);
+				gv = PwGroupView.GetInstance(_act, g);
 			} 
 			else {
 				gv = (PwGroupView) convertView;
-				gv.convertView(g);
+				gv.ConvertView(g);
 				
 			}
 			
 			return gv;
 		}
 	
-		private PwEntryView createEntryView(int position, View convertView) {
-			PwEntry entry = entriesForViewing[position];
+		private PwEntryView CreateEntryView(int position, View convertView) {
+			PwEntry entry = _entriesForViewing[position];
 			PwEntryView ev;
 			
 			if (convertView == null || !(convertView is PwEntryView)) {
-				ev = PwEntryView.getInstance(mAct, entry, position);
+				ev = PwEntryView.GetInstance(_act, entry, position);
 			}
 			else {
 				ev = (PwEntryView) convertView;
-				ev.convertView(entry, position);
+				ev.ConvertView(entry, position);
 			}
 			
 			return ev;

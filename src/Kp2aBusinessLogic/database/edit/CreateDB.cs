@@ -15,69 +15,59 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib.Serialization;
 using KeePassLib.Keys;
 
 namespace keepass2android
 {
 	
-	public class CreateDB : RunnableOnFinish {
+	public class CreateDb : RunnableOnFinish {
 		
-		private const int DEFAULT_ENCRYPTION_ROUNDS = 1000;
+		private const int DefaultEncryptionRounds = 1000;
 		
-		private IOConnectionInfo mIoc;
-		private bool mDontSave;
-		private Context mCtx;
-        private IKp2aApp mApp;
+		private readonly IOConnectionInfo _ioc;
+		private readonly bool _dontSave;
+		private readonly Context _ctx;
+        private readonly IKp2aApp _app;
 		
-		public CreateDB(IKp2aApp app, Context ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave): base(finish) {
-			mCtx = ctx;
-			mIoc = ioc;
-			mDontSave = dontSave;
-            mApp = app;
+		public CreateDb(IKp2aApp app, Context ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave): base(finish) {
+			_ctx = ctx;
+			_ioc = ioc;
+			_dontSave = dontSave;
+            _app = app;
 		}
 		
 
-		public override void run() {
-			Database db = mApp.CreateNewDatabase();
+		public override void Run() {
+			Database db = _app.CreateNewDatabase();
 
-			db.pm = new KeePassLib.PwDatabase();
+			db.KpDatabase = new KeePassLib.PwDatabase();
 			//Key will be changed/created immediately after creation:
 			CompositeKey tempKey = new CompositeKey();
-			db.pm.New(mIoc, tempKey);
+			db.KpDatabase.New(_ioc, tempKey);
 
 
-			db.pm.KeyEncryptionRounds = DEFAULT_ENCRYPTION_ROUNDS;
-			db.pm.Name = "Keepass2Android Password Database";
+			db.KpDatabase.KeyEncryptionRounds = DefaultEncryptionRounds;
+			db.KpDatabase.Name = "Keepass2Android Password Database";
 
 			
 			// Set Database state
-			db.root = db.pm.RootGroup;
-			db.mIoc = mIoc;
+			db.Root = db.KpDatabase.RootGroup;
+			db.Ioc = _ioc;
 			db.Loaded = true;
-			db.searchHelper = new SearchDbHelper(mApp);
+			db.SearchHelper = new SearchDbHelper(_app);
 
 			// Add a couple default groups
-			AddGroup internet = AddGroup.getInstance(mCtx, db, "Internet", 1, db.pm.RootGroup, null, true);
-			internet.run();
-			AddGroup email = AddGroup.getInstance(mCtx, db, "eMail", 19, db.pm.RootGroup, null, true);
-			email.run();
+			AddGroup internet = AddGroup.GetInstance(_ctx, db, "Internet", 1, db.KpDatabase.RootGroup, null, true);
+			internet.Run();
+			AddGroup email = AddGroup.GetInstance(_ctx, db, "eMail", 19, db.KpDatabase.RootGroup, null, true);
+			email.Run();
 			
 			// Commit changes
-			SaveDB save = new SaveDB(mCtx, db, mFinish, mDontSave);
-			mFinish = null;
-			save.run();
+			SaveDb save = new SaveDb(_ctx, db, OnFinishToRun, _dontSave);
+			OnFinishToRun = null;
+			save.Run();
 			
 			
 		}

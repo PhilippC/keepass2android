@@ -36,15 +36,15 @@ namespace keepass2android.view
 		}
 
 		public EntryContentsView(Context context):base(context, null) {
-			inflate(context);
+			InflateView();
 		}
 		
 		public EntryContentsView(Context context, IAttributeSet attrs): base(context, attrs) {
 			
-			inflate(context);
+			InflateView();
 		}
 		
-		private void inflate(Context context) {
+		private void InflateView() {
 			LayoutInflater inflater = (LayoutInflater) Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.entry_view_contents, this);
 

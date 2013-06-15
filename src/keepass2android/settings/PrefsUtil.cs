@@ -16,30 +16,21 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Preferences;
 
 namespace keepass2android
 {
 	
 	public class PrefsUtil {
-		public static float getListTextSize(Context ctx) {
+		public static float GetListTextSize(Context ctx) {
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
 
 			return float.Parse(prefs.GetString(ctx.GetString(Resource.String.list_size_key), ctx.GetString(Resource.String.list_size_default)));
 			
 		}
-		public static float getListDetailTextSize(Context ctx) {
-			return (float)Math.Round(getListTextSize(ctx)*3.0f/4.0f);
+		public static float GetListDetailTextSize(Context ctx) {
+			return (float)Math.Round(GetListTextSize(ctx)*3.0f/4.0f);
 			
 		}
 	}

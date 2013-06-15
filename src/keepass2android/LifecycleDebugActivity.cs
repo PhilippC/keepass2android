@@ -16,40 +16,33 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace keepass2android
 {
 				
 	public abstract class LifecycleDebugActivity : Activity
 	{
-		public LifecycleDebugActivity (IntPtr javaReference, JniHandleOwnership transfer)
+		protected LifecycleDebugActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 			
 		}
-		
-		public LifecycleDebugActivity()
+
+		protected LifecycleDebugActivity()
 		{
 		}
 
 
-		string className = null;
+		string _className;
 		string ClassName
 		{
 			get {
-				if (className == null)
-					className = this.GetType().Name;
-				return className;
+				if (_className == null)
+					_className = GetType().Name;
+				return _className;
 			}
 		}
 

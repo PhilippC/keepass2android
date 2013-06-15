@@ -15,15 +15,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace keepass2android
@@ -32,21 +25,17 @@ namespace keepass2android
 	public class SetPasswordDialog : CancelDialog 
 	{
 		
-		internal String mKeyfile;
-		private FileOnFinish mFinish;
+		internal String Keyfile;
+		private readonly FileOnFinish _finish;
 		
 		public SetPasswordDialog(Context context):base(context) {
 		}
 		
 		public SetPasswordDialog(Context context, FileOnFinish finish):base(context) {
 			
-			mFinish = finish;
+			_finish = finish;
 		}
 
-		
-		public String keyfile() {
-			return mKeyfile;
-		}
 		
 		protected override void OnCreate(Bundle savedInstanceState) 
 		{
@@ -57,7 +46,7 @@ namespace keepass2android
 			
 			// Ok button
 			Button okButton = (Button) FindViewById(Resource.Id.ok);
-			okButton.Click += (object sender, EventArgs e) => 
+			okButton.Click += (sender, e) => 
 			{
 				TextView passView = (TextView) FindViewById(Resource.Id.pass_password);
 				String pass = passView.Text;
@@ -73,7 +62,7 @@ namespace keepass2android
 				
 				TextView keyfileView = (TextView) FindViewById(Resource.Id.pass_keyfile);
 				String keyfile = keyfileView.Text;
-				mKeyfile = keyfile;
+				Keyfile = keyfile;
 				
 				// Verify that a password or keyfile is set
 				if ( pass.Length == 0 && keyfile.Length == 0 ) {
@@ -82,7 +71,7 @@ namespace keepass2android
 					
 				}
 				
-				SetPassword sp = new SetPassword(Context, App.Kp2a.GetDb(), pass, keyfile, new AfterSave(this, mFinish, new Handler()));
+				SetPassword sp = new SetPassword(Context, App.Kp2a.GetDb(), pass, keyfile, new AfterSave(this, _finish, new Handler()));
 				ProgressTask pt = new ProgressTask(App.Kp2a, Context, sp, UiStringKey.saving_database);
 				pt.run();
 			};
@@ -93,8 +82,8 @@ namespace keepass2android
 			Button cancelButton = (Button) FindViewById(Resource.Id.cancel);
 			cancelButton.Click += (sender,e) => {
 				Cancel();
-				if ( mFinish != null ) {
-					mFinish.run();
+				if ( _finish != null ) {
+					_finish.Run();
 				}
 			}; 
 		}
@@ -102,28 +91,28 @@ namespace keepass2android
 
 		
 		class AfterSave : OnFinish {
-			private FileOnFinish mFinish;
+			private readonly FileOnFinish _finish;
 
-			SetPasswordDialog dlg;
+			readonly SetPasswordDialog _dlg;
 			
 			public AfterSave(SetPasswordDialog dlg, FileOnFinish finish, Handler handler): base(finish, handler) {
-				mFinish = finish;
-				this.dlg = dlg;
+				_finish = finish;
+				_dlg = dlg;
 			}
 			
 			
-			public override void run() {
-				if ( mSuccess ) {
-					if ( mFinish != null ) {
-						mFinish.setFilename(dlg.mKeyfile);
+			public override void Run() {
+				if ( Success ) {
+					if ( _finish != null ) {
+						_finish.Filename = _dlg.Keyfile;
 					}
 
-					dlg.Dismiss();
+					_dlg.Dismiss();
 				} else {
-					displayMessage(dlg.Context);
+					DisplayMessage(_dlg.Context);
 				}
 				
-				base.run();
+				base.Run();
 			}
 			
 		}

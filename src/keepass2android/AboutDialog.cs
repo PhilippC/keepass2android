@@ -16,15 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 
@@ -41,15 +35,15 @@ namespace keepass2android
 			SetContentView(Resource.Layout.about);
 			SetTitle(Resource.String.app_name);
 			
-			setVersion();
+			SetVersion();
 			
 			Button okButton = (Button) FindViewById(Resource.Id.about_button);
-			okButton.Click += (object sender, EventArgs e) => {
+			okButton.Click += (sender, e) => {
 					Dismiss();
 			};
 		}
 		
-		private void setVersion() {
+		private void SetVersion() {
 			Context ctx = Context;
 			
 			String version;

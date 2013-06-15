@@ -16,13 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -38,7 +32,7 @@ namespace keepass2android.view
 		public FileSelectButtons(Context context, Android.Util.IAttributeSet attrs) 
 			:base(context, attrs)
 		{
-			inflate(context);
+			InflateView(context);
 		}
 		
 		public FileSelectButtons (IntPtr javaReference, JniHandleOwnership transfer)
@@ -47,12 +41,12 @@ namespace keepass2android.view
 			
 		}
 		
-		private void inflate(Context context) {
+		private void InflateView(Context context) {
 			LayoutInflater inflater = (LayoutInflater) context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.file_selection_buttons, this);
 		}
 		
-		public void updateExternalStorageWarning() {
+		public void UpdateExternalStorageWarning() {
 			int warning = -1;
 			String state = Android.OS.Environment.ExternalStorageState;
 			if (state.Equals(Android.OS.Environment.MediaMountedReadOnly)) {

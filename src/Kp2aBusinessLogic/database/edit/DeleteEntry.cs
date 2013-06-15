@@ -16,28 +16,19 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib;
 
 namespace keepass2android
 {
 	public class DeleteEntry : DeleteRunnable {
 
-        private PwEntry mEntry;
+        private readonly PwEntry _entry;
 
 		public DeleteEntry(Context ctx, IKp2aApp app, PwEntry entry, OnFinish finish):base(finish, app) {
-			mCtx = ctx;
-			mDb = app.GetDb();
-			mEntry = entry;
+			Ctx = ctx;
+			Db = app.GetDb();
+			_entry = entry;
 			
 		}
 
@@ -45,7 +36,7 @@ namespace keepass2android
 		{
 			get
 			{
-				return CanRecycleGroup(mEntry.ParentGroup);
+				return CanRecycleGroup(_entry.ParentGroup);
 			}
 		}
 
@@ -57,15 +48,15 @@ namespace keepass2android
 			}
 		}
 
-		public override void run() {
+		public override void Run() {
 
-			PwDatabase pd = mDb.pm;
+			PwDatabase pd = Db.KpDatabase;
 
 			PwGroup pgRecycleBin = pd.RootGroup.FindGroup(pd.RecycleBinUuid, true);
 
 			bool bUpdateGroupList = false;
 			DateTime dtNow = DateTime.Now;
-			PwEntry pe = mEntry;
+			PwEntry pe = _entry;
 			PwGroup pgParent = pe.ParentGroup;
 			if(pgParent != null)
 			{
@@ -77,19 +68,19 @@ namespace keepass2android
 					PwDeletedObject pdo = new PwDeletedObject(pe.Uuid, dtNow);
 					pd.DeletedObjects.Add(pdo);
 
-					mFinish = new ActionOnFinish( (success, message) => 
-					                             {
-						if ( success ) {
-							// Mark parent dirty
-							if ( pgParent != null ) {
-								mDb.dirty.Add(pgParent);
+					OnFinishToRun = new ActionOnFinish((success, message) =>
+						{
+							if (success)
+							{
+								// Mark parent dirty
+								Db.Dirty.Add(pgParent);
 							}
-						} else {
-							// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
-							mApp.SetShutdown();
-						}
-
-					}, this.mFinish);
+							else
+							{
+								// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
+								App.SetShutdown();
+							}
+						}, OnFinishToRun);
 				}
 				else // Recycle
 				{
@@ -98,27 +89,25 @@ namespace keepass2android
 					pgRecycleBin.AddEntry(pe, true, true);
 					pe.Touch(false);
 
-					mFinish = new ActionOnFinish( (success, message) => 
+					OnFinishToRun = new ActionOnFinish( (success, message) => 
 					                             {
 						if ( success ) {
 							// Mark previous parent dirty
-							if ( pgParent != null ) {
-								mDb.dirty.Add(pgParent);
-							}
+							Db.Dirty.Add(pgParent);
 							// Mark new parent dirty
-							mDb.dirty.Add(pgRecycleBin);
+							Db.Dirty.Add(pgRecycleBin);
 						} else {
 							// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
-							mApp.SetShutdown();
+							App.SetShutdown();
 						}
 						
-					}, this.mFinish);
+					}, OnFinishToRun);
 				}
 			}
 
 			// Commit database
-			SaveDB save = new SaveDB(mCtx, mDb, mFinish, false);
-			save.run();
+			SaveDb save = new SaveDb(Ctx, Db, OnFinishToRun, false);
+			save.Run();
 			
 			
 		}

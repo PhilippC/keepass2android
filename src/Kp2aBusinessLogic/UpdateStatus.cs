@@ -16,45 +16,37 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
 	public class UpdateStatus: IStatusLogger {
-		private ProgressDialog mPD;
-        IKp2aApp mApp;
-		private Handler mHandler;
+		private readonly ProgressDialog _progressDialog;
+		readonly IKp2aApp _app;
+		private readonly Handler _handler;
 		
 		public UpdateStatus() {
 			
 		}
 		
 		public UpdateStatus(IKp2aApp app, Handler handler, ProgressDialog pd) {
-			mApp = app;
-			mPD = pd;
-			mHandler = handler;
+			_app = app;
+			_progressDialog = pd;
+			_handler = handler;
 		}
 		
-		public void updateMessage(UiStringKey stringKey) {
-			if ( mApp != null && mPD != null && mHandler != null ) {
-				mHandler.Post( () => {mPD.SetMessage(mApp.GetResourceString(stringKey));});
+		public void UpdateMessage(UiStringKey stringKey) {
+			if ( _app != null && _progressDialog != null && _handler != null ) {
+				_handler.Post( () => {_progressDialog.SetMessage(_app.GetResourceString(stringKey));});
 			}
 		}
 
-		public void updateMessage (String message)
+		public void UpdateMessage (String message)
 		{
-			if ( mApp!= null && mPD != null && mHandler != null ) {
-				mHandler.Post(() => {mPD.SetMessage(message); } );
+			if ( _app!= null && _progressDialog != null && _handler != null ) {
+				_handler.Post(() => {_progressDialog.SetMessage(message); } );
 			}
 		}
 
@@ -77,7 +69,7 @@ namespace keepass2android
 
 		public bool SetText (string strNewText, LogStatusType lsType)
 		{
-			updateMessage(strNewText);
+			UpdateMessage(strNewText);
 			return true;
 		}
 

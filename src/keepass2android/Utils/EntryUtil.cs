@@ -21,20 +21,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
-using System.IO;
-using System.IO.Compression;
-using System.Security.Cryptography;
-
 using KeePass.Util.Spr;
 
 using KeePassLib;
 using KeePassLib.Collections;
 using KeePassLib.Cryptography;
-using KeePassLib.Cryptography.PasswordGenerator;
 using KeePassLib.Delegates;
 using KeePassLib.Security;
 using KeePassLib.Utility;
-using KeePassLib.Serialization;
 
 namespace KeePass.Util
 {
@@ -46,7 +40,6 @@ namespace KeePass.Util
 
 		// Old format name (<= 2.14): "KeePassEntriesCF"
 		public const string ClipFormatEntries = "KeePassEntriesCX";
-		private static byte[] AdditionalEntropy = { 0xF8, 0x03, 0xFA, 0x51, 0x87, 0x18, 0x49, 0x5D };
 
 		public static string FillPlaceholders(string strText, SprContext ctx)
 		{

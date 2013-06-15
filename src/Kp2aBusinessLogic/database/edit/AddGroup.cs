@@ -16,82 +16,71 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib;
 
 namespace keepass2android
 {
 
 	public class AddGroup : RunnableOnFinish {
-		internal Database mDb;
-		private String mName;
-		private int mIconID;
-		internal PwGroup mGroup;
-		internal PwGroup mParent;
-		protected bool mDontSave;
-		Context mCtx;
+		internal Database Db;
+		private readonly String _name;
+		private readonly int _iconId;
+		internal PwGroup Group;
+		internal PwGroup Parent;
+		protected bool DontSave;
+		readonly Context _ctx;
 		
 		
-		public static AddGroup getInstance(Context ctx, Database db, String name, int iconid, PwGroup parent, OnFinish finish, bool dontSave) {
+		public static AddGroup GetInstance(Context ctx, Database db, String name, int iconid, PwGroup parent, OnFinish finish, bool dontSave) {
 			return new AddGroup(ctx, db, name, iconid, parent, finish, dontSave);
 		}
 		
 		
 		private AddGroup(Context ctx, Database db, String name, int iconid, PwGroup parent, OnFinish finish, bool dontSave): base(finish) {
-			mCtx = ctx;
-			mDb = db;
-			mName = name;
-			mIconID = iconid;
-			mParent = parent;
-			mDontSave = dontSave;
+			_ctx = ctx;
+			Db = db;
+			_name = name;
+			_iconId = iconid;
+			Parent = parent;
+			DontSave = dontSave;
 			
-			mFinish = new AfterAdd(this, mFinish);
+			OnFinishToRun = new AfterAdd(this, OnFinishToRun);
 		}
 		
 		
-		public override void run() {
-			PwDatabase pm = mDb.pm;
+		public override void Run() {
 			
 			// Generate new group
-			mGroup = new PwGroup(true, true, mName, (PwIcon)mIconID);
-			mParent.AddGroup(mGroup, true);
+			Group = new PwGroup(true, true, _name, (PwIcon)_iconId);
+			Parent.AddGroup(Group, true);
 
 			// Commit to disk
-			SaveDB save = new SaveDB(mCtx, mDb, mFinish, mDontSave);
-			save.run();
+			SaveDb save = new SaveDb(_ctx, Db, OnFinishToRun, DontSave);
+			save.Run();
 		}
 		
 		private class AfterAdd : OnFinish {
-
-			AddGroup addGroup;
+			readonly AddGroup _addGroup;
 
 			public AfterAdd(AddGroup addGroup,OnFinish finish): base(finish) {
-				this.addGroup = addGroup;
+				_addGroup = addGroup;
 			}
 				
 
-			public override void run() {
+			public override void Run() {
 				
-				if ( mSuccess ) {
+				if ( Success ) {
 					// Mark parent group dirty
-					addGroup.mDb.dirty.Add(addGroup.mParent);
+					_addGroup.Db.Dirty.Add(_addGroup.Parent);
 					
 					// Add group to global list
-					addGroup.mDb.groups[addGroup.mGroup.Uuid] = addGroup.mGroup;
+					_addGroup.Db.Groups[_addGroup.Group.Uuid] = _addGroup.Group;
 				} else {
-					addGroup.mParent.Groups.Remove(addGroup.mGroup);
+					_addGroup.Parent.Groups.Remove(_addGroup.Group);
 				}
 				
-				base.run();
+				base.Run();
 			}
 			
 		}

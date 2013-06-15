@@ -16,98 +16,85 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.Preferences;
 using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	public class LoadDB : RunnableOnFinish {
-		private IOConnectionInfo mIoc;
-		private String mPass;
-		private String mKey;
-		private IKp2aApp mApp;
-		private Context mCtx;
-		private bool mRememberKeyfile;
+	public class LoadDb : RunnableOnFinish {
+		private readonly IOConnectionInfo _ioc;
+		private readonly String _pass;
+		private readonly String _key;
+		private readonly IKp2aApp _app;
+		private readonly bool _rememberKeyfile;
 		
-		public LoadDB(IKp2aApp app, Context ctx, IOConnectionInfo ioc, String pass, String key, OnFinish finish): base(finish)
+		public LoadDb(IKp2aApp app, IOConnectionInfo ioc, String pass, String key, OnFinish finish): base(finish)
 		{
-			mApp = app;
-			mCtx = ctx;
-			mIoc = ioc;
-			mPass = pass;
-			mKey = key;
+			_app = app;
+			_ioc = ioc;
+			_pass = pass;
+			_key = key;
 
             
-			mRememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
+			_rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
 		}
 		
 		
-		public override void run ()
+		public override void Run ()
 		{
 			try {
-				mApp.GetDb().LoadData (mApp, mIoc, mPass, mKey, mStatus);
+				_app.GetDb().LoadData (_app, _ioc, _pass, _key, Status);
 				
-				saveFileData (mIoc, mKey);
+				SaveFileData (_ioc, _key);
 				
 			} catch (KeyFileException) {
-				finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/ mApp.GetResourceString(UiStringKey.keyfile_does_not_exist));
+				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/ _app.GetResourceString(UiStringKey.keyfile_does_not_exist));
 			}
 			catch (Exception e) {
-				finish(false, "An error occured: " + e.Message);
+				Finish(false, "An error occured: " + e.Message);
 				return;
 			} 
 		 /* catch (InvalidPasswordException e) {
-				finish(false, mCtx.GetString(Resource.String.InvalidPassword));
+				finish(false, Ctx.GetString(Resource.String.InvalidPassword));
 				return;
 			} catch (FileNotFoundException e) {
-				finish(false, mCtx.GetString(Resource.String.FileNotFound));
+				finish(false, Ctx.GetString(Resource.String.FileNotFound));
 				return;
 			} catch (IOException e) {
 				finish(false, e.getMessage());
 				return;
 			} catch (KeyFileEmptyException e) {
-				finish(false, mCtx.GetString(Resource.String.keyfile_is_empty));
+				finish(false, Ctx.GetString(Resource.String.keyfile_is_empty));
 				return;
 			} catch (InvalidAlgorithmException e) {
-				finish(false, mCtx.GetString(Resource.String.invalid_algorithm));
+				finish(false, Ctx.GetString(Resource.String.invalid_algorithm));
 				return;
 			} catch (InvalidKeyFileException e) {
-				finish(false, mCtx.GetString(Resource.String.keyfile_does_not_exist));
+				finish(false, Ctx.GetString(Resource.String.keyfile_does_not_exist));
 				return;
 			} catch (InvalidDBSignatureException e) {
-				finish(false, mCtx.GetString(Resource.String.invalid_db_sig));
+				finish(false, Ctx.GetString(Resource.String.invalid_db_sig));
 				return;
 			} catch (InvalidDBVersionException e) {
-				finish(false, mCtx.GetString(Resource.String.unsupported_db_version));
+				finish(false, Ctx.GetString(Resource.String.unsupported_db_version));
 				return;
 			} catch (InvalidDBException e) {
-				finish(false, mCtx.GetString(Resource.String.error_invalid_db));
+				finish(false, Ctx.GetString(Resource.String.error_invalid_db));
 				return;
 			} catch (OutOfMemoryError e) {
-				finish(false, mCtx.GetString(Resource.String.error_out_of_memory));
+				finish(false, Ctx.GetString(Resource.String.error_out_of_memory));
 				return;
 			}
 			*/
-			finish(true);
+			Finish(true);
 		}
 		
-		private void saveFileData(IOConnectionInfo ioc, String key) {
+		private void SaveFileData(IOConnectionInfo ioc, String key) {
 
-            if (!mRememberKeyfile)
+            if (!_rememberKeyfile)
             {
                 key = "";
             }
-            mApp.StoreOpenedFileAsRecent(ioc, key);
+            _app.StoreOpenedFileAsRecent(ioc, key);
 		}
 		
 		

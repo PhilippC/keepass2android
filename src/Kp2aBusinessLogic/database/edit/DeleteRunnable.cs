@@ -1,50 +1,39 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib;
 
 namespace keepass2android
 {
 	public abstract class DeleteRunnable : RunnableOnFinish
 	{
-		public DeleteRunnable(OnFinish finish, IKp2aApp app):base(finish)
+		protected DeleteRunnable(OnFinish finish, IKp2aApp app):base(finish)
 		{
-            mApp = app;
+            App = app;
 		}
 
-        protected IKp2aApp mApp;
+        protected IKp2aApp App;
 
-		protected Database mDb;
+		protected Database Db;
 
-		protected Context mCtx;
+		protected Context Ctx;
 
-		protected void setMembers(Context ctx, Database db)
+		protected void SetMembers(Context ctx, Database db)
 		{
-			mCtx = ctx;
-			mDb = db;
+			Ctx = ctx;
+			Db = db;
 		}
 
 		
-		private bool mDeletePermanently = true;
+		private bool _deletePermanently = true;
 		
 		public bool DeletePermanently
 		{
 			get
 			{
-				return mDeletePermanently;
+				return _deletePermanently;
 			}
 			set
 			{
-				mDeletePermanently = value;
+				_deletePermanently = value;
 			}
 		}
 
@@ -56,7 +45,7 @@ namespace keepass2android
 		protected bool CanRecycleGroup(PwGroup pgParent)
 		{
 			bool bShiftPressed = false;
-			PwDatabase pd = mDb.pm;
+			PwDatabase pd = Db.KpDatabase;
 			PwGroup pgRecycleBin = pd.RootGroup.FindGroup(pd.RecycleBinUuid, true);
 			bool bPermanent = false;
 			if (pgParent != null)
@@ -80,27 +69,30 @@ namespace keepass2android
 		protected void EnsureRecycleBin(ref PwGroup pgRecycleBin,
 		                                    ref bool bGroupListUpdateRequired)
 		{
-			if ((mDb == null) || (mDb.pm == null)) { return; }
+			if ((Db == null) || (Db.KpDatabase == null)) { return; }
 			
-			if(pgRecycleBin == mDb.pm.RootGroup)
+			if(pgRecycleBin == Db.KpDatabase.RootGroup)
 			{
 				pgRecycleBin = null;
 			}
 			
 			if(pgRecycleBin == null)
 			{
-				pgRecycleBin = new PwGroup(true, true, mApp.GetResourceString(UiStringKey.RecycleBin),
-				                           PwIcon.TrashBin);
-				pgRecycleBin.EnableAutoType = false;
-				pgRecycleBin.EnableSearching = false;
-				pgRecycleBin.IsExpanded = false;
-				mDb.pm.RootGroup.AddGroup(pgRecycleBin, true);
+				pgRecycleBin = new PwGroup(true, true, App.GetResourceString(UiStringKey.RecycleBin),
+				                           PwIcon.TrashBin) 
+						{
+							EnableAutoType = false, 
+							EnableSearching = false, 
+							IsExpanded = false
+						};
+
+				Db.KpDatabase.RootGroup.AddGroup(pgRecycleBin, true);
 				
-				mDb.pm.RecycleBinUuid = pgRecycleBin.Uuid;
+				Db.KpDatabase.RecycleBinUuid = pgRecycleBin.Uuid;
 				
 				bGroupListUpdateRequired = true;
 			}
-			else { System.Diagnostics.Debug.Assert(pgRecycleBin.Uuid.EqualsValue(mDb.pm.RecycleBinUuid)); }
+			else { System.Diagnostics.Debug.Assert(pgRecycleBin.Uuid.EqualsValue(Db.KpDatabase.RecycleBinUuid)); }
 		}
 
 		protected abstract UiStringKey QuestionsResourceId
@@ -108,31 +100,31 @@ namespace keepass2android
 			get;
 		}
 		
-		public void start()
+		public void Start()
 		{
 			if (CanRecycle)
 			{
-                mApp.AskYesNoCancel(UiStringKey.AskDeletePermanently_title, 
+                App.AskYesNoCancel(UiStringKey.AskDeletePermanently_title, 
                     QuestionsResourceId,
-                    new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
-				                                                                                      {
-					DeletePermanently = true;
-                    ProgressTask pt = new ProgressTask(mApp, mCtx, this, UiStringKey.saving_database);
-					pt.run();
-				}),
-                new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => {	
-					DeletePermanently = false;
-                    ProgressTask pt = new ProgressTask(mApp, mCtx, this, UiStringKey.saving_database);
-					pt.run();
-				}),
-                new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => {}),
-                mCtx);
+                    (dlgSender, dlgEvt) => 
+	                    {
+		                    DeletePermanently = true;
+		                    ProgressTask pt = new ProgressTask(App, Ctx, this, UiStringKey.saving_database);
+		                    pt.run();
+	                    },
+                (dlgSender, dlgEvt) => {	
+	                                       DeletePermanently = false;
+	                                       ProgressTask pt = new ProgressTask(App, Ctx, this, UiStringKey.saving_database);
+	                                       pt.run();
+                },
+                (dlgSender, dlgEvt) => {},
+                Ctx);
 
 
 				
 			} else
 			{
-				ProgressTask pt = new ProgressTask(mApp, mCtx, this, UiStringKey.saving_database);
+				ProgressTask pt = new ProgressTask(App, Ctx, this, UiStringKey.saving_database);
 				pt.run();
 			}
 		}

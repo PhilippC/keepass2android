@@ -16,14 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
@@ -32,8 +27,8 @@ namespace keepass2android
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
 	public class IconPickerActivity : LockCloseActivity
 	{
-		public const String KEY_ICON_ID = "icon_id";
-		public const String KEY_CUSTOM_ICON_ID = "custom_icon_id";
+		public const String KeyIconId = "icon_id";
+		public const String KeyCustomIconId = "custom_icon_id";
 		
 		public static void Launch(Activity act)
 		{
@@ -47,14 +42,14 @@ namespace keepass2android
 			SetContentView(Resource.Layout.icon_picker);
 			
 			GridView currIconGridView = (GridView)FindViewById(Resource.Id.IconGridView);
-			currIconGridView.Adapter = new ImageAdapter(this, this);
+			currIconGridView.Adapter = new ImageAdapter(this);
 			
 			currIconGridView.ItemClick += (sender, e) =>           {
 			
 					Intent intent = new Intent();
 					
-					intent.PutExtra(KEY_ICON_ID, e.Position);
-					SetResult((Result)EntryEditActivity.RESULT_OK_ICON_PICKER, intent);
+					intent.PutExtra(KeyIconId, e.Position);
+					SetResult((Result)EntryEditActivity.ResultOkIconPicker, intent);
 					
 					Finish();
 				};
@@ -62,14 +57,11 @@ namespace keepass2android
 		
 		public class ImageAdapter : BaseAdapter
 		{
-			Context mContext;
-
-			IconPickerActivity act;
+			readonly IconPickerActivity _act;
 			
-			public ImageAdapter(Context c, IconPickerActivity act)
+			public ImageAdapter(IconPickerActivity act)
 			{
-				mContext = c;
-				this.act = act;
+				_act = act;
 			}
 			
 			public override int Count
@@ -77,7 +69,7 @@ namespace keepass2android
 				get
 				{
 					/* Return number of KeePass icons */
-					return Icons.count();
+					return Icons.Count();
 				}
 			}
 			
@@ -96,7 +88,7 @@ namespace keepass2android
 				View currView;
 				if(convertView == null)
 				{
-					LayoutInflater li = (LayoutInflater) act.GetSystemService(Context.LayoutInflaterService); 
+					LayoutInflater li = (LayoutInflater) _act.GetSystemService(LayoutInflaterService); 
 					currView = li.Inflate(Resource.Layout.icon, null);
 				}
 				else
@@ -107,7 +99,7 @@ namespace keepass2android
 				TextView tv = (TextView) currView.FindViewById(Resource.Id.icon_text);
 				tv.Text = "" + position;
 				ImageView iv = (ImageView) currView.FindViewById(Resource.Id.icon_image);
-				iv.SetImageResource(Icons.iconToResId((KeePassLib.PwIcon)position));
+				iv.SetImageResource(Icons.IconToResId((KeePassLib.PwIcon)position));
 				
 				return currView;
 			}

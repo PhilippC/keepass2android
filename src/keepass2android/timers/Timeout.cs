@@ -16,16 +16,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Preferences;
 using Android.Util;
 
@@ -33,18 +25,18 @@ namespace keepass2android
 {
 	
 	public class Timeout {
-		private const int REQUEST_ID = 0;
-		private const long DEFAULT_TIMEOUT = 5 * 60 * 1000;  // 5 minutes
-		private static String TAG = "Keepass2Android Timeout";
-		
-		private static PendingIntent buildIntent(Context ctx) {
-			Intent intent = new Intent(Intents.TIMEOUT);
-			PendingIntent sender = PendingIntent.GetBroadcast(ctx, REQUEST_ID, intent, PendingIntentFlags.CancelCurrent);
+		private const int RequestId = 0;
+		private const long DefaultTimeout = 5 * 60 * 1000;  // 5 minutes
+		private const String Tag = "Keepass2Android Timeout";
+
+		private static PendingIntent BuildIntent(Context ctx) {
+			Intent intent = new Intent(Intents.Timeout);
+			PendingIntent sender = PendingIntent.GetBroadcast(ctx, RequestId, intent, PendingIntentFlags.CancelCurrent);
 			
 			return sender;
 		}
 		
-		public static void start(Context ctx) {
+		public static void Start(Context ctx) {
 			
 			
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
@@ -53,7 +45,7 @@ namespace keepass2android
 			long timeout;
 			if (!long.TryParse(sTimeout, out timeout))
 			{
-				timeout = DEFAULT_TIMEOUT;
+				timeout = DefaultTimeout;
 			}
 			
 			if ( timeout == -1 ) {
@@ -66,15 +58,15 @@ namespace keepass2android
 			long triggerTime = Java.Lang.JavaSystem.CurrentTimeMillis() + timeout;
 			AlarmManager am = (AlarmManager) ctx.GetSystemService(Context.AlarmService);
 			
-			Log.Debug(TAG, "Timeout start");
-			am.Set(AlarmType.Rtc, triggerTime, buildIntent(ctx));
+			Log.Debug(Tag, "Timeout start");
+			am.Set(AlarmType.Rtc, triggerTime, BuildIntent(ctx));
 		}
 		
-		public static void cancel(Context ctx) {
+		public static void Cancel(Context ctx) {
 			AlarmManager am = (AlarmManager) ctx.GetSystemService(Context.AlarmService);
 			
-			Log.Debug(TAG, "Timeout cancel");
-			am.Cancel(buildIntent(ctx));
+			Log.Debug(Tag, "Timeout cancel");
+			am.Cancel(BuildIntent(ctx));
 			
 			ctx.StopService(new Intent(ctx, typeof(TimeoutService)));
 			

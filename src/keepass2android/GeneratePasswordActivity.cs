@@ -16,14 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
@@ -31,7 +26,7 @@ namespace keepass2android
 {
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
 	public class GeneratePasswordActivity : LockCloseActivity {
-		private int[] BUTTON_IDS  = new int[]  {Resource.Id.btn_length6, Resource.Id.btn_length8, Resource.Id.btn_length12, Resource.Id.btn_length16};
+		private readonly int[] _buttonIds  = new[]  {Resource.Id.btn_length6, Resource.Id.btn_length8, Resource.Id.btn_length12, Resource.Id.btn_length16};
 		
 		public static void Launch(Activity act) {
 			Intent i = new Intent(act, typeof(GeneratePasswordActivity));
@@ -43,11 +38,11 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.generate_password);
-			SetResult(KeePass.EXIT_NORMAL);
+			SetResult(KeePass.ExitNormal);
 			
-			foreach (int id in BUTTON_IDS) {
+			foreach (int id in _buttonIds) {
 				Button button = (Button) FindViewById(id);
-				button.Click += (object sender, EventArgs e) => 
+				button.Click += (sender, e) => 
 				{
 					Button b = (Button) sender;
 					
@@ -58,8 +53,8 @@ namespace keepass2android
 			}
 			
 			Button genPassButton = (Button) FindViewById(Resource.Id.generate_password_button);
-			genPassButton.Click += (object sender, EventArgs e) =>  {
-					String password = generatePassword();
+			genPassButton.Click += (sender, e) =>  {
+					String password = GeneratePassword();
 					
 					EditText txtPassword = (EditText) FindViewById(Resource.Id.password);
 					txtPassword.Text = password;
@@ -68,20 +63,20 @@ namespace keepass2android
 
 
 			View acceptButton = FindViewById(Resource.Id.accept_button);
-			acceptButton.Click += (object sender, EventArgs e) => {
+			acceptButton.Click += (sender, e) => {
 					EditText password = (EditText) FindViewById(Resource.Id.password);
 					
 					Intent intent = new Intent();
 					intent.PutExtra("keepass2android.password.generated_password", password.Text);
 					
-					SetResult((Result)EntryEditActivity.RESULT_OK_PASSWORD_GENERATOR, intent);
+					SetResult((Result)EntryEditActivity.ResultOkPasswordGenerator, intent);
 					
 					Finish();
 			};
 
 			
 			View cancelButton = FindViewById(Resource.Id.cancel_button);
-			cancelButton.Click += (object sender, EventArgs e) => 
+			cancelButton.Click += (sender, e) => 
 			{
 					SetResult(Result.Canceled);
 					
@@ -90,11 +85,11 @@ namespace keepass2android
 
 			
 			EditText txtPasswordToSet = (EditText) FindViewById(Resource.Id.password);
-			txtPasswordToSet.Text = generatePassword();
+			txtPasswordToSet.Text = GeneratePassword();
 
 		}
 		
-		public String generatePassword() {
+		public String GeneratePassword() {
 			String password = "";
 			
 			try {
@@ -109,7 +104,7 @@ namespace keepass2android
 
 				PasswordGenerator generator = new PasswordGenerator(this);
 				
-				password = generator.generatePassword(length,
+				password = generator.GeneratePassword(length,
 				                                      ((CheckBox) FindViewById(Resource.Id.cb_uppercase)).Checked,
 				                                      ((CheckBox) FindViewById(Resource.Id.cb_lowercase)).Checked,
 				                                      ((CheckBox) FindViewById(Resource.Id.cb_digits)).Checked,

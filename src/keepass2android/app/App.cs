@@ -16,16 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib.Serialization;
 using Android.Preferences;
 
@@ -51,39 +44,39 @@ namespace keepass2android
 
     public class Kp2aApp: IKp2aApp
     {
-        public bool isShutdown()
+        public bool IsShutdown()
         {
-            return shutdown;
+            return _shutdown;
         }
 
         public void SetShutdown()
         {
-            shutdown = true;
+            _shutdown = true;
         }
 
-        public void clearShutdown()
+        public void ClearShutdown()
         {
-            shutdown = false;
+            _shutdown = false;
         }
 
-        private Database db;
-        private bool shutdown = false;
+        private Database _db;
+        private bool _shutdown;
 
         /// <summary>
         /// See comments to EntryEditActivityState.
         /// </summary>
-        internal EntryEditActivityState entryEditActivityState = null;
+        internal EntryEditActivityState EntryEditActivityState = null;
 
-        public FileDbHelper fileDbHelper;
+        public FileDbHelper FileDbHelper;
 
         public Database GetDb()
         {
-            if (db == null)
+            if (_db == null)
             {
-                db = CreateNewDatabase();
+                _db = CreateNewDatabase();
             }
 
-            return db;
+            return _db;
         }
 
 
@@ -107,11 +100,11 @@ namespace keepass2android
 
         public void CheckForOpenFileChanged(Activity activity)
         {
-            if (db.DidOpenFileChange())
+            if (_db.DidOpenFileChange())
             {
-                if (db.ReloadRequested)
+                if (_db.ReloadRequested)
                 {
-                    activity.SetResult(KeePass.EXIT_RELOAD_DB);
+                    activity.SetResult(KeePass.ExitReloadDb);
                     activity.Finish();
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -119,18 +112,19 @@ namespace keepass2android
 
                 builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
 
-                builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) =>
-                {
-                    db.ReloadRequested = true;
-                    activity.SetResult(KeePass.EXIT_RELOAD_DB);
-                    activity.Finish();
+                builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes), 
+                    (dlgSender, dlgEvt) =>
+                        {
+                            _db.ReloadRequested = true;
+                            activity.SetResult(KeePass.ExitReloadDb);
+                            activity.Finish();
 
-                }));
+                        });
 
-                builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) =>
-                {
+                builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
+                    {
 
-                }));
+                    });
 
 
                 Dialog dialog = builder.Create();
@@ -140,7 +134,7 @@ namespace keepass2android
 
         public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile)
         {
-            fileDbHelper.createFile(ioc, keyfile);
+            FileDbHelper.CreateFile(ioc, keyfile);
         }
 
         public string GetResourceString(UiStringKey key)
@@ -148,7 +142,7 @@ namespace keepass2android
             var field = typeof (Resource.String).GetField(key.ToString());
             if (field == null)
                 throw new Exception("Invalid key " + key);
-            return App.Context.GetString((int)field.GetValue(null));
+            return Application.Context.GetString((int)field.GetValue(null));
         }
 
         public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
@@ -179,21 +173,21 @@ namespace keepass2android
 
         internal void OnTerminate()
         {
-            if (db != null)
+            if (_db != null)
             {
-                db.Clear();
+                _db.Clear();
             }
 
-            if (fileDbHelper != null && fileDbHelper.isOpen())
+            if (FileDbHelper != null && FileDbHelper.IsOpen())
             {
-                fileDbHelper.close();
+                FileDbHelper.Close();
             }
         }
 
         internal void OnCreate(Application app)
         {
-            fileDbHelper = new FileDbHelper(app);
-            fileDbHelper.open();
+            FileDbHelper = new FileDbHelper(app);
+            FileDbHelper.Open();
 
 #if DEBUG
             foreach (UiStringKey key in Enum.GetValues(typeof(UiStringKey)))
@@ -209,8 +203,8 @@ namespace keepass2android
         
         public Database CreateNewDatabase()
         {
-            db = new Database(new DrawableFactory(), this);
-            return db;
+            _db = new Database(new DrawableFactory(), this);
+            return _db;
         }
     }
 
@@ -232,39 +226,21 @@ namespace keepass2android
 		{
 		}
 
-        private static readonly Kp2aApp instance = new Kp2aApp();
-
-        // Explicit static constructor to tell C# compiler
-        // not to mark type as beforefieldinit
-        static App()
-        {
-        }
-
-        private App()
-        {
-        }
-
-        public static Kp2aApp Kp2a
-        {
-            get
-            {
-                return instance;
-            }
-        }
-
+        public static readonly Kp2aApp Kp2a = new Kp2aApp();
+        
 		public override void OnCreate() {
 			base.OnCreate();
 
 			Android.Util.Log.Debug("DEBUG","Creating application");
 
-            instance.OnCreate(this);
+            Kp2a.OnCreate(this);
 			
 		}
 
 		public override void OnTerminate() {
 			base.OnTerminate();
 			Android.Util.Log.Debug("DEBUG","Terminating application");
-            instance.OnTerminate();
+            Kp2a.OnTerminate();
 		}
 
         

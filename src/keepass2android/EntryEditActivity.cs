@@ -17,13 +17,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Preferences;
@@ -32,7 +28,6 @@ using KeePassLib;
 using Android.Text;
 using KeePassLib.Security;
 using Android.Content.PM;
-using keepass2android.view;
 using System.IO;
 using System.Globalization;
 
@@ -40,23 +35,23 @@ namespace keepass2android
 {
 	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/NoTitleBar")]			
 	public class EntryEditActivity : LockCloseActivity {
-		public const String KEY_ENTRY = "entry";
-		public const String KEY_PARENT = "parent";
+		public const String KeyEntry = "entry";
+		public const String KeyParent = "parent";
 		
-		public const int RESULT_OK_ICON_PICKER = (int)Result.FirstUser + 1000;
-		public const int RESULT_OK_PASSWORD_GENERATOR = RESULT_OK_ICON_PICKER + 1;
+		public const int ResultOkIconPicker = (int)Result.FirstUser + 1000;
+		public const int ResultOkPasswordGenerator = ResultOkIconPicker + 1;
 
-		const string Intent_ContinueWithEditing = "ContinueWithEditing";
+		const string IntentContinueWithEditing = "ContinueWithEditing";
 
 		EntryEditActivityState State
 		{
-			get { return App.Kp2a.entryEditActivityState; }
+			get { return App.Kp2a.EntryEditActivityState; }
 		}
 
 		public static void Launch(Activity act, PwEntry pw, AppTask appTask) {
 			Intent i = new Intent(act, typeof(EntryEditActivity));
 			
-			i.PutExtra(KEY_ENTRY, pw.Uuid.ToHexString());
+			i.PutExtra(KeyEntry, pw.Uuid.ToHexString());
 			
 			appTask.ToIntent(i);
 
@@ -67,35 +62,33 @@ namespace keepass2android
 			Intent i = new Intent(act, typeof(EntryEditActivity));
 			
 			PwGroup parent = pw;
-			i.PutExtra(KEY_PARENT, parent.Uuid.ToHexString());
+			i.PutExtra(KeyParent, parent.Uuid.ToHexString());
 
 			appTask.ToIntent(i);
 
 			act.StartActivityForResult(i, 0);
 		}
 
-		private ScrollView scroll;
+		bool _closeForReload;
 
-		bool mCloseForReload;
-
-		AppTask mAppTask;
+		AppTask _appTask;
 		
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			if (this.LastNonConfigurationInstance != null)
+			if (LastNonConfigurationInstance != null)
 			{
 				//bug in Mono for Android or whatever: after config change the extra fields are wrong
 				// -> reload:
-				reload();
+				Reload();
 				return;
 			}
 
-			mAppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			SetContentView(Resource.Layout.entry_edit);
-			mCloseForReload = false;
+			_closeForReload = false;
 
 			// Likely the app has been killed exit the activity
 			Database db = App.Kp2a.GetDb();
@@ -106,34 +99,34 @@ namespace keepass2android
 			}
 
 
-			if (Intent.GetBooleanExtra(Intent_ContinueWithEditing, false))
+			if (Intent.GetBooleanExtra(IntentContinueWithEditing, false))
 			{
 				//property "State" will return the state
 
 
 			} else
 			{
-				App.Kp2a.entryEditActivityState = new EntryEditActivityState();
+				App.Kp2a.EntryEditActivityState = new EntryEditActivityState();
 				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-				State.mShowPassword = ! prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
+				State.ShowPassword = ! prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
 			
 				Intent i = Intent;
-				String uuidBytes = i.GetStringExtra(KEY_ENTRY);
+				String uuidBytes = i.GetStringExtra(KeyEntry);
 				
 				PwUuid entryId = PwUuid.Zero;
 				if (uuidBytes != null)
-					entryId = new KeePassLib.PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
+					entryId = new PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
 				
-				State.parentGroup = null;
+				State.ParentGroup = null;
 				if (entryId == PwUuid.Zero)
 				{
-					String groupId = i.GetStringExtra(KEY_PARENT);
+					String groupId = i.GetStringExtra(KeyParent);
 					
-					State.parentGroup = db.groups [new PwUuid(MemUtil.HexStringToByteArray(groupId))];
+					State.ParentGroup = db.Groups [new PwUuid(MemUtil.HexStringToByteArray(groupId))];
 					
-					State.mEntryInDatabase = new PwEntry(true, true);
-					State.mEntryInDatabase.Strings.Set(PwDefs.UserNameField, new ProtectedString(
-						db.pm.MemoryProtection.ProtectUserName, db.pm.DefaultUserName));
+					State.EntryInDatabase = new PwEntry(true, true);
+					State.EntryInDatabase.Strings.Set(PwDefs.UserNameField, new ProtectedString(
+						db.KpDatabase.MemoryProtection.ProtectUserName, db.KpDatabase.DefaultUserName));
 					
 					/*KPDesktop
 				 * ProtectedString psAutoGen;
@@ -149,12 +142,12 @@ namespace keepass2android
 				pwe.ExpiryTime = DateTime.Now.AddDays(nExpireDays);
 			}*/
 					
-					if ((State.parentGroup.IconId != PwIcon.Folder) && (State.parentGroup.IconId != PwIcon.FolderOpen) &&
-					    (State.parentGroup.IconId != PwIcon.FolderPackage))
+					if ((State.ParentGroup.IconId != PwIcon.Folder) && (State.ParentGroup.IconId != PwIcon.FolderOpen) &&
+					    (State.ParentGroup.IconId != PwIcon.FolderPackage))
 					{
-						State.mEntryInDatabase.IconId = State.parentGroup.IconId; // Inherit icon from group
+						State.EntryInDatabase.IconId = State.ParentGroup.IconId; // Inherit icon from group
 					}
-					State.mEntryInDatabase.CustomIconUuid = State.parentGroup.CustomIconUuid;
+					State.EntryInDatabase.CustomIconUuid = State.ParentGroup.CustomIconUuid;
 					
 					/*
 				 * KPDesktop
@@ -174,52 +167,52 @@ namespace keepass2android
 					}
 				}
 			}*/
-					mAppTask.PrepareNewEntry(State.mEntryInDatabase);
-					State.mIsNew = true;
-					State.mEntryModified = true;
+					_appTask.PrepareNewEntry(State.EntryInDatabase);
+					State.IsNew = true;
+					State.EntryModified = true;
 					
 				} else
 				{
 					
 					System.Diagnostics.Debug.Assert(entryId != null);
 					
-					State.mEntryInDatabase = db.entries [entryId];
-					State.mIsNew = false;
+					State.EntryInDatabase = db.Entries [entryId];
+					State.IsNew = false;
 					
 					
 				} 
 				
-				State.mEntry = State.mEntryInDatabase.CloneDeep();
+				State.Entry = State.EntryInDatabase.CloneDeep();
 
 			}
 		
-			if (!State.mEntryModified)
-			    SetResult(KeePass.EXIT_NORMAL);
+			if (!State.EntryModified)
+			    SetResult(KeePass.ExitNormal);
 			else
-				SetResult(KeePass.EXIT_REFRESH_TITLE);
+				SetResult(KeePass.ExitRefreshTitle);
 
 
-			fillData();
+			FillData();
 			View scrollView = FindViewById(Resource.Id.entry_scroll);
 			scrollView.ScrollBarStyle = ScrollbarStyles.InsideInset;
 			
 			ImageButton iconButton = (ImageButton)FindViewById(Resource.Id.icon_button);
 			
-			if (State.mSelectedIcon)
+			if (State.SelectedIcon)
 			{
 				//TODO: custom image
-				iconButton.SetImageResource(Icons.iconToResId(State.mSelectedIconID));
+				iconButton.SetImageResource(Icons.IconToResId(State.SelectedIconId));
 			}
 			iconButton.Click += (sender, evt) => {
-				UpdateEntryFromUi(State.mEntry);
+				UpdateEntryFromUi(State.Entry);
 				IconPickerActivity.Launch(this);
 			};
 		
 
 			// Generate password button
 			Button generatePassword = (Button)FindViewById(Resource.Id.generate_button);
-			generatePassword.Click += (object sender, EventArgs e) => {
-				UpdateEntryFromUi(State.mEntry);
+			generatePassword.Click += (sender, e) => {
+				UpdateEntryFromUi(State.Entry);
 				GeneratePasswordActivity.Launch(this);
 			};
 
@@ -241,14 +234,14 @@ namespace keepass2android
 				save = FindViewById(Resource.Id.entry_save);
 
 			}
-			save.Click += (object sender, EventArgs e) => 
+			save.Click += (sender, e) => 
 			{
 				SaveEntry();
 
 			};
 		
 			// Respect mask password setting
-			if (State.mShowPassword) {
+			if (State.ShowPassword) {
 				EditText pass = (EditText) FindViewById(Resource.Id.entry_password);
 				EditText conf = (EditText) FindViewById(Resource.Id.entry_confpassword);
 				
@@ -256,11 +249,9 @@ namespace keepass2android
 				conf.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
 			}
 
-			scroll = (ScrollView) FindViewById(Resource.Id.entry_scroll);
-			
 			Button addButton = (Button) FindViewById(Resource.Id.add_advanced);
 			addButton.Visibility = ViewStates.Visible;
-			addButton.Click += (object sender, EventArgs e) =>
+			addButton.Click += (sender, e) =>
 			{
 				LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
 
@@ -268,7 +259,7 @@ namespace keepass2android
 				LinearLayout ees = CreateExtraStringView(pair);
 				container.AddView(ees);
 
-				State.mEntryModified = true;
+				State.EntryModified = true;
 
 				TextView keyView = (TextView) ees.FindViewById(Resource.Id.title);
 				keyView.RequestFocus();
@@ -276,16 +267,16 @@ namespace keepass2android
 					
 			};
 		
-			((CheckBox)FindViewById(Resource.Id.entry_expires_checkbox)).CheckedChange += (object sender, CompoundButton.CheckedChangeEventArgs e) => 
+			((CheckBox)FindViewById(Resource.Id.entry_expires_checkbox)).CheckedChange += (sender, e) => 
 			{
-				State.mEntry.Expires = e.IsChecked;
+				State.Entry.Expires = e.IsChecked;
 				if (e.IsChecked)
 				{
-					if (State.mEntry.ExpiryTime < DateTime.Now)
-						State.mEntry.ExpiryTime = DateTime.Now;
+					if (State.Entry.ExpiryTime < DateTime.Now)
+						State.Entry.ExpiryTime = DateTime.Now;
 				}
-				updateExpires();
-				State.mEntryModified = true;
+				UpdateExpires();
+				State.EntryModified = true;
 			};
 
 
@@ -296,30 +287,30 @@ namespace keepass2android
 			Database db = App.Kp2a.GetDb();
 			EntryEditActivity act = this;
 			
-			if (!validateBeforeSaving())
+			if (!ValidateBeforeSaving())
 				return;
 			
-			PwEntry initialEntry = State.mEntryInDatabase.CloneDeep();
+			PwEntry initialEntry = State.EntryInDatabase.CloneDeep();
 			
-			PwEntry newEntry = State.mEntryInDatabase;
+			PwEntry newEntry = State.EntryInDatabase;
 			
 			//Clone history and re-assign:
 			newEntry.History = newEntry.History.CloneDeep();
 			
 			//Based on KeePass Desktop
-			bool bCreateBackup = (!State.mIsNew);
+			bool bCreateBackup = (!State.IsNew);
 			if(bCreateBackup) newEntry.CreateBackup(null);
 			
-			if (State.mSelectedIcon == false) {
-				if (State.mIsNew) {
+			if (State.SelectedIcon == false) {
+				if (State.IsNew) {
 					newEntry.IconId = PwIcon.Key;
 				} else {
 					// Keep previous icon, if no new one was selected
 				}
 			}
 			else {
-				newEntry.IconId = State.mSelectedIconID;
-				newEntry.CustomIconUuid = State.mSelectedCustomIconID;
+				newEntry.IconId = State.SelectedIconId;
+				newEntry.CustomIconUuid = State.SelectedCustomIconId;
 			}
 			/* KPDesktop
 				if(m_cbCustomForegroundColor.Checked)
@@ -332,11 +323,11 @@ namespace keepass2android
 				*/
 			
 			UpdateEntryFromUi(newEntry);
-			newEntry.Binaries = State.mEntry.Binaries;
-			newEntry.Expires = State.mEntry.Expires;
+			newEntry.Binaries = State.Entry.Binaries;
+			newEntry.Expires = State.Entry.Expires;
 			if (newEntry.Expires)
 			{
-				newEntry.ExpiryTime = State.mEntry.ExpiryTime;
+				newEntry.ExpiryTime = State.Entry.ExpiryTime;
 			}
 
 			
@@ -358,19 +349,19 @@ namespace keepass2android
 			{
 				// If only history items have been modified (deleted) => undo
 				// backup, but without restoring the last mod time
-				PwCompareOptions cmpOptNH = (cmpOpt | PwCompareOptions.IgnoreHistory);
-				if(newEntry.EqualsEntry(initialEntry, cmpOptNH, MemProtCmpMode.CustomOnly))
+				PwCompareOptions cmpOptNh = (cmpOpt | PwCompareOptions.IgnoreHistory);
+				if(newEntry.EqualsEntry(initialEntry, cmpOptNh, MemProtCmpMode.CustomOnly))
 					bUndoBackup = true;
 			}
 			if(bUndoBackup) newEntry.History.RemoveAt(newEntry.History.UCount - 1);
 			
-			newEntry.MaintainBackups(db.pm);
+			newEntry.MaintainBackups(db.KpDatabase);
 
-			//if ( newEntry.Strings.ReadSafe (PwDefs.TitleField).Equals(State.mEntry.Strings.ReadSafe (PwDefs.TitleField)) ) {
+			//if ( newEntry.Strings.ReadSafe (PwDefs.TitleField).Equals(State.Entry.Strings.ReadSafe (PwDefs.TitleField)) ) {
 			//	SetResult(KeePass.EXIT_REFRESH);
 			//} else {
 			//it's safer to always update the title as we might add further information in the title like expiry etc.
-			SetResult(KeePass.EXIT_REFRESH_TITLE);
+			SetResult(KeePass.ExitRefreshTitle);
 			//}
 			
 			RunnableOnFinish runnable;
@@ -381,18 +372,18 @@ namespace keepass2android
 					Finish();
 				} else
 				{
-					OnFinish.displayMessage(this, message);
+					OnFinish.DisplayMessage(this, message);
 				}
 			});
 
 			ActionOnFinish afterAddEntry = new ActionOnFinish((success, message) => 
 			{
 				if (success)
-					mAppTask.AfterAddNewEntry(this, newEntry);
+					_appTask.AfterAddNewEntry(this, newEntry);
 			},closeOrShowError);
 
-			if ( State.mIsNew ) {
-				runnable = AddEntry.getInstance(this, App.Kp2a.GetDb(), newEntry, State.parentGroup, afterAddEntry);
+			if ( State.IsNew ) {
+				runnable = AddEntry.GetInstance(this, App.Kp2a.GetDb(), newEntry, State.ParentGroup, afterAddEntry);
 			} else {
 				runnable = new UpdateEntry(this, App.Kp2a.GetDb(), initialEntry, newEntry, closeOrShowError);
 			}
@@ -407,31 +398,31 @@ namespace keepass2android
 			Database db = App.Kp2a.GetDb();
 			EntryEditActivity act = this;
 
-			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(db.pm.MemoryProtection.ProtectTitle,
+			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectTitle,
 			                                                            Util.getEditText(act, Resource.Id.entry_title)));
-			entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(db.pm.MemoryProtection.ProtectUserName,
+			entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectUserName,
 			                                                               Util.getEditText(act, Resource.Id.entry_user_name)));
 			
 			String pass = Util.getEditText(act, Resource.Id.entry_password);
 			byte[] password = StrUtil.Utf8.GetBytes(pass);
-			entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(db.pm.MemoryProtection.ProtectPassword,
+			entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectPassword,
 			                                                               password));
 			MemUtil.ZeroByteArray(password);
 			
-			entry.Strings.Set(PwDefs.UrlField, new ProtectedString(db.pm.MemoryProtection.ProtectUrl,
+			entry.Strings.Set(PwDefs.UrlField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectUrl,
 			                                                          Util.getEditText(act, Resource.Id.entry_url)));
-			entry.Strings.Set(PwDefs.NotesField, new ProtectedString(db.pm.MemoryProtection.ProtectNotes,
+			entry.Strings.Set(PwDefs.NotesField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectNotes,
 			                                                            Util.getEditText(act, Resource.Id.entry_comment)));
 		
 			// Validate expiry date
 			DateTime newExpiry = new DateTime();
-			if ((State.mEntry.Expires) && (!DateTime.TryParse( Util.getEditText(this,Resource.Id.entry_expires), out newExpiry)))
+			if ((State.Entry.Expires) && (!DateTime.TryParse( Util.getEditText(this,Resource.Id.entry_expires), out newExpiry)))
 			{
 				//ignore here
 			}
 			else
 			{
-				State.mEntry.ExpiryTime = newExpiry;
+				State.Entry.ExpiryTime = newExpiry;
 			}
 
 			// Delete all non standard strings
@@ -456,7 +447,7 @@ namespace keepass2android
 				
 
 				bool protect = true;
-				ProtectedString initialString = State.mEntryInDatabase.Strings.Get(key);
+				ProtectedString initialString = State.EntryInDatabase.Strings.Get(key);
 				if (initialString != null)
 					protect = initialString.IsProtected;
 				entry.Strings.Set(key, new ProtectedString(protect, value));
@@ -484,39 +475,39 @@ namespace keepass2android
 
 		}
 
-		void addBinaryOrAsk(string filename)
+		void AddBinaryOrAsk(string filename)
 		{
 			string strItem = UrlUtil.GetFileName(filename);
 
-			if(State.mEntry.Binaries.Get(strItem) != null)
+			if(State.Entry.Binaries.Get(strItem) != null)
 			{
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.SetTitle(GetString(Resource.String.AskOverwriteBinary_title));
 
 				builder.SetMessage(GetString(Resource.String.AskOverwriteBinary));
 
-				builder.SetPositiveButton(GetString(Resource.String.AskOverwriteBinary_yes), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
-				                                                                                                         {
-					addBinary(filename, true);
-				}));
+				builder.SetPositiveButton(GetString(Resource.String.AskOverwriteBinary_yes), (dlgSender, dlgEvt) => 
+					{
+						AddBinary(filename, true);
+					});
 
-				builder.SetNegativeButton(GetString(Resource.String.AskOverwriteBinary_no), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
-				                                                                                                         {
-					addBinary(filename, false);
-				}));
+				builder.SetNegativeButton(GetString(Resource.String.AskOverwriteBinary_no), (dlgSender, dlgEvt) => 
+					{
+						AddBinary(filename, false);
+					});
 
 				builder.SetNeutralButton(GetString(Android.Resource.String.Cancel), 
-				                         new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => {}));
+				                         (dlgSender, dlgEvt) => {});
 
 				Dialog dialog = builder.Create();
 				dialog.Show();
 
 
 			} else
-				addBinary(filename, true);
+				AddBinary(filename, true);
 		}
 
-		void addBinary(string filename, bool overwrite)
+		void AddBinary(string filename, bool overwrite)
 		{
 			string strItem = UrlUtil.GetFileName(filename);
 
@@ -528,8 +519,8 @@ namespace keepass2android
 				int nTry = 0;
 				while(true)
 				{
-					string strNewName = strFileName + nTry.ToString() + strExtension;
-					if(State.mEntry.Binaries.Get(strNewName) == null)
+					string strNewName = strFileName + nTry.ToString(CultureInfo.InvariantCulture) + strExtension;
+					if(State.Entry.Binaries.Get(strNewName) == null)
 					{
 						strItem = strNewName;
 						break;
@@ -541,29 +532,26 @@ namespace keepass2android
 			try
 			{
 				byte[] vBytes = File.ReadAllBytes(filename);
-				if(vBytes != null)
-				{
-					ProtectedBinary pb = new ProtectedBinary(false, vBytes);
-					State.mEntry.Binaries.Set(strItem, pb);
-				}
+				ProtectedBinary pb = new ProtectedBinary(false, vBytes);
+				State.Entry.Binaries.Set(strItem, pb);
 			}
 			catch(Exception exAttach)
 			{
 				Toast.MakeText(this, GetString(Resource.String.AttachFailed)+" "+exAttach.Message, ToastLength.Long).Show();
 			}
-			State.mEntryModified = true;
-			populateBinaries();
+			State.EntryModified = true;
+			PopulateBinaries();
 		}
 
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			mAppTask.ToBundle(outState);
+			_appTask.ToBundle(outState);
 		}
 
 		public override void OnBackPressed()
 		{
-			if (State.mEntryModified == false)
+			if (State.EntryModified == false)
 			{
 				base.OnBackPressed();
 			} else
@@ -573,16 +561,16 @@ namespace keepass2android
 				
 				builder.SetMessage(GetString(Resource.String.AskDiscardChanges));
 				
-				builder.SetPositiveButton(GetString(Android.Resource.String.Yes), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
-				                                                                                                                  {
-					Finish();
+				builder.SetPositiveButton(GetString(Android.Resource.String.Yes), (dlgSender, dlgEvt) => 
+					{
+						Finish();
 					
-				}));
+					});
 				
-				builder.SetNegativeButton(GetString(Android.Resource.String.No), new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt) => 
-				                                                                                                                 {
+				builder.SetNegativeButton(GetString(Android.Resource.String.No), (dlgSender, dlgEvt) => 
+					{
 					
-				}));
+					});
 				
 				
 				Dialog dialog = builder.Create();
@@ -591,15 +579,15 @@ namespace keepass2android
 
 		}
 
-		public void reload() {
+		public void Reload() {
 			//this reload ìs necessary to overcome a strange problem with the extra string fields which get lost
 			//somehow after re-creating the activity. Maybe a Mono for Android bug?
 			Intent intent = Intent;
-			intent.PutExtra(Intent_ContinueWithEditing, true);
+			intent.PutExtra(IntentContinueWithEditing, true);
 			OverridePendingTransition(0, 0);
 			intent.AddFlags(ActivityFlags.NoAnimation);
-			mCloseForReload = true;
-			SetResult(KeePass.EXIT_REFRESH_TITLE); //probably the entry will be modified -> let the EditActivity refresh to be safe
+			_closeForReload = true;
+			SetResult(KeePass.ExitRefreshTitle); //probably the entry will be modified -> let the EditActivity refresh to be safe
 			Finish();
 			
 			OverridePendingTransition(0, 0);
@@ -610,30 +598,30 @@ namespace keepass2android
 		{
 			switch ((int)resultCode)
 			{
-			case RESULT_OK_ICON_PICKER:
-				State.mSelectedIconID = (PwIcon) data.Extras.GetInt(IconPickerActivity.KEY_ICON_ID);
-				State.mSelectedCustomIconID = PwUuid.Zero;
-				String customIconIdString = data.Extras.GetString(IconPickerActivity.KEY_CUSTOM_ICON_ID);
+			case ResultOkIconPicker:
+				State.SelectedIconId = (PwIcon) data.Extras.GetInt(IconPickerActivity.KeyIconId);
+				State.SelectedCustomIconId = PwUuid.Zero;
+				String customIconIdString = data.Extras.GetString(IconPickerActivity.KeyCustomIconId);
 				if (!String.IsNullOrEmpty(customIconIdString))
-					State.mSelectedCustomIconID = new PwUuid(MemUtil.HexStringToByteArray(customIconIdString));
-				State.mSelectedIcon = true;
-				State.mEntryModified = true;
-				reload();
+					State.SelectedCustomIconId = new PwUuid(MemUtil.HexStringToByteArray(customIconIdString));
+				State.SelectedIcon = true;
+				State.EntryModified = true;
+				Reload();
 				break;
 				
-			case RESULT_OK_PASSWORD_GENERATOR:
+			case ResultOkPasswordGenerator:
 				String generatedPassword = data.GetStringExtra("keepass2android.password.generated_password");
 				
 				byte[] password = StrUtil.Utf8.GetBytes(generatedPassword);
-				State.mEntry.Strings.Set(PwDefs.PasswordField, new ProtectedString(App.Kp2a.GetDb().pm.MemoryProtection.ProtectPassword,
+				State.Entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(App.Kp2a.GetDb().KpDatabase.MemoryProtection.ProtectPassword,
 			                                                            password));
 				MemUtil.ZeroByteArray(password);
 
-				State.mEntryModified = true;
-				reload();
+				State.EntryModified = true;
+				Reload();
 				break;
 			case (int)Result.Ok:
-					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_BINARY)
+					if (requestCode == Intents.RequestCodeFileBrowseForBinary)
 					{
 						string filename = Util.IntentToFilename(data);
 						if (filename != null) {
@@ -642,39 +630,35 @@ namespace keepass2android
 							}
 							
 							filename = Java.Net.URLDecoder.Decode(filename);
-							addBinaryOrAsk(filename);
+							AddBinaryOrAsk(filename);
 						}
 					}
-					reload();
+					Reload();
 
 
 				break;
 			case (int)Result.Canceled:
-				reload();
-				break;
-			default:
+				Reload();
 				break;
 			}
 		}
 
-		void populateBinaries()
+		void PopulateBinaries()
 		{
 			ViewGroup binariesGroup = (ViewGroup)FindViewById(Resource.Id.binaries);
 			binariesGroup.RemoveAllViews();
-			RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.WrapContent);
-			foreach (KeyValuePair<string, ProtectedBinary> pair in State.mEntry.Binaries)
+			RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.FillParent, ViewGroup.LayoutParams.WrapContent);
+			foreach (KeyValuePair<string, ProtectedBinary> pair in State.Entry.Binaries)
 			{
 				String key = pair.Key;
-				Button binaryButton = new Button(this);
+				Button binaryButton = new Button(this) {Text = key};
 
-				binaryButton.Text = key;
 				binaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuDelete),null, null, null);
-				binaryButton.Click += (object sender, EventArgs e) => 
+				binaryButton.Click += (sender, e) => 
 				{
-					State.mEntryModified = true;
-					Button btnSender = (Button)(sender);
-					State.mEntry.Binaries.Remove(key);
-					populateBinaries();
+					State.EntryModified = true;
+					State.Entry.Binaries.Remove(key);
+					PopulateBinaries();
 
 				};
 				binariesGroup.AddView(binaryButton,layoutParams);
@@ -682,19 +666,18 @@ namespace keepass2android
 				
 			}
 
-			Button addBinaryButton = new Button(this);
-			addBinaryButton.Text = GetString(Resource.String.add_binary);
+			Button addBinaryButton = new Button(this) {Text = GetString(Resource.String.add_binary)};
 			addBinaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuAdd) , null, null, null);
-			addBinaryButton.Click += (object sender, EventArgs e) => 
+			addBinaryButton.Click += (sender, e) => 
 			{
-				Util.showBrowseDialog("/mnt/sdcard", this, Intents.REQUEST_CODE_FILE_BROWSE_FOR_BINARY, false);
+				Util.showBrowseDialog("/mnt/sdcard", this, Intents.RequestCodeFileBrowseForBinary, false);
 
 			};
 			binariesGroup.AddView(addBinaryButton,layoutParams);
 
 			var binariesLabel = FindViewById(Resource.Id.entry_binaries_label);
 			if (binariesLabel != null)
-				binariesLabel.Visibility = State.mEntry.Binaries.UCount > 0 ? ViewStates.Visible : ViewStates.Gone;
+				binariesLabel.Visibility = State.Entry.Binaries.UCount > 0 ? ViewStates.Visible : ViewStates.Gone;
 		}
 		public override bool OnCreateOptionsMenu(IMenu menu) {
 			base.OnCreateOptionsMenu(menu);
@@ -704,7 +687,7 @@ namespace keepass2android
 			
 			
 			IMenuItem togglePassword = menu.FindItem(Resource.Id.menu_toggle_pass);
-			if ( State.mShowPassword ) {
+			if ( State.ShowPassword ) {
 				togglePassword.SetTitle(Resource.String.menu_hide_password);
 			} else {
 				togglePassword.SetTitle(Resource.String.show_password);
@@ -725,14 +708,14 @@ namespace keepass2android
 				
 				return true;
 			case Resource.Id.menu_toggle_pass:
-					if ( State.mShowPassword ) {
+					if ( State.ShowPassword ) {
 					item.SetTitle(Resource.String.show_password);
-						State.mShowPassword = false;
+						State.ShowPassword = false;
 				} else {
 					item.SetTitle(Resource.String.menu_hide_password);
-						State.mShowPassword = true;
+						State.ShowPassword = true;
 				}
-				setPasswordStyle();
+				SetPasswordStyle();
 				return true;
 			case Resource.Id.menu_cancel_edit:
 				Finish();
@@ -766,11 +749,11 @@ namespace keepass2android
 			return base.OnOptionsItemSelected(item);
 		}
 		
-		private void setPasswordStyle() {
+		private void SetPasswordStyle() {
 			TextView password = (TextView) FindViewById(Resource.Id.entry_password);
 			TextView confpassword = (TextView) FindViewById(Resource.Id.entry_confpassword);
 			
-			if ( State.mShowPassword ) {
+			if ( State.ShowPassword ) {
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
 				confpassword.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
 				
@@ -780,23 +763,23 @@ namespace keepass2android
 			}
 		}
 
-		void updateExpires()
+		void UpdateExpires()
 		{
-			if (State.mEntry.Expires)
+			if (State.Entry.Expires)
 			{
-				populateText(Resource.Id.entry_expires, getDateTime(State.mEntry.ExpiryTime));
+				PopulateText(Resource.Id.entry_expires, getDateTime(State.Entry.ExpiryTime));
 			}
 			else
 			{
-				populateText(Resource.Id.entry_expires, GetString(Resource.String.never));
+				PopulateText(Resource.Id.entry_expires, GetString(Resource.String.never));
 			}
-			((CheckBox)FindViewById(Resource.Id.entry_expires_checkbox)).Checked = State.mEntry.Expires;
-			((EditText)FindViewById(Resource.Id.entry_expires)).Enabled = State.mEntry.Expires;
+			((CheckBox)FindViewById(Resource.Id.entry_expires_checkbox)).Checked = State.Entry.Expires;
+			FindViewById(Resource.Id.entry_expires).Enabled = State.Entry.Expires;
 		}
 
 		public override Java.Lang.Object OnRetainNonConfigurationInstance()
 		{
-			UpdateEntryFromUi(State.mEntry);
+			UpdateEntryFromUi(State.Entry);
 			return this;
 		}
 
@@ -804,31 +787,31 @@ namespace keepass2android
 		{
 			LinearLayout ees = (LinearLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
 			((TextView)ees.FindViewById(Resource.Id.title)).Text = pair.Key;
-			((TextView)ees.FindViewById(Resource.Id.title)).TextChanged += (sender, e) => State.mEntryModified = true;
+			((TextView)ees.FindViewById(Resource.Id.title)).TextChanged += (sender, e) => State.EntryModified = true;
 			((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
-			((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.mEntryModified = true;
-			ees.FindViewById(Resource.Id.delete).Click += (sender, e) => deleteAdvancedString((View)sender);
+			((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
+			ees.FindViewById(Resource.Id.delete).Click += (sender, e) => DeleteAdvancedString((View)sender);
 			return ees;
 		}
 		
-		private void fillData() {
+		private void FillData() {
 			ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-			App.Kp2a.GetDb().drawableFactory.assignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().pm, State.mEntry.IconId, State.mEntry.CustomIconUuid);
+			App.Kp2a.GetDb().DrawableFactory.assignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid);
 			
-			populateText(Resource.Id.entry_title, State.mEntry.Strings.ReadSafe (PwDefs.TitleField));
-			populateText(Resource.Id.entry_user_name, State.mEntry.Strings.ReadSafe (PwDefs.UserNameField));
-			populateText(Resource.Id.entry_url, State.mEntry.Strings.ReadSafe (PwDefs.UrlField));
+			PopulateText(Resource.Id.entry_title, State.Entry.Strings.ReadSafe (PwDefs.TitleField));
+			PopulateText(Resource.Id.entry_user_name, State.Entry.Strings.ReadSafe (PwDefs.UserNameField));
+			PopulateText(Resource.Id.entry_url, State.Entry.Strings.ReadSafe (PwDefs.UrlField));
 			
-			String password = State.mEntry.Strings.ReadSafe(PwDefs.PasswordField);
-			populateText(Resource.Id.entry_password, password);
-			populateText(Resource.Id.entry_confpassword, password);
-			setPasswordStyle();
+			String password = State.Entry.Strings.ReadSafe(PwDefs.PasswordField);
+			PopulateText(Resource.Id.entry_password, password);
+			PopulateText(Resource.Id.entry_confpassword, password);
+			SetPasswordStyle();
 			
-			populateText(Resource.Id.entry_comment, State.mEntry.Strings.ReadSafe (PwDefs.NotesField));
+			PopulateText(Resource.Id.entry_comment, State.Entry.Strings.ReadSafe (PwDefs.NotesField));
 
 			LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
 			
-			foreach (var pair in State.mEntry.Strings)
+			foreach (var pair in State.Entry.Strings)
 			{
 				String key = pair.Key;
 				
@@ -838,22 +821,22 @@ namespace keepass2android
 				}
 			}
 
-			populateBinaries();
+			PopulateBinaries();
 
-			populateText(Resource.Id.entry_override_url, State.mEntry.OverrideUrl);
-			populateText(Resource.Id.entry_tags, StrUtil.TagsToString(State.mEntry.Tags, true));
+			PopulateText(Resource.Id.entry_override_url, State.Entry.OverrideUrl);
+			PopulateText(Resource.Id.entry_tags, StrUtil.TagsToString(State.Entry.Tags, true));
 
-			updateExpires();
+			UpdateExpires();
 		}
-		private String getDateTime(System.DateTime dt) {
+		private String getDateTime(DateTime dt) {
 			return dt.ToString ("g", CultureInfo.CurrentUICulture);
 		}
 
 
-		public void deleteAdvancedString(View view) {
+		public void DeleteAdvancedString(View view) {
 			var section = view.Parent;
 			LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
-			State.mEntryModified = true;
+			State.EntryModified = true;
 			for (int i = 0; i < container.ChildCount; i++) {
 				var ees = container.GetChildAt(i);			
 				if (ees == section) {
@@ -865,7 +848,7 @@ namespace keepass2android
 		}
 		
 
-		protected bool validateBeforeSaving() {
+		protected bool ValidateBeforeSaving() {
 			// Require title
 			String title = Util.getEditText(this, Resource.Id.entry_title);
 			if ( title.Length == 0 ) {
@@ -883,17 +866,14 @@ namespace keepass2android
 
 			// Validate expiry date
 			DateTime newExpiry = new DateTime();
-			if ((State.mEntry.Expires) && (!DateTime.TryParse( Util.getEditText(this,Resource.Id.entry_expires), out newExpiry)))
+			if ((State.Entry.Expires) && (!DateTime.TryParse( Util.getEditText(this,Resource.Id.entry_expires), out newExpiry)))
 		    {
 				Toast.MakeText(this, Resource.String.error_invalid_expiry_date, ToastLength.Long).Show();
 				return false;
 			}
-			else
-			{
-				State.mEntry.ExpiryTime = newExpiry;
-			}
+			State.Entry.ExpiryTime = newExpiry;
 
-			
+
 			LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
 			for (int i = 0; i < container.ChildCount; i++) {
 				View ees = container.GetChildAt(i);
@@ -912,16 +892,16 @@ namespace keepass2android
 		}
 
 	
-		private void populateText(int viewId, String text) {
+		private void PopulateText(int viewId, String text) {
 			TextView tv = (TextView) FindViewById(viewId);
 			tv.Text = text;
-			tv.TextChanged += (sender, e) => {State.mEntryModified = true;};
+			tv.TextChanged += (sender, e) => {State.EntryModified = true;};
 		}
 
 		protected override void OnPause()
 		{
-			if (!mCloseForReload)
-				UpdateEntryFromUi(State.mEntry);
+			if (!_closeForReload)
+				UpdateEntryFromUi(State.Entry);
 
 			base.OnPause();
 

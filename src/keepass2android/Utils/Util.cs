@@ -112,9 +112,9 @@ namespace keepass2android
 				act.StartActivityForResult(i, requestCodeBrowse);
 				return;
 			}
-			if (Interaction.isIntentAvailable(act, Intents.FILE_BROWSE, null))
+			if (Interaction.isIntentAvailable(act, Intents.FileBrowse, null))
 			{
-				Intent i = new Intent(Intents.FILE_BROWSE);
+				Intent i = new Intent(Intents.FileBrowse);
 				if (filename != null)
 					i.SetData(Android.Net.Uri.Parse("file://" + filename));
 				try

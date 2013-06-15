@@ -15,44 +15,31 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib;
-using Android.Preferences;
 using System.Text.RegularExpressions;
 using KeePassLib.Collections;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
-using Android.Util;
 
 namespace keepass2android
 {
 	public class SearchDbHelper
 	{
-        private IKp2aApp mApp;
+        private readonly IKp2aApp _app;
 
 		
 		public SearchDbHelper(IKp2aApp app) {
-			mApp = app;
+			_app = app;
 		}
 
 
-		public PwGroup searchForText (Database database, string str)
+		public PwGroup SearchForText (Database database, string str)
 		{
-			SearchParameters sp = new SearchParameters();
-			sp.SearchString = str;
+			SearchParameters sp = new SearchParameters {SearchString = str};
 
-			return search(database, sp);
+			return Search(database, sp);
 		}
-		public PwGroup search(Database database, SearchParameters sp)
+		public PwGroup Search(Database database, SearchParameters sp)
 		{
 			
 			if(sp.RegularExpression) // Validate regular expression
@@ -60,14 +47,13 @@ namespace keepass2android
 				new Regex(sp.SearchString); 
 			}
 			
-			string strGroupName = mApp.GetResourceString(UiStringKey.search_results) + " (\"" + sp.SearchString + "\")";
-			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch);
-			pgResults.IsVirtual = true;
-			
+			string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + sp.SearchString + "\")";
+			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) {IsVirtual = true};
+
 			PwObjectList<PwEntry> listResults = pgResults.Entries;
 			
 			
-			database.root.SearchEntries(sp, listResults, new NullStatusLogger());
+			database.Root.SearchEntries(sp, listResults, new NullStatusLogger());
 			
 			
 			return pgResults;
@@ -76,7 +62,7 @@ namespace keepass2android
 		}
 
 		
-		public PwGroup searchForExactUrl (Database database, string url)
+		public PwGroup SearchForExactUrl (Database database, string url)
 		{
 			SearchParameters sp = SearchParameters.None;
 			sp.SearchInUrls = true;
@@ -87,14 +73,13 @@ namespace keepass2android
 				new Regex(sp.SearchString); 
 			}
 			
-			string strGroupName = mApp.GetResourceString(UiStringKey.search_results) + " (\"" + sp.SearchString + "\")";
-			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch);
-			pgResults.IsVirtual = true;
-			
+			string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + sp.SearchString + "\")";
+			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) {IsVirtual = true};
+
 			PwObjectList<PwEntry> listResults = pgResults.Entries;
 			
 			
-			database.root.SearchEntries(sp, listResults, new NullStatusLogger());
+			database.Root.SearchEntries(sp, listResults, new NullStatusLogger());
 			
 			
 			return pgResults;
@@ -106,15 +91,14 @@ namespace keepass2android
 			return UrlUtil.GetHost(url.Trim());
 		}
 
-		public PwGroup searchForHost(Database database, String url, bool allowSubdomains)
+		public PwGroup SearchForHost(Database database, String url, bool allowSubdomains)
 		{
 			String host = extractHost(url);
-			string strGroupName = mApp.GetResourceString(UiStringKey.search_results) + " (\"" + host + "\")";
-			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch);
-			pgResults.IsVirtual = true;
+			string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + host + "\")";
+			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) {IsVirtual = true};
 			if (String.IsNullOrWhiteSpace(host))
 				return pgResults;
-			foreach (PwEntry entry in database.entries.Values)
+			foreach (PwEntry entry in database.Entries.Values)
 			{
 				String otherHost = extractHost(entry.Strings.ReadSafe(PwDefs.UrlField));
 				if ((allowSubdomains) && (otherHost.StartsWith("www.")))

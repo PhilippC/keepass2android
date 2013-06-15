@@ -16,16 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib;
 
 namespace keepass2android
@@ -33,33 +24,31 @@ namespace keepass2android
 	
 	public class DeleteGroup : DeleteRunnable {
 		
-		private PwGroup mGroup;
-		private Activity mAct;
-		protected bool mDontSave;
+		private PwGroup _group;
+		protected bool DontSave;
 
-        public DeleteGroup(Context ctx, IKp2aApp app, PwGroup group, Activity act, OnFinish finish)
+        public DeleteGroup(Context ctx, IKp2aApp app, PwGroup group, OnFinish finish)
             : base(finish, app)
         {
-			setMembers(ctx, app, group, act, false);
+			SetMembers(ctx, app, group, false);
 		}
         /*
         public DeleteGroup(Context ctx, Database db, PwGroup group, Activity act, OnFinish finish, bool dontSave)
             : base(finish)
         {
-			setMembers(ctx, db, group, act, dontSave);
+			SetMembers(ctx, db, group, act, dontSave);
 		}
         
 		public DeleteGroup(Context ctx, Database db, PwGroup group, OnFinish finish, bool dontSave):base(finish) {
-			setMembers(ctx, db, group, null, dontSave);
+			SetMembers(ctx, db, group, null, dontSave);
 		}
         */
-        private void setMembers(Context ctx, IKp2aApp app, PwGroup group, Activity act, bool dontSave)
+        private void SetMembers(Context ctx, IKp2aApp app, PwGroup group, bool dontSave)
         {
-			base.setMembers(ctx, app.GetDb());
+			base.SetMembers(ctx, app.GetDb());
 
-			mGroup = group;
-			mAct = act;
-			mDontSave = dontSave;
+			_group = group;
+	        DontSave = dontSave;
             
 		}
 
@@ -67,7 +56,7 @@ namespace keepass2android
 		{
 			get
 			{
-				return CanRecycleGroup(mGroup);
+				return CanRecycleGroup(_group);
 			}
 		}
 
@@ -80,13 +69,13 @@ namespace keepass2android
 		}
 		
 		
-		public override void run() {
+		public override void Run() {
 			//from KP Desktop
-			PwGroup pg = mGroup;
+			PwGroup pg = _group;
 			PwGroup pgParent = pg.ParentGroup;
 			if(pgParent == null) return; // Can't remove virtual or root group
 			
-			PwDatabase pd = mDb.pm;
+			PwDatabase pd = Db.KpDatabase;
 			PwGroup pgRecycleBin = pd.RootGroup.FindGroup(pd.RecycleBinUuid, true);
 			
 			pgParent.Groups.Remove(pg);
@@ -97,7 +86,7 @@ namespace keepass2android
 				
 				PwDeletedObject pdo = new PwDeletedObject(pg.Uuid, DateTime.Now);
 				pd.DeletedObjects.Add(pdo);
-				mFinish = new AfterDeletePermanently(mFinish, mApp, mGroup);
+				OnFinishToRun = new AfterDeletePermanently(OnFinishToRun, App, _group);
 			}
 			else // Recycle
 			{
@@ -106,59 +95,59 @@ namespace keepass2android
 				
 				pgRecycleBin.AddGroup(pg, true, true);
 				pg.Touch(false);
-				mFinish = new ActionOnFinish((success, message) => 
+				OnFinishToRun = new ActionOnFinish((success, message) => 
 				                             {
 					if ( success ) {
 						// Mark new parent (Recycle bin) dirty
-						PwGroup parent = mGroup.ParentGroup;
+						PwGroup parent = _group.ParentGroup;
 						if ( parent != null ) {
-							mDb.dirty.Add(parent);
+							Db.Dirty.Add(parent);
 						}
 						//Mark old parent dirty:
-						mDb.dirty.Add(pgParent);
+						Db.Dirty.Add(pgParent);
 					} else {
 						// Let's not bother recovering from a failure to save a deleted group.  It is too much work.
-						mApp.SetShutdown();
+						App.SetShutdown();
 					}
-				}, this.mFinish);
+				}, OnFinishToRun);
 			}
 
 			// Save
-			SaveDB save = new SaveDB(mCtx, mDb, mFinish, mDontSave);
-			save.run();
+			SaveDb save = new SaveDb(Ctx, Db, OnFinishToRun, DontSave);
+			save.Run();
 			
 		}
 
 		
 		private class AfterDeletePermanently : OnFinish {
-			IKp2aApp mApp;
+			readonly IKp2aApp _app;
 
-			PwGroup mGroup;
+			readonly PwGroup _group;
 
 			public AfterDeletePermanently(OnFinish finish, IKp2aApp app, PwGroup group):base(finish) {
-				this.mApp = app;
-				this.mGroup = group;
+				_app = app;
+				_group = group;
 			}
 			
-			public override void run() {
-				if ( mSuccess ) {
+			public override void Run() {
+				if ( Success ) {
 					// Remove from group global
-                    mApp.GetDb().groups.Remove(mGroup.Uuid);
+                    _app.GetDb().Groups.Remove(_group.Uuid);
 					
 					// Remove group from the dirty global (if it is present), not a big deal if this fails (doesn't throw)
-                    mApp.GetDb().dirty.Remove(mGroup);
+                    _app.GetDb().Dirty.Remove(_group);
 					
 					// Mark parent dirty
-					PwGroup parent = mGroup.ParentGroup;
+					PwGroup parent = _group.ParentGroup;
 					if ( parent != null ) {
-                        mApp.GetDb().dirty.Add(parent);
+                        _app.GetDb().Dirty.Add(parent);
 					}
 				} else {
 					// Let's not bother recovering from a failure to save a deleted group.  It is too much work.
-					mApp.SetShutdown();
+					_app.SetShutdown();
 				}
 				
-				base.run();
+				base.Run();
 				
 			}
 			

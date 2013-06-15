@@ -16,10 +16,6 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -35,19 +31,20 @@ namespace keepass2android
 {
 	
 	public abstract class GroupBaseActivity : LockCloseListActivity {
-		public const String KEY_ENTRY = "entry";
-		public const String KEY_MODE = "mode";
+		public const String KeyEntry = "entry";
+		public const String KeyMode = "mode";
 
-		public virtual void LaunchActivityForEntry(KeePassLib.PwEntry pwEntry, int pos)
+		public virtual void LaunchActivityForEntry(PwEntry pwEntry, int pos)
 		{
-			EntryActivity.Launch(this, pwEntry, pos, mAppTask);
-		}
-		public GroupBaseActivity ()
-		{
-
+			EntryActivity.Launch(this, pwEntry, pos, AppTask);
 		}
 
-		public GroupBaseActivity (IntPtr javaReference, JniHandleOwnership transfer)
+		protected GroupBaseActivity ()
+		{
+
+		}
+
+		protected GroupBaseActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 			
@@ -56,7 +53,7 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			mAppTask.ToBundle(outState);
+			AppTask.ToBundle(outState);
 		}
 
 		
@@ -64,24 +61,24 @@ namespace keepass2android
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
-			if (resultCode == KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE)
+			if (resultCode == KeePass.ExitCloseAfterTaskComplete)
 			{
-				SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
+				SetResult(KeePass.ExitCloseAfterTaskComplete);
 				Finish();
 			}
 
 		}
 		
-		private ISharedPreferences prefs;
+		private ISharedPreferences _prefs;
 		
-		protected PwGroup mGroup;
+		protected PwGroup Group;
 
-		internal AppTask mAppTask;
+		internal AppTask AppTask;
 		
 		protected override void OnResume() {
 			base.OnResume();
 			
-			refreshIfDirty();
+			RefreshIfDirty();
 		}
 
 		public override bool OnSearchRequested()
@@ -90,10 +87,10 @@ namespace keepass2android
 			return true;
 		}
 
-		public void refreshIfDirty() {
+		public void RefreshIfDirty() {
 			Database db = App.Kp2a.GetDb();
-			if ( db.dirty.Contains(mGroup) ) {
-				db.dirty.Remove(mGroup);
+			if ( db.Dirty.Contains(Group) ) {
+				db.Dirty.Remove(Group);
 				BaseAdapter adapter = (BaseAdapter) ListAdapter;
 				adapter.NotifyDataSetChanged();
 				
@@ -103,7 +100,7 @@ namespace keepass2android
 		protected override void OnListItemClick(ListView l, View v, int position, long id) {
 			base.OnListItemClick(l, v, position, id);
 			
-			Android.Widget.IListAdapter adapt = ListAdapter;
+			IListAdapter adapt = ListAdapter;
 			ClickView cv = (ClickView) adapt.GetView(position, null, null);
 			cv.OnClick();
 			
@@ -112,7 +109,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
 
-			mAppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			// Likely the app has been killed exit the activity 
 			if ( ! App.Kp2a.GetDb().Loaded ) {
@@ -120,16 +117,16 @@ namespace keepass2android
 				return;
 			}
 			
-			prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+			_prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			
 			SetContentView(new GroupViewOnlyView(this));
-			SetResult(KeePass.EXIT_NORMAL);
+			SetResult(KeePass.ExitNormal);
 			
-			styleScrollBars();
+			StyleScrollBars();
 			
 		}
 		
-		protected void styleScrollBars() {
+		protected void StyleScrollBars() {
 			ListView lv = ListView;
 			lv.ScrollBarStyle =ScrollbarStyles.InsideInset;
 			lv.TextFilterEnabled = true;
@@ -137,11 +134,11 @@ namespace keepass2android
 		}
 		
 		
-		protected void setGroupTitle()
+		protected void SetGroupTitle()
 		{
-			String name = mGroup.Name;
+			String name = Group.Name;
 			String titleText;
-			bool clickable = (mGroup != null) && (mGroup.IsVirtual == false) && (mGroup.ParentGroup != null);
+			bool clickable = (Group != null) && (Group.IsVirtual == false) && (Group.ParentGroup != null);
 			if (!String.IsNullOrEmpty(name))
 			{
 				titleText = name;
@@ -154,14 +151,14 @@ namespace keepass2android
 			Button tv = (Button)FindViewById(Resource.Id.group_name);
 			if (tv != null)
 			{
-				if (mGroup != null)
+				if (Group != null)
 				{
 					tv.Text = titleText;
 				}
 
 				if (clickable)
 				{
-					tv.Click += (object sender, EventArgs e) => 
+					tv.Click += (sender, e) => 
 					{
 						Finish();
 					};
@@ -181,9 +178,9 @@ namespace keepass2android
 		}
 
 		
-		protected void setGroupIcon() {
-			if (mGroup != null) {
-				Drawable drawable = App.Kp2a.GetDb().drawableFactory.getIconDrawable(Resources, App.Kp2a.GetDb().pm, mGroup.IconId, mGroup.CustomIconUuid);
+		protected void SetGroupIcon() {
+			if (Group != null) {
+				Drawable drawable = App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(Resources, App.Kp2a.GetDb().KpDatabase, Group.IconId, Group.CustomIconUuid);
 				ImageView iv = (ImageView) FindViewById(Resource.Id.icon);
 				if (iv != null)
 					iv.SetImageDrawable(drawable);
@@ -201,8 +198,8 @@ namespace keepass2android
 			return true;
 		}
 		
-		private void setSortMenuText(IMenu menu) {
-			bool sortByName = prefs.GetBoolean(GetString(Resource.String.sort_key), Resources.GetBoolean(Resource.Boolean.sort_default));
+		private void SetSortMenuText(IMenu menu) {
+			bool sortByName = _prefs.GetBoolean(GetString(Resource.String.sort_key), Resources.GetBoolean(Resource.Boolean.sort_default));
 			
 			int resId;
 			if ( sortByName ) {
@@ -220,7 +217,7 @@ namespace keepass2android
 				return false;
 			}
 			
-			setSortMenuText(menu);
+			SetSortMenuText(menu);
 			
 			return true;
 		}
@@ -238,7 +235,7 @@ namespace keepass2android
 				return true;
 			case Resource.Id.menu_lock:
 				App.Kp2a.SetShutdown();
-				SetResult(KeePass.EXIT_LOCK);
+				SetResult(KeePass.ExitLock);
 				Finish();
 				return true;
 				
@@ -251,11 +248,11 @@ namespace keepass2android
 				return true;
 				
 			case Resource.Id.menu_change_master_key:
-				setPassword();
+				SetPassword();
 				return true;
 				
 			case Resource.Id.menu_sort:
-				toggleSort();
+				ToggleSort();
 				return true;
 			case Resource.Id.menu_rate:
 				try {
@@ -291,22 +288,22 @@ namespace keepass2android
 			return base.OnOptionsItemSelected(item);
 		}
 		
-		private void toggleSort() {
+		private void ToggleSort() {
 			// Toggle setting
 			String sortKey = GetString(Resource.String.sort_key);
-			bool sortByName = prefs.GetBoolean(sortKey, Resources.GetBoolean(Resource.Boolean.sort_default));
-			ISharedPreferencesEditor editor = prefs.Edit();
+			bool sortByName = _prefs.GetBoolean(sortKey, Resources.GetBoolean(Resource.Boolean.sort_default));
+			ISharedPreferencesEditor editor = _prefs.Edit();
 			editor.PutBoolean(sortKey, ! sortByName);
-			EditorCompat.apply(editor);
+			EditorCompat.Apply(editor);
 			
 			// Refresh menu titles
-			ActivityCompat.invalidateOptionsMenu(this);
+			ActivityCompat.InvalidateOptionsMenu(this);
 			
 			// Mark all groups as dirty now to refresh them on load
 			Database db = App.Kp2a.GetDb();
-			db.markAllGroupsAsDirty();
+			db.MarkAllGroupsAsDirty();
 			// We'll manually refresh this group so we can remove it
-			db.dirty.Remove(mGroup);
+			db.Dirty.Remove(Group);
 			
 			// Tell the adapter to refresh it's list
 			BaseAdapter adapter = (BaseAdapter) ListAdapter;
@@ -314,43 +311,43 @@ namespace keepass2android
 			
 		}
 		
-		private void setPassword() {
+		private void SetPassword() {
 			SetPasswordDialog dialog = new SetPasswordDialog(this);
 			dialog.Show();
 		}
 		
 		 public class RefreshTask : OnFinish {
-			GroupBaseActivity act;
+			 readonly GroupBaseActivity _act;
 			public RefreshTask(Handler handler, GroupBaseActivity act):base(handler) {
-				this.act = act;
+				_act = act;
 			}
 
-			public override void run() {
-				if ( mSuccess) {
-					act.refreshIfDirty();
+			public override void Run() {
+				if ( Success) {
+					_act.RefreshIfDirty();
 				} else {
-					displayMessage(act);
+					DisplayMessage(_act);
 				}
 			}
 		}
 		public class AfterDeleteGroup : OnFinish {
-			GroupBaseActivity act;
+			readonly GroupBaseActivity _act;
 
 			public AfterDeleteGroup(Handler handler, GroupBaseActivity act):base(handler) {
-				this.act = act;
+				_act = act;
 			}
 			
 
-			public override void run() {
-				if ( mSuccess) {
-					act.refreshIfDirty();
+			public override void Run() {
+				if ( Success) {
+					_act.RefreshIfDirty();
 				} else {
-					mHandler.Post( () => {
-						Toast.MakeText(act,  "Unrecoverable error: " + mMessage, ToastLength.Long).Show();
+					Handler.Post( () => {
+						Toast.MakeText(_act,  "Unrecoverable error: " + Message, ToastLength.Long).Show();
 					});
 
 					App.Kp2a.SetShutdown();
-					act.Finish();
+					_act.Finish();
 				}
 			}
 			

@@ -16,15 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using KeePassLib;
 
@@ -33,18 +27,18 @@ namespace keepass2android
 	[Activity (Label = "@string/app_name", Theme="@style/Dialog")]			
 	public class GroupEditActivity : LifecycleDebugActivity
 	{
-		public const String KEY_PARENT = "parent";
-		public const String KEY_NAME = "name";
-		public const String KEY_ICON_ID = "icon_id";
+		public const String KeyParent = "parent";
+		public const String KeyName = "name";
+		public const String KeyIconId = "icon_id";
 		
-		private int mSelectedIconID;
+		private int _selectedIconId;
 		
 		public static void Launch(Activity act, PwGroup pw)
 		{
 			Intent i = new Intent(act, typeof(GroupEditActivity));
 			
 			PwGroup parent = pw;
-			i.PutExtra(KEY_PARENT, parent.Uuid.ToHexString());
+			i.PutExtra(KeyParent, parent.Uuid.ToHexString());
 			
 			act.StartActivityForResult(i, 0);
 		}
@@ -56,23 +50,23 @@ namespace keepass2android
 			SetTitle (Resource.String.add_group_title);
 			
 			ImageButton iconButton = (ImageButton)FindViewById (Resource.Id.icon_button);
-			iconButton.Click += (object sender, EventArgs e) => 
+			iconButton.Click += (sender, e) => 
 			{
 				IconPickerActivity.Launch (this);
 			};
-			mSelectedIconID = (int) PwIcon.FolderOpen;
-			iconButton.SetImageResource(Icons.iconToResId((PwIcon)mSelectedIconID));
+			_selectedIconId = (int) PwIcon.FolderOpen;
+			iconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId));
 
 			Button okButton = (Button)FindViewById (Resource.Id.ok);
-			okButton.Click += (object sender, EventArgs e) => {
+			okButton.Click += (sender, e) => {
 				TextView nameField = (TextView)FindViewById (Resource.Id.group_name);
 				String name = nameField.Text;
 				
 				if (name.Length > 0) {
 					Intent intent = new Intent ();
 					
-					intent.PutExtra (KEY_NAME, name);
-					intent.PutExtra (KEY_ICON_ID, mSelectedIconID);
+					intent.PutExtra (KeyName, name);
+					intent.PutExtra (KeyIconId, _selectedIconId);
 					SetResult (Result.Ok, intent);
 					
 					Finish ();
@@ -83,7 +77,7 @@ namespace keepass2android
 			     
 			
 			Button cancel = (Button)FindViewById (Resource.Id.cancel);
-			cancel.Click += (object sender, EventArgs e) => {
+			cancel.Click += (sender, e) => {
 				Intent intent = new Intent ();
 				SetResult (Result.Canceled, intent);
 				
@@ -95,12 +89,10 @@ namespace keepass2android
 		{
 			switch ((int)resultCode)
 			{
-			case EntryEditActivity.RESULT_OK_ICON_PICKER:
-				mSelectedIconID = data.Extras.GetInt(IconPickerActivity.KEY_ICON_ID);
+			case EntryEditActivity.ResultOkIconPicker:
+				_selectedIconId = data.Extras.GetInt(IconPickerActivity.KeyIconId);
 				ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-				currIconButton.SetImageResource(Icons.iconToResId((PwIcon)mSelectedIconID));
-				break;
-			default:
+				currIconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId));
 				break;
 			}
 		}

@@ -16,10 +16,6 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -31,10 +27,8 @@ using Android.Preferences;
 using Java.IO;
 using Android.Text;
 using Android.Content.PM;
-using Android.Text.Method;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
-using Android.Views.InputMethods;
 
 namespace keepass2android
 {
@@ -43,22 +37,22 @@ namespace keepass2android
 	           Theme="@style/Base")]
 
 	public class PasswordActivity : LockingActivity {
-		bool mShowPassword = false;
+		bool _showPassword;
 
-		public const String KEY_DEFAULT_FILENAME = "defaultFileName";
+		public const String KeyDefaultFilename = "defaultFileName";
 
-		public const String KEY_FILENAME = "fileName";
-		private const String KEY_KEYFILE = "keyFile";
-		private const String KEY_SERVERUSERNAME = "serverCredUser";
-		private const String KEY_SERVERPASSWORD = "serverCredPwd";
-		private const String KEY_SERVERCREDMODE = "serverCredRememberMode";
+		public const String KeyFilename = "fileName";
+		private const String KeyKeyfile = "keyFile";
+		private const String KeyServerusername = "serverCredUser";
+		private const String KeyServerpassword = "serverCredPwd";
+		private const String KeyServercredmode = "serverCredRememberMode";
 
-		private const String VIEW_INTENT = "android.intent.action.VIEW";
+		private const String ViewIntent = "android.intent.action.VIEW";
 	
-		private IOConnectionInfo mIoConnection;
-		private String mKeyFile;
-		private bool mRememberKeyfile;
-		ISharedPreferences prefs;
+		private IOConnectionInfo _ioConnection;
+		private String _keyFile;
+		private bool _rememberKeyfile;
+		ISharedPreferences _prefs;
 
 		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -72,31 +66,31 @@ namespace keepass2android
 		}
 
 
-		static void PutIoConnectionToIntent(IOConnectionInfo ioc, Android.Content.Intent i)
+		static void PutIoConnectionToIntent(IOConnectionInfo ioc, Intent i)
 		{
-			i.PutExtra(KEY_FILENAME, ioc.Path);
-			i.PutExtra(KEY_SERVERUSERNAME, ioc.UserName);
-			i.PutExtra(KEY_SERVERPASSWORD, ioc.Password);
-			i.PutExtra(KEY_SERVERCREDMODE, (int)ioc.CredSaveMode);
+			i.PutExtra(KeyFilename, ioc.Path);
+			i.PutExtra(KeyServerusername, ioc.UserName);
+			i.PutExtra(KeyServerpassword, ioc.Password);
+			i.PutExtra(KeyServercredmode, (int)ioc.CredSaveMode);
 		}
 		
 		public static void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent i)
 		{
-			ioc.Path = i.GetStringExtra(KEY_FILENAME);
-			ioc.UserName = i.GetStringExtra(KEY_SERVERUSERNAME) ?? "";
-			ioc.Password = i.GetStringExtra(KEY_SERVERPASSWORD) ?? "";
-			ioc.CredSaveMode  = (IOCredSaveMode)i.GetIntExtra(KEY_SERVERCREDMODE, (int) IOCredSaveMode.NoSave);
+			ioc.Path = i.GetStringExtra(KeyFilename);
+			ioc.UserName = i.GetStringExtra(KeyServerusername) ?? "";
+			ioc.Password = i.GetStringExtra(KeyServerpassword) ?? "";
+			ioc.CredSaveMode  = (IOCredSaveMode)i.GetIntExtra(KeyServercredmode, (int) IOCredSaveMode.NoSave);
 		}
 
 		public static void Launch(Activity act, String fileName, AppTask appTask)  {
-			Java.IO.File dbFile = new Java.IO.File(fileName);
+			File dbFile = new File(fileName);
 			if ( ! dbFile.Exists() ) {
-				throw new Java.IO.FileNotFoundException();
+				throw new FileNotFoundException();
 			}
 	
 			
 			Intent i = new Intent(act, typeof(PasswordActivity));
-			i.PutExtra(KEY_FILENAME, fileName);
+			i.PutExtra(KeyFilename, fileName);
 			appTask.ToIntent(i);
 			act.StartActivityForResult(i, 0);
 			
@@ -128,43 +122,43 @@ namespace keepass2android
 
 		public void LaunchNextActivity()
 		{
-			mAppTask.AfterUnlockDatabase(this);
+			AppTask.AfterUnlockDatabase(this);
 
 		}
 
-		void unloadDatabase()
+		void UnloadDatabase()
 		{
 			App.Kp2a.GetDb().Clear();
 			StopService(new Intent(this, typeof(QuickUnlockForegroundService)));
 		}
 
-		void lockDatabase()
+		void LockDatabase()
 		{
-			SetResult(KeePass.EXIT_LOCK);
-			setEditText(Resource.Id.password, "");
+			SetResult(KeePass.ExitLock);
+			SetEditText(Resource.Id.password, "");
 			if (App.Kp2a.GetDb().QuickUnlockEnabled)
 				App.Kp2a.GetDb().Locked = true;
 			else
 			{
-				unloadDatabase();
+				UnloadDatabase();
 			}
 		}
 
-		void lockAndClose()
+		void LockAndClose()
 		{
-			lockDatabase();
+			LockDatabase();
 			Finish();
 
 		}
 
-		bool tryStartQuickUnlock()
+		bool TryStartQuickUnlock()
 		{
 			if (!App.Kp2a.GetDb().QuickUnlockEnabled)
 				return false;
 
-			if (App.Kp2a.GetDb().pm.MasterKey.ContainsType(typeof(KcpPassword)) == false)
+			if (App.Kp2a.GetDb().KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) == false)
 				return false;
-			KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().pm.MasterKey.GetUserKey(typeof(KcpPassword));
+			KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword));
 			String password = kcpPassword.Password.ReadString();
 
 			if (password.Length == 0)
@@ -173,7 +167,7 @@ namespace keepass2android
 			App.Kp2a.GetDb().Locked = true;
 
 			Intent i = new Intent(this, typeof(QuickUnlock));
-			PutIoConnectionToIntent(mIoConnection, i);
+			PutIoConnectionToIntent(_ioConnection, i);
 			Android.Util.Log.Debug("DEBUG","Starting QuickUnlock");
 			StartActivityForResult(i,0);
 			return true;
@@ -187,16 +181,16 @@ namespace keepass2android
 			}
 		}
 
-		bool startedWithActivityResult = false;
+		bool _startedWithActivityResult;
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
-			startedWithActivityResult = true;
+			_startedWithActivityResult = true;
 			Android.Util.Log.Debug("DEBUG","PasswordActivity.OnActivityResult "+resultCode+"/"+requestCode);
 
-			if (resultCode != KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE)
+			if (resultCode != KeePass.ExitCloseAfterTaskComplete)
 			{
 				//Stop service when app activity is left
 				StopService(new Intent(this, typeof(CopyToClipboardService)));
@@ -205,64 +199,63 @@ namespace keepass2android
 			//NOTE: original code from k eepassdroid used switch ((Android.App.Result)requestCode) { (but doesn't work here, although k eepassdroid works)
 			switch(resultCode) {
 				
-				case KeePass.EXIT_NORMAL:
-					if (!tryStartQuickUnlock())
+				case KeePass.ExitNormal:
+					if (!TryStartQuickUnlock())
 					{
-						setEditText(Resource.Id.password, "");
-						;
+						SetEditText(Resource.Id.password, "");
 					}
 					break;
 					
-				case KeePass.EXIT_LOCK:
-					if (!tryStartQuickUnlock())
+				case KeePass.ExitLock:
+					if (!TryStartQuickUnlock())
 					{
-						lockAndClose();
+						LockAndClose();
 					}
 					break;
-				case KeePass.EXIT_FORCE_LOCK:
-					setEditText(Resource.Id.password, "");
-					unloadDatabase();
+				case KeePass.ExitForceLock:
+					SetEditText(Resource.Id.password, "");
+					UnloadDatabase();
 					break;
-				case KeePass.EXIT_FORCE_LOCK_AND_CHANGE_DB:
-					unloadDatabase();
+				case KeePass.ExitForceLockAndChangeDb:
+					UnloadDatabase();
 					Finish();
 					break;
-				case KeePass.EXIT_CHANGE_DB:
-					lockAndClose();
+				case KeePass.ExitChangeDb:
+					LockAndClose();
 					break;
-				case KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE:
-					SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
+				case KeePass.ExitCloseAfterTaskComplete:
+					SetResult(KeePass.ExitCloseAfterTaskComplete);
 					Finish();
 					break;
-				case KeePass.EXIT_QUICK_UNLOCK:
+				case KeePass.ExitQuickUnlock:
 					App.Kp2a.GetDb().Locked = false;
 					LaunchNextActivity();
 					break;
-				case KeePass.EXIT_RELOAD_DB:
+				case KeePass.ExitReloadDb:
 					//if the activity was killed, fill password/keyfile so the user can directly hit load again
 					if (App.Kp2a.GetDb().Loaded)
 					{
-						if (App.Kp2a.GetDb().pm.MasterKey.ContainsType(typeof(KcpPassword)))
+						if (App.Kp2a.GetDb().KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)))
 						{
 
-							KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().pm.MasterKey.GetUserKey(typeof(KcpPassword));
+							KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword));
 							String password = kcpPassword.Password.ReadString();
 
-							setEditText(Resource.Id.password, password);
+							SetEditText(Resource.Id.password, password);
 						
 						}
-						if (App.Kp2a.GetDb().pm.MasterKey.ContainsType(typeof(KcpKeyFile)))
+						if (App.Kp2a.GetDb().KpDatabase.MasterKey.ContainsType(typeof(KcpKeyFile)))
 						{
 							
-							KcpKeyFile kcpKeyfile = (KcpKeyFile)App.Kp2a.GetDb().pm.MasterKey.GetUserKey(typeof(KcpKeyFile));
+							KcpKeyFile kcpKeyfile = (KcpKeyFile)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpKeyFile));
 
-							setEditText(Resource.Id.pass_keyfile, kcpKeyfile.Path);
+							SetEditText(Resource.Id.pass_keyfile, kcpKeyfile.Path);
 						}
 					}
-					unloadDatabase();
+					UnloadDatabase();
 					break;
-				case Android.App.Result.Ok:
-					if (requestCode == Intents.REQUEST_CODE_FILE_BROWSE_FOR_KEYFILE) {
+				case Result.Ok:
+					if (requestCode == Intents.RequestCodeFileBrowseForKeyfile) {
 						string filename = Util.IntentToFilename(data);
 						if (filename != null) {
 							if (filename.StartsWith("file://")) {
@@ -280,7 +273,7 @@ namespace keepass2android
 			
 		}
 
-		internal AppTask mAppTask;
+		internal AppTask AppTask;
 		
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -289,17 +282,17 @@ namespace keepass2android
 			Intent i = Intent;
 			String action = i.Action;
 			
-			prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-			mRememberKeyfile = prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default));
+			_prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+			_rememberKeyfile = _prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default));
 
-			mIoConnection = new IOConnectionInfo();
+			_ioConnection = new IOConnectionInfo();
 
 
-			if (action != null && action.Equals(VIEW_INTENT))
+			if (action != null && action.Equals(ViewIntent))
 			{
-				mIoConnection.Path = i.DataString;
+				_ioConnection.Path = i.DataString;
 				
-				if (! mIoConnection.Path.Substring(0, 7).Equals("file://"))
+				if (! _ioConnection.Path.Substring(0, 7).Equals("file://"))
 				{
 					//TODO: this might no longer be required as we can handle http(s) and ftp as well (but we need server credentials therefore)
 					Toast.MakeText(this, Resource.String.error_can_not_handle_uri, ToastLength.Long).Show();
@@ -307,9 +300,9 @@ namespace keepass2android
 					return;
 				}
 
-				mIoConnection.Path = URLDecoder.Decode(mIoConnection.Path.Substring(7));
+				_ioConnection.Path = URLDecoder.Decode(_ioConnection.Path.Substring(7));
 				
-				if (mIoConnection.Path.Length == 0)
+				if (_ioConnection.Path.Length == 0)
 				{
 					// No file name
 					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
@@ -317,7 +310,7 @@ namespace keepass2android
 					return;
 				}
 
-				File dbFile = new File(mIoConnection.Path);
+				File dbFile = new File(_ioConnection.Path);
 				if (! dbFile.Exists())
 				{
 					// File does not exist
@@ -326,22 +319,22 @@ namespace keepass2android
 					return;
 				}
 				
-				mKeyFile = getKeyFile(mIoConnection.Path);
+				_keyFile = GetKeyFile(_ioConnection.Path);
 				
 			} else
 			{
-				SetIoConnectionFromIntent(mIoConnection, i);
-				mKeyFile = i.GetStringExtra(KEY_KEYFILE);
-				if (mKeyFile == null || mKeyFile.Length == 0)
+				SetIoConnectionFromIntent(_ioConnection, i);
+				_keyFile = i.GetStringExtra(KeyKeyfile);
+				if (string.IsNullOrEmpty(_keyFile))
 				{
-					mKeyFile = getKeyFile(mIoConnection.Path);
+					_keyFile = GetKeyFile(_ioConnection.Path);
 				}
 			}
 
-			mAppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			SetContentView(Resource.Layout.password);
-			populateView();
+			PopulateView();
 
 			EditText passwordEdit = FindViewById<EditText>(Resource.Id.password);
 
@@ -350,31 +343,28 @@ namespace keepass2android
 			Window.SetSoftInputMode(SoftInput.StateVisible);
 
 			Button confirmButton = (Button)FindViewById(Resource.Id.pass_ok);
-			confirmButton.Click += (object sender, EventArgs e) => 
+			confirmButton.Click += (sender, e) => 
 			{
 				String pass = GetEditText(Resource.Id.password);
 				String key = GetEditText(Resource.Id.pass_keyfile);
 				if (pass.Length == 0 && key.Length == 0)
 				{
-					errorMessage(Resource.String.error_nopass);
+					ErrorMessage(Resource.String.error_nopass);
 					return;
 				}
 				
-				String fileName = GetEditText(Resource.Id.filename);
-				
-				
 				// Clear before we load
-				unloadDatabase();
+				UnloadDatabase();
 				
 				// Clear the shutdown flag
-				App.Kp2a.clearShutdown();
+				App.Kp2a.ClearShutdown();
 
 				CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
 				App.Kp2a.GetDb().QuickUnlockEnabled = cbQuickUnlock.Checked;
-				App.Kp2a.GetDb().QuickUnlockKeyLength = int.Parse(prefs.GetString(GetString(Resource.String.QuickUnlockLength_key), GetString(Resource.String.QuickUnlockLength_default)));
+				App.Kp2a.GetDb().QuickUnlockKeyLength = int.Parse(_prefs.GetString(GetString(Resource.String.QuickUnlockLength_key), GetString(Resource.String.QuickUnlockLength_default)));
 				
 				Handler handler = new Handler();
-				LoadDB task = new LoadDB(App.Kp2a, this, mIoConnection, pass, key, new AfterLoad(handler, this));
+				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, pass, key, new AfterLoad(handler, this));
 				ProgressTask pt = new ProgressTask(App.Kp2a, this, task, UiStringKey.loading_database);
 				pt.run();
 			};
@@ -392,10 +382,10 @@ namespace keepass2android
 			};
 			*/
 			ImageButton btnTogglePassword = (ImageButton)FindViewById(Resource.Id.toggle_password);
-			btnTogglePassword.Click += (object sender, EventArgs e) => {
-				mShowPassword = !mShowPassword;
+			btnTogglePassword.Click += (sender, e) => {
+				_showPassword = !_showPassword;
 				TextView password = (TextView)FindViewById(Resource.Id.password);
-				if (mShowPassword)
+				if (_showPassword)
 				{
 					password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
 				} else
@@ -405,49 +395,49 @@ namespace keepass2android
 			};
 			
 			CheckBox defaultCheck = (CheckBox)FindViewById(Resource.Id.default_database);
-			///Don't allow the current file to be the default if we don't have stored credentials
-			if ((mIoConnection.IsLocalFile() == false) && (mIoConnection.CredSaveMode != IOCredSaveMode.SaveCred))
+			//Don't allow the current file to be the default if we don't have stored credentials
+			if ((_ioConnection.IsLocalFile() == false) && (_ioConnection.CredSaveMode != IOCredSaveMode.SaveCred))
 			{
 				defaultCheck.Enabled = false;
 			} else
 			{
 				defaultCheck.Enabled = true;
 			}
-			defaultCheck.CheckedChange += (object sender, CompoundButton.CheckedChangeEventArgs e) => 
+			defaultCheck.CheckedChange += (sender, e) => 
 			{
 				String newDefaultFileName;
 				
 				if (e.IsChecked)
 				{
-					newDefaultFileName = mIoConnection.Path;
+					newDefaultFileName = _ioConnection.Path;
 				} else
 				{
 					newDefaultFileName = "";
 				}
 				
-				ISharedPreferencesEditor editor = prefs.Edit();
-				editor.PutString(KEY_DEFAULT_FILENAME, newDefaultFileName);
-				EditorCompat.apply(editor);
+				ISharedPreferencesEditor editor = _prefs.Edit();
+				editor.PutString(KeyDefaultFilename, newDefaultFileName);
+				EditorCompat.Apply(editor);
 			};
 			
 			ImageButton browse = (ImageButton)FindViewById(Resource.Id.browse_button);
-			browse.Click += (object sender, EventArgs evt) => 
+			browse.Click += (sender, evt) => 
 			{
 				string filename = null;
-				if (!String.IsNullOrEmpty(mIoConnection.Path))
+				if (!String.IsNullOrEmpty(_ioConnection.Path))
 				{
-					File keyfile = new File(mIoConnection.Path);
+					File keyfile = new File(_ioConnection.Path);
 					File parent = keyfile.ParentFile;
 					if (parent != null)
 					{
 						filename = parent.AbsolutePath;
 					}
 				}
-				Util.showBrowseDialog(filename, this, Intents.REQUEST_CODE_FILE_BROWSE_FOR_KEYFILE, false);
+				Util.showBrowseDialog(filename, this, Intents.RequestCodeFileBrowseForKeyfile, false);
 
 			};
 			
-			retrieveSettings();
+			RetrieveSettings();
 
 
 		}
@@ -455,7 +445,7 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			mAppTask.ToBundle(outState);
+			AppTask.ToBundle(outState);
 		}
 		
 		protected override void OnResume() {
@@ -463,18 +453,18 @@ namespace keepass2android
 			
 			// If the application was shutdown make sure to clear the password field, if it
 			// was saved in the instance state
-			if (App.Kp2a.isShutdown()) {
-				lockDatabase();
+			if (App.Kp2a.IsShutdown()) {
+				LockDatabase();
 			}
 
 			// Clear the shutdown flag
-            App.Kp2a.clearShutdown();
+            App.Kp2a.ClearShutdown();
 
-			if (startedWithActivityResult)
+			if (_startedWithActivityResult)
 				return;
 
-			if (App.Kp2a.GetDb().Loaded && (App.Kp2a.GetDb().mIoc != null)
-			    && (mIoConnection != null) && (App.Kp2a.GetDb().mIoc.GetDisplayName() == mIoConnection.GetDisplayName()))
+			if (App.Kp2a.GetDb().Loaded && (App.Kp2a.GetDb().Ioc != null)
+			    && (_ioConnection != null) && (App.Kp2a.GetDb().Ioc.GetDisplayName() == _ioConnection.GetDisplayName()))
 			{
 				if (App.Kp2a.GetDb().Locked == false)
 				{
@@ -482,26 +472,26 @@ namespace keepass2android
 				}
 				else 
 				{
-					tryStartQuickUnlock();
+					TryStartQuickUnlock();
 				}
 			}
 		}
 		
-		private void retrieveSettings() {
-			String defaultFilename = prefs.GetString(KEY_DEFAULT_FILENAME, "");
-			if (!String.IsNullOrEmpty(mIoConnection.Path) && mIoConnection.Path.Equals(defaultFilename)) {
+		private void RetrieveSettings() {
+			String defaultFilename = _prefs.GetString(KeyDefaultFilename, "");
+			if (!String.IsNullOrEmpty(_ioConnection.Path) && _ioConnection.Path.Equals(defaultFilename)) {
 				CheckBox checkbox = (CheckBox) FindViewById(Resource.Id.default_database);
 				checkbox.Checked = true;
 			}
 			CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
-			cbQuickUnlock.Checked = prefs.GetBoolean(GetString(Resource.String.QuickUnlockDefaultEnabled_key), true);
+			cbQuickUnlock.Checked = _prefs.GetBoolean(GetString(Resource.String.QuickUnlockDefaultEnabled_key), true);
 		}
 		
-		private String getKeyFile(String filename) {
-			if ( mRememberKeyfile ) {
-                FileDbHelper dbHelp = App.Kp2a.fileDbHelper;
+		private String GetKeyFile(String filename) {
+			if ( _rememberKeyfile ) {
+                FileDbHelper dbHelp = App.Kp2a.FileDbHelper;
 				
-				String keyfile = dbHelp.getFileByName(filename);
+				String keyfile = dbHelp.GetFileByName(filename);
 				
 				return keyfile;
 			} else {
@@ -509,9 +499,9 @@ namespace keepass2android
 			}
 		}
 		
-		private void populateView() {
-			setEditText(Resource.Id.filename, mIoConnection.GetDisplayName());
-			setEditText(Resource.Id.pass_keyfile, mKeyFile);
+		private void PopulateView() {
+			SetEditText(Resource.Id.filename, _ioConnection.GetDisplayName());
+			SetEditText(Resource.Id.pass_keyfile, _keyFile);
 		}
 		
 		/*
@@ -521,7 +511,7 @@ namespace keepass2android
 	}
 	*/
 		
-		private void errorMessage(int resId)
+		private void ErrorMessage(int resId)
 		{
 			Toast.MakeText(this, resId, ToastLength.Long).Show();
 		}
@@ -530,7 +520,7 @@ namespace keepass2android
 			return Util.getEditText(this, resId);
 		}
 		
-		private void setEditText(int resId, String str) {
+		private void SetEditText(int resId, String str) {
 			TextView te =  (TextView) FindViewById(resId);
 			//assert(te == null);
 			
@@ -564,20 +554,18 @@ namespace keepass2android
 		}
 		
 		private class AfterLoad : OnFinish {
-
-
-			PasswordActivity act;
+			readonly PasswordActivity _act;
 			public AfterLoad(Handler handler, PasswordActivity act):base(handler) {
-				this.act = act;
+				this._act = act;
 			}
 			
 
-			public override void run() {
-				if ( mSuccess ) {
-					act.StartQuickUnlockForegroundService();
-					act.LaunchNextActivity();
+			public override void Run() {
+				if ( Success ) {
+					_act.StartQuickUnlockForegroundService();
+					_act.LaunchNextActivity();
 				} else {
-					displayMessage(act);
+					DisplayMessage(_act);
 				}
 			}
 		}

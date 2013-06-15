@@ -16,44 +16,38 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Util;
 
 namespace keepass2android
 {
 	[Service]
 	public class TimeoutService : Service {
-		private const String TAG = "KeePass2Android Timer"; 
-		private BroadcastReceiver mIntentReceiver;
+		private const String Tag = "KeePass2Android Timer"; 
+		private BroadcastReceiver _intentReceiver;
 
 
 		public TimeoutService (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
-			mBinder	= new TimeoutBinder(this);
+			_binder	= new TimeoutBinder(this);
 		}
 		public TimeoutService()
 		{
-			mBinder	= new TimeoutBinder(this);
+			_binder	= new TimeoutBinder(this);
 		}
 		
 		public override void OnCreate() {
 			base.OnCreate();
 			
-			mIntentReceiver = new MyBroadcastReceiver(this);
+			_intentReceiver = new MyBroadcastReceiver(this);
 
 			IntentFilter filter = new IntentFilter();
-			filter.AddAction(Intents.TIMEOUT);
-			RegisterReceiver(mIntentReceiver, filter);
+			filter.AddAction(Intents.Timeout);
+			RegisterReceiver(_intentReceiver, filter);
 			
 		}
 
@@ -61,11 +55,11 @@ namespace keepass2android
 		public override void OnStart(Intent intent, int startId) {
 			base.OnStart(intent, startId);
 			
-			Log.Debug(TAG, "Timeout service started");
+			Log.Debug(Tag, "Timeout service started");
 		}
 		
-		private void timeout(Context context) {
-			Log.Debug(TAG, "Timeout");
+		private void Timeout() {
+			Log.Debug(Tag, "Timeout");
             App.Kp2a.SetShutdown();
 			
 			NotificationManager nm = (NotificationManager) GetSystemService(NotificationService);
@@ -77,30 +71,30 @@ namespace keepass2android
 		public override void OnDestroy() {
 			base.OnDestroy();
 			
-			Log.Debug(TAG, "Timeout service stopped");
+			Log.Debug(Tag, "Timeout service stopped");
 			
-			UnregisterReceiver(mIntentReceiver);
+			UnregisterReceiver(_intentReceiver);
 		}
 		
 		public class TimeoutBinder : Binder 
 		{
-			TimeoutService service;
+			readonly TimeoutService _service;
 
 			public TimeoutBinder(TimeoutService service)
 			{
-				this.service = service;
+				_service = service;
 			}
 
-			public TimeoutService getService() {
-				return service;
+			public TimeoutService GetService() {
+				return _service;
 			}
 		}
 		
-		private IBinder mBinder;
+		private readonly IBinder _binder;
 		
 		
 		public override IBinder OnBind(Intent intent) {
-			return mBinder;
+			return _binder;
 		}
 
 		[BroadcastReceiver]
@@ -112,17 +106,17 @@ namespace keepass2android
 				throw new NotImplementedException();
 			}
 
-			TimeoutService timeoutService;
+			readonly TimeoutService _timeoutService;
 			public MyBroadcastReceiver (TimeoutService timeoutService)
 			{
-				this.timeoutService = timeoutService;
+				_timeoutService = timeoutService;
 			}
 
 			public override void OnReceive(Context context, Intent intent) {
 				String action = intent.Action;
 				
-				if ( action.Equals(Intents.TIMEOUT) ) {
-					timeoutService.timeout(context);
+				if ( action.Equals(Intents.Timeout) ) {
+					_timeoutService.Timeout();
 				}
 			}
 		}

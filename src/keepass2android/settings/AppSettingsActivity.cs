@@ -16,15 +16,10 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+using System.Globalization;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.Preferences;
 using KeePassLib.Cryptography.Cipher;
@@ -33,7 +28,7 @@ namespace keepass2android
 {
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
 	public class AppSettingsActivity : LockingClosePreferenceActivity {
-		public static bool KEYFILE_DEFAULT = false;
+		public static bool KeyfileDefault = false;
 		
 		public static void Launch(Context ctx) {
 			Intent i = new Intent(ctx, typeof(AppSettingsActivity));
@@ -47,45 +42,40 @@ namespace keepass2android
 			AddPreferencesFromResource(Resource.Xml.preferences);
 			
 			Preference keyFile = FindPreference(GetString(Resource.String.keyfile_key));
-			keyFile.PreferenceChange += (object sender, Preference.PreferenceChangeEventArgs e) => 
+			keyFile.PreferenceChange += (sender, e) => 
 			{
 				bool value = (bool) e.NewValue;
 				
 				if ( ! value ) {
-					FileDbHelper helper = App.Kp2a.fileDbHelper;
+					FileDbHelper helper = App.Kp2a.FileDbHelper;
 					
-					helper.deleteAllKeys();
+					helper.DeleteAllKeys();
 				}
-					
-				return;
 			};
 			
 			Database db = App.Kp2a.GetDb();
 			if ( db.Open ) {
 				Preference rounds = FindPreference(GetString(Resource.String.rounds_key));
-				rounds.PreferenceChange += (object sender, Preference.PreferenceChangeEventArgs e) => 
+				rounds.PreferenceChange += (sender, e) => 
 				{
 					setRounds(App.Kp2a.GetDb(), e.Preference);
-					return;
 				};
 
 				Preference defaultUser = FindPreference(GetString(Resource.String.default_username_key));
-				((EditTextPreference)defaultUser).EditText.Text = db.pm.DefaultUserName;
-				((EditTextPreference)defaultUser).Text = db.pm.DefaultUserName;
-				defaultUser.PreferenceChange += (object sender, Preference.PreferenceChangeEventArgs e) => 
+				((EditTextPreference)defaultUser).EditText.Text = db.KpDatabase.DefaultUserName;
+				((EditTextPreference)defaultUser).Text = db.KpDatabase.DefaultUserName;
+				defaultUser.PreferenceChange += (sender, e) => 
 				{
-					DateTime previousUsernameChanged = db.pm.DefaultUserNameChanged;
-					String previousUsername = db.pm.DefaultUserName;
-					db.pm.DefaultUserName = e.NewValue.ToString();
+					DateTime previousUsernameChanged = db.KpDatabase.DefaultUserNameChanged;
+					String previousUsername = db.KpDatabase.DefaultUserName;
+					db.KpDatabase.DefaultUserName = e.NewValue.ToString();
 				
-					Handler handler = new Handler();
-
-					SaveDB save = new SaveDB(this, App.Kp2a.GetDb(), new ActionOnFinish( (success, message) => 
+					SaveDb save = new SaveDb(this, App.Kp2a.GetDb(), new ActionOnFinish( (success, message) => 
 					                                                         {
 						if (!success)
 						{
-							db.pm.DefaultUserName = previousUsername;
-							db.pm.DefaultUserNameChanged = previousUsernameChanged;
+							db.KpDatabase.DefaultUserName = previousUsername;
+							db.KpDatabase.DefaultUserNameChanged = previousUsernameChanged;
 							Toast.MakeText(this, message, ToastLength.Long).Show();
 						}
 					}));
@@ -94,22 +84,20 @@ namespace keepass2android
 				};
 
 				Preference databaseName = FindPreference(GetString(Resource.String.database_name_key));
-				((EditTextPreference)databaseName).EditText.Text = db.pm.Name;
-				((EditTextPreference)databaseName).Text = db.pm.Name;
-				databaseName.PreferenceChange += (object sender, Preference.PreferenceChangeEventArgs e) => 
+				((EditTextPreference)databaseName).EditText.Text = db.KpDatabase.Name;
+				((EditTextPreference)databaseName).Text = db.KpDatabase.Name;
+				databaseName.PreferenceChange += (sender, e) => 
 				{
-					DateTime previousNameChanged = db.pm.NameChanged;
-					String previousName = db.pm.Name;
-					db.pm.Name = e.NewValue.ToString();
+					DateTime previousNameChanged = db.KpDatabase.NameChanged;
+					String previousName = db.KpDatabase.Name;
+					db.KpDatabase.Name = e.NewValue.ToString();
 					
-					Handler handler = new Handler();
-					
-					SaveDB save = new SaveDB(this, App.Kp2a.GetDb(), new ActionOnFinish( (success, message) => 
+					SaveDb save = new SaveDb(this, App.Kp2a.GetDb(), new ActionOnFinish( (success, message) => 
 					                                                               {
 						if (!success)
 						{
-							db.pm.Name = previousName;
-							db.pm.NameChanged = previousNameChanged;
+							db.KpDatabase.Name = previousName;
+							db.KpDatabase.NameChanged = previousNameChanged;
 							Toast.MakeText(this, message, ToastLength.Long).Show();
 						}
 					}));
@@ -130,19 +118,14 @@ namespace keepass2android
 			}
 
 		}
-		
-		protected override void OnStop() {
-			
-			base.OnStop();
-		}
-		
+
 		private void setRounds(Database db, Preference rounds) {
-			rounds.Summary = db.pm.KeyEncryptionRounds.ToString();
+			rounds.Summary = db.KpDatabase.KeyEncryptionRounds.ToString(CultureInfo.InvariantCulture);
 		}
 		
 		private void setAlgorithm(Database db, Preference algorithm) {
 
-			algorithm.Summary = CipherPool.GlobalPool.GetCipher(db.pm.DataCipherUuid).DisplayName;
+			algorithm.Summary = CipherPool.GlobalPool.GetCipher(db.KpDatabase.DataCipherUuid).DisplayName;
 		}
 		
 

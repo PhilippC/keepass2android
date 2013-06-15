@@ -15,69 +15,59 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Java.Lang;
 
 namespace keepass2android
 {
 	public class ProgressTask {
-		private Context mCtx;
-		private Handler mHandler;
-		private RunnableOnFinish mTask;
-		private ProgressDialog mPd;
-        private IKp2aApp mApp;
+		private readonly Handler _handler;
+		private readonly RunnableOnFinish _task;
+		private readonly ProgressDialog _progressDialog;
+        private readonly IKp2aApp _app;
 
 		public ProgressTask(IKp2aApp app, Context ctx, RunnableOnFinish task, UiStringKey messageKey) {
-			mTask = task;
-			mHandler = new Handler();
-            mApp = app;
+			_task = task;
+			_handler = new Handler();
+            _app = app;
 			
 			// Show process dialog
-			mPd = new ProgressDialog(ctx);
-			mPd.SetTitle(mApp.GetResourceString(UiStringKey.progress_title));
-            mPd.SetMessage(mApp.GetResourceString(messageKey));
+			_progressDialog = new ProgressDialog(ctx);
+			_progressDialog.SetTitle(_app.GetResourceString(UiStringKey.progress_title));
+            _progressDialog.SetMessage(_app.GetResourceString(messageKey));
 			
 			// Set code to run when this is finished
-			mTask.setStatus(new UpdateStatus(mApp, mHandler, mPd));
-			mTask.mFinish = new AfterTask(task.mFinish, mHandler, mPd);
+			_task.SetStatus(new UpdateStatus(_app, _handler, _progressDialog));
+			_task.OnFinishToRun = new AfterTask(task.OnFinishToRun, _handler, _progressDialog);
 			
 		}
 		
-		public void run() {
+		public void Run() {
 			// Show process dialog
-			mPd.Show();
+			_progressDialog.Show();
 			
 			
 			// Start Thread to Run task
-			Thread t = new Thread(mTask.run);
+			Thread t = new Thread(_task.Run);
 			t.Start();
 			
 		}
 		
 		private class AfterTask : OnFinish {
-
-			ProgressDialog mPd;
+			readonly ProgressDialog _progressDialog;
 
 			public AfterTask (OnFinish finish, Handler handler, ProgressDialog pd): base(finish, handler)
 			{
-				mPd = pd;
+				_progressDialog = pd;
 			}
 
-			public override void run() {
-				base.run();
+			public override void Run() {
+				base.Run();
 				
 				// Remove the progress dialog
-				mHandler.Post(delegate() {mPd.Dismiss();});
+				Handler.Post(delegate {_progressDialog.Dismiss();});
 				
 			}
 			

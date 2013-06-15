@@ -15,38 +15,32 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+using System.Globalization;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Preferences;
 using KeePassLib;
 using Android.Util;
-using keepass2android;
 
 namespace keepass2android.settings
 {
 
 	public class RoundsPreference : DialogPreference {
 		
-		internal PwDatabase mPM;
-		internal TextView mRoundsView;
+		internal PwDatabase PwDatabase;
+		internal TextView RoundsView;
 		
 		protected override View OnCreateDialogView() {
 			View view =  base.OnCreateDialogView();
 			
-			mRoundsView = (TextView) view.FindViewById(Resource.Id.rounds);
+			RoundsView = (TextView) view.FindViewById(Resource.Id.rounds);
 			
 			Database db = App.Kp2a.GetDb();
-			mPM = db.pm;
-			ulong numRounds = mPM.KeyEncryptionRounds;
-			mRoundsView.Text = numRounds.ToString();
+			PwDatabase = db.KpDatabase;
+			ulong numRounds = PwDatabase.KeyEncryptionRounds;
+			RoundsView.Text = numRounds.ToString(CultureInfo.InvariantCulture);
 
 			return view;
 		}
@@ -63,7 +57,7 @@ namespace keepass2android.settings
 			if ( positiveResult ) {
 				ulong rounds;
 				
-				String strRounds = mRoundsView.Text; 
+				String strRounds = RoundsView.Text; 
 				if (!(ulong.TryParse(strRounds,out rounds)))
 				{
 					Toast.MakeText(Context, Resource.String.error_rounds_not_number, ToastLength.Long).Show();
@@ -74,17 +68,17 @@ namespace keepass2android.settings
 					rounds = 1;
 				}
 				
-				ulong oldRounds = mPM.KeyEncryptionRounds;
+				ulong oldRounds = PwDatabase.KeyEncryptionRounds;
 
 				if (oldRounds == rounds)
 				{
 					return;
 				}
 
-				mPM.KeyEncryptionRounds = rounds;
+				PwDatabase.KeyEncryptionRounds = rounds;
 
 				Handler handler = new Handler();
-				SaveDB save = new SaveDB(Context, App.Kp2a.GetDb(), new AfterSave(Context, handler, oldRounds, this));
+				SaveDb save = new SaveDb(Context, App.Kp2a.GetDb(), new AfterSave(Context, handler, oldRounds, this));
 				ProgressTask pt = new ProgressTask(App.Kp2a, Context, save, UiStringKey.saving_database);
 				pt.run();
 				
@@ -93,29 +87,29 @@ namespace keepass2android.settings
 		}
 		
 		private class AfterSave : OnFinish {
-			private ulong mOldRounds;
-			private Context mCtx;
-			private RoundsPreference pref;
+			private readonly ulong _oldRounds;
+			private readonly Context _ctx;
+			private readonly RoundsPreference _pref;
 			
 			public AfterSave(Context ctx, Handler handler, ulong oldRounds, RoundsPreference pref):base(handler) {
 
-				this.pref = pref;
-				mCtx = ctx;
-				mOldRounds = oldRounds;
+				_pref = pref;
+				_ctx = ctx;
+				_oldRounds = oldRounds;
 			}
 			
-			public override void run() {
-				if ( mSuccess ) {
+			public override void Run() {
+				if ( Success ) {
 
-					if ( pref.OnPreferenceChangeListener != null ) {
-						pref.OnPreferenceChangeListener.OnPreferenceChange(pref, null);
+					if ( _pref.OnPreferenceChangeListener != null ) {
+						_pref.OnPreferenceChangeListener.OnPreferenceChange(_pref, null);
 					}
 				} else {
-					displayMessage(mCtx);
-					pref.mPM.KeyEncryptionRounds = mOldRounds;
+					DisplayMessage(_ctx);
+					_pref.PwDatabase.KeyEncryptionRounds = _oldRounds;
 				}
 				
-				base.run();
+				base.Run();
 			}
 			
 		}

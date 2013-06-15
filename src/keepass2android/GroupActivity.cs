@@ -16,14 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using KeePassLib;
@@ -38,12 +33,12 @@ namespace keepass2android
 	[MetaData("android.app.default_searchable",Value="keepass2android.search.SearchResults")]
 	public class GroupActivity : GroupBaseActivity {
 		
-		public const int UNINIT = -1;
+		public const int Uninit = -1;
 		
-		protected bool addGroupEnabled = false;
-		protected bool addEntryEnabled = false;
+		protected bool AddGroupEnabled = false;
+		protected bool AddEntryEnabled = false;
 		
-		private const String TAG = "Group Activity:";
+		private const String Tag = "Group Activity:";
 		
 		public static void Launch(Activity act, AppTask appTask) {
 			Launch(act, null, appTask);
@@ -51,30 +46,28 @@ namespace keepass2android
 		
 		public static void Launch (Activity act, PwGroup g, AppTask appTask)
 		{
-			Intent i;
-			
 			// Need to use PwDatabase since group may be null
-            PwDatabase db = App.Kp2a.GetDb().pm;
+            PwDatabase db = App.Kp2a.GetDb().KpDatabase;
 
 			if (db == null) {
 				// Reached if db is null
-				Log.Debug (TAG, "Tried to launch with null db");
+				Log.Debug (Tag, "Tried to launch with null db");
 				return;
 			}
 
-			i = new Intent(act, typeof(GroupActivity));
+			Intent i = new Intent(act, typeof(GroupActivity));
 				
 			if ( g != null ) {
-				i.PutExtra(KEY_ENTRY, g.Uuid.ToHexString());
+				i.PutExtra(KeyEntry, g.Uuid.ToHexString());
 			}
 			appTask.ToIntent(i);
 
 			act.StartActivityForResult(i,0);
 		}
 
-		protected PwUuid retrieveGroupId(Intent i)
+		protected PwUuid RetrieveGroupId(Intent i)
 		{
-			String uuid = i.GetStringExtra(KEY_ENTRY);
+			String uuid = i.GetStringExtra(KeyEntry);
 			
 			if ( String.IsNullOrEmpty(uuid) ) {
 				return null;
@@ -82,10 +75,10 @@ namespace keepass2android
 			return new PwUuid(MemUtil.HexStringToByteArray(uuid));
 		}
 		
-		protected void setupButtons()
+		protected void SetupButtons()
 		{
-			addGroupEnabled = true;
-			addEntryEnabled = !mGroup.Uuid.EqualsValue(App.Kp2a.GetDb().root.Uuid);
+			AddGroupEnabled = true;
+			AddEntryEnabled = !Group.Uuid.EqualsValue(App.Kp2a.GetDb().Root.Uuid);
 		}
 		
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -96,60 +89,60 @@ namespace keepass2android
 				return;
 			}
 			
-			SetResult (KeePass.EXIT_NORMAL);
+			SetResult (KeePass.ExitNormal);
 			
-			Log.Warn (TAG, "Creating group view");
+			Log.Warn (Tag, "Creating group view");
 			Intent intent = Intent;
 			
-			PwUuid id = retrieveGroupId (intent);
+			PwUuid id = RetrieveGroupId (intent);
 			
 			Database db = App.Kp2a.GetDb();
 			if (id == null) {
-				mGroup = db.root;
+				Group = db.Root;
 			} else {
-				mGroup = db.groups[id];
+				Group = db.Groups[id];
 			}
 			
-			Log.Warn (TAG, "Retrieved group");
-			if (mGroup == null) {
-				Log.Warn (TAG, "Group was null");
+			Log.Warn (Tag, "Retrieved group");
+			if (Group == null) {
+				Log.Warn (Tag, "Group was null");
 				return;
 			}
 			
-			setupButtons ();
+			SetupButtons ();
 			
-			if (addGroupEnabled && addEntryEnabled) {
+			if (AddGroupEnabled && AddEntryEnabled) {
 				SetContentView (new GroupAddEntryView (this));
-			} else if (addGroupEnabled) {
+			} else if (AddGroupEnabled) {
 				SetContentView (new GroupRootView (this));
-			} else if (addEntryEnabled) {
+			} else if (AddEntryEnabled) {
 				throw new Exception ("This mode is not supported.");
 			} else {
 				SetContentView (new GroupViewOnlyView (this));
 			}
-			if (addGroupEnabled) {
+			if (AddGroupEnabled) {
 				// Add Group button
 				View addGroup = FindViewById (Resource.Id.add_group);
-				addGroup.Click += (object sender, EventArgs e) => {
-					GroupEditActivity.Launch (this, mGroup);
+				addGroup.Click += (sender, e) => {
+					GroupEditActivity.Launch (this, Group);
 				};
 			}
 			
-			if (addEntryEnabled) {
+			if (AddEntryEnabled) {
 				// Add Entry button
 				View addEntry = FindViewById (Resource.Id.add_entry);
-				addEntry.Click += (object sender, EventArgs e) => {
-					EntryEditActivity.Launch (this, mGroup, mAppTask);
+				addEntry.Click += (sender, e) => {
+					EntryEditActivity.Launch (this, Group, AppTask);
 
 				};
 			}
 			
-			setGroupTitle();
-			setGroupIcon();
+			SetGroupTitle();
+			SetGroupIcon();
 			
-			ListAdapter = new PwGroupListAdapter(this, mGroup);
+			ListAdapter = new PwGroupListAdapter(this, Group);
 			RegisterForContextMenu(ListView);
-			Log.Warn(TAG, "Finished creating group");
+			Log.Warn(Tag, "Finished creating group");
 			
 		}
 
@@ -164,12 +157,12 @@ namespace keepass2android
 		public override void OnBackPressed()
 		{
 			base.OnBackPressed();
-			if ((mGroup != null) && (mGroup.ParentGroup != null))
+			if ((Group != null) && (Group.ParentGroup != null))
 				OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
 		}
 		
 		public override bool OnContextItemSelected(IMenuItem item) {
-			Android.Widget.AdapterView.AdapterContextMenuInfo acmi = (Android.Widget.AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+			AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
 			ClickView cv = (ClickView) acmi.TargetView;
 			
 			return cv.OnContextItemSelected(item);
@@ -180,18 +173,19 @@ namespace keepass2android
 			switch (resultCode)
 			{
 			case Result.Ok:
-				String GroupName = data.Extras.GetString(GroupEditActivity.KEY_NAME);
-				int GroupIconID = data.Extras.GetInt(GroupEditActivity.KEY_ICON_ID);
+				String groupName = data.Extras.GetString(GroupEditActivity.KeyName);
+				int groupIconId = data.Extras.GetInt(GroupEditActivity.KeyIconId);
 				GroupBaseActivity act = this;
 				Handler handler = new Handler();
-				AddGroup task = AddGroup.getInstance(this, App.Kp2a.GetDb(), GroupName, GroupIconID, mGroup, new RefreshTask(handler, this), false);
+				AddGroup task = AddGroup.GetInstance(this, App.Kp2a.GetDb(), groupName, groupIconId, Group, new RefreshTask(handler, this), false);
                 ProgressTask pt = new ProgressTask(App.Kp2a, act, task, UiStringKey.saving_database);
 				pt.run();
 				break;
 				
-				case Result.Canceled:
-				default:
-					base.OnActivityResult(requestCode, resultCode, data);
+			case Result.Canceled:
+				break;
+			default:
+				base.OnActivityResult(requestCode, resultCode, data);
 				break;
 			}
 		}

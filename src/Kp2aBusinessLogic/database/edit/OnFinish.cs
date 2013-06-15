@@ -16,72 +16,65 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace keepass2android
 {
 	public abstract class OnFinish
 	{
-		protected bool mSuccess;
-		protected String mMessage;
+		protected bool Success;
+		protected String Message;
 		
-		protected OnFinish mOnFinish;
-		protected Handler mHandler;
-		
-		public OnFinish() {
+		protected OnFinish BaseOnFinish;
+		protected Handler Handler;
+
+		protected OnFinish() {
+		}
+
+		protected OnFinish(Handler handler) {
+			BaseOnFinish = null;
+			Handler = handler;
+		}
+
+		protected OnFinish(OnFinish finish, Handler handler) {
+			BaseOnFinish = finish;
+			Handler = handler;
+		}
+
+		protected OnFinish(OnFinish finish) {
+			BaseOnFinish = finish;
+			Handler = null;
 		}
 		
-		public OnFinish(Handler handler) {
-			mOnFinish = null;
-			mHandler = handler;
+		public void SetResult(bool success, String message) {
+			Success = success;
+			Message = message;
 		}
 		
-		public OnFinish(OnFinish finish, Handler handler) {
-			mOnFinish = finish;
-			mHandler = handler;
+		public void SetResult(bool success) {
+			Success = success;
 		}
 		
-		public OnFinish(OnFinish finish) {
-			mOnFinish = finish;
-			mHandler = null;
-		}
-		
-		public void setResult(bool success, String message) {
-			mSuccess = success;
-			mMessage = message;
-		}
-		
-		public void setResult(bool success) {
-			mSuccess = success;
-		}
-		
-		public virtual void run() {
-			if ( mOnFinish != null ) {
+		public virtual void Run() {
+			if ( BaseOnFinish != null ) {
 				// Pass on result on call finish
-				mOnFinish.setResult(mSuccess, mMessage);
+				BaseOnFinish.SetResult(Success, Message);
 				
-				if ( mHandler != null ) {
-					mHandler.Post(mOnFinish.run); 
+				if ( Handler != null ) {
+					Handler.Post(BaseOnFinish.Run); 
 				} else {
-					mOnFinish.run();
+					BaseOnFinish.Run();
 				}
 			}
 		}
 		
-		protected void displayMessage(Context ctx) {
-			displayMessage(ctx, mMessage);
+		protected void DisplayMessage(Context ctx) {
+			DisplayMessage(ctx, Message);
 		}
 
-		public static void displayMessage(Context ctx, string message)
+		public static void DisplayMessage(Context ctx, string message)
 		{
 			if ( !String.IsNullOrEmpty(message) ) {
 				Toast.MakeText(ctx, message, ToastLength.Long).Show();

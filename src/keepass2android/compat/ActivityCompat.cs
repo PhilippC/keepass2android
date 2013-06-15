@@ -16,16 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using System.Reflection;
 
 namespace keepass2android
@@ -36,19 +27,21 @@ namespace keepass2android
 
 	
 		
-		public static void invalidateOptionsMenu(Activity act) {
+		public static void InvalidateOptionsMenu(Activity act) {
 
 			try {
-				invalidateOptMenuMethod = act.GetType ().GetMethod("InvalidateOptionsMenu", new Type[]{});
-			} catch (Exception) {
-				// Do nothing if method dosen't exist
+				invalidateOptMenuMethod = act.GetType().GetMethod("InvalidateOptionsMenu", new Type[]{});
+			} catch (Exception)
+			{
+			    // Do nothing if method doesn't exist
 			}
 
 			if (invalidateOptMenuMethod != null) {
 				try {
 					invalidateOptMenuMethod.Invoke(act, (new Object[]{}));
-				} catch (Exception) {
-					// Do nothing
+				} catch (Exception)
+				{
+				    // Do nothing
 				}
 			}
 		}

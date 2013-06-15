@@ -16,14 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
@@ -37,16 +32,15 @@ namespace keepass2android
 	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/Base")]					
 	public class QuickUnlock : LifecycleDebugActivity
 	{
-		IOConnectionInfo mIoc;
+		IOConnectionInfo _ioc;
 
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
 
-			Intent i = Intent;
-			mIoc = App.Kp2a.GetDb().mIoc;
+			_ioc = App.Kp2a.GetDb().Ioc;
 
-			if (mIoc == null)
+			if (_ioc == null)
 			{
 				Finish();
 				return;
@@ -55,19 +49,18 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.QuickUnlock);
 
-			if (App.Kp2a.GetDb().pm.Name != "")
+			if (App.Kp2a.GetDb().KpDatabase.Name != "")
 			{
 				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Invisible;
-				((TextView)FindViewById(Resource.Id.qu_filename)).Text = App.Kp2a.GetDb().pm.Name;
+				((TextView)FindViewById(Resource.Id.qu_filename)).Text = App.Kp2a.GetDb().KpDatabase.Name;
 			} else
 			{
-				((TextView)FindViewById(Resource.Id.qu_filename)).Text = mIoc.Path;
+				((TextView)FindViewById(Resource.Id.qu_filename)).Text = _ioc.Path;
 			}
 
 
 			TextView txtLabel = (TextView)FindViewById(Resource.Id.QuickUnlock_label);
 
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			int quickUnlockLength = App.Kp2a.GetDb().QuickUnlockKeyLength;
 
 			txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[]{quickUnlockLength});
@@ -79,21 +72,21 @@ namespace keepass2android
 				keyboard.ShowSoftInput(pwd, 0);
 			}, 50);
 
-			SetResult(KeePass.EXIT_CHANGE_DB);
+			SetResult(KeePass.ExitChangeDb);
 
 			Button btnUnlock = (Button)FindViewById(Resource.Id.QuickUnlock_button);
 			btnUnlock.Click += (object sender, EventArgs e) => 
 			{
-				KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().pm.MasterKey.GetUserKey(typeof(KcpPassword));
+				KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword));
 				String password = kcpPassword.Password.ReadString();
 				String expectedPasswordPart = password.Substring(Math.Max(0,password.Length-quickUnlockLength),Math.Min(password.Length, quickUnlockLength));
 				if (pwd.Text == expectedPasswordPart)
 				{
-					SetResult(KeePass.EXIT_QUICK_UNLOCK);
+					SetResult(KeePass.ExitQuickUnlock);
 				}
 				else
 				{
-					SetResult(KeePass.EXIT_FORCE_LOCK);
+					SetResult(KeePass.ExitForceLock);
 					Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
 				}
 				Finish();
@@ -102,7 +95,7 @@ namespace keepass2android
 			Button btnLock = (Button)FindViewById(Resource.Id.QuickUnlock_buttonLock);
 			btnLock.Click += (object sender, EventArgs e) => 
 			{
-				SetResult(KeePass.EXIT_FORCE_LOCK_AND_CHANGE_DB);
+				SetResult(KeePass.ExitForceLockAndChangeDb);
 				Finish();
 			};
 		}
@@ -113,7 +106,7 @@ namespace keepass2android
 			base.OnResume();
 
 			if ( ! App.Kp2a.GetDb().Loaded ) {
-				SetResult(KeePass.EXIT_CHANGE_DB);
+				SetResult(KeePass.ExitChangeDb);
 				Finish();
 				return;
 			}

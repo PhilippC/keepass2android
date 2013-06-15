@@ -17,17 +17,13 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using keepass2android.view;
 using Android.Content.PM;
 
 namespace keepass2android
@@ -54,35 +50,35 @@ namespace keepass2android
 		}
 
 
-		private Database mDb;
+		private Database _db;
 
 		
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			SetResult(KeePass.EXIT_CLOSE_AFTER_TASK_COMPLETE);
+			SetResult(KeePass.ExitCloseAfterTaskComplete);
 
-			mDb = App.Kp2a.GetDb();
+			_db = App.Kp2a.GetDb();
 
-			String searchUrl = ((SearchUrlTask)mAppTask).UrlToSearchFor;
+			String searchUrl = ((SearchUrlTask)AppTask).UrlToSearchFor;
 			
-			if (!mDb.Loaded)
+			if (!_db.Loaded)
 			{
 				Intent intent = new Intent(this, typeof(FileSelectActivity));
-				mAppTask.ToIntent(intent);
+				AppTask.ToIntent(intent);
 				StartActivityForResult(intent, 0);
 
 				Finish();
 			}
-			else if (mDb.Locked)
+			else if (_db.Locked)
 			{
-				PasswordActivity.Launch(this,mDb.mIoc, mAppTask);
+				PasswordActivity.Launch(this,_db.Ioc, AppTask);
 				Finish();
 			}
 			else
 			{
-				query(searchUrl);
+				Query(searchUrl);
 			}
 			
 		}
@@ -90,7 +86,7 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			mAppTask.ToBundle(outState);
+			AppTask.ToBundle(outState);
 		}
 
 		public override void LaunchActivityForEntry(KeePassLib.PwEntry pwEntry, int pos)
@@ -99,12 +95,12 @@ namespace keepass2android
 			Finish();
 		}
 		
-		private void query(String url)
+		private void Query(String url)
 		{
 			//first: search for exact url
 			try
 			{
-				mGroup = mDb.SearchForExactUrl(url);
+				Group = _db.SearchForExactUrl(url);
 			} catch (Exception e)
 			{
 				Toast.MakeText(this, e.Message, ToastLength.Long).Show();
@@ -112,11 +108,11 @@ namespace keepass2android
 				return;
 			}
 			//if no results, search for host (e.g. "accounts.google.com")
-			if (mGroup.Entries.Count() == 0)
+			if (!Group.Entries.Any())
 			{
 				try
 				{
-					mGroup = mDb.SearchForHost(url, false);
+					Group = _db.SearchForHost(url, false);
 				} catch (Exception e)
 				{
 					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
@@ -125,11 +121,11 @@ namespace keepass2android
 				}
 			}
 			//if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
-			if (mGroup.Entries.Count() == 0)
+			if (!Group.Entries.Any())
 			{
 				try
 				{
-					mGroup = mDb.SearchForHost(url, true);
+					Group = _db.SearchForHost(url, true);
 				} catch (Exception e)
 				{
 					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
@@ -138,14 +134,14 @@ namespace keepass2android
 				}
 			}
 			//if there is exactly one match: open the entry
-			if (mGroup.Entries.Count() == 1)
+			if (Group.Entries.Count() == 1)
 			{
-				LaunchActivityForEntry(mGroup.Entries.Single(),0);
+				LaunchActivityForEntry(Group.Entries.Single(),0);
 				return;
 			}
 
 			//show results:
-			if (mGroup == null || (mGroup.Entries.Count() < 1))
+			if (Group == null || (!Group.Entries.Any()))
 			{
 				//SetContentView(new GroupEmptyView(this));
 				SetContentView(Resource.Layout.searchurlresults_empty);
@@ -155,29 +151,23 @@ namespace keepass2android
 				//SetContentView(new GroupViewOnlyView(this));
 			}
 			
-			setGroupTitle();
+			SetGroupTitle();
 			
-			ListAdapter = new PwGroupListAdapter(this, mGroup);
+			ListAdapter = new PwGroupListAdapter(this, Group);
 
 			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
-			selectOtherEntry.Click += (object sender, EventArgs e) => {
+			selectOtherEntry.Click += (sender, e) => {
 				GroupActivity.Launch (this, new SelectEntryTask());
 			};
 
 			
 			View createUrlEntry = FindViewById (Resource.Id.add_url_entry);
-			createUrlEntry.Click += (object sender, EventArgs e) => {
-				GroupActivity.Launch (this, new CreateEntryThenCloseTask() { Url = url } );
+			createUrlEntry.Click += (sender, e) => {
+				GroupActivity.Launch (this, new CreateEntryThenCloseTask { Url = url } );
 				Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[]{GetString(Resource.String.add_entry)}), ToastLength.Long ).Show();
 			};
 
 
-		}
-		
-		private String getSearchUrl(Intent queryIntent) {
-			String queryAction = queryIntent.Action;
-			return queryIntent.GetStringExtra(Intent.ExtraText);
-			
 		}
 
 		public override bool OnSearchRequested()

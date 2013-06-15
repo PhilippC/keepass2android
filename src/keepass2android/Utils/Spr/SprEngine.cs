@@ -597,7 +597,7 @@ namespace KeePass.Util.Spr
 			if(!MightDeref(str)) return str;
 
 			SprContext ctx = new SprContext(pe,
-				App.Kp2a.GetDb().pm,
+				App.Kp2a.GetDb().KpDatabase,
 				SprCompileFlags.Deref);
 			// ctx.ForcePlainTextPasswords = false;
 

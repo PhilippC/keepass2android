@@ -1,27 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Util;
 using Java.IO;
-using Android.Net;
 
 namespace keepass2android
 {
-	[ContentProvider(new string[]{"keepass2android."+AppNames.PackagePart+".provider"})] 
+	[ContentProvider(new[]{"keepass2android."+AppNames.PackagePart+".provider"})] 
 	public class AttachmentContentProvider : ContentProvider {
 		
-		private const String CLASS_NAME = "AttachmentContentProvider";
+		private const String ClassName = "AttachmentContentProvider";
 		
 		// The authority is the symbolic name for the provider class
-		public const String AUTHORITY = "keepass2android."+AppNames.PackagePart+".provider";
+		public const String Authority = "keepass2android."+AppNames.PackagePart+".provider";
 
 
 		public override bool OnCreate() {
@@ -31,12 +22,12 @@ namespace keepass2android
 		public override ParcelFileDescriptor OpenFile(Android.Net.Uri uri, String mode)
 		{
 			
-			String LOG_TAG = CLASS_NAME + " - openFile";
+			const string logTag = ClassName + " - openFile";
 			
-			Log.Verbose(LOG_TAG,
+			Log.Verbose(logTag,
 			      "Called with uri: '" + uri + "'." + uri.LastPathSegment);
 			
-			if (uri.ToString().StartsWith("content://" + AUTHORITY))
+			if (uri.ToString().StartsWith("content://" + Authority))
 			{
 				// The desired file name is specified by the last segment of the
 				// path
@@ -54,12 +45,9 @@ namespace keepass2android
 				return pfd;
 					
 			}
-			else
-			{
-				Log.Verbose(LOG_TAG, "Unsupported uri: '" + uri + "'.");
-					throw new FileNotFoundException("Unsupported uri: "
-					                                + uri.ToString());
-			}
+			Log.Verbose(logTag, "Unsupported uri: '" + uri + "'.");
+			throw new FileNotFoundException("Unsupported uri: "
+			                                + uri.ToString());
 		}
 		
 		// //////////////////////////////////////////////////////////////

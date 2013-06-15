@@ -17,18 +17,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
 using KeePassLib;
-using KeePassLib.Interfaces;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -37,38 +27,38 @@ namespace keepass2android
 	public class Database {
 		
 
-		public Dictionary<PwUuid, PwGroup> groups = new Dictionary<PwUuid, PwGroup>(new PwUuidEqualityComparer());
-		public Dictionary<PwUuid, PwEntry> entries = new Dictionary<PwUuid, PwEntry>(new PwUuidEqualityComparer());
-		public HashSet<PwGroup> dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
-		public PwGroup root;
-		public PwDatabase pm;
-		public IOConnectionInfo mIoc;
-		public DateTime mLastChangeDate;
-		public SearchDbHelper searchHelper;
+		public Dictionary<PwUuid, PwGroup> Groups = new Dictionary<PwUuid, PwGroup>(new PwUuidEqualityComparer());
+		public Dictionary<PwUuid, PwEntry> Entries = new Dictionary<PwUuid, PwEntry>(new PwUuidEqualityComparer());
+		public HashSet<PwGroup> Dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
+		public PwGroup Root;
+		public PwDatabase KpDatabase;
+		public IOConnectionInfo Ioc;
+		public DateTime LastChangeDate;
+		public SearchDbHelper SearchHelper;
 		
-		public IDrawableFactory drawableFactory;
+		public IDrawableFactory DrawableFactory;
 
-        IKp2aApp app;
+		readonly IKp2aApp _app;
 
         public Database(IDrawableFactory drawableFactory, IKp2aApp app)
         {
-            this.drawableFactory = drawableFactory;
-            this.app = app;
+            DrawableFactory = drawableFactory;
+            _app = app;
         }
 		
-		private bool loaded = false;
+		private bool _loaded;
 
-        private bool mReloadRequested = false;
+        private bool _reloadRequested;
 
         public bool ReloadRequested
         {
-            get { return mReloadRequested; }
-            set { mReloadRequested = value; }
+            get { return _reloadRequested; }
+            set { _reloadRequested = value; }
         }
 
 		public bool Loaded {
-			get { return loaded;}
-			set { loaded = value; }
+			get { return _loaded;}
+			set { _loaded = value; }
 		}
 
 		public bool Open
@@ -76,34 +66,34 @@ namespace keepass2android
 			get { return Loaded && (!Locked); }
 		}
 
-		bool locked;
+		bool _locked;
 		public bool Locked
 		{
 			get
 			{
-				return locked;
+				return _locked;
 			}
 			set
 			{
-				locked = value;
+				_locked = value;
 			}
 		}
 		
 		public bool DidOpenFileChange()
 		{
-			if ((Loaded == false) || (mIoc.IsLocalFile() == false))
+			if ((Loaded == false) || (Ioc.IsLocalFile() == false))
 			{
 				return false;
 			}
-			return System.IO.File.GetLastWriteTimeUtc(mIoc.Path) > mLastChangeDate;
+			return System.IO.File.GetLastWriteTimeUtc(Ioc.Path) > LastChangeDate;
 		}
 
 		
 		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, String password, String keyfile, UpdateStatus status)
 		{
-			mIoc = iocInfo;
+			Ioc = iocInfo;
 
-			KeePassLib.PwDatabase pwDatabase = new KeePassLib.PwDatabase();
+			PwDatabase pwDatabase = new PwDatabase();
 
 			KeePassLib.Keys.CompositeKey key = new KeePassLib.Keys.CompositeKey();
 			key.AddUserKey(new KeePassLib.Keys.KcpPassword(password));
@@ -123,33 +113,22 @@ namespace keepass2android
 
 			if (iocInfo.IsLocalFile())
 			{
-				mLastChangeDate = System.IO.File.GetLastWriteTimeUtc(iocInfo.Path);
+				LastChangeDate = System.IO.File.GetLastWriteTimeUtc(iocInfo.Path);
 			} else
 			{
-				mLastChangeDate  = DateTime.MinValue;
+				LastChangeDate  = DateTime.MinValue;
 			}
 
-			root = pwDatabase.RootGroup;
-			populateGlobals(root);
+			Root = pwDatabase.RootGroup;
+			PopulateGlobals(Root);
 
 
 			Loaded = true;
-			pm = pwDatabase;
-			searchHelper = new SearchDbHelper(app);
+			KpDatabase = pwDatabase;
+			SearchHelper = new SearchDbHelper(app);
 		}
 
-		bool quickUnlockEnabled = false;
-		public bool QuickUnlockEnabled
-		{
-			get
-			{
-				return quickUnlockEnabled;
-			}
-			set
-			{
-				quickUnlockEnabled = value;
-			}
-		}
+		public bool QuickUnlockEnabled { get; set; }
 
 		//KeyLength of QuickUnlock at time of loading the database.
 		//This is important to not allow an attacker to set the length to 1 when QuickUnlock is started already.
@@ -160,7 +139,7 @@ namespace keepass2android
 		}
 		
 		public PwGroup SearchForText(String str) {
-			PwGroup group = searchHelper.searchForText(this, str);
+			PwGroup group = SearchHelper.searchForText(this, str);
 			
 			return group;
 			
@@ -168,19 +147,19 @@ namespace keepass2android
 
 		public PwGroup Search(SearchParameters searchParams)
 		{
-			return searchHelper.search(this, searchParams);
+			return SearchHelper.search(this, searchParams);
 		}
 
 		
 		public PwGroup SearchForExactUrl(String url) {
-			PwGroup group = searchHelper.searchForExactUrl(this, url);
+			PwGroup group = SearchHelper.searchForExactUrl(this, url);
 			
 			return group;
 			
 		}
 
 		public PwGroup SearchForHost(String url, bool allowSubdomains) {
-			PwGroup group = searchHelper.searchForHost(this, url, allowSubdomains);
+			PwGroup group = SearchHelper.searchForHost(this, url, allowSubdomains);
 			
 			return group;
 			
@@ -189,68 +168,43 @@ namespace keepass2android
 
 		public void SaveData(Context ctx)  {
             
-			pm.UseFileTransactions = app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
-			pm.Save(null);
+			KpDatabase.UseFileTransactions = _app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
+			KpDatabase.Save(null);
 
 		}
-		class SaveStatusLogger: IStatusLogger
-		{
-			#region IStatusLogger implementation
-			public void StartLogging (string strOperation, bool bWriteOperationToLog)
-			{
-			}
-			public void EndLogging ()
-			{
-			}
-			public bool SetProgress (uint uPercent)
-			{
-				Android.Util.Log.Debug("DEBUG", "Progress: " + uPercent+"%");
-				return true;
-			}
-			public bool SetText (string strNewText, LogStatusType lsType)
-			{
-				Android.Util.Log.Debug("DEBUG", strNewText);
-				return true;
-			}
-			public bool ContinueWork ()
-			{
-				return true;
-			}
-			#endregion
-		}
 		
-		private void populateGlobals (PwGroup currentGroup)
+		private void PopulateGlobals (PwGroup currentGroup)
 		{
 			
 			var childGroups = currentGroup.Groups;
 			var childEntries = currentGroup.Entries;
 
 			foreach (PwEntry e in childEntries) {
-				entries [e.Uuid] = e;
+				Entries [e.Uuid] = e;
 			}
 			foreach (PwGroup g in childGroups) {
-				groups[g.Uuid] = g;
-				populateGlobals(g);
+				Groups[g.Uuid] = g;
+				PopulateGlobals(g);
 			}
 		}
 		
 		public void Clear() {
-			groups.Clear();
-			entries.Clear();
-			dirty.Clear();
-			drawableFactory.Clear();
+			Groups.Clear();
+			Entries.Clear();
+			Dirty.Clear();
+			DrawableFactory.Clear();
 			
-			root = null;
-			pm = null;
-			mIoc = null;
-			loaded = false;
-			locked = false;
-			mReloadRequested = false;
+			Root = null;
+			KpDatabase = null;
+			Ioc = null;
+			_loaded = false;
+			_locked = false;
+			_reloadRequested = false;
 		}
 		
-		public void markAllGroupsAsDirty() {
-			foreach ( PwGroup group in groups.Values ) {
-				dirty.Add(group);
+		public void MarkAllGroupsAsDirty() {
+			foreach ( PwGroup group in Groups.Values ) {
+				Dirty.Add(group);
 			}
 			
 

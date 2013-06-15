@@ -18,14 +18,12 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Java.Util;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.Preferences;
 using KeePassLib;
@@ -40,10 +38,10 @@ namespace keepass2android
 	{
 
 		
-		public const int NOTIFY_USERNAME = 1;
-		public const int NOTIFY_PASSWORD = 2;
-		public const int NOTIFY_KEYBOARD = 3;
-		public const int CLEAR_CLIPBOARD = 4;
+		public const int NotifyUsername = 1;
+		public const int NotifyPassword = 2;
+		public const int NotifyKeyboard = 3;
+		public const int ClearClipboard = 4;
 
 
 		public CopyToClipboardService (IntPtr javaReference, JniHandleOwnership transfer)
@@ -51,8 +49,8 @@ namespace keepass2android
 		{
 		}
 
-		CopyToClipboardBroadcastReceiver mCopyToClipBroadcastReceiver;
-		NotificationDeletedBroadcastReceiver mNotificationDeletedBroadcastReceiver;
+		CopyToClipboardBroadcastReceiver _copyToClipBroadcastReceiver;
+		NotificationDeletedBroadcastReceiver _notificationDeletedBroadcastReceiver;
 
 
 		public CopyToClipboardService()
@@ -60,11 +58,7 @@ namespace keepass2android
 
 
 		}
-		public override void OnCreate()
-		{
-			base.OnCreate();
-		}
-	
+
 		public override IBinder OnBind(Intent intent)
 		{
 			return null;
@@ -74,17 +68,17 @@ namespace keepass2android
 		{
 			Android.Util.Log.Debug("DEBUG","Received intent to provide access to entry");
 			
-			String uuidBytes =  intent.GetStringExtra(EntryActivity.KEY_ENTRY);
-			bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KEY_CLOSE_AFTER_CREATE, false);
+			String uuidBytes =  intent.GetStringExtra(EntryActivity.KeyEntry);
+			bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KeyCloseAfterCreate, false);
 			
 			PwUuid entryId = PwUuid.Zero;
 			if (uuidBytes != null)
-				entryId = new KeePassLib.PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
+				entryId = new PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
 			
 			PwEntry entry;
 			try
 			{
-				entry = App.Kp2a.GetDb().entries[entryId];
+				entry = App.Kp2a.GetDb().Entries[entryId];
 			}
 			catch(Exception)
 			{
@@ -93,29 +87,29 @@ namespace keepass2android
 				return StartCommandResult.NotSticky;
 			}
 			
-			displayAccessNotifications(entry, closeAfterCreate);
+			DisplayAccessNotifications(entry, closeAfterCreate);
 
 
 			return StartCommandResult.RedeliverIntent;
 		}
 
-		private NotificationManager mNM;
-		private int mNumElementsToWaitFor = 0;
+		private NotificationManager _notificationManager;
+		private int _numElementsToWaitFor;
 		
 		public override void OnDestroy()
 		{
 			// These members might never get initialized if the app timed out
-			if (mCopyToClipBroadcastReceiver != null)
+			if (_copyToClipBroadcastReceiver != null)
 			{
-				UnregisterReceiver(mCopyToClipBroadcastReceiver);
+				UnregisterReceiver(_copyToClipBroadcastReceiver);
 			}
-			if (mNotificationDeletedBroadcastReceiver != null)
+			if (_notificationDeletedBroadcastReceiver != null)
 			{
-				UnregisterReceiver(mNotificationDeletedBroadcastReceiver);
+				UnregisterReceiver(_notificationDeletedBroadcastReceiver);
 			}
-			if ( mNM != null ) {
-				mNM.CancelAll();
-				mNumElementsToWaitFor= 0;
+			if ( _notificationManager != null ) {
+				_notificationManager.CancelAll();
+				_numElementsToWaitFor= 0;
 				clearKeyboard();
 			}
 
@@ -124,13 +118,13 @@ namespace keepass2android
 			base.OnDestroy();
 		}
 
-		static string ACTION_NOTIFICATION_CANCELLED = "notification_cancelled";
+		private const string ActionNotificationCancelled = "notification_cancelled";
 
 		//creates a delete intent (started when notification is cancelled by user or something else)
 		//requires different request codes for every item (otherwise the intents are identical)
-		PendingIntent createDeleteIntent(int requestCode)
+		PendingIntent CreateDeleteIntent(int requestCode)
 		{
-			Intent intent = new Intent(ACTION_NOTIFICATION_CANCELLED);
+			Intent intent = new Intent(ActionNotificationCancelled);
 			Bundle extra = new Bundle();
 			extra.PutInt("requestCode", requestCode);
 			intent.PutExtras(extra);
@@ -138,39 +132,39 @@ namespace keepass2android
 			return PendingIntent.GetBroadcast(this, requestCode, intent, PendingIntentFlags.CancelCurrent);
 		}
 
-		public void displayAccessNotifications(PwEntry entry, bool closeAfterCreate)
+		public void DisplayAccessNotifications(PwEntry entry, bool closeAfterCreate)
 		{
 			// Notification Manager
-			mNM = (NotificationManager)GetSystemService(NotificationService);
+			_notificationManager = (NotificationManager)GetSystemService(NotificationService);
 		
-			mNM.CancelAll();
-			mNumElementsToWaitFor = 0;
+			_notificationManager.CancelAll();
+			_numElementsToWaitFor = 0;
 			clearKeyboard();
 
 			String entryName = entry.Strings.ReadSafe(PwDefs.TitleField);
 
-			ISharedPreferences prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(this);
+			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			if (prefs.GetBoolean(GetString(Resource.String.CopyToClipboardNotification_key), Resources.GetBoolean(Resource.Boolean.CopyToClipboardNotification_default)))
 			{
 
 				if (GetStringAndReplacePlaceholders(entry, PwDefs.PasswordField).Length > 0)
 				{
 					// only show notification if password is available
-					Notification password = GetNotification(Intents.COPY_PASSWORD, Resource.String.copy_password, Resource.Drawable.notify, entryName);
+					Notification password = GetNotification(Intents.CopyPassword, Resource.String.copy_password, Resource.Drawable.notify, entryName);
 
-					password.DeleteIntent = createDeleteIntent(NOTIFY_PASSWORD);
-					mNM.Notify(NOTIFY_PASSWORD, password);
-					mNumElementsToWaitFor++;
+					password.DeleteIntent = CreateDeleteIntent(NotifyPassword);
+					_notificationManager.Notify(NotifyPassword, password);
+					_numElementsToWaitFor++;
 
 				}
 				
 				if (GetStringAndReplacePlaceholders(entry, PwDefs.UserNameField).Length > 0)
 				{
 					// only show notification if username is available
-					Notification username = GetNotification(Intents.COPY_USERNAME, Resource.String.copy_username, Resource.Drawable.notify, entryName);
-					username.DeleteIntent = createDeleteIntent(NOTIFY_USERNAME);
-					mNumElementsToWaitFor++;
-					mNM.Notify(NOTIFY_USERNAME, username);
+					Notification username = GetNotification(Intents.CopyUsername, Resource.String.copy_username, Resource.Drawable.notify, entryName);
+					username.DeleteIntent = CreateDeleteIntent(NotifyUsername);
+					_numElementsToWaitFor++;
+					_notificationManager.Notify(NotifyUsername, username);
 				}
 			}
 
@@ -178,17 +172,17 @@ namespace keepass2android
 			{
 
 				//keyboard
-				if (makeAccessibleForKeyboard(entry))
+				if (MakeAccessibleForKeyboard(entry))
 				{
 					// only show notification if username is available
-					Notification keyboard = GetNotification(Intents.CHECK_KEYBOARD, Resource.String.available_through_keyboard, Resource.Drawable.notify_keyboard, entryName);
-					keyboard.DeleteIntent = createDeleteIntent(NOTIFY_KEYBOARD);
-					mNumElementsToWaitFor++;
-					mNM.Notify(NOTIFY_KEYBOARD, keyboard);
+					Notification keyboard = GetNotification(Intents.CheckKeyboard, Resource.String.available_through_keyboard, Resource.Drawable.notify_keyboard, entryName);
+					keyboard.DeleteIntent = CreateDeleteIntent(NotifyKeyboard);
+					_numElementsToWaitFor++;
+					_notificationManager.Notify(NotifyKeyboard, keyboard);
 
                     //if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
                     // automatically bring up the Keyboard selection dialog
-					if ((closeAfterCreate) && (prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)) == true))
+					if ((closeAfterCreate) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
                     {
                         ActivateKp2aKeyboard(this);        
                     }
@@ -196,28 +190,28 @@ namespace keepass2android
 
 			}
 
-			if (mNumElementsToWaitFor == 0)
+			if (_numElementsToWaitFor == 0)
 			{
 				StopSelf();
 				return;
 			}
 
-			mCopyToClipBroadcastReceiver = new CopyToClipboardBroadcastReceiver(entry, this);
+			_copyToClipBroadcastReceiver = new CopyToClipboardBroadcastReceiver(entry, this);
 			
 			IntentFilter filter = new IntentFilter();
-			filter.AddAction(Intents.COPY_USERNAME);
-			filter.AddAction(Intents.COPY_PASSWORD);
-			filter.AddAction(Intents.CHECK_KEYBOARD);
-			RegisterReceiver(mCopyToClipBroadcastReceiver, filter);
+			filter.AddAction(Intents.CopyUsername);
+			filter.AddAction(Intents.CopyPassword);
+			filter.AddAction(Intents.CheckKeyboard);
+			RegisterReceiver(_copyToClipBroadcastReceiver, filter);
 
 			//register receiver to get notified when notifications are discarded in which case we can shutdown the service
-			mNotificationDeletedBroadcastReceiver = new NotificationDeletedBroadcastReceiver(this);
+			_notificationDeletedBroadcastReceiver = new NotificationDeletedBroadcastReceiver(this);
 			IntentFilter deletefilter = new IntentFilter();
-			deletefilter.AddAction(ACTION_NOTIFICATION_CANCELLED);
-			RegisterReceiver(mNotificationDeletedBroadcastReceiver, deletefilter);
+			deletefilter.AddAction(ActionNotificationCancelled);
+			RegisterReceiver(_notificationDeletedBroadcastReceiver, deletefilter);
 		}
 
-		bool makeAccessibleForKeyboard(PwEntry entry)
+		bool MakeAccessibleForKeyboard(PwEntry entry)
 		{
 			bool hasData = false;
 			Keepass2android.Kbbridge.KeyboardDataBuilder kbdataBuilder = new Keepass2android.Kbbridge.KeyboardDataBuilder();
@@ -271,18 +265,18 @@ namespace keepass2android
 		static string GetStringAndReplacePlaceholders(PwEntry entry, string key)
 		{
 			String value = entry.Strings.ReadSafe(key);
-			value = SprEngine.Compile(value, new SprContext(entry, App.Kp2a.GetDb().pm, SprCompileFlags.All));
+			value = SprEngine.Compile(value, new SprContext(entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
 			return value;
 		}
 
 		public void OnWaitElementDeleted(int itemId)
 		{
-			mNumElementsToWaitFor--;
-			if (mNumElementsToWaitFor <= 0)
+			_numElementsToWaitFor--;
+			if (_numElementsToWaitFor <= 0)
 			{
 				StopSelf();
 			}
-			if (itemId == NOTIFY_KEYBOARD)
+			if (itemId == NotifyKeyboard)
 			{
 				//keyboard notification was deleted -> clear entries in keyboard
 				clearKeyboard();
@@ -295,9 +289,9 @@ namespace keepass2android
 			Keepass2android.Kbbridge.KeyboardData.EntryName = null;
 		}
 
-		private Timer mTimer = new Timer();
+		private readonly Timer _timer = new Timer();
 		
-		internal void timeoutCopyToClipboard(String text) {
+		internal void TimeoutCopyToClipboard(String text) {
 			Util.copyToClipboard(this, text);
 			
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
@@ -306,31 +300,31 @@ namespace keepass2android
 			long clipClearTime = long.Parse(sClipClear);
 			
 			if ( clipClearTime > 0 ) {
-				mNumElementsToWaitFor++;
-				mTimer.Schedule(new ClearClipboardTask(this, text, uiThreadCallback), clipClearTime);
+				_numElementsToWaitFor++;
+				_timer.Schedule(new ClearClipboardTask(this, text, _uiThreadCallback), clipClearTime);
 			}
 		}
 
 		// Task which clears the clipboard, and sends a toast to the foreground.
-		private class ClearClipboardTask : Java.Util.TimerTask {
+		private class ClearClipboardTask : TimerTask {
 			
-			private String mClearText;
-			private CopyToClipboardService mService;
-			private Handler handler;
+			private readonly String _clearText;
+			private readonly CopyToClipboardService _service;
+			private readonly Handler _handler;
 			
 			public ClearClipboardTask(CopyToClipboardService service, String clearText, Handler handler) {
-				mClearText = clearText;
-				mService = service;
-				this.handler = handler;
+				_clearText = clearText;
+				_service = service;
+				_handler = handler;
 			}
 			
 			public override void Run() {
-				String currentClip = Util.getClipboard(mService);
-				handler.Post( () => { mService.OnWaitElementDeleted(CLEAR_CLIPBOARD); });
-				if ( currentClip.Equals(mClearText) ) {
-					Util.copyToClipboard(mService, "");
-					handler.Post( () => {
-						Toast.MakeText(mService, Resource.String.ClearClipboard, ToastLength.Long).Show();
+				String currentClip = Util.getClipboard(_service);
+				_handler.Post( () => _service.OnWaitElementDeleted(ClearClipboard));
+				if ( currentClip.Equals(_clearText) ) {
+					Util.copyToClipboard(_service, "");
+					_handler.Post( () => {
+						Toast.MakeText(_service, Resource.String.ClearClipboard, ToastLength.Long).Show();
 					});
 				}
 			}
@@ -338,7 +332,7 @@ namespace keepass2android
 
 		
 		// Setup to allow the toast to happen in the foreground
-		Handler uiThreadCallback = new Handler();
+		readonly Handler _uiThreadCallback = new Handler();
 
 		private Notification GetNotification(String intentText, int descResId, int drawableResId, String entryName) {
 			String desc = GetString(descResId);
@@ -362,36 +356,37 @@ namespace keepass2android
 		
 		class CopyToClipboardBroadcastReceiver: BroadcastReceiver
 		{
-			CopyToClipboardService mService;
+			readonly CopyToClipboardService _service;
+			readonly PwEntry _entry;
+			
 			public CopyToClipboardBroadcastReceiver(PwEntry entry, CopyToClipboardService service)
 			{
-				mEntry = entry;
-				this.mService = service;
+				_entry = entry;
+				_service = service;
 			}
 			
-			PwEntry mEntry;
 			
 			public override void OnReceive(Context context, Intent intent)
 			{
 				String action = intent.Action;
 				
-				if (action.Equals(Intents.COPY_USERNAME))
+				if (action.Equals(Intents.CopyUsername))
 				{
-					String username = GetStringAndReplacePlaceholders(mEntry, PwDefs.UserNameField);
+					String username = GetStringAndReplacePlaceholders(_entry, PwDefs.UserNameField);
 					if (username.Length > 0)
 					{
-						mService.timeoutCopyToClipboard(username);
+						_service.TimeoutCopyToClipboard(username);
 					}
-				} else if (action.Equals(Intents.COPY_PASSWORD))
+				} else if (action.Equals(Intents.CopyPassword))
 				{
-					String password = GetStringAndReplacePlaceholders(mEntry, PwDefs.PasswordField);
+					String password = GetStringAndReplacePlaceholders(_entry, PwDefs.PasswordField);
 					if (password.Length > 0)
 					{
-						mService.timeoutCopyToClipboard(password);
+						_service.TimeoutCopyToClipboard(password);
 					}
-				} else if (action.Equals(Intents.CHECK_KEYBOARD))
+				} else if (action.Equals(Intents.CheckKeyboard))
 				{
-                    CopyToClipboardService.ActivateKp2aKeyboard(mService);
+                    ActivateKp2aKeyboard(_service);
 				}
 			}
 
@@ -399,18 +394,18 @@ namespace keepass2android
 
 		class NotificationDeletedBroadcastReceiver: BroadcastReceiver
 		{
-			CopyToClipboardService mService;
+			readonly CopyToClipboardService _service;
 			public NotificationDeletedBroadcastReceiver(CopyToClipboardService service)
 			{
-				this.mService = service;
+				_service = service;
 			}
 
 			#region implemented abstract members of BroadcastReceiver
 			public override void OnReceive(Context context, Intent intent)
 			{
-				if (intent.Action == CopyToClipboardService.ACTION_NOTIFICATION_CANCELLED)
+				if (intent.Action == ActionNotificationCancelled)
 				{
-					mService.OnWaitElementDeleted(intent.Extras.GetInt("requestCode"));
+					_service.OnWaitElementDeleted(intent.Extras.GetInt("requestCode"));
 				}
 			}
 			#endregion
@@ -424,7 +419,7 @@ namespace keepass2android
 
             string kp2aIme = service.PackageName + "/keepass2android.softkeyboard.KP2AKeyboard";
 
-            InputMethodManager imeManager = (InputMethodManager)service.ApplicationContext.GetSystemService(Context.InputMethodService);
+            InputMethodManager imeManager = (InputMethodManager)service.ApplicationContext.GetSystemService(InputMethodService);
 
             if (currentIme == kp2aIme)
             {

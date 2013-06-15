@@ -16,16 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
 using Android.Util;
-using Android.Views;
 using Android.Widget;
 using KeePassLib.Security;
 
@@ -58,20 +51,20 @@ namespace keepass2android.view
 		}
 				
 		
-		public void setData(String title, ProtectedString value)
+		public void SetData(String title, ProtectedString value)
 		{
-			setText(Resource.Id.title, title);
-			setText(Resource.Id.value, value.ReadString());
+			SetText(Resource.Id.title, title);
+			SetText(Resource.Id.value, value.ReadString());
 			
 
 		}
 
-		public ImageButton getDeleteButton()
+		public ImageButton GetDeleteButton()
 		{
 			return (ImageButton)FindViewById(Resource.Id.delete);
 		}
 		
-		private void setText(int resId, String str)
+		private void SetText(int resId, String str)
 		{
 			if (str != null)
 			{

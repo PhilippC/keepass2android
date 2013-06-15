@@ -15,79 +15,69 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib;
 
 namespace keepass2android
 {
 	public class AddEntry : RunnableOnFinish {
-		protected Database mDb;
-		private PwEntry mEntry;
-		private PwGroup mParentGroup;
-		private Context mCtx;
+		protected Database Db;
+		private readonly PwEntry _entry;
+		private readonly PwGroup _parentGroup;
+		private readonly Context _ctx;
 		
-		public static AddEntry getInstance(Context ctx, Database db, PwEntry entry, PwGroup parentGroup, OnFinish finish) {
+		public static AddEntry GetInstance(Context ctx, Database db, PwEntry entry, PwGroup parentGroup, OnFinish finish) {
 
 			return new AddEntry(ctx, db, entry, parentGroup, finish);
 		}
 		
 		protected AddEntry(Context ctx, Database db, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(finish) {
-			mCtx = ctx;
-			mParentGroup = parentGroup;
-			mDb = db;
-			mEntry = entry;
+			_ctx = ctx;
+			_parentGroup = parentGroup;
+			Db = db;
+			_entry = entry;
 			
-			mFinish = new AfterAdd(db, entry, mFinish);
+			OnFinishToRun = new AfterAdd(db, entry, OnFinishToRun);
 		}
 		
 		
-		public override void run() {
-			mParentGroup.AddEntry(mEntry, true);
+		public override void Run() {
+			_parentGroup.AddEntry(_entry, true);
 			
 			// Commit to disk
-			SaveDB save = new SaveDB(mCtx, mDb, mFinish);
-			save.run();
+			SaveDb save = new SaveDb(_ctx, Db, OnFinishToRun);
+			save.Run();
 		}
 		
 		private class AfterAdd : OnFinish {
-			protected Database mDb;
-			private PwEntry mEntry;
+			private readonly Database _db;
+			private readonly PwEntry _entry;
 
 			public AfterAdd(Database db, PwEntry entry, OnFinish finish):base(finish) {
-				mDb = db;
-				mEntry = entry;
+				_db = db;
+				_entry = entry;
 
 			}
 			
 
 
-			public override void run() {
-				if ( mSuccess ) {
+			public override void Run() {
+				if ( Success ) {
 					
-					PwGroup parent = mEntry.ParentGroup; 
+					PwGroup parent = _entry.ParentGroup; 
 					
 					// Mark parent group dirty
-					mDb.dirty.Add(parent);
+					_db.Dirty.Add(parent);
 					
 					// Add entry to global
-					mDb.entries[mEntry.Uuid] = mEntry;
+					_db.Entries[_entry.Uuid] = _entry;
 					
 				} else {
 					//TODO test fail
-					mEntry.ParentGroup.Entries.Remove(mEntry);
+					_entry.ParentGroup.Entries.Remove(_entry);
 				}
 				
-				base.run();
+				base.Run();
 			}
 		}
 		

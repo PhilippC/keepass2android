@@ -16,16 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace keepass2android
 {
@@ -33,34 +24,34 @@ namespace keepass2android
 	{
 		public delegate void ActionToPerformOnFinsh(bool success, String message);
 
-		ActionToPerformOnFinsh actionToPerform;
+		readonly ActionToPerformOnFinsh _actionToPerform;
 
 		public ActionOnFinish(ActionToPerformOnFinsh actionToPerform) : base(null, null)
 		{
-			this.actionToPerform = actionToPerform;
+			_actionToPerform = actionToPerform;
 		}
 
 		public ActionOnFinish(ActionToPerformOnFinsh actionToPerform, OnFinish finish) : base(finish)
 		{
-			this.actionToPerform = actionToPerform;
+			_actionToPerform = actionToPerform;
 		}
 
 		public ActionOnFinish(ActionToPerformOnFinsh actionToPerform, Handler handler) : base(handler)
 		{
-			this.actionToPerform = actionToPerform;
+			_actionToPerform = actionToPerform;
 		}
 
-		public override void run()
+		public override void Run()
 		{
-			if (this.mMessage == null)
-				this.mMessage = "";
-			if (this.mHandler != null)
+			if (Message == null)
+				Message = "";
+			if (Handler != null)
 			{
-				this.mHandler.Post(() => {actionToPerform(this.mSuccess, this.mMessage);});
+				Handler.Post(() => {_actionToPerform(Success, Message);});
 			}
 			else
-				actionToPerform(this.mSuccess, this.mMessage);
-			base.run();
+				_actionToPerform(Success, Message);
+			base.Run();
 		}
 	}
 }
