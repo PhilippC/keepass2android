@@ -167,6 +167,22 @@ namespace KeePassLib.Utility
 			return bResult;
 		}
 
+		/// <summary>
+		/// Deserializes a UTC XML DateTime to a local time, or returns defaultValue if it could not be parsed
+		/// </summary>
+		public static DateTime DeserializeUtcOrDefault(string xmlDateTimeString, DateTime defaultValue)
+		{
+			try
+			{
+				return System.Xml.XmlConvert.ToDateTime(xmlDateTimeString, System.Xml.XmlDateTimeSerializationMode.Local);
+			}
+			catch(FormatException)
+			{
+				return defaultValue;
+			}
+		}
+
+
 		private static DateTime? m_dtUnixRoot = null;
 		public static DateTime ConvertUnixTime(double dtUnix)
 		{

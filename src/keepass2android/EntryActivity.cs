@@ -204,16 +204,12 @@ namespace keepass2android
 				extraGroup.RemoveAllViews();
 			}
 			bool hasExtraFields = false;
-			foreach (KeyValuePair<string, ProtectedString> pair in mEntry.Strings)
+			foreach (var view in from pair in mEntry.Strings where !PwDefs.IsStandardField(pair.Key) orderby pair.Key 
+								 select CreateEditSection(pair.Key, pair.Value.ReadString()))
 			{
-				String key = pair.Key;
-				if (!PwDefs.IsStandardField(key))
-				{
-					//View view = new EntrySection(this, null, key, pair.Value.ReadString());
-					View view = CreateEditSection(key, pair.Value.ReadString());
-					extraGroup.AddView(view);
-					hasExtraFields = true;
-				}
+				//View view = new EntrySection(this, null, key, pair.Value.ReadString());
+				extraGroup.AddView(view);
+				hasExtraFields = true;
 			}
 			FindViewById(Resource.Id.entry_extra_strings_label).Visibility = hasExtraFields ? ViewStates.Visible : ViewStates.Gone;
 		}

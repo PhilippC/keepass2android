@@ -42,6 +42,7 @@ namespace KeePassLib
 		private PwObjectList<PwEntry> m_listEntries = new PwObjectList<PwEntry>();
 		private PwGroup m_pParentGroup = null;
 		private DateTime m_tParentGroupLastMod = PwDefs.DtDefaultNow;
+		private string m_tParentGroupLastModLazy;
 
 		private PwUuid m_uuid = PwUuid.Zero;
 		private string m_strName = string.Empty;
@@ -54,6 +55,12 @@ namespace KeePassLib
 		private DateTime m_tLastMod = PwDefs.DtDefaultNow;
 		private DateTime m_tLastAccess = PwDefs.DtDefaultNow;
 		private DateTime m_tExpire = PwDefs.DtDefaultNow;
+
+		private string m_tCreationLazy;
+		private string m_tLastModLazy;
+		private string m_tLastAccessLazy;
+		private string m_tExpireLazy;
+
 		private bool m_bExpires = false;
 		private ulong m_uUsageCount = 0;
 
@@ -146,8 +153,13 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime LocationChanged
 		{
-			get { return m_tParentGroupLastMod; }
-			set { m_tParentGroupLastMod = value; }
+			get { return GetLazyTime(ref m_tParentGroupLastModLazy, ref m_tParentGroupLastMod); }
+			set { m_tParentGroupLastMod = value; m_tParentGroupLastModLazy = null; }
+		}
+
+		public void SetLazyLocationChanged(string xmlDateTime)
+		{
+			m_tParentGroupLastModLazy = xmlDateTime;
 		}
 
 		/// <summary>
@@ -165,17 +177,13 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime CreationTime
 		{
-			get { return m_tCreation; }
-			set { m_tCreation = value; }
+			get { return GetLazyTime(ref m_tCreationLazy, ref m_tCreation); }
+			set { m_tCreation = value; m_tCreationLazy = null; }
 		}
 
-		/// <summary>
-		/// The date/time when this group was last modified.
-		/// </summary>
-		public DateTime LastModificationTime
+		public void SetLazyCreationTime(string xmlDateTime)
 		{
-			get { return m_tLastMod; }
-			set { m_tLastMod = value; }
+			m_tCreationLazy = xmlDateTime;
 		}
 
 		/// <summary>
@@ -183,17 +191,42 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime LastAccessTime
 		{
-			get { return m_tLastAccess; }
-			set { m_tLastAccess = value; }
+			get { return GetLazyTime(ref m_tLastAccessLazy, ref m_tLastAccess); }
+			set { m_tLastAccess = value; m_tLastAccessLazy = null; }
+		}
+
+		public void SetLazyLastAccessTime(string xmlDateTime)
+		{
+			m_tLastAccessLazy = xmlDateTime;
 		}
 
 		/// <summary>
-		/// The date/time when this group expires.
+		/// The date/time when this group was last modified.
+		/// </summary>
+		public DateTime LastModificationTime
+		{
+			get { return GetLazyTime(ref m_tLastModLazy, ref m_tLastMod); }
+			set { m_tLastMod = value; m_tLastModLazy = null; }
+		}
+
+		public void SetLazyLastModificationTime(string xmlDateTime)
+		{
+			m_tLastModLazy = xmlDateTime;
+		}
+
+		/// <summary>
+		/// The date/time when this group expires. Use the <c>Expires</c> property
+		/// to specify if the group does actually expire or not.
 		/// </summary>
 		public DateTime ExpiryTime
 		{
-			get { return m_tExpire; }
-			set { m_tExpire = value; }
+			get { return GetLazyTime(ref m_tExpireLazy, ref m_tExpire); }
+			set { m_tExpire = value; m_tExpireLazy = null; }
+		}
+
+		public void SetLazyExpiryTime(string xmlDateTime)
+		{
+			m_tExpireLazy = xmlDateTime;
 		}
 
 		/// <summary>
@@ -1421,6 +1454,16 @@ namespace KeePassLib
 				pdContext.DeletedObjects.Add(pdo);
 			}
 			m_listGroups.Clear();
+		}
+
+		private DateTime GetLazyTime(ref string lazyTime, ref DateTime dateTime)
+		{
+			if (lazyTime != null)
+			{
+				dateTime = TimeUtil.DeserializeUtcOrDefault(lazyTime, m_tLastMod);
+				lazyTime = null;
+			}
+			return dateTime;
 		}
 	}
 

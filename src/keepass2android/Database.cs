@@ -120,6 +120,8 @@ namespace keepass2android
 		
 		public void LoadData(Context ctx, IOConnectionInfo iocInfo, String password, String keyfile, UpdateStatus status)
 		{
+			var stopWatch = System.Diagnostics.Stopwatch.StartNew();
+			
 			mIoc = iocInfo;
 
 			KeePassLib.PwDatabase pwDatabase = new KeePassLib.PwDatabase();
@@ -137,8 +139,14 @@ namespace keepass2android
 					throw new KeyFileException();
 				}
 			}
-			
+
+			System.Diagnostics.Debug.WriteLine(String.Format("LoadData Pre-open: {0}ms", stopWatch.ElapsedMilliseconds));
+			stopWatch.Restart();
+
 			pwDatabase.Open(iocInfo, key, status);
+
+			System.Diagnostics.Debug.WriteLine(String.Format("LoadData Open: {0}ms", stopWatch.ElapsedMilliseconds));
+			stopWatch.Restart();
 
 			if (iocInfo.IsLocalFile())
 			{
@@ -155,6 +163,8 @@ namespace keepass2android
 			Loaded = true;
 			pm = pwDatabase;
 			searchHelper = new SearchDbHelper(ctx);
+
+			System.Diagnostics.Debug.WriteLine(String.Format("LoadData Post-open: {0}ms", stopWatch.ElapsedMilliseconds));
 		}
 
 		bool quickUnlockEnabled = false;
