@@ -23,22 +23,22 @@ namespace keepass2android
 {
 	
 	public class ActivityCompat {
-		private static MethodInfo invalidateOptMenuMethod;
+		private static MethodInfo _invalidateOptMenuMethod;
 
 	
 		
 		public static void InvalidateOptionsMenu(Activity act) {
 
 			try {
-				invalidateOptMenuMethod = act.GetType().GetMethod("InvalidateOptionsMenu", new Type[]{});
+				_invalidateOptMenuMethod = act.GetType().GetMethod("InvalidateOptionsMenu", new Type[]{});
 			} catch (Exception)
 			{
 			    // Do nothing if method doesn't exist
 			}
 
-			if (invalidateOptMenuMethod != null) {
+			if (_invalidateOptMenuMethod != null) {
 				try {
-					invalidateOptMenuMethod.Invoke(act, (new Object[]{}));
+					_invalidateOptMenuMethod.Invoke(act, (new Object[]{}));
 				} catch (Exception)
 				{
 				    // Do nothing

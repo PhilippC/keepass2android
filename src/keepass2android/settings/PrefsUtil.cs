@@ -21,7 +21,9 @@ using Android.Preferences;
 
 namespace keepass2android
 {
-	
+	/// <summary>
+	/// Utility class to simplify access to the app preferences
+	/// </summary>
 	public class PrefsUtil {
 		public static float GetListTextSize(Context ctx) {
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);

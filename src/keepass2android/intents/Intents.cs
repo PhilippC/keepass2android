@@ -19,7 +19,9 @@ using System;
 
 namespace keepass2android
 {
-	
+	/// <summary>
+	/// Contains constants to be used in intents
+	/// </summary>
 	public class Intents {
 		public const String Timeout = "keepass2android.timeout";
 		

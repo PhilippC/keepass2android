@@ -366,7 +366,7 @@ namespace keepass2android
 				Handler handler = new Handler();
 				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, pass, key, new AfterLoad(handler, this));
 				ProgressTask pt = new ProgressTask(App.Kp2a, this, task, UiStringKey.loading_database);
-				pt.run();
+				pt.Run();
 			};
 			
 			/*CheckBox checkBox = (CheckBox) FindViewById(Resource.Id.show_password);
@@ -556,7 +556,7 @@ namespace keepass2android
 		private class AfterLoad : OnFinish {
 			readonly PasswordActivity _act;
 			public AfterLoad(Handler handler, PasswordActivity act):base(handler) {
-				this._act = act;
+				_act = act;
 			}
 			
 

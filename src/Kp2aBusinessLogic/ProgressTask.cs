@@ -22,6 +22,9 @@ using Java.Lang;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Class to run a task while a progress dialog is shown
+	/// </summary>
 	public class ProgressTask {
 		private readonly Handler _handler;
 		private readonly RunnableOnFinish _task;

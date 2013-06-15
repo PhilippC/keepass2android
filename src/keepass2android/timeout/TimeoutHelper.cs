@@ -23,8 +23,66 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	
+	/// <summary>
+	/// Helper class to simplify usage of timeout (lock after idle time) from the activities
+	/// </summary>
 	public class TimeoutHelper {
+
+		class Timeout
+		{
+			private const int RequestId = 0;
+			private const long DefaultTimeout = 5 * 60 * 1000;  // 5 minutes
+			private const String Tag = "Keepass2Android Timeout";
+
+			private static PendingIntent BuildIntent(Context ctx)
+			{
+				Intent intent = new Intent(Intents.Timeout);
+				PendingIntent sender = PendingIntent.GetBroadcast(ctx, RequestId, intent, PendingIntentFlags.CancelCurrent);
+
+				return sender;
+			}
+
+			public static void Start(Context ctx)
+			{
+
+
+				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+				String sTimeout = prefs.GetString(ctx.GetString(Resource.String.app_timeout_key), ctx.GetString(Resource.String.clipboard_timeout_default));
+
+				long timeout;
+				if (!long.TryParse(sTimeout, out timeout))
+				{
+					timeout = DefaultTimeout;
+				}
+
+				if (timeout == -1)
+				{
+					// No timeout don't start timeout service
+					return;
+				}
+
+				ctx.StartService(new Intent(ctx, typeof(TimeoutService)));
+
+				long triggerTime = Java.Lang.JavaSystem.CurrentTimeMillis() + timeout;
+				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
+
+				Log.Debug(Tag, "Timeout start");
+				am.Set(AlarmType.Rtc, triggerTime, BuildIntent(ctx));
+			}
+
+			public static void Cancel(Context ctx)
+			{
+				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
+
+				Log.Debug(Tag, "Timeout cancel");
+				am.Cancel(BuildIntent(ctx));
+
+				ctx.StopService(new Intent(ctx, typeof(TimeoutService)));
+
+			}
+
+		}
+
 		public static void Pause(Activity act) {
 			// Record timeout time in case timeout service is killed
 			long time = Java.Lang.JavaSystem.CurrentTimeMillis();

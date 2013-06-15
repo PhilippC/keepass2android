@@ -26,7 +26,9 @@ using Android.Util;
 
 namespace keepass2android.settings
 {
-
+	/// <summary>
+	/// Represents the setting for the number of key transformation rounds. Changing this requires to save the database.
+	/// </summary>
 	public class RoundsPreference : DialogPreference {
 		
 		internal PwDatabase PwDatabase;
@@ -80,7 +82,7 @@ namespace keepass2android.settings
 				Handler handler = new Handler();
 				SaveDb save = new SaveDb(Context, App.Kp2a.GetDb(), new AfterSave(Context, handler, oldRounds, this));
 				ProgressTask pt = new ProgressTask(App.Kp2a, Context, save, UiStringKey.saving_database);
-				pt.run();
+				pt.Run();
 				
 			}
 			

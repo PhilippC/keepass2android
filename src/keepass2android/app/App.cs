@@ -25,6 +25,9 @@ using Android.Preferences;
 namespace keepass2android
 {
 #if NoNet
+	/// <summary>
+	/// Static strings containing App names for the Offline ("nonet") release
+	/// </summary>
 	public static class AppNames
 	{
 		public const string AppName = "@string/app_name_nonet";
@@ -33,6 +36,9 @@ namespace keepass2android
 		public const string PackagePart = "keepass2android_nonet";
 	}
 #else
+	/// <summary>
+	/// Static strings containing App names for the Online release
+	/// </summary>
 	public static class AppNames
 	{
 		public const string AppName = "@string/app_name";

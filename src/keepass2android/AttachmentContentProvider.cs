@@ -6,6 +6,9 @@ using Java.IO;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Makes attachments of PwEntries accessible when they are stored in the app cache
+	/// </summary>
 	[ContentProvider(new[]{"keepass2android."+AppNames.PackagePart+".provider"})] 
 	public class AttachmentContentProvider : ContentProvider {
 		

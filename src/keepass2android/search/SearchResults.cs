@@ -25,6 +25,9 @@ using KeePassLib;
 
 namespace keepass2android.search
 {
+	/// <summary>
+	/// Activity to show search results
+	/// </summary>
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]
 	[MetaData("android.app.searchable",Resource="@xml/searchable")]
 	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]

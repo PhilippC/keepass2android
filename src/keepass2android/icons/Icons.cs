@@ -22,42 +22,43 @@ using KeePassLib;
 
 namespace keepass2android
 {
-
+	/// <summary>
+	/// Stores the default pw entry icons
+	/// </summary>
 	public class Icons
 	{
 		private static Dictionary<PwIcon, int> _icons;
 
 		private static void BuildList()
 		{
-			if (_icons == null)
+			if (_icons != null) return;
+
+			_icons = new Dictionary<PwIcon, int>();
+
+			FieldInfo[] fields = typeof(Resource.Drawable).GetFields(BindingFlags.Static | BindingFlags.Public);
+			foreach (FieldInfo fieldInfo in fields)
 			{
-				_icons = new Dictionary<PwIcon, int>();
+				String fieldName = fieldInfo.Name;
 
-				FieldInfo[] fields = typeof(Resource.Drawable).GetFields(BindingFlags.Static | BindingFlags.Public);
-				foreach (FieldInfo fieldInfo in fields)
+				if (fieldName.StartsWith("ic") && (fieldName.Length >= 4))
 				{
-					String fieldName = fieldInfo.Name;
 
-					if (fieldName.StartsWith("ic") && (fieldName.Length >= 4))
+					String sNum = fieldName.Substring(2, 2);
+					int num;
+					if (int.TryParse(sNum, out num) && (num < (int)PwIcon.Count))
 					{
 
-						String sNum = fieldName.Substring(2, 2);
-						int num;
-						if (int.TryParse(sNum, out num) && (num < (int)PwIcon.Count))
+						int resId;
+						try
 						{
-
-							int resId;
-							try
-							{
-								resId = (int)fieldInfo.GetValue(null);
-							}
-							catch (Exception)
-							{
-								continue;
-							}
-
-							_icons[(PwIcon)num] = resId;
+							resId = (int)fieldInfo.GetValue(null);
 						}
+						catch (Exception)
+						{
+							continue;
+						}
+
+						_icons[(PwIcon)num] = resId;
 					}
 				}
 			}

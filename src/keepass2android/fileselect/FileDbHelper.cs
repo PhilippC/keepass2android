@@ -24,6 +24,9 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Class to store the recent files in a database
+	/// </summary>
 	public class FileDbHelper {
 		
 		public const String LastFilename = "lastFile";

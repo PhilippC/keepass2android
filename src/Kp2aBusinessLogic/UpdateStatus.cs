@@ -22,6 +22,9 @@ using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// StatusLogger implementation which shows the progress in a progress dialog
+	/// </summary>
 	public class UpdateStatus: IStatusLogger {
 		private readonly ProgressDialog _progressDialog;
 		readonly IKp2aApp _app;

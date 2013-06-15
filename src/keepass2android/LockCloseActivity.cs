@@ -20,6 +20,10 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Base class for activities displaying sensitive information. 
+	/// </summary>
+	/// Checks in OnResume whether the timeout occured and the database must be locked/closed.
 	public class LockCloseActivity : LockingActivity {
 
 		IOConnectionInfo _ioc;

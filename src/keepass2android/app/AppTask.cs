@@ -63,8 +63,11 @@ namespace keepass2android
 	}
 
 	/// <summary>
-	/// base class for "tasks": this are things the user wants to do and which require several activities
+	/// base class for "tasks": these are things the user wants to do and which require several activities
 	/// </summary>
+	/// Therefore AppTasks need to be serializable to bundles and intents to "survive" saving to instance state and changing activities.
+	/// An AppTask has a type and may have several parameters ("extras").
+	/// Activities call the task at special points so tasks can change the behaviour at these points.
 	public abstract class AppTask
 	{
 		/// <summary>

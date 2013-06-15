@@ -27,6 +27,9 @@ using Android.Text.Method;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Launcher activity of Keepass2Android. This activity usually forwards to FileSelect but may show the revision dialog after installation or updates.
+	/// </summary>
 	[Activity (Label = AppNames.AppName, MainLauncher = true, Theme="@style/Base")]
 	public class KeePass : LifecycleDebugActivity
 	{

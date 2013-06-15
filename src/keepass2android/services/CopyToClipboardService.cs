@@ -33,6 +33,12 @@ using KeePass.Util.Spr;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Service to show the notifications to make the current entry accessible through clipboard or the KP2A keyboard.
+	/// </summary>
+	/// The name reflects only the possibility through clipboard because keyboard was introduced later.
+	/// The notifications require to be displayed by a service in order to be kept when the activity is closed
+	/// after searching for a URL.
 	[Service]
 	public class CopyToClipboardService: Service
 	{

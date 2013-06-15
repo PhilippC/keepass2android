@@ -26,6 +26,9 @@ using KeePassLib.Cryptography.Cipher;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Activity to configure the app
+	/// </summary>
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
 	public class AppSettingsActivity : LockingClosePreferenceActivity {
 		public static bool KeyfileDefault = false;
@@ -80,7 +83,7 @@ namespace keepass2android
 						}
 					}));
 					ProgressTask pt = new ProgressTask(App.Kp2a, this, save, UiStringKey.saving_database);
-					pt.run();
+					pt.Run();
 				};
 
 				Preference databaseName = FindPreference(GetString(Resource.String.database_name_key));
@@ -102,7 +105,7 @@ namespace keepass2android
 						}
 					}));
                     ProgressTask pt = new ProgressTask(App.Kp2a, this, save, UiStringKey.saving_database);
-					pt.run();
+					pt.Run();
 				};
 				
 

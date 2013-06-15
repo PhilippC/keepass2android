@@ -24,6 +24,9 @@ using Android.Graphics;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Factory to create password icons
+	/// </summary>
 	public class DrawableFactory: IDrawableFactory
 	{
 		private static Drawable _blank;
@@ -42,7 +45,7 @@ namespace keepass2android
 	 */
 		private readonly Dictionary<int/*resId*/, Drawable> _standardIconMap = new Dictionary<int, Drawable>();
 			
-		public void assignDrawableTo (ImageView iv, Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
+		public void AssignDrawableTo (ImageView iv, Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
 		{
 			Drawable draw = GetIconDrawable (res, db, icon, customIconId);
 			iv.SetImageDrawable (draw);

@@ -21,7 +21,9 @@ using Android.Content;
 
 namespace keepass2android
 {
-	
+	/// <summary>
+	/// Password generator
+	/// </summary>
 	public class PasswordGenerator {
 		private const String UpperCaseChars	= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		private const String LowerCaseChars 	= "abcdefghijklmnopqrstuvwxyz";

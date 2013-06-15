@@ -24,7 +24,9 @@ using Android.Content.PM;
 
 namespace keepass2android
 {
-	
+	/// <summary>
+	/// Dialog to offer to install OpenIntent file manager if there's no other browser installed
+	/// </summary>
 	public class BrowserDialog : Dialog {
 		
 		public BrowserDialog(Context context) : base(context)

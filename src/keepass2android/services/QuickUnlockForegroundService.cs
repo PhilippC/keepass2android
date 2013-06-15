@@ -23,9 +23,11 @@ using Android.Graphics;
 
 namespace keepass2android
 {
-	//This service is started as soon as a Database with QuickUnlock enabled is opened.
-	//Its only purpose is to be a foreground service which prevents the App from being killed (in most situations)
-	[Service]
+	/// <summary>
+	/// This service is started as soon as a Database with QuickUnlock enabled is opened.
+	/// Its only purpose is to be a foreground service which prevents the App from being killed (in most situations)
+	/// </summary>
+[Service]
 	public class QuickUnlockForegroundService : Service
 	{
 		public override IBinder OnBind(Intent intent)

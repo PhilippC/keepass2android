@@ -27,7 +27,9 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-
+	/// <summary>
+	/// Activity to select the file to use
+	/// </summary>
 	[Activity (Label = "@string/app_name", 
 	           ConfigurationChanges=ConfigChanges.Orientation|
 	           ConfigChanges.KeyboardHidden, 
@@ -171,7 +173,7 @@ namespace keepass2android
                     App.Kp2a,
 					this, create,
 					UiStringKey.progress_create);
-				createTask.run();
+				createTask.Run();
 				
 				
 			};

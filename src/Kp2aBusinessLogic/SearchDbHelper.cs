@@ -23,6 +23,9 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Helper class providing methods to search a given database for specific things
+	/// </summary>
 	public class SearchDbHelper
 	{
         private readonly IKp2aApp _app;
@@ -86,21 +89,21 @@ namespace keepass2android
 			
 		}
 
-		private String extractHost(String url)
+		private static String ExtractHost(String url)
 		{
 			return UrlUtil.GetHost(url.Trim());
 		}
 
 		public PwGroup SearchForHost(Database database, String url, bool allowSubdomains)
 		{
-			String host = extractHost(url);
+			String host = ExtractHost(url);
 			string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + host + "\")";
 			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) {IsVirtual = true};
 			if (String.IsNullOrWhiteSpace(host))
 				return pgResults;
 			foreach (PwEntry entry in database.Entries.Values)
 			{
-				String otherHost = extractHost(entry.Strings.ReadSafe(PwDefs.UrlField));
+				String otherHost = ExtractHost(entry.Strings.ReadSafe(PwDefs.UrlField));
 				if ((allowSubdomains) && (otherHost.StartsWith("www.")))
 					otherHost = otherHost.Substring(4); //remove "www."
 				if (String.IsNullOrWhiteSpace(otherHost))

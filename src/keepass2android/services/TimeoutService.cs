@@ -24,6 +24,9 @@ using Android.Util;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Manages timeout to lock the database after some idle time
+	/// </summary>
 	[Service]
 	public class TimeoutService : Service {
 		private const String Tag = "KeePass2Android Timer"; 
