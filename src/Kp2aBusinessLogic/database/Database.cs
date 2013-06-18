@@ -139,7 +139,7 @@ namespace keepass2android
 		}
 		
 		public PwGroup SearchForText(String str) {
-			PwGroup group = SearchHelper.searchForText(this, str);
+			PwGroup group = SearchHelper.SearchForText(this, str);
 			
 			return group;
 			
@@ -147,19 +147,19 @@ namespace keepass2android
 
 		public PwGroup Search(SearchParameters searchParams)
 		{
-			return SearchHelper.search(this, searchParams);
+			return SearchHelper.Search(this, searchParams);
 		}
 
 		
 		public PwGroup SearchForExactUrl(String url) {
-			PwGroup group = SearchHelper.searchForExactUrl(this, url);
+			PwGroup group = SearchHelper.SearchForExactUrl(this, url);
 			
 			return group;
 			
 		}
 
 		public PwGroup SearchForHost(String url, bool allowSubdomains) {
-			PwGroup group = SearchHelper.searchForHost(this, url, allowSubdomains);
+			PwGroup group = SearchHelper.SearchForHost(this, url, allowSubdomains);
 			
 			return group;
 			

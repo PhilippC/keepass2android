@@ -99,8 +99,8 @@ namespace keepass2android
 				}
 					
 				bitmap = resize (bitmap);
-					
-				draw = BitmapDrawableCompat.GetBitmapDrawable (res, bitmap);
+
+				draw = new BitmapDrawable(res, bitmap);
 				_customIconMap[icon] = draw;
 			}
 				

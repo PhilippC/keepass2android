@@ -21,8 +21,10 @@ using Android.OS;
 using Android.Runtime;
 
 namespace keepass2android
-{
-	
+{	
+	/// <summary>
+	/// Base class for list activities. Notifies the TimeoutHelper whether the app is active or not.
+	/// </summary>
 	public class LockingListActivity : ListActivity {
 
 		

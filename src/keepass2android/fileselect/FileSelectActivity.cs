@@ -162,13 +162,12 @@ namespace keepass2android
 					return;
 				}
 				
-				// Prep an object to collect a password once the database has
-				// been created
-				CollectPassword password = new CollectPassword(
+				// Prep an object to collect a password once the database has been created
+				CollectPassword collectPassword = new CollectPassword(
 					new LaunchGroupActivity(IOConnectionInfo.FromPath(filename), this), this);
 				
 				// Create the new database
-				CreateDb create = new CreateDb(App.Kp2a, this, IOConnectionInfo.FromPath(filename), password, true);
+				CreateDb create = new CreateDb(App.Kp2a, this, IOConnectionInfo.FromPath(filename), collectPassword, true);
 				ProgressTask createTask = new ProgressTask(
                     App.Kp2a,
 					this, create,

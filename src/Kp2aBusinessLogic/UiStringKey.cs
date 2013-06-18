@@ -1,5 +1,11 @@
 namespace keepass2android
 {
+	/// <summary>
+	/// Keys to identify user-displayable strings.
+	/// </summary>
+	/// Do not rename the keys here unless you rename the corresponding keys in the resource file of KP2A.
+	/// The keys are resolved by reflection to the static Resource class. This kind of duplication is necessary 
+	/// in order to use the Resource mechanism of Android but still decouple the logic layer from the UI.
     public enum UiStringKey
     {
         AskDeletePermanentlyGroup,

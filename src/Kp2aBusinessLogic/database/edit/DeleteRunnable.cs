@@ -110,12 +110,12 @@ namespace keepass2android
 	                    {
 		                    DeletePermanently = true;
 		                    ProgressTask pt = new ProgressTask(App, Ctx, this, UiStringKey.saving_database);
-		                    pt.run();
+		                    pt.Run();
 	                    },
                 (dlgSender, dlgEvt) => {	
 	                                       DeletePermanently = false;
 	                                       ProgressTask pt = new ProgressTask(App, Ctx, this, UiStringKey.saving_database);
-	                                       pt.run();
+	                                       pt.Run();
                 },
                 (dlgSender, dlgEvt) => {},
                 Ctx);
@@ -125,7 +125,7 @@ namespace keepass2android
 			} else
 			{
 				ProgressTask pt = new ProgressTask(App, Ctx, this, UiStringKey.saving_database);
-				pt.run();
+				pt.Run();
 			}
 		}
 

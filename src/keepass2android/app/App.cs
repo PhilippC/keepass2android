@@ -47,7 +47,9 @@ namespace keepass2android
 		public const string PackagePart = "keepass2android";
 	}
 #endif
-
+	/// <summary>
+	/// Main implementation of the IKp2aApp interface for usage in the real app.
+	/// </summary>
     public class Kp2aApp: IKp2aApp
     {
         public bool IsShutdown()

@@ -388,7 +388,7 @@ namespace keepass2android
 				runnable = new UpdateEntry(this, App.Kp2a.GetDb(), initialEntry, newEntry, closeOrShowError);
 			}
             ProgressTask pt = new ProgressTask(App.Kp2a, act, runnable, UiStringKey.saving_database);
-			pt.run();
+			pt.Run();
 			
 
 		}
@@ -796,7 +796,7 @@ namespace keepass2android
 		
 		private void FillData() {
 			ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-			App.Kp2a.GetDb().DrawableFactory.assignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid);
+			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid);
 			
 			PopulateText(Resource.Id.entry_title, State.Entry.Strings.ReadSafe (PwDefs.TitleField));
 			PopulateText(Resource.Id.entry_user_name, State.Entry.Strings.ReadSafe (PwDefs.UserNameField));
