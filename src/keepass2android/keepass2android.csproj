@@ -86,11 +86,9 @@
     <Compile Include="fileselect\FileSelectActivity.cs" />
     <Compile Include="fileselect\FileDbHelper.cs" />
     <Compile Include="Utils\Util.cs" />
-    <Compile Include="Utils\Interaction.cs" />
     <Compile Include="intents\Intents.cs" />
     <Compile Include="fileselect\BrowserDialog.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
-    <Compile Include="timers\Timeout.cs" />
     <Compile Include="GroupActivity.cs" />
     <Compile Include="GroupBaseActivity.cs" />
     <Compile Include="LockCloseListActivity.cs" />
@@ -104,7 +102,6 @@
     <Compile Include="settings\PrefsUtil.cs" />
     <Compile Include="views\PwEntryView.cs" />
     <Compile Include="views\GroupHeaderView.cs" />
-    <Compile Include="BitmapDrawableCompat.cs" />
     <Compile Include="GroupEditActivity.cs" />
     <Compile Include="EntryEditActivity.cs" />
     <Compile Include="LockCloseActivity.cs" />

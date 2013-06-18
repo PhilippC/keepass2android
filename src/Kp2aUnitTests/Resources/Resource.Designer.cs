@@ -26,6 +26,7 @@ namespace Kp2aUnitTests
 		
 		public static void UpdateIdValues()
 		{
+			KeePassLib2Android.Resource.String.library_name = Kp2aUnitTests.Resource.String.library_name;
 		}
 		
 		public partial class Attribute
@@ -97,6 +98,9 @@ namespace Kp2aUnitTests
 			
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
+			
+			// aapt resource value: 0x7f040002
+			public const int library_name = 2130968578;
 			
 			static String()
 			{

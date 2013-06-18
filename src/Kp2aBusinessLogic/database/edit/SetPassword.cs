@@ -77,7 +77,7 @@ namespace keepass2android
 		private class AfterSave : OnFinish {
 			private readonly CompositeKey _backup;
 			private readonly DateTime _previousKeyChanged;
-			private PwDatabase _db;
+			private readonly PwDatabase _db;
 			
 			public AfterSave(CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnFinish finish): base(finish) {
 				_previousKeyChanged = previousKeyChanged;

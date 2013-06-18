@@ -81,10 +81,10 @@ namespace keepass2android.view
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
 			if (isExpired)
 			{
-				App.Kp2a.GetDb().DrawableFactory.assignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, PwIcon.Expired, PwUuid.Zero);
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, PwIcon.Expired, PwUuid.Zero);
 			} else
 			{
-				App.Kp2a.GetDb().DrawableFactory.assignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid);
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid);
 			}
 
 			String title = pw.Strings.ReadSafe(PwDefs.TitleField);

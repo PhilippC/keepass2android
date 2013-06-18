@@ -179,7 +179,7 @@ namespace keepass2android
 				Handler handler = new Handler();
 				AddGroup task = AddGroup.GetInstance(this, App.Kp2a.GetDb(), groupName, groupIconId, Group, new RefreshTask(handler, this), false);
                 ProgressTask pt = new ProgressTask(App.Kp2a, act, task, UiStringKey.saving_database);
-				pt.run();
+				pt.Run();
 				break;
 				
 			case Result.Canceled:
