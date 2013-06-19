@@ -50,9 +50,9 @@ namespace keepass2android
 			SearchParameters sp = new SearchParameters();
 			sp.SearchString = str;
 
-			return search(database, sp);
+			return search(database, sp, null);
 		}
-		public PwGroup search(Database database, SearchParameters sp)
+		public PwGroup search(Database database, SearchParameters sp, IDictionary<PwUuid, String> resultContexts)
 		{
 			
 			if(sp.RegularExpression) // Validate regular expression
@@ -67,7 +67,7 @@ namespace keepass2android
 			PwObjectList<PwEntry> listResults = pgResults.Entries;
 			
 			
-			database.root.SearchEntries(sp, listResults, new NullStatusLogger());
+			database.root.SearchEntries(sp, listResults, resultContexts, new NullStatusLogger());
 			
 			
 			return pgResults;

@@ -86,6 +86,7 @@
     <Compile Include="Database.cs" />
     <Compile Include="fileselect\FileSelectActivity.cs" />
     <Compile Include="fileselect\FileDbHelper.cs" />
+    <Compile Include="search\SearchProvider.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="Utils\Interaction.cs" />
     <Compile Include="intents\Intents.cs" />

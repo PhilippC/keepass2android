@@ -35,6 +35,11 @@ namespace KeePassLib
 	/// </summary>
 	public sealed class PwGroup : ITimeLogger, IStructureItem, IDeepCloneable<PwGroup>
 	{
+		private const int SearchContextStringMaxLength = 50; // Note, doesn't include elipsis, if added
+		public const string SearchContextUuid = "Uuid";
+		public const string SearchContextParentGroup = "Parent Group";
+		public const string SearchContextTags = "Tags";
+
 		public const bool DefaultAutoTypeEnabled = true;
 		public const bool DefaultSearchingEnabled = true;
 
@@ -707,6 +712,18 @@ namespace KeePassLib
 		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage,
 			IStatusLogger slStatus)
 		{
+		}
+
+		/// <summary>
+		/// Search this group and all subgroups for entries.
+		/// </summary>
+		/// <param name="sp">Specifies the search method.</param>
+		/// <param name="listStorage">Entry list in which the search results will
+		/// be stored.</param>
+		/// <param name="resultContexts">Dictionary that will be populated with text fragments indicating the context of why each entry (keyed by Uuid) was returned</param>
+		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage, IDictionary<PwUuid, String> resultContexts,
+			IStatusLogger slStatus)
+		{
 			if(sp == null) { Debug.Assert(false); return; }
 			if(listStorage == null) { Debug.Assert(false); return; }
 
@@ -716,7 +733,7 @@ namespace KeePassLib
 			if((lTerms.Count <= 1) || sp.RegularExpression)
 			{
 				if(slStatus != null) uTotalEntries = GetEntriesCount(true);
-				SearchEntriesSingle(sp, listStorage, slStatus, ref uCurEntries,
+				SearchEntriesSingle(sp, listStorage, resultContexts , slStatus, ref uCurEntries,
 					uTotalEntries);
 				return;
 			}
@@ -748,7 +765,7 @@ namespace KeePassLib
 					bNegate = (sp.SearchString.Length > 0);
 				}
 
-				if(!pg.SearchEntriesSingle(sp, pgNew.Entries, slStatus,
+				if(!pg.SearchEntriesSingle(sp, pgNew.Entries, resultContexts, slStatus,
 					ref uCurEntries, uTotalEntries))
 				{
 					pg = null;
@@ -773,7 +790,7 @@ namespace KeePassLib
 		}
 
 		private bool SearchEntriesSingle(SearchParameters spIn,
-			PwObjectList<PwEntry> listStorage, IStatusLogger slStatus,
+			PwObjectList<PwEntry> listStorage, IDictionary<PwUuid, String> resultContexts, IStatusLogger slStatus,
 			ref ulong uCurEntries, ulong uTotalEntries)
 		{
 			SearchParameters sp = spIn.Clone();
@@ -856,42 +873,42 @@ namespace KeePassLib
 						if(strKey == PwDefs.TitleField)
 						{
 							if(bTitle) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(strKey == PwDefs.UserNameField)
 						{
 							if(bUserName) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(strKey == PwDefs.PasswordField)
 						{
 							if(bPassword) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(strKey == PwDefs.UrlField)
 						{
 							if(bUrl) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(strKey == PwDefs.NotesField)
 						{
 							if(bNotes) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(bOther)
 							SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 
 						// An entry can match only once => break if we have added it
 						if(listStorage.UCount > uInitialResults) break;
 					}
 
 					if(bUuids && (listStorage.UCount == uInitialResults))
-						SearchEvalAdd(sp, pe.Uuid.ToHexString(), rx, pe, listStorage);
+						SearchEvalAdd(sp, pe.Uuid.ToHexString(), rx, pe, listStorage, resultContexts, SearchContextUuid);
 
 					if(bGroupName && (listStorage.UCount == uInitialResults) &&
 						(pe.ParentGroup != null))
-						SearchEvalAdd(sp, pe.ParentGroup.Name, rx, pe, listStorage);
+						SearchEvalAdd(sp, pe.ParentGroup.Name, rx, pe, listStorage, resultContexts, SearchContextParentGroup);
 
 					if(bTags)
 					{
@@ -899,7 +916,7 @@ namespace KeePassLib
 						{
 							if(listStorage.UCount != uInitialResults) break; // Match
 
-							SearchEvalAdd(sp, strTag, rx, pe, listStorage);
+							SearchEvalAdd(sp, strTag, rx, pe, listStorage, resultContexts, SearchContextTags);
 						}
 					}
 
@@ -913,28 +930,59 @@ namespace KeePassLib
 		}
 
 		private static void SearchEvalAdd(SearchParameters sp, string strDataField,
-			Regex rx, PwEntry pe, PwObjectList<PwEntry> lResults)
+			Regex rx, PwEntry pe, PwObjectList<PwEntry> lResults, IDictionary<PwUuid, String> resultContexts, string contextFieldName)
 		{
 			bool bMatch = false;
+			int matchPos;
 
-			if(rx == null)
-				bMatch = (strDataField.IndexOf(sp.SearchString,
-					sp.ComparisonMode) >= 0);
-			else bMatch = rx.IsMatch(strDataField);
+			if (rx == null)
+			{
+				matchPos = strDataField.IndexOf(sp.SearchString, sp.ComparisonMode);
+				bMatch = matchPos >= 0;
+			}
+			else
+			{
+				var match = rx.Match(strDataField);
+				bMatch = match.Success;
+				matchPos = match.Index;
+			}
 
 			if(!bMatch && (sp.DataTransformationFn != null))
 			{
 				string strCmp = sp.DataTransformationFn(strDataField, pe);
 				if(!object.ReferenceEquals(strCmp, strDataField))
 				{
-					if(rx == null)
-						bMatch = (strCmp.IndexOf(sp.SearchString,
-							sp.ComparisonMode) >= 0);
-					else bMatch = rx.IsMatch(strCmp);
+					if (rx == null)
+					{
+						matchPos = strCmp.IndexOf(sp.SearchString, sp.ComparisonMode);
+						bMatch = matchPos >= 0;
+					}
+					else
+					{
+						var match = rx.Match(strCmp);
+						bMatch = match.Success;
+						matchPos = match.Index;
+					}
 				}
 			}
 
-			if(bMatch) lResults.Add(pe);
+			if (bMatch)
+			{
+				lResults.Add(pe);
+
+				if (resultContexts != null)
+				{
+					// Trim the value if necessary
+					var contextString = strDataField;
+					if (contextString.Length > SearchContextStringMaxLength)
+					{
+						// Start 10% before actual data, and don't run over
+						var startPos = Math.Min(matchPos - (SearchContextStringMaxLength / 10), contextString.Length - SearchContextStringMaxLength);
+						contextString = "… " + contextString.Substring(startPos, SearchContextStringMaxLength) + ((startPos + SearchContextStringMaxLength < contextString.Length) ? " …" : null);
+					}
+					resultContexts[pe.Uuid] = contextFieldName + ": " + contextString;
+				}
+			}
 		}
 
 		public List<string> BuildEntryTagsList()

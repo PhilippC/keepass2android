@@ -27,10 +27,11 @@ using Android.Views;
 using Android.Widget;
 using keepass2android.view;
 using KeePassLib;
+using Android.Support.V4.App;
 
 namespace keepass2android.search
 {
-	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]
+	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar", LaunchMode=Android.Content.PM.LaunchMode.SingleTop)]
 	[MetaData("android.app.searchable",Resource="@xml/searchable")]
 	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]
 	public class SearchResults : GroupBaseActivity
@@ -46,19 +47,39 @@ namespace keepass2android.search
 			}
 			
 			SetResult(KeePass.EXIT_NORMAL);
-			
+
+			ProcessIntent(Intent);
+		}
+
+		protected override void OnNewIntent(Intent intent)
+		{
+			ProcessIntent(intent);
+		}
+
+		private void ProcessIntent(Intent intent)
+		{
 			mDb = App.getDB();
-			
+
 			// Likely the app has been killed exit the activity 
-			if ( ! mDb.Open ) {
+			if (!mDb.Open)
+			{
 				Finish();
 			}
 
-			query(getSearch(Intent));
+			if (intent.Action == Intent.ActionView)
+			{
+				var entryIntent = new Intent(this, typeof(EntryActivity));
+				entryIntent.PutExtra(EntryActivity.KEY_ENTRY, intent.Data.LastPathSegment);
 
-
+				Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
+				StartActivity(entryIntent);
+			}
+			else
+			{
+				// Action may either by ActionSearch (from search widget) or null (if called from SearchActivity directly)
+				query(getSearch(intent));
+			}
 		}
-
 
 		private void query (SearchParameters searchParams)
 		{

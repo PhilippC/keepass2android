@@ -61,6 +61,7 @@
   <string name="entry_user_name">User Name</string>
   <string name="entry_extra_strings">Extra string fields</string>
   <string name="entry_binaries">File attachments</string>
+  <string name="entry_notes">Notes</string>
   <string name="error_arc4">The ArcFour stream cipher is not supported.</string>
   <string name="error_can_not_handle_uri">Keepass2Android cannot handle this uri.</string>
   <string name="error_could_not_create_group">Error creating group.</string>
@@ -129,6 +130,7 @@
   <string name="menu_open">Open</string>
   <string name="menu_rename">Rename</string>
   <string name="menu_search">Search</string>
+  <string name="menu_search_advanced">Advanced Search</string>
   <string name="menu_url">Go to URL</string>
   <string name="minus">Minus</string>
   <string name="never">Never</string>

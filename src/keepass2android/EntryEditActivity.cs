@@ -125,7 +125,7 @@ namespace keepass2android
 					entryId = new KeePassLib.PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
 				
 				State.parentGroup = null;
-				if (entryId == PwUuid.Zero)
+				if (entryId.EqualsValue(PwUuid.Zero))
 				{
 					String groupId = i.GetStringExtra(KEY_PARENT);
 					
