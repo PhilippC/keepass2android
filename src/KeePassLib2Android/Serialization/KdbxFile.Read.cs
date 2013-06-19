@@ -70,8 +70,6 @@ namespace KeePassLib.Serialization
 			Debug.Assert(sSource != null);
 			if(sSource == null) throw new ArgumentNullException("sSource");
 
-			var stopWatch = Stopwatch.StartNew();
-
 			m_format = kdbFormat;
 			m_slLogger = slLogger;
 
@@ -129,33 +127,7 @@ namespace KeePassLib.Serialization
 				}
 				else m_randomStream = null; // No random stream for plain-text files
 
-				Debug.WriteLine(String.Format("Crypto setup: {0}ms", stopWatch.ElapsedMilliseconds));
-				stopWatch.Restart();
-
-				/*
-				var memStream = new MemoryStream((int)hashedStream.Length);
-				CopyStream(readerStream, memStream);
-				readerStream = memStream;
-				Debug.WriteLine(String.Format("CopyStream: {0}ms", stopWatch.ElapsedMilliseconds));
-
-
-				stopWatch.Restart();
-				 */
-
-				//var bufferedXmlReader = AsynchronousBufferedXmlReader.FullyBuffer(readerStream);
-				//Debug.WriteLine(String.Format("ReadToBuffer: {0}ms", stopWatch.ElapsedMilliseconds));
-
-				if (Java.Lang.Runtime.GetRuntime().AvailableProcessors() > 1)
-				{
-					ReadDocumentStreamed(new AsynchronousBufferedXmlReader(readerStream), hashedStream);
-					Debug.WriteLine(String.Format("ReadDocumentStreamed: {0}ms  multi-threaded", stopWatch.ElapsedMilliseconds));
-				}
-				else
-				{
-					ReadXmlStreamed(readerStream, hashedStream);
-					Debug.WriteLine(String.Format("ReadXmlStreamed: {0}ms single-threaded", stopWatch.ElapsedMilliseconds));
-				}
-				stopWatch.Restart();
+				ReadXmlStreamed(readerStream, hashedStream);
 				// ReadXmlDom(readerStream);
 
 				readerStream.Close();
@@ -166,25 +138,8 @@ namespace KeePassLib.Serialization
 			{
 				throw new CryptographicException(KLRes.FileCorrupted);
 			}
-			finally 
-			{
-				
-				CommonCleanUpRead(sSource, hashedStream);
-				Debug.WriteLine(String.Format("Close and Clean Up: {0}ms", stopWatch.ElapsedMilliseconds));
-			}
+			finally { CommonCleanUpRead(sSource, hashedStream); }
 		}
-
-		/*
-		public static void CopyStream(Stream input, Stream output)
-		{
-			byte[] buffer = new byte[32768];
-			int read;
-			while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-			{
-				output.Write(buffer, 0, read);
-			}
-			output.Seek(0, SeekOrigin.Begin);
-		}*/
 
 		private void CommonCleanUpRead(Stream sSource, HashingStreamEx hashedStream)
 		{

@@ -113,7 +113,6 @@
     <Compile Include="Security\XorredBuffer.cs" />
     <Compile Include="Security\ProtectedBinary.cs" />
     <Compile Include="Security\ProtectedString.cs" />
-    <Compile Include="Serialization\AsynchronousBufferedXmlReader.cs" />
     <Compile Include="Serialization\BinaryReaderEx.cs" />
     <Compile Include="Serialization\FileLock.cs" />
     <Compile Include="Serialization\FileTransactionEx.cs" />
