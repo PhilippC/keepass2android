@@ -15,25 +15,19 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Support.V4.App;
 using Android.Graphics;
 
 namespace keepass2android
 {
-	//This service is started as soon as a Database with QuickUnlock enabled is opened.
-	//Its only purpose is to be a foreground service which prevents the App from being killed (in most situations)
-	[Service]
+	/// <summary>
+	/// This service is started as soon as a Database with QuickUnlock enabled is opened.
+	/// Its only purpose is to be a foreground service which prevents the App from being killed (in most situations)
+	/// </summary>
+[Service]
 	public class QuickUnlockForegroundService : Service
 	{
 		public override IBinder OnBind(Intent intent)

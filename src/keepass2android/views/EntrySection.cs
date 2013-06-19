@@ -16,13 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -34,16 +28,16 @@ namespace keepass2android.view
 	public class EntrySection : LinearLayout {
 		
 		public EntrySection(Context context): base(context, null) {
-			inflate (context,null, null);
+			InflateView (null, null);
 		}
 		
 		public EntrySection(Context context, IAttributeSet attrs): base(context, attrs) {
-			inflate (context,null, null);
+			InflateView (null, null);
 		}
 		
 		public EntrySection(Context context, IAttributeSet attrs, String title, String value): base(context, attrs) {
 			
-			inflate(context, title, value);
+			InflateView(title, value);
 		}
 
 		public EntrySection (IntPtr javaReference, JniHandleOwnership transfer)
@@ -53,21 +47,21 @@ namespace keepass2android.view
 		}
 		
 		
-		private void inflate(Context context, String title, String value) {
+		private void InflateView(String title, String value) {
 			LayoutInflater inflater = (LayoutInflater) Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.entry_section, this);
 			
-			setText(Resource.Id.title, title);
+			SetText(Resource.Id.title, title);
 
 			FindViewById<TextView>(Resource.Id.value).Invalidate();
-			setText(Resource.Id.value, value);
+			SetText(Resource.Id.value, value);
 			//TODO: this seems to cause a bug when rotating the device (and the activity gets destroyed)
 			//After recreating the activity, the value fields all have the same content.
 			if ((int)Android.OS.Build.VERSION.SdkInt >= 11)
 				FindViewById<TextView>(Resource.Id.value).SetTextIsSelectable(true);
 		}
 		
-		private void setText(int resId, String str) {
+		private void SetText(int resId, String str) {
 			if (str != null) {
 				TextView tvTitle = (TextView) FindViewById(resId);
 				tvTitle.Text = str;

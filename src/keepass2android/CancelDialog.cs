@@ -15,36 +15,22 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace keepass2android
 {
 	
 	public class CancelDialog : Dialog {
-		
-		private bool mCanceled = false; 
-		
 		public CancelDialog(Context context): base(context) {
 		}
-		
-		public bool canceled() {
-			return mCanceled;
-		}
-		
-		
+
+		public bool Canceled { get; private set; }
+
+
 		public override void Cancel() {
 			base.Cancel();
-			mCanceled = true;
+			Canceled = true;
 		}
 	}
 

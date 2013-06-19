@@ -16,27 +16,75 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Preferences;
+using Android.Util;
 using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	
+	/// <summary>
+	/// Helper class to simplify usage of timeout (lock after idle time) from the activities
+	/// </summary>
 	public class TimeoutHelper {
-		
-		private const long DEFAULT_TIMEOUT = 5 * 60 * 1000;  // 5 minutes
-		
-		public static void pause(Activity act) {
+
+		class Timeout
+		{
+			private const int RequestId = 0;
+			private const long DefaultTimeout = 5 * 60 * 1000;  // 5 minutes
+			private const String Tag = "Keepass2Android Timeout";
+
+			private static PendingIntent BuildIntent(Context ctx)
+			{
+				Intent intent = new Intent(Intents.Timeout);
+				PendingIntent sender = PendingIntent.GetBroadcast(ctx, RequestId, intent, PendingIntentFlags.CancelCurrent);
+
+				return sender;
+			}
+
+			public static void Start(Context ctx)
+			{
+
+
+				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+				String sTimeout = prefs.GetString(ctx.GetString(Resource.String.app_timeout_key), ctx.GetString(Resource.String.clipboard_timeout_default));
+
+				long timeout;
+				if (!long.TryParse(sTimeout, out timeout))
+				{
+					timeout = DefaultTimeout;
+				}
+
+				if (timeout == -1)
+				{
+					// No timeout don't start timeout service
+					return;
+				}
+
+				ctx.StartService(new Intent(ctx, typeof(TimeoutService)));
+
+				long triggerTime = Java.Lang.JavaSystem.CurrentTimeMillis() + timeout;
+				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
+
+				Log.Debug(Tag, "Timeout start");
+				am.Set(AlarmType.Rtc, triggerTime, BuildIntent(ctx));
+			}
+
+			public static void Cancel(Context ctx)
+			{
+				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
+
+				Log.Debug(Tag, "Timeout cancel");
+				am.Cancel(BuildIntent(ctx));
+
+				ctx.StopService(new Intent(ctx, typeof(TimeoutService)));
+
+			}
+
+		}
+
+		public static void Pause(Activity act) {
 			// Record timeout time in case timeout service is killed
 			long time = Java.Lang.JavaSystem.CurrentTimeMillis();
 			
@@ -44,58 +92,57 @@ namespace keepass2android
 			ISharedPreferencesEditor edit = prefs.Edit();
 			edit.PutLong(act.GetString(Resource.String.timeout_key), time);
 			
-			EditorCompat.apply(edit);
+			EditorCompat.Apply(edit);
 			
-			if ( App.getDB().Open ) {
-				Timeout.start(act);
+			if ( App.Kp2a.GetDb().Open ) {
+				Timeout.Start(act);
 			}
 			
 		}
 		
-		public static void resume(Activity act) {
-			if ( App.getDB().Loaded ) {
-				Timeout.cancel(act);
+		public static void Resume(Activity act) {
+			if ( App.Kp2a.GetDb().Loaded ) {
+				Timeout.Cancel(act);
 			}
 			
 			
 			// Check whether the timeout has expired
-			long cur_time = Java.Lang.JavaSystem.CurrentTimeMillis();
+			long curTime = Java.Lang.JavaSystem.CurrentTimeMillis();
 			
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(act);
-			long timeout_start = prefs.GetLong(act.GetString(Resource.String.timeout_key), -1);
+			long timeoutStart = prefs.GetLong(act.GetString(Resource.String.timeout_key), -1);
 			// The timeout never started
-			if (timeout_start == -1) {
+			if (timeoutStart == -1) {
 				return;
 			}
 			
 			
 			String sTimeout = prefs.GetString(act.GetString(Resource.String.app_timeout_key), act.GetString(Resource.String.clipboard_timeout_default));
-			long timeout = DEFAULT_TIMEOUT;
-			long.TryParse(sTimeout,out timeout);
-			
-			// We are set to never timeout
-			if (timeout == -1) {
+			long timeout;
+			if (!long.TryParse(sTimeout, out timeout))
+			{
+				// We are set to never timeout
 				return;
 			}
-			
-			long diff = cur_time - timeout_start;
+
+			long diff = curTime - timeoutStart;
 			if (diff >= timeout) {
 				// We have timed out
-				App.setShutdown();
+                App.Kp2a.SetShutdown();
 			}
 		}
 
-		static bool iocChanged(IOConnectionInfo ioc, IOConnectionInfo other)
+		static bool IocChanged(IOConnectionInfo ioc, IOConnectionInfo other)
 		{
 			if ((ioc == null) || (other == null)) return false;
 			return ioc.GetDisplayName() != other.GetDisplayName();
 		}
 		
-		public static bool checkShutdown(Activity act, IOConnectionInfo ioc) {
-			if ((  App.getDB().Loaded && (App.isShutdown() || App.getDB().Locked) ) 
-			    || (iocChanged(ioc, App.getDB().mIoc))) //file was changed from ActionSend-Intent
+		public static bool CheckShutdown(Activity act, IOConnectionInfo ioc) {
+			if ((  App.Kp2a.GetDb().Loaded && (App.Kp2a.IsShutdown() || App.Kp2a.GetDb().Locked) ) 
+			    || (IocChanged(ioc, App.Kp2a.GetDb().Ioc))) //file was changed from ActionSend-Intent
 			{
-				act.SetResult(KeePass.EXIT_LOCK);
+				act.SetResult(KeePass.ExitLock);
 				act.Finish();
 				return true;
 			}

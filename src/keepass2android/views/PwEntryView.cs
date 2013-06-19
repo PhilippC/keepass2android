@@ -15,12 +15,6 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -32,21 +26,20 @@ using Android.Preferences;
 
 namespace keepass2android.view
 {
-	public class PwEntryView : ClickView
+	public sealed class PwEntryView : ClickView
 	{
-		
-		protected GroupBaseActivity mAct;
-		protected PwEntry mPw;
-		private TextView mTv;
-		private TextView mTvDetails;
-		private int mPos;
+		private readonly GroupBaseActivity _groupActivity;
+		private PwEntry _entry;
+		private readonly TextView _textView;
+		private readonly TextView _textviewDetails;
+		private int _pos;
 
-		bool mShowDetail;
+		readonly bool _showDetail;
 
-		protected const int MENU_OPEN = Menu.First;
-		private const int MENU_DELETE = MENU_OPEN + 1;
+		private const int MenuOpen = Menu.First;
+		private const int MenuDelete = MenuOpen + 1;
 		
-		public static PwEntryView getInstance(GroupBaseActivity act, PwEntry pw, int pos)
+		public static PwEntryView GetInstance(GroupBaseActivity act, PwEntry pw, int pos)
 		{
 			return new PwEntryView(act, pw, pos);
 
@@ -57,41 +50,41 @@ namespace keepass2android.view
 		{
 			
 		}
-		
-		protected PwEntryView(GroupBaseActivity act, PwEntry pw, int pos):base(act)
+
+		private PwEntryView(GroupBaseActivity groupActivity, PwEntry pw, int pos):base(groupActivity)
 		{
-			mAct = act;
+			_groupActivity = groupActivity;
 			
-			View ev = View.Inflate(mAct, Resource.Layout.entry_list_entry, null);
-			mTv = (TextView)ev.FindViewById(Resource.Id.entry_text);
-			mTv.TextSize = PrefsUtil.getListTextSize(act);
+			View ev = Inflate(groupActivity, Resource.Layout.entry_list_entry, null);
+			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
+			_textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
 
-			mTvDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
-			mTvDetails.TextSize = PrefsUtil.getListDetailTextSize(act);
+			_textviewDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
+			_textviewDetails.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
 
-			mShowDetail = PreferenceManager.GetDefaultSharedPreferences(act).GetBoolean(act.GetString(Resource.String.ShowUsernameInList_key), Resources.GetBoolean(Resource.Boolean.ShowUsernameInList_default));
+			_showDetail = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(groupActivity.GetString(Resource.String.ShowUsernameInList_key), Resources.GetBoolean(Resource.Boolean.ShowUsernameInList_default));
 
-			populateView(ev, pw, pos);
+			PopulateView(ev, pw, pos);
 			
-			LayoutParams lp = new LayoutParams(LayoutParams.FillParent, LayoutParams.WrapContent);
+			LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.FillParent, ViewGroup.LayoutParams.WrapContent);
 			
 			AddView(ev, lp);
 			
 		}
 		
-		private void populateView(View ev, PwEntry pw, int pos)
+		private void PopulateView(View ev, PwEntry pw, int pos)
 		{
-			mPw = pw;
-			mPos = pos;
+			_entry = pw;
+			_pos = pos;
 			
 			ImageView iv = (ImageView)ev.FindViewById(Resource.Id.entry_icon);
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
 			if (isExpired)
 			{
-				App.getDB().drawFactory.assignDrawableTo(iv, Resources, App.getDB().pm, PwIcon.Expired, PwUuid.Zero);
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, PwIcon.Expired, PwUuid.Zero);
 			} else
 			{
-				App.getDB().drawFactory.assignDrawableTo(iv, Resources, App.getDB().pm, pw.IconId, pw.CustomIconUuid);
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid);
 			}
 
 			String title = pw.Strings.ReadSafe(PwDefs.TitleField);
@@ -101,14 +94,14 @@ namespace keepass2android.view
 			{
 				str.SetSpan(new StrikethroughSpan(), 0, title.Length, SpanTypes.ExclusiveExclusive);
 			}
-			mTv.TextFormatted = str;
+			_textView.TextFormatted = str;
 
 			String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
 
 
-			if ((mShowDetail == false) || (String.IsNullOrEmpty(detail)))
+			if ((_showDetail == false) || (String.IsNullOrEmpty(detail)))
 			{
-				mTvDetails.Visibility = ViewStates.Gone;
+				_textviewDetails.Visibility = ViewStates.Gone;
 			}
 			else
 			{
@@ -118,32 +111,32 @@ namespace keepass2android.view
 				{
 					strDetail.SetSpan(new StrikethroughSpan(), 0, detail.Length, SpanTypes.ExclusiveExclusive);
 				}
-				mTvDetails.TextFormatted = strDetail;
+				_textviewDetails.TextFormatted = strDetail;
 
-				mTvDetails.Visibility = ViewStates.Visible;
+				_textviewDetails.Visibility = ViewStates.Visible;
 			}
 		}
 		
-		public void convertView(PwEntry pw, int pos)
+		public void ConvertView(PwEntry pw, int pos)
 		{
-			populateView(this, pw, pos);
+			PopulateView(this, pw, pos);
 		}
 
 		public override void OnClick()
 		{
-			launchEntry();
+			LaunchEntry();
 		}
 		
-		private void launchEntry()
+		private void LaunchEntry()
 		{
-			mAct.LaunchActivityForEntry(mPw, mPos);
-			mAct.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
+			_groupActivity.LaunchActivityForEntry(_entry, _pos);
+			_groupActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
 		}
 		
 		public override void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo)
 		{
-			menu.Add(0, MENU_OPEN, 0, Resource.String.menu_open);
-			menu.Add(0, MENU_DELETE, 0, Resource.String.menu_delete);
+			menu.Add(0, MenuOpen, 0, Resource.String.menu_open);
+			menu.Add(0, MenuDelete, 0, Resource.String.menu_delete);
 		}
 		
 		public override bool OnContextItemSelected(IMenuItem item)
@@ -151,13 +144,13 @@ namespace keepass2android.view
 			switch (item.ItemId)
 			{
 				
-				case MENU_OPEN:
-					launchEntry();
+				case MenuOpen:
+					LaunchEntry();
 					return true;
-				case MENU_DELETE:
+				case MenuDelete:
 					Handler handler = new Handler();
-					DeleteEntry task = new DeleteEntry(Context, App.getDB(), mPw, new GroupBaseActivity.RefreshTask(handler, mAct));
-					task.start();
+					DeleteEntry task = new DeleteEntry(Context, App.Kp2a, _entry, new GroupBaseActivity.RefreshTask(handler, _groupActivity));
+					task.Start();
 					return true;
 			
 				default:

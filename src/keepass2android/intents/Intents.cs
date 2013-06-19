@@ -16,34 +16,26 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace keepass2android
 {
-	
+	/// <summary>
+	/// Contains constants to be used in intents
+	/// </summary>
 	public class Intents {
-		public const String TIMEOUT = "keepass2android.timeout";
+		public const String Timeout = "keepass2android.timeout";
 		
-		public const String COPY_USERNAME = "keepass2android.copy_username";
-		public const String COPY_PASSWORD = "keepass2android.copy_password";
-		public const String CHECK_KEYBOARD = "keepass2android.check_keyboard";
+		public const String CopyUsername = "keepass2android.copy_username";
+		public const String CopyPassword = "keepass2android.copy_password";
+		public const String CheckKeyboard = "keepass2android.check_keyboard";
 		
-		public const String FILE_BROWSE = "org.openintents.action.PICK_FILE";
-		public const int REQUEST_CODE_FILE_BROWSE_FOR_OPEN = 987321;
-		public const int REQUEST_CODE_FILE_BROWSE_FOR_CREATE = 987322;
-		public const int REQUEST_CODE_FILE_BROWSE_FOR_BINARY = 987323;
-		public const int REQUEST_CODE_FILE_BROWSE_FOR_KEYFILE = 987324;
+		public const String FileBrowse = "org.openintents.action.PICK_FILE";
+		public const int RequestCodeFileBrowseForOpen = 987321;
+		public const int RequestCodeFileBrowseForCreate = 987322;
+		public const int RequestCodeFileBrowseForBinary = 987323;
+		public const int RequestCodeFileBrowseForKeyfile = 987324;
 
-		public const String SHOW_NOTIFICATION = "keepass2android.show_notification";
+		public const String ShowNotification = "keepass2android.show_notification";
 	}
 
 }

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MonoDroidUnitTesting</RootNamespace>
+    <AssemblyName>MonoDroidUnitTesting</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions />
+    <TargetFrameworkVersion>v2.2</TargetFrameworkVersion>
+    <MandroidI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\Assert.cs" />
+    <Compile Include="API\AssertFailedException.cs" />
+    <Compile Include="API\CollectionAssert.cs" />
+    <Compile Include="API\StringAssert.cs" />
+    <Compile Include="Frontends\ResultListItemView.cs" />
+    <Compile Include="Runner\MethodOutcome.cs" />
+    <Compile Include="Runner\TestError.cs" />
+    <Compile Include="Utils\LayoutParams.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
+    <Compile Include="API\TestAttributes.cs" />
+    <Compile Include="Frontends\AbstractResultActivity.cs" />
+    <Compile Include="Frontends\AbstractResultListActivity.cs" />
+    <Compile Include="Utils\Dimension.cs" />
+    <Compile Include="Frontends\GuiTestRunnerActivity.cs" />
+    <Compile Include="Frontends\TestClassResultActivity.cs" />
+    <Compile Include="Frontends\TestMethodResultActivity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Frontends\LogTestRunner.cs" />
+    <Compile Include="Runner\TestClass.cs" />
+    <Compile Include="Runner\TestMethod.cs" />
+    <Compile Include="Runner\TestState.cs" />
+    <Compile Include="Runner\TestRunner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Drawable\outcome_passed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Drawable\outcome_error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Drawable\outcome_inconclusive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.lgplv3.txt" />
+    <Content Include="README.txt" />
+    <EmbeddedResource Include="Resources\Drawable\class_outcome_error.png" />
+    <EmbeddedResource Include="Resources\Drawable\method_outcome_passed.png" />
+    <EmbeddedResource Include="Resources\Drawable\class_outcome_inconclusive.png" />
+    <EmbeddedResource Include="Resources\Drawable\class_outcome_passed.png" />
+    <EmbeddedResource Include="Resources\Drawable\method_outcome_error.png" />
+    <EmbeddedResource Include="Resources\Drawable\method_outcome_inconclusive.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

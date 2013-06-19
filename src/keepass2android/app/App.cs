@@ -16,20 +16,18 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using KeePassLib.Serialization;
+using Android.Preferences;
 
 namespace keepass2android
 {
 #if NoNet
+	/// <summary>
+	/// Static strings containing App names for the Offline ("nonet") release
+	/// </summary>
 	public static class AppNames
 	{
 		public const string AppName = "@string/app_name_nonet";
@@ -38,6 +36,9 @@ namespace keepass2android
 		public const string PackagePart = "keepass2android_nonet";
 	}
 #else
+	/// <summary>
+	/// Static strings containing App names for the Online release
+	/// </summary>
 	public static class AppNames
 	{
 		public const string AppName = "@string/app_name";
@@ -46,16 +47,185 @@ namespace keepass2android
 		public const string PackagePart = "keepass2android";
 	}
 #endif
+	/// <summary>
+	/// Main implementation of the IKp2aApp interface for usage in the real app.
+	/// </summary>
+    public class Kp2aApp: IKp2aApp
+    {
+        public bool IsShutdown()
+        {
+            return _shutdown;
+        }
 
-	///Application class for Keepass2Android: Contains static Database variable to be used by all components.
+        public void SetShutdown()
+        {
+            _shutdown = true;
+        }
+
+        public void ClearShutdown()
+        {
+            _shutdown = false;
+        }
+
+        private Database _db;
+        private bool _shutdown;
+
+        /// <summary>
+        /// See comments to EntryEditActivityState.
+        /// </summary>
+        internal EntryEditActivityState EntryEditActivityState = null;
+
+        public FileDbHelper FileDbHelper;
+
+        public Database GetDb()
+        {
+            if (_db == null)
+            {
+                _db = CreateNewDatabase();
+            }
+
+            return _db;
+        }
+
+
+
+        public bool GetBooleanPreference(PreferenceKey key)
+        {
+            Context ctx = Application.Context;
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+            switch (key)
+            {
+                case PreferenceKey.remember_keyfile:
+                    return prefs.GetBoolean(ctx.Resources.GetString(Resource.String.keyfile_key), ctx.Resources.GetBoolean(Resource.Boolean.keyfile_default));
+                case PreferenceKey.UseFileTransactions:
+                    return prefs.GetBoolean(ctx.Resources.GetString(Resource.String.UseFileTransactions_key), true);
+                default:
+                    throw new Exception("unexpected key!");
+            }
+
+        }
+
+
+        public void CheckForOpenFileChanged(Activity activity)
+        {
+            if (_db.DidOpenFileChange())
+            {
+                if (_db.ReloadRequested)
+                {
+                    activity.SetResult(KeePass.ExitReloadDb);
+                    activity.Finish();
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
+
+                builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
+
+                builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes), 
+                    (dlgSender, dlgEvt) =>
+                        {
+                            _db.ReloadRequested = true;
+                            activity.SetResult(KeePass.ExitReloadDb);
+                            activity.Finish();
+
+                        });
+
+                builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
+                    {
+
+                    });
+
+
+                Dialog dialog = builder.Create();
+                dialog.Show();
+            }
+        }
+
+        public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile)
+        {
+            FileDbHelper.CreateFile(ioc, keyfile);
+        }
+
+        public string GetResourceString(UiStringKey key)
+        {
+            var field = typeof (Resource.String).GetField(key.ToString());
+            if (field == null)
+                throw new Exception("Invalid key " + key);
+            return Application.Context.GetString((int)field.GetValue(null));
+        }
+
+        public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+            EventHandler<DialogClickEventArgs> yesHandler,
+            EventHandler<DialogClickEventArgs> noHandler,
+            EventHandler<DialogClickEventArgs> cancelHandler,
+            Context ctx)
+        {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+            builder.SetTitle(GetResourceString(titleKey));
+
+            builder.SetMessage(GetResourceString(messageKey));
+
+            builder.SetPositiveButton(Resource.String.yes, yesHandler);
+
+            builder.SetNegativeButton(Resource.String.no, noHandler);
+
+            builder.SetNeutralButton(ctx.GetString(Android.Resource.String.Cancel),
+                                    cancelHandler);
+
+            Dialog dialog = builder.Create();
+            dialog.Show();
+
+        }
+
+
+
+        internal void OnTerminate()
+        {
+            if (_db != null)
+            {
+                _db.Clear();
+            }
+
+            if (FileDbHelper != null && FileDbHelper.IsOpen())
+            {
+                FileDbHelper.Close();
+            }
+        }
+
+        internal void OnCreate(Application app)
+        {
+            FileDbHelper = new FileDbHelper(app);
+            FileDbHelper.Open();
+
+#if DEBUG
+            foreach (UiStringKey key in Enum.GetValues(typeof(UiStringKey)))
+            {
+                GetResourceString(key);
+            }
+            
+#else
+                this should case a compiler error when switching to release (and thus ensure DEBUG is defined in DEBUG)
+#endif
+        }
+
+        
+        public Database CreateNewDatabase()
+        {
+            _db = new Database(new DrawableFactory(), this);
+            return _db;
+        }
+    }
+
+
+    ///Application class for Keepass2Android: Contains static Database variable to be used by all components.
 #if NoNet
 	[Application(Debuggable=false, Label=AppNames.AppName)]
 #else
-	#if RELEASE 
+#if RELEASE 
 	[Application(Debuggable=false, Label=AppNames.AppName)] 
-	#else
-	[Application(Debuggable=true, Label=AppNames.AppName)]
-	#endif
+#else
+    [Application(Debuggable = true, Label = AppNames.AppName)]
+#endif
 #endif
 	public class App : Application {
 
@@ -64,63 +234,24 @@ namespace keepass2android
 		{
 		}
 
-		private static Database db;
-		private static bool shutdown = false;
-
-		/// <summary>
-		/// See comments to EntryEditActivityState.
-		/// </summary>
-		internal static EntryEditActivityState entryEditActivityState = null;
-		
-		public static FileDbHelper fileDbHelper;
-		
-		public static Database getDB() {
-			if ( db == null ) {
-				db = new Database();
-			}
-			
-			return db;
-		}
-		
-		public static void setDB(Database d) {
-			db = d;
-		}
-		
-		public static bool isShutdown() {
-			return shutdown;
-		}
-		
-		public static void setShutdown() {
-			shutdown = true;
-		}
-		
-		public static void clearShutdown() {
-			shutdown = false;
-		}
-
+        public static readonly Kp2aApp Kp2a = new Kp2aApp();
+        
 		public override void OnCreate() {
 			base.OnCreate();
 
 			Android.Util.Log.Debug("DEBUG","Creating application");
 
-			fileDbHelper = new FileDbHelper(this);
-			fileDbHelper.open();
+            Kp2a.OnCreate(this);
 			
 		}
 
 		public override void OnTerminate() {
 			base.OnTerminate();
 			Android.Util.Log.Debug("DEBUG","Terminating application");
-			if ( db != null ) {
-				db.Clear();
-			}
-			
-			if ( fileDbHelper != null && fileDbHelper.isOpen() ) {
-				fileDbHelper.close();
-			}
+            Kp2a.OnTerminate();
 		}
 
-		
-	}
+        
+    }
 }
 

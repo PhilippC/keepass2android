@@ -16,33 +16,28 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	
+	/// <summary>
+	/// Base class for list activities displaying sensitive information. 
+	/// </summary>
+	/// Checks in OnResume whether the timeout occured and the database must be locked/closed.
 	public class LockCloseListActivity : LockingListActivity {
 		public LockCloseListActivity()
 		{
 
 		}
 
-		IOConnectionInfo mIoc;
+		IOConnectionInfo _ioc;
 		
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			mIoc = App.getDB().mIoc;
+			_ioc = App.Kp2a.GetDb().Ioc;
 		}
 		
 		public LockCloseListActivity (IntPtr javaReference, JniHandleOwnership transfer)
@@ -55,10 +50,10 @@ namespace keepass2android
 		{
 			base.OnResume();
 			
-			if (TimeoutHelper.checkShutdown(this, mIoc))
+			if (TimeoutHelper.CheckShutdown(this, _ioc))
 				return;
 			
-			App.getDB().CheckForOpenFileChanged(this);
+			App.Kp2a.CheckForOpenFileChanged(this);
 		}
 
 	}

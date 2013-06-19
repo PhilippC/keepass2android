@@ -1,0 +1,7 @@
+syntax: glob
+*.suo
+*/bin/
+*/obj/
+TestResults/
+*.user
+_ReSharper.*/

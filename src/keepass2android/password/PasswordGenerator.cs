@@ -16,44 +16,38 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace keepass2android
 {
-	
+	/// <summary>
+	/// Password generator
+	/// </summary>
 	public class PasswordGenerator {
-		private const String upperCaseChars	= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		private const String lowerCaseChars 	= "abcdefghijklmnopqrstuvwxyz";
-		private const String digitChars 		= "0123456789";
-		private const String minusChars 		= "-";
-		private const String underlineChars 	= "_";
-		private const String spaceChars 		= " ";
-		private const String specialChars 	= "!\"#$%&'*+,./:;=?@\\^`";
-		private const String bracketChars 	= "[]{}()<>";
+		private const String UpperCaseChars	= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		private const String LowerCaseChars 	= "abcdefghijklmnopqrstuvwxyz";
+		private const String DigitChars 		= "0123456789";
+		private const String MinusChars 		= "-";
+		private const String UnderlineChars 	= "_";
+		private const String SpaceChars 		= " ";
+		private const String SpecialChars 	= "!\"#$%&'*+,./:;=?@\\^`";
+		private const String BracketChars 	= "[]{}()<>";
 		
-		private Context cxt;
+		private readonly Context _cxt;
 		
 		public PasswordGenerator(Context cxt) {
-			this.cxt = cxt;
+			_cxt = cxt;
 		}
 		
-		public String generatePassword(int length, bool upperCase, bool lowerCase, bool digits, bool minus, bool underline, bool space, bool specials, bool brackets) {
+		public String GeneratePassword(int length, bool upperCase, bool lowerCase, bool digits, bool minus, bool underline, bool space, bool specials, bool brackets) {
 			if (length <= 0)
-				throw new ArgumentException(cxt.GetString(Resource.String.error_wrong_length));
+				throw new ArgumentException(_cxt.GetString(Resource.String.error_wrong_length));
 			
 			if (!upperCase && !lowerCase && !digits && !minus && !underline && !space && !specials && !brackets)
-				throw new ArgumentException(cxt.GetString(Resource.String.error_pass_gen_type));
+				throw new ArgumentException(_cxt.GetString(Resource.String.error_pass_gen_type));
 			
-			String characterSet = getCharacterSet(upperCase, lowerCase, digits, minus, underline, space, specials, brackets);
+			String characterSet = GetCharacterSet(upperCase, lowerCase, digits, minus, underline, space, specials, brackets);
 			
 			int size = characterSet.Length;
 			
@@ -72,32 +66,32 @@ namespace keepass2android
 			return buffer.ToString();
 		}
 		
-		public String getCharacterSet(bool upperCase, bool lowerCase, bool digits, bool minus, bool underline, bool space, bool specials, bool brackets) {
+		public String GetCharacterSet(bool upperCase, bool lowerCase, bool digits, bool minus, bool underline, bool space, bool specials, bool brackets) {
 			StringBuilder charSet = new StringBuilder();
 			
 			if (upperCase)
-				charSet.Append(upperCaseChars);
+				charSet.Append(UpperCaseChars);
 			
 			if (lowerCase)
-				charSet.Append(lowerCaseChars);
+				charSet.Append(LowerCaseChars);
 			
 			if (digits)
-				charSet.Append(digitChars);
+				charSet.Append(DigitChars);
 			
 			if (minus)
-				charSet.Append(minusChars);
+				charSet.Append(MinusChars);
 
 			if (underline)
-				charSet.Append(underlineChars);
+				charSet.Append(UnderlineChars);
 			
 			if (space)
-				charSet.Append(spaceChars);
+				charSet.Append(SpaceChars);
 			
 			if (specials)
-				charSet.Append(specialChars);
+				charSet.Append(SpecialChars);
 			
 			if (brackets)
-				charSet.Append(bracketChars);
+				charSet.Append(BracketChars);
 			
 			return charSet.ToString();
 		}

@@ -15,16 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.Graphics.Drawables;
 using Android.Content.Res;
@@ -33,82 +24,84 @@ using Android.Graphics;
 
 namespace keepass2android
 {
-	public class DrawableFactory
+	/// <summary>
+	/// Factory to create password icons
+	/// </summary>
+	public class DrawableFactory: IDrawableFactory
 	{
-		private static Drawable blank = null;
-		private static int blankWidth = -1;
-		private static int blankHeight = -1;
+		private static Drawable _blank;
+		private static int _blankWidth = -1;
+		private static int _blankHeight = -1;
 			
 		/** customIconMap
 	 *  Cache for icon drawable. 
 	 *  Keys: UUID, Values: Drawables
 	 */
-		private Dictionary<PwUuid, Drawable> customIconMap = new Dictionary<PwUuid, Drawable>(new PwUuidEqualityComparer());
+		private readonly Dictionary<PwUuid, Drawable> _customIconMap = new Dictionary<PwUuid, Drawable>(new PwUuidEqualityComparer());
 			
 		/** standardIconMap
 	 *  Cache for icon drawable. 
 	 *  Keys: Integer, Values: Drawables
 	 */
-		private Dictionary<int/*resId*/, Drawable> standardIconMap = new Dictionary<int, Drawable>();
+		private readonly Dictionary<int/*resId*/, Drawable> _standardIconMap = new Dictionary<int, Drawable>();
 			
-		public void assignDrawableTo (ImageView iv, Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
+		public void AssignDrawableTo (ImageView iv, Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
 		{
-			Drawable draw = getIconDrawable (res, db, icon, customIconId);
+			Drawable draw = GetIconDrawable (res, db, icon, customIconId);
 			iv.SetImageDrawable (draw);
 		}
 			
-		public Drawable getIconDrawable (Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
+		public Drawable GetIconDrawable (Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
 		{
 			if (!customIconId.EqualsValue(PwUuid.Zero)) {
-				return getIconDrawable (res, db, customIconId);
-			} else {
-				return getIconDrawable (res, icon);
+				return GetIconDrawable (res, db, customIconId);
 			}
+		    return GetIconDrawable (res, icon);
 		}
 
-		private static void initBlank (Resources res)	
+		private static void InitBlank (Resources res)	
 		{
-			if (blank == null) {
-				blank = res.GetDrawable (Resource.Drawable.ic99_blank);
-				blankWidth = blank.IntrinsicWidth;
-				blankHeight = blank.IntrinsicHeight;
+			if (_blank == null) {
+				_blank = res.GetDrawable (Resource.Drawable.ic99_blank);
+				_blankWidth = _blank.IntrinsicWidth;
+				_blankHeight = _blank.IntrinsicHeight;
 			}
 		}
 			
-		public Drawable getIconDrawable (Resources res, PwIcon icon)
+		public Drawable GetIconDrawable (Resources res, PwIcon icon)
 		{
-			int resId = Icons.iconToResId (icon);
+			int resId = Icons.IconToResId (icon);
 				
 			Drawable draw;
-			if (!standardIconMap.TryGetValue(resId, out draw))
+			if (!_standardIconMap.TryGetValue(resId, out draw))
 			{
 				draw = res.GetDrawable(resId);
-				standardIconMap[resId] = draw;
+				_standardIconMap[resId] = draw;
 			}
 				
 			return draw;
 		}
 			
-		public Drawable getIconDrawable (Resources res, PwDatabase db, PwUuid icon)
+		public Drawable GetIconDrawable (Resources res, PwDatabase db, PwUuid icon)
 		{
-			initBlank (res);
+			InitBlank (res);
 			if (icon.EqualsValue(PwUuid.Zero)) {
-				return blank;
+				return _blank;
 			}
-			Drawable draw = null;
-			if (!customIconMap.TryGetValue(icon, out draw)) 
+			Drawable draw;
+			if (!_customIconMap.TryGetValue(icon, out draw)) 
 			{
 				Bitmap bitmap = db.GetCustomIcon(icon);
 					
 				// Could not understand custom icon
 				if (bitmap == null) {
-					return blank;
+					return _blank;
 				}
 					
 				bitmap = resize (bitmap);
-					
-				draw = BitmapDrawableCompat.getBitmapDrawable (res, bitmap);
-				customIconMap[icon] = draw;
+
+				draw = new BitmapDrawable(res, bitmap);
+				_customIconMap[icon] = draw;
 			}
 				
 			return draw;
@@ -123,17 +116,17 @@ namespace keepass2android
 			int width = bitmap.Width;
 			int height = bitmap.Height;
 				
-			if (width == blankWidth && height == blankHeight) {
+			if (width == _blankWidth && height == _blankHeight) {
 				return bitmap;
 			}
 				
-			return Bitmap.CreateScaledBitmap (bitmap, blankWidth, blankHeight, true);
+			return Bitmap.CreateScaledBitmap (bitmap, _blankWidth, _blankHeight, true);
 		}
 			
 		public void Clear ()
 		{
-			standardIconMap.Clear ();
-			customIconMap.Clear ();
+			_standardIconMap.Clear ();
+			_customIconMap.Clear ();
 		}
 
 	}

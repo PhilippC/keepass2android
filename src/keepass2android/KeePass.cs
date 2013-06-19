@@ -18,41 +18,38 @@ using System;
 
 using Android.App;
 using Android.Content;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.OS;
-
-using keepass2android.view;
 using Android.Preferences;
 using Android.Content.PM;
 using Android.Text;
-using Android.Text.Util;
 using Android.Text.Method;
-using KeePassLib.Serialization;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Launcher activity of Keepass2Android. This activity usually forwards to FileSelect but may show the revision dialog after installation or updates.
+	/// </summary>
 	[Activity (Label = AppNames.AppName, MainLauncher = true, Theme="@style/Base")]
 	public class KeePass : LifecycleDebugActivity
 	{
-		public const Android.App.Result EXIT_NORMAL = Android.App.Result.FirstUser;
-		public const Android.App.Result EXIT_LOCK = Android.App.Result.FirstUser+1;
-		public const Android.App.Result EXIT_REFRESH = Android.App.Result.FirstUser+2;
-		public const Android.App.Result EXIT_REFRESH_TITLE = Android.App.Result.FirstUser+3;
-		public const Android.App.Result EXIT_FORCE_LOCK = Android.App.Result.FirstUser+4;
-		public const Android.App.Result EXIT_QUICK_UNLOCK = Android.App.Result.FirstUser+5;
-		public const Android.App.Result EXIT_CLOSE_AFTER_TASK_COMPLETE = Android.App.Result.FirstUser+6;
-		public const Android.App.Result EXIT_CHANGE_DB = Android.App.Result.FirstUser+7;
-		public const Android.App.Result EXIT_FORCE_LOCK_AND_CHANGE_DB = Android.App.Result.FirstUser+8;
-		public const Android.App.Result EXIT_RELOAD_DB = Android.App.Result.FirstUser+9;
+		public const Result ExitNormal = Result.FirstUser;
+		public const Result ExitLock = Result.FirstUser+1;
+		public const Result ExitRefresh = Result.FirstUser+2;
+		public const Result ExitRefreshTitle = Result.FirstUser+3;
+		public const Result ExitForceLock = Result.FirstUser+4;
+		public const Result ExitQuickUnlock = Result.FirstUser+5;
+		public const Result ExitCloseAfterTaskComplete = Result.FirstUser+6;
+		public const Result ExitChangeDb = Result.FirstUser+7;
+		public const Result ExitForceLockAndChangeDb = Result.FirstUser+8;
+		public const Result ExitReloadDb = Result.FirstUser+9;
 
-		AppTask mAppTask;
+		AppTask _appTask;
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			mAppTask = AppTask.GetTaskInOnCreate(bundle, Intent);
+			_appTask = AppTask.GetTaskInOnCreate(bundle, Intent);
 			Android.Util.Log.Debug("DEBUG","KeePass.OnCreate");
 		}
 
@@ -81,7 +78,7 @@ namespace keepass2android
 
 					ISharedPreferencesEditor edit = prefs.Edit();
 					edit.PutInt(GetString(Resource.String.LastInfoVersionCode_key), packageInfo.VersionCode);
-					EditorCompat.apply(edit);
+					EditorCompat.Apply(edit);
 				}
 				
 			} catch (PackageManager.NameNotFoundException)
@@ -102,13 +99,13 @@ namespace keepass2android
 					GetString(Resource.String.ChangeLog)
 					 };
 
-				builder.SetPositiveButton(Android.Resource.String.Ok,new EventHandler<DialogClickEventArgs>((dlgSender, dlgEvt)=>{}));
+				builder.SetPositiveButton(Android.Resource.String.Ok,(dlgSender, dlgEvt)=>{});
 				
 				builder.SetMessage("temp");
 				Dialog dialog = builder.Create();
-				dialog.DismissEvent += (object sender, EventArgs e) => 
+				dialog.DismissEvent += (sender, e) => 
 				{
-					startFileSelect();
+					StartFileSelect();
 				};
 				dialog.Show();
 				TextView message = (TextView) dialog.FindViewById(Android.Resource.Id.Message);
@@ -121,7 +118,7 @@ namespace keepass2android
 
 			} else
 			{
-				startFileSelect();
+				StartFileSelect();
 			}
 
 
@@ -159,13 +156,13 @@ namespace keepass2android
 
 		}
 		
-		private void startFileSelect() {
+		private void StartFileSelect() {
 			Intent intent = new Intent(this, typeof(FileSelectActivity));
 			//TEST Intent intent = new Intent(this, typeof(EntryActivity));
 			//Intent intent = new Intent(this, typeof(SearchActivity));
 			//Intent intent = new Intent(this, typeof(QuickUnlock));
 
-			mAppTask.ToIntent(intent);
+			_appTask.ToIntent(intent);
 
 
 			StartActivityForResult(intent, 0);

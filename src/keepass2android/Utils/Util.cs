@@ -101,20 +101,45 @@ namespace keepass2android
 				te.Text = str;
 			}
 		}
-		
+
+		/**
+	 * Indicates whether the specified action can be used as an intent. This
+	 * method queries the package manager for installed packages that can
+	 * respond to an intent with the specified action. If no suitable package is
+	 * found, this method returns false.
+	 *
+	 * @param context The application's environment.
+	 * @param action The Intent action to check for availability.
+	 *
+	 * @return True if an Intent with the specified action can be sent and
+	 *         responded to, false otherwise.
+	 */
+		static bool IsIntentAvailable(Context context, String action, String type)
+		{
+			PackageManager packageManager = context.PackageManager;
+			Intent intent = new Intent(action);
+			if (type != null)
+				intent.SetType(type);
+			IList<ResolveInfo> list =
+				packageManager.QueryIntentActivities(intent,
+													 PackageInfoFlags.MatchDefaultOnly);
+			foreach (ResolveInfo i in list)
+				Android.Util.Log.Debug("DEBUG", i.ActivityInfo.ApplicationInfo.PackageName);
+			return list.Count > 0;
+		}
 
 		public static void showBrowseDialog(string filename, Activity act, int requestCodeBrowse, bool forSaving)
 		{
-			if ((!forSaving) && (Interaction.isIntentAvailable(act, Intent.ActionGetContent, "file/*"))) {
+			if ((!forSaving) && (IsIntentAvailable(act, Intent.ActionGetContent, "file/*"))) {
 				Intent i = new Intent(Intent.ActionGetContent);
 				i.SetType("file/*");
 
 				act.StartActivityForResult(i, requestCodeBrowse);
 				return;
 			}
-			if (Interaction.isIntentAvailable(act, Intents.FILE_BROWSE, null))
+			if (IsIntentAvailable(act, Intents.FileBrowse, null))
 			{
-				Intent i = new Intent(Intents.FILE_BROWSE);
+				Intent i = new Intent(Intents.FileBrowse);
 				if (filename != null)
 					i.SetData(Android.Net.Uri.Parse("file://" + filename));
 				try

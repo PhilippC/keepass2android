@@ -16,12 +16,6 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -31,17 +25,16 @@ using KeePassLib;
 namespace keepass2android.view
 {
 	
-	public class PwGroupView : ClickView 
+	public sealed class PwGroupView : ClickView 
 	{
-		
-		protected PwGroup mPw;
-		protected GroupBaseActivity mAct;
-		protected TextView mTv;
+		private PwGroup _pwGroup;
+		private readonly GroupBaseActivity _groupBaseActivity;
+		private readonly TextView _textview;
 
-		protected const int MENU_OPEN = Menu.First;
-		private const int MENU_DELETE = MENU_OPEN + 1;
+		private const int MenuOpen = Menu.First;
+		private const int MenuDelete = MenuOpen + 1;
 		
-		public static PwGroupView getInstance(GroupBaseActivity act, PwGroup pw) {
+		public static PwGroupView GetInstance(GroupBaseActivity act, PwGroup pw) {
 
 			return new PwGroupView(act, pw);
 
@@ -51,66 +44,67 @@ namespace keepass2android.view
 		{
 			
 		}
-		protected PwGroupView(GroupBaseActivity act, PwGroup pw)
+
+		private PwGroupView(GroupBaseActivity act, PwGroup pw)
 		: base(act){
-			mAct = act;
+			_groupBaseActivity = act;
 			
-			View gv = View.Inflate(act, Resource.Layout.group_list_entry, null);
+			View gv = Inflate(act, Resource.Layout.group_list_entry, null);
 			
-			mTv = (TextView) gv.FindViewById(Resource.Id.group_text);
-			float size = PrefsUtil.getListTextSize(act); 
-			mTv.TextSize = size;
+			_textview = (TextView) gv.FindViewById(Resource.Id.group_text);
+			float size = PrefsUtil.GetListTextSize(act); 
+			_textview.TextSize = size;
 			
 			TextView label = (TextView) gv.FindViewById(Resource.Id.group_label);
 			label.TextSize = size-8;
 			
-			populateView(gv, pw);
+			PopulateView(gv, pw);
 			
-			LayoutParams lp = new LayoutParams(LayoutParams.FillParent, LayoutParams.WrapContent);
+			LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.FillParent, ViewGroup.LayoutParams.WrapContent);
 			
 			AddView(gv, lp);
 		}
 		
-		private void populateView(View gv, PwGroup pw) {
-			mPw = pw;
+		private void PopulateView(View gv, PwGroup pw) {
+			_pwGroup = pw;
 			
 			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.group_icon);
-			App.getDB().drawFactory.assignDrawableTo(iv, Resources, App.getDB().pm, pw.IconId, pw.CustomIconUuid);
+			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid);
 			
-			mTv.Text = pw.Name;
+			_textview.Text = pw.Name;
 		}
 		
-		public void convertView(PwGroup pw) {
-			populateView(this, pw);
+		public void ConvertView(PwGroup pw) {
+			PopulateView(this, pw);
 		}
 		
 		public override void OnClick() {
-			launchGroup();
+			LaunchGroup();
 		}
 		
-		private void launchGroup() {
-			GroupActivity.Launch(mAct, mPw, mAct.mAppTask);
-			mAct.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
+		private void LaunchGroup() {
+			GroupActivity.Launch(_groupBaseActivity, _pwGroup, _groupBaseActivity.AppTask);
+			_groupBaseActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
 
 		}
 		
 		public override void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo) {
-			menu.Add(0, MENU_OPEN, 0, Resource.String.menu_open);
-			menu.Add(0, MENU_DELETE, 0, Resource.String.menu_delete);
+			menu.Add(0, MenuOpen, 0, Resource.String.menu_open);
+			menu.Add(0, MenuDelete, 0, Resource.String.menu_delete);
 		}
 		
 		public override bool OnContextItemSelected(IMenuItem item) 
 		{
 			switch ( item.ItemId ) {
 				
-			case MENU_OPEN:
-				launchGroup();
+			case MenuOpen:
+				LaunchGroup();
 				return true;
 			
-			case MENU_DELETE:
+			case MenuDelete:
 				Handler handler = new Handler();
-				DeleteGroup task = new DeleteGroup(Context, App.getDB(), mPw, mAct, new GroupBaseActivity.AfterDeleteGroup(handler, mAct));
-				task.start();
+				DeleteGroup task = new DeleteGroup(Context, App.Kp2a, _pwGroup, new GroupBaseActivity.AfterDeleteGroup(handler, _groupBaseActivity));
+				task.Start();
 				return true;
 			default:
 				return false;
