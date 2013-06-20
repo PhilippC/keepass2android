@@ -46,10 +46,8 @@ namespace keepass2android.search
 		private const string GetIconPathQuery = "get_icon";
 		private const string IconIdParameter = "IconId";
 		private const string CustomIconUuidParameter = "CustomIconUuid";
-		//public static readonly String AUTHORITY = "keepass2android.search.SearchProvider";
-		//public static readonly Android.Net.Uri CONTENT_URI = Android.Net.Uri.Parse("content://" + AUTHORITY + "/dictionary");
 
-		private Database mDb;
+		private Database _db;
 
 		private static UriMatcher UriMatcher = BuildUriMatcher();
 
@@ -66,13 +64,13 @@ namespace keepass2android.search
 
 		public override bool OnCreate()
 		{
-			mDb = App.getDB();
+			_db = App.Kp2a.GetDb();
 			return true;
 		}
 
 		public override Android.Database.ICursor Query(Android.Net.Uri uri, string[] projection, string selection, string[] selectionArgs, string sortOrder)
 		{
-			if (mDb.Open) // Can't show suggestions if the database is locked!
+			if (_db.Open) // Can't show suggestions if the database is locked!
 			{
 				switch ((UriMatches)UriMatcher.Match(uri))
 				{
@@ -83,7 +81,7 @@ namespace keepass2android.search
 							try
 							{
 								var resultsContexts = new Dictionary<PwUuid, String>();
-								var result = mDb.Search(new SearchParameters { SearchString = searchString }, resultsContexts );
+								var result = _db.Search(new SearchParameters { SearchString = searchString }, resultsContexts );
 								return new GroupCursor(result, resultsContexts);
 							}
 							catch (Exception e)
@@ -112,7 +110,7 @@ namespace keepass2android.search
 					var iconId = (PwIcon)Enum.Parse(typeof(PwIcon), uri.GetQueryParameter(IconIdParameter));
 					var customIconUuid = new PwUuid(MemUtil.HexStringToByteArray(uri.GetQueryParameter(CustomIconUuidParameter)));
 
-					var iconDrawable = mDb.drawFactory.getIconDrawable(App.Context.Resources, mDb.pm, iconId, customIconUuid) as BitmapDrawable;
+					var iconDrawable = _db.DrawableFactory.GetIconDrawable(App.Context.Resources, _db.KpDatabase, iconId, customIconUuid) as BitmapDrawable;
 					if (iconDrawable != null)
 					{
 						var pipe = ParcelFileDescriptor.CreatePipe();
@@ -273,7 +271,7 @@ namespace keepass2android.search
 						intlResourceId = Resource.String.entry_url;
 						break;
 					case PwDefs.NotesField:
-						intlResourceId = Resource.String.entry_notes;
+						intlResourceId = Resource.String.entry_comment;
 						break;
 					case PwGroup.SearchContextTags:
 						intlResourceId = Resource.String.entry_tags;

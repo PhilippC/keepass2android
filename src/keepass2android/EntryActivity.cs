@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 using Android.App;
 using Android.Content;

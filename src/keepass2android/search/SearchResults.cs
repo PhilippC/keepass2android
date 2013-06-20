@@ -82,7 +82,7 @@ namespace keepass2android.search
 		private void Query (SearchParameters searchParams)
 		{
 			try {
-				Group = _db.Search (searchParams);
+				Group = _db.Search (searchParams, null);
 			} catch (Exception e) {
 				Toast.MakeText(this,e.Message, ToastLength.Long).Show();
 				Finish();
