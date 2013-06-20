@@ -383,6 +383,11 @@ namespace KeePassLib
 			peNew.m_tExpire = m_tExpire;
 			peNew.m_bExpires = m_bExpires;
 			peNew.m_uUsageCount = m_uUsageCount;
+			
+			peNew.m_tCreationLazy = m_tCreationLazy;
+			peNew.m_tLastModLazy = m_tLastModLazy;
+			peNew.m_tLastAccessLazy = m_tLastAccessLazy;
+			peNew.m_tExpireLazy = m_tExpireLazy;
 
 			peNew.m_strOverrideUrl = m_strOverrideUrl;
 

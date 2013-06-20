@@ -396,6 +396,11 @@ namespace KeePassLib
 			pg.m_bExpires = m_bExpires;
 			pg.m_uUsageCount = m_uUsageCount;
 
+			pg.m_tCreationLazy = m_tCreationLazy;
+			pg.m_tLastModLazy = m_tLastModLazy;
+			pg.m_tLastAccessLazy = m_tLastAccessLazy;
+			pg.m_tExpireLazy = m_tExpireLazy;
+
 			pg.m_bIsExpanded = m_bIsExpanded;
 			pg.m_bVirtual = m_bVirtual;
 
