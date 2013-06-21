@@ -127,8 +127,34 @@ namespace KeePassLib.Serialization
 				}
 				else m_randomStream = null; // No random stream for plain-text files
 
-				ReadXmlStreamed(readerStream, hashedStream);
-				// ReadXmlDom(readerStream);
+				// Test: read to memory
+				var stopWatch = Stopwatch.StartNew();
+				var memStream = new MemoryStream((int)hashedStream.Length);
+				CopyStream(readerStream, memStream);
+				readerStream.Close();
+				readerStream = memStream;
+				System.Diagnostics.Debug.WriteLine(String.Format("Copy input stream: {0}ms", stopWatch.ElapsedMilliseconds));
+				
+				var isXml = memStream.ReadByte() == '<';
+				memStream.Seek(0, SeekOrigin.Begin);
+					
+				if (isXml)
+				{
+					stopWatch.Restart();
+
+					ReadXmlStreamed(readerStream, hashedStream);
+					System.Diagnostics.Debug.WriteLine(String.Format("ReadXmlStreamed: {0}ms", stopWatch.ElapsedMilliseconds));
+
+				}
+				else
+				{
+					stopWatch.Restart();
+					
+					KdbpFile.ReadDocument(m_pwDatabase, readerStream, m_pbProtectedStreamKey, m_pbHashOfHeader);
+
+					System.Diagnostics.Debug.WriteLine(String.Format("KdbpFile.ReadDocument: {0}ms", stopWatch.ElapsedMilliseconds));
+
+				}
 
 				readerStream.Close();
 				// GC.KeepAlive(br);
@@ -139,6 +165,17 @@ namespace KeePassLib.Serialization
 				throw new CryptographicException(KLRes.FileCorrupted);
 			}
 			finally { CommonCleanUpRead(sSource, hashedStream); }
+		}
+
+		public static void CopyStream(Stream input, Stream output)
+		{
+			byte[] buffer = new byte[4096];
+			int read;
+			while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+			{
+				output.Write(buffer, 0, read);
+			}
+			output.Seek(0, SeekOrigin.Begin);
 		}
 
 		private void CommonCleanUpRead(Stream sSource, HashingStreamEx hashedStream)

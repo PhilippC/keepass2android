@@ -122,11 +122,16 @@ namespace KeePassLib.Serialization
 					writerStream = hashedStream;
 				else { Debug.Assert(false); throw new FormatException("KdbFormat"); }
 
+				/*
 				m_xmlWriter = new XmlTextWriter(writerStream, encNoBom);
 				WriteDocument(pgDataSource);
 
 				m_xmlWriter.Flush();
 				m_xmlWriter.Close();
+				*/
+
+				KdbpFile.WriteDocument(m_pwDatabase, writerStream, m_pbProtectedStreamKey, m_pbHashOfHeader);
+
 				writerStream.Close();
 			}
 			finally { CommonCleanUpWrite(sSaveTo, hashedStream); }
