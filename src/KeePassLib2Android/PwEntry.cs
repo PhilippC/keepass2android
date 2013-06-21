@@ -365,6 +365,7 @@ namespace KeePassLib
 			peNew.m_uuid = m_uuid; // PwUuid is immutable
 			peNew.m_pParentGroup = m_pParentGroup;
 			peNew.m_tParentGroupLastMod = m_tParentGroupLastMod;
+			peNew.m_tParentGroupLastModLazy = m_tParentGroupLastModLazy;
 
 			peNew.m_listStrings = m_listStrings.CloneDeep();
 			peNew.m_listBinaries = m_listBinaries.CloneDeep();
@@ -402,6 +403,7 @@ namespace KeePassLib
 
 			peNew.m_uuid = m_uuid; // PwUuid is immutable
 			peNew.m_tParentGroupLastMod = m_tParentGroupLastMod;
+			peNew.m_tParentGroupLastModLazy = m_tParentGroupLastModLazy;
 			// Do not assign m_pParentGroup
 
 			return peNew;
@@ -454,7 +456,7 @@ namespace KeePassLib
 			if((pwOpt & PwCompareOptions.IgnoreParentGroup) == PwCompareOptions.None)
 			{
 				if(m_pParentGroup != pe.m_pParentGroup) return false;
-				if(!bIgnoreLastMod && (m_tParentGroupLastMod != pe.m_tParentGroupLastMod))
+				if(!bIgnoreLastMod && (LocationChanged != pe.LocationChanged))
 					return false;
 			}
 
@@ -498,10 +500,10 @@ namespace KeePassLib
 			if(m_clrForeground != pe.m_clrForeground) return false;
 			if(m_clrBackground != pe.m_clrBackground) return false;
 
-			if(m_tCreation != pe.m_tCreation) return false;
-			if(!bIgnoreLastMod && (m_tLastMod != pe.m_tLastMod)) return false;
-			if(!bIgnoreLastAccess && (m_tLastAccess != pe.m_tLastAccess)) return false;
-			if(m_tExpire != pe.m_tExpire) return false;
+			if(CreationTime != pe.CreationTime) return false;
+			if(!bIgnoreLastMod && (LastModificationTime != pe.LastModificationTime)) return false;
+			if(!bIgnoreLastAccess && (LastAccessTime != pe.LastAccessTime)) return false;
+			if(ExpiryTime != pe.ExpiryTime) return false;
 			if(m_bExpires != pe.m_bExpires) return false;
 			if(!bIgnoreLastAccess && (m_uUsageCount != pe.m_uUsageCount)) return false;
 
@@ -531,14 +533,14 @@ namespace KeePassLib
 		{
 			Debug.Assert(peTemplate != null); if(peTemplate == null) throw new ArgumentNullException("peTemplate");
 
-			if(bOnlyIfNewer && (peTemplate.m_tLastMod < m_tLastMod)) return;
+			if(bOnlyIfNewer && (peTemplate.LastModificationTime < LastModificationTime)) return;
 
 			// Template UUID should be the same as the current one
 			Debug.Assert(m_uuid.EqualsValue(peTemplate.m_uuid));
 			m_uuid = peTemplate.m_uuid;
 
 			if(bAssignLocationChanged)
-				m_tParentGroupLastMod = peTemplate.m_tParentGroupLastMod;
+				m_tParentGroupLastMod = peTemplate.LocationChanged;
 
 			m_listStrings = peTemplate.m_listStrings;
 			m_listBinaries = peTemplate.m_listBinaries;
@@ -551,10 +553,10 @@ namespace KeePassLib
 			m_clrForeground = peTemplate.m_clrForeground;
 			m_clrBackground = peTemplate.m_clrBackground;
 
-			m_tCreation = peTemplate.m_tCreation;
-			m_tLastMod = peTemplate.m_tLastMod;
-			m_tLastAccess = peTemplate.m_tLastAccess;
-			m_tExpire = peTemplate.m_tExpire;
+			m_tCreation = peTemplate.CreationTime;
+			m_tLastMod = peTemplate.LastModificationTime;
+			m_tLastAccess = peTemplate.LastAccessTime;
+			m_tExpire = peTemplate.ExpiryTime;
 			m_bExpires = peTemplate.m_bExpires;
 			m_uUsageCount = peTemplate.m_uUsageCount;
 

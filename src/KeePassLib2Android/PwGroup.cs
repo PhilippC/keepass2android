@@ -382,6 +382,7 @@ namespace KeePassLib
 			pg.m_listEntries = m_listEntries.CloneDeep();
 			pg.m_pParentGroup = m_pParentGroup;
 			pg.m_tParentGroupLastMod = m_tParentGroupLastMod;
+			pg.m_tParentGroupLastModLazy = m_tParentGroupLastModLazy;
 
 			pg.m_strName = m_strName;
 			pg.m_strNotes = m_strNotes;
@@ -441,7 +442,7 @@ namespace KeePassLib
 		{
 			Debug.Assert(pgTemplate != null); if(pgTemplate == null) throw new ArgumentNullException("pgTemplate");
 
-			if(bOnlyIfNewer && (pgTemplate.m_tLastMod < m_tLastMod)) return;
+			if(bOnlyIfNewer && (pgTemplate.LastModificationTime < LastModificationTime)) return;
 
 			// Template UUID should be the same as the current one
 			Debug.Assert(m_uuid.EqualsValue(pgTemplate.m_uuid));
@@ -456,10 +457,10 @@ namespace KeePassLib
 			m_pwIcon = pgTemplate.m_pwIcon;
 			m_pwCustomIconID = pgTemplate.m_pwCustomIconID;
 
-			m_tCreation = pgTemplate.m_tCreation;
-			m_tLastMod = pgTemplate.m_tLastMod;
-			m_tLastAccess = pgTemplate.m_tLastAccess;
-			m_tExpire = pgTemplate.m_tExpire;
+			m_tCreation = pgTemplate.CreationTime;
+			m_tLastMod = pgTemplate.LastModificationTime;
+			m_tLastAccess = pgTemplate.LastAccessTime;
+			m_tExpire = pgTemplate.ExpiryTime;
 			m_bExpires = pgTemplate.m_bExpires;
 			m_uUsageCount = pgTemplate.m_uUsageCount;
 
