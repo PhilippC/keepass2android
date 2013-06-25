@@ -1,5 +1,6 @@
 using System;
 using Android.Content;
+using Android.OS;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -49,5 +50,12 @@ namespace keepass2android
             EventHandler<DialogClickEventArgs> noHandler, 
             EventHandler<DialogClickEventArgs> cancelHandler, 
             Context ctx);
+
+		/// <summary>
+		/// Returns a Handler object which can run tasks on the UI thread
+		/// </summary>
+		Handler UiThreadHandler { get; }
+
+		IProgressDialog CreateProgressDialog(Context ctx);
     }
 }

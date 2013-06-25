@@ -82,18 +82,18 @@ namespace keepass2android
 			gotoUrl(context, donateUrl);
 		}
 		
-		public static String getEditText(Activity act, int resId) {
+		public static String GetEditText(Activity act, int resId) {
 			TextView te =  (TextView) act.FindViewById(resId);
 			System.Diagnostics.Debug.Assert(te != null);
 			
 			if (te != null) {
-				return te.Text.ToString();
+				return te.Text;
 			} else {
 				return "";
 			}
 		}
 		
-		public static void setEditText(Activity act, int resId, String str) {
+		public static void SetEditText(Activity act, int resId, String str) {
 			TextView te =  (TextView) act.FindViewById(resId);
 			System.Diagnostics.Debug.Assert(te != null);
 			

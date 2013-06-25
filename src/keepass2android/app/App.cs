@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.App;
 using Android.Content;
+using Android.OS;
 using Android.Runtime;
 using KeePassLib.Serialization;
 using Android.Preferences;
@@ -177,9 +178,51 @@ namespace keepass2android
 
         }
 
+		public Handler UiThreadHandler 
+		{
+			get { return new Handler(); }
+		}
+
+		/// <summary>
+		/// Simple wrapper around ProgressDialog implementing IProgressDialog
+		/// </summary>
+		private class RealProgressDialog : IProgressDialog
+		{
+			private readonly ProgressDialog _pd;
+
+			public RealProgressDialog(Context ctx)
+			{
+				this._pd = new ProgressDialog(ctx);
+			}
+
+			public void SetTitle(string title)
+			{
+				_pd.SetTitle(title);
+			}
+
+			public void SetMessage(string message)
+			{
+				_pd.SetMessage(message);
+			}
+
+			public void Dismiss()
+			{
+				_pd.Dismiss();
+			}
+
+			public void Show()
+			{
+				_pd.Show();
+			}
+		}
+
+		public IProgressDialog CreateProgressDialog(Context ctx)
+		{
+			return new RealProgressDialog(ctx);
+		}
 
 
-        internal void OnTerminate()
+		internal void OnTerminate()
         {
             if (_db != null)
             {

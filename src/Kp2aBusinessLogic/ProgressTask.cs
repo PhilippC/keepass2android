@@ -28,16 +28,17 @@ namespace keepass2android
 	public class ProgressTask {
 		private readonly Handler _handler;
 		private readonly RunnableOnFinish _task;
-		private readonly ProgressDialog _progressDialog;
+		private readonly IProgressDialog _progressDialog;
         private readonly IKp2aApp _app;
+		private Thread _thread;
 
 		public ProgressTask(IKp2aApp app, Context ctx, RunnableOnFinish task, UiStringKey messageKey) {
 			_task = task;
-			_handler = new Handler();
+			_handler = app.UiThreadHandler;
             _app = app;
 			
 			// Show process dialog
-			_progressDialog = new ProgressDialog(ctx);
+			_progressDialog = app.CreateProgressDialog(ctx);
 			_progressDialog.SetTitle(_app.GetResourceString(UiStringKey.progress_title));
             _progressDialog.SetMessage(_app.GetResourceString(messageKey));
 			
@@ -53,25 +54,37 @@ namespace keepass2android
 			
 			
 			// Start Thread to Run task
-			Thread t = new Thread(_task.Run);
-			t.Start();
+			_thread = new Thread(_task.Run);
+			_thread.Start();
 			
+		}
+
+		public void JoinWorkerThread()
+		{
+			_thread.Join();
 		}
 		
 		private class AfterTask : OnFinish {
-			readonly ProgressDialog _progressDialog;
+			readonly IProgressDialog _progressDialog;
 
-			public AfterTask (OnFinish finish, Handler handler, ProgressDialog pd): base(finish, handler)
+			public AfterTask (OnFinish finish, Handler handler, IProgressDialog pd): base(finish, handler)
 			{
 				_progressDialog = pd;
 			}
 
 			public override void Run() {
 				base.Run();
-				
-				// Remove the progress dialog
-				Handler.Post(delegate {_progressDialog.Dismiss();});
-				
+
+				if (Handler != null) //can be null in tests
+				{
+					// Remove the progress dialog
+					Handler.Post(delegate { _progressDialog.Dismiss(); });
+				}
+				else
+				{
+					_progressDialog.Dismiss();
+				}
+
 			}
 			
 		}

@@ -517,7 +517,7 @@ namespace keepass2android
 		}
 	
 		private String GetEditText(int resId) {
-			return Util.getEditText(this, resId);
+			return Util.GetEditText(this, resId);
 		}
 		
 		private void SetEditText(int resId, String str) {

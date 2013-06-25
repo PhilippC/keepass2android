@@ -81,7 +81,8 @@ namespace MonoDroidUnitTesting {
 
       ISharedPreferencesEditor e = GetPreferences().Edit();
       e.PutString(ACTIVITY_PREFS_NAME, typeof(TestClassResultActivity).Name);
-      e.PutString(INTENT_PARAM_NAME, this.m_testClass.Class.AssemblyQualifiedName);
+	  if (m_testClass != null)
+        e.PutString(INTENT_PARAM_NAME, this.m_testClass.Class.AssemblyQualifiedName);
       e.Commit();
     }
 

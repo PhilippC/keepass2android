@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using Android.Content;
 using KeePassLib;
+using KeePassLib.Keys;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -95,21 +96,36 @@ namespace keepass2android
 
 			PwDatabase pwDatabase = new PwDatabase();
 
-			KeePassLib.Keys.CompositeKey key = new KeePassLib.Keys.CompositeKey();
-			key.AddUserKey(new KeePassLib.Keys.KcpPassword(password));
+			CompositeKey compositeKey = new CompositeKey();
+			compositeKey.AddUserKey(new KcpPassword(password));
 			if (!String.IsNullOrEmpty(keyfile))
 			{
 
 				try
 				{
-					key.AddUserKey(new KeePassLib.Keys.KcpKeyFile(keyfile));
+					compositeKey.AddUserKey(new KcpKeyFile(keyfile));
 				} catch (Exception)
 				{
 					throw new KeyFileException();
 				}
 			}
 			
-			pwDatabase.Open(iocInfo, key, status);
+			try
+			{
+				pwDatabase.Open(iocInfo, compositeKey, status);
+			}
+			catch (Exception)
+			{
+				if ((password == "") && (keyfile != null))
+				{
+					//if we don't get a password, we don't know whether this means "empty password" or "no password"
+					//retry without password:
+					compositeKey.RemoveUserKey(compositeKey.GetUserKey(typeof (KcpPassword)));
+					pwDatabase.Open(iocInfo, compositeKey, status);
+				}
+				else throw;
+			}
+			
 
 			if (iocInfo.IsLocalFile())
 			{

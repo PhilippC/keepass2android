@@ -399,24 +399,24 @@ namespace keepass2android
 			EntryEditActivity act = this;
 
 			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectTitle,
-			                                                            Util.getEditText(act, Resource.Id.entry_title)));
+			                                                            Util.GetEditText(act, Resource.Id.entry_title)));
 			entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectUserName,
-			                                                               Util.getEditText(act, Resource.Id.entry_user_name)));
+			                                                               Util.GetEditText(act, Resource.Id.entry_user_name)));
 			
-			String pass = Util.getEditText(act, Resource.Id.entry_password);
+			String pass = Util.GetEditText(act, Resource.Id.entry_password);
 			byte[] password = StrUtil.Utf8.GetBytes(pass);
 			entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectPassword,
 			                                                               password));
 			MemUtil.ZeroByteArray(password);
 			
 			entry.Strings.Set(PwDefs.UrlField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectUrl,
-			                                                          Util.getEditText(act, Resource.Id.entry_url)));
+			                                                          Util.GetEditText(act, Resource.Id.entry_url)));
 			entry.Strings.Set(PwDefs.NotesField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectNotes,
-			                                                            Util.getEditText(act, Resource.Id.entry_comment)));
+			                                                            Util.GetEditText(act, Resource.Id.entry_comment)));
 		
 			// Validate expiry date
 			DateTime newExpiry = new DateTime();
-			if ((State.Entry.Expires) && (!DateTime.TryParse( Util.getEditText(this,Resource.Id.entry_expires), out newExpiry)))
+			if ((State.Entry.Expires) && (!DateTime.TryParse( Util.GetEditText(this,Resource.Id.entry_expires), out newExpiry)))
 			{
 				//ignore here
 			}
@@ -454,9 +454,9 @@ namespace keepass2android
 			}
 			
 
-			entry.OverrideUrl = Util.getEditText(this,Resource.Id.entry_override_url);
+			entry.OverrideUrl = Util.GetEditText(this,Resource.Id.entry_override_url);
 			
-			List<string> vNewTags = StrUtil.StringToTags(Util.getEditText(this,Resource.Id.entry_tags));
+			List<string> vNewTags = StrUtil.StringToTags(Util.GetEditText(this,Resource.Id.entry_tags));
 			entry.Tags.Clear();
 			foreach(string strTag in vNewTags) entry.AddTag(strTag);
 			
@@ -850,15 +850,15 @@ namespace keepass2android
 
 		protected bool ValidateBeforeSaving() {
 			// Require title
-			String title = Util.getEditText(this, Resource.Id.entry_title);
+			String title = Util.GetEditText(this, Resource.Id.entry_title);
 			if ( title.Length == 0 ) {
 				Toast.MakeText(this, Resource.String.error_title_required, ToastLength.Long).Show();
 				return false;
 			}
 			
 			// Validate password
-			String pass = Util.getEditText(this, Resource.Id.entry_password);
-			String conf = Util.getEditText(this, Resource.Id.entry_confpassword);
+			String pass = Util.GetEditText(this, Resource.Id.entry_password);
+			String conf = Util.GetEditText(this, Resource.Id.entry_confpassword);
 			if ( ! pass.Equals(conf) ) {
 				Toast.MakeText(this, Resource.String.error_pass_match, ToastLength.Long).Show();
 				return false;
@@ -866,7 +866,7 @@ namespace keepass2android
 
 			// Validate expiry date
 			DateTime newExpiry = new DateTime();
-			if ((State.Entry.Expires) && (!DateTime.TryParse( Util.getEditText(this,Resource.Id.entry_expires), out newExpiry)))
+			if ((State.Entry.Expires) && (!DateTime.TryParse( Util.GetEditText(this,Resource.Id.entry_expires), out newExpiry)))
 		    {
 				Toast.MakeText(this, Resource.String.error_invalid_expiry_date, ToastLength.Long).Show();
 				return false;

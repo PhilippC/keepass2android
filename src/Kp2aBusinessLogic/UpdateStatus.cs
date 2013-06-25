@@ -26,7 +26,7 @@ namespace keepass2android
 	/// StatusLogger implementation which shows the progress in a progress dialog
 	/// </summary>
 	public class UpdateStatus: IStatusLogger {
-		private readonly ProgressDialog _progressDialog;
+		private readonly IProgressDialog _progressDialog;
 		readonly IKp2aApp _app;
 		private readonly Handler _handler;
 		
@@ -34,7 +34,7 @@ namespace keepass2android
 			
 		}
 		
-		public UpdateStatus(IKp2aApp app, Handler handler, ProgressDialog pd) {
+		public UpdateStatus(IKp2aApp app, Handler handler, IProgressDialog pd) {
 			_app = app;
 			_progressDialog = pd;
 			_handler = handler;

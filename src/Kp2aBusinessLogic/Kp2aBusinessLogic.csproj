@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProgressDialog.cs" />
     <Compile Include="PreferenceKey.cs" />
     <Compile Include="UiStringKey.cs" />
     <Compile Include="database\Database.cs" />

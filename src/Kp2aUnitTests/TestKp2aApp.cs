@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.Content;
+using Android.OS;
 using KeePassLib.Serialization;
 using keepass2android;
 
@@ -49,6 +50,14 @@ namespace Kp2aUnitTests
 		                           EventHandler<DialogClickEventArgs> cancelHandler, Context ctx)
 		{
 			yesHandler(null, null);
+		}
+
+		public Handler UiThreadHandler {
+			get { return null; } //ensure everything runs in the same thread. Otherwise the OnFinish-callback would run after the test has already finished (with failure)
+		}
+		public IProgressDialog CreateProgressDialog(Context ctx)
+		{
+			return new ProgressDialogStub();
 		}
 	}
 }

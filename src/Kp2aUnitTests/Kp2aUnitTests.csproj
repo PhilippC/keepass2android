@@ -46,11 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgressDialogStub.cs" />
+    <Compile Include="TestBase.cs" />
     <Compile Include="TestDrawableFactory.cs" />
     <Compile Include="TestCreateDb.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestKp2aApp.cs" />
+    <Compile Include="TestLoadDb.cs" />
+    <Compile Include="TestSaveDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -1,9 +1,10 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Android.App;
 using Java.IO;
 using KeePassLib;
+using KeePassLib.Interfaces;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,15 +13,15 @@ using keepass2android;
 namespace Kp2aUnitTests
 {
 	[TestClass]
-	class TestCreateDb
+	class TestCreateDb: TestBase
 	{
 		[TestMethod]
 		public void CreateAndSaveLocal()
 		{
 			IKp2aApp app = new TestKp2aApp();
-			IOConnectionInfo ioc = new IOConnectionInfo {Path = "/mnt/sdcard/kp2atest/savetest.kdbx"};
+			IOConnectionInfo ioc = new IOConnectionInfo {Path = DefaultFilename};
 
-			File outputDir = new File("/mnt/sdcard/kp2atest/");
+			File outputDir = new File(DefaultDirectory);
 			outputDir.Mkdirs();
 			File targetFile = new File(ioc.Path);
 			if (targetFile.Exists())
@@ -45,6 +46,10 @@ namespace Kp2aUnitTests
 			PwDatabase loadedDb = new PwDatabase();
 			loadedDb.Open(ioc, new CompositeKey(), null);
 
+			//Check whether the databases are equal
+			AssertDatabasesAreEqual(loadedDb, app.GetDb().KpDatabase);
+			
+			
 			
 		}
 	}

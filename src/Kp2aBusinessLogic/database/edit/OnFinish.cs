@@ -58,15 +58,14 @@ namespace keepass2android
 		}
 		
 		public virtual void Run() {
-			if ( BaseOnFinish != null ) {
-				// Pass on result on call finish
-				BaseOnFinish.SetResult(Success, Message);
+			if (BaseOnFinish == null) return;
+			// Pass on result on call finish
+			BaseOnFinish.SetResult(Success, Message);
 				
-				if ( Handler != null ) {
-					Handler.Post(BaseOnFinish.Run); 
-				} else {
-					BaseOnFinish.Run();
-				}
+			if ( Handler != null ) {
+				Handler.Post(BaseOnFinish.Run); 
+			} else {
+				BaseOnFinish.Run();
 			}
 		}
 		

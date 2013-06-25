@@ -41,15 +41,17 @@ namespace keepass2android
 		
 		public override void Run ()
 		{
-			try {
+			try
+			{
 				_app.GetDb().LoadData (_app, _ioc, _pass, _key, Status);
-				
 				SaveFileData (_ioc, _key);
 				
 			} catch (KeyFileException) {
+				Android.Util.Log.Debug("KP2ATest", "KeyFileException");
 				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/ _app.GetResourceString(UiStringKey.keyfile_does_not_exist));
 			}
 			catch (Exception e) {
+				Android.Util.Log.Debug("KP2ATest", "Exception: "+e.Message);
 				Finish(false, "An error occured: " + e.Message);
 				return;
 			} 
@@ -85,6 +87,7 @@ namespace keepass2android
 				return;
 			}
 			*/
+			Android.Util.Log.Debug("KP2ATest", "LoadDB OK");
 			Finish(true);
 		}
 		

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -18,7 +18,9 @@ namespace Kp2aUnitTests
         {
             TestRunner runner = new TestRunner();
             // Run all tests from this assembly
-            runner.AddTests(Assembly.GetExecutingAssembly());
+            //runner.AddTests(Assembly.GetExecutingAssembly());
+			runner.AddTests(new List<Type> { typeof(TestLoadDb)});
+			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadWithPasswordOnly"));}}
             return runner;
         }
     }
