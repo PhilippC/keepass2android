@@ -54,7 +54,6 @@ namespace keepass2android
 			
 			// Set Database state
 			db.Root = db.KpDatabase.RootGroup;
-			db.Ioc = _ioc;
 			db.Loaded = true;
 			db.SearchHelper = new SearchDbHelper(_app);
 

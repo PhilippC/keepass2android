@@ -28,12 +28,12 @@ namespace Kp2aUnitTests
 				   item =>
 					   {
 						   IStructureItem foundItem = db2.RootGroup.FindObject(item.Uuid, true, null);
-						   Assert.IsNotNull(foundItem);
-						   Assert.IsTrue(item.ParentGroup.Uuid.EqualsValue(foundItem.ParentGroup.Uuid));
+						   Assert.IsNotNull(foundItem, "didn't find item with uuid="+item.Uuid.ToHexString());
+						   Assert.IsTrue(item.ParentGroup.Uuid.EqualsValue(foundItem.ParentGroup.Uuid), "item.ParentGroup.Uuid ("+item.ParentGroup.Uuid+") != " + foundItem.ParentGroup.Uuid);
 					   }
 				);
 
-			Assert.AreEqual(db1.RootGroup.GetObjects(true,null).Count(),db2.RootGroup.GetObjects(true,null).Count());
+			Assert.AreEqual(db1.RootGroup.GetObjects(true,null).Count(),db2.RootGroup.GetObjects(true,null).Count(), "Wrong Object Count");
 		}
 
 		protected static string DefaultDirectory
@@ -56,19 +56,27 @@ namespace Kp2aUnitTests
 			get { return "secretpassword!"; }
 		}
 
-		protected IKp2aApp LoadDatabase(string defaultFilename, string password, string keyfile)
+		protected string TestDbDirectory
+		{
+			get { return DefaultDirectory + "savedWithDesktop/"; }
+		}
+
+		protected IKp2aApp LoadDatabase(string filename, string password, string keyfile)
 		{
 			IKp2aApp app = new TestKp2aApp();
-			Handler handler = new Handler(Looper.MainLooper);
+			app.CreateNewDatabase();
 			bool loadSuccesful = false;
-			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = defaultFilename }, password, keyfile, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = filename }, password, keyfile, new ActionOnFinish((success, message) =>
 				{
-					loadSuccesful = success; if (!success)
-						Assert.Fail(message);
+					if (!success)
+						Android.Util.Log.Debug("KP2ATest", message);
+					loadSuccesful = success; 
+						
 				})
 				);
 			ProgressTask pt = new ProgressTask(app, Application.Context, task, UiStringKey.loading_database);
 			pt.Run();
+			pt.JoinWorkerThread();
 			Assert.IsTrue(loadSuccesful);
 			return app;
 		}
@@ -78,8 +86,7 @@ namespace Kp2aUnitTests
 			bool saveSuccesful = false;
 			SaveDb save = new SaveDb(Application.Context, app.GetDb(), new ActionOnFinish((success, message) =>
 				{
-					saveSuccesful = success; if (!success)
-						Assert.Fail(message);
+					saveSuccesful = success; 
 				}), false);
 			save.Run();
 
@@ -93,9 +100,12 @@ namespace Kp2aUnitTests
 			Database db = app.CreateNewDatabase();
 
 			db.KpDatabase = new PwDatabase();
-			//Key will be changed/created immediately after creation:
-			CompositeKey tempKey = new CompositeKey();
-			db.KpDatabase.New(ioc, tempKey);
+			
+			CompositeKey compositeKey = new CompositeKey();
+			compositeKey.AddUserKey(new KcpPassword(DefaultPassword));
+			if (!String.IsNullOrEmpty(DefaultKeyfile))
+				compositeKey.AddUserKey(new KcpKeyFile(DefaultKeyfile));
+			db.KpDatabase.New(ioc, compositeKey);
 
 
 			db.KpDatabase.KeyEncryptionRounds = 3;
@@ -104,7 +114,6 @@ namespace Kp2aUnitTests
 
 			// Set Database state
 			db.Root = db.KpDatabase.RootGroup;
-			db.Ioc = ioc;
 			db.Loaded = true;
 			db.SearchHelper = new SearchDbHelper(app);
 

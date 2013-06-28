@@ -30,8 +30,7 @@ namespace Kp2aUnitTests
 			bool createSuccesful = false;
 			//create the task:
 			CreateDb createDb = new CreateDb(app, Application.Context, ioc, new ActionOnFinish((success, message) =>
-				{ createSuccesful = success; if (!success) 
-					Assert.Fail(message);
+				{ createSuccesful = success; 
 				}), false);
 			//run it:
 			createDb.Run();

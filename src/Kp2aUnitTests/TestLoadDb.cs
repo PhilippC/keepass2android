@@ -11,12 +11,6 @@ namespace Kp2aUnitTests
 	[TestClass]
 	internal class TestLoadDb : TestBase
 	{
-		private string TestDbDirectory
-		{
-			get { return DefaultDirectory + "savedWithDesktop/"; }
-		}
-
-
 		private void RunLoadTest(string filenameWithoutDir, string password, string keyfile)
 		{
 			Android.Util.Log.Debug("KP2ATest", "Starting for " + filenameWithoutDir+" with " + password+"/"+keyfile);

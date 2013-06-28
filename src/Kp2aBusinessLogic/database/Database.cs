@@ -33,7 +33,7 @@ namespace keepass2android
 		public HashSet<PwGroup> Dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
 		public PwGroup Root;
 		public PwDatabase KpDatabase;
-		public IOConnectionInfo Ioc;
+		public IOConnectionInfo Ioc { get { return KpDatabase.IOConnectionInfo; } }
 		public DateTime LastChangeDate;
 		public SearchDbHelper SearchHelper;
 		
@@ -92,8 +92,6 @@ namespace keepass2android
 		
 		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, String password, String keyfile, UpdateStatus status)
 		{
-			Ioc = iocInfo;
-
 			PwDatabase pwDatabase = new PwDatabase();
 
 			CompositeKey compositeKey = new CompositeKey();
@@ -212,7 +210,6 @@ namespace keepass2android
 			
 			Root = null;
 			KpDatabase = null;
-			Ioc = null;
 			_loaded = false;
 			_locked = false;
 			_reloadRequested = false;

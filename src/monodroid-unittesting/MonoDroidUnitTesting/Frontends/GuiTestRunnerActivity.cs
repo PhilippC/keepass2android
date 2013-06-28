@@ -143,11 +143,11 @@ namespace MonoDroidUnitTesting {
       foreach (TestClass testClass in runner.GetTestClassesSorted(CompareResults)) {
         this.ListAdapter.Add(testClass);
       }
-
+		/*
       // Restore previous activity
       if (!TestMethodResultActivity.RestoreActivity(this)) {
         TestClassResultActivity.RestoreActivity(this);
-      }
+      }*/
     }
 
     private bool RunOnTestRunEnded() {
