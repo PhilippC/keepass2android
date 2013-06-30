@@ -588,7 +588,7 @@ namespace KeePassLib
 				kdbx.DetachBinaries = m_strDetachBins;
 
 				Stream s = IOConnection.OpenRead(ioSource);
-				kdbx.Load(s, KdbxFormat.Default, slLogger);
+				kdbx.Load(s, KdbpFile.GetFormatToUse(ioSource), slLogger);
 				s.Close();
 
 				m_pbHashOfLastIO = kdbx.HashOfFileOnDisk;
@@ -623,7 +623,7 @@ namespace KeePassLib
 				Stream s = ft.OpenWrite();
 
 				KdbxFile kdb = new KdbxFile(this);
-				kdb.Save(s, null, KdbxFormat.Default, slLogger);
+				kdb.Save(s, null, KdbpFile.GetFormatToUse(m_ioSource), slLogger);
 
 				ft.CommitWrite();
 

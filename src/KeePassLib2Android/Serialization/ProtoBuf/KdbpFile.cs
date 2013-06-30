@@ -1,18 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using ProtoBuf;
 using System.Drawing;
-using KeePassLib.Collections;
-using KeePassLib.Security;
-using KeePassLib.Cryptography;
 using System.IO;
+using KeePassLib.Collections;
+using KeePassLib.Cryptography;
+using KeePassLib.Security;
+using KeePassLib.Utility;
+using ProtoBuf;
 using ProtoBuf.Meta;
 
 namespace KeePassLib.Serialization
 {
 	internal class KdbpFile
 	{
+		public const string FileNameExtension = "kdbp";
+
+		/// <summary>
+		/// Determines whether the database pointed to by the specified ioc should be (de)serialised in default (xml) or protocol buffers format.
+		/// </summary>
+		public static KdbxFormat GetFormatToUse(IOConnectionInfo ioc)
+		{
+			// If the filename ends in .kdbp, use ProtocolBuffers format.
+			return UrlUtil.GetExtension(UrlUtil.GetFileName(ioc.Path)).Equals(KdbpFile.FileNameExtension, StringComparison.OrdinalIgnoreCase) ? KdbxFormat.ProtocolBuffers : KdbxFormat.Default;
+		}
+
 		public static void WriteDocument(PwDatabase database, Stream stream, byte[] protectedStreamKey, byte[] hashOfHeader)
 		{
 			var context = new SerializationContext 

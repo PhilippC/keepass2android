@@ -82,7 +82,7 @@ namespace KeePassLib.Serialization
 				BinaryReaderEx brDecrypted = null;
 				Stream readerStream = null;
 
-				if(kdbFormat == KdbxFormat.Default)
+				if(kdbFormat == KdbxFormat.Default || kdbFormat == KdbxFormat.ProtocolBuffers)
 				{
 					br = new BinaryReaderEx(hashedStream, encNoBom, KLRes.FileCorrupted);
 					ReadHeader(br);
@@ -127,33 +127,20 @@ namespace KeePassLib.Serialization
 				}
 				else m_randomStream = null; // No random stream for plain-text files
 
-				// Test: read to memory
 				var stopWatch = Stopwatch.StartNew();
-				var memStream = new MemoryStream((int)hashedStream.Length);
-				CopyStream(readerStream, memStream);
-				readerStream.Close();
-				readerStream = memStream;
-				System.Diagnostics.Debug.WriteLine(String.Format("Copy input stream: {0}ms", stopWatch.ElapsedMilliseconds));
 				
-				var isXml = memStream.ReadByte() == '<';
-				memStream.Seek(0, SeekOrigin.Begin);
-					
-				if (isXml)
+				if (kdbFormat == KdbxFormat.ProtocolBuffers)
 				{
-					stopWatch.Restart();
-
-					ReadXmlStreamed(readerStream, hashedStream);
-					System.Diagnostics.Debug.WriteLine(String.Format("ReadXmlStreamed: {0}ms", stopWatch.ElapsedMilliseconds));
-
-				}
-				else
-				{
-					stopWatch.Restart();
-					
 					KdbpFile.ReadDocument(m_pwDatabase, readerStream, m_pbProtectedStreamKey, m_pbHashOfHeader);
 
 					System.Diagnostics.Debug.WriteLine(String.Format("KdbpFile.ReadDocument: {0}ms", stopWatch.ElapsedMilliseconds));
 
+				}
+				else
+				{
+					ReadXmlStreamed(readerStream, hashedStream);
+
+					System.Diagnostics.Debug.WriteLine(String.Format("ReadXmlStreamed: {0}ms", stopWatch.ElapsedMilliseconds));
 				}
 
 				readerStream.Close();
