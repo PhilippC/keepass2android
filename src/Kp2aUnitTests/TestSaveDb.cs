@@ -39,6 +39,39 @@ namespace Kp2aUnitTests
 		}
 
 		[TestMethod]
+		public void TestLoadEditSaveWithSync()
+		{
+			//create the default database:
+			IKp2aApp app = SetupAppWithDefaultDatabase();
+			//save it and reload it so we have a base version
+			SaveDatabase(app);
+			app = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			//load it once again:
+			IKp2aApp app2 = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+
+			//modify the database by adding a group in both databases:
+			app.GetDb().KpDatabase.RootGroup.AddGroup(new PwGroup(true, true, "TestGroup", PwIcon.Apple), true);
+			var group2 = new PwGroup(true, true, "TestGroup2", PwIcon.Energy);
+			app2.GetDb().KpDatabase.RootGroup.AddGroup(group2, true);
+			//save the database from app 1:
+			SaveDatabase(app);
+
+			//save the database from app 2: This save operation must detect the changes made from app 1 and ask if it should sync:
+			SaveDatabase(app2);
+
+			//add group 2 to app 1:
+			app.GetDb().KpDatabase.RootGroup.AddGroup(group2, true);
+
+			//load database to a new app instance:
+			IKp2aApp resultApp = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+
+			//ensure the sync was successful:
+			AssertDatabasesAreEqual(app.GetDb().KpDatabase, resultApp.GetDb().KpDatabase);
+
+			Assert.IsTrue(false, "todo: test for sync question, test overwrite or cancel!");
+		}
+
+		[TestMethod]
 		public void TestLoadAndSave_TestIdenticalFiles()
 		{
 			IKp2aApp app = LoadDatabase(DefaultDirectory + "complexDb.kdbx", "test", null);

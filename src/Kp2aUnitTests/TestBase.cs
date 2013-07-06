@@ -69,7 +69,7 @@ namespace Kp2aUnitTests
 			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = filename }, password, keyfile, new ActionOnFinish((success, message) =>
 				{
 					if (!success)
-						Android.Util.Log.Debug("KP2ATest", message);
+						Kp2aLog.Log(message);
 					loadSuccesful = success; 
 						
 				})
