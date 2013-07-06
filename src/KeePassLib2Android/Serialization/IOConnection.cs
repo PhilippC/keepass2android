@@ -34,6 +34,7 @@ using System.Net.Security;
 
 using KeePassLib.Native;
 using KeePassLib.Utility;
+using keepass2android;
 
 namespace KeePassLib.Serialization
 {
@@ -211,10 +212,10 @@ namespace KeePassLib.Serialization
 						wc.Credentials = credentialCache;
 					} catch (NotImplementedException e)
 					{ 
-						Android.Util.Log.Debug("DEBUG", e.ToString());
+						Kp2aLog.Log(e.ToString());
 					} catch (Exception e)
 					{ 
-						Android.Util.Log.Debug("DEBUG", e.ToString());
+						Kp2aLog.Log(e.ToString());
 						Debug.Assert(false); 
 					}
 				}

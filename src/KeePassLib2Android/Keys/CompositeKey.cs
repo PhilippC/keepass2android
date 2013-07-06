@@ -28,6 +28,7 @@ using KeePassLib.Native;
 using KeePassLib.Resources;
 using KeePassLib.Security;
 using KeePassLib.Utility;
+using keepass2android;
 
 namespace KeePassLib.Keys
 {
@@ -266,7 +267,7 @@ namespace KeePassLib.Keys
 			if (NativeLib.TransformKey256(pbNewKey, pbKeySeed32, uNumRounds))
 			{
 				sw.Stop();
-				Android.Util.Log.Debug("DEBUG", "Native transform:" +sw.ElapsedMilliseconds+"ms");
+				Kp2aLog.Log("Native transform:" +sw.ElapsedMilliseconds+"ms");
 				return pbNewKey;
 			}
 
@@ -274,7 +275,7 @@ namespace KeePassLib.Keys
 			if(TransformKeyManaged(pbNewKey, pbKeySeed32, uNumRounds) == false)
 				return null;
 			sw.Stop();
-			Android.Util.Log.Debug("DEBUG", "Managed transform:" +sw.ElapsedMilliseconds+"ms");
+			Kp2aLog.Log("Managed transform:" +sw.ElapsedMilliseconds+"ms");
 
 			SHA256Managed sha256 = new SHA256Managed();
 			return sha256.ComputeHash(pbNewKey);
