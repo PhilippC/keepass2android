@@ -18,8 +18,8 @@
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-	<style name="NoTitleBar" parent="android:Theme.NoTitleBar"></style>
-    <style name="NoTitleBar" parent="android:Theme.NoTitleBar"></style>
+	<style name="Base"></style>
+	<style name="NoTitleBar"></style>
     <style name="Dialog" parent="android:Theme.Dialog"></style>
 	<style name="GroupTextSmall" parent="android:Theme">
 		<item name="@android:textColor">@color/group</item>
