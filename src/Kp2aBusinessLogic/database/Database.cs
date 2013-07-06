@@ -76,6 +76,7 @@ namespace keepass2android
 			}
 			set
 			{
+				Kp2aLog.Log("Locked=" + _locked);
 				_locked = value;
 			}
 		}

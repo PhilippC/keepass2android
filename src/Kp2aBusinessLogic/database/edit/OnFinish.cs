@@ -76,6 +76,7 @@ namespace keepass2android
 		public static void DisplayMessage(Context ctx, string message)
 		{
 			if ( !String.IsNullOrEmpty(message) ) {
+				Kp2aLog.Log("OnFinish message: "+message);
 				Toast.MakeText(ctx, message, ToastLength.Long).Show();
 			}
 		}

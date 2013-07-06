@@ -47,11 +47,11 @@ namespace keepass2android
 				SaveFileData (_ioc, _key);
 				
 			} catch (KeyFileException) {
-				Android.Util.Log.Debug("KP2ATest", "KeyFileException");
+				Kp2aLog.Log("KeyFileException");
 				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/ _app.GetResourceString(UiStringKey.keyfile_does_not_exist));
 			}
 			catch (Exception e) {
-				Android.Util.Log.Debug("KP2ATest", "Exception: "+e.Message);
+				Kp2aLog.Log("Exception: " + e.Message);
 				Finish(false, "An error occured: " + e.Message);
 				return;
 			} 
@@ -87,7 +87,7 @@ namespace keepass2android
 				return;
 			}
 			*/
-			Android.Util.Log.Debug("KP2ATest", "LoadDB OK");
+			Kp2aLog.Log("LoadDB OK");
 			Finish(true);
 		}
 		
