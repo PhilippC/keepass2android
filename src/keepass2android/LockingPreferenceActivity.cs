@@ -49,39 +49,39 @@ namespace keepass2android
 		{
 			base.OnResume();
 			TimeoutHelper.Resume(this);
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnResume");
+			Kp2aLog.Log(ClassName+".OnResume");
 		}
 		
 		protected override void OnStart()
 		{
 			base.OnStart();
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnStart");
+			Kp2aLog.Log(ClassName+".OnStart");
 		}
 		
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnCreate");
+			Kp2aLog.Log(ClassName+".OnCreate");
 		}
 		
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
 			GC.Collect();
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnDestroy"+IsFinishing.ToString());
+			Kp2aLog.Log(ClassName+".OnDestroy"+IsFinishing.ToString());
 		}
 		
 		protected override void OnPause()
 		{
 			base.OnPause();
 			TimeoutHelper.Pause(this);
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnPause");
+			Kp2aLog.Log(ClassName+".OnPause");
 		}
 		
 		protected override void OnStop()
 		{
 			base.OnStop();
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnStop");
+			Kp2aLog.Log(ClassName+".OnStop");
 		}
 	}
 

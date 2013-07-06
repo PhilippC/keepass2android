@@ -124,7 +124,7 @@ namespace keepass2android
 			{
 				task = CreateFromIntent(intent);
 			}
-			Android.Util.Log.Debug("DEBUG", "Loaded task " + task);
+			Kp2aLog.Log("Loaded task " + task);
 			return task;
 		}
 
@@ -154,7 +154,7 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
-				Android.Util.Log.Debug("DEBUG", "Cannot convert " + taskType + " in task: " + e);
+				Kp2aLog.Log("Cannot convert " + taskType + " in task: " + e);
 				return new NullTask();
 			}
 

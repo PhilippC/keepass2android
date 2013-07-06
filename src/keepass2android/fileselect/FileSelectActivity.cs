@@ -198,8 +198,8 @@ namespace keepass2android
 		{
 			base.OnCreate(savedInstanceState);
 
-			Android.Util.Log.Debug("DEBUG", "FileSelect.OnCreate");
-			Android.Util.Log.Debug("DEBUG", "FileSelect:apptask="+Intent.GetStringExtra("KP2A_APPTASK"));
+			Kp2aLog.Log("FileSelect.OnCreate");
+			Kp2aLog.Log("FileSelect:apptask="+Intent.GetStringExtra("KP2A_APPTASK"));
 
 			if (Intent.Action == Intent.ActionSend)
 			{
@@ -457,7 +457,7 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
-			Android.Util.Log.Debug("DEBUG", "FileSelect.OnResume");
+			Kp2aLog.Log("FileSelect.OnResume");
 			
 			// Check to see if we need to change modes
 			if (_DbHelper.HasRecentFiles() != _recentMode)
@@ -507,7 +507,7 @@ namespace keepass2android
 		protected override void OnStart()
 		{
 			base.OnStart();
-			Android.Util.Log.Debug("DEBUG", "FileSelect.OnStart");
+			Kp2aLog.Log("FileSelect.OnStart");
 		}
 		public override bool OnCreateOptionsMenu(IMenu menu) {
 			base.OnCreateOptionsMenu(menu);
@@ -521,20 +521,20 @@ namespace keepass2android
 		protected override void OnPause()
 		{
 			base.OnPause();
-			Android.Util.Log.Debug("DEBUG", "FileSelect.OnPause");
+			Kp2aLog.Log("FileSelect.OnPause");
 		}
 
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
 			GC.Collect();
-			Android.Util.Log.Debug("DEBUG", "FileSelect.OnDestroy"+IsFinishing.ToString());
+			Kp2aLog.Log("FileSelect.OnDestroy"+IsFinishing.ToString());
 		}
 
 		protected override void OnStop()
 		{
 			base.OnStop();
-			Android.Util.Log.Debug("DEBUG", "FileSelect.OnStop");
+			Kp2aLog.Log("FileSelect.OnStop");
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item) {

@@ -72,7 +72,7 @@ namespace keepass2android
 
 		public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 		{
-			Android.Util.Log.Debug("DEBUG","Received intent to provide access to entry");
+			Kp2aLog.Log("Received intent to provide access to entry");
 			
 			String uuidBytes =  intent.GetStringExtra(EntryActivity.KeyEntry);
 			bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KeyCloseAfterCreate, false);
@@ -119,7 +119,7 @@ namespace keepass2android
 				clearKeyboard();
 			}
 
-			Android.Util.Log.Debug("DEBUG", "Destroyed Show-Notification-Receiver.");
+			Kp2aLog.Log("Destroyed Show-Notification-Receiver.");
 			
 			base.OnDestroy();
 		}

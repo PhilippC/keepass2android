@@ -50,20 +50,20 @@ namespace keepass2android
 		{
 			base.OnCreate (bundle);
 			_appTask = AppTask.GetTaskInOnCreate(bundle, Intent);
-			Android.Util.Log.Debug("DEBUG","KeePass.OnCreate");
+			Kp2aLog.Log("KeePass.OnCreate");
 		}
 
 		protected override void OnResume()
 		{
 			base.OnResume();
-			Android.Util.Log.Debug("DEBUG","KeePass.OnResume");
+			Kp2aLog.Log("KeePass.OnResume");
 		}
 		
 
 		protected override void OnStart()
 		{
 			base.OnStart();
-			Android.Util.Log.Debug("DEBUG", "KeePass.OnStart");
+			Kp2aLog.Log("KeePass.OnStart");
 
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 
@@ -172,7 +172,7 @@ namespace keepass2android
 		
 
 		protected override void OnDestroy() {
-			Android.Util.Log.Debug("DEBUG","KeePass.OnDestroy"+IsFinishing.ToString());
+			Kp2aLog.Log("KeePass.OnDestroy"+IsFinishing.ToString());
 			base.OnDestroy();
 		}
 

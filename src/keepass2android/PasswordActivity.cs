@@ -168,7 +168,7 @@ namespace keepass2android
 
 			Intent i = new Intent(this, typeof(QuickUnlock));
 			PutIoConnectionToIntent(_ioConnection, i);
-			Android.Util.Log.Debug("DEBUG","Starting QuickUnlock");
+			Kp2aLog.Log("Starting QuickUnlock");
 			StartActivityForResult(i,0);
 			return true;
 		}
@@ -188,7 +188,7 @@ namespace keepass2android
 			base.OnActivityResult(requestCode, resultCode, data);
 
 			_startedWithActivityResult = true;
-			Android.Util.Log.Debug("DEBUG","PasswordActivity.OnActivityResult "+resultCode+"/"+requestCode);
+			Kp2aLog.Log("PasswordActivity.OnActivityResult "+resultCode+"/"+requestCode);
 
 			if (resultCode != KeePass.ExitCloseAfterTaskComplete)
 			{

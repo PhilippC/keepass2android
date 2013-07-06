@@ -124,7 +124,7 @@ namespace keepass2android
 				packageManager.QueryIntentActivities(intent,
 													 PackageInfoFlags.MatchDefaultOnly);
 			foreach (ResolveInfo i in list)
-				Android.Util.Log.Debug("DEBUG", i.ActivityInfo.ApplicationInfo.PackageName);
+				Kp2aLog.Log(i.ActivityInfo.ApplicationInfo.PackageName);
 			return list.Count > 0;
 		}
 

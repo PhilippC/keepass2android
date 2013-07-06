@@ -49,38 +49,47 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnResume");
+			Kp2aLog.Log(ClassName+".OnResume");
+			if (App.Kp2a.GetDb() == null)
+			{
+				Kp2aLog.Log(" DB null");
+			}
+			else
+			{
+				Kp2aLog.Log(" Loaded=" + App.Kp2a.GetDb().Loaded + ", Locked=" + App.Kp2a.GetDb().Locked 
+					+ ", shutdown=" + App.Kp2a.IsShutdown());
+			}
 		}
 
 		protected override void OnStart()
 		{
 			base.OnStart();
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnStart");
+			Kp2aLog.Log(ClassName+".OnStart");
 		}
 
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnCreate");
-			Android.Util.Log.Debug("DEBUG", ClassName+":apptask="+Intent.GetStringExtra("KP2A_APP_TASK_TYPE"));
+			Kp2aLog.Log(ClassName+".OnCreate");
+			Kp2aLog.Log(ClassName+":apptask="+Intent.GetStringExtra("KP2A_APP_TASK_TYPE"));
 		}
 
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnDestroy"+IsFinishing.ToString());
+			Kp2aLog.Log(ClassName+".OnDestroy"+IsFinishing.ToString());
 		}
 
 		protected override void OnPause()
 		{
 			base.OnPause();
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnPause");
+			Kp2aLog.Log(ClassName+".OnPause");
 		}
 
 		protected override void OnStop()
 		{
 			base.OnStop();
-			Android.Util.Log.Debug("DEBUG",ClassName+".OnStop");
+			Kp2aLog.Log(ClassName+".OnStop");
 		}
 	}
 }

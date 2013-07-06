@@ -60,11 +60,13 @@ namespace keepass2android
 
         public void SetShutdown()
         {
+	        Kp2aLog.Log("set shutdown");
             _shutdown = true;
         }
 
         public void ClearShutdown()
         {
+			Kp2aLog.Log("clear shutdown");
             _shutdown = false;
         }
 
@@ -282,7 +284,7 @@ namespace keepass2android
 		public override void OnCreate() {
 			base.OnCreate();
 
-			Android.Util.Log.Debug("DEBUG","Creating application");
+			Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 
             Kp2a.OnCreate(this);
 			
@@ -290,7 +292,7 @@ namespace keepass2android
 
 		public override void OnTerminate() {
 			base.OnTerminate();
-			Android.Util.Log.Debug("DEBUG","Terminating application");
+			Kp2aLog.Log("Terminating application");
             Kp2a.OnTerminate();
 		}
 

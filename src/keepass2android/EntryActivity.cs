@@ -138,11 +138,11 @@ namespace keepass2android
 
 			StartService(showNotIntent);
 
-			Android.Util.Log.Debug("DEBUG", "Requesting copy to clipboard for Uuid=" + Entry.Uuid.ToHexString());
+			Kp2aLog.Log("Requesting copy to clipboard for Uuid=" + Entry.Uuid.ToHexString());
 
 			/*foreach (PwUuid key in App.Kp2a.GetDb().entries.Keys)
 			{
-				Android.Util.Log.Debug("DEBUG",key.ToHexString() + " -> " + App.Kp2a.GetDb().entries[key].Uuid.ToHexString());
+				Kp2aLog.Log(this,key.ToHexString() + " -> " + App.Kp2a.GetDb().entries[key].Uuid.ToHexString());
 			}*/
 
 			if (closeAfterCreate)

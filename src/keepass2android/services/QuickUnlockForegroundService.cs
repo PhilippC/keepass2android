@@ -39,7 +39,7 @@ namespace keepass2android
 
 		public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 		{
-			Android.Util.Log.Debug("DEBUG", "Starting QuickUnlockForegroundService");
+			Kp2aLog.Log("Starting QuickUnlockForegroundService");
 
 			//create notification item
 			NotificationCompat.Builder mBuilder =
@@ -55,7 +55,8 @@ namespace keepass2android
 
 			PendingIntent startKp2APendingIntent =
 				PendingIntent.GetActivity(this, 0, startKp2aIntent, PendingIntentFlags.UpdateCurrent);
-			mBuilder.SetContentIntent(startKp2APendingIntent); 
+			mBuilder.SetContentIntent(startKp2APendingIntent);
+ 
 			StartForeground(QuickUnlockForegroundServiceId , mBuilder.Build());
 
 			return StartCommandResult.NotSticky;
@@ -65,13 +66,13 @@ namespace keepass2android
 		public override void OnCreate()
 		{
 			base.OnCreate();
-			Android.Util.Log.Debug("DEBUG", "Creating QuickUnlockForegroundService");
+			Kp2aLog.Log("Creating QuickUnlockForegroundService");
 		}
 
 		public override void OnDestroy()
 		{
 			base.OnDestroy();
-			Android.Util.Log.Debug("DEBUG", "Destroying QuickUnlockForegroundService");
+			Kp2aLog.Log("Destroying QuickUnlockForegroundService");
 		}
 	}
 }
