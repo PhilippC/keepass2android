@@ -74,7 +74,7 @@ namespace Kp2aUnitTests
 						
 				})
 				);
-			ProgressTask pt = new ProgressTask(app, Application.Context, task, UiStringKey.loading_database);
+			ProgressTask pt = new ProgressTask(app, Application.Context, task);
 			pt.Run();
 			pt.JoinWorkerThread();
 			Assert.IsTrue(loadSuccesful);
@@ -83,14 +83,25 @@ namespace Kp2aUnitTests
 
 		protected void SaveDatabase(IKp2aApp app)
 		{
-			bool saveSuccesful = false;
-			SaveDb save = new SaveDb(Application.Context, app.GetDb(), new ActionOnFinish((success, message) =>
-				{
-					saveSuccesful = success; 
-				}), false);
-			save.Run();
+			bool saveSuccesful = TrySaveDatabase(app);
 
 			Assert.IsTrue(saveSuccesful);
+		}
+
+		public static bool TrySaveDatabase(IKp2aApp app)
+		{
+			bool saveSuccesful = false;
+			SaveDb save = new SaveDb(Application.Context, app, new ActionOnFinish((success, message) =>
+				{
+					saveSuccesful = success;
+					if (!success)
+					{
+						Kp2aLog.Log("Error during TestBase.SaveDatabase: " + message);
+					}
+				}), false);
+			save.Run();
+			save.JoinWorkerThread();
+			return saveSuccesful;
 		}
 
 		protected IKp2aApp SetupAppWithDefaultDatabase()

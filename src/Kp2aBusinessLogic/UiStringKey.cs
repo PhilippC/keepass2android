@@ -17,6 +17,19 @@ namespace keepass2android
         keyfile_does_not_exist,
         RecycleBin,
         progress_create,
-        loading_database
+        loading_database,
+		AddingEntry,
+		AddingGroup,
+		DeletingEntry,
+		DeletingGroup,
+		SettingPassword,
+		UndoingChanges,
+		TransformingKey,
+		DecodingDatabase,
+		ParsingDatabase,
+		CheckingTargetFileForChanges,
+		TitleSyncQuestion,
+		MessageSyncQuestions,
+		SynchronizingDatabase
     }
 }

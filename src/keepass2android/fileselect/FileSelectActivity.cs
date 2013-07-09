@@ -170,8 +170,7 @@ namespace keepass2android
 				CreateDb create = new CreateDb(App.Kp2a, this, IOConnectionInfo.FromPath(filename), collectPassword, true);
 				ProgressTask createTask = new ProgressTask(
                     App.Kp2a,
-					this, create,
-					UiStringKey.progress_create);
+					this, create);
 				createTask.Run();
 				
 				
@@ -313,7 +312,8 @@ namespace keepass2android
 					GroupActivity.Launch(_activity, _activity.AppTask);
 					
 				} else {
-					IOConnection.DeleteFile(_ioc);
+					App.Kp2a.GetFileStorage(_ioc).DeleteFile(_ioc);
+					
 				}
 			}
 		}

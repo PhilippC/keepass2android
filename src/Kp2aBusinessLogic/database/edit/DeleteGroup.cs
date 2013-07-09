@@ -70,6 +70,7 @@ namespace keepass2android
 		
 		
 		public override void Run() {
+			StatusLogger.UpdateMessage(UiStringKey.DeletingGroup);
 			//from KP Desktop
 			PwGroup pg = _group;
 			PwGroup pgParent = pg.ParentGroup;
@@ -86,7 +87,7 @@ namespace keepass2android
 				
 				PwDeletedObject pdo = new PwDeletedObject(pg.Uuid, DateTime.Now);
 				pd.DeletedObjects.Add(pdo);
-				OnFinishToRun = new AfterDeletePermanently(OnFinishToRun, App, _group);
+				_onFinishToRun = new AfterDeletePermanently(OnFinishToRun, App, _group);
 			}
 			else // Recycle
 			{
@@ -95,7 +96,7 @@ namespace keepass2android
 				
 				pgRecycleBin.AddGroup(pg, true, true);
 				pg.Touch(false);
-				OnFinishToRun = new ActionOnFinish((success, message) => 
+				_onFinishToRun = new ActionOnFinish((success, message) => 
 				                             {
 					if ( success ) {
 						// Mark new parent (Recycle bin) dirty
@@ -113,7 +114,8 @@ namespace keepass2android
 			}
 
 			// Save
-			SaveDb save = new SaveDb(Ctx, Db, OnFinishToRun, DontSave);
+			SaveDb save = new SaveDb(Ctx, App, OnFinishToRun, DontSave);
+			save.SetStatusLogger(StatusLogger);
 			save.Run();
 			
 		}

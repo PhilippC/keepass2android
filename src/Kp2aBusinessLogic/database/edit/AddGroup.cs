@@ -23,7 +23,11 @@ namespace keepass2android
 {
 
 	public class AddGroup : RunnableOnFinish {
-		internal Database Db;
+		internal Database Db
+		{
+			get { return _app.GetDb(); }
+		}
+		private IKp2aApp _app;
 		private readonly String _name;
 		private readonly int _iconId;
 		internal PwGroup Group;
@@ -32,31 +36,32 @@ namespace keepass2android
 		readonly Context _ctx;
 		
 		
-		public static AddGroup GetInstance(Context ctx, Database db, String name, int iconid, PwGroup parent, OnFinish finish, bool dontSave) {
-			return new AddGroup(ctx, db, name, iconid, parent, finish, dontSave);
+		public static AddGroup GetInstance(Context ctx, IKp2aApp app, String name, int iconid, PwGroup parent, OnFinish finish, bool dontSave) {
+			return new AddGroup(ctx, app, name, iconid, parent, finish, dontSave);
 		}
 		
 		
-		private AddGroup(Context ctx, Database db, String name, int iconid, PwGroup parent, OnFinish finish, bool dontSave): base(finish) {
+		private AddGroup(Context ctx, IKp2aApp app, String name, int iconid, PwGroup parent, OnFinish finish, bool dontSave): base(finish) {
 			_ctx = ctx;
-			Db = db;
 			_name = name;
 			_iconId = iconid;
 			Parent = parent;
 			DontSave = dontSave;
-			
-			OnFinishToRun = new AfterAdd(this, OnFinishToRun);
+			_app = app;
+
+			_onFinishToRun = new AfterAdd(this, OnFinishToRun);
 		}
 		
 		
 		public override void Run() {
-			
+			StatusLogger.UpdateMessage(UiStringKey.AddingGroup);
 			// Generate new group
 			Group = new PwGroup(true, true, _name, (PwIcon)_iconId);
 			Parent.AddGroup(Group, true);
 
 			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, Db, OnFinishToRun, DontSave);
+			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, DontSave);
+			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		
@@ -77,6 +82,7 @@ namespace keepass2android
 					// Add group to global list
 					_addGroup.Db.Groups[_addGroup.Group.Uuid] = _addGroup.Group;
 				} else {
+					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
 					_addGroup.Parent.Groups.Remove(_addGroup.Group);
 				}
 				

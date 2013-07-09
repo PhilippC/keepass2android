@@ -80,8 +80,8 @@ namespace keepass2android.settings
 				PwDatabase.KeyEncryptionRounds = rounds;
 
 				Handler handler = new Handler();
-				SaveDb save = new SaveDb(Context, App.Kp2a.GetDb(), new AfterSave(Context, handler, oldRounds, this));
-				ProgressTask pt = new ProgressTask(App.Kp2a, Context, save, UiStringKey.saving_database);
+				SaveDb save = new SaveDb(Context, App.Kp2a, new AfterSave(Context, handler, oldRounds, this));
+				ProgressTask pt = new ProgressTask(App.Kp2a, Context, save);
 				pt.Run();
 				
 			}

@@ -21,13 +21,19 @@ namespace keepass2android
 
 	public abstract class RunnableOnFinish  {
 		
-		public OnFinish OnFinishToRun;
-		public UpdateStatus Status;
+		protected OnFinish _onFinishToRun;
+		public ProgressDialogStatusLogger StatusLogger = new ProgressDialogStatusLogger(); //default: empty but not null
 
 		protected RunnableOnFinish(OnFinish finish) {
-			OnFinishToRun = finish;
+			_onFinishToRun = finish;
 		}
-		
+
+		public OnFinish OnFinishToRun
+		{
+			get { return _onFinishToRun; }
+			set { _onFinishToRun = value; }
+		}
+
 		protected void Finish(bool result, String message) {
 			if ( OnFinishToRun != null ) {
 				OnFinishToRun.SetResult(result, message);
@@ -42,8 +48,12 @@ namespace keepass2android
 			}
 		}
 		
-		public void SetStatus(UpdateStatus status) {
-			Status = status;
+		public void SetStatusLogger(ProgressDialogStatusLogger status) {
+			if (OnFinishToRun != null)
+			{
+				OnFinishToRun.StatusLogger = status;
+			}
+			StatusLogger = status;
 		}
 		
 		abstract public void Run();

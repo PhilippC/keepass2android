@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.Content;
 using Android.OS;
 using KeePassLib.Serialization;
 using keepass2android;
+using keepass2android.Io;
 
 namespace Kp2aUnitTests
 {
@@ -11,7 +13,14 @@ namespace Kp2aUnitTests
 	/// </summary>
 	internal class TestKp2aApp : IKp2aApp
 	{
+		internal enum YesNoCancelResult
+		{
+			Yes, No, Cancel
+		}
+
 		private Database _db;
+		private YesNoCancelResult _yesNoCancelResult = YesNoCancelResult.Yes;
+		private Dictionary<PreferenceKey, bool> _preferences = new Dictionary<PreferenceKey, bool>();
 
 		public void SetShutdown()
 		{
@@ -43,13 +52,32 @@ namespace Kp2aUnitTests
 
 		public bool GetBooleanPreference(PreferenceKey key)
 		{
+			if (_preferences.ContainsKey(key))
+				return _preferences[key];
 			return true;
 		}
+
+		public UiStringKey? LastYesNoCancelQuestionTitle { get; set; }
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler,
 		                           EventHandler<DialogClickEventArgs> cancelHandler, Context ctx)
 		{
-			yesHandler(null, null);
+			LastYesNoCancelQuestionTitle = titleKey;
+			switch (_yesNoCancelResult)
+			{
+				case YesNoCancelResult.Yes:
+					yesHandler(null, null);
+					break;
+				case YesNoCancelResult.No:
+					noHandler(null, null);
+					break;
+				case YesNoCancelResult.Cancel:
+					cancelHandler(null, null);
+					break;
+				default:
+					throw new Exception("unexpected case!");
+			}
+			
 		}
 
 		public Handler UiThreadHandler {
@@ -58,6 +86,21 @@ namespace Kp2aUnitTests
 		public IProgressDialog CreateProgressDialog(Context ctx)
 		{
 			return new ProgressDialogStub();
+		}
+
+		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
+		{
+			return new BuiltInFileStorage();
+		}
+
+		public void SetYesNoCancelResult(YesNoCancelResult yesNoCancelResult)
+		{
+			_yesNoCancelResult = yesNoCancelResult;
+		}
+
+		public void SetPreference(PreferenceKey key, bool value)
+		{
+			_preferences[key] = value;
 		}
 	}
 }

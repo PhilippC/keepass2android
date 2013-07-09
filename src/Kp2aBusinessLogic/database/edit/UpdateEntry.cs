@@ -22,32 +22,33 @@ namespace keepass2android
 {
 
 	public class UpdateEntry : RunnableOnFinish {
-		private readonly Database _db;
+		private readonly IKp2aApp _app;
 		private readonly Context _ctx;
 		
-		public UpdateEntry(Context ctx, Database db, PwEntry oldE, PwEntry newE, OnFinish finish):base(finish) {
+		public UpdateEntry(Context ctx, IKp2aApp app, PwEntry oldE, PwEntry newE, OnFinish finish):base(finish) {
 			_ctx = ctx;
-			_db = db;
+			_app = app;
 
-			OnFinishToRun = new AfterUpdate(oldE, newE, db, finish);
+			_onFinishToRun = new AfterUpdate(oldE, newE, app, finish);
 		}
 		
 		
 		public override void Run() {
 			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _db, OnFinishToRun);
+			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
+			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		
 		private class AfterUpdate : OnFinish {
 			private readonly PwEntry _backup;
 			private readonly PwEntry _updatedEntry;
-			private readonly Database _db;
+			private readonly IKp2aApp _app;
 			
-			public AfterUpdate(PwEntry backup, PwEntry updatedEntry, Database db, OnFinish finish):base(finish) {
+			public AfterUpdate(PwEntry backup, PwEntry updatedEntry, IKp2aApp app, OnFinish finish):base(finish) {
 				_backup = backup;
 				_updatedEntry = updatedEntry;
-				_db = db;
+				_app = app;
 			}
 			
 			public override void Run() {
@@ -65,11 +66,12 @@ namespace keepass2android
 						if ( parent != null ) {
 
 							// Mark parent group dirty
-							_db.Dirty.Add(parent);
+							_app.GetDb().Dirty.Add(parent);
 							
 						}
 					}
 				} else {
+					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
 					// If we fail to save, back out changes to global structure
 					//TODO test fail
 					_updatedEntry.AssignProperties(_backup, false, true, false);

@@ -73,7 +73,7 @@ namespace keepass2android
 					String previousUsername = db.KpDatabase.DefaultUserName;
 					db.KpDatabase.DefaultUserName = e.NewValue.ToString();
 				
-					SaveDb save = new SaveDb(this, App.Kp2a.GetDb(), new ActionOnFinish( (success, message) => 
+					SaveDb save = new SaveDb(this, App.Kp2a, new ActionOnFinish( (success, message) => 
 					                                                         {
 						if (!success)
 						{
@@ -82,7 +82,7 @@ namespace keepass2android
 							Toast.MakeText(this, message, ToastLength.Long).Show();
 						}
 					}));
-					ProgressTask pt = new ProgressTask(App.Kp2a, this, save, UiStringKey.saving_database);
+					ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
 					pt.Run();
 				};
 
@@ -95,7 +95,7 @@ namespace keepass2android
 					String previousName = db.KpDatabase.Name;
 					db.KpDatabase.Name = e.NewValue.ToString();
 					
-					SaveDb save = new SaveDb(this, App.Kp2a.GetDb(), new ActionOnFinish( (success, message) => 
+					SaveDb save = new SaveDb(this, App.Kp2a, new ActionOnFinish( (success, message) => 
 					                                                               {
 						if (!success)
 						{
@@ -104,7 +104,7 @@ namespace keepass2android
 							Toast.MakeText(this, message, ToastLength.Long).Show();
 						}
 					}));
-                    ProgressTask pt = new ProgressTask(App.Kp2a, this, save, UiStringKey.saving_database);
+                    ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
 					pt.Run();
 				};
 				

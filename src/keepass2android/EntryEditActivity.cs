@@ -383,11 +383,11 @@ namespace keepass2android
 			},closeOrShowError);
 
 			if ( State.IsNew ) {
-				runnable = AddEntry.GetInstance(this, App.Kp2a.GetDb(), newEntry, State.ParentGroup, afterAddEntry);
+				runnable = AddEntry.GetInstance(this, App.Kp2a, newEntry, State.ParentGroup, afterAddEntry);
 			} else {
-				runnable = new UpdateEntry(this, App.Kp2a.GetDb(), initialEntry, newEntry, closeOrShowError);
+				runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
 			}
-            ProgressTask pt = new ProgressTask(App.Kp2a, act, runnable, UiStringKey.saving_database);
+            ProgressTask pt = new ProgressTask(App.Kp2a, act, runnable);
 			pt.Run();
 			
 

@@ -365,7 +365,7 @@ namespace keepass2android
 				
 				Handler handler = new Handler();
 				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, pass, key, new AfterLoad(handler, this));
-				ProgressTask pt = new ProgressTask(App.Kp2a, this, task, UiStringKey.loading_database);
+				ProgressTask pt = new ProgressTask(App.Kp2a, this, task);
 				pt.Run();
 			};
 			

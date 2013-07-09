@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Io\BuiltInFileStorage.cs" />
+    <Compile Include="Io\IFileStorage.cs" />
     <Compile Include="IProgressDialog.cs" />
     <Compile Include="PreferenceKey.cs" />
     <Compile Include="UiStringKey.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchDbHelper.cs" />
-    <Compile Include="UpdateStatus.cs" />
+    <Compile Include="ProgressDialogStatusLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">

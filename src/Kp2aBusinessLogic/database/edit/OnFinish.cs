@@ -29,6 +29,13 @@ namespace keepass2android
 		
 		protected OnFinish BaseOnFinish;
 		protected Handler Handler;
+		private ProgressDialogStatusLogger _statusLogger = new ProgressDialogStatusLogger(); //default: no logging but not null -> can be used whenever desired
+
+		public ProgressDialogStatusLogger StatusLogger
+		{
+			get { return _statusLogger; }
+			set { _statusLogger = value; }
+		}
 
 		protected OnFinish() {
 		}
@@ -47,7 +54,7 @@ namespace keepass2android
 			BaseOnFinish = finish;
 			Handler = null;
 		}
-		
+
 		public void SetResult(bool success, String message) {
 			Success = success;
 			Message = message;

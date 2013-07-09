@@ -177,8 +177,8 @@ namespace keepass2android
 				int groupIconId = data.Extras.GetInt(GroupEditActivity.KeyIconId);
 				GroupBaseActivity act = this;
 				Handler handler = new Handler();
-				AddGroup task = AddGroup.GetInstance(this, App.Kp2a.GetDb(), groupName, groupIconId, Group, new RefreshTask(handler, this), false);
-                ProgressTask pt = new ProgressTask(App.Kp2a, act, task, UiStringKey.saving_database);
+				AddGroup task = AddGroup.GetInstance(this, App.Kp2a, groupName, groupIconId, Group, new RefreshTask(handler, this), false);
+                ProgressTask pt = new ProgressTask(App.Kp2a, act, task);
 				pt.Run();
 				break;
 				

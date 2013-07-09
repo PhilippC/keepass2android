@@ -25,31 +25,51 @@ namespace keepass2android
 	/// <summary>
 	/// StatusLogger implementation which shows the progress in a progress dialog
 	/// </summary>
-	public class UpdateStatus: IStatusLogger {
+	public class ProgressDialogStatusLogger: IStatusLogger {
 		private readonly IProgressDialog _progressDialog;
 		readonly IKp2aApp _app;
 		private readonly Handler _handler;
-		
-		public UpdateStatus() {
+		private string _message = "";
+
+		public ProgressDialogStatusLogger() {
 			
 		}
 		
-		public UpdateStatus(IKp2aApp app, Handler handler, IProgressDialog pd) {
+		public ProgressDialogStatusLogger(IKp2aApp app, Handler handler, IProgressDialog pd) {
 			_app = app;
 			_progressDialog = pd;
 			_handler = handler;
 		}
 		
 		public void UpdateMessage(UiStringKey stringKey) {
-			if ( _app != null && _progressDialog != null && _handler != null ) {
-				_handler.Post( () => {_progressDialog.SetMessage(_app.GetResourceString(stringKey));});
-			}
+			if (_app != null)
+				UpdateMessage(_app.GetResourceString(stringKey));
 		}
 
 		public void UpdateMessage (String message)
 		{
+			_message = message;
 			if ( _app!= null && _progressDialog != null && _handler != null ) {
 				_handler.Post(() => {_progressDialog.SetMessage(message); } );
+			}
+		}
+
+		public void UpdateSubMessage(String submessage)
+		{
+			if (_app != null && _progressDialog != null && _handler != null)
+			{
+				_handler.Post(() => 
+				{ 
+					if (String.IsNullOrEmpty(submessage))
+					{
+						_progressDialog.SetMessage(_message + " (" + submessage + ")");
+					}
+					else
+					{
+						_progressDialog.SetMessage(_message);
+					}
+				}
+			);
 			}
 		}
 
@@ -72,8 +92,30 @@ namespace keepass2android
 
 		public bool SetText (string strNewText, LogStatusType lsType)
 		{
-			UpdateMessage(strNewText);
+			if (strNewText.StartsWith("KP2AKEY_"))
+			{
+				UiStringKey key;
+				if (Enum.TryParse(strNewText.Substring("KP2AKEY_".Length), true, out key))
+				{
+					UpdateMessage(_app.GetResourceString(key), lsType);
+					return true;
+				}
+			}
+			UpdateMessage(strNewText, lsType);	
+			
 			return true;
+		}
+
+		private void UpdateMessage(string message, LogStatusType lsType)
+		{
+			if (lsType == LogStatusType.AdditionalInfo)
+			{
+				UpdateSubMessage(message);
+			}
+			else
+			{
+				UpdateMessage(message);
+			}
 		}
 
 		public bool ContinueWork ()

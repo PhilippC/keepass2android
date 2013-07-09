@@ -123,8 +123,8 @@ namespace keepass2android
 				Entry.Expires = true;
 				Entry.Touch(true);
 				RequiresRefresh();
-				UpdateEntry update = new UpdateEntry(this, App.Kp2a.GetDb(), backupEntry, Entry, null);
-                ProgressTask pt = new ProgressTask(App.Kp2a, this, update, UiStringKey.saving_database);
+				UpdateEntry update = new UpdateEntry(this, App.Kp2a, backupEntry, Entry, null);
+                ProgressTask pt = new ProgressTask(App.Kp2a, this, update);
 				pt.Run();
 			}
 			FillData(false);

@@ -32,7 +32,7 @@ namespace keepass2android
         private readonly IKp2aApp _app;
 		private Thread _thread;
 
-		public ProgressTask(IKp2aApp app, Context ctx, RunnableOnFinish task, UiStringKey messageKey) {
+		public ProgressTask(IKp2aApp app, Context ctx, RunnableOnFinish task) {
 			_task = task;
 			_handler = app.UiThreadHandler;
             _app = app;
@@ -40,11 +40,12 @@ namespace keepass2android
 			// Show process dialog
 			_progressDialog = app.CreateProgressDialog(ctx);
 			_progressDialog.SetTitle(_app.GetResourceString(UiStringKey.progress_title));
-            _progressDialog.SetMessage(_app.GetResourceString(messageKey));
+			_progressDialog.SetMessage("Initializing...");
 			
 			// Set code to run when this is finished
-			_task.SetStatus(new UpdateStatus(_app, _handler, _progressDialog));
 			_task.OnFinishToRun = new AfterTask(task.OnFinishToRun, _handler, _progressDialog);
+			_task.SetStatusLogger(new ProgressDialogStatusLogger(_app, _handler, _progressDialog));
+			
 			
 		}
 		

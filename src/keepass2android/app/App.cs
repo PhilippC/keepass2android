@@ -22,6 +22,7 @@ using Android.OS;
 using Android.Runtime;
 using KeePassLib.Serialization;
 using Android.Preferences;
+using keepass2android.Io;
 
 namespace keepass2android
 {
@@ -221,6 +222,11 @@ namespace keepass2android
 		public IProgressDialog CreateProgressDialog(Context ctx)
 		{
 			return new RealProgressDialog(ctx);
+		}
+
+		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
+		{
+			return new BuiltInFileStorage();
 		}
 
 

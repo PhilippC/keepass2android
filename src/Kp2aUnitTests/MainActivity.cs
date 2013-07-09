@@ -20,7 +20,8 @@ namespace Kp2aUnitTests
             // Run all tests from this assembly
             runner.AddTests(Assembly.GetExecutingAssembly());
 			//runner.AddTests(new List<Type> { typeof(TestSaveDb)});
-			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadWithPasswordOnly"));}}
+			//runner.AddTests(typeof(TestSaveDb).GetMethod("TestLoadEditSaveWithSyncConflict"));
+			//runner.AddTests(typeof(TestSaveDb).GetMethod("TestLoadEditSave"));
             return runner;
         }
     }

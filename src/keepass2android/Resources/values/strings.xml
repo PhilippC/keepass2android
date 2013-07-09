@@ -240,6 +240,17 @@
   <string name="suggest_improvements">Suggest or vote for improvements</string>
   <string name="rate_app">Rate this app</string>
   <string name="translate_app">Translate KP2A</string>
+	<string name="AddingEntry">Adding entry…</string>
+	<string name="AddingGroup">Adding group…</string>
+	<string name="DeletingEntry">Deleting entry…</string>
+	<string name="DeletingGroup">Deleting group…</string>
+	<string name="SettingPassword">Setting password…</string>
+	<string name="UndoingChanges">Undoing changes…</string>
+	<string name="TransformingKey">Transforming master key…</string>
+	<string name="DecodingDatabase">Decoding database…</string>
+	<string name="ParsingDatabase">Parsing database…</string>
+	<string name="CheckingTargetFileForChanges">Checking target file for changes…</string>
+	
   <string name="ChangeLog_title">Change log</string>
   <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * Username/TAN index displayed in entry list (see settings)\n

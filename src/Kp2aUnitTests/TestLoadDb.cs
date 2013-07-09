@@ -26,7 +26,7 @@ namespace Kp2aUnitTests
 						loadSuccesful = success; 		
 					})
 				);
-			ProgressTask pt = new ProgressTask(app, Application.Context, task, UiStringKey.loading_database);
+			ProgressTask pt = new ProgressTask(app, Application.Context, task);
 			Android.Util.Log.Debug("KP2ATest", "Running ProgressTask");
 			pt.Run();
 			pt.JoinWorkerThread();

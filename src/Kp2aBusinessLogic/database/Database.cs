@@ -17,10 +17,12 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Android.Content;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
+using keepass2android.Io;
 
 namespace keepass2android
 {
@@ -34,7 +36,7 @@ namespace keepass2android
 		public PwGroup Root;
 		public PwDatabase KpDatabase;
 		public IOConnectionInfo Ioc { get { return KpDatabase.IOConnectionInfo; } }
-		public DateTime LastChangeDate;
+		public string LastFileVersion;
 		public SearchDbHelper SearchHelper;
 		
 		public IDrawableFactory DrawableFactory;
@@ -83,15 +85,16 @@ namespace keepass2android
 		
 		public bool DidOpenFileChange()
 		{
-			if ((Loaded == false) || (Ioc.IsLocalFile() == false))
+			if (Loaded == false)
 			{
 				return false;
 			}
-			return System.IO.File.GetLastWriteTimeUtc(Ioc.Path) > LastChangeDate;
+			return _app.GetFileStorage(Ioc).CheckForFileChangeFast(Ioc, LastFileVersion);
+			
 		}
 
 		
-		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, String password, String keyfile, UpdateStatus status)
+		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, String password, String keyfile, ProgressDialogStatusLogger status)
 		{
 			PwDatabase pwDatabase = new PwDatabase();
 
@@ -103,15 +106,17 @@ namespace keepass2android
 				try
 				{
 					compositeKey.AddUserKey(new KcpKeyFile(keyfile));
-				} catch (Exception)
+				} catch (Exception e)
 				{
+					Kp2aLog.Log(e.ToString());
 					throw new KeyFileException();
 				}
 			}
 			
 			try
 			{
-				pwDatabase.Open(iocInfo, compositeKey, status);
+				IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
+				pwDatabase.Open(fileStorage.OpenFileForRead(iocInfo), fileStorage.GetFilenameWithoutPathAndExt(iocInfo), iocInfo, compositeKey, status);
 			}
 			catch (Exception)
 			{
@@ -125,14 +130,9 @@ namespace keepass2android
 				else throw;
 			}
 			
+			status.UpdateSubMessage("");
 
-			if (iocInfo.IsLocalFile())
-			{
-				LastChangeDate = System.IO.File.GetLastWriteTimeUtc(iocInfo.Path);
-			} else
-			{
-				LastChangeDate  = DateTime.MinValue;
-			}
+			LastFileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
 
 			Root = pwDatabase.RootGroup;
 			PopulateGlobals(Root);
@@ -184,9 +184,14 @@ namespace keepass2android
 		public void SaveData(Context ctx)  {
             
 			KpDatabase.UseFileTransactions = _app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
-			KpDatabase.Save(null);
-
+			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, KpDatabase.UseFileTransactions))
+			{
+				KpDatabase.Save(trans.OpenFile(), null);
+				trans.CommitWrite();
+			}
+			
 		}
+
 		
 		private void PopulateGlobals (PwGroup currentGroup)
 		{

@@ -21,31 +21,38 @@ using KeePassLib;
 namespace keepass2android
 {
 	public class AddEntry : RunnableOnFinish {
-		protected Database Db;
+		protected Database Db
+		{
+			get { return _app.GetDb(); }
+		}
+
+		private readonly IKp2aApp _app;
 		private readonly PwEntry _entry;
 		private readonly PwGroup _parentGroup;
 		private readonly Context _ctx;
 		
-		public static AddEntry GetInstance(Context ctx, Database db, PwEntry entry, PwGroup parentGroup, OnFinish finish) {
+		public static AddEntry GetInstance(Context ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish) {
 
-			return new AddEntry(ctx, db, entry, parentGroup, finish);
+			return new AddEntry(ctx, app, entry, parentGroup, finish);
 		}
 		
-		protected AddEntry(Context ctx, Database db, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(finish) {
+		protected AddEntry(Context ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(finish) {
 			_ctx = ctx;
 			_parentGroup = parentGroup;
-			Db = db;
+			_app = app;
 			_entry = entry;
 			
-			OnFinishToRun = new AfterAdd(db, entry, OnFinishToRun);
+			_onFinishToRun = new AfterAdd(app.GetDb(), entry, OnFinishToRun);
 		}
 		
 		
-		public override void Run() {
+		public override void Run() {	
+			StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
 			_parentGroup.AddEntry(_entry, true);
 			
 			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, Db, OnFinishToRun);
+			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
+			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		
@@ -72,7 +79,9 @@ namespace keepass2android
 					// Add entry to global
 					_db.Entries[_entry.Uuid] = _entry;
 					
-				} else {
+				} else
+				{
+					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
 					//TODO test fail
 					_entry.ParentGroup.Entries.Remove(_entry);
 				}

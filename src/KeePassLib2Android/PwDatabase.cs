@@ -562,22 +562,40 @@ namespace KeePassLib
 		/// Open a database. The URL may point to any supported data source.
 		/// </summary>
 		/// <param name="ioSource">IO connection to load the database from.</param>
-		/// <param name="pwKey">Key used to open the specified database.</param>
+		/// s<param name="pwKey">Key used to open the specified database.</param>
 		/// <param name="slLogger">Logger, which gets all status messages.</param>
 		public void Open(IOConnectionInfo ioSource, CompositeKey pwKey,
 			IStatusLogger slLogger)
 		{
-			Debug.Assert(ioSource != null);
-			if(ioSource == null) throw new ArgumentNullException("ioSource");
+			Open(IOConnection.OpenRead(ioSource),  UrlUtil.StripExtension(
+					UrlUtil.GetFileName(ioSource.Path)), ioSource, pwKey, slLogger );
+			
+		}
+
+		/// <summary>
+		/// Open a database. The URL may point to any supported data source.
+		/// </summary>
+		/// <param name="ioSource">IO connection to load the database from.</param>
+		/// <param name="pwKey">Key used to open the specified database.</param>
+		/// <param name="slLogger">Logger, which gets all status messages.</param>
+		public void Open(Stream s, string fileNameWithoutPathAndExt, IOConnectionInfo ioSource, CompositeKey pwKey,
+			IStatusLogger slLogger)
+		{
+			Debug.Assert(s != null);
+			if (s == null) throw new ArgumentNullException("s");
+			Debug.Assert(fileNameWithoutPathAndExt != null);
+			if (fileNameWithoutPathAndExt == null) throw new ArgumentException("fileNameWithoutPathAndExt");
 			Debug.Assert(pwKey != null);
-			if(pwKey == null) throw new ArgumentNullException("pwKey");
+			Debug.Assert(ioSource != null);
+			if (ioSource == null) throw new ArgumentNullException("ioSource");
+			
+			if (pwKey == null) throw new ArgumentNullException("pwKey");
 
 			Close();
 
 			try
 			{
-				m_pgRootGroup = new PwGroup(true, true, UrlUtil.StripExtension(
-					UrlUtil.GetFileName(ioSource.Path)), PwIcon.FolderOpen);
+				m_pgRootGroup = new PwGroup(true, true, fileNameWithoutPathAndExt, PwIcon.FolderOpen);
 				m_pgRootGroup.IsExpanded = true;
 
 				m_pwUserKey = pwKey;
@@ -587,8 +605,8 @@ namespace KeePassLib
 				KdbxFile kdbx = new KdbxFile(this);
 				kdbx.DetachBinaries = m_strDetachBins;
 
-				Stream s = IOConnection.OpenRead(ioSource);
 				kdbx.Load(s, KdbxFormat.Default, slLogger);
+
 				s.Close();
 
 				m_pbHashOfLastIO = kdbx.HashOfFileOnDisk;
@@ -598,12 +616,13 @@ namespace KeePassLib
 				m_bDatabaseOpened = true;
 				m_ioSource = ioSource;
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				Clear();
 				throw;
 			}
 		}
+
 
 		/// <summary>
 		/// Save the currently opened database. The file is written to the location
@@ -626,13 +645,30 @@ namespace KeePassLib
 				kdb.Save(s, null, KdbxFormat.Default, slLogger);
 
 				ft.CommitWrite();
-
+				
 				m_pbHashOfLastIO = kdb.HashOfFileOnDisk;
 				m_pbHashOfFileOnDisk = kdb.HashOfFileOnDisk;
 				Debug.Assert(m_pbHashOfFileOnDisk != null);
 			}
 			finally { if(fl != null) fl.Dispose(); }
 
+			m_bModified = false;
+		}
+
+		/// <summary>
+		/// Save the currently opened database. The file is written to the given stream which is expected to be the original location.
+		/// </summary>
+		/// This allows to save to cloud locations etc. 
+		public void Save(Stream streamOfOriginalLocation, IStatusLogger slLogger)
+		{
+			Debug.Assert(ValidateUuidUniqueness());
+			Stream s = streamOfOriginalLocation;
+			KdbxFile kdb = new KdbxFile(this);
+			kdb.Save(s, null, KdbxFormat.Default, slLogger);
+
+			m_pbHashOfLastIO = kdb.HashOfFileOnDisk;
+			m_pbHashOfFileOnDisk = kdb.HashOfFileOnDisk;
+			Debug.Assert(m_pbHashOfFileOnDisk != null);
 			m_bModified = false;
 		}
 

@@ -25,21 +25,23 @@ namespace keepass2android
 		
 		private readonly String _password;
 		private readonly String _keyfile;
-		private readonly Database _db;
+		private readonly IKp2aApp _app;
 		private readonly bool _dontSave;
 		private readonly Context _ctx;
 		
-		public SetPassword(Context ctx, Database db, String password, String keyfile, OnFinish finish): base(finish) {
+		public SetPassword(Context ctx, IKp2aApp app, String password, String keyfile, OnFinish finish): base(finish) {
 			_ctx = ctx;
-			_db = db;
+			_app = app;
 			_password = password;
 			_keyfile = keyfile;
 			_dontSave = false;
 		}
-		
-		public SetPassword(Context ctx, Database db, String password, String keyfile, OnFinish finish, bool dontSave): base(finish) {
+
+		public SetPassword(Context ctx, IKp2aApp app, String password, String keyfile, OnFinish finish, bool dontSave)
+			: base(finish)
+		{
 			_ctx = ctx;
-			_db = db;
+			_app = app;
 			_password = password;
 			_keyfile = keyfile;
 			_dontSave = dontSave;
@@ -48,7 +50,8 @@ namespace keepass2android
 		
 		public override void Run ()
 		{
-			PwDatabase pm = _db.KpDatabase;
+			StatusLogger.UpdateMessage(UiStringKey.SettingPassword);
+			PwDatabase pm = _app.GetDb().KpDatabase;
 			CompositeKey newKey = new CompositeKey ();
 			if (String.IsNullOrEmpty (_password) == false) {
 				newKey.AddUserKey (new KcpPassword (_password)); 
@@ -69,8 +72,9 @@ namespace keepass2android
 			pm.MasterKey = newKey;
 
 			// Save Database
-			OnFinishToRun = new AfterSave(previousKey, previousMasterKeyChanged, pm, OnFinishToRun);
-			SaveDb save = new SaveDb(_ctx, _db, OnFinishToRun, _dontSave);
+			_onFinishToRun = new AfterSave(previousKey, previousMasterKeyChanged, pm, OnFinishToRun);
+			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, _dontSave);
+			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		

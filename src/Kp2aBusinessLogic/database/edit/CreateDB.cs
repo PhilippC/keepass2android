@@ -40,6 +40,7 @@ namespace keepass2android
 		
 
 		public override void Run() {
+			StatusLogger.UpdateMessage(UiStringKey.progress_create);
 			Database db = _app.CreateNewDatabase();
 
 			db.KpDatabase = new KeePassLib.PwDatabase();
@@ -58,14 +59,15 @@ namespace keepass2android
 			db.SearchHelper = new SearchDbHelper(_app);
 
 			// Add a couple default groups
-			AddGroup internet = AddGroup.GetInstance(_ctx, db, "Internet", 1, db.KpDatabase.RootGroup, null, true);
+			AddGroup internet = AddGroup.GetInstance(_ctx, _app, "Internet", 1, db.KpDatabase.RootGroup, null, true);
 			internet.Run();
-			AddGroup email = AddGroup.GetInstance(_ctx, db, "eMail", 19, db.KpDatabase.RootGroup, null, true);
+			AddGroup email = AddGroup.GetInstance(_ctx, _app, "eMail", 19, db.KpDatabase.RootGroup, null, true);
 			email.Run();
 			
 			// Commit changes
-			SaveDb save = new SaveDb(_ctx, db, OnFinishToRun, _dontSave);
-			OnFinishToRun = null;
+			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, _dontSave);
+			save.SetStatusLogger(StatusLogger);
+			_onFinishToRun = null;
 			save.Run();
 			
 			

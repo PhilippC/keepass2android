@@ -2,6 +2,7 @@ using System;
 using Android.Content;
 using Android.OS;
 using KeePassLib.Serialization;
+using keepass2android.Io;
 
 namespace keepass2android
 {
@@ -57,5 +58,7 @@ namespace keepass2android
 		Handler UiThreadHandler { get; }
 
 		IProgressDialog CreateProgressDialog(Context ctx);
+		IFileStorage GetFileStorage(IOConnectionInfo iocInfo);
+		
     }
 }

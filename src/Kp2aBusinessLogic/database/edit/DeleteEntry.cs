@@ -48,8 +48,9 @@ namespace keepass2android
 			}
 		}
 
-		public override void Run() {
-
+		public override void Run()
+		{
+			StatusLogger.UpdateMessage(UiStringKey.DeletingEntry);
 			PwDatabase pd = Db.KpDatabase;
 
 			PwGroup pgRecycleBin = pd.RootGroup.FindGroup(pd.RecycleBinUuid, true);
@@ -68,7 +69,7 @@ namespace keepass2android
 					PwDeletedObject pdo = new PwDeletedObject(pe.Uuid, dtNow);
 					pd.DeletedObjects.Add(pdo);
 
-					OnFinishToRun = new ActionOnFinish((success, message) =>
+					_onFinishToRun = new ActionOnFinish((success, message) =>
 						{
 							if (success)
 							{
@@ -89,7 +90,7 @@ namespace keepass2android
 					pgRecycleBin.AddEntry(pe, true, true);
 					pe.Touch(false);
 
-					OnFinishToRun = new ActionOnFinish( (success, message) => 
+					_onFinishToRun = new ActionOnFinish( (success, message) => 
 					                             {
 						if ( success ) {
 							// Mark previous parent dirty
@@ -106,7 +107,8 @@ namespace keepass2android
 			}
 
 			// Commit database
-			SaveDb save = new SaveDb(Ctx, Db, OnFinishToRun, false);
+			SaveDb save = new SaveDb(Ctx, App, OnFinishToRun, false);
+			save.SetStatusLogger(StatusLogger);
 			save.Run();
 			
 			

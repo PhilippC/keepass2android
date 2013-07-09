@@ -1230,6 +1230,12 @@ namespace keepass2android
 			// aapt resource value: 0x7f080033
 			public const int AboutText = 2131230771;
 			
+			// aapt resource value: 0x7f08011e
+			public const int AddingEntry = 2131231006;
+			
+			// aapt resource value: 0x7f08011f
+			public const int AddingGroup = 2131231007;
+			
 			// aapt resource value: 0x7f080114
 			public const int AskDeletePermanentlyEntry = 2131230996;
 			
@@ -1278,29 +1284,32 @@ namespace keepass2android
 			// aapt resource value: 0x7f0800f5
 			public const int BinaryDirectory_title = 2131230965;
 			
-			// aapt resource value: 0x7f080125
-			public const int ChangeLog = 2131231013;
+			// aapt resource value: 0x7f08012f
+			public const int ChangeLog = 2131231023;
 			
-			// aapt resource value: 0x7f080124
-			public const int ChangeLog_0_7 = 2131231012;
+			// aapt resource value: 0x7f08012e
+			public const int ChangeLog_0_7 = 2131231022;
 			
-			// aapt resource value: 0x7f080122
-			public const int ChangeLog_0_8 = 2131231010;
+			// aapt resource value: 0x7f08012c
+			public const int ChangeLog_0_8 = 2131231020;
 			
-			// aapt resource value: 0x7f080121
-			public const int ChangeLog_0_8_1 = 2131231009;
+			// aapt resource value: 0x7f08012b
+			public const int ChangeLog_0_8_1 = 2131231019;
 			
-			// aapt resource value: 0x7f080120
-			public const int ChangeLog_0_8_2 = 2131231008;
+			// aapt resource value: 0x7f08012a
+			public const int ChangeLog_0_8_2 = 2131231018;
 			
-			// aapt resource value: 0x7f08011f
-			public const int ChangeLog_0_8_3 = 2131231007;
+			// aapt resource value: 0x7f080129
+			public const int ChangeLog_0_8_3 = 2131231017;
 			
-			// aapt resource value: 0x7f080123
-			public const int ChangeLog_keptDonate = 2131231011;
+			// aapt resource value: 0x7f08012d
+			public const int ChangeLog_keptDonate = 2131231021;
 			
-			// aapt resource value: 0x7f08011e
-			public const int ChangeLog_title = 2131231006;
+			// aapt resource value: 0x7f080128
+			public const int ChangeLog_title = 2131231016;
+			
+			// aapt resource value: 0x7f080127
+			public const int CheckingTargetFileForChanges = 2131231015;
 			
 			// aapt resource value: 0x7f080048
 			public const int ClearClipboard = 2131230792;
@@ -1310,6 +1319,15 @@ namespace keepass2android
 			
 			// aapt resource value: 0x7f080034
 			public const int CreditsText = 2131230772;
+			
+			// aapt resource value: 0x7f080125
+			public const int DecodingDatabase = 2131231013;
+			
+			// aapt resource value: 0x7f080120
+			public const int DeletingEntry = 2131231008;
+			
+			// aapt resource value: 0x7f080121
+			public const int DeletingGroup = 2131231009;
 			
 			// aapt resource value: 0x7f080081
 			public const int FileNotFound = 2131230849;
@@ -1334,6 +1352,9 @@ namespace keepass2android
 			
 			// aapt resource value: 0x7f08010c
 			public const int OpenKp2aKeyboardAutomatically_title = 2131230988;
+			
+			// aapt resource value: 0x7f080126
+			public const int ParsingDatabase = 2131231014;
 			
 			// aapt resource value: 0x7f080023
 			public const int QuickUnlockDefaultEnabled_key = 2131230755;
@@ -1389,6 +1410,9 @@ namespace keepass2android
 			// aapt resource value: 0x7f0800fb
 			public const int SaveAttachment_doneMessage = 2131230971;
 			
+			// aapt resource value: 0x7f080122
+			public const int SettingPassword = 2131231010;
+			
 			// aapt resource value: 0x7f080109
 			public const int ShowCopyToClipboardNotification_summary = 2131230985;
 			
@@ -1422,8 +1446,14 @@ namespace keepass2android
 			// aapt resource value: 0x7f0800de
 			public const int TanExpiresOnUse_title = 2131230942;
 			
+			// aapt resource value: 0x7f080124
+			public const int TransformingKey = 2131231012;
+			
 			// aapt resource value: 0x7f08002b
 			public const int TranslationURL = 2131230763;
+			
+			// aapt resource value: 0x7f080123
+			public const int UndoingChanges = 2131231011;
 			
 			// aapt resource value: 0x7f080026
 			public const int UsageCount_key = 2131230758;

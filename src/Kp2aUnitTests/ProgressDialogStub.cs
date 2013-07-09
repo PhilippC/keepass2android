@@ -12,9 +12,9 @@ namespace Kp2aUnitTests
 			
 		}
 
-		public void SetMessage(string getResourceString)
+		public void SetMessage(string resourceString)
 		{
-			
+			Kp2aLog.Log("Progress message: " + resourceString);
 		}
 
 		public void Dismiss()

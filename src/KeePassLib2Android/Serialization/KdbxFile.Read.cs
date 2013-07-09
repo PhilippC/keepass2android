@@ -91,11 +91,17 @@ namespace KeePassLib.Serialization
 					if((sDecrypted == null) || (sDecrypted == hashedStream))
 						throw new SecurityException(KLRes.CryptoStreamFailed);
 
+					if (m_slLogger != null)
+						m_slLogger.SetText("KP2AKEY_TransformingKey", LogStatusType.AdditionalInfo);
+
 					brDecrypted = new BinaryReaderEx(sDecrypted, encNoBom, KLRes.FileCorrupted);
 					byte[] pbStoredStartBytes = brDecrypted.ReadBytes(32);
 
 					if((m_pbStreamStartBytes == null) || (m_pbStreamStartBytes.Length != 32))
 						throw new InvalidDataException();
+
+					if (m_slLogger != null)
+						m_slLogger.SetText("KP2AKEY_DecodingDatabase", LogStatusType.AdditionalInfo);
 
 					for(int iStart = 0; iStart < 32; ++iStart)
 					{
@@ -126,7 +132,8 @@ namespace KeePassLib.Serialization
 						m_pbProtectedStreamKey);
 				}
 				else m_randomStream = null; // No random stream for plain-text files
-
+				if (m_slLogger != null)
+					m_slLogger.SetText("KP2AKEY_ParsingDatabase", LogStatusType.AdditionalInfo);
 				ReadXmlStreamed(readerStream, hashedStream);
 				// ReadXmlDom(readerStream);
 
@@ -312,7 +319,8 @@ namespace KeePassLib.Serialization
 			if(m_pbMasterSeed.Length != 32)
 				throw new FormatException(KLRes.MasterSeedLengthInvalid);
 			ms.Write(m_pbMasterSeed, 0, 32);
-
+			if (m_slLogger != null)
+				m_slLogger.SetText("KP2AKEY_TransformingKey", LogStatusType.AdditionalInfo);
 			byte[] pKey32 = m_pwDatabase.MasterKey.GenerateKey32(m_pbTransformSeed,
 				m_pwDatabase.KeyEncryptionRounds).ReadData();
 			if((pKey32 == null) || (pKey32.Length != 32))
