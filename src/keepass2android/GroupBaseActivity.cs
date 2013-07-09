@@ -194,7 +194,12 @@ namespace keepass2android
 			
 			MenuInflater inflater = MenuInflater;
 			inflater.Inflate(Resource.Menu.group, menu);
+
+			var searchManager = (SearchManager)GetSystemService(Context.SearchService);
+			var searchView = (SearchView)menu.FindItem(Resource.Id.menu_search).ActionView;
 			
+			searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
+
 			return true;
 		}
 		
@@ -238,8 +243,9 @@ namespace keepass2android
 				SetResult(KeePass.ExitLock);
 				Finish();
 				return true;
-				
+
 			case Resource.Id.menu_search:
+			case Resource.Id.menu_search_advanced:
 				OnSearchRequested();
 				return true;
 				

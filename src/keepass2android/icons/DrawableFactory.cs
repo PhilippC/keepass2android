@@ -53,13 +53,13 @@ namespace keepass2android
 			
 		public Drawable GetIconDrawable (Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
 		{
-		    if (customIconId != PwUuid.Zero) {
+			if (!customIconId.EqualsValue(PwUuid.Zero)) {
 				return GetIconDrawable (res, db, customIconId);
 			}
 		    return GetIconDrawable (res, icon);
 		}
 
-	    private static void InitBlank (Resources res)	
+		private static void InitBlank (Resources res)	
 		{
 			if (_blank == null) {
 				_blank = res.GetDrawable (Resource.Drawable.ic99_blank);
@@ -85,7 +85,7 @@ namespace keepass2android
 		public Drawable GetIconDrawable (Resources res, PwDatabase db, PwUuid icon)
 		{
 			InitBlank (res);
-			if (icon == PwUuid.Zero) {
+			if (icon.EqualsValue(PwUuid.Zero)) {
 				return _blank;
 			}
 			Drawable draw;

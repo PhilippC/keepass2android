@@ -101,5 +101,19 @@ namespace KeePassLib.Interfaces
 		/// </summary>
 		/// <param name="bModified">Update last modification time.</param>
 		void Touch(bool bModified);
+
+		#region Set times lazily
+		// Passing xml datetime string to be parsed only on demand
+
+		void SetLazyLastModificationTime(string xmlDateTime);
+
+		void SetLazyCreationTime(string xmlDateTime);
+
+		void SetLazyLastAccessTime(string xmlDateTime);
+
+		void SetLazyExpiryTime(string xmlDateTime);
+
+		void SetLazyLocationChanged(string xmlDateTime);
+		#endregion
 	}
 }

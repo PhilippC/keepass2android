@@ -20,6 +20,12 @@
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/menu_search"
         android:showAsAction="ifRoom"
+        android:actionViewClass="android.widget.SearchView" 
+    />
+    <item android:id="@+id/menu_search_advanced"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/menu_search_advanced"
+        android:showAsAction="never"
     />
     <item android:id="@+id/menu_lock"
         android:icon="@android:drawable/ic_lock_lock"

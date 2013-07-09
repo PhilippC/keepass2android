@@ -35,6 +35,11 @@ namespace KeePassLib
 	/// </summary>
 	public sealed class PwGroup : ITimeLogger, IStructureItem, IDeepCloneable<PwGroup>
 	{
+		private const int SearchContextStringMaxLength = 50; // Note, doesn't include elipsis, if added
+		public const string SearchContextUuid = "Uuid";
+		public const string SearchContextParentGroup = "Parent Group";
+		public const string SearchContextTags = "Tags";
+
 		public const bool DefaultAutoTypeEnabled = true;
 		public const bool DefaultSearchingEnabled = true;
 
@@ -42,6 +47,7 @@ namespace KeePassLib
 		private PwObjectList<PwEntry> m_listEntries = new PwObjectList<PwEntry>();
 		private PwGroup m_pParentGroup = null;
 		private DateTime m_tParentGroupLastMod = PwDefs.DtDefaultNow;
+		private string m_tParentGroupLastModLazy;
 
 		private PwUuid m_uuid = PwUuid.Zero;
 		private string m_strName = string.Empty;
@@ -54,6 +60,12 @@ namespace KeePassLib
 		private DateTime m_tLastMod = PwDefs.DtDefaultNow;
 		private DateTime m_tLastAccess = PwDefs.DtDefaultNow;
 		private DateTime m_tExpire = PwDefs.DtDefaultNow;
+
+		private string m_tCreationLazy;
+		private string m_tLastModLazy;
+		private string m_tLastAccessLazy;
+		private string m_tExpireLazy;
+
 		private bool m_bExpires = false;
 		private ulong m_uUsageCount = 0;
 
@@ -146,8 +158,13 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime LocationChanged
 		{
-			get { return m_tParentGroupLastMod; }
-			set { m_tParentGroupLastMod = value; }
+			get { return GetLazyTime(ref m_tParentGroupLastModLazy, ref m_tParentGroupLastMod); }
+			set { m_tParentGroupLastMod = value; m_tParentGroupLastModLazy = null; }
+		}
+
+		public void SetLazyLocationChanged(string xmlDateTime)
+		{
+			m_tParentGroupLastModLazy = xmlDateTime;
 		}
 
 		/// <summary>
@@ -165,17 +182,13 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime CreationTime
 		{
-			get { return m_tCreation; }
-			set { m_tCreation = value; }
+			get { return GetLazyTime(ref m_tCreationLazy, ref m_tCreation); }
+			set { m_tCreation = value; m_tCreationLazy = null; }
 		}
 
-		/// <summary>
-		/// The date/time when this group was last modified.
-		/// </summary>
-		public DateTime LastModificationTime
+		public void SetLazyCreationTime(string xmlDateTime)
 		{
-			get { return m_tLastMod; }
-			set { m_tLastMod = value; }
+			m_tCreationLazy = xmlDateTime;
 		}
 
 		/// <summary>
@@ -183,17 +196,42 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime LastAccessTime
 		{
-			get { return m_tLastAccess; }
-			set { m_tLastAccess = value; }
+			get { return GetLazyTime(ref m_tLastAccessLazy, ref m_tLastAccess); }
+			set { m_tLastAccess = value; m_tLastAccessLazy = null; }
+		}
+
+		public void SetLazyLastAccessTime(string xmlDateTime)
+		{
+			m_tLastAccessLazy = xmlDateTime;
 		}
 
 		/// <summary>
-		/// The date/time when this group expires.
+		/// The date/time when this group was last modified.
+		/// </summary>
+		public DateTime LastModificationTime
+		{
+			get { return GetLazyTime(ref m_tLastModLazy, ref m_tLastMod); }
+			set { m_tLastMod = value; m_tLastModLazy = null; }
+		}
+
+		public void SetLazyLastModificationTime(string xmlDateTime)
+		{
+			m_tLastModLazy = xmlDateTime;
+		}
+
+		/// <summary>
+		/// The date/time when this group expires. Use the <c>Expires</c> property
+		/// to specify if the group does actually expire or not.
 		/// </summary>
 		public DateTime ExpiryTime
 		{
-			get { return m_tExpire; }
-			set { m_tExpire = value; }
+			get { return GetLazyTime(ref m_tExpireLazy, ref m_tExpire); }
+			set { m_tExpire = value; m_tExpireLazy = null; }
+		}
+
+		public void SetLazyExpiryTime(string xmlDateTime)
+		{
+			m_tExpireLazy = xmlDateTime;
 		}
 
 		/// <summary>
@@ -344,6 +382,7 @@ namespace KeePassLib
 			pg.m_listEntries = m_listEntries.CloneDeep();
 			pg.m_pParentGroup = m_pParentGroup;
 			pg.m_tParentGroupLastMod = m_tParentGroupLastMod;
+			pg.m_tParentGroupLastModLazy = m_tParentGroupLastModLazy;
 
 			pg.m_strName = m_strName;
 			pg.m_strNotes = m_strNotes;
@@ -357,6 +396,11 @@ namespace KeePassLib
 			pg.m_tLastMod = m_tLastMod;
 			pg.m_bExpires = m_bExpires;
 			pg.m_uUsageCount = m_uUsageCount;
+
+			pg.m_tCreationLazy = m_tCreationLazy;
+			pg.m_tLastModLazy = m_tLastModLazy;
+			pg.m_tLastAccessLazy = m_tLastAccessLazy;
+			pg.m_tExpireLazy = m_tExpireLazy;
 
 			pg.m_bIsExpanded = m_bIsExpanded;
 			pg.m_bVirtual = m_bVirtual;
@@ -398,7 +442,7 @@ namespace KeePassLib
 		{
 			Debug.Assert(pgTemplate != null); if(pgTemplate == null) throw new ArgumentNullException("pgTemplate");
 
-			if(bOnlyIfNewer && (pgTemplate.m_tLastMod < m_tLastMod)) return;
+			if(bOnlyIfNewer && (pgTemplate.LastModificationTime < LastModificationTime)) return;
 
 			// Template UUID should be the same as the current one
 			Debug.Assert(m_uuid.EqualsValue(pgTemplate.m_uuid));
@@ -413,10 +457,10 @@ namespace KeePassLib
 			m_pwIcon = pgTemplate.m_pwIcon;
 			m_pwCustomIconID = pgTemplate.m_pwCustomIconID;
 
-			m_tCreation = pgTemplate.m_tCreation;
-			m_tLastMod = pgTemplate.m_tLastMod;
-			m_tLastAccess = pgTemplate.m_tLastAccess;
-			m_tExpire = pgTemplate.m_tExpire;
+			m_tCreation = pgTemplate.CreationTime;
+			m_tLastMod = pgTemplate.LastModificationTime;
+			m_tLastAccess = pgTemplate.LastAccessTime;
+			m_tExpire = pgTemplate.ExpiryTime;
 			m_bExpires = pgTemplate.m_bExpires;
 			m_uUsageCount = pgTemplate.m_uUsageCount;
 
@@ -674,6 +718,18 @@ namespace KeePassLib
 		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage,
 			IStatusLogger slStatus)
 		{
+		}
+
+		/// <summary>
+		/// Search this group and all subgroups for entries.
+		/// </summary>
+		/// <param name="sp">Specifies the search method.</param>
+		/// <param name="listStorage">Entry list in which the search results will
+		/// be stored.</param>
+		/// <param name="resultContexts">Dictionary that will be populated with text fragments indicating the context of why each entry (keyed by Uuid) was returned</param>
+		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage, IDictionary<PwUuid, String> resultContexts,
+			IStatusLogger slStatus)
+		{
 			if(sp == null) { Debug.Assert(false); return; }
 			if(listStorage == null) { Debug.Assert(false); return; }
 
@@ -683,7 +739,7 @@ namespace KeePassLib
 			if((lTerms.Count <= 1) || sp.RegularExpression)
 			{
 				if(slStatus != null) uTotalEntries = GetEntriesCount(true);
-				SearchEntriesSingle(sp, listStorage, slStatus, ref uCurEntries,
+				SearchEntriesSingle(sp, listStorage, resultContexts , slStatus, ref uCurEntries,
 					uTotalEntries);
 				return;
 			}
@@ -715,7 +771,7 @@ namespace KeePassLib
 					bNegate = (sp.SearchString.Length > 0);
 				}
 
-				if(!pg.SearchEntriesSingle(sp, pgNew.Entries, slStatus,
+				if(!pg.SearchEntriesSingle(sp, pgNew.Entries, resultContexts, slStatus,
 					ref uCurEntries, uTotalEntries))
 				{
 					pg = null;
@@ -740,7 +796,7 @@ namespace KeePassLib
 		}
 
 		private bool SearchEntriesSingle(SearchParameters spIn,
-			PwObjectList<PwEntry> listStorage, IStatusLogger slStatus,
+			PwObjectList<PwEntry> listStorage, IDictionary<PwUuid, String> resultContexts, IStatusLogger slStatus,
 			ref ulong uCurEntries, ulong uTotalEntries)
 		{
 			SearchParameters sp = spIn.Clone();
@@ -823,42 +879,42 @@ namespace KeePassLib
 						if(strKey == PwDefs.TitleField)
 						{
 							if(bTitle) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(strKey == PwDefs.UserNameField)
 						{
 							if(bUserName) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(strKey == PwDefs.PasswordField)
 						{
 							if(bPassword) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(strKey == PwDefs.UrlField)
 						{
 							if(bUrl) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(strKey == PwDefs.NotesField)
 						{
 							if(bNotes) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 						}
 						else if(bOther)
 							SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, listStorage, resultContexts, strKey);
 
 						// An entry can match only once => break if we have added it
 						if(listStorage.UCount > uInitialResults) break;
 					}
 
 					if(bUuids && (listStorage.UCount == uInitialResults))
-						SearchEvalAdd(sp, pe.Uuid.ToHexString(), rx, pe, listStorage);
+						SearchEvalAdd(sp, pe.Uuid.ToHexString(), rx, pe, listStorage, resultContexts, SearchContextUuid);
 
 					if(bGroupName && (listStorage.UCount == uInitialResults) &&
 						(pe.ParentGroup != null))
-						SearchEvalAdd(sp, pe.ParentGroup.Name, rx, pe, listStorage);
+						SearchEvalAdd(sp, pe.ParentGroup.Name, rx, pe, listStorage, resultContexts, SearchContextParentGroup);
 
 					if(bTags)
 					{
@@ -866,7 +922,7 @@ namespace KeePassLib
 						{
 							if(listStorage.UCount != uInitialResults) break; // Match
 
-							SearchEvalAdd(sp, strTag, rx, pe, listStorage);
+							SearchEvalAdd(sp, strTag, rx, pe, listStorage, resultContexts, SearchContextTags);
 						}
 					}
 
@@ -880,28 +936,59 @@ namespace KeePassLib
 		}
 
 		private static void SearchEvalAdd(SearchParameters sp, string strDataField,
-			Regex rx, PwEntry pe, PwObjectList<PwEntry> lResults)
+			Regex rx, PwEntry pe, PwObjectList<PwEntry> lResults, IDictionary<PwUuid, String> resultContexts, string contextFieldName)
 		{
 			bool bMatch = false;
+			int matchPos;
 
-			if(rx == null)
-				bMatch = (strDataField.IndexOf(sp.SearchString,
-					sp.ComparisonMode) >= 0);
-			else bMatch = rx.IsMatch(strDataField);
+			if (rx == null)
+			{
+				matchPos = strDataField.IndexOf(sp.SearchString, sp.ComparisonMode);
+				bMatch = matchPos >= 0;
+			}
+			else
+			{
+				var match = rx.Match(strDataField);
+				bMatch = match.Success;
+				matchPos = match.Index;
+			}
 
 			if(!bMatch && (sp.DataTransformationFn != null))
 			{
 				string strCmp = sp.DataTransformationFn(strDataField, pe);
 				if(!object.ReferenceEquals(strCmp, strDataField))
 				{
-					if(rx == null)
-						bMatch = (strCmp.IndexOf(sp.SearchString,
-							sp.ComparisonMode) >= 0);
-					else bMatch = rx.IsMatch(strCmp);
+					if (rx == null)
+					{
+						matchPos = strCmp.IndexOf(sp.SearchString, sp.ComparisonMode);
+						bMatch = matchPos >= 0;
+					}
+					else
+					{
+						var match = rx.Match(strCmp);
+						bMatch = match.Success;
+						matchPos = match.Index;
+					}
 				}
 			}
 
-			if(bMatch) lResults.Add(pe);
+			if (bMatch)
+			{
+				lResults.Add(pe);
+
+				if (resultContexts != null)
+				{
+					// Trim the value if necessary
+					var contextString = strDataField;
+					if (contextString.Length > SearchContextStringMaxLength)
+					{
+						// Start 10% before actual data, and don't run over
+						var startPos = Math.Min(matchPos - (SearchContextStringMaxLength / 10), contextString.Length - SearchContextStringMaxLength);
+						contextString = "… " + contextString.Substring(startPos, SearchContextStringMaxLength) + ((startPos + SearchContextStringMaxLength < contextString.Length) ? " …" : null);
+					}
+					resultContexts[pe.Uuid] = contextFieldName + ": " + contextString;
+				}
+			}
 		}
 
 		public List<string> BuildEntryTagsList()
@@ -1421,6 +1508,16 @@ namespace KeePassLib
 				pdContext.DeletedObjects.Add(pdo);
 			}
 			m_listGroups.Clear();
+		}
+
+		private DateTime GetLazyTime(ref string lazyTime, ref DateTime dateTime)
+		{
+			if (lazyTime != null)
+			{
+				dateTime = TimeUtil.DeserializeUtcOrDefault(lazyTime, m_tLastMod);
+				lazyTime = null;
+			}
+			return dateTime;
 		}
 	}
 

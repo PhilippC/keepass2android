@@ -40,8 +40,14 @@ namespace KeePassLib.Collections
 		IDeepCloneable<ProtectedBinaryDictionary>,
 		IEnumerable<KeyValuePair<string, ProtectedBinary>>
 	{
+		/*
 		private SortedDictionary<string, ProtectedBinary> m_vBinaries =
 			new SortedDictionary<string, ProtectedBinary>();
+		*/
+
+		private Dictionary<string, ProtectedBinary> m_vBinaries =
+			new Dictionary<string, ProtectedBinary>();
+
 
 		/// <summary>
 		/// Get the number of binaries in this entry.

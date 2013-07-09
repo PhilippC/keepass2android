@@ -22,13 +22,14 @@ using Android.OS;
 using Android.Widget;
 using keepass2android.view;
 using KeePassLib;
+using Android.Support.V4.App;
 
 namespace keepass2android.search
 {
 	/// <summary>
 	/// Activity to show search results
 	/// </summary>
-	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]
+	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar", LaunchMode=Android.Content.PM.LaunchMode.SingleTop)]
 	[MetaData("android.app.searchable",Resource="@xml/searchable")]
 	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]
 	public class SearchResults : GroupBaseActivity
@@ -44,24 +45,44 @@ namespace keepass2android.search
 			}
 			
 			SetResult(KeePass.ExitNormal);
-			
+
+			ProcessIntent(Intent);
+		}
+
+		protected override void OnNewIntent(Intent intent)
+		{
+			ProcessIntent(intent);
+		}
+
+		private void ProcessIntent(Intent intent)
+		{
 			_db = App.Kp2a.GetDb();
 			
+
 			// Likely the app has been killed exit the activity 
 			if ( ! _db.Open ) {
 				Finish();
 			}
 
-			Query(getSearch(Intent));
+			if (intent.Action == Intent.ActionView)
+			{
+				var entryIntent = new Intent(this, typeof(EntryActivity));
+				entryIntent.PutExtra(EntryActivity.KeyEntry, intent.Data.LastPathSegment);
 
-
+				Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
+				StartActivity(entryIntent);
+			}
+			else
+			{
+				// Action may either by ActionSearch (from search widget) or null (if called from SearchActivity directly)
+				Query(getSearch(intent));
+			}
 		}
-
 
 		private void Query (SearchParameters searchParams)
 		{
 			try {
-				Group = _db.Search (searchParams);
+				Group = _db.Search (searchParams, null);
 			} catch (Exception e) {
 				Toast.MakeText(this,e.Message, ToastLength.Long).Show();
 				Finish();
@@ -111,8 +132,8 @@ namespace keepass2android.search
 				Finish();
 				return true;
 			}
-			return false;
+				return false;
+			}
 		}
-	}
 }
 

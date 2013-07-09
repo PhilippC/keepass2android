@@ -497,19 +497,19 @@ namespace KeePassLib.Serialization
 					Debug.Assert(tl != null);
 
 					if(xr.Name == ElemLastModTime)
-						tl.LastModificationTime = ReadTime(xr);
+						tl.SetLazyLastModificationTime(ReadString(xr));
 					else if(xr.Name == ElemCreationTime)
-						tl.CreationTime = ReadTime(xr);
+						tl.SetLazyCreationTime(ReadString(xr));
 					else if(xr.Name == ElemLastAccessTime)
-						tl.LastAccessTime = ReadTime(xr);
+						tl.SetLazyLastAccessTime(ReadString(xr));
 					else if(xr.Name == ElemExpiryTime)
-						tl.ExpiryTime = ReadTime(xr);
+						tl.SetLazyExpiryTime(ReadString(xr));
 					else if(xr.Name == ElemExpires)
 						tl.Expires = ReadBool(xr, false);
 					else if(xr.Name == ElemUsageCount)
 						tl.UsageCount = ReadULong(xr, 0);
 					else if(xr.Name == ElemLocationChanged)
-						tl.LocationChanged = ReadTime(xr);
+						tl.SetLazyLocationChanged(ReadString(xr));
 					else ReadUnknown(xr);
 					break;
 

@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 using Android.App;
 using Android.Content;
@@ -151,7 +152,7 @@ namespace keepass2android
 				Finish();
 			}
 		}
-		
+			
 
 		private String getDateTime(DateTime dt) {
 			return dt.ToString ("g", CultureInfo.CurrentUICulture);
@@ -178,16 +179,12 @@ namespace keepass2android
 				extraGroup.RemoveAllViews();
 			}
 			bool hasExtraFields = false;
-			foreach (KeyValuePair<string, ProtectedString> pair in Entry.Strings)
+			foreach (var view in from pair in Entry.Strings where !PwDefs.IsStandardField(pair.Key) orderby pair.Key 
+								 select CreateEditSection(pair.Key, pair.Value.ReadString()))
 			{
-				String key = pair.Key;
-				if (!PwDefs.IsStandardField(key))
-				{
-					//View view = new EntrySection(this, null, key, pair.Value.ReadString());
-					View view = CreateEditSection(key, pair.Value.ReadString());
-					extraGroup.AddView(view);
-					hasExtraFields = true;
-				}
+				//View view = new EntrySection(this, null, key, pair.Value.ReadString());
+				extraGroup.AddView(view);
+				hasExtraFields = true;
 			}
 			FindViewById(Resource.Id.entry_extra_strings_label).Visibility = hasExtraFields ? ViewStates.Visible : ViewStates.Gone;
 		}
@@ -276,8 +273,8 @@ namespace keepass2android
 				return Android.Net.Uri.Parse("content://" + AttachmentContentProvider.Authority + "/"
 				                              + filename);
 			}
-			return fileUri;
-		}
+				return fileUri;
+			}
 
 		void OpenBinaryFile(Android.Net.Uri uri)
 		{
@@ -323,17 +320,17 @@ namespace keepass2android
 					builder.SetMessage(GetString(Resource.String.SaveAttachmentDialog_text));
 					
 					builder.SetPositiveButton(GetString(Resource.String.SaveAttachmentDialog_save), (dlgSender, dlgEvt) => 
-						{
+					                                                                                                                    {
 							WriteBinaryToFile(btnSender.Text, false);
 						});
 					
 					builder.SetNegativeButton(GetString(Resource.String.SaveAttachmentDialog_open), (dlgSender, dlgEvt) => 
-						{
+					                                                                                                                   {
 							Android.Net.Uri newUri = WriteBinaryToFile(btnSender.Text, true);
-							if (newUri != null)
-							{
+						if (newUri != null)
+						{
 								OpenBinaryFile(newUri);
-							}
+						}
 						});
 
 					Dialog dialog = builder.Create();

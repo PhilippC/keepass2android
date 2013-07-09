@@ -15,8 +15,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
-using KeePassLib;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using KeePassLib;
 using KeePassLib.Collections;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
@@ -40,9 +41,9 @@ namespace keepass2android
 		{
 			SearchParameters sp = new SearchParameters {SearchString = str};
 
-			return Search(database, sp);
+			return Search(database, sp, null);
 		}
-		public PwGroup Search(Database database, SearchParameters sp)
+		public PwGroup Search(Database database, SearchParameters sp, IDictionary<PwUuid, String> resultContexts)
 		{
 			
 			if(sp.RegularExpression) // Validate regular expression
@@ -56,7 +57,7 @@ namespace keepass2android
 			PwObjectList<PwEntry> listResults = pgResults.Entries;
 			
 			
-			database.Root.SearchEntries(sp, listResults, new NullStatusLogger());
+			database.Root.SearchEntries(sp, listResults, resultContexts, new NullStatusLogger());
 			
 			
 			return pgResults;

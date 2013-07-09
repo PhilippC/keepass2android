@@ -118,7 +118,7 @@ namespace keepass2android
 					entryId = new PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
 				
 				State.ParentGroup = null;
-				if (entryId == PwUuid.Zero)
+				if (entryId.EqualsValue(PwUuid.Zero))
 				{
 					String groupId = i.GetStringExtra(KeyParent);
 					
@@ -487,12 +487,12 @@ namespace keepass2android
 				builder.SetMessage(GetString(Resource.String.AskOverwriteBinary));
 
 				builder.SetPositiveButton(GetString(Resource.String.AskOverwriteBinary_yes), (dlgSender, dlgEvt) => 
-					{
+				                                                                                                         {
 						AddBinary(filename, true);
 					});
 
 				builder.SetNegativeButton(GetString(Resource.String.AskOverwriteBinary_no), (dlgSender, dlgEvt) => 
-					{
+				                                                                                                         {
 						AddBinary(filename, false);
 					});
 
@@ -532,9 +532,9 @@ namespace keepass2android
 			try
 			{
 				byte[] vBytes = File.ReadAllBytes(filename);
-				ProtectedBinary pb = new ProtectedBinary(false, vBytes);
+					ProtectedBinary pb = new ProtectedBinary(false, vBytes);
 				State.Entry.Binaries.Set(strItem, pb);
-			}
+				}
 			catch(Exception exAttach)
 			{
 				Toast.MakeText(this, GetString(Resource.String.AttachFailed)+" "+exAttach.Message, ToastLength.Long).Show();
@@ -562,13 +562,13 @@ namespace keepass2android
 				builder.SetMessage(GetString(Resource.String.AskDiscardChanges));
 				
 				builder.SetPositiveButton(GetString(Android.Resource.String.Yes), (dlgSender, dlgEvt) => 
-					{
-						Finish();
+				                                                                                                                  {
+					Finish();
 					
 					});
 				
 				builder.SetNegativeButton(GetString(Android.Resource.String.No), (dlgSender, dlgEvt) => 
-					{
+				                                                                                                                 {
 					
 					});
 				

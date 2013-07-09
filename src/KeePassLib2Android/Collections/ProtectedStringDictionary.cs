@@ -40,8 +40,9 @@ namespace KeePassLib.Collections
 		IDeepCloneable<ProtectedStringDictionary>,
 		IEnumerable<KeyValuePair<string, ProtectedString>>
 	{
-		private SortedDictionary<string, ProtectedString> m_vStrings =
-			new SortedDictionary<string, ProtectedString>();
+		/*private SortedDictionary<string, ProtectedString> m_vStrings =
+			new SortedDictionary<string, ProtectedString>();*/
+		private Dictionary<string, ProtectedString> m_vStrings = new Dictionary<string, ProtectedString>();
 
 		/// <summary>
 		/// Get the number of strings in this entry.
