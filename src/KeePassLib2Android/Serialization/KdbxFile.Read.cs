@@ -38,6 +38,7 @@ using KeePassLib.Interfaces;
 using KeePassLib.Keys;
 using KeePassLib.Resources;
 using KeePassLib.Utility;
+using keepass2android;
 
 namespace KeePassLib.Serialization
 {
@@ -82,7 +83,7 @@ namespace KeePassLib.Serialization
 				BinaryReaderEx brDecrypted = null;
 				Stream readerStream = null;
 
-				if(kdbFormat == KdbxFormat.Default)
+				if(kdbFormat == KdbxFormat.Default || kdbFormat == KdbxFormat.ProtocolBuffers)
 				{
 					br = new BinaryReaderEx(hashedStream, encNoBom, KLRes.FileCorrupted);
 					ReadHeader(br);
@@ -134,8 +135,21 @@ namespace KeePassLib.Serialization
 				else m_randomStream = null; // No random stream for plain-text files
 				if (m_slLogger != null)
 					m_slLogger.SetText("KP2AKEY_ParsingDatabase", LogStatusType.AdditionalInfo);
-				ReadXmlStreamed(readerStream, hashedStream);
-				// ReadXmlDom(readerStream);
+				var stopWatch = Stopwatch.StartNew();
+				
+				if (kdbFormat == KdbxFormat.ProtocolBuffers)
+				{
+					KdbpFile.ReadDocument(m_pwDatabase, readerStream, m_pbProtectedStreamKey, m_pbHashOfHeader);
+
+					Kp2aLog.Log(String.Format("KdbpFile.ReadDocument: {0}ms", stopWatch.ElapsedMilliseconds));
+
+				}
+				else
+				{
+					ReadXmlStreamed(readerStream, hashedStream);
+
+					Kp2aLog.Log(String.Format("ReadXmlStreamed: {0}ms", stopWatch.ElapsedMilliseconds));
+				}
 
 				readerStream.Close();
 				// GC.KeepAlive(br);
@@ -146,6 +160,17 @@ namespace KeePassLib.Serialization
 				throw new CryptographicException(KLRes.FileCorrupted);
 			}
 			finally { CommonCleanUpRead(sSource, hashedStream); }
+		}
+
+		public static void CopyStream(Stream input, Stream output)
+		{
+			byte[] buffer = new byte[4096];
+			int read;
+			while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+			{
+				output.Write(buffer, 0, read);
+			}
+			output.Seek(0, SeekOrigin.Begin);
 		}
 
 		private void CommonCleanUpRead(Stream sSource, HashingStreamEx hashedStream)

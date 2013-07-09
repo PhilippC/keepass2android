@@ -45,6 +45,7 @@ using KeePassLib.Keys;
 using KeePassLib.Resources;
 using KeePassLib.Security;
 using KeePassLib.Utility;
+using keepass2android;
 
 namespace KeePassLib.Serialization
 {
@@ -101,7 +102,7 @@ namespace KeePassLib.Serialization
 				m_pbStreamStartBytes = cr.GetRandomBytes(32);
 
 				Stream writerStream;
-				if(m_format == KdbxFormat.Default)
+				if(m_format == KdbxFormat.Default || m_format == KdbxFormat.ProtocolBuffers)
 				{
 					WriteHeader(hashedStream); // Also flushes the stream
 
@@ -122,12 +123,24 @@ namespace KeePassLib.Serialization
 					writerStream = hashedStream;
 				else { Debug.Assert(false); throw new FormatException("KdbFormat"); }
 
-				m_xmlWriter = new XmlTextWriter(writerStream, encNoBom);
-				WriteDocument(pgDataSource);
+				var stopWatch = Stopwatch.StartNew();
 
-				m_xmlWriter.Flush();
-				m_xmlWriter.Close();
+				if (m_format == KdbxFormat.ProtocolBuffers)
+				{
+					KdbpFile.WriteDocument(m_pwDatabase, writerStream, m_pbProtectedStreamKey, m_pbHashOfHeader);
+				}
+				else
+				{
+					m_xmlWriter = new XmlTextWriter(writerStream, encNoBom);
+					WriteDocument(pgDataSource);
+
+					m_xmlWriter.Flush();
+					m_xmlWriter.Close();
+				}
+
 				writerStream.Close();
+
+				Kp2aLog.Log(String.Format("{1}: {0}ms", stopWatch.ElapsedMilliseconds, m_format == KdbxFormat.ProtocolBuffers ? "KdbpFile.WriteDocument" : "Xml WriteDocument"));
 			}
 			finally { CommonCleanUpWrite(sSaveTo, hashedStream); }
 		}

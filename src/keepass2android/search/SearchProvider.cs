@@ -86,7 +86,7 @@ namespace keepass2android.search
 							}
 							catch (Exception e)
 							{
-								System.Diagnostics.Debug.WriteLine("Failed to search for suggestions: " + e.Message);
+								Kp2aLog.Log("Failed to search for suggestions: " + e.Message);
 							}
 						}
 						break;

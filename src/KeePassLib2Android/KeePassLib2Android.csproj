@@ -47,6 +47,9 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="protobuf-net">
+      <HintPath>..\ProtoBuf\protobuf-net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -127,6 +130,7 @@
     <Compile Include="Serialization\KdbxFile.Write.cs" />
     <Compile Include="Serialization\IOConnectionInfo.cs" />
     <Compile Include="Serialization\OldFormatException.cs" />
+    <Compile Include="Serialization\ProtoBuf\KdbpFile.cs" />
     <Compile Include="Translation\KPControlCustomization.cs" />
     <Compile Include="Translation\KPFormCustomization.cs" />
     <Compile Include="Translation\KPStringTable.cs" />
