@@ -193,7 +193,20 @@ namespace KeePassLib.Serialization
 			if ((ioc.UserName.Length > 0) || (ioc.Password.Length > 0))
 			{
 				//set the credentials without a cache (in case the cache below fails:
-				wc.Credentials = new NetworkCredential(ioc.UserName, ioc.Password);
+
+				//check for backslash to determine whether we need to specify the domain:
+				int backslashPos = ioc.UserName.IndexOf("\\", StringComparison.Ordinal);
+				if (backslashPos > 0)
+				{
+					string domain = ioc.UserName.Substring(0, backslashPos);
+					string user = ioc.UserName.Substring(backslashPos + 1);
+					wc.Credentials = new NetworkCredential(user, ioc.Password, domain);
+				}
+				else
+				{
+					wc.Credentials = new NetworkCredential(ioc.UserName, ioc.Password);	
+				}
+				
 
 				if (digestAuth)
 				{
