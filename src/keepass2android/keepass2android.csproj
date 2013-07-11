@@ -371,7 +371,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\xml\preferences.xml" />
     <AndroidResource Include="Resources\xml\searchable.xml" />
-    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\menu-v11\entry.xml" />
     <AndroidResource Include="Resources\menu-v11\password.xml" />
     <AndroidResource Include="Resources\menu-v11\entry_edit.xml" />

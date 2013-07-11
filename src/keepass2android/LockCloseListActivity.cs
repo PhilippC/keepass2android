@@ -53,6 +53,7 @@ namespace keepass2android
 			if (TimeoutHelper.CheckShutdown(this, _ioc))
 				return;
 			
+			//todo: see LockCloseActivity.OnResume
 			App.Kp2a.CheckForOpenFileChanged(this);
 		}
 

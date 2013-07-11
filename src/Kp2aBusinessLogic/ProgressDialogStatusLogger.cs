@@ -60,7 +60,7 @@ namespace keepass2android
 			{
 				_handler.Post(() => 
 				{ 
-					if (String.IsNullOrEmpty(submessage))
+					if (!String.IsNullOrEmpty(submessage))
 					{
 						_progressDialog.SetMessage(_message + " (" + submessage + ")");
 					}

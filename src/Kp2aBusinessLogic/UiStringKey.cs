@@ -29,7 +29,7 @@ namespace keepass2android
 		ParsingDatabase,
 		CheckingTargetFileForChanges,
 		TitleSyncQuestion,
-		MessageSyncQuestions,
+		MessageSyncQuestion,
 		SynchronizingDatabase
     }
 }

@@ -43,6 +43,7 @@ namespace keepass2android.Io
 		/// </summary>
 		/// Note: This function may return false even if the file might have changed. The function
 		/// should focus on being fast and cheap instead of doing things like hashing or downloading a full file.
+		/// previousFileVersion may be null to indicate no previous version is known.
 		/// <returns>Returns true if a change was detected, false otherwise.</returns>
 		bool CheckForFileChangeFast(IOConnectionInfo ioc , string previousFileVersion);
 

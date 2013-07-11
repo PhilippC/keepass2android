@@ -27,10 +27,16 @@ namespace keepass2android.Io
 		{
 			if (!ioc.IsLocalFile())
 				return false;
-			DateTime previousDate;
-			if (!DateTime.TryParse(previousFileVersion, out previousDate))
+			if (previousFileVersion == null)
 				return false;
-			return File.GetLastWriteTimeUtc(ioc.Path) > previousDate;
+			DateTime previousDate;
+			if (!DateTime.TryParse(previousFileVersion, CultureInfo.InvariantCulture, DateTimeStyles.None, out previousDate))
+				return false;
+			DateTime currentModificationDate = File.GetLastWriteTimeUtc(ioc.Path);
+			TimeSpan diff = currentModificationDate - previousDate;
+			return diff > TimeSpan.FromSeconds(1);
+			//don't use > operator because milliseconds are truncated
+			return File.GetLastWriteTimeUtc(ioc.Path) - previousDate >= TimeSpan.FromSeconds(1);
 		}
 
 		

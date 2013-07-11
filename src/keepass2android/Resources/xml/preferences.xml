@@ -148,7 +148,14 @@
 			  android:summary="@string/UseFileTransactions_summary"
 			  android:defaultValue="true"
 			  android:title="@string/UseFileTransactions_title"
-			  android:key="@string/UseFileTransactions_key" /> 
-			  
+			  android:key="@string/UseFileTransactions_key" />
+		<CheckBoxPreference
+		 	android:enabled="true"
+			  android:persistent="true"
+			  android:summary="@string/CheckForFileChangesOnSave_summary"
+			  android:defaultValue="true"
+			  android:title="@string/CheckForFileChangesOnSave_title"
+			  android:key="@string/CheckForFileChangesOnSave_key" />
+
 	</PreferenceScreen>
 </PreferenceScreen>

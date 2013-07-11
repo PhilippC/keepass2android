@@ -75,8 +75,9 @@ namespace keepass2android
 					if (fileStorage.CheckForFileChangeFast(ioc, _app.GetDb().LastFileVersion)  //first try to use the fast change detection
 						|| (FileHashChanged(ioc, _app.GetDb().KpDatabase.HashOfFileOnDisk))) //if that fails, hash the file and compare:
 					{
+						
 						//ask user...
-						_app.AskYesNoCancel(UiStringKey.TitleSyncQuestion, UiStringKey.MessageSyncQuestions,
+						_app.AskYesNoCancel(UiStringKey.TitleSyncQuestion, UiStringKey.MessageSyncQuestion,
 							//yes = sync
 							(sender, args) =>
 								{
@@ -85,7 +86,6 @@ namespace keepass2android
 											//note: when synced, the file might be downloaded once again from the server. Caching the data
 											//in the hashing function would solve this but increases complexity. I currently assume the files are 
 											//small.
-											StatusLogger.UpdateSubMessage(_app.GetResourceString(UiStringKey.SynchronizingDatabase));
 											MergeIn(fileStorage, ioc);
 											PerformSaveWithoutCheck(fileStorage, ioc);
 											Finish(true);
@@ -108,8 +108,6 @@ namespace keepass2android
 								},
 							_ctx
 							);
-
-
 					}
 					else
 					{
@@ -125,7 +123,8 @@ namespace keepass2android
 				bSuccess = false;
 			}
 */
-					Finish (false, e.ToString());
+					Kp2aLog.Log("Error while saving: "+e.ToString());
+					Finish (false, e.Message);
 					return;
 				} 
 			}
@@ -138,7 +137,7 @@ namespace keepass2android
 			try
 			{
 				_workerThread = new Thread(runHandler);
-				_workerThread.Run();
+				_workerThread.Start();
 			}
 			catch (Exception e)
 			{
@@ -156,6 +155,8 @@ namespace keepass2android
 
 		private void MergeIn(IFileStorage fileStorage, IOConnectionInfo ioc)
 		{
+			StatusLogger.UpdateSubMessage(_app.GetResourceString(UiStringKey.SynchronizingDatabase));
+
 			PwDatabase pwImp = new PwDatabase();
 			PwDatabase pwDatabase = _app.GetDb().KpDatabase;
 			pwImp.New(new IOConnectionInfo(), pwDatabase.MasterKey);
@@ -170,6 +171,7 @@ namespace keepass2android
 
 		private void PerformSaveWithoutCheck(IFileStorage fileStorage, IOConnectionInfo ioc)
 		{
+			StatusLogger.UpdateSubMessage("");
 			_app.GetDb().SaveData(_ctx);
 			_app.GetDb().LastFileVersion = fileStorage.GetCurrentFileVersionFast(ioc);
 		}

@@ -61,6 +61,8 @@
 	<string name="LastInfoVersionCode_key">LastInfoVersion</string>
 	
 	<string name="UseFileTransactions_key">UseFileTransactions</string>
+	<string name="CheckForFileChangesOnSave_key">CheckForFileChangesOnSave</string>
+
 	<string name="MarketURL">market://details?id=</string>
 	<string name="SuggestionsURL">https://keepass2android.codeplex.com/workitem/list/basic</string>
 	<string name="TranslationURL">http://crowdin.net/project/keepass2android</string>

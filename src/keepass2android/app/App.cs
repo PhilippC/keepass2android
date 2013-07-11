@@ -103,6 +103,8 @@ namespace keepass2android
                     return prefs.GetBoolean(ctx.Resources.GetString(Resource.String.keyfile_key), ctx.Resources.GetBoolean(Resource.Boolean.keyfile_default));
                 case PreferenceKey.UseFileTransactions:
                     return prefs.GetBoolean(ctx.Resources.GetString(Resource.String.UseFileTransactions_key), true);
+				case PreferenceKey.CheckForFileChangesOnSave:
+					return prefs.GetBoolean(ctx.Resources.GetString(Resource.String.CheckForFileChangesOnSave_key), true);
                 default:
                     throw new Exception("unexpected key!");
             }
@@ -163,22 +165,25 @@ namespace keepass2android
             EventHandler<DialogClickEventArgs> cancelHandler,
             Context ctx)
         {
+	        Handler handler = new Handler(Looper.MainLooper);
+			handler.Post(() =>
+				{
+					AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+					builder.SetTitle(GetResourceString(titleKey));
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-            builder.SetTitle(GetResourceString(titleKey));
+					builder.SetMessage(GetResourceString(messageKey));
 
-            builder.SetMessage(GetResourceString(messageKey));
+					builder.SetPositiveButton(Resource.String.yes, yesHandler);
 
-            builder.SetPositiveButton(Resource.String.yes, yesHandler);
+					builder.SetNegativeButton(Resource.String.no, noHandler);
 
-            builder.SetNegativeButton(Resource.String.no, noHandler);
+					builder.SetNeutralButton(ctx.GetString(Android.Resource.String.Cancel),
+											 cancelHandler);
 
-            builder.SetNeutralButton(ctx.GetString(Android.Resource.String.Cancel),
-                                    cancelHandler);
-
-            Dialog dialog = builder.Create();
-            dialog.Show();
-
+					Dialog dialog = builder.Create();
+					dialog.Show();
+				}
+			);
         }
 
 		public Handler UiThreadHandler 
