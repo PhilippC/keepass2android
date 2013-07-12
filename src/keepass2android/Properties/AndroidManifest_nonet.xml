@@ -14,6 +14,16 @@
 			    <data android:scheme="file" />
 			    <data android:mimeType="*/*" />
 			    <data android:host="*" />
+			<data android:pathPattern=".*\\.kdbp" />
+			    <data android:pathPattern=".*\\..*\\.kdbp" />
+			    <data android:pathPattern=".*\\..*\\..*\\.kdbp" />
+			    <data android:pathPattern=".*\\..*\\..*\\..*\\.kdbp" />
+			    <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.kdbp" />
+			    <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
+			    <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
+			    <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
+			    <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
+			    <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
 			<data android:pathPattern=".*\\.kdbx" />
 			    <data android:pathPattern=".*\\..*\\.kdbx" />
 			    <data android:pathPattern=".*\\..*\\..*\\.kdbx" />
