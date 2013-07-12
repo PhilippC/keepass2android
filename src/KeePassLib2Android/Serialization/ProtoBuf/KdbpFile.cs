@@ -95,7 +95,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private PwDatabaseBuffer()
+			public PwDatabaseBuffer()
 			{
 			}
 
@@ -315,7 +315,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private StringDictionaryExBuffer()
+			public StringDictionaryExBuffer()
 			{
 				mStringDictionaryEx = new StringDictionaryEx();
 			}
@@ -385,7 +385,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private PwCustomIconBuffer()
+			public PwCustomIconBuffer()
 			{
 			}
 
@@ -418,7 +418,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private MemoryProtectionConfigBuffer()
+			public MemoryProtectionConfigBuffer()
 			{
 				mMemoryProtectionConfig = new MemoryProtectionConfig();
 			}
@@ -478,7 +478,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private PwDeletedObjectListBuffer()
+			public PwDeletedObjectListBuffer()
 				: base()
 			{
 			}
@@ -503,7 +503,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private PwDeletedObjectBuffer()
+			public PwDeletedObjectBuffer()
 			{
 				mDeletedObject = new PwDeletedObject();
 			}
@@ -543,7 +543,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private PwGroupBuffer()
+			public PwGroupBuffer()
 			{
 				mGroup = new PwGroup(false, false);
 				mEntries = new PwGroupEntryListBuffer(mGroup);
@@ -790,7 +790,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private PwEntryListBuffer()
+			public PwEntryListBuffer()
 				: base()
 			{
 			}
@@ -830,7 +830,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private PwEntryBuffer()
+			public PwEntryBuffer()
 			{
 				mEntry = new PwEntry(false, false);
 				mEntryStandardStrings = new ProtectedStandardFieldDictionaryBuffer(mEntry.Strings);
@@ -1177,7 +1177,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialisation
-			private ProtectedStringBuffer()
+			public ProtectedStringBuffer()
 			{
 			}
 
@@ -1281,7 +1281,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialisation
-			private NamedProtectedBinaryBuffer()
+			public NamedProtectedBinaryBuffer()
 			{
 			}
 
@@ -1327,7 +1327,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private AutoTypeConfigBuffer()
+			public AutoTypeConfigBuffer()
 			{
 				mAutoTypeConfig = new AutoTypeConfig();
 				mAutoTypeAssociationsBuffer = new AutoTypeAssociationsBuffer(mAutoTypeConfig);
@@ -1410,7 +1410,7 @@ namespace KeePassLib.Serialization
 			#endregion
 
 			#region Deserialization
-			private AutoTypeAssociationBuffer()
+			public AutoTypeAssociationBuffer()
 			{
 				mAutoTypeAssociation = new AutoTypeAssociation();
 			}
