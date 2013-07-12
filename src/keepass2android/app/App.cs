@@ -258,9 +258,6 @@ namespace keepass2android
             {
                 GetResourceString(key);
             }
-            
-#else
-                this should case a compiler error when switching to release (and thus ensure DEBUG is defined in DEBUG)
 #endif
         }
 
