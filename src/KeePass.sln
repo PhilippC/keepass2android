@@ -66,6 +66,7 @@ Global
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Release|Win32.ActiveCfg = Release|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Release|Win32.Build.0 = Release|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.Release|x64.ActiveCfg = Release|Any CPU
