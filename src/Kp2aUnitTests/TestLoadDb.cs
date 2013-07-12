@@ -9,7 +9,7 @@ using keepass2android;
 namespace Kp2aUnitTests
 {
 	[TestClass]
-	internal class TestLoadDb : TestBase
+	internal partial class TestLoadDb : TestBase
 	{
 		private void RunLoadTest(string filenameWithoutDir, string password, string keyfile)
 		{
@@ -66,6 +66,29 @@ namespace Kp2aUnitTests
 		public void TestLoadWithEmptyPasswordOnly()
 		{
 			RunLoadTest("EmptyPassword.kdbx", "", "");
+		}
+		[TestMethod]
+		public void LoadFromRemoteWithDomain()
+		{
+			var ioc = RemoteDomainIoc; //note: this property is defined in "TestLoadDbCredentials.cs" which is deliberately excluded from Git because the credentials are not public!
+			IKp2aApp app = new TestKp2aApp();
+			app.CreateNewDatabase();
+			
+			bool loadSuccesful = false;
+			LoadDb task = new LoadDb(app, ioc, "a", null, new ActionOnFinish((success, message) =>
+				{
+					if (!success)
+						Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
+					loadSuccesful = success;
+				})
+				);
+			ProgressTask pt = new ProgressTask(app, Application.Context, task);
+			Android.Util.Log.Debug("KP2ATest", "Running ProgressTask");
+			pt.Run();
+			pt.JoinWorkerThread();
+			Android.Util.Log.Debug("KP2ATest", "PT.run finished");
+			Assert.IsTrue(loadSuccesful, "didn't succesfully load database :-(");
+			
 		}
 
 	}
