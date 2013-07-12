@@ -131,7 +131,6 @@
     <Compile Include="services\CopyToClipboardService.cs" />
     <Compile Include="search\SearchActivity.cs" />
     <Compile Include="QuickUnlock.cs" />
-    <Compile Include="views\EntryEditSection.cs" />
     <Compile Include="LifecycleDebugActivity.cs" />
     <Compile Include="services\QuickUnlockForegroundService.cs" />
     <Compile Include="AssemblyInfo.cs" />
@@ -172,6 +171,9 @@
     <None Include="Resources\drawable-xhdpi\2_action_about.png">
       <Visible>False</Visible>
     </None>
+    <AndroidResource Include="Resources\layout\edit_extra_string_dialog.xml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
     <None Include="settings\RoundsPreference %28Kopie%29.cs">
       <Visible>False</Visible>
     </None>
@@ -565,7 +567,9 @@
     <AndroidResource Include="Resources\layout\url_credentials.xml" />
     <AndroidResource Include="Resources\drawable\section_header.xml" />
     <AndroidResource Include="Resources\drawable\extra_string_header.xml" />
-    <AndroidResource Include="Resources\layout\entry_edit_section.xml" />
+    <AndroidResource Include="Resources\layout\entry_edit_section.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\values-de\strings.xml" />
     <AndroidResource Include="Resources\values-ca\strings.xml" />
     <AndroidResource Include="Resources\values-cs\strings.xml" />
@@ -597,7 +601,6 @@
     <AndroidResource Include="Resources\layout-v14\entry_view.xml" />
     <AndroidResource Include="Resources\layout-v14\entry_edit.xml" />
     <AndroidResource Include="Resources\layout-v14\SaveButton.xml" />
-    <AndroidResource Include="Resources\layout-v14\entry_edit_section.xml" />
     <AndroidResource Include="Resources\layout-v14\generate_password.xml" />
     <AndroidResource Include="Resources\layout-v14\icon_picker.xml" />
     <AndroidResource Include="Resources\layout-v14\password.xml" />

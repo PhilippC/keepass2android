@@ -26,10 +26,17 @@
         android:layout_weight="3"
         android:gravity="top|left"
         android:layout_marginRight="0dip" />
-    <ImageButton
-        android:id="@+id/delete"
-        style="@style/MinusButton"
-        android:layout_width="wrap_content"
+	<CheckBox
+        android:id="@+id/protection"
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+		 android:visibility="gone"
+        android:text="@string/protection"/>
+    <Button
+        android:id="@+id/edit_extra"
+        android:text="…" 
+		android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical" />
+        android:gravity="center_vertical"
+		android:layout_marginRight="8dip" />
 </LinearLayout>

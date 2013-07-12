@@ -63,7 +63,8 @@ namespace keepass2android
 		private int _pos;
 
 		AppTask _appTask;
-		
+		private List<TextView> _protectedTextViews;
+
 
 		protected void SetEntryView() {
 			SetContentView(Resource.Layout.entry_view);
@@ -180,16 +181,15 @@ namespace keepass2android
 			}
 			bool hasExtraFields = false;
 			foreach (var view in from pair in Entry.Strings where !PwDefs.IsStandardField(pair.Key) orderby pair.Key 
-								 select CreateEditSection(pair.Key, pair.Value.ReadString()))
+								 select CreateEditSection(pair.Key, pair.Value.ReadString(), pair.Value.IsProtected))
 			{
-				//View view = new EntrySection(this, null, key, pair.Value.ReadString());
 				extraGroup.AddView(view);
 				hasExtraFields = true;
 			}
 			FindViewById(Resource.Id.entry_extra_strings_label).Visibility = hasExtraFields ? ViewStates.Visible : ViewStates.Gone;
 		}
 
-		View CreateEditSection(string key, string value)
+		View CreateEditSection(string key, string value, bool isProtected)
 		{
 			LinearLayout layout = new LinearLayout(this, null) {Orientation = Orientation.Vertical};
 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FillParent, ViewGroup.LayoutParams.WrapContent);
@@ -199,19 +199,27 @@ namespace keepass2android
 			TextView keyView = (TextView)viewInflated;
 			if (key != null)
 				keyView.Text = key;
-
+			
 			layout.AddView(keyView);
 			TextView valueView = (TextView)LayoutInflater.Inflate(Resource.Layout.entry_extrastring_value, null);
 			if (value != null)
 				valueView.Text = value;
 			valueView.Typeface = Typeface.Monospace;
+			if (isProtected)
+				RegisterProtectedTextView(valueView);
+
 
 			if ((int)Build.VERSION.SdkInt >= 11)
 				valueView.SetTextIsSelectable(true);
 			layout.AddView(valueView);
 			return layout;
 		}
-		
+
+		private void RegisterProtectedTextView(TextView protectedTextView)
+		{
+			_protectedTextViews.Add(protectedTextView);
+		}
+
 		Android.Net.Uri WriteBinaryToFile(string key, bool writeToCacheDirectory)
 		{
 			ProtectedBinary pb = Entry.Binaries.Get(key);
@@ -365,6 +373,7 @@ namespace keepass2android
 
 		protected void FillData(bool trimList)
 		{
+			_protectedTextViews = new List<TextView>();
 			ImageView iv = (ImageView)FindViewById(Resource.Id.entry_icon);
 			if (iv != null)
 			{
@@ -388,7 +397,7 @@ namespace keepass2android
 			
 			PopulateText(Resource.Id.entry_url, Resource.Id.entry_url_label, Entry.Strings.ReadSafe(PwDefs.UrlField));
 			PopulateText(Resource.Id.entry_password, Resource.Id.entry_password_label, Entry.Strings.ReadSafe(PwDefs.PasswordField));
-			SetPasswordStyle();
+			RegisterProtectedTextView(FindViewById<TextView>(Resource.Id.entry_password));
 			
 			PopulateText(Resource.Id.entry_created, Resource.Id.entry_created_label, getDateTime(Entry.CreationTime));
 			PopulateText(Resource.Id.entry_modified, Resource.Id.entry_modified_label, getDateTime(Entry.LastModificationTime));
@@ -411,7 +420,7 @@ namespace keepass2android
 
 			PopulateBinaries(trimList);
 
-
+			SetPasswordStyle();
 		}
 		
 		private void PopulateText(int viewId, int headerViewId,int resId) {
@@ -498,12 +507,17 @@ namespace keepass2android
 		}
 		
 		private void SetPasswordStyle() {
-			TextView password = (TextView) FindViewById(Resource.Id.entry_password);
-			
-			if ( _showPassword ) {
-				password.TransformationMethod = null;
-			} else {
-				password.TransformationMethod = PasswordTransformationMethod.Instance;
+			foreach (TextView password in _protectedTextViews)
+			{
+
+				if (_showPassword)
+				{
+					password.TransformationMethod = null;
+				}
+				else
+				{
+					password.TransformationMethod = PasswordTransformationMethod.Instance;
+				}
 			}
 		}
 		protected override void OnResume()

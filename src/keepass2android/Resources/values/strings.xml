@@ -211,9 +211,10 @@
   <string name="error_string_key">A field name is required for each string.</string>
   <string name="field_name">Field Name</string>
   <string name="field_value">Field value</string>
-  <string name="protection">Memory Protection</string>
+  <string name="protection">Protected field</string>
   <string name="add_binary">Add file attachment...</string>
   <string name="add_extra_string">Add additional string</string>
+  <string name="delete_extra_string">Delete additional string</string>
   <string name="database_loaded_quickunlock_enabled">Database loaded, QuickUnlock enabled.</string>
   <string name="credentials_dialog_title">Enter server credentials</string>
   <string name="UseFileTransactions_title">File transactions</string>
@@ -264,11 +265,9 @@
 		* External changes are detected and merged when saving\n
 		* Improved loading performance\n
 		* Improved search toolbar with suggestions\n
-		? New app logo!\n
-		? Added support for .kdbp format for faster loading/saving\n
-		? Improved editing of extra strings and hidden display when protected\n
+		* Added support for .kdbp format for faster loading/saving\n
+		* Improved editing of extra strings and hidden display when protected\n
 		Thanks to Alex Vallat for his code contributions!\n
-		Thanks to Niki Hüttner (www.close-cut.de) for the new logo!\n
 	</string>
 		<string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * Username/TAN index displayed in entry list (see settings)\n

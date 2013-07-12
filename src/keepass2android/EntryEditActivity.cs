@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -444,12 +445,9 @@ namespace keepass2android
 				
 				TextView valueView = (TextView)view.FindViewById(Resource.Id.value);
 				String value = valueView.Text;
-				
 
-				bool protect = true;
-				ProtectedString initialString = State.EntryInDatabase.Strings.Get(key);
-				if (initialString != null)
-					protect = initialString.IsProtected;
+
+				bool protect = ((CheckBox) view.FindViewById(Resource.Id.protection)).Checked;
 				entry.Strings.Set(key, new ProtectedString(protect, value));
 			}
 			
@@ -648,7 +646,7 @@ namespace keepass2android
 			ViewGroup binariesGroup = (ViewGroup)FindViewById(Resource.Id.binaries);
 			binariesGroup.RemoveAllViews();
 			RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.FillParent, ViewGroup.LayoutParams.WrapContent);
-			foreach (KeyValuePair<string, ProtectedBinary> pair in State.Entry.Binaries)
+			foreach (KeyValuePair<string, ProtectedBinary> pair in State.Entry.Binaries.OrderBy(p => p.Key) )
 			{
 				String key = pair.Key;
 				Button binaryButton = new Button(this) {Text = key};
@@ -790,10 +788,68 @@ namespace keepass2android
 			((TextView)ees.FindViewById(Resource.Id.title)).TextChanged += (sender, e) => State.EntryModified = true;
 			((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
 			((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
-			ees.FindViewById(Resource.Id.delete).Click += (sender, e) => DeleteAdvancedString((View)sender);
+
+			((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
+			
+			//ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => DeleteAdvancedString((View)sender);
+			ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => EditAdvancedString((View)sender);
 			return ees;
 		}
-		
+
+		private void EditAdvancedString(View sender)
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			View dlgView = LayoutInflater.Inflate(Resource.Layout.edit_extra_string_dialog, null);
+			builder.SetView(dlgView);
+			builder.SetNegativeButton(Android.Resource.String.Cancel, (o, args) => { });
+			builder.SetPositiveButton(Android.Resource.String.Ok, (o, args) =>
+				{
+					CopyFieldFromExtraDialog(sender, o, Resource.Id.title);
+					CopyFieldFromExtraDialog(sender, o, Resource.Id.value);
+					CopyCheckboxFromExtraDialog(sender, o, Resource.Id.protection);
+				});
+			Dialog dialog = builder.Create();
+
+			//setup delete button:
+			var deleteButton = dlgView.FindViewById<Button>(Resource.Id.delete_extra);
+			deleteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Android.Resource.Drawable.IcMenuDelete), null, null, null);
+			deleteButton.Click += (o, args) =>
+				{
+					DeleteAdvancedString(sender);
+					dialog.Dismiss();
+				};
+			//copy values:
+			View ees = (View) sender.Parent;
+			dlgView.FindViewById<EditText>(Resource.Id.title).Text = ees.FindViewById<EditText>(Resource.Id.title).Text;
+			dlgView.FindViewById<EditText>(Resource.Id.value).Text = ees.FindViewById<EditText>(Resource.Id.value).Text;
+			dlgView.FindViewById<CheckBox>(Resource.Id.protection).Checked = ees.FindViewById<CheckBox>(Resource.Id.protection).Checked;
+			
+			dialog.Show();
+
+		}
+
+		private void CopyFieldFromExtraDialog(View eesButton, object dialog, int fieldId)
+		{
+			var sourceField = ((Dialog)dialog).FindViewById<EditText>(fieldId);
+			var targetField = ((TextView)((View)eesButton.Parent).FindViewById(fieldId));
+			if (sourceField.Text != targetField.Text)
+			{
+				targetField.Text = sourceField.Text;
+				State.EntryModified = true;
+			}	
+		}
+
+		private void CopyCheckboxFromExtraDialog(View eesButton, object dialog, int fieldId)
+		{
+			var sourceField = ((Dialog)dialog).FindViewById<CheckBox>(fieldId);
+			var targetField = ((CheckBox)((View)eesButton.Parent).FindViewById(fieldId));
+			if (sourceField.Checked != targetField.Checked)
+			{
+				targetField.Checked = sourceField.Checked;
+				State.EntryModified = true;
+			}
+		}
+
 		private void FillData() {
 			ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
 			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid);
