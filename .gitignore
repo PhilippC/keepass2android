@@ -28,3 +28,4 @@
 Thumbs.db
 
 /src/monodroid-unittesting/*.suo
+/src/Kp2aUnitTests/TestLoadDbCredentials.cs
