@@ -112,6 +112,12 @@ namespace KeePassLib
 			Debug.Assert(uuid != null);
 			if(uuid == null) throw new ArgumentNullException("uuid");
 
+			// Shortcut
+			if (Object.ReferenceEquals(this, uuid))
+			{
+				return true;
+			}
+
 			for(int i = 0; i < UuidSize; ++i)
 			{
 				if(m_pbUuid[i] != uuid.m_pbUuid[i]) return false;
