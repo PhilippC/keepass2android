@@ -830,7 +830,7 @@ namespace keepass2android
 
 		private void CopyFieldFromExtraDialog(View eesButton, object dialog, int fieldId)
 		{
-			var sourceField = ((Dialog)dialog).FindViewById<EditText>(fieldId);
+			var sourceField = (EditText)((Dialog)dialog).FindViewById(fieldId);
 			var targetField = ((TextView)((View)eesButton.Parent).FindViewById(fieldId));
 			if (sourceField.Text != targetField.Text)
 			{
@@ -841,7 +841,7 @@ namespace keepass2android
 
 		private void CopyCheckboxFromExtraDialog(View eesButton, object dialog, int fieldId)
 		{
-			var sourceField = ((Dialog)dialog).FindViewById<CheckBox>(fieldId);
+			var sourceField = (CheckBox)((Dialog)dialog).FindViewById(fieldId);
 			var targetField = ((CheckBox)((View)eesButton.Parent).FindViewById(fieldId));
 			if (sourceField.Checked != targetField.Checked)
 			{
