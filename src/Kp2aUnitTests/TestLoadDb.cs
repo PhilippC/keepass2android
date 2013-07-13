@@ -91,5 +91,11 @@ namespace Kp2aUnitTests
 			
 		}
 
+		[TestMethod]
+		public void TestLoadKdbpWithPasswordOnly()
+		{
+			RunLoadTest("passwordonly.kdbp", DefaultPassword, "");
+		}
+
 	}
 }

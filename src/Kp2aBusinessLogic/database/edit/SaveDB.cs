@@ -136,12 +136,24 @@ namespace keepass2android
 		{
 			try
 			{
-				_workerThread = new Thread(runHandler);
+				_workerThread = new Thread(() =>
+					{
+						try
+						{
+							runHandler();
+						}
+						catch (Exception e)
+						{
+							Kp2aLog.Log("Error in worker thread of SaveDb: " + e);
+							Finish(false, e.Message);
+						}
+						
+					});
 				_workerThread.Start();
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.Log("Error in worker thread of SaveDb: "+e);
+				Kp2aLog.Log("Error starting worker thread of SaveDb: "+e);
 				Finish(false, e.Message);
 			}
 			

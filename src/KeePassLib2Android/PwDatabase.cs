@@ -663,7 +663,7 @@ namespace KeePassLib
 			Debug.Assert(ValidateUuidUniqueness());
 			Stream s = streamOfOriginalLocation;
 			KdbxFile kdb = new KdbxFile(this);
-			kdb.Save(s, null, KdbxFormat.Default, slLogger);
+			kdb.Save(s, null, KdbpFile.GetFormatToUse(m_ioSource), slLogger);
 
 			m_pbHashOfLastIO = kdb.HashOfFileOnDisk;
 			m_pbHashOfFileOnDisk = kdb.HashOfFileOnDisk;
