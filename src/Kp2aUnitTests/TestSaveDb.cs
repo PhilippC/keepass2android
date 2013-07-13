@@ -265,6 +265,48 @@ namespace Kp2aUnitTests
 
 		}
 
+		[TestMethod]
+		public void TestLoadKdbxAndSaveKdbp_TestIdenticalFiles()
+		{
+			IKp2aApp app = LoadDatabase(DefaultDirectory + "complexDb.kdbx", "test", null);
+			//string kdbxXml = DatabaseToXml(app);
+
+			newFilename = TestDbDirectory + "tmp_complexDb.kdbp";
+			if (File.Exists(newFilename))
+				File.Delete(newFilename);
+			app.GetDb().KpDatabase.IOConnectionInfo.Path = newFilename;
+			app.GetDb().SaveData(Application.Context);
+
+			
+			IKp2aApp appReloaded = LoadDatabase(newFilename, "test", null);
+			/*
+			 * Unfortunately we cannot compare the xml because there are slight differences:
+			 *  - the order of ProtectedStrings in the xml is different (which is ok)
+			 *  - the CustomIconUuids are serialized as Zeros instead of not being serialized (which is ok as well)
+			string kdbxReloadedXml = DatabaseToXml(appReloaded);
+
+			bool areEqual = kdbxXml.Equals(kdbxReloadedXml);
+
+			if (!areEqual)
+			{
+				using (StreamWriter w1 = File.CreateText(TestDbDirectory + "FromOriginalKdbx.xml"))
+				{
+					w1.Write(kdbxXml);
+				}
+				using (StreamWriter w2 = File.CreateText(TestDbDirectory + "FromKdbp.xml"))
+				{
+					w2.Write(kdbxReloadedXml);	
+				}
+				
+			}
+			Assert.IsTrue(areEqual, "reloaded->xml differs from loaded->xml");
+			*/
+			AssertDatabasesAreEqual(app.GetDb().KpDatabase, appReloaded.GetDb().KpDatabase);
+
+
+
+		}
+
 		private class OnCloseToStringMemoryStream : MemoryStream
 		{
 			public string Text { get; private set; }
