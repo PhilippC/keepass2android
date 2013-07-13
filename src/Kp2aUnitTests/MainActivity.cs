@@ -18,10 +18,10 @@ namespace Kp2aUnitTests
         {
             TestRunner runner = new TestRunner();
             // Run all tests from this assembly
-            runner.AddTests(Assembly.GetExecutingAssembly());
+            //runner.AddTests(Assembly.GetExecutingAssembly());
 			//runner.AddTests(new List<Type> { typeof(TestSaveDb)});
-			//runner.AddTests(typeof(TestSaveDb).GetMethod("TestLoadEditSaveWithSyncConflict"));
-			//runner.AddTests(typeof(TestSaveDb).GetMethod("TestLoadEditSave"));
+			runner.AddTests(typeof(TestSaveDb).GetMethod("TestLoadEditSaveWithSyncKdbp"));
+			//runner.AddTests(typeof(TestSaveDb).GetMethod("TestLoadKdbxAndSaveKdbp_TestIdenticalFiles"));
             return runner;
         }
     }

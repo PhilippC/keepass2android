@@ -11,7 +11,7 @@ using ProtoBuf.Meta;
 
 namespace KeePassLib.Serialization
 {
-	internal class KdbpFile
+	public class KdbpFile
 	{
 		public const string FileNameExtension = "kdbp";
 
