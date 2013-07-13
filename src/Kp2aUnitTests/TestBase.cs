@@ -106,12 +106,20 @@ namespace Kp2aUnitTests
 
 		protected IKp2aApp SetupAppWithDefaultDatabase()
 		{
+			string filename = DefaultFilename;
+
+			return SetupAppWithDatabase(filename);
+		}
+
+		protected IKp2aApp SetupAppWithDatabase(string filename)
+		{
 			IKp2aApp app = new TestKp2aApp();
-			IOConnectionInfo ioc = new IOConnectionInfo {Path = DefaultFilename};
+
+			IOConnectionInfo ioc = new IOConnectionInfo {Path = filename};
 			Database db = app.CreateNewDatabase();
 
 			db.KpDatabase = new PwDatabase();
-			
+
 			CompositeKey compositeKey = new CompositeKey();
 			compositeKey.AddUserKey(new KcpPassword(DefaultPassword));
 			if (!String.IsNullOrEmpty(DefaultKeyfile))
@@ -130,18 +138,18 @@ namespace Kp2aUnitTests
 
 			// Add a couple default groups
 			db.KpDatabase.RootGroup.AddGroup(new PwGroup(true, true, "Internet", PwIcon.Key), true);
-			
+
 			mailGroup = new PwGroup(true, true, "eMail", PwIcon.UserCommunication);
 			db.KpDatabase.RootGroup.AddGroup(mailGroup, true);
 
-			mailGroup.AddGroup(new PwGroup(true, true, "business", PwIcon.BlackBerry), true );
+			mailGroup.AddGroup(new PwGroup(true, true, "business", PwIcon.BlackBerry), true);
 
 			mailEntry = new PwEntry(true, true);
 			mailEntry.Strings.Set(PwDefs.UserNameField, new ProtectedString(
-						true, "me@there.com"));
+				                                            true, "me@there.com"));
 			mailEntry.Strings.Set(PwDefs.TitleField, new ProtectedString(
-						true, "me@there.com Entry"));
-			mailGroup.AddEntry(mailEntry , true);
+				                                         true, "me@there.com Entry"));
+			mailGroup.AddEntry(mailEntry, true);
 
 			db.KpDatabase.RootGroup.AddGroup(new PwGroup(true, true, "eMail2", PwIcon.UserCommunication), true);
 

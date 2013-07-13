@@ -44,13 +44,25 @@ namespace Kp2aUnitTests
 		[TestMethod]
 		public void TestLoadEditSaveWithSync()
 		{
-			//create the default database:
-			IKp2aApp app = SetupAppWithDefaultDatabase();
+			TestSync(DefaultFilename);
+		}
+
+		[TestMethod]
+		public void TestLoadEditSaveWithSyncKdbp()
+		{
+			TestSync(DefaultDirectory+"savetest.kdbp");
+		}
+
+
+		private void TestSync(string filename)
+		{
+//create the default database:
+			IKp2aApp app = SetupAppWithDatabase(filename);
 			//save it and reload it so we have a base version
 			SaveDatabase(app);
-			app = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			app = LoadDatabase(filename, DefaultPassword, DefaultKeyfile);
 			//load it once again:
-			IKp2aApp app2 = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			IKp2aApp app2 = LoadDatabase(filename, DefaultPassword, DefaultKeyfile);
 
 			//modify the database by adding a group in both databases:
 			app.GetDb().KpDatabase.RootGroup.AddGroup(new PwGroup(true, true, "TestGroup", PwIcon.Apple), true);
@@ -59,23 +71,22 @@ namespace Kp2aUnitTests
 			//save the database from app 1:
 			SaveDatabase(app);
 
-			((TestKp2aApp)app2).SetYesNoCancelResult(TestKp2aApp.YesNoCancelResult.Yes);
+			((TestKp2aApp) app2).SetYesNoCancelResult(TestKp2aApp.YesNoCancelResult.Yes);
 
 			//save the database from app 2: This save operation must detect the changes made from app 1 and ask if it should sync:
 			SaveDatabase(app2);
 
 			//make sure the right question was asked
-			Assert.AreEqual(UiStringKey.TitleSyncQuestion, ((TestKp2aApp)app2).LastYesNoCancelQuestionTitle);
+			Assert.AreEqual(UiStringKey.TitleSyncQuestion, ((TestKp2aApp) app2).LastYesNoCancelQuestionTitle);
 
 			//add group 2 to app 1:
 			app.GetDb().KpDatabase.RootGroup.AddGroup(group2, true);
 
 			//load database to a new app instance:
-			IKp2aApp resultApp = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			IKp2aApp resultApp = LoadDatabase(filename, DefaultPassword, DefaultKeyfile);
 
 			//ensure the sync was successful:
 			AssertDatabasesAreEqual(app.GetDb().KpDatabase, resultApp.GetDb().KpDatabase);
-
 		}
 
 
