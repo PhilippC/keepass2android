@@ -54,14 +54,15 @@ namespace keepass2android
 		
 		public override void Run ()
 		{
-			
-			if (! _dontSave) {
+
+			if (!_dontSave)
+			{
 				try
 				{
 					StatusLogger.UpdateMessage(UiStringKey.saving_database);
 					IOConnectionInfo ioc = _app.GetDb().Ioc;
 					IFileStorage fileStorage = _app.GetFileStorage(ioc);
-					
+
 					if ((!_app.GetBooleanPreference(PreferenceKey.CheckForFileChangesOnSave))
 						|| (_app.GetDb().KpDatabase.HashOfFileOnDisk == null)) //first time saving
 					{
@@ -70,42 +71,42 @@ namespace keepass2android
 						return;
 					}
 
-					
-					
+
+
 					if (fileStorage.CheckForFileChangeFast(ioc, _app.GetDb().LastFileVersion)  //first try to use the fast change detection
 						|| (FileHashChanged(ioc, _app.GetDb().KpDatabase.HashOfFileOnDisk))) //if that fails, hash the file and compare:
 					{
-						
+
 						//ask user...
 						_app.AskYesNoCancel(UiStringKey.TitleSyncQuestion, UiStringKey.MessageSyncQuestion,
 							//yes = sync
 							(sender, args) =>
-								{
-									Action runHandler = () =>
-										{
-											//note: when synced, the file might be downloaded once again from the server. Caching the data
-											//in the hashing function would solve this but increases complexity. I currently assume the files are 
-											//small.
-											MergeIn(fileStorage, ioc);
-											PerformSaveWithoutCheck(fileStorage, ioc);
-											Finish(true);
-										};
-									RunInWorkerThread(runHandler);
-								},
+							{
+								Action runHandler = () =>
+									{
+										//note: when synced, the file might be downloaded once again from the server. Caching the data
+										//in the hashing function would solve this but increases complexity. I currently assume the files are 
+										//small.
+										MergeIn(fileStorage, ioc);
+										PerformSaveWithoutCheck(fileStorage, ioc);
+										Finish(true);
+									};
+								RunInWorkerThread(runHandler);
+							},
 							//no = overwrite
 							(sender, args) =>
-								{
-									RunInWorkerThread( () =>
-										{
-											PerformSaveWithoutCheck(fileStorage, ioc);
-											Finish(true);
-										});
-								},
+							{
+								RunInWorkerThread(() =>
+									{
+										PerformSaveWithoutCheck(fileStorage, ioc);
+										Finish(true);
+									});
+							},
 							//cancel 
 							(sender, args) =>
-								{
-									RunInWorkerThread(() => Finish(false));
-								},
+							{
+								RunInWorkerThread(() => Finish(false));
+							},
 							_ctx
 							);
 					}
@@ -114,8 +115,10 @@ namespace keepass2android
 						PerformSaveWithoutCheck(fileStorage, ioc);
 						Finish(true);
 					}
-					
-				} catch (Exception e) {
+
+				}
+				catch (Exception e)
+				{
 					/* TODO KPDesktop:
 					 * catch(Exception exSave)
 			{
@@ -123,12 +126,15 @@ namespace keepass2android
 				bSuccess = false;
 			}
 */
-					Kp2aLog.Log("Error while saving: "+e.ToString());
-					Finish (false, e.Message);
+					Kp2aLog.Log("Error while saving: " + e.ToString());
+					Finish(false, e.Message);
 					return;
-				} 
+				}
 			}
-			
+			else
+			{
+				Finish(true);
+			}
 			
 		}
 
