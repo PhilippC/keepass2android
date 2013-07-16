@@ -508,6 +508,13 @@ namespace keepass2android
 		{
 			base.OnStart();
 			Kp2aLog.Log("FileSelect.OnStart");
+
+			var db = App.Kp2a.GetDb();
+			if (db.Loaded)
+			{
+				PasswordActivity.Launch(this, db.Ioc, AppTask);
+			}
+			
 		}
 		public override bool OnCreateOptionsMenu(IMenu menu) {
 			base.OnCreateOptionsMenu(menu);
