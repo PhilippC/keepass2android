@@ -59,8 +59,23 @@ namespace Kp2aUnitTests
 
 		public UiStringKey? LastYesNoCancelQuestionTitle { get; set; }
 
-		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler,
-		                           EventHandler<DialogClickEventArgs> cancelHandler, Context ctx)
+
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+			EventHandler<DialogClickEventArgs> yesHandler,
+			EventHandler<DialogClickEventArgs> noHandler,
+			EventHandler<DialogClickEventArgs> cancelHandler,
+			Context ctx)
+		{
+			AskYesNoCancel(titleKey, messageKey, UiStringKey.yes, UiStringKey.no,
+				yesHandler, noHandler, cancelHandler, ctx);
+		}
+
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+			UiStringKey yesString, UiStringKey noString,
+			EventHandler<DialogClickEventArgs> yesHandler,
+			EventHandler<DialogClickEventArgs> noHandler,
+			EventHandler<DialogClickEventArgs> cancelHandler,
+			Context ctx)
 		{
 			LastYesNoCancelQuestionTitle = titleKey;
 			switch (_yesNoCancelResult)

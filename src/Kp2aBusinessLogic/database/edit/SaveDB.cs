@@ -78,7 +78,9 @@ namespace keepass2android
 					{
 
 						//ask user...
-						_app.AskYesNoCancel(UiStringKey.TitleSyncQuestion, UiStringKey.MessageSyncQuestion,
+						_app.AskYesNoCancel(UiStringKey.TitleSyncQuestion, UiStringKey.MessageSyncQuestion, 
+							UiStringKey.YesSynchronize,
+							UiStringKey.NoOverwrite,
 							//yes = sync
 							(sender, args) =>
 							{

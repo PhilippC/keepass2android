@@ -159,8 +159,19 @@ namespace keepass2android
             return Application.Context.GetString((int)field.GetValue(null));
         }
 
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+			EventHandler<DialogClickEventArgs> yesHandler,
+			EventHandler<DialogClickEventArgs> noHandler,
+			EventHandler<DialogClickEventArgs> cancelHandler,
+			Context ctx)
+		{
+			AskYesNoCancel(titleKey, messageKey, UiStringKey.yes, UiStringKey.no,
+				yesHandler, noHandler, cancelHandler, ctx);
+		}
+
         public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
-            EventHandler<DialogClickEventArgs> yesHandler,
+			UiStringKey yesString, UiStringKey noString,
+			EventHandler<DialogClickEventArgs> yesHandler,
             EventHandler<DialogClickEventArgs> noHandler,
             EventHandler<DialogClickEventArgs> cancelHandler,
             Context ctx)
@@ -173,9 +184,9 @@ namespace keepass2android
 
 					builder.SetMessage(GetResourceString(messageKey));
 
-					builder.SetPositiveButton(Resource.String.yes, yesHandler);
+					builder.SetPositiveButton(GetResourceString(yesString), yesHandler);
 
-					builder.SetNegativeButton(Resource.String.no, noHandler);
+					builder.SetNegativeButton(GetResourceString(noString), noHandler);
 
 					builder.SetNeutralButton(ctx.GetString(Android.Resource.String.Cancel),
 											 cancelHandler);

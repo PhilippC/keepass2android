@@ -258,6 +258,8 @@
 	<string name="TitleSyncQuestion">Merge changes?</string>
 	<string name="MessageSyncQuestion">The database file was modified externally. Do you want to load and merge the changes before saving? Select No if you want to overwrite the external changes.</string>
 	<string name="SynchronizingDatabase">Merging changes…</string>
+	<string name="YesSynchronize">Yes, merge</string>
+	<string name="NoOverwrite">No, overwrite</string>
 
 	<string name="ChangeLog_title">Change log</string>
 	<string name="ChangeLog_0_8_4">
