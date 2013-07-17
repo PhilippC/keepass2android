@@ -209,7 +209,6 @@
   <string name="error_string_key">Název pole je vyžadována pro každý řetězec.</string>
   <string name="field_name">Název pole</string>
   <string name="field_value">Hodnota pole</string>
-  <string name="protection">Ochrana paměti</string>
   <string name="add_binary">Přidáte soubor jako přílohu...</string>
   <string name="add_extra_string">Přidat další řetězec</string>
   <string name="database_loaded_quickunlock_enabled">Databáze načtena, RychléOdemknutí povoleno.</string>

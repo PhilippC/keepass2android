@@ -7,6 +7,7 @@
   <string name="CreditsText">Brukergrensesnittet er basert på en port av KeepassDroid utviklet av Brian Pellin. Kildekode til databaseoperasjoner er basert på KeePass av Dominik Reichl. Android roboten, laget og delt av Google, er reprodusert og modifisert i henhold til Creative Commons 3.0 Navngivelse Lisensen.</string>
   <string name="accept">Godta</string>
   <string name="add_entry">Legg til post</string>
+  <string name="add_url_entry">Lag oppføring for URL</string>
   <string name="add_group">Legg til gruppe</string>
   <string name="add_group_title">Legg til gruppe</string>
   <string name="algorithm">Algoritme</string>
@@ -163,6 +164,8 @@
   <string name="search_hint">Søk etter</string>
   <string name="search_results">Søkeresultater</string>
   <string name="search_in">Søk i</string>
+  <string name="select_other_entry">Velg en annen oppføring</string>
+  <string name="select_group_then_add">Åpne ønsket gruppe, og trykk deretter \"%1$s\"!</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Understreking</string>
   <string name="unsupported_db_version">Ikke-støttet databaseversjon.</string>
@@ -173,6 +176,8 @@
   <string name="regular_expression">Regulært uttrykk</string>
   <string name="TanExpiresOnUse_title">TAN utløper ved bruk</string>
   <string name="TanExpiresOnUse_summary">Marker TAN oppføringer som utløpt når du bruker dem</string>
+  <string name="ShowUsernameInList_title">Vis brukernavn i listen</string>
+  <string name="ShowUsernameInList_summary">Vis brukernavn under oppføringstitler. Nyttig for flere kontoer eller TANs.</string>
   <string name="kp2a_findUrl">Keepass2Android: Finn passord</string>
   <string name="excludeExpiredEntries">Utelukk utløpte oppføringer</string>
   <string name="search_options">Alternativer</string>
@@ -204,7 +209,6 @@
   <string name="error_string_key">Et feltnavn kreves for hver streng.</string>
   <string name="field_name">Feltnavn</string>
   <string name="field_value">Feltverdi</string>
-  <string name="protection">Minnebeskyttelse</string>
   <string name="add_binary">Legg til filvedlegg...</string>
   <string name="add_extra_string">Legg til ekstra streng</string>
   <string name="database_loaded_quickunlock_enabled">Databasen er lastet, QuickUnlock er aktivert.</string>
@@ -215,6 +219,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Gjør brukernavn og passord er tilgjengelig gjennom varslingslinjen og utklippstavle. Vokt deg for passordsniffere!</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A tastatur varsel</string>
   <string name="ShowKp2aKeyboardNotification_summary">Gjør hele oppføringen tilgjengelig gjennom KP2A tastaturet (anbefales).</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Dialogboks for valg av tastatur</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Åpne tastatur dialog når en oppføring er tilgjengelig gjennom KP2A tastaturet etter søk.</string>
   <string name="AskOverwriteBinary">Vil du overskrive den eksisterende binærfilen med samme navn?</string>
   <string name="AskOverwriteBinary_title">Overskrive eksisterende binærfil?</string>
   <string name="AskOverwriteBinary_yes">Overskriv</string>
@@ -232,6 +238,7 @@
   <string name="rate_app">Vurder denne appen</string>
   <string name="translate_app">Oversett KP2A</string>
   <string name="ChangeLog_title">Endringslogg</string>
+  <string name="ChangeLog_keptDonate">Utvidet mulighet til å donere en øl, eller noe annet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
     <item>1 minutt</item>
