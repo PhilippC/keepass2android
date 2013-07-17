@@ -267,9 +267,11 @@
 		* External database changes are detected and merged when saving\n
 		* Improved loading performance\n
 		* Improved search toolbar with suggestions\n
+		* New App logo!
 		* Added support for .kdbp format for faster loading/saving\n
 		* Improved editing of extra strings and hidden display when protected\n
 		Thanks to Alex Vallat for his code contributions!\n
+		Thanks to Niki Hüttner (www.close-cut.de) for the new logo!\n
 	</string>
 		<string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * Username/TAN index displayed in entry list (see settings)\n

@@ -36,6 +36,7 @@ namespace keepass2android
 		public const string AppNameShort = "@string/short_app_name_nonet";
 		public const string AppLauncherTitle = "@string/short_app_name_nonet";
 		public const string PackagePart = "keepass2android_nonet";
+		public const int LauncherIcon = Resource.Drawable.ic_launcher_offline;
 	}
 #else
 	/// <summary>
@@ -47,6 +48,7 @@ namespace keepass2android
 		public const string AppNameShort = "@string/short_app_name";
 		public const string AppLauncherTitle = "@string/app_name";
 		public const string PackagePart = "keepass2android";
+		public const int LauncherIcon = Resource.Drawable.ic_launcher;
 	}
 #endif
 	/// <summary>
