@@ -30,7 +30,7 @@ namespace keepass2android.search
 	/// Activity to show search results
 	/// </summary>
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar", LaunchMode=Android.Content.PM.LaunchMode.SingleTop)]
-	[MetaData("android.app.searchable",Resource="@xml/searchable")]
+	[MetaData("android.app.searchable",Resource=AppNames.Searchable)]
 	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]
 	public class SearchResults : GroupBaseActivity
 	{

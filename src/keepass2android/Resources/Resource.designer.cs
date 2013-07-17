@@ -2307,10 +2307,13 @@ namespace keepass2android
 			public const int searchable = 2131034115;
 			
 			// aapt resource value: 0x7f050004
-			public const int symbols = 2131034116;
+			public const int searchable_offline = 2131034116;
 			
 			// aapt resource value: 0x7f050005
-			public const int symbols_shift = 2131034117;
+			public const int symbols = 2131034117;
+			
+			// aapt resource value: 0x7f050006
+			public const int symbols_shift = 2131034118;
 			
 			static Xml()
 			{

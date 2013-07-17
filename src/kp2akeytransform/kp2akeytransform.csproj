@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,6 +34,13 @@
     <ConsolePause>False</ConsolePause>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU'">
+    <OutputPath>bin\ReleaseNoNet\</OutputPath>
+    <Optimize>true</Optimize>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -62,12 +69,7 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
-  <ItemGroup>
-    <Folder Include="libs\" />
-    <Folder Include="libs\armeabi\" />
-    <Folder Include="libs\armeabi-v7a\" />
-    <Folder Include="libs\mips\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedJar Include="..\java\kp2akeytransform\bin\kp2akeytransform.jar">
       <Link>Jars\kp2akeytransform.jar</Link>
