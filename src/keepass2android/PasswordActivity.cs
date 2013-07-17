@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -29,6 +30,9 @@ using Android.Text;
 using Android.Content.PM;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
+using KeePassLib.Utility;
+
+using MemoryStream = System.IO.MemoryStream;
 
 namespace keepass2android
 {
@@ -331,6 +335,9 @@ namespace keepass2android
 				}
 			}
 
+			// Create task to kick off file loading while the user enters the password
+			var loadDbTask = new Task<MemoryStream>(LoadDbFile);
+
 			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			SetContentView(Resource.Layout.password);
@@ -364,7 +371,7 @@ namespace keepass2android
 				App.Kp2a.GetDb().QuickUnlockKeyLength = int.Parse(_prefs.GetString(GetString(Resource.String.QuickUnlockLength_key), GetString(Resource.String.QuickUnlockLength_default)));
 				
 				Handler handler = new Handler();
-				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, pass, key, new AfterLoad(handler, this));
+				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, loadDbTask.Result, pass, key, new AfterLoad(handler, this));
 				ProgressTask pt = new ProgressTask(App.Kp2a, this, task);
 				pt.Run();
 			};
@@ -439,7 +446,34 @@ namespace keepass2android
 			
 			RetrieveSettings();
 
+			loadDbTask.Start();
+		}
 
+		private MemoryStream LoadDbFile()
+		{
+			System.Diagnostics.Debug.WriteLine("LoadDbFile Started");
+			var fileStorage = App.Kp2a.GetFileStorage(_ioConnection);
+			var stream = fileStorage.OpenFileForRead(_ioConnection);
+
+			var memoryStream = stream as MemoryStream;
+			if (memoryStream == null)
+			{
+				// Read the file into memory
+				int capacity = 4096; // Default initial capacity, if stream can't report it.
+				if (stream.CanSeek)
+				{
+					capacity = (int)stream.Length;
+					System.Diagnostics.Debug.WriteLine("LoadDbFile, data size: " + capacity);
+				}
+				memoryStream = new MemoryStream(capacity);
+				MemUtil.CopyStream(stream, memoryStream);
+				stream.Close();
+				memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+			}
+
+			System.Diagnostics.Debug.WriteLine("LoadDbFile Done");
+
+			return memoryStream;
 		}
 
 		protected override void OnSaveInstanceState(Bundle outState)

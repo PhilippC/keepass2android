@@ -162,17 +162,6 @@ namespace KeePassLib.Serialization
 			finally { CommonCleanUpRead(sSource, hashedStream); }
 		}
 
-		public static void CopyStream(Stream input, Stream output)
-		{
-			byte[] buffer = new byte[4096];
-			int read;
-			while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-			{
-				output.Write(buffer, 0, read);
-			}
-			output.Seek(0, SeekOrigin.Begin);
-		}
-
 		private void CommonCleanUpRead(Stream sSource, HashingStreamEx hashedStream)
 		{
 			hashedStream.Close();
