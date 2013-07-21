@@ -945,8 +945,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0d00a5
 			public const int menu_cancel_edit = 2131558565;
 			
-			// aapt resource value: 0x7f0d00aa
-			public const int menu_change_master_key = 2131558570;
+			// aapt resource value: 0x7f0d00a9
+			public const int menu_change_master_key = 2131558569;
 			
 			// aapt resource value: 0x7f0d009e
 			public const int menu_donate = 2131558558;
@@ -963,11 +963,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f0d00a8
 			public const int menu_search = 2131558568;
 			
-			// aapt resource value: 0x7f0d00a9
-			public const int menu_search_advanced = 2131558569;
-			
 			// aapt resource value: 0x7f0d00ab
-			public const int menu_sort = 2131558571;
+			public const int menu_search_advanced = 2131558571;
+			
+			// aapt resource value: 0x7f0d00aa
+			public const int menu_sort = 2131558570;
 			
 			// aapt resource value: 0x7f0d00a2
 			public const int menu_suggest_improvements = 2131558562;

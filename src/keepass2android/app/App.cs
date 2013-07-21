@@ -311,7 +311,21 @@ namespace keepass2android
 			Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 
             Kp2a.OnCreate(this);
-			
+			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
+		}
+
+
+		void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
+		{
+			Kp2aLog.Log(e.Exception.ToString());
+			// Do your error handling here.
+			throw e.Exception;
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			AndroidEnvironment.UnhandledExceptionRaiser -= MyApp_UnhandledExceptionHandler;
+			base.Dispose(disposing);
 		}
 
 		public override void OnTerminate() {

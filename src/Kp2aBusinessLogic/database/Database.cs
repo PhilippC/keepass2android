@@ -15,14 +15,16 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Android.Content;
+using Java.Lang;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using Exception = System.Exception;
+using String = System.String;
 
 namespace keepass2android
 {
@@ -35,7 +37,13 @@ namespace keepass2android
 		public HashSet<PwGroup> Dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
 		public PwGroup Root;
 		public PwDatabase KpDatabase;
-		public IOConnectionInfo Ioc { get { return KpDatabase.IOConnectionInfo; } }
+		public IOConnectionInfo Ioc 
+		{
+			get
+			{
+				return KpDatabase == null ? null : KpDatabase.IOConnectionInfo;
+			}
+		}
 		public string LastFileVersion;
 		public SearchDbHelper SearchHelper;
 		
