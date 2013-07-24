@@ -179,7 +179,10 @@
   <string name="TanExpiresOnUse_summary">Mark TAN entries expired when using them</string>
   <string name="ShowUsernameInList_title">Display username in list</string>
   <string name="ShowUsernameInList_summary">Display usernames below entry titles. Useful for multiple accounts or TANs.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Find password</string>
+	<string name="RememberRecentFiles_title">Remember databases</string>
+	<string name="RememberRecentFiles_summary">Remember recently opened databases and show them in the Open database screen.</string>
+	
+	<string name="kp2a_findUrl">Keepass2Android: Find password</string>
   <string name="excludeExpiredEntries">Exclude expired entries</string>
   <string name="search_options">Options</string>
   <string name="caseSensitive">Case sensitive</string>

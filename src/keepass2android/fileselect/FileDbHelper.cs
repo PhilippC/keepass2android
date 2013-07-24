@@ -180,6 +180,10 @@ namespace keepass2android
 		public void DeleteFile(String filename) {
 			mDb.Delete(FileTable, KeyFileFilename + " = ?", new[] {filename});
 		}
+		public void DeleteAll()
+		{
+			mDb.Delete(FileTable, null, null);
+		}
 
 		static string[] GetColumnList()
 		{

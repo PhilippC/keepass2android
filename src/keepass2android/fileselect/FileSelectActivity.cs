@@ -19,6 +19,7 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -211,7 +212,7 @@ namespace keepass2android
 
 
 			_DbHelper = App.Kp2a.FileDbHelper;
-			if (_DbHelper.HasRecentFiles())
+			if (ShowRecentFiles())
 			{
 				_recentMode = true;
 
@@ -283,6 +284,21 @@ namespace keepass2android
 
 		}
 
+		private bool ShowRecentFiles()
+		{
+			if (!RememberRecentFiles())
+			{
+				_DbHelper.DeleteAll();
+			}
+
+			return _DbHelper.HasRecentFiles();
+		}
+
+		private bool RememberRecentFiles()
+		{
+			return PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.RememberRecentFiles_key), Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default));
+		}
+
 
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
@@ -303,12 +319,14 @@ namespace keepass2android
 			
 			public override void Run() {
 				if (Success) {
-					// Add to recent files
-					FileDbHelper dbHelper = App.Kp2a.FileDbHelper;
+					if (_activity.RememberRecentFiles())
+					{
+						// Add to recent files
+						FileDbHelper dbHelper = App.Kp2a.FileDbHelper;
 
-					//TODO: getFilename always returns "" -> bug?
-					dbHelper.CreateFile(_ioc, Filename);
-					
+						//TODO: getFilename always returns "" -> bug?
+						dbHelper.CreateFile(_ioc, Filename);
+					}
 					GroupActivity.Launch(_activity, _activity.AppTask);
 					
 				} else {
@@ -333,8 +351,8 @@ namespace keepass2android
 			
 		}
 		
-		private void FillData() {
-
+		private void FillData()
+		{
 			// Get all of the rows from the database and create the item list
 			Android.Database.ICursor filesCursor = _DbHelper.FetchAllFiles();
 			StartManagingCursor(filesCursor);
@@ -458,9 +476,9 @@ namespace keepass2android
 		{
 			base.OnResume();
 			Kp2aLog.Log("FileSelect.OnResume");
-			
+
 			// Check to see if we need to change modes
-			if (_DbHelper.HasRecentFiles() != _recentMode)
+			if (ShowRecentFiles() != _recentMode)
 			{
 				// Restart the activity
 				Intent intent = Intent;

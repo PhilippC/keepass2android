@@ -150,6 +150,12 @@
 			  android:title="@string/UseFileTransactions_title"
 			  android:key="@string/UseFileTransactions_key" />
 		<CheckBoxPreference
+		  android:key="@string/RememberRecentFiles_key"
+		  android:title="@string/RememberRecentFiles_title"
+		  android:summary="@string/RememberRecentFiles_summary"
+		  android:defaultValue="@bool/RememberRecentFiles_default"/>
+		  
+		<CheckBoxPreference
 		 	android:enabled="true"
 			  android:persistent="true"
 			  android:summary="@string/CheckForFileChangesOnSave_summary"
