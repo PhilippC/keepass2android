@@ -129,6 +129,7 @@
   <string name="menu_open">Åpne</string>
   <string name="menu_rename">Gi nytt navn</string>
   <string name="menu_search">Søk</string>
+  <string name="menu_search_advanced">Avansert søk</string>
   <string name="menu_url">Gå til URL</string>
   <string name="minus">Minus</string>
   <string name="never">Aldri</string>
@@ -209,6 +210,7 @@
   <string name="error_string_key">Et feltnavn kreves for hver streng.</string>
   <string name="field_name">Feltnavn</string>
   <string name="field_value">Feltverdi</string>
+  <string name="protection">Beskyttet felt</string>
   <string name="add_binary">Legg til filvedlegg...</string>
   <string name="add_extra_string">Legg til ekstra streng</string>
   <string name="database_loaded_quickunlock_enabled">Databasen er lastet, QuickUnlock er aktivert.</string>

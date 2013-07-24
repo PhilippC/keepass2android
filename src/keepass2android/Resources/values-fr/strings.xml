@@ -255,6 +255,8 @@
   <string name="TitleSyncQuestion">Fusionner les modifications ?</string>
   <string name="MessageSyncQuestion">La base de données a été modifiée par une source tierce. Voulez-vous charger et fusionner les changements avant de sauvegarder ? Sélectionnez \"Non\" si vous voulez écraser les changements externes.</string>
   <string name="SynchronizingDatabase">Importation des modifications…</string>
+  <string name="YesSynchronize">Oui, fusionne</string>
+  <string name="NoOverwrite">Non, l\'écraser</string>
   <string name="ChangeLog_title">Journal des modifications</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n 
 * Modifications tierces de la base de données détectées et fusionnées à la sauvegarde\n 
