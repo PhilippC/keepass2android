@@ -258,6 +258,8 @@
 	<string name="TitleSyncQuestion">Merge changes?</string>
 	<string name="MessageSyncQuestion">The database file was modified externally. Do you want to load and merge the changes before saving? Select No if you want to overwrite the external changes.</string>
 	<string name="SynchronizingDatabase">Merging changes…</string>
+	<string name="YesSynchronize">Yes, merge</string>
+	<string name="NoOverwrite">No, overwrite</string>
 
 	<string name="ChangeLog_title">Change log</string>
 	<string name="ChangeLog_0_8_4">
@@ -265,9 +267,11 @@
 		* External database changes are detected and merged when saving\n
 		* Improved loading performance\n
 		* Improved search toolbar with suggestions\n
+		* New App logo!
 		* Added support for .kdbp format for faster loading/saving\n
 		* Improved editing of extra strings and hidden display when protected\n
 		Thanks to Alex Vallat for his code contributions!\n
+		Thanks to Niki Hüttner (www.close-cut.de) for the new logo!\n
 	</string>
 		<string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * Username/TAN index displayed in entry list (see settings)\n

@@ -45,7 +45,7 @@ namespace keepass2android
 			NotificationCompat.Builder mBuilder =
 				new NotificationCompat.Builder(this)
 					.SetSmallIcon(Resource.Drawable.ic_launcher_gray)
-					.SetLargeIcon(BitmapFactory.DecodeResource(Resources,  Resource.Drawable.ic_launcher))
+					.SetLargeIcon(BitmapFactory.DecodeResource(Resources,  AppNames.LauncherIcon))
  					.SetContentTitle(GetText(Resource.String.app_name))
 					.SetContentText(GetText(Resource.String.database_loaded_quickunlock_enabled));
 

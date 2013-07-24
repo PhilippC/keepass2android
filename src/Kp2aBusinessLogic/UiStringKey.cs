@@ -30,6 +30,10 @@ namespace keepass2android
 		CheckingTargetFileForChanges,
 		TitleSyncQuestion,
 		MessageSyncQuestion,
-		SynchronizingDatabase
+		SynchronizingDatabase,
+		yes,
+		no,
+		YesSynchronize, 
+		NoOverwrite
     }
 }

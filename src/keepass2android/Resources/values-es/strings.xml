@@ -204,7 +204,6 @@
   <string name="error_string_key">Se requiere un nombre en cada entrada.</string>
   <string name="field_name">Nombre del campo</string>
   <string name="field_value">Valor del campo</string>
-  <string name="protection">Protección de memoria</string>
   <string name="add_binary">Agregar archivo adjunto...</string>
   <string name="add_extra_string">Agregar una cadena</string>
   <string name="database_loaded_quickunlock_enabled">Base de datos cargada, Desbloqueo Rápido habilitado.</string>

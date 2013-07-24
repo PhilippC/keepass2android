@@ -129,6 +129,7 @@
   <string name="menu_open">Открыть</string>
   <string name="menu_rename">Новое имя</string>
   <string name="menu_search">Поиск</string>
+  <string name="menu_search_advanced">Расширенный поиск</string>
   <string name="menu_url">Ссылка</string>
   <string name="minus">-Дефис-</string>
   <string name="never">Никогда</string>
@@ -209,13 +210,16 @@
   <string name="error_string_key">Имя поля обязательно для каждой строки.</string>
   <string name="field_name">Имя поля</string>
   <string name="field_value">Значение поля</string>
-  <string name="protection">Защита памяти</string>
+  <string name="protection">Защищённое поле</string>
   <string name="add_binary">Добавьте вложенный файл...</string>
   <string name="add_extra_string">Добавить дополнительную строку</string>
+  <string name="delete_extra_string">Удалить дополнительную строку</string>
   <string name="database_loaded_quickunlock_enabled">База данных загружен, БыстраяРазблокировка включена.</string>
   <string name="credentials_dialog_title">Введите учетные данные сервера</string>
   <string name="UseFileTransactions_title">Файловые транзакции</string>
   <string name="UseFileTransactions_summary">Использовать файловые транзакции для записи баз данных</string>
+  <string name="CheckForFileChangesOnSave_title">Проверить на наличие изменений</string>
+  <string name="CheckForFileChangesOnSave_summary">Проверка был ли файл изменен извне до сохранения изменений.</string>
   <string name="ShowCopyToClipboardNotification_title">Уведомления буфера обмена</string>
   <string name="ShowCopyToClipboardNotification_summary">Сделать имя пользователя и пароль доступными через панель уведомлений и буфер обмена. Остерегайтесь перехватчиков паролей!</string>
   <string name="ShowKp2aKeyboardNotification_title">Уведомления клавиатуры KP2A</string>
@@ -238,7 +242,31 @@
   <string name="suggest_improvements">Предложить или голосовать за улучшение</string>
   <string name="rate_app">Оцените это приложение</string>
   <string name="translate_app">Переведите KP2A</string>
+  <string name="AddingEntry">Добавление записи…</string>
+  <string name="AddingGroup">Добавление группы…</string>
+  <string name="DeletingEntry">Удаление записи…</string>
+  <string name="DeletingGroup">Удаление группы…</string>
+  <string name="SettingPassword">Установка пароля…</string>
+  <string name="UndoingChanges">Отмена изменений…</string>
+  <string name="TransformingKey">Преобразование мастер-ключа…</string>
+  <string name="DecodingDatabase">Декодирование базы данных…</string>
+  <string name="ParsingDatabase">Анализ базы данных…</string>
+  <string name="CheckingTargetFileForChanges">Проверка целевого файла на наличие изменений…</string>
+  <string name="TitleSyncQuestion">Слить изменения?</string>
+  <string name="MessageSyncQuestion">Файл базы данных был изменен извне. Вы хотите загрузить и выполнить слияние изменений перед сохранением? Выберите Нет, если вы хотите перезаписать внешние изменения.</string>
+  <string name="SynchronizingDatabase">Слияние изменений…</string>
+  <string name="YesSynchronize">Да, объединить</string>
+  <string name="NoOverwrite">Нет, перезаписать</string>
   <string name="ChangeLog_title">Список изменений</string>
+  <string name="ChangeLog_0_8_4"><b>Версия 0.8.4</b>\n 
+* Внешние модификации базы данных обнаруживаются и объединяются при сохранении\n 
+* Улучшена скорость загрузки\n 
+* Улучшенная панель поиска с подсказками\n 
+* Новый логотип приложения! \n
+* Добавлена поддержка формата .kdbp для более быстрого чтения/записи\n 
+* Улучшено редактирование дополнительных записей и скрытие защищённых\n 
+Благодарю Alex Vallat за вклад в развитие кода!\n 
+Благодарю Niki Hüttner (www.close-cut.de) за новый логотип!\</string>
   <string name="ChangeLog_0_8_3"><b>Версия 0.8.3</b>\n
 * Отображение имени пользователя/TAN в списке записей (см. в настройках)\n
 * Записи могут быть созданы, если поиск из браузера ничего не вернул\n

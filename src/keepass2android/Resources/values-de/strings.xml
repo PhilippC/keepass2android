@@ -130,6 +130,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_open">Öffnen</string>
   <string name="menu_rename">Umbenennen</string>
   <string name="menu_search">Suchen</string>
+  <string name="menu_search_advanced">Erweiterte Suche</string>
   <string name="menu_url">URL öffnen</string>
   <string name="minus">Bindestrich</string>
   <string name="never">Nie</string>
@@ -210,13 +211,16 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="error_string_key">Ein Feldname ist für jeden Eintrag erforderlich.</string>
   <string name="field_name">Feldname</string>
   <string name="field_value">Feldwert</string>
-  <string name="protection">Speicherschutz</string>
+  <string name="protection">Geschütztes Feld</string>
   <string name="add_binary">Dateianhang hinzufügen...</string>
   <string name="add_extra_string">Zusätzliches Feld hinzufügen</string>
+  <string name="delete_extra_string">Zusätzliches Feld löschen</string>
   <string name="database_loaded_quickunlock_enabled">Datenbank geladen, QuickUnlock aktiviert.</string>
   <string name="credentials_dialog_title">Serverzugangsdaten eingeben</string>
   <string name="UseFileTransactions_title">Dateitransaktionen</string>
   <string name="UseFileTransactions_summary">Dateitransaktionen beim Schreiben von Datenbank-Dateien verwenden</string>
+  <string name="CheckForFileChangesOnSave_title">Auf Änderungen prüfen</string>
+  <string name="CheckForFileChangesOnSave_summary">Vor dem Speichern prüfen, ob die Datei von außerhalb geändert wurde.</string>
   <string name="ShowCopyToClipboardNotification_title">Zwischenablage-Benachrichtigungen</string>
   <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
@@ -239,7 +243,31 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="suggest_improvements">Verbesserungen vorschlagen</string>
   <string name="rate_app">Diese App bewerten</string>
   <string name="translate_app">KP2A übersetzen</string>
+  <string name="AddingEntry">Füge Eintrag hinzu…</string>
+  <string name="AddingGroup">Füge Gruppe hinzu…</string>
+  <string name="DeletingEntry">Lösche Eintrag…</string>
+  <string name="DeletingGroup">Lösche Gruppe…</string>
+  <string name="SettingPassword">Setze Passwort…</string>
+  <string name="UndoingChanges">Nehme Änderungen zurück…</string>
+  <string name="TransformingKey">Führe Schlüsseltransformationen durch…</string>
+  <string name="DecodingDatabase">Entschlüssele Datenbank…</string>
+  <string name="ParsingDatabase">Lese Datenbank ein…</string>
+  <string name="CheckingTargetFileForChanges">Prüfe ob Zieldatei geändert wurde…</string>
+  <string name="TitleSyncQuestion">Änderungen zusammenführen?</string>
+  <string name="MessageSyncQuestion">Die Datenbankdatei wurde von außerhalb geändert. Sollen diese Änderungen geladen und mit den in Keepass2Android gemachten Änderungen zusammengeführt werden, bevor die Datenbank gespeichert wird? Wähle Nein, um die externen Änderungen zu überschreiben.</string>
+  <string name="SynchronizingDatabase">Führe Änderungen zusammen…</string>
+  <string name="YesSynchronize">Ja, zusammenführen</string>
+  <string name="NoOverwrite">Nein, überschreiben</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n 
+* Externe Datenbankänderungen werden beim Speichern erkannt und zusammengeführt\n 
+* Gesteigerte Geschwindigkeit beim Laden\n 
+* Suchleiste mit Vorschlägen\n 
+* Neues App Logo!\n 
+* Unterstützung für das .kdbp-Format für schnelleres Laden/Speichern\n 
+* Verbesserte Bearbeitung von zusätzlichen Feldern und versteckte Darstellung von geschützten Feldern\n 
+Danke an Alex Vallat für seinen Beitrag zum Programm!\n 
+Danke an Niki Hüttner (www.close-cut.de) für das neue Logo!\n</string>
   <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * Benutzername/TAN index wird in Liste der Einträge angezeigt (s. Einstellungen)\n
 * Einträge können neu angelegt werden, wenn Suche aus Browser kein Ergebnis gebracht hat\n

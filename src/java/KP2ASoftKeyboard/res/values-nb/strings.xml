@@ -4,6 +4,7 @@
   <string name="word_separators">\u0020.,;:!?\n()[]*&amp;@{}/&lt;&gt;_+=|\"</string>
   <string name="change_entry">Velg en annen oppføring</string>
   <string name="open_entry">Velg oppføring</string>
+  <string name="open_entry_for_app">Søke etter oppføringen med \"%1$s\"</string>
   <string name="label_go_key">Kjør</string>
   <string name="label_next_key">Neste</string>
   <string name="label_send_key">Send</string>

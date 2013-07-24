@@ -41,7 +41,7 @@ namespace keepass2android.search
 			GetIcon,
 			GetSuggestions
 		}
-		public const string Authority = "keepass2android.search.SearchProvider";
+		public const String Authority = "keepass2android." + AppNames.PackagePart + ".SearchProvider";
 		
 		private const string GetIconPathQuery = "get_icon";
 		private const string IconIdParameter = "IconId";

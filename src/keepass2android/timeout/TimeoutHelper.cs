@@ -29,12 +29,11 @@ namespace keepass2android
 	/// </summary>
 	public class TimeoutHelper {
 
-		class Timeout
+		private static class Timeout
 		{
 			private const int RequestId = 0;
 			private const long DefaultTimeout = 5 * 60 * 1000;  // 5 minutes
-			private const String Tag = "Keepass2Android Timeout";
-
+			
 			private static PendingIntent BuildIntent(Context ctx)
 			{
 				Intent intent = new Intent(Intents.Timeout);
@@ -67,7 +66,7 @@ namespace keepass2android
 				long triggerTime = Java.Lang.JavaSystem.CurrentTimeMillis() + timeout;
 				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
 
-				Log.Debug(Tag, "Timeout start");
+				Kp2aLog.Log("Timeout start");
 				am.Set(AlarmType.Rtc, triggerTime, BuildIntent(ctx));
 			}
 
@@ -75,7 +74,7 @@ namespace keepass2android
 			{
 				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
 
-				Log.Debug(Tag, "Timeout cancel");
+				Kp2aLog.Log("Timeout cancel");
 				am.Cancel(BuildIntent(ctx));
 
 				ctx.StopService(new Intent(ctx, typeof(TimeoutService)));
@@ -91,6 +90,8 @@ namespace keepass2android
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(act);
 			ISharedPreferencesEditor edit = prefs.Edit();
 			edit.PutLong(act.GetString(Resource.String.timeout_key), time);
+
+			Kp2aLog.Log("Pause: start at " + time);
 			
 			EditorCompat.Apply(edit);
 			
@@ -111,6 +112,7 @@ namespace keepass2android
 			
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(act);
 			long timeoutStart = prefs.GetLong(act.GetString(Resource.String.timeout_key), -1);
+			Kp2aLog.Log("timeoutStart=" + timeoutStart);
 			// The timeout never started
 			if (timeoutStart == -1) {
 				return;
@@ -119,16 +121,23 @@ namespace keepass2android
 			
 			String sTimeout = prefs.GetString(act.GetString(Resource.String.app_timeout_key), act.GetString(Resource.String.clipboard_timeout_default));
 			long timeout;
-			if (!long.TryParse(sTimeout, out timeout))
+			if (!long.TryParse(sTimeout, out timeout) || (timeout == -1))
 			{
+				Kp2aLog.Log("exit with timeout=" + timeout + "/"+sTimeout);
 				// We are set to never timeout
 				return;
 			}
 
 			long diff = curTime - timeoutStart;
-			if (diff >= timeout) {
+			if (diff >= timeout)
+			{
 				// We have timed out
-                App.Kp2a.SetShutdown();
+				Kp2aLog.Log("Shutdown due to " + diff + ">=" + timeout);
+				App.Kp2a.SetShutdown();
+			}
+			else
+			{
+				Kp2aLog.Log("No shutdown due to " + diff + "<" + timeout);
 			}
 		}
 

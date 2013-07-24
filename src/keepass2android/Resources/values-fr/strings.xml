@@ -129,6 +129,7 @@
   <string name="menu_open">Ouvrir</string>
   <string name="menu_rename">Renommer</string>
   <string name="menu_search">Rechercher</string>
+  <string name="menu_search_advanced">Recherche avancée</string>
   <string name="menu_url">Aller à l\'adresse URL</string>
   <string name="minus">Moins</string>
   <string name="never">Jamais</string>
@@ -209,13 +210,16 @@
   <string name="error_string_key">Un nom de champ est requis pour chaque chaîne de caractères.</string>
   <string name="field_name">Nom du champ</string>
   <string name="field_value">Valeur du champ</string>
-  <string name="protection">Protection de la mémoire</string>
+  <string name="protection">Champ protégé</string>
   <string name="add_binary">Ajouter une pièce jointe...</string>
   <string name="add_extra_string">Ajouter une chaîne de caractère supplémentaire</string>
+  <string name="delete_extra_string">Supprimer la chaîne additionnelle</string>
   <string name="database_loaded_quickunlock_enabled">Base de donnée chargée, QuickUnlock activé.</string>
   <string name="credentials_dialog_title">Entrez vos identifiants pour le serveur</string>
   <string name="UseFileTransactions_title">File transactions</string>
   <string name="UseFileTransactions_summary">Utiliser les opérations sur les fichiers pour écrire les bases de données</string>
+  <string name="CheckForFileChangesOnSave_title">Rechercher des modifications</string>
+  <string name="CheckForFileChangesOnSave_summary">Vérifie si le fichier a été modifié par ailleurs avant d\'enregistrer les modifications.</string>
   <string name="ShowCopyToClipboardNotification_title">Barre de notification et presse-papiers</string>
   <string name="ShowCopyToClipboardNotification_summary">Rend le nom d\'utilisateur et le mot de passe accessibles via la barre de notification et le presse-papiers. Attention au sniffers de mot de passes !</string>
   <string name="ShowKp2aKeyboardNotification_title">Barre de notification et clavier KP2A</string>
@@ -238,7 +242,31 @@
   <string name="suggest_improvements">Faire des suggestions ou votez pour des améliorations</string>
   <string name="rate_app">Noter cette application</string>
   <string name="translate_app">Traduire KP2A</string>
+  <string name="AddingEntry">Ajout de l\'entrée en cours…</string>
+  <string name="AddingGroup">Ajout du groupe en cours…</string>
+  <string name="DeletingEntry">Suppression de l\'entrée…</string>
+  <string name="DeletingGroup">Suppression du groupe…</string>
+  <string name="SettingPassword">Prise en compte du mot de passe…</string>
+  <string name="UndoingChanges">Annulation de modifications…</string>
+  <string name="TransformingKey">Changement de la clé principale…</string>
+  <string name="DecodingDatabase">Décodage de la base de données…</string>
+  <string name="ParsingDatabase">Analyse de la base de données…</string>
+  <string name="CheckingTargetFileForChanges">Vérification des modifications dans le fichier…</string>
+  <string name="TitleSyncQuestion">Fusionner les modifications ?</string>
+  <string name="MessageSyncQuestion">La base de données a été modifiée par une source tierce. Voulez-vous charger et fusionner les changements avant de sauvegarder ? Sélectionnez \"Non\" si vous voulez écraser les changements externes.</string>
+  <string name="SynchronizingDatabase">Importation des modifications…</string>
+  <string name="YesSynchronize">Oui, fusionne</string>
+  <string name="NoOverwrite">Non, l\'écraser</string>
   <string name="ChangeLog_title">Journal des modifications</string>
+  <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n 
+* Modifications tierces de la base de données détectées et fusionnées à la sauvegarde\n 
+* Chargement optimisé\n 
+* Amélioration de la barre de recherche (suggestions)\n 
+* Nouveau logo pour l\'application ! \n
+* Support des fichiers .kdbp pour des chargements/enregistrements plus rapides\n 
+* Édition des chaînes additionnelles améliorée et interface cachée lorsque protégée\n 
+Merci à Alex Vallat pour ses contributions au code !\n 
+Merci à Niki Hüttner (www.close-cut.de) pour le nouveau logo !\n</string>
   <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * Nom d\'utilisateur/TAN affiché dans la liste des entrées (voir les préférences)\n
 * Les entrées peuvent être créées lorsqu\'elles ne sont pas trouvées\n

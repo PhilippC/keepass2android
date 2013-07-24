@@ -205,7 +205,6 @@ Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/
   <string name="error_string_key">Nazwa pola jest wymagana dla każdego ciągu znaków.</string>
   <string name="field_name">Nazwa pola</string>
   <string name="field_value">Wartość pola</string>
-  <string name="protection">Ochrona pamięci</string>
   <string name="add_binary">Dodaj załącznik...</string>
   <string name="add_extra_string">Dodać dodatkowy ciąg znaków</string>
   <string name="database_loaded_quickunlock_enabled">Baza załadowana, Szybkie_Odblokowanie włączone.</string>

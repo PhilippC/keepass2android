@@ -21,7 +21,7 @@
     android:label="@string/search_label"
     android:hint="@string/search_hint" 
     android:searchMode="showSearchLabelAsBadge"
-    android:searchSuggestAuthority="keepass2android.keepass2android.SearchProvider"
+    android:searchSuggestAuthority="keepass2android.keepass2android_nonet.SearchProvider"
     android:searchSuggestSelection=" ?"
     android:searchSuggestThreshold="2"
     android:searchSuggestIntentAction="android.intent.action.VIEW"

@@ -194,12 +194,13 @@ namespace keepass2android
 			
 			MenuInflater inflater = MenuInflater;
 			inflater.Inflate(Resource.Menu.group, menu);
+			if (Util.HasActionBar(this))
+			{
+				var searchManager = (SearchManager) GetSystemService(Context.SearchService);
+				var searchView = (SearchView) menu.FindItem(Resource.Id.menu_search).ActionView;
 
-			var searchManager = (SearchManager)GetSystemService(Context.SearchService);
-			var searchView = (SearchView)menu.FindItem(Resource.Id.menu_search).ActionView;
-			
-			searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
-
+				searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
+			}
 			return true;
 		}
 		

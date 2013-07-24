@@ -53,6 +53,16 @@ namespace keepass2android
             Context ctx);
 
 		/// <summary>
+		/// Asks the user the question "messageKey" with the options Yes/No/Cancel, but the yes/no strings can be selected freely, calls the handler corresponding to the answer.
+		/// </summary>
+		void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+			UiStringKey yesString, UiStringKey noString,
+			EventHandler<DialogClickEventArgs> yesHandler,
+            EventHandler<DialogClickEventArgs> noHandler,
+            EventHandler<DialogClickEventArgs> cancelHandler,
+            Context ctx);
+
+		/// <summary>
 		/// Returns a Handler object which can run tasks on the UI thread
 		/// </summary>
 		Handler UiThreadHandler { get; }

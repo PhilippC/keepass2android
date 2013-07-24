@@ -129,6 +129,7 @@
   <string name="menu_open">Deschide</string>
   <string name="menu_rename">Redenumește</string>
   <string name="menu_search">Căutare</string>
+  <string name="menu_search_advanced">Căutare avansată</string>
   <string name="menu_url">Du-te la URL-ul</string>
   <string name="minus">Minus</string>
   <string name="never">Niciodată</string>
@@ -210,13 +211,16 @@
   <string name="error_string_key">Este necesar un nume câmp pentru fiecare string.</string>
   <string name="field_name">Numele câmpului</string>
   <string name="field_value">Valoarea câmpului</string>
-  <string name="protection">Protecție memorie</string>
+  <string name="protection">Câmp protejat</string>
   <string name="add_binary">Ataşează fişier...</string>
   <string name="add_extra_string">Adaugă string adiţional</string>
+  <string name="delete_extra_string">Şterge string adiţional</string>
   <string name="database_loaded_quickunlock_enabled">Baza de date încărcată, QuickUnlock activat.</string>
   <string name="credentials_dialog_title">Introduceți datele conectare la server</string>
   <string name="UseFileTransactions_title">Tranzacții fișier</string>
   <string name="UseFileTransactions_summary">Foloseşte tranzacţii pentru a scrie bazele de date</string>
+  <string name="CheckForFileChangesOnSave_title">Verifică modificări</string>
+  <string name="CheckForFileChangesOnSave_summary">Verifică dacă nu s-a modificat extern fişierul înainte de a salva.</string>
   <string name="ShowCopyToClipboardNotification_title">Notificări clipboard</string>
   <string name="ShowCopyToClipboardNotification_summary">Oferă utilizatorul şi parolă folosind bara de notificări şi clipboard-ul. Atenţie la \"password sniffers\"!</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificare tastatură KP2A</string>
@@ -239,7 +243,31 @@
   <string name="suggest_improvements">Propuneți sau votați pentru îmbunătățiri</string>
   <string name="rate_app">Evaluează această aplicație</string>
   <string name="translate_app">Traduce KP2A</string>
+  <string name="AddingEntry">Se adaugă înregistrarea…</string>
+  <string name="AddingGroup">Se adaugă grup…</string>
+  <string name="DeletingEntry">Se şterge înregistrarea…</string>
+  <string name="DeletingGroup">Se şterge grupul…</string>
+  <string name="SettingPassword">Se setează parola…</string>
+  <string name="UndoingChanges">Se anulează modificările…</string>
+  <string name="TransformingKey">Se transformă cheia principală…</string>
+  <string name="DecodingDatabase">Se decodează baza de date…</string>
+  <string name="ParsingDatabase">Se parsează baza de date…</string>
+  <string name="CheckingTargetFileForChanges">Se verifică fişierul ţintă pentru modificări…</string>
+  <string name="TitleSyncQuestion">Combinare modificări?</string>
+  <string name="MessageSyncQuestion">Fişierul bazei de date a fost modificat extern. Doriţi să încărcaţi şi să combinaţi modificările înainte de salvare. Selectaţi Nu dacă doriţi să suprascrieţi modificările externe.</string>
+  <string name="SynchronizingDatabase">Se combină modificările…</string>
+  <string name="YesSynchronize">Da, combină</string>
+  <string name="NoOverwrite">Nu, suprascrie</string>
   <string name="ChangeLog_title">Change log</string>
+  <string name="ChangeLog_0_8_4"><b>Versiunea 0.8.4</b>\n 
+* Modificările externe ale bazei de date sunt detectate şi combinate la salvare\n 
+* S-a îmbunătăţit performanţa la încărcare\n 
+* Bară de căutare îmbunătăţită cu sugestii\n 
+* Logo nou pentru aplicaţie!\n 
+* Adăugat suport pentru formatul .kdbp pentru încărcare/salvare rapidă\n 
+* S-a îmbunătăţit editarea câmpurilor extra şi s-a ascuns afişarea dacă sunt protejate\n 
+Mulţumiri lui Alex Vallat pentru contribuţiile sale la cod!\n 
+Mulţumiri lui Niki Hüttner (www.close-cut.de) pentru noul logo!\n</string>
   <string name="ChangeLog_0_8_3"><b>Versiunea 0.8.3</b>\n
 * index utilizator/TAN afişat în lista de înregistrări (vezi setări)\n
 * Înregistrările pot fi create dacă o căutare din browser nu găseşte rezultate\n

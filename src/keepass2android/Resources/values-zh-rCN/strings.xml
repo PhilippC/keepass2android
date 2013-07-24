@@ -7,6 +7,7 @@
   <string name="CreditsText">用户界面基于由 Brian Pellin 开发的 KeepassDroid 移植过来的。数据库操作的代码基于Dominik Reichl的KeePass。Android 机器人是转载或修改从工作创建和共享的谷歌和使用根据创作共用 3.0 归属许可证中所述的条款。</string>
   <string name="accept">接受</string>
   <string name="add_entry">添加条目</string>
+  <string name="add_url_entry">为 URL 创建条目</string>
   <string name="add_group">添加群组</string>
   <string name="add_group_title">添加群组</string>
   <string name="algorithm">算法</string>
@@ -28,6 +29,9 @@
   <string name="clipboard_timeout_summary">复制用户名或密码到剪贴板后清除的时间</string>
   <string name="copy_username">复制用户名到剪贴板</string>
   <string name="copy_password">复制密码到剪贴板</string>
+  <string name="available_through_keyboard">可通过 KP2A 键盘获得条目</string>
+  <string name="not_possible_im_picker">无法打开输入法选择对话框，请手动激活键盘</string>
+  <string name="please_activate_keyboard">请在系统设置中启用Keepass2Android 键盘</string>
   <string name="creating_db_key">创建数据库密钥…</string>
   <string name="current_group">当前群组：</string>
   <string name="current_group_root">当前群组：Root</string>
@@ -37,6 +41,7 @@
   <string name="default_checkbox">使用这做为我的默认数据库</string>
   <string name="digits">数字</string>
   <string name="disclaimer_formal">Keepass2Android版权归Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循GPL 2或者更高版本的情况下重新发布。</string>
+  <string name="ellipsis">\u2026</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间：</string>
   <string name="entry_and_or">输入密码和/或一个密钥文件来解锁你的数据库：</string>
@@ -116,6 +121,7 @@
   <string name="menu_app_settings">设置</string>
   <string name="menu_db_settings">数据库设置</string>
   <string name="menu_delete">删除</string>
+  <string name="menu_donate">捐出一瓶啤酒钱......</string>
   <string name="menu_edit">编辑</string>
   <string name="menu_hide_password">隐藏密码</string>
   <string name="menu_homepage">到主页</string>
@@ -123,6 +129,7 @@
   <string name="menu_open">打开</string>
   <string name="menu_rename">重命名</string>
   <string name="menu_search">搜索</string>
+  <string name="menu_search_advanced">高级搜索</string>
   <string name="menu_url">到网址</string>
   <string name="minus">减</string>
   <string name="never">从不</string>
@@ -146,6 +153,7 @@
   <string name="rounds">加密次数</string>
   <string name="rounds_explaination">更高级的加密次数对暴力攻击能提供额外保护，但也会增加加载和保存的时间。</string>
   <string name="rounds_hint">次数</string>
+  <string name="database_name">数据库名称</string>
   <string name="default_username">新条目的默认用户名</string>
   <string name="saving_database">正在保存数据库…</string>
   <string name="space">空格</string>
@@ -157,6 +165,8 @@
   <string name="search_hint">查找内容</string>
   <string name="search_results">搜索结果</string>
   <string name="search_in">在...中搜索</string>
+  <string name="select_other_entry">选择另一条目</string>
+  <string name="select_group_then_add">打开所需的组，然后按\"%1$ s\"！</string>
   <string name="twofish">Twofish算法</string>
   <string name="underline">下划线</string>
   <string name="unsupported_db_version">不支持的数据库版本</string>
@@ -166,6 +176,9 @@
   <string name="version_label">版本</string>
   <string name="regular_expression">正则表达式</string>
   <string name="TanExpiresOnUse_title">TAN  使用到期</string>
+  <string name="TanExpiresOnUse_summary">标记TAN条目过期当使用它们时</string>
+  <string name="ShowUsernameInList_title">在列表中显示用户名</string>
+  <string name="ShowUsernameInList_summary">在条目标题下方显示用户名，对多账户或TANs 很有用</string>
   <string name="kp2a_findUrl">Keepass2Android： 查找密码</string>
   <string name="excludeExpiredEntries">排除过期的条目</string>
   <string name="search_options">选项</string>
@@ -187,20 +200,33 @@
   <string name="QuickUnlock_fail">解锁失败:密码错误！</string>
   <string name="BinaryDirectory_title">文件附件目录</string>
   <string name="BinaryDirectory_summary">附件所保存到的目录位置</string>
+  <string name="SaveAttachmentDialog_title">保存附件</string>
+  <string name="SaveAttachmentDialog_text">请选择保存该附件的位置。</string>
+  <string name="SaveAttachmentDialog_save">保存到 SD 卡</string>
+  <string name="SaveAttachmentDialog_open">保存到缓存并打开</string>
   <string name="SaveAttachment_doneMessage">保存文件到 %1$ s。</string>
   <string name="SaveAttachment_Failed">无法保存附件到  %1$s </string>
   <string name="error_invalid_expiry_date">有效期限日期/时间格式有误！</string>
   <string name="error_string_key">每个字符串的字段名称是必需的</string>
   <string name="field_name">字段名</string>
   <string name="field_value">字段值</string>
-  <string name="protection">记忆保护</string>
+  <string name="protection">受保护的字段</string>
   <string name="add_binary">添加附件...</string>
   <string name="add_extra_string">添加额外的字符串</string>
+  <string name="delete_extra_string">删除额外的字符串</string>
   <string name="database_loaded_quickunlock_enabled">数据库载入，快速解锁启用。</string>
   <string name="credentials_dialog_title">输入服务器的证书</string>
   <string name="UseFileTransactions_title">文件交易记录</string>
   <string name="UseFileTransactions_summary">使用 file transactions 来写数据库
 </string>
+  <string name="CheckForFileChangesOnSave_title">检查修改</string>
+  <string name="CheckForFileChangesOnSave_summary">检查文件是否在保存变更之前被外部修改</string>
+  <string name="ShowCopyToClipboardNotification_title">剪贴板的通知</string>
+  <string name="ShowCopyToClipboardNotification_summary">使用户名和密码可通过通知栏和剪贴板访问。谨防密码嗅探器 ！</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A 键盘通知</string>
+  <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取 （推荐）。</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">键盘选择对话框</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">在搜索之后打开键盘对话框当条目对KP2A 键盘可用</string>
   <string name="AskOverwriteBinary">是否要以相同的名字覆盖现有的文件？</string>
   <string name="AskOverwriteBinary_title">覆盖已存在的文件？</string>
   <string name="AskOverwriteBinary_yes">覆盖</string>
@@ -217,7 +243,33 @@
   <string name="suggest_improvements">建议或投票改进</string>
   <string name="rate_app">评价这款应用</string>
   <string name="translate_app">翻译 KP2A</string>
+  <string name="AddingEntry">添加条目...</string>
+  <string name="AddingGroup">添加组...</string>
+  <string name="DeletingEntry">删除条目...</string>
+  <string name="DeletingGroup">删除组...</string>
+  <string name="SettingPassword">设置密码...</string>
+  <string name="UndoingChanges">撤消更改...</string>
+  <string name="TransformingKey">变更主键...</string>
+  <string name="DecodingDatabase">解码数据库...</string>
+  <string name="ParsingDatabase">解析数据库...</string>
+  <string name="CheckingTargetFileForChanges">检查目标文件的更改...</string>
+  <string name="TitleSyncQuestion">合并更改吗？</string>
+  <string name="MessageSyncQuestion">数据库文件被外目修改.你想在保存之前载入并合并已有的更改吗？如果你想覆盖外部更改选择\"不\"</string>
+  <string name="SynchronizingDatabase">合并更改...</string>
+  <string name="YesSynchronize">是的,合并</string>
+  <string name="NoOverwrite">不,覆盖</string>
   <string name="ChangeLog_title">更新记录</string>
+  <string name="ChangeLog_0_8_4"><b>版本 0.8.4 </b>
+*当数据库被外部更改时可被检测与合并\n
+*提高载入性能\n
+*搜索工具栏补全建议\n
+*新logo
+*添加 .kdbp 格式更快的载入/保存支持\n
+*提高额外字符串的编辑，当被保护时可隐藏显示\n
+*感谢Alex Vallat的代码贡献\n
+*感谢Niki Hüttner(www.close-cut.de) 的新logo\n
+*感谢lucifineil 的中文翻译
+</string>
   <string name="ChangeLog"><b>Version 0.6.2</b>\n
 * Google Drive/Dropbox/... 集成: 使用官方 Google Drive or Dropbox 程序并打开任何 .kdbx-file. 将在将来的版本出现.\n
 * 改善搜索对话框 \n

@@ -36,6 +36,9 @@ namespace keepass2android
 		public const string AppNameShort = "@string/short_app_name_nonet";
 		public const string AppLauncherTitle = "@string/short_app_name_nonet";
 		public const string PackagePart = "keepass2android_nonet";
+		public const int LauncherIcon = Resource.Drawable.ic_launcher_offline;
+
+		public const string Searchable = "@xml/searchable_offline";
 	}
 #else
 	/// <summary>
@@ -47,6 +50,8 @@ namespace keepass2android
 		public const string AppNameShort = "@string/short_app_name";
 		public const string AppLauncherTitle = "@string/app_name";
 		public const string PackagePart = "keepass2android";
+		public const int LauncherIcon = Resource.Drawable.ic_launcher;
+		public const string Searchable = "@xml/searchable";
 	}
 #endif
 	/// <summary>
@@ -159,8 +164,19 @@ namespace keepass2android
             return Application.Context.GetString((int)field.GetValue(null));
         }
 
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+			EventHandler<DialogClickEventArgs> yesHandler,
+			EventHandler<DialogClickEventArgs> noHandler,
+			EventHandler<DialogClickEventArgs> cancelHandler,
+			Context ctx)
+		{
+			AskYesNoCancel(titleKey, messageKey, UiStringKey.yes, UiStringKey.no,
+				yesHandler, noHandler, cancelHandler, ctx);
+		}
+
         public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
-            EventHandler<DialogClickEventArgs> yesHandler,
+			UiStringKey yesString, UiStringKey noString,
+			EventHandler<DialogClickEventArgs> yesHandler,
             EventHandler<DialogClickEventArgs> noHandler,
             EventHandler<DialogClickEventArgs> cancelHandler,
             Context ctx)
@@ -173,9 +189,9 @@ namespace keepass2android
 
 					builder.SetMessage(GetResourceString(messageKey));
 
-					builder.SetPositiveButton(Resource.String.yes, yesHandler);
+					builder.SetPositiveButton(GetResourceString(yesString), yesHandler);
 
-					builder.SetNegativeButton(Resource.String.no, noHandler);
+					builder.SetNegativeButton(GetResourceString(noString), noHandler);
 
 					builder.SetNeutralButton(ctx.GetString(Android.Resource.String.Cancel),
 											 cancelHandler);
@@ -295,7 +311,21 @@ namespace keepass2android
 			Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 
             Kp2a.OnCreate(this);
-			
+			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
+		}
+
+
+		void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
+		{
+			Kp2aLog.Log(e.Exception.ToString());
+			// Do your error handling here.
+			throw e.Exception;
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			AndroidEnvironment.UnhandledExceptionRaiser -= MyApp_UnhandledExceptionHandler;
+			base.Dispose(disposing);
 		}
 
 		public override void OnTerminate() {
