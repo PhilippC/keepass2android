@@ -122,8 +122,7 @@ namespace keepass2android
 				if (entryId.EqualsValue(PwUuid.Zero))
 				{
 					String groupId = i.GetStringExtra(KeyParent);
-					
-					State.ParentGroup = db.Groups [new PwUuid(MemUtil.HexStringToByteArray(groupId))];
+					State.ParentGroup = db.KpDatabase.RootGroup.FindGroup(new PwUuid(MemUtil.HexStringToByteArray(groupId)), true);
 					
 					State.EntryInDatabase = new PwEntry(true, true);
 					State.EntryInDatabase.Strings.Set(PwDefs.UserNameField, new ProtectedString(

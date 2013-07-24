@@ -78,7 +78,7 @@ namespace keepass2android
 		protected void SetupButtons()
 		{
 			AddGroupEnabled = true;
-			AddEntryEnabled = !Group.Uuid.EqualsValue(App.Kp2a.GetDb().Root.Uuid);
+			AddEntryEnabled = true;
 		}
 		
 		protected override void OnCreate (Bundle savedInstanceState)
