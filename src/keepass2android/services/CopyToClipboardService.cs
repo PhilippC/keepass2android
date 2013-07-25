@@ -57,7 +57,7 @@ namespace keepass2android
 
 		CopyToClipboardBroadcastReceiver _copyToClipBroadcastReceiver;
 		NotificationDeletedBroadcastReceiver _notificationDeletedBroadcastReceiver;
-
+		StopOnLockBroadcastReceiver _stopOnLockBroadcastReceiver;
 
 		public CopyToClipboardService()
 		{
@@ -73,7 +73,12 @@ namespace keepass2android
 		public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 		{
 			Kp2aLog.Log("Received intent to provide access to entry");
-			
+
+			_stopOnLockBroadcastReceiver = new StopOnLockBroadcastReceiver(this);
+			IntentFilter filter = new IntentFilter();
+			filter.AddAction(Intents.LockDatabase);
+			RegisterReceiver(_stopOnLockBroadcastReceiver, filter);
+
 			String uuidBytes =  intent.GetStringExtra(EntryActivity.KeyEntry);
 			bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KeyCloseAfterCreate, false);
 			
@@ -99,12 +104,23 @@ namespace keepass2android
 			return StartCommandResult.RedeliverIntent;
 		}
 
+		private void OnLockDatabase()
+		{
+			Kp2aLog.Log("Stopping clipboard service due to database lock");
+
+			StopSelf();
+		}
+
 		private NotificationManager _notificationManager;
 		private int _numElementsToWaitFor;
 		
 		public override void OnDestroy()
 		{
 			// These members might never get initialized if the app timed out
+			if (_stopOnLockBroadcastReceiver != null)
+			{
+				UnregisterReceiver(_stopOnLockBroadcastReceiver);
+			}
 			if (_copyToClipBroadcastReceiver != null)
 			{
 				UnregisterReceiver(_copyToClipBroadcastReceiver);
@@ -358,7 +374,24 @@ namespace keepass2android
 			return notify;
 		}
 
+		private class StopOnLockBroadcastReceiver : BroadcastReceiver
+		{
+			readonly CopyToClipboardService _service;
+			public StopOnLockBroadcastReceiver(CopyToClipboardService service)
+			{
+				_service = service;
+			}
 
+			public override void OnReceive(Context context, Intent intent)
+			{
+				switch (intent.Action)
+				{
+					case Intents.LockDatabase:
+						_service.OnLockDatabase();
+						break;
+				}
+			}
+		}
 		
 		class CopyToClipboardBroadcastReceiver: BroadcastReceiver
 		{
@@ -429,7 +462,7 @@ namespace keepass2android
 
             if (currentIme == kp2aIme)
             {
-                imeManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.None);
+                imeManager.ToggleSoftInput(ShowSoftInputFlags.Forced, HideSoftInputFlags.None);
             }
             else
             {

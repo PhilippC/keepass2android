@@ -61,7 +61,7 @@ namespace keepass2android
 
 			TextView txtLabel = (TextView)FindViewById(Resource.Id.QuickUnlock_label);
 
-			int quickUnlockLength = App.Kp2a.GetDb().QuickUnlockKeyLength;
+			int quickUnlockLength = App.Kp2a.QuickUnlockKeyLength;
 
 			txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[]{quickUnlockLength});
 

@@ -56,13 +56,12 @@ namespace keepass2android
 				}
 			};
 			
-			Database db = App.Kp2a.GetDb();
-			if ( db.Open ) {
+			if (App.Kp2a.DatabaseIsUnlocked)
+			{
+				Database db = App.Kp2a.GetDb();
+			
 				Preference rounds = FindPreference(GetString(Resource.String.rounds_key));
-				rounds.PreferenceChange += (sender, e) => 
-				{
-					setRounds(App.Kp2a.GetDb(), e.Preference);
-				};
+				rounds.PreferenceChange += (sender, e) => setRounds(db, e.Preference);
 
 				Preference defaultUser = FindPreference(GetString(Resource.String.default_username_key));
 				((EditTextPreference)defaultUser).EditText.Text = db.KpDatabase.DefaultUserName;

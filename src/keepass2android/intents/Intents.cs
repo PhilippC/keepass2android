@@ -24,6 +24,8 @@ namespace keepass2android
 	/// </summary>
 	public class Intents {
 		public const String Timeout = "keepass2android.timeout";
+		public const String LockDatabase = "keepass2android.lock_database";
+		public const String UnlockDatabase = "keepass2android.unlock_database";
 		
 		public const String CopyUsername = "keepass2android.copy_username";
 		public const String CopyPassword = "keepass2android.copy_password";

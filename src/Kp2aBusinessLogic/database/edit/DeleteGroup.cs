@@ -108,7 +108,7 @@ namespace keepass2android
 						Db.Dirty.Add(pgParent);
 					} else {
 						// Let's not bother recovering from a failure to save a deleted group.  It is too much work.
-						App.SetShutdown();
+						App.LockDatabase();
 					}
 				}, OnFinishToRun);
 			}
@@ -146,7 +146,7 @@ namespace keepass2android
 					}
 				} else {
 					// Let's not bother recovering from a failure to save a deleted group.  It is too much work.
-					_app.SetShutdown();
+					_app.LockDatabase();
 				}
 				
 				base.Run();

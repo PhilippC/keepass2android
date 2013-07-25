@@ -613,9 +613,7 @@ namespace keepass2android
 				}
 					return true;
 			case Resource.Id.menu_lock:
-                App.Kp2a.SetShutdown();
-				SetResult(KeePass.ExitLock);
-				Finish();
+                App.Kp2a.LockDatabase();
 				return true;
 			case Resource.Id.menu_translate:
 				try {

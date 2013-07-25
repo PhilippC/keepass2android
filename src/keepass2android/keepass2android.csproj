@@ -86,6 +86,7 @@
     <Compile Include="fileselect\FileSelectActivity.cs" />
     <Compile Include="fileselect\FileDbHelper.cs" />
     <Compile Include="search\SearchProvider.cs" />
+    <Compile Include="services\Keepass2AndroidService.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="intents\Intents.cs" />
     <Compile Include="fileselect\BrowserDialog.cs" />
@@ -127,12 +128,10 @@
     <Compile Include="compat\EditorCompat.cs" />
     <Compile Include="compat\ActivityCompat.cs" />
     <Compile Include="ShareUrlResults.cs" />
-    <Compile Include="services\TimeoutService.cs" />
     <Compile Include="services\CopyToClipboardService.cs" />
     <Compile Include="search\SearchActivity.cs" />
     <Compile Include="QuickUnlock.cs" />
     <Compile Include="LifecycleDebugActivity.cs" />
-    <Compile Include="services\QuickUnlockForegroundService.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="views\FileSelectButtons.cs" />
     <Compile Include="EntryEditActivityState.cs" />
@@ -702,5 +701,26 @@
     <AndroidResource Include="Resources\xml\searchable_offline.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_unlocked_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-v11\ic_unlocked_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_launcher_red.png" />
   </ItemGroup>
 </Project>

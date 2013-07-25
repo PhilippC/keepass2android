@@ -47,7 +47,7 @@ namespace keepass2android
 			try
 			{
 				StatusLogger.UpdateMessage(UiStringKey.loading_database);
-				_app.GetDb().LoadData (_app, _ioc, _databaseData, _pass, _key, StatusLogger);
+				_app.LoadDatabase(_ioc, _databaseData, _pass, _key, StatusLogger);
 				SaveFileData (_ioc, _key);
 				
 			} catch (KeyFileException) {

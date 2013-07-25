@@ -72,25 +72,6 @@ namespace keepass2android
 			set { _loaded = value; }
 		}
 
-		public bool Open
-		{
-			get { return Loaded && (!Locked); }
-		}
-
-		bool _locked;
-		public bool Locked
-		{
-			get
-			{
-				return _locked;
-			}
-			set
-			{
-				Kp2aLog.Log("Locked=" + _locked);
-				_locked = value;
-			}
-		}
-		
 		public bool DidOpenFileChange()
 		{
 			if (Loaded == false)
@@ -102,6 +83,9 @@ namespace keepass2android
 		}
 
 		
+		/// <summary>
+		/// Do not call this method directly. Call App.Kp2a.LoadDatabase instead.
+		/// </summary>
 		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, String password, String keyfile, ProgressDialogStatusLogger status)
 		{
 			PwDatabase pwDatabase = new PwDatabase();
@@ -153,15 +137,6 @@ namespace keepass2android
 			SearchHelper = new SearchDbHelper(app);
 		}
 
-		public bool QuickUnlockEnabled { get; set; }
-
-		//KeyLength of QuickUnlock at time of loading the database.
-		//This is important to not allow an attacker to set the length to 1 when QuickUnlock is started already.
-		public int QuickUnlockKeyLength
-		{
-			get;
-			set;
-		}
 		
 		public PwGroup SearchForText(String str) {
 			PwGroup group = SearchHelper.SearchForText(this, str);
@@ -227,7 +202,6 @@ namespace keepass2android
 			Root = null;
 			KpDatabase = null;
 			_loaded = false;
-			_locked = false;
 			_reloadRequested = false;
 		}
 		

@@ -92,8 +92,7 @@ namespace keepass2android
 			_closeForReload = false;
 
 			// Likely the app has been killed exit the activity
-			Database db = App.Kp2a.GetDb();
-			if (! db.Open)
+			if (!App.Kp2a.DatabaseIsUnlocked)
 			{
 				Finish();
 				return;
@@ -107,6 +106,8 @@ namespace keepass2android
 
 			} else
 			{
+				Database db = App.Kp2a.GetDb();
+
 				App.Kp2a.EntryEditActivityState = new EntryEditActivityState();
 				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 				State.ShowPassword = ! prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));

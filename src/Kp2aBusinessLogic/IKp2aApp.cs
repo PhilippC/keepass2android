@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Android.Content;
 using Android.OS;
 using KeePassLib.Serialization;
@@ -12,11 +13,15 @@ namespace keepass2android
 	/// This also contains methods which are UI specific and should be replacable for testing.
     public interface IKp2aApp
     {
+		/// <summary>
+		/// Locks the currently open database, quicklocking if available (unless false is passed for allowQuickUnlock)
+		/// </summary>
+		void LockDatabase(bool allowQuickUnlock = true);
 
 		/// <summary>
-		/// Set the flag that the database needs to be locked.
+		/// Loads the specified data as the currently open database, as unlocked.
 		/// </summary>
-        void SetShutdown();
+		void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, string s, string keyFile, ProgressDialogStatusLogger statusLogger);
 
 		/// <summary>
 		/// Returns the current database
@@ -69,6 +74,5 @@ namespace keepass2android
 
 		IProgressDialog CreateProgressDialog(Context ctx);
 		IFileStorage GetFileStorage(IOConnectionInfo iocInfo);
-		
     }
 }

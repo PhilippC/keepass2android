@@ -16,10 +16,13 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
 using keepass2android.Io;
@@ -58,27 +61,140 @@ namespace keepass2android
 	/// Main implementation of the IKp2aApp interface for usage in the real app.
 	/// </summary>
     public class Kp2aApp: IKp2aApp
-    {
-        public bool IsShutdown()
-        {
-            return _shutdown;
+	{
+		public void LockDatabase(bool allowQuickUnlock = true)
+		{
+			if (!allowQuickUnlock)
+			{
+				QuickUnlockEnabled = false;
+			}
+
+			Application.Context.SendBroadcast(new Intent(Intents.LockDatabase));
+		}
+
+		/// <summary>
+		/// Locks the database, then runs the specified action once the locking has completed.
+		/// </summary>
+		/// <param name="allowQuickUnlock"></param>
+		/// <param name="runAfterLocked"></param>
+		internal void LockDatabase(bool allowQuickUnlock, Action runAfterLocked)
+		{
+			_actionsToRunAfterLock.Enqueue(runAfterLocked);
+			LockDatabase(allowQuickUnlock);
+		}
+
+		private readonly Queue<Action> _actionsToRunAfterLock = new Queue<Action>();
+
+		/// <summary>
+		/// Do not call this directly, instead call LockDatabase
+		/// </summary>
+		internal void LockDatabaseInternal(Keepass2AndroidService service)
+		{
+			if (_db.Loaded)
+			{
+				if (QuickUnlockEnabled &&
+					_db.KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&
+					!((KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword))).Password.IsEmpty)
+				{
+					if (!QuickLocked)
+					{
+						Kp2aLog.Log("QuickLocking database");
+
+						QuickLocked = true;
+
+						// Start the service to show the quicklock icon
+						var ctx = Application.Context;
+						ctx.StartService(new Intent(ctx, typeof(Keepass2AndroidService)));
+					}
+					else
+					{
+						Kp2aLog.Log("Database already QuickLocked");
+					}
+				}
+				else
+				{
+					Kp2aLog.Log("Locking database");
+
+					// Couldn't quick-lock, so unload database instead
+					_db.Clear();
+					QuickLocked = false;
+				}
+			}
+			else
+			{
+				Kp2aLog.Log("Database not loaded, couldn't lock");
+			}
+
+			while (_actionsToRunAfterLock.Count > 0)
+			{
+				var action = _actionsToRunAfterLock.Dequeue();
+				action();
+			}
         }
 
-        public void SetShutdown()
-        {
-	        Kp2aLog.Log("set shutdown");
-            _shutdown = true;
-        }
+		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, string password, string keyFile, ProgressDialogStatusLogger statusLogger)
+		{
+			_db.LoadData(this, ioConnectionInfo, memoryStream, password, keyFile, statusLogger);
 
-        public void ClearShutdown()
-        {
-			Kp2aLog.Log("clear shutdown");
-            _shutdown = false;
-        }
+			var ctx = Application.Context;
+			ctx.StartService(new Intent(ctx, typeof(Keepass2AndroidService)));
+		}
 
-        private Database _db;
-        private bool _shutdown;
+		public void UnlockDatabase(Action runAfterUnlocked)
+		{
+			_actionsToRunAfterUnlock.Enqueue(runAfterUnlocked);
+			Application.Context.SendBroadcast(new Intent(Intents.UnlockDatabase));
+		}
 
+		private readonly Queue<Action> _actionsToRunAfterUnlock = new Queue<Action>();
+
+		/// <summary>
+		/// Do not call this directly, instead call UnlockDatabase
+		/// </summary>
+		internal void UnlockDatabaseInternal(Keepass2AndroidService service)
+		{
+			QuickLocked = false;
+
+			while (_actionsToRunAfterUnlock.Count > 0)
+			{
+				var action = _actionsToRunAfterUnlock.Dequeue();
+				action();
+			}
+		}
+
+		public bool DatabaseIsUnlocked
+		{
+			get { return _db.Loaded && !QuickLocked; }
+		}
+
+		#region QuickUnlock
+		public void SetQuickUnlockEnabled(bool enabled)
+		{
+			if (enabled)
+			{
+				//Set KeyLength of QuickUnlock at time of enabling.
+				//This is important to not allow an attacker to set the length to 1 when QuickUnlock is started already.
+
+				var ctx = Application.Context;
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+				QuickUnlockKeyLength = Math.Max(1, int.Parse(prefs.GetString(ctx.GetString(Resource.String.QuickUnlockLength_key), ctx.GetString(Resource.String.QuickUnlockLength_default))));
+			}
+			QuickUnlockEnabled = enabled;
+		}
+
+		public bool QuickUnlockEnabled { get; private set; }
+
+		public int QuickUnlockKeyLength { get; private set; }
+    
+		/// <summary>
+		/// If true, the database must be regarded as locked and not exposed to the user.
+		/// </summary>
+		public bool QuickLocked { get; private set; }
+		
+		#endregion
+
+		private Database _db;
+        
         /// <summary>
         /// See comments to EntryEditActivityState.
         /// </summary>
@@ -216,7 +332,7 @@ namespace keepass2android
 
 			public RealProgressDialog(Context ctx)
 			{
-				this._pd = new ProgressDialog(ctx);
+				_pd = new ProgressDialog(ctx);
 			}
 
 			public void SetTitle(string title)

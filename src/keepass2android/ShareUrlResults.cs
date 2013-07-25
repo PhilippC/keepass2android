@@ -71,7 +71,7 @@ namespace keepass2android
 
 				Finish();
 			}
-			else if (_db.Locked)
+			else if (App.Kp2a.QuickLocked)
 			{
 				PasswordActivity.Launch(this,_db.Ioc, AppTask);
 				Finish();
