@@ -249,7 +249,7 @@ namespace keepass2android
 				return true;
 				
 			case Resource.Id.menu_app_settings:
-				AppSettingsActivity.Launch(this);
+				DatabaseSettingsActivity.Launch(this);
 				return true;
 				
 			case Resource.Id.menu_change_master_key:

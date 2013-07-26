@@ -72,6 +72,13 @@
 		  android:dialogTitle="@string/app_timeout"
 		  android:defaultValue="@string/clipboard_timeout_default"/>
 		<CheckBoxPreference
+			android:enabled="true"
+				 android:persistent="true"
+				 android:summary="@string/ShowUnlockedNotification_summary"
+				 android:defaultValue="@bool/ShowUnlockedNotification_default"
+				 android:title="@string/ShowUnlockedNotification_title"
+				 android:key="@string/ShowUnlockedNotification_key" />
+		<CheckBoxPreference
 		  android:key="@string/maskpass_key"
 		  android:title="@string/maskpass_title"
 		  android:summary="@string/maskpass_summary"

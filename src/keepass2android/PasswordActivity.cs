@@ -164,7 +164,8 @@ namespace keepass2android
 				case KeePass.ExitForceLockAndChangeDb:
 				case KeePass.ExitChangeDb: // What's the difference between this and ExitForceLockAndChangeDb?
 				case KeePass.ExitNormal: // Returned to this screen using the Back key, treat as exiting the database
-					App.Kp2a.LockDatabase(false, Finish);
+					App.Kp2a.LockDatabase(false);
+					Finish();
 					break;
 				case KeePass.ExitCloseAfterTaskComplete:
 					SetResult(KeePass.ExitCloseAfterTaskComplete);
@@ -222,7 +223,7 @@ namespace keepass2android
 			if (!App.Kp2a.QuickUnlockEnabled)
 			{
 				// We're exiting (probably task-killed), so stop the service, if it's still running - don't want it hanging around with an icon shown.
-				StopService(new Intent(this, typeof(Keepass2AndroidService)));
+				StopService(new Intent(this, typeof(OngoingNotificationsService)));
 			}
 		}
 

@@ -76,7 +76,7 @@ namespace keepass2android
 
 			_stopOnLockBroadcastReceiver = new StopOnLockBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
-			filter.AddAction(Intents.LockDatabase);
+			filter.AddAction(Intents.DatabaseLocked);
 			RegisterReceiver(_stopOnLockBroadcastReceiver, filter);
 
 			String uuidBytes =  intent.GetStringExtra(EntryActivity.KeyEntry);
@@ -386,7 +386,7 @@ namespace keepass2android
 			{
 				switch (intent.Action)
 				{
-					case Intents.LockDatabase:
+					case Intents.DatabaseLocked:
 						_service.OnLockDatabase();
 						break;
 				}

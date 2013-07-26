@@ -36,7 +36,7 @@ namespace keepass2android
 
 			_intentReceiver = new LockingClosePreferenceActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
-			filter.AddAction(Intents.LockDatabase);
+			filter.AddAction(Intents.DatabaseLocked);
 			RegisterReceiver(_intentReceiver, filter);
 		}
 
@@ -74,7 +74,7 @@ namespace keepass2android
 			{
 				switch (intent.Action)
 				{
-					case Intents.LockDatabase:
+					case Intents.DatabaseLocked:
 						_service.OnLockDatabase();
 						break;
 				}

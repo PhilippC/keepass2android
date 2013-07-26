@@ -31,15 +31,11 @@ namespace keepass2android
 
 		private static class Timeout
 		{
-			private const int RequestId = 0;
 			private const long DefaultTimeout = 5 * 60 * 1000;  // 5 minutes
 			
 			private static PendingIntent BuildIntent(Context ctx)
 			{
-				Intent intent = new Intent(Intents.Timeout);
-				PendingIntent sender = PendingIntent.GetBroadcast(ctx, RequestId, intent, PendingIntentFlags.CancelCurrent);
-
-				return sender;
+				return PendingIntent.GetBroadcast(ctx, 0, new Intent(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent);
 			}
 
 			public static void Start(Context ctx)

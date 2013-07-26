@@ -303,6 +303,9 @@ namespace keepass2android
 			
 			public override void Run() {
 				if (Success) {
+					// Update the ongoing notification
+					_activity.StartService(new Intent(_activity, typeof(OngoingNotificationsService)));
+
 					// Add to recent files
 					FileDbHelper dbHelper = App.Kp2a.FileDbHelper;
 

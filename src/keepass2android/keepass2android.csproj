@@ -77,6 +77,7 @@
     <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="app\ApplicationBroadcastReceiver.cs" />
     <Compile Include="icons\DrawableFactory.cs" />
     <Compile Include="icons\Icons.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -86,7 +87,8 @@
     <Compile Include="fileselect\FileSelectActivity.cs" />
     <Compile Include="fileselect\FileDbHelper.cs" />
     <Compile Include="search\SearchProvider.cs" />
-    <Compile Include="services\Keepass2AndroidService.cs" />
+    <Compile Include="services\OngoingNotificationsService.cs" />
+    <Compile Include="settings\DatabaseSettingsActivity.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="intents\Intents.cs" />
     <Compile Include="fileselect\BrowserDialog.cs" />

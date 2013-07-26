@@ -64,35 +64,9 @@ namespace keepass2android
 	{
 		public void LockDatabase(bool allowQuickUnlock = true)
 		{
-			if (!allowQuickUnlock)
-			{
-				QuickUnlockEnabled = false;
-			}
-
-			Application.Context.SendBroadcast(new Intent(Intents.LockDatabase));
-		}
-
-		/// <summary>
-		/// Locks the database, then runs the specified action once the locking has completed.
-		/// </summary>
-		/// <param name="allowQuickUnlock"></param>
-		/// <param name="runAfterLocked"></param>
-		internal void LockDatabase(bool allowQuickUnlock, Action runAfterLocked)
-		{
-			_actionsToRunAfterLock.Enqueue(runAfterLocked);
-			LockDatabase(allowQuickUnlock);
-		}
-
-		private readonly Queue<Action> _actionsToRunAfterLock = new Queue<Action>();
-
-		/// <summary>
-		/// Do not call this directly, instead call LockDatabase
-		/// </summary>
-		internal void LockDatabaseInternal(Keepass2AndroidService service)
-		{
 			if (_db.Loaded)
 			{
-				if (QuickUnlockEnabled &&
+				if (QuickUnlockEnabled && allowQuickUnlock &&
 					_db.KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&
 					!((KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword))).Password.IsEmpty)
 				{
@@ -101,10 +75,6 @@ namespace keepass2android
 						Kp2aLog.Log("QuickLocking database");
 
 						QuickLocked = true;
-
-						// Start the service to show the quicklock icon
-						var ctx = Application.Context;
-						ctx.StartService(new Intent(ctx, typeof(Keepass2AndroidService)));
 					}
 					else
 					{
@@ -125,41 +95,29 @@ namespace keepass2android
 				Kp2aLog.Log("Database not loaded, couldn't lock");
 			}
 
-			while (_actionsToRunAfterLock.Count > 0)
-			{
-				var action = _actionsToRunAfterLock.Dequeue();
-				action();
-			}
+			UpdateOngoingNotification();
+			Application.Context.SendBroadcast(new Intent(Intents.DatabaseLocked));
         }
 
 		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, string password, string keyFile, ProgressDialogStatusLogger statusLogger)
 		{
 			_db.LoadData(this, ioConnectionInfo, memoryStream, password, keyFile, statusLogger);
 
-			var ctx = Application.Context;
-			ctx.StartService(new Intent(ctx, typeof(Keepass2AndroidService)));
+			UpdateOngoingNotification();
 		}
 
-		public void UnlockDatabase(Action runAfterUnlocked)
-		{
-			_actionsToRunAfterUnlock.Enqueue(runAfterUnlocked);
-			Application.Context.SendBroadcast(new Intent(Intents.UnlockDatabase));
-		}
-
-		private readonly Queue<Action> _actionsToRunAfterUnlock = new Queue<Action>();
-
-		/// <summary>
-		/// Do not call this directly, instead call UnlockDatabase
-		/// </summary>
-		internal void UnlockDatabaseInternal(Keepass2AndroidService service)
+		internal void UnlockDatabase()
 		{
 			QuickLocked = false;
 
-			while (_actionsToRunAfterUnlock.Count > 0)
-			{
-				var action = _actionsToRunAfterUnlock.Dequeue();
-				action();
-			}
+			UpdateOngoingNotification();
+		}
+
+		private void UpdateOngoingNotification()
+		{
+			// Start or update the notification icon service to reflect the current state
+			var ctx = Application.Context;
+			ctx.StartService(new Intent(ctx, typeof(OngoingNotificationsService)));
 		}
 
 		public bool DatabaseIsUnlocked
