@@ -44,18 +44,38 @@ namespace keepass2android
 		{
 			Kp2aLog.Log("Starting/Updating OngoingNotificationsService. Database " + (App.Kp2a.DatabaseIsUnlocked ? "Unlocked" : (App.Kp2a.QuickLocked ? "QuickLocked" : "Locked")));
 
-			// Clear current foreground status and QuickUnlock icon
-			StopForeground(true);
-
+			var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+					
 			// Set the icon to reflect the current state
-			if (App.Kp2a.DatabaseIsUnlocked && ShowUnlockedNotification)
+			if (App.Kp2a.DatabaseIsUnlocked)
 			{
-				StartForeground(UnlockedWarningId, GetUnlockedNotification());
+				// Clear current foreground status and QuickUnlock icon
+				StopForeground(true);
+
+				if (ShowUnlockedNotification)
+				{
+					// No need for task to get foreground priority, we don't need any special treatment just for showing that the database is unlocked
+					notificationManager.Notify(UnlockedWarningId, GetUnlockedNotification());
+				}
+				else
+				{
+					notificationManager.Cancel(UnlockedWarningId);
+				}
 			}
-			else if (App.Kp2a.QuickLocked)
+			else 
 			{
-				// Show the Quick Unlock notification
-				StartForeground(QuickUnlockId, GetQuickUnlockNotification());
+				notificationManager.Cancel(UnlockedWarningId);
+
+				if (App.Kp2a.QuickLocked)
+				{
+					// Show the Quick Unlock notification
+					StartForeground(QuickUnlockId, GetQuickUnlockNotification());
+				}
+				else
+				{
+					// Not showing any notification, database is locked, no point in keeping running
+					StopSelf();
+				}
 			}
 
 			return StartCommandResult.NotSticky;
@@ -70,7 +90,7 @@ namespace keepass2android
 		{
 			base.OnTaskRemoved(rootIntent);
 
-			Kp2aLog.Log("OngoingNotificationsService.OnTaskRemoved");
+			Kp2aLog.Log("OngoingNotificationsService.OnTaskRemoved: " + rootIntent.Action);
 
 			// If the user has closed the task (probably by swiping it out of the recent apps list) then lock the database
 			App.Kp2a.LockDatabase();
@@ -80,11 +100,15 @@ namespace keepass2android
 		{
 			base.OnDestroy();
 
-			Kp2aLog.Log("OngoingNotificationsService.OnDestroy2");
+			var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+			notificationManager.Cancel(UnlockedWarningId);
+			// Quick Unlock notification should be removed automatically by the service (if present), as it was the foreground notification.
 
-			if (ShowUnlockedNotification)
+			Kp2aLog.Log("OngoingNotificationsService.OnDestroy");
+
+			// If the service is killed, then lock the database immediately (as the unlocked warning icon will no longer display).
+			if (App.Kp2a.DatabaseIsUnlocked)
 			{
-				// If the service is killed, then lock the database immediately (as the unlocked warning icon will no longer display).
 				App.Kp2a.LockDatabase();
 			}
 		}
@@ -92,20 +116,6 @@ namespace keepass2android
 		public override IBinder OnBind(Intent intent)
 		{
 			return null;
-		}
-
-		public override void OnLowMemory()
-		{
-			base.OnLowMemory();
-
-			Kp2aLog.Log("OngoingNotificationsService.OnLowMemory");
-
-			if (App.Kp2a.DatabaseIsUnlocked && !App.Kp2a.QuickUnlockEnabled)
-			{
-				// Although this is a foreground service, if it is only indicating that the database is unlocked then it isn't of foreground-importance,
-				// and can be killed if Android requests it (which will clear the database and free up some memory)
-				StopSelf();
-			}
 		}
 
 		#endregion

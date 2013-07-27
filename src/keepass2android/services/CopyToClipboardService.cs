@@ -116,6 +116,8 @@ namespace keepass2android
 		
 		public override void OnDestroy()
 		{
+			Kp2aLog.Log("CopyToClipboardService.OnDestroy");
+
 			// These members might never get initialized if the app timed out
 			if (_stopOnLockBroadcastReceiver != null)
 			{
@@ -130,7 +132,10 @@ namespace keepass2android
 				UnregisterReceiver(_notificationDeletedBroadcastReceiver);
 			}
 			if ( _notificationManager != null ) {
-				_notificationManager.CancelAll();
+				_notificationManager.Cancel(NotifyPassword);
+				_notificationManager.Cancel(NotifyUsername);
+				_notificationManager.Cancel(NotifyKeyboard);
+
 				_numElementsToWaitFor= 0;
 				clearKeyboard();
 			}
@@ -158,8 +163,10 @@ namespace keepass2android
 		{
 			// Notification Manager
 			_notificationManager = (NotificationManager)GetSystemService(NotificationService);
-		
-			_notificationManager.CancelAll();
+
+			_notificationManager.Cancel(NotifyPassword);
+			_notificationManager.Cancel(NotifyUsername);
+			_notificationManager.Cancel(NotifyKeyboard);
 			_numElementsToWaitFor = 0;
 			clearKeyboard();
 

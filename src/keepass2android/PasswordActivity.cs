@@ -216,17 +216,6 @@ namespace keepass2android
 			
 		}
 
-		protected override void OnDestroy()
-		{
-			base.OnDestroy();
-
-			if (!App.Kp2a.QuickUnlockEnabled)
-			{
-				// We're exiting (probably task-killed), so stop the service, if it's still running - don't want it hanging around with an icon shown.
-				StopService(new Intent(this, typeof(OngoingNotificationsService)));
-			}
-		}
-
 		internal AppTask AppTask;
 		
 		protected override void OnCreate(Bundle savedInstanceState)
