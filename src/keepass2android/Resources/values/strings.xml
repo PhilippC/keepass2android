@@ -271,7 +271,7 @@
 		* External database changes are detected and merged when saving\n
 		* Improved loading performance\n
 		* Improved search toolbar with suggestions\n
-		* New App logo!
+		* New App logo!\n
 		* Added support for .kdbp format for faster loading/saving\n
 		* Improved editing of extra strings and hidden display when protected\n
 		Thanks to Alex Vallat for his code contributions!\n
