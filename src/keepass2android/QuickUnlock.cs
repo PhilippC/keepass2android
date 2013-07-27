@@ -55,7 +55,18 @@ namespace keepass2android
 				((TextView)FindViewById(Resource.Id.qu_filename)).Text = App.Kp2a.GetDb().KpDatabase.Name;
 			} else
 			{
-				((TextView)FindViewById(Resource.Id.qu_filename)).Text = _ioc.Path;
+				if (
+					PreferenceManager.GetDefaultSharedPreferences(this)
+					                  .GetBoolean(GetString(Resource.String.RememberRecentFiles_key),
+					                              Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default)))
+				{
+					((TextView)FindViewById(Resource.Id.qu_filename)).Text = _ioc.Path;	
+				}
+				else
+				{
+					((TextView)FindViewById(Resource.Id.qu_filename)).Text = "*****";	
+				}
+				
 			}
 
 
