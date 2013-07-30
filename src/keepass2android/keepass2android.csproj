@@ -150,7 +150,9 @@
     <None Include="Resources\drawable\Thumbs.db">
       <Visible>False</Visible>
     </None>
-    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="filelist.txt">
       <Visible>False</Visible>
     </None>

@@ -11,7 +11,8 @@ namespace keepass2android
 	/// </summary>
 	[ContentProvider(new[]{"keepass2android."+AppNames.PackagePart+".provider"})] 
 	public class AttachmentContentProvider : ContentProvider {
-		
+		public const string AttachmentCacheSubDir = "AttachmentCache";
+
 		private const String ClassName = "AttachmentContentProvider";
 		
 		// The authority is the symbolic name for the provider class
@@ -37,7 +38,8 @@ namespace keepass2android
 				// E.g.
 				// 'content://keepass2android.provider/Test.txt'
 				// Take this and build the path to the file
-				String fileLocation = Context.CacheDir + File.Separator
+				
+				String fileLocation = Context.CacheDir + File.Separator + AttachmentCacheSubDir + File.Separator
 					+ uri.LastPathSegment;
 					
 				// Create & return a ParcelFileDescriptor pointing to the file

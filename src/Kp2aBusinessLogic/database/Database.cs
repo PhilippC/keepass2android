@@ -124,7 +124,9 @@ namespace keepass2android
 			try
 			{
 				IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
+				var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
 				pwDatabase.Open(fileStorage.OpenFileForRead(iocInfo), fileStorage.GetFilenameWithoutPathAndExt(iocInfo), iocInfo, compositeKey, status);
+				LastFileVersion = fileVersion;
 			}
 			catch (Exception)
 			{
@@ -139,8 +141,6 @@ namespace keepass2android
 			}
 			
 			status.UpdateSubMessage("");
-
-			LastFileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
 
 			Root = pwDatabase.RootGroup;
 			PopulateGlobals(Root);

@@ -232,18 +232,10 @@ namespace Kp2aUnitTests
 		}
 
 
-
+		/*
 		[TestMethod]
 		public void TestSaveAsWhenReadOnly()
 		{
-			Assert.Fail("TODO: Test ");
-		}
-
-
-		[TestMethod]
-		public void TestReloadWhenCancelSync()
-		{
-			//when a change is detected and the user cancels saving, the app should display the "file was modified - reload?" question.
 			Assert.Fail("TODO: Test ");
 		}
 
@@ -251,7 +243,7 @@ namespace Kp2aUnitTests
 		public void TestSaveAsWhenSyncError()
 		{
 			Assert.Fail("TODO: Test ");
-		}
+		}*/
 
 		[TestMethod]
 		public void TestLoadAndSave_TestIdenticalFiles()

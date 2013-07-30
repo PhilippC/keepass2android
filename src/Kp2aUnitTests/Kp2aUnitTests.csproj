@@ -66,6 +66,7 @@
     <Compile Include="TestKp2aApp.cs" />
     <Compile Include="TestLoadDb.cs" />
     <Compile Include="TestLoadDbCredentials.cs" />
+    <Compile Include="TestCachingFileStorage.cs" />
     <Compile Include="TestSaveDb.cs" />
   </ItemGroup>
   <ItemGroup>

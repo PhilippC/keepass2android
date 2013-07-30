@@ -35,6 +35,7 @@ using KeePassLib.Security;
 using Android.Webkit;
 using Android.Graphics;
 using Java.IO;
+using keepass2android.Io;
 
 namespace keepass2android
 {
@@ -230,7 +231,7 @@ namespace keepass2android
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key), GetString(Resource.String.BinaryDirectory_default));
 			if (writeToCacheDirectory)
-				binaryDirectory = CacheDir.Path;
+				binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
 		
 			string filepart = key;
 			if (writeToCacheDirectory)
@@ -528,30 +529,16 @@ namespace keepass2android
 		
 		public void ClearCache() {
 			try {
-				File dir = CacheDir;
-				if (dir != null && dir.IsDirectory) {
-					DeleteDir(dir);
+				File dir = new File(CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir);
+				if (dir.IsDirectory) {
+					IoUtil.DeleteDir(dir);
 				}
 			} catch (Exception) {
 
 			}
 		}
 		
-		public static bool DeleteDir(File dir) {
-			if (dir != null && dir.IsDirectory) {
-				String[] children = dir.List();
-				for (int i = 0; i < children.Length; i++) {
-					bool success = DeleteDir(new File(dir, children[i]));
-					if (!success) {
-						return false;
-					}
-				}
-			}
-			
-			// The directory is now empty so delete it
-			return dir.Delete();
-		}
-
+		
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
 			case Resource.Id.menu_donate:

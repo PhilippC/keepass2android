@@ -36,7 +36,7 @@ namespace keepass2android.Io
 			TimeSpan diff = currentModificationDate - previousDate;
 			return diff > TimeSpan.FromSeconds(1);
 			//don't use > operator because milliseconds are truncated
-			return File.GetLastWriteTimeUtc(ioc.Path) - previousDate >= TimeSpan.FromSeconds(1);
+			//return File.GetLastWriteTimeUtc(ioc.Path) - previousDate >= TimeSpan.FromSeconds(1);
 		}
 
 		
