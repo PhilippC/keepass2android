@@ -34,6 +34,11 @@ namespace keepass2android
 		yes,
 		no,
 		YesSynchronize, 
-		NoOverwrite
+		NoOverwrite,
+		SynchronizingCachedDatabase,
+		DownloadingRemoteFile,
+		UploadingFile,
+		FilesInSync,
+		SynchronizedDatabaseSuccessfully
     }
 }

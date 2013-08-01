@@ -1,4 +1,5 @@
 using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using KeePassLib.Serialization;
@@ -69,6 +70,7 @@ namespace keepass2android
 
 		IProgressDialog CreateProgressDialog(Context ctx);
 		IFileStorage GetFileStorage(IOConnectionInfo iocInfo);
-		
+
+		void TriggerReload(Context context);
     }
 }

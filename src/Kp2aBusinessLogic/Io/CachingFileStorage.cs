@@ -118,7 +118,7 @@ namespace keepass2android.Io
 			try
 			{
 				if (!IsCached(ioc)
-				    || File.ReadAllText(VersionFilePath(ioc)) == File.ReadAllText(BaseVersionFilePath(ioc)))
+				    || GetLocalVersionHash(ioc) == GetBaseVersionHash(ioc))
 				{
 					return OpenFileForReadWhenNoLocalChanges(ioc, cachedFilePath);
 				}
@@ -141,7 +141,7 @@ namespace keepass2android.Io
 		{
 			//file is cached but has local modifications
 			//try to upload the changes if remote file doesn't have changes as well:
-			var hash = Calculate(ioc);
+			var hash = CalculateHash(ioc);
 
 			if (File.ReadAllText(BaseVersionFilePath(ioc)) == hash)
 			{
@@ -160,18 +160,25 @@ namespace keepass2android.Io
 			return File.OpenRead(cachedFilePath);
 		}
 
-		private string Calculate(IOConnectionInfo ioc)
+		public MemoryStream GetRemoteDataAndHash(IOConnectionInfo ioc, out string hash)
 		{
 			MemoryStream remoteData = new MemoryStream();
-			string hash;
 			using (
 				HashingStreamEx hashingRemoteStream = new HashingStreamEx(_cachedStorage.OpenFileForRead(ioc), false,
-				                                                          new SHA256Managed()))
+																		  new SHA256Managed()))
 			{
 				hashingRemoteStream.CopyTo(remoteData);
 				hashingRemoteStream.Close();
 				hash = MemUtil.ByteArrayToHexString(hashingRemoteStream.Hash);
 			}
+			remoteData.Position = 0;
+			return remoteData;
+		}
+
+		private string CalculateHash(IOConnectionInfo ioc)
+		{
+			string hash;
+			GetRemoteDataAndHash(ioc, out hash);
 			return hash;
 		}
 
@@ -203,17 +210,7 @@ namespace keepass2android.Io
 		{
 			try
 			{
-				//try to write to remote:
-				using (
-					IWriteTransaction remoteTrans = _cachedStorage.OpenWriteTransaction(ioc, useFileTransaction))
-				{
-					Stream remoteStream = remoteTrans.OpenFile();
-					cachedData.CopyTo(remoteStream);
-					remoteStream.Close();
-					remoteTrans.CommitWrite();
-				}
-				//success. Update base-version of cache:
-				File.WriteAllText(VersionFilePath(ioc), hash);
+				UpdateRemoteFile(cachedData, ioc, useFileTransaction, hash);
 			}
 			catch (Exception e)
 			{
@@ -224,6 +221,33 @@ namespace keepass2android.Io
 			}
 		}
 
+		private void UpdateRemoteFile(Stream cachedData, IOConnectionInfo ioc, bool useFileTransaction, string hash)
+		{
+			//try to write to remote:
+			using (
+				IWriteTransaction remoteTrans = _cachedStorage.OpenWriteTransaction(ioc, useFileTransaction))
+			{
+				Stream remoteStream = remoteTrans.OpenFile();
+				cachedData.CopyTo(remoteStream);
+				remoteStream.Close();
+				remoteTrans.CommitWrite();
+			}
+			//success. Update base-version of cache:
+			File.WriteAllText(BaseVersionFilePath(ioc), hash);
+			File.WriteAllText(VersionFilePath(ioc), hash);
+		}
+
+		public void UpdateRemoteFile(IOConnectionInfo ioc, bool useFileTransaction)
+		{
+			using (Stream cachedData = File.OpenRead(CachedFilePath(ioc)))
+			{
+				UpdateRemoteFile(cachedData, ioc, useFileTransaction, GetLocalVersionHash(ioc));	
+			}
+			
+		}
+
+		
+
 		private class CachedWriteTransaction: IWriteTransaction
 		{
 			private class CachedWriteMemoryStream : MemoryStream
@@ -231,6 +255,7 @@ namespace keepass2android.Io
 				private readonly IOConnectionInfo ioc;
 				private readonly CachingFileStorage _cachingFileStorage;
 				private readonly bool _useFileTransaction;
+				private bool _closed;
 
 				public CachedWriteMemoryStream(IOConnectionInfo ioc, CachingFileStorage cachingFileStorage, bool useFileTransaction)
 				{
@@ -242,6 +267,8 @@ namespace keepass2android.Io
 
 				public override void Close()
 				{
+					if (_closed) return;
+
 					//write file to cache:
 					//(note: this might overwrite local changes. It's assumed that a sync operation or check was performed before
 					string hash;
@@ -257,9 +284,20 @@ namespace keepass2android.Io
 					File.WriteAllText(_cachingFileStorage.VersionFilePath(ioc), hash);
 					//update file on remote. This might overwrite changes there as well, see above.
 					Position = 0;
-					_cachingFileStorage.TryUpdateRemoteFile(this, ioc, _useFileTransaction, hash);
-				
+					if (_cachingFileStorage.IsCached(ioc))
+					{
+						//if the file already is in the cache, it's ok if writing to remote fails.
+						_cachingFileStorage.TryUpdateRemoteFile(this, ioc, _useFileTransaction, hash);
+					}
+					else
+					{
+						//if not, we don't accept a failure (e.g. invalid credentials would always remain a problem)
+						_cachingFileStorage.UpdateRemoteFile(this, ioc, _useFileTransaction, hash);
+					}
+
 					base.Close();
+
+					_closed = true;
 				}
 
 			}
@@ -280,7 +318,18 @@ namespace keepass2android.Io
 			public void Dispose()
 			{
 				if (!_committed)
-					_memoryStream.Dispose();
+				{
+					try
+					{
+						_memoryStream.Dispose();
+					}
+					catch (ObjectDisposedException e)
+					{
+						Kp2aLog.Log("Ignoring exception in Dispose: "+e);
+					}
+					
+				}
+					
 			}
 
 			public Stream OpenFile()
@@ -320,6 +369,33 @@ namespace keepass2android.Io
 		{
 			return UrlUtil.StripExtension(
 				UrlUtil.GetFileName(ioc.Path));
+		}
+
+
+		public string GetBaseVersionHash(IOConnectionInfo ioc)
+		{
+			return File.ReadAllText(BaseVersionFilePath(ioc));
+		}
+		public string GetLocalVersionHash(IOConnectionInfo ioc)
+		{
+			return File.ReadAllText(VersionFilePath(ioc));
+		}
+		public bool HasLocalChanges(IOConnectionInfo ioc)
+		{
+			return IsCached(ioc)
+			       && GetLocalVersionHash(ioc) != GetBaseVersionHash(ioc);
+		}
+
+		public Stream OpenRemoteForReadIfAvailable(IOConnectionInfo ioc)
+		{
+			try
+			{
+				return _cachedStorage.OpenFileForRead(ioc);
+			}
+			catch (Exception)
+			{
+				return File.OpenRead(CachedFilePath(ioc));
+			}
 		}
 	}
 }

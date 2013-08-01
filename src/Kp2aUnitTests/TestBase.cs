@@ -61,9 +61,9 @@ namespace Kp2aUnitTests
 			get { return DefaultDirectory + "savedWithDesktop/"; }
 		}
 
-		protected IKp2aApp LoadDatabase(string filename, string password, string keyfile)
+		protected TestKp2aApp LoadDatabase(string filename, string password, string keyfile)
 		{
-			IKp2aApp app = new TestKp2aApp();
+			var app = CreateTestKp2aApp();
 			app.CreateNewDatabase();
 			bool loadSuccesful = false;
 			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = filename }, password, keyfile, new ActionOnFinish((success, message) =>
@@ -78,6 +78,12 @@ namespace Kp2aUnitTests
 			pt.Run();
 			pt.JoinWorkerThread();
 			Assert.IsTrue(loadSuccesful);
+			return app;
+		}
+
+		protected virtual TestKp2aApp CreateTestKp2aApp()
+		{
+			TestKp2aApp app = new TestKp2aApp();
 			return app;
 		}
 
@@ -104,16 +110,16 @@ namespace Kp2aUnitTests
 			return saveSuccesful;
 		}
 
-		protected IKp2aApp SetupAppWithDefaultDatabase()
+		protected TestKp2aApp SetupAppWithDefaultDatabase()
 		{
 			string filename = DefaultFilename;
 
 			return SetupAppWithDatabase(filename);
 		}
 
-		protected IKp2aApp SetupAppWithDatabase(string filename)
+		protected TestKp2aApp SetupAppWithDatabase(string filename)
 		{
-			IKp2aApp app = new TestKp2aApp();
+			TestKp2aApp app = CreateTestKp2aApp();
 
 			IOConnectionInfo ioc = new IOConnectionInfo {Path = filename};
 			Database db = app.CreateNewDatabase();

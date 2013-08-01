@@ -34,13 +34,37 @@ namespace keepass2android
 	public class SaveDb : RunnableOnFinish {
 		private readonly IKp2aApp _app;
 		private readonly bool _dontSave;
+
+		/// <summary>
+		/// stream for reading the data from the original file. If this is set to a non-null value, we know we need to sync
+		/// </summary>
+		private readonly Stream _streamForOrigFile;
 		private readonly Context _ctx;
 		private Thread _workerThread;
 
-		public SaveDb(Context ctx, IKp2aApp app, OnFinish finish, bool dontSave): base(finish) {
+		public SaveDb(Context ctx, IKp2aApp app, OnFinish finish, bool dontSave)
+			: base(finish)
+		{
 			_ctx = ctx;
 			_app = app;
 			_dontSave = dontSave;
+		}
+		
+		/// <summary>
+		/// Constructor for sync
+		/// </summary>
+		/// <param name="ctx"></param>
+		/// <param name="app"></param>
+		/// <param name="finish"></param>
+		/// <param name="dontSave"></param>
+		/// <param name="streamForOrigFile">Stream for reading the data from the (changed) original location</param>
+		public SaveDb(Context ctx, IKp2aApp app, OnFinish finish, bool dontSave, Stream streamForOrigFile)
+			: base(finish)
+		{
+			_ctx = ctx;
+			_app = app;
+			_dontSave = dontSave;
+			_streamForOrigFile = streamForOrigFile;
 		}
 
 		public SaveDb(Context ctx, IKp2aApp app, OnFinish finish)
@@ -63,18 +87,25 @@ namespace keepass2android
 					IOConnectionInfo ioc = _app.GetDb().Ioc;
 					IFileStorage fileStorage = _app.GetFileStorage(ioc);
 
-					if ((!_app.GetBooleanPreference(PreferenceKey.CheckForFileChangesOnSave))
-						|| (_app.GetDb().KpDatabase.HashOfFileOnDisk == null)) //first time saving
+					if (_streamForOrigFile == null)
 					{
-						PerformSaveWithoutCheck(fileStorage, ioc);
-						Finish(true);
-						return;
+						if ((!_app.GetBooleanPreference(PreferenceKey.CheckForFileChangesOnSave))
+							|| (_app.GetDb().KpDatabase.HashOfFileOnDisk == null)) //first time saving
+						{
+							PerformSaveWithoutCheck(fileStorage, ioc);
+							Finish(true);
+							return;
+						}	
 					}
+					
 
 
 
-					if (fileStorage.CheckForFileChangeFast(ioc, _app.GetDb().LastFileVersion)  //first try to use the fast change detection
-						|| (FileHashChanged(ioc, _app.GetDb().KpDatabase.HashOfFileOnDisk))) //if that fails, hash the file and compare:
+					if (
+						(_streamForOrigFile != null)
+						|| fileStorage.CheckForFileChangeFast(ioc, _app.GetDb().LastFileVersion)  //first try to use the fast change detection
+						|| (FileHashChanged(ioc, _app.GetDb().KpDatabase.HashOfFileOnDisk)) //if that fails, hash the file and compare:
+						)
 					{
 
 						//ask user...
@@ -183,10 +214,26 @@ namespace keepass2android
 			pwImp.MemoryProtection = pwDatabase.MemoryProtection.CloneDeep();
 			pwImp.MasterKey = pwDatabase.MasterKey;
 			KdbxFile kdbx = new KdbxFile(pwImp);
-			kdbx.Load(fileStorage.OpenFileForRead(ioc), KdbpFile.GetFormatToUse(ioc), null);
+			kdbx.Load(GetStreamForBaseFile(fileStorage, ioc), KdbpFile.GetFormatToUse(ioc), null);
 
 			pwDatabase.MergeIn(pwImp, PwMergeMethod.Synchronize, null); 
 
+		}
+
+		private Stream GetStreamForBaseFile(IFileStorage fileStorage, IOConnectionInfo ioc)
+		{
+			//if we have the original file already available: use it
+			if (_streamForOrigFile != null)
+				return _streamForOrigFile;
+
+			//if the file storage caches, it might return the local data in case of a conflict. This would result in data loss
+			// so we need to ensure we get the data from remote (only if the remote file is available. if not, we won't overwrite anything)
+			CachingFileStorage cachingFileStorage = fileStorage as CachingFileStorage;
+			if (cachingFileStorage != null)
+			{
+				return cachingFileStorage.OpenRemoteForReadIfAvailable(ioc);
+			}
+			return fileStorage.OpenFileForRead(ioc);
 		}
 
 		private void PerformSaveWithoutCheck(IFileStorage fileStorage, IOConnectionInfo ioc)

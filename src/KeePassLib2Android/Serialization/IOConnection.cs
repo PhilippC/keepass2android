@@ -105,7 +105,8 @@ namespace KeePassLib.Serialization
 			// Not implemented and ignored in Mono < 2.10
 			try
 			{
-				request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+				//deactivated. No longer supported in Mono 4.8? 
+				//request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
 			}
 			catch(NotImplementedException) { }
 			catch(Exception) { Debug.Assert(false); }

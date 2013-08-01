@@ -15,6 +15,7 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,16 +59,19 @@
   <ItemGroup>
     <Compile Include="ProgressDialogStub.cs" />
     <Compile Include="TestBase.cs" />
+    <Compile Include="TestCacheSupervisor.cs" />
     <Compile Include="TestDrawableFactory.cs" />
     <Compile Include="TestCreateDb.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestFileStorage.cs" />
     <Compile Include="TestKp2aApp.cs" />
     <Compile Include="TestLoadDb.cs" />
     <Compile Include="TestLoadDbCredentials.cs" />
     <Compile Include="TestCachingFileStorage.cs" />
     <Compile Include="TestSaveDb.cs" />
+    <Compile Include="TestSynchronizeCachedDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -95,6 +99,9 @@
       <Project>{a5f8fb02-00e0-4335-91ef-aeaa2c2f3c48}</Project>
       <Name>MonoDroidUnitTesting</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TransformFile Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

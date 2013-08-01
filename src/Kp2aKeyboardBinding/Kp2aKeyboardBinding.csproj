@@ -53,6 +53,7 @@
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />
     <None Include="Jars\AboutJars.txt" />
+    <LibraryProjectZip Include="project.zip" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\EnumFields.xml" />
@@ -60,9 +61,4 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
-  <ItemGroup>
-    <LibraryProjectZip Include="..\java\KP2ASoftKeyboard\project.zip">
-      <Link>project.zip</Link>
-    </LibraryProjectZip>
-  </ItemGroup>
 </Project>

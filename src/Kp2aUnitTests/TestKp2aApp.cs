@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using KeePassLib.Serialization;
@@ -22,6 +23,7 @@ namespace Kp2aUnitTests
 		private YesNoCancelResult _yesNoCancelResult = YesNoCancelResult.Yes;
 		private Dictionary<PreferenceKey, bool> _preferences = new Dictionary<PreferenceKey, bool>();
 
+
 		public void SetShutdown()
 		{
 			
@@ -40,7 +42,7 @@ namespace Kp2aUnitTests
 		public Database CreateNewDatabase()
 		{
 			TestDrawableFactory testDrawableFactory = new TestDrawableFactory();
-			_db = new Database(testDrawableFactory, new TestKp2aApp());
+			_db = new Database(testDrawableFactory, this);
 			return _db;
 
 		}
@@ -98,6 +100,9 @@ namespace Kp2aUnitTests
 		public Handler UiThreadHandler {
 			get { return null; } //ensure everything runs in the same thread. Otherwise the OnFinish-callback would run after the test has already finished (with failure)
 		}
+
+		public IFileStorage FileStorage { get; set; }
+
 		public IProgressDialog CreateProgressDialog(Context ctx)
 		{
 			return new ProgressDialogStub();
@@ -105,7 +110,20 @@ namespace Kp2aUnitTests
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
-			return new BuiltInFileStorage();
+			return FileStorage;
+		}
+
+		
+		public bool TriggerReloadCalled;
+
+		public TestKp2aApp()
+		{
+			FileStorage = new BuiltInFileStorage();
+		}
+
+		public void TriggerReload(Context ctx)
+		{
+			TriggerReloadCalled = true;
 		}
 
 		public void SetYesNoCancelResult(YesNoCancelResult yesNoCancelResult)

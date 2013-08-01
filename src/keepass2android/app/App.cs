@@ -125,33 +125,39 @@ namespace keepass2android
                 {
                     activity.SetResult(KeePass.ExitReloadDb);
                     activity.Finish();
+					//todo: return?
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
-
-                builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
-
-                builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes), 
-                    (dlgSender, dlgEvt) =>
-                        {
-                            _db.ReloadRequested = true;
-                            activity.SetResult(KeePass.ExitReloadDb);
-                            activity.Finish();
-
-                        });
-
-                builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
-                    {
-
-                    });
-
-
-                Dialog dialog = builder.Create();
-                dialog.Show();
+	            AskForReload(activity);
             }
         }
 
-        public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile)
+		private void AskForReload(Activity activity)
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
+
+			builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
+
+			builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes),
+				(dlgSender, dlgEvt) =>
+				{
+					_db.ReloadRequested = true;
+					activity.SetResult(KeePass.ExitReloadDb);
+					activity.Finish();
+
+				});
+
+			builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
+			{
+
+			});
+
+
+			Dialog dialog = builder.Create();
+			dialog.Show();
+		}
+
+		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile)
         {
             FileDbHelper.CreateFile(ioc, keyfile);
         }
@@ -248,6 +254,11 @@ namespace keepass2android
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
 			return new BuiltInFileStorage();
+		}
+
+		public void TriggerReload(Context ctx)
+		{
+			AskForReload((Activity)ctx);
 		}
 
 
