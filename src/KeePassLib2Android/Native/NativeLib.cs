@@ -25,6 +25,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 
 using KeePassLib.Utility;
+using keepass2android;
 
 namespace KeePassLib.Native
 {
@@ -169,8 +170,9 @@ namespace KeePassLib.Native
 				byte[] newKey = key.TransformMasterKey(pKey256, pBuf256, (int)uRounds);
 				Array.Copy(newKey, pBuf256, newKey.Length);
 			}
-			catch(Exception e) 
-			{ 
+			catch(Exception e)
+			{
+				Kp2aLog.Log(e.Message);
 				return false; 
 			}
 
