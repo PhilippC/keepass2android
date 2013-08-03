@@ -216,7 +216,7 @@
   <string name="add_extra_string">Add additional string</string>
   <string name="delete_extra_string">Delete additional string</string>
 	<string name="database_loaded_quickunlock_enabled">%1$s: Locked. QuickUnlock enabled.</string>
-	<string name="database_loaded_unlocked">%1$s: Unlocked. Tap to lock.</string>
+	<string name="database_loaded_unlocked">%1$s: Unlocked.</string>
   <string name="credentials_dialog_title">Enter server credentials</string>
   <string name="UseFileTransactions_title">File transactions</string>
   <string name="UseFileTransactions_summary">Use file transactions for writing databases</string>

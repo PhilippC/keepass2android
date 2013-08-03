@@ -17,19 +17,20 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using KeePassLib.Serialization;
 
 namespace keepass2android
 {
 	public class LoadDb : RunnableOnFinish {
 		private readonly IOConnectionInfo _ioc;
-		private readonly MemoryStream _databaseData;
+		private readonly Task<MemoryStream> _databaseData;
 		private readonly String _pass;
 		private readonly String _key;
 		private readonly IKp2aApp _app;
 		private readonly bool _rememberKeyfile;
 		
-		public LoadDb(IKp2aApp app, IOConnectionInfo ioc, MemoryStream databaseData, String pass, String key, OnFinish finish): base(finish)
+		public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, String pass, String key, OnFinish finish): base(finish)
 		{
 			_app = app;
 			_ioc = ioc;
@@ -47,7 +48,7 @@ namespace keepass2android
 			try
 			{
 				StatusLogger.UpdateMessage(UiStringKey.loading_database);
-				_app.LoadDatabase(_ioc, _databaseData, _pass, _key, StatusLogger);
+				_app.LoadDatabase(_ioc, _databaseData.Result, _pass, _key, StatusLogger);
 				SaveFileData (_ioc, _key);
 				
 			} catch (KeyFileException) {
