@@ -161,10 +161,12 @@ namespace keepass2android
 
 		private static string GetDatabaseName()
 		{
+			
 			var db = App.Kp2a.GetDb().KpDatabase;
 			var name = db.Name;
 			if (String.IsNullOrEmpty(name))
 			{
+				//todo: if paranoid ("don't remember recent files") return "***"
 				name = UrlUtil.StripExtension(UrlUtil.GetFileName(db.IOConnectionInfo.Path));
 			}
 
