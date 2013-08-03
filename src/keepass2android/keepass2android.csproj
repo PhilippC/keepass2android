@@ -643,6 +643,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Assets\" />
+    <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
@@ -671,9 +672,6 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
-  <ItemGroup>
-    <AndroidJavaLibrary Include="SupportLib\android-support-v4.jar" />
-  </ItemGroup>
   <ItemGroup>
     <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi\libfinal-key.so">
       <Link>libs\armeabi\libfinal-key.so</Link>

@@ -469,7 +469,7 @@ namespace keepass2android
 
             if (currentIme == kp2aIme)
             {
-                imeManager.ToggleSoftInput(ShowSoftInputFlags.Forced, HideSoftInputFlags.None);
+                imeManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.None);
             }
             else
             {
