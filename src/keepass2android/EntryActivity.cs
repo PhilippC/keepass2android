@@ -94,7 +94,7 @@ namespace keepass2android
 
 			Database db = App.Kp2a.GetDb();
 			// Likely the app has been killed exit the activity 
-			if (! db.Loaded)
+			if (!db.Loaded || (App.Kp2a.QuickLocked))
 			{
 				Finish();
 				return;

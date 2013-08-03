@@ -64,7 +64,7 @@ namespace keepass2android
 	{
 		public void LockDatabase(bool allowQuickUnlock = true)
 		{
-			if (_db.Loaded)
+			if (GetDb().Loaded)
 			{
 				if (QuickUnlockEnabled && allowQuickUnlock &&
 					_db.KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&

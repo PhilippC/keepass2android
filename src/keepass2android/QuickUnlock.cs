@@ -65,15 +65,11 @@ namespace keepass2android
 
 			txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[]{quickUnlockLength});
 
-			EditText pwd= (EditText)FindViewById(Resource.Id.QuickUnlock_password);
-			pwd.SetEms(quickUnlockLength);
-			pwd.PostDelayed(() => {
-				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
-				keyboard.ShowSoftInput(pwd, 0);
-			}, 50);
-
 			SetResult(KeePass.ExitChangeDb);
-
+			
+			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
+			pwd.SetEms(quickUnlockLength);
+			
 			Button btnUnlock = (Button)FindViewById(Resource.Id.QuickUnlock_button);
 			btnUnlock.Click += (object sender, EventArgs e) => 
 			{
@@ -110,6 +106,14 @@ namespace keepass2android
 				Finish();
 				return;
 			}
+
+			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
+			pwd.PostDelayed(() =>
+			{
+				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
+				keyboard.ShowSoftInput(pwd, 0);
+			}, 50);
+
 		}
 	}
 }
