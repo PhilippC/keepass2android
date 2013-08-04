@@ -270,8 +270,7 @@ namespace keepass2android
 			Window.SetSoftInputMode(SoftInput.StateVisible);
 
 			Button confirmButton = (Button)FindViewById(Resource.Id.pass_ok);
-			confirmButton.Click += (sender, e) => 
-			{
+			confirmButton.Click += (sender, e) => {
 				String pass = GetEditText(Resource.Id.password);
 				String key = GetEditText(Resource.Id.pass_keyfile);
 				if (pass.Length == 0 && key.Length == 0)
@@ -282,13 +281,12 @@ namespace keepass2android
 
 				CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
 				App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
-				
+
 				Handler handler = new Handler();
 				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, pass, key, new AfterLoad(handler, this));
 				_loadDbTask = null; // prevent accidental re-use
-				
-				ProgressTask pt = new ProgressTask(App.Kp2a, this, task);
-				pt.Run();
+
+				new ProgressTask(App.Kp2a, this, task).Run();
 			};
 			
 			/*CheckBox checkBox = (CheckBox) FindViewById(Resource.Id.show_password);
@@ -396,12 +394,10 @@ namespace keepass2android
 					capacity = (int)stream.Length;
 				}
 				memoryStream = new MemoryStream(capacity);
-				MemUtil.CopyStream(stream, memoryStream);
+				stream.CopyTo(memoryStream);
 				stream.Close();
 				memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
 			}
-
-			System.Threading.Thread.Sleep(3000);
 
 			Kp2aLog.Log("Pre-loading database file completed");
 
@@ -514,17 +510,24 @@ namespace keepass2android
 		
 		private class AfterLoad : OnFinish {
 			readonly PasswordActivity _act;
-			public AfterLoad(Handler handler, PasswordActivity act):base(handler) {
+
+			public AfterLoad(Handler handler, PasswordActivity act):base(handler)
+			{
 				_act = act;
 			}
-			
+
 
 			public override void Run() {
-				if ( Success ) {
+				if ( Success ) 
+				{
 					_act.SetEditText(Resource.Id.password, "");
 
 					_act.LaunchNextActivity();
-				} else {
+
+					GC.Collect(); // Ensure temporary memory used while loading is collected - it will contain sensitive data such as username and password, and also the large data of the encrypted database file
+				} 
+				else
+				{
 					DisplayMessage(_act);
 				}
 			}
