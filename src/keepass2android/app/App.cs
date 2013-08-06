@@ -197,6 +197,7 @@ namespace keepass2android
             {
                 if (_db.ReloadRequested)
                 {
+	                LockDatabase(false);
                     activity.SetResult(KeePass.ExitReloadDb);
                     activity.Finish();
                 }
@@ -209,6 +210,7 @@ namespace keepass2android
                     (dlgSender, dlgEvt) =>
                         {
                             _db.ReloadRequested = true;
+							LockDatabase(false);
                             activity.SetResult(KeePass.ExitReloadDb);
                             activity.Finish();
 
