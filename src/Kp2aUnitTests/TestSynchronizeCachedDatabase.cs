@@ -22,15 +22,6 @@ namespace Kp2aUnitTests
 		private TestCacheSupervisor _testCacheSupervisor = new TestCacheSupervisor();
 		private TestFileStorage _testFileStorage = new TestFileStorage();
 
-		[TestMethod]
-		public void TestTodos()
-		{
-			Assert.IsFalse(true, "Wird immer ManagedTransform benutzt??");
-			Assert.IsFalse(true, "TODOs in SyncDb");
-			Assert.IsFalse(true, "FileNotFound");
-			Assert.IsFalse(true, "Test merge files");
-		}
-
 		protected override TestKp2aApp CreateTestKp2aApp()
 		{
 			TestKp2aApp app = base.CreateTestKp2aApp();
@@ -100,6 +91,87 @@ namespace Kp2aUnitTests
 			AssertDatabasesAreEqual(app.GetDb().KpDatabase, appRemoteLoaded.GetDb().KpDatabase);
 		}
 
+		[TestMethod]
+		public void TestSyncWhenRemoteDeleted()
+		{
+			//create the default database:
+			TestKp2aApp app = SetupAppWithDefaultDatabase();
+
+			IOConnection.DeleteFile(new IOConnectionInfo {Path = DefaultFilename});
+			//save it and reload it so we have a base version ("remote" and in the cache)
+			SaveDatabase(app);
+			app = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+
+			//delete remote:
+			IOConnection.DeleteFile(new IOConnectionInfo { Path = DefaultFilename });
+
+			string resultMessage;
+			bool wasSuccessful;
+
+			//sync:
+			Synchronize(app, out wasSuccessful, out resultMessage);
+			Assert.IsTrue(wasSuccessful);
+			Assert.AreEqual(resultMessage, app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
+
+			//ensure the file is back here:
+			var app2 = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			AssertDatabasesAreEqual(app.GetDb().KpDatabase, app2.GetDb().KpDatabase);
+		}
+
+		[TestMethod]
+		public void TestSyncWhenConflict()
+		{
+			//create the default database:
+			TestKp2aApp app = SetupAppWithDefaultDatabase();
+
+			IOConnection.DeleteFile(new IOConnectionInfo {Path = DefaultFilename});
+			//save it and reload it so we have a base version ("remote" and in the cache)
+			SaveDatabase(app);
+			app = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			var app2 = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			app2.FileStorage = _testFileStorage; //give app2 direct access to the remote file
+
+			//go offline:
+			_testFileStorage.Offline = true;
+
+
+			string resultMessage;
+			bool wasSuccessful;
+
+			//modify the database by adding a group in both apps:
+			PwGroup newGroup1 = new PwGroup(true, true, "TestGroup", PwIcon.Apple);
+			app.GetDb().KpDatabase.RootGroup.AddGroup(newGroup1, true);
+			PwGroup newGroup2 = new PwGroup(true, true, "TestGroupApp2", PwIcon.Apple);
+			app2.GetDb().KpDatabase.RootGroup.AddGroup(newGroup2, true);
+			//save the database again (will be saved locally only for "app")
+			SaveDatabase(app);
+			Assert.IsTrue(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.CouldntSaveToRemoteCalled = false;
+
+			//go online again:
+			_testFileStorage.Offline = false;
+			
+			//...and remote only for "app2":
+			SaveDatabase(app2);
+
+			//try to sync:
+			Synchronize(app, out wasSuccessful, out resultMessage);
+
+			Assert.IsTrue(wasSuccessful);
+			Assert.AreEqual(UiStringKey.SynchronizedDatabaseSuccessfully.ToString(), resultMessage);
+
+			//build app2 with the newGroup1:
+			app2.GetDb().KpDatabase.RootGroup.AddGroup(newGroup1, true);
+
+			var app3 = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+
+			AssertDatabasesAreEqual(app.GetDb().KpDatabase, app2.GetDb().KpDatabase);
+			AssertDatabasesAreEqual(app.GetDb().KpDatabase, app3.GetDb().KpDatabase);
+
+
+
+		}
+
 		private void Synchronize(TestKp2aApp app, out bool wasSuccessful, out string resultMessage)
 		{
 			bool success = false;
@@ -110,6 +182,7 @@ namespace Kp2aUnitTests
 					result = _result;
 				}));
 			sync.Run();
+			sync.JoinWorkerThread();
 			wasSuccessful = success;
 			resultMessage = result;
 		}

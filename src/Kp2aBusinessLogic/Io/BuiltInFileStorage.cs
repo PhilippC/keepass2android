@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 using Android.App;
@@ -57,7 +58,19 @@ namespace keepass2android.Io
 
 		public Stream OpenFileForRead(IOConnectionInfo ioc)
 		{
-			return IOConnection.OpenRead(ioc);
+			try
+			{
+				return IOConnection.OpenRead(ioc);
+			}
+			catch (WebException ex)
+			{
+				if ((ex.Response is HttpWebResponse) && (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.NotFound))
+				{
+					throw new FileNotFoundException("404!", ioc.Path, ex);
+				}
+				throw;
+			}
+			
 		}
 
 		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)

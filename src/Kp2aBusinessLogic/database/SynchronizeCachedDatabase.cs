@@ -13,6 +13,7 @@ namespace keepass2android
 	{
 		private readonly Context _context;
 		private readonly IKp2aApp _app;
+		private SaveDb _saveDb;
 
 		public SynchronizeCachedDatabase(Context context, IKp2aApp app, OnFinish finish)
 			: base(finish)
@@ -37,10 +38,19 @@ namespace keepass2android
 				//download file from remote location and calculate hash:
 				StatusLogger.UpdateSubMessage(_app.GetResourceString(UiStringKey.DownloadingRemoteFile));
 				string hash;
-				//todo: catch filenotfound and upload then
-				MemoryStream remoteData = cachingFileStorage.GetRemoteDataAndHash(ioc, out hash);
-
-				//todo: what happens if something fails here?
+				
+				MemoryStream remoteData;
+				try
+				{
+					remoteData = cachingFileStorage.GetRemoteDataAndHash(ioc, out hash);
+				}
+				catch (FileNotFoundException)
+				{
+					StatusLogger.UpdateSubMessage(_app.GetResourceString(UiStringKey.RestoringRemoteFile));
+					cachingFileStorage.UpdateRemoteFile(ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions));
+					Finish(true, _app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
+					return;
+				}
 
 				//check if remote file was modified:
 				if (cachingFileStorage.GetBaseVersionHash(ioc) != hash)
@@ -49,7 +59,7 @@ namespace keepass2android
 					if (cachingFileStorage.HasLocalChanges(ioc))
 					{
 						//conflict! need to merge
-						SaveDb saveDb = new SaveDb(_context, _app, new ActionOnFinish((success, result) =>
+						_saveDb = new SaveDb(_context, _app, new ActionOnFinish((success, result) =>
 							{
 								if (!success)
 								{
@@ -59,8 +69,9 @@ namespace keepass2android
 								{
 									Finish(true, _app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
 								}
+								_saveDb = null;
 							}), false, remoteData);
-						saveDb.Run();
+						_saveDb.Run();
 					}
 					else
 					{
@@ -93,6 +104,12 @@ namespace keepass2android
 				Finish(false, e.Message);
 			}
 			
+		}
+
+		public void JoinWorkerThread()
+		{
+			if (_saveDb != null)
+				_saveDb.JoinWorkerThread();
 		}
 	}
 }

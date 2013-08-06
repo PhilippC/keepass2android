@@ -39,6 +39,7 @@ namespace keepass2android
 		DownloadingRemoteFile,
 		UploadingFile,
 		FilesInSync,
-		SynchronizedDatabaseSuccessfully
+		SynchronizedDatabaseSuccessfully,
+		RestoringRemoteFile
     }
 }

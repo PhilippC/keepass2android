@@ -168,7 +168,32 @@ namespace Kp2aUnitTests
 			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
 			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
 
-			Assert.AreEqual(newContent, File.ReadAllText(CachingTestFile));
+			Assert.AreEqual(newContent, File.ReadAllText(CachingTestFile));			
+		}
+
+
+		[TestMethod]
+		public void TestLoadFromRemoteWhenRemoteDeleted()
+		{
+			SetupFileStorage();
+
+			//read the file once. Should now be in the cache.
+			ReadToMemoryStream(_fileStorage, CachingTestFile);
+
+			//delete remote file:
+			_testFileStorage.DeleteFile(IocForCacheFile);
+
+			//read again. shouldn't throw and give the same result:
+			var memStream = ReadToMemoryStream(_fileStorage, CachingTestFile);
+
+			//check if we received the correct content:
+			Assert.AreEqual(_defaultCacheFileContents, MemoryStreamToString(memStream)); 
+
+			Assert.IsTrue(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
+			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			Assert.IsFalse(_testCacheSupervisor.RestoredRemoteCalled);
+
+			
 		}
 
 		private void WriteContentToCacheFile(string newContent)

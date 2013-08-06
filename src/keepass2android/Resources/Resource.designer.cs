@@ -1302,32 +1302,32 @@ namespace keepass2android
 			// aapt resource value: 0x7f0800fa
 			public const int BinaryDirectory_title = 2131230970;
 			
+			// aapt resource value: 0x7f080143
+			public const int ChangeLog = 2131231043;
+			
+			// aapt resource value: 0x7f080142
+			public const int ChangeLog_0_7 = 2131231042;
+			
+			// aapt resource value: 0x7f080140
+			public const int ChangeLog_0_8 = 2131231040;
+			
+			// aapt resource value: 0x7f08013f
+			public const int ChangeLog_0_8_1 = 2131231039;
+			
+			// aapt resource value: 0x7f08013e
+			public const int ChangeLog_0_8_2 = 2131231038;
+			
 			// aapt resource value: 0x7f08013d
-			public const int ChangeLog = 2131231037;
+			public const int ChangeLog_0_8_3 = 2131231037;
 			
 			// aapt resource value: 0x7f08013c
-			public const int ChangeLog_0_7 = 2131231036;
+			public const int ChangeLog_0_8_4 = 2131231036;
 			
-			// aapt resource value: 0x7f08013a
-			public const int ChangeLog_0_8 = 2131231034;
-			
-			// aapt resource value: 0x7f080139
-			public const int ChangeLog_0_8_1 = 2131231033;
-			
-			// aapt resource value: 0x7f080138
-			public const int ChangeLog_0_8_2 = 2131231032;
-			
-			// aapt resource value: 0x7f080137
-			public const int ChangeLog_0_8_3 = 2131231031;
-			
-			// aapt resource value: 0x7f080136
-			public const int ChangeLog_0_8_4 = 2131231030;
+			// aapt resource value: 0x7f080141
+			public const int ChangeLog_keptDonate = 2131231041;
 			
 			// aapt resource value: 0x7f08013b
-			public const int ChangeLog_keptDonate = 2131231035;
-			
-			// aapt resource value: 0x7f080135
-			public const int ChangeLog_title = 2131231029;
+			public const int ChangeLog_title = 2131231035;
 			
 			// aapt resource value: 0x7f08002a
 			public const int CheckForFileChangesOnSave_key = 2131230762;
@@ -1359,8 +1359,14 @@ namespace keepass2android
 			// aapt resource value: 0x7f080129
 			public const int DeletingGroup = 2131231017;
 			
+			// aapt resource value: 0x7f080136
+			public const int DownloadingRemoteFile = 2131231030;
+			
 			// aapt resource value: 0x7f080083
 			public const int FileNotFound = 2131230851;
+			
+			// aapt resource value: 0x7f080139
+			public const int FilesInSync = 2131231033;
 			
 			// aapt resource value: 0x7f080096
 			public const int InvalidPassword = 2131230870;
@@ -1437,6 +1443,9 @@ namespace keepass2android
 			// aapt resource value: 0x7f0800e5
 			public const int RememberRecentFiles_title = 2131230949;
 			
+			// aapt resource value: 0x7f080138
+			public const int RestoringRemoteFile = 2131231032;
+			
 			// aapt resource value: 0x7f0800ff
 			public const int SaveAttachmentDialog_open = 2131230975;
 			
@@ -1482,6 +1491,12 @@ namespace keepass2android
 			// aapt resource value: 0x7f08002c
 			public const int SuggestionsURL = 2131230764;
 			
+			// aapt resource value: 0x7f08013a
+			public const int SynchronizedDatabaseSuccessfully = 2131231034;
+			
+			// aapt resource value: 0x7f080135
+			public const int SynchronizingCachedDatabase = 2131231029;
+			
 			// aapt resource value: 0x7f080132
 			public const int SynchronizingDatabase = 2131231026;
 			
@@ -1505,6 +1520,9 @@ namespace keepass2android
 			
 			// aapt resource value: 0x7f08012b
 			public const int UndoingChanges = 2131231019;
+			
+			// aapt resource value: 0x7f080137
+			public const int UploadingFile = 2131231031;
 			
 			// aapt resource value: 0x7f080027
 			public const int UsageCount_key = 2131230759;
