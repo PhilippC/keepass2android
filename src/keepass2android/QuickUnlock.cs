@@ -72,8 +72,6 @@ namespace keepass2android
 				keyboard.ShowSoftInput(pwd, 0);
 			}, 50);
 
-			SetResult(KeePass.ExitChangeDb);
-
 			Button btnUnlock = (Button)FindViewById(Resource.Id.QuickUnlock_button);
 			btnUnlock.Click += (object sender, EventArgs e) => 
 			{
@@ -82,11 +80,11 @@ namespace keepass2android
 				String expectedPasswordPart = password.Substring(Math.Max(0,password.Length-quickUnlockLength),Math.Min(password.Length, quickUnlockLength));
 				if (pwd.Text == expectedPasswordPart)
 				{
-					SetResult(KeePass.ExitQuickUnlock);
+					App.Kp2a.UnlockDatabase();
 				}
 				else
 				{
-					SetResult(KeePass.ExitForceLock);
+					App.Kp2a.LockDatabase(false);
 					Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
 				}
 				Finish();
@@ -95,21 +93,9 @@ namespace keepass2android
 			Button btnLock = (Button)FindViewById(Resource.Id.QuickUnlock_buttonLock);
 			btnLock.Click += (object sender, EventArgs e) => 
 			{
-				SetResult(KeePass.ExitForceLockAndChangeDb);
+				App.Kp2a.LockDatabase(false);
 				Finish();
 			};
-		}
-
-
-		protected override void OnResume()
-		{
-			base.OnResume();
-
-			if ( ! App.Kp2a.GetDb().Loaded ) {
-				SetResult(KeePass.ExitChangeDb);
-				Finish();
-				return;
-			}
 		}
 	}
 }

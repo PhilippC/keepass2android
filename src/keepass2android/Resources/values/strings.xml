@@ -232,8 +232,11 @@
 
 	<string name="ShowUnlockedNotification_title">Notification while unlocked</string>
 	<string name="ShowUnlockedNotification_summary">Show an ongoing notification while the database is unlocked.</string>
-  
-  <string name="AskOverwriteBinary">Do you want to overwrite the existing binary with the same name?</string>
+
+	<string name="PreloadDatabaseEnabled_title">Pre-load database file</string>
+	<string name="PreloadDatabaseEnabled_summary">Start background loading or downloading of the database file during password entry.</string>
+
+	<string name="AskOverwriteBinary">Do you want to overwrite the existing binary with the same name?</string>
   <string name="AskOverwriteBinary_title">Overwrite existing binary?</string>
   <string name="AskOverwriteBinary_yes">Overwrite</string>
   <string name="AskOverwriteBinary_no">Rename</string>

@@ -37,12 +37,9 @@ namespace keepass2android
 		public const Result ExitLock = Result.FirstUser+1;
 		public const Result ExitRefresh = Result.FirstUser+2;
 		public const Result ExitRefreshTitle = Result.FirstUser+3;
-		public const Result ExitForceLock = Result.FirstUser+4;
-		public const Result ExitQuickUnlock = Result.FirstUser+5;
-		public const Result ExitCloseAfterTaskComplete = Result.FirstUser+6;
-		public const Result ExitChangeDb = Result.FirstUser+7;
-		public const Result ExitForceLockAndChangeDb = Result.FirstUser+8;
-		public const Result ExitReloadDb = Result.FirstUser+9;
+		public const Result ExitCloseAfterTaskComplete = Result.FirstUser+4;
+		public const Result ExitChangeDb = Result.FirstUser+5; // NOTE: Nothing is currently using this, but in the future a "Change Database" menu option might.
+		public const Result ExitReloadDb = Result.FirstUser+6;
 
 		AppTask _appTask;
 

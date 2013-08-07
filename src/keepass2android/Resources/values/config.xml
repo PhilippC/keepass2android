@@ -92,4 +92,7 @@
 	<string name="ShowUnlockedNotification_key">ShowUnlockedNotification</string>
 	<bool name="ShowUnlockedNotification_default">true</bool>
 
+	<string name="PreloadDatabaseEnabled_key">PreloadDatabaseEnabled</string>
+	<bool name="PreloadDatabaseEnabled_default">true</bool>
+
 </resources>
