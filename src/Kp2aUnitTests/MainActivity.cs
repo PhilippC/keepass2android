@@ -19,8 +19,10 @@ namespace Kp2aUnitTests
             TestRunner runner = new TestRunner();
             // Run all tests from this assembly
             runner.AddTests(Assembly.GetExecutingAssembly());
-			//runner.AddTests(new List<Type> { typeof(TestSynchronizeCachedDatabase) });
-			//runner.AddTests(new List<Type> { typeof(TestLoadDb) });}}
+			//runner.AddTests(new List<Type> { typeof(TestSaveDbCached) });
+			//runner.AddTests(typeof(TestSaveDbCached).GetMethod("TestLoadEditSaveWhenModified"));
+			
+			//runner.AddTests(new List<Type> { typeof(TestSaveDb) });
 			//runner.AddTests(new List<Type> { typeof(TestCachingFileStorage) });
 			//runner.AddTests(typeof(TestCachingFileStorage).GetMethod("TestSaveToRemote"));
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadKdbpWithPasswordOnly"));

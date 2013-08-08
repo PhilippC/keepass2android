@@ -71,6 +71,7 @@
     <Compile Include="TestLoadDbCredentials.cs" />
     <Compile Include="TestCachingFileStorage.cs" />
     <Compile Include="TestSaveDb.cs" />
+    <Compile Include="TestSaveDbCached.cs" />
     <Compile Include="TestSynchronizeCachedDatabase.cs" />
   </ItemGroup>
   <ItemGroup>

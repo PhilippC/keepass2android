@@ -127,6 +127,35 @@ namespace Kp2aUnitTests
 
 
 		[TestMethod]
+		public void TestLoadEditSaveWithWriteBecauseTargetNotExists()
+		{
+			//create the default database:
+			IKp2aApp app = SetupAppWithDefaultDatabase();
+			//save it and reload it so we have a base version
+			SaveDatabase(app);
+			app = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			
+			//modify the database by adding a group:
+			app.GetDb().KpDatabase.RootGroup.AddGroup(new PwGroup(true, true, "TestGroup", PwIcon.Apple), true);
+
+			//delete the file:
+			File.Delete(DefaultFilename);
+
+			//save the database:
+			SaveDatabase(app);
+
+			//make sure no question was asked
+			Assert.AreEqual(null, ((TestKp2aApp)app).LastYesNoCancelQuestionTitle);
+
+			//load database to a new app instance:
+			IKp2aApp resultApp = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+
+			//ensure the file was saved:
+			AssertDatabasesAreEqual(app.GetDb().KpDatabase, resultApp.GetDb().KpDatabase);
+
+		}
+
+		[TestMethod]
 		public void TestLoadEditSaveWithSyncOverwriteBecauseOfNoCheck()
 		{
 			//create the default database:

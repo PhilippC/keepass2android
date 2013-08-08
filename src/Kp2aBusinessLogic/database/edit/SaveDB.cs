@@ -99,12 +99,10 @@ namespace keepass2android
 					}
 					
 
-
-
 					if (
 						(_streamForOrigFile != null)
 						|| fileStorage.CheckForFileChangeFast(ioc, _app.GetDb().LastFileVersion)  //first try to use the fast change detection
-						|| (FileHashChanged(ioc, _app.GetDb().KpDatabase.HashOfFileOnDisk)) //if that fails, hash the file and compare:
+						|| (FileHashChanged(ioc, _app.GetDb().KpDatabase.HashOfFileOnDisk) == FileHashChange.Changed) //if that fails, hash the file and compare:
 						)
 					{
 
@@ -243,14 +241,26 @@ namespace keepass2android
 			_app.GetDb().LastFileVersion = fileStorage.GetCurrentFileVersionFast(ioc);
 		}
 
-		public byte[] HashFile(IOConnectionInfo iocFile)
+		public byte[] HashOriginalFile(IOConnectionInfo iocFile)
 		{
 			if (iocFile == null) { Debug.Assert(false); return null; } // Assert only
 
 			Stream sIn;
 			try
 			{
-				sIn = _app.GetFileStorage(iocFile).OpenFileForRead(iocFile);
+				IFileStorage fileStorage = _app.GetFileStorage(iocFile);
+				CachingFileStorage cachingFileStorage = fileStorage as CachingFileStorage;
+				if (cachingFileStorage != null)
+				{
+					string hash;
+					cachingFileStorage.GetRemoteDataAndHash(iocFile, out hash);
+					return MemUtil.HexStringToByteArray(hash);
+				}
+				else
+				{
+					sIn = fileStorage.OpenFileForRead(iocFile);	
+				}
+				
 				if (sIn == null) throw new FileNotFoundException();
 			}
 			catch (Exception) { return null; }
@@ -267,10 +277,20 @@ namespace keepass2android
 			return pbHash;
 		}
 
-		private bool FileHashChanged(IOConnectionInfo ioc, byte[] hashOfFileOnDisk)
+		enum FileHashChange
+		{
+			Equal,
+			Changed,
+			FileNotAvailable
+		}
+
+		private FileHashChange FileHashChanged(IOConnectionInfo ioc, byte[] hashOfFileOnDisk)
 		{
 			StatusLogger.UpdateSubMessage(_app.GetResourceString(UiStringKey.CheckingTargetFileForChanges));
-			return !MemUtil.ArraysEqual(HashFile(ioc), hashOfFileOnDisk);
+			byte[] fileHash = HashOriginalFile(ioc);
+			if (fileHash == null)
+				return FileHashChange.FileNotAvailable;
+			return MemUtil.ArraysEqual(fileHash, hashOfFileOnDisk) ? FileHashChange.Equal : FileHashChange.Changed;
 		}
 
 		

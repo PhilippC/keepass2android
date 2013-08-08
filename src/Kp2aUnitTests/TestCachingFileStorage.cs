@@ -191,8 +191,6 @@ namespace Kp2aUnitTests
 
 			Assert.IsTrue(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
 			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.RestoredRemoteCalled);
-
 			
 		}
 

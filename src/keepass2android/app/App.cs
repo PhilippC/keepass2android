@@ -20,6 +20,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Widget;
 using KeePassLib.Serialization;
 using Android.Preferences;
 using keepass2android.Io;
@@ -57,8 +58,8 @@ namespace keepass2android
 	/// <summary>
 	/// Main implementation of the IKp2aApp interface for usage in the real app.
 	/// </summary>
-    public class Kp2aApp: IKp2aApp
-    {
+    public class Kp2aApp: IKp2aApp, ICacheSupervisor
+	{
         public bool IsShutdown()
         {
             return _shutdown;
@@ -253,7 +254,13 @@ namespace keepass2android
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
-			return new BuiltInFileStorage();
+			if (iocInfo.IsLocalFile())
+				return new BuiltInFileStorage();
+			else
+			{
+				//todo: check if desired
+				return new CachingFileStorage(new BuiltInFileStorage(), Application.Context.CacheDir.Path, this);
+			}
 		}
 
 		public void TriggerReload(Context ctx)
@@ -294,7 +301,32 @@ namespace keepass2android
             _db = new Database(new DrawableFactory(), this);
             return _db;
         }
-    }
+
+		void ShowToast(string message)
+		{
+			var handler = new Handler(Looper.MainLooper);
+			handler.Post(() => { Toast.MakeText(Application.Context, message, ToastLength.Long).Show(); });
+		}
+
+		public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception e)
+		{
+			//TODO use resource strings
+			ShowToast("Couldn't save to remote: "+e.Message+". Save again or use Sync menu when remote connection is available again.");
+		}
+
+		//todo: test changes in SaveDb with Cache: Save without conflict, save with conflict
+		//add test?
+
+		public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
+		{
+			ShowToast("Couldn't open from remote: " + ex.Message+". Loaded file from local cache. You can still make changes in the database and sync them later.");
+		}
+
+		public void NotifyOpenFromLocalDueToConflict(IOConnectionInfo ioc)
+		{
+			ShowToast("Opened local file due to conflict with changes in remote file. Use Synchronize menu to merge.");
+		}
+	}
 
 
     ///Application class for Keepass2Android: Contains static Database variable to be used by all components.

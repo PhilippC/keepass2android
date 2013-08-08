@@ -20,7 +20,7 @@ namespace keepass2android.Io
 		/// </summary>
 		/// <param name="ioc">The file which we tried to write</param>
 		/// <param name="e">The exception why the remote file couldn't be updated</param>
-		void CouldntSaveToRemote(IOConnectionInfo ioc, Exception e);
+		void CouldntSaveToRemote(IOConnectionInfo ioc, Exception ex);
 
 		/// <summary>
 		/// Called when only the local file could be opened during an open operation.
