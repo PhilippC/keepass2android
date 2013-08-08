@@ -96,3 +96,5 @@ Thumbs.db
 /src/java/KP2ASoftKeyboard/.settings
 
 /src/java/kp2akeytransform/.settings
+/src/Kp2aUnitTests/bin/ReleaseNoNet/Jars
+/src/Kp2aUnitTests/bin/ReleaseNoNet
