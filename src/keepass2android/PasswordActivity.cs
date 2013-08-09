@@ -291,6 +291,8 @@ namespace keepass2android
 				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, pass, key, new AfterLoad(handler, this));
 				_loadDbTask = null; // prevent accidental re-use
 
+				SetNewDefaultFile();
+
 				new ProgressTask(App.Kp2a, this, task).Run();
 			};
 			
@@ -319,31 +321,7 @@ namespace keepass2android
 				}
 			};
 			
-			CheckBox defaultCheck = (CheckBox)FindViewById(Resource.Id.default_database);
-			//Don't allow the current file to be the default if we don't have stored credentials
-			if ((_ioConnection.IsLocalFile() == false) && (_ioConnection.CredSaveMode != IOCredSaveMode.SaveCred))
-			{
-				defaultCheck.Enabled = false;
-			} else
-			{
-				defaultCheck.Enabled = true;
-			}
-			defaultCheck.CheckedChange += (sender, e) => 
-			{
-				String newDefaultFileName;
-				
-				if (e.IsChecked)
-				{
-					newDefaultFileName = _ioConnection.Path;
-				} else
-				{
-					newDefaultFileName = "";
-				}
-				
-				ISharedPreferencesEditor editor = _prefs.Edit();
-				editor.PutString(KeyDefaultFilename, newDefaultFileName);
-				EditorCompat.Apply(editor);
-			};
+			
 			
 			ImageButton browse = (ImageButton)FindViewById(Resource.Id.browse_button);
 			browse.Click += (sender, evt) => 
@@ -363,6 +341,34 @@ namespace keepass2android
 			};
 			
 			RetrieveSettings();
+		}
+
+		private void SetNewDefaultFile()
+		{
+//Don't allow the current file to be the default if we don't have stored credentials
+			bool makeFileDefault;
+			if ((_ioConnection.IsLocalFile() == false) && (_ioConnection.CredSaveMode != IOCredSaveMode.SaveCred))
+			{
+				makeFileDefault = false;
+			}
+			else
+			{
+				makeFileDefault = true;
+			}
+			String newDefaultFileName;
+
+			if (makeFileDefault)
+			{
+				newDefaultFileName = _ioConnection.Path;
+			}
+			else
+			{
+				newDefaultFileName = "";
+			}
+
+			ISharedPreferencesEditor editor = _prefs.Edit();
+			editor.PutString(KeyDefaultFilename, newDefaultFileName);
+			EditorCompat.Apply(editor);
 		}
 
 		protected override void OnStart()
@@ -432,11 +438,6 @@ namespace keepass2android
 		}
 		
 		private void RetrieveSettings() {
-			String defaultFilename = _prefs.GetString(KeyDefaultFilename, "");
-			if (!String.IsNullOrEmpty(_ioConnection.Path) && _ioConnection.Path.Equals(defaultFilename)) {
-				CheckBox checkbox = (CheckBox) FindViewById(Resource.Id.default_database);
-				checkbox.Checked = true;
-			}
 			CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
 			cbQuickUnlock.Checked = _prefs.GetBoolean(GetString(Resource.String.QuickUnlockDefaultEnabled_key), true);
 		}
@@ -494,15 +495,26 @@ namespace keepass2android
 		
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
-			case Resource.Id.menu_about:
-				AboutDialog dialog = new AboutDialog(this);
-				dialog.Show();
-				return true;
+				case Resource.Id.menu_about:
+					AboutDialog dialog = new AboutDialog(this);
+					dialog.Show();
+					return true;
 				
-			case Resource.Id.menu_app_settings:
-				AppSettingsActivity.Launch(this);
-				return true;
+				case Resource.Id.menu_app_settings:
+					AppSettingsActivity.Launch(this);
+					return true;
+
+				case Resource.Id.menu_change_db:
+					Intent intent = new Intent(this, typeof(FileSelectActivity));
+					AppTask.ToIntent(intent);
+					StartActivityForResult(intent, 0);
+					Finish();
+					return true;
+
+
 			}
+
+			
 			
 			return base.OnOptionsItemSelected(item);
 		}

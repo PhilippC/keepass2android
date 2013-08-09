@@ -62,11 +62,6 @@ namespace keepass2android
 
 		internal AppTask AppTask;
 
-		IOConnectionInfo LoadIoc(string defaultFileName)
-		{
-			return _DbHelper.CursorToIoc(_DbHelper.FetchFileByName(defaultFileName));
-		}
-
 		void ShowFilenameDialog(bool showOpenButton, bool showCreateButton, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -376,6 +371,7 @@ namespace keepass2android
 				        ioc.Password = password;
 				        ioc.CredSaveMode = (IOCredSaveMode)credentialRememberMode;
 				        PasswordActivity.Launch(this, ioc, AppTask);
+						Finish();
 				    });
 				builder.SetView(LayoutInflater.Inflate(Resource.Layout.url_credentials, null));
 				builder.SetNeutralButton(GetString(Android.Resource.String.Cancel), 
@@ -391,6 +387,7 @@ namespace keepass2android
 				try
 				{
 					PasswordActivity.Launch(this, ioc, AppTask);
+					Finish();
 				} catch (Java.IO.FileNotFoundException)
 				{
 					Toast.MakeText(this,     Resource.String.FileNotFound, ToastLength.Long).Show();
@@ -474,36 +471,6 @@ namespace keepass2android
 
 			_fileSelectButtons.UpdateExternalStorageWarning();
 
-			if (!_createdWithActivityResult)
-			{
-				if ((Intent.Action == Intent.ActionSend) && (App.Kp2a.GetDb().Loaded))
-				{
-					PasswordActivity.Launch(this, App.Kp2a.GetDb().Ioc , AppTask);
-				} else
-				{
-					
-					// Load default database
-					ISharedPreferences prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(this);
-					String defaultFileName = prefs.GetString(PasswordActivity.KeyDefaultFilename, "");
-					
-					if (defaultFileName.Length > 0)
-					{
-						Java.IO.File db = new Java.IO.File(defaultFileName);
-						
-						if (db.Exists())
-						{
-							try
-							{
-								PasswordActivity.Launch(this, LoadIoc(defaultFileName), AppTask);
-							} catch (Exception e)
-							{
-								Toast.MakeText(this, e.Message, ToastLength.Long);
-								// Ignore exception
-							}
-						}
-					}
-				}
-			}
 
 		}
 
@@ -516,7 +483,9 @@ namespace keepass2android
 			if (db.Loaded)
 			{
 				PasswordActivity.Launch(this, db.Ioc, AppTask);
+				Finish();
 			}
+
 			
 		}
 		public override bool OnCreateOptionsMenu(IMenu menu) {
