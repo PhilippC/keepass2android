@@ -109,7 +109,7 @@ namespace keepass2android
 			var filename = fileStorage.GetFilenameWithoutPathAndExt(iocInfo);
 			try
 			{
-				pwDatabase.Open(databaseData, filename, iocInfo, compositeKey, status);
+				pwDatabase.Open(databaseData ?? fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
 			}
 			catch (Exception)
 			{
@@ -118,8 +118,11 @@ namespace keepass2android
 					//if we don't get a password, we don't know whether this means "empty password" or "no password"
 					//retry without password:
 					compositeKey.RemoveUserKey(compositeKey.GetUserKey(typeof (KcpPassword)));
-					databaseData.Seek(0, SeekOrigin.Begin);
-					pwDatabase.Open(databaseData, filename, iocInfo, compositeKey, status);
+					if (databaseData != null)
+					{
+						databaseData.Seek(0, SeekOrigin.Begin);
+					}
+					pwDatabase.Open(databaseData ?? fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
 				}
 				else throw;
 			}

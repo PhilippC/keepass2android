@@ -351,7 +351,7 @@ namespace keepass2android
 						Toast.MakeText(_act,  "Unrecoverable error: " + Message, ToastLength.Long).Show();
 					});
 
-					App.Kp2a.LockDatabase();
+					App.Kp2a.LockDatabase(false);
 				}
 			}
 			

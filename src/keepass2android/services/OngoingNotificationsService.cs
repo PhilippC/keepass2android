@@ -128,22 +128,19 @@ namespace keepass2android
 				new NotificationCompat.Builder(this)
 					.SetSmallIcon(Resource.Drawable.ic_launcher_gray)
 					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.LauncherIcon))
-					.SetContentTitle(GetText(Resource.String.app_name))
+					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_quickunlock_enabled, GetDatabaseName()));
 
-			Intent startKp2aIntent = new Intent(this, typeof(KeePass));
-			startKp2aIntent.SetAction(Intent.ActionMain);
-			startKp2aIntent.AddCategory(Intent.CategoryLauncher);
-
-			PendingIntent startKp2APendingIntent =
-				PendingIntent.GetActivity(this, 0, startKp2aIntent, PendingIntentFlags.UpdateCurrent);
+			var startKp2APendingIntent = GetSwitchToAppPendingIntent();
 			builder.SetContentIntent(startKp2APendingIntent);
 
 			return builder.Build();
 		}
+
 		#endregion
 
 		#region Unlocked Warning
+
 		private Notification GetUnlockedNotification()
 		{
 			NotificationCompat.Builder builder =
@@ -151,12 +148,24 @@ namespace keepass2android
 					.SetOngoing(true)
 					.SetSmallIcon(Resource.Drawable.ic_unlocked_gray)
 					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.ic_launcher_red))
-					.SetContentTitle(GetText(Resource.String.app_name))
+					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_unlocked, GetDatabaseName()));
 
-			builder.SetContentIntent(PendingIntent.GetBroadcast(this, 0, new Intent(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent));
-
+			// Default action is to show Kp2A
+			builder.SetContentIntent(GetSwitchToAppPendingIntent());
+			// Additional action to allow locking the database
+			builder.AddAction(Android.Resource.Drawable.IcLockLock, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent));
+			
 			return builder.Build();
+		}
+
+		private PendingIntent GetSwitchToAppPendingIntent()
+		{
+			var startKp2aIntent = new Intent(this, typeof(KeePass));
+			startKp2aIntent.SetAction(Intent.ActionMain);
+			startKp2aIntent.AddCategory(Intent.CategoryLauncher);
+
+			return PendingIntent.GetActivity(this, 0, startKp2aIntent, PendingIntentFlags.UpdateCurrent);
 		}
 
 		private static string GetDatabaseName()

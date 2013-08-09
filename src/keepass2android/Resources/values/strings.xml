@@ -216,7 +216,7 @@
   <string name="add_extra_string">Add additional string</string>
   <string name="delete_extra_string">Delete additional string</string>
 	<string name="database_loaded_quickunlock_enabled">%1$s: Locked. QuickUnlock enabled.</string>
-	<string name="database_loaded_unlocked">%1$s: Unlocked. Tap to lock.</string>
+	<string name="database_loaded_unlocked">%1$s: Unlocked.</string>
   <string name="credentials_dialog_title">Enter server credentials</string>
   <string name="UseFileTransactions_title">File transactions</string>
   <string name="UseFileTransactions_summary">Use file transactions for writing databases</string>
@@ -232,8 +232,11 @@
 
 	<string name="ShowUnlockedNotification_title">Notification while unlocked</string>
 	<string name="ShowUnlockedNotification_summary">Show an ongoing notification while the database is unlocked.</string>
-  
-  <string name="AskOverwriteBinary">Do you want to overwrite the existing binary with the same name?</string>
+
+	<string name="PreloadDatabaseEnabled_title">Pre-load database file</string>
+	<string name="PreloadDatabaseEnabled_summary">Start background loading or downloading of the database file during password entry.</string>
+
+	<string name="AskOverwriteBinary">Do you want to overwrite the existing binary with the same name?</string>
   <string name="AskOverwriteBinary_title">Overwrite existing binary?</string>
   <string name="AskOverwriteBinary_yes">Overwrite</string>
   <string name="AskOverwriteBinary_no">Rename</string>

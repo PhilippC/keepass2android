@@ -163,6 +163,12 @@
 			  android:defaultValue="true"
 			  android:title="@string/CheckForFileChangesOnSave_title"
 			  android:key="@string/CheckForFileChangesOnSave_key" />
-
+		<CheckBoxPreference
+			android:enabled="true"
+				 android:persistent="true"
+				 android:summary="@string/PreloadDatabaseEnabled_summary"
+				 android:defaultValue="@bool/PreloadDatabaseEnabled_default"
+				 android:title="@string/PreloadDatabaseEnabled_title"
+				 android:key="@string/PreloadDatabaseEnabled_key" />
 	</PreferenceScreen>
 </PreferenceScreen>
