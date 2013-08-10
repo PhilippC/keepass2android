@@ -59,7 +59,7 @@ namespace keepass2android
 		private bool _rememberKeyfile;
 		ISharedPreferences _prefs;
 
-		private bool _started;
+		private bool _starting;
 
 		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -368,7 +368,7 @@ namespace keepass2android
 		protected override void OnStart()
 		{
 			base.OnStart();
-			_started = true;
+			_starting = true;
 		}
 
 		private MemoryStream LoadDbFile()
@@ -409,9 +409,9 @@ namespace keepass2android
 
 			// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
 			// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
-			if (_started) 
+			if (_starting) 
 			{
-				_started = false;
+				_starting = false;
 				if (App.Kp2a.DatabaseIsUnlocked)
 				{
 					LaunchNextActivity();
