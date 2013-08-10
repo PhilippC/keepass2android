@@ -72,25 +72,6 @@ namespace keepass2android
 			set { _loaded = value; }
 		}
 
-		public bool Open
-		{
-			get { return Loaded && (!Locked); }
-		}
-
-		bool _locked;
-		public bool Locked
-		{
-			get
-			{
-				return _locked;
-			}
-			set
-			{
-				Kp2aLog.Log("Locked=" + _locked);
-				_locked = value;
-			}
-		}
-		
 		public bool DidOpenFileChange()
 		{
 			if (Loaded == false)
@@ -102,7 +83,10 @@ namespace keepass2android
 		}
 
 		
-		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, String password, String keyfile, ProgressDialogStatusLogger status)
+		/// <summary>
+		/// Do not call this method directly. Call App.Kp2a.LoadDatabase instead.
+		/// </summary>
+		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, String password, String keyfile, ProgressDialogStatusLogger status)
 		{
 			PwDatabase pwDatabase = new PwDatabase();
 
@@ -120,12 +104,13 @@ namespace keepass2android
 					throw new KeyFileException();
 				}
 			}
-			
+
+			IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
+			var filename = fileStorage.GetFilenameWithoutPathAndExt(iocInfo);
 			try
 			{
-				IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
 				var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
-				pwDatabase.Open(fileStorage.OpenFileForRead(iocInfo), fileStorage.GetFilenameWithoutPathAndExt(iocInfo), iocInfo, compositeKey, status);
+				pwDatabase.Open(databaseData ?? fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
 				LastFileVersion = fileVersion;
 			}
 			catch (Exception)
@@ -135,8 +120,13 @@ namespace keepass2android
 					//if we don't get a password, we don't know whether this means "empty password" or "no password"
 					//retry without password:
 					compositeKey.RemoveUserKey(compositeKey.GetUserKey(typeof (KcpPassword)));
-					pwDatabase.Open(iocInfo, compositeKey, status);
-				}
+					if (databaseData != null)
+					{
+						databaseData.Seek(0, SeekOrigin.Begin);
+					}
+					var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
+					pwDatabase.Open(databaseData ?? fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
+					LastFileVersion = fileVersion;				}
 				else throw;
 			}
 			
@@ -151,15 +141,6 @@ namespace keepass2android
 			SearchHelper = new SearchDbHelper(app);
 		}
 
-		public bool QuickUnlockEnabled { get; set; }
-
-		//KeyLength of QuickUnlock at time of loading the database.
-		//This is important to not allow an attacker to set the length to 1 when QuickUnlock is started already.
-		public int QuickUnlockKeyLength
-		{
-			get;
-			set;
-		}
 		
 		public PwGroup SearchForText(String str) {
 			PwGroup group = SearchHelper.SearchForText(this, str);
@@ -225,7 +206,6 @@ namespace keepass2android
 			Root = null;
 			KpDatabase = null;
 			_loaded = false;
-			_locked = false;
 			_reloadRequested = false;
 		}
 		

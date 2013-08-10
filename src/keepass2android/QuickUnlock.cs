@@ -72,18 +72,13 @@ namespace keepass2android
 
 			TextView txtLabel = (TextView)FindViewById(Resource.Id.QuickUnlock_label);
 
-			int quickUnlockLength = App.Kp2a.GetDb().QuickUnlockKeyLength;
+			int quickUnlockLength = App.Kp2a.QuickUnlockKeyLength;
 
 			txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[]{quickUnlockLength});
 
 			EditText pwd= (EditText)FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.SetEms(quickUnlockLength);
-			pwd.PostDelayed(() => {
-				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
-				keyboard.ShowSoftInput(pwd, 0);
-			}, 50);
 
-			SetResult(KeePass.ExitChangeDb);
 
 			Button btnUnlock = (Button)FindViewById(Resource.Id.QuickUnlock_button);
 			btnUnlock.Click += (object sender, EventArgs e) => 
@@ -93,11 +88,11 @@ namespace keepass2android
 				String expectedPasswordPart = password.Substring(Math.Max(0,password.Length-quickUnlockLength),Math.Min(password.Length, quickUnlockLength));
 				if (pwd.Text == expectedPasswordPart)
 				{
-					SetResult(KeePass.ExitQuickUnlock);
+					App.Kp2a.UnlockDatabase();
 				}
 				else
 				{
-					SetResult(KeePass.ExitForceLock);
+					App.Kp2a.LockDatabase(false);
 					Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
 				}
 				Finish();
@@ -106,21 +101,21 @@ namespace keepass2android
 			Button btnLock = (Button)FindViewById(Resource.Id.QuickUnlock_buttonLock);
 			btnLock.Click += (object sender, EventArgs e) => 
 			{
-				SetResult(KeePass.ExitForceLockAndChangeDb);
+				App.Kp2a.LockDatabase(false);
 				Finish();
 			};
 		}
-
 
 		protected override void OnResume()
 		{
 			base.OnResume();
 
-			if ( ! App.Kp2a.GetDb().Loaded ) {
-				SetResult(KeePass.ExitChangeDb);
-				Finish();
-				return;
-			}
+			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
+			pwd.PostDelayed(() =>
+			{
+				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
+				keyboard.ShowSoftInput(pwd, 0);
+			}, 50);
 		}
 	}
 }

@@ -16,122 +16,49 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Globalization;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Widget;
 using Android.Preferences;
-using KeePassLib.Cryptography.Cipher;
 
 namespace keepass2android
 {
 	/// <summary>
-	/// Activity to configure the app
+	/// Activity to configure the application, without database settings. Does not require an unlocked database, or close when the database is locked
 	/// </summary>
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
-	public class AppSettingsActivity : LockingClosePreferenceActivity {
-		public static bool KeyfileDefault = false;
-		
-		public static void Launch(Context ctx) {
-			Intent i = new Intent(ctx, typeof(AppSettingsActivity));
-			
-			ctx.StartActivity(i);
+	public class AppSettingsActivity : LockingPreferenceActivity
+	{
+		public static void Launch(Context ctx)
+		{
+			ctx.StartActivity(new Intent(ctx, typeof(AppSettingsActivity)));
 		}
-		
-		protected override void OnCreate(Bundle savedInstanceState) {
+
+		protected override void OnCreate(Bundle savedInstanceState) 
+		{
 			base.OnCreate(savedInstanceState);
 			
 			AddPreferencesFromResource(Resource.Xml.preferences);
 			
-			Preference keyFile = FindPreference(GetString(Resource.String.keyfile_key));
-			keyFile.PreferenceChange += (sender, e) => 
+			FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
+			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;;
+
+			FindPreference(GetString(Resource.String.db_key)).Enabled = false;
+		}
+
+		internal static void OnRememberKeyFileHistoryChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
+		{
+			if (!(bool)eventArgs.NewValue)
 			{
-				bool value = (bool) e.NewValue;
-				
-				if ( ! value ) {
-					FileDbHelper helper = App.Kp2a.FileDbHelper;
-					
-					helper.DeleteAllKeys();
-				}
-			};
-			
-			Database db = App.Kp2a.GetDb();
-			if ( db.Open ) {
-				Preference rounds = FindPreference(GetString(Resource.String.rounds_key));
-				rounds.PreferenceChange += (sender, e) => 
-				{
-					setRounds(App.Kp2a.GetDb(), e.Preference);
-				};
-
-				Preference defaultUser = FindPreference(GetString(Resource.String.default_username_key));
-				((EditTextPreference)defaultUser).EditText.Text = db.KpDatabase.DefaultUserName;
-				((EditTextPreference)defaultUser).Text = db.KpDatabase.DefaultUserName;
-				defaultUser.PreferenceChange += (sender, e) => 
-				{
-					DateTime previousUsernameChanged = db.KpDatabase.DefaultUserNameChanged;
-					String previousUsername = db.KpDatabase.DefaultUserName;
-					db.KpDatabase.DefaultUserName = e.NewValue.ToString();
-				
-					SaveDb save = new SaveDb(this, App.Kp2a, new ActionOnFinish( (success, message) => 
-					                                                         {
-						if (!success)
-						{
-							db.KpDatabase.DefaultUserName = previousUsername;
-							db.KpDatabase.DefaultUserNameChanged = previousUsernameChanged;
-							Toast.MakeText(this, message, ToastLength.Long).Show();
-						}
-					}));
-					ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
-					pt.Run();
-				};
-
-				Preference databaseName = FindPreference(GetString(Resource.String.database_name_key));
-				((EditTextPreference)databaseName).EditText.Text = db.KpDatabase.Name;
-				((EditTextPreference)databaseName).Text = db.KpDatabase.Name;
-				databaseName.PreferenceChange += (sender, e) => 
-				{
-					DateTime previousNameChanged = db.KpDatabase.NameChanged;
-					String previousName = db.KpDatabase.Name;
-					db.KpDatabase.Name = e.NewValue.ToString();
-					
-					SaveDb save = new SaveDb(this, App.Kp2a, new ActionOnFinish( (success, message) => 
-					                                                               {
-						if (!success)
-						{
-							db.KpDatabase.Name = previousName;
-							db.KpDatabase.NameChanged = previousNameChanged;
-							Toast.MakeText(this, message, ToastLength.Long).Show();
-						}
-					}));
-                    ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
-					pt.Run();
-				};
-				
-
-
-				setRounds(db, rounds);
-				
-				Preference algorithm = FindPreference(GetString(Resource.String.algorithm_key));
-				setAlgorithm(db, algorithm);
-				
-			} else {
-				Preference dbSettings = FindPreference(GetString(Resource.String.db_key));
-				dbSettings.Enabled = false;
+				App.Kp2a.FileDbHelper.DeleteAllKeys();
 			}
-
 		}
 
-		private void setRounds(Database db, Preference rounds) {
-			rounds.Summary = db.KpDatabase.KeyEncryptionRounds.ToString(CultureInfo.InvariantCulture);
+		internal static void OnShowUnlockedNotificationChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
+		{
+			var ctx = ((Preference)sender).Context;
+			ctx.StartService(new Intent(ctx, typeof(OngoingNotificationsService)));
 		}
-		
-		private void setAlgorithm(Database db, Preference algorithm) {
-
-			algorithm.Summary = CipherPool.GlobalPool.GetCipher(db.KpDatabase.DataCipherUuid).DisplayName;
-		}
-		
-
 	}
 
 }

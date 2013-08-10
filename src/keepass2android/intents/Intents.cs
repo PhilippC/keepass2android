@@ -22,9 +22,14 @@ namespace keepass2android
 	/// <summary>
 	/// Contains constants to be used in intents
 	/// </summary>
-	public class Intents {
-		public const String Timeout = "keepass2android.timeout";
+	public class Intents 
+	{
+		/// <summary>Broadcast this intent to lock the database</summary>
+		public const String LockDatabase = "keepass2android.lock_database";
 		
+		/// <summary>This intent will be broadcast once the database has been locked. Sensitive information displayed should be hidden and unloaded.</summary>
+		public const String DatabaseLocked = "keepass2android.database_locked";
+
 		public const String CopyUsername = "keepass2android.copy_username";
 		public const String CopyPassword = "keepass2android.copy_password";
 		public const String CheckKeyboard = "keepass2android.check_keyboard";

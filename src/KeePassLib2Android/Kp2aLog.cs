@@ -26,16 +26,29 @@ namespace keepass2android
 	{
 		private static bool? _logToFile;
 
+		private static object _fileLocker = new object();
+
 		public static void Log(string message)
 		{
 			Android.Util.Log.Debug("KP2A", message);
 			if (LogToFile)
 			{
-				using (var streamWriter = File.AppendText(LogFilename))
+				lock (_fileLocker)
 				{
-					string stringToLog = DateTime.Now+":"+DateTime.Now.Millisecond+ " -- " + message;
-					streamWriter.WriteLine(stringToLog);
+					try
+					{
+						using (var streamWriter = File.AppendText(LogFilename))
+						{
+							string stringToLog = DateTime.Now + ":" + DateTime.Now.Millisecond + " -- " + message;
+							streamWriter.WriteLine(stringToLog);
+						}
+					}
+					catch (Exception e)
+					{
+						Android.Util.Log.Debug("KP2A", "Couldn't write to log file. " + e);
+					}
 				}
+
 			}
 
 		}

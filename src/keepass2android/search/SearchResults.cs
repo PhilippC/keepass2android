@@ -56,11 +56,9 @@ namespace keepass2android.search
 
 		private void ProcessIntent(Intent intent)
 		{
-			_db = App.Kp2a.GetDb();
-			
-
 			// Likely the app has been killed exit the activity 
-			if ( ! _db.Open ) {
+			if (!App.Kp2a.DatabaseIsUnlocked)
+			{
 				Finish();
 			}
 

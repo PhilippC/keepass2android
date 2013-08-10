@@ -70,7 +70,7 @@ namespace keepass2android.search
 
 		public override Android.Database.ICursor Query(Android.Net.Uri uri, string[] projection, string selection, string[] selectionArgs, string sortOrder)
 		{
-			if (_db.Open) // Can't show suggestions if the database is locked!
+			if (App.Kp2a.DatabaseIsUnlocked) // Can't show suggestions if the database is locked!
 			{
 				switch ((UriMatches)UriMatcher.Match(uri))
 				{

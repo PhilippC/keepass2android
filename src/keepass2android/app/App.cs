@@ -16,11 +16,14 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
+using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
 using keepass2android.Io;
@@ -60,26 +63,97 @@ namespace keepass2android
 	/// </summary>
     public class Kp2aApp: IKp2aApp, ICacheSupervisor
 	{
-        public bool IsShutdown()
-        {
-            return _shutdown;
+		public void LockDatabase(bool allowQuickUnlock = true)
+		{
+			if (GetDb().Loaded)
+			{
+				if (QuickUnlockEnabled && allowQuickUnlock &&
+					_db.KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&
+					!((KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword))).Password.IsEmpty)
+				{
+					if (!QuickLocked)
+					{
+						Kp2aLog.Log("QuickLocking database");
+
+						QuickLocked = true;
+					}
+					else
+					{
+						Kp2aLog.Log("Database already QuickLocked");
+					}
+				}
+				else
+				{
+					Kp2aLog.Log("Locking database");
+
+					// Couldn't quick-lock, so unload database instead
+					_db.Clear();
+					QuickLocked = false;
+				}
+			}
+			else
+			{
+				Kp2aLog.Log("Database not loaded, couldn't lock");
+			}
+
+			UpdateOngoingNotification();
+			Application.Context.SendBroadcast(new Intent(Intents.DatabaseLocked));
         }
 
-        public void SetShutdown()
-        {
-	        Kp2aLog.Log("set shutdown");
-            _shutdown = true;
-        }
+		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, string password, string keyFile, ProgressDialogStatusLogger statusLogger)
+		{
+			_db.LoadData(this, ioConnectionInfo, memoryStream, password, keyFile, statusLogger);
 
-        public void ClearShutdown()
-        {
-			Kp2aLog.Log("clear shutdown");
-            _shutdown = false;
-        }
+			UpdateOngoingNotification();
+		}
 
-        private Database _db;
-        private bool _shutdown;
+		internal void UnlockDatabase()
+		{
+			QuickLocked = false;
 
+			UpdateOngoingNotification();
+		}
+
+		private void UpdateOngoingNotification()
+		{
+			// Start or update the notification icon service to reflect the current state
+			var ctx = Application.Context;
+			ctx.StartService(new Intent(ctx, typeof(OngoingNotificationsService)));
+		}
+
+		public bool DatabaseIsUnlocked
+		{
+			get { return _db.Loaded && !QuickLocked; }
+		}
+
+		#region QuickUnlock
+		public void SetQuickUnlockEnabled(bool enabled)
+		{
+			if (enabled)
+			{
+				//Set KeyLength of QuickUnlock at time of enabling.
+				//This is important to not allow an attacker to set the length to 1 when QuickUnlock is started already.
+
+				var ctx = Application.Context;
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+				QuickUnlockKeyLength = Math.Max(1, int.Parse(prefs.GetString(ctx.GetString(Resource.String.QuickUnlockLength_key), ctx.GetString(Resource.String.QuickUnlockLength_default))));
+			}
+			QuickUnlockEnabled = enabled;
+		}
+
+		public bool QuickUnlockEnabled { get; private set; }
+
+		public int QuickUnlockKeyLength { get; private set; }
+    
+		/// <summary>
+		/// If true, the database must be regarded as locked and not exposed to the user.
+		/// </summary>
+		public bool QuickLocked { get; private set; }
+		
+		#endregion
+
+		private Database _db;
+        
         /// <summary>
         /// See comments to EntryEditActivityState.
         /// </summary>
@@ -124,6 +198,7 @@ namespace keepass2android
             {
                 if (_db.ReloadRequested)
                 {
+	                LockDatabase(false);
                     activity.SetResult(KeePass.ExitReloadDb);
                     activity.Finish();
 					//todo: return?
@@ -143,6 +218,7 @@ namespace keepass2android
 				(dlgSender, dlgEvt) =>
 				{
 					_db.ReloadRequested = true;
+					LockDatabase(false);
 					activity.SetResult(KeePass.ExitReloadDb);
 					activity.Finish();
 
@@ -223,7 +299,7 @@ namespace keepass2android
 
 			public RealProgressDialog(Context ctx)
 			{
-				this._pd = new ProgressDialog(ctx);
+				_pd = new ProgressDialog(ctx);
 			}
 
 			public void SetTitle(string title)

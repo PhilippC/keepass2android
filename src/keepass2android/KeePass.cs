@@ -24,6 +24,7 @@ using Android.Preferences;
 using Android.Content.PM;
 using Android.Text;
 using Android.Text.Method;
+using KeePassLib.Serialization;
 
 namespace keepass2android
 {
@@ -37,12 +38,8 @@ namespace keepass2android
 		public const Result ExitLock = Result.FirstUser+1;
 		public const Result ExitRefresh = Result.FirstUser+2;
 		public const Result ExitRefreshTitle = Result.FirstUser+3;
-		public const Result ExitForceLock = Result.FirstUser+4;
-		public const Result ExitQuickUnlock = Result.FirstUser+5;
-		public const Result ExitCloseAfterTaskComplete = Result.FirstUser+6;
-		public const Result ExitChangeDb = Result.FirstUser+7;
-		public const Result ExitForceLockAndChangeDb = Result.FirstUser+8;
-		public const Result ExitReloadDb = Result.FirstUser+9;
+		public const Result ExitCloseAfterTaskComplete = Result.FirstUser+4;
+		public const Result ExitReloadDb = Result.FirstUser+6;
 
 		AppTask _appTask;
 
@@ -106,7 +103,7 @@ namespace keepass2android
 				Dialog dialog = builder.Create();
 				dialog.DismissEvent += (sender, e) => 
 				{
-					StartFileSelect();
+					LaunchNextActivity();
 				};
 				dialog.Show();
 				TextView message = (TextView) dialog.FindViewById(Android.Resource.Id.Message);
@@ -119,7 +116,7 @@ namespace keepass2android
 
 			} else
 			{
-				StartFileSelect();
+				LaunchNextActivity();
 			}
 
 
@@ -157,12 +154,42 @@ namespace keepass2android
 
 		}
 		
-		private void StartFileSelect() {
-			Intent intent = new Intent(this, typeof(FileSelectActivity));
-			//TEST Intent intent = new Intent(this, typeof(EntryActivity));
-			//Intent intent = new Intent(this, typeof(SearchActivity));
-			//Intent intent = new Intent(this, typeof(QuickUnlock));
+		IOConnectionInfo LoadIoc(string defaultFileName)
+		{
+			return App.Kp2a.FileDbHelper.CursorToIoc(App.Kp2a.FileDbHelper.FetchFileByName(defaultFileName));
+		}
 
+		private void LaunchNextActivity() {
+
+			if (!App.Kp2a.GetDb().Loaded)
+			{
+				// Load default database
+				ISharedPreferences prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(this);
+				String defaultFileName = prefs.GetString(PasswordActivity.KeyDefaultFilename, "");
+
+				if (defaultFileName.Length > 0)
+				{
+					try
+					{
+						PasswordActivity.Launch(this, LoadIoc(defaultFileName), _appTask);
+						Finish();
+						return;
+					}
+					catch (Exception e)
+					{
+						Toast.MakeText(this, e.Message, ToastLength.Long);
+						// Ignore exception
+					}
+				}
+			}
+			else
+			{
+				PasswordActivity.Launch(this, App.Kp2a.GetDb().Ioc, _appTask);
+				Finish();
+				return;
+			}
+
+			Intent intent = new Intent(this, typeof(FileSelectActivity));
 			_appTask.ToIntent(intent);
 
 

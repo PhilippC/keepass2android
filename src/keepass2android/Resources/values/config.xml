@@ -39,7 +39,6 @@
     <string name="omitbackup_key">omitbackup</string>    
     <string name="list_size_key">list_size</string>
     <string name="sort_key">sort_key</string>
-    <string name="timeout_key">timeout_key</string>
 	<string name="TanExpiresOnUse_key">TanExpiresOnUse_key</string>
 	<string name="ShowUsernameInList_key">ShowUsernameInList_key</string>
 	<string name="RememberRecentFiles_key">RememberRecentFiles_key</string>
@@ -92,4 +91,11 @@
     	<item>20</item>
     	<item>28</item>
     </string-array>
+
+	<string name="ShowUnlockedNotification_key">ShowUnlockedNotification</string>
+	<bool name="ShowUnlockedNotification_default">true</bool>
+
+	<string name="PreloadDatabaseEnabled_key">PreloadDatabaseEnabled</string>
+	<bool name="PreloadDatabaseEnabled_default">true</bool>
+
 </resources>

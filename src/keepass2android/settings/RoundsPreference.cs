@@ -31,7 +31,6 @@ namespace keepass2android.settings
 	/// </summary>
 	public class RoundsPreference : DialogPreference {
 		
-		internal PwDatabase PwDatabase;
 		internal TextView RoundsView;
 		
 		protected override View OnCreateDialogView() {
@@ -40,8 +39,7 @@ namespace keepass2android.settings
 			RoundsView = (TextView) view.FindViewById(Resource.Id.rounds);
 			
 			Database db = App.Kp2a.GetDb();
-			PwDatabase = db.KpDatabase;
-			ulong numRounds = PwDatabase.KeyEncryptionRounds;
+			ulong numRounds = db.KpDatabase.KeyEncryptionRounds;
 			RoundsView.Text = numRounds.ToString(CultureInfo.InvariantCulture);
 
 			return view;
@@ -69,15 +67,17 @@ namespace keepass2android.settings
 				if ( rounds < 1 ) {
 					rounds = 1;
 				}
-				
-				ulong oldRounds = PwDatabase.KeyEncryptionRounds;
+
+				Database db = App.Kp2a.GetDb();
+
+				ulong oldRounds = db.KpDatabase.KeyEncryptionRounds;
 
 				if (oldRounds == rounds)
 				{
 					return;
 				}
 
-				PwDatabase.KeyEncryptionRounds = rounds;
+				db.KpDatabase.KeyEncryptionRounds = rounds;
 
 				Handler handler = new Handler();
 				SaveDb save = new SaveDb(Context, App.Kp2a, new AfterSave(Context, handler, oldRounds, this));
@@ -108,7 +108,8 @@ namespace keepass2android.settings
 					}
 				} else {
 					DisplayMessage(_ctx);
-					_pref.PwDatabase.KeyEncryptionRounds = _oldRounds;
+
+					App.Kp2a.GetDb().KpDatabase.KeyEncryptionRounds = _oldRounds;
 				}
 				
 				base.Run();

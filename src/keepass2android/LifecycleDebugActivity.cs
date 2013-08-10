@@ -56,8 +56,7 @@ namespace keepass2android
 			}
 			else
 			{
-				Kp2aLog.Log(" Loaded=" + App.Kp2a.GetDb().Loaded + ", Locked=" + App.Kp2a.GetDb().Locked 
-					+ ", shutdown=" + App.Kp2a.IsShutdown());
+				Kp2aLog.Log(" DatabaseIsUnlocked=" + App.Kp2a.DatabaseIsUnlocked);
 			}
 		}
 

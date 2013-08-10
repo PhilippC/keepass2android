@@ -95,7 +95,7 @@ namespace keepass2android
 
 			Database db = App.Kp2a.GetDb();
 			// Likely the app has been killed exit the activity 
-			if (! db.Loaded)
+			if (!db.Loaded || (App.Kp2a.QuickLocked))
 			{
 				Finish();
 				return;
@@ -600,9 +600,7 @@ namespace keepass2android
 				}
 					return true;
 			case Resource.Id.menu_lock:
-                App.Kp2a.SetShutdown();
-				SetResult(KeePass.ExitLock);
-				Finish();
+                App.Kp2a.LockDatabase();
 				return true;
 			case Resource.Id.menu_translate:
 				try {

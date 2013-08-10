@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -29,6 +30,9 @@ using Android.Text;
 using Android.Content.PM;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
+using KeePassLib.Utility;
+
+using MemoryStream = System.IO.MemoryStream;
 
 namespace keepass2android
 {
@@ -48,11 +52,14 @@ namespace keepass2android
 		private const String KeyServercredmode = "serverCredRememberMode";
 
 		private const String ViewIntent = "android.intent.action.VIEW";
-	
+
+		private Task<MemoryStream> _loadDbTask;
 		private IOConnectionInfo _ioConnection;
 		private String _keyFile;
 		private bool _rememberKeyfile;
 		ISharedPreferences _prefs;
+
+		private bool _started;
 
 		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -123,113 +130,27 @@ namespace keepass2android
 		public void LaunchNextActivity()
 		{
 			AppTask.AfterUnlockDatabase(this);
-
 		}
-
-		void UnloadDatabase()
-		{
-			App.Kp2a.GetDb().Clear();
-			StopService(new Intent(this, typeof(QuickUnlockForegroundService)));
-		}
-
-		void LockDatabase()
-		{
-			SetResult(KeePass.ExitLock);
-			SetEditText(Resource.Id.password, "");
-			if (App.Kp2a.GetDb().QuickUnlockEnabled)
-				App.Kp2a.GetDb().Locked = true;
-			else
-			{
-				UnloadDatabase();
-			}
-		}
-
-		void LockAndClose()
-		{
-			LockDatabase();
-			Finish();
-
-		}
-
-		bool TryStartQuickUnlock()
-		{
-			if (!App.Kp2a.GetDb().QuickUnlockEnabled)
-				return false;
-
-			if (App.Kp2a.GetDb().KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) == false)
-				return false;
-			KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword));
-			String password = kcpPassword.Password.ReadString();
-
-			if (password.Length == 0)
-				return false;
-
-			App.Kp2a.GetDb().Locked = true;
-
-			Intent i = new Intent(this, typeof(QuickUnlock));
-			PutIoConnectionToIntent(_ioConnection, i);
-			Kp2aLog.Log("Starting QuickUnlock");
-			StartActivityForResult(i,0);
-			return true;
-		}
-
-		public void StartQuickUnlockForegroundService()
-		{
-			if (App.Kp2a.GetDb().QuickUnlockEnabled)
-			{
-				StartService(new Intent(this, typeof(QuickUnlockForegroundService)));
-			}
-		}
-
-		bool _startedWithActivityResult;
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
-			_startedWithActivityResult = true;
 			Kp2aLog.Log("PasswordActivity.OnActivityResult "+resultCode+"/"+requestCode);
-
-			if (resultCode != KeePass.ExitCloseAfterTaskComplete)
-			{
-				//Stop service when app activity is left
-				StopService(new Intent(this, typeof(CopyToClipboardService)));
-			}
 
 			//NOTE: original code from k eepassdroid used switch ((Android.App.Result)requestCode) { (but doesn't work here, although k eepassdroid works)
 			switch(resultCode) {
-				
-				case KeePass.ExitNormal:
-					if (!TryStartQuickUnlock())
-					{
-						SetEditText(Resource.Id.password, "");
-					}
+
+				case KeePass.ExitNormal: // Returned to this screen using the Back key, treat as locking the database
+					App.Kp2a.LockDatabase();
 					break;
-					
 				case KeePass.ExitLock:
-					if (!TryStartQuickUnlock())
-					{
-						LockAndClose();
-					}
-					break;
-				case KeePass.ExitForceLock:
-					SetEditText(Resource.Id.password, "");
-					UnloadDatabase();
-					break;
-				case KeePass.ExitForceLockAndChangeDb:
-					UnloadDatabase();
-					Finish();
-					break;
-				case KeePass.ExitChangeDb:
-					LockAndClose();
+					// The database has already been locked, and the quick unlock screen will be shown if appropriate
 					break;
 				case KeePass.ExitCloseAfterTaskComplete:
+					// Do not lock the database
 					SetResult(KeePass.ExitCloseAfterTaskComplete);
 					Finish();
-					break;
-				case KeePass.ExitQuickUnlock:
-					App.Kp2a.GetDb().Locked = false;
-					LaunchNextActivity();
 					break;
 				case KeePass.ExitReloadDb:
 					//if the activity was killed, fill password/keyfile so the user can directly hit load again
@@ -252,9 +173,9 @@ namespace keepass2android
 							SetEditText(Resource.Id.pass_keyfile, kcpKeyfile.Path);
 						}
 					}
-					UnloadDatabase();
+					App.Kp2a.LockDatabase(false);
 					break;
-				case Result.Ok:
+				case Result.Ok: // Key file browse dialog OK'ed.
 					if (requestCode == Intents.RequestCodeFileBrowseForKeyfile) {
 						string filename = Util.IntentToFilename(data);
 						if (filename != null) {
@@ -331,6 +252,13 @@ namespace keepass2android
 				}
 			}
 
+			if (App.Kp2a.GetDb().Loaded && App.Kp2a.GetDb().Ioc != null &&
+				App.Kp2a.GetDb().Ioc.GetDisplayName() != _ioConnection.GetDisplayName())
+			{
+				// A different database is currently loaded, unload it before loading the new one requested
+				App.Kp2a.LockDatabase(false);
+			}
+
 			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			SetContentView(Resource.Layout.password);
@@ -343,8 +271,7 @@ namespace keepass2android
 			Window.SetSoftInputMode(SoftInput.StateVisible);
 
 			Button confirmButton = (Button)FindViewById(Resource.Id.pass_ok);
-			confirmButton.Click += (sender, e) => 
-			{
+			confirmButton.Click += (sender, e) => {
 				String pass = GetEditText(Resource.Id.password);
 				String key = GetEditText(Resource.Id.pass_keyfile);
 				if (pass.Length == 0 && key.Length == 0)
@@ -352,21 +279,17 @@ namespace keepass2android
 					ErrorMessage(Resource.String.error_nopass);
 					return;
 				}
-				
-				// Clear before we load
-				UnloadDatabase();
-				
-				// Clear the shutdown flag
-				App.Kp2a.ClearShutdown();
 
 				CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
-				App.Kp2a.GetDb().QuickUnlockEnabled = cbQuickUnlock.Checked;
-				App.Kp2a.GetDb().QuickUnlockKeyLength = int.Parse(_prefs.GetString(GetString(Resource.String.QuickUnlockLength_key), GetString(Resource.String.QuickUnlockLength_default)));
-				
+				App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
+
 				Handler handler = new Handler();
-				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, pass, key, new AfterLoad(handler, this));
-				ProgressTask pt = new ProgressTask(App.Kp2a, this, task);
-				pt.Run();
+				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, pass, key, new AfterLoad(handler, this));
+				_loadDbTask = null; // prevent accidental re-use
+
+				SetNewDefaultFile();
+
+				new ProgressTask(App.Kp2a, this, task).Run();
 			};
 			
 			/*CheckBox checkBox = (CheckBox) FindViewById(Resource.Id.show_password);
@@ -394,31 +317,7 @@ namespace keepass2android
 				}
 			};
 			
-			CheckBox defaultCheck = (CheckBox)FindViewById(Resource.Id.default_database);
-			//Don't allow the current file to be the default if we don't have stored credentials
-			if ((_ioConnection.IsLocalFile() == false) && (_ioConnection.CredSaveMode != IOCredSaveMode.SaveCred))
-			{
-				defaultCheck.Enabled = false;
-			} else
-			{
-				defaultCheck.Enabled = true;
-			}
-			defaultCheck.CheckedChange += (sender, e) => 
-			{
-				String newDefaultFileName;
-				
-				if (e.IsChecked)
-				{
-					newDefaultFileName = _ioConnection.Path;
-				} else
-				{
-					newDefaultFileName = "";
-				}
-				
-				ISharedPreferencesEditor editor = _prefs.Edit();
-				editor.PutString(KeyDefaultFilename, newDefaultFileName);
-				EditorCompat.Apply(editor);
-			};
+			
 			
 			ImageButton browse = (ImageButton)FindViewById(Resource.Id.browse_button);
 			browse.Click += (sender, evt) => 
@@ -438,8 +337,66 @@ namespace keepass2android
 			};
 			
 			RetrieveSettings();
+		}
 
+		private void SetNewDefaultFile()
+		{
+//Don't allow the current file to be the default if we don't have stored credentials
+			bool makeFileDefault;
+			if ((_ioConnection.IsLocalFile() == false) && (_ioConnection.CredSaveMode != IOCredSaveMode.SaveCred))
+			{
+				makeFileDefault = false;
+			}
+			else
+			{
+				makeFileDefault = true;
+			}
+			String newDefaultFileName;
 
+			if (makeFileDefault)
+			{
+				newDefaultFileName = _ioConnection.Path;
+			}
+			else
+			{
+				newDefaultFileName = "";
+			}
+
+			ISharedPreferencesEditor editor = _prefs.Edit();
+			editor.PutString(KeyDefaultFilename, newDefaultFileName);
+			EditorCompat.Apply(editor);
+		}
+
+		protected override void OnStart()
+		{
+			base.OnStart();
+			_started = true;
+		}
+
+		private MemoryStream LoadDbFile()
+		{
+			Kp2aLog.Log("Pre-loading database file starting");
+			var fileStorage = App.Kp2a.GetFileStorage(_ioConnection);
+			var stream = fileStorage.OpenFileForRead(_ioConnection);
+
+			var memoryStream = stream as MemoryStream;
+			if (memoryStream == null)
+			{
+				// Read the file into memory
+				int capacity = 4096; // Default initial capacity, if stream can't report it.
+				if (stream.CanSeek)
+				{
+					capacity = (int)stream.Length;
+				}
+				memoryStream = new MemoryStream(capacity);
+				stream.CopyTo(memoryStream);
+				stream.Close();
+				memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+			}
+
+			Kp2aLog.Log("Pre-loading database file completed");
+
+			return memoryStream;
 		}
 
 		protected override void OnSaveInstanceState(Bundle outState)
@@ -448,41 +405,35 @@ namespace keepass2android
 			AppTask.ToBundle(outState);
 		}
 		
-		protected override void OnResume() {
+		protected override void OnResume()
+		{
 			base.OnResume();
-			
-			// If the application was shutdown make sure to clear the password field, if it
-			// was saved in the instance state
-			if (App.Kp2a.IsShutdown()) {
-				LockDatabase();
-			}
 
-			// Clear the shutdown flag
-            App.Kp2a.ClearShutdown();
-
-			if (_startedWithActivityResult)
-				return;
-
-			if (App.Kp2a.GetDb().Loaded && (App.Kp2a.GetDb().Ioc != null)
-			    && (_ioConnection != null) && (App.Kp2a.GetDb().Ioc.GetDisplayName() == _ioConnection.GetDisplayName()))
+			// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
+			// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
+			if (_started && !IsFinishing)  //use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
 			{
-				if (App.Kp2a.GetDb().Locked == false)
+				_started = false;
+				if (App.Kp2a.DatabaseIsUnlocked)
 				{
 					LaunchNextActivity();
 				}
-				else 
+				else if (App.Kp2a.QuickUnlockEnabled && App.Kp2a.QuickLocked)
 				{
-					TryStartQuickUnlock();
+					var i = new Intent(this, typeof(QuickUnlock));
+					PutIoConnectionToIntent(_ioConnection, i);
+					Kp2aLog.Log("Starting QuickUnlock");
+					StartActivityForResult(i, 0);
+				}
+				else if (_loadDbTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+				{
+					// Create task to kick off file loading while the user enters the password
+					_loadDbTask = Task.Factory.StartNew<MemoryStream>(LoadDbFile);
 				}
 			}
 		}
 		
 		private void RetrieveSettings() {
-			String defaultFilename = _prefs.GetString(KeyDefaultFilename, "");
-			if (!String.IsNullOrEmpty(_ioConnection.Path) && _ioConnection.Path.Equals(defaultFilename)) {
-				CheckBox checkbox = (CheckBox) FindViewById(Resource.Id.default_database);
-				checkbox.Checked = true;
-			}
 			CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
 			cbQuickUnlock.Checked = _prefs.GetBoolean(GetString(Resource.String.QuickUnlockDefaultEnabled_key), true);
 		}
@@ -540,31 +491,50 @@ namespace keepass2android
 		
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
-			case Resource.Id.menu_about:
-				AboutDialog dialog = new AboutDialog(this);
-				dialog.Show();
-				return true;
+				case Resource.Id.menu_about:
+					AboutDialog dialog = new AboutDialog(this);
+					dialog.Show();
+					return true;
 				
-			case Resource.Id.menu_app_settings:
-				AppSettingsActivity.Launch(this);
-				return true;
+				case Resource.Id.menu_app_settings:
+					AppSettingsActivity.Launch(this);
+					return true;
+
+				case Resource.Id.menu_change_db:
+					Intent intent = new Intent(this, typeof(FileSelectActivity));
+					AppTask.ToIntent(intent);
+					StartActivityForResult(intent, 0);
+					Finish();
+					return true;
+
+
 			}
+
+			
 			
 			return base.OnOptionsItemSelected(item);
 		}
 		
 		private class AfterLoad : OnFinish {
 			readonly PasswordActivity _act;
-			public AfterLoad(Handler handler, PasswordActivity act):base(handler) {
+
+			public AfterLoad(Handler handler, PasswordActivity act):base(handler)
+			{
 				_act = act;
 			}
-			
+
 
 			public override void Run() {
-				if ( Success ) {
-					_act.StartQuickUnlockForegroundService();
+				if ( Success ) 
+				{
+					_act.SetEditText(Resource.Id.password, "");
+
 					_act.LaunchNextActivity();
-				} else {
+
+					GC.Collect(); // Ensure temporary memory used while loading is collected - it will contain sensitive data such as username and password, and also the large data of the encrypted database file
+				} 
+				else
+				{
 					DisplayMessage(_act);
 				}
 			}

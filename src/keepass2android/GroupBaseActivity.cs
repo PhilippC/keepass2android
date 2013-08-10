@@ -240,9 +240,7 @@ namespace keepass2android
 				
 				return true;
 			case Resource.Id.menu_lock:
-				App.Kp2a.SetShutdown();
-				SetResult(KeePass.ExitLock);
-				Finish();
+				App.Kp2a.LockDatabase();
 				return true;
 
 			case Resource.Id.menu_search:
@@ -251,7 +249,7 @@ namespace keepass2android
 				return true;
 				
 			case Resource.Id.menu_app_settings:
-				AppSettingsActivity.Launch(this);
+				DatabaseSettingsActivity.Launch(this);
 				return true;
 				
 			case Resource.Id.menu_change_master_key:
@@ -353,8 +351,7 @@ namespace keepass2android
 						Toast.MakeText(_act,  "Unrecoverable error: " + Message, ToastLength.Long).Show();
 					});
 
-					App.Kp2a.SetShutdown();
-					_act.Finish();
+					App.Kp2a.LockDatabase(false);
 				}
 			}
 			
