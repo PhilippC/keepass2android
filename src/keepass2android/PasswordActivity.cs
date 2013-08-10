@@ -147,10 +147,6 @@ namespace keepass2android
 				case KeePass.ExitLock:
 					// The database has already been locked, and the quick unlock screen will be shown if appropriate
 					break;
-				case KeePass.ExitChangeDb:
-					App.Kp2a.LockDatabase(false);
-					Finish();
-					break;
 				case KeePass.ExitCloseAfterTaskComplete:
 					// Do not lock the database
 					SetResult(KeePass.ExitCloseAfterTaskComplete);
@@ -415,7 +411,7 @@ namespace keepass2android
 
 			// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
 			// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
-			if (_started) 
+			if (_started && !IsFinishing)  //use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
 			{
 				_started = false;
 				if (App.Kp2a.DatabaseIsUnlocked)
