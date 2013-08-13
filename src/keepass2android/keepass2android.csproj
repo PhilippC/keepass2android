@@ -52,6 +52,7 @@
       </CustomCommands>
     </CustomCommands>
     <DeployExternal>True</DeployExternal>
+    <DefineConstants>RELEASE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU' ">
     <DebugType>none</DebugType>
