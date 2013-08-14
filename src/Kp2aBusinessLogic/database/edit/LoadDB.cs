@@ -48,7 +48,8 @@ namespace keepass2android
 			try
 			{
 				StatusLogger.UpdateMessage(UiStringKey.loading_database);
-				_app.LoadDatabase(_ioc, _databaseData == null ? null : _databaseData.Result, _pass, _key, StatusLogger);
+				MemoryStream memoryStream = _databaseData == null ? null : _databaseData.Result;
+				_app.LoadDatabase(_ioc, memoryStream, _pass, _key, StatusLogger);
 				SaveFileData (_ioc, _key);
 				
 			} catch (KeyFileException) {
@@ -56,7 +57,7 @@ namespace keepass2android
 				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/ _app.GetResourceString(UiStringKey.keyfile_does_not_exist));
 			}
 			catch (Exception e) {
-				Kp2aLog.Log("Exception: " + e.Message);
+				Kp2aLog.Log("Exception: " + e);
 				Finish(false, "An error occured: " + e.Message);
 				return;
 			} 

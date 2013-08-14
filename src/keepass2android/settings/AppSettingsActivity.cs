@@ -20,6 +20,8 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Preferences;
+using Android.Widget;
+using keepass2android.Io;
 
 namespace keepass2android
 {
@@ -42,8 +44,48 @@ namespace keepass2android
 			
 			FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
 			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;;
+			FindPreference(GetString(Resource.String.UseOfflineCache_key)).PreferenceChange += OnUseOfflineCacheChanged;
 
 			FindPreference(GetString(Resource.String.db_key)).Enabled = false;
+		}
+
+		private void OnUseOfflineCacheChanged(object sender, Preference.PreferenceChangeEventArgs e)
+		{
+			//ensure the user gets a matching database
+			if (App.Kp2a.GetDb().Loaded && !App.Kp2a.GetDb().Ioc.IsLocalFile())
+				App.Kp2a.LockDatabase(false);
+
+			if (!(bool)e.NewValue)
+			{
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.SetTitle(GetString(Resource.String.ClearOfflineCache_title));
+
+				builder.SetMessage(GetString(Resource.String.ClearOfflineCache_question));
+
+				builder.SetPositiveButton(App.Kp2a.GetResourceString(UiStringKey.yes), (o, args) =>
+					 {
+						 try
+						 {
+							 App.Kp2a.ClearOfflineCache();
+						 }
+						 catch (Exception ex)
+						 {
+							 Kp2aLog.Log(ex.ToString());
+							 Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+						 }
+					 }
+					);
+
+				builder.SetNegativeButton(App.Kp2a.GetResourceString(UiStringKey.no), (o, args) =>
+				{
+				}
+				);
+
+				Dialog dialog = builder.Create();
+				dialog.Show();
+
+				
+			}
 		}
 
 		internal static void OnRememberKeyFileHistoryChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)

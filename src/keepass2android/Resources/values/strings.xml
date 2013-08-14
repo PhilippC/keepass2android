@@ -224,6 +224,10 @@
   <string name="credentials_dialog_title">Enter server credentials</string>
   <string name="UseFileTransactions_title">File transactions</string>
   <string name="UseFileTransactions_summary">Use file transactions for writing databases</string>
+	<string name="UseOfflineCache_title">Database caching</string>
+	<string name="UseOfflineCache_summary">Keep a copy of remote database files in the application cache directory. This allows to use remote databases even when offline.</string>
+	<string name="ClearOfflineCache_title">Clear cache?</string>
+	<string name="ClearOfflineCache_question">This will delete all cached database files. Any changes you made while being offline which have not yet been synchronized will be lost! Continue?</string>
   <string name="CheckForFileChangesOnSave_title">Check for modifications</string>
   <string name="CheckForFileChangesOnSave_summary">Check whether the file was modified externally before saving changes.</string>
 	
@@ -272,12 +276,23 @@
 	<string name="YesSynchronize">Yes, merge</string>
 	<string name="NoOverwrite">No, overwrite</string>
 
-	<string name="SynchronizingCachedDatabase">Synchronizing cached database...</string>
-	<string name="DownloadingRemoteFile">Downloading remote file...</string>
-	<string name="UploadingFile">Uploading file...</string>
-	<string name="RestoringRemoteFile">Restoring remote file...</string>
+	<string name="SynchronizingCachedDatabase">Synchronizing cached database…</string>
+	<string name="DownloadingRemoteFile">Downloading remote file…</string>
+	<string name="UploadingFile">Uploading file…</string>
+	<string name="RestoringRemoteFile">Restoring remote file…</string>
 	<string name="FilesInSync">Files are in sync.</string>
 	<string name="SynchronizedDatabaseSuccessfully">Database synchronized successfully!</string>
+	<string name="CheckingDatabaseForChanges">Checking database for changes…</string>
+
+	<string name="CouldNotSaveToRemote">Could not save to remote: %1$s. Save again or use the Synchronize menu when remote connection is available again.</string>
+	<string name="CouldNotLoadFromRemote">Could not open from remote: %1$s. Loaded file from local cache. You can still make changes in the database and synchronize them later.</string>
+	<string name="UpdatedRemoteFileOnLoad">Updated remote file.</string>
+	<string name="NotifyOpenFromLocalDueToConflict">Opened local file due to conflict with changes in remote file. Use Synchronize menu to merge.</string>
+	<string name="LoadedFromRemoteInSync">Remote file and cache are synchronized.</string>
+	<string name="UpdatedCachedFileOnLoad">Updated local cache copy of database.</string>
+	<string name="RemoteDatabaseUnchanged">No changes detected.</string>
+
+	<string name="synchronize_database_menu">Synchronize database…</string>
 
 		<string name="ChangeLog_title">Change log</string>
 	<string name="ChangeLog_0_8_4">

@@ -30,6 +30,8 @@ namespace Kp2aUnitTests
 			//read the file once. Should now be in the cache.
 			MemoryStream fileContents = ReadToMemoryStream(_fileStorage, CachingTestFile);
 
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.UpdatedCachedFileOnLoadId);
+
 			//check it's the correct data:
 			Assert.AreEqual(MemoryStreamToString(fileContents), _defaultCacheFileContents);
 
@@ -41,8 +43,7 @@ namespace Kp2aUnitTests
 
 			AssertEqual(fileContents, fileContents2);
 
-			Assert.IsTrue(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntOpenFromRemoteId);
 			
 
 		}
@@ -67,8 +68,7 @@ namespace Kp2aUnitTests
 			//read the file once. Should now be in the cache.
 			ReadToMemoryStream(_fileStorage, CachingTestFile);
 
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.UpdatedCachedFileOnLoadId);
 
 			//let the base file storage go offline:
 			_testFileStorage.Offline = true;
@@ -77,16 +77,13 @@ namespace Kp2aUnitTests
 			string newContent = "new content";
 			WriteContentToCacheFile(newContent);
 
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsTrue(_testCacheSupervisor.CouldntSaveToRemoteCalled);
-			_testCacheSupervisor.CouldntSaveToRemoteCalled = false;
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntSaveToRemoteId);
 
 			//now try to read the file again:
 			MemoryStream fileContents2 = ReadToMemoryStream(_fileStorage, CachingTestFile);
 
-			Assert.IsTrue(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
-			_testCacheSupervisor.CouldntOpenFromRemoteCalled = false;
+
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntOpenFromRemoteId);
 
 			//should return the written content:
 			Assert.AreEqual(MemoryStreamToString(fileContents2), newContent);
@@ -96,8 +93,7 @@ namespace Kp2aUnitTests
 			MemoryStream fileContents3 = ReadToMemoryStream(_fileStorage, CachingTestFile);
 			Assert.AreEqual(MemoryStreamToString(fileContents3), newContent);
 
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.UpdatedRemoteFileOnLoadId);
 
 			//ensure the data on the remote was synced:
 			MemoryStream fileContents4 = ReadToMemoryStream(_testFileStorage, CachingTestFile);
@@ -115,8 +111,7 @@ namespace Kp2aUnitTests
 			//read the file once. Should now be in the cache.
 			ReadToMemoryStream(_fileStorage, CachingTestFile);
 
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.UpdatedCachedFileOnLoadId);
 
 			//let the base file storage go offline:
 			_testFileStorage.Offline = true;
@@ -125,9 +120,7 @@ namespace Kp2aUnitTests
 			string newLocalContent = "new local content";
 			WriteContentToCacheFile(newLocalContent);
 
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsTrue(_testCacheSupervisor.CouldntSaveToRemoteCalled);
-			_testCacheSupervisor.CouldntSaveToRemoteCalled = false;
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntSaveToRemoteId);
 
 			//write something to the remote file:
 			File.WriteAllText(CachingTestFile, "new remote content");
@@ -142,12 +135,7 @@ namespace Kp2aUnitTests
 			Assert.AreEqual(MemoryStreamToString(fileContents2), newLocalContent);
 
 			//but a notification about the conflict should be made:
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
-			Assert.IsTrue(_testCacheSupervisor.NotifyOpenFromLocalDueToConflictCalled);
-			_testCacheSupervisor.NotifyOpenFromLocalDueToConflictCalled = false;
-
-			
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.NotifyOpenFromLocalDueToConflictId);
 
 		}
 
@@ -160,13 +148,13 @@ namespace Kp2aUnitTests
 
 			//read the file once. Should now be in the cache.
 			ReadToMemoryStream(_fileStorage, CachingTestFile);
+			_testCacheSupervisor.Reset();
 
 			//write something to the cache:
 			string newContent = "new content";
 			WriteContentToCacheFile(newContent);
 
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertNoCall();
 
 			Assert.AreEqual(newContent, File.ReadAllText(CachingTestFile));			
 		}
@@ -180,17 +168,19 @@ namespace Kp2aUnitTests
 			//read the file once. Should now be in the cache.
 			ReadToMemoryStream(_fileStorage, CachingTestFile);
 
+			_testCacheSupervisor.Reset();
+
 			//delete remote file:
 			_testFileStorage.DeleteFile(IocForCacheFile);
+
 
 			//read again. shouldn't throw and give the same result:
 			var memStream = ReadToMemoryStream(_fileStorage, CachingTestFile);
 
 			//check if we received the correct content:
-			Assert.AreEqual(_defaultCacheFileContents, MemoryStreamToString(memStream)); 
+			Assert.AreEqual(_defaultCacheFileContents, MemoryStreamToString(memStream));
 
-			Assert.IsTrue(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntOpenFromRemoteId);
 			
 		}
 
@@ -216,7 +206,8 @@ namespace Kp2aUnitTests
 		{
 			_testFileStorage = new TestFileStorage();
 			_testCacheSupervisor = new TestCacheSupervisor();
-			_fileStorage = new CachingFileStorage(_testFileStorage, Application.Context.CacheDir.Path, _testCacheSupervisor);
+			//_fileStorage = new CachingFileStorage(_testFileStorage, Application.Context.CacheDir.Path, _testCacheSupervisor);
+			_fileStorage = new CachingFileStorage(_testFileStorage, "/mnt/sdcard/kp2atest_cache", _testCacheSupervisor);
 			_fileStorage.ClearCache();
 			File.WriteAllText(CachingTestFile, _defaultCacheFileContents);
 		}

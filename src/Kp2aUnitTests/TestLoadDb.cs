@@ -21,7 +21,7 @@ namespace Kp2aUnitTests
 			IKp2aApp app = new TestKp2aApp();
 			app.CreateNewDatabase();
 			bool loadSuccesful = false;
-			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = TestDbDirectory+filenameWithoutDir },
+			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = TestDbDirectory+filenameWithoutDir }, null,
 				password, keyfile, new ActionOnFinish((success, message) =>
 					{
 						if (!success)
@@ -78,7 +78,7 @@ namespace Kp2aUnitTests
 			app.CreateNewDatabase();
 			
 			bool loadSuccesful = false;
-			LoadDb task = new LoadDb(app, ioc, "a", null, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, ioc, null, "a", null, new ActionOnFinish((success, message) =>
 				{
 					if (!success)
 						Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
@@ -102,7 +102,7 @@ namespace Kp2aUnitTests
 			app.CreateNewDatabase();
 			
 			bool loadSuccesful = false;
-			LoadDb task = new LoadDb(app, ioc, "test", null, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, ioc, null, "test", null, new ActionOnFinish((success, message) =>
 				{
 					if (!success)
 						Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
@@ -128,7 +128,7 @@ namespace Kp2aUnitTests
 
 			bool loadSuccesful = false;
 			bool gotError = false;
-			LoadDb task = new LoadDb(app, ioc, "test", null, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, ioc, null, "test", null, new ActionOnFinish((success, message) =>
 			{
 				if (!success)
 				{
@@ -156,7 +156,7 @@ namespace Kp2aUnitTests
 
 			bool loadSuccesful = false;
 			bool gotError = false;
-			LoadDb task = new LoadDb(app, ioc, "test", null, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, ioc, null, "test", null, new ActionOnFinish((success, message) =>
 			{
 				if (!success)
 				{

@@ -24,6 +24,7 @@ using Android.Views;
 using Android.Widget;
 using KeePassLib;
 using Android.Preferences;
+using keepass2android.Io;
 using keepass2android.view;
 using Android.Graphics.Drawables;
 
@@ -201,6 +202,14 @@ namespace keepass2android
 
 				searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
 			}
+			var item = menu.FindItem(Resource.Id.menu_sync);
+			if (item != null)
+			{
+				if (App.Kp2a.GetDb().Ioc.IsLocalFile())
+					item.SetVisible(false);
+				else
+					item.SetVisible(true);
+			}
 			return true;
 		}
 		
@@ -255,6 +264,10 @@ namespace keepass2android
 			case Resource.Id.menu_change_master_key:
 				SetPassword();
 				return true;
+
+			case Resource.Id.menu_sync:
+				Synchronize();
+				return true;
 				
 			case Resource.Id.menu_sort:
 				ToggleSort();
@@ -292,7 +305,31 @@ namespace keepass2android
 			
 			return base.OnOptionsItemSelected(item);
 		}
-		
+
+		private void Synchronize()
+		{
+			var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc);
+			RunnableOnFinish task;
+			ActionOnFinish onFinishShowMessage = new ActionOnFinish((success, message) =>
+			{
+				if (!String.IsNullOrEmpty(message))
+					Toast.MakeText(this, message, ToastLength.Long).Show();
+			});
+			if (filestorage is CachingFileStorage)
+			{
+				
+				task = new SynchronizeCachedDatabase(this, App.Kp2a, onFinishShowMessage);
+			}
+			else
+			{
+
+				task = new CheckDatabaseForChanges(this, App.Kp2a, onFinishShowMessage);
+			}
+			var progressTask = new ProgressTask(App.Kp2a, this, task);
+			progressTask.Run();
+
+		}
+
 		private void ToggleSort() {
 			// Toggle setting
 			String sortKey = GetString(Resource.String.sort_key);

@@ -47,6 +47,7 @@ namespace Kp2aUnitTests
 			//save it and reload it so we have a base version ("remote" and in the cache)
 			SaveDatabase(app);
 			app = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.LoadedFromRemoteInSyncId);
 		
 			string resultMessage;
 			bool wasSuccessful;
@@ -68,8 +69,8 @@ namespace Kp2aUnitTests
 			app.GetDb().KpDatabase.RootGroup.AddGroup(new PwGroup(true, true, "TestGroup", PwIcon.Apple), true);
 			//save the database again (will be saved locally only)
 			SaveDatabase(app);
-			Assert.IsTrue(_testCacheSupervisor.CouldntSaveToRemoteCalled);
-			_testCacheSupervisor.CouldntSaveToRemoteCalled = false;
+
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntSaveToRemoteId);
 
 			//go online again:
 			_testFileStorage.Offline = false;
@@ -82,10 +83,10 @@ namespace Kp2aUnitTests
 			//ensure both files are identical and up to date now:
 			_testFileStorage.Offline = true;
 			var appOfflineLoaded = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
-			_testCacheSupervisor.CouldntOpenFromRemoteCalled = false;
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntOpenFromRemoteId);
 			_testFileStorage.Offline = false;
 			var appRemoteLoaded = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.LoadedFromRemoteInSyncId);
 
 			AssertDatabasesAreEqual(app.GetDb().KpDatabase, appOfflineLoaded.GetDb().KpDatabase);
 			AssertDatabasesAreEqual(app.GetDb().KpDatabase, appRemoteLoaded.GetDb().KpDatabase);
@@ -101,6 +102,7 @@ namespace Kp2aUnitTests
 			//save it and reload it so we have a base version ("remote" and in the cache)
 			SaveDatabase(app);
 			app = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.LoadedFromRemoteInSyncId);
 
 			//delete remote:
 			IOConnection.DeleteFile(new IOConnectionInfo { Path = DefaultFilename });
@@ -128,8 +130,11 @@ namespace Kp2aUnitTests
 			//save it and reload it so we have a base version ("remote" and in the cache)
 			SaveDatabase(app);
 			app = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.LoadedFromRemoteInSyncId);
+
 			var app2 = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
 			app2.FileStorage = _testFileStorage; //give app2 direct access to the remote file
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.LoadedFromRemoteInSyncId);
 
 			//go offline:
 			_testFileStorage.Offline = true;
@@ -145,8 +150,7 @@ namespace Kp2aUnitTests
 			app2.GetDb().KpDatabase.RootGroup.AddGroup(newGroup2, true);
 			//save the database again (will be saved locally only for "app")
 			SaveDatabase(app);
-			Assert.IsTrue(_testCacheSupervisor.CouldntSaveToRemoteCalled);
-			_testCacheSupervisor.CouldntSaveToRemoteCalled = false;
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntSaveToRemoteId);
 
 			//go online again:
 			_testFileStorage.Offline = false;

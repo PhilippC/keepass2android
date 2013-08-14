@@ -39,14 +39,15 @@ namespace Kp2aUnitTests
 			IOConnection.DeleteFile(new IOConnectionInfo { Path = DefaultFilename });
 			//save it and reload it so we have a base version
 			SaveDatabase(app);
+			_testCacheSupervisor.AssertNoCall();
 			app = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
+			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.LoadedFromRemoteInSyncId);
 			//modify the database by adding a group:
 			app.GetDb().KpDatabase.RootGroup.AddGroup(new PwGroup(true, true, "TestGroup", PwIcon.Apple), true);
 			//save the database again:
 			SaveDatabase(app);
 			Assert.IsNull(((TestKp2aApp)app).LastYesNoCancelQuestionTitle);
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertNoCall();
 
 			//load database to a new app instance:
 			IKp2aApp resultApp = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
@@ -71,10 +72,10 @@ namespace Kp2aUnitTests
 			//modify the database by adding a group:
 			app.GetDb().KpDatabase.RootGroup.AddGroup(new PwGroup(true, true, "TestGroup", PwIcon.Apple), true);
 			//save the database again:
+			_testCacheSupervisor.Reset();
 			SaveDatabase(app);
 			Assert.IsNull(((TestKp2aApp) app).LastYesNoCancelQuestionTitle);
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertNoCall();
 
 			//load database to a new app instance:
 			IKp2aApp resultApp = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
@@ -109,11 +110,12 @@ namespace Kp2aUnitTests
 
 			SaveDatabase(app2);
 
+			_testCacheSupervisor.Reset();
+
 			foreach (var group in app.GetDb().KpDatabase.RootGroup.Groups)
 				Kp2aLog.Log("app d: " + group.Name);
 			Assert.IsNull(((TestKp2aApp)app).LastYesNoCancelQuestionTitle);
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertNoCall();
 
 			//modify the database by adding a group:
 			PwGroup group1 = new PwGroup(true, true, "TestGroup", PwIcon.Apple);
@@ -124,10 +126,10 @@ namespace Kp2aUnitTests
 
 
 			//save the database again:
+			_testCacheSupervisor.Reset();
 			SaveDatabase(app);
 			Assert.AreEqual(((TestKp2aApp)app).LastYesNoCancelQuestionTitle, UiStringKey.TitleSyncQuestion);
-			Assert.IsFalse(_testCacheSupervisor.CouldntOpenFromRemoteCalled);
-			Assert.IsFalse(_testCacheSupervisor.CouldntSaveToRemoteCalled);
+			_testCacheSupervisor.AssertNoCall();
 			
 
 			//load database to a new app instance:

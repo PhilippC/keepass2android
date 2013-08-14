@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -26,6 +27,18 @@ namespace Kp2aUnitTests
 
 		public void SetShutdown()
 		{
+			
+		}
+
+		public void LockDatabase(bool allowQuickUnlock = true)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, string password, string keyFile,
+		                         ProgressDialogStatusLogger statusLogger)
+		{
+			_db.LoadData(this, ioConnectionInfo, memoryStream, password, keyFile, statusLogger);
 			
 		}
 

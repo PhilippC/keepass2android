@@ -28,11 +28,28 @@ namespace keepass2android.Io
 		void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex);
 
 		/// <summary>
+		/// Called when the local file either didn't exist or was unmodified, so the remote file
+		/// was loaded and the cache was updated during the load operation.
+		/// </summary>
+		void UpdatedCachedFileOnLoad(IOConnectionInfo ioc);
+
+		/// <summary>
+		/// Called when the remote file either didn't exist or was unmodified, so the local file
+		/// was loaded and the remote file was updated during the load operation.
+		/// </summary>
+		void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc);
+
+		/// <summary>
 		/// Called to notify the supervisor that the file described by ioc is opened from the cache because there's a conflict
 		/// with local and remote changes
 		/// </summary>
 		/// <param name="ioc"></param>
 		void NotifyOpenFromLocalDueToConflict(IOConnectionInfo ioc);
+
+		/// <summary>
+		/// Called when the load operation was performed and the remote file was identical with the local file
+		/// </summary>
+		void LoadedFromRemoteInSync(IOConnectionInfo ioc);
 	}
 
 	/// <summary>
@@ -148,7 +165,8 @@ namespace keepass2android.Io
 				//no changes in remote file -> upload
 				using (Stream localData = File.OpenRead(CachedFilePath(ioc)))
 				{
-					TryUpdateRemoteFile(localData, ioc, true, hash);
+					if (TryUpdateRemoteFile(localData, ioc, true, hash))
+						_cacheSupervisor.UpdatedRemoteFileOnLoad(ioc);
 				}
 			}
 			else
@@ -197,20 +215,34 @@ namespace keepass2android.Io
 					cachedFile.Close();
 					fileHash = MemUtil.ByteArrayToHexString(cachedFile.Hash);
 				}
+
+				//remember current hash
+				string previousHash = null;
+				string baseVersionFilePath = BaseVersionFilePath(ioc);
+				if (File.Exists(baseVersionFilePath))
+					previousHash = File.ReadAllText(baseVersionFilePath);
+
 				//save hash in cache files:
 				File.WriteAllText(VersionFilePath(ioc), fileHash);
-				File.WriteAllText(BaseVersionFilePath(ioc), fileHash);
+				File.WriteAllText(baseVersionFilePath, fileHash);
+
+				//notify supervisor what we did:
+				if (previousHash != fileHash)
+					_cacheSupervisor.UpdatedCachedFileOnLoad(ioc);
+				else
+					_cacheSupervisor.LoadedFromRemoteInSync(ioc);
 
 				return File.OpenRead(cachedFilePath);	
 			}
 			
 		}
 
-		private void TryUpdateRemoteFile(Stream cachedData, IOConnectionInfo ioc, bool useFileTransaction, string hash)
+		private bool TryUpdateRemoteFile(Stream cachedData, IOConnectionInfo ioc, bool useFileTransaction, string hash)
 		{
 			try
 			{
 				UpdateRemoteFile(cachedData, ioc, useFileTransaction, hash);
+				return true;
 			}
 			catch (Exception e)
 			{
@@ -218,6 +250,7 @@ namespace keepass2android.Io
 				Kp2aLog.Log(e.ToString());
 				//notify the supervisor so it might display a warning or schedule a retry
 				_cacheSupervisor.CouldntSaveToRemote(ioc, e);
+				return false;
 			}
 		}
 

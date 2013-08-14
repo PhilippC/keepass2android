@@ -63,6 +63,7 @@
 	<string name="LastInfoVersionCode_key">LastInfoVersion</string>
 	
 	<string name="UseFileTransactions_key">UseFileTransactions</string>
+	<string name="UseOfflineCache_key">UseOfflineCache</string>
 	<string name="CheckForFileChangesOnSave_key">CheckForFileChangesOnSave</string>
 
 	<string name="MarketURL">market://details?id=</string>

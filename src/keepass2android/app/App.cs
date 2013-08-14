@@ -218,7 +218,6 @@ namespace keepass2android
 				(dlgSender, dlgEvt) =>
 				{
 					_db.ReloadRequested = true;
-					LockDatabase(false);
 					activity.SetResult(KeePass.ExitReloadDb);
 					activity.Finish();
 
@@ -334,14 +333,25 @@ namespace keepass2android
 				return new BuiltInFileStorage();
 			else
 			{
-				//todo: check if desired
-				return new CachingFileStorage(new BuiltInFileStorage(), Application.Context.CacheDir.Path, this);
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+				if (prefs.GetBoolean(Application.Context.Resources.GetString(Resource.String.UseOfflineCache_key), true))
+				{
+					return new CachingFileStorage(new BuiltInFileStorage(), Application.Context.CacheDir.Path, this);	
+				}
+				else
+				{
+					return new BuiltInFileStorage();
+				}
 			}
 		}
 
 		public void TriggerReload(Context ctx)
 		{
-			AskForReload((Activity)ctx);
+			Handler handler = new Handler(Looper.MainLooper);
+			handler.Post(() =>
+				{
+					AskForReload((Activity) ctx);
+				});
 		}
 
 
@@ -386,21 +396,38 @@ namespace keepass2android
 
 		public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception e)
 		{
-			//TODO use resource strings
-			ShowToast("Couldn't save to remote: "+e.Message+". Save again or use Sync menu when remote connection is available again.");
+			ShowToast(Application.Context.GetString(Resource.String.CouldNotSaveToRemote, e.Message));
 		}
 
-		//todo: test changes in SaveDb with Cache: Save without conflict, save with conflict
-		//add test?
-
+		
 		public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
 		{
-			ShowToast("Couldn't open from remote: " + ex.Message+". Loaded file from local cache. You can still make changes in the database and sync them later.");
+			ShowToast(Application.Context.GetString(Resource.String.CouldNotLoadFromRemote, ex.Message));
+		}
+
+		public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
+		{
+			ShowToast(Application.Context.GetString(Resource.String.UpdatedCachedFileOnLoad));
+		}
+
+		public void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc)
+		{
+			ShowToast(Application.Context.GetString(Resource.String.UpdatedRemoteFileOnLoad));
 		}
 
 		public void NotifyOpenFromLocalDueToConflict(IOConnectionInfo ioc)
 		{
-			ShowToast("Opened local file due to conflict with changes in remote file. Use Synchronize menu to merge.");
+			ShowToast(Application.Context.GetString(Resource.String.NotifyOpenFromLocalDueToConflict));
+		}
+
+		public void LoadedFromRemoteInSync(IOConnectionInfo ioc)
+		{
+			ShowToast(Application.Context.GetString(Resource.String.LoadedFromRemoteInSync));
+		}
+
+		public void ClearOfflineCache()
+		{
+			new CachingFileStorage(new BuiltInFileStorage(), Application.Context.CacheDir.Path, this).ClearCache();
 		}
 	}
 
@@ -408,6 +435,7 @@ namespace keepass2android
     ///Application class for Keepass2Android: Contains static Database variable to be used by all components.
 #if NoNet
 	[Application(Debuggable=false, Label=AppNames.AppName)]
+	todo: remove caching preference
 #else
 #if RELEASE 
 	[Application(Debuggable=false, Label=AppNames.AppName)] 

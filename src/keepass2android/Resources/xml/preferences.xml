@@ -157,6 +157,14 @@
 			  android:title="@string/UseFileTransactions_title"
 			  android:key="@string/UseFileTransactions_key" />
 		<CheckBoxPreference
+			  android:enabled="true"
+			  android:persistent="true"
+			  android:summary="@string/UseOfflineCache_summary"
+			  android:defaultValue="true"
+			  android:title="@string/UseOfflineCache_title"
+			  android:key="@string/UseOfflineCache_key" />
+
+		<CheckBoxPreference
 		  android:key="@string/RememberRecentFiles_key"
 		  android:title="@string/RememberRecentFiles_title"
 		  android:summary="@string/RememberRecentFiles_summary"

@@ -66,7 +66,7 @@ namespace Kp2aUnitTests
 			var app = CreateTestKp2aApp();
 			app.CreateNewDatabase();
 			bool loadSuccesful = false;
-			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = filename }, password, keyfile, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = filename }, null, password, keyfile, new ActionOnFinish((success, message) =>
 				{
 					if (!success)
 						Kp2aLog.Log(message);
