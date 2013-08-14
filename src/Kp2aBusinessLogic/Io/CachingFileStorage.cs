@@ -146,6 +146,9 @@ namespace keepass2android.Io
 			}
 			catch (Exception ex)
 			{
+				if (!IsCached(ioc))
+					throw;
+
 				Kp2aLog.Log("couldn't open from remote " + ioc.Path);
 				Kp2aLog.Log(ex.ToString());
 

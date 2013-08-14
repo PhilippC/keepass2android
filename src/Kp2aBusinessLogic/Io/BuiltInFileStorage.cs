@@ -66,7 +66,7 @@ namespace keepass2android.Io
 			{
 				if ((ex.Response is HttpWebResponse) && (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.NotFound))
 				{
-					throw new FileNotFoundException("404!", ioc.Path, ex);
+					throw new FileNotFoundException(ex.Message, ioc.Path, ex);
 				}
 				throw;
 			}

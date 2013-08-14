@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,32 @@ namespace Kp2aUnitTests
 			AssertEqual(fileContents, fileContents2);
 
 			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntOpenFromRemoteId);
+			
+
+		}
+
+		/// <summary>
+		/// Tests correct behavior in case that a file is to be opened which is not in the cache
+		/// </summary>
+		[TestMethod]
+		public void TestOpenNonExistingNonCachedFiles()
+		{
+			SetupFileStorage();
+
+			//read the file once. Should now be in the cache.
+			try
+			{
+				MemoryStream fileContents = ReadToMemoryStream(_fileStorage, "nonexistingfile.txt");
+			}
+			catch (Exception e)
+			{
+				_testCacheSupervisor.AssertNoCall();
+				Assert.IsInstanceOfType(e, typeof(FileNotFoundException));
+
+				return;
+			}
+			_testCacheSupervisor.AssertNoCall();
+			Assert.Fail("didn't get exception!");
 			
 
 		}
