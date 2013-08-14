@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using KeePassLib.Serialization;
 
@@ -55,11 +56,25 @@ namespace keepass2android
 				Kp2aLog.Log("KeyFileException");
 				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/ _app.GetResourceString(UiStringKey.keyfile_does_not_exist));
 			}
-			catch (Exception e) {
+			catch (AggregateException e)
+			{
+				string message = e.Message;
+				foreach (var innerException in e.InnerExceptions)
+				{
+					message = innerException.Message; // Override the message shown with the last (hopefully most recent) inner exception
+					Kp2aLog.Log("Exception: " + message);
+				}
+				Finish(false, "An error occured: " + message);
+				return;
+			}
+			catch (Exception e)
+			{
 				Kp2aLog.Log("Exception: " + e.Message);
 				Finish(false, "An error occured: " + e.Message);
 				return;
-			} 
+			}
+			
+
 		 /* catch (InvalidPasswordException e) {
 				finish(false, Ctx.GetString(Resource.String.InvalidPassword));
 				return;
