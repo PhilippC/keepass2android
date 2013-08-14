@@ -718,6 +718,7 @@ namespace KeePassLib
 		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage,
 			IStatusLogger slStatus)
 		{
+			SearchEntries(sp, listStorage, null, slStatus);
 		}
 
 		/// <summary>
