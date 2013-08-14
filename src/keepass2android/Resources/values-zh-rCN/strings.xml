@@ -207,7 +207,7 @@
   <string name="SaveAttachment_doneMessage">保存文件到 %1$ s。</string>
   <string name="SaveAttachment_Failed">无法保存附件到  %1$s </string>
   <string name="error_invalid_expiry_date">有效期限日期/时间格式有误！</string>
-  <string name="error_string_key">每个字符串的字段名称是必需的</string>
+  <string name="error_string_key">每个字符串的字段名称是必需的。</string>
   <string name="field_name">字段名</string>
   <string name="field_value">字段值</string>
   <string name="protection">受保护的字段</string>
@@ -271,7 +271,7 @@
 *感谢lucifineil 的中文翻译
 </string>
   <string name="ChangeLog"><b>Version 0.6.2</b>\n
-* Google Drive/Dropbox/... 集成: 使用官方 Google Drive or Dropbox 程序并打开任何 .kdbx-file. 将在将来的版本出现.\n
+* Google Drive/Dropbox/... 集成: 使用官方 Google Drive 或者 Dropbox 程序并打开任何 .kdbx-file. 将在将来的版本出现.\n
 * 改善搜索对话框 \n
 * 改善分享URL子域名的搜索结果 \n
 * 在菜单中添加反馈，评分和翻译此程序（哎，作者真讨厌）\n

@@ -26,7 +26,7 @@
   <string name="cancel">Annuler</string>
   <string name="ClearClipboard">Presse-papier nettoyé.</string>
   <string name="clipboard_timeout">Délai de purge du presse-papiers</string>
-  <string name="clipboard_timeout_summary">Temps avant d\'effacer le presse-papiers lorsque des identifiants ont été copiés</string>
+  <string name="clipboard_timeout_summary">Délai avant d\'effacer le presse-papiers lorsque des identifiants ont été copiés</string>
   <string name="copy_username">Cliquez pour copier le nom d\'utilisateur</string>
   <string name="copy_password">Cliquez pour copier le mot de passe</string>
   <string name="available_through_keyboard">L\'entrée est disponible via le clavier KP2A</string>
@@ -40,11 +40,11 @@
   <string name="decrypting_entry">Déchiffrement de l\'entrée</string>
   <string name="default_checkbox">Utiliser comme base de données par défaut</string>
   <string name="digits">Chiffres</string>
-  <string name="disclaimer_formal">Keepass2Android n\'offre ABSOLUMENT AUCUNE GARANTIE; il s\'agit d\'un logiciel gratuit, et vous pouvez le redistribuer sous les conditions de la licenceGPL v2 ou ultérieure.</string>
+  <string name="disclaimer_formal">Keepass2Android n\'offre ABSOLUMENT AUCUNE GARANTIE ; il s\'agit d\'un logiciel gratuit, et vous pouvez le redistribuer sous les conditions de la licenceGPL v2 ou ultérieure.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Entrez le nom de fichier de la base de données</string>
   <string name="entry_accessed">Accédé</string>
-  <string name="entry_and_or">Entrez un mot de passe et/ou une clé de fichier pour déverrouiller votre base de données</string>
+  <string name="entry_and_or">Entrez un mot de passe et/ou choisissez un fichier-clé pour déverrouiller votre base de données</string>
   <string name="entry_cancel">Annuler</string>
   <string name="entry_comment">Commentaires</string>
   <string name="entry_tags">Étiquettes</string>
@@ -75,7 +75,7 @@
   <string name="error_no_name">Le nom est obligatoire.</string>
   <string name="error_nopass">Un mot de passe ou clé de fichier est requis.</string>
   <string name="error_out_of_memory">Le téléphone a manqué de mémoire lors de l\'analyse de votre base de données. Elle est peut être trop grande pour la mémoire de votre téléphone.</string>
-  <string name="error_pass_gen_type">Au moins 1 type de génération de mot de passe doit être sélectionné</string>
+  <string name="error_pass_gen_type">Au moins une méthode de génération de mot de passe doit être sélectionné</string>
   <string name="error_pass_match">Les mots de passe ne correspondent pas.</string>
   <string name="error_rounds_not_number">La série doit être un nombre.</string>
   <string name="error_rounds_too_large">Nombre trop gros. Réglage à 2147483648.</string>
@@ -114,8 +114,8 @@
   <string name="maskpass_title">Cacher le mot de passe</string>
   <string name="maskpass_summary">Toujours masquer les mots de passe</string>
   <string name="menu_about">A propos</string>
-  <string name="menu_change_key">Modifier la Clé maître</string>
-  <string name="menu_copy_pass">Copier mot de passe</string>
+  <string name="menu_change_key">Modifier la clé maître</string>
+  <string name="menu_copy_pass">Copier le mot de passe</string>
   <string name="menu_copy_user">Copier Utilisateur</string>
   <string name="menu_create">Créer</string>
   <string name="menu_app_settings">Paramètres</string>
@@ -145,7 +145,7 @@
   <string name="password_title">Entrez le mot de passe de la base de données</string>
   <string name="progress_create">Création d\'une nouvelle base de données…</string>
   <string name="progress_title">En cours…</string>
-  <string name="remember_keyfile_summary">Se rappeler de la localisation des fichiers clés</string>
+  <string name="remember_keyfile_summary">Se rappeler l\'emplacement des fichiers clés</string>
   <string name="remember_keyfile_title">Enregistrer le fichier clé</string>
   <string name="remove_from_filelist">Supprimer</string>
   <string name="rijndael">Rijndael (AES)</string>
@@ -199,7 +199,7 @@
   <string name="QuickUnlockLength_summary">Nombre maximal de caractères utilisés comme mot de passe QuickUnlock.</string>
   <string name="QuickUnlock_fail">Échec du déverrouillage rapide : mot de passe incorrect !</string>
   <string name="BinaryDirectory_title">Dossier des pièces jointes</string>
-  <string name="BinaryDirectory_summary">Répertoire où les fichiers joints seront sauvés.</string>
+  <string name="BinaryDirectory_summary">Répertoire où les fichiers joints seront sauvegardés.</string>
   <string name="SaveAttachmentDialog_title">Enregistrer la pièce jointe</string>
   <string name="SaveAttachmentDialog_text">Veuillez sélectionner où enregistrer la pièce jointe.</string>
   <string name="SaveAttachmentDialog_save">Enregistrer sur la carte SD</string>
@@ -216,7 +216,7 @@
   <string name="delete_extra_string">Supprimer la chaîne additionnelle</string>
   <string name="database_loaded_quickunlock_enabled">Base de donnée chargée, QuickUnlock activé.</string>
   <string name="credentials_dialog_title">Entrez vos identifiants pour le serveur</string>
-  <string name="UseFileTransactions_title">File transactions</string>
+  <string name="UseFileTransactions_title">Opérations sur les fichiers</string>
   <string name="UseFileTransactions_summary">Utiliser les opérations sur les fichiers pour écrire les bases de données</string>
   <string name="CheckForFileChangesOnSave_title">Rechercher des modifications</string>
   <string name="CheckForFileChangesOnSave_summary">Vérifie si le fichier a été modifié par ailleurs avant d\'enregistrer les modifications.</string>
@@ -239,7 +239,7 @@
   <string name="AskReloadFile">Le fichier qui est actuellement utilisé a été modifié par un autre programme. Voulez-vous le recharger ?</string>
   <string name="AskDiscardChanges">Voulez-vous vraiment ne pas prendre en compte les modifications ? (Le bouton Enregistrer est en haut du formulaire.)</string>
   <string name="AskDiscardChanges_title">Ignorer les modifications ?</string>
-  <string name="suggest_improvements">Faire des suggestions ou votez pour des améliorations</string>
+  <string name="suggest_improvements">Faire des suggestions ou voter pour des améliorations</string>
   <string name="rate_app">Noter cette application</string>
   <string name="translate_app">Traduire KP2A</string>
   <string name="AddingEntry">Ajout de l\'entrée en cours…</string>
@@ -255,7 +255,7 @@
   <string name="TitleSyncQuestion">Fusionner les modifications ?</string>
   <string name="MessageSyncQuestion">La base de données a été modifiée par une source tierce. Voulez-vous charger et fusionner les changements avant de sauvegarder ? Sélectionnez \"Non\" si vous voulez écraser les changements externes.</string>
   <string name="SynchronizingDatabase">Importation des modifications…</string>
-  <string name="YesSynchronize">Oui, fusionne</string>
+  <string name="YesSynchronize">Oui, fusionner</string>
   <string name="NoOverwrite">Non, l\'écraser</string>
   <string name="ChangeLog_title">Journal des modifications</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n 
@@ -317,11 +317,11 @@ Première version publique</string>
   <string-array name="list_size_options">
     <item>Petit</item>
     <item>Moyen</item>
-    <item>Large</item>
+    <item>Grand</item>
   </string-array>
   <string-array name="cred_remember_modes">
     <item>Ne pas se souvenir des identifiants</item>
-    <item>Ne se rappeler que du nom d\'utilisateur</item>
-    <item>Se rappeler du nom d\'utilisateur et du mot de passe</item>
+    <item>Ne se rappeler que le nom d\'utilisateur</item>
+    <item>Se rappeler le nom d\'utilisateur et le mot de passe</item>
   </string-array>
 </resources>
