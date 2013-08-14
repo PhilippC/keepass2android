@@ -1317,29 +1317,32 @@ namespace keepass2android
 			// aapt resource value: 0x7f0800fd
 			public const int BinaryDirectory_title = 2131230973;
 			
+			// aapt resource value: 0x7f080159
+			public const int ChangeLog = 2131231065;
+			
 			// aapt resource value: 0x7f080158
-			public const int ChangeLog = 2131231064;
-			
-			// aapt resource value: 0x7f080157
-			public const int ChangeLog_0_7 = 2131231063;
-			
-			// aapt resource value: 0x7f080155
-			public const int ChangeLog_0_8 = 2131231061;
-			
-			// aapt resource value: 0x7f080154
-			public const int ChangeLog_0_8_1 = 2131231060;
-			
-			// aapt resource value: 0x7f080153
-			public const int ChangeLog_0_8_2 = 2131231059;
-			
-			// aapt resource value: 0x7f080152
-			public const int ChangeLog_0_8_3 = 2131231058;
-			
-			// aapt resource value: 0x7f080151
-			public const int ChangeLog_0_8_4 = 2131231057;
+			public const int ChangeLog_0_7 = 2131231064;
 			
 			// aapt resource value: 0x7f080156
-			public const int ChangeLog_keptDonate = 2131231062;
+			public const int ChangeLog_0_8 = 2131231062;
+			
+			// aapt resource value: 0x7f080155
+			public const int ChangeLog_0_8_1 = 2131231061;
+			
+			// aapt resource value: 0x7f080154
+			public const int ChangeLog_0_8_2 = 2131231060;
+			
+			// aapt resource value: 0x7f080153
+			public const int ChangeLog_0_8_3 = 2131231059;
+			
+			// aapt resource value: 0x7f080152
+			public const int ChangeLog_0_8_4 = 2131231058;
+			
+			// aapt resource value: 0x7f080151
+			public const int ChangeLog_0_8_5 = 2131231057;
+			
+			// aapt resource value: 0x7f080157
+			public const int ChangeLog_keptDonate = 2131231063;
 			
 			// aapt resource value: 0x7f080150
 			public const int ChangeLog_title = 2131231056;
