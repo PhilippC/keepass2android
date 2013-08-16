@@ -32,6 +32,27 @@
             android:text="@string/add_entry"
             android:drawableLeft="@drawable/device_access_new_account"
              />
+		<Button
+            android:id="@+id/insert_element"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/insert_element_here"
+			android:visibility="gone"
+            android:drawableLeft="@drawable/btn_new_group"
+            />
+        <Button
+            android:id="@+id/cancel_insert_element"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/insert_element"
+            android:layout_alignParentBottom="true"
+            android:text="@string/cancel"
+			android:visibility="gone"
+            android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
+             />
     </LinearLayout>
     <ImageView
         android:id="@+id/divider2"

@@ -75,7 +75,8 @@ namespace keepass2android
 		protected PwGroup Group;
 
 		internal AppTask AppTask;
-		
+		private GroupView _groupView;
+
 		protected override void OnResume() {
 			base.OnResume();
 			
@@ -119,8 +120,10 @@ namespace keepass2android
 			}
 			
 			_prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-			
-			SetContentView(new GroupViewOnlyView(this));
+
+			_groupView = new GroupView(this);
+			SetContentView(_groupView);
+			_groupView.SetNormalButtonVisibility(false, false);
 			SetResult(KeePass.ExitNormal);
 			
 			StyleScrollBars();

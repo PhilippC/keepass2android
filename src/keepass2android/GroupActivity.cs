@@ -110,16 +110,12 @@ namespace keepass2android
 			}
 			
 			SetupButtons ();
+
+			GroupView groupView = new GroupView(this);
 			
-			if (AddGroupEnabled && AddEntryEnabled) {
-				SetContentView (new GroupAddEntryView (this));
-			} else if (AddGroupEnabled) {
-				SetContentView (new GroupRootView (this));
-			} else if (AddEntryEnabled) {
-				throw new Exception ("This mode is not supported.");
-			} else {
-				SetContentView (new GroupViewOnlyView (this));
-			}
+			SetContentView (groupView);
+			groupView.SetNormalButtonVisibility(AddGroupEnabled, AddEntryEnabled);
+			
 			if (AddGroupEnabled) {
 				// Add Group button
 				View addGroup = FindViewById (Resource.Id.add_group);

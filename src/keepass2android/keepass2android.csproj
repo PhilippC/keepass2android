@@ -99,8 +99,7 @@
     <Compile Include="LockCloseListActivity.cs" />
     <Compile Include="LockingListActivity.cs" />
     <Compile Include="views\ClickView.cs" />
-    <Compile Include="views\GroupViewOnlyView.cs" />
-    <Compile Include="views\GroupAddEntryView.cs" />
+    <Compile Include="views\GroupView.cs" />
     <Compile Include="views\GroupRootView.cs" />
     <Compile Include="PwGroupListAdapter.cs" />
     <Compile Include="views\PwGroupView.cs" />

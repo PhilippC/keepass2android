@@ -168,6 +168,7 @@
   <string name="search_in">Search in</string>
   <string name="select_other_entry">Select another entry</string>
   <string name="select_group_then_add">Open the desired group, then press "%1$s"!</string>
+	<string name="insert_element_here">Insert here</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Underline</string>
   <string name="unsupported_db_version">Unsupported database version.</string>
@@ -296,14 +297,13 @@
 
 		<string name="ChangeLog_title">Change log</string>
 	<string name="ChangeLog_0_8_5">
-		<b>Version 0.8.5 preview</b>\n
+		<b>Version 0.8.5</b>\n
 		* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
 		* Notification icon to visualize the lock-state of the database (see settings)\n
 		* Improved determination of lock-state in some situations\n
 		* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
 		* Entries can be added to root group\n
-		* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)\n
-		Please Note: this is a preview intended for testing! Please report any problems on keepass2android.codeplex.com.
+		* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)
 	</string>
 		<string name="ChangeLog_0_8_4">
 		<b>Version 0.8.4</b>\n

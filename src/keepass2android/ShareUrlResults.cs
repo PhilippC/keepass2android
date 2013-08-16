@@ -143,12 +143,10 @@ namespace keepass2android
 			//show results:
 			if (Group == null || (!Group.Entries.Any()))
 			{
-				//SetContentView(new GroupEmptyView(this));
 				SetContentView(Resource.Layout.searchurlresults_empty);
 			} else
 			{
 				SetContentView(Resource.Layout.searchurlresults);
-				//SetContentView(new GroupViewOnlyView(this));
 			}
 			
 			SetGroupTitle();

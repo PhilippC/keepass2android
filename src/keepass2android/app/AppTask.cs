@@ -20,6 +20,7 @@ using Android.OS;
 using System.Collections.Generic;
 using KeePassLib;
 using KeePassLib.Security;
+using KeePassLib.Utility;
 
 namespace keepass2android
 {
@@ -250,6 +251,32 @@ namespace keepass2android
 		{
 			//keypoint here: close the app after selecting the entry
 			get { return true;}
+		}
+	}
+
+	/// <summary>
+	/// User is about to move an entry or group to another group
+	/// </summary>
+	public class MoveElementTask: AppTask
+	{
+		public const String UuidKey = "MoveElement_Uuid";
+
+		public PwUuid Uuid
+		{
+			get;
+			set;
+		}
+
+		public override void Setup(Bundle b)
+		{
+			Uuid = new PwUuid(MemUtil.HexStringToByteArray(b.GetString(UuidKey)));
+		}
+		public override IEnumerable<IExtra> Extras
+		{
+			get
+			{
+				yield return new StringExtra { Key = UuidKey, Value = MemUtil.ByteArrayToHexString(Uuid.UuidBytes) };
+			}
 		}
 	}
 

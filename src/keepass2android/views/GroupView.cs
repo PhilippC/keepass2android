@@ -18,37 +18,68 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.Content;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Android.Util;
 
 namespace keepass2android.view
 {
-
-	public class GroupAddEntryView : RelativeLayout 
+	public class GroupView : RelativeLayout 
 	{
-		public GroupAddEntryView (IntPtr javaReference, JniHandleOwnership transfer)
+		public GroupView (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 			
 		}
-		
-		public GroupAddEntryView(Context context): base(context) {
+			
+		public GroupView(Context context): base(context) {
 			Inflate(context);
 		}
-		
-		public GroupAddEntryView(Context context, IAttributeSet attrs): base(context, attrs) {
+			
+		public GroupView(Context context, IAttributeSet attrs): base(context, attrs) {
 			Inflate(context);
 		}
-		
+			
 		private void Inflate(Context context) {
 			LayoutInflater inflater = (LayoutInflater) context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.group_add_entry, this);
+				
+		
+		}
+		public void SetNormalButtonVisibility(bool showAddGroup, bool showAddEntry)
+		{
+			if (!showAddGroup)
+			{
+				View addGroup = FindViewById(Resource.Id.add_group);
+				addGroup.Visibility = ViewStates.Invisible;	
+			}
+			
+			if (!showAddEntry)
+			{
+				View addEntry = FindViewById(Resource.Id.add_entry);
+				addEntry.Visibility = ViewStates.Invisible;	
+			}
 
+			if (!showAddEntry && !showAddGroup)
+			{
+				View divider2 = FindViewById(Resource.Id.divider2);
+				divider2.Visibility = ViewStates.Invisible;
+
+				FindViewById(Resource.Id.bottom_bar).Visibility = ViewStates.Invisible;
+
+				View list = FindViewById(Android.Resource.Id.List);
+				LayoutParams lp = (RelativeLayout.LayoutParams) list.LayoutParameters;
+
+				lp.AddRule(LayoutRules.AlignParentBottom, (int) LayoutRules.True);
+			}
+		}
+
+		public void ShowInsertButtons()
+		{
 			
 		}
-		
-		
+			
+			
 	}
 
 }

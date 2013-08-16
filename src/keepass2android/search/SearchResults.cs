@@ -34,7 +34,7 @@ namespace keepass2android.search
 	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]
 	public class SearchResults : GroupBaseActivity
 	{
-		private Database _db;
+		private GroupView _groupView;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -80,8 +80,9 @@ namespace keepass2android.search
 		private void Query (SearchParameters searchParams)
 		{
 			try {
-				Group = _db.Search (searchParams, null);
+				Group = App.Kp2a.GetDb().Search (searchParams, null);
 			} catch (Exception e) {
+				Kp2aLog.Log(e.ToString());
 				Toast.MakeText(this,e.Message, ToastLength.Long).Show();
 				Finish();
 				return;
@@ -91,10 +92,14 @@ namespace keepass2android.search
 			
 			if ( Group == null || (!Group.Entries.Any()) ) {
 				SetContentView(new GroupEmptyView(this));
-			} else {
-				SetContentView(new GroupViewOnlyView(this));
+			} else
+			{
+				_groupView = new GroupView(this);
+				SetContentView(_groupView);
+				_groupView.SetNormalButtonVisibility(false, false);
 			}
 			
+
 			SetGroupTitle();
 			
 			ListAdapter = new PwGroupListAdapter(this, Group);
