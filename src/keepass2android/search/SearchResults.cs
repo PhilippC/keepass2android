@@ -31,11 +31,10 @@ namespace keepass2android.search
 	/// </summary>
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar", LaunchMode=Android.Content.PM.LaunchMode.SingleTop)]
 	[MetaData("android.app.searchable",Resource=AppNames.Searchable)]
+	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
 	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]
 	public class SearchResults : GroupBaseActivity
 	{
-		private Database _db;
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -80,7 +79,7 @@ namespace keepass2android.search
 		private void Query (SearchParameters searchParams)
 		{
 			try {
-				Group = _db.Search (searchParams, null);
+				Group = App.Kp2a.GetDb().Search (searchParams, null);
 			} catch (Exception e) {
 				Toast.MakeText(this,e.Message, ToastLength.Long).Show();
 				Finish();
