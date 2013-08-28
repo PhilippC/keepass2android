@@ -79,7 +79,7 @@ namespace keepass2android
 							else
 							{
 								// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
-								App.LockDatabase();
+								App.LockDatabase(false);
 							}
 						}, OnFinishToRun);
 				}
@@ -99,7 +99,7 @@ namespace keepass2android
 							Db.Dirty.Add(pgRecycleBin);
 						} else {
 							// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
-							App.LockDatabase();
+							App.LockDatabase(false);
 						}
 						
 					}, OnFinishToRun);
