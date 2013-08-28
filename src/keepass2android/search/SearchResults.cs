@@ -88,17 +88,9 @@ namespace keepass2android.search
 				return;
 			}
 
-
-			
 			if ( Group == null || (!Group.Entries.Any()) ) {
 				SetContentView(new GroupEmptyView(this));
-			} else
-			{
-				_groupView = new GroupView(this);
-				SetContentView(_groupView);
-				_groupView.SetNormalButtonVisibility(false, false);
-			}
-			
+			} 
 
 			SetGroupTitle();
 			

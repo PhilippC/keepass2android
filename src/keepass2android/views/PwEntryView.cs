@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -38,6 +39,7 @@ namespace keepass2android.view
 
 		private const int MenuOpen = Menu.First;
 		private const int MenuDelete = MenuOpen + 1;
+		private const int MenuMove = MenuDelete + 1;
 		
 		public static PwEntryView GetInstance(GroupBaseActivity act, PwEntry pw, int pos)
 		{
@@ -96,6 +98,12 @@ namespace keepass2android.view
 			}
 			_textView.TextFormatted = str;
 
+			//todo: get colors from resources
+			if (_groupActivity.IsBeingMoved(_entry.Uuid))
+				_textView.SetTextColor(new Color(180,180,180));
+			else
+				_textView.SetTextColor(new Color(0,0,0));
+
 			String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
 
 
@@ -137,6 +145,7 @@ namespace keepass2android.view
 		{
 			menu.Add(0, MenuOpen, 0, Resource.String.menu_open);
 			menu.Add(0, MenuDelete, 0, Resource.String.menu_delete);
+			menu.Add(0, MenuMove, 0, Resource.String.menu_move);
 		}
 		
 		public override bool OnContextItemSelected(IMenuItem item)
@@ -151,6 +160,9 @@ namespace keepass2android.view
 					Handler handler = new Handler();
 					DeleteEntry task = new DeleteEntry(Context, App.Kp2a, _entry, new GroupBaseActivity.RefreshTask(handler, _groupActivity));
 					task.Start();
+					return true;
+				case MenuMove:
+					_groupActivity.StartTask(new MoveElementTask { Uuid = _entry.Uuid});
 					return true;
 			
 				default:

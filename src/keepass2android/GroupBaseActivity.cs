@@ -24,7 +24,10 @@ using Android.Views;
 using Android.Widget;
 using KeePassLib;
 using Android.Preferences;
+using KeePassLib.Interfaces;
+using KeePassLib.Utility;
 using keepass2android.Io;
+using keepass2android.database.edit;
 using keepass2android.view;
 using Android.Graphics.Drawables;
 
@@ -57,14 +60,20 @@ namespace keepass2android
 			AppTask.ToBundle(outState);
 		}
 
+		public virtual void SetupNormalButtons()
+		{
+			GroupView.SetNormalButtonVisibility(true, true);
+		}
 		
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
+			AppTask.TryGetFromActivityResult(data, ref AppTask);
+
 			if (resultCode == KeePass.ExitCloseAfterTaskComplete)
 			{
-				SetResult(KeePass.ExitCloseAfterTaskComplete);
+				AppTask.SetActivityResult(this, KeePass.ExitCloseAfterTaskComplete);
 				Finish();
 			}
 
@@ -75,10 +84,12 @@ namespace keepass2android
 		protected PwGroup Group;
 
 		internal AppTask AppTask;
-		private GroupView _groupView;
+		protected GroupView GroupView;
 
 		protected override void OnResume() {
 			base.OnResume();
+
+			AppTask.SetupGroupBaseActivityButtons(this);
 			
 			RefreshIfDirty();
 		}
@@ -121,15 +132,36 @@ namespace keepass2android
 			
 			_prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 
-			_groupView = new GroupView(this);
-			SetContentView(_groupView);
-			_groupView.SetNormalButtonVisibility(false, false);
+			GroupView = new GroupView(this);
+			SetContentView(GroupView);
+
+			FindViewById(Resource.Id.cancel_insert_element).Click += (sender, args) => StopMovingElement();
+			FindViewById(Resource.Id.insert_element).Click += (sender, args) => InsertElement();
+
 			SetResult(KeePass.ExitNormal);
 			
 			StyleScrollBars();
 			
 		}
-		
+
+		protected override void OnStart()
+		{
+			base.OnStart();
+			AppTask.StartInGroupActivity(this);
+		}
+
+		private void InsertElement()
+		{
+			MoveElementTask moveElementTask = (MoveElementTask)AppTask;
+			IStructureItem elementToMove = App.Kp2a.GetDb().KpDatabase.RootGroup.FindObject(moveElementTask.Uuid, true, null);
+
+
+			var moveElement = new MoveElement(elementToMove, Group, this, App.Kp2a, new ActionOnFinish((success, message) => { StopMovingElement(); }));
+			var progressTask = new ProgressTask(App.Kp2a, this, moveElement);
+			progressTask.Run();
+
+		}
+
 		protected void StyleScrollBars() {
 			ListView lv = ListView;
 			lv.ScrollBarStyle =ScrollbarStyles.InsideInset;
@@ -300,6 +332,7 @@ namespace keepass2android
 				//Currently the action bar only displays the home button when we come from a previous activity.
 				//So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
 				//http://developer.android.com/training/implementing-navigation/ancestral.html
+				AppTask.SetActivityResult(this, KeePass.ExitNormal);
 				Finish();
 				OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
 
@@ -331,6 +364,12 @@ namespace keepass2android
 			var progressTask = new ProgressTask(App.Kp2a, this, task);
 			progressTask.Run();
 
+		}
+
+		public override void OnBackPressed()
+		{
+			AppTask.SetActivityResult(this, KeePass.ExitNormal);
+			base.OnBackPressed();
 		}
 
 		private void ToggleSort() {
@@ -396,6 +435,60 @@ namespace keepass2android
 			}
 			
 		}
+
+		public bool IsBeingMoved(PwUuid uuid)
+		{
+			MoveElementTask moveElementTask = AppTask as MoveElementTask;
+			if (moveElementTask != null)
+			{
+				if (moveElementTask.Uuid.EqualsValue(uuid))
+					return true;
+			}
+			return false;
+		}
+
+		public void StartTask(AppTask task)
+		{
+			AppTask = task;
+			task.StartInGroupActivity(this);
+		}
+
+
+		public void StartMovingElement()
+		{
+			ShowInsertElementButtons();
+			GroupView.ListView.InvalidateViews();
+			BaseAdapter adapter = (BaseAdapter)ListAdapter;
+			adapter.NotifyDataSetChanged();
+		}
+
+		public void ShowInsertElementButtons()
+		{
+			GroupView.ShowInsertButtons();
+		}
+
+		public void StopMovingElement()
+		{
+			try
+			{
+				MoveElementTask moveElementTask = (MoveElementTask)AppTask;
+				IStructureItem elementToMove = App.Kp2a.GetDb().KpDatabase.RootGroup.FindObject(moveElementTask.Uuid, true, null);
+				if (elementToMove.ParentGroup != Group)
+					App.Kp2a.GetDb().Dirty.Add(elementToMove.ParentGroup);
+			}
+			catch (Exception e)
+			{
+				//don't crash if adding to dirty fails but log the exception:
+				Kp2aLog.Log(e.ToString());
+			}
+			
+			AppTask = new NullTask();
+			AppTask.SetupGroupBaseActivityButtons(this);
+			GroupView.ListView.InvalidateViews();
+			BaseAdapter adapter = (BaseAdapter)ListAdapter;
+			adapter.NotifyDataSetChanged();
+		}
+
 
 	}
 }

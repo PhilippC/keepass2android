@@ -35,8 +35,8 @@ namespace keepass2android
 		
 		public const int Uninit = -1;
 		
-		protected bool AddGroupEnabled = false;
-		protected bool AddEntryEnabled = false;
+		protected bool AddGroupEnabled = true;
+		protected bool AddEntryEnabled = true;
 		
 		private const String Tag = "Group Activity:";
 		
@@ -74,12 +74,14 @@ namespace keepass2android
 			}
 			return new PwUuid(MemUtil.HexStringToByteArray(uuid));
 		}
-		
-		protected void SetupButtons()
+
+		public override void SetupNormalButtons()
 		{
-			AddGroupEnabled = true;
-			AddEntryEnabled = true;
+			GroupView.SetNormalButtonVisibility(AddGroupEnabled, AddEntryEnabled);
+			GroupView.Invalidate();
 		}
+		
+		
 		
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -109,12 +111,6 @@ namespace keepass2android
 				return;
 			}
 			
-			SetupButtons ();
-
-			GroupView groupView = new GroupView(this);
-			
-			SetContentView (groupView);
-			groupView.SetNormalButtonVisibility(AddGroupEnabled, AddEntryEnabled);
 			
 			if (AddGroupEnabled) {
 				// Add Group button

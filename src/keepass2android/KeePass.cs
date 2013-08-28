@@ -39,6 +39,7 @@ namespace keepass2android
 		public const Result ExitRefresh = Result.FirstUser+2;
 		public const Result ExitRefreshTitle = Result.FirstUser+3;
 		public const Result ExitCloseAfterTaskComplete = Result.FirstUser+4;
+		public const Result TaskComplete = Result.FirstUser + 5;
 		public const Result ExitReloadDb = Result.FirstUser+6;
 
 		AppTask _appTask;

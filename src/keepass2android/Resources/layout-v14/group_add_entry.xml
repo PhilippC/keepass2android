@@ -51,6 +51,40 @@
                 android:gravity="center_vertical"
                 android:text="@string/add_entry" />
         </FrameLayout>
+		<FrameLayout
+            android:id="@+id/insert_element"
+            style="@style/BottomBarActionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+			<TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="20dp"
+                android:drawableLeft="@drawable/btn_new_group"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/insert_element_here" />
+		</FrameLayout>
+		<FrameLayout
+            android:id="@+id/cancel_insert_element"
+            style="@style/BottomBarActionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+			<TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="20dp"
+                android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/cancel" />
+		</FrameLayout>
     </LinearLayout>
     <View
         android:id="@+id/divider2"

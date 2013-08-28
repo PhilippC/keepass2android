@@ -15,6 +15,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using System.Collections.Generic;
@@ -136,19 +137,24 @@ namespace keepass2android
 
 		public static AppTask CreateFromBundle(Bundle b)
 		{
+			return CreateFromBundle(b, new NullTask());
+		}
+
+		public static AppTask CreateFromBundle(Bundle b, AppTask failureReturn)
+		{
 			if (b == null)
-				return new NullTask();
+				return failureReturn;
 
 			string taskType = b.GetString(AppTaskKey);
 
 			if (string.IsNullOrEmpty(taskType))
-				return new NullTask();
+				return failureReturn;
 
 			try
 			{
 			    Type type = Type.GetType("keepass2android." + taskType);
                 if (type == null)
-                    return new NullTask();
+                    return failureReturn;
 				AppTask task = (AppTask)Activator.CreateInstance(type);
 				task.Setup(b);
 				return task;
@@ -156,7 +162,7 @@ namespace keepass2android
 			catch (Exception e)
 			{
 				Kp2aLog.Log("Cannot convert " + taskType + " in task: " + e);
-				return new NullTask();
+				return failureReturn;
 			}
 
 		}
@@ -196,6 +202,42 @@ namespace keepass2android
 			return new StringExtra { Key=AppTaskKey, Value=type.Name};
 		}
 
+		public virtual void StartInGroupActivity(GroupBaseActivity groupBaseActivity)
+		{
+			return;
+		}
+
+		public virtual void SetupGroupBaseActivityButtons(GroupBaseActivity groupBaseActivity)
+		{
+			groupBaseActivity.SetupNormalButtons();
+		}
+
+		public void SetActivityResult(Activity activity, Result result)
+		{
+			Intent data = new Intent();
+			ToIntent(data);
+			activity.SetResult(result, data);
+		}
+
+		/// <summary>
+		/// Tries to extract the task from the data given as an Intent object in OnActivityResult. If successful, the task is assigned,
+		/// otherwise, false is returned.
+		/// </summary>
+		public static bool TryGetFromActivityResult(Intent data, ref AppTask task)
+		{
+			if (data == null)
+				return false;
+			AppTask tempTask = CreateFromBundle(data.Extras, null);
+			if (tempTask == null)
+			{
+				Kp2aLog.Log("No AppTask in OnActivityResult");
+				return false;
+			}
+			
+			task = tempTask;
+			Kp2aLog.Log("AppTask " +task+" in OnActivityResult");
+			return true;
+		}
 	}
 
 	/// <summary>
@@ -277,6 +319,15 @@ namespace keepass2android
 			{
 				yield return new StringExtra { Key = UuidKey, Value = MemUtil.ByteArrayToHexString(Uuid.UuidBytes) };
 			}
+		}
+		public override void StartInGroupActivity(GroupBaseActivity groupBaseActivity)
+		{
+			base.StartInGroupActivity(groupBaseActivity);
+			groupBaseActivity.StartMovingElement();
+		}
+		public override void SetupGroupBaseActivityButtons(GroupBaseActivity groupBaseActivity)
+		{
+			groupBaseActivity.ShowInsertElementButtons();
 		}
 	}
 

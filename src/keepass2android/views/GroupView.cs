@@ -39,7 +39,12 @@ namespace keepass2android.view
 		public GroupView(Context context, IAttributeSet attrs): base(context, attrs) {
 			Inflate(context);
 		}
-			
+
+		public ListView ListView
+		{
+			get { return (ListView) FindViewById(Android.Resource.Id.List); }
+		}
+
 		private void Inflate(Context context) {
 			LayoutInflater inflater = (LayoutInflater) context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.group_add_entry, this);
@@ -48,24 +53,27 @@ namespace keepass2android.view
 		}
 		public void SetNormalButtonVisibility(bool showAddGroup, bool showAddEntry)
 		{
-			if (!showAddGroup)
-			{
-				View addGroup = FindViewById(Resource.Id.add_group);
-				addGroup.Visibility = ViewStates.Invisible;	
-			}
+
+			View insertElement = FindViewById(Resource.Id.insert_element);
+			insertElement.Visibility = ViewStates.Gone;
+
+			View insertElementCancel = FindViewById(Resource.Id.cancel_insert_element);
+			insertElementCancel.Visibility = ViewStates.Gone;	
+
+			View addGroup = FindViewById(Resource.Id.add_group);
+			addGroup.Visibility = showAddGroup? ViewStates.Visible : ViewStates.Gone;	
 			
-			if (!showAddEntry)
-			{
-				View addEntry = FindViewById(Resource.Id.add_entry);
-				addEntry.Visibility = ViewStates.Invisible;	
-			}
+			
+			View addEntry = FindViewById(Resource.Id.add_entry);
+			addEntry.Visibility = showAddEntry ? ViewStates.Visible : ViewStates.Gone;	
+			
 
 			if (!showAddEntry && !showAddGroup)
 			{
 				View divider2 = FindViewById(Resource.Id.divider2);
-				divider2.Visibility = ViewStates.Invisible;
+				divider2.Visibility = ViewStates.Gone;
 
-				FindViewById(Resource.Id.bottom_bar).Visibility = ViewStates.Invisible;
+				FindViewById(Resource.Id.bottom_bar).Visibility = ViewStates.Gone;
 
 				View list = FindViewById(Android.Resource.Id.List);
 				LayoutParams lp = (RelativeLayout.LayoutParams) list.LayoutParameters;
@@ -76,7 +84,21 @@ namespace keepass2android.view
 
 		public void ShowInsertButtons()
 		{
-			
+			View addGroup = FindViewById(Resource.Id.add_group);
+			addGroup.Visibility = ViewStates.Gone;
+
+			View addEntry = FindViewById(Resource.Id.add_entry);
+			addEntry.Visibility = ViewStates.Gone;
+
+			View insertElement = FindViewById(Resource.Id.insert_element);
+			insertElement.Visibility = ViewStates.Visible;
+
+			View insertElementCancel = FindViewById(Resource.Id.cancel_insert_element);
+			insertElementCancel.Visibility = ViewStates.Visible;
+
+			View divider2 = FindViewById(Resource.Id.divider2);
+			divider2.Visibility = ViewStates.Visible;
+
 		}
 			
 			
