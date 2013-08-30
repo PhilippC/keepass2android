@@ -1323,35 +1323,38 @@ namespace keepass2android
 			// aapt resource value: 0x7f0800ff
 			public const int BinaryDirectory_title = 2131230975;
 			
+			// aapt resource value: 0x7f080152
+			public const int CannotMoveGroupHere = 2131231058;
+			
+			// aapt resource value: 0x7f08015c
+			public const int ChangeLog = 2131231068;
+			
 			// aapt resource value: 0x7f08015b
-			public const int ChangeLog = 2131231067;
-			
-			// aapt resource value: 0x7f08015a
-			public const int ChangeLog_0_7 = 2131231066;
-			
-			// aapt resource value: 0x7f080158
-			public const int ChangeLog_0_8 = 2131231064;
-			
-			// aapt resource value: 0x7f080157
-			public const int ChangeLog_0_8_1 = 2131231063;
-			
-			// aapt resource value: 0x7f080156
-			public const int ChangeLog_0_8_2 = 2131231062;
-			
-			// aapt resource value: 0x7f080155
-			public const int ChangeLog_0_8_3 = 2131231061;
-			
-			// aapt resource value: 0x7f080154
-			public const int ChangeLog_0_8_4 = 2131231060;
-			
-			// aapt resource value: 0x7f080153
-			public const int ChangeLog_0_8_5 = 2131231059;
+			public const int ChangeLog_0_7 = 2131231067;
 			
 			// aapt resource value: 0x7f080159
-			public const int ChangeLog_keptDonate = 2131231065;
+			public const int ChangeLog_0_8 = 2131231065;
 			
-			// aapt resource value: 0x7f080152
-			public const int ChangeLog_title = 2131231058;
+			// aapt resource value: 0x7f080158
+			public const int ChangeLog_0_8_1 = 2131231064;
+			
+			// aapt resource value: 0x7f080157
+			public const int ChangeLog_0_8_2 = 2131231063;
+			
+			// aapt resource value: 0x7f080156
+			public const int ChangeLog_0_8_3 = 2131231062;
+			
+			// aapt resource value: 0x7f080155
+			public const int ChangeLog_0_8_4 = 2131231061;
+			
+			// aapt resource value: 0x7f080154
+			public const int ChangeLog_0_8_5 = 2131231060;
+			
+			// aapt resource value: 0x7f08015a
+			public const int ChangeLog_keptDonate = 2131231066;
+			
+			// aapt resource value: 0x7f080153
+			public const int ChangeLog_title = 2131231059;
 			
 			// aapt resource value: 0x7f08002a
 			public const int CheckForFileChangesOnSave_key = 2131230762;

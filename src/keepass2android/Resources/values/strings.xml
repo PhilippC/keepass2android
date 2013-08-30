@@ -296,6 +296,8 @@
 
 	<string name="synchronize_database_menu">Synchronize database…</string>
 
+	<string name="CannotMoveGroupHere">Cannot move group to this group.</string>
+
 		<string name="ChangeLog_title">Change log</string>
 	<string name="ChangeLog_0_8_5">
 		<b>Version 0.8.5</b>\n

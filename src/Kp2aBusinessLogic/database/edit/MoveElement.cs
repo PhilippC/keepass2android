@@ -42,6 +42,11 @@ namespace keepass2android.database.edit
 					else
 					{
 						PwGroup group = (PwGroup)_elementToMove;
+						if ((_targetGroup == group) || (_targetGroup.IsContainedIn(group)))
+						{
+							Finish(false, _app.GetResourceString(UiStringKey.CannotMoveGroupHere));
+							return;
+						}
 						pgParent.Groups.Remove(group);
 						_targetGroup.AddGroup(group, true, true);
 					}

@@ -42,6 +42,7 @@ namespace keepass2android
 		SynchronizedDatabaseSuccessfully,
 		RestoringRemoteFile,
 		CheckingDatabaseForChanges,
-		RemoteDatabaseUnchanged
+		RemoteDatabaseUnchanged,
+		CannotMoveGroupHere
     }
 }
