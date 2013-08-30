@@ -136,8 +136,8 @@ namespace keepass2android.search
 				Finish();
 				return true;
 			}
-				return false;
-			}
+			return false;
 		}
+	}
 }
 
