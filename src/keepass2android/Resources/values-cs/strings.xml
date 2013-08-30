@@ -131,6 +131,7 @@
   <string name="menu_search">Hledat</string>
   <string name="menu_search_advanced">Pokročilé vyhledávání</string>
   <string name="menu_url">Přejít na adresu URL</string>
+  <string name="menu_change_db">Změnit databázi…</string>
   <string name="minus">Mínus</string>
   <string name="never">Nikdy</string>
   <string name="yes">Ano</string>
@@ -179,6 +180,8 @@
   <string name="TanExpiresOnUse_summary">Při použití označovat vypršelé TAN položky</string>
   <string name="ShowUsernameInList_title">Zobrazit uživatelské jméno v seznamu</string>
   <string name="ShowUsernameInList_summary">Zobrazovat uživatelská jména pod názvy položek. Užitečné pro vícenásobné účty nebo TANy.</string>
+  <string name="RememberRecentFiles_title">Zapamatovat databáze</string>
+  <string name="RememberRecentFiles_summary">Pamatovat s naposledy otevřené databáze a zobrazit je na obrazovce Otevírání databáze.</string>
   <string name="kp2a_findUrl">Keepass2Android: Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit neplatné položky</string>
   <string name="search_options">Možnosti</string>
@@ -214,10 +217,15 @@
   <string name="add_binary">Přidat soubor jako přílohu...</string>
   <string name="add_extra_string">Přidat doplňkový text</string>
   <string name="delete_extra_string">Smazat doplňkový text</string>
-  <string name="database_loaded_quickunlock_enabled">Databáze načtena, RychléOdemknutí povoleno.</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: uzamčen. QuickUnlock povolen.</string>
+  <string name="database_loaded_unlocked">%1$s: odemčen.</string>
   <string name="credentials_dialog_title">Zadejte pověření pro server</string>
   <string name="UseFileTransactions_title">Transakce souboru</string>
   <string name="UseFileTransactions_summary">Použít transakční metodu zápisu do databáze</string>
+  <string name="UseOfflineCache_title">Ukládání databáze do mezipaměti</string>
+  <string name="UseOfflineCache_summary">Ukládání kopií vzdálených databázových souborů v adresáři aplikace. To umožňuje použít vzdálené databáze, i v offline režimu.</string>
+  <string name="ClearOfflineCache_title">Vyčistit mezipaměť?</string>
+  <string name="ClearOfflineCache_question">Tímto odstraníte všechny soubory v mezipaměti databáze. Veškeré změny, které jste provedli v době bez internetového připojení, které nebyly dosud synchronizovány, budou ztraceny! Chcete pokračovat?</string>
   <string name="CheckForFileChangesOnSave_title">Kontrola změn</string>
   <string name="CheckForFileChangesOnSave_summary">Před uložením zkontrolovat, zda byl soubor změněn na jiném zařízení.</string>
   <string name="ShowCopyToClipboardNotification_title">Upozornění schránky</string>
@@ -226,6 +234,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">Zpřístupněte celý záznam prostřednictvím klávesnice KP2A (doporučeno).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Dialog pro výběr klávesnice</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Dialog pro výběr vstupu pomocí klávesnice je po hledání k dispozici prostřednictvím KP2A klávesnice.</string>
+  <string name="ShowUnlockedNotification_title">Oznámení po dobu odemknutí</string>
+  <string name="ShowUnlockedNotification_summary">Zobrazovat oznámení zatímco databáze je odemčena.</string>
+  <string name="PreloadDatabaseEnabled_title">Pre-load databázový soubor</string>
+  <string name="PreloadDatabaseEnabled_summary">Zahájit nahrávání nebo stahování na pozadí.</string>
   <string name="AskOverwriteBinary">Chcete přepsat existující binární soubor se stejným názvem?</string>
   <string name="AskOverwriteBinary_title">Přepsat existující binární soubor?</string>
   <string name="AskOverwriteBinary_yes">Přepsat</string>
@@ -257,17 +269,40 @@
   <string name="SynchronizingDatabase">Slučování změn…</string>
   <string name="YesSynchronize">Ano, sloučit</string>
   <string name="NoOverwrite">Ne, přepsat</string>
+  <string name="SynchronizingCachedDatabase">Synchronizuji databázi v mezipaměti…</string>
+  <string name="DownloadingRemoteFile">Stahuji vzdálený soubor…</string>
+  <string name="UploadingFile">Odesílám soubor…</string>
+  <string name="RestoringRemoteFile">Obnovuji vzdálený soubor…</string>
+  <string name="FilesInSync">Soubory jsou synchronizovány.</string>
+  <string name="SynchronizedDatabaseSuccessfully">Databáze úspěšně synchronizována!</string>
+  <string name="CheckingDatabaseForChanges">Kontrola změn databáze…</string>
+  <string name="CouldNotSaveToRemote">Nelze uložit na vzdálený: %1$s. Uložte znovu, nebo použijte nabídky synchronizovat, až bude vzdálené připojení je opět k dispozici.</string>
+  <string name="CouldNotLoadFromRemote">Nelze otevřít ze vzdálených míst: %1$s. Načítám soubor z místní mezipaměti. Stále můžete provést změny v databázi a synchronizovat později.</string>
+  <string name="UpdatedRemoteFileOnLoad">Vzdálený soubor byl aktualizován.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Otevřen místní soubor kvůli kolizi se změnami ve vzdáleném souboru. Proveďte sloučení pomocí nabídky synchronizace.</string>
+  <string name="LoadedFromRemoteInSync">Vzdálený soubor a soubor místní mezipaměti jsou synchronizovány.</string>
+  <string name="UpdatedCachedFileOnLoad">Aktualizace kopie databáze v místní mezipaměti.</string>
+  <string name="RemoteDatabaseUnchanged">Nebyly zjištěny změny.</string>
+  <string name="synchronize_database_menu">Synchronizovat databázi…</string>
   <string name="ChangeLog_title">Protokol změn</string>
+  <string name="ChangeLog_0_8_5">
+  <b>Verze 0.8.5</b> \n
+* Vzdálené soubory jsou uloženy v mezipaměti místní aplikace, umožňující používání off-line (včetně úprav a pozdější synchronizace). Viz nastavení.\n
+* Oznamovací ikona zbrazujíce stav uzamčení databáze (viz nastavení) \n
+* Lepší stanovení uzamčení v některých situacích\n
+* Databázové soubory jsou načteny do paměti při jeho zadávání hesla pro zvýšení rychlosti načítání (viz nastavení) \n
+* Loložky lze přidat do kořenové skupiny\n
+* Opravy chyb (řešení referenčních pole, problémy s italskou klávesnicí na čínských zařízeních)</string>
   <string name="ChangeLog_0_8_4">
-		<b>Verze 0.8.4</b>\n
-		* Detekce a uložení změn v externích databázích při ukládání\n
-		* Zrychlení načítání\n
-		* Vylepšený nástroj hledání s doporučeními\n
-		* Nové App logo!
-		* Přidána podpora pro formát .kdbp pro rychlejší otvírání/ukládání\n
-		* Vylepšená editace doplňujících textů  a skrytý disple v chráněném móodu\n
-		Díky Alex Vallatza příspěvky v kódu!\n
-		Díky Niki Hüttner (www.close-cut.de) za nové logo!\n
+		<b>Verze 0.8.4</b> \n
+		* Detekce a uložení změn v externích databázích při ukládání \n
+		* Zrychlení načítání \n
+		* Vylepšený nástroj hledání s doporučeními \n
+		* Nové App logo \n
+		* Přidána podpora pro formát .kdbp pro rychlejší otvírání/ukládání \n
+		* Vylepšená editace doplňujících textů  a skrytý disple v chráněném móodu \n 
+		Díky Alex Vallat za příspěvky v kódu! \n
+		Díky Niki Hüttner (www.close-cut.de) za nové logo! \n
 	</string>
   <string name="ChangeLog_0_8_3"><b>Verze 0.8.3</b>\n
 * Uživatelské jméno/TAN index je zobrazen v seznamu položek (viz nastavení)\n

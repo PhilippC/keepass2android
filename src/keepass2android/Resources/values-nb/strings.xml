@@ -213,7 +213,6 @@
   <string name="protection">Beskyttet felt</string>
   <string name="add_binary">Legg til filvedlegg...</string>
   <string name="add_extra_string">Legg til ekstra streng</string>
-  <string name="database_loaded_quickunlock_enabled">Databasen er lastet, QuickUnlock er aktivert.</string>
   <string name="credentials_dialog_title">Angi påloggingsinformasjon</string>
   <string name="UseFileTransactions_title">Filtransaksjoner</string>
   <string name="UseFileTransactions_summary">Bruk filtransaksjoner for skriving til databaser</string>

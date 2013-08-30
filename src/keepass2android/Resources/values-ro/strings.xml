@@ -215,7 +215,6 @@
   <string name="add_binary">Ataşează fişier...</string>
   <string name="add_extra_string">Adaugă string adiţional</string>
   <string name="delete_extra_string">Şterge string adiţional</string>
-  <string name="database_loaded_quickunlock_enabled">Baza de date încărcată, QuickUnlock activat.</string>
   <string name="credentials_dialog_title">Introduceți datele conectare la server</string>
   <string name="UseFileTransactions_title">Tranzacții fișier</string>
   <string name="UseFileTransactions_summary">Foloseşte tranzacţii pentru a scrie bazele de date</string>

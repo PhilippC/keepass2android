@@ -131,6 +131,7 @@
   <string name="menu_search">Cerca</string>
   <string name="menu_search_advanced">Ricerca Avanzata</string>
   <string name="menu_url">Vai all\'URL</string>
+  <string name="menu_change_db">Cambia il database…</string>
   <string name="minus">Meno</string>
   <string name="never">Mai</string>
   <string name="yes">Sì</string>
@@ -179,6 +180,8 @@
   <string name="TanExpiresOnUse_summary">Segna i TAN come scaduti una volta utilizzati</string>
   <string name="ShowUsernameInList_title">Visualizza il nome utente nella lista</string>
   <string name="ShowUsernameInList_summary">Visualizza il nome utente sotto al titolo delle voci. Utile per account multipli o TAN multipli.</string>
+  <string name="RememberRecentFiles_title">Ricorda i database</string>
+  <string name="RememberRecentFiles_summary">Ricorda i database aperti di recente e visualizzali nella schermata Apri database.</string>
   <string name="kp2a_findUrl">Keepass2Android: Trova una password</string>
   <string name="excludeExpiredEntries">Escludi voci scadute</string>
   <string name="search_options">Opzioni</string>
@@ -214,10 +217,15 @@
   <string name="add_binary">Aggiung un allegato...</string>
   <string name="add_extra_string">Aggiungere la stringa aggiuntiva</string>
   <string name="delete_extra_string">Elimina la stringa aggiuntiva</string>
-  <string name="database_loaded_quickunlock_enabled">Database caricato, QuickUnlock abilitato.</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: Bloccato. QuickUnlock abilitato.</string>
+  <string name="database_loaded_unlocked">%1$s: Sbloccato.</string>
   <string name="credentials_dialog_title">Immettere le credenziali del server</string>
   <string name="UseFileTransactions_title">Operazioni di file</string>
   <string name="UseFileTransactions_summary">Usa le transazioni per la scrittura del database</string>
+  <string name="UseOfflineCache_title">Caching del database</string>
+  <string name="UseOfflineCache_summary">Tieni una copia del database remoto nella directory cache dell\'applicativo. Consente di usare i database remoti anche quando si è offline.</string>
+  <string name="ClearOfflineCache_title">Svuotare la cache?</string>
+  <string name="ClearOfflineCache_question">Quest\'operazione cancellerà tutti i file memorizzati nella cache del database. Tutte le modifiche apportate quando eri offline e che non sono ancora state sincronizzate andranno perse! Continuare?</string>
   <string name="CheckForFileChangesOnSave_title">Controlla modifiche</string>
   <string name="CheckForFileChangesOnSave_summary">Controlla se il file è stato modificato esternamente prima di salvare le modifiche.</string>
   <string name="ShowCopyToClipboardNotification_title">Notifiche</string>
@@ -226,6 +234,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">Rendi accessibile dalla tastiera KP2A (raccomandato).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Finestra di dialogo Selezione tastiera</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Apri la finestra di selezione della tastiera quando è disponibile la tastiera KP2A dopo una ricerca.</string>
+  <string name="ShowUnlockedNotification_title">Notifica quando sbloccato</string>
+  <string name="ShowUnlockedNotification_summary">Visualizza una notifica quando il database è sbloccato.</string>
+  <string name="PreloadDatabaseEnabled_title">Pre-carica il file del database</string>
+  <string name="PreloadDatabaseEnabled_summary">Inizia il caricamento in background o il download del database durante l\'immissione della password.</string>
   <string name="AskOverwriteBinary">Vuoi sovrascrivere il file esistense usando lo stesso nome?</string>
   <string name="AskOverwriteBinary_title">Sovrascrivere il file esistente?</string>
   <string name="AskOverwriteBinary_yes">Sovrascrivi</string>
@@ -257,18 +269,40 @@
   <string name="SynchronizingDatabase">Unisco le modifiche...</string>
   <string name="YesSynchronize">Sì, unisci</string>
   <string name="NoOverwrite">No, sovrascrivi</string>
+  <string name="SynchronizingCachedDatabase">Sincronizzazione dei database nella cache…</string>
+  <string name="DownloadingRemoteFile">Download file remoto…</string>
+  <string name="UploadingFile">Caricamento file…</string>
+  <string name="RestoringRemoteFile">Ripristino del file remoto…</string>
+  <string name="FilesInSync">I file sono sincronizzati.</string>
+  <string name="SynchronizedDatabaseSuccessfully">Database sincronizzati con successo!</string>
+  <string name="CheckingDatabaseForChanges">Controllo delle modifiche ai database…</string>
+  <string name="CouldNotSaveToRemote">Impossibile salvare in remoto: %1$s. Salva nuovamente o usa il menu Sincronizza quando la connessione remota sarà nuovamente disponibile.</string>
+  <string name="CouldNotLoadFromRemote">Impossibile aprire da remoto: %1$s. Caricato il file dalla cache locale. Puoi comunque effettuare modifiche al database e sincronizzarle successivamente.</string>
+  <string name="UpdatedRemoteFileOnLoad">File remoto aggiornato.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Aperto il file locale a causa di conflitti con il file in remoto. Usa il menu Sincronizza per unire.</string>
+  <string name="LoadedFromRemoteInSync">Il file remoto e la cache sono sincronizzati.</string>
+  <string name="UpdatedCachedFileOnLoad">Aggiornata la copia cache locale del database.</string>
+  <string name="RemoteDatabaseUnchanged">Nessuna modifica rilevata.</string>
+  <string name="synchronize_database_menu">Sincronizzazione del database…</string>
   <string name="ChangeLog_title">log delle modifiche</string>
+  <string name="ChangeLog_0_8_5">
+<b>Versione 0.8.5</b>\n
+* i file remoti vengono mantenuti nella cache locale dell\'applicazione per permetterne l\'uso offline (compresa la modifica e la successiva sincronizzazione). Vedi Impostazioni. \n
+* Icona di notifica per visualizzare lo stato del blocco del database (vedi Impostazioni)\n
+* Migliorato il rilevamento dello stato del blocco del database in alcune circostanze \n
+* I file dei database vengono caricati in memoria mentre stai digitando la password per aumentare la velocità di caricamento (vedi Impostazioni) \n
+* Le voci possono essere aggiunte al gruppo principale \n
+* Correzione di bug (risoluzione campi con riferimenti, problemi con la tastiera su dispositivi italiani e cinesi)</string>
   <string name="ChangeLog_0_8_4">
-		<b>Version 0.8.4</b>\n
-		* Combiamenti al database esterno vengono rilevate ed unite durante il salvataggio\n
-		* Migliorate le performence in caricamento\n
-		* Migliorata la toolbar di ricerca con suggerimenti\n
-		* Nuovo logo dell\'App!
-		*Aggiunto supporto al formato .kdbp per apertura e salvataggio più veloci\n
-		* Migliorato l\'editing delle stringe aggiuntive e del display nascosto quando protetto\n
-		Grazie a Alex Vallat per il suo contributo al codice!\n
-		Grazie a Niki Hüttner (www.close-cut.de) per il logo!\n
-	</string>
+<b>Versione 0.8.4</b>\n
+* Le modifiche al database esterno vengono rilevate ed unite durante il salvataggio\n
+* Migliorate le performance durante il caricamento\n
+* Migliorata la barra di ricerca con suggerimenti\n
+* Nuovo logo dell\'App!\n
+* Aggiunto supporto al formato .kdbp per apertura e salvataggio più veloci\n
+* Migliorato l\'editing delle stringhe aggiuntive e della visualizzazione nascosta quando protetta\n
+Grazie ad Alex Vallat per il suo contributo al codice!\n
+Grazie a Niki Hüttner (www.close-cut.de) per il logo!\n</string>
   <string name="ChangeLog_0_8_3"><b> Versione 0.8.3 </b>\n
 * Le voci nome utente e indice TAN vengono visualizzati nella lista delle voci di immissione (vedere Impostazioni)\n
 * Le voci possono essere create se la ricerca da browser non restituisce alcun risultato\n
