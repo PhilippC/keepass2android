@@ -24,7 +24,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="brackets">Klammern</string>
   <string name="browser_intall_text">Um diese Funktion nutzen zu können, benötigen Sie den OI File Manager, den Sie über Google Play bzw. direkt von der Entwicklerwebsite herunterladen können. Aufgrund einiger Eigenheiten des Dateimanagers kann es bei der ersten Benutzung zu Einschränkungen kommen.</string>
   <string name="building_search_idx">Suchindex erzeugen…</string>
-  <string name="cancel">Abbr.</string>
+  <string name="cancel">Abbrechen</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
   <string name="clipboard_timeout">Zwischenablagesperre</string>
   <string name="clipboard_timeout_summary">Zeiteinstellung der Zwischenablagesperre während sie inaktiv ist.</string>

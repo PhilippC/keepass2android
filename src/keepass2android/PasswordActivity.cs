@@ -52,6 +52,7 @@ namespace keepass2android
 		private const String KeyServercredmode = "serverCredRememberMode";
 
 		private const String ViewIntent = "android.intent.action.VIEW";
+		private const string _showpasswordKey = "ShowPassword";
 
 		private Task<MemoryStream> _loadDbTask;
 		private IOConnectionInfo _ioConnection;
@@ -199,6 +200,8 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			if (savedInstanceState != null)
+				_showPassword = savedInstanceState.GetBoolean(_showpasswordKey, false);
 			
 			Intent i = Intent;
 			String action = i.Action;
@@ -305,17 +308,11 @@ namespace keepass2android
 			};
 			*/
 			ImageButton btnTogglePassword = (ImageButton)FindViewById(Resource.Id.toggle_password);
-			btnTogglePassword.Click += (sender, e) => {
-				_showPassword = !_showPassword;
-				TextView password = (TextView)FindViewById(Resource.Id.password);
-				if (_showPassword)
+			btnTogglePassword.Click += (sender, e) =>
 				{
-					password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-				} else
-				{
-					password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-				}
-			};
+					_showPassword = !_showPassword;
+					MakePasswordMaskedOrVisible();
+				};
 			
 			
 			
@@ -337,6 +334,19 @@ namespace keepass2android
 			};
 			
 			RetrieveSettings();
+		}
+
+		private void MakePasswordMaskedOrVisible()
+		{
+			TextView password = (TextView) FindViewById(Resource.Id.password);
+			if (_showPassword)
+			{
+				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
+			}
+			else
+			{
+				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+			}
 		}
 
 		private void SetNewDefaultFile()
@@ -409,11 +419,14 @@ namespace keepass2android
 		{
 			base.OnSaveInstanceState(outState);
 			AppTask.ToBundle(outState);
+			outState.PutBoolean(_showpasswordKey, _showPassword);
 		}
 		
 		protected override void OnResume()
 		{
 			base.OnResume();
+
+			MakePasswordMaskedOrVisible();
 
 			// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
 			// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
