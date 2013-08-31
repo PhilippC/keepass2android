@@ -24,7 +24,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="brackets">Klammern</string>
   <string name="browser_intall_text">Um diese Funktion nutzen zu können, benötigen Sie den OI File Manager, den Sie über Google Play bzw. direkt von der Entwicklerwebsite herunterladen können. Aufgrund einiger Eigenheiten des Dateimanagers kann es bei der ersten Benutzung zu Einschränkungen kommen.</string>
   <string name="building_search_idx">Suchindex erzeugen…</string>
-  <string name="cancel">Abbr.</string>
+  <string name="cancel">Abbrechen</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
   <string name="clipboard_timeout">Zwischenablagesperre</string>
   <string name="clipboard_timeout_summary">Zeiteinstellung der Zwischenablagesperre während sie inaktiv ist.</string>
@@ -132,6 +132,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_search">Suchen</string>
   <string name="menu_search_advanced">Erweiterte Suche</string>
   <string name="menu_url">URL öffnen</string>
+  <string name="menu_change_db">Datenbank wechseln…</string>
   <string name="minus">Bindestrich</string>
   <string name="never">Nie</string>
   <string name="yes">Ja</string>
@@ -180,6 +181,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="TanExpiresOnUse_summary">TAN Einträge als abgelaufen markieren, wenn sie geöffnet werden</string>
   <string name="ShowUsernameInList_title">Zeige Benutzernamen in Liste</string>
   <string name="ShowUsernameInList_summary">Zeige Benutzernamen unter den Titeln der Einträge. Hilfreich bei mehreren Accounts für einen Dienst oder bei TANs.</string>
+  <string name="RememberRecentFiles_title">Datenbanken merken</string>
+  <string name="RememberRecentFiles_summary">Speichere Dateinamen der bisher geöffneten Datenbanken und zeige sie im Bildschirm zum Datenbank-Öffnen an.</string>
   <string name="kp2a_findUrl">Passwort suchen (KP2A)</string>
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
   <string name="search_options">Optionen</string>
@@ -215,10 +218,15 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="add_binary">Dateianhang hinzufügen...</string>
   <string name="add_extra_string">Zusätzliches Feld hinzufügen</string>
   <string name="delete_extra_string">Zusätzliches Feld löschen</string>
-  <string name="database_loaded_quickunlock_enabled">Datenbank geladen, QuickUnlock aktiviert.</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: gesperrt. QuickUnlock aktiviert.</string>
+  <string name="database_loaded_unlocked">%1$s: Entsperrt.</string>
   <string name="credentials_dialog_title">Serverzugangsdaten eingeben</string>
   <string name="UseFileTransactions_title">Dateitransaktionen</string>
   <string name="UseFileTransactions_summary">Dateitransaktionen beim Schreiben von Datenbank-Dateien verwenden</string>
+  <string name="UseOfflineCache_title">Datenbank-Caching</string>
+  <string name="UseOfflineCache_summary">Speichere eine Kopie der Remote-Datenbank-Dateien im Cache-Verzeichnis der App. Das erlaubt die Nutzung von Remote-Datenbanken auch wenn du offline bist.</string>
+  <string name="ClearOfflineCache_title">Cache löschen?</string>
+  <string name="ClearOfflineCache_question">Alle Datenbank-Dateien im Cache werden gelöscht. Änderungen, die du gemacht hast während du offline warst und die noch nicht synchronisiert wurden, werden verloren gehen! Fortfahren?</string>
   <string name="CheckForFileChangesOnSave_title">Auf Änderungen prüfen</string>
   <string name="CheckForFileChangesOnSave_summary">Vor dem Speichern prüfen, ob die Datei von außerhalb geändert wurde.</string>
   <string name="ShowCopyToClipboardNotification_title">Zwischenablage-Benachrichtigungen</string>
@@ -227,6 +235,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur-Aktivierung</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zur Auswahl der Tastatur automatisch anzeigen, wenn ein Eintrag nach Suche über die KP2A-Tastatur verfügbar ist.</string>
+  <string name="ShowUnlockedNotification_title">Benachrichtigung wenn entsperrt</string>
+  <string name="ShowUnlockedNotification_summary">Zeige ein Symbol in der Benachrichtigungsleiste, solange die Datenbank entsperrt ist.</string>
+  <string name="PreloadDatabaseEnabled_title">Datenbank vor-laden</string>
+  <string name="PreloadDatabaseEnabled_summary">Starte das Laden oder Herunterladen von Datenbank-Dateien im Hintergrund während dem Eingeben des Passworts.</string>
   <string name="AskOverwriteBinary">Möchtest du den vorhandenen Anhang mit dem gleichen Namen überschreiben?</string>
   <string name="AskOverwriteBinary_title">Vorhandenen Anhang überschreiben?</string>
   <string name="AskOverwriteBinary_yes">Überschreiben</string>
@@ -258,16 +270,40 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="SynchronizingDatabase">Führe Änderungen zusammen…</string>
   <string name="YesSynchronize">Ja, zusammenführen</string>
   <string name="NoOverwrite">Nein, überschreiben</string>
+  <string name="SynchronizingCachedDatabase">Synchronisiere gecachte Datenbank…</string>
+  <string name="DownloadingRemoteFile">Lade Remote-Datei herunter…</string>
+  <string name="UploadingFile">Lade Datei hoch…</string>
+  <string name="RestoringRemoteFile">Stelle Remote-Datei wieder her…</string>
+  <string name="FilesInSync">Remote- und Cache-Dateien sind identisch.</string>
+  <string name="SynchronizedDatabaseSuccessfully">Datenbank erfolgreich synchronisiert!</string>
+  <string name="CheckingDatabaseForChanges">Prüfe auf Änderungen der Datenbank…</string>
+  <string name="CouldNotSaveToRemote">Konnte Datei nicht auf dem Server speichern: %1$s. Speichere später erneut or nutze das Synchronisieren-Menü wenn die Internetverbindung wieder besteht.</string>
+  <string name="CouldNotLoadFromRemote">Konnte Datei nicht vom Server laden: %1$s. Datei wird aus lokalem Cache geladen. Du kannst Änderungen an der Datenbank vornehmen und sie später synchronisieren.</string>
+  <string name="UpdatedRemoteFileOnLoad">Remote-Datei aktualisiert.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Datei aus lokalem Cache geladen wegen Konflikt mit Änderungen in der Remote-Datei. Nutze das Synchronisierungsmenü zum Zusammenführen.</string>
+  <string name="LoadedFromRemoteInSync">Remote-Datei und Cache stimmen überein.</string>
+  <string name="UpdatedCachedFileOnLoad">Kopie der Datenbank im lokalen Cache aktualisiert.</string>
+  <string name="RemoteDatabaseUnchanged">Keine Änderungen gefunden.</string>
+  <string name="synchronize_database_menu">Datenbank wird synchronisiert…</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
-  <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n 
-* Externe Datenbankänderungen werden beim Speichern erkannt und zusammengeführt\n 
-* Gesteigerte Geschwindigkeit beim Laden\n 
-* Suchleiste mit Vorschlägen\n 
-* Neues App Logo!\n 
-* Unterstützung für das .kdbp-Format für schnelleres Laden/Speichern\n 
-* Verbesserte Bearbeitung von zusätzlichen Feldern und versteckte Darstellung von geschützten Feldern\n 
-Danke an Alex Vallat für seinen Beitrag zum Programm!\n 
-Danke an Niki Hüttner (www.close-cut.de) für das neue Logo!\n</string>
+  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
+		* Remote-Dateien werden im lokalen Cache gespeichert. Das erlaubt Offline-Nutzung (inkl. Bearbeiten und späterem Synchronisieren). S. Einstellungen.\n
+		* Benachrichtigungssymbol zum Visualisieren des Sperr-Zustands (s. Einstellungen)\n
+		* Verbesserungen, um die Datenbank zur richtigen Zeit zu sperren\n
+		* Datenbank-Dateien werden in den Speicher geladen, während du das Passwort eingibst. Dadurch erhöhte Ladegeschwindigkeit.\n
+		* Einträge können zur obersten Gruppe hinzugefügt werden.\n
+		* Bug Fixes (Auflösen von von Referenzfeldern u.a.)</string>
+  <string name="ChangeLog_0_8_4">
+		<b>Version 0.8.4</b>\n
+		* Externe Änderungen an der Datenbank werden erkannt und beim Speichern zusammengeführt\n
+		* Verbesserte Geschwindigkeit beim starten\n
+		* Verbesserte Suchleiste mit Vorschlägen\n
+		* Neues App logo!\n
+		* Unterstützung für .kdbp Format für schnelleres laden und speichern hinzugefügt\n
+		* Verbesserung beim bearbeiten von zusätzlichen Feldern und versteckte Darstellung von geschützten Feldern\n
+		Danke an Alex Vallat für seine Mitwirkung beim Code!\n
+		Danke an Niki Hüttner (www.close-cut.de) für das neue Logo!\n
+	</string>
   <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * Benutzername/TAN index wird in Liste der Einträge angezeigt (s. Einstellungen)\n
 * Einträge können neu angelegt werden, wenn Suche aus Browser kein Ergebnis gebracht hat\n

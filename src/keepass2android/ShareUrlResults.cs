@@ -28,7 +28,8 @@ using Android.Content.PM;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/kp2a_findUrl", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/Base")]		
+	[Activity (Label = "@string/kp2a_findUrl", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/Base")]
+	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]	
 	public class ShareUrlResults : GroupBaseActivity
 	{
 

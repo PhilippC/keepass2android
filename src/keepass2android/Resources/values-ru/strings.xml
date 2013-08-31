@@ -131,6 +131,7 @@
   <string name="menu_search">Поиск</string>
   <string name="menu_search_advanced">Расширенный поиск</string>
   <string name="menu_url">Ссылка</string>
+  <string name="menu_change_db">Изменить базу данных…</string>
   <string name="minus">-Дефис-</string>
   <string name="never">Никогда</string>
   <string name="yes">Да</string>
@@ -179,6 +180,8 @@
   <string name="TanExpiresOnUse_summary">Помечать TAN записи как устаревшие при их использовании</string>
   <string name="ShowUsernameInList_title">Отображать имя пользователя в списке</string>
   <string name="ShowUsernameInList_summary">Отображать имена пользователей под заголовками. Полезно для множественных аккаунтов или TAN.</string>
+  <string name="RememberRecentFiles_title">Запоминать базы данных</string>
+  <string name="RememberRecentFiles_summary">Запоминать недавно открытые базы и отображать их на экране открытия базы данных.</string>
   <string name="kp2a_findUrl">Keepass2Android: Найти пароль</string>
   <string name="excludeExpiredEntries">Исключить просроченные записи</string>
   <string name="search_options">Параметры</string>
@@ -214,10 +217,15 @@
   <string name="add_binary">Добавьте вложенный файл...</string>
   <string name="add_extra_string">Добавить дополнительную строку</string>
   <string name="delete_extra_string">Удалить дополнительную строку</string>
-  <string name="database_loaded_quickunlock_enabled">База данных загружен, БыстраяРазблокировка включена.</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
+  <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
   <string name="credentials_dialog_title">Введите учетные данные сервера</string>
   <string name="UseFileTransactions_title">Файловые транзакции</string>
   <string name="UseFileTransactions_summary">Использовать файловые транзакции для записи баз данных</string>
+  <string name="UseOfflineCache_title">Кэширование базы данных</string>
+  <string name="UseOfflineCache_summary">Сохранять копию удалённой базы данных в папке кэша приложения. Это даст возможность использовать удалённые базы в даже без доступа к сети.</string>
+  <string name="ClearOfflineCache_title">Очистить кэш?</string>
+  <string name="ClearOfflineCache_question">Это удалит все кэшированные файлы баз данных. Любые несинхронизированные изменения, внесённые в автономном режиме, будут потеряны! Продолжить?</string>
   <string name="CheckForFileChangesOnSave_title">Проверить на наличие изменений</string>
   <string name="CheckForFileChangesOnSave_summary">Проверка был ли файл изменен извне до сохранения изменений.</string>
   <string name="ShowCopyToClipboardNotification_title">Уведомления буфера обмена</string>
@@ -226,6 +234,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">Сделайте всю запись доступной через клавиатуру KP2A (рекомендуется).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Диалог выбора клавиатуры</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Открывать диалог выбора клавиатуры, когда запись доступна через клавиатуру KP2A после поиска.</string>
+  <string name="ShowUnlockedNotification_title">Уведомление, когда разблокирована</string>
+  <string name="ShowUnlockedNotification_summary">Показать текущие уведомления, во время разблокировки базы данных.</string>
+  <string name="PreloadDatabaseEnabled_title">Предварительная загрузка файла базы данных</string>
+  <string name="PreloadDatabaseEnabled_summary">Запуск фоновой загрузки или скачивания файла базы данных во время ввода пароля.</string>
   <string name="AskOverwriteBinary">Вы хотите перезаписать существующий двоичный файл с тем же именем?</string>
   <string name="AskOverwriteBinary_title">Перезаписать существующий двоичный файл?</string>
   <string name="AskOverwriteBinary_yes">Перезаписать</string>
@@ -257,16 +269,39 @@
   <string name="SynchronizingDatabase">Слияние изменений…</string>
   <string name="YesSynchronize">Да, объединить</string>
   <string name="NoOverwrite">Нет, перезаписать</string>
+  <string name="SynchronizingCachedDatabase">Синхронизация кэшированной базы данных…</string>
+  <string name="DownloadingRemoteFile">Скачивание удалённого файла…</string>
+  <string name="UploadingFile">Загрузка файла…</string>
+  <string name="RestoringRemoteFile">Восстановление удалённого файла…</string>
+  <string name="FilesInSync">Файлы синхронизируются.</string>
+  <string name="SynchronizedDatabaseSuccessfully">База данных успешно синхронизирована!</string>
+  <string name="CheckingDatabaseForChanges">Проверка базы данных на наличие изменений…</string>
+  <string name="CouldNotSaveToRemote">Не удаётся сохранить удалённый файл: %1$s. Повторите сохранение или используйте меню Синхронизация, когда появится доступ к сети.</string>
+  <string name="CouldNotLoadFromRemote">Не удалось открыть удалённый файл: %1$s. Загружена локальная кэшированная копия. Вы можете вносить изменения в базу данных и синхронизировать их позже.</string>
+  <string name="UpdatedRemoteFileOnLoad">Обновленный удалённый файл.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Открыт локальный файл из-за конфликта с изменениями в удалённом файле. Используйте меню Синхронизация для слияния.</string>
+  <string name="LoadedFromRemoteInSync">Удалённый файл и кэш синхронизированы.</string>
+  <string name="UpdatedCachedFileOnLoad">Обновление локальной кэшированной копии базы данных.</string>
+  <string name="RemoteDatabaseUnchanged">Изменений не обнаружено.</string>
+  <string name="synchronize_database_menu">Синхронизируйте базу данных…</string>
   <string name="ChangeLog_title">Список изменений</string>
-  <string name="ChangeLog_0_8_4"><b>Версия 0.8.4</b>\n 
-* Внешние модификации базы данных обнаруживаются и объединяются при сохранении\n 
-* Улучшена скорость загрузки\n 
-* Улучшенная панель поиска с подсказками\n 
-* Новый логотип приложения! \n
-* Добавлена поддержка формата .kdbp для более быстрого чтения/записи\n 
-* Улучшено редактирование дополнительных записей и скрытие защищённых\n 
-Благодарю Alex Vallat за вклад в развитие кода!\n 
-Благодарю Niki Hüttner (www.close-cut.de) за новый логотип!\</string>
+  <string name="ChangeLog_0_8_5"><b>Версия 0.8.5</b>\n
+* Удалённый файлы хранятся в локальном кэше приложения для оффлайн-использования (включая редактирование и синхронизацию). См.  настройки. \n
+* Значок в уведомления для отображения статуса блокировки базы данных (см. настройки)\n
+* Улучшено определение статуса блокировки в некоторых ситуациях\n
+* Файлы баз данных загружаются в память во время ввода пароля для ускорения процесса загрузки (см. настройки)\n
+* Записи могут быть добавлены в корневую категорию\n
+* Исправления ошибок (разрешение справочных областей, проблемы с клавиатурой на итальянских и китайских устройствах)
+</string>
+  <string name="ChangeLog_0_8_4"><b>Версия 0.8.4</b>\n
+* Внешние модификации базы данных обнаруживаются и объединяются при сохранении\n
+* Улучшена скорость загрузки\n
+* Улучшенная панель поиска с подсказками\n
+* Новый логотип приложения!\n
+* Добавлена поддержка формата .kdbp для более быстрого чтения/записи\n
+* Улучшено редактирование дополнительных записей и скрытие защищённых\n
+Благодарю Alex Vallat за вклад в развитие кода!\n
+Благодарю Niki Hüttner (www.close-cut.de) за новый логотип!\n</string>
   <string name="ChangeLog_0_8_3"><b>Версия 0.8.3</b>\n
 * Отображение имени пользователя/TAN в списке записей (см. в настройках)\n
 * Записи могут быть созданы, если поиск из браузера ничего не вернул\n

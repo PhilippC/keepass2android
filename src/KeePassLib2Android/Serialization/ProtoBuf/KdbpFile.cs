@@ -16,6 +16,14 @@ namespace KeePassLib.Serialization
 		public const string FileNameExtension = "kdbp";
 
 		/// <summary>
+		/// Precompiles the serializer classes for faster first-run execution
+		/// </summary>
+		public static void PrepareSerializer()
+		{
+			RuntimeTypeModel.Default[typeof(PwDatabaseBuffer)].CompileInPlace();
+		}
+
+		/// <summary>
 		/// Determines whether the database pointed to by the specified ioc should be (de)serialised in default (xml) or protocol buffers format.
 		/// </summary>
 		public static KdbxFormat GetFormatToUse(IOConnectionInfo ioc)
