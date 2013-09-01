@@ -24,5 +24,7 @@
 	<color name="icon_text">#000000</color>
 	<color name="light_gray">#a8a8a8</color>
 	<color name="dark_gray">#303030</color>
+
+	<color name="element_being_moved">#a8a8a8</color>
 	
 </resources>    

@@ -28,5 +28,7 @@
     <color name="emphasis2">#4f7a8a</color>
     <color name="bg_gray">#cecbce</color>
     <color name="light_gray">#a8a8a8</color>
+
+	<color name="element_being_moved">#a8a8a8</color>
     
 </resources>    

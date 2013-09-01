@@ -35,6 +35,8 @@ namespace keepass2android.view
 		private readonly TextView _textviewDetails;
 		private int _pos;
 
+		private int? _defaultTextColor;
+
 		readonly bool _showDetail;
 
 		private const int MenuOpen = Menu.First;
@@ -98,14 +100,18 @@ namespace keepass2android.view
 			}
 			_textView.TextFormatted = str;
 
-			//todo: get colors from resources
+			if (_defaultTextColor == null)
+				_defaultTextColor = _textView.TextColors.DefaultColor;
+
 			if (_groupActivity.IsBeingMoved(_entry.Uuid))
-				_textView.SetTextColor(new Color(180,180,180));
+			{
+				int elementBeingMoved = Context.Resources.GetColor(Resource.Color.element_being_moved);
+				_textView.SetTextColor(new Color(elementBeingMoved));
+			}
 			else
-				_textView.SetTextColor(new Color(0,0,0));
+				_textView.SetTextColor(new Color((int)_defaultTextColor));
 
 			String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
-
 
 			if ((_showDetail == false) || (String.IsNullOrEmpty(detail)))
 			{

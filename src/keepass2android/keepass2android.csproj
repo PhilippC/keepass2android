@@ -600,7 +600,9 @@
     <AndroidResource Include="Resources\values-v14\styles.xml" />
     <AndroidResource Include="Resources\values-v14\colors.xml" />
     <AndroidResource Include="Resources\layout-v14\entry_view_contents.xml" />
-    <AndroidResource Include="Resources\layout-v14\group_add_entry.xml" />
+    <AndroidResource Include="Resources\layout-v14\group_add_entry.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout-v14\entry_view.xml" />
     <AndroidResource Include="Resources\layout-v14\entry_edit.xml" />
     <AndroidResource Include="Resources\layout-v14\SaveButton.xml" />

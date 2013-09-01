@@ -196,6 +196,7 @@ namespace keepass2android
 				{
 					tv.Click += (sender, e) => 
 					{
+						AppTask.SetActivityResult(this, KeePass.ExitNormal);
 						Finish();
 					};
 				} else

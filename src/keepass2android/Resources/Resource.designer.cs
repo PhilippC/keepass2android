@@ -165,8 +165,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f060001
 			public const int candidate_recommended = 2131099649;
 			
+			// aapt resource value: 0x7f06000e
+			public const int dark_gray = 2131099662;
+			
 			// aapt resource value: 0x7f06000d
-			public const int dark_gray = 2131099661;
+			public const int element_being_moved = 2131099661;
 			
 			// aapt resource value: 0x7f060009
 			public const int emphasis = 2131099657;

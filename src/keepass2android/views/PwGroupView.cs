@@ -31,6 +31,7 @@ namespace keepass2android.view
 		private PwGroup _pwGroup;
 		private readonly GroupBaseActivity _groupBaseActivity;
 		private readonly TextView _textview;
+		private int? _defaultTextColor;
 
 		private const int MenuOpen = Menu.First;
 		private const int MenuDelete = MenuOpen + 1;
@@ -75,11 +76,16 @@ namespace keepass2android.view
 			
 			_textview.Text = pw.Name;
 
-			//todo: get colors from resources
+			if (_defaultTextColor == null)
+				_defaultTextColor = _textview.TextColors.DefaultColor;
+
 			if (_groupBaseActivity.IsBeingMoved(_pwGroup.Uuid))
-				_textview.SetTextColor(new Color(180, 180, 180));
+			{
+				int elementBeingMoved = Context.Resources.GetColor(Resource.Color.element_being_moved);
+				_textview.SetTextColor(new Color(elementBeingMoved));
+			}
 			else
-				_textview.SetTextColor(new Color(0, 0, 0));
+				_textview.SetTextColor(new Color((int)_defaultTextColor));
 
 			
 		}
@@ -91,7 +97,7 @@ namespace keepass2android.view
 		public override void OnClick() {
 			LaunchGroup();
 		}
-		
+
 		private void LaunchGroup() {
 			GroupActivity.Launch(_groupBaseActivity, _pwGroup, _groupBaseActivity.AppTask);
 			_groupBaseActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
