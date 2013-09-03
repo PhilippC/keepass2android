@@ -153,6 +153,10 @@ namespace keepass2android
 					SetResult(KeePass.ExitCloseAfterTaskComplete);
 					Finish();
 					break;
+				case KeePass.ExitClose:
+					SetResult(KeePass.ExitClose);
+					Finish();
+					break;
 				case KeePass.ExitReloadDb:
 					//if the activity was killed, fill password/keyfile so the user can directly hit load again
 					if (App.Kp2a.GetDb().Loaded)

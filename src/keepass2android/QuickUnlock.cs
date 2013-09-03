@@ -117,6 +117,12 @@ namespace keepass2android
 				keyboard.ShowSoftInput(pwd, 0);
 			}, 50);
 		}
+
+		public override void OnBackPressed()
+		{
+			SetResult(KeePass.ExitClose);
+			base.OnBackPressed();
+		}
 	}
 }
 
