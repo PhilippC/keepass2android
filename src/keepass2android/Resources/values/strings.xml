@@ -10,6 +10,7 @@
   <string name="add_url_entry">Create entry for URL</string>
   <string name="add_group">Add group</string>
   <string name="add_group_title">Add Group</string>
+  <string name="edit_group_title">Edit Group</string>
   <string name="algorithm">Algorithm</string>
   <string name="algorithm_colon">Algorithm</string>
   <string name="app_name">Keepass2Android</string>

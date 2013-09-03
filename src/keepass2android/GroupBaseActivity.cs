@@ -71,6 +71,30 @@ namespace keepass2android
 
 			AppTask.TryGetFromActivityResult(data, ref AppTask);
 
+			if (resultCode == Result.Ok)
+			{
+				String groupName = data.Extras.GetString(GroupEditActivity.KeyName);
+				int groupIconId = data.Extras.GetInt(GroupEditActivity.KeyIconId);
+				PwUuid groupCustomIconId =
+					new PwUuid(MemUtil.HexStringToByteArray(data.Extras.GetString(GroupEditActivity.KeyCustomIconId)));
+				String strGroupUuid = data.Extras.GetString(GroupEditActivity.KeyGroupUuid);
+				GroupBaseActivity act = this;
+				Handler handler = new Handler();
+				RunnableOnFinish task;
+				if (strGroupUuid == null)
+				{
+					task = AddGroup.GetInstance(this, App.Kp2a, groupName, groupIconId, Group, new RefreshTask(handler, this), false);
+				}
+				else
+				{
+					PwUuid groupUuid = new PwUuid(MemUtil.HexStringToByteArray(strGroupUuid));
+					task = new EditGroup(this, App.Kp2a, groupName, (PwIcon) groupIconId, groupCustomIconId, App.Kp2a.GetDb().Groups[groupUuid],
+					                     new RefreshTask(handler, this));
+				}
+				ProgressTask pt = new ProgressTask(App.Kp2a, act, task);
+				pt.Run();
+			}
+
 			if (resultCode == KeePass.ExitCloseAfterTaskComplete)
 			{
 				AppTask.SetActivityResult(this, KeePass.ExitCloseAfterTaskComplete);
@@ -491,6 +515,10 @@ namespace keepass2android
 		}
 
 
+		public void EditGroup(PwGroup pwGroup)
+		{
+			GroupEditActivity.Launch(this, pwGroup.ParentGroup, pwGroup);
+		}
 	}
 }
 

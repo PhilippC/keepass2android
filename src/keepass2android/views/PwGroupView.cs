@@ -36,6 +36,7 @@ namespace keepass2android.view
 		private const int MenuOpen = Menu.First;
 		private const int MenuDelete = MenuOpen + 1;
 		private const int MenuMove = MenuDelete + 1;
+		private const int MenuEdit = MenuDelete + 2;
 		
 		public static PwGroupView GetInstance(GroupBaseActivity act, PwGroup pw) {
 
@@ -108,26 +109,29 @@ namespace keepass2android.view
 			menu.Add(0, MenuOpen, 0, Resource.String.menu_open);
 			menu.Add(0, MenuDelete, 0, Resource.String.menu_delete);
 			menu.Add(0, MenuMove, 0, Resource.String.menu_move);
+			menu.Add(0, MenuEdit, 0, Resource.String.menu_edit);
 		}
 		
 		public override bool OnContextItemSelected(IMenuItem item) 
 		{
 			switch ( item.ItemId ) {
-				
-			case MenuOpen:
-				LaunchGroup();
-				return true;
+				case MenuOpen:
+					LaunchGroup();
+					return true;
 			
-			case MenuDelete:
-				Handler handler = new Handler();
-				DeleteGroup task = new DeleteGroup(Context, App.Kp2a, _pwGroup, new GroupBaseActivity.AfterDeleteGroup(handler, _groupBaseActivity));
-				task.Start();
-				return true;
-			case MenuMove:
-				_groupBaseActivity.StartTask(new MoveElementTask { Uuid = _pwGroup.Uuid });
-				return true;
-			default:
-				return false;
+				case MenuDelete:
+					Handler handler = new Handler();
+					DeleteGroup task = new DeleteGroup(Context, App.Kp2a, _pwGroup, new GroupBaseActivity.AfterDeleteGroup(handler, _groupBaseActivity));
+					task.Start();
+					return true;
+				case MenuMove:
+					_groupBaseActivity.StartTask(new MoveElementTask { Uuid = _pwGroup.Uuid });
+					return true;
+				case MenuEdit:
+					_groupBaseActivity.EditGroup(_pwGroup);
+					return true;
+				default:
+					return false;
 			}
 		}
 		

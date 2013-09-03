@@ -164,21 +164,12 @@ namespace keepass2android
 		{
 			switch (resultCode)
 			{
-			case Result.Ok:
-				String groupName = data.Extras.GetString(GroupEditActivity.KeyName);
-				int groupIconId = data.Extras.GetInt(GroupEditActivity.KeyIconId);
-				GroupBaseActivity act = this;
-				Handler handler = new Handler();
-				AddGroup task = AddGroup.GetInstance(this, App.Kp2a, groupName, groupIconId, Group, new RefreshTask(handler, this), false);
-                ProgressTask pt = new ProgressTask(App.Kp2a, act, task);
-				pt.Run();
-				break;
 				
-			case Result.Canceled:
-				break;
-			default:
-				base.OnActivityResult(requestCode, resultCode, data);
-				break;
+				case Result.Canceled:
+					break;
+				default:
+					base.OnActivityResult(requestCode, resultCode, data);
+					break;
 			}
 		}
 	}

@@ -21,6 +21,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using KeePassLib;
+using KeePassLib.Utility;
 
 namespace keepass2android
 {
@@ -30,16 +31,31 @@ namespace keepass2android
 		public const String KeyParent = "parent";
 		public const String KeyName = "name";
 		public const String KeyIconId = "icon_id";
+		public const String KeyCustomIconId = "custom_icon_id";
+		public const string KeyGroupUuid = "group_uuid";
 		
 		private int _selectedIconId;
-		
-		public static void Launch(Activity act, PwGroup pw)
+		private PwUuid _selectedCustomIconId = PwUuid.Zero;
+		private PwGroup _groupToEdit;
+
+		public static void Launch(Activity act, PwGroup parentGroup)
 		{
 			Intent i = new Intent(act, typeof(GroupEditActivity));
 			
-			PwGroup parent = pw;
+			PwGroup parent = parentGroup;
 			i.PutExtra(KeyParent, parent.Uuid.ToHexString());
 			
+			act.StartActivityForResult(i, 0);
+		}
+
+		public static void Launch(Activity act, PwGroup parentGroup, PwGroup groupToEdit)
+		{
+			Intent i = new Intent(act, typeof(GroupEditActivity));
+
+			PwGroup parent = parentGroup;
+			i.PutExtra(KeyParent, parent.Uuid.ToHexString());
+			i.PutExtra(KeyGroupUuid, groupToEdit.Uuid.ToHexString());
+
 			act.StartActivityForResult(i, 0);
 		}
 		
@@ -47,8 +63,7 @@ namespace keepass2android
 		{
 			base.OnCreate (savedInstanceState);
 			SetContentView (Resource.Layout.group_edit);
-			SetTitle (Resource.String.add_group_title);
-			
+
 			ImageButton iconButton = (ImageButton)FindViewById (Resource.Id.icon_button);
 			iconButton.Click += (sender, e) => 
 			{
@@ -67,6 +82,10 @@ namespace keepass2android
 					
 					intent.PutExtra (KeyName, name);
 					intent.PutExtra (KeyIconId, _selectedIconId);
+					intent.PutExtra(KeyCustomIconId, MemUtil.ByteArrayToHexString(_selectedCustomIconId.UuidBytes));
+					if (_groupToEdit != null)
+						intent.PutExtra(KeyGroupUuid, MemUtil.ByteArrayToHexString(_groupToEdit.Uuid.UuidBytes));
+
 					SetResult (Result.Ok, intent);
 					
 					Finish ();
@@ -74,6 +93,23 @@ namespace keepass2android
 					Toast.MakeText (this, Resource.String.error_no_name, ToastLength.Long).Show ();
 				}
 			};
+
+			if (Intent.HasExtra(KeyGroupUuid))
+			{
+				string groupUuid = Intent.Extras.GetString(KeyGroupUuid);
+				_groupToEdit = App.Kp2a.GetDb().Groups[new PwUuid(MemUtil.HexStringToByteArray(groupUuid))];
+				_selectedIconId = (int) _groupToEdit.IconId;
+				_selectedCustomIconId = _groupToEdit.CustomIconUuid;
+				TextView nameField = (TextView)FindViewById(Resource.Id.group_name);
+				nameField.Text = _groupToEdit.Name;
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iconButton, Resources, App.Kp2a.GetDb().KpDatabase, _groupToEdit.IconId, _groupToEdit.CustomIconUuid);
+				SetTitle(Resource.String.edit_group_title);
+			}
+			else
+			{
+				SetTitle(Resource.String.add_group_title);
+			}
+
 			     
 			
 			Button cancel = (Button)FindViewById (Resource.Id.cancel);
@@ -89,11 +125,12 @@ namespace keepass2android
 		{
 			switch ((int)resultCode)
 			{
-			case EntryEditActivity.ResultOkIconPicker:
-				_selectedIconId = data.Extras.GetInt(IconPickerActivity.KeyIconId);
-				ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-				currIconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId));
-				break;
+				case EntryEditActivity.ResultOkIconPicker:
+					_selectedIconId = data.Extras.GetInt(IconPickerActivity.KeyIconId);
+					_selectedCustomIconId = PwUuid.Zero;
+					ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
+					currIconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId));
+					break;
 			}
 		}
 	}
