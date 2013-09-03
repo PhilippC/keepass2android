@@ -23,9 +23,11 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
+using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
+using TwofishCipher;
 using keepass2android.Io;
 
 namespace keepass2android
@@ -379,6 +381,7 @@ namespace keepass2android
                 GetResourceString(key);
             }
 #endif
+			CipherPool.GlobalPool.AddCipher(new TwofishCipherEngine());
         }
 
         

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoDroidUnitTesting", "mon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kp2aUnitTests", "Kp2aUnitTests\Kp2aUnitTests.csproj", "{46B769B8-2C58-4138-9CC0-70E3AE3C9A3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwofishCipher", "TwofishCipher\TwofishCipher.csproj", "{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +184,24 @@ Global
 		{46B769B8-2C58-4138-9CC0-70E3AE3C9A3A}.ReleaseNoNet|Mixed Platforms.Deploy.0 = ReleaseNoNet|Any CPU
 		{46B769B8-2C58-4138-9CC0-70E3AE3C9A3A}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
 		{46B769B8-2C58-4138-9CC0-70E3AE3C9A3A}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Release|Win32.ActiveCfg = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.Release|x64.ActiveCfg = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.ReleaseNoNet|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
+		{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

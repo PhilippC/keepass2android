@@ -666,6 +666,10 @@
       <Project>{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}</Project>
       <Name>Kp2aKeyboardBinding</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
+      <Project>{5cf675a5-9bee-4720-bed9-d5bf14a2ebf9}</Project>
+      <Name>TwofishCipher</Name>
+    </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
