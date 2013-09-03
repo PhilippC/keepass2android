@@ -44,7 +44,21 @@ namespace keepass2android
 			
 			FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
 			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;;
-			FindPreference(GetString(Resource.String.UseOfflineCache_key)).PreferenceChange += OnUseOfflineCacheChanged;
+			
+			Preference cachingPreference = FindPreference(GetString(Resource.String.UseOfflineCache_key));
+			cachingPreference.PreferenceChange += OnUseOfflineCacheChanged;
+
+#if NoNet
+			try
+			{
+				((PreferenceCategory) FindPreference(GetString(Resource.String.db_key))).RemovePreference(cachingPreference);
+			}
+			catch (Exception ex)
+			{
+				Kp2aLog.Log(ex.ToString());	
+			}
+#endif
+
 
 			FindPreference(GetString(Resource.String.db_key)).Enabled = false;
 		}

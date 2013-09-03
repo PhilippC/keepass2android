@@ -435,7 +435,6 @@ namespace keepass2android
     ///Application class for Keepass2Android: Contains static Database variable to be used by all components.
 #if NoNet
 	[Application(Debuggable=false, Label=AppNames.AppName)]
-	todo: remove caching preference
 #else
 #if RELEASE 
 	[Application(Debuggable=false, Label=AppNames.AppName)] 
