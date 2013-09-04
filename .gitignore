@@ -123,3 +123,5 @@ Thumbs.db
 /src/java/kp2akeytransform/.settings
 /src/Kp2aUnitTests/bin/ReleaseNoNet/Jars
 /src/Kp2aUnitTests/bin/ReleaseNoNet
+/src/TwofishCipher/bin
+/src/TwofishCipher/obj

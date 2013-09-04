@@ -36,13 +36,17 @@ namespace keepass2android
 			SetTitle(Resource.String.app_name);
 			
 			SetVersion();
+			SetContributors();
 			
-			Button okButton = (Button) FindViewById(Resource.Id.about_button);
-			okButton.Click += (sender, e) => {
-					Dismiss();
-			};
+			
 		}
-		
+
+		private void SetContributors()
+		{
+			TextView tv = (TextView)FindViewById(Resource.Id.further_authors);
+			tv.Text = Context.GetString(Resource.String.further_authors, new Java.Lang.Object[] { Context.GetString(Resource.String.further_author_names) });
+		}
+
 		private void SetVersion() {
 			Context ctx = Context;
 			
@@ -55,9 +59,10 @@ namespace keepass2android
 				version = "";
 			}
 			
-			TextView tv = (TextView) FindViewById(Resource.Id.version);
+			TextView tv = (TextView) FindViewById(Resource.Id.versionX);
 			tv.Text = version;
-			
+
+			FindViewById(Resource.Id.versionB).Click += (sender, args) => ChangeLog.ShowChangeLog(ctx, () => { });
 		}
 		
 	}

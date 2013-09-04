@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="app\ApplicationBroadcastReceiver.cs" />
+    <Compile Include="ChangeLog.cs" />
     <Compile Include="icons\DrawableFactory.cs" />
     <Compile Include="icons\Icons.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -730,5 +731,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_launcher_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\dimens.xml" />
   </ItemGroup>
 </Project>

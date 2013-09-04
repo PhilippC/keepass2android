@@ -28,7 +28,6 @@ namespace keepass2android
 		{
 			KeePassLib2Android.Resource.String.library_name = keepass2android.Resource.String.library_name;
 			TwofishCipher.Resource.String.ApplicationName = keepass2android.Resource.String.ApplicationName;
-			TwofishCipher.Resource.String.Hello = keepass2android.Resource.String.Hello;
 			TwofishCipher.Resource.String.library_name = keepass2android.Resource.String.library_name;
 		}
 		
@@ -207,6 +206,12 @@ namespace keepass2android
 		
 		public partial class Dimension
 		{
+			
+			// aapt resource value: 0x7f080003
+			public const int activity_horizontal_margin = 2131230723;
+			
+			// aapt resource value: 0x7f080004
+			public const int activity_vertical_margin = 2131230724;
 			
 			// aapt resource value: 0x7f080001
 			public const int candidate_font_height = 2131230721;
@@ -579,527 +584,542 @@ namespace keepass2android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0d000a
-			public const int Credit = 2131558410;
+			// aapt resource value: 0x7f0d000f
+			public const int Credit = 2131558415;
 			
-			// aapt resource value: 0x7f0d0074
-			public const int IconGridView = 2131558516;
+			// aapt resource value: 0x7f0d0079
+			public const int IconGridView = 2131558521;
 			
-			// aapt resource value: 0x7f0d0083
-			public const int QuickUnlock_button = 2131558531;
+			// aapt resource value: 0x7f0d0088
+			public const int QuickUnlock_button = 2131558536;
 			
-			// aapt resource value: 0x7f0d0084
-			public const int QuickUnlock_buttonLock = 2131558532;
+			// aapt resource value: 0x7f0d0089
+			public const int QuickUnlock_buttonLock = 2131558537;
 			
-			// aapt resource value: 0x7f0d0081
-			public const int QuickUnlock_label = 2131558529;
+			// aapt resource value: 0x7f0d0086
+			public const int QuickUnlock_label = 2131558534;
 			
-			// aapt resource value: 0x7f0d0082
-			public const int QuickUnlock_password = 2131558530;
+			// aapt resource value: 0x7f0d0087
+			public const int QuickUnlock_password = 2131558535;
 			
-			// aapt resource value: 0x7f0d0056
-			public const int RelativeLayout = 2131558486;
+			// aapt resource value: 0x7f0d005b
+			public const int RelativeLayout = 2131558491;
 			
-			// aapt resource value: 0x7f0d0055
-			public const int ScrollView = 2131558485;
-			
-			// aapt resource value: 0x7f0d0009
-			public const int about_button = 2131558409;
+			// aapt resource value: 0x7f0d005a
+			public const int ScrollView = 2131558490;
 			
 			// aapt resource value: 0x7f0d0000
 			public const int about_title = 2131558400;
 			
-			// aapt resource value: 0x7f0d0053
-			public const int accept_button = 2131558483;
+			// aapt resource value: 0x7f0d0058
+			public const int accept_button = 2131558488;
 			
-			// aapt resource value: 0x7f0d0028
-			public const int add_advanced = 2131558440;
+			// aapt resource value: 0x7f0d002d
+			public const int add_advanced = 2131558445;
 			
-			// aapt resource value: 0x7f0d0069
-			public const int add_entry = 2131558505;
+			// aapt resource value: 0x7f0d006e
+			public const int add_entry = 2131558510;
 			
-			// aapt resource value: 0x7f0d0068
-			public const int add_group = 2131558504;
-			
-			// aapt resource value: 0x7f0d0097
-			public const int add_url_entry = 2131558551;
-			
-			// aapt resource value: 0x7f0d0027
-			public const int advanced_container = 2131558439;
-			
-			// aapt resource value: 0x7f0d002a
-			public const int binaries = 2131558442;
-			
-			// aapt resource value: 0x7f0d0037
-			public const int bottom_bar = 2131558455;
-			
-			// aapt resource value: 0x7f0d0051
-			public const int bottom_layout = 2131558481;
-			
-			// aapt resource value: 0x7f0d004c
-			public const int browse_button = 2131558476;
-			
-			// aapt resource value: 0x7f0d005b
-			public const int btn_length12 = 2131558491;
-			
-			// aapt resource value: 0x7f0d005a
-			public const int btn_length16 = 2131558490;
-			
-			// aapt resource value: 0x7f0d005d
-			public const int btn_length6 = 2131558493;
-			
-			// aapt resource value: 0x7f0d005c
-			public const int btn_length8 = 2131558492;
-			
-			// aapt resource value: 0x7f0d000e
-			public const int cancel = 2131558414;
-			
-			// aapt resource value: 0x7f0d0054
-			public const int cancel_button = 2131558484;
-			
-			// aapt resource value: 0x7f0d006b
-			public const int cancel_insert_element = 2131558507;
-			
-			// aapt resource value: 0x7f0d0094
-			public const int cbCaseSensitive = 2131558548;
-			
-			// aapt resource value: 0x7f0d0095
-			public const int cbExcludeExpiredEntries = 2131558549;
-			
-			// aapt resource value: 0x7f0d008a
-			public const int cbRegEx = 2131558538;
-			
-			// aapt resource value: 0x7f0d0093
-			public const int cbSearchInGroupName = 2131558547;
-			
-			// aapt resource value: 0x7f0d0090
-			public const int cbSearchInNotes = 2131558544;
-			
-			// aapt resource value: 0x7f0d0091
-			public const int cbSearchInOtherStrings = 2131558545;
-			
-			// aapt resource value: 0x7f0d008f
-			public const int cbSearchInPassword = 2131558543;
-			
-			// aapt resource value: 0x7f0d0092
-			public const int cbSearchInTags = 2131558546;
-			
-			// aapt resource value: 0x7f0d008c
-			public const int cbSearchInTitle = 2131558540;
-			
-			// aapt resource value: 0x7f0d008d
-			public const int cbSearchInUrl = 2131558541;
-			
-			// aapt resource value: 0x7f0d008e
-			public const int cbSearchInUsername = 2131558542;
-			
-			// aapt resource value: 0x7f0d0066
-			public const int cb_brackets = 2131558502;
-			
-			// aapt resource value: 0x7f0d0061
-			public const int cb_digits = 2131558497;
-			
-			// aapt resource value: 0x7f0d0060
-			public const int cb_lowercase = 2131558496;
-			
-			// aapt resource value: 0x7f0d0062
-			public const int cb_minus = 2131558498;
-			
-			// aapt resource value: 0x7f0d0064
-			public const int cb_space = 2131558500;
-			
-			// aapt resource value: 0x7f0d0065
-			public const int cb_specials = 2131558501;
-			
-			// aapt resource value: 0x7f0d0063
-			public const int cb_underline = 2131558499;
-			
-			// aapt resource value: 0x7f0d005f
-			public const int cb_uppercase = 2131558495;
-			
-			// aapt resource value: 0x7f0d004f
-			public const int create = 2131558479;
-			
-			// aapt resource value: 0x7f0d009d
-			public const int cred_password = 2131558557;
-			
-			// aapt resource value: 0x7f0d009e
-			public const int cred_remember_mode = 2131558558;
+			// aapt resource value: 0x7f0d006d
+			public const int add_group = 2131558509;
 			
 			// aapt resource value: 0x7f0d009c
-			public const int cred_username = 2131558556;
+			public const int add_url_entry = 2131558556;
 			
-			// aapt resource value: 0x7f0d0014
-			public const int delete_extra = 2131558420;
+			// aapt resource value: 0x7f0d002c
+			public const int advanced_container = 2131558444;
 			
-			// aapt resource value: 0x7f0d0008
-			public const int disclaimer = 2131558408;
+			// aapt resource value: 0x7f0d000c
+			public const int author = 2131558412;
+			
+			// aapt resource value: 0x7f0d002f
+			public const int binaries = 2131558447;
+			
+			// aapt resource value: 0x7f0d003c
+			public const int bottom_bar = 2131558460;
+			
+			// aapt resource value: 0x7f0d0056
+			public const int bottom_layout = 2131558486;
+			
+			// aapt resource value: 0x7f0d0051
+			public const int browse_button = 2131558481;
+			
+			// aapt resource value: 0x7f0d0060
+			public const int btn_length12 = 2131558496;
+			
+			// aapt resource value: 0x7f0d005f
+			public const int btn_length16 = 2131558495;
+			
+			// aapt resource value: 0x7f0d0062
+			public const int btn_length6 = 2131558498;
+			
+			// aapt resource value: 0x7f0d0061
+			public const int btn_length8 = 2131558497;
+			
+			// aapt resource value: 0x7f0d0013
+			public const int cancel = 2131558419;
+			
+			// aapt resource value: 0x7f0d0059
+			public const int cancel_button = 2131558489;
+			
+			// aapt resource value: 0x7f0d0070
+			public const int cancel_insert_element = 2131558512;
+			
+			// aapt resource value: 0x7f0d0099
+			public const int cbCaseSensitive = 2131558553;
+			
+			// aapt resource value: 0x7f0d009a
+			public const int cbExcludeExpiredEntries = 2131558554;
+			
+			// aapt resource value: 0x7f0d008f
+			public const int cbRegEx = 2131558543;
+			
+			// aapt resource value: 0x7f0d0098
+			public const int cbSearchInGroupName = 2131558552;
+			
+			// aapt resource value: 0x7f0d0095
+			public const int cbSearchInNotes = 2131558549;
+			
+			// aapt resource value: 0x7f0d0096
+			public const int cbSearchInOtherStrings = 2131558550;
+			
+			// aapt resource value: 0x7f0d0094
+			public const int cbSearchInPassword = 2131558548;
+			
+			// aapt resource value: 0x7f0d0097
+			public const int cbSearchInTags = 2131558551;
+			
+			// aapt resource value: 0x7f0d0091
+			public const int cbSearchInTitle = 2131558545;
+			
+			// aapt resource value: 0x7f0d0092
+			public const int cbSearchInUrl = 2131558546;
+			
+			// aapt resource value: 0x7f0d0093
+			public const int cbSearchInUsername = 2131558547;
+			
+			// aapt resource value: 0x7f0d006b
+			public const int cb_brackets = 2131558507;
+			
+			// aapt resource value: 0x7f0d0066
+			public const int cb_digits = 2131558502;
+			
+			// aapt resource value: 0x7f0d0065
+			public const int cb_lowercase = 2131558501;
+			
+			// aapt resource value: 0x7f0d0067
+			public const int cb_minus = 2131558503;
+			
+			// aapt resource value: 0x7f0d0069
+			public const int cb_space = 2131558505;
+			
+			// aapt resource value: 0x7f0d006a
+			public const int cb_specials = 2131558506;
+			
+			// aapt resource value: 0x7f0d0068
+			public const int cb_underline = 2131558504;
+			
+			// aapt resource value: 0x7f0d0064
+			public const int cb_uppercase = 2131558500;
+			
+			// aapt resource value: 0x7f0d000b
+			public const int contributors_title = 2131558411;
+			
+			// aapt resource value: 0x7f0d0054
+			public const int create = 2131558484;
+			
+			// aapt resource value: 0x7f0d00a2
+			public const int cred_password = 2131558562;
+			
+			// aapt resource value: 0x7f0d00a3
+			public const int cred_remember_mode = 2131558563;
+			
+			// aapt resource value: 0x7f0d00a1
+			public const int cred_username = 2131558561;
+			
+			// aapt resource value: 0x7f0d0019
+			public const int delete_extra = 2131558425;
+			
+			// aapt resource value: 0x7f0d000a
+			public const int disclaimer = 2131558410;
+			
+			// aapt resource value: 0x7f0d0009
+			public const int disclaimer_title = 2131558409;
 			
 			// aapt resource value: 0x7f0d0001
 			public const int divider1 = 2131558401;
 			
-			// aapt resource value: 0x7f0d0004
-			public const int divider2 = 2131558404;
-			
-			// aapt resource value: 0x7f0d0007
-			public const int divider3 = 2131558407;
-			
-			// aapt resource value: 0x7f0d0032
-			public const int edit_extra = 2131558450;
-			
-			// aapt resource value: 0x7f0d007d
-			public const int enable_quickunlock = 2131558525;
-			
-			// aapt resource value: 0x7f0d0043
-			public const int entry_accessed = 2131558467;
-			
-			// aapt resource value: 0x7f0d0042
-			public const int entry_accessed_label = 2131558466;
-			
-			// aapt resource value: 0x7f0d0029
-			public const int entry_binaries_label = 2131558441;
-			
-			// aapt resource value: 0x7f0d0025
-			public const int entry_comment = 2131558437;
-			
-			// aapt resource value: 0x7f0d0024
-			public const int entry_comment_label = 2131558436;
-			
-			// aapt resource value: 0x7f0d0023
-			public const int entry_confpassword = 2131558435;
-			
-			// aapt resource value: 0x7f0d0022
-			public const int entry_confpassword_label = 2131558434;
-			
-			// aapt resource value: 0x7f0d003a
-			public const int entry_contents = 2131558458;
-			
-			// aapt resource value: 0x7f0d003f
-			public const int entry_created = 2131558463;
-			
-			// aapt resource value: 0x7f0d003e
-			public const int entry_created_label = 2131558462;
-			
-			// aapt resource value: 0x7f0d0039
-			public const int entry_divider2 = 2131558457;
-			
-			// aapt resource value: 0x7f0d0038
-			public const int entry_edit = 2131558456;
-			
-			// aapt resource value: 0x7f0d0031
-			public const int entry_expires = 2131558449;
-			
-			// aapt resource value: 0x7f0d0030
-			public const int entry_expires_checkbox = 2131558448;
-			
-			// aapt resource value: 0x7f0d002f
-			public const int entry_expires_label = 2131558447;
-			
-			// aapt resource value: 0x7f0d0026
-			public const int entry_extra_strings_label = 2131558438;
-			
-			// aapt resource value: 0x7f0d0033
-			public const int entry_icon = 2131558451;
-			
-			// aapt resource value: 0x7f0d0041
-			public const int entry_modified = 2131558465;
-			
-			// aapt resource value: 0x7f0d0040
-			public const int entry_modified_label = 2131558464;
-			
-			// aapt resource value: 0x7f0d002e
-			public const int entry_override_url = 2131558446;
-			
-			// aapt resource value: 0x7f0d002d
-			public const int entry_override_url_label = 2131558445;
-			
-			// aapt resource value: 0x7f0d0021
-			public const int entry_password = 2131558433;
-			
-			// aapt resource value: 0x7f0d001f
-			public const int entry_password_label = 2131558431;
-			
-			// aapt resource value: 0x7f0d0016
-			public const int entry_save = 2131558422;
-			
-			// aapt resource value: 0x7f0d0015
-			public const int entry_save_header = 2131558421;
-			
-			// aapt resource value: 0x7f0d0017
-			public const int entry_scroll = 2131558423;
-			
-			// aapt resource value: 0x7f0d003c
-			public const int entry_table = 2131558460;
-			
-			// aapt resource value: 0x7f0d002c
-			public const int entry_tags = 2131558444;
-			
-			// aapt resource value: 0x7f0d002b
-			public const int entry_tags_label = 2131558443;
-			
-			// aapt resource value: 0x7f0d0034
-			public const int entry_text = 2131558452;
-			
-			// aapt resource value: 0x7f0d0035
-			public const int entry_text_detail = 2131558453;
-			
-			// aapt resource value: 0x7f0d001a
-			public const int entry_title = 2131558426;
-			
-			// aapt resource value: 0x7f0d0018
-			public const int entry_title_label = 2131558424;
-			
-			// aapt resource value: 0x7f0d001e
-			public const int entry_url = 2131558430;
-			
-			// aapt resource value: 0x7f0d001d
-			public const int entry_url_label = 2131558429;
-			
-			// aapt resource value: 0x7f0d001c
-			public const int entry_user_name = 2131558428;
-			
-			// aapt resource value: 0x7f0d001b
-			public const int entry_user_name_label = 2131558427;
-			
-			// aapt resource value: 0x7f0d003d
-			public const int extra_strings = 2131558461;
-			
-			// aapt resource value: 0x7f0d0006
-			public const int feedback = 2131558406;
-			
-			// aapt resource value: 0x7f0d0044
-			public const int file_filename = 2131558468;
-			
-			// aapt resource value: 0x7f0d0045
-			public const int file_listtop = 2131558469;
-			
-			// aapt resource value: 0x7f0d0052
-			public const int file_select = 2131558482;
-			
-			// aapt resource value: 0x7f0d0078
-			public const int filename = 2131558520;
-			
-			// aapt resource value: 0x7f0d004a
-			public const int filename_form = 2131558474;
-			
-			// aapt resource value: 0x7f0d0076
-			public const int filename_label = 2131558518;
-			
-			// aapt resource value: 0x7f0d0077
-			public const int filenamescroll = 2131558519;
-			
-			// aapt resource value: 0x7f0d0050
-			public const int fnv_cancel = 2131558480;
-			
-			// aapt resource value: 0x7f0d0020
-			public const int generate_button = 2131558432;
-			
-			// aapt resource value: 0x7f0d0058
-			public const int generate_password_button = 2131558488;
-			
-			// aapt resource value: 0x7f0d0067
-			public const int group_header = 2131558503;
-			
-			// aapt resource value: 0x7f0d006f
-			public const int group_icon = 2131558511;
-			
-			// aapt resource value: 0x7f0d0071
-			public const int group_label = 2131558513;
-			
-			// aapt resource value: 0x7f0d006c
-			public const int group_name = 2131558508;
-			
-			// aapt resource value: 0x7f0d0070
-			public const int group_text = 2131558512;
-			
 			// aapt resource value: 0x7f0d0005
-			public const int homepage = 2131558405;
+			public const int divider2 = 2131558405;
 			
-			// aapt resource value: 0x7f0d006e
-			public const int icon = 2131558510;
+			// aapt resource value: 0x7f0d0008
+			public const int divider3 = 2131558408;
 			
-			// aapt resource value: 0x7f0d0019
-			public const int icon_button = 2131558425;
+			// aapt resource value: 0x7f0d0037
+			public const int edit_extra = 2131558455;
 			
-			// aapt resource value: 0x7f0d0072
-			public const int icon_image = 2131558514;
-			
-			// aapt resource value: 0x7f0d0073
-			public const int icon_text = 2131558515;
-			
-			// aapt resource value: 0x7f0d006a
-			public const int insert_element = 2131558506;
-			
-			// aapt resource value: 0x7f0d000c
-			public const int install_market = 2131558412;
-			
-			// aapt resource value: 0x7f0d000d
-			public const int install_web = 2131558413;
-			
-			// aapt resource value: 0x7f0d0075
-			public const int keyboard = 2131558517;
-			
-			// aapt resource value: 0x7f0d007f
-			public const int keyfileLine = 2131558527;
-			
-			// aapt resource value: 0x7f0d004b
-			public const int label_open_by_filename = 2131558475;
-			
-			// aapt resource value: 0x7f0d004d
-			public const int label_open_by_filename_details = 2131558477;
-			
-			// aapt resource value: 0x7f0d0046
-			public const int label_warning = 2131558470;
-			
-			// aapt resource value: 0x7f0d005e
-			public const int length = 2131558494;
-			
-			// aapt resource value: 0x7f0d0059
-			public const int length_label = 2131558489;
-			
-			// aapt resource value: 0x7f0d0089
-			public const int linearLayout1 = 2131558537;
-			
-			// aapt resource value: 0x7f0d00a8
-			public const int menu_about = 2131558568;
-			
-			// aapt resource value: 0x7f0d00a7
-			public const int menu_app_settings = 2131558567;
-			
-			// aapt resource value: 0x7f0d00a6
-			public const int menu_cancel_edit = 2131558566;
-			
-			// aapt resource value: 0x7f0d00ae
-			public const int menu_change_db = 2131558574;
-			
-			// aapt resource value: 0x7f0d00aa
-			public const int menu_change_master_key = 2131558570;
-			
-			// aapt resource value: 0x7f0d009f
-			public const int menu_donate = 2131558559;
-			
-			// aapt resource value: 0x7f0d00a1
-			public const int menu_goto_url = 2131558561;
-			
-			// aapt resource value: 0x7f0d00a2
-			public const int menu_lock = 2131558562;
-			
-			// aapt resource value: 0x7f0d00a4
-			public const int menu_rate = 2131558564;
-			
-			// aapt resource value: 0x7f0d00a9
-			public const int menu_search = 2131558569;
-			
-			// aapt resource value: 0x7f0d00ad
-			public const int menu_search_advanced = 2131558573;
-			
-			// aapt resource value: 0x7f0d00ac
-			public const int menu_sort = 2131558572;
-			
-			// aapt resource value: 0x7f0d00a3
-			public const int menu_suggest_improvements = 2131558563;
-			
-			// aapt resource value: 0x7f0d00ab
-			public const int menu_sync = 2131558571;
-			
-			// aapt resource value: 0x7f0d00a0
-			public const int menu_toggle_pass = 2131558560;
-			
-			// aapt resource value: 0x7f0d00a5
-			public const int menu_translate = 2131558565;
-			
-			// aapt resource value: 0x7f0d0098
-			public const int no_results = 2131558552;
-			
-			// aapt resource value: 0x7f0d006d
-			public const int ok = 2131558509;
-			
-			// aapt resource value: 0x7f0d004e
-			public const int open = 2131558478;
-			
-			// aapt resource value: 0x7f0d009a
-			public const int pass_conf_password = 2131558554;
-			
-			// aapt resource value: 0x7f0d007b
-			public const int pass_keyfile = 2131558523;
-			
-			// aapt resource value: 0x7f0d007c
-			public const int pass_ok = 2131558524;
-			
-			// aapt resource value: 0x7f0d0099
-			public const int pass_password = 2131558553;
-			
-			// aapt resource value: 0x7f0d0057
-			public const int password = 2131558487;
-			
-			// aapt resource value: 0x7f0d007e
-			public const int passwordLine = 2131558526;
-			
-			// aapt resource value: 0x7f0d0079
-			public const int password_label = 2131558521;
-			
-			// aapt resource value: 0x7f0d0013
-			public const int protection = 2131558419;
-			
-			// aapt resource value: 0x7f0d0080
-			public const int qu_filename = 2131558528;
-			
-			// aapt resource value: 0x7f0d000f
-			public const int rounds = 2131558415;
-			
-			// aapt resource value: 0x7f0d0010
-			public const int rounds_explaination = 2131558416;
-			
-			// aapt resource value: 0x7f0d0088
-			public const int scrollView1 = 2131558536;
-			
-			// aapt resource value: 0x7f0d0087
-			public const int searchEditText = 2131558535;
-			
-			// aapt resource value: 0x7f0d0086
-			public const int search_button = 2131558534;
-			
-			// aapt resource value: 0x7f0d008b
-			public const int search_in_label = 2131558539;
-			
-			// aapt resource value: 0x7f0d0085
-			public const int search_label = 2131558533;
-			
-			// aapt resource value: 0x7f0d0096
-			public const int select_other_entry = 2131558550;
-			
-			// aapt resource value: 0x7f0d0049
-			public const int start_create = 2131558473;
-			
-			// aapt resource value: 0x7f0d009b
-			public const int start_create_import = 2131558555;
-			
-			// aapt resource value: 0x7f0d0047
-			public const int start_open_file = 2131558471;
+			// aapt resource value: 0x7f0d0082
+			public const int enable_quickunlock = 2131558530;
 			
 			// aapt resource value: 0x7f0d0048
-			public const int start_open_url = 2131558472;
+			public const int entry_accessed = 2131558472;
 			
-			// aapt resource value: 0x7f0d000b
-			public const int text = 2131558411;
+			// aapt resource value: 0x7f0d0047
+			public const int entry_accessed_label = 2131558471;
 			
-			// aapt resource value: 0x7f0d0011
-			public const int title = 2131558417;
+			// aapt resource value: 0x7f0d002e
+			public const int entry_binaries_label = 2131558446;
+			
+			// aapt resource value: 0x7f0d002a
+			public const int entry_comment = 2131558442;
+			
+			// aapt resource value: 0x7f0d0029
+			public const int entry_comment_label = 2131558441;
+			
+			// aapt resource value: 0x7f0d0028
+			public const int entry_confpassword = 2131558440;
+			
+			// aapt resource value: 0x7f0d0027
+			public const int entry_confpassword_label = 2131558439;
+			
+			// aapt resource value: 0x7f0d003f
+			public const int entry_contents = 2131558463;
+			
+			// aapt resource value: 0x7f0d0044
+			public const int entry_created = 2131558468;
+			
+			// aapt resource value: 0x7f0d0043
+			public const int entry_created_label = 2131558467;
+			
+			// aapt resource value: 0x7f0d003e
+			public const int entry_divider2 = 2131558462;
+			
+			// aapt resource value: 0x7f0d003d
+			public const int entry_edit = 2131558461;
 			
 			// aapt resource value: 0x7f0d0036
-			public const int title_block = 2131558454;
+			public const int entry_expires = 2131558454;
 			
-			// aapt resource value: 0x7f0d007a
-			public const int toggle_password = 2131558522;
+			// aapt resource value: 0x7f0d0035
+			public const int entry_expires_checkbox = 2131558453;
 			
-			// aapt resource value: 0x7f0d003b
-			public const int top = 2131558459;
+			// aapt resource value: 0x7f0d0034
+			public const int entry_expires_label = 2131558452;
+			
+			// aapt resource value: 0x7f0d002b
+			public const int entry_extra_strings_label = 2131558443;
+			
+			// aapt resource value: 0x7f0d0038
+			public const int entry_icon = 2131558456;
+			
+			// aapt resource value: 0x7f0d0046
+			public const int entry_modified = 2131558470;
+			
+			// aapt resource value: 0x7f0d0045
+			public const int entry_modified_label = 2131558469;
+			
+			// aapt resource value: 0x7f0d0033
+			public const int entry_override_url = 2131558451;
+			
+			// aapt resource value: 0x7f0d0032
+			public const int entry_override_url_label = 2131558450;
+			
+			// aapt resource value: 0x7f0d0026
+			public const int entry_password = 2131558438;
+			
+			// aapt resource value: 0x7f0d0024
+			public const int entry_password_label = 2131558436;
+			
+			// aapt resource value: 0x7f0d001b
+			public const int entry_save = 2131558427;
+			
+			// aapt resource value: 0x7f0d001a
+			public const int entry_save_header = 2131558426;
+			
+			// aapt resource value: 0x7f0d001c
+			public const int entry_scroll = 2131558428;
+			
+			// aapt resource value: 0x7f0d0041
+			public const int entry_table = 2131558465;
+			
+			// aapt resource value: 0x7f0d0031
+			public const int entry_tags = 2131558449;
+			
+			// aapt resource value: 0x7f0d0030
+			public const int entry_tags_label = 2131558448;
+			
+			// aapt resource value: 0x7f0d0039
+			public const int entry_text = 2131558457;
+			
+			// aapt resource value: 0x7f0d003a
+			public const int entry_text_detail = 2131558458;
+			
+			// aapt resource value: 0x7f0d001f
+			public const int entry_title = 2131558431;
+			
+			// aapt resource value: 0x7f0d001d
+			public const int entry_title_label = 2131558429;
+			
+			// aapt resource value: 0x7f0d0023
+			public const int entry_url = 2131558435;
+			
+			// aapt resource value: 0x7f0d0022
+			public const int entry_url_label = 2131558434;
+			
+			// aapt resource value: 0x7f0d0021
+			public const int entry_user_name = 2131558433;
+			
+			// aapt resource value: 0x7f0d0020
+			public const int entry_user_name_label = 2131558432;
+			
+			// aapt resource value: 0x7f0d0042
+			public const int extra_strings = 2131558466;
+			
+			// aapt resource value: 0x7f0d0007
+			public const int feedback = 2131558407;
+			
+			// aapt resource value: 0x7f0d0006
+			public const int feedback_title = 2131558406;
+			
+			// aapt resource value: 0x7f0d0049
+			public const int file_filename = 2131558473;
+			
+			// aapt resource value: 0x7f0d004a
+			public const int file_listtop = 2131558474;
+			
+			// aapt resource value: 0x7f0d0057
+			public const int file_select = 2131558487;
+			
+			// aapt resource value: 0x7f0d007d
+			public const int filename = 2131558525;
+			
+			// aapt resource value: 0x7f0d004f
+			public const int filename_form = 2131558479;
+			
+			// aapt resource value: 0x7f0d007b
+			public const int filename_label = 2131558523;
+			
+			// aapt resource value: 0x7f0d007c
+			public const int filenamescroll = 2131558524;
+			
+			// aapt resource value: 0x7f0d0055
+			public const int fnv_cancel = 2131558485;
+			
+			// aapt resource value: 0x7f0d000d
+			public const int further_authors = 2131558413;
+			
+			// aapt resource value: 0x7f0d0025
+			public const int generate_button = 2131558437;
+			
+			// aapt resource value: 0x7f0d005d
+			public const int generate_password_button = 2131558493;
+			
+			// aapt resource value: 0x7f0d006c
+			public const int group_header = 2131558508;
+			
+			// aapt resource value: 0x7f0d0074
+			public const int group_icon = 2131558516;
+			
+			// aapt resource value: 0x7f0d0076
+			public const int group_label = 2131558518;
+			
+			// aapt resource value: 0x7f0d0071
+			public const int group_name = 2131558513;
+			
+			// aapt resource value: 0x7f0d0075
+			public const int group_text = 2131558517;
+			
+			// aapt resource value: 0x7f0d0073
+			public const int icon = 2131558515;
+			
+			// aapt resource value: 0x7f0d001e
+			public const int icon_button = 2131558430;
+			
+			// aapt resource value: 0x7f0d0077
+			public const int icon_image = 2131558519;
+			
+			// aapt resource value: 0x7f0d0078
+			public const int icon_text = 2131558520;
+			
+			// aapt resource value: 0x7f0d006f
+			public const int insert_element = 2131558511;
+			
+			// aapt resource value: 0x7f0d0011
+			public const int install_market = 2131558417;
 			
 			// aapt resource value: 0x7f0d0012
-			public const int value = 2131558418;
+			public const int install_web = 2131558418;
+			
+			// aapt resource value: 0x7f0d007a
+			public const int keyboard = 2131558522;
+			
+			// aapt resource value: 0x7f0d0084
+			public const int keyfileLine = 2131558532;
+			
+			// aapt resource value: 0x7f0d0050
+			public const int label_open_by_filename = 2131558480;
+			
+			// aapt resource value: 0x7f0d0052
+			public const int label_open_by_filename_details = 2131558482;
+			
+			// aapt resource value: 0x7f0d004b
+			public const int label_warning = 2131558475;
+			
+			// aapt resource value: 0x7f0d0063
+			public const int length = 2131558499;
+			
+			// aapt resource value: 0x7f0d005e
+			public const int length_label = 2131558494;
+			
+			// aapt resource value: 0x7f0d008e
+			public const int linearLayout1 = 2131558542;
+			
+			// aapt resource value: 0x7f0d00ad
+			public const int menu_about = 2131558573;
+			
+			// aapt resource value: 0x7f0d00ac
+			public const int menu_app_settings = 2131558572;
+			
+			// aapt resource value: 0x7f0d00ab
+			public const int menu_cancel_edit = 2131558571;
+			
+			// aapt resource value: 0x7f0d00b3
+			public const int menu_change_db = 2131558579;
+			
+			// aapt resource value: 0x7f0d00af
+			public const int menu_change_master_key = 2131558575;
+			
+			// aapt resource value: 0x7f0d00a4
+			public const int menu_donate = 2131558564;
+			
+			// aapt resource value: 0x7f0d00a6
+			public const int menu_goto_url = 2131558566;
+			
+			// aapt resource value: 0x7f0d00a7
+			public const int menu_lock = 2131558567;
+			
+			// aapt resource value: 0x7f0d00a9
+			public const int menu_rate = 2131558569;
+			
+			// aapt resource value: 0x7f0d00ae
+			public const int menu_search = 2131558574;
+			
+			// aapt resource value: 0x7f0d00b2
+			public const int menu_search_advanced = 2131558578;
+			
+			// aapt resource value: 0x7f0d00b1
+			public const int menu_sort = 2131558577;
+			
+			// aapt resource value: 0x7f0d00a8
+			public const int menu_suggest_improvements = 2131558568;
+			
+			// aapt resource value: 0x7f0d00b0
+			public const int menu_sync = 2131558576;
+			
+			// aapt resource value: 0x7f0d00a5
+			public const int menu_toggle_pass = 2131558565;
+			
+			// aapt resource value: 0x7f0d00aa
+			public const int menu_translate = 2131558570;
+			
+			// aapt resource value: 0x7f0d009d
+			public const int no_results = 2131558557;
+			
+			// aapt resource value: 0x7f0d0072
+			public const int ok = 2131558514;
+			
+			// aapt resource value: 0x7f0d0053
+			public const int open = 2131558483;
+			
+			// aapt resource value: 0x7f0d009f
+			public const int pass_conf_password = 2131558559;
+			
+			// aapt resource value: 0x7f0d0080
+			public const int pass_keyfile = 2131558528;
+			
+			// aapt resource value: 0x7f0d0081
+			public const int pass_ok = 2131558529;
+			
+			// aapt resource value: 0x7f0d009e
+			public const int pass_password = 2131558558;
+			
+			// aapt resource value: 0x7f0d005c
+			public const int password = 2131558492;
+			
+			// aapt resource value: 0x7f0d0083
+			public const int passwordLine = 2131558531;
+			
+			// aapt resource value: 0x7f0d007e
+			public const int password_label = 2131558526;
+			
+			// aapt resource value: 0x7f0d000e
+			public const int plugin1 = 2131558414;
+			
+			// aapt resource value: 0x7f0d0018
+			public const int protection = 2131558424;
+			
+			// aapt resource value: 0x7f0d0085
+			public const int qu_filename = 2131558533;
+			
+			// aapt resource value: 0x7f0d0014
+			public const int rounds = 2131558420;
+			
+			// aapt resource value: 0x7f0d0015
+			public const int rounds_explaination = 2131558421;
+			
+			// aapt resource value: 0x7f0d008d
+			public const int scrollView1 = 2131558541;
+			
+			// aapt resource value: 0x7f0d008c
+			public const int searchEditText = 2131558540;
+			
+			// aapt resource value: 0x7f0d008b
+			public const int search_button = 2131558539;
+			
+			// aapt resource value: 0x7f0d0090
+			public const int search_in_label = 2131558544;
+			
+			// aapt resource value: 0x7f0d008a
+			public const int search_label = 2131558538;
+			
+			// aapt resource value: 0x7f0d009b
+			public const int select_other_entry = 2131558555;
+			
+			// aapt resource value: 0x7f0d004e
+			public const int start_create = 2131558478;
+			
+			// aapt resource value: 0x7f0d00a0
+			public const int start_create_import = 2131558560;
+			
+			// aapt resource value: 0x7f0d004c
+			public const int start_open_file = 2131558476;
+			
+			// aapt resource value: 0x7f0d004d
+			public const int start_open_url = 2131558477;
+			
+			// aapt resource value: 0x7f0d0010
+			public const int text = 2131558416;
+			
+			// aapt resource value: 0x7f0d0016
+			public const int title = 2131558422;
+			
+			// aapt resource value: 0x7f0d003b
+			public const int title_block = 2131558459;
+			
+			// aapt resource value: 0x7f0d007f
+			public const int toggle_password = 2131558527;
+			
+			// aapt resource value: 0x7f0d0040
+			public const int top = 2131558464;
+			
+			// aapt resource value: 0x7f0d0017
+			public const int value = 2131558423;
+			
+			// aapt resource value: 0x7f0d0004
+			public const int versionB = 2131558404;
 			
 			// aapt resource value: 0x7f0d0003
-			public const int version = 2131558403;
+			public const int versionX = 2131558403;
 			
 			// aapt resource value: 0x7f0d0002
 			public const int version_title = 2131558402;
@@ -1275,50 +1295,50 @@ namespace keepass2android
 			// aapt resource value: 0x7f060039
 			public const int AboutText = 2131099705;
 			
-			// aapt resource value: 0x7f060137
-			public const int AddingEntry = 2131099959;
+			// aapt resource value: 0x7f06013b
+			public const int AddingEntry = 2131099963;
 			
-			// aapt resource value: 0x7f060138
-			public const int AddingGroup = 2131099960;
+			// aapt resource value: 0x7f06013c
+			public const int AddingGroup = 2131099964;
 			
-			// aapt resource value: 0x7f060001
-			public const int ApplicationName = 2131099649;
-			
-			// aapt resource value: 0x7f06012d
-			public const int AskDeletePermanentlyEntry = 2131099949;
-			
-			// aapt resource value: 0x7f06012e
-			public const int AskDeletePermanentlyGroup = 2131099950;
-			
-			// aapt resource value: 0x7f06012f
-			public const int AskDeletePermanently_title = 2131099951;
-			
-			// aapt resource value: 0x7f060132
-			public const int AskDiscardChanges = 2131099954;
-			
-			// aapt resource value: 0x7f060133
-			public const int AskDiscardChanges_title = 2131099955;
-			
-			// aapt resource value: 0x7f060127
-			public const int AskOverwriteBinary = 2131099943;
-			
-			// aapt resource value: 0x7f06012a
-			public const int AskOverwriteBinary_no = 2131099946;
-			
-			// aapt resource value: 0x7f060128
-			public const int AskOverwriteBinary_title = 2131099944;
-			
-			// aapt resource value: 0x7f060129
-			public const int AskOverwriteBinary_yes = 2131099945;
+			// aapt resource value: 0x7f060000
+			public const int ApplicationName = 2131099648;
 			
 			// aapt resource value: 0x7f060131
-			public const int AskReloadFile = 2131099953;
+			public const int AskDeletePermanentlyEntry = 2131099953;
 			
-			// aapt resource value: 0x7f060130
-			public const int AskReloadFile_title = 2131099952;
+			// aapt resource value: 0x7f060132
+			public const int AskDeletePermanentlyGroup = 2131099954;
+			
+			// aapt resource value: 0x7f060133
+			public const int AskDeletePermanently_title = 2131099955;
+			
+			// aapt resource value: 0x7f060136
+			public const int AskDiscardChanges = 2131099958;
+			
+			// aapt resource value: 0x7f060137
+			public const int AskDiscardChanges_title = 2131099959;
 			
 			// aapt resource value: 0x7f06012b
-			public const int AttachFailed = 2131099947;
+			public const int AskOverwriteBinary = 2131099947;
+			
+			// aapt resource value: 0x7f06012e
+			public const int AskOverwriteBinary_no = 2131099950;
+			
+			// aapt resource value: 0x7f06012c
+			public const int AskOverwriteBinary_title = 2131099948;
+			
+			// aapt resource value: 0x7f06012d
+			public const int AskOverwriteBinary_yes = 2131099949;
+			
+			// aapt resource value: 0x7f060135
+			public const int AskReloadFile = 2131099957;
+			
+			// aapt resource value: 0x7f060134
+			public const int AskReloadFile_title = 2131099956;
+			
+			// aapt resource value: 0x7f06012f
+			public const int AttachFailed = 2131099951;
 			
 			// aapt resource value: 0x7f060024
 			public const int BinaryDirectory_default = 2131099684;
@@ -1326,101 +1346,98 @@ namespace keepass2android
 			// aapt resource value: 0x7f060023
 			public const int BinaryDirectory_key = 2131099683;
 			
-			// aapt resource value: 0x7f060103
-			public const int BinaryDirectory_summary = 2131099907;
+			// aapt resource value: 0x7f060107
+			public const int BinaryDirectory_summary = 2131099911;
 			
-			// aapt resource value: 0x7f060102
-			public const int BinaryDirectory_title = 2131099906;
-			
-			// aapt resource value: 0x7f060155
-			public const int CannotMoveGroupHere = 2131099989;
-			
-			// aapt resource value: 0x7f06015f
-			public const int ChangeLog = 2131099999;
-			
-			// aapt resource value: 0x7f06015e
-			public const int ChangeLog_0_7 = 2131099998;
-			
-			// aapt resource value: 0x7f06015c
-			public const int ChangeLog_0_8 = 2131099996;
-			
-			// aapt resource value: 0x7f06015b
-			public const int ChangeLog_0_8_1 = 2131099995;
-			
-			// aapt resource value: 0x7f06015a
-			public const int ChangeLog_0_8_2 = 2131099994;
+			// aapt resource value: 0x7f060106
+			public const int BinaryDirectory_title = 2131099910;
 			
 			// aapt resource value: 0x7f060159
-			public const int ChangeLog_0_8_3 = 2131099993;
+			public const int CannotMoveGroupHere = 2131099993;
 			
-			// aapt resource value: 0x7f060158
-			public const int ChangeLog_0_8_4 = 2131099992;
+			// aapt resource value: 0x7f060163
+			public const int ChangeLog = 2131100003;
 			
-			// aapt resource value: 0x7f060157
-			public const int ChangeLog_0_8_5 = 2131099991;
+			// aapt resource value: 0x7f060162
+			public const int ChangeLog_0_7 = 2131100002;
+			
+			// aapt resource value: 0x7f060160
+			public const int ChangeLog_0_8 = 2131100000;
+			
+			// aapt resource value: 0x7f06015f
+			public const int ChangeLog_0_8_1 = 2131099999;
+			
+			// aapt resource value: 0x7f06015e
+			public const int ChangeLog_0_8_2 = 2131099998;
 			
 			// aapt resource value: 0x7f06015d
-			public const int ChangeLog_keptDonate = 2131099997;
+			public const int ChangeLog_0_8_3 = 2131099997;
 			
-			// aapt resource value: 0x7f060156
-			public const int ChangeLog_title = 2131099990;
+			// aapt resource value: 0x7f06015c
+			public const int ChangeLog_0_8_4 = 2131099996;
+			
+			// aapt resource value: 0x7f06015b
+			public const int ChangeLog_0_8_5 = 2131099995;
+			
+			// aapt resource value: 0x7f060161
+			public const int ChangeLog_keptDonate = 2131100001;
+			
+			// aapt resource value: 0x7f06015a
+			public const int ChangeLog_title = 2131099994;
 			
 			// aapt resource value: 0x7f06002c
 			public const int CheckForFileChangesOnSave_key = 2131099692;
 			
-			// aapt resource value: 0x7f06011c
-			public const int CheckForFileChangesOnSave_summary = 2131099932;
+			// aapt resource value: 0x7f060120
+			public const int CheckForFileChangesOnSave_summary = 2131099936;
 			
-			// aapt resource value: 0x7f06011b
-			public const int CheckForFileChangesOnSave_title = 2131099931;
+			// aapt resource value: 0x7f06011f
+			public const int CheckForFileChangesOnSave_title = 2131099935;
 			
-			// aapt resource value: 0x7f06014c
-			public const int CheckingDatabaseForChanges = 2131099980;
+			// aapt resource value: 0x7f060150
+			public const int CheckingDatabaseForChanges = 2131099984;
 			
-			// aapt resource value: 0x7f060140
-			public const int CheckingTargetFileForChanges = 2131099968;
+			// aapt resource value: 0x7f060144
+			public const int CheckingTargetFileForChanges = 2131099972;
 			
 			// aapt resource value: 0x7f06004f
 			public const int ClearClipboard = 2131099727;
 			
-			// aapt resource value: 0x7f06011a
-			public const int ClearOfflineCache_question = 2131099930;
+			// aapt resource value: 0x7f06011e
+			public const int ClearOfflineCache_question = 2131099934;
 			
-			// aapt resource value: 0x7f060119
-			public const int ClearOfflineCache_title = 2131099929;
+			// aapt resource value: 0x7f06011d
+			public const int ClearOfflineCache_title = 2131099933;
 			
 			// aapt resource value: 0x7f060030
 			public const int CopyToClipboardNotification_key = 2131099696;
 			
-			// aapt resource value: 0x7f06014e
-			public const int CouldNotLoadFromRemote = 2131099982;
+			// aapt resource value: 0x7f060152
+			public const int CouldNotLoadFromRemote = 2131099986;
 			
-			// aapt resource value: 0x7f06014d
-			public const int CouldNotSaveToRemote = 2131099981;
+			// aapt resource value: 0x7f060151
+			public const int CouldNotSaveToRemote = 2131099985;
 			
 			// aapt resource value: 0x7f06003a
 			public const int CreditsText = 2131099706;
 			
+			// aapt resource value: 0x7f060142
+			public const int DecodingDatabase = 2131099970;
+			
+			// aapt resource value: 0x7f06013d
+			public const int DeletingEntry = 2131099965;
+			
 			// aapt resource value: 0x7f06013e
-			public const int DecodingDatabase = 2131099966;
+			public const int DeletingGroup = 2131099966;
 			
-			// aapt resource value: 0x7f060139
-			public const int DeletingEntry = 2131099961;
-			
-			// aapt resource value: 0x7f06013a
-			public const int DeletingGroup = 2131099962;
-			
-			// aapt resource value: 0x7f060147
-			public const int DownloadingRemoteFile = 2131099975;
+			// aapt resource value: 0x7f06014b
+			public const int DownloadingRemoteFile = 2131099979;
 			
 			// aapt resource value: 0x7f060088
 			public const int FileNotFound = 2131099784;
 			
-			// aapt resource value: 0x7f06014a
-			public const int FilesInSync = 2131099978;
-			
-			// aapt resource value: 0x7f060000
-			public const int Hello = 2131099648;
+			// aapt resource value: 0x7f06014e
+			public const int FilesInSync = 2131099982;
 			
 			// aapt resource value: 0x7f06009b
 			public const int InvalidPassword = 2131099803;
@@ -1428,8 +1445,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f060029
 			public const int LastInfoVersionCode_key = 2131099689;
 			
-			// aapt resource value: 0x7f060151
-			public const int LoadedFromRemoteInSync = 2131099985;
+			// aapt resource value: 0x7f060155
+			public const int LoadedFromRemoteInSync = 2131099989;
 			
 			// aapt resource value: 0x7f06002d
 			public const int MarketURL = 2131099693;
@@ -1437,44 +1454,44 @@ namespace keepass2android
 			// aapt resource value: 0x7f0600a5
 			public const int MaskedPassword = 2131099813;
 			
-			// aapt resource value: 0x7f060142
-			public const int MessageSyncQuestion = 2131099970;
+			// aapt resource value: 0x7f060146
+			public const int MessageSyncQuestion = 2131099974;
 			
-			// aapt resource value: 0x7f060145
-			public const int NoOverwrite = 2131099973;
+			// aapt resource value: 0x7f060149
+			public const int NoOverwrite = 2131099977;
 			
-			// aapt resource value: 0x7f060150
-			public const int NotifyOpenFromLocalDueToConflict = 2131099984;
+			// aapt resource value: 0x7f060154
+			public const int NotifyOpenFromLocalDueToConflict = 2131099988;
 			
 			// aapt resource value: 0x7f060032
 			public const int OpenKp2aKeyboardAutomatically_key = 2131099698;
 			
-			// aapt resource value: 0x7f060122
-			public const int OpenKp2aKeyboardAutomatically_summary = 2131099938;
+			// aapt resource value: 0x7f060126
+			public const int OpenKp2aKeyboardAutomatically_summary = 2131099942;
 			
-			// aapt resource value: 0x7f060121
-			public const int OpenKp2aKeyboardAutomatically_title = 2131099937;
+			// aapt resource value: 0x7f060125
+			public const int OpenKp2aKeyboardAutomatically_title = 2131099941;
 			
-			// aapt resource value: 0x7f06013f
-			public const int ParsingDatabase = 2131099967;
+			// aapt resource value: 0x7f060143
+			public const int ParsingDatabase = 2131099971;
 			
 			// aapt resource value: 0x7f060036
 			public const int PreloadDatabaseEnabled_key = 2131099702;
 			
-			// aapt resource value: 0x7f060126
-			public const int PreloadDatabaseEnabled_summary = 2131099942;
+			// aapt resource value: 0x7f06012a
+			public const int PreloadDatabaseEnabled_summary = 2131099946;
 			
-			// aapt resource value: 0x7f060125
-			public const int PreloadDatabaseEnabled_title = 2131099941;
+			// aapt resource value: 0x7f060129
+			public const int PreloadDatabaseEnabled_title = 2131099945;
 			
 			// aapt resource value: 0x7f060025
 			public const int QuickUnlockDefaultEnabled_key = 2131099685;
 			
-			// aapt resource value: 0x7f0600fe
-			public const int QuickUnlockDefaultEnabled_summary = 2131099902;
+			// aapt resource value: 0x7f060102
+			public const int QuickUnlockDefaultEnabled_summary = 2131099906;
 			
-			// aapt resource value: 0x7f0600fd
-			public const int QuickUnlockDefaultEnabled_title = 2131099901;
+			// aapt resource value: 0x7f060101
+			public const int QuickUnlockDefaultEnabled_title = 2131099905;
 			
 			// aapt resource value: 0x7f060027
 			public const int QuickUnlockLength_default = 2131099687;
@@ -1482,134 +1499,134 @@ namespace keepass2android
 			// aapt resource value: 0x7f060026
 			public const int QuickUnlockLength_key = 2131099686;
 			
-			// aapt resource value: 0x7f060100
-			public const int QuickUnlockLength_summary = 2131099904;
+			// aapt resource value: 0x7f060104
+			public const int QuickUnlockLength_summary = 2131099908;
+			
+			// aapt resource value: 0x7f060103
+			public const int QuickUnlockLength_title = 2131099907;
 			
 			// aapt resource value: 0x7f0600ff
-			public const int QuickUnlockLength_title = 2131099903;
+			public const int QuickUnlock_button = 2131099903;
 			
-			// aapt resource value: 0x7f0600fb
-			public const int QuickUnlock_button = 2131099899;
+			// aapt resource value: 0x7f060105
+			public const int QuickUnlock_fail = 2131099909;
 			
-			// aapt resource value: 0x7f060101
-			public const int QuickUnlock_fail = 2131099905;
+			// aapt resource value: 0x7f0600fe
+			public const int QuickUnlock_label = 2131099902;
 			
-			// aapt resource value: 0x7f0600fa
-			public const int QuickUnlock_label = 2131099898;
+			// aapt resource value: 0x7f060100
+			public const int QuickUnlock_lockButton = 2131099904;
 			
-			// aapt resource value: 0x7f0600fc
-			public const int QuickUnlock_lockButton = 2131099900;
-			
-			// aapt resource value: 0x7f06012c
-			public const int RecycleBin = 2131099948;
+			// aapt resource value: 0x7f060130
+			public const int RecycleBin = 2131099952;
 			
 			// aapt resource value: 0x7f060020
 			public const int RememberRecentFiles_key = 2131099680;
 			
-			// aapt resource value: 0x7f0600ee
-			public const int RememberRecentFiles_summary = 2131099886;
+			// aapt resource value: 0x7f0600f2
+			public const int RememberRecentFiles_summary = 2131099890;
 			
-			// aapt resource value: 0x7f0600ed
-			public const int RememberRecentFiles_title = 2131099885;
+			// aapt resource value: 0x7f0600f1
+			public const int RememberRecentFiles_title = 2131099889;
 			
-			// aapt resource value: 0x7f060153
-			public const int RemoteDatabaseUnchanged = 2131099987;
+			// aapt resource value: 0x7f060157
+			public const int RemoteDatabaseUnchanged = 2131099991;
 			
-			// aapt resource value: 0x7f060149
-			public const int RestoringRemoteFile = 2131099977;
+			// aapt resource value: 0x7f06014d
+			public const int RestoringRemoteFile = 2131099981;
 			
-			// aapt resource value: 0x7f060107
-			public const int SaveAttachmentDialog_open = 2131099911;
+			// aapt resource value: 0x7f06010b
+			public const int SaveAttachmentDialog_open = 2131099915;
 			
-			// aapt resource value: 0x7f060106
-			public const int SaveAttachmentDialog_save = 2131099910;
-			
-			// aapt resource value: 0x7f060105
-			public const int SaveAttachmentDialog_text = 2131099909;
-			
-			// aapt resource value: 0x7f060104
-			public const int SaveAttachmentDialog_title = 2131099908;
+			// aapt resource value: 0x7f06010a
+			public const int SaveAttachmentDialog_save = 2131099914;
 			
 			// aapt resource value: 0x7f060109
-			public const int SaveAttachment_Failed = 2131099913;
+			public const int SaveAttachmentDialog_text = 2131099913;
 			
 			// aapt resource value: 0x7f060108
-			public const int SaveAttachment_doneMessage = 2131099912;
+			public const int SaveAttachmentDialog_title = 2131099912;
 			
-			// aapt resource value: 0x7f06013b
-			public const int SettingPassword = 2131099963;
+			// aapt resource value: 0x7f06010d
+			public const int SaveAttachment_Failed = 2131099917;
 			
-			// aapt resource value: 0x7f06011e
-			public const int ShowCopyToClipboardNotification_summary = 2131099934;
+			// aapt resource value: 0x7f06010c
+			public const int SaveAttachment_doneMessage = 2131099916;
 			
-			// aapt resource value: 0x7f06011d
-			public const int ShowCopyToClipboardNotification_title = 2131099933;
+			// aapt resource value: 0x7f06013f
+			public const int SettingPassword = 2131099967;
 			
-			// aapt resource value: 0x7f060120
-			public const int ShowKp2aKeyboardNotification_summary = 2131099936;
+			// aapt resource value: 0x7f060122
+			public const int ShowCopyToClipboardNotification_summary = 2131099938;
 			
-			// aapt resource value: 0x7f06011f
-			public const int ShowKp2aKeyboardNotification_title = 2131099935;
+			// aapt resource value: 0x7f060121
+			public const int ShowCopyToClipboardNotification_title = 2131099937;
+			
+			// aapt resource value: 0x7f060124
+			public const int ShowKp2aKeyboardNotification_summary = 2131099940;
+			
+			// aapt resource value: 0x7f060123
+			public const int ShowKp2aKeyboardNotification_title = 2131099939;
 			
 			// aapt resource value: 0x7f060035
 			public const int ShowUnlockedNotification_key = 2131099701;
 			
-			// aapt resource value: 0x7f060124
-			public const int ShowUnlockedNotification_summary = 2131099940;
+			// aapt resource value: 0x7f060128
+			public const int ShowUnlockedNotification_summary = 2131099944;
 			
-			// aapt resource value: 0x7f060123
-			public const int ShowUnlockedNotification_title = 2131099939;
+			// aapt resource value: 0x7f060127
+			public const int ShowUnlockedNotification_title = 2131099943;
 			
 			// aapt resource value: 0x7f06001f
 			public const int ShowUsernameInList_key = 2131099679;
 			
-			// aapt resource value: 0x7f0600ec
-			public const int ShowUsernameInList_summary = 2131099884;
+			// aapt resource value: 0x7f0600f0
+			public const int ShowUsernameInList_summary = 2131099888;
 			
-			// aapt resource value: 0x7f0600eb
-			public const int ShowUsernameInList_title = 2131099883;
+			// aapt resource value: 0x7f0600ef
+			public const int ShowUsernameInList_title = 2131099887;
 			
 			// aapt resource value: 0x7f06002e
 			public const int SuggestionsURL = 2131099694;
 			
-			// aapt resource value: 0x7f06014b
-			public const int SynchronizedDatabaseSuccessfully = 2131099979;
+			// aapt resource value: 0x7f06014f
+			public const int SynchronizedDatabaseSuccessfully = 2131099983;
 			
-			// aapt resource value: 0x7f060146
-			public const int SynchronizingCachedDatabase = 2131099974;
+			// aapt resource value: 0x7f06014a
+			public const int SynchronizingCachedDatabase = 2131099978;
 			
-			// aapt resource value: 0x7f060143
-			public const int SynchronizingDatabase = 2131099971;
+			// aapt resource value: 0x7f060147
+			public const int SynchronizingDatabase = 2131099975;
 			
 			// aapt resource value: 0x7f06001e
 			public const int TanExpiresOnUse_key = 2131099678;
 			
-			// aapt resource value: 0x7f0600ea
-			public const int TanExpiresOnUse_summary = 2131099882;
+			// aapt resource value: 0x7f0600ee
+			public const int TanExpiresOnUse_summary = 2131099886;
 			
-			// aapt resource value: 0x7f0600e9
-			public const int TanExpiresOnUse_title = 2131099881;
+			// aapt resource value: 0x7f0600ed
+			public const int TanExpiresOnUse_title = 2131099885;
+			
+			// aapt resource value: 0x7f060145
+			public const int TitleSyncQuestion = 2131099973;
 			
 			// aapt resource value: 0x7f060141
-			public const int TitleSyncQuestion = 2131099969;
-			
-			// aapt resource value: 0x7f06013d
-			public const int TransformingKey = 2131099965;
+			public const int TransformingKey = 2131099969;
 			
 			// aapt resource value: 0x7f06002f
 			public const int TranslationURL = 2131099695;
 			
-			// aapt resource value: 0x7f06013c
-			public const int UndoingChanges = 2131099964;
+			// aapt resource value: 0x7f060140
+			public const int UndoingChanges = 2131099968;
 			
-			// aapt resource value: 0x7f060152
-			public const int UpdatedCachedFileOnLoad = 2131099986;
+			// aapt resource value: 0x7f060156
+			public const int UpdatedCachedFileOnLoad = 2131099990;
 			
-			// aapt resource value: 0x7f06014f
-			public const int UpdatedRemoteFileOnLoad = 2131099983;
+			// aapt resource value: 0x7f060153
+			public const int UpdatedRemoteFileOnLoad = 2131099987;
 			
-			// aapt resource value: 0x7f060148
-			public const int UploadingFile = 2131099976;
+			// aapt resource value: 0x7f06014c
+			public const int UploadingFile = 2131099980;
 			
 			// aapt resource value: 0x7f060028
 			public const int UsageCount_key = 2131099688;
@@ -1617,11 +1634,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f06002a
 			public const int UseFileTransactions_key = 2131099690;
 			
-			// aapt resource value: 0x7f060116
-			public const int UseFileTransactions_summary = 2131099926;
+			// aapt resource value: 0x7f06011a
+			public const int UseFileTransactions_summary = 2131099930;
 			
-			// aapt resource value: 0x7f060115
-			public const int UseFileTransactions_title = 2131099925;
+			// aapt resource value: 0x7f060119
+			public const int UseFileTransactions_title = 2131099929;
 			
 			// aapt resource value: 0x7f060031
 			public const int UseKp2aKeyboard_key = 2131099697;
@@ -1629,14 +1646,14 @@ namespace keepass2android
 			// aapt resource value: 0x7f06002b
 			public const int UseOfflineCache_key = 2131099691;
 			
-			// aapt resource value: 0x7f060118
-			public const int UseOfflineCache_summary = 2131099928;
+			// aapt resource value: 0x7f06011c
+			public const int UseOfflineCache_summary = 2131099932;
 			
-			// aapt resource value: 0x7f060117
-			public const int UseOfflineCache_title = 2131099927;
+			// aapt resource value: 0x7f06011b
+			public const int UseOfflineCache_title = 2131099931;
 			
-			// aapt resource value: 0x7f060144
-			public const int YesSynchronize = 2131099972;
+			// aapt resource value: 0x7f060148
+			public const int YesSynchronize = 2131099976;
 			
 			// aapt resource value: 0x7f060037
 			public const int about_feedback = 2131099703;
@@ -1647,14 +1664,14 @@ namespace keepass2android
 			// aapt resource value: 0x7f06003b
 			public const int accept = 2131099707;
 			
-			// aapt resource value: 0x7f06010f
-			public const int add_binary = 2131099919;
+			// aapt resource value: 0x7f060113
+			public const int add_binary = 2131099923;
 			
 			// aapt resource value: 0x7f06003c
 			public const int add_entry = 2131099708;
 			
-			// aapt resource value: 0x7f060110
-			public const int add_extra_string = 2131099920;
+			// aapt resource value: 0x7f060114
+			public const int add_extra_string = 2131099924;
 			
 			// aapt resource value: 0x7f06003e
 			public const int add_group = 2131099710;
@@ -1698,6 +1715,9 @@ namespace keepass2android
 			// aapt resource value: 0x7f06004a
 			public const int application_settings = 2131099722;
 			
+			// aapt resource value: 0x7f0600e9
+			public const int author = 2131099881;
+			
 			// aapt resource value: 0x7f060054
 			public const int available_through_keyboard = 2131099732;
 			
@@ -1713,11 +1733,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f06004e
 			public const int cancel = 2131099726;
 			
-			// aapt resource value: 0x7f0600f2
-			public const int caseSensitive = 2131099890;
+			// aapt resource value: 0x7f0600f6
+			public const int caseSensitive = 2131099894;
 			
-			// aapt resource value: 0x7f060004
-			public const int change_entry = 2131099652;
+			// aapt resource value: 0x7f060003
+			public const int change_entry = 2131099651;
 			
 			// aapt resource value: 0x7f060050
 			public const int clipboard_timeout = 2131099728;
@@ -1740,8 +1760,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f060057
 			public const int creating_db_key = 2131099735;
 			
-			// aapt resource value: 0x7f060114
-			public const int credentials_dialog_title = 2131099924;
+			// aapt resource value: 0x7f060118
+			public const int credentials_dialog_title = 2131099928;
+			
+			// aapt resource value: 0x7f0600eb
+			public const int credit_plugin1 = 2131099883;
 			
 			// aapt resource value: 0x7f060058
 			public const int current_group = 2131099736;
@@ -1752,11 +1775,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f06005a
 			public const int database = 2131099738;
 			
-			// aapt resource value: 0x7f060112
-			public const int database_loaded_quickunlock_enabled = 2131099922;
+			// aapt resource value: 0x7f060116
+			public const int database_loaded_quickunlock_enabled = 2131099926;
 			
-			// aapt resource value: 0x7f060113
-			public const int database_loaded_unlocked = 2131099923;
+			// aapt resource value: 0x7f060117
+			public const int database_loaded_unlocked = 2131099927;
 			
 			// aapt resource value: 0x7f0600d2
 			public const int database_name = 2131099858;
@@ -1776,8 +1799,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f06005d
 			public const int default_checkbox = 2131099741;
 			
-			// aapt resource value: 0x7f06000c
-			public const int default_file_path = 2131099660;
+			// aapt resource value: 0x7f06000b
+			public const int default_file_path = 2131099659;
 			
 			// aapt resource value: 0x7f0600d3
 			public const int default_username = 2131099859;
@@ -1785,8 +1808,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f060021
 			public const int default_username_key = 2131099681;
 			
-			// aapt resource value: 0x7f060111
-			public const int delete_extra_string = 2131099921;
+			// aapt resource value: 0x7f060115
+			public const int delete_extra_string = 2131099925;
 			
 			// aapt resource value: 0x7f06005e
 			public const int digits = 2131099742;
@@ -1794,8 +1817,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f06005f
 			public const int disclaimer_formal = 2131099743;
 			
-			// aapt resource value: 0x7f06000d
-			public const int donate_url = 2131099661;
+			// aapt resource value: 0x7f06000c
+			public const int donate_url = 2131099660;
 			
 			// aapt resource value: 0x7f060040
 			public const int edit_group_title = 2131099712;
@@ -1803,17 +1826,17 @@ namespace keepass2android
 			// aapt resource value: 0x7f060060
 			public const int ellipsis = 2131099744;
 			
-			// aapt resource value: 0x7f0600f9
-			public const int enable_quickunlock = 2131099897;
+			// aapt resource value: 0x7f0600fd
+			public const int enable_quickunlock = 2131099901;
 			
 			// aapt resource value: 0x7f060061
 			public const int enter_filename = 2131099745;
 			
-			// aapt resource value: 0x7f0600f8
-			public const int enter_filename_details_create_import = 2131099896;
+			// aapt resource value: 0x7f0600fc
+			public const int enter_filename_details_create_import = 2131099900;
 			
-			// aapt resource value: 0x7f0600f7
-			public const int enter_filename_details_url = 2131099895;
+			// aapt resource value: 0x7f0600fb
+			public const int enter_filename_details_url = 2131099899;
 			
 			// aapt resource value: 0x7f060062
 			public const int entry_accessed = 2131099746;
@@ -1899,8 +1922,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f06007d
 			public const int error_invalid_db = 2131099773;
 			
-			// aapt resource value: 0x7f06010a
-			public const int error_invalid_expiry_date = 2131099914;
+			// aapt resource value: 0x7f06010e
+			public const int error_invalid_expiry_date = 2131099918;
 			
 			// aapt resource value: 0x7f06007e
 			public const int error_invalid_path = 2131099774;
@@ -1926,8 +1949,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f060085
 			public const int error_rounds_too_large = 2131099781;
 			
-			// aapt resource value: 0x7f06010b
-			public const int error_string_key = 2131099915;
+			// aapt resource value: 0x7f06010f
+			public const int error_string_key = 2131099919;
 			
 			// aapt resource value: 0x7f060086
 			public const int error_title_required = 2131099782;
@@ -1935,17 +1958,23 @@ namespace keepass2android
 			// aapt resource value: 0x7f060087
 			public const int error_wrong_length = 2131099783;
 			
-			// aapt resource value: 0x7f0600f0
-			public const int excludeExpiredEntries = 2131099888;
+			// aapt resource value: 0x7f0600f4
+			public const int excludeExpiredEntries = 2131099892;
 			
-			// aapt resource value: 0x7f06010c
-			public const int field_name = 2131099916;
+			// aapt resource value: 0x7f060110
+			public const int field_name = 2131099920;
 			
-			// aapt resource value: 0x7f06010d
-			public const int field_value = 2131099917;
+			// aapt resource value: 0x7f060111
+			public const int field_value = 2131099921;
 			
 			// aapt resource value: 0x7f060089
 			public const int file_browser = 2131099785;
+			
+			// aapt resource value: 0x7f06000f
+			public const int further_author_names = 2131099663;
+			
+			// aapt resource value: 0x7f0600ea
+			public const int further_authors = 2131099882;
 			
 			// aapt resource value: 0x7f06008a
 			public const int generate_password = 2131099786;
@@ -1992,14 +2021,14 @@ namespace keepass2android
 			// aapt resource value: 0x7f060098
 			public const int hint_username = 2131099800;
 			
+			// aapt resource value: 0x7f06000d
+			public const int homepage = 2131099661;
+			
 			// aapt resource value: 0x7f06000e
-			public const int homepage = 2131099662;
+			public const int homepage_short = 2131099662;
 			
-			// aapt resource value: 0x7f06000f
-			public const int homepage_short = 2131099663;
-			
-			// aapt resource value: 0x7f060002
-			public const int ime_name = 2131099650;
+			// aapt resource value: 0x7f060001
+			public const int ime_name = 2131099649;
 			
 			// aapt resource value: 0x7f0600e0
 			public const int insert_element_here = 2131099872;
@@ -2028,26 +2057,26 @@ namespace keepass2android
 			// aapt resource value: 0x7f060019
 			public const int keyfile_key = 2131099673;
 			
-			// aapt resource value: 0x7f0600ef
-			public const int kp2a_findUrl = 2131099887;
+			// aapt resource value: 0x7f0600f3
+			public const int kp2a_findUrl = 2131099891;
+			
+			// aapt resource value: 0x7f060006
+			public const int label_go_key = 2131099654;
 			
 			// aapt resource value: 0x7f060007
-			public const int label_go_key = 2131099655;
+			public const int label_next_key = 2131099655;
 			
 			// aapt resource value: 0x7f060008
-			public const int label_next_key = 2131099656;
+			public const int label_send_key = 2131099656;
 			
 			// aapt resource value: 0x7f060009
-			public const int label_send_key = 2131099657;
-			
-			// aapt resource value: 0x7f06000a
-			public const int label_subtype_generic = 2131099658;
+			public const int label_subtype_generic = 2131099657;
 			
 			// aapt resource value: 0x7f0600a0
 			public const int length = 2131099808;
 			
-			// aapt resource value: 0x7f06000b
-			public const int library_name = 2131099659;
+			// aapt resource value: 0x7f06000a
+			public const int library_name = 2131099658;
 			
 			// aapt resource value: 0x7f060034
 			public const int list_size_default = 2131099700;
@@ -2172,11 +2201,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f0600c4
 			public const int omitbackup_title = 2131099844;
 			
-			// aapt resource value: 0x7f060005
-			public const int open_entry = 2131099653;
+			// aapt resource value: 0x7f060004
+			public const int open_entry = 2131099652;
 			
-			// aapt resource value: 0x7f060006
-			public const int open_entry_for_app = 2131099654;
+			// aapt resource value: 0x7f060005
+			public const int open_entry_for_app = 2131099653;
 			
 			// aapt resource value: 0x7f0600c3
 			public const int open_recent = 2131099843;
@@ -2196,14 +2225,14 @@ namespace keepass2android
 			// aapt resource value: 0x7f0600c9
 			public const int progress_title = 2131099849;
 			
-			// aapt resource value: 0x7f06010e
-			public const int protection = 2131099918;
+			// aapt resource value: 0x7f060112
+			public const int protection = 2131099922;
 			
-			// aapt resource value: 0x7f060135
-			public const int rate_app = 2131099957;
+			// aapt resource value: 0x7f060139
+			public const int rate_app = 2131099961;
 			
-			// aapt resource value: 0x7f0600e8
-			public const int regular_expression = 2131099880;
+			// aapt resource value: 0x7f0600ec
+			public const int regular_expression = 2131099884;
 			
 			// aapt resource value: 0x7f0600ca
 			public const int remember_keyfile_summary = 2131099850;
@@ -2244,8 +2273,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0600d6
 			public const int search_label = 2131099862;
 			
-			// aapt resource value: 0x7f0600f1
-			public const int search_options = 2131099889;
+			// aapt resource value: 0x7f0600f5
+			public const int search_options = 2131099893;
 			
 			// aapt resource value: 0x7f0600dc
 			public const int search_results = 2131099868;
@@ -2280,26 +2309,26 @@ namespace keepass2android
 			// aapt resource value: 0x7f0600da
 			public const int special = 2131099866;
 			
-			// aapt resource value: 0x7f0600f4
-			public const int start_create = 2131099892;
+			// aapt resource value: 0x7f0600f8
+			public const int start_create = 2131099896;
 			
-			// aapt resource value: 0x7f0600f6
-			public const int start_create_import = 2131099894;
+			// aapt resource value: 0x7f0600fa
+			public const int start_create_import = 2131099898;
 			
-			// aapt resource value: 0x7f0600f3
-			public const int start_open_file = 2131099891;
+			// aapt resource value: 0x7f0600f7
+			public const int start_open_file = 2131099895;
 			
-			// aapt resource value: 0x7f0600f5
-			public const int start_open_url = 2131099893;
+			// aapt resource value: 0x7f0600f9
+			public const int start_open_url = 2131099897;
 			
-			// aapt resource value: 0x7f060134
-			public const int suggest_improvements = 2131099956;
+			// aapt resource value: 0x7f060138
+			public const int suggest_improvements = 2131099960;
 			
-			// aapt resource value: 0x7f060154
-			public const int synchronize_database_menu = 2131099988;
+			// aapt resource value: 0x7f060158
+			public const int synchronize_database_menu = 2131099992;
 			
-			// aapt resource value: 0x7f060136
-			public const int translate_app = 2131099958;
+			// aapt resource value: 0x7f06013a
+			public const int translate_app = 2131099962;
 			
 			// aapt resource value: 0x7f0600e1
 			public const int twofish = 2131099873;
@@ -2313,6 +2342,9 @@ namespace keepass2android
 			// aapt resource value: 0x7f0600e4
 			public const int uppercase = 2131099876;
 			
+			// aapt resource value: 0x7f0600e8
+			public const int version_history = 2131099880;
+			
 			// aapt resource value: 0x7f0600e7
 			public const int version_label = 2131099879;
 			
@@ -2322,8 +2354,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0600e6
 			public const int warning_unmounted = 2131099878;
 			
-			// aapt resource value: 0x7f060003
-			public const int word_separators = 2131099651;
+			// aapt resource value: 0x7f060002
+			public const int word_separators = 2131099650;
 			
 			// aapt resource value: 0x7f0600be
 			public const int yes = 2131099838;
@@ -2341,20 +2373,20 @@ namespace keepass2android
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f0b001a
-			public const int AdditionalStringLayout = 2131427354;
+			// aapt resource value: 0x7f0b001b
+			public const int AdditionalStringLayout = 2131427355;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int Base = 2131427328;
 			
-			// aapt resource value: 0x7f0b0014
-			public const int BottomBarActionButton = 2131427348;
+			// aapt resource value: 0x7f0b0015
+			public const int BottomBarActionButton = 2131427349;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int Dialog = 2131427330;
 			
-			// aapt resource value: 0x7f0b0012
-			public const int EditEntryButton = 2131427346;
+			// aapt resource value: 0x7f0b0013
+			public const int EditEntryButton = 2131427347;
 			
 			// aapt resource value: 0x7f0b0007
 			public const int ElementText = 2131427335;
@@ -2374,8 +2406,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0b0010
 			public const int EntryItem = 2131427344;
 			
-			// aapt resource value: 0x7f0b0013
-			public const int ExtraFieldHeader = 2131427347;
+			// aapt resource value: 0x7f0b0014
+			public const int ExtraFieldHeader = 2131427348;
 			
 			// aapt resource value: 0x7f0b000b
 			public const int GroupAndEntryHeader = 2131427339;
@@ -2392,26 +2424,29 @@ namespace keepass2android
 			// aapt resource value: 0x7f0b0003
 			public const int GroupTextSmall = 2131427331;
 			
+			// aapt resource value: 0x7f0b0012
+			public const int InfoHeader = 2131427346;
+			
 			// aapt resource value: 0x7f0b0011
 			public const int MinusButton = 2131427345;
 			
 			// aapt resource value: 0x7f0b0001
 			public const int NoTitleBar = 2131427329;
 			
+			// aapt resource value: 0x7f0b0018
+			public const int TextAppearance_EditEntry = 2131427352;
+			
 			// aapt resource value: 0x7f0b0017
-			public const int TextAppearance_EditEntry = 2131427351;
+			public const int TextAppearance_EditEntry_LabelSmall = 2131427351;
 			
 			// aapt resource value: 0x7f0b0016
-			public const int TextAppearance_EditEntry_LabelSmall = 2131427350;
-			
-			// aapt resource value: 0x7f0b0015
-			public const int TextAppearance_EditEntry_Small = 2131427349;
-			
-			// aapt resource value: 0x7f0b0018
-			public const int TextAppearance_EditEntry_Value = 2131427352;
+			public const int TextAppearance_EditEntry_Small = 2131427350;
 			
 			// aapt resource value: 0x7f0b0019
-			public const int TextAppearance_SmallHeading = 2131427353;
+			public const int TextAppearance_EditEntry_Value = 2131427353;
+			
+			// aapt resource value: 0x7f0b001a
+			public const int TextAppearance_SmallHeading = 2131427354;
 			
 			// aapt resource value: 0x7f0b000a
 			public const int WhiteOnBlack = 2131427338;

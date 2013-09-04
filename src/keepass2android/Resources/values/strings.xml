@@ -178,6 +178,10 @@
   <string name="warning_read_only">Your sd card is currently read-only. You may not be able to save changes to your database.</string>
   <string name="warning_unmounted">Your sd card is not currently mounted on your device. You will not be able to load or create your database.</string>
   <string name="version_label">Version</string>
+	<string name="version_history">Version history</string>
+	<string name="author">Keepass2Android is developed by Philipp Crocoll.</string>
+	<string name="further_authors">Thanks to code contributions by %1$s.</string>
+	<string name="credit_plugin1">The Twofish Cipher Plugin for Keepass was developed by Scott Greenberg and is included in KP2A.</string>
   <string name="regular_expression">Regular expression</string>
   <string name="TanExpiresOnUse_title">Tan expires on use</string>
   <string name="TanExpiresOnUse_summary">Mark TAN entries expired when using them</string>

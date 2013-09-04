@@ -87,37 +87,11 @@ namespace keepass2android
 
 			if (showChangeLog)
 			{
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.SetTitle(GetString(Resource.String.ChangeLog_title));
-				String[] changeLog = {
-					GetString(Resource.String.ChangeLog_0_8_5),
-					GetString(Resource.String.ChangeLog_0_8_4),
-					GetString(Resource.String.ChangeLog_0_8_3),
-					GetString(Resource.String.ChangeLog_0_8_2),
-					GetString(Resource.String.ChangeLog_0_8_1),
-					GetString(Resource.String.ChangeLog_0_8),
-					GetString(Resource.String.ChangeLog_0_7),
-					GetString(Resource.String.ChangeLog)
-					 };
-
-				builder.SetPositiveButton(Android.Resource.String.Ok,(dlgSender, dlgEvt)=>{});
-				
-				builder.SetMessage("temp");
-				Dialog dialog = builder.Create();
-				dialog.DismissEvent += (sender, e) => 
-				{
-					LaunchNextActivity();
-				};
-				dialog.Show();
-				TextView message = (TextView) dialog.FindViewById(Android.Resource.Id.Message);
-
-				message.MovementMethod = LinkMovementMethod.Instance;
-				message.TextFormatted = Html.FromHtml(ConcatChangeLog(changeLog));
-				message.LinksClickable = true;
+				ChangeLog.ShowChangeLog(this, LaunchNextActivity);
 
 
-
-			} else
+			}
+			else
 			{
 				LaunchNextActivity();
 			}
@@ -128,34 +102,6 @@ namespace keepass2android
 
 		}
 
-		string ConcatChangeLog(string[] changeLog)
-		{
-			string res = "";
-			bool isFirst = true;
-			foreach (string c in changeLog)
-			{
-				res += c;
-				if (isFirst)
-				{
-					if (res.EndsWith("\n") == false)
-						res += "\n";
-					string donateUrl = GetString(Resource.String.donate_url, 
-					                                     new Java.Lang.Object[]{Resources.Configuration.Locale.Language,
-						PackageName
-					});
-					res += " * <a href=\""+donateUrl
-						+"\">"+
-						GetString(Resource.String.ChangeLog_keptDonate)
-							+"<a/>";
-					isFirst = false;
-				}
-			
-				while (res.EndsWith("\n\n") == false)
-					res += "\n";
-			}
-			return res.Replace("\n","<br>");
-
-		}
 		
 		IOConnectionInfo LoadIoc(string defaultFileName)
 		{
