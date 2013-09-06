@@ -744,4 +744,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi-v11\ic_launcher_gray.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\transparent.png" />
+  </ItemGroup>
 </Project>

@@ -116,7 +116,7 @@ namespace keepass2android
 			UpdateOngoingNotification();
 		}
 
-		private void UpdateOngoingNotification()
+		public void UpdateOngoingNotification()
 		{
 			// Start or update the notification icon service to reflect the current state
 			var ctx = Application.Context;

@@ -124,9 +124,14 @@ namespace keepass2android
 
 		private Notification GetQuickUnlockNotification()
 		{
+			int grayIconResouceId = Resource.Drawable.ic_launcher_gray;
+			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.QuickUnlockIconHidden_key), false))
+			{
+				grayIconResouceId = Resource.Drawable.transparent;
+			}
 			NotificationCompat.Builder builder = 
 				new NotificationCompat.Builder(this)
-					.SetSmallIcon(Resource.Drawable.ic_launcher_gray)
+					.SetSmallIcon(grayIconResouceId)
 					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.LauncherIcon))
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_quickunlock_enabled, GetDatabaseName()));

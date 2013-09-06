@@ -55,8 +55,6 @@
     <bool name="ShowUsernameInList_default">true</bool>
 
 	<bool name="RememberRecentFiles_default">true</bool>
-
-	
 	
 	
 	<string name="password_access_prefs_key">password_access_prefs_key</string>
@@ -68,6 +66,7 @@
 	<string name="QuickUnlockDefaultEnabled_key">Enable_QuickUnlock_by_default</string>
 	<string name="QuickUnlockLength_key">QuickUnlockLength</string>
 	<string name="QuickUnlockLength_default">3</string>
+	<string name="QuickUnlockIconHidden_key">QuickUnlockIconHidden_key</string>
 	
 	<string name="UsageCount_key">UsageCount</string>
 	<string name="LastInfoVersionCode_key">LastInfoVersion</string>

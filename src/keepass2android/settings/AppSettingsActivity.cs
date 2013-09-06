@@ -58,9 +58,14 @@ namespace keepass2android
 				Kp2aLog.Log(ex.ToString());	
 			}
 #endif
-
+			FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key)).PreferenceChange += OnQuickUnlockHiddenChanged;
 
 			FindPreference(GetString(Resource.String.db_key)).Enabled = false;
+		}
+
+		private void OnQuickUnlockHiddenChanged(object sender, Preference.PreferenceChangeEventArgs e)
+		{
+			App.Kp2a.UpdateOngoingNotification();
 		}
 
 		private void OnUseOfflineCacheChanged(object sender, Preference.PreferenceChangeEventArgs e)

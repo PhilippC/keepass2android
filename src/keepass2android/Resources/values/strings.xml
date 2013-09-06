@@ -212,6 +212,8 @@
   <string name="QuickUnlock_lockButton">Close database</string>
   <string name="QuickUnlockDefaultEnabled_title">Enable QuickUnlock by default</string>
   <string name="QuickUnlockDefaultEnabled_summary">Defines whether QuickUnlock is enabled by default or not.</string>
+	<string name="QuickUnlockIconHidden_title">Hide QuickUnlock icon</string>
+	<string name="QuickUnlockIconHidden_summary">QuickUnlock unfortunately does not work without displaying a notification icon. Select this option to use a transparent icon.</string>
   <string name="QuickUnlockLength_title">Length of QuickUnlock key</string>
   <string name="QuickUnlockLength_summary">Maximum number of characters used as QuickUnlock password.</string>
   <string name="QuickUnlock_fail">QuickUnlock failed: incorrect password!</string>
