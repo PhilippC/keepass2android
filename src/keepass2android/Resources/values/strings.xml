@@ -311,7 +311,22 @@
 
 	<string name="CannotMoveGroupHere">Cannot move group to this group.</string>
 
+	<string name="donate_question">Today, it\'s Oktoberfest! If you like Keepass2Android: wouldn\'t today be a good day to buy me a beer?</string>
+	<string name="ok_donate">Tell me more!</string>
+	<string name="no_thanks">No, I don\'t like it that much</string>
+	
+
 		<string name="ChangeLog_title">Change log</string>
+
+	<string name="ChangeLog_0_8_6">
+		<b>Version 0.8.6</b>\n
+		* Support for Twofish cipher\n
+		* Allow editing of groups\n
+		* Allow moving of entries and groups\n
+		* QuickUnlock icon can be made transparent (see settings)\n
+		* Bug fixes
+	</string>
+
 	<string name="ChangeLog_0_8_5">
 		<b>Version 0.8.5</b>\n
 		* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n

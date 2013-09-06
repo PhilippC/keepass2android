@@ -385,6 +385,27 @@ namespace keepass2android
 		{
 			base.OnStart();
 			_starting = true;
+
+			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+
+			long usageCount = prefs.GetLong(GetString(Resource.String.UsageCount_key), 0);
+
+			if ((DateTime.Now > new DateTime(2013, 09, 21))
+			    && (DateTime.Now < new DateTime(2013, 10, 07))
+				&& (usageCount > 5)
+				)
+			{
+				const string donationOkt2013Key = "HasAskedForDonationOktoberfest2013";
+				if (prefs.GetBoolean(donationOkt2013Key, false) == false)
+				{
+					ISharedPreferencesEditor edit = prefs.Edit();
+					edit.PutBoolean(donationOkt2013Key, true);
+					EditorCompat.Apply(edit);
+
+					StartActivity(new Intent(this, typeof(DonateReminder)));
+				}	
+			}
+			
 		}
 
 		private MemoryStream LoadDbFile()
