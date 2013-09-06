@@ -51,7 +51,7 @@ namespace keepass2android
 #if NoNet
 			try
 			{
-				((PreferenceCategory) FindPreference(GetString(Resource.String.db_key))).RemovePreference(cachingPreference);
+				((PreferenceScreen) FindPreference(GetString(Resource.String.FileHandling_prefs_key))).RemovePreference(cachingPreference);
 			}
 			catch (Exception ex)
 			{

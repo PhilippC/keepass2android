@@ -55,8 +55,17 @@
     <bool name="ShowUsernameInList_default">true</bool>
 
 	<bool name="RememberRecentFiles_default">true</bool>
-    
-    <string name="QuickUnlockDefaultEnabled_key">Enable_QuickUnlock_by_default</string>
+
+	
+	
+	
+	<string name="password_access_prefs_key">password_access_prefs_key</string>
+	<string name="security_prefs_key">security_prefs_key</string>
+	<string name="display_prefs_key">display_prefs_key</string>
+	<string name="QuickUnlock_prefs_key">QuickUnlock_prefs_key</string>
+	<string name="FileHandling_prefs_key">FileHandling_prefs_key</string>
+
+	<string name="QuickUnlockDefaultEnabled_key">Enable_QuickUnlock_by_default</string>
 	<string name="QuickUnlockLength_key">QuickUnlockLength</string>
 	<string name="QuickUnlockLength_default">3</string>
 	

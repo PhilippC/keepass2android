@@ -21,7 +21,13 @@
   <string name="app_timeout_summary">Time before locking database when the application is inactive.</string>
   <string name="application">Application</string>
   <string name="application_settings">Application settings</string>
-  <string name="brackets">Brackets</string>
+	
+	<string name="security_prefs">Security</string>
+	<string name="display_prefs">Display</string>
+	<string name="password_access_prefs">Password entry access</string>
+	<string name="QuickUnlock_prefs">QuickUnlock</string>
+	<string name="FileHandling_prefs">File handling</string>
+	<string name="brackets">Brackets</string>
   <string name="browser_intall_text">File browsing requires the Open Intents File Manager, click below to install it. Due to some quirks in the file manager, browsing may not work correctly, the first time you browse.</string>
   <string name="building_search_idx">Building search index…</string>
   <string name="cancel">Cancel</string>
@@ -225,7 +231,7 @@
   <string name="protection">Protected field</string>
   <string name="add_binary">Add file attachment...</string>
   <string name="add_extra_string">Add additional string</string>
-  <string name="delete_extra_string">Delete additional string</string>
+	<string name="delete_extra_string">Delete additional string</string>
 	<string name="database_loaded_quickunlock_enabled">%1$s: Locked. QuickUnlock enabled.</string>
 	<string name="database_loaded_unlocked">%1$s: Unlocked.</string>
   <string name="credentials_dialog_title">Enter server credentials</string>
