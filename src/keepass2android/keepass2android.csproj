@@ -756,4 +756,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\oktoberfest.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi-v11\ic_unlocked_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi-v11\ic_unlocked_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi-v11\ic_unlocked_gray.png" />
+  </ItemGroup>
 </Project>
