@@ -42,6 +42,7 @@ namespace keepass2android
 		public const Result TaskComplete = Result.FirstUser + 5;
 		public const Result ExitReloadDb = Result.FirstUser+6;
 		public const Result ExitClose = Result.FirstUser + 7;
+		public const Result ExitFileStorageSelectionOk = Result.FirstUser + 8;
 
 		AppTask _appTask;
 
@@ -110,6 +111,8 @@ namespace keepass2android
 
 		private void LaunchNextActivity() {
 
+			
+
 			if (!App.Kp2a.GetDb().Loaded)
 			{
 				// Load default database
@@ -144,7 +147,7 @@ namespace keepass2android
 
 			StartActivityForResult(intent, 0);
 			Finish();
-
+			
 		}
 		
 

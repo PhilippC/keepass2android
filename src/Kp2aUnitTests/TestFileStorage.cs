@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using KeePassLib.Serialization;
 using keepass2android.Io;
@@ -11,6 +12,7 @@ namespace Kp2aUnitTests
 
 		public bool Offline { get; set; }
 
+		public IEnumerable<string> SupportedProtocols { get { yield return "test"; } }
 
 		public void DeleteFile(IOConnectionInfo ioc)
 		{
@@ -18,6 +20,8 @@ namespace Kp2aUnitTests
 				throw new IOException("offline");
 			_builtIn.DeleteFile(ioc);
 		}
+
+		public IFileStorageSetup RequiredSetup { get { return null; } }
 
 		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
 		{
@@ -91,6 +95,11 @@ namespace Kp2aUnitTests
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{
 			return _builtIn.GetFilenameWithoutPathAndExt(ioc);
+		}
+
+		public bool RequiresCredentials(IOConnectionInfo ioc)
+		{
+			return _builtIn.RequiresCredentials(ioc);
 		}
 	}
 }

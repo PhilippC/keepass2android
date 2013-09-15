@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.IO;
 using Android.App;
 using Android.Content;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
@@ -162,8 +163,9 @@ namespace keepass2android
         internal EntryEditActivityState EntryEditActivityState = null;
 
         public FileDbHelper FileDbHelper;
+		private List<IFileStorage> _fileStorages;
 
-        public Database GetDb()
+		public Database GetDb()
         {
             if (_db == null)
             {
@@ -242,11 +244,22 @@ namespace keepass2android
 
         public string GetResourceString(UiStringKey key)
         {
-            var field = typeof (Resource.String).GetField(key.ToString());
-            if (field == null)
-                throw new Exception("Invalid key " + key);
-            return Application.Context.GetString((int)field.GetValue(null));
+	        return GetResourceString(key.ToString());
         }
+		public string GetResourceString(string key)
+		{
+			var field = typeof(Resource.String).GetField(key);
+			if (field == null)
+				throw new Exception("Invalid key " + key);
+			return Application.Context.GetString((int)field.GetValue(null));
+		}
+		public Drawable GetResourceDrawable(string key)
+		{
+			var field = typeof(Resource.Drawable).GetField(key);
+			if (field == null)
+				throw new Exception("Invalid key " + key);
+			return Application.Context.Resources.GetDrawable((int)field.GetValue(null));
+		}
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
 			EventHandler<DialogClickEventArgs> yesHandler,
@@ -335,15 +348,49 @@ namespace keepass2android
 				return new BuiltInFileStorage();
 			else
 			{
+				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
+
 				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+
 				if (prefs.GetBoolean(Application.Context.Resources.GetString(Resource.String.UseOfflineCache_key), true))
 				{
-					return new CachingFileStorage(new BuiltInFileStorage(), Application.Context.CacheDir.Path, this);	
+					return new CachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, this);	
 				}
 				else
 				{
-					return new BuiltInFileStorage();
+					return innerFileStorage;
 				}
+			}
+		}
+
+		private IFileStorage GetCloudFileStorage(IOConnectionInfo iocInfo)
+		{
+			foreach (IFileStorage fs in FileStorages)
+			{
+				foreach (string protocolId in fs.SupportedProtocols)
+				{
+					if (iocInfo.Path.StartsWith(protocolId + "://"))
+						return fs;
+				}
+
+			}
+			//TODO: catch!
+			throw new Exception("Unknown protocol " + iocInfo);
+		}
+
+		public IEnumerable<IFileStorage> FileStorages
+		{
+			get
+			{
+				if (_fileStorages == null)
+				{
+					_fileStorages = new List<IFileStorage>
+						{
+							new DropboxFileStorage(Application.Context),
+							new BuiltInFileStorage()
+						};
+				}
+				return _fileStorages;
 			}
 		}
 
@@ -431,6 +478,11 @@ namespace keepass2android
 		public void ClearOfflineCache()
 		{
 			new CachingFileStorage(new BuiltInFileStorage(), Application.Context.CacheDir.Path, this).ClearCache();
+		}
+
+		public IFileStorage GetFileStorage(string protocolId)
+		{
+			return GetFileStorage(new IOConnectionInfo() {Path = protocolId + "://"});
 		}
 	}
 

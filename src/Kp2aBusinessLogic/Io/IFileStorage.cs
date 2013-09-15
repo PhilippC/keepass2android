@@ -33,6 +33,8 @@ namespace keepass2android.Io
 	/// have an IIoStorageId interface in few cases.*/
 	public interface IFileStorage
 	{
+		IEnumerable<string> SupportedProtocols { get; } 
+
 		/// <summary>
 		/// Deletes the given file.
 		/// </summary>
@@ -55,9 +57,25 @@ namespace keepass2android.Io
 		/// <returns>A string which should not be null.</returns>
 		string GetCurrentFileVersionFast(IOConnectionInfo ioc);
 
+		/// <summary>
+		/// Opens the given file for reading
+		/// </summary>
 		Stream OpenFileForRead(IOConnectionInfo ioc);
-		//Stream OpenFileForWrite( IOConnectionInfo ioc, bool useTransaction);
+
+		/// <summary>
+		/// Opens a write transaction for writing to the given ioc. 
+		/// </summary>
+		/// <param name="ioc">ioc to write to</param>
+		/// <param name="useFileTransaction">if true, force to use file system level transaction. This might be ignored if the file storage has built in transaction support</param>
 		IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction);
+
+		/// <summary>
+		/// Returns an instance of an implementation of IFileStorageSetup or one of the more complex interfaces.
+		/// Depending on the type returned, the caller should try to follow the interface as close as possible.
+		/// Returns null if the file storage is setup or doesn't require anything to work. 
+		/// </summary>
+		/// This is due to different storage types requiring different workflows for authentication processes
+		IFileStorageSetup RequiredSetup { get; }
 
 		/// <summary>
 		/// brings up a dialog to query credentials or something like this.
@@ -73,6 +91,37 @@ namespace keepass2android.Io
 		bool? FileExists( /*ioId*/);
 
 		string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc);
+		
+		/// <summary>
+		/// Returns true if the the given ioc must be filled with username/password
+		/// </summary>
+		bool RequiresCredentials(IOConnectionInfo ioc);
+	}
+
+	/// <summary>
+	/// Base interface for required setup code
+	/// </summary>
+	public interface IFileStorageSetup
+	{
+		/// <summary>
+		/// call this when the user explicitly wants to use this file storage. Might require user interaction.
+		/// May throw if the setup failed permanentaly.
+		/// </summary>
+		/// <returns>true if the setup was succesful immediately (without UI). Returns false if setup was not successful but no error occured or can be displayed.</returns>
+		bool TrySetup(Activity activity);
+	}
+
+	/// <summary>
+	/// Interface which can be used additionally for an IFileStorageSetup to indicate that setup must be completed in OnResume()
+	/// </summary>
+	public interface IFileStorageSetupOnResume
+	{
+		/// <summary>
+		/// call this after TrySetup() returned false in the next OnResume()
+		/// May throw if the setup failed permanentaly.
+		/// </summary>
+		/// <returns>true if setup was succesful</returns>
+		bool TrySetupOnResume(Activity activity);
 	}
 
 	public interface IWriteTransaction: IDisposable

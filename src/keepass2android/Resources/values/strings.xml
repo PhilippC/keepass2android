@@ -314,6 +314,13 @@
 	<string name="donate_question">Today, it\'s Oktoberfest! If you like Keepass2Android: wouldn\'t today be a good day to buy me a beer?</string>
 	<string name="ok_donate">Tell me more!</string>
 	<string name="no_thanks">No, I don\'t like it that much</string>
+
+	<string name="filestoragename_file">Local file</string>
+	<string name="filestoragename_ftp">FTP</string>
+	<string name="filestoragename_http">HTTP (WebDav)</string>
+	<string name="filestoragename_https">HTTPS (WebDav)</string>
+	<string name="filestoragename_dropbox">Dropbox</string>
+	<string name="filestoragename_gdrive">Google Drive</string>
 	
 
 		<string name="ChangeLog_title">Change log</string>

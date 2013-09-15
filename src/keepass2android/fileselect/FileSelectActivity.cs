@@ -224,6 +224,7 @@ namespace keepass2android
 
 
 
+
 			Button openFileButton = (Button)FindViewById(Resource.Id.start_open_file);
 
 
@@ -243,8 +244,12 @@ namespace keepass2android
 			openUrlButton.Visibility = ViewStates.Gone;
 #endif
 
-			EventHandler openUrlButtonClick = (sender, e) => ShowFilenameDialog(true, false, false, "", GetString(Resource.String.enter_filename_details_url), Intents.RequestCodeFileBrowseForOpen);
-			openUrlButton.Click += openUrlButtonClick;
+			//EventHandler openUrlButtonClick = (sender, e) => ShowFilenameDialog(true, false, false, "", GetString(Resource.String.enter_filename_details_url), Intents.RequestCodeFileBrowseForOpen);
+			openUrlButton.Click += (sender, args) =>
+				{
+					Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
+					StartActivityForResult(intent, 0);
+				};
 
 			//CREATE NEW
 			Button createNewButton = (Button)FindViewById(Resource.Id.start_create);
@@ -377,7 +382,7 @@ namespace keepass2android
 
 		void LaunchPasswordActivityForIoc(IOConnectionInfo ioc)
 		{
-			if ((!ioc.IsLocalFile()) && (ioc.CredSaveMode != IOCredSaveMode.SaveCred))
+			if (App.Kp2a.GetFileStorage(ioc).RequiresCredentials(ioc))
 			{
 				//Build dialog to query credentials:
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -443,6 +448,15 @@ namespace keepass2android
 			}
 			
 			FillData();
+
+			if (resultCode == KeePass.ExitFileStorageSelectionOk)
+			{
+				LaunchPasswordActivityForIoc(new IOConnectionInfo()
+					{
+						Path = data.GetStringExtra("protocolId")+":///keepass/keepass.kdbx"
+					}
+					);
+			}
 			
 			if ( (requestCode == Intents.RequestCodeFileBrowseForCreate
 			      || requestCode == Intents.RequestCodeFileBrowseForOpen)

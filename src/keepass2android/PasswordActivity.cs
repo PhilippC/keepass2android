@@ -105,12 +105,6 @@ namespace keepass2android
 		}
 		
 
-		public static void Launch(Activity act, String fileName)  {
-			Launch(act, IOConnectionInfo.FromPath(fileName), null);
-			
-		}
-
-
 		public static void Launch(Activity act, IOConnectionInfo ioc, AppTask appTask)
 		{
 			if (ioc.IsLocalFile())

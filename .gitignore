@@ -125,3 +125,16 @@ Thumbs.db
 /src/Kp2aUnitTests/bin/ReleaseNoNet
 /src/TwofishCipher/bin
 /src/TwofishCipher/obj
+
+/src/java/workspace/UITest
+/src/java/JavaFileStorage/bin
+/src/java/JavaFileStorage/gen/keepass2android/javafilestorage/BuildConfig.java
+/src/java/JavaFileStorage/gen/keepass2android/javafilestorage/R.java
+/src/JavaFileStorageBindings/bin/Debug
+/src/JavaFileStorageBindings/bin/Release
+/src/JavaFileStorageBindings/obj/Debug
+/src/JavaFileStorageBindings/obj/Release
+/src/JavaFileStorageTest
+/src/java/workspace/DBRoulette
+/src/java/workspace/JavaFileStorageTest
+/src/java/JavaFileStorage/src/keepass2android/javafilestorage/SecretKeys.java

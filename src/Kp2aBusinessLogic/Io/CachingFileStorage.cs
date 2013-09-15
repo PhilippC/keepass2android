@@ -77,6 +77,8 @@ namespace keepass2android.Io
 			IoUtil.DeleteDir(new Java.IO.File(_streamCacheDir), true);
 		}
 
+		public IEnumerable<string> SupportedProtocols { get { return _cachedStorage.SupportedProtocols; } }
+
 		public void DeleteFile(IOConnectionInfo ioc)
 		{
 			if (IsCached(ioc))
@@ -391,6 +393,8 @@ namespace keepass2android.Io
 			return new CachedWriteTransaction(ioc, useFileTransaction, this);
 		}
 
+		public IFileStorageSetup RequiredSetup { get { return _cachedStorage.RequiredSetup; } }
+
 		public bool CompleteIoId()
 		{
 			throw new NotImplementedException();
@@ -405,6 +409,11 @@ namespace keepass2android.Io
 		{
 			return UrlUtil.StripExtension(
 				UrlUtil.GetFileName(ioc.Path));
+		}
+
+		public bool RequiresCredentials(IOConnectionInfo ioc)
+		{
+			return _cachedStorage.RequiresCredentials(ioc);
 		}
 
 

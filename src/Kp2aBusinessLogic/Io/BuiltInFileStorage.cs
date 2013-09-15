@@ -19,6 +19,17 @@ namespace keepass2android.Io
 {
 	public class BuiltInFileStorage: IFileStorage
 	{
+		public IEnumerable<string> SupportedProtocols 
+		{ 
+			get 
+			{
+				yield return "file";
+				yield return "ftp";
+				yield return "http";
+				yield return "https";
+			}
+		}
+
 		public void DeleteFile(IOConnectionInfo ioc)
 		{
 			IOConnection.DeleteFile(ioc);
@@ -78,6 +89,8 @@ namespace keepass2android.Io
 			return new BuiltInFileTransaction(ioc, useFileTransaction);
 		}
 
+		public IFileStorageSetup RequiredSetup { get { return null; } }
+
 		public class BuiltInFileTransaction : IWriteTransaction
 		{
 			private readonly FileTransactionEx _transaction;
@@ -118,6 +131,11 @@ namespace keepass2android.Io
 			return UrlUtil.StripExtension(
 				UrlUtil.GetFileName(ioc.Path));
 
+		}
+
+		public bool RequiresCredentials(IOConnectionInfo ioc)
+		{
+			return (!ioc.IsLocalFile()) && (ioc.CredSaveMode != IOCredSaveMode.SaveCred);
 		}
 	}
 }
