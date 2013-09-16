@@ -3,13 +3,14 @@
 <resources>
   <string name="about_feedback">Оставить отзыв</string>
   <string name="about_homepage">Сайт</string>
-  <string name="AboutText">Keepass2Android является Android-версией программы KeePass Password Safe</string>
-  <string name="CreditsText">Пользовательский интерфейс на основе порта KeepassDroid, разработанной Брайан Пеллин. Код для операций базы данных основан на KeePass Доминик Райхль. Android робот воспроизводён или модифицирован или изменение от работы, созданной и опубликованной Google и используются в соответствии с условиями, описанными в лицензии Creative Commons 3.0 Attribution.</string>
+  <string name="AboutText">Keepass2Android — это менеджер паролей, обеспечивающий полноценную работу с базами KeePass 2.x на Android.</string>
+  <string name="CreditsText">Пользовательский интерфейс основан на портированной версии KeepassDroid, разработанной Брайаном Пеллином. Код для операций с базой данных основан на KeePass Доминика Райхля. Робот Android воссоздан или модифицирован на основе версии, созданной и опубликованной Google, и используются в соответствии с условиями, описанными в лицензии Creative Commons 3.0 Attribution.</string>
   <string name="accept">Принять</string>
-  <string name="add_entry">Новая запись</string>
+  <string name="add_entry">Добавить запись</string>
   <string name="add_url_entry">Создать запись для URL</string>
-  <string name="add_group">Новая группа</string>
-  <string name="add_group_title">Новая группа</string>
+  <string name="add_group">Добавить группу</string>
+  <string name="add_group_title">Добавить группу</string>
+  <string name="edit_group_title">Изменить группу</string>
   <string name="algorithm">Алгоритм</string>
   <string name="algorithm_colon">Алгоритм</string>
   <string name="app_name">Keepass2Android</string>
@@ -20,6 +21,11 @@
   <string name="app_timeout_summary">Задержка блокировки при бездействии</string>
   <string name="application">Программа</string>
   <string name="application_settings">Настройки Keepass2Android</string>
+  <string name="security_prefs">Безопасность</string>
+  <string name="display_prefs">Отображение</string>
+  <string name="password_access_prefs">Парольный доступ</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
+  <string name="FileHandling_prefs">Обработка файлов</string>
   <string name="brackets">{[(Скобки)]}</string>
   <string name="browser_intall_text">Для функции обзора необходим менеджер файлов – OI File Manager (альтернативы – Total Commander, NARF File Manager)</string>
   <string name="building_search_idx">Индексирование…</string>
@@ -121,6 +127,7 @@
   <string name="menu_app_settings">Настройки</string>
   <string name="menu_db_settings">Настройки базы KeePass</string>
   <string name="menu_delete">Удалить</string>
+  <string name="menu_move">Переместить в другую группу</string>
   <string name="menu_donate">Пожертвуйте на пиво...</string>
   <string name="menu_edit">Правка</string>
   <string name="menu_hide_password">Скрыть</string>
@@ -168,6 +175,7 @@
   <string name="search_in">Поиск в</string>
   <string name="select_other_entry">Выбрать другую запись</string>
   <string name="select_group_then_add">Откройте требуемую группу, а затем нажмите \"%1$s\"!</string>
+  <string name="insert_element_here">Вставить сюда</string>
   <string name="twofish">Twofish</string>
   <string name="underline">_Подчёркивание_</string>
   <string name="unsupported_db_version">Неподдерживаемая версия базы</string>
@@ -175,6 +183,10 @@
   <string name="warning_read_only">Запись на карту памяти невозможна. Изменения не будут сохранены</string>
   <string name="warning_unmounted">Карта памяти не подключена. Работа с базой невозможна</string>
   <string name="version_label">Версия</string>
+  <string name="version_history">История версий</string>
+  <string name="author">Keepass2Android разработан Philipp Crocoll.</string>
+  <string name="further_authors">Благодарю %1$s за участие в разработке.</string>
+  <string name="credit_plugin1">Плагин шифрования Twofish для Keepass, включенный в KP2A, был разработан Скоттом Гринбергом.</string>
   <string name="regular_expression">Регулярное выражение</string>
   <string name="TanExpiresOnUse_title">TAN устаревают при использовании</string>
   <string name="TanExpiresOnUse_summary">Помечать TAN записи как устаревшие при их использовании</string>
@@ -194,13 +206,15 @@
   <string name="enter_filename_details_create_import">На следующем шаге будет выбран файл для импорта.</string>
   <string name="enable_quickunlock">Включить БыструюРазблокировку</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
-  <string name="QuickUnlock_button">БыстраяРазблокировка!</string>
+  <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Закрыть базу данных</string>
   <string name="QuickUnlockDefaultEnabled_title">Включить БыструюРазблокировку по умолчанию</string>
-  <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли БыстраяРазблокировка по умолчанию или нет.</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Определяет, включен ли QuickUnlock по умолчанию.</string>
+  <string name="QuickUnlockIconHidden_title">Скрыть значок БыстройРазблокировки</string>
+  <string name="QuickUnlockIconHidden_summary">К сожалению, QuickUnlock не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockLength_title">Длина ключа БыстройРазблокировки</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
-  <string name="QuickUnlock_fail">БыстраяРазблокировка не удалась: неправильный пароль!</string>
+  <string name="QuickUnlock_fail">QuickUnlock не сработал: неправильный пароль!</string>
   <string name="BinaryDirectory_title">Каталог файлов-вложений</string>
   <string name="BinaryDirectory_summary">Каталог для сохранения вложенных файлов.</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
@@ -217,7 +231,7 @@
   <string name="add_binary">Добавьте вложенный файл...</string>
   <string name="add_extra_string">Добавить дополнительную строку</string>
   <string name="delete_extra_string">Удалить дополнительную строку</string>
-  <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. QuickUnlock включен.</string>
   <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
   <string name="credentials_dialog_title">Введите учетные данные сервера</string>
   <string name="UseFileTransactions_title">Файловые транзакции</string>
@@ -284,7 +298,17 @@
   <string name="UpdatedCachedFileOnLoad">Обновление локальной кэшированной копии базы данных.</string>
   <string name="RemoteDatabaseUnchanged">Изменений не обнаружено.</string>
   <string name="synchronize_database_menu">Синхронизируйте базу данных…</string>
+  <string name="CannotMoveGroupHere">Не удается переместить группу в эту группу.</string>
+  <string name="donate_question">Сегодня Октоберфест! Если вам нравится Keepass2Android: сегодня хороший день, чтобы купить мне пива?</string>
+  <string name="ok_donate">Расскажите мне ещё!</string>
+  <string name="no_thanks">Спасибо, больше не нужно</string>
   <string name="ChangeLog_title">Список изменений</string>
+  <string name="ChangeLog_0_8_6"><b>Версия 0.8.6</b>\n
+* Поддержка шифрования Twofish\n
+* Возможность редактировать группы\n
+* Возможность переносить записи и группы\n
+* Значок БыстройРазблокировки можно сделать прозрачнымQuickUnlock (см. настройки)\n
+* Исправления ошибок</string>
   <string name="ChangeLog_0_8_5"><b>Версия 0.8.5</b>\n
 * Удалённый файлы хранятся в локальном кэше приложения для оффлайн-использования (включая редактирование и синхронизацию). См.  настройки. \n
 * Значок в уведомления для отображения статуса блокировки базы данных (см. настройки)\n

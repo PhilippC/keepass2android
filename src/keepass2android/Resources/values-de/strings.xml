@@ -11,6 +11,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="add_url_entry">Eintrag für URL anlegen</string>
   <string name="add_group">Gruppe hinzufügen</string>
   <string name="add_group_title">Gruppe hinzufügen</string>
+  <string name="edit_group_title">Gruppe bearbeiten</string>
   <string name="algorithm">Algorithmus</string>
   <string name="algorithm_colon">Algorithmus</string>
   <string name="app_name">Keepass2Android</string>
@@ -21,6 +22,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungs-Einstellungen</string>
+  <string name="security_prefs">Sicherheit</string>
+  <string name="display_prefs">Anzeige</string>
+  <string name="password_access_prefs">Passwort-Zugriff</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
+  <string name="FileHandling_prefs">Umgang mit Dateien</string>
   <string name="brackets">Klammern</string>
   <string name="browser_intall_text">Um diese Funktion nutzen zu können, benötigen Sie den OI File Manager, den Sie über Google Play bzw. direkt von der Entwicklerwebsite herunterladen können. Aufgrund einiger Eigenheiten des Dateimanagers kann es bei der ersten Benutzung zu Einschränkungen kommen.</string>
   <string name="building_search_idx">Suchindex erzeugen…</string>
@@ -122,6 +128,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_app_settings">Einstellungen</string>
   <string name="menu_db_settings">Datenbank-Einstellungen</string>
   <string name="menu_delete">Löschen</string>
+  <string name="menu_move">In andere Gruppe verschieben</string>
   <string name="menu_donate">Spendiere ein Bier...</string>
   <string name="menu_edit">Ändern</string>
   <string name="menu_hide_password">Kennwort verstecken</string>
@@ -169,6 +176,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="search_in">Suche in</string>
   <string name="select_other_entry">Anderen Eintrag wählen</string>
   <string name="select_group_then_add">Gehe zur gewünschten Gruppe, dann drücke \"%1$s\"!</string>
+  <string name="insert_element_here">Hier einfügen</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Unterstrichen</string>
   <string name="unsupported_db_version">Datenbankversion wird nicht unterstützt.</string>
@@ -176,6 +184,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="warning_read_only">Der Speicherort hat nur Lese-Rechte. Zum Speichern ist er nicht geeignet, darum ist es unmöglich letzte Änderungen zu sichern.</string>
   <string name="warning_unmounted">Keine SD-Karte vorhanden oder derzeit nicht im Gerät eingebunden. Daher kann weder eine Datenbank geöffnet noch erstellt werden.</string>
   <string name="version_label">Version</string>
+  <string name="version_history">Versionsinformationen</string>
+  <string name="author">Keepass2Android wird von Philipp Crocoll entwickelt.</string>
+  <string name="further_authors">Danke an %1$s für Beiträge zum Source-Code!</string>
+  <string name="credit_plugin1">Das Twofish-Plugin für Keepass wurde von Scott Greenberg entwickelt und ist in KP2A enthalten.</string>
   <string name="regular_expression">Regulärer Ausdruck</string>
   <string name="TanExpiresOnUse_title">Tan verfällt bei Verwendung</string>
   <string name="TanExpiresOnUse_summary">TAN Einträge als abgelaufen markieren, wenn sie geöffnet werden</string>
@@ -199,6 +211,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlock_lockButton">Datenbank schließen</string>
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock standardmäßig aktiviert</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definiert, ob QuickUnlock standardmäßig aktiviert ist oder nicht.</string>
+  <string name="QuickUnlockIconHidden_title">QuickUnlock-Icon verstecken</string>
+  <string name="QuickUnlockIconHidden_summary">QuickUnlock funktioniert leider nicht ohne ein Benachrichtigungssymbol. Wähle diese Option, um ein transparentes Symbol zu verwenden.</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
@@ -284,8 +298,18 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="LoadedFromRemoteInSync">Remote-Datei und Cache stimmen überein.</string>
   <string name="UpdatedCachedFileOnLoad">Kopie der Datenbank im lokalen Cache aktualisiert.</string>
   <string name="RemoteDatabaseUnchanged">Keine Änderungen gefunden.</string>
-  <string name="synchronize_database_menu">Datenbank wird synchronisiert…</string>
+  <string name="synchronize_database_menu">Datenbank synchronisieren…</string>
+  <string name="CannotMoveGroupHere">Kann Gruppe nicht hierher verschieben.</string>
+  <string name="donate_question">Heute ist Oktoberfest! Wenn dir Keepass2Android gefällt: Wäre heute nicht ein guter Tag, um mir ein Bier zu spendieren?</string>
+  <string name="ok_donate">Warum nicht?</string>
+  <string name="no_thanks">So gut gefällt mir\'s dann auch nicht</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog_0_8_6"><b>Version 0.8.6</b>\n
+* Unterstützung für Twofish-Verschlüsselung\n
+* Ermöglicht Bearbeiten von Gruppen\n
+* Ermöglich Verschieben von Einträgen und Gruppen\n
+* Das QuickUnlock-Icon kann transparent gemacht werden (s. Einstellungen)\n
+* Bugs behoben</string>
   <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
 		* Remote-Dateien werden im lokalen Cache gespeichert. Das erlaubt Offline-Nutzung (inkl. Bearbeiten und späterem Synchronisieren). S. Einstellungen.\n
 		* Benachrichtigungssymbol zum Visualisieren des Sperr-Zustands (s. Einstellungen)\n

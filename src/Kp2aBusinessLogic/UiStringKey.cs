@@ -43,6 +43,7 @@ namespace keepass2android
 		RestoringRemoteFile,
 		CheckingDatabaseForChanges,
 		RemoteDatabaseUnchanged,
-		CannotMoveGroupHere
+		CannotMoveGroupHere,
+		ErrorOcurred
     }
 }

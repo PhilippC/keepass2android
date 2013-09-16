@@ -307,6 +307,8 @@
 	<string name="UpdatedCachedFileOnLoad">Updated local cache copy of database.</string>
 	<string name="RemoteDatabaseUnchanged">No changes detected.</string>
 
+	<string name="ErrorOcurred">An error occured:</string>
+
 	<string name="synchronize_database_menu">Synchronize database…</string>
 
 	<string name="CannotMoveGroupHere">Cannot move group to this group.</string>

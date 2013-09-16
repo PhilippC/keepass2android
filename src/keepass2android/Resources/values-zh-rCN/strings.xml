@@ -167,7 +167,7 @@
   <string name="search_results">搜索结果</string>
   <string name="search_in">在...中搜索</string>
   <string name="select_other_entry">选择另一条目</string>
-  <string name="select_group_then_add">打开所需的组，然后按\"%1$s\"！</string>
+  <string name="select_group_then_add">打开所需的组，然后按\"%1$s\"</string>
   <string name="twofish">Twofish算法</string>
   <string name="underline">下划线</string>
   <string name="unsupported_db_version">不支持的数据库版本</string>
