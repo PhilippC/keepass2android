@@ -82,8 +82,8 @@ public class DropboxFileStorage implements JavaFileStorage {
                 storeKeys(tokens.key, tokens.secret);
                 setLoggedIn(true);
             } catch (IllegalStateException e) {
-                showToast("Couldn't authenticate with Dropbox:" + e.getLocalizedMessage());
                 Log.i(TAG, "Error authenticating", e);
+                throw e;
             }
         }
 	}
@@ -128,7 +128,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 	            }
 		     // do stuff with the Entry
 		 } catch (DropboxException e) {
-		     throw getNonDropboxException(e);
+		     throw convertException(e);
 		 }
 		return files;
 	}
@@ -141,7 +141,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 			com.dropbox.client2.DropboxAPI.Entry entry = mApi.metadata(path, 1, null, false, null);
 			return entry.hash != previousFileVersion;
 		} catch (DropboxException e) {
-			throw getNonDropboxException(e);
+			throw convertException(e);
 		}
 	}
 	
@@ -163,7 +163,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 			return mApi.getFileStream(path, null);
 		} catch (DropboxException e) {
 			//System.out.println("Something went wrong: " + e);
-			throw getNonDropboxException(e);
+			throw convertException(e);
 		}
 	}
 	
@@ -174,15 +174,15 @@ public class DropboxFileStorage implements JavaFileStorage {
 			//TODO: it would be nice to be able to use the parent version with putFile()
 			mApi.putFileOverwrite(path, bis, data.length, null);
 		} catch (DropboxException e) {
-			throw getNonDropboxException(e);
+			throw convertException(e);
 		}
 	}
 
-    private Exception getNonDropboxException(DropboxException e) {
+    private Exception convertException(DropboxException e) {
 
-    	//TODO test for special error codes like 404
     	Log.d(TAG, "Exception of type " +e.getClass().getName()+":" + e.getMessage());
     	
+    	//test for special error FileNotFound which must be reported with FileNotFoundException
     	if (DropboxServerException.class.isAssignableFrom(e.getClass()) )
     	{
     		
@@ -192,8 +192,6 @@ public class DropboxFileStorage implements JavaFileStorage {
     	}
     	
     	return e;
-		//return new Exception(e.toString());
-
 	}
 
 	private void showToast(String msg) {

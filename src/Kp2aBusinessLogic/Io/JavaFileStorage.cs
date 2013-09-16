@@ -15,6 +15,7 @@ using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using Keepass2android.Javafilestorage;
 using Exception = System.Exception;
+using FileNotFoundException = Java.IO.FileNotFoundException;
 
 namespace keepass2android.Io
 {
@@ -42,8 +43,7 @@ namespace keepass2android.Io
 			}
 			catch (Java.Lang.Exception e)
 			{
-				Kp2aLog.Log(e.Message);
-				throw new Exception(e.Message, e);
+				throw LogAndConvertJavaException(e);
 			}
 
 		}
@@ -56,8 +56,7 @@ namespace keepass2android.Io
 			}
 			catch (Java.Lang.Exception e)
 			{
-				Kp2aLog.Log(e.Message);
-				throw new Exception(e.Message, e);
+				throw LogAndConvertJavaException(e);
 			} 
 		}
 
@@ -67,16 +66,22 @@ namespace keepass2android.Io
 			{
 				return _jfs.OpenFileForRead(IocToPath(ioc));
 			}
-			catch (Java.IO.FileNotFoundException e)
+			catch (FileNotFoundException e)
 			{
 				throw new System.IO.FileNotFoundException(e.Message, e);
 			}
 			catch (Java.Lang.Exception e)
 			{
-				Kp2aLog.Log(e.Message);
-				throw new Exception(e.Message, e);
+				throw LogAndConvertJavaException(e);
 			}
-			
+		}
+
+
+		private static Exception LogAndConvertJavaException(Java.Lang.Exception e)
+		{
+			Kp2aLog.Log(e.Message);
+			var ex = new Exception(e.LocalizedMessage ?? e.Message, e);
+			return ex; 
 		}
 
 		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
@@ -111,8 +116,7 @@ namespace keepass2android.Io
 				}
 				catch (Java.Lang.Exception e)
 				{
-					Kp2aLog.Log(e.Message);
-					throw new Exception(e.Message, e);
+					throw LogAndConvertJavaException(e);
 				}
 			}
 
@@ -125,10 +129,8 @@ namespace keepass2android.Io
 				}
 				catch (Java.Lang.Exception e)
 				{
-					Kp2aLog.Log(e.Message);
-					throw new Exception(e.Message, e);
+					throw LogAndConvertJavaException(e);
 				}
-				
 			}
 		}
 
@@ -165,8 +167,7 @@ namespace keepass2android.Io
 				}
 				catch (Java.Lang.Exception e)
 				{
-					Kp2aLog.Log(e.ToString());
-					throw new Exception(e.Message, e);
+					LogAndConvertJavaException(e);
 				}
 			}
 		}
@@ -194,14 +195,12 @@ namespace keepass2android.Io
 
 		private static string IocToPath(IOConnectionInfo ioc)
 		{
-			int protocolLength = ioc.Path.IndexOf("://", System.StringComparison.Ordinal);
+			int protocolLength = ioc.Path.IndexOf("://", StringComparison.Ordinal);
 
 			if (protocolLength < 0)
 				return ioc.Path;
 			else
 				return ioc.Path.Substring(protocolLength + 3);
 		}
-
-
 	}
 }
