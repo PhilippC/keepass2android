@@ -7,6 +7,7 @@
   <string name="add_entry">Ny post</string>
   <string name="add_group">Ny grupp</string>
   <string name="add_group_title">Ny grupp</string>
+  <string name="edit_group_title">Redigera grupp</string>
   <string name="algorithm">Algoritm</string>
   <string name="algorithm_colon">Algoritm</string>
   <string name="app_name">Keepass2Android</string>
@@ -17,11 +18,16 @@
   <string name="app_timeout_summary">Tid innan låsning av databasen när applikationen är inaktiv.</string>
   <string name="application">Applikation</string>
   <string name="application_settings">Applikationsinställningar</string>
+  <string name="security_prefs">Säkerhet</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
+  <string name="FileHandling_prefs">Filhantering</string>
   <string name="brackets">Paranteser</string>
+  <string name="browser_intall_text">Filhantering kräver Open Intents File Manager, klicka nedan för att installera. Filhanteraren kanske inte fungerar korrekt vid första användningen.</string>
   <string name="building_search_idx">Bygger sökindex...</string>
   <string name="cancel">Avbryt</string>
   <string name="ClearClipboard">Urklippshanteraren rensad.</string>
   <string name="clipboard_timeout">Tidsgräns för utklipp</string>
+  <string name="clipboard_timeout_summary">Tiden innan användarnamn och lösenord rensas från urklipp</string>
   <string name="copy_username">Kopiera användarnamnet till urklipp</string>
   <string name="copy_password">Kopiera lösenordet till urklipp</string>
   <string name="creating_db_key">Skapar databasnyckel...</string>
@@ -34,6 +40,9 @@
   <string name="digits">Siffror</string>
   <string name="disclaimer_formal">Keepass2Android kommer HELT UTAN GARANTIER; Detta är fri programvara och du är välkommen att distribuera den utifrån villkoren i GPL version 2 eller senare.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="enter_filename">Ange databasnamn</string>
+  <string name="entry_accessed">Senast använd</string>
+  <string name="entry_and_or">Ange ett lösenord eller en nyckelfil för att låsa upp databasen</string>
   <string name="entry_cancel">Avbryt</string>
   <string name="entry_comment">Kommentarer</string>
   <string name="entry_tags">Taggar</string>
@@ -47,28 +56,46 @@
   <string name="entry_title">Namn</string>
   <string name="entry_url">URL</string>
   <string name="entry_user_name">Användarnamn</string>
+  <string name="entry_extra_strings">Extra strängfält</string>
   <string name="entry_binaries">Bifogade filer</string>
   <string name="error_could_not_create_group">Fel vid skapande av grupp.</string>
   <string name="error_database_exists">Filen finns redan.</string>
+  <string name="error_filename_required">Filnamn krävs.</string>
+  <string name="error_file_not_create">Kunde inte skapa filen</string>
   <string name="error_invalid_db">Ogiltig databas.</string>
   <string name="error_invalid_path">Ogiltig sökväg.</string>
+  <string name="error_no_name">Ett namn krävs.</string>
   <string name="error_nopass">Det krävs ett lösenord eller en nyckelfil.</string>
+  <string name="error_out_of_memory">Telefonen fick slut på minne vid läsning av din databas. Den kan vara för stor för din telefon.</string>
   <string name="error_pass_match">Lösenorden stämmer inte överrens.</string>
   <string name="error_rounds_not_number">Antalet rundor måste vara en siffra.</string>
   <string name="error_rounds_too_large">Antalet rundor är för stort. Sätter värdet till 2147483648.</string>
+  <string name="error_title_required">Titel krävs.</string>
   <string name="FileNotFound">Hittar inte filen.</string>
+  <string name="generate_password">Generera lösenord</string>
   <string name="group">Grupp</string>
   <string name="hint_comment">kommentar</string>
+  <string name="hint_conf_pass">Bekräfta lösenord</string>
   <string name="hint_group_name">Gruppnamn</string>
+  <string name="hint_keyfile">Nyckelfil</string>
   <string name="hint_length">längd</string>
   <string name="hint_pass">lösenord</string>
   <string name="hint_login_pass">Lösenord</string>
   <string name="hint_title">namn</string>
   <string name="hint_url">url</string>
+  <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">användarnamn</string>
   <string name="install_from_market">Installera från Play Store</string>
+  <string name="install_from_website">Installera från webben</string>
+  <string name="InvalidPassword">Ogiltigt lösenord eller nyckelfil.</string>
+  <string name="invalid_algorithm">Ogiltig algoritm.</string>
+  <string name="invalid_db_sig">Databasformat känns inte igen.</string>
+  <string name="keyfile_does_not_exist">Nyckelfilen finns inte.</string>
+  <string name="keyfile_is_empty">Nyckelfilen är tom.</string>
   <string name="length">Längd</string>
+  <string name="lowercase">Gemener</string>
   <string name="MaskedPassword">*****</string>
+  <string name="maskpass_summary">Dölja lösenord som standard</string>
   <string name="menu_about">Om</string>
   <string name="menu_copy_pass">Kopiera lösenord</string>
   <string name="menu_copy_user">Kopiera användarnamn</string>
@@ -90,29 +117,53 @@
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
   <string name="progress_title">Arbetar...</string>
+  <string name="remember_keyfile_summary">Kom ihåg platsen för nyckelfilen</string>
+  <string name="remember_keyfile_title">Spara nyckelfil</string>
+  <string name="remove_from_filelist">Ta bort</string>
+  <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
   <string name="rounds_hint">rundor</string>
+  <string name="database_name">Databasnamn</string>
   <string name="saving_database">Sparar databasen...</string>
   <string name="space">Utrymme</string>
   <string name="search_label">Sök</string>
+  <string name="show_password">Visa lösenord</string>
   <string name="sort_name">Sortera efter namn</string>
   <string name="sort_db">Sortera efter datum</string>
+  <string name="special">Special</string>
   <string name="search_results">Sökresultat</string>
   <string name="search_in">Sök i</string>
   <string name="select_other_entry">Välj en annan post</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Understruken</string>
   <string name="uppercase">Versaler</string>
+  <string name="warning_read_only">Ditt sd-kort är för närvarande skrivskyddat. Du kan inte spara ändringar till databasen.</string>
+  <string name="warning_unmounted">Ditt sd-kort är för närvarande inte monterad på din enhet. Du kommer inte att kunna läsa in eller skapa databasen.</string>
   <string name="version_label">Version</string>
+  <string name="version_history">Versionshistorik</string>
+  <string name="RememberRecentFiles_title">Kom ihåg databaser</string>
   <string name="search_options">Alternativ</string>
+  <string name="start_open_file">Öppna fil...</string>
+  <string name="start_create">Skapa ny databas...</string>
   <string name="start_open_url">Öppna URL...</string>
+  <string name="start_create_import">Importera filen till ny databas...</string>
   <string name="enable_quickunlock">Aktivera QuickUnlock</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
+  <string name="QuickUnlock_lockButton">Stäng databasen</string>
+  <string name="QuickUnlockDefaultEnabled_title">Aktivera QuickUnlock som standard</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Anger om QuickUnlock är aktiverad som standard eller inte.</string>
   <string name="SaveAttachmentDialog_title">Spara bilaga</string>
   <string name="SaveAttachmentDialog_save">Spara till SD-kort</string>
   <string name="field_name">Fältnamn</string>
   <string name="field_value">Värdet i fältet</string>
+  <string name="AskOverwriteBinary_yes">Skriv över</string>
+  <string name="AskOverwriteBinary_no">Ändra namn</string>
+  <string name="RecycleBin">Papperskorgen</string>
+  <string name="AskDeletePermanently_title">Ta bort permanent?</string>
   <string name="translate_app">Översätt KP2A</string>
+  <string name="YesSynchronize">Ja, slå samman</string>
+  <string name="NoOverwrite">Nej, skriv över</string>
+  <string name="FilesInSync">Filerna är synkroniserade.</string>
   <string name="ChangeLog_title">Ändringslogg</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
@@ -127,7 +178,7 @@
   </string-array>
   <string-array name="cred_remember_modes">
     <item>Do not remember username and password</item>
-    <item>Remember username only</item>
+    <item>Kom endast ihåg användarnamnet</item>
     <item>Kom ihåg användarnamn och lösenord</item>
   </string-array>
 </resources>

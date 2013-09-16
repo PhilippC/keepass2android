@@ -10,6 +10,7 @@
   <string name="add_url_entry">Vytvořit položku pro adresu URL</string>
   <string name="add_group">Přidat skupinu</string>
   <string name="add_group_title">Přidat skupinu</string>
+  <string name="edit_group_title">Editovat skupinu</string>
   <string name="algorithm">Algoritmus</string>
   <string name="algorithm_colon">Algoritmus</string>
   <string name="app_name">Keepass2Android</string>
@@ -20,6 +21,11 @@
   <string name="app_timeout_summary">Čas před zamknutím databáze, když je aplikace neaktivní.</string>
   <string name="application">Aplikace</string>
   <string name="application_settings">Nastavení aplikace</string>
+  <string name="security_prefs">Zabezpečení</string>
+  <string name="display_prefs">Displej</string>
+  <string name="password_access_prefs">Přístup k heslu</string>
+  <string name="QuickUnlock_prefs">RychléOdemknutí</string>
+  <string name="FileHandling_prefs">Zpracování souborů</string>
   <string name="brackets">Závorky</string>
   <string name="browser_intall_text">Procházení souborů vyžaduje Open Intents File Manager, klikněte níže pro jeho nainstalování. Kvůli zvláštnostem ve správci souborů, nemusí procházení správně fungovat při prvním spuštění.</string>
   <string name="building_search_idx">Vytvářím vyhledávací index…</string>
@@ -121,6 +127,7 @@
   <string name="menu_app_settings">Nastavení</string>
   <string name="menu_db_settings">Nastavení databáze</string>
   <string name="menu_delete">Smazat</string>
+  <string name="menu_move">Přesunutí do jiné skupiny</string>
   <string name="menu_donate">Přispějte na pivo...</string>
   <string name="menu_edit">Změnit</string>
   <string name="menu_hide_password">Skrýt heslo</string>
@@ -168,6 +175,7 @@
   <string name="search_in">Hledat v</string>
   <string name="select_other_entry">Vyberte další položku</string>
   <string name="select_group_then_add">Otevřete požadovanou skupinu a poté stiskněte \"%1$s\"!</string>
+  <string name="insert_element_here">Sem vložit</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Podtrhnout</string>
   <string name="unsupported_db_version">Nepodporovaná verze databáze.</string>
@@ -175,6 +183,10 @@
   <string name="warning_read_only">Vaše SD karta je v módu jen pro čtení. Nebudete moct ukládat změny v databázi.</string>
   <string name="warning_unmounted">SD karta není momentálně vložena do zařízení. Nebudete moci načíst nebo vytvořit databázi.</string>
   <string name="version_label">Verze</string>
+  <string name="version_history">Historie verzí</string>
+  <string name="author">Keepass2Android vyvýjí Philipp Crocoll.</string>
+  <string name="further_authors">Díky za příspěvky kódu %1$s.</string>
+  <string name="credit_plugin1">Modul šifry Twofish pro Keepass byl vyvinut společností Scott Greenberg a je součástí KP2A.</string>
   <string name="regular_expression">Regulární výraz</string>
   <string name="TanExpiresOnUse_title">Tan vyprší při použití</string>
   <string name="TanExpiresOnUse_summary">Při použití označovat vypršelé TAN položky</string>
@@ -198,6 +210,8 @@
   <string name="QuickUnlock_lockButton">Zavřít databázi</string>
   <string name="QuickUnlockDefaultEnabled_title">Ve výchozím nastavení povolit RychléOdemknutí</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definuje, zda RychléOdemknutí je ve výchozím nastavení povoleno, nebo ne.</string>
+  <string name="QuickUnlockIconHidden_title">Skrýt ikonu RychléhoOdemknutí</string>
+  <string name="QuickUnlockIconHidden_summary">QuickUnlock bohužel nefunguje bez zobrazení  ikony upozornění. Vyberte tuto možnost, chcete-li použít transparentní ikonu.</string>
   <string name="QuickUnlockLength_title">Délka klíče pro RychléOdemknutí</string>
   <string name="QuickUnlockLength_summary">Maximální počet znaků používaných jako heslo pro RychléOdemknutí.</string>
   <string name="QuickUnlock_fail">RychléOdemknutí se nezdařilo: nesprávné heslo!</string>
@@ -223,7 +237,7 @@
   <string name="UseFileTransactions_title">Transakce souboru</string>
   <string name="UseFileTransactions_summary">Použít transakční metodu zápisu do databáze</string>
   <string name="UseOfflineCache_title">Ukládání databáze do mezipaměti</string>
-  <string name="UseOfflineCache_summary">Ukládání kopií vzdálených databázových souborů v adresáři aplikace. To umožňuje použít vzdálené databáze, i v offline režimu.</string>
+  <string name="UseOfflineCache_summary">Ukládání kopií vzdálených databázových souborů v adresáři aplikace. To umožňuje použít vzdálené databáze i v offline režimu.</string>
   <string name="ClearOfflineCache_title">Vyčistit mezipaměť?</string>
   <string name="ClearOfflineCache_question">Tímto odstraníte všechny soubory v mezipaměti databáze. Veškeré změny, které jste provedli v době bez internetového připojení, které nebyly dosud synchronizovány, budou ztraceny! Chcete pokračovat?</string>
   <string name="CheckForFileChangesOnSave_title">Kontrola změn</string>
@@ -284,7 +298,18 @@
   <string name="UpdatedCachedFileOnLoad">Aktualizace kopie databáze v místní mezipaměti.</string>
   <string name="RemoteDatabaseUnchanged">Nebyly zjištěny změny.</string>
   <string name="synchronize_database_menu">Synchronizovat databázi…</string>
+  <string name="CannotMoveGroupHere">Skupinu nelze přesunout do této skupiny.</string>
+  <string name="donate_question">Dnes je Oktoberfest! Pokud se vám líbí Keepass2Android: nebyl by dnes dobrý den koupit mi pivo?</string>
+  <string name="ok_donate">Chci vědět víc!</string>
+  <string name="no_thanks">Ne, moc se mi to nelíbí</string>
   <string name="ChangeLog_title">Protokol změn</string>
+  <string name="ChangeLog_0_8_6">
+  <b>Verze 0.8.6</b> \n 
+* podpora Twofish šifry\n 
+* možnost editace skupin\n 
+* možnost přesunu položek a skupin\n 
+* Ikona RychléhoOdemknutí může být zprůhledněna (viz nastavení)\n 
+* opravy chyb</string>
   <string name="ChangeLog_0_8_5">
   <b>Verze 0.8.5</b> \n
 * Vzdálené soubory jsou uloženy v mezipaměti místní aplikace, umožňující používání off-line (včetně úprav a pozdější synchronizace). Viz nastavení.\n

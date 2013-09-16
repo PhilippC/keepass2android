@@ -10,6 +10,7 @@
   <string name="add_url_entry">Crea voce per l\'URL</string>
   <string name="add_group">Aggiungi gruppo</string>
   <string name="add_group_title">Aggiungi Gruppo</string>
+  <string name="edit_group_title">Modifica Gruppo</string>
   <string name="algorithm">Algoritmo</string>
   <string name="algorithm_colon">Algoritmo</string>
   <string name="app_name">Keepass2Android</string>
@@ -20,6 +21,11 @@
   <string name="app_timeout_summary">Periodo di inattività dell\'applicazione che precede il blocco del database.</string>
   <string name="application">Applicazione</string>
   <string name="application_settings">Impostazioni Applicazione</string>
+  <string name="security_prefs">Sicurezza</string>
+  <string name="display_prefs">Visualizzazione</string>
+  <string name="password_access_prefs">Inserimento password</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
+  <string name="FileHandling_prefs">Gestione dei file</string>
   <string name="brackets">Parentesi</string>
   <string name="browser_intall_text">Sfogliare i file richiede l\'applicazione Gestore File di Open Intents, clicca sotto per installarlo. A causa di alcune stranezze nel gestore file, la prima volta la navigazione potrebbe non funzionare correttamente.</string>
   <string name="building_search_idx">Creazione indice di ricerca…</string>
@@ -121,6 +127,7 @@
   <string name="menu_app_settings">Impostazioni</string>
   <string name="menu_db_settings">Impostazioni Database</string>
   <string name="menu_delete">Elimina</string>
+  <string name="menu_move">Sposta in un altro gruppo</string>
   <string name="menu_donate">Dona una birra...</string>
   <string name="menu_edit">Modifica</string>
   <string name="menu_hide_password">Nascondi Password</string>
@@ -168,6 +175,7 @@
   <string name="search_in">Cerca in</string>
   <string name="select_other_entry">Seleziona un\'altra voce</string>
   <string name="select_group_then_add">Apri il gruppo desiderato, poi premi \"%1$s\"!</string>
+  <string name="insert_element_here">Inserisci qui</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Sottolinea</string>
   <string name="unsupported_db_version">Versione del database non supportata.</string>
@@ -175,6 +183,10 @@
   <string name="warning_read_only">La tua scheda SD è, attualmente, in sola lettura. Potresti non essere in grado di salvare le modifiche nel database.</string>
   <string name="warning_unmounted">La tua scheda SD non è attualmente montata. Non sarai in grado di caricare o creare nessun database.</string>
   <string name="version_label">Versione</string>
+  <string name="version_history">Cronologia delle versioni</string>
+  <string name="author">Keepass2Android è sviluppato da Philipp Crocoll.</string>
+  <string name="further_authors">Grazie per i contributi di codice di %1$s.</string>
+  <string name="credit_plugin1">il Plugin Twofish Cipher per Keepass è stato sviluppato da Scott Greenberg ed è incluso in KP2A.</string>
   <string name="regular_expression">Espressione regolare</string>
   <string name="TanExpiresOnUse_title">Tan scade con l\'uso</string>
   <string name="TanExpiresOnUse_summary">Segna i TAN come scaduti una volta utilizzati</string>
@@ -198,6 +210,8 @@
   <string name="QuickUnlock_lockButton">Chiudi il database</string>
   <string name="QuickUnlockDefaultEnabled_title">Abilita QuickUnlock come impostazione predefinita</string>
   <string name="QuickUnlockDefaultEnabled_summary">Indica se QuickUnlock è attivato per default o no.</string>
+  <string name="QuickUnlockIconHidden_title">Nascondi l\'icona QuickUnlock</string>
+  <string name="QuickUnlockIconHidden_summary">QuickUnlock purtroppo non funziona senza visualizzare un\'icona di notifica. Selezionare questa opzione per utilizzare l\'icona trasparente.</string>
   <string name="QuickUnlockLength_title">Lunghezza della chiave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Numero massimo di caratteri utilizzati come QuickUnlock password.</string>
   <string name="QuickUnlock_fail">QuickUnlock fallito: password errata!</string>
@@ -284,7 +298,18 @@
   <string name="UpdatedCachedFileOnLoad">Aggiornata la copia cache locale del database.</string>
   <string name="RemoteDatabaseUnchanged">Nessuna modifica rilevata.</string>
   <string name="synchronize_database_menu">Sincronizzazione del database…</string>
+  <string name="CannotMoveGroupHere">Non è possibile spostare il gruppo in questo gruppo.</string>
+  <string name="donate_question">Oggi è l\'Oktoberfest! Se ti piace Keepass2Android: non sarebbe un buon giorno per offrirmi una birra?</string>
+  <string name="ok_donate">Dimmi di più!</string>
+  <string name="no_thanks">No, non mi piace più di tanto</string>
   <string name="ChangeLog_title">log delle modifiche</string>
+  <string name="ChangeLog_0_8_6">
+<b>Versione 0.8.6</b>\n
+* Supporto per cifratura Twofish\n
+* Consentita la modifica dei gruppi\n
+* Consentito lo spostamento di voci e gruppi\n
+* L\'icona QuickUnlock può essere resa trasparente (vedi impostazioni)\n
+* Correzioni di bug</string>
   <string name="ChangeLog_0_8_5">
 <b>Versione 0.8.5</b>\n
 * i file remoti vengono mantenuti nella cache locale dell\'applicazione per permetterne l\'uso offline (compresa la modifica e la successiva sincronizzazione). Vedi Impostazioni. \n

@@ -10,6 +10,7 @@
   <string name="add_url_entry">Criar entrada para URL</string>
   <string name="add_group">Adicionar grupo</string>
   <string name="add_group_title">Adicionar Grupo</string>
+  <string name="edit_group_title">Editar Grupo</string>
   <string name="algorithm">Algoritmo</string>
   <string name="algorithm_colon">Algoritmo</string>
   <string name="app_name">Keepass2Android</string>
@@ -20,6 +21,7 @@
   <string name="app_timeout_summary">Tempo até que o banco de dados seja travado quando o aplicativo estiver inativo.</string>
   <string name="application">Aplicação</string>
   <string name="application_settings">Configurações</string>
+  <string name="security_prefs">Segurança</string>
   <string name="brackets">Parênteses</string>
   <string name="browser_intall_text">Navegação em arquivos requer o gerenciador de arquivos Open Intents, clique abaixo para instalar. Devido a algumas peculiaridades no gerenciador de arquivos, a navegação pode não funcionar na primeira vez.</string>
   <string name="building_search_idx">Construindo índice de buscas…</string>
@@ -121,6 +123,7 @@
   <string name="menu_app_settings">Configurações</string>
   <string name="menu_db_settings">Configurações do banco de dados</string>
   <string name="menu_delete">Excluir</string>
+  <string name="menu_move">Mover para outro grupo</string>
   <string name="menu_donate">Doe uma cerveja...</string>
   <string name="menu_edit">Editar</string>
   <string name="menu_hide_password">Esconder Senha</string>
@@ -131,6 +134,7 @@
   <string name="menu_search">Procurar</string>
   <string name="menu_search_advanced">Pesquisa avançada</string>
   <string name="menu_url">Ir para URL</string>
+  <string name="menu_change_db">Alterar banco de dados…</string>
   <string name="minus">Menos</string>
   <string name="never">Nunca</string>
   <string name="yes">Sim</string>
@@ -179,6 +183,11 @@
   <string name="kp2a_findUrl">Keepass2Android: Buscar senha</string>
   <string name="search_options">Opções</string>
   <string name="start_open_file">Abrir arquivo...</string>
+  <string name="start_create">Criar novo banco de dados...</string>
+  <string name="QuickUnlock_lockButton">Fechar banco de dados</string>
+  <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por padrão</string>
+  <string name="AddingEntry">Adicionando a entrada…</string>
+  <string name="AddingGroup">Adicionando grupo…</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>

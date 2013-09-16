@@ -51,27 +51,36 @@ namespace keepass2android
 				StatusLogger.UpdateMessage(UiStringKey.loading_database);
 				MemoryStream memoryStream = _databaseData == null ? null : _databaseData.Result;
 				_app.LoadDatabase(_ioc, memoryStream, _pass, _key, StatusLogger);
-				SaveFileData (_ioc, _key);
-				
-			} catch (KeyFileException) {
+				SaveFileData(_ioc, _key);
+
+			}
+			catch (KeyFileException)
+			{
 				Kp2aLog.Log("KeyFileException");
-				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/ _app.GetResourceString(UiStringKey.keyfile_does_not_exist));
+				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/
+				       _app.GetResourceString(UiStringKey.keyfile_does_not_exist));
 			}
 			catch (AggregateException e)
 			{
 				string message = e.Message;
 				foreach (var innerException in e.InnerExceptions)
 				{
-					message = innerException.Message; // Override the message shown with the last (hopefully most recent) inner exception
+					message = innerException.Message;
+						// Override the message shown with the last (hopefully most recent) inner exception
 					Kp2aLog.Log("Exception: " + message);
 				}
-				Finish(false, "An error occured: " + message);
+				Finish(false, UiStringKey.ErrorOcurred + " " + message);
+				return;
+			}
+			catch (OldFormatException )
+			{
+				Finish(false, "Cannot open Keepass 1.x database. As explained in the app description, Keepass2Android is for Keepass 2 only! Please use the desktop application to convert your database to the new file format!");
 				return;
 			}
 			catch (Exception e)
 			{
 				Kp2aLog.Log("Exception: " + e);
-				Finish(false, "An error occured: " + e.Message);
+				Finish(false, UiStringKey.ErrorOcurred + " " + e.Message);
 				return;
 			}
 			

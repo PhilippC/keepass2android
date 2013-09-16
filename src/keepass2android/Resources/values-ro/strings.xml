@@ -10,6 +10,7 @@
   <string name="add_url_entry">Creaţi intrarea pentru URL</string>
   <string name="add_group">Adăugare grup</string>
   <string name="add_group_title">Adăugare grup</string>
+  <string name="edit_group_title">Editează Grup</string>
   <string name="algorithm">Algoritm</string>
   <string name="algorithm_colon">Algoritm</string>
   <string name="app_name">Keepass2Android</string>
@@ -20,6 +21,11 @@
   <string name="app_timeout_summary">Timp înainte de blocarea bazei de date atunci când aplicația este inactivă.</string>
   <string name="application">Aplicația</string>
   <string name="application_settings">Setări aplicație</string>
+  <string name="security_prefs">Securitate</string>
+  <string name="display_prefs">Afişare</string>
+  <string name="password_access_prefs">Acces introducere parolă</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
+  <string name="FileHandling_prefs">Tratare fişiere</string>
   <string name="brackets">Paranteze</string>
   <string name="browser_intall_text">Navigarea fișierelor necesită Open Intents File Manager, click mai jos pentru a-l instala. Datorită unor mici probleme cu managerul de fișiere navigarea s-ar putea să nu funcționeze corect prima dată când navigați.</string>
   <string name="building_search_idx">Creează index de căutare…</string>
@@ -121,6 +127,7 @@
   <string name="menu_app_settings">Setări</string>
   <string name="menu_db_settings">Setări baze de date</string>
   <string name="menu_delete">Şterge</string>
+  <string name="menu_move">Muta într-un alt grup</string>
   <string name="menu_donate">Doneaza o bere...</string>
   <string name="menu_edit">Editare</string>
   <string name="menu_hide_password">Ascunde parola</string>
@@ -131,6 +138,7 @@
   <string name="menu_search">Căutare</string>
   <string name="menu_search_advanced">Căutare avansată</string>
   <string name="menu_url">Du-te la URL-ul</string>
+  <string name="menu_change_db">Schimbă baza de date…</string>
   <string name="minus">Minus</string>
   <string name="never">Niciodată</string>
   <string name="yes">Da</string>
@@ -167,6 +175,7 @@
   <string name="search_in">Căutare în</string>
   <string name="select_other_entry">Selectaţi o altă înregistrare</string>
   <string name="select_group_then_add">Deschideți grupul dorit, apoi apăsaţi \"%1$s\"!</string>
+  <string name="insert_element_here">Introduceţi aici</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Subliniere</string>
   <string name="unsupported_db_version">Versiunea bazei de date nesuportată.</string>
@@ -174,11 +183,17 @@
   <string name="warning_read_only">Cardul sd este momentan read-only. Nu veți putea salva modificările la baza de date.</string>
   <string name="warning_unmounted">Cardul sd nu este montat momentan. Nu veți putea încărca sau crea baza de date.</string>
   <string name="version_label">Versiunea</string>
+  <string name="version_history">Istoric versiuni</string>
+  <string name="author">Keepass2Android este dezvoltat de către Philipp Crocoll.</string>
+  <string name="further_authors">Vă mulţumim pentru contribuţiile cod %1$s.</string>
+  <string name="credit_plugin1">Plugin-ul pentru cifrul Twofish  a fost dezvoltat de Scott Greenberg şi este inclus în KP2A.</string>
   <string name="regular_expression">Regular expression</string>
   <string name="TanExpiresOnUse_title">Tan expiră la utilizare</string>
   <string name="TanExpiresOnUse_summary">Marchează înregistrările TAN ca expirate la utilizarea lor</string>
   <string name="ShowUsernameInList_title">Afişeayă numele utilizator în lista</string>
   <string name="ShowUsernameInList_summary">Afişează numele utilizator sub înregistrări. Util pentru conturi sau TAN-uri multiple.</string>
+  <string name="RememberRecentFiles_title">Reţine baza de date</string>
+  <string name="RememberRecentFiles_summary">Reţine baze de date deschise recent si afişează-le în ecranul de deschidere a bazelor de date.</string>
   <string name="kp2a_findUrl">Keepass2Android: Cautare parolă</string>
   <string name="excludeExpiredEntries">Exclude înregistrările expirate</string>
   <string name="search_options">Opţiuni</string>
@@ -196,6 +211,8 @@
   <string name="QuickUnlock_lockButton">Închide baza de date</string>
   <string name="QuickUnlockDefaultEnabled_title">Permite QuickUnlock implicit</string>
   <string name="QuickUnlockDefaultEnabled_summary">Defineşte dacă QuickUnlock este activat implicit sau nu.</string>
+  <string name="QuickUnlockIconHidden_title">Ascunde icoana QuickUnlock</string>
+  <string name="QuickUnlockIconHidden_summary">QuickUnlock nu funcţionează din păcate fără a afişa o icoană de notificare. Selectaţi această opţiune pentru a utiliza o icoană transparentă.</string>
   <string name="QuickUnlockLength_title">Lungimea cheii QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Numărul maxim de caractere utilizate ca şi parolă QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock a eşuat: parolă incorectă!</string>
@@ -215,9 +232,15 @@
   <string name="add_binary">Ataşează fişier...</string>
   <string name="add_extra_string">Adaugă string adiţional</string>
   <string name="delete_extra_string">Şterge string adiţional</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: blocat. QuickUnlock activat.</string>
+  <string name="database_loaded_unlocked">%1$s: deblocat.</string>
   <string name="credentials_dialog_title">Introduceți datele conectare la server</string>
   <string name="UseFileTransactions_title">Tranzacții fișier</string>
   <string name="UseFileTransactions_summary">Foloseşte tranzacţii pentru a scrie bazele de date</string>
+  <string name="UseOfflineCache_title">Caching bază de date</string>
+  <string name="UseOfflineCache_summary">Păstrează o copie a bazelor de date remote în directorul cache. Aceasta vă permite să le utilizaţi şi offline.</string>
+  <string name="ClearOfflineCache_title">Goliţi Cache-ul?</string>
+  <string name="ClearOfflineCache_question">Aceasta va şterge toate bazele de date din cache. Orice modificări făcute offline ce nu au fost sincronizate vor fi pierdute! Continuaţi?</string>
   <string name="CheckForFileChangesOnSave_title">Verifică modificări</string>
   <string name="CheckForFileChangesOnSave_summary">Verifică dacă nu s-a modificat extern fişierul înainte de a salva.</string>
   <string name="ShowCopyToClipboardNotification_title">Notificări clipboard</string>
@@ -226,6 +249,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">Oferă întreaga înregistrare folosind tastatura KP2A (recomandat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Dialog selectare tastatură</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Deschide dialogul de selecţie a tastaturii atunci când înregistrarea este disponibilă prin KP2A după căutare.</string>
+  <string name="ShowUnlockedNotification_title">Notificare în timp ce este deblocat</string>
+  <string name="ShowUnlockedNotification_summary">Afişează o notificare \"în curs\" în timp ce baza de date este deblocată.</string>
+  <string name="PreloadDatabaseEnabled_title">Pre-încărca fişierul bază de date</string>
+  <string name="PreloadDatabaseEnabled_summary">Începe încărcarea în fundal sau descărcarea de la distanţă în timp ce se introduce parola.</string>
   <string name="AskOverwriteBinary">Doriţi să suprascrieţi binarul existent folosind acelaşi nume?</string>
   <string name="AskOverwriteBinary_title">Suprascrieţi binarul existent?</string>
   <string name="AskOverwriteBinary_yes">Suprascrie</string>
@@ -257,7 +284,40 @@
   <string name="SynchronizingDatabase">Se combină modificările…</string>
   <string name="YesSynchronize">Da, combină</string>
   <string name="NoOverwrite">Nu, suprascrie</string>
+  <string name="SynchronizingCachedDatabase">Sincronizează baza de date din cache…</string>
+  <string name="DownloadingRemoteFile">Se descarcă fişierul de la distanţă…</string>
+  <string name="UploadingFile">Se încarcă fişierul…</string>
+  <string name="RestoringRemoteFile">Se restaurează fişierul de la distanţă…</string>
+  <string name="FilesInSync">Fişierele sunt sincronizate.</string>
+  <string name="SynchronizedDatabaseSuccessfully">Baza de date s-a sincronizat cu succes!</string>
+  <string name="CheckingDatabaseForChanges">Verific baza de date pentru modificări…</string>
+  <string name="CouldNotSaveToRemote">Nu s-a putut salva la distanţă: %1$s. Salvaţi din nou sau folosiţi meniul Sincronizare atunci când conexiunea revine.</string>
+  <string name="CouldNotLoadFromRemote">Nu s-a putut deschide de la distanţă: %1$s. S-a încărcat versiunea locală. Totuşi puteţi face modificări în baza de date şi să le sincronizaţi ulterior.</string>
+  <string name="UpdatedRemoteFileOnLoad">S-a actualizat fişierul remote.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">S-a deschis varianta locală din cauza unor conflicte cu varianta remote. Folosiţi meniul Sincronizare pentru a combina.</string>
+  <string name="LoadedFromRemoteInSync">Varianta remote şi din cache sun sincronizate.</string>
+  <string name="UpdatedCachedFileOnLoad">S-a actualizat varianta locală a bazei de date.</string>
+  <string name="RemoteDatabaseUnchanged">Nu s-au detectat modificări.</string>
+  <string name="synchronize_database_menu">Sincronizează baza de date…</string>
+  <string name="CannotMoveGroupHere">Nu se poate muta grupul în acest grup.</string>
+  <string name="donate_question">Astăzi este Oktoberfest! Dacă vă place Keepass2Android: nu ar fi azi o zi potrivită să-mi cumpăraţi o bere?</string>
+  <string name="ok_donate">Spune-mi mai multe!</string>
+  <string name="no_thanks">Nu, nu-mi place atât de mult</string>
   <string name="ChangeLog_title">Change log</string>
+  <string name="ChangeLog_0_8_6">
+<b>Versiunea 0.8.6</b>\n
+* Suport pentru cifrul Twofish\n
+* Permite editarea de grupuri\n
+* Permite mutarea de intrări şi grupuri\n
+* Icoana QuickUnlock poate fi făcută transparentă (setări)\n
+* Bug fixes</string>
+  <string name="ChangeLog_0_8_5"><b>Versiunea 0.8.5</b>\n
+* Fişierele remote sunt stocate local în cache-ul aplicaţiei pentru a permite utilizare offline (inclusiv editare şi sincronizare ulterioară). Verificaţi setările.\n
+* Icoană de notificare pentru a vizualiza starea de blocare a bazei de date (verificaţi setările)\n
+* Determinare imbunătăţită a stării de blocare în unele situaţii\n
+* Bazele de date sunt incărcate în memorie în timpul introducerii parolei pentru scurtarea timpului de incărcare (verificaţi setările)\n
+* Se pot adăuga intrări în grupul rădăcină\n
+* Bug fixes (rezolvă câmpurile referinţă, probleme cu tastatura pe aparatele italiene şi chineze)</string>
   <string name="ChangeLog_0_8_4"><b>Versiunea 0.8.4</b>\n 
 * Modificările externe ale bazei de date sunt detectate şi combinate la salvare\n 
 * S-a îmbunătăţit performanţa la încărcare\n 
