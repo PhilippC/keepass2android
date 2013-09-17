@@ -22,6 +22,7 @@ import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.android.AuthActivity;
 import com.dropbox.client2.exception.DropboxException;
 import com.dropbox.client2.exception.DropboxServerException;
+import com.dropbox.client2.exception.DropboxUnlinkedException;
 import com.dropbox.client2.session.AccessTokenPair;
 import com.dropbox.client2.session.AppKeyPair;
 import com.dropbox.client2.session.TokenPair;
@@ -181,6 +182,14 @@ public class DropboxFileStorage implements JavaFileStorage {
     private Exception convertException(DropboxException e) {
 
     	Log.d(TAG, "Exception of type " +e.getClass().getName()+":" + e.getMessage());
+    	
+    	if (DropboxUnlinkedException.class.isAssignableFrom(e.getClass()) )
+    	{
+    		Log.d(TAG, "LoggedIn=false (due to unlink exception)");
+    		setLoggedIn(false);
+    		return new Exception("Unlinked from Dropbox!", e);
+    		
+    	}
     	
     	//test for special error FileNotFound which must be reported with FileNotFoundException
     	if (DropboxServerException.class.isAssignableFrom(e.getClass()) )

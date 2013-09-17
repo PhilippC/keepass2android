@@ -17,8 +17,8 @@ namespace keepass2android.Io
 {
 	public class DropboxFileStorage: JavaFileStorage
 	{
-		public DropboxFileStorage(Context ctx) : 
-			base(new Keepass2android.Javafilestorage.DropboxFileStorage(ctx))
+		public DropboxFileStorage(Context ctx, IKp2aApp app) :
+			base(new Keepass2android.Javafilestorage.DropboxFileStorage(ctx), app)
 		{
 		}
 

@@ -47,9 +47,9 @@ namespace keepass2android
 
 		public const String KeyFilename = "fileName";
 		private const String KeyKeyfile = "keyFile";
-		private const String KeyServerusername = "serverCredUser";
-		private const String KeyServerpassword = "serverCredPwd";
-		private const String KeyServercredmode = "serverCredRememberMode";
+		public const String KeyServerusername = "serverCredUser";
+		public const String KeyServerpassword = "serverCredPwd";
+		public const String KeyServercredmode = "serverCredRememberMode";
 
 		private const String ViewIntent = "android.intent.action.VIEW";
 		private const string ShowpasswordKey = "ShowPassword";
@@ -74,7 +74,7 @@ namespace keepass2android
 		}
 
 
-		static void PutIoConnectionToIntent(IOConnectionInfo ioc, Intent i)
+		public static void PutIoConnectionToIntent(IOConnectionInfo ioc, Intent i)
 		{
 			i.PutExtra(KeyFilename, ioc.Path);
 			i.PutExtra(KeyServerusername, ioc.UserName);
@@ -463,10 +463,23 @@ namespace keepass2android
 					Kp2aLog.Log("Starting QuickUnlock");
 					StartActivityForResult(i, 0);
 				}
-				else if (_loadDbTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+				else 
 				{
-					// Create task to kick off file loading while the user enters the password
-					_loadDbTask = Task.Factory.StartNew<MemoryStream>(LoadDbFile);
+					//database not yet loaded.
+
+					//check if FileStorage setup is all done. Usually this should not occur here because the setup is
+					//performed in FileSelectActivity, but e.g. if the user unlinks from Dropbox saving might fail and 
+					//the user is returned here.
+					if (App.Kp2a.GetFileStorage(_ioConnection).RequiredSetup != null)
+					{
+						GoToFileSelectActivity();
+					}
+					//check if pre-loading is enabled but wasn't started yet:
+					else if (_loadDbTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+					{
+						// Create task to kick off file loading while the user enters the password
+						_loadDbTask = Task.Factory.StartNew<MemoryStream>(LoadDbFile);
+					}
 				}
 			}
 		}
@@ -539,20 +552,21 @@ namespace keepass2android
 					return true;
 
 				case Resource.Id.menu_change_db:
-					Intent intent = new Intent(this, typeof(FileSelectActivity));
-					AppTask.ToIntent(intent);
-					StartActivityForResult(intent, 0);
-					Finish();
+					GoToFileSelectActivity();
 					return true;
-
-
 			}
-
-			
 			
 			return base.OnOptionsItemSelected(item);
 		}
-		
+
+		private void GoToFileSelectActivity()
+		{
+			Intent intent = new Intent(this, typeof (FileSelectActivity));
+			AppTask.ToIntent(intent);
+			StartActivityForResult(intent, 0);
+			Finish();
+		}
+
 		private class AfterLoad : OnFinish {
 			readonly PasswordActivity _act;
 

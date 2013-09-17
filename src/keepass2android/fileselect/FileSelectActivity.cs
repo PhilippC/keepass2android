@@ -25,6 +25,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using KeePassLib.Serialization;
+using keepass2android.Io;
 
 namespace keepass2android
 {
@@ -59,9 +60,9 @@ namespace keepass2android
 
 		private bool _recentMode;
 		view.FileSelectButtons _fileSelectButtons;
-		bool _createdWithActivityResult;
 
 		internal AppTask AppTask;
+		private IOConnectionInfo _iocToLaunch;
 
 		void ShowFilenameDialog(bool showOpenButton, bool showCreateButton, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
 		{
@@ -279,6 +280,18 @@ namespace keepass2android
 				AppTask = AppTask.CreateFromBundle(savedInstanceState);
 				_recentMode = savedInstanceState.GetBoolean(BundleKeyRecentMode, _recentMode);
 
+				string filenameToLaunch = savedInstanceState.GetString(PasswordActivity.KeyFilename);
+				if (filenameToLaunch != null)
+				{
+					_iocToLaunch = new IOConnectionInfo()
+						{
+							Path = filenameToLaunch,
+							UserName = savedInstanceState.GetString(PasswordActivity.KeyServerusername),
+							Password = savedInstanceState.GetString(PasswordActivity.KeyServerpassword),
+							CredSaveMode = (IOCredSaveMode) savedInstanceState.GetInt(PasswordActivity.KeyServercredmode)
+						};
+				}
+
 
 			}
 
@@ -305,6 +318,14 @@ namespace keepass2android
 			base.OnSaveInstanceState(outState);
 			AppTask.ToBundle(outState);
 			outState.PutBoolean(BundleKeyRecentMode, _recentMode);
+			
+			if (_iocToLaunch != null)
+			{
+				outState.PutString(PasswordActivity.KeyFilename, _iocToLaunch.Path);
+				outState.PutString(PasswordActivity.KeyServerusername, _iocToLaunch.UserName);
+				outState.PutString(PasswordActivity.KeyServerpassword, _iocToLaunch.Password);
+				outState.PutInt(PasswordActivity.KeyServercredmode, (int)_iocToLaunch.CredSaveMode);
+			}
 		}
 		
 		private class LaunchGroupActivity : FileOnFinish {
@@ -382,7 +403,18 @@ namespace keepass2android
 
 		void LaunchPasswordActivityForIoc(IOConnectionInfo ioc)
 		{
-			if (App.Kp2a.GetFileStorage(ioc).RequiresCredentials(ioc))
+			IFileStorage fileStorage = App.Kp2a.GetFileStorage(ioc);
+			if (fileStorage.RequiredSetup != null)
+			{
+				if (!fileStorage.RequiredSetup.TrySetup(this))
+				{
+					//store ioc to launch. TrySetup hopefully launched another activity so we can check again in OnResume
+					_iocToLaunch = ioc;
+					return;
+				}
+			}
+
+			if (fileStorage.RequiresCredentials(ioc))
 			{
 				//Build dialog to query credentials:
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -416,7 +448,7 @@ namespace keepass2android
 					Finish();
 				} catch (Java.IO.FileNotFoundException)
 				{
-					Toast.MakeText(this,     Resource.String.FileNotFound, ToastLength.Long).Show();
+					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
 				} 
 			}
 		}
@@ -438,8 +470,6 @@ namespace keepass2android
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
-
-			_createdWithActivityResult = true;
 
 			if (resultCode == KeePass.ExitCloseAfterTaskComplete)
 			{
@@ -501,8 +531,29 @@ namespace keepass2android
 				Intent intent = Intent;
 				StartActivity(intent);
 				Finish();
+				return;
 			}
 
+			//check if we are resuming after setting up the file storage:
+			if (_iocToLaunch != null)
+			{
+				try
+				{
+					IOConnectionInfo iocToLaunch = _iocToLaunch;
+					_iocToLaunch = null;
+
+					IFileStorageSetupOnResume fsSetup = App.Kp2a.GetFileStorage(iocToLaunch).RequiredSetup as IFileStorageSetupOnResume;
+					if ((fsSetup == null) || (fsSetup.TrySetupOnResume(this)))
+					{
+						LaunchPasswordActivityForIoc(iocToLaunch);
+					}
+
+				}
+				catch (Exception e)
+				{
+					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+				}	
+			}
 
 			_fileSelectButtons.UpdateExternalStorageWarning();
 
@@ -517,8 +568,7 @@ namespace keepass2android
 			var db = App.Kp2a.GetDb();
 			if (db.Loaded)
 			{
-				PasswordActivity.Launch(this, db.Ioc, AppTask);
-				Finish();
+				LaunchPasswordActivityForIoc(db.Ioc);
 			}
 
 			

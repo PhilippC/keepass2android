@@ -1,16 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Java.Lang;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using Keepass2android.Javafilestorage;
@@ -23,11 +14,13 @@ namespace keepass2android.Io
 	{
 		public abstract IEnumerable<string> SupportedProtocols { get; }
 
-		private IJavaFileStorage _jfs;
+		private readonly IJavaFileStorage _jfs;
+		private readonly IKp2aApp _app;
 
-		public JavaFileStorage(IJavaFileStorage jfs)
+		public JavaFileStorage(IJavaFileStorage jfs, IKp2aApp app)
 		{
-			this._jfs = jfs;
+			_jfs = jfs;
+			_app = app;
 		}
 
 		public void DeleteFile(IOConnectionInfo ioc)
@@ -37,14 +30,17 @@ namespace keepass2android.Io
 
 		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
 		{
-			try
+			return false;
+
+			//commented because this currently might use the network which is not permitted here
+			/*try
 			{
-				return _jfs.CheckForFileChangeFast(ioc.Path, previousFileVersion);
+				return Jfs.CheckForFileChangeFast(ioc.Path, previousFileVersion);
 			}
 			catch (Java.Lang.Exception e)
 			{
 				throw LogAndConvertJavaException(e);
-			}
+			}*/
 
 		}
 
@@ -52,7 +48,7 @@ namespace keepass2android.Io
 		{
 			try
 			{
-				return _jfs.GetCurrentFileVersionFast(ioc.Path);
+				return Jfs.GetCurrentFileVersionFast(ioc.Path);
 			}
 			catch (Java.Lang.Exception e)
 			{
@@ -64,7 +60,7 @@ namespace keepass2android.Io
 		{
 			try
 			{
-				return _jfs.OpenFileForRead(IocToPath(ioc));
+				return Jfs.OpenFileForRead(IocToPath(ioc));
 			}
 			catch (FileNotFoundException e)
 			{
@@ -77,26 +73,33 @@ namespace keepass2android.Io
 		}
 
 
-		private static Exception LogAndConvertJavaException(Java.Lang.Exception e)
+		private Exception LogAndConvertJavaException(Java.Lang.Exception e)
 		{
 			Kp2aLog.Log(e.Message);
-			var ex = new Exception(e.LocalizedMessage ?? e.Message, e);
+			var ex = new Exception(e.LocalizedMessage ?? 
+				e.Message ?? 
+				_app.GetResourceString(UiStringKey.ErrorOcurred)+e, e);
 			return ex; 
 		}
 
 		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
 		{
-			return new JavaFileStorageWriteTransaction(IocToPath(ioc), useFileTransaction, _jfs);
+			return new JavaFileStorageWriteTransaction(IocToPath(ioc), useFileTransaction, this);
 		}
 
 		public IFileStorageSetup RequiredSetup 
 		{
 			get
 			{
-				if (_jfs.IsConnected)
+				if (Jfs.IsConnected)
 					return null;
 				return new JavaFileStorageSetup(this);
 			}
+		}
+
+		internal IJavaFileStorage Jfs
+		{
+			get { return _jfs; }
 		}
 
 		public class JavaFileStorageSetup : IFileStorageSetup, IFileStorageSetupOnResume
@@ -112,11 +115,11 @@ namespace keepass2android.Io
 			{
 				try
 				{
-					return _javaFileStorage._jfs.TryConnect(activity);
+					return _javaFileStorage.Jfs.TryConnect(activity);
 				}
 				catch (Java.Lang.Exception e)
 				{
-					throw LogAndConvertJavaException(e);
+					throw _javaFileStorage.LogAndConvertJavaException(e);
 				}
 			}
 
@@ -124,12 +127,12 @@ namespace keepass2android.Io
 			{
 				try
 				{
-					_javaFileStorage._jfs.OnResume();
-					return _javaFileStorage._jfs.IsConnected;
+					_javaFileStorage.Jfs.OnResume();
+					return _javaFileStorage.Jfs.IsConnected;
 				}
 				catch (Java.Lang.Exception e)
 				{
-					throw LogAndConvertJavaException(e);
+					throw _javaFileStorage.LogAndConvertJavaException(e);
 				}
 			}
 		}
@@ -138,10 +141,10 @@ namespace keepass2android.Io
 		{
 			private readonly string _path;
 			private readonly bool _useFileTransaction;
-			private readonly IJavaFileStorage _javaFileStorage;
+			private readonly JavaFileStorage _javaFileStorage;
 			private MemoryStream _memoryStream;
 
-			public JavaFileStorageWriteTransaction(string path, bool useFileTransaction, IJavaFileStorage javaFileStorage)
+			public JavaFileStorageWriteTransaction(string path, bool useFileTransaction, JavaFileStorage javaFileStorage)
 			{
 				_path = path;
 				_useFileTransaction = useFileTransaction;
@@ -163,11 +166,11 @@ namespace keepass2android.Io
 			{
 				try
 				{
-					_javaFileStorage.UploadFile(_path, _memoryStream.ToArray(), _useFileTransaction);
+					_javaFileStorage.Jfs.UploadFile(_path, _memoryStream.ToArray(), _useFileTransaction);
 				}
 				catch (Java.Lang.Exception e)
 				{
-					LogAndConvertJavaException(e);
+					throw _javaFileStorage.LogAndConvertJavaException(e);
 				}
 			}
 		}

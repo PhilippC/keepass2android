@@ -386,7 +386,7 @@ namespace keepass2android
 				{
 					_fileStorages = new List<IFileStorage>
 						{
-							new DropboxFileStorage(Application.Context),
+							new DropboxFileStorage(Application.Context, this),
 							new BuiltInFileStorage()
 						};
 				}

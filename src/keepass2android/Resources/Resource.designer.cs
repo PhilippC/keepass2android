@@ -1403,41 +1403,41 @@ namespace keepass2android
 			// aapt resource value: 0x7f060113
 			public const int BinaryDirectory_title = 2131099923;
 			
-			// aapt resource value: 0x7f060166
-			public const int CannotMoveGroupHere = 2131100006;
+			// aapt resource value: 0x7f060167
+			public const int CannotMoveGroupHere = 2131100007;
+			
+			// aapt resource value: 0x7f06017b
+			public const int ChangeLog = 2131100027;
 			
 			// aapt resource value: 0x7f06017a
-			public const int ChangeLog = 2131100026;
-			
-			// aapt resource value: 0x7f060179
-			public const int ChangeLog_0_7 = 2131100025;
-			
-			// aapt resource value: 0x7f060177
-			public const int ChangeLog_0_8 = 2131100023;
-			
-			// aapt resource value: 0x7f060176
-			public const int ChangeLog_0_8_1 = 2131100022;
-			
-			// aapt resource value: 0x7f060175
-			public const int ChangeLog_0_8_2 = 2131100021;
-			
-			// aapt resource value: 0x7f060174
-			public const int ChangeLog_0_8_3 = 2131100020;
-			
-			// aapt resource value: 0x7f060173
-			public const int ChangeLog_0_8_4 = 2131100019;
-			
-			// aapt resource value: 0x7f060172
-			public const int ChangeLog_0_8_5 = 2131100018;
-			
-			// aapt resource value: 0x7f060171
-			public const int ChangeLog_0_8_6 = 2131100017;
+			public const int ChangeLog_0_7 = 2131100026;
 			
 			// aapt resource value: 0x7f060178
-			public const int ChangeLog_keptDonate = 2131100024;
+			public const int ChangeLog_0_8 = 2131100024;
 			
-			// aapt resource value: 0x7f060170
-			public const int ChangeLog_title = 2131100016;
+			// aapt resource value: 0x7f060177
+			public const int ChangeLog_0_8_1 = 2131100023;
+			
+			// aapt resource value: 0x7f060176
+			public const int ChangeLog_0_8_2 = 2131100022;
+			
+			// aapt resource value: 0x7f060175
+			public const int ChangeLog_0_8_3 = 2131100021;
+			
+			// aapt resource value: 0x7f060174
+			public const int ChangeLog_0_8_4 = 2131100020;
+			
+			// aapt resource value: 0x7f060173
+			public const int ChangeLog_0_8_5 = 2131100019;
+			
+			// aapt resource value: 0x7f060172
+			public const int ChangeLog_0_8_6 = 2131100018;
+			
+			// aapt resource value: 0x7f060179
+			public const int ChangeLog_keptDonate = 2131100025;
+			
+			// aapt resource value: 0x7f060171
+			public const int ChangeLog_title = 2131100017;
 			
 			// aapt resource value: 0x7f060032
 			public const int CheckForFileChangesOnSave_key = 2131099698;
@@ -1486,6 +1486,9 @@ namespace keepass2android
 			
 			// aapt resource value: 0x7f060158
 			public const int DownloadingRemoteFile = 2131099992;
+			
+			// aapt resource value: 0x7f060165
+			public const int ErrorOcurred = 2131100005;
 			
 			// aapt resource value: 0x7f060055
 			public const int FileHandling_prefs = 2131099733;
@@ -1898,8 +1901,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f060027
 			public const int display_prefs_key = 2131099687;
 			
-			// aapt resource value: 0x7f060167
-			public const int donate_question = 2131100007;
+			// aapt resource value: 0x7f060168
+			public const int donate_question = 2131100008;
 			
 			// aapt resource value: 0x7f06000c
 			public const int donate_url = 2131099660;
@@ -2054,23 +2057,23 @@ namespace keepass2android
 			// aapt resource value: 0x7f060094
 			public const int file_browser = 2131099796;
 			
-			// aapt resource value: 0x7f06016e
-			public const int filestoragename_dropbox = 2131100014;
-			
-			// aapt resource value: 0x7f06016a
-			public const int filestoragename_file = 2131100010;
+			// aapt resource value: 0x7f06016f
+			public const int filestoragename_dropbox = 2131100015;
 			
 			// aapt resource value: 0x7f06016b
-			public const int filestoragename_ftp = 2131100011;
-			
-			// aapt resource value: 0x7f06016f
-			public const int filestoragename_gdrive = 2131100015;
+			public const int filestoragename_file = 2131100011;
 			
 			// aapt resource value: 0x7f06016c
-			public const int filestoragename_http = 2131100012;
+			public const int filestoragename_ftp = 2131100012;
+			
+			// aapt resource value: 0x7f060170
+			public const int filestoragename_gdrive = 2131100016;
 			
 			// aapt resource value: 0x7f06016d
-			public const int filestoragename_https = 2131100013;
+			public const int filestoragename_http = 2131100013;
+			
+			// aapt resource value: 0x7f06016e
+			public const int filestoragename_https = 2131100014;
 			
 			// aapt resource value: 0x7f06000f
 			public const int further_author_names = 2131099663;
@@ -2282,8 +2285,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0600cc
 			public const int no_results = 2131099852;
 			
-			// aapt resource value: 0x7f060169
-			public const int no_thanks = 2131100009;
+			// aapt resource value: 0x7f06016a
+			public const int no_thanks = 2131100010;
 			
 			// aapt resource value: 0x7f0600cd
 			public const int no_url_handler = 2131099853;
@@ -2297,8 +2300,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f060012
 			public const int oi_filemanager_web = 2131099666;
 			
-			// aapt resource value: 0x7f060168
-			public const int ok_donate = 2131100008;
+			// aapt resource value: 0x7f060169
+			public const int ok_donate = 2131100009;
 			
 			// aapt resource value: 0x7f06001b
 			public const int omitbackup_key = 2131099675;
@@ -2444,8 +2447,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f060145
 			public const int suggest_improvements = 2131099973;
 			
-			// aapt resource value: 0x7f060165
-			public const int synchronize_database_menu = 2131100005;
+			// aapt resource value: 0x7f060166
+			public const int synchronize_database_menu = 2131100006;
 			
 			// aapt resource value: 0x7f060147
 			public const int translate_app = 2131099975;

@@ -30,7 +30,8 @@ namespace keepass2android
 
 		public static void Log(string message)
 		{
-			Android.Util.Log.Debug("KP2A", message);
+			if (message != null)
+				Android.Util.Log.Debug("KP2A", message);
 			if (LogToFile)
 			{
 				lock (_fileLocker)
