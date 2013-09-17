@@ -52,7 +52,7 @@ namespace keepass2android
 		private const String KeyServercredmode = "serverCredRememberMode";
 
 		private const String ViewIntent = "android.intent.action.VIEW";
-		private const string _showpasswordKey = "ShowPassword";
+		private const string ShowpasswordKey = "ShowPassword";
 
 		private Task<MemoryStream> _loadDbTask;
 		private IOConnectionInfo _ioConnection;
@@ -199,7 +199,7 @@ namespace keepass2android
 		{
 			base.OnCreate(savedInstanceState);
 			if (savedInstanceState != null)
-				_showPassword = savedInstanceState.GetBoolean(_showpasswordKey, false);
+				_showPassword = savedInstanceState.GetBoolean(ShowpasswordKey, false);
 			
 			Intent i = Intent;
 			String action = i.Action;
@@ -438,7 +438,7 @@ namespace keepass2android
 		{
 			base.OnSaveInstanceState(outState);
 			AppTask.ToBundle(outState);
-			outState.PutBoolean(_showpasswordKey, _showPassword);
+			outState.PutBoolean(ShowpasswordKey, _showPassword);
 		}
 		
 		protected override void OnResume()
