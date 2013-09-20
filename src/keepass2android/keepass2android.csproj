@@ -105,6 +105,7 @@
     <Compile Include="views\GroupView.cs" />
     <Compile Include="views\GroupRootView.cs" />
     <Compile Include="PwGroupListAdapter.cs" />
+    <Compile Include="views\FileStorageView.cs" />
     <Compile Include="views\PwGroupView.cs" />
     <Compile Include="settings\PrefsUtil.cs" />
     <Compile Include="views\PwEntryView.cs" />

@@ -11,7 +11,12 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using KeePassLib;
+using KeePassLib.Keys;
+using KeePassLib.Security;
+using KeePassLib.Serialization;
 using keepass2android.Io;
+using keepass2android.view;
 using Object = Java.Lang.Object;
 
 namespace keepass2android
@@ -20,9 +25,11 @@ namespace keepass2android
 	public class FileStorageSelectionActivity : ListActivity
 	{
 		private string _protocolToSetup;
+		private FileStorageAdapter _fileStorageAdapter;
 
 		class FileStorageAdapter: BaseAdapter
 		{
+
 			private readonly FileStorageSelectionActivity _context;
 
 			private List<string> _protocolIds = new List<string>(); 
@@ -39,7 +46,7 @@ namespace keepass2android
 
 			public override Object GetItem(int position)
 			{
-				return position;
+				return _protocolIds[position];
 			}
 
 			public override long GetItemId(int position)
@@ -49,14 +56,9 @@ namespace keepass2android
 
 			public override View GetView(int position, View convertView, ViewGroup parent)
 			{
-				LayoutInflater inflater = (LayoutInflater)_context.GetSystemService(LayoutInflaterService);
-				View v = inflater.Inflate(Resource.Layout.filestorage_selection_listitem, null);
-				((TextView)v.FindViewById(Resource.Id.filestorage_label)).Text =
-					App.Kp2a.GetResourceString("filestoragename_"+_protocolIds[position] );
-				Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + _protocolIds[position]);
-				((ImageView)v.FindViewById(Resource.Id.filestorage_logo)).SetImageDrawable(drawable);
-				v.Click += (sender, args) => _context.OnItemSelected(_protocolIds[position]);
-				return v;
+				var view = new FileStorageView(_context, _protocolIds[position], position);
+				return view;
+
 			}
 
 			public override int Count
@@ -105,9 +107,11 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.filestorage_selection);
 
-			this.ListAdapter = new FileStorageAdapter(this);
+			_fileStorageAdapter = new FileStorageAdapter(this);
+			this.ListAdapter = _fileStorageAdapter;
 
-
+			FindViewById<ListView>(Android.Resource.Id.List).ItemClick +=
+				(sender, args) => OnItemSelected((string)_fileStorageAdapter.GetItem(args.Position));
 		}
 
 		protected override void OnSaveInstanceState(Bundle outState)
