@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+
+<!--
+   We sincerely thank C. - a kind friend who helped us translate this file into
+   his mother language.
+-->
+
+<resources>
+
+    <string name="afc_cmd_add_to_bookmarks">Añadir a favoritos</string>
+    <string name="afc_cmd_advanced_selection_all">Todos</string>
+    <string name="afc_cmd_advanced_selection_invert">Invertir selección</string>
+    <string name="afc_cmd_advanced_selection_none">Ninguno</string>
+    <string name="afc_cmd_clear">Limpiar</string>
+    <string name="afc_cmd_grid_view">Cuadricula</string>
+    <string name="afc_cmd_home">Inicio</string>
+    <string name="afc_cmd_list_view">Lista</string>
+    <string name="afc_cmd_new_folder">Nuevo directorio…</string>
+    <string name="afc_cmd_reload">Recargar</string>
+    <string name="afc_cmd_remove_from_list">Eliminar de la lista</string>
+    <string name="afc_cmd_rename">Renombrar</string>
+    <string name="afc_cmd_select_all_files">Seleccionar todos los ficheros</string>
+    <string name="afc_cmd_select_all_folders">Seleccionar todas los directorios</string>
+    <string name="afc_cmd_sort">Ordenar…</string>
+    <string name="afc_cmd_sort_by_name">Ordenar por nombre</string>
+    <string name="afc_file">fichero</string>
+    <string name="afc_folder">directorio</string>
+    <string name="afc_hint_clear">limpiar</string>
+    <string name="afc_hint_double_tap_to_select_file">Doble clic para seleccionar fichero/directorio</string>
+    <string name="afc_hint_folder_name">nombre de directorio</string>
+    <string name="afc_hint_new_name">nuevo nombre</string>
+    <string name="afc_hint_newer">más nuevo</string>
+    <string name="afc_hint_older">más viejo</string>
+    <string name="afc_hint_save_as_filename">nombre de fichero</string>
+    <string name="afc_hint_search">búsqueda</string>
+    <string name="afc_history">Historia</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_create_files">La aplicación no tiene permisos para crear ficheros/directorios</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_delete_files">La aplicación no tiene permisos para eliminar ficheros/directorios</string>
+    <string name="afc_msg_bookmark_name_is_invalid">Nombre de favorito no válido</string>
+    <string name="afc_msg_cancelled">Cancelado</string>
+    <string name="afc_msg_cannot_connect_to_file_provider_service">No se puede conectar con el servicio proveedor de ficheros</string>
+    <string name="afc_msg_cannot_create_new_folder_here">No se puede crear un nuevo directorio aquí</string>
+    <string name="afc_msg_cannot_save_a_file_here">No se puede guardar un archivo aquí</string>
+    <string name="afc_msg_confirm_clear_all_bookmarks">¿Seguro que deseas borrar todos los favoritos?</string>
+    <string name="afc_msg_confirm_clear_history">¿Está seguro que desea borrar el historial?</string>
+    <string name="afc_msg_done">Hecho</string>
+    <string name="afc_msg_empty">Vacío</string>
+    <string name="afc_msg_failed_please_try_again">Error. Por favor, inténtelo de nuevo.</string>
+    <string name="afc_msg_filename_is_empty">Nombre de fichero vacío</string>
+    <string name="afc_msg_loading">Cargando…</string>
+    <string name="afc_phone">Fon</string>
+    <string name="afc_pmsg_cannot_access_dir">No se puede acceder a \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_create_folder">No se puede crear el directorio \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_delete_file">No se puede borrar %1$s \"%2$s\"</string>
+    <string name="afc_pmsg_confirm_delete_file">¿Seguro que deseas eliminar este %1$s \"%2$s\"?</string>
+    <string name="afc_pmsg_confirm_replace_file">El fichero \"%1$s\" ya existe.\n\n¿Quieres reemplazarlo?</string>
+    <string name="afc_pmsg_deleting_file">Eliminando %1$s \"%2$s\"…</string>
+    <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" ha sido eliminado</string>
+    <string name="afc_pmsg_filename_is_directory">\"%1$s\" es un directorio</string>
+    <string name="afc_pmsg_filename_is_invalid">El nombre de fichero \"%1$s\" no es válido</string>
+    <string name="afc_pmsg_max_file_count_allowed">…tiene mas ficheros, máximos permitidos: %1$,d</string>
+    <string name="afc_pmsg_unknown_error">Error desconocido: %1$s</string>
+    <string name="afc_pmsg_xxx_items">%1$,d elementos</string>
+    <string name="afc_root">Raiz</string>
+    <string name="afc_title_advanced_selection">Seleccionar…</string>
+    <string name="afc_title_alert">Alerta</string>
+    <string name="afc_title_bookmark_manager">Administrador de favoritos</string>
+    <string name="afc_title_bookmarks">Favoritos</string>
+    <string name="afc_title_confirmation">Confirmación</string>
+    <string name="afc_title_date">Fecha</string>
+    <string name="afc_title_error">Error</string>
+    <string name="afc_title_history">Historial</string>
+    <string name="afc_title_info">Información</string>
+    <string name="afc_title_name">Nombre</string>
+    <string name="afc_title_new_bookmark">Nuevo favorito</string>
+    <string name="afc_title_rename">Renombrar…</string>
+    <string name="afc_title_save_as">Guardar como…</string>
+    <string name="afc_title_size">Tamaño</string>
+    <string name="afc_title_sort_by">Ordenar por…</string>
+    <string name="afc_today">Hoy</string>
+    <string name="afc_yesterday">Ayer</string>
+
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Seleccionar directorio…</item>
+        <item quantity="other">Seleccionar directorios…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Seleccionar fichero…</item>
+        <item quantity="other">Seleccionar ficheros…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Seleccionar fichero/directorio…</item>
+        <item quantity="other">Seleccionar ficheros/directorios…</item>
+    </plurals>
+
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginLeft="@dimen/afc_2dp" >
+
+        <ImageView
+            android:id="@+id/afc_imageview_icon"
+            android:layout_width="@dimen/afc_file_icon_size"
+            android:layout_height="@dimen/afc_file_icon_size"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:scaleType="center" />
+
+        <ImageView
+            android:id="@+id/afc_imageview_locked_symbol"
+            android:layout_width="@dimen/afc_file_icon_size"
+            android:layout_height="@dimen/afc_file_icon_size"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:scaleType="center"
+            android:src="@drawable/afc_file_locked_dark"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="@dimen/afc_2dp"
+        android:layout_marginRight="@dimen/afc_5dp"
+        android:layout_marginTop="@dimen/afc_2dp"
+        android:layout_weight="0.1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/afc_textview_filename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:maxLines="3"
+            android:singleLine="false"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:id="@+id/afc_textview_file_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:singleLine="true"
+            android:textIsSelectable="false" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/afc_checkbox_selection"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|top"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_horizontal|top"
+        android:padding="@dimen/afc_2dp" />
+
+</LinearLayout>

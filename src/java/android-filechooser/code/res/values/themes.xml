@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AOSP_DialogWindowTitle">
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.DialogWindowTitle</item>
+    </style>
+
+    <style name="afc_main_button_navi">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_marginLeft">@dimen/afc_5dp</item>
+        <item name="android:layout_marginTop">@dimen/afc_5dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:minHeight">@dimen/afc_button_navigators_min_height</item>
+    </style>
+
+    <style name="afc_main_button_navi_left" parent="@style/afc_main_button_navi">
+        <item name="android:src">?attr/afc_selector_main_button_navi_left</item>
+    </style>
+
+    <style name="afc_main_button_navi_right" parent="@style/afc_main_button_navi">
+        <item name="android:src">?attr/afc_selector_main_button_navi_right</item>
+        <item name="android:layout_marginRight">@dimen/afc_5dp</item>
+    </style>
+
+    <style name="afc_action_navi">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:background">?attr/afc_selector_image_button</item>
+        <item name="android:layout_margin">@dimen/afc_2dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="afc_action_navi_left" parent="@style/afc_action_navi">
+        <item name="android:src">?attr/afc_selector_action_navi_left_foreground</item>
+    </style>
+
+    <style name="afc_action_navi_right" parent="@style/afc_action_navi">
+        <item name="android:src">?attr/afc_selector_action_navi_right_foreground</item>
+    </style>
+
+    <style name="afc_base_button_location" parent="@android:style/Widget.TextView"></style>
+
+    <style name="afc_button_location" parent="@style/afc_base_button_location">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">?attr/afc_selector_button_location</item>
+        <item name="android:layout_margin">@dimen/afc_5dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxWidth">@dimen/afc_button_location_max_width</item>
+        <item name="android:minWidth">@dimen/afc_button_location_min_width</item>
+        <item name="android:padding">@dimen/afc_5dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <style name="afc_widget_search_view_button_search">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/afc_selector_image_button</item>
+        <item name="android:src">?attr/afc_ic_widget_search_view_action_search</item>
+    </style>
+
+    <style name="afc_widget_search_view_button_clear">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:src">?attr/afc_ic_widget_search_view_action_clear</item>
+    </style>
+
+    <style name="afc_button_sort" parent="@android:style/Widget.ImageButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">?attr/afc_selector_image_button</item>
+        <item name="android:padding">@dimen/afc_5dp</item>
+    </style>
+
+    <style name="afc_home_button_navigators" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">?attr/afc_selector_button_location</item>
+        <item name="android:layout_margin">@dimen/afc_2dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+</resources>

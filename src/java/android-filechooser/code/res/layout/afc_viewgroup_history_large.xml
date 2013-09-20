@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:afc="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/afc_viewgroup_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/afc_5dp" >
+
+        <TextView
+            android:id="@+id/afc_textview_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@android:drawable/ic_menu_recent_history"
+            android:gravity="center_vertical"
+            android:text="@string/afc_history"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <group.pals.android.lib.ui.filechooser.ui.widget.AfcSearchView
+            android:id="@+id/afc_afc_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/afc_5dp"
+            android:layout_marginLeft="@dimen/afc_15dp"
+            android:layout_marginRight="@dimen/afc_15dp"
+            android:layout_marginTop="@dimen/afc_5dp"
+            android:layout_toLeftOf="@+id/afc_viewgroup_navigators"
+            android:layout_toRightOf="@id/afc_textview_header"
+            afc:closable="false"
+            afc:delayTimeSubmission="@integer/afc_afc_search_view_delay_time_submission"
+            afc:enabled="false"
+            afc:hint="@string/afc_hint_search"
+            afc:iconified="false" />
+
+        <LinearLayout
+            android:id="@+id/afc_viewgroup_navigators"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/afc_button_go_back"
+                style="@style/afc_action_navi_left"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/afc_hint_newer"
+                android:enabled="false" />
+
+            <ImageView
+                android:id="@+id/afc_button_go_forward"
+                style="@style/afc_action_navi_right"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/afc_hint_older"
+                android:enabled="false" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/afc_view_header_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/afc_viewgroup_button_locations_bottom_divider_height"
+        android:layout_below="@id/afc_viewgroup_header"
+        android:background="@color/afc_border_line_dark" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/afc_view_header_divider" >
+
+        <RelativeLayout
+            android:id="@+id/afc_viewgroup_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" >
+
+            <ExpandableListView
+                android:id="@+id/afc_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fastScrollEnabled="true"
+                android:groupIndicator="@null" >
+            </ExpandableListView>
+
+            <TextView
+                android:id="@+id/afc_empty_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/afc_15dp"
+                android:gravity="center"
+                android:text="@string/afc_msg_empty"
+                android:textStyle="italic"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/afc_view_loading"
+            layout="@layout/afc_view_loading" />
+    </RelativeLayout>
+
+</RelativeLayout>

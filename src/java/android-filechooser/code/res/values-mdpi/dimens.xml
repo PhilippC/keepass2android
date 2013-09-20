@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<resources>
+
+    <dimen name="afc_widget_search_view_button_clear_size">40px</dimen>
+    <dimen name="afc_button_navigators_min_height">40px</dimen>
+    <dimen name="afc_button_ok_saveas_size">40px</dimen>
+    <dimen name="afc_thumbnail_size">40px</dimen>
+    <dimen name="afc_file_icon_size">40px</dimen>
+
+</resources>
