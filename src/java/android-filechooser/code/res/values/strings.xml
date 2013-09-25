@@ -8,7 +8,6 @@
 
 <resources>
 
-    <string name="afc_cmd_add_to_bookmarks">Add to bookmarks…</string>
     <string name="afc_cmd_advanced_selection_all">All</string>
     <string name="afc_cmd_advanced_selection_invert">Invert selection</string>
     <string name="afc_cmd_advanced_selection_none">None</string>
@@ -37,12 +36,10 @@
     <string name="afc_history">History</string>
     <string name="afc_msg_app_doesnot_have_permission_to_create_files">This application does not have permission to create files/ folders</string>
     <string name="afc_msg_app_doesnot_have_permission_to_delete_files">This application does not have permission to delete files/ folders</string>
-    <string name="afc_msg_bookmark_name_is_invalid">Bookmark name is invalid</string>
     <string name="afc_msg_cancelled">Cancelled</string>
     <string name="afc_msg_cannot_connect_to_file_provider_service">Cannot connect to file provider service</string>
     <string name="afc_msg_cannot_create_new_folder_here">Cannot create new folder here</string>
     <string name="afc_msg_cannot_save_a_file_here">Cannot save a file here</string>
-    <string name="afc_msg_confirm_clear_all_bookmarks">Do you really want to clear all bookmarks?</string>
     <string name="afc_msg_confirm_clear_history">Are you sure you want to clear history?</string>
     <string name="afc_msg_done">Done</string>
     <string name="afc_msg_empty">Empty</string>
@@ -65,15 +62,11 @@
     <string name="afc_root">Root</string>
     <string name="afc_title_advanced_selection">Select…</string>
     <string name="afc_title_alert">Alert</string>
-    <string name="afc_title_bookmark_manager">Bookmark manager</string>
-    <string name="afc_title_bookmarks">Bookmarks</string>
     <string name="afc_title_confirmation">Confirmation</string>
     <string name="afc_title_date">Date</string>
     <string name="afc_title_error">Error</string>
-    <string name="afc_title_history">History</string>
     <string name="afc_title_info">Info</string>
     <string name="afc_title_name">Name</string>
-    <string name="afc_title_new_bookmark">New bookmark</string>
     <string name="afc_title_rename">Rename…</string>
     <string name="afc_title_save_as">Save as…</string>
     <string name="afc_title_size">Size</string>

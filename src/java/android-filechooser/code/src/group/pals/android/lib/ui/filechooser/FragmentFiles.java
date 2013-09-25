@@ -28,8 +28,6 @@ import group.pals.android.lib.ui.filechooser.utils.ui.ContextMenuUtils;
 import group.pals.android.lib.ui.filechooser.utils.ui.Dlg;
 import group.pals.android.lib.ui.filechooser.utils.ui.LoadingDialog;
 import group.pals.android.lib.ui.filechooser.utils.ui.Ui;
-import group.pals.android.lib.ui.filechooser.utils.ui.bookmark.BookmarkFragment;
-import group.pals.android.lib.ui.filechooser.utils.ui.history.HistoryFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -220,8 +218,6 @@ public class FragmentFiles extends Fragment implements
      */
 
     private View mBtnGoHome;
-    private View mBtnBookmarkManager;
-    private BookmarkFragment mBookmarkFragment;
     private HorizontalScrollView mViewLocationsContainer;
     private ViewGroup mViewLocations;
     private View mViewGroupFiles;
@@ -304,8 +300,6 @@ public class FragmentFiles extends Fragment implements
          */
 
         mBtnGoHome = rootView.findViewById(R.id.afc_textview_home);
-        mBtnBookmarkManager = rootView
-                .findViewById(R.id.afc_textview_bookmarks);
         mViewGoBack = (ImageView) rootView
                 .findViewById(R.id.afc_button_go_back);
         mViewGoForward = (ImageView) rootView
@@ -326,28 +320,6 @@ public class FragmentFiles extends Fragment implements
                 .findViewById(R.id.afc_textview_saveas_filename);
         mBtnOk = (Button) rootView.findViewById(R.id.afc_button_ok);
 
-        /*
-         * INIT CONTROLS
-         */
-
-        /*
-         * Load BookmarkFragment.
-         */
-
-        View viewBookmarks = rootView.findViewById(R.id.afc_fragment_bookmarks);
-        if (viewBookmarks != null) {
-            mBookmarkFragment = (BookmarkFragment) getChildFragmentManager()
-                    .findFragmentById(R.id.afc_fragment_bookmarks);
-            if (mBookmarkFragment == null) {
-                mBookmarkFragment = BookmarkFragment.newInstance(false);
-                mBookmarkFragment
-                        .setOnBookmarkItemClickListener(mBookmarkFragmentOnBookmarkItemClickListener);
-
-                getChildFragmentManager().beginTransaction()
-                        .add(R.id.afc_fragment_bookmarks, mBookmarkFragment)
-                        .commit();
-            }
-        }// if
 
         return rootView;
     }// onCreateView()
@@ -441,10 +413,6 @@ public class FragmentFiles extends Fragment implements
             doSwitchViewType();
         else if (item.getItemId() == R.id.afc_menuitem_home)
             doGoHome();
-        else if (item.getItemId() == R.id.afc_menuitem_history)
-            doShowHistoryManager();
-        else if (item.getItemId() == R.id.afc_menuitem_bookmarks)
-            doShowBookmarkManager();
         else
             return false;
 
@@ -693,9 +661,6 @@ public class FragmentFiles extends Fragment implements
     private void setupHeader() {
         if (mBtnGoHome != null)
             mBtnGoHome.setOnClickListener(mBtnGoHomeOnClickListener);
-        if (mBtnBookmarkManager != null)
-            mBtnBookmarkManager
-                    .setOnClickListener(mBtnBookmarkManagerOnClickListener);
 
         if (mIsSaveDialog) {
             getActivity().setTitle(R.string.afc_title_save_as);
@@ -728,8 +693,7 @@ public class FragmentFiles extends Fragment implements
         mViewGoForward.setEnabled(false);
         mViewGoForward.setOnClickListener(mBtnGoForwardOnClickListener);
 
-        for (ImageView v : new ImageView[] { mViewGoBack, mViewGoForward })
-            v.setOnLongClickListener(mBtnGoBackForwardOnLongClickListener);
+
     }// setupHeader()
 
     /**
@@ -1193,62 +1157,6 @@ public class FragmentFiles extends Fragment implements
     private void doGoHome() {
         goTo(mRoot);
     }// doGoHome()
-
-    /**
-     * Shows bookmark manager.
-     */
-    private void doShowBookmarkManager() {
-        BookmarkFragment bf = BookmarkFragment.newInstance(true);
-        bf.setOnBookmarkItemClickListener(mBookmarkFragmentOnBookmarkItemClickListener);
-        bf.show(getChildFragmentManager().beginTransaction(),
-                BookmarkFragment.class.getName());
-    }// doShowBookmarkManager()
-
-    /**
-     * Shows history manager.
-     */
-    private void doShowHistoryManager() {
-        if (BuildConfig.DEBUG)
-            Log.d(CLASSNAME, "doShowHistoryManager()");
-
-        // Create and show the dialog.
-        final HistoryFragment fragment = HistoryFragment.newInstance();
-        fragment.setOnHistoryItemClickListener(new HistoryFragment.OnHistoryItemClickListener() {
-
-            @Override
-            public void onItemClick(String providerId, final Uri uri) {
-                /*
-                 * TODO what to do with `providerId`?
-                 */
-
-                /*
-                 * Check if `uri` is in internal list, then use it instead of
-                 * that.
-                 */
-                if (!mHistory.find(new HistoryFilter<Uri>() {
-
-                    @Override
-                    public boolean accept(Uri item) {
-                        if (uri.equals(item)) {
-                            goTo(item);
-                            return true;
-                        }
-
-                        return false;
-                    }// accept()
-                }, false))
-                    goTo(uri);
-            }// onItemClick()
-        });
-
-        /*
-         * DialogFragment.show() will take care of adding the fragment in a
-         * transaction. We also want to remove any currently showing dialog, so
-         * make our own transaction and take care of that here.
-         */
-        fragment.show(getChildFragmentManager().beginTransaction(),
-                HistoryFragment.class.getName());
-    }// doShowHistoryManager()
 
     private static final int[] BUTTON_SORT_IDS = {
             R.id.afc_button_sort_by_name_asc,
@@ -1948,15 +1856,6 @@ public class FragmentFiles extends Fragment implements
         }// onClick()
     };// mBtnGoHomeOnClickListener
 
-    private final View.OnClickListener mBtnBookmarkManagerOnClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            if (mBookmarkFragment != null)
-                mBookmarkFragment.setEditor(!mBookmarkFragment.isEditor());
-        }// onClick()
-    };// mBtnBookmarkManagerOnClickListener
-
     private final View.OnClickListener mBtnGoBackOnClickListener = new View.OnClickListener() {
 
         @Override
@@ -2023,15 +1922,6 @@ public class FragmentFiles extends Fragment implements
         }// onClick()
     };// mBtnGoForwardOnClickListener
 
-    private final View.OnLongClickListener mBtnGoBackForwardOnLongClickListener = new View.OnLongClickListener() {
-
-        @Override
-        public boolean onLongClick(View v) {
-            doShowHistoryManager();
-            return true;
-        }// onLongClick()
-    };// mBtnGoBackForwardOnLongClickListener
-
     private final TextView.OnEditorActionListener mTxtFilenameOnEditorActionListener = new TextView.OnEditorActionListener() {
 
         @Override
@@ -2067,32 +1957,6 @@ public class FragmentFiles extends Fragment implements
      * FRAGMENT LISTENERS
      */
 
-    private final BookmarkFragment.OnBookmarkItemClickListener mBookmarkFragmentOnBookmarkItemClickListener = new BookmarkFragment.OnBookmarkItemClickListener() {
-
-        @Override
-        public void onItemClick(String providerId, final Uri uri) {
-            /*
-             * TODO what to do with `providerId`?
-             */
-
-            /*
-             * Check if `uri` is in internal list, then use it instead of that.
-             */
-            if (!mHistory.find(new HistoryFilter<Uri>() {
-
-                @Override
-                public boolean accept(Uri item) {
-                    if (uri.equals(item)) {
-                        goTo(item);
-                        return true;
-                    }
-
-                    return false;
-                }// accept()
-            }, false))
-                goTo(uri);
-        }// onItemClick()
-    };// mBookmarkFragmentOnBookmarkItemClickListener
 
     /*
      * LISTVIEW HELPER
@@ -2167,22 +2031,6 @@ public class FragmentFiles extends Fragment implements
             final Uri uri = BaseFileProviderUtils.getUri(cursor);
             final String name = BaseFileProviderUtils.getFileName(cursor);
 
-            ContextMenuUtils.showContextMenu(getActivity(), 0, 0,
-                    new Integer[] { R.string.afc_cmd_add_to_bookmarks },
-                    new ContextMenuUtils.OnMenuItemClickListener() {
-
-                        @Override
-                        public void onClick(final int resId) {
-                            if (resId == R.string.afc_cmd_add_to_bookmarks) {
-                                BookmarkFragment
-                                        .doEnterNewNameOrRenameBookmark(
-                                                getActivity(),
-                                                BaseFileProviderUtils.getProviderId(uri
-                                                        .getAuthority()), -1,
-                                                uri, name);
-                            }
-                        }// onClick()
-                    });
         }// onBuildOptionsMenu()
 
         @Override

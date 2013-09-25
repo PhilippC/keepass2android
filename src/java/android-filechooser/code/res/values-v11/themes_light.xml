@@ -9,7 +9,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="Afc.BaseThemeHelper.Light" parent="@style/Afc.BaseTheme.Light">
-        <item name="afc_ic_menu_bookmarks">@drawable/afc_ic_menu_bookmarks_light</item>
         <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home_light</item>
         <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview_light</item>
         <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview_light</item>
@@ -32,7 +31,6 @@
     <style name="Afc.BaseTheme.Dialog.Light" parent="@android:style/Theme.Holo.Light.Dialog"></style>
 
     <style name="Afc.BaseThemeHelper.Dialog.Light" parent="@style/Afc.BaseTheme.Dialog.Light">
-        <item name="afc_ic_menu_bookmarks">@drawable/afc_ic_menu_bookmarks_light</item>
         <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home_light</item>
         <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview_light</item>
         <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview_light</item>

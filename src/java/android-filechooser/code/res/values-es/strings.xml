@@ -14,7 +14,6 @@
 
 <resources>
 
-    <string name="afc_cmd_add_to_bookmarks">Añadir a favoritos</string>
     <string name="afc_cmd_advanced_selection_all">Todos</string>
     <string name="afc_cmd_advanced_selection_invert">Invertir selección</string>
     <string name="afc_cmd_advanced_selection_none">Ninguno</string>
@@ -43,12 +42,10 @@
     <string name="afc_history">Historia</string>
     <string name="afc_msg_app_doesnot_have_permission_to_create_files">La aplicación no tiene permisos para crear ficheros/directorios</string>
     <string name="afc_msg_app_doesnot_have_permission_to_delete_files">La aplicación no tiene permisos para eliminar ficheros/directorios</string>
-    <string name="afc_msg_bookmark_name_is_invalid">Nombre de favorito no válido</string>
     <string name="afc_msg_cancelled">Cancelado</string>
     <string name="afc_msg_cannot_connect_to_file_provider_service">No se puede conectar con el servicio proveedor de ficheros</string>
     <string name="afc_msg_cannot_create_new_folder_here">No se puede crear un nuevo directorio aquí</string>
     <string name="afc_msg_cannot_save_a_file_here">No se puede guardar un archivo aquí</string>
-    <string name="afc_msg_confirm_clear_all_bookmarks">¿Seguro que deseas borrar todos los favoritos?</string>
     <string name="afc_msg_confirm_clear_history">¿Está seguro que desea borrar el historial?</string>
     <string name="afc_msg_done">Hecho</string>
     <string name="afc_msg_empty">Vacío</string>
@@ -71,15 +68,11 @@
     <string name="afc_root">Raiz</string>
     <string name="afc_title_advanced_selection">Seleccionar…</string>
     <string name="afc_title_alert">Alerta</string>
-    <string name="afc_title_bookmark_manager">Administrador de favoritos</string>
-    <string name="afc_title_bookmarks">Favoritos</string>
     <string name="afc_title_confirmation">Confirmación</string>
     <string name="afc_title_date">Fecha</string>
     <string name="afc_title_error">Error</string>
-    <string name="afc_title_history">Historial</string>
     <string name="afc_title_info">Información</string>
     <string name="afc_title_name">Nombre</string>
-    <string name="afc_title_new_bookmark">Nuevo favorito</string>
     <string name="afc_title_rename">Renombrar…</string>
     <string name="afc_title_save_as">Guardar como…</string>
     <string name="afc_title_size">Tamaño</string>

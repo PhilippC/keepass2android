@@ -8,22 +8,11 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:afc="http://schemas.android.com/apk/res-auto" >
-
-    <item
-        android:id="@+id/afc_menuitem_bookmarks"
-        afc:showAsAction="ifRoom"
-        android:icon="?attr/afc_ic_menu_bookmarks"
-        android:title="@string/afc_title_bookmarks"/>
     <item
         android:id="@+id/afc_menuitem_home"
         afc:showAsAction="ifRoom"
         android:icon="?attr/afc_ic_menu_home"
         android:title="@string/afc_cmd_home"/>
-    <item
-        android:id="@+id/afc_menuitem_history"
-        afc:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_menu_recent_history"
-        android:title="@string/afc_history"/>
     <item
         android:id="@+id/afc_menuitem_sort"
         afc:showAsAction="ifRoom"

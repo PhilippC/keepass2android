@@ -19,7 +19,6 @@
     <style name="Afc.BaseTheme.Light" parent="@android:style/Theme.Light"></style>
 
     <style name="Afc.BaseThemeHelper.Light" parent="@style/Afc.BaseTheme.Light">
-        <item name="afc_ic_menu_bookmarks">@drawable/afc_ic_menu_bookmarks</item>
         <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home</item>
         <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview</item>
         <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview</item>
@@ -59,7 +58,6 @@
 
         <!-- android-filechooser -->
 
-        <item name="afc_ic_menu_bookmarks">@drawable/afc_ic_menu_bookmarks</item>
         <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home</item>
         <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview</item>
         <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview</item>

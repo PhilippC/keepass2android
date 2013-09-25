@@ -27,7 +27,6 @@
 
     <attr name="afc_theme_dialog" format="reference" />
     <attr name="afc_button_home" format="reference" />
-    <attr name="afc_ic_menu_bookmarks" format="reference" />
     <attr name="afc_ic_menu_home" format="reference" />
     <attr name="afc_ic_menu_gridview" format="reference" />
     <attr name="afc_ic_menu_listview" format="reference" />

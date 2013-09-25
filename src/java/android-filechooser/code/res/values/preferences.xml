@@ -8,13 +8,13 @@
 
 <resources>
 
-    <string name="afc_pkey_display_view_type">afc.display.view_type</string>
-    <string name="afc_pkey_display_sort_type">afc.display.sort_type</string>
-    <string name="afc_pkey_display_sort_ascending">afc.display.sort_ascending</string>
-    <string name="afc_pkey_display_show_time_for_old_days_this_year">afc.display.show_time_for_old_days_this_year</string>
-    <string name="afc_pkey_display_show_time_for_old_days">afc.display.show_time_for_old_days</string>
-    <string name="afc_pkey_display_remember_last_location">afc.display.remember_last_location</string>
-    <string name="afc_pkey_display_last_location">afc.display.last_location</string>
+    <string name="afc_pkey_display_view_type" translatable="false">afc.display.view_type</string>
+    <string name="afc_pkey_display_sort_type" translatable="false">afc.display.sort_type</string>
+    <string name="afc_pkey_display_sort_ascending" translatable="false">afc.display.sort_ascending</string>
+    <string name="afc_pkey_display_show_time_for_old_days_this_year" translatable="false">afc.display.show_time_for_old_days_this_year</string>
+    <string name="afc_pkey_display_show_time_for_old_days" translatable="false">afc.display.show_time_for_old_days</string>
+    <string name="afc_pkey_display_remember_last_location" translatable="false">afc.display.remember_last_location</string>
+    <string name="afc_pkey_display_last_location" translatable="false">afc.display.last_location</string>
 
     <integer name="afc_pkey_display_view_type_def">0</integer>
     <integer name="afc_pkey_display_sort_type_def">0</integer>

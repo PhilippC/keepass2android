@@ -11,7 +11,6 @@
     <style name="Afc.BaseTheme.Light" parent="@style/Theme.AppCompat.Light.DarkActionBar"></style>
 
     <style name="Afc.BaseThemeHelper.Light" parent="@style/Afc.BaseTheme.Light">
-        <item name="afc_ic_menu_bookmarks">@drawable/afc_ic_menu_bookmarks_light</item>
         <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home_light</item>
         <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview_light</item>
         <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview_light</item>

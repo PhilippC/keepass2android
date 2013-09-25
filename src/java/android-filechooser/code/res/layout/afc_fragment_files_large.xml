@@ -23,25 +23,6 @@
             android:drawableLeft="?attr/afc_button_home"
             android:text="@string/afc_cmd_home" />
 
-        <TextView
-            android:id="@+id/afc_textview_bookmarks"
-            style="@style/afc_home_button_navigators"
-            android:layout_below="@id/afc_textview_home"
-            android:drawableLeft="@drawable/afc_bookmarks_dark"
-            android:text="@string/afc_title_bookmarks" />
-
-        <View
-            android:id="@+id/afc_viewgroup_bookmarks_view_divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/afc_viewgroup_button_locations_bottom_divider_height"
-            android:layout_below="@id/afc_textview_bookmarks"
-            android:background="@color/afc_border_line_dark" />
-
-        <FrameLayout
-            android:id="@+id/afc_fragment_bookmarks"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/afc_viewgroup_bookmarks_view_divider" />
     </RelativeLayout>
 
     <View
@@ -155,6 +136,7 @@
                 android:layout_centerInParent="true"
                 layout="@layout/afc_view_loading" />
         </RelativeLayout>
+
 
         <LinearLayout
             android:id="@+id/afc_viewgroup_footer_container"
