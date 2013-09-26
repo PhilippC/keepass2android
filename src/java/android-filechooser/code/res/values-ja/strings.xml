@@ -23,7 +23,6 @@
     <string name="afc_cmd_list_view">リストビュー</string>
     <string name="afc_cmd_new_folder">新規フォルダ</string>
     <string name="afc_cmd_reload">再読み込み</string>
-    <string name="afc_cmd_remove_from_list">リストから削除</string>
     <string name="afc_cmd_select_all_files">全てのファイルを選択</string>
     <string name="afc_cmd_select_all_folders">全てのフォルダを選択</string>
     <string name="afc_cmd_sort">ソート</string>
@@ -59,7 +58,6 @@
     <string name="afc_title_confirmation">確認</string>
     <string name="afc_title_date">日付</string>
     <string name="afc_title_error">エラー</string>
-    <string name="afc_title_history">ヒストリー</string>
     <string name="afc_title_info">詳細</string>
     <string name="afc_title_name">名前</string>
     <string name="afc_title_save_as">次として保存</string>

@@ -8,6 +8,7 @@
 package group.pals.android.lib.ui.filechooser.providers.localfile;
 
 import group.pals.android.lib.ui.filechooser.BuildConfig;
+import group.pals.android.lib.ui.filechooser.utils.Utils;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
@@ -63,7 +64,7 @@ public class FileObserverEx extends FileObserver {
 
             @Override
             public void handleMessage(Message msg) {
-                if (BuildConfig.DEBUG)
+                if (Utils.doLog())
                     Log.d(CLASSNAME,
                             String.format(
                                     "mHandler.handleMessage() >> path = '%s' | what = %,d",
@@ -102,7 +103,7 @@ public class FileObserverEx extends FileObserver {
                 mHandler.sendEmptyMessage(MSG_NOTIFY_CHANGES);
         } catch (Throwable t) {
             mWatching = false;
-            if (BuildConfig.DEBUG)
+            if (Utils.doLog())
                 Log.e(CLASSNAME, "onEvent() >> " + t);
         }
     }// onEvent()
@@ -111,7 +112,7 @@ public class FileObserverEx extends FileObserver {
     public void startWatching() {
         super.startWatching();
 
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, String.format("startWatching() >> %s", hashCode()));
 
         mWatching = true;
@@ -121,7 +122,7 @@ public class FileObserverEx extends FileObserver {
     public void stopWatching() {
         super.stopWatching();
 
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, String.format("stopWatching() >> %s", hashCode()));
 
         mWatching = false;

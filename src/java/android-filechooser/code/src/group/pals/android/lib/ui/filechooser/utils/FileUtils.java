@@ -37,6 +37,9 @@ public class FileUtils {
                 Pattern.compile(MimeTypes.REGEX_FILE_TYPE_IMAGES));
         MAP_FILE_ICONS.put(R.drawable.afc_file_plain_text,
                 Pattern.compile(MimeTypes.REGEX_FILE_TYPE_PLAIN_TEXTS));
+        
+        MAP_FILE_ICONS.put(R.drawable.afc_file_kp2a,
+                Pattern.compile(MimeTypes.REGEX_FILE_TYPE_KEEPASS2ANDROID));
 
         /*
          * APK files are counted before compressed files.

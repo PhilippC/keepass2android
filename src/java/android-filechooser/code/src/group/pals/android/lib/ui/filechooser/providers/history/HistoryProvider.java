@@ -11,6 +11,7 @@ import group.pals.android.lib.ui.filechooser.BuildConfig;
 import group.pals.android.lib.ui.filechooser.providers.BaseFileProviderUtils;
 import group.pals.android.lib.ui.filechooser.providers.DbUtils;
 import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileContract.BaseFile;
+import group.pals.android.lib.ui.filechooser.utils.Utils;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -227,7 +228,7 @@ public class HistoryProvider extends ContentProvider {
     @Override
     public synchronized Cursor query(Uri uri, String[] projection,
             String selection, String[] selectionArgs, String sortOrder) {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, String.format(
                     "query() >> uri = %s, selection = %s, sortOrder = %s", uri,
                     selection, sortOrder));
@@ -284,7 +285,7 @@ public class HistoryProvider extends ContentProvider {
          * Opens the database object in "read" mode, since no writes need to be
          * done.
          */
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME,
                     String.format("Going to SQLiteQueryBuilder >> db = %s", db));
         if (db == null) {

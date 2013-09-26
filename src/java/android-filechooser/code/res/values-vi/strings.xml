@@ -17,7 +17,6 @@
     <string name="afc_cmd_list_view">Danh sách</string>
     <string name="afc_cmd_new_folder">Tạo thư mục mới…</string>
     <string name="afc_cmd_reload">Tải lại</string>
-    <string name="afc_cmd_remove_from_list">Xóa khỏi danh sách</string>
     <string name="afc_cmd_rename">Đổi tên</string>
     <string name="afc_cmd_select_all_files">Chọn hết tập tin</string>
     <string name="afc_cmd_select_all_folders">Chọn hết thư mục</string>
@@ -33,14 +32,12 @@
     <string name="afc_hint_older">cũ hơn</string>
     <string name="afc_hint_save_as_filename">tên tập tin</string>
     <string name="afc_hint_search">tìm kiếm</string>
-    <string name="afc_history">Lịch sử</string>
     <string name="afc_msg_app_doesnot_have_permission_to_create_files">Ứng dụng này không có quyền tạo mới tập tin/ thư mục</string>
     <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Ứng dụng này không có quyền xóa tập tin/ thư mục</string>
     <string name="afc_msg_cancelled">Hủy bỏ</string>
     <string name="afc_msg_cannot_connect_to_file_provider_service">Không thể kết nối đến dịch vụ cung cấp tập tin</string>
     <string name="afc_msg_cannot_create_new_folder_here">Không thể tạo thư mục mới ở đây</string>
     <string name="afc_msg_cannot_save_a_file_here">Không thể lưu tập tin ở đây</string>
-    <string name="afc_msg_confirm_clear_history">Bạn có chắc muốn xoá hết lịch sử không?</string>
     <string name="afc_msg_done">Xong</string>
     <string name="afc_msg_empty">Không có gì</string>
     <string name="afc_msg_failed_please_try_again">Thất bại. Vui lòng thử lại.</string>
@@ -64,10 +61,8 @@
     <string name="afc_title_confirmation">Xác nhận</string>
     <string name="afc_title_date">Ngày tháng</string>
     <string name="afc_title_error">Lỗi</string>
-    <string name="afc_title_history">Lịch sử</string>
     <string name="afc_title_info">Thông tin</string>
     <string name="afc_title_name">Tên</string>
-    <string name="afc_title_rename">Đổi tên…</string>
     <string name="afc_title_save_as">Lưu…</string>
     <string name="afc_title_size">Kích thước</string>
     <string name="afc_title_sort_by">Sắp xếp theo…</string>

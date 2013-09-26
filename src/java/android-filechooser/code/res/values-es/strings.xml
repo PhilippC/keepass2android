@@ -22,8 +22,6 @@
     <string name="afc_cmd_home">Inicio</string>
     <string name="afc_cmd_list_view">Lista</string>
     <string name="afc_cmd_new_folder">Nuevo directorio…</string>
-    <string name="afc_cmd_reload">Recargar</string>
-    <string name="afc_cmd_remove_from_list">Eliminar de la lista</string>
     <string name="afc_cmd_rename">Renombrar</string>
     <string name="afc_cmd_select_all_files">Seleccionar todos los ficheros</string>
     <string name="afc_cmd_select_all_folders">Seleccionar todas los directorios</string>
@@ -39,14 +37,12 @@
     <string name="afc_hint_older">más viejo</string>
     <string name="afc_hint_save_as_filename">nombre de fichero</string>
     <string name="afc_hint_search">búsqueda</string>
-    <string name="afc_history">Historia</string>
     <string name="afc_msg_app_doesnot_have_permission_to_create_files">La aplicación no tiene permisos para crear ficheros/directorios</string>
     <string name="afc_msg_app_doesnot_have_permission_to_delete_files">La aplicación no tiene permisos para eliminar ficheros/directorios</string>
     <string name="afc_msg_cancelled">Cancelado</string>
     <string name="afc_msg_cannot_connect_to_file_provider_service">No se puede conectar con el servicio proveedor de ficheros</string>
     <string name="afc_msg_cannot_create_new_folder_here">No se puede crear un nuevo directorio aquí</string>
     <string name="afc_msg_cannot_save_a_file_here">No se puede guardar un archivo aquí</string>
-    <string name="afc_msg_confirm_clear_history">¿Está seguro que desea borrar el historial?</string>
     <string name="afc_msg_done">Hecho</string>
     <string name="afc_msg_empty">Vacío</string>
     <string name="afc_msg_failed_please_try_again">Error. Por favor, inténtelo de nuevo.</string>

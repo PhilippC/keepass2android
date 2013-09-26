@@ -8,6 +8,5 @@
 
 <resources>
 
-    <integer name="afc_pkey_history_manager_display_items_per_page">50</integer>
 
 </resources>

@@ -10,6 +10,7 @@ package group.pals.android.lib.ui.filechooser.providers.history;
 import group.pals.android.lib.ui.filechooser.BuildConfig;
 import group.pals.android.lib.ui.filechooser.R;
 import group.pals.android.lib.ui.filechooser.providers.DbUtils;
+import group.pals.android.lib.ui.filechooser.utils.Utils;
 
 import java.util.Date;
 
@@ -34,8 +35,8 @@ public class HistoryProviderUtils {
      * @param context
      *            {@link Context}.
      */
-    public static void doCleanupOutdatedHistoryItems(Context context) {
-        if (BuildConfig.DEBUG)
+    public static void clearHistory(Context context) {
+        if (Utils.doLog())
             Log.d(CLASSNAME, "doCleanupCache()");
 
         try {
@@ -44,12 +45,11 @@ public class HistoryProviderUtils {
              * ones.
              */
             final long validityInMillis = new Date().getTime()
-                    - (context.getResources().getInteger(
-                            R.integer.afc_pkey_history_validity_in_days_def) * DateUtils.DAY_IN_MILLIS);
+                    - 0;
 
-            if (BuildConfig.DEBUG)
+            if (Utils.doLog())
                 Log.d(CLASSNAME, String.format(
-                        "doCleanupCache() - validity = %,d (%s)",
+                        "clearHistory() - validity = %,d (%s)",
                         validityInMillis, new Date(validityInMillis)));
             context.getContentResolver().delete(
                     HistoryContract.genContentUri(context),
@@ -61,5 +61,5 @@ public class HistoryProviderUtils {
              * Currently we just ignore it.
              */
         }
-    }// doCleanupOutdatedHistoryItems()
+    }// clearHistory()
 }

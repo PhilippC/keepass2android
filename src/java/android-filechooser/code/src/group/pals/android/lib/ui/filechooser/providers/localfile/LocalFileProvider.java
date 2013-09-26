@@ -15,6 +15,7 @@ import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileContract
 import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileProvider;
 import group.pals.android.lib.ui.filechooser.utils.FileUtils;
 import group.pals.android.lib.ui.filechooser.utils.TextUtils;
+import group.pals.android.lib.ui.filechooser.utils.Utils;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -68,7 +69,7 @@ public class LocalFileProvider extends BaseFileProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "delete() >> " + uri);
 
         int count = 0;
@@ -91,7 +92,7 @@ public class LocalFileProvider extends BaseFileProvider {
                     mMapInterruption.put(taskId, false);
                     count = deleteFile(taskId, file, isRecursive);
                     if (mMapInterruption.get(taskId))
-                        if (BuildConfig.DEBUG)
+                        if (Utils.doLog())
                             Log.d(CLASSNAME, "delete() >> cancelled...");
                     mMapInterruption.delete(taskId);
                 }
@@ -118,7 +119,7 @@ public class LocalFileProvider extends BaseFileProvider {
             throw new IllegalArgumentException("UNKNOWN URI " + uri);
         }
 
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "delete() >> count = " + count);
 
         if (count > 0)
@@ -129,7 +130,7 @@ public class LocalFileProvider extends BaseFileProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "insert() >> " + uri);
 
         switch (URI_MATCHER.match(uri)) {
@@ -179,7 +180,7 @@ public class LocalFileProvider extends BaseFileProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
             String[] selectionArgs, String sortOrder) {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, String.format(
                     "query() >> uri = %s (%s) >> match = %s", uri,
                     uri.getLastPathSegment(), URI_MATCHER.match(uri)));
@@ -336,7 +337,7 @@ public class LocalFileProvider extends BaseFileProvider {
 
         File dir = extractFile(uri);
 
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "srcFile = " + dir);
 
         if (!dir.isDirectory() || !dir.canRead())
@@ -428,7 +429,7 @@ public class LocalFileProvider extends BaseFileProvider {
 
         try {
             if (mMapInterruption.get(taskId)) {
-                if (BuildConfig.DEBUG)
+                if (Utils.doLog())
                     Log.d(CLASSNAME, "query() >> cancelled...");
                 return null;
             }
@@ -557,7 +558,7 @@ public class LocalFileProvider extends BaseFileProvider {
                 }// accept()
             });
         } catch (CancellationException e) {
-            if (BuildConfig.DEBUG)
+            if (Utils.doLog())
                 Log.d(CLASSNAME, "listFiles() >> cancelled... >> " + e);
         }
     }// listFiles()
@@ -618,7 +619,7 @@ public class LocalFileProvider extends BaseFileProvider {
                 }// compare()
             });
         } catch (CancellationException e) {
-            if (BuildConfig.DEBUG)
+            if (Utils.doLog())
                 Log.d(CLASSNAME, "sortFiles() >> cancelled...");
         }
     }// sortFiles()
@@ -742,7 +743,7 @@ public class LocalFileProvider extends BaseFileProvider {
         if (uri.getQueryParameter(BaseFile.PARAM_APPEND_NAME) != null)
             fileName += "/" + uri.getQueryParameter(BaseFile.PARAM_APPEND_NAME);
 
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "extractFile() >> " + fileName);
 
         return new File(fileName);

@@ -18,9 +18,7 @@
 
     <integer name="afc_pkey_display_view_type_def">0</integer>
     <integer name="afc_pkey_display_sort_type_def">0</integer>
-    <integer name="afc_pkey_history_manager_display_items_per_page">30</integer>
-    <integer name="afc_pkey_history_validity_in_days_def">30</integer>
-
+    
     <bool name="afc_pkey_display_sort_ascending_def">true</bool>
     <bool name="afc_pkey_display_show_time_for_old_days_this_year_def">false</bool>
     <bool name="afc_pkey_display_show_time_for_old_days_def">false</bool>

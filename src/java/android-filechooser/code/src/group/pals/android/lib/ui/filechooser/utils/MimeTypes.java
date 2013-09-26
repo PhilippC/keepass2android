@@ -24,6 +24,12 @@ public class MimeTypes {
             + "psc1|psd1|psm1|py|pyc|pyo|r|rb|sdl|sh|tcl|vbs|xpl|ada|adb|ads|"
             + "clj|cls|cob|cbl|cxx|cs|csproj|d|e|el|go|h|hpp|hxx|l|m|url|ini|"
             + "prop|conf|properties|rc|srt|sa?mi|cmml|lrc)$";
+    
+    /**
+     * Regular expression for files supported by Keepass2Android.
+     */
+    public static final String REGEX_FILE_TYPE_KEEPASS2ANDROID = "(?si)^.+\\.(kdbx)$";
+    
 
     /**
      * Regular expression for HTML files.

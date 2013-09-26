@@ -23,6 +23,5 @@
     <dimen name="afc_context_menu_width">290dp</dimen>
     <dimen name="afc_single_button_min_width">192sp</dimen>
     <dimen name="afc_viewgroup_button_locations_bottom_divider_height">1dp</dimen>
-    <dimen name="afc_view_history_sub_item_textview_time_min_width">65sp</dimen>
 
 </resources>

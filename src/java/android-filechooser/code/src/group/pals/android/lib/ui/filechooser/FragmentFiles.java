@@ -343,7 +343,7 @@ public class FragmentFiles extends Fragment implements
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "onPrepareOptionsMenu()");
 
         /*
@@ -427,16 +427,16 @@ public class FragmentFiles extends Fragment implements
 
     @Override
     public void onStop() {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "onStop()");
 
         super.onStop();
-        HistoryProviderUtils.doCleanupOutdatedHistoryItems(getActivity());
+        HistoryProviderUtils.clearHistory(getActivity());
     }// onStop()
 
     @Override
     public void onDestroy() {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "onDestroy()");
 
         super.onDestroy();
@@ -470,7 +470,7 @@ public class FragmentFiles extends Fragment implements
         String negativeRegex = getArguments().getString(
                 FileChooserActivity.EXTRA_NEGATIVE_REGEX_FILTER);
 
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "onCreateLoader() >> path = " + path);
 
         return new CursorLoader(
@@ -985,7 +985,7 @@ public class FragmentFiles extends Fragment implements
      * @param savedInstanceState
      */
     private void loadInitialPath(final Bundle savedInstanceState) {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, String.format(
                     "loadInitialPath() >> authority=[%s] | mRoot=[%s]",
                     mFileProviderAuthority, mRoot));
@@ -1059,7 +1059,7 @@ public class FragmentFiles extends Fragment implements
             getActivity().finish();
         }
 
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "loadInitialPath() >> " + path);
 
         setCurrentLocation(path);
@@ -1655,7 +1655,7 @@ public class FragmentFiles extends Fragment implements
      * Updates or inserts {@code path} into history database.
      */
     private void updateDbHistory(Uri path) {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "updateDbHistory() >> path = " + path);
 
         Calendar cal = Calendar.getInstance();
@@ -1663,7 +1663,7 @@ public class FragmentFiles extends Fragment implements
                 - (cal.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000
                         + cal.get(Calendar.MINUTE) * 60 * 1000 + cal
                         .get(Calendar.SECOND) * 1000);
-        if (BuildConfig.DEBUG) {
+        if (Utils.doLog()) {
             Log.d(CLASSNAME,
                     String.format("beginToday = %s (%s)", DbUtils
                             .formatNumber(beginTodayMillis), new Date(

@@ -7,6 +7,7 @@
 
 package group.pals.android.lib.ui.filechooser.utils;
 
+import group.pals.android.lib.ui.filechooser.BuildConfig;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
@@ -30,4 +31,12 @@ public class Utils {
                 return false;
         return true;
     }// hasPermissions()
+    
+    
+    public static boolean doLog()
+    {
+    	return false;
+    	//return BuildConfig.DEBUG; //not working with Mono for Android
+    	
+    }
 }

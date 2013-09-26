@@ -9,6 +9,7 @@ package group.pals.android.lib.ui.filechooser.ui.widget;
 
 import group.pals.android.lib.ui.filechooser.BuildConfig;
 import group.pals.android.lib.ui.filechooser.R;
+import group.pals.android.lib.ui.filechooser.utils.Utils;
 import group.pals.android.lib.ui.filechooser.utils.ui.Ui;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -217,7 +218,7 @@ public class AfcSearchView extends LinearLayout {
      */
     protected void updateViewsVisibility(boolean collapsed,
             boolean showSoftKeyboard) {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, "updateViewsVisibility() >> " + collapsed);
 
         mIconified = collapsed;
@@ -385,7 +386,7 @@ public class AfcSearchView extends LinearLayout {
 
         @Override
         public void run() {
-            if (BuildConfig.DEBUG)
+            if (Utils.doLog())
                 Log.d(CLASSNAME, "mAutoSubmissionRunnable.run()");
             mButtonSearch.performClick();
         }// run()
@@ -404,14 +405,14 @@ public class AfcSearchView extends LinearLayout {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count,
                 int after) {
-            if (BuildConfig.DEBUG)
+            if (Utils.doLog())
                 Log.d(CLASSNAME, "beforeTextChanged()");
             mAutoSubmissionHandler.removeCallbacksAndMessages(null);
         }// beforeTextChanged()
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (BuildConfig.DEBUG)
+            if (Utils.doLog())
                 Log.d(CLASSNAME,
                         "afterTextChanged() >>> delayTimeSubmission = "
                                 + getDelayTimeSubmission());

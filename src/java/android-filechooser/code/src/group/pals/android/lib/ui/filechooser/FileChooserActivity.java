@@ -11,6 +11,7 @@ import group.pals.android.lib.ui.filechooser.prefs.DisplayPrefs;
 import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileContract.BaseFile;
 import group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileContract;
 import group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider;
+import group.pals.android.lib.ui.filechooser.utils.Utils;
 import group.pals.android.lib.ui.filechooser.utils.ui.Dlg;
 import group.pals.android.lib.ui.filechooser.utils.ui.Ui;
 import android.content.Context;
@@ -244,7 +245,7 @@ public class FileChooserActivity extends FragmentActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (BuildConfig.DEBUG)
+        if (Utils.doLog())
             Log.d(CLASSNAME, String.format("onKeyDown() >> %,d", keyCode));
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -253,7 +254,7 @@ public class FileChooserActivity extends FragmentActivity {
              * is not available in API 4.
              */
             if (mFragmentFiles.isLoading()) {
-                if (BuildConfig.DEBUG)
+                if (Utils.doLog())
                     Log.d(CLASSNAME,
                             "onKeyDown() >> KEYCODE_BACK >> cancelling previous query...");
                 mFragmentFiles.cancelPreviousLoader();
