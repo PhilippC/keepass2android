@@ -1,0 +1,19 @@
+<metadata>
+	<remove-node path="/api/package[@name='group.pals.android.lib.ui.filechooser.providers.localfile']/class[@name='FileObserverEx']" />
+	
+	<!--
+	
+	<remove-node path="/api/package[@name='group.pals.android.lib.ui.filechooser']/class[@name='FragmentFiles']" />
+	<remove-node path="/api/package[@name='group.pals.android.lib.ui.filechooser.utils.ui.bookmark']/class[@name='BookmarkFragment']" />
+	<remove-node path="/api/package[@name='group.pals.android.lib.ui.filechooser.utils.ui.history']/class[@name='HistoryFragment']" />
+	
+	
+  <remove-node path="/api/package[@name='group.pals.android.lib.ui.filechooser.prefs']/class[@name='DisplayPrefs']" />
+	
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+</metadata>

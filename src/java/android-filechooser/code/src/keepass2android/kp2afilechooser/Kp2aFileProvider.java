@@ -91,8 +91,8 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	                                                    getAuthority())
 	                                            .buildUpon()
 	                                            .appendPath(
-	                                                    addProtocol(getParentPath(filename))
-	                                                            .toString())
+	                                                    getParentPath(filename)
+	                                                    )
 	                                            .build(), null);
 	            count = 1; //success
             }
@@ -146,7 +146,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
                         .genContentIdUriBase(
                                 getAuthority())
                         .buildUpon()
-                        .appendPath( addProtocol(newFullName)).build();
+                        .appendPath( newFullName).build();
                 getContext().getContentResolver().notifyChange(uri, null);
                 return newUri;
             }
@@ -235,9 +235,9 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         	
         	{
         		String path = Uri.parse(
-	                    uri.getQueryParameter(BaseFile.PARAM_SOURCE)).getPath();
+	                    uri.getQueryParameter(BaseFile.PARAM_SOURCE)).toString();
 	
-	            String parentPath = addProtocol(getParentPath(path));
+	            String parentPath = getParentPath(path);
 	            
         		
         		if (parentPath == null)
@@ -261,7 +261,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	            newRow.add(BaseFile
 	                    .genContentIdUriBase(
 	                            getAuthority())
-	                    .buildUpon().appendPath(addProtocol(parentPath))
+	                    .buildUpon().appendPath(parentPath)
 	                    .build().toString());
 	            newRow.add(parentPath);
 	            newRow.add(fname);
@@ -299,14 +299,14 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     		return path;
     	return path.substring(lastSlashPos+1);
 	}
-
+/*
 	private String addProtocol(String path) {
 		if (path == null)
 			return null;
 		if (path.startsWith(getProtocolId()+"://"))
 			return path;
 		return getProtocolId()+"://"+path;
-	}
+	}*/
 
 	/**
      * Lists the content of a directory, if available.
@@ -366,7 +366,8 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
                     FileEntry f = files.get(i);
                     
-                    Log.d(CLASSNAME, "listing " + f.path +" for "+dirName);
+                    if (Utils.doLog())
+                    	Log.d(CLASSNAME, "listing " + f.path +" for "+dirName);
                     
                     addFileInfo(matrixCursor, i, f);
                 }// for files
@@ -390,14 +391,14 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
                         .genContentIdUriBase(
                                 getAuthority())
                         .buildUpon()
-                        .appendPath(addProtocol(dirName))
+                        .appendPath(dirName)
                         .appendQueryParameter(BaseFile.PARAM_HAS_MORE_FILES,
                                 Boolean.toString(hasMoreFiles[0])).build()
                         .toString());
-                newRow.add(addProtocol(dirName));
+                newRow.add(dirName);
                 newRow.add(getName(dirName));
                 
-                Log.d(CLASSNAME, "Returning name " + getName(dirName)+" for " +addProtocol(dirName));
+                Log.d(CLASSNAME, "Returning name " + getName(dirName)+" for " +dirName);
             }
         }
 
@@ -427,9 +428,9 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 		newRow.add(BaseFile
 		        .genContentIdUriBase(
 		                getAuthority())
-		        .buildUpon().appendPath(addProtocol(f.path))
+		        .buildUpon().appendPath(f.path)
 		        .build().toString());
-		newRow.add(addProtocol(f.path));
+		newRow.add(f.path);
 		newRow.add(getName(f.path));
 		newRow.add(f.canRead ? 1 : 0);
 		newRow.add(f.canWrite ? 1 : 0);
@@ -545,24 +546,32 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
      *         <i>non-null but empty</i> cursor if the source is.
      */
     private MatrixCursor doCheckAncestor(Uri uri) {
-        File source = new File(Uri.parse(
-                uri.getQueryParameter(BaseFile.PARAM_SOURCE)).getPath());
-        File target = new File(Uri.parse(
-                uri.getQueryParameter(BaseFile.PARAM_TARGET)).getPath());
+        String source = Uri.parse(
+                uri.getQueryParameter(BaseFile.PARAM_SOURCE)).toString();
+        String target = Uri.parse(
+                uri.getQueryParameter(BaseFile.PARAM_TARGET)).toString();
         if (source == null || target == null)
             return null;
 
         boolean validate = ProviderUtils.getBooleanQueryParam(uri,
                 BaseFile.PARAM_VALIDATE, true);
         if (validate) {
-            if (!source.isDirectory() || !target.exists())
-                return null;
+         //not supported
         }
-
-        if (source.equals(target.getParentFile())
-                || (target.getParent() != null && target.getParent()
-                        .startsWith(source.getAbsolutePath())))
+        
+        if (!source.endsWith("/"))
+        	source += "/";
+        
+        
+        String targetParent = getParentPath(target);
+        if (targetParent != null && targetParent.startsWith(source))
+        {
+        	if (Utils.doLog())
+        		Log.d(CLASSNAME, source+" is parent of "+target);
             return BaseFileProviderUtils.newClosedCursor();
+        }
+        if (Utils.doLog())
+    		Log.d(CLASSNAME, source+" is no parent of "+target);
 
         return null;
     }// doCheckAncestor()
@@ -575,11 +584,10 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
      * @return the filename.
      */
     private static String extractFile(Uri uri) {
-        String fileName = Uri.parse(uri.getLastPathSegment()).getPath();
+        String fileName = Uri.parse(uri.getLastPathSegment()).toString();
         if (uri.getQueryParameter(BaseFile.PARAM_APPEND_PATH) != null)
             fileName += Uri.parse(
-                    uri.getQueryParameter(BaseFile.PARAM_APPEND_PATH))
-                    .getPath();
+                    uri.getQueryParameter(BaseFile.PARAM_APPEND_PATH)).toString();
         if (uri.getQueryParameter(BaseFile.PARAM_APPEND_NAME) != null)
             fileName += "/" + uri.getQueryParameter(BaseFile.PARAM_APPEND_NAME);
 
@@ -600,33 +608,29 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     private String getParentPath(String path)
     {
     	path = removeTrailingSlash(path);
-    	path = removeProtocol(path);
+    	if (path.indexOf("://") == -1)
+    	{
+    		Log.d(CLASSNAME, "invalid path: " + path);
+    		return null; 
+    	}
+    	String pathWithoutProtocol = path.substring(path.indexOf("://")+3);
     	int lastSlashPos = path.lastIndexOf("/");
-    	if (lastSlashPos == -1)
+    	if (pathWithoutProtocol.indexOf("/") == -1)
+    	{
+    		Log.d(CLASSNAME, "parent of " + path +" is null");
     		return null;
+    	}
     	else
-    		return path.substring(0, lastSlashPos)+"/";
+    	{
+    		String parent = path.substring(0, lastSlashPos)+"/";
+    		Log.d(CLASSNAME, "parent of " + path +" is "+parent);
+    		return parent;
+    	}
     }
     
-    private String removeProtocol(String path) {
-    	if (path.lastIndexOf("://") == -1)
-    		return path;
-    	
-		if (!path.startsWith(getProtocolId()+"://"))
-		{
-			String msg = path+" does not start with "+getProtocolId();
-			Log.d(CLASSNAME, msg);
-			throw new IllegalArgumentException(msg);
-		}
-		return path.substring(getProtocolId().length()+3);
-	}
     
-    protected String getRootDirectory(String currentPath)
-    {
-    	return getProtocolId() + ":///";
-    }	
-    
-    protected FileEntry getFileEntry(String path) {
+
+	protected FileEntry getFileEntry(String path) {
 		FileEntry f = new FileEntry();
 		f.path = path;
 		f.isDirectory = path.lastIndexOf(".") == -1;
@@ -667,6 +671,6 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     protected abstract boolean deletePath(String filename, boolean isRecursive);
     protected abstract boolean createDirectory(String dirname, String newDirName);
     
-    protected abstract String getProtocolId();
+
 
 }

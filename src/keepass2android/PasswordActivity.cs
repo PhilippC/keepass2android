@@ -176,7 +176,7 @@ namespace keepass2android
 					break;
 				case Result.Ok: // Key file browse dialog OK'ed.
 					if (requestCode == Intents.RequestCodeFileBrowseForKeyfile) {
-						string filename = Util.IntentToFilename(data);
+						string filename = Util.IntentToFilename(data, this);
 						if (filename != null) {
 							if (filename.StartsWith("file://")) {
 								filename = filename.Substring(7);

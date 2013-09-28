@@ -621,7 +621,7 @@ namespace keepass2android
 			case (int)Result.Ok:
 					if (requestCode == Intents.RequestCodeFileBrowseForBinary)
 					{
-						string filename = Util.IntentToFilename(data);
+						string filename = Util.IntentToFilename(data, this);
 						if (filename != null) {
 							if (filename.StartsWith("file://")) {
 								filename = filename.Substring(7);

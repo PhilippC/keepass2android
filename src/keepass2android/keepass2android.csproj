@@ -78,6 +78,7 @@
     <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fileselect\FileChooserFileProvider.cs" />
     <Compile Include="FileStorageSelectionActivity.cs" />
     <Compile Include="DonateReminder.cs" />
     <Compile Include="app\ApplicationBroadcastReceiver.cs" />
@@ -656,6 +657,14 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj">
+      <Project>{3c0f7fe5-639f-4422-a087-8b26cf862d1b}</Project>
+      <Name>AndroidFileChooserBinding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppCompatV7Binding\AppCompatV7Binding.csproj">
+      <Project>{23233a28-d74f-4bf8-b4d8-834060840bd7}</Project>
+      <Name>AppCompatV7Binding</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
       <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
       <Name>JavaFileStorageBindings</Name>

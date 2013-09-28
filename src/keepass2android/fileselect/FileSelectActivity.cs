@@ -357,7 +357,7 @@ namespace keepass2android
 					GroupActivity.Launch(_activity, _activity.AppTask);
 					
 				} else {
-					App.Kp2a.GetFileStorage(_ioc).DeleteFile(_ioc);
+					App.Kp2a.GetFileStorage(_ioc).Delete(_ioc);
 					
 				}
 			}
@@ -481,17 +481,16 @@ namespace keepass2android
 
 			if (resultCode == KeePass.ExitFileStorageSelectionOk)
 			{
-				LaunchPasswordActivityForIoc(new IOConnectionInfo()
-					{
-						Path = data.GetStringExtra("protocolId")+":///keepass/keepass.kdbx"
-					}
-					);
+				Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, FileChooserFileProvider.TheAuthority, data.GetStringExtra("protocolId")+":///");
+
+				StartActivityForResult(i, Intents.RequestCodeFileBrowseForOpen);
+				
 			}
 			
 			if ( (requestCode == Intents.RequestCodeFileBrowseForCreate
 			      || requestCode == Intents.RequestCodeFileBrowseForOpen)
 			    && resultCode == Result.Ok) {
-				string filename = Util.IntentToFilename(data);
+				string filename = Util.IntentToFilename(data, this);
 				if (filename != null) {
 					if (filename.StartsWith("file://")) {
 						filename = filename.Substring(7);

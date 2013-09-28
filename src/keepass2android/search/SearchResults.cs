@@ -22,7 +22,6 @@ using Android.OS;
 using Android.Widget;
 using keepass2android.view;
 using KeePassLib;
-using Android.Support.V4.App;
 
 namespace keepass2android.search
 {

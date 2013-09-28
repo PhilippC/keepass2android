@@ -17,7 +17,7 @@ namespace keepass2android.Io
 	public class GDriveFileStorage: IFileStorage
 	{
 		public IEnumerable<string> SupportedProtocols { get { yield return "gdrive"; } }
-		public void DeleteFile(IOConnectionInfo ioc)
+		public void Delete(IOConnectionInfo ioc)
 		{
 			throw new NotImplementedException();
 		}
@@ -60,6 +60,16 @@ namespace keepass2android.Io
 		}
 
 		public bool RequiresCredentials(IOConnectionInfo ioc)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void CreateDirectory(IOConnectionInfo ioc)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<FileDescription> ListContents(IOConnectionInfo convertPathToIoc)
 		{
 			throw new NotImplementedException();
 		}

@@ -28,7 +28,7 @@ public class MimeTypes {
     /**
      * Regular expression for files supported by Keepass2Android.
      */
-    public static final String REGEX_FILE_TYPE_KEEPASS2ANDROID = "(?si)^.+\\.(kdbx)$";
+    public static final String REGEX_FILE_TYPE_KEEPASS2ANDROID = "(?si)^.+\\.(kdbx|kdbp)$";
     
 
     /**

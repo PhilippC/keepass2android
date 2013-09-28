@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
@@ -159,8 +161,16 @@ namespace keepass2android
 			}
 		}
 
-		public static string IntentToFilename(Intent data)
+		public static string IntentToFilename(Intent data, Context ctx)
 		{
+			string EXTRA_RESULTS = "group.pals.android.lib.ui.filechooser.FileChooserActivity.results";
+			if (data.HasExtra(EXTRA_RESULTS))
+			{
+				IList uris = data.GetParcelableArrayListExtra(EXTRA_RESULTS);
+				Uri uri = (Uri) uris[0];
+				return Group.Pals.Android.Lib.UI.Filechooser.Providers.BaseFileProviderUtils.GetRealUri(ctx, uri).ToString();
+			}
+
 			String filename = data.Data.Path;
 			if (String.IsNullOrEmpty(filename))
 			 	filename = data.DataString;

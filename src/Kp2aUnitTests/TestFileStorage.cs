@@ -18,10 +18,15 @@ namespace Kp2aUnitTests
 		{
 			if (Offline)
 				throw new IOException("offline");
-			_builtIn.DeleteFile(ioc);
+			_builtIn.Delete(ioc);
 		}
 
 		public IFileStorageSetup RequiredSetup { get { return null; } }
+
+		public void Delete(IOConnectionInfo ioc)
+		{
+			throw new NotImplementedException();
+		}
 
 		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
 		{
@@ -100,6 +105,16 @@ namespace Kp2aUnitTests
 		public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
 			return _builtIn.RequiresCredentials(ioc);
+		}
+
+		public void CreateDirectory(IOConnectionInfo ioc)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

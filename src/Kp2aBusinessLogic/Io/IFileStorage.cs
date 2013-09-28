@@ -36,9 +36,9 @@ namespace keepass2android.Io
 		IEnumerable<string> SupportedProtocols { get; } 
 
 		/// <summary>
-		/// Deletes the given file.
+		/// Deletes the given file or directory.
 		/// </summary>
-		void DeleteFile(IOConnectionInfo ioc);
+		void Delete(IOConnectionInfo ioc);
 
 		/// <summary>
 		/// Tests whether the file was changed. 
@@ -54,7 +54,7 @@ namespace keepass2android.Io
 		/// </summary>
 		/// This string may have a deliberate value (except null) and should not be used by callers except for passing it to
 		/// CheckForFileChangeFast().
-		/// <returns>A string which should not be null.</returns>
+		/// <returns>A string describing the version. Null means, there is no way to get a file version (or it's not implemented).</returns>
 		string GetCurrentFileVersionFast(IOConnectionInfo ioc);
 
 		/// <summary>
@@ -96,6 +96,16 @@ namespace keepass2android.Io
 		/// Returns true if the the given ioc must be filled with username/password
 		/// </summary>
 		bool RequiresCredentials(IOConnectionInfo ioc);
+
+		/// <summary>
+		/// Creates the directory described by ioc
+		/// </summary>
+		void CreateDirectory(IOConnectionInfo ioc);
+
+		/// <summary>
+		/// Lists the contents of the given path
+		/// </summary>
+		IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc);
 	}
 
 	/// <summary>

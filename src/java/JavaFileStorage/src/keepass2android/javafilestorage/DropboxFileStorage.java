@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -31,7 +32,10 @@ import com.dropbox.client2.session.Session.AccessType;
 
 
 public class DropboxFileStorage implements JavaFileStorage {
-	final static private String APP_KEY = "i8shu7v1hgh7ynt";
+	
+	//NOTE: also adjust secret!
+	final static private String APP_KEY = "i8shu7v1hgh7ynt"; //KP2A
+	//final static private String APP_KEY = "4ybka4p4a1027n6"; //FileStorageTest
 	
     // If you'd like to change the access type to the full Dropbox instead of
     // an app folder, change this value.
@@ -43,8 +47,6 @@ public class DropboxFileStorage implements JavaFileStorage {
     final static private String ACCESS_KEY_NAME = "ACCESS_KEY";
     final static private String ACCESS_SECRET_NAME = "ACCESS_SECRET";
     
-
-
     DropboxAPI<AndroidAuthSession> mApi;
 	private boolean mLoggedIn = false;
 	private Context mContext;
@@ -117,22 +119,6 @@ public class DropboxFileStorage implements JavaFileStorage {
 		return mLoggedIn;
 	}
 	
-	public ArrayList<String> listContents(String path) throws Exception
-	{
-		ArrayList<String> files = new ArrayList<String>();
-		try {
-		     DropboxAPI.Entry existingEntry = mApi.metadata(path, 0, null, true, null);
-		     for (DropboxAPI.Entry ent: existingEntry.contents) 
-	            {
-	                 files.add(ent.path);                      
-	                
-	            }
-		     // do stuff with the Entry
-		 } catch (DropboxException e) {
-		     throw convertException(e);
-		 }
-		return files;
-	}
 	
 	public boolean checkForFileChangeFast(String path, String previousFileVersion) throws Exception
 	{
@@ -159,7 +145,6 @@ public class DropboxFileStorage implements JavaFileStorage {
 	
 	public InputStream openFileForRead(String path) throws Exception
 	{
-		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		try {
 			return mApi.getFileStream(path, null);
 		} catch (DropboxException e) {
@@ -187,6 +172,7 @@ public class DropboxFileStorage implements JavaFileStorage {
     	{
     		Log.d(TAG, "LoggedIn=false (due to unlink exception)");
     		setLoggedIn(false);
+    		clearKeys();
     		return new Exception("Unlinked from Dropbox!", e);
     		
     	}
@@ -271,5 +257,62 @@ public class DropboxFileStorage implements JavaFileStorage {
 
         return session;
     }
+
+	@Override
+	public void createFolder(String path) throws Exception {
+		try
+		{
+			mApi.createFolder(path);		
+		} 
+		catch (DropboxException e) {
+		    throw convertException(e);
+		}
+	}
+
+	@Override
+	public List<FileEntry> listFiles(String dirName) throws Exception {
+		try
+		{
+			com.dropbox.client2.DropboxAPI.Entry dirEntry = mApi.metadata(dirName, 0, null, true, null);
+			
+			if (dirEntry.isDeleted)
+				throw new FileNotFoundException("Directory "+dirName+" is deleted!");
+			
+			List<FileEntry> result = new ArrayList<FileEntry>();
+			
+			for (com.dropbox.client2.DropboxAPI.Entry e: dirEntry.contents)
+			{
+				if (e.isDeleted) 
+					continue;
+				FileEntry fileEntry = new FileEntry();
+				fileEntry.canRead = true;
+				fileEntry.canWrite = true;
+				fileEntry.isDirectory = e.isDir;
+				fileEntry.sizeInBytes = e.bytes;
+				fileEntry.path = e.path;
+				fileEntry.lastModifiedTime = com.dropbox.client2.RESTUtility.parseDate(e.modified).getTime();
+				result.add(fileEntry);
+			}
+			return result;
+
+			
+		} catch (DropboxException e) {
+			
+		     throw convertException(e);
+		}
+		
+	}
+
+	@Override
+	public void delete(String path) throws Exception {
+		try
+		{
+		mApi.delete(path);
+		} catch (DropboxException e) {
+		     throw convertException(e);
+		}
+		
+		
+	}
 
 }

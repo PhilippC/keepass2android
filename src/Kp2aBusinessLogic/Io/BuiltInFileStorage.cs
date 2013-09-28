@@ -30,11 +30,11 @@ namespace keepass2android.Io
 			}
 		}
 
-		public void DeleteFile(IOConnectionInfo ioc)
+		public void Delete(IOConnectionInfo ioc)
 		{
+			//todo check if directory
 			IOConnection.DeleteFile(ioc);
 		}
-
 		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
 		{
 			if (!ioc.IsLocalFile())
@@ -136,6 +136,18 @@ namespace keepass2android.Io
 		public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
 			return (!ioc.IsLocalFile()) && (ioc.CredSaveMode != IOCredSaveMode.SaveCred);
+		}
+
+		public void CreateDirectory(IOConnectionInfo ioc)
+		{
+			//TODO
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
+		{
+			//TODO
+			throw new NotImplementedException();
 		}
 	}
 }

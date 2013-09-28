@@ -88,7 +88,7 @@ namespace keepass2android.Io
 				File.Delete(BaseVersionFilePath(ioc));
 			}
 			
-			_cachedStorage.DeleteFile(ioc);
+			_cachedStorage.Delete(ioc);
 		}
 
 		private string CachedFilePath(IOConnectionInfo ioc)
@@ -103,6 +103,11 @@ namespace keepass2android.Io
 			return File.Exists(CachedFilePath(ioc))
 				&& File.Exists(VersionFilePath(ioc))
 				&& File.Exists(BaseVersionFilePath(ioc));
+		}
+
+		public void Delete(IOConnectionInfo ioc)
+		{
+			_cachedStorage.Delete(ioc);
 		}
 
 		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
@@ -414,6 +419,16 @@ namespace keepass2android.Io
 		public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
 			return _cachedStorage.RequiresCredentials(ioc);
+		}
+
+		public void CreateDirectory(IOConnectionInfo ioc)
+		{
+			_cachedStorage.CreateDirectory(ioc);
+		}
+
+		public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
+		{
+			return _cachedStorage.ListContents(ioc);
 		}
 
 

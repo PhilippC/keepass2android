@@ -22,6 +22,9 @@ namespace keepass2android.Io
 		{
 		}
 
-		public override IEnumerable<string> SupportedProtocols { get { yield return "dropbox"; } }
+		protected override string Protocol
+		{
+			get { return "dropbox"; }
+		}
 	}
 }

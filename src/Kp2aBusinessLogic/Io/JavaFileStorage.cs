@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Android.App;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -12,7 +13,8 @@ namespace keepass2android.Io
 {
 	public abstract class JavaFileStorage: IFileStorage
 	{
-		public abstract IEnumerable<string> SupportedProtocols { get; }
+		public IEnumerable<string> SupportedProtocols { get { yield return Protocol; } }
+
 
 		private readonly IJavaFileStorage _jfs;
 		private readonly IKp2aApp _app;
@@ -23,9 +25,20 @@ namespace keepass2android.Io
 			_app = app;
 		}
 
-		public void DeleteFile(IOConnectionInfo ioc)
+		public void Delete(IOConnectionInfo ioc)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				Jfs.Delete(IocToPath(ioc));
+			}
+			catch (FileNotFoundException e)
+			{
+				throw new System.IO.FileNotFoundException(e.Message, e);
+			}
+			catch (Java.Lang.Exception e)
+			{
+				throw LogAndConvertJavaException(e);
+			}
 		}
 
 		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
@@ -196,14 +209,68 @@ namespace keepass2android.Io
 			return false;
 		}
 
-		private static string IocToPath(IOConnectionInfo ioc)
+		public void CreateDirectory(IOConnectionInfo ioc)
 		{
-			int protocolLength = ioc.Path.IndexOf("://", StringComparison.Ordinal);
-
-			if (protocolLength < 0)
-				return ioc.Path;
-			else
-				return ioc.Path.Substring(protocolLength + 3);
+			try
+			{
+				Jfs.CreateFolder(IocToPath(ioc));
+			}
+			catch (FileNotFoundException e)
+			{
+				throw new System.IO.FileNotFoundException(e.Message, e);
+			}
+			catch (Java.Lang.Exception e)
+			{
+				throw LogAndConvertJavaException(e);
+			}
 		}
+
+		public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
+		{
+			try
+			{
+				IList<JavaFileStorageFileEntry> entries = Jfs.ListFiles(IocToPath(ioc));
+
+				return entries.Select(
+					e => new FileDescription
+						{
+							CanRead = e.CanRead,
+							CanWrite = e.CanWrite,
+							IsDirectory = e.IsDirectory,
+							LastModified = JavaTimeToCSharp(e.LastModifiedTime),
+							Path = Protocol + "://" + e.Path,
+							SizeInBytes = e.SizeInBytes
+						}
+					);
+
+			}
+			catch (FileNotFoundException e)
+			{
+				throw new System.IO.FileNotFoundException(e.Message, e);
+			}
+			catch (Java.Lang.Exception e)
+			{
+				throw LogAndConvertJavaException(e);
+			}
+		}
+
+		private DateTime JavaTimeToCSharp(long javatime)
+		{
+			//todo test
+			return new DateTime(1970, 1, 1).AddMilliseconds(javatime);
+
+		}
+
+		private string IocToPath(IOConnectionInfo ioc)
+		{
+			if (ioc.Path.StartsWith(Protocol + "://"))
+				return ioc.Path.Substring(Protocol.Length + 3);
+			else
+			{
+				return ioc.Path;
+			}
+		}
+
+		protected abstract string Protocol { get; }
 	}
 }
