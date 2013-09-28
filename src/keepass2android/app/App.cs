@@ -28,7 +28,9 @@ using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
+#if !EXCLUDE_TWOFISH
 using TwofishCipher;
+#endif
 using keepass2android.Io;
 
 namespace keepass2android
@@ -386,7 +388,9 @@ namespace keepass2android
 				{
 					_fileStorages = new List<IFileStorage>
 						{
+#if !EXCLUDE_JAVAFILESTORAGE
 							new DropboxFileStorage(Application.Context, this),
+#endif
 							new BuiltInFileStorage()
 						};
 				}
@@ -428,7 +432,9 @@ namespace keepass2android
                 GetResourceString(key);
             }
 #endif
+#if !EXCLUDE_TWOFISH
 			CipherPool.GlobalPool.AddCipher(new TwofishCipherEngine());
+#endif
         }
 
         

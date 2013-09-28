@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -253,7 +253,7 @@
     <None Include="Resources\values-vi\strings.xml">
       <Visible>False</Visible>
     </None>
-    <None Include="..\java\kp2akeytransform\libs\mips\libfinal-key.so">
+    <None Include="..\java\kp2akeytransform\libs\mips\libfinal-key.so"  Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
       <Link>libs\mips\libfinal-key.so</Link>
     </None>
     <None Include="Resources\drawable-hdpi\Thumbs.db">
@@ -657,15 +657,15 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj">
+    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_FILECHOOSER'))">
       <Project>{3c0f7fe5-639f-4422-a087-8b26cf862d1b}</Project>
       <Name>AndroidFileChooserBinding</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AppCompatV7Binding\AppCompatV7Binding.csproj">
+    <ProjectReference Include="..\AppCompatV7Binding\AppCompatV7Binding.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_FILECHOOSER'))">
       <Project>{23233a28-d74f-4bf8-b4d8-834060840bd7}</Project>
       <Name>AppCompatV7Binding</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_JAVAFILESTORAGE'))">
       <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
       <Name>JavaFileStorageBindings</Name>
     </ProjectReference>
@@ -677,15 +677,15 @@
       <Project>{53a9cb7f-6553-4bc0-b56b-9410bb2e59aa}</Project>
       <Name>Kp2aBusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj">
+    <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
       <Project>{A57B3ACE-5634-469A-88C4-858BB409F356}</Project>
       <Name>kp2akeytransform</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj">
+    <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYBOARD'))">
       <Project>{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}</Project>
       <Name>Kp2aKeyboardBinding</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
+    <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_TWOFISH'))">
       <Project>{5cf675a5-9bee-4720-bed9-d5bf14a2ebf9}</Project>
       <Name>TwofishCipher</Name>
     </ProjectReference>
@@ -700,11 +700,11 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi\libfinal-key.so">
+    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi\libfinal-key.so"  Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
       <Link>libs\armeabi\libfinal-key.so</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidNativeLibrary>
-    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi-v7a\libfinal-key.so">
+    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi-v7a\libfinal-key.so"  Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
       <Link>libs\armeabi-v7a\libfinal-key.so</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidNativeLibrary>

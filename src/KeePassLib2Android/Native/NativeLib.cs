@@ -165,10 +165,14 @@ namespace KeePassLib.Native
 
 			try
 			{
+#if !EXCLUDE_KEYTRANSFORM
 				Com.Keepassdroid.Crypto.Finalkey.NativeFinalKey key = new Com.Keepassdroid.Crypto.Finalkey.NativeFinalKey();
 
 				byte[] newKey = key.TransformMasterKey(pKey256, pBuf256, (int)uRounds);
 				Array.Copy(newKey, pBuf256, newKey.Length);
+#else 
+				return false;
+#endif
 			}
 			catch(Exception e)
 			{

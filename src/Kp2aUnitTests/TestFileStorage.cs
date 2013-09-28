@@ -116,5 +116,10 @@ namespace Kp2aUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+		public FileDescription GetFileDescription(IOConnectionInfo ioc)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

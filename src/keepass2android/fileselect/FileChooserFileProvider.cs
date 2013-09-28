@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using Android.Content;
 using KeePassLib.Serialization;
+#if !EXCLUDE_FILECHOOSER
 using Keepass2android.Kp2afilechooser;
+#endif
 using keepass2android.Io;
 
 namespace keepass2android
 {
+	#if !EXCLUDE_FILECHOOSER
 	[ContentProvider(new[] { "keepass2android." + AppNames.PackagePart + ".kp2afilechooser.kp2afile" }, Exported = false)]
 	public class FileChooserFileProvider : Kp2aFileProvider
 	{
@@ -59,7 +62,20 @@ namespace keepass2android
 				return false;
 			}
 		}
-		
+
+		protected override FileEntry GetFileEntry(string filename)
+		{
+			try
+			{
+				return ConvertFileDescription(App.Kp2a.GetFileStorage(filename).GetFileDescription(ConvertPathToIoc(filename)));
+			}
+			catch (Exception e)
+			{
+				Kp2aLog.Log(e.ToString());
+				return null;
+			}
+		}
+
 
 		protected override void ListFiles(int taskId, string dirName, bool showHiddenFiles, int filterMode, int limit, string positiveRegex, 
 			string negativeRegex, IList<FileEntry> fileList, bool[] hasMoreFiles)
@@ -69,15 +85,7 @@ namespace keepass2android
 				var dirContents = App.Kp2a.GetFileStorage(dirName).ListContents(ConvertPathToIoc(dirName));
 				foreach (FileDescription e in dirContents)
 				{
-					fileList.Add(new FileEntry
-						{
-							CanRead = e.CanRead,
-							CanWrite = e.CanWrite,
-							IsDirectory = e.IsDirectory,
-							LastModifiedTime = CSharpTimeToJava(e.LastModified),
-							Path = e.Path,
-							SizeInBytes = e.SizeInBytes	
-						}
+					fileList.Add(ConvertFileDescription(e)
 						);
 				}
 			}
@@ -85,6 +93,19 @@ namespace keepass2android
 			{
 				Kp2aLog.Log(e.ToString());
 			}
+		}
+
+		private FileEntry ConvertFileDescription(FileDescription e)
+		{
+			return new FileEntry
+				{
+					CanRead = e.CanRead,
+					CanWrite = e.CanWrite,
+					IsDirectory = e.IsDirectory,
+					LastModifiedTime = CSharpTimeToJava(e.LastModified),
+					Path = e.Path,
+					SizeInBytes = e.SizeInBytes	
+				};
 		}
 
 		private long CSharpTimeToJava(DateTime dateTime)
@@ -101,4 +122,5 @@ namespace keepass2android
 			
 		}
 	}
+#endif
 }

@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -93,7 +93,7 @@
     <Compile Include="ProgressDialogStatusLogger.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_JAVAFILESTORAGE'))">
       <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
       <Name>JavaFileStorageBindings</Name>
     </ProjectReference>

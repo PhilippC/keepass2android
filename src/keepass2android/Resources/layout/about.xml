@@ -79,7 +79,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_below="@id/divider3"
-			android:text="Please note" />
+			android:text="@string/please_note" />
 		<TextView
 			android:id="@+id/disclaimer"
 			android:layout_width="fill_parent"
@@ -92,7 +92,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@id/disclaimer"
-				android:text="Contributors" />
+				android:text="@string/contributors" />
 		<TextView
 				android:id="@+id/author"
 				android:layout_width="fill_parent"
@@ -112,13 +112,19 @@
 				android:layout_height="wrap_content"
 				android:layout_below="@id/further_authors"
 				android:text="@string/credit_plugin1" />
+		<TextView
+				android:id="@+id/android_filechooser_contrib"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/plugin1"
+				android:text="@string/credit_android_filechooser" />
 
 
 		<TextView
 			android:id="@+id/Credit"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/plugin1"
+			android:layout_below="@id/android_filechooser_contrib"
 			android:text="@string/CreditsText" />
 	</RelativeLayout>
 

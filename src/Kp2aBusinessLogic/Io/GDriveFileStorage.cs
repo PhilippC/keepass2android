@@ -73,5 +73,10 @@ namespace keepass2android.Io
 		{
 			throw new NotImplementedException();
 		}
+
+		public FileDescription GetFileDescription(IOConnectionInfo ioc)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

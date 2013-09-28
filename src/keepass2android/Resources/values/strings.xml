@@ -188,6 +188,9 @@
 	<string name="author">Keepass2Android is developed by Philipp Crocoll.</string>
 	<string name="further_authors">Thanks to code contributions by %1$s.</string>
 	<string name="credit_plugin1">The Twofish Cipher Plugin for Keepass was developed by Scott Greenberg and is included in KP2A.</string>
+	<string name="credit_android_filechooser">android-filechooser was developed by Hai Bison</string>
+	<string name="please_note">Please note</string>
+	<string name="contributors">Contributors</string>
   <string name="regular_expression">Regular expression</string>
   <string name="TanExpiresOnUse_title">Tan expires on use</string>
   <string name="TanExpiresOnUse_summary">Mark TAN entries expired when using them</string>

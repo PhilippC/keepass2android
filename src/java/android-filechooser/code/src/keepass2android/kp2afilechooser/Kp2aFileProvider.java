@@ -453,14 +453,16 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
      *         parameters.
      */
     private MatrixCursor doRetrieveFileInfo(Uri uri) {
-    	Log.d(CLASSNAME, "retrieve file info");
+    	Log.d(CLASSNAME, "retrieve file info "+uri.toString());
         MatrixCursor matrixCursor = BaseFileProviderUtils.newBaseFileCursor();
 
         String filename = extractFile(uri);
         
         FileEntry f = getFileEntry(filename);
-        
-        addFileInfo(matrixCursor, 0, f);
+        if (f == null)
+        	 addDeletedFileInfo(matrixCursor, filename);
+        else	
+        	addFileInfo(matrixCursor, 0, f);
         
         return matrixCursor;
     }// doRetrieveFileInfo()
@@ -468,7 +470,26 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
    
 
 
-    /**
+    private void addDeletedFileInfo(MatrixCursor matrixCursor, String filename) {
+    	int type = BaseFile.FILE_TYPE_NOT_EXISTED;
+    	RowBuilder newRow = matrixCursor.newRow();
+		newRow.add(0);// _ID
+		newRow.add(BaseFile
+		        .genContentIdUriBase(
+		                getAuthority())
+		        .buildUpon().appendPath(filename)
+		        .build().toString());
+		newRow.add(filename);
+		newRow.add(getName(filename));
+		newRow.add(0);
+		newRow.add(0);
+		newRow.add(0);
+		newRow.add(type);
+		newRow.add(null);
+		newRow.add(FileUtils.getResIcon(type, getName(filename)));
+	}
+
+	/**
      * Sorts {@code files}.
      * 
      * @param taskId
@@ -630,12 +651,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     
     
 
-	protected FileEntry getFileEntry(String path) {
-		FileEntry f = new FileEntry();
-		f.path = path;
-		f.isDirectory = path.lastIndexOf(".") == -1;
-		return f;
-	}
+	protected abstract FileEntry getFileEntry(String path);
     
 	/**
      * Lists all file inside {@code dirName}.

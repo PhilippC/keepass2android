@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using KeePassLib.Serialization;
+#if !EXCLUDE_JAVAFILESTORAGE
 using Keepass2android.Javafilestorage;
 
 namespace keepass2android.Io
@@ -28,3 +29,4 @@ namespace keepass2android.Io
 		}
 	}
 }
+#endif

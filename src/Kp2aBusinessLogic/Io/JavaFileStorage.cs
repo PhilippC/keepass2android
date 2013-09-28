@@ -5,12 +5,15 @@ using System.Linq;
 using Android.App;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
+#if !EXCLUDE_JAVAFILESTORAGE
 using Keepass2android.Javafilestorage;
+#endif
 using Exception = System.Exception;
 using FileNotFoundException = Java.IO.FileNotFoundException;
 
 namespace keepass2android.Io
 {
+	#if !EXCLUDE_JAVAFILESTORAGE
 	public abstract class JavaFileStorage: IFileStorage
 	{
 		public IEnumerable<string> SupportedProtocols { get { yield return Protocol; } }
@@ -231,18 +234,37 @@ namespace keepass2android.Io
 			{
 				IList<JavaFileStorageFileEntry> entries = Jfs.ListFiles(IocToPath(ioc));
 
-				return entries.Select(
-					e => new FileDescription
-						{
-							CanRead = e.CanRead,
-							CanWrite = e.CanWrite,
-							IsDirectory = e.IsDirectory,
-							LastModified = JavaTimeToCSharp(e.LastModifiedTime),
-							Path = Protocol + "://" + e.Path,
-							SizeInBytes = e.SizeInBytes
-						}
-					);
+				return entries.Select(ConvertToFileDescription);
 
+			}
+			catch (FileNotFoundException e)
+			{
+				throw new System.IO.FileNotFoundException(e.Message, e);
+			}
+			catch (Java.Lang.Exception e)
+			{
+				throw LogAndConvertJavaException(e);
+			}
+		}
+
+		private FileDescription ConvertToFileDescription(JavaFileStorageFileEntry e)
+		{
+			return new FileDescription
+				{
+					CanRead = e.CanRead,
+					CanWrite = e.CanWrite,
+					IsDirectory = e.IsDirectory,
+					LastModified = JavaTimeToCSharp(e.LastModifiedTime),
+					Path = Protocol + "://" + e.Path,
+					SizeInBytes = e.SizeInBytes
+				};
+		}
+
+		public FileDescription GetFileDescription(IOConnectionInfo ioc)
+		{
+			try
+			{
+				return ConvertToFileDescription(Jfs.GetFileEntry(IocToPath(ioc)));
 			}
 			catch (FileNotFoundException e)
 			{
@@ -273,4 +295,5 @@ namespace keepass2android.Io
 
 		protected abstract string Protocol { get; }
 	}
+#endif
 }

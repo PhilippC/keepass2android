@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -155,7 +155,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj">
+    <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj"  Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
       <Project>{A57B3ACE-5634-469A-88C4-858BB409F356}</Project>
       <Name>kp2akeytransform</Name>
     </ProjectReference>

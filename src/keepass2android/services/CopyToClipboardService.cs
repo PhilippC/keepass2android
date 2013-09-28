@@ -242,6 +242,9 @@ namespace keepass2android
 
 		bool MakeAccessibleForKeyboard(PwEntry entry)
 		{
+#if EXCLUDE_KEYBOARD
+			return false;
+#else
 			bool hasData = false;
 			Keepass2android.Kbbridge.KeyboardDataBuilder kbdataBuilder = new Keepass2android.Kbbridge.KeyboardDataBuilder();
 
@@ -288,7 +291,7 @@ namespace keepass2android
 			Keepass2android.Kbbridge.KeyboardData.EntryName = entry.Strings.ReadSafe(PwDefs.TitleField);
 
 			return hasData;
-
+#endif
 		}
 
 		static string GetStringAndReplacePlaceholders(PwEntry entry, string key)
@@ -314,8 +317,10 @@ namespace keepass2android
 
 		void clearKeyboard()
 		{
+#if !EXCLUDE_KEYBOARD
 			Keepass2android.Kbbridge.KeyboardData.AvailableFields.Clear();
 			Keepass2android.Kbbridge.KeyboardData.EntryName = null;
+#endif
 		}
 
 		private readonly Timer _timer = new Timer();

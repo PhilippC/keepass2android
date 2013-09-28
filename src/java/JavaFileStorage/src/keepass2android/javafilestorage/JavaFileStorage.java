@@ -84,6 +84,8 @@ public class FileEntry {
 	
 	public List<FileEntry> listFiles(String dirName) throws Exception;
 	
+	public FileEntry getFileEntry(String filename) throws Exception;
+	
 	public void delete(String path) throws Exception;
 	
 }

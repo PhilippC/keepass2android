@@ -431,6 +431,11 @@ namespace keepass2android.Io
 			return _cachedStorage.ListContents(ioc);
 		}
 
+		public FileDescription GetFileDescription(IOConnectionInfo ioc)
+		{
+			return _cachedStorage.GetFileDescription(ioc);
+		}
+
 
 		public string GetBaseVersionHash(IOConnectionInfo ioc)
 		{

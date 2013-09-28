@@ -163,6 +163,7 @@ namespace keepass2android
 
 		public static string IntentToFilename(Intent data, Context ctx)
 		{
+#if !EXCLUDE_FILECHOOSER
 			string EXTRA_RESULTS = "group.pals.android.lib.ui.filechooser.FileChooserActivity.results";
 			if (data.HasExtra(EXTRA_RESULTS))
 			{
@@ -170,6 +171,7 @@ namespace keepass2android
 				Uri uri = (Uri) uris[0];
 				return Group.Pals.Android.Lib.UI.Filechooser.Providers.BaseFileProviderUtils.GetRealUri(ctx, uri).ToString();
 			}
+#endif
 
 			String filename = data.Data.Path;
 			if (String.IsNullOrEmpty(filename))

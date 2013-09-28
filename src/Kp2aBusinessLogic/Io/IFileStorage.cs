@@ -106,6 +106,11 @@ namespace keepass2android.Io
 		/// Lists the contents of the given path
 		/// </summary>
 		IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc);
+
+		/// <summary>
+		/// returns the description of the given file
+		/// </summary>
+		FileDescription GetFileDescription(IOConnectionInfo ioc);
 	}
 
 	/// <summary>

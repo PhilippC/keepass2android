@@ -26,6 +26,7 @@ using Android.Widget;
 using Android.Content.PM;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using Environment = Android.OS.Environment;
 
 namespace keepass2android
 {
@@ -481,9 +482,19 @@ namespace keepass2android
 
 			if (resultCode == KeePass.ExitFileStorageSelectionOk)
 			{
+#if !EXCLUDE_FILECHOOSER
 				Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, FileChooserFileProvider.TheAuthority, data.GetStringExtra("protocolId")+":///");
 
 				StartActivityForResult(i, Intents.RequestCodeFileBrowseForOpen);
+#else
+				Toast.MakeText(this, "TODO: make this more flexible.", ToastLength.Long).Show();
+				IOConnectionInfo ioc = new IOConnectionInfo
+				{
+					Path = Environment.ExternalStorageDirectory+"/keepass/keepass.kdbx"
+				};
+
+				LaunchPasswordActivityForIoc(ioc);
+#endif
 				
 			}
 			
@@ -568,6 +579,20 @@ namespace keepass2android
 			if (db.Loaded)
 			{
 				LaunchPasswordActivityForIoc(db.Ioc);
+			}
+			else
+			{
+				//if no database is loaded: load the most recent database
+				if (_DbHelper.HasRecentFiles())
+				{
+					Android.Database.ICursor filesCursor = _DbHelper.FetchAllFiles();
+					StartManagingCursor(filesCursor);
+					IOConnectionInfo ioc = _DbHelper.CursorToIoc(filesCursor);
+					if (App.Kp2a.GetFileStorage(ioc).RequiredSetup == null)
+					{
+						LaunchPasswordActivityForIoc(ioc);
+					}
+				}
 			}
 
 			

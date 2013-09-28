@@ -284,13 +284,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 			{
 				if (e.isDeleted) 
 					continue;
-				FileEntry fileEntry = new FileEntry();
-				fileEntry.canRead = true;
-				fileEntry.canWrite = true;
-				fileEntry.isDirectory = e.isDir;
-				fileEntry.sizeInBytes = e.bytes;
-				fileEntry.path = e.path;
-				fileEntry.lastModifiedTime = com.dropbox.client2.RESTUtility.parseDate(e.modified).getTime();
+				FileEntry fileEntry = convertToFileEntry(e);
 				result.add(fileEntry);
 			}
 			return result;
@@ -303,6 +297,17 @@ public class DropboxFileStorage implements JavaFileStorage {
 		
 	}
 
+	private FileEntry convertToFileEntry(com.dropbox.client2.DropboxAPI.Entry e) {
+		FileEntry fileEntry = new FileEntry();
+		fileEntry.canRead = true;
+		fileEntry.canWrite = true;
+		fileEntry.isDirectory = e.isDir;
+		fileEntry.sizeInBytes = e.bytes;
+		fileEntry.path = e.path;
+		fileEntry.lastModifiedTime = com.dropbox.client2.RESTUtility.parseDate(e.modified).getTime();
+		return fileEntry;
+	}
+
 	@Override
 	public void delete(String path) throws Exception {
 		try
@@ -313,6 +318,23 @@ public class DropboxFileStorage implements JavaFileStorage {
 		}
 		
 		
+	}
+
+	@Override
+	public FileEntry getFileEntry(String filename) throws Exception {
+		try
+		{
+			com.dropbox.client2.DropboxAPI.Entry dbEntry = mApi.metadata(filename, 0, null, false, null);
+			
+			if (dbEntry.isDeleted)
+				throw new FileNotFoundException(filename+" is deleted!");
+			
+			return convertToFileEntry(dbEntry);
+			
+		} catch (DropboxException e) {
+			
+		     throw convertException(e);
+		}
 	}
 
 }
