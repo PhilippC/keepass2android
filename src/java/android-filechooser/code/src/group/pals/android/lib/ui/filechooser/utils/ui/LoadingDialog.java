@@ -21,7 +21,8 @@ import android.util.Log;
  * @author Hai Bison
  * @since v2.1 alpha
  */
-public abstract class LoadingDialog extends AsyncTask<Void, Void, Object> {
+public abstract class LoadingDialog<Params, Progress, Result> extends
+        AsyncTask<Params, Progress, Result> {
 
     public static final String CLASSNAME = LoadingDialog.class.getName();
 
@@ -62,7 +63,7 @@ public abstract class LoadingDialog extends AsyncTask<Void, Void, Object> {
                 }
             });
         }
-    }// LoadingDialog
+    }// LoadingDialog()
 
     /**
      * Creates new {@link LoadingDialog}
@@ -76,12 +77,13 @@ public abstract class LoadingDialog extends AsyncTask<Void, Void, Object> {
      */
     public LoadingDialog(Context context, int msgId, boolean cancelable) {
         this(context, context.getString(msgId), cancelable);
-    }
+    }// LoadingDialog()
 
     /**
      * If you override this method, you must call {@code super.onPreExecute()}
      * at very first of the method.
      */
+    @Override
     protected void onPreExecute() {
         new Handler().postDelayed(new Runnable() {
 
@@ -107,7 +109,8 @@ public abstract class LoadingDialog extends AsyncTask<Void, Void, Object> {
      * If you override this method, you must call
      * {@code super.onPostExecute(result)} at the entry point of the method.
      */
-    protected void onPostExecute(Object result) {
+    @Override
+    protected void onPostExecute(Result result) {
         doFinish();
     }// onPostExecute()
 
@@ -115,6 +118,7 @@ public abstract class LoadingDialog extends AsyncTask<Void, Void, Object> {
      * If you override this method, you must call {@code super.onCancelled()} at
      * the entry point of the method.
      */
+    @Override
     protected void onCancelled() {
         doFinish();
         super.onCancelled();
@@ -148,9 +152,10 @@ public abstract class LoadingDialog extends AsyncTask<Void, Void, Object> {
      * 
      * @param delayTime
      *            the delay time to set
-     * @return {@link LoadingDialog}
+     * @return the instance of this dialog, for chaining multiple calls into a
+     *         single statement.
      */
-    public LoadingDialog setDelayTime(int delayTime) {
+    public LoadingDialog<Params, Progress, Result> setDelayTime(int delayTime) {
         mDelayTime = delayTime >= 0 ? delayTime : 0;
         return this;
     }// setDelayTime()
@@ -174,4 +179,5 @@ public abstract class LoadingDialog extends AsyncTask<Void, Void, Object> {
     protected Throwable getLastException() {
         return mLastException;
     }// getLastException()
+
 }

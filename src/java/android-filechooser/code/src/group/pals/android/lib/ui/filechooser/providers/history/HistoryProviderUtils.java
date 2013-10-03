@@ -10,7 +10,6 @@ package group.pals.android.lib.ui.filechooser.providers.history;
 import group.pals.android.lib.ui.filechooser.BuildConfig;
 import group.pals.android.lib.ui.filechooser.R;
 import group.pals.android.lib.ui.filechooser.providers.DbUtils;
-import group.pals.android.lib.ui.filechooser.utils.Utils;
 
 import java.util.Date;
 
@@ -35,8 +34,8 @@ public class HistoryProviderUtils {
      * @param context
      *            {@link Context}.
      */
-    public static void clearHistory(Context context) {
-        if (Utils.doLog())
+    public static void doCleanupOutdatedHistoryItems(Context context) {
+        if (BuildConfig.DEBUG)
             Log.d(CLASSNAME, "doCleanupCache()");
 
         try {
@@ -47,9 +46,9 @@ public class HistoryProviderUtils {
             final long validityInMillis = new Date().getTime()
                     - 0;
 
-            if (Utils.doLog())
+            if (BuildConfig.DEBUG)
                 Log.d(CLASSNAME, String.format(
-                        "clearHistory() - validity = %,d (%s)",
+                        "doCleanupCache() - validity = %,d (%s)",
                         validityInMillis, new Date(validityInMillis)));
             context.getContentResolver().delete(
                     HistoryContract.genContentUri(context),
@@ -61,5 +60,6 @@ public class HistoryProviderUtils {
              * Currently we just ignore it.
              */
         }
-    }// clearHistory()
+    }// doCleanupOutdatedHistoryItems()
+
 }

@@ -214,7 +214,7 @@ public class FragmentFiles extends Fragment implements
     private boolean mNewLoader = true;
 
     /*
-     * Controls.
+     * CONTROLS
      */
 
     private View mBtnGoHome;
@@ -268,7 +268,7 @@ public class FragmentFiles extends Fragment implements
                 FileChooserActivity.EXTRA_MAX_FILE_COUNT, 1000);
         mFileAdapter = new BaseFileAdapter(getActivity(), mFilterMode,
                 mIsMultiSelection);
-        mFileAdapter.setBuildOptionsMenuListener(mOnBuildOptionsMenuListener);
+        
 
         /*
          * History.
@@ -320,12 +320,16 @@ public class FragmentFiles extends Fragment implements
                 .findViewById(R.id.afc_textview_saveas_filename);
         mBtnOk = (Button) rootView.findViewById(R.id.afc_button_ok);
 
+        /*
+         * INIT CONTROLS
+         */
 
+        
         return rootView;
     }// onCreateView()
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         setupHeader();
@@ -343,7 +347,7 @@ public class FragmentFiles extends Fragment implements
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        if (Utils.doLog())
+        if (BuildConfig.DEBUG)
             Log.d(CLASSNAME, "onPrepareOptionsMenu()");
 
         /*
@@ -406,13 +410,13 @@ public class FragmentFiles extends Fragment implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.afc_menuitem_sort)
-            doResortViewFiles();
+            resortViewFiles();
         else if (item.getItemId() == R.id.afc_menuitem_new_folder)
-            doCreateNewDir();
+            createNewDir();
         else if (item.getItemId() == R.id.afc_menuitem_switch_viewmode)
-            doSwitchViewType();
+            switchViewType();
         else if (item.getItemId() == R.id.afc_menuitem_home)
-            doGoHome();
+            goHome();
         else
             return false;
 
@@ -427,16 +431,16 @@ public class FragmentFiles extends Fragment implements
 
     @Override
     public void onStop() {
-        if (Utils.doLog())
+        if (BuildConfig.DEBUG)
             Log.d(CLASSNAME, "onStop()");
 
         super.onStop();
-        HistoryProviderUtils.clearHistory(getActivity());
+        HistoryProviderUtils.doCleanupOutdatedHistoryItems(getActivity());
     }// onStop()
 
     @Override
     public void onDestroy() {
-        if (Utils.doLog())
+        if (BuildConfig.DEBUG)
             Log.d(CLASSNAME, "onDestroy()");
 
         super.onDestroy();
@@ -470,7 +474,7 @@ public class FragmentFiles extends Fragment implements
         String negativeRegex = getArguments().getString(
                 FileChooserActivity.EXTRA_NEGATIVE_REGEX_FILTER);
 
-        if (Utils.doLog())
+        if (BuildConfig.DEBUG)
             Log.d(CLASSNAME, "onCreateLoader() >> path = " + path);
 
         return new CursorLoader(
@@ -532,7 +536,6 @@ public class FragmentFiles extends Fragment implements
         final Uri uriInfo = BaseFileProviderUtils.getUri(data);
         final Uri selectedFile = (Uri) getArguments().getParcelable(
                 FileChooserActivity.EXTRA_SELECT_FILE);
-        final int colUri = data.getColumnIndex(BaseFile.COLUMN_URI);
         if (selectedFile != null)
             getArguments().remove(FileChooserActivity.EXTRA_SELECT_FILE);
 
@@ -554,76 +557,8 @@ public class FragmentFiles extends Fragment implements
                         : getString(R.string.afc_msg_empty),
                 mFileAdapter.isEmpty());
 
-        if (mNewLoader || selectedFile != null) {
-            /*
-             * Select either the parent path of last path, or the file provided
-             * by key EXTRA_SELECT_FILE. Use a Runnable to make sure this work.
-             * Because if the list view is handling data, this might not work.
-             */
-            mViewFiles.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    int shouldBeSelectedIdx = -1;
-                    final Uri uri = selectedFile != null ? selectedFile
-                            : getLastLocation();
-                    if (uri != null
-                            && BaseFileProviderUtils.fileExists(getActivity(),
-                                    uri)) {
-                        final String fileName = BaseFileProviderUtils
-                                .getFileName(getActivity(), uri);
-                        if (fileName != null) {
-                            Uri parentUri = BaseFileProviderUtils
-                                    .getParentFile(getActivity(), uri);
-                            if ((uri == getLastLocation()
-                                    && !getCurrentLocation().equals(
-                                            getLastLocation()) && BaseFileProviderUtils
-                                        .isAncestorOf(getActivity(),
-                                                getCurrentLocation(), uri))
-                                    || getCurrentLocation().equals(parentUri)) {
-                                if (data.moveToFirst()) {
-                                    while (!data.isLast()) {
-                                        Uri subUri = Uri.parse(data
-                                                .getString(colUri));
-                                        if (uri == getLastLocation()) {
-                                            if (data.getInt(data
-                                                    .getColumnIndex(BaseFile.COLUMN_TYPE)) == BaseFile.FILE_TYPE_DIRECTORY) {
-                                                if (subUri.equals(uri)
-                                                        || BaseFileProviderUtils
-                                                                .isAncestorOf(
-                                                                        getActivity(),
-                                                                        subUri,
-                                                                        uri)) {
-                                                    shouldBeSelectedIdx = Math.max(
-                                                            0,
-                                                            data.getPosition() - 2);
-                                                    break;
-                                                }
-                                            }
-                                        } else {
-                                            if (uri.equals(subUri)) {
-                                                shouldBeSelectedIdx = Math.max(
-                                                        0,
-                                                        data.getPosition() - 2);
-                                                break;
-                                            }
-                                        }
-
-                                        data.moveToNext();
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (shouldBeSelectedIdx >= 0
-                            && shouldBeSelectedIdx < mFileAdapter.getCount())
-                        mViewFiles.setSelection(shouldBeSelectedIdx);
-                    else if (!mFileAdapter.isEmpty())
-                        mViewFiles.setSelection(0);
-                }// run()
-            });
-        }
+        if (mNewLoader || selectedFile != null)
+            createFileSelector();
 
         mNewLoader = false;
     }// onLoadFinished()
@@ -693,7 +628,7 @@ public class FragmentFiles extends Fragment implements
         mViewGoForward.setEnabled(false);
         mViewGoForward.setOnClickListener(mBtnGoForwardOnClickListener);
 
-
+        
     }// setupHeader()
 
     /**
@@ -770,7 +705,9 @@ public class FragmentFiles extends Fragment implements
      * </ul>
      */
     private void setupFooter() {
-        // by default, view group footer and all its child views are hidden
+        /*
+         * By default, view group footer and all its child views are hidden.
+         */
 
         ViewGroup viewGroupFooterContainer = (ViewGroup) getView()
                 .findViewById(R.id.afc_viewgroup_footer_container);
@@ -851,6 +788,10 @@ public class FragmentFiles extends Fragment implements
             mFooterView.setVisibility(View.GONE);
     }// showFooterView()
 
+    /**
+     * This should be called after the owner activity has been created
+     * successfully.
+     */
     private void initGestureDetector() {
         mListviewFilesGestureDetector = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
@@ -920,12 +861,12 @@ public class FragmentFiles extends Fragment implements
                                 if (BaseFileProviderUtils.isFile(data)) {
                                     mTxtSaveas.setText(BaseFileProviderUtils
                                             .getFileName(data));
-                                    doCheckSaveasFilenameAndFinish(BaseFileProviderUtils
+                                    checkSaveasFilenameAndFinish(BaseFileProviderUtils
                                             .getFileName(data));
                                 } else
                                     return false;
                             } else
-                                doFinish(BaseFileProviderUtils.getUri(data));
+                                finish(BaseFileProviderUtils.getUri(data));
                         }// double tap to choose files
                         else {
                             // do nothing
@@ -963,8 +904,8 @@ public class FragmentFiles extends Fragment implements
                                         .setAction(MotionEvent.ACTION_CANCEL);
                                 mViewFiles.onTouchEvent(cancelEvent);
 
-                                doDeleteFile(mViewFiles
-                                        .getFirstVisiblePosition() + pos);
+                                deleteFile(mViewFiles.getFirstVisiblePosition()
+                                        + pos);
                             }
                         }
 
@@ -985,7 +926,7 @@ public class FragmentFiles extends Fragment implements
      * @param savedInstanceState
      */
     private void loadInitialPath(final Bundle savedInstanceState) {
-        if (Utils.doLog())
+        if (BuildConfig.DEBUG)
             Log.d(CLASSNAME, String.format(
                     "loadInitialPath() >> authority=[%s] | mRoot=[%s]",
                     mFileProviderAuthority, mRoot));
@@ -1046,11 +987,24 @@ public class FragmentFiles extends Fragment implements
                                     .getAuthority());
 
         if (path == null) {
-            doShowCannotConnectToServiceAndFinish();
+            showCannotConnectToServiceAndFinish();
             return;
         }
 
-        if (!BaseFileProviderUtils.fileCanRead(getActivity(), path)) {
+        if (BuildConfig.DEBUG)
+            Log.d(CLASSNAME, "loadInitialPath() >> " + path);
+
+        setCurrentLocation(path);
+
+        if (BaseFileProviderUtils.fileCanRead(getActivity(), path)) {
+            /*
+             * Prepare the loader. Either re-connect with an existing one, or
+             * start a new one.
+             */
+            Bundle args = new Bundle();
+            args.putParcelable(PATH, path);
+            getLoaderManager().initLoader(mIdLoaderData, args, this);
+        } else {
             Dlg.toast(
                     getActivity(),
                     getString(R.string.afc_pmsg_cannot_access_dir,
@@ -1058,19 +1012,6 @@ public class FragmentFiles extends Fragment implements
                                     path)), Dlg.LENGTH_SHORT);
             getActivity().finish();
         }
-
-        if (Utils.doLog())
-            Log.d(CLASSNAME, "loadInitialPath() >> " + path);
-
-        setCurrentLocation(path);
-
-        /*
-         * Prepare the loader. Either re-connect with an existing one, or start
-         * a new one.
-         */
-        Bundle b = new Bundle();
-        b.putParcelable(PATH, path);
-        getLoaderManager().initLoader(mIdLoaderData, b, this);
     }// loadInitialPath()
 
     /**
@@ -1100,7 +1041,7 @@ public class FragmentFiles extends Fragment implements
     /**
      * As the name means...
      */
-    private void doShowCannotConnectToServiceAndFinish() {
+    private void showCannotConnectToServiceAndFinish() {
         Dlg.showError(getActivity(),
                 R.string.afc_msg_cannot_connect_to_file_provider_service,
                 new DialogInterface.OnCancelListener() {
@@ -1111,7 +1052,7 @@ public class FragmentFiles extends Fragment implements
                         getActivity().finish();
                     }// onCancel()
                 });
-    }// doShowCannotConnectToServiceAndFinish()
+    }// showCannotConnectToServiceAndFinish()
 
     /**
      * Gets last location.
@@ -1154,9 +1095,10 @@ public class FragmentFiles extends Fragment implements
         updateDbHistory(location);
     }// setCurrentLocation()
 
-    private void doGoHome() {
+    private void goHome() {
         goTo(mRoot);
-    }// doGoHome()
+    }// goHome()
+
 
     private static final int[] BUTTON_SORT_IDS = {
             R.id.afc_button_sort_by_name_asc,
@@ -1169,7 +1111,7 @@ public class FragmentFiles extends Fragment implements
      * Show a dialog for sorting options and resort file list after user
      * selected an option.
      */
-    private void doResortViewFiles() {
+    private void resortViewFiles() {
         final Dialog dialog = new Dialog(getActivity(), Ui.resolveAttribute(
                 getActivity(), R.attr.afc_theme_dialog));
         dialog.setCanceledOnTouchOutside(true);
@@ -1245,12 +1187,12 @@ public class FragmentFiles extends Fragment implements
         dialog.setTitle(R.string.afc_title_sort_by);
         dialog.setContentView(view);
         dialog.show();
-    }// doResortViewFiles()
+    }// resortViewFiles()
 
     /**
      * Switch view type between {@link ViewType#LIST} and {@link ViewType#GRID}
      */
-    private void doSwitchViewType() {
+    private void switchViewType() {
         switch (DisplayPrefs.getViewType(getActivity())) {
         case GRID:
             DisplayPrefs.setViewType(getActivity(), ViewType.LIST);
@@ -1263,12 +1205,12 @@ public class FragmentFiles extends Fragment implements
         setupViewFiles();
         getActivity().supportInvalidateOptionsMenu();
         goTo(getCurrentLocation());
-    }// doSwitchViewType()
+    }// switchViewType()
 
     /**
      * Confirms user to create new directory.
      */
-    private void doCreateNewDir() {
+    private void createNewDir() {
         if (LocalFileContract.getAuthority(getActivity()).equals(
                 mFileProviderAuthority)
                 && !Utils.hasPermissions(getActivity(),
@@ -1329,22 +1271,23 @@ public class FragmentFiles extends Fragment implements
                             return;
                         }
 
-                        if (getActivity()
-                                .getContentResolver()
-                                .insert(BaseFile
-                                        .genContentUriBase(
+                        if (BaseFileProviderUtils
+                                .insertInBackground(
+                                        getActivity(),
+                                        BaseFile.genContentUriBase(
                                                 getCurrentLocation()
                                                         .getAuthority())
-                                        .buildUpon()
-                                        .appendPath(
-                                                getCurrentLocation()
-                                                        .getLastPathSegment())
-                                        .appendQueryParameter(
-                                                BaseFile.PARAM_NAME, name)
-                                        .appendQueryParameter(
-                                                BaseFile.PARAM_FILE_TYPE,
-                                                Integer.toString(BaseFile.FILE_TYPE_DIRECTORY))
-                                        .build(), null) != null) {
+                                                .buildUpon()
+                                                .appendPath(
+                                                        getCurrentLocation()
+                                                                .getLastPathSegment())
+                                                .appendQueryParameter(
+                                                        BaseFile.PARAM_NAME,
+                                                        name)
+                                                .appendQueryParameter(
+                                                        BaseFile.PARAM_FILE_TYPE,
+                                                        Integer.toString(BaseFile.FILE_TYPE_DIRECTORY))
+                                                .build(), null) != null) {
                             Dlg.toast(getActivity(),
                                     getString(R.string.afc_msg_done),
                                     Dlg.LENGTH_SHORT);
@@ -1383,7 +1326,7 @@ public class FragmentFiles extends Fragment implements
                         .trim()));
             }
         });
-    }// doCreateNewDir()
+    }// createNewDir()
 
     /**
      * Deletes a file.
@@ -1391,7 +1334,7 @@ public class FragmentFiles extends Fragment implements
      * @param position
      *            the position of item to be delete.
      */
-    private void doDeleteFile(final int position) {
+    private void deleteFile(final int position) {
         Cursor cursor = (Cursor) mFileAdapter.getItem(position);
 
         /*
@@ -1440,13 +1383,15 @@ public class FragmentFiles extends Fragment implements
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        new LoadingDialog(getActivity(), getString(
-                                R.string.afc_pmsg_deleting_file,
-                                isFile ? getString(R.string.afc_file)
-                                        : getString(R.string.afc_folder),
-                                filename), true) {
+                        new LoadingDialog<Void, Void, Void>(
+                                getActivity(),
+                                getString(
+                                        R.string.afc_pmsg_deleting_file,
+                                        isFile ? getString(R.string.afc_file)
+                                                : getString(R.string.afc_folder),
+                                        filename), true) {
 
-                            final int mTaskId = EnvUtils.genId();
+                            final int taskId = EnvUtils.genId();
 
                             private void notifyFileDeleted() {
                                 mHistory.removeAll(new HistoryFilter<Uri>() {
@@ -1472,15 +1417,15 @@ public class FragmentFiles extends Fragment implements
                             }// notifyFileDeleted()
 
                             @Override
-                            protected Object doInBackground(Void... arg0) {
-                                getActivity()
-                                        .getContentResolver()
-                                        .delete(uri
-                                                .buildUpon()
-                                                .appendQueryParameter(
-                                                        BaseFile.PARAM_TASK_ID,
-                                                        Integer.toString(mTaskId))
-                                                .build(), null, null);
+                            protected Void doInBackground(Void... params) {
+                                BaseFileProviderUtils
+                                        .deleteInBackground(
+                                                getActivity(),
+                                                uri.buildUpon()
+                                                        .appendQueryParameter(
+                                                                BaseFile.PARAM_TASK_ID,
+                                                                Integer.toString(taskId))
+                                                        .build(), null, null);
 
                                 return null;
                             }// doInBackground()
@@ -1490,7 +1435,7 @@ public class FragmentFiles extends Fragment implements
                                 if (getCurrentLocation() != null)
                                     BaseFileProviderUtils.cancelTask(
                                             getActivity(), getCurrentLocation()
-                                                    .getAuthority(), mTaskId);
+                                                    .getAuthority(), taskId);
 
                                 if (BaseFileProviderUtils.fileExists(
                                         getActivity(), uri)) {
@@ -1505,7 +1450,7 @@ public class FragmentFiles extends Fragment implements
                             }// onCancelled()
 
                             @Override
-                            protected void onPostExecute(Object result) {
+                            protected void onPostExecute(Void result) {
                                 super.onPostExecute(result);
 
                                 if (BaseFileProviderUtils.fileExists(
@@ -1530,7 +1475,7 @@ public class FragmentFiles extends Fragment implements
                         mFileAdapter.markItemAsDeleted(id, false);
                     }// onCancel()
                 });
-    }// doDeleteFile()
+    }// deleteFile()
 
     /**
      * As the name means.
@@ -1538,7 +1483,7 @@ public class FragmentFiles extends Fragment implements
      * @param filename
      * @since v1.91
      */
-    private void doCheckSaveasFilenameAndFinish(String filename) {
+    private void checkSaveasFilenameAndFinish(String filename) {
         if (!BaseFileProviderUtils.fileCanWrite(getActivity(),
                 getCurrentLocation())) {
             Dlg.toast(getActivity(),
@@ -1553,7 +1498,8 @@ public class FragmentFiles extends Fragment implements
             return;
         }
 
-        final Cursor cursor = getActivity().getContentResolver().query(
+        final Cursor cursor = BaseFileProviderUtils.queryInBackground(
+                getActivity(),
                 getCurrentLocation()
                         .buildUpon()
                         .appendQueryParameter(BaseFile.PARAM_APPEND_NAME,
@@ -1583,7 +1529,7 @@ public class FragmentFiles extends Fragment implements
                                     @Override
                                     public void onClick(DialogInterface dialog,
                                             int which) {
-                                        doFinish(uri);
+                                        finish(uri);
                                     }// onClick()
                                 });
 
@@ -1593,7 +1539,7 @@ public class FragmentFiles extends Fragment implements
                         /*
                          * TODO file type unknown?
                          */
-                        doFinish(uri);
+                        finish(uri);
                         break;// FILE_TYPE_NOT_EXISTED
                     }
                 }
@@ -1601,7 +1547,7 @@ public class FragmentFiles extends Fragment implements
                 cursor.close();
             }
         }
-    }// doCheckSaveasFilenameAndFinish()
+    }// checkSaveasFilenameAndFinish()
 
     /**
      * Goes to a specified location.
@@ -1616,7 +1562,7 @@ public class FragmentFiles extends Fragment implements
             dir = BaseFileProviderUtils.getDefaultPath(getActivity(),
                     mFileProviderAuthority);
         if (dir == null) {
-            doShowCannotConnectToServiceAndFinish();
+            showCannotConnectToServiceAndFinish();
             return false;
         }
 
@@ -1655,7 +1601,7 @@ public class FragmentFiles extends Fragment implements
      * Updates or inserts {@code path} into history database.
      */
     private void updateDbHistory(Uri path) {
-        if (Utils.doLog())
+        if (BuildConfig.DEBUG)
             Log.d(CLASSNAME, "updateDbHistory() >> path = " + path);
 
         Calendar cal = Calendar.getInstance();
@@ -1663,7 +1609,7 @@ public class FragmentFiles extends Fragment implements
                 - (cal.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000
                         + cal.get(Calendar.MINUTE) * 60 * 1000 + cal
                         .get(Calendar.SECOND) * 1000);
-        if (Utils.doLog()) {
+        if (BuildConfig.DEBUG) {
             Log.d(CLASSNAME,
                     String.format("beginToday = %s (%s)", DbUtils
                             .formatNumber(beginTodayMillis), new Date(
@@ -1730,8 +1676,8 @@ public class FragmentFiles extends Fragment implements
         final int dim = getResources().getDimensionPixelSize(R.dimen.afc_5dp);
         int count = 0;
 
-        Cursor cursor = getActivity().getContentResolver().query(path, null,
-                null, null, null);
+        Cursor cursor = BaseFileProviderUtils.queryInBackground(getActivity(),
+                path, null, null, null, null);
         while (cursor != null) {
             Uri lastUri = null;
             if (cursor.moveToFirst()) {
@@ -1771,7 +1717,8 @@ public class FragmentFiles extends Fragment implements
             /*
              * Process the parent directory.
              */
-            cursor = getActivity().getContentResolver().query(
+            cursor = BaseFileProviderUtils.queryInBackground(
+                    getActivity(),
                     BaseFile.genContentUriApi(lastUri.getAuthority())
                             .buildUpon()
                             .appendPath(BaseFile.CMD_GET_PARENT)
@@ -1809,12 +1756,12 @@ public class FragmentFiles extends Fragment implements
      * @param files
      *            list of {@link Uri}.
      */
-    private void doFinish(Uri... files) {
+    private void finish(Uri... files) {
         List<Uri> list = new ArrayList<Uri>();
         for (Uri uri : files)
             list.add(uri);
-        doFinish((ArrayList<Uri>) list);
-    }// doFinish()
+        finish((ArrayList<Uri>) list);
+    }// finish()
 
     /**
      * Finishes this activity.
@@ -1822,7 +1769,7 @@ public class FragmentFiles extends Fragment implements
      * @param files
      *            list of {@link Uri}.
      */
-    private void doFinish(ArrayList<Uri> files) {
+    private void finish(ArrayList<Uri> files) {
         if (files == null || files.isEmpty()) {
             getActivity().setResult(Activity.RESULT_CANCELED);
             getActivity().finish();
@@ -1842,7 +1789,7 @@ public class FragmentFiles extends Fragment implements
             DisplayPrefs.setLastLocation(getActivity(), null);
 
         getActivity().finish();
-    }// doFinish()
+    }// finish()
 
     /**
      * ******************************************************* BUTTON LISTENERS
@@ -1852,9 +1799,11 @@ public class FragmentFiles extends Fragment implements
 
         @Override
         public void onClick(View v) {
-            doGoHome();
+            goHome();
         }// onClick()
     };// mBtnGoHomeOnClickListener
+
+
 
     private final View.OnClickListener mBtnGoBackOnClickListener = new View.OnClickListener() {
 
@@ -1894,7 +1843,7 @@ public class FragmentFiles extends Fragment implements
             if (BaseFile.FILTER_FILES_ONLY == mFilterMode || mIsSaveDialog)
                 return false;
 
-            doFinish((Uri) v.getTag());
+            finish((Uri) v.getTag());
 
             return false;
         }// onLongClick()
@@ -1922,6 +1871,7 @@ public class FragmentFiles extends Fragment implements
         }// onClick()
     };// mBtnGoForwardOnClickListener
 
+    
     private final TextView.OnEditorActionListener mTxtFilenameOnEditorActionListener = new TextView.OnEditorActionListener() {
 
         @Override
@@ -1941,7 +1891,7 @@ public class FragmentFiles extends Fragment implements
         public void onClick(View v) {
             Ui.showSoftKeyboard(v, false);
             String filename = mTxtSaveas.getText().toString().trim();
-            doCheckSaveasFilenameAndFinish(filename);
+            checkSaveasFilenameAndFinish(filename);
         }// onClick()
     };// mBtnOk_SaveDialog_OnClickListener
 
@@ -1949,7 +1899,7 @@ public class FragmentFiles extends Fragment implements
 
         @Override
         public void onClick(View v) {
-            doFinish(mFileAdapter.getSelectedItems());
+            finish(mFileAdapter.getSelectedItems());
         }// onClick()
     };// mBtnOk_OpenDialog_OnClickListener
 
@@ -1957,7 +1907,7 @@ public class FragmentFiles extends Fragment implements
      * FRAGMENT LISTENERS
      */
 
-
+    
     /*
      * LISTVIEW HELPER
      */
@@ -1986,10 +1936,10 @@ public class FragmentFiles extends Fragment implements
                     return;
 
                 if (mIsSaveDialog)
-                    doCheckSaveasFilenameAndFinish(BaseFileProviderUtils
+                    checkSaveasFilenameAndFinish(BaseFileProviderUtils
                             .getFileName(cursor));
                 else
-                    doFinish(BaseFileProviderUtils.getUri(cursor));
+                    finish(BaseFileProviderUtils.getUri(cursor));
             }// single tap to choose files
         }// onItemClick()
     };// mViewFilesOnItemClickListener
@@ -2009,7 +1959,7 @@ public class FragmentFiles extends Fragment implements
                         && !mIsMultiSelection
                         && BaseFileProviderUtils.isDirectory(cursor)
                         && (BaseFile.FILTER_DIRECTORIES_ONLY == mFilterMode || BaseFile.FILTER_FILES_AND_DIRECTORIES == mFilterMode)) {
-                    doFinish(BaseFileProviderUtils.getUri(cursor));
+                    finish(BaseFileProviderUtils.getUri(cursor));
                 }
             }// single tap to choose files
 
@@ -2020,22 +1970,119 @@ public class FragmentFiles extends Fragment implements
         }// onItemLongClick()
     };// mViewFilesOnItemLongClickListener
 
-    private final BaseFileAdapter.OnBuildOptionsMenuListener mOnBuildOptionsMenuListener = new BaseFileAdapter.OnBuildOptionsMenuListener() {
 
-        @Override
-        public void onBuildOptionsMenu(View view, Cursor cursor) {
-            if (!BaseFileProviderUtils.fileCanRead(cursor)
-                    || !BaseFileProviderUtils.isDirectory(cursor))
-                return;
+    /**
+     * We use a {@link LoadingDialog} to avoid of
+     * {@code NetworkOnMainThreadException}.
+     */
+    private LoadingDialog<Void, Void, Integer> mFileSelector;
 
-            final Uri uri = BaseFileProviderUtils.getUri(cursor);
-            final String name = BaseFileProviderUtils.getFileName(cursor);
+    /**
+     * Creates new {@link #mFileSelector} to select appropriate file after
+     * loading a folder's content. It's either the parent path of last path, or
+     * the file provided by key {@link FileChooserActivity#EXTRA_SELECT_FILE}.
+     * Note that this also cancels previous selector if there is such one.
+     */
+    private void createFileSelector() {
+        if (mFileSelector != null)
+            mFileSelector.cancel(true);
 
-        }// onBuildOptionsMenu()
+        mFileSelector = new LoadingDialog<Void, Void, Integer>(getActivity(),
+                R.string.afc_msg_loading, true) {
 
-        @Override
-        public void onBuildAdvancedOptionsMenu(View view, Cursor cursor) {
-            // TODO Auto-generated method stub
-        }// onBuildAdvancedOptionsMenu()
-    };// mOnBuildOptionsMenuListener
+            @Override
+            protected Integer doInBackground(Void... params) {
+                final Cursor cursor = mFileAdapter.getCursor();
+                if (cursor == null || cursor.isClosed())
+                    return -1;
+
+                final Uri selectedFile = (Uri) getArguments().getParcelable(
+                        FileChooserActivity.EXTRA_SELECT_FILE);
+                final int colUri = cursor.getColumnIndex(BaseFile.COLUMN_URI);
+                if (selectedFile != null)
+                    getArguments()
+                            .remove(FileChooserActivity.EXTRA_SELECT_FILE);
+
+                int shouldBeSelectedIdx = -1;
+                final Uri uri = selectedFile != null ? selectedFile
+                        : getLastLocation();
+                if (uri == null
+                        || !BaseFileProviderUtils
+                                .fileExists(getActivity(), uri))
+                    return -1;
+
+                final String fileName = BaseFileProviderUtils.getFileName(
+                        getActivity(), uri);
+                if (fileName == null)
+                    return -1;
+
+                Uri parentUri = BaseFileProviderUtils.getParentFile(
+                        getActivity(), uri);
+                if ((uri == getLastLocation()
+                        && !getCurrentLocation().equals(getLastLocation()) && BaseFileProviderUtils
+                            .isAncestorOf(getActivity(), getCurrentLocation(),
+                                    uri))
+                        || getCurrentLocation().equals(parentUri)) {
+                    if (cursor.moveToFirst()) {
+                        while (!cursor.isLast()) {
+                            if (isCancelled())
+                                return -1;
+
+                            Uri subUri = Uri.parse(cursor.getString(colUri));
+                            if (uri == getLastLocation()) {
+                                if (cursor.getInt(cursor
+                                        .getColumnIndex(BaseFile.COLUMN_TYPE)) == BaseFile.FILE_TYPE_DIRECTORY) {
+                                    if (subUri.equals(uri)
+                                            || BaseFileProviderUtils
+                                                    .isAncestorOf(
+                                                            getActivity(),
+                                                            subUri, uri)) {
+                                        shouldBeSelectedIdx = Math.max(0,
+                                                cursor.getPosition() - 2);
+                                        break;
+                                    }
+                                }
+                            } else {
+                                if (uri.equals(subUri)) {
+                                    shouldBeSelectedIdx = Math.max(0,
+                                            cursor.getPosition() - 2);
+                                    break;
+                                }
+                            }
+
+                            cursor.moveToNext();
+                        }// while
+                    }// if
+                }// if
+
+                return shouldBeSelectedIdx;
+            }// doInBackground()
+
+            @Override
+            protected void onPostExecute(final Integer result) {
+                super.onPostExecute(result);
+
+                if (isCancelled() || mFileAdapter.isEmpty())
+                    return;
+
+                /*
+                 * Use a Runnable to make sure this works. Because if the list
+                 * view is handling data, this might not work.
+                 */
+                mViewFiles.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (result >= 0 && result < mFileAdapter.getCount())
+                            mViewFiles.setSelection(result);
+                        else if (!mFileAdapter.isEmpty())
+                            mViewFiles.setSelection(0);
+                    }// run()
+                });
+            }// onPostExecute()
+        };
+
+        mFileSelector.execute();
+    }// createFileSelector()
+
 }

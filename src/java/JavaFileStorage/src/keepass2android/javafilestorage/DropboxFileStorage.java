@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
@@ -298,13 +299,22 @@ public class DropboxFileStorage implements JavaFileStorage {
 	}
 
 	private FileEntry convertToFileEntry(com.dropbox.client2.DropboxAPI.Entry e) {
+		//Log.d("JFS","e="+e);
 		FileEntry fileEntry = new FileEntry();
 		fileEntry.canRead = true;
 		fileEntry.canWrite = true;
 		fileEntry.isDirectory = e.isDir;
 		fileEntry.sizeInBytes = e.bytes;
 		fileEntry.path = e.path;
-		fileEntry.lastModifiedTime = com.dropbox.client2.RESTUtility.parseDate(e.modified).getTime();
+		//Log.d("JFS","fileEntry="+fileEntry);
+		Date lastModifiedDate = null;
+		if (e.modified != null)
+			lastModifiedDate = com.dropbox.client2.RESTUtility.parseDate(e.modified);
+		if (lastModifiedDate != null)
+			fileEntry.lastModifiedTime = lastModifiedDate.getTime();
+		else 
+			fileEntry.lastModifiedTime = -1;
+		//Log.d("JFS","Ok. Dir="+fileEntry.isDirectory);
 		return fileEntry;
 	}
 
@@ -324,7 +334,10 @@ public class DropboxFileStorage implements JavaFileStorage {
 	public FileEntry getFileEntry(String filename) throws Exception {
 		try
 		{
+			Log.d("JFS", "Hi!");
+			Log.d("JFS", "mApi = "+mApi);
 			com.dropbox.client2.DropboxAPI.Entry dbEntry = mApi.metadata(filename, 0, null, false, null);
+			Log.d("JFS", "dbEntry = "+dbEntry);
 			
 			if (dbEntry.isDeleted)
 				throw new FileNotFoundException(filename+" is deleted!");

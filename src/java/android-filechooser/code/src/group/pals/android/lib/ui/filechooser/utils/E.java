@@ -7,6 +7,7 @@
 
 package group.pals.android.lib.ui.filechooser.utils;
 
+import group.pals.android.lib.ui.filechooser.R;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,28 +16,27 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-import group.pals.android.lib.ui.filechooser.R;
 
 /**
  * Something funny :-)
- *
+ * 
  * @author Hai Bison
  */
 public class E {
 
     /**
      * Shows it!
-     *
-     * @param context {@link Context}
+     * 
+     * @param context
+     *            {@link Context}
      */
     public static void show(Context context) {
         String msg = null;
         try {
-            msg = String.format("Hi  :-)\n\n" + "%s %s\n"
+            msg = String.format("Hi  :-)\n\n" + "%s v%s\n"
                     + "…by Hai Bison Apps\n\n" + "http://www.haibison.com\n\n"
-                    + "Hope you enjoy this library.",
-                    context.getString(R.string.afc_lib_name),
-                    context.getString(R.string.afc_lib_version_name));
+                    + "Hope you enjoy this library.", Sys.LIB_NAME,
+                    Sys.LIB_VERSION_NAME);
         } catch (Exception e) {
             msg = "Oops… You've found a broken Easter egg, try again later  :-(";
         }
@@ -70,4 +70,5 @@ public class E {
         dialog.setContentView(textView);
         dialog.show();
     }// show()
+
 }

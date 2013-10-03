@@ -303,7 +303,6 @@ public class LocalFileProvider extends BaseFileProvider {
             newRow.add(type);
             newRow.add(file.lastModified());
             newRow.add(FileUtils.getResIcon(type, file.getName()));
-
         } else if (BaseFile.CMD_SHUTDOWN.equals(uri.getLastPathSegment())) {
             /*
              * TODO Stop all tasks. If the activity call this command in

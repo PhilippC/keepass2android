@@ -11,7 +11,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CancellationException;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -50,6 +54,12 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
      * Used for debugging or something...
      */
     private static final String CLASSNAME = Kp2aFileProvider.class.getName();
+    
+    //cache for FileEntry objects to reduce network traffic
+    private HashMap<String, FileEntry> fileEntryMap = new HashMap<String, FileEntry>();
+    //during write operations it is not desired to put entries to the cache. This set indicates which 
+    //files cannot be cached currently:
+    private Set<String> cacheBlockedFiles = new HashSet<String>();
 
 
     @Override
@@ -75,12 +85,16 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
             Log.d(CLASSNAME, "delete() >> " + uri);
 
         int count = 0;
+        
+        
 
         switch (URI_MATCHER.match(uri)) {
         case URI_FILE: {
             boolean isRecursive = ProviderUtils.getBooleanQueryParam(uri,
                     BaseFile.PARAM_RECURSIVE, true);
             String filename = extractFile(uri);
+            removeFromCache(filename, isRecursive);
+            blockFromCache(filename);
             if (deletePath(filename, isRecursive))
             {
 	            getContext()
@@ -96,7 +110,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	                                            .build(), null);
 	            count = 1; //success
             }
-
+            blockFromCache(filename);
             break;// URI_FILE
         }
 
@@ -112,6 +126,10 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     }// delete()
 
     
+
+
+
+	
 
 	@Override
     public Uri insert(Uri uri, ContentValues values) {
@@ -247,7 +265,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	                return null;
 	            }
 	            
-	            String fname = getName(parentPath);
+	            String fname = getFilenameFromPath(parentPath);
 
 	
 	            matrixCursor = BaseFileProviderUtils.newBaseFileCursor();
@@ -291,7 +309,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         return matrixCursor;
     }// doAnswerApiCommand()
 
-    private String getName(String path) {
+    protected String getFilenameFromPath(String path) {
     	path = removeTrailingSlash(path);
     	int lastSlashPos = path.lastIndexOf("/");
     	//if path is root, return its name. empty is ok
@@ -365,6 +383,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
                         break;
 
                     FileEntry f = files.get(i);
+                    updateFileEntryCache(f);
                     
                     if (Utils.doLog())
                     	Log.d(CLASSNAME, "listing " + f.path +" for "+dirName);
@@ -396,9 +415,9 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
                                 Boolean.toString(hasMoreFiles[0])).build()
                         .toString());
                 newRow.add(dirName);
-                newRow.add(getName(dirName));
+                newRow.add(getFilenameFromPath(dirName));
                 
-                Log.d(CLASSNAME, "Returning name " + getName(dirName)+" for " +dirName);
+                Log.d(CLASSNAME, "Returning name " + getFilenameFromPath(dirName)+" for " +dirName);
             }
         }
 
@@ -420,6 +439,8 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         return matrixCursor;
     }// doListFiles()
 
+
+
 	private RowBuilder addFileInfo(MatrixCursor matrixCursor, int id,
 			FileEntry f) {
 		int type = !f.isDirectory ? BaseFile.FILE_TYPE_FILE : BaseFile.FILE_TYPE_DIRECTORY;
@@ -431,7 +452,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 		        .buildUpon().appendPath(f.path)
 		        .build().toString());
 		newRow.add(f.path);
-		newRow.add(getName(f.path));
+		newRow.add(getFilenameFromPath(f.path));
 		newRow.add(f.canRead ? 1 : 0);
 		newRow.add(f.canWrite ? 1 : 0);
 		newRow.add(f.sizeInBytes);
@@ -440,7 +461,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 			newRow.add(f.lastModifiedTime);
 		else 
 			newRow.add(null);
-		newRow.add(FileUtils.getResIcon(type, getName(f.path)));
+		newRow.add(FileUtils.getResIcon(type, getFilenameFromPath(f.path)));
 		return newRow;
 	}
 
@@ -458,9 +479,9 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
         String filename = extractFile(uri);
         
-        FileEntry f = getFileEntry(filename);
+        FileEntry f = getFileEntryCached(filename);
         if (f == null)
-        	 addDeletedFileInfo(matrixCursor, filename);
+        	addDeletedFileInfo(matrixCursor, filename);
         else	
         	addFileInfo(matrixCursor, 0, f);
         
@@ -469,8 +490,60 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
    
 
+    //puts the file entry in the cache for later reuse with retrieveFileInfo
+	private void updateFileEntryCache(FileEntry f) {
+		fileEntryMap.put(f.path, f);
+	}
+	//removes the file entry from the cache (if cached). Should be called whenever the file changes
+	private void removeFromCache(String filename, boolean recursive) {
+		fileEntryMap.remove(filename);
+		
+		if (recursive)
+		{
+			Set<String> keys = fileEntryMap.keySet();
+			for (String key: keys)
+			{
+				if (key.startsWith(key))
+					fileEntryMap.remove(key);
+			}
+		}
+		
+		
+	}
+	
+	private void blockFromCache(String filename) {
+		cacheBlockedFiles.add(filename);
+	}
+	
+	private void unblockFromCache(String filename) {
+		cacheBlockedFiles.remove(filename);
+	}
 
-    private void addDeletedFileInfo(MatrixCursor matrixCursor, String filename) {
+	//returns the file entry from the cache if present or queries the concrete provider method to return the file info
+    private FileEntry getFileEntryCached(String filename) {
+    	//check if enry is cached:
+    	FileEntry cachedEntry = fileEntryMap.get(filename);
+    	if (cachedEntry != null)
+    	{
+    		if (Utils.doLog())
+    			Log.d(CLASSNAME, "getFileEntryCached: from cache. " + filename);
+    		return cachedEntry;
+    	}
+    	
+		if (Utils.doLog())
+			Log.d(CLASSNAME, "getFileEntryCached: not in cache :-( " + filename);
+
+    	
+    	//it's not -> query the information.
+		FileEntry newEntry = getFileEntry(filename);
+		
+		if (!cacheBlockedFiles.contains(filename))
+			updateFileEntryCache(newEntry);
+		
+		return newEntry;
+	}
+
+	private void addDeletedFileInfo(MatrixCursor matrixCursor, String filename) {
     	int type = BaseFile.FILE_TYPE_NOT_EXISTED;
     	RowBuilder newRow = matrixCursor.newRow();
 		newRow.add(0);// _ID
@@ -480,13 +553,13 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 		        .buildUpon().appendPath(filename)
 		        .build().toString());
 		newRow.add(filename);
-		newRow.add(getName(filename));
+		newRow.add(getFilenameFromPath(filename));
 		newRow.add(0);
 		newRow.add(0);
 		newRow.add(0);
 		newRow.add(type);
 		newRow.add(null);
-		newRow.add(FileUtils.getResIcon(type, getName(filename)));
+		newRow.add(FileUtils.getResIcon(type, getFilenameFromPath(filename)));
 	}
 
 	/**
