@@ -65,6 +65,8 @@ namespace keepass2android
 		internal AppTask AppTask;
 		private IOConnectionInfo _iocToLaunch;
 
+		public const string NoForwardToPasswordActivity = "NoForwardToPasswordActivity";
+
 		void ShowFilenameDialog(bool showOpenButton, bool showCreateButton, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -583,10 +585,11 @@ namespace keepass2android
 			else
 			{
 				//if no database is loaded: load the most recent database
-				if (_DbHelper.HasRecentFiles())
+				if ( (Intent.GetBooleanExtra(NoForwardToPasswordActivity, false)==false) &&  _DbHelper.HasRecentFiles())
 				{
 					Android.Database.ICursor filesCursor = _DbHelper.FetchAllFiles();
 					StartManagingCursor(filesCursor);
+					filesCursor.MoveToFirst();
 					IOConnectionInfo ioc = _DbHelper.CursorToIoc(filesCursor);
 					if (App.Kp2a.GetFileStorage(ioc).RequiredSetup == null)
 					{

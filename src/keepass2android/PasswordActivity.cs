@@ -562,6 +562,7 @@ namespace keepass2android
 		private void GoToFileSelectActivity()
 		{
 			Intent intent = new Intent(this, typeof (FileSelectActivity));
+			intent.PutExtra(FileSelectActivity.NoForwardToPasswordActivity, true);
 			AppTask.ToIntent(intent);
 			StartActivityForResult(intent, 0);
 			Finish();
