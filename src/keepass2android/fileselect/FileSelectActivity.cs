@@ -185,7 +185,7 @@ namespace keepass2android
 			browseButton.Click += (sender, evt) => {
 				string filename = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
 				
-				Util.showBrowseDialog(filename, this, requestCodeBrowse, showCreateButton);
+				Util.ShowBrowseDialog(filename, this, requestCodeBrowse, showCreateButton);
 				
 			};
 
@@ -629,7 +629,7 @@ namespace keepass2android
 			switch (item.ItemId) {
 			case Resource.Id.menu_donate:
 				try {
-						Util.gotoDonateUrl(this);
+						Util.GotoDonateUrl(this);
 				} catch (ActivityNotFoundException) {
 					Toast.MakeText(this, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
 					return false;

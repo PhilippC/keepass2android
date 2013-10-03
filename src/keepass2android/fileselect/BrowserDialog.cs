@@ -43,7 +43,7 @@ namespace keepass2android
 			
 			Button market = (Button) FindViewById(Resource.Id.install_market);
 			market.Click += (sender, e) => {
-					Util.gotoUrl(Context, Resource.String.oi_filemanager_market);
+					Util.GotoUrl(Context, Resource.String.oi_filemanager_market);
 					Cancel();
 				}
 			;
@@ -53,7 +53,7 @@ namespace keepass2android
 			
 			Button web = (Button) FindViewById(Resource.Id.install_web);
 			web.Click += (sender, e) => {
-					Util.gotoUrl(Context, Resource.String.oi_filemanager_web);
+					Util.GotoUrl(Context, Resource.String.oi_filemanager_web);
 					Cancel();
 				}
 			;

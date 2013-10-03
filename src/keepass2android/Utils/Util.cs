@@ -18,14 +18,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using Uri = Android.Net.Uri;
@@ -34,17 +28,17 @@ namespace keepass2android
 {
 	
 	public class Util {
-		public static String getClipboard(Context context) {
+		public static String GetClipboard(Context context) {
 			Android.Text.ClipboardManager clipboard = (Android.Text.ClipboardManager) context.GetSystemService(Context.ClipboardService);
 			return clipboard.Text;
 		}
 		
-		public static void copyToClipboard(Context context, String text) {
+		public static void CopyToClipboard(Context context, String text) {
 			Android.Text.ClipboardManager clipboard = (Android.Text.ClipboardManager) context.GetSystemService(Context.ClipboardService);
 			clipboard.Text = text;
 		}
 		
-		public static void gotoUrl(Context context, String url) {
+		public static void GotoUrl(Context context, String url) {
 			if ( url != null && url.Length > 0 ) {
 
 				if (url.StartsWith("androidapp://"))
@@ -60,28 +54,28 @@ namespace keepass2android
 				}
 				else
 				{
-					Android.Net.Uri uri = Android.Net.Uri.Parse(url);
+					Uri uri = Uri.Parse(url);
 					context.StartActivity(new Intent(Intent.ActionView, uri));
 				}
 			}
 		}
 		
-		public static void gotoUrl(Context context, int resId)  {
-			gotoUrl(context, context.GetString(resId));
+		public static void GotoUrl(Context context, int resId)  {
+			GotoUrl(context, context.GetString(resId));
 		}
 
-		public static void gotoMarket(Context context)
+		public static void GotoMarket(Context context)
 		{
-			gotoUrl(context, context.GetString(Resource.String.MarketURL)+context.PackageName);
+			GotoUrl(context, context.GetString(Resource.String.MarketURL)+context.PackageName);
 		}
 
-		public static void gotoDonateUrl(Context context)
+		public static void GotoDonateUrl(Context context)
 		{
 			string donateUrl = context.GetString(Resource.String.donate_url, 
 			                         new Java.Lang.Object[]{context.Resources.Configuration.Locale.Language,
 															context.PackageName
 			});
-			gotoUrl(context, donateUrl);
+			GotoUrl(context, donateUrl);
 		}
 		
 		public static String GetEditText(Activity act, int resId) {
@@ -130,7 +124,7 @@ namespace keepass2android
 			return list.Count > 0;
 		}
 
-		public static void showBrowseDialog(string filename, Activity act, int requestCodeBrowse, bool forSaving)
+		public static void ShowBrowseDialog(string filename, Activity act, int requestCodeBrowse, bool forSaving)
 		{
 			if ((!forSaving) && (IsIntentAvailable(act, Intent.ActionGetContent, "file/*"))) {
 				Intent i = new Intent(Intent.ActionGetContent);
@@ -143,7 +137,7 @@ namespace keepass2android
 			{
 				Intent i = new Intent(Intents.FileBrowse);
 				if (filename != null)
-					i.SetData(Android.Net.Uri.Parse("file://" + filename));
+					i.SetData(Uri.Parse("file://" + filename));
 				try
 				{
 					act.StartActivityForResult(i, requestCodeBrowse);

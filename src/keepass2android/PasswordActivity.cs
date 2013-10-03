@@ -327,7 +327,7 @@ namespace keepass2android
 						filename = parent.AbsolutePath;
 					}
 				}
-				Util.showBrowseDialog(filename, this, Intents.RequestCodeFileBrowseForKeyfile, false);
+				Util.ShowBrowseDialog(filename, this, Intents.RequestCodeFileBrowseForKeyfile, false);
 
 			};
 			

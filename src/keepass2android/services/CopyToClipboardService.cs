@@ -326,7 +326,7 @@ namespace keepass2android
 		private readonly Timer _timer = new Timer();
 		
 		internal void TimeoutCopyToClipboard(String text) {
-			Util.copyToClipboard(this, text);
+			Util.CopyToClipboard(this, text);
 			
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			String sClipClear = prefs.GetString(GetString(Resource.String.clipboard_timeout_key), GetString(Resource.String.clipboard_timeout_default));
@@ -353,10 +353,10 @@ namespace keepass2android
 			}
 			
 			public override void Run() {
-				String currentClip = Util.getClipboard(_service);
+				String currentClip = Util.GetClipboard(_service);
 				_handler.Post( () => _service.OnWaitElementDeleted(ClearClipboard));
 				if ( currentClip.Equals(_clearText) ) {
-					Util.copyToClipboard(_service, "");
+					Util.CopyToClipboard(_service, "");
 					_handler.Post( () => {
 						Toast.MakeText(_service, Resource.String.ClearClipboard, ToastLength.Long).Show();
 					});

@@ -668,7 +668,7 @@ namespace keepass2android
 			addBinaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuAdd) , null, null, null);
 			addBinaryButton.Click += (sender, e) => 
 			{
-				Util.showBrowseDialog("/mnt/sdcard", this, Intents.RequestCodeFileBrowseForBinary, false);
+				Util.ShowBrowseDialog("/mnt/sdcard", this, Intents.RequestCodeFileBrowseForBinary, false);
 
 			};
 			binariesGroup.AddView(addBinaryButton,layoutParams);
@@ -698,7 +698,7 @@ namespace keepass2android
 			switch ( item.ItemId ) {
 			case Resource.Id.menu_donate:
 				try {
-						Util.gotoDonateUrl(this);
+						Util.GotoDonateUrl(this);
 				} catch (ActivityNotFoundException) {
 					Toast.MakeText(this, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
 					return false;
@@ -720,21 +720,21 @@ namespace keepass2android
 				break;
 			case Resource.Id.menu_rate:
 				try {
-					Util.gotoMarket(this);
+					Util.GotoMarket(this);
 				} catch (ActivityNotFoundException) {
 					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
 				}
 				return true;
 			case Resource.Id.menu_suggest_improvements:
 				try {
-					Util.gotoUrl(this, Resource.String.SuggestionsURL);
+					Util.GotoUrl(this, Resource.String.SuggestionsURL);
 				} catch (ActivityNotFoundException) {
 					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
 				}
 				return true;
 			case Resource.Id.menu_translate:
 				try {
-					Util.gotoUrl(this, Resource.String.TranslationURL);
+					Util.GotoUrl(this, Resource.String.TranslationURL);
 				} catch (ActivityNotFoundException) {
 					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
 				}

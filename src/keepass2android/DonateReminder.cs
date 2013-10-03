@@ -22,7 +22,7 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.donate);
 
-			FindViewById(Resource.Id.ok_donate).Click += (sender, args) => { Util.gotoDonateUrl(this);Finish(); };
+			FindViewById(Resource.Id.ok_donate).Click += (sender, args) => { Util.GotoDonateUrl(this);Finish(); };
 			FindViewById(Resource.Id.no_donate).Click += (sender, args) => { Finish(); };
 		}
 	}
