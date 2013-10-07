@@ -980,11 +980,14 @@ public class FragmentFiles extends Fragment implements
 
         if (path == null
                 || !BaseFileProviderUtils.isDirectory(getActivity(), path))
+        {
+        	Log.d(CLASSNAME, "load default path");
             path = BaseFileProviderUtils
                     .getDefaultPath(
                             getActivity(),
                             path == null ? mFileProviderAuthority : path
                                     .getAuthority());
+        }
 
         if (path == null) {
             showCannotConnectToServiceAndFinish();

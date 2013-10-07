@@ -20,6 +20,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Database;
+using Android.Provider;
 using Android.Widget;
 using Android.Content.PM;
 using Uri = Android.Net.Uri;
@@ -126,33 +128,34 @@ namespace keepass2android
 
 		public static void ShowBrowseDialog(string filename, Activity act, int requestCodeBrowse, bool forSaving)
 		{
-			if ((!forSaving) && (IsIntentAvailable(act, Intent.ActionGetContent, "file/*"))) {
+			if ((!forSaving) && (IsIntentAvailable(act, Intent.ActionGetContent, "file/*")))
+			{
 				Intent i = new Intent(Intent.ActionGetContent);
 				i.SetType("file/*");
 
 				act.StartActivityForResult(i, requestCodeBrowse);
-				return;
-			}
-			if (IsIntentAvailable(act, Intents.FileBrowse, null))
-			{
-				Intent i = new Intent(Intents.FileBrowse);
-				if (filename != null)
-					i.SetData(Uri.Parse("file://" + filename));
-				try
-				{
-					act.StartActivityForResult(i, requestCodeBrowse);
-				}
-				catch (ActivityNotFoundException)
-				{
-					BrowserDialog diag = new BrowserDialog(act);
-					diag.Show();
-				}
 			}
 			else
 			{
-				BrowserDialog diag = new BrowserDialog(act);
-				diag.Show();
+				string defaultPath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+
+
+				ShowInternalLocalFileChooser(act, requestCodeBrowse, forSaving, defaultPath);
 			}
+		}
+
+		private static void ShowInternalLocalFileChooser(Activity act, int requestCodeBrowse, bool forSaving, string defaultPath)
+		{
+			const string fileProviderAuthority = "keepass2android.keepass2android.android-filechooser.localfile";
+
+
+			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(act,
+			                                                                                            fileProviderAuthority,
+			                                                                                            defaultPath);
+			if (forSaving)
+				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.save_dialog", true);
+
+			act.StartActivityForResult(i, requestCodeBrowse);
 		}
 
 		public static string IntentToFilename(Intent data, Context ctx)
@@ -165,7 +168,25 @@ namespace keepass2android
 				Uri uri = (Uri) uris[0];
 				return Group.Pals.Android.Lib.UI.Filechooser.Providers.BaseFileProviderUtils.GetRealUri(ctx, uri).ToString();
 			}
+
 #endif
+			try
+			{
+				Uri uri = data.Data;
+				if ((uri != null) && (uri.Scheme == "content"))
+				{
+					String[] col = new String[] {MediaStore.MediaColumns.Data};
+					
+					ICursor c1 = ctx.ContentResolver.Query(uri, col, null, null, null);
+					c1.MoveToFirst();
+
+					return c1.GetString(0);
+				}
+			}
+			catch (Exception e)
+			{
+				Kp2aLog.Log(e.ToString());
+			}
 
 			String filename = data.Data.Path;
 			if (String.IsNullOrEmpty(filename))

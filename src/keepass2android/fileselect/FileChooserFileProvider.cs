@@ -67,6 +67,7 @@ namespace keepass2android
 		{
 			try
 			{
+				Kp2aLog.Log("Provider.GetFileEntry " + filename);
 				return ConvertFileDescription(App.Kp2a.GetFileStorage(filename).GetFileDescription(ConvertPathToIoc(filename)));
 			}
 			catch (Exception e)
@@ -80,6 +81,7 @@ namespace keepass2android
 		protected override void ListFiles(int taskId, string dirName, bool showHiddenFiles, int filterMode, int limit, string positiveRegex, 
 			string negativeRegex, IList<FileEntry> fileList, bool[] hasMoreFiles)
 		{
+			Kp2aLog.Log("Provider.ListFiles " + dirName);
 			try
 			{
 				var dirContents = App.Kp2a.GetFileStorage(dirName).ListContents(ConvertPathToIoc(dirName));

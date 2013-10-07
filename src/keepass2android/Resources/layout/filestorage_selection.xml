@@ -10,7 +10,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Please select the cloud storage type you want to use:"
+                android:text="@string/select_storage_type"
                 style="@style/PaddedElement"
                 android:id="@+id/textView"
                 android:layout_gravity="left|center_vertical"/>

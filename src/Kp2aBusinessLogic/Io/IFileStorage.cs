@@ -1,20 +1,33 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using KeePassLib.Keys;
 using KeePassLib.Serialization;
 
 namespace keepass2android.Io
 {
+
+	public enum FileStorageResults
+	{
+		FullFilenameSelected = 874345 + 1,
+		FileChooserPrepared = FullFilenameSelected + 1,
+		FileUsagePrepared = FileChooserPrepared + 1
+	}
+
+	public static class FileStorageSetupDefs
+	{
+		public static String ProcessNameSelectfile = "SELECT_FILE";
+		public static String ProcessNameFileUsageSetup = "FILE_USAGE_SETUP";
+
+		public static String ExtraProcessName = "EXTRA_PROCESS_NAME";
+		public static String ExtraPath = "PATH";
+		public static String ExtraIsForSave = "IS_FOR_SAVE";
+		public static String ExtraErrorMessage = "EXTRA_ERROR_MESSAGE";
+
+	}
+
 	/// <summary>
 	/// Called as a callback from CheckForFileChangeAsync.
 	/// </summary>
@@ -70,14 +83,6 @@ namespace keepass2android.Io
 		IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction);
 
 		/// <summary>
-		/// Returns an instance of an implementation of IFileStorageSetup or one of the more complex interfaces.
-		/// Depending on the type returned, the caller should try to follow the interface as close as possible.
-		/// Returns null if the file storage is setup or doesn't require anything to work. 
-		/// </summary>
-		/// This is due to different storage types requiring different workflows for authentication processes
-		IFileStorageSetup RequiredSetup { get; }
-
-		/// <summary>
 		/// brings up a dialog to query credentials or something like this.
 		/// </summary>
 		/// <returns>true if success, false if error or cancelled by user</returns>
@@ -111,32 +116,36 @@ namespace keepass2android.Io
 		/// returns the description of the given file
 		/// </summary>
 		FileDescription GetFileDescription(IOConnectionInfo ioc);
-	}
 
-	/// <summary>
-	/// Base interface for required setup code
-	/// </summary>
-	public interface IFileStorageSetup
-	{
 		/// <summary>
-		/// call this when the user explicitly wants to use this file storage. Might require user interaction.
-		/// May throw if the setup failed permanentaly.
+		/// returns true if everything is ok with connecting to the given file. 
+		/// Returns False if PrepareFileUsage must be called first.
 		/// </summary>
-		/// <returns>true if the setup was succesful immediately (without UI). Returns false if setup was not successful but no error occured or can be displayed.</returns>
-		bool TrySetup(Activity activity);
-	}
+		bool RequiresSetup(IOConnectionInfo ioConnection);
 
-	/// <summary>
-	/// Interface which can be used additionally for an IFileStorageSetup to indicate that setup must be completed in OnResume()
-	/// </summary>
-	public interface IFileStorageSetupOnResume
-	{
 		/// <summary>
-		/// call this after TrySetup() returned false in the next OnResume()
-		/// May throw if the setup failed permanentaly.
+		/// converts the ioc to a path which may contain the credentials
 		/// </summary>
-		/// <returns>true if setup was succesful</returns>
-		bool TrySetupOnResume(Activity activity);
+		string IocToPath(IOConnectionInfo ioc);
+
+		/// <summary>
+		/// Initiates the process for choosing a file in the given file storage.
+		/// The file storage should either call OnImmediateResult or StartSelectFileProcess
+		/// </summary>
+		void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId);
+
+		/// <summary>
+		/// Initiates the process for choosing a file in the given file storage.
+		/// The file storage should either call OnImmediateResult or StartFileUsageProcess
+		/// </summary>
+		void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode);
+
+		//Setup methods: these are called from the setup activity so the file storage can handle UI events for authorization etc.
+		void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState);
+		void OnResume(IFileStorageSetupActivity activity);
+		void OnStart(IFileStorageSetupActivity activity);
+		void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data);
+		
 	}
 
 	public interface IWriteTransaction: IDisposable

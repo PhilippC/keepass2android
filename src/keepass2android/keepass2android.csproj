@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;INCLUDE_TWOFISH;INCLUDE_KEYBOARD;INCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="fileselect\FileChooserFileProvider.cs" />
+    <Compile Include="fileselect\FileStorageSetupActivity.cs" />
+    <Compile Include="fileselect\FileStorageSetupInitiatorActivity.cs" />
     <Compile Include="FileStorageSelectionActivity.cs" />
     <Compile Include="DonateReminder.cs" />
     <Compile Include="app\ApplicationBroadcastReceiver.cs" />
@@ -96,7 +98,6 @@
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="intents\Intents.cs" />
-    <Compile Include="fileselect\BrowserDialog.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="GroupActivity.cs" />
     <Compile Include="GroupBaseActivity.cs" />
@@ -253,7 +254,7 @@
     <None Include="Resources\values-vi\strings.xml">
       <Visible>False</Visible>
     </None>
-    <None Include="..\java\kp2akeytransform\libs\mips\libfinal-key.so"  Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
+    <None Include="..\java\kp2akeytransform\libs\mips\libfinal-key.so" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
       <Link>libs\mips\libfinal-key.so</Link>
     </None>
     <None Include="Resources\drawable-hdpi\Thumbs.db">
@@ -700,11 +701,11 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi\libfinal-key.so"  Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
+    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi\libfinal-key.so" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
       <Link>libs\armeabi\libfinal-key.so</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidNativeLibrary>
-    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi-v7a\libfinal-key.so"  Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
+    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi-v7a\libfinal-key.so" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
       <Link>libs\armeabi-v7a\libfinal-key.so</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidNativeLibrary>
@@ -815,5 +816,29 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_storage_http.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_storage_androidget.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_storage_androidsend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_storage_androidget.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_storage_androidsend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_storage_file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_storage_file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_keepass2android.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_keepass2android_nonet.png" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@ using System.IO;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using Android.Content;
+using Android.OS;
 using KeePassLib.Cryptography;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -19,7 +21,7 @@ namespace keepass2android.Io
 		/// called when a save operation only updated the cache but not the remote file
 		/// </summary>
 		/// <param name="ioc">The file which we tried to write</param>
-		/// <param name="e">The exception why the remote file couldn't be updated</param>
+		/// <param name="ex">The exception why the remote file couldn't be updated</param>
 		void CouldntSaveToRemote(IOConnectionInfo ioc, Exception ex);
 
 		/// <summary>
@@ -398,8 +400,6 @@ namespace keepass2android.Io
 			return new CachedWriteTransaction(ioc, useFileTransaction, this);
 		}
 
-		public IFileStorageSetup RequiredSetup { get { return _cachedStorage.RequiredSetup; } }
-
 		public bool CompleteIoId()
 		{
 			throw new NotImplementedException();
@@ -434,6 +434,46 @@ namespace keepass2android.Io
 		public FileDescription GetFileDescription(IOConnectionInfo ioc)
 		{
 			return _cachedStorage.GetFileDescription(ioc);
+		}
+
+		public bool RequiresSetup(IOConnectionInfo ioConnection)
+		{
+			return _cachedStorage.RequiresSetup(ioConnection);
+		}
+
+		public string IocToPath(IOConnectionInfo ioc)
+		{
+			return _cachedStorage.IocToPath(ioc);
+		}
+
+		public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
+		{
+			_cachedStorage.StartSelectFile(activity, isForSave, requestCode, protocolId);
+		}
+
+		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode)
+		{
+			_cachedStorage.PrepareFileUsage(activity, ioc, requestCode);
+		}
+
+		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
+		{
+			_cachedStorage.OnCreate(activity, savedInstanceState);
+		}
+
+		public void OnResume(IFileStorageSetupActivity activity)
+		{
+			_cachedStorage.OnResume(activity);
+		}
+
+		public void OnStart(IFileStorageSetupActivity activity)
+		{
+			_cachedStorage.OnStart(activity);
+		}
+
+		public void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data)
+		{
+			_cachedStorage.OnActivityResult(activity, requestCode, resultCode, data);
 		}
 
 

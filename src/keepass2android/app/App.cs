@@ -377,7 +377,7 @@ namespace keepass2android
 
 			}
 			//TODO: catch!
-			throw new Exception("Unknown protocol " + iocInfo);
+			throw new Exception("Unknown protocol " + iocInfo.Path);
 		}
 
 		public IEnumerable<IFileStorage> FileStorages

@@ -63,7 +63,6 @@ namespace keepass2android
 		view.FileSelectButtons _fileSelectButtons;
 
 		internal AppTask AppTask;
-		private IOConnectionInfo _iocToLaunch;
 
 		public const string NoForwardToPasswordActivity = "NoForwardToPasswordActivity";
 
@@ -234,26 +233,18 @@ namespace keepass2android
 
 			EventHandler openFileButtonClick = (sender, e) => 
 			{
-				string defaultFilename = Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path);
-				const string detailsText = "";
-				ShowFilenameDialog(true, false, true, defaultFilename, detailsText, Intents.RequestCodeFileBrowseForOpen);
-
+				Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
+				intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, true);
+				StartActivityForResult(intent, 0);
 				                   
 			};
 			openFileButton.Click += openFileButtonClick;
 			//OPEN URL
 			Button openUrlButton = (Button)FindViewById(Resource.Id.start_open_url);
 
-#if NoNet
 			openUrlButton.Visibility = ViewStates.Gone;
-#endif
 
 			//EventHandler openUrlButtonClick = (sender, e) => ShowFilenameDialog(true, false, false, "", GetString(Resource.String.enter_filename_details_url), Intents.RequestCodeFileBrowseForOpen);
-			openUrlButton.Click += (sender, args) =>
-				{
-					Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
-					StartActivityForResult(intent, 0);
-				};
 
 			//CREATE NEW
 			Button createNewButton = (Button)FindViewById(Resource.Id.start_create);
@@ -282,20 +273,6 @@ namespace keepass2android
 			{
 				AppTask = AppTask.CreateFromBundle(savedInstanceState);
 				_recentMode = savedInstanceState.GetBoolean(BundleKeyRecentMode, _recentMode);
-
-				string filenameToLaunch = savedInstanceState.GetString(PasswordActivity.KeyFilename);
-				if (filenameToLaunch != null)
-				{
-					_iocToLaunch = new IOConnectionInfo()
-						{
-							Path = filenameToLaunch,
-							UserName = savedInstanceState.GetString(PasswordActivity.KeyServerusername),
-							Password = savedInstanceState.GetString(PasswordActivity.KeyServerpassword),
-							CredSaveMode = (IOCredSaveMode) savedInstanceState.GetInt(PasswordActivity.KeyServercredmode)
-						};
-				}
-
-
 			}
 
 		}
@@ -322,13 +299,6 @@ namespace keepass2android
 			AppTask.ToBundle(outState);
 			outState.PutBoolean(BundleKeyRecentMode, _recentMode);
 			
-			if (_iocToLaunch != null)
-			{
-				outState.PutString(PasswordActivity.KeyFilename, _iocToLaunch.Path);
-				outState.PutString(PasswordActivity.KeyServerusername, _iocToLaunch.UserName);
-				outState.PutString(PasswordActivity.KeyServerpassword, _iocToLaunch.Password);
-				outState.PutInt(PasswordActivity.KeyServercredmode, (int)_iocToLaunch.CredSaveMode);
-			}
 		}
 		
 		private class LaunchGroupActivity : FileOnFinish {
@@ -407,15 +377,6 @@ namespace keepass2android
 		void LaunchPasswordActivityForIoc(IOConnectionInfo ioc)
 		{
 			IFileStorage fileStorage = App.Kp2a.GetFileStorage(ioc);
-			if (fileStorage.RequiredSetup != null)
-			{
-				if (!fileStorage.RequiredSetup.TrySetup(this))
-				{
-					//store ioc to launch. TrySetup hopefully launched another activity so we can check again in OnResume
-					_iocToLaunch = ioc;
-					return;
-				}
-			}
 
 			if (fileStorage.RequiresCredentials(ioc))
 			{
@@ -485,9 +446,19 @@ namespace keepass2android
 			if (resultCode == KeePass.ExitFileStorageSelectionOk)
 			{
 #if !EXCLUDE_FILECHOOSER
-				Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, FileChooserFileProvider.TheAuthority, data.GetStringExtra("protocolId")+":///");
+				string protocolId = data.GetStringExtra("protocolId");
 
-				StartActivityForResult(i, Intents.RequestCodeFileBrowseForOpen);
+				if (protocolId == "androidget")
+				{
+					string defaultFilename = Environment.ExternalStorageDirectory +
+					                         GetString(Resource.String.default_file_path);
+					Util.ShowBrowseDialog(defaultFilename, this, Intents.RequestCodeFileBrowseForOpen, false);
+				}
+				else
+				{
+					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this, OnActivityResult), false, 0, protocolId);
+				}
+
 #else
 				Toast.MakeText(this, "TODO: make this more flexible.", ToastLength.Long).Show();
 				IOConnectionInfo ioc = new IOConnectionInfo
@@ -528,6 +499,36 @@ namespace keepass2android
 				}
 				
 			}
+
+			if (resultCode == (Result) FileStorageResults.FileUsagePrepared)
+			{
+				IOConnectionInfo ioc = new IOConnectionInfo();
+				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+				LaunchPasswordActivityForIoc(ioc);
+			}
+			if (resultCode == (Result)FileStorageResults.FileChooserPrepared)
+			{
+				IOConnectionInfo ioc = new IOConnectionInfo();
+				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+#if !EXCLUDE_FILECHOOSER
+				StartFileChooser(ioc.Path);
+#endif
+			}
+		}
+
+		private void StartFileChooser(string defaultPath)
+		{
+			Kp2aLog.Log("FSA: defaultPath="+defaultPath);
+			string fileProviderAuthority = FileChooserFileProvider.TheAuthority;
+			if (defaultPath.StartsWith("file://"))
+			{
+				fileProviderAuthority = "keepass2android.keepass2android.android-filechooser.localfile";
+				defaultPath = Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path);
+			}
+			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, fileProviderAuthority,
+			                                                                                            defaultPath);
+
+			StartActivityForResult(i, Intents.RequestCodeFileBrowseForOpen);
 		}
 
 
@@ -546,26 +547,7 @@ namespace keepass2android
 				return;
 			}
 
-			//check if we are resuming after setting up the file storage:
-			if (_iocToLaunch != null)
-			{
-				try
-				{
-					IOConnectionInfo iocToLaunch = _iocToLaunch;
-					_iocToLaunch = null;
-
-					IFileStorageSetupOnResume fsSetup = App.Kp2a.GetFileStorage(iocToLaunch).RequiredSetup as IFileStorageSetupOnResume;
-					if ((fsSetup == null) || (fsSetup.TrySetupOnResume(this)))
-					{
-						LaunchPasswordActivityForIoc(iocToLaunch);
-					}
-
-				}
-				catch (Exception e)
-				{
-					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
-				}	
-			}
+			
 
 			_fileSelectButtons.UpdateExternalStorageWarning();
 
@@ -591,7 +573,7 @@ namespace keepass2android
 					StartManagingCursor(filesCursor);
 					filesCursor.MoveToFirst();
 					IOConnectionInfo ioc = _DbHelper.CursorToIoc(filesCursor);
-					if (App.Kp2a.GetFileStorage(ioc).RequiredSetup == null)
+					if (App.Kp2a.GetFileStorage(ioc).RequiresSetup(ioc) == false)
 					{
 						LaunchPasswordActivityForIoc(ioc);
 					}
@@ -684,6 +666,10 @@ namespace keepass2android
 			Android.Database.ICursor cursor = ca.Cursor;
 			cursor.Requery();
 		}
+
+		
+
+		
 	}
 }
 

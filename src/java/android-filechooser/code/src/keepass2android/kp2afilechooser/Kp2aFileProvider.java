@@ -230,7 +230,11 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     private MatrixCursor doAnswerApiCommand(Uri uri) {
         MatrixCursor matrixCursor = null;
 
-        if (BaseFile.CMD_CANCEL.equals(uri.getLastPathSegment())) {
+        String lastPathSegment = uri.getLastPathSegment();
+        
+        //Log.d(CLASSNAME, "lastPathSegment:" + lastPathSegment);
+        
+        if (BaseFile.CMD_CANCEL.equals(lastPathSegment)) {
             int taskId = ProviderUtils.getIntQueryParam(uri,
                     BaseFile.PARAM_TASK_ID, 0);
             synchronized (mMapInterruption) {
@@ -241,15 +245,14 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
                     mMapInterruption.put(taskId, true);
             }
             return null;
-        } else if (BaseFile.CMD_GET_DEFAULT_PATH.equals(uri
-                .getLastPathSegment())) {
+        } else if (BaseFile.CMD_GET_DEFAULT_PATH.equals(lastPathSegment)) {
         	
         	return null;
         	
         }// get default path
-        else if (BaseFile.CMD_IS_ANCESTOR_OF.equals(uri.getLastPathSegment())) {
+        else if (BaseFile.CMD_IS_ANCESTOR_OF.equals(lastPathSegment)) {
             return doCheckAncestor(uri);
-        } else if (BaseFile.CMD_GET_PARENT.equals(uri.getLastPathSegment())) {
+        } else if (BaseFile.CMD_GET_PARENT.equals(lastPathSegment)) {
         	
         	{
         		String path = Uri.parse(
@@ -292,7 +295,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	            return matrixCursor;
 	        }
           	
-        } else if (BaseFile.CMD_SHUTDOWN.equals(uri.getLastPathSegment())) {
+        } else if (BaseFile.CMD_SHUTDOWN.equals(lastPathSegment)) {
             /*
              * TODO Stop all tasks. If the activity call this command in
              * onDestroy(), it seems that this code block will be suspended and
@@ -492,7 +495,8 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
     //puts the file entry in the cache for later reuse with retrieveFileInfo
 	private void updateFileEntryCache(FileEntry f) {
-		fileEntryMap.put(f.path, f);
+		if (f != null)
+			fileEntryMap.put(f.path, f);
 	}
 	//removes the file entry from the cache (if cached). Should be called whenever the file changes
 	private void removeFromCache(String filename, boolean recursive) {
@@ -501,11 +505,17 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 		if (recursive)
 		{
 			Set<String> keys = fileEntryMap.keySet();
+			Set<String> keysToRemove = new HashSet<String>();
 			for (String key: keys)
 			{
 				if (key.startsWith(key))
-					fileEntryMap.remove(key);
+					keysToRemove.add(key);
 			}
+			for (String key: keysToRemove)
+			{
+				fileEntryMap.remove(key);	
+			}
+			
 		}
 		
 		

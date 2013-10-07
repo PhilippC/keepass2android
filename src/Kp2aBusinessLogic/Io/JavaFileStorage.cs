@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Android.App;
+using Android.Content;
+using Android.OS;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 #if !EXCLUDE_JAVAFILESTORAGE
@@ -16,6 +18,8 @@ namespace keepass2android.Io
 	#if !EXCLUDE_JAVAFILESTORAGE
 	public abstract class JavaFileStorage: IFileStorage
 	{
+		protected string Protocol { get { return _jfs.ProtocolId; } }
+
 		public IEnumerable<string> SupportedProtocols { get { yield return Protocol; } }
 
 
@@ -64,7 +68,7 @@ namespace keepass2android.Io
 		{
 			try
 			{
-				return Jfs.GetCurrentFileVersionFast(ioc.Path);
+				return Jfs.GetCurrentFileVersionFast(IocToPath(ioc));
 			}
 			catch (Java.Lang.Exception e)
 			{
@@ -103,55 +107,11 @@ namespace keepass2android.Io
 			return new JavaFileStorageWriteTransaction(IocToPath(ioc), useFileTransaction, this);
 		}
 
-		public IFileStorageSetup RequiredSetup 
-		{
-			get
-			{
-				if (Jfs.IsConnected)
-					return null;
-				return new JavaFileStorageSetup(this);
-			}
-		}
-
 		internal IJavaFileStorage Jfs
 		{
 			get { return _jfs; }
 		}
 
-		public class JavaFileStorageSetup : IFileStorageSetup, IFileStorageSetupOnResume
-		{
-			private readonly JavaFileStorage _javaFileStorage;
-
-			public JavaFileStorageSetup(JavaFileStorage javaFileStorage)
-			{
-				_javaFileStorage = javaFileStorage;
-			}
-
-			public bool TrySetup(Activity activity)
-			{
-				try
-				{
-					return _javaFileStorage.Jfs.TryConnect(activity);
-				}
-				catch (Java.Lang.Exception e)
-				{
-					throw _javaFileStorage.LogAndConvertJavaException(e);
-				}
-			}
-
-			public bool TrySetupOnResume(Activity activity)
-			{
-				try
-				{
-					_javaFileStorage.Jfs.OnResume();
-					return _javaFileStorage.Jfs.IsConnected;
-				}
-				catch (Java.Lang.Exception e)
-				{
-					throw _javaFileStorage.LogAndConvertJavaException(e);
-				}
-			}
-		}
 
 		class JavaFileStorageWriteTransaction: IWriteTransaction
 		{
@@ -255,13 +215,14 @@ namespace keepass2android.Io
 					CanWrite = e.CanWrite,
 					IsDirectory = e.IsDirectory,
 					LastModified = JavaTimeToCSharp(e.LastModifiedTime),
-					Path = Protocol + "://" + e.Path,
+					Path = e.Path,
 					SizeInBytes = e.SizeInBytes
 				};
 		}
 
 		public FileDescription GetFileDescription(IOConnectionInfo ioc)
 		{
+			Kp2aLog.Log("GetFileDescription "+ioc.Path);
 			try
 			{
 				return ConvertToFileDescription(Jfs.GetFileEntry(IocToPath(ioc)));
@@ -276,24 +237,54 @@ namespace keepass2android.Io
 			}
 		}
 
+		public bool RequiresSetup(IOConnectionInfo ioConnection)
+		{
+			return _jfs.RequiresSetup(IocToPath(ioConnection));
+		}
+
+		public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
+		{
+			Kp2aLog.Log("StartSelectFile " + protocolId);
+			_jfs.StartSelectFile((IJavaFileStorageFileStorageSetupInitiatorActivity) activity, isForSave, requestCode);
+		}
+
+		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode)
+		{
+			_jfs.PrepareFileUsage((IJavaFileStorageFileStorageSetupInitiatorActivity)activity, IocToPath(ioc), requestCode);
+		}
+
+		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
+		{
+			_jfs.OnCreate(((IJavaFileStorageFileStorageSetupActivity)activity), savedInstanceState);
+		}
+
+		public void OnResume(IFileStorageSetupActivity activity)
+		{
+			Kp2aLog.Log("JFS/OnResume Ioc.Path=" +activity.Ioc.Path+". Path="+((IJavaFileStorageFileStorageSetupActivity)activity).Path);
+			_jfs.OnResume(((IJavaFileStorageFileStorageSetupActivity) activity));
+		}
+
+		public void OnStart(IFileStorageSetupActivity activity)
+		{
+			_jfs.OnStart(((IJavaFileStorageFileStorageSetupActivity) activity));
+		}
+
+		public void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data)
+		{
+			_jfs.OnActivityResult(((IJavaFileStorageFileStorageSetupActivity) activity), requestCode, resultCode, data);
+		}
+
 		private DateTime JavaTimeToCSharp(long javatime)
 		{
-			//todo test
 			return new DateTime(1970, 1, 1).AddMilliseconds(javatime);
 
 		}
 
-		private string IocToPath(IOConnectionInfo ioc)
+		public string IocToPath(IOConnectionInfo ioc)
 		{
-			if (ioc.Path.StartsWith(Protocol + "://"))
-				return ioc.Path.Substring(Protocol.Length + 3);
-			else
-			{
-				return ioc.Path;
-			}
+			return ioc.Path;
 		}
 
-		protected abstract string Protocol { get; }
 	}
 #endif
 }

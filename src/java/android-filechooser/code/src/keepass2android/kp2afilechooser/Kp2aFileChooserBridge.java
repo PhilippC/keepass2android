@@ -13,7 +13,7 @@ public class Kp2aFileChooserBridge {
 		Class<?> cls = FileChooserActivity.class;
 
 		Intent intent = new Intent(ctx, cls);
-
+		intent.putExtra(FileChooserActivity.EXTRA_FILE_PROVIDER_AUTHORITY, authority);
 		intent.putExtra(FileChooserActivity.EXTRA_ROOTPATH,
 		BaseFile.genContentIdUriBase(authority) 
 		.buildUpon()

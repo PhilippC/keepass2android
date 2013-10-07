@@ -14,7 +14,7 @@ using KeePassLib.Serialization;
 
 namespace keepass2android.Io
 {
-	public class GDriveFileStorage: IFileStorage
+	/*public class GDriveFileStorage: IFileStorage
 	{
 		public IEnumerable<string> SupportedProtocols { get { yield return "gdrive"; } }
 		public void Delete(IOConnectionInfo ioc)
@@ -42,7 +42,6 @@ namespace keepass2android.Io
 			throw new NotImplementedException();
 		}
 
-		public IFileStorageSetup RequiredSetup { get; private set; }
 
 		public bool CompleteIoId()
 		{
@@ -78,5 +77,5 @@ namespace keepass2android.Io
 		{
 			throw new NotImplementedException();
 		}
-	}
+	}*/
 }

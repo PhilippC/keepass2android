@@ -213,10 +213,7 @@ public class DisplayPrefs extends Prefs {
      * @since v4.7 beta
      */
     public static boolean isRememberLastLocation(Context c) {
-        return p(c).getBoolean(
-                c.getString(R.string.afc_pkey_display_remember_last_location),
-                c.getResources().getBoolean(
-                        R.bool.afc_pkey_display_remember_last_location_def));
+        return false; //KP2A: don't allow to remember because of different protocols
     }
 
     /**

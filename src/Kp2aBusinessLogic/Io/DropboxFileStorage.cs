@@ -16,17 +16,14 @@ using Keepass2android.Javafilestorage;
 
 namespace keepass2android.Io
 {
-	public class DropboxFileStorage: JavaFileStorage
+	public partial class DropboxFileStorage: JavaFileStorage
 	{
 		public DropboxFileStorage(Context ctx, IKp2aApp app) :
-			base(new Keepass2android.Javafilestorage.DropboxFileStorage(ctx), app)
+			base(new Keepass2android.Javafilestorage.DropboxFileStorage(ctx, AppKey, AppSecret), app)
 		{
 		}
 
-		protected override string Protocol
-		{
-			get { return "dropbox"; }
-		}
+		
 	}
 }
 #endif

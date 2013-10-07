@@ -320,16 +320,29 @@
 	<string name="ok_donate">Tell me more!</string>
 	<string name="no_thanks">No, I don\'t like it that much</string>
 
+	<string name="select_storage_type">Select the storage type:</string>
+
 	<string name="filestoragename_file">Local file</string>
+	<string name="filestoragename_androidget">Get from third-party app</string>
+	<string name="filestoragename_androidsend">Send to third-party app</string>
 	<string name="filestoragename_ftp">FTP</string>
 	<string name="filestoragename_http">HTTP (WebDav)</string>
 	<string name="filestoragename_https">HTTPS (WebDav)</string>
 	<string name="filestoragename_dropbox">Dropbox</string>
 	<string name="filestoragename_gdrive">Google Drive</string>
+
+	<string name="filestorage_setup_title">File access initialization</string>
+
+
+	<string name="ChangeLog_title">Change log</string>
+
+	<string name="ChangeLog_0_9">
+		<b>Version 0.9</b>\n
+		* Support for Dropbox (Keepass2Android regular edition only)\n
+		* Integrated custom filechooser (based on android-filechooser by HBA)
+	</string>
+
 	
-
-		<string name="ChangeLog_title">Change log</string>
-
 	<string name="ChangeLog_0_8_6">
 		<b>Version 0.8.6</b>\n
 		* Support for Twofish cipher\n

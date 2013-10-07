@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.DropBoxManager.Entry;
 import android.util.Log;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ import com.dropbox.client2.session.Session.AccessType;
 public class DropboxFileStorage implements JavaFileStorage {
 	
 	//NOTE: also adjust secret!
-	final static private String APP_KEY = "i8shu7v1hgh7ynt"; //KP2A
+	//final static private String APP_KEY = "i8shu7v1hgh7ynt"; //KP2A
 	//final static private String APP_KEY = "4ybka4p4a1027n6"; //FileStorageTest
 	
     // If you'd like to change the access type to the full Dropbox instead of
@@ -51,10 +52,32 @@ public class DropboxFileStorage implements JavaFileStorage {
     DropboxAPI<AndroidAuthSession> mApi;
 	private boolean mLoggedIn = false;
 	private Context mContext;
+
+	private String appKey;
+	private String appSecret;
 	
-	public DropboxFileStorage(Context ctx)
+	public DropboxFileStorage(Context ctx, String _appKey, String _appSecret)
 	{
+		appKey = _appKey;
+		appSecret = _appSecret;
 		mContext = ctx;
+		// We create a new AuthSession so that we can use the Dropbox API.
+        AndroidAuthSession session = buildSession();
+        mApi = new DropboxAPI<AndroidAuthSession>(session);
+        
+        checkAppKeySetup();
+	}
+	
+	public DropboxFileStorage(Context ctx, String _appKey, String _appSecret, boolean clearKeysOnStart)
+	{
+		appKey = _appKey;
+		appSecret = _appSecret;
+		mContext = ctx;
+		
+		if (clearKeysOnStart)
+			clearKeys();
+			
+		
 		// We create a new AuthSession so that we can use the Dropbox API.
         AndroidAuthSession session = buildSession();
         mApi = new DropboxAPI<AndroidAuthSession>(session);
@@ -69,29 +92,6 @@ public class DropboxFileStorage implements JavaFileStorage {
 		return mLoggedIn;
 	}
 	
-	public void onResume()
-	{
-		AndroidAuthSession session = mApi.getSession();
-
-        // The next part must be inserted in the onResume() method of the
-        // activity from which session.startAuthentication() was called, so
-        // that Dropbox authentication completes properly.
-        if (session.authenticationSuccessful()) {
-            try {
-                // Mandatory call to complete the auth
-                session.finishAuthentication();
-
-                // Store it locally in our app for later use
-                TokenPair tokens = session.getAccessTokenPair();
-                storeKeys(tokens.key, tokens.secret);
-                setLoggedIn(true);
-            } catch (IllegalStateException e) {
-                Log.i(TAG, "Error authenticating", e);
-                throw e;
-            }
-        }
-	}
-	
     private void setLoggedIn(boolean b) {
 		mLoggedIn = b;
 		
@@ -101,7 +101,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 
         // Check if the app has set up its manifest properly.
         Intent testIntent = new Intent(Intent.ACTION_VIEW);
-        String scheme = "db-" + APP_KEY;
+        String scheme = "db-" + appKey;
         String uri = scheme + "://" + AuthActivity.AUTH_VERSION + "/test";
         testIntent.setData(Uri.parse(uri));
         PackageManager pm = mContext.getPackageManager();
@@ -123,9 +123,10 @@ public class DropboxFileStorage implements JavaFileStorage {
 	
 	public boolean checkForFileChangeFast(String path, String previousFileVersion) throws Exception
 	{
-		if ((previousFileVersion == null) || (previousFileVersion == ""))
+		if ((previousFileVersion == null) || (previousFileVersion.equals("")))
 			return false;
 		try {
+			path = removeProtocol(path);
 			com.dropbox.client2.DropboxAPI.Entry entry = mApi.metadata(path, 1, null, false, null);
 			return entry.hash != previousFileVersion;
 		} catch (DropboxException e) {
@@ -136,6 +137,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 	public String getCurrentFileVersionFast(String path)
 	{
 		try {
+			path = removeProtocol(path);
 			com.dropbox.client2.DropboxAPI.Entry entry = mApi.metadata(path, 1, null, false, null);
 			return entry.rev;
 		} catch (DropboxException e) {
@@ -147,6 +149,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 	public InputStream openFileForRead(String path) throws Exception
 	{
 		try {
+			path = removeProtocol(path);
 			return mApi.getFileStream(path, null);
 		} catch (DropboxException e) {
 			//System.out.println("Something went wrong: " + e);
@@ -158,6 +161,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 	{
 		ByteArrayInputStream bis = new ByteArrayInputStream(data);
 		try {
+			path = removeProtocol(path);
 			//TODO: it would be nice to be able to use the parent version with putFile()
 			mApi.putFileOverwrite(path, bis, data.length, null);
 		} catch (DropboxException e) {
@@ -231,7 +235,6 @@ public class DropboxFileStorage implements JavaFileStorage {
         edit.commit();
     }
 
-    //TODO: call when Unlinked Exception	
     private void clearKeys() {
         SharedPreferences prefs = mContext.getSharedPreferences(ACCOUNT_PREFS_NAME, 0);
         Editor edit = prefs.edit();
@@ -240,8 +243,7 @@ public class DropboxFileStorage implements JavaFileStorage {
     }
 
     private AndroidAuthSession buildSession() {
-    	//note: the SecretKeys class is not public because the App-Secret must be secret!
-        AppKeyPair appKeyPair = new AppKeyPair(APP_KEY, SecretKeys.DROPBOX_APP_SECRET);
+        AppKeyPair appKeyPair = new AppKeyPair(appKey, appSecret);
         AndroidAuthSession session;
 
         String[] stored = getKeys();
@@ -263,6 +265,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 	public void createFolder(String path) throws Exception {
 		try
 		{
+			path = removeProtocol(path);
 			mApi.createFolder(path);		
 		} 
 		catch (DropboxException e) {
@@ -274,6 +277,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 	public List<FileEntry> listFiles(String dirName) throws Exception {
 		try
 		{
+			dirName = removeProtocol(dirName);
 			com.dropbox.client2.DropboxAPI.Entry dirEntry = mApi.metadata(dirName, 0, null, true, null);
 			
 			if (dirEntry.isDeleted)
@@ -305,7 +309,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 		fileEntry.canWrite = true;
 		fileEntry.isDirectory = e.isDir;
 		fileEntry.sizeInBytes = e.bytes;
-		fileEntry.path = e.path;
+		fileEntry.path = getProtocolId()+"://"+ e.path;
 		//Log.d("JFS","fileEntry="+fileEntry);
 		Date lastModifiedDate = null;
 		if (e.modified != null)
@@ -322,6 +326,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 	public void delete(String path) throws Exception {
 		try
 		{
+			path = removeProtocol(path);
 		mApi.delete(path);
 		} catch (DropboxException e) {
 		     throw convertException(e);
@@ -334,8 +339,8 @@ public class DropboxFileStorage implements JavaFileStorage {
 	public FileEntry getFileEntry(String filename) throws Exception {
 		try
 		{
-			Log.d("JFS", "Hi!");
-			Log.d("JFS", "mApi = "+mApi);
+			filename = removeProtocol(filename);
+			Log.d("KP2AJ", "getFileEntry(), mApi = "+mApi+" filename="+filename);
 			com.dropbox.client2.DropboxAPI.Entry dbEntry = mApi.metadata(filename, 0, null, false, null);
 			Log.d("JFS", "dbEntry = "+dbEntry);
 			
@@ -348,6 +353,166 @@ public class DropboxFileStorage implements JavaFileStorage {
 			
 		     throw convertException(e);
 		}
+	}
+
+	@Override
+	public void startSelectFile(FileStorageSetupInitiatorActivity activity, boolean isForSave,
+			int requestCode) 
+	{
+		
+		String path = getProtocolId()+":///";
+		Log.d("KP2AJ", "startSelectFile "+path+", connected: "+path);
+		if (isConnected())
+		{
+			Intent intent = new Intent();
+			intent.putExtra(EXTRA_IS_FOR_SAVE, isForSave);
+			intent.putExtra(EXTRA_PATH, path);
+			activity.onImmediateResult(requestCode, RESULT_FILECHOOSER_PREPARED, intent);
+		}
+		else
+		{
+			activity.startSelectFileProcess(path, isForSave, requestCode);	
+		}
+
+		
+		
+	}
+
+	@Override
+	public String getProtocolId() {
+		return "dropbox";
+	}
+	
+	public boolean requiresSetup(String path)
+	{
+		return !isConnected();
+	}
+
+	@Override
+	public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode) {
+		if (isConnected())
+		{
+			Intent intent = new Intent();
+			intent.putExtra(EXTRA_PATH, path);
+			activity.onImmediateResult(requestCode, RESULT_FILEUSAGE_PREPARED, intent);
+		}
+		else
+		{
+			activity.startFileUsageProcess(path, requestCode);	
+		}
+		
+	}
+
+	@Override
+	public void onCreate(FileStorageSetupActivity activity, Bundle savedInstanceState) {
+
+		Log.d("KP2AJ", "OnCreate");
+		
+	}
+
+	@Override
+	public void onResume(FileStorageSetupActivity activity) {
+		
+		Log.d("KP2AJ", "OnResume. LoggedIn="+mLoggedIn);
+		if (mLoggedIn)
+		{
+			finishActivityWithSuccess(activity);
+			return;
+		}
+		
+		AndroidAuthSession session = mApi.getSession();
+
+        // The next part must be inserted in the onResume() method of the
+        // activity from which session.startAuthentication() was called, so
+        // that Dropbox authentication completes properly.
+        if (session.authenticationSuccessful()) {
+            try {
+                // Mandatory call to complete the auth
+                session.finishAuthentication();
+
+                // Store it locally in our app for later use
+                TokenPair tokens = session.getAccessTokenPair();
+                storeKeys(tokens.key, tokens.secret);
+                setLoggedIn(true);
+                
+                finishActivityWithSuccess(activity);
+                return;
+                
+            } catch (Throwable t) {
+                Log.i(TAG, "Error authenticating", t);
+            	Intent data = new Intent();
+            	data.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
+            	((Activity)activity).setResult(Activity.RESULT_CANCELED, data);
+            	((Activity)activity).finish();
+            	return;
+            }
+        }
+
+        JavaFileStorage.FileStorageSetupActivity storageSetupAct = (JavaFileStorage.FileStorageSetupActivity)activity;
+        
+        if (storageSetupAct.getState().containsKey("hasStartedAuth"))
+        {
+        	Log.i(TAG, "authenticating not succesful");
+        	Intent data = new Intent();
+        	data.putExtra(EXTRA_ERROR_MESSAGE, "authenticating not succesful");
+        	((Activity)activity).setResult(Activity.RESULT_CANCELED, data);
+        	((Activity)activity).finish();
+		}
+        else
+        {
+        	Log.d("KP2AJ", "Starting auth");
+        	mApi.getSession().startAuthentication(((Activity)activity));
+        	storageSetupAct.getState().putBoolean("hasStartedAuth", true);
+
+        }
+        
+		
+	}
+
+	private void finishActivityWithSuccess(FileStorageSetupActivity setupActivity) {
+		Log.d("KP2AJ", "Success with authentcating!");
+		Activity activity = (Activity)setupActivity;
+		
+		if (setupActivity.getProcessName().equals(PROCESS_NAME_FILE_USAGE_SETUP))
+		{
+			Intent data = new Intent();
+			data.putExtra(EXTRA_IS_FOR_SAVE, setupActivity.isForSave());
+			data.putExtra(EXTRA_PATH, setupActivity.getPath());
+			activity.setResult(RESULT_FILEUSAGE_PREPARED, data);
+			activity.finish();
+			return;
+		}
+		if (setupActivity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
+		{
+			Intent data = new Intent();
+			data.putExtra(EXTRA_PATH, setupActivity.getPath());
+			activity.setResult(RESULT_FILECHOOSER_PREPARED, data);
+			activity.finish();
+			return;
+		}	
+		
+		Log.w("KP2AJ", "Unknown process: " + setupActivity.getProcessName());
+		
+		
+	}
+
+	@Override
+	public void onStart(FileStorageSetupActivity activity) {
+		
+		
+	}
+
+	@Override
+	public void onActivityResult(FileStorageSetupActivity activity, int requestCode, int resultCode, Intent data) {
+		//nothing to do here
+		
+	}
+	
+	String removeProtocol(String path)
+	{
+		if (path == null)
+			return null;
+		return path.substring(getProtocolId().length()+3);
 	}
 
 }

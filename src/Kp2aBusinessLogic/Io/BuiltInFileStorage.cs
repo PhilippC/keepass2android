@@ -2,16 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 
@@ -89,8 +82,6 @@ namespace keepass2android.Io
 			return new BuiltInFileTransaction(ioc, useFileTransaction);
 		}
 
-		public IFileStorageSetup RequiredSetup { get { return null; } }
-
 		public class BuiltInFileTransaction : IWriteTransaction
 		{
 			private readonly FileTransactionEx _transaction;
@@ -153,6 +144,55 @@ namespace keepass2android.Io
 		public FileDescription GetFileDescription(IOConnectionInfo ioc)
 		{
 			//TODO
+			throw new NotImplementedException();
+		}
+
+		public bool RequiresSetup(IOConnectionInfo ioConnection)
+		{
+			return false;
+		}
+
+		public string IocToPath(IOConnectionInfo ioc)
+		{
+			return ioc.Path;
+		}
+
+		public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
+		{
+			if (protocolId != "file")
+				activity.PerformManualFileSelect(isForSave, requestCode, protocolId);
+			else
+			{
+				Intent intent = new Intent();
+				activity.IocToIntent(intent, new IOConnectionInfo() { Path = protocolId+"://"});
+				activity.OnImmediateResult(requestCode, (int) FileStorageResults.FileChooserPrepared, intent);
+			}
+		}
+
+		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode)
+		{
+			Intent intent = new Intent();
+			activity.IocToIntent(intent, ioc);
+			activity.OnImmediateResult(requestCode, (int) FileStorageResults.FileUsagePrepared, intent);
+		}
+
+		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnResume(IFileStorageSetupActivity activity)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnStart(IFileStorageSetupActivity activity)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data)
+		{
 			throw new NotImplementedException();
 		}
 	}

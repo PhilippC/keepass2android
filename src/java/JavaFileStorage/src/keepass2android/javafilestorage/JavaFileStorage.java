@@ -4,8 +4,36 @@ import java.io.InputStream;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 
 public interface JavaFileStorage {
+	
+	public static final String PROCESS_NAME_SELECTFILE = "SELECT_FILE";
+	public static final String PROCESS_NAME_FILE_USAGE_SETUP = "FILE_USAGE_SETUP";
+
+	public static final String EXTRA_PROCESS_NAME = "EXTRA_PROCESS_NAME";
+	public static final String EXTRA_PATH = "fileName"; //match KP2A PasswordActivity Ioc-Path Extra key
+	public static final String EXTRA_IS_FOR_SAVE = "IS_FOR_SAVE";
+	public static final String EXTRA_ERROR_MESSAGE = "EXTRA_ERROR_MESSAGE";
+
+	
+public interface FileStorageSetupInitiatorActivity
+{
+	void startSelectFileProcess(String path, boolean isForSave, int requestCode);
+	void startFileUsageProcess(String path, int requestCode);
+	void onImmediateResult(int requestCode, int result,	Intent intent);
+	Activity getActivity();
+}
+
+public interface FileStorageSetupActivity
+{
+	String getPath();
+	String getProcessName();
+	//int getRequestCode();
+	boolean isForSave();
+	Bundle getState();	
+}
 	
 
 public class FileEntry {
@@ -66,11 +94,26 @@ public class FileEntry {
 	
 }
 	
-	public boolean tryConnect(Activity activity);
+	//public boolean tryConnect(Activity activity);
 	
-	public void onResume();
+	//public void onResume();
+	
+	//public void onActivityResult(Activity activity, final int requestCode, final int resultCode, final Intent data);
     	
-	public boolean isConnected();
+	//public boolean isConnected();
+
+	public static int MAGIC_NUMBER_JFS = 874345; 
+	public static int RESULT_FULL_FILENAME_SELECTED = MAGIC_NUMBER_JFS+1;
+	public static int RESULT_FILECHOOSER_PREPARED = MAGIC_NUMBER_JFS+2;
+	public static int RESULT_FILEUSAGE_PREPARED = MAGIC_NUMBER_JFS+3;
+	
+	public boolean requiresSetup(String path);
+
+	public void startSelectFile(FileStorageSetupInitiatorActivity activity, boolean isForSave, int requestCode);
+	
+	public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode);
+	
+	public String getProtocolId();
 	
 	public boolean checkForFileChangeFast(String path, String previousFileVersion) throws Exception;
 	
@@ -87,5 +130,10 @@ public class FileEntry {
 	public FileEntry getFileEntry(String filename) throws Exception;
 	
 	public void delete(String path) throws Exception;
+	
+	public void onCreate(FileStorageSetupActivity activity, Bundle savedInstanceState);
+	public void onResume(FileStorageSetupActivity activity);
+	public void onStart(FileStorageSetupActivity activity);
+	public void onActivityResult(FileStorageSetupActivity activity, int requestCode, int resultCode, Intent data);
 	
 }

@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="23" android:versionName="0.8.6" package="keepass2android.keepass2android" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="24" android:versionName="0.9 preview" package="keepass2android.keepass2android" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
+	
+	<permission android:description="@string/permission_desc"
+			android:icon="@drawable/ic_launcher"
+            android:label="KP2A internal file browsing"
+            android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing"
+            android:protectionLevel="signature" />
+									 
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">
 		<activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
@@ -13,7 +20,20 @@
 		</activity>
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android.android-filechooser.localfile" android:exported="false" />
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android.android-filechooser.history" android:exported="false" />
-		<activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light" />
+		
+		<activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light"
+			android:permission="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing">
+			 <intent-filter>
+
+              <action android:name="android.intent.action.GET_CONTENT" />
+
+              <data android:mimeType="*/*" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.OPENABLE" />
+
+          </intent-filter>
+		</activity>
+		
 		<activity android:configChanges="keyboardHidden|orientation" android:label="@string/app_name" android:theme="@style/Base" android:name="keepass2android.PasswordActivity">
 			<intent-filter android:label="@string/app_name">
 				<action android:name="android.intent.action.VIEW" />
@@ -54,4 +74,5 @@
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
 </manifest>

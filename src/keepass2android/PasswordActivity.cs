@@ -31,7 +31,7 @@ using Android.Content.PM;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
-
+using keepass2android.Io;
 using MemoryStream = System.IO.MemoryStream;
 
 namespace keepass2android
@@ -189,6 +189,9 @@ namespace keepass2android
 						}
 					}
 					break;
+				case (Result)FileStorageResults.FileUsagePrepared:
+					PeformLoadDatabase();
+					break;
 			}
 			
 		}
@@ -272,26 +275,11 @@ namespace keepass2android
 			Window.SetSoftInputMode(SoftInput.StateVisible);
 
 			Button confirmButton = (Button)FindViewById(Resource.Id.pass_ok);
-			confirmButton.Click += (sender, e) => {
-				String pass = GetEditText(Resource.Id.password);
-				String key = GetEditText(Resource.Id.pass_keyfile);
-				if (pass.Length == 0 && key.Length == 0)
+			confirmButton.Click += (sender, e) =>
 				{
-					ErrorMessage(Resource.String.error_nopass);
-					return;
-				}
-
-				CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
-				App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
-
-				Handler handler = new Handler();
-				LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, pass, key, new AfterLoad(handler, this));
-				_loadDbTask = null; // prevent accidental re-use
-
-				SetNewDefaultFile();
-
-				new ProgressTask(App.Kp2a, this, task).Run();
-			};
+					App.Kp2a.GetFileStorage(_ioConnection)
+					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult), _ioConnection, 0);
+				};
 			
 			/*CheckBox checkBox = (CheckBox) FindViewById(Resource.Id.show_password);
 			// Show or hide password
@@ -332,6 +320,32 @@ namespace keepass2android
 			};
 			
 			RetrieveSettings();
+		}
+
+		private void PeformLoadDatabase()
+		{
+			String pass = GetEditText(Resource.Id.password);
+			String key = GetEditText(Resource.Id.pass_keyfile);
+			if (pass.Length == 0 && key.Length == 0)
+			{
+				ErrorMessage(Resource.String.error_nopass);
+				return;
+			}
+
+			CheckBox cbQuickUnlock = (CheckBox) FindViewById(Resource.Id.enable_quickunlock);
+			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
+
+			//avoid password being visible while loading:
+			_showPassword = false;
+			MakePasswordMaskedOrVisible();
+
+			Handler handler = new Handler();
+			LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, pass, key, new AfterLoad(handler, this));
+			_loadDbTask = null; // prevent accidental re-use
+
+			SetNewDefaultFile();
+
+			new ProgressTask(App.Kp2a, this, task).Run();
 		}
 
 		private void MakePasswordMaskedOrVisible()
@@ -470,7 +484,7 @@ namespace keepass2android
 					//check if FileStorage setup is all done. Usually this should not occur here because the setup is
 					//performed in FileSelectActivity, but e.g. if the user unlinks from Dropbox saving might fail and 
 					//the user is returned here.
-					if (App.Kp2a.GetFileStorage(_ioConnection).RequiredSetup != null)
+					if (App.Kp2a.GetFileStorage(_ioConnection).RequiresSetup(_ioConnection))
 					{
 						GoToFileSelectActivity();
 					}
