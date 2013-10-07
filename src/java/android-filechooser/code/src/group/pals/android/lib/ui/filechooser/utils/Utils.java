@@ -35,7 +35,7 @@ public class Utils {
     
     public static boolean doLog()
     {
-    	return true;
+    	return false;
     	//return BuildConfig.DEBUG; //not working with Mono for Android
     	
     }

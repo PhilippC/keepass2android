@@ -2,7 +2,6 @@ using System;
 using Android.App;
 using Android.Content;
 using KeePassLib.Serialization;
-using Keepass2android.Javafilestorage;
 using keepass2android.Io;
 using keepass2android.fileselect;
 
@@ -11,17 +10,22 @@ namespace keepass2android
 	public class FileStorageSetupInitiatorActivity: 
 #if !EXCLUDE_JAVAFILESTORAGE
 		Java.Lang.Object
-		,IJavaFileStorageFileStorageSetupInitiatorActivity
+		,Keepass2android.Javafilestorage.IJavaFileStorageFileStorageSetupInitiatorActivity
+		,
 #endif
-		, IFileStorageSetupInitiatorActivity
+ IFileStorageSetupInitiatorActivity
 	{
 		private readonly Activity _activity;
 		private readonly Action<int, Result, Intent> _onActivityResult;
+		private readonly Action<string> _startManualFileSelect;
 
-		public FileStorageSetupInitiatorActivity(Activity activity, Action<int,Result,Intent> onActivityResult)
+		public FileStorageSetupInitiatorActivity(Activity activity, 
+			Action<int,Result,Intent> onActivityResult,
+			Action<String> startManualFileSelect)
 		{
 			_activity = activity;
 			_onActivityResult = onActivityResult;
+			_startManualFileSelect = startManualFileSelect;
 		}
 
 		public void StartSelectFileProcess(IOConnectionInfo ioc, bool isForSave, int requestCode)
@@ -60,7 +64,7 @@ namespace keepass2android
 
 		public void PerformManualFileSelect(bool isForSave, int requestCode, string protocolId)
 		{
-			throw new NotImplementedException();
+			_startManualFileSelect(protocolId + "://");
 		}
 
 		public void StartFileUsageProcess(string p0, int p1)

@@ -337,9 +337,9 @@
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="ChangeLog_0_9">
-		<b>Version 0.9</b>\n
-		* Support for Dropbox (Keepass2Android regular edition only)\n
-		* Integrated custom filechooser (based on android-filechooser by HBA)
+		<b>Version 0.9 preview</b>\n
+		* Integrated Dropbox support (read/write databases; Keepass2Android regular edition only)\n
+		* Integrated custom file browser (based on android-filechooser by HBA)
 	</string>
 
 	

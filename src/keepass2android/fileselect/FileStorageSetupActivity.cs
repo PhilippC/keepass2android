@@ -10,16 +10,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using KeePassLib.Serialization;
-using Keepass2android.Javafilestorage;
 using keepass2android.Io;
-using JavaFileStorage = Keepass2android.Javafilestorage.JavaFileStorage;
 
 namespace keepass2android.fileselect
 {
 	[Activity(Label = "@string/filestorage_setup_title",Theme="@style/Base")]
 	public class FileStorageSetupActivity : Activity, IFileStorageSetupActivity
 #if !EXCLUDE_JAVAFILESTORAGE
-		,IJavaFileStorageFileStorageSetupActivity
+		,Keepass2android.Javafilestorage.IJavaFileStorageFileStorageSetupActivity
 #endif
 	{
 		protected override void OnCreate(Bundle bundle)

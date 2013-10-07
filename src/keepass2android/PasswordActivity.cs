@@ -278,7 +278,7 @@ namespace keepass2android
 			confirmButton.Click += (sender, e) =>
 				{
 					App.Kp2a.GetFileStorage(_ioConnection)
-					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult), _ioConnection, 0);
+					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection, 0);
 				};
 			
 			/*CheckBox checkBox = (CheckBox) FindViewById(Resource.Id.show_password);

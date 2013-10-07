@@ -445,7 +445,7 @@ namespace keepass2android
 
 			if (resultCode == KeePass.ExitFileStorageSelectionOk)
 			{
-#if !EXCLUDE_FILECHOOSER
+
 				string protocolId = data.GetStringExtra("protocolId");
 
 				if (protocolId == "androidget")
@@ -456,18 +456,16 @@ namespace keepass2android
 				}
 				else
 				{
-					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this, OnActivityResult), false, 0, protocolId);
+					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this, 
+						OnActivityResult,
+						defaultPath =>
+							{
+								ShowFilenameDialog(true, false, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
+								                    Intents.RequestCodeFileBrowseForOpen);
+							}
+						), false, 0, protocolId);
 				}
 
-#else
-				Toast.MakeText(this, "TODO: make this more flexible.", ToastLength.Long).Show();
-				IOConnectionInfo ioc = new IOConnectionInfo
-				{
-					Path = Environment.ExternalStorageDirectory+"/keepass/keepass.kdbx"
-				};
-
-				LaunchPasswordActivityForIoc(ioc);
-#endif
 				
 			}
 			
@@ -515,7 +513,7 @@ namespace keepass2android
 #endif
 			}
 		}
-
+		#if !EXCLUDE_FILECHOOSER
 		private void StartFileChooser(string defaultPath)
 		{
 			Kp2aLog.Log("FSA: defaultPath="+defaultPath);
@@ -531,7 +529,7 @@ namespace keepass2android
 			StartActivityForResult(i, Intents.RequestCodeFileBrowseForOpen);
 		}
 
-
+#endif
 		protected override void OnResume()
 		{
 			base.OnResume();

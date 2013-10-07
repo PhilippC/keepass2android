@@ -148,7 +148,7 @@ namespace keepass2android
 		{
 			const string fileProviderAuthority = "keepass2android.keepass2android.android-filechooser.localfile";
 
-
+#if !EXCLUDE_FILECHOOSER
 			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(act,
 			                                                                                            fileProviderAuthority,
 			                                                                                            defaultPath);
@@ -156,6 +156,9 @@ namespace keepass2android
 				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.save_dialog", true);
 
 			act.StartActivityForResult(i, requestCodeBrowse);
+#else
+			Toast.MakeText(act, "File Chooser excluded!",ToastLength.Long).Show();
+#endif
 		}
 
 		public static string IntentToFilename(Intent data, Context ctx)
