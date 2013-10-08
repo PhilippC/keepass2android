@@ -1,7 +1,8 @@
 package keepass2android.javafilestorage;
 
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,21 +12,19 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.drive.Drive;
-import com.google.api.services.drive.Drive.Children;
 import com.google.api.services.drive.DriveScopes;
-import com.google.api.services.drive.model.ChildList;
-import com.google.api.services.drive.model.ChildReference;
+import com.google.api.services.drive.Drive.Files;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
-public class GoogleDriveFileStorage
-{};
-/*/
+/*public class GoogleDriveFileStorage
+{};*/
+
 public class GoogleDriveFileStorage implements JavaFileStorage {
 
 	private static Drive service;
@@ -35,35 +34,9 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	static final int REQUEST_ACCOUNT_PICKER = MAGIC_GDRIVE+1;
 	static final int REQUEST_AUTHORIZATION = MAGIC_GDRIVE+2;
 	
-	class TestConnectionTask extends AsyncTask<Object, Void, Void>
-	{
-		@Override
-		protected Void doInBackground(Object... params) {
-			
-			Activity activity = (Activity) params[0];
-
-			//try to list files:
-			//todo: is there a simpler way to test if the user is authorized?
-			try
-			{
-				
-				
-				return true;
-			}
-			catch (UserRecoverableAuthIOException e) {
-				  activity.startActivityForResult(e.getIntent(), REQUEST_AUTHORIZATION);
-			}
-			catch (Throwable t)
-			{
-				Intent data = new Intent();
-            	data.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
-            	activity.setResult(Activity.RESULT_CANCELED, data);
-            	activity.finish();
-			}
-
-		}
-	}
+	final static private String TAG = "KP2AJ";
 	
+	/*
 	private static void printFilesInFolder(Drive service, String folderId)
 		      throws IOException {
 		    Children.List request = service.files().list();
@@ -84,44 +57,10 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		             request.getPageToken().length() > 0);
 		  }
 	
-	public boolean tryConnect(Activity activity) {
-		
-		List<String> scopes = new ArrayList<String>();
-	    scopes.add(DriveScopes.DRIVE);
-		GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(activity, scopes);
-
-		String storedAccountName = PreferenceManager.getDefaultSharedPreferences(activity).getString("GDRIVE_ACCOUNT_NAME", null);
-		
-		if (storedAccountName != null)
-		{
-			credential.setSelectedAccountName(storedAccountName);
-			//try to list files:
-			//todo: is there a simpler way to test if the user is authorized?
-			try
-			{
-				
-				return true;
-			}
-			catch (UserRecoverableAuthIOException e) {
-				  activity.startActivityForResult(e.getIntent(), REQUEST_AUTHORIZATION);
-			}
-
-			catch (Throwable t)
-			{
-				return false;
-			}
-
-		}
-		else
-		{
-			
-			activity.startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
-			return false;
-		}
 		
 	}
 
-	
+	*/
 
 	@Override
 	public boolean checkForFileChangeFast(String path,
@@ -133,7 +72,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	@Override
 	public String getCurrentFileVersionFast(String path) {
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
@@ -176,44 +115,149 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 
 	  private Drive getDriveService(GoogleAccountCredential credential) {
 	    return new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential)
+	    .setApplicationName("JFSTest")
 	        .build();
 	  }
 
 	@Override
-	public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
+	public void onActivityResult(final JavaFileStorage.FileStorageSetupActivity setupAct, int requestCode, int resultCode, Intent data) {
+		Log.d(TAG, "ActivityResult: "+requestCode+"/"+resultCode);
 		switch (requestCode) {
 			case REQUEST_ACCOUNT_PICKER:
-			
+				Log.d(TAG, "ActivityResult: REQUEST_ACCOUNT_PICKER");
 		      if (resultCode == Activity.RESULT_OK && data != null && data.getExtras() != null) {
 		        String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
 		        if (accountName != null) {
-		          //credential.setSelectedAccountName(accountName);
-		        	todo
+		        	final Activity activity = (Activity)setupAct;
+		        	final boolean[] result = { false };
+		        	Log.d(TAG, "Account name="+accountName);
+		        	try {
+		        		testAuthAndReturn(setupAct, accountName, activity, result);
+
+						
+					} catch (UnsupportedEncodingException e) {
+						Log.e(TAG, "UnsupportedEncodingException: "+e.toString());
+						Intent retData = new Intent();
+						retData.putExtra(EXTRA_ERROR_MESSAGE, e.getMessage());
+		            	((Activity)activity).setResult(Activity.RESULT_CANCELED, retData);
+		            	((Activity)activity).finish();
+					}
 		        	return;
 		        }
 		      }
-		      todo
+		      Log.i(TAG, "Error selecting account");
+            	//Intent retData = new Intent();
+            	//retData.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
+            	((Activity)setupAct).setResult(Activity.RESULT_CANCELED, data);
+            	((Activity)setupAct).finish();
 		      
 		    case REQUEST_AUTHORIZATION:
 		    	 if (resultCode == Activity.RESULT_OK) {
-	    	        // App is authorized
-		    		 todo
+	    	        finishActivityWithSuccess(setupAct);
 	    	      } else {
-	    	        // User denied access, show him the account chooser again
-	    	        activity.startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+	    	    	  Log.i(TAG, "Error authenticating");
+	              	//Intent retData = new Intent();
+	              	//retData.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
+	              	((Activity)setupAct).setResult(Activity.RESULT_CANCELED, data);
+	              	((Activity)setupAct).finish();
 	    	      }
+		    
 		}
 		
 	}
 
+	private void testAuthAndReturn(
+			final JavaFileStorage.FileStorageSetupActivity setupAct,
+			String accountName, final Activity activity, final boolean[] result)
+			throws UnsupportedEncodingException {
+		setupAct.getState().putString(EXTRA_PATH, getProtocolId()+"://"+URLEncoder.encode(accountName, "ISO-8859-1")+"/");
+		
+		Thread thread = new Thread() {
+
+		    @Override
+		    public void run() {
+		    	
+		    	//try to list files:
+				//todo: is there a simpler way to test if the user is authorized?
+				try
+				{
+					Log.d(TAG,"createCred");
+					GoogleAccountCredential credential = createCredential(activity);
+					Log.d(TAG,"get files");
+					Files.List request = getDriveService(credential).files().list();
+					Log.d(TAG,"get files exec");
+					request.execute();
+					Log.d(TAG,"ok!");
+					result[0] = true;
+				}
+				catch (UserRecoverableAuthIOException e) {
+					Log.d(TAG,"UserRecoverableAuthIOException ");
+					  activity.startActivityForResult(e.getIntent(), REQUEST_AUTHORIZATION);
+				}
+				catch (Throwable t)
+				{
+					Log.d(TAG, "Exception: " +t.getMessage());
+					t.printStackTrace();
+					Intent data = new Intent();
+		        	data.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
+		        	activity.setResult(Activity.RESULT_CANCELED, data);
+		        	activity.finish();
+				}
+
+		    }// run()
+		};
+		thread.start();
+		try {
+		    thread.join();
+		    if (result[0])
+		    {
+		    	finishActivityWithSuccess(setupAct);
+		    }
+		} catch (InterruptedException e) {
+			Intent retData = new Intent();
+			retData.putExtra(EXTRA_ERROR_MESSAGE, e.getMessage());
+			activity.setResult(Activity.RESULT_CANCELED, retData);
+			activity.finish();
+		}
+	}
+	
+	private void finishActivityWithSuccess(FileStorageSetupActivity setupActivity) {
+		Log.d("KP2AJ", "Success with authentcating!");
+		Activity activity = (Activity)setupActivity;
+		
+		if (setupActivity.getProcessName().equals(PROCESS_NAME_FILE_USAGE_SETUP))
+		{
+			Intent data = new Intent();
+			data.putExtra(EXTRA_IS_FOR_SAVE, setupActivity.isForSave());
+			data.putExtra(EXTRA_PATH, setupActivity.getPath());
+			activity.setResult(RESULT_FILEUSAGE_PREPARED, data);
+			activity.finish();
+			return;
+		}
+		if (setupActivity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
+		{
+			Intent data = new Intent();
+			data.putExtra(EXTRA_PATH, setupActivity.getState().getString(EXTRA_PATH));
+			activity.setResult(RESULT_FILECHOOSER_PREPARED, data);
+			activity.finish();
+			return;
+		}	
+		
+		Log.w("KP2AJ", "Unknown process: " + setupActivity.getProcessName());
+		
+		
+	}
+
+	
+
 	@Override
-	public void startSelectFile(Activity activity, boolean isForSave,
+	public void startSelectFile(JavaFileStorage.FileStorageSetupInitiatorActivity activity, boolean isForSave,
 			int requestCode) {
 		((JavaFileStorage.FileStorageSetupInitiatorActivity)(activity)).startSelectFileProcess(getProtocolId()+"://", isForSave, requestCode);		
 	}
 
 	@Override
-	public void prepareFileUsage(Activity activity, String path, int requestCode) {
+	public void prepareFileUsage(JavaFileStorage.FileStorageSetupInitiatorActivity activity, String path, int requestCode) {
 		((JavaFileStorage.FileStorageSetupInitiatorActivity)(activity)).startFileUsageProcess(path, requestCode);
 		
 	}
@@ -227,36 +271,89 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 
 
 	@Override
-	public void onResume(Activity activity) {
+	public void onResume(JavaFileStorage.FileStorageSetupActivity setupAct) {
 
-		JavaFileStorage.FileStorageSetupActivity setupAct = (FileStorageSetupActivity) activity;
-		
-		if (activity.isFinishing())
-			return;
-		
-		if (!hasAccount(setupAct))
-		{
-			List<String> scopes = new ArrayList<String>();
-		    scopes.add(DriveScopes.DRIVE);
-			GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(activity, scopes);
-
-			activity.startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
-			
-		}
-		else
-		{
-			
-			
-			
-		}
-		
 	}
 
 	@Override
-	public void onStart(Activity activity) {
+	public void onStart(final JavaFileStorage.FileStorageSetupActivity setupAct) {
+		
+		Activity activity = (Activity)setupAct;
+		
+		if (PROCESS_NAME_SELECTFILE.equals(setupAct.getProcessName()))
+		{
+			GoogleAccountCredential credential = createCredential(activity);
+				
+			Log.d(TAG, "starting REQUEST_ACCOUNT_PICKER");
+			activity.startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+		}
+		
+		if (PROCESS_NAME_FILE_USAGE_SETUP.equals(setupAct.getProcessName()))
+		{
+			GoogleAccountCredential credential = createCredential(activity);
+
+			String storedAccountName = PreferenceManager.getDefaultSharedPreferences(activity).getString("GDRIVE_ACCOUNT_NAME", null);
+			
+			if (storedAccountName != null)
+			{
+				credential.setSelectedAccountName(storedAccountName);
+				Thread thread = new Thread() {
+
+		            @Override
+		            public void run() {
+		            	
+		            	Activity activity = (Activity)setupAct;
+		            	
+		            	//try to list files:
+		    			//todo: is there a simpler way to test if the user is authorized?
+		    			try
+		    			{
+		    				service.files().list().execute();
+		    			}
+		    			catch (UserRecoverableAuthIOException e) {
+		    				  activity.startActivityForResult(e.getIntent(), REQUEST_AUTHORIZATION);
+		    			}
+		    			catch (Throwable t)
+		    			{
+		    				Intent data = new Intent();
+		                	data.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
+		                	activity.setResult(Activity.RESULT_CANCELED, data);
+		                	activity.finish();
+		    			}
+
+		            }// run()
+		        };
+		        thread.start();
+		        try {
+		            thread.join();
+		        } catch (InterruptedException e) {
+    				Intent data = new Intent();
+                	data.putExtra(EXTRA_ERROR_MESSAGE, e.getMessage());
+                	activity.setResult(Activity.RESULT_CANCELED, data);
+                	activity.finish();
+		        }
+			}
+		}
+	}
+
+	private GoogleAccountCredential createCredential(Activity activity) {
+		List<String> scopes = new ArrayList<String>();
+		scopes.add(DriveScopes.DRIVE);
+		GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(activity, scopes);
+		return credential;
+	}
+
+	@Override
+	public boolean requiresSetup(String path) {
+		//always send the user through the prepare file usage workflow if he needs to authorize 
+		return true;
+	}
+
+	@Override
+	public void onCreate(FileStorageSetupActivity activity,
+			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		
 	}
 
 }
-*/

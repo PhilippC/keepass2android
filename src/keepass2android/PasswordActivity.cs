@@ -481,15 +481,8 @@ namespace keepass2android
 				{
 					//database not yet loaded.
 
-					//check if FileStorage setup is all done. Usually this should not occur here because the setup is
-					//performed in FileSelectActivity, but e.g. if the user unlinks from Dropbox saving might fail and 
-					//the user is returned here.
-					if (App.Kp2a.GetFileStorage(_ioConnection).RequiresSetup(_ioConnection))
-					{
-						GoToFileSelectActivity();
-					}
 					//check if pre-loading is enabled but wasn't started yet:
-					else if (_loadDbTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+					if (_loadDbTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
 					{
 						// Create task to kick off file loading while the user enters the password
 						_loadDbTask = Task.Factory.StartNew<MemoryStream>(LoadDbFile);
