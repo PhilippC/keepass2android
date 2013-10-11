@@ -69,7 +69,7 @@ namespace keepass2android
 						// Override the message shown with the last (hopefully most recent) inner exception
 					Kp2aLog.Log("Exception: " + message);
 				}
-				Finish(false, UiStringKey.ErrorOcurred + " " + message);
+				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message);
 				return;
 			}
 			catch (OldFormatException )
@@ -80,7 +80,7 @@ namespace keepass2android
 			catch (Exception e)
 			{
 				Kp2aLog.Log("Exception: " + e);
-				Finish(false, UiStringKey.ErrorOcurred + " " + e.Message);
+				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message);
 				return;
 			}
 			
