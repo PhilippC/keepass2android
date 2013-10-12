@@ -43,6 +43,7 @@ namespace keepass2android
 		public const Result ExitReloadDb = Result.FirstUser+6;
 		public const Result ExitClose = Result.FirstUser + 7;
 		public const Result ExitFileStorageSelectionOk = Result.FirstUser + 8;
+		public const Result ResultOkPasswordGenerator = Result.FirstUser + 9;
 
 		AppTask _appTask;
 

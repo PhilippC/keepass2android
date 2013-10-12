@@ -66,132 +66,6 @@ namespace keepass2android
 
 		public const string NoForwardToPasswordActivity = "NoForwardToPasswordActivity";
 
-		void ShowFilenameDialog(bool showOpenButton, bool showCreateButton, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
-		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.SetView(LayoutInflater.Inflate(Resource.Layout.file_selection_filename, null));
-			Dialog dialog = builder.Create();
-			dialog.Show();
-
-			Button openButton = (Button)dialog.FindViewById(Resource.Id.open);
-			Button createButton = (Button)dialog.FindViewById(Resource.Id.create);
-			TextView enterFilenameDetails = (TextView)dialog.FindViewById(Resource.Id.label_open_by_filename_details);
-			openButton.Visibility = showOpenButton ? ViewStates.Visible : ViewStates.Gone;
-			createButton.Visibility = showCreateButton ? ViewStates.Visible : ViewStates.Gone;
-			// Set the initial value of the filename
-			EditText editFilename = (EditText)dialog.FindViewById(Resource.Id.file_filename);
-			editFilename.Text = defaultFilename;
-			enterFilenameDetails.Text = detailsText;
-			enterFilenameDetails.Visibility = enterFilenameDetails.Text == "" ? ViewStates.Gone : ViewStates.Visible;
-
-			// Open button
-			
-			openButton.Click += ( sender, evt) => {
-				String fileName = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
-				
-				IOConnectionInfo ioc = new IOConnectionInfo
-				    { 
-					Path = fileName
-				};
-				
-				LaunchPasswordActivityForIoc(ioc);
-			};
-			
-			
-			
-			// Create button
-			createButton.Click += (sender, evt) => {
-				String filename = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
-
-				
-				//TODO: allow non-local files?
-				
-				// Make sure file name exists
-				if (filename.Length == 0)
-				{
-					Toast
-						.MakeText(this,
-						          Resource.String.error_filename_required,
-						          ToastLength.Long).Show();
-					return;
-				}
-				
-				// Try to create the file
-				Java.IO.File file = new Java.IO.File(filename);
-				try
-				{
-					if (file.Exists())
-					{
-						Toast.MakeText(this,
-						               Resource.String.error_database_exists,
-						               ToastLength.Long).Show();
-						return;
-					}
-					Java.IO.File parent = file.ParentFile;
-					
-					if (parent == null || (parent.Exists() && ! parent.IsDirectory))
-					{
-						Toast.MakeText(this,
-						               Resource.String.error_invalid_path,
-						               ToastLength.Long).Show();
-						return;
-					}
-					
-					if (! parent.Exists())
-					{
-						// Create parent dircetory
-						if (! parent.Mkdirs())
-						{
-							Toast.MakeText(this,
-							               Resource.String.error_could_not_create_parent,
-							               ToastLength.Long).Show();
-							return;
-							
-						}
-					}
-					
-					file.CreateNewFile();
-				} catch (Java.IO.IOException ex)
-				{
-					Toast.MakeText(
-						this,
-						GetText(Resource.String.error_file_not_create) + " "
-						+ ex.LocalizedMessage,
-						ToastLength.Long).Show();
-					return;
-				}
-				
-				// Prep an object to collect a password once the database has been created
-				CollectPassword collectPassword = new CollectPassword(
-					new LaunchGroupActivity(IOConnectionInfo.FromPath(filename), this), this);
-				
-				// Create the new database
-				CreateDb create = new CreateDb(App.Kp2a, this, IOConnectionInfo.FromPath(filename), collectPassword, true);
-				ProgressTask createTask = new ProgressTask(
-                    App.Kp2a,
-					this, create);
-				createTask.Run();
-				
-				
-			};
-			
-			Button cancelButton = (Button)dialog.FindViewById(Resource.Id.fnv_cancel);
-			cancelButton.Click += (sender, e) => dialog.Dismiss();
-			
-			ImageButton browseButton = (ImageButton)dialog.FindViewById(Resource.Id.browse_button);
-			if (!showBrowseButton)
-			{
-				browseButton.Visibility = ViewStates.Invisible;
-			}
-			browseButton.Click += (sender, evt) => {
-				string filename = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
-				
-				Util.ShowBrowseDialog(filename, this, requestCodeBrowse, showCreateButton);
-				
-			};
-
-		}		
-
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -248,7 +122,11 @@ namespace keepass2android
 
 			//CREATE NEW
 			Button createNewButton = (Button)FindViewById(Resource.Id.start_create);
-			EventHandler createNewButtonClick = (sender, e) => ShowFilenameDialog(false, true, true, Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path), "", Intents.RequestCodeFileBrowseForCreate);
+			EventHandler createNewButtonClick = (sender, e) =>
+				{
+					//ShowFilenameDialog(false, true, true, Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path), "", Intents.RequestCodeFileBrowseForCreate)
+					StartActivityForResult(typeof (CreateDatabaseActivity), 0);
+				};
 			createNewButton.Click += createNewButtonClick;
 
 			/*//CREATE + IMPORT
@@ -301,55 +179,8 @@ namespace keepass2android
 			
 		}
 		
-		private class LaunchGroupActivity : FileOnFinish {
-		    readonly FileSelectActivity _activity;
-			private readonly IOConnectionInfo _ioc;
-			
-			public LaunchGroupActivity(IOConnectionInfo ioc, FileSelectActivity activity): base(null) {
-
-				_activity = activity;
-				_ioc = ioc;
-			}
-			
-			public override void Run() {
-				if (Success) {
-					// Update the ongoing notification
-					_activity.StartService(new Intent(_activity, typeof(OngoingNotificationsService)));
-
-
-					if (_activity.RememberRecentFiles())
-					{
-						// Add to recent files
-						FileDbHelper dbHelper = App.Kp2a.FileDbHelper;
-
-					
-						//TODO: getFilename always returns "" -> bug?
-						dbHelper.CreateFile(_ioc, Filename);
-					}
-
-					GroupActivity.Launch(_activity, _activity.AppTask);
-					
-				} else {
-					App.Kp2a.GetFileStorage(_ioc).Delete(_ioc);
-					
-				}
-			}
-		}
 		
-		private class CollectPassword: FileOnFinish {
-		    readonly FileSelectActivity _activity;
-		    readonly FileOnFinish _fileOnFinish;
-			public CollectPassword(FileOnFinish finish,FileSelectActivity activity):base(finish) {
-				_activity = activity;
-				_fileOnFinish = finish;
-			}
-			
-			public override void Run() {
-				SetPasswordDialog password = new SetPasswordDialog(_activity, _fileOnFinish);
-				password.Show();
-			}
-			
-		}
+		
 		
 		private void FillData()
 		{
@@ -428,8 +259,19 @@ namespace keepass2android
 			LaunchPasswordActivityForIoc(ioc);
 
 		}
+		private void OnOpenButton(object sender, EventArgs evt)
+		{
+			Dialog dialog = (Dialog) sender;
+			String fileName = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
 
+			IOConnectionInfo ioc = new IOConnectionInfo
+			{
+				Path = fileName
+			};
 
+			LaunchPasswordActivityForIoc(ioc);
+			
+		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
@@ -460,7 +302,8 @@ namespace keepass2android
 						OnActivityResult,
 						defaultPath =>
 							{
-								ShowFilenameDialog(true, false, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
+
+								Util.ShowFilenameDialog(this, OnOpenButton, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
 								                    Intents.RequestCodeFileBrowseForOpen);
 							}
 						), false, 0, protocolId);
@@ -490,10 +333,7 @@ namespace keepass2android
 						LaunchPasswordActivityForIoc(ioc);
 					}
 
-					if (requestCode == Intents.RequestCodeFileBrowseForCreate)
-					{
-						ShowFilenameDialog(false, true, true, filename, "", Intents.RequestCodeFileBrowseForCreate);
-					}
+					
 				}
 				
 			}
@@ -521,7 +361,6 @@ namespace keepass2android
 			if (defaultPath.StartsWith("file://"))
 			{
 				fileProviderAuthority = "keepass2android.keepass2android.android-filechooser.localfile";
-				defaultPath = Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path);
 			}
 			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, fileProviderAuthority,
 			                                                                                            defaultPath);
@@ -664,10 +503,6 @@ namespace keepass2android
 			Android.Database.ICursor cursor = ca.Cursor;
 			cursor.Requery();
 		}
-
-		
-
-		
 	}
 }
 

@@ -45,6 +45,7 @@ namespace keepass2android
 		public const String KeyRefreshPos = "refresh_pos";
 		public const String KeyCloseAfterCreate = "close_after_create";
 
+		private static Typeface _passwordFont;
 
 		public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask) {
 			Intent i = new Intent(act, typeof(EntryActivity));
@@ -205,7 +206,7 @@ namespace keepass2android
 			TextView valueView = (TextView)LayoutInflater.Inflate(Resource.Layout.entry_extrastring_value, null);
 			if (value != null)
 				valueView.Text = value;
-			valueView.Typeface = Typeface.Monospace;
+			SetPasswordTypeface(valueView);
 			if (isProtected)
 				RegisterProtectedTextView(valueView);
 
@@ -399,6 +400,8 @@ namespace keepass2android
 			PopulateText(Resource.Id.entry_url, Resource.Id.entry_url_label, Entry.Strings.ReadSafe(PwDefs.UrlField));
 			PopulateText(Resource.Id.entry_password, Resource.Id.entry_password_label, Entry.Strings.ReadSafe(PwDefs.PasswordField));
 			RegisterProtectedTextView(FindViewById<TextView>(Resource.Id.entry_password));
+			SetPasswordTypeface(FindViewById<TextView>(Resource.Id.entry_password));
+			
 			
 			PopulateText(Resource.Id.entry_created, Resource.Id.entry_created_label, getDateTime(Entry.CreationTime));
 			PopulateText(Resource.Id.entry_modified, Resource.Id.entry_modified_label, getDateTime(Entry.LastModificationTime));
@@ -423,7 +426,14 @@ namespace keepass2android
 
 			SetPasswordStyle();
 		}
-		
+
+		private void SetPasswordTypeface(TextView textView)
+		{
+			if (_passwordFont == null)
+				_passwordFont = Typeface.CreateFromAsset(Assets, "DejaVuSansMono.ttf" );
+			textView.Typeface = _passwordFont;
+		}
+
 		private void PopulateText(int viewId, int headerViewId,int resId) {
 			View header = FindViewById(headerViewId);
 			TextView tv = (TextView)FindViewById(viewId);

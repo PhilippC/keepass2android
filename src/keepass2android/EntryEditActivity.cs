@@ -40,7 +40,7 @@ namespace keepass2android
 		public const String KeyParent = "parent";
 		
 		public const int ResultOkIconPicker = (int)Result.FirstUser + 1000;
-		public const int ResultOkPasswordGenerator = ResultOkIconPicker + 1;
+		
 
 		const string IntentContinueWithEditing = "ContinueWithEditing";
 
@@ -594,9 +594,9 @@ namespace keepass2android
 		
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
-			switch ((int)resultCode)
+			switch (resultCode)
 			{
-			case ResultOkIconPicker:
+			case (Result)ResultOkIconPicker:
 				State.SelectedIconId = (PwIcon) data.Extras.GetInt(IconPickerActivity.KeyIconId);
 				State.SelectedCustomIconId = PwUuid.Zero;
 				String customIconIdString = data.Extras.GetString(IconPickerActivity.KeyCustomIconId);
@@ -607,7 +607,7 @@ namespace keepass2android
 				Reload();
 				break;
 				
-			case ResultOkPasswordGenerator:
+			case KeePass.ResultOkPasswordGenerator:
 				String generatedPassword = data.GetStringExtra("keepass2android.password.generated_password");
 				
 				byte[] password = StrUtil.Utf8.GetBytes(generatedPassword);
@@ -618,7 +618,7 @@ namespace keepass2android
 				State.EntryModified = true;
 				Reload();
 				break;
-			case (int)Result.Ok:
+			case Result.Ok:
 					if (requestCode == Intents.RequestCodeFileBrowseForBinary)
 					{
 						string filename = Util.IntentToFilename(data, this);
@@ -635,7 +635,7 @@ namespace keepass2android
 
 
 				break;
-			case (int)Result.Canceled:
+			case Result.Canceled:
 				Reload();
 				break;
 			}

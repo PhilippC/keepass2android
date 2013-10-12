@@ -87,8 +87,8 @@
 	</style>
     
 	<style name="BottomBarActionButton" parent="android:style/Widget.Holo.Light.ActionButton">
-	    <item name="android:background">#c8c8c8</item>
-    </style>
+	    <item name="android:background">?android:attr/selectableItemBackground</item>
+	</style>
     
 	<style name="TextAppearance_EditEntry_Small">
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
@@ -130,6 +130,26 @@
         <item name="android:paddingRight">8dip</item>
         <item name="android:layout_marginBottom">-12dip</item>
     </style>
+
+	<style name="TextAppearance_SubElement">
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+		<item name="android:textSize">18sp</item>
+		<item name="android:textColor">#FF333333</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginRight">12dip</item>
+		<item name="android:layout_marginLeft">12dip</item>
+	</style>
+
+	<style name="TextAppearance_Help">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:textSize">24sp</item>
+		<item name="android:padding">12sp</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginRight">12dip</item>
+		<item name="android:layout_marginLeft">12dip</item>
+	</style>
     
     
     <style name="EditEntryButton">

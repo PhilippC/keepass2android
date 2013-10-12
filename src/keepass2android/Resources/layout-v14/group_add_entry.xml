@@ -39,6 +39,8 @@
             style="@style/BottomBarActionButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackground"
+			android:clickable="true"
             android:layout_weight="1">
             <TextView
                 style="?android:actionBarTabTextStyle"

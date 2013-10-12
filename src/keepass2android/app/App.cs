@@ -42,6 +42,7 @@ namespace keepass2android
 	public static class AppNames
 	{
 		public const string AppName = "@string/app_name_nonet";
+		public const int AppNameResource = Resource.String.app_name_nonet;
 		public const string AppNameShort = "@string/short_app_name_nonet";
 		public const string AppLauncherTitle = "@string/short_app_name_nonet";
 		public const string PackagePart = "keepass2android_nonet";
@@ -56,6 +57,7 @@ namespace keepass2android
 	public static class AppNames
 	{
 		public const string AppName = "@string/app_name";
+		public const int AppNameResource = Resource.String.app_name;
 		public const string AppNameShort = "@string/short_app_name";
 		public const string AppLauncherTitle = "@string/app_name";
 		public const string PackagePart = "keepass2android";
@@ -377,7 +379,7 @@ namespace keepass2android
 
 			}
 			//TODO: catch!
-			throw new Exception("Unknown protocol " + iocInfo.Path);
+			throw new NoFileStorageFoundException("Unknown protocol " + iocInfo.Path);
 		}
 
 		public IEnumerable<IFileStorage> FileStorages

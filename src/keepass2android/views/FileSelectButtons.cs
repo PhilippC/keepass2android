@@ -64,7 +64,7 @@ namespace keepass2android.view
 				
 
 			} else {
-				tv.Visibility = ViewStates.Invisible;
+				tv.Visibility = ViewStates.Gone;
 
 			}			
 		

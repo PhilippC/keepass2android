@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+			xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+			android:layout_margin="12dip">
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+		<TextView
+					android:id="@+id/version_title"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@id/divider1"
+					style="@style/InfoHeader"
+					android:text="@string/database_location" />
+
+		<keepass2android.views.TextWithHelp 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			app:help_text="@string/help_database_location"
+			android:text="@string/hint_database_location"
+			/>
+		
+
+		<LinearLayout
+			android:orientation="horizontal"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content">
+
+			<ImageView
+				android:id="@+id/filestorage_logo"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_storage_file"
+				android:padding="5dp"
+					
+				/>
+
+			<TextView
+		android:id="@+id/filestorage_label"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:text="Local file (TODO!)"
+		android:textSize="16dp" >
+			</TextView>
+		</LinearLayout>
+
+			<TextView
+			android:id="@+id/label_filename"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="/keepass/keepass.kdbx"
+			android:layout_marginLeft="18dp"
+			 />
+		
+		<Button android:id="@+id/btn_change_location" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/button_change_location"
+			style="@style/TextAppearance_SubElement"
+			/>
+			
+
+			<TextView
+					android:id="@+id/password_title"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@id/divider1"
+					style="@style/InfoHeader"
+					android:text="@string/master_password" />
+
+		
+		<keepass2android.views.TextWithHelp 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			app:help_text="@string/help_master_password"
+			android:text="@string/hint_master_password"
+			/>
+		
+
+		
+		<RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			
+		<Button
+			android:id="@+id/generate_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:text="@string/ellipsis" />
+			<ImageButton
+        android:id="@+id/toggle_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_view"
+		android:layout_alignTop="@id/generate_button"
+        android:layout_toLeftOf="@id/generate_button"
+         />
+		<EditText
+			android:id="@+id/entry_password"
+			style="@style/TextAppearance_EditEntry_Value"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignTop="@id/generate_button"
+			android:layout_toLeftOf="@id/toggle_password"
+			android:hint="@string/hint_pass"
+			android:inputType="textPassword"
+			android:singleLine="true"
+			android:typeface="monospace" />
+		<!-- Confirm Password -->
+		<EditText
+			android:id="@+id/entry_confpassword"
+			style="@style/TextAppearance_EditEntry_Value"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/entry_password"
+			android:hint="@string/hint_conf_pass"
+			android:inputType="textPassword"
+			android:singleLine="true"
+			android:typeface="monospace" />
+
+		</RelativeLayout>
+
+		<TextView
+					android:id="@+id/keyfile_title"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@id/divider1"
+					style="@style/InfoHeader"
+					android:text="@string/key_file" />
+
+	<keepass2android.views.TextWithHelp 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			app:help_text="@string/help_key_file"
+			android:text="@string/hint_key_file"
+			/>
+	 />
+
+		<CheckBox
+        android:id="@+id/use_keyfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_marginLeft="12dp"
+        android:text="@string/use_key_file" />
+		<TextView
+	android:id="@+id/keyfile_filename"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	style="@style/TextAppearance_SubElement"
+	android:text="/sdcard/bla/blubb.txt"
+	 />
+
+	<Button android:id="@+id/btn_create"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/create_database"
+			/>
+
+	</LinearLayout>
+</ScrollView>

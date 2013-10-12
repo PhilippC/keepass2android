@@ -30,12 +30,23 @@ namespace keepass2android
 		private readonly bool _dontSave;
 		private readonly Context _ctx;
         private readonly IKp2aApp _app;
-		
+		private CompositeKey _key;
+
 		public CreateDb(IKp2aApp app, Context ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave): base(finish) {
 			_ctx = ctx;
 			_ioc = ioc;
 			_dontSave = dontSave;
             _app = app;
+		}
+
+		public CreateDb(IKp2aApp app, Context ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, CompositeKey key)
+			: base(finish)
+		{
+			_ctx = ctx;
+			_ioc = ioc;
+			_dontSave = dontSave;
+			_app = app;
+			_key = key;
 		}
 		
 
@@ -44,10 +55,13 @@ namespace keepass2android
 			Database db = _app.CreateNewDatabase();
 
 			db.KpDatabase = new KeePassLib.PwDatabase();
-			//Key will be changed/created immediately after creation:
-			CompositeKey tempKey = new CompositeKey();
-			db.KpDatabase.New(_ioc, tempKey);
-
+			
+			if (_key == null)
+			{
+				_key = new CompositeKey(); //use a temporary key which should be changed after creation
+			}
+			
+			db.KpDatabase.New(_ioc, _key);
 
 			db.KpDatabase.KeyEncryptionRounds = DefaultEncryptionRounds;
 			db.KpDatabase.Name = "Keepass2Android Password Database";

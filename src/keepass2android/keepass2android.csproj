@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -78,6 +78,8 @@
     <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="app\NoFileStorageFoundException.cs" />
+    <Compile Include="CreateDatabaseActivity.cs" />
     <Compile Include="fileselect\FileChooserFileProvider.cs" />
     <Compile Include="fileselect\FileStorageSetupActivity.cs" />
     <Compile Include="fileselect\FileStorageSetupInitiatorActivity.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="views\GroupRootView.cs" />
     <Compile Include="PwGroupListAdapter.cs" />
     <Compile Include="views\FileStorageView.cs" />
+    <Compile Include="views\Kp2aShortHelpView.cs" />
     <Compile Include="views\PwGroupView.cs" />
     <Compile Include="settings\PrefsUtil.cs" />
     <Compile Include="views\PwEntryView.cs" />
@@ -150,9 +153,13 @@
     <Compile Include="Utils\Spr\SprEngine.cs" />
     <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
     <Compile Include="Utils\EntryUtil.cs" />
+    <Compile Include="views\TextWithHelp.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\searchable.xml" />
+    <AndroidAsset Include="Assets\fontawesome-webfont.ttf" />
+    <AndroidAsset Include="Assets\DejaVuSansMono.ttf" />
+    <AndroidAsset Include="Assets\LICENSE_dejavu" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Resources\drawable\Thumbs.db">
       <Visible>False</Visible>
@@ -654,7 +661,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <Folder Include="Resources\color\" />
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
@@ -840,5 +847,13 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_keepass2android_nonet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\create_database.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\text_with_help.xml" />
   </ItemGroup>
 </Project>

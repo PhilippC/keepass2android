@@ -22,8 +22,10 @@ using Android.App;
 using Android.Content;
 using Android.Database;
 using Android.Provider;
+using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using KeePassLib.Serialization;
 using Uri = Android.Net.Uri;
 
 namespace keepass2android
@@ -202,6 +204,52 @@ namespace keepass2android
 		{
 			//Actionbar is available since 11, but the layout has its own "pseudo actionbar" until 13
 			return ((int)Android.OS.Build.VERSION.SdkInt >= 14) && (activity.ActionBar != null);
+		}
+
+
+		public static void ShowFilenameDialog(Activity activity, EventHandler onOpen, EventHandler onCreate, bool showBrowseButton,
+		                                string defaultFilename, string detailsText, int requestCodeBrowse)
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			builder.SetView(activity.LayoutInflater.Inflate(Resource.Layout.file_selection_filename, null));
+			Dialog dialog = builder.Create();
+			dialog.Show();
+
+			Button openButton = (Button) dialog.FindViewById(Resource.Id.open);
+			Button createButton = (Button) dialog.FindViewById(Resource.Id.create);
+			TextView enterFilenameDetails = (TextView) dialog.FindViewById(Resource.Id.label_open_by_filename_details);
+			openButton.Visibility = onOpen != null ? ViewStates.Visible : ViewStates.Gone;
+			createButton.Visibility = onCreate != null? ViewStates.Visible : ViewStates.Gone;
+			// Set the initial value of the filename
+			EditText editFilename = (EditText) dialog.FindViewById(Resource.Id.file_filename);
+			editFilename.Text = defaultFilename;
+			enterFilenameDetails.Text = detailsText;
+			enterFilenameDetails.Visibility = enterFilenameDetails.Text == "" ? ViewStates.Gone : ViewStates.Visible;
+
+			// Open button
+			if (onOpen != null)
+				openButton.Click += onOpen;
+
+			// Create button
+			if (onCreate != null)
+				createButton.Click += onCreate;
+
+			Button cancelButton = (Button) dialog.FindViewById(Resource.Id.fnv_cancel);
+			cancelButton.Click += (sender, e) => dialog.Dismiss();
+
+			ImageButton browseButton = (ImageButton) dialog.FindViewById(Resource.Id.browse_button);
+			if (!showBrowseButton)
+			{
+				browseButton.Visibility = ViewStates.Invisible;
+			}
+			browseButton.Click += (sender, evt) =>
+				{
+					string filename = ((EditText) dialog.FindViewById(Resource.Id.file_filename)).Text;
+
+					Util.ShowBrowseDialog(filename, activity, requestCodeBrowse, onCreate != null);
+
+				};
+
 		}
 	}
 }

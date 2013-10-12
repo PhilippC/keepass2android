@@ -15,10 +15,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
 using Android.Content;
 using Android.OS;
-using Android.App;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -28,6 +26,10 @@ namespace keepass2android
 	/// </summary>
 	/// Checks in OnResume whether the timeout occured and the database must be locked/closed.
 	public class LockCloseActivity : LockingActivity {
+		
+		//the check if the database was locked/closed can be disabled by the caller for activities
+		//which may be used "outside" the database (e.g. GeneratePassword for creating a master password)
+		protected const string NoLockCheck = "NO_LOCK_CHECK";
 
 		private IOConnectionInfo _ioc;
 		private BroadcastReceiver _intentReceiver;
@@ -37,6 +39,9 @@ namespace keepass2android
 			base.OnCreate(savedInstanceState);
 			_ioc = App.Kp2a.GetDb().Ioc;
 
+			if (Intent.GetBooleanExtra(NoLockCheck, false))
+				return;
+
 			_intentReceiver = new LockCloseActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
@@ -45,7 +50,13 @@ namespace keepass2android
 
 		protected override void OnDestroy()
 		{
-			UnregisterReceiver(_intentReceiver);
+			if (Intent.GetBooleanExtra(NoLockCheck, false) == false)
+			{
+				UnregisterReceiver(_intentReceiver);
+			}
+			
+
+			
 
 			base.OnDestroy();
 		}
@@ -54,6 +65,9 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
+
+			if (Intent.GetBooleanExtra(NoLockCheck, false))
+				return;
 
 			if (TimeoutHelper.CheckShutdown(this, _ioc))
 				return;

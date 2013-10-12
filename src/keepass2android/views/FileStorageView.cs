@@ -32,15 +32,10 @@ namespace keepass2android.view
 {
 	public sealed class FileStorageView : ClickView
 	{
-		private readonly Activity _activity;
-
 		private readonly TextView _textView;
 		private readonly TextView _textviewDetails;
-		private int _pos;
 
-		private int? _defaultTextColor;
 
-		
 		public FileStorageView(IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
@@ -50,8 +45,6 @@ namespace keepass2android.view
 		public FileStorageView(Activity activity, string protocolId, int pos)
 			: base(activity)
 		{
-			_activity = activity;
-			
 			View ev = Inflate(activity, Resource.Layout.entry_list_entry, null);
 			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
 			_textView.TextSize = PrefsUtil.GetListTextSize(activity);
@@ -69,9 +62,6 @@ namespace keepass2android.view
 		
 		private void PopulateView(View ev, string protocolId, int pos)
 		{
-			
-			_pos = pos;
-			
 			ImageView iv = (ImageView)ev.FindViewById(Resource.Id.entry_icon);
 
 			Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);

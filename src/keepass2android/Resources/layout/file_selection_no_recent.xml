@@ -12,12 +12,34 @@
 		<ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-				
+			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+				<ImageView
+			android:id="@+id/imglogo"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginBottom="12dp"
+			android:scaleType="fitXY"
+			android:src="@drawable/ic_keepass2android" />
+				<TextView
+        android:id="@+id/label_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+		android:layout_gravity="center"
+        android:text="Welcome to Keepass2Android!"
+        android:visibility="visible" />
+
+
 				<keepass2android.view.FileSelectButtons
 					android:id="@+id/file_select"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content" />
-			
+			</LinearLayout>
         </ScrollView>
     </LinearLayout>
 <!-- Small hack because I need to include a list since this is a list activity -->

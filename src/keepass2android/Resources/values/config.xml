@@ -18,6 +18,19 @@
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+
+	<attr name="help_text" format="string" />
+	<declare-styleable name="Kp2aShortHelpView">
+		<attr name="android:text"/>
+		<attr name="help_text" />
+	</declare-styleable>
+	<declare-styleable name="TextWithHelp">
+		<attr name="android:text"/>
+		<attr name="help_text" />
+	</declare-styleable>
+
+	<string name="icon_info">&#xf05a;</string>
+
   <string name="library_name"></string>
     <string name="default_file_path">/keepass/keepass.kdbx</string>
     <string name="donate_url"><![CDATA[http://philipp.crocoll.net/donate.php?lang=%1$s&app=%2$s]]></string>

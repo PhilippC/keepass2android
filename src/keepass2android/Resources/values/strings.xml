@@ -153,6 +153,7 @@
   <string name="pass_filename">KeePass database filename</string>
   <string name="password_title">Enter database password</string>
   <string name="progress_create">Creating new database…</string>
+  <string name="create_database">Create database</string>
   <string name="progress_title">Working…</string>
   <string name="remember_keyfile_summary">Remembers the location of keyfiles</string>
   <string name="remember_keyfile_title">Save keyfile</string>
@@ -333,8 +334,24 @@
 
 	<string name="filestorage_setup_title">File access initialization</string>
 
+	<string name="database_location">Database location</string>
+	<string name="help_database_location">You can store your database locally on your Android device or in the cloud (non-Offline version only). Keepass2Android makes the database available even if you are offline. As the database is securely encrypted with AES 256 bit encryption, nobody will be able to access your passwords except you. We recommend to select Dropbox: It\'s accessible on all your devices and even provides backups of previous file versions.</string>
+	<string name="hint_database_location">Select where you want to store the database:</string>
+	<string name="button_change_location">Change location</string>
+
+	<string name="master_password">Master password</string>
+	<string name="help_master_password">Your database is encrypted with the password you enter here. Choose a strong password in order to keep the database safe! Tip: Make up a sentence or two and use the first letters of the words as password. Include punctuation marks.</string>
+	<string name="hint_master_password">Select a master password to protect your database:</string>
+
+	<string name="key_file">Key file</string>
+	<string name="help_key_file">A key file is basically a password stored in a file. Key files are typically stronger than master passwords, because the key can be a lot more complicated; however it\'s also harder to keep them secret. If you store your database in the cloud, don\'t store the key file there as well! This would make it completely useless! Important: Do not change the contents of the key file after creating the database!</string>
+	<string name="hint_key_file">Choose if you want to use a key file in addition to your master password:</string>
+	<string name="use_key_file">Use key file</string>
+
+	<string name="error_adding_keyfile">Error while adding the keyfile!</string>
 
 	<string name="ChangeLog_title">Change log</string>
+	
 
 	<string name="ChangeLog_0_9">
 		<b>Version 0.9 preview</b>\n

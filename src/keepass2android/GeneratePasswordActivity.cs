@@ -34,6 +34,15 @@ namespace keepass2android
 			act.StartActivityForResult(i, 0);
 		}
 
+		public static void LaunchWithoutLockCheck(Activity act)
+		{
+			Intent i = new Intent(act, typeof(GeneratePasswordActivity));
+
+			i.PutExtra(NoLockCheck, true);
+
+			act.StartActivityForResult(i, 0);
+		}
+
 		
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
@@ -69,7 +78,7 @@ namespace keepass2android
 					Intent intent = new Intent();
 					intent.PutExtra("keepass2android.password.generated_password", password.Text);
 					
-					SetResult((Result)EntryEditActivity.ResultOkPasswordGenerator, intent);
+					SetResult(KeePass.ResultOkPasswordGenerator, intent);
 					
 					Finish();
 			};
