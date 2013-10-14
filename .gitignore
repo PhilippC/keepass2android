@@ -155,3 +155,14 @@ Thumbs.db
 /src/java/android-filechooser/code/createProjectZip.bat
 /src/java/android-filechooser/code/projectzip/project.zip
 /src/java/android-filechooser/code/unused.txt
+
+/src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs
+
+/src/AndroidFileChooserBinding/bin/Release
+
+/src/AndroidFileChooserBinding/obj/Release
+
+/src/AppCompatV7Binding/bin/Release
+
+/src/AppCompatV7Binding/obj/Release
+/src/java/workspace/DriveTest
