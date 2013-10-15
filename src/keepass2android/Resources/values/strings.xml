@@ -331,6 +331,8 @@
 	<string name="filestoragename_https">HTTPS (WebDav)</string>
 	<string name="filestoragename_dropbox">Dropbox</string>
 	<string name="filestoragename_gdrive">Google Drive</string>
+	<string name="filestoragename_skydrive">SkyDrive</string>
+	<string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
 
 	<string name="filestorage_setup_title">File access initialization</string>
 
@@ -354,9 +356,12 @@
 	
 
 	<string name="ChangeLog_0_9">
-		<b>Version 0.9 preview</b>\n
+		<b>Version 0.9 preview 2</b>\n
 		* Integrated Dropbox support (read/write databases; Keepass2Android regular edition only)\n
-		* Integrated custom file browser (based on android-filechooser by HBA)
+		* Integrated custom file browser (based on android-filechooser by HBA)\n
+		* Improved user interface for creating new databases\n
+		* Included custom font DejaVu Sans Mono for displaying passwords\n
+		* Bug fixes
 	</string>
 
 	
