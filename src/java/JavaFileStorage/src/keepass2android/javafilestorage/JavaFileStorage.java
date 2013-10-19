@@ -43,6 +43,7 @@ public class FileEntry {
 	public boolean canRead;
 	public boolean canWrite;
 	public long sizeInBytes;
+	public String displayName;
 	
 	public FileEntry()
 	{
@@ -123,9 +124,14 @@ public class FileEntry {
 	
 	public void uploadFile(String path, byte[] data, boolean writeTransactional) throws Exception;
 	
-	public void createFolder(String path) throws Exception;
+	//creates a folder "newDirName" in parentPath and returns the path of the new folder
+	public String createFolder(String parentPath, String newDirName) throws Exception;
 	
-	public List<FileEntry> listFiles(String dirName) throws Exception;
+	//returns the path of a file "newFileName" in the folder "parentPath"
+	//this may create the file if this is required to get a path (if a UUID is part of the file path)
+	public String createFilePath(String parentPath, String newFileName) throws Exception;
+	
+	public List<FileEntry> listFiles(String parentPath) throws Exception;
 	
 	public FileEntry getFileEntry(String filename) throws Exception;
 	

@@ -262,26 +262,43 @@ public class DropboxFileStorage implements JavaFileStorage {
     }
 
 	@Override
-	public void createFolder(String path) throws Exception {
+	public String createFolder(String parentPath, String newDirName) throws Exception {
 		try
 		{
-			path = removeProtocol(path);
-			mApi.createFolder(path);		
+			String path = parentPath;
+			if (!path.endsWith("/"))
+				path = path + "/";
+			path = path + newDirName;
+			
+			String pathWithoutProtocol = removeProtocol(path);
+			mApi.createFolder(pathWithoutProtocol);
+			return path;
 		} 
 		catch (DropboxException e) {
 		    throw convertException(e);
 		}
 	}
+	
+	@Override
+	public String createFilePath(String parentPath, String newFileName) throws Exception {
+		String path = parentPath;
+		if (!path.endsWith("/"))
+			path = path + "/";
+		path = path + newFileName;
+		
+		return path;
+	}
+
 
 	@Override
-	public List<FileEntry> listFiles(String dirName) throws Exception {
+	public List<FileEntry> listFiles(String parentPath) throws Exception {
 		try
 		{
-			dirName = removeProtocol(dirName);
-			com.dropbox.client2.DropboxAPI.Entry dirEntry = mApi.metadata(dirName, 0, null, true, null);
+			parentPath = removeProtocol(parentPath);
+			com.dropbox.client2.DropboxAPI.Entry dirEntry = mApi.metadata(parentPath, 0, null, true, null);
 			
 			if (dirEntry.isDeleted)
-				throw new FileNotFoundException("Directory "+dirName+" is deleted!");
+				throw new FileNotFoundException("Directory "+parentPath+" is deleted!");
 			
 			List<FileEntry> result = new ArrayList<FileEntry>();
 			
@@ -310,6 +327,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 		fileEntry.isDirectory = e.isDir;
 		fileEntry.sizeInBytes = e.bytes;
 		fileEntry.path = getProtocolId()+"://"+ e.path;
+		fileEntry.displayName = e.path.substring(e.path.lastIndexOf("/")+1);
 		//Log.d("JFS","fileEntry="+fileEntry);
 		Date lastModifiedDate = null;
 		if (e.modified != null)
