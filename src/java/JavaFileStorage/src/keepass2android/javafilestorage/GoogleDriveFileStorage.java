@@ -139,7 +139,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		}
 		
 		//make sure the path exists
-		private void verify() throws FileNotFoundException {
+		private void verify() throws FileNotFoundException, UnsupportedEncodingException {
 			
 			if (mAccountLocalPath.equals(""))
 				return;
@@ -151,12 +151,18 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 			String parentId = accountData.mRootFolderId;
 			for (String part: parts)
 			{
-				String id = part.substring(part.lastIndexOf(NAME_ID_SEP)+NAME_ID_SEP.length());
+				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
+				if (indexOfSeparator < 0)
+					throw new FileNotFoundException("invalid path " + mAccountLocalPath);
+				String id = part.substring(indexOfSeparator+NAME_ID_SEP.length());
+				String name = decode(part.substring(0, indexOfSeparator));
 				FileSystemEntryData thisFolder = accountData.mFileSystemEntryCache.get(id);
 				if (thisFolder == null)
 					throw new FileNotFoundException("couldn't find id " + id + " being part of "+ mAccountLocalPath+" in GDrive account " + mAccount);
 				if (thisFolder.parentIds.contains(parentId) == false)
 					throw new FileNotFoundException("couldn't find parent id " + parentId + " as parent of "+thisFolder.displayName +" in  "+ mAccountLocalPath+" in GDrive account " + mAccount);
+				if (thisFolder.displayName.equals(name) == false)
+					throw new FileNotFoundException("Name of "+id+" changed from "+name+" to "+thisFolder.displayName +" in  "+ mAccountLocalPath+" in GDrive account " + mAccount);
 				
 				parentId = id;				
 			}
