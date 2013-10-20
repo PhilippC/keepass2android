@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
-import com.dropbox.client2.exception.DropboxUnlinkedException;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
@@ -73,7 +73,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	{
 		Drive drive;
 		
-		HashMap<String /*fileId*/, FileSystemEntryData> mFileSystemEntryCache;
+		HashMap<String /*fileId*/, FileSystemEntryData> mFolderCache;
 
 		protected String mRootFolderId;
 	};
@@ -132,7 +132,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 			{
 				//the folders cache might be out of date -> rebuild and try again:
 				AccountData accountData = mAccountData.get(mAccount);
-				accountData.mFileSystemEntryCache = buildFoldersCache(mAccount);
+				accountData.mFolderCache = buildFoldersCache(mAccount);
 				
 				verify();
 			}
@@ -149,16 +149,27 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 			AccountData accountData = mAccountData.get(mAccount);
 			
 			String parentId = accountData.mRootFolderId;
-			for (String part: parts)
+			
+			for (int i=0;i<parts.length;i++)
 			{
+				String part = parts[i];
 				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
 				if (indexOfSeparator < 0)
 					throw new FileNotFoundException("invalid path " + mAccountLocalPath);
 				String id = part.substring(indexOfSeparator+NAME_ID_SEP.length());
 				String name = decode(part.substring(0, indexOfSeparator));
-				FileSystemEntryData thisFolder = accountData.mFileSystemEntryCache.get(id);
+				FileSystemEntryData thisFolder = accountData.mFolderCache.get(id);
 				if (thisFolder == null)
-					throw new FileNotFoundException("couldn't find id " + id + " being part of "+ mAccountLocalPath+" in GDrive account " + mAccount);
+				{
+					if (i== parts.length-1)
+					{
+						//not all files are cached
+						thisFolder =  tryAddFileToCache(this);
+					}
+					//check if it's still null
+					if (thisFolder == null)
+						throw new FileNotFoundException("couldn't find id " + id + " being part of "+ mAccountLocalPath+" in GDrive account " + mAccount);
+				}
 				if (thisFolder.parentIds.contains(parentId) == false)
 					throw new FileNotFoundException("couldn't find parent id " + parentId + " as parent of "+thisFolder.displayName +" in  "+ mAccountLocalPath+" in GDrive account " + mAccount);
 				if (thisFolder.displayName.equals(name) == false)
@@ -213,6 +224,34 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 			return false;
 		return currentVersion.equals(previousFileVersion) == false;
 	}
+
+	public FileSystemEntryData tryAddFileToCache(GDrivePath path) {
+		FileSystemEntryData thisFile = new FileSystemEntryData();
+		
+		File fl;
+		try {
+			fl = getDriveService(path.getAccount()).files().get(path.getGDriveId()).execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		thisFile.id = fl.getId();
+		thisFile.displayName = fl.getTitle();
+		
+		for (ParentReference parent: fl.getParents())
+		{
+			thisFile.parentIds.add(parent.getId());				
+		}
+		mAccountData.get(path.getAccount()).mFolderCache.put(thisFile.id, thisFile);
+		try {
+			Log.d(TAG, "Added "+path.getFullPath()+" to cache");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return thisFile;
+	}
+
 
 	@Override
 	public String getCurrentFileVersionFast(String path) {
@@ -301,6 +340,13 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 			File file = getDriveService(parentGdrivePath.getAccount()).files().insert(body).execute();
 			
 			Log.d(TAG, "created folder "+newDirName+" in "+parentPath+". id: "+file.getId());
+
+			//add to cache to avoid network traffic if this folder is accessed (which is likely to happen soon)
+			FileSystemEntryData newCacheEntry = new FileSystemEntryData();
+			newCacheEntry.displayName = newDirName;
+			newCacheEntry.id = file.getId();
+			newCacheEntry.parentIds.add(parentGdrivePath.getGDriveId());
+			mAccountData.get(parentGdrivePath.getAccount()).mFolderCache.put(file.getId(), newCacheEntry);
 	
 			return new GDrivePath(parentPath, file).getFullPath();
 		}
@@ -435,6 +481,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		try
 		{
 			driveService.files().delete(gdrivePath.getGDriveId()).execute();
+			mAccountData.get(gdrivePath.getAccount()).mFolderCache.remove(gdrivePath.getGDriveId());
 		}
 		catch (Exception e)
 		{
@@ -590,7 +637,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 					newAccountData.drive = createDriveService(accountName, activity);
 					mAccountData.put(accountName, newAccountData);
 					Log.d(TAG, "Added account data for " + accountName);
-					newAccountData.mFileSystemEntryCache = buildFoldersCache(accountName);
+					newAccountData.mFolderCache = buildFoldersCache(accountName);
 					
 					About about = newAccountData.drive.about().get().execute();
 					newAccountData.mRootFolderId = about.getRootFolderId();
@@ -648,26 +695,25 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 
 	private HashMap<String,FileSystemEntryData> buildFoldersCache(String accountName) throws IOException {
 
-		HashMap<String, FileSystemEntryData> fileSystemEntryCache = new HashMap<String, GoogleDriveFileStorage.FileSystemEntryData>();
+		HashMap<String, FileSystemEntryData> folderCache = new HashMap<String, GoogleDriveFileStorage.FileSystemEntryData>();
 		
-		FileList folders=getDriveService(accountName).files().list().setQ("trashed=false and hidden=false").execute();
+		FileList folders=getDriveService(accountName).files().list().setQ("mimeType='"+FOLDER_MIME_TYPE+"' and trashed=false and hidden=false")
+				.setFields("items(id,title,parents),nextPageToken")
+				.execute();
 		for(File fl: folders.getItems()){
 			
-			FileSystemEntryData thisFileSystemEntry = new FileSystemEntryData();
-			thisFileSystemEntry.id = fl.getId();
-			thisFileSystemEntry.displayName = fl.getTitle();
+			FileSystemEntryData thisFolder = new FileSystemEntryData();
+			thisFolder.id = fl.getId();
+			thisFolder.displayName = fl.getTitle();
 			
-			Log.v("JFS"+" fOLDER name:",fl.getTitle());
-			Log.v("JFS"+" fOLDER id:",fl.getId());
 			for (ParentReference parent: fl.getParents())
 			{
-				Log.v("JFS"+" parent id:",parent.getId());
-				thisFileSystemEntry.parentIds.add(parent.getId());				
+				thisFolder.parentIds.add(parent.getId());				
 			}
-			fileSystemEntryCache.put(thisFileSystemEntry.id, thisFileSystemEntry);
+			folderCache.put(thisFolder.id, thisFolder);
 		}
 
-		return fileSystemEntryCache;
+		return folderCache;
 
 	}
 
