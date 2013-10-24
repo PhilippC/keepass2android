@@ -113,19 +113,17 @@ namespace keepass2android
 				pwDatabase.Open(databaseData ?? fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
 				LastFileVersion = fileVersion;
 			}
-			catch (Exception)
+			catch (InvalidCompositeKeyException e)
 			{
 				if ((password == "") && (keyfile != null))
 				{
 					//if we don't get a password, we don't know whether this means "empty password" or "no password"
 					//retry without password:
 					compositeKey.RemoveUserKey(compositeKey.GetUserKey(typeof (KcpPassword)));
-					if (databaseData != null)
-					{
-						databaseData.Seek(0, SeekOrigin.Begin);
-					}
 					var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
-					pwDatabase.Open(databaseData ?? fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
+					//don't reuse the memory stream databaseData: it's already closed.
+					//We could try to avoid reading the file again here, but probably the case is rare enough so this is ok.
+					pwDatabase.Open(fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
 					LastFileVersion = fileVersion;				}
 				else throw;
 			}
