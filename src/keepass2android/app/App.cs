@@ -392,6 +392,7 @@ namespace keepass2android
 						{
 #if !EXCLUDE_JAVAFILESTORAGE
 							new DropboxFileStorage(Application.Context, this),
+							new GoogleDriveFileStorage(Application.Context, this),
 #endif
 							new BuiltInFileStorage()
 						};

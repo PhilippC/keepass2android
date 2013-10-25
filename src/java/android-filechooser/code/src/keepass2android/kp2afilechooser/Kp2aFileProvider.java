@@ -268,8 +268,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	                return null;
 	            }
 	            
-	            String fname = getFilenameFromPath(parentPath);
-
+	            FileEntry e = this.getFileEntryCached(parentPath);
 	
 	            matrixCursor = BaseFileProviderUtils.newBaseFileCursor();
 	
@@ -284,14 +283,14 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	                            getAuthority())
 	                    .buildUpon().appendPath(parentPath)
 	                    .build().toString());
-	            newRow.add(parentPath);
-	            newRow.add(fname);
-	            newRow.add(true); //can read
-	            newRow.add(true); //can write
+	            newRow.add(e.path);
+	            newRow.add(e.displayName);
+	            newRow.add(e.canRead); //can read
+	            newRow.add(e.canWrite); //can write
 	            newRow.add(0);
 	            newRow.add(type);
 	            newRow.add(0);
-	            newRow.add(FileUtils.getResIcon(type, fname));
+	            newRow.add(FileUtils.getResIcon(type, e.displayName));
 	            return matrixCursor;
 	        }
           	
@@ -312,14 +311,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         return matrixCursor;
     }// doAnswerApiCommand()
 
-    protected String getFilenameFromPath(String path) {
-    	path = removeTrailingSlash(path);
-    	int lastSlashPos = path.lastIndexOf("/");
-    	//if path is root, return its name. empty is ok
-    	if (lastSlashPos == -1)
-    		return path;
-    	return path.substring(lastSlashPos+1);
-	}
+    
 /*
 	private String addProtocol(String path) {
 		if (path == null)
@@ -418,9 +410,10 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
                                 Boolean.toString(hasMoreFiles[0])).build()
                         .toString());
                 newRow.add(dirName);
-                newRow.add(getFilenameFromPath(dirName));
+                String displayName = getFileEntryCached(dirName).displayName;
+                newRow.add(displayName);
                 
-                Log.d(CLASSNAME, "Returning name " + getFilenameFromPath(dirName)+" for " +dirName);
+                Log.d(CLASSNAME, "Returning name " + displayName+" for " +dirName);
             }
         }
 
@@ -455,7 +448,9 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 		        .buildUpon().appendPath(f.path)
 		        .build().toString());
 		newRow.add(f.path);
-		newRow.add(getFilenameFromPath(f.path));
+		if (f.displayName == null)
+			Log.w("KP2AJ", "displayName is null for " + f.path);
+		newRow.add(f.displayName);
 		newRow.add(f.canRead ? 1 : 0);
 		newRow.add(f.canWrite ? 1 : 0);
 		newRow.add(f.sizeInBytes);
@@ -464,7 +459,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 			newRow.add(f.lastModifiedTime);
 		else 
 			newRow.add(null);
-		newRow.add(FileUtils.getResIcon(type, getFilenameFromPath(f.path)));
+		newRow.add(FileUtils.getResIcon(type, f.displayName));
 		return newRow;
 	}
 
@@ -563,13 +558,13 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 		        .buildUpon().appendPath(filename)
 		        .build().toString());
 		newRow.add(filename);
-		newRow.add(getFilenameFromPath(filename));
+		newRow.add(filename);
 		newRow.add(0);
 		newRow.add(0);
 		newRow.add(0);
 		newRow.add(type);
 		newRow.add(null);
-		newRow.add(FileUtils.getResIcon(type, getFilenameFromPath(filename)));
+		newRow.add(FileUtils.getResIcon(type, filename));
 	}
 
 	/**

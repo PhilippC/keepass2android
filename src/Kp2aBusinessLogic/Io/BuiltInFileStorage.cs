@@ -129,7 +129,7 @@ namespace keepass2android.Io
 			return (!ioc.IsLocalFile()) && (ioc.CredSaveMode != IOCredSaveMode.SaveCred);
 		}
 
-		public void CreateDirectory(IOConnectionInfo ioc)
+		public void CreateDirectory(IOConnectionInfo ioc, string newDirName)
 		{
 			//TODO
 			throw new NotImplementedException();

@@ -31,6 +31,7 @@ import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.ParentReference;
 
 import android.accounts.AccountManager;
+import android.accounts.AccountsException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -285,9 +286,28 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	
 	private File getFileForPath(GDrivePath path, Drive driveService)
 			throws IOException, InvalidPathException {
+		Log.d(TAG,"getFileForPath... ");
+		try
+		{
+			//throw new IOException("argh");
+			String driveId = path.getGDriveId();
+			Log.d(TAG, "id"+driveId);
+			File file = driveService.files().get(driveId).execute();
+			Log.d(TAG,"...done.");
+			return file;
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+		catch (InvalidPathException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
 		
-		File file = driveService.files().get(path.getGDriveId()).execute();
-		return file;
+		
 	}
 
 	private InputStream getFileContent(File driveFile, Drive driveService) throws IOException {
@@ -425,6 +445,12 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	}
 
 	private Exception convertException(Exception e) {
+		if (UserRecoverableAuthIOException.class.isAssignableFrom(e.getClass()))
+		{
+			UserRecoverableAuthIOException ure = (UserRecoverableAuthIOException) e;
+			//this is not really nice because it removes data from the cache which might still be valid but we don't have the account name here...
+			mAccountData.clear();
+		}
 		if (GoogleJsonResponseException.class.isAssignableFrom(e.getClass()) )
 		{
 			GoogleJsonResponseException jsonEx = (GoogleJsonResponseException)e;
@@ -462,13 +488,17 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		
 		try
 		{
+			Log.d(TAG, "getFileEntry "+filename);
 			GDrivePath gdrivePath = new GDrivePath(filename);
-			return convertToFileEntry(
+			FileEntry res =  convertToFileEntry(
 					getFileForPath(gdrivePath, getDriveService(gdrivePath.getAccount())),
 					filename);
+			Log.d(TAG, "getFileEntry res"+res);
+			return res;
 		}
 		catch (Exception e)
 		{
+			Log.d(TAG, "Exception in getFileEntry! "+e);
 			throw convertException(e);
 		}
 	}
@@ -501,7 +531,9 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 
 	private Drive getDriveService(String accountName)
 	{
+		Log.d(TAG, "getDriveService "+accountName);
 		AccountData accountData = mAccountData.get(accountName);
+		Log.d(TAG, "accountData "+accountData);
 		return accountData.drive;
 	}
 
@@ -514,24 +546,9 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 			if (resultCode == Activity.RESULT_OK && data != null && data.getExtras() != null) {
 				String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
 				if (accountName != null) {
-					Log.d(TAG, "Account name="+accountName);
-					//try
-					{
-						//listFolders("root", 0);
-						initializeAccount(setupAct, accountName);
-						//testAuthAndReturn(setupAct, accountName, activity, result);
+					Log.d(TAG, "Initialize Account name="+accountName);
+					initializeAccount(setupAct, accountName);
 
-
-					} /*catch (UnsupportedEncodingException e) {
-						Log.e(TAG, "UnsupportedEncodingException: "+e.toString());
-						Intent retData = new Intent();
-						retData.putExtra(EXTRA_ERROR_MESSAGE, e.getMessage());
-		            	((Activity)activity).setResult(Activity.RESULT_CANCELED, retData);
-		            	((Activity)activity).finish();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
 					return;
 				}
 			}
@@ -568,61 +585,6 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 
 	}
 
-
-
-	/*	private void testAuthAndReturn(
-			final JavaFileStorage.FileStorageSetupActivity setupAct,
-			String accountName, final Activity activity, final boolean[] result)
-			throws UnsupportedEncodingException {
-		setupAct.getState().putString(EXTRA_PATH, getProtocolId()+"://"+URLEncoder.encode(accountName, "ISO-8859-1")+"/");
-
-		Thread thread = new Thread() {
-
-		    @Override
-		    public void run() {
-
-		    	//try to list files:
-				//todo: is there a simpler way to test if the user is authorized?
-				try
-				{
-					Log.d(TAG,"get files");
-					Files.List request = getDriveService(accountName, activity).files().list();
-					Log.d(TAG,"get files exec");
-					request.execute();
-					Log.d(TAG,"ok!");
-					result[0] = true;
-				}
-				catch (UserRecoverableAuthIOException e) {
-					Log.d(TAG,"UserRecoverableAuthIOException ");
-					  activity.startActivityForResult(e.getIntent(), REQUEST_AUTHORIZATION);
-				}
-				catch (Throwable t)
-				{
-					Log.d(TAG, "Exception: " +t.getMessage());
-					t.printStackTrace();
-					Intent data = new Intent();
-		        	data.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
-		        	activity.setResult(Activity.RESULT_CANCELED, data);
-		        	activity.finish();
-				}
-
-		    }// run()
-		};
-		thread.start();
-		try {
-		    thread.join();
-		    if (result[0])
-		    {
-		    	finishActivityWithSuccess(setupAct);
-		    }
-		} catch (InterruptedException e) {
-			Intent retData = new Intent();
-			retData.putExtra(EXTRA_ERROR_MESSAGE, e.getMessage());
-			activity.setResult(Activity.RESULT_CANCELED, retData);
-			activity.finish();
-		}
-	}
-	 */
 	private void initializeAccount(final JavaFileStorage.FileStorageSetupActivity setupAct, final String accountName) {
 
 		final Activity activity = ((Activity)setupAct);
@@ -633,17 +595,21 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 			@Override
 			protected AsyncTaskResult<String> doInBackground(Object... arg0) {
 				try {
-					AccountData newAccountData = new AccountData();
-					newAccountData.drive = createDriveService(accountName, activity);
-					mAccountData.put(accountName, newAccountData);
-					Log.d(TAG, "Added account data for " + accountName);
-					newAccountData.mFolderCache = buildFoldersCache(accountName);
+					if (!mAccountData.containsKey(accountName))
+					{
+						AccountData newAccountData = new AccountData();
+						newAccountData.drive = createDriveService(accountName, activity);
+						mAccountData.put(accountName, newAccountData);
+						Log.d(TAG, "Added account data for " + accountName);
+						newAccountData.mFolderCache = buildFoldersCache(accountName);
+						
+						About about = newAccountData.drive.about().get().execute();
+						newAccountData.mRootFolderId = about.getRootFolderId();
+					}
 					
-					About about = newAccountData.drive.about().get().execute();
-					newAccountData.mRootFolderId = about.getRootFolderId();
+					if (setupAct.getProcessName().equals(PROCESS_NAME_SELECTFILE))
+						setupAct.getState().putString(EXTRA_PATH, getRootPathForAccount(accountName));
 					
-					
-					setupAct.getState().putString(EXTRA_PATH, getRootPathForAccount(accountName));
 					return new AsyncTaskResult<String>("ok");
 				} catch ( Exception anyError) {
 					return new AsyncTaskResult<String>(anyError);
@@ -660,6 +626,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 				if (error  != null ) {
 					if (UserRecoverableAuthIOException.class.isAssignableFrom(error.getClass()))
 					{
+						mAccountData.remove(accountName);
 						activity.startActivityForResult(((UserRecoverableAuthIOException)error).getIntent(), REQUEST_AUTHORIZATION);
 					}
 					else
@@ -696,12 +663,12 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	private HashMap<String,FileSystemEntryData> buildFoldersCache(String accountName) throws IOException {
 
 		HashMap<String, FileSystemEntryData> folderCache = new HashMap<String, GoogleDriveFileStorage.FileSystemEntryData>();
-		
+		Log.d(TAG,"buildFoldersCache");
 		FileList folders=getDriveService(accountName).files().list().setQ("mimeType='"+FOLDER_MIME_TYPE+"' and trashed=false and hidden=false")
 				.setFields("items(id,title,parents),nextPageToken")
 				.execute();
 		for(File fl: folders.getItems()){
-			
+			Log.d(TAG,"buildFoldersCache: " + fl.getTitle());
 			FileSystemEntryData thisFolder = new FileSystemEntryData();
 			thisFolder.id = fl.getId();
 			thisFolder.displayName = fl.getTitle();
@@ -713,6 +680,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 			folderCache.put(thisFolder.id, thisFolder);
 		}
 
+		Log.d(TAG,"that's it!");
 		return folderCache;
 
 	}
@@ -733,9 +701,19 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		if (setupActivity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
 		{
 			Intent data = new Intent();
-			Log.d(TAG,setupActivity.getState().getString(EXTRA_PATH));
+			if (setupActivity == (null))
+				Log.d(TAG, "setupActivity is null");
+			else
+				if (setupActivity.getState() == null)
+					Log.d(TAG, "getState is null");
+				else 
+					if (setupActivity.getState().getString(EXTRA_PATH) == null)
+						Log.d(TAG, "setupActivity.getState().getString(EXTRA_PATH) is null");
+					else
+						Log.d(TAG,setupActivity.getState().getString(EXTRA_PATH));
 			String path = setupActivity.getState().getString(EXTRA_PATH);
-			data.putExtra(EXTRA_PATH, path);
+			if (path != null)
+				data.putExtra(EXTRA_PATH, path);
 			activity.setResult(RESULT_FILECHOOSER_PREPARED, data);
 			activity.finish();
 			return;
@@ -785,52 +763,28 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 
 		if (PROCESS_NAME_FILE_USAGE_SETUP.equals(setupAct.getProcessName()))
 		{
-			/*TODO
 			GoogleAccountCredential credential = createCredential(activity);
-
-			String storedAccountName = PreferenceManager.getDefaultSharedPreferences(activity).getString("GDRIVE_ACCOUNT_NAME", null);
-
-			if (storedAccountName != null)
+			final GDrivePath path;
+			try
 			{
-				credential.setSelectedAccountName(storedAccountName);
-
-				Thread thread = new Thread() {
-
-		            @Override
-		            public void run() {
-
-		            	Activity activity = (Activity)setupAct;
-
-		            	//try to list files:
-		    			//todo: is there a simpler way to test if the user is authorized?
-		    			try
-		    			{
-		    				service.files().list().execute();
-		    			}
-		    			catch (UserRecoverableAuthIOException e) {
-		    				  activity.startActivityForResult(e.getIntent(), REQUEST_AUTHORIZATION);
-		    			}
-		    			catch (Throwable t)
-		    			{
-		    				Intent data = new Intent();
-		                	data.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
-		                	activity.setResult(Activity.RESULT_CANCELED, data);
-		                	activity.finish();
-		    			}
-
-		            }// run()
-		        };
-		        thread.start();
-		        try {
-		            thread.join();
-		        } catch (InterruptedException e) {
-    				Intent data = new Intent();
-                	data.putExtra(EXTRA_ERROR_MESSAGE, e.getMessage());
-                	activity.setResult(Activity.RESULT_CANCELED, data);
-                	activity.finish();
-		        }
+				 path = new GDrivePath(setupAct.getPath());
 			}
-			 */
+			catch (Exception e)
+			{
+				Intent data = new Intent();
+            	data.putExtra(EXTRA_ERROR_MESSAGE, e.getMessage());
+            	activity.setResult(Activity.RESULT_CANCELED, data);
+            	activity.finish();
+            	return;
+			}
+
+			if (path.getAccount() != null)
+			{
+				credential.setSelectedAccountName(path.getAccount());
+
+				initializeAccount(setupAct, path.getAccount());
+			}
+			
 		}
 	}
 

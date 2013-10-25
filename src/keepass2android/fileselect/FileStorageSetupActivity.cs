@@ -20,6 +20,8 @@ namespace keepass2android.fileselect
 		,Keepass2android.Javafilestorage.IJavaFileStorageFileStorageSetupActivity
 #endif
 	{
+		private bool isRecreated = false;
+
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
@@ -34,16 +36,21 @@ namespace keepass2android.fileselect
 			if (bundle == null)
 				State = new Bundle();
 			else
+			{
 				State = (Bundle) bundle.Clone();
+				isRecreated = true;
+			}
 
-			App.Kp2a.GetFileStorage(Ioc).OnCreate(this, bundle);
+			if (!isRecreated)
+				App.Kp2a.GetFileStorage(Ioc).OnCreate(this, bundle);
 
 		}
 
 		protected override void OnStart()
 		{
 			base.OnStart();
-			App.Kp2a.GetFileStorage(Ioc).OnStart(this);
+			if (!isRecreated)
+				App.Kp2a.GetFileStorage(Ioc).OnStart(this);
 		}
 
 		protected override void OnResume()

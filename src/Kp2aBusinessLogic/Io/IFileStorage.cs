@@ -105,7 +105,7 @@ namespace keepass2android.Io
 		/// <summary>
 		/// Creates the directory described by ioc
 		/// </summary>
-		void CreateDirectory(IOConnectionInfo ioc);
+		void CreateDirectory(IOConnectionInfo ioc, string newDirName);
 
 		/// <summary>
 		/// Lists the contents of the given path

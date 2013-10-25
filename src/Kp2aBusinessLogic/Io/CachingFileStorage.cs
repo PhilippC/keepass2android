@@ -421,9 +421,9 @@ namespace keepass2android.Io
 			return _cachedStorage.RequiresCredentials(ioc);
 		}
 
-		public void CreateDirectory(IOConnectionInfo ioc)
+		public void CreateDirectory(IOConnectionInfo ioc, string newDirName)
 		{
-			_cachedStorage.CreateDirectory(ioc);
+			_cachedStorage.CreateDirectory(ioc, newDirName);
 		}
 
 		public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)

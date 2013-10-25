@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GooglePlayServicesFroyoLib">
+      <HintPath>..\Components\googleplayservicesfroyo-9.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,13 +67,78 @@
     </EmbeddedReferenceJar>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\json_simple-1.1.jar">
+      <Link>Jars\json_simple-1.1.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-api-client-1.16.0-rc.jar">
+      <Link>Jars\google-api-client-1.16.0-rc.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-api-client-android-1.16.0-rc.jar">
+      <Link>Jars\google-api-client-android-1.16.0-rc.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-api-services-drive-v2-rev102-1.16.0-rc.jar">
+      <Link>Jars\google-api-services-drive-v2-rev102-1.16.0-rc.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-1.16.0-rc.jar">
+      <Link>Jars\google-http-client-1.16.0-rc.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-android-1.16.0-rc.jar">
+      <Link>Jars\google-http-client-android-1.16.0-rc.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-gson-1.16.0-rc.jar">
+      <Link>Jars\google-http-client-gson-1.16.0-rc.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-jackson-1.16.0-rc.jar">
+      <Link>Jars\google-http-client-jackson-1.16.0-rc.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-jackson2-1.16.0-rc.jar">
+      <Link>Jars\google-http-client-jackson2-1.16.0-rc.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-oauth-client-1.16.0-rc.jar">
+      <Link>Jars\google-oauth-client-1.16.0-rc.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\gson-2.1.jar">
+      <Link>Jars\gson-2.1.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\httpmime-4.0.3.jar">
       <Link>Jars\httpmime-4.0.3.jar</Link>
     </EmbeddedReferenceJar>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\json_simple-1.1.jar">
-      <Link>Jars\json_simple-1.1.jar</Link>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\jackson-core-2.1.3.jar">
+      <Link>Jars\jackson-core-2.1.3.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\jackson-core-asl-1.9.11.jar">
+      <Link>Jars\jackson-core-asl-1.9.11.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\jsr305-1.3.9.jar">
+      <Link>Jars\jsr305-1.3.9.jar</Link>
     </EmbeddedReferenceJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />

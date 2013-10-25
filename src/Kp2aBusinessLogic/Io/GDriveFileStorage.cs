@@ -14,68 +14,13 @@ using KeePassLib.Serialization;
 
 namespace keepass2android.Io
 {
-	/*public class GDriveFileStorage: IFileStorage
+	public class GoogleDriveFileStorage : JavaFileStorage
 	{
-		public IEnumerable<string> SupportedProtocols { get { yield return "gdrive"; } }
-		public void Delete(IOConnectionInfo ioc)
+		public GoogleDriveFileStorage(Context ctx, IKp2aApp app) :
+			base(new Keepass2android.Javafilestorage.GoogleDriveFileStorage(), app)
 		{
-			throw new NotImplementedException();
-		}
-
-		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
-		{
-			throw new NotImplementedException();
-		}
-
-		public string GetCurrentFileVersionFast(IOConnectionInfo ioc)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Stream OpenFileForRead(IOConnectionInfo ioc)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
-		{
-			throw new NotImplementedException();
 		}
 
 
-		public bool CompleteIoId()
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool? FileExists()
-		{
-			throw new NotImplementedException();
-		}
-
-		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool RequiresCredentials(IOConnectionInfo ioc)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void CreateDirectory(IOConnectionInfo ioc)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IEnumerable<FileDescription> ListContents(IOConnectionInfo convertPathToIoc)
-		{
-			throw new NotImplementedException();
-		}
-
-		public FileDescription GetFileDescription(IOConnectionInfo ioc)
-		{
-			throw new NotImplementedException();
-		}
-	}*/
+	}
 }

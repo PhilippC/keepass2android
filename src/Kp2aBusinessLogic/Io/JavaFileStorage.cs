@@ -172,11 +172,11 @@ namespace keepass2android.Io
 			return false;
 		}
 
-		public void CreateDirectory(IOConnectionInfo ioc)
+		public void CreateDirectory(IOConnectionInfo ioc, string newDirName)
 		{
 			try
 			{
-				Jfs.CreateFolder(IocToPath(ioc));
+				Jfs.CreateFolder(IocToPath(ioc), newDirName);
 			}
 			catch (FileNotFoundException e)
 			{
@@ -213,6 +213,7 @@ namespace keepass2android.Io
 				{
 					CanRead = e.CanRead,
 					CanWrite = e.CanWrite,
+					DisplayName = e.DisplayName,
 					IsDirectory = e.IsDirectory,
 					LastModified = JavaTimeToCSharp(e.LastModifiedTime),
 					Path = e.Path,

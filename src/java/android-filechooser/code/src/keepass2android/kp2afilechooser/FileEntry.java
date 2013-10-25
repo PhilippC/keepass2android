@@ -3,6 +3,7 @@ package keepass2android.kp2afilechooser;
 
 public class FileEntry {
 	public String path;
+	public String displayName;
 	public boolean isDirectory;
 	public long lastModifiedTime;
 	public boolean canRead;

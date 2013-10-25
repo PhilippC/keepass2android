@@ -33,8 +33,7 @@ namespace keepass2android
 
 			try
 			{
-				parentDirectory = parentDirectory.TrimEnd('/');
-				App.Kp2a.GetFileStorage(parentDirectory).CreateDirectory(ConvertPathToIoc(parentDirectory + "/" + newDirName));
+				App.Kp2a.GetFileStorage(parentDirectory).CreateDirectory(ConvertPathToIoc(parentDirectory), newDirName);
 				return true;
 			}
 			catch (Exception e)
@@ -103,6 +102,7 @@ namespace keepass2android
 				{
 					CanRead = e.CanRead,
 					CanWrite = e.CanWrite,
+					DisplayName = e.DisplayName,
 					IsDirectory = e.IsDirectory,
 					LastModifiedTime = CSharpTimeToJava(e.LastModified),
 					Path = e.Path,
