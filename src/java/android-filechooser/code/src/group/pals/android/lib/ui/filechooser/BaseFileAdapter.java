@@ -509,11 +509,11 @@ public class BaseFileAdapter extends ResourceCursorAdapter {
 
                         @Override
                         public void onClick(final int resId) {
-                            new LoadingDialog(v.getContext(),
+                            new LoadingDialog<Void, Void, Void>(v.getContext(),
                                     R.string.afc_msg_loading, false) {
 
                                 @Override
-                                protected Object doInBackground(Void... params) {
+                                protected Void doInBackground(Void... params) {
                                     if (resId == R.string.afc_cmd_advanced_selection_all)
                                         asyncSelectAll(-1, true);
                                     else if (resId == R.string.afc_cmd_advanced_selection_none)
@@ -532,7 +532,7 @@ public class BaseFileAdapter extends ResourceCursorAdapter {
                                 }// doInBackground()
 
                                 @Override
-                                protected void onPostExecute(Object result) {
+                                protected void onPostExecute(Void result) {
                                     super.onPostExecute(result);
                                     notifyDataSetChanged();
                                 }// onPostExecute()
@@ -543,4 +543,5 @@ public class BaseFileAdapter extends ResourceCursorAdapter {
             return true;
         }// onLongClick()
     };// mCheckboxSelectionOnLongClickListener
+
 }

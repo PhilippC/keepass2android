@@ -268,15 +268,11 @@ public class LocalFileProvider extends BaseFileProvider {
         else if (BaseFile.CMD_IS_ANCESTOR_OF.equals(uri.getLastPathSegment())) {
             return doCheckAncestor(uri);
         } else if (BaseFile.CMD_GET_PARENT.equals(uri.getLastPathSegment())) {
-        	String sourcePath = Uri.parse(
-                    uri.getQueryParameter(BaseFile.PARAM_SOURCE)).getPath();
-            File file = new File(sourcePath);
+            File file = new File(Uri.parse(
+                    uri.getQueryParameter(BaseFile.PARAM_SOURCE)).getPath());
             file = file.getParentFile();
             if (file == null)
-            {
-            	Log.d(CLASSNAME,"returning null as parent for "+sourcePath);
                 return null;
-            }
 
             matrixCursor = BaseFileProviderUtils.newBaseFileCursor();
 
@@ -285,8 +281,6 @@ public class LocalFileProvider extends BaseFileProvider {
                     .exists() ? BaseFile.FILE_TYPE_UNKNOWN
                     : BaseFile.FILE_TYPE_NOT_EXISTED));
 
-            Log.d(CLASSNAME, "Returning " + Uri.fromFile(file).toString()+" as parent for "+sourcePath);
-            
             RowBuilder newRow = matrixCursor.newRow();
             newRow.add(0);// _ID
             newRow.add(BaseFile
@@ -302,7 +296,6 @@ public class LocalFileProvider extends BaseFileProvider {
             newRow.add(type);
             newRow.add(file.lastModified());
             newRow.add(FileUtils.getResIcon(type, file.getName()));
-
         } else if (BaseFile.CMD_SHUTDOWN.equals(uri.getLastPathSegment())) {
             /*
              * TODO Stop all tasks. If the activity call this command in
@@ -747,4 +740,5 @@ public class LocalFileProvider extends BaseFileProvider {
 
         return new File(fileName);
     }// extractFile()
+
 }

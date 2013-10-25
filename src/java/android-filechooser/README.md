@@ -1,6 +1,6 @@
 # android-filechooser
 
-* Version: 5.4
+* Version: 5.4.4 beta
 
 
 Feel free to contact us at:
@@ -18,10 +18,30 @@ project. We hope this project will be always useful for everyone.
 * C
 * Simon McCorkindale
     + [Website](http://www.aroha.mobi/)
+* Philipp Crocoll
+    + Author of open source project [Keepass2Android](https://keepass2android.codeplex.com/)
 * And others.
 
 
 # HISTORY
+
+* Version 5.4.4 beta:
+    + *Initialize:* October 23, 2013
+
+* Version 5.4.3:
+    + *Release:* October 23, 2013
+
+* Version 5.4.3 beta:
+    + *Initialize:* September 30, 2013
+
+* Version 5.4.2
+    + *Release:* September 27, 2013
+    + Fix light themes with dark action bar.
+
+* Version 5.4.1
+    + *Release:* September 26, 2013
+    + Fix light themes: now they use light action bar.
+    + Add light themes with dark action bar.
 
 * Version 5.4
     + *Release:* August 02, 2013

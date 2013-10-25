@@ -7,10 +7,10 @@
 
 package group.pals.android.lib.ui.filechooser.providers.bookmark;
 
-import android.content.Context;
-import android.net.Uri;
 import group.pals.android.lib.ui.filechooser.providers.BaseColumns;
 import group.pals.android.lib.ui.filechooser.providers.ProviderUtils;
+import android.content.Context;
+import android.net.Uri;
 
 /**
  * Bookmark contract.
@@ -121,4 +121,5 @@ public final class BookmarkContract implements BaseColumns {
      * Type: {@code String}
      */
     public static final String COLUMN_PROVIDER_ID = "provider_id";
+
 }

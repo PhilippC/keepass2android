@@ -8,7 +8,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Afc.BaseThemeHelper.Light" parent="@style/Afc.BaseTheme.Light">
+    <style name="Afc.BaseThemeHelper.Light.DarkActionBar" parent="@style/Afc.BaseTheme.Light.DarkActionBar">
         <item name="afc_ic_menu_bookmarks">@drawable/afc_ic_menu_bookmarks_light</item>
         <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home_light</item>
         <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview_light</item>
@@ -29,19 +29,40 @@
         <item name="afc_button_bar_button_style">?android:attr/buttonBarButtonStyle</item>
     </style>
 
+    <style name="Afc.BaseThemeHelper.Light" parent="@style/Afc.BaseTheme.Light">
+        <item name="afc_ic_menu_bookmarks">@drawable/afc_ic_menu_bookmarks_dark</item>
+        <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home_dark</item>
+        <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview_dark</item>
+        <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview_dark</item>
+        <item name="afc_ic_menu_sort_by_date_asc">@drawable/afc_ic_menu_sort_by_date_asc_dark</item>
+        <item name="afc_ic_menu_sort_by_date_desc">@drawable/afc_ic_menu_sort_by_date_desc_dark</item>
+        <item name="afc_ic_menu_sort_by_name_asc">@drawable/afc_ic_menu_sort_by_name_asc_dark</item>
+        <item name="afc_ic_menu_sort_by_name_desc">@drawable/afc_ic_menu_sort_by_name_desc_dark</item>
+        <item name="afc_ic_menu_sort_by_size_asc">@drawable/afc_ic_menu_sort_by_size_asc_dark</item>
+        <item name="afc_ic_menu_sort_by_size_desc">@drawable/afc_ic_menu_sort_by_size_desc_dark</item>
+        <item name="afc_ic_button_sort_by_date_asc">@drawable/afc_ic_menu_sort_by_date_asc_dark</item>
+        <item name="afc_ic_button_sort_by_date_desc">@drawable/afc_ic_menu_sort_by_date_desc_dark</item>
+        <item name="afc_ic_button_sort_by_name_asc">@drawable/afc_ic_menu_sort_by_name_asc_dark</item>
+        <item name="afc_ic_button_sort_by_name_desc">@drawable/afc_ic_menu_sort_by_name_desc_dark</item>
+        <item name="afc_ic_button_sort_by_size_asc">@drawable/afc_ic_menu_sort_by_size_asc_dark</item>
+        <item name="afc_ic_button_sort_by_size_desc">@drawable/afc_ic_menu_sort_by_size_desc_dark</item>
+        <item name="afc_button_bar_style">?android:attr/buttonBarStyle</item>
+        <item name="afc_button_bar_button_style">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
     <style name="Afc.BaseTheme.Dialog.Light" parent="@android:style/Theme.Holo.Light.Dialog"></style>
 
     <style name="Afc.BaseThemeHelper.Dialog.Light" parent="@style/Afc.BaseTheme.Dialog.Light">
-        <item name="afc_ic_menu_bookmarks">@drawable/afc_ic_menu_bookmarks_light</item>
-        <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home_light</item>
-        <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview_light</item>
-        <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview_light</item>
-        <item name="afc_ic_menu_sort_by_date_asc">@drawable/afc_ic_menu_sort_by_date_asc_light</item>
-        <item name="afc_ic_menu_sort_by_date_desc">@drawable/afc_ic_menu_sort_by_date_desc_light</item>
-        <item name="afc_ic_menu_sort_by_name_asc">@drawable/afc_ic_menu_sort_by_name_asc_light</item>
-        <item name="afc_ic_menu_sort_by_name_desc">@drawable/afc_ic_menu_sort_by_name_desc_light</item>
-        <item name="afc_ic_menu_sort_by_size_asc">@drawable/afc_ic_menu_sort_by_size_asc_light</item>
-        <item name="afc_ic_menu_sort_by_size_desc">@drawable/afc_ic_menu_sort_by_size_desc_light</item>
+        <item name="afc_ic_menu_bookmarks">@drawable/afc_ic_menu_bookmarks_dark</item>
+        <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home_dark</item>
+        <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview_dark</item>
+        <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview_dark</item>
+        <item name="afc_ic_menu_sort_by_date_asc">@drawable/afc_ic_menu_sort_by_date_asc_dark</item>
+        <item name="afc_ic_menu_sort_by_date_desc">@drawable/afc_ic_menu_sort_by_date_desc_dark</item>
+        <item name="afc_ic_menu_sort_by_name_asc">@drawable/afc_ic_menu_sort_by_name_asc_dark</item>
+        <item name="afc_ic_menu_sort_by_name_desc">@drawable/afc_ic_menu_sort_by_name_desc_dark</item>
+        <item name="afc_ic_menu_sort_by_size_asc">@drawable/afc_ic_menu_sort_by_size_asc_dark</item>
+        <item name="afc_ic_menu_sort_by_size_desc">@drawable/afc_ic_menu_sort_by_size_desc_dark</item>
         <item name="afc_ic_button_sort_by_date_asc">@drawable/afc_ic_menu_sort_by_date_asc_dark</item>
         <item name="afc_ic_button_sort_by_date_desc">@drawable/afc_ic_menu_sort_by_date_desc_dark</item>
         <item name="afc_ic_button_sort_by_name_asc">@drawable/afc_ic_menu_sort_by_name_asc_dark</item>

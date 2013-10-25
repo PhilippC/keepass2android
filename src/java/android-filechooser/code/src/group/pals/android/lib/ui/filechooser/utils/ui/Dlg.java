@@ -7,17 +7,17 @@
 
 package group.pals.android.lib.ui.filechooser.utils.ui;
 
+import group.pals.android.lib.ui.filechooser.R;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.ContextThemeWrapper;
 import android.widget.Toast;
-import group.pals.android.lib.ui.filechooser.R;
 
 /**
  * Utilities for message boxes.
- *
+ * 
  * @author Hai Bison
  * @since v2.1 alpha
  */
@@ -36,10 +36,13 @@ public class Dlg {
 
     /**
      * Shows a toast message.
-     *
-     * @param context  {@link Context}
-     * @param msg      the message.
-     * @param duration can be {@link #LENGTH_LONG} or {@link #LENGTH_SHORT}.
+     * 
+     * @param context
+     *            {@link Context}
+     * @param msg
+     *            the message.
+     * @param duration
+     *            can be {@link #LENGTH_LONG} or {@link #LENGTH_SHORT}.
      */
     public static void toast(Context context, CharSequence msg, int duration) {
         if (mToast != null)
@@ -50,10 +53,13 @@ public class Dlg {
 
     /**
      * Shows a toast message.
-     *
-     * @param context  {@link Context}
-     * @param msgId    the resource ID of the message.
-     * @param duration can be {@link #LENGTH_LONG} or {@link #LENGTH_SHORT}.
+     * 
+     * @param context
+     *            {@link Context}
+     * @param msgId
+     *            the resource ID of the message.
+     * @param duration
+     *            can be {@link #LENGTH_LONG} or {@link #LENGTH_SHORT}.
      */
     public static void toast(Context context, int msgId, int duration) {
         toast(context, context.getString(msgId), duration);
@@ -61,13 +67,16 @@ public class Dlg {
 
     /**
      * Shows an info dialog.
-     *
-     * @param context  {@link Context}
-     * @param msg      the message.
-     * @param listener the {@link DialogInterface.OnDismissListener}.
+     * 
+     * @param context
+     *            {@link Context}
+     * @param msg
+     *            the message.
+     * @param listener
+     *            the {@link DialogInterface.OnDismissListener}.
      */
     public static void showInfo(Context context, CharSequence msg,
-                                DialogInterface.OnDismissListener listener) {
+            DialogInterface.OnDismissListener listener) {
         AlertDialog dlg = newAlertDlg(context);
         dlg.setIcon(android.R.drawable.ic_dialog_info);
         dlg.setTitle(R.string.afc_title_info);
@@ -78,21 +87,26 @@ public class Dlg {
 
     /**
      * Shows an info dialog.
-     *
-     * @param context  the context.
-     * @param msgId    the resource ID of the message.
-     * @param listener the {@link DialogInterface.OnDismissListener}.
+     * 
+     * @param context
+     *            the context.
+     * @param msgId
+     *            the resource ID of the message.
+     * @param listener
+     *            the {@link DialogInterface.OnDismissListener}.
      */
     public static void showInfo(Context context, int msgId,
-                                DialogInterface.OnDismissListener listener) {
+            DialogInterface.OnDismissListener listener) {
         showInfo(context, context.getString(msgId), listener);
     }// showInfo()
 
     /**
      * Shows an info dialog.
-     *
-     * @param context {@link Context}
-     * @param msg     the message.
+     * 
+     * @param context
+     *            {@link Context}
+     * @param msg
+     *            the message.
      */
     public static void showInfo(Context context, CharSequence msg) {
         showInfo(context, msg, null);
@@ -100,9 +114,11 @@ public class Dlg {
 
     /**
      * Shows an info dialog.
-     *
-     * @param context {@link Context}
-     * @param msgId   the resource ID of the message.
+     * 
+     * @param context
+     *            {@link Context}
+     * @param msgId
+     *            the resource ID of the message.
      */
     public static void showInfo(Context context, int msgId) {
         showInfo(context, context.getString(msgId));
@@ -110,13 +126,16 @@ public class Dlg {
 
     /**
      * Shows an error message.
-     *
-     * @param context  {@link Context}
-     * @param msg      the message.
-     * @param listener will be called after the user cancelled the dialog.
+     * 
+     * @param context
+     *            {@link Context}
+     * @param msg
+     *            the message.
+     * @param listener
+     *            will be called after the user cancelled the dialog.
      */
     public static void showError(Context context, CharSequence msg,
-                                 DialogInterface.OnCancelListener listener) {
+            DialogInterface.OnCancelListener listener) {
         AlertDialog dlg = newAlertDlg(context);
         dlg.setIcon(android.R.drawable.ic_dialog_alert);
         dlg.setTitle(R.string.afc_title_error);
@@ -127,25 +146,31 @@ public class Dlg {
 
     /**
      * Shows an error message.
-     *
-     * @param context  {@link Context}
-     * @param msgId    the resource ID of the message.
-     * @param listener will be called after the user cancelled the dialog.
+     * 
+     * @param context
+     *            {@link Context}
+     * @param msgId
+     *            the resource ID of the message.
+     * @param listener
+     *            will be called after the user cancelled the dialog.
      */
     public static void showError(Context context, int msgId,
-                                 DialogInterface.OnCancelListener listener) {
+            DialogInterface.OnCancelListener listener) {
         showError(context, context.getString(msgId), listener);
     }// showError()
 
     /**
      * Shows an unknown error.
-     *
-     * @param context  {@link Context}
-     * @param t        the {@link Throwable}
-     * @param listener will be called after the user cancelled the dialog.
+     * 
+     * @param context
+     *            {@link Context}
+     * @param t
+     *            the {@link Throwable}
+     * @param listener
+     *            will be called after the user cancelled the dialog.
      */
     public static void showUnknownError(Context context, Throwable t,
-                                        DialogInterface.OnCancelListener listener) {
+            DialogInterface.OnCancelListener listener) {
         showError(
                 context,
                 String.format(
@@ -155,16 +180,20 @@ public class Dlg {
 
     /**
      * Shows a confirmation dialog.
-     *
-     * @param context {@link Context}
-     * @param msg     the message.
-     * @param onYes   will be called if the user selects positive answer (a
-     *                <i>Yes</i> or <i>OK</i>).
-     * @param onNo    will be called after the user cancelled the dialog.
+     * 
+     * @param context
+     *            {@link Context}
+     * @param msg
+     *            the message.
+     * @param onYes
+     *            will be called if the user selects positive answer (a
+     *            <i>Yes</i> or <i>OK</i>).
+     * @param onNo
+     *            will be called after the user cancelled the dialog.
      */
     public static void confirmYesno(Context context, CharSequence msg,
-                                    DialogInterface.OnClickListener onYes,
-                                    DialogInterface.OnCancelListener onNo) {
+            DialogInterface.OnClickListener onYes,
+            DialogInterface.OnCancelListener onNo) {
         AlertDialog dlg = newAlertDlg(context);
         dlg.setIcon(android.R.drawable.ic_dialog_alert);
         dlg.setTitle(R.string.afc_title_confirmation);
@@ -177,22 +206,26 @@ public class Dlg {
 
     /**
      * Shows a confirmation dialog.
-     *
-     * @param context {@link Context}
-     * @param msg     the message.
-     * @param onYes   will be called if the user selects positive answer (a
-     *                <i>Yes</i> or <i>OK</i>).
+     * 
+     * @param context
+     *            {@link Context}
+     * @param msg
+     *            the message.
+     * @param onYes
+     *            will be called if the user selects positive answer (a
+     *            <i>Yes</i> or <i>OK</i>).
      */
     public static void confirmYesno(Context context, CharSequence msg,
-                                    DialogInterface.OnClickListener onYes) {
+            DialogInterface.OnClickListener onYes) {
         confirmYesno(context, msg, onYes, null);
     }// confirmYesno()
 
     /**
      * Creates new {@link Dialog}. Set canceled on touch outside to {@code true}
      * .
-     *
-     * @param context the context which uses this library's theme.
+     * 
+     * @param context
+     *            the context which uses this library's theme.
      * @return the {@link Dialog}.
      * @since v4.3 beta
      */
@@ -206,8 +239,9 @@ public class Dlg {
     /**
      * Creates new {@link AlertDialog}. Set canceled on touch outside to
      * {@code true}.
-     *
-     * @param context the context which uses this library's theme.
+     * 
+     * @param context
+     *            the context which uses this library's theme.
      * @return {@link AlertDialog}
      * @since v4.3 beta
      */
@@ -219,8 +253,9 @@ public class Dlg {
 
     /**
      * Creates new {@link AlertDialog.Builder}.
-     *
-     * @param context the context which uses this library's theme.
+     * 
+     * @param context
+     *            the context which uses this library's theme.
      * @return {@link AlertDialog}
      * @since v4.3 beta
      */
@@ -228,4 +263,5 @@ public class Dlg {
         return new AlertDialog.Builder(new ContextThemeWrapper(context,
                 Ui.resolveAttribute(context, R.attr.afc_theme_dialog)));
     }// newAlertDlgBuilder()
+
 }

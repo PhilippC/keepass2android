@@ -7,16 +7,16 @@
 
 package group.pals.android.lib.ui.filechooser.providers.history;
 
+import group.pals.android.lib.ui.filechooser.prefs.Prefs;
+import group.pals.android.lib.ui.filechooser.providers.DbUtils;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
-import group.pals.android.lib.ui.filechooser.prefs.Prefs;
-import group.pals.android.lib.ui.filechooser.providers.DbUtils;
 
 /**
  * SQLite helper for history database.
- *
+ * 
  * @author Hai Bison
  * @since v5.1 beta
  */
@@ -38,8 +38,8 @@ public class HistoryHelper extends SQLiteOpenHelper {
 
     public HistoryHelper(Context context) {
         // always use application context
-        super(context.getApplicationContext(), Prefs.genDatabaseFilename(
-                context, DB_FILENAME), null, DB_VERSION);
+        super(context.getApplicationContext(), Prefs
+                .genDatabaseFilename(DB_FILENAME), null, DB_VERSION);
     }// HistoryHelper()
 
     @Override
@@ -54,4 +54,5 @@ public class HistoryHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO
     }// onUpgrade()
+
 }

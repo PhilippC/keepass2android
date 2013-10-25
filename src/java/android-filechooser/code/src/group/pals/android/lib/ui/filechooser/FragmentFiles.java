@@ -216,14 +216,14 @@ public class FragmentFiles extends Fragment implements
     private boolean mNewLoader = true;
 
     /*
-     * Controls.
+     * CONTROLS
      */
 
     private View mBtnGoHome;
     private View mBtnBookmarkManager;
     private BookmarkFragment mBookmarkFragment;
     private HorizontalScrollView mViewLocationsContainer;
-    private ViewGroup mViewLocations;
+    private ViewGroup mViewAddressBar;
     private View mViewGroupFiles;
     private ViewGroup mViewFilesContainer;
     private TextView mTxtFullDirName;
@@ -310,7 +310,7 @@ public class FragmentFiles extends Fragment implements
                 .findViewById(R.id.afc_button_go_back);
         mViewGoForward = (ImageView) rootView
                 .findViewById(R.id.afc_button_go_forward);
-        mViewLocations = (ViewGroup) rootView
+        mViewAddressBar = (ViewGroup) rootView
                 .findViewById(R.id.afc_view_locations);
         mViewLocationsContainer = (HorizontalScrollView) rootView
                 .findViewById(R.id.afc_view_locations_container);
@@ -353,7 +353,7 @@ public class FragmentFiles extends Fragment implements
     }// onCreateView()
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         setupHeader();
@@ -434,17 +434,17 @@ public class FragmentFiles extends Fragment implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.afc_menuitem_sort)
-            doResortViewFiles();
+            resortViewFiles();
         else if (item.getItemId() == R.id.afc_menuitem_new_folder)
-            doCreateNewDir();
+            checkConditionsThenConfirmUserToCreateNewDir();
         else if (item.getItemId() == R.id.afc_menuitem_switch_viewmode)
-            doSwitchViewType();
+            switchViewType();
         else if (item.getItemId() == R.id.afc_menuitem_home)
-            doGoHome();
+            goHome();
         else if (item.getItemId() == R.id.afc_menuitem_history)
-            doShowHistoryManager();
+            showHistoryManager();
         else if (item.getItemId() == R.id.afc_menuitem_bookmarks)
-            doShowBookmarkManager();
+            showBookmarkManager();
         else
             return false;
 
@@ -494,8 +494,8 @@ public class FragmentFiles extends Fragment implements
 
         getActivity().supportInvalidateOptionsMenu();
 
-        Uri path = ((Uri) args.getParcelable(PATH));
-        createLocationButtons(path);
+        final Uri path = ((Uri) args.getParcelable(PATH));
+        buildAddressBar(path);
 
         String positiveRegex = getArguments().getString(
                 FileChooserActivity.EXTRA_POSITIVE_REGEX_FILTER);
@@ -564,18 +564,33 @@ public class FragmentFiles extends Fragment implements
         final Uri uriInfo = BaseFileProviderUtils.getUri(data);
         final Uri selectedFile = (Uri) getArguments().getParcelable(
                 FileChooserActivity.EXTRA_SELECT_FILE);
-        final int colUri = data.getColumnIndex(BaseFile.COLUMN_URI);
-        if (selectedFile != null)
-            getArguments().remove(FileChooserActivity.EXTRA_SELECT_FILE);
 
         /*
          * Footer.
          */
 
-        if (selectedFile != null && mIsSaveDialog
-                && BaseFileProviderUtils.isFile(getActivity(), selectedFile))
-            mTxtSaveas.setText(BaseFileProviderUtils.getFileName(getActivity(),
-                    selectedFile));
+        if (selectedFile != null && mIsSaveDialog) {
+            new LoadingDialog<Void, Void, String>(getActivity(), false) {
+
+                @Override
+                protected String doInBackground(Void... params) {
+                    if (BaseFileProviderUtils.isFile(getActivity(),
+                            selectedFile))
+                        return BaseFileProviderUtils.getFileName(getActivity(),
+                                selectedFile);
+                    return null;
+                }// doInBackground()
+
+                @Override
+                protected void onPostExecute(String result) {
+                    super.onPostExecute(result);
+
+                    if (!TextUtils.isEmpty(result))
+                        mTxtSaveas.setText(result);
+                }// onPostExecute()
+
+            }.execute();
+        }// if
 
         boolean hasMoreFiles = ProviderUtils.getBooleanQueryParam(uriInfo,
                 BaseFile.PARAM_HAS_MORE_FILES);
@@ -586,76 +601,8 @@ public class FragmentFiles extends Fragment implements
                         : getString(R.string.afc_msg_empty),
                 mFileAdapter.isEmpty());
 
-        if (mNewLoader || selectedFile != null) {
-            /*
-             * Select either the parent path of last path, or the file provided
-             * by key EXTRA_SELECT_FILE. Use a Runnable to make sure this work.
-             * Because if the list view is handling data, this might not work.
-             */
-            mViewFiles.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    int shouldBeSelectedIdx = -1;
-                    final Uri uri = selectedFile != null ? selectedFile
-                            : getLastLocation();
-                    if (uri != null
-                            && BaseFileProviderUtils.fileExists(getActivity(),
-                                    uri)) {
-                        final String fileName = BaseFileProviderUtils
-                                .getFileName(getActivity(), uri);
-                        if (fileName != null) {
-                            Uri parentUri = BaseFileProviderUtils
-                                    .getParentFile(getActivity(), uri);
-                            if ((uri == getLastLocation()
-                                    && !getCurrentLocation().equals(
-                                            getLastLocation()) && BaseFileProviderUtils
-                                        .isAncestorOf(getActivity(),
-                                                getCurrentLocation(), uri))
-                                    || getCurrentLocation().equals(parentUri)) {
-                                if (data.moveToFirst()) {
-                                    while (!data.isLast()) {
-                                        Uri subUri = Uri.parse(data
-                                                .getString(colUri));
-                                        if (uri == getLastLocation()) {
-                                            if (data.getInt(data
-                                                    .getColumnIndex(BaseFile.COLUMN_TYPE)) == BaseFile.FILE_TYPE_DIRECTORY) {
-                                                if (subUri.equals(uri)
-                                                        || BaseFileProviderUtils
-                                                                .isAncestorOf(
-                                                                        getActivity(),
-                                                                        subUri,
-                                                                        uri)) {
-                                                    shouldBeSelectedIdx = Math.max(
-                                                            0,
-                                                            data.getPosition() - 2);
-                                                    break;
-                                                }
-                                            }
-                                        } else {
-                                            if (uri.equals(subUri)) {
-                                                shouldBeSelectedIdx = Math.max(
-                                                        0,
-                                                        data.getPosition() - 2);
-                                                break;
-                                            }
-                                        }
-
-                                        data.moveToNext();
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (shouldBeSelectedIdx >= 0
-                            && shouldBeSelectedIdx < mFileAdapter.getCount())
-                        mViewFiles.setSelection(shouldBeSelectedIdx);
-                    else if (!mFileAdapter.isEmpty())
-                        mViewFiles.setSelection(0);
-                }// run()
-            });
-        }
+        if (mNewLoader || selectedFile != null)
+            createFileSelector();
 
         mNewLoader = false;
     }// onLoadFinished()
@@ -806,7 +753,9 @@ public class FragmentFiles extends Fragment implements
      * </ul>
      */
     private void setupFooter() {
-        // by default, view group footer and all its child views are hidden
+        /*
+         * By default, view group footer and all its child views are hidden.
+         */
 
         ViewGroup viewGroupFooterContainer = (ViewGroup) getView()
                 .findViewById(R.id.afc_viewgroup_footer_container);
@@ -887,6 +836,10 @@ public class FragmentFiles extends Fragment implements
             mFooterView.setVisibility(View.GONE);
     }// showFooterView()
 
+    /**
+     * This should be called after the owner activity has been created
+     * successfully.
+     */
     private void initGestureDetector() {
         mListviewFilesGestureDetector = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
@@ -956,12 +909,12 @@ public class FragmentFiles extends Fragment implements
                                 if (BaseFileProviderUtils.isFile(data)) {
                                     mTxtSaveas.setText(BaseFileProviderUtils
                                             .getFileName(data));
-                                    doCheckSaveasFilenameAndFinish(BaseFileProviderUtils
+                                    checkSaveasFilenameAndFinish(BaseFileProviderUtils
                                             .getFileName(data));
                                 } else
                                     return false;
                             } else
-                                doFinish(BaseFileProviderUtils.getUri(data));
+                                finish(BaseFileProviderUtils.getUri(data));
                         }// double tap to choose files
                         else {
                             // do nothing
@@ -999,8 +952,8 @@ public class FragmentFiles extends Fragment implements
                                         .setAction(MotionEvent.ACTION_CANCEL);
                                 mViewFiles.onTouchEvent(cancelEvent);
 
-                                doDeleteFile(mViewFiles
-                                        .getFirstVisiblePosition() + pos);
+                                deleteFile(mViewFiles.getFirstVisiblePosition()
+                                        + pos);
                             }
                         }
 
@@ -1039,74 +992,109 @@ public class FragmentFiles extends Fragment implements
          * 4. Last location.
          */
 
-        /*
-         * Current location
-         */
-        Uri path = (Uri) (savedInstanceState != null ? savedInstanceState
-                .getParcelable(CURRENT_LOCATION) : null);
+        new LoadingDialog<Void, Uri, Bundle>(getActivity(), false) {
 
-        /*
-         * Selected file
-         */
-        if (path == null) {
-            path = (Uri) getArguments().getParcelable(
-                    FileChooserActivity.EXTRA_SELECT_FILE);
-            if (path != null
-                    && BaseFileProviderUtils.fileExists(getActivity(), path))
-                path = BaseFileProviderUtils.getParentFile(getActivity(), path);
-        }
+            /**
+             * In onPostExecute(), if result is null then check this value. If
+             * this is not null, show a toast and finish. If this is null, call
+             * showCannotConnectToServiceAndWaitForTheUserToFinish().
+             */
+            String errMsg = null;
 
-        /*
-         * Rootpath
-         */
-        if (path == null
-                || !BaseFileProviderUtils.isDirectory(getActivity(), path)) {
-            path = mRoot;
-        }
+            @Override
+            protected Bundle doInBackground(Void... params) {
+                /*
+                 * Current location
+                 */
+                Uri path = (Uri) (savedInstanceState != null ? savedInstanceState
+                        .getParcelable(CURRENT_LOCATION) : null);
 
-        /*
-         * Last location
-         */
-        if (path == null && DisplayPrefs.isRememberLastLocation(getActivity())) {
-            String lastLocation = DisplayPrefs.getLastLocation(getActivity());
-            if (lastLocation != null)
-                path = Uri.parse(lastLocation);
-        }
+                /*
+                 * Selected file
+                 */
+                if (path == null) {
+                    path = (Uri) getArguments().getParcelable(
+                            FileChooserActivity.EXTRA_SELECT_FILE);
+                    if (path != null
+                            && BaseFileProviderUtils.fileExists(getActivity(),
+                                    path))
+                        path = BaseFileProviderUtils.getParentFile(
+                                getActivity(), path);
+                }
 
-        if (path == null
-                || !BaseFileProviderUtils.isDirectory(getActivity(), path))
-            path = BaseFileProviderUtils
-                    .getDefaultPath(
+                /*
+                 * Rootpath
+                 */
+                if (path == null
+                        || !BaseFileProviderUtils.isDirectory(getActivity(),
+                                path)) {
+                    path = mRoot;
+                }
+
+                /*
+                 * Last location
+                 */
+                if (path == null
+                        && DisplayPrefs.isRememberLastLocation(getActivity())) {
+                    String lastLocation = DisplayPrefs
+                            .getLastLocation(getActivity());
+                    if (lastLocation != null)
+                        path = Uri.parse(lastLocation);
+                }
+
+                if (path == null
+                        || !BaseFileProviderUtils.isDirectory(getActivity(),
+                                path))
+                    path = BaseFileProviderUtils.getDefaultPath(
                             getActivity(),
                             path == null ? mFileProviderAuthority : path
                                     .getAuthority());
 
-        if (path == null) {
-            doShowCannotConnectToServiceAndFinish();
-            return;
-        }
+                if (path == null)
+                    return null;
 
-        if (!BaseFileProviderUtils.fileCanRead(getActivity(), path)) {
-            Dlg.toast(
-                    getActivity(),
-                    getString(R.string.afc_pmsg_cannot_access_dir,
+                if (BuildConfig.DEBUG)
+                    Log.d(CLASSNAME, "loadInitialPath() >> " + path);
+
+                publishProgress(path);
+
+                if (BaseFileProviderUtils.fileCanRead(getActivity(), path)) {
+                    Bundle result = new Bundle();
+                    result.putParcelable(PATH, path);
+                    return result;
+                } else {
+                    errMsg = getString(R.string.afc_pmsg_cannot_access_dir,
                             BaseFileProviderUtils.getFileName(getActivity(),
-                                    path)), Dlg.LENGTH_SHORT);
-            getActivity().finish();
-        }
+                                    path));
+                }
 
-        if (BuildConfig.DEBUG)
-            Log.d(CLASSNAME, "loadInitialPath() >> " + path);
+                return null;
+            }// doInBackground()
 
-        setCurrentLocation(path);
+            @Override
+            protected void onProgressUpdate(Uri... progress) {
+                setCurrentLocation(progress[0]);
+            }// onProgressUpdate()
 
-        /*
-         * Prepare the loader. Either re-connect with an existing one, or start
-         * a new one.
-         */
-        Bundle b = new Bundle();
-        b.putParcelable(PATH, path);
-        getLoaderManager().initLoader(mIdLoaderData, b, this);
+            @Override
+            protected void onPostExecute(Bundle result) {
+                super.onPostExecute(result);
+
+                if (result != null) {
+                    /*
+                     * Prepare the loader. Either re-connect with an existing
+                     * one, or start a new one.
+                     */
+                    getLoaderManager().initLoader(mIdLoaderData, result,
+                            FragmentFiles.this);
+                } else if (errMsg != null) {
+                    Dlg.toast(getActivity(), errMsg, Dlg.LENGTH_SHORT);
+                    getActivity().finish();
+                } else
+                    showCannotConnectToServiceAndWaitForTheUserToFinish();
+            }// onPostExecute()
+
+        }.execute();
     }// loadInitialPath()
 
     /**
@@ -1136,7 +1124,7 @@ public class FragmentFiles extends Fragment implements
     /**
      * As the name means...
      */
-    private void doShowCannotConnectToServiceAndFinish() {
+    private void showCannotConnectToServiceAndWaitForTheUserToFinish() {
         Dlg.showError(getActivity(),
                 R.string.afc_msg_cannot_connect_to_file_provider_service,
                 new DialogInterface.OnCancelListener() {
@@ -1147,7 +1135,7 @@ public class FragmentFiles extends Fragment implements
                         getActivity().finish();
                     }// onCancel()
                 });
-    }// doShowCannotConnectToServiceAndFinish()
+    }// showCannotConnectToServiceAndWaitForTheUserToFinish()
 
     /**
      * Gets last location.
@@ -1190,24 +1178,23 @@ public class FragmentFiles extends Fragment implements
         updateDbHistory(location);
     }// setCurrentLocation()
 
-    private void doGoHome() {
+    private void goHome() {
         goTo(mRoot);
-    }// doGoHome()
+    }// goHome()
 
     /**
      * Shows bookmark manager.
      */
-    private void doShowBookmarkManager() {
+    private void showBookmarkManager() {
         BookmarkFragment bf = BookmarkFragment.newInstance(true);
         bf.setOnBookmarkItemClickListener(mBookmarkFragmentOnBookmarkItemClickListener);
-        bf.show(getChildFragmentManager().beginTransaction(),
-                BookmarkFragment.class.getName());
-    }// doShowBookmarkManager()
+        bf.show(getChildFragmentManager(), BookmarkFragment.class.getName());
+    }// showBookmarkManager()
 
     /**
      * Shows history manager.
      */
-    private void doShowHistoryManager() {
+    private void showHistoryManager() {
         if (BuildConfig.DEBUG)
             Log.d(CLASSNAME, "doShowHistoryManager()");
 
@@ -1246,9 +1233,9 @@ public class FragmentFiles extends Fragment implements
          * transaction. We also want to remove any currently showing dialog, so
          * make our own transaction and take care of that here.
          */
-        fragment.show(getChildFragmentManager().beginTransaction(),
+        fragment.show(getChildFragmentManager(),
                 HistoryFragment.class.getName());
-    }// doShowHistoryManager()
+    }// showHistoryManager()
 
     private static final int[] BUTTON_SORT_IDS = {
             R.id.afc_button_sort_by_name_asc,
@@ -1261,7 +1248,7 @@ public class FragmentFiles extends Fragment implements
      * Show a dialog for sorting options and resort file list after user
      * selected an option.
      */
-    private void doResortViewFiles() {
+    private void resortViewFiles() {
         final Dialog dialog = new Dialog(getActivity(), Ui.resolveAttribute(
                 getActivity(), R.attr.afc_theme_dialog));
         dialog.setCanceledOnTouchOutside(true);
@@ -1337,12 +1324,12 @@ public class FragmentFiles extends Fragment implements
         dialog.setTitle(R.string.afc_title_sort_by);
         dialog.setContentView(view);
         dialog.show();
-    }// doResortViewFiles()
+    }// resortViewFiles()
 
     /**
      * Switch view type between {@link ViewType#LIST} and {@link ViewType#GRID}
      */
-    private void doSwitchViewType() {
+    private void switchViewType() {
         switch (DisplayPrefs.getViewType(getActivity())) {
         case GRID:
             DisplayPrefs.setViewType(getActivity(), ViewType.LIST);
@@ -1355,12 +1342,13 @@ public class FragmentFiles extends Fragment implements
         setupViewFiles();
         getActivity().supportInvalidateOptionsMenu();
         goTo(getCurrentLocation());
-    }// doSwitchViewType()
+    }// switchViewType()
 
     /**
-     * Confirms user to create new directory.
+     * Checks current conditions to see if we can create new directory. Then
+     * confirms user to do so.
      */
-    private void doCreateNewDir() {
+    private void checkConditionsThenConfirmUserToCreateNewDir() {
         if (LocalFileContract.getAuthority(getActivity()).equals(
                 mFileProviderAuthority)
                 && !Utils.hasPermissions(getActivity(),
@@ -1372,15 +1360,34 @@ public class FragmentFiles extends Fragment implements
             return;
         }
 
-        if (getCurrentLocation() == null
-                || !BaseFileProviderUtils.fileCanWrite(getActivity(),
-                        getCurrentLocation())) {
-            Dlg.toast(getActivity(),
-                    R.string.afc_msg_cannot_create_new_folder_here,
-                    Dlg.LENGTH_SHORT);
-            return;
-        }
+        new LoadingDialog<Void, Void, Boolean>(getActivity(), false) {
 
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                return getCurrentLocation() != null
+                        && BaseFileProviderUtils.fileCanWrite(getActivity(),
+                                getCurrentLocation());
+            }// doInBackground()
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                super.onPostExecute(result);
+
+                if (result)
+                    showNewDirectoryCreationDialog();
+                else
+                    Dlg.toast(getActivity(),
+                            R.string.afc_msg_cannot_create_new_folder_here,
+                            Dlg.LENGTH_SHORT);
+            }// onProgressUpdate()
+
+        }.execute();
+    }// checkConditionsThenConfirmUserToCreateNewDir()
+
+    /**
+     * Confirms user to create new directory.
+     */
+    private void showNewDirectoryCreationDialog() {
         final AlertDialog dialog = Dlg.newAlertDlg(getActivity());
 
         View view = getLayoutInflater(null).inflate(
@@ -1411,7 +1418,8 @@ public class FragmentFiles extends Fragment implements
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String name = textFile.getText().toString().trim();
+                        final String name = textFile.getText().toString()
+                                .trim();
                         if (!FileUtils.isFilenameValid(name)) {
                             Dlg.toast(
                                     getActivity(),
@@ -1421,31 +1429,46 @@ public class FragmentFiles extends Fragment implements
                             return;
                         }
 
-                        if (getActivity()
-                                .getContentResolver()
-                                .insert(BaseFile
-                                        .genContentUriBase(
-                                                getCurrentLocation()
-                                                        .getAuthority())
-                                        .buildUpon()
-                                        .appendPath(
-                                                getCurrentLocation()
-                                                        .getLastPathSegment())
-                                        .appendQueryParameter(
-                                                BaseFile.PARAM_NAME, name)
-                                        .appendQueryParameter(
-                                                BaseFile.PARAM_FILE_TYPE,
-                                                Integer.toString(BaseFile.FILE_TYPE_DIRECTORY))
-                                        .build(), null) != null) {
-                            Dlg.toast(getActivity(),
-                                    getString(R.string.afc_msg_done),
-                                    Dlg.LENGTH_SHORT);
-                        } else
-                            Dlg.toast(
-                                    getActivity(),
-                                    getString(
-                                            R.string.afc_pmsg_cannot_create_folder,
-                                            name), Dlg.LENGTH_SHORT);
+                        new LoadingDialog<Void, Void, Uri>(getActivity(), false) {
+
+                            @Override
+                            protected Uri doInBackground(Void... params) {
+                                return getActivity()
+                                        .getContentResolver()
+                                        .insert(BaseFile
+                                                .genContentUriBase(
+                                                        getCurrentLocation()
+                                                                .getAuthority())
+                                                .buildUpon()
+                                                .appendPath(
+                                                        getCurrentLocation()
+                                                                .getLastPathSegment())
+                                                .appendQueryParameter(
+                                                        BaseFile.PARAM_NAME,
+                                                        name)
+                                                .appendQueryParameter(
+                                                        BaseFile.PARAM_FILE_TYPE,
+                                                        Integer.toString(BaseFile.FILE_TYPE_DIRECTORY))
+                                                .build(), null);
+                            }// doInBackground()
+
+                            @Override
+                            protected void onPostExecute(Uri result) {
+                                super.onPostExecute(result);
+
+                                if (result != null) {
+                                    Dlg.toast(getActivity(),
+                                            getString(R.string.afc_msg_done),
+                                            Dlg.LENGTH_SHORT);
+                                } else
+                                    Dlg.toast(
+                                            getActivity(),
+                                            getString(
+                                                    R.string.afc_pmsg_cannot_create_folder,
+                                                    name), Dlg.LENGTH_SHORT);
+                            }// onPostExecute()
+
+                        }.execute();
                     }// onClick()
                 });
         dialog.show();
@@ -1460,22 +1483,26 @@ public class FragmentFiles extends Fragment implements
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
                     int count) {
-                // do nothing
-            }
+                /*
+                 * Do nothing.
+                 */
+            }// onTextChanged()
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                     int after) {
-                // do nothing
-            }
+                /*
+                 * Do nothing.
+                 */
+            }// beforeTextChanged()
 
             @Override
             public void afterTextChanged(Editable s) {
                 buttonOk.setEnabled(FileUtils.isFilenameValid(s.toString()
                         .trim()));
-            }
+            }// afterTextChanged()
         });
-    }// doCreateNewDir()
+    }// showNewDirectoryCreationDialog()
 
     /**
      * Deletes a file.
@@ -1483,7 +1510,7 @@ public class FragmentFiles extends Fragment implements
      * @param position
      *            the position of item to be delete.
      */
-    private void doDeleteFile(final int position) {
+    private void deleteFile(final int position) {
         Cursor cursor = (Cursor) mFileAdapter.getItem(position);
 
         /*
@@ -1532,28 +1559,17 @@ public class FragmentFiles extends Fragment implements
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        new LoadingDialog(getActivity(), getString(
-                                R.string.afc_pmsg_deleting_file,
-                                isFile ? getString(R.string.afc_file)
-                                        : getString(R.string.afc_folder),
-                                filename), true) {
+                        new LoadingDialog<Void, Void, Boolean>(
+                                getActivity(),
+                                getString(
+                                        R.string.afc_pmsg_deleting_file,
+                                        isFile ? getString(R.string.afc_file)
+                                                : getString(R.string.afc_folder),
+                                        filename), true) {
 
-                            final int mTaskId = EnvUtils.genId();
+                            final int taskId = EnvUtils.genId();
 
                             private void notifyFileDeleted() {
-                                mHistory.removeAll(new HistoryFilter<Uri>() {
-
-                                    @Override
-                                    public boolean accept(Uri item) {
-                                        return !BaseFileProviderUtils
-                                                .isDirectory(getActivity(),
-                                                        item);
-                                    }// accept()
-                                });
-                                /*
-                                 * TODO remove all duplicate items?
-                                 */
-
                                 Dlg.toast(
                                         getActivity(),
                                         getString(
@@ -1564,17 +1580,18 @@ public class FragmentFiles extends Fragment implements
                             }// notifyFileDeleted()
 
                             @Override
-                            protected Object doInBackground(Void... arg0) {
+                            protected Boolean doInBackground(Void... params) {
                                 getActivity()
                                         .getContentResolver()
                                         .delete(uri
                                                 .buildUpon()
                                                 .appendQueryParameter(
                                                         BaseFile.PARAM_TASK_ID,
-                                                        Integer.toString(mTaskId))
+                                                        Integer.toString(taskId))
                                                 .build(), null, null);
 
-                                return null;
+                                return !BaseFileProviderUtils.fileExists(
+                                        getActivity(), uri);
                             }// doInBackground()
 
                             @Override
@@ -1582,26 +1599,44 @@ public class FragmentFiles extends Fragment implements
                                 if (getCurrentLocation() != null)
                                     BaseFileProviderUtils.cancelTask(
                                             getActivity(), getCurrentLocation()
-                                                    .getAuthority(), mTaskId);
+                                                    .getAuthority(), taskId);
 
-                                if (BaseFileProviderUtils.fileExists(
-                                        getActivity(), uri)) {
-                                    mFileAdapter.markItemAsDeleted(id, false);
-                                    Dlg.toast(getActivity(),
-                                            R.string.afc_msg_cancelled,
-                                            Dlg.LENGTH_SHORT);
-                                } else
-                                    notifyFileDeleted();
+                                new LoadingDialog<Void, Void, Boolean>(
+                                        getActivity(), false) {
+
+                                    @Override
+                                    protected Boolean doInBackground(
+                                            Void... params) {
+                                        return BaseFileProviderUtils
+                                                .fileExists(getActivity(), uri);
+                                    }// doInBackground()
+
+                                    @Override
+                                    protected void onPostExecute(Boolean result) {
+                                        super.onPostExecute(result);
+
+                                        if (result) {
+                                            mFileAdapter.markItemAsDeleted(id,
+                                                    false);
+                                            Dlg.toast(getActivity(),
+                                                    R.string.afc_msg_cancelled,
+                                                    Dlg.LENGTH_SHORT);
+                                        } else
+                                            notifyFileDeleted();
+                                    }// onPostExecute()
+
+                                }.execute();
 
                                 super.onCancelled();
                             }// onCancelled()
 
                             @Override
-                            protected void onPostExecute(Object result) {
+                            protected void onPostExecute(Boolean result) {
                                 super.onPostExecute(result);
 
-                                if (BaseFileProviderUtils.fileExists(
-                                        getActivity(), uri)) {
+                                if (result) {
+                                    notifyFileDeleted();
+                                } else {
                                     mFileAdapter.markItemAsDeleted(id, false);
                                     Dlg.toast(
                                             getActivity(),
@@ -1610,9 +1645,9 @@ public class FragmentFiles extends Fragment implements
                                                     isFile ? getString(R.string.afc_file)
                                                             : getString(R.string.afc_folder),
                                                     filename), Dlg.LENGTH_SHORT);
-                                } else
-                                    notifyFileDeleted();
+                                }
                             }// onPostExecute()
+
                         }.execute();// LoadingDialog
                     }// onClick()
                 }, new DialogInterface.OnCancelListener() {
@@ -1622,125 +1657,174 @@ public class FragmentFiles extends Fragment implements
                         mFileAdapter.markItemAsDeleted(id, false);
                     }// onCancel()
                 });
-    }// doDeleteFile()
+    }// deleteFile()
 
     /**
      * As the name means.
      * 
      * @param filename
-     * @since v1.91
+     *            the file name.
      */
-    private void doCheckSaveasFilenameAndFinish(String filename) {
-        if (!BaseFileProviderUtils.fileCanWrite(getActivity(),
-                getCurrentLocation())) {
-            Dlg.toast(getActivity(),
-                    getString(R.string.afc_msg_cannot_save_a_file_here),
-                    Dlg.LENGTH_SHORT);
-            return;
-        }
-        if (TextUtils.isEmpty(filename) || !FileUtils.isFilenameValid(filename)) {
-            Dlg.toast(getActivity(),
-                    getString(R.string.afc_pmsg_filename_is_invalid, filename),
-                    Dlg.LENGTH_SHORT);
-            return;
-        }
+    private void checkSaveasFilenameAndFinish(final String filename) {
+        new LoadingDialog<Void, String, Uri>(getActivity(), false) {
 
-        final Cursor cursor = getActivity().getContentResolver().query(
-                getCurrentLocation()
-                        .buildUpon()
-                        .appendQueryParameter(BaseFile.PARAM_APPEND_NAME,
-                                filename).build(), null, null, null, null);
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    final Uri uri = BaseFileProviderUtils.getUri(cursor);
-                    switch (cursor.getInt(cursor
-                            .getColumnIndex(BaseFile.COLUMN_TYPE))) {
-                    case BaseFile.FILE_TYPE_DIRECTORY:
-                        Dlg.toast(
-                                getActivity(),
-                                getString(
-                                        R.string.afc_pmsg_filename_is_directory,
-                                        filename), Dlg.LENGTH_SHORT);
-                        break;// FILE_TYPE_DIRECTORY
+            int fileType;
 
-                    case BaseFile.FILE_TYPE_FILE:
-                        Dlg.confirmYesno(
-                                getActivity(),
-                                getString(
-                                        R.string.afc_pmsg_confirm_replace_file,
-                                        filename),
-                                new DialogInterface.OnClickListener() {
-
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                            int which) {
-                                        doFinish(uri);
-                                    }// onClick()
-                                });
-
-                        break;// FILE_TYPE_FILE
-
-                    case BaseFile.FILE_TYPE_NOT_EXISTED:
-                        /*
-                         * TODO file type unknown?
-                         */
-                        doFinish(uri);
-                        break;// FILE_TYPE_NOT_EXISTED
-                    }
+            @Override
+            protected Uri doInBackground(Void... params) {
+                if (!BaseFileProviderUtils.fileCanWrite(getActivity(),
+                        getCurrentLocation())) {
+                    publishProgress(getString(R.string.afc_msg_cannot_save_a_file_here));
+                    return null;
                 }
-            } finally {
-                cursor.close();
-            }
-        }
-    }// doCheckSaveasFilenameAndFinish()
+                if (TextUtils.isEmpty(filename)
+                        || !FileUtils.isFilenameValid(filename)) {
+                    publishProgress(getString(
+                            R.string.afc_pmsg_filename_is_invalid, filename));
+                    return null;
+                }
+
+                final Cursor cursor = getActivity().getContentResolver().query(
+                        getCurrentLocation()
+                                .buildUpon()
+                                .appendQueryParameter(
+                                        BaseFile.PARAM_APPEND_NAME, filename)
+                                .build(), null, null, null, null);
+                try {
+                    if (cursor == null || !cursor.moveToFirst())
+                        return null;
+
+                    fileType = cursor.getInt(cursor
+                            .getColumnIndex(BaseFile.COLUMN_TYPE));
+                    return BaseFileProviderUtils.getUri(cursor);
+                } finally {
+                    if (cursor != null)
+                        cursor.close();
+                }
+            }// doInBackground()
+
+            @Override
+            protected void onProgressUpdate(String... progress) {
+                Dlg.toast(getActivity(), progress[0], Dlg.LENGTH_SHORT);
+            }// onProgressUpdate()
+
+            @Override
+            protected void onPostExecute(final Uri result) {
+                super.onPostExecute(result);
+
+                if (result == null) {
+                    /*
+                     * TODO ?
+                     */
+                    return;
+                }
+
+                switch (fileType) {
+                case BaseFile.FILE_TYPE_DIRECTORY: {
+                    Dlg.toast(
+                            getActivity(),
+                            getString(R.string.afc_pmsg_filename_is_directory,
+                                    filename), Dlg.LENGTH_SHORT);
+                    break;
+                }// FILE_TYPE_DIRECTORY
+
+                case BaseFile.FILE_TYPE_FILE: {
+                    Dlg.confirmYesno(
+                            getActivity(),
+                            getString(R.string.afc_pmsg_confirm_replace_file,
+                                    filename),
+                            new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    finish(result);
+                                }// onClick()
+                            });
+
+                    break;
+                }// FILE_TYPE_FILE
+
+                case BaseFile.FILE_TYPE_NOT_EXISTED: {
+                    /*
+                     * TODO file type unknown?
+                     */
+                    finish(result);
+                    break;
+                }// FILE_TYPE_NOT_EXISTED
+                }
+            }// onPostExecute()
+
+        }.execute();
+    }// checkSaveasFilenameAndFinish()
 
     /**
      * Goes to a specified location.
      * 
      * @param dir
      *            a directory, of course.
-     * @return {@code true} if {@code dir} <b><i>can</i></b> be browsed to.
      * @since v4.3 beta
      */
-    private boolean goTo(Uri dir) {
-        if (dir == null)
-            dir = BaseFileProviderUtils.getDefaultPath(getActivity(),
-                    mFileProviderAuthority);
-        if (dir == null) {
-            doShowCannotConnectToServiceAndFinish();
-            return false;
-        }
+    private void goTo(Uri dir) {
+        new LoadingDialog<Uri, String, Bundle>(getActivity(), false) {
 
-        /*
-         * Check if the path of `dir` is same as current location, then set
-         * `dir` to current location. This avoids of pushing two same paths into
-         * history, because we compare the pointers (not the paths) when pushing
-         * it to history.
-         */
-        if (dir.equals(getCurrentLocation()))
-            dir = getCurrentLocation();
-
-        if (BaseFileProviderUtils.fileCanRead(getActivity(), dir)) {
-            /*
-             * Cancel previous loader if there is one.
+            /**
+             * In onPostExecute(), if result is null then check this value. If
+             * this is not null, show a toast. If this is null, call
+             * showCannotConnectToServiceAndWaitForTheUserToFinish().
              */
-            cancelPreviousLoader();
+            String errMsg = null;
 
-            setCurrentLocation(dir);
+            @Override
+            protected Bundle doInBackground(Uri... params) {
+                if (params[0] == null)
+                    params[0] = BaseFileProviderUtils.getDefaultPath(
+                            getActivity(), mFileProviderAuthority);
+                if (params[0] == null)
+                    return null;
 
-            Bundle b = new Bundle();
-            b.putParcelable(PATH, dir);
-            getLoaderManager().restartLoader(mIdLoaderData, b, this);
-            return true;
-        }
+                /*
+                 * Check if the path of `params[0]` is same as current location,
+                 * then set `params[0]` to current location. This avoids of
+                 * pushing two same paths into history, because we compare the
+                 * pointers (not the paths) when pushing it to history.
+                 */
+                if (params[0].equals(getCurrentLocation()))
+                    params[0] = getCurrentLocation();
 
-        Dlg.toast(
-                getActivity(),
-                getString(R.string.afc_pmsg_cannot_access_dir,
-                        BaseFileProviderUtils.getFileName(getActivity(), dir)),
-                Dlg.LENGTH_SHORT);
-        return false;
+                if (BaseFileProviderUtils.fileCanRead(getActivity(), params[0])) {
+                    /*
+                     * Cancel previous loader if there is one.
+                     */
+                    cancelPreviousLoader();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(PATH, params[0]);
+                    return bundle;
+                }// if
+
+                errMsg = getString(R.string.afc_pmsg_cannot_access_dir,
+                        BaseFileProviderUtils.getFileName(getActivity(),
+                                params[0]));
+
+                return null;
+            }// doInBackground()
+
+            @Override
+            protected void onPostExecute(Bundle result) {
+                super.onPostExecute(result);
+
+                if (result != null) {
+                    setCurrentLocation((Uri) result.getParcelable(PATH));
+                    getLoaderManager().restartLoader(mIdLoaderData, result,
+                            FragmentFiles.this);
+                } else if (errMsg != null)
+                    Dlg.toast(getActivity(), errMsg, Dlg.LENGTH_SHORT);
+                else
+                    showCannotConnectToServiceAndWaitForTheUserToFinish();
+            }// onPostExecute()
+
+        }.execute(dir);
     }// goTo()
 
     /**
@@ -1807,38 +1891,89 @@ public class FragmentFiles extends Fragment implements
     /**
      * As the name means.
      */
-    private void createLocationButtons(Uri path) {
+    private void buildAddressBar(final Uri path) {
         if (path == null)
             return;
 
-        mViewLocations.removeAllViews();
+        mViewAddressBar.removeAllViews();
 
-        LinearLayout.LayoutParams lpBtnLoc = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        lpBtnLoc.gravity = Gravity.CENTER;
-        LinearLayout.LayoutParams lpDivider = null;
-        LayoutInflater inflater = getLayoutInflater(null);
-        final int dim = getResources().getDimensionPixelSize(R.dimen.afc_5dp);
-        int count = 0;
+        new LoadingDialog<Void, Cursor, Void>(getActivity(), false) {
 
-        Cursor cursor = getActivity().getContentResolver().query(path, null,
-                null, null, null);
-        while (cursor != null) {
-            Uri lastUri = null;
-            if (cursor.moveToFirst()) {
-                lastUri = Uri.parse(cursor.getString(cursor
+            LinearLayout.LayoutParams lpBtnLoc;
+            LinearLayout.LayoutParams lpDivider;
+            LayoutInflater inflater = getLayoutInflater(null);
+            final int dim = getResources().getDimensionPixelSize(
+                    R.dimen.afc_5dp);
+            int count = 0;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                lpBtnLoc = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                lpBtnLoc.gravity = Gravity.CENTER;
+            }// onPreExecute()
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                Cursor cursor = getActivity().getContentResolver().query(path,
+                        null, null, null, null);
+                while (cursor != null) {
+                    if (cursor.moveToFirst()) {
+                        publishProgress(cursor);
+                        cursor.close();
+                    } else
+                        break;
+
+                    /*
+                     * Process the parent directory.
+                     */
+                    Uri uri = Uri.parse(cursor.getString(cursor
+                            .getColumnIndex(BaseFile.COLUMN_URI)));
+                    cursor = getActivity().getContentResolver().query(
+                            BaseFile.genContentUriApi(uri.getAuthority())
+                                    .buildUpon()
+                                    .appendPath(BaseFile.CMD_GET_PARENT)
+                                    .appendQueryParameter(
+                                            BaseFile.PARAM_SOURCE,
+                                            uri.getLastPathSegment()).build(),
+                            null, null, null, null);
+                }// while
+
+                return null;
+            }// doInBackground()
+
+            @Override
+            protected void onProgressUpdate(Cursor... progress) {
+                /*
+                 * Add divider.
+                 */
+                if (mViewAddressBar.getChildCount() > 0) {
+                    View divider = inflater.inflate(
+                            R.layout.afc_view_locations_divider, null);
+
+                    if (lpDivider == null) {
+                        lpDivider = new LinearLayout.LayoutParams(dim, dim);
+                        lpDivider.gravity = Gravity.CENTER;
+                        lpDivider.setMargins(dim, dim, dim, dim);
+                    }
+                    mViewAddressBar.addView(divider, 0, lpDivider);
+                }
+
+                Uri lastUri = Uri.parse(progress[0].getString(progress[0]
                         .getColumnIndex(BaseFile.COLUMN_URI)));
 
                 TextView btnLoc = (TextView) inflater.inflate(
                         R.layout.afc_button_location, null);
-                String name = BaseFileProviderUtils.getFileName(cursor);
+                String name = BaseFileProviderUtils.getFileName(progress[0]);
                 btnLoc.setText(TextUtils.isEmpty(name) ? getString(R.string.afc_root)
                         : name);
                 btnLoc.setTag(lastUri);
                 btnLoc.setOnClickListener(mBtnLocationOnClickListener);
                 btnLoc.setOnLongClickListener(mBtnLocationOnLongClickListener);
-                mViewLocations.addView(btnLoc, 0, lpBtnLoc);
+                mViewAddressBar.addView(btnLoc, 0, lpBtnLoc);
 
                 if (count++ == 0) {
                     Rect r = new Rect();
@@ -1847,53 +1982,33 @@ public class FragmentFiles extends Fragment implements
                             R.dimen.afc_button_location_max_width)
                             - btnLoc.getPaddingLeft()
                             - btnLoc.getPaddingRight()) {
-                        mTxtFullDirName.setText(cursor.getString(cursor
-                                .getColumnIndex(BaseFile.COLUMN_NAME)));
+                        mTxtFullDirName.setText(progress[0]
+                                .getString(progress[0]
+                                        .getColumnIndex(BaseFile.COLUMN_NAME)));
                         mTxtFullDirName.setVisibility(View.VISIBLE);
                     } else
                         mTxtFullDirName.setVisibility(View.GONE);
-                }
-            }
+                }// if
+            }// onProgressUpdate()
 
-            cursor.close();
+            @Override
+            protected void onPostExecute(Void result) {
+                super.onPostExecute(result);
 
-            if (lastUri == null)
-                break;
+                /*
+                 * Sometimes without delay time, it doesn't work...
+                 */
+                mViewLocationsContainer.postDelayed(new Runnable() {
 
-            /*
-             * Process the parent directory.
-             */
-            cursor = getActivity().getContentResolver().query(
-                    BaseFile.genContentUriApi(lastUri.getAuthority())
-                            .buildUpon()
-                            .appendPath(BaseFile.CMD_GET_PARENT)
-                            .appendQueryParameter(BaseFile.PARAM_SOURCE,
-                                    lastUri.getLastPathSegment()).build(),
-                    null, null, null, null);
-            if (cursor != null) {
-                View divider = inflater.inflate(
-                        R.layout.afc_view_locations_divider, null);
+                    public void run() {
+                        mViewLocationsContainer
+                                .fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+                    }// run()
+                }, DisplayPrefs.DELAY_TIME_FOR_VERY_SHORT_ANIMATION);
+            }// onPostExecute()
 
-                if (lpDivider == null) {
-                    lpDivider = new LinearLayout.LayoutParams(dim, dim);
-                    lpDivider.gravity = Gravity.CENTER;
-                    lpDivider.setMargins(dim, dim, dim, dim);
-                }
-                mViewLocations.addView(divider, 0, lpDivider);
-            }
-        }
-
-        /*
-         * Sometimes without delay time, it doesn't work...
-         */
-        mViewLocationsContainer.postDelayed(new Runnable() {
-
-            public void run() {
-                mViewLocationsContainer
-                        .fullScroll(HorizontalScrollView.FOCUS_RIGHT);
-            }
-        }, DisplayPrefs.DELAY_TIME_FOR_VERY_SHORT_ANIMATION);
-    }// createLocationButtons()
+        }.execute();
+    }// buildAddressBar()
 
     /**
      * Finishes this activity.
@@ -1901,12 +2016,12 @@ public class FragmentFiles extends Fragment implements
      * @param files
      *            list of {@link Uri}.
      */
-    private void doFinish(Uri... files) {
+    private void finish(Uri... files) {
         List<Uri> list = new ArrayList<Uri>();
         for (Uri uri : files)
             list.add(uri);
-        doFinish((ArrayList<Uri>) list);
-    }// doFinish()
+        finish((ArrayList<Uri>) list);
+    }// finish()
 
     /**
      * Finishes this activity.
@@ -1914,7 +2029,7 @@ public class FragmentFiles extends Fragment implements
      * @param files
      *            list of {@link Uri}.
      */
-    private void doFinish(ArrayList<Uri> files) {
+    private void finish(ArrayList<Uri> files) {
         if (files == null || files.isEmpty()) {
             getActivity().setResult(Activity.RESULT_CANCELED);
             getActivity().finish();
@@ -1934,17 +2049,19 @@ public class FragmentFiles extends Fragment implements
             DisplayPrefs.setLastLocation(getActivity(), null);
 
         getActivity().finish();
-    }// doFinish()
+    }// finish()
 
-    /**
-     * ******************************************************* BUTTON LISTENERS
+    /*
+     * =========================================================================
+     * BUTTON LISTENERS
+     * =========================================================================
      */
 
     private final View.OnClickListener mBtnGoHomeOnClickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
-            doGoHome();
+            goHome();
         }// onClick()
     };// mBtnGoHomeOnClickListener
 
@@ -1995,7 +2112,7 @@ public class FragmentFiles extends Fragment implements
             if (BaseFile.FILTER_FILES_ONLY == mFilterMode || mIsSaveDialog)
                 return false;
 
-            doFinish((Uri) v.getTag());
+            finish((Uri) v.getTag());
 
             return false;
         }// onLongClick()
@@ -2027,7 +2144,7 @@ public class FragmentFiles extends Fragment implements
 
         @Override
         public boolean onLongClick(View v) {
-            doShowHistoryManager();
+            showHistoryManager();
             return true;
         }// onLongClick()
     };// mBtnGoBackForwardOnLongClickListener
@@ -2051,7 +2168,7 @@ public class FragmentFiles extends Fragment implements
         public void onClick(View v) {
             Ui.showSoftKeyboard(v, false);
             String filename = mTxtSaveas.getText().toString().trim();
-            doCheckSaveasFilenameAndFinish(filename);
+            checkSaveasFilenameAndFinish(filename);
         }// onClick()
     };// mBtnOk_SaveDialog_OnClickListener
 
@@ -2059,7 +2176,7 @@ public class FragmentFiles extends Fragment implements
 
         @Override
         public void onClick(View v) {
-            doFinish(mFileAdapter.getSelectedItems());
+            finish(mFileAdapter.getSelectedItems());
         }// onClick()
     };// mBtnOk_OpenDialog_OnClickListener
 
@@ -2122,10 +2239,10 @@ public class FragmentFiles extends Fragment implements
                     return;
 
                 if (mIsSaveDialog)
-                    doCheckSaveasFilenameAndFinish(BaseFileProviderUtils
+                    checkSaveasFilenameAndFinish(BaseFileProviderUtils
                             .getFileName(cursor));
                 else
-                    doFinish(BaseFileProviderUtils.getUri(cursor));
+                    finish(BaseFileProviderUtils.getUri(cursor));
             }// single tap to choose files
         }// onItemClick()
     };// mViewFilesOnItemClickListener
@@ -2145,7 +2262,7 @@ public class FragmentFiles extends Fragment implements
                         && !mIsMultiSelection
                         && BaseFileProviderUtils.isDirectory(cursor)
                         && (BaseFile.FILTER_DIRECTORIES_ONLY == mFilterMode || BaseFile.FILTER_FILES_AND_DIRECTORIES == mFilterMode)) {
-                    doFinish(BaseFileProviderUtils.getUri(cursor));
+                    finish(BaseFileProviderUtils.getUri(cursor));
                 }
             }// single tap to choose files
 
@@ -2190,4 +2307,122 @@ public class FragmentFiles extends Fragment implements
             // TODO Auto-generated method stub
         }// onBuildAdvancedOptionsMenu()
     };// mOnBuildOptionsMenuListener
+
+    /**
+     * We use a {@link LoadingDialog} to avoid of
+     * {@code NetworkOnMainThreadException}.
+     */
+    private LoadingDialog<Void, Void, Integer> mFileSelector;
+
+    /**
+     * Creates new {@link #mFileSelector} to select appropriate file after
+     * loading a folder's content. It's either the parent path of last path, or
+     * the file provided by key {@link FileChooserActivity#EXTRA_SELECT_FILE}.
+     * Note that this also cancels previous selector if there is such one.
+     */
+    private void createFileSelector() {
+        if (mFileSelector != null)
+            mFileSelector.cancel(true);
+
+        mFileSelector = new LoadingDialog<Void, Void, Integer>(getActivity(),
+                true) {
+
+            @Override
+            protected Integer doInBackground(Void... params) {
+                final Cursor cursor = mFileAdapter.getCursor();
+                if (cursor == null || cursor.isClosed())
+                    return -1;
+
+                final Uri selectedFile = (Uri) getArguments().getParcelable(
+                        FileChooserActivity.EXTRA_SELECT_FILE);
+                final int colUri = cursor.getColumnIndex(BaseFile.COLUMN_URI);
+                if (selectedFile != null)
+                    getArguments()
+                            .remove(FileChooserActivity.EXTRA_SELECT_FILE);
+
+                int shouldBeSelectedIdx = -1;
+                final Uri uri = selectedFile != null ? selectedFile
+                        : getLastLocation();
+                if (uri == null
+                        || !BaseFileProviderUtils
+                                .fileExists(getActivity(), uri))
+                    return -1;
+
+                final String fileName = BaseFileProviderUtils.getFileName(
+                        getActivity(), uri);
+                if (fileName == null)
+                    return -1;
+
+                Uri parentUri = BaseFileProviderUtils.getParentFile(
+                        getActivity(), uri);
+                if ((uri == getLastLocation()
+                        && !getCurrentLocation().equals(getLastLocation()) && BaseFileProviderUtils
+                            .isAncestorOf(getActivity(), getCurrentLocation(),
+                                    uri))
+                        || getCurrentLocation().equals(parentUri)) {
+                    if (cursor.moveToFirst()) {
+                        while (!cursor.isLast()) {
+                            if (isCancelled())
+                                return -1;
+
+                            Uri subUri = Uri.parse(cursor.getString(colUri));
+                            if (uri == getLastLocation()) {
+                                if (cursor.getInt(cursor
+                                        .getColumnIndex(BaseFile.COLUMN_TYPE)) == BaseFile.FILE_TYPE_DIRECTORY) {
+                                    if (subUri.equals(uri)
+                                            || BaseFileProviderUtils
+                                                    .isAncestorOf(
+                                                            getActivity(),
+                                                            subUri, uri)) {
+                                        shouldBeSelectedIdx = Math.max(0,
+                                                cursor.getPosition() - 2);
+                                        break;
+                                    }
+                                }
+                            } else {
+                                if (uri.equals(subUri)) {
+                                    shouldBeSelectedIdx = Math.max(0,
+                                            cursor.getPosition() - 2);
+                                    break;
+                                }
+                            }
+
+                            cursor.moveToNext();
+                        }// while
+                    }// if
+                }// if
+
+                return shouldBeSelectedIdx;
+            }// doInBackground()
+
+            @Override
+            protected void onPostExecute(final Integer result) {
+                super.onPostExecute(result);
+
+                if (isCancelled() || mFileAdapter.isEmpty())
+                    return;
+
+                /*
+                 * Use a Runnable to make sure this works. Because if the list
+                 * view is handling data, this might not work.
+                 * 
+                 * Also sometimes it doesn't work without a delay.
+                 */
+                mViewFiles.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (result >= 0 && result < mFileAdapter.getCount())
+                            mViewFiles.setSelection(result);
+                        else if (!mFileAdapter.isEmpty())
+                            mViewFiles.setSelection(0);
+                    }// run()
+                }, DisplayPrefs.DELAY_TIME_FOR_VERY_SHORT_ANIMATION);
+            }// onPostExecute()
+
+        };
+
+        mFileSelector.execute();
+    }// createFileSelector()
+
 }

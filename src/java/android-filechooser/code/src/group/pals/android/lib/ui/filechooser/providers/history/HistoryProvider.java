@@ -422,4 +422,5 @@ public class HistoryProvider extends ContentProvider {
 
         return result;
     }// appendNameAndRealUri()
+
 }

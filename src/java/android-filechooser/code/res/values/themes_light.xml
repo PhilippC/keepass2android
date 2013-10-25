@@ -103,6 +103,17 @@
         <item name="afc_color_list_group_view_background">@color/afc_list_group_view_background_light</item>
     </style>
 
+    <!--
+    These themes only display the action bar in API 7+.
+    We declare theme here as placeholders.
+    -->
+
+    <style name="Afc.BaseTheme.Light.DarkActionBar" parent="@style/Afc.BaseTheme.Light" />
+
+    <style name="Afc.BaseThemeHelper.Light.DarkActionBar" parent="@style/Afc.BaseThemeHelper.Light" />
+
+    <style name="Afc.Theme.Light.DarkActionBar" parent="@style/Afc.Theme.Light" />
+
     <style name="Afc.Theme.Dialog.Light" parent="@style/Afc.BaseThemeHelper.Dialog.Light">
         <item name="afc_theme_dialog">@style/Afc.Theme.Dialog.Light</item>
         <item name="afc_button_home">@drawable/afc_button_home_dark</item>

@@ -610,4 +610,5 @@ public class HistoryCursorAdapter extends ResourceCursorTreeAdapter {
         return android.text.format.DateUtils.formatDateTime(c, millis,
                 DateUtils.FORMAT_SHORT_TIME);
     }// formatTime()
+
 }

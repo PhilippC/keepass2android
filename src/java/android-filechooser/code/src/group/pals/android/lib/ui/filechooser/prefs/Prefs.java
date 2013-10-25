@@ -7,6 +7,7 @@
 
 package group.pals.android.lib.ui.filechooser.prefs;
 
+import group.pals.android.lib.ui.filechooser.utils.Sys;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,11 +15,10 @@ import android.os.Build;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import group.pals.android.lib.ui.filechooser.R;
 
 /**
  * Convenient class for working with preferences.
- *
+ * 
  * @author Hai Bison
  * @since v4.3 beta
  */
@@ -26,60 +26,58 @@ public class Prefs {
 
     /**
      * This unique ID is used for storing preferences.
-     *
+     * 
      * @since v4.9 beta
      */
     public static final String UID = "9795e88b-2ab4-4b81-a548-409091a1e0c6";
 
     /**
      * Generates global preference filename of this library.
-     *
-     * @param context the context.
+     * 
      * @return the global preference filename.
      */
-    public static final String genPreferenceFilename(Context context) {
-        return String.format("%s_%s", context.getString(R.string.afc_lib_name),
-                UID);
+    public static final String genPreferenceFilename() {
+        return String.format("%s_%s", Sys.LIB_NAME, UID);
     }
 
     /**
      * Generates global database filename.
-     *
-     * @param context the context.
-     * @param name    the database filename.
+     * 
+     * @param name
+     *            the database filename.
      * @return the global database filename.
      */
-    public static final String genDatabaseFilename(Context context, String name) {
-        return String.format("%s_%s_%s",
-                context.getString(R.string.afc_lib_name), UID, name);
+    public static final String genDatabaseFilename(String name) {
+        return String.format("%s_%s_%s", Sys.LIB_NAME, UID, name);
     }
 
     /**
      * Gets new {@link SharedPreferences}
-     *
-     * @param context the context.
+     * 
+     * @param context
+     *            the context.
      * @return {@link SharedPreferences}
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static SharedPreferences p(Context context) {
         // always use application context
         return context.getApplicationContext().getSharedPreferences(
-                genPreferenceFilename(context), Context.MODE_MULTI_PROCESS);
+                genPreferenceFilename(), Context.MODE_MULTI_PROCESS);
     }
 
     /**
      * Setup {@code pm} to use global unique filename and global access mode.
      * You must use this method if you let the user change preferences via UI
      * (such as {@link PreferenceActivity}, {@link PreferenceFragment}...).
-     *
-     * @param context the context.
-     * @param pm      {@link PreferenceManager}.
+     * 
+     * @param pm
+     *            {@link PreferenceManager}.
      * @since v4.9 beta
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static void setupPreferenceManager(Context context,
-                                              PreferenceManager pm) {
+    public static void setupPreferenceManager(PreferenceManager pm) {
         pm.setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
-        pm.setSharedPreferencesName(genPreferenceFilename(context));
+        pm.setSharedPreferencesName(genPreferenceFilename());
     }// setupPreferenceManager()
+
 }

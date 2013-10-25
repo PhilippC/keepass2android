@@ -566,4 +566,5 @@ public class BookmarkCursorAdapter extends ResourceCursorTreeAdapter {
             }
         }
     }// markItemAsDeleted()
+
 }

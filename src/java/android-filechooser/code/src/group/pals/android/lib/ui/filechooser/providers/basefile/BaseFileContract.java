@@ -533,4 +533,5 @@ public class BaseFileContract {
          */
         public static final String COLUMN_PROVIDER_ICON_ATTR = "provider_icon_attr";
     }// BaseFile
+
 }

@@ -7,15 +7,16 @@
 
 package group.pals.android.lib.ui.filechooser.utils;
 
-import android.content.Context;
 import group.pals.android.lib.ui.filechooser.R;
 import group.pals.android.lib.ui.filechooser.prefs.DisplayPrefs.FileTimeDisplay;
 
 import java.util.Calendar;
 
+import android.content.Context;
+
 /**
  * Date utilities.
- *
+ * 
  * @author Hai Bison
  * @since v4.7 beta
  */
@@ -45,14 +46,17 @@ public class DateUtils {
 
     /**
      * Formats date.
-     *
-     * @param context         {@link Context}.
-     * @param millis          time in milliseconds.
-     * @param fileTimeDisplay {@link FileTimeDisplay}.
+     * 
+     * @param context
+     *            {@link Context}.
+     * @param millis
+     *            time in milliseconds.
+     * @param fileTimeDisplay
+     *            {@link FileTimeDisplay}.
      * @return the formatted string
      */
     public static String formatDate(Context context, long millis,
-                                    FileTimeDisplay fileTimeDisplay) {
+            FileTimeDisplay fileTimeDisplay) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(millis);
         return formatDate(context, cal, fileTimeDisplay);
@@ -60,14 +64,17 @@ public class DateUtils {
 
     /**
      * Formats date.
-     *
-     * @param context         {@link Context}.
-     * @param date            {@link Calendar}.
-     * @param fileTimeDisplay {@link FileTimeDisplay}.
+     * 
+     * @param context
+     *            {@link Context}.
+     * @param date
+     *            {@link Calendar}.
+     * @param fileTimeDisplay
+     *            {@link FileTimeDisplay}.
      * @return the formatted string, for local human reading.
      */
     public static String formatDate(Context context, Calendar date,
-                                    FileTimeDisplay fileTimeDisplay) {
+            FileTimeDisplay fileTimeDisplay) {
         final Calendar yesterday = Calendar.getInstance();
         yesterday.add(Calendar.DAY_OF_YEAR, -1);
 
@@ -79,7 +86,7 @@ public class DateUtils {
         }// today
         else if (date.get(Calendar.YEAR) == yesterday.get(Calendar.YEAR)
                 && date.get(Calendar.DAY_OF_YEAR) == yesterday
-                .get(Calendar.DAY_OF_YEAR)) {
+                        .get(Calendar.DAY_OF_YEAR)) {
             res = String.format(
                     "%s, %s",
                     context.getString(R.string.afc_yesterday),
@@ -87,25 +94,26 @@ public class DateUtils {
                             date.getTimeInMillis(), FORMAT_SHORT_TIME));
         }// yesterday
         else if (date.get(Calendar.YEAR) == yesterday.get(Calendar.YEAR)) {
-            if (fileTimeDisplay.isShowTimeForOldDaysThisYear())
+            if (fileTimeDisplay.showTimeForOldDaysThisYear)
                 res = android.text.format.DateUtils.formatDateTime(context,
                         date.getTimeInMillis(), FORMAT_SHORT_TIME
-                        | FORMAT_MONTH_AND_DAY);
+                                | FORMAT_MONTH_AND_DAY);
             else
                 res = android.text.format.DateUtils.formatDateTime(context,
                         date.getTimeInMillis(), FORMAT_MONTH_AND_DAY);
         }// this year
         else {
-            if (fileTimeDisplay.isShowTimeForOldDays())
+            if (fileTimeDisplay.showTimeForOldDays)
                 res = android.text.format.DateUtils.formatDateTime(context,
                         date.getTimeInMillis(), FORMAT_SHORT_TIME
-                        | FORMAT_MONTH_AND_DAY | FORMAT_YEAR);
+                                | FORMAT_MONTH_AND_DAY | FORMAT_YEAR);
             else
                 res = android.text.format.DateUtils.formatDateTime(context,
                         date.getTimeInMillis(), FORMAT_MONTH_AND_DAY
-                        | FORMAT_YEAR);
+                                | FORMAT_YEAR);
         }// other years (maybe older or newer than this year)
 
         return res;
     }// formatDate()
+
 }

@@ -259,4 +259,5 @@ public class HistoryStore<A extends Parcelable> implements History<A> {
     private HistoryStore(Parcel in) {
         readFromParcel(in);
     }// HistoryStore()
+
 }

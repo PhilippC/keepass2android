@@ -470,4 +470,5 @@ public class AfcSearchView extends LinearLayout {
                 mTextSearch.setText(null);
         }// onClick()
     };// mButtonClearOnClickListener
+
 }

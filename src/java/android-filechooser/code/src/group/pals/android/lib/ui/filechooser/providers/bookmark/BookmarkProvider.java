@@ -359,4 +359,5 @@ public class BookmarkProvider extends ContentProvider {
         // Returns the number of rows updated.
         return count;
     }// update()
+
 }

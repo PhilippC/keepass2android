@@ -23,7 +23,7 @@ import android.widget.AbsListView;
  */
 public class GestureUtils {
 
-    public static final String CLASSNAME = GestureUtils.class.getName();
+    private static final String CLASSNAME = GestureUtils.class.getName();
 
     /**
      * The fling direction.
@@ -218,4 +218,5 @@ public class GestureUtils {
             }
         });
     }// setupGestureDetector()
+
 }

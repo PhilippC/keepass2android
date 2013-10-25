@@ -31,6 +31,7 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -660,9 +661,8 @@ public class BookmarkFragment extends DialogFragment implements
                                     BookmarkContract.COLUMN_MODIFICATION_TIME,
                                     DbUtils.formatNumber(new Date().getTime()));
                             context.getContentResolver().update(
-                                    Uri.withAppendedPath(BookmarkContract
-                                            .genContentIdUriBase(context), Uri
-                                            .encode(Integer.toString(id))),
+                                    ContentUris.withAppendedId(BookmarkContract
+                                            .genContentIdUriBase(context), id),
                                     values, null, null);
                         } else {
                             /*
@@ -801,4 +801,5 @@ public class BookmarkFragment extends DialogFragment implements
                 setEditor(false);
         }// onClick()
     };// mBtnOkOnClickListener
+
 }

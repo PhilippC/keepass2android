@@ -43,8 +43,8 @@ public class BookmarkHelper extends SQLiteOpenHelper {
 
     public BookmarkHelper(Context context) {
         // always use application context
-        super(context.getApplicationContext(), Prefs.genDatabaseFilename(
-                context, DB_FILENAME), null, DB_VERSION);
+        super(context.getApplicationContext(), Prefs
+                .genDatabaseFilename(DB_FILENAME), null, DB_VERSION);
     }// BookmarkHelper()
 
     @Override
@@ -59,4 +59,5 @@ public class BookmarkHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO
     }// onUpgrade()
+
 }

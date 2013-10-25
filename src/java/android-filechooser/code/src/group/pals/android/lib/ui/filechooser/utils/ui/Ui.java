@@ -145,4 +145,5 @@ public class Ui {
             dialogWindow.setLayout(width, height);
         }
     }// adjustDialogSizeForLargeScreen()
+
 }

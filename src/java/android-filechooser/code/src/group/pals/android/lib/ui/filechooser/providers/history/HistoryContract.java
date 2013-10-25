@@ -7,11 +7,11 @@
 
 package group.pals.android.lib.ui.filechooser.providers.history;
 
-import android.content.Context;
-import android.net.Uri;
 import group.pals.android.lib.ui.filechooser.providers.BaseColumns;
 import group.pals.android.lib.ui.filechooser.providers.ProviderUtils;
 import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileContract.BaseFile;
+import android.content.Context;
+import android.net.Uri;
 
 /**
  * History contract.
@@ -123,4 +123,5 @@ public final class HistoryContract implements BaseColumns {
      * Type: {@code URI}
      */
     public static final String COLUMN_URI = "uri";
+
 }
