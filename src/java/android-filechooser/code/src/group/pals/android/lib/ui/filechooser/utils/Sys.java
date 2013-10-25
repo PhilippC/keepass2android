@@ -23,11 +23,11 @@ public class Sys {
     /**
      * The library version name.
      */
-    public static final String LIB_VERSION_NAME = "5.4.3 beta";
+    public static final String LIB_VERSION_NAME = "5.4.4 beta";
 
     /**
      * The library version code.
      */
-    public static final int LIB_VERSION_CODE = 54;
+    public static final int LIB_VERSION_CODE = 56;
 
 }

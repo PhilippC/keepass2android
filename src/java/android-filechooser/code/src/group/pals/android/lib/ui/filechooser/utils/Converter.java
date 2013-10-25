@@ -47,4 +47,5 @@ public class Converter {
                 String.format("%s %%sB", digitGroups == 0 ? "%,.0f" : "%,.2f"),
                 size, units[digitGroups]);
     }// sizeToStr()
+
 }

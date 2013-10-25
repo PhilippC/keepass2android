@@ -131,4 +131,5 @@ public class FileObserverEx extends FileObserver {
             HandlerThreadCompat_v5.quit(mHandlerThread);
         mHandlerThread.interrupt();
     }// stopWatching()
+
 }

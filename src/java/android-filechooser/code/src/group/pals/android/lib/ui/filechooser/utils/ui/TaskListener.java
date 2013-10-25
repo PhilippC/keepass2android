@@ -24,4 +24,5 @@ public interface TaskListener {
      *            the user data, can be {@code null}.
      */
     public void onFinish(boolean ok, Object any);
+
 }

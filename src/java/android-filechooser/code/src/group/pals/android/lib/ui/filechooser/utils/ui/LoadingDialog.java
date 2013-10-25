@@ -7,6 +7,7 @@
 
 package group.pals.android.lib.ui.filechooser.utils.ui;
 
+import group.pals.android.lib.ui.filechooser.R;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,7 +25,7 @@ import android.util.Log;
 public abstract class LoadingDialog<Params, Progress, Result> extends
         AsyncTask<Params, Progress, Result> {
 
-    public static final String CLASSNAME = LoadingDialog.class.getName();
+    private static final String CLASSNAME = LoadingDialog.class.getName();
 
     private final ProgressDialog mDialog;
     /**
@@ -77,6 +78,19 @@ public abstract class LoadingDialog<Params, Progress, Result> extends
      */
     public LoadingDialog(Context context, int msgId, boolean cancelable) {
         this(context, context.getString(msgId), cancelable);
+    }// LoadingDialog()
+
+    /**
+     * Creates new {@link LoadingDialog} showing "Loading..." (
+     * {@link R.string#afc_msg_loading}).
+     * 
+     * @param context
+     *            {@link Context}
+     * @param cancelable
+     *            as the name means.
+     */
+    public LoadingDialog(Context context, boolean cancelable) {
+        this(context, context.getString(R.string.afc_msg_loading), cancelable);
     }// LoadingDialog()
 
     /**

@@ -9,7 +9,7 @@ package group.pals.android.lib.ui.filechooser.providers;
 
 /**
  * The base columns.
- *
+ * 
  * @author Hai Bison
  * @since v5.1 beta
  */
@@ -32,4 +32,5 @@ public interface BaseColumns extends android.provider.BaseColumns {
      * </P>
      */
     public static final String COLUMN_MODIFICATION_TIME = "modification_time";
+
 }

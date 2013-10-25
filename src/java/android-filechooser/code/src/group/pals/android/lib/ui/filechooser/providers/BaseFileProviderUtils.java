@@ -16,14 +16,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 
 /**
  * Utilities for base file provider.
@@ -118,10 +115,11 @@ public class BaseFileProviderUtils {
         String result = getProviderName(providerId);
 
         if (result == null) {
-            Cursor cursor = queryInBackground(
-                    context,
-                    BaseFile.genContentUriApi(getProviderAuthority(providerId)),
-                    null, null, null, null);
+            Cursor cursor = context
+                    .getContentResolver()
+                    .query(BaseFile
+                            .genContentUriApi(getProviderAuthority(providerId)),
+                            null, null, null, null);
             if (cursor == null)
                 return null;
 
@@ -167,10 +165,11 @@ public class BaseFileProviderUtils {
         int attr = MAP_PROVIDER_INFO.get(providerId).getInt(
                 BaseFile.COLUMN_PROVIDER_ICON_ATTR);
         if (attr == 0) {
-            Cursor cursor = queryInBackground(
-                    context,
-                    BaseFile.genContentUriApi(getProviderAuthority(providerId)),
-                    null, null, null, null);
+            Cursor cursor = context
+                    .getContentResolver()
+                    .query(BaseFile
+                            .genContentUriApi(getProviderAuthority(providerId)),
+                            null, null, null, null);
             if (cursor != null) {
                 try {
                     if (cursor.moveToFirst()) {
@@ -250,8 +249,8 @@ public class BaseFileProviderUtils {
      *         otherwise.
      */
     public static boolean isDirectory(Context context, Uri uri) {
-    	//Log.d("AFC", "isDir? "+uri.toString());
-        Cursor cursor = queryInBackground(context, uri, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(uri, null, null,
+                null, null);
         if (cursor == null)
             return false;
 
@@ -286,8 +285,8 @@ public class BaseFileProviderUtils {
      * @return {@code true} if {@code uri} is a file, {@code false} otherwise.
      */
     public static boolean isFile(Context context, Uri uri) {
-    	//Log.d("AFC", "isFile? "+uri.toString());
-        Cursor cursor = queryInBackground(context, uri, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(uri, null, null,
+                null, null);
         if (cursor == null)
             return false;
 
@@ -321,8 +320,8 @@ public class BaseFileProviderUtils {
      * @return the file name if {@code uri} is a file, {@code null} otherwise.
      */
     public static String getFileName(Context context, Uri uri) {
-    	//Log.d("AFC", "getFileName "+uri.toString());
-        Cursor cursor = queryInBackground(context, uri, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(uri, null, null,
+                null, null);
         if (cursor == null)
             return null;
 
@@ -359,8 +358,8 @@ public class BaseFileProviderUtils {
      * @return the real URI of {@code uri}.
      */
     public static Uri getRealUri(Context context, Uri uri) {
-    	//Log.d("AFC", "getRealUri "+uri.toString());
-        Cursor cursor = queryInBackground(context, uri, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(uri, null, null,
+                null, null);
         if (cursor == null)
             return null;
 
@@ -400,8 +399,8 @@ public class BaseFileProviderUtils {
      *         {@link #FILE_TYPE_UNKNOWN}, {@link #FILE_TYPE_NOT_EXISTED}.
      */
     public static int getFileType(Context context, Uri uri) {
-    	//Log.d("AFC", "filetype? "+uri.toString());
-        Cursor cursor = queryInBackground(context, uri, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(uri, null, null,
+                null, null);
         if (cursor == null)
             return BaseFile.FILE_TYPE_NOT_EXISTED;
 
@@ -449,8 +448,8 @@ public class BaseFileProviderUtils {
      * @return {@code true} or {@code false}.
      */
     public static boolean fileExists(Context context, Uri uri) {
-    	//Log.d("AFC", "exists? "+uri.toString());
-        Cursor cursor = queryInBackground(context, uri, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(uri, null, null,
+                null, null);
         if (cursor == null)
             return false;
 
@@ -474,8 +473,8 @@ public class BaseFileProviderUtils {
      * @return {@code true} or {@code false}.
      */
     public static boolean fileCanRead(Context context, Uri uri) {
-    	//Log.d("AFC", "canread? "+uri.toString());
-        Cursor cursor = queryInBackground(context, uri, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(uri, null, null,
+                null, null);
         if (cursor == null)
             return false;
 
@@ -511,8 +510,8 @@ public class BaseFileProviderUtils {
      * @return {@code true} or {@code false}.
      */
     public static boolean fileCanWrite(Context context, Uri uri) {
-    	//Log.d("AFC", "canWrite? "+uri.toString());
-        Cursor cursor = queryInBackground(context, uri, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(uri, null, null,
+                null, null);
         if (cursor == null)
             return false;
 
@@ -548,8 +547,7 @@ public class BaseFileProviderUtils {
      * @return the default path, can be {@code null}.
      */
     public static Uri getDefaultPath(Context context, String authority) {
-        Cursor cursor = queryInBackground(
-                context,
+        Cursor cursor = context.getContentResolver().query(
                 BaseFile.genContentUriApi(authority).buildUpon()
                         .appendPath(BaseFile.CMD_GET_DEFAULT_PATH).build(),
                 null, null, null, null);
@@ -576,8 +574,7 @@ public class BaseFileProviderUtils {
      * @return the parent file if it exists, {@code null} otherwise.
      */
     public static Uri getParentFile(Context context, Uri uri) {
-        Cursor cursor = queryInBackground(
-                context,
+        Cursor cursor = context.getContentResolver().query(
                 BaseFile.genContentUriApi(uri.getAuthority())
                         .buildUpon()
                         .appendPath(BaseFile.CMD_GET_PARENT)
@@ -610,8 +607,7 @@ public class BaseFileProviderUtils {
      *         {@code false} otherwise.
      */
     public static boolean isAncestorOf(Context context, Uri uri1, Uri uri2) {
-        return queryInBackground(
-                context,
+        return context.getContentResolver().query(
                 BaseFile.genContentUriApi(uri1.getAuthority())
                         .buildUpon()
                         .appendPath(BaseFile.CMD_IS_ANCESTOR_OF)
@@ -633,8 +629,7 @@ public class BaseFileProviderUtils {
      *            the task ID.
      */
     public static void cancelTask(Context context, String authority, int taskId) {
-        queryInBackground(
-                context,
+        context.getContentResolver().query(
                 BaseFile.genContentUriApi(authority)
                         .buildUpon()
                         .appendPath(BaseFile.CMD_CANCEL)
@@ -642,186 +637,5 @@ public class BaseFileProviderUtils {
                                 Integer.toString(taskId)).build(), null, null,
                 null, null);
     }// cancelTask()
-
-    /**
-     * Creates new background thread to delete given URI, waits for the thread
-     * to finish (or be interrupted) and returns the result.
-     * 
-     * @param context
-     *            the context.
-     * @param uri
-     *            the URI to delete, see
-     *            {@link ContentResolver#delete(Uri, String, String[])} for more
-     *            details.
-     * @param where
-     *            the {@code WHERE} clause, see
-     *            {@link ContentResolver#delete(Uri, String, String[])} for more
-     *            details.
-     * @param selectionArgs
-     *            the selection arguments, see
-     *            {@link ContentResolver#delete(Uri, String, String[])} for more
-     *            details.
-     * @return the value returned from
-     *         {@link ContentResolver#delete(Uri, String, String[])} , or
-     *         {@code -1} if an error occurred.
-     */
-    public static int deleteInBackground(final Context context, final Uri uri,
-            final String where, final String[] selectionArgs) {
-        final int[] result = { 0 };
-
-        Thread thread = new Thread() {
-
-            @Override
-            public void run() {
-                result[0] = context.getContentResolver().delete(uri, where,
-                        selectionArgs);
-            }// run()
-        };
-        thread.start();
-        try {
-            thread.join();
-            return result[0];
-        } catch (InterruptedException e) {
-            return -1;
-        }
-    }// deleteInBackground()
-
-    /**
-     * Creates new background thread to insert values to given URI, waits for
-     * the thread to finish (or be interrupted) and returns the result.
-     * 
-     * @param context
-     *            the context.
-     * @param uri
-     *            the URI to insert values into, see
-     *            {@link ContentResolver#insert(Uri, ContentValues)} for more
-     *            details.
-     * @param values
-     *            the values to insert into, see
-     *            {@link ContentResolver#insert(Uri, ContentValues)} for more
-     *            details.
-     * @return the URI returned from
-     *         {@link ContentResolver#insert(Uri, ContentValues)}, or
-     *         {@code null} if an error occurred.
-     */
-    public static Uri insertInBackground(final Context context, final Uri uri,
-            final ContentValues values) {
-        final Uri[] result = { null };
-
-        Thread thread = new Thread() {
-
-            @Override
-            public void run() {
-                result[0] = context.getContentResolver().insert(uri, values);
-            }// run()
-        };
-        thread.start();
-        try {
-            thread.join();
-            return result[0];
-        } catch (InterruptedException e) {
-            return null;
-        }
-    }// insertInBackground()
-
-    /**
-     * Creates new background thread to query given URI, waits for the thread to
-     * finish (or be interrupted) and returns the result.
-     * 
-     * @param context
-     *            the context.
-     * @param uri
-     *            the URI to query, see
-     *            {@link ContentResolver#query(Uri, String[], String, String[], String)}
-     *            for more details.
-     * @param projection
-     *            the projection, see
-     *            {@link ContentResolver#query(Uri, String[], String, String[], String)}
-     *            for more details.
-     * @param selection
-     *            the selection, see
-     *            {@link ContentResolver#query(Uri, String[], String, String[], String)}
-     *            for more details.
-     * @param selectionArgs
-     *            the selection arguments, see
-     *            {@link ContentResolver#query(Uri, String[], String, String[], String)}
-     *            for more details.
-     * @param sortOrder
-     *            the sort order, see
-     *            {@link ContentResolver#query(Uri, String[], String, String[], String)}
-     *            for more details.
-     * @return the cursor returned from
-     *         {@link ContentResolver#query(Uri, String[], String, String[], String)}
-     *         , or {@code null} if an error occurred.
-     */
-    public static Cursor queryInBackground(final Context context,
-            final Uri uri, final String[] projection, final String selection,
-            final String[] selectionArgs, final String sortOrder) {
-        final Cursor[] result = { null };
-
-        Thread thread = new Thread() {
-
-            @Override
-            public void run() {
-                result[0] = context.getContentResolver().query(uri, projection,
-                        selection, selectionArgs, sortOrder);
-            }// run()
-        };
-        thread.start();
-        try {
-            thread.join();
-            return result[0];
-        } catch (InterruptedException e) {
-            return null;
-        }
-    }// queryInBackground()
-
-    /**
-     * Creates new background thread to update given URI, waits for the thread
-     * to finish (or be interrupted) and returns the result.
-     * 
-     * @param context
-     *            the context.
-     * @param uri
-     *            the URI to update, see
-     *            {@link ContentResolver#update(Uri, ContentValues, String, String[])}
-     *            for more details.
-     * @param values
-     *            the values to update, see
-     *            {@link ContentResolver#update(Uri, ContentValues, String, String[])}
-     *            for more details.
-     * @param where
-     *            the {@code WHERE} clause, see
-     *            {@link ContentResolver#update(Uri, ContentValues, String, String[])}
-     *            for more details.
-     * @param selectionArgs
-     *            the selection arguments, see
-     *            {@link ContentResolver#update(Uri, ContentValues, String, String[])}
-     *            for more details.
-     * @return the value returned from
-     *         {@link ContentResolver#update(Uri, ContentValues, String, String[])}
-     *         , or {@code -1} if an error occurred.
-     */
-    public static int updateInBackground(final Context context, final Uri uri,
-            final ContentValues values, final String where,
-            final String[] selectionArgs) {
-        final int[] result = { 0 };
-
-        Thread thread = new Thread() {
-
-            @Override
-            public void run() {
-                result[0] = context.getContentResolver().update(uri, values,
-                        where, selectionArgs);
-            }// run()
-        };
-        thread.start();
-        try {
-            thread.join();
-            return result[0];
-        } catch (InterruptedException e) {
-            return -1;
-        }
-    }// updateInBackground()
 
 }

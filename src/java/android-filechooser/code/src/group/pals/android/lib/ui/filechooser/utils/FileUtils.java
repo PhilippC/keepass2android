@@ -95,4 +95,5 @@ public class FileUtils {
     public static boolean isFilenameValid(String name) {
         return name != null && name.trim().matches("[^\\\\/?%*:|\"<>]+");
     }// isFilenameValid()
+
 }

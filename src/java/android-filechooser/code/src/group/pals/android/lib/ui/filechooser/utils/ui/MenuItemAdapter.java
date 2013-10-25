@@ -65,4 +65,5 @@ public class MenuItemAdapter extends BaseAdapter {
 
         return convertView;
     }// getView()
+
 }

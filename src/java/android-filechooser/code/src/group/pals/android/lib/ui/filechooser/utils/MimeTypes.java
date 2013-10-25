@@ -77,4 +77,5 @@ public class MimeTypes {
     public static final String REGEX_FILE_TYPE_COMPRESSED = "(?si)^.+\\.(zip|"
             + "7z|lz?|[jrt]ar|gz|gzip|bzip|xz|cab|sfx|z|iso|bz?|rz|s7z|apk|"
             + "dmg)$";
+
 }

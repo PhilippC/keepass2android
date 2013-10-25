@@ -7,14 +7,14 @@
 
 package group.pals.android.lib.ui.filechooser.prefs;
 
-import android.content.Context;
 import group.pals.android.lib.ui.filechooser.FileChooserActivity.ViewType;
 import group.pals.android.lib.ui.filechooser.R;
 import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileContract.BaseFile;
+import android.content.Context;
 
 /**
  * Display preferences.
- *
+ * 
  * @author Hai Bison
  * @since v4.3 beta
  */
@@ -43,8 +43,9 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Gets view type.
-     *
-     * @param c {@link Context}
+     * 
+     * @param c
+     *            {@link Context}
      * @return {@link ViewType}
      */
     public static ViewType getViewType(Context c) {
@@ -57,9 +58,11 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Sets view type.
-     *
-     * @param c {@link Context}
-     * @param v {@link ViewType}, if {@code null}, default value will be used.
+     * 
+     * @param c
+     *            {@link Context}
+     * @param v
+     *            {@link ViewType}, if {@code null}, default value will be used.
      */
     public static void setViewType(Context c, ViewType v) {
         String key = c.getString(R.string.afc_pkey_display_view_type);
@@ -75,8 +78,9 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Gets sort type.
-     *
-     * @param c {@link Context}
+     * 
+     * @param c
+     *            {@link Context}
      * @return one of {@link BaseFile#SORT_BY_MODIFICATION_TIME},
      *         {@link BaseFile#SORT_BY_NAME}, {@link BaseFile#SORT_BY_SIZE}.
      */
@@ -89,11 +93,13 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Sets {@link SortType}
-     *
-     * @param c {@link Context}
-     * @param v one of {@link BaseFile#SORT_BY_MODIFICATION_TIME},
-     *          {@link BaseFile#SORT_BY_NAME}, {@link BaseFile#SORT_BY_SIZE}.,
-     *          if {@code null}, default value will be used.
+     * 
+     * @param c
+     *            {@link Context}
+     * @param v
+     *            one of {@link BaseFile#SORT_BY_MODIFICATION_TIME},
+     *            {@link BaseFile#SORT_BY_NAME}, {@link BaseFile#SORT_BY_SIZE}.,
+     *            if {@code null}, default value will be used.
      */
     public static void setSortType(Context c, Integer v) {
         String key = c.getString(R.string.afc_pkey_display_sort_type);
@@ -109,8 +115,9 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Gets sort ascending.
-     *
-     * @param c {@link Context}
+     * 
+     * @param c
+     *            {@link Context}
      * @return {@code true} if sort is ascending, {@code false} otherwise.
      */
     public static boolean isSortAscending(Context c) {
@@ -122,9 +129,11 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Sets sort ascending.
-     *
-     * @param c {@link Context}
-     * @param v {@link Boolean}, if {@code null}, default value will be used.
+     * 
+     * @param c
+     *            {@link Context}
+     * @param v
+     *            {@link Boolean}, if {@code null}, default value will be used.
      */
     public static void setSortAscending(Context c, Boolean v) {
         if (v == null)
@@ -139,8 +148,9 @@ public class DisplayPrefs extends Prefs {
     /**
      * Checks setting of showing time for old days in this year. Default is
      * {@code false}.
-     *
-     * @param c {@link Context}.
+     * 
+     * @param c
+     *            {@link Context}.
      * @return {@code true} or {@code false}.
      * @since v4.7 beta
      */
@@ -155,10 +165,12 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Enables or disables showing time of old days in this year.
-     *
-     * @param c {@link Context}.
-     * @param v your preferred flag. If {@code null}, default will be used (
-     *          {@code false}).
+     * 
+     * @param c
+     *            {@link Context}.
+     * @param v
+     *            your preferred flag. If {@code null}, default will be used (
+     *            {@code false}).
      * @since v4.7 beta
      */
     public static void setShowTimeForOldDaysThisYear(Context c, Boolean v) {
@@ -175,8 +187,9 @@ public class DisplayPrefs extends Prefs {
     /**
      * Checks setting of showing time for old days in last year and older.
      * Default is {@code false}.
-     *
-     * @param c {@link Context}.
+     * 
+     * @param c
+     *            {@link Context}.
      * @return {@code true} or {@code false}.
      * @since v4.7 beta
      */
@@ -189,10 +202,12 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Enables or disables showing time of old days in last year and older.
-     *
-     * @param c {@link Context}.
-     * @param v your preferred flag. If {@code null}, default will be used (
-     *          {@code false}).
+     * 
+     * @param c
+     *            {@link Context}.
+     * @param v
+     *            your preferred flag. If {@code null}, default will be used (
+     *            {@code false}).
      * @since v4.7 beta
      */
     public static void setShowTimeForOldDays(Context c, Boolean v) {
@@ -207,8 +222,9 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Checks if remembering last location is enabled or not.
-     *
-     * @param c {@link Context}.
+     * 
+     * @param c
+     *            {@link Context}.
      * @return {@code true} if remembering last location is enabled.
      * @since v4.7 beta
      */
@@ -218,10 +234,12 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Enables or disables remembering last location.
-     *
-     * @param c {@link Context}.
-     * @param v your preferred flag. If {@code null}, default will be used (
-     *          {@code true}).
+     * 
+     * @param c
+     *            {@link Context}.
+     * @param v
+     *            your preferred flag. If {@code null}, default will be used (
+     *            {@code true}).
      * @since v4.7 beta
      */
     public static void setRememberLastLocation(Context c, Boolean v) {
@@ -236,8 +254,9 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Gets last location.
-     *
-     * @param c {@link Context}.
+     * 
+     * @param c
+     *            {@link Context}.
      * @return the last location, or {@code null} if not available.
      * @since v4.7 beta
      */
@@ -248,9 +267,11 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * Sets last location.
-     *
-     * @param c {@link Context}.
-     * @param v the last location.
+     * 
+     * @param c
+     *            {@link Context}.
+     * @param v
+     *            the last location.
      */
     public static void setLastLocation(Context c, String v) {
         p(c).edit()
@@ -265,7 +286,7 @@ public class DisplayPrefs extends Prefs {
 
     /**
      * File time display options.
-     *
+     * 
      * @author Hai Bison
      * @see DisplayPrefs#isShowTimeForOldDaysThisYear(Context)
      * @see DisplayPrefs#isShowTimeForOldDays(Context)
@@ -273,37 +294,20 @@ public class DisplayPrefs extends Prefs {
      */
     public static class FileTimeDisplay {
 
-        private boolean mShowTimeForOldDaysThisYear;
-        private boolean mShowTimeForOldDays;
+        public boolean showTimeForOldDaysThisYear;
+        public boolean showTimeForOldDays;
 
         /**
          * Creates new instance.
-         *
+         * 
          * @param showTimeForOldDaysThisYear
          * @param showTimeForOldDays
          */
         public FileTimeDisplay(boolean showTimeForOldDaysThisYear,
-                               boolean showTimeForOldDays) {
-            mShowTimeForOldDaysThisYear = showTimeForOldDaysThisYear;
-            mShowTimeForOldDays = showTimeForOldDays;
+                boolean showTimeForOldDays) {
+            this.showTimeForOldDaysThisYear = showTimeForOldDaysThisYear;
+            this.showTimeForOldDays = showTimeForOldDays;
         }// FileTimeDisplay()
-
-        public boolean isShowTimeForOldDaysThisYear() {
-            return mShowTimeForOldDaysThisYear;
-        }// isShowTimeForOldDaysThisYear()
-
-        public FileTimeDisplay setShowTimeForOldDaysThisYear(boolean v) {
-            mShowTimeForOldDaysThisYear = v;
-            return this;
-        }// setShowTimeForOldDaysThisYear()
-
-        public boolean isShowTimeForOldDays() {
-            return mShowTimeForOldDays;
-        }// isShowTimeForOldDays()
-
-        public FileTimeDisplay setShowTimeForOldDays(boolean v) {
-            mShowTimeForOldDays = v;
-            return this;
-        }// setShowTimeForOldDays()
     }// FileTimeDisplay
+
 }

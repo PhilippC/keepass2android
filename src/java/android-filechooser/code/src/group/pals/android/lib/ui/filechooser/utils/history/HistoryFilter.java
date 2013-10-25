@@ -9,7 +9,7 @@ package group.pals.android.lib.ui.filechooser.utils.history;
 
 /**
  * Filter of {@link History}
- *
+ * 
  * @author Hai Bison
  * @since v4.0 beta
  */
@@ -17,9 +17,11 @@ public interface HistoryFilter<A> {
 
     /**
      * Filters item.
-     *
-     * @param item {@link A}
+     * 
+     * @param item
+     *            {@link A}
      * @return {@code true} if the {@code item} is accepted
      */
     boolean accept(A item);
+
 }
