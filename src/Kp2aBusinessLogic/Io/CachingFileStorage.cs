@@ -481,6 +481,11 @@ namespace keepass2android.Io
 			return _cachedStorage.GetDisplayName(ioc);
 		}
 
+		public string CreateFilePath(string parent, string newFilename)
+		{
+			return _cachedStorage.CreateFilePath(parent, newFilename);
+		}
+
 
 		public string GetBaseVersionHash(IOConnectionInfo ioc)
 		{

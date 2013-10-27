@@ -280,6 +280,11 @@ namespace keepass2android.Io
 			return _jfs.GetDisplayName(ioc.Path);
 		}
 
+		public string CreateFilePath(string parent, string newFilename)
+		{
+			return _jfs.CreateFilePath(parent, newFilename);
+		}
+
 		private DateTime JavaTimeToCSharp(long javatime)
 		{
 			return new DateTime(1970, 1, 1).AddMilliseconds(javatime);

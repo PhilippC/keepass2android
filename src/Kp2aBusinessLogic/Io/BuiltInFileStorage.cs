@@ -200,5 +200,12 @@ namespace keepass2android.Io
 		{
 			return ioc.GetDisplayName();
 		}
+
+		public string CreateFilePath(string parent, string newFilename)
+		{
+			if (!parent.EndsWith("/"))
+				parent += "/";
+			return parent + newFilename;
+		}
 	}
 }

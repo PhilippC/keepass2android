@@ -150,6 +150,10 @@ namespace keepass2android.Io
 		/// Converts the given path to a displayable string
 		/// </summary>
 		string GetDisplayName(IOConnectionInfo ioc);
+
+		//returns the path of a file "newFilename" in the folder "parent"
+		//this may create the file if this is required to get a path (if a UUID is part of the file path)
+		string CreateFilePath(string parent, string newFilename);
 	}
 
 	public interface IWriteTransaction: IDisposable

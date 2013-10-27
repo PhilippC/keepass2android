@@ -625,9 +625,10 @@ namespace keepass2android
 						if (filename != null) {
 							if (filename.StartsWith("file://")) {
 								filename = filename.Substring(7);
+								filename = Java.Net.URLDecoder.Decode(filename);
 							}
 							
-							filename = Java.Net.URLDecoder.Decode(filename);
+							
 							AddBinaryOrAsk(filename);
 						}
 					}

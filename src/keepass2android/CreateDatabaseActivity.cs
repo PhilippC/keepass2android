@@ -92,7 +92,7 @@ namespace keepass2android
 						string defaulFilename = _keyfileFilename;
 						if (_keyfileFilename == null)
 						{
-							defaulFilename = _keyfileFilename = SdDir + "keepass/keyfile.txt";
+							defaulFilename = _keyfileFilename = SdDir + "keyfile.txt";
 							if (defaulFilename.StartsWith("file://") == false)
 								defaulFilename = "file://" + defaulFilename;
 						}
@@ -234,7 +234,10 @@ namespace keepass2android
 																										defaultPath);
 
 			if (forSave)
+			{
 				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.save_dialog", true);
+				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.default_file_ext", "kdbx");
+			}
 
 			StartActivityForResult(i, requestCode);
 #endif
@@ -243,9 +246,10 @@ namespace keepass2android
 
 		private void UpdateIocView()
 		{
-			int protocolSeparatorPos = _ioc.Path.IndexOf("://", StringComparison.Ordinal);
+			string displayPath = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);
+			int protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
 			string protocolId = protocolSeparatorPos < 0 ?
-				"file" : _ioc.Path.Substring(0, protocolSeparatorPos);
+				"file" : displayPath.Substring(0, protocolSeparatorPos);
 			Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
 			FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
 
@@ -253,24 +257,24 @@ namespace keepass2android
 			FindViewById<TextView>(Resource.Id.filestorage_label).Text = title;
 
 			FindViewById<TextView>(Resource.Id.label_filename).Text = protocolSeparatorPos < 0 ?
-				_ioc.Path :
-				_ioc.Path.Substring(protocolSeparatorPos + 3);
+				displayPath :
+				displayPath.Substring(protocolSeparatorPos + 3);
 
 		}
 
 		private void SetDefaultIoc()
 		{
 			var sdDir = SdDir;
-			string filename = sdDir + "keepass/keepass.kdbx";
+			string filename = sdDir + "keepass.kdbx";
 			filename = ConvertFilenameToIocPath(filename);
 			int count = 2;
 			while (new File(filename).Exists())
 			{
-				filename = ConvertFilenameToIocPath(sdDir + "keepass/keepass" + count + ".kdbx");
+				filename = ConvertFilenameToIocPath(sdDir + "keepass" + count + ".kdbx");
 				count++;
 			}
 			
-			_ioc = new IOConnectionInfo()
+			_ioc = new IOConnectionInfo
 				{
 					Path = filename
 				};
@@ -328,12 +332,34 @@ namespace keepass2android
 				if (requestCode == RequestCodeDbFilename)
 				{
 					string filename = Util.IntentToFilename(data, this);
-					filename = ConvertFilenameToIocPath(filename);
-					if (filename != null)
+
+					bool fileExists = data.GetBooleanExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.result_file_exists", true);
+
+					if (fileExists)
 					{
-						_ioc = new IOConnectionInfo() {Path = filename};
+						_ioc = new IOConnectionInfo { Path = ConvertFilenameToIocPath(filename) };
 						UpdateIocView();
 					}
+					else
+					{
+						var task = new CreateNewFilename(new ActionOnFinish((success, messageOrFilename) =>
+							{
+								if (!success)
+								{
+									Toast.MakeText(this, messageOrFilename, ToastLength.Long).Show();
+									return;
+								}
+								_ioc = new IOConnectionInfo { Path = ConvertFilenameToIocPath(messageOrFilename) };
+								UpdateIocView();
+								
+							}), filename);
+
+						new ProgressTask(App.Kp2a, this, task).Run();
+					}
+
+
+
+					
 				}
 				
 			}
@@ -354,11 +380,11 @@ namespace keepass2android
 
 		private static string ConvertFilenameToIocPath(string filename)
 		{
-			if (filename.StartsWith("file://"))
+			if ((filename != null) && (filename.StartsWith("file://")))
 			{
 				filename = filename.Substring(7);
+				filename = Java.Net.URLDecoder.Decode(filename);
 			}
-			filename = Java.Net.URLDecoder.Decode(filename);
 			return filename;
 		}
 
@@ -377,7 +403,7 @@ namespace keepass2android
 				return;
 			}
 
-			IOConnectionInfo ioc = new IOConnectionInfo() { Path = filename };
+			IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
 			try
 			{
 				App.Kp2a.GetFileStorage(ioc);
@@ -393,10 +419,10 @@ namespace keepass2android
 			if (ioc.IsLocalFile())
 			{
 				// Try to create the file
-				Java.IO.File file = new Java.IO.File(filename);
+				File file = new File(filename);
 				try
 				{
-					Java.IO.File parent = file.ParentFile;
+					File parent = file.ParentFile;
 
 					if (parent == null || (parent.Exists() && !parent.IsDirectory))
 					{
@@ -481,9 +507,40 @@ namespace keepass2android
 					catch (Exception e)
 					{
 						//not nice, but not a catastrophic failure if we can't delete the file:
-						Kp2aLog.Log("couldn't delete file after failure! " + e.ToString());
+						Kp2aLog.Log("couldn't delete file after failure! " + e);
 					}
 				}
+			}
+		}
+
+
+		private class CreateNewFilename: RunnableOnFinish
+		{
+			private readonly string _filename;
+			
+			public CreateNewFilename(OnFinish finish, string filename)
+				: base(finish)
+			{
+				_filename = filename;
+			}
+
+			public override void Run()
+			{
+				try
+				{
+					int lastIndexOfSlash = _filename.LastIndexOf("/", StringComparison.Ordinal);
+					string parent = _filename.Substring(0, lastIndexOfSlash);
+					string newFilename = _filename.Substring(lastIndexOfSlash + 1);
+
+					string resultingFilename = App.Kp2a.GetFileStorage(new IOConnectionInfo { Path = parent }).CreateFilePath(parent, newFilename);
+		
+					Finish(true, resultingFilename);
+				}
+				catch (Exception e)
+				{
+					Finish(false, e.Message);
+				}
+				
 			}
 		}
 	}
