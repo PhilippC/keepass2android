@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.App;
 using Android.Content;
+using Android.Database;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
@@ -180,7 +181,29 @@ namespace keepass2android
 		}
 		
 		
-		
+		class MyViewBinder: Java.Lang.Object, SimpleCursorAdapter.IViewBinder
+		{
+			private Kp2aApp app;
+
+			public MyViewBinder(Kp2aApp app)
+			{
+				this.app = app;
+			}
+
+			public bool SetViewValue(View view, ICursor cursor, int columnIndex)
+			{
+				if (columnIndex == 1)
+				{
+					String path = cursor.GetString(columnIndex);
+					TextView textView = (TextView)view;
+					IOConnectionInfo ioc = new IOConnectionInfo() {Path = path};
+					textView.Text = app.GetFileStorage(ioc).GetDisplayName(ioc);
+					return true;
+				}
+
+				return false;
+			}
+		}
 		
 		private void FillData()
 		{
@@ -200,6 +223,8 @@ namespace keepass2android
 			SimpleCursorAdapter notes = new SimpleCursorAdapter(this,
 			                                                    Resource.Layout.file_row, filesCursor, from, to);
 
+
+			notes.ViewBinder = new MyViewBinder(App.Kp2a);
 
 			ListAdapter = notes;
 		}
@@ -319,10 +344,9 @@ namespace keepass2android
 				if (filename != null) {
 					if (filename.StartsWith("file://")) {
 						filename = filename.Substring(7);
+						filename = Java.Net.URLDecoder.Decode(filename);
 					}
 					
-					filename = Java.Net.URLDecoder.Decode(filename);
-
 					if (requestCode == Intents.RequestCodeFileBrowseForOpen)
 					{
 						IOConnectionInfo ioc = new IOConnectionInfo

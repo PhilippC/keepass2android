@@ -476,6 +476,11 @@ namespace keepass2android.Io
 			_cachedStorage.OnActivityResult(activity, requestCode, resultCode, data);
 		}
 
+		public string GetDisplayName(IOConnectionInfo ioc)
+		{
+			return _cachedStorage.GetDisplayName(ioc);
+		}
+
 
 		public string GetBaseVersionHash(IOConnectionInfo ioc)
 		{

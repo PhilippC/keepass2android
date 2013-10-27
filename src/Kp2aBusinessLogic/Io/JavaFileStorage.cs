@@ -275,6 +275,11 @@ namespace keepass2android.Io
 			_jfs.OnActivityResult(((IJavaFileStorageFileStorageSetupActivity) activity), requestCode, resultCode, data);
 		}
 
+		public string GetDisplayName(IOConnectionInfo ioc)
+		{
+			return _jfs.GetDisplayName(ioc.Path);
+		}
+
 		private DateTime JavaTimeToCSharp(long javatime)
 		{
 			return new DateTime(1970, 1, 1).AddMilliseconds(javatime);

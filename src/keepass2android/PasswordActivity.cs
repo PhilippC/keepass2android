@@ -509,7 +509,7 @@ namespace keepass2android
 		}
 		
 		private void PopulateView() {
-			SetEditText(Resource.Id.filename, _ioConnection.GetDisplayName());
+			SetEditText(Resource.Id.filename, App.Kp2a.GetFileStorage(_ioConnection).GetDisplayName(_ioConnection));
 			SetEditText(Resource.Id.pass_keyfile, _keyFile);
 		}
 		

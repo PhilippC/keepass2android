@@ -195,5 +195,10 @@ namespace keepass2android.Io
 		{
 			throw new NotImplementedException();
 		}
+
+		public string GetDisplayName(IOConnectionInfo ioc)
+		{
+			return ioc.GetDisplayName();
+		}
 	}
 }

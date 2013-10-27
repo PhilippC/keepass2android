@@ -480,8 +480,8 @@ namespace keepass2android
 					}
 					catch (Exception e)
 					{
-						Kp2aLog.Log(e.ToString());
-						throw;
+						//not nice, but not a catastrophic failure if we can't delete the file:
+						Kp2aLog.Log("couldn't delete file after failure! " + e.ToString());
 					}
 				}
 			}

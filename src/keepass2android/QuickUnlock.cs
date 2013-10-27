@@ -60,7 +60,7 @@ namespace keepass2android
 					                  .GetBoolean(GetString(Resource.String.RememberRecentFiles_key),
 					                              Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default)))
 				{
-					((TextView)FindViewById(Resource.Id.qu_filename)).Text = _ioc.Path;	
+					((TextView)FindViewById(Resource.Id.qu_filename)).Text = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);	
 				}
 				else
 				{

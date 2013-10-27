@@ -145,7 +145,11 @@ namespace keepass2android.Io
 		void OnResume(IFileStorageSetupActivity activity);
 		void OnStart(IFileStorageSetupActivity activity);
 		void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data);
-		
+
+		/// <summary>
+		/// Converts the given path to a displayable string
+		/// </summary>
+		string GetDisplayName(IOConnectionInfo ioc);
 	}
 
 	public interface IWriteTransaction: IDisposable

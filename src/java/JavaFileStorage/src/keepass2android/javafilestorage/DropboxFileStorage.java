@@ -1,7 +1,6 @@
 package keepass2android.javafilestorage;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.DropBoxManager.Entry;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -531,6 +529,11 @@ public class DropboxFileStorage implements JavaFileStorage {
 		if (path == null)
 			return null;
 		return path.substring(getProtocolId().length()+3);
+	}
+
+	@Override
+	public String getDisplayName(String path) {
+		return path;
 	}
 
 }

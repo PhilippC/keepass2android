@@ -26,6 +26,8 @@ namespace keepass2android.fileselect
 		{
 			base.OnCreate(bundle);
 
+			SetContentView(Resource.Layout.file_storage_setup);
+
 			Ioc = new IOConnectionInfo();
 			PasswordActivity.SetIoConnectionFromIntent(Ioc, Intent);
 

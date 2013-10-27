@@ -116,6 +116,8 @@ public class FileEntry {
 	
 	public String getProtocolId();
 	
+	public String getDisplayName(String path);
+	
 	public boolean checkForFileChangeFast(String path, String previousFileVersion) throws Exception;
 	
 	public String getCurrentFileVersionFast(String path);

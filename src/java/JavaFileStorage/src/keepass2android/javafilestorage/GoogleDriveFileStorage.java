@@ -5,13 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -31,12 +28,10 @@ import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.ParentReference;
 
 import android.accounts.AccountManager;
-import android.accounts.AccountsException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 
@@ -54,7 +49,12 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 
 	class InvalidPathException extends Exception
 	{
-	      public InvalidPathException() {}
+	      /**
+		 * 
+		 */
+		private static final long serialVersionUID = 8579741509182446681L;
+
+		public InvalidPathException() {}
 
 	      public InvalidPathException(String message)
 	      {
@@ -102,16 +102,28 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		String mAccount;
 		String mAccountLocalPath; // the path after the "gdrive://account%40%0Agmail.com/"
 		
+		public GDrivePath() 
+		{
+		}
+		
 		public GDrivePath(String path) throws InvalidPathException, IOException 
 		{
 			setPath(path);
 		}
 
-		private void setPath(String path) throws 
+		public void setPath(String path) throws 
 				InvalidPathException, IOException {
-			mAccount = extractAccount(path);
-			mAccountLocalPath = path.substring(getProtocolId().length()+3+encode(mAccount).length()+1);
+			setPathWithoutVerify(path);
 			verifyWithRetry();
+		}
+		
+		public void setPathWithoutVerify(String path) throws UnsupportedEncodingException, InvalidPathException
+		{
+			Log.d(TAG, "setPath: "+path);
+			mAccount = extractAccount(path);
+			mAccountLocalPath = path.substring(getProtocolPrefix().length()+encode(mAccount).length()+1);
+			Log.d(TAG, "  mAccount=" + mAccount);
+			Log.d(TAG, "  mAccountLocalPath=" + mAccountLocalPath);
 		}
 		
 		public GDrivePath(String parentPath, File fileToAppend) throws UnsupportedEncodingException, FileNotFoundException, IOException, InvalidPathException
@@ -154,11 +166,13 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 			for (int i=0;i<parts.length;i++)
 			{
 				String part = parts[i];
+				Log.d(TAG, "parsing part " + part);
 				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
 				if (indexOfSeparator < 0)
 					throw new FileNotFoundException("invalid path " + mAccountLocalPath);
 				String id = part.substring(indexOfSeparator+NAME_ID_SEP.length());
 				String name = decode(part.substring(0, indexOfSeparator));
+				Log.d(TAG, "   name=" + name);
 				FileSystemEntryData thisFolder = accountData.mFolderCache.get(id);
 				if (thisFolder == null)
 				{
@@ -182,13 +196,48 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		}
 		
 		private String extractAccount(String path) throws InvalidPathException, UnsupportedEncodingException {
-			if (!path.startsWith(getProtocolId()+"://"))
+			if (!path.startsWith(getProtocolPrefix()))
 				throw new InvalidPathException("Invalid path: "+path);
-			String pathWithoutProtocol = path.substring(getProtocolId().length()+3);
+			String pathWithoutProtocol = path.substring(getProtocolPrefix().length());
 			String accountNameEncoded = pathWithoutProtocol.substring(0, pathWithoutProtocol.indexOf("/"));
 			return decode(accountNameEncoded);
 		}
 		
+		public String getDisplayName()
+		{
+			//gdrive://
+			String displayName = getProtocolPrefix();
+			
+			//gdrive//me@google.com/
+			
+			displayName += mAccount;
+			
+			if (mAccountLocalPath.equals(""))
+				return displayName;
+			
+			String[] parts = mAccountLocalPath.split("/");
+			
+			for (int i=0;i<parts.length;i++)
+			{
+				String part = parts[i];
+				Log.d(TAG, "parsing part " + part);
+				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
+				if (indexOfSeparator < 0)
+				{
+					//seems invalid, but we're very generous here
+					displayName += "/"+part;
+					continue;
+				}
+				String name = part.substring(0, indexOfSeparator);
+				try {
+					name = decode(name);
+				} catch (UnsupportedEncodingException e) {
+					//ignore
+				}
+				displayName += "/"+name;								
+			}
+			return displayName;
+		}
 
 
 		public String getGDriveId() throws InvalidPathException, UnsupportedEncodingException {
@@ -206,12 +255,13 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		}
 
 		public String getFullPath() throws UnsupportedEncodingException {
-			return getProtocolId()+"://"+encode(mAccount)+"/"+mAccountLocalPath;
+			return getProtocolPrefix()+encode(mAccount)+"/"+mAccountLocalPath;
 		}
 
 		public String getAccount() {
 			return mAccount;
 		}
+
 
 			
 	};
@@ -447,7 +497,6 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	private Exception convertException(Exception e) {
 		if (UserRecoverableAuthIOException.class.isAssignableFrom(e.getClass()))
 		{
-			UserRecoverableAuthIOException ure = (UserRecoverableAuthIOException) e;
 			//this is not really nice because it removes data from the cache which might still be valid but we don't have the account name here...
 			mAccountData.clear();
 		}
@@ -547,7 +596,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 				String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
 				if (accountName != null) {
 					Log.d(TAG, "Initialize Account name="+accountName);
-					initializeAccount(setupAct, accountName);
+					initializeAccountOrPath(setupAct, accountName);
 
 					return;
 				}
@@ -567,7 +616,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 				String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
 				if (accountName != null) {
 					Log.d(TAG, "Account name="+accountName);
-					initializeAccount(setupAct, accountName);
+					initializeAccountOrPath(setupAct, accountName);
 				}
 				else
 				{
@@ -585,16 +634,36 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 
 	}
 
-	private void initializeAccount(final JavaFileStorage.FileStorageSetupActivity setupAct, final String accountName) {
+	private void initializeAccountOrPath(final JavaFileStorage.FileStorageSetupActivity setupAct, final String accountNameOrPath) {
 
 		final Activity activity = ((Activity)setupAct);
-
+		
+		String accountNameTemp;
+		GDrivePath gdrivePath = null;
+		if (accountNameOrPath.startsWith(getProtocolPrefix()))
+		{
+			gdrivePath = new GDrivePath();
+			//don't verify yet, we're not yet initialized:
+			try {
+				gdrivePath.setPathWithoutVerify(accountNameOrPath);
+			} catch (Exception e) {
+				finishWithError((Activity)setupAct, e);
+			}
+			accountNameTemp = gdrivePath.getAccount();
+		}
+		else
+			accountNameTemp = accountNameOrPath;
+		
+		final String accountName = accountNameTemp;
+		
 		AsyncTask<Object, Void, AsyncTaskResult<String> > task = new AsyncTask<Object, Void, AsyncTaskResult<String>>()
 				{
 
 			@Override
 			protected AsyncTaskResult<String> doInBackground(Object... arg0) {
 				try {
+					
+					
 					if (!mAccountData.containsKey(accountName))
 					{
 						AccountData newAccountData = new AccountData();
@@ -631,12 +700,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 					}
 					else
 					{
-						Log.e(TAG, "Exception: "+error.toString());
-						error.printStackTrace();
-						Intent retData = new Intent();
-						retData.putExtra(EXTRA_ERROR_MESSAGE, error.getMessage());
-						activity.setResult(Activity.RESULT_CANCELED, retData);
-						activity.finish();
+						finishWithError(activity, error);
 					}
 				}  else if ( isCancelled()) {
 					// cancel handling here
@@ -650,7 +714,8 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 					finishActivityWithSuccess(setupAct);
 
 				}
-			};
+			}
+
 
 
 
@@ -659,6 +724,20 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 				task.execute(new Object[]{});
 
 	}
+	
+
+
+	private void finishWithError(final Activity activity,
+			Exception error) {
+		Log.e(TAG, "Exception: "+error.toString());
+		error.printStackTrace();
+		
+		Intent retData = new Intent();
+		retData.putExtra(EXTRA_ERROR_MESSAGE, error.getMessage());
+		activity.setResult(Activity.RESULT_CANCELED, retData);
+		activity.finish();
+	};
+
 
 	private HashMap<String,FileSystemEntryData> buildFoldersCache(String accountName) throws IOException {
 
@@ -701,16 +780,13 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		if (setupActivity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
 		{
 			Intent data = new Intent();
-			if (setupActivity == (null))
-				Log.d(TAG, "setupActivity is null");
-			else
-				if (setupActivity.getState() == null)
-					Log.d(TAG, "getState is null");
-				else 
-					if (setupActivity.getState().getString(EXTRA_PATH) == null)
-						Log.d(TAG, "setupActivity.getState().getString(EXTRA_PATH) is null");
-					else
-						Log.d(TAG,setupActivity.getState().getString(EXTRA_PATH));
+			if (setupActivity.getState() == null)
+				Log.d(TAG, "getState is null");
+			else 
+				if (setupActivity.getState().getString(EXTRA_PATH) == null)
+					Log.d(TAG, "setupActivity.getState().getString(EXTRA_PATH) is null");
+				else
+					Log.d(TAG,setupActivity.getState().getString(EXTRA_PATH));
 			String path = setupActivity.getState().getString(EXTRA_PATH);
 			if (path != null)
 				data.putExtra(EXTRA_PATH, path);
@@ -727,7 +803,12 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	@Override
 	public void startSelectFile(JavaFileStorage.FileStorageSetupInitiatorActivity activity, boolean isForSave,
 			int requestCode) {
-		((JavaFileStorage.FileStorageSetupInitiatorActivity)(activity)).startSelectFileProcess(getProtocolId()+"://", isForSave, requestCode);		
+		((JavaFileStorage.FileStorageSetupInitiatorActivity)(activity)).startSelectFileProcess(getProtocolPrefix(), isForSave, requestCode);		
+	}
+
+
+	private String getProtocolPrefix() {
+		return getProtocolId()+"://";
 	}
 
 	@Override
@@ -763,28 +844,7 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 
 		if (PROCESS_NAME_FILE_USAGE_SETUP.equals(setupAct.getProcessName()))
 		{
-			GoogleAccountCredential credential = createCredential(activity);
-			final GDrivePath path;
-			try
-			{
-				 path = new GDrivePath(setupAct.getPath());
-			}
-			catch (Exception e)
-			{
-				Intent data = new Intent();
-            	data.putExtra(EXTRA_ERROR_MESSAGE, e.getMessage());
-            	activity.setResult(Activity.RESULT_CANCELED, data);
-            	activity.finish();
-            	return;
-			}
-
-			if (path.getAccount() != null)
-			{
-				credential.setSelectedAccountName(path.getAccount());
-
-				initializeAccount(setupAct, path.getAccount());
-			}
-			
+			initializeAccountOrPath(setupAct, setupAct.getPath());	
 		}
 	}
 
@@ -805,6 +865,19 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	public void onCreate(FileStorageSetupActivity activity,
 			Bundle savedInstanceState) {
 
+	}
+
+
+	@Override
+	public String getDisplayName(String path) {
+		GDrivePath gdrivePath = new GDrivePath();
+		try {
+			gdrivePath.setPathWithoutVerify(path);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return path;
+		}
+		return gdrivePath.getDisplayName();
 	}
 
 	
