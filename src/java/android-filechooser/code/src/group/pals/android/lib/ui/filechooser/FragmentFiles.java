@@ -19,6 +19,7 @@ import group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileContra
 import group.pals.android.lib.ui.filechooser.utils.E;
 import group.pals.android.lib.ui.filechooser.utils.EnvUtils;
 import group.pals.android.lib.ui.filechooser.utils.FileUtils;
+import group.pals.android.lib.ui.filechooser.utils.Texts;
 import group.pals.android.lib.ui.filechooser.utils.Utils;
 import group.pals.android.lib.ui.filechooser.utils.history.History;
 import group.pals.android.lib.ui.filechooser.utils.history.HistoryFilter;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -114,6 +116,7 @@ public class FragmentFiles extends Fragment implements
      */
     private static final String[] EXTRAS_STRING = {
             FileChooserActivity.EXTRA_DEFAULT_FILENAME,
+            FileChooserActivity.EXTRA_DEFAULT_FILE_EXT,
             FileChooserActivity.EXTRA_FILE_PROVIDER_AUTHORITY,
             FileChooserActivity.EXTRA_NEGATIVE_REGEX_FILTER,
             FileChooserActivity.EXTRA_POSITIVE_REGEX_FILTER };
@@ -222,12 +225,12 @@ public class FragmentFiles extends Fragment implements
     private ViewGroup mViewAddressBar;
     private View mViewGroupFiles;
     private ViewGroup mViewFilesContainer;
-    private TextView mTxtFullDirName;
+    private TextView mTextFullDirName;
     private AbsListView mViewFiles;
     private TextView mFooterView;
     private View mViewLoading;
     private Button mBtnOk;
-    private EditText mTxtSaveas;
+    private EditText mTextSaveas;
     private ImageView mViewGoBack;
     private ImageView mViewGoForward;
     private GestureDetector mListviewFilesGestureDetector;
@@ -308,7 +311,7 @@ public class FragmentFiles extends Fragment implements
                 .findViewById(R.id.afc_view_locations);
         mViewLocationsContainer = (HorizontalScrollView) rootView
                 .findViewById(R.id.afc_view_locations_container);
-        mTxtFullDirName = (TextView) rootView
+        mTextFullDirName = (TextView) rootView
                 .findViewById(R.id.afc_textview_full_dir_name);
         mViewGroupFiles = rootView.findViewById(R.id.afc_viewgroup_files);
         mViewFilesContainer = (ViewGroup) rootView
@@ -316,7 +319,7 @@ public class FragmentFiles extends Fragment implements
         mFooterView = (TextView) rootView
                 .findViewById(R.id.afc_view_files_footer_view);
         mViewLoading = rootView.findViewById(R.id.afc_view_loading);
-        mTxtSaveas = (EditText) rootView
+        mTextSaveas = (EditText) rootView
                 .findViewById(R.id.afc_textview_saveas_filename);
         mBtnOk = (Button) rootView.findViewById(R.id.afc_button_ok);
 
@@ -560,7 +563,7 @@ public class FragmentFiles extends Fragment implements
                     super.onPostExecute(result);
 
                     if (!TextUtils.isEmpty(result))
-                        mTxtSaveas.setText(result);
+                        mTextSaveas.setText(result);
                 }// onPostExecute()
 
             }.execute();
@@ -736,11 +739,51 @@ public class FragmentFiles extends Fragment implements
             viewGroupFooterContainer.setVisibility(View.VISIBLE);
             viewGroupFooter.setVisibility(View.VISIBLE);
 
-            mTxtSaveas.setVisibility(View.VISIBLE);
-            mTxtSaveas.setText(getArguments().getString(
+            mTextSaveas.setVisibility(View.VISIBLE);
+            mTextSaveas.setText(getArguments().getString(
                     FileChooserActivity.EXTRA_DEFAULT_FILENAME));
-            mTxtSaveas
-                    .setOnEditorActionListener(mTxtFilenameOnEditorActionListener);
+            mTextSaveas
+                    .setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+                        @Override
+                        public boolean onEditorAction(TextView v, int actionId,
+                                KeyEvent event) {
+                            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                                Ui.showSoftKeyboard(v, false);
+                                mBtnOk.performClick();
+                                return true;
+                            }
+                            return false;
+                        }// onEditorAction()
+                    });
+            mTextSaveas.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                        int before, int count) {
+                    /*
+                     * Do nothing.
+                     */
+                }// onTextChanged()
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                        int count, int after) {
+                    /*
+                     * Do nothing.
+                     */
+                }// beforeTextChanged()
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    /*
+                     * If the user taps a file, the tag is set to that file's
+                     * URI. But if the user types the file name, we remove the
+                     * tag.
+                     */
+                    mTextSaveas.setTag(null);
+                }// afterTextChanged()
+            });
 
             mBtnOk.setVisibility(View.VISIBLE);
             mBtnOk.setOnClickListener(mBtnOk_SaveDialog_OnClickListener);
@@ -847,12 +890,16 @@ public class FragmentFiles extends Fragment implements
 
                     @Override
                     public void onLongPress(MotionEvent e) {
-                        // do nothing
+                        /*
+                         * Do nothing.
+                         */
                     }// onLongPress()
 
                     @Override
                     public boolean onSingleTapConfirmed(MotionEvent e) {
-                        // do nothing
+                        /*
+                         * Do nothing.
+                         */
                         return false;
                     }// onSingleTapConfirmed()
 
@@ -862,11 +909,11 @@ public class FragmentFiles extends Fragment implements
                             if (mIsMultiSelection)
                                 return false;
 
-                            Cursor data = getData(e);
-                            if (data == null)
+                            Cursor cursor = getData(e);
+                            if (cursor == null)
                                 return false;
 
-                            if (BaseFileProviderUtils.isDirectory(data)
+                            if (BaseFileProviderUtils.isDirectory(cursor)
                                     && BaseFile.FILTER_FILES_ONLY == mFilterMode)
                                 return false;
 
@@ -876,18 +923,25 @@ public class FragmentFiles extends Fragment implements
                              */
 
                             if (mIsSaveDialog) {
-                                if (BaseFileProviderUtils.isFile(data)) {
-                                    mTxtSaveas.setText(BaseFileProviderUtils
-                                            .getFileName(data));
-                                    checkSaveasFilenameAndFinish(BaseFileProviderUtils
-                                            .getFileName(data));
+                                if (BaseFileProviderUtils.isFile(cursor)) {
+                                    mTextSaveas.setText(BaseFileProviderUtils
+                                            .getFileName(cursor));
+                                    /*
+                                     * Always set tag after setting text, or tag
+                                     * will be reset to null.
+                                     */
+                                    mTextSaveas.setTag(BaseFileProviderUtils
+                                            .getUri(cursor));
+                                    checkSaveasFilenameAndFinish();
                                 } else
                                     return false;
                             } else
-                                finish(BaseFileProviderUtils.getUri(data));
+                                finish(BaseFileProviderUtils.getUri(cursor));
                         }// double tap to choose files
                         else {
-                            // do nothing
+                            /*
+                             * Do nothing.
+                             */
                             return false;
                         }// single tap to choose files
 
@@ -1577,14 +1631,42 @@ public class FragmentFiles extends Fragment implements
 
     /**
      * As the name means.
-     * 
-     * @param filename
-     *            the file name.
      */
-    private void checkSaveasFilenameAndFinish(final String filename) {
+    private void checkSaveasFilenameAndFinish() {
         new LoadingDialog<Void, String, Uri>(getActivity(), false) {
 
+            String filename;
+            Uri fileUri;
             int fileType;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                /*
+                 * If the user tapped a file, its URI was stored here. If not,
+                 * this is null.
+                 */
+                fileUri = (Uri) mTextSaveas.getTag();
+
+                /*
+                 * File name and extension.
+                 */
+                filename = mTextSaveas.getText().toString().trim();
+                if (fileUri == null
+                        && getArguments().containsKey(
+                                FileChooserActivity.EXTRA_DEFAULT_FILE_EXT)) {
+                    if (!TextUtils.isEmpty(filename)) {
+                        String ext = getArguments().getString(
+                                FileChooserActivity.EXTRA_DEFAULT_FILE_EXT);
+                        if (!filename.matches("(?si)^.+"
+                                + Pattern.quote(Texts.C_PERIOD + ext) + "$")) {
+                            filename += Texts.C_PERIOD + ext;
+                            mTextSaveas.setText(filename);
+                        }
+                    }
+                }
+            }// onPreExecute()
 
             @Override
             protected Uri doInBackground(Void... params) {
@@ -1593,19 +1675,20 @@ public class FragmentFiles extends Fragment implements
                     publishProgress(getString(R.string.afc_msg_cannot_save_a_file_here));
                     return null;
                 }
-                if (TextUtils.isEmpty(filename)
-                        || !FileUtils.isFilenameValid(filename)) {
+
+                if (fileUri == null && !FileUtils.isFilenameValid(filename)) {
                     publishProgress(getString(
                             R.string.afc_pmsg_filename_is_invalid, filename));
                     return null;
                 }
 
+                if (fileUri == null)
+                    fileUri = getCurrentLocation()
+                            .buildUpon()
+                            .appendQueryParameter(BaseFile.PARAM_APPEND_NAME,
+                                    filename).build();
                 final Cursor cursor = getActivity().getContentResolver().query(
-                        getCurrentLocation()
-                                .buildUpon()
-                                .appendQueryParameter(
-                                        BaseFile.PARAM_APPEND_NAME, filename)
-                                .build(), null, null, null, null);
+                        fileUri, null, null, null, null);
                 try {
                     if (cursor == null || !cursor.moveToFirst())
                         return null;
@@ -1898,12 +1981,12 @@ public class FragmentFiles extends Fragment implements
                             R.dimen.afc_button_location_max_width)
                             - btnLoc.getPaddingLeft()
                             - btnLoc.getPaddingRight()) {
-                        mTxtFullDirName.setText(progress[0]
+                        mTextFullDirName.setText(progress[0]
                                 .getString(progress[0]
                                         .getColumnIndex(BaseFile.COLUMN_NAME)));
-                        mTxtFullDirName.setVisibility(View.VISIBLE);
+                        mTextFullDirName.setVisibility(View.VISIBLE);
                     } else
-                        mTxtFullDirName.setVisibility(View.GONE);
+                        mTextFullDirName.setVisibility(View.GONE);
                 }// if
             }// onProgressUpdate()
 
@@ -2050,26 +2133,12 @@ public class FragmentFiles extends Fragment implements
     };// mBtnGoForwardOnClickListener
 
     
-    private final TextView.OnEditorActionListener mTxtFilenameOnEditorActionListener = new TextView.OnEditorActionListener() {
-
-        @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                Ui.showSoftKeyboard(v, false);
-                mBtnOk.performClick();
-                return true;
-            }
-            return false;
-        }// onEditorAction()
-    };// mTxtFilenameOnEditorActionListener
-
     private final View.OnClickListener mBtnOk_SaveDialog_OnClickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
             Ui.showSoftKeyboard(v, false);
-            String filename = mTxtSaveas.getText().toString().trim();
-            checkSaveasFilenameAndFinish(filename);
+            checkSaveasFilenameAndFinish();
         }// onClick()
     };// mBtnOk_SaveDialog_OnClickListener
 
@@ -2102,11 +2171,19 @@ public class FragmentFiles extends Fragment implements
                 return;
             }
 
-            if (mIsSaveDialog)
-                mTxtSaveas.setText(BaseFileProviderUtils.getFileName(cursor));
+            if (mIsSaveDialog) {
+                mTextSaveas.setText(BaseFileProviderUtils.getFileName(cursor));
+                /*
+                 * Always set tag after setting text, or tag will be reset to
+                 * null.
+                 */
+                mTextSaveas.setTag(BaseFileProviderUtils.getUri(cursor));
+            }
 
             if (mDoubleTapToChooseFiles) {
-                // do nothing
+                /*
+                 * Do nothing.
+                 */
                 return;
             }// double tap to choose files
             else {
@@ -2114,8 +2191,7 @@ public class FragmentFiles extends Fragment implements
                     return;
 
                 if (mIsSaveDialog)
-                    checkSaveasFilenameAndFinish(BaseFileProviderUtils
-                            .getFileName(cursor));
+                    checkSaveasFilenameAndFinish();
                 else
                     finish(BaseFileProviderUtils.getUri(cursor));
             }// single tap to choose files

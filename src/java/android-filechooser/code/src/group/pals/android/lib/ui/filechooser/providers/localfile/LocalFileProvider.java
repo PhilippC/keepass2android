@@ -15,8 +15,8 @@ import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileContract
 import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileProvider;
 import group.pals.android.lib.ui.filechooser.utils.FileUtils;
 import group.pals.android.lib.ui.filechooser.utils.TextUtils;
+import group.pals.android.lib.ui.filechooser.utils.Texts;
 import group.pals.android.lib.ui.filechooser.utils.Utils;
-
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -508,8 +508,8 @@ public class LocalFileProvider extends BaseFileProvider {
             final boolean showHiddenFiles, final int filterMode,
             final int limit, String positiveRegex, String negativeRegex,
             final List<File> results, final boolean hasMoreFiles[]) {
-        final Pattern positivePattern = TextUtils.compileRegex(positiveRegex);
-        final Pattern negativePattern = TextUtils.compileRegex(negativeRegex);
+        final Pattern positivePattern = Texts.compileRegex(positiveRegex);
+        final Pattern negativePattern = Texts.compileRegex(negativeRegex);
 
         hasMoreFiles[0] = false;
         try {

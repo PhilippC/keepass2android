@@ -10,10 +10,12 @@ package group.pals.android.lib.ui.filechooser;
 import group.pals.android.lib.ui.filechooser.prefs.DisplayPrefs;
 import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileContract.BaseFile;
 import group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileContract;
-import group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider;
 import group.pals.android.lib.ui.filechooser.utils.Utils;
 import group.pals.android.lib.ui.filechooser.utils.ui.Dlg;
 import group.pals.android.lib.ui.filechooser.utils.ui.Ui;
+
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -112,8 +114,9 @@ public class FileChooserActivity extends FragmentActivity {
      * Key to hold filter mode, can be one of
      * {@link BaseFile#FILTER_DIRECTORIES_ONLY},
      * {@link BaseFile#FILTER_FILES_AND_DIRECTORIES},
-     * {@link BaseFile#FILTER_FILES_ONLY}. Default is
      * {@link BaseFile#FILTER_FILES_ONLY}.
+     * <p/>
+     * Default is {@link BaseFile#FILTER_FILES_ONLY}.
      */
     public static final String EXTRA_FILTER_MODE = CLASSNAME + ".filter_mode";
 
@@ -128,7 +131,7 @@ public class FileChooserActivity extends FragmentActivity {
     public static final String EXTRA_MAX_FILE_COUNT = CLASSNAME
             + ".max_file_count";
     /**
-     * Key to hold multi-selection mode, default = {@code false}
+     * Key to hold multi-selection mode, default = {@code false}.
      */
     public static final String EXTRA_MULTI_SELECTION = CLASSNAME
             + ".multi_selection";
@@ -149,7 +152,7 @@ public class FileChooserActivity extends FragmentActivity {
     public static final String EXTRA_NEGATIVE_REGEX_FILTER = CLASSNAME
             + ".negative_regex_filter";
     /**
-     * Key to hold display-hidden-files, default = {@code false}
+     * Key to hold display-hidden-files, default = {@code false}.
      */
     public static final String EXTRA_DISPLAY_HIDDEN_FILES = CLASSNAME
             + ".display_hidden_files";
@@ -191,18 +194,34 @@ public class FileChooserActivity extends FragmentActivity {
     // ---------------------------------------------------------
 
     /**
-     * Key to hold property save-dialog, default = {@code false}
+     * Key to hold property save-dialog, default = {@code false}.
      */
     public static final String EXTRA_SAVE_DIALOG = CLASSNAME + ".save_dialog";
     /**
-     * Key to hold default filename, default = {@code null}
+     * Key to hold default filename, default = {@code null}.
      */
     public static final String EXTRA_DEFAULT_FILENAME = CLASSNAME
             + ".default_filename";
     /**
-     * Key to hold results (can be one or multiple files)
+     * Key to hold default file extension (<b>without</b> the period prefix),
+     * default = {@code null}.
+     * <p/>
+     * Note that this will be compared to the user's input value as
+     * case-insensitive. For example if you provide "csv" and the user types
+     * "CSV" then it is OK to use "CSV".
+     */
+    public static final String EXTRA_DEFAULT_FILE_EXT = CLASSNAME
+            + ".default_file_ext";
+
+    /**
+     * Key to hold results, which is an {@link ArrayList} of {@link Uri}. It can
+     * be one or multiple files.
      */
     public static final String EXTRA_RESULTS = CLASSNAME + ".results";
+    
+    public static final String EXTRA_RESULT_FILE_EXISTS = CLASSNAME + ".result_file_exists";
+    
+    
 
     /*
      * CONTROLS

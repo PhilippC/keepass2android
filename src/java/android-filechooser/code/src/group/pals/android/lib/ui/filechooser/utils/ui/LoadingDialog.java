@@ -95,7 +95,7 @@ public abstract class LoadingDialog<Params, Progress, Result> extends
 
     /**
      * If you override this method, you must call {@code super.onPreExecute()}
-     * at very first of the method.
+     * at beginning of the method.
      */
     @Override
     protected void onPreExecute() {
@@ -121,7 +121,7 @@ public abstract class LoadingDialog<Params, Progress, Result> extends
 
     /**
      * If you override this method, you must call
-     * {@code super.onPostExecute(result)} at the entry point of the method.
+     * {@code super.onPostExecute(result)} at beginning of the method.
      */
     @Override
     protected void onPostExecute(Result result) {
@@ -130,7 +130,7 @@ public abstract class LoadingDialog<Params, Progress, Result> extends
 
     /**
      * If you override this method, you must call {@code super.onCancelled()} at
-     * the entry point of the method.
+     * beginning of the method.
      */
     @Override
     protected void onCancelled() {
