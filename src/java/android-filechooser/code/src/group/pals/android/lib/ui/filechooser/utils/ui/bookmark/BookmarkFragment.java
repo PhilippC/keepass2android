@@ -13,7 +13,7 @@ import group.pals.android.lib.ui.filechooser.prefs.DisplayPrefs;
 import group.pals.android.lib.ui.filechooser.providers.DbUtils;
 import group.pals.android.lib.ui.filechooser.providers.bookmark.BookmarkContract;
 import group.pals.android.lib.ui.filechooser.utils.EnvUtils;
-import group.pals.android.lib.ui.filechooser.utils.TextUtils;
+import group.pals.android.lib.ui.filechooser.utils.Texts;
 import group.pals.android.lib.ui.filechooser.utils.ui.ContextMenuUtils;
 import group.pals.android.lib.ui.filechooser.utils.ui.Dlg;
 import group.pals.android.lib.ui.filechooser.utils.ui.GestureUtils;
@@ -515,7 +515,7 @@ public class BookmarkFragment extends DialogFragment implements
                         .getColumnIndex(BookmarkContract.COLUMN_NAME));
 
                 ContextMenuUtils.showContextMenu(getActivity(),
-                        R.drawable.afc_bookmarks_dark, TextUtils.quote(name),
+                        R.drawable.afc_bookmarks_dark, Texts.quote(name),
                         new Integer[] { R.string.afc_cmd_rename,
                                 R.string.afc_cmd_sort_by_name },
                         new ContextMenuUtils.OnMenuItemClickListener() {

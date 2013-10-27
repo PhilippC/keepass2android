@@ -73,8 +73,8 @@ public class ProviderUtils {
      */
     public static boolean getBooleanQueryParam(Uri uri, String key) {
         String param = uri.getQueryParameter(key);
-        if (param == null || "false".equalsIgnoreCase(param)
-                || "0".equalsIgnoreCase(param))
+        if (param == null || Boolean.FALSE.toString().equalsIgnoreCase(param)
+                || Integer.toString(0).equalsIgnoreCase(param))
             return false;
         return true;
     }// getBooleanQueryParam()

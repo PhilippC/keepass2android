@@ -217,7 +217,7 @@ public class BaseFileProviderUtils {
             BaseFile.COLUMN_ICON_ID };
 
     /**
-     * Creates new cursor which hold default properties of a base file for
+     * Creates new cursor which holds default properties of a base file for
      * client to access.
      * 
      * @return the new empty cursor. The columns are
@@ -495,9 +495,15 @@ public class BaseFileProviderUtils {
      * @return {@code true} or {@code false}.
      */
     public static boolean fileCanRead(Cursor cursor) {
-        return cursor.getInt(cursor.getColumnIndex(BaseFile.COLUMN_CAN_READ)) != 0
-                && (cursor.getInt(cursor.getColumnIndex(BaseFile.COLUMN_TYPE)) == BaseFile.FILE_TYPE_DIRECTORY || cursor
-                        .getInt(cursor.getColumnIndex(BaseFile.COLUMN_TYPE)) == BaseFile.FILE_TYPE_FILE);
+        if (cursor.getInt(cursor.getColumnIndex(BaseFile.COLUMN_CAN_READ)) != 0) {
+            switch (cursor.getInt(cursor.getColumnIndex(BaseFile.COLUMN_TYPE))) {
+            case BaseFile.FILE_TYPE_DIRECTORY:
+            case BaseFile.FILE_TYPE_FILE:
+                return true;
+            }
+        }
+
+        return false;
     }// fileCanRead()
 
     /**
@@ -532,9 +538,15 @@ public class BaseFileProviderUtils {
      * @return {@code true} or {@code false}.
      */
     public static boolean fileCanWrite(Cursor cursor) {
-        return cursor.getInt(cursor.getColumnIndex(BaseFile.COLUMN_CAN_WRITE)) != 0
-                && (cursor.getInt(cursor.getColumnIndex(BaseFile.COLUMN_TYPE)) == BaseFile.FILE_TYPE_DIRECTORY || cursor
-                        .getInt(cursor.getColumnIndex(BaseFile.COLUMN_TYPE)) == BaseFile.FILE_TYPE_FILE);
+        if (cursor.getInt(cursor.getColumnIndex(BaseFile.COLUMN_CAN_WRITE)) != 0) {
+            switch (cursor.getInt(cursor.getColumnIndex(BaseFile.COLUMN_TYPE))) {
+            case BaseFile.FILE_TYPE_DIRECTORY:
+            case BaseFile.FILE_TYPE_FILE:
+                return true;
+            }
+        }
+
+        return false;
     }// fileCanWrite()
 
     /**
