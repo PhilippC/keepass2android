@@ -22,10 +22,8 @@ import group.pals.android.lib.ui.filechooser.utils.FileUtils;
 import group.pals.android.lib.ui.filechooser.utils.Texts;
 import group.pals.android.lib.ui.filechooser.utils.Utils;
 import group.pals.android.lib.ui.filechooser.utils.history.History;
-import group.pals.android.lib.ui.filechooser.utils.history.HistoryFilter;
 import group.pals.android.lib.ui.filechooser.utils.history.HistoryListener;
 import group.pals.android.lib.ui.filechooser.utils.history.HistoryStore;
-import group.pals.android.lib.ui.filechooser.utils.ui.ContextMenuUtils;
 import group.pals.android.lib.ui.filechooser.utils.ui.Dlg;
 import group.pals.android.lib.ui.filechooser.utils.ui.LoadingDialog;
 import group.pals.android.lib.ui.filechooser.utils.ui.Ui;
@@ -1737,7 +1735,7 @@ public class FragmentFiles extends Fragment implements
                                 @Override
                                 public void onClick(DialogInterface dialog,
                                         int which) {
-                                    finish(result);
+                                    finish(result, true);
                                 }// onClick()
                             });
 
@@ -1745,10 +1743,7 @@ public class FragmentFiles extends Fragment implements
                 }// FILE_TYPE_FILE
 
                 case BaseFile.FILE_TYPE_NOT_EXISTED: {
-                    /*
-                     * TODO file type unknown?
-                     */
-                    finish(result);
+                    finish(result, false);
                     break;
                 }// FILE_TYPE_NOT_EXISTED
                 }
@@ -2008,6 +2003,25 @@ public class FragmentFiles extends Fragment implements
 
         }.execute();
     }// buildAddressBar()
+    
+    /**
+     * Finishes this activity when save-as.
+     * 
+     * @param file
+     *            @link Uri.
+     */
+    private void finish(Uri file, boolean fileExists) {
+        ArrayList<Uri> list = new ArrayList<Uri>();
+        list.add(file);
+        Intent intent = new Intent();
+        intent.putParcelableArrayListExtra(FileChooserActivity.EXTRA_RESULTS,
+                list);
+        intent.putExtra(FileChooserActivity.EXTRA_RESULT_FILE_EXISTS,
+                fileExists);
+        getActivity().setResult(FileChooserActivity.RESULT_OK, intent);
+
+        getActivity().finish();
+    }// finish()
 
     /**
      * Finishes this activity.
