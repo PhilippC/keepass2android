@@ -152,6 +152,7 @@
   <string name="pass_filename">Nume fişier bază de date KeePass</string>
   <string name="password_title">Introduceţi parola bazei de date</string>
   <string name="progress_create">Se creează baza de date nouă…</string>
+  <string name="create_database">Creare bază de date</string>
   <string name="progress_title">Procesează…</string>
   <string name="remember_keyfile_summary">Reţine locaţia fişierului cheie</string>
   <string name="remember_keyfile_title">Salvează fișierul cheie</string>
@@ -187,6 +188,9 @@
   <string name="author">Keepass2Android este dezvoltat de către Philipp Crocoll.</string>
   <string name="further_authors">Vă mulţumim pentru contribuţiile cod %1$s.</string>
   <string name="credit_plugin1">Plugin-ul pentru cifrul Twofish  a fost dezvoltat de Scott Greenberg şi este inclus în KP2A.</string>
+  <string name="credit_android_filechooser">Android-filechooser a fost dezvoltat de Hai Bison</string>
+  <string name="please_note">Vă rugăm să reţineţi</string>
+  <string name="contributors">Contribuitori</string>
   <string name="regular_expression">Regular expression</string>
   <string name="TanExpiresOnUse_title">Tan expiră la utilizare</string>
   <string name="TanExpiresOnUse_summary">Marchează înregistrările TAN ca expirate la utilizarea lor</string>
@@ -298,12 +302,44 @@
   <string name="LoadedFromRemoteInSync">Varianta remote şi din cache sun sincronizate.</string>
   <string name="UpdatedCachedFileOnLoad">S-a actualizat varianta locală a bazei de date.</string>
   <string name="RemoteDatabaseUnchanged">Nu s-au detectat modificări.</string>
+  <string name="ErrorOcurred">A apărut o eroare:</string>
   <string name="synchronize_database_menu">Sincronizează baza de date…</string>
   <string name="CannotMoveGroupHere">Nu se poate muta grupul în acest grup.</string>
   <string name="donate_question">Astăzi este Oktoberfest! Dacă vă place Keepass2Android: nu ar fi azi o zi potrivită să-mi cumpăraţi o bere?</string>
   <string name="ok_donate">Spune-mi mai multe!</string>
   <string name="no_thanks">Nu, nu-mi place atât de mult</string>
+  <string name="select_storage_type">Selectaţi tipul de stocare:</string>
+  <string name="filestoragename_file">Fişier local</string>
+  <string name="filestoragename_androidget">Obţine de la aplicaţie externă</string>
+  <string name="filestoragename_androidsend">Trimite la aplicaţie externă</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">SkyDrive</string>
+  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
+  <string name="filestorage_setup_title">Iniţializere access fişier</string>
+  <string name="database_location">Locaţie bază de date</string>
+  <string name="help_database_location">Puteţi stoca baza de date local pe aparatul dvs. sau în cloud (versiunea non-Offline). Keepass2Android face baza de date disponibilă şi dacă sunteţi offline. Deoarece baza de date este criptată AES 256 bit nimeni nu va putea accesa parolele dvs. Vă recomandăm Dropbox: este accesibil pe toate aparatele dvs. şi oferă chiar copii de siguranţă a versiunilor anterioare ale unui fişier.</string>
+  <string name="hint_database_location">Selectaţi unde doriţi să stocaţi baza de date:</string>
+  <string name="button_change_location">Modifică locaţia</string>
+  <string name="master_password">Parola principală</string>
+  <string name="help_master_password">Baza de date este criptata cu parola ce o introduceţi aici. Alegeţi o parolă puternică pentru a păstra datele în siguranţă! Sfat: Inventaţi o propoziţie sau două si folosiţi prima literă a cuvintelor. Includeţi şi semnele de punctuaţie.</string>
+  <string name="hint_master_password">Alegeţi o parolă master pentru a proteja baza de date:</string>
+  <string name="key_file">Fişier cheie</string>
+  <string name="help_key_file">Un fişier cheie este în esenţă o parolă stocate într-un fişier. Fişierele cheie sunt de obicei mai puternice decât parola master, deoarece cheia poate fi mult mai complicată; cu toate acestea este, de asemenea, mai greu să o ţineţi secretă. Dacă stocați bazei de date în cloud, nu păstraţi şi cheia tot acolo! Acest lucru ar fi complet inutil! Important: Nu modificaţi conţinutul fişierului cheie după crearea bazei de date!</string>
+  <string name="hint_key_file">Alegeţi dacă doriţi să utilizaţi un fişier cheie pe lângă parola de master:</string>
+  <string name="use_key_file">Foloseşte fişier cheie</string>
+  <string name="error_adding_keyfile">Eroare la adăugarea fişierului cheie!</string>
   <string name="ChangeLog_title">Change log</string>
+  <string name="ChangeLog_0_9">
+<b>Versiunea 0.9</b>\n
+* Suport integrat pentru Dropbox şi Google Drive (citire/scriere baze de date; doar ediţia normală Keepass2Android)\n
+* Browser fişiere integrat (bazat pe android-filechooser de HBA)\n
+* Interfaţă îmbunătăţită pentru creearea de noi baze de date\n
+* Include font personalizat DejaVu Sans Mono pentru afişarea parolelor\n
+* Bug fixes</string>
   <string name="ChangeLog_0_8_6">
 <b>Versiunea 0.8.6</b>\n
 * Suport pentru cifrul Twofish\n

@@ -22,6 +22,10 @@
   <string name="application">Aplicação</string>
   <string name="application_settings">Configurações</string>
   <string name="security_prefs">Segurança</string>
+  <string name="display_prefs">Display</string>
+  <string name="password_access_prefs">Acesso à entrada de senha</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
+  <string name="FileHandling_prefs">Manipulação de arquivos</string>
   <string name="brackets">Parênteses</string>
   <string name="browser_intall_text">Navegação em arquivos requer o gerenciador de arquivos Open Intents, clique abaixo para instalar. Devido a algumas peculiaridades no gerenciador de arquivos, a navegação pode não funcionar na primeira vez.</string>
   <string name="building_search_idx">Construindo índice de buscas…</string>
@@ -148,6 +152,7 @@
   <string name="pass_filename">Arquivo de banco de dados do KeePass</string>
   <string name="password_title">Digite a senha do banco de dados</string>
   <string name="progress_create">Criando novo banco de dados…</string>
+  <string name="create_database">Criar banco de dados</string>
   <string name="progress_title">Trabalhando…</string>
   <string name="remember_keyfile_summary">Lembrar o local dos arquivos chave</string>
   <string name="remember_keyfile_title">Salvar arquivo chave</string>
@@ -166,10 +171,12 @@
   <string name="sort_name">Ordenar por nome</string>
   <string name="sort_db">Ordenar por data de criação</string>
   <string name="special">Caracteres Especiais</string>
+  <string name="search_hint">O que encontrar</string>
   <string name="search_results">Resultado da busca</string>
   <string name="search_in">Procurar em</string>
   <string name="select_other_entry">Selecionar outra entrada</string>
   <string name="select_group_then_add">Abra o grupo desejado e, em seguida, pressione \"%1$s\"!</string>
+  <string name="insert_element_here">Insira aqui</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Sublinhado</string>
   <string name="unsupported_db_version">Versão de banco de dados não suportada.</string>
@@ -177,17 +184,73 @@
   <string name="warning_read_only">Seu cartão SD está no modo de somente leitura. Talvez não seja possível salvar modificações ao banco de dados.</string>
   <string name="warning_unmounted">Seu cartão SD não está montado no dispositivo. Não será possível carregar ou criar um banco de dados.</string>
   <string name="version_label">Versão</string>
+  <string name="version_history">Histórico de versões</string>
+  <string name="author">Keepass2Android é desenvolvido por Philipp Crocoll.</string>
+  <string name="further_authors">Graças a contribuições de código por %1$s.</string>
+  <string name="credit_plugin1">O Plugin Twofish Cipher para Keepass foi desenvolvido por Scott Greenberg e está incluído em KP2A.</string>
+  <string name="credit_android_filechooser">android-filechooser foi desenvolvido por Hai Bison</string>
+  <string name="contributors">Contribuidores</string>
   <string name="regular_expression">Expressão regular</string>
+  <string name="TanExpiresOnUse_title">Tan expira em uso</string>
+  <string name="TanExpiresOnUse_summary">Marque as entradas TAN como expiradas quando usá-las</string>
   <string name="ShowUsernameInList_title">Mostrar nome de usuário na lista</string>
   <string name="ShowUsernameInList_summary">Mostrar nome de usuário abaixo dos títulos das entradas. Útil para várias contas ou TANs.</string>
+  <string name="RememberRecentFiles_title">Lembrar-se dos bancos de dados</string>
+  <string name="RememberRecentFiles_summary">Lembrar-se dos bancos de dados abertos recentemente, e mostrá-los na tela Abrir Banco de Dados.</string>
   <string name="kp2a_findUrl">Keepass2Android: Buscar senha</string>
+  <string name="excludeExpiredEntries">Excluir entradas expiradas</string>
   <string name="search_options">Opções</string>
+  <string name="caseSensitive">Sensível a maiúsculas e minúsculas</string>
   <string name="start_open_file">Abrir arquivo...</string>
   <string name="start_create">Criar novo banco de dados...</string>
+  <string name="start_open_url">Abrir URL...</string>
+  <string name="start_create_import">Importar arquivo para um novo banco de dados...</string>
+  <string name="enter_filename_details_url">A URL completa deve ser especificada, incluindo o protocolo, como http://</string>
+  <string name="enter_filename_details_create_import">O arquivo a ser importado será selecionado na próxima etapa.</string>
+  <string name="enable_quickunlock">Habilitar o QuickUnlock</string>
+  <string name="QuickUnlock_label">Digite os últimos %1$d caracteres de sua senha:</string>
+  <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Fechar banco de dados</string>
   <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por padrão</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Define se o QuickUnlock está habilitado por padrão ou não.</string>
+  <string name="QuickUnlockIconHidden_title">Ocultar o ícone do QuickUnlock</string>
+  <string name="QuickUnlockIconHidden_summary">O QuickUnlock infelizmente não funciona sem exibir um ícone de notificação. Selecione esta opção para usar um ícone transparente.</string>
+  <string name="QuickUnlockLength_title">Comprimento da senha do QuickUnlock</string>
+  <string name="QuickUnlockLength_summary">Número máximo de caracteres usado como senha do QuickUnlock.</string>
+  <string name="QuickUnlock_fail">O QuickUnlock falhou: senha incorreta!</string>
+  <string name="BinaryDirectory_title">Pasta de anexos</string>
+  <string name="BinaryDirectory_summary">Pasta onde os anexos de arquivos são salvos.</string>
+  <string name="SaveAttachmentDialog_title">Salvar anexo</string>
+  <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja salvar o anexo.</string>
+  <string name="SaveAttachmentDialog_save">Salvar para o cartão SD</string>
+  <string name="SaveAttachmentDialog_open">Armazenar em cache e abrir</string>
+  <string name="SaveAttachment_doneMessage">Salvo o arquivo em %1$s.</string>
+  <string name="SaveAttachment_Failed">Não foi possível salvar o anexo em %1$s.</string>
+  <string name="error_invalid_expiry_date">Formato de data/hora inválido para data de validade!</string>
+  <string name="error_string_key">Um nome de campo é necessário para cada sequência de caracteres.</string>
+  <string name="field_name">Nome do campo</string>
+  <string name="field_value">Valor do campo</string>
+  <string name="protection">Campo protegido</string>
+  <string name="add_binary">Adicione o arquivo anexo...</string>
+  <string name="add_extra_string">Adicionar sequência de caracteres adicional</string>
+  <string name="delete_extra_string">Excluir caracteres adicionais</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. QuickUnlock habilitado.</string>
+  <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
+  <string name="credentials_dialog_title">Digite as credenciais do servidor</string>
+  <string name="UseFileTransactions_title">Arquivo de transações</string>
+  <string name="UseFileTransactions_summary">Usar transações de arquivo para escrita de bancos de dados</string>
+  <string name="ShowCopyToClipboardNotification_title">Notificações da área de transferência</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificações do teclado KP2A</string>
+  <string name="translate_app">Traduza o KP2A</string>
   <string name="AddingEntry">Adicionando a entrada…</string>
   <string name="AddingGroup">Adicionando grupo…</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">SkyDrive</string>
+  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>
@@ -201,7 +264,7 @@
   </string-array>
   <string-array name="cred_remember_modes">
     <item>Do not remember username and password</item>
-    <item>Remember username only</item>
-    <item>Remember username and password</item>
+    <item>Lembrar apenas nome do usuário</item>
+    <item>Lembrar nome do usuário e senha</item>
   </string-array>
 </resources>

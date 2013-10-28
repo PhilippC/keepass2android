@@ -152,6 +152,7 @@
   <string name="pass_filename">Nome del file del database di KeePass</string>
   <string name="password_title">Inserisci la password del database</string>
   <string name="progress_create">Creazione del nuovo database…</string>
+  <string name="create_database">Crea database</string>
   <string name="progress_title">Attendere prego…</string>
   <string name="remember_keyfile_summary">Ricorda la posizione dei file chiave</string>
   <string name="remember_keyfile_title">Salva il file chiave</string>
@@ -159,7 +160,7 @@
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
   <string name="rounds">Livello di cifratura</string>
-  <string name="rounds_explaination">Un livello di cifratura elevato fornisce una protezione maggiore contro attacchi di tipo \"forza brutta\", ma può rallentare di molto sia il caricamento che il salvataggio.</string>
+  <string name="rounds_explaination">Un livello di cifratura elevato fornisce una protezione maggiore contro attacchi di tipo \"forza bruta\", ma può rallentare di molto sia il caricamento che il salvataggio.</string>
   <string name="rounds_hint">livello</string>
   <string name="database_name">Nome del database</string>
   <string name="default_username">Nome utente predefinito per le nuove voci</string>
@@ -187,6 +188,9 @@
   <string name="author">Keepass2Android è sviluppato da Philipp Crocoll.</string>
   <string name="further_authors">Grazie per i contributi di codice di %1$s.</string>
   <string name="credit_plugin1">il Plugin Twofish Cipher per Keepass è stato sviluppato da Scott Greenberg ed è incluso in KP2A.</string>
+  <string name="credit_android_filechooser">android-filechooser è stato sviluppato da Hai Bison</string>
+  <string name="please_note">Si prega di notare</string>
+  <string name="contributors">Collaboratori</string>
   <string name="regular_expression">Espressione regolare</string>
   <string name="TanExpiresOnUse_title">Tan scade con l\'uso</string>
   <string name="TanExpiresOnUse_summary">Segna i TAN come scaduti una volta utilizzati</string>
@@ -297,12 +301,38 @@
   <string name="LoadedFromRemoteInSync">Il file remoto e la cache sono sincronizzati.</string>
   <string name="UpdatedCachedFileOnLoad">Aggiornata la copia cache locale del database.</string>
   <string name="RemoteDatabaseUnchanged">Nessuna modifica rilevata.</string>
+  <string name="ErrorOcurred">Si è verificato un errore:</string>
   <string name="synchronize_database_menu">Sincronizzazione del database…</string>
   <string name="CannotMoveGroupHere">Non è possibile spostare il gruppo in questo gruppo.</string>
   <string name="donate_question">Oggi è l\'Oktoberfest! Se ti piace Keepass2Android: non sarebbe un buon giorno per offrirmi una birra?</string>
   <string name="ok_donate">Dimmi di più!</string>
   <string name="no_thanks">No, non mi piace più di tanto</string>
+  <string name="select_storage_type">Seleziona il tipo di archiviazione:</string>
+  <string name="filestoragename_file">File locale</string>
+  <string name="filestoragename_androidget">Ottieni da app esterna</string>
+  <string name="filestoragename_androidsend">Invia ad app esterna</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">SkyDrive</string>
+  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
+  <string name="filestorage_setup_title">Inizializzazione dell\'accesso al file</string>
+  <string name="database_location">Posizione del database</string>
+  <string name="help_database_location">Puoi salvare il database localmente, sul tuo dispositivo Android, o nel Cloud (solo versione non-Offline). Keepass2Android rende il database disponibile anche se sei offline. Dato che il database è cifrato con AES 256 bit, nessuno potrà accedere alle tue password, tranne te. Noi raccomandiamo di usare Dropbox: è accessibile tramite tutti i dispositivi e fornisce il backup di versioni precedenti dei file.</string>
+  <string name="hint_database_location">Seleziona dove vuoi salvare il database:</string>
+  <string name="button_change_location">Cambia posizione</string>
+  <string name="master_password">Master password</string>
+  <string name="help_master_password">Il database è stato cifrato con la password che hai inserito. Scegli password complesse per mantenere sicuro il database! Tip: pensa ad una o due frasi ed utilizza le prime lettere delle parole per comporre una password. Includi anche la punteggiatura.</string>
+  <string name="hint_master_password">Seleziona una master password per proteggere il database:</string>
+  <string name="key_file">File chiave</string>
+  <string name="help_key_file">Un file chiave è, essenzialmente, una password salvata in un file. I file chiave sono generalmente più sicuri delle master password perché possono essere molto più complessi; tuttavia è anche più difficile tenerli al sicuro. Se carichi il database nel Cloud, non caricare anche il file chiave! Lo renderebbe totalmente inutile! Attenzione: non cambiare il contenuto del file chiave dopo aver creato il database!</string>
+  <string name="hint_key_file">Scegli se vuoi utilizzare un file chiave oltre alla master password:</string>
+  <string name="use_key_file">Usa file chiave</string>
+  <string name="error_adding_keyfile">Errore nell\'aggiunta del file chiave!</string>
   <string name="ChangeLog_title">log delle modifiche</string>
+  <string name="ChangeLog_0_9"><b>Versione 0.9</b> \n * integrato supporto per Dropbox e Google Drive (database in lettura/scrittura; solo per Keepass2Android edizione regolare) \n * integrata una dialog per la selezione dei file (basata su android-filechooser di HBA) \n * migliorata l\'interfaccia per la creazione di nuovi database \n * incluso il font DejaVu Sans Mono per la visualizzazione passwords \n * corretti alcuni bug \n</string>
   <string name="ChangeLog_0_8_6">
 <b>Versione 0.8.6</b>\n
 * Supporto per cifratura Twofish\n

@@ -6,6 +6,6 @@
   <string name="open_entry">Wybierz pozycję</string>
   <string name="open_entry_for_app">Wyszukaj pozycję z \"%1$s\"</string>
   <string name="label_go_key">Idź</string>
-  <string name="label_next_key">Następny</string>
+  <string name="label_next_key">Dalej</string>
   <string name="label_send_key">Wyślij</string>
 </resources>

@@ -152,6 +152,7 @@
   <string name="pass_filename">Název souboru KeePass databáze</string>
   <string name="password_title">Zadejte heslo do databáze</string>
   <string name="progress_create">Vytvářím novou databázi…</string>
+  <string name="create_database">Vytvořit databázi</string>
   <string name="progress_title">Zpracovávám…</string>
   <string name="remember_keyfile_summary">Pamatovat si umístění klíčového souboru</string>
   <string name="remember_keyfile_title">Uložit klíčový soubor</string>
@@ -187,6 +188,9 @@
   <string name="author">Keepass2Android vyvýjí Philipp Crocoll.</string>
   <string name="further_authors">Díky za příspěvky kódu %1$s.</string>
   <string name="credit_plugin1">Modul šifry Twofish pro Keepass byl vyvinut společností Scott Greenberg a je součástí KP2A.</string>
+  <string name="credit_android_filechooser">Souborový dialog vyvinul Hai Bison</string>
+  <string name="please_note">Upozornění</string>
+  <string name="contributors">Přispěvatelé</string>
   <string name="regular_expression">Regulární výraz</string>
   <string name="TanExpiresOnUse_title">Tan vyprší při použití</string>
   <string name="TanExpiresOnUse_summary">Při použití označovat vypršelé TAN položky</string>
@@ -297,12 +301,44 @@
   <string name="LoadedFromRemoteInSync">Vzdálený soubor a soubor místní mezipaměti jsou synchronizovány.</string>
   <string name="UpdatedCachedFileOnLoad">Aktualizace kopie databáze v místní mezipaměti.</string>
   <string name="RemoteDatabaseUnchanged">Nebyly zjištěny změny.</string>
+  <string name="ErrorOcurred">Došlo k chybě:</string>
   <string name="synchronize_database_menu">Synchronizovat databázi…</string>
   <string name="CannotMoveGroupHere">Skupinu nelze přesunout do této skupiny.</string>
   <string name="donate_question">Dnes je Oktoberfest! Pokud se vám líbí Keepass2Android: nebyl by dnes dobrý den koupit mi pivo?</string>
   <string name="ok_donate">Chci vědět víc!</string>
   <string name="no_thanks">Ne, moc se mi to nelíbí</string>
+  <string name="select_storage_type">Vyberte typ úložiště:</string>
+  <string name="filestoragename_file">Místní soubor</string>
+  <string name="filestoragename_androidget">Od jiných aplikací třetích stran</string>
+  <string name="filestoragename_androidsend">Odeslat do aplikace třetích stran</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">SkyDrive</string>
+  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
+  <string name="filestorage_setup_title">Inicializace přístupu souboru</string>
+  <string name="database_location">Umístění databáze</string>
+  <string name="help_database_location">Databázi můžete uložit lokálně na vašem zařízení Android nebo v e vzdáleném úložišti (pouze ne-offline verze). Keepass2Android zpřístupní databázi, i když jste v režimu offline. Databáze je bezpečně zašifrována pomocí AES 256 bit šifrování, kromě vás nebude mít k heslům nikdo přístup. Doporučujeme vybrat Dropbox: je přístupný na všech zařízeních a dokonce poskytuje zálohy předchozí verze souborů.</string>
+  <string name="hint_database_location">Vyberte, kam chcete uložit databázi:</string>
+  <string name="button_change_location">Změnit umístění</string>
+  <string name="master_password">Hlavní heslo</string>
+  <string name="help_master_password">Databáze bude zašifrována heslem, které zde nastavíte. Pro zabezpečení databáze zvolte silné heslo! Tip: Vytvořte jednu nebo dvě věty a použijte první písmena jednotlivých slov jako heslo. Využívejte interpunkční znaménka.</string>
+  <string name="hint_master_password">Nastavte hlavní heslo pro ochranu databáze:</string>
+  <string name="key_file">Klíčový soubor</string>
+  <string name="help_key_file">Soubor klíče je v podstatě heslo uložené v souboru. Klíčové soubory jsou obvykle silnější než hlavní heslo, protože klíč může být mnohem složitější, nicméně je také těžší držet klíčový soubor v tajnosti. Je-li vaše databázove umístěna na vzdáleném úložišti, neukládejte soubor s klíčemdo stejného místa! To by bylo úplně k ničemu! Důležité upozornění: Po vytvoření databáze již nelze změnit obsah souboru klíče!</string>
+  <string name="hint_key_file">Zvolte, pokud chcete použít soubor klíče spolu s hlavním heslem:</string>
+  <string name="use_key_file">Použít soubor s klíčem</string>
+  <string name="error_adding_keyfile">Chyba při přidávání klíčového souboru!</string>
   <string name="ChangeLog_title">Protokol změn</string>
+  <string name="ChangeLog_0_9">
+  <b>Verze 0.9</b> \n 
+* integrace podpory Dropbox a Google Drive (čtení/zápis databáze; Keepass2Android pouze normální verze) \n 
+* podpora vlastního prohlížeče souborů (založen na android-filechooser HBA) \n 
+* vylepšené uživatelské rozhraní pro vytváření nových databází\n 
+* zahrnuto vlastní písmo DejaVu Sans Mono pro zobrazování hesel\n 
+* opravy chyb</string>
   <string name="ChangeLog_0_8_6">
   <b>Verze 0.8.6</b> \n 
 * podpora Twofish šifry\n 

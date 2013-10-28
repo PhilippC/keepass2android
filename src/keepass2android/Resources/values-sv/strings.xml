@@ -3,6 +3,7 @@
 <resources>
   <string name="about_feedback">Återkoppling</string>
   <string name="about_homepage">Hemsida</string>
+  <string name="AboutText">Keepass2Android är en Android lösenordshanterare som kan läsa och skriva till KeePass 2.x datafiler.</string>
   <string name="accept">Godkänn</string>
   <string name="add_entry">Ny post</string>
   <string name="add_group">Ny grupp</string>

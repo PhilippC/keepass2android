@@ -152,6 +152,7 @@
   <string name="pass_filename">База KeePass</string>
   <string name="password_title">Изменение пароля базы</string>
   <string name="progress_create">Создание базы…</string>
+  <string name="create_database">Создать базу данных</string>
   <string name="progress_title">Обработка</string>
   <string name="remember_keyfile_summary">Запоминать пути к файлам-ключам</string>
   <string name="remember_keyfile_title">Помнить про ключи</string>
@@ -187,6 +188,9 @@
   <string name="author">Keepass2Android разработан Philipp Crocoll.</string>
   <string name="further_authors">Благодарю %1$s за участие в разработке.</string>
   <string name="credit_plugin1">Плагин шифрования Twofish для Keepass, включенный в KP2A, был разработан Скоттом Гринбергом.</string>
+  <string name="credit_android_filechooser">android-filechooser был разработан Hai Bison</string>
+  <string name="please_note">Обратите внимание</string>
+  <string name="contributors">Участники</string>
   <string name="regular_expression">Регулярное выражение</string>
   <string name="TanExpiresOnUse_title">TAN устаревают при использовании</string>
   <string name="TanExpiresOnUse_summary">Помечать TAN записи как устаревшие при их использовании</string>
@@ -297,12 +301,43 @@
   <string name="LoadedFromRemoteInSync">Удалённый файл и кэш синхронизированы.</string>
   <string name="UpdatedCachedFileOnLoad">Обновление локальной кэшированной копии базы данных.</string>
   <string name="RemoteDatabaseUnchanged">Изменений не обнаружено.</string>
+  <string name="ErrorOcurred">Произошла ошибка:</string>
   <string name="synchronize_database_menu">Синхронизируйте базу данных…</string>
   <string name="CannotMoveGroupHere">Не удается переместить группу в эту группу.</string>
   <string name="donate_question">Сегодня Октоберфест! Если вам нравится Keepass2Android: сегодня хороший день, чтобы купить мне пива?</string>
   <string name="ok_donate">Расскажите мне ещё!</string>
   <string name="no_thanks">Спасибо, больше не нужно</string>
+  <string name="select_storage_type">Выберите тип хранилища:</string>
+  <string name="filestoragename_file">Локальный файл</string>
+  <string name="filestoragename_androidget">Получить из стороннего приложения</string>
+  <string name="filestoragename_androidsend">Отправить в стороннее приложение</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragename_skydrive">SkyDrive</string>
+  <string name="filestoragename_sftp">SFTP (FTP через SSH)</string>
+  <string name="filestorage_setup_title">Инициализация доступа к файлу</string>
+  <string name="database_location">Расположение базы данных</string>
+  <string name="help_database_location">Вы можете хранить базу данных локально на своём Adnroid-устройстве или в облаке (только для онлайн-версии). Keepass2Android даёт возможность доступа к базе даже при отсутствии доступа к сети. Так как база данных зашифрована 256-битным AES алгоритмом, никто, кроме Вас, не сможет получить доступ к паролям. Мы рекомендуем использовать Dropbox - он доступен на всех платформах и сохраняет предыдущие версии файлов.</string>
+  <string name="hint_database_location">Выберите место хранения базы данных:</string>
+  <string name="button_change_location">Изменить место нахождения</string>
+  <string name="master_password">Мастер-пароль</string>
+  <string name="help_master_password">База шифруется паролем, вводимым сюда. Выберите сложный пароль для безопасности базы данных! Совет: придумайте одно-два предложения и используйте первые буквы слов в качестве пароля. Включая знаки препинания.</string>
+  <string name="hint_master_password">Выберите мастер-пароль для защиты базы данных:</string>
+  <string name="key_file">Ключевой файл</string>
+  <string name="help_key_file">Ключевой файл - это файл, используемый в качестве пароля. Ключевые файлы обычно предоставляют лучшую защиту чем мастер-пароли, так как они могут иметь сложную структуру; однако, хранить их в секрете также сложнее. Если Вы храните базу данных в облачном хранилище, не храните ключевой файл вместе с базой. Это делает данную схему защиты бесполезной! Важно: не меняйте содержимое ключевого файла после создания базы данных!</string>
+  <string name="hint_key_file">Выберите, если вы хотите использовать ключевой файл в дополнение к мастер-паролю:</string>
+  <string name="use_key_file">Использовать ключевой файл</string>
+  <string name="error_adding_keyfile">Ошибка при добавлении ключевого файла!</string>
   <string name="ChangeLog_title">Список изменений</string>
+  <string name="ChangeLog_0_9"><b>Версия 0.9</b>\n
+* Интегрирована поддержка Dropbox и Диска Google (чтение/запись баз данных; только в обычной редакции Keepass2Android)\n
+* Интегирован диалог выбора файла файла (основан на android-filechooser от HBA)\n
+* Улучшен интерфейс создания новой базы данных\n
+* Добавлен шрифт DejaVu Sans Mono для отображения паролей\n
+* Исправления ошибок</string>
   <string name="ChangeLog_0_8_6"><b>Версия 0.8.6</b>\n
 * Поддержка шифрования Twofish\n
 * Возможность редактировать группы\n

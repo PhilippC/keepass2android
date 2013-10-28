@@ -9,6 +9,7 @@
   <string name="add_url_entry">URL のエントリを作成します。</string>
   <string name="add_group">グループを追加</string>
   <string name="add_group_title">新しいグループ名を入力</string>
+  <string name="edit_group_title">グループを編集</string>
   <string name="algorithm">アルゴリズム</string>
   <string name="algorithm_colon">アルゴリズム</string>
   <string name="app_name">Keepass2Android</string>
@@ -19,6 +20,11 @@
   <string name="app_timeout_summary">KeePassがこの時間非アクティブだった場合、データベースをロックします。</string>
   <string name="application">アプリケーション</string>
   <string name="application_settings">アプリケーション設定</string>
+  <string name="security_prefs">セキュリティ</string>
+  <string name="display_prefs">表示</string>
+  <string name="password_access_prefs">パスワードエントリーへのアクセス</string>
+  <string name="QuickUnlock_prefs">クイック解除</string>
+  <string name="FileHandling_prefs">ファイル操作</string>
   <string name="brackets">カッコ</string>
   <string name="browser_intall_text">ファイルを検索するには OI File Manager が必要です。</string>
   <string name="building_search_idx">検索中…</string>
@@ -120,6 +126,7 @@
   <string name="menu_app_settings">設定</string>
   <string name="menu_db_settings">データベース設定</string>
   <string name="menu_delete">削除</string>
+  <string name="menu_move">別のグループへ移動</string>
   <string name="menu_donate">ビールの寄付...</string>
   <string name="menu_edit">編集</string>
   <string name="menu_hide_password">パスワードを隠す</string>
@@ -130,6 +137,7 @@
   <string name="menu_search">検索</string>
   <string name="menu_search_advanced">詳細検索</string>
   <string name="menu_url">WEBサイトへ</string>
+  <string name="menu_change_db">データベースの変更...</string>
   <string name="minus">マイナス (-)</string>
   <string name="never">期限なし</string>
   <string name="yes">はい</string>
@@ -166,6 +174,7 @@
   <string name="search_in">検索：</string>
   <string name="select_other_entry">別のエントリを選択</string>
   <string name="select_group_then_add">目的のグループを開き、\"%1$s\"キーを押してください ！</string>
+  <string name="insert_element_here">ここに挿入</string>
   <string name="twofish">Twofish</string>
   <string name="underline">アンダーライン (_)</string>
   <string name="unsupported_db_version">このバージョンのデータベースはサポートされていません。</string>
@@ -173,11 +182,14 @@
   <string name="warning_read_only">お使いのSDカードは読取専用になっているようです。 データベースへの更新を保存することはできないでしょう。</string>
   <string name="warning_unmounted">SDカードがマウントされていません。データベースの読込や作成ができません。</string>
   <string name="version_label">バージョン</string>
+  <string name="version_history">バージョン履歴</string>
+  <string name="author">Keepass2AndroidはPhilipp Crocollによって開発されています。</string>
   <string name="regular_expression">正規表現</string>
   <string name="TanExpiresOnUse_title">TANの使用期限</string>
   <string name="TanExpiresOnUse_summary">使用期限が切れたTANにマークする</string>
   <string name="ShowUsernameInList_title">リスト内のユーザー名を表示</string>
   <string name="ShowUsernameInList_summary">エントリのタイトルの下のユーザー名を表示します。複数のアカウントや日焼けのために便利です。複数のアカウントやTANに役立ちます。</string>
+  <string name="RememberRecentFiles_title">データベースを記憶</string>
   <string name="kp2a_findUrl">Keepass2Android: パスワードの検索</string>
   <string name="excludeExpiredEntries">期限切れのエントリの除外</string>
   <string name="search_options">オプション</string>
@@ -186,6 +198,16 @@
   <string name="start_create">新しいデータベースを作成する.</string>
   <string name="start_open_url">URL を開く.</string>
   <string name="start_create_import">新しいデータベースにファイルをインポートする。</string>
+  <string name="enable_quickunlock">クイック解除を有効化</string>
+  <string name="QuickUnlock_label">パスワードの最後の %1$d 文字を入力:</string>
+  <string name="QuickUnlock_button">クイック解除！</string>
+  <string name="QuickUnlock_lockButton">データベースを閉じる</string>
+  <string name="QuickUnlockDefaultEnabled_title">クイック解除をデフォルトで有効にする</string>
+  <string name="QuickUnlockIconHidden_title">クイック解除アイコンを隠す</string>
+  <string name="QuickUnlockLength_title">クイック解除キーの長さ</string>
+  <string name="QuickUnlock_fail">クイック解除に失敗しました: パスワードが正しくありません！</string>
+  <string name="BinaryDirectory_title">添付ファイルのディレクトリ</string>
+  <string name="SaveAttachmentDialog_save">SDカードに保存</string>
   <string name="AskReloadFile">現在開いているファイルは、別のプログラムによって変更されました。それを再読み込みしますか。</string>
   <string name="AskDiscardChanges">今までの変更を破棄しますか。([保存] ボタンは、フォームの上部にあります。) </string>
   <string name="AskDiscardChanges_title">変更を破棄しますか。</string>
