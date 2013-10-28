@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="25" android:versionName="0.9 preview 2" package="keepass2android.keepass2android" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="26" android:versionName="0.9" package="keepass2android.keepass2android" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
 	<permission android:description="@string/permission_desc" android:icon="@drawable/ic_launcher" android:label="KP2A internal file browsing" android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" android:protectionLevel="signature" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">
+		
 		<activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
 				<data android:scheme="db-i8shu7v1hgh7ynt" />
@@ -62,5 +63,8 @@
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="android.permission.USE_CREDENTIALS" />
+	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 	<uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
 </manifest>
