@@ -388,12 +388,8 @@ namespace keepass2android
 			return filename;
 		}
 
-		private void OnCreateButton(object sender, EventArgs evt)
+		private void OnCreateButton(string filename)
 		{
-			Dialog dialog = (Dialog)sender;
-			
-			String filename = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
-
 			// Make sure file name exists
 			if (filename.Length == 0)
 			{

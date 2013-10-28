@@ -55,7 +55,7 @@ namespace keepass2android
 				//check if remote file was modified:
 				if (cachingFileStorage.GetBaseVersionHash(ioc) != hash)
 				{
-					//remote file is unmodified
+					//remote file is modified
 					if (cachingFileStorage.HasLocalChanges(ioc))
 					{
 						//conflict! need to merge
@@ -72,6 +72,8 @@ namespace keepass2android
 								_saveDb = null;
 							}), false, remoteData);
 						_saveDb.Run();
+
+						_app.GetDb().MarkAllGroupsAsDirty();
 					}
 					else
 					{

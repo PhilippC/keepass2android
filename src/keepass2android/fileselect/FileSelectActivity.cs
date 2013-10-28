@@ -284,11 +284,9 @@ namespace keepass2android
 			LaunchPasswordActivityForIoc(ioc);
 
 		}
-		private void OnOpenButton(object sender, EventArgs evt)
+		private void OnOpenButton(String fileName)
 		{
-			Dialog dialog = (Dialog) sender;
-			String fileName = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
-
+			
 			IOConnectionInfo ioc = new IOConnectionInfo
 			{
 				Path = fileName

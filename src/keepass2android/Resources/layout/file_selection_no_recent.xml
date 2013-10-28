@@ -26,12 +26,12 @@
 			android:scaleType="fitXY"
 			android:src="@drawable/ic_keepass2android" />
 				<TextView
-        android:id="@+id/label_test"
+        android:id="@+id/label_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
 		android:layout_gravity="center"
-        android:text="Welcome to Keepass2Android!"
+		android:layout_marginBottom="16dp"
+        android:text="Keepass2Android"
         android:visibility="visible" />
 
 
