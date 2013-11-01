@@ -214,11 +214,17 @@ namespace KeePassLib.Serialization
 					//try to use the credential cache to access with Digest support:
 					try
 					{
-						var credentialCache = new CredentialCache(); 
+						var credentialCache = new CredentialCache();
+
+						credentialCache.Add(
+											new Uri(new Uri(ioc.Path).GetLeftPart(UriPartial.Authority)),
+											"Digest",
+											new NetworkCredential(ioc.UserName, ioc.Password)
+						); 
 
 						credentialCache.Add(
 						                    new Uri(new Uri(ioc.Path).GetLeftPart(UriPartial.Authority)),
-						                    "Digest",
+						                    "NTLM",
 						                    new NetworkCredential(ioc.UserName, ioc.Password)
 						); 
 
@@ -253,10 +259,15 @@ namespace KeePassLib.Serialization
 
 				if (digestAuth)
 				{
-					var credentialCache = new CredentialCache(); 
+					var credentialCache = new CredentialCache();
+					credentialCache.Add(
+										new Uri(new Uri(ioc.Path).GetLeftPart(UriPartial.Authority)), // request url's host
+										"Digest",  // authentication type 
+										new NetworkCredential(ioc.UserName, ioc.Password) // credentials 
+										); 
 					credentialCache.Add( 
 					                    new Uri(new Uri(ioc.Path).GetLeftPart(UriPartial.Authority)), // request url's host
-					                    "Digest",  // authentication type 
+					                    "NTLM",  // authentication type 
 					                    new NetworkCredential(ioc.UserName, ioc.Password) // credentials 
 					                    ); 
 					
