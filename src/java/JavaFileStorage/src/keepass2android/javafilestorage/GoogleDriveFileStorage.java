@@ -437,7 +437,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 				throw new FileNotFoundException(parentPath + " is trashed!");
 			
 			Files.List request = driveService.files().list()
-					.setQ("trashed=false and hidden=false and '"+parentId+"' in parents");
+					.setQ("trashed=false and '"+parentId+"' in parents");
 	
 			do {
 				try {
@@ -715,7 +715,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 		HashMap<String, FileSystemEntryData> folderCache = new HashMap<String, GoogleDriveFileStorage.FileSystemEntryData>();
 		//Log.d(TAG,"buildFoldersCache");
-		FileList folders=getDriveService(accountName).files().list().setQ("mimeType='"+FOLDER_MIME_TYPE+"' and trashed=false and hidden=false")
+		FileList folders=getDriveService(accountName).files().list().setQ("mimeType='"+FOLDER_MIME_TYPE+"' and trashed=false")
 				.setFields("items(id,title,parents),nextPageToken")
 				.execute();
 		for(File fl: folders.getItems()){
