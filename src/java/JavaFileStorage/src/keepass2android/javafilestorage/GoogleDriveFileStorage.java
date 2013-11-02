@@ -35,33 +35,15 @@ import android.os.Bundle;
 import android.util.Log;
 
 
-public class GoogleDriveFileStorage implements JavaFileStorage {
+public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	private static final String GDRIVE_PROTOCOL_ID = "gdrive";
 	private static final String FOLDER_MIME_TYPE = "application/vnd.google-apps.folder";
-	private static final String ISO_8859_1 = "ISO-8859-1";
 	static final int MAGIC_GDRIVE=2082334;
 	static final int REQUEST_ACCOUNT_PICKER = MAGIC_GDRIVE+1;
 	static final int REQUEST_AUTHORIZATION = MAGIC_GDRIVE+2;
 
-	final static private String TAG = "KP2AJ";
-	private static final String NAME_ID_SEP = "-KP2A-";
-
-	class InvalidPathException extends Exception
-	{
-	      /**
-		 * 
-		 */
-		private static final long serialVersionUID = 8579741509182446681L;
-
-		public InvalidPathException() {}
-
-	      public InvalidPathException(String message)
-	      {
-	         super(message);
-	      }
-	 }
-	
+		
 	
 	class FileSystemEntryData
 	{
@@ -82,16 +64,6 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 	HashMap<String /*accountName*/, AccountData> mAccountData = new HashMap<String, AccountData>();
 
 	
-	private static String encode(final String unencoded)
-			throws UnsupportedEncodingException {
-		return java.net.URLEncoder.encode(unencoded, ISO_8859_1);
-	}
-
-
-	private String decode(String encodedString)
-			throws UnsupportedEncodingException {
-		return java.net.URLDecoder.decode(encodedString, ISO_8859_1);
-	}
 	
 	public static String getRootPathForAccount(String accountName) throws UnsupportedEncodingException {
 		return GDRIVE_PROTOCOL_ID+"://"+encode(accountName)+"/";
@@ -807,10 +779,6 @@ public class GoogleDriveFileStorage implements JavaFileStorage {
 		((JavaFileStorage.FileStorageSetupInitiatorActivity)(activity)).startSelectFileProcess(getProtocolPrefix(), isForSave, requestCode);		
 	}
 
-
-	private String getProtocolPrefix() {
-		return getProtocolId()+"://";
-	}
 
 	@Override
 	public void prepareFileUsage(JavaFileStorage.FileStorageSetupInitiatorActivity activity, String path, int requestCode) {
