@@ -1,4 +1,4 @@
-package keepass2android.javafilestorage;
+package keepass2android.javafilestorage.skydrive;
 
 public class SkyDriveException extends Exception {
 
