@@ -26,7 +26,7 @@ namespace Kp2aUnitTests
 		
 		public static void UpdateIdValues()
 		{
-			KeePassLib2Android.Resource.String.library_name = Kp2aUnitTests.Resource.String.library_name;
+			global::KeePassLib2Android.Resource.String.library_name = global::Kp2aUnitTests.Resource.String.library_name;
 		}
 		
 		public partial class Attribute

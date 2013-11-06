@@ -48,9 +48,9 @@ public abstract class SkyDriveObject {
     public static SkyDriveObject create(JSONObject skyDriveObject) {
         String type = skyDriveObject.optString("type");
 
-        if (type.equals(SkyDriveFolder.TYPE)) {
+        if (type.equals(SkyDriveFolder.TYPENAME)) {
             return new SkyDriveFolder(skyDriveObject);
-        } else if (type.equals(SkyDriveFile.TYPE)) {
+        } else if (type.equals(SkyDriveFile.TYPENAME)) {
             return new SkyDriveFile(skyDriveObject);
         } else return null;
     }

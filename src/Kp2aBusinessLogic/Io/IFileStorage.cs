@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Android.App;
 using Android.Content;
 using Android.OS;
 using KeePassLib.Serialization;

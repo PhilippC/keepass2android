@@ -3,7 +3,7 @@ package keepass2android.javafilestorage.skydrive;
 import org.json.JSONObject;
 
 public class SkyDriveFolder extends SkyDriveObject {
-    public static final String TYPE = "folder";
+    public static final String TYPENAME = "folder";
 
     public SkyDriveFolder(JSONObject object) {
         super(object);

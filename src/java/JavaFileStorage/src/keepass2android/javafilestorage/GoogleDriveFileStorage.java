@@ -132,6 +132,10 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			String[] parts = mAccountLocalPath.split("/");
 			
 			AccountData accountData = mAccountData.get(mAccount);
+			if (accountData == null)
+			{
+				throw new IllegalStateException("Looks like account "+mAccount+" was not properly initialized!");
+			}
 			
 			String parentId = accountData.mRootFolderId;
 			

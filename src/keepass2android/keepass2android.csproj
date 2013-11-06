@@ -872,4 +872,10 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout-v14\text_with_help.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_storage_skydrive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_storage_skydrive.png" />
+  </ItemGroup>
 </Project>

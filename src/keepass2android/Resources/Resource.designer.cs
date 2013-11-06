@@ -1854,46 +1854,49 @@ namespace keepass2android
 			public const int ic_storage_https = 2130837815;
 			
 			// aapt resource value: 0x7f020138
-			public const int ic_unlocked_gray = 2130837816;
+			public const int ic_storage_skydrive = 2130837816;
 			
 			// aapt resource value: 0x7f020139
-			public const int location_web_site = 2130837817;
+			public const int ic_unlocked_gray = 2130837817;
 			
 			// aapt resource value: 0x7f02013a
-			public const int navigation_accept = 2130837818;
+			public const int location_web_site = 2130837818;
 			
 			// aapt resource value: 0x7f02013b
-			public const int navigation_accept_dark = 2130837819;
+			public const int navigation_accept = 2130837819;
 			
 			// aapt resource value: 0x7f02013c
-			public const int navigation_cancel = 2130837820;
+			public const int navigation_accept_dark = 2130837820;
 			
 			// aapt resource value: 0x7f02013d
-			public const int navigation_previous_item = 2130837821;
+			public const int navigation_cancel = 2130837821;
 			
 			// aapt resource value: 0x7f02013e
-			public const int navigation_previous_item_dark = 2130837822;
+			public const int navigation_previous_item = 2130837822;
 			
 			// aapt resource value: 0x7f02013f
-			public const int notify = 2130837823;
+			public const int navigation_previous_item_dark = 2130837823;
 			
 			// aapt resource value: 0x7f020140
-			public const int notify_keyboard = 2130837824;
+			public const int notify = 2130837824;
 			
 			// aapt resource value: 0x7f020141
-			public const int oktoberfest = 2130837825;
+			public const int notify_keyboard = 2130837825;
 			
 			// aapt resource value: 0x7f020142
-			public const int RedButton = 2130837826;
+			public const int oktoberfest = 2130837826;
 			
 			// aapt resource value: 0x7f020143
-			public const int section_header = 2130837827;
+			public const int RedButton = 2130837827;
 			
 			// aapt resource value: 0x7f020144
-			public const int transparent = 2130837828;
+			public const int section_header = 2130837828;
 			
 			// aapt resource value: 0x7f020145
-			public const int YellowButton = 2130837829;
+			public const int transparent = 2130837829;
+			
+			// aapt resource value: 0x7f020146
+			public const int YellowButton = 2130837830;
 			
 			static Drawable()
 			{

@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import keepass2android.javafilestorage.JavaFileStorageBase.InvalidPathException;
 import keepass2android.javafilestorage.skydrive.SkyDriveException;
 import keepass2android.javafilestorage.skydrive.SkyDriveFile;
 import keepass2android.javafilestorage.skydrive.SkyDriveFolder;
@@ -44,8 +43,6 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 	private LiveAuthClient mAuthClient;
 
-	private LiveConnectSession mSession;
-
 	private LiveConnectClient mConnectClient;
 
 	private String mRootFolderId;
@@ -56,6 +53,10 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 	// see http://stackoverflow.com/questions/17997688/howto-to-parse-skydrive-api-date-in-java
 	SimpleDateFormat SKYDRIVE_DATEFORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH);
+
+	private Context mAppContext;
+
+	private String mClientId;
 
 	public final class JsonKeys {
 		public static final String CODE = "code";
@@ -283,6 +284,8 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 	public SkyDriveFileStorage(String clientId, Context appContext) {
 		mAuthClient = new LiveAuthClient(appContext, clientId);
+		mAppContext = appContext;
+		mClientId = clientId;
 
 	}
 
@@ -312,7 +315,6 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	private void initialize(final FileStorageSetupActivity setupAct,
 			LiveConnectSession session) {
 
-		mSession = session;
 		mConnectClient = new LiveConnectClient(session);
 
 		final Activity activity = (Activity)setupAct;
@@ -458,13 +460,18 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public String getDisplayName(String path) {
 
-		return "";
-		/*
-		 * SkyDrivePath skydrivePath = new SkyDrivePath(); try {
-		 * skydrivePath.setPathWithoutVerify(path); } catch (Exception e) {
-		 * e.printStackTrace(); return path; } return
-		 * skydrivePath.getDisplayName();
-		 */
+		SkyDrivePath skydrivePath = new SkyDrivePath(); 
+		try {
+		  skydrivePath.setPathWithoutVerify(path); 
+		} 
+		catch (Exception e) 
+		{
+		  e.printStackTrace(); 
+		  return path; 
+		} 
+		
+		return skydrivePath.getDisplayName();
+		
 	}
 
 	@Override
@@ -752,6 +759,17 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public void onStart(final FileStorageSetupActivity activity) {
+		try
+		{
+			initialize(activity);
+		}
+		catch (Exception e)
+		{
+			finishWithError((Activity)activity, e);
+		}
+	}
+
+	private void initialize(final FileStorageSetupActivity activity) {
 		mAuthClient.initialize(Arrays.asList(SCOPES), new LiveAuthListener() {
 			@Override
 			public void onAuthError(LiveAuthException exception,
@@ -764,14 +782,34 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 					LiveConnectSession session, Object userState) {
 
 				if (status == LiveStatus.CONNECTED) {
+					Log.d(TAG, "connected!");
 					initialize(activity, session);
 
 				} else {
-					login(activity);
+					if (status == LiveStatus.NOT_CONNECTED)
+						Log.d(TAG, "not connected");
+					else if (status == LiveStatus.UNKNOWN)
+						Log.d(TAG, "unknown");
+					else
+						Log.d(TAG, "unexpected status " + status);
+					try
+					{
+						login(activity);
+					}
+					catch (IllegalStateException e)
+					{
+						//this may happen if an un-cancelled login progress is already in progress.
+						//however, the activity might have been destroyed, so try again with another auth client next time
+						mAuthClient = new LiveAuthClient(mAppContext, mClientId);
+						finishWithError((Activity)activity, e);
+					}
+					catch (Exception e)
+					{
+						finishWithError((Activity)activity, e);
+					}
 				}
 			}
 		});
-
 	}
 
 	@Override

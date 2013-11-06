@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class SkyDriveFile extends SkyDriveObject {
 
-    public static final String TYPE = "file";
+    public static final String TYPENAME = "file";
 
     public SkyDriveFile(JSONObject file) {
         super(file);

@@ -374,6 +374,10 @@ namespace keepass2android
 				StartFileChooser(ioc.Path);
 #endif
 			}
+			if ((resultCode == Result.Canceled) && (data != null) && (data.HasExtra("EXTRA_ERROR_MESSAGE")))
+			{
+				Toast.MakeText(this, data.GetStringExtra("EXTRA_ERROR_MESSAGE"), ToastLength.Long).Show();
+			}
 		}
 		#if !EXCLUDE_FILECHOOSER
 		private void StartFileChooser(string defaultPath)

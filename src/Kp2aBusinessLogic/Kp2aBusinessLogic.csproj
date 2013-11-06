@@ -66,6 +66,7 @@
     <Compile Include="Io\IFileStorage.cs" />
     <Compile Include="Io\IoUtil.cs" />
     <Compile Include="Io\JavaFileStorage.cs" />
+    <Compile Include="Io\SkyDriveFileStorage.cs" />
     <Compile Include="IProgressDialog.cs" />
     <Compile Include="PreferenceKey.cs" />
     <Compile Include="UiStringKey.cs" />

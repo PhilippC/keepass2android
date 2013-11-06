@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -14,13 +15,14 @@ using keepass2android.Io;
 
 namespace keepass2android.fileselect
 {
-	[Activity(Label = "@string/filestorage_setup_title",Theme="@style/Base")]
+	[Activity(Label = "@string/filestorage_setup_title",Theme="@style/Base", ConfigurationChanges=ConfigChanges.Orientation|
+	           ConfigChanges.KeyboardHidden)]
 	public class FileStorageSetupActivity : Activity, IFileStorageSetupActivity
 #if !EXCLUDE_JAVAFILESTORAGE
 		,Keepass2android.Javafilestorage.IJavaFileStorageFileStorageSetupActivity
 #endif
 	{
-		private bool isRecreated = false;
+		private bool _isRecreated = false;
 
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -40,10 +42,10 @@ namespace keepass2android.fileselect
 			else
 			{
 				State = (Bundle) bundle.Clone();
-				isRecreated = true;
+				_isRecreated = true;
 			}
 
-			if (!isRecreated)
+			if (!_isRecreated)
 				App.Kp2a.GetFileStorage(Ioc).OnCreate(this, bundle);
 
 		}
@@ -51,7 +53,7 @@ namespace keepass2android.fileselect
 		protected override void OnStart()
 		{
 			base.OnStart();
-			if (!isRecreated)
+			if (!_isRecreated)
 				App.Kp2a.GetFileStorage(Ioc).OnStart(this);
 		}
 
