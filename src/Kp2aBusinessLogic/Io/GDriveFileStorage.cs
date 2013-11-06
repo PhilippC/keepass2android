@@ -11,7 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using KeePassLib.Serialization;
-
+#if !EXCLUDE_JAVAFILESTORAGE
 namespace keepass2android.Io
 {
 	public class GoogleDriveFileStorage : JavaFileStorage
@@ -24,3 +24,4 @@ namespace keepass2android.Io
 
 	}
 }
+#endif

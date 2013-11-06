@@ -280,9 +280,9 @@ namespace keepass2android
 			StartManagingCursor(cursor);
 			
 			IOConnectionInfo ioc = _DbHelper.CursorToIoc(cursor);
-
-			LaunchPasswordActivityForIoc(ioc);
-
+			
+			App.Kp2a.GetFileStorage(ioc)
+					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc, 0);
 		}
 		private void OnOpenButton(String fileName)
 		{

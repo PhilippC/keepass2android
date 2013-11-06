@@ -84,39 +84,6 @@ namespace keepass2android
 				return;
 			}
 			
-
-		 /* catch (InvalidPasswordException e) {
-				finish(false, Ctx.GetString(Resource.String.InvalidPassword));
-				return;
-			} catch (FileNotFoundException e) {
-				finish(false, Ctx.GetString(Resource.String.FileNotFound));
-				return;
-			} catch (IOException e) {
-				finish(false, e.getMessage());
-				return;
-			} catch (KeyFileEmptyException e) {
-				finish(false, Ctx.GetString(Resource.String.keyfile_is_empty));
-				return;
-			} catch (InvalidAlgorithmException e) {
-				finish(false, Ctx.GetString(Resource.String.invalid_algorithm));
-				return;
-			} catch (InvalidKeyFileException e) {
-				finish(false, Ctx.GetString(Resource.String.keyfile_does_not_exist));
-				return;
-			} catch (InvalidDBSignatureException e) {
-				finish(false, Ctx.GetString(Resource.String.invalid_db_sig));
-				return;
-			} catch (InvalidDBVersionException e) {
-				finish(false, Ctx.GetString(Resource.String.unsupported_db_version));
-				return;
-			} catch (InvalidDBException e) {
-				finish(false, Ctx.GetString(Resource.String.error_invalid_db));
-				return;
-			} catch (OutOfMemoryError e) {
-				finish(false, Ctx.GetString(Resource.String.error_out_of_memory));
-				return;
-			}
-			*/
 			Kp2aLog.Log("LoadDB OK");
 			Finish(true);
 		}

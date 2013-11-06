@@ -47,12 +47,12 @@ namespace KeePass.Util
 
 			string str = strText;
 
-		/*NOT SUPPORTED CURRENTLY	if((ctx.Flags & SprCompileFlags.NewPassword) != SprCompileFlags.None)
-				str = ReplaceNewPasswordPlaceholder(str, ctx);
-*/
-			if((ctx.Flags & SprCompileFlags.HmacOtp) != SprCompileFlags.None)
-				str = ReplaceHmacOtpPlaceholder(str, ctx);
+			/*NOT SUPPORTED CURRENTLY	if((ctx.Flags & SprCompileFlags.NewPassword) != SprCompileFlags.None)
+					str = ReplaceNewPasswordPlaceholder(str, ctx);
 
+				if((ctx.Flags & SprCompileFlags.HmacOtp) != SprCompileFlags.None)
+					str = ReplaceHmacOtpPlaceholder(str, ctx);
+	*/
 			return str;
 		}
 
