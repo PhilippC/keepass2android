@@ -374,7 +374,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 					.optJSONObject(i));
 			if (skyDriveObj == null)
 				continue; // ignored type
-			Log.d(TAG, "adding "+skyDriveObj.getName()+" to cache with id " + skyDriveObj.getId()+" in "+skyDriveObj.getParentId());
+			//Log.d(TAG, "adding "+skyDriveObj.getName()+" to cache with id " + skyDriveObj.getId()+" in "+skyDriveObj.getParentId());
 			mFolderCache.put(skyDriveObj.getId(), skyDriveObj);
 			
 			mRootFolderId = skyDriveObj.getParentId();
@@ -396,7 +396,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 			JSONObject error = result.optJSONObject(JsonKeys.ERROR);
 			String message = error.optString(JsonKeys.MESSAGE);
 			String code = error.optString(JsonKeys.CODE);
-			Log.d(TAG, "Code: "+code);
+			//Log.d(TAG, "Code: "+code);
 			if ("resource_not_found".equals(code))
 				throw new FileNotFoundException(message);
 			else
@@ -633,7 +633,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 						.optJSONObject(i));
 				if (skyDriveObj == null)
 					continue; // ignored type
-				Log.d(TAG, "listing "+skyDriveObj.getName()+" with id " + skyDriveObj.getId()+" in "+skyDriveObj.getParentId());
+				//Log.d(TAG, "listing "+skyDriveObj.getName()+" with id " + skyDriveObj.getId()+" in "+skyDriveObj.getParentId());
 				
 				resultList.add(convertToFileEntry(parentDrivePath, skyDriveObj));
 			}	
@@ -666,7 +666,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 			res.path = getProtocolPrefix();
 		else
 			res.path = new SkyDrivePath(parentPath.getFullPath(), skyDriveObj.toJson()).getFullPath();
-		Log.d(TAG, "path: "+res.path);
+		//Log.d(TAG, "path: "+res.path);
 		if (SkyDriveFile.class.isAssignableFrom(skyDriveObj.getClass()))
 		{
 			res.sizeInBytes = ((SkyDriveFile)skyDriveObj).getSize();
@@ -680,8 +680,8 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 		try
 		{
 			SkyDrivePath drivePath = new SkyDrivePath(filename);
-			Log.d(TAG, "getFileEntry for "+ filename +" = "+drivePath.getFullPath());
-			Log.d(TAG, " parent is "+drivePath.getParentPath());
+			//Log.d(TAG, "getFileEntry for "+ filename +" = "+drivePath.getFullPath());
+			//Log.d(TAG, " parent is "+drivePath.getParentPath());
 			return convertToFileEntry(drivePath.getParentPath(),getSkyDriveObject(drivePath));
 		}
 		catch (Exception e)
@@ -730,7 +730,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 	private void finishActivityWithSuccess(
 			FileStorageSetupActivity setupActivity) {
-		Log.d("KP2AJ", "Success with authenticating!");
+		//Log.d("KP2AJ", "Success with authenticating!");
 		Activity activity = (Activity) setupActivity;
 
 		if (setupActivity.getProcessName()
@@ -782,7 +782,6 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 					LiveConnectSession session, Object userState) {
 
 				if (status == LiveStatus.CONNECTED) {
-					Log.d(TAG, "connected!");
 					initialize(activity, session);
 
 				} else {
