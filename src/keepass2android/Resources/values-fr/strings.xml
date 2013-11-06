@@ -27,8 +27,6 @@
   <string name="QuickUnlock_prefs">Déverrouillage rapide</string>
   <string name="FileHandling_prefs">Gestion de fichiers</string>
   <string name="brackets">Parenthèses, accolades et crochets</string>
-  <string name="browser_intall_text">Le programme requiert Open Intents File Manager pour parcourir les fichiers, cliquez ci-dessous pour l\'installer. Quelques problèmes peuvent apparaître la première fois !</string>
-  <string name="building_search_idx">Construction de l\'index de recherche…</string>
   <string name="cancel">Annuler</string>
   <string name="ClearClipboard">Presse-papier nettoyé.</string>
   <string name="clipboard_timeout">Délai de purge du presse-papiers</string>
@@ -42,15 +40,11 @@
   <string name="current_group">Groupe actuel</string>
   <string name="current_group_root">Groupe actuel : Racine</string>
   <string name="database">Base de données</string>
-  <string name="decrypting_db">Déchiffrement du contenu de la base de données...</string>
-  <string name="decrypting_entry">Déchiffrement de l\'entrée</string>
-  <string name="default_checkbox">Utiliser comme base de données par défaut</string>
   <string name="digits">Chiffres</string>
   <string name="disclaimer_formal">Keepass2Android n\'offre ABSOLUMENT AUCUNE GARANTIE ; il s\'agit d\'un logiciel gratuit, et vous pouvez le redistribuer sous les conditions de la licenceGPL v2 ou ultérieure.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Entrez le nom de fichier de la base de données</string>
   <string name="entry_accessed">Accédé</string>
-  <string name="entry_and_or">Entrez un mot de passe et/ou choisissez un fichier-clé pour déverrouiller votre base de données</string>
   <string name="entry_cancel">Annuler</string>
   <string name="entry_comment">Commentaires</string>
   <string name="entry_tags">Étiquettes</string>
@@ -67,7 +61,6 @@
   <string name="entry_user_name">Nom d\'utilisateur </string>
   <string name="entry_extra_strings">Champs chaines de caractères supplémentaire</string>
   <string name="entry_binaries">Pièces jointes</string>
-  <string name="error_arc4">L\'algorithme de chiffrement ArcFour n\'est pas pris en charge.</string>
   <string name="error_can_not_handle_uri">Keepass2Android ne peut pas gérer cette URI.</string>
   <string name="error_could_not_create_group">Erreur de création de groupe.</string>
   <string name="error_could_not_create_parent">Création du répertoire parent impossible.</string>
@@ -80,11 +73,9 @@
   <string name="error_invalid_path">Chemin d\'accès invalide.</string>
   <string name="error_no_name">Le nom est obligatoire.</string>
   <string name="error_nopass">Un mot de passe ou clé de fichier est requis.</string>
-  <string name="error_out_of_memory">Le téléphone a manqué de mémoire lors de l\'analyse de votre base de données. Elle est peut être trop grande pour la mémoire de votre téléphone.</string>
   <string name="error_pass_gen_type">Au moins une méthode de génération de mot de passe doit être sélectionné</string>
   <string name="error_pass_match">Les mots de passe ne correspondent pas.</string>
   <string name="error_rounds_not_number">La série doit être un nombre.</string>
-  <string name="error_rounds_too_large">Nombre trop gros. Réglage à 2147483648.</string>
   <string name="error_title_required">Le titre est obligatoire.</string>
   <string name="error_wrong_length">Entrez un entier positif dans le champ \"longueur\"</string>
   <string name="FileNotFound">Fichier non trouvé.</string>
@@ -104,8 +95,6 @@
   <string name="hint_override_url">outrepasser l\'url</string>
   <string name="hint_tags">étiquette1, étiquette2</string>
   <string name="hint_username">Nom d\'utilisateur</string>
-  <string name="install_from_market">Installé depuis le Play Store</string>
-  <string name="install_from_website">Installer depuis le Web</string>
   <string name="InvalidPassword">Mot de passe ou clé de fichier incorrect.</string>
   <string name="invalid_algorithm">Algorithme non valide.</string>
   <string name="invalid_db_sig">Format de la base de données non reconnu.</string>
@@ -131,7 +120,6 @@
   <string name="menu_donate">Faire don d\'une bière...</string>
   <string name="menu_edit">Modifier</string>
   <string name="menu_hide_password">Masquer le mot de passe</string>
-  <string name="menu_homepage">Aller à la page d\'accueil</string>
   <string name="menu_lock">Verrouiller les données</string>
   <string name="menu_open">Ouvrir</string>
   <string name="menu_rename">Renommer</string>

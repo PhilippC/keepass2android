@@ -17,8 +17,6 @@
   <string name="application">Program</string>
   <string name="application_settings">Programinnstillingar</string>
   <string name="brackets">Parentesar</string>
-  <string name="browser_intall_text">Du må ha Open Intents filbehandlar for å kunna bla i filer. Klikk nedanfor for å installera han. Grunna nokre småfeil i programmet kan det vera at det ikkje fungerer heilt den første gongen du bruker det.</string>
-  <string name="building_search_idx">Byggjer søkjeindeksen …</string>
   <string name="cancel">Avbryt</string>
   <string name="ClearClipboard">Utklippstavla er tømt.</string>
   <string name="clipboard_timeout">Tidsavbrot på utklippstavla</string>
@@ -28,15 +26,11 @@
   <string name="creating_db_key">Lagar databasenøkkelen …</string>
   <string name="current_group">Gjeldande gruppe</string>
   <string name="current_group_root">Gjeldande gruppe: Rot</string>
-  <string name="decrypting_db">Dekrypterer databasen …</string>
-  <string name="decrypting_entry">Dekrypterer oppføringa</string>
-  <string name="default_checkbox">Standarddatabasen</string>
   <string name="digits">Tal</string>
   <string name="disclaimer_formal">Keepass2Android kjem med INGEN SOM HELST GARANTI. Dette er eit fritt program. Du er velkomen til å redistribuera det i samsvar med vilkåra til GPL utgåve 2 eller nyare.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Skriv filnamnet til databasen</string>
   <string name="entry_accessed">Brukt</string>
-  <string name="entry_and_or">Skriv inn passordet og/eller nøkkelfil for å låsa opp databasen</string>
   <string name="entry_cancel">Avbryt</string>
   <string name="entry_comment">Merknader</string>
   <string name="entry_confpassword">Stadfest passordet</string>
@@ -49,7 +43,6 @@
   <string name="entry_title">Namn</string>
   <string name="entry_url">Adresse</string>
   <string name="entry_user_name">Brukaramn</string>
-  <string name="error_arc4">Kan ikkje bruka ArcFour dataflytkryptering.</string>
   <string name="error_can_not_handle_uri">Keepass2Android kan ikkje bruka denne ressursen.</string>
   <string name="error_could_not_create_group">Klarte ikkje å laga gruppa.</string>
   <string name="error_could_not_create_parent">Klarte ikkje å laga foreldrekatalogen.</string>
@@ -62,11 +55,9 @@
   <string name="error_invalid_path">Ugyldig stig.</string>
   <string name="error_no_name">Treng eit namn.</string>
   <string name="error_nopass">Treng eit passord eller ei nøkkelfil.</string>
-  <string name="error_out_of_memory">Telefonen gjekk tom for minne ved lesinga av databasen din. Databasen er kanskje for stor.</string>
   <string name="error_pass_gen_type">Du må velja minst éin passordlagingstype</string>
   <string name="error_pass_match">Passorda samsvarer ikkje.</string>
   <string name="error_rounds_not_number">Omgangar må vera eit tal.</string>
-  <string name="error_rounds_too_large">For mange omgangar. Bruker 2147483648.</string>
   <string name="error_title_required">Treng ein tittel.</string>
   <string name="error_wrong_length">Bruk eit positivt heiltal i lengdfeltet</string>
   <string name="FileNotFound">Fann ikkje fila.</string>
@@ -84,8 +75,6 @@
   <string name="hint_title">namn</string>
   <string name="hint_url">adresse</string>
   <string name="hint_username">brukarnamn</string>
-  <string name="install_from_market">Installer frå marknaden</string>
-  <string name="install_from_website">Installer frå nettet</string>
   <string name="InvalidPassword">Ugyldig passord eller nøkkelfil.</string>
   <string name="invalid_db_sig">Ukjent databaseformat.</string>
   <string name="length">Lengd</string>
@@ -105,7 +94,6 @@
   <string name="menu_delete">Slett</string>
   <string name="menu_edit">Endra</string>
   <string name="menu_hide_password">Gøym passordet</string>
-  <string name="menu_homepage">Gå til heimesida</string>
   <string name="menu_lock">Lås databasen</string>
   <string name="menu_open">Opna</string>
   <string name="menu_rename">Gje nytt namn</string>

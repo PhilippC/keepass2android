@@ -27,8 +27,6 @@
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Xử lý tập tin</string>
   <string name="brackets">Dấu ngoặc</string>
-  <string name="browser_intall_text">Duyệt tập tin yêu cầu ứng dụng Open Intents File Manager, bấm vào dưới đây để cài đặt nó. Do một số điều không rõ ràng trong ứng dụng đó, trình duyệt có thể không làm việc một cách chính xác ở lần đầu tiên bạn duyệt tập tin.</string>
-  <string name="building_search_idx">Xây dựng các chỉ mục tìm kiếm…</string>
   <string name="cancel">Hủy bỏ</string>
   <string name="ClearClipboard">Bộ nhớ đệm đã được xóa.</string>
   <string name="clipboard_timeout">Hết thời gian xử lý của Bộ nhớ đệm</string>
@@ -42,15 +40,11 @@
   <string name="current_group">Nhóm hiện tại</string>
   <string name="current_group_root">Nhóm hiện tại: Điều hành</string>
   <string name="database">Cơ sở dữ liệu</string>
-  <string name="decrypting_db">Đang giải mã nội dung cơ sở dữ liệu…</string>
-  <string name="decrypting_entry">Đang giải mã mục nhập</string>
-  <string name="default_checkbox">Sử dụng cái này làm cơ sở dữ liệu mặc định của tôi</string>
   <string name="digits">Chữ số</string>
   <string name="disclaimer_formal">Keepass2Android HOÀN TOÀN KHÔNG CÓ BẢO HÀNH; Đây là phần mềm miễn phí, và bạn được chào đón để phát hành lại nó theo các điều kiện của Giấy phép GPL phiên bản 2 hoặc mới hơn.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Nhập tên tập tin cơ sở dữ liệu</string>
   <string name="entry_accessed">Đã truy cập</string>
-  <string name="entry_and_or">Nhập một mật mã và/hoặc một tập tin khóa để mở khóa cơ sở dữ liệu của bạn</string>
   <string name="entry_cancel">Hủy bỏ</string>
   <string name="entry_comment">Ý kiến</string>
   <string name="entry_tags">Thẻ</string>
@@ -67,7 +61,6 @@
   <string name="entry_user_name">Tên người dùng</string>
   <string name="entry_extra_strings">Các chuỗi thông tin bổ sung</string>
   <string name="entry_binaries">Các tập tin đính kèm</string>
-  <string name="error_arc4">Luồng mã hóa ArcFour không được hỗ trợ.</string>
   <string name="error_can_not_handle_uri">Keepass2Android không thể xử lý liên kết URI này.</string>
   <string name="error_could_not_create_group">Lỗi tạo nhóm.</string>
   <string name="error_could_not_create_parent">Không thể tạo thư mục cha.</string>
@@ -80,7 +73,6 @@
   <string name="error_invalid_path">Đường dẫn không hợp lệ.</string>
   <string name="error_no_name">Tên là bắt buộc.</string>
   <string name="error_nopass">Mật mã hoặc tập tin khoá là cần thiết.</string>
-  <string name="error_out_of_memory">Điện thoại hết bộ nhớ trong khi phân tích cơ sở dữ liệu của bạn. Nó có thể quá lớn cho điện thoại của bạn.</string>
   <string name="error_pass_gen_type">Phải chọn ít nhất một kiểu mật mã</string>
   <string name="error_pass_match">Mật mã không khớp.</string>
   <string name="error_title_required">Tiêu đề là cần thiết.</string>
@@ -102,8 +94,6 @@
   <string name="hint_override_url">ghi đè liên kết URL</string>
   <string name="hint_tags">thẻ1, thẻ2</string>
   <string name="hint_username">tên người dùng</string>
-  <string name="install_from_market">Cài đặt từ cửa hàng Play Store</string>
-  <string name="install_from_website">Cài đặt từ trang chủ</string>
   <string name="InvalidPassword">Mật mã hoặc tập tin khóa không hợp lệ.</string>
   <string name="invalid_algorithm">Thuật toán không hợp lệ.</string>
   <string name="invalid_db_sig">Không rõ định dạng của cơ sở dữ liệu.</string>
@@ -128,7 +118,6 @@
   <string name="menu_donate">Tặng một ly bia…</string>
   <string name="menu_edit">Chỉnh sửa</string>
   <string name="menu_hide_password">Ẩn Mật mã</string>
-  <string name="menu_homepage">Đi tới Trang chủ</string>
   <string name="menu_lock">Khóa Cơ sở dữ liệu</string>
   <string name="menu_open">Mở</string>
   <string name="menu_rename">Đổi tên</string>

@@ -22,10 +22,26 @@
   <string name="application_settings">Asetukset</string>
   <string name="security_prefs">Turvallisuus</string>
   <string name="display_prefs">Näyttö</string>
+  <string name="password_access_prefs">Salasanavalinnat</string>
   <string name="QuickUnlock_prefs">Pika-avaus</string>
   <string name="FileHandling_prefs">Tiedostokäsittely</string>
   <string name="brackets">Hakasulkeet</string>
-  <string name="browser_intall_text">Tiedostojen selaus vaatii Open Intents File Manager -ohjelman. Klikkaa alle asentaaksesi. Bugin takia selaus ei mahdollisesti toimi oikein ensimmäisellä käyttökerralla.</string>
+  <string name="cancel">Peruuta</string>
+  <string name="ClearClipboard">Leikepöytä tyhjennetty.</string>
+  <string name="clipboard_timeout">Leikepöydän aikakatkaisu</string>
+  <string name="clipboard_timeout_summary">Aika ennen kuin leikepöytä tyhjennetään tunnuksista</string>
+  <string name="copy_username">Valitse kopioidaksesi käyttäjänimen leikepöydälle</string>
+  <string name="copy_password">Valitse kopioidaksesi salasanan leikepöydälle</string>
+  <string name="available_through_keyboard">Merkintä on saatavana KP2A näppäimistöllä</string>
+  <string name="not_possible_im_picker">Näppäimistön valinta-ikkunaa ei voitu avata. Aktivoi näppäimistö manuaalisesti.</string>
+  <string name="please_activate_keyboard">Ota käyttöön Keepass2Android-näppäimistö Järjestelmäasetuksissa.</string>
+  <string name="creating_db_key">Luodaan tietokanta-avain</string>
+  <string name="current_group">Nykyinen ryhmä</string>
+  <string name="current_group_root">Nykyinen ryhmä: Root</string>
+  <string name="database">Tietokanta</string>
+  <string name="digits">Numerot</string>
+  <string name="ellipsis">\u2026</string>
+  <string name="enter_filename">Kirjoita tietokannan tiedostonimi</string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconds</item>
     <item>1 minute</item>

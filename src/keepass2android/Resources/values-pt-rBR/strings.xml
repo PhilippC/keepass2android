@@ -27,8 +27,6 @@
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Manipulação de arquivos</string>
   <string name="brackets">Parênteses</string>
-  <string name="browser_intall_text">Navegação em arquivos requer o gerenciador de arquivos Open Intents, clique abaixo para instalar. Devido a algumas peculiaridades no gerenciador de arquivos, a navegação pode não funcionar na primeira vez.</string>
-  <string name="building_search_idx">Construindo índice de buscas…</string>
   <string name="cancel">Cancelar</string>
   <string name="ClearClipboard">Clipboard limpo.</string>
   <string name="clipboard_timeout">Tempo limite para o clipboard</string>
@@ -42,15 +40,11 @@
   <string name="current_group">Grupo atual</string>
   <string name="current_group_root">Grupo atual: Raiz</string>
   <string name="database">Banco de Dados</string>
-  <string name="decrypting_db">Decifrando conteúdo do banco de dados…</string>
-  <string name="decrypting_entry">Decifrando entrada</string>
-  <string name="default_checkbox">Usar este banco de dados como padrão</string>
   <string name="digits">Dígitos</string>
   <string name="disclaimer_formal">Keepass2Android vem com ABSOLUTAMENTE NENHUMA GARANTIA; Este é um software livre, e você está convidado a redistribui-lo sob as condições da GPL versão 2 ou posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Digite o nome do arquivo de banco de dados</string>
   <string name="entry_accessed">Acessado</string>
-  <string name="entry_and_or">Digite uma senha e/ou entre com o caminho para o arquivo chave do banco de dados</string>
   <string name="entry_cancel">Cancelar</string>
   <string name="entry_comment">Comentários</string>
   <string name="entry_tags">Etiquetas</string>
@@ -67,7 +61,6 @@
   <string name="entry_user_name">Nome de usuário</string>
   <string name="entry_extra_strings">Campos de texto extra</string>
   <string name="entry_binaries">Anexos</string>
-  <string name="error_arc4">A cifra de fluxo ArcFour não é suportada.</string>
   <string name="error_can_not_handle_uri">Keepass2Android não pôde tratar esta uri.</string>
   <string name="error_could_not_create_group">Erro ao criar grupo.</string>
   <string name="error_could_not_create_parent">Não foi possível criar o diretório pai.</string>
@@ -80,11 +73,9 @@
   <string name="error_invalid_path">Caminho inválido.</string>
   <string name="error_no_name">É necessário um nome.</string>
   <string name="error_nopass">É necessário uma senha ou um arquivo chave.</string>
-  <string name="error_out_of_memory">Foi atingida a capacidade máxima de memória do seu dispositivo ao carregar o banco de dados. O banco de dados pode ser muito grande para este dispositivo.</string>
   <string name="error_pass_gen_type">Pelo menos um tipo de geração de senhas deve ser selecionado</string>
   <string name="error_pass_match">As senhas não combinam.</string>
   <string name="error_rounds_not_number">Número de rodadas deve ser um número.</string>
-  <string name="error_rounds_too_large">Número de rodadas é muito grande. Modificado para 2147483648.</string>
   <string name="error_title_required">É necessário um título.</string>
   <string name="error_wrong_length">Digite um número inteiro positivo no campo de tamanho</string>
   <string name="FileNotFound">Arquivo não encontrado.</string>
@@ -104,8 +95,6 @@
   <string name="hint_override_url">substituir url</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">nome de usuário</string>
-  <string name="install_from_market">Instalar a partir do Google Play</string>
-  <string name="install_from_website">Instalar a partir da Web</string>
   <string name="InvalidPassword">Senha ou arquivo chave inválidos.</string>
   <string name="invalid_algorithm">Algoritmo inválido.</string>
   <string name="invalid_db_sig">O formato do banco de dados não foi reconhecido.</string>
@@ -131,7 +120,6 @@
   <string name="menu_donate">Doe uma cerveja...</string>
   <string name="menu_edit">Editar</string>
   <string name="menu_hide_password">Esconder Senha</string>
-  <string name="menu_homepage">Ir para a página inicial</string>
   <string name="menu_lock">Trancar banco de dados</string>
   <string name="menu_open">Abrir</string>
   <string name="menu_rename">Renomear</string>

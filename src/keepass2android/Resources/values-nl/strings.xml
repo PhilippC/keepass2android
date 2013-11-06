@@ -26,8 +26,6 @@
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Omgang met bestanden</string>
   <string name="brackets">Haakjes</string>
-  <string name="browser_intall_text">Een bestand opzoeken kan alleen met de Open Intents File Manager, klik hieronder om die te installeren. Door gebreken in deze filemanager kan het opzoeken van een bestand echter de eerste keer mislukken.</string>
-  <string name="building_search_idx">Zoekindex wordt opgebouwd…</string>
   <string name="cancel">Annuleren</string>
   <string name="ClearClipboard">Klembord gewist.</string>
   <string name="clipboard_timeout">Klembordtimeout</string>
@@ -41,15 +39,11 @@
   <string name="current_group">Huidige groep</string>
   <string name="current_group_root">Huidige groep: Root</string>
   <string name="database">Database</string>
-  <string name="decrypting_db">Database-inhoud decoderen…</string>
-  <string name="decrypting_entry">Decoderen invoer</string>
-  <string name="default_checkbox">Gebruik dit als mijn standaard database</string>
   <string name="digits">Cijfers</string>
   <string name="disclaimer_formal">Keepass2Android biedt GEEN ENKELE GARANTIE; Dit is gratis software, u mag deze software verspreiden onder de voorwaarden van de GPL versie 2 of recenter.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
   <string name="entry_accessed">Benaderd</string>
-  <string name="entry_and_or">Geef het wachtwoord en/of het sleutelbestand om uw database te ontgrendelen</string>
   <string name="entry_cancel">Annuleren</string>
   <string name="entry_comment">Opmerkingen</string>
   <string name="entry_tags">Tags</string>
@@ -66,7 +60,6 @@
   <string name="entry_user_name">Gebruikersnaam</string>
   <string name="entry_extra_strings">Extra tekenreeks velden</string>
   <string name="entry_binaries">Bijlagen</string>
-  <string name="error_arc4">De ArcFour stream-versleuteling wordt niet ondersteund.</string>
   <string name="error_can_not_handle_uri">Keepass2Android kan deze uri niet verwerken.</string>
   <string name="error_could_not_create_group">Fout bij het aanmaken van de groep.</string>
   <string name="error_could_not_create_parent">Kan de bovenliggende map niet aanmaken.</string>
@@ -79,11 +72,9 @@
   <string name="error_invalid_path">Ongeldig pad.</string>
   <string name="error_no_name">Een naam ontbreekt.</string>
   <string name="error_nopass">Een wachtwoord of sleutelbestand ontbreekt.</string>
-  <string name="error_out_of_memory">Onvoldoende vrij geheugen om de database te lezen. Misschien is de database te groot voor deze telefoon.</string>
   <string name="error_pass_gen_type">U moet minstens één type van wachtwoordgeneratie kiezen.</string>
   <string name="error_pass_match">Wachtwoorden komen niet overeen.</string>
   <string name="error_rounds_not_number">Cycli-waarde moet een getal zijn.</string>
-  <string name="error_rounds_too_large">Cycli-waarde te groot. Ik gebruik 2147483648.</string>
   <string name="error_title_required">Een titel ontbreekt.</string>
   <string name="error_wrong_length">Geef een positief geheel getal voor het lengteveld</string>
   <string name="FileNotFound">Bestand niet gevonden.</string>
@@ -103,8 +94,6 @@
   <string name="hint_override_url">URL overschrijven</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">gebruikersnaam</string>
-  <string name="install_from_market">Installeer vanuit Play Store</string>
-  <string name="install_from_website">Installeer vanaf web</string>
   <string name="InvalidPassword">Ongeldig wachtwoord of sleutelbestand.</string>
   <string name="invalid_algorithm">Ongeldig algoritme.</string>
   <string name="invalid_db_sig">Databaseformaat niet herkend.</string>
@@ -130,7 +119,6 @@
   <string name="menu_donate">Schenk een biertje...</string>
   <string name="menu_edit">Bewerken</string>
   <string name="menu_hide_password">Wachtwoord verbergen</string>
-  <string name="menu_homepage">Ga naar homepage</string>
   <string name="menu_lock">Vergrendel database</string>
   <string name="menu_open">Openen</string>
   <string name="menu_rename">Hernoemen</string>

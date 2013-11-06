@@ -15,8 +15,6 @@
   <string name="application">Applikation</string>
   <string name="application_settings">Applikationsindstillinger</string>
   <string name="brackets">Parenteser</string>
-  <string name="browser_intall_text">Fil-browsing kræver applikationen \"Open Intents File Manager\", klik nedenfor for at installere den. Grundet nogle særheder i filmanageren er det ikke sikkert, at fil-browsing virker korrekt forste gang, at du anvender applikationen.</string>
-  <string name="building_search_idx">Bygger søgeindeks…</string>
   <string name="cancel">Annuller</string>
   <string name="ClearClipboard">Udklipsholder ryddet.</string>
   <string name="clipboard_timeout">Udklipsholder timeout</string>
@@ -26,13 +24,9 @@
   <string name="creating_db_key">Opretter databasenøgle…</string>
   <string name="current_group">Aktuel gruppe</string>
   <string name="current_group_root">Aktuel gruppe: Root</string>
-  <string name="decrypting_db">Dekrypterer databaseindhold…</string>
-  <string name="decrypting_entry">Dekrypterer post</string>
-  <string name="default_checkbox">Brug denne database som standard</string>
   <string name="digits">Cifre</string>
   <string name="enter_filename">Angiv navn på databasefil</string>
   <string name="entry_accessed">Seneste åbnede</string>
-  <string name="entry_and_or">Angiv en adgangskode og/eller en nøglefil for at få adgang til din database</string>
   <string name="entry_cancel">Annuller</string>
   <string name="entry_comment">Kommentarer</string>
   <string name="entry_confpassword">Bekræft adgangskode</string>
@@ -44,7 +38,6 @@
   <string name="entry_save">Gem</string>
   <string name="entry_title">Navn</string>
   <string name="entry_user_name">Brugernavn</string>
-  <string name="error_arc4">\"ArcFour stream cipher\" er ikke understøttet.</string>
   <string name="error_can_not_handle_uri">Keepass2Android kan ikke håndtere denne uri.</string>
   <string name="error_could_not_create_group">Fejl ved oprettelse af gruppe.</string>
   <string name="error_could_not_create_parent">Kunne ikke oprette rodbiblioteket.</string>
@@ -57,11 +50,9 @@
   <string name="error_invalid_path">Ugyldig sti.</string>
   <string name="error_no_name">Et navn er påkrævet.</string>
   <string name="error_nopass">En adgangskode eller nøglefil er påkrævet.</string>
-  <string name="error_out_of_memory">Telefonen løb tør for hukommelse under analysen af din database. Den kan være for stor til, at din telefon kan håndtere den.</string>
   <string name="error_pass_gen_type">Mindst én adgangskode-genererings-type skal vælges</string>
   <string name="error_pass_match">Adgangskoder matcher ikke.</string>
   <string name="error_rounds_not_number">Gentagelser skal være en talværdi.</string>
-  <string name="error_rounds_too_large">For stor gentagelses-værdi.  Maksimal gentagelses-værdi er 2147483648.</string>
   <string name="error_title_required">En titel er påkrævet.</string>
   <string name="error_wrong_length">Angiv et positivt helt tal i feltet</string>
   <string name="FileNotFound">Filen blev ikke fundet.</string>
@@ -78,8 +69,6 @@
   <string name="hint_login_pass">Adgangskode</string>
   <string name="hint_title">navn</string>
   <string name="hint_username">brugernavn</string>
-  <string name="install_from_market">Installer fra Play butik</string>
-  <string name="install_from_website">Installer fra internettet</string>
   <string name="InvalidPassword">Ugyldig adgangskode eller nøglefil.</string>
   <string name="invalid_db_sig">Databaseformatet blev ikke genkendt.</string>
   <string name="length">Længde</string>
@@ -99,7 +88,6 @@
   <string name="menu_delete">Slet</string>
   <string name="menu_edit">Rediger</string>
   <string name="menu_hide_password">Skjul adgangskode</string>
-  <string name="menu_homepage">Gå til hjemmeside</string>
   <string name="menu_lock">Lås database</string>
   <string name="menu_open">Åbn</string>
   <string name="menu_rename">Omdøb</string>

@@ -27,8 +27,6 @@
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Tratare fişiere</string>
   <string name="brackets">Paranteze</string>
-  <string name="browser_intall_text">Navigarea fișierelor necesită Open Intents File Manager, click mai jos pentru a-l instala. Datorită unor mici probleme cu managerul de fișiere navigarea s-ar putea să nu funcționeze corect prima dată când navigați.</string>
-  <string name="building_search_idx">Creează index de căutare…</string>
   <string name="cancel">Anulează</string>
   <string name="ClearClipboard">Clipboard golit.</string>
   <string name="clipboard_timeout">Expirare clipboard</string>
@@ -42,15 +40,11 @@
   <string name="current_group">Grup curent</string>
   <string name="current_group_root">Grup curent: root</string>
   <string name="database">Baza de date</string>
-  <string name="decrypting_db">Decriptare conținut bază de date…</string>
-  <string name="decrypting_entry">Decriptare înregistrare</string>
-  <string name="default_checkbox">Folosiți aceasta ca și baza de date implicită</string>
   <string name="digits">Cifre</string>
   <string name="disclaimer_formal">Keepass2Android este oferit FĂRĂ NICI O GARANȚIE; Acesta este software gratuit și sunteți bine venit să îl redistribuiți respectând condițiile GPL versiunea 2 sau mai nouă.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Alegeți numele bazei de date</string>
   <string name="entry_accessed">Accesat</string>
-  <string name="entry_and_or">Introduceți o parolă și/sau o cheie pentru a debloca baza de date</string>
   <string name="entry_cancel">Anulează</string>
   <string name="entry_comment">Comentarii</string>
   <string name="entry_tags">Tag-uri</string>
@@ -67,7 +61,6 @@
   <string name="entry_user_name">Nume de utilizator</string>
   <string name="entry_extra_strings">Cămpuri string suplimentare</string>
   <string name="entry_binaries">Fișiere atașate</string>
-  <string name="error_arc4">Cifrul ArcFour nu este suportat.</string>
   <string name="error_can_not_handle_uri">Keepass2Android nu poate utiliza acest uri.</string>
   <string name="error_could_not_create_group">Eroare creare grup.</string>
   <string name="error_could_not_create_parent">Imposibil de creat directorul părinte.</string>
@@ -80,11 +73,9 @@
   <string name="error_invalid_path">Path invalid.</string>
   <string name="error_no_name">Este necesar un nume.</string>
   <string name="error_nopass">Este necesară o parolă sau un fișier cheie.</string>
-  <string name="error_out_of_memory">Telefonul a rămas fără memorie procesând baza de date. S-ar putea sa fie prea mare pentru telefonul dvs.</string>
   <string name="error_pass_gen_type">Trebuie selectat cel puțin un timp de generare de parole</string>
   <string name="error_pass_match">Parolele nu se potrivesc.</string>
   <string name="error_rounds_not_number">Etapele trebuie să fie un număr.</string>
-  <string name="error_rounds_too_large">Prea multe etape. Setez la 2147483648.</string>
   <string name="error_title_required">Este necesar un titlu.</string>
   <string name="error_wrong_length">Introduceți un număr întreg pozitiv pentru lungimea câmpului</string>
   <string name="FileNotFound">Fișierul s-a găsit.</string>
@@ -104,8 +95,6 @@
   <string name="hint_override_url">rescrie URL-ul</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">nume de utilizator</string>
-  <string name="install_from_market">Instalaţi din Play Store</string>
-  <string name="install_from_website">Instalați de pe Web</string>
   <string name="InvalidPassword">Parolă sau fișier cheie invalide.</string>
   <string name="invalid_algorithm">Algoritm invalid.</string>
   <string name="invalid_db_sig">Formatul bazei de date nu este cunoscut.</string>
@@ -131,7 +120,6 @@
   <string name="menu_donate">Doneaza o bere...</string>
   <string name="menu_edit">Editare</string>
   <string name="menu_hide_password">Ascunde parola</string>
-  <string name="menu_homepage">Du-te la pagina de start</string>
   <string name="menu_lock">Blochează baza de date</string>
   <string name="menu_open">Deschide</string>
   <string name="menu_rename">Redenumește</string>

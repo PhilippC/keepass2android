@@ -15,8 +15,6 @@
   <string name="application">Applikácia</string>
   <string name="application_settings">Nastavenia aplikácie</string>
   <string name="brackets">Konzoly</string>
-  <string name="browser_intall_text">Prezeranie súborov vyžaduje otvorenie Správcu súborov, kliknite nižšie pre inštalovanie. Kôli chybám v správcovi súborov, prehľadávanie nemusí pracovať správne, ak prehľadávate prvý krát.</string>
-  <string name="building_search_idx">Spracúvam index hľadania…</string>
   <string name="cancel">Zrušiť</string>
   <string name="ClearClipboard">Schránka vyčistená.</string>
   <string name="clipboard_timeout">Timeout Schránky</string>
@@ -27,14 +25,10 @@
   <string name="current_group">Aktuálna skupina</string>
   <string name="current_group_root">Aktuálna skupina: Root</string>
   <string name="database">Databáza</string>
-  <string name="decrypting_db">Dešifrujem obsah databázy…</string>
-  <string name="decrypting_entry">Dešifrujem záznam</string>
-  <string name="default_checkbox">Použiť toto ako predvolenú databázu</string>
   <string name="digits">Číslice</string>
   <string name="disclaimer_formal">Keepass2Android použitie Absolútne bez Záruky; Toto je free software, a môžete ho používať pod GPL ver. 2 alebo vyššie.</string>
   <string name="enter_filename">Vložte názov Databázy</string>
   <string name="entry_accessed">Pristupované</string>
-  <string name="entry_and_or">Vložte heslo a / alebo keyfile pre odomknutie databázy</string>
   <string name="entry_cancel">Zrušiť</string>
   <string name="entry_comment">Poznámky</string>
   <string name="entry_confpassword">Potvrdiť heslo</string>
@@ -46,7 +40,6 @@
   <string name="entry_save">Uložiť</string>
   <string name="entry_title">Meno</string>
   <string name="entry_user_name">Užívateľské meno</string>
-  <string name="error_arc4">ArcFour stream šifra nieje podporovaná.</string>
   <string name="error_can_not_handle_uri">Keepass2Android nevie použiť túto uri.</string>
   <string name="error_could_not_create_group">Chyba vytvárania Skupiny.</string>
   <string name="error_could_not_create_parent">Neviem vytvoriť nadradený adresár.</string>
@@ -59,11 +52,9 @@
   <string name="error_invalid_path">Chybná cesta.</string>
   <string name="error_no_name">Vyžaduje sa meno.</string>
   <string name="error_nopass">Vyžaduje sa heslo, alebo súbor keyfile.</string>
-  <string name="error_out_of_memory">Telefón vyčerpal pamäť pri analýze databázy. Možno je to príliš na Váš telefón.</string>
   <string name="error_pass_gen_type">Musí byť vybraý najmenej jeden typ generovania hesla</string>
   <string name="error_pass_match">Heslá sa nezhodujú.</string>
   <string name="error_rounds_not_number">Opakovanie musí byť číslo.</string>
-  <string name="error_rounds_too_large">Príliš veľa opakovaní.  Nastavujem na 2147483648.</string>
   <string name="error_title_required">Vyžaduje sa názov.</string>
   <string name="error_wrong_length">Zadajte celé kladné číslo na dĺžku poľa</string>
   <string name="FileNotFound">Súbor nenájdený.</string>
@@ -80,8 +71,6 @@
   <string name="hint_login_pass">Heslo</string>
   <string name="hint_title">meno</string>
   <string name="hint_username">užívateľské meno</string>
-  <string name="install_from_market">Inštalovať z Marketu</string>
-  <string name="install_from_website">Inštalovať z WEBu</string>
   <string name="InvalidPassword">Chybné heslo, alebo súbor keyfile.</string>
   <string name="invalid_db_sig">Formát Databázy nerozpoznaný.</string>
   <string name="length">Dĺžka</string>
@@ -101,7 +90,6 @@
   <string name="menu_delete">Zmazať</string>
   <string name="menu_edit">Upraviť</string>
   <string name="menu_hide_password">Skryť Heslo</string>
-  <string name="menu_homepage">Ísť na domovskú stránku</string>
   <string name="menu_lock">Zamknúť Databázu</string>
   <string name="menu_open">Otvoriť</string>
   <string name="menu_rename">Premenovať</string>

@@ -27,8 +27,6 @@
   <string name="QuickUnlock_prefs">SzybkieOdblokowanie</string>
   <string name="FileHandling_prefs">Obsługa plików</string>
   <string name="brackets">Nawiasy</string>
-  <string name="browser_intall_text">Przeglądanie plików wymaga programu Open Intents File Manager, kliknij poniżej by go zainstalować. Ze względu na specyficzne zachowanie menedżera plików, przeglądanie może nie działać poprawnie przy pierwszym użyciu.</string>
-  <string name="building_search_idx">Tworzenie indeksu wyszukiwania…</string>
   <string name="cancel">Anuluj</string>
   <string name="ClearClipboard">Schowek wyczyszczony.</string>
   <string name="clipboard_timeout">Czas wygaśnięcia schowka</string>
@@ -42,15 +40,11 @@
   <string name="current_group">Aktualna grupa</string>
   <string name="current_group_root">Aktualna grupa: Katalog głowny</string>
   <string name="database">Baza danych</string>
-  <string name="decrypting_db">Deszyfracja zawartości bazy danych…</string>
-  <string name="decrypting_entry">Deszyfracja wpisu</string>
-  <string name="default_checkbox">Używaj tej bazy danych jako domyślnej</string>
   <string name="digits">Cyfry</string>
   <string name="disclaimer_formal">Keepass2Android jest udostępniany BEZ JAKIEJKOLWIEK GWARANCJI. Niniejszy program jest wolnym oprogramowaniem: możesz go swobodnie rozpowszechniać na warunkach licencji GNU General Public License w wersji 2 lub późniejszej.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Wprowadź nazwę pliku bazy danych</string>
   <string name="entry_accessed">Ostatni dostęp</string>
-  <string name="entry_and_or">Wprowadź hasło i/lub plik klucza by odblokować bazę danych</string>
   <string name="entry_cancel">Anuluj</string>
   <string name="entry_comment">Komentarze</string>
   <string name="entry_tags">Tagi</string>
@@ -67,7 +61,6 @@
   <string name="entry_user_name">Nazwa użytkownika</string>
   <string name="entry_extra_strings">Dodatkowe pola</string>
   <string name="entry_binaries">Załączniki</string>
-  <string name="error_arc4">Strumieniowe szyfrowanie ArcFour nie jest wspierane.</string>
   <string name="error_can_not_handle_uri">Keepass2Android nie potrafi obsłużyć tego adresu URL.</string>
   <string name="error_could_not_create_group">Błąd podczas tworzenia grupy.</string>
   <string name="error_could_not_create_parent">Nie można utworzyć folderu nadrzędnego.</string>
@@ -80,11 +73,9 @@
   <string name="error_invalid_path">Nieprawidłowa ścieżka dostępu.</string>
   <string name="error_no_name">Wymagana nazwa.</string>
   <string name="error_nopass">Wymagane hasło lub plik klucza.</string>
-  <string name="error_out_of_memory">Podczas przetwarzania bazy danych zabrakło pamięci. Być może ta baza jest za duża dla Twojego urządzenia.</string>
   <string name="error_pass_gen_type">Musisz wybrać przynajmniej jeden sposób generowania hasła</string>
   <string name="error_pass_match">Hasła nie pasują do siebie.</string>
   <string name="error_rounds_not_number">Wartość musi być liczbą.</string>
-  <string name="error_rounds_too_large">Wartość za duża. Ustawiam na 2147483648.</string>
   <string name="error_title_required">Wymagany tytuł.</string>
   <string name="error_wrong_length">Wprowadź dodatnią liczbę całkowitą w polu długość</string>
   <string name="FileNotFound">Plik nie istnieje.</string>
@@ -104,8 +95,6 @@
   <string name="hint_override_url">zmień adres URL</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">nazwa użytkownika</string>
-  <string name="install_from_market">Zainstaluj z Google Play</string>
-  <string name="install_from_website">Zainstaluj z witryny sieci Web</string>
   <string name="InvalidPassword">Nieprawidłowe hasło lub plik klucza.</string>
   <string name="invalid_algorithm">Nieprawidłowy algorytm.</string>
   <string name="invalid_db_sig">Format bazy danych nierozpoznany.</string>
@@ -131,7 +120,6 @@
   <string name="menu_donate">Kup mi piwo</string>
   <string name="menu_edit">Edytuj</string>
   <string name="menu_hide_password">Ukryj hasło</string>
-  <string name="menu_homepage">Przejdź do strony głównej</string>
   <string name="menu_lock">Zablokuj bazę danych</string>
   <string name="menu_open">Otwórz</string>
   <string name="menu_rename">Zmień nazwę</string>

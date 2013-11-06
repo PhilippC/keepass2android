@@ -28,8 +28,6 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Umgang mit Dateien</string>
   <string name="brackets">Klammern</string>
-  <string name="browser_intall_text">Um diese Funktion nutzen zu können, benötigen Sie den OI File Manager, den Sie über Google Play bzw. direkt von der Entwicklerwebsite herunterladen können. Aufgrund einiger Eigenheiten des Dateimanagers kann es bei der ersten Benutzung zu Einschränkungen kommen.</string>
-  <string name="building_search_idx">Suchindex erzeugen…</string>
   <string name="cancel">Abbrechen</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
   <string name="clipboard_timeout">Zwischenablagesperre</string>
@@ -43,15 +41,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="current_group">Aktuelle Gruppe</string>
   <string name="current_group_root">Start</string>
   <string name="database">Datenbank</string>
-  <string name="decrypting_db">Entschlüsselung der Datenbankinhalte\u2026</string>
-  <string name="decrypting_entry">Entschlüsselt</string>
-  <string name="default_checkbox">Als Standard-Datenbank benutzen</string>
   <string name="digits">Zahlen</string>
-  <string name="disclaimer_formal">Keepass2Android, Copyright 2013 Philipp Crocoll. Alle Rechte vorbehalten. Der Autor übernimmt keine Verantwortung gibt KEINERLEI GARANTIE bei der Nutzung der Anwendung; Die Anwendung ist kostenlos und kann unter den Bedingungen der GPL v2 oder später verbreitet werden.</string>
+  <string name="disclaimer_formal">Der Autor übernimmt keine Verantwortung gibt KEINERLEI GARANTIE bei der Nutzung der Anwendung; Die Anwendung ist kostenlos und kann unter den Bedingungen der GPL v2 oder später verbreitet werden.</string>
   <string name="ellipsis">…</string>
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
   <string name="entry_accessed">Letzter Zugriff</string>
-  <string name="entry_and_or">Kennwort und/oder Schlüsseldatei zum Entschlüsseln der Datenbank eingeben</string>
   <string name="entry_cancel">Abbrechen</string>
   <string name="entry_comment">Notiz</string>
   <string name="entry_tags">Tags</string>
@@ -68,7 +62,6 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="entry_user_name">Benutzername</string>
   <string name="entry_extra_strings">Zusätzliche Felder</string>
   <string name="entry_binaries">Datei-Anhänge</string>
-  <string name="error_arc4">Die Arc4-Chiffre wird nicht unterstützt.</string>
   <string name="error_can_not_handle_uri">Keepass2Android kann diese Adresse nicht verarbeiten.</string>
   <string name="error_could_not_create_group">Fehler beim Erstellen der Gruppe.</string>
   <string name="error_could_not_create_parent">Verzeichnis konnte nicht erstellt werden.</string>
@@ -81,11 +74,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="error_invalid_path">Ungültiger Pfad.</string>
   <string name="error_no_name">Ein Name wird benötigt.</string>
   <string name="error_nopass">Ein Kennwort oder eine Schlüsseldatei wird benötigt.</string>
-  <string name="error_out_of_memory">Der Speicher Ihres Smartphones reicht nicht aus, um die Datenbank zu analysieren. Sie ist wahrscheinlich zu groß.</string>
   <string name="error_pass_gen_type">Mindestens ein Kennwort-Generierungstyp muss ausgewählt werden</string>
   <string name="error_pass_match">Die Kennwörter stimmen nicht überein.</string>
   <string name="error_rounds_not_number">Anzahl der Wiederholungen muss eine Zahl sein.</string>
-  <string name="error_rounds_too_large">Maximale Wiederholungsanzahl ist 2147483648.</string>
   <string name="error_title_required">Ein Titel wird benötigt.</string>
   <string name="error_wrong_length">Tragen Sie eine benötigte Zahllänge in das Feld ein</string>
   <string name="FileNotFound">Datei nicht gefunden.</string>
@@ -105,8 +96,6 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_override_url">Override URL</string>
   <string name="hint_tags">Tag1, Tag2</string>
   <string name="hint_username">Benutzername</string>
-  <string name="install_from_market">Vom Play Store installieren</string>
-  <string name="install_from_website">Installiere aus dem Web</string>
   <string name="InvalidPassword">Kennwort oder Schlüsseldatei ist falsch.</string>
   <string name="invalid_algorithm">Ungültiger Algorithmus.</string>
   <string name="invalid_db_sig">Datenbank-Format wurde nicht erkannt.</string>
@@ -132,7 +121,6 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_donate">Spendiere ein Bier...</string>
   <string name="menu_edit">Bearbeiten</string>
   <string name="menu_hide_password">Kennwort verstecken</string>
-  <string name="menu_homepage">Webseite</string>
   <string name="menu_lock">Datenbank sperren</string>
   <string name="menu_open">Öffnen</string>
   <string name="menu_rename">Umbenennen</string>
@@ -333,6 +321,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="use_key_file">Schlüsseldatei benutzen</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog_0_9_1"><b>Version 0.9.1</b>\n
+* SkyDrive-Unterstützung integriert (Nur in der Nicht-Offline-Version von Keepass2Android)\n
+* Probleme mit Google Drive Integration behoben\n
+* NTLM-Unterstützung integriert</string>
   <string name="ChangeLog_0_9">
 		<b>Version 0.9</b>\n
 		* Dropbox und Google Drive Unterstützung integriert (Lesen und Schreiben von Datenbank; Nur in der Nicht-Offline-Version von Keepass2Android)\n

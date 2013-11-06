@@ -21,8 +21,6 @@
   <string name="application">应用程序</string>
   <string name="application_settings">应用程序设置</string>
   <string name="brackets">括号</string>
-  <string name="browser_intall_text">	浏览文件需要安装Open Intents File Manager，点击下面选项安装。由于一些文件管理软件的差异，在你第一次浏览时可能无法正常工作。</string>
-  <string name="building_search_idx">建立搜索索引…</string>
   <string name="cancel">取消</string>
   <string name="ClearClipboard">剪贴板已清除</string>
   <string name="clipboard_timeout">剪贴板超时</string>
@@ -36,15 +34,11 @@
   <string name="current_group">当前群组：</string>
   <string name="current_group_root">当前群组：Root</string>
   <string name="database">数据库</string>
-  <string name="decrypting_db">解密数据库内容中…</string>
-  <string name="decrypting_entry">解密条目中</string>
-  <string name="default_checkbox">使用这做为我的默认数据库</string>
   <string name="digits">数字</string>
   <string name="disclaimer_formal">Keepass2Android版权归Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循GPL 2或者更高版本的情况下重新发布。</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间：</string>
-  <string name="entry_and_or">输入密码和/或一个密钥文件来解锁你的数据库：</string>
   <string name="entry_cancel">取消</string>
   <string name="entry_comment">备注：</string>
   <string name="entry_tags">标签</string>
@@ -61,7 +55,6 @@
   <string name="entry_user_name">用户名：</string>
   <string name="entry_extra_strings">额外的字符串字段，</string>
   <string name="entry_binaries">文件附件</string>
-  <string name="error_arc4">ArcFour流密码不被支持。</string>
   <string name="error_can_not_handle_uri">Keepass2Android无法处理此URI。</string>
   <string name="error_could_not_create_group">创建群组错误。</string>
   <string name="error_could_not_create_parent">无法创建上级目录。</string>
@@ -74,11 +67,9 @@
   <string name="error_invalid_path">非法路径。</string>
   <string name="error_no_name">用户名是必填项</string>
   <string name="error_nopass">密码或者密钥文件是必需的</string>
-  <string name="error_out_of_memory">这款手机运行内存不足而不能解析数据库。这可能是数据库太大的缘故。</string>
   <string name="error_pass_gen_type">至少必须选择一个密码生成类型</string>
   <string name="error_pass_match">密码不匹配。</string>
   <string name="error_rounds_not_number">次数必须是数字。</string>
-  <string name="error_rounds_too_large">次数太大。最大设置到2147483648。</string>
   <string name="error_title_required">标题是必填项</string>
   <string name="error_wrong_length">长度字段输入一个正整数</string>
   <string name="FileNotFound">文件未找到。</string>
@@ -98,8 +89,6 @@
   <string name="hint_override_url">覆盖url</string>
   <string name="hint_tags">标签1,标签2 </string>
   <string name="hint_username">用户名</string>
-  <string name="install_from_market">从电子市场安装</string>
-  <string name="install_from_website">从网络安装</string>
   <string name="InvalidPassword">非法的密码或密钥文件。</string>
   <string name="invalid_algorithm">无效的算法</string>
   <string name="invalid_db_sig">数据库格式无法识别。</string>
@@ -124,7 +113,6 @@
   <string name="menu_donate">捐出一瓶啤酒钱......</string>
   <string name="menu_edit">编辑</string>
   <string name="menu_hide_password">隐藏密码</string>
-  <string name="menu_homepage">到主页</string>
   <string name="menu_lock">锁定数据库</string>
   <string name="menu_open">打开</string>
   <string name="menu_rename">重命名</string>

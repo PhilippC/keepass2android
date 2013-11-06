@@ -27,8 +27,6 @@
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Gestione dei file</string>
   <string name="brackets">Parentesi</string>
-  <string name="browser_intall_text">Sfogliare i file richiede l\'applicazione Gestore File di Open Intents, clicca sotto per installarlo. A causa di alcune stranezze nel gestore file, la prima volta la navigazione potrebbe non funzionare correttamente.</string>
-  <string name="building_search_idx">Creazione indice di ricerca…</string>
   <string name="cancel">Annulla</string>
   <string name="ClearClipboard">Appunti eliminati.</string>
   <string name="clipboard_timeout">Scadenza appunti</string>
@@ -42,15 +40,11 @@
   <string name="current_group">Gruppo corrente</string>
   <string name="current_group_root">Gruppo corrente: Root</string>
   <string name="database">Database</string>
-  <string name="decrypting_db">Decodifica del contenuto del database…</string>
-  <string name="decrypting_entry">Decodifica valore</string>
-  <string name="default_checkbox">Usa come database predefinito</string>
   <string name="digits">Cifre</string>
   <string name="disclaimer_formal">Keepass2Android viene distribuito ASSOLUTAMENTE SENZA ALCUNA GARANZIA; Si tratta di software libero e sei invitato a distribuirlo sotto le condizioni della licenza GPL versione 2 o superiore.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Inserisci il nome del file del database</string>
   <string name="entry_accessed">Ultimo accesso</string>
-  <string name="entry_and_or">Inserisci una password e/o un file chiave per sbloccare il database</string>
   <string name="entry_cancel">Annulla</string>
   <string name="entry_comment">Commenti</string>
   <string name="entry_tags">Tag</string>
@@ -67,7 +61,6 @@
   <string name="entry_user_name">Nome utente</string>
   <string name="entry_extra_strings">Campi di testo extra</string>
   <string name="entry_binaries">File allegati</string>
-  <string name="error_arc4">La crittografia RC4 non è supportata.</string>
   <string name="error_can_not_handle_uri">Keepass2Android non può gestire questo URI.</string>
   <string name="error_could_not_create_group">Errore di creazione del gruppo.</string>
   <string name="error_could_not_create_parent">Impossibile creare la cartella principale.</string>
@@ -80,11 +73,9 @@
   <string name="error_invalid_path">Percorso non valido.</string>
   <string name="error_no_name">E\' necessario immettere un nome.</string>
   <string name="error_nopass">E\' necessaria una password o un file chiave.</string>
-  <string name="error_out_of_memory">Il telefono ha esaurito la memoria durante l\'elaborazione del database. Potrebbe essere troppo grande per il tuo telefono.</string>
   <string name="error_pass_gen_type">Devi indicare almeno un metodo di generazione della password</string>
   <string name="error_pass_match">Le password non corrispondono.</string>
   <string name="error_rounds_not_number">Il livello deve essere un numero.</string>
-  <string name="error_rounds_too_large">Livello troppo grande.  Impostato a 2147483648.</string>
   <string name="error_title_required">Devi specificare un titolo.</string>
   <string name="error_wrong_length">Inserisci un valore positivo come lunghezza del campo</string>
   <string name="FileNotFound">File non trovato.</string>
@@ -104,8 +95,6 @@
   <string name="hint_override_url">sovrascrivi l\'URL</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">nome utente</string>
-  <string name="install_from_market">Installa dal Play Store</string>
-  <string name="install_from_website">Installa dal Web</string>
   <string name="InvalidPassword">Password o file chiave non validi.</string>
   <string name="invalid_algorithm">Algoritmo non valido.</string>
   <string name="invalid_db_sig">Formato del database sconosciuto.</string>
@@ -131,7 +120,6 @@
   <string name="menu_donate">Dona una birra...</string>
   <string name="menu_edit">Modifica</string>
   <string name="menu_hide_password">Nascondi Password</string>
-  <string name="menu_homepage">Vai alla Homepage</string>
   <string name="menu_lock">Blocca Database</string>
   <string name="menu_open">Apri</string>
   <string name="menu_rename">Rinomina</string>

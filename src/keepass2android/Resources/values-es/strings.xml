@@ -27,8 +27,6 @@
   <string name="QuickUnlock_prefs">Desbloqueo Rápido</string>
   <string name="FileHandling_prefs">Manejo de ficheros</string>
   <string name="brackets">Paréntesis</string>
-  <string name="browser_intall_text">La exploración de archivos necesita Open Intents File Manager, haz clic a continuación para instalarlo. Debido a algunas peculiaridades en el gestor de archivos, puede que la exploración no funcione correctamente la primera vez que la realices.</string>
-  <string name="building_search_idx">Construyendo el índice de búsqueda…</string>
   <string name="cancel">Cancelar</string>
   <string name="ClearClipboard">Portapapeles vaciado.</string>
   <string name="clipboard_timeout">Portapapeles caducado</string>
@@ -42,15 +40,11 @@
   <string name="current_group">Grupo actual</string>
   <string name="current_group_root">Grupo actual: Raíz</string>
   <string name="database">Base de datos</string>
-  <string name="decrypting_db">Descifrando el contenido de la base de datos…</string>
-  <string name="decrypting_entry">Descrifrando la entrada entry</string>
-  <string name="default_checkbox">Utilice esto como base de datos por defecto</string>
   <string name="digits">Dígitos</string>
   <string name="disclaimer_formal">Keepass2Android NO TIENE TOTAL GARANTÍA; Este es software libre, y puedes redristribuirlo bajo las condiciones de la licencia GPL version 2 o posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Acceso</string>
-  <string name="entry_and_or">Introduzca una contraseña y/o un archivo de clave para desbloquear su base de datos</string>
   <string name="entry_cancel">Cancelar</string>
   <string name="entry_comment">Comentario</string>
   <string name="entry_tags">Etiquetas</string>
@@ -67,7 +61,6 @@
   <string name="entry_user_name">Nombre de usuario</string>
   <string name="entry_extra_strings">Campos adicionales</string>
   <string name="entry_binaries">Archivos adjuntos</string>
-  <string name="error_arc4">Secuencia de cifrado ArcFour no soportada.</string>
   <string name="error_can_not_handle_uri">Keepass2Android no puede manejar este uri.</string>
   <string name="error_could_not_create_group">Error creando grupo.</string>
   <string name="error_could_not_create_parent">No pudo crearse el directorio padre.</string>
@@ -80,11 +73,9 @@
   <string name="error_invalid_path">Ruta no válida.</string>
   <string name="error_no_name">Se necesita un nombre.</string>
   <string name="error_nopass">Se necesita una contraseña o un archivo de clave.</string>
-  <string name="error_out_of_memory">El dispositivo se quedó sin memory mientras analizada la base de datos. Puede ser demasiado grande para este dispositivo.</string>
   <string name="error_pass_gen_type">Debe seleccionar al menos un tipo de generación de contraseñas</string>
   <string name="error_pass_match">Las contraseñas no coinciden.</string>
   <string name="error_rounds_not_number">Pasadas debe de ser un número.</string>
-  <string name="error_rounds_too_large">Pasadas demasiado grande. Establecido a 2147483648.</string>
   <string name="error_title_required">Se necesita un título.</string>
   <string name="error_wrong_length">Introduzca un entero positivo en el campo longitud</string>
   <string name="FileNotFound">Archivo no encontrado.</string>
@@ -104,8 +95,6 @@
   <string name="hint_override_url">reemplazar url</string>
   <string name="hint_tags">etiqueta1, etiqueta2</string>
   <string name="hint_username">nombre de usuario</string>
-  <string name="install_from_market">Instalar desde Market</string>
-  <string name="install_from_website">Instalar desde Web</string>
   <string name="InvalidPassword">Contraseña o archivo de clave no válido.</string>
   <string name="invalid_algorithm">Algoritmo no válido.</string>
   <string name="invalid_db_sig">Formato de base de datos no reconocido.</string>
@@ -131,7 +120,6 @@
   <string name="menu_donate">Donar una cerveza...</string>
   <string name="menu_edit">Editar</string>
   <string name="menu_hide_password">Ocultar Contraseña</string>
-  <string name="menu_homepage">Ir a Inicio</string>
   <string name="menu_lock">Bloquear Base de datos</string>
   <string name="menu_open">Abrir</string>
   <string name="menu_rename">Renombar</string>
@@ -320,6 +308,7 @@
   <string name="filestoragename_sftp">SFTP (Protocolo de Transferencia SSH)</string>
   <string name="filestorage_setup_title">Inicialización de acceso de archivo</string>
   <string name="database_location">Ubicación de la base de datos</string>
+  <string name="help_database_location">Puede almacenar su base de datos localmente en su dispositivo Android o en la nube(solo en la versión non-Offline). Keepass2Android permite acceder a la base de datos aun cuando estas sin conexión a Internet. Como la base de datos es encriptada de forma segura con una encriptación AES de 256 bit, nadie podrá acceder a sus contraseñas a excepción de usted. Recomendamos el uso de Dropbox ya que es se puede utilizar desde todos los dispositivos y también proporciona copias de seguridad de las versiones anteriores de las bases de datos.</string>
   <string name="hint_database_location">Seleccione dónde desea almacenar la base de datos:</string>
   <string name="button_change_location">Cambiar ubicación</string>
   <string name="master_password">Contraseña maestra</string>

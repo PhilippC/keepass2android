@@ -27,8 +27,6 @@
   <string name="QuickUnlock_prefs">RychléOdemknutí</string>
   <string name="FileHandling_prefs">Zpracování souborů</string>
   <string name="brackets">Závorky</string>
-  <string name="browser_intall_text">Procházení souborů vyžaduje Open Intents File Manager, klikněte níže pro jeho nainstalování. Kvůli zvláštnostem ve správci souborů, nemusí procházení správně fungovat při prvním spuštění.</string>
-  <string name="building_search_idx">Vytvářím vyhledávací index…</string>
   <string name="cancel">Storno</string>
   <string name="ClearClipboard">Schránka vyčištěna.</string>
   <string name="clipboard_timeout">Časový limit schránky</string>
@@ -42,15 +40,11 @@
   <string name="current_group">Aktuální skupina</string>
   <string name="current_group_root">Aktuální skupina: Kořen</string>
   <string name="database">Databáze</string>
-  <string name="decrypting_db">Dešifruji obsah databáze…</string>
-  <string name="decrypting_entry">Dešifruji položku</string>
-  <string name="default_checkbox">Použít jako výchozí databázi</string>
   <string name="digits">Číslice</string>
   <string name="disclaimer_formal">Keepass2Android dodáván BEZ JAKÉKOLIV ZÁRUKY; Toto je svobodný software, a můžete jej šířit pod licencí GPL verze 2 nebo novější.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Zadejte názvev souboru databáze</string>
   <string name="entry_accessed">Poslední přístup</string>
-  <string name="entry_and_or">Zadejte heslo a/nebo soubor s klíčem pro odemknutí databáze</string>
   <string name="entry_cancel">Storno</string>
   <string name="entry_comment">Poznámky</string>
   <string name="entry_tags">Štítky</string>
@@ -67,7 +61,6 @@
   <string name="entry_user_name">Uživatelské jméno</string>
   <string name="entry_extra_strings">Doplňková textová pole</string>
   <string name="entry_binaries">Přiložené soubory</string>
-  <string name="error_arc4">ArcFour stream šifra není podporována.</string>
   <string name="error_can_not_handle_uri">Keepass2Android nemůže zpracovat tuto uri.</string>
   <string name="error_could_not_create_group">Chyba při vytváření skupiny.</string>
   <string name="error_could_not_create_parent">Nelze vyvořit nadřazený adresář.</string>
@@ -80,11 +73,9 @@
   <string name="error_invalid_path">Chybná cesta.</string>
   <string name="error_no_name">Jméno je povinné.</string>
   <string name="error_nopass">Heslo nebo klíčový soubor jsou povinné.</string>
-  <string name="error_out_of_memory">Přístroj má málo paměti pro zpracování databáze. Možná je příliš velká pro Váš přístroj.</string>
   <string name="error_pass_gen_type">Minimálně jeden typ generování hesla musí být zvolen</string>
   <string name="error_pass_match">Hesla se neshodují.</string>
   <string name="error_rounds_not_number">Opakování musí být číslo.</string>
-  <string name="error_rounds_too_large">Opakování příliš mnoho.  Nastavuji na 2147483648.</string>
   <string name="error_title_required">Název je povinný.</string>
   <string name="error_wrong_length">Zadejte celé kladné číslo do délky pole</string>
   <string name="FileNotFound">Soubor nenalezen.</string>
@@ -104,8 +95,6 @@
   <string name="hint_override_url">přepsat adresu url</string>
   <string name="hint_tags">štítek1, štítek2</string>
   <string name="hint_username">uživatelské jméno</string>
-  <string name="install_from_market">Instalace z Play Store</string>
-  <string name="install_from_website">Instalace z webu</string>
   <string name="InvalidPassword">Chybné heslo nebo klíčový soubor.</string>
   <string name="invalid_algorithm">Neplatný algoritmus.</string>
   <string name="invalid_db_sig">Databázový formát nelze rozpoznat.</string>
@@ -131,7 +120,6 @@
   <string name="menu_donate">Přispějte na pivo...</string>
   <string name="menu_edit">Změnit</string>
   <string name="menu_hide_password">Skrýt heslo</string>
-  <string name="menu_homepage">Přejít na domovskou stránku</string>
   <string name="menu_lock">Zamknout databázi</string>
   <string name="menu_open">Otevřít</string>
   <string name="menu_rename">Přejmenovat</string>

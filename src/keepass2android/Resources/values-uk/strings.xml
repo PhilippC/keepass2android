@@ -21,8 +21,6 @@
   <string name="application">Програма</string>
   <string name="application_settings">Налаштування програми</string>
   <string name="brackets">Дужки</string>
-  <string name="browser_intall_text">Для перегляду файла необхідно Open Intents File Manager, натисніть нижче для його інсталяції. У зв’язку з деякими недоробками у менеджері файлів перегляд може працювати некоректно при запуску перший раз.</string>
-  <string name="building_search_idx">Будується пошуковий індекс…</string>
   <string name="cancel">Відміна</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
   <string name="clipboard_timeout">Тайм-аут буфера обміну</string>
@@ -36,15 +34,11 @@
   <string name="current_group">Поточна група</string>
   <string name="current_group_root">Поточна група: корінь</string>
   <string name="database">База даних</string>
-  <string name="decrypting_db">Розшифрування змісту бази даних…</string>
-  <string name="decrypting_entry">Розшифрування запису</string>
-  <string name="default_checkbox">Використовувати як мою типову базу даних</string>
   <string name="digits">Цифри</string>
   <string name="disclaimer_formal">Keepass2Android поставляється абсолютно без гарантії; Це вільне програмне забезпечення, воно розповсюджується на умовах ліцензії GPL v2 або новішої.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Введіть ім’я бази даних</string>
   <string name="entry_accessed">Доступ</string>
-  <string name="entry_and_or">Введіть пароль і/або файл ключа для відкриття бази даних</string>
   <string name="entry_cancel">Відміна</string>
   <string name="entry_comment">Коментар</string>
   <string name="entry_tags">Теги</string>
@@ -61,7 +55,6 @@
   <string name="entry_user_name">Ім’я користувача</string>
   <string name="entry_extra_strings">Додаткові поля</string>
   <string name="entry_binaries">Файлові додатки</string>
-  <string name="error_arc4">Потокове шифрування ArcFour не підтримується.</string>
   <string name="error_can_not_handle_uri">Keepass2Android не може опрацювати цю адресу.</string>
   <string name="error_could_not_create_group">Помилка створення групи.</string>
   <string name="error_could_not_create_parent">Не вдалося створити батьківський каталог.</string>
@@ -74,11 +67,9 @@
   <string name="error_invalid_path">Невірний шлях.</string>
   <string name="error_no_name">Потрібне ім’я.</string>
   <string name="error_nopass">Необхідно пароль або файл ключа.</string>
-  <string name="error_out_of_memory">Телефону не вистачило пам’яті при аналізі вашої бази даних. Можливо база надто велика для вашог телефона.</string>
   <string name="error_pass_gen_type">Принаймні один тип генерації пароля необхідно вибрати.</string>
   <string name="error_pass_match">Паролі не співпадають.</string>
   <string name="error_rounds_not_number">Кількість циклів має бути числом.</string>
-  <string name="error_rounds_too_large">Надто багато циклів.  Установлено 2147483648.</string>
   <string name="error_title_required">Необхідно вказати заголовок.</string>
   <string name="error_wrong_length">Введіть ціле число на усю довжину поля</string>
   <string name="FileNotFound">Файл не знайдено.</string>
@@ -98,8 +89,6 @@
   <string name="hint_override_url">змінити URL-адресу</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">ім’я користувача</string>
-  <string name="install_from_market">Інсталювати із Google Play</string>
-  <string name="install_from_website">Інсталювати із Інтернету</string>
   <string name="InvalidPassword">Невірний пароль або файл ключа.</string>
   <string name="invalid_algorithm">Неприпустимий алгоритм.</string>
   <string name="invalid_db_sig">Формат бази даних не розпізнано.</string>
@@ -124,7 +113,6 @@
   <string name="menu_donate">Пожертвувати пиво...</string>
   <string name="menu_edit">Редагувати</string>
   <string name="menu_hide_password">Приховати пароль</string>
-  <string name="menu_homepage">Перейти на домашню сторінку</string>
   <string name="menu_lock">Блокувати базу даних</string>
   <string name="menu_open">Відкрити</string>
   <string name="menu_rename">Перейменувати</string>

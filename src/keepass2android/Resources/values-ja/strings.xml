@@ -26,8 +26,6 @@
   <string name="QuickUnlock_prefs">クイック解除</string>
   <string name="FileHandling_prefs">ファイル操作</string>
   <string name="brackets">カッコ</string>
-  <string name="browser_intall_text">ファイルを検索するには OI File Manager が必要です。</string>
-  <string name="building_search_idx">検索中…</string>
   <string name="cancel">キャンセル</string>
   <string name="ClearClipboard">クリップボードを消去しました。</string>
   <string name="clipboard_timeout">クリップボード タイムアウト</string>
@@ -41,15 +39,11 @@
   <string name="current_group">現在のグループ</string>
   <string name="current_group_root">現在のグループ: Root</string>
   <string name="database">データベース</string>
-  <string name="decrypting_db">データベースを解析中…</string>
-  <string name="decrypting_entry">暗号解除エントリー</string>
-  <string name="default_checkbox">このデータベースを次回以降も利用する</string>
   <string name="digits">数字</string>
   <string name="disclaimer_formal">Keepass2Android によって作られたフリーソフトウェアであり、無保証です。GPLバージョン2以上の条件下でこれを再頒布することができます。</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">データベースファイル</string>
   <string name="entry_accessed">最終アクセス日</string>
-  <string name="entry_and_or">データベースに設定したパスワードを入力するかキーファイルを選択してください。</string>
   <string name="entry_cancel">キャンセル</string>
   <string name="entry_comment">備考</string>
   <string name="entry_tags">タグ</string>
@@ -66,7 +60,6 @@
   <string name="entry_user_name">ユーザー名</string>
   <string name="entry_extra_strings">助長な文字列フィールド</string>
   <string name="entry_binaries">添付ファイル</string>
-  <string name="error_arc4">ArcFour stream cipherには対応していません。</string>
   <string name="error_can_not_handle_uri">Keepass2Androidはこのuriを処理できません。</string>
   <string name="error_could_not_create_group">グループ追加エラー</string>
   <string name="error_could_not_create_parent">親ディレクトリを作成できませんでした。</string>
@@ -79,11 +72,9 @@
   <string name="error_invalid_path">パスが無効です。</string>
   <string name="error_no_name">タイトルは必須入力です。</string>
   <string name="error_nopass">パスワードかキーファイルが必要です。</string>
-  <string name="error_out_of_memory">データベース解析中にメモリ不足になりました。</string>
   <string name="error_pass_gen_type">少なくとも1つ以上のパスワード生成タイプを選択する必要があります。</string>
   <string name="error_pass_match">パスワードが一致しません</string>
   <string name="error_rounds_not_number">数値を入力してください。</string>
-  <string name="error_rounds_too_large">値が大きすぎます。 2147483648にセットしました。</string>
   <string name="error_title_required">タイトルは必須入力です。</string>
   <string name="error_wrong_length">\"長さ\"欄には正の整数を入力してください。</string>
   <string name="FileNotFound">ファイルが見つかりません。</string>
@@ -103,8 +94,6 @@
   <string name="hint_override_url">url を上書きします。</string>
   <string name="hint_tags">タグ1, タグ2</string>
   <string name="hint_username">ユーザー名</string>
-  <string name="install_from_market">Android Marketで入手</string>
-  <string name="install_from_website">Webサイトから入手</string>
   <string name="InvalidPassword">パスワード/キーファイルが違います。</string>
   <string name="invalid_algorithm">無効なアルゴリズム。</string>
   <string name="invalid_db_sig">データベースフォーマットが認識できません。</string>
@@ -130,7 +119,6 @@
   <string name="menu_donate">ビールの寄付...</string>
   <string name="menu_edit">編集</string>
   <string name="menu_hide_password">パスワードを隠す</string>
-  <string name="menu_homepage">URLを開く</string>
   <string name="menu_lock">データベースをロック</string>
   <string name="menu_open">開く</string>
   <string name="menu_rename">タイトルの変更</string>
