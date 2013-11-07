@@ -623,7 +623,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			try {
 				gdrivePath.setPathWithoutVerify(accountNameOrPath);
 			} catch (Exception e) {
-				finishWithError((Activity)setupAct, e);
+				finishWithError(setupAct, e);
 			}
 			accountNameTemp = gdrivePath.getAccount();
 		}
@@ -676,7 +676,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 					}
 					else
 					{
-						finishWithError(activity, error);
+						finishWithError(setupAct, error);
 					}
 				}  else if ( isCancelled()) {
 					// cancel handling here
@@ -701,18 +701,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	}
 	
-
-
-	private void finishWithError(final Activity activity,
-			Exception error) {
-		Log.e(TAG, "Exception: "+error.toString());
-		error.printStackTrace();
-		
-		Intent retData = new Intent();
-		retData.putExtra(EXTRA_ERROR_MESSAGE, error.getMessage());
-		activity.setResult(Activity.RESULT_CANCELED, retData);
-		activity.finish();
-	};
 
 
 	private HashMap<String,FileSystemEntryData> buildFoldersCache(String accountName) throws IOException {
@@ -740,42 +728,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	}
 
-	private void finishActivityWithSuccess(FileStorageSetupActivity setupActivity) {
-		//Log.d("KP2AJ", "Success with authentcating!");
-		Activity activity = (Activity)setupActivity;
-
-		if (setupActivity.getProcessName().equals(PROCESS_NAME_FILE_USAGE_SETUP))
-		{
-			Intent data = new Intent();
-			data.putExtra(EXTRA_IS_FOR_SAVE, setupActivity.isForSave());
-			data.putExtra(EXTRA_PATH, setupActivity.getPath());
-			activity.setResult(RESULT_FILEUSAGE_PREPARED, data);
-			activity.finish();
-			return;
-		}
-		if (setupActivity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
-		{
-			Intent data = new Intent();
-			/*if (setupActivity.getState() == null)
-				Log.d(TAG, "getState is null");
-			else 
-				if (setupActivity.getState().getString(EXTRA_PATH) == null)
-					Log.d(TAG, "setupActivity.getState().getString(EXTRA_PATH) is null");
-				else
-					Log.d(TAG,setupActivity.getState().getString(EXTRA_PATH));
-					*/
-			String path = setupActivity.getState().getString(EXTRA_PATH);
-			if (path != null)
-				data.putExtra(EXTRA_PATH, path);
-			activity.setResult(RESULT_FILECHOOSER_PREPARED, data);
-			activity.finish();
-			return;
-		}	
-
-		Log.w("KP2AJ", "Unknown process: " + setupActivity.getProcessName());
-
-
-	}
 
 	@Override
 	public void startSelectFile(JavaFileStorage.FileStorageSetupInitiatorActivity activity, boolean isForSave,
@@ -785,8 +737,8 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 
 	@Override
-	public void prepareFileUsage(JavaFileStorage.FileStorageSetupInitiatorActivity activity, String path, int requestCode) {
-		((JavaFileStorage.FileStorageSetupInitiatorActivity)(activity)).startFileUsageProcess(path, requestCode);
+	public void prepareFileUsage(JavaFileStorage.FileStorageSetupInitiatorActivity activity, String path, int requestCode, boolean alwaysReturnSuccess) {
+		((JavaFileStorage.FileStorageSetupInitiatorActivity)(activity)).startFileUsageProcess(path, requestCode, alwaysReturnSuccess);
 
 	}
 

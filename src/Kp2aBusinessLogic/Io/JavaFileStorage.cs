@@ -98,7 +98,7 @@ namespace keepass2android.Io
 			Kp2aLog.Log(e.Message);
 			var ex = new Exception(e.LocalizedMessage ?? 
 				e.Message ?? 
-				_app.GetResourceString(UiStringKey.ErrorOcurred)+e, e);
+				_app.GetResourceString(UiStringKey.ErrorOcurred)+e.GetType().Name, e);
 			return ex; 
 		}
 
@@ -249,9 +249,9 @@ namespace keepass2android.Io
 			_jfs.StartSelectFile((IJavaFileStorageFileStorageSetupInitiatorActivity) activity, isForSave, requestCode);
 		}
 
-		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode)
+		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, Boolean alwaysReturnSuccess)
 		{
-			_jfs.PrepareFileUsage((IJavaFileStorageFileStorageSetupInitiatorActivity)activity, IocToPath(ioc), requestCode);
+			_jfs.PrepareFileUsage((IJavaFileStorageFileStorageSetupInitiatorActivity)activity, IocToPath(ioc), requestCode, alwaysReturnSuccess);
 		}
 
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)

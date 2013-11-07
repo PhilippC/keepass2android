@@ -2,6 +2,10 @@ package keepass2android.javafilestorage;
 
 import java.io.UnsupportedEncodingException;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
+
 public abstract class JavaFileStorageBase implements JavaFileStorage{
 
 	private static final String ISO_8859_1 = "ISO-8859-1";
@@ -41,5 +45,59 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 	         super(message);
 	      }
 	 }
+	
+	
+	protected void finishWithError(final FileStorageSetupActivity setupAct, Exception error) {
+		Log.e("KP2AJ", "Exception: " + error.toString());
+		error.printStackTrace();
+		
+		final Activity activity = (Activity)setupAct;
+		
+		int resultCode = Activity.RESULT_CANCELED;
+		
+		//check if we should return OK anyways.
+		//This can make sense if there is a higher-level FileStorage which has the file cached.
+		if (activity.getIntent().getBooleanExtra(EXTRA_ALWAYS_RETURN_SUCCESS, false))
+		{
+			Log.d(TAG, "Returning success as desired in intent despite of exception.");
+			finishActivityWithSuccess(setupAct);
+			return;
+		}
+
+		Intent retData = new Intent();
+		retData.putExtra(EXTRA_ERROR_MESSAGE, error.getMessage());
+		activity.setResult(resultCode, retData);
+		activity.finish();
+	};
+
+	protected void finishActivityWithSuccess(
+			FileStorageSetupActivity setupActivity) {
+		//Log.d("KP2AJ", "Success with authenticating!");
+		Activity activity = (Activity) setupActivity;
+
+		if (setupActivity.getProcessName()
+				.equals(PROCESS_NAME_FILE_USAGE_SETUP)) {
+			Intent data = new Intent();
+			data.putExtra(EXTRA_IS_FOR_SAVE, setupActivity.isForSave());
+			data.putExtra(EXTRA_PATH, setupActivity.getPath());
+			activity.setResult(RESULT_FILEUSAGE_PREPARED, data);
+			activity.finish();
+			return;
+		}
+		if (setupActivity.getProcessName().equals(PROCESS_NAME_SELECTFILE)) {
+			Intent data = new Intent();
+
+			String path = setupActivity.getState().getString(EXTRA_PATH);
+			if (path != null)
+				data.putExtra(EXTRA_PATH, path);
+			activity.setResult(RESULT_FILECHOOSER_PREPARED, data);
+			activity.finish();
+			return;
+		}
+
+		Log.w("KP2AJ", "Unknown process: " + setupActivity.getProcessName());
+
+	}
+
 
 }

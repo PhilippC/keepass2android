@@ -31,7 +31,7 @@ import com.dropbox.client2.session.Session.AccessType;
 
 
 
-public class DropboxFileStorage implements JavaFileStorage {
+public class DropboxFileStorage extends JavaFileStorageBase {
 	
 	//NOTE: also adjust secret!
 	//final static private String APP_KEY = "i8shu7v1hgh7ynt"; //KP2A
@@ -405,7 +405,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 	}
 
 	@Override
-	public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode) {
+	public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode, boolean alwaysReturnSuccess) {
 		if (isConnected())
 		{
 			Intent intent = new Intent();
@@ -414,7 +414,7 @@ public class DropboxFileStorage implements JavaFileStorage {
 		}
 		else
 		{
-			activity.startFileUsageProcess(path, requestCode);	
+			activity.startFileUsageProcess(path, requestCode, alwaysReturnSuccess);	
 		}
 		
 	}
@@ -428,6 +428,9 @@ public class DropboxFileStorage implements JavaFileStorage {
 
 	@Override
 	public void onResume(FileStorageSetupActivity activity) {
+		
+		if (activity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
+			activity.getState().putString(EXTRA_PATH, activity.getPath());
 		
 		Log.d("KP2AJ", "OnResume. LoggedIn="+mLoggedIn);
 		if (mLoggedIn)
@@ -454,12 +457,8 @@ public class DropboxFileStorage implements JavaFileStorage {
                 finishActivityWithSuccess(activity);
                 return;
                 
-            } catch (Throwable t) {
-                Log.i(TAG, "Error authenticating", t);
-            	Intent data = new Intent();
-            	data.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
-            	((Activity)activity).setResult(Activity.RESULT_CANCELED, data);
-            	((Activity)activity).finish();
+            } catch (Exception e) {
+                finishWithError(activity, e);
             	return;
             }
         }
@@ -482,33 +481,6 @@ public class DropboxFileStorage implements JavaFileStorage {
 
         }
         
-		
-	}
-
-	private void finishActivityWithSuccess(FileStorageSetupActivity setupActivity) {
-		Log.d("KP2AJ", "Success with authentcating!");
-		Activity activity = (Activity)setupActivity;
-		
-		if (setupActivity.getProcessName().equals(PROCESS_NAME_FILE_USAGE_SETUP))
-		{
-			Intent data = new Intent();
-			data.putExtra(EXTRA_IS_FOR_SAVE, setupActivity.isForSave());
-			data.putExtra(EXTRA_PATH, setupActivity.getPath());
-			activity.setResult(RESULT_FILEUSAGE_PREPARED, data);
-			activity.finish();
-			return;
-		}
-		if (setupActivity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
-		{
-			Intent data = new Intent();
-			data.putExtra(EXTRA_PATH, setupActivity.getPath());
-			activity.setResult(RESULT_FILECHOOSER_PREPARED, data);
-			activity.finish();
-			return;
-		}	
-		
-		Log.w("KP2AJ", "Unknown process: " + setupActivity.getProcessName());
-		
 		
 	}
 

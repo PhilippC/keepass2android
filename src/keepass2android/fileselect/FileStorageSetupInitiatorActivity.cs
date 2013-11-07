@@ -39,10 +39,11 @@ namespace keepass2android
 			_activity.StartActivityForResult(fileStorageSetupIntent, requestCode);
 		}
 
-		public void StartFileUsageProcess(IOConnectionInfo ioc, int requestCode)
+		public void StartFileUsageProcess(IOConnectionInfo ioc, int requestCode, bool alwaysReturnSuccess)
 		{
 			Intent fileStorageSetupIntent = new Intent(_activity, typeof(FileStorageSetupActivity));
 			fileStorageSetupIntent.PutExtra(FileStorageSetupDefs.ExtraProcessName, FileStorageSetupDefs.ProcessNameFileUsageSetup);
+			fileStorageSetupIntent.PutExtra(FileStorageSetupDefs.ExtraAlwaysReturnSuccess, alwaysReturnSuccess);
 			PasswordActivity.PutIoConnectionToIntent(ioc, fileStorageSetupIntent);
 
 			_activity.StartActivityForResult(fileStorageSetupIntent, requestCode);
@@ -67,9 +68,9 @@ namespace keepass2android
 			_startManualFileSelect(protocolId + "://");
 		}
 
-		public void StartFileUsageProcess(string p0, int p1)
+		public void StartFileUsageProcess(string path, int requestCode, bool alwaysReturnSuccess)
 		{
-			StartFileUsageProcess(new IOConnectionInfo() { Path = p0 }, p1);
+			StartFileUsageProcess(new IOConnectionInfo() { Path = path }, requestCode, alwaysReturnSuccess);
 		}
 
 		public void StartSelectFileProcess(string p0, bool p1, int p2)

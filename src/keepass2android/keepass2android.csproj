@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -364,7 +364,6 @@
     <AndroidResource Include="Resources\drawable\ic_launcher_folder_small.png" />
     <AndroidResource Include="Resources\drawable\notify.png" />
     <AndroidResource Include="Resources\layout\about.xml" />
-    <AndroidResource Include="Resources\layout\browser_install.xml" />
     <AndroidResource Include="Resources\layout\database_settings.xml" />
     <AndroidResource Include="Resources\layout\entry_edit.xml" />
     <AndroidResource Include="Resources\layout\entry_list_entry.xml" />

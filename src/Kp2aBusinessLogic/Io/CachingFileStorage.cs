@@ -451,9 +451,10 @@ namespace keepass2android.Io
 			_cachedStorage.StartSelectFile(activity, isForSave, requestCode, protocolId);
 		}
 
-		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode)
+		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, bool alwaysReturnSuccess)
 		{
-			_cachedStorage.PrepareFileUsage(activity, ioc, requestCode);
+			//we try to prepare the file usage by the underlying file storage but if the ioc is cached, set the flag to ignore errors 
+			_cachedStorage.PrepareFileUsage(activity, ioc, requestCode, alwaysReturnSuccess || IsCached(ioc));
 		}
 
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)

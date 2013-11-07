@@ -298,7 +298,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 						if (status == LiveStatus.CONNECTED) {
 							initialize(activity, session);
 						} else {
-							finishWithError((Activity) activity, new Exception(
+							finishWithError(activity, new Exception(
 									"Error connecting to SkdDrive. Status is "
 											+ status));
 						}
@@ -307,7 +307,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 					@Override
 					public void onAuthError(LiveAuthException exception,
 							Object userState) {
-						finishWithError((Activity) activity, exception);
+						finishWithError(activity, exception);
 					}
 				});
 	}
@@ -338,7 +338,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 			protected void onPostExecute(AsyncTaskResult<String> result) {
 				Exception error = result.getError();
 				if (error  != null ) {
-					finishWithError(activity, error);
+					finishWithError(setupAct, error);
 				}  else if ( isCancelled()) {
 					activity.setResult(Activity.RESULT_CANCELED);
 					activity.finish();
@@ -446,9 +446,9 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public void prepareFileUsage(FileStorageSetupInitiatorActivity activity,
-			String path, int requestCode) {
+			String path, int requestCode, boolean alwaysReturnSuccess) {
 		((JavaFileStorage.FileStorageSetupInitiatorActivity) (activity))
-				.startFileUsageProcess(path, requestCode);
+				.startFileUsageProcess(path, requestCode, alwaysReturnSuccess);
 
 	}
 
@@ -718,44 +718,6 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 	}
 
-	private void finishWithError(final Activity activity, Exception error) {
-		Log.e("KP2AJ", "Exception: " + error.toString());
-		error.printStackTrace();
-
-		Intent retData = new Intent();
-		retData.putExtra(EXTRA_ERROR_MESSAGE, error.getMessage());
-		activity.setResult(Activity.RESULT_CANCELED, retData);
-		activity.finish();
-	};
-
-	private void finishActivityWithSuccess(
-			FileStorageSetupActivity setupActivity) {
-		//Log.d("KP2AJ", "Success with authenticating!");
-		Activity activity = (Activity) setupActivity;
-
-		if (setupActivity.getProcessName()
-				.equals(PROCESS_NAME_FILE_USAGE_SETUP)) {
-			Intent data = new Intent();
-			data.putExtra(EXTRA_IS_FOR_SAVE, setupActivity.isForSave());
-			data.putExtra(EXTRA_PATH, setupActivity.getPath());
-			activity.setResult(RESULT_FILEUSAGE_PREPARED, data);
-			activity.finish();
-			return;
-		}
-		if (setupActivity.getProcessName().equals(PROCESS_NAME_SELECTFILE)) {
-			Intent data = new Intent();
-
-			String path = setupActivity.getState().getString(EXTRA_PATH);
-			if (path != null)
-				data.putExtra(EXTRA_PATH, path);
-			activity.setResult(RESULT_FILECHOOSER_PREPARED, data);
-			activity.finish();
-			return;
-		}
-
-		Log.w("KP2AJ", "Unknown process: " + setupActivity.getProcessName());
-
-	}
 
 	@Override
 	public void onStart(final FileStorageSetupActivity activity) {
@@ -765,7 +727,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 		}
 		catch (Exception e)
 		{
-			finishWithError((Activity)activity, e);
+			finishWithError(activity, e);
 		}
 	}
 
@@ -774,7 +736,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 			@Override
 			public void onAuthError(LiveAuthException exception,
 					Object userState) {
-				finishWithError(((Activity) activity), exception);
+				finishWithError(( activity), exception);
 			}
 
 			@Override
@@ -800,11 +762,11 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 						//this may happen if an un-cancelled login progress is already in progress.
 						//however, the activity might have been destroyed, so try again with another auth client next time
 						mAuthClient = new LiveAuthClient(mAppContext, mClientId);
-						finishWithError((Activity)activity, e);
+						finishWithError(activity, e);
 					}
 					catch (Exception e)
 					{
-						finishWithError((Activity)activity, e);
+						finishWithError(activity, e);
 					}
 				}
 			}

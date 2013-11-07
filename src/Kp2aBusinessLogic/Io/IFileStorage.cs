@@ -21,6 +21,7 @@ namespace keepass2android.Io
 		public static String ProcessNameFileUsageSetup = "FILE_USAGE_SETUP";
 
 		public static String ExtraProcessName = "EXTRA_PROCESS_NAME";
+		public static String ExtraAlwaysReturnSuccess = "EXTRA_ALWAYS_RETURN_SUCCESS";
 		public static String ExtraPath = "PATH";
 		public static String ExtraIsForSave = "IS_FOR_SAVE";
 		public static String ExtraErrorMessage = "EXTRA_ERROR_MESSAGE";
@@ -136,8 +137,11 @@ namespace keepass2android.Io
 		/// <summary>
 		/// Initiates the process for choosing a file in the given file storage.
 		/// The file storage should either call OnImmediateResult or StartFileUsageProcess
+		/// If alwaysReturnSuccess is true, the activity should be finished with ResultCode Ok.
+		/// This can make sense if a higher-level file storage has the file cached by still wants to 
+		/// give the cached storage the chance to initialize file access.
 		/// </summary>
-		void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode);
+		void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, bool alwaysReturnSuccess);
 
 		//Setup methods: these are called from the setup activity so the file storage can handle UI events for authorization etc.
 		void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState);

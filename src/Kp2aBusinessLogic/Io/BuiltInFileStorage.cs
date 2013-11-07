@@ -169,7 +169,7 @@ namespace keepass2android.Io
 			}
 		}
 
-		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode)
+		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, bool alwaysReturnSuccess)
 		{
 			Intent intent = new Intent();
 			activity.IocToIntent(intent, ioc);

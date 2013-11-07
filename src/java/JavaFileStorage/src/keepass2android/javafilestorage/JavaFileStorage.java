@@ -11,17 +11,19 @@ public interface JavaFileStorage {
 	
 	public static final String PROCESS_NAME_SELECTFILE = "SELECT_FILE";
 	public static final String PROCESS_NAME_FILE_USAGE_SETUP = "FILE_USAGE_SETUP";
+	
 
 	public static final String EXTRA_PROCESS_NAME = "EXTRA_PROCESS_NAME";
 	public static final String EXTRA_PATH = "fileName"; //match KP2A PasswordActivity Ioc-Path Extra key
 	public static final String EXTRA_IS_FOR_SAVE = "IS_FOR_SAVE";
 	public static final String EXTRA_ERROR_MESSAGE = "EXTRA_ERROR_MESSAGE";
+	public static final String EXTRA_ALWAYS_RETURN_SUCCESS = "EXTRA_ALWAYS_RETURN_SUCCESS";;
 
 	
 public interface FileStorageSetupInitiatorActivity
 {
 	void startSelectFileProcess(String path, boolean isForSave, int requestCode);
-	void startFileUsageProcess(String path, int requestCode);
+	void startFileUsageProcess(String path, int requestCode, boolean alwaysReturnSuccess);
 	void onImmediateResult(int requestCode, int result,	Intent intent);
 	Activity getActivity();
 }
@@ -112,7 +114,7 @@ public class FileEntry {
 
 	public void startSelectFile(FileStorageSetupInitiatorActivity activity, boolean isForSave, int requestCode);
 	
-	public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode);
+	public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode, boolean alwaysReturnSuccess);
 	
 	public String getProtocolId();
 	

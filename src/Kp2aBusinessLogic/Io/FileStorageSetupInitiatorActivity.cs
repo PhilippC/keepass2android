@@ -9,7 +9,7 @@ namespace keepass2android.Io
 	public interface IFileStorageSetupInitiatorActivity
 	{
 		void StartSelectFileProcess(IOConnectionInfo ioc, bool isForSave, int requestCode);
-		void StartFileUsageProcess(IOConnectionInfo ioc, int requestCode);
+		void StartFileUsageProcess(IOConnectionInfo ioc, int requestCode, bool alwaysReturnSuccess);
 		void OnImmediateResult(int requestCode, int result, Intent intent);
 
 		Activity Activity { get;  }
