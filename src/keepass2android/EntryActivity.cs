@@ -405,14 +405,19 @@ namespace keepass2android
 			
 			PopulateText(Resource.Id.entry_created, Resource.Id.entry_created_label, getDateTime(Entry.CreationTime));
 			PopulateText(Resource.Id.entry_modified, Resource.Id.entry_modified_label, getDateTime(Entry.LastModificationTime));
-			PopulateText(Resource.Id.entry_accessed, Resource.Id.entry_accessed_label, getDateTime(Entry.LastAccessTime));
 			
 			if (Entry.Expires)
 			{
+				FindViewById(Resource.Id.entry_expires).Visibility = ViewStates.Visible;
+				FindViewById(Resource.Id.entry_expires_label).Visibility = ViewStates.Visible;
+				
 				PopulateText(Resource.Id.entry_expires, Resource.Id.entry_expires_label, getDateTime(Entry.ExpiryTime));
-			} else
+
+			} 
+			else
 			{
-				PopulateText(Resource.Id.entry_expires, Resource.Id.entry_expires_label, Resource.String.never);
+				FindViewById(Resource.Id.entry_expires).Visibility = ViewStates.Gone;
+				FindViewById(Resource.Id.entry_expires_label).Visibility = ViewStates.Gone;
 			}
 			PopulateText(Resource.Id.entry_comment, Resource.Id.entry_comment_label, Entry.Strings.ReadSafe(PwDefs.NotesField));
 

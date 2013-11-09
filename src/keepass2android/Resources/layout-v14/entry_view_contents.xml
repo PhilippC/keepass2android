@@ -149,19 +149,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         style="@style/EntryItem" />
-<!-- Accessed -->
-    <TextView
-        android:id="@+id/entry_accessed_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_accessed"
-        style="@style/EntryFieldHeader"
-         />
-    <TextView
-        android:id="@+id/entry_accessed"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/EntryItem" />
 <!-- Expires -->
     <TextView
         android:id="@+id/entry_expires_label"

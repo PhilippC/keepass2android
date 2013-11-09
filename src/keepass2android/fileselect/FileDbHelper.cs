@@ -250,13 +250,19 @@ namespace keepass2android
 			return keyfileFilename;
 		}
 		
-		public bool HasRecentFiles() {
+		public bool HasRecentFiles()
+		{
+			return NumberOfRecentFiles() > 0;
+		}
+
+		public int NumberOfRecentFiles()
+		{
 			ICursor cursor = FetchAllFiles();
-			
-			bool hasRecent = cursor.Count > 0;
+
+			int numRecent = cursor.Count;
 			cursor.Close();
-			
-			return hasRecent; 
+
+			return numRecent; 
 		}
 
 		public IOConnectionInfo CursorToIoc(ICursor cursor)

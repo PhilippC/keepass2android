@@ -510,6 +510,14 @@ namespace keepass2android
 		
 		private void PopulateView() {
 			SetEditText(Resource.Id.filename, App.Kp2a.GetFileStorage(_ioConnection).GetDisplayName(_ioConnection));
+			if (App.Kp2a.FileDbHelper.NumberOfRecentFiles() < 2)
+			{
+				FindViewById(Resource.Id.filename_group).Visibility = ViewStates.Gone;
+			}
+			else
+			{
+				FindViewById(Resource.Id.filename_group).Visibility = ViewStates.Visible;
+			}
 			SetEditText(Resource.Id.pass_keyfile, _keyFile);
 		}
 		
