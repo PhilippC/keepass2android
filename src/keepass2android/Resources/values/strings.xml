@@ -19,6 +19,9 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Application timeout</string>
   <string name="app_timeout_summary">Time before locking database when the application is inactive.</string>
+  <string name="kill_app_label">Kill application process</string>
+  <string name="show_kill_app">Close-Button</string>
+  <string name="show_kill_app_summary">Show a button in password screen to kill the application process (for paranoid users)</string>
   <string name="application">Application</string>
   <string name="application_settings">Application settings</string>
 	

@@ -84,6 +84,12 @@
 				android:summary="@string/remember_keyfile_summary"
 				android:defaultValue="@bool/keyfile_default"/>
 
+			<CheckBoxPreference
+				android:key="@string/show_kill_app_key"
+				android:title="@string/show_kill_app"
+				android:summary="@string/show_kill_app_summary"
+				android:defaultValue="false"/>
+
 		</PreferenceScreen>
 		<PreferenceScreen
 	  android:key="@string/display_prefs_key"

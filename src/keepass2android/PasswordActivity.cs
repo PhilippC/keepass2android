@@ -197,7 +197,8 @@ namespace keepass2android
 		}
 
 		internal AppTask AppTask;
-		
+		private bool _killOnDestroy;
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -280,6 +281,10 @@ namespace keepass2android
 					App.Kp2a.GetFileStorage(_ioConnection)
 					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection, 0, false);
 				};
+
+
+			
+			
 			
 			/*CheckBox checkBox = (CheckBox) FindViewById(Resource.Id.show_password);
 			// Show or hide password
@@ -459,6 +464,24 @@ namespace keepass2android
 		{
 			base.OnResume();
 
+			View killButton = FindViewById(Resource.Id.kill_app);
+			if (PreferenceManager.GetDefaultSharedPreferences(this)
+								 .GetBoolean(GetString(Resource.String.show_kill_app_key), false))
+			{
+				killButton.Click += (sender, args) =>
+				{
+					_killOnDestroy = true;
+					Finish();
+
+				};
+				killButton.Visibility = ViewStates.Visible;
+
+			}
+			else
+			{
+				killButton.Visibility = ViewStates.Gone;
+			}
+
 			MakePasswordMaskedOrVisible();
 
 			// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
@@ -519,6 +542,13 @@ namespace keepass2android
 				FindViewById(Resource.Id.filename_group).Visibility = ViewStates.Visible;
 			}
 			SetEditText(Resource.Id.pass_keyfile, _keyFile);
+		}
+
+		protected override void OnDestroy()
+		{
+			base.OnDestroy();
+			if (_killOnDestroy)
+				Process.KillProcess(Process.MyPid());
 		}
 		
 		/*
