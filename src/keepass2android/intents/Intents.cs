@@ -24,8 +24,10 @@ namespace keepass2android
 	/// </summary>
 	public class Intents 
 	{
-		/// <summary>Broadcast this intent to lock the database</summary>
+		/// <summary>Broadcast this intent to lock the database (with quick unlock if enabled)</summary>
 		public const String LockDatabase = "keepass2android.lock_database";
+		/// <summary>Broadcast this intent to close the database (no quick unlock, full close)</summary>
+		public const String CloseDatabase = "keepass2android.close_database";
 		
 		/// <summary>This intent will be broadcast once the database has been locked. Sensitive information displayed should be hidden and unloaded.</summary>
 		public const String DatabaseLocked = "keepass2android.database_locked";

@@ -136,8 +136,12 @@ namespace keepass2android
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_quickunlock_enabled, GetDatabaseName()));
 
-			var startKp2APendingIntent = GetSwitchToAppPendingIntent();
-			builder.SetContentIntent(startKp2APendingIntent);
+			// Default action is to show Kp2A
+			builder.SetContentIntent(GetSwitchToAppPendingIntent());
+			// Additional action to allow locking the database
+			builder.AddAction(Android.Resource.Drawable.IcLockLock, GetString(Resource.String.QuickUnlock_lockButton), 
+				PendingIntent.GetBroadcast(this, 0, new Intent(Intents.CloseDatabase), PendingIntentFlags.UpdateCurrent));
+			
 
 			return builder.Build();
 		}
