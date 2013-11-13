@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -23,10 +23,11 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 using System.Security.AccessControl;
 #endif
 
+using KeePassLib.Native;
 using KeePassLib.Utility;
 
 namespace KeePassLib.Serialization
@@ -57,6 +58,13 @@ namespace KeePassLib.Serialization
 
 			m_bTransacted = bTransacted;
 			m_iocBase = iocBaseFile.CloneDeep();
+
+			// Prevent transactions for FTP URLs under .NET 4.0 in order to
+			// avoid/workaround .NET bug 621450:
+			// https://connect.microsoft.com/VisualStudio/feedback/details/621450/problem-renaming-file-on-ftp-server-using-ftpwebrequest-in-net-framework-4-0-vs2010-only
+			if(m_iocBase.Path.StartsWith("ftp:", StrUtil.CaseIgnoreCmp) &&
+				(Environment.Version.Major >= 4) && !NativeLib.IsUnix())
+				m_bTransacted = false;
 
 			if(m_bTransacted)
 			{
@@ -91,14 +99,14 @@ namespace KeePassLib.Serialization
 		{
 			bool bMadeUnhidden = UrlUtil.UnhideFile(m_iocBase.Path);
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 			FileSecurity bkSecurity = null;
 			bool bEfsEncrypted = false;
 #endif
 
 			if(IOConnection.FileExists(m_iocBase))
 			{
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 				if(m_iocBase.IsLocalFile())
 				{
 					try
@@ -120,7 +128,7 @@ namespace KeePassLib.Serialization
 
 			IOConnection.RenameFile(m_iocTemp, m_iocBase);
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 			if(m_iocBase.IsLocalFile())
 			{
 				try

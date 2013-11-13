@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -66,6 +66,7 @@ namespace KeePassLib.Translation
 			}
 		}
 
+#if (!KeePassLibSD && !KeePassRT)
 		private Form m_formEnglish = null;
 		[XmlIgnore]
 		public Form FormEnglish
@@ -74,7 +75,6 @@ namespace KeePassLib.Translation
 			set { m_formEnglish = value; }
 		}
 
-#if !KeePassLibSD
 		public void ApplyTo(Form form)
 		{
 			Debug.Assert(form != null); if(form == null) throw new ArgumentNullException("form");

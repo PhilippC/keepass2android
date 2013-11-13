@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -23,6 +23,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
+
+#if KeePassRT
+using Org.BouncyCastle.Crypto.Engines;
+using Org.BouncyCastle.Crypto.Parameters;
+#endif
 
 using KeePassLib.Native;
 using KeePassLib.Resources;
@@ -103,6 +108,7 @@ namespace KeePassLib.Keys
 			return m_vUserKeys.Remove(pKey);
 		}
 
+#if !KeePassRT
 		/// <summary>
 		/// Test whether the composite key contains a specific type of
 		/// user keys (password, key file, ...). If at least one user
@@ -144,6 +150,7 @@ namespace KeePassLib.Keys
 
 			return null;
 		}
+#endif
 
 		/// <summary>
 		/// Creates the composite key from the supplied user key sources (password,
@@ -270,6 +277,17 @@ namespace KeePassLib.Keys
 		public static bool TransformKeyManaged(byte[] pbNewKey32, byte[] pbKeySeed32,
 			ulong uNumRounds)
 		{
+#if KeePassRT
+			KeyParameter kp = new KeyParameter(pbKeySeed32);
+			AesEngine aes = new AesEngine();
+			aes.Init(true, kp);
+
+			for(ulong i = 0; i < uNumRounds; ++i)
+			{
+				aes.ProcessBlock(pbNewKey32, 0, pbNewKey32, 0);
+				aes.ProcessBlock(pbNewKey32, 16, pbNewKey32, 16);
+			}
+#else
 			byte[] pbIV = new byte[16];
 			Array.Clear(pbIV, 0, pbIV.Length);
 
@@ -301,6 +319,7 @@ namespace KeePassLib.Keys
 				iCrypt.TransformBlock(pbNewKey32, 0, 16, pbNewKey32, 0);
 				iCrypt.TransformBlock(pbNewKey32, 16, 16, pbNewKey32, 16);
 			}
+#endif
 
 			return true;
 		}
@@ -325,9 +344,6 @@ namespace KeePassLib.Keys
 			if(NativeLib.TransformKeyBenchmark256(uMilliseconds, out uRounds))
 				return uRounds;
 
-			byte[] pbIV = new byte[16];
-			Array.Clear(pbIV, 0, pbIV.Length);
-
 			byte[] pbKey = new byte[32];
 			byte[] pbNewKey = new byte[32];
 			for(int i = 0; i < pbKey.Length; ++i)
@@ -335,6 +351,14 @@ namespace KeePassLib.Keys
 				pbKey[i] = (byte)i;
 				pbNewKey[i] = (byte)i;
 			}
+
+#if KeePassRT
+			KeyParameter kp = new KeyParameter(pbKey);
+			AesEngine aes = new AesEngine();
+			aes.Init(true, kp);
+#else
+			byte[] pbIV = new byte[16];
+			Array.Clear(pbIV, 0, pbIV.Length);
 
 			RijndaelManaged r = new RijndaelManaged();
 			if(r.BlockSize != 128) // AES block size
@@ -358,18 +382,21 @@ namespace KeePassLib.Keys
 				Debug.Assert(iCrypt.OutputBlockSize == 16, "Invalid output block size!");
 				return PwDefs.DefaultKeyEncryptionRounds;
 			}
-
-			DateTime dtStart = DateTime.Now;
-			TimeSpan ts;
-			double dblReqMillis = uMilliseconds;
+#endif
 
 			uRounds = 0;
+			int tStart = Environment.TickCount;
 			while(true)
 			{
 				for(ulong j = 0; j < uStep; ++j)
 				{
+#if KeePassRT
+					aes.ProcessBlock(pbNewKey, 0, pbNewKey, 0);
+					aes.ProcessBlock(pbNewKey, 16, pbNewKey, 16);
+#else
 					iCrypt.TransformBlock(pbNewKey, 0, 16, pbNewKey, 0);
 					iCrypt.TransformBlock(pbNewKey, 16, 16, pbNewKey, 16);
+#endif
 				}
 
 				uRounds += uStep;
@@ -379,8 +406,8 @@ namespace KeePassLib.Keys
 					break;
 				}
 
-				ts = DateTime.Now - dtStart;
-				if(ts.TotalMilliseconds > dblReqMillis) break;
+				uint tElapsed = (uint)(Environment.TickCount - tStart);
+				if(tElapsed > uMilliseconds) break;
 			}
 
 			return uRounds;

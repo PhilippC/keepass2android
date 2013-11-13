@@ -1,6 +1,6 @@
-/*
+﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@ using System.Diagnostics;
 
 using KeePassLib.Delegates;
 using KeePassLib.Interfaces;
+using KeePassLib.Serialization;
 
 namespace KeePassLib
 {
@@ -54,20 +55,20 @@ namespace KeePassLib
 		/// e.g. 2.19 = 0x02130000.
 		/// It is highly recommended to use <c>FileVersion64</c> instead.
 		/// </summary>
-		public const uint Version32 = 0x02140100;
+		public const uint Version32 = 0x02180000;
 
 		/// <summary>
 		/// Version, encoded as 64-bit unsigned integer
 		/// (component-wise, 16 bits per component).
 		/// </summary>
-		public const ulong FileVersion64 = 0x0002001400010000UL;
+		public const ulong FileVersion64 = 0x0002001800000000UL;
 
 		/// <summary>
 		/// Version, encoded as string.
 		/// </summary>
-		public const string VersionString = "2.20.1";
+		public const string VersionString = "2.24";
 
-		public const string Copyright = @"Copyright � 2003-2012 Dominik Reichl";
+		public const string Copyright = @"Copyright © 2003-2013 Dominik Reichl";
 
 		/// <summary>
 		/// Product website URL. Terminated by a forward slash.
@@ -317,7 +318,11 @@ namespace KeePassLib
 			set { m_bSearchInTags = value; }
 		}
 
+#if KeePassRT
+		private StringComparison m_scType = StringComparison.OrdinalIgnoreCase;
+#else
 		private StringComparison m_scType = StringComparison.InvariantCultureIgnoreCase;
+#endif
 		/// <summary>
 		/// String comparison type. Specifies the condition when the specified
 		/// text matches a group/entry string.
@@ -456,6 +461,26 @@ namespace KeePassLib
 			m_o = o;
 			m_bModified = bModified;
 			m_bParentsTouched = bParentsTouched;
+		}
+	}
+
+	public sealed class IOAccessEventArgs : EventArgs
+	{
+		private IOConnectionInfo m_ioc;
+		public IOConnectionInfo IOConnectionInfo { get { return m_ioc; } }
+
+		private IOConnectionInfo m_ioc2;
+		public IOConnectionInfo IOConnectionInfo2 { get { return m_ioc2; } }
+
+		private IOAccessType m_t;
+		public IOAccessType Type { get { return m_t; } }
+
+		public IOAccessEventArgs(IOConnectionInfo ioc, IOConnectionInfo ioc2,
+			IOAccessType t)
+		{
+			m_ioc = ioc;
+			m_ioc2 = ioc2;
+			m_t = t;
 		}
 	}
 }

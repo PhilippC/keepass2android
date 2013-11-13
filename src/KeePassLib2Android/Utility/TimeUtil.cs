@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 
 using System;
 using System.Diagnostics;
+
+using KeePassLib.Interfaces;
 
 namespace KeePassLib.Utility
 {
@@ -218,5 +220,44 @@ namespace KeePassLib.Utility
 			return null;
 		}
 #endif
+
+		private static readonly DateTime m_dtInvMin =
+			new DateTime(2999, 12, 27, 23, 59, 59);
+		private static readonly DateTime m_dtInvMax =
+			new DateTime(2999, 12, 29, 23, 59, 59);
+		public static int Compare(DateTime dtA, DateTime dtB, bool bUnkIsPast)
+		{
+			if(bUnkIsPast)
+			{
+				// 2999-12-28 23:59:59 in KeePass 1.x means 'unknown';
+				// expect time zone corruption (twice)
+				// bool bInvA = ((dtA.Year == 2999) && (dtA.Month == 12) &&
+				//	(dtA.Day >= 27) && (dtA.Day <= 29) && (dtA.Minute == 59) &&
+				//	(dtA.Second == 59));
+				// bool bInvB = ((dtB.Year == 2999) && (dtB.Month == 12) &&
+				//	(dtB.Day >= 27) && (dtB.Day <= 29) && (dtB.Minute == 59) &&
+				//	(dtB.Second == 59));
+				// Faster due to internal implementation of DateTime:
+				bool bInvA = ((dtA >= m_dtInvMin) && (dtA <= m_dtInvMax) &&
+					(dtA.Minute == 59) && (dtA.Second == 59));
+				bool bInvB = ((dtB >= m_dtInvMin) && (dtB <= m_dtInvMax) &&
+					(dtB.Minute == 59) && (dtB.Second == 59));
+
+				if(bInvA) return (bInvB ? 0 : -1);
+				if(bInvB) return 1;
+			}
+
+			return dtA.CompareTo(dtB);
+		}
+
+		internal static int CompareLastMod(ITimeLogger tlA, ITimeLogger tlB,
+			bool bUnkIsPast)
+		{
+			if(tlA == null) { Debug.Assert(false); return ((tlB == null) ? 0 : -1); }
+			if(tlB == null) { Debug.Assert(false); return 1; }
+
+			return Compare(tlA.LastModificationTime, tlB.LastModificationTime,
+				bUnkIsPast);
+		}
 	}
 }

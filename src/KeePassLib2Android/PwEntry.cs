@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -413,7 +413,7 @@ namespace KeePassLib
 			bool bIgnoreLastMod = ((pwOpt & PwCompareOptions.IgnoreLastMod) !=
 				PwCompareOptions.None);
 
-			if(!m_uuid.EqualsValue(pe.m_uuid)) return false;
+			if(!m_uuid.Equals(pe.m_uuid)) return false;
 			if((pwOpt & PwCompareOptions.IgnoreParentGroup) == PwCompareOptions.None)
 			{
 				if(m_pParentGroup != pe.m_pParentGroup) return false;
@@ -456,7 +456,7 @@ namespace KeePassLib
 			}
 
 			if(m_pwIcon != pe.m_pwIcon) return false;
-			if(!m_pwCustomIconID.EqualsValue(pe.m_pwCustomIconID)) return false;
+			if(!m_pwCustomIconID.Equals(pe.m_pwCustomIconID)) return false;
 
 			if(m_clrForeground != pe.m_clrForeground) return false;
 			if(m_clrBackground != pe.m_clrBackground) return false;
@@ -494,10 +494,12 @@ namespace KeePassLib
 		{
 			Debug.Assert(peTemplate != null); if(peTemplate == null) throw new ArgumentNullException("peTemplate");
 
-			if(bOnlyIfNewer && (peTemplate.m_tLastMod < m_tLastMod)) return;
+			if(bOnlyIfNewer && (TimeUtil.Compare(peTemplate.m_tLastMod, m_tLastMod,
+				true) < 0))
+				return;
 
 			// Template UUID should be the same as the current one
-			Debug.Assert(m_uuid.EqualsValue(peTemplate.m_uuid));
+			Debug.Assert(m_uuid.Equals(peTemplate.m_uuid));
 			m_uuid = peTemplate.m_uuid;
 
 			if(bAssignLocationChanged)
@@ -692,7 +694,7 @@ namespace KeePassLib
 			for(uint u = 0; u < m_listHistory.UCount; ++u)
 			{
 				PwEntry pe = m_listHistory.GetAt(u);
-				if(pe.LastModificationTime < dtMin)
+				if(TimeUtil.Compare(pe.LastModificationTime, dtMin, true) < 0)
 				{
 					idxRemove = u;
 					dtMin = pe.LastModificationTime;
@@ -868,7 +870,13 @@ namespace KeePassLib
 			string strB = b.Strings.ReadSafe(m_strFieldName);
 
 			if(m_bCompareNaturally) return StrUtil.CompareNaturally(strA, strB);
+
+#if KeePassRT
+			return string.Compare(strA, strB, m_bCaseInsensitive ?
+				StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture);
+#else
 			return string.Compare(strA, strB, m_bCaseInsensitive);
+#endif
 		}
 	}
 }

@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -54,8 +54,8 @@ namespace KeePassLib
 		{
 			Debug.Assert(pwUuid != null);
 			if(pwUuid == null) throw new ArgumentNullException("pwUuid");
-			Debug.Assert(pwUuid != PwUuid.Zero);
-			if(pwUuid == PwUuid.Zero) throw new ArgumentException("pwUuid == 0");
+			Debug.Assert(!pwUuid.Equals(PwUuid.Zero));
+			if(pwUuid.Equals(PwUuid.Zero)) throw new ArgumentException("pwUuid == 0");
 
 			Debug.Assert(pbImageDataPng != null);
 			if(pbImageDataPng == null) throw new ArgumentNullException("pbImageDataPng");

@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -103,7 +103,7 @@ namespace KeePassLib.Native
 				return TransformKeyBenchmark32(uTimeMs);
 		}
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 		[DllImport("ShlWApi.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
 		internal static extern int StrCmpLogicalW(string x, string y);
 
@@ -118,7 +118,7 @@ namespace KeePassLib.Native
 
 		private static void TestNaturalComparisonsSupport()
 		{
-#if KeePassLibSD
+#if (KeePassLibSD || KeePassRT)
 #warning No native natural comparisons supported.
 			m_bSupportsLogicalCmp = false;
 #else
@@ -147,7 +147,7 @@ namespace KeePassLib.Native
 			if(m_bSupportsLogicalCmp.HasValue == false) TestNaturalComparisonsSupport();
 			if(m_bSupportsLogicalCmp.Value == false) return 0;
 
-#if KeePassLibSD
+#if (KeePassLibSD || KeePassRT)
 #warning No native natural comparisons supported.
 			return x.CompareTo(y);
 #else
@@ -158,6 +158,9 @@ namespace KeePassLib.Native
 		internal static string GetUserRuntimeDir()
 		{
 #if !KeePassLibSD
+#if KeePassRT
+			string strRtDir = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+#else
 			string strRtDir = Environment.GetEnvironmentVariable("XDG_RUNTIME_DIR");
 			if(string.IsNullOrEmpty(strRtDir))
 				strRtDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -166,6 +169,7 @@ namespace KeePassLib.Native
 				Debug.Assert(false);
 				return Path.GetTempPath(); // Not UrlUtil (otherwise cyclic)
 			}
+#endif
 
 			strRtDir = UrlUtil.EnsureTerminatingSeparator(strRtDir, false);
 			strRtDir += PwDefs.ShortProductName;

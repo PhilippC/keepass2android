@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -137,12 +137,18 @@ namespace KeePassLib.Cryptography
 			pb = TimeUtil.PackTime(DateTime.Now);
 			ms.Write(pb, 0, pb.Length);
 
-#if !KeePassLibSD
-			Point pt = Cursor.Position;
-			pb = MemUtil.UInt32ToBytes((uint)pt.X);
-			ms.Write(pb, 0, pb.Length);
-			pb = MemUtil.UInt32ToBytes((uint)pt.Y);
-			ms.Write(pb, 0, pb.Length);
+#if (!KeePassLibSD && !KeePassRT)
+			// In try-catch for systems without GUI;
+			// https://sourceforge.net/p/keepass/discussion/329221/thread/20335b73/
+			try
+			{
+				Point pt = Cursor.Position;
+				pb = MemUtil.UInt32ToBytes((uint)pt.X);
+				ms.Write(pb, 0, pb.Length);
+				pb = MemUtil.UInt32ToBytes((uint)pt.Y);
+				ms.Write(pb, 0, pb.Length);
+			}
+			catch(Exception) { }
 #endif
 
 			pb = MemUtil.UInt32ToBytes((uint)rWeak.Next());
@@ -151,7 +157,7 @@ namespace KeePassLib.Cryptography
 			pb = MemUtil.UInt32ToBytes((uint)NativeLib.GetPlatformID());
 			ms.Write(pb, 0, pb.Length);
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 			try
 			{
 				pb = MemUtil.UInt32ToBytes((uint)Environment.ProcessorCount);
@@ -266,7 +272,7 @@ namespace KeePassLib.Cryptography
 
 				long lCopy = (long)((uRequestedBytes < 32) ? uRequestedBytes : 32);
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 				Array.Copy(pbRandom256, 0, pbRes, lPos, lCopy);
 #else
 				Array.Copy(pbRandom256, 0, pbRes, (int)lPos, (int)lCopy);

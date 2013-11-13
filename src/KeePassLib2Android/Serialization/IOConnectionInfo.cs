@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.ComponentModel;
+using System.Xml.Serialization;
 using System.Diagnostics;
 
 using KeePassLib.Interfaces;
@@ -119,6 +120,14 @@ namespace KeePassLib.Serialization
 			set { m_ioCredSaveMode = value; }
 		}
 
+		private bool m_bComplete = false;
+		[XmlIgnore]
+		internal bool IsComplete // Credentials etc. fully specified
+		{
+			get { return m_bComplete; }
+			set { m_bComplete = value; }
+		}
+
 		/* public IOFileFormatHint FileFormatHint
 		{
 			get { return m_ioHint; }
@@ -146,31 +155,9 @@ namespace KeePassLib.Serialization
 			string strUrl = iocToCompile.Path;
 			string strUser = TransformUnreadable(iocToCompile.UserName, true);
 			string strPassword = TransformUnreadable(iocToCompile.Password, true);
-			string strAll = strUrl + strUser + strPassword;
-			char chSep = char.MinValue;
 
-			char[] vPrefSeps = new char[]{ '@', '#', '!', '$', '*' };
-			foreach(char ch in vPrefSeps)
-			{
-				if(strAll.IndexOf(ch) < 0)
-				{
-					chSep = ch;
-					break;
-				}
-			}
-
-			if(chSep == char.MinValue)
-			{
-				for(char chEnum = '!'; chEnum < char.MaxValue; ++chEnum)
-				{
-					if(strAll.IndexOf(chEnum) < 0)
-					{
-						chSep = chEnum;
-						break;
-					}
-				}
-			}
-
+			string strAll = strUrl + strUser + strPassword + "CUN";
+			char chSep = StrUtil.GetUnusedChar(strAll);
 			if(chSep == char.MinValue) throw new FormatException();
 
 			StringBuilder sb = new StringBuilder();

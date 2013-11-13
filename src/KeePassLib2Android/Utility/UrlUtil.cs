@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -34,8 +34,19 @@ namespace KeePassLib.Utility
 	/// </summary>
 	public static class UrlUtil
 	{
-		private static readonly char[] m_vDirSeps = new char[] { '\\', '/',
-			Path.DirectorySeparatorChar };
+		private static readonly char[] m_vDirSeps = new char[] {
+			'\\', '/', UrlUtil.LocalDirSepChar };
+		private static readonly char[] m_vPathTrimCharsWs = new char[] {
+			'\"', ' ', '\t', '\r', '\n' };
+
+		public static char LocalDirSepChar
+		{
+#if KeePassRT
+			get { return '\\'; }
+#else
+			get { return Path.DirectorySeparatorChar; }
+#endif
+		}
 
 		/// <summary>
 		/// Get the directory (path) of a file name. The returned string is
@@ -148,7 +159,7 @@ namespace KeePassLib.Utility
 			}
 
 			if(bUrl) return (strPath + '/');
-			return (strPath + Path.DirectorySeparatorChar);
+			return (strPath + UrlUtil.LocalDirSepChar);
 		}
 
 		/* /// <summary>
@@ -211,13 +222,22 @@ namespace KeePassLib.Utility
 
 		public static string GetQuotedAppPath(string strPath)
 		{
-			int nFirst = strPath.IndexOf('\"');
-			int nSecond = strPath.IndexOf('\"', nFirst + 1);
+			if(strPath == null) { Debug.Assert(false); return string.Empty; }
 
-			if((nFirst >= 0) && (nSecond >= 0))
-				return strPath.Substring(nFirst + 1, nSecond - nFirst - 1);
+			// int nFirst = strPath.IndexOf('\"');
+			// int nSecond = strPath.IndexOf('\"', nFirst + 1);
+			// if((nFirst >= 0) && (nSecond >= 0))
+			//	return strPath.Substring(nFirst + 1, nSecond - nFirst - 1);
+			// return strPath;
 
-			return strPath;
+			string str = strPath.Trim();
+			if(str.Length <= 1) return str;
+			if(str[0] != '\"') return str;
+
+			int iSecond = str.IndexOf('\"', 1);
+			if(iSecond <= 0) return str;
+
+			return str.Substring(1, iSecond - 1);
 		}
 
 		public static string FileUrlToPath(string strUrl)
@@ -229,14 +249,14 @@ namespace KeePassLib.Utility
 			if(str.StartsWith(@"file:///", StrUtil.CaseIgnoreCmp))
 				str = str.Substring(8, str.Length - 8);
 
-			str = str.Replace('/', Path.DirectorySeparatorChar);
+			str = str.Replace('/', UrlUtil.LocalDirSepChar);
 
 			return str;
 		}
 
 		public static bool UnhideFile(string strFile)
 		{
-#if KeePassLibSD
+#if (KeePassLibSD || KeePassRT)
 			return false;
 #else
 			if(strFile == null) throw new ArgumentNullException("strFile");
@@ -256,7 +276,7 @@ namespace KeePassLib.Utility
 
 		public static bool HideFile(string strFile, bool bHide)
 		{
-#if KeePassLibSD
+#if (KeePassLibSD || KeePassRT)
 			return false;
 #else
 			if(strFile == null) throw new ArgumentNullException("strFile");
@@ -297,7 +317,9 @@ namespace KeePassLib.Utility
 					return strTargetFile;
 			}
 
+#if (!KeePassLibSD && !KeePassRT)
 			if(NativeLib.IsUnix())
+#endif
 			{
 				bool bBaseUnc = IsUncPath(strBaseFile);
 				bool bTargetUnc = IsUncPath(strTargetFile);
@@ -316,21 +338,19 @@ namespace KeePassLib.Utility
 				StringBuilder sbRel = new StringBuilder();
 				for(int j = i; j < (vBase.Length - 1); ++j)
 				{
-					if(sbRel.Length > 0) sbRel.Append(Path.DirectorySeparatorChar);
+					if(sbRel.Length > 0) sbRel.Append(UrlUtil.LocalDirSepChar);
 					sbRel.Append("..");
 				}
 				for(int k = i; k < vTarget.Length; ++k)
 				{
-					if(sbRel.Length > 0) sbRel.Append(Path.DirectorySeparatorChar);
+					if(sbRel.Length > 0) sbRel.Append(UrlUtil.LocalDirSepChar);
 					sbRel.Append(vTarget[k]);
 				}
 
 				return sbRel.ToString();
 			}
 
-#if KeePassLibSD
-			return strTargetFile;
-#else
+#if (!KeePassLibSD && !KeePassRT)
 			try // Windows
 			{
 				const int nMaxPath = NativeMethods.MAX_PATH * 2;
@@ -344,7 +364,8 @@ namespace KeePassLib.Utility
 
 				return str;
 			}
-			catch(Exception) { Debug.Assert(false); return strTargetFile; }
+			catch(Exception) { Debug.Assert(false); }
+			return strTargetFile;
 #endif
 		}
 
@@ -420,7 +441,16 @@ namespace KeePassLib.Utility
 			}
 
 			string str;
-			try { str = Path.GetFullPath(strPath); }
+			try
+			{
+#if KeePassRT
+				var dirT = Windows.Storage.StorageFolder.GetFolderFromPathAsync(
+					strPath).AwaitEx();
+				str = dirT.Path;
+#else
+				str = Path.GetFullPath(strPath);
+#endif
+			}
 			catch(Exception) { Debug.Assert(false); return strPath; }
 
 			Debug.Assert(str.IndexOf("\\..\\") < 0);
@@ -476,7 +506,7 @@ namespace KeePassLib.Utility
 
 		public static string ConvertSeparators(string strPath)
 		{
-			return ConvertSeparators(strPath, Path.DirectorySeparatorChar);
+			return ConvertSeparators(strPath, UrlUtil.LocalDirSepChar);
 		}
 
 		public static string ConvertSeparators(string strPath, char chSeparator)
@@ -594,7 +624,11 @@ namespace KeePassLib.Utility
 			string strDir;
 			if(NativeLib.IsUnix())
 				strDir = NativeMethods.GetUserRuntimeDir();
+#if KeePassRT
+			else strDir = Windows.Storage.ApplicationData.Current.TemporaryFolder.Path;
+#else
 			else strDir = Path.GetTempPath();
+#endif
 
 			try
 			{
@@ -605,5 +639,83 @@ namespace KeePassLib.Utility
 
 			return strDir;
 		}
+
+#if !KeePassLibSD
+		// Structurally mostly equivalent to UrlUtil.GetFileInfos
+		public static List<string> GetFilePaths(string strDir, string strPattern,
+			SearchOption opt)
+		{
+			List<string> l = new List<string>();
+			if(strDir == null) { Debug.Assert(false); return l; }
+			if(strPattern == null) { Debug.Assert(false); return l; }
+
+			string[] v = Directory.GetFiles(strDir, strPattern, opt);
+			if(v == null) { Debug.Assert(false); return l; }
+
+			// Only accept files with the correct extension; GetFiles may
+			// return additional files, see GetFiles documentation
+			string strExt = GetExtension(strPattern);
+			if(!string.IsNullOrEmpty(strExt) && (strExt.IndexOf('*') < 0) &&
+				(strExt.IndexOf('?') < 0))
+			{
+				strExt = "." + strExt;
+
+				foreach(string strPathRaw in v)
+				{
+					if(strPathRaw == null) { Debug.Assert(false); continue; }
+					string strPath = strPathRaw.Trim(m_vPathTrimCharsWs);
+					if(strPath.Length == 0) { Debug.Assert(false); continue; }
+					Debug.Assert(strPath == strPathRaw);
+
+					if(!strPath.EndsWith(strExt, StrUtil.CaseIgnoreCmp))
+						continue;
+
+					l.Add(strPathRaw);
+				}
+			}
+			else l.AddRange(v);
+
+			return l;
+		}
+
+		// Structurally mostly equivalent to UrlUtil.GetFilePaths
+		public static List<FileInfo> GetFileInfos(DirectoryInfo di, string strPattern,
+			SearchOption opt)
+		{
+			List<FileInfo> l = new List<FileInfo>();
+			if(di == null) { Debug.Assert(false); return l; }
+			if(strPattern == null) { Debug.Assert(false); return l; }
+
+			FileInfo[] v = di.GetFiles(strPattern, opt);
+			if(v == null) { Debug.Assert(false); return l; }
+
+			// Only accept files with the correct extension; GetFiles may
+			// return additional files, see GetFiles documentation
+			string strExt = GetExtension(strPattern);
+			if(!string.IsNullOrEmpty(strExt) && (strExt.IndexOf('*') < 0) &&
+				(strExt.IndexOf('?') < 0))
+			{
+				strExt = "." + strExt;
+
+				foreach(FileInfo fi in v)
+				{
+					if(fi == null) { Debug.Assert(false); continue; }
+					string strPathRaw = fi.FullName;
+					if(strPathRaw == null) { Debug.Assert(false); continue; }
+					string strPath = strPathRaw.Trim(m_vPathTrimCharsWs);
+					if(strPath.Length == 0) { Debug.Assert(false); continue; }
+					Debug.Assert(strPath == strPathRaw);
+
+					if(!strPath.EndsWith(strExt, StrUtil.CaseIgnoreCmp))
+						continue;
+
+					l.Add(fi);
+				}
+			}
+			else l.AddRange(v);
+
+			return l;
+		}
+#endif
 	}
 }
