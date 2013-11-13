@@ -345,6 +345,13 @@
 
 	<string name="ChangeLog_title">Change log</string>
 
+	<string name="ChangeLog_0_9_2">
+		<b>Version 0.9.2a (preview)</b>\n
+		* Several UI improvements\n
+		* Integrated Keepass 2.24 library\n
+		* Added option to kill the app process (see settings)\n
+	</string>
+
 	<string name="ChangeLog_0_9_1">
 		<b>Version 0.9.1</b>\n
 		* Integrated SkyDrive support (Keepass2Android regular edition only)\n
@@ -439,6 +446,10 @@ Initial public release
     <item>30 seconds</item>
     <item>1 minute</item>
     <item>5 minutes</item>
+	<item>10 minutes</item>
+	<item>15 minutes</item>
+	<item>30 minutes</item>
+	<item>1 hour</item>
     <item>Never</item>
   </string-array>
   <string-array name="list_size_options">

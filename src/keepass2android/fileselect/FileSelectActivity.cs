@@ -58,7 +58,7 @@ namespace keepass2android
 
 		const string BundleKeyRecentMode = "RecentMode";
 
-		private FileDbHelper _DbHelper;
+		private FileDbHelper _dbHelper;
 
 		private bool _recentMode;
 		view.FileSelectButtons _fileSelectButtons;
@@ -84,7 +84,7 @@ namespace keepass2android
 			}
 
 
-			_DbHelper = App.Kp2a.FileDbHelper;
+			_dbHelper = App.Kp2a.FileDbHelper;
 			if (ShowRecentFiles())
 			{
 				_recentMode = true;
@@ -160,10 +160,10 @@ namespace keepass2android
 		{
 			if (!RememberRecentFiles())
 			{
-				_DbHelper.DeleteAll();
+				_dbHelper.DeleteAll();
 			}
 
-			return _DbHelper.HasRecentFiles();
+			return _dbHelper.HasRecentFiles();
 		}
 
 		private bool RememberRecentFiles()
@@ -196,7 +196,7 @@ namespace keepass2android
 				{
 					String path = cursor.GetString(columnIndex);
 					TextView textView = (TextView)view;
-					IOConnectionInfo ioc = new IOConnectionInfo() {Path = path};
+					IOConnectionInfo ioc = new IOConnectionInfo {Path = path};
 					textView.Text = app.GetFileStorage(ioc).GetDisplayName(ioc);
 					return true;
 				}
@@ -208,7 +208,7 @@ namespace keepass2android
 		private void FillData()
 		{
 			// Get all of the rows from the database and create the item list
-			Android.Database.ICursor filesCursor = _DbHelper.FetchAllFiles();
+			ICursor filesCursor = _dbHelper.FetchAllFiles();
 			StartManagingCursor(filesCursor);
 			
 			// Create an array to specify the fields we want to display in the list
@@ -276,10 +276,10 @@ namespace keepass2android
 		protected override void OnListItemClick(ListView l, View v, int position, long id) {
 			base.OnListItemClick(l, v, position, id);
 			
-			Android.Database.ICursor cursor = _DbHelper.FetchFile(id);
+			ICursor cursor = _dbHelper.FetchFile(id);
 			StartManagingCursor(cursor);
 			
-			IOConnectionInfo ioc = _DbHelper.CursorToIoc(cursor);
+			IOConnectionInfo ioc = _dbHelper.CursorToIoc(cursor);
 			
 			App.Kp2a.GetFileStorage(ioc)
 					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc, 0, false);
@@ -372,6 +372,8 @@ namespace keepass2android
 				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
 #if !EXCLUDE_FILECHOOSER
 				StartFileChooser(ioc.Path);
+#else
+				LaunchPasswordActivityForIoc(new IOConnectionInfo { Path = "/mnt/sdcard/keepass/keepass.kdbx"});
 #endif
 			}
 			if ((resultCode == Result.Canceled) && (data != null) && (data.HasExtra("EXTRA_ERROR_MESSAGE")))
@@ -430,12 +432,12 @@ namespace keepass2android
 			else
 			{
 				//if no database is loaded: load the most recent database
-				if ( (Intent.GetBooleanExtra(NoForwardToPasswordActivity, false)==false) &&  _DbHelper.HasRecentFiles())
+				if ( (Intent.GetBooleanExtra(NoForwardToPasswordActivity, false)==false) &&  _dbHelper.HasRecentFiles())
 				{
-					Android.Database.ICursor filesCursor = _DbHelper.FetchAllFiles();
+					ICursor filesCursor = _dbHelper.FetchAllFiles();
 					StartManagingCursor(filesCursor);
 					filesCursor.MoveToFirst();
-					IOConnectionInfo ioc = _DbHelper.CursorToIoc(filesCursor);
+					IOConnectionInfo ioc = _dbHelper.CursorToIoc(filesCursor);
 					if (App.Kp2a.GetFileStorage(ioc).RequiresSetup(ioc) == false)
 					{
 						LaunchPasswordActivityForIoc(ioc);
@@ -513,7 +515,7 @@ namespace keepass2android
 				
 				TextView tv = (TextView) acmi.TargetView;
 				String filename = tv.Text;
-				_DbHelper.DeleteFile(filename);
+				_dbHelper.DeleteFile(filename);
 
 				RefreshList();
 				
@@ -526,7 +528,7 @@ namespace keepass2android
 		
 		private void RefreshList() {
 			CursorAdapter ca = (CursorAdapter) ListAdapter;
-			Android.Database.ICursor cursor = ca.Cursor;
+			ICursor cursor = ca.Cursor;
 			cursor.Requery();
 		}
 	}
