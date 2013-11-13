@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
   
   Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Diagnostics;
 
 using KeePassLib.Utility;
@@ -90,9 +91,13 @@ namespace KeePassLib.Native
 		{
 			if(m_platID.HasValue) return m_platID.Value;
 
+#if KeePassRT
+			m_platID = PlatformID.Win32NT;
+#else
 			m_platID = Environment.OSVersion.Platform;
+#endif
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 			/*// Mono returns PlatformID.Unix on Mac OS X, workaround this
 			//fails on Anroid
 			if(m_platID.Value == PlatformID.Unix)
@@ -106,50 +111,6 @@ namespace KeePassLib.Native
 			return m_platID.Value;
 		}
 
-#if !KeePassLibSD
-		public static string RunConsoleApp(string strAppPath, string strParams)
-		{
-			return RunConsoleApp(strAppPath, strParams, null);
-		}
-
-		public static string RunConsoleApp(string strAppPath, string strParams,
-			string strStdInput)
-		{
-			if(strAppPath == null) throw new ArgumentNullException("strAppPath");
-			if(strAppPath.Length == 0) throw new ArgumentException("strAppPath");
-
-			try
-			{
-				ProcessStartInfo psi = new ProcessStartInfo();
-
-				psi.CreateNoWindow = true;
-				psi.FileName = strAppPath;
-				psi.WindowStyle = ProcessWindowStyle.Hidden;
-				psi.UseShellExecute = false;
-				psi.RedirectStandardOutput = true;
-
-				if(strStdInput != null) psi.RedirectStandardInput = true;
-
-				if(!string.IsNullOrEmpty(strParams)) psi.Arguments = strParams;
-
-				Process p = Process.Start(psi);
-
-				if(strStdInput != null)
-				{
-					p.StandardInput.Write(strStdInput);
-					p.StandardInput.Close();
-				}
-
-				string strOutput = p.StandardOutput.ReadToEnd();
-				p.WaitForExit();
-
-				return strOutput;
-			}
-			catch(Exception) { Debug.Assert(false); }
-
-			return null;
-		}
-#endif
 
 		/// <summary>
 		/// Transform a key.

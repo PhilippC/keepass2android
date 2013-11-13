@@ -48,6 +48,7 @@ namespace KeePassLib.Resources
 			m_strInvalidCompositeKeyHint = TryGetEx(dictNew, "InvalidCompositeKeyHint", m_strInvalidCompositeKeyHint);
 			m_strInvalidDataWhileDecoding = TryGetEx(dictNew, "InvalidDataWhileDecoding", m_strInvalidDataWhileDecoding);
 			m_strKeePass1xHint = TryGetEx(dictNew, "KeePass1xHint", m_strKeePass1xHint);
+			m_strKeyFileDbSel = TryGetEx(dictNew, "KeyFileDbSel", m_strKeyFileDbSel);
 			m_strMasterSeedLengthInvalid = TryGetEx(dictNew, "MasterSeedLengthInvalid", m_strMasterSeedLengthInvalid);
 			m_strOldFormat = TryGetEx(dictNew, "OldFormat", m_strOldFormat);
 			m_strTryAgainSecs = TryGetEx(dictNew, "TryAgainSecs", m_strTryAgainSecs);
@@ -78,6 +79,7 @@ namespace KeePassLib.Resources
 			"InvalidCompositeKeyHint",
 			"InvalidDataWhileDecoding",
 			"KeePass1xHint",
+			"KeyFileDbSel",
 			"MasterSeedLengthInvalid",
 			"OldFormat",
 			"TryAgainSecs",
@@ -330,6 +332,17 @@ namespace KeePassLib.Resources
 		public static string KeePass1xHint
 		{
 			get { return m_strKeePass1xHint; }
+		}
+
+		private static string m_strKeyFileDbSel =
+			@"Database files cannot be used as key files.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Database files cannot be used as key files.'.
+		/// </summary>
+		public static string KeyFileDbSel
+		{
+			get { return m_strKeyFileDbSel; }
 		}
 
 		private static string m_strMasterSeedLengthInvalid =

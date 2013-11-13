@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
   
   Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
@@ -28,9 +28,11 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 
 using KeePassLib.Cryptography;
+using KeePassLib.Resources;
 using KeePassLib.Security;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
+using InvalidDataException = KeePassLib.Serialization.InvalidDataException;
 
 namespace KeePassLib.Keys
 {
@@ -62,18 +64,46 @@ namespace KeePassLib.Keys
 
 		public KcpKeyFile(string strKeyFile)
 		{
-			Construct(IOConnectionInfo.FromPath(strKeyFile));
+			Construct(IOConnectionInfo.FromPath(strKeyFile), false);
+		}
+
+		public KcpKeyFile(string strKeyFile, bool bThrowIfDbFile)
+		{
+			Construct(IOConnectionInfo.FromPath(strKeyFile), bThrowIfDbFile);
 		}
 
 		public KcpKeyFile(IOConnectionInfo iocKeyFile)
 		{
-			Construct(iocKeyFile);
+			Construct(iocKeyFile, false);
 		}
 
-		private void Construct(IOConnectionInfo iocFile)
+		public KcpKeyFile(IOConnectionInfo iocKeyFile, bool bThrowIfDbFile)
+		{
+			Construct(iocKeyFile, bThrowIfDbFile);
+		}
+
+		private void Construct(IOConnectionInfo iocFile, bool bThrowIfDbFile)
 		{
 			byte[] pbFileData = IOConnection.ReadFile(iocFile);
 			if(pbFileData == null) throw new Java.IO.FileNotFoundException();
+
+			if(bThrowIfDbFile && (pbFileData.Length >= 8))
+			{
+				uint uSig1 = MemUtil.BytesToUInt32(MemUtil.Mid(pbFileData, 0, 4));
+				uint uSig2 = MemUtil.BytesToUInt32(MemUtil.Mid(pbFileData, 4, 4));
+
+				if(((uSig1 == KdbxFile.FileSignature1) &&
+					(uSig2 == KdbxFile.FileSignature2)) ||
+					((uSig1 == KdbxFile.FileSignaturePreRelease1) &&
+					(uSig2 == KdbxFile.FileSignaturePreRelease2)) ||
+					((uSig1 == KdbxFile.FileSignatureOld1) &&
+					(uSig2 == KdbxFile.FileSignatureOld2)))
+#if KeePassLibSD
+					throw new Exception(KLRes.KeyFileDbSel);
+#else
+					throw new InvalidDataException(KLRes.KeyFileDbSel);
+#endif
+			}
 
 			byte[] pbKey = LoadXmlKeyFile(pbFileData);
 			if(pbKey == null) pbKey = LoadKeyFile(pbFileData);
@@ -126,7 +156,7 @@ namespace KeePassLib.Keys
 
 			try
 			{
-				string strHex = Encoding.ASCII.GetString(pbFileData, 0, 64);
+				string strHex = StrUtil.Utf8.GetString(pbFileData, 0, 64);
 				if(!StrUtil.IsHexString(strHex, true)) return null;
 
 				byte[] pbKey = MemUtil.HexStringToByteArray(strHex);
@@ -237,7 +267,10 @@ namespace KeePassLib.Keys
 			Debug.Assert(pbKeyData != null);
 			if(pbKeyData == null) throw new ArgumentNullException("pbKeyData");
 
-			XmlTextWriter xtw = new XmlTextWriter(strFile, StrUtil.Utf8);
+			IOConnectionInfo ioc = IOConnectionInfo.FromPath(strFile);
+			Stream sOut = IOConnection.OpenWrite(ioc);
+
+			XmlTextWriter xtw = new XmlTextWriter(sOut, StrUtil.Utf8);
 
 			xtw.WriteStartDocument();
 			xtw.WriteWhitespace("\r\n");
@@ -268,6 +301,8 @@ namespace KeePassLib.Keys
 			xtw.WriteWhitespace("\r\n");
 			xtw.WriteEndDocument(); // End KeyFile
 			xtw.Close();
+
+			sOut.Close();
 		}
 	}
 }

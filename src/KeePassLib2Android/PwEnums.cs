@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -65,6 +65,8 @@ namespace KeePassLib
 	/// </summary>
 	public enum PwMergeMethod
 	{
+		// Do not change the explicitly assigned values, otherwise
+		// serialization (e.g. of Ecas triggers) breaks
 		None = 0,
 		OverwriteExisting = 1,
 		KeepExisting = 2,
@@ -203,5 +205,63 @@ namespace KeePassLib
 		IgnoreLastBackup = 0x20,
 
 		IgnoreTimes = (IgnoreLastAccess | IgnoreLastMod)
+	}
+
+	public enum IOAccessType
+	{
+		None = 0,
+
+		/// <summary>
+		/// The IO connection is being opened for reading.
+		/// </summary>
+		Read = 1,
+
+		/// <summary>
+		/// The IO connection is being opened for writing.
+		/// </summary>
+		Write = 2,
+
+		/// <summary>
+		/// The IO connection is being opened for testing
+		/// whether a file/object exists.
+		/// </summary>
+		Exists = 3,
+
+		/// <summary>
+		/// The IO connection is being opened for deleting a file/object.
+		/// </summary>
+		Delete = 4,
+
+		/// <summary>
+		/// The IO connection is being opened for renaming/moving a file/object.
+		/// </summary>
+		Move = 5
+	}
+
+	// public enum PwLogicalOp
+	// {
+	//	None = 0,
+	//	Or = 1,
+	//	And = 2,
+	//	NOr = 3,
+	//	NAnd = 4
+	// }
+
+	[Flags]
+	public enum AppRunFlags
+	{
+		None = 0,
+		GetStdOutput = 1,
+		WaitForExit = 2,
+
+		// This flag prevents any handles being garbage-collected
+		// before the started process has terminated, without
+		// blocking the current thread;
+		// https://sourceforge.net/p/keepass/patches/84/
+		GCKeepAlive = 4,
+
+		// https://sourceforge.net/p/keepass/patches/85/
+		DoEvents = 8,
+		DisableForms = 16
 	}
 }

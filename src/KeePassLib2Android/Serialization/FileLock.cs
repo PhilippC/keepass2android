@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
   
   Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
@@ -156,7 +156,7 @@ namespace KeePassLib.Serialization
 					byte[] pbID = CryptoRandom.Instance.GetRandomBytes(16);
 					string strTime = TimeUtil.SerializeUtc(DateTime.Now);
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 					lfi = new LockFileInfo(Convert.ToBase64String(pbID), strTime,
 						Environment.UserName, Environment.MachineName,
 						Environment.UserDomainName);

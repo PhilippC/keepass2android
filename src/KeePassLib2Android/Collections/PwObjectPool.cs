@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -33,8 +33,8 @@ namespace KeePassLib.Collections
 {
 	public sealed class PwObjectPool
 	{
-		private SortedDictionary<PwUuidComparable, IStructureItem> m_dict =
-			new SortedDictionary<PwUuidComparable, IStructureItem>();
+		private SortedDictionary<PwUuid, IStructureItem> m_dict =
+			new SortedDictionary<PwUuid, IStructureItem>();
 
 		public static PwObjectPool FromGroupRecursive(PwGroup pgRoot, bool bEntries)
 		{
@@ -42,16 +42,16 @@ namespace KeePassLib.Collections
 
 			PwObjectPool p = new PwObjectPool();
 
-			if(!bEntries) p.m_dict[new PwUuidComparable(pgRoot.Uuid)] = pgRoot;
+			if(!bEntries) p.m_dict[pgRoot.Uuid] = pgRoot;
 			GroupHandler gh = delegate(PwGroup pg)
 			{
-				p.m_dict[new PwUuidComparable(pg.Uuid)] = pg;
+				p.m_dict[pg.Uuid] = pg;
 				return true;
 			};
 
 			EntryHandler eh = delegate(PwEntry pe)
 			{
-				p.m_dict[new PwUuidComparable(pe.Uuid)] = pe;
+				p.m_dict[pe.Uuid] = pe;
 				return true;
 			};
 
@@ -63,13 +63,13 @@ namespace KeePassLib.Collections
 		public IStructureItem Get(PwUuid pwUuid)
 		{
 			IStructureItem pItem;
-			m_dict.TryGetValue(new PwUuidComparable(pwUuid), out pItem);
+			m_dict.TryGetValue(pwUuid, out pItem);
 			return pItem;
 		}
 
 		public bool ContainsOnlyType(Type t)
 		{
-			foreach(KeyValuePair<PwUuidComparable, IStructureItem> kvp in m_dict)
+			foreach(KeyValuePair<PwUuid, IStructureItem> kvp in m_dict)
 			{
 				if(kvp.Value.GetType() != t) return false;
 			}

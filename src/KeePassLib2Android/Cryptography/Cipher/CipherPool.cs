@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 using System.Security;
-using System.Security.Cryptography;
 
 namespace KeePassLib.Cryptography.Cipher
 {
@@ -70,7 +69,7 @@ namespace KeePassLib.Cryptography.Cipher
 
 			// Return if a cipher with that ID is registered already.
 			for(int i = 0; i < m_vCiphers.Count; ++i)
-				if(m_vCiphers[i].CipherUuid.EqualsValue(csEngine.CipherUuid))
+				if(m_vCiphers[i].CipherUuid.Equals(csEngine.CipherUuid))
 					return;
 
 			m_vCiphers.Add(csEngine);
@@ -86,7 +85,7 @@ namespace KeePassLib.Cryptography.Cipher
 		{
 			foreach(ICipherEngine iEngine in m_vCiphers)
 			{
-				if(iEngine.CipherUuid.EqualsValue(uuidCipher))
+				if(iEngine.CipherUuid.Equals(uuidCipher))
 					return iEngine;
 			}
 
@@ -104,7 +103,7 @@ namespace KeePassLib.Cryptography.Cipher
 		{
 			for(int i = 0; i < m_vCiphers.Count; ++i)
 			{
-				if(m_vCiphers[i].CipherUuid.EqualsValue(uuidCipher))
+				if(m_vCiphers[i].CipherUuid.Equals(uuidCipher))
 					return i;
 			}
 

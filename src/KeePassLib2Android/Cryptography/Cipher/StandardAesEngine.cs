@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -22,8 +22,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Security;
-using System.Security.Cryptography;
 using System.Diagnostics;
+
+#if !KeePassRT
+using System.Security.Cryptography;
+#else
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Engines;
+using Org.BouncyCastle.Crypto.IO;
+using Org.BouncyCastle.Crypto.Modes;
+using Org.BouncyCastle.Crypto.Paddings;
+using Org.BouncyCastle.Crypto.Parameters;
+#endif
 
 using KeePassLib.Resources;
 
@@ -34,8 +44,10 @@ namespace KeePassLib.Cryptography.Cipher
 	/// </summary>
 	public sealed class StandardAesEngine : ICipherEngine
 	{
+#if !KeePassRT
 		private const CipherMode m_rCipherMode = CipherMode.CBC;
 		private const PaddingMode m_rCipherPadding = PaddingMode.PKCS7;
+#endif
 
 		private static PwUuid m_uuidAes = null;
 
@@ -99,23 +111,23 @@ namespace KeePassLib.Cryptography.Cipher
 		{
 			StandardAesEngine.ValidateArguments(s, bEncrypt, pbKey, pbIV);
 
-			RijndaelManaged r = new RijndaelManaged();
+			byte[] pbLocalIV = new byte[16];
+			Array.Copy(pbIV, pbLocalIV, 16);
 
+			byte[] pbLocalKey = new byte[32];
+			Array.Copy(pbKey, pbLocalKey, 32);
+
+#if !KeePassRT
+			RijndaelManaged r = new RijndaelManaged();
 			if(r.BlockSize != 128) // AES block size
 			{
 				Debug.Assert(false);
 				r.BlockSize = 128;
 			}
 
-			byte[] pbLocalIV = new byte[16];
-			Array.Copy(pbIV, pbLocalIV, 16);
 			r.IV = pbLocalIV;
-
-			byte[] pbLocalKey = new byte[32];
-			Array.Copy(pbKey, pbLocalKey, 32);
 			r.KeySize = 256;
 			r.Key = pbLocalKey;
-
 			r.Mode = m_rCipherMode;
 			r.Padding = m_rCipherPadding;
 
@@ -125,6 +137,19 @@ namespace KeePassLib.Cryptography.Cipher
 
 			return new CryptoStream(s, iTransform, bEncrypt ? CryptoStreamMode.Write :
 				CryptoStreamMode.Read);
+#else
+			AesEngine aes = new AesEngine();
+			CbcBlockCipher cbc = new CbcBlockCipher(aes);
+			PaddedBufferedBlockCipher bc = new PaddedBufferedBlockCipher(cbc,
+				new Pkcs7Padding());
+			KeyParameter kp = new KeyParameter(pbLocalKey);
+			ParametersWithIV prmIV = new ParametersWithIV(kp, pbLocalIV);
+			bc.Init(bEncrypt, prmIV);
+
+			IBufferedCipher cpRead = (bEncrypt ? null : bc);
+			IBufferedCipher cpWrite = (bEncrypt ? bc : null);
+			return new CipherStream(s, cpRead, cpWrite);
+#endif
 		}
 
 		public Stream EncryptStream(Stream sPlainText, byte[] pbKey, byte[] pbIV)

@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
   
   Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
@@ -47,8 +47,8 @@ namespace KeePassLib.Translation
 
 		private const string m_strControlRelative = @"%c";
 
-		internal const NumberStyles m_nsParser = NumberStyles.AllowLeadingSign |
-			NumberStyles.AllowDecimalPoint;
+		internal const NumberStyles m_nsParser = (NumberStyles.AllowLeadingSign |
+			NumberStyles.AllowDecimalPoint);
 		internal static readonly CultureInfo m_lclInv = CultureInfo.InvariantCulture;
 
 		private string m_strPosX = string.Empty;
@@ -117,7 +117,7 @@ namespace KeePassLib.Translation
 			else { Debug.Assert(false); }
 		}
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 		/*internal void ApplyTo(Control c)
 		{
 			Debug.Assert(c != null); if(c == null) return;
@@ -272,7 +272,7 @@ namespace KeePassLib.Translation
 			return m_strMemberName.CompareTo(kpOther.Name);
 		}
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 		/*private static readonly Type[] m_vTextControls = new Type[] {
 			typeof(MenuStrip), typeof(PictureBox), typeof(ListView),
 			typeof(TreeView), typeof(ToolStrip), typeof(WebBrowser),
@@ -314,8 +314,8 @@ namespace KeePassLib.Translation
 
 			if(c is Form)
 			{
-				WriteCpiParam(sb, c.ClientSize.Width.ToString());
-				WriteCpiParam(sb, c.ClientSize.Height.ToString());
+				WriteCpiParam(sb, c.ClientSize.Width.ToString(KpccLayout.m_lclInv));
+				WriteCpiParam(sb, c.ClientSize.Height.ToString(KpccLayout.m_lclInv));
 			}
 			else // Normal control
 			{

@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
   
   Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
@@ -58,8 +58,8 @@ namespace KeePassLib
 		{
 			Debug.Assert(pwUuid != null);
 			if(pwUuid == null) throw new ArgumentNullException("pwUuid");
-			Debug.Assert(!pwUuid.EqualsValue(PwUuid.Zero));
-			if(pwUuid.EqualsValue(PwUuid.Zero)) throw new ArgumentException("pwUuid == 0");
+			Debug.Assert(!pwUuid.Equals(PwUuid.Zero));
+			if(pwUuid.Equals(PwUuid.Zero)) throw new ArgumentException("pwUuid == 0");
 
 			Debug.Assert(pbImageDataPng != null);
 			if(pbImageDataPng == null) throw new ArgumentNullException("pbImageDataPng");

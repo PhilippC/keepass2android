@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
   
   Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
@@ -145,7 +145,7 @@ namespace KeePassLib.Cryptography
 			pb = MemUtil.UInt32ToBytes((uint)NativeLib.GetPlatformID());
 			ms.Write(pb, 0, pb.Length);
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 			try
 			{
 				pb = MemUtil.UInt32ToBytes((uint)Environment.ProcessorCount);
@@ -260,7 +260,7 @@ namespace KeePassLib.Cryptography
 
 				long lCopy = (long)((uRequestedBytes < 32) ? uRequestedBytes : 32);
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 				Array.Copy(pbRandom256, 0, pbRes, lPos, lCopy);
 #else
 				Array.Copy(pbRandom256, 0, pbRes, (int)lPos, (int)lCopy);
