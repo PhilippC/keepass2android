@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
@@ -75,13 +76,36 @@ namespace keepass2android
 				_groupsForViewing.Sort( (x, y) => { return String.Compare (x.Name, y.Name, true); });
 				_entriesForViewing.Sort( (x, y) => 
 				                       { 
-					String nameX = x.Strings.ReadSafe(PwDefs.TitleField);
-					String nameY = y.Strings.ReadSafe(PwDefs.TitleField);
-					if (nameX.ToLower() != nameY.ToLower())
-						return String.Compare(nameX, nameY, StringComparison.OrdinalIgnoreCase); 
-					else
-						return x.CreationTime.CompareTo(y.CreationTime);
-				}
+											String nameX = x.Strings.ReadSafe(PwDefs.TitleField);
+											String nameY = y.Strings.ReadSafe(PwDefs.TitleField);
+											if (nameX.ToLower() != nameY.ToLower())
+						                       return String.Compare(nameX, nameY, StringComparison.OrdinalIgnoreCase);
+					                       else
+					                       {
+											   if (PwDefs.IsTanEntry(x) && PwDefs.IsTanEntry(y))
+											   {
+												   //compare the user name fields (=TAN index)
+												   String userX = x.Strings.ReadSafe(PwDefs.UserNameField);
+												   String userY = y.Strings.ReadSafe(PwDefs.UserNameField);
+												   if (userX != userY)
+												   {
+													   try
+													   {
+														   return int.Parse(userX).CompareTo(int.Parse(userY));
+													   }
+													   catch (Exception)
+													   {
+														   //ignore
+													   }
+													   return String.Compare(userX, userY, StringComparison.OrdinalIgnoreCase);
+												   }
+											   }
+
+												//use creation time for non-tan entries:
+												   
+						                       return x.CreationTime.CompareTo(y.CreationTime);
+					                       }
+				                       }
 				);
 			} else {
 				_groupsForViewing =  new List<PwGroup>(_group.Groups);
