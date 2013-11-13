@@ -21,8 +21,6 @@ namespace Kp2aUnitTests
 			_builtIn.Delete(ioc);
 		}
 
-		public IFileStorageSetup RequiredSetup { get { return null; } }
-
 		public void Delete(IOConnectionInfo ioc)
 		{
 			throw new NotImplementedException();

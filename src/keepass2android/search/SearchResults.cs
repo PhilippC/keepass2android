@@ -34,8 +34,6 @@ namespace keepass2android.search
 	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]
 	public class SearchResults : GroupBaseActivity
 	{
-		private GroupView _groupView;
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);

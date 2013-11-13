@@ -148,9 +148,10 @@ namespace keepass2android
 
 		private static void ShowInternalLocalFileChooser(Activity act, int requestCodeBrowse, bool forSaving, string defaultPath)
 		{
+			
+#if !EXCLUDE_FILECHOOSER
 			const string fileProviderAuthority = "keepass2android.keepass2android.android-filechooser.localfile";
 
-#if !EXCLUDE_FILECHOOSER
 			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(act,
 			                                                                                            fileProviderAuthority,
 			                                                                                            defaultPath);

@@ -466,7 +466,7 @@ namespace keepass2android
 			MoveElementTask moveElementTask = AppTask as MoveElementTask;
 			if (moveElementTask != null)
 			{
-				if (moveElementTask.Uuid.EqualsValue(uuid))
+				if (moveElementTask.Uuid.Equals(uuid))
 					return true;
 			}
 			return false;

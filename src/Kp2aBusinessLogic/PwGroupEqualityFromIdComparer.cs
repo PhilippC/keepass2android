@@ -28,7 +28,7 @@ namespace keepass2android
 		#region IEqualityComparer implementation			
 		public bool Equals (PwGroup x, PwGroup y)
 		{
-			return x.Uuid.EqualsValue(y.Uuid);
+			return x.Uuid.Equals(y.Uuid);
 		}			
 		public int GetHashCode (PwGroup obj)
 		{

@@ -55,8 +55,8 @@ namespace keepass2android
 				if ( Success ) {
 					// Mark group dirty if title, icon or Expiry stuff changes
 					if ( ! _backup.Strings.ReadSafe (PwDefs.TitleField).Equals(_updatedEntry.Strings.ReadSafe (PwDefs.TitleField)) 
-					    || ! _backup.IconId.Equals(_updatedEntry.IconId) 
-					    || ! _backup.CustomIconUuid.EqualsValue(_updatedEntry.CustomIconUuid)
+					    || ! _backup.IconId.Equals(_updatedEntry.IconId)
+						|| !_backup.CustomIconUuid.Equals(_updatedEntry.CustomIconUuid)
 					    || _backup.Expires != _updatedEntry.Expires
 					    || (_backup.Expires && (! _backup.ExpiryTime.Equals(_updatedEntry.ExpiryTime)))
 					    )

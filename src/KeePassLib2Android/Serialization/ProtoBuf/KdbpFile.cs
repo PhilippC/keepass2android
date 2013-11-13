@@ -592,7 +592,7 @@ namespace KeePassLib.Serialization
 			[ProtoMember(5, OverwriteList = true)]
 			public byte[] CustomIconUuid
 			{
-				get { return mGroup.CustomIconUuid.EqualsValue(PwUuid.Zero) ? null : mGroup.CustomIconUuid.UuidBytes; ; }
+				get { return mGroup.CustomIconUuid.Equals(PwUuid.Zero) ? null : mGroup.CustomIconUuid.UuidBytes; ; }
 				set { mGroup.CustomIconUuid = value == null ? PwUuid.Zero : new PwUuid(value); }
 			}
 
@@ -866,7 +866,7 @@ namespace KeePassLib.Serialization
 			[ProtoMember(3, OverwriteList = true)]
 			public byte[] CustomIconUuid
 			{
-				get { return mEntry.CustomIconUuid.EqualsValue(PwUuid.Zero) ? null : mEntry.CustomIconUuid.UuidBytes; }
+				get { return mEntry.CustomIconUuid.Equals(PwUuid.Zero) ? null : mEntry.CustomIconUuid.UuidBytes; }
 				set { mEntry.CustomIconUuid = value == null ? PwUuid.Zero : new PwUuid(value); }
 			}
 

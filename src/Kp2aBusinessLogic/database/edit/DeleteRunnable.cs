@@ -92,7 +92,7 @@ namespace keepass2android
 				
 				bGroupListUpdateRequired = true;
 			}
-			else { System.Diagnostics.Debug.Assert(pgRecycleBin.Uuid.EqualsValue(Db.KpDatabase.RecycleBinUuid)); }
+			else { System.Diagnostics.Debug.Assert(pgRecycleBin.Uuid.Equals(Db.KpDatabase.RecycleBinUuid)); }
 		}
 
 		protected abstract UiStringKey QuestionsResourceId

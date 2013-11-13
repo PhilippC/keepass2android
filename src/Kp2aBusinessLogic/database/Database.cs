@@ -113,7 +113,7 @@ namespace keepass2android
 				pwDatabase.Open(databaseData ?? fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
 				LastFileVersion = fileVersion;
 			}
-			catch (InvalidCompositeKeyException e)
+			catch (InvalidCompositeKeyException)
 			{
 				if ((password == "") && (keyfile != null))
 				{
