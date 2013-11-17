@@ -68,6 +68,7 @@ namespace keepass2android
 			{
 				Intent intent = new Intent(this, typeof(FileSelectActivity));
 				AppTask.ToIntent(intent);
+				intent.AddFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
 				StartActivityForResult(intent, 0);
 
 				Finish();

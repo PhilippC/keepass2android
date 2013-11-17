@@ -25,7 +25,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Java.Lang;
 using Java.Net;
 using Android.Preferences;
 using Java.IO;
@@ -33,7 +32,6 @@ using Android.Text;
 using Android.Content.PM;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
-using KeePassLib.Utility;
 using OtpKeyProv;
 using keepass2android.Io;
 using keepass2android.Utils;
@@ -47,6 +45,7 @@ namespace keepass2android
 {
 	[Activity (Label = "@string/app_name", 
 	           ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, 
+			   LaunchMode = LaunchMode.SingleInstance,
 	           Theme="@style/Base")]
 
 	public class PasswordActivity : LockingActivity {
@@ -80,6 +79,9 @@ namespace keepass2android
 		internal AppTask AppTask;
 		private bool _killOnDestroy;
 		private string _password = "";
+		//OTPs which should be entered into the OTP fields as soon as these become visible
+		private readonly List<String> _pendingOtps = new List<string>();
+
 		private const int RequestCodePrepareDbFile = 1000;
 		private const int RequestCodePrepareOtpAuxFile = 1001;
 
@@ -139,8 +141,10 @@ namespace keepass2android
 	
 			
 			Intent i = new Intent(act, typeof(PasswordActivity));
+			i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
 			i.PutExtra(KeyFilename, fileName);
 			appTask.ToIntent(i);
+
 			act.StartActivityForResult(i, 0);
 			
 		}
@@ -155,7 +159,9 @@ namespace keepass2android
 			}
 
 			Intent i = new Intent(act, typeof(PasswordActivity));
+			
 			PutIoConnectionToIntent(ioc, i);
+			i.SetFlags(ActivityFlags.ClearTask);
 
 			appTask.ToIntent(i);
 
@@ -259,29 +265,39 @@ namespace keepass2android
 							Toast.MakeText(this, GetString(Resource.String.CouldntLoadOtpAuxFile), ToastLength.Long).Show();
 							return;
 						}
-						FindViewById(Resource.Id.init_otp).Visibility = ViewStates.Gone;
+						FindViewById(Resource.Id.otpInitView).Visibility = ViewStates.Gone;
 						FindViewById(Resource.Id.otpEntry).Visibility = ViewStates.Visible;
 						int c = 0;
-					foreach (int otpId in _otpTextViewIds)
-					{
-						c++;
-						var otpTextView = FindViewById<EditText>(otpId);
-						otpTextView.Text = "";
-						otpTextView.Hint = GetString(Resource.String.otp_hint, new Object[] {c});
-						otpTextView.SetFilters(new IInputFilter[] {new InputFilterLengthFilter((int)_otpInfo.OtpLength) });
-						if (c > _otpInfo.OtpsRequired)
+
+						foreach (int otpId in _otpTextViewIds)
 						{
-							otpTextView.Visibility = ViewStates.Gone;
-						}
-						else
-						{
-							otpTextView.TextChanged += (sender, args) => 
+							c++;
+							var otpTextView = FindViewById<EditText>(otpId);
+							if (c <= _pendingOtps.Count)
 							{
-								UpdateOkButtonState();
-							};
+								otpTextView.Text = _pendingOtps[c-1];
+							}
+							else
+							{
+								otpTextView.Text = "";
+							}
+							otpTextView.Hint = GetString(Resource.String.otp_hint, new Object[] {c});
+							otpTextView.SetFilters(new IInputFilter[] {new InputFilterLengthFilter((int)_otpInfo.OtpLength) });
+							if (c > _otpInfo.OtpsRequired)
+							{
+								otpTextView.Visibility = ViewStates.Gone;
+							}
+							else
+							{
+								otpTextView.TextChanged += (sender, args) => 
+								{
+									UpdateOkButtonState();
+								};
+							}
 						}
+						_pendingOtps.Clear();
+						
 					}
-				}
 			).Execute();
 		}
 
@@ -290,6 +306,8 @@ namespace keepass2android
 			base.OnCreate(savedInstanceState);
 			if (savedInstanceState != null)
 				_showPassword = savedInstanceState.GetBoolean(ShowpasswordKey, false);
+
+			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			Intent i = Intent;
 			String action = i.Action;
@@ -302,6 +320,7 @@ namespace keepass2android
 
 			if (action != null && action.Equals(ViewIntent))
 			{
+				//started from "view" intent (e.g. from file browser)
 				_ioConnection.Path = i.DataString;
 				
 				if (! _ioConnection.Path.Substring(0, 7).Equals("file://"))
@@ -333,7 +352,54 @@ namespace keepass2android
 				
 				_keyFileOrProvider = GetKeyFile(_ioConnection.Path);
 				
-			} else
+			} 
+			else if ((action != null) && (action.Equals(Intents.StartWithOtp)))
+			{
+				//create called after detecting an OTP via NFC
+				//this means the Activity was not on the back stack before, i.e. no database has been selected
+
+				_ioConnection = null;
+
+				//see if we can get a database from recent:
+				if (App.Kp2a.FileDbHelper.HasRecentFiles())
+				{
+					ICursor filesCursor = App.Kp2a.FileDbHelper.FetchAllFiles();
+					StartManagingCursor(filesCursor);
+					filesCursor.MoveToFirst();
+					IOConnectionInfo ioc = App.Kp2a.FileDbHelper.CursorToIoc(filesCursor);
+					if (App.Kp2a.GetFileStorage(ioc).RequiresSetup(ioc) == false)
+					{
+						IFileStorage fileStorage = App.Kp2a.GetFileStorage(ioc);
+
+						if (!fileStorage.RequiresCredentials(ioc))
+						{
+							//ok, we can use this file
+							_ioConnection = ioc;
+
+						}
+					}
+				}
+
+				if (_ioConnection == null)
+				{
+					//We need to go to FileSelectActivity first.
+					//For security reasons: discard the OTP (otherwise the user might not select a database now and forget 
+					//about the OTP, but it would still be stored in the Intents and later be passed to PasswordActivity again.
+
+					Toast.MakeText(this, GetString(Resource.String.otp_discarded_because_no_db), ToastLength.Long).Show();
+					GoToFileSelectActivity();
+					Finish();
+					return;
+				}
+
+				//user obviously wants to use OTP:
+				_keyFileOrProvider = KeyProviderIdOtp;
+
+				//remember the OTP for later use
+				_pendingOtps.Add(Intent.GetStringExtra(Intents.OtpExtraKey));
+				Intent.RemoveExtra(Intents.OtpExtraKey);
+			}
+			else
 			{
 				SetIoConnectionFromIntent(_ioConnection, i);
 				_keyFileOrProvider = i.GetStringExtra(KeyKeyfile);
@@ -350,7 +416,7 @@ namespace keepass2android
 				App.Kp2a.LockDatabase(false);
 			}
 
-			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			
 			
 			SetContentView(Resource.Layout.password);
 			PopulateView();
@@ -509,6 +575,10 @@ namespace keepass2android
 			FindViewById(Resource.Id.otpView).Visibility = KeyProviderType == KeyProviders.Otp
 				                                               ? ViewStates.Visible
 				                                               : ViewStates.Gone;
+			if (KeyProviderType == KeyProviders.Otp)
+			{
+				FindViewById(Resource.Id.otps_pending).Visibility = _pendingOtps.Count > 0 ? ViewStates.Visible : ViewStates.Gone;
+			}
 			UpdateOkButtonState();
 		}
 
@@ -715,6 +785,61 @@ namespace keepass2android
 			base.OnSaveInstanceState(outState);
 			AppTask.ToBundle(outState);
 			outState.PutBoolean(ShowpasswordKey, _showPassword);
+			//TODO: 
+			// * save OTP state
+			
+			//more OTP TODO:
+			// * NfcOtp: Ask for close when db open
+			// * Caching of aux file
+			// *  -> implement IFileStorage in JavaFileStorage based on ListFiles
+		}
+
+		protected override void OnNewIntent(Intent intent)
+		{
+			base.OnNewIntent(intent);
+
+			//this method is called from the NfcOtpActivity's startActivity() if the activity is already running
+			//note: it's not called in other cases because OnNewIntent requires the activity to be on top already 
+			//which is never the case when started from another activity (in the same task).
+			//NfcOtpActivity sets the ClearTop flag to get OnNewIntent called.
+			if ((intent != null) && (intent.HasExtra(Intents.OtpExtraKey)))
+			{
+				string otp = intent.GetStringExtra(Intents.OtpExtraKey);
+
+				if (_otpInfo == null)
+				{
+					//Entering OTPs not yet initialized:
+					_pendingOtps.Add(otp);
+					UpdateKeyProviderUiState();
+				}
+				else
+				{
+					//Entering OTPs is initialized. Write OTP into first empty field:
+					bool foundEmptyField = false;
+					foreach (int otpId in _otpTextViewIds)
+					{
+						EditText otpEdit = FindViewById<EditText>(otpId);
+						if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
+						{
+							otpEdit.Text = otp;
+							foundEmptyField = true;
+							break;
+						}
+					}
+					//did we find a field?
+					if (!foundEmptyField)
+					{
+						Toast.MakeText(this, GetString(Resource.String.otp_discarded_no_space), ToastLength.Long).Show();
+					}
+				}
+
+				Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
+				if (passwordModeSpinner.SelectedItemPosition != (int) KeyProviders.Otp)
+				{
+					passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
+				}
+			}
+	
 		}
 		
 		protected override void OnResume()

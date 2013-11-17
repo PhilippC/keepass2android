@@ -86,54 +86,46 @@ namespace OtpKeyProv
 		/// based on the code in OtpKeyPromptForm.cs
 		public void SetSecret(OtpInfo otpInfo, List<string> lOtps, string secret, OtpDataFmt? fmt)
 		{
-			try
+			byte[] pbSecret = EncodingUtil.ParseKey(secret,
+			                                        (fmt.HasValue ? fmt.Value : OtpDataFmt.Hex));
+			if (pbSecret != null)
 			{
-				byte[] pbSecret = EncodingUtil.ParseKey(secret,
-				                                        (fmt.HasValue ? fmt.Value : OtpDataFmt.Hex));
-				if (pbSecret != null)
-				{
-					otpInfo.Secret = pbSecret;
-					return;
-				}
-
-				if (!string.IsNullOrEmpty(otpInfo.EncryptedSecret)) // < v2.0
-				{
-					byte[] pbKey32 = OtpUtil.KeyFromOtps(lOtps.ToArray(), 0,
-					                                     lOtps.Count, Convert.FromBase64String(
-						                                     otpInfo.TransformationKey), otpInfo.TransformationRounds);
-					if (pbKey32 == null) throw new InvalidOperationException();
-
-					pbSecret = OtpUtil.DecryptData(otpInfo.EncryptedSecret,
-					                               pbKey32, Convert.FromBase64String(otpInfo.EncryptionIV));
-					if (pbSecret == null) throw new InvalidOperationException();
-
-					otpInfo.Secret = pbSecret;
-					otpInfo.Counter += (ulong) otpInfo.OtpsRequired;
-				}
-				else // >= v2.0, supporting look-ahead
-				{
-					bool bSuccess = false;
-					for (int i = 0; i < otpInfo.EncryptedSecrets.Count; ++i)
-					{
-						OtpEncryptedData d = otpInfo.EncryptedSecrets[i];
-						pbSecret = OtpUtil.DecryptSecret(d, lOtps.ToArray(), 0,
-						                                 lOtps.Count);
-						if (pbSecret != null)
-						{
-							otpInfo.Secret = pbSecret;
-							otpInfo.Counter += ((ulong) otpInfo.OtpsRequired +
-							                      (ulong) i);
-							bSuccess = true;
-							break;
-						}
-					}
-					if (!bSuccess) throw new InvalidOperationException();
-				}
+				otpInfo.Secret = pbSecret;
+				return;
 			}
-			catch (Exception)
+
+			if (!string.IsNullOrEmpty(otpInfo.EncryptedSecret)) // < v2.0
 			{
-				//todo
-				throw;
+				byte[] pbKey32 = OtpUtil.KeyFromOtps(lOtps.ToArray(), 0,
+				                                     lOtps.Count, Convert.FromBase64String(
+					                                     otpInfo.TransformationKey), otpInfo.TransformationRounds);
+				if (pbKey32 == null) throw new InvalidOperationException();
+
+				pbSecret = OtpUtil.DecryptData(otpInfo.EncryptedSecret,
+				                               pbKey32, Convert.FromBase64String(otpInfo.EncryptionIV));
+				if (pbSecret == null) throw new InvalidOperationException();
+
+				otpInfo.Secret = pbSecret;
+				otpInfo.Counter += (ulong) otpInfo.OtpsRequired;
+			}
+			else // >= v2.0, supporting look-ahead
+			{
+				bool bSuccess = false;
+				for (int i = 0; i < otpInfo.EncryptedSecrets.Count; ++i)
+				{
+					OtpEncryptedData d = otpInfo.EncryptedSecrets[i];
+					pbSecret = OtpUtil.DecryptSecret(d, lOtps.ToArray(), 0,
+					                                 lOtps.Count);
+					if (pbSecret != null)
+					{
+						otpInfo.Secret = pbSecret;
+						otpInfo.Counter += ((ulong) otpInfo.OtpsRequired +
+						                    (ulong) i);
+						bSuccess = true;
+						break;
+					}
+				}
+				if (!bSuccess) throw new InvalidOperationException();
 			}
 		}
 

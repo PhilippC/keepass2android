@@ -347,6 +347,9 @@
 	<string name="otp_explanation">Enter the next One-time-passwords (OTPs). Swipe your Yubikey NEO at the back of your device to enter via NFC.</string>
 	<string name="otp_hint">OTP %1$d</string>
 	<string name="CouldntLoadOtpAuxFile">Could not load auxiliary OTP file!</string>
+	<string name="otp_discarded_because_no_db">Please select database first. OTP is discarded for security reasons.</string>
+	<string name="otp_discarded_no_space">OTP discarded: All OTPs already entered!</string>
+	<string name="otps_pending">(One or more OTPs already available)</string>
 
 
 	<string name="loading">Loading…</string>

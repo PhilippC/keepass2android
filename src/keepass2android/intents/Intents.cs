@@ -24,6 +24,7 @@ namespace keepass2android
 	/// </summary>
 	public class Intents 
 	{
+		
 		/// <summary>Broadcast this intent to lock the database (with quick unlock if enabled)</summary>
 		public const String LockDatabase = "keepass2android.lock_database";
 		/// <summary>Broadcast this intent to close the database (no quick unlock, full close)</summary>
@@ -35,6 +36,9 @@ namespace keepass2android
 		public const String CopyUsername = "keepass2android.copy_username";
 		public const String CopyPassword = "keepass2android.copy_password";
 		public const String CheckKeyboard = "keepass2android.check_keyboard";
+
+		public const String StartWithOtp = "keepass2android.startWithOtp";
+		public const String OtpExtraKey = "keepass2android.Otp";
 		
 		public const String FileBrowse = "org.openintents.action.PICK_FILE";
 		public const int RequestCodeFileBrowseForOpen = 987321;
