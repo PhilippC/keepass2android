@@ -82,6 +82,10 @@
     <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
+    <Compile Include="addons\OtpKeyProv\OathHotpKeyProv.cs" />
+    <Compile Include="addons\OtpKeyProv\OtpInfo.cs" />
+    <Compile Include="addons\OtpKeyProv\OtpUtil.cs" />
     <Compile Include="app\NoFileStorageFoundException.cs" />
     <Compile Include="CreateDatabaseActivity.cs" />
     <Compile Include="fileselect\FileChooserFileProvider.cs" />
@@ -102,6 +106,7 @@
     <Compile Include="search\SearchProvider.cs" />
     <Compile Include="services\OngoingNotificationsService.cs" />
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
+    <Compile Include="Utils\LoadingDialog.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="intents\Intents.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
@@ -629,7 +634,9 @@
     <AndroidResource Include="Resources\layout-v14\SaveButton.xml" />
     <AndroidResource Include="Resources\layout-v14\generate_password.xml" />
     <AndroidResource Include="Resources\layout-v14\icon_picker.xml" />
-    <AndroidResource Include="Resources\layout-v14\password.xml" />
+    <AndroidResource Include="Resources\layout-v14\password.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\InViewButton.xml" />
     <AndroidResource Include="Resources\drawable\collections_collection.png" />
     <AndroidResource Include="Resources\drawable\collections_new_label.png" />

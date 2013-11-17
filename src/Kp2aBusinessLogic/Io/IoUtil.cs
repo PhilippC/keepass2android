@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Java.IO;
+using KeePassLib.Serialization;
 
 namespace keepass2android.Io
 {
@@ -30,5 +31,20 @@ namespace keepass2android.Io
 		}
 
 
+		public static IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
+		{
+			var iocParent = ioc.CloneDeep();
+			if (iocParent.Path.EndsWith("/"))
+				iocParent.Path = iocParent.Path.Substring(0, iocParent.Path.Length - 1);
+
+			int slashPos = iocParent.Path.LastIndexOf("/", StringComparison.Ordinal);
+			if (slashPos == -1)
+				iocParent.Path = "";
+			else
+			{
+				iocParent.Path = iocParent.Path.Substring(0, slashPos);
+			}
+			return iocParent;
+		}
 	}
 }

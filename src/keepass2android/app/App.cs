@@ -107,9 +107,9 @@ namespace keepass2android
 			Application.Context.SendBroadcast(new Intent(Intents.DatabaseLocked));
         }
 
-		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, string password, string keyFile, ProgressDialogStatusLogger statusLogger)
+		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger)
 		{
-			_db.LoadData(this, ioConnectionInfo, memoryStream, password, keyFile, statusLogger);
+			_db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger);
 
 			UpdateOngoingNotification();
 		}
@@ -354,10 +354,9 @@ namespace keepass2android
 			{
 				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
 
-				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
-
-				if (prefs.GetBoolean(Application.Context.Resources.GetString(Resource.String.UseOfflineCache_key), true))
+				if (DatabaseCacheEnabled)
 				{
+					//TODO
 					return new CachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, this);	
 				}
 				else
@@ -493,6 +492,42 @@ namespace keepass2android
 		public IFileStorage GetFileStorage(string protocolId)
 		{
 			return GetFileStorage(new IOConnectionInfo() {Path = protocolId + "://"});
+		}
+
+		/// <summary>
+		/// returns a file storage object to be used when accessing the auxiliary OTP file
+		/// </summary>
+		/// The reason why this requires a different file storage is the different caching behavior.
+		public IFileStorage GetOtpAuxFileStorage(IOConnectionInfo iocInfo)
+		{
+
+			if (iocInfo.IsLocalFile())
+				return new BuiltInFileStorage();
+			else
+			{
+				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
+
+				
+				if (DatabaseCacheEnabled)
+				{
+					return new CachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, this);
+				}
+				else
+				{
+					return innerFileStorage;
+				}
+			}
+		}
+
+		private static bool DatabaseCacheEnabled
+		{
+			get
+			{
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+				bool cacheEnabled = prefs.GetBoolean(Application.Context.Resources.GetString(Resource.String.UseOfflineCache_key),
+				                                     true);
+				return cacheEnabled;
+			}
 		}
 	}
 

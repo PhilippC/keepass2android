@@ -38,7 +38,7 @@ namespace Kp2aUnitTests
 		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, string password, string keyFile,
 		                         ProgressDialogStatusLogger statusLogger)
 		{
-			_db.LoadData(this, ioConnectionInfo, memoryStream, password, keyFile, statusLogger);
+			_db.LoadData(this, ioConnectionInfo, memoryStream, password, statusLogger);
 			
 		}
 

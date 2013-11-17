@@ -82,28 +82,13 @@ namespace keepass2android
 			
 		}
 
-		
+
 		/// <summary>
 		/// Do not call this method directly. Call App.Kp2a.LoadDatabase instead.
 		/// </summary>
-		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, String password, String keyfile, ProgressDialogStatusLogger status)
+		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, CompositeKey compositeKey, ProgressDialogStatusLogger status)
 		{
 			PwDatabase pwDatabase = new PwDatabase();
-
-			CompositeKey compositeKey = new CompositeKey();
-			compositeKey.AddUserKey(new KcpPassword(password));
-			if (!String.IsNullOrEmpty(keyfile))
-			{
-
-				try
-				{
-					compositeKey.AddUserKey(new KcpKeyFile(keyfile));
-				} catch (Exception e)
-				{
-					Kp2aLog.Log(e.ToString());
-					throw new KeyFileException();
-				}
-			}
 
 			IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
 			var filename = fileStorage.GetFilenameWithoutPathAndExt(iocInfo);
@@ -115,7 +100,9 @@ namespace keepass2android
 			}
 			catch (InvalidCompositeKeyException)
 			{
-				if ((password == "") && (keyfile != null))
+				KcpPassword passwordKey = (KcpPassword)compositeKey.GetUserKey(typeof(KcpPassword));
+			
+				if ((passwordKey != null) && (passwordKey.Password.ReadString() == "") && (compositeKey.UserKeyCount > 1))
 				{
 					//if we don't get a password, we don't know whether this means "empty password" or "no password"
 					//retry without password:

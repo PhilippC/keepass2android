@@ -230,12 +230,12 @@ namespace keepass2android
 
 		}
 		
-		public String GetFileByName(String name) {
+		public String GetKeyFileForFile(String name) {
 			ICursor cursor = mDb.Query(true, FileTable, GetColumnList(),
 			KeyFileFilename + "= ?", new[] {name}, null, null, null, null);
 			
 			if ( cursor == null ) {
-				return "";
+				return null;
 			}
 			
 			String keyfileFilename;
@@ -244,9 +244,11 @@ namespace keepass2android
 				keyfileFilename = cursor.GetString(cursor.GetColumnIndexOrThrow(KeyFileKeyfile));
 			} else {
 				// Cursor is empty
-				keyfileFilename = "";
+				keyfileFilename = null;
 			}
 			cursor.Close();
+			if (keyfileFilename == "")
+				return null;
 			return keyfileFilename;
 		}
 		

@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 using System.Diagnostics;
 
 using KeePassLib.Utility;
@@ -39,9 +38,8 @@ namespace OtpKeyProv
 			FmtHex, FmtBase64, FmtBase32, FmtUtf8, FmtDec
 		};
 
-		public static OtpDataFmt? GetOtpDataFormat(ComboBox cmb)
+		public static OtpDataFmt? GetOtpDataFormat(String strFmt)
 		{
-			string strFmt = (cmb.SelectedItem as string);
 			if(strFmt == null) return null; // No assert
 
 			if(strFmt == FmtHex) return OtpDataFmt.Hex;

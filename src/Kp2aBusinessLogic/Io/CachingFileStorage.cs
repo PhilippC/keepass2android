@@ -400,16 +400,6 @@ namespace keepass2android.Io
 			return new CachedWriteTransaction(ioc, useFileTransaction, this);
 		}
 
-		public bool CompleteIoId()
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool? FileExists()
-		{
-			throw new NotImplementedException();
-		}
-
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{
 			return UrlUtil.StripExtension(
@@ -485,6 +475,54 @@ namespace keepass2android.Io
 		public string CreateFilePath(string parent, string newFilename)
 		{
 			return _cachedStorage.CreateFilePath(parent, newFilename);
+		}
+
+		public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
+		{
+			return _cachedStorage.GetParentPath(ioc);
+		}
+
+		public IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename)
+		{
+			try
+			{
+				IOConnectionInfo res = _cachedStorage.GetFilePath(folderPath, filename);
+				//some file storage implementations require accessing the network to determine the file path (e.g. because
+				//they might contain file ids). In this case, we need to cache the result to enable cached access to such files
+				StoreFilePath(folderPath, filename, res);
+				return res;
+			}
+			catch (Exception)
+			{
+				IOConnectionInfo res;
+				if (!TryGetCachedFilePath(folderPath, filename, out res)) throw;
+				return res;
+			}
+			
+		}
+
+		private void StoreFilePath(IOConnectionInfo folderPath, string filename, IOConnectionInfo res)
+		{
+			File.WriteAllText(CachedFilePath(GetPseudoIoc(folderPath, filename)) + ".filepath", res.Path);
+		}
+
+		private IOConnectionInfo GetPseudoIoc(IOConnectionInfo folderPath, string filename)
+		{
+			IOConnectionInfo res = folderPath.CloneDeep();
+			if (!res.Path.EndsWith("/"))
+				res.Path += "/";
+			res.Path += filename;
+			return res;
+		}
+
+		private bool TryGetCachedFilePath(IOConnectionInfo folderPath, string filename, out IOConnectionInfo res)
+		{
+			res = folderPath.CloneDeep();
+			string filePathCache = CachedFilePath(GetPseudoIoc(folderPath, filename)) + ".filepath";
+			if (!File.Exists(filePathCache))
+				return false;
+			res.Path = File.ReadAllText(filePathCache);
+			return true;
 		}
 
 

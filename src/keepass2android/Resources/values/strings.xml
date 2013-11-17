@@ -343,6 +343,14 @@
 
 	<string name="error_adding_keyfile">Error while adding the keyfile!</string>
 
+	<string name="init_otp">Enter OTPs…</string>
+	<string name="otp_explanation">Enter the next One-time-passwords (OTPs). Swipe your Yubikey NEO at the back of your device to enter via NFC.</string>
+	<string name="otp_hint">OTP %1$d</string>
+	<string name="CouldntLoadOtpAuxFile">Could not load auxiliary OTP file!</string>
+
+
+	<string name="loading">Loading…</string>
+	
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="ChangeLog_0_9_2">
@@ -462,4 +470,9 @@ Initial public release
     <item>Remember username only</item>
     <item>Remember username and password</item>
   </string-array>
+	<string-array name="password_modes">
+		<item>Password only</item>
+		<item>Password + Key file</item>
+		<item>Password + OTP</item>
+	</string-array>
 </resources>

@@ -19,6 +19,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using KeePassLib.Keys;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -26,20 +27,20 @@ namespace keepass2android
 	public class LoadDb : RunnableOnFinish {
 		private readonly IOConnectionInfo _ioc;
 		private readonly Task<MemoryStream> _databaseData;
-		private readonly String _pass;
-		private readonly String _key;
+		private readonly CompositeKey _compositeKey;
+		private readonly string _keyfileOrProvider;
 		private readonly IKp2aApp _app;
 		private readonly bool _rememberKeyfile;
 		
-		public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, String pass, String key, OnFinish finish): base(finish)
+		public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish): base(finish)
 		{
 			_app = app;
 			_ioc = ioc;
 			_databaseData = databaseData;
-			_pass = pass;
-			_key = key;
+			_compositeKey = compositeKey;
+			_keyfileOrProvider = keyfileOrProvider;
 
-            
+
 			_rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
 		}
 		
@@ -50,8 +51,8 @@ namespace keepass2android
 			{
 				StatusLogger.UpdateMessage(UiStringKey.loading_database);
 				MemoryStream memoryStream = _databaseData == null ? null : _databaseData.Result;
-				_app.LoadDatabase(_ioc, memoryStream, _pass, _key, StatusLogger);
-				SaveFileData(_ioc, _key);
+				_app.LoadDatabase(_ioc, memoryStream, _compositeKey, StatusLogger);
+				SaveFileData(_ioc, _keyfileOrProvider);
 
 			}
 			catch (KeyFileException)
@@ -88,13 +89,13 @@ namespace keepass2android
 			Finish(true);
 		}
 		
-		private void SaveFileData(IOConnectionInfo ioc, String key) {
+		private void SaveFileData(IOConnectionInfo ioc, String keyfileOrProvider) {
 
             if (!_rememberKeyfile)
             {
-                key = "";
+                keyfileOrProvider = "";
             }
-            _app.StoreOpenedFileAsRecent(ioc, key);
+            _app.StoreOpenedFileAsRecent(ioc, keyfileOrProvider);
 		}
 		
 		

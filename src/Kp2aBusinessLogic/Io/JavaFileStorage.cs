@@ -151,16 +151,6 @@ namespace keepass2android.Io
 			}
 		}
 
-		public bool CompleteIoId()
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool? FileExists()
-		{
-			throw new NotImplementedException();
-		}
-
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{
 			return UrlUtil.StripExtension(

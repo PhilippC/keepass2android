@@ -85,15 +85,6 @@ namespace Kp2aUnitTests
 			}
 		}
 
-		public bool CompleteIoId()
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool? FileExists()
-		{
-			throw new NotImplementedException();
-		}
 
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{

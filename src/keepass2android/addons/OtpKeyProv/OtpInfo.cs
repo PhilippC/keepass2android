@@ -1,4 +1,6 @@
 ﻿/*
+  This file was modified my Philipp Crocoll, 2013. Based on: 
+
   OtpKeyProv Plugin
   Copyright (C) 2011-2012 Dominik Reichl <dominik.reichl@t-online.de>
 
@@ -31,6 +33,7 @@ using KeePassLib.Cryptography;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
+using keepass2android;
 
 namespace OtpKeyProv
 {
@@ -168,12 +171,15 @@ namespace OtpKeyProv
 
 			try
 			{
-				sIn = IOConnection.OpenRead(ioc);
+				sIn = App.Kp2a.GetOtpAuxFileStorage(ioc).OpenFileForRead(ioc);
 
-				XmlSerializer xs = new XmlSerializer(typeof(OtpInfo));
-				return (OtpInfo)xs.Deserialize(sIn);
+				XmlSerializer xs = new XmlSerializer(typeof (OtpInfo));
+				return (OtpInfo) xs.Deserialize(sIn);
 			}
-			catch(Exception) { }
+			catch (Exception e)
+			{
+				Kp2aLog.Log(e.ToString());
+			}
 			finally
 			{
 				if(sIn != null) sIn.Close();
@@ -188,20 +194,23 @@ namespace OtpKeyProv
 
 			try
 			{
-				sOut = IOConnection.OpenWrite(ioc);
+				using (var trans = App.Kp2a.GetOtpAuxFileStorage(ioc)
+					               .OpenWriteTransaction(ioc, App.Kp2a.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+				{
+					XmlWriterSettings xws = new XmlWriterSettings();
+					xws.CloseOutput = true;
+					xws.Encoding = StrUtil.Utf8;
+					xws.Indent = true;
+					xws.IndentChars = "\t";
 
-				XmlWriterSettings xws = new XmlWriterSettings();
-				xws.CloseOutput = true;
-				xws.Encoding = StrUtil.Utf8;
-				xws.Indent = true;
-				xws.IndentChars = "\t";
+					XmlWriter xw = XmlWriter.Create(trans.OpenFile(), xws);
 
-				XmlWriter xw = XmlWriter.Create(sOut, xws);
+					XmlSerializer xs = new XmlSerializer(typeof (OtpInfo));
+					xs.Serialize(xw, otpInfo);
 
-				XmlSerializer xs = new XmlSerializer(typeof(OtpInfo));
-				xs.Serialize(xw, otpInfo);
-
-				xw.Close();
+					xw.Close();
+					trans.CommitWrite();
+				}
 				return true;
 			}
 			catch(Exception) { Debug.Assert(false); }

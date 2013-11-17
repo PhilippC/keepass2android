@@ -82,19 +82,6 @@ namespace keepass2android.Io
 		/// <param name="useFileTransaction">if true, force to use file system level transaction. This might be ignored if the file storage has built in transaction support</param>
 		IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction);
 
-		/// <summary>
-		/// brings up a dialog to query credentials or something like this.
-		/// </summary>
-		/// <returns>true if success, false if error or cancelled by user</returns>
-		bool CompleteIoId( /*in/out ioId*/);
-
-
-		/// <summary>
-		/// Checks whether the given file exists.
-		/// </summary>
-		/// <returns>true if it exists, false if not. Null if the check couldn't be performed (e.g. because no credentials available or no connection established.)</returns>
-		bool? FileExists( /*ioId*/);
-
 		string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc);
 		
 		/// <summary>
@@ -135,10 +122,10 @@ namespace keepass2android.Io
 		void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId);
 
 		/// <summary>
-		/// Initiates the process for choosing a file in the given file storage.
+		/// Initiates the process for using a file in the given file storage.
 		/// The file storage should either call OnImmediateResult or StartFileUsageProcess
 		/// If alwaysReturnSuccess is true, the activity should be finished with ResultCode Ok.
-		/// This can make sense if a higher-level file storage has the file cached by still wants to 
+		/// This can make sense if a higher-level file storage has the file cached but still wants to 
 		/// give the cached storage the chance to initialize file access.
 		/// </summary>
 		void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, bool alwaysReturnSuccess);
@@ -157,6 +144,17 @@ namespace keepass2android.Io
 		//returns the path of a file "newFilename" in the folder "parent"
 		//this may create the file if this is required to get a path (if a UUID is part of the file path)
 		string CreateFilePath(string parent, string newFilename);
+
+		/// <summary>
+		/// returns the parent folder of ioc
+		/// </summary>
+		IOConnectionInfo GetParentPath(IOConnectionInfo ioc);
+
+		/// <summary>
+		/// returns the file path of the file "filename" in the folderPath.
+		/// </summary>
+		/// The method may throw FileNotFoundException or not in case the file doesn't exist.
+		IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename);
 	}
 
 	public interface IWriteTransaction: IDisposable

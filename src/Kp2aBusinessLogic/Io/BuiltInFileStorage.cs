@@ -107,16 +107,6 @@ namespace keepass2android.Io
 			}
 		}
 
-		public bool CompleteIoId()
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool? FileExists()
-		{
-			throw new NotImplementedException();
-		}
-
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{
 			return UrlUtil.StripExtension(
@@ -206,6 +196,20 @@ namespace keepass2android.Io
 			if (!parent.EndsWith("/"))
 				parent += "/";
 			return parent + newFilename;
+		}
+
+		public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
+		{
+			return IoUtil.GetParentPath(ioc);
+		}
+
+		public IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename)
+		{
+			IOConnectionInfo res = folderPath.CloneDeep();
+			if (!res.Path.EndsWith("/"))
+				res.Path += "/";
+			res.Path += filename;
+			return res;
 		}
 	}
 }
