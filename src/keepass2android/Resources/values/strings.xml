@@ -143,6 +143,7 @@
   <string name="omitbackup_summary">Omit \'Backup\' and Recycle Bin group from search results</string>
   <string name="pass_filename">KeePass database filename</string>
   <string name="password_title">Enter database password</string>
+  <string name="master_key_type">Select master key type:</string>
   <string name="progress_create">Creating new database…</string>
   <string name="create_database">Create database</string>
   <string name="progress_title">Working…</string>
@@ -299,8 +300,16 @@
 	<string name="UpdatedRemoteFileOnLoad">Updated remote file.</string>
 	<string name="NotifyOpenFromLocalDueToConflict">Opened local file due to conflict with changes in remote file. Use Synchronize menu to merge.</string>
 	<string name="LoadedFromRemoteInSync">Remote file and cache are synchronized.</string>
-	<string name="UpdatedCachedFileOnLoad">Updated local cache copy of database.</string>
+	<string name="UpdatedCachedFileOnLoad">Updated local cache copy of %1$s.</string>
 	<string name="RemoteDatabaseUnchanged">No changes detected.</string>
+
+	<string name="ResolvedCacheConflictByUsingRemoteOtpAux">Updated cached OTP auxiliary file: Remote counter was higher.</string>
+	<string name="ResolvedCacheConflictByUsingLocalOtpAux">Updated remote OTP auxiliary file: Local counter was higher.</string>
+
+	<string name="SynchronizingOtpAuxFile">Synchronizing OTP auxiliary file…</string>
+	
+	<string name="database_file">database file</string>
+	<string name="otp_aux_file">OTP auxiliary file</string>
 
 	<string name="ErrorOcurred">An error occured:</string>
 
@@ -343,14 +352,19 @@
 
 	<string name="error_adding_keyfile">Error while adding the keyfile!</string>
 
-	<string name="init_otp">Enter OTPs…</string>
+	<string name="init_otp">Load OTP auxiliary file…</string>
 	<string name="otp_explanation">Enter the next One-time-passwords (OTPs). Swipe your Yubikey NEO at the back of your device to enter via NFC.</string>
 	<string name="otp_hint">OTP %1$d</string>
 	<string name="CouldntLoadOtpAuxFile">Could not load auxiliary OTP file!</string>
 	<string name="otp_discarded_because_no_db">Please select database first. OTP is discarded for security reasons.</string>
 	<string name="otp_discarded_no_space">OTP discarded: All OTPs already entered!</string>
+	<string name="otp_discarded_because_db_open">Please close database first. OTP is discarded.</string>
 	<string name="otps_pending">(One or more OTPs already available)</string>
-
+	<string name="otpsecret_hint">OTP secret (e.g. 01 23 ab cd…)</string>
+	<string name="CouldntParseOtpSecret">Error parsing OTP secret!</string>
+	<string name="OtpKeyError">Failed to create OTP key! Make sure you have entered the correct OTPs.</string>
+	<string name="ErrorUpdatingOtpAuxFile">Error updating OTP auxiliary file!</string>
+	<string name="SavingOtpAuxFile">Saving auxiliary OTP file…</string>
 
 	<string name="loading">Loading…</string>
 	
@@ -477,5 +491,6 @@ Initial public release
 		<item>Password only</item>
 		<item>Password + Key file</item>
 		<item>Password + OTP</item>
+		<item>Password + OTP secret (recovery mode)</item>
 	</string-array>
 </resources>

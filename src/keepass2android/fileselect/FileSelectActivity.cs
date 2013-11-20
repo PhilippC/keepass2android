@@ -373,7 +373,7 @@ namespace keepass2android
 #if !EXCLUDE_FILECHOOSER
 				StartFileChooser(ioc.Path);
 #else
-				LaunchPasswordActivityForIoc(new IOConnectionInfo { Path = "/mnt/sdcard/keepass/yubi2.kdbx"});
+				LaunchPasswordActivityForIoc(new IOConnectionInfo { Path = "/mnt/sdcard/keepass/yubi.kdbx"});
 #endif
 			}
 			if ((resultCode == Result.Canceled) && (data != null) && (data.HasExtra("EXTRA_ERROR_MESSAGE")))

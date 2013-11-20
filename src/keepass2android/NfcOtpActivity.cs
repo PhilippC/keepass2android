@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Widget;
 using Java.Util.Regex;
 
 namespace keepass2android
@@ -54,8 +55,30 @@ namespace keepass2android
 			
 			
 			i.SetFlags(ActivityFlags.NewTask | ActivityFlags.SingleTop | ActivityFlags.ClearTop);
-			i.PutExtra(Intents.OtpExtraKey, GetOtpFromIntent(Intent));
-			StartActivity(i);
+			try
+			{
+				string otp = GetOtpFromIntent(Intent);
+				if (otp == null)
+					throw new Exception("Otp must not be null!");
+				i.PutExtra(Intents.OtpExtraKey, otp);
+			}
+			catch (Exception e)
+			{
+				Kp2aLog.Log(e.ToString());
+				Toast.MakeText(this, "No Yubikey OTP found!", ToastLength.Long).Show();
+				Finish();
+				return;
+			}
+
+			if (App.Kp2a.GetDb().Loaded)
+			{
+				Toast.MakeText(this, GetString(Resource.String.otp_discarded_because_db_open), ToastLength.Long).Show();
+			}
+			else
+			{
+				StartActivity(i);				
+			}
+
 			Finish();
 
 		}

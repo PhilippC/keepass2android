@@ -25,6 +25,7 @@ using Android.Widget;
 using KeePassLib;
 using Android.Preferences;
 using KeePassLib.Interfaces;
+using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using keepass2android.Io;
 using keepass2android.database.edit;
@@ -365,6 +366,37 @@ namespace keepass2android
 			}
 			
 			return base.OnOptionsItemSelected(item);
+		}
+
+		class SyncOtpAuxFile: OnFinish
+		{
+			private readonly IOConnectionInfo _ioc;
+
+			public SyncOtpAuxFile(IOConnectionInfo ioc)
+			{
+				_ioc = ioc;
+			}
+
+			public override void Run()
+			{
+				if (Handler != null)
+				{
+					Handler.Post(DoSyncOtpAuxFile);
+				}
+				else
+					DoSyncOtpAuxFile();
+				base.Run();
+			}
+
+			private void DoSyncOtpAuxFile()
+			{
+				StatusLogger.UpdateMessage(UiStringKey.SynchronizingOtpAuxFile);
+				//simply open the file. The file storage does a complete sync.
+				using (App.Kp2a.GetOtpAuxFileStorage(_ioc).OpenFileForRead(_ioc))
+				{
+					
+				}
+			}
 		}
 
 		private void Synchronize()

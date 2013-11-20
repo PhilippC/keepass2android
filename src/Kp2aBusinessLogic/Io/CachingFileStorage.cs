@@ -60,7 +60,7 @@ namespace keepass2android.Io
 	/// </summary>
 	public class CachingFileStorage: IFileStorage
 	{
-		private readonly IFileStorage _cachedStorage;
+		protected readonly IFileStorage _cachedStorage;
 		private readonly ICacheSupervisor _cacheSupervisor;
 		private readonly string _streamCacheDir;
 
@@ -179,14 +179,21 @@ namespace keepass2android.Io
 				{
 					if (TryUpdateRemoteFile(localData, ioc, true, hash))
 						_cacheSupervisor.UpdatedRemoteFileOnLoad(ioc);
+					return File.OpenRead(cachedFilePath);
 				}
 			}
 			else
 			{
 				//conflict: both files changed.
-				//signal that we're loading from local
-				_cacheSupervisor.NotifyOpenFromLocalDueToConflict(ioc);
+				return OpenFileForReadWithConflict(ioc, cachedFilePath);
 			}
+			
+		}
+
+		protected virtual Stream OpenFileForReadWithConflict(IOConnectionInfo ioc, string cachedFilePath)
+		{
+			//signal that we're loading from local
+			_cacheSupervisor.NotifyOpenFromLocalDueToConflict(ioc);
 			return File.OpenRead(cachedFilePath);
 		}
 
@@ -214,29 +221,17 @@ namespace keepass2android.Io
 
 		private Stream OpenFileForReadWhenNoLocalChanges(IOConnectionInfo ioc, string cachedFilePath)
 		{
-			//open stream:
-			using (Stream file = _cachedStorage.OpenFileForRead(ioc))
-			{
+
+			//remember current hash
+			string previousHash = null;
+			string baseVersionFilePath = BaseVersionFilePath(ioc);
+			if (File.Exists(baseVersionFilePath))
+				previousHash = File.ReadAllText(baseVersionFilePath);
+
+
+
 				//copy to cache: 
-				//note: we might use the file version to check if it's already in the cache and if copying is required. 
-				//However, this is safer.
-				string fileHash;
-				using (HashingStreamEx cachedFile = new HashingStreamEx(File.Create(cachedFilePath), true, new SHA256Managed()))
-				{
-					file.CopyTo(cachedFile);
-					cachedFile.Close();
-					fileHash = MemUtil.ByteArrayToHexString(cachedFile.Hash);
-				}
-
-				//remember current hash
-				string previousHash = null;
-				string baseVersionFilePath = BaseVersionFilePath(ioc);
-				if (File.Exists(baseVersionFilePath))
-					previousHash = File.ReadAllText(baseVersionFilePath);
-
-				//save hash in cache files:
-				File.WriteAllText(VersionFilePath(ioc), fileHash);
-				File.WriteAllText(baseVersionFilePath, fileHash);
+				var fileHash = UpdateCacheFromRemote(ioc, cachedFilePath);
 
 				//notify supervisor what we did:
 				if (previousHash != fileHash)
@@ -245,8 +240,35 @@ namespace keepass2android.Io
 					_cacheSupervisor.LoadedFromRemoteInSync(ioc);
 
 				return File.OpenRead(cachedFilePath);	
-			}
+
 			
+		}
+
+		/// <summary>
+		/// copies the file in ioc to the local cache. Updates the cache version files and returns the new file hash.
+		/// </summary>
+		protected string UpdateCacheFromRemote(IOConnectionInfo ioc, string cachedFilePath)
+		{
+			//note: we might use the file version to check if it's already in the cache and if copying is required. 
+			//However, this is safer.
+			string fileHash;
+			
+			//open stream:
+			using (Stream remoteFile = _cachedStorage.OpenFileForRead(ioc))
+			{
+
+				using (HashingStreamEx cachedFile = new HashingStreamEx(File.Create(cachedFilePath), true, new SHA256Managed()))
+				{
+					remoteFile.CopyTo(cachedFile);
+					cachedFile.Close();
+					fileHash = MemUtil.ByteArrayToHexString(cachedFile.Hash);
+				}
+			}
+
+			//save hash in cache files:
+			File.WriteAllText(VersionFilePath(ioc), fileHash);
+			File.WriteAllText(BaseVersionFilePath(ioc), fileHash);
+			return fileHash;
 		}
 
 		private bool TryUpdateRemoteFile(Stream cachedData, IOConnectionInfo ioc, bool useFileTransaction, string hash)
@@ -266,7 +288,7 @@ namespace keepass2android.Io
 			}
 		}
 
-		private void UpdateRemoteFile(Stream cachedData, IOConnectionInfo ioc, bool useFileTransaction, string hash)
+		protected void UpdateRemoteFile(Stream cachedData, IOConnectionInfo ioc, bool useFileTransaction, string hash)
 		{
 			//try to write to remote:
 			using (

@@ -44,6 +44,8 @@ namespace keepass2android
 		CheckingDatabaseForChanges,
 		RemoteDatabaseUnchanged,
 		CannotMoveGroupHere,
-		ErrorOcurred
+		ErrorOcurred,
+		SynchronizingOtpAuxFile,
+		SavingOtpAuxFile
     }
 }

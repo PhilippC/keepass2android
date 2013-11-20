@@ -44,6 +44,13 @@ namespace keepass2android
 				return KpDatabase == null ? null : KpDatabase.IOConnectionInfo;
 			}
 		}
+
+		/// <summary>
+		/// if an OTP key was used, this property tells the location of the OTP auxiliary file.
+		/// Must be set after loading.
+		/// </summary>
+		public IOConnectionInfo OtpAuxFileIoc { get; set; }
+
 		public string LastFileVersion;
 		public SearchDbHelper SearchHelper;
 		
@@ -192,6 +199,7 @@ namespace keepass2android
 			KpDatabase = null;
 			_loaded = false;
 			_reloadRequested = false;
+			OtpAuxFileIoc = null;
 		}
 		
 		public void MarkAllGroupsAsDirty() {

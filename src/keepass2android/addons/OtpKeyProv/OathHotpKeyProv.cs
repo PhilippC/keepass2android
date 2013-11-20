@@ -49,10 +49,16 @@ namespace OtpKeyProv
 		private static IOConnectionInfo GetAuxFileIoc(KeyProviderQueryContext ctx)
 		{
 			IOConnectionInfo ioc = ctx.DatabaseIOInfo.CloneDeep();
-			IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(ioc);
-			IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(ioc),
-			                                                  fileStorage.GetFilenameWithoutPathAndExt(ioc) + AuxFileExt);
+			var iocAux = GetAuxFileIoc(ioc);
 
+			return iocAux;
+		}
+
+		public static IOConnectionInfo GetAuxFileIoc(IOConnectionInfo databaseIoc)
+		{
+			IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(databaseIoc);
+			IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(databaseIoc),
+			                                                  fileStorage.GetFilenameWithoutPathAndExt(databaseIoc) + AuxFileExt);
 			return iocAux;
 		}
 
@@ -130,7 +136,7 @@ namespace OtpKeyProv
 		}
 
 
-		private static bool CreateAuxFile(OtpInfo otpInfo,
+		public static bool CreateAuxFile(OtpInfo otpInfo,
 			KeyProviderQueryContext ctx)
 		{
 			otpInfo.Type = ProvType;

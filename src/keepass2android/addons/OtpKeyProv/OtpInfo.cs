@@ -197,18 +197,8 @@ namespace OtpKeyProv
 				using (var trans = App.Kp2a.GetOtpAuxFileStorage(ioc)
 					               .OpenWriteTransaction(ioc, App.Kp2a.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
 				{
-					XmlWriterSettings xws = new XmlWriterSettings();
-					xws.CloseOutput = true;
-					xws.Encoding = StrUtil.Utf8;
-					xws.Indent = true;
-					xws.IndentChars = "\t";
-
-					XmlWriter xw = XmlWriter.Create(trans.OpenFile(), xws);
-
-					XmlSerializer xs = new XmlSerializer(typeof (OtpInfo));
-					xs.Serialize(xw, otpInfo);
-
-					xw.Close();
+					var stream = trans.OpenFile();
+					WriteToStream(otpInfo, stream);
 					trans.CommitWrite();
 				}
 				return true;
@@ -220,6 +210,31 @@ namespace OtpKeyProv
 			}
 
 			return false;
+		}
+
+
+		public static void WriteToStream(OtpInfo otpInfo, Stream stream)
+		{
+			var xws = XmlWriterSettings();
+
+			XmlWriter xw = XmlWriter.Create(stream, xws);
+
+			XmlSerializer xs = new XmlSerializer(typeof (OtpInfo));
+			xs.Serialize(xw, otpInfo);
+
+			xw.Close();
+		}
+
+		public static XmlWriterSettings XmlWriterSettings()
+		{
+			XmlWriterSettings xws = new XmlWriterSettings
+				{
+					CloseOutput = true,
+					Encoding = StrUtil.Utf8,
+					Indent = true,
+					IndentChars = "\t"
+				};
+			return xws;
 		}
 
 		public void EncryptSecret()

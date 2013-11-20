@@ -32,6 +32,7 @@ using Android.Preferences;
 using TwofishCipher;
 #endif
 using keepass2android.Io;
+using keepass2android.addons.OtpKeyProv;
 
 namespace keepass2android
 {
@@ -294,8 +295,11 @@ namespace keepass2android
 
 					builder.SetNegativeButton(GetResourceString(noString), noHandler);
 
-					builder.SetNeutralButton(ctx.GetString(Android.Resource.String.Cancel),
-											 cancelHandler);
+					if (cancelHandler != null)
+					{
+						builder.SetNeutralButton(ctx.GetString(Android.Resource.String.Cancel),
+												 cancelHandler);	
+					}
 
 					Dialog dialog = builder.Create();
 					dialog.Show();
@@ -447,7 +451,7 @@ namespace keepass2android
             return _db;
         }
 
-		void ShowToast(string message)
+		internal void ShowToast(string message)
 		{
 			var handler = new Handler(Looper.MainLooper);
 			handler.Post(() => { Toast.MakeText(Application.Context, message, ToastLength.Long).Show(); });
@@ -466,7 +470,8 @@ namespace keepass2android
 
 		public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
 		{
-			ShowToast(Application.Context.GetString(Resource.String.UpdatedCachedFileOnLoad));
+			ShowToast(Application.Context.GetString(Resource.String.UpdatedCachedFileOnLoad, 
+				new Java.Lang.Object[] { Application.Context.GetString(Resource.String.database_file) }));
 		}
 
 		public void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc)
@@ -510,7 +515,7 @@ namespace keepass2android
 				
 				if (DatabaseCacheEnabled)
 				{
-					return new CachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, this);
+					return new OtpAuxCachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, new OtpAuxCacheSupervisor(this));
 				}
 				else
 				{
@@ -532,7 +537,7 @@ namespace keepass2android
 	}
 
 
-    ///Application class for Keepass2Android: Contains static Database variable to be used by all components.
+	///Application class for Keepass2Android: Contains static Database variable to be used by all components.
 #if NoNet
 	[Application(Debuggable=false, Label=AppNames.AppName)]
 #else
