@@ -288,7 +288,6 @@
   <string name="UpdatedRemoteFileOnLoad">S-a actualizat fişierul remote.</string>
   <string name="NotifyOpenFromLocalDueToConflict">S-a deschis varianta locală din cauza unor conflicte cu varianta remote. Folosiţi meniul Sincronizare pentru a combina.</string>
   <string name="LoadedFromRemoteInSync">Varianta remote şi din cache sun sincronizate.</string>
-  <string name="UpdatedCachedFileOnLoad">S-a actualizat varianta locală a bazei de date.</string>
   <string name="RemoteDatabaseUnchanged">Nu s-au detectat modificări.</string>
   <string name="ErrorOcurred">A apărut o eroare:</string>
   <string name="synchronize_database_menu">Sincronizează baza de date…</string>
@@ -397,7 +396,11 @@ Versiunea publică iniţială</string>
     <item>30 de secunde</item>
     <item>1 minut</item>
     <item>5 minute</item>
-    <item>Niciodată</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Mic</item>
@@ -408,5 +411,11 @@ Versiunea publică iniţială</string>
     <item>Nu reține numele utilizator și parola</item>
     <item>Reține numele de utilizator</item>
     <item>Reține numele de utilizator și parola</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

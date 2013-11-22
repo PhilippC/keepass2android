@@ -24,7 +24,11 @@
     <item>30 segundos</item>
     <item>1 minuto</item>
     <item>5 minutos</item>
-    <item>Nunca</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Pequena</item>
@@ -35,5 +39,11 @@
     <item>Não lembrar nome de utilizador e password</item>
     <item>Lembrar apenas nome de utilizador</item>
     <item>Lembrar nome de utilizador e password</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

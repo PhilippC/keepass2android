@@ -3,7 +3,8 @@
 <resources>
   <string name="about_feedback">Feedback</string>
   <string name="about_homepage">Homepage</string>
-  <string name="AboutText">Keepass2Android is een wachtwoordmanager met schrijf/leesrechten voor KeePass 2.x databases in Android.</string>
+  <string name="AboutText">Keepass2Android is een wachtwoordmanager met lees/schrijf toegang tot KeePass 2.x databases in Android.</string>
+  <string name="CreditsText">De gebruikersinterface is gebaseerd op KeepassDroid een port ontwikkeld door Brian Pellin. Code voor de database operaties is gebaseerd op KeePass door Dominik Reichl. De Android robot is gereproduceerd of aangepast van het werk gemaakt en gedeeld door Google en gebruikt in overeenstemming met de voorwaarden beschreven in de Creative Commons 3.0 Attribution License.</string>
   <string name="accept">Accepteren</string>
   <string name="add_entry">Record toevoegen</string>
   <string name="add_url_entry">URL invoeren</string>
@@ -139,6 +140,7 @@
   <string name="pass_filename">KeePass databasebestandsnaam</string>
   <string name="password_title">Geef databasewachtwoord</string>
   <string name="progress_create">Nieuwe database wordt aangemaakt…</string>
+  <string name="create_database">Database maken</string>
   <string name="progress_title">Bezig…</string>
   <string name="remember_keyfile_summary">Onthoudt de locatie van de sleutelbestanden</string>
   <string name="remember_keyfile_title">Sleutelbestand opslaan</string>
@@ -174,6 +176,10 @@
   <string name="author">Keepass2Android is ontwikkeld door Philipp Crocoll.</string>
   <string name="further_authors">Dankzij de bijdragen van de code door %1$s.</string>
   <string name="credit_plugin1">De Twofish Cipher Plugin voor Keepass werd ontwikkeld door Scott Greenberg en is opgenomen in KP2A.</string>
+  <string name="credit_android_filechooser">Android-bestandskiezer is ontwikkeld door Hai Bison</string>
+  <string name="please_note">Merk op</string>
+  <string name="contributors">Bijdragers</string>
+  <string name="regular_expression">Reguliere expressie</string>
   <string name="TanExpiresOnUse_title">Tan verstrijkt na gebruik</string>
   <string name="TanExpiresOnUse_summary">TAN-invoer markeren als verlopen na gebruik</string>
   <string name="ShowUsernameInList_title">Geef gebruikersnaam weer in lijst</string>
@@ -221,6 +227,7 @@
   <string name="database_loaded_unlocked">%1$s: Ontgrendeld.</string>
   <string name="credentials_dialog_title">Serverreferenties invoeren</string>
   <string name="UseFileTransactions_title">Bestandshandelingen</string>
+  <string name="UseFileTransactions_summary">Gebruik bestand transacties voor het schrijven van databases</string>
   <string name="UseOfflineCache_title">Database caching</string>
   <string name="UseOfflineCache_summary">Houd een kopie van externe databasebestanden in de cachemap van de toepassing. Hierdoor kunt u ook externe databases gebruiken wanneer u offline bent.</string>
   <string name="ClearOfflineCache_title">Cache wissen?</string>
@@ -261,6 +268,7 @@
   <string name="UndoingChanges">Wijzigingen ongedaan maken…</string>
   <string name="TransformingKey">Hoofdsleutel transformeren…</string>
   <string name="DecodingDatabase">Database ontsleutelen…</string>
+  <string name="ParsingDatabase">Leest database…</string>
   <string name="CheckingTargetFileForChanges">Doelbestand op veranderingen controleren…</string>
   <string name="TitleSyncQuestion">Wijzigingen samenvoegen?</string>
   <string name="MessageSyncQuestion">Het databasebestand is extern bewerkt. Wilt u de wijzigingen ophalen en samenvoegen voordat u opslaat? Selecteer Nee als u de externe wijzigingen wilt overschrijven.</string>
@@ -279,14 +287,52 @@
   <string name="UpdatedRemoteFileOnLoad">Extern bestand bijgewerkt.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Lokaal bestand geopend in verband met een conflict met veranderingen in extern bestand. Gebruik het menu Synchroniseren om samen te voegen.</string>
   <string name="LoadedFromRemoteInSync">Extern bestand en cache zijn gesynchroniseerd.</string>
-  <string name="UpdatedCachedFileOnLoad">Lokale tijdelijke bestand van de database geüpdatet.</string>
   <string name="RemoteDatabaseUnchanged">Geen veranderingen geconstateerd.</string>
+  <string name="ErrorOcurred">Een fout is opgetreden:</string>
   <string name="synchronize_database_menu">Database synchroniseren…</string>
   <string name="CannotMoveGroupHere">Kan de groep niet naar deze groep verplaatsen.</string>
   <string name="donate_question">Vandaag is het Oktoberfeest! Als je Keepass2Android leuk vind: zou het niet de uitgelezen dag zijn om mij te trakteren op een biertje?</string>
   <string name="ok_donate">Vertel me hoe!</string>
   <string name="no_thanks">Nee, zo leuk vind het ook weer niet</string>
+  <string name="select_storage_type">Selecteer het opslagtype:</string>
+  <string name="filestoragename_file">Lokaal bestand</string>
+  <string name="filestoragename_androidget">Krijg via externe app</string>
+  <string name="filestoragename_androidsend">Stuur naar externe app</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">SkyDrive</string>
+  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
+  <string name="filestorage_setup_title">Bestandstoegang initaliseren</string>
+  <string name="database_location">Database locatie</string>
+  <string name="help_database_location">U kunt uw database lokaal op uw Android toestel of in de cloud opslaan (alleen de niet-Offline versie). Keepass2Android maakt de database beschikbaar, zelfs als u offline bent. Omdat de database veilig is versleuteld met AES 256 bit encryptie, kan niemand toegang krijgen tot uw wachtwoorden behalve u. We adviseren Dropbox te kiezen: Het is beschikbaar op al uw apparaten en voorziet zelfs in backups van vorige bestandsversies.</string>
+  <string name="hint_database_location">Selecteer waar u de database wilt opslaan:</string>
+  <string name="button_change_location">Locatie wijzigen</string>
+  <string name="master_password">Hoofdwachtwoord</string>
+  <string name="help_master_password">Uw database is versleuteld met het hier ingevoerde wachtwoord. Kies een sterk wachtwoord om de database te beveiligen! Tip: Bedenk een zin of twee en gebruik de eerste letters van de woorden als wachtwoord. Gebruik ook de leestekens.</string>
+  <string name="hint_master_password">Kies een hoofdwachtwoord om uw database te beschermen:</string>
+  <string name="key_file">Sleutelbestand</string>
+  <string name="help_key_file">Een sleutelbestand is feitelijk een wachtwoord opgeslagen in een bestand. Sleutelbestanden zijn doorgaans sterken dan hoofdwachtwoorden omdat de sleutel veel ingewikkelder kan zijn; hoewel het is lastiger om hem geheim te houden. Als u de database in de cloud opslaat, sla dan niet uw sleutelbestand daar ook op! Dat zou het volledig nutteloos maken! Belangrijk: verander de inhoud van het sleutelbestand niet na het maken van de database!</string>
+  <string name="hint_key_file">Kies als u gebruik wilt maken van een sleutelbestand naast uw hoofdwachtwoord:</string>
+  <string name="use_key_file">Gebruik sleutelbestand</string>
+  <string name="error_adding_keyfile">Fout tijdens het toevoegen van het sleutelbestand!</string>
   <string name="ChangeLog_title">Change log</string>
+  <string name="ChangeLog_0_9_1">
+		<b>Versie 0.9.1</b>\n
+		* Skydrive ondersteuning geïntegreerd (alleen voor Keepass2Android reguliere editie)\n
+		* Problemen met Google Drive ondersteuning opgelost\n
+		* NTLM ondersteuning toegevoegd
+	</string>
+  <string name="ChangeLog_0_9">
+		<b>Versie 0.9</b>\n
+		* Dropbox en Google Drive ondersteuning geïntegreerd (lees/schrijf databases; alleen voor Keepass2Android reguliere editie)\n
+		* Aangepaste bestandszoeker geïntegreerd (gebaseerd op een android-bestandskiezer door HBA)\n
+		* Verbeterde gebruikersinterface voor het aanmaken van nieuwe databases\n
+		* Aangepast lettertype DejaVu Sans Mono toegevoegd om wachtwoorden weer te geven\n
+		* Bug fixes
+	</string>
   <string name="ChangeLog_0_8_6">
 		<b>Versiie 0.8.6</b>\n
 		* Ondersteuning voor Twofish codering\n
@@ -313,6 +359,15 @@
  * Verbeterd bewerken van extra tekenreeksen en verborgen scherm indien beschermd\n
  Bedankt aan Alex Vallat voor zijn bijdragen in de code!\n
  Bedankt aan Niki Hüttner (www.close-cut.de) voor het nieuwe logo!\n</string>
+  <string name="ChangeLog_0_8_3"><b>Versie 0.8.3</b>\n
+* Gebruikersnaam/TAN index weergegeven in lijst (zie instellingen)\n
+* Regels kunnen gemaakt worden als een zoekopdracht van de broweser geen resultaten geeft\n
+* KP2A toetsenbord bied mogelijkheid om referenties te zoeken voor huidige app\n
+* App sluit automatisch na het selecteren van een regel voor gebruik in het toetsenbord\n
+* Toetsenbord selectievenster opent automatisch na het zoeken voor een URL (zie instellingen)\n
+* Plaatsvervangers in invoervelden worden vervangen voor het kopiëren (meeste plaatsvervangers ondersteund)\n
+* kleine bug fixes
+  </string>
   <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
  * Ondersteuning voor Digest Authentication in WebDAV\n
  * Bugfixes (OI File manager, Open URL)
@@ -328,12 +383,34 @@
  * Bugs opgelost bij bewerkactiviteiten\n
  * Waarschijnlijk nieuwe bugs geïntroduceerd :-)
 </string>
-  <string name="ChangeLog_keptDonate">Uitgelezen kans om iemand anders een biertje te schenken</string>
+  <string name="ChangeLog_keptDonate">Uitgelezen kans om biertje te schenken of iets anders</string>
+  <string name="ChangeLog_0_7"><b>Versie 0.7</b>\n
+* Verbeterde laadsnelheid: sleuteltransformaties zijn nu 10x sneller!\n
+* Keepass2Android soft-keyboard toegevoegd: Schakel naar dit toetsenbord over voor het invoeren van referenties. Beschermt u van klembord gebaseerde wachtwoord afluisterapps  (schakel oude klembord meldingen uit in de instellingen)\n
+* Optie toegevoegd om een biertje te doneren of iets anders (Zie menu)</string>
+  <string name="ChangeLog"><b>Versie 0.6.2</b>\n
+* Google Drive/Dropbox/... integratie: Gebruik de officiële Google Drive or Dropbox App en open elke .kdbx-file. Dat zal nu KP2A openen.\n
+* Verbeterd zoekvenster \n
+* Verbeterde zoekresultaten voor Deel URL met subdomeinen\n
+* Opties toegevoegd om feedback te  geven en het waarderen of vertalen van de app in het menu\n
+\n
+<b>Versie 0.6.1</b>\n
+* Detecteer als een database wijzigt in de achtergrond (d.w.z. door activiteit van een synchronisatie app)\n
+* Verbeterd zoeken voor URLs van de browser\n
+* Bevestigingsvensters voor het weggooien van wijzigingen\n
+\n
+<b>Versie 0.6</b>\n
+Eerste publieke publikatie
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconden</item>
     <item>1 minuut</item>
     <item>5 minuten</item>
-    <item>Nooit</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Klein</item>
@@ -344,5 +421,11 @@
     <item>Gebruikersnaam en wachtwoord niet onthouden</item>
     <item>Alleen gebruikersnaam onthouden</item>
     <item>Onthoud gebruikersnaam en wachtwoord</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

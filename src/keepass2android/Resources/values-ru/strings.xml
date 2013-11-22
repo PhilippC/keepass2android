@@ -287,7 +287,6 @@
   <string name="UpdatedRemoteFileOnLoad">Обновленный удалённый файл.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Открыт локальный файл из-за конфликта с изменениями в удалённом файле. Используйте меню Синхронизация для слияния.</string>
   <string name="LoadedFromRemoteInSync">Удалённый файл и кэш синхронизированы.</string>
-  <string name="UpdatedCachedFileOnLoad">Обновление локальной кэшированной копии базы данных.</string>
   <string name="RemoteDatabaseUnchanged">Изменений не обнаружено.</string>
   <string name="ErrorOcurred">Произошла ошибка:</string>
   <string name="synchronize_database_menu">Синхронизируйте базу данных…</string>
@@ -320,6 +319,10 @@
   <string name="use_key_file">Использовать ключевой файл</string>
   <string name="error_adding_keyfile">Ошибка при добавлении ключевого файла!</string>
   <string name="ChangeLog_title">Список изменений</string>
+  <string name="ChangeLog_0_9_1">   <b>Версия 0.9.1</b>
+ * Встроена поддержка SkyDrive (только Keepass2Android regular edition)
+ * Исправлены проблемы с Google Drive 
+ * Добавлена поддержка NTLM  </string>
   <string name="ChangeLog_0_9"><b>Версия 0.9</b>\n
 * Интегрирована поддержка Dropbox и Диска Google (чтение/запись баз данных; только в обычной редакции Keepass2Android)\n
 * Интегирован диалог выбора файла файла (основан на android-filechooser от HBA)\n
@@ -394,7 +397,11 @@
     <item>30 сек.</item>
     <item>1 мин.</item>
     <item>5 мин.</item>
-    <item>Никогда</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Мелкий</item>
@@ -405,5 +412,11 @@
     <item>Не запоминать имя пользователя и пароль</item>
     <item>Запоминать только имя пользователя</item>
     <item>Запоминать имя пользователя и пароль</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

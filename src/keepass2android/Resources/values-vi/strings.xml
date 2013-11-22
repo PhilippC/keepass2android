@@ -281,7 +281,6 @@
   <string name="UpdatedRemoteFileOnLoad">Đã cập nhật tập tin từ xa.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Đã mở các tập tin cục bộ do xung đột với những thay đổi trong tập tin từ xa. Sử dụng trình đơn Đồng bộ hóa để trộn.</string>
   <string name="LoadedFromRemoteInSync">Tập tin từ xa và bộ nhớ đệm đã được đồng bộ hóa.</string>
-  <string name="UpdatedCachedFileOnLoad">Đã cập nhật bản sao đệm của cơ sở dữ liệu cục bộ.</string>
   <string name="RemoteDatabaseUnchanged">Không có thay đổi nào được phát hiện.</string>
   <string name="ErrorOcurred">Một lỗi đã xảy ra:</string>
   <string name="synchronize_database_menu">Đang đồng bộ hóa cơ sở dữ liệu…</string>
@@ -391,7 +390,11 @@ Bản phát hành chính thức đầu tiên</string>
     <item>30 giây</item>
     <item>1 phút</item>
     <item>5 phút</item>
-    <item>Không bao giờ</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Nhỏ</item>
@@ -402,5 +405,11 @@ Bản phát hành chính thức đầu tiên</string>
     <item>Không nhớ tên người dùng và mật mã</item>
     <item>Chỉ nhớ tên người dùng thôi</item>
     <item>Nhớ tên người dùng và mật mã</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

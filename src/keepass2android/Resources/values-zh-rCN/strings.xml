@@ -270,7 +270,6 @@
   <string name="UpdatedRemoteFileOnLoad">更新远程文件。</string>
   <string name="NotifyOpenFromLocalDueToConflict">由于已打开的本地文件与远程文件变更不一致。使用同步菜单合并。</string>
   <string name="LoadedFromRemoteInSync">远程文件和缓存已同步。</string>
-  <string name="UpdatedCachedFileOnLoad">更新数据库的本地缓存副本。</string>
   <string name="RemoteDatabaseUnchanged">未检测到变化。</string>
   <string name="synchronize_database_menu">同步数据库...</string>
   <string name="ChangeLog_title">更新记录</string>
@@ -293,7 +292,11 @@ Initial public release
     <item>30秒</item>
     <item>1分钟</item>
     <item>5分钟</item>
-    <item>从不</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>小</item>
@@ -304,5 +307,11 @@ Initial public release
     <item>不记得用户名和密码</item>
     <item>仅记得用户名</item>
     <item>记得用户名及密码</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

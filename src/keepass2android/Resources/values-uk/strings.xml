@@ -252,7 +252,6 @@
   <string name="UpdatedRemoteFileOnLoad">Оновлений віддалений файл.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Відкриті локальні файли конфліктують зі змінами у віддалених файлах. Використайте меню синхронізації для об\'єднання.</string>
   <string name="LoadedFromRemoteInSync">Віддалений файл і кеш синхронізовано.</string>
-  <string name="UpdatedCachedFileOnLoad">Оновлено кешовану локальну копію бази даних.</string>
   <string name="RemoteDatabaseUnchanged">Зміни не виявлено.</string>
   <string name="synchronize_database_menu">Синхронізуйте базу даних…</string>
   <string name="ChangeLog_title">Журнал змін</string>
@@ -266,7 +265,11 @@
     <item>30 секунд</item>
     <item>1 хвилина</item>
     <item>5 хвилин</item>
-    <item>Ніколи</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Малий</item>
@@ -277,5 +280,11 @@
     <item>Do not remember username and password</item>
     <item>Remember username only</item>
     <item>Remember username and password</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

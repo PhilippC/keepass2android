@@ -287,7 +287,6 @@
   <string name="UpdatedRemoteFileOnLoad">Güncelleştirilmiş uzak dosya.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Uzaktaki dosya ile çakışma sebebiyle yerel veritabanı dosyası yüklendi. Değişiklikleri eklemek için \"Eşitle\" menüsünü seçin.</string>
   <string name="LoadedFromRemoteInSync">Uzak dosya ve önbellekteki yerel dosya eşitlendi.</string>
-  <string name="UpdatedCachedFileOnLoad">Veritabanının yerel önbellek kopyası güncelleştirildi.</string>
   <string name="RemoteDatabaseUnchanged">Hiçbir değişiklik algılanmadı.</string>
   <string name="ErrorOcurred">Bir hata oluştu:</string>
   <string name="synchronize_database_menu">Veritabanı Eşitle…</string>
@@ -403,7 +402,11 @@ Initial public release
     <item>30 saniye</item>
     <item>1 dakika</item>
     <item>5 dakika</item>
-    <item>Asla</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Küçük</item>
@@ -414,5 +417,11 @@ Initial public release
     <item>Kullanıcı adını ve şifreyi kaydetme</item>
     <item>Sadece kullanıcı adını hatırla</item>
     <item>Kullanıcı adını ve şifreyi hatırla</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

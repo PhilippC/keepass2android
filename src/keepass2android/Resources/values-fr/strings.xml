@@ -287,7 +287,6 @@
   <string name="UpdatedRemoteFileOnLoad">Fichier distant mis à jour.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Fichier local utilisé en raison d\'un conflit avec des modifications apportées au fichier distant. Utiliser le menu Synchroniser pour fusionner.</string>
   <string name="LoadedFromRemoteInSync">Cache et fichier distant synchronisés.</string>
-  <string name="UpdatedCachedFileOnLoad">Cache local de base de données mis à jour.</string>
   <string name="RemoteDatabaseUnchanged">Aucun changement détecté.</string>
   <string name="ErrorOcurred">Une erreur est survenue :</string>
   <string name="synchronize_database_menu">Synchroniser la base de données…</string>
@@ -356,7 +355,11 @@ Première version publique</string>
     <item>30 secondes</item>
     <item>1 minute</item>
     <item>5 minutes</item>
-    <item>Jamais</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Petit</item>
@@ -367,5 +370,11 @@ Première version publique</string>
     <item>Ne pas se souvenir des identifiants</item>
     <item>Ne se rappeler que le nom d\'utilisateur</item>
     <item>Se rappeler le nom d\'utilisateur et le mot de passe</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

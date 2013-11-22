@@ -131,7 +131,11 @@
     <item>30秒</item>
     <item>1分鐘</item>
     <item>5分鐘</item>
-    <item>從不</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>小</item>
@@ -142,5 +146,11 @@
     <item>Do not remember username and password</item>
     <item>Remember username only</item>
     <item>Remember username and password</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

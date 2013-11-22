@@ -287,7 +287,6 @@
   <string name="UpdatedRemoteFileOnLoad">Zaktualizowano plik zdalny.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Otwarto lokalny plik ze względu na konflikt ze zmianami w pliku zdalnym. Użyj menu Synchronizuj do połączenia obydwu plików.</string>
   <string name="LoadedFromRemoteInSync">Zdalny plik i pamięć podręczna są zsynchronizowane.</string>
-  <string name="UpdatedCachedFileOnLoad">Aktualizacja lokalnej kopii bazy danych.</string>
   <string name="RemoteDatabaseUnchanged">Nie wykryto żadnych zmian.</string>
   <string name="ErrorOcurred">Wystąpił błąd:</string>
   <string name="synchronize_database_menu">Synchronizowanie bazy danych...</string>
@@ -320,6 +319,12 @@
   <string name="use_key_file">Użyj pliku klucza</string>
   <string name="error_adding_keyfile">Wystąpił błąd podczas dodawania pliku klucza!</string>
   <string name="ChangeLog_title">Lista zmian</string>
+  <string name="ChangeLog_0_9_1">
+		<b>Wersja 0.9.1</b>\n
+		* Dodano wsparcie dla SkyDrive (Tylko zwyczajna edycja Keepass2Android)\n
+		* Poprawiono problemy z integracją z Google Drive\n
+		* Dodano wsparcie dla NTLM 
+	</string>
   <string name="ChangeLog_0_9">
 <b>Wersja 0.9</b>\n
 * Integracja z Dropbox i Google Drive (odczyt i zapis baz danych; tylko wersja standardowa Keepass2Android)\n
@@ -380,7 +385,11 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>30 sekund</item>
     <item>1 minuta</item>
     <item>5 minut</item>
-    <item>Nigdy</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Mała</item>
@@ -391,5 +400,11 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Nie zapamiętuj nazwy użytkownika i hasła</item>
     <item>Pamiętaj tylko nazwę użytkownika</item>
     <item>Pamiętaj nazwę użytkownika i hasło</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

@@ -138,7 +138,11 @@
     <item>30 sekund</item>
     <item>1 minutt</item>
     <item>5 minutt</item>
-    <item>Aldri</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Liten</item>
@@ -149,5 +153,11 @@
     <item>Do not remember username and password</item>
     <item>Remember username only</item>
     <item>Remember username and password</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

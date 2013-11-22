@@ -288,7 +288,6 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UpdatedRemoteFileOnLoad">Remote-Datei aktualisiert.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Datei aus lokalem Cache geladen wegen Konflikt mit Änderungen in der Remote-Datei. Nutze das Synchronisierungsmenü zum Zusammenführen.</string>
   <string name="LoadedFromRemoteInSync">Remote-Datei und Cache stimmen überein.</string>
-  <string name="UpdatedCachedFileOnLoad">Kopie der Datenbank im lokalen Cache aktualisiert.</string>
   <string name="RemoteDatabaseUnchanged">Keine Änderungen gefunden.</string>
   <string name="ErrorOcurred">Ein Fehler ist aufgetreten:</string>
   <string name="synchronize_database_menu">Datenbank synchronisieren…</string>
@@ -401,7 +400,11 @@ Erstes öffentliches Release</string>
     <item>30 Sekunden</item>
     <item>1 Minute</item>
     <item>5 Minuten</item>
-    <item>Nie</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Klein</item>
@@ -412,5 +415,11 @@ Erstes öffentliches Release</string>
     <item>Benutzername und Passwort nicht merken</item>
     <item>Nur Benutzername merken</item>
     <item>Benutzername und Passwort merken</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

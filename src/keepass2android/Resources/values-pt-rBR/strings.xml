@@ -22,17 +22,17 @@
   <string name="application">Aplicação</string>
   <string name="application_settings">Configurações</string>
   <string name="security_prefs">Segurança</string>
-  <string name="display_prefs">Display</string>
-  <string name="password_access_prefs">Acesso à entrada de senha</string>
+  <string name="display_prefs">Exibição</string>
+  <string name="password_access_prefs">Acesso às senhas de entradas</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Manipulação de arquivos</string>
   <string name="brackets">Parênteses</string>
   <string name="cancel">Cancelar</string>
-  <string name="ClearClipboard">Clipboard limpo.</string>
-  <string name="clipboard_timeout">Tempo limite para o clipboard</string>
-  <string name="clipboard_timeout_summary">Tempo até limpar o clipboard após copiar usuário ou senha.</string>
-  <string name="copy_username">Copiar usuário para o clipboard</string>
-  <string name="copy_password">Copiar senha para o clipboard</string>
+  <string name="ClearClipboard">Área de transferência limpa.</string>
+  <string name="clipboard_timeout">Limite de tempo para a área de transferência</string>
+  <string name="clipboard_timeout_summary">Tempo até limpar a área de transferência após copiar usuário ou senha</string>
+  <string name="copy_username">Copiar usuário para a área de transferência</string>
+  <string name="copy_password">Copiar senha para a área de transferência</string>
   <string name="available_through_keyboard">Entrada está disponível através do teclado KP2A</string>
   <string name="not_possible_im_picker">Não foi possível abrir a caixa de diálogo para selecionar o método de entrada. Por favor, ative o teclado manualmente.</string>
   <string name="please_activate_keyboard">Por favor habilite o teclado do Keepass2Android nas configurações do seu sistema.</string>
@@ -174,10 +174,11 @@
   <string name="version_label">Versão</string>
   <string name="version_history">Histórico de versões</string>
   <string name="author">Keepass2Android é desenvolvido por Philipp Crocoll.</string>
-  <string name="further_authors">Graças a contribuições de código por %1$s.</string>
+  <string name="further_authors">Agradecimentos a contribuições de código por %1$s.</string>
   <string name="credit_plugin1">O Plugin Twofish Cipher para Keepass foi desenvolvido por Scott Greenberg e está incluído em KP2A.</string>
   <string name="credit_android_filechooser">android-filechooser foi desenvolvido por Hai Bison</string>
-  <string name="contributors">Contribuidores</string>
+  <string name="please_note">Atenção</string>
+  <string name="contributors">Colaboradores</string>
   <string name="regular_expression">Expressão regular</string>
   <string name="TanExpiresOnUse_title">Tan expira em uso</string>
   <string name="TanExpiresOnUse_summary">Marque as entradas TAN como expiradas quando usá-las</string>
@@ -228,7 +229,13 @@
   <string name="UseFileTransactions_title">Arquivo de transações</string>
   <string name="UseFileTransactions_summary">Usar transações de arquivo para escrita de bancos de dados</string>
   <string name="ShowCopyToClipboardNotification_title">Notificações da área de transferência</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notificações do teclado KP2A</string>
+  <string name="ShowCopyToClipboardNotification_summary">Tornar usuários e senhas disponíveis através da barra de notificações e da área de transferência. Cuidado com sniffers de senhas!</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificação do teclado KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Tornar toda a entrada disponível através do teclado KP2A (recomendado).</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Caixa de diálogo de seleção de teclado</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Abre a caixa de diálogo de seleção do teclado quando uma entrada está disponível através do teclado KP2A após pesquisa.</string>
+  <string name="ShowUnlockedNotification_title">Notificação enquanto desbloqueado</string>
+  <string name="ShowUnlockedNotification_summary">Mostra uma notificação permanente enquanto o banco de dados está desbloqueado.</string>
   <string name="translate_app">Traduza o KP2A</string>
   <string name="AddingEntry">Adicionando a entrada…</string>
   <string name="AddingGroup">Adicionando grupo…</string>
@@ -239,11 +246,16 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
+  <string name="ChangeLog_title">Mudanças</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>
     <item>5 minutos</item>
-    <item>Nunca</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Pequeno</item>
@@ -254,5 +266,11 @@
     <item>Do not remember username and password</item>
     <item>Lembrar apenas nome do usuário</item>
     <item>Lembrar nome do usuário e senha</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

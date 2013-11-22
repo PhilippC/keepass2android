@@ -287,7 +287,6 @@
   <string name="UpdatedRemoteFileOnLoad">File remoto aggiornato.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Aperto il file locale a causa di conflitti con il file in remoto. Usa il menu Sincronizza per unire.</string>
   <string name="LoadedFromRemoteInSync">Il file remoto e la cache sono sincronizzati.</string>
-  <string name="UpdatedCachedFileOnLoad">Aggiornata la copia cache locale del database.</string>
   <string name="RemoteDatabaseUnchanged">Nessuna modifica rilevata.</string>
   <string name="ErrorOcurred">Si è verificato un errore:</string>
   <string name="synchronize_database_menu">Sincronizzazione del database…</string>
@@ -320,6 +319,11 @@
   <string name="use_key_file">Usa file chiave</string>
   <string name="error_adding_keyfile">Errore nell\'aggiunta del file chiave!</string>
   <string name="ChangeLog_title">log delle modifiche</string>
+  <string name="ChangeLog_0_9_1"><b>Versione 0.9.1</b>\n
+* Aggiunto il supporto per SkyDrive (solo nell\'edizione normale di Keepass2Android)\n
+* Corretti i problemi di integrazione con Google Drive\n
+* Aggiunto supporto NTLM
+</string>
   <string name="ChangeLog_0_9"><b>Versione 0.9</b> \n * integrato supporto per Dropbox e Google Drive (database in lettura/scrittura; solo per Keepass2Android edizione regolare) \n * integrata una dialog per la selezione dei file (basata su android-filechooser di HBA) \n * migliorata l\'interfaccia per la creazione di nuovi database \n * incluso il font DejaVu Sans Mono per la visualizzazione passwords \n * corretti alcuni bug \n</string>
   <string name="ChangeLog_0_8_6">
 <b>Versione 0.8.6</b>\n
@@ -392,7 +396,11 @@ Prima release pubblica
     <item>30 secondi</item>
     <item>1 minuto</item>
     <item>5 minuti</item>
-    <item>Mai</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Piccolo</item>
@@ -403,5 +411,11 @@ Prima release pubblica
     <item>Non ricordare nome utente e password</item>
     <item>Ricorda solo il nome utente</item>
     <item>Ricorda nome utente e password</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>

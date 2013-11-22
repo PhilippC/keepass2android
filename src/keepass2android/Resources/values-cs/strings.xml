@@ -287,7 +287,6 @@
   <string name="UpdatedRemoteFileOnLoad">Vzdálený soubor byl aktualizován.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Otevřen místní soubor kvůli kolizi se změnami ve vzdáleném souboru. Proveďte sloučení pomocí nabídky synchronizace.</string>
   <string name="LoadedFromRemoteInSync">Vzdálený soubor a soubor místní mezipaměti jsou synchronizovány.</string>
-  <string name="UpdatedCachedFileOnLoad">Aktualizace kopie databáze v místní mezipaměti.</string>
   <string name="RemoteDatabaseUnchanged">Nebyly zjištěny změny.</string>
   <string name="ErrorOcurred">Došlo k chybě:</string>
   <string name="synchronize_database_menu">Synchronizovat databázi…</string>
@@ -320,6 +319,12 @@
   <string name="use_key_file">Použít soubor s klíčem</string>
   <string name="error_adding_keyfile">Chyba při přidávání klíčového souboru!</string>
   <string name="ChangeLog_title">Protokol změn</string>
+  <string name="ChangeLog_0_9_1">
+		<b>Verze 0.9.1</b>\n
+		* Přidána podpora SkyDrive (pouze Keepass2Android normální edice)\n
+		* Oprava problémů s integrací Google Drive\n
+		* Přidána podpora NTLM
+	</string>
   <string name="ChangeLog_0_9">
   <b>Verze 0.9</b> \n 
 * integrace podpory Dropbox a Google Drive (čtení/zápis databáze; Keepass2Android pouze normální verze) \n 
@@ -400,7 +405,11 @@ První veřejné vydání
     <item>30 sekund</item>
     <item>1 minuta</item>
     <item>5 minut</item>
-    <item>Nikdy</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Never</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Malý</item>
@@ -411,5 +420,11 @@ První veřejné vydání
     <item>Nepamatovat si uživatelské jméno a heslo</item>
     <item>Pamatovat si jen uživatelské jméno</item>
     <item>Pamatovat si uživatelské jméno a heslo</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Password + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
   </string-array>
 </resources>
