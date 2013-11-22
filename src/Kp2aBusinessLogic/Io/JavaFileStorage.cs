@@ -275,6 +275,27 @@ namespace keepass2android.Io
 			return _jfs.CreateFilePath(parent, newFilename);
 		}
 
+		public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
+		{
+			return IoUtil.GetParentPath(ioc);
+		}
+
+		public IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename)
+		{
+			try
+			{
+				return IOConnectionInfo.FromPath(
+				ListContents(folderPath).Where(desc => { return desc.DisplayName == filename; })
+					.Single()
+					.Path);
+			}
+			catch (Exception e)
+			{
+				throw new Exception("Error finding " + filename + " in " + folderPath.GetDisplayName(), e);
+			}
+			
+		}
+
 		private DateTime JavaTimeToCSharp(long javatime)
 		{
 			return new DateTime(1970, 1, 1).AddMilliseconds(javatime);

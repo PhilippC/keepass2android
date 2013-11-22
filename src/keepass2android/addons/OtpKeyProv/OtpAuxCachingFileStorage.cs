@@ -37,11 +37,14 @@ namespace keepass2android.addons.OtpKeyProv
 		{
 			OtpInfo remoteOtpInfo, localOtpInfo;
 			//load both files
-			XmlSerializer xs = new XmlSerializer(typeof (OtpInfo));
-			localOtpInfo = (OtpInfo) xs.Deserialize(File.OpenRead(cachedFilePath));
+			XmlSerializer xs = new XmlSerializer(typeof(OtpInfo));
+			using (var cacheStream = File.OpenRead(cachedFilePath))
+			{	
+				localOtpInfo = (OtpInfo) xs.Deserialize(cacheStream);	
+			}
 			using (Stream remoteStream = _cachedStorage.OpenFileForRead(ioc))
 			{
-				remoteOtpInfo = (OtpInfo) xs.Deserialize(remoteStream);
+				remoteOtpInfo = (OtpInfo)xs.Deserialize(remoteStream);
 			}
 
 			//see which OtpInfo has the bigger Counter value and use this one:

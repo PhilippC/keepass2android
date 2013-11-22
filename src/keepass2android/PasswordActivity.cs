@@ -269,7 +269,15 @@ namespace keepass2android
 				//doInBackground
 				delegate
 				{
-					_otpInfo = OathHotpKeyProv.LoadOtpInfo(new KeyProviderQueryContext(_ioConnection, false, false));
+					try
+					{
+						_otpInfo = OathHotpKeyProv.LoadOtpInfo(new KeyProviderQueryContext(_ioConnection, false, false));
+					}
+					catch (Exception e)
+					{
+						Kp2aLog.Log(e.ToString());
+					}
+					
 					return null;
 				},
 				//onPostExecute
@@ -694,8 +702,8 @@ namespace keepass2android
 
 				try
 				{
-					var lOtps = GetOtpsFromUI();
-					CreateOtpSecret(lOtps);
+					var lOtps = GetOtpsFromUi();
+					OathHotpKeyProv.CreateOtpSecret(lOtps, _otpInfo);
 				}
 				catch (Exception)
 				{
@@ -731,7 +739,12 @@ namespace keepass2android
 			MakePasswordMaskedOrVisible();
 
 			Handler handler = new Handler();
-			LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, new AfterLoad(handler, this));
+			OnFinish onFinish = new AfterLoad(handler, this);
+				 
+			LoadDb task = (KeyProviderType == KeyProviders.Otp) ?
+				new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish, this)
+				:
+				new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish);
 			_loadDbTask = null; // prevent accidental re-use
 
 			SetNewDefaultFile();
@@ -739,7 +752,7 @@ namespace keepass2android
 			new ProgressTask(App.Kp2a, this, task).Run();
 		}
 
-		private List<string> GetOtpsFromUI()
+		private List<string> GetOtpsFromUi()
 		{
 			List<string> lOtps = new List<string>();
 			foreach (int otpId in _otpTextViewIds)
@@ -751,43 +764,6 @@ namespace keepass2android
 			return lOtps;
 		}
 
-		private void CreateOtpSecret(List<string> lOtps)
-		{
-			byte[] pbSecret;
-			if (!string.IsNullOrEmpty(_otpInfo.EncryptedSecret)) // < v2.0
-			{
-				byte[] pbKey32 = OtpUtil.KeyFromOtps(lOtps.ToArray(), 0,
-				                                     lOtps.Count, Convert.FromBase64String(
-					                                     _otpInfo.TransformationKey), _otpInfo.TransformationRounds);
-				if (pbKey32 == null) throw new InvalidOperationException();
-
-				pbSecret = OtpUtil.DecryptData(_otpInfo.EncryptedSecret,
-				                               pbKey32, Convert.FromBase64String(_otpInfo.EncryptionIV));
-				if (pbSecret == null) throw new InvalidOperationException();
-
-				_otpInfo.Secret = pbSecret;
-				_otpInfo.Counter += (ulong) _otpInfo.OtpsRequired;
-			}
-			else // >= v2.0, supporting look-ahead
-			{
-				bool bSuccess = false;
-				for (int i = 0; i < _otpInfo.EncryptedSecrets.Count; ++i)
-				{
-					OtpEncryptedData d = _otpInfo.EncryptedSecrets[i];
-					pbSecret = OtpUtil.DecryptSecret(d, lOtps.ToArray(), 0,
-					                                 lOtps.Count);
-					if (pbSecret != null)
-					{
-						_otpInfo.Secret = pbSecret;
-						_otpInfo.Counter += ((ulong) _otpInfo.OtpsRequired +
-						                     (ulong) i);
-						bSuccess = true;
-						break;
-					}
-				}
-				if (!bSuccess) throw new InvalidOperationException();
-			}
-		}
 
 		private void MakePasswordMaskedOrVisible()
 		{
@@ -900,7 +876,7 @@ namespace keepass2android
 			outState.PutStringArrayList(PendingOtpsKey, _pendingOtps);
 			if (_otpInfo != null)
 			{
-				outState.PutStringArrayList(EnteredOtpsKey, GetOtpsFromUI());
+				outState.PutStringArrayList(EnteredOtpsKey, GetOtpsFromUi());
 
 				var sw = new StringWriter();
 
@@ -1117,28 +1093,10 @@ namespace keepass2android
 			{
 				_act = act;
 			}
-
-
-			public override void Run() {
-
-				if (_act.KeyProviderType == KeyProviders.Otp)
-				{
-					try
-					{
-						StatusLogger.UpdateMessage(UiStringKey.SavingOtpAuxFile);
-
-						if (!OathHotpKeyProv.CreateAuxFile(_act._otpInfo, new KeyProviderQueryContext(_act._ioConnection, false, false)))
-							Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile), ToastLength.Long).Show();
-					}
-					catch (Exception e)
-					{
-						Kp2aLog.Log(e.Message);
-
-						Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile)+" "+e.Message, ToastLength.Long).Show();
-					}
-				}
 				
 
+			public override void Run()
+			{
 				if ( Success ) 
 				{
 					_act.SetEditText(Resource.Id.password, "");
@@ -1150,8 +1108,6 @@ namespace keepass2android
 
 					_act.LaunchNextActivity();
 
-					if ((_act.KeyProviderType == KeyProviders.Otp) || (_act.KeyProviderType == KeyProviders.OtpRecovery))
-						App.Kp2a.GetDb().OtpAuxFileIoc = OathHotpKeyProv.GetAuxFileIoc(_act._ioConnection);
 
 					GC.Collect(); // Ensure temporary memory used while loading is collected
 				} 
@@ -1161,8 +1117,46 @@ namespace keepass2android
 				}
 			}
 		}
+
+		class SaveOtpAuxFileAndLoadDb : LoadDb
+		{
+			private readonly PasswordActivity _act;
+
+
+			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnFinish finish, PasswordActivity act) : base(app, ioc, databaseData, compositeKey, keyfileOrProvider, finish)
+			{
+				_act = act;
+			}
+
+			public override void Run()
+			{
+				try
+				{
+					StatusLogger.UpdateMessage(UiStringKey.SavingOtpAuxFile);
+
+					KeyProviderQueryContext ctx = new KeyProviderQueryContext(_act._ioConnection, false, false);
+					IOConnectionInfo auxFileIoc = OathHotpKeyProv.GetAuxFileIoc(_act._ioConnection);
+					if (!OathHotpKeyProv.CreateAuxFile(_act._otpInfo, ctx, auxFileIoc))
+						Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile), ToastLength.Long).Show();
+
+					App.Kp2a.GetDb().OtpAuxFileIoc = auxFileIoc;
+				}
+				catch (Exception e)
+				{
+					Kp2aLog.Log(e.Message);
+
+					Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + e.Message,
+								   ToastLength.Long).Show();
+				}
+
+
+				base.Run();
+
+			}
+		}
 		
 	}
 
+	
 }
 

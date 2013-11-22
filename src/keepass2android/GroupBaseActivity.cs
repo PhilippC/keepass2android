@@ -368,56 +368,68 @@ namespace keepass2android
 			return base.OnOptionsItemSelected(item);
 		}
 
-		class SyncOtpAuxFile: OnFinish
+		public class SyncOtpAuxFile: RunnableOnFinish
 		{
 			private readonly IOConnectionInfo _ioc;
 
-			public SyncOtpAuxFile(IOConnectionInfo ioc)
+			public SyncOtpAuxFile(IOConnectionInfo ioc) : base(null)
 			{
 				_ioc = ioc;
 			}
 
 			public override void Run()
 			{
-				if (Handler != null)
+				StatusLogger.UpdateMessage(UiStringKey.SynchronizingOtpAuxFile);
+				try
 				{
-					Handler.Post(DoSyncOtpAuxFile);
+					//simply open the file. The file storage does a complete sync.
+					using (App.Kp2a.GetOtpAuxFileStorage(_ioc).OpenFileForRead(_ioc))
+					{
+					}
+
+					Finish(true);
 				}
-				else
-					DoSyncOtpAuxFile();
-				base.Run();
+				catch (Exception e)
+				{
+				
+					Finish(false, e.Message);
+				}
+				
+				
 			}
 
-			private void DoSyncOtpAuxFile()
-			{
-				StatusLogger.UpdateMessage(UiStringKey.SynchronizingOtpAuxFile);
-				//simply open the file. The file storage does a complete sync.
-				using (App.Kp2a.GetOtpAuxFileStorage(_ioc).OpenFileForRead(_ioc))
-				{
-					
-				}
-			}
 		}
 
 		private void Synchronize()
 		{
 			var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc);
 			RunnableOnFinish task;
-			ActionOnFinish onFinishShowMessage = new ActionOnFinish((success, message) =>
+			OnFinish onFinish = new ActionOnFinish((success, message) =>
 			{
 				if (!String.IsNullOrEmpty(message))
 					Toast.MakeText(this, message, ToastLength.Long).Show();
+
+				if (App.Kp2a.GetDb().OtpAuxFileIoc != null)
+				{
+					var task2 = new SyncOtpAuxFile(App.Kp2a.GetDb().OtpAuxFileIoc);
+					new ProgressTask(App.Kp2a, this, task2).Run();
+				}
 			});
+			
 			if (filestorage is CachingFileStorage)
 			{
 				
-				task = new SynchronizeCachedDatabase(this, App.Kp2a, onFinishShowMessage);
+				task = new SynchronizeCachedDatabase(this, App.Kp2a, onFinish);
 			}
 			else
 			{
 
-				task = new CheckDatabaseForChanges(this, App.Kp2a, onFinishShowMessage);
+				task = new CheckDatabaseForChanges(this, App.Kp2a, onFinish);
 			}
+
+			
+									
+
 			var progressTask = new ProgressTask(App.Kp2a, this, task);
 			progressTask.Run();
 

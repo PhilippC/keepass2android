@@ -371,10 +371,13 @@
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="ChangeLog_0_9_2">
-		<b>Version 0.9.2a (preview)</b>\n
+		<b>Version 0.9.2b (preview)</b>\n
+		* Added OTP support (compatible with OtpKeyProv plugin)\n
+		* Integrated NFC support for OTPs from YubiKey NEO \n
 		* Several UI improvements\n
 		* Integrated Keepass 2.24 library\n
 		* Added option to kill the app process (see settings)\n
+		* Bug fixes\n
 	</string>
 
 	<string name="ChangeLog_0_9_1">

@@ -137,7 +137,7 @@ namespace OtpKeyProv
 
 
 		public static bool CreateAuxFile(OtpInfo otpInfo,
-			KeyProviderQueryContext ctx)
+			KeyProviderQueryContext ctx, IOConnectionInfo auxFileIoc)
 		{
 			otpInfo.Type = ProvType;
 			otpInfo.Version = ProvVersion;
@@ -145,15 +145,54 @@ namespace OtpKeyProv
 
 			otpInfo.EncryptSecret();
 
-			IOConnectionInfo ioc = GetAuxFileIoc(ctx);
-			if(!OtpInfo.Save(ioc, otpInfo))
+			if(!OtpInfo.Save(auxFileIoc, otpInfo))
 			{
 				MessageService.ShowWarning("Failed to save auxiliary OTP info file:",
-					ioc.GetDisplayName());
+					auxFileIoc.GetDisplayName());
 				return false;
 			}
 
 			return true;
+		}
+
+		public static void CreateOtpSecret(List<string> lOtps, OtpInfo otpInfo)
+		{
+			
+			byte[] pbSecret;
+			if (!string.IsNullOrEmpty(otpInfo.EncryptedSecret)) // < v2.0
+			{
+				byte[] pbKey32 = OtpUtil.KeyFromOtps(lOtps.ToArray(), 0,
+				                                     lOtps.Count, Convert.FromBase64String(
+					                                     otpInfo.TransformationKey), otpInfo.TransformationRounds);
+				if (pbKey32 == null) throw new InvalidOperationException();
+
+				pbSecret = OtpUtil.DecryptData(otpInfo.EncryptedSecret,
+				                               pbKey32, Convert.FromBase64String(otpInfo.EncryptionIV));
+				if (pbSecret == null) throw new InvalidOperationException();
+
+				otpInfo.Secret = pbSecret;
+				otpInfo.Counter += otpInfo.OtpsRequired;
+			}
+			else // >= v2.0, supporting look-ahead
+			{
+				bool bSuccess = false;
+				for (int i = 0; i < otpInfo.EncryptedSecrets.Count; ++i)
+				{
+					OtpEncryptedData d = otpInfo.EncryptedSecrets[i];
+					pbSecret = OtpUtil.DecryptSecret(d, lOtps.ToArray(), 0,
+					                                 lOtps.Count);
+					if (pbSecret != null)
+					{
+						otpInfo.Secret = pbSecret;
+						otpInfo.Counter += ((ulong) otpInfo.OtpsRequired +
+						                     (ulong) i);
+						bSuccess = true;
+						break;
+					}
+				}
+				if (!bSuccess) throw new InvalidOperationException();
+			}
+		
 		}
 	}
 }
