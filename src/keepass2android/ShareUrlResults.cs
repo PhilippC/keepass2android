@@ -25,6 +25,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using KeePassLib.Utility;
 
 namespace keepass2android
 {
@@ -99,42 +100,34 @@ namespace keepass2android
 		
 		private void Query(String url)
 		{
-			//first: search for exact url
+			
 			try
 			{
+				//first: search for exact url
 				Group = _db.SearchForExactUrl(url);
+				//if no results, search for host (e.g. "accounts.google.com")
+				if (!Group.Entries.Any())
+					Group = _db.SearchForHost(url, false);
+				//if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
+				if (!Group.Entries.Any())
+					Group = _db.SearchForHost(url, true);
+				//if no results returned up to now, try to search through other fields as well:
+				if (!Group.Entries.Any())
+					Group = _db.SearchForText(url);
+				//search for host as text
+				if (!Group.Entries.Any())
+					Group = _db.SearchForText(UrlUtil.GetHost(url.Trim()));
+
 			} catch (Exception e)
 			{
 				Toast.MakeText(this, e.Message, ToastLength.Long).Show();
 				Finish();
 				return;
 			}
-			//if no results, search for host (e.g. "accounts.google.com")
-			if (!Group.Entries.Any())
-			{
-				try
-				{
-					Group = _db.SearchForHost(url, false);
-				} catch (Exception e)
-				{
-					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
-					Finish();
-					return;
-				}
-			}
-			//if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
-			if (!Group.Entries.Any())
-			{
-				try
-				{
-					Group = _db.SearchForHost(url, true);
-				} catch (Exception e)
-				{
-					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
-					Finish();
-					return;
-				}
-			}
+			
+				
+			
+
 			//if there is exactly one match: open the entry
 			if (Group.Entries.Count() == 1)
 			{
