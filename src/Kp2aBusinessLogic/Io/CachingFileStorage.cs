@@ -200,10 +200,16 @@ namespace keepass2android.Io
 		public MemoryStream GetRemoteDataAndHash(IOConnectionInfo ioc, out string hash)
 		{
 			MemoryStream remoteData = new MemoryStream();
-			using (
-				HashingStreamEx hashingRemoteStream = new HashingStreamEx(_cachedStorage.OpenFileForRead(ioc), false,
-																		  new SHA256Managed()))
+			
+			using (var remoteStream =_cachedStorage.OpenFileForRead(ioc))
 			{
+				//note: directly copying to remoteData and hashing causes NullReferenceExceptions in FTP and with Digest auth
+				// -> use the temp data approach:
+				MemoryStream tempData = new MemoryStream();
+				remoteStream.CopyTo(tempData);
+				tempData.Position = 0;
+				HashingStreamEx hashingRemoteStream = new HashingStreamEx(tempData, false, new SHA256Managed());
+				
 				hashingRemoteStream.CopyTo(remoteData);
 				hashingRemoteStream.Close();
 				hash = MemUtil.ByteArrayToHexString(hashingRemoteStream.Hash);
