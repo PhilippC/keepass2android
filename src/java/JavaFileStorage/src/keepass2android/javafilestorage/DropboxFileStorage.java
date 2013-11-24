@@ -33,15 +33,7 @@ import com.dropbox.client2.session.Session.AccessType;
 
 public class DropboxFileStorage extends JavaFileStorageBase {
 	
-	//NOTE: also adjust secret!
-	//final static private String APP_KEY = "i8shu7v1hgh7ynt"; //KP2A
-	//final static private String APP_KEY = "4ybka4p4a1027n6"; //FileStorageTest
-	
-    // If you'd like to change the access type to the full Dropbox instead of
-    // an app folder, change this value.
-    final static private AccessType ACCESS_TYPE = AccessType.DROPBOX;
-    
-    final static private String TAG = "KP2AJ";
+	final static private String TAG = "KP2AJ";
     
     final static private String ACCOUNT_PREFS_NAME = "prefs";
     final static private String ACCESS_KEY_NAME = "ACCESS_KEY";
@@ -50,31 +42,38 @@ public class DropboxFileStorage extends JavaFileStorageBase {
     DropboxAPI<AndroidAuthSession> mApi;
 	private boolean mLoggedIn = false;
 	private Context mContext;
+	
+    protected AccessType mAccessType = AccessType.DROPBOX;
+
 
 	private String appKey;
 	private String appSecret;
 	
 	public DropboxFileStorage(Context ctx, String _appKey, String _appSecret)
 	{
-		appKey = _appKey;
-		appSecret = _appSecret;
-		mContext = ctx;
-		// We create a new AuthSession so that we can use the Dropbox API.
-        AndroidAuthSession session = buildSession();
-        mApi = new DropboxAPI<AndroidAuthSession>(session);
-        
-        checkAppKeySetup();
+		initialize(ctx, _appKey, _appSecret, false, mAccessType);
 	}
 	
 	public DropboxFileStorage(Context ctx, String _appKey, String _appSecret, boolean clearKeysOnStart)
 	{
+		initialize(ctx, _appKey, _appSecret, clearKeysOnStart, mAccessType);
+	}
+	
+	public DropboxFileStorage(Context ctx, String _appKey, String _appSecret, boolean clearKeysOnStart, AccessType accessType)
+	{
+		initialize(ctx, _appKey, _appSecret, clearKeysOnStart, accessType);
+	}
+
+	private void initialize(Context ctx, String _appKey, String _appSecret,
+			boolean clearKeysOnStart, AccessType accessType) {
 		appKey = _appKey;
 		appSecret = _appSecret;
 		mContext = ctx;
 		
 		if (clearKeysOnStart)
 			clearKeys();
-			
+		
+		this.mAccessType = accessType;
 		
 		// We create a new AuthSession so that we can use the Dropbox API.
         AndroidAuthSession session = buildSession();
@@ -247,11 +246,11 @@ public class DropboxFileStorage extends JavaFileStorageBase {
         String[] stored = getKeys();
         if (stored != null) {
             AccessTokenPair accessToken = new AccessTokenPair(stored[0], stored[1]);
-            session = new AndroidAuthSession(appKeyPair, ACCESS_TYPE, accessToken);
+            session = new AndroidAuthSession(appKeyPair, mAccessType, accessToken);
             setLoggedIn(true);
             Log.d(TAG, "Creating Dropbox Session with accessToken");
         } else {
-            session = new AndroidAuthSession(appKeyPair, ACCESS_TYPE);
+            session = new AndroidAuthSession(appKeyPair, mAccessType);
             setLoggedIn(false);
             Log.d(TAG, "Creating Dropbox Session without accessToken");
         }

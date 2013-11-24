@@ -439,7 +439,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		
 			if (driveService.files().get(parentId).execute().getLabels().getTrashed())
 				throw new FileNotFoundException(parentPath + " is trashed!");
-			
+			//Log.d(TAG, "listing files in "+parentId);
 			Files.List request = driveService.files().list()
 					.setQ("trashed=false and '"+parentId+"' in parents");
 	
@@ -450,6 +450,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 					for (File file : files.getItems()) {
 	
 						String path = new GDrivePath(parentPath, file).getFullPath();
+						//Log.d(TAG, "listing file "+path);
 						FileEntry e = convertToFileEntry(file, path);
 	
 						result.add(e);

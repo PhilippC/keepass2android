@@ -2,6 +2,8 @@ package keepass2android.javafilestorage;
 
 import java.io.UnsupportedEncodingException;
 
+import org.apache.http.protocol.HTTP;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
@@ -10,8 +12,9 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 
 	private static final String ISO_8859_1 = "ISO-8859-1";
 	
+	private static final String UTF8_PREFIX = ".U8-";
+	final static protected String NAME_ID_SEP = "-KP2A-";	
 	final static protected String TAG = "KP2AJ";
-	final static protected String NAME_ID_SEP = "-KP2A-";
 	
 	protected String getProtocolPrefix()
 	{
@@ -21,13 +24,18 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 	
 	protected static String encode(final String unencoded)
 			throws UnsupportedEncodingException {
-		return java.net.URLEncoder.encode(unencoded, ISO_8859_1);
+		return UTF8_PREFIX+java.net.URLEncoder.encode(unencoded, HTTP.UTF_8);
 	}
 
 
 	protected String decode(String encodedString)
 			throws UnsupportedEncodingException {
-		return java.net.URLDecoder.decode(encodedString, ISO_8859_1);
+		//the first version of encode/decode used ISO 8859-1 which doesn't work with Cyrillic characters
+		//this is why we need to check for the prefix, even though all new strings are UTF8 encoded. 
+		if (encodedString.startsWith(UTF8_PREFIX))
+			return java.net.URLDecoder.decode(encodedString.substring(UTF8_PREFIX.length()), HTTP.UTF_8);
+		else
+			return java.net.URLDecoder.decode(encodedString, ISO_8859_1);
 	}
 
 

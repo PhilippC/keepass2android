@@ -163,7 +163,8 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 				// Log.d(TAG, "   name=" + name);
 				SkyDriveObject thisFolder = mFolderCache.get(id);
 				if (thisFolder == null) {
-					thisFolder = tryAddFileToCache(this);
+					//Log.d(TAG, "adding to cache");
+					thisFolder = tryAddToCache(id);
 
 					// check if it's still null
 					if (thisFolder == null)
@@ -416,12 +417,31 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 		}
 
 	}
+	
+	private SkyDriveObject tryAddToCache(String skyDriveId) {
+		try {
+			SkyDriveObject obj = getSkyDriveObject(skyDriveId);
+			if (obj != null) {
+				mFolderCache.put(obj.getId(), obj);
+			}
+			return obj;
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
 
 	private SkyDriveObject getSkyDriveObject(SkyDrivePath skyDrivePath)
 			throws LiveOperationException, InvalidPathException,
 			UnsupportedEncodingException, SkyDriveException, FileNotFoundException {
-		LiveOperation operation = mConnectClient.get(skyDrivePath
-				.getSkyDriveId());
+		String skyDriveID = skyDrivePath.getSkyDriveId();
+		return getSkyDriveObject(skyDriveID);
+	}
+
+	private SkyDriveObject getSkyDriveObject(String skyDriveID)
+			throws LiveOperationException, SkyDriveException,
+			FileNotFoundException {
+		LiveOperation operation = mConnectClient.get(skyDriveID);
 		JSONObject result = operation.getResult();
 		checkResult(result);
 		SkyDriveObject obj = SkyDriveObject.create(result);
