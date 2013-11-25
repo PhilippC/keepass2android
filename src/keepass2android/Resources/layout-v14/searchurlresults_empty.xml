@@ -58,6 +58,7 @@
         android:id="@+id/no_results"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+		android:layout_margin="12dp"
         android:layout_below="@id/top"
         android:text="@string/no_results" />
     <ListView

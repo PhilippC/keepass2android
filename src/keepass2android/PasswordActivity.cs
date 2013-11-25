@@ -562,7 +562,8 @@ namespace keepass2android
 								_keyFileOrProvider = null;
 								break;
 							case 1:
-								_keyFileOrProvider = "";
+								//don't set to "" to prevent losing the filename. (ItemSelected is also called during recreation!)
+								_keyFileOrProvider = FindViewById<EditText>(Resource.Id.pass_keyfile).Text;
 								break;
 							case 2:
 								_keyFileOrProvider = KeyProviderIdOtp;
@@ -683,9 +684,8 @@ namespace keepass2android
 			//no need to check for validity of password because if this method is called, the Ok button was enabled (i.e. there was a valid password)
 			CompositeKey compositeKey = new CompositeKey();
 			compositeKey.AddUserKey(new KcpPassword(_password));
-			if (KeyProviderType == KeyProviders.KeyFile)
+			if ((KeyProviderType == KeyProviders.KeyFile) && (_keyFileOrProvider != ""))
 			{
-
 				try
 				{
 					compositeKey.AddUserKey(new KcpKeyFile(_keyFileOrProvider));
@@ -970,6 +970,8 @@ namespace keepass2android
 
 			MakePasswordMaskedOrVisible();
 
+			UpdateOkButtonState();
+
 			// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
 			// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
 			if (_starting && !IsFinishing)  //use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
@@ -1007,7 +1009,10 @@ namespace keepass2android
 		
 		private String GetKeyFile(String filename) {
 			if ( _rememberKeyfile ) {
-				return App.Kp2a.FileDbHelper.GetKeyFileForFile(filename);
+				string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(filename);
+				if (keyfile == "")
+					return null; //signal no key file
+				return keyfile;
 			} else {
 				return null;
 			}

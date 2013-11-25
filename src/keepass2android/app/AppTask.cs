@@ -238,6 +238,13 @@ namespace keepass2android
 			Kp2aLog.Log("AppTask " +task+" in OnActivityResult");
 			return true;
 		}
+
+		protected void RemoveTaskFromIntent(Activity act)
+		{
+			if (act.Intent != null)
+				act.Intent.RemoveExtra(AppTaskKey);
+
+		}
 	}
 
 	/// <summary>
@@ -275,7 +282,10 @@ namespace keepass2android
 		public override void AfterUnlockDatabase(PasswordActivity act)
 		{
 			ShareUrlResults.Launch(act, this);
+			RemoveTaskFromIntent(act);
+			act.AppTask = new NullTask();
 		}
+
 		public override bool CloseEntryActivityAfterCreate
 		{
 			get { return true;}

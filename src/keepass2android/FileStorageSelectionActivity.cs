@@ -67,7 +67,6 @@ namespace keepass2android
 		private void OnItemSelected(string protocolId)
 		{
 			ReturnProtocol(protocolId);
-			
 		}
 
 		private void ReturnProtocol(string protocolId)
