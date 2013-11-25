@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Android.Content;
 using Android.App;
+using Android.Preferences;
 
 
 namespace keepass2android

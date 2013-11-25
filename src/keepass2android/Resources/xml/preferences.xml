@@ -73,10 +73,18 @@
 			  android:dialogTitle="@string/app_timeout"
 			  android:defaultValue="@string/clipboard_timeout_default"/>
 			<CheckBoxPreference
-  android:key="@string/RememberRecentFiles_key"
-  android:title="@string/RememberRecentFiles_title"
-  android:summary="@string/RememberRecentFiles_summary"
-  android:defaultValue="@bool/RememberRecentFiles_default"/>
+			   android:enabled="true"
+				 android:persistent="true"
+				 android:summary="@string/LockWhenScreenOff_summary"
+				 android:defaultValue="false"
+				 android:title="@string/LockWhenScreenOff_title"
+				 android:key="@string/LockWhenScreenOff_key" />
+
+			<CheckBoxPreference
+				android:key="@string/RememberRecentFiles_key"
+				android:title="@string/RememberRecentFiles_title"
+				android:summary="@string/RememberRecentFiles_summary"
+				android:defaultValue="@bool/RememberRecentFiles_default"/>
 
 			<CheckBoxPreference
 				android:key="@string/keyfile_key"

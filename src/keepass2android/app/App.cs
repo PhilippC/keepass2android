@@ -534,6 +534,17 @@ namespace keepass2android
 				return cacheEnabled;
 			}
 		}
+
+		public void OnScreenOff()
+		{
+			if (PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+											 .GetBoolean(
+												Application.Context.GetString(Resource.String.LockWhenScreenOff_key),
+												false))
+			{
+				App.Kp2a.LockDatabase();
+			}
+		}
 	}
 
 

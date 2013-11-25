@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using KeePassLib.Serialization;
 
@@ -43,7 +44,9 @@ namespace keepass2android
 
 			_intentReceiver = new LockCloseListActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
+
 			filter.AddAction(Intents.DatabaseLocked);
+			filter.AddAction(Intent.ActionScreenOff);
 			RegisterReceiver(_intentReceiver, filter);
 
 		}
@@ -94,6 +97,9 @@ namespace keepass2android
 				{
 					case Intents.DatabaseLocked:
 						_service.OnLockDatabase();
+						break;
+					case Intent.ActionScreenOff:
+						App.Kp2a.OnScreenOff();
 						break;
 				}
 			}

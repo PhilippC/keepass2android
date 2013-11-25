@@ -35,10 +35,22 @@ namespace keepass2android
 	[Service]
 	public class OngoingNotificationsService : Service
 	{
-		
+		private ScreenOffReceiver _screenOffReceiver;
+
 		#region Service
 		private const int QuickUnlockId = 100;
 		private const int UnlockedWarningId = 200;
+
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			
+			_screenOffReceiver = new ScreenOffReceiver();
+			IntentFilter filter = new IntentFilter();
+			filter.AddAction(Intent.ActionScreenOff);
+			RegisterReceiver(_screenOffReceiver, filter);
+		}
+
 
 		public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 		{
@@ -111,6 +123,8 @@ namespace keepass2android
 			{
 				App.Kp2a.LockDatabase();
 			}
+
+			UnregisterReceiver(_screenOffReceiver);
 		}
 		
 		public override IBinder OnBind(Intent intent)
@@ -191,6 +205,14 @@ namespace keepass2android
 			return name;
 		}
 		#endregion
+
+		class ScreenOffReceiver: BroadcastReceiver
+		{
+			public override void OnReceive(Context context, Intent intent)
+			{
+				App.Kp2a.OnScreenOff();
+			}
+		}
 	}
 }
 
