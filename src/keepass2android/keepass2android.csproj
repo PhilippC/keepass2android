@@ -390,7 +390,9 @@
     <AndroidResource Include="Resources\layout\group_list_entry.xml" />
     <AndroidResource Include="Resources\layout\icon.xml" />
     <AndroidResource Include="Resources\layout\icon_picker.xml" />
-    <AndroidResource Include="Resources\layout\password.xml" />
+    <AndroidResource Include="Resources\layout\password.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\set_password.xml" />
     <AndroidResource Include="Resources\menu\entry.xml" />
     <AndroidResource Include="Resources\menu\entry_edit.xml" />
@@ -886,5 +888,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_storage_skydrive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_storage_dropboxKP2A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_storage_dropboxKP2A.png" />
   </ItemGroup>
 </Project>

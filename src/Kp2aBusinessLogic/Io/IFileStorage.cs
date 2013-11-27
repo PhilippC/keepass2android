@@ -29,23 +29,17 @@ namespace keepass2android.Io
 	}
 
 	/// <summary>
-	/// Called as a callback from CheckForFileChangeAsync.
-	/// </summary>
-	/// <param name="ioc"></param>
-	/// <param name="fileChanged"></param>
-	public delegate void OnCheckForFileChangeCompleted(IOConnectionInfo ioc, bool fileChanged);
-
-	/// <summary>
 	/// Interface to encapsulate all access to disk or cloud.
 	/// </summary>
-	/// This interface might be implemented for different cloud storage providers in the future to extend the possibilities of the
-	/// "built-in" IOConnection class in the Keepass-Lib. 
-	/// Note that it was decided to use the IOConnectionInfo also for cloud storage (unless it turns out that this isn't possible, but 
-	/// with prefixes like dropbox:// it should be). The advantage is that the database for saving recent files etc. will then work without 
+	/// Note that it was decided to use the IOConnectionInfo also for cloud storage.
+	/// The advantage is that the database for saving recent files etc. will then work without 
 	/// much work to do. Furthermore, the IOConnectionInfo seems generic info to capture all required data, even though it might be nicer to 
 	/// have an IIoStorageId interface in few cases.*/
 	public interface IFileStorage
 	{
+		/// <summary>
+		/// returns the protocol ids supported by this FileStorage. Can return pseudo-protocols like "dropbox" or real protocols like "ftp"
+		/// </summary>
 		IEnumerable<string> SupportedProtocols { get; } 
 
 		/// <summary>
@@ -161,5 +155,27 @@ namespace keepass2android.Io
 	{
 		Stream OpenFile();
 		void CommitWrite();
+	}
+
+	public class FileStorageSelectionInfo
+	{
+		public enum FileStorageSelectionMessageType
+		{
+			Info,  //show only ok button
+			CancellableInfo, //show Ok/Cancel
+			Error //show cancel only
+		}
+
+		public UiStringKey SelectionMessage { get; set; }
+		public FileStorageSelectionMessageType MessageType { get; set; }
+	}
+
+	/// <summary>
+	/// Can be implemented by IFileStorage implementers to add additional information for the 
+	/// process of selecting the file storage
+	/// </summary>
+	public interface IFileStorageSelectionInfoProvider
+	{
+		FileStorageSelectionInfo TryGetSelectionInfo(string protocolId);
 	}
 }

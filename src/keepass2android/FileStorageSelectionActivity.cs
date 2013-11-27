@@ -66,7 +66,26 @@ namespace keepass2android
 
 		private void OnItemSelected(string protocolId)
 		{
-			ReturnProtocol(protocolId);
+			var field = typeof(Resource.String).GetField("filestoragehelp_" + protocolId);
+			if (field == null)
+			{
+				//no help available
+				ReturnProtocol(protocolId);
+			}
+			else
+			{
+				//set help:
+				string help = GetString((int)field.GetValue(null));
+
+				new AlertDialog.Builder(this)
+					.SetTitle(GetString(Resource.String.app_name))
+					.SetMessage(help)
+					.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ReturnProtocol(protocolId))
+					.Create()
+					.Show();
+			}
+			
+
 		}
 
 		private void ReturnProtocol(string protocolId)
@@ -87,8 +106,10 @@ namespace keepass2android
 			_fileStorageAdapter = new FileStorageAdapter(this);
 			ListAdapter = _fileStorageAdapter;
 
-			FindViewById<ListView>(Android.Resource.Id.List).ItemClick +=
+			ListView listView = FindViewById<ListView>(Android.Resource.Id.List);
+			listView.ItemClick +=
 				(sender, args) => OnItemSelected((string)_fileStorageAdapter.GetItem(args.Position));
+			//listView.ItemsCanFocus = true;
 		}
 
 

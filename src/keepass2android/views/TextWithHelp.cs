@@ -16,6 +16,8 @@ namespace keepass2android.views
 {
 	public class TextWithHelp : RelativeLayout
 	{
+		private Kp2aShortHelpView _kp2AShortHelpView;
+
 		public TextWithHelp(Context context, IAttributeSet attrs) :
 			base(context, attrs)
 		{
@@ -36,11 +38,18 @@ namespace keepass2android.views
 			TypedArray a = Context.ObtainStyledAttributes(
 	 attrs,
 	 Resource.Styleable.TextWithHelp);
-			((Kp2aShortHelpView)FindViewById(Resource.Id.help)).HelpText = a.GetString(Resource.Styleable.TextWithHelp_help_text);
+			_kp2AShortHelpView = ((Kp2aShortHelpView)FindViewById(Resource.Id.help));
+			_kp2AShortHelpView.HelpText = a.GetString(Resource.Styleable.TextWithHelp_help_text);
 
 			const string xmlns = "http://schemas.android.com/apk/res/android";
 			((TextView)FindViewById(Resource.Id.text)).Text = Context.GetString(attrs.GetAttributeResourceValue(xmlns, "text",Resource.String.ellipsis));
 
+		}
+
+		public string HelpText
+		{
+			get { return _kp2AShortHelpView.HelpText; }
+			set { _kp2AShortHelpView.HelpText = value; }
 		}
 	}
 }

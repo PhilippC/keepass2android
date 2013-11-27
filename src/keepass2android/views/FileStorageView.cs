@@ -27,14 +27,13 @@ using Android.Text;
 using Android.Text.Style;
 using Android.Preferences;
 using keepass2android.Io;
+using keepass2android.views;
 
 namespace keepass2android.view
 {
 	public sealed class FileStorageView : ClickView
 	{
 		private readonly TextView _textView;
-		private readonly TextView _textviewDetails;
-
 
 		public FileStorageView(IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -45,12 +44,9 @@ namespace keepass2android.view
 		public FileStorageView(Activity activity, string protocolId, int pos)
 			: base(activity)
 		{
-			View ev = Inflate(activity, Resource.Layout.entry_list_entry, null);
-			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
+			View ev = Inflate(activity, Resource.Layout.filestorage_selection_listitem, null);
+			_textView = (TextView)ev.FindViewById(Resource.Id.filestorage_label);
 			_textView.TextSize = PrefsUtil.GetListTextSize(activity);
-
-			_textviewDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
-			_textviewDetails.TextSize = PrefsUtil.GetListDetailTextSize(activity);
 
 			PopulateView(ev, protocolId, pos);
 			
@@ -62,7 +58,7 @@ namespace keepass2android.view
 		
 		private void PopulateView(View ev, string protocolId, int pos)
 		{
-			ImageView iv = (ImageView)ev.FindViewById(Resource.Id.entry_icon);
+			ImageView iv = (ImageView)ev.FindViewById(Resource.Id.filestorage_logo);
 
 			Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
 			iv.SetImageDrawable(drawable);
@@ -71,8 +67,7 @@ namespace keepass2android.view
 			var str = new SpannableString(title);
 			_textView.TextFormatted = str;
 
-			_textviewDetails.Visibility = ViewStates.Gone;
-			  
+
 		}
 		
 		

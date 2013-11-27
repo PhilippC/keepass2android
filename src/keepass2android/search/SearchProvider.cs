@@ -277,7 +277,9 @@ namespace keepass2android.search
 						intlResourceId = Resource.String.entry_tags;
 						break;
 					default:
-						// Other fields aren't part of the default SearchParameters, so we won't ever get them as context anyway
+						//don't disclose protected strings:
+						if (CurrentEntry.Strings.Get(rawName).IsProtected)
+							return null;
 						break;
 				}
 
