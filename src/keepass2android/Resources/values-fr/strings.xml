@@ -19,6 +19,8 @@
   <string name="short_app_name_nonet">KP2A Hors-ligne</string>
   <string name="app_timeout">Délai de verrouillage de l\'application</string>
   <string name="app_timeout_summary">Délai avant de bloquer la base de donnée lorsque l\'application est inactive.</string>
+  <string name="kill_app_label">Tuer le processus</string>
+  <string name="show_kill_app">Fermer</string>
   <string name="application">Application</string>
   <string name="application_settings">Paramètres de l\'application</string>
   <string name="security_prefs">Sécurité</string>
@@ -372,7 +374,7 @@ Première version publique</string>
     <item>Se rappeler le nom d\'utilisateur et le mot de passe</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Password only</item>
+    <item>Mot de passe</item>
     <item>Password + Key file</item>
     <item>Password + OTP</item>
     <item>Password + OTP secret (recovery mode)</item>

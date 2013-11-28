@@ -19,6 +19,9 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Uygulama zaman aşımı</string>
   <string name="app_timeout_summary">Uygulama pasif iken veritabanını otomatik kilitleme zaman aşımı.</string>
+  <string name="kill_app_label">Uygulamayı kapat</string>
+  <string name="show_kill_app">Kapat düğmesi</string>
+  <string name="show_kill_app_summary">(Paranoyak kullanıcılar için) Uygulamayı tamamen kapatmak için şifre ekranda bir düğme göster</string>
   <string name="application">Uygulama</string>
   <string name="application_settings">Uygulama ayarları</string>
   <string name="security_prefs">Güvenlik</string>
@@ -139,6 +142,7 @@
   <string name="omitbackup_summary">Yedek grubundaki ve geri dönüşümdeki kayıtları arama sonuçlarına eklenmesin</string>
   <string name="pass_filename">KeePass veritabanının dosya adı</string>
   <string name="password_title">Veritabanı parolasını girin</string>
+  <string name="master_key_type">Ana anahtar türünü seçin:</string>
   <string name="progress_create">Yeni veritabanı oluşturuluyor…</string>
   <string name="create_database">Veritabanı oluştur</string>
   <string name="progress_title">Çalışıyor…</string>
@@ -287,7 +291,13 @@
   <string name="UpdatedRemoteFileOnLoad">Güncelleştirilmiş uzak dosya.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Uzaktaki dosya ile çakışma sebebiyle yerel veritabanı dosyası yüklendi. Değişiklikleri eklemek için \"Eşitle\" menüsünü seçin.</string>
   <string name="LoadedFromRemoteInSync">Uzak dosya ve önbellekteki yerel dosya eşitlendi.</string>
+  <string name="UpdatedCachedFileOnLoad">%1$s\'in güncelleştirilmiş yerel önbellek kopyası.</string>
   <string name="RemoteDatabaseUnchanged">Hiçbir değişiklik algılanmadı.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Önbelleğe alınmış tek kullanımlık şifre yedek dosyası daha yeni: uzaktaki sayaç daha yüksek.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Tek kullanımlık şifre yedek dosyası daha yeni: Yerel sayaç daha yüksek.</string>
+  <string name="SynchronizingOtpAuxFile">tek kullanımlık şifre yedek dosyası eşitleniyor…</string>
+  <string name="database_file">veritabanı dosyası</string>
+  <string name="otp_aux_file">tek kullanımlık şifre yedek dosyası</string>
   <string name="ErrorOcurred">Bir hata oluştu:</string>
   <string name="synchronize_database_menu">Veritabanı Eşitle…</string>
   <string name="CannotMoveGroupHere">Grubu bu gruba taşınamıyor.</string>
@@ -318,7 +328,36 @@
   <string name="hint_key_file">Asıl anahtara ek olarak bir anahtar dosyası kullanmak isterseniz seçin:</string>
   <string name="use_key_file">Anahtar dosyası kullan</string>
   <string name="error_adding_keyfile">Anahtar dosyası ekleme hatası!</string>
+  <string name="init_otp">tek kullanımlık şifre yedek dosyasını yükle…</string>
+  <string name="otp_explanation">Bir sonraki tek kullanımlık şifreyi (OTPs) girin. NFC ile girmek için Yubikey NEO aygıtınızın arkasına dokunun.</string>
+  <string name="otp_hint">tek kullanımlık şifre %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Yedek tek kullanımlık şifre dosya yüklenemedi!</string>
+  <string name="otp_discarded_because_no_db">Lütfen önce veritabanı seçin. tek kullanımlık şifre, güvenlik nedenleriyle atılır.</string>
+  <string name="otp_discarded_no_space">tek kullanımlık şifre kabul edilmedi: Bütün tek kullanımlık şifreler girildi!</string>
+  <string name="otp_discarded_because_db_open">Lütfen önceden veritabanını kapatın. tek kullanımlık şifre kabul edilmedi.</string>
+  <string name="otps_pending">(Bir veya daha fazla tek kullanımlık şifre  zaten mevcut)</string>
+  <string name="otpsecret_hint">Tek kullanımlık şifre sırrı (örneğin 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Tek kullanımlık şifre sırrını ayrıştırma hatası!</string>
+  <string name="OtpKeyError">Tek kullanımlık şifre anahtarı oluşturulamadı! Doğru şifre  girdiğinizden emin olun.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Hata: Yedek tek kullanımlık şifre dosya güncelleştirilemedi!</string>
+  <string name="SavingOtpAuxFile">Yedek tek kullanımlık şifre dosya kaydediliyor…</string>
+  <string name="loading">Yükleniyor…</string>
   <string name="ChangeLog_title">Değişiklik günlüğü</string>
+  <string name="ChangeLog_0_9_2">
+		<b>Version 0.9.2</b>\n
+		* Added OTP support (compatible with OtpKeyProv plugin)\n
+		* Integrated NFC support for OTPs from YubiKey NEO \n
+		* Several UI improvements\n
+		* Integrated Keepass 2.24 library\n
+		* Added option to kill the app process (see settings)\n
+		* Bug fixes\n
+	</string>
+  <string name="ChangeLog_0_9_1">
+		<b>Version 0.9.1</b>\n
+		* Integrated SkyDrive support (Keepass2Android regular edition only)\n
+		* Fixed problems with Google Drive integration\n
+		* Added NTLM support
+	</string>
   <string name="ChangeLog_0_9">
 		<b>Sürüm 0.9</b>\n
 		* Dropbox ve Google Drive desteği (veritabanı oku/kaydet; sadece normal Keepass2Android)\n
@@ -402,11 +441,11 @@ Initial public release
     <item>30 saniye</item>
     <item>1 dakika</item>
     <item>5 dakika</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 dakika</item>
+    <item>15 dakika</item>
+    <item>30 dakika</item>
+    <item>1 saat</item>
+    <item>Asla</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Küçük</item>
@@ -419,9 +458,9 @@ Initial public release
     <item>Kullanıcı adını ve şifreyi hatırla</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Password only</item>
-    <item>Password + Key file</item>
-    <item>Password + OTP</item>
-    <item>Password + OTP secret (recovery mode)</item>
+    <item>Sadece şifre</item>
+    <item>Şifre + anahtar dosyası</item>
+    <item>Şifre + tek kullanımlık şifre</item>
+    <item>Şifre + tek kullanımlık şifre sırrı (kurtarma modu)</item>
   </string-array>
 </resources>

@@ -19,6 +19,9 @@
   <string name="short_app_name_nonet">KP2A Ngoại tuyến</string>
   <string name="app_timeout">Ứng dụng hết thời gian (xử lý)</string>
   <string name="app_timeout_summary">Thời gian trước khi khóa cơ sở dữ liệu khi ứng dụng không hoạt động.</string>
+  <string name="kill_app_label">Tắt tiến trình ứng dụng</string>
+  <string name="show_kill_app">Nút đóng</string>
+  <string name="show_kill_app_summary">Hiển thị một nút trong màn hình mật khẩu để tắt tiến trình ứng dụng (đối với người dùng hoang tưởng)</string>
   <string name="application">Ứng dụng</string>
   <string name="application_settings">Cài đặt ứng dụng</string>
   <string name="security_prefs">Bảo mật</string>
@@ -75,6 +78,7 @@
   <string name="error_nopass">Mật mã hoặc tập tin khoá là cần thiết.</string>
   <string name="error_pass_gen_type">Phải chọn ít nhất một kiểu mật mã</string>
   <string name="error_pass_match">Mật mã không khớp.</string>
+  <string name="error_rounds_not_number">Số lần lặp phải là số.</string>
   <string name="error_title_required">Tiêu đề là cần thiết.</string>
   <string name="error_wrong_length">Nhập một số nguyên dương cho mục chiều dài</string>
   <string name="FileNotFound">Không tìm thấy tập tin.</string>
@@ -105,6 +109,7 @@
   <string name="loading_database">Đang tải cơ sở dữ liệu…</string>
   <string name="lowercase">Chữ thường</string>
   <string name="MaskedPassword">*****</string>
+  <string name="maskpass_title">Mật mã mặt nạ</string>
   <string name="maskpass_summary">Ẩn mật mã theo mặc định</string>
   <string name="menu_about">Thông tin về</string>
   <string name="menu_change_key">Thay đổi Khóa chính</string>
@@ -137,6 +142,7 @@
   <string name="omitbackup_summary">Bỏ qua nhóm \'Dự phòng\' và thùng rác khỏi kết quả tìm kiếm</string>
   <string name="pass_filename">Tên tập tin cơ sở dữ liệu KeePass</string>
   <string name="password_title">Nhập mật mã cơ sở dữ liệu</string>
+  <string name="master_key_type">Chọn kiểu của khóa chính:</string>
   <string name="progress_create">Tạo cơ sở dữ liệu mới…</string>
   <string name="create_database">Tạo cơ sở dữ liệu</string>
   <string name="progress_title">Đang làm việc…</string>
@@ -145,6 +151,9 @@
   <string name="remove_from_filelist">Loại bỏ</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Thư mục gốc</string>
+  <string name="rounds">Số lần lặp mã hóa</string>
+  <string name="rounds_explaination">số lần lặp mã hóa cao cung cấp thêm bảo vệ chống lại cuộc tấn công bạo lực, nhưng có thể làm chậm quá trình tải và lưu.</string>
+  <string name="rounds_hint">số lần lặp</string>
   <string name="database_name">Tên cơ sở dữ liệu</string>
   <string name="default_username">Tên người dùng mặc định cho các mục mới</string>
   <string name="saving_database">Đang lưu cơ sở dữ liệu…</string>
@@ -281,7 +290,13 @@
   <string name="UpdatedRemoteFileOnLoad">Đã cập nhật tập tin từ xa.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Đã mở các tập tin cục bộ do xung đột với những thay đổi trong tập tin từ xa. Sử dụng trình đơn Đồng bộ hóa để trộn.</string>
   <string name="LoadedFromRemoteInSync">Tập tin từ xa và bộ nhớ đệm đã được đồng bộ hóa.</string>
+  <string name="UpdatedCachedFileOnLoad">Cập nhật bản sao bộ đệm cục bộ của %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Không có thay đổi nào được phát hiện.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Đã cập nhật bộ lưu trữ OTP tập tin phụ trợ: số lượt truy cập từ xa cao hơn.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Đã cập nhật tập tin phụ trợ OTP từ xa: số lượt truy cập cục bộ đã cao hơn.</string>
+  <string name="SynchronizingOtpAuxFile">Đang đồng bộ hóa tập tin phụ trợ OTP…</string>
+  <string name="database_file">tập tin cơ sở dữ liệu</string>
+  <string name="otp_aux_file">Tập tin phụ trợ OTP</string>
   <string name="ErrorOcurred">Một lỗi đã xảy ra:</string>
   <string name="synchronize_database_menu">Đang đồng bộ hóa cơ sở dữ liệu…</string>
   <string name="CannotMoveGroupHere">Không thể di chuyển nhóm tới nhóm này.</string>
@@ -312,7 +327,34 @@
   <string name="hint_key_file">Chọn nếu bạn muốn sử dụng một tập tin khóa ngoài mật mã chủ của bạn:</string>
   <string name="use_key_file">Sử dụng tập tin khóa</string>
   <string name="error_adding_keyfile">Lỗi trong khi thêm tập tin khoá!</string>
+  <string name="init_otp">Tải tập tin phụ trợ OTP…</string>
+  <string name="otp_explanation">Nhập mật-mã-một-lần tiếp theo (OTPs). Trượt NEO Yubikey của bạn ở mặt sau của điện thoại để nhập qua NFC.</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Không thể tải tập tin phụ trợ OTP!</string>
+  <string name="otp_discarded_because_no_db">Xin vui lòng chọn cơ sở dữ liệu trước. OTP bị loại bỏ vì lý do an ninh.</string>
+  <string name="otp_discarded_no_space">OTP đã bị loại bỏ: Tất cả OTPs đã nhập!</string>
+  <string name="otp_discarded_because_db_open">Vui lòng đóng cơ sở dữ liệu trước. OTP bị loại bỏ.</string>
+  <string name="otps_pending">(Vẫn còn một hoặc nhiều OTPs)</string>
+  <string name="otpsecret_hint">Bí mật OTP (thí dụ: 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Lỗi khi phân tích OTP bí mật!</string>
+  <string name="OtpKeyError">Lỗi khi tạo khóa OTP! Hãy chắc chắn bạn đã nhập đúng OTPs.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Lỗi khi cập nhật tập tin phụ trợ OTP!</string>
+  <string name="SavingOtpAuxFile">Đang lưu tập tin phụ trợ OTP…</string>
+  <string name="loading">Đang tải…</string>
   <string name="ChangeLog_title">Nhật ký các thay đổi</string>
+  <string name="ChangeLog_0_9_2">
+  <b>Phiên bản 0.9.2</b>\n
+ * Thêm hỗ trợ cho OTP (tương thích với công cụ OtpKeyProv)\n
+ * Tích hợp hỗ trợ NFC cho OTPs từ YubiKey NEO\n
+ * Cải thiện giao diện người dùng\n
+ * Tích hợp thư viện Keepass 2.24\n
+ * Thêm tùy chọn để tắt tiến trình ứng dụng (xem cài đặt)\n
+ * Sửa một số lỗi khác\n</string>
+  <string name="ChangeLog_0_9_1">
+  <b>Phiên bản 0.9.1</b>\n
+* Hỗ trợ SkyDrive (chỉ có trong phiên bản thường của Keepass2Android)\n
+* Sửa lỗi với Google Drive\n
+* Thêm hỗ trợ cho NTLM</string>
   <string name="ChangeLog_0_9">
   <b>Phiên bản 0.9</b>\n
 * Tích hợp hỗ trợ cho Dropbox và Google Drive (đọc/ghi cơ sở dữ liệu; chỉ trong phiên bản chính thức của Keepass2Android)\n
@@ -390,11 +432,11 @@ Bản phát hành chính thức đầu tiên</string>
     <item>30 giây</item>
     <item>1 phút</item>
     <item>5 phút</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 phút</item>
+    <item>15 phút</item>
+    <item>30 phút</item>
+    <item>1 tiếng</item>
+    <item>Không bao giờ</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Nhỏ</item>
@@ -407,9 +449,9 @@ Bản phát hành chính thức đầu tiên</string>
     <item>Nhớ tên người dùng và mật mã</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Password only</item>
-    <item>Password + Key file</item>
-    <item>Password + OTP</item>
-    <item>Password + OTP secret (recovery mode)</item>
+    <item>Chỉ xài mật mã</item>
+    <item>Mật mã + Tập tin khóa</item>
+    <item>Mật mã + OTP</item>
+    <item>Mật mã + bí mật OTP (chế độ phục hồi)</item>
   </string-array>
 </resources>

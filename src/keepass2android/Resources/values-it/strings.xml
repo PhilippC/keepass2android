@@ -19,6 +19,9 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Timeout dell\'applicazione</string>
   <string name="app_timeout_summary">Periodo di inattività dell\'applicazione che precede il blocco del database.</string>
+  <string name="kill_app_label">Termina il processo dell\'applicazione</string>
+  <string name="show_kill_app">Pulsante-Chiudi</string>
+  <string name="show_kill_app_summary">Mostra un pulsante nella schermata password per terminare il processo dell\'applicazione (per paranoici)</string>
   <string name="application">Applicazione</string>
   <string name="application_settings">Impostazioni Applicazione</string>
   <string name="security_prefs">Sicurezza</string>
@@ -139,6 +142,7 @@
   <string name="omitbackup_summary">Escludi i gruppi \'Backup\' e Cestino dai risultati di ricerca</string>
   <string name="pass_filename">Nome del file del database di KeePass</string>
   <string name="password_title">Inserisci la password del database</string>
+  <string name="master_key_type">Seleziona il tipo di chiave principale:</string>
   <string name="progress_create">Creazione del nuovo database…</string>
   <string name="create_database">Crea database</string>
   <string name="progress_title">Attendere prego…</string>
@@ -287,7 +291,13 @@
   <string name="UpdatedRemoteFileOnLoad">File remoto aggiornato.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Aperto il file locale a causa di conflitti con il file in remoto. Usa il menu Sincronizza per unire.</string>
   <string name="LoadedFromRemoteInSync">Il file remoto e la cache sono sincronizzati.</string>
+  <string name="UpdatedCachedFileOnLoad">Aggiornata copia cache locale di %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Nessuna modifica rilevata.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Aggiornato il file OTP ausiliario locale: il contatore remoto era maggiore.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Aggiornato il file OTP ausiliario remoto: il contatore locale era maggiore.</string>
+  <string name="SynchronizingOtpAuxFile">Sincronizzazione del file OTP ausiliario…</string>
+  <string name="database_file">file del database</string>
+  <string name="otp_aux_file">File OTP ausiliario</string>
   <string name="ErrorOcurred">Si è verificato un errore:</string>
   <string name="synchronize_database_menu">Sincronizzazione del database…</string>
   <string name="CannotMoveGroupHere">Non è possibile spostare il gruppo in questo gruppo.</string>
@@ -318,7 +328,28 @@
   <string name="hint_key_file">Scegli se vuoi utilizzare un file chiave oltre alla master password:</string>
   <string name="use_key_file">Usa file chiave</string>
   <string name="error_adding_keyfile">Errore nell\'aggiunta del file chiave!</string>
+  <string name="init_otp">Carica il file OTP ausiliario…</string>
+  <string name="otp_explanation">Inserisci i successivi One-time-password (OTP). Striscia sul retro del tuo dispositivo NEO Yubikey per accedere via NFC.</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Impossibile caricare il file OTP ausiliario!</string>
+  <string name="otp_discarded_because_no_db">Prima seleziona un database. L\'OTP viene scartata per motivi di sicurezza.</string>
+  <string name="otp_discarded_no_space">OTP scartata: OTP già tutte inserite!</string>
+  <string name="otp_discarded_because_db_open">Prima chiudi il database. OTP scartata.</string>
+  <string name="otps_pending">(Sono già disponibili una o più OTP)</string>
+  <string name="otpsecret_hint">OTP-secret (es.: 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Errore durante l\'analisi dell\'OTP-secret!</string>
+  <string name="OtpKeyError">Creazione chiave OTP fallita! Assicurati di aver inserito le OTP corrette.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Errore aggiornamento file OTP ausiliario!</string>
+  <string name="SavingOtpAuxFile">Salvataggio file OTP ausiliario…</string>
+  <string name="loading">Caricamento…</string>
   <string name="ChangeLog_title">log delle modifiche</string>
+  <string name="ChangeLog_0_9_2"><b>Versione 0.9.2</b>\n
+* Aggiunto supporto OTP (compatibile con il plugin OtpKeyProv)\n
+* Integrato supporto NFC per le OTP dal NEO YubiKey\n
+* Aggiornata l\'interfaccia utente\n
+* Integrata la libreria di Keepass 2.24\n
+* Aggiunta un\'opzione per terminare il processo dell\'app (vedi impostazioni)\n
+* Corretti alcuni bug\n  </string>
   <string name="ChangeLog_0_9_1"><b>Versione 0.9.1</b>\n
 * Aggiunto il supporto per SkyDrive (solo nell\'edizione normale di Keepass2Android)\n
 * Corretti i problemi di integrazione con Google Drive\n
@@ -396,11 +427,11 @@ Prima release pubblica
     <item>30 secondi</item>
     <item>1 minuto</item>
     <item>5 minuti</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 minuti</item>
+    <item>15 minuti</item>
+    <item>30 minuti</item>
+    <item>1 ora</item>
+    <item>Mai</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Piccolo</item>
@@ -413,9 +444,9 @@ Prima release pubblica
     <item>Ricorda nome utente e password</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Password only</item>
-    <item>Password + Key file</item>
+    <item>Solo password</item>
+    <item>Password + file chiave</item>
     <item>Password + OTP</item>
-    <item>Password + OTP secret (recovery mode)</item>
+    <item>Password + OTP-secret (modalità di ripristino)</item>
   </string-array>
 </resources>

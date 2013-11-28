@@ -19,6 +19,9 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Applicatietimeout</string>
   <string name="app_timeout_summary">Tijd tot het vergrendelen van de database bij inactiviteit.</string>
+  <string name="kill_app_label">Applicatie proces beëindigen</string>
+  <string name="show_kill_app">Sluiten-Knop</string>
+  <string name="show_kill_app_summary">Laat een knop zien in het wachtwoordscherm om de applicatie te beëindigen (voor paranoïde gebruikers)</string>
   <string name="application">Toepassing</string>
   <string name="application_settings">Applicatie-instellingen</string>
   <string name="security_prefs">Beveiliging</string>
@@ -139,6 +142,7 @@
   <string name="omitbackup_summary">Laat \'Backup\' en Prullenbak-groep weg uit zoekresultaten</string>
   <string name="pass_filename">KeePass databasebestandsnaam</string>
   <string name="password_title">Geef databasewachtwoord</string>
+  <string name="master_key_type">Selecteer hoofdsleutel type:</string>
   <string name="progress_create">Nieuwe database wordt aangemaakt…</string>
   <string name="create_database">Database maken</string>
   <string name="progress_title">Bezig…</string>
@@ -287,7 +291,13 @@
   <string name="UpdatedRemoteFileOnLoad">Extern bestand bijgewerkt.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Lokaal bestand geopend in verband met een conflict met veranderingen in extern bestand. Gebruik het menu Synchroniseren om samen te voegen.</string>
   <string name="LoadedFromRemoteInSync">Extern bestand en cache zijn gesynchroniseerd.</string>
+  <string name="UpdatedCachedFileOnLoad">Lokale cache kopie van %1$s is bijgewerkt.</string>
   <string name="RemoteDatabaseUnchanged">Geen veranderingen geconstateerd.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Gecachete OTP hulpbestand bijgewerkt: Externe teller was hoger.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Externe OTP hulpbestand bijgewerkt: Lokale teller was hoger.</string>
+  <string name="SynchronizingOtpAuxFile">OTP hulpbestand synchroniseren…</string>
+  <string name="database_file">database bestand</string>
+  <string name="otp_aux_file">OTP hulpbestand</string>
   <string name="ErrorOcurred">Een fout is opgetreden:</string>
   <string name="synchronize_database_menu">Database synchroniseren…</string>
   <string name="CannotMoveGroupHere">Kan de groep niet naar deze groep verplaatsen.</string>
@@ -318,7 +328,30 @@
   <string name="hint_key_file">Kies als u gebruik wilt maken van een sleutelbestand naast uw hoofdwachtwoord:</string>
   <string name="use_key_file">Gebruik sleutelbestand</string>
   <string name="error_adding_keyfile">Fout tijdens het toevoegen van het sleutelbestand!</string>
+  <string name="init_otp">Laad OTP hulpbestand…</string>
+  <string name="otp_explanation">Geef de volgende eenmalige wachtwoorden (OTPs). Veeg uw Yubikey NEO langs de achterkant van uw apparaat voor NFC invoer.</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Kan het OTP hulpbestand niet laden!</string>
+  <string name="otp_discarded_because_no_db">Selecteer eerst de database. OTP is om veiligheidsredenen verwijderd.</string>
+  <string name="otp_discarded_no_space">OTP verwijderd: alle OTPs al ingevoerd!</string>
+  <string name="otp_discarded_because_db_open">Sluit eerst de database. OTP is verwijderd.</string>
+  <string name="otps_pending">(Een of meerdere OTPs reeds beschikbaar)</string>
+  <string name="otpsecret_hint">OTP geheim (bijv. 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Fout lezen OTP geheim!</string>
+  <string name="OtpKeyError">OTP sleutel maken mislukt! Zorg ervoor dat u de juiste OTPs hebt ingevoerd.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Fout bijwerken OTP hulpbestand!</string>
+  <string name="SavingOtpAuxFile">OTP hulpbestand opslaan…</string>
+  <string name="loading">Laden…</string>
   <string name="ChangeLog_title">Change log</string>
+  <string name="ChangeLog_0_9_2">
+		<b>Versie 0.9.2</b>\n
+		* OTP ondersteuning toegevoegd (compatibel met OtpKeyProv plugin)\n
+		* Geïntegreerde NFC ondersteuning voor OTPs van YubiKey NEO\n
+		* Aantal UI verbeteringen\n
+		* Keepass 2.24 library geïntegreerd\n
+		* Optie om het applicatieproces te beëindigen toegevoegd (zie instellingen)\n
+		* Bug reparaties\n
+	</string>
   <string name="ChangeLog_0_9_1">
 		<b>Versie 0.9.1</b>\n
 		* Skydrive ondersteuning geïntegreerd (alleen voor Keepass2Android reguliere editie)\n
@@ -406,11 +439,11 @@ Eerste publieke publikatie
     <item>30 seconden</item>
     <item>1 minuut</item>
     <item>5 minuten</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 minuten</item>
+    <item>15 minuten</item>
+    <item>30 minuten</item>
+    <item>1 uur</item>
+    <item>Nooit</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Klein</item>
@@ -423,9 +456,9 @@ Eerste publieke publikatie
     <item>Onthoud gebruikersnaam en wachtwoord</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Password only</item>
-    <item>Password + Key file</item>
-    <item>Password + OTP</item>
-    <item>Password + OTP secret (recovery mode)</item>
+    <item>Alleen wachtwoord</item>
+    <item>Wachtwoord + sleutelbestand</item>
+    <item>Wachtwoord + OTP</item>
+    <item>Wachtwoord + OTP geheim (herstellings modus)</item>
   </string-array>
 </resources>

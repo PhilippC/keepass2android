@@ -19,6 +19,9 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Časový limit aplikace</string>
   <string name="app_timeout_summary">Čas před zamknutím databáze, když je aplikace neaktivní.</string>
+  <string name="kill_app_label">Zabít proces aplikace</string>
+  <string name="show_kill_app">Tlačítko Zavřít</string>
+  <string name="show_kill_app_summary">Zobrazit tlačítko na obrazovce s heslem pro zabití procesu aplikace (pro paranoidní uživatele)</string>
   <string name="application">Aplikace</string>
   <string name="application_settings">Nastavení aplikace</string>
   <string name="security_prefs">Zabezpečení</string>
@@ -139,6 +142,7 @@
   <string name="omitbackup_summary">Vynechat skupiny Záloha a Koš ve výsledcích hledání</string>
   <string name="pass_filename">Název souboru KeePass databáze</string>
   <string name="password_title">Zadejte heslo do databáze</string>
+  <string name="master_key_type">Vyberte typ hlavního klíče:</string>
   <string name="progress_create">Vytvářím novou databázi…</string>
   <string name="create_database">Vytvořit databázi</string>
   <string name="progress_title">Zpracovávám…</string>
@@ -287,7 +291,13 @@
   <string name="UpdatedRemoteFileOnLoad">Vzdálený soubor byl aktualizován.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Otevřen místní soubor kvůli kolizi se změnami ve vzdáleném souboru. Proveďte sloučení pomocí nabídky synchronizace.</string>
   <string name="LoadedFromRemoteInSync">Vzdálený soubor a soubor místní mezipaměti jsou synchronizovány.</string>
+  <string name="UpdatedCachedFileOnLoad">Aktualizována kopie místní mezipaměti %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Nebyly zjištěny změny.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Aktualizován pomocný soubor OTP v mezipaměti: vzdálený čítač byl vyšší.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Aktualizován vzdálený pomocný soubor OTP: místní čítač byl vyšší.</string>
+  <string name="SynchronizingOtpAuxFile">Synchronizace pomocného souboru OTP…</string>
+  <string name="database_file">databázový soubor</string>
+  <string name="otp_aux_file">Pomocný soubor OTP</string>
   <string name="ErrorOcurred">Došlo k chybě:</string>
   <string name="synchronize_database_menu">Synchronizovat databázi…</string>
   <string name="CannotMoveGroupHere">Skupinu nelze přesunout do této skupiny.</string>
@@ -318,7 +328,29 @@
   <string name="hint_key_file">Zvolte, pokud chcete použít soubor klíče spolu s hlavním heslem:</string>
   <string name="use_key_file">Použít soubor s klíčem</string>
   <string name="error_adding_keyfile">Chyba při přidávání klíčového souboru!</string>
+  <string name="init_otp">Otevřít pomocný soubor OTP…</string>
+  <string name="otp_explanation">Zadejte další jednorázová hesla (OTP). Přejeďte váš Yubikey NEO přes zadní stranu vašeho zařízení pro vstup přes NFC.</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Nelze načíst pomocný soubor OTP!</string>
+  <string name="otp_discarded_because_no_db">Prosím nejprve vyberte databázi. OTP je z bezpečnostních důvodů vyřazen.</string>
+  <string name="otp_discarded_no_space">OTP vstup vyřazen: všechna jednorázová hesla již byla použita!</string>
+  <string name="otp_discarded_because_db_open">Nejprve zavřete nejprve databázi. OTP je vyřazen.</string>
+  <string name="otps_pending">(Jeden nebo více OTP jsou již k dispozici)</string>
+  <string name="otpsecret_hint">OTP heslo (např. 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Chyba při analýze OTP hesla!</string>
+  <string name="OtpKeyError">Nepodařilo se vytvořit klíč OTP! Zkontrolujte, zda že jste zadali správný OTP.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Chyba při aktualizaci pomocného souboru OTP!</string>
+  <string name="SavingOtpAuxFile">Ukládám pomocný soubor OTP…</string>
+  <string name="loading">Probíhá načítání…</string>
   <string name="ChangeLog_title">Protokol změn</string>
+  <string name="ChangeLog_0_9_2">
+  <b>Verze 0.9.2</b>  \n 
+* Přidána podpora OTP (kompatibilní s OtpKeyProv pluginem)  \n 
+* Integrována podpora NFC pro OTP z YubiKey NEO  \n 
+* Několik vylepšení uživatelského rozhraní  \n 
+* Integrována knihovna KeePass 2.24  \n 
+* Přidána možnost zabít proces aplikace (viz Nastavení)  \n 
+* Opravy chyb  \n</string>
   <string name="ChangeLog_0_9_1">
 		<b>Verze 0.9.1</b>\n
 		* Přidána podpora SkyDrive (pouze Keepass2Android normální edice)\n
@@ -405,11 +437,11 @@ První veřejné vydání
     <item>30 sekund</item>
     <item>1 minuta</item>
     <item>5 minut</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 minut</item>
+    <item>15 minut</item>
+    <item>30 minut</item>
+    <item>1 hodina</item>
+    <item>Nikdy</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Malý</item>
@@ -422,9 +454,9 @@ První veřejné vydání
     <item>Pamatovat si uživatelské jméno a heslo</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Password only</item>
-    <item>Password + Key file</item>
-    <item>Password + OTP</item>
-    <item>Password + OTP secret (recovery mode)</item>
+    <item>Pouze heslo</item>
+    <item>Heslo + soubor klíče</item>
+    <item>Heslo + OTP</item>
+    <item>Heslo + OTP heslo (režim obnovení)</item>
   </string-array>
 </resources>

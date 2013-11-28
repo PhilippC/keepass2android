@@ -20,6 +20,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Anwendungs-Timeout</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
+  <string name="kill_app_label">App-Prozess beenden</string>
+  <string name="show_kill_app">Schließen-Button</string>
+  <string name="show_kill_app_summary">Zeige einen Button im Passwort-Bildschirm um den App-Prozess zu beenden (für paranoide User)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungs-Einstellungen</string>
   <string name="security_prefs">Sicherheit</string>
@@ -140,6 +143,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="omitbackup_summary">Papierkorb und Sicherungseinträge werden bei der Suche nicht berücksichtigt.</string>
   <string name="pass_filename">KeePass Datenbankdatei</string>
   <string name="password_title">Datenbank-Kennwort eingeben</string>
+  <string name="master_key_type">Master-Passwort-Typ auswählen:</string>
   <string name="progress_create">Neue Datenbank anlegen\u2026</string>
   <string name="create_database">Datenbank anlegen</string>
   <string name="progress_title">In Bearbeitung\u2026</string>
@@ -288,7 +292,13 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UpdatedRemoteFileOnLoad">Remote-Datei aktualisiert.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Datei aus lokalem Cache geladen wegen Konflikt mit Änderungen in der Remote-Datei. Nutze das Synchronisierungsmenü zum Zusammenführen.</string>
   <string name="LoadedFromRemoteInSync">Remote-Datei und Cache stimmen überein.</string>
+  <string name="UpdatedCachedFileOnLoad">Die lokale zwischengespeicherte Kopie von %1$s wurde aktualisiert.</string>
   <string name="RemoteDatabaseUnchanged">Keine Änderungen gefunden.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Die lokale OTP Hilfsdatei wurde aktualisiert: Der Zähler am Server war höher.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Die OTP Hilfsdatei wurde am Server aktualisiert: Der lokale Zähler war höher.</string>
+  <string name="SynchronizingOtpAuxFile">Synchronisiere OTP Hilfsdatei…</string>
+  <string name="database_file">Datenbankdatei</string>
+  <string name="otp_aux_file">OTP Hilfsdatei</string>
   <string name="ErrorOcurred">Ein Fehler ist aufgetreten:</string>
   <string name="synchronize_database_menu">Datenbank synchronisieren…</string>
   <string name="CannotMoveGroupHere">Kann Gruppe nicht hierher verschieben.</string>
@@ -319,7 +329,29 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_key_file">Wähle, ob du eine Schlüsseldatei zusätzlich zum Hauptpasswort nutzen möchtest:</string>
   <string name="use_key_file">Schlüsseldatei benutzen</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
+  <string name="init_otp">OTP-Hilfsdatei laden…</string>
+  <string name="otp_explanation">Nächste One-Time-Passwörter (OTPs) eingeben. Halten deinen YubiKey NEO hinten an dein Gerät um über NFC einzugeben.</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
+  <string name="otp_discarded_because_no_db">Bitte erst Datenbank laden. OTP wird aus Sicherheitsgründen verworfen.</string>
+  <string name="otp_discarded_no_space">OTP verworfen. Alle OTPs bereits eingegeben!</string>
+  <string name="otp_discarded_because_db_open">Bitte zuerst die aktuelle Datenbank schließen. OTP wird verworfen.</string>
+  <string name="otps_pending">(Ein oder mehrere OTPs bereits verfügbar)</string>
+  <string name="otpsecret_hint">OTP Secret (z.B. 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Fehler beim Parsen des OTP-Secrets!</string>
+  <string name="OtpKeyError">Fehler beim Erstellen des OTP-Schlüssels! Bitte stelle sicher, dass du die richtigen OTPs eingegeben hast.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Fehler beim Aktualisieren der OTP-Hilfsdatei!</string>
+  <string name="SavingOtpAuxFile">Speichere OTP-Hilfsdatei…</string>
+  <string name="loading">Lade…</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog_0_9_2"><b>Version 0.9.2</b>\n
+* Unterstützung für OTPs (One Time Passwords) integriert (kompatibel zum OtpKeyProv-Plugin)\n
+* NFC-Support zur Eingabe von OTPs über YubiKey NEO integriert\n
+* Verbesserungen an der Benutzeroberfläche\n
+* Keepass 2.24-Bibliothek integriert \n
+* Option zum Beenden des App-Prozesses eingebaut (s. Einstellungen)\n
+* Bugs behoben\n
+</string>
   <string name="ChangeLog_0_9_1"><b>Version 0.9.1</b>\n
 * SkyDrive-Unterstützung integriert (Nur in der Nicht-Offline-Version von Keepass2Android)\n
 * Probleme mit Google Drive Integration behoben\n
@@ -400,11 +432,11 @@ Erstes öffentliches Release</string>
     <item>30 Sekunden</item>
     <item>1 Minute</item>
     <item>5 Minuten</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 Minuten</item>
+    <item>15 Minuten</item>
+    <item>30 Minuten</item>
+    <item>1 Stunde</item>
+    <item>Nie</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Klein</item>
@@ -417,9 +449,9 @@ Erstes öffentliches Release</string>
     <item>Benutzername und Passwort merken</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Password only</item>
-    <item>Password + Key file</item>
-    <item>Password + OTP</item>
-    <item>Password + OTP secret (recovery mode)</item>
+    <item>Nur Kennwort</item>
+    <item>Kennwort + Schlüsseldatei</item>
+    <item>Kennwort + OTP</item>
+    <item>Kennwort + OTP Secret (Recovery-Modus)</item>
   </string-array>
 </resources>
