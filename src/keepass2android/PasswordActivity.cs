@@ -285,7 +285,9 @@ namespace keepass2android
 					{
 						if (_otpInfo == null)
 						{
-							Toast.MakeText(this, GetString(Resource.String.CouldntLoadOtpAuxFile), ToastLength.Long).Show();
+							Toast.MakeText(this,
+								GetString(Resource.String.CouldntLoadOtpAuxFile) + " " + GetString(Resource.String.CouldntLoadOtpAuxFile_Hint)
+								, ToastLength.Long).Show();
 							return;
 						}
 
