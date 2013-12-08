@@ -10,7 +10,8 @@
   <string name="afc_cmd_new_folder">Новая папка…</string>
   <string name="afc_cmd_select_all_files">Выбрать все файлы</string>
   <string name="afc_cmd_select_all_folders">Выбрать все папки</string>
-  <string name="afc_cmd_sort">Сортировка…</string>
+  <string name="afc_cmd_sort">Сортировка…
+Сортировать...</string>
   <string name="afc_file">файл</string>
   <string name="afc_folder">папка</string>
   <string name="afc_hint_clear">очистить</string>

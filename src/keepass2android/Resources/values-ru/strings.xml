@@ -19,6 +19,9 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Блокировка базы</string>
   <string name="app_timeout_summary">Задержка блокировки при бездействии</string>
+  <string name="kill_app_label">Закрыть приложение</string>
+  <string name="show_kill_app">Кнопка закрытия</string>
+  <string name="show_kill_app_summary">Показать кнопку закрытия приложения на экране с паролем (для параноидальных пользователей)</string>
   <string name="application">Программа</string>
   <string name="application_settings">Настройки Keepass2Android</string>
   <string name="security_prefs">Безопасность</string>
@@ -139,6 +142,7 @@
   <string name="omitbackup_summary">Не искать в Резервировании и Корзине</string>
   <string name="pass_filename">База KeePass</string>
   <string name="password_title">Изменение пароля базы</string>
+  <string name="master_key_type">Выберите тип мастер-ключа:</string>
   <string name="progress_create">Создание базы…</string>
   <string name="create_database">Создать базу данных</string>
   <string name="progress_title">Обработка</string>
@@ -287,7 +291,13 @@
   <string name="UpdatedRemoteFileOnLoad">Обновленный удалённый файл.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Открыт локальный файл из-за конфликта с изменениями в удалённом файле. Используйте меню Синхронизация для слияния.</string>
   <string name="LoadedFromRemoteInSync">Удалённый файл и кэш синхронизированы.</string>
+  <string name="UpdatedCachedFileOnLoad">Обновлённая локальная кешированная копия %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Изменений не обнаружено.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Обновлен кэшированный вспомогательный файл одноразовых паролей: удаленный счетчик имел большее значение.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Обновлен локальный вспомогательный файл одноразовых паролей: локальный счетчик имел большее значение.</string>
+  <string name="SynchronizingOtpAuxFile">Синхронизируем вспомогательный файл одноразовых паролей…</string>
+  <string name="database_file">файл базы данных</string>
+  <string name="otp_aux_file">Вспомогательный файл одноразовых паролей</string>
   <string name="ErrorOcurred">Произошла ошибка:</string>
   <string name="synchronize_database_menu">Синхронизируйте базу данных…</string>
   <string name="CannotMoveGroupHere">Не удается переместить группу в эту группу.</string>
@@ -318,7 +328,29 @@
   <string name="hint_key_file">Выберите, если вы хотите использовать ключевой файл в дополнение к мастер-паролю:</string>
   <string name="use_key_file">Использовать ключевой файл</string>
   <string name="error_adding_keyfile">Ошибка при добавлении ключевого файла!</string>
+  <string name="init_otp">Загрузить вспомогательный файл одноразовых паролей…</string>
+  <string name="otp_explanation">Введите следующий одноразовый пароль (OTP). Проведите ваш Yubikey NEO на задней панели устройства через датчик NFC.</string>
+  <string name="otp_hint">Одноразовый пароль %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Не удалось загрузить вспомогательный файл одноразовых паролей!</string>
+  <string name="otp_discarded_because_no_db">Сначала выберите базу данных. Одноразовый пароль не принят из соображений безопасности.</string>
+  <string name="otp_discarded_no_space">Одноразовый пароль не принят: все одноразовые пароли были использованы!</string>
+  <string name="otp_discarded_because_db_open">Пожалуйста, сначала закройте базу данных. Одноразовый пароль не принят.</string>
+  <string name="otps_pending">(Один или несколько одноразовых паролей уже доступны)</string>
+  <string name="otpsecret_hint">Секрет одноразовых паролей (например 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Ошибка синтаксического анализа секрета одноразовых паролей!</string>
+  <string name="OtpKeyError">Не удалось создать ключ одноразовых паролей! Убедитесь, что вы ввели корректные одноразовые пароли.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей!</string>
+  <string name="SavingOtpAuxFile">Сохранение вспомогательного файла одноразовых паролей…</string>
+  <string name="loading">Загрузка…</string>
   <string name="ChangeLog_title">Список изменений</string>
+  <string name="ChangeLog_0_9_2"><b>Версия 0.9.2</b>\n
+* Поддержка одноразовых паролей (OTP) (совместимость с плагином OtpKeyProv)\n
+* Интегрирована поддержка NFC для генеразции одноразовых паролей с помощью YubiKey NEO \n
+* Улучшения интерфейса\n
+* Интегрирована библиотека Keepass 2.24 library\n
+* Добавлена опция быстрого закрытия процесса приложения (см. настройки)\n
+* Исправлены ошибки\n
+</string>
   <string name="ChangeLog_0_9_1">   <b>Версия 0.9.1</b>
  * Встроена поддержка SkyDrive (только Keepass2Android regular edition)
  * Исправлены проблемы с Google Drive 
@@ -397,11 +429,11 @@
     <item>30 сек.</item>
     <item>1 мин.</item>
     <item>5 мин.</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 минут</item>
+    <item>15 минут</item>
+    <item>30 минут</item>
+    <item>1 час</item>
+    <item>Никогда</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Мелкий</item>
@@ -414,9 +446,9 @@
     <item>Запоминать имя пользователя и пароль</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Password only</item>
-    <item>Password + Key file</item>
-    <item>Password + OTP</item>
-    <item>Password + OTP secret (recovery mode)</item>
+    <item>Только пароль</item>
+    <item>Пароль + ключевой файл</item>
+    <item>Пароль + ОТР</item>
+    <item>Пароль + ОТП секрет (режим восстановления)</item>
   </string-array>
 </resources>

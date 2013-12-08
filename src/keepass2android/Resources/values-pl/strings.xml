@@ -291,6 +291,7 @@
   <string name="UpdatedRemoteFileOnLoad">Zaktualizowano plik zdalny.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Otwarto lokalny plik ze względu na konflikt ze zmianami w pliku zdalnym. Użyj menu Synchronizuj do połączenia obydwu plików.</string>
   <string name="LoadedFromRemoteInSync">Zdalny plik i pamięć podręczna są zsynchronizowane.</string>
+  <string name="UpdatedCachedFileOnLoad">Aktualizacja lokalnej pamięci podręcznej: %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Nie wykryto żadnych zmian.</string>
   <string name="SynchronizingOtpAuxFile">Synchronizacja pliku pomocniczego OTP…</string>
   <string name="database_file">plik bazy danych</string>
