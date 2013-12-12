@@ -415,4 +415,9 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Hasło + OTP</item>
     <item>Hasło + OTP (tryb odzyskiwania)</item>
   </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Ignore certificate validation failures</item>
+    <item>Warn when validation fails</item>
+    <item>Do not accept invalid certificates</item>
+  </string-array>
 </resources>

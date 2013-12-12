@@ -397,4 +397,9 @@ Publicación inicial</string>
     <item>Password + OTP</item>
     <item>Password + OTP secret (recovery mode)</item>
   </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Ignore certificate validation failures</item>
+    <item>Warn when validation fails</item>
+    <item>Do not accept invalid certificates</item>
+  </string-array>
 </resources>

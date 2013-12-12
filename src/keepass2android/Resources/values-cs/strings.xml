@@ -459,4 +459,9 @@ První veřejné vydání
     <item>Heslo + OTP</item>
     <item>Heslo + OTP heslo (režim obnovení)</item>
   </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Ignore certificate validation failures</item>
+    <item>Warn when validation fails</item>
+    <item>Do not accept invalid certificates</item>
+  </string-array>
 </resources>

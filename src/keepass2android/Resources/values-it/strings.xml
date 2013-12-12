@@ -449,4 +449,9 @@ Prima release pubblica
     <item>Password + OTP</item>
     <item>Password + OTP-secret (modalità di ripristino)</item>
   </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Ignore certificate validation failures</item>
+    <item>Warn when validation fails</item>
+    <item>Do not accept invalid certificates</item>
+  </string-array>
 </resources>

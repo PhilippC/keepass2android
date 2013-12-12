@@ -454,4 +454,9 @@ Bản phát hành chính thức đầu tiên</string>
     <item>Mật mã + OTP</item>
     <item>Mật mã + bí mật OTP (chế độ phục hồi)</item>
   </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Ignore certificate validation failures</item>
+    <item>Warn when validation fails</item>
+    <item>Do not accept invalid certificates</item>
+  </string-array>
 </resources>

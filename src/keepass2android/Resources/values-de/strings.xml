@@ -233,8 +233,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="credentials_dialog_title">Serverzugangsdaten eingeben</string>
   <string name="UseFileTransactions_title">Dateitransaktionen</string>
   <string name="UseFileTransactions_summary">Dateitransaktionen beim Schreiben von Datenbank-Dateien verwenden</string>
+  <string name="LockWhenScreenOff_title">Sperren bei Ausschalten</string>
+  <string name="LockWhenScreenOff_summary">Sperre die Datenbank wenn der Bildschirm ausgeschaltet wird.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
   <string name="UseOfflineCache_summary">Speichere eine Kopie der Remote-Datenbank-Dateien im Cache-Verzeichnis der App. Das erlaubt die Nutzung von Remote-Datenbanken auch wenn du offline bist.</string>
+  <string name="AcceptAllServerCertificates_title">SSL-Zertifikate</string>
+  <string name="AcceptAllServerCertificates_summary">Bestimme das Verhalten, wenn Zertifikate nicht validiert werden können. Hinweis: du kannst  auf deinem Android-Gerät Root-Zertifikate installieren, damit die Validierung gelingt!</string>
   <string name="ClearOfflineCache_title">Cache löschen?</string>
   <string name="ClearOfflineCache_question">Alle Datenbank-Dateien im Cache werden gelöscht. Änderungen, die du gemacht hast während du offline warst und die noch nicht synchronisiert wurden, werden verloren gehen! Fortfahren?</string>
   <string name="CheckForFileChangesOnSave_title">Auf Änderungen prüfen</string>
@@ -313,6 +317,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
+  <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, kannst du diese Option wählen um den Ordner anzulegen, und dann die Datei (vom PC aus) in den neuen Ordner kopieren. Wähle die Option dann nochmal zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
@@ -333,6 +339,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="otp_explanation">Nächste One-Time-Passwörter (OTPs) eingeben. Halten deinen YubiKey NEO hinten an dein Gerät um über NFC einzugeben.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Bitte nutze das OtpKeyProv-Plugin in Keepass 2.x a PC um deine Datenbank zur Verwendung von One-Time-Passwords einzureichten!</string>
   <string name="otp_discarded_because_no_db">Bitte erst Datenbank laden. OTP wird aus Sicherheitsgründen verworfen.</string>
   <string name="otp_discarded_no_space">OTP verworfen. Alle OTPs bereits eingegeben!</string>
   <string name="otp_discarded_because_db_open">Bitte zuerst die aktuelle Datenbank schließen. OTP wird verworfen.</string>
@@ -343,6 +350,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ErrorUpdatingOtpAuxFile">Fehler beim Aktualisieren der OTP-Hilfsdatei!</string>
   <string name="SavingOtpAuxFile">Speichere OTP-Hilfsdatei…</string>
   <string name="loading">Lade…</string>
+  <string name="CertificateWarning">Warnung: Server-Zertifikat konnte nicht validiert werden: %1$s. Installiere ein passendes Root-Zertifikat auf deinem Gerät oder s. Einstellungen.</string>
+  <string name="CertificateFailure">Fehler: Server-Zertifikat konnte nicht validiert werden! Installiere ein passendes Root-Zertifikat auf deinem Android-Gerät oder s. Einstellungen!</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
   <string name="ChangeLog_0_9_2"><b>Version 0.9.2</b>\n
 * Unterstützung für OTPs (One Time Passwords) integriert (kompatibel zum OtpKeyProv-Plugin)\n
@@ -453,5 +462,10 @@ Erstes öffentliches Release</string>
     <item>Kennwort + Schlüsseldatei</item>
     <item>Kennwort + OTP</item>
     <item>Kennwort + OTP Secret (Recovery-Modus)</item>
+  </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Fehler bei Zertifikatsvalidierung ignorieren</item>
+    <item>Warnen, wenn die Validierung fehlschlägt</item>
+    <item>Ungültige Zertifikate nicht akzeptieren</item>
   </string-array>
 </resources>
