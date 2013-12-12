@@ -19,13 +19,20 @@ namespace Kp2aUnitTests
 	[TestClass]
 	internal class TestSynchronizeCachedDatabase : TestBase
 	{
+		[TestInitialize]
+		public void InitTests()
+		{
+			TestFileStorage.Offline = false;
+		}
+
 		private TestCacheSupervisor _testCacheSupervisor = new TestCacheSupervisor();
-		private TestFileStorage _testFileStorage = new TestFileStorage();
 
 		protected override TestKp2aApp CreateTestKp2aApp()
 		{
 			TestKp2aApp app = base.CreateTestKp2aApp();
-			app.FileStorage = new CachingFileStorage(_testFileStorage, "/mnt/sdcard/kp2atest/cache/", _testCacheSupervisor);
+			app.TestFileStorage = new TestFileStorage(app);
+
+			app.FileStorage = new CachingFileStorage(app.TestFileStorage, "/mnt/sdcard/kp2atest/cache/", _testCacheSupervisor);
 			return app;
 		}
 
@@ -58,7 +65,7 @@ namespace Kp2aUnitTests
 			Assert.AreEqual(resultMessage, app.GetResourceString(UiStringKey.FilesInSync));
 
 			//go offline:
-			_testFileStorage.Offline = true;
+			TestFileStorage.Offline = true;
 
 			//sync when offline (->error)
 			Synchronize(app, out wasSuccessful, out resultMessage);
@@ -73,7 +80,7 @@ namespace Kp2aUnitTests
 			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntSaveToRemoteId);
 
 			//go online again:
-			_testFileStorage.Offline = false;
+			TestFileStorage.Offline = false;
 
 			//sync with local changes only (-> upload):
 			Synchronize(app, out wasSuccessful, out resultMessage);
@@ -81,16 +88,18 @@ namespace Kp2aUnitTests
 			Assert.AreEqual(resultMessage, app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
 
 			//ensure both files are identical and up to date now:
-			_testFileStorage.Offline = true;
+			TestFileStorage.Offline = true;
 			var appOfflineLoaded = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
 			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntOpenFromRemoteId);
-			_testFileStorage.Offline = false;
+			TestFileStorage.Offline = false;
 			var appRemoteLoaded = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
 			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.LoadedFromRemoteInSyncId);
 
 			AssertDatabasesAreEqual(app.GetDb().KpDatabase, appOfflineLoaded.GetDb().KpDatabase);
 			AssertDatabasesAreEqual(app.GetDb().KpDatabase, appRemoteLoaded.GetDb().KpDatabase);
 		}
+
+		
 
 		[TestMethod]
 		public void TestSyncWhenRemoteDeleted()
@@ -133,11 +142,11 @@ namespace Kp2aUnitTests
 			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.LoadedFromRemoteInSyncId);
 
 			var app2 = LoadDatabase(DefaultFilename, DefaultPassword, DefaultKeyfile);
-			app2.FileStorage = _testFileStorage; //give app2 direct access to the remote file
+			app2.FileStorage = app.TestFileStorage; //give app2 direct access to the remote file
 			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.LoadedFromRemoteInSyncId);
 
 			//go offline:
-			_testFileStorage.Offline = true;
+			TestFileStorage.Offline = true;
 
 
 			string resultMessage;
@@ -153,7 +162,7 @@ namespace Kp2aUnitTests
 			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.CouldntSaveToRemoteId);
 
 			//go online again:
-			_testFileStorage.Offline = false;
+			TestFileStorage.Offline = false;
 			
 			//...and remote only for "app2":
 			SaveDatabase(app2);

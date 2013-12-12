@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Net.Security;
 using Android.Content;
 using Android.OS;
+using Java.Security.Cert;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 
@@ -12,6 +14,56 @@ namespace keepass2android.Io
 {
 	public class BuiltInFileStorage: IFileStorage
 	{
+		public enum CertificateProblem :long
+		{
+			CertEXPIRED = 0x800B0101,
+			CertVALIDITYPERIODNESTING = 0x800B0102,
+			CertROLE = 0x800B0103,
+			CertPATHLENCONST = 0x800B0104,
+			CertCRITICAL = 0x800B0105,
+			CertPURPOSE = 0x800B0106,
+			CertISSUERCHAINING = 0x800B0107,
+			CertMALFORMED = 0x800B0108,
+			CertUNTRUSTEDROOT = 0x800B0109,
+			CertCHAINING = 0x800B010A,
+			CertREVOKED = 0x800B010C,
+			CertUNTRUSTEDTESTROOT = 0x800B010D,
+			CertREVOCATION_FAILURE = 0x800B010E,
+			CertCN_NO_MATCH = 0x800B010F,
+			CertWRONG_USAGE = 0x800B0110,
+			CertUNTRUSTEDCA = 0x800B0112
+		}
+
+
+		private readonly IKp2aApp _app;
+
+		class CertificatePolicity: ICertificatePolicy 
+		{
+			private readonly IKp2aApp _app;
+
+			public CertificatePolicity(IKp2aApp app)
+			{
+				_app = app;
+			}
+
+			public bool CheckValidationResult(ServicePoint srvPoint, System.Security.Cryptography.X509Certificates.X509Certificate certificate, WebRequest request,
+			                                  int certificateProblem)
+			{
+				if (certificateProblem == 0) //ok
+					return true;
+				return _app.OnServerCertificateError(certificateProblem);
+			}
+		}
+
+
+		public BuiltInFileStorage(IKp2aApp app)
+		{
+			_app = app;
+			//use the obsolute CertificatePolicy because the ServerCertificateValidationCallback isn't called in Mono for Android (?)
+			ServicePointManager.CertificatePolicy = new CertificatePolicity(app);
+			
+		}
+
 		public IEnumerable<string> SupportedProtocols 
 		{ 
 			get 
@@ -68,26 +120,51 @@ namespace keepass2android.Io
 			}
 			catch (WebException ex)
 			{
-				if ((ex.Response is HttpWebResponse) && (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.NotFound))
-				{
-					throw new FileNotFoundException(ex.Message, ioc.Path, ex);
-				}
+				ConvertException(ioc, ex);
 				throw;
 			}
-			
+		}
+
+		private void ConvertException(IOConnectionInfo ioc, WebException ex)
+		{
+			if ((ex.Response is HttpWebResponse) && (((HttpWebResponse) ex.Response).StatusCode == HttpStatusCode.NotFound))
+			{
+				throw new FileNotFoundException(ex.Message, ioc.Path, ex);
+			}
+			if (ex.Status == WebExceptionStatus.TrustFailure)
+			{
+				throw new Exception(_app.GetResourceString(UiStringKey.CertificateFailure), ex);
+			}
+			var inner1 = ex.InnerException as IOException;
+			if (inner1 != null)
+			{
+				var inner2 = inner1.InnerException;
+				if (inner2 != null)
+				{
+					if (inner2.Message.Contains("Invalid certificate received from server."))
+					{
+						throw new Exception(_app.GetResourceString(UiStringKey.CertificateFailure), ex);
+					}
+				}
+				 
+			}
 		}
 
 		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
 		{
-			return new BuiltInFileTransaction(ioc, useFileTransaction);
+			return new BuiltInFileTransaction(ioc, useFileTransaction, this);
 		}
 
 		public class BuiltInFileTransaction : IWriteTransaction
 		{
+			private readonly IOConnectionInfo _ioc;
+			private readonly BuiltInFileStorage _fileStorage;
 			private readonly FileTransactionEx _transaction;
 
-			public BuiltInFileTransaction(IOConnectionInfo ioc, bool useFileTransaction)
+			public BuiltInFileTransaction(IOConnectionInfo ioc, bool useFileTransaction, BuiltInFileStorage fileStorage)
 			{
+				_ioc = ioc;
+				_fileStorage = fileStorage;
 				_transaction = new FileTransactionEx(ioc, useFileTransaction);
 			}
 
@@ -98,12 +175,30 @@ namespace keepass2android.Io
 
 			public Stream OpenFile()
 			{
-				return _transaction.OpenWrite();
+				try
+				{
+					return _transaction.OpenWrite();
+				}
+				catch (WebException ex)
+				{
+					_fileStorage.ConvertException(_ioc, ex);
+					throw;
+				}
+				
 			}
 
 			public void CommitWrite()
 			{
-				_transaction.CommitWrite();
+				try
+				{
+					_transaction.CommitWrite();
+				}
+				catch (WebException ex)
+				{
+					_fileStorage.ConvertException(_ioc, ex);
+					throw;
+				}
+				
 			}
 		}
 

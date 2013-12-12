@@ -353,7 +353,7 @@ namespace keepass2android
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
 			if (iocInfo.IsLocalFile())
-				return new BuiltInFileStorage();
+				return new BuiltInFileStorage(this);
 			else
 			{
 				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
@@ -399,7 +399,7 @@ namespace keepass2android
 							new GoogleDriveFileStorage(Application.Context, this),
 							new SkyDriveFileStorage(Application.Context, this),
 #endif
-							new BuiltInFileStorage()
+							new BuiltInFileStorage(this)
 						};
 				}
 				return _fileStorages;
@@ -413,6 +413,61 @@ namespace keepass2android
 				{
 					AskForReload((Activity) ctx);
 				});
+		}
+
+		
+
+		private String GetProblemMessage(BuiltInFileStorage.CertificateProblem problem)
+		{
+			String problemMessage;
+			const BuiltInFileStorage.CertificateProblem problemList = new BuiltInFileStorage.CertificateProblem();
+			string problemCodeName = Enum.GetName(typeof(BuiltInFileStorage.CertificateProblem), problem);
+				
+			if (problemCodeName != null)
+				problemMessage = problemCodeName;
+			else
+				problemMessage = "Unknown Certificate Problem";
+			return problemMessage;
+		}
+
+		enum ValidationMode
+		{
+			Ignore, Warn, Error
+		}
+
+		public bool OnServerCertificateError(int certificateProblem)
+		{
+			var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+
+			ValidationMode validationMode = ValidationMode.Warn;
+			
+			string strValMode = prefs.GetString(Application.Context.Resources.GetString(Resource.String.AcceptAllServerCertificates_key),
+												 Application.Context.Resources.GetString(Resource.String.AcceptAllServerCertificates_default));
+
+			if (strValMode == "IGNORE")
+				validationMode = ValidationMode.Ignore;
+			else if (strValMode == "ERROR")
+				validationMode = ValidationMode.Error;
+			;
+
+			switch (validationMode)
+			{
+				case ValidationMode.Ignore:
+					return true;
+				case ValidationMode.Warn:
+					ShowToast(Application.Context.GetString(Resource.String.CertificateWarning,
+				                                        new Java.Lang.Object[]
+					                                        {
+						                                        GetProblemMessage(
+							                                        (BuiltInFileStorage.CertificateProblem)
+							                                        (System.UInt32) certificateProblem)
+					                                        }));
+					return true;
+				case ValidationMode.Error:
+					return false;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 
 
@@ -492,7 +547,7 @@ namespace keepass2android
 
 		public void ClearOfflineCache()
 		{
-			new CachingFileStorage(new BuiltInFileStorage(), Application.Context.CacheDir.Path, this).ClearCache();
+			new CachingFileStorage(new BuiltInFileStorage(this), Application.Context.CacheDir.Path, this).ClearCache();
 		}
 
 		public IFileStorage GetFileStorage(string protocolId)
@@ -508,7 +563,7 @@ namespace keepass2android
 		{
 
 			if (iocInfo.IsLocalFile())
-				return new BuiltInFileStorage();
+				return new BuiltInFileStorage(this);
 			else
 			{
 				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);

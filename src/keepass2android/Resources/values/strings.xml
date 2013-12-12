@@ -239,6 +239,11 @@
   <string name="LockWhenScreenOff_summary">Lock the database when screen is switched off.</string>
 	<string name="UseOfflineCache_title">Database caching</string>
 	<string name="UseOfflineCache_summary">Keep a copy of remote database files in the application cache directory. This allows to use remote databases even when offline.</string>
+
+	<string name="AcceptAllServerCertificates_title">SSL certificates</string>
+	<string name="AcceptAllServerCertificates_summary">Define the behavior when certificate validation fails. Note: you can install certificates on your device if validation fails!</string>
+	
+	
 	<string name="ClearOfflineCache_title">Clear cache?</string>
 	<string name="ClearOfflineCache_question">This will delete all cached database files. Any changes you made while being offline which have not yet been synchronized will be lost! Continue?</string>
   <string name="CheckForFileChangesOnSave_title">Check for modifications</string>
@@ -372,16 +377,20 @@
 	<string name="SavingOtpAuxFile">Saving auxiliary OTP file…</string>
 
 	<string name="loading">Loading…</string>
+
+	<string name="CertificateWarning">Warning: Server certificate validation failed: %1$s. Install appropriate root certificate on your device or see settings!</string>
+	<string name="CertificateFailure">Error: Server certificate validation failed! Install appropriate root certificate on your device or see settings!</string>
 	
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="ChangeLog_0_9_2">
-		<b>Version 0.9.2b (preview)</b>\n
+		<b>Version 0.9.2</b>\n
 		* Added OTP support (compatible with OtpKeyProv plugin)\n
 		* Integrated NFC support for OTPs from YubiKey NEO \n
 		* Several UI improvements\n
 		* Integrated Keepass 2.24 library\n
 		* Added option to kill the app process (see settings)\n
+		* Improved SSL certificate validation\n
 		* Bug fixes\n
 	</string>
 
@@ -501,4 +510,10 @@ Initial public release
 		<item>Password + OTP</item>
 		<item>Password + OTP secret (recovery mode)</item>
 	</string-array>
+	<string-array name="AcceptAllServerCertificates_options">
+		<item>Ignore certificate validation failures</item>
+		<item>Warn when validation fails</item>
+		<item>Do not accept invalid certificates</item>
+	</string-array>
+
 </resources>

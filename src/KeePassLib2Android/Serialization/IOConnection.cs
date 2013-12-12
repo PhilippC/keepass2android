@@ -317,7 +317,7 @@ namespace KeePassLib.Serialization
 				if ((ex.Response is HttpWebResponse) && (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized))
 					return CreateWebClient(ioc, true).OpenRead(new Uri(ioc.Path));
 				else
-					throw ex;
+					throw;
 			}
 
 		}
@@ -369,7 +369,7 @@ namespace KeePassLib.Serialization
 					if ((ex.Response is HttpWebResponse) && (((HttpWebResponse) ex.Response).StatusCode == HttpStatusCode.Unauthorized))
 						uploadData(IOConnection.CreateWebClient(ioc, true));
 					else
-						throw ex;
+						throw;
 				}
 				
 			}

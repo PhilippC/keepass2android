@@ -78,5 +78,11 @@ namespace keepass2android
 		IFileStorage GetFileStorage(IOConnectionInfo iocInfo);
 
 		void TriggerReload(Context context);
+
+		/// <summary>
+		/// Handles a failed certificate validation. Returns true if the users wants to continue, false otherwise.
+		/// see http://msdn.microsoft.com/en-us/library/system.net.icertificatepolicy(v=vs.110).aspx
+		/// </summary>
+		bool OnServerCertificateError(int certificateProblem);
     }
 }

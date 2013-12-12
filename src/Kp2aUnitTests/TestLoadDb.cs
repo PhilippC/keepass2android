@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using Android.App;
-using Android.OS;
 using KeePassLib.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using keepass2android;
@@ -21,8 +19,10 @@ namespace Kp2aUnitTests
 			IKp2aApp app = new TestKp2aApp();
 			app.CreateNewDatabase();
 			bool loadSuccesful = false;
-			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = TestDbDirectory+filenameWithoutDir }, null,
-				password, keyfile, new ActionOnFinish((success, message) =>
+			var key = CreateKey(password, keyfile);
+
+			LoadDb task = new LoadDb(app, new IOConnectionInfo { Path = TestDbDirectory+filenameWithoutDir }, null,
+				key, keyfile, new ActionOnFinish((success, message) =>
 					{
 						if (!success)
 							Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
@@ -39,6 +39,8 @@ namespace Kp2aUnitTests
 			Assert.AreEqual(6,app.GetDb().KpDatabase.RootGroup.Groups.Count());
 			Assert.AreEqual(2,app.GetDb().KpDatabase.RootGroup.Entries.Count());
 		}
+
+		
 
 
 		[TestMethod]
@@ -74,11 +76,12 @@ namespace Kp2aUnitTests
 		public void LoadFromRemoteWithDomain()
 		{
 			var ioc = RemoteDomainIoc; //note: this property is defined in "TestLoadDbCredentials.cs" which is deliberately excluded from Git because the credentials are not public!
-			IKp2aApp app = new TestKp2aApp();
+			var app = new TestKp2aApp();
+			app.ServerCertificateErrorResponse = true; //accept invalid cert
 			app.CreateNewDatabase();
 			
 			bool loadSuccesful = false;
-			LoadDb task = new LoadDb(app, ioc, null, "a", null, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, ioc, null, CreateKey("a"), null, new ActionOnFinish((success, message) =>
 				{
 					if (!success)
 						Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
@@ -95,14 +98,69 @@ namespace Kp2aUnitTests
 		}
 
 		[TestMethod]
-		public void LoadFromRemote1and1()
+		public void LoadErrorWithCertificateTrustFailure()
+		{
+			var ioc = RemoteCertFailureIoc; //note: this property is defined in "TestLoadDbCredentials.cs" which is deliberately excluded from Git because the credentials are not public!
+			var app = new TestKp2aApp();
+			app.ServerCertificateErrorResponse = false;
+			app.CreateNewDatabase();
+
+			bool loadSuccesful = false;
+			string theMessage = "";
+			LoadDb task = new LoadDb(app, ioc, null, CreateKey("test"), null, new ActionOnFinish((success, message) =>
+			{
+				if (!success)
+					Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
+				loadSuccesful = success;
+				theMessage = message;
+			})
+				);
+
+
+			ProgressTask pt = new ProgressTask(app, Application.Context, task);
+			Android.Util.Log.Debug("KP2ATest", "Running ProgressTask");
+			pt.Run();
+			pt.JoinWorkerThread();
+			Android.Util.Log.Debug("KP2ATest", "PT.run finished");
+			Assert.IsFalse(loadSuccesful, "database should not be loaded because invalid certificates are not accepted");
+			Assert.AreEqual(theMessage, UiStringKey.ErrorOcurred +" "+UiStringKey.CertificateFailure);
+
+		}
+
+		[TestMethod]
+		public void LoadWithAcceptedCertificateTrustFailure()
+		{
+			var ioc = RemoteCertFailureIoc; //note: this property is defined in "TestLoadDbCredentials.cs" which is deliberately excluded from Git because the credentials are not public!
+			var app = new TestKp2aApp();
+			app.ServerCertificateErrorResponse = true;
+			app.CreateNewDatabase();
+
+			bool loadSuccesful = false;
+			LoadDb task = new LoadDb(app, ioc, null, CreateKey("test"), null, new ActionOnFinish((success, message) =>
+			{
+				if (!success)
+					Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
+				loadSuccesful = success;
+			})
+				);
+			ProgressTask pt = new ProgressTask(app, Application.Context, task);
+			Android.Util.Log.Debug("KP2ATest", "Running ProgressTask");
+			pt.Run();
+			pt.JoinWorkerThread();
+			Android.Util.Log.Debug("KP2ATest", "PT.run finished");
+			Assert.IsTrue(loadSuccesful, "database should be loaded because invalid certificates are accepted");
+
+		}
+
+		[TestMethod]
+		public void LoadFromRemote1And1()
 		{
 			var ioc = RemoteIoc1and1; //note: this property is defined in "TestLoadDbCredentials.cs" which is deliberately excluded from Git because the credentials are not public!
 			IKp2aApp app = new TestKp2aApp();
 			app.CreateNewDatabase();
 			
 			bool loadSuccesful = false;
-			LoadDb task = new LoadDb(app, ioc, null, "test", null, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, ioc, null, CreateKey("test"), null, new ActionOnFinish((success, message) =>
 				{
 					if (!success)
 						Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
@@ -120,7 +178,7 @@ namespace Kp2aUnitTests
 
 
 		[TestMethod]
-		public void LoadFromRemote1and1NonExisting()
+		public void LoadFromRemote1And1NonExisting()
 		{
 			var ioc = RemoteIoc1and1NonExisting; //note: this property is defined in "TestLoadDbCredentials.cs" which is deliberately excluded from Git because the credentials are not public!
 			IKp2aApp app = new TestKp2aApp();
@@ -128,7 +186,7 @@ namespace Kp2aUnitTests
 
 			bool loadSuccesful = false;
 			bool gotError = false;
-			LoadDb task = new LoadDb(app, ioc, null, "test", null, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, ioc, null, CreateKey("test"), null, new ActionOnFinish((success, message) =>
 			{
 				if (!success)
 				{
@@ -148,7 +206,7 @@ namespace Kp2aUnitTests
 		}
 
 		[TestMethod]
-		public void LoadFromRemote1and1WrongCredentials()
+		public void LoadFromRemote1And1WrongCredentials()
 		{
 			var ioc = RemoteIoc1and1WrongCredentials; //note: this property is defined in "TestLoadDbCredentials.cs" which is deliberately excluded from Git because the credentials are not public!
 			IKp2aApp app = new TestKp2aApp();
@@ -156,7 +214,7 @@ namespace Kp2aUnitTests
 
 			bool loadSuccesful = false;
 			bool gotError = false;
-			LoadDb task = new LoadDb(app, ioc, null, "test", null, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, ioc, null, CreateKey("test"), null, new ActionOnFinish((success, message) =>
 			{
 				if (!success)
 				{
@@ -179,7 +237,7 @@ namespace Kp2aUnitTests
 		[TestMethod]
 		public void FileNotFoundExceptionWithWebDav()
 		{
-			var fileStorage = new BuiltInFileStorage();
+			var fileStorage = new BuiltInFileStorage(new TestKp2aApp());
 			
 			//should work:
 			using (var stream = fileStorage.OpenFileForRead(RemoteIoc1and1))

@@ -89,6 +89,7 @@
 	<string name="UseFileTransactions_key">UseFileTransactions</string>
 	<string name="LockWhenScreenOff_key">LockWhenScreenOff</string>
 	<string name="UseOfflineCache_key">UseOfflineCache</string>
+	<string name="AcceptAllServerCertificates_key">AcceptAllServerCertificates</string>
 	<string name="CheckForFileChangesOnSave_key">CheckForFileChangesOnSave</string>
 
 	<string name="MarketURL">market://details?id=</string>
@@ -121,6 +122,13 @@
     	<item>20</item>
     	<item>28</item>
     </string-array>
+
+	<string name="AcceptAllServerCertificates_default">WARN</string>
+	<string-array name="AcceptAllServerCertificates_values">
+		<item>IGNORE</item>
+		<item>WARN</item>
+		<item>ERROR</item>
+	</string-array>
 
 	<string name="ShowUnlockedNotification_key">ShowUnlockedNotification</string>
 	<bool name="ShowUnlockedNotification_default">true</bool>

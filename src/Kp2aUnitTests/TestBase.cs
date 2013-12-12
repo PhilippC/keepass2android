@@ -66,7 +66,7 @@ namespace Kp2aUnitTests
 			var app = CreateTestKp2aApp();
 			app.CreateNewDatabase();
 			bool loadSuccesful = false;
-			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = filename }, null, password, keyfile, new ActionOnFinish((success, message) =>
+			LoadDb task = new LoadDb(app, new IOConnectionInfo() { Path = filename }, null, CreateKey(password, keyfile), keyfile, new ActionOnFinish((success, message) =>
 				{
 					if (!success)
 						Kp2aLog.Log(message);
@@ -80,7 +80,20 @@ namespace Kp2aUnitTests
 			Assert.IsTrue(loadSuccesful);
 			return app;
 		}
-
+		protected static CompositeKey CreateKey(string password, string keyfile)
+		{
+			CompositeKey key = new CompositeKey();
+			key.AddUserKey(new KcpPassword(password));
+			if (!String.IsNullOrEmpty(keyfile))
+				key.AddUserKey(new KcpKeyFile(keyfile));
+			return key;
+		}
+		protected static CompositeKey CreateKey(string password)
+		{
+			CompositeKey key = new CompositeKey();
+			key.AddUserKey(new KcpPassword(password));
+			return key;
+		}
 		protected virtual TestKp2aApp CreateTestKp2aApp()
 		{
 			TestKp2aApp app = new TestKp2aApp();

@@ -22,12 +22,12 @@ namespace Kp2aUnitTests
 	class TestSaveDbCached: TestBase
 	{
 		private TestCacheSupervisor _testCacheSupervisor = new TestCacheSupervisor();
-		private TestFileStorage _testFileStorage = new TestFileStorage();
+		
 
 		protected override TestKp2aApp CreateTestKp2aApp()
 		{
 			TestKp2aApp app = base.CreateTestKp2aApp();
-			app.FileStorage = new CachingFileStorage(_testFileStorage, "/mnt/sdcard/kp2atest/cache/", _testCacheSupervisor);
+			app.FileStorage = new CachingFileStorage(new TestFileStorage(app), "/mnt/sdcard/kp2atest/cache/", _testCacheSupervisor);
 			return app;
 		}
 

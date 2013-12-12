@@ -46,6 +46,7 @@ namespace keepass2android
 		CannotMoveGroupHere,
 		ErrorOcurred,
 		SynchronizingOtpAuxFile,
-		SavingOtpAuxFile
+		SavingOtpAuxFile,
+		CertificateFailure
     }
 }

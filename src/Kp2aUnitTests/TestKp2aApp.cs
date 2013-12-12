@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Security;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android;
 using keepass2android.Io;
@@ -30,18 +32,27 @@ namespace Kp2aUnitTests
 			
 		}
 
+		public virtual TestFileStorage TestFileStorage
+		{
+			get
+			{
+				if (_testFileStorage != null)
+					return _testFileStorage;
+				return (TestFileStorage) FileStorage;
+			}
+			set { _testFileStorage = value; }
+		}
+
 		public void LockDatabase(bool allowQuickUnlock = true)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, string password, string keyFile,
+		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey,
 		                         ProgressDialogStatusLogger statusLogger)
 		{
-			_db.LoadData(this, ioConnectionInfo, memoryStream, password, statusLogger);
-			
+			_db.LoadData(this, ioConnectionInfo, memoryStream, compKey, statusLogger);
 		}
-
 		public Database GetDb()
 		{
 			return _db;
@@ -128,16 +139,27 @@ namespace Kp2aUnitTests
 
 		
 		public bool TriggerReloadCalled;
+		private TestFileStorage _testFileStorage;
 
 		public TestKp2aApp()
 		{
-			FileStorage = new BuiltInFileStorage();
+			FileStorage = new BuiltInFileStorage(this);
 		}
 
 		public void TriggerReload(Context ctx)
 		{
 			TriggerReloadCalled = true;
 		}
+
+		public bool OnServerCertificateError(int sslPolicyErrors)
+		{
+			ServerCertificateErrorCalled = true;
+			return ServerCertificateErrorResponse;
+		}
+
+		public bool ServerCertificateErrorResponse { get; set; }
+
+		protected bool ServerCertificateErrorCalled { get; set; }
 
 		public void SetYesNoCancelResult(YesNoCancelResult yesNoCancelResult)
 		{

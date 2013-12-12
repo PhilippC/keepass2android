@@ -14,6 +14,12 @@ namespace Kp2aUnitTests
 	[TestClass]
 	class TestCachingFileStorage: TestBase
 	{
+		[TestInitialize]
+		public void InitTests()
+		{
+			TestFileStorage.Offline = false;
+		}
+
 		private TestFileStorage _testFileStorage;
 		private CachingFileStorage _fileStorage;
 		private static readonly string CachingTestFile = DefaultDirectory + "cachingTestFile.txt";
@@ -37,7 +43,7 @@ namespace Kp2aUnitTests
 			Assert.AreEqual(MemoryStreamToString(fileContents), _defaultCacheFileContents);
 
 			//let the base file storage go offline:
-			_testFileStorage.Offline = true;
+			TestFileStorage.Offline = true;
 
 			//now try to read the file again:
 			MemoryStream fileContents2 = ReadToMemoryStream(_fileStorage, CachingTestFile);
@@ -98,7 +104,7 @@ namespace Kp2aUnitTests
 			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.UpdatedCachedFileOnLoadId);
 
 			//let the base file storage go offline:
-			_testFileStorage.Offline = true;
+			TestFileStorage.Offline = true;
 
 			//write something to the cache:
 			string newContent = "new content";
@@ -116,7 +122,7 @@ namespace Kp2aUnitTests
 			Assert.AreEqual(MemoryStreamToString(fileContents2), newContent);
 
 			//now go online and read again. This should trigger a sync and the modified data must be returned
-			_testFileStorage.Offline = false;
+			TestFileStorage.Offline = false;
 			MemoryStream fileContents3 = ReadToMemoryStream(_fileStorage, CachingTestFile);
 			Assert.AreEqual(MemoryStreamToString(fileContents3), newContent);
 
@@ -141,7 +147,7 @@ namespace Kp2aUnitTests
 			_testCacheSupervisor.AssertSingleCall(TestCacheSupervisor.UpdatedCachedFileOnLoadId);
 
 			//let the base file storage go offline:
-			_testFileStorage.Offline = true;
+			TestFileStorage.Offline = true;
 
 			//write something to the cache:
 			string newLocalContent = "new local content";
@@ -153,7 +159,7 @@ namespace Kp2aUnitTests
 			File.WriteAllText(CachingTestFile, "new remote content");
 
 			//go online again:
-			_testFileStorage.Offline = false;
+			TestFileStorage.Offline = false;
 
 			//now try to read the file again:
 			MemoryStream fileContents2 = ReadToMemoryStream(_fileStorage, CachingTestFile);
@@ -231,7 +237,7 @@ namespace Kp2aUnitTests
 
 		private void SetupFileStorage()
 		{
-			_testFileStorage = new TestFileStorage();
+			_testFileStorage = new TestFileStorage(new TestKp2aApp());
 			_testCacheSupervisor = new TestCacheSupervisor();
 			//_fileStorage = new CachingFileStorage(_testFileStorage, Application.Context.CacheDir.Path, _testCacheSupervisor);
 			_fileStorage = new CachingFileStorage(_testFileStorage, "/mnt/sdcard/kp2atest_cache", _testCacheSupervisor);

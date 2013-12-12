@@ -204,6 +204,16 @@
 				  android:defaultValue="true"
 				  android:title="@string/UseOfflineCache_title"
 				  android:key="@string/UseOfflineCache_key" />
+			<ListPreference
+			  android:key="@string/AcceptAllServerCertificates_key"
+			  android:title="@string/AcceptAllServerCertificates_title"
+			  android:summary="@string/AcceptAllServerCertificates_summary"
+			  android:entries="@array/AcceptAllServerCertificates_options"
+			  android:entryValues="@array/AcceptAllServerCertificates_values"
+			  android:dialogTitle="@string/AcceptAllServerCertificates_title"
+			  android:defaultValue="@string/AcceptAllServerCertificates_default"/>
+			
+		
 			<CheckBoxPreference
 				android:enabled="true"
 				  android:persistent="true"
