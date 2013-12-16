@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import keepass2android.javafilestorage.JavaFileStorageBase.InvalidPathException;
+
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
@@ -238,6 +240,27 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			return mAccount;
 		}
 
+		public String getFilename() throws InvalidPathException {
+			
+			String[] parts = mAccountLocalPath.split("/");
+
+			String lastPart = parts[parts.length-1];
+			int indexOfSeparator = lastPart.lastIndexOf(NAME_ID_SEP);
+			if (indexOfSeparator < 0) {
+				throw new InvalidPathException("cannot extract filename from " + mAccountLocalPath);
+			}
+			String name = lastPart.substring(0, indexOfSeparator);
+			try {
+				name = decode(name);
+			} catch (UnsupportedEncodingException e) {
+				// ignore
+			}
+			return name;
+		
+		
+		}
+
+		
 
 			
 	};
@@ -804,6 +827,15 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			return path;
 		}
 		return gdrivePath.getDisplayName();
+	}
+	
+	@Override
+	public String getFilename(String path) throws Exception
+	{
+		GDrivePath gdrivePath = new GDrivePath();
+		gdrivePath.setPathWithoutVerify(path);
+	
+		return gdrivePath.getFilename();
 	}
 
 	

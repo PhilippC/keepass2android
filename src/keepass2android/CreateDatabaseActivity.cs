@@ -388,7 +388,7 @@ namespace keepass2android
 			return filename;
 		}
 
-		private void OnCreateButton(string filename)
+		private bool OnCreateButton(string filename)
 		{
 			// Make sure file name exists
 			if (filename.Length == 0)
@@ -396,20 +396,21 @@ namespace keepass2android
 				Toast.MakeText(this,
 								Resource.String.error_filename_required,
 								ToastLength.Long).Show();
-				return;
+				return false;
 			}
 
 			IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
+			IFileStorage fileStorage;
 			try
 			{
-				App.Kp2a.GetFileStorage(ioc);
+				fileStorage = App.Kp2a.GetFileStorage(ioc);
 			}
 			catch (NoFileStorageFoundException)
 			{
 				Toast.MakeText(this,
 								"Unexpected scheme in "+filename,
 								ToastLength.Long).Show();
-				return;
+				return false;
 			}
 
 			if (ioc.IsLocalFile())
@@ -425,7 +426,7 @@ namespace keepass2android
 						Toast.MakeText(this,
 							            Resource.String.error_invalid_path,
 							            ToastLength.Long).Show();
-						return;
+						return false;
 					}
 
 					if (!parent.Exists())
@@ -436,7 +437,7 @@ namespace keepass2android
 							Toast.MakeText(this,
 								            Resource.String.error_could_not_create_parent,
 								            ToastLength.Long).Show();
-							return;
+							return false;
 
 						}
 					}
@@ -450,16 +451,30 @@ namespace keepass2android
 						GetText(Resource.String.error_file_not_create) + " "
 						+ ex.LocalizedMessage,
 						ToastLength.Long).Show();
-					return;
+					return false;
 				}
 
-				_ioc = ioc;
-				UpdateIocView();
-
-
 			}
+			if (fileStorage.RequiresCredentials(ioc))
+			{
+				Util.QueryCredentials(ioc, AfterQueryCredentials, this);
+			}
+			else
+			{
+				_ioc = ioc;
+				UpdateIocView();	
+			}
+			
+
+			return true;
 		}
-		
+
+		private void AfterQueryCredentials(IOConnectionInfo ioc)
+		{
+			_ioc = ioc;
+			UpdateIocView();	
+		}
+
 		private class LaunchGroupActivity : FileOnFinish
 		{
 			readonly CreateDatabaseActivity _activity;

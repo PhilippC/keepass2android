@@ -236,29 +236,7 @@ namespace keepass2android
 
 			if (fileStorage.RequiresCredentials(ioc))
 			{
-				//Build dialog to query credentials:
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.SetTitle(GetString(Resource.String.credentials_dialog_title));
-				builder.SetPositiveButton(GetString(Android.Resource.String.Ok), (dlgSender, dlgEvt) => 
-				    {
-				        Dialog dlg = (Dialog)dlgSender;
-				        string username = ((EditText)dlg.FindViewById(Resource.Id.cred_username)).Text;
-				        string password = ((EditText)dlg.FindViewById(Resource.Id.cred_password)).Text;
-				        int credentialRememberMode = ((Spinner)dlg.FindViewById(Resource.Id.cred_remember_mode)).SelectedItemPosition;
-				        ioc.UserName = username;
-				        ioc.Password = password;
-				        ioc.CredSaveMode = (IOCredSaveMode)credentialRememberMode;
-				        PasswordActivity.Launch(this, ioc, AppTask);
-						Finish();
-				    });
-				builder.SetView(LayoutInflater.Inflate(Resource.Layout.url_credentials, null));
-				builder.SetNeutralButton(GetString(Android.Resource.String.Cancel), 
-				                         (dlgSender, dlgEvt) => {});
-				Dialog dialog = builder.Create();
-				dialog.Show();
-				((EditText)dialog.FindViewById(Resource.Id.cred_username)).Text = ioc.UserName;
-				((EditText)dialog.FindViewById(Resource.Id.cred_password)).Text = ioc.Password;
-				((Spinner)dialog.FindViewById(Resource.Id.cred_remember_mode)).SetSelection((int)ioc.CredSaveMode);
+				Util.QueryCredentials(ioc, AfterQueryCredentials, this);
 			}
 			else
 			{
@@ -272,7 +250,15 @@ namespace keepass2android
 				} 
 			}
 		}
+
 		
+
+		private void AfterQueryCredentials(IOConnectionInfo ioc)
+		{
+			PasswordActivity.Launch(this, ioc, AppTask);
+			Finish();
+		}
+
 		protected override void OnListItemClick(ListView l, View v, int position, long id) {
 			base.OnListItemClick(l, v, position, id);
 			
@@ -284,7 +270,7 @@ namespace keepass2android
 			App.Kp2a.GetFileStorage(ioc)
 					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc, 0, false);
 		}
-		private void OnOpenButton(String fileName)
+		private bool OnOpenButton(String fileName)
 		{
 			
 			IOConnectionInfo ioc = new IOConnectionInfo
@@ -293,7 +279,9 @@ namespace keepass2android
 			};
 
 			LaunchPasswordActivityForIoc(ioc);
-			
+
+			return true;
+
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)

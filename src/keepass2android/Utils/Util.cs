@@ -114,12 +114,14 @@ namespace keepass2android
 	 * @return True if an Intent with the specified action can be sent and
 	 *         responded to, false otherwise.
 	 */
-		static bool IsIntentAvailable(Context context, String action, String type)
+		static bool IsIntentAvailable(Context context, String action, String type, List<String> categories )
 		{
 			PackageManager packageManager = context.PackageManager;
 			Intent intent = new Intent(action);
 			if (type != null)
 				intent.SetType(type);
+			if (categories != null)
+				categories.ForEach(c => intent.AddCategory(c));
 			IList<ResolveInfo> list =
 				packageManager.QueryIntentActivities(intent,
 													 PackageInfoFlags.MatchDefaultOnly);
@@ -130,10 +132,11 @@ namespace keepass2android
 
 		public static void ShowBrowseDialog(string filename, Activity act, int requestCodeBrowse, bool forSaving)
 		{
-			if ((!forSaving) && (IsIntentAvailable(act, Intent.ActionGetContent, "file/*")))
+			if ((!forSaving) && (IsIntentAvailable(act, Intent.ActionGetContent, "*/*", new List<string> { Intent.CategoryOpenable})))
 			{
 				Intent i = new Intent(Intent.ActionGetContent);
-				i.SetType("file/*");
+				i.SetType("*/*");
+				i.AddCategory(Intent.CategoryOpenable);
 
 				act.StartActivityForResult(i, requestCodeBrowse);
 			}
@@ -207,7 +210,7 @@ namespace keepass2android
 			return ((int)Android.OS.Build.VERSION.SdkInt >= 14) && (activity.ActionBar != null);
 		}
 
-		public delegate void FileSelectedHandler(string filename);
+		public delegate bool FileSelectedHandler(string filename);
 
 		public static void ShowFilenameDialog(Activity activity, FileSelectedHandler onOpen, FileSelectedHandler onCreate, bool showBrowseButton,
 		                                string defaultFilename, string detailsText, int requestCodeBrowse)
@@ -233,7 +236,8 @@ namespace keepass2android
 				openButton.Click += (sender, args) =>
 					{
 						String fileName = ((EditText) dialog.FindViewById(Resource.Id.file_filename)).Text;
-						onOpen(fileName);
+						if (onOpen(fileName))
+							dialog.Dismiss();
 					};
 
 			// Create button
@@ -241,7 +245,8 @@ namespace keepass2android
 				createButton.Click += (sender, args) =>
 				{
 					String fileName = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
-					onCreate(fileName);
+					if (onCreate(fileName))
+						dialog.Dismiss();
 				}; 
 
 			Button cancelButton = (Button) dialog.FindViewById(Resource.Id.fnv_cancel);
@@ -260,6 +265,32 @@ namespace keepass2android
 
 				};
 
+		}
+
+		public static void QueryCredentials(IOConnectionInfo ioc, Action<IOConnectionInfo> afterQueryCredentials, Activity activity)
+		{
+			//Build dialog to query credentials:
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			builder.SetTitle(activity.GetString(Resource.String.credentials_dialog_title));
+			builder.SetPositiveButton(activity.GetString(Android.Resource.String.Ok), (dlgSender, dlgEvt) =>
+			{
+				Dialog dlg = (Dialog)dlgSender;
+				string username = ((EditText)dlg.FindViewById(Resource.Id.cred_username)).Text;
+				string password = ((EditText)dlg.FindViewById(Resource.Id.cred_password)).Text;
+				int credentialRememberMode = ((Spinner)dlg.FindViewById(Resource.Id.cred_remember_mode)).SelectedItemPosition;
+				ioc.UserName = username;
+				ioc.Password = password;
+				ioc.CredSaveMode = (IOCredSaveMode)credentialRememberMode;
+				afterQueryCredentials(ioc);
+			});
+			builder.SetView(activity.LayoutInflater.Inflate(Resource.Layout.url_credentials, null));
+			builder.SetNeutralButton(activity.GetString(Android.Resource.String.Cancel),
+									 (dlgSender, dlgEvt) => { });
+			Dialog dialog = builder.Create();
+			dialog.Show();
+			((EditText)dialog.FindViewById(Resource.Id.cred_username)).Text = ioc.UserName;
+			((EditText)dialog.FindViewById(Resource.Id.cred_password)).Text = ioc.Password;
+			((Spinner)dialog.FindViewById(Resource.Id.cred_remember_mode)).SetSelection((int)ioc.CredSaveMode);
 		}
 	}
 }

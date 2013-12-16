@@ -154,7 +154,7 @@ namespace keepass2android.Io
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{
 			return UrlUtil.StripExtension(
-					UrlUtil.GetFileName(IocToPath(ioc)));
+					_jfs.GetFilename(IocToPath(ioc)));
 		}
 
 		public bool RequiresCredentials(IOConnectionInfo ioc)

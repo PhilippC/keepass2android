@@ -404,19 +404,6 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 				throw new SkyDriveException(message, code);
 		}
 	}
-
-	private SkyDriveObject tryAddFileToCache(SkyDrivePath skyDrivePath) {
-		try {
-			SkyDriveObject obj = getSkyDriveObject(skyDrivePath);
-			if (obj != null) {
-				mFolderCache.put(obj.getId(), obj);
-			}
-			return obj;
-		} catch (Exception e) {
-			return null;
-		}
-
-	}
 	
 	private SkyDriveObject tryAddToCache(String skyDriveId) {
 		try {
@@ -797,6 +784,13 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	public void onActivityResult(FileStorageSetupActivity activity,
 			int requestCode, int resultCode, Intent data) {
 
+	}
+
+	@Override
+	public String getFilename(String path) throws Exception {
+		SkyDrivePath p = new SkyDrivePath();
+		p.setPathWithoutVerify(path);
+		return p.getFilename();
 	}
 
 }

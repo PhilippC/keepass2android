@@ -507,4 +507,9 @@ public class DropboxFileStorage extends JavaFileStorageBase {
 		return path;
 	}
 
+	@Override
+	public String getFilename(String path) throws Exception {
+		return path.substring(path.lastIndexOf("/")+1);
+	}
+
 }

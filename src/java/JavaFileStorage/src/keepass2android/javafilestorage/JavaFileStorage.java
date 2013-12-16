@@ -120,6 +120,9 @@ public class FileEntry {
 	
 	public String getDisplayName(String path);
 	
+	//returns something like "myfile.txt" from the given path, i.e. it's displayable and only the last part of the path
+	public String getFilename(String path) throws Exception;
+	
 	public boolean checkForFileChangeFast(String path, String previousFileVersion) throws Exception;
 	
 	public String getCurrentFileVersionFast(String path);
