@@ -98,6 +98,13 @@ namespace keepass2android
 			{
 				SetContentView(Resource.Layout.file_selection_no_recent);
 				_fileSelectButtons = (view.FileSelectButtons)FindViewById(Resource.Id.file_select);
+#if NoNet
+				ImageView imgView = FindViewById(Resource.Id.imglogo) as ImageView;
+				if (imgView != null)
+				{
+					imgView.SetImageDrawable(Resources.GetDrawable(Resource.Drawable.ic_keepass2android_nonet));
+				}
+#endif
 			}
 
 
@@ -198,6 +205,7 @@ namespace keepass2android
 					TextView textView = (TextView)view;
 					IOConnectionInfo ioc = new IOConnectionInfo {Path = path};
 					textView.Text = app.GetFileStorage(ioc).GetDisplayName(ioc);
+					textView.Tag = ioc.Path;
 					return true;
 				}
 
@@ -376,7 +384,7 @@ namespace keepass2android
 			string fileProviderAuthority = FileChooserFileProvider.TheAuthority;
 			if (defaultPath.StartsWith("file://"))
 			{
-				fileProviderAuthority = "keepass2android.keepass2android.android-filechooser.localfile";
+				fileProviderAuthority = PackageName+".android-filechooser.localfile";
 			}
 			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, fileProviderAuthority,
 			                                                                                            defaultPath);
@@ -502,7 +510,7 @@ namespace keepass2android
 				AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
 				
 				TextView tv = (TextView) acmi.TargetView;
-				String filename = tv.Text;
+				String filename = (string) tv.Tag;
 				_dbHelper.DeleteFile(filename);
 
 				RefreshList();

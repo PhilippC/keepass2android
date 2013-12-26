@@ -123,6 +123,7 @@
     <Compile Include="LockCloseListActivity.cs" />
     <Compile Include="LockingListActivity.cs" />
     <Compile Include="views\ClickView.cs" />
+    <Compile Include="views\FileStorageViewKp2a.cs" />
     <Compile Include="views\GroupView.cs" />
     <Compile Include="views\GroupRootView.cs" />
     <Compile Include="PwGroupListAdapter.cs" />
@@ -899,5 +900,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_storage_dropboxKP2A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\filestorage_selection_listitem_kp2a.xml" />
   </ItemGroup>
 </Project>

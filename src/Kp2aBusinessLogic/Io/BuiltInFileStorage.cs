@@ -69,9 +69,11 @@ namespace keepass2android.Io
 			get 
 			{
 				yield return "file";
+#if !NoNet
 				yield return "ftp";
 				yield return "http";
 				yield return "https";
+#endif
 			}
 		}
 

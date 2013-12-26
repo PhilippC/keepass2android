@@ -153,7 +153,7 @@ namespace keepass2android
 		{
 			
 #if !EXCLUDE_FILECHOOSER
-			const string fileProviderAuthority = "keepass2android.keepass2android.android-filechooser.localfile";
+			string fileProviderAuthority = act.PackageName+".android-filechooser.localfile";
 
 			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(act,
 			                                                                                            fileProviderAuthority,

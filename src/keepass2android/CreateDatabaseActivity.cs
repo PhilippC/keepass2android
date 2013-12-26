@@ -228,7 +228,7 @@ namespace keepass2android
 			string fileProviderAuthority = FileChooserFileProvider.TheAuthority;
 			if (defaultPath.StartsWith("file://"))
 			{
-				fileProviderAuthority = "keepass2android.keepass2android.android-filechooser.localfile";
+				fileProviderAuthority = "keepass2android."+AppNames.PackagePart+".android-filechooser.localfile";
 			}
 			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, fileProviderAuthority,
 																										defaultPath);

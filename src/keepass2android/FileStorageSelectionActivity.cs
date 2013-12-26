@@ -39,6 +39,9 @@ namespace keepass2android
 					_protocolIds.Add("androidget");
 				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppSend, false))
 					_protocolIds.Add("androidsend");
+#if NoNet
+				_protocolIds.Add("kp2a");
+#endif
 			}
 
 			public override Object GetItem(int position)
@@ -53,8 +56,16 @@ namespace keepass2android
 
 			public override View GetView(int position, View convertView, ViewGroup parent)
 			{
-				var view = new FileStorageView(_context, _protocolIds[position], position);
-				return view;
+				if (_protocolIds[position] == "kp2a")
+				{
+					return new FileStorageViewKp2a(_context);
+				}
+				else
+				{
+					var view = new FileStorageView(_context, _protocolIds[position], position);
+					return view;	
+				}
+				
 
 			}
 
@@ -66,6 +77,13 @@ namespace keepass2android
 
 		private void OnItemSelected(string protocolId)
 		{
+			if (protocolId == "kp2a")
+			{
+				//send user to market page of regular edition to get more protocols 
+				Util.GotoUrl(this, GetString(Resource.String.MarketURL) + "keepass2android.keepass2android");
+				return;
+			}
+
 			var field = typeof(Resource.String).GetField("filestoragehelp_" + protocolId);
 			if (field == null)
 			{

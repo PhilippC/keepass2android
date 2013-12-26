@@ -378,6 +378,8 @@
 
 	<string name="loading">Loading…</string>
 
+	<string name="get_regular_version">Get more storage types</string>
+
 	<string name="CertificateWarning">Warning: Server certificate validation failed: %1$s. Install appropriate root certificate on your device or see settings!</string>
 	<string name="CertificateFailure">Error: Server certificate validation failed! Install appropriate root certificate on your device or see settings!</string>
 	

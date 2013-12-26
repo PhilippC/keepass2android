@@ -16,18 +16,11 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 using System;
 using Android.App;
-using Android.Graphics;
 using Android.Graphics.Drawables;
-using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using KeePassLib;
 using Android.Text;
-using Android.Text.Style;
-using Android.Preferences;
-using keepass2android.Io;
-using keepass2android.views;
 
 namespace keepass2android.view
 {
