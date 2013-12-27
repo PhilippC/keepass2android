@@ -93,11 +93,11 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		
 		public void setPathWithoutVerify(String path) throws UnsupportedEncodingException, InvalidPathException
 		{
-			//Log.d(TAG, "setPath: "+path);
+			logDebug("setPath: "+path);
 			mAccount = extractAccount(path);
 			mAccountLocalPath = path.substring(getProtocolPrefix().length()+encode(mAccount).length()+1);
-			//Log.d(TAG, "  mAccount=" + mAccount);
-			//Log.d(TAG, "  mAccountLocalPath=" + mAccountLocalPath);
+			logDebug("  mAccount=" + mAccount);
+			logDebug("  mAccountLocalPath=" + mAccountLocalPath);
 		}
 		
 		public GDrivePath(String parentPath, File fileToAppend) throws UnsupportedEncodingException, FileNotFoundException, IOException, InvalidPathException
@@ -144,13 +144,13 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			for (int i=0;i<parts.length;i++)
 			{
 				String part = parts[i];
-				//Log.d(TAG, "parsing part " + part);
+				logDebug("parsing part " + part);
 				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
 				if (indexOfSeparator < 0)
 					throw new FileNotFoundException("invalid path " + mAccountLocalPath);
 				String id = part.substring(indexOfSeparator+NAME_ID_SEP.length());
 				String name = decode(part.substring(0, indexOfSeparator));
-				//Log.d(TAG, "   name=" + name);
+				logDebug("   name=" + name);
 				FileSystemEntryData thisFolder = accountData.mFolderCache.get(id);
 				if (thisFolder == null)
 				{
@@ -198,7 +198,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			for (int i=0;i<parts.length;i++)
 			{
 				String part = parts[i];
-				//Log.d(TAG, "parsing part " + part);
+				logDebug("parsing part " + part);
 				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
 				if (indexOfSeparator < 0)
 				{
@@ -335,14 +335,14 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	private File getFileForPath(GDrivePath path, Drive driveService)
 			throws IOException, InvalidPathException {
-		//Log.d(TAG,"getFileForPath... ");
+		logDebug("getFileForPath... ");
 		try
 		{
 			//throw new IOException("argh");
 			String driveId = path.getGDriveId();
-			//Log.d(TAG, "id"+driveId);
+			logDebug("id"+driveId);
 			File file = driveService.files().get(driveId).execute();
-			//Log.d(TAG,"...done.");
+			logDebug("...done.");
 			return file;
 		}
 		catch (IOException e)
@@ -408,7 +408,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		{
 			File file = getDriveService(parentGdrivePath.getAccount()).files().insert(body).execute();
 			
-			//Log.d(TAG, "created folder "+newDirName+" in "+parentPath+". id: "+file.getId());
+			logDebug("created folder "+newDirName+" in "+parentPath+". id: "+file.getId());
 
 			//add to cache to avoid network traffic if this folder is accessed (which is likely to happen soon)
 			FileSystemEntryData newCacheEntry = new FileSystemEntryData();
@@ -462,7 +462,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		
 			if (driveService.files().get(parentId).execute().getLabels().getTrashed())
 				throw new FileNotFoundException(parentPath + " is trashed!");
-			//Log.d(TAG, "listing files in "+parentId);
+			logDebug("listing files in "+parentId);
 			Files.List request = driveService.files().list()
 					.setQ("trashed=false and '"+parentId+"' in parents");
 	
@@ -473,7 +473,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 					for (File file : files.getItems()) {
 	
 						String path = new GDrivePath(parentPath, file).getFullPath();
-						//Log.d(TAG, "listing file "+path);
+						logDebug("listing file "+path);
 						FileEntry e = convertToFileEntry(file, path);
 	
 						result.add(e);
@@ -537,12 +537,12 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		
 		try
 		{
-			//Log.d(TAG, "getFileEntry "+filename);
+			logDebug("getFileEntry "+filename);
 			GDrivePath gdrivePath = new GDrivePath(filename);
 			FileEntry res =  convertToFileEntry(
 					getFileForPath(gdrivePath, getDriveService(gdrivePath.getAccount())),
 					filename);
-			//Log.d(TAG, "getFileEntry res"+res);
+			logDebug("getFileEntry res"+res);
 			return res;
 		}
 		catch (Exception e)
@@ -580,22 +580,22 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	private Drive getDriveService(String accountName)
 	{
-		//Log.d(TAG, "getDriveService "+accountName);
+		logDebug("getDriveService "+accountName);
 		AccountData accountData = mAccountData.get(accountName);
-		//Log.d(TAG, "accountData "+accountData);
+		logDebug("accountData "+accountData);
 		return accountData.drive;
 	}
 
 	@Override
 	public void onActivityResult(final JavaFileStorage.FileStorageSetupActivity setupAct, int requestCode, int resultCode, Intent data) {
-		//Log.d(TAG, "ActivityResult: "+requestCode+"/"+resultCode);
+		logDebug("ActivityResult: "+requestCode+"/"+resultCode);
 		switch (requestCode) {
 		case REQUEST_ACCOUNT_PICKER:
-			//Log.d(TAG, "ActivityResult: REQUEST_ACCOUNT_PICKER");
+			logDebug("ActivityResult: REQUEST_ACCOUNT_PICKER");
 			if (resultCode == Activity.RESULT_OK && data != null && data.getExtras() != null) {
 				String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
 				if (accountName != null) {
-					//Log.d(TAG, "Initialize Account name="+accountName);
+					logDebug("Initialize Account name="+accountName);
 					initializeAccountOrPath(setupAct, accountName);
 
 					return;
@@ -611,7 +611,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			if (resultCode == Activity.RESULT_OK) {
 				//for (String k: data.getExtras().keySet())
 				//{
-					//Log.d(TAG, data.getExtras().get(k).toString());
+					//logDebug(data.getExtras().get(k).toString());
 				//}
 				String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
 				if (accountName != null) {
@@ -669,7 +669,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 						AccountData newAccountData = new AccountData();
 						newAccountData.drive = createDriveService(accountName, activity);
 						mAccountData.put(accountName, newAccountData);
-						//Log.d(TAG, "Added account data for " + accountName);
+						logDebug("Added account data for " + accountName);
 						newAccountData.mFolderCache = buildFoldersCache(accountName);
 						
 						About about = newAccountData.drive.about().get().execute();
@@ -704,7 +704,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 					}
 				}  else if ( isCancelled()) {
 					// cancel handling here
-					//Log.d(TAG,"Async Task cancelled!");
+					logDebug("Async Task cancelled!");
 
 					activity.setResult(Activity.RESULT_CANCELED);
 					activity.finish();
@@ -730,12 +730,12 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	private HashMap<String,FileSystemEntryData> buildFoldersCache(String accountName) throws IOException {
 
 		HashMap<String, FileSystemEntryData> folderCache = new HashMap<String, GoogleDriveFileStorage.FileSystemEntryData>();
-		//Log.d(TAG,"buildFoldersCache");
+		logDebug("buildFoldersCache");
 		FileList folders=getDriveService(accountName).files().list().setQ("mimeType='"+FOLDER_MIME_TYPE+"' and trashed=false")
 				.setFields("items(id,title,parents),nextPageToken")
 				.execute();
 		for(File fl: folders.getItems()){
-			//Log.d(TAG,"buildFoldersCache: " + fl.getTitle());
+			logDebug("buildFoldersCache: " + fl.getTitle());
 			FileSystemEntryData thisFolder = new FileSystemEntryData();
 			thisFolder.id = fl.getId();
 			thisFolder.displayName = fl.getTitle();
@@ -747,7 +747,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			folderCache.put(thisFolder.id, thisFolder);
 		}
 
-		//Log.d(TAG,"that's it!");
+		logDebug("that's it!");
 		return folderCache;
 
 	}
@@ -787,7 +787,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		{
 			GoogleAccountCredential credential = createCredential(activity);
 
-			//Log.d(TAG, "starting REQUEST_ACCOUNT_PICKER");
+			logDebug("starting REQUEST_ACCOUNT_PICKER");
 			activity.startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
 		}
 

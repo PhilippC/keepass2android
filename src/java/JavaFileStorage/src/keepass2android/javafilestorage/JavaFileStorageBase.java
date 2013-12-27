@@ -16,6 +16,11 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 	final static protected String NAME_ID_SEP = "-KP2A-";	
 	final static protected String TAG = "KP2AJ";
 	
+	protected void logDebug(String text)
+	{
+		Log.d(TAG, text);
+	}
+	
 	protected String getProtocolPrefix()
 	{
 		return getProtocolId()+"://";
