@@ -212,6 +212,33 @@ namespace keepass2android
 
 		public delegate bool FileSelectedHandler(string filename);
 
+		public static void ShowSftpDialog(Activity activity, FileSelectedHandler onStartBrowse)
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.sftpcredentials, null);
+			builder.SetView(dlgContents);
+			builder.SetPositiveButton(Android.Resource.String.Ok, 
+			                          (sender, args) =>
+				                          {
+					                          string host = dlgContents.FindViewById<EditText>(Resource.Id.sftp_host).Text;
+					                          string portText = dlgContents.FindViewById<EditText>(Resource.Id.sftp_port).Text;
+					                          int port = Keepass2android.Javafilestorage.SftpStorage.DefaultSftpPort;
+					                          if (!string.IsNullOrEmpty(portText))
+						                          int.TryParse(portText, out port);
+											  string user = dlgContents.FindViewById<EditText>(Resource.Id.sftp_user).Text;
+											  string password = dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Text;
+					                          string initialPath = dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text;
+					                          string sftpPath = new Keepass2android.Javafilestorage.SftpStorage().BuildFullPath(host, port, initialPath, user,
+					                                                                                          password);
+					                          onStartBrowse(sftpPath);
+				                          });
+			builder.SetNegativeButton(Android.Resource.String.Cancel, (sender, args) => {});
+			builder.SetTitle(activity.GetString(Resource.String.enter_sftp_login_title));
+			Dialog dialog = builder.Create();
+			
+			dialog.Show();
+		}
+
 		public static void ShowFilenameDialog(Activity activity, FileSelectedHandler onOpen, FileSelectedHandler onCreate, bool showBrowseButton,
 		                                string defaultFilename, string detailsText, int requestCodeBrowse)
 		{

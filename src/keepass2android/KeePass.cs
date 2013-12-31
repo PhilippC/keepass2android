@@ -14,7 +14,6 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   You should have received a copy of the GNU General Public License
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
-using System;
 
 using Android.App;
 using Android.Content;
@@ -24,7 +23,11 @@ using Android.Preferences;
 using Android.Content.PM;
 using Android.Text;
 using Android.Text.Method;
+using Java.Lang;
+using Java.Lang.Reflect;
 using KeePassLib.Serialization;
+using Exception = System.Exception;
+using String = System.String;
 
 namespace keepass2android
 {
@@ -59,12 +62,24 @@ namespace keepass2android
 			base.OnResume();
 			Kp2aLog.Log("KeePass.OnResume");
 		}
-		
+
 
 		protected override void OnStart()
 		{
 			base.OnStart();
 			Kp2aLog.Log("KeePass.OnStart");
+
+			if (GetCurrentRuntimeValue().StartsWith("ART"))
+			{
+				new AlertDialog.Builder(this)
+					.SetTitle("Warning")
+					.SetMessage(
+						"It looks like you are running ART (Android Runtime). Please note: At the time of this app's release, Google says ART is experimental. And indeed, the early releases of ART (e.g. in Android 4.4, 4.4.1 and 4.4.2) contain a bug which causes crashes in Mono for Android apps including Keepass2Android. This bug was fixed after the 4.4.2 release so if you have a later Android release, you might be able to use this app. If not, please switch to Dalvik. Please do not downrate Keepass2Android for this problem, it's not our bug :-). Thanks! See our website (keepass2android.codeplex.com) for more information on this issue.")
+					.SetPositiveButton("OK", (sender, args) => LaunchNextActivity())
+					.Create()
+					.Show();
+				return;
+			}
 
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 
@@ -81,8 +96,9 @@ namespace keepass2android
 					edit.PutInt(GetString(Resource.String.LastInfoVersionCode_key), packageInfo.VersionCode);
 					EditorCompat.Apply(edit);
 				}
-				
-			} catch (PackageManager.NameNotFoundException)
+
+			}
+			catch (PackageManager.NameNotFoundException)
 			{
 
 			}
@@ -90,21 +106,81 @@ namespace keepass2android
 			if (showChangeLog)
 			{
 				ChangeLog.ShowChangeLog(this, LaunchNextActivity);
-
-
 			}
 			else
 			{
 				LaunchNextActivity();
 			}
 
-
-
-
-
 		}
 
-		
+
+
+
+
+		private static String SELECT_RUNTIME_PROPERTY = "persist.sys.dalvik.vm.lib";
+		private static String LIB_DALVIK = "libdvm.so";
+		private static String LIB_ART = "libart.so";
+		private static String LIB_ART_D = "libartd.so";
+
+		private String GetCurrentRuntimeValue()
+		{
+			try
+			{
+				Class systemProperties = Class.ForName("android.os.SystemProperties");
+				try
+				{
+					Method get = systemProperties.GetMethod("get",
+					                                        Class.FromType(typeof (Java.Lang.String)),
+					                                        Class.FromType(typeof (Java.Lang.String)));
+					if (get == null)
+					{
+						return "WTF?!";
+					}
+					try
+					{
+						String value = (String) get.Invoke(
+							systemProperties, SELECT_RUNTIME_PROPERTY,
+							/* Assuming default is */"Dalvik");
+						if (LIB_DALVIK.Equals(value))
+						{
+							return "Dalvik";
+						}
+						else if (LIB_ART.Equals(value))
+						{
+							return "ART";
+						}
+						else if (LIB_ART_D.Equals(value))
+						{
+							return "ART debug build";
+						}
+
+						return value;
+					}
+					catch (IllegalAccessException e)
+					{
+						return "IllegalAccessException";
+					}
+					catch (IllegalArgumentException e)
+					{
+						return "IllegalArgumentException";
+					}
+					catch (InvocationTargetException e)
+					{
+						return "InvocationTargetException";
+					}
+				}
+				catch (NoSuchMethodException e)
+				{
+					return "SystemProperties.get(String key, String def) method is not found";
+				}
+			}
+			catch (ClassNotFoundException e)
+			{
+				return "SystemProperties class is not found";
+			}
+		}
+
 		IOConnectionInfo LoadIoc(string defaultFileName)
 		{
 			return App.Kp2a.FileDbHelper.CursorToIoc(App.Kp2a.FileDbHelper.FetchFileByName(defaultFileName));

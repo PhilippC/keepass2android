@@ -20,16 +20,17 @@
     <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
-    <JavaMaximumHeapSize />
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <JavaOptions />
     <AndroidUseLatestPlatformSdk />
+    <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -114,14 +115,14 @@
     <Compile Include="search\SearchProvider.cs" />
     <Compile Include="services\OngoingNotificationsService.cs" />
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
-    <Compile Include="Utils\LoadingDialog.cs" />
-    <Compile Include="Utils\Util.cs" />
     <Compile Include="intents\Intents.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="GroupActivity.cs" />
     <Compile Include="GroupBaseActivity.cs" />
     <Compile Include="LockCloseListActivity.cs" />
     <Compile Include="LockingListActivity.cs" />
+    <Compile Include="Utils\LoadingDialog.cs" />
+    <Compile Include="Utils\Util.cs" />
     <Compile Include="views\ClickView.cs" />
     <Compile Include="views\FileStorageViewKp2a.cs" />
     <Compile Include="views\GroupView.cs" />
@@ -166,11 +167,6 @@
     <Compile Include="EntryEditActivityState.cs" />
     <Compile Include="AttachmentContentProvider.cs" />
     <Compile Include="app\AppTask.cs" />
-    <Compile Include="Utils\Spr\SprContext.cs" />
-    <Compile Include="Utils\Spr\SprEncoding.cs" />
-    <Compile Include="Utils\Spr\SprEngine.cs" />
-    <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
-    <Compile Include="Utils\EntryUtil.cs" />
     <Compile Include="views\TextWithHelp.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +207,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\file_storage_setup.xml">
       <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\sftpcredentials.xml">
+      <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="settings\RoundsPreference %28Kopie%29.cs">
       <Visible>False</Visible>
@@ -903,5 +902,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\filestorage_selection_listitem_kp2a.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_storage_sftp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_storage_sftp.png" />
   </ItemGroup>
 </Project>

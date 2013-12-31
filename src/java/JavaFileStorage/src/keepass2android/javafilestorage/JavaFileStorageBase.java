@@ -27,7 +27,7 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 	}
 
 	
-	protected static String encode(final String unencoded)
+	protected String encode(final String unencoded)
 			throws UnsupportedEncodingException {
 		return UTF8_PREFIX+java.net.URLEncoder.encode(unencoded, HTTP.UTF_8);
 	}

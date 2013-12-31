@@ -67,7 +67,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	
 	
-	public static String getRootPathForAccount(String accountName) throws UnsupportedEncodingException {
+	public String getRootPathForAccount(String accountName) throws UnsupportedEncodingException {
 		return GDRIVE_PROTOCOL_ID+"://"+encode(accountName)+"/";
 	}
 	

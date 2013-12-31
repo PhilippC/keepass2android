@@ -311,7 +311,10 @@ namespace keepass2android
 						OnActivityResult,
 						defaultPath =>
 						{
-							Util.ShowFilenameDialog(this, OnCreateButton, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
+							if (defaultPath.StartsWith("sftp://"))
+								Util.ShowSftpDialog(this, OnReceiveSftpData);
+							else
+								Util.ShowFilenameDialog(this, OnCreateButton, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
 												Intents.RequestCodeFileBrowseForOpen);
 						}
 						), true, RequestCodeDbFilename, protocolId);
@@ -376,6 +379,12 @@ namespace keepass2android
 				StartFileChooser(ioc.Path, RequestCodeDbFilename, true);
 			}
 
+		}
+
+		private bool OnReceiveSftpData(string filename)
+		{
+			StartFileChooser(filename, RequestCodeDbFilename, true);
+			return true;
 		}
 
 		private static string ConvertFilenameToIocPath(string filename)

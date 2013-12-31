@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -67,6 +67,7 @@
     <Compile Include="Io\IFileStorage.cs" />
     <Compile Include="Io\IoUtil.cs" />
     <Compile Include="Io\JavaFileStorage.cs" />
+    <Compile Include="Io\SftpFileStorage.cs" />
     <Compile Include="Io\SkyDriveFileStorage.cs" />
     <Compile Include="IProgressDialog.cs" />
     <Compile Include="PreferenceKey.cs" />
@@ -96,6 +97,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchDbHelper.cs" />
     <Compile Include="ProgressDialogStatusLogger.cs" />
+    <Compile Include="Utils\EntryUtil.cs" />
+    <Compile Include="Utils\Spr\SprContext.cs" />
+    <Compile Include="Utils\Spr\SprEncoding.cs" />
+    <Compile Include="Utils\Spr\SprEngine.cs" />
+    <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">

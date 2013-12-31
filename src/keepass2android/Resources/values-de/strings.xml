@@ -321,7 +321,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, kannst du diese Option wählen um den Ordner anzulegen, und dann die Datei (vom PC aus) in den neuen Ordner kopieren. Wähle die Option dann nochmal zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
-  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
+  <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
   <string name="database_location">Speicherort der Datenbank</string>
   <string name="help_database_location">Du kannst deine Datenbank lokal auf deinem Android-Gerät oder in der Cloud speichern (nur in der Nicht-Offline-Version). Keepass2Android macht die Datenbank dann auch verfügbar, wenn du offline bist. Da die Datenbank sicher mit der AES 256-Bit-Verschlüsselung geschützt ist, erhält auch dann niemand außer dir Zugriff auf deine Datenbank. Wir empfehlen die Benutzung von Dropbox: Es ist auf allen Geräten verfügbar und bietet automatisch Backups aller Dateiversionen.</string>

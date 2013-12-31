@@ -25,6 +25,7 @@ public interface FileStorageSetupInitiatorActivity
 	void startSelectFileProcess(String path, boolean isForSave, int requestCode);
 	void startFileUsageProcess(String path, int requestCode, boolean alwaysReturnSuccess);
 	void onImmediateResult(int requestCode, int result,	Intent intent);
+	void performManualFileSelect(boolean isForSave, int requestCode, String protocolId);
 	Activity getActivity();
 }
 

@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using KeePass.Util.Spr;
 using KeePassLib;
 using KeePassLib.Collections;
 using KeePassLib.Interfaces;
@@ -104,7 +105,9 @@ namespace keepass2android
 				return pgResults;
 			foreach (PwEntry entry in database.Entries.Values)
 			{
-				String otherHost = ExtractHost(entry.Strings.ReadSafe(PwDefs.UrlField));
+				string otherUrl = entry.Strings.ReadSafe(PwDefs.UrlField);
+				otherUrl = SprEngine.Compile(otherUrl, new SprContext(entry, database.KpDatabase, SprCompileFlags.References));
+				String otherHost = ExtractHost(otherUrl);
 				if ((allowSubdomains) && (otherHost.StartsWith("www.")))
 					otherHost = otherHost.Substring(4); //remove "www."
 				if (String.IsNullOrWhiteSpace(otherHost))

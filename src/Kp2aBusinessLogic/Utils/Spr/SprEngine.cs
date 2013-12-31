@@ -592,16 +592,6 @@ namespace KeePass.Util.Spr
 			return (strText.IndexOf('{') >= 0);
 		}
 
-		internal static string DerefFn(string str, PwEntry pe)
-		{
-			if(!MightDeref(str)) return str;
-
-			SprContext ctx = new SprContext(pe,
-				App.Kp2a.GetDb().KpDatabase,
-				SprCompileFlags.Deref);
-			// ctx.ForcePlainTextPasswords = false;
-
-			return Compile(str, ctx);
-		}
+		
 	}
 }

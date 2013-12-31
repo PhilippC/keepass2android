@@ -399,6 +399,7 @@ namespace keepass2android
 							new DropboxAppFolderFileStorage(Application.Context, this),
 							new GoogleDriveFileStorage(Application.Context, this),
 							new SkyDriveFileStorage(Application.Context, this),
+							new SftpFileStorage(this),
 #endif
 #endif
 							new BuiltInFileStorage(this)

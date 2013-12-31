@@ -321,8 +321,10 @@ namespace keepass2android
 						OnActivityResult,
 						defaultPath =>
 							{
-
-								Util.ShowFilenameDialog(this, OnOpenButton, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
+								if (defaultPath.StartsWith("sftp://"))
+									Util.ShowSftpDialog(this, OnReceivedSftpData);
+								else
+									Util.ShowFilenameDialog(this, OnOpenButton, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
 								                    Intents.RequestCodeFileBrowseForOpen);
 							}
 						), false, 0, protocolId);
@@ -377,7 +379,19 @@ namespace keepass2android
 				Toast.MakeText(this, data.GetStringExtra("EXTRA_ERROR_MESSAGE"), ToastLength.Long).Show();
 			}
 		}
-		#if !EXCLUDE_FILECHOOSER
+
+		private bool OnReceivedSftpData(string filename)
+		{
+			IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
+#if !EXCLUDE_FILECHOOSER
+			StartFileChooser(ioc.Path);
+#else
+			LaunchPasswordActivityForIoc(ioc);
+#endif
+			return true;
+		}
+
+#if !EXCLUDE_FILECHOOSER
 		private void StartFileChooser(string defaultPath)
 		{
 			Kp2aLog.Log("FSA: defaultPath="+defaultPath);
