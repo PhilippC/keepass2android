@@ -5,6 +5,7 @@
   <string name="about_homepage">Homepage</string>
   <string name="AboutText">Keepass2Android is a password manager providing read/write access to KeePass 2.x databases on Android.</string>
   <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
+  <string name="CreditsTextSFTP">SFTP support is implemented using the JSch library under BSD licence, created by JCraft, Inc.</string>
   <string name="accept">Accept</string>
   <string name="add_entry">Add entry</string>
   <string name="add_url_entry">Create entry for URL</string>

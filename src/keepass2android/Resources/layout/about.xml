@@ -126,6 +126,12 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@id/android_filechooser_contrib"
 			android:text="@string/CreditsText" />
+	<TextView
+			android:id="@+id/Credit2"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/Credit"
+			android:text="@string/CreditsTextSFTP" />
 	</RelativeLayout>
 
 </ScrollView>
