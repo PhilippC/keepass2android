@@ -168,3 +168,13 @@ Thumbs.db
 /src/java/workspace/DriveTest
 
 /src/Components
+
+/src/AndroidFileChooserBinding/bin/ReleaseNoNet
+
+/src/AndroidFileChooserBinding/obj/ReleaseNoNet
+
+/src/AppCompatV7Binding/obj/ReleaseNoNet
+
+/src/JavaFileStorageBindings/obj/ReleaseNoNet
+
+/src/AppCompatV7Binding/bin/ReleaseNoNet
