@@ -44,7 +44,7 @@ namespace keepass2android
 
 			return Search(database, sp, null);
 		}
-		public PwGroup Search(Database database, SearchParameters sp, IDictionary<PwUuid, String> resultContexts)
+		public PwGroup Search(Database database, SearchParameters sp, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts)
 		{
 			
 			if(sp.RegularExpression) // Validate regular expression

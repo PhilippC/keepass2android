@@ -728,7 +728,7 @@ namespace KeePassLib
 		/// <param name="listStorage">Entry list in which the search results will
 		/// be stored.</param>
 		/// <param name="resultContexts">Dictionary that will be populated with text fragments indicating the context of why each entry (keyed by Uuid) was returned</param>
-		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage, IDictionary<PwUuid, String> resultContexts,
+		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts,
 			IStatusLogger slStatus)
 		{
 			if(sp == null) { Debug.Assert(false); return; }
@@ -797,7 +797,7 @@ namespace KeePassLib
 		}
 
 		private bool SearchEntriesSingle(SearchParameters spIn,
-			PwObjectList<PwEntry> listStorage, IDictionary<PwUuid, String> resultContexts, IStatusLogger slStatus,
+			PwObjectList<PwEntry> listStorage, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts, IStatusLogger slStatus,
 			ref ulong uCurEntries, ulong uTotalEntries)
 		{
 			SearchParameters sp = spIn.Clone();
@@ -943,7 +943,7 @@ namespace KeePassLib
 		}
 
 		private static void SearchEvalAdd(SearchParameters sp, string strDataField,
-			Regex rx, PwEntry pe, PwObjectList<PwEntry> lResults, IDictionary<PwUuid, String> resultContexts, string contextFieldName)
+			Regex rx, PwEntry pe, PwObjectList<PwEntry> lResults, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts, string contextFieldName)
 		{
 			bool bMatch = false;
 			int matchPos;
@@ -993,7 +993,7 @@ namespace KeePassLib
 						var startPos = Math.Min(matchPos - (SearchContextStringMaxLength / 10), contextString.Length - SearchContextStringMaxLength);
 						contextString = "… " + contextString.Substring(startPos, SearchContextStringMaxLength) + ((startPos + SearchContextStringMaxLength < contextString.Length) ? " …" : null);
 					}
-					resultContexts[pe.Uuid] = contextFieldName + ": " + contextString;
+					resultContexts[pe.Uuid] = new KeyValuePair<string, string>(contextFieldName, contextString);
 				}
 			}
 		}

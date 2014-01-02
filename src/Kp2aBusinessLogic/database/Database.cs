@@ -141,7 +141,7 @@ namespace keepass2android
 			
 		}
 
-		public PwGroup Search(SearchParameters searchParams, IDictionary<PwUuid, String> resultContexts)
+		public PwGroup Search(SearchParameters searchParams, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts)
 		{
 			return SearchHelper.Search(this, searchParams, resultContexts);
 		}

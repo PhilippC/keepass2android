@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
+using System.Globalization;
 using System.Linq;
 using Android.App;
 using Android.Content;
@@ -80,7 +81,7 @@ namespace keepass2android.search
 						{
 							try
 							{
-								var resultsContexts = new Dictionary<PwUuid, String>();
+								var resultsContexts = new Dictionary<PwUuid, KeyValuePair<string, string>>();
 								var result = _db.Search(new SearchParameters { SearchString = searchString }, resultsContexts );
 								return new GroupCursor(result, resultsContexts);
 							}
@@ -172,9 +173,9 @@ namespace keepass2android.search
 			};
 
 			private readonly PwGroup mGroup;
-			private readonly IDictionary<PwUuid, String> mResultContexts;
+			private readonly IDictionary<PwUuid, KeyValuePair<string, string>> mResultContexts;
 
-			public GroupCursor(PwGroup group, IDictionary<PwUuid, String> resultContexts)
+			public GroupCursor(PwGroup group, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts)
 			{
 				System.Diagnostics.Debug.Assert(!group.Groups.Any(), "Expecting a flat list of groups");
 
@@ -227,15 +228,14 @@ namespace keepass2android.search
 				switch (column)
 				{
 					case 0: // _ID
-						return MPos.ToString();
+						return MPos.ToString(CultureInfo.InvariantCulture);
 					case 1: // SuggestColumnText1
 						return CurrentEntry.Strings.ReadSafe(PwDefs.TitleField);
 					case 2: // SuggestColumnText2
-						string context;
+						KeyValuePair<string, string> context;
 						if (mResultContexts.TryGetValue(CurrentEntry.Uuid, out context))
 						{
-							context = Internationalise(context);
-							return context;
+							return Internationalise(context);
 						}
 						return null;
 					case 3: // SuggestColumnIcon1
@@ -253,42 +253,52 @@ namespace keepass2android.search
 				}
 			}
 
-			private string Internationalise(string context)
+			private string Internationalise(KeyValuePair<string, string> context)
 			{
-				// Some context names can be internationalised.
-				var splitPos = context.IndexOf(':');
-				var rawName = context.Substring(0, splitPos);
-				int intlResourceId = 0;
-				switch (rawName)
+				try
 				{
-					case PwDefs.TitleField:
-						// We will already be showing Title, so ignore it entirely so it doesn't double-appear
-						return null;
-					case PwDefs.UserNameField:
-						intlResourceId = Resource.String.entry_user_name;
-						break;
-					case PwDefs.UrlField:
-						intlResourceId = Resource.String.entry_url;
-						break;
-					case PwDefs.NotesField:
-						intlResourceId = Resource.String.entry_comment;
-						break;
-					case PwGroup.SearchContextTags:
-						intlResourceId = Resource.String.entry_tags;
-						break;
-					default:
-						//don't disclose protected strings:
-						if (CurrentEntry.Strings.Get(rawName).IsProtected)
+
+					// Some context names can be internationalised.
+					int intlResourceId = 0;
+					switch (context.Key)
+					{
+						case PwDefs.TitleField:
+							// We will already be showing Title, so ignore it entirely so it doesn't double-appear
 							return null;
-						break;
-				}
+						case PwDefs.UserNameField:
+							intlResourceId = Resource.String.entry_user_name;
+							break;
+						case PwDefs.UrlField:
+							intlResourceId = Resource.String.entry_url;
+							break;
+						case PwDefs.NotesField:
+							intlResourceId = Resource.String.entry_comment;
+							break;
+						case PwGroup.SearchContextTags:
+							intlResourceId = Resource.String.entry_tags;
+							break;
+						default:
+							//don't disclose protected strings:
+							if (CurrentEntry.Strings.Get(context.Key).IsProtected)
+								return null;
+							break;
+					}
 
-				if (intlResourceId > 0)
+					if (intlResourceId > 0)
+					{
+						return Application.Context.GetString(intlResourceId) + ": "+context.Value;
+					}
+					return context.Key + ": " + context.Value;
+				}
+				catch (Exception)
 				{
-					return App.Context.GetString(intlResourceId) + context.Substring(splitPos);
+					return null;
 				}
+				
+				
 
-				return context;
+
+				
 			}
 
 			public override bool IsNull(int column)
