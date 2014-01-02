@@ -68,7 +68,7 @@ namespace keepass2android
 				{
 					message = innerException.Message;
 						// Override the message shown with the last (hopefully most recent) inner exception
-					Kp2aLog.Log("Exception: " + message);
+					Kp2aLog.Log("Exception: " + innerException);
 				}
 				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message);
 				return;
