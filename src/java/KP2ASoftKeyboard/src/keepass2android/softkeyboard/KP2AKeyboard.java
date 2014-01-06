@@ -17,15 +17,16 @@
 package keepass2android.softkeyboard;
 
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
-import android.provider.Settings;
 import android.text.InputType;
+import android.util.Log;
+import android.util.Printer;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -37,7 +38,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import keepass2android.kbbridge.StringForTyping;
@@ -231,6 +231,92 @@ public class KP2AKeyboard extends InputMethodService implements
 		// Update the label on the enter key, depending on what the application
 		// says it will do.
 		mCurKeyboard.setImeOptions(getResources(), attribute.imeOptions);
+		
+		tryAutoFillIn(attribute);
+		
+	}
+
+	private boolean tryAutoFillIn(final EditorInfo attribute) {
+		//auto fill in?
+		//TODO: make this inside an AsyncTask: getText* might be slow
+		CharSequence textAfter = getCurrentInputConnection().getTextAfterCursor(1 /*length*/, 0 /*flags*/);
+		CharSequence textBefore = getCurrentInputConnection().getTextBeforeCursor(1 /*length*/, 0 /*flags*/);
+		boolean hasTextInField = ((textAfter != null) && (textAfter.length() > 0))
+				 || ((textBefore != null) && (textBefore.length()> 0));
+		if (!hasTextInField)
+		{
+			//try to look up saved field ids:
+			if (attribute.fieldId > -1)
+			{
+				SharedPreferences prefs = getApplicationContext().getSharedPreferences("savedFieldIds", MODE_PRIVATE);
+				
+				String key = attribute.packageName+"/"+attribute.fieldId;
+				Log.d("KP2AK", "looking up saved field for "+key);
+				
+				String fieldKey = prefs.getString(key, "");
+				
+				if ("".equals(fieldKey) == false)
+				{
+					Log.d("KP2AK","Found field "+fieldKey);
+					if (commitTextForKey(attribute, fieldKey))
+						return true;
+				}
+			}
+
+			//try to look up saved field hint:
+			if ((attribute.hintText != null) && (attribute.hintText.length() > 0))
+			{
+				SharedPreferences prefs = getApplicationContext().getSharedPreferences("savedFieldHints", MODE_PRIVATE);
+				
+				String key = attribute.packageName+"/"+keepass2android.kbbridge.KeyboardData.entryId+"/"+attribute.hintText;
+				Log.d("KP2AK", "looking up saved field hint for "+key);
+				
+				String displayName = prefs.getString(key, "");
+				
+				if ("".equals(displayName) == false)
+				{
+					Log.d("KP2AK","Found field "+displayName);
+					if (commitTextForKey(attribute, displayName))
+						return true;
+				}
+			}
+
+			//try to look up by hint
+			if ((attribute.hintText != null) && (attribute.hintText.length() > 0))
+			{
+				if (commitTextForKey(attribute, attribute.hintText.toString()))
+					return true;
+			}
+
+		}		
+		return false;
+	}
+
+	private boolean commitTextForKey(final EditorInfo attribute, String key) {
+		List<StringForTyping> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
+		for (StringForTyping str: availableFields)
+		{
+			if (str.key.equals(key))
+			{
+				Log.d("KP2AK", "Typing!");
+				commitKp2aString(str.value, attribute);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void commitKp2aString(String value, EditorInfo editorInfo) {
+		getCurrentInputConnection().commitText(
+				value, 0);
+
+		if ((editorInfo.imeOptions&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) == EditorInfo.IME_ACTION_NEXT)
+		{
+			Log.d("KP2AK", "action is NEXT");
+			getCurrentInputConnection().performEditorAction(editorInfo.actionId);
+		}
+
+		
 	}
 
 	/**
@@ -290,6 +376,7 @@ public class KP2AKeyboard extends InputMethodService implements
 			mComposing.setLength(0);
 			updateCandidates();
 			InputConnection ic = getCurrentInputConnection();
+			
 			if (ic != null) {
 				ic.finishComposingText();
 			}
@@ -456,51 +543,62 @@ public class KP2AKeyboard extends InputMethodService implements
 			String title = "Keepass2Android";
 			List<StringForTyping> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
 			
-			final ArrayList<String> items = new ArrayList<String>();
-			final ArrayList<String> values = new ArrayList<String>();
+			Log.d("KP2AK", "hint: "+getCurrentInputEditorInfo().hintText);
+			Log.d("KP2AK", "field name: "+getCurrentInputEditorInfo().fieldName);
+			Log.d("KP2AK", "label: "+getCurrentInputEditorInfo().label);
+			getCurrentInputEditorInfo().dump(new Printer() {
+				
+				@Override
+				public void println(String x) {
+					Log.d("KP2AK", x);
+					
+				}
+			},"");
+			final ArrayList<StringForTyping> items = new ArrayList<StringForTyping>();
 			for (StringForTyping entry : availableFields) 
 			{
-				String key = entry.displayName;
-				String value = entry.value;
-				items.add(key);
-				values.add(value);
+				items.add(entry.clone());
 			}
 
 			
 			if (keepass2android.kbbridge.KeyboardData.entryName == null)
 			{
-				items.add(getString(R.string.open_entry));
-				values.add("KP2ASPECIAL_SelectEntryTask");
+				StringForTyping openEntry = new StringForTyping();
+				openEntry.displayName = openEntry.key = getString(R.string.open_entry);
+				openEntry.value = "KP2ASPECIAL_SelectEntryTask";
+				items.add(openEntry);
 			}
 			else
 			{
-				title += " ("+keepass2android.kbbridge.KeyboardData.entryName+")";
-				items.add(getString(R.string.change_entry));
-				values.add("");
+				StringForTyping changeEntry = new StringForTyping();
+				changeEntry.displayName = changeEntry.key = getString(R.string.change_entry);
+				changeEntry.value = "KP2ASPECIAL_SelectEntryTask";
+				items.add(changeEntry);
 			}
 			
 			if ((mClientPackageName != null) && (mClientPackageName != ""))
 			{
-				items.add(getString(R.string.open_entry_for_app,mClientPackageName));
-				values.add("KP2ASPECIAL_SearchUrlTask");
+				StringForTyping searchEntry = new StringForTyping();
+				searchEntry.key = searchEntry.displayName
+					= getString(R.string.open_entry_for_app,mClientPackageName);
+				searchEntry.value = "KP2ASPECIAL_SearchUrlTask";
+				items.add(searchEntry);
 			}
 			
 			builder.setTitle(title);
 
-			// builder.setMessage("What do you want to type securely?");
 			builder.setItems(items.toArray(new CharSequence[items.size()]),
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int item) {
 
-							if (values.get(item).startsWith("KP2ASPECIAL")) {
+							if (items.get(item).value.startsWith("KP2ASPECIAL")) {
 								//change entry
 								Intent startKp2aIntent = getPackageManager().getLaunchIntentForPackage(getApplicationContext().getPackageName());
-								//Intent startKp2aIntent = getPackageManager().getLaunchIntentForPackage("keepass2android.keepass2android");
 								if (startKp2aIntent != null)
 								{
 									startKp2aIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 									startKp2aIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |  Intent.FLAG_ACTIVITY_CLEAR_TASK);
-									String value = values.get(item);
+									String value = items.get(item).value;
 									String taskName = value.substring("KP2ASPECIAL_".length()); 
 									startKp2aIntent.putExtra("KP2A_APPTASK", taskName);
 									if (taskName.equals("SearchUrlTask"))
@@ -508,14 +606,21 @@ public class KP2AKeyboard extends InputMethodService implements
 										startKp2aIntent.putExtra("UrlToSearch", "androidapp://"+mClientPackageName);
 									}
 									startActivity(startKp2aIntent);
-									Settings.Secure.getString(
-											   getContentResolver(), 
-											   Settings.Secure.DEFAULT_INPUT_METHOD
-											);
 								}
 							} else {
-								getCurrentInputConnection().commitText(
-										values.get(item), 0);
+								
+																
+								if (getCurrentInputEditorInfo().fieldId > 0)
+								{
+									SharedPreferences savedFieldIds = getApplicationContext().getSharedPreferences("savedFieldIds", MODE_PRIVATE);
+									Editor edit = savedFieldIds.edit();
+									
+									edit.putString(getCurrentInputEditorInfo().packageName+"/"+getCurrentInputEditorInfo().fieldId, items.get(item).key);
+									edit.commit();	
+								}
+
+								commitKp2aString(items.get(item).value, getCurrentInputEditorInfo());
+								
 							}
 						}
 					});
