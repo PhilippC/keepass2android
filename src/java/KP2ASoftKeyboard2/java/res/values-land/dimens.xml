@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* 
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License"); 
+** you may not use this file except in compliance with the License. 
+** You may obtain a copy of the License at 
+**
+**     http://www.apache.org/licenses/LICENSE-2.0 
+**
+** Unless required by applicable law or agreed to in writing, software 
+** distributed under the License is distributed on an "AS IS" BASIS, 
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+** See the License for the specific language governing permissions and 
+** limitations under the License.
+*/
+-->
+
+<resources>
+    <!-- key_height + key_bottom_gap = popup_key_height -->
+    <dimen name="key_height">0.250in</dimen>
+    <dimen name="key_bottom_gap">0.020in</dimen>
+    <dimen name="popup_key_height">0.270in</dimen>
+    <dimen name="keyboard_bottom_padding">0.0in</dimen>
+    <dimen name="candidate_strip_height">38dip</dimen>
+    <dimen name="candidate_strip_fading_edge_length">63dip</dimen>
+    <dimen name="spacebar_vertical_correction">2dip</dimen>
+    <!-- Amount of allowance for selecting keys in a mini popup keyboard by sliding finger. -->
+    <!-- popup_key_height x 1.7 -->
+    <dimen name="mini_keyboard_slide_allowance">0.459in</dimen>
+    <!-- popup_key_height x 1.0 -->
+    <dimen name="mini_keyboard_vertical_correction">-0.270in</dimen>
+</resources>

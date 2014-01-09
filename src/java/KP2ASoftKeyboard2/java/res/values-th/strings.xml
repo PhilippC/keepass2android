@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"แป้นพิมพ์ Android"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"การตั้งค่าแป้นพิมพ์ Android"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"ตัวเลือกการป้อนข้อมูล"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"สั่นเมื่อกดปุ่ม"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"ส่งเสียงเมื่อกดปุ่ม"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"ป๊อปอัปเมื่อกดแป้น"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"แก้ไขข้อผิดพลาดในการพิมพ์"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"เปิดการใช้งานการแก้ไขข้อผิดพลาดในการป้อนข้อมูล"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"ข้อผิดพลาดในการป้อนข้อมูลแนวนอน"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"เปิดการใช้งานการแก้ไขข้อผิดพลาดในการป้อนข้อมูล"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"การแนะนำคำ"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"แก้ไขคำก่อนหน้าอัตโนมัติ"</string>
+    <string name="prediction" msgid="466220283138359837">"การแนะนำคำ"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"การตั้งค่าการแนะนำคำ"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"เปิดใช้งานการเติมคำอัตโนมัติขณะพิมพ์"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"เติมคำอัตโนมัติ"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"เพิ่มขนาดฟิลด์ข้อความ"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"ซ่อนการแนะนำคำในมุมมองแนวนอน"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"ปรับเป็นตัวพิมพ์ใหญ่อัตโนมัติ"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"ใช้ตัวพิมพ์ใหญ่เมื่อขึ้นต้นประโยค"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"ใส่เครื่องหมายวรรคตอนอัตโนมัติ"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"แก้ไขด่วน"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"แก้ไขข้อผิดพลาดในการพิมพ์ที่พบบ่อย"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"แสดงคำแนะนำ"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"แสดงคำที่แนะนำขณะพิมพ์"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"เติมคำอัตโนมัติ"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"ใช้แป้นเคาะวรรคและเครื่องหมายวรรคตอนเพื่อแทรกคำที่ไฮไลต์โดยอัตโนมัติ"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"แสดงแป้นการตั้งค่า"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"อัตโนมัติ"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"แสดงตลอดเวลา"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"ซ่อนตลอดเวลา"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"คำแนะนำ Bigram"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"ใช้คำก่อนหน้านี้เพื่อปรับปรุงคำแนะนำ"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"ไม่มี"</item>
+    <item msgid="1669461741568287396">"พื้นฐาน"</item>
+    <item msgid="4894328801530136615">"ขั้นสูง"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : บันทึกแล้ว"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"กดปุ่มค้างไว้เพื่อดูการออกเสียง (ø, ö, ฯลฯ)"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"กดปุ่ม ย้อนกลับ เพื่อปิดแป้นพิมพ์เมื่อใดก็ได้"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"เข้าถึงหมายเลขและสัญลักษณ์"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"กดคำซ้ายสุดค้างไว้เพื่อเพิ่มลงในพจนานุกรม"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"แตะคำแนะนำนี้เพื่อทำงานต่อ »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"แตะที่นี่เพื่อปิดคำแนะนำนี้และเริ่มพิมพ์!"</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"แป้นพิมพ์จะเปิดขึ้นเมื่อคุณแตะฟิลด์ข้อความ"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"แตะปุ่มค้างไว้เพื่อดูการออกเสียง"\n"(ø, ö, ô, ó และอื่นๆ)"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"เปลี่ยนเป็นตัวเลขและสัญลักษณ์เมื่อแตะปุ่มนี้"</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"กลับไปที่ตัวอักษรโดยการแตะปุ่มนี้อีกครั้ง"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"แตะปุ่มนี้ค้างไว้เพื่อเปลี่ยนการตั้งค่าแป้นพิมพ์ เช่น การเติมคำอัตโนมัติ"</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"ลองดูสิ!"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"ไป"</string>
+    <string name="label_next_key" msgid="362972844525672568">"ถัดไป"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"เสร็จสิ้น"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"ส่ง"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"การป้อนข้อมูลด้วยเสียง"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"ขณะนี้การป้อนข้อมูลด้วยเสียงยังไม่ได้รับการสนับสนุนในภาษาของคุณ แต่ใช้ได้ในภาษาอังกฤษ"</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"การป้อนข้อมูลด้วยเสียงเป็นคุณลักษณะทดลองที่ใช้การจดจำเสียงที่มีการสร้างเครือข่ายไว้ของ Google"</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"หากต้องการปิดการป้อนข้อมูลด้วยเสียง ไปที่การตั้งค่าแป้นพิมพ์"</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"หากต้องการใช้การป้อนข้อมูลด้วยเสียง กดปุ่มไมโครโฟนหรือเลื่อนนิ้วผ่านแป้นพิมพ์บนหน้าจอ"</string>
+    <string name="voice_listening" msgid="467518160751321844">"พูดได้เลย"</string>
+    <string name="voice_working" msgid="6666937792815731889">"กำลังทำงาน"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"ข้อผิดพลาด โปรดลองอีกครั้ง"</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"ไม่สามารถเชื่อมต่อได้"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"ข้อผิดพลาด คำพูดยาวเกินไป"</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"ปัญหาด้านเสียง"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"ข้อผิดพลาดของเซิร์ฟเวอร์"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"ไม่ได้ยินเสียง"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"ไม่พบรายการที่ตรงกัน"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"ไม่ได้ติดตั้ง Voice Search"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"คำแนะนำ:"</b>" กวาดผ่านแป้นพิมพ์เพื่อพูด"</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"คำแนะนำ:"</b>" ครั้งต่อไป ให้ลองเอ่ยถึงเครื่องหมายวรรคตอน เช่น \"มหัพภาค\" \"จุลภาค\" หรือ \"เครื่องหมายคำถาม\""</string>
+    <string name="cancel" msgid="6830980399865683324">"ยกเลิก"</string>
+    <string name="ok" msgid="7898366843681727667">"ตกลง"</string>
+    <string name="voice_input" msgid="2466640768843347841">"การป้อนข้อมูลด้วยเสียง"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"บนแป้นพิมพ์หลัก"</item>
+    <item msgid="8529385602829095903">"บนแป้นพิมพ์สัญลักษณ์"</item>
+    <item msgid="7283103513488381103">"ปิด"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"ไมโครโฟนบนแป้นพิมพ์หลัก"</item>
+    <item msgid="6907837061058876770">"ไมโครโฟนบนแป้นพิมพ์สัญลักษณ์"</item>
+    <item msgid="3664304608587798036">"การป้อนข้อมูลด้วยเสียงถูกปิดการใช้งาน"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"ส่งอัตโนมัติหลังบันทึกเสียง"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"กด Enter อัตโนมัติเมื่อค้นหาหรือไปที่ฟิลด์ถัดไป"</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"เปิดแป้นพิมพ์"\n</b></font><font size="3">\n</font>"แตะฟิลด์ข้อความใดก็ได้"</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"ปิดแป้นพิมพ์"\n</b></font><font size="3">\n</font>"กดปุ่ม ย้อนกลับ"</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"แตะปุ่มค้างไว้เพื่อดูตัวเลือก "\n</b></font><font size="3">\n</font>"เข้าถึงเครื่องหมายวรรคตอนและการออกเสียง"</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"การตั้งค่าแป้นพิมพ์"\n</b></font><font size="3">\n</font>"แตะปุ่ม "<b>"?123"</b>"ค้างไว้"</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"เลือกวิธีการป้อนข้อมูล"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"ภาษาในการป้อนข้อมูล"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"เลื่อนนิ้วไปบนแป้นเคาะวรรคเพื่อเปลี่ยนภาษา"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← แตะอีกครั้งเพื่อบันทึก"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"มีพจนานุกรมให้ใช้งาน"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"เปิดใช้งานการแสดงความคิดเห็นจากผู้ใช้"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"ช่วยปรับปรุงตัวแก้ไขวิธีการป้อนข้อมูลนี้โดยการส่งสถิติการใช้งานและรายงานการขัดข้องถึง Google โดยอัตโนมัติ"</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"แตะเพื่อแก้ไขคำ"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"แตะคำที่ป้อนไว้เพื่อแก้ไข"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"ชุดรูปแบบแป้นพิมพ์"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"แป้นพิมพ์"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"เสียง"</string>
+</resources>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Android klavyesi"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Android klavye ayarları"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"Giriş seçenekleri"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Tuşa basıldığında titret"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"Tuşa basıldığında ses çıkar"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"Tuşa basıldığında pop-up aç"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"Yazım hatalarını düzelt"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"Giriş hatası düzeltmeyi etkinleştir"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"Yatay giriş hataları"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Giriş hatası düzeltmeyi etkinleştir"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"Kelime önerileri"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"Önceki kelimeyi otomatik olarak düzelt"</string>
+    <string name="prediction" msgid="466220283138359837">"Kelime önerileri"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"Kelime önerme ayarları"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"Yazarken otomatik tamamlamayı etkinleştir"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Otomatik tamamlama"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"Metin alanı boyutunu artır"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Yatay görünümde kelime önerilerini gizle"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"Otomatik olarak büyük harf yap"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"Cümlenin baş harfini büyük yap"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"Otomatik noktalama"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"Hızlı onarımlar"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"Yaygın olarak yapılan yazım hatalarını düzeltir"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"Önerileri göster"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"Yazarken önerilen kelimeleri görüntüle"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"Otomatik tamamla"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"Boşluk tuşu ve noktalama vurgulanan kelimeyi otomatik ekler"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"Ayarları göster tuşu"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Otomatik"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Her zaman göster"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Her zaman gizle"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"Bigram Önerileri"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Öneriyi geliştirmek için önceki kelimeyi kullanın"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"Yok"</item>
+    <item msgid="1669461741568287396">"Temel"</item>
+    <item msgid="4894328801530136615">"Gelişmiş"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : Kaydedildi"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"Vurguları görmek için bir tuşu basılı tutun (ø, ö, v.b.)"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"Klavyeyi herhangi bir anda kapatmak için geri tuşuna ↶ basın"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"Sayılara ve simgelere erişin"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Sözlüğe eklemek için en soldaki kelimeye basın ve basılı tutun"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"Devam etmek için bu ipucuna dokunun »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"Bu ipucunu kapatmak için buraya dokunun ve yazmaya başlayın!"</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Bir metin alanına dokunduğunuzda klavye açılır"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Vurguları görüntülemek için bir tuşa basın ve basılı tutun"\n"(ø, ö, ô, ó v.b.)"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Bu tuşa dokunarak sayılar ve simgeler arasında geçiş yap"</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Bu tuşa tekrar dokunarak harflere geri dönün"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Otomatik tamamlama gibi klavye ayarlarını değiştirmek için bu tuşa basın ve basılı tutun"</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Deneyin!"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"Git"</string>
+    <string name="label_next_key" msgid="362972844525672568">"İleri"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"Bitti"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"Gönder"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"Ses girişi"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Ses girişi, şu anda sizin diliniz için desteklenmiyor ama İngilizce dilinde kullanılabilir."</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Ses girişi, Google\'ın ağ bağlantılı ses tanıma işlevini kullanan deneysel bir özelliktir."</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Ses girişini kapatmak için klavye ayarlarına gidin."</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Ses girişini kullanmak için mikrofon düğmesine basın veya parmağınızı dokunmatik klavye üzerinde kaydırın."</string>
+    <string name="voice_listening" msgid="467518160751321844">"Şimdi konuşun"</string>
+    <string name="voice_working" msgid="6666937792815731889">"Çalışıyor"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"Hata. Lütfen tekrar deneyin."</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"Bağlanamadı"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"Hata, çok uzun konuşma."</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"Ses sorunu"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"Sunucu hatası"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"Konuşma duyulmadı"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"Eşleşme bulunamadı"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Sesle arama yüklenmedi"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"İpucu:"</b>" Konuşmak için parmağınızı klavye üzerinde kaydırın"</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"İpucu:"</b>" Sonraki sefer, \"nokta\", \"virgül\" veya \"soru işareti\" gibi noktalama işaretlerini telaffuz etmeyi deneyin."</string>
+    <string name="cancel" msgid="6830980399865683324">"İptal"</string>
+    <string name="ok" msgid="7898366843681727667">"Tamam"</string>
+    <string name="voice_input" msgid="2466640768843347841">"Ses girişi"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"Ana klavyede"</item>
+    <item msgid="8529385602829095903">"Simge klavyesinde"</item>
+    <item msgid="7283103513488381103">"Kapalı"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"Ana klavyedeki mikrofon"</item>
+    <item msgid="6907837061058876770">"Simge klavyesindeki mikrofon"</item>
+    <item msgid="3664304608587798036">"Sesle giriş devre dışı bırakıldı"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"Sesten sonra otomatik gönder"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"Arama yaparken veya bir sonraki alana giderken enter tuşuna otomatik olarak basın."</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Klavyeyi açın"\n</b></font><font size="3">\n</font>"Herhangi bir metin alanına dokunun."</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Klavyeyi kapatın"\n</b></font><font size="3">\n</font>"Geri tuşuna basın."</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Seçenekler için bir tuşa dokunun ve basılı tutun"\n</b></font><font size="3">\n</font>"Noktalama ve vurgulama işaretlerine erişin."</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Klavye ayarları"\n</b></font><font size="3">\n</font><b>"?123"</b>" tuşuna dokunun ve basılı tutun."</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"Giriş yöntemini seç"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"Giriş dilleri"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"Dili değiştirmek için parmağınızı boşluk çubuğu üzerinde kaydırın"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Kaydetmek için tekrar dokunun"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"Sözlük kullanılabilir"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"Kullanıcı geri bildirimini etkinleştir"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"Kullanım istatistiklerini ve kilitlenme raporlarını Google\'a otomatik olarak göndererek bu giriş yöntemi düzenleyicisinin iyileştirilmesine yardımcı olun."</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Kelimeleri düzeltmek için dokunun"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Düzeltmek için, girilen kelimelere dokunun"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"Klavye Teması"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"klavye"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"ses"</string>
+</resources>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Klávesnica Android"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Nastavenia klávesnice Android"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"Možnosti zadávania textu a údajov"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Pri stlačení klávesu vibrovať"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"Zvuk pri stlačení klávesu"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"Zobraziť znaky pri stlačení klávesu"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"Opravovať preklepy"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"Povoliť opravu chýb vstupu"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"Chyby vstupu v zobrazení na šírku"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Povoliť opravu chýb vstupu"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"Návrhy slov"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"Automaticky opraviť predchádzajúce slovo"</string>
+    <string name="prediction" msgid="466220283138359837">"Návrhy slov"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"Nastavenia návrhov slov"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"Povoliť automatické dokončovanie pri písaní"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Automatické dokončovanie"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"Zväčšiť textové pole"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Skryť návrhy slov v zobrazení na šírku"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"Veľké písmená automaticky"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"Začať vetu veľkým písmenom"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"Automatická interpunkcia"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"Rýchle opravy"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"Opravuje najčastejšie chyby pri písaní"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"Zobraziť návrhy"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"Zobrazovať navrhované slová počas písania"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"Automatické dokončovanie"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"Stlačením medzerníka alebo interpunkčného znamienka automaticky vložíte zvýraznené slovo."</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"Zobraziť kláves Nastavenia"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Automaticky"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Vždy zobrazovať"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Vždy skrývať"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"Návrh Bigram"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Na zlepšenie návrhu použiť predchádzajúce slovo"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"Žiadne"</item>
+    <item msgid="1669461741568287396">"Základné"</item>
+    <item msgid="4894328801530136615">"Rozšírené"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : Uložené"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"Podržaním klávesu zobrazíte diakritiku (á, ž atď.)"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"Stlačením klávesu Späť ↶ môžete klávesnicu kedykoľvek zavrieť."</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"Prístup k číslam a symbolom"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Stlačením a podržaním slova úplne vľavo toto slovo pridáte do slovníka."</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"Ak chcete pokračovať, dotknite sa tohto tipu »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"Ak chcete tento tip zavrieť a začať písať, dotknite sa tu."</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Klávesnica sa otvorí vždy, keď sa dotknete textového poľa."</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Pridržaním klávesu zobrazíte diakritiku"\n"(ó, ø, ö, ô apod.)"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Ak chcete prepnúť na režim zadávania číslic a symbolov, dotknite sa tohto klávesu."</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Ak chcete prejsť späť na zadávanie písmen, dotknite sa znova tohto klávesu."</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Pridržaním tohto klávesu zmeníte nastavenia klávesnice (napr. automatické dokončovanie)."</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Skúste si to."</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"Hľadať"</string>
+    <string name="label_next_key" msgid="362972844525672568">"Ďalej"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"Hotovo"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"Odoslať"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"Hlasový vstup"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Pre váš jazyk aktuálne nie je hlasový vstup podporovaný, ale funguje v angličtine."</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Hlasový vstup je experimentálna funkcia, ktorá využíva sieťové rozpoznanie reči spoločnosti Google."</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Ak chcete vypnúť hlasový vstup, prejdite na nastavenia klávesnice."</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Ak chcete použiť hlasový vstup, stlačte tlačidlo mikrofónu alebo prejdite prstom po klávesnici na obrazovke."</string>
+    <string name="voice_listening" msgid="467518160751321844">"Hovorte"</string>
+    <string name="voice_working" msgid="6666937792815731889">"Prebieha spracovanie"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"Chyba. Skúste to znova."</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"Pripojenie sa nepodarilo."</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"Chyba, reč je príliš dlhá."</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"Problém so zvukom"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"Chyba servera"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"Nebola zistená žiadna reč."</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"Nenašli sa žiadne zhody"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Hlasové vyhľadávanie nie je nainštalované"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Tip:"</b>" Ak chcete aktivovať hlasový vstup, prejdite prstom po klávesnici."</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Tip:"</b>" Nabudúce skúste vysloviť interpunkciu, napríklad „bodka“, „čiarka“ alebo „otáznik“."</string>
+    <string name="cancel" msgid="6830980399865683324">"Zrušiť"</string>
+    <string name="ok" msgid="7898366843681727667">"OK"</string>
+    <string name="voice_input" msgid="2466640768843347841">"Hlasový vstup"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"Na hlavnej klávesnici"</item>
+    <item msgid="8529385602829095903">"Na klávesnici so symbolmi"</item>
+    <item msgid="7283103513488381103">"Vypnuté"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"Mikrofón na hlavnej klávesnici"</item>
+    <item msgid="6907837061058876770">"Mikrofón na klávesnici so symbolmi"</item>
+    <item msgid="3664304608587798036">"Hlasový vstup je zakázaný"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"Po hlasovom vstupe automaticky odoslať"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"Pri vyhľadávaní alebo prechode na ďalšie pole automaticky stlačiť kláves Enter."</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Otvorte klávesnicu"\n</b></font><font size="3">\n</font>"Dotknite sa ľubovoľného textového poľa."</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Zatvorte klávesnicu"\n</b></font><font size="3">\n</font>"Stlačte tlačidlo Späť."</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Dotknutím a pridržaním klávesu zobrazíte možnosti"\n</b></font><font size="3">\n</font>"Prístup k interpunkčným znamienkam a diakritike."</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Nastavenia klávesnice"\n</b></font><font size="3">\n</font>"Dotknite sa klávesu "<b>"?123"</b>" a podržte ho."</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".sk"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".net"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".eu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"Výber metódy vstupu"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"Jazyky vstupu"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"Jazyk môžete zmeniť posunutím prsta po medzerníku."</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Ďalším dotykom slovo uložíte"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"K dispozícii je slovník"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"Povoliť spätnú väzbu od používateľov"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"Automatickým zasielaním štatistík o využívaní editora metódy vstupu a správ o jeho zlyhaní do služby Google môžete prispieť k vylepšeniu tohto nástroja."</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Dotykom opravíte slová"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Dotykom zadaným slov ich opravíte"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"Motív klávesnice"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"klávesnica"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"hlasová"</string>
+</resources>

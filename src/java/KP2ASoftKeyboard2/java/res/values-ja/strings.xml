@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Androidキーボード"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Androidキーボードの設定"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"入力オプション"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"キー操作バイブ"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"キー操作音"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"キー押下時ポップアップ"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"入力ミス補正"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"入力間違いを自動修正する"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"横表示での入力修正"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"入力間違いを自動修正する"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"入力候補表示"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"前の単語を自動修正する"</string>
+    <string name="prediction" msgid="466220283138359837">"入力候補表示"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"入力候補の設定"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"オートコンプリートを使用する"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"オートコンプリート"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"入力作業スペースを広げる"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"横表示では入力候補を表示しない"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"自動大文字変換"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"英字入力で文頭文字を大文字にする"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"句読点を自動入力"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"クイックフィックス"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"よくある誤字・脱字を修正します"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"入力候補を表示"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"入力時に入力候補を表示する"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"オートコンプリート"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"誤入力をスペースまたは句読点キーで修正する"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"設定キーを表示"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"自動"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"常に表示"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"常に非表示"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"バイグラム入力候補表示"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"直前の単語から入力候補を予測します"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"なし"</item>
+    <item msgid="1669461741568287396">"基本"</item>
+    <item msgid="4894328801530136615">"高度"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g>:保存しました"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"キー長押しでアクセント文字を表示（ø、öなど）"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"戻るキーでキーボードを閉じます"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"数字と記号"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"一番左の単語を長押しすると辞書に追加されます"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"続けるにはここをタッチ"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"タッチしてこのヒントを終了し、入力を開始してください。"</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"テキストフィールドを選択するとキーボードが表示されます"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"キーを長押しするとアクセント付き文字"\n"（ø、ö、ô、óなど）が表示されます"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"このキーを押すと、数字/記号入力に切り替わります"</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"このキーを押すと、文字入力に再度切り替わります"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"オートコンプリートなどのキーボードの設定を変更するには、このキーを長押しします"</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"試してみてください。"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"実行"</string>
+    <string name="label_next_key" msgid="362972844525672568">"次へ"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"完了"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"送信"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"音声入力"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"音声入力は現在英語には対応していますが、日本語には対応していません。"</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"音声入力はGoogleのネットワーク音声認識技術を利用した試験段階の機能です。"</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"音声入力をOFFにするには、キーボードの設定を開きます。"</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"音声入力するには、マイクボタンを押すか画面キーボードをスワイプしてください。"</string>
+    <string name="voice_listening" msgid="467518160751321844">"お話しください"</string>
+    <string name="voice_working" msgid="6666937792815731889">"処理中"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"エラーです。もう一度お試しください。"</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"接続できませんでした"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"音声が長すぎてエラーになりました。"</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"オーディオエラー"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"サーバーエラー"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"音声が聞き取れません"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"該当なし"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Voice Searchはインストールされていません"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"ヒント:"</b>" 音声入力するにはキーボードをスワイプします"</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"ヒント:"</b>" 次回は句読点として「period」、「comma」、「question mark」などの音声入力を試してみてください。"</string>
+    <string name="cancel" msgid="6830980399865683324">"キャンセル"</string>
+    <string name="ok" msgid="7898366843681727667">"OK"</string>
+    <string name="voice_input" msgid="2466640768843347841">"音声入力"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"メインキーボード上"</item>
+    <item msgid="8529385602829095903">"記号キーボード上"</item>
+    <item msgid="7283103513488381103">"OFF"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"メインキーボードのマイク"</item>
+    <item msgid="6907837061058876770">"記号キーボードのマイク"</item>
+    <item msgid="3664304608587798036">"音声入力は無効です"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"入力後に自動送信する"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"検索または次のフィールドに進む際、Enterキーが自動的に押されます。"</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"キーボードを開く"\n</b></font><font size="3">\n</font>"テキストフィールドをタップします。"</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"キーボードを閉じる"\n</b></font><font size="3">\n</font>"[戻る]キーを押します。"</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"キーを長押しして選択する"\n</b></font><font size="3">\n</font>"句読点キーとアクセント文字を表示します。"</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"キーボードの設定"\n</b></font><font size="3">\n</font>"["<b>"?123"</b>"]キーを長押しします。"</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"入力方法の選択"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"入力言語"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"スペースバーで指をスライドさせて言語を変更する"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"←保存するにはもう一度タップ"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"辞書を利用できます"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"ユーザーフィードバックを有効にする"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"IMEの機能向上のため、使用統計状況やクラッシュレポートをGoogleに自動送信します。"</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"タップして語句を修正"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"入力した語句をタップして修正"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"キーボードテーマ"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"キーボード"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"音声"</string>
+</resources>

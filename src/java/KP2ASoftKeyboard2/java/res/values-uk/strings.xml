@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Клавіатура Android"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Налашт-ня клавіат. Android"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"Парам. введення"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Вібр при натиску клав."</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"Звук при натиску клав."</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"Сплив. при нат.клав."</string>
+    <string name="hit_correction" msgid="4855351009261318389">"Виправ. помилки вводу"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"Увімкн. виправл. помилок вводу"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"Помилки альбомного вводу"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Увімкн. виправл. помилок вводу"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"Пропозиції слів"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"Автоматично виправляти попереднє слово"</string>
+    <string name="prediction" msgid="466220283138359837">"Пропозиції слів"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"Налашт-ня пропозицій слів"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"Увімкн. автозаповнення при вводі"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Автозаповнення"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"Збільш. розмір текст. поля"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Сховати пропозиції слів в альбом. режимі"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"Авто викор. вел. літер"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"Поч. писати речення з великої літери"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"Авто пунктуація"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"Шв. виправлення"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"Виправляє поширені помилки"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"Показати пропозиції"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"Відображати при вводі пропоновані слова"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"Автозаповнення"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"Пробіл і пунктуація автоматично вставляє виділене слово"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"Показ. клав. налашт."</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Автоматично"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Завжди показ."</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Завжди ховати"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"Двобуквені пропозиції"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Викор. попер. слово для покращ. пропозиції"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"Немає"</item>
+    <item msgid="1669461741568287396">"Базовий"</item>
+    <item msgid="4894328801530136615">"Розшир."</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : збережено"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"Утр. клав. натис., щоб див. нагол. (ø, ö, тощо)"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"Натисн. клавішу назад ↶, щоб будь-коли закрити клавіат."</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"Доступ до цифр і символів"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Натисн. і утримуйте ліве крайнє слово, щоб додати його до словн."</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"Натис. цю підказку для продовж.»"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"Натисн. тут, щоб закрити цю підказку і почати ввод."</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Клавіатура відривається при торканні текстового поля"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Натис. і утрим. клавішу для перегл. наголосів"\n"(ø, ö, ô, ó тощо)"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Перемк. до цифр і символів, натиснувши цю кнопку "</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Поверніться до літер, знову натиснувши цю клавішу"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Натис. і утрим. клавішу, щоб змін. налашт-ння клавіат., такі як автозапов."</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Спробуйте!"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"Іти"</string>
+    <string name="label_next_key" msgid="362972844525672568">"Далі"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"Готово"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"Надісл."</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"Голос. ввід"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Голос. ввід наразі не підтрим. для вашої мови, але можна користуватися англійською."</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Голос. ввід є експеремент. ф-цією, яка викор. мережеве розпізнавання голосу Google."</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Щоб вимкн. голос ввід, йдіть до налашт-нь клавіатури."</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Щоб викор. голос. ввід, натисніть кнопку мікрофона або пересуньте палець на екранній клавіатурі."</string>
+    <string name="voice_listening" msgid="467518160751321844">"Диктуйте"</string>
+    <string name="voice_working" msgid="6666937792815731889">"Працює"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"Помилка. Спробуйте ще раз."</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"Неможл. під\'єднатися"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"Помилка. Забагато продикт."</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"Проблема з аудіо"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"Помилка сервера"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"Не чути диктув."</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"Збігів не знайдено"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Голос. пошук не встановлено"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Підк:"</b>" горт. на клавіат., щоб продикт."</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Підказка:"</b>" наступного разу продикт. знаки пункт. такі як \"крапка\", \"кома\" чи \"знак пит\"."</string>
+    <string name="cancel" msgid="6830980399865683324">"Скасувати"</string>
+    <string name="ok" msgid="7898366843681727667">"OK"</string>
+    <string name="voice_input" msgid="2466640768843347841">"Голос. ввід"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"На осн. клавіатурі"</item>
+    <item msgid="8529385602829095903">"Символьна клавіатура"</item>
+    <item msgid="7283103513488381103">"Вимк."</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"Miкр. на осн. клавіатурі"</item>
+    <item msgid="6907837061058876770">"Miкр. на символ. клавіатурі"</item>
+    <item msgid="3664304608587798036">"Голос. ввід вимкнуто"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"Авто подав. після гол. пош."</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"Автомат. натиск. enter під час пошуку або переходу до наступного поля."</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Відкр. клавіатуру"\n</b></font><font size="3">\n</font>"Натисн. якесь текст. поле."</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Закрити клавіатуру"\n</b></font><font size="3">\n</font>"Натисн. клавішу Назад."</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Натис.і утрим. клавішк для отрим. парам."\n</b></font><font size="3">\n</font>"Доступ до пункт. та наголос."</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Налашт-ння клавіатури"\n</b></font><font size="3">\n</font>"Натисн. і утрим. клавішу "<b>"?123"</b></string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"Вибрати метод введення"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"Мови вводу"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"Переміст. палець на пробіл, щоб змін. мову"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Торкн. ще, щоб збер."</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"Словник доступний"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"Увімк. відгуки корист."</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"Допоможіть покращ. редактор методу введ., автомат. надсилаючи в Google статистику використ. та звіти про збої."</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Торкн., щоб виправ. слова"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Торкн. введених слів, щоб виправити їх"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"Тема клавіатури"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"клавіатура"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"голос."</string>
+</resources>

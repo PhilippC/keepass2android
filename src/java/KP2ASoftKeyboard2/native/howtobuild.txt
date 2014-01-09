@@ -1,0 +1,4 @@
+in Cygwin-Console:
+cd /cygdrive/c/users/Philipp/Documents/keepass2android//repo/externalstuff/LatinIME-gingerbread/native
+/cygdrive/c/Users/Philipp/Downloads/android-ndk-r9c-windows-x86_64/android-ndk-r9c/ndk-build
+native/libs kopieren nach java/libs

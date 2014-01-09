@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Android keyboard</string>
+    <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Android keyboard settings</string>
+    <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Input options</string>
+
+    <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Vibrate on keypress</string>
+
+    <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Sound on keypress</string>
+
+    <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Popup on keypress</string>
+
+    <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Correct typing errors</string>
+    
+    <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Enable input error correction</string>
+    
+    <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Landscape input errors</string>
+    
+    <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Enable input error correction</string>
+    
+    <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Word suggestions</string> 
+    
+    <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Automatically correct the previous word</string>
+	
+    <!-- Option to enable text prediction -->
+    <string name="prediction">Word suggestions</string>
+    <!-- Category title for text prediction -->
+    <string name="prediction_category">Word suggestion settings</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_summary">Enable auto completion while typing</string>
+	
+    <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Auto completion</string>
+    
+    <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Increase text field size</string> 
+    <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Hide word suggestions in landscape view</string>
+	
+    <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Auto-capitalization</string> 
+    <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Capitalize the start of a sentence</string>
+    <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Auto-punctuate</string> 
+    <!-- Description for auto punctuate -->
+    <string name="auto_punctuate_summary"></string>
+    
+    <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Quick fixes</string>
+    <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Corrects commonly typed mistakes</string>
+    
+    <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Show suggestions</string>
+    <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Display suggested words while typing</string>
+    
+    <!-- Option to enable auto completion -->
+    <string name="auto_complete">Auto-complete</string>
+    <!-- Description for auto completion -->
+    <string name="auto_complete_summary">Spacebar and punctuation automatically insert highlighted word</string>
+    
+    <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Show settings key</string>
+    <!-- Array of the settings key mode values -->
+    <string-array name="settings_key_modes_values" translatable="false">
+        <item>@string/settings_key_mode_auto</item>
+        <item>@string/settings_key_mode_always_show</item>
+        <item>@string/settings_key_mode_always_hide</item>
+    </string-array>
+    <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Automatic</string>
+    <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Always show</string>
+    <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Always hide</string>
+    <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_always_show_name</item>
+        <item>@string/settings_key_mode_always_hide_name</item>
+    </string-array>
+
+    <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Bigram Suggestions</string>
+    <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Use previous word to improve suggestion</string>
+
+    <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>None</item>
+        <item>Basic</item>
+        <item>Advanced</item>
+    </string-array>
+    
+    <!-- Don't translate -->
+    <string name="prediction_none" translatable="false">0</string>
+    <!-- Don't translate -->
+    <string name="prediction_basic" translatable="false">1</string>
+    <!-- Don't translate -->
+    <string name="prediction_full"  translatable="false">2</string>
+
+    <string-array name="prediction_modes_values" translatable="false">
+        <item>@string/prediction_none</item>
+        <item>@string/prediction_basic</item>
+        <item>@string/prediction_full</item>
+    </string-array>
+
+    <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="word">%s</xliff:g> : Saved</string>
+    
+    <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Hold a key down to see accents (ø, ö, etc.)</string>
+    <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Press the back key \u21B6 to close the keyboard at any point</string>
+    <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Access numbers and symbols</string>    
+    <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Press and hold the left-most word to add it to the dictionary
+        </string>
+        
+    <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Touch this hint to continue »</string>
+    
+    <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Touch here to close this hint and start typing!</string>
+    
+    <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>The keyboard opens any time you touch a text field</b></string>
+    
+    <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>Touch &amp; hold a key to view accents\n(ø, ö, ô, ó, and so on)</b>
+    </string>
+    
+    <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>Switch to numbers and symbols by touching this key</b></string>
+    
+    <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>Go back to letters by touching this key again</b></string>
+    
+    <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>Touch &amp; hold this key to change keyboard settings, like auto complete</b></string>
+    
+    <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>Try it!</b></string>
+    
+    
+    <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Go</string>
+    <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Next</string>
+    <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <string name="label_done_key">Done</string>
+    <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Send</string>
+    <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
+    <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
+    <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
+    <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">ALT</string>
+
+    <!-- Voice related labels -->
+
+    <!-- Title of the warning dialog that shows when a user initiates voice input for
+         the first time. -->
+    <string name="voice_warning_title">Voice input</string>
+    
+    <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
+         voice input in a currently unsupported locale. Voice input will work for such a user,
+         but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">Voice input is not currently supported for your language, but does work in English.</string>
+    
+    <!-- Message of the warning dialog that shows when a user initiates voice input for
+         the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">Voice input is an experimental feature using Google\'s networked speech recognition.</string>
+    
+    <!-- An additional part of the warning dialog for voice input that only shows when the user
+         actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">To turn off voice input, go to keyboard settings.</string>
+    
+    <!-- Message to show when user clicks the swiping hint (which says
+        "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">To use voice input, press the microphone button or slide your finger across the on-screen keyboard.</string>
+    
+    <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">Speak now</string>
+
+    <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">Working</string>
+
+    <!-- Short message shown before the user should speak. -->
+    <string name="voice_initializing"></string>
+
+    <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Error. Please try again.</string>
+
+    <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">Couldn\'t connect</string>
+    
+    <!-- Short message shown for a network error where the utterance was really long,
+         in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Error, too much speech.</string>
+
+    <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Audio problem</string>
+
+    <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Server error</string>
+
+    <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">No speech heard</string>
+
+    <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">No matches found</string>
+
+    <!-- Short message shown when the user initiates voice and voice
+	search is not installed. -->
+    <string name="voice_not_installed">Voice search not installed</string>
+
+    <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>Hint:</b> Swipe across keyboard to speak</string>
+
+    <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>Hint:</b> Next time, try speaking punctuation like \"period\", \"comma\", or \"question mark\".</string>
+
+    <!-- Label on button to stop recognition. Must be short to fit on button. -->
+    <string name="cancel">Cancel</string>
+
+    <!-- Label on button when an error occurs -->
+    <string name="ok">OK</string>
+
+    <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Voice input</string>
+
+    <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>On main keyboard</item>
+        <item>On symbols keyboard</item>
+        <item>Off</item>
+    </string-array>
+
+    <!-- Don't translate -->
+    <string name="voice_mode_main" translatable="false">0</string>
+    <!-- Don't translate -->
+    <string name="voice_mode_symbols" translatable="false">1</string>
+    <!-- Don't translate -->
+    <string name="voice_mode_off"  translatable="false">2</string>
+
+    <string-array name="voice_input_modes_values" translatable="false">
+        <item>@string/voice_mode_main</item>
+        <item>@string/voice_mode_symbols</item>
+        <item>@string/voice_mode_off</item>
+    </string-array>
+
+    <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Mic on main keyboard</item>
+        <item>Mic on symbols keyboard</item>
+        <item>Voice input is disabled</item>
+    </string-array>
+
+    <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Auto submit after voice</string>
+
+    <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Automatically press enter when searching or going to the next field.</string>
+
+    <!-- IME Tutorial screen (ROMAN) --><skip />
+    <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>Open the keyboard\n</b></font><font size="3">\n</font>Touch any text field.</string>
+
+    <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>Close the keyboard\n</b></font><font size="3">\n</font>Press the Back key.</string>
+
+    <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>Touch \u0026 hold a key for options\n</b></font><font size="3">\n</font>Access punctuation and accents.</string>
+
+    <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>Keyboard settings\n</b></font><font size="3">\n</font>Touch \u0026 hold the <b>\?123\</b> key.</string>
+
+    <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
+    <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
+    <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
+    <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov"</string>
+    <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
+
+    <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Select input method</string>
+
+    <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Input languages</string>
+    <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">Slide finger on spacebar to change language</string>
+    
+    <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">\u2190 Touch again to save</string>
+    
+    <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Dictionary available</string>
+
+    <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Enable user feedback</string>
+    <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">Help improve this input method editor by automatically sending usage statistics and crash reports to Google.</string>
+    <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Touch to correct words</string>
+    <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Touch entered words to correct them</string>
+
+    <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Keyboard Theme</string>
+    <string name="layout_basic" translatable="false">Basic</string>
+    <string name="layout_high_contrast" translatable="false">Basic (High Contrast)</string>
+    <string name="layout_stone_bold"  translatable="false">Stone (bold)</string>
+    <string name="layout_stone_normal"  translatable="false">Stone (normal)</string>
+    <string name="layout_gingerbread"  translatable="false">Gingerbread</string>
+
+    <string-array name="keyboard_layout_modes" translatable="false">
+        <item>@string/layout_basic</item>
+        <item>@string/layout_high_contrast</item>
+        <item>@string/layout_stone_normal</item>
+        <item>@string/layout_stone_bold</item>
+        <item>@string/layout_gingerbread</item>
+    </string-array>
+
+    <string-array name="keyboard_layout_modes_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string name="subtype_mode_keyboard">keyboard</string>
+    <string name="subtype_mode_voice">voice</string>
+
+    <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="english_ime_debug_settings" translatable="false">Android keyboard Debug settings</string>
+    <string name="prefs_debug_mode" translatable="false">Debug Mode</string>
+</resources>

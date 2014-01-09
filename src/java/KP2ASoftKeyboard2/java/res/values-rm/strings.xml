@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Tastatura Android"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Parameters da la tastatura Android"</string>
+    <!-- no translation found for english_ime_input_options (3909945612939668554) -->
+    <skip />
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Vibrar cun smatgar in buttun"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"Tun cun smatgar in buttun"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"Pop-up cun smatgar ina tasta"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"Curreger sbagls d\'endataziun"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"Activar la correctura da sbagls d\'endataziun"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"Sbagls d\'endataziun en il format orizontal"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Activar la correctura da sbagls d\'endataziun"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"Propostas da pleds"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"Curreger automaticamain il pled precedent"</string>
+    <string name="prediction" msgid="466220283138359837">"Propostas da pleds"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"Parameters da las propostas per pleds"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"Activar la cumplettaziun automatica durant l\'endataziun"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Cumplettaziun automatica"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"Engrondir il champ da text"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Zuppentar propostas da pleds en il format orizontal"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"Maiusclas automaticas"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"Scriver grond l\'entschatta da mintga frasa"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"Interpuncziun automatica"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"Correcturas sveltas"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"Curregia sbagls da tippar currents"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"Mussar las propostas"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"Mussar pleds proponids durant l\'endataziun"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"Cumplettaziun automatica"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"Inserir auto. il pled marcà cun la tasta da vid/interpuncziun"</string>
+    <!-- no translation found for prefs_settings_key (4623341240804046498) -->
+    <skip />
+    <!-- no translation found for settings_key_mode_auto_name (2993460277873684680) -->
+    <skip />
+    <!-- no translation found for settings_key_mode_always_show_name (3047567041784760575) -->
+    <skip />
+    <!-- no translation found for settings_key_mode_always_hide_name (7833948046716923994) -->
+    <skip />
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"Propostas da tip bigram"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Meglierar la proposta cun agid dal pled precedent"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"Nagin"</item>
+    <item msgid="1669461741568287396">"Simpel"</item>
+    <item msgid="4894328801530136615">"Avanzà"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : Memorisà"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"\"Tegnair smatgà per mussar ils accents (à, é, etc.)\""</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"Smatgar ↶ per serrar la tastatura"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"Acceder a cifras e simbols"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Smatgar ditg sin il pled dal tut a sanestra per l\'agiuntar al dicziunari"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"Tutgar quest commentari per cuntinuar »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"\"Tutgar qua, per serrar quest commentari e cumenzar a tippar!\""</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"La tastatura vegn adina averta sche Vus tutgais in champ da text."</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501">"\""<b>"Tegnai smatgà ina tasta per mussar ils segns spezials"\n"(ø, ö, ô, ó etc.)."</b>"\""</string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Midai a numers e simbols cun tutgar quest buttun."</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Turnai a letras cun smatgar danovamain quest buttun."</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128">"\""<b>"Tegnai smatgà quest buttun per midar ils parameters da tastatura, sco p. ex. la cumplettaziun automatica."</b>"\""</string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Empruvai!"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"Dai"</string>
+    <string name="label_next_key" msgid="362972844525672568">"Vinavant"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"Finì"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"Trametter"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"Cumonds vocals"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"\"Cumonds vocals en Vossa lingua na vegnan actualmain betg sustegnids, ma la funcziun è disponibla per englais.\""</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Ils cumonds vocals èn ina funcziunalitad experimentala che utilisescha la renconuschientscha vocala da rait da Google."</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"\"Per deactivar ils cumonds vocals, avri ils parameters da tastatura.\""</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"\"Per utilisar ils cumonds vocals, smatgai il buttun dal microfon u stritgai cun il det sur la tastatura dal visur.\""</string>
+    <string name="voice_listening" msgid="467518160751321844">"Ussa discurrer"</string>
+    <string name="voice_working" msgid="6666937792815731889">"Operaziun en progress"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"Errur. Empruvai anc ina giada."</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"Impussibel da connectar."</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"Errur - discurrì memia ditg."</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"Problem audio"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"Errur dal server"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"Betg udì ina frasa vocala"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"Betg chattà correspundenzas"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Betg installà la tschertga vocala"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Commentari:"</b>" Stritgai cun il det sur la tastatura per discurrer."</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754">"\""<b>"Commentari:"</b>" Empruvai la proxima giada d\'agiuntar segns d\'interpuncziun sco \"\"punct\"\", \"\"comma\"\" u \"\"segn da dumonda\"\" cun cumonds vocals.\""</string>
+    <string name="cancel" msgid="6830980399865683324">"Interrumper"</string>
+    <string name="ok" msgid="7898366843681727667">"OK"</string>
+    <string name="voice_input" msgid="2466640768843347841">"Cumonds vocals"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"Sin la tastatura principala"</item>
+    <item msgid="8529385602829095903">"Sin la tastatura da simbols"</item>
+    <item msgid="7283103513488381103">"Deactivà"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"Microfon sin la tastatura principala"</item>
+    <item msgid="6907837061058876770">"Microfon sin la tastatura da simbols"</item>
+    <item msgid="3664304608587798036">"Ils cumonds vocals èn deactivads"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"Trametter automaticamain suenter il cumond vocal"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"Smatgai sin la tasta enter sche Vus exequis ina tschertga u siglis al proxim champ."</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Avrir la tastatura"\n</b></font><font size="3">\n</font>"Tutgai inqual champ da text."</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103">"\""<font size="17"><b>"Serrar la tastatura"\n</b></font><font size="3">\n</font>"Smatgai il buttun \"\"Enavos\"\".\""</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Tutgar e tegnair smatgà in buttun per acceder a las opziuns"\n</b></font><font size="3">\n</font>"Accedi a segns d\'interpuncziun ed accents."</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Parameters da tastatura"\n</b></font><font size="3">\n</font>"Tutgai e tegnai smatgà il buttun "<b>"?123"</b>"."</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <!-- no translation found for selectInputMethod (315076553378705821) -->
+    <skip />
+    <string name="language_selection_title" msgid="1651299598555326750">"Linguas da cumonds vocals"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"Stritgar cun il det sur la tasta da vid per midar la lingua"</string>
+    <!-- outdated translation 8058519710062071085 -->     <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Tippar danovamain per memorisar"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"Dicziunari disponibel"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"Activar il feedback da l\'utilisader"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"Gidai a meglierar quest editur da la metoda d\'endataziun cun trametter automaticamain datas statisticas davart l\'utilisaziun e rapports da collaps a Google."</string>
+    <!-- no translation found for prefs_enable_recorrection (4588408906649533582) -->
+    <skip />
+    <!-- no translation found for prefs_enable_recorrection_summary (1056068922330206170) -->
+    <skip />
+    <string name="keyboard_layout" msgid="437433231038683666">"Design da la tastatura"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"tastatura"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"vusch"</string>
+</resources>

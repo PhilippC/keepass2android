@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* 
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License"); 
+** you may not use this file except in compliance with the License. 
+** You may obtain a copy of the License at 
+**
+**     http://www.apache.org/licenses/LICENSE-2.0 
+**
+** Unless required by applicable law or agreed to in writing, software 
+** distributed under the License is distributed on an "AS IS" BASIS, 
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+** See the License for the specific language governing permissions and 
+** limitations under the License.
+*/
+-->
+
+<resources>
+    <!-- key_height + key_bottom_gap = popup_key_height -->
+    <dimen name="key_height">0.290in</dimen>
+    <dimen name="key_bottom_gap">0.035in</dimen>
+    <dimen name="popup_key_height">0.325in</dimen>
+    <dimen name="keyboard_bottom_padding">0.06in</dimen>
+    <dimen name="bubble_pointer_offset">22dip</dimen>
+    <dimen name="candidate_strip_height">42dip</dimen>
+    <dimen name="candidate_strip_fading_edge_length">63dip</dimen>
+    <dimen name="spacebar_vertical_correction">4dip</dimen>
+    <!-- If the screen height in landscape is larger than the below value, then the keyboard
+         will not go into extract (fullscreen) mode. -->
+    <dimen name="max_height_for_fullscreen">2.5in</dimen>
+    <dimen name="key_text_size">0.13in</dimen>
+    <dimen name="key_label_text_size">0.083in</dimen>
+    <dimen name="key_preview_text_size_large">40sp</dimen>
+    <dimen name="key_preview_offset">0.000in</dimen>
+    <!-- key_preview_text_size_large x 2 -->
+    <dimen name="key_preview_height">80sp</dimen>
+    <!-- Amount of allowance for selecting keys in a mini popup keyboard by sliding finger. -->
+    <!-- popup_key_height x 1.7 -->
+    <dimen name="mini_keyboard_slide_allowance">0.553in</dimen>
+    <!-- popup_key_height x 1.0 -->
+    <dimen name="mini_keyboard_vertical_correction">-0.325in</dimen>
+    <dimen name="key_hysteresis_distance">0.05in</dimen>
+    <!-- We use "inch", not "dip" because this value tries dealing with physical distance related
+         to user's finger. -->
+    <dimen name="keyboard_vertical_correction">-0.05in</dimen>
+    <dimen name="candidate_min_touchable_width">0.3in</dimen>
+</resources>

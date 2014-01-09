@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Bàn phím Android"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Cài đặt bàn phím Android"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"Tùy chọn nhập"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Rung khi nhấn phím"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"Âm thanh khi nhấn phím"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"Cửa sổ bật lên khi nhấn phím"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"Sửa lỗi đánh máy"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"Bật sửa lỗi nhập"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"Lỗi nhập theo khổ ngang"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Bật sửa lỗi nhập"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"Đề xuất từ"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"Tự động sửa từ trước đó"</string>
+    <string name="prediction" msgid="466220283138359837">"Đề xuất từ"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"Cài đặt đề xuất từ"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"Bật tự động hoàn tất khi nhập"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Tự động hoàn tất"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"Tăng kích cỡ trường văn bản"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Ẩn đề xuất từ trong chế độ xem ngang"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"Tự động viết hoa"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"Viết hoa chữ cái đầu câu"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"Tự động chấm câu"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"Sửa nhanh"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"Sửa lỗi nhập thông thường"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"Hiển thị đề xuất"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"Hiển thị từ được đề xuất khi nhập"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"Tự động hoàn tất"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"Dấu cách và dấu câu tự động chèn vào từ được đánh dấu"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"Hiển thị phím cài đặt"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Tự động"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Luôn hiển thị"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Luôn ẩn"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"Đề xuất Bigram"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Sử dụng từ trước đó để cải tiến đề xuất"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"Không"</item>
+    <item msgid="1669461741568287396">"Cơ bản"</item>
+    <item msgid="4894328801530136615">"Nâng cao"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : Đã lưu"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"Giữ phím xuống để xem dấu trọng âm (ø, ö, v.v...)"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"Nhấn phím quay lại ↶ để đóng bàn phím bất kỳ lúc nào"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"Truy cập các số và ký hiệu"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Nhấn và giữ từ ngoài cùng bên trái để thêm từ đó vào từ điển"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"Chạm vào gợi ý này để tiếp tục »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"Chạm vào đây để đóng gợi ý này và bắt đầu nhập"</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Bàn phím mở ra bất cứ khi nào bạn chạm vào trường văn bản"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Chạm &amp; giữ phím để xem dấu trọng âm"\n"(ø, ö, ô, ó, v.v...)"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Chuyển sang số và ký hiệu bằng cách chạm vào phím này"</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Quay lại các chữ cái bằng cách chạm vào phím này lần nữa"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Chạm &amp; giữ phím này để thay đổi cài đặt bàn phím, như tự động hoàn tất"</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Hãy dùng thử!"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"Đến"</string>
+    <string name="label_next_key" msgid="362972844525672568">"Tiếp theo"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"Xong"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"Gửi"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"Nhập liệu bằng giọng nói"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Nhập liệu bằng giọng nói hiện không được hỗ trợ cho ngôn ngữ của bạn nhưng hoạt động với ngôn ngữ tiếng Anh."</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Nhập liệu bằng giọng nói là tính năng thử nghiệm sử dụng nhận dạng tiếng nói được kết nối mạng của Google."</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Để tắt nhập liệu bằng giọng nói, đi tới cài đặt bàn phím."</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Để sử dụng nhập liệu bằng giọng nói, hãy nhấn nút micrô hoặc trượt ngón tay trên bàn phím ảo."</string>
+    <string name="voice_listening" msgid="467518160751321844">"Xin mời nói"</string>
+    <string name="voice_working" msgid="6666937792815731889">"Đang hoạt động"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"Lỗi. Vui lòng thử lại."</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"Không thể kết nối"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"Lỗi, quá nhiều câu thoại."</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"Sự cố âm thanh"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"Lỗi máy chủ"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"Không nghe thấy tiếng nói nào"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"Không tìm thấy kết quả phù hợp"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Tìm kiếm bằng giọng nói chưa được cài đặt"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Gợi ý:"</b>" Trượt qua bàn phím để nói"</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Gợi ý:"</b>" Lần tới, thử nói dấu câu như \"dấu chấm\", \"dấu phẩy\" hoặc \"dấu hỏi\"."</string>
+    <string name="cancel" msgid="6830980399865683324">"Huỷ"</string>
+    <string name="ok" msgid="7898366843681727667">"OK"</string>
+    <string name="voice_input" msgid="2466640768843347841">"Nhập liệu bằng giọng nói"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"Trên bàn phím chính"</item>
+    <item msgid="8529385602829095903">"Trên bàn phím có biểu tượng"</item>
+    <item msgid="7283103513488381103">"Tắt"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"Micrô trên bàn phím chính"</item>
+    <item msgid="6907837061058876770">"Micrô trên bàn phím có biểu tượng"</item>
+    <item msgid="3664304608587798036">"Nhập liệu bằng giọng nói đã bị vô hiệu hoá"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"Tự động gửi sau thoại"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"Tự đông nhấn enter khi tìm kiếm hoặc đi tới trường tiếp theo."</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Mở bàn phím"\n</b></font><font size="3">\n</font>"Chạm vào bất kỳ trường văn bản nào."</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Đóng bàn phím"\n</b></font><font size="3">\n</font>"Nhấn phím Quay lại."</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Chạm &amp; giữ phím cho các tuỳ chọn"\n</b></font><font size="3">\n</font>"Truy cập dấu câu và dấu trọng âm."</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Cài đặt bàn phím"\n</b></font><font size="3">\n</font>"Chạm &amp; giữ phím "<b>"?123"</b>"."</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"Chọn phương thức nhập"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"Ngôn ngữ nhập"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"Trượt ngón tay trên phím cách để thay đổi ngôn ngữ"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Chạm lại để lưu"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"Có sẵn từ điển"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"Bật phản hồi của người dùng"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"Giúp nâng cao trình chỉnh sửa phương thức nhập này bằng cách tự động gửi thống kê sử dụng và báo cáo sự cố cho Google."</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Chạm để sửa từ"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Chạm các từ đã nhập để sửa"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"Chủ đề bàn phím"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"bàn phím"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"thoại"</string>
+</resources>

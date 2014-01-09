@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Android 鍵盤"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Android 鍵盤設定"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"輸入選項"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"按鍵時震動"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"按鍵時播放音效"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"按鍵時顯示彈出式視窗"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"修正輸入錯誤"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"啟用輸入錯誤修正功能"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"橫向輸入錯誤"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"啟用輸入錯誤修正功能"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"字詞建議"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"自動修正前一個字詞"</string>
+    <string name="prediction" msgid="466220283138359837">"字詞建議"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"字詞建議設定"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"輸入時啟用自動完成"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"自動完成"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"放大文字欄位大小"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"在橫向檢視模式中隱藏字詞建議"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"自動大寫"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"句首字母大寫"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"自動標點"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"快速修正"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"修正一般打字錯誤"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"顯示建議"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"打字時顯示建議字詞"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"自動完成"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"在反白顯示的字詞處自動插入空白鍵和標點符號鍵盤"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"顯示設定金鑰"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"自動"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"一律顯示"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"永遠隱藏"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"雙連詞建議"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"根據前一個字詞自動找出更適合的建議"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"無"</item>
+    <item msgid="1669461741568287396">"基本模式"</item>
+    <item msgid="4894328801530136615">"進階模式"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g>：已儲存"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"按住按鍵可查看重音符號 (ø、ö 等)"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"隨時可以透過按後退鍵 ↶ 關閉鍵盤"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"使用數字和符號"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"按住最左邊的字詞，將其新增到字典中"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"輕觸此提示繼續 »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"輕觸此處以關閉提示，並開始打字！"</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"輕觸文字欄位時即會開啟鍵盤"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"輕觸並按住某個鍵即可查看聲調"\n"(ø、ö、ô、ó 等)"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"輕觸此鍵即可切換到數字和符號鍵盤"</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"再次輕觸此鍵即可返回到字母鍵盤"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"輕觸並按住此鍵即可變更鍵盤設定，例如自動完成"</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"試試看！"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"開始"</string>
+    <string name="label_next_key" msgid="362972844525672568">"繼續"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"完成"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"傳送"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"語音輸入"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"語音輸入目前不支援您的語言，但是可以辨識英文。"</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"語音輸入這項實驗功能運用了 Google 的網路語音辨識系統。"</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"請前往鍵盤設定來關閉語音輸入。"</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"如要使用語音輸入，按下 [麥克風] 按鈕，或將手指滑過螢幕小鍵盤即可。"</string>
+    <string name="voice_listening" msgid="467518160751321844">"請說話"</string>
+    <string name="voice_working" msgid="6666937792815731889">"辨識中"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"發生錯誤，請再試一次。"</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"無法連線"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"錯誤：語音內容過長。"</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"音訊問題"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"伺服器錯誤"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"沒有聽到任何聲音"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"找不到相符的項目"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"未安裝語音搜尋"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"提示："</b>"滑過鍵盤即可說話"</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"提示："</b>"下次可嘗試說出標點符號，例如「句號」、「逗號」或「問號」。"</string>
+    <string name="cancel" msgid="6830980399865683324">"取消"</string>
+    <string name="ok" msgid="7898366843681727667">"確定"</string>
+    <string name="voice_input" msgid="2466640768843347841">"語音輸入"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"於主鍵盤"</item>
+    <item msgid="8529385602829095903">"符號鍵盤上"</item>
+    <item msgid="7283103513488381103">"關閉"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"主鍵盤上的麥克風"</item>
+    <item msgid="6907837061058876770">"符號鍵盤上的麥克風"</item>
+    <item msgid="3664304608587798036">"已停用語音輸入"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"說話後自動提交"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"搜尋或前往下一個欄位時自動按下輸入。"</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"開啟鍵盤"\n</b></font><font size="3">\n</font>"輕觸任何文字欄位。"</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"關閉鍵盤"\n</b></font><font size="3">\n</font>"按下 Back 鍵。"</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>\n"輕觸並按住按鍵開啟選項"</b></font><font size="3">\n</font>"輸入標點與輕重音。"</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"鍵盤設定"\n</b></font><font size="3">\n</font>"輕觸並按住 "<b>"?123"</b>" 鍵。"</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"選取輸入法"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"輸入語言"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"以手指在空白鍵上滑動可變更語言"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← 再次輕觸即可儲存"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"可使用字典"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"啟用使用者意見回饋"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"自動將使用統計資料和當機報告傳送給 Google，協助改善這個輸入法編輯器。"</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"輕觸此處可修正字詞"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"輕觸輸入的字詞即可加以修正"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"鍵盤主題"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"鍵盤"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"語音"</string>
+</resources>

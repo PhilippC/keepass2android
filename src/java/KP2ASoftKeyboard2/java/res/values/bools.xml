@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* 
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License"); 
+** you may not use this file except in compliance with the License. 
+** You may obtain a copy of the License at 
+**
+**     http://www.apache.org/licenses/LICENSE-2.0 
+**
+** Unless required by applicable law or agreed to in writing, software 
+** distributed under the License is distributed on an "AS IS" BASIS, 
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+** See the License for the specific language governing permissions and 
+** limitations under the License.
+*/
+-->
+<resources>
+    <!-- Whether or not auto-correction should be enabled by default -->
+    <bool name="enable_autocorrect">true</bool>
+    <!-- Whether this input method should be used as the default for a locale. Override it
+         for latin languages. -->
+    <bool name="im_is_default">false</bool>
+    <!-- Whether or not voice input is enabled by default. -->
+    <bool name="voice_input_default">true</bool>
+    <bool name="config_swipeDisambiguation">true</bool>
+    <!-- Whether or not Popup on key press is enabled by default -->
+    <bool name="default_popup_preview">true</bool>
+    <bool name="default_recorrection_enabled">true</bool>
+    <bool name="config_long_press_comma_for_settings_enabled">true</bool>
+</resources>

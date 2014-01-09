@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Teclado do Android"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Definições de teclado do Android"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"Opções de introdução"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Vibrar ao primir as teclas"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"Som ao premir as teclas"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"Mostrar popup ao premir tecla"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"Corrigir erros de escrita"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"Activar a correcção de erros de entrada"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"Erros de entrada na horizontal"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Activar a correcção de erros de entrada"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"Sugestões de palavras"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"Corrigir automaticamente a palavra anterior"</string>
+    <string name="prediction" msgid="466220283138359837">"Sugestões de palavras"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"Definições de sugestão de palavras"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"Activar a conclusão automática durante a escrita"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Conclusão automática"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"Aumentar o tamanho do campo de texto"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Ocultar sugestões de palavras na vista horizontal"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"Letras maiúsculas automáticas"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"Colocar inicial maiúscula no início de uma frase"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"Pontuação automática"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"Correcções rápidas"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"Corrige os erros de escrita comuns"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"Mostrar sugestões"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"Apresentar sugestões de palavras ao escrever"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"Conclusão automática"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"A barra de espaços e a pontuação inserem automaticamente uma palavra realçada"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"Mostrar tecla das definições"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Automático"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Mostrar sempre"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Ocultar sempre"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"Sugestões Bigram"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Utilizar a palavra anterior para melhorar a sugestão"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"Nenhum"</item>
+    <item msgid="1669461741568287396">"Básico"</item>
+    <item msgid="4894328801530136615">"Avançados"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g>: guardada"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"Mantenha uma tecla premida para ver os acentos (ø, ö, etc.)"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"Prima a tecla de retrocesso ↶ para fechar o teclado a qualquer momento"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"Aceder a números e símbolos"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Prima e mantenha premida a palavra mais à esquerda para a adicionar ao dicionário"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"Toque nesta sugestão para continuar »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"Toque aqui para fechar esta sugestão e começar a escrever!"</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"O teclado abre quando tocar num campo de texto"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Mantenha premida uma tecla para ver os acentos"\n"(ø, ö, ô, ó, etc.)"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Mude para números e símbolos tocando nesta tecla"</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Regresse às letras tocando novamente nesta tecla"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Mantenha premida esta tecla para alterar definições do teclado, tais como a conclusão automática"</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Experimente!"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"Ir"</string>
+    <string name="label_next_key" msgid="362972844525672568">"Seguinte"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"Feito"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"Enviar"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"Entrada de voz"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Actualmente, a entrada de voz não é suportada para o seu idioma, mas funciona em inglês."</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"A entrada de voz é uma funcionalidade experimental que utiliza o reconhecimento de voz em rede da Google."</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Para desactivar a entrada de voz, aceda às definições do teclado."</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Para utilizar a entrada de voz, prima o botão do microfone ou deslize o dedo no teclado do ecrã."</string>
+    <string name="voice_listening" msgid="467518160751321844">"Falar agora"</string>
+    <string name="voice_working" msgid="6666937792815731889">"A executar"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"Erro. Tente novamente."</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"Não foi possível ligar"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"Erro, discurso demasiado longo."</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"Problema de áudio"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"Erro no servidor"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"Nenhuma voz ouvida"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"Não foram encontradas correspondências"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Pesquisa de voz não instalada"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Sugestão:"</b>" Deslize no teclado para falar"</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Sugestão:"</b>" Da próxima vez, experimente dizer a pontuação como \"ponto final\", \"vírgula\" ou \"ponto de interrogação\"."</string>
+    <string name="cancel" msgid="6830980399865683324">"Cancelar"</string>
+    <string name="ok" msgid="7898366843681727667">"OK"</string>
+    <string name="voice_input" msgid="2466640768843347841">"Entrada de voz"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"No teclado principal"</item>
+    <item msgid="8529385602829095903">"No teclado de símbolos"</item>
+    <item msgid="7283103513488381103">"Desactivada"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"Microfone no teclado principal"</item>
+    <item msgid="6907837061058876770">"Microfone no teclado de símbolos"</item>
+    <item msgid="3664304608587798036">"A entrada de voz está desactivada"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"Enviar automaticamente depois da voz"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"Premir automaticamente ENTER ao pesquisar ou avançar para o campo seguinte."</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Abra o teclado"\n</b></font><font size="3">\n</font>"Toque em qualquer campo de texto."</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Feche o teclado"\n</b></font><font size="3">\n</font>"Prima a tecla \"Anterior\"."</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Mantenha premida uma tecla para as opções"\n</b></font><font size="3">\n</font>"Aceder a pontuação e acentos."</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Definições do teclado"\n</b></font><font size="3">\n</font>"Mantenha premida a tecla "<b>"?123"</b>"."</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"Seleccionar método de entrada"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"Idiomas de entrada"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"Deslize o dedo pela barra de espaço para alterar o idioma"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Toque novamente para guardar"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"Dicionário disponível"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"Activar comentários do utilizador"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"Envie automaticamente estatísticas de utilização e relatórios de falhas para a Google e ajude-nos a melhor este editor de método de introdução."</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Tocar para corrigir palavras"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Tocar nas palavras introduzidas para as corrigir"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"Tema do teclado"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"teclado"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"voz"</string>
+</resources>

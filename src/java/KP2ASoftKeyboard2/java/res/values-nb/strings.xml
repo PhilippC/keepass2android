@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Skjermtastatur"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Innstillinger for skjermtastatur"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"Inndataalternativer"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Vibrer ved tastetrykk"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"Lyd ved tastetrykk"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"Hurtigvindu ved tastetrykk"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"Rett opp skrivefeil"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"Slå på retting av skrivefeil"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"Rett opp skrivefeil i breddeformat"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Slå på retting av skrivefeil"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"Autokorrektur"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"Autokorriger forrige ord"</string>
+    <string name="prediction" msgid="466220283138359837">"Ordforslag"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"Innstillinger for ordforslag"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"Skru på autofullføring under skriving"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Autofullfør"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"Større tekstfelt"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Skjul ordforslag i breddeformat"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"Stor forbokstav"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"Start automatisk setninger med stor bokstav"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"Automatisk punktum"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"Autokorrektur"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"Retter vanlige stavefeil"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"Vis forslag"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"Vis foreslåtte ord under skriving"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"Autofullføring"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"Mellomrom og punktum setter automatisk inn valgt ord"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"Vis innstillingsnøkkel"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Automatisk"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Vis alltid"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Skjul alltid"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"Bigram-forslag"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Bruk forrige ord til å forbedre forslaget"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"Ingen"</item>
+    <item msgid="1669461741568287396">"Grunnleggende"</item>
+    <item msgid="4894328801530136615">"Avansert"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g>: Lagret"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"Hold en tast nede for å se aksenterte tegn (ø, ö, osv.)"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"Trykk tilbakeknappen, ↶, for å lukke tastaturet"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"Få tilgang til tall og symboler"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Trykk lenge på ordet lengst til venstre for å legge det til i ordlisten"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"Trykk på dette hintet for å forsette »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"Trykk her for å lukke dette hintet og begynne å skrive!"</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Tastaturet åpnes når du tar på et tekstfelt"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Trykk på og hold nede en tast for å se aksenter"\n"(ø, ö, ô, ó, osv.)"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Bytt til tall og symboler ved å trykke på denne tasten"</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Gå tilbake til bokstaver igjen ved å trykke på denne tasten"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Trykk på og hold nede denne tasten for å endre tastaturinnstillinger, som autofullføring"</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Prøv det!"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"Gå"</string>
+    <string name="label_next_key" msgid="362972844525672568">"Neste"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"Utfør"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"Send"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"Stemmedata"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Stemmedata håndteres foreløpig ikke på ditt språk, men fungerer på engelsk."</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Talekommandoer er en eksperimentell funksjon som bruker Googles nettverksbaserte talegjenkjenning."</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Gå til innstillinger for tastatur for å slå av stemmedata."</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Du bruker talekommandoer ved å trykke på mikrofonknappen eller skyve fingeren over tastaturet på skjermen."</string>
+    <string name="voice_listening" msgid="467518160751321844">"Snakk nå"</string>
+    <string name="voice_working" msgid="6666937792815731889">"Arbeider"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"Feil. Prøv på nytt."</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"Kunne ikke koble til"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"Feil – for mye tale"</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"Lydproblem"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"Tjenerfeil"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"Ingen tale høres"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"Ingen treff"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Talesøk ikke installert"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021">"Hint:"<b>" Sveip over tastaturet for å snakke"</b></string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Hint:"</b>" Neste gang kan du prøve å tale inn tegnsettingen ved for eksempel å si «punktum», «komma» eller «spørsmålstegn»."</string>
+    <string name="cancel" msgid="6830980399865683324">"Avbryt"</string>
+    <string name="ok" msgid="7898366843681727667">"OK"</string>
+    <string name="voice_input" msgid="2466640768843347841">"Talekommando"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"På hovedtastatur"</item>
+    <item msgid="8529385602829095903">"På talltastatur"</item>
+    <item msgid="7283103513488381103">"Av"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"Mikrofon på hovedtastatur"</item>
+    <item msgid="6907837061058876770">"Mikrofon på talltastatur"</item>
+    <item msgid="3664304608587798036">"Talekommando er deaktivert"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"Send inn automatisk etter tale"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"Trykk Enter automatisk ved søk eller flytting til neste felt."</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Åpne tastaturet"\n</b></font><font size="3">\n</font>"Trykk på et tekstfelt."</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Lukke tastaturet"\n</b></font><font size="3">\n</font>"Trykk på tilbaketasten."</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Trykk og hold nede en tast for flere valg"\n</b></font><font size="3">\n</font>"Få tilgang til skilletegn og aksenter."</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Innstillinger for tastatur"\n</b></font><font size="3">\n</font>"Trykk på &amp; hold "<b>"?123"</b>"-tasten."</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".no"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".com"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".net"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".org"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".info"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"Velg inndatametode"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"Inndataspråk"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"Dra fingeren på mellomromstasten for å endre språk"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"Trykk på nytt for å lagre"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"Ordbok tilgjengelig"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"Aktiver brukertilbakemelding"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"Ved å sende bruksstatistikk og programstopprapporter til Google automatisk, hjelper du oss med å gjøre redigeringsfunksjonen for denne inndatametoden enda bedre."</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Trykk for å endre ord"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Trykk på ord du har skrevet inn, for å endre dem"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"Tastaturtema"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"tastatur"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"stemme"</string>
+</resources>

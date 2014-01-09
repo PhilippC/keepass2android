@@ -1,0 +1,40 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="keepass2android.softkeyboard">
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-sdk android:targetSdkVersion="14" android:minSdkVersion="9"/>
+
+    <application android:label="MyKeyboard"
+            android:killAfterRestore="false">
+
+        <service android:name="KP2AKeyboard"
+                android:label="KP2AKeyboard"
+                android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data android:name="android.view.im" android:resource="@xml/method" />
+        </service>
+
+        <activity android:name="LatinIMESettings" android:label="@string/english_ime_settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name="LatinIMEDebugSettings" android:label="@string/english_ime_debug_settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name="InputLanguageSelection"
+                android:label="@string/language_selection_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="keepass2android.softkeyboard.INPUT_LANGUAGE_SELECTION"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

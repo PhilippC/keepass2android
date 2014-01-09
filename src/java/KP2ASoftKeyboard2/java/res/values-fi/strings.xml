@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Android-näppäimistö"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Android-näppäimistön asetukset"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"Syöttövalinnat"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Käytä värinää näppäimiä painettaessa"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"Toista ääni näppäimiä painettaessa"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"Ponnahdusikkuna painalluksella"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"Korjaa kirjoitusvirheet"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"Ota syöttövirheen korjaus käyttöön"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"Vaakasuunnan syöttövirheet"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Ota syöttövirheen korjaus käyttöön"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"Sanaehdotukset"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"Korjaa edellinen sana automaattisesti"</string>
+    <string name="prediction" msgid="466220283138359837">"Sanaehdotukset"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"Sanaehdotusasetukset"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"Ota automaattinen täydennys käyttöön kirjoitettaessa"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Automaattinen täydennys"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"Suurenna tekstikenttää"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Piilota sanaehdotukset vaakasuuntaisessa näkymässä"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"Automaattiset isot kirjaimet"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"Aloittaa lauseet isolla kirjaimella"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"Automaattiset välimerkit"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"Pikakorjaukset"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"Korjaa yleiset kirjoitusvirheet"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"Näytä ehdotukset"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"Näytä sanaehdotukset kirjoitettaessa"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"Automaattinen täydennys"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"Välilyönti ja välimerkki lisäävät automaattisesti korostetun sanan"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"Näytä asetukset-näppäin"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Automaattinen"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Näytä aina"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Piilota aina"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"Bigram-ehdotukset"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Paranna ehdotusta aiemman sanan avulla"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"Ei mitään"</item>
+    <item msgid="1669461741568287396">"Tavallinen"</item>
+    <item msgid="4894328801530136615">"Edistynyt"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : Tallennettu"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"Näet aksenttimerkit (ø, ö jne.) pitämällä näppäintä painettuna."</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"Voit sulkea näppäimistön milloin tahansa painamalla Takaisin-painiketta ↶"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"Käytä numeroita ja symboleita"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Lisää vasemmanpuoleinen sana sanakirjaan pitämällä sitä painettuna"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"Jatka koskettamalla tätä vihjettä »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"Sulje tämä vihje ja aloita kirjoittaa koskettamalla tätä!"</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Näppäimistö avautuu, kun kosketat tekstikenttää"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Näytä aksenttimerkit pitämällä näppäintä painettuna"\n"(ø, ö, ô, ó ja niin edelleen"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Vaihda numeroihin ja symboleihin koskettamalla tätä näppäintä"</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Siirry takaisin kirjaimiin koskettamalla tätä näppäintä uudelleen"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Muuta näppäimistön asetuksia, kuten automaattista täydentämistä, pitämällä tätä näppäintä painettuna"</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Kokeile!"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"Siirry"</string>
+    <string name="label_next_key" msgid="362972844525672568">"Seuraava"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"Valmis"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"Lähetä"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"Äänisyöte"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Äänisyötettä ei vielä tueta kielelläsi, mutta voit käyttää sitä englanniksi."</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Äänisyöte on kokeellinen Googlen puheentunnistusta käyttävä ominaisuus."</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Siirry näppäimistön asetuksiin poistaaksesi äänisyötteen käytöstä."</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Käytä äänisyötettä painamalla mikrofonipainiketta tai liu\'uttamalla sormeasi näytön näppäimistön poikki."</string>
+    <string name="voice_listening" msgid="467518160751321844">"Puhu nyt"</string>
+    <string name="voice_working" msgid="6666937792815731889">"Työstetään"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"Virhe. Yritä uudelleen."</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"Ei yhteyttä"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"Virhe, liikaa puhetta."</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"Ääniongelma"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"Palvelinvirhe"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"Puhetta ei kuulu"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"Ei vastineita"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Äänihakua ei asennettu"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Vihje:"</b>" liu\'uta sormea näppäimistöllä ja puhu"</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Vihje:"</b>" kokeile seuraavalla kerralla puhua välimerkit, kuten \"period\" (piste), \"comma\" (pilkku) tai \"question mark\" (kysymysmerkki)."</string>
+    <string name="cancel" msgid="6830980399865683324">"Peruuta"</string>
+    <string name="ok" msgid="7898366843681727667">"OK"</string>
+    <string name="voice_input" msgid="2466640768843347841">"Äänisyöte"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"Päänäppäimistössä"</item>
+    <item msgid="8529385602829095903">"Symbolinäppäimistössä"</item>
+    <item msgid="7283103513488381103">"Pois käytöstä"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"Päänäppäimistön mikrofoni"</item>
+    <item msgid="6907837061058876770">"Symbolinäppäimistön mikrofoni"</item>
+    <item msgid="3664304608587798036">"Äänisyöte ei ole käytössä"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"Lähetä automaattisesti puheen jälkeen"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"Paina automaattisesti enter-näppäintä tehdessäsi hakuja tai siirtyessäsi seuraavaan kenttään."</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Avaa näppäimistö"\n</b></font><font size="3">\n</font>"Kosketa tekstikenttää."</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Sulje näppäimistö"\n</b></font><font size="3">\n</font>"Paina Takaisin-näppäintä."</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Näet asetukset pitämällä näppäintä painettuna"\n</b></font><font size="3">\n</font>"Käytä välimerkkejä ja aksenttimerkkejä."</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Näppäimistön asetukset"\n</b></font><font size="3">\n</font>"Pidä painettuna"<b>"?123"</b>"-näppäintä."</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"Valitse syöttötapa"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"Syöttökielet"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"Vaihda kieltä liu\'uttamalla sormea välilyöntinäppäimellä"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Tallenna koskettamalla uudelleen"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"Sanakirja saatavilla"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"Ota käyttäjäpalaute käyttöön"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"Auta parantamaan tätä syöttötavan muokkausohjelmaa lähettämällä automaattisesti käyttötietoja ja kaatumisraportteja Googlelle."</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Korjaa sanoja koskettamalla"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Korjaa sanoja koskettamalla niitä"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"Näppäimistön teema"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"näppäimistö"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"ääni"</string>
+</resources>

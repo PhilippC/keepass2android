@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="english_ime_name" msgid="7252517407088836577">"Android keyboard"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Android keyboard settings"</string>
+    <string name="english_ime_input_options" msgid="3909945612939668554">"Input options"</string>
+    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Vibrate on key-press"</string>
+    <string name="sound_on_keypress" msgid="6093592297198243644">"Sound on key-press"</string>
+    <string name="popup_on_keypress" msgid="123894815723512944">"Pop-up on key press"</string>
+    <string name="hit_correction" msgid="4855351009261318389">"Correct typing errors"</string>
+    <string name="hit_correction_summary" msgid="8761701873008070796">"Enable input error correction"</string>
+    <string name="hit_correction_land" msgid="2567691684825205448">"Landscape input errors"</string>
+    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Enable input error correction"</string>
+    <string name="auto_correction" msgid="7911639788808958255">"Word suggestions"</string>
+    <string name="auto_correction_summary" msgid="6881047311475758267">"Automatically correct the previous word"</string>
+    <string name="prediction" msgid="466220283138359837">"Word suggestions"</string>
+    <string name="prediction_category" msgid="7027100625580696660">"Word suggestion settings"</string>
+    <string name="prediction_summary" msgid="459788228830873110">"Enable auto-completion while typing"</string>
+    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Auto-completion"</string>
+    <string name="prediction_landscape" msgid="4874601565593216183">"Increase text field size"</string>
+    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Hide word suggestions in landscape view"</string>
+    <string name="auto_cap" msgid="1719746674854628252">"Auto-capitalisation"</string>
+    <string name="auto_cap_summary" msgid="3260681697600786825">"Capitalise the start of a sentence"</string>
+    <string name="auto_punctuate" msgid="7276672334264521751">"Auto-punctuate"</string>
+    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
+    <string name="quick_fixes" msgid="5353213327680897927">"Quick fixes"</string>
+    <string name="quick_fixes_summary" msgid="3405028402510332373">"Corrects commonly typed mistakes"</string>
+    <string name="show_suggestions" msgid="507074425254289133">"Show suggestions"</string>
+    <string name="show_suggestions_summary" msgid="1989672863935759654">"Display suggested words while typing"</string>
+    <string name="auto_complete" msgid="1103196318775486023">"Auto-complete"</string>
+    <string name="auto_complete_summary" msgid="6113149638718274624">"Spacebar and punctuation automatically insert highlighted word"</string>
+    <string name="prefs_settings_key" msgid="4623341240804046498">"Show settings key"</string>
+    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Automatic"</string>
+    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Always show"</string>
+    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Always hide"</string>
+    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
+    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
+    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
+    <string name="bigram_suggestion" msgid="1323347224043514969">"Bigram Suggestions"</string>
+    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Use previous word to improve suggestion"</string>
+  <string-array name="prediction_modes">
+    <item msgid="4870266572388153286">"None"</item>
+    <item msgid="1669461741568287396">"Basic"</item>
+    <item msgid="4894328801530136615">"Advanced"</item>
+  </string-array>
+    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : Saved"</string>
+    <string name="tip_long_press" msgid="6101270866284343344">"Hold a key down to see accents (ø, ö, etc.)"</string>
+    <string name="tip_dismiss" msgid="7585579046862204381">"Press the back key ↶ to close the keyboard at any point"</string>
+    <string name="tip_access_symbols" msgid="6344098517525531652">"Access numbers and symbols"</string>
+    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"press and hold the left-most word to add it to the dictionary"</string>
+    <string name="touch_to_continue" msgid="7869803257948414531">"Touch this hint to continue »"</string>
+    <string name="touch_to_finish" msgid="7990196086480585789">"Touch here to close this hint and start typing!"</string>
+    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"The keyboard opens any time you touch a text field"</b></string>
+    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Touch &amp; hold a key to view accents"\n"(ø, ö, ô, ó and so on)"</b></string>
+    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Switch to numbers and symbols by touching this key"</b></string>
+    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Go back to letters by touching this key again"</b></string>
+    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Touch &amp; hold this key to change keyboard settings, like auto-complete"</b></string>
+    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Try it!"</b></string>
+    <string name="label_go_key" msgid="1635148082137219148">"Go"</string>
+    <string name="label_next_key" msgid="362972844525672568">"Next"</string>
+    <string name="label_done_key" msgid="2441578748772529288">"Done"</string>
+    <string name="label_send_key" msgid="2815056534433717444">"Send"</string>
+    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
+    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
+    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
+    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
+    <string name="voice_warning_title" msgid="4419354150908395008">"Voice input"</string>
+    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Voice input is not currently supported for your language, but does work in English."</string>
+    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Voice input is an experimental feature using Google\'s networked speech recognition."</string>
+    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"To turn off voice input, go to keyboard settings."</string>
+    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"To use voice input, press the microphone button or slide your finger across the on-screen keyboard."</string>
+    <string name="voice_listening" msgid="467518160751321844">"Speak now"</string>
+    <string name="voice_working" msgid="6666937792815731889">"Working"</string>
+    <string name="voice_initializing" msgid="661962047129906646"></string>
+    <string name="voice_error" msgid="5140896300312186162">"Error: Please try again."</string>
+    <string name="voice_network_error" msgid="6649556447401862563">"Couldn\'t connect"</string>
+    <string name="voice_too_much_speech" msgid="5746973620134227376">"Error, too much speech."</string>
+    <string name="voice_audio_error" msgid="5072707727016414454">"Audio problem"</string>
+    <string name="voice_server_error" msgid="7807129913977261644">"Server error"</string>
+    <string name="voice_speech_timeout" msgid="8461817525075498795">"No speech heard"</string>
+    <string name="voice_no_match" msgid="4285117547030179174">"No matches found"</string>
+    <string name="voice_not_installed" msgid="5552450909753842415">"Voice search not installed"</string>
+    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Hint:"</b>" Swipe across keyboard to speak"</string>
+    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Hint:"</b>" Next time, try speaking punctuation marks, like \"full stop\", \"comma\" or \"question mark\"."</string>
+    <string name="cancel" msgid="6830980399865683324">"Cancel"</string>
+    <string name="ok" msgid="7898366843681727667">"OK"</string>
+    <string name="voice_input" msgid="2466640768843347841">"Voice input"</string>
+  <string-array name="voice_input_modes">
+    <item msgid="1349082139076086774">"On main keyboard"</item>
+    <item msgid="8529385602829095903">"On symbols keyboard"</item>
+    <item msgid="7283103513488381103">"Off"</item>
+  </string-array>
+  <string-array name="voice_input_modes_summary">
+    <item msgid="554248625705084903">"Mic on main keyboard"</item>
+    <item msgid="6907837061058876770">"Mic on symbols keyboard"</item>
+    <item msgid="3664304608587798036">"Voice input is disabled"</item>
+  </string-array>
+    <string name="auto_submit" msgid="9151008027068358518">"Auto-submit after voice"</string>
+    <string name="auto_submit_summary" msgid="4961875269610384226">"Automatically press enter when searching or going to the next field."</string>
+    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Open the keyboard"\n</b></font><font size="3">\n</font>"Touch any text field."</string>
+    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Close the keyboard"\n</b></font><font size="3">\n</font>"Press the Back key."</string>
+    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Touch &amp; hold a key for options"\n</b></font><font size="3">\n</font>"Access punctuation and accents."</string>
+    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Keyboard settings"\n</b></font><font size="3">\n</font>"Touch &amp; hold the "<b>"?123"</b>" key."</string>
+    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
+    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
+    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
+    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
+    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
+    <string name="selectInputMethod" msgid="315076553378705821">"Select input method"</string>
+    <string name="language_selection_title" msgid="1651299598555326750">"Input languages"</string>
+    <string name="language_selection_summary" msgid="187110938289512256">"Slide finger on spacebar to change language"</string>
+    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Touch again to save"</string>
+    <string name="has_dictionary" msgid="6071847973466625007">"Dictionary available"</string>
+    <string name="prefs_enable_log" msgid="6620424505072963557">"Enable user feedback"</string>
+    <string name="prefs_description_log" msgid="5827825607258246003">"Help improve this input method editor by sending usage statistics and crash reports automatically to Google."</string>
+    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Touch to correct words"</string>
+    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Touch words entered to correct them"</string>
+    <string name="keyboard_layout" msgid="437433231038683666">"Keyboard Theme"</string>
+    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"keyboard"</string>
+    <string name="subtype_mode_voice" msgid="4394113125441627771">"voice"</string>
+</resources>
