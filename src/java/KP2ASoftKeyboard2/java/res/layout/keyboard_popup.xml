@@ -27,7 +27,7 @@
         android:paddingRight="16dip"
         >
     <keepass2android.softkeyboard.LatinKeyboardBaseView
-            xmlns:latin="http://schemas.android.com/apk/res/keepass2android.softkeyboard"
+            xmlns:latin="http://schemas.android.com/apk/res-auto"
             android:id="@+id/LatinKeyboardBaseView"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"

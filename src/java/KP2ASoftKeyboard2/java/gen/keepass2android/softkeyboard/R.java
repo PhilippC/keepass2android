@@ -9,31 +9,31 @@ package keepass2android.softkeyboard;
 
 public final class R {
     public static final class anim {
-        public static final int key_preview_fadein=0x7f040000;
-        public static final int key_preview_fadeout=0x7f040001;
-        public static final int mini_keyboard_fadein=0x7f040002;
-        public static final int mini_keyboard_fadeout=0x7f040003;
+        public static int key_preview_fadein=0x7f040000;
+        public static int key_preview_fadeout=0x7f040001;
+        public static int mini_keyboard_fadein=0x7f040002;
+        public static int mini_keyboard_fadeout=0x7f040003;
     }
     public static final class array {
-        public static final int keyboard_layout_modes=0x7f0d0007;
-        public static final int keyboard_layout_modes_values=0x7f0d0008;
+        public static int keyboard_layout_modes=0x7f0d0007;
+        public static int keyboard_layout_modes_values=0x7f0d0008;
         /**  Array of prediction modes 
          */
-        public static final int prediction_modes=0x7f0d0002;
-        public static final int prediction_modes_values=0x7f0d0003;
+        public static int prediction_modes=0x7f0d0002;
+        public static int prediction_modes_values=0x7f0d0003;
         /**  Array of the settings key modes 
          */
-        public static final int settings_key_modes=0x7f0d0001;
+        public static int settings_key_modes=0x7f0d0001;
         /**  Array of the settings key mode values 
          */
-        public static final int settings_key_modes_values=0x7f0d0000;
+        public static int settings_key_modes_values=0x7f0d0000;
         /**  Array of Voice Input modes 
          */
-        public static final int voice_input_modes=0x7f0d0004;
+        public static int voice_input_modes=0x7f0d0004;
         /**  Array of Voice Input modes summary 
          */
-        public static final int voice_input_modes_summary=0x7f0d0006;
-        public static final int voice_input_modes_values=0x7f0d0005;
+        public static int voice_input_modes_summary=0x7f0d0006;
+        public static int voice_input_modes_values=0x7f0d0005;
     }
     public static final class attr {
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
@@ -43,14 +43,14 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int backgroundDimAmount=0x7f01000d;
+        public static int backgroundDimAmount=0x7f01000d;
         /**  Image for the key. This image needs to be a StateListDrawable, with the following
              possible states: normal, pressed, checkable, checkable+pressed, checkable+checked,
              checkable+checked+pressed. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int keyBackground=0x7f010001;
+        public static int keyBackground=0x7f010001;
         /**  Hysteresis distance for key debouncing 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -61,7 +61,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int keyHysteresisDistance=0x7f010008;
+        public static int keyHysteresisDistance=0x7f010008;
         /**  Height of the key press feedback popup. 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -72,12 +72,12 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int keyPreviewHeight=0x7f010007;
+        public static int keyPreviewHeight=0x7f010007;
         /**  Layout resource for key press feedback.
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int keyPreviewLayout=0x7f010005;
+        public static int keyPreviewLayout=0x7f010005;
         /**  Vertical offset of the key press feedback from the key. 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -88,7 +88,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int keyPreviewOffset=0x7f010006;
+        public static int keyPreviewOffset=0x7f010006;
         /**  Color to use for the label in a key. 
          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
@@ -98,7 +98,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int keyTextColor=0x7f010004;
+        public static int keyTextColor=0x7f010004;
         /**  Size of the text for character keys. 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -109,7 +109,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int keyTextSize=0x7f010002;
+        public static int keyTextSize=0x7f010002;
         /** <p>Must be one or more (separated by '|') of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -121,12 +121,12 @@ containing a value of this type.
 <tr><td><code>italic</code></td><td>2</td><td></td></tr>
 </table>
          */
-        public static final int keyTextStyle=0x7f01000e;
+        public static int keyTextStyle=0x7f01000e;
         /**  Default KeyboardView style. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int keyboardViewStyle=0x7f010000;
+        public static int keyboardViewStyle=0x7f010000;
         /**  Size of the text for custom keys with some text and no icon. 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -137,12 +137,12 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int labelTextSize=0x7f010003;
+        public static int labelTextSize=0x7f010003;
         /**  Layout resource for popup keyboards. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int popupLayout=0x7f01000a;
+        public static int popupLayout=0x7f01000a;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -151,7 +151,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int shadowColor=0x7f01000b;
+        public static int shadowColor=0x7f01000b;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -159,7 +159,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int shadowRadius=0x7f01000c;
+        public static int shadowRadius=0x7f01000c;
         /** <p>Must be one or more (separated by '|') of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -170,7 +170,7 @@ containing a value of this type.
 <tr><td><code>black</code></td><td>1</td><td></td></tr>
 </table>
          */
-        public static final int symbolColorScheme=0x7f01000f;
+        public static int symbolColorScheme=0x7f01000f;
         /**  Amount to offset the touch Y coordinate by, for bias correction. 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -181,361 +181,361 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int verticalCorrection=0x7f010009;
+        public static int verticalCorrection=0x7f010009;
     }
     public static final class bool {
-        public static final int config_long_press_comma_for_settings_enabled=0x7f080006;
-        public static final int config_swipeDisambiguation=0x7f080003;
+        public static int config_long_press_comma_for_settings_enabled=0x7f080006;
+        public static int config_swipeDisambiguation=0x7f080003;
         /**  Whether or not Popup on key press is enabled by default 
          */
-        public static final int default_popup_preview=0x7f080004;
-        public static final int default_recorrection_enabled=0x7f080005;
+        public static int default_popup_preview=0x7f080004;
+        public static int default_recorrection_enabled=0x7f080005;
         /**  Whether or not auto-correction should be enabled by default 
          */
-        public static final int enable_autocorrect=0x7f080000;
+        public static int enable_autocorrect=0x7f080000;
         /**  Whether this input method should be used as the default for a locale. Override it
          for latin languages. 
          */
-        public static final int im_is_default=0x7f080001;
+        public static int im_is_default=0x7f080001;
         /**  Whether or not voice input is enabled by default. 
          */
-        public static final int voice_input_default=0x7f080002;
+        public static int voice_input_default=0x7f080002;
     }
     public static final class color {
-        public static final int candidate_normal=0x7f090000;
-        public static final int candidate_other=0x7f090002;
-        public static final int candidate_recommended=0x7f090001;
-        public static final int latinkeyboard_bar_language_shadow_black=0x7f090005;
-        public static final int latinkeyboard_bar_language_shadow_white=0x7f090004;
-        public static final int latinkeyboard_bar_language_text=0x7f090006;
-        public static final int latinkeyboard_extension_background=0x7f090007;
-        public static final int latinkeyboard_feedback_language_text=0x7f090008;
-        public static final int latinkeyboard_key_color_black=0x7f09000a;
-        public static final int latinkeyboard_key_color_white=0x7f090009;
-        public static final int latinkeyboard_transparent=0x7f090003;
+        public static int candidate_normal=0x7f090000;
+        public static int candidate_other=0x7f090002;
+        public static int candidate_recommended=0x7f090001;
+        public static int latinkeyboard_bar_language_shadow_black=0x7f090005;
+        public static int latinkeyboard_bar_language_shadow_white=0x7f090004;
+        public static int latinkeyboard_bar_language_text=0x7f090006;
+        public static int latinkeyboard_extension_background=0x7f090007;
+        public static int latinkeyboard_feedback_language_text=0x7f090008;
+        public static int latinkeyboard_key_color_black=0x7f09000a;
+        public static int latinkeyboard_key_color_white=0x7f090009;
+        public static int latinkeyboard_transparent=0x7f090003;
     }
     public static final class dimen {
-        public static final int bubble_pointer_offset=0x7f0b0004;
-        public static final int candidate_min_touchable_width=0x7f0b0012;
-        public static final int candidate_strip_fading_edge_length=0x7f0b0006;
-        public static final int candidate_strip_height=0x7f0b0005;
-        public static final int key_bottom_gap=0x7f0b0001;
+        public static int bubble_pointer_offset=0x7f0b0004;
+        public static int candidate_min_touchable_width=0x7f0b0012;
+        public static int candidate_strip_fading_edge_length=0x7f0b0006;
+        public static int candidate_strip_height=0x7f0b0005;
+        public static int key_bottom_gap=0x7f0b0001;
         /**  key_height + key_bottom_gap = popup_key_height 
  key_height + key_bottom_gap = popup_key_height 
          */
-        public static final int key_height=0x7f0b0000;
-        public static final int key_hysteresis_distance=0x7f0b0010;
-        public static final int key_label_text_size=0x7f0b000a;
+        public static int key_height=0x7f0b0000;
+        public static int key_hysteresis_distance=0x7f0b0010;
+        public static int key_label_text_size=0x7f0b000a;
         /**  key_preview_text_size_large x 2 
          */
-        public static final int key_preview_height=0x7f0b000d;
-        public static final int key_preview_offset=0x7f0b000c;
-        public static final int key_preview_text_size_large=0x7f0b000b;
-        public static final int key_text_size=0x7f0b0009;
-        public static final int keyboard_bottom_padding=0x7f0b0003;
+        public static int key_preview_height=0x7f0b000d;
+        public static int key_preview_offset=0x7f0b000c;
+        public static int key_preview_text_size_large=0x7f0b000b;
+        public static int key_text_size=0x7f0b0009;
+        public static int keyboard_bottom_padding=0x7f0b0003;
         /**  We use "inch", not "dip" because this value tries dealing with physical distance related
          to user's finger. 
          */
-        public static final int keyboard_vertical_correction=0x7f0b0011;
+        public static int keyboard_vertical_correction=0x7f0b0011;
         /**  If the screen height in landscape is larger than the below value, then the keyboard
          will not go into extract (fullscreen) mode. 
          */
-        public static final int max_height_for_fullscreen=0x7f0b0008;
+        public static int max_height_for_fullscreen=0x7f0b0008;
         /**  Amount of allowance for selecting keys in a mini popup keyboard by sliding finger. 
  popup_key_height x 1.7 
  Amount of allowance for selecting keys in a mini popup keyboard by sliding finger. 
  popup_key_height x 1.7 
          */
-        public static final int mini_keyboard_slide_allowance=0x7f0b000e;
+        public static int mini_keyboard_slide_allowance=0x7f0b000e;
         /**  popup_key_height x 1.0 
  popup_key_height x 1.0 
          */
-        public static final int mini_keyboard_vertical_correction=0x7f0b000f;
-        public static final int popup_key_height=0x7f0b0002;
-        public static final int spacebar_vertical_correction=0x7f0b0007;
+        public static int mini_keyboard_vertical_correction=0x7f0b000f;
+        public static int popup_key_height=0x7f0b0002;
+        public static int spacebar_vertical_correction=0x7f0b0007;
     }
     public static final class drawable {
-        public static final int btn_keyboard_key=0x7f020000;
-        public static final int btn_keyboard_key2=0x7f020001;
-        public static final int btn_keyboard_key3=0x7f020002;
-        public static final int btn_keyboard_key_dark_normal=0x7f020003;
-        public static final int btn_keyboard_key_dark_normal_off=0x7f020004;
-        public static final int btn_keyboard_key_dark_normal_on=0x7f020005;
-        public static final int btn_keyboard_key_dark_pressed=0x7f020006;
-        public static final int btn_keyboard_key_dark_pressed_off=0x7f020007;
-        public static final int btn_keyboard_key_dark_pressed_on=0x7f020008;
-        public static final int btn_keyboard_key_fulltrans=0x7f020009;
-        public static final int btn_keyboard_key_fulltrans_normal=0x7f02000a;
-        public static final int btn_keyboard_key_fulltrans_pressed=0x7f02000b;
-        public static final int btn_keyboard_key_gingerbread=0x7f02000c;
-        public static final int btn_keyboard_key_gingerbread_popup=0x7f02000d;
-        public static final int btn_keyboard_key_light_normal=0x7f02000e;
-        public static final int btn_keyboard_key_light_popup_normal=0x7f02000f;
-        public static final int btn_keyboard_key_light_popup_selected=0x7f020010;
-        public static final int btn_keyboard_key_light_pressed=0x7f020011;
-        public static final int btn_keyboard_key_normal=0x7f020012;
-        public static final int btn_keyboard_key_normal_off=0x7f020013;
-        public static final int btn_keyboard_key_normal_off_stone=0x7f020014;
-        public static final int btn_keyboard_key_normal_on=0x7f020015;
-        public static final int btn_keyboard_key_normal_on_stone=0x7f020016;
-        public static final int btn_keyboard_key_normal_stone=0x7f020017;
-        public static final int btn_keyboard_key_pressed=0x7f020018;
-        public static final int btn_keyboard_key_pressed_off=0x7f020019;
-        public static final int btn_keyboard_key_pressed_on=0x7f02001a;
-        public static final int btn_keyboard_key_stone=0x7f02001b;
-        public static final int cancel=0x7f02001c;
-        public static final int candidate_feedback_background=0x7f02001d;
-        public static final int caution=0x7f02001e;
-        public static final int dialog_bubble_step02=0x7f02001f;
-        public static final int dialog_bubble_step07=0x7f020020;
-        public static final int highlight_pressed=0x7f020021;
-        public static final int hint_popup=0x7f020022;
-        public static final int ic_dialog_keyboard=0x7f020023;
-        public static final int ic_mic_dialog=0x7f020024;
-        public static final int ic_subtype_keyboard=0x7f020025;
-        public static final int ic_subtype_mic=0x7f020026;
-        public static final int ic_suggest_scroll_background=0x7f020027;
-        public static final int ic_suggest_strip_microphone=0x7f020028;
-        public static final int ic_suggest_strip_microphone_swipe=0x7f020029;
-        public static final int keyboard_background=0x7f02002a;
-        public static final int keyboard_dark_background=0x7f02002b;
-        public static final int keyboard_hint_0=0x7f02002c;
-        public static final int keyboard_hint_1=0x7f02002d;
-        public static final int keyboard_hint_2=0x7f02002e;
-        public static final int keyboard_hint_3=0x7f02002f;
-        public static final int keyboard_hint_4=0x7f020030;
-        public static final int keyboard_hint_5=0x7f020031;
-        public static final int keyboard_hint_6=0x7f020032;
-        public static final int keyboard_hint_7=0x7f020033;
-        public static final int keyboard_hint_8=0x7f020034;
-        public static final int keyboard_hint_9=0x7f020035;
-        public static final int keyboard_key_feedback=0x7f020036;
-        public static final int keyboard_key_feedback_background=0x7f020037;
-        public static final int keyboard_key_feedback_more_background=0x7f020038;
-        public static final int keyboard_popup_panel_background=0x7f020039;
-        public static final int keyboard_suggest_strip=0x7f02003a;
-        public static final int keyboard_suggest_strip_divider=0x7f02003b;
-        public static final int list_selector_background_pressed=0x7f02003c;
-        public static final int mic_slash=0x7f02003d;
-        public static final int ok_cancel=0x7f02003e;
-        public static final int speak_now_level0=0x7f02003f;
-        public static final int speak_now_level1=0x7f020040;
-        public static final int speak_now_level2=0x7f020041;
-        public static final int speak_now_level3=0x7f020042;
-        public static final int speak_now_level4=0x7f020043;
-        public static final int speak_now_level5=0x7f020044;
-        public static final int speak_now_level6=0x7f020045;
-        public static final int sym_bkeyboard_123_mic=0x7f020046;
-        public static final int sym_bkeyboard_delete=0x7f020047;
-        public static final int sym_bkeyboard_done=0x7f020048;
-        public static final int sym_bkeyboard_kp2a=0x7f020049;
-        public static final int sym_bkeyboard_mic=0x7f02004a;
-        public static final int sym_bkeyboard_num0=0x7f02004b;
-        public static final int sym_bkeyboard_num1=0x7f02004c;
-        public static final int sym_bkeyboard_num2=0x7f02004d;
-        public static final int sym_bkeyboard_num3=0x7f02004e;
-        public static final int sym_bkeyboard_num4=0x7f02004f;
-        public static final int sym_bkeyboard_num5=0x7f020050;
-        public static final int sym_bkeyboard_num6=0x7f020051;
-        public static final int sym_bkeyboard_num7=0x7f020052;
-        public static final int sym_bkeyboard_num8=0x7f020053;
-        public static final int sym_bkeyboard_num9=0x7f020054;
-        public static final int sym_bkeyboard_numalt=0x7f020055;
-        public static final int sym_bkeyboard_numpound=0x7f020056;
-        public static final int sym_bkeyboard_numstar=0x7f020057;
-        public static final int sym_bkeyboard_return=0x7f020058;
-        public static final int sym_bkeyboard_search=0x7f020059;
-        public static final int sym_bkeyboard_settings=0x7f02005a;
-        public static final int sym_bkeyboard_shift=0x7f02005b;
-        public static final int sym_bkeyboard_shift_locked=0x7f02005c;
-        public static final int sym_bkeyboard_space=0x7f02005d;
-        public static final int sym_bkeyboard_tab=0x7f02005e;
-        public static final int sym_keyboard_123_mic=0x7f02005f;
-        public static final int sym_keyboard_delete=0x7f020060;
-        public static final int sym_keyboard_done=0x7f020061;
-        public static final int sym_keyboard_feedback_123_mic=0x7f020062;
-        public static final int sym_keyboard_feedback_delete=0x7f020063;
-        public static final int sym_keyboard_feedback_done=0x7f020064;
-        public static final int sym_keyboard_feedback_kp2a=0x7f020065;
-        public static final int sym_keyboard_feedback_language_arrows_left=0x7f020066;
-        public static final int sym_keyboard_feedback_language_arrows_right=0x7f020067;
-        public static final int sym_keyboard_feedback_mic=0x7f020068;
-        public static final int sym_keyboard_feedback_numalt=0x7f020069;
-        public static final int sym_keyboard_feedback_return=0x7f02006a;
-        public static final int sym_keyboard_feedback_search=0x7f02006b;
-        public static final int sym_keyboard_feedback_settings=0x7f02006c;
-        public static final int sym_keyboard_feedback_shift=0x7f02006d;
-        public static final int sym_keyboard_feedback_shift_locked=0x7f02006e;
-        public static final int sym_keyboard_feedback_space=0x7f02006f;
-        public static final int sym_keyboard_feedback_tab=0x7f020070;
-        public static final int sym_keyboard_kp2a=0x7f020071;
-        public static final int sym_keyboard_language_arrows_left=0x7f020072;
-        public static final int sym_keyboard_language_arrows_right=0x7f020073;
-        public static final int sym_keyboard_mic=0x7f020074;
-        public static final int sym_keyboard_num0=0x7f020075;
-        public static final int sym_keyboard_num1=0x7f020076;
-        public static final int sym_keyboard_num2=0x7f020077;
-        public static final int sym_keyboard_num3=0x7f020078;
-        public static final int sym_keyboard_num4=0x7f020079;
-        public static final int sym_keyboard_num5=0x7f02007a;
-        public static final int sym_keyboard_num6=0x7f02007b;
-        public static final int sym_keyboard_num7=0x7f02007c;
-        public static final int sym_keyboard_num8=0x7f02007d;
-        public static final int sym_keyboard_num9=0x7f02007e;
-        public static final int sym_keyboard_numalt=0x7f02007f;
-        public static final int sym_keyboard_numpound=0x7f020080;
-        public static final int sym_keyboard_numstar=0x7f020081;
-        public static final int sym_keyboard_return=0x7f020082;
-        public static final int sym_keyboard_search=0x7f020083;
-        public static final int sym_keyboard_settings=0x7f020084;
-        public static final int sym_keyboard_shift=0x7f020085;
-        public static final int sym_keyboard_shift_lock=0x7f020086;
-        public static final int sym_keyboard_shift_locked=0x7f020087;
-        public static final int sym_keyboard_space=0x7f020088;
-        public static final int sym_keyboard_space_led=0x7f020089;
-        public static final int sym_keyboard_tab=0x7f02008a;
-        public static final int voice_ime_background=0x7f02008b;
-        public static final int voice_swipe_hint=0x7f02008c;
-        public static final int working=0x7f02008d;
+        public static int btn_keyboard_key=0x7f020000;
+        public static int btn_keyboard_key2=0x7f020001;
+        public static int btn_keyboard_key3=0x7f020002;
+        public static int btn_keyboard_key_dark_normal=0x7f020003;
+        public static int btn_keyboard_key_dark_normal_off=0x7f020004;
+        public static int btn_keyboard_key_dark_normal_on=0x7f020005;
+        public static int btn_keyboard_key_dark_pressed=0x7f020006;
+        public static int btn_keyboard_key_dark_pressed_off=0x7f020007;
+        public static int btn_keyboard_key_dark_pressed_on=0x7f020008;
+        public static int btn_keyboard_key_fulltrans=0x7f020009;
+        public static int btn_keyboard_key_fulltrans_normal=0x7f02000a;
+        public static int btn_keyboard_key_fulltrans_pressed=0x7f02000b;
+        public static int btn_keyboard_key_gingerbread=0x7f02000c;
+        public static int btn_keyboard_key_gingerbread_popup=0x7f02000d;
+        public static int btn_keyboard_key_light_normal=0x7f02000e;
+        public static int btn_keyboard_key_light_popup_normal=0x7f02000f;
+        public static int btn_keyboard_key_light_popup_selected=0x7f020010;
+        public static int btn_keyboard_key_light_pressed=0x7f020011;
+        public static int btn_keyboard_key_normal=0x7f020012;
+        public static int btn_keyboard_key_normal_off=0x7f020013;
+        public static int btn_keyboard_key_normal_off_stone=0x7f020014;
+        public static int btn_keyboard_key_normal_on=0x7f020015;
+        public static int btn_keyboard_key_normal_on_stone=0x7f020016;
+        public static int btn_keyboard_key_normal_stone=0x7f020017;
+        public static int btn_keyboard_key_pressed=0x7f020018;
+        public static int btn_keyboard_key_pressed_off=0x7f020019;
+        public static int btn_keyboard_key_pressed_on=0x7f02001a;
+        public static int btn_keyboard_key_stone=0x7f02001b;
+        public static int cancel=0x7f02001c;
+        public static int candidate_feedback_background=0x7f02001d;
+        public static int caution=0x7f02001e;
+        public static int dialog_bubble_step02=0x7f02001f;
+        public static int dialog_bubble_step07=0x7f020020;
+        public static int highlight_pressed=0x7f020021;
+        public static int hint_popup=0x7f020022;
+        public static int ic_dialog_keyboard=0x7f020023;
+        public static int ic_mic_dialog=0x7f020024;
+        public static int ic_subtype_keyboard=0x7f020025;
+        public static int ic_subtype_mic=0x7f020026;
+        public static int ic_suggest_scroll_background=0x7f020027;
+        public static int ic_suggest_strip_microphone=0x7f020028;
+        public static int ic_suggest_strip_microphone_swipe=0x7f020029;
+        public static int keyboard_background=0x7f02002a;
+        public static int keyboard_dark_background=0x7f02002b;
+        public static int keyboard_hint_0=0x7f02002c;
+        public static int keyboard_hint_1=0x7f02002d;
+        public static int keyboard_hint_2=0x7f02002e;
+        public static int keyboard_hint_3=0x7f02002f;
+        public static int keyboard_hint_4=0x7f020030;
+        public static int keyboard_hint_5=0x7f020031;
+        public static int keyboard_hint_6=0x7f020032;
+        public static int keyboard_hint_7=0x7f020033;
+        public static int keyboard_hint_8=0x7f020034;
+        public static int keyboard_hint_9=0x7f020035;
+        public static int keyboard_key_feedback=0x7f020036;
+        public static int keyboard_key_feedback_background=0x7f020037;
+        public static int keyboard_key_feedback_more_background=0x7f020038;
+        public static int keyboard_popup_panel_background=0x7f020039;
+        public static int keyboard_suggest_strip=0x7f02003a;
+        public static int keyboard_suggest_strip_divider=0x7f02003b;
+        public static int list_selector_background_pressed=0x7f02003c;
+        public static int mic_slash=0x7f02003d;
+        public static int ok_cancel=0x7f02003e;
+        public static int speak_now_level0=0x7f02003f;
+        public static int speak_now_level1=0x7f020040;
+        public static int speak_now_level2=0x7f020041;
+        public static int speak_now_level3=0x7f020042;
+        public static int speak_now_level4=0x7f020043;
+        public static int speak_now_level5=0x7f020044;
+        public static int speak_now_level6=0x7f020045;
+        public static int sym_bkeyboard_123_mic=0x7f020046;
+        public static int sym_bkeyboard_delete=0x7f020047;
+        public static int sym_bkeyboard_done=0x7f020048;
+        public static int sym_bkeyboard_kp2a=0x7f020049;
+        public static int sym_bkeyboard_mic=0x7f02004a;
+        public static int sym_bkeyboard_num0=0x7f02004b;
+        public static int sym_bkeyboard_num1=0x7f02004c;
+        public static int sym_bkeyboard_num2=0x7f02004d;
+        public static int sym_bkeyboard_num3=0x7f02004e;
+        public static int sym_bkeyboard_num4=0x7f02004f;
+        public static int sym_bkeyboard_num5=0x7f020050;
+        public static int sym_bkeyboard_num6=0x7f020051;
+        public static int sym_bkeyboard_num7=0x7f020052;
+        public static int sym_bkeyboard_num8=0x7f020053;
+        public static int sym_bkeyboard_num9=0x7f020054;
+        public static int sym_bkeyboard_numalt=0x7f020055;
+        public static int sym_bkeyboard_numpound=0x7f020056;
+        public static int sym_bkeyboard_numstar=0x7f020057;
+        public static int sym_bkeyboard_return=0x7f020058;
+        public static int sym_bkeyboard_search=0x7f020059;
+        public static int sym_bkeyboard_settings=0x7f02005a;
+        public static int sym_bkeyboard_shift=0x7f02005b;
+        public static int sym_bkeyboard_shift_locked=0x7f02005c;
+        public static int sym_bkeyboard_space=0x7f02005d;
+        public static int sym_bkeyboard_tab=0x7f02005e;
+        public static int sym_keyboard_123_mic=0x7f02005f;
+        public static int sym_keyboard_delete=0x7f020060;
+        public static int sym_keyboard_done=0x7f020061;
+        public static int sym_keyboard_feedback_123_mic=0x7f020062;
+        public static int sym_keyboard_feedback_delete=0x7f020063;
+        public static int sym_keyboard_feedback_done=0x7f020064;
+        public static int sym_keyboard_feedback_kp2a=0x7f020065;
+        public static int sym_keyboard_feedback_language_arrows_left=0x7f020066;
+        public static int sym_keyboard_feedback_language_arrows_right=0x7f020067;
+        public static int sym_keyboard_feedback_mic=0x7f020068;
+        public static int sym_keyboard_feedback_numalt=0x7f020069;
+        public static int sym_keyboard_feedback_return=0x7f02006a;
+        public static int sym_keyboard_feedback_search=0x7f02006b;
+        public static int sym_keyboard_feedback_settings=0x7f02006c;
+        public static int sym_keyboard_feedback_shift=0x7f02006d;
+        public static int sym_keyboard_feedback_shift_locked=0x7f02006e;
+        public static int sym_keyboard_feedback_space=0x7f02006f;
+        public static int sym_keyboard_feedback_tab=0x7f020070;
+        public static int sym_keyboard_kp2a=0x7f020071;
+        public static int sym_keyboard_language_arrows_left=0x7f020072;
+        public static int sym_keyboard_language_arrows_right=0x7f020073;
+        public static int sym_keyboard_mic=0x7f020074;
+        public static int sym_keyboard_num0=0x7f020075;
+        public static int sym_keyboard_num1=0x7f020076;
+        public static int sym_keyboard_num2=0x7f020077;
+        public static int sym_keyboard_num3=0x7f020078;
+        public static int sym_keyboard_num4=0x7f020079;
+        public static int sym_keyboard_num5=0x7f02007a;
+        public static int sym_keyboard_num6=0x7f02007b;
+        public static int sym_keyboard_num7=0x7f02007c;
+        public static int sym_keyboard_num8=0x7f02007d;
+        public static int sym_keyboard_num9=0x7f02007e;
+        public static int sym_keyboard_numalt=0x7f02007f;
+        public static int sym_keyboard_numpound=0x7f020080;
+        public static int sym_keyboard_numstar=0x7f020081;
+        public static int sym_keyboard_return=0x7f020082;
+        public static int sym_keyboard_search=0x7f020083;
+        public static int sym_keyboard_settings=0x7f020084;
+        public static int sym_keyboard_shift=0x7f020085;
+        public static int sym_keyboard_shift_lock=0x7f020086;
+        public static int sym_keyboard_shift_locked=0x7f020087;
+        public static int sym_keyboard_space=0x7f020088;
+        public static int sym_keyboard_space_led=0x7f020089;
+        public static int sym_keyboard_tab=0x7f02008a;
+        public static int voice_ime_background=0x7f02008b;
+        public static int voice_swipe_hint=0x7f02008c;
+        public static int working=0x7f02008d;
     }
     public static final class id {
-        public static final int LatinKeyboardBaseView=0x7f070007;
-        public static final int LatinkeyboardBaseView=0x7f070006;
-        public static final int black=0x7f070004;
-        public static final int bold=0x7f070001;
-        public static final int button=0x7f07000c;
-        public static final int button_text=0x7f07000d;
-        public static final int candidates=0x7f070005;
-        public static final int image=0x7f07000a;
-        public static final int italic=0x7f070002;
-        public static final int main_image=0x7f070008;
-        public static final int mode_email=0x7f070010;
-        public static final int mode_email_with_settings_key=0x7f070015;
-        public static final int mode_im=0x7f070011;
-        public static final int mode_im_with_settings_key=0x7f070016;
-        public static final int mode_normal=0x7f07000e;
-        public static final int mode_normal_with_settings_key=0x7f070013;
-        public static final int mode_symbols=0x7f070018;
-        public static final int mode_symbols_with_settings_key=0x7f070019;
-        public static final int mode_url=0x7f07000f;
-        public static final int mode_url_with_settings_key=0x7f070014;
-        public static final int mode_webentry=0x7f070012;
-        public static final int mode_webentry_with_settings_key=0x7f070017;
-        public static final int normal=0x7f070000;
-        public static final int progress=0x7f07000b;
-        public static final int text=0x7f070009;
-        public static final int white=0x7f070003;
+        public static int LatinKeyboardBaseView=0x7f070007;
+        public static int LatinkeyboardBaseView=0x7f070006;
+        public static int black=0x7f070004;
+        public static int bold=0x7f070001;
+        public static int button=0x7f07000c;
+        public static int button_text=0x7f07000d;
+        public static int candidates=0x7f070005;
+        public static int image=0x7f07000a;
+        public static int italic=0x7f070002;
+        public static int main_image=0x7f070008;
+        public static int mode_email=0x7f070010;
+        public static int mode_email_with_settings_key=0x7f070015;
+        public static int mode_im=0x7f070011;
+        public static int mode_im_with_settings_key=0x7f070016;
+        public static int mode_normal=0x7f07000e;
+        public static int mode_normal_with_settings_key=0x7f070013;
+        public static int mode_symbols=0x7f070018;
+        public static int mode_symbols_with_settings_key=0x7f070019;
+        public static int mode_url=0x7f07000f;
+        public static int mode_url_with_settings_key=0x7f070014;
+        public static int mode_webentry=0x7f070012;
+        public static int mode_webentry_with_settings_key=0x7f070017;
+        public static int normal=0x7f070000;
+        public static int progress=0x7f07000b;
+        public static int text=0x7f070009;
+        public static int white=0x7f070003;
     }
     public static final class integer {
-        public static final int config_delay_after_preview=0x7f0a0001;
-        public static final int config_delay_before_key_repeat_start=0x7f0a0006;
-        public static final int config_delay_before_preview=0x7f0a0000;
-        public static final int config_key_repeat_interval=0x7f0a0007;
-        public static final int config_long_press_key_timeout=0x7f0a0008;
-        public static final int config_mini_keyboard_fadein_anim_time=0x7f0a0004;
-        public static final int config_mini_keyboard_fadeout_anim_time=0x7f0a0005;
-        public static final int config_multi_tap_key_timeout=0x7f0a0009;
-        public static final int config_preview_fadein_anim_time=0x7f0a0002;
-        public static final int config_preview_fadeout_anim_time=0x7f0a0003;
-        public static final int key_delete=0x7f0a0010;
-        public static final int key_f1=0x7f0a0013;
-        public static final int key_kp2a=0x7f0a0014;
-        public static final int key_return=0x7f0a000c;
+        public static int config_delay_after_preview=0x7f0a0001;
+        public static int config_delay_before_key_repeat_start=0x7f0a0006;
+        public static int config_delay_before_preview=0x7f0a0000;
+        public static int config_key_repeat_interval=0x7f0a0007;
+        public static int config_long_press_key_timeout=0x7f0a0008;
+        public static int config_mini_keyboard_fadein_anim_time=0x7f0a0004;
+        public static int config_mini_keyboard_fadeout_anim_time=0x7f0a0005;
+        public static int config_multi_tap_key_timeout=0x7f0a0009;
+        public static int config_preview_fadein_anim_time=0x7f0a0002;
+        public static int config_preview_fadeout_anim_time=0x7f0a0003;
+        public static int key_delete=0x7f0a0010;
+        public static int key_f1=0x7f0a0013;
+        public static int key_kp2a=0x7f0a0014;
+        public static int key_return=0x7f0a000c;
         /**  Keycode for F1 (function) key. This one switches between language switch & comma/.com 
          */
-        public static final int key_settings=0x7f0a0011;
-        public static final int key_shift=0x7f0a000e;
-        public static final int key_space=0x7f0a000d;
-        public static final int key_symbol=0x7f0a000f;
-        public static final int key_tab=0x7f0a000b;
-        public static final int key_voice=0x7f0a0012;
+        public static int key_settings=0x7f0a0011;
+        public static int key_shift=0x7f0a000e;
+        public static int key_space=0x7f0a000d;
+        public static int key_symbol=0x7f0a000f;
+        public static int key_tab=0x7f0a000b;
+        public static int key_voice=0x7f0a0012;
         /**  Vibration duration in milliseconds, for key presses in the IME. This can be hardware
         dependent and may require overriding with a device specific overlay. 
          */
-        public static final int vibrate_duration_ms=0x7f0a000a;
+        public static int vibrate_duration_ms=0x7f0a000a;
     }
     public static final class layout {
-        public static final int bubble_text=0x7f030000;
-        public static final int candidate_preview=0x7f030001;
-        public static final int candidates=0x7f030002;
-        public static final int input_basic=0x7f030003;
-        public static final int input_basic_highcontrast=0x7f030004;
-        public static final int input_gingerbread=0x7f030005;
-        public static final int input_stone_bold=0x7f030006;
-        public static final int input_stone_normal=0x7f030007;
-        public static final int input_stone_popup=0x7f030008;
-        public static final int key_preview=0x7f030009;
-        public static final int keyboard_popup=0x7f03000a;
-        public static final int recognition_status=0x7f03000b;
-        public static final int voice_punctuation_hint=0x7f03000c;
-        public static final int voice_swipe_hint=0x7f03000d;
+        public static int bubble_text=0x7f030000;
+        public static int candidate_preview=0x7f030001;
+        public static int candidates=0x7f030002;
+        public static int input_basic=0x7f030003;
+        public static int input_basic_highcontrast=0x7f030004;
+        public static int input_gingerbread=0x7f030005;
+        public static int input_stone_bold=0x7f030006;
+        public static int input_stone_normal=0x7f030007;
+        public static int input_stone_popup=0x7f030008;
+        public static int key_preview=0x7f030009;
+        public static int keyboard_popup=0x7f03000a;
+        public static int recognition_status=0x7f03000b;
+        public static int voice_punctuation_hint=0x7f03000c;
+        public static int voice_swipe_hint=0x7f03000d;
     }
     public static final class raw {
-        public static final int main=0x7f060000;
-        public static final int type3=0x7f060001;
+        public static int main=0x7f060000;
+        public static int type3=0x7f060001;
     }
     public static final class string {
         /**  Indicates that a word has been added to the dictionary 
          */
-        public static final int added_word=0x7f0c0044;
-        public static final int alternates_for_a=0x7f0c0000;
-        public static final int alternates_for_a_umlaut=0x7f0c0017;
-        public static final int alternates_for_ae=0x7f0c0013;
-        public static final int alternates_for_c=0x7f0c0007;
-        public static final int alternates_for_cyrillic_e=0x7f0c0015;
-        public static final int alternates_for_cyrillic_soft_sign=0x7f0c0016;
-        public static final int alternates_for_d=0x7f0c000b;
-        public static final int alternates_for_e=0x7f0c0001;
-        public static final int alternates_for_g=0x7f0c0010;
-        public static final int alternates_for_i=0x7f0c0002;
-        public static final int alternates_for_l=0x7f0c000f;
-        public static final int alternates_for_n=0x7f0c0006;
-        public static final int alternates_for_o=0x7f0c0003;
-        public static final int alternates_for_o_umlaut=0x7f0c0018;
-        public static final int alternates_for_oe=0x7f0c0014;
-        public static final int alternates_for_p=0x7f0c0011;
-        public static final int alternates_for_q=0x7f0c0009;
-        public static final int alternates_for_r=0x7f0c000c;
-        public static final int alternates_for_s=0x7f0c0005;
-        public static final int alternates_for_t=0x7f0c000d;
-        public static final int alternates_for_u=0x7f0c0004;
-        public static final int alternates_for_v=0x7f0c0012;
-        public static final int alternates_for_w=0x7f0c000a;
-        public static final int alternates_for_y=0x7f0c0008;
-        public static final int alternates_for_z=0x7f0c000e;
+        public static int added_word=0x7f0c0044;
+        public static int alternates_for_a=0x7f0c0000;
+        public static int alternates_for_a_umlaut=0x7f0c0017;
+        public static int alternates_for_ae=0x7f0c0013;
+        public static int alternates_for_c=0x7f0c0007;
+        public static int alternates_for_cyrillic_e=0x7f0c0015;
+        public static int alternates_for_cyrillic_soft_sign=0x7f0c0016;
+        public static int alternates_for_d=0x7f0c000b;
+        public static int alternates_for_e=0x7f0c0001;
+        public static int alternates_for_g=0x7f0c0010;
+        public static int alternates_for_i=0x7f0c0002;
+        public static int alternates_for_l=0x7f0c000f;
+        public static int alternates_for_n=0x7f0c0006;
+        public static int alternates_for_o=0x7f0c0003;
+        public static int alternates_for_o_umlaut=0x7f0c0018;
+        public static int alternates_for_oe=0x7f0c0014;
+        public static int alternates_for_p=0x7f0c0011;
+        public static int alternates_for_q=0x7f0c0009;
+        public static int alternates_for_r=0x7f0c000c;
+        public static int alternates_for_s=0x7f0c0005;
+        public static int alternates_for_t=0x7f0c000d;
+        public static int alternates_for_u=0x7f0c0004;
+        public static int alternates_for_v=0x7f0c0012;
+        public static int alternates_for_w=0x7f0c000a;
+        public static int alternates_for_y=0x7f0c0008;
+        public static int alternates_for_z=0x7f0c000e;
         /**  Option to enable auto capitalization of sentences 
          */
-        public static final int auto_cap=0x7f0c0031;
+        public static int auto_cap=0x7f0c0031;
         /**  Description for auto cap 
          */
-        public static final int auto_cap_summary=0x7f0c0032;
+        public static int auto_cap_summary=0x7f0c0032;
         /**  Option to enable auto completion 
          */
-        public static final int auto_complete=0x7f0c0039;
+        public static int auto_complete=0x7f0c0039;
         /**  Dialog title for auto complete choices 
          */
-        public static final int auto_complete_dialog_title=0x7f0c002e;
+        public static int auto_complete_dialog_title=0x7f0c002e;
         /**  Description for auto completion 
          */
-        public static final int auto_complete_summary=0x7f0c003a;
+        public static int auto_complete_summary=0x7f0c003a;
         /**  Option to automatically correct word on hitting space 
          */
-        public static final int auto_correction=0x7f0c0029;
+        public static int auto_correction=0x7f0c0029;
         /**  Description for auto_correction 
          */
-        public static final int auto_correction_summary=0x7f0c002a;
+        public static int auto_correction_summary=0x7f0c002a;
         /**  Option to enable auto punctuate 
          */
-        public static final int auto_punctuate=0x7f0c0033;
+        public static int auto_punctuate=0x7f0c0033;
         /**  Description for auto punctuate 
          */
-        public static final int auto_punctuate_summary=0x7f0c0034;
+        public static int auto_punctuate_summary=0x7f0c0034;
         /**  Press the "enter" key after the user speaks. Option on settings.
          */
-        public static final int auto_submit=0x7f0c0071;
+        public static int auto_submit=0x7f0c0071;
         /**  Press the "enter" key after the user speaks. Summary of option in settings.
          */
-        public static final int auto_submit_summary=0x7f0c0072;
+        public static int auto_submit_summary=0x7f0c0072;
         /**  Option to enable bigram completion 
  no translation found for settings_key_modes:0 (8549888726962891527) 
  no translation found for settings_key_modes:1 (881280041213210923) 
@@ -661,351 +661,354 @@ containing a value of this type.
  no translation found for settings_key_modes:1 (881280041213210923) 
  no translation found for settings_key_modes:2 (7317310620171067848) 
          */
-        public static final int bigram_suggestion=0x7f0c003f;
+        public static int bigram_suggestion=0x7f0c003f;
         /**  Description for auto completion 
          */
-        public static final int bigram_suggestion_summary=0x7f0c0040;
+        public static int bigram_suggestion_summary=0x7f0c0040;
         /**  Label on button to stop recognition. Must be short to fit on button. 
          */
-        public static final int cancel=0x7f0c006b;
+        public static int cancel=0x7f0c006b;
+        public static int change_entry=0x7f0c008f;
         /**  appears above the image showing the back button used to close the keyboard 
          */
-        public static final int close_the_keyboard=0x7f0c0074;
+        public static int close_the_keyboard=0x7f0c0074;
         /**  Title for Latin keyboard debug settings activity / dialog 
          */
-        public static final int english_ime_debug_settings=0x7f0c008d;
+        public static int english_ime_debug_settings=0x7f0c008d;
         /**  Title for Latin keyboard input options dialog 
          */
-        public static final int english_ime_input_options=0x7f0c0021;
+        public static int english_ime_input_options=0x7f0c0021;
         /**  Title for Latin keyboard  
          */
-        public static final int english_ime_name=0x7f0c001f;
+        public static int english_ime_name=0x7f0c001f;
         /**  Title for Latin keyboard settings activity / dialog 
          */
-        public static final int english_ime_settings=0x7f0c0020;
+        public static int english_ime_settings=0x7f0c0020;
         /**  Inform the user that a particular language has an available dictionary 
          */
-        public static final int has_dictionary=0x7f0c0080;
+        public static int has_dictionary=0x7f0c0080;
         /**  Add to dictionary hint 
  outdated translation 8058519710062071085 
          */
-        public static final int hint_add_to_dictionary=0x7f0c007f;
+        public static int hint_add_to_dictionary=0x7f0c007f;
         /**  Option to enable using nearby keys when correcting/predicting 
          */
-        public static final int hit_correction=0x7f0c0025;
+        public static int hit_correction=0x7f0c0025;
         /**  Option to enable using nearby keys when correcting/predicting in landscape
          */
-        public static final int hit_correction_land=0x7f0c0027;
+        public static int hit_correction_land=0x7f0c0027;
         /**  Description for hit_correction in landscape 
          */
-        public static final int hit_correction_land_summary=0x7f0c0028;
+        public static int hit_correction_land_summary=0x7f0c0028;
         /**  Description for hit_correction  
          */
-        public static final int hit_correction_summary=0x7f0c0026;
+        public static int hit_correction_summary=0x7f0c0026;
         /**  Description for keyboard theme switcher 
          */
-        public static final int keyboard_layout=0x7f0c0085;
+        public static int keyboard_layout=0x7f0c0085;
         /**  appears above image showing how to access keyboard settings 
          */
-        public static final int keyboard_settings=0x7f0c0076;
+        public static int keyboard_settings=0x7f0c0076;
         /**  Label for "switch to alphabetic" key.  Must be short to fit on key! 
          */
-        public static final int label_alpha_key=0x7f0c0057;
+        public static int label_alpha_key=0x7f0c0057;
         /**  Label for ALT modifier key.  Must be short to fit on key! 
          */
-        public static final int label_alt_key=0x7f0c0058;
+        public static int label_alt_key=0x7f0c0058;
         /**  Label for soft enter key when it performs DONE action.  Must be short to fit on key! 
          */
-        public static final int label_done_key=0x7f0c0053;
+        public static int label_done_key=0x7f0c0053;
         /**  Label for soft enter key when it performs GO action.  Must be short to fit on key! 
          */
-        public static final int label_go_key=0x7f0c0051;
+        public static int label_go_key=0x7f0c0051;
         /**  Label for soft enter key when it performs NEXT action.  Must be short to fit on key! 
          */
-        public static final int label_next_key=0x7f0c0052;
+        public static int label_next_key=0x7f0c0052;
         /**  Label for "switch to numeric" key.  Must be short to fit on key! 
          */
-        public static final int label_phone_key=0x7f0c0056;
+        public static int label_phone_key=0x7f0c0056;
         /**  Label for soft enter key when it performs SEND action.  Must be short to fit on key! 
          */
-        public static final int label_send_key=0x7f0c0054;
+        public static int label_send_key=0x7f0c0054;
         /**  Label for "switch to symbols" key.  Must be short to fit on key! 
          */
-        public static final int label_symbol_key=0x7f0c0055;
+        public static int label_symbol_key=0x7f0c0055;
         /**  Title summary for input language selection screen 
          */
-        public static final int language_selection_summary=0x7f0c007e;
+        public static int language_selection_summary=0x7f0c007e;
         /**  Title for input language selection screen 
          */
-        public static final int language_selection_title=0x7f0c007d;
-        public static final int layout_basic=0x7f0c0086;
-        public static final int layout_gingerbread=0x7f0c008a;
-        public static final int layout_high_contrast=0x7f0c0087;
-        public static final int layout_stone_bold=0x7f0c0088;
-        public static final int layout_stone_normal=0x7f0c0089;
+        public static int language_selection_title=0x7f0c007d;
+        public static int layout_basic=0x7f0c0086;
+        public static int layout_gingerbread=0x7f0c008a;
+        public static int layout_high_contrast=0x7f0c0087;
+        public static int layout_stone_bold=0x7f0c0088;
+        public static int layout_stone_normal=0x7f0c0089;
         /**  Label on button when an error occurs 
          */
-        public static final int ok=0x7f0c006c;
+        public static int ok=0x7f0c006c;
+        public static int open_entry=0x7f0c0090;
+        public static int open_entry_for_app=0x7f0c0091;
         /**  appears above image showing the user to click on a TextView to show the IME 
          */
-        public static final int open_the_keyboard=0x7f0c0073;
+        public static int open_the_keyboard=0x7f0c0073;
         /**  popular web domains for the locale - most popular, displayed on the keyboard 
          */
-        public static final int popular_domain_0=0x7f0c0077;
+        public static int popular_domain_0=0x7f0c0077;
         /**  popular web domains for the locale - item 1, displayed in the popup 
          */
-        public static final int popular_domain_1=0x7f0c0078;
+        public static int popular_domain_1=0x7f0c0078;
         /**  popular web domains for the locale - item 2, displayed in the popup 
          */
-        public static final int popular_domain_2=0x7f0c0079;
+        public static int popular_domain_2=0x7f0c0079;
         /**  popular web domains for the locale - item 3, displayed in the popup 
          */
-        public static final int popular_domain_3=0x7f0c007a;
+        public static int popular_domain_3=0x7f0c007a;
         /**  popular web domains for the locale - item 4, displayed in the popup 
          */
-        public static final int popular_domain_4=0x7f0c007b;
+        public static int popular_domain_4=0x7f0c007b;
         /**  Option to pop up the character with a larger font above soft keyboard 
          */
-        public static final int popup_on_keypress=0x7f0c0024;
+        public static int popup_on_keypress=0x7f0c0024;
         /**  Option to enable text prediction 
          */
-        public static final int prediction=0x7f0c002b;
+        public static int prediction=0x7f0c002b;
         /**  Don't translate 
          */
-        public static final int prediction_basic=0x7f0c0042;
+        public static int prediction_basic=0x7f0c0042;
         /**  Category title for text prediction 
          */
-        public static final int prediction_category=0x7f0c002c;
+        public static int prediction_category=0x7f0c002c;
         /**  Don't translate 
          */
-        public static final int prediction_full=0x7f0c0043;
+        public static int prediction_full=0x7f0c0043;
         /**  Option to enable text prediction in landscape 
          */
-        public static final int prediction_landscape=0x7f0c002f;
+        public static int prediction_landscape=0x7f0c002f;
         /**  Description for text prediction 
          */
-        public static final int prediction_landscape_summary=0x7f0c0030;
+        public static int prediction_landscape_summary=0x7f0c0030;
         /**  Don't translate 
          */
-        public static final int prediction_none=0x7f0c0041;
+        public static int prediction_none=0x7f0c0041;
         /**  Description for text prediction 
          */
-        public static final int prediction_summary=0x7f0c002d;
-        public static final int prefs_debug_mode=0x7f0c008e;
+        public static int prediction_summary=0x7f0c002d;
+        public static int prefs_debug_mode=0x7f0c008e;
         /**  Description for enabling to send user statistics to Google 
          */
-        public static final int prefs_description_log=0x7f0c0082;
+        public static int prefs_description_log=0x7f0c0082;
         /**  Preferences item for enabling to send user statistics to Google 
          */
-        public static final int prefs_enable_log=0x7f0c0081;
+        public static int prefs_enable_log=0x7f0c0081;
         /**  Preferences item for enabling to correct suggestions by touching words you have typed 
          */
-        public static final int prefs_enable_recorrection=0x7f0c0083;
+        public static int prefs_enable_recorrection=0x7f0c0083;
         /**  The summary for the preferences item for enabling to correct suggestions by touching words you have typed 
          */
-        public static final int prefs_enable_recorrection_summary=0x7f0c0084;
+        public static int prefs_enable_recorrection_summary=0x7f0c0084;
         /**  Option to show/hide the settings key 
          */
-        public static final int prefs_settings_key=0x7f0c003b;
+        public static int prefs_settings_key=0x7f0c003b;
         /**  Option to enable quick fixes 
          */
-        public static final int quick_fixes=0x7f0c0035;
+        public static int quick_fixes=0x7f0c0035;
         /**  Description for quick fixes 
          */
-        public static final int quick_fixes_summary=0x7f0c0036;
+        public static int quick_fixes_summary=0x7f0c0036;
         /**  Menu item for launching Input method picker 
          */
-        public static final int selectInputMethod=0x7f0c007c;
+        public static int selectInputMethod=0x7f0c007c;
         /**  Symbols that are sentence separators, for purposes of making it hug the last sentence. 
  Symbols that are sentence separators, for purposes of making it hug the last sentence. 
          */
-        public static final int sentence_separators=0x7f0c001a;
+        public static int sentence_separators=0x7f0c001a;
         /**  Always hide the settings key 
          */
-        public static final int settings_key_mode_always_hide=0x7f0c001e;
+        public static int settings_key_mode_always_hide=0x7f0c001e;
         /**  Option to always hide the settings key 
          */
-        public static final int settings_key_mode_always_hide_name=0x7f0c003e;
+        public static int settings_key_mode_always_hide_name=0x7f0c003e;
         /**  Always show the settings key 
          */
-        public static final int settings_key_mode_always_show=0x7f0c001d;
+        public static int settings_key_mode_always_show=0x7f0c001d;
         /**  Option to always show the settings key 
          */
-        public static final int settings_key_mode_always_show_name=0x7f0c003d;
+        public static int settings_key_mode_always_show_name=0x7f0c003d;
         /**  Option values to show/hide the settings key in onscreen keyboard 
  Automatically decide to show or hide the settings key 
          */
-        public static final int settings_key_mode_auto=0x7f0c001c;
+        public static int settings_key_mode_auto=0x7f0c001c;
         /**  Option to automatically decide to show/hide the settings key 
          */
-        public static final int settings_key_mode_auto_name=0x7f0c003c;
+        public static int settings_key_mode_auto_name=0x7f0c003c;
         /**  Option to enable showing suggestions 
          */
-        public static final int show_suggestions=0x7f0c0037;
+        public static int show_suggestions=0x7f0c0037;
         /**  Description for show suggestions 
          */
-        public static final int show_suggestions_summary=0x7f0c0038;
+        public static int show_suggestions_summary=0x7f0c0038;
         /**  Option to play back sound on keypress in soft keyboard 
          */
-        public static final int sound_on_keypress=0x7f0c0023;
-        public static final int subtype_mode_keyboard=0x7f0c008b;
-        public static final int subtype_mode_voice=0x7f0c008c;
+        public static int sound_on_keypress=0x7f0c0023;
+        public static int subtype_mode_keyboard=0x7f0c008b;
+        public static int subtype_mode_voice=0x7f0c008c;
         /**  Symbols that are suggested between words 
          */
-        public static final int suggested_punctuations=0x7f0c001b;
+        public static int suggested_punctuations=0x7f0c001b;
         /**  Tip to press ?123 to access numbers and symbols 
          */
-        public static final int tip_access_symbols=0x7f0c0047;
+        public static int tip_access_symbols=0x7f0c0047;
         /**  Tip to long press on typed word to add to dictionary 
          */
-        public static final int tip_add_to_dictionary=0x7f0c0048;
+        public static int tip_add_to_dictionary=0x7f0c0048;
         /**  Tip to dismiss keyboard 
          */
-        public static final int tip_dismiss=0x7f0c0046;
+        public static int tip_dismiss=0x7f0c0046;
         /**  Tip to long press on keys 
          */
-        public static final int tip_long_press=0x7f0c0045;
+        public static int tip_long_press=0x7f0c0045;
         /**  Tutorial tip 4 - How to switch back to alphabet keyboard 
          */
-        public static final int tip_to_close_symbols=0x7f0c004e;
+        public static int tip_to_close_symbols=0x7f0c004e;
         /**  Tutorial tip 5 - How to launch keyboard settings 
          */
-        public static final int tip_to_launch_settings=0x7f0c004f;
+        public static int tip_to_launch_settings=0x7f0c004f;
         /**  Tutorial tip 1 - The keyboard opens any time you touch a text field 
          */
-        public static final int tip_to_open_keyboard=0x7f0c004b;
+        public static int tip_to_open_keyboard=0x7f0c004b;
         /**  Tutorial tip 3 - How to switch to number/symbol keyboard 
          */
-        public static final int tip_to_open_symbols=0x7f0c004d;
+        public static int tip_to_open_symbols=0x7f0c004d;
         /**  Tutorial tip 6 - Done with the tutorial 
          */
-        public static final int tip_to_start_typing=0x7f0c0050;
+        public static int tip_to_start_typing=0x7f0c0050;
         /**  Tutorial tip 2 - Touch and hold a key to view accents (examples) 
          */
-        public static final int tip_to_view_accents=0x7f0c004c;
+        public static int tip_to_view_accents=0x7f0c004c;
         /**  appears above image showing how to use touch and hold 
          */
-        public static final int touch_and_hold=0x7f0c0075;
+        public static int touch_and_hold=0x7f0c0075;
         /**  Instruction to touch the bubble to continue 
          */
-        public static final int touch_to_continue=0x7f0c0049;
+        public static int touch_to_continue=0x7f0c0049;
         /**  Instruction to touch the bubble to start typing 
          */
-        public static final int touch_to_finish=0x7f0c004a;
+        public static int touch_to_finish=0x7f0c004a;
         /**  Option to provide vibrate/haptic feedback on keypress 
          */
-        public static final int vibrate_on_keypress=0x7f0c0022;
+        public static int vibrate_on_keypress=0x7f0c0022;
         /**  Short message shown for an audio error. 
          */
-        public static final int voice_audio_error=0x7f0c0064;
+        public static int voice_audio_error=0x7f0c0064;
         /**  Short message shown when a generic error occurs. 
          */
-        public static final int voice_error=0x7f0c0061;
+        public static int voice_error=0x7f0c0061;
         /**  Message to show when user clicks the swiping hint (which says
         "Swipe across keyboard to speak"). Also shown when enabling settings. 
          */
-        public static final int voice_hint_dialog_message=0x7f0c005d;
+        public static int voice_hint_dialog_message=0x7f0c005d;
         /**  Short message shown before the user should speak. 
          */
-        public static final int voice_initializing=0x7f0c0060;
+        public static int voice_initializing=0x7f0c0060;
         /**  Preferences item for enabling speech input 
          */
-        public static final int voice_input=0x7f0c006d;
+        public static int voice_input=0x7f0c006d;
         /**  Short message to tell the user the system is ready for them to speak. 
          */
-        public static final int voice_listening=0x7f0c005e;
+        public static int voice_listening=0x7f0c005e;
         /**  Don't translate 
          */
-        public static final int voice_mode_main=0x7f0c006e;
+        public static int voice_mode_main=0x7f0c006e;
         /**  Don't translate 
          */
-        public static final int voice_mode_off=0x7f0c0070;
+        public static int voice_mode_off=0x7f0c0070;
         /**  Don't translate 
          */
-        public static final int voice_mode_symbols=0x7f0c006f;
+        public static int voice_mode_symbols=0x7f0c006f;
         /**  Short message shown for a network error. 
          */
-        public static final int voice_network_error=0x7f0c0062;
+        public static int voice_network_error=0x7f0c0062;
         /**  Short message shown when the server couldn't parse any speech. 
          */
-        public static final int voice_no_match=0x7f0c0067;
+        public static int voice_no_match=0x7f0c0067;
         /**  Short message shown when the user initiates voice and voice
 	search is not installed. 
          */
-        public static final int voice_not_installed=0x7f0c0068;
+        public static int voice_not_installed=0x7f0c0068;
         /**  Short hint shown in candidate view to explain that user can speak punctuation. 
          */
-        public static final int voice_punctuation_hint=0x7f0c006a;
+        public static int voice_punctuation_hint=0x7f0c006a;
         /**  Short message shown for an error with the voice server. 
          */
-        public static final int voice_server_error=0x7f0c0065;
+        public static int voice_server_error=0x7f0c0065;
         /**  Short message shown when no speech is heard. 
          */
-        public static final int voice_speech_timeout=0x7f0c0066;
+        public static int voice_speech_timeout=0x7f0c0066;
         /**  Short hint shown in candidate view to explain voice input. 
          */
-        public static final int voice_swipe_hint=0x7f0c0069;
+        public static int voice_swipe_hint=0x7f0c0069;
         /**  Short message shown for a network error where the utterance was really long,
          in which case we should suggest that the user speak less. 
          */
-        public static final int voice_too_much_speech=0x7f0c0063;
+        public static int voice_too_much_speech=0x7f0c0063;
         /**  An additional part of the warning dialog for voice input that only shows when the user
          actually initiates voice input, rather than just turning it on in settings. 
          */
-        public static final int voice_warning_how_to_turn_off=0x7f0c005c;
+        public static int voice_warning_how_to_turn_off=0x7f0c005c;
         /**  Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. 
          */
-        public static final int voice_warning_locale_not_supported=0x7f0c005a;
+        public static int voice_warning_locale_not_supported=0x7f0c005a;
         /**  Message of the warning dialog that shows when a user initiates voice input for
          the first time, or turns it on in settings. 
          */
-        public static final int voice_warning_may_not_understand=0x7f0c005b;
+        public static int voice_warning_may_not_understand=0x7f0c005b;
         /**  Voice related labels 
  Title of the warning dialog that shows when a user initiates voice input for
          the first time. 
          */
-        public static final int voice_warning_title=0x7f0c0059;
+        public static int voice_warning_title=0x7f0c0059;
         /**  Short message shown after the user finishes speaking. 
          */
-        public static final int voice_working=0x7f0c005f;
+        public static int voice_working=0x7f0c005f;
         /**  Symbols that are commonly considered word separators in this language 
  Symbols that are commonly considered word separators in this language 
  Symbols that are commonly considered word separators in this language 
          */
-        public static final int word_separators=0x7f0c0019;
+        public static int word_separators=0x7f0c0019;
     }
     public static final class style {
-        public static final int KeyPreviewAnimation=0x7f0e0001;
-        public static final int LatinKeyboardBaseView=0x7f0e0000;
-        public static final int MiniKeyboardAnimation=0x7f0e0002;
+        public static int KeyPreviewAnimation=0x7f0e0001;
+        public static int LatinKeyboardBaseView=0x7f0e0000;
+        public static int MiniKeyboardAnimation=0x7f0e0002;
     }
     public static final class xml {
-        public static final int dictionary=0x7f050000;
-        public static final int kbd_phone=0x7f050001;
-        public static final int kbd_phone_black=0x7f050002;
-        public static final int kbd_phone_symbols=0x7f050003;
-        public static final int kbd_phone_symbols_black=0x7f050004;
-        public static final int kbd_popup_narrow_template=0x7f050005;
-        public static final int kbd_popup_template=0x7f050006;
-        public static final int kbd_qwerty=0x7f050007;
-        public static final int kbd_qwerty_black=0x7f050008;
-        public static final int kbd_symbols=0x7f050009;
-        public static final int kbd_symbols_black=0x7f05000a;
-        public static final int kbd_symbols_shift=0x7f05000b;
-        public static final int kbd_symbols_shift_black=0x7f05000c;
-        public static final int language_prefs=0x7f05000d;
-        public static final int method=0x7f05000e;
-        public static final int popup_at=0x7f05000f;
-        public static final int popup_comma=0x7f050010;
-        public static final int popup_domains=0x7f050011;
-        public static final int popup_mic=0x7f050012;
-        public static final int popup_punctuation=0x7f050013;
-        public static final int popup_slash=0x7f050014;
-        public static final int popup_smileys=0x7f050015;
-        public static final int prefs=0x7f050016;
-        public static final int prefs_for_debug=0x7f050017;
+        public static int dictionary=0x7f050000;
+        public static int kbd_phone=0x7f050001;
+        public static int kbd_phone_black=0x7f050002;
+        public static int kbd_phone_symbols=0x7f050003;
+        public static int kbd_phone_symbols_black=0x7f050004;
+        public static int kbd_popup_narrow_template=0x7f050005;
+        public static int kbd_popup_template=0x7f050006;
+        public static int kbd_qwerty=0x7f050007;
+        public static int kbd_qwerty_black=0x7f050008;
+        public static int kbd_symbols=0x7f050009;
+        public static int kbd_symbols_black=0x7f05000a;
+        public static int kbd_symbols_shift=0x7f05000b;
+        public static int kbd_symbols_shift_black=0x7f05000c;
+        public static int language_prefs=0x7f05000d;
+        public static int method=0x7f05000e;
+        public static int popup_at=0x7f05000f;
+        public static int popup_comma=0x7f050010;
+        public static int popup_domains=0x7f050011;
+        public static int popup_mic=0x7f050012;
+        public static int popup_punctuation=0x7f050013;
+        public static int popup_slash=0x7f050014;
+        public static int popup_smileys=0x7f050015;
+        public static int prefs=0x7f050016;
+        public static int prefs_for_debug=0x7f050017;
     }
     public static final class styleable {
         /** Attributes that can be used with a LatinKeyboardBaseView.

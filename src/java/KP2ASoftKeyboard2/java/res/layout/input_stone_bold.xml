@@ -20,7 +20,7 @@
 
 <keepass2android.softkeyboard.LatinKeyboardView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:latin="http://schemas.android.com/apk/res/keepass2android.softkeyboard"
+        xmlns:latin="http://schemas.android.com/apk/res-auto"
         android:id="@+id/LatinkeyboardBaseView"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
