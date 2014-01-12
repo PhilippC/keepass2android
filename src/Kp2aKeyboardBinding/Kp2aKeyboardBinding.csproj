@@ -51,9 +51,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\java\KP2ASoftKeyboard\project.zip">
+    <LibraryProjectZip Include="..\java\KP2ASoftKeyboard2\java\project.zip">
       <Link>project.zip</Link>
     </LibraryProjectZip>
+    <EmbeddedNativeLibrary Include="..\java\KP2ASoftKeyboard2\native\libs\armeabi-v7a\libjni_latinime.so">
+      <Link>libs\armeabi-v7a\libjni_latinime.so</Link>
+    </EmbeddedNativeLibrary>
+    <EmbeddedNativeLibrary Include="..\java\KP2ASoftKeyboard2\native\libs\armeabi\libjni_latinime.so">
+      <Link>libs\armeabi\libjni_latinime.so</Link>
+    </EmbeddedNativeLibrary>
     <None Include="Additions\AboutAdditions.txt" />
     <None Include="Jars\AboutJars.txt" />
   </ItemGroup>
@@ -62,5 +68,6 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
 </Project>

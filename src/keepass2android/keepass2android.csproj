@@ -28,9 +28,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;INCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -376,7 +376,9 @@
     <AndroidResource Include="Resources\drawable\ic99_blank.png" />
     <AndroidResource Include="Resources\drawable\ic_launcher_folder_small.png" />
     <AndroidResource Include="Resources\drawable\notify.png" />
-    <AndroidResource Include="Resources\layout\about.xml" />
+    <AndroidResource Include="Resources\layout\about.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\database_settings.xml" />
     <AndroidResource Include="Resources\layout\entry_edit.xml" />
     <AndroidResource Include="Resources\layout\entry_list_entry.xml" />
