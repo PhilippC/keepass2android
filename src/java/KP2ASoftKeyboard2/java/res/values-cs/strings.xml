@@ -20,8 +20,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="english_ime_name" msgid="7252517407088836577">"Klávesnice Android"</string>
-    <string name="english_ime_settings" msgid="6661589557206947774">"Nastavení klávesnice Android"</string>
+    <string name="english_ime_name" msgid="7252517407088836577">"Klávesnice Keepass2Android"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Nastavení klávesnice Keepass2Android"</string>
     <string name="english_ime_input_options" msgid="3909945612939668554">"Možnosti zadávání textu a dat"</string>
     <string name="vibrate_on_keypress" msgid="5258079494276955460">"Při stisku klávesy vibrovat"</string>
     <string name="sound_on_keypress" msgid="6093592297198243644">"Zvuk při stisku klávesy"</string>

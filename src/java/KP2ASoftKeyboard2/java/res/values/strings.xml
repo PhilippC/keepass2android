@@ -19,7 +19,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
-    <string name="english_ime_name">Android keyboard</string>
+    <string name="english_ime_name">Keepass2Android keyboard</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
     <string name="english_ime_settings">Android keyboard settings</string>
     <!-- Title for Latin keyboard input options dialog -->

@@ -20,8 +20,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="english_ime_name" msgid="7252517407088836577">"Android 键盘"</string>
-    <string name="english_ime_settings" msgid="6661589557206947774">"Android 键盘设置"</string>
+    <string name="english_ime_name" msgid="7252517407088836577">"Keepass2Android 键盘"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Keepass2Android 键盘设置"</string>
     <string name="english_ime_input_options" msgid="3909945612939668554">"输入选项"</string>
     <string name="vibrate_on_keypress" msgid="5258079494276955460">"按键时振动"</string>
     <string name="sound_on_keypress" msgid="6093592297198243644">"按键时播放音效"</string>

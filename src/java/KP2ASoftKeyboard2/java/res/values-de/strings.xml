@@ -20,8 +20,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="english_ime_name" msgid="7252517407088836577">"Android-Tastatur"</string>
-    <string name="english_ime_settings" msgid="6661589557206947774">"Android-Tastatureinstellungen"</string>
+    <string name="english_ime_name" msgid="7252517407088836577">"Keepass2Android-Tastatur"</string>
+    <string name="english_ime_settings" msgid="6661589557206947774">"Keepass2Android-Tastatureinstellungen"</string>
     <string name="english_ime_input_options" msgid="3909945612939668554">"Eingabeoptionen"</string>
     <string name="vibrate_on_keypress" msgid="5258079494276955460">"Vibrieren b. Tastendruck"</string>
     <string name="sound_on_keypress" msgid="6093592297198243644">"Ton bei Tastendruck"</string>
