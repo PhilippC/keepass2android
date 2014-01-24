@@ -105,6 +105,7 @@ public class Suggest implements Dictionary.WordCallback {
 
     public Suggest(Context context, int[] dictionaryResId) {
         mMainDict = new BinaryDictionary(context, dictionaryResId, DIC_MAIN);
+        Log.d("KP2AK", "main size: " + mMainDict.getSize()+ " " +dictionaryResId[0]);
         initPool();
     }
 

@@ -17,6 +17,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/english_ime_settings"
         android:key="english_ime_settings">
+        
+    
 
     <CheckBoxPreference
             android:key="vibrate_on"
@@ -52,22 +54,61 @@
             android:defaultValue="true"
             />
 
-    <ListPreference
-            android:key="settings_key"
-            android:title="@string/prefs_settings_key"
-            android:persistent="true"
-            android:entryValues="@array/settings_key_modes_values"
-            android:entries="@array/settings_key_modes"
-            android:defaultValue="@string/settings_key_mode_auto"
+        
+    <PreferenceCategory
+        android:title="@string/kp2a_prefs"
+            android:key="kp2a_settings">
+       <CheckBoxPreference
+            android:key="kp2a_auto_fill"
+            android:title="@string/kp2a_auto_fill"
+            android:summary="@string/kp2a_auto_fill_summary"
+            android:persistent="true" 
+            android:defaultValue="true"
             />
-
-    <PreferenceScreen
-            android:title="@string/language_selection_title"
-            android:summary="@string/language_selection_summary">
-        <intent
-                android:action="keepass2android.softkeyboard.INPUT_LANGUAGE_SELECTION"/>
-    </PreferenceScreen>
-
+       <CheckBoxPreference
+            android:key="kp2a_remember_auto_fill"
+            android:title="@string/kp2a_remember_auto_fill"
+            android:summary="@string/kp2a_remember_auto_fill_summary"
+            android:persistent="true" 
+            android:defaultValue="true"
+            android:dependency="kp2a_auto_fill"
+            />
+       <CheckBoxPreference
+            android:key="kp2a_simple_keyboard"
+            android:title="@string/kp2a_simple_keyboard"
+            android:summary="@string/kp2a_simple_keyboard_summary"
+            android:persistent="true" 
+            android:defaultValue="true"
+            />
+       
+       <CheckBoxPreference
+            android:key="kp2a_lock_on_sendgodone"
+            android:title="@string/kp2a_lock_on_sendgodone"
+            android:summary="@string/kp2a_lock_on_sendgodone_summary"
+            android:persistent="true" 
+            android:defaultValue="false"
+            android:dependency="kp2a_simple_keyboard"
+            />
+       
+       <CheckBoxPreference
+            android:key="kp2a_switch_on_sendgodone"
+            android:title="@string/kp2a_switch_on_sendgodone"
+            android:summary="@string/kp2a_switch_on_sendgodone_summary"
+            android:persistent="true" 
+            android:defaultValue="false"
+            android:dependency="kp2a_simple_keyboard"
+            />
+       
+       <CheckBoxPreference
+            android:key="kp2a_switch_rooted"
+            android:title="@string/kp2a_switch_rooted"
+            android:summary="@string/kp2a_switch_rooted_summary"
+            android:persistent="true" 
+            android:defaultValue="false"
+            />
+    </PreferenceCategory>
+    
+    
     <PreferenceCategory
             android:title="@string/prediction_category"
             android:key="prediction_settings">

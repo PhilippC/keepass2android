@@ -58,7 +58,6 @@ import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import keepass2android.kbbridge.StringForTyping;
 import keepass2android.softkeyboard.LatinIMEUtil.RingCharBuffer;
@@ -81,7 +80,10 @@ import java.util.Map;
 public class KP2AKeyboard extends InputMethodService
         implements LatinKeyboardBaseView.OnKeyboardActionListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final String TAG = "LatinIME";
+    private static final String KEEPASS2ANDROID_KEYBOARD_CLEARED = "keepass2android.keyboard_cleared";
+	private static final String KP2A_SAVED_FIELD_HINTS = "savedFieldHints";
+	private static final String PREF_KP2A_REMEMBER_AUTO_FILL = "kp2a_remember_auto_fill";
+	private static final String TAG = "LatinIME";
     private static final boolean PERF_DEBUG = false;
     static final boolean DEBUG = false;
     static final boolean TRACE = false;
@@ -163,6 +165,15 @@ public class KP2AKeyboard extends InputMethodService
     private boolean mPopupOn;
     private boolean mAutoCap;
     private boolean mQuickFixes;
+    private boolean mKp2aAutoFillOn;
+    private boolean mKp2aRememberAutoFill;
+    private boolean mKp2aEnableSimpleKeyboard;
+    private boolean mKp2aSwitchKeyboardOnSendGoDone;
+    private boolean mKp2aLockOnSendGoDone;
+    private boolean mKp2aSwitchRooted;
+    private boolean mIsSendGoDone;
+    
+    
     private boolean mShowSuggestions;
     private boolean mIsShowingHint;
     private int     mCorrectionMode;
@@ -199,6 +210,10 @@ public class KP2AKeyboard extends InputMethodService
     // Keeps track of most recently inserted text (multi-character key) for reverting
     private CharSequence mEnteredText;
     private boolean mRefreshKeyboardRequired;
+    
+    //KP2A
+    private boolean mShowKp2aKeyboard; //true if the user wants to see/should see the Kp2a keyboard
+    private boolean mHadKp2aData; //true if we already had data available in the last session
 
     // For each word, a list of potential replacements, usually from voice.
     private Map<String, List<CharSequence>> mWordToSuggestions =
@@ -272,6 +287,22 @@ public class KP2AKeyboard extends InputMethodService
             }
         }
     };
+	private ClearKeyboardBroadcastReceiver mClearKeyboardReceiver;
+    
+    public class ClearKeyboardBroadcastReceiver extends BroadcastReceiver {
+    	  @Override
+    	  public void onReceive(Context context, Intent intent) {
+    	    
+    	    mShowKp2aKeyboard = false;
+    	    
+    	    updateKeyboardMode(getCurrentInputEditorInfo());
+    	    
+    	  }
+
+    	} 
+
+
+	
 
     @Override
     public void onCreate() {
@@ -314,14 +345,23 @@ public class KP2AKeyboard extends InputMethodService
         registerReceiver(mReceiver, filter);
        
         prefs.registerOnSharedPreferenceChangeListener(this);
+        
+        //check if we have KP2A data available:
+        mHadKp2aData = mShowKp2aKeyboard = keepass2android.kbbridge.KeyboardData.hasData();
+        
+        mClearKeyboardReceiver = new ClearKeyboardBroadcastReceiver();
+        registerReceiver(mClearKeyboardReceiver, new IntentFilter(KEEPASS2ANDROID_KEYBOARD_CLEARED));
+        
     }
 
     /**
      * Loads a dictionary or multiple separated dictionary
+     * @param ctx 
      * @return returns array of dictionary resource ids
      */
-    /* package */ static int[] getDictionary(Resources res) {
+    /* package */ static int[] getDictionary(Resources res, Context ctx) {
         String packageName = KP2AKeyboard.class.getPackage().getName();
+        Log.d("KP2AK", "package of keyboard " + packageName);
         XmlResourceParser xrp = res.getXml(R.xml.dictionary);
         ArrayList<Integer> dictionaries = new ArrayList<Integer>();
 
@@ -333,7 +373,9 @@ public class KP2AKeyboard extends InputMethodService
                     if (tag != null) {
                         if (tag.equals("part")) {
                             String dictFileName = xrp.getAttributeValue(null, "name");
-                            dictionaries.add(res.getIdentifier(dictFileName, "raw", packageName));
+                            int dictId = res.getIdentifier(dictFileName, "raw", ctx.getPackageName());
+                            Log.d("KP2AK", "Adding " + packageName+"/"+dictFileName+"/"+dictId);
+                            dictionaries.add(dictId);
                         }
                     }
                 }
@@ -351,6 +393,8 @@ public class KP2AKeyboard extends InputMethodService
         for (int i = 0; i < count; i++) {
             dict[i] = dictionaries.get(i);
         }
+        
+        Log.d("KP2AK", "num dicts: " + count);
 
         return dict;
     }
@@ -369,7 +413,7 @@ public class KP2AKeyboard extends InputMethodService
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         mQuickFixes = sp.getBoolean(PREF_QUICK_FIXES, true);
 
-        int[] dictionaries = getDictionary(orig);
+        int[] dictionaries = getDictionary(orig, this);
         mSuggest = new Suggest(this, dictionaries);
         updateAutoTextEnabled(saveLocale);
         //if (mUserDictionary != null) mUserDictionary.close();
@@ -480,89 +524,16 @@ public class KP2AKeyboard extends InputMethodService
         mKeyboardSwitcher.makeKeyboards(false);
 
         TextEntryState.newSession(this);
-
-        int variation = attribute.inputType & EditorInfo.TYPE_MASK_VARIATION;
-        mInputTypeNoAutoCorrect = false;
-        mPredictionOn = false;
-        mCompletionOn = false;
-        mCompletions = null;
-        mCapsLock = false;
-        mEnteredText = null;
-
-        switch (attribute.inputType & EditorInfo.TYPE_MASK_CLASS) {
-            case EditorInfo.TYPE_CLASS_NUMBER:
-            case EditorInfo.TYPE_CLASS_DATETIME:
-                // fall through
-                // NOTE: For now, we use the phone keyboard for NUMBER and DATETIME until we get
-                // a dedicated number entry keypad.
-                // TODO: Use a dedicated number entry keypad here when we get one.
-            case EditorInfo.TYPE_CLASS_PHONE:
-                mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_PHONE,
-                        attribute.imeOptions);
-                break;
-            case EditorInfo.TYPE_CLASS_TEXT:
-                mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_TEXT,
-                        attribute.imeOptions);
-                //startPrediction();
-                mPredictionOn = true;
-                // Make sure that passwords are not displayed in candidate view
-                if (variation == EditorInfo.TYPE_TEXT_VARIATION_PASSWORD ||
-                        variation == EditorInfo.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD ) {
-                    mPredictionOn = false;
-                }
-                if (variation == EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                        || variation == EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME) {
-                    mAutoSpace = false;
-                } else {
-                    mAutoSpace = true;
-                }
-                if (variation == EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS) {
-                    mPredictionOn = false;
-                    mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_EMAIL,
-                            attribute.imeOptions);
-                } else if (variation == EditorInfo.TYPE_TEXT_VARIATION_URI) {
-                    mPredictionOn = false;
-                    mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_URL,
-                            attribute.imeOptions);
-                } else if (variation == EditorInfo.TYPE_TEXT_VARIATION_SHORT_MESSAGE) {
-                    mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_IM,
-                            attribute.imeOptions);
-                } else if (variation == EditorInfo.TYPE_TEXT_VARIATION_FILTER) {
-                    mPredictionOn = false;
-                } else if (variation == EditorInfo.TYPE_TEXT_VARIATION_WEB_EDIT_TEXT) {
-                    mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_WEB,
-                            attribute.imeOptions);
-                    // If it's a browser edit field and auto correct is not ON explicitly, then
-                    // disable auto correction, but keep suggestions on.
-                    if ((attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_AUTO_CORRECT) == 0) {
-                        mInputTypeNoAutoCorrect = true;
-                    }
-                }
-
-                // If NO_SUGGESTIONS is set, don't do prediction.
-                if ((attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_NO_SUGGESTIONS) != 0) {
-                    mPredictionOn = false;
-                    mInputTypeNoAutoCorrect = true;
-                }
-                // If it's not multiline and the autoCorrect flag is not set, then don't correct
-                if ((attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_AUTO_CORRECT) == 0 &&
-                        (attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE) == 0) {
-                    mInputTypeNoAutoCorrect = true;
-                }
-                if ((attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_AUTO_COMPLETE) != 0) {
-                    mPredictionOn = false;
-                    mCompletionOn = isFullscreenMode();
-                }
-                break;
-            default:
-                mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_TEXT,
-                        attribute.imeOptions);
-        }
+        
+        updateKeyboardMode(attribute);
         inputView.closing();
         mComposing.setLength(0);
         mPredicting = false;
         mDeleteCount = 0;
         mJustAddedAutoSpace = false;
+        mIsSendGoDone = ((attribute.imeOptions&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) == EditorInfo.IME_ACTION_GO)
+        		|| ((attribute.imeOptions&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) == EditorInfo.IME_ACTION_DONE)
+        		|| ((attribute.imeOptions&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) == EditorInfo.IME_ACTION_SEND);
         loadSettings();
         updateShiftKeyState(attribute);
 
@@ -572,6 +543,7 @@ public class KP2AKeyboard extends InputMethodService
 
         // If the dictionary is not big enough, don't auto correct
         mHasDictionary = mSuggest.hasMainDictionary();
+        Log.d("KP2AK", "has main dict: " + mHasDictionary);
 
         updateCorrectionMode();
 
@@ -586,7 +558,125 @@ public class KP2AKeyboard extends InputMethodService
         if (TRACE) Debug.startMethodTracing("/data/trace/latinime");
     }
 
+	private void updateKeyboardMode(EditorInfo attribute) {
+		
+		
+        mInputTypeNoAutoCorrect = false;
+        mPredictionOn = false;
+        mCompletionOn = false;
+        mCompletions = null;
+        mCapsLock = false;
+        mEnteredText = null;
+        
+		
+		int variation = attribute.inputType & EditorInfo.TYPE_MASK_VARIATION;
+        
+        if (keepass2android.kbbridge.KeyboardData.hasData() != 
+        		mHadKp2aData)
+        {
+        	if (keepass2android.kbbridge.KeyboardData.hasData())
+        	{
+        		//new data available -> show kp2a keyboard:
+        		mShowKp2aKeyboard = true;
+        	}
+        	else
+        	{
+        		//data no longer available. hide kp2a keyboard:
+        		mShowKp2aKeyboard = false;
+        	}
+        	
+        	mHadKp2aData = keepass2android.kbbridge.KeyboardData.hasData();
+        }
+        
+        Log.d("KP2AK", "show: " + mShowKp2aKeyboard);
+        if (mShowKp2aKeyboard)
+        {
+        	mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_KP2A, attribute.imeOptions);
+            mPredictionOn = false;
+            mPredicting = false;
+            mCompletionOn = false;
+            mInputTypeNoAutoCorrect = true;
+        }
+        else
+        {
+
+	        switch (attribute.inputType & EditorInfo.TYPE_MASK_CLASS) {
+	            case EditorInfo.TYPE_CLASS_NUMBER:
+	            case EditorInfo.TYPE_CLASS_DATETIME:
+	                // fall through
+	                // NOTE: For now, we use the phone keyboard for NUMBER and DATETIME until we get
+	                // a dedicated number entry keypad.
+	                // TODO: Use a dedicated number entry keypad here when we get one.
+	            case EditorInfo.TYPE_CLASS_PHONE:
+	                mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_PHONE,
+	                        attribute.imeOptions);
+	                break;
+	            case EditorInfo.TYPE_CLASS_TEXT:
+	                mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_TEXT,
+	                        attribute.imeOptions);
+	                //startPrediction();
+	                mPredictionOn = true;
+	                // Make sure that passwords are not displayed in candidate view
+	                if (variation == EditorInfo.TYPE_TEXT_VARIATION_PASSWORD ||
+	                        variation == EditorInfo.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD ) {
+	                    mPredictionOn = false;
+	                }
+	                if (variation == EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+	                        || variation == EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME) {
+	                    mAutoSpace = false;
+	                } else {
+	                    mAutoSpace = true;
+	                }
+	                if (variation == EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS) {
+	                    mPredictionOn = false;
+	                    mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_EMAIL,
+	                            attribute.imeOptions);
+	                } else if (variation == EditorInfo.TYPE_TEXT_VARIATION_URI) {
+	                    mPredictionOn = false;
+	                    mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_URL,
+	                            attribute.imeOptions);
+	                } else if (variation == EditorInfo.TYPE_TEXT_VARIATION_SHORT_MESSAGE) {
+	                    mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_IM,
+	                            attribute.imeOptions);
+	                } else if (variation == EditorInfo.TYPE_TEXT_VARIATION_FILTER) {
+	                    mPredictionOn = false;
+	                } else if (variation == EditorInfo.TYPE_TEXT_VARIATION_WEB_EDIT_TEXT) {
+	                    mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_WEB,
+	                            attribute.imeOptions);
+	                    // If it's a browser edit field and auto correct is not ON explicitly, then
+	                    // disable auto correction, but keep suggestions on.
+	                    if ((attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_AUTO_CORRECT) == 0) {
+	                        mInputTypeNoAutoCorrect = true;
+	                    }
+	                }
+	
+	                // If NO_SUGGESTIONS is set, don't do prediction.
+	                if ((attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_NO_SUGGESTIONS) != 0) {
+	                    mPredictionOn = false;
+	                    mInputTypeNoAutoCorrect = true;
+	                }
+	                // If it's not multiline and the autoCorrect flag is not set, then don't correct
+	                if ((attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_AUTO_CORRECT) == 0 &&
+	                        (attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE) == 0) {
+	                    mInputTypeNoAutoCorrect = true;
+	                }
+	                if ((attribute.inputType & EditorInfo.TYPE_TEXT_FLAG_AUTO_COMPLETE) != 0) {
+	                    mPredictionOn = false;
+	                    mCompletionOn = isFullscreenMode();
+	                }
+	                break;
+	            default:
+	                mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_TEXT,
+	                        attribute.imeOptions);
+	        }
+        }
+	}
+
     private boolean tryKp2aAutoFill(final EditorInfo editorInfo) {
+    	
+    	if (!mKp2aAutoFillOn)
+    		return false;
+    	
     	//auto fill in?		
 		InputConnection ic = getCurrentInputConnection();
         if (ic == null) return false;
@@ -604,38 +694,20 @@ public class KP2AKeyboard extends InputMethodService
 		boolean hasTextInField = (et != null) && (!TextUtils.isEmpty(et.text));
 		if (!hasTextInField) //only auto-fill if target field is empty
 		{
-			//try to look up saved field ids:
-			if (editorInfo.fieldId > -1)
-			{
-				SharedPreferences prefs = getApplicationContext().getSharedPreferences("savedFieldIds", MODE_PRIVATE);
-				
-				String key = editorInfo.packageName+"/"+editorInfo.fieldId;
-				Log.d("KP2AK", "looking up saved field for "+key);
-				
-				String fieldKey = prefs.getString(key, "");
-				
-				if ("".equals(fieldKey) == false)
-				{
-					Log.d("KP2AK","Found field "+fieldKey);
-					if (commitTextForKey(editorInfo, fieldKey))
-						return true;
-				}
-			}
-
 			//try to look up saved field hint:
-			if ((editorInfo.hintText != null) && (editorInfo.hintText.length() > 0))
+			if (!TextUtils.isEmpty(editorInfo.hintText))
 			{
-				SharedPreferences prefs = getApplicationContext().getSharedPreferences("savedFieldHints", MODE_PRIVATE);
+				SharedPreferences prefs = getApplicationContext().getSharedPreferences(KP2A_SAVED_FIELD_HINTS, MODE_PRIVATE);
 				
 				String key = editorInfo.packageName+"/"+keepass2android.kbbridge.KeyboardData.entryId+"/"+editorInfo.hintText;
 				Log.d("KP2AK", "looking up saved field hint for "+key);
 				
-				String displayName = prefs.getString(key, "");
+				String savedKey = prefs.getString(key, "");
 				
-				if ("".equals(displayName) == false)
+				if ("".equals(savedKey) == false)
 				{
-					Log.d("KP2AK","Found field "+displayName);
-					if (commitTextForKey(editorInfo, displayName))
+					Log.d("KP2AK","Found field "+savedKey);
+					if (commitTextForKey(editorInfo, savedKey))
 						return true;
 				}
 			}
@@ -895,6 +967,11 @@ public class KP2AKeyboard extends InputMethodService
 
     @Override
     public boolean onEvaluateFullscreenMode() {
+    	
+    	//no full screen mode if only simple Kp2aKeyboard is shown
+    	if (mShowKp2aKeyboard)
+    		return false;
+    	
         DisplayMetrics dm = getResources().getDisplayMetrics();
         float displayHeight = dm.heightPixels;
         // If the display is more than X inches high, don't go to fullscreen mode
@@ -1090,11 +1167,7 @@ public class KP2AKeyboard extends InputMethodService
 
     private void onOptionKeyPressed() {
         if (!isShowingOptionDialog()) {
-            if (LatinIMEUtil.hasMultipleEnabledIMEs(this)) {
-                showOptionsMenu();
-            } else {
-                launchSettings();
-            }
+            launchSettings();
         }
     }
 
@@ -1149,6 +1222,21 @@ public class KP2AKeyboard extends InputMethodService
             case LatinKeyboardView.KEYCODE_KP2A:
                 onKp2aKeyPressed();
                 break;
+            case LatinKeyboardView.KEYCODE_KP2A_USER:
+                onKp2aUserKeyPressed();
+                break;
+            case LatinKeyboardView.KEYCODE_KP2A_PASSWORD:
+                onKp2aPasswordKeyPressed();
+                break;
+            case LatinKeyboardView.KEYCODE_KP2A_ALPHA:
+                onKp2aAlphaKeyPressed();
+                break;
+            case LatinKeyboardView.KEYCODE_KP2A_SWITCH:
+                onKp2aSwitchKeyboardPressed();
+                break;
+            case LatinKeyboardView.KEYCODE_KP2A_LOCK:
+                onKp2aLockKeyPressed();
+                break;
             case LatinKeyboardView.KEYCODE_OPTIONS_LONGPRESS:
                 onOptionKeyLongPressed();
                 break;
@@ -1161,6 +1249,9 @@ public class KP2AKeyboard extends InputMethodService
             case 9 /*Tab*/:
                 sendDownUpKeyEvents(KeyEvent.KEYCODE_TAB);
                 break;
+            case KEYCODE_ENTER:
+            	onEnterKey();
+            	//fall through
             default:
                 if (primaryCode != KEYCODE_ENTER) {
                     mJustAddedAutoSpace = false;
@@ -1180,8 +1271,76 @@ public class KP2AKeyboard extends InputMethodService
         mEnteredText = null;
     }
 
-    private void onKp2aKeyPressed() {
-    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    private void onEnterKey() {
+		if ((mIsSendGoDone) && (mKeyboardSwitcher.getKeyboardMode() == KeyboardSwitcher.MODE_KP2A))
+		{
+			if (mKp2aSwitchKeyboardOnSendGoDone)
+			{
+				//TODO auto switch
+				showInputMethodPicker();
+			}
+			if (mKp2aLockOnSendGoDone)
+			{
+				onKp2aLockKeyPressed();
+			}
+		}
+		
+	}
+
+	private void onKp2aLockKeyPressed() {
+    	
+		sendBroadcast(new Intent("keepass2android.lock_database"));
+		
+	}
+
+	private void onKp2aSwitchKeyboardPressed() {
+
+    	showInputMethodPicker();
+		
+	}
+
+	private void onKp2aAlphaKeyPressed() {
+		mShowKp2aKeyboard = false;		
+		updateKeyboardMode(getCurrentInputEditorInfo());
+	}
+
+	private void onKp2aPasswordKeyPressed() {
+		commitStringForTyping(findStringForTyping("Password"));
+	}
+
+	private StringForTyping findStringForTyping(String key) {
+		
+		for (StringForTyping s: keepass2android.kbbridge.KeyboardData.availableFields)
+		{
+			if (key.equals(s.key))
+			{
+				return s;
+			}
+		}
+		//found nothing: return empty struct:
+		return new StringForTyping();
+	}
+
+	private void onKp2aUserKeyPressed() {
+		commitStringForTyping(findStringForTyping("UserName"));
+		
+	}
+
+	private void onKp2aKeyPressed() {
+		if ((mKeyboardSwitcher.getKeyboardMode() == KeyboardSwitcher.MODE_KP2A) 
+				|| (!mKp2aEnableSimpleKeyboard)
+				|| (!keepass2android.kbbridge.KeyboardData.hasData()))
+		{
+			showKp2aDialog();
+			return;
+		}
+		mShowKp2aKeyboard = true;
+		updateKeyboardMode(getCurrentInputEditorInfo());
+		setCandidatesViewShown(false);		
+	}
+
+	private void showKp2aDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		String title = "Keepass2Android";
 		List<StringForTyping> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
 		
@@ -1264,22 +1423,15 @@ public class KP2AKeyboard extends InputMethodService
 								startActivity(startKp2aIntent);
 							} else Log.w("KP2AK", "didn't find intent for "+packageName);
 						} else {
-															
-							if (attribute.fieldId > 0)
-							{
-								SharedPreferences savedFieldIds = getApplicationContext().getSharedPreferences("savedFieldIds", MODE_PRIVATE);
-								Editor edit = savedFieldIds.edit();
-								
-								edit.putString(getCurrentInputEditorInfo().packageName+"/"+getCurrentInputEditorInfo().fieldId, items.get(item).key);
-								edit.commit();	
-							}
 							
-							Log.d("KP2AK", "committing text for " + items.get(item).key);
-							commitKp2aString(items.get(item).value, getCurrentInputEditorInfo());
+							StringForTyping theItem = items.get(item);
+							
+							commitStringForTyping(theItem);
 							
 						}
 					}
-				});
+
+									});
 
 		builder.setNegativeButton(android.R.string.cancel,
 				new DialogInterface.OnClickListener() {
@@ -1299,13 +1451,36 @@ public class KP2AKeyboard extends InputMethodService
 		window.addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
 
 		dialog.show();
-
+	}
+	private void commitStringForTyping(StringForTyping theItem) {
 		
+		if ((mKp2aRememberAutoFill) && (!TextUtils.isEmpty(getCurrentInputEditorInfo().hintText)))
+		{
+			EditorInfo editorInfo = getCurrentInputEditorInfo();
+			String key = editorInfo.packageName+"/"+keepass2android.kbbridge.KeyboardData.entryId+"/"+editorInfo.hintText;
+			SharedPreferences prefs = getApplicationContext().getSharedPreferences(KP2A_SAVED_FIELD_HINTS, MODE_PRIVATE);
+			
+			Editor edit = prefs.edit();
+			
+			edit.putString(key, theItem.key);
+			edit.commit();	
+		}
+		
+		
+										
+		Log.d("KP2AK", "committing text for " + theItem.key);
+		commitKp2aString(theItem.value, getCurrentInputEditorInfo());
 	}
 
+	
 	public void onText(CharSequence text) {
         InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
+        if (text == null)
+    	{
+        	Log.e("KP2AK", "text = null!");
+        	return;
+    	}
         abortCorrection(false);
         ic.beginBatchEdit();
         if (mPredicting) {
@@ -2057,6 +2232,18 @@ public class KP2AKeyboard extends InputMethodService
             mReCorrectionEnabled = sharedPreferences.getBoolean(PREF_RECORRECTION_ENABLED,
                     getResources().getBoolean(R.bool.default_recorrection_enabled));
         }
+        if (PREF_KP2A_REMEMBER_AUTO_FILL.equals(key))
+        {
+        	if (sharedPreferences.getBoolean(key, true) == false)
+        	{
+        		Log.d("KP2AK", "clearing saved field hints");
+        		SharedPreferences savedHints = getApplicationContext().getSharedPreferences(KP2A_SAVED_FIELD_HINTS, MODE_PRIVATE);
+        		Editor edit = savedHints.edit();
+    			edit.clear();
+    			edit.commit();
+				
+        	}
+        }
     }
 
     public void swipeRight() {
@@ -2235,6 +2422,12 @@ public class KP2AKeyboard extends InputMethodService
         mAutoCap = sp.getBoolean(PREF_AUTO_CAP, true);
         mQuickFixes = sp.getBoolean(PREF_QUICK_FIXES, true);
         
+        mKp2aAutoFillOn = sp.getBoolean("kp2a_auto_fill", true);
+        mKp2aRememberAutoFill = sp.getBoolean(PREF_KP2A_REMEMBER_AUTO_FILL, true);
+        mKp2aEnableSimpleKeyboard = sp.getBoolean("kp2a_simple_keyboard", true);
+        mKp2aSwitchKeyboardOnSendGoDone = sp.getBoolean("kp2a_switch_on_sendgodone", false);        
+        mKp2aLockOnSendGoDone = sp.getBoolean("kp2a_lock_on_sendgodone", false);
+        mKp2aSwitchRooted = sp.getBoolean("kp2a_switch_rooted", false);
        
         mShowSuggestions = sp.getBoolean(PREF_SHOW_SUGGESTIONS, true);
 

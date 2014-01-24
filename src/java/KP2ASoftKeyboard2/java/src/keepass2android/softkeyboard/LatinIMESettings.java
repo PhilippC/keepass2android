@@ -71,7 +71,7 @@ public class LatinIMESettings extends PreferenceActivity
                     .removePreference(mQuickFixes);
         }
         
-        updateSettingsKeySummary();
+        
     }
 
     @Override
@@ -83,15 +83,9 @@ public class LatinIMESettings extends PreferenceActivity
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
         (new BackupManager(this)).dataChanged();
-        // If turning on voice input, show dialog
-           updateSettingsKeySummary();
+           
     }
 
-    private void updateSettingsKeySummary() {
-        mSettingsKeyPreference.setSummary(
-                getResources().getStringArray(R.array.settings_key_modes)
-                [mSettingsKeyPreference.findIndexOfValue(mSettingsKeyPreference.getValue())]);
-    }
 
 
     @Override

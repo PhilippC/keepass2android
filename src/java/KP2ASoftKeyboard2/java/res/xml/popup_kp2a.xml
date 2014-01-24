@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:keyWidth="10%p"
+    android:horizontalGap="0px"
+    android:verticalGap="0px"
+    android:keyHeight="@dimen/popup_key_height"
+>
+    <Row
+        android:rowEdgeFlags="top|bottom"
+    >
+        <Key
+            android:codes="@integer/key_settings"
+            android:keyIcon="@drawable/sym_keyboard_settings"
+            android:keyEdgeFlags="left" />
+        <Key android:codes="@integer/key_kp2a_switch" 
+            android:keyIcon="@drawable/sym_keyboard" 
+            android:keyEdgeFlags="right" />
+    </Row>
+</Keyboard>

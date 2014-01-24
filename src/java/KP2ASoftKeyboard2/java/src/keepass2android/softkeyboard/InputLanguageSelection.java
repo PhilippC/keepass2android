@@ -16,6 +16,7 @@
 
 package keepass2android.softkeyboard;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
@@ -88,7 +89,7 @@ public class InputLanguageSelection extends PreferenceActivity {
             pref.setTitle(LanguageSwitcher.toTitleCase(locale.getDisplayName(locale), locale));
             boolean checked = isLocaleIn(locale, languageList);
             pref.setChecked(checked);
-            if (hasDictionary(locale)) {
+            if (hasDictionary(locale, this)) {
                 pref.setSummary(R.string.has_dictionary);
             }
             parent.addPreference(pref);
@@ -103,7 +104,7 @@ public class InputLanguageSelection extends PreferenceActivity {
         return false;
     }
 
-    private boolean hasDictionary(Locale locale) {
+    private boolean hasDictionary(Locale locale, Context ctx) {
         Resources res = getResources();
         Configuration conf = res.getConfiguration();
         Locale saveLocale = conf.locale;
@@ -111,7 +112,7 @@ public class InputLanguageSelection extends PreferenceActivity {
         conf.locale = locale;
         res.updateConfiguration(conf, res.getDisplayMetrics());
 
-        int[] dictionaries = KP2AKeyboard.getDictionary(res);
+        int[] dictionaries = KP2AKeyboard.getDictionary(res, ctx);
         BinaryDictionary bd = new BinaryDictionary(this, dictionaries, Suggest.DIC_MAIN);
 
         // Is the dictionary larger than a placeholder? Arbitrarily chose a lower limit of

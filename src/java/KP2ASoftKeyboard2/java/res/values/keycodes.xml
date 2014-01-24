@@ -30,4 +30,11 @@
     <integer name="key_voice">-102</integer>
     <integer name="key_f1">-103</integer>
     <integer name="key_kp2a">-200</integer>
+    <integer name="key_kp2a_user">-201</integer>
+    <integer name="key_kp2a_pass">-202</integer>
+    <integer name="key_kp2a_alpha">-203</integer>
+    <integer name="key_kp2a_switch">-204</integer>
+    <integer name="key_kp2a_lock">-205</integer>
+    
+    
 </resources>

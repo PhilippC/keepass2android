@@ -74,7 +74,7 @@ public class BinaryDictionary extends Dictionary {
      */
     public BinaryDictionary(Context context, int[] resId, int dicTypeId) {
         if (resId != null && resId.length > 0 && resId[0] != 0) {
-            loadDictionary(context, resId);
+        	loadDictionary(context, resId);
         }
         mDicTypeId = dicTypeId;
     }

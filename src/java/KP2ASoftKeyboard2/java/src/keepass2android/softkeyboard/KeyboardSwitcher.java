@@ -37,6 +37,7 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
     public static final int MODE_EMAIL = 5;
     public static final int MODE_IM = 6;
     public static final int MODE_WEB = 7;
+    public static final int MODE_KP2A = 8;
 
     // Main keyboard layouts without the settings key
     public static final int KEYBOARDMODE_NORMAL = R.id.mode_normal;
@@ -81,6 +82,8 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
     private static final int[] KBD_SYMBOLS_SHIFT = new int[] {
         R.xml.kbd_symbols_shift, R.xml.kbd_symbols_shift_black};
     private static final int[] KBD_QWERTY = new int[] {R.xml.kbd_qwerty, R.xml.kbd_qwerty_black};
+    
+    private static final int[] KBD_KP2A = new int[] {R.xml.kbd_kp2a, R.xml.kbd_kp2a_black};
 
     private LatinKeyboardView mInputView;
     private static final int[] ALPHABET_MODES = {
@@ -303,8 +306,6 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
 
     private KeyboardId getKeyboardId(int mode, int imeOptions, boolean isSymbols) {
         int charColorId = getCharColorId();
-        // TODO: generalize for any KeyboardId
-        int keyboardRowsResId = KBD_QWERTY[charColorId];
         if (isSymbols) {
             if (mode == MODE_PHONE) {
                 return new KeyboardId(KBD_PHONE_SYMBOLS[charColorId]);
@@ -314,8 +315,13 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
                         false);
             }
         }
+        // TODO: generalize for any KeyboardId
+        int keyboardRowsResId = KBD_QWERTY[charColorId];
+
         switch (mode) {
-            case MODE_NONE:
+    		case MODE_KP2A:
+    			return new KeyboardId(KBD_KP2A[charColorId]);
+    		case MODE_NONE:
                 LatinImeLogger.logOnWarning(
                         "getKeyboardId:" + mode + "," + imeOptions + "," + isSymbols);
                 /* fall through */
