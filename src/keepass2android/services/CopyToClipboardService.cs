@@ -137,7 +137,7 @@ namespace keepass2android
 				_notificationManager.Cancel(NotifyKeyboard);
 
 				_numElementsToWaitFor= 0;
-				clearKeyboard();
+				ClearKeyboard(true);
 			}
 
 			Kp2aLog.Log("Destroyed Show-Notification-Receiver.");
@@ -168,7 +168,7 @@ namespace keepass2android
 			_notificationManager.Cancel(NotifyUsername);
 			_notificationManager.Cancel(NotifyKeyboard);
 			_numElementsToWaitFor = 0;
-			clearKeyboard();
+			bool hadKeyboardData = ClearKeyboard(false); //do not broadcast if the keyboard was changed
 
 			String entryName = entry.Strings.ReadSafe(PwDefs.TitleField);
 
@@ -197,11 +197,13 @@ namespace keepass2android
 				}
 			}
 
+			bool hasKeyboardDataNow = false;
 			if (prefs.GetBoolean(GetString(Resource.String.UseKp2aKeyboard_key), Resources.GetBoolean(Resource.Boolean.UseKp2aKeyboard_default)))
 			{
 
 				//keyboard
-				if (MakeAccessibleForKeyboard(entry))
+				hasKeyboardDataNow = MakeAccessibleForKeyboard(entry);
+				if (hasKeyboardDataNow)
 				{
 					// only show notification if username is available
 					Notification keyboard = GetNotification(Intents.CheckKeyboard, Resource.String.available_through_keyboard, Resource.Drawable.notify_keyboard, entryName);
@@ -217,6 +219,11 @@ namespace keepass2android
                     }
 				}
 
+			}
+
+			if ((!hasKeyboardDataNow) && (hadKeyboardData))
+			{
+				ClearKeyboard(true); //this clears again and then (this is the point) broadcasts that we no longer have keyboard data
 			}
 
 			if (_numElementsToWaitFor == 0)
@@ -268,7 +275,7 @@ namespace keepass2android
 
 				if (value.Length > 0)
 				{
-					kbdataBuilder.AddPair(GetString(resIds[i]), value);
+					kbdataBuilder.AddString(key, GetString(resIds[i]), value);
 					hasData = true;
 				}
 				i++;
@@ -282,13 +289,15 @@ namespace keepass2android
 
 
 				if (!PwDefs.IsStandardField(key)) {
-					kbdataBuilder.AddPair(pair.Key, value);
+					kbdataBuilder.AddString(pair.Key, pair.Key, value);
+					hasData = true;
 				}
 			}
 
 
 			kbdataBuilder.Commit();
 			Keepass2android.Kbbridge.KeyboardData.EntryName = entry.Strings.ReadSafe(PwDefs.TitleField);
+			Keepass2android.Kbbridge.KeyboardData.EntryId = entry.Uuid.ToHexString();
 
 			return hasData;
 #endif
@@ -311,15 +320,22 @@ namespace keepass2android
 			if (itemId == NotifyKeyboard)
 			{
 				//keyboard notification was deleted -> clear entries in keyboard
-				clearKeyboard();
+				ClearKeyboard(true);
 			}
 		}
 
-		void clearKeyboard()
+		bool ClearKeyboard(bool broadcastClear)
 		{
 #if !EXCLUDE_KEYBOARD
 			Keepass2android.Kbbridge.KeyboardData.AvailableFields.Clear();
 			Keepass2android.Kbbridge.KeyboardData.EntryName = null;
+			bool hadData = Keepass2android.Kbbridge.KeyboardData.EntryId != null;
+			Keepass2android.Kbbridge.KeyboardData.EntryId = null;
+
+			if ((hadData) && broadcastClear)
+				SendBroadcast(new Intent(Intents.KeyboardCleared));
+
+			return hadData;
 #endif
 		}
 
@@ -471,6 +487,11 @@ namespace keepass2android
             string kp2aIme = service.PackageName + "/keepass2android.softkeyboard.KP2AKeyboard";
 
             InputMethodManager imeManager = (InputMethodManager)service.ApplicationContext.GetSystemService(InputMethodService);
+			if (imeManager == null)
+			{
+                Toast.MakeText(service, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
+				return;
+			}
 
             if (currentIme == kp2aIme)
             {
@@ -490,14 +511,7 @@ namespace keepass2android
                 }
                 else
                 {
-                    if (imeManager != null)
-                    {
-                        imeManager.ShowInputMethodPicker();
-                    }
-                    else
-                    {
-                        Toast.MakeText(service, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
-                    }
+	                Keepass2android.Kbbridge.ImeSwitcher.SwitchToKeyboard(service, kp2aIme, false);
                 }
             }
         }

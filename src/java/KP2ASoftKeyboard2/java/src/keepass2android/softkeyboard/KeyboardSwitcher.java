@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.InflateException;
 
 import java.lang.ref.SoftReference;
@@ -244,6 +245,7 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
 
 
     public void setKeyboardMode(int mode, int imeOptions) {
+    	Log.d("KP2AK", "Switcher.SetKeyboardMode: " + mode);
         mAutoModeSwitchState = AUTO_MODE_SWITCH_STATE_ALPHA;
         mPreferSymbols = mode == MODE_SYMBOLS;
         if (mode == MODE_SYMBOLS) {

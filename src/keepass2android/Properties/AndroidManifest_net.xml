@@ -36,6 +36,15 @@
 			</intent-filter>
 			<meta-data android:name="android.view.im" android:resource="@xml/method" />
 		</service>
+		<activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="@string/english_ime_settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
+		
+		
+		
 		<activity android:configChanges="keyboardHidden|orientation" android:label="@string/app_name" android:theme="@style/Base" android:name="keepass2android.PasswordActivity">
 			<intent-filter android:label="@string/app_name">
 				<action android:name="android.intent.action.VIEW" />

@@ -170,7 +170,7 @@ public class KP2AKeyboard extends InputMethodService
     private boolean mKp2aEnableSimpleKeyboard;
     private boolean mKp2aSwitchKeyboardOnSendGoDone;
     private boolean mKp2aLockOnSendGoDone;
-    private boolean mKp2aSwitchRooted;
+    
     private boolean mIsSendGoDone;
     
     
@@ -294,9 +294,10 @@ public class KP2AKeyboard extends InputMethodService
     	  public void onReceive(Context context, Intent intent) {
     	    
     	    mShowKp2aKeyboard = false;
-    	    
     	    updateKeyboardMode(getCurrentInputEditorInfo());
     	    
+    	    //switch back, but only "silently" (i.e. if automatic switching is enabled and available)
+    	    keepass2android.kbbridge.ImeSwitcher.switchToPreviousKeyboard(KP2AKeyboard.this, true);
     	  }
 
     	} 
@@ -494,8 +495,22 @@ public class KP2AKeyboard extends InputMethodService
     public View onCreateInputView() {
         mKeyboardSwitcher.recreateInputView();
         mKeyboardSwitcher.makeKeyboards(true);
-        mKeyboardSwitcher.setKeyboardMode(
-                KeyboardSwitcher.MODE_TEXT, 0);
+        
+        loadSettings();
+        
+        updateShowKp2aMode();
+        Log.d("KP2AK", "onCreateInputView -> setKM");
+        if ((mShowKp2aKeyboard) && (mKp2aEnableSimpleKeyboard))
+        {
+        	mKeyboardSwitcher.setKeyboardMode(
+                    KeyboardSwitcher.MODE_KP2A, 0);	
+        }
+        else
+        {
+        	mKeyboardSwitcher.setKeyboardMode(
+                    KeyboardSwitcher.MODE_TEXT, 0);
+        }
+        
         return mKeyboardSwitcher.getInputView();
     }
 
@@ -517,6 +532,8 @@ public class KP2AKeyboard extends InputMethodService
         if (inputView == null) {
             return;
         }
+        
+        loadSettings();
 
         if (mRefreshKeyboardRequired) {
             mRefreshKeyboardRequired = false;
@@ -536,7 +553,7 @@ public class KP2AKeyboard extends InputMethodService
         mIsSendGoDone = ((attribute.imeOptions&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) == EditorInfo.IME_ACTION_GO)
         		|| ((attribute.imeOptions&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) == EditorInfo.IME_ACTION_DONE)
         		|| ((attribute.imeOptions&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) == EditorInfo.IME_ACTION_SEND);
-        loadSettings();
+
         updateShiftKeyState(attribute);
 
         setCandidatesViewShownInternal(isCandidateStripVisible() || mCompletionOn,
@@ -562,39 +579,17 @@ public class KP2AKeyboard extends InputMethodService
 
 	private void updateKeyboardMode(EditorInfo attribute) {
 		
-		
         mInputTypeNoAutoCorrect = false;
         mPredictionOn = false;
         mCompletionOn = false;
         mCompletions = null;
         mCapsLock = false;
         mEnteredText = null;
-        
 		
 		int variation = attribute.inputType & EditorInfo.TYPE_MASK_VARIATION;
         
-		if (!keepass2android.kbbridge.KeyboardData.hasData())
-		{
-			//data no longer available. hide kp2a keyboard:
-    		mShowKp2aKeyboard = false;
-    		mHadKp2aData = false;
-		}
-		else
-		{
-		
-	        if (!mHadKp2aData)
-	        {
-	        	if (keepass2android.kbbridge.KeyboardData.hasData())
-	        	{
-	        		//new data available -> show kp2a keyboard:
-	        		mShowKp2aKeyboard = true;
-	        	}
-	        }
-        	
-        	mHadKp2aData = keepass2android.kbbridge.KeyboardData.hasData();
-        }
-        
-        Log.d("KP2AK", "show: " + mShowKp2aKeyboard);
+		updateShowKp2aMode();
+		Log.d("KP2AK", "updateKeyboardMode -> setKM");
         if ((mShowKp2aKeyboard) && (mKp2aEnableSimpleKeyboard))
         {
         	mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_KP2A, attribute.imeOptions);
@@ -676,6 +671,31 @@ public class KP2AKeyboard extends InputMethodService
 	                        attribute.imeOptions);
 	        }
         }
+	}
+
+	private void updateShowKp2aMode() {
+		if (!keepass2android.kbbridge.KeyboardData.hasData())
+		{
+			//data no longer available. hide kp2a keyboard:
+    		mShowKp2aKeyboard = false;
+    		mHadKp2aData = false;
+		}
+		else
+		{
+		
+	        if (!mHadKp2aData)
+	        {
+	        	if (keepass2android.kbbridge.KeyboardData.hasData())
+	        	{
+	        		//new data available -> show kp2a keyboard:
+	        		mShowKp2aKeyboard = true;
+	        	}
+	        }
+        	
+        	mHadKp2aData = keepass2android.kbbridge.KeyboardData.hasData();
+        }
+        
+        Log.d("KP2AK", "show: " + mShowKp2aKeyboard);
 	}
 
     private boolean tryKp2aAutoFill(final EditorInfo editorInfo) {
@@ -1282,8 +1302,7 @@ public class KP2AKeyboard extends InputMethodService
 		{
 			if (mKp2aSwitchKeyboardOnSendGoDone)
 			{
-				//TODO auto switch
-				showInputMethodPicker();
+				keepass2android.kbbridge.ImeSwitcher.switchToPreviousKeyboard(this, false);
 			}
 			if (mKp2aLockOnSendGoDone)
 			{
@@ -1300,7 +1319,6 @@ public class KP2AKeyboard extends InputMethodService
 	}
 
 	private void onKp2aSwitchKeyboardPressed() {
-
     	showInputMethodPicker();
 		
 	}
@@ -2223,6 +2241,7 @@ public class KP2AKeyboard extends InputMethodService
         int currentKeyboardMode = mKeyboardSwitcher.getKeyboardMode();
         reloadKeyboards();
         mKeyboardSwitcher.makeKeyboards(true);
+        Log.d("KP2AK", "toggleLanguage -> setKM");
         mKeyboardSwitcher.setKeyboardMode(currentKeyboardMode, 0);
         initSuggest(mLanguageSwitcher.getInputLanguage());
         mLanguageSwitcher.persist();
@@ -2433,7 +2452,7 @@ public class KP2AKeyboard extends InputMethodService
         mKp2aEnableSimpleKeyboard = sp.getBoolean("kp2a_simple_keyboard", true);
         mKp2aSwitchKeyboardOnSendGoDone = sp.getBoolean("kp2a_switch_on_sendgodone", false);        
         mKp2aLockOnSendGoDone = sp.getBoolean("kp2a_lock_on_sendgodone", false);
-        mKp2aSwitchRooted = sp.getBoolean("kp2a_switch_rooted", false);
+        
        
         mShowSuggestions = sp.getBoolean(PREF_SHOW_SUGGESTIONS, true);
 
