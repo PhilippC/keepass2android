@@ -452,6 +452,8 @@ public class KP2AKeyboard extends InputMethodService
         }*/
         unregisterReceiver(mReceiver);
         
+        unregisterReceiver(mClearKeyboardReceiver);
+        
         LatinImeLogger.commit();
         LatinImeLogger.onDestroy();
         super.onDestroy();
@@ -571,25 +573,29 @@ public class KP2AKeyboard extends InputMethodService
 		
 		int variation = attribute.inputType & EditorInfo.TYPE_MASK_VARIATION;
         
-        if (keepass2android.kbbridge.KeyboardData.hasData() != 
-        		mHadKp2aData)
-        {
-        	if (keepass2android.kbbridge.KeyboardData.hasData())
-        	{
-        		//new data available -> show kp2a keyboard:
-        		mShowKp2aKeyboard = true;
-        	}
-        	else
-        	{
-        		//data no longer available. hide kp2a keyboard:
-        		mShowKp2aKeyboard = false;
-        	}
+		if (!keepass2android.kbbridge.KeyboardData.hasData())
+		{
+			//data no longer available. hide kp2a keyboard:
+    		mShowKp2aKeyboard = false;
+    		mHadKp2aData = false;
+		}
+		else
+		{
+		
+	        if (!mHadKp2aData)
+	        {
+	        	if (keepass2android.kbbridge.KeyboardData.hasData())
+	        	{
+	        		//new data available -> show kp2a keyboard:
+	        		mShowKp2aKeyboard = true;
+	        	}
+	        }
         	
         	mHadKp2aData = keepass2android.kbbridge.KeyboardData.hasData();
         }
         
         Log.d("KP2AK", "show: " + mShowKp2aKeyboard);
-        if (mShowKp2aKeyboard)
+        if ((mShowKp2aKeyboard) && (mKp2aEnableSimpleKeyboard))
         {
         	mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_KP2A, attribute.imeOptions);
             mPredictionOn = false;
@@ -2204,7 +2210,7 @@ public class KP2AKeyboard extends InputMethodService
         return mWord.isFirstCharCapitalized();
     }
 
-    private void toggleLanguage(boolean reset, boolean next) {
+    void toggleLanguage(boolean reset, boolean next) {
         if (reset) {
             mLanguageSwitcher.reset();
         } else {

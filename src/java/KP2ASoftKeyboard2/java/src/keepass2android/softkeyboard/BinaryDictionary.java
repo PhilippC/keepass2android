@@ -78,7 +78,20 @@ public class BinaryDictionary extends Dictionary {
         }
         mDicTypeId = dicTypeId;
     }
-
+    
+    /**
+     * Create a dictionary from input streams
+     * @param context application context for reading resources
+     * @param streams the resource streams containing the raw binary dictionary
+     */
+    public BinaryDictionary(Context context, InputStream[] streams, int dicTypeId) {
+        if (streams != null && streams.length > 0) {
+            loadDictionary(context, streams);
+        }
+        mDicTypeId = dicTypeId;
+    }
+    
+    
     /**
      * Create a dictionary from a byte buffer. This is used for testing.
      * @param context application context for reading resources
@@ -115,28 +128,13 @@ public class BinaryDictionary extends Dictionary {
         InputStream[] is = null;
         try {
             // merging separated dictionary into one if dictionary is separated
-            int total = 0;
             is = new InputStream[resId.length];
             for (int i = 0; i < resId.length; i++) {
                 is[i] = context.getResources().openRawResource(resId[i]);
-                total += is[i].available();
             }
-
-            mNativeDictDirectBuffer =
-                ByteBuffer.allocateDirect(total).order(ByteOrder.nativeOrder());
-            int got = 0;
-            for (int i = 0; i < resId.length; i++) {
-                 got += Channels.newChannel(is[i]).read(mNativeDictDirectBuffer);
-            }
-            if (got != total) {
-                Log.e(TAG, "Read " + got + " bytes, expected " + total);
-            } else {
-                mNativeDict = openNative(mNativeDictDirectBuffer,
-                        TYPED_LETTER_MULTIPLIER, FULL_WORD_FREQ_MULTIPLIER);
-                mDictLength = total;
-            }
-        } catch (IOException e) {
-            Log.w(TAG, "No available memory for binary dictionary");
+            loadDictionary(context, is);
+            
+            
         } finally {
             try {
                 if (is != null) {
@@ -151,7 +149,48 @@ public class BinaryDictionary extends Dictionary {
     }
 
 
-    @Override
+    private void loadDictionary(Context context, InputStream[] is) 
+    {
+    	try
+    	{
+	    	int total = 0;
+	        for (int i = 0; i < is.length; i++)
+	        	total += is[i].available();
+	
+	        mNativeDictDirectBuffer =
+	            ByteBuffer.allocateDirect(total).order(ByteOrder.nativeOrder());
+	        int got = 0;
+	        for (int i = 0; i < is.length; i++) {
+	             got += Channels.newChannel(is[i]).read(mNativeDictDirectBuffer);
+	        }
+	        if (got != total) {
+	            Log.e(TAG, "Read " + got + " bytes, expected " + total);
+	        } else {
+	            mNativeDict = openNative(mNativeDictDirectBuffer,
+	                    TYPED_LETTER_MULTIPLIER, FULL_WORD_FREQ_MULTIPLIER);
+	            mDictLength = total;
+	        }	
+	 
+    	}
+    	catch (IOException e) {
+            Log.w(TAG, "No available memory for binary dictionary");
+        } catch (UnsatisfiedLinkError e) {
+            Log.w(TAG, "Failed to load native dictionary", e);
+        } finally {
+            try {
+                if (is != null) {
+                    for (int i = 0; i < is.length; i++) {
+                        is[i].close();
+                    }
+                }
+            } catch (IOException e) {
+                Log.w(TAG, "Failed to close input stream");
+            }
+        }
+    	       
+	}
+
+	@Override
     public void getBigrams(final WordComposer codes, final CharSequence previousWord,
             final WordCallback callback, int[] nextLettersFrequencies) {
 

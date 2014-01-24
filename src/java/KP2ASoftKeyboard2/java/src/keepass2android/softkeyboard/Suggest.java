@@ -26,6 +26,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * This class loads a dictionary and provides a list of suggestions for a given sequence of 
@@ -105,14 +106,28 @@ public class Suggest implements Dictionary.WordCallback {
 
     public Suggest(Context context, int[] dictionaryResId) {
         mMainDict = new BinaryDictionary(context, dictionaryResId, DIC_MAIN);
-        Log.d("KP2AK", "main size: " + mMainDict.getSize()+ " " +dictionaryResId[0]);
+        
+        
+        Locale locale = context.getResources().getConfiguration().locale;
+        Log.d("KP2AK", "locale: " + locale.getISO3Language());
+        
+        if (!hasMainDictionary() 
+        		|| (!"eng".equals(locale.getISO3Language()))) 
+        {
+        	Log.d("KP2AK", "try get plug");
+            BinaryDictionary plug = PluginManager.getDictionary(context, locale.getLanguage());
+            if (plug != null) {
+            	Log.d("KP2AK", "ok");
+                mMainDict.close();
+                mMainDict = plug;
+            }
+        }
+        
+        
         initPool();
     }
 
-    public Suggest(Context context, ByteBuffer byteBuffer) {
-        mMainDict = new BinaryDictionary(context, byteBuffer, DIC_MAIN);
-        initPool();
-    }
+    
 
     private void initPool() {
         for (int i = 0; i < mPrefMaxSuggestions; i++) {

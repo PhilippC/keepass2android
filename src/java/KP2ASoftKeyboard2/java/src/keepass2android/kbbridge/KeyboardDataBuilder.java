@@ -4,12 +4,13 @@ import java.util.HashMap;
 public class KeyboardDataBuilder {
 	 private ArrayList<StringForTyping> availableFields = new ArrayList<StringForTyping>();
 	 
-	 public void addPair(String displayName, String valueToType)
+	 public void addString(String key, String displayName, String valueToType)
 	 {
-		 StringForTyping pair = new StringForTyping();
-		 pair.displayName = displayName;
-		 pair.value = valueToType;
-		 availableFields.add(pair);
+		 StringForTyping stringToType = new StringForTyping();
+		 stringToType.key = key;
+		 stringToType.displayName = displayName;
+		 stringToType.value = valueToType;
+		 availableFields.add(stringToType);
 	 }
 	 
 	 public void commit()
