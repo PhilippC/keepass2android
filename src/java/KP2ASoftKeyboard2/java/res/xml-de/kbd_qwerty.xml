@@ -370,6 +370,7 @@
             android:codes="@integer/key_kp2a"
         	android:keyIcon="@drawable/sym_keyboard_kp2a"
         	android:popupKeyboard="@xml/popup_kp2a"
+        	android:iconPreview="@drawable/sym_keyboard_feedback_kp2a"
             android:isModifier="true" />
         <Key
             android:codes="@integer/key_f1"
@@ -408,6 +409,7 @@
             android:codes="@integer/key_kp2a"
             android:keyIcon="@drawable/sym_keyboard_kp2a"
             android:popupKeyboard="@xml/popup_kp2a"
+            android:iconPreview="@drawable/sym_keyboard_feedback_kp2a"
             android:isModifier="true" />
         <Key
             android:codes="@integer/key_f1"
@@ -444,7 +446,8 @@
             android:keyEdgeFlags="left" />
         <Key
             android:codes="@integer/key_kp2a"
-            android:keyIcon="@drawable/sym_keyboard_kp2a"
+        	android:keyIcon="@drawable/sym_keyboard_kp2a"
+        	android:iconPreview="@drawable/sym_keyboard_feedback_kp2a"
             android:popupKeyboard="@xml/popup_kp2a"
             android:isModifier="true" />
         <Key
@@ -483,7 +486,8 @@
             android:keyEdgeFlags="left" />
         <Key
             android:codes="@integer/key_kp2a"
-            android:keyIcon="@drawable/sym_keyboard_kp2a"
+        	android:keyIcon="@drawable/sym_keyboard_kp2a"
+        	android:iconPreview="@drawable/sym_keyboard_feedback_kp2a"
             android:popupKeyboard="@xml/popup_kp2a"
             android:isModifier="true" />
         <Key

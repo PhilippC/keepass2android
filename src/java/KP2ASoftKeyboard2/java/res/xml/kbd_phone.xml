@@ -95,6 +95,7 @@
         <Key    
         	android:codes="@integer/key_kp2a"
             android:keyIcon="@drawable/sym_keyboard_kp2a"
+			android:iconPreview="@drawable/sym_keyboard_feedback_kp2a"
             android:popupKeyboard="@xml/popup_kp2a"
             android:keyWidth="13.33%p" 
             />
