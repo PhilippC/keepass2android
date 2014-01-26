@@ -20,10 +20,12 @@ namespace Kp2aUnitTests
 			app.CreateNewDatabase();
 			bool loadSuccesful = false;
 			var key = CreateKey(password, keyfile);
+			string loadErrorMessage = "";
 
 			LoadDb task = new LoadDb(app, new IOConnectionInfo { Path = TestDbDirectory+filenameWithoutDir }, null,
 				key, keyfile, new ActionOnFinish((success, message) =>
 					{
+						loadErrorMessage = message;
 						if (!success)
 							Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
 						loadSuccesful = success; 		
@@ -34,7 +36,7 @@ namespace Kp2aUnitTests
 			pt.Run();
 			pt.JoinWorkerThread();
 			Android.Util.Log.Debug("KP2ATest", "PT.run finished");
-			Assert.IsTrue(loadSuccesful, "didn't succesfully load database :-(");
+			Assert.IsTrue(loadSuccesful, "didn't succesfully load database :-( "+loadErrorMessage);
 			
 			Assert.AreEqual(6,app.GetDb().KpDatabase.RootGroup.Groups.Count());
 			Assert.AreEqual(2,app.GetDb().KpDatabase.RootGroup.Entries.Count());
@@ -48,6 +50,14 @@ namespace Kp2aUnitTests
 		{
 			RunLoadTest("passwordonly.kdbx", DefaultPassword, "");
 		}
+
+
+		[TestMethod]
+		public void TestLoadKdb1()
+		{
+			RunLoadTest("test1.kdb", "12345", "");
+		}
+
 		[TestMethod]
 		public void TestLoadWithKeyfileOnly()
 		{

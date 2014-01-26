@@ -19,6 +19,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Android.App;
+using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 
@@ -50,10 +52,24 @@ namespace keepass2android
 			try
 			{
 				StatusLogger.UpdateMessage(UiStringKey.loading_database);
-				MemoryStream memoryStream = _databaseData == null ? null : _databaseData.Result;
-				_app.LoadDatabase(_ioc, memoryStream, _compositeKey, StatusLogger);
-				SaveFileData(_ioc, _keyfileOrProvider);
+				//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
+				MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
+				MemoryStream databaseStream; 
+				if (preloadedMemoryStream != null)
+					databaseStream = preloadedMemoryStream;
+				else
+				{
+					using (Stream s = _app.GetFileStorage(_ioc).OpenFileForRead(_ioc))
+					{
+						databaseStream = new MemoryStream();
+						s.CopyTo(databaseStream);
+						databaseStream.Seek(0, SeekOrigin.Begin);
+					}
+				}
 
+				//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
+				IDatabaseLoader loader = new KdbxDatabaseLoader(KdbpFile.GetFormatToUse(_ioc)); 
+				TryLoad(databaseStream, loader);
 			}
 			catch (KeyFileException)
 			{
@@ -73,11 +89,6 @@ namespace keepass2android
 				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message);
 				return;
 			}
-			catch (OldFormatException )
-			{
-				Finish(false, "Cannot open Keepass 1.x database. As explained in the app description, Keepass2Android is for Keepass 2 only! Please use the desktop application to convert your database to the new file format!");
-				return;
-			}
 			catch (Exception e)
 			{
 				Kp2aLog.Log("Exception: " + e);
@@ -85,10 +96,48 @@ namespace keepass2android
 				return;
 			}
 			
-			Kp2aLog.Log("LoadDB OK");
-			Finish(true);
+			
 		}
-		
+
+		private void TryLoad(MemoryStream databaseStream, IDatabaseLoader loader)
+		{
+			//create a copy of the stream so we can try again if we get an exception which indicates we should change parameters
+			//This is not optimal in terms of (short-time) memory usage but is hard to avoid because the Keepass library closes streams also in case of errors.
+			//Alternatives would involve increased traffic (if file is on remote) and slower loading times, so this seems to be the best choice.
+			MemoryStream workingCopy = new MemoryStream();
+			databaseStream.CopyTo(workingCopy);
+			workingCopy.Seek(0, SeekOrigin.Begin);
+			//reset stream if we need to reuse it later:
+			databaseStream.Seek(0, SeekOrigin.Begin);
+			//now let's go:
+			try
+			{
+				_app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, loader);
+				SaveFileData(_ioc, _keyfileOrProvider);
+				Kp2aLog.Log("LoadDB OK");
+				Finish(true);
+			}
+			catch (OldFormatException)
+			{
+				TryLoad(databaseStream, new KdbDatabaseLoader(Application.Context));
+			}
+			catch (InvalidCompositeKeyException)
+			{
+				KcpPassword passwordKey = (KcpPassword)_compositeKey.GetUserKey(typeof(KcpPassword));
+
+				if ((passwordKey != null) && (passwordKey.Password.ReadString() == "") && (_compositeKey.UserKeyCount > 1))
+				{
+					//if we don't get a password, we don't know whether this means "empty password" or "no password"
+					//retry without password:
+					_compositeKey.RemoveUserKey(passwordKey);
+					//retry:
+					TryLoad(databaseStream, loader);
+				}
+				else throw;
+			}
+			
+		}
+
 		private void SaveFileData(IOConnectionInfo ioc, String keyfileOrProvider) {
 
             if (!_rememberKeyfile)

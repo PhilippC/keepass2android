@@ -65,7 +65,7 @@ namespace MonoDroidUnitTesting {
     protected override void OnStart() {
       base.OnStart();
 
-      new Handler().Post(this.RunTests);
+      //new Handler().Post(this.RunTests);
     }
 
     protected virtual void OnTestRunStarted() { }
@@ -170,6 +170,9 @@ namespace MonoDroidUnitTesting {
 
     protected override void OnResume() {
       base.OnResume();
+
+	    TestRunner = null;
+		new Handler().Post(this.RunTests);
 
       if (TestRunner != null) {
         // Only remember this view if the test run finished and therefore the previous activity has been restored.

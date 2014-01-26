@@ -43,7 +43,7 @@ namespace Kp2aUnitTests
 
 			//ensure the the database can be loaded from file:
 			PwDatabase loadedDb = new PwDatabase();
-			loadedDb.Open(ioc, new CompositeKey(), null);
+			loadedDb.Open(ioc, new CompositeKey(), null, new KdbxDatabaseLoader(KdbxFormat.Default));
 
 			//Check whether the databases are equal
 			AssertDatabasesAreEqual(loadedDb, app.GetDb().KpDatabase);

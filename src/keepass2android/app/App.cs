@@ -24,6 +24,7 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
+using KeePassLib;
 using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -108,9 +109,9 @@ namespace keepass2android
 			Application.Context.SendBroadcast(new Intent(Intents.DatabaseLocked));
         }
 
-		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger)
+		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseLoader databaseLoader)
 		{
-			_db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger);
+			_db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseLoader);
 
 			UpdateOngoingNotification();
 		}

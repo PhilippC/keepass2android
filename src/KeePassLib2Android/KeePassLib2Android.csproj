@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -58,6 +58,7 @@
     <Reference Include="Mono.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDatabaseLoader.cs" />
     <Compile Include="Kp2aLog.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Resources\KLRes.Generated.cs" />
@@ -153,11 +154,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
-      <Project>{A57B3ACE-5634-469A-88C4-858BB409F356}</Project>
-      <Name>kp2akeytransform</Name>
+    <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
+      <Project>{70d3844a-d9fa-4a64-b205-a84c6a822196}</Project>
+      <Name>KP2AKdbLibraryBinding</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
 </Project>

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="keepass2android.kp2akeytransform"
+    package="keepass2android.KdbLibrary"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -7,8 +7,7 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
-    <application
-        android:allowBackup="true">
+    <application>
     </application>
 
 </manifest>

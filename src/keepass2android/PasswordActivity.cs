@@ -835,7 +835,7 @@ namespace keepass2android
 			
 		}
 
-		private MemoryStream LoadDbFile()
+		private MemoryStream PreloadDbFile()
 		{
 			if (KdbpFile.GetFormatToUse(_ioConnection) == KdbxFormat.ProtocolBuffers)
 			{
@@ -998,7 +998,7 @@ namespace keepass2android
 					if (_loadDbTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
 					{
 						// Create task to kick off file loading while the user enters the password
-						_loadDbTask = Task.Factory.StartNew<MemoryStream>(LoadDbFile);
+						_loadDbTask = Task.Factory.StartNew<MemoryStream>(PreloadDbFile);
 					}
 				}
 			}

@@ -5,6 +5,7 @@ using System.Net.Security;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android;
@@ -48,10 +49,9 @@ namespace Kp2aUnitTests
 			throw new NotImplementedException();
 		}
 
-		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey,
-		                         ProgressDialogStatusLogger statusLogger)
+		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger, IDatabaseLoader databaseLoader)
 		{
-			_db.LoadData(this, ioConnectionInfo, memoryStream, compKey, statusLogger);
+			_db.LoadData(this, ioConnectionInfo, memoryStream, compKey, statusLogger, databaseLoader);
 		}
 		public Database GetDb()
 		{

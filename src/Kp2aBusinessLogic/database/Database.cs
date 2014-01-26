@@ -93,34 +93,15 @@ namespace keepass2android
 		/// <summary>
 		/// Do not call this method directly. Call App.Kp2a.LoadDatabase instead.
 		/// </summary>
-		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, CompositeKey compositeKey, ProgressDialogStatusLogger status)
+		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseLoader databaseLoader)
 		{
 			PwDatabase pwDatabase = new PwDatabase();
 
 			IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
-			var filename = fileStorage.GetFilenameWithoutPathAndExt(iocInfo);
-			try
-			{
-				var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
-				pwDatabase.Open(databaseData ?? fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
-				LastFileVersion = fileVersion;
-			}
-			catch (InvalidCompositeKeyException)
-			{
-				KcpPassword passwordKey = (KcpPassword)compositeKey.GetUserKey(typeof(KcpPassword));
-			
-				if ((passwordKey != null) && (passwordKey.Password.ReadString() == "") && (compositeKey.UserKeyCount > 1))
-				{
-					//if we don't get a password, we don't know whether this means "empty password" or "no password"
-					//retry without password:
-					compositeKey.RemoveUserKey(compositeKey.GetUserKey(typeof (KcpPassword)));
-					var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
-					//don't reuse the memory stream databaseData: it's already closed.
-					//We could try to avoid reading the file again here, but probably the case is rare enough so this is ok.
-					pwDatabase.Open(fileStorage.OpenFileForRead(iocInfo), filename, iocInfo, compositeKey, status);
-					LastFileVersion = fileVersion;				}
-				else throw;
-			}
+			Stream s = databaseData ?? fileStorage.OpenFileForRead(iocInfo);
+			var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
+			PopulateDatabaseFromStream(pwDatabase, s, iocInfo, compositeKey, status, databaseLoader);
+			LastFileVersion = fileVersion;
 			
 			status.UpdateSubMessage("");
 
@@ -133,7 +114,14 @@ namespace keepass2android
 			SearchHelper = new SearchDbHelper(app);
 		}
 
-		
+		protected  virtual void PopulateDatabaseFromStream(PwDatabase pwDatabase, Stream s, IOConnectionInfo iocInfo, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseLoader databaseLoader)
+		{
+			IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
+			var filename = fileStorage.GetFilenameWithoutPathAndExt(iocInfo);
+			pwDatabase.Open(s, filename, iocInfo, compositeKey, status, databaseLoader);
+		}
+
+
 		public PwGroup SearchForText(String str) {
 			PwGroup group = SearchHelper.SearchForText(this, str);
 			
@@ -162,7 +150,7 @@ namespace keepass2android
 		}
 
 
-		public void SaveData(Context ctx)  {
+		public virtual void SaveData(Context ctx)  {
             
 			KpDatabase.UseFileTransactions = _app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
 			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, KpDatabase.UseFileTransactions))

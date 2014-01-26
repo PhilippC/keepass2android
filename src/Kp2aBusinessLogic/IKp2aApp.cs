@@ -3,6 +3,7 @@ using Android.App;
 using System.IO;
 using Android.Content;
 using Android.OS;
+using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
@@ -23,7 +24,7 @@ namespace keepass2android
 		/// <summary>
 		/// Loads the specified data as the currently open database, as unlocked.
 		/// </summary>
-		void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger);
+		void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger, IDatabaseLoader databaseLoader);
 
 		/// <summary>
 		/// Returns the current database
