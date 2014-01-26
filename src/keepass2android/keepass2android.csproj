@@ -77,10 +77,6 @@
     <DeployExternal>True</DeployExternal>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GooglePlayServicesFroyoLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\googleplayservicesfroyo-9.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -690,18 +686,6 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_FILECHOOSER'))">
-      <Project>{3C0F7FE5-639F-4422-A087-8B26CF862D1B}</Project>
-      <Name>AndroidFileChooserBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AppCompatV7Binding\AppCompatV7Binding.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_FILECHOOSER'))">
-      <Project>{23233A28-D74F-4BF8-B4D8-834060840BD7}</Project>
-      <Name>AppCompatV7Binding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_JAVAFILESTORAGE'))">
-      <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
-      <Name>JavaFileStorageBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
@@ -710,13 +694,9 @@
       <Project>{53A9CB7F-6553-4BC0-B56B-9410BB2E59AA}</Project>
       <Name>Kp2aBusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\kp2akeytransform\kp2akeytransform.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
-      <Project>{A57B3ACE-5634-469A-88C4-858BB409F356}</Project>
-      <Name>kp2akeytransform</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYBOARD'))">
-      <Project>{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}</Project>
-      <Name>Kp2aKeyboardBinding</Name>
+    <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
+      <Project>{70d3844a-d9fa-4a64-b205-a84c6a822196}</Project>
+      <Name>KP2AKdbLibraryBinding</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_TWOFISH'))">
       <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>
@@ -910,9 +890,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_storage_sftp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\4-collections-new-label.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\device_access_new_account.png" />

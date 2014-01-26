@@ -125,7 +125,7 @@ namespace keepass2android
 			SetFieldIfAvailable(pwEntry, PwDefs.PasswordField, true, entryV3.Password);
 			SetFieldIfAvailable(pwEntry, PwDefs.NotesField, true, entryV3.Additional);
 
-			if (entryV3.GetBinaryData() != null)
+			if ((entryV3.GetBinaryData() != null) && (entryV3.GetBinaryData().Length > 0))
 			{
 				pwEntry.Binaries.Set(entryV3.BinaryDesc, new ProtectedBinary(true, entryV3.GetBinaryData()));
 			}

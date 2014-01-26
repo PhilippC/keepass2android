@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePassLib2Android", "KeePa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "keepass2android", "keepass2android\keepass2android.csproj", "{A6CF8A86-37C1-4197-80FE-519DE2C842F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kp2akeytransform", "kp2akeytransform\kp2akeytransform.csproj", "{A57B3ACE-5634-469A-88C4-858BB409F356}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kp2aKeyboardBinding", "Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj", "{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kp2aBusinessLogic", "Kp2aBusinessLogic\Kp2aBusinessLogic.csproj", "{53A9CB7F-6553-4BC0-B56B-9410BB2E59AA}"
@@ -88,28 +86,6 @@ Global
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.ReleaseNoNet|Mixed Platforms.Deploy.0 = ReleaseNoNet|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.ReleaseNoNet|Win32.ActiveCfg = ReleaseNoNet|Any CPU
 		{A6CF8A86-37C1-4197-80FE-519DE2C842F5}.ReleaseNoNet|x64.ActiveCfg = ReleaseNoNet|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|Win32.Build.0 = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Debug|x64.Build.0 = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Win32.ActiveCfg = Release|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|Win32.Build.0 = Release|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|x64.ActiveCfg = Release|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.Release|x64.Build.0 = Release|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.ReleaseNoNet|Any CPU.ActiveCfg = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.ReleaseNoNet|Any CPU.Build.0 = Debug|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.ReleaseNoNet|Mixed Platforms.ActiveCfg = ReleaseNoNet|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
-		{A57B3ACE-5634-469A-88C4-858BB409F356}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

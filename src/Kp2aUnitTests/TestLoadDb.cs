@@ -68,6 +68,8 @@ namespace Kp2aUnitTests
 			Assert.AreEqual(6, app.GetDb().KpDatabase.RootGroup.Groups.Count());
 			PwGroup generalGroup = app.GetDb().KpDatabase.RootGroup.Groups.Single(g => g.Name == "General");
 			Assert.AreEqual(2, generalGroup.Entries.Count());
+			foreach (PwEntry e in generalGroup.Entries)
+				Assert.IsFalse(e.Binaries.Any());
 		}
 
 		[TestMethod]

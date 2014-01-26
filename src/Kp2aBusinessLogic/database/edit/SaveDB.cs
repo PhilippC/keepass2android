@@ -83,6 +83,13 @@ namespace keepass2android
 			{
 				try
 				{
+					if (_app.GetDb().CanWrite == false)
+					{
+						//this should only happen if there is a problem in the UI so that the user sees an edit interface.
+						Finish(false,"Cannot save changes. File is read-only!");
+						return;
+					}
+
 					StatusLogger.UpdateMessage(UiStringKey.saving_database);
 					IOConnectionInfo ioc = _app.GetDb().Ioc;
 					IFileStorage fileStorage = _app.GetFileStorage(ioc);

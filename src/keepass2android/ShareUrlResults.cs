@@ -3,7 +3,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 
   Keepass2Android is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 2 of the License, or
+  the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
   Keepass2Android is distributed in the hope that it will be useful,
@@ -155,11 +155,22 @@ namespace keepass2android
 
 			
 			View createUrlEntry = FindViewById (Resource.Id.add_url_entry);
-			createUrlEntry.Click += (sender, e) => {
-				GroupActivity.Launch (this, new CreateEntryThenCloseTask { Url = url } );
-				Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[]{GetString(Resource.String.add_entry)}), ToastLength.Long ).Show();
-			};
 
+			if (App.Kp2a.GetDb().CanWrite)
+			{
+				createUrlEntry.Visibility = ViewStates.Visible;
+				createUrlEntry.Click += (sender, e) =>
+				{
+					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url });
+					Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
+				};
+			}
+			else
+			{
+				createUrlEntry.Visibility = ViewStates.Gone;
+			}
+
+			
 
 		}
 

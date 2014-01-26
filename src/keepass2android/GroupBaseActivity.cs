@@ -3,7 +3,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
   Keepass2Android is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 2 of the License, or
+  the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
   Keepass2Android is distributed in the hope that it will be useful,
@@ -63,7 +63,7 @@ namespace keepass2android
 
 		public virtual void SetupNormalButtons()
 		{
-			GroupView.SetNormalButtonVisibility(true, true);
+			GroupView.SetNormalButtonVisibility(App.Kp2a.GetDb().CanWrite, App.Kp2a.GetDb().CanWrite);
 		}
 		
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -270,6 +270,11 @@ namespace keepass2android
 					item.SetVisible(false);
 				else
 					item.SetVisible(true);
+			}
+			item = menu.FindItem(Resource.Id.menu_change_master_key);
+			if (item != null)
+			{
+				item.SetVisible(App.Kp2a.GetDb().CanWrite);
 			}
 			return true;
 		}

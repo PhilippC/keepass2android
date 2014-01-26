@@ -25,9 +25,9 @@ namespace Kp2aUnitTests
 			//runner.AddTests(new List<Type> { typeof(TestLoadDb) });
 			//runner.AddTests(new List<Type> { typeof(TestCachingFileStorage) });
 			runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadKdb1"));
-			runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadWithKeyfileOnly"));
-			runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadKdbpWithPasswordOnly"));
-			runner.AddTests(typeof(TestSaveDb).GetMethod("TestLoadKdbxAndSaveKdbp_TestIdenticalFiles"));
+			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadWithKeyfileOnly"));
+			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadKdbpWithPasswordOnly"));
+			//runner.AddTests(typeof(TestSaveDb).GetMethod("TestLoadKdbxAndSaveKdbp_TestIdenticalFiles"));
             return runner;
         }
     }
