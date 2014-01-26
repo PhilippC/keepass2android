@@ -564,22 +564,20 @@ namespace KeePassLib
 		/// <param name="ioSource">IO connection to load the database from.</param>
 		/// s<param name="pwKey">Key used to open the specified database.</param>
 		/// <param name="slLogger">Logger, which gets all status messages.</param>
+		/// <param name="loader"></param>
 		public void Open(IOConnectionInfo ioSource, CompositeKey pwKey,
-			IStatusLogger slLogger)
+			IStatusLogger slLogger, IDatabaseLoader loader)
 		{
 			Open(IOConnection.OpenRead(ioSource),  UrlUtil.StripExtension(
-					UrlUtil.GetFileName(ioSource.Path)), ioSource, pwKey, slLogger );
+					UrlUtil.GetFileName(ioSource.Path)), ioSource, pwKey, slLogger , loader);
 			
 		}
 
 		/// <summary>
-		/// Open a database. The URL may point to any supported data source.
+		/// Open a database provided as Stream.
 		/// </summary>
-		/// <param name="ioSource">IO connection to load the database from.</param>
-		/// <param name="pwKey">Key used to open the specified database.</param>
-		/// <param name="slLogger">Logger, which gets all status messages.</param>
 		public void Open(Stream s, string fileNameWithoutPathAndExt, IOConnectionInfo ioSource, CompositeKey pwKey,
-			IStatusLogger slLogger)
+			IStatusLogger slLogger, IDatabaseLoader loader)
 		{
 			Debug.Assert(s != null);
 			if (s == null) throw new ArgumentNullException("s");
@@ -602,14 +600,10 @@ namespace KeePassLib
 
 				m_bModified = false;
 
-				KdbxFile kdbx = new KdbxFile(this);
-				kdbx.DetachBinaries = m_strDetachBins;
-
-				kdbx.Load(s, KdbpFile.GetFormatToUse(ioSource), slLogger);
-				s.Close();
-
-				m_pbHashOfLastIO = kdbx.HashOfFileOnDisk;
-				m_pbHashOfFileOnDisk = kdbx.HashOfFileOnDisk;
+				loader.PopulateDatabaseFromStream(this, pwKey, s, slLogger);
+				
+				m_pbHashOfLastIO = loader.HashOfLastStream;
+				m_pbHashOfFileOnDisk = loader.HashOfLastStream;
 				Debug.Assert(m_pbHashOfFileOnDisk != null);
 
 				m_bDatabaseOpened = true;

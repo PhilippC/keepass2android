@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCompatV7Binding", "AppCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidFileChooserBinding", "AndroidFileChooserBinding\AndroidFileChooserBinding.csproj", "{3C0F7FE5-639F-4422-A087-8B26CF862D1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KP2AKdbLibraryBinding", "KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj", "{70D3844A-D9FA-4A64-B205-A84C6A822196}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -160,12 +162,12 @@ Global
 		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.Release|Win32.ActiveCfg = Release|Any CPU
 		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.Release|x64.ActiveCfg = Release|Any CPU
-		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
-		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
+		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|Any CPU.ActiveCfg = ReleaseNoNet|Any CPU
+		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|Any CPU.Build.0 = ReleaseNoNet|Any CPU
 		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|Mixed Platforms.ActiveCfg = ReleaseNoNet|Any CPU
 		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
-		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
-		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
+		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|Win32.ActiveCfg = ReleaseNoNet|Any CPU
+		{A5F8FB02-00E0-4335-91EF-AEAA2C2F3C48}.ReleaseNoNet|x64.ActiveCfg = ReleaseNoNet|Any CPU
 		{46B769B8-2C58-4138-9CC0-70E3AE3C9A3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46B769B8-2C58-4138-9CC0-70E3AE3C9A3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46B769B8-2C58-4138-9CC0-70E3AE3C9A3A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -262,6 +264,24 @@ Global
 		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
 		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
 		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Release|Win32.ActiveCfg = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Release|x64.ActiveCfg = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
