@@ -45,6 +45,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 package com.keepassdroid.database.load;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -135,10 +136,29 @@ public class ImporterV3  {
 
 
 		// Load entire file, most of it's encrypted.
-		int fileSize = inStream.available();
-		byte[] filebuf = new byte[fileSize + 16]; // Pad with a blocksize (Twofish uses 128 bits), since Android 4.3 tries to write more to the buffer
-		inStream.read(filebuf, 0, fileSize);
+		
+		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+		int nRead;
+		byte[] data = new byte[16384];
+
+		while ((nRead = inStream.read(data, 0, data.length)) != -1) {
+		  buffer.write(data, 0, nRead);
+		}
+
+		buffer.flush();
+		
+		int fileSize = buffer.size();
+		
+	 // Pad with a blocksize (Twofish uses 128 bits), since Android 4.3 tries to write more to the buffer
+		for (int i=0;i<16;i++)
+		{
+			buffer.write(0);
+		}
+
 		inStream.close();
+		
+		byte[] filebuf = buffer.toByteArray();
 
 		// Parse header (unencrypted)
 		if( fileSize < PwDbHeaderV3.BUF_SIZE )

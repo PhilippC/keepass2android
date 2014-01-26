@@ -19,8 +19,8 @@
  */
 package com.keepassdroid.database;
 
-public class PwIconStandard extends PwIcon {
-	public final int iconId;
+public class PwIconStandard  {
+	public /*final*/ int iconId;
 	
 	public static PwIconStandard FIRST = new PwIconStandard(1);
 	
@@ -30,7 +30,6 @@ public class PwIconStandard extends PwIcon {
 		this.iconId = iconId;
 	}
 
-	@Override
 	public boolean isMetaStreamIcon() {
 		return iconId == 0;
 	}

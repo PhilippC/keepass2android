@@ -19,7 +19,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Android.App;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -33,6 +32,7 @@ namespace keepass2android
 		private readonly string _keyfileOrProvider;
 		private readonly IKp2aApp _app;
 		private readonly bool _rememberKeyfile;
+		IDatabaseLoader _loader;
 		
 		public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish): base(finish)
 		{
@@ -68,8 +68,8 @@ namespace keepass2android
 				}
 
 				//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
-				IDatabaseLoader loader = new KdbxDatabaseLoader(KdbpFile.GetFormatToUse(_ioc)); 
-				TryLoad(databaseStream, loader);
+				_loader = new KdbxDatabaseLoader(KdbpFile.GetFormatToUse(_ioc));
+				TryLoad(databaseStream);
 			}
 			catch (KeyFileException)
 			{
@@ -99,7 +99,7 @@ namespace keepass2android
 			
 		}
 
-		private void TryLoad(MemoryStream databaseStream, IDatabaseLoader loader)
+		private void TryLoad(MemoryStream databaseStream)
 		{
 			//create a copy of the stream so we can try again if we get an exception which indicates we should change parameters
 			//This is not optimal in terms of (short-time) memory usage but is hard to avoid because the Keepass library closes streams also in case of errors.
@@ -112,14 +112,15 @@ namespace keepass2android
 			//now let's go:
 			try
 			{
-				_app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, loader);
+				_app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _loader);
 				SaveFileData(_ioc, _keyfileOrProvider);
 				Kp2aLog.Log("LoadDB OK");
 				Finish(true);
 			}
 			catch (OldFormatException)
 			{
-				TryLoad(databaseStream, new KdbDatabaseLoader(Application.Context));
+				_loader = new KdbDatabaseLoader();
+				TryLoad(databaseStream);
 			}
 			catch (InvalidCompositeKeyException)
 			{
@@ -131,7 +132,7 @@ namespace keepass2android
 					//retry without password:
 					_compositeKey.RemoveUserKey(passwordKey);
 					//retry:
-					TryLoad(databaseStream, loader);
+					TryLoad(databaseStream);
 				}
 				else throw;
 			}

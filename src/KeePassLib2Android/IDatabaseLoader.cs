@@ -9,5 +9,7 @@ namespace KeePassLib
 		void PopulateDatabaseFromStream(PwDatabase db, CompositeKey key, Stream s, IStatusLogger slLogger);
 
 		byte[] HashOfLastStream { get; }
+
+		bool CanWrite { get;  }
 	}
 }

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Android.App;
+using KeePassLib;
 using KeePassLib.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using keepass2android;
@@ -14,7 +15,15 @@ namespace Kp2aUnitTests
 	{
 		private void RunLoadTest(string filenameWithoutDir, string password, string keyfile)
 		{
-			Android.Util.Log.Debug("KP2ATest", "Starting for " + filenameWithoutDir+" with " + password+"/"+keyfile);
+			var app = PerformLoad(filenameWithoutDir, password, keyfile);
+
+			Assert.AreEqual(6,app.GetDb().KpDatabase.RootGroup.Groups.Count());
+			Assert.AreEqual(2,app.GetDb().KpDatabase.RootGroup.Entries.Count());
+		}
+
+		private IKp2aApp PerformLoad(string filenameWithoutDir, string password, string keyfile)
+		{
+			Android.Util.Log.Debug("KP2ATest", "Starting for " + filenameWithoutDir + " with " + password + "/" + keyfile);
 
 			IKp2aApp app = new TestKp2aApp();
 			app.CreateNewDatabase();
@@ -22,40 +31,43 @@ namespace Kp2aUnitTests
 			var key = CreateKey(password, keyfile);
 			string loadErrorMessage = "";
 
-			LoadDb task = new LoadDb(app, new IOConnectionInfo { Path = TestDbDirectory+filenameWithoutDir }, null,
-				key, keyfile, new ActionOnFinish((success, message) =>
-					{
-						loadErrorMessage = message;
-						if (!success)
-							Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
-						loadSuccesful = success; 		
-					})
+			LoadDb task = new LoadDb(app, new IOConnectionInfo {Path = TestDbDirectory + filenameWithoutDir}, null,
+			                         key, keyfile, new ActionOnFinish((success, message) =>
+				                         {
+					                         loadErrorMessage = message;
+					                         if (!success)
+						                         Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
+					                         loadSuccesful = success;
+				                         })
 				);
 			ProgressTask pt = new ProgressTask(app, Application.Context, task);
 			Android.Util.Log.Debug("KP2ATest", "Running ProgressTask");
 			pt.Run();
 			pt.JoinWorkerThread();
 			Android.Util.Log.Debug("KP2ATest", "PT.run finished");
-			Assert.IsTrue(loadSuccesful, "didn't succesfully load database :-( "+loadErrorMessage);
-			
-			Assert.AreEqual(6,app.GetDb().KpDatabase.RootGroup.Groups.Count());
-			Assert.AreEqual(2,app.GetDb().KpDatabase.RootGroup.Entries.Count());
+			Assert.IsTrue(loadSuccesful, "didn't succesfully load database :-( " + loadErrorMessage);
+			return app;
 		}
-
-		
 
 
 		[TestMethod]
 		public void TestLoadWithPasswordOnly()
 		{
 			RunLoadTest("passwordonly.kdbx", DefaultPassword, "");
+			
+
 		}
 
 
 		[TestMethod]
 		public void TestLoadKdb1()
 		{
-			RunLoadTest("test1.kdb", "12345", "");
+			var app = PerformLoad("keepass.kdb", "test", "");
+
+			//contents of the kdb file are a little different because the root group cannot have entries
+			Assert.AreEqual(6, app.GetDb().KpDatabase.RootGroup.Groups.Count());
+			PwGroup generalGroup = app.GetDb().KpDatabase.RootGroup.Groups.Single(g => g.Name == "General");
+			Assert.AreEqual(2, generalGroup.Entries.Count());
 		}
 
 		[TestMethod]

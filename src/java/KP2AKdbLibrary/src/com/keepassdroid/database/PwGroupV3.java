@@ -46,17 +46,29 @@ public class PwGroupV3 {
 	public PwGroupV3() {
 	}
 
-	public List<PwGroupV3> childGroups = new ArrayList<PwGroupV3>();
+	//Mono for Android binding somehow doesn't return List<PwGroupV3> but only IList and casting of the contents doesn't work.
+	//therefore, getGroupAt() must be used in C#, see below
+	public ArrayList<PwGroupV3> childGroups = new ArrayList<PwGroupV3>();
 
-	public List<PwEntryV3> childEntries = new ArrayList<PwEntryV3>();
+	public ArrayList<PwEntryV3> childEntries = new ArrayList<PwEntryV3>();
 	public String name = "";
 	public PwIconStandard icon;
+	
+	 
+	public PwGroupV3 getGroupAt(int i)
+	{
+		return childGroups.get(i);
+	}
+	public PwEntryV3 getEntryAt(int i)
+	{
+		return childEntries.get(i);
+	}
 
-	public PwIcon getIcon() {
+	public PwIconStandard getIcon() {
 		return icon;
 	}
 
-	public void super_initNewGroup(String nm, PwGroupId newId) {
+	public void super_initNewGroup(String nm, PwGroupIdV3 newId) {
 		setId(newId);
 		name = nm;
 	}
@@ -113,7 +125,7 @@ public class PwGroupV3 {
 	/** Used by KeePass internally, don't use */
 	public int flags;
 
-	public void setGroups(List<PwGroupV3> groups) {
+	public void setGroups(ArrayList<PwGroupV3> groups) {
 		childGroups = groups;
 	}
 
@@ -121,11 +133,11 @@ public class PwGroupV3 {
 		return parent;
 	}
 
-	public PwGroupId getId() {
+	public PwGroupIdV3 getId() {
 		return new PwGroupIdV3(groupId);
 	}
 
-	public void setId(PwGroupId id) {
+	public void setId(PwGroupIdV3 id) {
 		PwGroupIdV3 id3 = (PwGroupIdV3) id;
 		groupId = id3.getId();
 	}
@@ -144,7 +156,7 @@ public class PwGroupV3 {
 
 	}
 
-	public void initNewGroup(String nm, PwGroupId newId) {
+	public void initNewGroup(String nm, PwGroupIdV3 newId) {
 		super_initNewGroup(nm, newId);
 
 		Date now = Calendar.getInstance().getTime();

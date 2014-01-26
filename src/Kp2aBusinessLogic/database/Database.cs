@@ -112,7 +112,14 @@ namespace keepass2android
 			Loaded = true;
 			KpDatabase = pwDatabase;
 			SearchHelper = new SearchDbHelper(app);
+
+			CanWrite = databaseLoader.CanWrite;
 		}
+
+		/// <summary>
+		/// Indicates whether it is possible to make changes to this database
+		/// </summary>
+		public bool CanWrite { get; set; }
 
 		protected  virtual void PopulateDatabaseFromStream(PwDatabase pwDatabase, Stream s, IOConnectionInfo iocInfo, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseLoader databaseLoader)
 		{

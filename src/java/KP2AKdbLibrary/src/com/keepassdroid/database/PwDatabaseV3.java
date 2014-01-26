@@ -310,7 +310,7 @@ public class PwDatabaseV3 {
 	 *            ID number to check for
 	 * @return True if the ID is used, false otherwise
 	 */
-	protected boolean isGroupIdUsed(PwGroupId id) {
+	protected boolean isGroupIdUsed(PwGroupIdV3 id) {
 		List<PwGroupV3> groups = getGroups();
 		
 		for (int i = 0; i < groups.size(); i++) {
@@ -382,9 +382,9 @@ public class PwDatabaseV3 {
 		groups = grp;
 	}
 
-	public List<PwGroupV3> getGrpRoots() {
+	public ArrayList<PwGroupV3> getGrpRoots() {
 		int target = 0;
-		List<PwGroupV3> kids = new ArrayList<PwGroupV3>();
+		ArrayList<PwGroupV3> kids = new ArrayList<PwGroupV3>();
 		for (int i = 0; i < groups.size(); i++) {
 			PwGroupV3 grp = (PwGroupV3) groups.get(i);
 			if (grp.level == target)
@@ -404,10 +404,10 @@ public class PwDatabaseV3 {
 		return -1;
 	}
 
-	public List<PwGroupV3> getGrpChildren(PwGroupV3 parent) {
+	public ArrayList<PwGroupV3> getGrpChildren(PwGroupV3 parent) {
 		int idx = groups.indexOf(parent);
 		int target = parent.level + 1;
-		List<PwGroupV3> kids = new ArrayList<PwGroupV3>();
+		ArrayList<PwGroupV3> kids = new ArrayList<PwGroupV3>();
 		while (++idx < groups.size()) {
 			PwGroupV3 grp = (PwGroupV3) groups.get(idx);
 			if (grp.level < target)
@@ -418,8 +418,8 @@ public class PwDatabaseV3 {
 		return kids;
 	}
 
-	public List<PwEntryV3> getEntries(PwGroupV3 parent) {
-		List<PwEntryV3> kids = new ArrayList<PwEntryV3>();
+	public ArrayList<PwEntryV3> getEntries(PwGroupV3 parent) {
+		ArrayList<PwEntryV3> kids = new ArrayList<PwEntryV3>();
 		/*
 		 * for( Iterator i = entries.iterator(); i.hasNext(); ) { PwEntryV3 ent
 		 * = (PwEntryV3)i.next(); if( ent.groupId == parent.groupId ) kids.add(
@@ -443,7 +443,7 @@ public class PwDatabaseV3 {
 			PwGroupV3 root = new PwGroupV3();
 			rootGroup = root;
 
-			List<PwGroupV3> rootChildGroups = getGrpRoots();
+			ArrayList<PwGroupV3> rootChildGroups = getGrpRoots();
 			root.setGroups(rootChildGroups);
 			root.childEntries = new ArrayList<PwEntryV3>();
 			root.level = -1;

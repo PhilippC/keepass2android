@@ -90,10 +90,10 @@ protected static final String PMS_TAN_ENTRY = "<TAN>";
 	
 	
 	
-	public PwIcon getIcon() {
+	public PwIconStandard getIcon() {
 		return icon;
 	}
-	
+
 	public boolean isTan() {
 		return getTitle().equals(PMS_TAN_ENTRY) && (getUsername().length() > 0);
 	}
@@ -148,7 +148,7 @@ protected static final String PMS_TAN_ENTRY = "<TAN>";
 	public int              groupId;
 	public 	String 			username;
 	private byte[]          password;
-	private byte[]          uuid;
+	public byte[]          uuid;
 	public String title;
 	public String url;
 	public String additional;

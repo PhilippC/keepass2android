@@ -19,7 +19,7 @@
  */
 package com.keepassdroid.database;
 
-public class PwGroupIdV3 extends PwGroupId {
+public class PwGroupIdV3 {
 
 	private int id;
 	
