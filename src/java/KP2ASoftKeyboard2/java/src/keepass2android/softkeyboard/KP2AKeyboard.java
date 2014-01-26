@@ -288,6 +288,7 @@ public class KP2AKeyboard extends InputMethodService
         }
     };
 	private ClearKeyboardBroadcastReceiver mClearKeyboardReceiver;
+	private PluginManager mPluginManager;
     
     public class ClearKeyboardBroadcastReceiver extends BroadcastReceiver {
     	  @Override
@@ -326,6 +327,17 @@ public class KP2AKeyboard extends InputMethodService
         }
         mReCorrectionEnabled = prefs.getBoolean(PREF_RECORRECTION_ENABLED,
                 getResources().getBoolean(R.bool.default_recorrection_enabled));
+        
+        Log.d("KP2AK","finding plugin dicts...");
+        PluginManager.getPluginDictionaries(getApplicationContext());
+        mPluginManager = new PluginManager(this);
+        final IntentFilter pFilter = new IntentFilter();
+        pFilter.addDataScheme("package");
+        pFilter.addAction("android.intent.action.PACKAGE_ADDED");
+        pFilter.addAction("android.intent.action.PACKAGE_REPLACED");
+        pFilter.addAction("android.intent.action.PACKAGE_REMOVED");
+        registerReceiver(mPluginManager, pFilter);
+
 
         LatinIMEUtil.GCUtils.getInstance().reset();
         boolean tryGC = true;
@@ -452,7 +464,7 @@ public class KP2AKeyboard extends InputMethodService
             mContactsDictionary.close();
         }*/
         unregisterReceiver(mReceiver);
-        
+        unregisterReceiver(mPluginManager);        
         unregisterReceiver(mClearKeyboardReceiver);
         
         LatinImeLogger.commit();
