@@ -1400,20 +1400,19 @@ public class KP2AKeyboard extends InputMethodService
 		}
 
 		
+		
+		StringForTyping openOrChangeEntry = new StringForTyping();
 		if (keepass2android.kbbridge.KeyboardData.entryName == null)
 		{
-			StringForTyping openEntry = new StringForTyping();
-			openEntry.displayName = openEntry.key = getString(R.string.open_entry);
-			openEntry.value = "KP2ASPECIAL_SelectEntryTask";
-			items.add(openEntry);
+			openOrChangeEntry.displayName = openOrChangeEntry.key = getString(R.string.open_entry);
 		}
 		else
 		{
-			StringForTyping changeEntry = new StringForTyping();
-			changeEntry.displayName = changeEntry.key = getString(R.string.change_entry);
-			changeEntry.value = "KP2ASPECIAL_SelectEntryTask";
-			items.add(changeEntry);
+			openOrChangeEntry.displayName = openOrChangeEntry.key = getString(R.string.change_entry);
 		}
+		openOrChangeEntry.value = "KP2ASPECIAL_SelectEntryTask";
+		items.add(openOrChangeEntry);
+	
 		
 		final String clientPackageName = attribute.packageName;
 

@@ -120,8 +120,6 @@ namespace keepass2android
 
 			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
-			bool closeAfterCreate = _appTask.CloseEntryActivityAfterCreate;
-
 			Entry = db.Entries [uuid];
 
 			// Refresh Menu contents in case onCreateMenuOptions was called before _entry was set
@@ -145,9 +143,17 @@ namespace keepass2android
 			
 			SetupEditButtons();
 
-			Intent showNotIntent = new Intent(this, typeof(CopyToClipboardService));
+			//depending on the app task, the final things to do might be delayed, so let the appTask call CompleteOnCreate when appropriate
+			_appTask.OnCompleteCreateEntryActivity(this);
+			
+		}
+
+		public void CompleteOnCreate()
+		{
+			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
 			Intent.SetAction(Intents.ShowNotification);
 			showNotIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
+			bool closeAfterCreate = _appTask.CloseEntryActivityAfterCreate;
 			showNotIntent.PutExtra(KeyCloseAfterCreate, closeAfterCreate);
 
 			StartService(showNotIntent);
@@ -165,7 +171,7 @@ namespace keepass2android
 				Finish();
 			}
 		}
-			
+
 
 		private String getDateTime(DateTime dt) {
 			return dt.ToString ("g", CultureInfo.CurrentUICulture);
@@ -646,6 +652,73 @@ namespace keepass2android
 
 			
 			return base.OnOptionsItemSelected(item);
+		}
+
+		/// <summary>
+		/// brings up a dialog asking the user whether he wants to add the given URL to the entry for automatic finding
+		/// </summary>
+		public void AskAddUrlThenCompleteCreate(string url)
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.SetTitle(GetString(Resource.String.AddUrlToEntryDialog_title));
+
+			builder.SetMessage(GetString(Resource.String.AddUrlToEntryDialog_text, new Java.Lang.Object[] { url } ));
+
+			builder.SetPositiveButton(GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
+				{
+					AddUrlToEntryThenCompleteCreate(url);
+				});
+
+			builder.SetNegativeButton(GetString(Resource.String.no), (dlgSender, dlgEvt) =>
+			{
+				CompleteOnCreate();
+			});
+
+			Dialog dialog = builder.Create();
+			dialog.Show();
+
+		}
+
+		private void AddUrlToEntryThenCompleteCreate(string url)
+		{
+			PwEntry initialEntry = Entry.CloneDeep();
+
+			PwEntry newEntry = Entry;
+			newEntry.History = newEntry.History.CloneDeep();
+			newEntry.CreateBackup(null);
+
+			newEntry.Touch(true, false); // Touch *after* backup
+
+			//if there is no URL in the entry, set that field. If it's already in use, use an additional (not existing) field
+			if (String.IsNullOrEmpty(newEntry.Strings.ReadSafe(PwDefs.UrlField)))
+			{
+				newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, url));
+			}
+			else
+			{
+				int c = 1;
+				while (newEntry.Strings.Get("KP2A_URL_" + c) != null)
+				{
+					c++;
+				}
+
+				newEntry.Strings.Set("KP2A_URL_" + c, new ProtectedString(false, url));
+			}
+
+			//save the entry:
+
+			ActionOnFinish closeOrShowError = new ActionOnFinish((success, message) =>
+			{
+				OnFinish.DisplayMessage(this, message);
+				CompleteOnCreate();
+			});
+
+			
+			RunnableOnFinish runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
+			
+			ProgressTask pt = new ProgressTask(App.Kp2a, this, runnable);
+			pt.Run();
+			
 		}
 	}
 

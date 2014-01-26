@@ -229,6 +229,11 @@ namespace keepass2android
 				act.Intent.RemoveExtra(AppTaskKey);
 
 		}
+
+		public virtual void OnCompleteCreateEntryActivity(EntryActivity entryActivity)
+		{
+			entryActivity.CompleteOnCreate();
+		}
 	}
 
 	/// <summary>
@@ -288,6 +293,60 @@ namespace keepass2android
 			//keypoint here: close the app after selecting the entry
 			get { return true;}
 		}
+	}
+
+	/// <summary>
+	/// User is about to select an entry. When selected, ask whether the url he was searching for earlier should be stored 
+	/// in the selected entry for later use.
+	/// </summary>
+	public class SelectEntryForUrlTask: AppTask
+	{
+		/// <summary>
+		/// default constructor for creating from Bundle
+		/// </summary>
+		public SelectEntryForUrlTask()
+		{
+			
+		}
+
+		public SelectEntryForUrlTask(string url)
+		{
+			UrlToSearchFor = url;
+		}
+
+		public const String UrlToSearchKey = "UrlToSearch";
+
+		public string UrlToSearchFor
+		{
+			get;
+			set;
+		}
+
+		public override void Setup(Bundle b)
+		{
+			UrlToSearchFor = b.GetString(UrlToSearchKey);
+		}
+		public override IEnumerable<IExtra> Extras
+		{
+			get
+			{
+				yield return new StringExtra { Key = UrlToSearchKey, Value = UrlToSearchFor };
+			}
+		}
+
+		public override bool CloseEntryActivityAfterCreate
+		{
+			get { return true; }
+		}
+
+		public override void OnCompleteCreateEntryActivity(EntryActivity entryActivity)
+		{
+			//if the database is readonly, don't offer to modify the URL
+			if (App.Kp2a.GetDb().CanWrite == false)
+				base.OnCompleteCreateEntryActivity(entryActivity);
+			entryActivity.AskAddUrlThenCompleteCreate(UrlToSearchFor);
+		}
+		
 	}
 
 	/// <summary>

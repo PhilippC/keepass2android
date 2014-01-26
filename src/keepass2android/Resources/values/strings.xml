@@ -224,7 +224,11 @@
   
   <string name="SaveAttachment_doneMessage">Saved file to %1$s.</string>
   <string name="SaveAttachment_Failed">Could not save attachment to %1$s.</string>
-  <string name="error_invalid_expiry_date">Invalid date/time format for expiry date!</string>
+
+	<string name="AddUrlToEntryDialog_title">Remember search text?</string>
+	<string name="AddUrlToEntryDialog_text">Would you like to store the search text "%1$s" in the selected entry in order to find it automatically next time?</string>
+
+	<string name="error_invalid_expiry_date">Invalid date/time format for expiry date!</string>
   <string name="error_string_key">A field name is required for each string.</string>
   <string name="field_name">Field Name</string>
   <string name="field_value">Field value</string>

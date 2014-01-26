@@ -150,7 +150,7 @@ namespace keepass2android
 
 			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
 			selectOtherEntry.Click += (sender, e) => {
-				GroupActivity.Launch (this, new SelectEntryTask());
+				GroupActivity.Launch (this, new SelectEntryForUrlTask(url));
 			};
 
 			
