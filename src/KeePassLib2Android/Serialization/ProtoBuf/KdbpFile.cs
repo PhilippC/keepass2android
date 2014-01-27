@@ -146,8 +146,8 @@ namespace KeePassLib.Serialization
 			[ProtoMember(4)]
 			public DateTime NameChanged
 			{
-				get { return mDatabase.NameChanged; }
-				set { mDatabase.NameChanged = value; }
+				get { return mDatabase.NameChanged.ToUniversalTime(); }
+				set { mDatabase.NameChanged = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(5)]
@@ -160,8 +160,8 @@ namespace KeePassLib.Serialization
 			[ProtoMember(6)]
 			public DateTime DescriptionChanged
 			{
-				get { return mDatabase.DescriptionChanged; }
-				set { mDatabase.DescriptionChanged = value; }
+				get { return mDatabase.DescriptionChanged.ToUniversalTime(); }
+				set { mDatabase.DescriptionChanged = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(7)]
@@ -174,8 +174,8 @@ namespace KeePassLib.Serialization
 			[ProtoMember(8)]
 			public DateTime DefaultUserNameChanged
 			{
-				get { return mDatabase.DefaultUserNameChanged; }
-				set { mDatabase.DefaultUserNameChanged = value; }
+				get { return mDatabase.DefaultUserNameChanged.ToUniversalTime(); }
+				set { mDatabase.DefaultUserNameChanged = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(9)]
@@ -195,8 +195,8 @@ namespace KeePassLib.Serialization
 			[ProtoMember(11)]
 			public DateTime MasterKeyChanged
 			{
-				get { return mDatabase.MasterKeyChanged; }
-				set { mDatabase.MasterKeyChanged = value; }
+				get { return mDatabase.MasterKeyChanged.ToUniversalTime(); }
+				set { mDatabase.MasterKeyChanged = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(12)]
@@ -243,8 +243,8 @@ namespace KeePassLib.Serialization
 			[ProtoMember(18)]
 			public DateTime RecycleBinChanged
 			{
-				get { return mDatabase.RecycleBinChanged; }
-				set { mDatabase.RecycleBinChanged = value; }
+				get { return mDatabase.RecycleBinChanged.ToUniversalTime(); }
+				set { mDatabase.RecycleBinChanged = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(19, OverwriteList = true)]
@@ -257,8 +257,8 @@ namespace KeePassLib.Serialization
 			[ProtoMember(20)]
 			public DateTime EntryTemplatesGroupChanged
 			{
-				get { return mDatabase.EntryTemplatesGroupChanged; }
-				set { mDatabase.EntryTemplatesGroupChanged = value; }
+				get { return mDatabase.EntryTemplatesGroupChanged.ToUniversalTime(); }
+				set { mDatabase.EntryTemplatesGroupChanged = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(21)]
@@ -529,8 +529,8 @@ namespace KeePassLib.Serialization
 			[ProtoMember(2)]
 			public DateTime DeletionTime
 			{
-				get { return mDeletedObject.DeletionTime; }
-				set { mDeletedObject.DeletionTime = value; }
+				get { return mDeletedObject.DeletionTime.ToUniversalTime(); }
+				set { mDeletedObject.DeletionTime = value.ToLocalTime(); }
 			}
 		}
 
@@ -613,29 +613,29 @@ namespace KeePassLib.Serialization
 			[ProtoMember(8)]
 			public DateTime LastModificationTime
 			{
-				get { return mGroup.LastModificationTime; }
-				set { mGroup.LastModificationTime = value; }
+				get { return mGroup.LastModificationTime.ToUniversalTime(); }
+				set { mGroup.LastModificationTime = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(9)]
 			public DateTime CreationTime
 			{
-				get { return mGroup.CreationTime; }
-				set { mGroup.CreationTime = value; }
+				get { return mGroup.CreationTime.ToUniversalTime(); }
+				set { mGroup.CreationTime = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(10)]
 			public DateTime LastAccessTime
 			{
-				get { return mGroup.LastAccessTime; }
-				set { mGroup.LastAccessTime = value; }
+				get { return mGroup.LastAccessTime.ToUniversalTime(); }
+				set { mGroup.LastAccessTime = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(11)]
 			public DateTime ExpiryTime
 			{
-				get { return mGroup.ExpiryTime; }
-				set { mGroup.ExpiryTime = value; }
+				get { return mGroup.ExpiryTime.ToUniversalTime(); }
+				set { mGroup.ExpiryTime = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(12)]
@@ -655,8 +655,8 @@ namespace KeePassLib.Serialization
 			[ProtoMember(14)]
 			public DateTime LocationChanged
 			{
-				get { return mGroup.LocationChanged; }
-				set { mGroup.LocationChanged = value; }
+				get { return mGroup.LocationChanged.ToUniversalTime(); }
+				set { mGroup.LocationChanged = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(15)]
@@ -900,29 +900,29 @@ namespace KeePassLib.Serialization
 			[ProtoMember(8)]
 			public DateTime LastModificationTime
 			{
-				get { return mEntry.LastModificationTime; }
-				set { mEntry.LastModificationTime = value; }
+				get { return mEntry.LastModificationTime.ToUniversalTime(); }
+				set { mEntry.LastModificationTime = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(9)]
 			public DateTime CreationTime
 			{
-				get { return mEntry.CreationTime; }
-				set { mEntry.CreationTime = value; }
+				get { return mEntry.CreationTime.ToUniversalTime(); }
+				set { mEntry.CreationTime = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(10)]
 			public DateTime LastAccessTime
 			{
-				get { return mEntry.LastAccessTime; }
-				set { mEntry.LastAccessTime = value; }
+				get { return mEntry.LastAccessTime.ToUniversalTime(); }
+				set { mEntry.LastAccessTime = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(11)]
 			public DateTime ExpiryTime
 			{
-				get { return mEntry.ExpiryTime; }
-				set { mEntry.ExpiryTime = value; }
+				get { return mEntry.ExpiryTime.ToUniversalTime(); }
+				set { mEntry.ExpiryTime = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(12)]
@@ -942,8 +942,8 @@ namespace KeePassLib.Serialization
 			[ProtoMember(14)]
 			public DateTime LocationChanged
 			{
-				get { return mEntry.LocationChanged; }
-				set { mEntry.LocationChanged = value; }
+				get { return mEntry.LocationChanged.ToUniversalTime(); }
+				set { mEntry.LocationChanged = value.ToLocalTime(); }
 			}
 
 			[ProtoMember(15)]
