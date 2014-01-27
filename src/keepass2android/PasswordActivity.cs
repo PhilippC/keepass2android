@@ -68,6 +68,7 @@ namespace keepass2android
 
 		public const String KeyFilename = "fileName";
 		private const String KeyKeyfile = "keyFile";
+		private const String KeyPassword = "password";
 		public const String KeyServerusername = "serverCredUser";
 		public const String KeyServerpassword = "serverCredPwd";
 		public const String KeyServercredmode = "serverCredRememberMode";
@@ -358,6 +359,7 @@ namespace keepass2android
 			{
 				SetIoConnectionFromIntent(_ioConnection, i);
 				_keyFileOrProvider = i.GetStringExtra(KeyKeyfile);
+				_password = i.GetStringExtra(KeyPassword) ?? "";
 				if (string.IsNullOrEmpty(_keyFileOrProvider))
 				{
 					_keyFileOrProvider = GetKeyFile(_ioConnection.Path);
@@ -397,6 +399,7 @@ namespace keepass2android
 
 
 			EditText passwordEdit = FindViewById<EditText>(Resource.Id.password);
+			passwordEdit.Text = _password;
 			passwordEdit.RequestFocus();
 			Window.SetSoftInputMode(SoftInput.StateVisible);
 
@@ -414,6 +417,13 @@ namespace keepass2android
 			InitializeQuickUnlockCheckbox();
 
 			RestoreState(savedInstanceState);
+
+			if (i.GetBooleanExtra("launchImmediately", false))
+			{
+				App.Kp2a.GetFileStorage(_ioConnection)
+					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection,
+										 RequestCodePrepareDbFile, false);
+			}
 		}
 
 		private void InitializeOtpSecretSpinner()
