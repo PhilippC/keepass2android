@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="34" android:versionName="0.9.3-pre1" package="keepass2android.keepass2android" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="35" android:versionName="0.9.3-pre2" package="keepass2android.keepass2android" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
 	<permission android:description="@string/permission_desc" android:icon="@drawable/ic_launcher" android:label="KP2A internal file browsing" android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" android:protectionLevel="signature" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">
-		
 		<activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
 				<data android:scheme="db-i8shu7v1hgh7ynt" />
@@ -29,7 +28,6 @@
 				<category android:name="android.intent.category.OPENABLE" />
 			</intent-filter>
 		</activity>
-		
 		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">
 			<intent-filter>
 				<action android:name="android.view.InputMethod" />
@@ -40,6 +38,10 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
+			<intent-filter>
+				<action android:name="keepass2android.softkeyboard.LatinIMESettings"/>
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
         </activity>
 
 		

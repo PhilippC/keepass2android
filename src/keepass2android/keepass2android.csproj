@@ -231,10 +231,6 @@
     </None>
     <None Include="Properties\AndroidManifest_nonet.xml">
       <Visible>False</Visible>
-	</None>
-	
-    <None Include="..\java\kp2akeytransform\libs\mips\libfinal-key.so" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
-      <Link>libs\mips\libfinal-key.so</Link>
     </None>
     <None Include="Resources\drawable-hdpi\Thumbs.db">
       <Visible>False</Visible>
@@ -563,25 +559,25 @@
     <AndroidResource Include="Resources\layout\entry_edit_section.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-	<AndroidResource Include="Resources\values-af\strings.xml" />
-	<AndroidResource Include="Resources\values-ar\strings.xml" />
-	<AndroidResource Include="Resources\values-el\strings.xml" />
-	<AndroidResource Include="Resources\values-fi\strings.xml" />
-	<AndroidResource Include="Resources\values-in\strings.xml" />
-	<AndroidResource Include="Resources\values-iw\strings.xml" />
-	<AndroidResource Include="Resources\values-ko\strings.xml" />
-	<AndroidResource Include="Resources\values-no\strings.xml" />
-	<AndroidResource Include="Resources\values-pt-rPT\strings.xml" />
-	<AndroidResource Include="Resources\values-iw\strings.xml" />
-	<AndroidResource Include="Resources\values-ko\strings.xml" />
-	
-	<AndroidResource Include="Resources\values-ro\strings.xml" />
-	<AndroidResource Include="Resources\values-sl\strings.xml" />
-	<AndroidResource Include="Resources\values-sr\strings.xml" />
-	<AndroidResource Include="Resources\values-sv\strings.xml" />
-	<AndroidResource Include="Resources\values-tr\strings.xml" />
-	<AndroidResource Include="Resources\values-vi\strings.xml" />
-
+    <AndroidResource Include="Resources\values-af\strings.xml" />
+    <AndroidResource Include="Resources\values-ar\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\values-el\strings.xml" />
+    <AndroidResource Include="Resources\values-fi\strings.xml" />
+    <AndroidResource Include="Resources\values-in\strings.xml" />
+    <AndroidResource Include="Resources\values-iw\strings.xml" />
+    <AndroidResource Include="Resources\values-ko\strings.xml" />
+    <AndroidResource Include="Resources\values-no\strings.xml" />
+    <AndroidResource Include="Resources\values-pt-rPT\strings.xml" />
+    <AndroidResource Include="Resources\values-iw\strings.xml" />
+    <AndroidResource Include="Resources\values-ko\strings.xml" />
+    <AndroidResource Include="Resources\values-ro\strings.xml" />
+    <AndroidResource Include="Resources\values-sl\strings.xml" />
+    <AndroidResource Include="Resources\values-sr\strings.xml" />
+    <AndroidResource Include="Resources\values-sv\strings.xml" />
+    <AndroidResource Include="Resources\values-tr\strings.xml" />
+    <AndroidResource Include="Resources\values-vi\strings.xml" />
     <AndroidResource Include="Resources\values-de\strings.xml" />
     <AndroidResource Include="Resources\values-ca\strings.xml" />
     <AndroidResource Include="Resources\values-cs\strings.xml" />
@@ -661,6 +657,18 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj">
+      <Project>{3c0f7fe5-639f-4422-a087-8b26cf862d1b}</Project>
+      <Name>AndroidFileChooserBinding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppCompatV7Binding\AppCompatV7Binding.csproj">
+      <Project>{23233a28-d74f-4bf8-b4d8-834060840bd7}</Project>
+      <Name>AppCompatV7Binding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
+      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
+      <Name>JavaFileStorageBindings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
@@ -691,16 +699,6 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
-  <ItemGroup>
-    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi\libfinal-key.so" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
-      <Link>libs\armeabi\libfinal-key.so</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidNativeLibrary>
-    <AndroidNativeLibrary Include="..\java\kp2akeytransform\libs\armeabi-v7a\libfinal-key.so" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
-      <Link>libs\armeabi-v7a\libfinal-key.so</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidNativeLibrary>
-  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_launcher_offline.png" />
   </ItemGroup>
@@ -873,5 +871,4 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\device_access_new_account.png" />
   </ItemGroup>
-  
 </Project>

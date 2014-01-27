@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Diagnostics;
-
+using Android.Util;
 using KeePassLib.Utility;
 using keepass2android;
 
@@ -132,6 +132,7 @@ namespace KeePassLib.Native
 				byte[] newKey = key.TransformMasterKey(pKey256, pBuf256, (int)uRounds);
 				Array.Copy(newKey, pBuf256, newKey.Length);
 #else 
+				Log.Warn("KP2A", "Transforming key managed!");
 				return false;
 #endif
 			}
