@@ -398,7 +398,9 @@
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="ChangeLog_0_9_3">
-		<b>Version 0.9.3 preview</b>\n
+		<b>Version 0.9.3 preview 2</b>\n
+		* New keyboard with many improvements. See settings to customize.\n
+		* Read-only support for kdb (Keepass 1 files). Experimental!
 		* Added SFTP support\n
 		* Bug fixes\n
 	</string>

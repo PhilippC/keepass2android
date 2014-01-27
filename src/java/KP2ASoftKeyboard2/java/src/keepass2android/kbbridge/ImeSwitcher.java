@@ -18,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 public class ImeSwitcher {
+	private static final String SECURE_SETTINGS_PACKAGE_NAME = "com.intangibleobject.securesettings.plugin";
 	private static final String PREVIOUS_KEYBOARD = "previous_keyboard";
 	private static final String KP2A_SWITCHER = "KP2A_Switcher";
 	private static final String Tag = "KP2A_SWITCHER";
@@ -47,7 +48,7 @@ public class ImeSwitcher {
 		boolean sentBroadcast = false;
 		for (ResolveInfo ri: pkgAppsList)
 		{
-			if (ri.activityInfo.packageName.equals("com.intangibleobject.securesettings.plugin"))
+			if (ri.activityInfo.packageName.equals(SECURE_SETTINGS_PACKAGE_NAME))
 			{
 				
 				String currentIme = android.provider.Settings.Secure.getString(
@@ -67,6 +68,7 @@ public class ImeSwitcher {
 				b.putString("com.intangibleobject.securesettings.plugin.extra.INPUT_METHOD", newImeName);
 				b.putString("com.intangibleobject.securesettings.plugin.extra.SETTING","default_input_method");
 				i.putExtra("com.twofortyfouram.locale.intent.extra.BUNDLE", b);
+				i.setPackage(SECURE_SETTINGS_PACKAGE_NAME);
 				Log.d(Tag,"trying to switch by broadcast to SecureSettings");
 				ctx.sendBroadcast(i);
 				sentBroadcast = true;

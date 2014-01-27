@@ -62,6 +62,7 @@ namespace keepass2android
         {
             DrawableFactory = drawableFactory;
             _app = app;
+			CanWrite = true; //default
         }
 		
 		private bool _loaded;
@@ -193,6 +194,7 @@ namespace keepass2android
 			Root = null;
 			KpDatabase = null;
 			_loaded = false;
+			CanWrite = true;
 			_reloadRequested = false;
 			OtpAuxFileIoc = null;
 		}

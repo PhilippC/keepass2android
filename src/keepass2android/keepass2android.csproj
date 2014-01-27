@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -697,6 +697,10 @@
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
       <Project>{70d3844a-d9fa-4a64-b205-a84c6a822196}</Project>
       <Name>KP2AKdbLibraryBinding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj">
+      <Project>{a8779d4d-7c49-4c2f-82bd-2cdc448391da}</Project>
+      <Name>Kp2aKeyboardBinding</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_TWOFISH'))">
       <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>
