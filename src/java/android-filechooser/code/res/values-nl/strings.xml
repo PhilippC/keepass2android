@@ -4,7 +4,7 @@
   <string name="afc_cmd_advanced_selection_all">Alles</string>
   <string name="afc_cmd_advanced_selection_invert">Selectie omkeren</string>
   <string name="afc_cmd_advanced_selection_none">Geen</string>
-  <string name="afc_cmd_grid_view">Gridweergave</string>
+  <string name="afc_cmd_grid_view">Rasterweergave</string>
   <string name="afc_cmd_home">Home</string>
   <string name="afc_cmd_list_view">Lijstweergave</string>
   <string name="afc_cmd_new_folder">Nieuwe map…</string>

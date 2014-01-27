@@ -21,7 +21,7 @@
   <string name="app_timeout_summary">Czas, po którym baza danych zostanie zablokowana gdy aplikacja jest nieaktywna.</string>
   <string name="kill_app_label">Zabij proces aplikacji</string>
   <string name="show_kill_app">Przycisk Zamknij</string>
-  <string name="show_kill_app_summary">Pokaż przycisk do zabicia aplikacji na ekranie hasła (dla paranoidalnych użytkowników)</string>
+  <string name="show_kill_app_summary">Pokaż przycisk do zabicia aplikacji na ekranie hasła (dla paranoicznych użytkowników)</string>
   <string name="application">Aplikacja</string>
   <string name="application_settings">Ustawienia aplikacji</string>
   <string name="security_prefs">Zabezpieczenia</string>
@@ -232,8 +232,12 @@
   <string name="credentials_dialog_title">Wprowadź poświadczenia serwera</string>
   <string name="UseFileTransactions_title">Tabela operacji na plikach</string>
   <string name="UseFileTransactions_summary">Użyj tabeli operacji na pliku do zapisu bazy danych</string>
+  <string name="LockWhenScreenOff_title">Zablokuj gdy ekran wyłączony</string>
+  <string name="LockWhenScreenOff_summary">Zablokuj bazę danych gdy ekran jest wyłączony.</string>
   <string name="UseOfflineCache_title">Pamięć podręczna baz danych</string>
   <string name="UseOfflineCache_summary">Przechowuj kopię zdalnych baz danych w katalogu pamięci podręcznej aplikacji. Pozwala to na wykorzystanie zdalnych baz danych, nawet w trybie offline.</string>
+  <string name="AcceptAllServerCertificates_title">Certyfikaty SSL</string>
+  <string name="AcceptAllServerCertificates_summary">Zdefiniuj zachowanie gdy weryfikacja certyfikatu nie powiedzie się. Uwaga: J eżeli weryfikacja nie powiedzie się, możesz zainstalować certyfikat na swoim urządzeniu!</string>
   <string name="ClearOfflineCache_title">Wyczyścić pamięć podręczną?</string>
   <string name="ClearOfflineCache_question">Spowoduje to usunięcie wszystkich plików pamięci podręcznej baz danych. Wszelkie zmiany dokonane będąc offline, które nie zostały jeszcze zsynchronizowane zostaną utracone! Kontynuować?</string>
   <string name="CheckForFileChangesOnSave_title">Sprawdź, czy zmodyfikowano</string>
@@ -288,13 +292,16 @@
   <string name="CheckingDatabaseForChanges">Sprawdzania bazy danych pod kątem zmian...</string>
   <string name="CouldNotSaveToRemote">Nie można zapisać zdalnego pliku: %1$s. Zapisz ponownie lub użyj menu Synchronizuj gdy połączenie będzie ponownie dostępne.</string>
   <string name="CouldNotLoadFromRemote">Nie można otworzyć z zdalnego: %1$s. Załadowano plik z lokalnej pamięci podręcznej. Można jeszcze wprowadzić zmiany w bazie danych i zsynchronizować je później.</string>
-  <string name="UpdatedRemoteFileOnLoad">Zaktualizowano plik zdalny.</string>
+  <string name="UpdatedRemoteFileOnLoad">Zaktualizowany plik zdalny.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Otwarto lokalny plik ze względu na konflikt ze zmianami w pliku zdalnym. Użyj menu Synchronizuj do połączenia obydwu plików.</string>
   <string name="LoadedFromRemoteInSync">Zdalny plik i pamięć podręczna są zsynchronizowane.</string>
   <string name="UpdatedCachedFileOnLoad">Aktualizacja lokalnej pamięci podręcznej: %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Nie wykryto żadnych zmian.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Zaktualizowano zbuforowany pomocniczy plik OTP: Zdalny licznik był wyższy.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Zaktualizowano zdalny plik pomocniczy OTP: lokalny licznik był wyższy.</string>
   <string name="SynchronizingOtpAuxFile">Synchronizacja pliku pomocniczego OTP…</string>
   <string name="database_file">plik bazy danych</string>
+  <string name="otp_aux_file">Pomocniczy plik OTP</string>
   <string name="ErrorOcurred">Wystąpił błąd:</string>
   <string name="synchronize_database_menu">Synchronizowanie bazy danych...</string>
   <string name="CannotMoveGroupHere">Nie można przenieść grupy do tej grupy.</string>
@@ -309,6 +316,8 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
   <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
@@ -325,8 +334,34 @@
   <string name="hint_key_file">Wybierz, jeśli chcesz użyć pliku klucza oprócz hasła głównego:</string>
   <string name="use_key_file">Użyj pliku klucza</string>
   <string name="error_adding_keyfile">Wystąpił błąd podczas dodawania pliku klucza!</string>
+  <string name="init_otp">Ładowanie pomocniczego pliku OTP…</string>
+  <string name="otp_explanation">Wprowadź kolejne hasła jednorazowe (OTPs). Zbliż swój Yubikey NEO do tylnej części swojego urządzenia aby wprowadzić przez NFC.</string>
+  <string name="otp_hint">Hasło jednorazowe (OTP) %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Nie można załadować pomocniczego pliku OTP!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Proszę użyć wtyczki OtpKeyProv w KeePass 2.x (PC) aby skonfigurować swoją bazę danych do korzystania z haseł jednorazowych (OTP)!</string>
+  <string name="otp_discarded_because_no_db">Proszę najpierw wybrać bazę danych. Hasło jednorazowe (OTP) odrzucone ze względów bezpieczeństwa.</string>
+  <string name="otp_discarded_no_space">Hasło jednorazowe (OTP) odrzucone: Wszystkie hasła jednorazowe (OTPs) zostały już wprowadzone!</string>
+  <string name="otp_discarded_because_db_open">Proszę najpierw zamknąć bazę danych. Hasło jednorazowe (OTP) odrzucone.</string>
+  <string name="otps_pending">(Jedno lub więcej haseł jednorazowych jest już dostępne)</string>
+  <string name="otpsecret_hint">Tajny klucz OTP (np. 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Błąd przetwarzania tajnego klucza OTP!</string>
+  <string name="OtpKeyError">Nie można utworzyć klucza OTP! Upewnij się, że wprowadziłeś poprawne hasła jednorazowe (OTPs).</string>
+  <string name="ErrorUpdatingOtpAuxFile">Błąd aktualizacji pomocniczego pliku OTP!</string>
+  <string name="SavingOtpAuxFile">Zapisywanie pomocniczego pliku OTP…</string>
   <string name="loading">Ładowanie…</string>
+  <string name="CertificateWarning">Ostrzeżenie: Weryfikacja certyfikatu serwera nie powiodła się: %1$s. Zainstaluj odpowiedni certyfikat root na swoim urządzeniu lub sprawdź ustawienia!</string>
+  <string name="CertificateFailure">Błąd: Weryfikacja certyfikatu serwera nie powiodła się! Zainstaluj odpowiedni certyfikat root na swoim urządzeniu lub sprawdź ustawienia!</string>
   <string name="ChangeLog_title">Lista zmian</string>
+  <string name="ChangeLog_0_9_2">
+		<b>Wersja 0.9.2</b>\n
+		* Dodano obsługę haseł jednorazowych (kompatybilne z wtyczką OtpKeyProv)\n
+		* Zintegrowano wparcie NFC dla haseł jednorazowych z YubiKey NEO \n
+		* Kilka usprawnień interfejsu\n
+		* Zintegrowano bibliotekę Keepass 2.24\n
+		* Dodano opcję do zabijania procesu aplikacji (sprawdź ustawienia)\n
+		* Usprawniona weryfikacja certyfikatów SSL\n
+		* Poprawki błędów\n
+	</string>
   <string name="ChangeLog_0_9_1">
 		<b>Wersja 0.9.1</b>\n
 		* Dodano wsparcie dla SkyDrive (Tylko zwyczajna edycja Keepass2Android)\n
@@ -416,8 +451,8 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Hasło + OTP (tryb odzyskiwania)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
-    <item>Ignore certificate validation failures</item>
-    <item>Warn when validation fails</item>
-    <item>Do not accept invalid certificates</item>
+    <item>Ignoruj niepowodzenia weryfikacji certyfikatów</item>
+    <item>Ostrzeż gdy weryfikacja się nie powiedzie</item>
+    <item>Nie akceptuj niezweryfikowanych certyfikatów</item>
   </string-array>
 </resources>

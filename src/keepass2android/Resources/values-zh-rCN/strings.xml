@@ -3,77 +3,86 @@
 <resources>
   <string name="about_feedback">反馈</string>
   <string name="about_homepage">主页</string>
-  <string name="AboutText">Keepass2Android是提供Keepass 2.X 数据库读写兼容的密码管理软件</string>
-  <string name="CreditsText">用户界面基于由 Brian Pellin 开发的 KeepassDroid 移植过来的。数据库操作的代码基于Dominik Reichl的KeePass。Android 机器人是转载或修改从工作创建和共享的谷歌和使用根据创作共用 3.0 归属许可证中所述的条款。</string>
+  <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的密码管理应用。</string>
+  <string name="CreditsText">用户界面基于由 Brian Pellin 开发的 KeepassDroid。数据库操作的代码是基于 Dominik Reichl 开发的KeePass。Android 机器人是转载或修改自谷歌创建、共享的并使用根据创作共用 3.0 许可证中所述的条款。</string>
   <string name="accept">接受</string>
   <string name="add_entry">添加条目</string>
-  <string name="add_url_entry">为 URL 创建条目</string>
+  <string name="add_url_entry">为链接地址创建条目</string>
   <string name="add_group">添加群组</string>
   <string name="add_group_title">添加群组</string>
+  <string name="edit_group_title">编辑群组</string>
   <string name="algorithm">算法</string>
   <string name="algorithm_colon">算法</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android 离线版</string>
-  <string name="short_app_name_nonet">KP2A 离线</string>
+  <string name="short_app_name_nonet">KP2A 离线版</string>
   <string name="app_timeout">应用程序超时</string>
   <string name="app_timeout_summary">应用程序处于非活动时锁定数据库。</string>
+  <string name="kill_app_label">结束应用程序进程</string>
+  <string name="show_kill_app">关闭按钮</string>
+  <string name="show_kill_app_summary">在密码界面显示一个结束应用程序进程的按钮</string>
   <string name="application">应用程序</string>
   <string name="application_settings">应用程序设置</string>
+  <string name="security_prefs">安全</string>
+  <string name="display_prefs">显示</string>
+  <string name="password_access_prefs">密码输入接口</string>
+  <string name="QuickUnlock_prefs">快速解锁</string>
+  <string name="FileHandling_prefs">文件操作</string>
   <string name="brackets">括号</string>
   <string name="cancel">取消</string>
-  <string name="ClearClipboard">剪贴板已清除</string>
+  <string name="ClearClipboard">剪贴板已清除。</string>
   <string name="clipboard_timeout">剪贴板超时</string>
   <string name="clipboard_timeout_summary">复制用户名或密码到剪贴板后清除的时间</string>
   <string name="copy_username">复制用户名到剪贴板</string>
   <string name="copy_password">复制密码到剪贴板</string>
   <string name="available_through_keyboard">可通过 KP2A 键盘获得条目</string>
-  <string name="not_possible_im_picker">无法打开输入法选择对话框，请手动激活键盘</string>
-  <string name="please_activate_keyboard">请在系统设置中启用Keepass2Android 键盘</string>
-  <string name="creating_db_key">创建数据库密钥…</string>
-  <string name="current_group">当前群组：</string>
-  <string name="current_group_root">当前群组：Root</string>
+  <string name="not_possible_im_picker">无法打开输入法选择对话框，请手动激活键盘。</string>
+  <string name="please_activate_keyboard">请在系统设置中启用 Keepass2Android 键盘。</string>
+  <string name="creating_db_key">正在创建数据库密钥…</string>
+  <string name="current_group">当前群组</string>
+  <string name="current_group_root">当前群组：根群组</string>
   <string name="database">数据库</string>
   <string name="digits">数字</string>
-  <string name="disclaimer_formal">Keepass2Android版权归Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循GPL 2或者更高版本的情况下重新发布。</string>
+  <string name="disclaimer_formal">Keepass2Android 版权归 Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循 GPL 2 或者更高版本的情况下重新发布。</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">输入数据库名：</string>
-  <string name="entry_accessed">访问时间：</string>
+  <string name="entry_accessed">访问时间</string>
   <string name="entry_cancel">取消</string>
   <string name="entry_comment">备注：</string>
   <string name="entry_tags">标签</string>
-  <string name="entry_override_url">覆盖URL</string>
+  <string name="entry_override_url">覆盖链接地址</string>
   <string name="entry_confpassword">确认密码</string>
   <string name="entry_created">创建时间：</string>
   <string name="entry_expires">失效时间：</string>
   <string name="entry_keyfile">密钥文件（可选）</string>
-  <string name="entry_modified">修改时间：</string>
-  <string name="entry_password">密码：</string>
+  <string name="entry_modified">修改时间</string>
+  <string name="entry_password">密码</string>
   <string name="entry_save">保存</string>
-  <string name="entry_title">名称：</string>
-  <string name="entry_url">网址：</string>
-  <string name="entry_user_name">用户名：</string>
-  <string name="entry_extra_strings">额外的字符串字段，</string>
+  <string name="entry_title">名称</string>
+  <string name="entry_url">链接地址</string>
+  <string name="entry_user_name">用户名</string>
+  <string name="entry_extra_strings">额外的字符串字段</string>
   <string name="entry_binaries">文件附件</string>
-  <string name="error_can_not_handle_uri">Keepass2Android无法处理此URI。</string>
+  <string name="error_can_not_handle_uri">Keepass2Android 无法处理此链接地址。</string>
   <string name="error_could_not_create_group">创建群组错误。</string>
   <string name="error_could_not_create_parent">无法创建上级目录。</string>
   <string name="error_database_exists">文件已存在。</string>
   <string name="error_database_settings">无法确定数据库设置。</string>
-  <string name="error_failed_to_launch_link">运行链接失败。</string>
-  <string name="error_filename_required">文件名是必需的</string>
-  <string name="error_file_not_create">不能创建文件：</string>
-  <string name="error_invalid_db">非法数据库。</string>
-  <string name="error_invalid_path">非法路径。</string>
-  <string name="error_no_name">用户名是必填项</string>
-  <string name="error_nopass">密码或者密钥文件是必需的</string>
+  <string name="error_failed_to_launch_link">无法打开链接。</string>
+  <string name="error_filename_required">文件名不能为空。</string>
+  <string name="error_file_not_create">无法创建文件</string>
+  <string name="error_invalid_db">数据库无效。</string>
+  <string name="error_invalid_path">路径无效。</string>
+  <string name="error_no_name">用户名不能为空。</string>
+  <string name="error_nopass">密码或者密钥文件不能为空。</string>
   <string name="error_pass_gen_type">至少必须选择一个密码生成类型</string>
   <string name="error_pass_match">密码不匹配。</string>
-  <string name="error_rounds_not_number">次数必须是数字。</string>
-  <string name="error_title_required">标题是必填项</string>
+  <string name="error_rounds_not_number">密钥加密次数必须为数字。</string>
+  <string name="error_title_required">标题不能为空。</string>
   <string name="error_wrong_length">长度字段输入一个正整数</string>
   <string name="FileNotFound">文件未找到。</string>
-  <string name="file_browser">文件浏览</string>
+  <string name="file_browser">文件浏览器</string>
   <string name="generate_password">生成密码</string>
   <string name="group">群组</string>
   <string name="hint_comment">备注</string>
@@ -85,18 +94,18 @@
   <string name="hint_pass">密码</string>
   <string name="hint_login_pass">密码</string>
   <string name="hint_title">名称</string>
-  <string name="hint_url">网址</string>
-  <string name="hint_override_url">覆盖url</string>
+  <string name="hint_url">链接地址</string>
+  <string name="hint_override_url">覆盖链接地址</string>
   <string name="hint_tags">标签1,标签2 </string>
   <string name="hint_username">用户名</string>
-  <string name="InvalidPassword">非法的密码或密钥文件。</string>
+  <string name="InvalidPassword">密码或密钥文件无效。</string>
   <string name="invalid_algorithm">无效的算法</string>
   <string name="invalid_db_sig">数据库格式无法识别。</string>
   <string name="keyfile_does_not_exist">密钥文件不存在。</string>
-  <string name="keyfile_is_empty">密钥文件是空的</string>
+  <string name="keyfile_is_empty">密钥文件是空的。</string>
   <string name="length">长度</string>
-  <string name="list_size_title">群列表大小</string>
-  <string name="list_size_summary">群列表中的字体大小</string>
+  <string name="list_size_title">群组列表大小</string>
+  <string name="list_size_summary">群组列表字体大小</string>
   <string name="loading_database">加载数据库中…</string>
   <string name="lowercase">小写</string>
   <string name="MaskedPassword">*****</string>
@@ -110,6 +119,7 @@
   <string name="menu_app_settings">设置</string>
   <string name="menu_db_settings">数据库设置</string>
   <string name="menu_delete">删除</string>
+  <string name="menu_move">移动到其他群组</string>
   <string name="menu_donate">捐出一瓶啤酒钱......</string>
   <string name="menu_edit">编辑</string>
   <string name="menu_hide_password">隐藏密码</string>
@@ -118,29 +128,31 @@
   <string name="menu_rename">重命名</string>
   <string name="menu_search">搜索</string>
   <string name="menu_search_advanced">高级搜索</string>
-  <string name="menu_url">到网址</string>
+  <string name="menu_url">转到链接地址</string>
   <string name="menu_change_db">更改数据库...</string>
   <string name="minus">减</string>
   <string name="never">从不</string>
   <string name="yes">是</string>
   <string name="no">否</string>
-  <string name="no_keys">数据库或群组中无条目</string>
-  <string name="no_results">无匹配项</string>
-  <string name="no_url_handler">没有这个链接的处理程序。</string>
-  <string name="open_recent">打开最近数据库（点击打开）：</string>
+  <string name="no_keys">数据库或群组中无条目。</string>
+  <string name="no_results">无匹配结果</string>
+  <string name="no_url_handler">没有处理这个链接地址的程序。</string>
+  <string name="open_recent">打开最近数据库（点击打开）</string>
   <string name="omitbackup_title">不搜索备份和回收站中的条目</string>
-  <string name="omitbackup_summary">从搜索结果中忽略备份和回收站组</string>
-  <string name="pass_filename">KeePass数据库文件名：</string>
+  <string name="omitbackup_summary">从搜索结果中忽略备份和回收站群组</string>
+  <string name="pass_filename">KeePass 数据库文件名</string>
   <string name="password_title">输入数据库密码</string>
+  <string name="master_key_type">选择主密钥类型：</string>
   <string name="progress_create">创建新数据库中…</string>
+  <string name="create_database">创建数据库</string>
   <string name="progress_title">工作中…</string>
   <string name="remember_keyfile_summary">记住密钥文件的位置</string>
   <string name="remember_keyfile_title">保存密钥文件</string>
   <string name="remove_from_filelist">移除</string>
-  <string name="rijndael">Rijndael加密(AES)</string>
-  <string name="root">根(管理员权限)</string>
+  <string name="rijndael">Rijndael 加密（AES）</string>
+  <string name="root">管理员权限</string>
   <string name="rounds">加密次数</string>
-  <string name="rounds_explaination">更高级的加密次数对暴力攻击能提供额外保护，但也会增加加载和保存的时间。</string>
+  <string name="rounds_explaination">更高的加密次数能对暴力攻击提供额外保护，但也会增加加载和保存的时间。</string>
   <string name="rounds_hint">次数</string>
   <string name="database_name">数据库名称</string>
   <string name="default_username">新条目的默认用户名</string>
@@ -155,98 +167,111 @@
   <string name="search_results">搜索结果</string>
   <string name="search_in">在...中搜索</string>
   <string name="select_other_entry">选择另一条目</string>
-  <string name="select_group_then_add">打开所需的组，然后按\"%1$s\"</string>
-  <string name="twofish">Twofish算法</string>
+  <string name="select_group_then_add">打开所需的组，然后按\"%1$ s\"！</string>
+  <string name="insert_element_here">在此处插入</string>
+  <string name="twofish">双鱼算法</string>
   <string name="underline">下划线</string>
-  <string name="unsupported_db_version">不支持的数据库版本</string>
+  <string name="unsupported_db_version">不支持的数据库版本。</string>
   <string name="uppercase">大写</string>
-  <string name="warning_read_only">你的SD卡目前是只读状态。您可能无法将更改保存到数据库。</string>
-  <string name="warning_unmounted">你的SD卡目前尚未挂载在您的设备上。你将无法加载或创建您的数据库。</string>
+  <string name="warning_read_only">你的 SD 卡目前是只读状态。您可能无法将更改保存到数据库。</string>
+  <string name="warning_unmounted">你的 SD 卡目前尚未挂载到您的设备上。你将无法加载或创建您的数据库。</string>
   <string name="version_label">版本</string>
+  <string name="version_history">版本历史记录</string>
+  <string name="author">Keepass2Android 由 Philipp Crocoll 开发。</string>
+  <string name="further_authors">感谢 %1$s 贡献的代码。</string>
+  <string name="credit_plugin1">包含在 KP2A 中的双鱼算法插件是由 Scott Greenberg 为 Keepass 开发的。</string>
+  <string name="credit_android_filechooser">Android 文件选择器是由 Hai Bison 开发的</string>
+  <string name="please_note">请注意</string>
+  <string name="contributors">贡献者</string>
   <string name="regular_expression">正则表达式</string>
   <string name="TanExpiresOnUse_title">TAN  使用到期</string>
-  <string name="TanExpiresOnUse_summary">标记TAN条目过期当使用它们时</string>
+  <string name="TanExpiresOnUse_summary">当使用它们时标记 TAN 条目过期</string>
   <string name="ShowUsernameInList_title">在列表中显示用户名</string>
-  <string name="ShowUsernameInList_summary">在条目标题下方显示用户名，对多账户或TANs 很有用</string>
-  <string name="RememberRecentFiles_title">记住数据库</string>
-  <string name="RememberRecentFiles_summary">记住最近打开过的数据库并在开启数据库屏显示它们</string>
-  <string name="kp2a_findUrl">Keepass2Android： 查找密码</string>
+  <string name="ShowUsernameInList_summary">在条目标题下方显示用户名，对多账户或 TANs 很有用。</string>
+  <string name="RememberRecentFiles_title">记忆数据库</string>
+  <string name="RememberRecentFiles_summary">记忆最近打开过的数据库并在开启数据库屏显示。</string>
+  <string name="kp2a_findUrl">Keepass2Android：查找密码</string>
   <string name="excludeExpiredEntries">排除过期的条目</string>
   <string name="search_options">选项</string>
   <string name="caseSensitive">区分大小写</string>
   <string name="start_open_file">打开文件...</string>
   <string name="start_create">创建新的数据库...</string>
-  <string name="start_open_url">打开 URL...</string>
+  <string name="start_open_url">打开链接地址L...</string>
   <string name="start_create_import">导入文件到新的数据库...</string>
-  <string name="enter_filename_details_url">必须指定包含类似 http://  的完整URL地址</string>
+  <string name="enter_filename_details_url">必须指定包含类似 http:// 的完整链接地址</string>
   <string name="enter_filename_details_create_import">所导入的文件将在下一步被选中</string>
   <string name="enable_quickunlock">启用快速解锁</string>
   <string name="QuickUnlock_label">输入你密码的最后  %1$d 个字符</string>
-  <string name="QuickUnlock_button">快速解锁!</string>
+  <string name="QuickUnlock_button">快速解锁！</string>
   <string name="QuickUnlock_lockButton">关闭数据库</string>
   <string name="QuickUnlockDefaultEnabled_title">默认启用快速解锁</string>
-  <string name="QuickUnlockDefaultEnabled_summary">定义是否在默认情况下启用 QuickUnlock</string>
+  <string name="QuickUnlockDefaultEnabled_summary">设定是否在默认情况下启用快速解锁</string>
+  <string name="QuickUnlockIconHidden_title">隐藏快速锁定图标</string>
+  <string name="QuickUnlockIconHidden_summary">不幸无法显示快速解锁的通知图标。选择此选项可使用一个透明的图标。</string>
   <string name="QuickUnlockLength_title">快速解锁密钥的长度</string>
   <string name="QuickUnlockLength_summary">快速解锁密码的最大长度</string>
-  <string name="QuickUnlock_fail">解锁失败:密码错误！</string>
+  <string name="QuickUnlock_fail">解锁失败：密码错误！</string>
   <string name="BinaryDirectory_title">文件附件目录</string>
   <string name="BinaryDirectory_summary">附件所保存到的目录位置</string>
   <string name="SaveAttachmentDialog_title">保存附件</string>
   <string name="SaveAttachmentDialog_text">请选择保存该附件的位置。</string>
   <string name="SaveAttachmentDialog_save">保存到 SD 卡</string>
   <string name="SaveAttachmentDialog_open">保存到缓存并打开</string>
-  <string name="SaveAttachment_doneMessage">保存文件到 %1$s。</string>
-  <string name="SaveAttachment_Failed">无法保存附件到  %1$s </string>
-  <string name="error_invalid_expiry_date">有效期限日期/时间格式有误！</string>
-  <string name="error_string_key">每个字符串的字段名称是必需的。</string>
+  <string name="SaveAttachment_doneMessage">保存文件到 %1$s 。</string>
+  <string name="SaveAttachment_Failed">无法保存附件到  %1$s 。</string>
+  <string name="error_invalid_expiry_date">有效期限的日期或时间格式有误！</string>
+  <string name="error_string_key">每个字符串的字段名称不能为空。</string>
   <string name="field_name">字段名</string>
   <string name="field_value">字段值</string>
   <string name="protection">受保护的字段</string>
   <string name="add_binary">添加附件...</string>
   <string name="add_extra_string">添加额外的字符串</string>
   <string name="delete_extra_string">删除额外的字符串</string>
-  <string name="database_loaded_quickunlock_enabled">%1$s:已锁定,快速解锁启用</string>
-  <string name="database_loaded_unlocked">%1$s: 已解锁</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s：已锁定，快速解锁已启用。</string>
+  <string name="database_loaded_unlocked">%1$s：已解锁。</string>
   <string name="credentials_dialog_title">输入服务器的证书</string>
-  <string name="UseFileTransactions_title">文件交易记录</string>
-  <string name="UseFileTransactions_summary">使用 file transactions 来写数据库
-</string>
+  <string name="UseFileTransactions_title">文件记录</string>
+  <string name="UseFileTransactions_summary">使用文件记录来写数据库</string>
+  <string name="LockWhenScreenOff_title">在锁屏时锁定</string>
+  <string name="LockWhenScreenOff_summary">当锁屏时锁定数据库。</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
-  <string name="UseOfflineCache_summary">在程序缓存目录保存一份远程数据库文件副本.这允许离线的时候使用远程数据库</string>
-  <string name="ClearOfflineCache_title">清除缓存?</string>
+  <string name="UseOfflineCache_summary">在程序缓存目录保存一份远程数据库文件副本。这允许离线的时候使用远程数据库。</string>
+  <string name="AcceptAllServerCertificates_title">SSL 证书</string>
+  <string name="AcceptAllServerCertificates_summary">定义当证书验证失败时的行为。注意：如果验证失败您可以在您的设备上安装证书！</string>
+  <string name="ClearOfflineCache_title">清除缓存？</string>
   <string name="ClearOfflineCache_question">这将删除所有缓存的数据库文件，所有你尚未同步的在离线状态下所作的任何更改都将丢失！是否继续？</string>
   <string name="CheckForFileChangesOnSave_title">检查修改</string>
-  <string name="CheckForFileChangesOnSave_summary">检查文件是否在保存变更之前被外部修改</string>
+  <string name="CheckForFileChangesOnSave_summary">检查文件是否在保存变更之前被外部修改。</string>
   <string name="ShowCopyToClipboardNotification_title">剪贴板的通知</string>
   <string name="ShowCopyToClipboardNotification_summary">使用户名和密码可通过通知栏和剪贴板访问。谨防密码嗅探器 ！</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A 键盘通知</string>
   <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取 （推荐）。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">键盘选择对话框</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">在搜索之后打开键盘对话框当条目对KP2A 键盘可用</string>
-  <string name="ShowUnlockedNotification_title">解锁同时通知</string>
-  <string name="ShowUnlockedNotification_summary">当数据库处于解锁状态持续显示状态栏通知</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">当条目对 KP2A 键盘可用时，在搜索之后打开键盘选择对话框。</string>
+  <string name="ShowUnlockedNotification_title">解锁时通知</string>
+  <string name="ShowUnlockedNotification_summary">当数据库处于解锁状态栏持续显示通知。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
-  <string name="PreloadDatabaseEnabled_summary">当输入密码项时启动后台加载或下载数据库文件</string>
+  <string name="PreloadDatabaseEnabled_summary">当输入密码项时启动后台加载或下载数据库文件。</string>
   <string name="AskOverwriteBinary">是否要以相同的名字覆盖现有的文件？</string>
   <string name="AskOverwriteBinary_title">覆盖已存在的文件？</string>
   <string name="AskOverwriteBinary_yes">覆盖</string>
   <string name="AskOverwriteBinary_no">重命名</string>
-  <string name="AttachFailed">未能添加附件</string>
+  <string name="AttachFailed">未能添加附件。</string>
   <string name="RecycleBin">回收站</string>
-  <string name="AskDeletePermanentlyEntry">是否要永久删除此条目？按否取消</string>
-  <string name="AskDeletePermanentlyGroup">是否要永久删除此组？按否取消操作。</string>
+  <string name="AskDeletePermanentlyEntry">是否要永久删除此条目？按否取消。</string>
+  <string name="AskDeletePermanentlyGroup">是否要永久删除此群组？按否取消操作。</string>
   <string name="AskDeletePermanently_title">确定永久删除？</string>
   <string name="AskReloadFile_title">重新载入文件？</string>
   <string name="AskReloadFile">当前所打开的文件已被别的程序所更改，是否要重新载入？</string>
-  <string name="AskDiscardChanges">确认放弃之前所做的更改？(保存按钮在上面)</string>
+  <string name="AskDiscardChanges">确认放弃之前所做的更改？（保存按钮在顶部）</string>
   <string name="AskDiscardChanges_title">放弃更改？</string>
   <string name="suggest_improvements">建议或投票改进</string>
-  <string name="rate_app">评价这款应用</string>
+  <string name="rate_app">为本应用评分</string>
   <string name="translate_app">翻译 KP2A</string>
   <string name="AddingEntry">添加条目...</string>
-  <string name="AddingGroup">添加组...</string>
+  <string name="AddingGroup">添加群组...</string>
   <string name="DeletingEntry">删除条目...</string>
-  <string name="DeletingGroup">删除组...</string>
+  <string name="DeletingGroup">删除群组...</string>
   <string name="SettingPassword">设置密码...</string>
   <string name="UndoingChanges">撤消更改...</string>
   <string name="TransformingKey">变更主键...</string>
@@ -254,26 +279,143 @@
   <string name="ParsingDatabase">解析数据库...</string>
   <string name="CheckingTargetFileForChanges">检查目标文件的更改...</string>
   <string name="TitleSyncQuestion">合并更改吗？</string>
-  <string name="MessageSyncQuestion">数据库文件被外目修改.你想在保存之前载入并合并已有的更改吗？如果你想覆盖外部更改选择\"不\"</string>
+  <string name="MessageSyncQuestion">数据库文件被外目修改。你想在保存之前载入并合并已有的更改吗？如果你想覆盖外部更改选择「不」。</string>
   <string name="SynchronizingDatabase">合并更改...</string>
-  <string name="YesSynchronize">是的,合并</string>
-  <string name="NoOverwrite">不,覆盖</string>
+  <string name="YesSynchronize">是的，合并</string>
+  <string name="NoOverwrite">不，覆盖</string>
   <string name="SynchronizingCachedDatabase">同步缓存的数据库...</string>
   <string name="DownloadingRemoteFile">下载远程文件...</string>
   <string name="UploadingFile">上传文件...</string>
   <string name="RestoringRemoteFile">恢复远程文件...</string>
-  <string name="FilesInSync">文件同步中</string>
+  <string name="FilesInSync">文件同步中。</string>
   <string name="SynchronizedDatabaseSuccessfully">数据库同步成功 ！</string>
   <string name="CheckingDatabaseForChanges">检查数据库更改...</string>
-  <string name="CouldNotSaveToRemote">不能保存到远程: %1$s.再次保存或当远程连接可再次获得时使用同步菜单</string>
-  <string name="CouldNotLoadFromRemote">不能从远程打开: %1$s.从本地缓存加载文件。你仍然可以对数据库更改并稍后同步它们。</string>
+  <string name="CouldNotSaveToRemote">%1$s不能保存到远程 。再次保存或当远程连接可再次可用时使用同步菜单。</string>
+  <string name="CouldNotLoadFromRemote">%1$s无法从远程打开。已从本地缓存加载文件。你仍然可以对数据库更改并稍后同步它们。</string>
   <string name="UpdatedRemoteFileOnLoad">更新远程文件。</string>
   <string name="NotifyOpenFromLocalDueToConflict">由于已打开的本地文件与远程文件变更不一致。使用同步菜单合并。</string>
   <string name="LoadedFromRemoteInSync">远程文件和缓存已同步。</string>
+  <string name="UpdatedCachedFileOnLoad">更新%1$s的本地缓存副本。</string>
   <string name="RemoteDatabaseUnchanged">未检测到变化。</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">升级一次性密码辅助文件缓存：远程版本更新。</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">升级远程一次性密码辅助文件：远程版本更新。</string>
+  <string name="SynchronizingOtpAuxFile">正在同步一次性密码辅助文件…</string>
+  <string name="database_file">数据库文件</string>
+  <string name="otp_aux_file">一次性密码辅助文件</string>
+  <string name="ErrorOcurred">发生错误：</string>
   <string name="synchronize_database_menu">同步数据库...</string>
+  <string name="CannotMoveGroupHere">不能将群组移动到这。</string>
+  <string name="donate_question">今天是慕尼黑啤酒节 ！如果你喜欢 Keepass2Android：今天难道不是给我买一杯啤酒的好日子吗？</string>
+  <string name="ok_donate">告诉我更多 ！</string>
+  <string name="no_thanks">不，我不是那么喜欢。</string>
+  <string name="select_storage_type">选择存储类型：</string>
+  <string name="filestoragename_file">本地文件</string>
+  <string name="filestoragename_androidget">从第三方应用程序中获取</string>
+  <string name="filestoragename_androidsend">发送到第三方应用程序</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
+  <string name="filestoragehelp_dropboxKP2A">如果你不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 应用/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，点击此选项将创建该新文件夹，然后将你在电脑上的数据库文件放在此文件夹内，然后再选该选项，并以打开该文件。</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">SkyDrive</string>
+  <string name="filestoragename_sftp">SFTP （SSH 文件传输协议）</string>
+  <string name="filestorage_setup_title">初始化文件访问</string>
+  <string name="database_location">数据库位置</string>
+  <string name="help_database_location">您可以在您的 Andr​​oid 设备或云端存储你的数据库（非离线版本）。 即使您处于脱机状态 Keepass2Android 也依然可以使用。数据库采用安全的 AES 256 位加密，若没有您的密码任何人都无法访问它。我们建议选择存储在 Dropbox：在所有设备上皆可访问，甚至还提供了文件的早期版本备份。</string>
+  <string name="hint_database_location">选择数据库存储的位置：</string>
+  <string name="button_change_location">更改位置</string>
+  <string name="master_password">主密码</string>
+  <string name="help_master_password">您的数据库是使用您在此处输入的密码进行加密的。为了保证数据库的安全请选择强密码 ！建议：同时使用大小写英文字母、数字及特殊字符。</string>
+  <string name="hint_master_password">请选择一个主密码来保护您的数据库：</string>
+  <string name="key_file">密钥文件</string>
+  <string name="help_key_file">密钥文件基本上是存储在一个文件中。密钥文件通常比密码复杂和可靠得多，但是也难以保持机密。如果您的密钥保存在云端，这将使得安全性大大降低。重要提示：创建密钥文件后不要修改它。</string>
+  <string name="hint_key_file">选择是否用密钥文件而不是您的主密码：</string>
+  <string name="use_key_file">使用密钥文件</string>
+  <string name="error_adding_keyfile">添加密钥文件时出错 ！</string>
+  <string name="init_otp">加载一次性密码辅助文件......</string>
+  <string name="otp_explanation">通过 NFC 刷您的 Yubikey NEO 设备来输入下一个一次性密码。</string>
+  <string name="otp_hint">一次性密码 %1$ d</string>
+  <string name="CouldntLoadOtpAuxFile">不能加载一次性密码文件 ！</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">请使用 KeePass 2.x（电脑端）的 OtpKeyProv 插件来配置您的数据库使用 OTPs ！</string>
+  <string name="otp_discarded_because_no_db">请先选择数据库。出于安全原因，一次性密码将被丢弃。</string>
+  <string name="otp_discarded_no_space">一次性密码已丢弃：所有一次性密码已进入。</string>
+  <string name="otp_discarded_because_db_open">请先关闭数据库。一次性密码已丢弃。</string>
+  <string name="otps_pending">（一个或多个一次性密码已经可用）</string>
+  <string name="otpsecret_hint">一次性密码（例如：01 23 ab cd）</string>
+  <string name="CouldntParseOtpSecret">解析一次性密码错误！</string>
+  <string name="OtpKeyError">无法创建一次性密码密钥！确保你输入了正确的 OTPs。</string>
+  <string name="ErrorUpdatingOtpAuxFile">更新一次性密码辅助文件时出错 ！</string>
+  <string name="SavingOtpAuxFile">正在保存一次性密码辅助文件...</string>
+  <string name="loading">载入中...</string>
+  <string name="CertificateWarning">警告： 服务器证书验证失败: %1$ s。在您的设备上安装相应的根证书，或请参阅设置 ！</string>
+  <string name="CertificateFailure">错误： 服务器证书验证失败！在您的设备上安装相应的根证书，或请参阅设置 ！</string>
   <string name="ChangeLog_title">更新记录</string>
-  <string name="ChangeLog_keptDonate">扩展的可能性，捐出一杯啤酒或别的东西</string>
+  <string name="ChangeLog_0_9_2"><b>Version 0.9.2</b>\n
+* 新增支持 OTP （与 OtpKeyProv 插件兼容）\n
+* 通过 NFC 从 YubiKey NEO 获得 一次性密码 \n
+* 几处界面改进\n
+* 集成 Keepass 2.24 库\n
+* 添加允许结束应用程序进程的选项（参见设置）\n
+* 改进 SSL 证书验证\n
+* 修复错误\n</string>
+  <string name="ChangeLog_0_9_1">* 改进 SkyDrive 的支持（仅限于 Keepass2Android 非离线版)\n
+* 改进 Google Driver 的支持\n
+* 添加 NTLM 的支持</string>
+  <string name="ChangeLog_0_9"><b>Version 0.9</b>\n
+* 支持 Dropbox 和 Google Drive（读/写数据库；只支持 Keepass2Android 通常版)\n
+* 支持自定义文件管理器（基于 Android 文件选择器 由 HBA 开发）\n
+* 改进创建数据库时的界面\n
+* 包含自定义字体 DejaVu Sans Mono 用于显示密码\n
+* 修复问题</string>
+  <string name="ChangeLog_0_8_6"><b>Version 0.8.6</b>\n
+* 支持双鱼算法\n
+* 允许编辑群组\n
+* 允许移动的条目和群组\n
+* QuickUnlock图标可设透明（参见设置）\n
+* 修复错误</string>
+  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
+* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
+* Notification icon to visualize the lock-state of the database (see settings)\n
+* Improved determination of lock-state in some situations\n
+* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
+* Entries can be added to root group\n
+* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)</string>
+  <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
+* External database changes are detected and merged when saving\n
+* Improved loading performance\n
+* Improved search toolbar with suggestions\n
+* New App logo!\n
+* Added support for .kdbp format for faster loading/saving\n
+* Improved editing of extra strings and hidden display when protected\n
+Thanks to Alex Vallat for his code contributions!\n
+Thanks to Niki Hüttner (www.close-cut.de) for the new logo!\n</string>
+  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
+* Username/TAN index displayed in entry list (see settings)\n
+* Entries can be created if search from browser doesn\'t return results\n
+* KP2A keyboard provides possibility to search for credentials for current app\n
+* App automatically closes after selecting an entry for use in keyboard\n
+* Keyboard selection dialog automatically opens after search for URL (see settings)\n
+* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
+* minor bug fixes</string>
+  <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
+* Support for Digest Authentication in WebDAV\n
+* Bugfixes (OI File manager, Open URL)</string>
+  <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n
+* KP2A Offline and \"Online\" can be installed both again\n
+* Added new translations (thanks to all contributors!)</string>
+  <string name="ChangeLog_0_8"><b>Version 0.8</b>\n
+* Improved user interface especially for Android 4.x devices\n
+* Allow using deliberate file managers for selecting existing files\n
+* Added safer way for opening attachments (through cache directory)\n
+* fixed bugs in Edit activity\n
+* probably introduced new bugs :-)</string>
+  <string name="ChangeLog_keptDonate">捐出一杯啤酒或别的来提供扩展的可能。</string>
+  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
+* Increased loading speed: key transformations now 10x faster!\n
+* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
+* Added option to donate a beer or something else (see menu)</string>
   <string name="ChangeLog"><b>Version 0.6.2</b>\n
 * Google Drive/Dropbox/... 集成: 使用官方 Google Drive 或者 Dropbox 程序并打开任何 .kdbx-file. 将在将来的版本出现.\n
 * 改善搜索对话框 \n
@@ -292,11 +434,11 @@ Initial public release
     <item>30秒</item>
     <item>1分钟</item>
     <item>5分钟</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 分钟</item>
+    <item>15 分钟</item>
+    <item>30 分钟</item>
+    <item>1 小时</item>
+    <item>从不</item>
   </string-array>
   <string-array name="list_size_options">
     <item>小</item>
@@ -309,14 +451,14 @@ Initial public release
     <item>记得用户名及密码</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Password only</item>
-    <item>Password + Key file</item>
-    <item>Password + OTP</item>
-    <item>Password + OTP secret (recovery mode)</item>
+    <item>仅密码</item>
+    <item>密码 + 密钥文件</item>
+    <item>密码 + 一次性密码</item>
+    <item>密码 + 一次性密码 （恢复模式）</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
-    <item>Ignore certificate validation failures</item>
-    <item>Warn when validation fails</item>
-    <item>Do not accept invalid certificates</item>
+    <item>忽略证书验证失败</item>
+    <item>在验证失败时发出警告</item>
+    <item>不接受无效的证书</item>
   </string-array>
 </resources>

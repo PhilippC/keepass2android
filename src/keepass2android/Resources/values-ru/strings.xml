@@ -22,8 +22,8 @@
   <string name="kill_app_label">Закрыть приложение</string>
   <string name="show_kill_app">Кнопка закрытия</string>
   <string name="show_kill_app_summary">Показать кнопку закрытия приложения на экране с паролем (для параноидальных пользователей)</string>
-  <string name="application">Программа</string>
-  <string name="application_settings">Настройки Keepass2Android</string>
+  <string name="application">Приложение</string>
+  <string name="application_settings">Настройки приложения</string>
   <string name="security_prefs">Безопасность</string>
   <string name="display_prefs">Отображение</string>
   <string name="password_access_prefs">Парольный доступ</string>
@@ -33,7 +33,7 @@
   <string name="cancel">Отмена</string>
   <string name="ClearClipboard">Буфер обмена очищен</string>
   <string name="clipboard_timeout">Очистка буфера</string>
-  <string name="clipboard_timeout_summary">Задержка очистки после копирования в буфер</string>
+  <string name="clipboard_timeout_summary">Задержка очистки после копирования в буфер логина или пароля</string>
   <string name="copy_username">Логин – в буфер</string>
   <string name="copy_password">Пароль – в буфер</string>
   <string name="available_through_keyboard">Вход доступен с помощью клавиатуры KP2A</string>
@@ -44,7 +44,7 @@
   <string name="current_group_root">Текущая группа: корневая</string>
   <string name="database">База</string>
   <string name="digits">Цифры 0…9</string>
-  <string name="disclaimer_formal">Keepass2Android \nРазработчик Philipp Crocoll\n\nПрограмма предоставляется БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ. Распространяется свободно по лицензии GPL v2 или новее</string>
+  <string name="disclaimer_formal">Keepass2Android поставляется «как есть» БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ. Это свободное ПО, распространяемое по лицензии GPL v2 или более поздней.</string>
   <string name="ellipsis">\u2026</string>
   <string name="enter_filename">Путь к базе KeePass</string>
   <string name="entry_accessed">Доступ</string>
@@ -55,7 +55,7 @@
   <string name="entry_confpassword">Подтверждение</string>
   <string name="entry_created">Создано</string>
   <string name="entry_expires">Истекает</string>
-  <string name="entry_keyfile">файл-ключ</string>
+  <string name="entry_keyfile">файл-ключ (опционально)</string>
   <string name="entry_modified">Изменено</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_save">Сохранить</string>
@@ -147,29 +147,29 @@
   <string name="create_database">Создать базу данных</string>
   <string name="progress_title">Обработка</string>
   <string name="remember_keyfile_summary">Запоминать пути к файлам-ключам</string>
-  <string name="remember_keyfile_title">Помнить про ключи</string>
-  <string name="remove_from_filelist">Убрать из списка</string>
-  <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">База</string>
+  <string name="remember_keyfile_title">Запоминать ключи</string>
+  <string name="remove_from_filelist">Удалить из списка</string>
+  <string name="rijndael">Алгоритм шифрования (AES)</string>
+  <string name="root">Корень</string>
   <string name="rounds">Проходы шифрования</string>
   <string name="rounds_explaination">Больше проходов – выше стойкость базы к подбору пароля, но медленнее открытие и сохранение</string>
   <string name="rounds_hint">проходы</string>
-  <string name="database_name">Название базы данных</string>
+  <string name="database_name">Имя базы данных</string>
   <string name="default_username">Имя пользователя по умолчанию для новых записей</string>
   <string name="saving_database">Сохранение базы…</string>
   <string name="space">П р о б е л</string>
   <string name="search_label">Поиск</string>
-  <string name="show_password">Показать</string>
-  <string name="sort_name">А–Я</string>
-  <string name="sort_db">Исходный</string>
+  <string name="show_password">Показать пароль</string>
+  <string name="sort_name">Сортировка по имени</string>
+  <string name="sort_db">Сортировка по дате</string>
   <string name="special">$пеци@льные</string>
-  <string name="search_hint">Что найти</string>
+  <string name="search_hint">Что ищем</string>
   <string name="search_results">Результаты поиска</string>
   <string name="search_in">Поиск в</string>
   <string name="select_other_entry">Выбрать другую запись</string>
   <string name="select_group_then_add">Откройте требуемую группу, а затем нажмите \"%1$s\"!</string>
   <string name="insert_element_here">Вставить сюда</string>
-  <string name="twofish">Twofish</string>
+  <string name="twofish">Алгоритм шифрования Twofish</string>
   <string name="underline">_Подчёркивание_</string>
   <string name="unsupported_db_version">Неподдерживаемая версия базы</string>
   <string name="uppercase">ЗАГЛАВНЫЕ</string>
@@ -180,7 +180,7 @@
   <string name="author">Keepass2Android разработан Philipp Crocoll.</string>
   <string name="further_authors">Благодарю %1$s за участие в разработке.</string>
   <string name="credit_plugin1">Плагин шифрования Twofish для Keepass, включенный в KP2A, был разработан Скоттом Гринбергом.</string>
-  <string name="credit_android_filechooser">android-filechooser был разработан Hai Bison</string>
+  <string name="credit_android_filechooser">Android-FileChooser был разработан Hai Bison</string>
   <string name="please_note">Обратите внимание</string>
   <string name="contributors">Участники</string>
   <string name="regular_expression">Регулярное выражение</string>
@@ -232,8 +232,12 @@
   <string name="credentials_dialog_title">Введите учетные данные сервера</string>
   <string name="UseFileTransactions_title">Файловые транзакции</string>
   <string name="UseFileTransactions_summary">Использовать файловые транзакции для записи баз данных</string>
+  <string name="LockWhenScreenOff_title">Блокировка при выключении экрана</string>
+  <string name="LockWhenScreenOff_summary">Блокировка базы при выключении экрана.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
   <string name="UseOfflineCache_summary">Сохранять копию удалённой базы данных в папке кэша приложения. Это даст возможность использовать удалённые базы в даже без доступа к сети.</string>
+  <string name="AcceptAllServerCertificates_title">SSL-сертификаты</string>
+  <string name="AcceptAllServerCertificates_summary">Определите поведение при сбое проверки сертификата. Примечание: Вы можете установить сертификаты на вашем устройстве, если проверка не пройдена!</string>
   <string name="ClearOfflineCache_title">Очистить кэш?</string>
   <string name="ClearOfflineCache_question">Это удалит все кэшированные файлы баз данных. Любые несинхронизированные изменения, внесённые в автономном режиме, будут потеряны! Продолжить?</string>
   <string name="CheckForFileChangesOnSave_title">Проверить на наличие изменений</string>
@@ -312,6 +316,8 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Если Вы не хотите предоставлять полный доступ к Dropbox, то можете выбрать эту опцию. Будет запрошен доступ только к папке Apps/Keepass2Android. Это особенно удобно при создании нового файла. Если у вас уже есть файл с данными, выберите этот параметр, чтобы создать папку. После скопируйте базу в папку (с компьютера) и повторно выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
   <string name="filestoragename_sftp">SFTP (FTP через SSH)</string>
@@ -332,6 +338,7 @@
   <string name="otp_explanation">Введите следующий одноразовый пароль (OTP). Проведите ваш Yubikey NEO на задней панели устройства через датчик NFC.</string>
   <string name="otp_hint">Одноразовый пароль %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Не удалось загрузить вспомогательный файл одноразовых паролей!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Пожалуйста, используйте плагин OtpKeyProv в KeePass 2.x (ПК), чтобы настроить базу данных для использования с одноразовыми паролями!</string>
   <string name="otp_discarded_because_no_db">Сначала выберите базу данных. Одноразовый пароль не принят из соображений безопасности.</string>
   <string name="otp_discarded_no_space">Одноразовый пароль не принят: все одноразовые пароли были использованы!</string>
   <string name="otp_discarded_because_db_open">Пожалуйста, сначала закройте базу данных. Одноразовый пароль не принят.</string>
@@ -342,6 +349,8 @@
   <string name="ErrorUpdatingOtpAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей!</string>
   <string name="SavingOtpAuxFile">Сохранение вспомогательного файла одноразовых паролей…</string>
   <string name="loading">Загрузка…</string>
+  <string name="CertificateWarning">Предупреждение: Ошибка проверки сертификата сервера: %1$ s. Установите соответствующий корневой сертификат на вашем устройстве или проверьте настройки!</string>
+  <string name="CertificateFailure">Ошибка: проверка сертификата сервера не удалась! Установите соответствующий корневой сертификат или проверьте настройки!</string>
   <string name="ChangeLog_title">Список изменений</string>
   <string name="ChangeLog_0_9_2"><b>Версия 0.9.2</b>\n
 * Поддержка одноразовых паролей (OTP) (совместимость с плагином OtpKeyProv)\n
@@ -452,8 +461,8 @@
     <item>Пароль + ОТП секрет (режим восстановления)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
-    <item>Ignore certificate validation failures</item>
-    <item>Warn when validation fails</item>
-    <item>Do not accept invalid certificates</item>
+    <item>Игнорировать ошибки проверки сертификата</item>
+    <item>Предупреждать при неудачной проверке</item>
+    <item>Не принимать недействительные сертификаты</item>
   </string-array>
 </resources>

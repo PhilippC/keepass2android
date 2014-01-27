@@ -15,9 +15,9 @@
   <string name="algorithm_colon">Thuật toán</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Ngoại tuyến</string>
-  <string name="short_app_name_nonet">KP2A Ngoại tuyến</string>
-  <string name="app_timeout">Ứng dụng hết thời gian (xử lý)</string>
+  <string name="app_name_nonet">Keepass2Android Offline</string>
+  <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Thời gian chờ ứng dụng</string>
   <string name="app_timeout_summary">Thời gian trước khi khóa cơ sở dữ liệu khi ứng dụng không hoạt động.</string>
   <string name="kill_app_label">Tắt tiến trình ứng dụng</string>
   <string name="show_kill_app">Nút đóng</string>

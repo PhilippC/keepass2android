@@ -232,8 +232,12 @@
   <string name="credentials_dialog_title">Immettere le credenziali del server</string>
   <string name="UseFileTransactions_title">Operazioni di file</string>
   <string name="UseFileTransactions_summary">Usa le transazioni per la scrittura del database</string>
+  <string name="LockWhenScreenOff_title">Blocca allo spegnimento dello schermo</string>
+  <string name="LockWhenScreenOff_summary">Blocca il database quando lo schermo viene spento.</string>
   <string name="UseOfflineCache_title">Caching del database</string>
   <string name="UseOfflineCache_summary">Tieni una copia del database remoto nella directory cache dell\'applicativo. Consente di usare i database remoti anche quando si è offline.</string>
+  <string name="AcceptAllServerCertificates_title">Certificati SSL</string>
+  <string name="AcceptAllServerCertificates_summary">Definisci cosa fare quando la convalida del certificato fallisce. Nota: puoi installare i certificati sul dispositivo se la validazione fallisce!</string>
   <string name="ClearOfflineCache_title">Svuotare la cache?</string>
   <string name="ClearOfflineCache_question">Quest\'operazione cancellerà tutti i file memorizzati nella cache del database. Tutte le modifiche apportate quando eri offline e che non sono ancora state sincronizzate andranno perse! Continuare?</string>
   <string name="CheckForFileChangesOnSave_title">Controlla modifiche</string>
@@ -312,6 +316,8 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (cartella KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A completo accesso al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Apps/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (da PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
@@ -332,6 +338,7 @@
   <string name="otp_explanation">Inserisci i successivi One-time-password (OTP). Striscia sul retro del tuo dispositivo NEO Yubikey per accedere via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Impossibile caricare il file OTP ausiliario!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Devi utilizzare il plugin OtpKeyProv per KeePass 2. x (PC) per poter configurare il database per l\'utilizzo con OTP!</string>
   <string name="otp_discarded_because_no_db">Prima seleziona un database. L\'OTP viene scartata per motivi di sicurezza.</string>
   <string name="otp_discarded_no_space">OTP scartata: OTP già tutte inserite!</string>
   <string name="otp_discarded_because_db_open">Prima chiudi il database. OTP scartata.</string>
@@ -342,6 +349,8 @@
   <string name="ErrorUpdatingOtpAuxFile">Errore aggiornamento file OTP ausiliario!</string>
   <string name="SavingOtpAuxFile">Salvataggio file OTP ausiliario…</string>
   <string name="loading">Caricamento…</string>
+  <string name="CertificateWarning">Attenzione: validazione del certificato del server fallita:  %1$s. Installa il certificato appropriato sul tuo dispositivo o controlla le impostazioni!</string>
+  <string name="CertificateFailure">Errore: validazione del certificato del server fallita. Installa il certificato appropriato sul tuo dispositivo o controlla le impostazioni!</string>
   <string name="ChangeLog_title">log delle modifiche</string>
   <string name="ChangeLog_0_9_2"><b>Versione 0.9.2</b>\n
 * Aggiunto supporto OTP (compatibile con il plugin OtpKeyProv)\n
@@ -450,8 +459,8 @@ Prima release pubblica
     <item>Password + OTP-secret (modalità di ripristino)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
-    <item>Ignore certificate validation failures</item>
-    <item>Warn when validation fails</item>
-    <item>Do not accept invalid certificates</item>
+    <item>Ignora gli errori di convalida del certificato</item>
+    <item>Avvisa quando la convalida fallisce</item>
+    <item>Non accettare certificati non validi</item>
   </string-array>
 </resources>

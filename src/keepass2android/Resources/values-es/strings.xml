@@ -232,8 +232,11 @@
   <string name="credentials_dialog_title">Escriba las credenciales de servidor</string>
   <string name="UseFileTransactions_title">Archivo de transacciones</string>
   <string name="UseFileTransactions_summary">Utilizar el archivo de movimientos para escribir las bases de datos</string>
+  <string name="LockWhenScreenOff_title">Bloquear cuando se apaga la pantalla</string>
+  <string name="LockWhenScreenOff_summary">Bloquear base de datos al apagar la pantalla</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
   <string name="UseOfflineCache_summary">Mantiene una copia de los archivos de base de datos remota en el directorio de caché de la aplicación. Esto permite utilizar bases de datos remotos fuera de línea.</string>
+  <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="ClearOfflineCache_title">¿Limpiar Cache?</string>
   <string name="ClearOfflineCache_question">Esto borrará todos los archivos de base de datos en caché. ¡Se perderán los cambios que hizo estando fuera de línea que todavía no se ha sincronizado! ¿Continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Comprobar modificaciones</string>

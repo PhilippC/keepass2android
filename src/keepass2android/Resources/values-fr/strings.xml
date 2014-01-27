@@ -21,12 +21,13 @@
   <string name="app_timeout_summary">Délai avant de bloquer la base de donnée lorsque l\'application est inactive.</string>
   <string name="kill_app_label">Tuer le processus</string>
   <string name="show_kill_app">Fermer</string>
+  <string name="show_kill_app_summary">Afficher un bouton dans l\'écran de mot de passe pour tuer le processus de l\'application (pour les utilisateurs paranoïaques)</string>
   <string name="application">Application</string>
   <string name="application_settings">Paramètres de l\'application</string>
   <string name="security_prefs">Sécurité</string>
   <string name="display_prefs">Affichage</string>
   <string name="password_access_prefs">Accès aux mots de passe</string>
-  <string name="QuickUnlock_prefs">Déverrouillage rapide</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Gestion de fichiers</string>
   <string name="brackets">Parenthèses, accolades et crochets</string>
   <string name="cancel">Annuler</string>
@@ -103,26 +104,26 @@
   <string name="keyfile_does_not_exist">La clé de chiffrement n\'existe pas.</string>
   <string name="keyfile_is_empty">Le fichier de clés est vide.</string>
   <string name="length">Longueur</string>
-  <string name="list_size_title">Texte de la liste des groupes</string>
+  <string name="list_size_title">Taille de la liste des groupes</string>
   <string name="list_size_summary">Taille du texte dans la liste des groupes</string>
   <string name="loading_database">Chargement de la base de données…</string>
-  <string name="lowercase">Minuscules</string>
+  <string name="lowercase">Minuscule</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Cacher le mot de passe</string>
   <string name="maskpass_summary">Toujours masquer les mots de passe</string>
   <string name="menu_about">A propos</string>
   <string name="menu_change_key">Modifier la clé maître</string>
-  <string name="menu_copy_pass">Copier le mot de passe</string>
+  <string name="menu_copy_pass">Copier Mot de passe</string>
   <string name="menu_copy_user">Copier Utilisateur</string>
   <string name="menu_create">Créer</string>
   <string name="menu_app_settings">Paramètres</string>
-  <string name="menu_db_settings">Préférences</string>
+  <string name="menu_db_settings">Préférences de base de données</string>
   <string name="menu_delete">Supprimer</string>
   <string name="menu_move">Déplacer vers un autre groupe</string>
   <string name="menu_donate">Faire don d\'une bière...</string>
   <string name="menu_edit">Modifier</string>
   <string name="menu_hide_password">Masquer le mot de passe</string>
-  <string name="menu_lock">Verrouiller les données</string>
+  <string name="menu_lock">Verrouiller la base de données</string>
   <string name="menu_open">Ouvrir</string>
   <string name="menu_rename">Renommer</string>
   <string name="menu_search">Rechercher</string>
@@ -141,6 +142,7 @@
   <string name="omitbackup_summary">Omettre les groupes \"Sauvegarde\" et \"Corbeille\" des résultats de recherche</string>
   <string name="pass_filename">Base de données KeePass</string>
   <string name="password_title">Entrez le mot de passe de la base de données</string>
+  <string name="master_key_type">Sélectionner le type de la clé principale :</string>
   <string name="progress_create">Création d\'une nouvelle base de données…</string>
   <string name="create_database">Créer une base de données</string>
   <string name="progress_title">En cours…</string>
@@ -230,8 +232,12 @@
   <string name="credentials_dialog_title">Entrez vos identifiants pour le serveur</string>
   <string name="UseFileTransactions_title">Opérations sur les fichiers</string>
   <string name="UseFileTransactions_summary">Utiliser les opérations sur les fichiers pour écrire les bases de données</string>
+  <string name="LockWhenScreenOff_title">Verrouiller lorsque l\'écran s\'éteint</string>
+  <string name="LockWhenScreenOff_summary">Verrouiller la base de données lorsque l\'écran est éteint.</string>
   <string name="UseOfflineCache_title">Mise en cache de la base de données</string>
   <string name="UseOfflineCache_summary">Conserver une copie des bases de données distantes dans le cache de l\'application. Ceci permet d\'utiliser les bases de données distantes même en mode hors connexion.</string>
+  <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
+  <string name="AcceptAllServerCertificates_summary">Définir le comportement lorsque la validation du certificat échoue. Remarque : vous pouvez installer les certificats sur votre appareil si la validation échoue !</string>
   <string name="ClearOfflineCache_title">Vider le cache ?</string>
   <string name="ClearOfflineCache_question">Cela supprimera toutes les bases de données mises en cache. Toutes les modifications faites en étant hors ligne et qui n\'ont pas encore été synchronisées seront perdues ! Continuer ?</string>
   <string name="CheckForFileChangesOnSave_title">Rechercher des modifications</string>
@@ -289,7 +295,13 @@
   <string name="UpdatedRemoteFileOnLoad">Fichier distant mis à jour.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Fichier local utilisé en raison d\'un conflit avec des modifications apportées au fichier distant. Utiliser le menu Synchroniser pour fusionner.</string>
   <string name="LoadedFromRemoteInSync">Cache et fichier distant synchronisés.</string>
+  <string name="UpdatedCachedFileOnLoad">Mise à jour de la copie du cache local de %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Aucun changement détecté.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Mise à jour du cache du fichier auxiliaire OTP : le compteur distant était plus élevé.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Mise à jour du fichier auxiliaire OTP distant : le compteur local était plus élevé.</string>
+  <string name="SynchronizingOtpAuxFile">Synchronisation du fichier auxiliaire OTP...</string>
+  <string name="database_file">fichier de base de données</string>
+  <string name="otp_aux_file">Fichier auxiliaire OTP</string>
   <string name="ErrorOcurred">Une erreur est survenue :</string>
   <string name="synchronize_database_menu">Synchroniser la base de données…</string>
   <string name="CannotMoveGroupHere">Impossible de déplacer le groupe vers ce groupe.</string>
@@ -304,14 +316,63 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (dossier KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
   <string name="filestorage_setup_title">Initialisation de l\'accès aux fichiers</string>
   <string name="database_location">Emplacement de la base de données</string>
+  <string name="help_database_location">Vous pouvez stocker votre base de données localement sur votre appareil Android ou dans le cloud (seulement pour la version connectée). Keepass2Android rend la base de données disponible même si vous êtes en mode hors connexion. Comme la base de données est sécurisée avec un cryptage AES 256 bit, personne ne sera en mesure d\'accéder à vos mots de passe sauf vous. Nous vous recommandons de sélectionner Dropbox : il est accessible sur tous vos appareils et fournit même des sauvegardes des versions précédentes des fichiers.</string>
+  <string name="hint_database_location">Sélectionnez où vous voulez stocker la base de données :</string>
   <string name="button_change_location">Changer l\'emplacement</string>
   <string name="master_password">Mot de passe principal</string>
+  <string name="help_master_password">Votre base de données est chiffrée avec le mot de passe que vous entrez ici. Choisissez un mot de passe fort pour préserver la sûreté de la base de données ! Astuce : Formez une phrase ou deux et utilisez les premières lettres des mots comme mot de passe. Utilisez les marques de ponctuation.</string>
+  <string name="hint_master_password">Choisir un mot de passe principal pour protéger votre base de données :</string>
+  <string name="key_file">Fichier de clé</string>
+  <string name="help_key_file">Un fichier de clé est en fait un mot de passe stocké dans un fichier. Les fichiers de clés sont généralement plus forts que les mots de passe maîtres, parce que la clé peut être beaucoup plus compliquée ; cependant il est également plus difficile de les garder secret. Si vous stockez votre base de données dans le cloud, ne stockez pas le fichier de clé ici également ! Cela le rendrait complètement inutile ! Important : Ne modifiez pas le contenu du fichier clé après avoir créé la base de données !</string>
+  <string name="hint_key_file">Souhaitez-vous utiliser un fichier de clé en plus de la clé principal :</string>
+  <string name="use_key_file">Utiliser le fichier de clé</string>
+  <string name="error_adding_keyfile">Erreur lors de l\'ajout du fichier de clé !</string>
+  <string name="init_otp">Charger le fichier OTP auxiliaire...</string>
+  <string name="otp_explanation">Entrez le prochain One-time-passwords (OTP). Glissez votre NEO Yubikey au dos de votre appareil pour y accéder via NFC.</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Impossible de charger le fichier auxiliaire OTP !</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">S\'il vous plaît utilisez le plugin OtpKeyProv dans KeePass 2.x (PC) pour configurer votre base de données pour une utilisation avec OTPs !</string>
+  <string name="otp_discarded_because_no_db">Veuillez d\'abord sélectionner la base de données. OTP est écarté pour des raisons de sécurité.</string>
+  <string name="otp_discarded_no_space">OTP ignoré : tous les OTP ont été saisis !</string>
+  <string name="otp_discarded_because_db_open">Veuillez d\'abord fermer la base de données. OTP est ignoré.</string>
+  <string name="otps_pending">(Un ou plusieurs OTPs sont déjà disponibles)</string>
+  <string name="otpsecret_hint">OTP secret (ex : 01 23 ab cd...)</string>
+  <string name="CouldntParseOtpSecret">Erreur lors de l\'analyse de l\'OTP secret !</string>
+  <string name="OtpKeyError">Impossible de créer la clé OTP ! Assurez-vous d\'avoir saisi le bon OTP.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
+  <string name="SavingOtpAuxFile">Enregistrement du fichier OTP auxiliaire...</string>
+  <string name="loading">Chargement...</string>
+  <string name="CertificateWarning">AVERTISSEMENT : Le serveur n\'a pas pu valider le certificat : %1$s. Installer le certificat racine approprié sur votre appareil ou consulter les paramètres !</string>
+  <string name="CertificateFailure">AVERTISSEMENT : Le serveur n\'a pas pu valider le certificat ! Installer le certificat racine approprié sur votre appareil ou consulter les paramètres !</string>
   <string name="ChangeLog_title">Journal des modifications</string>
+  <string name="ChangeLog_0_9_2">
+  <b>Version 0.9.2</b> \n * Ajout du support OTP (compatible avec le plugin OtpKeyProv) \n * Support du NFC intégré pour OTPs de YubiKey NEO \n * Plusieurs améliorations de l\'UI \n * Intégration de la librairie de Keepass 2.24 \n * Ajout d\'une option pour tuer le processus applicatif (voir réglages) \n * Amélioration de la validation du certificat SSL\n * Correction de bugs\n</string>
+  <string name="ChangeLog_0_9_1">
+  <b>Version 0.9.1</b> \n * Intégration de SkyDrive (Keepass2Android regular edition seulement) \n * Correction de problèmes avec l\'intégration Google Drive\n * Ajout du support NTLM</string>
+  <string name="ChangeLog_0_9">
+  <b>Version 0.9</b> \n * Intégration de Dropbox et Google Drive (bases de données en lecture/écriture ; Keepass2Android regular edition seulement) \n * Intégration d\'un navigateur de fichier personnalisé (basé sur android-filechooser par HBA) \n * Amélioration de l\'interface utilisateur pour la création de nouvelles bases de données\n * Ajout de la police personnalisée DejaVu Sans Mono pour l\'affichage des mots de passe\n * Corrections de bugs</string>
+  <string name="ChangeLog_0_8_6">
+  <b>Version 0.8.6</b> \n * Support de Twofish cipher\n * Fonction d\'édition des groupes ajoutée\n * Fonction de déplacement des entrées et des groupes ajoutée\n * L\'icône QuickUnlock peut être rendue transparente (voir réglages) \n * Corrections de bugs</string>
+  <string name="ChangeLog_0_8_5">
+  <b>Version 0.8.5</b> \n * Les fichiers distants sont stockés dans le cache locale de l\'application pour permettre l\'utilisation en mode hors connexion (y compris l\'édition et la synchronisation ultérieure). Voir les paramètres. \n * Icône de notification pour visualiser l\'état du verrou de la base de données (voir réglages) \n * Amélioration de la détermination de l\'état du verrou dans certains situations\n * Les fichiers de base de données sont chargées dans la mémoire pendant que vous tapez votre mot de passe pour augmenté la vitesse de chargement (voir réglages) \n * Les entrées peuvent être ajoutées au groupe racine\n * Corrections de bugs (champs de référence, des problèmes avec le clavier des appareils italien et chinois)</string>
+  <string name="ChangeLog_0_8_4">
+		<b>Version 0.8.4</b>\n
+		* Modifications tierces de la base de données détectées et fusionnées à la sauvegarde\n
+		* Chargement optimisé\n
+		* Amélioration de la barre de recherche (suggestions)\n
+		* Nouveau logo pour l\'application !
+		* Support des fichiers .kdbp pour des chargements/enregistrements plus rapides\n
+		* Édition des chaînes additionnelles améliorée et interface cachée lorsque protégée\n
+		Merci à Alex Vallat pour ses contributions au code !\n
+		Merci à Niki Hüttner (www.close-cut.de) pour le nouveau logo !\n
+	</string>
   <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * Nom d\'utilisateur/TAN affiché dans la liste des entrées (voir les préférences)\n
 * Les entrées peuvent être créées lorsqu\'elles ne sont pas trouvées\n
@@ -360,8 +421,8 @@ Première version publique</string>
     <item>10 minutes</item>
     <item>15 minutes</item>
     <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>1 heure</item>
+    <item>Jamais</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Petit</item>
@@ -375,13 +436,13 @@ Première version publique</string>
   </string-array>
   <string-array name="password_modes">
     <item>Mot de passe</item>
-    <item>Password + Key file</item>
-    <item>Password + OTP</item>
-    <item>Password + OTP secret (recovery mode)</item>
+    <item>Mot de passe + fichier de clé</item>
+    <item>Mot de passe + OTP</item>
+    <item>Mot de passe + OTP secret (mode de récupération)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
-    <item>Ignore certificate validation failures</item>
-    <item>Warn when validation fails</item>
-    <item>Do not accept invalid certificates</item>
+    <item>Ignorer les échecs de validation de certificat</item>
+    <item>Avertir lorsque la validation échoue</item>
+    <item>Ne pas accepter les certificats non valides</item>
   </string-array>
 </resources>

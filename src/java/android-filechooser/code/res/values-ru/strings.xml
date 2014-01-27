@@ -21,8 +21,8 @@
   <string name="afc_msg_app_doesnot_have_permission_to_create_files">У приложения нет прав на создание файлов / папок</string>
   <string name="afc_msg_app_doesnot_have_permission_to_delete_files">У приложения нет прав на удаление файлов / папок</string>
   <string name="afc_msg_cancelled">Отменено</string>
-  <string name="afc_msg_cannot_connect_to_file_provider_service">Не удается подключиться к службе поставщика файлов</string>
-  <string name="afc_msg_cannot_create_new_folder_here">Не удается создать новую папку здесь</string>
+  <string name="afc_msg_cannot_connect_to_file_provider_service">Не удается подключиться к службе хранения файла</string>
+  <string name="afc_msg_cannot_create_new_folder_here">Создание здесь новой папки невозможно</string>
   <string name="afc_msg_cannot_save_a_file_here">Не удается сохранить файл здесь</string>
   <string name="afc_msg_done">Выполнено</string>
   <string name="afc_msg_empty">Пусто</string>
@@ -34,7 +34,7 @@
   <string name="afc_pmsg_cannot_delete_file">Невозможно удалить %1$s \"%2$s\"</string>
   <string name="afc_pmsg_confirm_delete_file">Вы уверены, что хотите удалить %1$s \"%2$s\"?</string>
   <string name="afc_pmsg_confirm_replace_file">Файл \"%1$s\" уже существует.\n\nХотите заменить его?</string>
-  <string name="afc_pmsg_deleting_file">Удаляем %1$s \"%2$s\"…</string>
+  <string name="afc_pmsg_deleting_file">Удаление %1$s \"%2$s\"…</string>
   <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" удалён</string>
   <string name="afc_pmsg_filename_is_directory">\"%1$s\" - папка</string>
   <string name="afc_pmsg_filename_is_invalid">Недопустимое имя файла \"%1$s\"</string>

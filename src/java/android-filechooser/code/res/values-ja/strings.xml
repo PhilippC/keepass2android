@@ -20,9 +20,9 @@
   <string name="afc_msg_app_doesnot_have_permission_to_create_files">このアプリケーションにファイル/フォルダを作成する権限がありません。</string>
   <string name="afc_msg_app_doesnot_have_permission_to_delete_files">このアプリケーションにファイル/フォルダを削除する権限がありません。</string>
   <string name="afc_msg_cancelled">キャンセルしました</string>
-  <string name="afc_msg_cannot_connect_to_file_provider_service">ファイルのプロバイダーに接続できません。</string>
+  <string name="afc_msg_cannot_connect_to_file_provider_service">ファイルのサービスプロバイダーに接続できません。</string>
   <string name="afc_msg_cannot_create_new_folder_here">ここには新しいフォルダを作成できません。</string>
-  <string name="afc_msg_cannot_save_a_file_here">ここにはファイルを保存できません。</string>
+  <string name="afc_msg_cannot_save_a_file_here">この場所にはファイルを保存できません。</string>
   <string name="afc_msg_done">完了</string>
   <string name="afc_msg_empty">空です</string>
   <string name="afc_msg_failed_please_try_again">失敗しました。再試行して下さい。</string>

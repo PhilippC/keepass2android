@@ -18,6 +18,7 @@
   <string name="short_app_name_nonet">KP2A オフライン版</string>
   <string name="app_timeout">アプリケーション タイムアウト</string>
   <string name="app_timeout_summary">KeePassがこの時間非アクティブだった場合、データベースをロックします。</string>
+  <string name="kill_app_label">アプリのプロセスを終了</string>
   <string name="application">アプリケーション</string>
   <string name="application_settings">アプリケーション設定</string>
   <string name="security_prefs">セキュリティ</string>
@@ -139,6 +140,7 @@
   <string name="pass_filename">KeePassデータベースファイル</string>
   <string name="password_title">データベースのパスワード設定</string>
   <string name="progress_create">データベースファイルを作成中…</string>
+  <string name="create_database">データベースを作成</string>
   <string name="progress_title">実行中…</string>
   <string name="remember_keyfile_summary">前回使用したキーファイルを次回も表示します</string>
   <string name="remember_keyfile_title">キーファイルを記憶</string>
@@ -172,9 +174,10 @@
   <string name="version_label">バージョン</string>
   <string name="version_history">バージョン履歴</string>
   <string name="author">Keepass2AndroidはPhilipp Crocollによって開発されています。</string>
+  <string name="further_authors">%1$s のコード貢献のおかげです。</string>
   <string name="regular_expression">正規表現</string>
-  <string name="TanExpiresOnUse_title">TANの使用期限</string>
-  <string name="TanExpiresOnUse_summary">使用期限が切れたTANにマークする</string>
+  <string name="TanExpiresOnUse_title">トランザクション認証番号の使用期限</string>
+  <string name="TanExpiresOnUse_summary">使用期限が切れたトランザクション認証番号に印をつける</string>
   <string name="ShowUsernameInList_title">リスト内のユーザー名を表示</string>
   <string name="ShowUsernameInList_summary">エントリのタイトルの下のユーザー名を表示します。複数のアカウントや日焼けのために便利です。複数のアカウントやTANに役立ちます。</string>
   <string name="RememberRecentFiles_title">データベースを記憶</string>
