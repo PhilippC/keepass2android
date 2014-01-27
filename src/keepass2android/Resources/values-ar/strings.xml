@@ -159,7 +159,7 @@
   <string name="search_results">نتائج البحث</string>
   <string name="search_in">البحث في</string>
   <string name="select_other_entry">اختر مُدخل  آخر</string>
-  <string name="select_group_then_add">افتح المجموعة المرغوبة، ثم اضغط على \"%1$s\"!</string>
+  
   <string name="insert_element_here">أدخل هنا</string>
   <string name="twofish">تشفير تووفيش</string>
   <string name="unsupported_db_version">إصدار قاعدة بيانات غير مدعوم.</string>
@@ -190,7 +190,6 @@
   <string name="enter_filename_details_url">يجب تحديد عنوان رابط بالكامل بما في ذلك بروتوكول مثل //:http</string>
   <string name="enter_filename_details_create_import">الملف المراد استيراده سوف يتم تحديده في الخطوة التالية</string>
   <string name="enable_quickunlock">تمكين إلغاء التأمين السريع</string>
-  <string name="QuickUnlock_label">أدخل آخر %1$ خانات من كلمة المرور</string>
   <string name="QuickUnlock_button">إلغاء التأمين السريع!</string>
   <string name="QuickUnlock_lockButton">إغلاق قاعدة البيانات</string>
   <string name="QuickUnlockDefaultEnabled_title">تمكين إلغاء التأمين السريع افتراضياً</string>

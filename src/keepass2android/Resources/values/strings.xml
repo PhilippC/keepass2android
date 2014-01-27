@@ -31,6 +31,7 @@
 	<string name="password_access_prefs">Password entry access</string>
 	<string name="QuickUnlock_prefs">QuickUnlock</string>
 	<string name="FileHandling_prefs">File handling</string>
+	<string name="keyboard_prefs">Keyboard</string>
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
   <string name="ClearClipboard">Clipboard cleared.</string>
@@ -400,7 +401,7 @@
 	<string name="ChangeLog_0_9_3">
 		<b>Version 0.9.3 preview 2</b>\n
 		* New keyboard with many improvements. See settings to customize.\n
-		* Read-only support for kdb (Keepass 1 files). Experimental!
+		* Read-only support for kdb (Keepass 1 files). Experimental!\n
 		* Added SFTP support\n
 		* Bug fixes\n
 	</string>

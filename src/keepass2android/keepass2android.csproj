@@ -231,52 +231,8 @@
     </None>
     <None Include="Properties\AndroidManifest_nonet.xml">
       <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-af\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-ar\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-el\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-fi\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-in\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-iw\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-ko\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-no\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-pt-rPT\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-ro\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-sl\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-sr\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-sv\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-tr\strings.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values-vi\strings.xml">
-      <Visible>False</Visible>
-    </None>
+	</None>
+	
     <None Include="..\java\kp2akeytransform\libs\mips\libfinal-key.so" Condition="!$(DefineConstants.Contains('EXCLUDE_KEYTRANSFORM'))">
       <Link>libs\mips\libfinal-key.so</Link>
     </None>
@@ -607,6 +563,25 @@
     <AndroidResource Include="Resources\layout\entry_edit_section.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+	<AndroidResource Include="Resources\values-af\strings.xml" />
+	<AndroidResource Include="Resources\values-ar\strings.xml" />
+	<AndroidResource Include="Resources\values-el\strings.xml" />
+	<AndroidResource Include="Resources\values-fi\strings.xml" />
+	<AndroidResource Include="Resources\values-in\strings.xml" />
+	<AndroidResource Include="Resources\values-iw\strings.xml" />
+	<AndroidResource Include="Resources\values-ko\strings.xml" />
+	<AndroidResource Include="Resources\values-no\strings.xml" />
+	<AndroidResource Include="Resources\values-pt-rPT\strings.xml" />
+	<AndroidResource Include="Resources\values-iw\strings.xml" />
+	<AndroidResource Include="Resources\values-ko\strings.xml" />
+	
+	<AndroidResource Include="Resources\values-ro\strings.xml" />
+	<AndroidResource Include="Resources\values-sl\strings.xml" />
+	<AndroidResource Include="Resources\values-sr\strings.xml" />
+	<AndroidResource Include="Resources\values-sv\strings.xml" />
+	<AndroidResource Include="Resources\values-tr\strings.xml" />
+	<AndroidResource Include="Resources\values-vi\strings.xml" />
+
     <AndroidResource Include="Resources\values-de\strings.xml" />
     <AndroidResource Include="Resources\values-ca\strings.xml" />
     <AndroidResource Include="Resources\values-cs\strings.xml" />
@@ -898,4 +873,5 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\device_access_new_account.png" />
   </ItemGroup>
+  
 </Project>

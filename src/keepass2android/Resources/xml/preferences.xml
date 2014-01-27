@@ -243,6 +243,12 @@
   android:defaultValue="@bool/TanExpiresOnUse_default"/>
 
 		</PreferenceScreen>
+		<PreferenceScreen
+	  android:key="keyboard_prefs"
+	  android:title="@string/keyboard_prefs"
+	  >
+			<intent android:action="keepass2android.softkeyboard.LatinIMESettings"/>
+		</PreferenceScreen>
 
 
 	</PreferenceScreen>
