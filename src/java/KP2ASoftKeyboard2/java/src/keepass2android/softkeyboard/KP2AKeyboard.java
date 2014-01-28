@@ -717,14 +717,7 @@ public class KP2AKeyboard extends InputMethodService
         ExtractedTextRequest etr = new ExtractedTextRequest();
         etr.token = 0; // anything is fine here
         ExtractedText et = ic.getExtractedText(etr, 0);
-        if (et == null)
-        {
-        	Log.d("KP2AK", "et == null");
-        }
-        else
-        {
-        	Log.d("KP2AK", "et != null "+et.text);
-        }
+
 		boolean hasTextInField = (et != null) && (!TextUtils.isEmpty(et.text));
 		if (!hasTextInField) //only auto-fill if target field is empty
 		{

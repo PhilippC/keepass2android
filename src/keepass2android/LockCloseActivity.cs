@@ -31,7 +31,7 @@ namespace keepass2android
 		//which may be used "outside" the database (e.g. GeneratePassword for creating a master password)
 		protected const string NoLockCheck = "NO_LOCK_CHECK";
 
-		private IOConnectionInfo _ioc;
+		protected IOConnectionInfo _ioc;
 		private BroadcastReceiver _intentReceiver;
 
 		protected override void OnCreate(Bundle savedInstanceState)

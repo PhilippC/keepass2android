@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>

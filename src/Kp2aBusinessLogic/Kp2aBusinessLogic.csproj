@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -59,6 +59,11 @@
     <Compile Include="database\KdbDatabaseLoader.cs" />
     <Compile Include="database\KdbxDatabaseLoader.cs" />
     <Compile Include="database\SynchronizeCachedDatabase.cs" />
+    <Compile Include="DataExchange\FileFormatProvider.cs" />
+    <Compile Include="DataExchange\Formats\KeePassCsv1x.cs" />
+    <Compile Include="DataExchange\Formats\KeePassKdb2x.cs" />
+    <Compile Include="DataExchange\Formats\KeePassXml2x.cs" />
+    <Compile Include="DataExchange\PwExportInfo.cs" />
     <Compile Include="Io\BuiltInFileStorage.cs" />
     <Compile Include="Io\CachingFileStorage.cs" />
     <Compile Include="Io\DropboxFileStorage.cs" />

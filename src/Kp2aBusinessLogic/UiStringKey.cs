@@ -47,6 +47,7 @@ namespace keepass2android
 		ErrorOcurred,
 		SynchronizingOtpAuxFile,
 		SavingOtpAuxFile,
-		CertificateFailure
+		CertificateFailure,
+		exporting_database
     }
 }

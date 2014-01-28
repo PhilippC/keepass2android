@@ -48,11 +48,10 @@ using String = System.String;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", 
-	           ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, 
-			   LaunchMode = LaunchMode.SingleInstance,
-	           Theme="@style/Base")]
-
+	[Activity(Label = "@string/app_name",
+		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
+		LaunchMode = LaunchMode.SingleInstance,
+		Theme = "@style/Base")]
 	public class PasswordActivity : LockingActivity {
 
 		enum KeyProviders
@@ -1173,7 +1172,5 @@ namespace keepass2android
 		}
 		
 	}
-
-	
 }
 

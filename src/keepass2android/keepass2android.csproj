@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_KEYTRANSFORM;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -92,6 +92,8 @@
     <Compile Include="app\NoFileStorageFoundException.cs" />
     <Compile Include="app\OtpAuxCacheSupervisor.cs" />
     <Compile Include="CreateDatabaseActivity.cs" />
+    <Compile Include="CreateNewFilename.cs" />
+    <Compile Include="ExportDatabaseActivity.cs" />
     <Compile Include="fileselect\FileChooserFileProvider.cs" />
     <Compile Include="fileselect\FileStorageSetupActivity.cs" />
     <Compile Include="fileselect\FileStorageSetupInitiatorActivity.cs" />
@@ -170,6 +172,12 @@
     <AndroidAsset Include="Assets\fontawesome-webfont.ttf" />
     <AndroidAsset Include="Assets\DejaVuSansMono.ttf" />
     <AndroidAsset Include="Assets\LICENSE_dejavu" />
+    <AndroidNativeLibrary Include="..\java\KP2AKdbLibrary\libs\armeabi-v7a\libfinal-key.so">
+      <Link>libs\armeabi-v7a\libfinal-key.so</Link>
+    </AndroidNativeLibrary>
+    <AndroidNativeLibrary Include="..\java\KP2AKdbLibrary\libs\armeabi\libfinal-key.so">
+      <Link>libs\armeabi\libfinal-key.so</Link>
+    </AndroidNativeLibrary>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Resources\drawable\Thumbs.db">
       <Visible>False</Visible>
@@ -664,10 +672,6 @@
     <ProjectReference Include="..\AppCompatV7Binding\AppCompatV7Binding.csproj">
       <Project>{23233a28-d74f-4bf8-b4d8-834060840bd7}</Project>
       <Name>AppCompatV7Binding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
-      <Name>JavaFileStorageBindings</Name>
     </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>

@@ -32,6 +32,7 @@
 	<string name="QuickUnlock_prefs">QuickUnlock</string>
 	<string name="FileHandling_prefs">File handling</string>
 	<string name="keyboard_prefs">Keyboard</string>
+	<string name="export_prefs">Export database...</string>
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
   <string name="ClearClipboard">Clipboard cleared.</string>
@@ -160,7 +161,10 @@
   <string name="database_name">Database name</string>
   <string name="default_username">Default user name for new entries</string>
   <string name="saving_database">Saving database…</string>
-  <string name="space">Space</string>
+	<string name="exporting_database">Exporting database…</string>
+	<string name="export_database_successful">Database exported successfully!</string>
+	
+	<string name="space">Space</string>
   <string name="search_label">Search</string>
   <string name="show_password">Show password</string>
   <string name="sort_name">Sort by name</string>
@@ -398,6 +402,8 @@
 
 	<string name="CertificateWarning">Warning: Server certificate validation failed: %1$s. Install appropriate root certificate on your device or see settings!</string>
 	<string name="CertificateFailure">Error: Server certificate validation failed! Install appropriate root certificate on your device or see settings!</string>
+
+	<string name="export_fileformats_title">Select file format</string>
 	
 	<string name="ChangeLog_title">Change log</string>
 
@@ -520,6 +526,11 @@ Initial public release
 	<item>1 hour</item>
     <item>Never</item>
   </string-array>
+	<string-array name="export_fileformat_options">
+		<item>Keepass 2 database (.kdbx)</item>
+		<item>Keepass 2 XML (unencrypted) (.xml)</item>
+		<item>Keepass CSV (unencrypted) (.csv)</item>
+	</string-array>
   <string-array name="list_size_options">
     <item>Small</item>
     <item>Medium</item>

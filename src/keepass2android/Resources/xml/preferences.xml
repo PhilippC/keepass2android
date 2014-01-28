@@ -44,6 +44,14 @@
 			  android:persistent="false"
 			  android:key="@string/default_username_key"/>
 
+		<PreferenceScreen
+	  android:key="export_prefs"
+	  android:title="@string/export_prefs"
+	  >
+			<intent android:action="keepass2android.ExportDatabaseActivity"/>
+		</PreferenceScreen>
+
+
 	</PreferenceScreen>
 
 	<PreferenceScreen
@@ -258,7 +266,7 @@
 	  >
 			<intent android:action="keepass2android.softkeyboard.LatinIMESettings"/>
 		</PreferenceScreen>
-
+		
 
 	</PreferenceScreen>
 </PreferenceScreen>
