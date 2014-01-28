@@ -260,8 +260,11 @@
   <string name="ShowCopyToClipboardNotification_summary">Make username and password accessible through the notification bar and clipboard. Beware of password sniffers!</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
   <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Keyboard selection dialog</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Open keyboard selection dialog when entry is available through KP2A keyboard after search.</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Switch keyboard</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Open keyboard selection dialog when entry is available through KP2A keyboard after search from the browser or from the keyboard.</string>
+	
+	<string name="kp2a_switch_rooted">Auto-switch on rooted devices</string>
+    <string name="kp2a_switch_rooted_summary">On rooted devices, it is possible to automatically switch to the Keepass2Android keyboard (after search for an entry or by clicking the KP2A keyboard notification) and to switch back to the previous keyboard without showing the Input method picker. This also requires to install the Secure Settings app. See the KP2A documentation for more information!</string>
 
 	<string name="ShowUnlockedNotification_title">Notification while unlocked</string>
 	<string name="ShowUnlockedNotification_summary">Show an ongoing notification while the database is unlocked.</string>

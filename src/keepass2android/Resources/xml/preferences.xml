@@ -156,7 +156,16 @@
 				  android:summary="@string/OpenKp2aKeyboardAutomatically_summary"
 				  android:defaultValue="@bool/OpenKp2aKeyboardAutomatically_default"
 				  android:title="@string/OpenKp2aKeyboardAutomatically_title"
+				  android:dependency="@string/UseKp2aKeyboard_key"
 				  android:key="@string/OpenKp2aKeyboardAutomatically_key" />
+			<CheckBoxPreference
+            android:key="kp2a_switch_rooted"
+            android:title="@string/kp2a_switch_rooted"
+            android:summary="@string/kp2a_switch_rooted_summary"
+            android:persistent="true"
+            android:defaultValue="false"
+			android:dependency="@string/UseKp2aKeyboard_key"
+            />
 		</PreferenceScreen>
 		<PreferenceScreen
 			  android:key="@string/QuickUnlock_prefs_key"

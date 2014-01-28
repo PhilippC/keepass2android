@@ -99,13 +99,6 @@
             android:dependency="kp2a_simple_keyboard"
             />
        
-       <CheckBoxPreference
-            android:key="kp2a_switch_rooted"
-            android:title="@string/kp2a_switch_rooted"
-            android:summary="@string/kp2a_switch_rooted_summary"
-            android:persistent="true" 
-            android:defaultValue="false"
-            />
     </PreferenceCategory>
     
     
