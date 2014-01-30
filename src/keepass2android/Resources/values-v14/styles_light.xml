@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
+
+  Keepass2Android is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  Keepass2Android is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="BaseLight" parent="android:Theme.Holo.Light">
+	    <!--  <item name="TextViewParentStyle">@android:style/Widget.Holo.Light.TextView</item> -->
+	    <item name="TextViewParentStyle">@style/BIG</item>
+	    <item name="ActionBarButtonParentStyle">@android:style/Widget.Holo.Light.ActionButton</item>
+	    <item name="TextColorGroup">@color/blue_highlight</item>
+	    <item name="TextColorHeader">@color/light_gray</item>
+	    <item name="TextColorItem">@color/dark_gray</item>
+	    <item name="CancelDrawable">@android:drawable/ic_menu_close_clear_cancel</item>
+	    <item name="AddFieldDrawable">@drawable/ic_menu_add_field_holo_light</item>
+	    <item name="NewGroupDrawable">@drawable/btn_new_group</item>
+	    <item name="NewEntryDrawable">@drawable/device_access_new_account</item>
+		<item name="OpenFileDrawable">@drawable/collections_collection</item>
+		<item name="CreateDbDrawable">@drawable/collections_new_label</item>
+		<item name="OpenUrlDrawable">@drawable/location_web_site</item>
+	</style>
+	<style name="TextViewParent" parent="@style/BIG"></style>
+    <style name="NoTitleBarLight" parent="BaseLight">
+    </style>
+    <style name="DialogLight" parent="BaseLight"></style>
+    <style name="BIG">
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="small">
+        <item name="android:textSize">7sp</item>
+    </style>
+</resources>
