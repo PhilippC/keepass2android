@@ -265,7 +265,7 @@
   <string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
   <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Switch keyboard</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Open keyboard selection dialog when entry is available through KP2A keyboard after search from the browser or from the keyboard.</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Open keyboard selection dialog when entry is available through KP2A keyboard after search from the browser.</string>
 	
 	<string name="kp2a_switch_rooted">Auto-switch on rooted devices</string>
     <string name="kp2a_switch_rooted_summary">On rooted devices, it is possible to automatically switch to the Keepass2Android keyboard (after search for an entry or by clicking the KP2A keyboard notification) and to switch back to the previous keyboard without showing the Input method picker. This also requires to install the Secure Settings app. See the KP2A documentation for more information!</string>
@@ -408,10 +408,11 @@
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="ChangeLog_0_9_3">
-		<b>Version 0.9.3 preview 2</b>\n
+		<b>Version 0.9.3</b>\n
 		* New keyboard with many improvements. See settings to customize.\n
 		* Read-only support for kdb (Keepass 1 files). Experimental!\n
 		* Added SFTP support\n
+		* Added workaround for bug in ART (Android 4.4.2)\n
 		* Bug fixes\n
 	</string>
 

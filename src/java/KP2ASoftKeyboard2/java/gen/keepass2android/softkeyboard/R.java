@@ -727,8 +727,6 @@ containing a value of this type.
         public static int kp2a_simple_keyboard_summary=0x7f0c009a;
         public static int kp2a_switch_on_sendgodone=0x7f0c009d;
         public static int kp2a_switch_on_sendgodone_summary=0x7f0c009e;
-        public static int kp2a_switch_rooted=0x7f0c009f;
-        public static int kp2a_switch_rooted_summary=0x7f0c00a0;
         public static int kp2a_user=0x7f0c0092;
         /**  Label for "switch to alphabetic" key.  Must be short to fit on key! 
          */
