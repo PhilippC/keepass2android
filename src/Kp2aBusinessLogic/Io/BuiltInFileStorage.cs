@@ -37,31 +37,13 @@ namespace keepass2android.Io
 
 		private readonly IKp2aApp _app;
 
-		class CertificatePolicity: ICertificatePolicy 
-		{
-			private readonly IKp2aApp _app;
-
-			public CertificatePolicity(IKp2aApp app)
-			{
-				_app = app;
-			}
-
-			public bool CheckValidationResult(ServicePoint srvPoint, System.Security.Cryptography.X509Certificates.X509Certificate certificate, WebRequest request,
-			                                  int certificateProblem)
-			{
-				if (certificateProblem == 0) //ok
-					return true;
-				return _app.OnServerCertificateError(certificateProblem);
-			}
-		}
-
-
 		public BuiltInFileStorage(IKp2aApp app)
 		{
 			_app = app;
 			//use the obsolute CertificatePolicy because the ServerCertificateValidationCallback isn't called in Mono for Android (?)
-			ServicePointManager.CertificatePolicy = new CertificatePolicity(app);
-			
+			//ServicePointManager.CertificatePolicy = new CertificatePolicity(app);
+			IOConnection.CertificateValidationCallback = app.CertificateValidationCallback;
+
 		}
 
 		public IEnumerable<string> SupportedProtocols 

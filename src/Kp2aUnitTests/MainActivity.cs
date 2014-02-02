@@ -18,11 +18,12 @@ namespace Kp2aUnitTests
         {
             TestRunner runner = new TestRunner();
             // Run all tests from this assembly
-            runner.AddTests(Assembly.GetExecutingAssembly());
+            //runner.AddTests(Assembly.GetExecutingAssembly());
 			//runner.AddTests(new List<Type> { typeof(TestSynchronizeCachedDatabase)});
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("LoadErrorWithCertificateTrustFailure"));
+			//runner.AddTests(typeof(TestLoadDb).GetMethod("LoadWithAcceptedCertificateTrustFailure"));
 
-			//runner.AddTests(new List<Type> { typeof(TestLoadDb) });
+			runner.AddTests(new List<Type> { typeof(TestLoadDb) });
 			//runner.AddTests(new List<Type> { typeof(TestCachingFileStorage) });
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadKdb1"));
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadWithKeyfileOnly"));

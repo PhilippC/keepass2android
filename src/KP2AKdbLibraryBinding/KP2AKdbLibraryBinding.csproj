@@ -42,9 +42,8 @@
   <ItemGroup>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
-    <None Include="libs\armeabi-v7a\libfinal-key.so" />
-    <None Include="libs\armeabi\libfinal-key.so" />
-    <None Include="libs\mips\libfinal-key.so" />
+    <EmbeddedNativeLibrary Include="libs\armeabi-v7a\libfinal-key.so" />
+    <EmbeddedNativeLibrary Include="libs\armeabi\libfinal-key.so" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml">

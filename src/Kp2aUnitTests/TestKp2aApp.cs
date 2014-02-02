@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -27,6 +28,7 @@ namespace Kp2aUnitTests
 		private YesNoCancelResult _yesNoCancelResult = YesNoCancelResult.Yes;
 		private Dictionary<PreferenceKey, bool> _preferences = new Dictionary<PreferenceKey, bool>();
 
+		private int id = new Random().Next(1000);
 
 		public void SetShutdown()
 		{
@@ -140,6 +142,7 @@ namespace Kp2aUnitTests
 		
 		public bool TriggerReloadCalled;
 		private TestFileStorage _testFileStorage;
+		private bool _serverCertificateErrorResponse;
 
 		public TestKp2aApp()
 		{
@@ -151,13 +154,49 @@ namespace Kp2aUnitTests
 			TriggerReloadCalled = true;
 		}
 
+		
+
+		public RemoteCertificateValidationCallback CertificateValidationCallback
+		{
+			get
+			{
+				Kp2aLog.Log("TESTAPP: " + id + "/ " + ServerCertificateErrorResponse);
+				if (!ServerCertificateErrorResponse)
+				{
+					return (sender, certificate, chain, errors) =>
+						{
+							if (errors == SslPolicyErrors.None)
+								return true;
+							return false;
+						};
+
+				}
+//					return null; //default behavior
+
+				return (sender, certificate, chain, errors) =>
+					{
+						return true;
+					};
+			}
+				
+		}
+		
+		
+
 		public bool OnServerCertificateError(int sslPolicyErrors)
 		{
 			ServerCertificateErrorCalled = true;
 			return ServerCertificateErrorResponse;
 		}
 
-		public bool ServerCertificateErrorResponse { get; set; }
+		public bool ServerCertificateErrorResponse
+		{
+			get { return _serverCertificateErrorResponse; }
+			set { 
+				_serverCertificateErrorResponse = value;
+				FileStorage = new BuiltInFileStorage(this); // recreate because of possibly changed validation behavior
+			}
+		}
 
 		protected bool ServerCertificateErrorCalled { get; set; }
 

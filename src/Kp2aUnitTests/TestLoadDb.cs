@@ -261,7 +261,8 @@ namespace Kp2aUnitTests
 		[TestMethod]
 		public void FileNotFoundExceptionWithWebDav()
 		{
-			var fileStorage = new BuiltInFileStorage(new TestKp2aApp());
+			var app = new TestKp2aApp();
+			var fileStorage = app.FileStorage;
 			
 			//should work:
 			using (var stream = fileStorage.OpenFileForRead(RemoteIoc1and1))

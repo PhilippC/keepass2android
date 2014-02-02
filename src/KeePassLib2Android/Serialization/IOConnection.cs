@@ -68,6 +68,8 @@ namespace KeePassLib.Serialization
 			// get { return m_bSslCertsAcceptInvalid; }
 			set { m_bSslCertsAcceptInvalid = value; }
 		}
+
+		public static RemoteCertificateValidationCallback CertificateValidationCallback { get; set; }
 #endif
 
 		// Web request methods
@@ -192,11 +194,10 @@ namespace KeePassLib.Serialization
 
 		private static void PrepareWebAccess()
 		{
-			if(m_bSslCertsAcceptInvalid)
+			/*
 				ServicePointManager.ServerCertificateValidationCallback =
-					IOConnection.AcceptCertificate;
-			else
-				ServicePointManager.ServerCertificateValidationCallback = null;
+					IOConnection.AcceptCertificate;*/
+			ServicePointManager.ServerCertificateValidationCallback = CertificateValidationCallback;
 		}
 
 		private static IOWebClient CreateWebClient(IOConnectionInfo ioc, bool digestAuth)
@@ -361,29 +362,25 @@ namespace KeePassLib.Serialization
 			public override void Close()
 			{
 				base.Close();
-				try
+				RepeatWithDigestOnFail(ioc, req =>
 				{
-					uploadData(IOConnection.CreateWebClient(ioc, false));
-				} catch (WebException ex)
-				{
-					if ((ex.Response is HttpWebResponse) && (((HttpWebResponse) ex.Response).StatusCode == HttpStatusCode.Unauthorized))
-						uploadData(IOConnection.CreateWebClient(ioc, true));
-					else
-						throw;
-				}
+					req.Headers.Add("Translate: f");
+
+					if (method != null)
+						req.Method = method;
+					var data = this.ToArray();
+
+					using (Stream s = req.GetRequestStream())
+					{
+						s.Write(data, 0, data.Length);
+						req.GetResponse();
+						s.Close();
+					}
+				});
 				
 			}
 
-			void uploadData(WebClient webClient)
-			{
-				if (method != null)
-				{
-					webClient.UploadData(destinationFilePath, method, this.ToArray());
-				} else
-				{
-					webClient.UploadData(destinationFilePath, this.ToArray());
-				}
-			}
+			
 		}
 
 		public static Stream OpenWrite(IOConnectionInfo ioc)

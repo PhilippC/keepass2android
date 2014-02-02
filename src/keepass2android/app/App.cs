@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Security;
 using Android.App;
 using Android.Content;
 using Android.Graphics.Drawables;
@@ -419,59 +420,61 @@ namespace keepass2android
 				});
 		}
 
-		
-
-		private String GetProblemMessage(BuiltInFileStorage.CertificateProblem problem)
+		public RemoteCertificateValidationCallback CertificateValidationCallback
 		{
-			String problemMessage;
-			const BuiltInFileStorage.CertificateProblem problemList = new BuiltInFileStorage.CertificateProblem();
-			string problemCodeName = Enum.GetName(typeof(BuiltInFileStorage.CertificateProblem), problem);
-				
-			if (problemCodeName != null)
-				problemMessage = problemCodeName;
-			else
-				problemMessage = "Unknown Certificate Problem";
-			return problemMessage;
+			get
+			{
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+
+				ValidationMode validationMode = ValidationMode.Warn;
+
+				string strValMode = prefs.GetString(Application.Context.Resources.GetString(Resource.String.AcceptAllServerCertificates_key),
+													 Application.Context.Resources.GetString(Resource.String.AcceptAllServerCertificates_default));
+
+				if (strValMode == "IGNORE")
+					validationMode = ValidationMode.Ignore;
+				else if (strValMode == "ERROR")
+					validationMode = ValidationMode.Error;
+				;
+
+				switch (validationMode)
+				{
+					case ValidationMode.Ignore:
+						return (sender, certificate, chain, errors) =>
+						{
+							ShowToast(Application.Context.GetString(Resource.String.CertificateWarning,
+															new Java.Lang.Object[]
+					                                        {
+						                                       errors.ToString()
+					                                        }));
+							return true;
+						};
+					case ValidationMode.Warn:
+						return (sender, certificate, chain, errors) =>
+						{
+							return true;
+						};
+						
+					case ValidationMode.Error:
+						return (sender, certificate, chain, errors) =>
+						{
+							if (errors == SslPolicyErrors.None)
+								return true;
+						
+							return false;
+						};;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+
+			}
+
 		}
+
 
 		enum ValidationMode
 		{
 			Ignore, Warn, Error
-		}
-
-		public bool OnServerCertificateError(int certificateProblem)
-		{
-			var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
-
-			ValidationMode validationMode = ValidationMode.Warn;
-			
-			string strValMode = prefs.GetString(Application.Context.Resources.GetString(Resource.String.AcceptAllServerCertificates_key),
-												 Application.Context.Resources.GetString(Resource.String.AcceptAllServerCertificates_default));
-
-			if (strValMode == "IGNORE")
-				validationMode = ValidationMode.Ignore;
-			else if (strValMode == "ERROR")
-				validationMode = ValidationMode.Error;
-			;
-
-			switch (validationMode)
-			{
-				case ValidationMode.Ignore:
-					return true;
-				case ValidationMode.Warn:
-					ShowToast(Application.Context.GetString(Resource.String.CertificateWarning,
-				                                        new Java.Lang.Object[]
-					                                        {
-						                                        GetProblemMessage(
-							                                        (BuiltInFileStorage.CertificateProblem)
-							                                        (System.UInt32) certificateProblem)
-					                                        }));
-					return true;
-				case ValidationMode.Error:
-					return false;
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
 		}
 
 
