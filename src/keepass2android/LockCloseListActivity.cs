@@ -73,7 +73,14 @@ namespace keepass2android
 
 		protected override void OnDestroy()
 		{
-			UnregisterReceiver(_intentReceiver);
+			try
+			{
+				UnregisterReceiver(_intentReceiver);
+			}
+			catch (Exception ex)
+			{
+				Kp2aLog.Log(ex.ToString());
+			}
 
 			base.OnDestroy();
 		}

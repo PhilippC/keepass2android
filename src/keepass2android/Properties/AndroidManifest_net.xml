@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="35" android:versionName="0.9.3-pre2" package="keepass2android.keepass2android" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="36" android:versionName="0.9.3-pre3" package="keepass2android.keepass2android" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
 	<permission android:description="@string/permission_desc" android:icon="@drawable/ic_launcher" android:label="KP2A internal file browsing" android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" android:protectionLevel="signature" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">
 		<activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
@@ -18,6 +18,7 @@
             </intent-filter>
 
 		</activity>
+
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android.android-filechooser.localfile" android:exported="false" />
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android.android-filechooser.history" android:exported="false" />
 		<activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light">
@@ -35,18 +36,14 @@
 			<meta-data android:name="android.view.im" android:resource="@xml/method" />
 		</service>
 		<activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="@string/english_ime_settings">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
 			<intent-filter>
-				<action android:name="keepass2android.softkeyboard.LatinIMESettings"/>
+				<action android:name="android.intent.action.MAIN" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="keepass2android.softkeyboard.LatinIMESettings" />
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
-        </activity>
-
-		
-		
-		
+		</activity>
 		<activity android:configChanges="keyboardHidden|orientation" android:label="@string/app_name" android:theme="@style/Base" android:name="keepass2android.PasswordActivity">
 			<intent-filter android:label="@string/app_name">
 				<action android:name="android.intent.action.VIEW" />

@@ -147,7 +147,15 @@ namespace keepass2android
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
-			UnregisterReceiver(_intentReceiver);
+			try
+			{
+				UnregisterReceiver(_intentReceiver);
+			}
+			catch (Exception e)
+			{
+				Kp2aLog.Log(e.ToString());
+			}
+			
 		}
 
 		private void CheckIfUnloaded()
