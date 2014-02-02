@@ -146,7 +146,7 @@ namespace keepass2android
 		
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
-
+			
 			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			// Likely the app has been killed exit the activity 

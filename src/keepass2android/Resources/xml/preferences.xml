@@ -138,6 +138,14 @@
 			  android:entryValues="@array/list_size_values"
 			  android:dialogTitle="@string/list_size_summary"
 			  android:defaultValue="@string/list_size_default"/>
+
+			<ListPreference
+			  android:key="@string/design_key"
+			  android:title="@string/design_title"
+			  android:entries="@array/design_options"
+			  android:entryValues="@array/design_values"
+			  android:dialogTitle="@string/design_title"
+			  android:defaultValue="@string/design_default"/>
 		</PreferenceScreen>
 
 		<PreferenceScreen

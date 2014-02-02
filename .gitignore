@@ -180,3 +180,20 @@ Thumbs.db
 /src/AppCompatV7Binding/bin/ReleaseNoNet
 
 /src/java/KP2ASoftKeyboard2/java/projectzip
+
+/src/JavaFileStorageBindings/bin/ReleaseNoNet
+
+/src/KP2AKdbLibraryBinding/bin/Debug
+
+/src/KP2AKdbLibraryBinding/bin/Release
+/src/KP2AKdbLibraryBinding/obj/Debug
+
+/src/KP2AKdbLibraryBinding/obj/Release
+
+/src/java/.metadata
+
+/src/java/JavaFileStorage/.google_apis/drive-v2/drive
+
+/src/java/JavaFileStorage/.google_apis/drive-v2r102lv1.16.0-rc/drive
+
+/src/java/JavaFileStorage/libs

@@ -321,6 +321,8 @@ namespace keepass2android
 			((EditText)dialog.FindViewById(Resource.Id.cred_password)).Text = ioc.Password;
 			((Spinner)dialog.FindViewById(Resource.Id.cred_remember_mode)).SetSelection((int)ioc.CredSaveMode);
 		}
+
+		
 	}
 }
 

@@ -37,11 +37,17 @@ namespace keepass2android
 
 		private static readonly Java.Util.Regex.Pattern OtpPattern = Java.Util.Regex.Pattern.Compile("^https://my\\.yubico\\.com/neo/(.+)$");
 
+		private ActivityDesign _design;
 
+		public NfcOtpActivity()
+		{
+			_design = new ActivityDesign(this);
+		}
 
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
+			_design.ApplyTheme();
 
 			Intent i = new Intent(this, typeof (PasswordActivity));
 			i.SetAction(Intents.StartWithOtp);
@@ -82,5 +88,11 @@ namespace keepass2android
 			Finish();
 
 		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+			_design.ReapplyTheme();
+		}
 	}
 }

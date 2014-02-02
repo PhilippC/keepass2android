@@ -17,8 +17,6 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	<style name="BaseDark" parent="android:Theme.Holo">
-	    <item name="TextViewParentStyle">@style/small</item>
-	    <item name="ActionBarButtonParentStyle">@android:style/Widget.Holo.Light.ActionButton</item>
 	    <item name="TextColorGroup">?android:attr/textColorPrimary</item>
 	    <item name="TextColorHeader">?android:attr/textColorPrimary</item>
 	    <item name="TextColorItem">?android:attr/textColorSecondary</item>
@@ -29,11 +27,19 @@
 	    <item name="OpenFileDrawable">@drawable/collections_collection_holodark</item>
 		<item name="CreateDbDrawable">@drawable/collections_new_label_holodark</item>
 		<item name="OpenUrlDrawable">@drawable/location_web_site_holodark</item>
-	    
+
+		<item name="ic_menu_add_field">@drawable/ic_menu_add_field_holodark</item>
+		<item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
+		<item name="ic_action_search_drawable">@drawable/ic_action_search_holodark</item>
+		<item name="NavigationAcceptDrawable">@drawable/navigation_accept_dark</item>
+		
+
+
 	</style>
-	<style name="TextViewParent" parent="@style/small"></style>
     <style name="NoTitleBarDark" parent="BaseDark"></style>
-    <style name="DialogDark" parent="BaseDark"></style>
+	<style name="BaseDark_Dialog" parent="android:Theme.Holo.Dialog" />
+    <style name="DialogDark" parent="BaseDark_Dialog"></style>
+	<style name="ThemeDark" parent="BaseDark"></style>
 	
 	
 </resources>

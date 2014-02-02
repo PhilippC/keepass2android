@@ -23,14 +23,14 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <JavaOptions />
     <AndroidUseLatestPlatformSdk />
-    <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -119,6 +119,7 @@
     <Compile Include="GroupBaseActivity.cs" />
     <Compile Include="LockCloseListActivity.cs" />
     <Compile Include="LockingListActivity.cs" />
+    <Compile Include="Utils\ActivityDesign.cs" />
     <Compile Include="Utils\LoadingDialog.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="views\ClickView.cs" />
@@ -179,6 +180,7 @@
       <Link>libs\armeabi\libfinal-key.so</Link>
     </AndroidNativeLibrary>
     <None Include="Resources\AboutResources.txt" />
+    <AndroidResource Include="Resources\drawable-hdpi\Thumbs.db" />
     <None Include="Resources\drawable\Thumbs.db">
       <Visible>False</Visible>
     </None>
@@ -665,14 +667,6 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj">
-      <Project>{3c0f7fe5-639f-4422-a087-8b26cf862d1b}</Project>
-      <Name>AndroidFileChooserBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AppCompatV7Binding\AppCompatV7Binding.csproj">
-      <Project>{23233a28-d74f-4bf8-b4d8-834060840bd7}</Project>
-      <Name>AppCompatV7Binding</Name>
-    </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
@@ -680,18 +674,6 @@
     <ProjectReference Include="..\Kp2aBusinessLogic\Kp2aBusinessLogic.csproj">
       <Project>{53A9CB7F-6553-4BC0-B56B-9410BB2E59AA}</Project>
       <Name>Kp2aBusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
-      <Project>{70d3844a-d9fa-4a64-b205-a84c6a822196}</Project>
-      <Name>KP2AKdbLibraryBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj">
-      <Project>{a8779d4d-7c49-4c2f-82bd-2cdc448391da}</Project>
-      <Name>Kp2aKeyboardBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" Condition="!$(DefineConstants.Contains('EXCLUDE_TWOFISH'))">
-      <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>
-      <Name>TwofishCipher</Name>
     </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>
@@ -874,5 +856,55 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\device_access_new_account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\btn_new_group_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_menu_add_field_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_menu_remove_field_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\btn_new_group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\btn_new_group_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\collections_collection_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\collections_new_label_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\device_access_new_account_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_remove_field_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\location_web_site_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-v14\styles_dark.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-v14\styles_light.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\attrs.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\navigation_cancel_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_action_search_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_search_holodark.png" />
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@
         android:id="@+id/search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_search"
+        android:src="?attr/ic_action_search_drawable"
         android:layout_below="@id/search_label"
         android:layout_alignParentRight="true" />
     <EditText

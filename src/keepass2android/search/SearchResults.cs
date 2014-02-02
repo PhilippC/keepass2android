@@ -37,7 +37,7 @@ namespace keepass2android.search
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
+			
 			if ( IsFinishing ) {
 				return;
 			}

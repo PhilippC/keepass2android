@@ -18,7 +18,12 @@
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-	<style name="Base"></style>
+	<style name="Base">
+		<item name="OpenFileDrawable">@drawable/collections_collection</item>
+		<item name="CreateDbDrawable">@drawable/collections_new_label</item>
+		<item name="OpenUrlDrawable">@drawable/location_web_site</item>
+
+	</style>
 	<style name="NoTitleBar"></style>
     <style name="Dialog" parent="android:Theme.Dialog"></style>
 	<style name="GroupTextSmall" parent="android:Theme">

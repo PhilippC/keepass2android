@@ -39,6 +39,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			
 			SetContentView(Resource.Layout.icon_picker);
 			
 			GridView currIconGridView = (GridView)FindViewById(Resource.Id.IconGridView);

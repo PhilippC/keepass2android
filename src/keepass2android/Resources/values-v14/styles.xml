@@ -17,15 +17,15 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="GroupTextSmall" parent="attr/TextViewParentStyle">
+    <style name="GroupTextSmall">
         <item name="@android:textColor">?TextColorGroup</item>
 		
 	</style>
-	<style name="GroupText" parent="@attr/TextViewParentStyle">
+	<style name="GroupText">
 		<item name="@android:textColor">?TextColorGroup</item>
 		<item name="@android:textSize">20sp</item>
 	</style>
-	<style name="GroupTextLarge" parent="@attr/TextViewParentStyle">
+	<style name="GroupTextLarge">
 		<item name="@android:textColor">?TextColorGroup</item>
 		<item name="@android:textSize">28sp</item>
 	</style>

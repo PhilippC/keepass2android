@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+#if !EXCLUDE_KEYTRANSFORM
 using Com.Keepassdroid.Database;
 using Com.Keepassdroid.Database.Exception;
+#endif
 using KeePassLib;
 using KeePassLib.Cryptography;
 using KeePassLib.Interfaces;
@@ -21,6 +23,7 @@ namespace keepass2android
 
 		public void PopulateDatabaseFromStream(PwDatabase db, CompositeKey key, Stream s, IStatusLogger slLogger)
 		{
+			#if !EXCLUDE_KEYTRANSFORM
 			var importer = new Com.Keepassdroid.Database.Load.ImporterV3();
 
 			var hashingStream = new HashingStreamEx(s, false, new SHA256Managed());
@@ -67,7 +70,12 @@ namespace keepass2android
 			HashOfLastStream = hashingStream.Hash;
 			if (HashOfLastStream == null)
 				throw new Exception("hashing didn't work"); //todo remove
+#else
+			throw new Exception("Kdb is excluded with Key transform!");
+#endif
 		}
+
+			#if !EXCLUDE_KEYTRANSFORM
 
 		private PwGroup ConvertGroup(PwGroupV3 groupV3)
 		{
@@ -153,10 +161,11 @@ namespace keepass2android
 			return new DateTime(1970, 1, 1).AddMilliseconds(javatime);
 
 		}
-
+#endif
 		public byte[] HashOfLastStream { get; private set; }
 		public bool CanWrite { get { return false; } }
 	}
+
 
 	internal class AdditionalGroupData	
 	{

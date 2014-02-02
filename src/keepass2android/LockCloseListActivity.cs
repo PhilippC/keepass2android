@@ -31,15 +31,17 @@ namespace keepass2android
 	public class LockCloseListActivity : LockingListActivity {
 		public LockCloseListActivity()
 		{
-
+			_design = new ActivityDesign(this);
 		}
 
 		IOConnectionInfo _ioc;
 		private BroadcastReceiver _intentReceiver;
+		private ActivityDesign _design;
 		
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			_design.ApplyTheme();
 			_ioc = App.Kp2a.GetDb().Ioc;
 
 			_intentReceiver = new LockCloseListActivityBroadcastReceiver(this);
@@ -54,12 +56,13 @@ namespace keepass2android
 		public LockCloseListActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
-			
+			_design = new ActivityDesign(this);
 		}
-			
+
 		protected override void OnResume()
 		{
 			base.OnResume();
+			_design.ReapplyTheme();
 			
 			if (TimeoutHelper.CheckShutdown(this, _ioc))
 				return;

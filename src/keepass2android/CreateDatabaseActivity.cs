@@ -27,6 +27,13 @@ namespace keepass2android
 		private bool _restoringInstanceState;
 		private bool _showPassword;
 
+		private ActivityDesign _design;
+
+		public CreateDatabaseActivity()
+		{
+			_design = new ActivityDesign(this);
+		}
+
 
 		private const int RequestCodeKeyFile = 0;
 		private const int RequestCodeDbFilename = 1;
@@ -47,6 +54,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
+			_design.ApplyTheme();
 
 			SetContentView(Resource.Layout.create_database);
 
@@ -212,6 +220,12 @@ namespace keepass2android
 				return false;
 			}
 			return true;
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+			_design.ReapplyTheme();
 		}
 
 		protected override void OnRestoreInstanceState(Bundle savedInstanceState)

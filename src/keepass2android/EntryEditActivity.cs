@@ -77,7 +77,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-
+			
 			if (LastNonConfigurationInstance != null)
 			{
 				//bug in Mono for Android or whatever: after config change the extra fields are wrong

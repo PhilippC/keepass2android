@@ -44,14 +44,16 @@ namespace keepass2android
 		DataMimeType="text/plain")]
 	public class FileSelectActivity : ListActivity
 	{
-
+		private ActivityDesign _design;
 		public FileSelectActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
-			
+			_design = new ActivityDesign(this);
 		}
+
 		public FileSelectActivity()
 		{
+			_design = new ActivityDesign(this);
 		}
 
 		private const int CmenuClear = Menu.First;
@@ -70,6 +72,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			_design.ApplyTheme();
 
 			Kp2aLog.Log("FileSelect.OnCreate");
 			Kp2aLog.Log("FileSelect:apptask="+Intent.GetStringExtra("KP2A_APPTASK"));
@@ -411,6 +414,8 @@ namespace keepass2android
 		{
 			base.OnResume();
 			Kp2aLog.Log("FileSelect.OnResume");
+
+			_design.ReapplyTheme();
 
 			// Check to see if we need to change modes
 			if (ShowRecentFiles() != _recentMode)

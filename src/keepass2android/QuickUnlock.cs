@@ -36,9 +36,17 @@ namespace keepass2android
 		private IOConnectionInfo _ioc;
 		private QuickUnlockBroadcastReceiver _intentReceiver;
 
+		private ActivityDesign _design;
+
+		public QuickUnlock()
+		{
+			_design = new ActivityDesign(this);
+		}
+
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
+			_design.ApplyTheme();
 
 			_ioc = App.Kp2a.GetDb().Ioc;
 
@@ -123,6 +131,8 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
+
+			_design.ReapplyTheme();
 
 			CheckIfUnloaded();
 

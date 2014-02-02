@@ -16,19 +16,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/start_open_file"
         android:minHeight="45dp"
-        android:drawableTop="@drawable/collections_collection" />
+        android:drawableTop="?attr/OpenFileDrawable" />
     <Button
         android:text="@string/start_open_url"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/start_open_url"
         android:minHeight="45dp"
-        android:drawableTop="@drawable/location_web_site" />
+        android:drawableTop="?attr/OpenUrlDrawable" />
     <Button
         android:text="@string/start_create"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/start_create"
         android:minHeight="45dp"
-        android:drawableTop="@drawable/collections_new_label" />
+        android:drawableTop="?attr/CreateDbDrawable" />
 </LinearLayout>

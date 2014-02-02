@@ -537,7 +537,15 @@ Initial public release
     <item>Medium</item>
     <item>Large</item>
   </string-array>
-  <string-array name="cred_remember_modes">
+
+	<string-array name="design_options">
+		<item>Holo Light</item>
+		<item>Holo Dark</item>
+	</string-array>
+
+	<string name="design_title">Design</string>
+
+	<string-array name="cred_remember_modes">
     <item>Do not remember username and password</item>
     <item>Remember username only</item>
     <item>Remember username and password</item>

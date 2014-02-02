@@ -33,10 +33,17 @@ namespace keepass2android
 		public const String KeyIconId = "icon_id";
 		public const String KeyCustomIconId = "custom_icon_id";
 		public const string KeyGroupUuid = "group_uuid";
+
+		private ActivityDesign _design;
 		
 		private int _selectedIconId;
 		private PwUuid _selectedCustomIconId = PwUuid.Zero;
 		private PwGroup _groupToEdit;
+
+		public GroupEditActivity()
+		{
+			_design = new ActivityDesign(this);
+		}
 
 		public static void Launch(Activity act, PwGroup parentGroup)
 		{
@@ -62,6 +69,7 @@ namespace keepass2android
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
+			_design.ApplyDialogTheme();
 			SetContentView (Resource.Layout.group_edit);
 
 			ImageButton iconButton = (ImageButton)FindViewById (Resource.Id.icon_button);
@@ -132,6 +140,12 @@ namespace keepass2android
 					currIconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId));
 					break;
 			}
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+			_design.ReapplyTheme();
 		}
 	}
 }

@@ -24,9 +24,17 @@ namespace keepass2android.fileselect
 	{
 		private bool _isRecreated = false;
 
+		private ActivityDesign _design;
+
+		public FileStorageSetupActivity()
+		{
+			_design = new ActivityDesign(this);
+		}
+
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
+			_design.ApplyTheme();
 
 			SetContentView(Resource.Layout.file_storage_setup);
 
@@ -60,6 +68,7 @@ namespace keepass2android.fileselect
 		protected override void OnResume()
 		{
 			base.OnResume();
+			_design.ReapplyTheme();
 			App.Kp2a.GetFileStorage(Ioc).OnResume(this);
 		}
 

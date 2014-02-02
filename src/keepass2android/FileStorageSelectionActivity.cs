@@ -14,7 +14,14 @@ namespace keepass2android
 	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden , Theme="@style/NoTitleBar")]		
 	public class FileStorageSelectionActivity : ListActivity
 	{
+		private ActivityDesign _design;
+
 		private FileStorageAdapter _fileStorageAdapter;
+
+		public FileStorageSelectionActivity()
+		{
+			_design = new ActivityDesign(this);
+		}
 
 		public const string AllowThirdPartyAppGet = "AllowThirdPartyAppGet";
 		public const string AllowThirdPartyAppSend = "AllowThirdPartyAppSend";
@@ -117,7 +124,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-
+			_design.ApplyTheme();
 
 			SetContentView(Resource.Layout.filestorage_selection);
 
@@ -130,6 +137,10 @@ namespace keepass2android
 			//listView.ItemsCanFocus = true;
 		}
 
-
+		protected override void OnResume()
+		{
+			base.OnResume();
+			_design.ReapplyTheme();
+		}
 	}
 }

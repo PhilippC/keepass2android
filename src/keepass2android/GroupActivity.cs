@@ -93,6 +93,7 @@ namespace keepass2android
 		{
 			base.OnCreate (savedInstanceState);
 			
+			
 			if (IsFinishing) {
 				return;
 			}

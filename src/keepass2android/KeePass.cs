@@ -49,10 +49,12 @@ namespace keepass2android
 		public const Result ResultOkPasswordGenerator = Result.FirstUser + 9;
 
 		AppTask _appTask;
+		private ActivityDesign _design;
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+			_design.ApplyTheme();
 			_appTask = AppTask.GetTaskInOnCreate(bundle, Intent);
 			Kp2aLog.Log("KeePass.OnCreate");
 		}
@@ -61,6 +63,8 @@ namespace keepass2android
 		{
 			base.OnResume();
 			Kp2aLog.Log("KeePass.OnResume");
+			_design.ReapplyTheme();
+
 		}
 
 
@@ -123,6 +127,11 @@ namespace keepass2android
 		private static String LIB_DALVIK = "libdvm.so";
 		private static String LIB_ART = "libart.so";
 		private static String LIB_ART_D = "libartd.so";
+
+		public KeePass()
+		{
+			_design = new ActivityDesign(this);
+		}
 
 		private String GetCurrentRuntimeValue()
 		{

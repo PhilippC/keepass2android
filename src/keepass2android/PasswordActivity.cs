@@ -120,15 +120,17 @@ namespace keepass2android
 		private const string PasswordKey = "PasswordKey";
 		private const string KeyFileOrProviderKey = "KeyFileOrProviderKey";
 
+		private ActivityDesign _design;
+
 		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
-			
+			_design = new ActivityDesign(this);
 		}
 
 		public PasswordActivity()
 		{
-
+			_design = new ActivityDesign(this);
 		}
 
 
@@ -333,6 +335,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			_design.ApplyTheme();
 
 			Intent i = Intent;
 
@@ -960,6 +963,8 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
+
+			_design.ReapplyTheme();
 
 			View killButton = FindViewById(Resource.Id.kill_app);
 			if (PreferenceManager.GetDefaultSharedPreferences(this)

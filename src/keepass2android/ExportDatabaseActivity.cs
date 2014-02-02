@@ -36,7 +36,7 @@ namespace keepass2android
 			builder.SetTitle(Resource.String.export_fileformats_title);
 			builder.SetSingleChoiceItems(Resource.Array.export_fileformat_options, _fileFormatIndex,
 				delegate(object sender, DialogClickEventArgs args) { _fileFormatIndex = args.Which; });
-			builder.SetPositiveButton(Resource.String.ok, delegate
+			builder.SetPositiveButton(Android.Resource.String.Ok, delegate
 				{
 					Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
 					//intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, true);

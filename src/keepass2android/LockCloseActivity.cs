@@ -33,10 +33,17 @@ namespace keepass2android
 
 		protected IOConnectionInfo _ioc;
 		private BroadcastReceiver _intentReceiver;
+		private ActivityDesign _design;
+
+		public LockCloseActivity()
+		{
+			_design = new ActivityDesign(this);
+		}
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			_design.ApplyTheme();
 			_ioc = App.Kp2a.GetDb().Ioc;
 
 			if (Intent.GetBooleanExtra(NoLockCheck, false))
@@ -66,6 +73,8 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
+
+			_design.ReapplyTheme();
 
 			if (Intent.GetBooleanExtra(NoLockCheck, false))
 				return;

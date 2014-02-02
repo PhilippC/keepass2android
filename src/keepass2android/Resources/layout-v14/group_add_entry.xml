@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingRight="20dp"
-                android:drawableLeft="@drawable/btn_new_group"
+                android:drawableLeft="?attr/NewGroupDrawable"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
                 android:text="@string/add_group" />
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingRight="20dp"
-                android:drawableLeft="@drawable/device_access_new_account"
+                android:drawableLeft="?attr/NewEntryDrawable"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
                 android:text="@string/add_entry" />
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingRight="20dp"
-                android:drawableLeft="@drawable/btn_new_group"
+                android:drawableLeft="?attr/NewGroupDrawable"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
                 android:text="@string/insert_element_here" />

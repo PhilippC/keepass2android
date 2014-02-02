@@ -32,6 +32,13 @@ namespace keepass2android
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
 	public class DatabaseSettingsActivity : LockingClosePreferenceActivity 
 	{
+		private ActivityDesign _design;
+
+		public DatabaseSettingsActivity()
+		{
+			_design = new ActivityDesign(this);
+		}
+
 		public static void Launch(Context ctx)
 		{
 			ctx.StartActivity(new Intent(ctx, typeof(DatabaseSettingsActivity)));
@@ -39,6 +46,8 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState) 
 		{
+			_design.ApplyTheme();
+
 			base.OnCreate(savedInstanceState);
 			
 			AddPreferencesFromResource(Resource.Xml.preferences);
@@ -46,6 +55,24 @@ namespace keepass2android
 			// Re-use the change handlers for the application settings
 			FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += AppSettingsActivity.OnRememberKeyFileHistoryChanged;
 			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += AppSettingsActivity.OnShowUnlockedNotificationChanged;
+			Preference designPref = FindPreference(GetString(Resource.String.design_key));
+			if (!_design.HasThemes())
+			{
+				try
+				{
+					((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))).RemovePreference(designPref);
+				}
+				catch (Exception ex)
+				{
+					Kp2aLog.Log(ex.ToString());
+					throw;
+				}
+			}
+			else
+			{
+				designPref.PreferenceChange += (sender, args) => Recreate();
+			}
+			
 
 			Database db = App.Kp2a.GetDb();
 			

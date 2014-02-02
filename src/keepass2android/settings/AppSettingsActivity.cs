@@ -31,6 +31,13 @@ namespace keepass2android
 	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
 	public class AppSettingsActivity : LockingPreferenceActivity
 	{
+		private ActivityDesign _design;
+
+		public AppSettingsActivity()
+		{
+			_design = new ActivityDesign(this);
+		}
+
 		public static void Launch(Context ctx)
 		{
 			ctx.StartActivity(new Intent(ctx, typeof(AppSettingsActivity)));
@@ -38,12 +45,32 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState) 
 		{
+			_design.ApplyTheme();
 			base.OnCreate(savedInstanceState);
+			
 			
 			AddPreferencesFromResource(Resource.Xml.preferences);
 			
 			FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
 			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;;
+			Preference designPref = FindPreference(GetString(Resource.String.design_key));
+			if (!_design.HasThemes())
+			{
+				try
+				{
+					((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))).RemovePreference(designPref);
+				}
+				catch (Exception ex)
+				{
+					Kp2aLog.Log(ex.ToString());
+					throw;
+				}
+			}
+			else
+			{
+				designPref.PreferenceChange += (sender, args) => Recreate();
+			}
+				
 			
 			Preference cachingPreference = FindPreference(GetString(Resource.String.UseOfflineCache_key));
 			cachingPreference.PreferenceChange += OnUseOfflineCacheChanged;
@@ -61,6 +88,11 @@ namespace keepass2android
 			FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key)).PreferenceChange += OnQuickUnlockHiddenChanged;
 
 			FindPreference(GetString(Resource.String.db_key)).Enabled = false;
+		}
+
+		private void OnDesignChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
+		{
+			Recreate();
 		}
 
 		private void OnQuickUnlockHiddenChanged(object sender, Preference.PreferenceChangeEventArgs e)

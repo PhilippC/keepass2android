@@ -54,7 +54,8 @@
     <string name="maskpass_key">maskpass</string>
     <string name="omitbackup_key">omitbackup</string>    
     <string name="list_size_key">list_size</string>
-    <string name="sort_key">sort_key</string>
+	<string name="design_key">design_key</string>
+	<string name="sort_key">sort_key</string>
 	<string name="TanExpiresOnUse_key">TanExpiresOnUse_key</string>
 	<string name="ShowUsernameInList_key">ShowUsernameInList_key</string>
 	<string name="RememberRecentFiles_key">RememberRecentFiles_key</string>
@@ -124,6 +125,12 @@
     	<item>28</item>
     </string-array>
 
+	<string name="design_default">Light</string>
+	<string-array name="design_values">
+		<item>Light</item>
+		<item>Dark</item>
+	</string-array>
+	
 	<string name="AcceptAllServerCertificates_default">WARN</string>
 	<string-array name="AcceptAllServerCertificates_values">
 		<item>IGNORE</item>
