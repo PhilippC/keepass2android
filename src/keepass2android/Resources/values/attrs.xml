@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="TextViewParentStyle" format="reference"/>
+    <attr name="ActionBarButtonParentStyle" format="reference" />
+    <attr name="TextColorGroup" format="reference"></attr>
+    <attr name="TextColorHeader" format="reference"></attr>
+    <attr name="TextColorItem" format="reference"></attr>
+    <attr name="CancelDrawable" format="reference"></attr>
+    <attr name="NewGroupDrawable" format="reference"></attr>
+    <attr name="AddFieldDrawable" format="reference"></attr>
+    <attr name="NewEntryDrawable" format="reference"></attr>
+    <attr name="OpenFileDrawable" format="reference"></attr>
+    <attr name="OpenUrlDrawable" format="reference"></attr>
+    <attr name="CreateDbDrawable" format="reference"></attr>
+	<attr name="ic_menu_add_field" format="reference"></attr>
+
+	<attr name="ic_launcher_folder_small" format="reference"></attr>
+	<attr name="ic_action_search_drawable" format="reference"></attr>
+	<attr name="NavigationAcceptDrawable" format="reference"></attr>
+    
+    
+</resources>
