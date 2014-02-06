@@ -180,10 +180,6 @@
     <AndroidAsset Include="Assets\DejaVuSansMono.ttf" />
     <AndroidAsset Include="Assets\LICENSE_dejavu" />
     <None Include="Resources\AboutResources.txt" />
-    <AndroidResource Include="Resources\drawable-hdpi\Thumbs.db" />
-    <None Include="Resources\drawable\Thumbs.db">
-      <Visible>False</Visible>
-    </None>
     <None Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </None>
@@ -931,5 +927,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_search_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-bg-rBG\strings.xml" />
   </ItemGroup>
 </Project>
