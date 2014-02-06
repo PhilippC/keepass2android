@@ -17,9 +17,9 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	<style name="BaseLight" parent="android:Theme.Holo.Light">
-	    <item name="TextColorGroup">@color/dark_gray</item>
-	    <item name="TextColorHeader">@color/light_gray</item>
-	    <item name="TextColorItem">@color/dark_gray</item>
+		<item name="TextColorGroup">?android:attr/textColorPrimary</item>
+		<item name="TextColorHeader">?android:attr/textColorPrimary</item>
+		<item name="TextColorItem">?android:attr/textColorSecondary</item>
 	    <item name="CancelDrawable">@android:drawable/ic_menu_close_clear_cancel</item>
 	    <item name="AddFieldDrawable">@drawable/ic_menu_add_field_holo_light</item>
 	    <item name="NewGroupDrawable">@drawable/btn_new_group</item>

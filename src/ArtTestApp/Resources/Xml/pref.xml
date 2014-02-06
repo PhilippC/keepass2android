@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceScreen
+	  android:key="db_key"
+	  android:title="database"
+	  android:summary="menu_db_settings">
+		<EditTextPreference
+                android:title="database_name"
+                android:persistent="false"
+                android:key="database_name_key"/>
+
+	</PreferenceScreen>
+	/
+</PreferenceScreen>
+	

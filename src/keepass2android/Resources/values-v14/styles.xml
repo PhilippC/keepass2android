@@ -18,15 +18,15 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="GroupTextSmall">
-        <item name="@android:textColor">?TextColorGroup</item>
+        <item name="@android:textColor">?android:attr/textColorPrimary</item>
 		
 	</style>
 	<style name="GroupText">
-		<item name="@android:textColor">?TextColorGroup</item>
+		<item name="@android:textColor">?android:attr/textColorPrimary</item>
 		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="GroupTextLarge">
-		<item name="@android:textColor">?TextColorGroup</item>
+		<item name="@android:textColor">?android:attr/textColorPrimary</item>
 		<item name="@android:textSize">28sp</item>
 	</style>
 	<style name="ElementTextSmall">
@@ -53,7 +53,7 @@
         <item name="android:layout_marginLeft">12dip</item>
         <item name="android:layout_marginRight">12dip</item>
         <item name="android:paddingLeft">4dp</item>
-        <item name="android:textColor">?TextColorItem</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textSize">18sp</item>
     
 	</style>
@@ -66,7 +66,7 @@
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:paddingLeft">4dp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">?TextColorHeader</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -80,7 +80,7 @@
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:paddingLeft">4dp</item>
 		<item name="android:textAllCaps">true</item>
-		<item name="android:textColor">?TextColorHeader</item>
+		<item name="android:textColor">?android:attr/textColorPrimary</item>
 		<item name="android:textSize">14sp</item>
 		<item name="android:textStyle">bold</item>
 	</style>
@@ -181,7 +181,7 @@
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:paddingLeft">4dp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">?TextColorHeader</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>    
     </style>

@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidFileChooserBinding",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KP2AKdbLibraryBinding", "KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj", "{70D3844A-D9FA-4A64-B205-A84C6A822196}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtTestApp", "ArtTestApp\ArtTestApp.csproj", "{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -258,6 +260,30 @@ Global
 		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
 		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
 		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Release|Win32.ActiveCfg = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.Release|x64.ActiveCfg = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.ReleaseNoNet|Any CPU.Deploy.0 = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.ReleaseNoNet|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.ReleaseNoNet|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
+		{1FF6C335-A627-43C9-AAA7-CBAC2E74CD18}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

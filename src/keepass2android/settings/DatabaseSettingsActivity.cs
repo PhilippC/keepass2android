@@ -39,7 +39,7 @@ namespace keepass2android
 			_design = new ActivityDesign(this);
 		}
 
-		public static void Launch(Context ctx)
+		public static void Launch(Activity ctx)
 		{
 			ctx.StartActivity(new Intent(ctx, typeof(DatabaseSettingsActivity)));
 		}
