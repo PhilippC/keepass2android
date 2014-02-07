@@ -11,6 +11,11 @@
     <item>1 hour</item>
     <item>Never</item>
   </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
+  </string-array>
   <string-array name="list_size_options">
     <item>Small</item>
     <item>Medium</item>

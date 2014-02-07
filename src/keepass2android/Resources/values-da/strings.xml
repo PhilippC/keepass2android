@@ -21,7 +21,7 @@
   <string name="clipboard_timeout_summary">Tid før udklipsholderen bliver ryddet efter kopiering af brugernavn eller adgangskode</string>
   <string name="copy_username">Vælg for at kopiere brugernavn til udklipsholderen</string>
   <string name="copy_password">Vælg for at kopiere adgangskode til udklipsholderen</string>
-  <string name="creating_db_key">Opretter databasenøgle…</string>
+  <string name="creating_db_key">Opretter databasenøgle&#8230;</string>
   <string name="current_group">Aktuel gruppe</string>
   <string name="current_group_root">Aktuel gruppe: Root</string>
   <string name="digits">Cifre</string>
@@ -74,7 +74,7 @@
   <string name="length">Længde</string>
   <string name="list_size_title">Gruppeliste størrelse</string>
   <string name="list_size_summary">Tekststørrelse i gruppelisten</string>
-  <string name="loading_database">Indlæser database…</string>
+  <string name="loading_database">Indlæser database&#8230;</string>
   <string name="lowercase">Små bogstaver</string>
   <string name="maskpass_title">Skjul adgangskode</string>
   <string name="maskpass_summary">Skjul adgangskoder som standard</string>
@@ -102,15 +102,15 @@
   <string name="omitbackup_summary">Udelad \'Backup\' og papirkurvs-gruppen i søgeresultater</string>
   <string name="pass_filename">KeePass database filnavn</string>
   <string name="password_title">Angiv database adgangskode</string>
-  <string name="progress_create">Opretter ny database…</string>
-  <string name="progress_title">Arbejder…</string>
+  <string name="progress_create">Opretter ny database&#8230;</string>
+  <string name="progress_title">Arbejder&#8230;</string>
   <string name="remember_keyfile_summary">Husker placeringen af nøglefiler</string>
   <string name="remember_keyfile_title">Gem nøglefil</string>
   <string name="remove_from_filelist">Fjern</string>
   <string name="rounds">Krypterings-gentagelser</string>
   <string name="rounds_explaination">Højere krypterings-gentagelser giver øget beskyttelse imod brute-force angreb, men kan påvirke læsnings- og skrivehastigheden betydentligt.</string>
   <string name="rounds_hint">gentagelser</string>
-  <string name="saving_database">Gemmer database…</string>
+  <string name="saving_database">Gemmer database&#8230;</string>
   <string name="space">Mellemrum</string>
   <string name="search_label">Søg</string>
   <string name="show_password">Vis adgangskode</string>
@@ -132,6 +132,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Lille</item>

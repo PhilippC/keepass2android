@@ -30,7 +30,7 @@
   <string name="available_through_keyboard">Вхід доступний за допомогою KP2A клавіатури</string>
   <string name="not_possible_im_picker">Не вдалося відкрити діалогове вікно для вибору методу вводу. Активуйте клавіатуру вручну.</string>
   <string name="please_activate_keyboard">Будь ласка, увімкніть клавіатуру Keepass2Android в налаштуваннях системи.</string>
-  <string name="creating_db_key">Створення ключа бази даних…</string>
+  <string name="creating_db_key">Створення ключа бази даних&#8230;</string>
   <string name="current_group">Поточна група</string>
   <string name="current_group_root">Поточна група: корінь</string>
   <string name="database">База даних</string>
@@ -97,7 +97,7 @@
   <string name="length">Довжина</string>
   <string name="list_size_title">Розмір списку груп</string>
   <string name="list_size_summary">Розмір тексту у списку груп</string>
-  <string name="loading_database">Завантаження бази даних…</string>
+  <string name="loading_database">Завантаження бази даних&#8230;</string>
   <string name="lowercase">Нижній регістр</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Маска пароля</string>
@@ -119,7 +119,7 @@
   <string name="menu_search">Пошук</string>
   <string name="menu_search_advanced">Розширений пошук</string>
   <string name="menu_url">Перейти по посиланню</string>
-  <string name="menu_change_db">Змінити базу даних…</string>
+  <string name="menu_change_db">Змінити базу даних&#8230;</string>
   <string name="minus">-Дефіс-</string>
   <string name="never">Ніколи</string>
   <string name="yes">Так</string>
@@ -132,8 +132,8 @@
   <string name="omitbackup_summary">Пропустити групу \'Резервна копія\' та Кошик серед результатів пошуку</string>
   <string name="pass_filename">ім’я бази даних KeePass</string>
   <string name="password_title">Введіть пароль бази даних</string>
-  <string name="progress_create">Створення нової бази даних…</string>
-  <string name="progress_title">Працює…</string>
+  <string name="progress_create">Створення нової бази даних&#8230;</string>
+  <string name="progress_title">Працює&#8230;</string>
   <string name="remember_keyfile_summary">Запам’ятати розташування файла ключа</string>
   <string name="remember_keyfile_title">Збережіть файл ключа</string>
   <string name="remove_from_filelist">Вилучити</string>
@@ -144,7 +144,7 @@
   <string name="rounds_hint">цикли</string>
   <string name="database_name">Назва бази даних</string>
   <string name="default_username">Ім\'я користувача для нових записів</string>
-  <string name="saving_database">Збереження бази даних…</string>
+  <string name="saving_database">Збереження бази даних&#8230;</string>
   <string name="space">Пропуск</string>
   <string name="search_label">Пошук</string>
   <string name="show_password">Показати пароль</string>
@@ -225,35 +225,35 @@
   <string name="suggest_improvements">Запропонувати або голосувати за покращення</string>
   <string name="rate_app">Оцінити це додаток</string>
   <string name="translate_app">Перекладіть KP2A</string>
-  <string name="AddingEntry">Додавання запису…</string>
-  <string name="AddingGroup">Додавання групи…</string>
-  <string name="DeletingEntry">Видалення запису…</string>
-  <string name="DeletingGroup">Видалення групи…</string>
-  <string name="SettingPassword">Задання пароля…</string>
-  <string name="UndoingChanges">Скасування змін…</string>
-  <string name="TransformingKey">Перетворення Майстер-ключа…</string>
-  <string name="DecodingDatabase">Розшифрування бази даних…</string>
-  <string name="ParsingDatabase">Розбір бази даних…</string>
-  <string name="CheckingTargetFileForChanges">Перевірка кінцевого файла для зміни…</string>
+  <string name="AddingEntry">Додавання запису&#8230;</string>
+  <string name="AddingGroup">Додавання групи&#8230;</string>
+  <string name="DeletingEntry">Видалення запису&#8230;</string>
+  <string name="DeletingGroup">Видалення групи&#8230;</string>
+  <string name="SettingPassword">Задання пароля&#8230;</string>
+  <string name="UndoingChanges">Скасування змін&#8230;</string>
+  <string name="TransformingKey">Перетворення Майстер-ключа&#8230;</string>
+  <string name="DecodingDatabase">Розшифрування бази даних&#8230;</string>
+  <string name="ParsingDatabase">Розбір бази даних&#8230;</string>
+  <string name="CheckingTargetFileForChanges">Перевірка кінцевого файла для зміни&#8230;</string>
   <string name="TitleSyncQuestion">Об\'єднати зміни?</string>
   <string name="MessageSyncQuestion">Файл бази даних було змінено з зовні. Завантажити та об\'єднати зміни перед збереженням? Виберіть ні, щоб перезаписати зовнішні зміни.</string>
-  <string name="SynchronizingDatabase">Об\'єднування змін…</string>
+  <string name="SynchronizingDatabase">Об\'єднування змін&#8230;</string>
   <string name="YesSynchronize">Так, об\'єднати</string>
   <string name="NoOverwrite">Ні, перезаписати</string>
-  <string name="SynchronizingCachedDatabase">Синхронізація кешованої бази даних…</string>
-  <string name="DownloadingRemoteFile">Завантаження віддаленого файла…</string>
-  <string name="UploadingFile">Завантаження файлу…</string>
-  <string name="RestoringRemoteFile">Відновлення віддаленого файла…</string>
+  <string name="SynchronizingCachedDatabase">Синхронізація кешованої бази даних&#8230;</string>
+  <string name="DownloadingRemoteFile">Завантаження віддаленого файла&#8230;</string>
+  <string name="UploadingFile">Завантаження файлу&#8230;</string>
+  <string name="RestoringRemoteFile">Відновлення віддаленого файла&#8230;</string>
   <string name="FilesInSync">Файли синхронізуються.</string>
   <string name="SynchronizedDatabaseSuccessfully">База даних успішно синхронізована!</string>
-  <string name="CheckingDatabaseForChanges">Перевірка бази даних на зміни…</string>
+  <string name="CheckingDatabaseForChanges">Перевірка бази даних на зміни&#8230;</string>
   <string name="CouldNotSaveToRemote">Не вдалося зберегти по віддаленому доступу: %1$s. Зберегти ще раз або використати меню синхронції, коли віддалене підключення знову буде доступне.</string>
   <string name="CouldNotLoadFromRemote">Не вдалося відкрити віддалений: %1$s. Завантажено файл з локального кеша. Ви можете внести зміни в базу даних і синхронізувати їх пізніше.</string>
   <string name="UpdatedRemoteFileOnLoad">Оновлений віддалений файл.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Відкриті локальні файли конфліктують зі змінами у віддалених файлах. Використайте меню синхронізації для об\'єднання.</string>
   <string name="LoadedFromRemoteInSync">Віддалений файл і кеш синхронізовано.</string>
   <string name="RemoteDatabaseUnchanged">Зміни не виявлено.</string>
-  <string name="synchronize_database_menu">Синхронізуйте базу даних…</string>
+  <string name="synchronize_database_menu">Синхронізуйте базу даних&#8230;</string>
   <string name="ChangeLog_title">Журнал змін</string>
   <string name="ChangeLog_0_8_5"><b>Версія 0.8.5</b> \n
 * віддалені файли зберігаються в кеші, щоб дозволити використання у автономному режимі (в тому числі редагування а потім синхронізації). Переглянути настройки. \n
@@ -270,6 +270,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Малий</item>

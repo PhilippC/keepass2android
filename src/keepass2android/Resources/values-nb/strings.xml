@@ -30,7 +30,7 @@
   <string name="available_through_keyboard">Oppføringen er tilgjengelig gjennom KP2A Tastatur</string>
   <string name="not_possible_im_picker">Kunne ikke åpne dialogboksen for å velge inndatametode. Aktiver tastaturet manuelt.</string>
   <string name="please_activate_keyboard">Aktiver Keepass2Android tastaturet i systeminnstillingene.</string>
-  <string name="creating_db_key">Lager databasenøkkelen …</string>
+  <string name="creating_db_key">Lager databasenøkkelen &#8230;</string>
   <string name="current_group">Gjeldende gruppe</string>
   <string name="current_group_root">Gjeldende gruppe: Rot</string>
   <string name="database">Database</string>
@@ -97,7 +97,7 @@
   <string name="length">Lengde</string>
   <string name="list_size_title">Gruppelistestørrelse</string>
   <string name="list_size_summary">Tekststørrelsen i gruppelisten</string>
-  <string name="loading_database">Laster databasen…</string>
+  <string name="loading_database">Laster databasen&#8230;</string>
   <string name="lowercase">Små bokstaver</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Masker passord</string>
@@ -131,8 +131,8 @@
   <string name="omitbackup_summary">Søkeresultatet inneholder ikke oppføringer fra \'Backup\' eller søppelbøtta</string>
   <string name="pass_filename">Filnavnet til KeePass-databasen</string>
   <string name="password_title">Angi databasepassordet</string>
-  <string name="progress_create">Oppretter ny database…</string>
-  <string name="progress_title">Arbeider…</string>
+  <string name="progress_create">Oppretter ny database&#8230;</string>
+  <string name="progress_title">Arbeider&#8230;</string>
   <string name="remember_keyfile_summary">Husker plasseringen av nøkkelfilene</string>
   <string name="remember_keyfile_title">Lagre nøkkelfilen</string>
   <string name="remove_from_filelist">Fjern</string>
@@ -143,7 +143,7 @@
   <string name="rounds_hint">omganger</string>
   <string name="database_name">Databasenavn</string>
   <string name="default_username">Standard brukernavn for nye oppføringer</string>
-  <string name="saving_database">Lagrer databasen…</string>
+  <string name="saving_database">Lagrer databasen&#8230;</string>
   <string name="space">Mellomrom</string>
   <string name="search_label">Søk</string>
   <string name="show_password">Vis passordet</string>
@@ -208,8 +208,6 @@
   <string name="ShowCopyToClipboardNotification_summary">Gjør brukernavn og passord er tilgjengelig gjennom varslingslinjen og utklippstavle. Vokt deg for passordsniffere!</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A tastatur varsel</string>
   <string name="ShowKp2aKeyboardNotification_summary">Gjør hele oppføringen tilgjengelig gjennom KP2A tastaturet (anbefales).</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Dialogboks for valg av tastatur</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Åpne tastatur dialog når en oppføring er tilgjengelig gjennom KP2A tastaturet etter søk.</string>
   <string name="AskOverwriteBinary">Vil du overskrive den eksisterende binærfilen med samme navn?</string>
   <string name="AskOverwriteBinary_title">Overskrive eksisterende binærfil?</string>
   <string name="AskOverwriteBinary_yes">Overskriv</string>
@@ -237,6 +235,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Liten</item>

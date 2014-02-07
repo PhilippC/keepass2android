@@ -6,6 +6,7 @@
   <string name="AboutText">Keepass2Android ist ein Passwortmanager mit Lese- und Schreib-Zugriff auf KeePass 2.x Datenbanken.</string>
   <string name="CreditsText">Die Benutzeroberfläche basiert auf einem Port von Keepassdroid (entwickelt von Brian Pellin) nach Mono for Android. Der Code für die Datenbank-Operationen nutzt eine angepasste Version einer Bibliothek aus KeePass (entwickelt von Dominik Reichl).
 Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird nach den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
+  <string name="CreditsTextSFTP">SFTP-Unterstützung ist implementiert unter Nutzung der JSch-Bibliothek (BSD-Lizenz), erstellt durch JCraft, Inc.</string>
   <string name="accept">Akzeptieren</string>
   <string name="add_entry">Eintrag hinzufügen</string>
   <string name="add_url_entry">Eintrag für URL anlegen</string>
@@ -21,8 +22,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout">Anwendungs-Timeout</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
-  <string name="show_kill_app">Schließen-Button</string>
-  <string name="show_kill_app_summary">Zeige einen Button im Passwort-Bildschirm um den App-Prozess zu beenden (für paranoide User)</string>
+  <string name="show_kill_app">Schließen-Knopf</string>
+  <string name="show_kill_app_summary">Zeige einen Knopf im Passwort-Bildschirm um den App-Prozess zu beenden (für paranoide User)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungs-Einstellungen</string>
   <string name="security_prefs">Sicherheit</string>
@@ -30,6 +31,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="password_access_prefs">Passwort-Zugriff</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Umgang mit Dateien</string>
+  <string name="keyboard_prefs">Tastatur</string>
+  <string name="export_prefs">Datenbank exportieren…</string>
   <string name="brackets">Klammern</string>
   <string name="cancel">Abbrechen</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
@@ -107,7 +110,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="length">Länge</string>
   <string name="list_size_title">Gruppenliste</string>
   <string name="list_size_summary">Schriftgröße der Gruppenliste</string>
-  <string name="loading_database">Lade Datenbank…</string>
+  <string name="loading_database">Lade Datenbank&#8230;</string>
   <string name="lowercase">Kleinbuchstaben</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Kennwort ausblenden</string>
@@ -130,7 +133,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_search">Suchen</string>
   <string name="menu_search_advanced">Erweiterte Suche</string>
   <string name="menu_url">URL öffnen</string>
-  <string name="menu_change_db">Datenbank wechseln…</string>
+  <string name="menu_change_db">Datenbank wechseln&#8230;</string>
   <string name="minus">Bindestrich</string>
   <string name="never">Nie</string>
   <string name="yes">Ja</string>
@@ -158,6 +161,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="database_name">Datenbankname</string>
   <string name="default_username">Standard-Benutzername für neue Einträge</string>
   <string name="saving_database">Speichere Datenbank\u2026</string>
+  <string name="exporting_database">Datenbank exportieren&#8230;</string>
+  <string name="export_database_successful">Datenbank erfolgreich exportiert!</string>
   <string name="space">Leerzeichen</string>
   <string name="search_label">Suchen</string>
   <string name="show_password">Kennwort anzeigen</string>
@@ -182,6 +187,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="further_authors">Danke an %1$s für Beiträge zum Source-Code!</string>
   <string name="credit_plugin1">Das Twofish-Plugin für Keepass wurde von Scott Greenberg entwickelt und ist in KP2A enthalten.</string>
   <string name="credit_android_filechooser">android-filechooser wurde entwickelt von Hai Bison</string>
+  <string name="credit_keyboard">Die KP2A-Tastatur basiert auf der Gingerbread-Tastatur, entwickelt vom Android Open Source Project, und nutzt den Plugin-Manager-Code aus Hacker\'s Keyboard von Klaus Weidner.</string>
   <string name="please_note">Bitte beachten</string>
   <string name="contributors">Mitwirkende</string>
   <string name="regular_expression">Regulärer Ausdruck</string>
@@ -190,7 +196,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowUsernameInList_title">Zeige Benutzernamen in Liste</string>
   <string name="ShowUsernameInList_summary">Zeige Benutzernamen unter den Titeln der Einträge. Hilfreich bei mehreren Accounts für einen Dienst oder bei TANs.</string>
   <string name="RememberRecentFiles_title">Datenbanken merken</string>
-  <string name="RememberRecentFiles_summary">Speichere Dateinamen der bisher geöffneten Datenbanken und zeige sie im Bildschirm zum Datenbank-Öffnen an.</string>
+  <string name="RememberRecentFiles_summary">Dateinamen der bisher geöffneten Datenbanken speichern und im Bildschirm zum Öffnen der Datenbank anzeigen.</string>
   <string name="kp2a_findUrl">Passwort suchen (KP2A)</string>
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
   <string name="search_options">Optionen</string>
@@ -207,19 +213,21 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlock_lockButton">Datenbank schließen</string>
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock standardmäßig aktiviert</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definiert, ob QuickUnlock standardmäßig aktiviert ist oder nicht.</string>
-  <string name="QuickUnlockIconHidden_title">QuickUnlock-Icon verstecken</string>
+  <string name="QuickUnlockIconHidden_title">QuickUnlock-Symbol verstecken</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock funktioniert leider nicht ohne ein Benachrichtigungssymbol. Wähle diese Option, um ein transparentes Symbol zu verwenden.</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
   <string name="BinaryDirectory_title">Verzeichnis für Datei-Anhänge</string>
-  <string name="BinaryDirectory_summary">Verzeichnis, in dem Dateianlagen gespeichert werden.</string>
+  <string name="BinaryDirectory_summary">Verzeichnis, in dem Datei-Anhänge gespeichert werden.</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
-  <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
+  <string name="SaveAttachmentDialog_text">Bitte den Ort zum Speichern wählen.</string>
   <string name="SaveAttachmentDialog_save">Auf SD-Karte speichern</string>
   <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
   <string name="SaveAttachment_Failed">Datei konnte nicht unter %1$s gespeichert werden.</string>
+  <string name="AddUrlToEntryDialog_title">Suchtext merken?</string>
+  <string name="AddUrlToEntryDialog_text">Soll der Suchtext \"%1$s\" im gewählten Eintrag gespeichert werden? Dann wird er bei der nächsten Suche automatisch gefunden!</string>
   <string name="error_invalid_expiry_date">Ungültiges Datums-/Zeitformat für Ablaufdatum!</string>
   <string name="error_string_key">Ein Feldname ist für jeden Eintrag erforderlich.</string>
   <string name="field_name">Feldname</string>
@@ -247,8 +255,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
   <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Tastatur-Aktivierung</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zur Auswahl der Tastatur automatisch anzeigen, wenn ein Eintrag nach Suche über die KP2A-Tastatur verfügbar ist.</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zum Auswählen der Eingabemethode öffnen wenn ein Eintrag nach Suche aus dem Browser heraus verfügbar ist.</string>
+  <string name="kp2a_switch_rooted">Auto-umschalten auf gerooteten Geräten</string>
+  <string name="kp2a_switch_rooted_summary">Auf gerooteten Geräten kann die Tastatur automatisch zur Keepass2Android-Tastatur umgeschaltet werden (nach dem Suchen eines Eintrags aus dem Browser oder der Tastatur, oder wenn auf die Tastaturbenachrichtigung geklickt wird). Ebenso kann automatisch zurückgeschaltet werden, ohne den Dialog zur Auswahl der Eingabemethode anzuzeigen. Dazu muss die Secure Settings App mit dem System+ Modul installiert sein! S. die Keepass2Android-Dokumentation für weitere Informationen.</string>
   <string name="ShowUnlockedNotification_title">Benachrichtigung wenn entsperrt</string>
   <string name="ShowUnlockedNotification_summary">Zeige ein Symbol in der Benachrichtigungsleiste, solange die Datenbank entsperrt ist.</string>
   <string name="PreloadDatabaseEnabled_title">Datenbank vor-laden</string>
@@ -269,28 +279,28 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="suggest_improvements">Verbesserungen vorschlagen</string>
   <string name="rate_app">Diese App bewerten</string>
   <string name="translate_app">KP2A übersetzen</string>
-  <string name="AddingEntry">Füge Eintrag hinzu…</string>
-  <string name="AddingGroup">Füge Gruppe hinzu…</string>
-  <string name="DeletingEntry">Lösche Eintrag…</string>
-  <string name="DeletingGroup">Lösche Gruppe…</string>
-  <string name="SettingPassword">Setze Passwort…</string>
-  <string name="UndoingChanges">Nehme Änderungen zurück…</string>
-  <string name="TransformingKey">Führe Schlüsseltransformationen durch…</string>
-  <string name="DecodingDatabase">Entschlüssele Datenbank…</string>
-  <string name="ParsingDatabase">Lese Datenbank ein…</string>
-  <string name="CheckingTargetFileForChanges">Prüfe ob Zieldatei geändert wurde…</string>
+  <string name="AddingEntry">Füge Eintrag hinzu&#8230;</string>
+  <string name="AddingGroup">Füge Gruppe hinzu&#8230;</string>
+  <string name="DeletingEntry">Lösche Eintrag&#8230;</string>
+  <string name="DeletingGroup">Lösche Gruppe&#8230;</string>
+  <string name="SettingPassword">Setze Passwort&#8230;</string>
+  <string name="UndoingChanges">Nehme Änderungen zurück&#8230;</string>
+  <string name="TransformingKey">Führe Schlüsseltransformationen durch&#8230;</string>
+  <string name="DecodingDatabase">Entschlüssele Datenbank&#8230;</string>
+  <string name="ParsingDatabase">Lese Datenbank ein&#8230;</string>
+  <string name="CheckingTargetFileForChanges">Prüfe ob Zieldatei geändert wurde&#8230;</string>
   <string name="TitleSyncQuestion">Änderungen zusammenführen?</string>
   <string name="MessageSyncQuestion">Die Datenbankdatei wurde von außerhalb geändert. Sollen diese Änderungen geladen und mit den in Keepass2Android gemachten Änderungen zusammengeführt werden, bevor die Datenbank gespeichert wird? Wähle Nein, um die externen Änderungen zu überschreiben.</string>
-  <string name="SynchronizingDatabase">Führe Änderungen zusammen…</string>
+  <string name="SynchronizingDatabase">Führe Änderungen zusammen&#8230;</string>
   <string name="YesSynchronize">Ja, zusammenführen</string>
   <string name="NoOverwrite">Nein, überschreiben</string>
-  <string name="SynchronizingCachedDatabase">Synchronisiere gecachte Datenbank…</string>
-  <string name="DownloadingRemoteFile">Lade Remote-Datei herunter…</string>
-  <string name="UploadingFile">Lade Datei hoch…</string>
-  <string name="RestoringRemoteFile">Stelle Remote-Datei wieder her…</string>
+  <string name="SynchronizingCachedDatabase">Synchronisiere gecachte Datenbank&#8230;</string>
+  <string name="DownloadingRemoteFile">Lade Remote-Datei herunter&#8230;</string>
+  <string name="UploadingFile">Lade Datei hoch&#8230;</string>
+  <string name="RestoringRemoteFile">Stelle Remote-Datei wieder her&#8230;</string>
   <string name="FilesInSync">Remote- und Cache-Dateien sind identisch.</string>
   <string name="SynchronizedDatabaseSuccessfully">Datenbank erfolgreich synchronisiert!</string>
-  <string name="CheckingDatabaseForChanges">Prüfe auf Änderungen der Datenbank…</string>
+  <string name="CheckingDatabaseForChanges">Prüfe auf Änderungen der Datenbank&#8230;</string>
   <string name="CouldNotSaveToRemote">Konnte Datei nicht auf dem Server speichern: %1$s. Speichere später erneut or nutze das Synchronisieren-Menü wenn die Internetverbindung wieder besteht.</string>
   <string name="CouldNotLoadFromRemote">Konnte Datei nicht vom Server laden: %1$s. Datei wird aus lokalem Cache geladen. Du kannst Änderungen an der Datenbank vornehmen und sie später synchronisieren.</string>
   <string name="UpdatedRemoteFileOnLoad">Remote-Datei aktualisiert.</string>
@@ -300,15 +310,19 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="RemoteDatabaseUnchanged">Keine Änderungen gefunden.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Die lokale OTP Hilfsdatei wurde aktualisiert: Der Zähler am Server war höher.</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">Die OTP Hilfsdatei wurde am Server aktualisiert: Der lokale Zähler war höher.</string>
-  <string name="SynchronizingOtpAuxFile">Synchronisiere OTP Hilfsdatei…</string>
+  <string name="SynchronizingOtpAuxFile">Synchronisiere OTP Hilfsdatei&#8230;</string>
   <string name="database_file">Datenbankdatei</string>
   <string name="otp_aux_file">OTP Hilfsdatei</string>
   <string name="ErrorOcurred">Ein Fehler ist aufgetreten:</string>
-  <string name="synchronize_database_menu">Datenbank synchronisieren…</string>
+  <string name="synchronize_database_menu">Datenbank synchronisieren&#8230;</string>
   <string name="CannotMoveGroupHere">Kann Gruppe nicht hierher verschieben.</string>
   <string name="donate_question">Heute ist Oktoberfest! Wenn dir Keepass2Android gefällt: Wäre heute nicht ein guter Tag, um mir ein Bier zu spendieren?</string>
   <string name="ok_donate">Warum nicht?</string>
   <string name="no_thanks">So gut gefällt mir\'s dann auch nicht</string>
+  <string name="hint_sftp_host">Host (z.B. 192.168.0.1)</string>
+  <string name="hint_sftp_port">Port</string>
+  <string name="initial_directory">Startverzeichnis (optional):</string>
+  <string name="enter_sftp_login_title">SFTP-Zugangsdaten eingeben:</string>
   <string name="select_storage_type">Speichertyp wählen:</string>
   <string name="filestoragename_file">Lokale Datei</string>
   <string name="filestoragename_androidget">Mit externer App suchen</string>
@@ -335,7 +349,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_key_file">Wähle, ob du eine Schlüsseldatei zusätzlich zum Hauptpasswort nutzen möchtest:</string>
   <string name="use_key_file">Schlüsseldatei benutzen</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
-  <string name="init_otp">OTP-Hilfsdatei laden…</string>
+  <string name="init_otp">OTP-Hilfsdatei laden&#8230;</string>
   <string name="otp_explanation">Nächste One-Time-Passwörter (OTPs) eingeben. Halten deinen YubiKey NEO hinten an dein Gerät um über NFC einzugeben.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
@@ -344,15 +358,25 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="otp_discarded_no_space">OTP verworfen. Alle OTPs bereits eingegeben!</string>
   <string name="otp_discarded_because_db_open">Bitte zuerst die aktuelle Datenbank schließen. OTP wird verworfen.</string>
   <string name="otps_pending">(Ein oder mehrere OTPs bereits verfügbar)</string>
-  <string name="otpsecret_hint">OTP Secret (z.B. 01 23 ab cd…)</string>
+  <string name="otpsecret_hint">OTP Secret (z.B. 01 23 ab cd&#8230;)</string>
   <string name="CouldntParseOtpSecret">Fehler beim Parsen des OTP-Secrets!</string>
   <string name="OtpKeyError">Fehler beim Erstellen des OTP-Schlüssels! Bitte stelle sicher, dass du die richtigen OTPs eingegeben hast.</string>
   <string name="ErrorUpdatingOtpAuxFile">Fehler beim Aktualisieren der OTP-Hilfsdatei!</string>
-  <string name="SavingOtpAuxFile">Speichere OTP-Hilfsdatei…</string>
-  <string name="loading">Lade…</string>
+  <string name="SavingOtpAuxFile">Speichere OTP-Hilfsdatei&#8230;</string>
+  <string name="loading">Lade&#8230;</string>
+  <string name="get_regular_version">Weitere Speichertypen bekommen</string>
   <string name="CertificateWarning">Warnung: Server-Zertifikat konnte nicht validiert werden: %1$s. Installiere ein passendes Root-Zertifikat auf deinem Gerät oder s. Einstellungen.</string>
   <string name="CertificateFailure">Fehler: Server-Zertifikat konnte nicht validiert werden! Installiere ein passendes Root-Zertifikat auf deinem Android-Gerät oder s. Einstellungen!</string>
+  <string name="export_fileformats_title">Dateiformat wählen</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="ChangeLog_0_9_3">
+		<b>Version 0.9.3</b>\n
+		* Neue Tastatur mit einigen Verbesserungen. Siehe Einstellungen zum personalisieren.\n
+		* Leseunterstützung für kdb (Keepass 1) Dateien Experimentell!\n
+		* SFTP-Unterstützung\n
+		* Workaround für Bug in ART (Android 4.4.2) eingebaut\n
+		* Bugs gefixt\n
+	</string>
   <string name="ChangeLog_0_9_2"><b>Version 0.9.2</b>\n
 * Unterstützung für OTPs (One Time Passwords) integriert (kompatibel zum OtpKeyProv-Plugin)\n
 * NFC-Support zur Eingabe von OTPs über YubiKey NEO integriert\n
@@ -446,6 +470,11 @@ Erstes öffentliches Release</string>
     <item>30 Minuten</item>
     <item>1 Stunde</item>
     <item>Nie</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unverschlüsselt) (.xml)</item>
+    <item>Keepass CSV (unverschlüsselt) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Klein</item>

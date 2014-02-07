@@ -39,7 +39,7 @@
   <string name="available_through_keyboard">Mục có sẵn ở bàn phím KP2A</string>
   <string name="not_possible_im_picker">Không thể mở hộp thoại để chọn bộ gõ. Xin vui lòng kích hoạt bàn phím theo cách thủ công.</string>
   <string name="please_activate_keyboard">Vui lòng kích hoạt bàn phím Keepass2Android trong cài đặt hệ thống của bạn.</string>
-  <string name="creating_db_key">Tạo khóa cho cơ sở dữ liệu…</string>
+  <string name="creating_db_key">Tạo khóa cho cơ sở dữ liệu&#8230;</string>
   <string name="current_group">Nhóm hiện tại</string>
   <string name="current_group_root">Nhóm hiện tại: Điều hành</string>
   <string name="database">Cơ sở dữ liệu</string>
@@ -106,7 +106,7 @@
   <string name="length">Chiều dài</string>
   <string name="list_size_title">Kích thước danh sách nhóm</string>
   <string name="list_size_summary">Cỡ chữ trong danh sách Nhóm</string>
-  <string name="loading_database">Đang tải cơ sở dữ liệu…</string>
+  <string name="loading_database">Đang tải cơ sở dữ liệu&#8230;</string>
   <string name="lowercase">Chữ thường</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Mật mã mặt nạ</string>
@@ -129,7 +129,7 @@
   <string name="menu_search">Tìm kiếm</string>
   <string name="menu_search_advanced">Tìm kiếm Nâng cao</string>
   <string name="menu_url">Đi tới liên kết URL</string>
-  <string name="menu_change_db">Thay đổi cơ sở dữ liệu…</string>
+  <string name="menu_change_db">Thay đổi cơ sở dữ liệu&#8230;</string>
   <string name="minus">Trừ</string>
   <string name="never">Không bao giờ</string>
   <string name="yes">Có</string>
@@ -143,9 +143,9 @@
   <string name="pass_filename">Tên tập tin cơ sở dữ liệu KeePass</string>
   <string name="password_title">Nhập mật mã cơ sở dữ liệu</string>
   <string name="master_key_type">Chọn kiểu của khóa chính:</string>
-  <string name="progress_create">Tạo cơ sở dữ liệu mới…</string>
+  <string name="progress_create">Tạo cơ sở dữ liệu mới&#8230;</string>
   <string name="create_database">Tạo cơ sở dữ liệu</string>
-  <string name="progress_title">Đang làm việc…</string>
+  <string name="progress_title">Đang làm việc&#8230;</string>
   <string name="remember_keyfile_summary">Nhớ vị trí của các tập tin khóa</string>
   <string name="remember_keyfile_title">Lưu tập tin khoá</string>
   <string name="remove_from_filelist">Loại bỏ</string>
@@ -156,7 +156,7 @@
   <string name="rounds_hint">số lần lặp</string>
   <string name="database_name">Tên cơ sở dữ liệu</string>
   <string name="default_username">Tên người dùng mặc định cho các mục mới</string>
-  <string name="saving_database">Đang lưu cơ sở dữ liệu…</string>
+  <string name="saving_database">Đang lưu cơ sở dữ liệu&#8230;</string>
   <string name="space">Khoảng trắng</string>
   <string name="search_label">Tìm kiếm</string>
   <string name="show_password">Hiển thị mật mã</string>
@@ -241,8 +241,6 @@
   <string name="ShowCopyToClipboardNotification_summary">Cho phép tên người dùng và mật mã có thể truy cập thông qua thanh thông báo và bộ nhớ nháp. Hãy cẩn thận với kỹ thuật nghe lén mật mã!</string>
   <string name="ShowKp2aKeyboardNotification_title">Thông báo của bàn phím KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Cho phép các mục nhập có thể truy cập hoàn toàn thông qua bàn phím KP2A (khuyến khích).</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Hộp thoại lựa chọn bàn phím</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Mở hộp thoại lựa chọn bàn phím khi tìm thấy mục có sẵn thông qua bàn phím KP2A.</string>
   <string name="ShowUnlockedNotification_title">Thông báo sau khi mở khóa</string>
   <string name="ShowUnlockedNotification_summary">Hiển thị một thông báo đang diễn ra trong khi cơ sở dữ liệu được mở khóa.</string>
   <string name="PreloadDatabaseEnabled_title">Tải tập tin cơ sở dữ liệu trước</string>
@@ -263,28 +261,28 @@
   <string name="suggest_improvements">Đề nghị hoặc bỏ phiếu cho những cải tiến</string>
   <string name="rate_app">Đánh giá ứng dụng này</string>
   <string name="translate_app">Dịch KP2A</string>
-  <string name="AddingEntry">Đang thêm mục…</string>
-  <string name="AddingGroup">Đang thêm nhóm…</string>
-  <string name="DeletingEntry">Đang xóa mục…</string>
-  <string name="DeletingGroup">Đang xóa nhóm…</string>
-  <string name="SettingPassword">Đang cài đặt mật mã…</string>
-  <string name="UndoingChanges">Đang quay lại các thay đổi…</string>
-  <string name="TransformingKey">Đang chuyển đổi khóa chính…</string>
-  <string name="DecodingDatabase">Đang giải mã cơ sở dữ liệu…</string>
-  <string name="ParsingDatabase">Đang phân tích cơ sở dữ liệu…</string>
-  <string name="CheckingTargetFileForChanges">Đang kiểm tra tập tin đích cho những thay đổi…</string>
+  <string name="AddingEntry">Đang thêm mục&#8230;</string>
+  <string name="AddingGroup">Đang thêm nhóm&#8230;</string>
+  <string name="DeletingEntry">Đang xóa mục&#8230;</string>
+  <string name="DeletingGroup">Đang xóa nhóm&#8230;</string>
+  <string name="SettingPassword">Đang cài đặt mật mã&#8230;</string>
+  <string name="UndoingChanges">Đang quay lại các thay đổi&#8230;</string>
+  <string name="TransformingKey">Đang chuyển đổi khóa chính&#8230;</string>
+  <string name="DecodingDatabase">Đang giải mã cơ sở dữ liệu&#8230;</string>
+  <string name="ParsingDatabase">Đang phân tích cơ sở dữ liệu&#8230;</string>
+  <string name="CheckingTargetFileForChanges">Đang kiểm tra tập tin đích cho những thay đổi&#8230;</string>
   <string name="TitleSyncQuestion">Có trộn các thay đổi không?</string>
   <string name="MessageSyncQuestion">Tập tin cơ sở dữ liệu đã được thay đổi bởi ứng dụng bên ngoài. Bạn có muốn tải và trộn những thay đổi trước khi lưu? Chọn Không nếu bạn muốn ghi đè lên những thay đổi bên ngoài.</string>
-  <string name="SynchronizingDatabase">Đang trộn những thay đổi…</string>
+  <string name="SynchronizingDatabase">Đang trộn những thay đổi&#8230;</string>
   <string name="YesSynchronize">Có, trộn</string>
   <string name="NoOverwrite">Không, ghi đè</string>
-  <string name="SynchronizingCachedDatabase">Đang đồng bộ hóa cơ sở dữ liệu trên bộ nhớ đệm…</string>
-  <string name="DownloadingRemoteFile">Đang tải về tập tin từ xa…</string>
-  <string name="UploadingFile">Đang tải lên tập tin…</string>
-  <string name="RestoringRemoteFile">Đang khôi phục tập tin từ xa…</string>
+  <string name="SynchronizingCachedDatabase">Đang đồng bộ hóa cơ sở dữ liệu trên bộ nhớ đệm&#8230;</string>
+  <string name="DownloadingRemoteFile">Đang tải về tập tin từ xa&#8230;</string>
+  <string name="UploadingFile">Đang tải lên tập tin&#8230;</string>
+  <string name="RestoringRemoteFile">Đang khôi phục tập tin từ xa&#8230;</string>
   <string name="FilesInSync">Các tập tin đang được đồng bộ.</string>
   <string name="SynchronizedDatabaseSuccessfully">Cơ sở dữ liệu đồng bộ hóa thành công!</string>
-  <string name="CheckingDatabaseForChanges">Đang kiểm tra cơ sở dữ liệu cho các thay đổi…</string>
+  <string name="CheckingDatabaseForChanges">Đang kiểm tra cơ sở dữ liệu cho các thay đổi&#8230;</string>
   <string name="CouldNotSaveToRemote">Không thể lưu qua kết nối từ xa: %1$s. Lưu lại hoặc sử dụng trình đơn Đồng bộ hóa chừng nào kết nối từ xa có lại.</string>
   <string name="CouldNotLoadFromRemote">Không thể mở qua kết nối từ xa: %1$s. Đã tải tập tin từ bộ đệm trên máy. Bạn vẫn có thể thực hiện thay đổi trong cơ sở dữ liệu và đồng bộ hoá chúng sau này.</string>
   <string name="UpdatedRemoteFileOnLoad">Đã cập nhật tập tin từ xa.</string>
@@ -294,11 +292,11 @@
   <string name="RemoteDatabaseUnchanged">Không có thay đổi nào được phát hiện.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Đã cập nhật bộ lưu trữ OTP tập tin phụ trợ: số lượt truy cập từ xa cao hơn.</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">Đã cập nhật tập tin phụ trợ OTP từ xa: số lượt truy cập cục bộ đã cao hơn.</string>
-  <string name="SynchronizingOtpAuxFile">Đang đồng bộ hóa tập tin phụ trợ OTP…</string>
+  <string name="SynchronizingOtpAuxFile">Đang đồng bộ hóa tập tin phụ trợ OTP&#8230;</string>
   <string name="database_file">tập tin cơ sở dữ liệu</string>
   <string name="otp_aux_file">Tập tin phụ trợ OTP</string>
   <string name="ErrorOcurred">Một lỗi đã xảy ra:</string>
-  <string name="synchronize_database_menu">Đang đồng bộ hóa cơ sở dữ liệu…</string>
+  <string name="synchronize_database_menu">Đang đồng bộ hóa cơ sở dữ liệu&#8230;</string>
   <string name="CannotMoveGroupHere">Không thể di chuyển nhóm tới nhóm này.</string>
   <string name="donate_question">Hôm nay là Lễ hội tháng Mười ở nước Đức (Oktoberfest)! Nếu bạn thích Keepass2Android: có lẽ hôm nay là một ngày đẹp trời để mua cho tôi một ly bia?</string>
   <string name="ok_donate">Cho tôi biết thêm!</string>
@@ -313,7 +311,6 @@
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
-  <string name="filestoragename_sftp">SFTP (Giao thức truyền tải tập tin an toàn)</string>
   <string name="filestorage_setup_title">Khởi tạo truy cập tập tin</string>
   <string name="database_location">Vị trí cơ sở dữ liệu</string>
   <string name="help_database_location">Bạn có thể lưu trữ cơ sở dữ liệu trên điện thoại Android của bạn hoặc trong các dịch vụ điện toán đám mây (chỉ hỗ trợ trong phiên bản Trực tuyến). Keepass2Android hỗ trợ tương tác với cơ sở dữ liệu ngay cả khi bạn đang gián tuyến. Các cơ sở dữ liệu được mã hóa một cách an toàn với thuật toán AES 256 bit, sẽ không ai có thể truy cập được các mật mã của bạn trừ bạn. Chúng tôi khuyên bạn nên chọn Dropbox: nó có thể truy cập được từ tất cả các thiết bị của bạn và thậm chí cung cấp bản sao lưu các phiên bản trước của tập tin.</string>
@@ -327,7 +324,7 @@
   <string name="hint_key_file">Chọn nếu bạn muốn sử dụng một tập tin khóa ngoài mật mã chủ của bạn:</string>
   <string name="use_key_file">Sử dụng tập tin khóa</string>
   <string name="error_adding_keyfile">Lỗi trong khi thêm tập tin khoá!</string>
-  <string name="init_otp">Tải tập tin phụ trợ OTP…</string>
+  <string name="init_otp">Tải tập tin phụ trợ OTP&#8230;</string>
   <string name="otp_explanation">Nhập mật-mã-một-lần tiếp theo (OTPs). Trượt NEO Yubikey của bạn ở mặt sau của điện thoại để nhập qua NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Không thể tải tập tin phụ trợ OTP!</string>
@@ -335,12 +332,12 @@
   <string name="otp_discarded_no_space">OTP đã bị loại bỏ: Tất cả OTPs đã nhập!</string>
   <string name="otp_discarded_because_db_open">Vui lòng đóng cơ sở dữ liệu trước. OTP bị loại bỏ.</string>
   <string name="otps_pending">(Vẫn còn một hoặc nhiều OTPs)</string>
-  <string name="otpsecret_hint">Bí mật OTP (thí dụ: 01 23 ab cd…)</string>
+  <string name="otpsecret_hint">Bí mật OTP (thí dụ: 01 23 ab cd&#8230;)</string>
   <string name="CouldntParseOtpSecret">Lỗi khi phân tích OTP bí mật!</string>
   <string name="OtpKeyError">Lỗi khi tạo khóa OTP! Hãy chắc chắn bạn đã nhập đúng OTPs.</string>
   <string name="ErrorUpdatingOtpAuxFile">Lỗi khi cập nhật tập tin phụ trợ OTP!</string>
-  <string name="SavingOtpAuxFile">Đang lưu tập tin phụ trợ OTP…</string>
-  <string name="loading">Đang tải…</string>
+  <string name="SavingOtpAuxFile">Đang lưu tập tin phụ trợ OTP&#8230;</string>
+  <string name="loading">Đang tải&#8230;</string>
   <string name="ChangeLog_title">Nhật ký các thay đổi</string>
   <string name="ChangeLog_0_9_2">
   <b>Phiên bản 0.9.2</b>\n
@@ -437,6 +434,11 @@ Bản phát hành chính thức đầu tiên</string>
     <item>30 phút</item>
     <item>1 tiếng</item>
     <item>Không bao giờ</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Nhỏ</item>

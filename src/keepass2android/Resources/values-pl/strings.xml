@@ -5,6 +5,7 @@
   <string name="about_homepage">Strona domowa</string>
   <string name="AboutText">Keepass2Android to menedżer haseł umożliwiający odczyt i zapis baz danych programu KeePass 2.x w systemie Android.</string>
   <string name="CreditsText">Interfejs użytkownika jest wzorowany na aplikacji KeepassDroid opracowanej przez Briana Pellina. Kod źródłowy operacji na bazach danych jest oparty na aplikacji KeePass  Dominika Reichla. Robot Android jest kopią lub modyfikacją wizerunku stworzonego i udostępnianego przez Google i jest wykorzystywany zgodnie z zasadami opisanymi w Licencji Creative Commons Attribution 3.0.</string>
+  <string name="CreditsTextSFTP">Wsparcie SFTP jest zaimplementowane przy użyciu biblioteki JSch objętej licencją BSD, stworzonej przez JCraft, Inc.</string>
   <string name="accept">Akceptuj</string>
   <string name="add_entry">Dodaj wpis</string>
   <string name="add_url_entry">Dodaj wpis dla adresu URL</string>
@@ -29,6 +30,8 @@
   <string name="password_access_prefs">Hasło dostępu</string>
   <string name="QuickUnlock_prefs">SzybkieOdblokowanie</string>
   <string name="FileHandling_prefs">Obsługa plików</string>
+  <string name="keyboard_prefs">Klawiatura</string>
+  <string name="export_prefs">Eksportuj bazę danych...</string>
   <string name="brackets">Nawiasy</string>
   <string name="cancel">Anuluj</string>
   <string name="ClearClipboard">Schowek wyczyszczony.</string>
@@ -39,7 +42,7 @@
   <string name="available_through_keyboard">Wpis jest dostępny za pośrednictwem klawiatury KP2A</string>
   <string name="not_possible_im_picker">Nie można otworzyć okna dialogowego wyboru metody wprowadzania. Aktywuj klawiaturę ręcznie w ustawieniach systemu.</string>
   <string name="please_activate_keyboard">Proszę włączyć obsługę klawiatury Keepass2Android w ustawieniach systemu.</string>
-  <string name="creating_db_key">Tworzenie klucza bazy danych…</string>
+  <string name="creating_db_key">Tworzenie klucza bazy danych&#8230;</string>
   <string name="current_group">Aktualna grupa</string>
   <string name="current_group_root">Aktualna grupa: Katalog głowny</string>
   <string name="database">Baza danych</string>
@@ -106,7 +109,7 @@
   <string name="length">Długość</string>
   <string name="list_size_title">Wielkość tekstu listy grup</string>
   <string name="list_size_summary">Wielkość czcionki w liście grup</string>
-  <string name="loading_database">Wczytywanie bazy danych…</string>
+  <string name="loading_database">Wczytywanie bazy danych&#8230;</string>
   <string name="lowercase">Małe litery</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Ukryj hasło</string>
@@ -143,9 +146,9 @@
   <string name="pass_filename">Ścieżka do pliku bazy danych KeePass</string>
   <string name="password_title">Wprowadź hasło bazy danych</string>
   <string name="master_key_type">Wybierz rodzaj klucza głównego:</string>
-  <string name="progress_create">Tworzenie nowej bazy danych…</string>
+  <string name="progress_create">Tworzenie nowej bazy danych&#8230;</string>
   <string name="create_database">Stwórz bazę danych</string>
-  <string name="progress_title">Pracuję…</string>
+  <string name="progress_title">Pracuję&#8230;</string>
   <string name="remember_keyfile_summary">Zapamiętaj ścieżkę do plików kluczy</string>
   <string name="remember_keyfile_title">Zapamiętaj plik klucza</string>
   <string name="remove_from_filelist">Usuń</string>
@@ -156,7 +159,9 @@
   <string name="rounds_hint">złożoność</string>
   <string name="database_name">Nazwa bazy danych</string>
   <string name="default_username">Domyślna nazwa użytkownika dla nowych wpisów</string>
-  <string name="saving_database">Zapisywanie bazy danych…</string>
+  <string name="saving_database">Zapisywanie bazy danych&#8230;</string>
+  <string name="exporting_database">Eksportowanie bazy danych&#8230;</string>
+  <string name="export_database_successful">Baza danych wyeksportowana pomyślnie!</string>
   <string name="space">Spacja</string>
   <string name="search_label">Szukaj</string>
   <string name="show_password">Pokaż hasło</string>
@@ -181,6 +186,7 @@
   <string name="further_authors">Podziękowania za wkład do kodu dla %1$s.</string>
   <string name="credit_plugin1">Plugin Twofish Cipher dla Keepass został opracowany przez Scotta Greenberga i jest zawarty w KP2A.</string>
   <string name="credit_android_filechooser">Manager wyboru plików został opracowany przez Hai Bizon</string>
+  <string name="credit_keyboard">Klawiatura KP2A bazuje na klawiaturze Gingerbread od Android Open Source Project i korzysta z kodu Menadżera Wtyczek klawiatury Hacker\'s Keyboard autorstwa Klausa Weidnera.</string>
   <string name="please_note">Uwaga:</string>
   <string name="contributors">Współpracownicy</string>
   <string name="regular_expression">Wyrażenie regularne</string>
@@ -219,6 +225,8 @@
   <string name="SaveAttachmentDialog_open">Zapisz do pamięci podręcznej i otwórz</string>
   <string name="SaveAttachment_doneMessage">Zapisano plik w %1$s.</string>
   <string name="SaveAttachment_Failed">Nie można zapisać załącznika do %1$s.</string>
+  <string name="AddUrlToEntryDialog_title">Zapamiętać wyszukiwany tekst?</string>
+  <string name="AddUrlToEntryDialog_text">Czy chciałbyś zachować wyszukiwany tekst \"%1$s\" w wybranym wpisie w celu automatycznego znalezienia go następnym razem?</string>
   <string name="error_invalid_expiry_date">Nieprawny format daty/godziny dla czasu wygaśnięcia!</string>
   <string name="error_string_key">Nazwa pola jest wymagana dla każdego ciągu znaków.</string>
   <string name="field_name">Nazwa pola</string>
@@ -246,8 +254,10 @@
   <string name="ShowCopyToClipboardNotification_summary">Udostępnienie nazwy użytkownika i hasła za pośrednictwem schowka i paska powiadomień. Uwaga na sniffery haseł!</string>
   <string name="ShowKp2aKeyboardNotification_title">Użyj klawiaturę KP2A do wprowadzania danych</string>
   <string name="ShowKp2aKeyboardNotification_summary">Udostępnij wszystkie dane logowania za pośrednictwem klawiatury KP2A (zalecane).</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Okno dialogowe wyboru klawiatury</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Otwórz okno dialogowe wyboru klawiaturyy, gdy wpis jest dostępny za pośrednictwem KP2A po wyszukiwaniu.</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Przełącz klawiaturę</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Otwórz dialog wyboru klawiatury gdy wpis jest dostępny przez klawiaturę KP2A po wyszukiwaniu z przeglądarki lub z klawiatury.</string>
+  <string name="kp2a_switch_rooted">Automatyczne przełączanie na zrootowanych urządzeniach</string>
+  <string name="kp2a_switch_rooted_summary">Na zrootowanych urządzeniach możliwe jest automatyczne przełączanie na klawiaturę Keepass2Adndroid (po wyszukiwaniu wpisu lub przez kliknięcie powiadomienia klawiatury KP2A) i przełączanie z powrotem do poprzedniej klawiatury bez wyświetlania powiadomienia o wyborze metody wprowadzania. Wymaga to instalacji aplikacji Secure Settings. Obejrzyj dokumentację KP2A aby dowiedzieć się więcej!</string>
   <string name="ShowUnlockedNotification_title">Powiadom gdy odblokowana</string>
   <string name="ShowUnlockedNotification_summary">Pokazuje powiadomienie gdy baza danych gdy jest odblokowana.</string>
   <string name="PreloadDatabaseEnabled_title">Wstępnie wczytuj baze danych</string>
@@ -299,7 +309,7 @@
   <string name="RemoteDatabaseUnchanged">Nie wykryto żadnych zmian.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Zaktualizowano zbuforowany pomocniczy plik OTP: Zdalny licznik był wyższy.</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">Zaktualizowano zdalny plik pomocniczy OTP: lokalny licznik był wyższy.</string>
-  <string name="SynchronizingOtpAuxFile">Synchronizacja pliku pomocniczego OTP…</string>
+  <string name="SynchronizingOtpAuxFile">Synchronizacja pliku pomocniczego OTP&#8230;</string>
   <string name="database_file">plik bazy danych</string>
   <string name="otp_aux_file">Pomocniczy plik OTP</string>
   <string name="ErrorOcurred">Wystąpił błąd:</string>
@@ -308,6 +318,10 @@
   <string name="donate_question">Dzisiaj jest Oktoberfest! Jeśli podoba Ci się Keepass2Android: czemu dzisiaj nie mógłby być dzień, w którym postawiłbyś mi piwo?</string>
   <string name="ok_donate">Wyślij mi wiadomość!</string>
   <string name="no_thanks">Nie, nie podoba mi się na tyle</string>
+  <string name="hint_sftp_host">host (np: 192.168.0.1)</string>
+  <string name="hint_sftp_port">port</string>
+  <string name="initial_directory">Katalog początkowy (opcjonalne):</string>
+  <string name="enter_sftp_login_title">Wprowadź dane loginu SFTP:</string>
   <string name="select_storage_type">Wybierz miejsce zapisu:</string>
   <string name="filestoragename_file">Plik lokalny</string>
   <string name="filestoragename_androidget">Z aplikacji zewnętrznej</string>
@@ -320,7 +334,7 @@
   <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
-  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
+  <string name="filestoragename_sftp">SFTP (transfer plików przez SSH)</string>
   <string name="filestorage_setup_title">Inicjowanie dostępu do pliku</string>
   <string name="database_location">Miejsce zapisu bazy danych</string>
   <string name="help_database_location">Możesz przechowywać bazę danych lokalnie, na urządzeniu z systemem Android, lub w Chmurze (tylko w przypadku wersji nie Offline). Keepass2Android przetwarza bazę danych tak, że jest ona dostępna, nawet gdy jesteś offline. Baza danych jest zabezpieczona 256 bitowym szyfrowaniem AES, więc nikt nie będzie miał dostępu do twoich haseł oprócz Ciebie. Zalecamy aby wybrać Dropbox: jest dostępny na wszystkie urządzenia i zapewnia nawet kopie zapasowe poprzednich wersji plików.</string>
@@ -334,7 +348,7 @@
   <string name="hint_key_file">Wybierz, jeśli chcesz użyć pliku klucza oprócz hasła głównego:</string>
   <string name="use_key_file">Użyj pliku klucza</string>
   <string name="error_adding_keyfile">Wystąpił błąd podczas dodawania pliku klucza!</string>
-  <string name="init_otp">Ładowanie pomocniczego pliku OTP…</string>
+  <string name="init_otp">Ładowanie pomocniczego pliku OTP&#8230;</string>
   <string name="otp_explanation">Wprowadź kolejne hasła jednorazowe (OTPs). Zbliż swój Yubikey NEO do tylnej części swojego urządzenia aby wprowadzić przez NFC.</string>
   <string name="otp_hint">Hasło jednorazowe (OTP) %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nie można załadować pomocniczego pliku OTP!</string>
@@ -343,15 +357,25 @@
   <string name="otp_discarded_no_space">Hasło jednorazowe (OTP) odrzucone: Wszystkie hasła jednorazowe (OTPs) zostały już wprowadzone!</string>
   <string name="otp_discarded_because_db_open">Proszę najpierw zamknąć bazę danych. Hasło jednorazowe (OTP) odrzucone.</string>
   <string name="otps_pending">(Jedno lub więcej haseł jednorazowych jest już dostępne)</string>
-  <string name="otpsecret_hint">Tajny klucz OTP (np. 01 23 ab cd…)</string>
+  <string name="otpsecret_hint">Tajny klucz OTP (np. 01 23 ab cd&#8230;)</string>
   <string name="CouldntParseOtpSecret">Błąd przetwarzania tajnego klucza OTP!</string>
   <string name="OtpKeyError">Nie można utworzyć klucza OTP! Upewnij się, że wprowadziłeś poprawne hasła jednorazowe (OTPs).</string>
   <string name="ErrorUpdatingOtpAuxFile">Błąd aktualizacji pomocniczego pliku OTP!</string>
-  <string name="SavingOtpAuxFile">Zapisywanie pomocniczego pliku OTP…</string>
-  <string name="loading">Ładowanie…</string>
+  <string name="SavingOtpAuxFile">Zapisywanie pomocniczego pliku OTP&#8230;</string>
+  <string name="loading">Ładowanie&#8230;</string>
+  <string name="get_regular_version">Uzyskaj więcej typów przechowywania danych</string>
   <string name="CertificateWarning">Ostrzeżenie: Weryfikacja certyfikatu serwera nie powiodła się: %1$s. Zainstaluj odpowiedni certyfikat root na swoim urządzeniu lub sprawdź ustawienia!</string>
   <string name="CertificateFailure">Błąd: Weryfikacja certyfikatu serwera nie powiodła się! Zainstaluj odpowiedni certyfikat root na swoim urządzeniu lub sprawdź ustawienia!</string>
+  <string name="export_fileformats_title">Wybierz format pliku</string>
   <string name="ChangeLog_title">Lista zmian</string>
+  <string name="ChangeLog_0_9_3">
+		<b>Wersja 0.9.3</b>\n
+		* Nowa klawiatura z wieloma usprawnieniami. Sprawdź ustawienia aby dostosować.\n
+		* Wsparcie tylko do odczytu dla kdb (pliki Keepass 1). Eksperymentalne!\n
+		* Dodano wsparcie protokołu SFTP\n
+		* Dodano obejście błędu w ART (Android 4.4.2)\n
+		* Poprawki błędów\n
+	</string>
   <string name="ChangeLog_0_9_2">
 		<b>Wersja 0.9.2</b>\n
 		* Dodano obsługę haseł jednorazowych (kompatybilne z wtyczką OtpKeyProv)\n
@@ -433,6 +457,11 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>30 minut</item>
     <item>1 godzina</item>
     <item>Nigdy</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Baza danych Keepass 2 (.kdbx)</item>
+    <item>Keepass 2 XML (nieszyfrowane) (.xml)</item>
+    <item>Keepass CSV (nieszyfrowane) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Mała</item>

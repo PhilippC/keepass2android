@@ -36,7 +36,7 @@
   <string name="available_through_keyboard">Înregistrarea este disponibilă folosind tastatura KP2A</string>
   <string name="not_possible_im_picker">Nu s-a putut deschide dialogul de a selecta medoda de introducere. Activați tastatura manual.</string>
   <string name="please_activate_keyboard">Activați tastatura Keepass2Android în setarile dvs. de sistem.</string>
-  <string name="creating_db_key">Se crează cheia bazei de date…</string>
+  <string name="creating_db_key">Se crează cheia bazei de date&#8230;</string>
   <string name="current_group">Grup curent</string>
   <string name="current_group_root">Grup curent: root</string>
   <string name="database">Baza de date</string>
@@ -103,7 +103,7 @@
   <string name="length">Lungime</string>
   <string name="list_size_title">Dimensiune listă grupuri</string>
   <string name="list_size_summary">Dimensiune text în lista de grupuri</string>
-  <string name="loading_database">Se încarcă baza de date…</string>
+  <string name="loading_database">Se încarcă baza de date&#8230;</string>
   <string name="lowercase">Litere mici</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Mascare parolă</string>
@@ -126,7 +126,7 @@
   <string name="menu_search">Căutare</string>
   <string name="menu_search_advanced">Căutare avansată</string>
   <string name="menu_url">Du-te la URL-ul</string>
-  <string name="menu_change_db">Schimbă baza de date…</string>
+  <string name="menu_change_db">Schimbă baza de date&#8230;</string>
   <string name="minus">Minus</string>
   <string name="never">Niciodată</string>
   <string name="yes">Da</string>
@@ -139,9 +139,9 @@
   <string name="omitbackup_summary">Omite grupurile \'Backup\' şi \'Coş de gunoi\' din toate căutările</string>
   <string name="pass_filename">Nume fişier bază de date KeePass</string>
   <string name="password_title">Introduceţi parola bazei de date</string>
-  <string name="progress_create">Se creează baza de date nouă…</string>
+  <string name="progress_create">Se creează baza de date nouă&#8230;</string>
   <string name="create_database">Creare bază de date</string>
-  <string name="progress_title">Procesează…</string>
+  <string name="progress_title">Procesează&#8230;</string>
   <string name="remember_keyfile_summary">Reţine locaţia fişierului cheie</string>
   <string name="remember_keyfile_title">Salvează fișierul cheie</string>
   <string name="remove_from_filelist">Elimină</string>
@@ -152,7 +152,7 @@
   <string name="rounds_hint">etape</string>
   <string name="database_name">Numele bazei de date</string>
   <string name="default_username">Nume utilizator implicit pentru intrări noi</string>
-  <string name="saving_database">Salvez baza de date…</string>
+  <string name="saving_database">Salvez baza de date&#8230;</string>
   <string name="space">Spaţiu</string>
   <string name="search_label">Căutare</string>
   <string name="show_password">Arată parola</string>
@@ -239,8 +239,6 @@
   <string name="ShowCopyToClipboardNotification_summary">Oferă utilizatorul şi parolă folosind bara de notificări şi clipboard-ul. Atenţie la \"password sniffers\"!</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificare tastatură KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Oferă întreaga înregistrare folosind tastatura KP2A (recomandat).</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Dialog selectare tastatură</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Deschide dialogul de selecţie a tastaturii atunci când înregistrarea este disponibilă prin KP2A după căutare.</string>
   <string name="ShowUnlockedNotification_title">Notificare în timp ce este deblocat</string>
   <string name="ShowUnlockedNotification_summary">Afişează o notificare \"în curs\" în timp ce baza de date este deblocată.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-încărca fişierul bază de date</string>
@@ -261,28 +259,28 @@
   <string name="suggest_improvements">Propuneți sau votați pentru îmbunătățiri</string>
   <string name="rate_app">Evaluează această aplicație</string>
   <string name="translate_app">Traduce KP2A</string>
-  <string name="AddingEntry">Se adaugă înregistrarea…</string>
-  <string name="AddingGroup">Se adaugă grup…</string>
-  <string name="DeletingEntry">Se şterge înregistrarea…</string>
-  <string name="DeletingGroup">Se şterge grupul…</string>
-  <string name="SettingPassword">Se setează parola…</string>
-  <string name="UndoingChanges">Se anulează modificările…</string>
-  <string name="TransformingKey">Se transformă cheia principală…</string>
-  <string name="DecodingDatabase">Se decodează baza de date…</string>
-  <string name="ParsingDatabase">Se parsează baza de date…</string>
-  <string name="CheckingTargetFileForChanges">Se verifică fişierul ţintă pentru modificări…</string>
+  <string name="AddingEntry">Se adaugă înregistrarea&#8230;</string>
+  <string name="AddingGroup">Se adaugă grup&#8230;</string>
+  <string name="DeletingEntry">Se şterge înregistrarea&#8230;</string>
+  <string name="DeletingGroup">Se şterge grupul&#8230;</string>
+  <string name="SettingPassword">Se setează parola&#8230;</string>
+  <string name="UndoingChanges">Se anulează modificările&#8230;</string>
+  <string name="TransformingKey">Se transformă cheia principală&#8230;</string>
+  <string name="DecodingDatabase">Se decodează baza de date&#8230;</string>
+  <string name="ParsingDatabase">Se parsează baza de date&#8230;</string>
+  <string name="CheckingTargetFileForChanges">Se verifică fişierul ţintă pentru modificări&#8230;</string>
   <string name="TitleSyncQuestion">Combinare modificări?</string>
   <string name="MessageSyncQuestion">Fişierul bazei de date a fost modificat extern. Doriţi să încărcaţi şi să combinaţi modificările înainte de salvare. Selectaţi Nu dacă doriţi să suprascrieţi modificările externe.</string>
-  <string name="SynchronizingDatabase">Se combină modificările…</string>
+  <string name="SynchronizingDatabase">Se combină modificările&#8230;</string>
   <string name="YesSynchronize">Da, combină</string>
   <string name="NoOverwrite">Nu, suprascrie</string>
-  <string name="SynchronizingCachedDatabase">Sincronizează baza de date din cache…</string>
-  <string name="DownloadingRemoteFile">Se descarcă fişierul de la distanţă…</string>
-  <string name="UploadingFile">Se încarcă fişierul…</string>
-  <string name="RestoringRemoteFile">Se restaurează fişierul de la distanţă…</string>
+  <string name="SynchronizingCachedDatabase">Sincronizează baza de date din cache&#8230;</string>
+  <string name="DownloadingRemoteFile">Se descarcă fişierul de la distanţă&#8230;</string>
+  <string name="UploadingFile">Se încarcă fişierul&#8230;</string>
+  <string name="RestoringRemoteFile">Se restaurează fişierul de la distanţă&#8230;</string>
   <string name="FilesInSync">Fişierele sunt sincronizate.</string>
   <string name="SynchronizedDatabaseSuccessfully">Baza de date s-a sincronizat cu succes!</string>
-  <string name="CheckingDatabaseForChanges">Verific baza de date pentru modificări…</string>
+  <string name="CheckingDatabaseForChanges">Verific baza de date pentru modificări&#8230;</string>
   <string name="CouldNotSaveToRemote">Nu s-a putut salva la distanţă: %1$s. Salvaţi din nou sau folosiţi meniul Sincronizare atunci când conexiunea revine.</string>
   <string name="CouldNotLoadFromRemote">Nu s-a putut deschide de la distanţă: %1$s. S-a încărcat versiunea locală. Totuşi puteţi face modificări în baza de date şi să le sincronizaţi ulterior.</string>
   <string name="UpdatedRemoteFileOnLoad">S-a actualizat fişierul remote.</string>
@@ -290,7 +288,7 @@
   <string name="LoadedFromRemoteInSync">Varianta remote şi din cache sun sincronizate.</string>
   <string name="RemoteDatabaseUnchanged">Nu s-au detectat modificări.</string>
   <string name="ErrorOcurred">A apărut o eroare:</string>
-  <string name="synchronize_database_menu">Sincronizează baza de date…</string>
+  <string name="synchronize_database_menu">Sincronizează baza de date&#8230;</string>
   <string name="CannotMoveGroupHere">Nu se poate muta grupul în acest grup.</string>
   <string name="donate_question">Astăzi este Oktoberfest! Dacă vă place Keepass2Android: nu ar fi azi o zi potrivită să-mi cumpăraţi o bere?</string>
   <string name="ok_donate">Spune-mi mai multe!</string>
@@ -305,7 +303,6 @@
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
-  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
   <string name="filestorage_setup_title">Iniţializere access fişier</string>
   <string name="database_location">Locaţie bază de date</string>
   <string name="help_database_location">Puteţi stoca baza de date local pe aparatul dvs. sau în cloud (versiunea non-Offline). Keepass2Android face baza de date disponibilă şi dacă sunteţi offline. Deoarece baza de date este criptată AES 256 bit nimeni nu va putea accesa parolele dvs. Vă recomandăm Dropbox: este accesibil pe toate aparatele dvs. şi oferă chiar copii de siguranţă a versiunilor anterioare ale unui fişier.</string>
@@ -401,6 +398,11 @@ Versiunea publică iniţială</string>
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Mic</item>

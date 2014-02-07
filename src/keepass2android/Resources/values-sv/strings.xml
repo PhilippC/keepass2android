@@ -87,7 +87,7 @@
   <string name="keyfile_does_not_exist">Nyckelfilen finns inte.</string>
   <string name="keyfile_is_empty">Nyckelfilen är tom.</string>
   <string name="length">Längd</string>
-  <string name="loading_database">Laddar databasen…</string>
+  <string name="loading_database">Laddar databasen&#8230;</string>
   <string name="lowercase">Gemener</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Dölj lösenordet</string>
@@ -108,7 +108,7 @@
   <string name="menu_search">Sök</string>
   <string name="menu_search_advanced">Avancerad sökning</string>
   <string name="menu_url">Gå till URL</string>
-  <string name="menu_change_db">Byt databas…</string>
+  <string name="menu_change_db">Byt databas&#8230;</string>
   <string name="minus">Minus</string>
   <string name="never">Aldrig</string>
   <string name="yes">Ja</string>
@@ -172,6 +172,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Liten</item>

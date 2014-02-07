@@ -35,7 +35,7 @@
   <string name="available_through_keyboard">Bejegyzés elérhető KP2A billentyűzeten keresztül</string>
   <string name="not_possible_im_picker">Nem lehet megnyitni a dialógust a kiválasztott módszerrel. Aktiválja a billentyűzetet manuálisan.</string>
   <string name="please_activate_keyboard">Kérem engedélyezze a Keepass2Android billentyűzetet a rendszer beállításokban.</string>
-  <string name="creating_db_key">Adatbázis létrehozása…</string>
+  <string name="creating_db_key">Adatbázis létrehozása&#8230;</string>
   <string name="current_group">Jelenlegi csoport</string>
   <string name="current_group_root">Jelenlegi csoport: Gyökérkönyvtár</string>
   <string name="database">Adatbázis</string>
@@ -93,7 +93,7 @@
   <string name="length">Hossz</string>
   <string name="list_size_title">Csoportok betűmérete</string>
   <string name="list_size_summary">Beállítja a csoportok betűméretét</string>
-  <string name="loading_database">Adatbázis betöltése…</string>
+  <string name="loading_database">Adatbázis betöltése&#8230;</string>
   <string name="lowercase">Kisbetűk</string>
   <string name="maskpass_title">Jelszó elrejtése</string>
   <string name="maskpass_summary">Jelszavak elrejtése alapértelmezésben</string>
@@ -122,8 +122,8 @@
   <string name="omitbackup_summary">A Backup és Lomtár csoportok kihagyása a keresésből</string>
   <string name="pass_filename">KeePass adatbázis fájlnév</string>
   <string name="password_title">Adatbázis jelszó megadása</string>
-  <string name="progress_create">Új adatbázis létrehozása…</string>
-  <string name="progress_title">Feldolgozás…</string>
+  <string name="progress_create">Új adatbázis létrehozása&#8230;</string>
+  <string name="progress_title">Feldolgozás&#8230;</string>
   <string name="remember_keyfile_summary">Jegyezze meg a kulcsfájlok helyét</string>
   <string name="remember_keyfile_title">Kulcsfájl mentése</string>
   <string name="remove_from_filelist">Eltávolítás</string>
@@ -131,7 +131,7 @@
   <string name="rounds">Titkosítási menetek száma</string>
   <string name="rounds_explaination">A titkosítási menetek számának növelésével extra védelemet kaphat a brute force támadások ellen, ugyanakkor jelentősen lassíthatja az adatbázis betöltését vagy mentését.</string>
   <string name="rounds_hint">Menetek száma</string>
-  <string name="saving_database">Adatbázis mentése…</string>
+  <string name="saving_database">Adatbázis mentése&#8230;</string>
   <string name="space">Szóköz</string>
   <string name="search_label">Keresés</string>
   <string name="show_password">Jelszó megjelenítése</string>
@@ -153,6 +153,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Kicsi</item>

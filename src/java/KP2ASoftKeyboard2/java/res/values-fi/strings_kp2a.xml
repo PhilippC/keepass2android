@@ -4,4 +4,17 @@
   <string name="change_entry">Valitse toinen merkintä</string>
   <string name="open_entry">Valitse merkintä</string>
   <string name="open_entry_for_app">Etsi merkintä \"%1$s\"</string>
+  <string name="kp2a_user">Käyttäjä</string>
+  <string name="kp2a_password">Salasana</string>
+  <string name="kp2a_prefs">Valtuustietojen syöttöasetukset</string>
+  <string name="kp2a_auto_fill">Automaattinen täyttö käytössä</string>
+  <string name="kp2a_auto_fill_summary">Täytä kenttä automaattisesti kun havaitaan tyhjä kenttä, ja jos Keepass2Android merkintä näppäimistölle on saatavilla, ja kentän vihjettä vastaava arvo löytyy.</string>
+  <string name="kp2a_remember_auto_fill">Muista kenttien vihjeet</string>
+  <string name="kp2a_remember_auto_fill_summary">Jos tekstikenttä täytetään manuaalisesti valitsemalla Keepass2Androidin tarjoama arvo, muista mikä arvo kenttään syötettiin. Kenttä tunnistetaan uudelleen myöhemmin vihjetekstin perusteella.</string>
+  <string name="kp2a_simple_keyboard">Yksinkertainen näppäimistö</string>
+  <string name="kp2a_simple_keyboard_summary">Näytä yksinkertainen 1-rivinen näppäimistö, jos merkintä on saatavilla näppäimistölle. Jos asetus ei ole käytössä, näytetään valintaruutu kun Keepass2Android näppäintä painetaan.</string>
+  <string name="kp2a_lock_on_sendgodone">Lukitse tietokanta lopettaessa</string>
+  <string name="kp2a_lock_on_sendgodone_summary">Lukitse tietokanta automaattisesti kun painetaan yksinkertaisen 1-rivisen näppäimistön Valmis/Lähetä/Mene näppäintä.</string>
+  <string name="kp2a_switch_on_sendgodone">Vaihda näppäimistöä lopettaessa</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Vaihda näppäimistö kun painetaan yksinkertaisen 1-rivisen näppäimistön Valmis/Lähetä/Mene näppäintä.</string>
 </resources>

@@ -5,6 +5,7 @@
   <string name="about_homepage">Domovská stránka</string>
   <string name="AboutText">Keepass2Android je Android implementace správce hesel KeePass.</string>
   <string name="CreditsText">Uživatelské rozhraní je založeno na portu KeepassDroid (vyvinul Brian Pellin). Kód pro databázové operace je vychází z kódu pro KeePass (napsal Dominik Reichl). Logo Android robota vychází z verze sdílené Googlem a je upraveno a použito dle podmínek popsaných v licenci Creative Commons 3.0.</string>
+  <string name="CreditsTextSFTP">SFTP podpora je implementována pomocí knihovny JSch pod BSD licencí, vytvořenou JCraft, Inc.</string>
   <string name="accept">Přijmout</string>
   <string name="add_entry">Přidat položku</string>
   <string name="add_url_entry">Vytvořit položku pro adresu URL</string>
@@ -29,6 +30,8 @@
   <string name="password_access_prefs">Přístup k heslu</string>
   <string name="QuickUnlock_prefs">RychléOdemknutí</string>
   <string name="FileHandling_prefs">Zpracování souborů</string>
+  <string name="keyboard_prefs">Klávesnice</string>
+  <string name="export_prefs">Export databáze...</string>
   <string name="brackets">Závorky</string>
   <string name="cancel">Storno</string>
   <string name="ClearClipboard">Schránka vyčištěna.</string>
@@ -39,7 +42,7 @@
   <string name="available_through_keyboard">Vstup je k dispozici prostřednictvím KP2A klávesnice</string>
   <string name="not_possible_im_picker">Nepodařilo se otevřít dialog pro výběr způsobu vkládání. Aktivujte klávesnici ručně.</string>
   <string name="please_activate_keyboard">Prosím, povolte Keepass2Android klávesnici v nastavení systému.</string>
-  <string name="creating_db_key">Vytvářím databázový klíč…</string>
+  <string name="creating_db_key">Vytvářím databázový klíč&#8230;</string>
   <string name="current_group">Aktuální skupina</string>
   <string name="current_group_root">Aktuální skupina: Kořen</string>
   <string name="database">Databáze</string>
@@ -106,7 +109,7 @@
   <string name="length">Délka</string>
   <string name="list_size_title">Velikost seznamu skupin</string>
   <string name="list_size_summary">Velikost textu v seznamu skupin</string>
-  <string name="loading_database">Načítám databázi…</string>
+  <string name="loading_database">Načítám databázi&#8230;</string>
   <string name="lowercase">Malá písmena</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Skrýt heslo</string>
@@ -129,7 +132,7 @@
   <string name="menu_search">Hledat</string>
   <string name="menu_search_advanced">Pokročilé vyhledávání</string>
   <string name="menu_url">Přejít na adresu URL</string>
-  <string name="menu_change_db">Změnit databázi…</string>
+  <string name="menu_change_db">Změnit databázi&#8230;</string>
   <string name="minus">Mínus</string>
   <string name="never">Nikdy</string>
   <string name="yes">Ano</string>
@@ -143,9 +146,9 @@
   <string name="pass_filename">Název souboru KeePass databáze</string>
   <string name="password_title">Zadejte heslo do databáze</string>
   <string name="master_key_type">Vyberte typ hlavního klíče:</string>
-  <string name="progress_create">Vytvářím novou databázi…</string>
+  <string name="progress_create">Vytvářím novou databázi&#8230;</string>
   <string name="create_database">Vytvořit databázi</string>
-  <string name="progress_title">Zpracovávám…</string>
+  <string name="progress_title">Zpracovávám&#8230;</string>
   <string name="remember_keyfile_summary">Pamatovat si umístění klíčového souboru</string>
   <string name="remember_keyfile_title">Uložit klíčový soubor</string>
   <string name="remove_from_filelist">Odstranit</string>
@@ -156,7 +159,9 @@
   <string name="rounds_hint">opakování</string>
   <string name="database_name">Jméno databáze</string>
   <string name="default_username">Výchozí uživatelské jméno pro nové položky</string>
-  <string name="saving_database">Ukládám databázi…</string>
+  <string name="saving_database">Ukládám databázi&#8230;</string>
+  <string name="exporting_database">Exportování databáze&#8230;</string>
+  <string name="export_database_successful">Databáze byla úspěšně exportována!</string>
   <string name="space">Místo</string>
   <string name="search_label">Hledat</string>
   <string name="show_password">Zobrazit heslo</string>
@@ -181,6 +186,7 @@
   <string name="further_authors">Díky za příspěvky kódu %1$s.</string>
   <string name="credit_plugin1">Modul šifry Twofish pro Keepass byl vyvinut společností Scott Greenberg a je součástí KP2A.</string>
   <string name="credit_android_filechooser">Souborový dialog vyvinul Hai Bison</string>
+  <string name="credit_keyboard">KP2A klávesnice je založen na Gingerbread klávesnici Android Open Source projektu a využívá kódu z projektu Plugin Manageru klávesnice Hacker\'s Keyboard Klause Weidnera.</string>
   <string name="please_note">Upozornění</string>
   <string name="contributors">Přispěvatelé</string>
   <string name="regular_expression">Regulární výraz</string>
@@ -219,6 +225,8 @@
   <string name="SaveAttachmentDialog_open">Uložit do mezipaměti a otevřít</string>
   <string name="SaveAttachment_doneMessage">Uložit soubor do %1$s.</string>
   <string name="SaveAttachment_Failed">Nelze uložit přílohu do %1$s.</string>
+  <string name="AddUrlToEntryDialog_title">Pamatovat si hledaný text?</string>
+  <string name="AddUrlToEntryDialog_text">Chcete ve vybrané položce uložit hledaný text \"%1$s\"  pro příští automatické vyhledání?</string>
   <string name="error_invalid_expiry_date">Neplatný formát data a času pro datum expirace!</string>
   <string name="error_string_key">Název pole je vyžadován pro každý řetězec.</string>
   <string name="field_name">Název pole</string>
@@ -246,8 +254,10 @@
   <string name="ShowCopyToClipboardNotification_summary">Zpřístupnění uživatelského jména a hesla prostřednictvím oznamovací oblasti a schránky. Pozor na skenery hesel!</string>
   <string name="ShowKp2aKeyboardNotification_title">Oznámení klávesnice KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Zpřístupněte celý záznam prostřednictvím klávesnice KP2A (doporučeno).</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Dialog pro výběr klávesnice</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Dialog pro výběr vstupu pomocí klávesnice je po hledání k dispozici prostřednictvím KP2A klávesnice.</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Přepnout klávesnici</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Otevřít dialog výběru klávesnice je-li nalezena vhodná položka po hledání z prohlížeče nebo z klávesnice.</string>
+  <string name="kp2a_switch_rooted">Automatické přepnutí na rootovaných telefonech</string>
+  <string name="kp2a_switch_rooted_summary">Na rootovaných zařízeních je možno automaticky přepnout na Keepass2Android klávesnici (po hledání položky, nebo klepnutím na oznámení KP2A klávesnice) a přepnout zpět na předchozí klávesnici bez zobrazení dialogu pro výběr vstupní metody. Je také nutno nainstalovat aplikaci Secure Settings. Další informace v dokumentaci KP2A!</string>
   <string name="ShowUnlockedNotification_title">Oznámení po dobu odemknutí</string>
   <string name="ShowUnlockedNotification_summary">Zobrazovat oznámení zatímco databáze je odemčena.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-load databázový soubor</string>
@@ -268,28 +278,28 @@
   <string name="suggest_improvements">Navrhnout nebo hlasovat pro vylepšení</string>
   <string name="rate_app">Ohodnoťte tuto aplikaci</string>
   <string name="translate_app">Přeložit KP2A</string>
-  <string name="AddingEntry">Přidávám položku…</string>
-  <string name="AddingGroup">Přidávám skupinu…</string>
-  <string name="DeletingEntry">Mažu položku…</string>
-  <string name="DeletingGroup">Mažu skupinu…</string>
-  <string name="SettingPassword">Nastavuji heslo…</string>
-  <string name="UndoingChanges">Vracím změny…</string>
-  <string name="TransformingKey">Transformace hlavního klíče…</string>
-  <string name="DecodingDatabase">Dekóduji databázi…</string>
-  <string name="ParsingDatabase">Analýza databáze…</string>
-  <string name="CheckingTargetFileForChanges">Kontroluji změny v cílovém souboru…</string>
+  <string name="AddingEntry">Přidávám položku&#8230;</string>
+  <string name="AddingGroup">Přidávám skupinu&#8230;</string>
+  <string name="DeletingEntry">Mažu položku&#8230;</string>
+  <string name="DeletingGroup">Mažu skupinu&#8230;</string>
+  <string name="SettingPassword">Nastavuji heslo&#8230;</string>
+  <string name="UndoingChanges">Vracím změny&#8230;</string>
+  <string name="TransformingKey">Transformace hlavního klíče&#8230;</string>
+  <string name="DecodingDatabase">Dekóduji databázi&#8230;</string>
+  <string name="ParsingDatabase">Analýza databáze&#8230;</string>
+  <string name="CheckingTargetFileForChanges">Kontroluji změny v cílovém souboru&#8230;</string>
   <string name="TitleSyncQuestion">Sloučit změny?</string>
   <string name="MessageSyncQuestion">Databáze byla změněna z jiného zařízení. Chcete nahrát a sloučit změny před uložením? Vyberte možnost Ne, pokud chcete přepsat změny z jiného zařízení.</string>
-  <string name="SynchronizingDatabase">Slučování změn…</string>
+  <string name="SynchronizingDatabase">Slučování změn&#8230;</string>
   <string name="YesSynchronize">Ano, sloučit</string>
   <string name="NoOverwrite">Ne, přepsat</string>
-  <string name="SynchronizingCachedDatabase">Synchronizuji databázi v mezipaměti…</string>
-  <string name="DownloadingRemoteFile">Stahuji vzdálený soubor…</string>
-  <string name="UploadingFile">Odesílám soubor…</string>
-  <string name="RestoringRemoteFile">Obnovuji vzdálený soubor…</string>
+  <string name="SynchronizingCachedDatabase">Synchronizuji databázi v mezipaměti&#8230;</string>
+  <string name="DownloadingRemoteFile">Stahuji vzdálený soubor&#8230;</string>
+  <string name="UploadingFile">Odesílám soubor&#8230;</string>
+  <string name="RestoringRemoteFile">Obnovuji vzdálený soubor&#8230;</string>
   <string name="FilesInSync">Soubory jsou synchronizovány.</string>
   <string name="SynchronizedDatabaseSuccessfully">Databáze úspěšně synchronizována!</string>
-  <string name="CheckingDatabaseForChanges">Kontrola změn databáze…</string>
+  <string name="CheckingDatabaseForChanges">Kontrola změn databáze&#8230;</string>
   <string name="CouldNotSaveToRemote">Nelze uložit na vzdálený: %1$s. Uložte znovu, nebo použijte nabídky synchronizovat, až bude vzdálené připojení je opět k dispozici.</string>
   <string name="CouldNotLoadFromRemote">Nelze otevřít ze vzdálených míst: %1$s. Načítám soubor z místní mezipaměti. Stále můžete provést změny v databázi a synchronizovat později.</string>
   <string name="UpdatedRemoteFileOnLoad">Vzdálený soubor byl aktualizován.</string>
@@ -299,15 +309,19 @@
   <string name="RemoteDatabaseUnchanged">Nebyly zjištěny změny.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Aktualizován pomocný soubor OTP v mezipaměti: vzdálený čítač byl vyšší.</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">Aktualizován vzdálený pomocný soubor OTP: místní čítač byl vyšší.</string>
-  <string name="SynchronizingOtpAuxFile">Synchronizace pomocného souboru OTP…</string>
+  <string name="SynchronizingOtpAuxFile">Synchronizace pomocného souboru OTP&#8230;</string>
   <string name="database_file">databázový soubor</string>
   <string name="otp_aux_file">Pomocný soubor OTP</string>
   <string name="ErrorOcurred">Došlo k chybě:</string>
-  <string name="synchronize_database_menu">Synchronizovat databázi…</string>
+  <string name="synchronize_database_menu">Synchronizovat databázi&#8230;</string>
   <string name="CannotMoveGroupHere">Skupinu nelze přesunout do této skupiny.</string>
   <string name="donate_question">Dnes je Oktoberfest! Pokud se vám líbí Keepass2Android: nebyl by dnes dobrý den koupit mi pivo?</string>
   <string name="ok_donate">Chci vědět víc!</string>
   <string name="no_thanks">Ne, moc se mi to nelíbí</string>
+  <string name="hint_sftp_host">počítač (např: 192.168.0.1)</string>
+  <string name="hint_sftp_port">port</string>
+  <string name="initial_directory">Počáteční adresář (nepovinné):</string>
+  <string name="enter_sftp_login_title">Zadejte SFTP přihlašovací údaje:</string>
   <string name="select_storage_type">Vyberte typ úložiště:</string>
   <string name="filestoragename_file">Místní soubor</string>
   <string name="filestoragename_androidget">Od jiných aplikací třetích stran</string>
@@ -320,7 +334,7 @@
   <string name="filestoragehelp_dropboxKP2A">Pokud nechcete, aby měl KP2A plný přístup k vašemu Dropbox účtu, může vybrat tuto možnost. Bude vyžadován pouze přístup k této složce Apps/Keepass2Android. To je vhodné zejména při vytváření nové databáze. Pokud již máte databázi, zvolte na tuto možnos pro vytvoření složky, poté umístěte soubor (z PC) do této složky a zvolte tuto možnost znovu pro otevření souboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
-  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
+  <string name="filestoragename_sftp">SFTP (SSH přenos souborů)</string>
   <string name="filestorage_setup_title">Inicializace přístupu souboru</string>
   <string name="database_location">Umístění databáze</string>
   <string name="help_database_location">Databázi můžete uložit lokálně na vašem zařízení Android nebo v e vzdáleném úložišti (pouze ne-offline verze). Keepass2Android zpřístupní databázi, i když jste v režimu offline. Databáze je bezpečně zašifrována pomocí AES 256 bit šifrování, kromě vás nebude mít k heslům nikdo přístup. Doporučujeme vybrat Dropbox: je přístupný na všech zařízeních a dokonce poskytuje zálohy předchozí verze souborů.</string>
@@ -334,7 +348,7 @@
   <string name="hint_key_file">Zvolte, pokud chcete použít soubor klíče spolu s hlavním heslem:</string>
   <string name="use_key_file">Použít soubor s klíčem</string>
   <string name="error_adding_keyfile">Chyba při přidávání klíčového souboru!</string>
-  <string name="init_otp">Otevřít pomocný soubor OTP…</string>
+  <string name="init_otp">Otevřít pomocný soubor OTP&#8230;</string>
   <string name="otp_explanation">Zadejte další jednorázová hesla (OTP). Přejeďte váš Yubikey NEO přes zadní stranu vašeho zařízení pro vstup přes NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nelze načíst pomocný soubor OTP!</string>
@@ -343,15 +357,25 @@
   <string name="otp_discarded_no_space">OTP vstup vyřazen: všechna jednorázová hesla již byla použita!</string>
   <string name="otp_discarded_because_db_open">Nejprve zavřete nejprve databázi. OTP je vyřazen.</string>
   <string name="otps_pending">(Jeden nebo více OTP jsou již k dispozici)</string>
-  <string name="otpsecret_hint">OTP heslo (např. 01 23 ab cd…)</string>
+  <string name="otpsecret_hint">OTP heslo (např. 01 23 ab cd&#8230;)</string>
   <string name="CouldntParseOtpSecret">Chyba při analýze OTP hesla!</string>
   <string name="OtpKeyError">Nepodařilo se vytvořit klíč OTP! Zkontrolujte, zda že jste zadali správný OTP.</string>
   <string name="ErrorUpdatingOtpAuxFile">Chyba při aktualizaci pomocného souboru OTP!</string>
-  <string name="SavingOtpAuxFile">Ukládám pomocný soubor OTP…</string>
-  <string name="loading">Probíhá načítání…</string>
+  <string name="SavingOtpAuxFile">Ukládám pomocný soubor OTP&#8230;</string>
+  <string name="loading">Probíhá načítání&#8230;</string>
+  <string name="get_regular_version">Získat více typů úložišť</string>
   <string name="CertificateWarning">Upozornění: ověření certifikátu serveru se nezdařilo: %1$s. Instalujte vhodný kořenový certifikát v zařízení nebo upravte Nastavení!</string>
   <string name="CertificateFailure">Chyba: Ověření certifikátu serveru se nezdařilo. Nainstalujte odpovídající kořenový certifikát v zařízení nebo upravte Nastavení!</string>
+  <string name="export_fileformats_title">Vyberte formát souboru</string>
   <string name="ChangeLog_title">Protokol změn</string>
+  <string name="ChangeLog_0_9_3">
+		<b>Verze 0.9.3</b>\n
+		* Nová klávesnice s mnoha vylepšeními. Viz nastavení.\n
+		* Podpora pro čtení souborů kdb (Keepass 1). Experimentální!\n
+		* Doplněna podpora SFTP\n
+		* Doplněn trik pro obejití chyby při využití ART (Android 4.4.2)\n
+		* Opravy chyb\n
+	</string>
   <string name="ChangeLog_0_9_2">
   <b>Verze 0.9.2</b>  \n 
 * Přidána podpora OTP (kompatibilní s OtpKeyProv pluginem)  \n 
@@ -451,6 +475,11 @@ První veřejné vydání
     <item>30 minut</item>
     <item>1 hodina</item>
     <item>Nikdy</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>KeePass 2 databáze (.kdbx)</item>
+    <item>KeePass 2 XML (bez šifrování) (.xml)</item>
+    <item>KeePass CSV (bez šifrování) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Malý</item>

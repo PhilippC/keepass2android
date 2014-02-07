@@ -4,6 +4,7 @@
   <string name="about_feedback">Anna palautetta</string>
   <string name="about_homepage">Kotisivu</string>
   <string name="AboutText">Keepass2Android on salasanojen hallintaohjelma, jolla voit lukea ja kirjoittaa KeePass 2.x versioiden tietokantoja Androidilla.</string>
+  <string name="CreditsText">Käyttöliittymä perustuu Brian Pellinin kehittämään KeepassDroid -porttaukseen. Tietokantatoimintojen lähdekoodi perustuu Dominik Reichlin KeepPass -sovellukseen. Android robotti on jäljennetty tai muokattu Googlen jakamista teoksista ja sitä käytetään Creative Commons 3.0 Attribution Licensensen kuvaamien ehtojen mukaisesti.</string>
   <string name="accept">Hyväksy</string>
   <string name="add_entry">Lisää merkintä</string>
   <string name="add_url_entry">Luo merkintä URLista</string>
@@ -51,6 +52,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Small</item>

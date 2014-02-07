@@ -39,7 +39,7 @@
   <string name="available_through_keyboard">可通过 KP2A 键盘获得条目</string>
   <string name="not_possible_im_picker">无法打开输入法选择对话框，请手动激活键盘。</string>
   <string name="please_activate_keyboard">请在系统设置中启用 Keepass2Android 键盘。</string>
-  <string name="creating_db_key">正在创建数据库密钥…</string>
+  <string name="creating_db_key">正在创建数据库密钥&#8230;</string>
   <string name="current_group">当前群组</string>
   <string name="current_group_root">当前群组：根群组</string>
   <string name="database">数据库</string>
@@ -106,7 +106,7 @@
   <string name="length">长度</string>
   <string name="list_size_title">群组列表大小</string>
   <string name="list_size_summary">群组列表字体大小</string>
-  <string name="loading_database">加载数据库中…</string>
+  <string name="loading_database">加载数据库中&#8230;</string>
   <string name="lowercase">小写</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">密码掩码</string>
@@ -143,9 +143,9 @@
   <string name="pass_filename">KeePass 数据库文件名</string>
   <string name="password_title">输入数据库密码</string>
   <string name="master_key_type">选择主密钥类型：</string>
-  <string name="progress_create">创建新数据库中…</string>
+  <string name="progress_create">创建新数据库中&#8230;</string>
   <string name="create_database">创建数据库</string>
-  <string name="progress_title">工作中…</string>
+  <string name="progress_title">工作中&#8230;</string>
   <string name="remember_keyfile_summary">记住密钥文件的位置</string>
   <string name="remember_keyfile_title">保存密钥文件</string>
   <string name="remove_from_filelist">移除</string>
@@ -156,7 +156,7 @@
   <string name="rounds_hint">次数</string>
   <string name="database_name">数据库名称</string>
   <string name="default_username">新条目的默认用户名</string>
-  <string name="saving_database">正在保存数据库…</string>
+  <string name="saving_database">正在保存数据库&#8230;</string>
   <string name="space">空格</string>
   <string name="search_label">搜索</string>
   <string name="show_password">显示密码</string>
@@ -246,8 +246,6 @@
   <string name="ShowCopyToClipboardNotification_summary">使用户名和密码可通过通知栏和剪贴板访问。谨防密码嗅探器 ！</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A 键盘通知</string>
   <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取 （推荐）。</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">键盘选择对话框</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">当条目对 KP2A 键盘可用时，在搜索之后打开键盘选择对话框。</string>
   <string name="ShowUnlockedNotification_title">解锁时通知</string>
   <string name="ShowUnlockedNotification_summary">当数据库处于解锁状态栏持续显示通知。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
@@ -299,7 +297,7 @@
   <string name="RemoteDatabaseUnchanged">未检测到变化。</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">升级一次性密码辅助文件缓存：远程版本更新。</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">升级远程一次性密码辅助文件：远程版本更新。</string>
-  <string name="SynchronizingOtpAuxFile">正在同步一次性密码辅助文件…</string>
+  <string name="SynchronizingOtpAuxFile">正在同步一次性密码辅助文件&#8230;</string>
   <string name="database_file">数据库文件</string>
   <string name="otp_aux_file">一次性密码辅助文件</string>
   <string name="ErrorOcurred">发生错误：</string>
@@ -320,7 +318,6 @@
   <string name="filestoragehelp_dropboxKP2A">如果你不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 应用/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，点击此选项将创建该新文件夹，然后将你在电脑上的数据库文件放在此文件夹内，然后再选该选项，并以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
-  <string name="filestoragename_sftp">SFTP （SSH 文件传输协议）</string>
   <string name="filestorage_setup_title">初始化文件访问</string>
   <string name="database_location">数据库位置</string>
   <string name="help_database_location">您可以在您的 Andr​​oid 设备或云端存储你的数据库（非离线版本）。 即使您处于脱机状态 Keepass2Android 也依然可以使用。数据库采用安全的 AES 256 位加密，若没有您的密码任何人都无法访问它。我们建议选择存储在 Dropbox：在所有设备上皆可访问，甚至还提供了文件的早期版本备份。</string>
@@ -439,6 +436,11 @@ Initial public release
     <item>30 分钟</item>
     <item>1 小时</item>
     <item>从不</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>小</item>

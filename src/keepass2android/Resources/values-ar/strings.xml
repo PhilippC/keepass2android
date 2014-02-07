@@ -33,7 +33,7 @@
   <string name="available_through_keyboard">المُدخل متوفر من خلال لوحة مفاتيح KP2A</string>
   <string name="not_possible_im_picker">لا يمكن فتح الحوار لتحديد طريقة الإدخال. يرجى تفعيل لوحة المفاتيح يدويا.</string>
   <string name="please_activate_keyboard">يرجى تمكين لوحة مفاتيح Keepass2Android في إعدادات النظام.</string>
-  <string name="creating_db_key">إنشاء مفتاح قاعدة البيانات…</string>
+  <string name="creating_db_key">إنشاء مفتاح قاعدة البيانات&#8230;</string>
   <string name="current_group">المجموعة الحالية</string>
   <string name="current_group_root">المجموعة الحالية: الجذر</string>
   <string name="database">قاعدة البيانات</string>
@@ -138,7 +138,7 @@
   <string name="master_key_type">حدد نوع المفتاح الرئيسي:</string>
   <string name="progress_create">إنشاء قاعدة بيانات جديدة...</string>
   <string name="create_database">إنشاء قاعدة بيانات</string>
-  <string name="progress_title">يعمل…</string>
+  <string name="progress_title">يعمل&#8230;</string>
   <string name="remember_keyfile_summary">يتذكر موقع ملف المفتاح</string>
   <string name="remember_keyfile_title">حفظ ملف المفتاح</string>
   <string name="remove_from_filelist">إزالة</string>
@@ -148,7 +148,7 @@
   <string name="rounds_hint">جولات</string>
   <string name="database_name">اسم قاعدة البيانات</string>
   <string name="default_username">اسم المستخدم الافتراضي للمُدخلات الجديدة</string>
-  <string name="saving_database">حفظ قاعدة البيانات…</string>
+  <string name="saving_database">حفظ قاعدة البيانات&#8230;</string>
   <string name="space">فراغ</string>
   <string name="search_label">بحث</string>
   <string name="show_password">عرض كلمة المرور</string>
@@ -159,7 +159,6 @@
   <string name="search_results">نتائج البحث</string>
   <string name="search_in">البحث في</string>
   <string name="select_other_entry">اختر مُدخل  آخر</string>
-  
   <string name="insert_element_here">أدخل هنا</string>
   <string name="twofish">تشفير تووفيش</string>
   <string name="unsupported_db_version">إصدار قاعدة بيانات غير مدعوم.</string>
@@ -204,6 +203,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Small</item>

@@ -5,6 +5,7 @@
   <string name="about_homepage">Site web </string>
   <string name="AboutText">Keepass2Android est un portage du logiciel KeePass Password Manager. Pour l\'instant, vous devez créer une base de données avec le logiciel KeePass sur votre ordinateur puis la transférer sur la carte mémoire de votre appareil mobile.</string>
   <string name="CreditsText">L\'interface est basée sur un port de KeepassDroid, développée par Brian Pellin. Le code pour les opérations sur la base de donnée est basé sur Keepass, de Dominik Reichl. Le robot Android est une modification d\'une œuvre de Google, utilisée selon les  termes de la licence Creative Commons 3.0 BY.</string>
+  <string name="CreditsTextSFTP">Le support du protocole SFTP est implémenté à l\'aide de la bibliothèque JSch sous licence BSD, créée par JCraft, Inc.</string>
   <string name="accept">Accepter</string>
   <string name="add_entry">Ajouter une entrée</string>
   <string name="add_url_entry">Créer une entrée pour l\'URL</string>
@@ -29,6 +30,8 @@
   <string name="password_access_prefs">Accès aux mots de passe</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Gestion de fichiers</string>
+  <string name="keyboard_prefs">Clavier</string>
+  <string name="export_prefs">Exporter la base de données...</string>
   <string name="brackets">Parenthèses, accolades et crochets</string>
   <string name="cancel">Annuler</string>
   <string name="ClearClipboard">Presse-papier nettoyé.</string>
@@ -106,7 +109,7 @@
   <string name="length">Longueur</string>
   <string name="list_size_title">Taille de la liste des groupes</string>
   <string name="list_size_summary">Taille du texte dans la liste des groupes</string>
-  <string name="loading_database">Chargement de la base de données…</string>
+  <string name="loading_database">Chargement de la base de données&#8230;</string>
   <string name="lowercase">Minuscule</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Cacher le mot de passe</string>
@@ -129,7 +132,7 @@
   <string name="menu_search">Rechercher</string>
   <string name="menu_search_advanced">Recherche avancée</string>
   <string name="menu_url">Aller à l\'adresse URL</string>
-  <string name="menu_change_db">Modifier la base de données…</string>
+  <string name="menu_change_db">Modifier la base de données&#8230;</string>
   <string name="minus">Moins</string>
   <string name="never">Jamais</string>
   <string name="yes">Oui</string>
@@ -143,9 +146,9 @@
   <string name="pass_filename">Base de données KeePass</string>
   <string name="password_title">Entrez le mot de passe de la base de données</string>
   <string name="master_key_type">Sélectionner le type de la clé principale :</string>
-  <string name="progress_create">Création d\'une nouvelle base de données…</string>
+  <string name="progress_create">Création d\'une nouvelle base de données&#8230;</string>
   <string name="create_database">Créer une base de données</string>
-  <string name="progress_title">En cours…</string>
+  <string name="progress_title">En cours&#8230;</string>
   <string name="remember_keyfile_summary">Se rappeler l\'emplacement des fichiers clés</string>
   <string name="remember_keyfile_title">Enregistrer le fichier clé</string>
   <string name="remove_from_filelist">Supprimer</string>
@@ -156,7 +159,9 @@
   <string name="rounds_hint">niveaux</string>
   <string name="database_name">Nom de la base de données</string>
   <string name="default_username">Nom d\'utilisateur par défaut pour les nouvelles entrées</string>
-  <string name="saving_database">Enregistrement de la base de données…</string>
+  <string name="saving_database">Enregistrement de la base de données&#8230;</string>
+  <string name="exporting_database">Export de la base de données en cours...</string>
+  <string name="export_database_successful">Base de données exportée avec succès !</string>
   <string name="space">Espace</string>
   <string name="search_label">Rechercher</string>
   <string name="show_password">Afficher le mot de passe</string>
@@ -170,7 +175,7 @@
   <string name="select_group_then_add">Ouvrez le groupe désiré, puis appuyez sur \"%1$s\" !</string>
   <string name="insert_element_here">Insérer ici</string>
   <string name="twofish">Twofish</string>
-  <string name="underline">Tiret bas</string>
+  <string name="underline">Souligner</string>
   <string name="unsupported_db_version">Version de base de données non pris en charge.</string>
   <string name="uppercase">Majuscule</string>
   <string name="warning_read_only">Votre carte SD est en lecture seule. Vous serez sans doute dans l\'impossibilité de sauvegarder les modifications de votre base de données.</string>
@@ -181,6 +186,7 @@
   <string name="further_authors">Grâce aux contributions de %1$s.</string>
   <string name="credit_plugin1">Le plugin de chiffrement Twofish pour Keepass a été développé par Scott Greenberg et fait partie de KP2A.</string>
   <string name="credit_android_filechooser">Le « FileChooser » a été développé par Hai Bison</string>
+  <string name="credit_keyboard">Le clavier KP2A est basé sur le clavier Gingerbread du projet Open Source Android et utilise le code de \"Plugin Manager\" de \"Hacker\'s Keyboard\" par Klaus Weidner.</string>
   <string name="please_note">Notez s\'il vous plaît</string>
   <string name="contributors">Contributeurs</string>
   <string name="regular_expression">Expression régulière</string>
@@ -219,6 +225,8 @@
   <string name="SaveAttachmentDialog_open">Enregistrer pour mettre en cache et ouvrir</string>
   <string name="SaveAttachment_doneMessage">Enregistrement du fichier dans %1$s.</string>
   <string name="SaveAttachment_Failed">Impossible d\'enregistrer la pièce jointe vers %1$s.</string>
+  <string name="AddUrlToEntryDialog_title">Se rappeler du texte de recherche ?</string>
+  <string name="AddUrlToEntryDialog_text">Souhaitez-vous stocker le texte de recherche \"%1$s\" dans l\'entrée sélectionnée afin de la trouver automatiquement la prochaine fois ?</string>
   <string name="error_invalid_expiry_date">Format de la date ou de l\'heure d\'expiration invalide !</string>
   <string name="error_string_key">Un nom de champ est requis pour chaque chaîne de caractères.</string>
   <string name="field_name">Nom du champ</string>
@@ -246,8 +254,10 @@
   <string name="ShowCopyToClipboardNotification_summary">Rend le nom d\'utilisateur et le mot de passe accessibles via la barre de notification et le presse-papiers. Attention au sniffers de mot de passes !</string>
   <string name="ShowKp2aKeyboardNotification_title">Barre de notification et clavier KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Rend l\'entrée pleinement accessible via le clavier KP2A (recommandé).</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Boîte de sélection de clavier</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Ouvrir la boîte de sélection de clavier quand une entrée est disponible avec le clavier KP2A après la recherche.</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Changer de clavier</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Ouvrir la boite de dialogue de sélection du clavier lorsque l\'entrée est disponible par le biais du clavier KP2A après une recherche à partir du navigateur ou du clavier.</string>
+  <string name="kp2a_switch_rooted">Auto-switch sur les matériels \"rootés\"</string>
+  <string name="kp2a_switch_rooted_summary">Sur les matériels \"rootés\", il est possible de passer automatiquement au clavier Keepass2Android (après recherche d\'une entrée ou en cliquant sur la notification du clavier KP2A) et pour revenir au clavier précédent sans afficher le sélecteur de méthode d\'entrée. Cela nécessite aussi d\'installer l\'application \"Secure Settings\". Consultez la documentation de KP2A pour plus d\'informations !</string>
   <string name="ShowUnlockedNotification_title">Notification en mode déverrouillé</string>
   <string name="ShowUnlockedNotification_summary">Afficher une notification pendant que la base de données est déverrouillée.</string>
   <string name="PreloadDatabaseEnabled_title">Activation du pré-chargement de la base de données</string>
@@ -268,28 +278,28 @@
   <string name="suggest_improvements">Faire des suggestions ou voter pour des améliorations</string>
   <string name="rate_app">Noter cette application</string>
   <string name="translate_app">Traduire KP2A</string>
-  <string name="AddingEntry">Ajout de l\'entrée en cours…</string>
-  <string name="AddingGroup">Ajout du groupe en cours…</string>
-  <string name="DeletingEntry">Suppression de l\'entrée…</string>
-  <string name="DeletingGroup">Suppression du groupe…</string>
-  <string name="SettingPassword">Prise en compte du mot de passe…</string>
-  <string name="UndoingChanges">Annulation de modifications…</string>
-  <string name="TransformingKey">Changement de la clé principale…</string>
-  <string name="DecodingDatabase">Décodage de la base de données…</string>
-  <string name="ParsingDatabase">Analyse de la base de données…</string>
-  <string name="CheckingTargetFileForChanges">Vérification des modifications dans le fichier…</string>
+  <string name="AddingEntry">Ajout de l\'entrée en cours&#8230;</string>
+  <string name="AddingGroup">Ajout du groupe en cours&#8230;</string>
+  <string name="DeletingEntry">Suppression de l\'entrée&#8230;</string>
+  <string name="DeletingGroup">Suppression du groupe&#8230;</string>
+  <string name="SettingPassword">Prise en compte du mot de passe&#8230;</string>
+  <string name="UndoingChanges">Annulation de modifications&#8230;</string>
+  <string name="TransformingKey">Changement de la clé principale&#8230;</string>
+  <string name="DecodingDatabase">Décodage de la base de données&#8230;</string>
+  <string name="ParsingDatabase">Analyse de la base de données&#8230;</string>
+  <string name="CheckingTargetFileForChanges">Vérification des modifications dans le fichier&#8230;</string>
   <string name="TitleSyncQuestion">Fusionner les modifications ?</string>
   <string name="MessageSyncQuestion">La base de données a été modifiée par une source tierce. Voulez-vous charger et fusionner les changements avant de sauvegarder ? Sélectionnez \"Non\" si vous voulez écraser les changements externes.</string>
-  <string name="SynchronizingDatabase">Importation des modifications…</string>
+  <string name="SynchronizingDatabase">Importation des modifications&#8230;</string>
   <string name="YesSynchronize">Oui, fusionner</string>
   <string name="NoOverwrite">Non, l\'écraser</string>
-  <string name="SynchronizingCachedDatabase">Synchronisation des bases de données mises en cache…</string>
-  <string name="DownloadingRemoteFile">Téléchargement du fichier distant…</string>
-  <string name="UploadingFile">Téléchargement du fichier…</string>
-  <string name="RestoringRemoteFile">Restauration du fichier distant…</string>
+  <string name="SynchronizingCachedDatabase">Synchronisation des bases de données mises en cache&#8230;</string>
+  <string name="DownloadingRemoteFile">Téléchargement du fichier distant&#8230;</string>
+  <string name="UploadingFile">Téléchargement du fichier&#8230;</string>
+  <string name="RestoringRemoteFile">Restauration du fichier distant&#8230;</string>
   <string name="FilesInSync">Les fichiers sont synchronisés.</string>
   <string name="SynchronizedDatabaseSuccessfully">Base de données synchronisée avec succès !</string>
-  <string name="CheckingDatabaseForChanges">Vérification de changements dans la base de données…</string>
+  <string name="CheckingDatabaseForChanges">Vérification de changements dans la base de données&#8230;</string>
   <string name="CouldNotSaveToRemote">Impossible d\'enregistrer le fichier distant %1$s. Réessayer ou utiliser le menu synchroniser lorsque la connexion est à nouveau disponible.</string>
   <string name="CouldNotLoadFromRemote">Impossible d\'ouvrir le fichier distant %1$s. Fichier chargé à partir du cache local. Vous pouvez néanmoins modifier la base de données et la synchroniser par la suite.</string>
   <string name="UpdatedRemoteFileOnLoad">Fichier distant mis à jour.</string>
@@ -303,11 +313,15 @@
   <string name="database_file">fichier de base de données</string>
   <string name="otp_aux_file">Fichier auxiliaire OTP</string>
   <string name="ErrorOcurred">Une erreur est survenue :</string>
-  <string name="synchronize_database_menu">Synchroniser la base de données…</string>
+  <string name="synchronize_database_menu">Synchroniser la base de données&#8230;</string>
   <string name="CannotMoveGroupHere">Impossible de déplacer le groupe vers ce groupe.</string>
   <string name="donate_question">Aujourd\'hui, c\'est Oktoberfest ! Si vous aimez Keepass2Android ne serait-ce pas une bonne occasion de m\'offrir une bière ?</string>
   <string name="ok_donate">En savoir plus !</string>
   <string name="no_thanks">Non, je n\'aime pas tant que ça</string>
+  <string name="hint_sftp_host">Adresse IP du serveur (ex : 192.168.0.1)</string>
+  <string name="hint_sftp_port">port</string>
+  <string name="initial_directory">Répertoire initial (facultatif) :</string>
+  <string name="enter_sftp_login_title">Entrez les données de connexion SFTP :</string>
   <string name="select_storage_type">Sélectionner le type de stockage :</string>
   <string name="filestoragename_file">Fichier local</string>
   <string name="filestoragename_androidget">Obtenir depuis une application tierce</string>
@@ -320,7 +334,7 @@
   <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">SkyDrive</string>
-  <string name="filestoragename_sftp">SFTP (SSH File Transfer Protocol)</string>
+  <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestorage_setup_title">Initialisation de l\'accès aux fichiers</string>
   <string name="database_location">Emplacement de la base de données</string>
   <string name="help_database_location">Vous pouvez stocker votre base de données localement sur votre appareil Android ou dans le cloud (seulement pour la version connectée). Keepass2Android rend la base de données disponible même si vous êtes en mode hors connexion. Comme la base de données est sécurisée avec un cryptage AES 256 bit, personne ne sera en mesure d\'accéder à vos mots de passe sauf vous. Nous vous recommandons de sélectionner Dropbox : il est accessible sur tous vos appareils et fournit même des sauvegardes des versions précédentes des fichiers.</string>
@@ -349,9 +363,18 @@
   <string name="ErrorUpdatingOtpAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="SavingOtpAuxFile">Enregistrement du fichier OTP auxiliaire...</string>
   <string name="loading">Chargement...</string>
+  <string name="get_regular_version">Obtenir plus de types de stockage</string>
   <string name="CertificateWarning">AVERTISSEMENT : Le serveur n\'a pas pu valider le certificat : %1$s. Installer le certificat racine approprié sur votre appareil ou consulter les paramètres !</string>
   <string name="CertificateFailure">AVERTISSEMENT : Le serveur n\'a pas pu valider le certificat ! Installer le certificat racine approprié sur votre appareil ou consulter les paramètres !</string>
+  <string name="export_fileformats_title">Sélectionner le format de fichier</string>
   <string name="ChangeLog_title">Journal des modifications</string>
+  <string name="ChangeLog_0_9_3">
+<b>Version 0.9.3</b>\n
+* Nouveau clavier avec de nombreuses améliorations. Voir les paramètres pour personnaliser.\n
+* Support en lecture seule des fichiers kdb (fichiers Keepass 1). Expérimental !\n
+* Ajout du support SFTP\n
+* Ajout d\'un contournement pour un bug dans ART (Android 4.4.2)\n
+* Correction de bugs\n</string>
   <string name="ChangeLog_0_9_2">
   <b>Version 0.9.2</b> \n * Ajout du support OTP (compatible avec le plugin OtpKeyProv) \n * Support du NFC intégré pour OTPs de YubiKey NEO \n * Plusieurs améliorations de l\'UI \n * Intégration de la librairie de Keepass 2.24 \n * Ajout d\'une option pour tuer le processus applicatif (voir réglages) \n * Amélioration de la validation du certificat SSL\n * Correction de bugs\n</string>
   <string name="ChangeLog_0_9_1">
@@ -423,6 +446,11 @@ Première version publique</string>
     <item>30 minutes</item>
     <item>1 heure</item>
     <item>Jamais</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Base de données KeePass 2 (.kdbx)</item>
+    <item>XML KeePass 2 (non chiffré) (.xml)</item>
+    <item>CSV KeePass (non chiffré) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Petit</item>

@@ -36,7 +36,7 @@
   <string name="available_through_keyboard">KP2A　キーボードを介して入力可能です。</string>
   <string name="not_possible_im_picker">「入力方法の選択」ダイアログを開けません。手動でキーボードを有効にしてください。</string>
   <string name="please_activate_keyboard">システム設定で Keepass2Android キーボードを有効にしてください。</string>
-  <string name="creating_db_key">データベース認証中…</string>
+  <string name="creating_db_key">データベース認証中&#8230;</string>
   <string name="current_group">現在のグループ</string>
   <string name="current_group_root">現在のグループ: Root</string>
   <string name="database">データベース</string>
@@ -103,7 +103,7 @@
   <string name="length">生成するパスワードの長さ</string>
   <string name="list_size_title">グループ一覧サイズ</string>
   <string name="list_size_summary">グループ一覧の文字サイズ</string>
-  <string name="loading_database">データベース読込中…</string>
+  <string name="loading_database">データベース読込中&#8230;</string>
   <string name="lowercase">英数小文字</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">パスワードを隠す</string>
@@ -139,9 +139,9 @@
   <string name="omitbackup_summary">\"バックアップ\"と\"ごみ箱\"を検索対象から除外します</string>
   <string name="pass_filename">KeePassデータベースファイル</string>
   <string name="password_title">データベースのパスワード設定</string>
-  <string name="progress_create">データベースファイルを作成中…</string>
+  <string name="progress_create">データベースファイルを作成中&#8230;</string>
   <string name="create_database">データベースを作成</string>
-  <string name="progress_title">実行中…</string>
+  <string name="progress_title">実行中&#8230;</string>
   <string name="remember_keyfile_summary">前回使用したキーファイルを次回も表示します</string>
   <string name="remember_keyfile_title">キーファイルを記憶</string>
   <string name="remove_from_filelist">消去</string>
@@ -152,7 +152,7 @@
   <string name="rounds_hint">レベル</string>
   <string name="database_name">データベース名</string>
   <string name="default_username">新しいエントリのデフォルトユーザー名</string>
-  <string name="saving_database">データベースを保存中…</string>
+  <string name="saving_database">データベースを保存中&#8230;</string>
   <string name="space">半角スペース</string>
   <string name="search_label">検索</string>
   <string name="show_password">パスワードを表示</string>
@@ -219,6 +219,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>小</item>

@@ -39,7 +39,7 @@
   <string name="available_through_keyboard">Entrada está disponível através do teclado KP2A</string>
   <string name="not_possible_im_picker">Não foi possível abrir a caixa de diálogo para selecionar o método de entrada. Por favor, ative o teclado manualmente.</string>
   <string name="please_activate_keyboard">Por favor habilite o teclado Keepass2Android nas configurações do sistema.</string>
-  <string name="creating_db_key">Criando a chave da base de dados…</string>
+  <string name="creating_db_key">Criando a chave da base de dados&#8230;</string>
   <string name="current_group">Grupo atual</string>
   <string name="current_group_root">Grupo atual: Raiz</string>
   <string name="database">Base de dados</string>
@@ -106,7 +106,7 @@
   <string name="length">Tamanho</string>
   <string name="list_size_title">Tamanho da lista de grupos</string>
   <string name="list_size_summary">Tamanho do texto na lista de grupos</string>
-  <string name="loading_database">Carregando base de dados…</string>
+  <string name="loading_database">Carregando base de dados&#8230;</string>
   <string name="lowercase">Letras minúsculas</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Esconder senha</string>
@@ -133,7 +133,7 @@
   <string name="yes">Sim</string>
   <string name="no">Não</string>
   <string name="no_results">Não há resultados de pesquisa</string>
-  <string name="progress_title">A processar…</string>
+  <string name="progress_title">A processar&#8230;</string>
   <string name="remove_from_filelist">Remover</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Raiz</string>
@@ -198,29 +198,28 @@
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="ClearOfflineCache_title">Eliminar a cache?</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificações de teclado KP2A</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Caixa de diálogo de seleção de teclado</string>
   <string name="RecycleBin">Reciclagem</string>
   <string name="AskDiscardChanges_title">Descartar alterações?</string>
   <string name="suggest_improvements">Sugerir ou votar melhorias</string>
   <string name="translate_app">Traduza o KP2A</string>
-  <string name="AddingGroup">Adicionando grupo…</string>
-  <string name="DeletingEntry">Apagando entrada…</string>
-  <string name="DeletingGroup">Apagando grupo…</string>
-  <string name="SettingPassword">Estabelecendo password…</string>
-  <string name="UndoingChanges">Desfazendo alterações…</string>
-  <string name="TransformingKey">Transformando a chave mestra…</string>
-  <string name="DecodingDatabase">Descodificando base de dados…</string>
-  <string name="ParsingDatabase">Processando base de dados…</string>
-  <string name="CheckingTargetFileForChanges">Verificando o ficheiro de destino para mudanças…</string>
+  <string name="AddingGroup">Adicionando grupo&#8230;</string>
+  <string name="DeletingEntry">Apagando entrada&#8230;</string>
+  <string name="DeletingGroup">Apagando grupo&#8230;</string>
+  <string name="SettingPassword">Estabelecendo password&#8230;</string>
+  <string name="UndoingChanges">Desfazendo alterações&#8230;</string>
+  <string name="TransformingKey">Transformando a chave mestra&#8230;</string>
+  <string name="DecodingDatabase">Descodificando base de dados&#8230;</string>
+  <string name="ParsingDatabase">Processando base de dados&#8230;</string>
+  <string name="CheckingTargetFileForChanges">Verificando o ficheiro de destino para mudanças&#8230;</string>
   <string name="TitleSyncQuestion">Fundir alterações?</string>
   <string name="MessageSyncQuestion">A base de dados foi modificado externamente. Deseja carregar e fundir as alterações antes de salvar? Seleccione não se deseja sobre-escrever as alterações externas.</string>
-  <string name="SynchronizingDatabase">Fundindo alterações…</string>
+  <string name="SynchronizingDatabase">Fundindo alterações&#8230;</string>
   <string name="YesSynchronize">Sim, fundir</string>
   <string name="NoOverwrite">Não, sobre-escrever</string>
-  <string name="SynchronizingCachedDatabase">Sincronização da base de dados em cache…</string>
-  <string name="DownloadingRemoteFile">Carregando ficheiro remoto…</string>
-  <string name="UploadingFile">Uploading…</string>
-  <string name="RestoringRemoteFile">Restaurando ficheiro remoto…</string>
+  <string name="SynchronizingCachedDatabase">Sincronização da base de dados em cache&#8230;</string>
+  <string name="DownloadingRemoteFile">Carregando ficheiro remoto&#8230;</string>
+  <string name="UploadingFile">Uploading&#8230;</string>
+  <string name="RestoringRemoteFile">Restaurando ficheiro remoto&#8230;</string>
   <string name="FilesInSync">Os ficheiros são sincronizados.</string>
   <string name="SynchronizedDatabaseSuccessfully">Base de dados sincronizada com sucesso!</string>
   <string-array name="clipboard_timeout_options">
@@ -232,6 +231,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Pequena</item>

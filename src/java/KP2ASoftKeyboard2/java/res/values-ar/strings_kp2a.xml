@@ -3,4 +3,5 @@
 <resources>
   <string name="change_entry">اختر مُدخل  آخر</string>
   <string name="open_entry">اختر مُدخل</string>
+  <string name="open_entry_for_app">البحث عن مُدخل يحتوي على \"%1$s\"</string>
 </resources>

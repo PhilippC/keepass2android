@@ -39,7 +39,7 @@
   <string name="available_through_keyboard">Въвеждането е възможно чрез KP2A клавиатурата</string>
   <string name="not_possible_im_picker">Невъзможно отваряне на диалог за избиране на метод за въвеждане. Моля активирайте клавиатурата ръчно.</string>
   <string name="please_activate_keyboard">Моля активирайте клавиатурата на Keepass2Android във вашата системни настройки.</string>
-  <string name="creating_db_key">Създаване на ключ на базата данни…</string>
+  <string name="creating_db_key">Създаване на ключ на базата данни&#8230;</string>
   <string name="current_group">Настояща Група</string>
   <string name="current_group_root">Настояща Група: Главна</string>
   <string name="database">Базаданни</string>
@@ -56,7 +56,7 @@
   <string name="length">Дължина</string>
   <string name="list_size_title">Размер на груповия списък</string>
   <string name="list_size_summary">Размер на текстра в груповия списък</string>
-  <string name="loading_database">Зареждане на базата данни…</string>
+  <string name="loading_database">Зареждане на базата данни&#8230;</string>
   <string name="lowercase">Малки букви</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Маска за паролата</string>
@@ -79,7 +79,7 @@
   <string name="menu_search">Търсене</string>
   <string name="menu_search_advanced">Сложно търсене</string>
   <string name="menu_url">Отиди на страницата</string>
-  <string name="menu_change_db">Смени базата данни…</string>
+  <string name="menu_change_db">Смени базата данни&#8230;</string>
   <string name="minus">Минус</string>
   <string name="never">Никога</string>
   <string name="yes">Да</string>
@@ -93,9 +93,9 @@
   <string name="pass_filename">Име на KeePass файл за базата данни</string>
   <string name="password_title">Въведете паролата на базата данни</string>
   <string name="master_key_type">Изберете вид на главния ключ:</string>
-  <string name="progress_create">Създаване на нова база данни…</string>
+  <string name="progress_create">Създаване на нова база данни&#8230;</string>
   <string name="create_database">Създаване на база данни</string>
-  <string name="progress_title">В процес на работа…</string>
+  <string name="progress_title">В процес на работа&#8230;</string>
   <string name="remember_keyfile_summary">Запомни пътя до ключовия файл</string>
   <string name="remember_keyfile_title">Запази ключов файл</string>
   <string name="remove_from_filelist">Премахване</string>
@@ -150,6 +150,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Small</item>

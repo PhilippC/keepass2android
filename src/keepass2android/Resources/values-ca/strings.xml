@@ -21,7 +21,7 @@
   <string name="clipboard_timeout_summary">Temps abans de netejar el porta-retalls després de copiar un usuari o contrasenya</string>
   <string name="copy_username">Selecciona per copiar l\'usuari al porta-retalls</string>
   <string name="copy_password">Selecciona per copiar la contrasenya al porta-retalls</string>
-  <string name="creating_db_key">Creant clau de base de dades…</string>
+  <string name="creating_db_key">Creant clau de base de dades&#8230;</string>
   <string name="current_group">Grup actual</string>
   <string name="current_group_root">Grup actual: Arrel</string>
   <string name="database">Base de dades</string>
@@ -76,7 +76,7 @@
   <string name="length">Longitud</string>
   <string name="list_size_title">Mida de la llista de grups</string>
   <string name="list_size_summary">Mida del text a la llista de grups</string>
-  <string name="loading_database">Carregant base de dades…</string>
+  <string name="loading_database">Carregant base de dades&#8230;</string>
   <string name="lowercase">Minúscules</string>
   <string name="maskpass_title">Emmascara contrasenya</string>
   <string name="maskpass_summary">Amaga les contrasenyes per defecte</string>
@@ -105,8 +105,8 @@
   <string name="omitbackup_summary">Omet els grups \'Còpia de seguretat\' i paperera dels resultats de cerca</string>
   <string name="pass_filename">Nom de base de dades KeePass</string>
   <string name="password_title">Introdueix contrasenya de la base de dades</string>
-  <string name="progress_create">Creant nova base de dades…</string>
-  <string name="progress_title">Treballant…</string>
+  <string name="progress_create">Creant nova base de dades&#8230;</string>
+  <string name="progress_title">Treballant&#8230;</string>
   <string name="remember_keyfile_summary">Recorda la localització d\'arxius clau</string>
   <string name="remember_keyfile_title">Guarda arxiu clau</string>
   <string name="remove_from_filelist">Elimina</string>
@@ -114,7 +114,7 @@
   <string name="rounds">Passades d\'encriptació</string>
   <string name="rounds_explaination">Més passades d\'encriptació dónen protecció adicional contra atacs de força bruta, però poden alentir molt carregar i guardar la base de dades.</string>
   <string name="rounds_hint">passades</string>
-  <string name="saving_database">Guardant la base de dades…</string>
+  <string name="saving_database">Guardant la base de dades&#8230;</string>
   <string name="space">Espai</string>
   <string name="search_label">Cerca</string>
   <string name="show_password">Mostra contrasenya</string>
@@ -137,6 +137,11 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (unencrypted) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Petita</item>
