@@ -19,7 +19,7 @@
         android:baselineAligned="false">
         <FrameLayout
             android:id="@+id/select_other_entry"
-            style="@style/BottomBarActionButton"
+            style="?android:attr/actionButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -34,7 +34,7 @@
         </FrameLayout>
         <FrameLayout
             android:id="@+id/add_url_entry"
-            style="@style/BottomBarActionButton"
+            style="?android:attr/actionButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">

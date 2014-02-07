@@ -19,7 +19,7 @@
         android:baselineAligned="false">
         <FrameLayout
             android:id="@+id/add_group"
-            style="@style/BottomBarActionButton"
+            style="?android:attr/actionButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -36,7 +36,7 @@
         </FrameLayout>
         <FrameLayout
             android:id="@+id/add_entry"
-            style="@style/BottomBarActionButton"
+            style="?android:attr/actionButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 			android:background="?android:attr/selectableItemBackground"
@@ -55,7 +55,7 @@
         </FrameLayout>
 		<FrameLayout
             android:id="@+id/insert_element"
-            style="@style/BottomBarActionButton"
+            style="?android:attr/actionButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -72,7 +72,7 @@
 		</FrameLayout>
 		<FrameLayout
             android:id="@+id/cancel_insert_element"
-            style="@style/BottomBarActionButton"
+            style="?android:attr/actionButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">

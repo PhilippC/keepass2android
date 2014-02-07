@@ -17,7 +17,7 @@
         android:dividerPadding="12dp">
    
         <FrameLayout
-            style="@style/BottomBarActionButton"
+            style="?android:attr/actionButtonStyle"
             android:id="@+id/entry_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
