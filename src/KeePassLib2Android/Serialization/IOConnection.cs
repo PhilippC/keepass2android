@@ -362,22 +362,56 @@ namespace KeePassLib.Serialization
 			public override void Close()
 			{
 				base.Close();
-				RepeatWithDigestOnFail(ioc, req =>
+
+				WebRequest testReq = WebRequest.Create(ioc.Path);
+				if (testReq is HttpWebRequest)
 				{
-					req.Headers.Add("Translate: f");
-
-					if (method != null)
-						req.Method = method;
-					var data = this.ToArray();
-
-					using (Stream s = req.GetRequestStream())
+					RepeatWithDigestOnFail(ioc, req =>
 					{
-						s.Write(data, 0, data.Length);
-						req.GetResponse();
-						s.Close();
+						req.Headers.Add("Translate: f");
+
+						if (method != null)
+							req.Method = method;
+						var data = this.ToArray();
+
+						using (Stream s = req.GetRequestStream())
+						{
+							s.Write(data, 0, data.Length);
+							req.GetResponse();
+							s.Close();
+						}
+					});	
+				}
+				else
+				{
+					try
+					{
+						uploadData(IOConnection.CreateWebClient(ioc, false));
 					}
-				});
+					catch (WebException ex)
+					{
+						//todo: does this make sense for FTP at all? Remove?
+						if ((ex.Response is HttpWebResponse) && (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized))
+							uploadData(IOConnection.CreateWebClient(ioc, true));
+						else
+							throw;
+					}
+				}
+
 				
+				
+			}
+
+			void uploadData(WebClient webClient)
+			{
+				if (method != null)
+				{
+					webClient.UploadData(destinationFilePath, method, this.ToArray());
+				}
+				else
+				{
+					webClient.UploadData(destinationFilePath, this.ToArray());
+				}
 			}
 
 			

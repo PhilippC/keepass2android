@@ -112,24 +112,20 @@ public class InputLanguageSelection extends PreferenceActivity {
         conf.locale = locale;
         res.updateConfiguration(conf, res.getDisplayMetrics());
 
-        int[] dictionaries = KP2AKeyboard.getDictionary(res, ctx);
-        BinaryDictionary bd = new BinaryDictionary(this, dictionaries, Suggest.DIC_MAIN);
-
-        // Is the dictionary larger than a placeholder? Arbitrarily chose a lower limit of
-        // 4000-5000 words, whereas the LARGE_DICTIONARY is about 20000+ words.
-        if (bd.getSize() > Suggest.LARGE_DICTIONARY_THRESHOLD / 4) {
-            haveDictionary = true;
+        //somewhat a hack. But simply querying the dictionary will always return an English
+        //dictionary in KP2A so if we get a dict, we wouldn't know if it's language specific 
+        if (locale.getLanguage().equals("en"))
+        {
+        	haveDictionary = true;
         }
         else 
         {
             BinaryDictionary plug = PluginManager.getDictionary(getApplicationContext(), locale.getLanguage());
             if (plug != null) {
-                bd.close();
-                bd = plug;
-                haveDictionary = true;
+            	plug.close();
+            	haveDictionary = true;
             }
         }
-        bd.close();
         conf.locale = saveLocale;
         res.updateConfiguration(conf, res.getDisplayMetrics());
         return haveDictionary;

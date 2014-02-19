@@ -53,6 +53,13 @@
             android:persistent="true"
             android:defaultValue="true"
             />
+			
+	<PreferenceScreen
+            android:title="@string/language_selection_title"
+            android:summary="@string/language_selection_summary">
+        <intent
+                android:action="keepass2android.softkeyboard.INPUT_LANGUAGE_SELECTION"/>
+    </PreferenceScreen>
 
         
     <PreferenceCategory

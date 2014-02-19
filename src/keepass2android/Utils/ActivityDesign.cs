@@ -27,12 +27,16 @@ namespace keepass2android
 
 		public void ReapplyTheme()
 		{
-			int newTheme = UseDarkTheme ? Resource.Style.ThemeDark : Resource.Style.ThemeLight;
-			if (newTheme != _currentThemeId)
+			if (HasThemes())
 			{
-				Kp2aLog.Log("recreating due to theme change.");
-				_activity.Recreate();
+				int newTheme = UseDarkTheme ? Resource.Style.ThemeDark : Resource.Style.ThemeLight;
+				if (newTheme != _currentThemeId)
+				{
+					Kp2aLog.Log("recreating due to theme change.");
+					_activity.Recreate();
+				}	
 			}
+			
 			
 		}
 

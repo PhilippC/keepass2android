@@ -200,6 +200,32 @@ namespace Kp2aUnitTests
 			
 		}
 
+		[TestMethod]
+		public void LoadAndSaveFromRemote1And1Ftp()
+		{
+			var ioc = RemoteIoc1and1Ftp; //note: this property is defined in "TestLoadDbCredentials.cs" which is deliberately excluded from Git because the credentials are not public!
+			var app = new TestKp2aApp();
+			app.CreateNewDatabase();
+
+			bool loadSuccesful = false;
+			LoadDb task = new LoadDb(app, ioc, null, CreateKey("test"), null, new ActionOnFinish((success, message) =>
+			{
+				if (!success)
+					Android.Util.Log.Debug("KP2ATest", "error loading db: " + message);
+				loadSuccesful = success;
+			})
+				);
+			ProgressTask pt = new ProgressTask(app, Application.Context, task);
+			Android.Util.Log.Debug("KP2ATest", "Running ProgressTask");
+			pt.Run();
+			pt.JoinWorkerThread();
+			Android.Util.Log.Debug("KP2ATest", "PT.run finished");
+			Assert.IsTrue(loadSuccesful, "didn't succesfully load database :-(");
+
+			Assert.IsTrue(TrySaveDatabase(app), "didn't successfully save database.");
+
+		}
+
 
 		[TestMethod]
 		public void LoadFromRemote1And1NonExisting()

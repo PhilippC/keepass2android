@@ -24,6 +24,7 @@ using Android.Content;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
+using Android.Views;
 using Android.Widget;
 using KeePassLib;
 using KeePassLib.Cryptography.Cipher;
@@ -517,7 +518,10 @@ namespace keepass2android
 		internal void ShowToast(string message)
 		{
 			var handler = new Handler(Looper.MainLooper);
-			handler.Post(() => { Toast.MakeText(Application.Context, message, ToastLength.Long).Show(); });
+			handler.Post(() => { var toast = Toast.MakeText(Application.Context, message, ToastLength.Long);
+				                   toast.SetGravity(GravityFlags.Center, 0, 0);
+									toast.Show(); 
+			});
 		}
 
 		public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception e)

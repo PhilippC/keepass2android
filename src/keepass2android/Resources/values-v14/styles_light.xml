@@ -35,7 +35,11 @@
 	</style>
     <style name="NoTitleBarLight" parent="BaseLight">
     </style>
-    <style name="DialogLight" parent="BaseLight"></style>
+    
+
+	<style name="BaseLight_Dialog" parent="android:Theme.Holo.Light.Dialog" />
+	<style name="DialogLight" parent="BaseLight_Dialog"></style>
+	
 	<style name="ThemeLight" parent="BaseLight"></style>
 	
 	<!-- "default" for Preference activity etc.:-->

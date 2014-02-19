@@ -145,7 +145,8 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
-			_design.ReapplyTheme();
+			//DON'T: _design.ReapplyTheme();
+			// (This causes endless loop creating/recreating. More correct: ReapplyDialogTheme (which doesn't exist) Not required anyways...)
 		}
 	}
 }
