@@ -71,7 +71,7 @@ namespace KeePassLib.Serialization
 			if(m_bTransacted)
 			{
 				m_iocTemp = m_iocBase.CloneDeep();
-				m_iocTemp.Path += StrTempSuffix;
+				m_iocTemp.Path += "."+new PwUuid(true).ToHexString().Substring(0,6)+ StrTempSuffix;
 			}
 			else m_iocTemp = m_iocBase;
 		}
