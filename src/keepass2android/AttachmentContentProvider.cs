@@ -9,7 +9,7 @@ namespace keepass2android
 	/// <summary>
 	/// Makes attachments of PwEntries accessible when they are stored in the app cache
 	/// </summary>
-	[ContentProvider(new[]{"keepass2android."+AppNames.PackagePart+".provider"})] 
+	[ContentProvider(new[]{"keepass2android."+AppNames.PackagePart+".provider"},Exported = true)] 
 	public class AttachmentContentProvider : ContentProvider {
 		public const string AttachmentCacheSubDir = "AttachmentCache";
 
