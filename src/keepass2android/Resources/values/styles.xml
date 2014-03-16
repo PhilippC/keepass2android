@@ -22,7 +22,7 @@
 		<item name="OpenFileDrawable">@drawable/collections_collection</item>
 		<item name="CreateDbDrawable">@drawable/collections_new_label</item>
 		<item name="OpenUrlDrawable">@drawable/location_web_site</item>
-
+		<item name="ic_action_search_drawable">@drawable/ic_action_search_holodark</item>	
 	</style>
 	<style name="NoTitleBar"></style>
     <style name="Dialog" parent="android:Theme.Dialog"></style>
