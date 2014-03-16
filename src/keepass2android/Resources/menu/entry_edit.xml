@@ -17,10 +17,6 @@
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_toggle_pass"
-        android:icon="@android:drawable/ic_menu_view"
-        android:title="@string/show_password"
-    />
     <item android:id="@+id/menu_cancel_edit"
         android:title="@string/entry_cancel"
     />

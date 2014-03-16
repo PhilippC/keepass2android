@@ -57,49 +57,57 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/entry_url"
                 android:text="@string/entry_password" />
-            <Button
-                android:id="@+id/generate_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/entry_password_label"
-                android:text="@string/ellipsis" />
-            <EditText
-                android:id="@+id/entry_password"
-                style="@style/TextAppearance_EditEntry_Value"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/generate_button"
-                android:layout_toLeftOf="@id/generate_button"
-                android:hint="@string/hint_pass"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:typeface="monospace" />
-        <!-- Confirm Password -->
-            <TextView
-                android:id="@+id/entry_confpassword_label"
-                style="@style/TextAppearance_EditEntry_LabelSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/entry_password"
-                android:text="@string/entry_confpassword" />
-            <EditText
-                android:id="@+id/entry_confpassword"
-                style="@style/TextAppearance_EditEntry_Value"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/entry_confpassword_label"
-                android:hint="@string/hint_conf_pass"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:typeface="monospace" />
+             <RelativeLayout
+			android:id="@+id/password_section"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/entry_password_label">
+			
+		<Button
+			android:id="@+id/generate_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:text="@string/ellipsis" />
+			<ImageButton
+        android:id="@+id/toggle_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_view"
+		android:layout_alignTop="@id/generate_button"
+        android:layout_toLeftOf="@id/generate_button"
+         />
+		<EditText
+			android:id="@+id/entry_password"
+			style="@style/TextAppearance_EditEntry_Value"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignTop="@id/generate_button"
+			android:layout_toLeftOf="@id/toggle_password"
+			android:hint="@string/hint_pass"
+			android:inputType="textPassword"
+			android:singleLine="true"
+			android:typeface="monospace" />
+		<!-- Confirm Password -->
+		<EditText
+			android:id="@+id/entry_confpassword"
+			style="@style/TextAppearance_EditEntry_Value"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/entry_password"
+			android:hint="@string/hint_conf_pass"
+			android:inputType="textPassword"
+			android:singleLine="true"
+			android:typeface="monospace" />
+
+		</RelativeLayout>
         <!-- Comment -->
             <TextView
                 android:id="@+id/entry_comment_label"
                 style="@style/TextAppearance_EditEntry_LabelSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/entry_confpassword"
+                android:layout_below="@id/password_section"
                 android:text="@string/entry_comment" />
             <EditText
                 android:id="@+id/entry_comment"
