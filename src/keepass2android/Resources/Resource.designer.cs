@@ -2204,427 +2204,430 @@ namespace keepass2android
 			public const int ic_launcher_gray = 2130837843;
 			
 			// aapt resource value: 0x7f020154
-			public const int ic_launcher_offline = 2130837844;
+			public const int ic_launcher_gray_bday = 2130837844;
 			
 			// aapt resource value: 0x7f020155
-			public const int ic_launcher_red = 2130837845;
+			public const int ic_launcher_offline = 2130837845;
 			
 			// aapt resource value: 0x7f020156
-			public const int ic_menu_add_field_holo_light = 2130837846;
+			public const int ic_launcher_red = 2130837846;
 			
 			// aapt resource value: 0x7f020157
-			public const int ic_menu_add_field_holodark = 2130837847;
+			public const int ic_menu_add_field_holo_light = 2130837847;
 			
 			// aapt resource value: 0x7f020158
-			public const int ic_menu_remove_field_holo_light = 2130837848;
+			public const int ic_menu_add_field_holodark = 2130837848;
 			
 			// aapt resource value: 0x7f020159
-			public const int ic_menu_remove_field_holodark = 2130837849;
+			public const int ic_menu_remove_field_holo_light = 2130837849;
 			
 			// aapt resource value: 0x7f02015a
-			public const int ic_menu_view = 2130837850;
+			public const int ic_menu_remove_field_holodark = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int ic_mic_dialog = 2130837851;
+			public const int ic_menu_view = 2130837851;
 			
 			// aapt resource value: 0x7f02015c
-			public const int ic_storage_androidget = 2130837852;
+			public const int ic_mic_dialog = 2130837852;
 			
 			// aapt resource value: 0x7f02015d
-			public const int ic_storage_androidsend = 2130837853;
+			public const int ic_storage_androidget = 2130837853;
 			
 			// aapt resource value: 0x7f02015e
-			public const int ic_storage_dropbox = 2130837854;
+			public const int ic_storage_androidsend = 2130837854;
 			
 			// aapt resource value: 0x7f02015f
-			public const int ic_storage_dropboxKP2A = 2130837855;
+			public const int ic_storage_dropbox = 2130837855;
 			
 			// aapt resource value: 0x7f020160
-			public const int ic_storage_file = 2130837856;
+			public const int ic_storage_dropboxKP2A = 2130837856;
 			
 			// aapt resource value: 0x7f020161
-			public const int ic_storage_ftp = 2130837857;
+			public const int ic_storage_file = 2130837857;
 			
 			// aapt resource value: 0x7f020162
-			public const int ic_storage_gdrive = 2130837858;
+			public const int ic_storage_ftp = 2130837858;
 			
 			// aapt resource value: 0x7f020163
-			public const int ic_storage_http = 2130837859;
+			public const int ic_storage_gdrive = 2130837859;
 			
 			// aapt resource value: 0x7f020164
-			public const int ic_storage_https = 2130837860;
+			public const int ic_storage_http = 2130837860;
 			
 			// aapt resource value: 0x7f020165
-			public const int ic_storage_sftp = 2130837861;
+			public const int ic_storage_https = 2130837861;
 			
 			// aapt resource value: 0x7f020166
-			public const int ic_storage_skydrive = 2130837862;
+			public const int ic_storage_sftp = 2130837862;
 			
 			// aapt resource value: 0x7f020167
-			public const int ic_subtype_keyboard = 2130837863;
+			public const int ic_storage_skydrive = 2130837863;
 			
 			// aapt resource value: 0x7f020168
-			public const int ic_subtype_mic = 2130837864;
+			public const int ic_subtype_keyboard = 2130837864;
 			
 			// aapt resource value: 0x7f020169
-			public const int ic_suggest_scroll_background = 2130837865;
+			public const int ic_subtype_mic = 2130837865;
 			
 			// aapt resource value: 0x7f02016a
-			public const int ic_suggest_strip_microphone = 2130837866;
+			public const int ic_suggest_scroll_background = 2130837866;
 			
 			// aapt resource value: 0x7f02016b
-			public const int ic_suggest_strip_microphone_swipe = 2130837867;
+			public const int ic_suggest_strip_microphone = 2130837867;
 			
 			// aapt resource value: 0x7f02016c
-			public const int ic_unlocked_gray = 2130837868;
+			public const int ic_suggest_strip_microphone_swipe = 2130837868;
 			
 			// aapt resource value: 0x7f02016d
-			public const int keyboard_background = 2130837869;
+			public const int ic_unlocked_gray = 2130837869;
 			
 			// aapt resource value: 0x7f02016e
-			public const int keyboard_dark_background = 2130837870;
+			public const int keyboard_background = 2130837870;
 			
 			// aapt resource value: 0x7f02016f
-			public const int keyboard_hint_0 = 2130837871;
+			public const int keyboard_dark_background = 2130837871;
 			
 			// aapt resource value: 0x7f020170
-			public const int keyboard_hint_1 = 2130837872;
+			public const int keyboard_hint_0 = 2130837872;
 			
 			// aapt resource value: 0x7f020171
-			public const int keyboard_hint_2 = 2130837873;
+			public const int keyboard_hint_1 = 2130837873;
 			
 			// aapt resource value: 0x7f020172
-			public const int keyboard_hint_3 = 2130837874;
+			public const int keyboard_hint_2 = 2130837874;
 			
 			// aapt resource value: 0x7f020173
-			public const int keyboard_hint_4 = 2130837875;
+			public const int keyboard_hint_3 = 2130837875;
 			
 			// aapt resource value: 0x7f020174
-			public const int keyboard_hint_5 = 2130837876;
+			public const int keyboard_hint_4 = 2130837876;
 			
 			// aapt resource value: 0x7f020175
-			public const int keyboard_hint_6 = 2130837877;
+			public const int keyboard_hint_5 = 2130837877;
 			
 			// aapt resource value: 0x7f020176
-			public const int keyboard_hint_7 = 2130837878;
+			public const int keyboard_hint_6 = 2130837878;
 			
 			// aapt resource value: 0x7f020177
-			public const int keyboard_hint_8 = 2130837879;
+			public const int keyboard_hint_7 = 2130837879;
 			
 			// aapt resource value: 0x7f020178
-			public const int keyboard_hint_9 = 2130837880;
+			public const int keyboard_hint_8 = 2130837880;
 			
 			// aapt resource value: 0x7f020179
-			public const int keyboard_key_feedback = 2130837881;
+			public const int keyboard_hint_9 = 2130837881;
 			
 			// aapt resource value: 0x7f02017a
-			public const int keyboard_key_feedback_background = 2130837882;
+			public const int keyboard_key_feedback = 2130837882;
 			
 			// aapt resource value: 0x7f02017b
-			public const int keyboard_key_feedback_more_background = 2130837883;
+			public const int keyboard_key_feedback_background = 2130837883;
 			
 			// aapt resource value: 0x7f02017c
-			public const int keyboard_popup_panel_background = 2130837884;
+			public const int keyboard_key_feedback_more_background = 2130837884;
 			
 			// aapt resource value: 0x7f02017d
-			public const int keyboard_suggest_strip = 2130837885;
+			public const int keyboard_popup_panel_background = 2130837885;
 			
 			// aapt resource value: 0x7f02017e
-			public const int keyboard_suggest_strip_divider = 2130837886;
+			public const int keyboard_suggest_strip = 2130837886;
 			
 			// aapt resource value: 0x7f02017f
-			public const int list_selector_background_pressed = 2130837887;
+			public const int keyboard_suggest_strip_divider = 2130837887;
 			
 			// aapt resource value: 0x7f020180
-			public const int location_web_site = 2130837888;
+			public const int list_selector_background_pressed = 2130837888;
 			
 			// aapt resource value: 0x7f020181
-			public const int location_web_site_holodark = 2130837889;
+			public const int location_web_site = 2130837889;
 			
 			// aapt resource value: 0x7f020182
-			public const int mic_slash = 2130837890;
+			public const int location_web_site_holodark = 2130837890;
 			
 			// aapt resource value: 0x7f020183
-			public const int navigation_accept = 2130837891;
+			public const int mic_slash = 2130837891;
 			
 			// aapt resource value: 0x7f020184
-			public const int navigation_accept_dark = 2130837892;
+			public const int navigation_accept = 2130837892;
 			
 			// aapt resource value: 0x7f020185
-			public const int navigation_cancel = 2130837893;
+			public const int navigation_accept_dark = 2130837893;
 			
 			// aapt resource value: 0x7f020186
-			public const int navigation_cancel_holodark = 2130837894;
+			public const int navigation_cancel = 2130837894;
 			
 			// aapt resource value: 0x7f020187
-			public const int navigation_previous_item = 2130837895;
+			public const int navigation_cancel_holodark = 2130837895;
 			
 			// aapt resource value: 0x7f020188
-			public const int navigation_previous_item_dark = 2130837896;
+			public const int navigation_previous_item = 2130837896;
 			
 			// aapt resource value: 0x7f020189
-			public const int notify = 2130837897;
+			public const int navigation_previous_item_dark = 2130837897;
 			
 			// aapt resource value: 0x7f02018a
-			public const int notify_keyboard = 2130837898;
+			public const int notify = 2130837898;
 			
 			// aapt resource value: 0x7f02018b
-			public const int ok_cancel = 2130837899;
+			public const int notify_keyboard = 2130837899;
 			
 			// aapt resource value: 0x7f02018c
-			public const int oktoberfest = 2130837900;
+			public const int ok_cancel = 2130837900;
 			
 			// aapt resource value: 0x7f02018d
-			public const int RedButton = 2130837901;
+			public const int oktoberfest = 2130837901;
 			
 			// aapt resource value: 0x7f02018e
-			public const int section_header = 2130837902;
+			public const int RedButton = 2130837902;
 			
 			// aapt resource value: 0x7f02018f
-			public const int speak_now_level0 = 2130837903;
+			public const int section_header = 2130837903;
 			
 			// aapt resource value: 0x7f020190
-			public const int speak_now_level1 = 2130837904;
+			public const int speak_now_level0 = 2130837904;
 			
 			// aapt resource value: 0x7f020191
-			public const int speak_now_level2 = 2130837905;
+			public const int speak_now_level1 = 2130837905;
 			
 			// aapt resource value: 0x7f020192
-			public const int speak_now_level3 = 2130837906;
+			public const int speak_now_level2 = 2130837906;
 			
 			// aapt resource value: 0x7f020193
-			public const int speak_now_level4 = 2130837907;
+			public const int speak_now_level3 = 2130837907;
 			
 			// aapt resource value: 0x7f020194
-			public const int speak_now_level5 = 2130837908;
+			public const int speak_now_level4 = 2130837908;
 			
 			// aapt resource value: 0x7f020195
-			public const int speak_now_level6 = 2130837909;
+			public const int speak_now_level5 = 2130837909;
 			
 			// aapt resource value: 0x7f020196
-			public const int sym_bkeyboard_123_mic = 2130837910;
+			public const int speak_now_level6 = 2130837910;
 			
 			// aapt resource value: 0x7f020197
-			public const int sym_bkeyboard_delete = 2130837911;
+			public const int sym_bkeyboard_123_mic = 2130837911;
 			
 			// aapt resource value: 0x7f020198
-			public const int sym_bkeyboard_done = 2130837912;
+			public const int sym_bkeyboard_delete = 2130837912;
 			
 			// aapt resource value: 0x7f020199
-			public const int sym_bkeyboard_kp2a = 2130837913;
+			public const int sym_bkeyboard_done = 2130837913;
 			
 			// aapt resource value: 0x7f02019a
-			public const int sym_bkeyboard_mic = 2130837914;
+			public const int sym_bkeyboard_kp2a = 2130837914;
 			
 			// aapt resource value: 0x7f02019b
-			public const int sym_bkeyboard_num0 = 2130837915;
+			public const int sym_bkeyboard_mic = 2130837915;
 			
 			// aapt resource value: 0x7f02019c
-			public const int sym_bkeyboard_num1 = 2130837916;
+			public const int sym_bkeyboard_num0 = 2130837916;
 			
 			// aapt resource value: 0x7f02019d
-			public const int sym_bkeyboard_num2 = 2130837917;
+			public const int sym_bkeyboard_num1 = 2130837917;
 			
 			// aapt resource value: 0x7f02019e
-			public const int sym_bkeyboard_num3 = 2130837918;
+			public const int sym_bkeyboard_num2 = 2130837918;
 			
 			// aapt resource value: 0x7f02019f
-			public const int sym_bkeyboard_num4 = 2130837919;
+			public const int sym_bkeyboard_num3 = 2130837919;
 			
 			// aapt resource value: 0x7f0201a0
-			public const int sym_bkeyboard_num5 = 2130837920;
+			public const int sym_bkeyboard_num4 = 2130837920;
 			
 			// aapt resource value: 0x7f0201a1
-			public const int sym_bkeyboard_num6 = 2130837921;
+			public const int sym_bkeyboard_num5 = 2130837921;
 			
 			// aapt resource value: 0x7f0201a2
-			public const int sym_bkeyboard_num7 = 2130837922;
+			public const int sym_bkeyboard_num6 = 2130837922;
 			
 			// aapt resource value: 0x7f0201a3
-			public const int sym_bkeyboard_num8 = 2130837923;
+			public const int sym_bkeyboard_num7 = 2130837923;
 			
 			// aapt resource value: 0x7f0201a4
-			public const int sym_bkeyboard_num9 = 2130837924;
+			public const int sym_bkeyboard_num8 = 2130837924;
 			
 			// aapt resource value: 0x7f0201a5
-			public const int sym_bkeyboard_numalt = 2130837925;
+			public const int sym_bkeyboard_num9 = 2130837925;
 			
 			// aapt resource value: 0x7f0201a6
-			public const int sym_bkeyboard_numpound = 2130837926;
+			public const int sym_bkeyboard_numalt = 2130837926;
 			
 			// aapt resource value: 0x7f0201a7
-			public const int sym_bkeyboard_numstar = 2130837927;
+			public const int sym_bkeyboard_numpound = 2130837927;
 			
 			// aapt resource value: 0x7f0201a8
-			public const int sym_bkeyboard_return = 2130837928;
+			public const int sym_bkeyboard_numstar = 2130837928;
 			
 			// aapt resource value: 0x7f0201a9
-			public const int sym_bkeyboard_search = 2130837929;
+			public const int sym_bkeyboard_return = 2130837929;
 			
 			// aapt resource value: 0x7f0201aa
-			public const int sym_bkeyboard_settings = 2130837930;
+			public const int sym_bkeyboard_search = 2130837930;
 			
 			// aapt resource value: 0x7f0201ab
-			public const int sym_bkeyboard_shift = 2130837931;
+			public const int sym_bkeyboard_settings = 2130837931;
 			
 			// aapt resource value: 0x7f0201ac
-			public const int sym_bkeyboard_shift_locked = 2130837932;
+			public const int sym_bkeyboard_shift = 2130837932;
 			
 			// aapt resource value: 0x7f0201ad
-			public const int sym_bkeyboard_space = 2130837933;
+			public const int sym_bkeyboard_shift_locked = 2130837933;
 			
 			// aapt resource value: 0x7f0201ae
-			public const int sym_bkeyboard_tab = 2130837934;
+			public const int sym_bkeyboard_space = 2130837934;
 			
 			// aapt resource value: 0x7f0201af
-			public const int sym_keyboard = 2130837935;
+			public const int sym_bkeyboard_tab = 2130837935;
 			
 			// aapt resource value: 0x7f0201b0
-			public const int sym_keyboard_123_mic = 2130837936;
+			public const int sym_keyboard = 2130837936;
 			
 			// aapt resource value: 0x7f0201b1
-			public const int sym_keyboard_delete = 2130837937;
+			public const int sym_keyboard_123_mic = 2130837937;
 			
 			// aapt resource value: 0x7f0201b2
-			public const int sym_keyboard_done = 2130837938;
+			public const int sym_keyboard_delete = 2130837938;
 			
 			// aapt resource value: 0x7f0201b3
-			public const int sym_keyboard_feedback_123_mic = 2130837939;
+			public const int sym_keyboard_done = 2130837939;
 			
 			// aapt resource value: 0x7f0201b4
-			public const int sym_keyboard_feedback_delete = 2130837940;
+			public const int sym_keyboard_feedback_123_mic = 2130837940;
 			
 			// aapt resource value: 0x7f0201b5
-			public const int sym_keyboard_feedback_done = 2130837941;
+			public const int sym_keyboard_feedback_delete = 2130837941;
 			
 			// aapt resource value: 0x7f0201b6
-			public const int sym_keyboard_feedback_kp2a = 2130837942;
+			public const int sym_keyboard_feedback_done = 2130837942;
 			
 			// aapt resource value: 0x7f0201b7
-			public const int sym_keyboard_feedback_language_arrows_left = 2130837943;
+			public const int sym_keyboard_feedback_kp2a = 2130837943;
 			
 			// aapt resource value: 0x7f0201b8
-			public const int sym_keyboard_feedback_language_arrows_right = 2130837944;
+			public const int sym_keyboard_feedback_language_arrows_left = 2130837944;
 			
 			// aapt resource value: 0x7f0201b9
-			public const int sym_keyboard_feedback_mic = 2130837945;
+			public const int sym_keyboard_feedback_language_arrows_right = 2130837945;
 			
 			// aapt resource value: 0x7f0201ba
-			public const int sym_keyboard_feedback_numalt = 2130837946;
+			public const int sym_keyboard_feedback_mic = 2130837946;
 			
 			// aapt resource value: 0x7f0201bb
-			public const int sym_keyboard_feedback_return = 2130837947;
+			public const int sym_keyboard_feedback_numalt = 2130837947;
 			
 			// aapt resource value: 0x7f0201bc
-			public const int sym_keyboard_feedback_search = 2130837948;
+			public const int sym_keyboard_feedback_return = 2130837948;
 			
 			// aapt resource value: 0x7f0201bd
-			public const int sym_keyboard_feedback_settings = 2130837949;
+			public const int sym_keyboard_feedback_search = 2130837949;
 			
 			// aapt resource value: 0x7f0201be
-			public const int sym_keyboard_feedback_shift = 2130837950;
+			public const int sym_keyboard_feedback_settings = 2130837950;
 			
 			// aapt resource value: 0x7f0201bf
-			public const int sym_keyboard_feedback_shift_locked = 2130837951;
+			public const int sym_keyboard_feedback_shift = 2130837951;
 			
 			// aapt resource value: 0x7f0201c0
-			public const int sym_keyboard_feedback_space = 2130837952;
+			public const int sym_keyboard_feedback_shift_locked = 2130837952;
 			
 			// aapt resource value: 0x7f0201c1
-			public const int sym_keyboard_feedback_tab = 2130837953;
+			public const int sym_keyboard_feedback_space = 2130837953;
 			
 			// aapt resource value: 0x7f0201c2
-			public const int sym_keyboard_kp2a = 2130837954;
+			public const int sym_keyboard_feedback_tab = 2130837954;
 			
 			// aapt resource value: 0x7f0201c3
-			public const int sym_keyboard_language_arrows_left = 2130837955;
+			public const int sym_keyboard_kp2a = 2130837955;
 			
 			// aapt resource value: 0x7f0201c4
-			public const int sym_keyboard_language_arrows_right = 2130837956;
+			public const int sym_keyboard_language_arrows_left = 2130837956;
 			
 			// aapt resource value: 0x7f0201c5
-			public const int sym_keyboard_mic = 2130837957;
+			public const int sym_keyboard_language_arrows_right = 2130837957;
 			
 			// aapt resource value: 0x7f0201c6
-			public const int sym_keyboard_num0 = 2130837958;
+			public const int sym_keyboard_mic = 2130837958;
 			
 			// aapt resource value: 0x7f0201c7
-			public const int sym_keyboard_num1 = 2130837959;
+			public const int sym_keyboard_num0 = 2130837959;
 			
 			// aapt resource value: 0x7f0201c8
-			public const int sym_keyboard_num2 = 2130837960;
+			public const int sym_keyboard_num1 = 2130837960;
 			
 			// aapt resource value: 0x7f0201c9
-			public const int sym_keyboard_num3 = 2130837961;
+			public const int sym_keyboard_num2 = 2130837961;
 			
 			// aapt resource value: 0x7f0201ca
-			public const int sym_keyboard_num4 = 2130837962;
+			public const int sym_keyboard_num3 = 2130837962;
 			
 			// aapt resource value: 0x7f0201cb
-			public const int sym_keyboard_num5 = 2130837963;
+			public const int sym_keyboard_num4 = 2130837963;
 			
 			// aapt resource value: 0x7f0201cc
-			public const int sym_keyboard_num6 = 2130837964;
+			public const int sym_keyboard_num5 = 2130837964;
 			
 			// aapt resource value: 0x7f0201cd
-			public const int sym_keyboard_num7 = 2130837965;
+			public const int sym_keyboard_num6 = 2130837965;
 			
 			// aapt resource value: 0x7f0201ce
-			public const int sym_keyboard_num8 = 2130837966;
+			public const int sym_keyboard_num7 = 2130837966;
 			
 			// aapt resource value: 0x7f0201cf
-			public const int sym_keyboard_num9 = 2130837967;
+			public const int sym_keyboard_num8 = 2130837967;
 			
 			// aapt resource value: 0x7f0201d0
-			public const int sym_keyboard_numalt = 2130837968;
+			public const int sym_keyboard_num9 = 2130837968;
 			
 			// aapt resource value: 0x7f0201d1
-			public const int sym_keyboard_numpound = 2130837969;
+			public const int sym_keyboard_numalt = 2130837969;
 			
 			// aapt resource value: 0x7f0201d2
-			public const int sym_keyboard_numstar = 2130837970;
+			public const int sym_keyboard_numpound = 2130837970;
 			
 			// aapt resource value: 0x7f0201d3
-			public const int sym_keyboard_return = 2130837971;
+			public const int sym_keyboard_numstar = 2130837971;
 			
 			// aapt resource value: 0x7f0201d4
-			public const int sym_keyboard_search = 2130837972;
+			public const int sym_keyboard_return = 2130837972;
 			
 			// aapt resource value: 0x7f0201d5
-			public const int sym_keyboard_settings = 2130837973;
+			public const int sym_keyboard_search = 2130837973;
 			
 			// aapt resource value: 0x7f0201d6
-			public const int sym_keyboard_shift = 2130837974;
+			public const int sym_keyboard_settings = 2130837974;
 			
 			// aapt resource value: 0x7f0201d7
-			public const int sym_keyboard_shift_lock = 2130837975;
+			public const int sym_keyboard_shift = 2130837975;
 			
 			// aapt resource value: 0x7f0201d8
-			public const int sym_keyboard_shift_locked = 2130837976;
+			public const int sym_keyboard_shift_lock = 2130837976;
 			
 			// aapt resource value: 0x7f0201d9
-			public const int sym_keyboard_space = 2130837977;
+			public const int sym_keyboard_shift_locked = 2130837977;
 			
 			// aapt resource value: 0x7f0201da
-			public const int sym_keyboard_space_led = 2130837978;
+			public const int sym_keyboard_space = 2130837978;
 			
 			// aapt resource value: 0x7f0201db
-			public const int sym_keyboard_tab = 2130837979;
+			public const int sym_keyboard_space_led = 2130837979;
 			
 			// aapt resource value: 0x7f0201dc
-			public const int transparent = 2130837980;
+			public const int sym_keyboard_tab = 2130837980;
 			
 			// aapt resource value: 0x7f0201dd
-			public const int voice_ime_background = 2130837981;
+			public const int transparent = 2130837981;
 			
 			// aapt resource value: 0x7f0201de
-			public const int voice_swipe_hint = 2130837982;
+			public const int voice_ime_background = 2130837982;
 			
 			// aapt resource value: 0x7f0201df
-			public const int working = 2130837983;
+			public const int voice_swipe_hint = 2130837983;
 			
 			// aapt resource value: 0x7f0201e0
-			public const int YellowButton = 2130837984;
+			public const int working = 2130837984;
+			
+			// aapt resource value: 0x7f0201e1
+			public const int YellowButton = 2130837985;
 			
 			static Drawable()
 			{
@@ -3061,9 +3064,6 @@ namespace keepass2android
 			
 			// aapt resource value: 0x7f08008b
 			public const int entry_confpassword = 2131230859;
-			
-			// aapt resource value: 0x7f0800a4
-			public const int entry_confpassword_label = 2131230884;
 			
 			// aapt resource value: 0x7f0800bb
 			public const int entry_contents = 2131230907;
@@ -3505,6 +3505,9 @@ namespace keepass2android
 			
 			// aapt resource value: 0x7f0800ff
 			public const int password_mode_spinner = 2131230975;
+			
+			// aapt resource value: 0x7f0800a4
+			public const int password_section = 2131230884;
 			
 			// aapt resource value: 0x7f080087
 			public const int password_title = 2131230855;

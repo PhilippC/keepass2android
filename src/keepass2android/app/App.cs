@@ -64,7 +64,11 @@ namespace keepass2android
 		public const int AppNameResource = Resource.String.app_name;
 		public const string AppNameShort = "@string/short_app_name";
 		public const string AppLauncherTitle = "@string/app_name";
+#if DEBUG
+		public const string PackagePart = "keepass2android_debug";
+#else
 		public const string PackagePart = "keepass2android";
+#endif
 		public const int LauncherIcon = Resource.Drawable.ic_launcher;
 		public const string Searchable = "@xml/searchable";
 	}
