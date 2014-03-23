@@ -146,10 +146,12 @@ namespace keepass2android.Io
 				if (!IsCached(ioc)
 				    || GetLocalVersionHash(ioc) == GetBaseVersionHash(ioc))
 				{
+					Kp2aLog.Log("CFS: OpenWhenNoLocalChanges");
 					return OpenFileForReadWhenNoLocalChanges(ioc, cachedFilePath);
 				}
 				else
 				{
+					Kp2aLog.Log("CFS: OpenWhenLocalChanges");
 					return OpenFileForReadWhenLocalChanges(ioc, cachedFilePath);
 				}
 			}
@@ -174,16 +176,21 @@ namespace keepass2android.Io
 
 			if (File.ReadAllText(BaseVersionFilePath(ioc)) == hash)
 			{
+				Kp2aLog.Log("CFS: No changes in remote");
 				//no changes in remote file -> upload
 				using (Stream localData = File.OpenRead(CachedFilePath(ioc)))
 				{
 					if (TryUpdateRemoteFile(localData, ioc, true, hash))
+					{
 						_cacheSupervisor.UpdatedRemoteFileOnLoad(ioc);
+						Kp2aLog.Log("CFS: Updated remote file");
+					}
 					return File.OpenRead(cachedFilePath);
 				}
 			}
 			else
 			{
+				Kp2aLog.Log("CFS: Files in conflict");
 				//conflict: both files changed.
 				return OpenFileForReadWithConflict(ioc, cachedFilePath);
 			}
@@ -232,20 +239,27 @@ namespace keepass2android.Io
 			string previousHash = null;
 			string baseVersionFilePath = BaseVersionFilePath(ioc);
 			if (File.Exists(baseVersionFilePath))
+			{
+				Kp2aLog.Log("CFS: hashing cached version");
 				previousHash = File.ReadAllText(baseVersionFilePath);
+			}
 
+			//copy to cache: 
+			var fileHash = UpdateCacheFromRemote(ioc, cachedFilePath);
 
+			//notify supervisor what we did:
+			if (previousHash != fileHash)
+			{
+				Kp2aLog.Log("CFS: Updated Cache");
+				_cacheSupervisor.UpdatedCachedFileOnLoad(ioc);
+			}
+			else
+			{
+				Kp2aLog.Log("CFS: Files in Sync");
+				_cacheSupervisor.LoadedFromRemoteInSync(ioc);
+			}
 
-				//copy to cache: 
-				var fileHash = UpdateCacheFromRemote(ioc, cachedFilePath);
-
-				//notify supervisor what we did:
-				if (previousHash != fileHash)
-					_cacheSupervisor.UpdatedCachedFileOnLoad(ioc);
-				else
-					_cacheSupervisor.LoadedFromRemoteInSync(ioc);
-
-				return File.OpenRead(cachedFilePath);	
+			return File.OpenRead(cachedFilePath);	
 
 			
 		}
