@@ -102,6 +102,12 @@ namespace keepass2android
 				Finish();
 			}
 
+			if (resultCode == KeePass.ExitReloadDb)
+			{
+				AppTask.SetActivityResult(this, KeePass.ExitReloadDb);
+				Finish();
+			}
+
 		}
 		
 		private ISharedPreferences _prefs;
@@ -413,6 +419,10 @@ namespace keepass2android
 			{
 				if (!String.IsNullOrEmpty(message))
 					Toast.MakeText(this, message, ToastLength.Long).Show();
+
+				// Tell the adapter to refresh it's list
+				BaseAdapter adapter = (BaseAdapter)ListAdapter;
+				adapter.NotifyDataSetChanged();
 
 				if (App.Kp2a.GetDb().OtpAuxFileIoc != null)
 				{
