@@ -265,6 +265,10 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			
 	};
 	
+	public GoogleDriveFileStorage()
+	{
+		logDebug("Creating GDrive FileStorage");
+	}
 
 	@Override
 	public boolean checkForFileChangeFast(String path,
@@ -570,6 +574,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 
 	private Drive createDriveService(String accountName, Activity activity) {
+		logDebug("createDriveService "+accountName);
 		GoogleAccountCredential credential = createCredential(activity);
 		credential.setSelectedAccountName(accountName);
 
