@@ -197,3 +197,36 @@ Thumbs.db
 /src/java/JavaFileStorage/.google_apis/drive-v2r102lv1.16.0-rc/drive
 
 /src/java/JavaFileStorage/libs
+
+/src/ArtTestApp/obj
+/src/ArtTestApp/bin
+/src/KP2AKdbLibraryBinding/bin
+
+/src/KP2AKdbLibraryBinding/obj
+
+/src/ArtTestApp.zip
+
+/src/java/KP2ASoftKeyboard/alt
+/src/java/KP2ASoftKeyboard/bin
+/src/java/KP2ASoftKeyboard/gen
+/src/java/KP2ASoftKeyboard/projectalt
+/src/java/KP2ASoftKeyboard/projectzip
+/src/java/KP2ASoftKeyboard/projectzip_neu
+
+/src/JavaFileStorageBindings/bin
+
+/src/JavaFileStorageBindings/obj
+/src/java/jsch-0.1.50/ChangeLog
+/src/java/jsch-0.1.50/LICENSE.txt
+/src/java/jsch-0.1.50/README
+/src/java/jsch-0.1.50/build.bat
+/src/java/jsch-0.1.50/build.sh
+/src/java/jsch-0.1.50/build.xml
+
+/src/java/jsch-0.1.50/examples
+
+/src/java/yetanotherworkspace
+/src/java/kp2akeytransform - Kopie
+/src/java/workspace
+/src/java/workspace_
+/src/java/workspace_tmp_
