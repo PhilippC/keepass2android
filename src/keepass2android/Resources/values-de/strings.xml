@@ -491,6 +491,8 @@ Erstes öffentliches Release</string>
     <item>Kennwort + Schlüsseldatei</item>
     <item>Kennwort + OTP</item>
     <item>Kennwort + OTP Secret (Recovery-Modus)</item>
+	  <item>Password + Challenge-Response</item>
+	  <item>Password + Challenge-Response secret (recovery mode)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Fehler bei Zertifikatsvalidierung ignorieren</item>

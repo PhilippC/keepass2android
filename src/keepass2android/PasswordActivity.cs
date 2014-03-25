@@ -45,6 +45,7 @@ using MemoryStream = System.IO.MemoryStream;
 using Object = Java.Lang.Object;
 using Process = Android.OS.Process;
 using String = System.String;
+using KeeChallenge;
 
 namespace keepass2android
 {
@@ -60,7 +61,9 @@ namespace keepass2android
 			None = 0,
 			KeyFile = 1,
 			Otp = 2,
-			OtpRecovery = 3
+			OtpRecovery = 3,
+			Chal = 4,
+			ChalRecovery = 5
 		}
 
 		public const String KeyDefaultFilename = "defaultFileName";
@@ -76,9 +79,12 @@ namespace keepass2android
 		private const string ShowpasswordKey = "ShowPassword";
 		private const string KeyProviderIdOtp = "KP2A-OTP";
 		private const string KeyProviderIdOtpRecovery = "KP2A-OTPSecret";
+		private const string KeyProviderIdChallenge = "KP2A-Chal";
+		private const string KeyProviderIdChallengeRecovery = "KP2A-ChalSecret";
 
 		private const int RequestCodePrepareDbFile = 1000;
 		private const int RequestCodePrepareOtpAuxFile = 1001;
+		private const int RequestCodePrepareChalAuxFile = 1001;
 
 
 		private Task<MemoryStream> _loadDbTask;
@@ -104,6 +110,10 @@ namespace keepass2android
 					return KeyProviders.Otp;
 				if (_keyFileOrProvider == KeyProviderIdOtpRecovery)
 					return KeyProviders.OtpRecovery;
+				if (_keyFileOrProvider == KeyProviderIdChallenge)
+					return KeyProviders.Chal;
+				if (_keyFileOrProvider == KeyProviderIdChallengeRecovery)
+					return KeyProviders.ChalRecovery;
 				return KeyProviders.KeyFile;
 			}
 		}
@@ -113,12 +123,15 @@ namespace keepass2android
 
 		private bool _starting;
 		private OtpInfo _otpInfo;
+        private ChallengeInfo _chalInfo;
+        private byte[] _challengeResponse;
 		private readonly int[] _otpTextViewIds = new[] {Resource.Id.otp1, Resource.Id.otp2, Resource.Id.otp3, Resource.Id.otp4, Resource.Id.otp5, Resource.Id.otp6};
 		private const string OtpInfoKey = "OtpInfoKey";
 		private const string EnteredOtpsKey = "EnteredOtpsKey";
 		private const string PendingOtpsKey = "PendingOtpsKey";
 		private const string PasswordKey = "PasswordKey";
 		private const string KeyFileOrProviderKey = "KeyFileOrProviderKey";
+
 
 		private ActivityDesign _design;
 
@@ -130,7 +143,7 @@ namespace keepass2android
 
 		public PasswordActivity()
 		{
-			_design = new ActivityDesign(this);
+			_design = new ActivityDesign(this);            
 		}
 
 
@@ -259,11 +272,25 @@ namespace keepass2android
 					if (requestCode == RequestCodePrepareDbFile)
 						PerformLoadDatabase();
 					if (requestCode == RequestCodePrepareOtpAuxFile)
-						LoadOtpFile();
+					{
+						if (_keyFileOrProvider == KeyProviderIdChallenge) 
+                        {
+                            if (!LoadChalFile()) break;
+                            Intent chalIntent = new Intent(this, typeof(NfcChalActivity));
+                            chalIntent.PutExtra("challenge", _chalInfo.Challenge);
+                            StartActivityForResult(chalIntent, 0);
+						} else {
+							LoadOtpFile ();
+						}
+					}
 					break;
+                case NfcChalActivity.SUCCESS:
+                    _challengeResponse = data.GetByteArrayExtra("chalresp");                  
+                    break;
 			}
 			
 		}
+
 
 		private void LoadOtpFile()
 		{
@@ -300,6 +327,33 @@ namespace keepass2android
 					}
 			).Execute();
 		}
+
+        private bool LoadChalFile()
+        {
+           
+                    try
+                    {
+                        IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
+                        IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(_ioConnection),
+                            fileStorage.GetFilenameWithoutPathAndExt(_ioConnection) + ".xml");
+                        
+                        _chalInfo = ChallengeInfo.Load(iocAux);
+                    }
+                    catch (Exception e)
+                    {
+                        Kp2aLog.Log(e.ToString());
+                        return false;
+                    }                    
+
+                    if (_chalInfo == null)
+                    {
+                        Toast.MakeText(this,
+                            GetString(Resource.String.CouldntLoadChalAuxFile) + " " + GetString(Resource.String.CouldntLoadChalAuxFile_Hint)
+                            , ToastLength.Long).Show();
+                        return false;
+                    }
+            return true;
+        }
 
 		private void ShowOtpEntry(IList<string> prefilledOtps)
 		{
@@ -585,6 +639,12 @@ namespace keepass2android
 							case 3:
 								_keyFileOrProvider = KeyProviderIdOtpRecovery;
 								break;
+							case 4:
+								_keyFileOrProvider = KeyProviderIdChallenge;
+								break;
+							case 5:
+								_keyFileOrProvider = KeyProviderIdChallengeRecovery;
+								break;
 							default:
 								throw new Exception("Unexpected position " + args.Position + " / " +
 								                    ((ICursor) ((AdapterView) sender).GetItemAtPosition(args.Position)).GetString(1));
@@ -592,10 +652,10 @@ namespace keepass2android
 						UpdateKeyProviderUiState();
 					};
 				FindViewById(Resource.Id.init_otp).Click += (sender, args) =>
-					{
-						App.Kp2a.GetOtpAuxFileStorage(_ioConnection)
-						   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection,
-						                     RequestCodePrepareOtpAuxFile, false);
+					{                       
+                        App.Kp2a.GetOtpAuxFileStorage(_ioConnection)
+                            .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection,
+                                                RequestCodePrepareOtpAuxFile, false);
 					};
 			}
 			else
@@ -669,6 +729,12 @@ namespace keepass2android
 				case KeyProviders.OtpRecovery:
 					FindViewById(Resource.Id.pass_ok).Enabled = FindViewById<EditText>(Resource.Id.pass_otpsecret).Text != "" && _password != "";
 					break;
+                case KeyProviders.Chal:
+					FindViewById(Resource.Id.pass_ok).Enabled = true;
+                    break;
+                case KeyProviders.ChalRecovery:
+				FindViewById(Resource.Id.pass_ok).Enabled = true;
+					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
@@ -690,8 +756,14 @@ namespace keepass2android
 			{
 				FindViewById(Resource.Id.otps_pending).Visibility = _pendingOtps.Count > 0 ? ViewStates.Visible : ViewStates.Gone;
 			}
+
+			if (KeyProviderType == KeyProviders.Chal) 
+			{
+				FindViewById (Resource.Id.otpView).Visibility = ViewStates.Visible;
+			}
 			UpdateOkButtonState();
 		}
+            
 
 		private void PerformLoadDatabase()
 		{
@@ -744,6 +816,29 @@ namespace keepass2android
 					return;
 				}
 			}
+            else if (KeyProviderType == KeyProviders.Chal)
+            {
+                byte[] secret = KeeChallenge.KeeChallengeProv.GetSecret(_chalInfo, _challengeResponse);
+                if (secret != null)
+                {
+                    compositeKey.AddUserKey(new KcpCustomKey(KeeChallengeProv.Name, secret, true));
+                    ChallengeInfo temp = KeeChallengeProv.Encrypt(secret);
+                    IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
+                    IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(_ioConnection),
+                        fileStorage.GetFilenameWithoutPathAndExt(_ioConnection) + ".xml");
+                    if(!temp.Save(iocAux))
+                    {
+                        Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long).Show();
+                        return;  
+                    }
+                    Array.Clear(secret, 0, secret.Length);
+                }
+                else
+                {
+                    Toast.MakeText(this, Resource.String.bad_resp, ToastLength.Long).Show();
+                    return;
+                }
+            }
 
 			CheckBox cbQuickUnlock = (CheckBox) FindViewById(Resource.Id.enable_quickunlock);
 			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
