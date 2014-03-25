@@ -29,29 +29,7 @@
 				<category android:name="android.intent.category.OPENABLE" />
 			</intent-filter>
 		</activity>
-		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">
-			<intent-filter>
-				<action android:name="android.view.InputMethod" />
-			</intent-filter>
-			<meta-data android:name="android.view.im" android:resource="@xml/method" />
-		</service>
-		<activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="@string/english_ime_settings">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-			</intent-filter>
-			<intent-filter>
-				<action android:name="keepass2android.softkeyboard.LatinIMESettings" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-		 <activity android:name="keepass2android.softkeyboard.InputLanguageSelection"
-                android:label="@string/language_selection_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="keepass2android.softkeyboard.INPUT_LANGUAGE_SELECTION"/>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+		
  
 		<activity android:configChanges="keyboardHidden|orientation" android:label="@string/app_name" android:theme="@style/Base" android:name="keepass2android.PasswordActivity">
 			<intent-filter android:label="@string/app_name">

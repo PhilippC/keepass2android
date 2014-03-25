@@ -47,19 +47,7 @@
 			    <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbx" />
 		  </intent-filter>
 		</activity>
-		<service android:name="keepass2android.softkeyboard.KP2AKeyboard"
-                android:permission="android.permission.BIND_INPUT_METHOD">
-            <intent-filter>
-                <action android:name="android.view.InputMethod" />
-            </intent-filter>
-            <meta-data android:name="android.view.im" android:resource="@xml/method" />
-        </service>
-		<activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="@string/english_ime_settings">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
-
+		
 	</application>
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

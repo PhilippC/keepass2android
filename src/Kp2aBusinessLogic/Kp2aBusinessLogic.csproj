@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -55,7 +55,6 @@
     <Compile Include="database\CheckDatabaseForChanges.cs" />
     <Compile Include="database\edit\EditGroup.cs" />
     <Compile Include="database\edit\MoveElement.cs" />
-    <Compile Include="database\DatabaseV1.cs" />
     <Compile Include="database\KdbDatabaseLoader.cs" />
     <Compile Include="database\KdbxDatabaseLoader.cs" />
     <Compile Include="database\SynchronizeCachedDatabase.cs" />
@@ -112,10 +111,6 @@
     <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
-      <Name>JavaFileStorageBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545b4a6b-8bba-4fbe-92fc-4ac060122a54}</Project>
       <Name>KeePassLib2Android</Name>

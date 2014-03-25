@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -85,9 +85,6 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Support.v4" />
-    <Reference Include="GooglePlayServicesFroyoLib">
-      <HintPath>..\Components\googleplayservicesfroyo-9.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
@@ -173,6 +170,9 @@
     <Compile Include="AttachmentContentProvider.cs" />
     <Compile Include="app\AppTask.cs" />
     <Compile Include="views\TextWithHelp.cs" />
+    <Compile Include="addons\KeeChallenge\KeeChallenge.cs" />
+    <Compile Include="NfcChalActivity.cs" />
+    <Compile Include="addons\KeeChallenge\ChallengeInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\searchable.xml" />
@@ -256,6 +256,10 @@
     <None Include="Resources\layout-v14\entry_view_contents.xml">
       <Visible>False</Visible>
     </None>
+    <None Include="Properties\AndroidManifest_light.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_search_holodark.png" />
+    <AndroidResource Include="Resources\drawable-v11\old_ic_launcher_gray.png" />
+    <AndroidResource Include="Resources\layout\sftp_credentials.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic00.png" />
@@ -669,10 +673,6 @@
     <ProjectReference Include="..\AppCompatV7Binding\AppCompatV7Binding.csproj">
       <Project>{23233a28-d74f-4bf8-b4d8-834060840bd7}</Project>
       <Name>AppCompatV7Binding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
-      <Name>JavaFileStorageBindings</Name>
     </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
