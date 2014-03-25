@@ -99,6 +99,8 @@ namespace Kp2aUnitTests
 		[TestMethod]
 		public void LoadFromRemoteWithDomain()
 		{
+			//warning, looks like credentials are no longer valid
+
 			var ioc = RemoteDomainIoc; //note: this property is defined in "TestLoadDbCredentials.cs" which is deliberately excluded from Git because the credentials are not public!
 			var app = new TestKp2aApp();
 			app.ServerCertificateErrorResponse = true; //accept invalid cert

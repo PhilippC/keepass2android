@@ -28,5 +28,6 @@ namespace keepass2android
 
 		public byte[] HashOfLastStream { get; private set; }
 		public bool CanWrite { get { return true; } }
+		public string SuccessMessage { get { return null; } }
 	}
 }

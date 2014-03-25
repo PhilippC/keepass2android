@@ -1132,10 +1132,8 @@ namespace keepass2android
 
 					GC.Collect(); // Ensure temporary memory used while loading is collected
 				} 
-				else
-				{
-					DisplayMessage(_act);
-				}
+				DisplayMessage(_act);
+				
 			}
 		}
 

@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -55,7 +55,6 @@
     <Compile Include="database\CheckDatabaseForChanges.cs" />
     <Compile Include="database\edit\EditGroup.cs" />
     <Compile Include="database\edit\MoveElement.cs" />
-    <Compile Include="database\DatabaseV1.cs" />
     <Compile Include="database\KdbDatabaseLoader.cs" />
     <Compile Include="database\KdbxDatabaseLoader.cs" />
     <Compile Include="database\SynchronizeCachedDatabase.cs" />

@@ -164,6 +164,11 @@ namespace keepass2android
 #endif
 		public byte[] HashOfLastStream { get; private set; }
 		public bool CanWrite { get { return false; } }
+		public string SuccessMessage { get
+		{
+			return
+				".kdb-support is read-only. Export as .kdbx if you want to modify the database. This app is for use with Keepass 2.x!";
+		} }
 	}
 
 
