@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import keepass2android.javafilestorage.JavaFileStorageBase.InvalidPathException;
-
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
@@ -34,7 +32,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
 
 
 public class GoogleDriveFileStorage extends JavaFileStorageBase {
@@ -56,10 +54,13 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	class AccountData
 	{
+		//guaranteed to be set if AccountData is in HashMap
 		Drive drive;
 		
+		//may be null if first initialization failed
 		HashMap<String /*fileId*/, FileSystemEntryData> mFolderCache;
 
+		//may be null if first initialization failed
 		protected String mRootFolderId;
 	};
 	
@@ -126,7 +127,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		}
 		
 		//make sure the path exists
-		private void verify() throws FileNotFoundException, UnsupportedEncodingException {
+		private void verify() throws IOException {
 			
 			if (mAccountLocalPath.equals(""))
 				return;
@@ -138,6 +139,9 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			{
 				throw new IllegalStateException("Looks like account "+mAccount+" was not properly initialized!");
 			}
+			
+			//if initialization failed, try to repeat: 
+			finishInitialization(accountData, mAccount);
 			
 			String parentId = accountData.mRootFolderId;
 			
@@ -218,13 +222,15 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		}
 
 
-		public String getGDriveId() throws InvalidPathException, UnsupportedEncodingException {
+		public String getGDriveId() throws InvalidPathException, IOException {
 			String pathWithoutTrailingSlash = mAccountLocalPath;
 			if (pathWithoutTrailingSlash.endsWith("/"))
 				pathWithoutTrailingSlash = pathWithoutTrailingSlash.substring(0,pathWithoutTrailingSlash.length()-1);
 			if (pathWithoutTrailingSlash.equals(""))
 			{
-				return mAccountData.get(mAccount).mRootFolderId;
+				AccountData accountData = mAccountData.get(mAccount);
+				finishInitialization(accountData, mAccount);
+				return accountData.mRootFolderId;
 			}
 			String lastPart = pathWithoutTrailingSlash.substring(pathWithoutTrailingSlash.lastIndexOf(NAME_ID_SEP)+NAME_ID_SEP.length());
 			if (lastPart.contains("/"))
@@ -551,7 +557,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		}
 		catch (Exception e)
 		{
-			Log.d(TAG, "Exception in getFileEntry! "+e);
+			logDebug("Exception in getFileEntry! "+e);
 			throw convertException(e);
 		}
 	}
@@ -606,7 +612,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 					return;
 				}
 			}
-			Log.i(TAG, "Error selecting account");
+			logDebug("Error selecting account");
 			//Intent retData = new Intent();
 			//retData.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
 			((Activity)setupAct).setResult(Activity.RESULT_CANCELED, data);
@@ -620,15 +626,15 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 				//}
 				String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
 				if (accountName != null) {
-					Log.d(TAG, "Account name="+accountName);
+					logDebug("Account name="+accountName);
 					initializeAccountOrPath(setupAct, accountName);
 				}
 				else
 				{
-					Log.d(TAG, "Account name is null");
+					logDebug("Account name is null");
 				}
 			} else {
-				Log.i(TAG, "Error authenticating");
+				logDebug("Error authenticating");
 				//Intent retData = new Intent();
 				//retData.putExtra(EXTRA_ERROR_MESSAGE, t.getMessage());
 				((Activity)setupAct).setResult(Activity.RESULT_CANCELED, data);
@@ -675,10 +681,11 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 						newAccountData.drive = createDriveService(accountName, activity);
 						mAccountData.put(accountName, newAccountData);
 						logDebug("Added account data for " + accountName);
-						newAccountData.mFolderCache = buildFoldersCache(accountName);
-						
-						About about = newAccountData.drive.about().get().execute();
-						newAccountData.mRootFolderId = about.getRootFolderId();
+						//try to finish the initialization. If this fails, we throw.
+						//in case of "Always return true" (inside CachingFileStorage) this means
+						//we have a partially uninitialized AccountData object. 
+						//We'll try to initialize later in verify() if (e.g.) network is available again.
+						finishInitialization(newAccountData, accountName);
 					}
 					
 					if (setupAct.getProcessName().equals(PROCESS_NAME_SELECTFILE))
@@ -731,6 +738,19 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	}
 	
 
+	private void finishInitialization(AccountData newAccountData, String accountName) throws IOException
+	{
+		if (newAccountData.mFolderCache == null)
+		{
+			newAccountData.mFolderCache = buildFoldersCache(accountName);
+		}
+		
+		if (TextUtils.isEmpty(newAccountData.mRootFolderId))
+		{
+			About about = newAccountData.drive.about().get().execute();
+			newAccountData.mRootFolderId = about.getRootFolderId();
+		}
+	}
 
 	private HashMap<String,FileSystemEntryData> buildFoldersCache(String accountName) throws IOException {
 

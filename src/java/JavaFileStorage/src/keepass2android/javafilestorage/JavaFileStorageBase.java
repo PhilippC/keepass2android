@@ -96,7 +96,7 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 	
 	
 	protected void finishWithError(final FileStorageSetupActivity setupAct, Exception error) {
-		Log.e("KP2AJ", "Exception: " + error.toString());
+		logDebug( "Exception: " + error.toString());
 		error.printStackTrace();
 		
 		final Activity activity = (Activity)setupAct;
@@ -107,7 +107,7 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 		//This can make sense if there is a higher-level FileStorage which has the file cached.
 		if (activity.getIntent().getBooleanExtra(EXTRA_ALWAYS_RETURN_SUCCESS, false))
 		{
-			Log.d(TAG, "Returning success as desired in intent despite of exception.");
+			logDebug("Returning success as desired in intent despite of exception.");
 			finishActivityWithSuccess(setupAct);
 			return;
 		}
@@ -143,7 +143,7 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 			return;
 		}
 
-		Log.w("KP2AJ", "Unknown process: " + setupActivity.getProcessName());
+		logDebug("Unknown process: " + setupActivity.getProcessName());
 
 	}
 
