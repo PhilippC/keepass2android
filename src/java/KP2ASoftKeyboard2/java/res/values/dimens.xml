@@ -19,32 +19,23 @@
 -->
 
 <resources>
-    <!-- key_height + key_bottom_gap = popup_key_height -->
-    <dimen name="key_height">0.290in</dimen>
-    <dimen name="key_bottom_gap">0.035in</dimen>
-    <dimen name="popup_key_height">0.325in</dimen>
-    <dimen name="keyboard_bottom_padding">0.06in</dimen>
-    <dimen name="bubble_pointer_offset">22dip</dimen>
-    <dimen name="candidate_strip_height">42dip</dimen>
-    <dimen name="candidate_strip_fading_edge_length">63dip</dimen>
-    <dimen name="spacebar_vertical_correction">4dip</dimen>
-    <!-- If the screen height in landscape is larger than the below value, then the keyboard
-         will not go into extract (fullscreen) mode. -->
-    <dimen name="max_height_for_fullscreen">2.5in</dimen>
-    <dimen name="key_text_size">0.13in</dimen>
-    <dimen name="key_label_text_size">0.083in</dimen>
-    <dimen name="key_preview_text_size_large">40sp</dimen>
-    <dimen name="key_preview_offset">0.000in</dimen>
-    <!-- key_preview_text_size_large x 2 -->
-    <dimen name="key_preview_height">80sp</dimen>
-    <!-- Amount of allowance for selecting keys in a mini popup keyboard by sliding finger. -->
-    <!-- popup_key_height x 1.7 -->
-    <dimen name="mini_keyboard_slide_allowance">0.553in</dimen>
-    <!-- popup_key_height x 1.0 -->
-    <dimen name="mini_keyboard_vertical_correction">-0.325in</dimen>
-    <dimen name="key_hysteresis_distance">0.05in</dimen>
-    <!-- We use "inch", not "dip" because this value tries dealing with physical distance related
-         to user's finger. -->
-    <dimen name="keyboard_vertical_correction">-0.05in</dimen>
-    <dimen name="candidate_min_touchable_width">0.3in</dimen>
+    <dimen name="key_height">49.109985dip</dimen>
+    <dimen name="key_bottom_gap">5.0dip</dimen>
+    <dimen name="popup_key_height">52.0dip</dimen>
+    <dimen name="keyboard_bottom_padding">9.599976dip</dimen>
+    <dimen name="bubble_pointer_offset">22.0dip</dimen>
+    <dimen name="candidate_strip_height">42.0dip</dimen>
+    <dimen name="candidate_strip_fading_edge_length">63.0dip</dimen>
+    <dimen name="spacebar_vertical_correction">4.0dip</dimen>
+    <dimen name="max_height_for_fullscreen">423.32812dip</dimen>
+    <dimen name="key_text_size">22.00998sp</dimen>
+    <dimen name="key_label_text_size">14.049988sp</dimen>
+    <dimen name="key_preview_text_size_large">40.0sp</dimen>
+    <dimen name="key_preview_offset">0.0dip</dimen>
+    <dimen name="key_preview_height">80.0sp</dimen>
+    <dimen name="mini_keyboard_slide_allowance">88.47998dip</dimen>
+    <dimen name="mini_keyboard_vertical_correction">-52.0dip</dimen>
+    <dimen name="key_hysteresis_distance">8.0dip</dimen>
+    <dimen name="keyboard_vertical_correction">-8.0dip</dimen>
+    <dimen name="candidate_min_touchable_width">48.0dip</dimen>
 </resources>
