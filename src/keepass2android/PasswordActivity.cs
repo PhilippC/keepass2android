@@ -121,6 +121,7 @@ namespace keepass2android
 		private const string KeyFileOrProviderKey = "KeyFileOrProviderKey";
 
 		private ActivityDesign _design;
+		private bool _performingLoad;
 
 		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -695,6 +696,7 @@ namespace keepass2android
 
 		private void PerformLoadDatabase()
 		{
+			
 			//no need to check for validity of password because if this method is called, the Ok button was enabled (i.e. there was a valid password)
 			CompositeKey compositeKey = new CompositeKey();
 			compositeKey.AddUserKey(new KcpPassword(_password));
@@ -754,7 +756,7 @@ namespace keepass2android
 
 			Handler handler = new Handler();
 			OnFinish onFinish = new AfterLoad(handler, this);
-				 
+			_performingLoad = true;	 
 			LoadDb task = (KeyProviderType == KeyProviders.Otp) ?
 				new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish, this)
 				:
@@ -990,7 +992,9 @@ namespace keepass2android
 
 			// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
 			// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
-			if (_starting && !IsFinishing)  //use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
+			//use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
+			//use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbTask to exist when we reload later!)
+			if (_starting && !IsFinishing && !_performingLoad)  
 			{
 				_starting = false;
 				if (App.Kp2a.DatabaseIsUnlocked)
@@ -1133,7 +1137,9 @@ namespace keepass2android
 					GC.Collect(); // Ensure temporary memory used while loading is collected
 				} 
 				DisplayMessage(_act);
-				
+
+				_act._performingLoad = false;
+
 			}
 		}
 
