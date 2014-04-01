@@ -60,7 +60,12 @@ namespace keepass2android
 	/// </summary>
 	public static class AppNames
 	{
+#if DEBUG
+		public const string AppName = "Keepass2Android Debug";
+#else
 		public const string AppName = "@string/app_name";
+#endif
+
 		public const int AppNameResource = Resource.String.app_name;
 		public const string AppNameShort = "@string/short_app_name";
 		public const string AppLauncherTitle = "@string/app_name";

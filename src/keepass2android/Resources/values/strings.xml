@@ -339,6 +339,8 @@
 	<string name="CannotMoveGroupHere">Cannot move group to this group.</string>
 
 	<string name="donate_question">Today, it\'s Oktoberfest! If you like Keepass2Android: wouldn\'t today be a good day to buy me a beer?</string>
+	<string name="donate_bday_question">May 10th? It\'s my birthday! If you like this app, why not send me some birthday greetings along with a little birthday gift? This would really make me happy! :-)</string>
+	<string name="donate_missedbday_question">Oh, you missed my birthday on May 10th! If you like this app, why not send me some birthday greetings and a little birthday gift? It is not yet too late to make me happy! :-)</string>
 	<string name="ok_donate">Tell me more!</string>
 	<string name="no_thanks">No, I don\'t like it that much</string>
 
@@ -397,6 +399,16 @@
 	<string name="SavingOtpAuxFile">Saving auxiliary OTP file…</string>
 
 	<string name="loading">Loading…</string>
+	
+	<string name="enable_plugin_title">Enable plug-in?</string>
+	<string name="enable_plugin_question">Keepass2Android detected a plug-in with name: %1$s from package name: %2$s. Do you want to enable this plug-in? It will have access to the data stored in your Keepass databases.</string>
+	
+	<string name="plugins">Plug-ins</string>
+	<string name="plugin_packagename">Package name:</string>
+	<string name="plugin_description">Description (not verified):</string>
+	<string name="plugin_author">Author (not verified):</string>
+	<string name="plugin_enabled">Enabled</string>
+	<string name="plugins_text">Click plug-in to enable/disable</string>
 
 	<string name="get_regular_version">Get more storage types</string>
 
@@ -406,6 +418,12 @@
 	<string name="export_fileformats_title">Select file format</string>
 	
 	<string name="ChangeLog_title">Change log</string>
+	
+	<string name="ChangeLog_0_9_3_r5">
+		<b>Version 0.9.3 r5</b>\n
+		* Incorporated fixes from Xamarin: Keepass2Android now compatible with ART on Android 4.4.2. Finally!\n
+		* Bug fixes: bugs in synchronization (refresh display, correct check for changes on http), bugs on Android 2.x devices, bugs in Google Drive and SkyDrive storage implementations, clear clipboard on close database, bug opening attachments\n
+	</string>
 
 	<string name="ChangeLog_0_9_3">
 		<b>Version 0.9.3</b>\n
