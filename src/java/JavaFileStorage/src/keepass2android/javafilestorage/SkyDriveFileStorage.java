@@ -49,7 +49,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 	private HashMap<String /* id */, SkyDriveObject> mFolderCache = new HashMap<String, SkyDriveObject>();
 
-	public static final String[] SCOPES = { "wl.signin", "wl.skydrive_update", };
+	public static final String[] SCOPES = { "wl.signin", "wl.skydrive_update", "wl.offline_access"};
 
 	// see http://stackoverflow.com/questions/17997688/howto-to-parse-skydrive-api-date-in-java
 	SimpleDateFormat SKYDRIVE_DATEFORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH);
@@ -136,8 +136,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 		public void setPathWithoutVerify(String path)
 				throws UnsupportedEncodingException, InvalidPathException {
 			mPath = path.substring(getProtocolPrefix().length());
-			// Log.d(TAG, "  mAccount=" + mAccount);
-			// Log.d(TAG, "  mAccountLocalPath=" + mAccountLocalPath);
+			logDebug( "  mPath=" + mPath);
 		}
 
 		// make sure the path exists
@@ -153,17 +152,17 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 			for (int i = 0; i < parts.length; i++) {
 				String part = parts[i];
-				// Log.d(TAG, "parsing part " + part);
+				logDebug( "parsing part " + part);
 				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
 				if (indexOfSeparator < 0)
 					throw new FileNotFoundException("invalid path " + mPath);
 				String id = decode(part.substring(indexOfSeparator
 						+ NAME_ID_SEP.length()));
 				String name = decode(part.substring(0, indexOfSeparator));
-				// Log.d(TAG, "   name=" + name);
+				logDebug( "   name=" + name);
 				SkyDriveObject thisFolder = mFolderCache.get(id);
 				if (thisFolder == null) {
-					//Log.d(TAG, "adding to cache");
+					logDebug( "adding to cache");
 					thisFolder = tryAddToCache(id);
 
 					// check if it's still null
@@ -199,7 +198,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 			for (int i = 0; i < parts.length; i++) {
 				String part = parts[i];
-				// Log.d(TAG, "parsing part " + part);
+				logDebug("parsing part " + part);
 				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
 				if (indexOfSeparator < 0) {
 					// seems invalid, but we're very generous here
@@ -284,6 +283,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	};
 
 	public SkyDriveFileStorage(String clientId, Context appContext) {
+		logDebug("Constructing SkyDriveFileStorage");
 		mAuthClient = new LiveAuthClient(appContext, clientId);
 		mAppContext = appContext;
 		mClientId = clientId;
@@ -291,6 +291,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	}
 
 	void login(final FileStorageSetupActivity activity) {
+		logDebug("skydrive login");
 		mAuthClient.login((Activity) activity, Arrays.asList(SCOPES),
 				new LiveAuthListener() {
 					@Override
@@ -315,7 +316,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 	private void initialize(final FileStorageSetupActivity setupAct,
 			LiveConnectSession session) {
-
+		logDebug("skydrive initialize");
 		mConnectClient = new LiveConnectClient(session);
 
 		final Activity activity = (Activity)setupAct;
@@ -359,6 +360,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	private void initializeFoldersCache() throws LiveOperationException,
 			SkyDriveException, FileNotFoundException {
 		
+		logDebug("skydrive initializeFoldersCache");
 		//use alias for now (overwritten later):
 		mRootFolderId = "me/skydrive";
 
@@ -375,7 +377,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 					.optJSONObject(i));
 			if (skyDriveObj == null)
 				continue; // ignored type
-			//Log.d(TAG, "adding "+skyDriveObj.getName()+" to cache with id " + skyDriveObj.getId()+" in "+skyDriveObj.getParentId());
+			logDebug( "adding "+skyDriveObj.getName()+" to cache with id " + skyDriveObj.getId()+" in "+skyDriveObj.getParentId());
 			mFolderCache.put(skyDriveObj.getId(), skyDriveObj);
 			
 			mRootFolderId = skyDriveObj.getParentId();
@@ -397,7 +399,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 			JSONObject error = result.optJSONObject(JsonKeys.ERROR);
 			String message = error.optString(JsonKeys.MESSAGE);
 			String code = error.optString(JsonKeys.CODE);
-			//Log.d(TAG, "Code: "+code);
+			logDebug( "Code: "+code);
 			if ("resource_not_found".equals(code))
 				throw new FileNotFoundException(message);
 			else
@@ -503,6 +505,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 		}
 		catch (Exception e)
 		{
+			logDebug("Error getting file version.");
 			Log.w(TAG,"Error getting file version:");
 			e.printStackTrace();
 			return null;
@@ -514,7 +517,9 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	public InputStream openFileForRead(String path) throws Exception {
 		try
 		{
+			logDebug("openFileForRead: " + path);
 			LiveDownloadOperation op = mConnectClient.download(new SkyDrivePath(path).getSkyDriveId()+"/content");
+			logDebug("openFileForRead ok" + path);
 			return op.getStream();
 		}
 		catch (Exception e)
@@ -529,6 +534,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 
 		try
 		{
+			logDebug("uploadFile to "+path);
 			SkyDrivePath driveTargetPath = new SkyDrivePath(path);
 			SkyDrivePath driveUploadPath = driveTargetPath;
 			SkyDrivePath driveTempPath = null;
@@ -600,7 +606,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	private Exception convertException(Exception e) throws Exception {
 
 		e.printStackTrace();
-
+		logDebug(e.toString());
 		Log.w(TAG, e);
 
 		throw e;
@@ -640,7 +646,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 						.optJSONObject(i));
 				if (skyDriveObj == null)
 					continue; // ignored type
-				//Log.d(TAG, "listing "+skyDriveObj.getName()+" with id " + skyDriveObj.getId()+" in "+skyDriveObj.getParentId());
+				logDebug( "listing "+skyDriveObj.getName()+" with id " + skyDriveObj.getId()+" in "+skyDriveObj.getParentId());
 				
 				resultList.add(convertToFileEntry(parentDrivePath, skyDriveObj));
 			}	
@@ -667,13 +673,14 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 		catch (Exception e)
 		{
 			Log.w(TAG, "Cannot parse time " + skyDriveObj.getUpdatedTime());
+			logDebug("Cannot parse time! " + e.toString());
 			res.lastModifiedTime = -1;
 		}
 		if (parentPath == null) //this is the case if we're listing the parent path itself
 			res.path = getProtocolPrefix();
 		else
 			res.path = new SkyDrivePath(parentPath.getFullPath(), skyDriveObj.toJson()).getFullPath();
-		//Log.d(TAG, "path: "+res.path);
+		logDebug( "path: "+res.path);
 		if (SkyDriveFile.class.isAssignableFrom(skyDriveObj.getClass()))
 		{
 			res.sizeInBytes = ((SkyDriveFile)skyDriveObj).getSize();
@@ -687,8 +694,8 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 		try
 		{
 			SkyDrivePath drivePath = new SkyDrivePath(filename);
-			//Log.d(TAG, "getFileEntry for "+ filename +" = "+drivePath.getFullPath());
-			//Log.d(TAG, " parent is "+drivePath.getParentPath());
+			logDebug( "getFileEntry for "+ filename +" = "+drivePath.getFullPath());
+			logDebug( " parent is "+drivePath.getParentPath());
 			return convertToFileEntry(drivePath.getParentPath(),getSkyDriveObject(drivePath));
 		}
 		catch (Exception e)
@@ -730,6 +737,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	public void onStart(final FileStorageSetupActivity activity) {
 		try
 		{
+			logDebug("skydrive onStart");
 			initialize(activity);
 		}
 		catch (Exception e)
@@ -751,15 +759,16 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 					LiveConnectSession session, Object userState) {
 
 				if (status == LiveStatus.CONNECTED) {
+					logDebug("connected!");
 					initialize(activity, session);
 
 				} else {
 					if (status == LiveStatus.NOT_CONNECTED)
-						Log.d(TAG, "not connected");
+						logDebug( "not connected");
 					else if (status == LiveStatus.UNKNOWN)
-						Log.d(TAG, "unknown");
+						logDebug( "unknown");
 					else
-						Log.d(TAG, "unexpected status " + status);
+						logDebug( "unexpected status " + status);
 					try
 					{
 						login(activity);
@@ -768,6 +777,7 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 					{
 						//this may happen if an un-cancelled login progress is already in progress.
 						//however, the activity might have been destroyed, so try again with another auth client next time
+						logDebug("IllegalStateException: Recreating AuthClient");
 						mAuthClient = new LiveAuthClient(mAppContext, mClientId);
 						finishWithError(activity, e);
 					}
