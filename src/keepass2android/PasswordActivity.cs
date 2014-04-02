@@ -84,7 +84,7 @@ namespace keepass2android
 
 		private const int RequestCodePrepareDbFile = 1000;
 		private const int RequestCodePrepareOtpAuxFile = 1001;
-		private const int RequestCodePrepareChalAuxFile = 1001;
+        private const int RequestCodeChallengeYubikey = 1002;
 
 
 		private Task<MemoryStream> _loadDbTask;
@@ -144,7 +144,7 @@ namespace keepass2android
 
 		public PasswordActivity()
 		{
-			_design = new ActivityDesign(this);            
+			_design = new ActivityDesign(this);
 		}
 
 
@@ -277,19 +277,20 @@ namespace keepass2android
 						if (_keyFileOrProvider == KeyProviderIdChallenge) 
                         {
                             if (!LoadChalFile()) break;
-                            Intent chalIntent = new Intent(this, typeof(NfcChalActivity));
+                            Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
                             chalIntent.PutExtra("challenge", _chalInfo.Challenge);
-                            StartActivityForResult(chalIntent, 0);
+                            chalIntent.PutExtra("slot", 2);
+                            IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
+                            bool isIntentSafe = activities.Count > 0;
+                            if (isIntentSafe)
+                            StartActivityForResult(chalIntent, RequestCodeChallengeYubikey);
 						} else {
 							LoadOtpFile ();
 						}
 					}
-					break;
-                case NfcChalActivity.SUCCESS:
-                    _challengeResponse = data.GetByteArrayExtra("chalresp");                  
-                    break;
+					break;              
 			}
-			
+            if (requestCode == RequestCodeChallengeYubikey && resultCode == Result.Ok) _challengeResponse = data.GetByteArrayExtra("response");
 		}
 
 
@@ -331,7 +332,7 @@ namespace keepass2android
 
         private bool LoadChalFile()
         {
-           
+           //TODO make async!
                     try
                     {
                         IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
@@ -653,7 +654,7 @@ namespace keepass2android
 						UpdateKeyProviderUiState();
 					};
 				FindViewById(Resource.Id.init_otp).Click += (sender, args) =>
-					{                       
+					{
                         App.Kp2a.GetOtpAuxFileStorage(_ioConnection)
                             .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection,
                                                 RequestCodePrepareOtpAuxFile, false);
@@ -764,7 +765,6 @@ namespace keepass2android
 			}
 			UpdateOkButtonState();
 		}
-            
 
 		private void PerformLoadDatabase()
 		{
