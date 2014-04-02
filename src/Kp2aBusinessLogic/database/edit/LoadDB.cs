@@ -115,7 +115,7 @@ namespace keepass2android
 				_app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _loader);
 				SaveFileData(_ioc, _keyfileOrProvider);
 				Kp2aLog.Log("LoadDB OK");
-				Finish(true);
+				Finish(true, _loader.SuccessMessage);
 			}
 			catch (OldFormatException)
 			{

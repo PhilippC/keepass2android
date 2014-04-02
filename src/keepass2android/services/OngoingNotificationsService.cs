@@ -199,7 +199,7 @@ namespace keepass2android
 			if (String.IsNullOrEmpty(name))
 			{
 				//todo: if paranoid ("don't remember recent files") return "***"
-				name = UrlUtil.StripExtension(UrlUtil.GetFileName(db.IOConnectionInfo.Path));
+				name = App.Kp2a.GetFileStorage(db.IOConnectionInfo).GetFilenameWithoutPathAndExt(db.IOConnectionInfo);
 			}
 
 			return name;

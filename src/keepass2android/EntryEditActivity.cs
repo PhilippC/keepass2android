@@ -242,13 +242,15 @@ namespace keepass2android
 			};
 		
 			// Respect mask password setting
-			if (State.ShowPassword) {
-				EditText pass = (EditText) FindViewById(Resource.Id.entry_password);
-				EditText conf = (EditText) FindViewById(Resource.Id.entry_confpassword);
-				
-				pass.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-				conf.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-			}
+			MakePasswordVisibleOrHidden();
+
+			ImageButton btnTogglePassword = (ImageButton)FindViewById(Resource.Id.toggle_password);
+			btnTogglePassword.Click += (sender, e) =>
+			{
+				State.ShowPassword = !State.ShowPassword;
+				MakePasswordVisibleOrHidden();
+			};
+
 
 			Button addButton = (Button) FindViewById(Resource.Id.add_advanced);
 			addButton.Visibility = ViewStates.Visible;
@@ -281,6 +283,22 @@ namespace keepass2android
 			};
 
 
+		}
+
+		private void MakePasswordVisibleOrHidden()
+		{
+			TextView password = (TextView) FindViewById(Resource.Id.entry_password);
+			TextView confpassword = (TextView) FindViewById(Resource.Id.entry_confpassword);
+			if (State.ShowPassword)
+			{
+				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
+				confpassword.Visibility = ViewStates.Gone;
+			}
+			else
+			{
+				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+				confpassword.Visibility = ViewStates.Visible;
+			}
 		}
 
 		void SaveEntry()
@@ -685,13 +703,6 @@ namespace keepass2android
 			inflater.Inflate(Resource.Menu.entry_edit, menu);
 			
 			
-			IMenuItem togglePassword = menu.FindItem(Resource.Id.menu_toggle_pass);
-			if ( State.ShowPassword ) {
-				togglePassword.SetTitle(Resource.String.menu_hide_password);
-			} else {
-				togglePassword.SetTitle(Resource.String.show_password);
-			}
-			
 			return true;
 		}
 		
@@ -705,16 +716,6 @@ namespace keepass2android
 					return false;
 				}
 				
-				return true;
-			case Resource.Id.menu_toggle_pass:
-					if ( State.ShowPassword ) {
-					item.SetTitle(Resource.String.show_password);
-						State.ShowPassword = false;
-				} else {
-					item.SetTitle(Resource.String.menu_hide_password);
-						State.ShowPassword = true;
-				}
-				SetPasswordStyle();
 				return true;
 			case Resource.Id.menu_cancel_edit:
 				Finish();
@@ -748,19 +749,6 @@ namespace keepass2android
 			return base.OnOptionsItemSelected(item);
 		}
 		
-		private void SetPasswordStyle() {
-			TextView password = (TextView) FindViewById(Resource.Id.entry_password);
-			TextView confpassword = (TextView) FindViewById(Resource.Id.entry_confpassword);
-			
-			if ( State.ShowPassword ) {
-				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-				confpassword.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-				
-			} else {
-				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-				confpassword.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-			}
-		}
 
 		void UpdateExpires()
 		{
@@ -862,7 +850,6 @@ namespace keepass2android
 			String password = State.Entry.Strings.ReadSafe(PwDefs.PasswordField);
 			PopulateText(Resource.Id.entry_password, password);
 			PopulateText(Resource.Id.entry_confpassword, password);
-			SetPasswordStyle();
 			
 			PopulateText(Resource.Id.entry_comment, State.Entry.Strings.ReadSafe (PwDefs.NotesField));
 
@@ -913,13 +900,18 @@ namespace keepass2android
 				return false;
 			}
 			
-			// Validate password
-			String pass = Util.GetEditText(this, Resource.Id.entry_password);
-			String conf = Util.GetEditText(this, Resource.Id.entry_confpassword);
-			if ( ! pass.Equals(conf) ) {
-				Toast.MakeText(this, Resource.String.error_pass_match, ToastLength.Long).Show();
-				return false;
+			if (!State.ShowPassword)
+			{
+				// Validate password
+				String pass = Util.GetEditText(this, Resource.Id.entry_password);
+				String conf = Util.GetEditText(this, Resource.Id.entry_confpassword);
+				if (!pass.Equals(conf))
+				{
+					Toast.MakeText(this, Resource.String.error_pass_match, ToastLength.Long).Show();
+					return false;
+				}
 			}
+			
 
 			// Validate expiry date
 			DateTime newExpiry = new DateTime();

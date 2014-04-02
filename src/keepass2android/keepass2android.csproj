@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -180,9 +180,6 @@
     <AndroidAsset Include="Assets\DejaVuSansMono.ttf" />
     <AndroidAsset Include="Assets\LICENSE_dejavu" />
     <None Include="Resources\AboutResources.txt" />
-    <None Include="Properties\AndroidManifest.xml">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="filelist.txt">
       <Visible>False</Visible>
     </None>
@@ -375,7 +372,9 @@
     <AndroidResource Include="Resources\values\strings.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\menu-v11\entry.xml" />
+    <AndroidResource Include="Resources\menu-v11\entry.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\menu-v11\password.xml" />
     <AndroidResource Include="Resources\menu-v11\entry_edit.xml" />
     <AndroidResource Include="Resources\menu-v11\group.xml" />
@@ -761,10 +760,19 @@
     <AndroidResource Include="Resources\drawable\transparent.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\layout\donate_bday.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\donate_bdaymissed.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\layout\donate.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\oktoberfest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\donate_cake.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi-v11\ic_unlocked_gray.png" />
@@ -907,7 +915,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\location_web_site_holodark.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values-v14\styles_dark.xml" />
+    <AndroidResource Include="Resources\values-v14\styles_dark.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values-v14\styles_light.xml">
@@ -928,5 +938,23 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values-bg-rBG\strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_launcher_gray_bday.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi-v11\ic_launcher_gray_bday.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-v11\ic_launcher_gray_bday.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi-v11\ic_launcher_gray_bday.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi-v11\ic_launcher_gray_bday.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <TransformFile Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
 </Project>

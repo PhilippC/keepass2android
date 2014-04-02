@@ -1,11 +1,19 @@
 package keepass2android.javafilestorage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.apache.http.protocol.HTTP;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 public abstract class JavaFileStorageBase implements JavaFileStorage{
@@ -16,9 +24,36 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 	final static protected String NAME_ID_SEP = "-KP2A-";	
 	final static protected String TAG = "KP2AJ";
 	
-	protected void logDebug(String text)
+	protected synchronized void logDebug(String text)
 	{
 		Log.d(TAG, text);
+		
+		File logFile = new File("/mnt/sdcard/keepass2android.cloud.log");
+		   if (logFile.exists())
+		   {
+			   try
+			   {
+				// Create an instance of SimpleDateFormat used for formatting 
+				// the string representation of date (month/day/year)
+				SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+				
+				// Get the date today using Calendar object.
+				java.util.Date today = Calendar.getInstance().getTime();        
+				// Using DateFormat format method we can create a string 
+				// representation of a date with the defined format.
+				String reportDate = df.format(today);
+
+			      //BufferedWriter for performance, true to set append to file flag
+			      BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true)); 
+			      buf.append(reportDate + " JFS: "+text);
+			      buf.newLine();
+			      buf.close();
+			   }
+			   catch (IOException e)
+			   {
+			      e.printStackTrace();
+			   }
+		   }
 	}
 	
 	protected String getProtocolPrefix()
@@ -61,7 +96,7 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 	
 	
 	protected void finishWithError(final FileStorageSetupActivity setupAct, Exception error) {
-		Log.e("KP2AJ", "Exception: " + error.toString());
+		logDebug( "Exception: " + error.toString());
 		error.printStackTrace();
 		
 		final Activity activity = (Activity)setupAct;
@@ -72,7 +107,7 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 		//This can make sense if there is a higher-level FileStorage which has the file cached.
 		if (activity.getIntent().getBooleanExtra(EXTRA_ALWAYS_RETURN_SUCCESS, false))
 		{
-			Log.d(TAG, "Returning success as desired in intent despite of exception.");
+			logDebug("Returning success as desired in intent despite of exception.");
 			finishActivityWithSuccess(setupAct);
 			return;
 		}
@@ -108,7 +143,7 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 			return;
 		}
 
-		Log.w("KP2AJ", "Unknown process: " + setupActivity.getProcessName());
+		logDebug("Unknown process: " + setupActivity.getProcessName());
 
 	}
 

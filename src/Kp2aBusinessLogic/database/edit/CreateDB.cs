@@ -65,7 +65,8 @@ namespace keepass2android
 
 			db.KpDatabase.KeyEncryptionRounds = DefaultEncryptionRounds;
 			db.KpDatabase.Name = "Keepass2Android Password Database";
-
+			//re-set the name of the root group because the PwDatabase uses UrlUtil which is not appropriate for all file storages:
+			db.KpDatabase.RootGroup.Name = _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc);
 			
 			// Set Database state
 			db.Root = db.KpDatabase.RootGroup;

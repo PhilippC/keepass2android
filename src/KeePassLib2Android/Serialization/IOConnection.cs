@@ -506,11 +506,12 @@ namespace KeePassLib.Serialization
 			}
 			catch (WebException ex)
 			{
-				if ((ex.Response is HttpWebResponse) && (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized))
+				if ((ex.Response is HttpWebResponse) && (((HttpWebResponse) ex.Response).StatusCode == HttpStatusCode.Unauthorized))
 				{
 					req = CreateWebRequest(ioc, true);
 					f(req);
 				}
+				else throw;
 			}
 		}
 

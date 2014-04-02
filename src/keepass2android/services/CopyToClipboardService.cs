@@ -139,6 +139,11 @@ namespace keepass2android
 				_numElementsToWaitFor= 0;
 				ClearKeyboard(true);
 			}
+			if (_clearClipboardTask != null)
+			{
+				Kp2aLog.Log("Clearing clipboard due to stop CopyToClipboardService");
+				_clearClipboardTask.Run();
+			}
 
 			Kp2aLog.Log("Destroyed Show-Notification-Receiver.");
 			
@@ -350,10 +355,11 @@ namespace keepass2android
 			String sClipClear = prefs.GetString(GetString(Resource.String.clipboard_timeout_key), GetString(Resource.String.clipboard_timeout_default));
 			
 			long clipClearTime = long.Parse(sClipClear);
-			
+
+			_clearClipboardTask = new ClearClipboardTask(this, text, _uiThreadCallback);
 			if ( clipClearTime > 0 ) {
 				_numElementsToWaitFor++;
-				_timer.Schedule(new ClearClipboardTask(this, text, _uiThreadCallback), clipClearTime);
+				_timer.Schedule(_clearClipboardTask, clipClearTime);
 			}
 		}
 
@@ -385,6 +391,7 @@ namespace keepass2android
 		
 		// Setup to allow the toast to happen in the foreground
 		readonly Handler _uiThreadCallback = new Handler();
+		private ClearClipboardTask _clearClipboardTask;
 
 		private Notification GetNotification(String intentText, int descResId, int drawableResId, String entryName) {
 			String desc = GetString(descResId);

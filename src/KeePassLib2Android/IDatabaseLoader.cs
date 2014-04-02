@@ -11,5 +11,6 @@ namespace KeePassLib
 		byte[] HashOfLastStream { get; }
 
 		bool CanWrite { get;  }
+		string SuccessMessage { get; }
 	}
 }
