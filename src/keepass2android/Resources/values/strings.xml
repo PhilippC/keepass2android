@@ -362,7 +362,7 @@
 	<string name="filestoragename_dropboxKP2A">Dropbox (KP2A folder)</string>
 	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, click this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
 	<string name="filestoragename_gdrive">Google Drive</string>
-	<string name="filestoragename_skydrive">SkyDrive</string>
+	<string name="filestoragename_skydrive">OneDrive</string>
 	<string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
 
 	<string name="filestorage_setup_title">File access initialization</string>
@@ -422,7 +422,7 @@
 	<string name="ChangeLog_0_9_3_r5">
 		<b>Version 0.9.3 r5</b>\n
 		* Incorporated fixes from Xamarin: Keepass2Android now compatible with ART on Android 4.4.2. Finally!\n
-		* Bug fixes: bugs in synchronization (refresh display, correct check for changes on http), bugs on Android 2.x devices, bugs in Google Drive and SkyDrive storage implementations, clear clipboard on close database, bug opening attachments, display problems with keyboard\n
+		* Bug fixes: bugs in synchronization (refresh display, correct check for changes on http), bugs on Android 2.x devices, bugs in Google Drive and OneDrive storage implementations, clear clipboard on close database, bug opening attachments, display problems with keyboard\n
 	</string>
 
 	<string name="ChangeLog_0_9_3">
