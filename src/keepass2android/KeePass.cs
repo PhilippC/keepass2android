@@ -74,7 +74,7 @@ namespace keepass2android
 			Kp2aLog.Log("KeePass.OnStart");
 
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-			if (GetCurrentRuntimeValue().StartsWith("ART"))
+			/*if (GetCurrentRuntimeValue().StartsWith("ART"))
 			{
 				
 				if (!prefs.GetBoolean("ART_WARNING", false))
@@ -96,7 +96,7 @@ namespace keepass2android
 					return;
 				}
 				
-			}
+			}*/
 
 			
 			bool showChangeLog = false;
