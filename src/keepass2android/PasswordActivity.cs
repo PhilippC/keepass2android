@@ -276,14 +276,8 @@ namespace keepass2android
 					{
 						if (_keyFileOrProvider == KeyProviderIdChallenge) 
                         {
-                            if (!LoadChalFile()) break;
-                            Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
-                            chalIntent.PutExtra("challenge", _chalInfo.Challenge);
-                            chalIntent.PutExtra("slot", 2);
-                            IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
-                            bool isIntentSafe = activities.Count > 0;
-                            if (isIntentSafe)
-                            StartActivityForResult(chalIntent, RequestCodeChallengeYubikey);
+                            LoadChalFile();
+                            
 						} else {
 							LoadOtpFile ();
 						}
@@ -330,31 +324,59 @@ namespace keepass2android
 			).Execute();
 		}
 
-        private bool LoadChalFile()
+        private void LoadChalFile()
         {
-           //TODO make async!
-                    try
-                    {
-                        IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
-                        IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(_ioConnection),
-                            fileStorage.GetFilenameWithoutPathAndExt(_ioConnection) + ".xml");
-                        
-                        _chalInfo = ChallengeInfo.Load(iocAux);
-                    }
-                    catch (Exception e)
-                    {
-                        Kp2aLog.Log(e.ToString());
-                        return false;
-                    }                    
+	        new LoadingDialog<object, object, object>(this, true,
+	                //doInBackground
+	                delegate
+		                {
 
-                    if (_chalInfo == null)
-                    {
-                        Toast.MakeText(this,
-                            GetString(Resource.String.CouldntLoadChalAuxFile) + " " + GetString(Resource.String.CouldntLoadChalAuxFile_Hint)
-                            , ToastLength.Long).Show();
-                        return false;
-                    }
-            return true;
+			                try
+			                {
+				                IFileStorage fileStorage =
+					                App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
+				                IOConnectionInfo iocAux =
+					                fileStorage.GetFilePath(
+						                fileStorage.GetParentPath(_ioConnection),
+						                fileStorage.GetFilenameWithoutPathAndExt(_ioConnection) +
+						                ".xml");
+
+				                _chalInfo = ChallengeInfo.Load(iocAux);
+			                }
+			                catch (Exception e)
+			                {
+				                Kp2aLog.Log(e.ToString());
+			                }
+							return null;
+		                }
+	                , delegate
+		                {
+			                if (_chalInfo == null)
+			                {
+				                Toast.MakeText(this,
+				                                GetString(Resource.String.CouldntLoadChalAuxFile) +
+				                                " " +
+				                                GetString(
+					                                Resource.String.CouldntLoadChalAuxFile_Hint)
+				                                , ToastLength.Long).Show();
+				                return;
+
+			                }
+							Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
+							chalIntent.PutExtra("challenge", _chalInfo.Challenge);
+							chalIntent.PutExtra("slot", 2);
+							IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
+							bool isIntentSafe = activities.Count > 0;
+			                if (isIntentSafe)
+			                {
+				                StartActivityForResult(chalIntent, RequestCodeChallengeYubikey);
+			                }
+			                else
+			                {
+				                //TODO message no plugin!
+			                }
+		                }).Execute();
+            
         }
 
 		private void ShowOtpEntry(IList<string> prefilledOtps)
