@@ -220,36 +220,17 @@ containing a value of this type.
         public static int candidate_strip_fading_edge_length=0x7f0b0006;
         public static int candidate_strip_height=0x7f0b0005;
         public static int key_bottom_gap=0x7f0b0001;
-        /**  key_height + key_bottom_gap = popup_key_height 
- key_height + key_bottom_gap = popup_key_height 
-         */
         public static int key_height=0x7f0b0000;
         public static int key_hysteresis_distance=0x7f0b0010;
         public static int key_label_text_size=0x7f0b000a;
-        /**  key_preview_text_size_large x 2 
-         */
         public static int key_preview_height=0x7f0b000d;
         public static int key_preview_offset=0x7f0b000c;
         public static int key_preview_text_size_large=0x7f0b000b;
         public static int key_text_size=0x7f0b0009;
         public static int keyboard_bottom_padding=0x7f0b0003;
-        /**  We use "inch", not "dip" because this value tries dealing with physical distance related
-         to user's finger. 
-         */
         public static int keyboard_vertical_correction=0x7f0b0011;
-        /**  If the screen height in landscape is larger than the below value, then the keyboard
-         will not go into extract (fullscreen) mode. 
-         */
         public static int max_height_for_fullscreen=0x7f0b0008;
-        /**  Amount of allowance for selecting keys in a mini popup keyboard by sliding finger. 
- popup_key_height x 1.7 
- Amount of allowance for selecting keys in a mini popup keyboard by sliding finger. 
- popup_key_height x 1.7 
-         */
         public static int mini_keyboard_slide_allowance=0x7f0b000e;
-        /**  popup_key_height x 1.0 
- popup_key_height x 1.0 
-         */
         public static int mini_keyboard_vertical_correction=0x7f0b000f;
         public static int popup_key_height=0x7f0b0002;
         public static int spacebar_vertical_correction=0x7f0b0007;

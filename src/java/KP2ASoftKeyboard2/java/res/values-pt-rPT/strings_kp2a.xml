@@ -4,4 +4,6 @@
   <string name="change_entry">Selecionar outra entrada</string>
   <string name="open_entry">Selecionar a entrada</string>
   <string name="open_entry_for_app">Procurar entrada com \"%1$s\"</string>
+  <string name="kp2a_user">Utilizador</string>
+  <string name="kp2a_simple_keyboard">Teclado simples</string>
 </resources>

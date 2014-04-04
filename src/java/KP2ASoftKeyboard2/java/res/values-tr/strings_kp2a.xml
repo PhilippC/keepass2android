@@ -4,4 +4,9 @@
   <string name="change_entry">Başka bir kayıt seçin</string>
   <string name="open_entry">Kayıt seçin</string>
   <string name="open_entry_for_app">Kayıt \"%1$s\" ile arama</string>
+  <string name="kp2a_user">Kullanıcı</string>
+  <string name="kp2a_password">Şifre</string>
+  <string name="kp2a_prefs">Giriş kimlik bilgisi ayarları</string>
+  <string name="kp2a_auto_fill">Otomatik doldurma etkin</string>
+  <string name="kp2a_simple_keyboard">Basit klavye</string>
 </resources>

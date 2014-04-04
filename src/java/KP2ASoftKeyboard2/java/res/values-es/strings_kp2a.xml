@@ -4,4 +4,17 @@
   <string name="change_entry">Seleccione otra entrada</string>
   <string name="open_entry">Seleccione una entrada</string>
   <string name="open_entry_for_app">Buscar entrada con \"%1$s\"</string>
+  <string name="kp2a_user">Usuario</string>
+  <string name="kp2a_password">Contraseña</string>
+  <string name="kp2a_prefs">Configuración de credenciales</string>
+  <string name="kp2a_auto_fill">Auto llenado habilitado</string>
+  <string name="kp2a_auto_fill_summary">Si una entrada esta disponible para el teclado y si hay un valor que corresponda al tipo de campo, automáticamente llena con texto el campo si se encuentra vacío.</string>
+  <string name="kp2a_remember_auto_fill">Recordar textos de ayuda</string>
+  <string name="kp2a_remember_auto_fill_summary">Si un campo es llenado automáticamente al seleccionar el valor Keepass2Android, se debe recordar que valor fue introducido en el campo. El campo se vuelve a detectar después por el texto de ayuda.</string>
+  <string name="kp2a_simple_keyboard">Teclado simple</string>
+  <string name="kp2a_simple_keyboard_summary">Mostrar el teclado simple de una fila si hay alguna entrada disponible para este. Si esta deshabilitado se muestra un dialogo cuando se presiona la tecla Keepass2Android.</string>
+  <string name="kp2a_lock_on_sendgodone">Bloquear base de datos al finalizar</string>
+  <string name="kp2a_lock_on_sendgodone_summary">Bloquea automáticamente la base de datos al presionar Hecho/Enviar/Adelante en el teclado simple de una fila.</string>
+  <string name="kp2a_switch_on_sendgodone">Cambiar de teclado al finalizar</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Cambiar de teclado al presionar Hecho/Enviar/Adelante en el teclado simple de una fila.</string>
 </resources>
