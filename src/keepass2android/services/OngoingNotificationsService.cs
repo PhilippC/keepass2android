@@ -32,6 +32,10 @@ namespace keepass2android
 	/// Shows database unlocked warning persistent notification
 	/// Shows Quick-Unlock notification
 	/// </summary>
+	/// This service is running as foreground service to keep the app alive even when it's not currently
+	/// used by the user. This ensures the database is kept in memory (until Android kills it due to low memory).
+	/// It is important to also have a foreground service also for the "unlocked" state because it's really
+	/// irritating if the db is closed while switching between apps.
 	[Service]
 	public class OngoingNotificationsService : Service
 	{
@@ -64,15 +68,8 @@ namespace keepass2android
 				// Clear current foreground status and QuickUnlock icon
 				StopForeground(true);
 
-				if (ShowUnlockedNotification)
-				{
-					// No need for task to get foreground priority, we don't need any special treatment just for showing that the database is unlocked
-					notificationManager.Notify(UnlockedWarningId, GetUnlockedNotification());
-				}
-				else
-				{
-					notificationManager.Cancel(UnlockedWarningId);
-				}
+				//use foreground again to let the app not be killed too easily.
+				StartForeground(UnlockedWarningId, GetUnlockedNotification());
 			}
 			else 
 			{
@@ -91,11 +88,6 @@ namespace keepass2android
 			}
 
 			return StartCommandResult.NotSticky;
-		}
-
-		private bool ShowUnlockedNotification
-		{
-			get { return PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.ShowUnlockedNotification_key), Resources.GetBoolean(Resource.Boolean.ShowUnlockedNotification_default)); }
 		}
 
 		public override void OnTaskRemoved(Intent rootIntent)
@@ -118,11 +110,13 @@ namespace keepass2android
 
 			Kp2aLog.Log("OngoingNotificationsService.OnDestroy");
 
-			// If the service is killed, then lock the database immediately (as the unlocked warning icon will no longer display).
+			// If the service is killed, then lock the database immediately
 			if (App.Kp2a.DatabaseIsUnlocked)
 			{
 				App.Kp2a.LockDatabase();
 			}
+			//also remove any notifications of the app
+			notificationManager.CancelAll();
 
 			UnregisterReceiver(_screenOffReceiver);
 		}
@@ -139,6 +133,7 @@ namespace keepass2android
 		private Notification GetQuickUnlockNotification()
 		{
 			int grayIconResouceId = Resource.Drawable.ic_launcher_gray;
+			if ((int)Android.OS.Build.VERSION.SdkInt < 16)
 			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.QuickUnlockIconHidden_key), false))
 			{
 				grayIconResouceId = Resource.Drawable.transparent;
@@ -150,6 +145,19 @@ namespace keepass2android
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_quickunlock_enabled, GetDatabaseName()));
 
+			if ((int)Build.VERSION.SdkInt >= 16)
+			{
+				if (PreferenceManager.GetDefaultSharedPreferences(this)
+								 .GetBoolean(GetString(Resource.String.QuickUnlockIconHidden16_key), true))
+				{
+					builder.SetPriority((int) NotificationPriority.Min);
+				}
+				else
+				{
+					builder.SetPriority((int)NotificationPriority.Default);
+				}
+			}
+			
 			// Default action is to show Kp2A
 			builder.SetContentIntent(GetSwitchToAppPendingIntent());
 			// Additional action to allow locking the database
@@ -173,6 +181,20 @@ namespace keepass2android
 					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.ic_launcher_red))
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_unlocked, GetDatabaseName()));
+
+			if ((int)Build.VERSION.SdkInt >= 16)
+			{
+				if (PreferenceManager.GetDefaultSharedPreferences(this)
+								 .GetBoolean(GetString(Resource.String.ShowUnlockedNotification_key),
+											 Resources.GetBoolean(Resource.Boolean.ShowUnlockedNotification_default)))
+				{
+					builder.SetPriority((int)NotificationPriority.Default);
+				}
+				else
+				{
+					builder.SetPriority((int) NotificationPriority.Min);
+				}
+			}
 
 			// Default action is to show Kp2A
 			builder.SetContentIntent(GetSwitchToAppPendingIntent());

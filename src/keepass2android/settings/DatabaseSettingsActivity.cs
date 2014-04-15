@@ -124,12 +124,40 @@ namespace keepass2android
 					else
 					{
 						// Name is reflected in notification, so update it
-						StartService(new Intent(this, typeof(OngoingNotificationsService)));
+						App.Kp2a.UpdateOngoingNotification();
 					}
 				}));
                 ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
 				pt.Run();
 			};
+
+			try
+			{
+				//depending on Android version, we offer to use a transparent icon for QuickUnlock or use the notification priority (since API level 16)
+				Preference hideQuickUnlockTranspIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key));
+				Preference hideQuickUnlockIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden16_key));
+				var quickUnlockScreen = ((PreferenceScreen)FindPreference(GetString(Resource.String.QuickUnlock_prefs_key)));
+				if ((int)Android.OS.Build.VERSION.SdkInt >= 16)
+				{
+					quickUnlockScreen.RemovePreference(hideQuickUnlockTranspIconPref);
+					FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += (sender, args) => App.Kp2a.UpdateOngoingNotification();
+					hideQuickUnlockIconPref.PreferenceChange += delegate { App.Kp2a.UpdateOngoingNotification(); };
+				}
+				else
+				{
+					//old version: only show transparent quickUnlock and no option to hide unlocked icon:
+					quickUnlockScreen.RemovePreference(hideQuickUnlockIconPref);
+					FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key)).PreferenceChange +=
+						delegate { App.Kp2a.UpdateOngoingNotification(); };
+				
+					((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))).RemovePreference(
+						FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)));
+				}
+			}
+			catch (Exception ex)
+			{
+				Kp2aLog.Log(ex.ToString());
+			}
 
 			SetRounds(db, rounds);
 				

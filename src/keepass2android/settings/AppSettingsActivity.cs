@@ -52,7 +52,6 @@ namespace keepass2android
 			AddPreferencesFromResource(Resource.Xml.preferences);
 			
 			FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
-			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;;
 			Preference designPref = FindPreference(GetString(Resource.String.design_key));
 			if (!_design.HasThemes())
 			{
@@ -85,7 +84,32 @@ namespace keepass2android
 				Kp2aLog.Log(ex.ToString());	
 			}
 #endif
-			FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key)).PreferenceChange += OnQuickUnlockHiddenChanged;
+			try
+			{
+				//depending on Android version, we offer to use a transparent icon for QuickUnlock or use the notification priority (since API level 16)
+				Preference hideQuickUnlockTranspIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key));
+				Preference hideQuickUnlockIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden16_key));
+				var quickUnlockScreen = ((PreferenceScreen) FindPreference(GetString(Resource.String.QuickUnlock_prefs_key)));
+				if ((int) Android.OS.Build.VERSION.SdkInt >= 16)
+				{
+					quickUnlockScreen.RemovePreference(hideQuickUnlockTranspIconPref);
+					FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += (sender, args) => App.Kp2a.UpdateOngoingNotification();
+					hideQuickUnlockIconPref.PreferenceChange += OnQuickUnlockHiddenChanged;
+				}
+				else
+				{
+					//old version: only show transparent quickUnlock and no option to hide unlocked icon:
+					quickUnlockScreen.RemovePreference(hideQuickUnlockIconPref);
+					FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key)).PreferenceChange +=
+						delegate { App.Kp2a.UpdateOngoingNotification(); };
+					((PreferenceScreen) FindPreference(GetString(Resource.String.display_prefs_key))).RemovePreference(
+						FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)));
+				}
+			}
+			catch (Exception ex)
+			{
+				Kp2aLog.Log(ex.ToString());
+			}
 
 			FindPreference(GetString(Resource.String.db_key)).Enabled = false;
 		}
@@ -149,8 +173,7 @@ namespace keepass2android
 
 		internal static void OnShowUnlockedNotificationChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
 		{
-			var ctx = ((Preference)sender).Context;
-			ctx.StartService(new Intent(ctx, typeof(OngoingNotificationsService)));
+			App.Kp2a.UpdateOngoingNotification();
 		}
 	}
 

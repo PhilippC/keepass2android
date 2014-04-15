@@ -138,7 +138,12 @@ namespace keepass2android
 		{
 			// Start or update the notification icon service to reflect the current state
 			var ctx = Application.Context;
-			ctx.StartService(new Intent(ctx, typeof(OngoingNotificationsService)));
+			StartOnGoingService(ctx);
+		}
+
+		public static void StartOnGoingService(Context ctx)
+		{
+			ctx.StartService(new Intent(ctx, typeof (OngoingNotificationsService)));
 		}
 
 		public bool DatabaseIsUnlocked

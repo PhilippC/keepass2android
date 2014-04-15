@@ -215,8 +215,10 @@
   <string name="QuickUnlock_lockButton">Close database</string>
   <string name="QuickUnlockDefaultEnabled_title">Enable QuickUnlock by default</string>
   <string name="QuickUnlockDefaultEnabled_summary">Defines whether QuickUnlock is enabled by default or not.</string>
-	<string name="QuickUnlockIconHidden_title">Hide QuickUnlock icon</string>
-	<string name="QuickUnlockIconHidden_summary">QuickUnlock unfortunately does not work without displaying a notification icon. Select this option to use a transparent icon.</string>
+  <string name="QuickUnlockIconHidden_title">Hide QuickUnlock icon</string>
+  <string name="QuickUnlockIconHidden_summary">QuickUnlock unfortunately does not work without displaying a notification icon. Select this option to use a transparent icon.</string>
+  <string name="QuickUnlockIconHidden16_title">Hide QuickUnlock icon</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock requires a notification to work properly. Select this option to display a notification without an icon.</string>
   <string name="QuickUnlockLength_title">Length of QuickUnlock key</string>
   <string name="QuickUnlockLength_summary">Maximum number of characters used as QuickUnlock password.</string>
   <string name="QuickUnlock_fail">QuickUnlock failed: incorrect password!</string>
@@ -270,8 +272,8 @@
 	<string name="kp2a_switch_rooted">Auto-switch on rooted devices</string>
     <string name="kp2a_switch_rooted_summary">On rooted devices, it is possible to automatically switch to the Keepass2Android keyboard (after search for an entry or by clicking the KP2A keyboard notification) and to switch back to the previous keyboard without showing the Input method picker. This also requires to install the Secure Settings app. See the KP2A documentation for more information!</string>
 
-	<string name="ShowUnlockedNotification_title">Notification while unlocked</string>
-	<string name="ShowUnlockedNotification_summary">Show an ongoing notification while the database is unlocked.</string>
+	<string name="ShowUnlockedNotification_title">Notification icon while unlocked</string>
+	<string name="ShowUnlockedNotification_summary">Show a notification icon while the database is unlocked.</string>
 
 	<string name="PreloadDatabaseEnabled_title">Pre-load database file</string>
 	<string name="PreloadDatabaseEnabled_summary">Start background loading or downloading of the database file during password entry.</string>

@@ -515,7 +515,7 @@ namespace keepass2android
 				if (Success)
 				{
 					// Update the ongoing notification
-					_activity.StartService(new Intent(_activity, typeof(OngoingNotificationsService)));
+					App.Kp2a.UpdateOngoingNotification();
 
 					if (PreferenceManager.GetDefaultSharedPreferences(_activity).GetBoolean(_activity.GetString(Resource.String.RememberRecentFiles_key), _activity.Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default))) 
 					{
