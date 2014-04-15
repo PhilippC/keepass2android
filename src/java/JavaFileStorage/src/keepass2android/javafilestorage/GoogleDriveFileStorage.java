@@ -181,7 +181,12 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			if (!path.startsWith(getProtocolPrefix()))
 				throw new InvalidPathException("Invalid path: "+path);
 			String pathWithoutProtocol = path.substring(getProtocolPrefix().length());
-			String accountNameEncoded = pathWithoutProtocol.substring(0, pathWithoutProtocol.indexOf("/"));
+			int slashPos = pathWithoutProtocol.indexOf("/");
+			String accountNameEncoded;
+			if (slashPos < 0)
+				accountNameEncoded = pathWithoutProtocol;
+			else
+				accountNameEncoded = pathWithoutProtocol.substring(0, slashPos);
 			return decode(accountNameEncoded);
 		}
 		
@@ -190,7 +195,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			//gdrive://
 			String displayName = getProtocolPrefix();
 			
-			//gdrive//me@google.com/
+			//gdrive://me@google.com/
 			
 			displayName += mAccount;
 			
