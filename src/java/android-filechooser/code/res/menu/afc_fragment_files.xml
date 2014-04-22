@@ -10,20 +10,20 @@
     xmlns:afc="http://schemas.android.com/apk/res-auto" >
     <item
         android:id="@+id/afc_menuitem_home"
-        afc:showAsAction="ifRoom"
+        android:showAsAction="ifRoom"
         android:icon="?attr/afc_ic_menu_home"
         android:title="@string/afc_cmd_home"/>
     <item
         android:id="@+id/afc_menuitem_sort"
-        afc:showAsAction="ifRoom"
+        android:showAsAction="ifRoom"
         android:title="@string/afc_cmd_sort"/>
     <item
         android:id="@+id/afc_menuitem_switch_viewmode"
-        afc:showAsAction="ifRoom"
+        android:showAsAction="ifRoom"
         android:title="@null"/>
     <item
         android:id="@+id/afc_menuitem_new_folder"
-        afc:showAsAction="ifRoom"
+        android:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/afc_cmd_new_folder"/>
 

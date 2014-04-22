@@ -10,7 +10,7 @@
     package="group.pals.android.lib.ui.filechooser" >
 
     <uses-sdk
-        android:minSdkVersion="4"
+        android:minSdkVersion="14"
         android:targetSdkVersion="18" />
 
 </manifest>
