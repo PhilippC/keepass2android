@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ 
+     
+ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
+
+  Keepass2Android is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  Keepass2Android is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+
+	<attr name="help_text" format="string" />
+	<declare-styleable name="Kp2aShortHelpView">
+		<attr name="android:text"/>
+		<attr name="help_text" />
+	</declare-styleable>
+	<declare-styleable name="TextWithHelp">
+		<attr name="android:text"/>
+		<attr name="help_text" />
+	</declare-styleable>
+
+	<string name="icon_info">&#xf05a;</string>
+
+  <string name="library_name"></string>
+    <string name="default_file_path">/keepass/keepass.kdbx</string>
+    <string name="donate_url"><![CDATA[http://philipp.crocoll.net/donate.php?lang=%1$s&app=%2$s]]></string>
+    <string name="homepage">http://keepass2android.codeplex.com</string>
+    <string name="homepage_short">keepass2android.codeplex.com</string>
+	<string name="further_author_names">Alex Vallat</string>
+    <string name="issues">http://keepass2android.codeplex.com</string>
+    <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
+    <string name="oi_filemanager_web">https://openintents.googlecode.com/files/FileManager-2.0.2.apk</string>
+	<string name="permission_desc">KP2A Internal File Browsing Permission</string>
+   
+    <!--  Preference settings -->
+    <string name="algorithm_key">algorithm</string>
+    <string name="app_key">app</string>
+    <string name="app_timeout_key">app_timeout_key</string>
+	<string name="show_kill_app_key">show_kill_app_key</string>
+    <string name="clipboard_timeout_key">clip_timeout_key</string>
+    <string name="db_key">db</string>
+    <string name="rounds_key">rounds</string>
+    <string name="keyfile_key">keyfile</string>
+    <string name="maskpass_key">maskpass</string>
+    <string name="omitbackup_key">omitbackup</string>    
+    <string name="list_size_key">list_size</string>
+	<string name="design_key">design_key</string>
+	<string name="sort_key">sort_key</string>
+	<string name="TanExpiresOnUse_key">TanExpiresOnUse_key</string>
+	<string name="ShowUsernameInList_key">ShowUsernameInList_key</string>
+	<string name="RememberRecentFiles_key">RememberRecentFiles_key</string>
+    <string name="default_username_key">defaultUsername</string>
+    <string name="database_name_key">databaseName</string>
+    <string name="BinaryDirectory_key">binaryDirectory</string>
+    <string name="BinaryDirectory_default">/mnt/sdcard/keepass2android/binaries/</string>
+    <bool name="maskpass_default">true</bool>
+    <bool name="keyfile_default">true</bool>
+    <bool name="sort_default">true</bool>
+    <bool name="omitbackup_default">true</bool>
+    <bool name="TanExpiresOnUse_default">true</bool>
+    <bool name="ShowUsernameInList_default">true</bool>
+
+	<bool name="RememberRecentFiles_default">true</bool>
+	
+	
+	<string name="password_access_prefs_key">password_access_prefs_key</string>
+	<string name="security_prefs_key">security_prefs_key</string>
+	<string name="display_prefs_key">display_prefs_key</string>
+	<string name="QuickUnlock_prefs_key">QuickUnlock_prefs_key</string>
+	<string name="FileHandling_prefs_key">FileHandling_prefs_key</string>
+
+	<string name="QuickUnlockDefaultEnabled_key">Enable_QuickUnlock_by_default</string>
+	<string name="QuickUnlockLength_key">QuickUnlockLength</string>
+	<string name="QuickUnlockLength_default">3</string>
+	<string name="QuickUnlockIconHidden_key">QuickUnlockIconHidden_key</string>
+	<string name="QuickUnlockIconHidden16_key">QuickUnlockIconHidden16_key</string>
+	
+	<string name="UsageCount_key">UsageCount</string>
+	<string name="LastInfoVersionCode_key">LastInfoVersion</string>
+	
+	<string name="UseFileTransactions_key">UseFileTransactions</string>
+	<string name="LockWhenScreenOff_key">LockWhenScreenOff</string>
+	<string name="UseOfflineCache_key">UseOfflineCache</string>
+	<string name="AcceptAllServerCertificates_key">AcceptAllServerCertificates</string>
+	<string name="CheckForFileChangesOnSave_key">CheckForFileChangesOnSave</string>
+
+	<string name="MarketURL">market://details?id=</string>
+	<string name="SuggestionsURL">https://keepass2android.codeplex.com/workitem/list/basic</string>
+	<string name="TranslationURL">http://crowdin.net/project/keepass2android</string>
+	
+	<string name="CopyToClipboardNotification_key">ShowCopyToClipboardNotification</string>
+	<bool name="CopyToClipboardNotification_default">true</bool>
+	
+	<string name="UseKp2aKeyboard_key">ShowKp2aKeyboardNotification</string>
+	<bool name="UseKp2aKeyboard_default">true</bool>
+	
+	<string name="OpenKp2aKeyboardAutomatically_key">OpenKp2aKeyboardAutomatically</string>
+	<bool name="OpenKp2aKeyboardAutomatically_default">true</bool>
+	
+    <string name="clipboard_timeout_default">300000</string>
+    <string-array name="clipboard_timeout_values">
+    	<item>30000</item>
+    	<item>60000</item>
+    	<item>300000</item>
+		<item>600000</item>
+		<item>900000</item>
+		<item>1800000</item>
+		<item>3600000</item>
+    	<item>-1</item>
+    </string-array>
+
+	<string name="list_size_default">20</string>
+    <string-array name="list_size_values">
+    	<item>15</item>
+    	<item>20</item>
+    	<item>28</item>
+    </string-array>
+
+	<string name="design_default">Light</string>
+	<string-array name="design_values">
+		<item>Light</item>
+		<item>Dark</item>
+	</string-array>
+	
+	<string name="AcceptAllServerCertificates_default">WARN</string>
+	<string-array name="AcceptAllServerCertificates_values">
+		<item>IGNORE</item>
+		<item>WARN</item>
+		<item>ERROR</item>
+	</string-array>
+
+	<string name="ShowUnlockedNotification_key">ShowUnlockedNotification</string>
+	<bool name="ShowUnlockedNotification_default">true</bool>
+
+	<string name="PreloadDatabaseEnabled_key">PreloadDatabaseEnabled</string>
+	<bool name="PreloadDatabaseEnabled_default">true</bool>
+
+</resources>
