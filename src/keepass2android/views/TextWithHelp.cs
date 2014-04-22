@@ -42,7 +42,7 @@ namespace keepass2android.views
 			_kp2AShortHelpView.HelpText = a.GetString(Resource.Styleable.TextWithHelp_help_text);
 
 			const string xmlns = "http://schemas.android.com/apk/res/android";
-			((TextView)FindViewById(Resource.Id.text)).Text = Context.GetString(attrs.GetAttributeResourceValue(xmlns, "text",Resource.String.ellipsis));
+			((TextView)FindViewById(Resource.Id.text)).Text = Context.GetString(attrs.GetAttributeResourceValue(xmlns, "text", Resource.String.ellipsis));
 
 		}
 
