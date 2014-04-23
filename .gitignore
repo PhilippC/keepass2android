@@ -231,3 +231,10 @@ Thumbs.db
 /src/java/workspace_
 /src/java/workspace_tmp_
 /src/KP2AKdbLibraryBinding/Kp2aBusinessLogic/obj/ReleaseNoNet/__library_projects__/JavaFileStorageBindings/library_project_imports
+/src/java/JavaFileStorageTest/bin
+/src/java/JavaFileStorageTest/credentials.txt
+/src/java/JavaFileStorageTest/gen/com/example/javafilestoragetest/BuildConfig.java
+/src/java/JavaFileStorageTest/gen/com/example/javafilestoragetest/R.java
+/src/java/JavaFileStorageTest/gen/com/google/android/gms/R.java
+/src/java/JavaFileStorageTest/gen/group/pals/android/lib/ui/filechooser/R.java
+/src/java/JavaFileStorageTest/gen/keepass2android/javafilestorage/R.java
