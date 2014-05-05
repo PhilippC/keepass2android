@@ -1,5 +1,7 @@
 package keepass2android.pluginsdk;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -10,10 +12,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.PopupMenu;
 
 
 public class AccessManager 
 {
+	private static final String _tag = "Kp2aPluginSDK";
 	private static final String PREF_KEY_SCOPE = "scope";
 	private static final String PREF_KEY_TOKEN = "token";
 
@@ -49,19 +56,40 @@ public class AccessManager
 	public static void storeAccessToken(Context ctx, String hostPackage, String accessToken, ArrayList<String> scopes)
 	{
 		 SharedPreferences prefs = getPrefsForHost(ctx, hostPackage);
-		 
-		 //
-		 if (accessToken.equals(prefs.getString(PREF_KEY_TOKEN, "")))
-		 {
-			 //token already available
-			 return;
-		 }
-		 
+		  
 		 Editor edit = prefs.edit();
 		 edit.putString(PREF_KEY_TOKEN, accessToken);
-		 edit.putString(PREF_KEY_SCOPE, stringArrayToString(scopes));
+		 String scopesString = stringArrayToString(scopes);
+		 edit.putString(PREF_KEY_SCOPE, scopesString);
 		 edit.commit();
+		 Log.d(_tag, "stored access token " + accessToken.substring(0, 4)+"... for "+scopes.size()+" scopes ("+scopesString+").");
 		 
+		 
+	}
+	
+	public static void preparePopup(Object popupMenu)
+	{
+		try
+		{
+			Field[] fields = popupMenu.getClass().getDeclaredFields();
+			for (Field field : fields) {
+				if ("mPopup".equals(field.getName())) {
+					field.setAccessible(true);
+					Object menuPopupHelper = field.get(popupMenu);
+					Class<?> classPopupHelper = Class.forName(menuPopupHelper
+							.getClass().getName());
+					Method setForceIcons = classPopupHelper.getMethod(
+							"setForceShowIcon", boolean.class);
+					setForceIcons.invoke(menuPopupHelper, true);
+					break;
+				}
+			}
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	private static SharedPreferences getPrefsForHost(Context ctx,
@@ -72,14 +100,22 @@ public class AccessManager
 
 	public static String tryGetAccessToken(Context ctx, String hostPackage, ArrayList<String> scopes) {
 		
+		if (TextUtils.isEmpty(hostPackage))
+		{
+			Log.d(_tag, "hostPackage is empty!");
+			return null;
+		}
 		SharedPreferences prefs = getPrefsForHost(ctx, hostPackage);
-		ArrayList<String> currentScope = stringToStringArray(prefs.getString(PREF_KEY_SCOPE, ""));
+		String scopesString = prefs.getString(PREF_KEY_SCOPE, "");
+		Log.d(_tag, "scopes: "+ scopesString);
+		ArrayList<String> currentScope = stringToStringArray(scopesString);
 		if (isSubset(scopes, currentScope))
 		{
 			return prefs.getString(PREF_KEY_TOKEN, null);
 		}
 		else
 		{
+			Log.d(_tag, "looks like scope changed. Access token invalid.");
 			return null;
 		}
 	}
@@ -88,7 +124,10 @@ public class AccessManager
 			ArrayList<String> availableScopes) {
 		for (String r: requiredScopes){
 			if (availableScopes.indexOf(r)<0)
+			{
+				Log.d(_tag, "Scope "+r+" not available. "+availableScopes.size());
 				return false;
+			}
 		}
 		return true;
 	}
@@ -105,5 +144,16 @@ public class AccessManager
 
 		}
 	 
+	}
+
+	/**
+	 * Returns a valid access token or throws PluginAccessException
+	 */
+	public static String getAccessToken(Context context, String hostPackage,
+			ArrayList<String> scopes) throws PluginAccessException {
+		String accessToken = tryGetAccessToken(context, hostPackage, scopes);
+		if (accessToken == null)
+			throw new PluginAccessException(hostPackage, scopes);
+		return accessToken;
 	}
 }

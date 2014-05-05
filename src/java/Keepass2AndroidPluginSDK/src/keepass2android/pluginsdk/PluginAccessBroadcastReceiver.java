@@ -34,6 +34,8 @@ public abstract class PluginAccessBroadcastReceiver extends BroadcastReceiver {
 	public void onReceive(Context ctx, Intent intent) {
 		String action = intent.getAction();
 		android.util.Log.d("KP2A.pluginsdk", "received broadcast with action="+action);
+		if (action == null)
+			return;
 		if (action.equals(Strings.ACTION_TRIGGER_REQUEST_ACCESS))
 		{
 			requestAccess(ctx, intent);	

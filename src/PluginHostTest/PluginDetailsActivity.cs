@@ -96,7 +96,7 @@ namespace PluginHostTest
 				FindViewById<TextView>(resourceId).Visibility = ViewStates.Gone;
 		}
 
-		private static string GetStringFromPlugin(Resources pluginRes, string pluginPackage, string stringId)
+		public static string GetStringFromPlugin(Resources pluginRes, string pluginPackage, string stringId)
 		{
 			int titleId = pluginRes.GetIdentifier(pluginPackage + ":string/"+stringId, null, null);
 			string title = null;

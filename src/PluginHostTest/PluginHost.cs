@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-
+using System.Xml.Linq;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -11,9 +12,12 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-
+using KeePassLib;
+using KeePassLib.Serialization;
+using KeePassLib.Utility;
 using Keepass2android;
 using Keepass2android.Pluginsdk;
+using Org.Json;
 using PluginHostTest;
 
 namespace keepass2android
@@ -26,7 +30,7 @@ namespace keepass2android
 		private const string _tag = "KP2A_PluginHost";
 		
 
-		private static readonly string[] _validScopes = { Strings.ScopeDatabaseActions };
+		private static readonly string[] _validScopes = { Strings.ScopeDatabaseActions, Strings.ScopeCurrentEntry };
 
 		public static void TriggerRequests(Context ctx)
 		{
@@ -138,6 +142,34 @@ namespace keepass2android
 			return true;
 		}
 
-		
+		public static void AddEntryToIntent(Intent intent, PwEntry entry)
+		{
+			/*//add the entry XML
+			not yet implemented. What to do with attachments?
+			MemoryStream memStream = new MemoryStream();
+			KdbxFile.WriteEntries(memStream, new[] {entry});
+			string entryData = StrUtil.Utf8.GetString(memStream.ToArray());
+			intent.PutExtra(Strings.ExtraEntryData, entryData);
+			*/
+			//add the compiled string array (placeholders replaced taking into account the db context)
+			Dictionary<string, string> compiledFields = new Dictionary<string, string>();
+			foreach (var pair in entry.Strings)
+			{
+				String key = pair.Key;
+
+				String value = entry.Strings.ReadSafe(key);
+				value = SprEngine.Compile(value, new SprContext(entry, App.Kp2A.GetDb().KpDatabase, SprCompileFlags.All));
+
+				compiledFields.Add(StrUtil.SafeXmlString(pair.Key), value);
+				
+			}
+
+			JSONObject json = new JSONObject(compiledFields);
+			var jsonStr = json.ToString();
+			intent.PutExtra(Strings.ExtraCompiledEntryData, jsonStr);
+
+			intent.PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString());
+
+		}
 	}
 }

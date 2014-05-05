@@ -125,6 +125,18 @@ namespace keepass2android
 
 		public bool IsValidAccessToken(string pluginPackage, string accessToken, string scope)
 		{
+			if (pluginPackage == null)
+			{
+				Log.Warn(_tag, "No pluginPackage specified!");
+				return false;
+			}
+
+			if (accessToken == null)
+			{
+				Log.Warn(_tag, "No accessToken specified!");
+				return false;
+			} 
+
 			var prefs = GetPreferencesForPlugin(pluginPackage);
 			if (prefs.GetString(_accessToken, null) != accessToken)
 			{

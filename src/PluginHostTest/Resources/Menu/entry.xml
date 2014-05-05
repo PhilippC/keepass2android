@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
+
+  Keepass2Android is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  Keepass2Android is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_donate"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="@string/menu_donate"
+    />
+    <item android:id="@+id/menu_toggle_pass"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="@string/show_password"
+    />
+    <item android:id="@+id/menu_goto_url"
+        android:icon="@android:drawable/ic_menu_upload"
+        android:title="@string/menu_url"
+    />
+    <!--<item android:id="@+id/menu_copy_user"
+        android:icon="@android:drawable/ic_menu_set_as"
+        android:title="@string/menu_copy_user"
+    />
+    <item android:id="@+id/menu_copy_pass"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="@string/menu_copy_pass"
+    />-->
+    <item android:id="@+id/menu_lock"
+        android:icon="@android:drawable/ic_lock_lock"
+        android:title="@string/menu_lock"
+    />
+    <item android:id="@+id/menu_suggest_improvements"
+        android:icon="@android:drawable/ic_menu_directions"
+        android:title="@string/suggest_improvements"
+    />
+    <item android:id="@+id/menu_rate"
+        android:icon="@android:drawable/star_off"
+        android:title="@string/rate_app"
+    />
+    <item android:id="@+id/menu_translate"
+        android:title="@string/translate_app"
+       />
+</menu>

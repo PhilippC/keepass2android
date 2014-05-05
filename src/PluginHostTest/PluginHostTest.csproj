@@ -56,24 +56,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
+    <Compile Include="App.cs" />
     <Compile Include="ClickView.cs" />
+    <Compile Include="CopyToClipboardService.cs" />
     <Compile Include="EntryActivity.cs" />
     <Compile Include="EntryContentsView.cs" />
     <Compile Include="EntrySection.cs" />
+    <Compile Include="EntryActivityClasses\ExtraStringView.cs" />
+    <Compile Include="EntryActivityClasses\IPopupMenuItem.cs" />
+    <Compile Include="EntryActivityClasses\IStringView.cs" />
     <Compile Include="Kp2aShortHelpView.cs" />
+    <Compile Include="EntryActivityClasses\OpenBinaryPopupItem.cs" />
     <Compile Include="PluginDatabase.cs" />
     <Compile Include="PluginDetailsActivity.cs" />
     <Compile Include="PluginArrayAdapter.cs" />
     <Compile Include="PluginListActivity.cs" />
     <Compile Include="PluginHost.cs" />
+    <Compile Include="EntryActivityClasses\PluginMenuOption.cs" />
+    <Compile Include="EntryActivityClasses\PluginPopupMenuItem.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SprCompileFlags.cs" />
+    <Compile Include="SprContext.cs" />
+    <Compile Include="SprEngine.cs" />
+    <Compile Include="EntryActivityClasses\StandardStringView.cs" />
+    <Compile Include="TextDrawable.cs" />
     <Compile Include="TextViewSelect.cs" />
     <Compile Include="TextWithHelp.cs" />
+    <Compile Include="EntryActivityClasses\WriteBinaryToFilePopupItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <TransformFile Include="Assets\DejaVuSansMono.ttf" />
-    <TransformFile Include="Assets\fontawesome-webfont.ttf" />
+    <AndroidAsset Include="Assets\DejaVuSansMono.ttf" />
+    <AndroidAsset Include="Assets\fontawesome-webfont.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\Layout\plugin_list.xml">
@@ -93,6 +107,10 @@
     <TransformFile Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
+      <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
+      <Name>KeePassLib2Android</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PluginSdkBinding\PluginSdkBinding.csproj">
       <Project>{3da3911e-36de-465e-8f15-f1991b6437e5}</Project>
       <Name>PluginSdkBinding</Name>
@@ -566,6 +584,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\entry_view.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\vdots_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\vdots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\ic_menu_copy_holo_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Menu\entry.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

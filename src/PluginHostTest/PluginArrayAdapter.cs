@@ -1,3 +1,6 @@
+using Android.Content.PM;
+using Android.Content.Res;
+using Android.Graphics.Drawables;
 using Android.Widget;
 using Android.Content;
 using Android.Views;
@@ -11,26 +14,32 @@ namespace keepass2android
 	public class PluginItem
 	{
 		private readonly string _package;
+		private readonly Context _ctx;
+		private readonly Resources _pluginRes;
 
-		public PluginItem(string package, string _label, int _icon, string _version, string _enabledStatus)
+		public PluginItem(string package, string enabledStatus, Context ctx)
 		{
 			_package = package;
-			Label = _label;
-			Icon = _icon;
-			Version = _version;
-			EnabledStatus = _enabledStatus;
+			_ctx = ctx;
+			EnabledStatus = enabledStatus;
+			_pluginRes = _ctx.PackageManager.GetResourcesForApplication(_package);
 		}
 
 		public string Label
 		{
-			get;
-			set;
+			get
+			{
+				return PluginDetailsActivity.GetStringFromPlugin(_pluginRes, _package, "kp2aplugin_title");
+			}
+			
 		}
 
 		public string Version
 		{
-			get;
-			set;
+			get
+			{
+				return _ctx.PackageManager.GetPackageInfo(_package, 0).VersionName;
+			}
 		}
 
 		public string EnabledStatus
@@ -39,10 +48,12 @@ namespace keepass2android
 			set;
 		}
 
-		public int Icon
+		public Drawable Icon
 		{
-			get;
-			set;
+			get
+			{
+				return _ctx.PackageManager.GetApplicationIcon(_package);
+			}
 		}
 
 		public string Package
@@ -104,7 +115,7 @@ namespace keepass2android
 			holder.txtTitle.Text = item.Label;
 			holder.txtVersion.Text = item.Version;
 			holder.txtEnabledStatus.Text = item.EnabledStatus;
-			holder.imgIcon.SetImageResource(item.Icon);
+			holder.imgIcon.SetImageDrawable(item.Icon);
 
 			return row;
 		}
