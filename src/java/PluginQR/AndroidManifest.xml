@@ -53,16 +53,23 @@
 
         <activity
             android:name="keepass2android.plugin.qr.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main" 
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="com.google.zxing.client.android.CaptureActivity" 
-            android:label="Capture">
+            android:label="Capture"
+            android:screenOrientation="portrait"
+           android:configChanges="orientation|keyboardHidden"
+           android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+           android:windowSoftInputMode="stateAlwaysHidden">
             
         </activity>
+        
+        
     </application>
 
 </manifest>
