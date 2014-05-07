@@ -13,6 +13,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using KeePassLib;
+using KeePassLib.Collections;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using Keepass2android;
@@ -142,7 +143,7 @@ namespace keepass2android
 			return true;
 		}
 
-		public static void AddEntryToIntent(Intent intent, PwEntry entry)
+		public static void AddEntryToIntent(Intent intent, PwEntryOutput entry)
 		{
 			/*//add the entry XML
 			not yet implemented. What to do with attachments?
@@ -151,22 +152,12 @@ namespace keepass2android
 			string entryData = StrUtil.Utf8.GetString(memStream.ToArray());
 			intent.PutExtra(Strings.ExtraEntryData, entryData);
 			*/
-			//add the compiled string array (placeholders replaced taking into account the db context)
-			Dictionary<string, string> compiledFields = new Dictionary<string, string>();
-			foreach (var pair in entry.Strings)
-			{
-				String key = pair.Key;
+			//add the output string array (placeholders replaced taking into account the db context)
+			Dictionary<string, string> outputFields = entry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
 
-				String value = entry.Strings.ReadSafe(key);
-				value = SprEngine.Compile(value, new SprContext(entry, App.Kp2A.GetDb().KpDatabase, SprCompileFlags.All));
-
-				compiledFields.Add(StrUtil.SafeXmlString(pair.Key), value);
-				
-			}
-
-			JSONObject json = new JSONObject(compiledFields);
+			JSONObject json = new JSONObject(outputFields);
 			var jsonStr = json.ToString();
-			intent.PutExtra(Strings.ExtraCompiledEntryData, jsonStr);
+			intent.PutExtra(Strings.ExtraEntryOutputData, jsonStr);
 
 			intent.PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString());
 

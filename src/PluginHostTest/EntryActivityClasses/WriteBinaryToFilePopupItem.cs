@@ -3,6 +3,9 @@ using PluginHostTest;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Represents the popup menu item in EntryActivity to store the binary attachment on SD card
+	/// </summary>
 	internal class WriteBinaryToFilePopupItem : IPopupMenuItem
 	{
 		private readonly string _key;

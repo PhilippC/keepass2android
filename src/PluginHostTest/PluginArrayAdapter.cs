@@ -10,7 +10,9 @@ using PluginHostTest;
 
 namespace keepass2android
 {
-
+	/// <summary>
+	/// Represents information about a plugin for display in the plugin list activity
+	/// </summary>
 	public class PluginItem
 	{
 		private readonly string _package;

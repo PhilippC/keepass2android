@@ -60,11 +60,15 @@
     <Compile Include="ClickView.cs" />
     <Compile Include="CopyToClipboardService.cs" />
     <Compile Include="EntryActivity.cs" />
+    <Compile Include="EntryActivityClasses\CopyToClipboardPopupMenuIcon.cs" />
+    <Compile Include="EntryActivityClasses\GotoUrlMenuItem.cs" />
+    <Compile Include="EntryActivityClasses\ToggleVisibilityPopupMenuItem.cs" />
     <Compile Include="EntryContentsView.cs" />
     <Compile Include="EntrySection.cs" />
     <Compile Include="EntryActivityClasses\ExtraStringView.cs" />
     <Compile Include="EntryActivityClasses\IPopupMenuItem.cs" />
     <Compile Include="EntryActivityClasses\IStringView.cs" />
+    <Compile Include="Intents.cs" />
     <Compile Include="Kp2aShortHelpView.cs" />
     <Compile Include="EntryActivityClasses\OpenBinaryPopupItem.cs" />
     <Compile Include="PluginDatabase.cs" />

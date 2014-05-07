@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Android.Content;
+using Android.Content.PM;
 using Android.Util;
 using Keepass2android.Pluginsdk;
 
@@ -32,16 +33,15 @@ namespace keepass2android
 				var editor = prefs.Edit();
 				editor.PutString(_requesttoken, Guid.NewGuid().ToString());
 				editor.Commit();
-
-				var hostPrefs = GetHostPrefs();
-				var plugins = hostPrefs.GetStringSet(_pluginlist, new List<string>());
-				if (!plugins.Contains(packageName))
-				{
-					plugins.Add(packageName);
-					hostPrefs.Edit().PutStringSet(_pluginlist, plugins).Commit();
-				}
-
 			}
+			var hostPrefs = GetHostPrefs();
+			var plugins = hostPrefs.GetStringSet(_pluginlist, new List<string>());
+			if (!plugins.Contains(packageName))
+			{
+				plugins.Add(packageName);
+				hostPrefs.Edit().PutStringSet(_pluginlist, plugins).Commit();
+			}
+
 			return prefs;
 		}
 
@@ -63,7 +63,20 @@ namespace keepass2android
 		public IEnumerable<String> GetAllPluginPackages()
 		{
 			var hostPrefs = GetHostPrefs();
-			return hostPrefs.GetStringSet(_pluginlist, new List<string>());
+			return hostPrefs.GetStringSet(_pluginlist, new List<string>()).Where(IsPackageInstalled);
+		}
+
+		public bool IsPackageInstalled(string targetPackage)
+		{
+			try
+			{
+				PackageInfo info = _ctx.PackageManager.GetPackageInfo(targetPackage, PackageInfoFlags.MetaData);
+			}
+			catch (PackageManager.NameNotFoundException e)
+			{
+				return false;
+			}
+			return true;
 		}
 
 		public bool IsEnabled(string pluginPackage)

@@ -113,6 +113,7 @@ namespace keepass2android
 					}
 					_activity.AddPluginAction(pluginPackage,
 					                          intent.GetStringExtra(Strings.ExtraFieldId),
+											  intent.GetStringExtra(Strings.ExtraActionId),
 					                          intent.GetStringExtra(Strings.ExtraActionDisplayText),
 					                          intent.GetIntExtra(Strings.ExtraActionIconResId, -1),
 					                          intent.GetBundleExtra(Strings.ExtraActionData));
@@ -156,6 +157,7 @@ namespace keepass2android
 
 		private void SetPluginField(string key, string value, bool isProtected)
 		{
+			//update or add the string view:
 			IStringView existingField;
 			if (_stringViews.TryGetValue(key, out existingField))
 			{
@@ -168,13 +170,47 @@ namespace keepass2android
 				extraGroup.AddView(view.View);
 			}
 
+			//update the Entry output in the App database and notify the CopyToClipboard service
+			App.Kp2A.GetDb().LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
+			Intent updateKeyboardIntent = new Intent(this, typeof(CopyToClipboardService));
+			Intent.SetAction(Intents.UpdateKeyboard);
+			updateKeyboardIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
+			StartService(updateKeyboardIntent);
+
+			//notify plugins
+			NotifyPluginsOnModification(Strings.PrefixString+key);
 		}
 
-		private void AddPluginAction(string pluginPackage, string fieldId, string displayText, int iconId, Bundle bundleExtra)
+		private void AddPluginAction(string pluginPackage, string fieldId, string popupItemId, string displayText, int iconId, Bundle bundleExtra)
 		{
 			if (fieldId != null)
 			{
-				_popupMenuItems[fieldId].Add(new PluginPopupMenuItem(this, pluginPackage, fieldId, displayText, iconId, bundleExtra));
+				try
+				{
+					//create a new popup item for the plugin action:
+					var newPopup = new PluginPopupMenuItem(this, pluginPackage, fieldId, popupItemId, displayText, iconId, bundleExtra);
+					//see if we already have a popup item for this field with the same item id
+					var popupsForField = _popupMenuItems[fieldId];
+					var popupItemPos = popupsForField.FindIndex(0,
+															item =>
+															(item is PluginPopupMenuItem) &&
+															((PluginPopupMenuItem)item).PopupItemId == popupItemId);
+
+					//replace existing or add
+					if (popupItemPos >= 0)
+					{
+						popupsForField[popupItemPos] = newPopup;
+					}
+					else
+					{
+						popupsForField.Add(newPopup);
+					}
+				}
+				catch (Exception e)
+				{
+					Kp2aLog.Log(e.ToString());
+				}
+				
 			}
 			else
 			{
@@ -185,6 +221,7 @@ namespace keepass2android
 				i.SetPackage(pluginPackage);
 				i.PutExtra(Strings.ExtraActionData, bundleExtra);
 				i.PutExtra(Strings.ExtraSender, PackageName);
+				PluginHost.AddEntryToIntent(i, App.Kp2A.GetDb().LastOpenedEntry);
 
 				var menuOption = new PluginMenuOption()
 					{
@@ -407,6 +444,8 @@ namespace keepass2android
 
 			SetupEditButtons();
 
+			App.Kp2A.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2A.GetDb().KpDatabase);
+
 			RegisterReceiver(new PluginActionReceiver(this), new IntentFilter(Strings.ActionAddEntryAction));
 			RegisterReceiver(new PluginFieldReceiver(this), new IntentFilter(Strings.ActionSetEntryField));
 
@@ -419,7 +458,22 @@ namespace keepass2android
 
 			Intent i = new Intent(Strings.ActionOpenEntry);
 			i.PutExtra(Strings.ExtraSender, PackageName);
-			PluginHost.AddEntryToIntent(i, Entry);
+			AddEntryToIntent(i);
+
+
+			foreach (var plugin in new PluginDatabase(this).GetPluginsWithAcceptedScope(Strings.ScopeCurrentEntry))
+			{
+				i.SetPackage(plugin);
+				SendBroadcast(i);
+			}
+		}
+		private void NotifyPluginsOnModification(string fieldId)
+		{
+			Intent i = new Intent(Strings.ActionEntryOutputModified);
+			i.PutExtra(Strings.ExtraSender, PackageName);
+			i.PutExtra(Strings.ExtraFieldId, fieldId);
+			AddEntryToIntent(i);
+
 
 			foreach (var plugin in new PluginDatabase(this).GetPluginsWithAcceptedScope(Strings.ScopeCurrentEntry))
 			{
@@ -841,6 +895,11 @@ namespace keepass2android
 		public void OpenBinaryFile(Uri newUri)
 		{
 			Toast.MakeText(this, "opening file TODO", ToastLength.Short).Show();
+		}
+
+		public void AddEntryToIntent(Intent intent)
+		{
+			PluginHost.AddEntryToIntent(intent, App.Kp2A.GetDb().LastOpenedEntry);
 		}
 	}
 }

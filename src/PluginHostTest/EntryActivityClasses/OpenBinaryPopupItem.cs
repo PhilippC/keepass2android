@@ -3,6 +3,9 @@ using PluginHostTest;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Represents the popup menu item in EntryActivity to open the associated attachment
+	/// </summary>
 	internal class OpenBinaryPopupItem : IPopupMenuItem
 	{
 		private readonly string _key;

@@ -53,6 +53,12 @@ public class Strings {
 	public static final String ACTION_OPEN_ENTRY= "keepass2android.ACTION_OPEN_ENTRY";
 	
 	/**
+	 * Action sent from KP2A to the plugin to indicate that an entry output field was modified/added.
+	 * The Intent contains the full new entry data.
+	 */
+	public static final String ACTION_ENTRY_OUTPUT_MODIFIED= "keepass2android.ACTION_ENTRY_OUTPUT_MODIFIED";
+	
+	/**
 	 * Action sent from KP2A to the plugin to indicate that an entry activity was closed.
 	 */
 	public static final String ACTION_CLOSE_ENTRY_VIEW= "keepass2android.ACTION_CLOSE_ENTRY_VIEW";
@@ -69,9 +75,9 @@ public class Strings {
 	//public static final String EXTRA_ENTRY_DATA = "keepass2android.EXTRA_ENTRY_DATA";
 	
 	/**
-	 * Json serialized list of fields, compiled using the database context (i.e. placeholders are replaced already)
+	 * Json serialized list of fields, transformed using the database context (i.e. placeholders are replaced already)
 	 */
-	public static final String EXTRA_COMPILED_ENTRY_DATA = "keepass2android.EXTRA_COMPILED_ENTRY_DATA";
+	public static final String EXTRA_ENTRY_OUTPUT_DATA = "keepass2android.EXTRA_ENTRY_OUTPUT_DATA";
 
 	/**
 	 * Extra key for passing the access token (both ways)
@@ -88,6 +94,12 @@ public class Strings {
 	public static final String EXTRA_ACTION_ICON_RES_ID = "keepass2android.EXTRA_ACTION_ICON_RES_ID";
 
 	public static final String EXTRA_FIELD_ID = "keepass2android.EXTRA_FIELD_ID";
+	
+	/** 
+	 * Used to pass an id for the action. Each actionId may occur only once per field, otherwise the previous
+	 * action with same id is replaced by the new action.
+	 */
+	public static final String EXTRA_ACTION_ID = "keepass2android.EXTRA_ACTION_ID";
 
 	/** Extra for ACTION_ADD_ENTRY_ACTION and ACTION_ENTRY_ACTION_SELECTED to pass data specifying the action parameters.*/
 	public static final String EXTRA_ACTION_DATA = "keepass2android.EXTRA_ACTION_DATA";
@@ -109,6 +121,7 @@ public class Strings {
 	
 	public static final String PREFIX_STRING = "STRING_";
 	public static final String PREFIX_BINARY = "BINARY_";
+	
 	
 
 }

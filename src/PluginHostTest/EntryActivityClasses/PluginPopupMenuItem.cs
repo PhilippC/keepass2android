@@ -5,20 +5,25 @@ using Keepass2android.Pluginsdk;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Represents a popup menu item in EntryActivity which was added by a plugin. The click will therefore broadcast to the plugin.
+	/// </summary>
 	class PluginPopupMenuItem : IPopupMenuItem
 	{
-		private readonly Context _ctx;
+		private readonly EntryActivity _activity;
 		private readonly string _pluginPackage;
 		private readonly string _fieldId;
+		private readonly string _popupItemId;
 		private readonly string _displayText;
 		private readonly int _iconId;
 		private readonly Bundle _bundleExtra;
 
-		public PluginPopupMenuItem(Context ctx, string pluginPackage, string fieldId, string displayText, int iconId, Bundle bundleExtra)
+		public PluginPopupMenuItem(EntryActivity activity, string pluginPackage, string fieldId, string popupItemId, string displayText, int iconId, Bundle bundleExtra)
 		{
-			_ctx = ctx;
+			_activity = activity;
 			_pluginPackage = pluginPackage;
 			_fieldId = fieldId;
+			_popupItemId = popupItemId;
 			_displayText = displayText;
 			_iconId = iconId;
 			_bundleExtra = bundleExtra;
@@ -26,22 +31,29 @@ namespace keepass2android
 
 		public Drawable Icon 
 		{ 
-			get { return _ctx.PackageManager.GetResourcesForApplication(_pluginPackage).GetDrawable(_iconId); }
+			get { return _activity.PackageManager.GetResourcesForApplication(_pluginPackage).GetDrawable(_iconId); }
 		}
 		public string Text 
 		{ 
 			get { return _displayText; } 
 		}
+
+		public string PopupItemId
+		{
+			get { return _popupItemId; }
+		}
+
 		public void HandleClick()
 		{
 			Intent i = new Intent(Strings.ActionEntryActionSelected);
 			i.SetPackage(_pluginPackage);
 			i.PutExtra(Strings.ExtraActionData, _bundleExtra);
 			i.PutExtra(Strings.ExtraFieldId, _fieldId);
-			i.PutExtra(Strings.ExtraSender, _ctx.PackageName);
-			PluginHost.AddEntryToIntent(i, Entry);
+			i.PutExtra(Strings.ExtraSender, _activity.PackageName);
 
-			_ctx.SendBroadcast(i);
+			_activity.AddEntryToIntent(i);
+
+			_activity.SendBroadcast(i);
 		}
 	}
 }
