@@ -66,6 +66,7 @@ namespace keepass2android
 
 		AppTask _appTask;
 		private List<TextView> _protectedTextViews;
+		private IMenu _menu;
 
 
 		protected void SetEntryView() {
@@ -140,7 +141,7 @@ namespace keepass2android
                 ProgressTask pt = new ProgressTask(App.Kp2a, this, update);
 				pt.Run();
 			}
-			FillData(false);
+			FillData();
 			
 			SetupEditButtons();
 
@@ -191,13 +192,9 @@ namespace keepass2android
 			return sb.ToString();
 		}
 
-		void PopulateExtraStrings(bool trimList)
+		void PopulateExtraStrings()
 		{
 			ViewGroup extraGroup = (ViewGroup)FindViewById(Resource.Id.extra_strings);
-			if (trimList)
-			{
-				extraGroup.RemoveAllViews();
-			}
 			bool hasExtraFields = false;
 			foreach (var view in from pair in Entry.Strings where !PwDefs.IsStandardField(pair.Key) orderby pair.Key 
 								 select CreateEditSection(pair.Key, pair.Value.ReadString(), pair.Value.IsProtected))
@@ -228,8 +225,8 @@ namespace keepass2android
 				RegisterProtectedTextView(valueView);
 
 
-			if ((int)Build.VERSION.SdkInt >= 11)
-				valueView.SetTextIsSelectable(true);
+			/*if ((int)Build.VERSION.SdkInt >= 11)
+				valueView.SetTextIsSelectable(true);*/
 			layout.AddView(valueView);
 			return layout;
 		}
@@ -323,13 +320,9 @@ namespace keepass2android
 			}
 		}
 
-		void PopulateBinaries(bool trimList)
+		void PopulateBinaries()
 		{
 			ViewGroup binariesGroup = (ViewGroup)FindViewById(Resource.Id.binaries);
-			if (trimList)
-			{
-				binariesGroup.RemoveAllViews();
-			}
 			foreach (KeyValuePair<string, ProtectedBinary> pair in Entry.Binaries)
 			{
 				String key = pair.Key;
@@ -390,7 +383,7 @@ namespace keepass2android
 			OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
 		}
 
-		protected void FillData(bool trimList)
+		protected void FillData()
 		{
 			_protectedTextViews = new List<TextView>();
 			ImageView iv = (ImageView)FindViewById(Resource.Id.entry_icon);
@@ -442,9 +435,9 @@ namespace keepass2android
 
 			PopulateText(Resource.Id.entry_override_url, Resource.Id.entry_override_url_label, Entry.OverrideUrl);
 
-			PopulateExtraStrings(trimList);
+			PopulateExtraStrings();
 
-			PopulateBinaries(trimList);
+			PopulateBinaries();
 
 			SetPasswordStyle();
 		}
@@ -490,25 +483,22 @@ namespace keepass2android
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
 			base.OnActivityResult(requestCode, resultCode, data);
 			if ( resultCode == KeePass.ExitRefresh || resultCode == KeePass.ExitRefreshTitle ) {
-				FillData(true);
 				if ( resultCode == KeePass.ExitRefreshTitle ) {
 					RequiresRefresh ();
 				}
+				Recreate();
 			}
 		}
 		
-		public override bool OnCreateOptionsMenu(IMenu menu) {
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			_menu = menu;
 			base.OnCreateOptionsMenu(menu);
 
 			MenuInflater inflater = MenuInflater;
 			inflater.Inflate(Resource.Menu.entry, menu);
 			
-			IMenuItem togglePassword = menu.FindItem(Resource.Id.menu_toggle_pass);
-			if ( _showPassword ) {
-				togglePassword.SetTitle(Resource.String.menu_hide_password);
-			} else {
-				togglePassword.SetTitle(Resource.String.show_password);
-			}
+			UpdateTogglePasswordMenu();
 
 			IMenuItem gotoUrl = menu.FindItem(Resource.Id.menu_goto_url);
 			//Disabled IMenuItem copyUser = menu.FindItem(Resource.Id.menu_copy_user);
@@ -538,7 +528,20 @@ namespace keepass2android
 			}
 			return true;
 		}
-		
+
+		private void UpdateTogglePasswordMenu()
+		{
+			IMenuItem togglePassword = _menu.FindItem(Resource.Id.menu_toggle_pass);
+			if (_showPassword)
+			{
+				togglePassword.SetTitle(Resource.String.menu_hide_password);
+			}
+			else
+			{
+				togglePassword.SetTitle(Resource.String.show_password);
+			}
+		}
+
 		private void SetPasswordStyle() {
 			foreach (TextView password in _protectedTextViews)
 			{

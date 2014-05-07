@@ -1,166 +1,264 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/entry_table"
     android:layout_height="wrap_content"
     android:layout_width="fill_parent"
     android:orientation="vertical">
 
-<!-- Username -->
-    <TextView
-        android:id="@+id/entry_user_name_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_user_name"
-        style="@style/EntryFieldHeader"
+
+	<LinearLayout android:id="@+id/entryfield_container_username"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical">
+
+		<TextView
+			android:id="@+id/entry_user_name_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_user_name"
+			
+			style="@style/EntryFieldHeader"
          />
-    <TextView
-        android:id="@+id/entry_user_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textIsSelectable="true"
-        style="@style/EntryItem" />
-<!--  URL -->
-    <TextView
-        android:id="@+id/entry_url_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_url"
-        style="@style/EntryFieldHeader"
+
+		<!-- Username -->
+		<RelativeLayout android:id="@+id/username_container"
+					  android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="horizontal"
+		android:clickable="true"
+		android:background="?android:attr/selectableItemBackground">
+
+
+			<ImageView
+				android:id="@+id/username_vdots"
+				android:layout_width="wrap_content"
+				android:layout_height="15dp"
+					   android:src="@drawable/vdots"
+					   android:gravity="right|bottom"
+					   android:layout_alignParentRight="true"
+					   android:layout_alignParentBottom="true"
+				   />
+			<TextView
+				android:id="@+id/entry_user_name"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_toLeftOf="@id/username_vdots"
+				style="@style/EntryItem" />
+		</RelativeLayout>
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/entryfield_container_url"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical">
+
+		<!--  URL -->
+		<TextView
+			android:id="@+id/entry_url_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_url"
+			style="@style/EntryFieldHeader"
+			/>
+		<RelativeLayout android:id="@+id/url_container"
+						  android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:orientation="horizontal"
+				android:clickable="true"
+				android:background="?android:attr/selectableItemBackground">
+			<ImageView
+				android:id="@+id/url_vdots"
+				android:layout_width="wrap_content"
+				android:layout_height="15dp"
+					   android:src="@drawable/vdots"
+					   android:gravity="right|bottom"
+					   android:layout_alignParentRight="true"
+					   android:layout_alignParentBottom="true"
+				   />
+			<TextView
+				android:id="@+id/entry_url"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:autoLink="all"
+				android:layout_toLeftOf="@id/url_vdots"
+				style="@style/EntryItem" />
+		</RelativeLayout>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/entryfield_container_password"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical">
+
+		<!-- Password -->
+		<TextView
+			android:id="@+id/entry_password_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_password"
+			style="@style/EntryFieldHeader"
          />
-    <TextView
-        android:id="@+id/entry_url"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="all"
-        android:textIsSelectable="true"
-        style="@style/EntryItem" />
-<!-- Password -->
-    <TextView
-        android:id="@+id/entry_password_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_password"
-        style="@style/EntryFieldHeader"
+		<RelativeLayout android:id="@+id/password_container"
+						  android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:orientation="horizontal"
+				android:clickable="true"
+				android:background="?android:attr/selectableItemBackground">
+			<ImageView
+				android:id="@+id/password_vdots"
+				android:layout_width="wrap_content"
+				android:layout_height="15dp"
+					   android:src="@drawable/vdots"
+					   android:gravity="right|bottom"
+					   android:layout_alignParentRight="true"
+					   android:layout_alignParentBottom="true"
+				   />
+			<TextView
+				android:id="@+id/entry_password"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:password="true"
+				android:typeface="monospace"
+				android:layout_toLeftOf="@id/password_vdots"
+				style="@style/EntryItem" />
+		</RelativeLayout>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/entryfield_container_comment"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical">
+
+		<!-- Comment -->
+		<TextView
+			android:id="@+id/entry_comment_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_comment"
+			style="@style/EntryFieldHeader"
          />
-    <TextView
-        android:id="@+id/entry_password"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:password="true"
-        android:textIsSelectable="true"
-        android:typeface="monospace"
-        style="@style/EntryItem" />
-<!-- Comment -->
-    <TextView
-        android:id="@+id/entry_comment_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_comment"
-        style="@style/EntryFieldHeader"
+		<TextView
+			android:id="@+id/entry_comment"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"
+			style="@style/EntryItem" />
+	</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/extra_strings"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:orientation="vertical" />
+		<!-- file attachments -->
+		<TextView
+			android:id="@+id/entry_binaries_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_binaries"
+			style="@style/EntryFieldHeader"
          />
-    <TextView
-        android:id="@+id/entry_comment"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textIsSelectable="true"
-        style="@style/EntryItem" />
-    
-    
-    <TextView
-        android:id="@+id/entry_extra_strings_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_extra_strings"
-        style="@style/EntryFieldHeader"
+		<LinearLayout
+			android:id="@+id/binaries"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" />
+		<!--Tags -->
+	<LinearLayout android:id="@+id/entryfield_container_tags"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical">
+
+		<TextView
+			android:id="@+id/entry_tags_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_tags"
+			style="@style/EntryFieldHeader"
          />
-    <LinearLayout
-        android:id="@+id/extra_strings"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:orientation="vertical" />
-	<!-- file attachments -->
-    <TextView
-        android:id="@+id/entry_binaries_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_binaries"
-        style="@style/EntryFieldHeader"
+		<TextView
+			android:id="@+id/entry_tags"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"
+			style="@style/EntryItem" />
+	</LinearLayout>
+	<LinearLayout android:id="@+id/entryfield_container_overrideurl"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical">
+
+		<!--Override URL-->
+		<TextView
+			android:id="@+id/entry_override_url_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_override_url"
+			style="@style/EntryFieldHeader"
          />
-    <LinearLayout
-        android:id="@+id/binaries"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />		
-<!--Tags -->
-    <TextView
-        android:id="@+id/entry_tags_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_tags"
-        style="@style/EntryFieldHeader"
+		<TextView
+			android:id="@+id/entry_override_url"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:autoLink="all"
+			android:textIsSelectable="true"
+			style="@style/EntryItem" />
+	</LinearLayout>
+	<LinearLayout android:id="@+id/entryfield_container_created"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical">
+
+
+		<!-- Created -->
+		<TextView
+			android:id="@+id/entry_created_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_created"
+			style="@style/EntryFieldHeader"
          />
-    <TextView
-        android:id="@+id/entry_tags"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textIsSelectable="true"
-        style="@style/EntryItem" />
-<!--Override URL-->
-    <TextView
-        android:id="@+id/entry_override_url_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_override_url"
-        style="@style/EntryFieldHeader"
+		<TextView
+			android:id="@+id/entry_created"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			style="@style/EntryItem" />
+	</LinearLayout>
+	<LinearLayout android:id="@+id/entryfield_container_modified"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical">
+
+		<!-- Modified -->
+		<TextView
+			android:id="@+id/entry_modified_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_modified"
+			style="@style/EntryFieldHeader"
          />
-    <TextView
-        android:id="@+id/entry_override_url"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="all"
-        android:textIsSelectable="true"
-        style="@style/EntryItem" />
-        
-<!-- Created -->
-    <TextView
-        android:id="@+id/entry_created_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_created"
-        style="@style/EntryFieldHeader"
+		<TextView
+			android:id="@+id/entry_modified"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			style="@style/EntryItem" />
+	</LinearLayout>
+	<LinearLayout android:id="@+id/entryfield_container_expires"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical">
+
+		<!-- Expires -->
+		<TextView
+			android:id="@+id/entry_expires_label"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/entry_expires"
+			style="@style/EntryFieldHeader"
          />
-    <TextView
-        android:id="@+id/entry_created"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/EntryItem" />
-<!-- Modified -->
-    <TextView
-        android:id="@+id/entry_modified_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_modified"
-        style="@style/EntryFieldHeader"
-         />
-    <TextView
-        android:id="@+id/entry_modified"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/EntryItem" />
-<!-- Expires -->
-    <TextView
-        android:id="@+id/entry_expires_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entry_expires"
-        style="@style/EntryFieldHeader"
-         />
-    <TextView
-        android:id="@+id/entry_expires"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/EntryItem" />
-<!-- Property Change Conflict | id:@+id/entry_url_label -->
+		<TextView
+			android:id="@+id/entry_expires"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			style="@style/EntryItem" />
+	</LinearLayout>
 </LinearLayout>

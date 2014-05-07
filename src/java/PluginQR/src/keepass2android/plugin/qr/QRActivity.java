@@ -181,7 +181,7 @@ public class QRActivity extends Activity {
 				
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					
+					PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putBoolean("includeLabels", isChecked);
 					updateQrCode(buildQrData(mFieldList.get( mSpinner.getSelectedItemPosition() )));
 				}
 			});
