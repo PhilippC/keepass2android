@@ -26,32 +26,20 @@ namespace PluginHostTest
 		Categories = new[] { Intent.CategoryDefault })]
 	public class PluginDetailsActivity : Activity
 	{
+		private CheckBox _checkbox;
+		private string _pluginPackageName;
+
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
 
-			string pluginPackage = Intent.GetStringExtra("PluginPackage");
+			_pluginPackageName = Intent.GetStringExtra(Strings.ExtraPluginPackage);
 
-			Intent mainIntent = new Intent(Intent.ActionMain, null);
-			mainIntent.AddCategory(Intent.CategoryLauncher);
-
-			IList<ResolveInfo> appList = PackageManager.QueryIntentActivities(mainIntent, 0);
-			//Collections.Sort(appList, new ResolveInfo.DisplayNameComparator(PackageManager));
-
-			foreach (ResolveInfo temp in appList) 
-			{
-
-				Log.Verbose("my logs", "package and activity name = "
-						+ temp.ActivityInfo.PackageName + "    "
-						+ temp.ActivityInfo.Name + " " + temp.ActivityInfo.IconResource);
-
-			 }
-			var pluginRes = PackageManager.GetResourcesForApplication(pluginPackage);
-			var title = GetStringFromPlugin(pluginRes, pluginPackage, "kp2aplugin_title");
-			var author = GetStringFromPlugin(pluginRes, pluginPackage, "kp2aplugin_author");
-			var shortDesc = GetStringFromPlugin(pluginRes, pluginPackage, "kp2aplugin_shortdesc");
-
-			var version = PackageManager.GetPackageInfo(pluginPackage, 0).VersionName;
+			var pluginRes = PackageManager.GetResourcesForApplication(_pluginPackageName);
+			var title = GetStringFromPlugin(pluginRes, _pluginPackageName, "kp2aplugin_title");
+			var author = GetStringFromPlugin(pluginRes, _pluginPackageName, "kp2aplugin_author");
+			var shortDesc = GetStringFromPlugin(pluginRes, _pluginPackageName, "kp2aplugin_shortdesc");
+			var version = PackageManager.GetPackageInfo(_pluginPackageName, 0).VersionName;
 			
 			SetContentView(Resource.Layout.plugin_details);
 			if (title != null)
@@ -60,32 +48,85 @@ namespace PluginHostTest
 			SetTextOrHide(Resource.Id.txtAuthor, author);
 			SetTextOrHide(Resource.Id.txtShortDesc, shortDesc);
 
-			var checkbox = FindViewById<CheckBox>(Resource.Id.cb_enabled);
-			PluginDatabase pluginDb = new PluginDatabase(this);
-			checkbox.Checked = pluginDb.IsEnabled(pluginPackage);
-			checkbox.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs args)
-				{
-					pluginDb.SetEnabled(pluginPackage, checkbox.Checked);
+			_checkbox = FindViewById<CheckBox>(Resource.Id.cb_enabled);
+			_checkbox.CheckedChange += delegate {
+					new PluginDatabase(this).SetEnabled(_pluginPackageName, _checkbox.Checked);
 				};
 			
-			Drawable d = PackageManager.GetApplicationIcon(pluginPackage);
+			Drawable d = PackageManager.GetApplicationIcon(_pluginPackageName);
 			FindViewById<ImageView>(Resource.Id.imgIcon).SetImageDrawable(d);
 			
 			FindViewById<TextView>(Resource.Id.txtVersion).Text = version;
 
-			var scopesContainer = FindViewById<LinearLayout>(Resource.Id.scopes_list);
+			//cannot be wrong to update the view when we received an update
+			PluginHost.OnReceivedRequest += OnPluginHostOnOnReceivedRequest;
 
-			foreach (string scope in pluginDb.GetPluginScopes(pluginPackage))
+			if (Intent.Action == Strings.ActionEditPluginSettings)
+			{
+				//this action can be triggered by external apps so we don't know if anybody has ever triggered
+				//the plugin to request access. Do this now, don't set the view right now
+				PluginHost.TriggerRequest(this, _pluginPackageName, new PluginDatabase(this));
+				//show the buttons instead of the checkbox
+				_checkbox.Visibility = ViewStates.Invisible;
+				FindViewById(Resource.Id.accept_button).Visibility = ViewStates.Visible;
+				FindViewById(Resource.Id.deny_button).Visibility = ViewStates.Visible;
+
+				FindViewById(Resource.Id.accept_button).Click += delegate(object sender, EventArgs args)
+					{
+						new PluginDatabase(this).SetEnabled(_pluginPackageName, true);
+						SetResult(Result.Ok);
+						Finish();
+					};
+
+				FindViewById(Resource.Id.deny_button).Click += delegate(object sender, EventArgs args)
+				{
+					new PluginDatabase(this).SetEnabled(_pluginPackageName, false);
+					SetResult(Result.Canceled);
+					Finish();
+				};
+			}
+			else
+			{
+				UpdateView();
+				_checkbox.Visibility = ViewStates.Visible;
+				FindViewById(Resource.Id.accept_button).Visibility = ViewStates.Gone;
+				FindViewById(Resource.Id.deny_button).Visibility = ViewStates.Gone;
+			}
+		}
+
+		private void OnPluginHostOnOnReceivedRequest(object sender, PluginHost.PluginHostEventArgs args)
+		{
+			if (args.Package == _pluginPackageName)
+			{
+				UpdateView();
+			}
+		}
+
+		protected override void OnDestroy()
+		{
+			PluginHost.OnReceivedRequest -= OnPluginHostOnOnReceivedRequest;
+			base.OnDestroy();
+		}
+
+		private void UpdateView()
+		{
+			var scopesContainer = FindViewById<LinearLayout>(Resource.Id.scopes_list);
+			//scopesContainer.RemoveAllViews();
+
+			var pluginDb = new PluginDatabase(this);
+			_checkbox.Checked = pluginDb.IsEnabled(_pluginPackageName);
+			foreach (string scope in pluginDb.GetPluginScopes(_pluginPackageName))
 			{
 				string scopeId = scope.Substring("keepass2android.".Length);
 
-				TextWithHelp help = new TextWithHelp(this, GetString(Resources.GetIdentifier(scopeId + "_title", "string", PackageName)), GetString(Resources.GetIdentifier(scopeId + "_explanation", "string", PackageName)));
-				LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FillParent, ViewGroup.LayoutParams.WrapContent);
+				TextWithHelp help = new TextWithHelp(this,
+				                                     GetString(Resources.GetIdentifier(scopeId + "_title", "string", PackageName)),
+				                                     GetString(Resources.GetIdentifier(scopeId + "_explanation", "string", PackageName)));
+				LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FillParent,
+				                                                                       ViewGroup.LayoutParams.WrapContent);
 				help.LayoutParameters = layoutParams;
-				scopesContainer.AddView(help);	
+				scopesContainer.AddView(help);
 			}
-			
-			
 		}
 
 		private void SetTextOrHide(int resourceId, string text)

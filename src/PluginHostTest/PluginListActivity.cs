@@ -5,6 +5,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
+using Keepass2android.Pluginsdk;
 using PluginHostTest;
 
 namespace keepass2android
@@ -29,7 +30,7 @@ namespace keepass2android
 				(sender, args) =>
 					{
 						Intent i = new Intent(this, typeof(PluginDetailsActivity));
-						i.PutExtra("PluginPackage", _items[args.Position].Package);
+						i.PutExtra(Strings.ExtraPluginPackage, _items[args.Position].Package);
 						StartActivity(i);
 					};
 			

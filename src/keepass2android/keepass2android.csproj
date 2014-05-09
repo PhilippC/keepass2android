@@ -346,7 +346,9 @@
     <AndroidResource Include="Resources\layout\file_selection.xml" />
     <AndroidResource Include="Resources\layout\file_selection_filename.xml" />
     <AndroidResource Include="Resources\layout\file_selection_no_recent.xml" />
-    <AndroidResource Include="Resources\layout\generate_password.xml" />
+    <AndroidResource Include="Resources\layout\generate_password.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\group_add_entry.xml" />
     <AndroidResource Include="Resources\layout\group_edit.xml" />
     <AndroidResource Include="Resources\layout\group_empty.xml" />

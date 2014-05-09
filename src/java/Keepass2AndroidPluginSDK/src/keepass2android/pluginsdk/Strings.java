@@ -14,6 +14,9 @@ public class Strings {
 	 * Extra key to transfer a (json serialized) list of scopes
 	 */
 	public static final String EXTRA_SCOPES = "keepass2android.EXTRA_SCOPES";
+
+	
+	public static final String EXTRA_PLUGIN_PACKAGE = "keepass2android.EXTRA_PLUGIN_PACKAGE";
 	
 	/**
 	 * Extra key for sending the package name of the sender of a broadcast.

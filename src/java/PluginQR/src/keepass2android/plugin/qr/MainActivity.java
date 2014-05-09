@@ -1,6 +1,7 @@
 package keepass2android.plugin.qr;
 
 import keepass2android.pluginsdk.AccessManager;
+import keepass2android.pluginsdk.Strings;
 
 import com.google.zxing.client.android.CaptureActivity;
 
@@ -135,7 +136,9 @@ public class MainActivity extends Activity {
 				public void onClick(View v) {
 					try
 					{
-								
+						Intent i = new Intent(Strings.ACTION_EDIT_PLUGIN_SETTINGS);
+						i.putExtra(Strings.EXTRA_PLUGIN_PACKAGE, getActivity().getPackageName());
+						startActivityForResult(i, 123);
 					}
 					catch(Exception e)
 					{

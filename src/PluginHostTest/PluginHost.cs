@@ -39,26 +39,28 @@ namespace keepass2android
 				ApplicationInfo appInfo = ri.ActivityInfo.ApplicationInfo;
 				String pkgName = appInfo.PackageName;
 				
-				try
-				{
-					
-					Intent triggerIntent = new Intent(Strings.ActionTriggerRequestAccess);
-					triggerIntent.SetPackage(pkgName);
-					triggerIntent.PutExtra(Strings.ExtraSender, ctx.PackageName);
-					
-					triggerIntent.PutExtra(Strings.ExtraRequestToken, pluginDatabase.GetRequestToken(pkgName));
-					ctx.SendBroadcast(triggerIntent);
-				}
-				catch (Exception e)
-				{
-					
-					
-				}
+				TriggerRequest(ctx, pkgName, pluginDatabase);
 			}
 
 		}
 
-		
+		public static void TriggerRequest(Context ctx, string pkgName, PluginDatabase pluginDatabase)
+		{
+			try
+			{
+				Intent triggerIntent = new Intent(Strings.ActionTriggerRequestAccess);
+				triggerIntent.SetPackage(pkgName);
+				triggerIntent.PutExtra(Strings.ExtraSender, ctx.PackageName);
+
+				triggerIntent.PutExtra(Strings.ExtraRequestToken, pluginDatabase.GetRequestToken(pkgName));
+				ctx.SendBroadcast(triggerIntent);
+			}
+			catch (Exception e)
+			{
+			}
+		}
+
+
 		public override void OnReceive(Context context, Intent intent)
 		{
 			PluginDatabase pluginDb = new PluginDatabase(context);
@@ -116,7 +118,8 @@ namespace keepass2android
 					}
 					
 				}
-
+				if (OnReceivedRequest != null)
+					OnReceivedRequest(this, new PluginHostEventArgs() { Package = senderPackage});
 
 			}
 		}
@@ -156,5 +159,11 @@ namespace keepass2android
 			intent.PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString());
 
 		}
+
+		public class PluginHostEventArgs
+		{
+			public string Package { get; set; }
+		}
+		public static event EventHandler<PluginHostEventArgs> OnReceivedRequest;
 	}
 }
