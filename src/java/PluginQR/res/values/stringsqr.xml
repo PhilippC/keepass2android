@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">QR Plugin for KP2A</string>
     <string name="title_activity_qr">QRActivity</string>
     <string name="action_settings">Settings</string>
@@ -12,5 +11,11 @@
     <string name="kp2aplugin_author">Philipp Crocoll</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="scan_qr">Scan QR code from other device</string>
+    <string name="show_qr">Select entry to show as QR code</string>
+    <string name="no_host_app">No host app detected! Please install Keepass2Android from Google Play!</string>
+    <string name="not_enabled_as_plugin">Not enabled as plugin in host app!</string>
+    <string name="enabled_as_plugin">Enabled as plugin!</string>
+    <string name="enable_as_plugin">Enable as plugin</string>
 
 </resources>

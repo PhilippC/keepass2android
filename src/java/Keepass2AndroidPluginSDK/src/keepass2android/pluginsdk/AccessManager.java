@@ -3,6 +3,8 @@ package keepass2android.pluginsdk;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +13,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,6 +24,7 @@ import android.widget.PopupMenu;
 
 public class AccessManager 
 {
+	
 	private static final String _tag = "Kp2aPluginSDK";
 	private static final String PREF_KEY_SCOPE = "scope";
 	private static final String PREF_KEY_TOKEN = "token";
@@ -63,6 +68,12 @@ public class AccessManager
 		 edit.putString(PREF_KEY_SCOPE, scopesString);
 		 edit.commit();
 		 Log.d(_tag, "stored access token " + accessToken.substring(0, 4)+"... for "+scopes.size()+" scopes ("+scopesString+").");
+		 
+		 SharedPreferences hostPrefs = ctx.getSharedPreferences("KP2A.PluginAccess.hosts", Context.MODE_PRIVATE);
+		 if (!hostPrefs.contains(hostPackage))
+		 {
+			 hostPrefs.edit().putString(hostPackage, "").commit();
+		 }
 		 
 		 
 	}
@@ -143,8 +154,37 @@ public class AccessManager
 			edit.commit();
 
 		}
+		
+		SharedPreferences hostPrefs = ctx.getSharedPreferences("KP2A.PluginAccess.hosts", Context.MODE_PRIVATE);
+		if (hostPrefs.contains(hostPackage))
+		{
+			hostPrefs.edit().remove(hostPackage).commit();
+		}
 	 
 	}
+	
+	public static Set<String> getAllHostPackages(Context ctx)
+	{
+		SharedPreferences prefs = ctx.getSharedPreferences("KP2A.PluginAccess.hosts", Context.MODE_PRIVATE);
+		Set<String> result = new HashSet<String>();
+		for (String host: prefs.getAll().keySet())
+		{
+			try
+			{
+				PackageInfo info = ctx.getPackageManager().getPackageInfo(host, PackageManager.GET_META_DATA);
+				//if we get here, the package is still there
+				result.add(host);
+			}
+			catch (PackageManager.NameNotFoundException e)
+			{
+				//host gone. ignore.
+			}
+		}
+		return result;
+		
+	}
+	
+	
 
 	/**
 	 * Returns a valid access token or throws PluginAccessException

@@ -46,6 +46,12 @@ public class Strings {
 	 */
 	public static final String ACTION_REVOKE_ACCESS = "keepass2android.ACTION_REVOKE_ACCESS";
 	
+	
+	/**
+	 * Action for startActivity(). Opens an activity in the Plugin Host to edit the plugin settings (i.e. enable it)
+	 */
+	public static final String ACTION_EDIT_PLUGIN_SETTINGS = "keepass2android.ACTION_EDIT_PLUGIN_SETTINGS";
+	
 	/**
 	 * Action sent from KP2A to the plugin to indicate that an entry was opened.
 	 * The Intent contains the full entry data.

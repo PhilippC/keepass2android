@@ -64,10 +64,11 @@
             android:label="Capture"
             android:screenOrientation="portrait"
            android:configChanges="orientation|keyboardHidden"
-           android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
            android:windowSoftInputMode="stateAlwaysHidden">
             
         </activity>
+        <activity android:name="com.google.zxing.client.android.PreferencesActivity"
+            android:label="Settings" />
         
         
     </application>

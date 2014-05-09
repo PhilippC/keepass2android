@@ -15,7 +15,6 @@
  limitations under the License.
  -->
 <resources>
-  <string name="app_name">Barcode Scanner</string>
   <string name="app_picker_name">Aplicacions</string>
   <string name="bookmark_picker_name">Adreces d\'interès</string>
   <string name="button_add_calendar">Afegeix a l\'agenda</string>

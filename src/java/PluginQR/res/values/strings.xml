@@ -15,7 +15,6 @@
  limitations under the License.
  -->
 <resources>
-  <string name="app_name">Barcode Scanner</string>
   <string name="app_picker_name">Applications</string>
   <string name="bookmark_picker_name">Bookmarks</string>
   <string name="button_add_calendar">Add to calendar</string>
@@ -113,8 +112,6 @@
   <string name="preferences_result_title">Result settings</string>
   <string name="preferences_scanning_title">When scanning for barcodes, decode\u2026</string>
   <string name="preferences_search_country">Search country</string>
-  <string name="preferences_try_bsplus">Try Barcode Scanner+</string>
-  <string name="preferences_try_bsplus_summary">Enhanced with new features and interface</string>
   <string name="preferences_supplemental_summary">Try to retrieve more information about the barcode contents</string>
   <string name="preferences_supplemental_title">Retrieve more info</string>
   <string name="preferences_vibrate_title">Vibrate</string>

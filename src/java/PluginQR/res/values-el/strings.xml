@@ -15,7 +15,7 @@
  limitations under the License.
  -->
 <resources>
-  <string name="app_name">Barcode Scanner</string>
+  
   <string name="app_picker_name">Εφαρμογές</string>
   <string name="bookmark_picker_name">Σελιδοδείκτες</string>
   <string name="button_add_calendar">Προσθήκη στο ημερολόγιο</string>
