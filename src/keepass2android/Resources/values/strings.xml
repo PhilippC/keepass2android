@@ -79,7 +79,7 @@
   <string name="error_invalid_db">Invalid database.</string>
   <string name="error_invalid_path">Invalid path.</string>
   <string name="error_no_name">A name is required.</string>
-  <string name="error_nopass">A password or a keyfile is required.</string>
+  <string name="error_nopass">A password or a key file is required.</string>
   <string name="error_pass_gen_type">At least one password generation type must be selected</string>
   <string name="error_pass_match">Passwords do not match.</string>
   <string name="error_rounds_not_number">Rounds must be a number.</string>
@@ -150,8 +150,8 @@
   <string name="progress_create">Creating new database…</string>
   <string name="create_database">Create database</string>
   <string name="progress_title">Working…</string>
-  <string name="remember_keyfile_summary">Remembers the location of keyfiles</string>
-  <string name="remember_keyfile_title">Save keyfile</string>
+  <string name="remember_keyfile_summary">Remembers the location of key files</string>
+  <string name="remember_keyfile_title">Save key file</string>
   <string name="remove_from_filelist">Remove</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
@@ -383,7 +383,7 @@
 	<string name="hint_key_file">Choose if you want to use a key file in addition to your master password:</string>
 	<string name="use_key_file">Use key file</string>
 
-	<string name="error_adding_keyfile">Error while adding the keyfile!</string>
+	<string name="error_adding_keyfile">Error while adding the key file!</string>
 
 	<string name="init_otp">Load OTP auxiliary file…</string>
 	<string name="otp_explanation">Enter the next One-time-passwords (OTPs). Swipe your Yubikey NEO at the back of your device to enter via NFC.</string>

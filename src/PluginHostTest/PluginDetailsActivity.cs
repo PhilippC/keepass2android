@@ -21,6 +21,9 @@ using keepass2android.views;
 namespace PluginHostTest
 {
 	[Activity(Label = "TODO Details")]
+	[IntentFilter(new[] { Strings.ActionEditPluginSettings},
+		Label = AppNames.AppName,
+		Categories = new[] { Intent.CategoryDefault })]
 	public class PluginDetailsActivity : Activity
 	{
 		protected override void OnCreate(Bundle bundle)

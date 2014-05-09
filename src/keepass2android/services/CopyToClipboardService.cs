@@ -49,6 +49,13 @@ namespace keepass2android
 		public const int NotifyKeyboard = 3;
 		public const int ClearClipboard = 4;
 
+		public void CopyValueToClipboardWithTimeout(Context ctx, string text)
+		{
+			Intent i = new Intent(ctx, typeof(CopyToClipboardService));
+			i.SetAction(Intents.CopyStringToClipboard);
+			i.PutExtra(_stringtocopy, text);
+			ctx.StartService(i);
+		}
 
 		public CopyToClipboardService (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -79,27 +86,46 @@ namespace keepass2android
 			filter.AddAction(Intents.DatabaseLocked);
 			RegisterReceiver(_stopOnLockBroadcastReceiver, filter);
 
-			String uuidBytes =  intent.GetStringExtra(EntryActivity.KeyEntry);
-			bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KeyCloseAfterCreate, false);
-			
-			PwUuid entryId = PwUuid.Zero;
-			if (uuidBytes != null)
-				entryId = new PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
-			
-			PwEntry entry;
-			try
+			if ((intent.Action == Intents.ShowNotification) || (intent.Action == Intents.UpdateKeyboard))
 			{
-				entry = App.Kp2a.GetDb().Entries[entryId];
-			}
-			catch(Exception)
-			{
-				//seems like restarting the service happened after closing the DB
-				StopSelf();
-				return StartCommandResult.NotSticky;
-			}
-			
-			DisplayAccessNotifications(entry, closeAfterCreate);
+				String uuidBytes = intent.GetStringExtra(EntryActivity.KeyEntry);
 
+				PwUuid entryId = PwUuid.Zero;
+				if (uuidBytes != null)
+					entryId = new PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
+
+				PwEntry entry;
+				try
+				{
+					entry = App.Kp2a.GetDb().Entries[entryId];
+				}
+				catch (Exception)
+				{
+					//seems like restarting the service happened after closing the DB
+					StopSelf();
+					return StartCommandResult.NotSticky;
+				}
+
+				if (intent.Action == Intents.ShowNotification)
+				{
+					//first time opening the entry -> bring up the notifications
+					bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KeyCloseAfterCreate, false);
+					DisplayAccessNotifications(entry, closeAfterCreate);
+				}
+				else
+				{
+					//this action is received when the data in the entry has changed (e.g. by plugins)
+					//update the keyboard data.
+					//Check if keyboard is (still) available
+					if (Keepass2android.Kbbridge.KeyboardData.EntryId == entry.Uuid.ToHexString())
+						MakeAccessibleForKeyboard(entry);
+				}
+			}
+			if (intent.Action == Intents.CopyStringToClipboard)
+			{
+				
+				TimeoutCopyToClipboard(intent.GetStringExtra(_stringtocopy));
+			}
 
 			return StartCommandResult.RedeliverIntent;
 		}
@@ -308,13 +334,7 @@ namespace keepass2android
 #endif
 		}
 
-		static string GetStringAndReplacePlaceholders(PwEntry entry, string key)
-		{
-			String value = entry.Strings.ReadSafe(key);
-			value = SprEngine.Compile(value, new SprContext(entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
-			return value;
-		}
-
+		
 		public void OnWaitElementDeleted(int itemId)
 		{
 			_numElementsToWaitFor--;
@@ -392,6 +412,9 @@ namespace keepass2android
 		// Setup to allow the toast to happen in the foreground
 		readonly Handler _uiThreadCallback = new Handler();
 		private ClearClipboardTask _clearClipboardTask;
+		private const string _stringtocopy = "StringToCopy";
+
+
 
 		private Notification GetNotification(String intentText, int descResId, int drawableResId, String entryName) {
 			String desc = GetString(descResId);

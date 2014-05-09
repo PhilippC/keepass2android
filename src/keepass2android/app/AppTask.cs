@@ -343,7 +343,10 @@ namespace keepass2android
 		{
 			//if the database is readonly, don't offer to modify the URL
 			if (App.Kp2a.GetDb().CanWrite == false)
+			{
 				base.OnCompleteCreateEntryActivity(entryActivity);
+				return;
+			}
 			entryActivity.AskAddUrlThenCompleteCreate(UrlToSearchFor);
 		}
 		

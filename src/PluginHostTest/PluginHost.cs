@@ -1,28 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.OS;
-using Android.Runtime;
 using Android.Util;
-using Android.Views;
-using Android.Widget;
-using KeePassLib;
-using KeePassLib.Collections;
-using KeePassLib.Serialization;
 using KeePassLib.Utility;
-using Keepass2android;
 using Keepass2android.Pluginsdk;
 using Org.Json;
-using PluginHostTest;
 
 namespace keepass2android
 {
+	/// <summary>
+	/// Class which manages plugins inside the app
+	/// </summary>
 	[BroadcastReceiver()]
 	[IntentFilter(new[] { Strings.ActionRequestAccess})]
 	public class PluginHost: BroadcastReceiver
@@ -33,6 +24,9 @@ namespace keepass2android
 
 		private static readonly string[] _validScopes = { Strings.ScopeDatabaseActions, Strings.ScopeCurrentEntry };
 
+		/// <summary>
+		/// Sends a broadcast to all potential plugins prompting them to request access to our app.
+		/// </summary>
 		public static void TriggerRequests(Context ctx)
 		{
 			Intent accessIntent = new Intent(Strings.ActionTriggerRequestAccess);
@@ -65,9 +59,6 @@ namespace keepass2android
 		}
 
 		
-
-
-
 		public override void OnReceive(Context context, Intent intent)
 		{
 			PluginDatabase pluginDb = new PluginDatabase(context);
@@ -143,6 +134,9 @@ namespace keepass2android
 			return true;
 		}
 
+		/// <summary>
+		/// adds the entry output data to the intent to be sent to a plugin
+		/// </summary>
 		public static void AddEntryToIntent(Intent intent, PwEntryOutput entry)
 		{
 			/*//add the entry XML

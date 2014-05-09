@@ -87,17 +87,8 @@ namespace keepass2android
 
 		public void StorePlugin(string pluginPackage, string accessToken, IList<string> requestedScopes)
 		{
-			ISharedPreferences hostPrefs = GetHostPrefs();
 			ISharedPreferences pluginPrefs = GetPreferencesForPlugin(pluginPackage);
-			var stringSet = hostPrefs.GetStringSet(_pluginlist, new Collection<string>());
-			if (!stringSet.Contains(pluginPackage))
-			{
-				stringSet.Add(pluginPackage);
-				hostPrefs.Edit()
-				         .PutStringSet(_pluginlist, stringSet)
-				         .Commit();
-			}
-
+			
 			pluginPrefs.Edit()
 			           .PutString(_scopes, AccessManager.StringArrayToString(requestedScopes))
 			           .PutString(_accessToken, accessToken)

@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Activity1.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="AppNames.cs" />
     <Compile Include="ClickView.cs" />
     <Compile Include="CopyToClipboardService.cs" />
     <Compile Include="EntryActivity.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="PluginHost.cs" />
     <Compile Include="EntryActivityClasses\PluginMenuOption.cs" />
     <Compile Include="EntryActivityClasses\PluginPopupMenuItem.cs" />
+    <Compile Include="PwEntryOutput.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SprCompileFlags.cs" />

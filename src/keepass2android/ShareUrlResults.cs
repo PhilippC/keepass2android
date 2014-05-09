@@ -180,7 +180,8 @@ namespace keepass2android
 			{
 				Finish();
 				return true;
-			} else
+			} 
+			else
 			{
 				return false;
 			}

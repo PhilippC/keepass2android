@@ -39,6 +39,7 @@ namespace keepass2android
 					 };
 
 			builder.SetPositiveButton(Android.Resource.String.Ok, (dlgSender, dlgEvt) => { });
+			builder.SetCancelable(false);
 
 			builder.SetMessage("temp");
 			Dialog dialog = builder.Create();
