@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/plugin_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:scrollbarStyle="insideOverlay">
+	<LinearLayout android:id="@+id/scopes_list"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+		<RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="4dp">
+			<ImageView
+				android:id="@+id/imgIcon"
+				android:layout_width="64dp"
+				android:layout_height="64dp"
+				android:layout_alignParentTop="true"
+				android:layout_marginRight="15dp"
+				android:layout_marginTop="5dp"
+				android:layout_marginBottom="5dp" />
+			<TextView
+				android:id="@+id/txtLabel"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_toRightOf="@id/imgIcon"
+				android:textSize="22dp"
+         />
+			<TextView
+				android:id="@+id/txtVersion"
+				android:text="0.9.3"
+				android:textSize="14dp"
+				android:textColor="#888888"
+				android:layout_toRightOf="@id/imgIcon"
+				android:layout_below="@id/txtLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<TextView
+				android:id="@+id/txtAuthor"
+				android:text=""
+				android:textSize="14dp"
+				android:textColor="#888888"
+				android:layout_below="@id/txtVersion"
+				android:layout_toRightOf="@id/imgIcon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+		</RelativeLayout>
+		
+		<TextView
+				android:id="@+id/txtShortDesc"
+				android:text=""
+				android:textSize="14dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+		<CheckBox
+                android:id="@+id/cb_enabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plugin_enabled_checkbox"
+                android:checked="true"
+                 />
+		
+		<TextView
+			android:id="@+id/scopes_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Scopes"
+			android:layout_marginLeft="10dp"
+			android:layout_marginTop="18dp"
+			style="@style/ExtraFieldHeader" />
+		<LinearLayout android:id="@+id/scopes_list"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+		</LinearLayout>
+	</LinearLayout>	
+</ScrollView>

@@ -57,6 +57,7 @@
     <Compile Include="database\edit\MoveElement.cs" />
     <Compile Include="database\KdbDatabaseLoader.cs" />
     <Compile Include="database\KdbxDatabaseLoader.cs" />
+    <Compile Include="database\PwEntryOutput.cs" />
     <Compile Include="database\SynchronizeCachedDatabase.cs" />
     <Compile Include="DataExchange\FileFormatProvider.cs" />
     <Compile Include="DataExchange\Formats\KeePassCsv1x.cs" />

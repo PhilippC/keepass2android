@@ -409,8 +409,17 @@
 	<string name="plugin_packagename">Package name:</string>
 	<string name="plugin_description">Description (not verified):</string>
 	<string name="plugin_author">Author (not verified):</string>
-	<string name="plugin_enabled">Enabled</string>
-	<string name="plugins_text">Click plug-in to enable/disable</string>
+	<string name="plugin_enabled">enabled</string>
+	<string name="plugin_disabled">disabled</string>
+	
+	<string name="plugin_enabled_checkbox">Enabled</string>
+
+	<string name="SCOPE_DATABASE_ACTIONS_title">Database action notifications</string>
+	<string name="SCOPE_DATABASE_ACTIONS_explanation">Plugin will be notified when a database is opened, closed or saved.</string>
+
+	<string name="SCOPE_CURRENT_ENTRY_title">Current entry data</string>
+	<string name="SCOPE_CURRENT_ENTRY_explanation">Plugin will receive all data about the current database entry and will be allowed to offer actions and modify the display of it.</string>
+
 
 	<string name="get_regular_version">Get more storage types</string>
 

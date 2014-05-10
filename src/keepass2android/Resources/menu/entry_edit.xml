@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     
  This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
 
   Keepass2Android is free software: you can redistribute it and/or modify
@@ -17,23 +16,22 @@
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_cancel_edit"
-        android:title="@string/entry_cancel"
-    />
     <item android:id="@+id/menu_donate"
-        android:icon="@android:drawable/ic_menu_share"
         android:title="@string/menu_donate"
+        android:showAsAction="ifRoom"
     />
     <item android:id="@+id/menu_suggest_improvements"
         android:icon="@android:drawable/ic_menu_directions"
         android:title="@string/suggest_improvements"
+        android:showAsAction="never"
     />
     <item android:id="@+id/menu_rate"
         android:icon="@android:drawable/star_off"
         android:title="@string/rate_app"
+        android:showAsAction="never"
     />
     <item android:id="@+id/menu_translate"
         android:title="@string/translate_app"
-       />
+        android:showAsAction="never"
+    />
 </menu>
-

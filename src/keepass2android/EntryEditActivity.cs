@@ -717,9 +717,6 @@ namespace keepass2android
 				}
 				
 				return true;
-			case Resource.Id.menu_cancel_edit:
-				Finish();
-				break;
 			case Resource.Id.menu_rate:
 				try {
 					Util.GotoMarket(this);

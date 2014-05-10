@@ -2,50 +2,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <keepass2android.view.GroupHeaderView
-        android:id="@+id/group_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal" />
     <LinearLayout
         android:id="@+id/bottom_bar"
-        android:layout_alignParentBottom="true"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="2dp"
-        style="@style/GroupAndEntryHeader">
-        <Button
+        android:orientation="horizontal"
+        android:divider="?android:attr/dividerVertical"
+        android:showDividers="middle"
+        android:layout_alignParentBottom="true"
+        android:dividerPadding="12dp"
+        android:baselineAligned="false">
+        <FrameLayout
             android:id="@+id/select_other_entry"
-            android:layout_width="0px"
-            android:layout_weight="1"
+            style="?android:attr/actionButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="@string/select_other_entry" />
-        <Button
+            android:layout_weight="1">
+            <TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:text="@string/select_other_entry" />
+        </FrameLayout>
+        <FrameLayout
             android:id="@+id/add_url_entry"
-            android:layout_width="0px"
-            android:layout_weight="1"
+            style="?android:attr/actionButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/select_other_entry"
-            android:layout_alignParentBottom="true"
-            android:text="@string/add_url_entry" />
+            android:layout_weight="1">
+            <TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:text="@string/add_url_entry" />
+        </FrameLayout>
     </LinearLayout>
-    <ImageView
+    <View
         android:id="@+id/divider2"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="2dp"
         android:layout_above="@id/bottom_bar"
-        android:scaleType="fitXY"
-        android:tint="@color/blue_highlight"
-        android:src="@android:drawable/divider_horizontal_dark" />
+        android:background="#b8b8b8" />
+    <TextView
+        android:id="@+id/no_results"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+		android:layout_margin="12dp"
+        android:layout_below="@id/top"
+        android:text="@string/no_results" />
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/divider2"
-        android:layout_below="@id/group_header" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@android:id/list"
-        android:text="@string/no_results" />
+        android:layout_below="@id/no_results"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp" />
 </RelativeLayout>

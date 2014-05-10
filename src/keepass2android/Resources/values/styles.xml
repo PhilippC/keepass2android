@@ -19,24 +19,19 @@
 -->
 <resources>
 	<style name="Base">
-		<item name="OpenFileDrawable">@drawable/collections_collection</item>
-		<item name="CreateDbDrawable">@drawable/collections_new_label</item>
-		<item name="OpenUrlDrawable">@drawable/location_web_site</item>
-		<item name="ic_action_search_drawable">@drawable/ic_action_search_holodark</item>
-		<item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
 	</style>
 	<style name="NoTitleBar"></style>
     <style name="Dialog" parent="android:Theme.Dialog"></style>
 	<style name="GroupTextSmall" parent="android:Theme">
-		<item name="@android:textColor">@color/group</item>
+		 <item name="@android:textColor">?android:attr/textColorPrimary</item>
 		<item name="@android:textSize">15sp</item>
 	</style>
 	<style name="GroupText" parent="android:Theme">
-		<item name="@android:textColor">@color/group</item>
+		<item name="@android:textColor">?android:attr/textColorPrimary</item>
 		<item name="@android:textSize">20sp</item>
 	</style>
 	<style name="GroupTextLarge" parent="android:Theme">
-		<item name="@android:textColor">@color/group</item>
+		<item name="@android:textColor">?android:attr/textColorPrimary</item> 
 		<item name="@android:textSize">28sp</item>
 	</style>
 	<style name="ElementTextSmall">
@@ -76,49 +71,141 @@
 		<item name="@android:background">@android:color/transparent</item>
 	</style>
 	<style name="EntryItem">
-		<item name="@android:padding">5sp</item>
+		<item name="android:layout_marginLeft">12dip</item>
+        <item name="android:layout_marginRight">12dip</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">18sp</item>
 	</style>
 	<style name="MinusButton">
         <item name="android:src">@drawable/ic_menu_remove_field_holo_light</item>
     </style>
 	<style name="EntryFieldHeader">
-        <item name="android:drawableBottom">@drawable/section_header</item>
-        <item name="android:drawablePadding">1dp</item>
+		<item name="android:drawableBottom">@drawable/section_header</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:layout_marginLeft">12dip</item>
+        <item name="android:layout_marginRight">12dip</item>
         <item name="android:layout_marginBottom">3dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:paddingLeft">4dp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/emphasis</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="@android:background">@android:color/transparent</item>
     </style>
 	<style name="InfoHeader">
 		<item name="android:drawableBottom">@drawable/section_header</item>
-		<item name="android:drawablePadding">1dp</item>
+		<item name="android:drawablePadding">2dp</item>
+		<item name="android:layout_marginLeft">0dip</item>
+		<item name="android:layout_marginRight">12dip</item>
 		<item name="android:layout_marginBottom">3dp</item>
 		<item name="android:layout_marginTop">8dp</item>
-		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingLeft">4dp</item>
 		<item name="android:textAllCaps">true</item>
-		<item name="android:textColor">@color/emphasis</item>
+		<item name="android:textColor">?android:attr/textColorPrimary</item>
 		<item name="android:textSize">14sp</item>
 		<item name="android:textStyle">bold</item>
-		<item name="@android:background">@android:color/transparent</item>
 	</style>
     
-    <style name="EditEntryButton">
+	<style name="BottomBarActionButton">
+	    <item name="android:background">?android:attr/selectableItemBackground</item>
+	</style>
+    
+	<style name="TextAppearance_EditEntry_Small">
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+	
+	
+    <style name="TextAppearance_EditEntry_LabelSmall" parent="TextAppearance_EditEntry_Small">
+        <item name="android:minHeight">24dip</item>
+        <item name="android:layout_width">144dip</item>
+        <item name="android:layout_marginTop">12dip</item>
+        <item name="android:layout_marginLeft">16dip</item>
+        <item name="android:layout_marginRight">16dip</item>
+        <item name="android:paddingLeft">8dip</item>
+        <item name="android:paddingRight">8dip</item>
+        <item name="android:layout_marginBottom">-12dip</item>
     </style>
 
-	<style name="ExtraFieldHeader">
-        <item name="android:drawablePadding">1dp</item>
+    <style name="TextAppearance_EditEntry">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance_EditEntry_Value" parent="TextAppearance_EditEntry">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginRight">12dip</item>
+        <item name="android:layout_marginLeft">12dip</item>
+    </style>
+    
+    <style name="TextAppearance_SmallHeading" parent="TextAppearance_EditEntry_Small">
+        <item name="android:minHeight">24dip</item>
+        <item name="android:layout_width">144dip</item>
+        <item name="android:layout_marginTop">12dip</item>
+        <item name="android:layout_marginRight">16dip</item>
+        <item name="android:paddingRight">8dip</item>
+        <item name="android:layout_marginBottom">-12dip</item>
+    </style>
+
+	<style name="TextAppearance_SubElement">
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+		<item name="android:textSize">18sp</item>
+		<item name="android:textColor">?android:attr/textColorPrimary</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginRight">12dip</item>
+		<item name="android:layout_marginLeft">12dip</item>
+	</style>
+
+	<style name="TextAppearance_Help">
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="android:textSize">24sp</item>
+		<item name="android:padding">12sp</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginRight">12dip</item>
+		<item name="android:layout_marginLeft">12dip</item>
+	</style>
+    
+    
+    <style name="EditEntryButton">
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:layout_marginTop">12dip</item>
+        <item name="android:layout_marginLeft">24dip</item>
+        <item name="android:layout_marginRight">24dip</item>
+        <item name="android:paddingLeft">8dip</item>
+        <item name="android:paddingRight">8dip</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+    
+    <style name="AdditionalStringLayout">
+        <item name="android:layout_marginLeft">24dip</item>
+        <item name="android:layout_marginRight">24dip</item>
+      </style>
+    
+
+    <style name="MinusButton">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:src">@drawable/ic_menu_remove_field_holo_light</item>
+    </style>
+    
+	<style name="ExtraFieldHeader" parent="android:Widget.Holo.Light.TextView">
+		<item name="android:layout_marginLeft">16dip</item>
+        <item name="android:layout_marginRight">12dip</item>
         <item name="android:layout_marginBottom">3dp</item>
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginTop">4dp</item>
         <item name="android:paddingLeft">4dp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/emphasis2</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="@android:background">@android:color/transparent</item>
+        <item name="android:textStyle">bold</item>    
     </style>
 
 	<style name="PaddedContainer">

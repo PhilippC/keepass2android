@@ -115,7 +115,6 @@
     <Compile Include="pluginhost\PluginDetailsActivity.cs" />
     <Compile Include="pluginhost\PluginHost.cs" />
     <Compile Include="pluginhost\PluginListActivity.cs" />
-    <Compile Include="PwEntryOutput.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KeePass.cs" />
@@ -144,7 +143,6 @@
     <Compile Include="views\PwGroupView.cs" />
     <Compile Include="settings\PrefsUtil.cs" />
     <Compile Include="views\PwEntryView.cs" />
-    <Compile Include="views\GroupHeaderView.cs" />
     <Compile Include="GroupEditActivity.cs" />
     <Compile Include="EntryEditActivity.cs" />
     <Compile Include="LockCloseActivity.cs" />
@@ -189,6 +187,11 @@
     <None Include="filelist.txt">
       <Visible>False</Visible>
     </None>
+    <AndroidResource Include="Resources\drawable-ldpi\Thumbs.db" />
+    <AndroidResource Include="Resources\drawable-mdpi\Thumbs.db" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Thumbs.db" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Thumbs.db" />
+    <AndroidResource Include="Resources\drawable-hdpi\Thumbs.db" />
     <None Include="Resources\drawable\launcher.png">
       <Visible>False</Visible>
     </None>
@@ -216,6 +219,7 @@
     <AndroidResource Include="Resources\layout\sftpcredentials.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Thumbs.db" />
     <None Include="settings\RoundsPreference %28Kopie%29.cs">
       <Visible>False</Visible>
     </None>
@@ -225,7 +229,6 @@
     <None Include="Resources\drawable\new_group_dark.xcf">
       <Visible>False</Visible>
     </None>
-    <None Include="Resources\drawable-v11\EntryFieldHeaderBackground.xml" />
     <None Include="todos.cs">
       <Visible>False</Visible>
     </None>
@@ -352,7 +355,6 @@
     <AndroidResource Include="Resources\layout\group_add_entry.xml" />
     <AndroidResource Include="Resources\layout\group_edit.xml" />
     <AndroidResource Include="Resources\layout\group_empty.xml" />
-    <AndroidResource Include="Resources\layout\group_header.xml" />
     <AndroidResource Include="Resources\layout\group_list_entry.xml" />
     <AndroidResource Include="Resources\layout\icon.xml" />
     <AndroidResource Include="Resources\layout\icon_picker.xml" />
@@ -376,13 +378,6 @@
     <AndroidResource Include="Resources\values\strings.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\menu-v11\entry.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\menu-v11\password.xml" />
-    <AndroidResource Include="Resources\menu-v11\entry_edit.xml" />
-    <AndroidResource Include="Resources\menu-v11\group.xml" />
-    <AndroidResource Include="Resources\menu-v11\fileselect.xml" />
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic00.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic01.png" />
@@ -541,7 +536,6 @@
     <AndroidResource Include="Resources\drawable-mdpi\navigation_previous_item.png" />
     <AndroidResource Include="Resources\drawable-hdpi\navigation_previous_item.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\navigation_previous_item.png" />
-    <AndroidResource Include="Resources\drawable\HeaderButtonBackground.xml" />
     <AndroidResource Include="Resources\drawable\EntryFieldHeaderBackground.xml" />
     <AndroidResource Include="Resources\drawable\navigation_accept.png" />
     <AndroidResource Include="Resources\drawable-hdpi\navigation_accept.png" />
@@ -613,20 +607,6 @@
     <AndroidResource Include="Resources\drawable\ic_menu_add_field_holo_light.png" />
     <AndroidResource Include="Resources\drawable\ic_menu_remove_field_holo_light.png" />
     <AndroidResource Include="Resources\drawable\navigation_cancel.png" />
-    <AndroidResource Include="Resources\values-v14\styles.xml" />
-    <AndroidResource Include="Resources\values-v14\colors.xml" />
-    <AndroidAsset Include="Resources\layout-v14\entry_view_contents.xml" />
-    <AndroidResource Include="Resources\layout-v14\group_add_entry.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidAsset Include="Resources\layout-v14\entry_view.xml" />
-    <AndroidResource Include="Resources\layout-v14\entry_edit.xml" />
-    <AndroidResource Include="Resources\layout-v14\SaveButton.xml" />
-    <AndroidResource Include="Resources\layout-v14\generate_password.xml" />
-    <AndroidResource Include="Resources\layout-v14\icon_picker.xml" />
-    <AndroidResource Include="Resources\layout-v14\password.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\InViewButton.xml" />
     <AndroidResource Include="Resources\drawable\collections_collection.png" />
     <AndroidResource Include="Resources\drawable\collections_new_label.png" />
@@ -647,11 +627,9 @@
     <AndroidResource Include="Resources\drawable-ldpi\device_access_not_secure.png" />
     <AndroidResource Include="Resources\drawable-ldpi\ic_menu_remove_field_holo_light.png" />
     <AndroidResource Include="Resources\drawable-mdpi\device_access_not_secure.png" />
-    <AndroidResource Include="Resources\layout-v14\QuickUnlock_Unused.xml" />
     <AndroidResource Include="Resources\layout\entry_view_test.xml" />
     <AndroidResource Include="Resources\layout\entry_extrastring_title.xml" />
     <AndroidResource Include="Resources\layout\entry_extrastring_value.xml" />
-    <AndroidResource Include="Resources\drawable-v11\ic_launcher_gray.png" />
     <AndroidResource Include="Resources\values-nb\strings.xml" />
     <AndroidResource Include="Resources\anim\anim_enter.xml" />
     <AndroidResource Include="Resources\anim\anim_leave.xml" />
@@ -659,8 +637,6 @@
     <AndroidResource Include="Resources\anim\anim_leave_back.xml" />
     <AndroidResource Include="Resources\layout\searchurlresults.xml" />
     <AndroidResource Include="Resources\layout\searchurlresults_empty.xml" />
-    <AndroidResource Include="Resources\layout-v14\searchurlresults.xml" />
-    <AndroidResource Include="Resources\layout-v14\searchurlresults_empty.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -739,9 +715,6 @@
     <AndroidResource Include="Resources\drawable\ic_unlocked_gray.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-v11\ic_unlocked_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\ic_launcher_red.png" />
   </ItemGroup>
   <ItemGroup>
@@ -760,15 +733,6 @@
     <AndroidResource Include="Resources\values\dimens.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi-v11\ic_launcher_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi-v11\ic_launcher_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi-v11\ic_launcher_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\transparent.png" />
   </ItemGroup>
   <ItemGroup>
@@ -785,15 +749,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\donate_cake.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi-v11\ic_unlocked_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi-v11\ic_unlocked_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi-v11\ic_unlocked_gray.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\filestorage_selection.xml" />
@@ -870,9 +825,6 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout-v14\text_with_help.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_storage_skydrive.png" />
   </ItemGroup>
   <ItemGroup>
@@ -924,16 +876,6 @@
     <AndroidResource Include="Resources\drawable\location_web_site_holodark.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values-v14\styles_dark.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values-v14\styles_light.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\values\attrs.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -952,32 +894,66 @@
     <AndroidResource Include="Resources\drawable\ic_launcher_gray_bday.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi-v11\ic_launcher_gray_bday.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-v11\ic_launcher_gray_bday.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi-v11\ic_launcher_gray_bday.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi-v11\ic_launcher_gray_bday.png" />
-  </ItemGroup>
-  <ItemGroup>
     <TransformFile Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\collections_new_label_holodark.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Resources\layout-v14\plugin_details.xml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher_gray.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Resources\layout-v14\plugin_list.xml">
-      <SubType>AndroidResource</SubType>
-    </AndroidAsset>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher_gray_bday.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Resources\layout-v14\ListViewPluginRow.xml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_unlocked_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher_gray_bday.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_unlocked_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ListViewPluginRow.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\plugin_details.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\plugin_list.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\QuickUnlock_Unused.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SaveButton.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\styles_dark.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\styles_light.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\old_ic_launcher_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher_gray_bday.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_unlocked_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\vdots_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\vdots.png" />
   </ItemGroup>
 </Project>

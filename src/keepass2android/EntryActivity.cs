@@ -202,7 +202,6 @@ namespace keepass2android
 				extraGroup.AddView(view);
 				hasExtraFields = true;
 			}
-			FindViewById(Resource.Id.entry_extra_strings_label).Visibility = hasExtraFields ? ViewStates.Visible : ViewStates.Gone;
 		}
 
 		View CreateEditSection(string key, string value, bool isProtected)

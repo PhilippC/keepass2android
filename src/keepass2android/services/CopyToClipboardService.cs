@@ -94,10 +94,19 @@ namespace keepass2android
 				if (uuidBytes != null)
 					entryId = new PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
 
-				PwEntry entry;
+				PwEntryOutput entry;
 				try
 				{
-					entry = App.Kp2a.GetDb().Entries[entryId];
+					if ((App.Kp2a.GetDb().LastOpenedEntry != null)
+					    && (entryId.Equals(App.Kp2a.GetDb().LastOpenedEntry.Uuid)))
+					{
+						entry = App.Kp2a.GetDb().LastOpenedEntry;
+					}
+					else
+					{
+						entry = new PwEntryOutput(App.Kp2a.GetDb().Entries[entryId], App.Kp2a.GetDb().KpDatabase);
+					}
+					
 				}
 				catch (Exception)
 				{
@@ -190,7 +199,7 @@ namespace keepass2android
 			return PendingIntent.GetBroadcast(this, requestCode, intent, PendingIntentFlags.CancelCurrent);
 		}
 
-		public void DisplayAccessNotifications(PwEntry entry, bool closeAfterCreate)
+		public void DisplayAccessNotifications(PwEntryOutput entry, bool closeAfterCreate)
 		{
 			// Notification Manager
 			_notificationManager = (NotificationManager)GetSystemService(NotificationService);
@@ -201,13 +210,13 @@ namespace keepass2android
 			_numElementsToWaitFor = 0;
 			bool hadKeyboardData = ClearKeyboard(false); //do not broadcast if the keyboard was changed
 
-			String entryName = entry.Strings.ReadSafe(PwDefs.TitleField);
+			String entryName = entry.OutputStrings.ReadSafe(PwDefs.TitleField);
 
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			if (prefs.GetBoolean(GetString(Resource.String.CopyToClipboardNotification_key), Resources.GetBoolean(Resource.Boolean.CopyToClipboardNotification_default)))
 			{
 
-				if (GetStringAndReplacePlaceholders(entry, PwDefs.PasswordField).Length > 0)
+				if (entry.OutputStrings.ReadSafe(PwDefs.PasswordField).Length > 0)
 				{
 					// only show notification if password is available
 					Notification password = GetNotification(Intents.CopyPassword, Resource.String.copy_password, Resource.Drawable.notify, entryName);
@@ -217,8 +226,8 @@ namespace keepass2android
 					_numElementsToWaitFor++;
 
 				}
-				
-				if (GetStringAndReplacePlaceholders(entry, PwDefs.UserNameField).Length > 0)
+
+				if (entry.OutputStrings.ReadSafe(PwDefs.UserNameField).Length > 0)
 				{
 					// only show notification if username is available
 					Notification username = GetNotification(Intents.CopyUsername, Resource.String.copy_username, Resource.Drawable.notify, entryName);
@@ -278,7 +287,7 @@ namespace keepass2android
 			RegisterReceiver(_notificationDeletedBroadcastReceiver, deletefilter);
 		}
 
-		bool MakeAccessibleForKeyboard(PwEntry entry)
+		bool MakeAccessibleForKeyboard(PwEntryOutput entry)
 		{
 #if EXCLUDE_KEYBOARD
 			return false;
@@ -302,7 +311,7 @@ namespace keepass2android
 			int i=0;
 			foreach (string key in keys)
 			{
-				String value = GetStringAndReplacePlaceholders(entry, key);
+				String value = entry.OutputStrings.ReadSafe(key);
 
 				if (value.Length > 0)
 				{
@@ -312,12 +321,10 @@ namespace keepass2android
 				i++;
 			}
 			//add additional fields:
-			foreach (var pair in entry.Strings)
+			foreach (var pair in entry.OutputStrings)
 			{
-				String key = pair.Key;
-
-				var value = GetStringAndReplacePlaceholders(entry, key);
-
+				var key = pair.Key;
+				var value = pair.Value.ReadString();
 
 				if (!PwDefs.IsStandardField(key)) {
 					kbdataBuilder.AddString(pair.Key, pair.Key, value);
@@ -327,7 +334,7 @@ namespace keepass2android
 
 
 			kbdataBuilder.Commit();
-			Keepass2android.Kbbridge.KeyboardData.EntryName = entry.Strings.ReadSafe(PwDefs.TitleField);
+			Keepass2android.Kbbridge.KeyboardData.EntryName = entry.OutputStrings.ReadSafe(PwDefs.TitleField);
 			Keepass2android.Kbbridge.KeyboardData.EntryId = entry.Uuid.ToHexString();
 
 			return hasData;
@@ -456,9 +463,9 @@ namespace keepass2android
 		class CopyToClipboardBroadcastReceiver: BroadcastReceiver
 		{
 			readonly CopyToClipboardService _service;
-			readonly PwEntry _entry;
+			readonly PwEntryOutput _entry;
 			
-			public CopyToClipboardBroadcastReceiver(PwEntry entry, CopyToClipboardService service)
+			public CopyToClipboardBroadcastReceiver(PwEntryOutput entry, CopyToClipboardService service)
 			{
 				_entry = entry;
 				_service = service;
@@ -471,14 +478,14 @@ namespace keepass2android
 				
 				if (action.Equals(Intents.CopyUsername))
 				{
-					String username = GetStringAndReplacePlaceholders(_entry, PwDefs.UserNameField);
+					String username = _entry.OutputStrings.ReadSafe(PwDefs.UserNameField);
 					if (username.Length > 0)
 					{
 						_service.TimeoutCopyToClipboard(username);
 					}
 				} else if (action.Equals(Intents.CopyPassword))
 				{
-					String password = GetStringAndReplacePlaceholders(_entry, PwDefs.PasswordField);
+					String password = _entry.OutputStrings.ReadSafe(PwDefs.PasswordField);
 					if (password.Length > 0)
 					{
 						_service.TimeoutCopyToClipboard(password);

@@ -24,6 +24,13 @@ namespace keepass2android.views
 			Initialize(attrs);
 		}
 
+		public TextWithHelp(Context context, string text, string helpText) :
+			base(context, null)
+		{
+			Initialize(text, helpText);
+		}
+
+
 		public TextWithHelp(Context context, IAttributeSet attrs, int defStyle) :
 			base(context, attrs, defStyle)
 		{
@@ -32,18 +39,25 @@ namespace keepass2android.views
 
 		private void Initialize(IAttributeSet attrs)
 		{
+
+			TypedArray a = Context.ObtainStyledAttributes(attrs, Resource.Styleable.TextWithHelp);
+
+			string helpText = a.GetString(Resource.Styleable.TextWithHelp_help_text);
+
+			const string xmlns = "http://schemas.android.com/apk/res/android";
+			string text = Context.GetString(attrs.GetAttributeResourceValue(xmlns, "text", Resource.String.ellipsis));
+			Initialize(text, helpText);
+		}
+
+		private void Initialize(string text, string helpText)
+		{
 			LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
 			inflater.Inflate(Resource.Layout.text_with_help, this);
 
-			TypedArray a = Context.ObtainStyledAttributes(
-	 attrs,
-	 Resource.Styleable.TextWithHelp);
 			_kp2AShortHelpView = ((Kp2aShortHelpView)FindViewById(Resource.Id.help));
-			_kp2AShortHelpView.HelpText = a.GetString(Resource.Styleable.TextWithHelp_help_text);
+			_kp2AShortHelpView.HelpText = helpText;
 
-			const string xmlns = "http://schemas.android.com/apk/res/android";
-			((TextView)FindViewById(Resource.Id.text)).Text = Context.GetString(attrs.GetAttributeResourceValue(xmlns, "text", Resource.String.ellipsis));
-
+			((TextView)FindViewById(Resource.Id.text)).Text = text;
 		}
 
 		public string HelpText
