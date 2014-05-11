@@ -12,7 +12,7 @@
 		android:layout_height="wrap_content"
 		android:gravity="right"
 		style="@style/TextAppearance_Help"
-		
+		android:textColor="@color/light_gray"
 		android:layout_alignParentRight="true"
 		android:background="?android:attr/selectableItemBackground"
 				 />

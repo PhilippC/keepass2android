@@ -65,7 +65,16 @@ namespace keepass2android
 			act.StartActivityForResult(i, 0);
 		}
 
+		public EntryActivity (IntPtr javaReference, JniHandleOwnership transfer)
+			: base(javaReference, transfer)
+		{
+			
+		}
 
+		public EntryActivity()
+		{
+			
+		}
 
 		protected PwEntry Entry;
 
@@ -473,7 +482,7 @@ namespace keepass2android
 			_popupMenuItems[popupKey] = new List<IPopupMenuItem>();
 			return _popupMenuItems[popupKey];
 		}
-				internal Android.Net.Uri WriteBinaryToFile(string key, bool writeToCacheDirectory)
+				internal Uri WriteBinaryToFile(string key, bool writeToCacheDirectory)
 		{
 			ProtectedBinary pb = Entry.Binaries.Get(key);
 			System.Diagnostics.Debug.Assert(pb != null);
@@ -514,7 +523,7 @@ namespace keepass2android
 				}
 			}
 			string filename = targetFile.AbsolutePath;
-			Android.Net.Uri fileUri = Android.Net.Uri.FromFile(targetFile);
+			Uri fileUri = Uri.FromFile(targetFile);
 
 			byte[] pbData = pb.ReadData();
 			try
@@ -534,7 +543,7 @@ namespace keepass2android
 			Toast.MakeText(this, GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[] { filename }), ToastLength.Short).Show();
 			if (writeToCacheDirectory)
 			{
-				return Android.Net.Uri.Parse("content://" + AttachmentContentProvider.Authority + "/"
+				return Uri.Parse("content://" + AttachmentContentProvider.Authority + "/"
 											  + filename);
 			}
 			return fileUri;
@@ -629,7 +638,7 @@ namespace keepass2android
 				*/
 
 			}
-			FindViewById(Resource.Id.entry_binaries_label).Visibility = true ? ViewStates.Visible : ViewStates.Gone;
+			FindViewById(Resource.Id.entry_binaries_label).Visibility = Entry.Binaries.Any() ? ViewStates.Visible : ViewStates.Gone;
 		}
 
 		// url = file path or whatever suitable URL you want.
@@ -762,25 +771,12 @@ namespace keepass2android
 			popupMenu.Show();
 		}
 
-		private void ShowPopup(int resAnchor, string popupKey)
-		{
-			ShowPopup(FindViewById(resAnchor), popupKey);
-		}
-
+		
 		private void SetPasswordTypeface(TextView textView)
 		{
 			if (_passwordFont == null)
 				_passwordFont = Typeface.CreateFromAsset(Assets, "DejaVuSansMono.ttf");
 			textView.Typeface = _passwordFont;
-		}
-
-		private void PopulateText(int viewId, int containerViewId, int resId)
-		{
-			View header = FindViewById(containerViewId);
-			TextView tv = (TextView) FindViewById(viewId);
-
-			header.Visibility = tv.Visibility = ViewStates.Visible;
-			tv.SetText(resId);
 		}
 
 		private void PopulateText(int viewId, int containerViewId, String text)

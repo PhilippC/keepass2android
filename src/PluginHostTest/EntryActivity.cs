@@ -572,7 +572,7 @@ namespace keepass2android
 		private void PopulateBinaries()
 		{
 			ViewGroup binariesGroup = (ViewGroup) FindViewById(Resource.Id.binaries);
-			foreach (KeyValuePair<string, string> pair in new Dictionary<string, string>() {{"abc", ""}, {"test.png", "uia"}})
+			foreach (KeyValuePair<string, string> pair in new Dictionary<string, string>())
 			{
 				String key = pair.Key;
 

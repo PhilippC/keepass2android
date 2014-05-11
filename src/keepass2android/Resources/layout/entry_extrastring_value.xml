@@ -14,7 +14,6 @@
 			   android:src="@drawable/vdots"
 			   android:gravity="right|bottom"
 			   android:layout_alignParentRight="true"
-			   android:layout_alignParentBottom="true"
 				   />
 	<TextView
 		android:id="@+id/entry_extra"

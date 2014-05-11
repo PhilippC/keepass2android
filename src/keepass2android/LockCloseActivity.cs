@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -39,6 +40,12 @@ namespace keepass2android
 		public LockCloseActivity()
 		{
 			_design = new ActivityDesign(this);
+		}
+
+		protected LockCloseActivity(IntPtr javaReference, JniHandleOwnership transfer)
+			: base(javaReference, transfer)
+		{
+			
 		}
 
 		protected override void OnCreate(Bundle savedInstanceState)
