@@ -45,7 +45,7 @@ namespace keepass2android
 		protected LockCloseActivity(IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
-			
+			_design = new ActivityDesign(this);
 		}
 
 		protected override void OnCreate(Bundle savedInstanceState)

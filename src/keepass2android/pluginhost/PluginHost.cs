@@ -24,23 +24,25 @@ namespace keepass2android
 
 		private static readonly string[] _validScopes = { Strings.ScopeDatabaseActions, Strings.ScopeCurrentEntry };
 
-		/// <summary>
-		/// Sends a broadcast to all potential plugins prompting them to request access to our app.
-		/// </summary>
-		public static void TriggerRequests(Context ctx)
+		public static IEnumerable<string> GetAllPlugins(Context ctx)
 		{
 			Intent accessIntent = new Intent(Strings.ActionTriggerRequestAccess);
 			PackageManager packageManager = ctx.PackageManager;
 			IList<ResolveInfo> dictPacks = packageManager.QueryBroadcastReceivers(
 				accessIntent, PackageInfoFlags.Receivers);
-			PluginDatabase pluginDatabase = new PluginDatabase(ctx);
-			foreach (ResolveInfo ri in dictPacks)
-			{
-				ApplicationInfo appInfo = ri.ActivityInfo.ApplicationInfo;
-				String pkgName = appInfo.PackageName;
+			
+			return dictPacks.Select(ri => ri.ActivityInfo.ApplicationInfo).Select(appInfo => appInfo.PackageName);
+			
+		}
 
-				TriggerRequest(ctx, pkgName, pluginDatabase);
-			}
+		/// <summary>
+		/// Sends a broadcast to all potential plugins prompting them to request access to our app.
+		/// </summary>
+		public static void TriggerRequests(Context ctx)
+		{
+			PluginDatabase pluginDatabase = new PluginDatabase(ctx);
+			foreach (string pkg in GetAllPlugins(ctx))
+				TriggerRequest(ctx, pkg, pluginDatabase);
 
 		}
 

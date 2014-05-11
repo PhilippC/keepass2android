@@ -16,7 +16,6 @@ namespace keepass2android
 		private const string _accessToken = "accessToken";
 		private const string _scopes = "scopes";
 		private const string _requesttoken = "requestToken";
-		private const string _pluginlist = "pluginList";
 
 
 
@@ -34,14 +33,7 @@ namespace keepass2android
 				editor.PutString(_requesttoken, Guid.NewGuid().ToString());
 				editor.Commit();
 			}
-			var hostPrefs = GetHostPrefs();
-			var plugins = hostPrefs.GetStringSet(_pluginlist, new List<string>());
-			if (!plugins.Contains(packageName))
-			{
-				plugins.Add(packageName);
-				hostPrefs.Edit().PutStringSet(_pluginlist, plugins).Commit();
-			}
-
+			
 			return prefs;
 		}
 
@@ -62,8 +54,7 @@ namespace keepass2android
 
 		public IEnumerable<String> GetAllPluginPackages()
 		{
-			var hostPrefs = GetHostPrefs();
-			return hostPrefs.GetStringSet(_pluginlist, new List<string>()).Where(IsPackageInstalled);
+			return PluginHost.GetAllPlugins(_ctx);
 		}
 
 		public bool IsPackageInstalled(string targetPackage)
@@ -93,11 +84,6 @@ namespace keepass2android
 					   .PutString(_scopes, AccessManager.StringArrayToString(requestedScopes))
 					   .PutString(_accessToken, accessToken)
 					   .Commit();
-		}
-
-		private ISharedPreferences GetHostPrefs()
-		{
-			return _ctx.GetSharedPreferences("plugins", FileCreationMode.Private);
 		}
 
 		public void SetEnabled(string pluginPackage, bool enabled)
@@ -166,7 +152,6 @@ namespace keepass2android
 			{
 				GetPreferencesForPlugin(plugin).Edit().Clear().Commit();
 			}
-			GetHostPrefs().Edit().Clear().Commit();
 		}
 
 
