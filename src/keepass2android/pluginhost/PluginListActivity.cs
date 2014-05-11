@@ -5,11 +5,13 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
+using Keepass2android.Pluginsdk;
 using PluginHostTest;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", Theme = "@style/Base")]			
+	[Activity(Label = "@string/plugins", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden)]
+	[IntentFilter(new[] { "keepass2android.PluginListActivity" }, Categories = new[] { Intent.CategoryDefault })]
 	public class PluginListActivity : ListActivity
 	{
 		private PluginArrayAdapter _pluginArrayAdapter;
@@ -18,21 +20,27 @@ namespace keepass2android
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-			
-			//TODO _design.ApplyTheme();
+
+			new ActivityDesign(this).ApplyTheme();
 
 			SetContentView(Resource.Layout.plugin_list);
-			
+
+			PluginHost.TriggerRequests(this);
+
 			ListView listView = FindViewById<ListView>(Android.Resource.Id.List);
 			listView.ItemClick +=
 				(sender, args) =>
-					{
-						Intent i = new Intent(this, typeof(PluginDetailsActivity));
-						i.PutExtra("PluginPackage", _items[args.Position].Package);
-						StartActivity(i);
-					};
-			
-			// Create your application here
+				{
+					Intent i = new Intent(this, typeof(PluginDetailsActivity));
+					i.PutExtra(Strings.ExtraPluginPackage, _items[args.Position].Package);
+					StartActivity(i);
+				};
+
+			FindViewById<Button>(Resource.Id.btnPluginsOnline).Click += delegate
+				{
+					Util.GotoUrl(this, "https://keepass2android.codeplex.com/wikipage?title=Available%20Plug-ins");
+				};
+
 		}
 		protected override void OnResume()
 		{
@@ -40,9 +48,9 @@ namespace keepass2android
 			PluginDatabase pluginDb = new PluginDatabase(this);
 
 			_items = (from pluginPackage in pluginDb.GetAllPluginPackages()
-			          let version = PackageManager.GetPackageInfo(pluginPackage, 0).VersionName
-			          let enabledStatus = pluginDb.IsEnabled(pluginPackage) ? GetString(Resource.String.plugin_enabled) : GetString(Resource.String.plugin_disabled)
-			          select new PluginItem(pluginPackage, enabledStatus, this)).ToList();
+					  let version = PackageManager.GetPackageInfo(pluginPackage, 0).VersionName
+					  let enabledStatus = pluginDb.IsEnabled(pluginPackage) ? GetString(Resource.String.plugin_enabled) : GetString(Resource.String.plugin_disabled)
+					  select new PluginItem(pluginPackage, enabledStatus, this)).ToList();
 			/*
 				{
 					new PluginItem("PluginA", Resource.Drawable.Icon, "keepass2android.plugina", "connected"),

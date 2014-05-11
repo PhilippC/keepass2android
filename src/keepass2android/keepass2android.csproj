@@ -99,6 +99,17 @@
     <Compile Include="app\OtpAuxCacheSupervisor.cs" />
     <Compile Include="CreateDatabaseActivity.cs" />
     <Compile Include="CreateNewFilename.cs" />
+    <Compile Include="EntryActivityClasses\CopyToClipboardPopupMenuIcon.cs" />
+    <Compile Include="EntryActivityClasses\ExtraStringView.cs" />
+    <Compile Include="EntryActivityClasses\GotoUrlMenuItem.cs" />
+    <Compile Include="EntryActivityClasses\IPopupMenuItem.cs" />
+    <Compile Include="EntryActivityClasses\IStringView.cs" />
+    <Compile Include="EntryActivityClasses\OpenBinaryPopupItem.cs" />
+    <Compile Include="EntryActivityClasses\PluginMenuOption.cs" />
+    <Compile Include="EntryActivityClasses\PluginPopupMenuItem.cs" />
+    <Compile Include="EntryActivityClasses\StandardStringView.cs" />
+    <Compile Include="EntryActivityClasses\ToggleVisibilityPopupMenuItem.cs" />
+    <Compile Include="EntryActivityClasses\WriteBinaryToFilePopupItem.cs" />
     <Compile Include="ExportDatabaseActivity.cs" />
     <Compile Include="fileselect\FileChooserFileProvider.cs" />
     <Compile Include="fileselect\FileStorageSetupActivity.cs" />
@@ -649,10 +660,6 @@
       <Project>{3c0f7fe5-639f-4422-a087-8b26cf862d1b}</Project>
       <Name>AndroidFileChooserBinding</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AppCompatV7Binding\AppCompatV7Binding.csproj">
-      <Project>{23233a28-d74f-4bf8-b4d8-834060840bd7}</Project>
-      <Name>AppCompatV7Binding</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
       <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
       <Name>JavaFileStorageBindings</Name>
@@ -955,5 +962,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\vdots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_menu_copy_holo_light.png" />
   </ItemGroup>
 </Project>

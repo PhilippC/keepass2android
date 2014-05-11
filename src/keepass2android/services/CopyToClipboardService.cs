@@ -49,7 +49,7 @@ namespace keepass2android
 		public const int NotifyKeyboard = 3;
 		public const int ClearClipboard = 4;
 
-		public void CopyValueToClipboardWithTimeout(Context ctx, string text)
+		static public void CopyValueToClipboardWithTimeout(Context ctx, string text)
 		{
 			Intent i = new Intent(ctx, typeof(CopyToClipboardService));
 			i.SetAction(Intents.CopyStringToClipboard);

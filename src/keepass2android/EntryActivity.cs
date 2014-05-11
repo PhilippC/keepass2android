@@ -36,58 +36,75 @@ using Android.Graphics;
 using Java.IO;
 using KeePassLib;
 using KeePassLib.Security;
+using KeePassLib.Utility;
 using Keepass2android.Pluginsdk;
 using PluginHostTest;
+using keepass2android.Io;
 using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
 
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
-		Theme = "@style/NoTitleBar")]
-	public class EntryActivity : Activity
+	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/NoTitleBar")]			
+	public class EntryActivity : LockCloseActivity 
 	{
 		public const String KeyEntry = "entry";
 		public const String KeyRefreshPos = "refresh_pos";
 		public const String KeyCloseAfterCreate = "close_after_create";
 
-		protected PwEntry Entry = new PwEntry(true, true);
+		public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask)
+		{
+			Intent i = new Intent(act, typeof(EntryActivity));
+
+
+			i.PutExtra(KeyEntry, pw.Uuid.ToHexString());
+			i.PutExtra(KeyRefreshPos, pos);
+
+			appTask.ToIntent(i);
+
+			act.StartActivityForResult(i, 0);
+		}
+
+
+
+		protected PwEntry Entry;
 
 		private static Typeface _passwordFont;
 
 		internal bool _showPassword;
 		private int _pos;
 
+		AppTask _appTask;
 		private List<TextView> _protectedTextViews;
+		private IMenu _menu;
 
 		private readonly Dictionary<string, List<IPopupMenuItem>> _popupMenuItems =
 			new Dictionary<string, List<IPopupMenuItem>>();
 
 		private readonly Dictionary<string, IStringView> _stringViews = new Dictionary<string, IStringView>();
 		private readonly List<PluginMenuOption> _pendingMenuOptions = new List<PluginMenuOption>();
-		private IMenu _menu;
+		
 
 		protected void SetEntryView()
 		{
 			SetContentView(Resource.Layout.entry_view);
 		}
 
-		protected void SetupEditButtons()
-		{
-			View edit = FindViewById(Resource.Id.entry_edit);
-			if (true)
+		protected void SetupEditButtons() {
+			View edit =  FindViewById(Resource.Id.entry_edit);
+			if (App.Kp2a.GetDb().CanWrite)
 			{
 				edit.Visibility = ViewStates.Visible;
 				edit.Click += (sender, e) =>
-					{
-
-					};
+				{
+					EntryEditActivity.Launch(this, Entry, _appTask);
+				};	
 			}
 			else
 			{
 				edit.Visibility = ViewStates.Gone;
 			}
-
+			
 		}
 
 		private class PluginActionReceiver : BroadcastReceiver
@@ -171,7 +188,7 @@ namespace keepass2android
 			}
 
 			//update the Entry output in the App database and notify the CopyToClipboard service
-			App.Kp2A.GetDb().LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
+			App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
 			Intent updateKeyboardIntent = new Intent(this, typeof(CopyToClipboardService));
 			Intent.SetAction(Intents.UpdateKeyboard);
 			updateKeyboardIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
@@ -221,7 +238,7 @@ namespace keepass2android
 				i.SetPackage(pluginPackage);
 				i.PutExtra(Strings.ExtraActionData, bundleExtra);
 				i.PutExtra(Strings.ExtraSender, PackageName);
-				PluginHost.AddEntryToIntent(i, App.Kp2A.GetDb().LastOpenedEntry);
+				PluginHost.AddEntryToIntent(i, App.Kp2a.GetDb().LastOpenedEntry);
 
 				var menuOption = new PluginMenuOption()
 					{
@@ -254,167 +271,7 @@ namespace keepass2android
 			menuItem.SetIntent(menuOption.Intent);
 		}
 
-		public override bool OnCreateOptionsMenu(IMenu menu)
-		{
-			_menu = menu;
-			base.OnCreateOptionsMenu(menu);
-
-			MenuInflater inflater = MenuInflater;
-			inflater.Inflate(Resource.Menu.entry, menu);
-
-			lock (_pendingMenuOptions)
-			{
-				foreach (var option in _pendingMenuOptions)
-					AddMenuOption(option);
-				_pendingMenuOptions.Clear();
-			}
-
-
-			UpdateTogglePasswordMenu();
-
-			IMenuItem gotoUrl = menu.FindItem(Resource.Id.menu_goto_url);
-			//Disabled IMenuItem copyUser = menu.FindItem(Resource.Id.menu_copy_user);
-			//Disabled IMenuItem copyPass = menu.FindItem(Resource.Id.menu_copy_pass);
-
-			// In API >= 11 onCreateOptionsMenu may be called before onCreate completes
-			// so _entry may not be set
-			if (Entry == null)
-			{
-				gotoUrl.SetVisible(false);
-				//Disabled copyUser.SetVisible(false);
-				//Disabled copyPass.SetVisible(false);
-			}
-			else
-			{
-				String url = Entry.Strings.ReadSafe(PwDefs.UrlField);
-				if (String.IsNullOrEmpty(url))
-				{
-					// disable button if url is not available
-					gotoUrl.SetVisible(false);
-				}
-				if (String.IsNullOrEmpty(Entry.Strings.ReadSafe(PwDefs.UserNameField)))
-				{
-					// disable button if username is not available
-					//Disabled copyUser.SetVisible(false);
-				}
-				if (String.IsNullOrEmpty(Entry.Strings.ReadSafe(PwDefs.PasswordField)))
-				{
-					// disable button if password is not available
-					//Disabled copyPass.SetVisible(false);
-				}
-			}
-			return true;
-		}
-
-		public override bool OnOptionsItemSelected(IMenuItem item)
-		{
-			//check if this is a plugin action
-			if ((item.Intent != null) && (item.Intent.Action == Strings.ActionEntryActionSelected))
-			{
-				//yes. let the plugin handle the click:
-				SendBroadcast(item.Intent);
-				return true;
-			}
-
-			switch (item.ItemId)
-			{
-				case Resource.Id.menu_donate:
-					try
-					{
-						//						Util.GotoDonateUrl(this);
-					}
-					catch (ActivityNotFoundException)
-					{
-						Toast.MakeText(this, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
-						return false;
-					}
-
-					return true;
-				case Resource.Id.menu_toggle_pass:
-					if (_showPassword)
-					{
-						item.SetTitle(Resource.String.show_password);
-						_showPassword = false;
-					}
-					else
-					{
-						item.SetTitle(Resource.String.menu_hide_password);
-						_showPassword = true;
-					}
-					SetPasswordStyle();
-
-					return true;
-
-				case Resource.Id.menu_goto_url:
-					string url = _stringViews[PwDefs.UrlField].Text;
-					if (url == null) return false;
-
-					// Default http:// if no protocol specified
-					if (!url.Contains("://"))
-					{
-						url = "http://" + url;
-					}
-
-					try
-					{
-
-					}
-					catch (ActivityNotFoundException)
-					{
-						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-					}
-					return true;
-					/* TODO: required?
-			case Resource.Id.menu_copy_user:
-				timeoutCopyToClipboard(_entry.Strings.ReadSafe (PwDefs.UserNameField));
-				return true;
-				
-			case Resource.Id.menu_copy_pass:
-				timeoutCopyToClipboard(_entry.Strings.ReadSafe (PwDefs.UserNameField));
-				return true;
-				*/
-				case Resource.Id.menu_rate:
-					try
-					{
-					}
-					catch (ActivityNotFoundException)
-					{
-						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-					}
-					return true;
-				case Resource.Id.menu_suggest_improvements:
-					try
-					{
-					}
-					catch (ActivityNotFoundException)
-					{
-						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-					}
-					return true;
-				case Resource.Id.menu_lock:
-					return true;
-				case Resource.Id.menu_translate:
-					try
-					{
-
-					}
-					catch (ActivityNotFoundException)
-					{
-						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-					}
-					return true;
-				case Android.Resource.Id.Home:
-					//Currently the action bar only displays the home button when we come from a previous activity.
-					//So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
-					//http://developer.android.com/training/implementing-navigation/ancestral.html
-					Finish();
-
-					return true;
-			}
-
-
-			return base.OnOptionsItemSelected(item);
-		}
+		
 
 
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -431,20 +288,55 @@ namespace keepass2android
 			_showPassword =
 				!prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
 
-			Entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(false, "philipp "));
-			Entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(true, "password value"));
-			Entry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, "https://www.google.com"));
-			Entry.Strings.Set("field header", new ProtectedString(true, "protected field value"));
-			Entry.Strings.Set("public field header", new ProtectedString(false, "public field value"));
-
 			base.OnCreate(savedInstanceState);
+
+			new ActivityDesign(this).ApplyTheme();
+
 			SetEntryView();
 
+			Database db = App.Kp2a.GetDb();
+			// Likely the app has been killed exit the activity 
+			if (!db.Loaded || (App.Kp2a.QuickLocked))
+			{
+				Finish();
+				return;
+			}
+
+			SetResult(KeePass.ExitNormal);
+
+			Intent i = Intent;
+			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(i.GetStringExtra(KeyEntry)));
+			_pos = i.GetIntExtra(KeyRefreshPos, -1);
+
+			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+
+			Entry = db.Entries[uuid];
+
+			// Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
+			ActivityCompat.InvalidateOptionsMenu(this);
+
+			// Update last access time.
+			Entry.Touch(false);
+
+			if (PwDefs.IsTanEntry(Entry) && prefs.GetBoolean(GetString(Resource.String.TanExpiresOnUse_key), Resources.GetBoolean(Resource.Boolean.TanExpiresOnUse_default)) && ((Entry.Expires == false) || Entry.ExpiryTime > DateTime.Now))
+			{
+				PwEntry backupEntry = Entry.CloneDeep();
+				Entry.ExpiryTime = DateTime.Now;
+				Entry.Expires = true;
+				Entry.Touch(true);
+				RequiresRefresh();
+				UpdateEntry update = new UpdateEntry(this, App.Kp2a, backupEntry, Entry, null);
+				ProgressTask pt = new ProgressTask(App.Kp2a, this, update);
+				pt.Run();
+			}
 			FillData();
 
 			SetupEditButtons();
 
-			App.Kp2A.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2A.GetDb().KpDatabase);
+			//depending on the app task, the final things to do might be delayed, so let the appTask call CompleteOnCreate when appropriate
+			_appTask.OnCompleteCreateEntryActivity(this);
+
+			App.Kp2a.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.GetDb().KpDatabase);
 
 			RegisterReceiver(new PluginActionReceiver(this), new IntentFilter(Strings.ActionAddEntryAction));
 			RegisterReceiver(new PluginFieldReceiver(this), new IntentFilter(Strings.ActionSetEntryField));
@@ -454,8 +346,6 @@ namespace keepass2android
 
 		private void NotifyPluginsOnOpen()
 		{
-			App.Kp2A.GetDb().SetEntry(Entry);
-
 			Intent i = new Intent(Strings.ActionOpenEntry);
 			i.PutExtra(Strings.ExtraSender, PackageName);
 			AddEntryToIntent(i);
@@ -485,6 +375,26 @@ namespace keepass2android
 		public void CompleteOnCreate()
 		{
 
+			Intent showNotIntent = new Intent(this, typeof(CopyToClipboardService));
+			Intent.SetAction(Intents.ShowNotification);
+			showNotIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
+			bool closeAfterCreate = _appTask.CloseEntryActivityAfterCreate;
+			showNotIntent.PutExtra(KeyCloseAfterCreate, closeAfterCreate);
+
+			StartService(showNotIntent);
+
+			Kp2aLog.Log("Requesting copy to clipboard for Uuid=" + Entry.Uuid.ToHexString());
+
+			/*foreach (PwUuid key in App.Kp2a.GetDb().entries.Keys)
+			{
+				Kp2aLog.Log(this,key.ToHexString() + " -> " + App.Kp2a.GetDb().entries[key].Uuid.ToHexString());
+			}*/
+
+			if (closeAfterCreate)
+			{
+				SetResult(KeePass.ExitCloseAfterTaskComplete);
+				Finish();
+			}
 		}
 
 
@@ -552,6 +462,8 @@ namespace keepass2android
 
 		}
 
+
+
 		private List<IPopupMenuItem> RegisterPopup(string popupKey, View clickView, View anchorView)
 		{
 			clickView.Click += (sender, args) =>
@@ -561,6 +473,97 @@ namespace keepass2android
 			_popupMenuItems[popupKey] = new List<IPopupMenuItem>();
 			return _popupMenuItems[popupKey];
 		}
+				internal Android.Net.Uri WriteBinaryToFile(string key, bool writeToCacheDirectory)
+		{
+			ProtectedBinary pb = Entry.Binaries.Get(key);
+			System.Diagnostics.Debug.Assert(pb != null);
+			if (pb == null)
+				throw new ArgumentException();
+
+
+			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+			string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key), GetString(Resource.String.BinaryDirectory_default));
+			if (writeToCacheDirectory)
+				binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
+
+			string filepart = key;
+			if (writeToCacheDirectory)
+				filepart = filepart.Replace(" ", "");
+			var targetFile = new File(binaryDirectory, filepart);
+
+			File parent = targetFile.ParentFile;
+
+			if (parent == null || (parent.Exists() && !parent.IsDirectory))
+			{
+				Toast.MakeText(this,
+							   Resource.String.error_invalid_path,
+							   ToastLength.Long).Show();
+				return null;
+			}
+
+			if (!parent.Exists())
+			{
+				// Create parent directory
+				if (!parent.Mkdirs())
+				{
+					Toast.MakeText(this,
+								   Resource.String.error_could_not_create_parent,
+								   ToastLength.Long).Show();
+					return null;
+
+				}
+			}
+			string filename = targetFile.AbsolutePath;
+			Android.Net.Uri fileUri = Android.Net.Uri.FromFile(targetFile);
+
+			byte[] pbData = pb.ReadData();
+			try
+			{
+				System.IO.File.WriteAllBytes(filename, pbData);
+			}
+			catch (Exception exWrite)
+			{
+				Toast.MakeText(this, GetString(Resource.String.SaveAttachment_Failed, new Java.Lang.Object[] { filename })
+					+ exWrite.Message, ToastLength.Long).Show();
+				return null;
+			}
+			finally
+			{
+				MemUtil.ZeroByteArray(pbData);
+			}
+			Toast.MakeText(this, GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[] { filename }), ToastLength.Short).Show();
+			if (writeToCacheDirectory)
+			{
+				return Android.Net.Uri.Parse("content://" + AttachmentContentProvider.Authority + "/"
+											  + filename);
+			}
+			return fileUri;
+		}
+
+		internal void OpenBinaryFile(Android.Net.Uri uri)
+		{
+
+
+			String theMimeType = GetMimeType(uri.Path);
+			if (theMimeType != null)
+			{
+
+				Intent theIntent = new Intent(Intent.ActionView);
+				theIntent.AddFlags(ActivityFlags.NewTask | ActivityFlags.ExcludeFromRecents);
+				theIntent.SetDataAndType(uri, theMimeType);
+				try
+				{
+					StartActivity(theIntent);
+				}
+				catch (ActivityNotFoundException)
+				{
+					//ignore
+					Toast.MakeText(this, "Couldn't open file", ToastLength.Short).Show();
+				}
+			}
+
+		}
+
 
 
 		private void RegisterProtectedTextView(TextView protectedTextView)
@@ -572,7 +575,7 @@ namespace keepass2android
 		private void PopulateBinaries()
 		{
 			ViewGroup binariesGroup = (ViewGroup) FindViewById(Resource.Id.binaries);
-			foreach (KeyValuePair<string, string> pair in new Dictionary<string, string>() {{"abc", ""}, {"test.png", "uia"}})
+			foreach (KeyValuePair<string, ProtectedBinary> pair in Entry.Binaries)
 			{
 				String key = pair.Key;
 
@@ -645,6 +648,7 @@ namespace keepass2android
 		public override void OnBackPressed()
 		{
 			base.OnBackPressed();
+			OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
 		}
 
 		protected void FillData()
@@ -658,10 +662,8 @@ namespace keepass2android
 
 
 
-			ActionBar.Title = "Entry title";
+			ActionBar.Title = Entry.Strings.ReadSafe(PwDefs.TitleField);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
-
-
 
 			PopulateStandardText(Resource.Id.entry_user_name, Resource.Id.entryfield_container_username, PwDefs.UserNameField);
 			PopulateStandardText(Resource.Id.entry_url, Resource.Id.entryfield_container_url, PwDefs.UrlField);
@@ -701,18 +703,7 @@ namespace keepass2android
 			SetPasswordStyle();
 		}
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			base.OnActivityResult(requestCode, resultCode, data);
-			if (resultCode == /*TODO*/ 0)
-			{
-				if (resultCode == /*TODO*/ 0)
-				{
-					RequiresRefresh();
-				}
-				Recreate();
-			}
-		}
+		
 
 		protected override void OnDestroy()
 		{
@@ -778,7 +769,9 @@ namespace keepass2android
 
 		private void SetPasswordTypeface(TextView textView)
 		{
-
+			if (_passwordFont == null)
+				_passwordFont = Typeface.CreateFromAsset(Assets, "DejaVuSansMono.ttf");
+			textView.Typeface = _passwordFont;
 		}
 
 		private void PopulateText(int viewId, int containerViewId, int resId)
@@ -817,9 +810,83 @@ namespace keepass2android
 			Intent ret = new Intent();
 			ret.PutExtra(KeyRefreshPos, _pos);
 
+			SetResult(KeePass.ExitRefresh, ret);
 		}
 
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
+			base.OnActivityResult(requestCode, resultCode, data);
+			if ( resultCode == KeePass.ExitRefresh || resultCode == KeePass.ExitRefreshTitle ) {
+				if ( resultCode == KeePass.ExitRefreshTitle ) {
+					RequiresRefresh ();
+				}
+				Recreate();
+			}
+		}
 
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			_menu = menu;
+			base.OnCreateOptionsMenu(menu);
+
+			MenuInflater inflater = MenuInflater;
+			inflater.Inflate(Resource.Menu.entry, menu);
+
+			lock (_pendingMenuOptions)
+			{
+				foreach (var option in _pendingMenuOptions)
+					AddMenuOption(option);
+				_pendingMenuOptions.Clear();
+			}
+
+
+			UpdateTogglePasswordMenu();
+
+			IMenuItem gotoUrl = menu.FindItem(Resource.Id.menu_goto_url);
+			//Disabled IMenuItem copyUser = menu.FindItem(Resource.Id.menu_copy_user);
+			//Disabled IMenuItem copyPass = menu.FindItem(Resource.Id.menu_copy_pass);
+
+			// In API >= 11 onCreateOptionsMenu may be called before onCreate completes
+			// so _entry may not be set
+			if (Entry == null)
+			{
+				gotoUrl.SetVisible(false);
+				//Disabled copyUser.SetVisible(false);
+				//Disabled copyPass.SetVisible(false);
+			}
+			else
+			{
+				String url = Entry.Strings.ReadSafe(PwDefs.UrlField);
+				if (String.IsNullOrEmpty(url))
+				{
+					// disable button if url is not available
+					gotoUrl.SetVisible(false);
+				}
+				if (String.IsNullOrEmpty(Entry.Strings.ReadSafe(PwDefs.UserNameField)))
+				{
+					// disable button if username is not available
+					//Disabled copyUser.SetVisible(false);
+				}
+				if (String.IsNullOrEmpty(Entry.Strings.ReadSafe(PwDefs.PasswordField)))
+				{
+					// disable button if password is not available
+					//Disabled copyPass.SetVisible(false);
+				}
+			}
+			return true;
+		}
+
+		private void UpdateTogglePasswordMenu()
+		{
+			IMenuItem togglePassword = _menu.FindItem(Resource.Id.menu_toggle_pass);
+			if (_showPassword)
+			{
+				togglePassword.SetTitle(Resource.String.menu_hide_password);
+			}
+			else
+			{
+				togglePassword.SetTitle(Resource.String.show_password);
+			}
+		}
 
 		private void SetPasswordStyle()
 		{
@@ -839,10 +906,123 @@ namespace keepass2android
 
 		protected override void OnResume()
 		{
-
+			ClearCache();
 			base.OnResume();
 		}
 
+		public void ClearCache()
+		{
+			try
+			{
+				File dir = new File(CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir);
+				if (dir.IsDirectory)
+				{
+					IoUtil.DeleteDir(dir);
+				}
+			}
+			catch (Exception)
+			{
+
+			}
+		}
+
+		public override bool OnOptionsItemSelected(IMenuItem item)
+		{
+			//check if this is a plugin action
+			if ((item.Intent != null) && (item.Intent.Action == Strings.ActionEntryActionSelected))
+			{
+				//yes. let the plugin handle the click:
+				SendBroadcast(item.Intent);
+				return true;
+			}
+
+			switch (item.ItemId)
+			{
+				case Resource.Id.menu_donate:
+					try
+					{
+						Util.GotoDonateUrl(this);
+					}
+					catch (ActivityNotFoundException)
+					{
+						Toast.MakeText(this, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
+						return false;
+					}
+
+					return true;
+				case Resource.Id.menu_toggle_pass:
+					if (_showPassword)
+					{
+						item.SetTitle(Resource.String.show_password);
+						_showPassword = false;
+					}
+					else
+					{
+						item.SetTitle(Resource.String.menu_hide_password);
+						_showPassword = true;
+					}
+					SetPasswordStyle();
+
+					return true;
+
+				case Resource.Id.menu_goto_url:
+					return GotoUrl();
+			/* TODO: required?
+			case Resource.Id.menu_copy_user:
+				timeoutCopyToClipboard(_entry.Strings.ReadSafe (PwDefs.UserNameField));
+				return true;
+				
+			case Resource.Id.menu_copy_pass:
+				timeoutCopyToClipboard(_entry.Strings.ReadSafe (PwDefs.UserNameField));
+				return true;
+				*/
+				case Resource.Id.menu_rate:
+					try
+					{
+						Util.GotoMarket(this);
+					}
+					catch (ActivityNotFoundException)
+					{
+						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+					}
+					return true;
+				case Resource.Id.menu_suggest_improvements:
+					try
+					{
+						Util.GotoUrl(this, Resource.String.SuggestionsURL);
+					}
+					catch (ActivityNotFoundException)
+					{
+						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+					}
+					return true;
+				case Resource.Id.menu_lock:
+					return true;
+				case Resource.Id.menu_translate:
+					try
+					{
+						Util.GotoUrl(this, Resource.String.TranslationURL);
+					}
+					catch (ActivityNotFoundException)
+					{
+						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+					}
+					return true;
+				case Android.Resource.Id.Home:
+					//Currently the action bar only displays the home button when we come from a previous activity.
+					//So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
+					//http://developer.android.com/training/implementing-navigation/ancestral.html
+					Finish();
+					OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+
+					return true;
+			}
+
+
+			return base.OnOptionsItemSelected(item);
+		}
+
+		
 		/// <summary>
 		/// brings up a dialog asking the user whether he wants to add the given URL to the entry for automatic finding
 		/// </summary>
@@ -856,6 +1036,8 @@ namespace keepass2android
 			builder.SetPositiveButton(GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
 				{
 
+					AddUrlToEntryThenCompleteCreate(url);
+				
 				});
 
 			builder.SetNegativeButton(GetString(Resource.String.no), (dlgSender, dlgEvt) =>
@@ -867,7 +1049,47 @@ namespace keepass2android
 			dialog.Show();
 
 		}
+		private void AddUrlToEntryThenCompleteCreate(string url)
+		{
+			PwEntry initialEntry = Entry.CloneDeep();
 
+			PwEntry newEntry = Entry;
+			newEntry.History = newEntry.History.CloneDeep();
+			newEntry.CreateBackup(null);
+
+			newEntry.Touch(true, false); // Touch *after* backup
+
+			//if there is no URL in the entry, set that field. If it's already in use, use an additional (not existing) field
+			if (String.IsNullOrEmpty(newEntry.Strings.ReadSafe(PwDefs.UrlField)))
+			{
+				newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, url));
+			}
+			else
+			{
+				int c = 1;
+				while (newEntry.Strings.Get("KP2A_URL_" + c) != null)
+				{
+					c++;
+				}
+
+				newEntry.Strings.Set("KP2A_URL_" + c, new ProtectedString(false, url));
+			}
+
+			//save the entry:
+
+			ActionOnFinish closeOrShowError = new ActionOnFinish((success, message) =>
+			{
+				OnFinish.DisplayMessage(this, message);
+				CompleteOnCreate();
+			});
+
+
+			RunnableOnFinish runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
+
+			ProgressTask pt = new ProgressTask(App.Kp2a, this, runnable);
+			pt.Run();
+
+		}
 		public void ToggleVisibility()
 		{
 			_showPassword = !_showPassword;
@@ -875,31 +1097,32 @@ namespace keepass2android
 			UpdateTogglePasswordMenu();
 		}
 
-		public Android.Net.Uri WriteBinaryToFile(string key, bool writeToCacheDirectory)
-		{
-			return Android.Net.Uri.Empty;
-			//TODO
-		}
 
-		private void UpdateTogglePasswordMenu()
+		public bool GotoUrl()
 		{
-			//todo use real method
-		}
+			string url = _stringViews[PwDefs.UrlField].Text;
+			if (url == null) return false;
 
-		public void GotoUrl()
-		{
-			//TODO
-			
-		}
+			// Default http:// if no protocol specified
+			if (!url.Contains("://"))
+			{
+				url = "http://" + url;
+			}
 
-		public void OpenBinaryFile(Uri newUri)
-		{
-			Toast.MakeText(this, "opening file TODO", ToastLength.Short).Show();
+			try
+			{
+				Util.GotoUrl(this, url);
+			}
+			catch (ActivityNotFoundException)
+			{
+				Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+			}
+			return true;
 		}
 
 		public void AddEntryToIntent(Intent intent)
 		{
-			PluginHost.AddEntryToIntent(intent, App.Kp2A.GetDb().LastOpenedEntry);
+			PluginHost.AddEntryToIntent(intent, App.Kp2a.GetDb().LastOpenedEntry);
 		}
 	}
 }

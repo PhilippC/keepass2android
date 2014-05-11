@@ -284,4 +284,8 @@
 		
 
 	</PreferenceScreen>
+
+	<PreferenceScreen android:key="plugin_key" android:title="@string/plugins">
+		<intent android:action="keepass2android.PluginListActivity"/>
+	</PreferenceScreen>
 </PreferenceScreen>

@@ -7,6 +7,7 @@
   <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP support is implemented using the JSch library under BSD licence, created by JCraft, Inc.</string>
   <string name="accept">Accept</string>
+  <string name="deny">Deny</string>
   <string name="add_entry">Add entry</string>
   <string name="add_url_entry">Create entry for URL</string>
   <string name="add_group">Add group</string>
@@ -401,16 +402,14 @@
 	<string name="SavingOtpAuxFile">Saving auxiliary OTP file…</string>
 
 	<string name="loading">Loading…</string>
-	
-	<string name="enable_plugin_title">Enable plug-in?</string>
-	<string name="enable_plugin_question">Keepass2Android detected a plug-in with name: %1$s from package name: %2$s. Do you want to enable this plug-in? It will have access to the data stored in your Keepass databases.</string>
-	
+		
 	<string name="plugins">Plug-ins</string>
 	<string name="plugin_packagename">Package name:</string>
 	<string name="plugin_description">Description (not verified):</string>
 	<string name="plugin_author">Author (not verified):</string>
 	<string name="plugin_enabled">enabled</string>
 	<string name="plugin_disabled">disabled</string>
+	<string name="plugin_web">Find plug-ins online</string>
 	
 	<string name="plugin_enabled_checkbox">Enabled</string>
 

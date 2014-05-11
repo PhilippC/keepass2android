@@ -87,21 +87,12 @@ namespace keepass2android
 
 		public void StorePlugin(string pluginPackage, string accessToken, IList<string> requestedScopes)
 		{
-			ISharedPreferences hostPrefs = GetHostPrefs();
 			ISharedPreferences pluginPrefs = GetPreferencesForPlugin(pluginPackage);
-			var stringSet = hostPrefs.GetStringSet(_pluginlist, new Collection<string>());
-			if (!stringSet.Contains(pluginPackage))
-			{
-				stringSet.Add(pluginPackage);
-				hostPrefs.Edit()
-				         .PutStringSet(_pluginlist, stringSet)
-				         .Commit();
-			}
 
 			pluginPrefs.Edit()
-			           .PutString(_scopes, AccessManager.StringArrayToString(requestedScopes))
-			           .PutString(_accessToken, accessToken)
-			           .Commit();
+					   .PutString(_scopes, AccessManager.StringArrayToString(requestedScopes))
+					   .PutString(_accessToken, accessToken)
+					   .Commit();
 		}
 
 		private ISharedPreferences GetHostPrefs()
@@ -123,7 +114,7 @@ namespace keepass2android
 				i.PutExtra(Strings.ExtraAccessToken, accessToken);
 				_ctx.SendBroadcast(i);
 
-				StorePlugin(pluginPackage, accessToken, GetPluginScopes( pluginPackage));
+				StorePlugin(pluginPackage, accessToken, GetPluginScopes(pluginPackage));
 			}
 			else
 			{
@@ -148,7 +139,7 @@ namespace keepass2android
 			{
 				Log.Warn(_tag, "No accessToken specified!");
 				return false;
-			} 
+			}
 
 			var prefs = GetPreferencesForPlugin(pluginPackage);
 			if (prefs.GetString(_accessToken, null) != accessToken)
@@ -178,16 +169,16 @@ namespace keepass2android
 			GetHostPrefs().Edit().Clear().Commit();
 		}
 
-		
+
 		public IEnumerable<string> GetPluginsWithAcceptedScope(string scope)
 		{
 			return GetAllPluginPackages().Where(plugin =>
-				{
-					var prefs = GetPreferencesForPlugin(plugin);
-					return (prefs.GetString(_accessToken, null) != null)
-						 && AccessManager.StringToStringArray(prefs.GetString(_scopes, "")).Contains(scope);
+			{
+				var prefs = GetPreferencesForPlugin(plugin);
+				return (prefs.GetString(_accessToken, null) != null)
+					 && AccessManager.StringToStringArray(prefs.GetString(_scopes, "")).Contains(scope);
 
-				});
+			});
 		}
 
 		public void ClearPlugin(string plugin)

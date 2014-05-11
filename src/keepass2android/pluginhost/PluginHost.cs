@@ -11,16 +11,22 @@ using Org.Json;
 
 namespace keepass2android
 {
-	[BroadcastReceiver()]
-	[IntentFilter(new[] { Strings.ActionRequestAccess})]
-	public class PluginHost: BroadcastReceiver
+	/// <summary>
+	/// Class which manages plugins inside the app
+	/// </summary>
+	[BroadcastReceiver]
+	[IntentFilter(new[] { Strings.ActionRequestAccess })]
+	public class PluginHost : BroadcastReceiver
 	{
-		
+
 		private const string _tag = "KP2A_PluginHost";
-		
+
 
 		private static readonly string[] _validScopes = { Strings.ScopeDatabaseActions, Strings.ScopeCurrentEntry };
 
+		/// <summary>
+		/// Sends a broadcast to all potential plugins prompting them to request access to our app.
+		/// </summary>
 		public static void TriggerRequests(Context ctx)
 		{
 			Intent accessIntent = new Intent(Strings.ActionTriggerRequestAccess);
@@ -32,28 +38,27 @@ namespace keepass2android
 			{
 				ApplicationInfo appInfo = ri.ActivityInfo.ApplicationInfo;
 				String pkgName = appInfo.PackageName;
-				
-				try
-				{
-					
-					Intent triggerIntent = new Intent(Strings.ActionTriggerRequestAccess);
-					triggerIntent.SetPackage(pkgName);
-					triggerIntent.PutExtra(Strings.ExtraSender, ctx.PackageName);
-					
-					triggerIntent.PutExtra(Strings.ExtraRequestToken, pluginDatabase.GetRequestToken(pkgName));
-					ctx.SendBroadcast(triggerIntent);
-				}
-				catch (Exception e)
-				{
-					
-					
-				}
+
+				TriggerRequest(ctx, pkgName, pluginDatabase);
 			}
 
 		}
 
-		
+		public static void TriggerRequest(Context ctx, string pkgName, PluginDatabase pluginDatabase)
+		{
+			try
+			{
+				Intent triggerIntent = new Intent(Strings.ActionTriggerRequestAccess);
+				triggerIntent.SetPackage(pkgName);
+				triggerIntent.PutExtra(Strings.ExtraSender, ctx.PackageName);
 
+				triggerIntent.PutExtra(Strings.ExtraRequestToken, pluginDatabase.GetRequestToken(pkgName));
+				ctx.SendBroadcast(triggerIntent);
+			}
+			catch (Exception e)
+			{
+			}
+		}
 
 
 		public override void OnReceive(Context context, Intent intent)
@@ -64,7 +69,7 @@ namespace keepass2android
 				var senderPackage = intent.GetStringExtra(Strings.ExtraSender);
 				var requestToken = intent.GetStringExtra(Strings.ExtraRequestToken);
 
-			 	var requestedScopes = intent.GetStringArrayListExtra(Strings.ExtraScopes);
+				var requestedScopes = intent.GetStringArrayListExtra(Strings.ExtraScopes);
 
 				if (!AreScopesValid(requestedScopes))
 				{
@@ -77,9 +82,9 @@ namespace keepass2android
 					return;
 				}
 				string currentAccessToken = pluginDb.GetAccessToken(senderPackage);
-				if ((currentAccessToken != null) 
+				if ((currentAccessToken != null)
 					&& (AccessManager.IsSubset(requestedScopes,
-				                           pluginDb.GetPluginScopes(senderPackage))))
+										   pluginDb.GetPluginScopes(senderPackage))))
 				{
 					//permission already there.
 					var i = new Intent(Strings.ActionReceiveAccess);
@@ -111,9 +116,10 @@ namespace keepass2android
 						context.SendBroadcast(i);
 						Log.Warn(_tag, "Access token of plugin " + senderPackage + " not (or no more) valid.");
 					}
-					
-				}
 
+				}
+				if (OnReceivedRequest != null)
+					OnReceivedRequest(this, new PluginHostEventArgs() { Package = senderPackage });
 
 			}
 		}
@@ -131,6 +137,9 @@ namespace keepass2android
 			return true;
 		}
 
+		/// <summary>
+		/// adds the entry output data to the intent to be sent to a plugin
+		/// </summary>
 		public static void AddEntryToIntent(Intent intent, PwEntryOutput entry)
 		{
 			/*//add the entry XML
@@ -150,5 +159,11 @@ namespace keepass2android
 			intent.PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString());
 
 		}
+
+		public class PluginHostEventArgs
+		{
+			public string Package { get; set; }
+		}
+		public static event EventHandler<PluginHostEventArgs> OnReceivedRequest;
 	}
 }

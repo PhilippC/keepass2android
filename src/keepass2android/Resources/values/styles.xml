@@ -63,9 +63,6 @@
 		<item name="@android:textSize">12sp</item>
 		<item name="@android:background">#222222</item>
 	</style>
-	<style name="EntryFieldHeader" parent="WhiteOnDarkSmall">
-		<item name="@android:textSize">12sp</item>
-	</style>
 	<style name="ElementTextTitle" parent="WhiteOnBlack">
 		<item name="@android:textColor">@color/group</item>
 		<item name="@android:background">@android:color/transparent</item>
