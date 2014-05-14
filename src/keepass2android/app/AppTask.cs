@@ -49,6 +49,29 @@ namespace keepass2android
 	}
 
 	/// <summary>
+	/// represents data stored in an intent or bundle as extra string array
+	/// </summary>
+	public class StringArrayExtra : IExtra
+	{
+		public string Key { get; set; }
+		public string[] Value { get; set; }
+
+		#region IExtra implementation
+
+		public void ToBundle(Bundle b)
+		{
+			b.PutStringArray(Key, Value);
+		}
+
+		public void ToIntent(Intent i)
+		{
+			i.PutExtra(Key, Value);
+		}
+
+		#endregion
+	}
+
+	/// <summary>
 	/// base class for "tasks": these are things the user wants to do and which require several activities
 	/// </summary>
 	/// Therefore AppTasks need to be serializable to bundles and intents to "survive" saving to instance state and changing activities.
@@ -271,8 +294,20 @@ namespace keepass2android
 		public override void AfterUnlockDatabase(PasswordActivity act)
 		{
 			ShareUrlResults.Launch(act, this);
-			RemoveTaskFromIntent(act);
-			act.AppTask = new NullTask();
+
+			//removed. this causes an issue in the following workflow:
+			//When the user wants to find an entry for a URL but has the wrong database open he needs 
+			//to switch to another database. But the Task is removed already the first time when going through PasswordActivity 
+			// (with the wrong db).
+			//Then after switching to the right database, the task is gone.
+
+			//A reason this code existed was the following workflow:
+			//Using Chrome browser (with NEW_TASK flag for ActionSend): Share URL -> KP2A.
+			//Now the AppTask was in PasswordActivity and didn't get out of it.
+			//This is now solved by returning new tasks in ActivityResult.
+
+			//RemoveTaskFromIntent(act);
+			//act.AppTask = new NullTask();
 		}
 
 		public override bool CloseEntryActivityAfterCreate
@@ -393,30 +428,72 @@ namespace keepass2android
 	/// </summary>
 	public class CreateEntryThenCloseTask: AppTask
 	{
+		/// <summary>
+		/// extra key if only a URL is passed. optional.
+		/// </summary>
 		public const String UrlKey = "CreateEntry_Url";
+		
+		/// <summary>
+		/// extra key if a json serialized key/value mapping is passed. optional.
+		/// </summary>
+		/// Uses the PluginSDKs keys because this is mainly used for communicating with plugins.
+		/// Of course the data might also contain "non-output-data" (e.g. placeholders), but usually won't.
+		public const String AllFieldsKey = Keepass2android.Pluginsdk.Strings.ExtraEntryOutputData;
 
-		public string Url
-		{
-			get;
-			set;
-		}
+		/// <summary>
+		/// extra key to specify a list of protected field keys in AllFieldsKey. Passed as StringArrayExtra. optional.
+		/// </summary>
+		public const String ProtectedFieldsListKey = Keepass2android.Pluginsdk.Strings.ExtraProtectedFieldsList;
+
+		public string Url { get; set; }
+
+		public string AllFields { get; set; }
+
+		public string[] ProtectedFieldsList { get; set; }
 
 		public override void Setup(Bundle b)
 		{
 			Url = b.GetString(UrlKey);
+			AllFields = b.GetString(AllFieldsKey);
+			ProtectedFieldsList = b.GetStringArray(ProtectedFieldsListKey);
 		}
 		public override IEnumerable<IExtra> Extras 
 		{ 
 			get
 			{
-				yield return new StringExtra { Key = UrlKey, Value = Url };
+				if (Url != null)
+					yield return new StringExtra { Key = UrlKey, Value = Url };
+				if (AllFields != null)
+					yield return new StringExtra { Key = AllFieldsKey, Value = AllFields };
+				if (ProtectedFieldsList != null)
+					yield return new StringArrayExtra { Key = ProtectedFieldsListKey, Value = ProtectedFieldsList };
 			}
 		}
 		
 		
 		public override void PrepareNewEntry(PwEntry newEntry)
 		{
-			newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, Url));
+			if (Url != null)
+			{
+				newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, Url));
+			}
+			if (AllFields != null)
+			{
+				IList<string> protectedFieldsKeys = new List<string>();
+				if (ProtectedFieldsList != null)
+				{
+					protectedFieldsKeys = new Org.Json.JSONArray(ProtectedFieldsList).ToArray<string>();
+				}
+				var allFields = new Org.Json.JSONObject(AllFields);
+				for (var iter = allFields.Keys(); iter.HasNext; )
+				{
+					string key = iter.Next().ToString();
+					string value = allFields.Get(key).ToString();
+					bool isProtected = protectedFieldsKeys.Contains(key) || key == PwDefs.PasswordField;
+					newEntry.Strings.Set(key, new ProtectedString(isProtected, value));
+				}
+				
+			}
 					
 		}
 

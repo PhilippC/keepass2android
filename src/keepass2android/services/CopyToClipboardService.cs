@@ -255,7 +255,7 @@ namespace keepass2android
                     // automatically bring up the Keyboard selection dialog
 					if ((closeAfterCreate) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
                     {
-                        ActivateKp2aKeyboard(this);        
+                        ActivateKp2aKeyboard(this);
                     }
 				}
 

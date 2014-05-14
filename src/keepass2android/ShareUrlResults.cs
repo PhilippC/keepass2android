@@ -62,27 +62,12 @@ namespace keepass2android
 			SetResult(KeePass.ExitCloseAfterTaskComplete);
 
 			_db = App.Kp2a.GetDb();
-
-			String searchUrl = ((SearchUrlTask)AppTask).UrlToSearchFor;
-			
-			if (!_db.Loaded)
+			if (App.Kp2a.DatabaseIsUnlocked)
 			{
-				Intent intent = new Intent(this, typeof(FileSelectActivity));
-				AppTask.ToIntent(intent);
-				intent.AddFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
-				StartActivityForResult(intent, 0);
-
-				Finish();
+				String searchUrl = ((SearchUrlTask)AppTask).UrlToSearchFor;
+				Query(searchUrl);	
 			}
-			else if (App.Kp2a.QuickLocked)
-			{
-				PasswordActivity.Launch(this,_db.Ioc, AppTask);
-				Finish();
-			}
-			else
-			{
-				Query(searchUrl);
-			}
+			// else: LockCloseListActivity.OnResume will trigger a broadcast (LockDatabase) which will cause the activity to be finished.
 			
 		}
 
@@ -99,8 +84,7 @@ namespace keepass2android
 		}
 		
 		private void Query(String url)
-		{
-			
+		{	
 			try
 			{
 				//first: search for exact url

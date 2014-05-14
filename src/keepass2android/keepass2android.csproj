@@ -966,4 +966,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_menu_copy_holo_light.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\searchable_debug.xml" />
+  </ItemGroup>
 </Project>

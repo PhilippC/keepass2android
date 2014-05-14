@@ -52,6 +52,12 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 			} 
 			return res;
 		}
+		
+		protected String[] getProtectedFieldsListFromIntent()
+		{
+			return _intent.getStringArrayExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST);
+		}
+	
 	}
 	
 	protected class ActionSelected extends PluginActionBase
@@ -89,9 +95,22 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 			return getFieldId() == null;
 		}
 
+		/**
+		 * 
+		 * @return a hashmap containing the entry fields in key/value form
+		 */
 		public HashMap<String, String> getEntryFields() 
 		{
 			return getEntryFieldsFromIntent();
+		}
+		
+		/**
+		 * 
+		 * @return an array with the keys of all protected fields in the entry
+		 */
+		public String[] getProtectedFieldsList()
+		{
+			return getProtectedFieldsListFromIntent();
 		}
 	}
 	
@@ -123,6 +142,15 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		public HashMap<String, String> getEntryFields() 
 		{
 			return getEntryFieldsFromIntent();
+		}
+		
+		/**
+		 * 
+		 * @return an array with the keys of all protected fields in the entry
+		 */
+		public String[] getProtectedFieldsList()
+		{
+			return getProtectedFieldsListFromIntent();
 		}
 		
 		public void addEntryAction(String actionDisplayText, int actionIconResourceId, Bundle actionData) throws PluginAccessException

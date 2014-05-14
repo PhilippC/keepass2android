@@ -44,7 +44,7 @@ namespace keepass2android
 		DataMimeType="text/plain")]
 	public class FileSelectActivity : ListActivity
 	{
-		private ActivityDesign _design;
+		private readonly ActivityDesign _design;
 		public FileSelectActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
@@ -136,7 +136,9 @@ namespace keepass2android
 			EventHandler createNewButtonClick = (sender, e) =>
 				{
 					//ShowFilenameDialog(false, true, true, Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path), "", Intents.RequestCodeFileBrowseForCreate)
-					StartActivityForResult(typeof (CreateDatabaseActivity), 0);
+					Intent i = new Intent(this, typeof (CreateDatabaseActivity));
+					this.AppTask.ToIntent(i);
+					StartActivityForResult(i, 0);
 				};
 			createNewButton.Click += createNewButtonClick;
 
@@ -193,11 +195,11 @@ namespace keepass2android
 		
 		class MyViewBinder: Java.Lang.Object, SimpleCursorAdapter.IViewBinder
 		{
-			private Kp2aApp app;
+			private readonly Kp2aApp _app;
 
 			public MyViewBinder(Kp2aApp app)
 			{
-				this.app = app;
+				_app = app;
 			}
 
 			public bool SetViewValue(View view, ICursor cursor, int columnIndex)
@@ -207,7 +209,7 @@ namespace keepass2android
 					String path = cursor.GetString(columnIndex);
 					TextView textView = (TextView)view;
 					IOConnectionInfo ioc = new IOConnectionInfo {Path = path};
-					textView.Text = app.GetFileStorage(ioc).GetDisplayName(ioc);
+					textView.Text = _app.GetFileStorage(ioc).GetDisplayName(ioc);
 					textView.Tag = ioc.Path;
 					return true;
 				}
@@ -421,9 +423,7 @@ namespace keepass2android
 			if (ShowRecentFiles() != _recentMode)
 			{
 				// Restart the activity
-				Intent intent = Intent;
-				StartActivity(intent);
-				Finish();
+				Recreate();
 				return;
 			}
 

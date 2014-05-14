@@ -127,7 +127,9 @@ namespace keepass2android
 
 		public override bool OnSearchRequested()
 		{
-			StartActivityForResult(typeof(SearchActivity), 0);
+			Intent i = new Intent(this, typeof(SearchActivity));
+			AppTask.ToIntent(i);
+			StartActivityForResult(i, 0);
 			return true;
 		}
 
@@ -214,35 +216,9 @@ namespace keepass2android
 				titleText = GetText(Resource.String.root);
 			}
 
-			//see if the button for SDK Version < 11 is there
-			Button tv = (Button)FindViewById(Resource.Id.group_name);
-			if (tv != null)
-			{
-				if (Group != null)
-				{
-					tv.Text = titleText;
-				}
-
-				if (clickable)
-				{
-					tv.Click += (sender, e) => 
-					{
-						AppTask.SetActivityResult(this, KeePass.ExitNormal);
-						Finish();
-					};
-				} else
-				{
-					tv.SetCompoundDrawables(null, null, null, null);
-					tv.Clickable = false;
-				}
-			}
-			//ICS?
-			if (Util.HasActionBar(this))
-			{
-				ActionBar.Title = titleText;
-				if (clickable)
-					ActionBar.SetDisplayHomeAsUpEnabled(true);
-			}
+			ActionBar.Title = titleText;
+			if (clickable)
+				ActionBar.SetDisplayHomeAsUpEnabled(true);
 		}
 
 		
@@ -256,6 +232,29 @@ namespace keepass2android
 					ActionBar.SetIcon(drawable);
 			}
 		}
+
+		class SuggestionListener: Java.Lang.Object, SearchView.IOnSuggestionListener
+		{
+			private readonly CursorAdapter _suggestionsAdapter;
+
+			public SuggestionListener(CursorAdapter suggestionsAdapter)
+			{
+				_suggestionsAdapter = suggestionsAdapter;
+			}
+
+			public bool OnSuggestionClick(int position)
+			{
+				var cursor = _suggestionsAdapter.Cursor;
+				cursor.MoveToPosition(position);
+				var x = cursor.GetString(cursor.GetColumnIndexOrThrow(SearchManager.SuggestColumnIntentDataId));
+				return true;
+			}
+
+			public bool OnSuggestionSelect(int position)
+			{
+				return false;
+			}
+		}
 		
 		public override bool OnCreateOptionsMenu(IMenu menu) {
 			base.OnCreateOptionsMenu(menu);
@@ -266,8 +265,9 @@ namespace keepass2android
 			{
 				var searchManager = (SearchManager) GetSystemService(Context.SearchService);
 				var searchView = (SearchView) menu.FindItem(Resource.Id.menu_search).ActionView;
-
+				
 				searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
+				searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter));
 			}
 			var item = menu.FindItem(Resource.Id.menu_sync);
 			if (item != null)

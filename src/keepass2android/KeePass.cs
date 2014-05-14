@@ -28,6 +28,39 @@ using Java.Lang.Reflect;
 using KeePassLib.Serialization;
 using Exception = System.Exception;
 using String = System.String;
+/**
+ * General documentation
+ * 
+ * Activity stack and activity results
+ * ===================================
+ * 
+ * Keepass2Android comprises quite a number of different activities and entry points: The app can be started 
+ * using the launcher icon (-> Activity "Keepass"), or by sending a URL (-> FileSelect), opening a .kdb(x)-file (->Password),
+ * swiping a YubikeyNEO (NfcOtpActivity).
+ * While the database is closed, there is only one activity on the stack: Keepass -> FileSelect <-> Password.
+ * After opening an database (in Password), Password is always the root of the stack (exception: after creating a database, 
+ * FileSelect is the root without Password being open). 
+ * 
+ * Some possible stacks:
+ * Password -> Group ( -> Group (subgroups) ... ) -> EntryView -> EntryEdit
+ *                         (AdvancedSearch Menu)  -> Search -> SearchResults -> EntryView -> EntryEdit
+ *                         (SearchWidget)         -> SearchResults -> EntryView -> EntryEdit
+ * Password -> ShareUrlResults -> EntryView
+ * 
+ * 
+ * In each of these activities, an AppTask may be present and must be passed to started activities and ActivityResults
+ * must be returned. Therefore, if any Activity calls { StartActivity(newActivity);Finish(); }, it must specify FLAG_ACTIVITY_FORWARD_RESULT.
+ * 
+ * Further sub-activities may be opened (e.g. Settings -> ExportDb, ...), but these are not necesarrily
+ * part of the AppTask. Then, neither the task has to be passed nor must the sub-activity return an ActivityResult.
+ * 
+ * Activities with AppTasks should check if they get a new AppTask in OnActivityResult.
+ * 
+ * Note: Chrome fires the ActionSend (Share URL) intent with NEW_TASK (i.e. KP2A appears in a separate task, either a new one,
+ * or, if it was running before, in the KP2A task), whereas Firefox doesn't specify that flag and KP2A appears "inside" Firefox.
+ * This means that the AppTask must be cleared for use in Chrome after finding an entry or pressing back button in ShareUrlResults.
+ * This would not be necessary for Firefox where the (Android) Task of standalone KP2A is not affected by the search.
+ */
 
 namespace keepass2android
 {

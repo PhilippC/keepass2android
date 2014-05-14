@@ -152,9 +152,14 @@ namespace keepass2android
 			//add the output string array (placeholders replaced taking into account the db context)
 			Dictionary<string, string> outputFields = entry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
 
+			//add field values as JSON ({ "key":"value", ... } form)
 			JSONObject json = new JSONObject(outputFields);
 			var jsonStr = json.ToString();
 			intent.PutExtra(Strings.ExtraEntryOutputData, jsonStr);
+
+			//add list of which fields are protected (StringArrayExtra)
+			string[] protectedFieldsList = entry.OutputStrings.Where(s=>s.Value.IsProtected).Select(s => s.Key).ToArray();
+			intent.PutExtra(Strings.ExtraProtectedFieldsList, protectedFieldsList);
 
 			intent.PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString());
 

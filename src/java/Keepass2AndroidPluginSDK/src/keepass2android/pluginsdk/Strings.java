@@ -89,6 +89,12 @@ public class Strings {
 	public static final String EXTRA_ENTRY_OUTPUT_DATA = "keepass2android.EXTRA_ENTRY_OUTPUT_DATA";
 
 	/**
+	 * Json serialized lisf of field keys, specifying which field of the EXTRA_ENTRY_OUTPUT_DATA is protected.  
+	 */
+	public static final String EXTRA_PROTECTED_FIELDS_LIST = "keepass2android.EXTRA_PROTECTED_FIELDS_LIST";
+
+
+	/**
 	 * Extra key for passing the access token (both ways)
 	 */
 	public static final String EXTRA_ACCESS_TOKEN = "keepass2android.EXTRA_ACCESS_TOKEN";

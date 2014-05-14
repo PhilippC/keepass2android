@@ -115,10 +115,10 @@ namespace keepass2android
 
 		private class LockCloseActivityBroadcastReceiver : BroadcastReceiver
 		{			
-			readonly LockCloseActivity _service;
-			public LockCloseActivityBroadcastReceiver(LockCloseActivity service)
+			readonly LockCloseActivity _activity;
+			public LockCloseActivityBroadcastReceiver(LockCloseActivity activity)
 			{
-				_service = service;
+				_activity = activity;
 			}
 
 			public override void OnReceive(Context context, Intent intent)
@@ -126,7 +126,7 @@ namespace keepass2android
 				switch (intent.Action)
 				{
 					case Intents.DatabaseLocked:
-						_service.OnLockDatabase();
+						_activity.OnLockDatabase();
 						break;
 					case Intent.ActionScreenOff:
 						App.Kp2a.OnScreenOff();
