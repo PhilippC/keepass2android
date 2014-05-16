@@ -251,6 +251,11 @@
   <string name="UseFileTransactions_summary">Use file transactions for writing databases</string>
 	<string name="LockWhenScreenOff_title">Lock when screen off</string>
   <string name="LockWhenScreenOff_summary">Lock the database when screen is switched off.</string>
+	
+	<string name="LockWhenNavigateBack_title">Lock when leaving app</string>
+	<string name="LockWhenNavigateBack_summary">Lock the database when leaving the app by pressing the back button.</string>
+
+	
 	<string name="UseOfflineCache_title">Database caching</string>
 	<string name="UseOfflineCache_summary">Keep a copy of remote database files in the application cache directory. This allows to use remote databases even when offline.</string>
 

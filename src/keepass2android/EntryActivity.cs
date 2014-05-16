@@ -52,17 +52,21 @@ namespace keepass2android
 		public const String KeyRefreshPos = "refresh_pos";
 		public const String KeyCloseAfterCreate = "close_after_create";
 
-		public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask)
+		public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null)
 		{
 			Intent i = new Intent(act, typeof(EntryActivity));
-
 
 			i.PutExtra(KeyEntry, pw.Uuid.ToHexString());
 			i.PutExtra(KeyRefreshPos, pos);
 
-			appTask.ToIntent(i);
+			if (flags != null)
+				i.SetFlags((ActivityFlags) flags);
 
-			act.StartActivityForResult(i, 0);
+			appTask.ToIntent(i);
+			if (flags != null && (((ActivityFlags) flags) | ActivityFlags.ForwardResult) == ActivityFlags.ForwardResult)
+				act.StartActivity(i);
+			else
+				act.StartActivityForResult(i, 0);
 		}
 
 		public EntryActivity (IntPtr javaReference, JniHandleOwnership transfer)
@@ -93,6 +97,9 @@ namespace keepass2android
 		private readonly Dictionary<string, IStringView> _stringViews = new Dictionary<string, IStringView>();
 		private readonly List<PluginMenuOption> _pendingMenuOptions = new List<PluginMenuOption>();
 		
+		//make sure _timer doesn't go out of scope:
+		private Timer _timer;
+
 
 		protected void SetEntryView()
 		{
@@ -298,6 +305,7 @@ namespace keepass2android
 				!prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
 
 			base.OnCreate(savedInstanceState);
+			RequestWindowFeature(WindowFeatures.IndeterminateProgress);
 
 			new ActivityDesign(this).ApplyTheme();
 
@@ -342,15 +350,15 @@ namespace keepass2android
 
 			SetupEditButtons();
 
-			//depending on the app task, the final things to do might be delayed, so let the appTask call CompleteOnCreate when appropriate
-			_appTask.OnCompleteCreateEntryActivity(this);
-
 			App.Kp2a.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.GetDb().KpDatabase);
 
 			RegisterReceiver(new PluginActionReceiver(this), new IntentFilter(Strings.ActionAddEntryAction));
 			RegisterReceiver(new PluginFieldReceiver(this), new IntentFilter(Strings.ActionSetEntryField));
 
 			new Thread(NotifyPluginsOnOpen).Start();
+
+			//the rest of the things to do depends on the current app task:
+			_appTask.CompleteOnCreateEntryActivity(this);
 		}
 
 		private void NotifyPluginsOnOpen()
@@ -381,29 +389,17 @@ namespace keepass2android
 			}
 		}
 
-		public void CompleteOnCreate()
-		{
+		
 
-			Intent showNotIntent = new Intent(this, typeof(CopyToClipboardService));
+		internal void StartNotificationsService(bool closeAfterCreate)
+		{
+			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
 			showNotIntent.SetAction(Intents.ShowNotification);
 			showNotIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
-			bool closeAfterCreate = _appTask.CloseEntryActivityAfterCreate;
+
 			showNotIntent.PutExtra(KeyCloseAfterCreate, closeAfterCreate);
 
 			StartService(showNotIntent);
-
-			Kp2aLog.Log("Requesting copy to clipboard for Uuid=" + Entry.Uuid.ToHexString());
-
-			/*foreach (PwUuid key in App.Kp2a.GetDb().entries.Keys)
-			{
-				Kp2aLog.Log(this,key.ToHexString() + " -> " + App.Kp2a.GetDb().entries[key].Uuid.ToHexString());
-			}*/
-
-			if (closeAfterCreate)
-			{
-				SetResult(KeePass.ExitCloseAfterTaskComplete);
-				Finish();
-			}
 		}
 
 
@@ -805,12 +801,24 @@ namespace keepass2android
 		{
 			Intent ret = new Intent();
 			ret.PutExtra(KeyRefreshPos, _pos);
-
+			_appTask.ToIntent(ret);
 			SetResult(KeePass.ExitRefresh, ret);
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
 			base.OnActivityResult(requestCode, resultCode, data);
+			if (AppTask.TryGetFromActivityResult(data, ref _appTask))
+			{
+				//make sure app task is passed to calling activity.
+				//the result code might be modified later.
+				Intent retData = new Intent();
+				_appTask.ToIntent(retData);
+				SetResult(KeePass.ExitNormal, retData);	
+			}
+
+		
+			
+
 			if ( resultCode == KeePass.ExitRefresh || resultCode == KeePass.ExitRefreshTitle ) {
 				if ( resultCode == KeePass.ExitRefreshTitle ) {
 					RequiresRefresh ();
@@ -1019,33 +1027,8 @@ namespace keepass2android
 		}
 
 		
-		/// <summary>
-		/// brings up a dialog asking the user whether he wants to add the given URL to the entry for automatic finding
-		/// </summary>
-		public void AskAddUrlThenCompleteCreate(string url)
-		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.SetTitle(GetString(Resource.String.AddUrlToEntryDialog_title));
-
-			builder.SetMessage(GetString(Resource.String.AddUrlToEntryDialog_text, new Java.Lang.Object[] {url}));
-
-			builder.SetPositiveButton(GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
-				{
-
-					AddUrlToEntryThenCompleteCreate(url);
-				
-				});
-
-			builder.SetNegativeButton(GetString(Resource.String.no), (dlgSender, dlgEvt) =>
-				{
-					CompleteOnCreate();
-				});
-
-			Dialog dialog = builder.Create();
-			dialog.Show();
-
-		}
-		private void AddUrlToEntryThenCompleteCreate(string url)
+		
+		internal void AddUrlToEntry(string url, Action finishAction)
 		{
 			PwEntry initialEntry = Entry.CloneDeep();
 
@@ -1076,7 +1059,7 @@ namespace keepass2android
 			ActionOnFinish closeOrShowError = new ActionOnFinish((success, message) =>
 			{
 				OnFinish.DisplayMessage(this, message);
-				CompleteOnCreate();
+				finishAction();
 			});
 
 
@@ -1085,7 +1068,7 @@ namespace keepass2android
 			ProgressTask pt = new ProgressTask(App.Kp2a, this, runnable);
 			pt.Run();
 
-		}
+		}	
 		public void ToggleVisibility()
 		{
 			_showPassword = !_showPassword;
@@ -1119,6 +1102,28 @@ namespace keepass2android
 		public void AddEntryToIntent(Intent intent)
 		{
 			PluginHost.AddEntryToIntent(intent, App.Kp2a.GetDb().LastOpenedEntry);
+		}
+
+		public void CloseAfterTaskComplete()
+		{
+			//before closing, wait a little to get plugin updates
+			int numPlugins = new PluginDatabase(this).GetPluginsWithAcceptedScope(Strings.ScopeCurrentEntry).Count();
+			var timeToWait = TimeSpan.FromMilliseconds(500*numPlugins);
+			SetProgressBarIndeterminateVisibility(true);
+			_timer = new Timer(obj =>
+				{
+					RunOnUiThread(() =>
+						{
+							//task is completed -> return NullTask
+							Intent resIntent = new Intent();
+							new NullTask().ToIntent(resIntent);
+							SetResult(KeePass.ExitCloseAfterTaskComplete, resIntent);
+							//close activity:
+							Finish();
+						}
+						);
+				},
+				null, timeToWait, TimeSpan.FromMilliseconds(-1));
 		}
 	}
 }

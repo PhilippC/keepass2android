@@ -90,6 +90,8 @@
 	
 	<string name="UseFileTransactions_key">UseFileTransactions</string>
 	<string name="LockWhenScreenOff_key">LockWhenScreenOff</string>
+	<string name="LockWhenNavigateBack_key">LockWhenNavigateBack</string>
+	
 	<string name="UseOfflineCache_key">UseOfflineCache</string>
 	<string name="AcceptAllServerCertificates_key">AcceptAllServerCertificates</string>
 	<string name="CheckForFileChangesOnSave_key">CheckForFileChangesOnSave</string>

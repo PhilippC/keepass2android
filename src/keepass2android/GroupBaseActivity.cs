@@ -70,7 +70,11 @@ namespace keepass2android
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
-			AppTask.TryGetFromActivityResult(data, ref AppTask);
+			if (AppTask.TryGetFromActivityResult(data, ref AppTask))
+			{
+				//make sure the app task is passed to the calling activity
+				AppTask.SetActivityResult(this, KeePass.ExitNormal);
+			}
 
 			if (resultCode == Result.Ok)
 			{
@@ -236,23 +240,61 @@ namespace keepass2android
 		class SuggestionListener: Java.Lang.Object, SearchView.IOnSuggestionListener
 		{
 			private readonly CursorAdapter _suggestionsAdapter;
+			private readonly GroupBaseActivity _activity;
+			private readonly IMenuItem _searchItem;
 
-			public SuggestionListener(CursorAdapter suggestionsAdapter)
+
+			public SuggestionListener(CursorAdapter suggestionsAdapter, GroupBaseActivity activity, IMenuItem searchItem)
 			{
 				_suggestionsAdapter = suggestionsAdapter;
+				_activity = activity;
+				_searchItem = searchItem;
 			}
 
 			public bool OnSuggestionClick(int position)
 			{
 				var cursor = _suggestionsAdapter.Cursor;
 				cursor.MoveToPosition(position);
-				var x = cursor.GetString(cursor.GetColumnIndexOrThrow(SearchManager.SuggestColumnIntentDataId));
+				string entryIdAsHexString = cursor.GetString(cursor.GetColumnIndexOrThrow(SearchManager.SuggestColumnIntentDataId));
+				EntryActivity.Launch(_activity, App.Kp2a.GetDb().Entries[new PwUuid(MemUtil.HexStringToByteArray(entryIdAsHexString))],-1,_activity.AppTask);
+				((SearchView) _searchItem.ActionView).Iconified = true;
 				return true;
 			}
 
 			public bool OnSuggestionSelect(int position)
 			{
 				return false;
+			}
+		}
+
+		class OnQueryTextListener: Java.Lang.Object, SearchView.IOnQueryTextListener
+		{
+			private readonly GroupBaseActivity _activity;
+
+			public OnQueryTextListener(GroupBaseActivity activity)
+			{
+				_activity = activity;
+			}
+
+			public bool OnQueryTextChange(string newText)
+			{
+				return false;
+			}
+
+			public bool OnQueryTextSubmit(string query)
+			{
+				if (String.IsNullOrEmpty(query))
+					return false; //let the default happen
+
+				Intent searchIntent = new Intent(_activity, typeof(search.SearchResults));
+				searchIntent.SetAction(Intent.ActionSearch); //currently not necessary to set because SearchResults doesn't care, but let's be as close to the default as possible
+				searchIntent.PutExtra(SearchManager.Query, query);
+				//forward appTask:
+				_activity.AppTask.ToIntent(searchIntent);
+
+				_activity.StartActivityForResult(searchIntent, 0);
+				
+				return true;
 			}
 		}
 		
@@ -263,11 +305,13 @@ namespace keepass2android
 			inflater.Inflate(Resource.Menu.group, menu);
 			if (Util.HasActionBar(this))
 			{
-				var searchManager = (SearchManager) GetSystemService(Context.SearchService);
-				var searchView = (SearchView) menu.FindItem(Resource.Id.menu_search).ActionView;
+				var searchManager = (SearchManager) GetSystemService(SearchService);
+				IMenuItem searchItem = menu.FindItem(Resource.Id.menu_search);
+				var searchView = (SearchView) searchItem.ActionView;
 				
 				searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
-				searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter));
+				searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
+				searchView.SetOnQueryTextListener(new OnQueryTextListener(this));
 			}
 			var item = menu.FindItem(Resource.Id.menu_sync);
 			if (item != null)

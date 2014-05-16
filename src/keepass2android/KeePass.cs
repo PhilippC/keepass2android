@@ -46,6 +46,7 @@ using String = System.String;
  *                         (AdvancedSearch Menu)  -> Search -> SearchResults -> EntryView -> EntryEdit
  *                         (SearchWidget)         -> SearchResults -> EntryView -> EntryEdit
  * Password -> ShareUrlResults -> EntryView
+ * FileSelect -> Group (after Create DB)
  * 
  * 
  * In each of these activities, an AppTask may be present and must be passed to started activities and ActivityResults
@@ -84,11 +85,23 @@ namespace keepass2android
 		AppTask _appTask;
 		private ActivityDesign _design;
 
-		protected override void OnCreate (Bundle bundle)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate (bundle);
+			base.OnCreate(savedInstanceState);
 			_design.ApplyTheme();
-			_appTask = AppTask.GetTaskInOnCreate(bundle, Intent);
+			//see comment to this in PasswordActivity.
+			//Note that this activity is affected even though it's finished when the app is closed because it
+			//seems that the "app launch intent" is re-delivered, so this might end up here.
+			if ((_appTask == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
+			{
+				_appTask = new NullTask();
+			}
+			else
+			{
+				_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			}
+
+
 			Kp2aLog.Log("KeePass.OnCreate");
 		}
 
@@ -274,9 +287,8 @@ namespace keepass2android
 
 			Intent intent = new Intent(this, typeof(FileSelectActivity));
 			_appTask.ToIntent(intent);
-
-
-			StartActivityForResult(intent, 0);
+			intent.AddFlags(ActivityFlags.ForwardResult);
+			StartActivity(intent);
 			Finish();
 			
 		}
@@ -288,11 +300,6 @@ namespace keepass2android
 		}
 
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
-			base.OnActivityResult(requestCode, resultCode, data);
-			
-			Finish();
-		}
 	}
 }
 

@@ -83,7 +83,15 @@ namespace keepass2android
 			}
 			else
 			{
-				AppTask = AppTask.CreateFromIntent(Intent);
+				//see PasswordActivity for an explanation
+				if ((savedInstanceState == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
+				{
+					AppTask = new NullTask();
+				}
+				else
+				{
+					AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+				}
 			}
 
 
@@ -301,8 +309,14 @@ namespace keepass2android
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
+			//update app task.
+			//this is important even if we're about to close, because then we should get a NullTask here 
+			//in order not to do the same task next time again!
+			AppTask.TryGetFromActivityResult(data, ref AppTask);
+
 			if (resultCode == KeePass.ExitCloseAfterTaskComplete)
 			{
+				//no need to set the result ExitCloseAfterTaskComplete here, there's no parent Activity on the stack
 				Finish();
 				return;
 			}

@@ -105,11 +105,6 @@ namespace keepass2android
 		{
 		}
 
-		public virtual bool CloseEntryActivityAfterCreate
-		{
-			get { return false;}
-		}
-
 		
 		public virtual void PrepareNewEntry(PwEntry newEntry)
 		{
@@ -233,7 +228,10 @@ namespace keepass2android
 		public static bool TryGetFromActivityResult(Intent data, ref AppTask task)
 		{
 			if (data == null)
+			{
+				Kp2aLog.Log("TryGetFromActivityResult: no data");
 				return false;
+			}
 			AppTask tempTask = CreateFromBundle(data.Extras, null);
 			if (tempTask == null)
 			{
@@ -253,9 +251,9 @@ namespace keepass2android
 
 		}
 
-		public virtual void OnCompleteCreateEntryActivity(EntryActivity entryActivity)
+		public virtual void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
-			entryActivity.CompleteOnCreate();
+			activity.StartNotificationsService(false);
 		}
 	}
 
@@ -310,10 +308,14 @@ namespace keepass2android
 			//act.AppTask = new NullTask();
 		}
 
-		public override bool CloseEntryActivityAfterCreate
+		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
-			get { return true;}
+			//show the notifications
+			activity.StartNotificationsService(true);
+			//close
+			activity.CloseAfterTaskComplete();
 		}
+
 	}
 
 	
@@ -322,11 +324,12 @@ namespace keepass2android
 	/// </summary>
 	public class SelectEntryTask: AppTask
 	{
-
-		public override bool CloseEntryActivityAfterCreate
+		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
-			//keypoint here: close the app after selecting the entry
-			get { return true;}
+			//show the notifications
+			activity.StartNotificationsService(true);
+			//close
+			activity.CloseAfterTaskComplete();
 		}
 	}
 
@@ -369,20 +372,49 @@ namespace keepass2android
 			}
 		}
 
-		public override bool CloseEntryActivityAfterCreate
-		{
-			get { return true; }
-		}
-
-		public override void OnCompleteCreateEntryActivity(EntryActivity entryActivity)
+		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
 			//if the database is readonly, don't offer to modify the URL
 			if (App.Kp2a.GetDb().CanWrite == false)
 			{
-				base.OnCompleteCreateEntryActivity(entryActivity);
+				ShowNotificationsAndClose(activity);
 				return;
 			}
-			entryActivity.AskAddUrlThenCompleteCreate(UrlToSearchFor);
+
+
+			AskAddUrlThenCompleteCreate(activity, UrlToSearchFor);
+
+		}
+
+		private static void ShowNotificationsAndClose(EntryActivity activity)
+		{
+			activity.StartNotificationsService(true);
+			activity.CloseAfterTaskComplete();
+		}
+
+		/// <summary>
+		/// brings up a dialog asking the user whether he wants to add the given URL to the entry for automatic finding
+		/// </summary>
+		public void AskAddUrlThenCompleteCreate(EntryActivity activity, string url)
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			builder.SetTitle(activity.GetString(Resource.String.AddUrlToEntryDialog_title));
+
+			builder.SetMessage(activity.GetString(Resource.String.AddUrlToEntryDialog_text, new Java.Lang.Object[] { url }));
+
+			builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
+			{
+				activity.AddUrlToEntry(url, () => ShowNotificationsAndClose(activity));
+			});
+
+			builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>
+			{
+				ShowNotificationsAndClose(activity);
+			});
+
+			Dialog dialog = builder.Create();
+			dialog.Show();
+
 		}
 		
 	}
@@ -499,16 +531,14 @@ namespace keepass2android
 
 		public override void AfterAddNewEntry(EntryEditActivity entryEditActivity, PwEntry newEntry)
 		{
-			EntryActivity.Launch(entryEditActivity, newEntry, -1, new SelectEntryTask());
-			entryEditActivity.SetResult
-				(KeePass.ExitCloseAfterTaskComplete);
+			EntryActivity.Launch(entryEditActivity, newEntry, -1, new SelectEntryTask(), ActivityFlags.ForwardResult);
 			//no need to call Finish here, that's done in EntryEditActivity ("closeOrShowError")	
 		}
 		
-		public override bool CloseEntryActivityAfterCreate
+		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
 			//if the user selects an entry before creating the new one, we're not closing the app
-			get { return false;}
+			base.CompleteOnCreateEntryActivity(activity);
 		}
 	}
 }

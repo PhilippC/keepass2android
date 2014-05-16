@@ -601,7 +601,7 @@ namespace keepass2android
 			Intent intent = Intent;
 			intent.PutExtra(IntentContinueWithEditing, true);
 			OverridePendingTransition(0, 0);
-			intent.AddFlags(ActivityFlags.NoAnimation);
+			intent.AddFlags(ActivityFlags.NoAnimation | ActivityFlags.ForwardResult);
 			_closeForReload = true;
 			SetResult(KeePass.ExitRefreshTitle); //probably the entry will be modified -> let the EditActivity refresh to be safe
 			Finish();
