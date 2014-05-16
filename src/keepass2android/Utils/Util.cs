@@ -322,7 +322,13 @@ namespace keepass2android
 			((Spinner)dialog.FindViewById(Resource.Id.cred_remember_mode)).SetSelection((int)ioc.CredSaveMode);
 		}
 
-		
+
+		public static void FinishAndForward(Activity activity, Intent i)
+		{
+			i.SetFlags(ActivityFlags.ForwardResult);
+			activity.StartActivity(i);
+			activity.Finish();
+		}
 	}
 }
 

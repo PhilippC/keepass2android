@@ -64,7 +64,7 @@ namespace keepass2android.search
 			{
 				var entryIntent = new Intent(this, typeof(EntryActivity));
 				entryIntent.PutExtra(EntryActivity.KeyEntry, intent.Data.LastPathSegment);
-
+				entryIntent.AddFlags(ActivityFlags.ForwardResult);
 				Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
 				StartActivity(entryIntent);
 			}

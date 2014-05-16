@@ -44,7 +44,7 @@ namespace keepass2android
 		DataMimeType="text/plain")]
 	public class FileSelectActivity : ListActivity
 	{
-		private ActivityDesign _design;
+		private readonly ActivityDesign _design;
 		public FileSelectActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
@@ -83,7 +83,15 @@ namespace keepass2android
 			}
 			else
 			{
-				AppTask = AppTask.CreateFromIntent(Intent);
+				//see PasswordActivity for an explanation
+				if ((savedInstanceState == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
+				{
+					AppTask = new NullTask();
+				}
+				else
+				{
+					AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+				}
 			}
 
 
@@ -136,7 +144,9 @@ namespace keepass2android
 			EventHandler createNewButtonClick = (sender, e) =>
 				{
 					//ShowFilenameDialog(false, true, true, Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path), "", Intents.RequestCodeFileBrowseForCreate)
-					StartActivityForResult(typeof (CreateDatabaseActivity), 0);
+					Intent i = new Intent(this, typeof (CreateDatabaseActivity));
+					this.AppTask.ToIntent(i);
+					StartActivityForResult(i, 0);
 				};
 			createNewButton.Click += createNewButtonClick;
 
@@ -193,11 +203,11 @@ namespace keepass2android
 		
 		class MyViewBinder: Java.Lang.Object, SimpleCursorAdapter.IViewBinder
 		{
-			private Kp2aApp app;
+			private readonly Kp2aApp _app;
 
 			public MyViewBinder(Kp2aApp app)
 			{
-				this.app = app;
+				_app = app;
 			}
 
 			public bool SetViewValue(View view, ICursor cursor, int columnIndex)
@@ -207,7 +217,7 @@ namespace keepass2android
 					String path = cursor.GetString(columnIndex);
 					TextView textView = (TextView)view;
 					IOConnectionInfo ioc = new IOConnectionInfo {Path = path};
-					textView.Text = app.GetFileStorage(ioc).GetDisplayName(ioc);
+					textView.Text = _app.GetFileStorage(ioc).GetDisplayName(ioc);
 					textView.Tag = ioc.Path;
 					return true;
 				}
@@ -299,8 +309,14 @@ namespace keepass2android
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
+			//update app task.
+			//this is important even if we're about to close, because then we should get a NullTask here 
+			//in order not to do the same task next time again!
+			AppTask.TryGetFromActivityResult(data, ref AppTask);
+
 			if (resultCode == KeePass.ExitCloseAfterTaskComplete)
 			{
+				//no need to set the result ExitCloseAfterTaskComplete here, there's no parent Activity on the stack
 				Finish();
 				return;
 			}
@@ -421,9 +437,7 @@ namespace keepass2android
 			if (ShowRecentFiles() != _recentMode)
 			{
 				// Restart the activity
-				Intent intent = Intent;
-				StartActivity(intent);
-				Finish();
+				Recreate();
 				return;
 			}
 

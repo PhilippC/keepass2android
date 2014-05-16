@@ -46,6 +46,11 @@ namespace keepass2android
 		}
 
 		/// <summary>
+		/// Information about the last opened entry. Includes the entry but also transformed fields.
+		/// </summary>
+		public PwEntryOutput LastOpenedEntry { get; set; }
+
+		/// <summary>
 		/// if an OTP key was used, this property tells the location of the OTP auxiliary file.
 		/// Must be set after loading.
 		/// </summary>

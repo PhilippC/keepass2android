@@ -238,3 +238,7 @@ Thumbs.db
 /src/java/JavaFileStorageTest/gen/com/google/android/gms/R.java
 /src/java/JavaFileStorageTest/gen/group/pals/android/lib/ui/filechooser/R.java
 /src/java/JavaFileStorageTest/gen/keepass2android/javafilestorage/R.java
+/src/java/PluginQR/bin
+/src/PluginHostTest/bin/Debug
+
+/src/java/Keepass2AndroidPluginSDK/bin

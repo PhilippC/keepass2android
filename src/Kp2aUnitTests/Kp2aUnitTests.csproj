@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestIntentsAndBundles.cs" />
     <Compile Include="ProgressDialogStub.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="TestCacheSupervisor.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="TestSynchronizeCachedDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

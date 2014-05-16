@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Security.Cryptography;
 using System.Text;
 using Android.Content;
 
@@ -35,6 +36,47 @@ namespace keepass2android
 		private const String BracketChars 	= "[]{}()<>";
 		
 		private readonly Context _cxt;
+
+		public sealed class SecureRandom : Random
+		{
+
+			private readonly RandomNumberGenerator _rng = new RNGCryptoServiceProvider();
+
+
+			public override int Next()
+			{
+				var data = new byte[sizeof(int)];
+				_rng.GetBytes(data);
+				return BitConverter.ToInt32(data, 0) & (int.MaxValue - 1);
+			}
+
+			public override int Next(int maxValue)
+			{
+				return Next(0, maxValue);
+			}
+
+			public override int Next(int minValue, int maxValue)
+			{
+				if (minValue > maxValue)
+				{
+					throw new ArgumentOutOfRangeException();
+				}
+				return (int)Math.Floor((minValue + (maxValue - minValue) * NextDouble()));
+			}
+
+			public override double NextDouble()
+			{
+				var data = new byte[sizeof(uint)];
+				_rng.GetBytes(data);
+				var randUint = BitConverter.ToUInt32(data, 0);
+				return randUint / (uint.MaxValue + 1.0);
+			}
+
+			public override void NextBytes(byte[] data)
+			{
+				_rng.GetBytes(data);
+			}
+		}
 		
 		public PasswordGenerator(Context cxt) {
 			_cxt = cxt;
@@ -52,11 +94,12 @@ namespace keepass2android
 			int size = characterSet.Length;
 			
 			StringBuilder buffer = new StringBuilder();
-			
-			Random random = new Random();
-			if (size > 0) {
-				
-				for (int i = 0; i < length; i++) {
+
+			Random random = new SecureRandom();
+			if (size > 0) 
+			{
+				for (int i = 0; i < length; i++) 
+				{
 					char c = characterSet[random.Next(size)];
 					
 					buffer.Append(c);

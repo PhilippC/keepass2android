@@ -89,6 +89,14 @@
 				 android:key="@string/LockWhenScreenOff_key" />
 
 			<CheckBoxPreference
+			   android:enabled="true"
+				 android:persistent="true"
+				 android:summary="@string/LockWhenNavigateBack_summary"
+				 android:defaultValue="false"
+				 android:title="@string/LockWhenNavigateBack_title"
+				 android:key="@string/LockWhenNavigateBack_key" />
+
+			<CheckBoxPreference
 				android:key="@string/RememberRecentFiles_key"
 				android:title="@string/RememberRecentFiles_title"
 				android:summary="@string/RememberRecentFiles_summary"
@@ -283,5 +291,9 @@
 		</PreferenceScreen>
 		
 
+	</PreferenceScreen>
+
+	<PreferenceScreen android:key="plugin_key" android:title="@string/plugins">
+		<intent android:action="keepass2android.PluginListActivity"/>
 	</PreferenceScreen>
 </PreferenceScreen>

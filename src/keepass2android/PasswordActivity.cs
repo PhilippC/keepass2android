@@ -179,11 +179,11 @@ namespace keepass2android
 			Intent i = new Intent(act, typeof(PasswordActivity));
 			
 			PutIoConnectionToIntent(ioc, i);
-			i.SetFlags(ActivityFlags.ClearTask);
+			i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.ForwardResult);
 
 			appTask.ToIntent(i);
 
-			act.StartActivityForResult(i, 0);
+			act.StartActivity(i);
 			
 		}
 
@@ -198,11 +198,21 @@ namespace keepass2android
 
 			Kp2aLog.Log("PasswordActivity.OnActivityResult "+resultCode+"/"+requestCode);
 
+			AppTask.TryGetFromActivityResult(data, ref AppTask);
+
 			//NOTE: original code from k eepassdroid used switch ((Android.App.Result)requestCode) { (but doesn't work here, although k eepassdroid works)
 			switch(resultCode) {
 
-				case KeePass.ExitNormal: // Returned to this screen using the Back key, treat as locking the database
-					App.Kp2a.LockDatabase();
+				case KeePass.ExitNormal: // Returned to this screen using the Back key
+					if (PreferenceManager.GetDefaultSharedPreferences(this)
+						                 .GetBoolean(GetString(Resource.String.LockWhenNavigateBack_key), false))
+					{
+						App.Kp2a.LockDatabase();	
+					}
+					//by leaving the app with the back button, the user probably wants to cancel the task
+					//The activity might be resumed (through Android's recent tasks list), then use a NullTask:
+					AppTask = new NullTask();
+					Finish();
 					break;
 				case KeePass.ExitLock:
 					// The database has already been locked, and the quick unlock screen will be shown if appropriate
@@ -265,6 +275,7 @@ namespace keepass2android
 			}
 			
 		}
+
 
 		private void LoadOtpFile()
 		{
@@ -340,7 +351,19 @@ namespace keepass2android
 
 			Intent i = Intent;
 
-			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			//only load the AppTask if this is the "first" OnCreate (not because of kill/resume, i.e. savedInstanceState==null)
+			// and if the activity is not launched from history (i.e. recent tasks) because this would mean that
+			// the Activity was closed already (user cancelling the task or task complete) but is restarted due recent tasks.
+			// Don't re-start the task (especially bad if tak was complete already)
+			if ((savedInstanceState == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
+			{
+				AppTask = new NullTask();
+			}
+			else
+			{
+				AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);	
+			}
+			
 
 			String action = i.Action;
 			
@@ -470,7 +493,6 @@ namespace keepass2android
 
 				Toast.MakeText(this, GetString(Resource.String.otp_discarded_because_no_db), ToastLength.Long).Show();
 				GoToFileSelectActivity();
-				Finish();
 				return false;
 			}
 
@@ -1096,7 +1118,8 @@ namespace keepass2android
 			Intent intent = new Intent(this, typeof (FileSelectActivity));
 			intent.PutExtra(FileSelectActivity.NoForwardToPasswordActivity, true);
 			AppTask.ToIntent(intent);
-			StartActivityForResult(intent, 0);
+			intent.AddFlags(ActivityFlags.ForwardResult);
+			StartActivity(intent);
 			Finish();
 		}
 

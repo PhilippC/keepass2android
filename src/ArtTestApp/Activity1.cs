@@ -37,7 +37,8 @@ namespace ArtTestApp
 			FindViewById<Button>(Resource.Id.MyButton2).Click += (sender, args) => StartActivityForResult(typeof(Activity2),1);
 
 			FindViewById<Button>(Resource.Id.MyButton3).Click += (sender, args) => StartActivityForResult(typeof(PrefActivity), 1);
-
+			StartActivity(typeof(Activity2));
+			Finish();
 
 		}
 	}

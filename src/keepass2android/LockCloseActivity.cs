@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -37,6 +38,12 @@ namespace keepass2android
 		private ActivityDesign _design;
 
 		public LockCloseActivity()
+		{
+			_design = new ActivityDesign(this);
+		}
+
+		protected LockCloseActivity(IntPtr javaReference, JniHandleOwnership transfer)
+			: base(javaReference, transfer)
 		{
 			_design = new ActivityDesign(this);
 		}
@@ -108,10 +115,10 @@ namespace keepass2android
 
 		private class LockCloseActivityBroadcastReceiver : BroadcastReceiver
 		{			
-			readonly LockCloseActivity _service;
-			public LockCloseActivityBroadcastReceiver(LockCloseActivity service)
+			readonly LockCloseActivity _activity;
+			public LockCloseActivityBroadcastReceiver(LockCloseActivity activity)
 			{
-				_service = service;
+				_activity = activity;
 			}
 
 			public override void OnReceive(Context context, Intent intent)
@@ -119,7 +126,7 @@ namespace keepass2android
 				switch (intent.Action)
 				{
 					case Intents.DatabaseLocked:
-						_service.OnLockDatabase();
+						_activity.OnLockDatabase();
 						break;
 					case Intent.ActionScreenOff:
 						App.Kp2a.OnScreenOff();

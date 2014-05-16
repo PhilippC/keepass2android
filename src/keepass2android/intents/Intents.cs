@@ -25,6 +25,7 @@ namespace keepass2android
 	public class Intents 
 	{
 		
+
 		/// <summary>Broadcast this intent to lock the database (with quick unlock if enabled)</summary>
 		public const String LockDatabase = "keepass2android.lock_database";
 		/// <summary>Broadcast this intent to close the database (no quick unlock, full close)</summary>
@@ -50,6 +51,8 @@ namespace keepass2android
 		public const int RequestCodeFileBrowseForKeyfile = 987324;
 
 		public const String ShowNotification = "keepass2android.show_notification";
+		public const String UpdateKeyboard = "keepass2android.update_keyboard";
+		public const String CopyStringToClipboard = "keepass2android.copy_string_to_clipboard";
 	}
 
 }

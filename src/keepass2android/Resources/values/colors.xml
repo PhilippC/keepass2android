@@ -19,16 +19,15 @@
 -->
 <resources>
 	<color name="blue_highlight">#0000dd</color>
-	<color name="group">#ffffff</color>
-	<color name="icon_background">#555555</color>
+	<color name="group">#333333</color>
+	<color name="icon_background">#00555555</color>
 	<color name="icon_text">#000000</color>
-	<color name="group_header_button_pressed">#101080</color>
-	
-	<color name="emphasis">#31b6e7</color>
-    <color name="emphasis2">#4f7a8a</color>
-    <color name="bg_gray">#cecbce</color>
-    <color name="light_gray">#a8a8a8</color>
+	<color name="light_gray">#a8a8a8</color>
+	<color name="dark_gray">#303030</color>
 
 	<color name="element_being_moved">#a8a8a8</color>
-    
+
+	<color name="emphasis">#31b6e7</color>
+	<color name="emphasis2">#4f7a8a</color>
+	
 </resources>    

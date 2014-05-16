@@ -27,7 +27,8 @@ namespace keepass2android
 		private bool _restoringInstanceState;
 		private bool _showPassword;
 
-		private ActivityDesign _design;
+		private readonly ActivityDesign _design;
+		private AppTask _appTask;
 
 		public CreateDatabaseActivity()
 		{
@@ -57,7 +58,7 @@ namespace keepass2android
 			_design.ApplyTheme();
 
 			SetContentView(Resource.Layout.create_database);
-
+			_appTask = AppTask.GetTaskInOnCreate(bundle, Intent);
 
 			SetDefaultIoc();
 
@@ -527,7 +528,7 @@ namespace keepass2android
 						dbHelper.CreateFile(_ioc, Filename);
 					}
 
-					GroupActivity.Launch(_activity, new NullTask());
+					GroupActivity.Launch(_activity, _activity._appTask);
 					_activity.Finish();
 
 				}

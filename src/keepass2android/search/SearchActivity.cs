@@ -36,9 +36,12 @@ namespace keepass2android
 			return ((CheckBox)FindViewById(resId)).Checked;
 		}
 
+		private AppTask _appTask;
+
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
+			_appTask = AppTask.GetTaskInOnCreate(bundle, Intent);
 			SetContentView(Resource.Layout.search);
 			SearchParameters sp = new SearchParameters();
 			PopulateCheckBox(Resource.Id.cbSearchInTitle, sp.SearchInTitles);
@@ -92,8 +95,11 @@ namespace keepass2android
 			searchIntent.PutExtra("CaseSensitive", GetCheckBoxValue(Resource.Id.cbCaseSensitive));
 			searchIntent.PutExtra("ExcludeExpired", GetCheckBoxValue(Resource.Id.cbExcludeExpiredEntries));
 			searchIntent.PutExtra(SearchManager.Query, searchString);
-			StartActivityForResult(searchIntent, 0);
-			Finish();
+			//forward appTask:
+			_appTask.ToIntent(searchIntent);
+
+			Util.FinishAndForward(this, searchIntent);
+
 		}
 	}
 }

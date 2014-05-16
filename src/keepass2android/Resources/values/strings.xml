@@ -7,6 +7,7 @@
   <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP support is implemented using the JSch library under BSD licence, created by JCraft, Inc.</string>
   <string name="accept">Accept</string>
+  <string name="deny">Deny</string>
   <string name="add_entry">Add entry</string>
   <string name="add_url_entry">Create entry for URL</string>
   <string name="add_group">Add group</string>
@@ -79,7 +80,7 @@
   <string name="error_invalid_db">Invalid database.</string>
   <string name="error_invalid_path">Invalid path.</string>
   <string name="error_no_name">A name is required.</string>
-  <string name="error_nopass">A password or a keyfile is required.</string>
+  <string name="error_nopass">A password or a key file is required.</string>
   <string name="error_pass_gen_type">At least one password generation type must be selected</string>
   <string name="error_pass_match">Passwords do not match.</string>
   <string name="error_rounds_not_number">Rounds must be a number.</string>
@@ -150,8 +151,8 @@
   <string name="progress_create">Creating new database…</string>
   <string name="create_database">Create database</string>
   <string name="progress_title">Working…</string>
-  <string name="remember_keyfile_summary">Remembers the location of keyfiles</string>
-  <string name="remember_keyfile_title">Save keyfile</string>
+  <string name="remember_keyfile_summary">Remembers the location of key files</string>
+  <string name="remember_keyfile_title">Save key file</string>
   <string name="remove_from_filelist">Remove</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
@@ -250,6 +251,11 @@
   <string name="UseFileTransactions_summary">Use file transactions for writing databases</string>
 	<string name="LockWhenScreenOff_title">Lock when screen off</string>
   <string name="LockWhenScreenOff_summary">Lock the database when screen is switched off.</string>
+	
+	<string name="LockWhenNavigateBack_title">Lock when leaving app</string>
+	<string name="LockWhenNavigateBack_summary">Lock the database when leaving the app by pressing the back button.</string>
+
+	
 	<string name="UseOfflineCache_title">Database caching</string>
 	<string name="UseOfflineCache_summary">Keep a copy of remote database files in the application cache directory. This allows to use remote databases even when offline.</string>
 
@@ -383,7 +389,7 @@
 	<string name="hint_key_file">Choose if you want to use a key file in addition to your master password:</string>
 	<string name="use_key_file">Use key file</string>
 
-	<string name="error_adding_keyfile">Error while adding the keyfile!</string>
+	<string name="error_adding_keyfile">Error while adding the key file!</string>
 
 	<string name="init_otp">Load OTP auxiliary file…</string>
 	<string name="otp_explanation">Enter the next One-time-passwords (OTPs). Swipe your Yubikey NEO at the back of your device to enter via NFC.</string>
@@ -401,16 +407,23 @@
 	<string name="SavingOtpAuxFile">Saving auxiliary OTP file…</string>
 
 	<string name="loading">Loading…</string>
-	
-	<string name="enable_plugin_title">Enable plug-in?</string>
-	<string name="enable_plugin_question">Keepass2Android detected a plug-in with name: %1$s from package name: %2$s. Do you want to enable this plug-in? It will have access to the data stored in your Keepass databases.</string>
-	
+		
 	<string name="plugins">Plug-ins</string>
 	<string name="plugin_packagename">Package name:</string>
 	<string name="plugin_description">Description (not verified):</string>
 	<string name="plugin_author">Author (not verified):</string>
-	<string name="plugin_enabled">Enabled</string>
-	<string name="plugins_text">Click plug-in to enable/disable</string>
+	<string name="plugin_enabled">enabled</string>
+	<string name="plugin_disabled">disabled</string>
+	<string name="plugin_web">Find plug-ins online</string>
+	
+	<string name="plugin_enabled_checkbox">Enabled</string>
+
+	<string name="SCOPE_DATABASE_ACTIONS_title">Database action notifications</string>
+	<string name="SCOPE_DATABASE_ACTIONS_explanation">Plugin will be notified when a database is opened, closed or saved.</string>
+
+	<string name="SCOPE_CURRENT_ENTRY_title">Current entry data</string>
+	<string name="SCOPE_CURRENT_ENTRY_explanation">Plugin will receive all data about the current database entry and will be allowed to offer actions and modify the display of it.</string>
+
 
 	<string name="get_regular_version">Get more storage types</string>
 

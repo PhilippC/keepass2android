@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="keepass2android.plugin.qr.MainActivity$PlaceholderFragment" >
+
+    <Button
+        android:id="@+id/btnConfigPlugins"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:minHeight="45dp"
+        android:text="@string/enable_as_plugin" />
+
+    <Button
+        android:id="@+id/btnShowQR"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:drawableTop="@drawable/qrcode"
+        android:minHeight="45dp"
+        android:text="@string/show_qr" />
+    
+    <Button
+        android:id="@+id/btnScanQRCode"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnConfigPlugins"
+        android:layout_below="@+id/btnShowQR"
+        android:drawableTop="@android:drawable/ic_menu_camera"
+        android:minHeight="45dp"
+        android:text="@string/scan_qr" />
+
+    <TextView
+        android:id="@+id/tvHostStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnConfigPlugins"
+        android:layout_alignLeft="@+id/btnConfigPlugins"
+        android:text="" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnScanQRCode"
+        android:layout_centerHorizontal="true" 
+        android:indeterminate="true"
+        />
+
+</RelativeLayout>

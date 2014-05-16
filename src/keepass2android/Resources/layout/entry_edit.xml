@@ -2,98 +2,59 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-    <LinearLayout
-        android:id="@+id/entry_save_header"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:padding="2sp"
-        style="@style/GroupAndEntryHeader">
-        <Button
-            android:id="@+id/entry_save"
-            android:text="@string/entry_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|center_vertical"
-            android:textIsSelectable="false"
-            android:editable="false"
-            android:longClickable="false"
-            android:clickable="true"
-            android:minHeight="32dp"
-            android:gravity="left|center_vertical"
-            android:drawableLeft="@drawable/navigation_accept_dark"
-            style="@style/GroupAndEntryHeader"
-            android:background="@drawable/HeaderButtonBackground" />
-    </LinearLayout>
     <ScrollView
         android:id="@+id/entry_scroll"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/entry_save_header">
+        android:layout_height="fill_parent">
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-        <!--  Title -->
-            <TextView
-                android:id="@+id/entry_title_label"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/entry_title"
-                style="@style/EntryFieldHeader" />
+        <!-- Title -->
             <ImageButton
                 android:id="@+id/icon_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic00"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/entry_title_label" />
+                android:src="@drawable/ic00" />
             <EditText
                 android:id="@+id/entry_title"
-                android:layout_width="fill_parent"
+                style="@style/TextAppearance_EditEntry_Value"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:capitalize="sentences"
                 android:layout_toLeftOf="@+id/icon_button"
-                android:singleLine="true"
-                android:layout_below="@id/entry_title_label"
-                android:hint="@string/hint_title" />
+                android:hint="@string/hint_title"
+                android:singleLine="true" />
         <!-- Username -->
-            <TextView
-                android:id="@+id/entry_user_name_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/icon_button"
-                style="@style/EntryFieldHeader"
-                android:text="@string/entry_user_name" />
             <EditText
                 android:id="@+id/entry_user_name"
-                android:layout_width="fill_parent"
+                style="@style/TextAppearance_EditEntry_Value"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:layout_marginTop="4dip"
+                android:layout_below="@id/icon_button"
+                android:hint="@string/hint_username"
                 android:inputType="textEmailAddress"
-                android:layout_below="@id/entry_user_name_label"
-                android:hint="@string/hint_username" />
-        <!--  URL -->
-            <TextView
-                android:id="@+id/entry_url_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/entry_user_name"
-                style="@style/EntryFieldHeader"
-                android:text="@string/entry_url" />
+                android:singleLine="true" />
+        <!-- URL -->
             <EditText
                 android:id="@+id/entry_url"
-                android:layout_width="fill_parent"
+                style="@style/TextAppearance_EditEntry_Value"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:layout_marginTop="4dip"
+                android:layout_below="@id/entry_user_name"
+                android:hint="@string/hint_url"
                 android:inputType="textUri"
-                android:layout_below="@id/entry_url_label"
-                android:hint="@string/hint_url" />
+                android:singleLine="true" />
         <!-- Password -->
             <TextView
                 android:id="@+id/entry_password_label"
+                style="@style/TextAppearance_EditEntry_LabelSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/entry_url"
-                style="@style/EntryFieldHeader"
                 android:text="@string/entry_password" />
              <RelativeLayout
 			android:id="@+id/password_section"
@@ -142,47 +103,43 @@
         <!-- Comment -->
             <TextView
                 android:id="@+id/entry_comment_label"
+                style="@style/TextAppearance_EditEntry_LabelSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/password_section"
-                style="@style/EntryFieldHeader"
                 android:text="@string/entry_comment" />
             <EditText
                 android:id="@+id/entry_comment"
-                android:inputType="textMultiLine"
+                style="@style/TextAppearance_EditEntry_Value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/entry_comment_label"
-                android:hint="@string/hint_comment" />
+                android:hint="@string/hint_comment"
+                android:inputType="textMultiLine" />
         <!-- Extra strings -->
-            <TextView
-                android:id="@+id/entry_extra_strings_label"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/entry_comment"
-                android:text="@string/entry_extra_strings"
-                style="@style/EntryFieldHeader" />
             <LinearLayout
                 android:id="@+id/advanced_container"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/entry_extra_strings_label"
+                android:layout_below="@id/entry_comment"
                 android:orientation="vertical" />
             <Button
                 android:id="@+id/add_advanced"
+                style="@style/EditEntryButton"
+                android:layout_marginTop="-4dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/advanced_container"
-                android:drawableLeft="@android:drawable/ic_menu_add"
+                android:drawableLeft="?attr/ic_menu_add_field"
                 android:text="@string/add_extra_string" />
         <!-- file attachments -->
             <TextView
                 android:id="@+id/entry_binaries_label"
+                style="@style/TextAppearance_EditEntry_LabelSmall"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/entry_binaries"
                 android:layout_below="@id/add_advanced"
-                style="@style/EntryFieldHeader" />
+                android:text="@string/entry_binaries" />
             <LinearLayout
                 android:id="@+id/binaries"
                 android:layout_width="fill_parent"
@@ -192,54 +149,59 @@
         <!-- Tags -->
             <TextView
                 android:id="@+id/entry_tags_label"
+                style="@style/TextAppearance_EditEntry_LabelSmall"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/entry_tags"
                 android:layout_below="@id/binaries"
-                style="@style/EntryFieldHeader" />
+                android:text="@string/entry_tags" />
             <EditText
                 android:id="@+id/entry_tags"
+                style="@style/TextAppearance_EditEntry_Value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:inputType="text"
                 android:layout_below="@id/entry_tags_label"
-                android:hint="@string/hint_tags" />
+                android:hint="@string/hint_tags"
+                android:inputType="text"
+                android:singleLine="true" />
         <!-- Override URL -->
             <TextView
                 android:id="@+id/entry_override_url_label"
+                style="@style/TextAppearance_EditEntry_LabelSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/entry_tags"
-                style="@style/EntryFieldHeader"
                 android:text="@string/entry_override_url" />
             <EditText
                 android:id="@+id/entry_override_url"
+                style="@style/TextAppearance_EditEntry_Value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:inputType="textUri"
                 android:layout_below="@id/entry_override_url_label"
-                android:hint="@string/hint_override_url" />
+                android:hint="@string/hint_override_url"
+                android:inputType="textUri"
+                android:singleLine="true" />
         <!-- Expires -->
             <TextView
                 android:id="@+id/entry_expires_label"
+                style="@style/TextAppearance_EditEntry_LabelSmall"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/entry_expires"
-                style="@style/EntryFieldHeader"
-                android:layout_below="@id/entry_override_url" />
+                android:layout_below="@id/entry_override_url"
+                android:text="@string/entry_expires" />
             <CheckBox
                 android:id="@+id/entry_expires_checkbox"
-                android:layout_below="@id/entry_expires_label"
+                android:layout_marginLeft="16dip"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@id/entry_expires_label" />
             <EditText
                 android:id="@+id/entry_expires"
+                android:layout_marginLeft="-12dip"
+                android:layout_marginRight="12dip"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/entry_expires_checkbox"
-                android:layout_below="@id/entry_expires_label" />
+                android:layout_below="@id/entry_expires_label"
+                android:layout_toRightOf="@id/entry_expires_checkbox" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
