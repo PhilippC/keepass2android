@@ -69,7 +69,8 @@ namespace keepass2android
 			{
 				designPref.PreferenceChange += (sender, args) => Recreate();
 			}
-				
+
+			Util.PrepareNoDonatePreference(this, FindPreference(GetString(Resource.String.NoDonateOption_key)));
 			
 			Preference cachingPreference = FindPreference(GetString(Resource.String.UseOfflineCache_key));
 			cachingPreference.PreferenceChange += OnUseOfflineCacheChanged;

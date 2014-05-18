@@ -321,11 +321,7 @@ namespace keepass2android
 				else
 					item.SetVisible(true);
 			}
-			item = menu.FindItem(Resource.Id.menu_change_master_key);
-			if (item != null)
-			{
-				item.SetVisible(App.Kp2a.GetDb().CanWrite);
-			}
+			
 			return true;
 		}
 		
@@ -342,12 +338,13 @@ namespace keepass2android
 			menu.FindItem(Resource.Id.menu_sort).SetTitle(resId);
 			
 		}
-		
+
 		public override bool OnPrepareOptionsMenu(IMenu menu) {
 			if ( ! base.OnPrepareOptionsMenu(menu) ) {
 				return false;
 			}
-			
+
+			Util.PrepareDonateOptionMenu(menu, this);
 			SetSortMenuText(menu);
 			
 			return true;
@@ -356,14 +353,7 @@ namespace keepass2android
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
 			case Resource.Id.menu_donate:
-				try {
-						Util.GotoDonateUrl(this);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
-					return false;
-				}
-				
-				return true;
+				return Util.GotoDonateUrl(this);
 			case Resource.Id.menu_lock:
 				App.Kp2a.LockDatabase();
 				return true;
@@ -377,10 +367,6 @@ namespace keepass2android
 				DatabaseSettingsActivity.Launch(this);
 				return true;
 				
-			case Resource.Id.menu_change_master_key:
-				SetPassword();
-				return true;
-
 			case Resource.Id.menu_sync:
 				Synchronize();
 				return true;
@@ -388,27 +374,6 @@ namespace keepass2android
 			case Resource.Id.menu_sort:
 				ToggleSort();
 				return true;
-			case Resource.Id.menu_rate:
-				try {
-					Util.GotoMarket(this);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
-				return true;
-			case Resource.Id.menu_suggest_improvements:
-				try {
-					Util.GotoUrl(this, Resource.String.SuggestionsURL);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
-				return true;
-			case Resource.Id.menu_translate:
-				try {
-					Util.GotoUrl(this, Resource.String.TranslationURL);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
-				return true;	
 			case Android.Resource.Id.Home:
 				//Currently the action bar only displays the home button when we come from a previous activity.
 				//So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
@@ -523,12 +488,7 @@ namespace keepass2android
 			
 		}
 		
-		private void SetPassword() {
-			SetPasswordDialog dialog = new SetPasswordDialog(this);
-			dialog.Show();
-		}
-		
-		 public class RefreshTask : OnFinish {
+		public class RefreshTask : OnFinish {
 			 readonly GroupBaseActivity _act;
 			public RefreshTask(Handler handler, GroupBaseActivity act):base(handler) {
 				_act = act;

@@ -40,7 +40,7 @@ namespace keepass2android
 			
 		}
 
-		private bool UseDarkTheme
+		public bool UseDarkTheme
 		{
 			get
 			{

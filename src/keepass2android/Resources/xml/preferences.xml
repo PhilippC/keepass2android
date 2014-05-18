@@ -43,6 +43,10 @@
 			  android:title="@string/default_username"
 			  android:persistent="false"
 			  android:key="@string/default_username_key"/>
+		
+		<Preference android:key="@string/master_pwd_key"
+		  android:title="@string/menu_change_key"
+					/>
 
 		<PreferenceScreen
 	  android:key="export_prefs"
@@ -154,6 +158,14 @@
 			  android:entryValues="@array/design_values"
 			  android:dialogTitle="@string/design_title"
 			  android:defaultValue="@string/design_default"/>
+
+			<CheckBoxPreference
+				android:enabled="true"
+					 android:persistent="true"
+					 android:summary="@string/NoDonateOption_summary"
+					 android:defaultValue="false"
+					 android:title="@string/NoDonateOption_title"
+					 android:key="@string/NoDonateOption_key" />
 		</PreferenceScreen>
 
 		<PreferenceScreen
@@ -296,4 +308,12 @@
 	<PreferenceScreen android:key="plugin_key" android:title="@string/plugins">
 		<intent android:action="keepass2android.PluginListActivity"/>
 	</PreferenceScreen>
+
+	<PreferenceScreen
+			  android:key="@string/about_prefs_key"
+			  android:title="@string/menu_about"
+			  >
+		<intent android:action="keepass2android.AboutActivity"/>
+	</PreferenceScreen>
+		
 </PreferenceScreen>

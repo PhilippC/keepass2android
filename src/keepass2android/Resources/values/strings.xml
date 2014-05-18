@@ -255,6 +255,10 @@
 	<string name="LockWhenNavigateBack_title">Lock when leaving app</string>
 	<string name="LockWhenNavigateBack_summary">Lock the database when leaving the app by pressing the back button.</string>
 
+	<string name="NoDonateOption_title">Hide donation option</string>
+	<string name="NoDonateOption_summary">This setting is for donators. It is available after using Keepass2Android for a while only.</string>
+	<string name="NoDonateOption_question">Without donations, this app would not exist and would not be improved continually! If you have not yet donated, please consider making a donation now.</string>
+
 	
 	<string name="UseOfflineCache_title">Database caching</string>
 	<string name="UseOfflineCache_summary">Keep a copy of remote database files in the application cache directory. This allows to use remote databases even when offline.</string>

@@ -221,25 +221,20 @@ namespace keepass2android
 
 
 			// Save button
-			View save = FindViewById(Resource.Id.entry_save);
-			if (save == null)
-			{
-				//save is not part of layout for API >= 14 -> use action bar
-				ActionBar.SetCustomView(Resource.Layout.SaveButton);
-				ActionBar.SetDisplayShowCustomEnabled(true);
-				ActionBar.SetDisplayShowTitleEnabled(false);  
-				ActionBar.SetDisplayUseLogoEnabled(false);
-				ActionBar.SetDisplayShowHomeEnabled(false);
-				ActionBar.SetDisplayOptions(ActionBarDisplayOptions.ShowCustom,
-				                            ActionBarDisplayOptions.ShowCustom);
-				save = FindViewById(Resource.Id.entry_save);
-
-			}
+			ActionBar.SetCustomView(Resource.Layout.SaveButton);
+			ActionBar.SetDisplayShowCustomEnabled(true);
+			ActionBar.SetDisplayShowTitleEnabled(false);  
+			ActionBar.SetDisplayUseLogoEnabled(false);
+			ActionBar.SetDisplayShowHomeEnabled(false);
+			ActionBar.SetDisplayOptions(ActionBarDisplayOptions.ShowCustom,
+				                        ActionBarDisplayOptions.ShowCustom);
+			var save = FindViewById(Resource.Id.entry_save);
 			save.Click += (sender, e) => 
 			{
 				SaveEntry();
-
 			};
+
+			FindViewById(Resource.Id.entry_save_cancel).Click += (sender, args) => Finish();
 		
 			// Respect mask password setting
 			MakePasswordVisibleOrHidden();
@@ -696,6 +691,13 @@ namespace keepass2android
 			if (binariesLabel != null)
 				binariesLabel.Visibility = State.Entry.Binaries.UCount > 0 ? ViewStates.Visible : ViewStates.Gone;
 		}
+
+		public override bool OnPrepareOptionsMenu(IMenu menu)
+		{
+			Util.PrepareDonateOptionMenu(menu, this);
+			return base.OnPrepareOptionsMenu(menu);
+		}
+
 		public override bool OnCreateOptionsMenu(IMenu menu) {
 			base.OnCreateOptionsMenu(menu);
 			
@@ -709,36 +711,7 @@ namespace keepass2android
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
 			case Resource.Id.menu_donate:
-				try {
-						Util.GotoDonateUrl(this);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
-					return false;
-				}
-				
-				return true;
-			case Resource.Id.menu_rate:
-				try {
-					Util.GotoMarket(this);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
-				return true;
-			case Resource.Id.menu_suggest_improvements:
-				try {
-					Util.GotoUrl(this, Resource.String.SuggestionsURL);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
-				return true;
-			case Resource.Id.menu_translate:
-				try {
-					Util.GotoUrl(this, Resource.String.TranslationURL);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-				}
-				return true;
-
+				return Util.GotoDonateUrl(this);
 			}
 
 

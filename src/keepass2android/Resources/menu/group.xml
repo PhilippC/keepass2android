@@ -41,10 +41,6 @@
         android:title="@string/menu_app_settings"
         android:showAsAction="ifRoom"
     />
-	<item android:id="@+id/menu_change_master_key"
-        android:title="@string/menu_change_key"
-        android:showAsAction="never"
-    />
 	<item android:id="@+id/menu_sync"
 		  android:icon="@android:drawable/ic_popup_sync"
 			android:title="@string/synchronize_database_menu"
@@ -57,13 +53,5 @@
         android:showAsAction="never"
     />
     
-    <item android:id="@+id/menu_suggest_improvements"
-        android:icon="@android:drawable/ic_menu_directions"
-        android:title="@string/suggest_improvements"
-        android:showAsAction="never"
-    />
-    <item android:id="@+id/menu_translate"
-        android:title="@string/translate_app"
-        android:showAsAction="never"
-    />
+    
 </menu>

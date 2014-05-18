@@ -30,30 +30,4 @@
         android:title="@string/menu_donate"
         android:showAsAction="ifRoom"
     />
-    <item android:id="@+id/menu_goto_url"
-        android:title="@string/menu_url"
-        android:showAsAction="ifRoom"
-    />
-    <!--item android:id="@+id/menu_copy_user"
-        android:title="@string/menu_copy_user"
-        android:showAsAction="ifRoom"
-    />
-    <item android:id="@+id/menu_copy_pass"
-        android:title="@string/menu_copy_pass"
-        android:showAsAction="ifRoom"
-    /-->
-    <item android:id="@+id/menu_suggest_improvements"
-        android:icon="@android:drawable/ic_menu_directions"
-        android:title="@string/suggest_improvements"
-        android:showAsAction="never"
-    />
-    <item android:id="@+id/menu_rate"
-        android:icon="@android:drawable/star_off"
-        android:title="@string/rate_app"
-        android:showAsAction="never"
-    />
-    <item android:id="@+id/menu_translate"
-        android:title="@string/translate_app"
-        android:showAsAction="never"
-    />
 </menu>

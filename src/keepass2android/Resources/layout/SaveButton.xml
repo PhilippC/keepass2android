@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="?android:actionButtonStyle"
-    android:id="@+id/entry_save"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_weight="1">
-    <TextView
-        style="?android:actionBarTabTextStyle"
-        android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingRight="20dp"
-        android:drawableLeft="?attr/NavigationAcceptDrawable"
-        android:drawablePadding="8dp"
-        android:gravity="center_vertical"
-        android:text="@string/entry_save" />
-</FrameLayout>
+        android:orientation="horizontal"
+        android:divider="?android:attr/dividerVertical"
+        android:showDividers="middle"
+        android:layout_alignParentBottom="true"
+        android:dividerPadding="12dp"
+        android:baselineAligned="false">
+	<FrameLayout
+		style="?android:actionButtonStyle"
+		android:id="@+id/entry_save"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1">
+		<TextView
+			style="?android:actionBarTabTextStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:paddingRight="20dp"
+			android:drawableLeft="?attr/NavigationAcceptDrawable"
+			android:drawablePadding="8dp"
+			android:gravity="center_vertical"
+			android:text="@string/entry_save" />
+	</FrameLayout>
+
+	<FrameLayout
+		style="?android:actionButtonStyle"
+		android:id="@+id/entry_save_cancel"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1">
+		<TextView
+			style="?android:actionBarTabTextStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:paddingRight="20dp"
+			android:drawableLeft="?attr/CancelDrawable"
+			android:drawablePadding="8dp"
+			android:gravity="center_vertical"
+			android:text="@string/cancel" />
+	</FrameLayout>
+</LinearLayout>

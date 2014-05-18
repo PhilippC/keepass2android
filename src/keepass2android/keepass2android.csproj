@@ -97,6 +97,7 @@
     <Compile Include="addons\OtpKeyProv\OtpUtil.cs" />
     <Compile Include="app\NoFileStorageFoundException.cs" />
     <Compile Include="app\OtpAuxCacheSupervisor.cs" />
+    <Compile Include="AboutActivity.cs" />
     <Compile Include="CreateDatabaseActivity.cs" />
     <Compile Include="CreateNewFilename.cs" />
     <Compile Include="EntryActivityClasses\CopyToClipboardPopupMenuIcon.cs" />
@@ -202,7 +203,6 @@
     <AndroidResource Include="Resources\drawable-mdpi\Thumbs.db" />
     <AndroidResource Include="Resources\drawable-xhdpi\Thumbs.db" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Thumbs.db" />
-    <AndroidResource Include="Resources\drawable-hdpi\Thumbs.db" />
     <None Include="Resources\drawable\launcher.png">
       <Visible>False</Visible>
     </None>
@@ -561,7 +561,6 @@
     <AndroidResource Include="Resources\drawable-mdpi\navigation_previous_item_dark.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\navigation_previous_item_dark.png" />
     <AndroidResource Include="Resources\drawable\device_access_new_account.png" />
-    <AndroidResource Include="Resources\drawable\device_access_new_account_dark.png" />
     <AndroidResource Include="Resources\drawable\BlueButton.xml" />
     <AndroidResource Include="Resources\drawable\GreenButton.xml" />
     <AndroidResource Include="Resources\drawable\btn_new_group.png" />
@@ -968,5 +967,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\searchable_debug.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\device_access_new_account_holodark.png" />
   </ItemGroup>
 </Project>

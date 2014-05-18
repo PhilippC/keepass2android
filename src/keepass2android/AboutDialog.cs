@@ -19,6 +19,7 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
 using Android.Widget;
 using Android.Content.PM;
 
@@ -29,6 +30,16 @@ namespace keepass2android
 		
 		public AboutDialog(Context context):base (context) {
 		}
+		public AboutDialog(Context context, int theme)
+			: base(context, theme)
+		{
+		}
+		
+		public AboutDialog(IntPtr javaRef, JniHandleOwnership transfer) : base(javaRef, transfer)
+		{
+			
+		}
+		
 		
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
@@ -38,7 +49,43 @@ namespace keepass2android
 			SetVersion();
 			SetContributors();
 			
-			
+			FindViewById(Resource.Id.suggest).Click += delegate
+				{
+					try
+					{
+						Util.GotoUrl(Context, Resource.String.SuggestionsURL);
+					}
+					catch (ActivityNotFoundException)
+					{
+						Toast.MakeText(Context, Resource.String.no_url_handler, ToastLength.Long).Show();
+					}
+
+				};
+			FindViewById(Resource.Id.rate).Click += delegate
+			{
+				try
+				{
+					Util.GotoMarket(Context);
+				}
+				catch (ActivityNotFoundException)
+				{
+					Toast.MakeText(Context, Resource.String.no_url_handler, ToastLength.Long).Show();
+				}
+			};
+			FindViewById(Resource.Id.translate).Click += delegate
+			{
+				try
+				{
+					Util.GotoUrl(Context, Resource.String.TranslationURL);
+				}
+				catch (ActivityNotFoundException)
+				{
+					Toast.MakeText(Context, Resource.String.no_url_handler, ToastLength.Long).Show();
+				}
+			}; FindViewById(Resource.Id.donate).Click += delegate
+			{
+				Util.GotoDonateUrl(Context);
+			};
 		}
 
 		private void SetContributors()

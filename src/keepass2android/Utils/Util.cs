@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Database;
+using Android.Preferences;
 using Android.Provider;
 using Android.Views;
 using Android.Widget;
@@ -73,13 +74,23 @@ namespace keepass2android
 			GotoUrl(context, context.GetString(Resource.String.MarketURL)+context.PackageName);
 		}
 
-		public static void GotoDonateUrl(Context context)
+		public static bool GotoDonateUrl(Context context)
 		{
 			string donateUrl = context.GetString(Resource.String.donate_url, 
 			                         new Java.Lang.Object[]{context.Resources.Configuration.Locale.Language,
 															context.PackageName
 			});
-			GotoUrl(context, donateUrl);
+			try
+			{
+				GotoUrl(context, donateUrl);
+				return true;
+			}
+			catch (ActivityNotFoundException)
+			{
+				Toast.MakeText(context, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
+				return false;
+			}
+			
 		}
 		
 		public static String GetEditText(Activity act, int resId) {
@@ -328,6 +339,49 @@ namespace keepass2android
 			i.SetFlags(ActivityFlags.ForwardResult);
 			activity.StartActivity(i);
 			activity.Finish();
+		}
+
+		public static void PrepareNoDonatePreference(Context ctx, Preference preference)
+		{
+			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+
+			long usageCount = prefs.GetLong(ctx.GetString(Resource.String.UsageCount_key), 0);
+
+#if DEBUG
+			preference.Enabled = (usageCount > 1);
+#else 
+			preference.Enabled = (usageCount > 50);
+#endif
+			preference.PreferenceChange += delegate(object sender, Preference.PreferenceChangeEventArgs args)
+				{
+					if ((bool) args.NewValue)
+					{
+						new AlertDialog.Builder(ctx)
+							.SetTitle(AppNames.AppName)
+							.SetCancelable(false)
+							.SetPositiveButton(Android.Resource.String.Ok, delegate(object o, DialogClickEventArgs eventArgs)
+								{
+									GotoDonateUrl(ctx);
+									((Dialog) o).Dismiss();
+								})
+							.SetMessage(Resource.String.NoDonateOption_question)
+							.Create().Show();
+
+					}
+				};
+		
+		}
+
+		public static void PrepareDonateOptionMenu(IMenu menu, Context ctx)
+		{
+			var donateItem = menu.FindItem(Resource.Id.menu_donate);
+			if (donateItem != null)
+			{
+				donateItem.SetVisible(
+					!PreferenceManager.GetDefaultSharedPreferences(ctx)
+									 .GetBoolean(ctx.GetString(Resource.String.NoDonateOption_key), false)
+					);
+			}
 		}
 	}
 }

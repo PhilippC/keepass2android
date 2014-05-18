@@ -55,6 +55,7 @@ namespace keepass2android
 			// Re-use the change handlers for the application settings
 			FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += AppSettingsActivity.OnRememberKeyFileHistoryChanged;
 			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += AppSettingsActivity.OnShowUnlockedNotificationChanged;
+			Util.PrepareNoDonatePreference(this, FindPreference(GetString(Resource.String.NoDonateOption_key)));
 			Preference designPref = FindPreference(GetString(Resource.String.design_key));
 			if (!_design.HasThemes())
 			{
@@ -130,6 +131,15 @@ namespace keepass2android
                 ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
 				pt.Run();
 			};
+
+			Preference changeMaster = FindPreference(GetString(Resource.String.master_pwd_key));
+			if (App.Kp2a.GetDb().CanWrite)
+			{
+				changeMaster.Enabled = true;
+				changeMaster.PreferenceClick += delegate {
+						new SetPasswordDialog(this).Show();
+					};
+			}
 
 			try
 			{

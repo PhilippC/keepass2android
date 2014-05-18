@@ -507,15 +507,7 @@ namespace keepass2android
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch (item.ItemId) {
 			case Resource.Id.menu_donate:
-				try {
-						Util.GotoDonateUrl(this);
-				} catch (ActivityNotFoundException) {
-					Toast.MakeText(this, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
-					return false;
-				}
-				
-				return true;
-			
+				return Util.GotoDonateUrl(this);
 			case Resource.Id.menu_about:
 				AboutDialog dialog = new AboutDialog(this);
 				dialog.Show();

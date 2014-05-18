@@ -66,11 +66,43 @@
 			android:text="@string/issues"
 			android:layout_below="@id/feedback_title"
 			android:autoLink="web" />
+
+		<Button
+			android:id="@+id/suggest"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/feedback"
+			android:text="@string/suggest_improvements"
+         />
+		<Button
+			android:id="@+id/rate"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/suggest"
+			android:text="@string/rate_app"
+         />
+		<Button
+			android:id="@+id/translate"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/rate"
+			android:text="@string/translate_app"
+         />
+
+		<Button
+			android:id="@+id/donate"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/translate"
+			android:text="@string/menu_donate"
+         />
+
+
 		<ImageView
 			android:id="@+id/divider3"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/feedback"
+			android:layout_below="@id/donate"
 			android:scaleType="fitXY"
 			android:src="@android:drawable/divider_horizontal_dark" />
 		<TextView

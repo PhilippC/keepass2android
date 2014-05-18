@@ -845,39 +845,16 @@ namespace keepass2android
 
 			UpdateTogglePasswordMenu();
 
-			IMenuItem gotoUrl = menu.FindItem(Resource.Id.menu_goto_url);
-			//Disabled IMenuItem copyUser = menu.FindItem(Resource.Id.menu_copy_user);
-			//Disabled IMenuItem copyPass = menu.FindItem(Resource.Id.menu_copy_pass);
-
-			// In API >= 11 onCreateOptionsMenu may be called before onCreate completes
-			// so _entry may not be set
-			if (Entry == null)
-			{
-				gotoUrl.SetVisible(false);
-				//Disabled copyUser.SetVisible(false);
-				//Disabled copyPass.SetVisible(false);
-			}
-			else
-			{
-				String url = Entry.Strings.ReadSafe(PwDefs.UrlField);
-				if (String.IsNullOrEmpty(url))
-				{
-					// disable button if url is not available
-					gotoUrl.SetVisible(false);
-				}
-				if (String.IsNullOrEmpty(Entry.Strings.ReadSafe(PwDefs.UserNameField)))
-				{
-					// disable button if username is not available
-					//Disabled copyUser.SetVisible(false);
-				}
-				if (String.IsNullOrEmpty(Entry.Strings.ReadSafe(PwDefs.PasswordField)))
-				{
-					// disable button if password is not available
-					//Disabled copyPass.SetVisible(false);
-				}
-			}
 			return true;
 		}
+
+		public override bool OnPrepareOptionsMenu(IMenu menu)
+		{
+			Util.PrepareDonateOptionMenu(menu, this);
+			return base.OnPrepareOptionsMenu(menu);
+		}
+
+		
 
 		private void UpdateTogglePasswordMenu()
 		{
@@ -943,17 +920,7 @@ namespace keepass2android
 			switch (item.ItemId)
 			{
 				case Resource.Id.menu_donate:
-					try
-					{
-						Util.GotoDonateUrl(this);
-					}
-					catch (ActivityNotFoundException)
-					{
-						Toast.MakeText(this, Resource.String.error_failed_to_launch_link, ToastLength.Long).Show();
-						return false;
-					}
-
-					return true;
+					return Util.GotoDonateUrl(this);
 				case Resource.Id.menu_toggle_pass:
 					if (_showPassword)
 					{
@@ -969,48 +936,8 @@ namespace keepass2android
 
 					return true;
 
-				case Resource.Id.menu_goto_url:
-					return GotoUrl();
-			/* TODO: required?
-			case Resource.Id.menu_copy_user:
-				timeoutCopyToClipboard(_entry.Strings.ReadSafe (PwDefs.UserNameField));
-				return true;
-				
-			case Resource.Id.menu_copy_pass:
-				timeoutCopyToClipboard(_entry.Strings.ReadSafe (PwDefs.UserNameField));
-				return true;
-				*/
-				case Resource.Id.menu_rate:
-					try
-					{
-						Util.GotoMarket(this);
-					}
-					catch (ActivityNotFoundException)
-					{
-						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-					}
-					return true;
-				case Resource.Id.menu_suggest_improvements:
-					try
-					{
-						Util.GotoUrl(this, Resource.String.SuggestionsURL);
-					}
-					catch (ActivityNotFoundException)
-					{
-						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-					}
-					return true;
 				case Resource.Id.menu_lock:
-					return true;
-				case Resource.Id.menu_translate:
-					try
-					{
-						Util.GotoUrl(this, Resource.String.TranslationURL);
-					}
-					catch (ActivityNotFoundException)
-					{
-						Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
-					}
+					App.Kp2a.LockDatabase();
 					return true;
 				case Android.Resource.Id.Home:
 					//Currently the action bar only displays the home button when we come from a previous activity.

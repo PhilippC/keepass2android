@@ -50,6 +50,7 @@
     <string name="clipboard_timeout_key">clip_timeout_key</string>
     <string name="db_key">db</string>
     <string name="rounds_key">rounds</string>
+	<string name="master_pwd_key">change_master_pwd</string>
     <string name="keyfile_key">keyfile</string>
     <string name="maskpass_key">maskpass</string>
     <string name="omitbackup_key">omitbackup</string>    
@@ -91,10 +92,14 @@
 	<string name="UseFileTransactions_key">UseFileTransactions</string>
 	<string name="LockWhenScreenOff_key">LockWhenScreenOff</string>
 	<string name="LockWhenNavigateBack_key">LockWhenNavigateBack</string>
-	
+
+	<string name="NoDonateOption_key">NoDonateOption</string>
+
 	<string name="UseOfflineCache_key">UseOfflineCache</string>
 	<string name="AcceptAllServerCertificates_key">AcceptAllServerCertificates</string>
 	<string name="CheckForFileChangesOnSave_key">CheckForFileChangesOnSave</string>
+
+	<string name="about_prefs_key">about_prefs</string>
 
 	<string name="MarketURL">market://details?id=</string>
 	<string name="SuggestionsURL">https://keepass2android.codeplex.com/workitem/list/basic</string>
