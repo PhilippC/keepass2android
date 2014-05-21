@@ -11,6 +11,16 @@ public class Strings {
 	public static final String SCOPE_CURRENT_ENTRY = "keepass2android.SCOPE_CURRENT_ENTRY";
 	
 	/**
+	 * Plugin may query credentials for its own package 
+	 */
+	public static final String SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE = "keepass2android.SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE";
+	
+	/**
+	 * Plugin may query credentials for a deliberate package 
+	 */
+	public static final String SCOPE_QUERY_CREDENTIALS = "keepass2android.SCOPE_QUERY_CREDENTIALS";
+	
+	/**
 	 * Extra key to transfer a (json serialized) list of scopes
 	 */
 	public static final String EXTRA_SCOPES = "keepass2android.EXTRA_SCOPES";
@@ -30,6 +40,11 @@ public class Strings {
 	 */
 	public static final String EXTRA_REQUEST_TOKEN = "keepass2android.EXTRA_REQUEST_TOKEN";
 
+	/** 
+	 * Action to start KP2A with an AppTask
+	 */
+	public static final String ACTION_START_WITH_TASK = "keepass2android.ACTION_START_WITH_TASK";
+	
 	/**
 	 * Action sent from KP2A to the plugin to indicate that the plugin should request
 	 * access (sending it's scopes)
@@ -124,6 +139,24 @@ public class Strings {
 	 * 
 	 */
 	public static final String ACTION_ENTRY_ACTION_SELECTED = "keepass2android.ACTION_ENTRY_ACTION_SELECTED";
+	
+	/**
+	 * Extra key for the string which is used to query the credentials. This should be either a URL for 
+	 * a web login (google.com or a full URI) or something in the form "androidapp://com.my.package"
+	 */
+	public static final String EXTRA_QUERY_STRING = "keepass2android.EXTRA_QUERY_STRING";
+	
+	/**
+	 * Action when plugin wants to query credentials for its own package 
+	 */
+	public static final String ACTION_QUERY_CREDENTIALS_FOR_OWN_PACKAGE = "keepass2android.ACTION_QUERY_CREDENTIALS_FOR_OWN_PACKAGE";
+	
+	
+	/**
+	 * Action when plugin wants to query credentials for a deliberate package
+	 * The query string is passed as intent data 
+	 */
+	public static final String ACTION_QUERY_CREDENTIALS = "keepass2android.ACTION_QUERY_CREDENTIALS";	
 	
 	/**
 	 * Action for an intent from the plugin to KP2A to set (i.e. add or update) a field in the entry.

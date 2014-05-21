@@ -60,7 +60,6 @@ public final class R {
         public static final int share_via_barcode=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b0036;
         public static final int app_picker_list_item_icon=0x7f0b0008;
         public static final int app_picker_list_item_label=0x7f0b0009;
         public static final int barcode_image_view=0x7f0b000f;
@@ -143,9 +142,8 @@ public final class R {
         public static final int beep=0x7f050000;
     }
     public static final class string {
-        public static final int action_settings=0x7f070077;
-        public static final int action_show_qr=0x7f070078;
-        public static final int all_fields=0x7f07007a;
+        public static final int action_show_qr=0x7f070077;
+        public static final int all_fields=0x7f070079;
         public static final int app_name=0x7f070000;
         public static final int app_picker_name=0x7f070001;
         public static final int bookmark_picker_name=0x7f070002;
@@ -178,9 +176,9 @@ public final class R {
         public static final int contents_phone=0x7f07001d;
         public static final int contents_sms=0x7f07001e;
         public static final int contents_text=0x7f07001f;
-        public static final int enable_as_plugin=0x7f070085;
-        public static final int enabled_as_plugin=0x7f070084;
-        public static final int hello_world=0x7f07007f;
+        public static final int create_entry=0x7f070084;
+        public static final int enable_as_plugin=0x7f070082;
+        public static final int enabled_as_plugin=0x7f070081;
         public static final int history_clear_one_history_text=0x7f070021;
         public static final int history_clear_text=0x7f070020;
         public static final int history_email_title=0x7f070022;
@@ -188,10 +186,10 @@ public final class R {
         public static final int history_empty_detail=0x7f070024;
         public static final int history_send=0x7f070025;
         public static final int history_title=0x7f070026;
-        public static final int include_label=0x7f070079;
-        public static final int kp2aplugin_author=0x7f07007d;
-        public static final int kp2aplugin_shortdesc=0x7f07007c;
-        public static final int kp2aplugin_title=0x7f07007b;
+        public static final int include_label=0x7f070078;
+        public static final int kp2aplugin_author=0x7f07007c;
+        public static final int kp2aplugin_shortdesc=0x7f07007b;
+        public static final int kp2aplugin_title=0x7f07007a;
         public static final int menu_encode_mecard=0x7f070027;
         public static final int menu_encode_vcard=0x7f070028;
         public static final int menu_help=0x7f070029;
@@ -222,8 +220,8 @@ public final class R {
         public static final int msg_share_text=0x7f070042;
         public static final int msg_sure=0x7f070043;
         public static final int msg_unmount_usb=0x7f070044;
-        public static final int no_host_app=0x7f070082;
-        public static final int not_enabled_as_plugin=0x7f070083;
+        public static final int no_host_app=0x7f07007f;
+        public static final int not_enabled_as_plugin=0x7f070080;
         public static final int preferences_actions_title=0x7f070045;
         public static final int preferences_auto_focus_title=0x7f070046;
         public static final int preferences_bulk_mode_summary=0x7f070047;
@@ -258,6 +256,7 @@ public final class R {
         public static final int preferences_try_bsplus=0x7f070074;
         public static final int preferences_try_bsplus_summary=0x7f070075;
         public static final int preferences_vibrate_title=0x7f070064;
+        public static final int qr_question=0x7f070083;
         public static final int result_address_book=0x7f070065;
         public static final int result_calendar=0x7f070066;
         public static final int result_email_address=0x7f070067;
@@ -270,9 +269,9 @@ public final class R {
         public static final int result_uri=0x7f07006e;
         public static final int result_wifi=0x7f07006f;
         public static final int sbc_name=0x7f070070;
-        public static final int scan_qr=0x7f070080;
-        public static final int show_qr=0x7f070081;
-        public static final int title_activity_main=0x7f07007e;
+        public static final int scan_qr=0x7f07007d;
+        public static final int search_entry=0x7f070085;
+        public static final int show_qr=0x7f07007e;
         public static final int title_activity_qr=0x7f070076;
         public static final int wifi_changing_network=0x7f070071;
         public static final int wifi_ssid_label=0x7f070072;

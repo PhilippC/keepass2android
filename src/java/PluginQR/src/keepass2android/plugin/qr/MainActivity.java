@@ -1,15 +1,30 @@
 package keepass2android.plugin.qr;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import keepass2android.pluginsdk.AccessManager;
+import keepass2android.pluginsdk.KeepassDefs;
+import keepass2android.pluginsdk.Kp2aControl;
 import keepass2android.pluginsdk.Strings;
 
 import com.google.zxing.client.android.CaptureActivity;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Fragment;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +33,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends Activity {
@@ -41,39 +57,134 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 	
 	    if (requestCode == 0) {
 	        if (resultCode == RESULT_OK) {
-	            String contents = intent.getStringExtra("SCAN_RESULT");
-	            Log.d("QR", contents);
-	
-	           // Toast.makeText(this, contents, Toast.LENGTH_SHORT).show();
-	           } else if (resultCode == RESULT_CANCELED) {
+	            final String contents = intent.getStringExtra("SCAN_RESULT");
+	            if (contents.startsWith("kp2a:"))
+	            {
+	            	//received a full entry
+	            	String entryText = contents.substring("kp2a:".length());
+	            	try
+		            {
+		            	JSONObject json = new JSONObject(entryText);
+		            	String outputData = json.get("fields").toString();
+		            
+		            	String protectedFields = null;
+		            	if (json.has("p"))
+		            		protectedFields = json.get("p").toString();
+		            	
+		            	ArrayList<String> protectedFieldsList = null;
+		            	if (!TextUtils.isEmpty(protectedFields))
+		        		{
+		        			JSONArray protectedFieldsJson = new JSONArray(protectedFields);
+		        			protectedFieldsList = new ArrayList<String>();
+		        			for (int i=0; i<protectedFieldsJson.length(); i++) {
+		        			    protectedFieldsList.add( protectedFieldsJson.getString(i) );
+		        			}
+		        		}
+		            	
+		            	Intent startKp2aIntent = Kp2aControl.getAddEntryIntent(outputData, protectedFieldsList);
+		            	startActivity(startKp2aIntent);
+		            }
+		            catch (JSONException e)
+		            {
+		            	e.printStackTrace();
+		            	Toast.makeText(this, "Error reading entry", Toast.LENGTH_SHORT).show();
+		            }	
+	            	catch (ActivityNotFoundException e)
+	            	{
+	            		Toast.makeText(this, getString(R.string.no_host_app), Toast.LENGTH_SHORT).show();
+	            	}
+	            }
+	            else
+	            {
+	            	//received some text
+	            	AlertDialog.Builder b = new Builder(this);
+	            	b.setMessage(R.string.qr_question)
+	            	.setPositiveButton(R.string.create_entry, new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							try
+				            {
+				            	HashMap<String, String> fields = new HashMap<String, String>();
+				            	if ((contents.startsWith("http://")) || (contents.startsWith("https://"))
+				            			|| (contents.startsWith("ftp://")))
+		            			{
+				            		fields.put(KeepassDefs.UrlField, contents);
+		            			}
+				            	else
+				            	{
+				            		fields.put(KeepassDefs.PasswordField, contents);
+				            	}
+				            	
+				            	Intent startKp2aIntent = Kp2aControl.getAddEntryIntent(fields, null);
+				            	startActivity(startKp2aIntent);
+				            }
+				            catch (ActivityNotFoundException e)
+			            	{
+			            		Toast.makeText(MainActivity.this, R.string.no_host_app, Toast.LENGTH_SHORT).show();
+			            	} 
+							
+						}
+					})
+					.setNegativeButton(R.string.search_entry, new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							try
+				            {
+				            	Intent startKp2aIntent = Kp2aControl.getOpenEntryIntent(contents, true, false);				            	
+				            	startActivity(startKp2aIntent);
+				            }
+				            catch (ActivityNotFoundException e)
+			            	{
+			            		Toast.makeText(MainActivity.this, R.string.no_host_app, Toast.LENGTH_SHORT).show();
+			            	} 
+							
+						}
+					}).create().show();
+	            	
+	            	
+	            	
+	            }
+	            
+	           	} else if (resultCode == RESULT_CANCELED) {
 	            // Handle cancel
 	
 	        }
 	        return;
 	
 	    }
+	    if (requestCode == 124) {
+	    	if (resultCode == RESULT_OK)
+	    	{
+	    		if (intent != null)
+	    		{
+	    			Intent i = new Intent(this, QRActivity.class);
+	    			i.putExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA, intent.getStringExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA));
+	    			i.putExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST, intent.getStringExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST));
+	    			i.putExtra(Strings.EXTRA_SENDER, intent.getStringExtra(Strings.EXTRA_SENDER));
+	    			i.putExtra(Strings.EXTRA_ENTRY_ID, intent.getStringExtra(Strings.EXTRA_ENTRY_ID));
+	    			startActivity(i);		
+	    		}
+	    		
+	    	}
+	    	else
+	    	{
+	    		Log.d("QR", "No data received :-(");
+	    	}
+	    	
+	    }
 	    super.onActivityResult(requestCode, resultCode, intent);
 	
 	}
 
+	
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
@@ -125,7 +236,7 @@ public class MainActivity extends Activity {
 				
 				@Override
 				public void onClick(View v) {
-					//todo
+					getActivity().startActivityForResult(Kp2aControl.getQueryEntryIntent(null),124);
 					Log.d("QR", "ShowqR");
 				}
 			});

@@ -11,6 +11,7 @@ public class AccessReceiver extends PluginAccessBroadcastReceiver {
 	public ArrayList<String> getScopes() {
 		ArrayList<String> scopes = new ArrayList<String>();
 		scopes.add(Strings.SCOPE_CURRENT_ENTRY);
+		scopes.add(Strings.SCOPE_QUERY_CREDENTIALS);
 		return scopes;
 	}
 

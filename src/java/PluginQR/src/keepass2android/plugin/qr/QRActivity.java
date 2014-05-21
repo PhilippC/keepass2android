@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,7 +65,6 @@ public class QRActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if ((getIntent() != null) && (getIntent().getStringExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA)!= null))
-		Log.d("QR", getIntent().getStringExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA));
 		
 		setContentView(R.layout.activity_qr);
 
@@ -100,6 +100,12 @@ public class QRActivity extends Activity {
 		ImageView mImageView;
 		TextView mErrorView;
 		HashMap<String, String> mEntryOutput;
+		
+		//JSON-Array with field keys of the protected strings.
+		//We don't need that list (so don't deserialize) other than for 
+		//forwarding to KP2A
+		String mProtectedFieldsList;
+		
 		ArrayList<String> mFieldList = new ArrayList<String>();
 		Spinner mSpinner;
 		String mHostname;
@@ -140,6 +146,7 @@ public class QRActivity extends Activity {
 			mSpinner = (Spinner) rootView.findViewById(R.id.spinner);
 			
 			mEntryOutput = getEntryFieldsFromIntent(getActivity().getIntent());
+			mProtectedFieldsList = getProtectedFieldsList(getActivity().getIntent());
 			
 			ArrayList<String> spinnerItems = new ArrayList<String>();
 			spinnerItems.add(getActivity().getString(R.string.all_fields));
@@ -240,6 +247,12 @@ public class QRActivity extends Activity {
 			return rootView;
 		}
 
+		private String getProtectedFieldsList(Intent intent) {
+			if (intent == null)
+				return null;
+			return intent.getStringExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST);
+		}
+
 		private void addIfExists(String fieldKey, String resKey,
 				ArrayList<String> spinnerItems) {
 			if (!TextUtils.isEmpty(mEntryOutput.get(fieldKey)))
@@ -265,21 +278,25 @@ public class QRActivity extends Activity {
 
 			if (fieldId == null)
 			{
-				res = "kp2a:\n";
-				for (String k:mFieldList)
-				{
-					if (k == null)
-						continue;
-					res += QRCodeEncoder.escapeMECARD(k)+":";
-					res += QRCodeEncoder.escapeMECARD(mEntryOutput.get(k))+";\n";
+				
+				try {
+					JSONObject json = new JSONObject();
+					json.put("fields", new JSONObject(mEntryOutput));
+					if (!TextUtils.isEmpty(mProtectedFieldsList))
+					{
+						json.put("p", new JSONArray(mProtectedFieldsList));
+					}
+					res = "kp2a:"+json.toString();
+				} catch (JSONException e) {
+					res = "error: " + e.toString();
 				}
+				
 			}
 			else
 			{
 				if ((mCbIncludeLabel.isChecked()))
 				{
 					res = fieldId+": ";
-					
 				}
 				res += mEntryOutput.get(fieldId);
 			}
