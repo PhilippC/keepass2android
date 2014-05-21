@@ -22,7 +22,10 @@ namespace keepass2android
 		private const string _tag = "KP2A_PluginHost";
 
 
-		private static readonly string[] _validScopes = { Strings.ScopeDatabaseActions, Strings.ScopeCurrentEntry };
+		private static readonly string[] _validScopes = { Strings.ScopeDatabaseActions, 
+															Strings.ScopeCurrentEntry,
+															Strings.ScopeQueryCredentials,
+															Strings.ScopeQueryCredentialsForOwnPackage};
 
 		public static IEnumerable<string> GetAllPlugins(Context ctx)
 		{
@@ -154,9 +157,16 @@ namespace keepass2android
 			//add the output string array (placeholders replaced taking into account the db context)
 			Dictionary<string, string> outputFields = entry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
 
-			JSONObject json = new JSONObject(outputFields);
-			var jsonStr = json.ToString();
-			intent.PutExtra(Strings.ExtraEntryOutputData, jsonStr);
+			JSONObject jsonOutput = new JSONObject(outputFields);
+			var jsonOutputStr = jsonOutput.ToString();
+			intent.PutExtra(Strings.ExtraEntryOutputData, jsonOutputStr);
+
+			JSONArray jsonProtectedFields = new JSONArray(
+				entry.OutputStrings
+					.Where(pair => pair.Value.IsProtected)
+					.Select(pair => pair.Key)
+					.ToArray());
+			intent.PutExtra(Strings.ExtraProtectedFieldsList, jsonProtectedFields.ToString());
 
 			intent.PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString());
 

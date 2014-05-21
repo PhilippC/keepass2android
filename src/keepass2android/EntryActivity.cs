@@ -38,7 +38,6 @@ using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Utility;
 using Keepass2android.Pluginsdk;
-using PluginHostTest;
 using keepass2android.Io;
 using Uri = Android.Net.Uri;
 

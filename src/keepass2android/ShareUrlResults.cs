@@ -59,7 +59,8 @@ namespace keepass2android
 		{
 			base.OnCreate(savedInstanceState);
 
-			SetResult(KeePass.ExitCloseAfterTaskComplete);
+			//if user presses back to leave this activity:
+			SetResult(Result.Canceled);
 
 			_db = App.Kp2a.GetDb();
 			if (App.Kp2a.DatabaseIsUnlocked)
@@ -77,12 +78,6 @@ namespace keepass2android
 			AppTask.ToBundle(outState);
 		}
 
-		public override void LaunchActivityForEntry(KeePassLib.PwEntry pwEntry, int pos)
-		{
-			base.LaunchActivityForEntry(pwEntry, pos);
-			Finish();
-		}
-		
 		private void Query(String url)
 		{	
 			try
@@ -105,13 +100,11 @@ namespace keepass2android
 			} catch (Exception e)
 			{
 				Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+				SetResult(Result.Canceled);
 				Finish();
 				return;
 			}
 			
-				
-			
-
 			//if there is exactly one match: open the entry
 			if (Group.Entries.Count() == 1)
 			{
@@ -153,22 +146,15 @@ namespace keepass2android
 			{
 				createUrlEntry.Visibility = ViewStates.Gone;
 			}
-
-			
-
 		}
 
 		public override bool OnSearchRequested()
 		{
-			if (base.OnSearchRequested())
-			{
-				Finish();
-				return true;
-			} 
-			else
-			{
-				return false;
-			}
+			Intent i = new Intent(this, typeof(SearchActivity));
+			AppTask.ToIntent(i);
+			i.SetFlags(ActivityFlags.ForwardResult);
+			StartActivity(i);
+			return true;
 		}
 	}}
 

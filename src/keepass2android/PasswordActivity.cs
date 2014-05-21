@@ -159,11 +159,11 @@ namespace keepass2android
 	
 			
 			Intent i = new Intent(act, typeof(PasswordActivity));
-			i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
+			i.SetFlags(ActivityFlags.ForwardResult);
 			i.PutExtra(KeyFilename, fileName);
 			appTask.ToIntent(i);
 
-			act.StartActivityForResult(i, 0);
+			act.StartActivity(i);
 			
 		}
 		
@@ -179,7 +179,7 @@ namespace keepass2android
 			Intent i = new Intent(act, typeof(PasswordActivity));
 			
 			PutIoConnectionToIntent(ioc, i);
-			i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.ForwardResult);
+			i.SetFlags(ActivityFlags.ForwardResult);
 
 			appTask.ToIntent(i);
 
@@ -355,7 +355,7 @@ namespace keepass2android
 			// and if the activity is not launched from history (i.e. recent tasks) because this would mean that
 			// the Activity was closed already (user cancelling the task or task complete) but is restarted due recent tasks.
 			// Don't re-start the task (especially bad if tak was complete already)
-			if ((savedInstanceState == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
+			if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
 			{
 				AppTask = new NullTask();
 			}

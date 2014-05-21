@@ -419,6 +419,9 @@
 	<string name="plugin_enabled">enabled</string>
 	<string name="plugin_disabled">disabled</string>
 	<string name="plugin_web">Find plug-ins online</string>
+
+	<string name="query_credentials_for_url">%1$s is requesting credentials for %2$s.</string>
+	<string name="query_credentials">%1$s is requesting credentials. Please select an entry.</string>
 	
 	<string name="plugin_enabled_checkbox">Enabled</string>
 
@@ -427,6 +430,12 @@
 
 	<string name="SCOPE_CURRENT_ENTRY_title">Current entry data</string>
 	<string name="SCOPE_CURRENT_ENTRY_explanation">Plugin will receive all data about the current database entry and will be allowed to offer actions and modify the display of it.</string>
+	
+	<string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Query own credentials</string>
+	<string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin will be allowed to query the credentials associated with its own application package.</string>
+	
+	<string name="SCOPE_QUERY_CREDENTIALS_title">Query credentials</string>
+	<string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin will be allowed to query credentials for deliberate web sites or applications.</string>
 
 
 	<string name="get_regular_version">Get more storage types</string>

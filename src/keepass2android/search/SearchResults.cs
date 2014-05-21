@@ -120,12 +120,11 @@ namespace keepass2android.search
 
 		public override bool OnSearchRequested()
 		{
-			if (base.OnSearchRequested())
-			{
-				Finish();
-				return true;
-			}
-			return false;
+			Intent i = new Intent(this, typeof(SearchActivity));
+			AppTask.ToIntent(i);
+			i.SetFlags(ActivityFlags.ForwardResult);
+			StartActivity(i);
+			return true;
 		}
 	}
 }

@@ -26,6 +26,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using KeePassLib.Serialization;
+using Keepass2android.Pluginsdk;
 using keepass2android.Io;
 using Environment = Android.OS.Environment;
 
@@ -42,6 +43,8 @@ namespace keepass2android
 		Label = "@string/kp2a_findUrl", 
 		Categories=new[]{Intent.CategoryDefault}, 
 		DataMimeType="text/plain")]
+	[IntentFilter(new[] { Strings.ActionStartWithTask },
+		Categories = new[] { Intent.CategoryDefault })]
 	public class FileSelectActivity : ListActivity
 	{
 		private readonly ActivityDesign _design;
@@ -84,7 +87,7 @@ namespace keepass2android
 			else
 			{
 				//see PasswordActivity for an explanation
-				if ((savedInstanceState == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
+				if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
 				{
 					AppTask = new NullTask();
 				}

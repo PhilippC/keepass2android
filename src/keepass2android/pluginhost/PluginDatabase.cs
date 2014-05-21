@@ -171,5 +171,30 @@ namespace keepass2android
 			var prefs = _ctx.GetSharedPreferences("KP2A.Plugin." + plugin, FileCreationMode.Private);
 			prefs.Edit().Clear().Commit();
 		}
+
+		/// <summary>
+		/// Checks if the given pluginPackage has been granted the requiredScope
+		/// </summary>
+		public bool HasAcceptedScope(string pluginPackage, string requiredScope)
+		{
+			if (pluginPackage == null)
+			{
+				Log.Warn(_tag, "No pluginPackage specified!");
+				return false;
+			}
+
+			var prefs = GetPreferencesForPlugin(pluginPackage);
+			if (prefs.GetString(_accessToken, null) == null)
+			{
+				Log.Info(_tag, "No access token for " + pluginPackage);
+				return false;
+			}
+			if (!AccessManager.StringToStringArray(prefs.GetString(_scopes, "")).Contains(requiredScope))
+			{
+				Log.Info(_tag, "Scope " + requiredScope + " not granted for " + pluginPackage);
+				return false;
+			}
+			return true;
+		}
 	}
 }

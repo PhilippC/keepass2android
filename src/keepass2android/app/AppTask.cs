@@ -49,23 +49,23 @@ namespace keepass2android
 	}
 
 	/// <summary>
-	/// represents data stored in an intent or bundle as extra string array
+	/// represents data stored in an intent or bundle as extra string array list
 	/// </summary>
-	public class StringArrayExtra : IExtra
+	public class StringArrayListExtra : IExtra
 	{
 		public string Key { get; set; }
-		public string[] Value { get; set; }
+		public IList<string> Value { get; set; }
 
 		#region IExtra implementation
 
 		public void ToBundle(Bundle b)
 		{
-			b.PutStringArray(Key, Value);
+			b.PutStringArrayList(Key, Value);
 		}
 
 		public void ToIntent(Intent i)
 		{
-			i.PutExtra(Key, Value);
+			i.PutStringArrayListExtra(Key, Value);
 		}
 
 		#endregion
@@ -268,7 +268,9 @@ namespace keepass2android
 	/// <summary>
 	/// User is about to search an entry for a given URL
 	/// </summary>
-	public class SearchUrlTask: AppTask
+	/// Derive from SelectEntryTask. This means that as soon as an Entry is opened, we're returning with
+	/// ExitAfterTaskComplete. This also allows te specify the flag if we need to display the user notifications.
+	public class SearchUrlTask: SelectEntryTask
 	{
 		public const String UrlToSearchKey = "UrlToSearch";
 
@@ -280,18 +282,29 @@ namespace keepass2android
 
 		public override void Setup(Bundle b)
 		{
+			base.Setup(b);
 			UrlToSearchFor = b.GetString(UrlToSearchKey);
 		}
 		public override IEnumerable<IExtra> Extras 
 		{ 
 			get
 			{
+				foreach (IExtra e in base.Extras)
+					yield return e;
 				yield return new StringExtra { Key=UrlToSearchKey, Value = UrlToSearchFor };
 			}
 		}
 		public override void AfterUnlockDatabase(PasswordActivity act)
 		{
-			ShareUrlResults.Launch(act, this);
+			if (String.IsNullOrEmpty(UrlToSearchFor))
+			{
+				GroupActivity.Launch(act, new SelectEntryTask() { ShowUserNotifications =  ShowUserNotifications});
+			}
+			else
+			{
+				ShareUrlResults.Launch(act, this);
+			}
+			
 
 			//removed. this causes an issue in the following workflow:
 			//When the user wants to find an entry for a URL but has the wrong database open he needs 
@@ -308,13 +321,6 @@ namespace keepass2android
 			//act.AppTask = new NullTask();
 		}
 
-		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
-		{
-			//show the notifications
-			activity.StartNotificationsService(true);
-			//close
-			activity.CloseAfterTaskComplete();
-		}
 
 	}
 
@@ -324,12 +330,59 @@ namespace keepass2android
 	/// </summary>
 	public class SelectEntryTask: AppTask
 	{
+		public SelectEntryTask()
+		{
+			ShowUserNotifications = true;
+			CloseAfterCreate = true;
+		}
+
+		public const String ShowUserNotificationsKey = "ShowUserNotifications";
+
+		public bool ShowUserNotifications { get; set; }
+
+		public const String CloseAfterCreateKey = "CloseAfterCreate";
+
+		public bool CloseAfterCreate { get; set; }
+
+
+		public override void Setup(Bundle b)
+		{
+			ShowUserNotifications = GetBoolFromBundle(b, ShowUserNotificationsKey, true);
+			CloseAfterCreate = GetBoolFromBundle(b, CloseAfterCreateKey, true);
+		}
+
+		private static bool GetBoolFromBundle(Bundle b, string key, bool defaultValue)
+		{
+			bool boolValue;
+			if (!Boolean.TryParse(b.GetString(key), out boolValue))	
+			{
+				boolValue = defaultValue; 
+			}
+			return boolValue;
+		}
+
+		public override IEnumerable<IExtra> Extras
+		{
+			get
+			{
+				yield return new StringExtra { Key = ShowUserNotificationsKey, Value = ShowUserNotifications.ToString() };
+				yield return new StringExtra { Key = CloseAfterCreateKey, Value = CloseAfterCreate.ToString() };
+			}
+		}
+
 		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
-			//show the notifications
-			activity.StartNotificationsService(true);
-			//close
-			activity.CloseAfterTaskComplete();
+			if (ShowUserNotifications)
+			{
+				//show the notifications
+				activity.StartNotificationsService(CloseAfterCreate);
+				
+			}
+			if (CloseAfterCreate)
+			{
+				//close
+				activity.CloseAfterTaskComplete();	
+			}
 		}
 	}
 
@@ -337,7 +390,7 @@ namespace keepass2android
 	/// User is about to select an entry. When selected, ask whether the url he was searching for earlier should be stored 
 	/// in the selected entry for later use.
 	/// </summary>
-	public class SelectEntryForUrlTask: AppTask
+	public class SelectEntryForUrlTask: SelectEntryTask
 	{
 		/// <summary>
 		/// default constructor for creating from Bundle
@@ -350,10 +403,11 @@ namespace keepass2android
 		public SelectEntryForUrlTask(string url)
 		{
 			UrlToSearchFor = url;
+			ShowUserNotifications = true;
 		}
 
 		public const String UrlToSearchKey = "UrlToSearch";
-
+		
 		public string UrlToSearchFor
 		{
 			get;
@@ -362,34 +416,31 @@ namespace keepass2android
 
 		public override void Setup(Bundle b)
 		{
+			base.Setup(b);
 			UrlToSearchFor = b.GetString(UrlToSearchKey);
 		}
 		public override IEnumerable<IExtra> Extras
 		{
 			get
 			{
+				foreach (IExtra e in base.Extras)
+					yield return e;
 				yield return new StringExtra { Key = UrlToSearchKey, Value = UrlToSearchFor };
 			}
 		}
 
 		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
-			//if the database is readonly, don't offer to modify the URL
-			if (App.Kp2a.GetDb().CanWrite == false)
+			//if the database is readonly (or no URL exists), don't offer to modify the URL
+			if ((App.Kp2a.GetDb().CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor)))
 			{
-				ShowNotificationsAndClose(activity);
+				base.CompleteOnCreateEntryActivity(activity);
 				return;
 			}
 
 
 			AskAddUrlThenCompleteCreate(activity, UrlToSearchFor);
 
-		}
-
-		private static void ShowNotificationsAndClose(EntryActivity activity)
-		{
-			activity.StartNotificationsService(true);
-			activity.CloseAfterTaskComplete();
 		}
 
 		/// <summary>
@@ -404,17 +455,16 @@ namespace keepass2android
 
 			builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
 			{
-				activity.AddUrlToEntry(url, () => ShowNotificationsAndClose(activity));
+				activity.AddUrlToEntry(url, () => base.CompleteOnCreateEntryActivity(activity));
 			});
 
 			builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>
 			{
-				ShowNotificationsAndClose(activity);
+				base.CompleteOnCreateEntryActivity(activity);
 			});
 
 			Dialog dialog = builder.Create();
 			dialog.Show();
-
 		}
 		
 	}
@@ -477,17 +527,35 @@ namespace keepass2android
 		/// </summary>
 		public const String ProtectedFieldsListKey = Keepass2android.Pluginsdk.Strings.ExtraProtectedFieldsList;
 
+
+		/// <summary>
+		/// Extra key to specify whether user notifications (e.g. for copy password or keyboard) should be displayed when the entry 
+		/// is selected after creating.
+		/// </summary>
+		public const String ShowUserNotificationsKey = "ShowUserNotifications";
+
+
 		public string Url { get; set; }
 
 		public string AllFields { get; set; }
 
-		public string[] ProtectedFieldsList { get; set; }
+		public IList<string> ProtectedFieldsList { get; set; }
+
+		public bool ShowUserNotifications { get; set; }
+
 
 		public override void Setup(Bundle b)
 		{
+			bool showUserNotification; 
+			if (!Boolean.TryParse(b.GetString(ShowUserNotificationsKey), out showUserNotification))
+			{
+				showUserNotification = true; //default to true
+			}
+			ShowUserNotifications = showUserNotification;
+			
 			Url = b.GetString(UrlKey);
 			AllFields = b.GetString(AllFieldsKey);
-			ProtectedFieldsList = b.GetStringArray(ProtectedFieldsListKey);
+			ProtectedFieldsList = b.GetStringArrayList(ProtectedFieldsListKey);
 		}
 		public override IEnumerable<IExtra> Extras 
 		{ 
@@ -498,7 +566,9 @@ namespace keepass2android
 				if (AllFields != null)
 					yield return new StringExtra { Key = AllFieldsKey, Value = AllFields };
 				if (ProtectedFieldsList != null)
-					yield return new StringArrayExtra { Key = ProtectedFieldsListKey, Value = ProtectedFieldsList };
+					yield return new StringArrayListExtra { Key = ProtectedFieldsListKey, Value = ProtectedFieldsList };
+				
+				yield return new StringExtra { Key = ShowUserNotificationsKey, Value = ShowUserNotifications.ToString() };
 			}
 		}
 		
@@ -511,17 +581,14 @@ namespace keepass2android
 			}
 			if (AllFields != null)
 			{
-				IList<string> protectedFieldsKeys = new List<string>();
-				if (ProtectedFieldsList != null)
-				{
-					protectedFieldsKeys = new Org.Json.JSONArray(ProtectedFieldsList).ToArray<string>();
-				}
+				
 				var allFields = new Org.Json.JSONObject(AllFields);
 				for (var iter = allFields.Keys(); iter.HasNext; )
 				{
 					string key = iter.Next().ToString();
 					string value = allFields.Get(key).ToString();
-					bool isProtected = protectedFieldsKeys.Contains(key) || key == PwDefs.PasswordField;
+					bool isProtected = ((ProtectedFieldsList != null) && (ProtectedFieldsList.Contains(key))) 
+						|| (key == PwDefs.PasswordField);
 					newEntry.Strings.Set(key, new ProtectedString(isProtected, value));
 				}
 				
@@ -531,7 +598,9 @@ namespace keepass2android
 
 		public override void AfterAddNewEntry(EntryEditActivity entryEditActivity, PwEntry newEntry)
 		{
-			EntryActivity.Launch(entryEditActivity, newEntry, -1, new SelectEntryTask(), ActivityFlags.ForwardResult);
+			EntryActivity.Launch(entryEditActivity, newEntry, -1, 
+				new SelectEntryTask() { ShowUserNotifications = this.ShowUserNotifications}, 
+				ActivityFlags.ForwardResult);
 			//no need to call Finish here, that's done in EntryEditActivity ("closeOrShowError")	
 		}
 		

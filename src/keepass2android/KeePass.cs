@@ -40,6 +40,9 @@ using String = System.String;
  * While the database is closed, there is only one activity on the stack: Keepass -> FileSelect <-> Password.
  * After opening an database (in Password), Password is always the root of the stack (exception: after creating a database, 
  * FileSelect is the root without Password being open). 
+ * Another exception: QueryCredentialsActivity is root of the stack if an external app is querying credentials.
+ * QueryCredentialsActivity checks the plugin access permissions, then launches FileSelectActivity (which starts
+ * the normal stack.)
  * 
  * Some possible stacks:
  * Password -> Group ( -> Group (subgroups) ... ) -> EntryView -> EntryEdit
@@ -184,6 +187,7 @@ namespace keepass2android
 		private static String LIB_DALVIK = "libdvm.so";
 		private static String LIB_ART = "libart.so";
 		private static String LIB_ART_D = "libartd.so";
+		public static string StartWithTask = "keepass2android.ACTION_START_WITH_TASK";
 
 		public KeePass()
 		{

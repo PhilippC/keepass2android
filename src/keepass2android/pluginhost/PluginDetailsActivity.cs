@@ -15,10 +15,9 @@ using Android.Views;
 using Android.Widget;
 using Java.Util;
 using Keepass2android.Pluginsdk;
-using keepass2android;
 using keepass2android.views;
 
-namespace PluginHostTest
+namespace keepass2android
 {
 	[Activity(Label = AppNames.AppName)]
 	[IntentFilter(new[] { Strings.ActionEditPluginSettings },

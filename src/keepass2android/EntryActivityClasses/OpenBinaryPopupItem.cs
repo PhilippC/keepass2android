@@ -1,5 +1,4 @@
 using Android.Graphics.Drawables;
-using PluginHostTest;
 
 namespace keepass2android
 {

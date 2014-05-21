@@ -167,18 +167,6 @@ namespace keepass2android
 			return cv.OnContextItemSelected(item);
 		}
 		
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			switch (resultCode)
-			{
-				
-				case Result.Canceled:
-					break;
-				default:
-					base.OnActivityResult(requestCode, resultCode, data);
-					break;
-			}
-		}
 	}
 }
 

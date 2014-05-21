@@ -6,7 +6,6 @@ using Android.Content;
 using Android.Views;
 using System.Collections.Generic;
 using Android.App;
-using PluginHostTest;
 
 namespace keepass2android
 {
