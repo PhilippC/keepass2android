@@ -98,6 +98,7 @@
     <Compile Include="app\NoFileStorageFoundException.cs" />
     <Compile Include="app\OtpAuxCacheSupervisor.cs" />
     <Compile Include="AboutActivity.cs" />
+    <Compile Include="ChallengeInfo.cs" />
     <Compile Include="CreateDatabaseActivity.cs" />
     <Compile Include="CreateNewFilename.cs" />
     <Compile Include="EntryActivityClasses\CopyToClipboardPopupMenuIcon.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="ChangeLog.cs" />
     <Compile Include="icons\DrawableFactory.cs" />
     <Compile Include="icons\Icons.cs" />
+    <Compile Include="KeeChallenge.cs" />
     <Compile Include="NfcOtpActivity.cs" />
     <Compile Include="pluginhost\PluginArrayAdapter.cs" />
     <Compile Include="pluginhost\PluginDatabase.cs" />
