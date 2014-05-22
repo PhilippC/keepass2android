@@ -939,21 +939,6 @@
     <AndroidResource Include="Resources\values-bg-rBG\strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_launcher_gray_bday.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi-v11\ic_launcher_gray_bday.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-v11\ic_launcher_gray_bday.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi-v11\ic_launcher_gray_bday.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi-v11\ic_launcher_gray_bday.png" />
-  </ItemGroup>
-  <ItemGroup>
     <TransformFile Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
 </Project>

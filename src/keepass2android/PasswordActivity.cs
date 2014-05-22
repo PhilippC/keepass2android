@@ -124,7 +124,7 @@ namespace keepass2android
 		private bool _starting;
 		private OtpInfo _otpInfo;
         private ChallengeInfo _chalInfo;
-        private byte[] _challengeResponse;
+        private byte[] _challengeSecret;
 		private readonly int[] _otpTextViewIds = new[] {Resource.Id.otp1, Resource.Id.otp2, Resource.Id.otp3, Resource.Id.otp4, Resource.Id.otp5, Resource.Id.otp6};
 		private const string OtpInfoKey = "OtpInfoKey";
 		private const string EnteredOtpsKey = "EnteredOtpsKey";
@@ -284,7 +284,49 @@ namespace keepass2android
 					}
 					break;              
 			}
-            if (requestCode == RequestCodeChallengeYubikey && resultCode == Result.Ok) _challengeResponse = data.GetByteArrayExtra("response");
+            if (requestCode == RequestCodeChallengeYubikey && resultCode == Result.Ok) 
+			{
+				byte[] challengeResponse = data.GetByteArrayExtra("response");
+				_challengeSecret = KeeChallengeProv.GetSecret(_chalInfo, challengeResponse);
+                UpdateOkButtonState();
+				if (_challengeSecret != null)
+                {
+					new LoadingDialog<object, object, object>(this, true,
+						//doInBackground
+					delegate
+					{
+						//save aux file
+						try
+						{
+							ChallengeInfo temp = KeeChallengeProv.Encrypt(_challengeSecret);
+							IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
+							IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(_ioConnection),
+								fileStorage.GetFilenameWithoutPathAndExt(_ioConnection) + ".xml");
+							if (!temp.Save(iocAux))
+							{
+								Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long).Show();
+								return false;
+							}
+							Array.Clear(challengeResponse, 0, challengeResponse.Length);
+						}
+						catch (Exception e)
+						{
+							Kp2aLog.Log(e.ToString());
+						}
+						return null;
+					}
+					, delegate
+					{
+						
+					}).Execute();
+            
+                }
+                else
+                {
+                    Toast.MakeText(this, Resource.String.bad_resp, ToastLength.Long).Show();
+                    return;
+                }
+			}
 		}
 
 
@@ -754,7 +796,7 @@ namespace keepass2android
 					FindViewById(Resource.Id.pass_ok).Enabled = FindViewById<EditText>(Resource.Id.pass_otpsecret).Text != "" && _password != "";
 					break;
                 case KeyProviders.Chal:
-					FindViewById(Resource.Id.pass_ok).Enabled = true;
+					FindViewById(Resource.Id.pass_ok).Enabled = _challengeSecret != null;
                     break;
                 case KeyProviders.ChalRecovery:
 				FindViewById(Resource.Id.pass_ok).Enabled = true;
@@ -784,6 +826,7 @@ namespace keepass2android
 			if (KeyProviderType == KeyProviders.Chal) 
 			{
 				FindViewById (Resource.Id.otpView).Visibility = ViewStates.Visible;
+				FindViewById(Resource.Id.otps_pending).Visibility = ViewStates.Gone;
 			}
 			UpdateOkButtonState();
 		}
@@ -842,26 +885,8 @@ namespace keepass2android
 			}
             else if (KeyProviderType == KeyProviders.Chal)
             {
-                byte[] secret = KeeChallenge.KeeChallengeProv.GetSecret(_chalInfo, _challengeResponse);
-                if (secret != null)
-                {
-                    compositeKey.AddUserKey(new KcpCustomKey(KeeChallengeProv.Name, secret, true));
-                    ChallengeInfo temp = KeeChallengeProv.Encrypt(secret);
-                    IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
-                    IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(_ioConnection),
-                        fileStorage.GetFilenameWithoutPathAndExt(_ioConnection) + ".xml");
-                    if(!temp.Save(iocAux))
-                    {
-                        Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long).Show();
-                        return;  
-                    }
-                    Array.Clear(secret, 0, secret.Length);
-                }
-                else
-                {
-                    Toast.MakeText(this, Resource.String.bad_resp, ToastLength.Long).Show();
-                    return;
-                }
+                compositeKey.AddUserKey(new KcpCustomKey(KeeChallengeProv.Name, _challengeSecret, true));
+                 
             }
 
 			CheckBox cbQuickUnlock = (CheckBox) FindViewById(Resource.Id.enable_quickunlock);
@@ -1230,12 +1255,8 @@ namespace keepass2android
 			{
 				if ( Success ) 
 				{
-					_act.SetEditText(Resource.Id.password, "");
-					_act.SetEditText(Resource.Id.pass_otpsecret, "");
-					foreach (int otpId in  _act._otpTextViewIds)
-					{
-						_act.SetEditText(otpId, "");
-					}
+					
+					_act.ClearEnteredPassword();
 
 					_act.LaunchNextActivity();
 
@@ -1247,6 +1268,18 @@ namespace keepass2android
 				_act._performingLoad = false;
 
 			}
+		}
+
+		private void ClearEnteredPassword()
+		{
+			SetEditText(Resource.Id.password, "");
+			SetEditText(Resource.Id.pass_otpsecret, "");
+			foreach (int otpId in _otpTextViewIds)
+			{
+				SetEditText(otpId, "");
+			}
+			Array.Clear(_challengeSecret, 0, _challengeSecret.Length);
+			_challengeSecret = null;
 		}
 
 		class SaveOtpAuxFileAndLoadDb : LoadDb
