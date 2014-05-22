@@ -398,17 +398,7 @@
 	<string name="ErrorUpdatingOtpAuxFile">Error updating OTP auxiliary file!</string>
 	<string name="SavingOtpAuxFile">Saving auxiliary OTP file…</string>
 
-    <string name="challenging">Challenging</string>
-    <string name="swipe">Please swipe your YubiKey NEO</string>
-    <string name="swipe_and_hold">Please swipe and hold your YubiKey NEO</string>
-    <string name="totp">Oath TOTP</string>
-    <string name="challenge_failed">Failed getting response, is the YubiKey configured in challenge-response mode?</string>
-    <string name="lost_tag">YubiKey NEO lost during operation</string>
-    <string name="tag_error">Error communication with YubiKey: </string>
-    <string name="nfc_off">NFC seems to be off, turn on?</string>
-    <string name="no_nfc">This device seems to not support NFC</string>
-    <string name="response_error">YubiKey Error</string>
-    <string name="bad_resp">The response from the YubiKey is incorrect</string>
+    <string name="bad_resp">The challenge response is incorrect.</string>
   <string name="CouldntLoadChalAuxFile">Could not load auxiliary challenge file!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Please use the KeeChallenge plugin in KeePass 2.x (PC) to configure your database for use with challenge-response!</string>
   <string name="ErrorUpdatingChalAuxFile">Error updating OTP auxiliary file!</string>
