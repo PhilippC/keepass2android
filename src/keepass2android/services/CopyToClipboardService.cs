@@ -57,12 +57,26 @@ namespace keepass2android
 			ctx.StartService(i);
 		}
 
+		static public void ActivateKeyboard(Context ctx)
+		{
+			Intent i = new Intent(ctx, typeof(CopyToClipboardService));
+			i.SetAction(Intents.ActivateKeyboard);
+			ctx.StartService(i);
+		}
+
+		public static void CancelNotifications(Context ctx)
+		{
+			
+			Intent i = new Intent(ctx, typeof(CopyToClipboardService));
+			i.SetAction(Intents.ClearNotificationsAndData);
+			ctx.StartService(i);
+		}
+
 		public CopyToClipboardService (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 		}
 
-		CopyToClipboardBroadcastReceiver _copyToClipBroadcastReceiver;
 		NotificationDeletedBroadcastReceiver _notificationDeletedBroadcastReceiver;
 		StopOnLockBroadcastReceiver _stopOnLockBroadcastReceiver;
 
@@ -121,7 +135,7 @@ namespace keepass2android
 					bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KeyCloseAfterCreate, false);
 					DisplayAccessNotifications(entry, closeAfterCreate);
 				}
-				else
+				else //UpdateKeyboard
 				{
 					//this action is received when the data in the entry has changed (e.g. by plugins)
 					//update the keyboard data.
@@ -135,6 +149,15 @@ namespace keepass2android
 				
 				TimeoutCopyToClipboard(intent.GetStringExtra(_stringtocopy));
 			}
+			if (intent.Action == Intents.ActivateKeyboard)
+			{
+				ActivateKp2aKeyboard();
+			}
+			if (intent.Action == Intents.ClearNotificationsAndData)
+			{
+				ClearNotifications();
+			}
+			
 
 			return StartCommandResult.RedeliverIntent;
 		}
@@ -157,10 +180,6 @@ namespace keepass2android
 			if (_stopOnLockBroadcastReceiver != null)
 			{
 				UnregisterReceiver(_stopOnLockBroadcastReceiver);
-			}
-			if (_copyToClipBroadcastReceiver != null)
-			{
-				UnregisterReceiver(_copyToClipBroadcastReceiver);
 			}
 			if (_notificationDeletedBroadcastReceiver != null)
 			{
@@ -201,14 +220,7 @@ namespace keepass2android
 
 		public void DisplayAccessNotifications(PwEntryOutput entry, bool closeAfterCreate)
 		{
-			// Notification Manager
-			_notificationManager = (NotificationManager)GetSystemService(NotificationService);
-
-			_notificationManager.Cancel(NotifyPassword);
-			_notificationManager.Cancel(NotifyUsername);
-			_notificationManager.Cancel(NotifyKeyboard);
-			_numElementsToWaitFor = 0;
-			bool hadKeyboardData = ClearKeyboard(false); //do not broadcast if the keyboard was changed
+			var hadKeyboardData = ClearNotifications();
 
 			String entryName = entry.OutputStrings.ReadSafe(PwDefs.TitleField);
 
@@ -255,7 +267,7 @@ namespace keepass2android
                     // automatically bring up the Keyboard selection dialog
 					if ((closeAfterCreate) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
                     {
-                        ActivateKp2aKeyboard(this);
+                        ActivateKp2aKeyboard();
                     }
 				}
 
@@ -272,19 +284,29 @@ namespace keepass2android
 				return;
 			}
 
-			_copyToClipBroadcastReceiver = new CopyToClipboardBroadcastReceiver(entry, this);
-			
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.CopyUsername);
 			filter.AddAction(Intents.CopyPassword);
 			filter.AddAction(Intents.CheckKeyboard);
-			RegisterReceiver(_copyToClipBroadcastReceiver, filter);
 
 			//register receiver to get notified when notifications are discarded in which case we can shutdown the service
 			_notificationDeletedBroadcastReceiver = new NotificationDeletedBroadcastReceiver(this);
 			IntentFilter deletefilter = new IntentFilter();
 			deletefilter.AddAction(ActionNotificationCancelled);
 			RegisterReceiver(_notificationDeletedBroadcastReceiver, deletefilter);
+		}
+
+		private bool ClearNotifications()
+		{
+// Notification Manager
+			_notificationManager = (NotificationManager) GetSystemService(NotificationService);
+
+			_notificationManager.Cancel(NotifyPassword);
+			_notificationManager.Cancel(NotifyUsername);
+			_notificationManager.Cancel(NotifyKeyboard);
+			_numElementsToWaitFor = 0;
+			bool hadKeyboardData = ClearKeyboard(false); //do not broadcast if the keyboard was changed
+			return hadKeyboardData;
 		}
 
 		bool MakeAccessibleForKeyboard(PwEntryOutput entry)
@@ -434,6 +456,7 @@ namespace keepass2android
 			Notification notify = new Notification(drawableResId, desc, Java.Lang.JavaSystem.CurrentTimeMillis());
 			
 			Intent intent = new Intent(intentText);
+			intent.SetPackage(PackageName);
 			PendingIntent pending = PendingIntent.GetBroadcast(this, descResId, intent, PendingIntentFlags.CancelCurrent);
 			
 			notify.SetLatestEventInfo(this, title, desc, pending);
@@ -460,43 +483,7 @@ namespace keepass2android
 			}
 		}
 		
-		class CopyToClipboardBroadcastReceiver: BroadcastReceiver
-		{
-			readonly CopyToClipboardService _service;
-			readonly PwEntryOutput _entry;
-			
-			public CopyToClipboardBroadcastReceiver(PwEntryOutput entry, CopyToClipboardService service)
-			{
-				_entry = entry;
-				_service = service;
-			}
-			
-			
-			public override void OnReceive(Context context, Intent intent)
-			{
-				String action = intent.Action;
-				
-				if (action.Equals(Intents.CopyUsername))
-				{
-					String username = _entry.OutputStrings.ReadSafe(PwDefs.UserNameField);
-					if (username.Length > 0)
-					{
-						_service.TimeoutCopyToClipboard(username);
-					}
-				} else if (action.Equals(Intents.CopyPassword))
-				{
-					String password = _entry.OutputStrings.ReadSafe(PwDefs.PasswordField);
-					if (password.Length > 0)
-					{
-						_service.TimeoutCopyToClipboard(password);
-					}
-				} else if (action.Equals(Intents.CheckKeyboard))
-				{
-                    ActivateKp2aKeyboard(_service);
-				}
-			}
-
-		};
+		
 
 		class NotificationDeletedBroadcastReceiver: BroadcastReceiver
 		{
@@ -517,18 +504,18 @@ namespace keepass2android
 			#endregion
 		}
 
-        internal static void ActivateKp2aKeyboard(CopyToClipboardService service)
+        internal void ActivateKp2aKeyboard()
         {
             string currentIme = Android.Provider.Settings.Secure.GetString(
-                                service.ContentResolver,
+                                ContentResolver,
                                 Android.Provider.Settings.Secure.DefaultInputMethod);
 
-            string kp2aIme = service.PackageName + "/keepass2android.softkeyboard.KP2AKeyboard";
+            string kp2aIme = PackageName + "/keepass2android.softkeyboard.KP2AKeyboard";
 
-            InputMethodManager imeManager = (InputMethodManager)service.ApplicationContext.GetSystemService(InputMethodService);
+            InputMethodManager imeManager = (InputMethodManager)ApplicationContext.GetSystemService(InputMethodService);
 			if (imeManager == null)
 			{
-                Toast.MakeText(service, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
+                Toast.MakeText(this, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
 				return;
 			}
 
@@ -543,20 +530,72 @@ namespace keepass2android
 
                 if (!inputMethodProperties.Any(imi => imi.Id.Equals(kp2aIme)))
                 {
-                    Toast.MakeText(service, Resource.String.please_activate_keyboard, ToastLength.Long).Show();
+                    Toast.MakeText(this, Resource.String.please_activate_keyboard, ToastLength.Long).Show();
                     Intent settingsIntent = new Intent(Android.Provider.Settings.ActionInputMethodSettings);
                     settingsIntent.SetFlags(ActivityFlags.NewTask);
-                    service.StartActivity(settingsIntent);
+                    StartActivity(settingsIntent);
                 }
                 else
                 {
 #if !EXCLUDE_KEYBOARD
-	                Keepass2android.Kbbridge.ImeSwitcher.SwitchToKeyboard(service, kp2aIme, false);
+	                Keepass2android.Kbbridge.ImeSwitcher.SwitchToKeyboard(this, kp2aIme, false);
 #endif
                 }
             }
         }
-        
-    }
+
+		
+	}
+
+	[BroadcastReceiver(Permission = "keepass2android." + AppNames.PackagePart + ".permission.CopyToClipboard")]
+	[IntentFilter(new[] { Intents.CopyUsername, Intents.CopyPassword, Intents.CheckKeyboard })]
+	class CopyToClipboardBroadcastReceiver : BroadcastReceiver
+	{
+		public CopyToClipboardBroadcastReceiver(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+		{
+		}
+
+
+		public CopyToClipboardBroadcastReceiver()
+		{
+		}
+
+		public override void OnReceive(Context context, Intent intent)
+		{
+			String action = intent.Action;
+
+			//check if we have a last opened entry
+			//this should always be non-null, but if the OS has killed the app, it might occur.
+			if (App.Kp2a.GetDb().LastOpenedEntry == null)
+			{
+				Intent i = new Intent(context, typeof (AppKilledInfo));
+				i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
+				context.StartActivity(i);
+				return;
+			}
+
+			if (action.Equals(Intents.CopyUsername))
+			{
+				String username = App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.ReadSafe(PwDefs.UserNameField);
+				if (username.Length > 0)
+				{
+					CopyToClipboardService.CopyValueToClipboardWithTimeout(context, username);
+				}
+			}
+			else if (action.Equals(Intents.CopyPassword))
+			{
+				String password = App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.ReadSafe(PwDefs.PasswordField);
+				if (password.Length > 0)
+				{
+					CopyToClipboardService.CopyValueToClipboardWithTimeout(context, password);
+				}
+			}
+			else if (action.Equals(Intents.CheckKeyboard))
+			{
+				CopyToClipboardService.ActivateKeyboard(context);
+			}
+		}
+
+	};
 }
 

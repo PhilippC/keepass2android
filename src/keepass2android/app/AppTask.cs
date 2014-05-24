@@ -376,7 +376,11 @@ namespace keepass2android
 			{
 				//show the notifications
 				activity.StartNotificationsService(CloseAfterCreate);
-				
+			}
+			else
+			{
+				//to avoid getting into inconsistent state (LastOpenedEntry and Notifications): clear notifications:
+				CopyToClipboardService.CancelNotifications(activity);
 			}
 			if (CloseAfterCreate)
 			{

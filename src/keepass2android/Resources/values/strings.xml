@@ -398,6 +398,7 @@
 	<string name="init_otp">Load auxiliary file…</string>
 	<string name="otp_explanation">Enter the next One-time-passwords (OTPs). Swipe your Yubikey NEO at the back of your device to enter via NFC.</string>
 	<string name="otp_hint">OTP %1$d</string>
+	<string name="YubiChallengeNotInstalled">Could not find an app that can handle the challenge. Please install Yubichallenge from Google Play.</string>
 	<string name="CouldntLoadOtpAuxFile">Could not load auxiliary OTP file!</string>
 	<string name="CouldntLoadOtpAuxFile_Hint">Please use the OtpKeyProv plugin in KeePass 2.x (PC) to configure your database for use with OTPs!</string>
 	<string name="otp_discarded_because_no_db">Please select database first. OTP is discarded for security reasons.</string>
@@ -449,6 +450,8 @@
 	<string name="CertificateFailure">Error: Server certificate validation failed! Install appropriate root certificate on your device or see settings!</string>
 
 	<string name="export_fileformats_title">Select file format</string>
+
+	<string name="killed_by_os">Sorry! Keepass2Android was killed by the Android OS! For security reasons, Keepass2Android did not persist your selected credentials on disk, so you need to re-open your database. Note: This should happen only very rarely. If it does, please drop me a message at crocoapps@gmail.com.</string>
 	
 	<string name="ChangeLog_title">Change log</string>
 	

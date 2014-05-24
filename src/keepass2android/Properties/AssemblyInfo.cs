@@ -17,6 +17,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Android.App;
+using Android.Content.PM;
+using keepass2android;
 
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
@@ -42,3 +44,5 @@ using Android.App;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
+[assembly: Permission(Name = "keepass2android."+AppNames.PackagePart+".permission.CopyToClipboard", Label = "CopyToClipboard", ProtectionLevel=Protection.Signature)]
+[assembly: UsesPermission(Name = "keepass2android." + AppNames.PackagePart + ".permission.CopyToClipboard")]

@@ -54,6 +54,7 @@ namespace keepass2android
 		public const String UpdateKeyboard = "keepass2android.update_keyboard";
 		public const String CopyStringToClipboard = "keepass2android.copy_string_to_clipboard";
 		public const String ActivateKeyboard = "keepass2android.activate_keyboard";
+		public const String ClearNotificationsAndData = "keepass2android.ClearNotificationsAndData";
 	}
 
 }

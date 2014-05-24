@@ -95,6 +95,7 @@
     <Compile Include="addons\OtpKeyProv\OtpAuxCachingFileStorage.cs" />
     <Compile Include="addons\OtpKeyProv\OtpInfo.cs" />
     <Compile Include="addons\OtpKeyProv\OtpUtil.cs" />
+    <Compile Include="AppKilledInfo.cs" />
     <Compile Include="app\NoFileStorageFoundException.cs" />
     <Compile Include="app\OtpAuxCacheSupervisor.cs" />
     <Compile Include="AboutActivity.cs" />
