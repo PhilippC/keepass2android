@@ -62,7 +62,7 @@ namespace keepass2android
 			KeyFile = 1,
 			Otp = 2,
 			OtpRecovery = 3,
-			Chal = 4,
+			Challenge = 4,
 			ChalRecovery = 5
 		}
 
@@ -111,7 +111,7 @@ namespace keepass2android
 				if (_keyFileOrProvider == KeyProviderIdOtpRecovery)
 					return KeyProviders.OtpRecovery;
 				if (_keyFileOrProvider == KeyProviderIdChallenge)
-					return KeyProviders.Chal;
+					return KeyProviders.Challenge;
 				if (_keyFileOrProvider == KeyProviderIdChallengeRecovery)
 					return KeyProviders.ChalRecovery;
 				return KeyProviders.KeyFile;
@@ -299,6 +299,8 @@ namespace keepass2android
 				byte[] challengeResponse = data.GetByteArrayExtra("response");
 				_challengeSecret = KeeChallengeProv.GetSecret(_chalInfo, challengeResponse);
                 UpdateOkButtonState();
+				FindViewById(Resource.Id.otpInitView).Visibility = ViewStates.Gone;
+			
 				if (_challengeSecret != null)
                 {
 					new LoadingDialog<object, object, object>(this, true,
@@ -425,7 +427,13 @@ namespace keepass2android
 			                }
 			                else
 			                {
-				                //TODO message no plugin!
+				                AlertDialog.Builder b = new AlertDialog.Builder(this);
+				                b.SetMessage(Resource.String.YubiChallengeNotInstalled);
+				                b.SetPositiveButton(Resource.String.ok, delegate {
+						                Util.GotoUrl(this, GetString(Resource.String.MarketURL) + "com.yubichallenge");
+					                });
+				                b.SetNegativeButton(Resource.String.cancel, delegate { });
+								b.Create().Show();
 			                }
 		                }).Execute();
             
@@ -814,14 +822,12 @@ namespace keepass2android
 					FindViewById(Resource.Id.pass_ok).Enabled = enabled;
 					break;
 				case KeyProviders.OtpRecovery:
-					FindViewById(Resource.Id.pass_ok).Enabled = FindViewById<EditText>(Resource.Id.pass_otpsecret).Text != "" && _password != "";
+				case KeyProviders.ChalRecovery:				
+					FindViewById(Resource.Id.pass_ok).Enabled = FindViewById<EditText>(Resource.Id.pass_otpsecret).Text != "";
 					break;
-                case KeyProviders.Chal:
+                case KeyProviders.Challenge:
 					FindViewById(Resource.Id.pass_ok).Enabled = _challengeSecret != null;
                     break;
-                case KeyProviders.ChalRecovery:
-				FindViewById(Resource.Id.pass_ok).Enabled = true;
-					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
@@ -836,7 +842,7 @@ namespace keepass2android
 				                                               ? ViewStates.Visible
 				                                               : ViewStates.Gone;
 
-			FindViewById(Resource.Id.otpSecretLine).Visibility = KeyProviderType == KeyProviders.OtpRecovery
+			FindViewById(Resource.Id.otpSecretLine).Visibility = (KeyProviderType == KeyProviders.OtpRecovery || KeyProviderType == KeyProviders.ChalRecovery)
 															   ? ViewStates.Visible
 															   : ViewStates.Gone;
 			if (KeyProviderType == KeyProviders.Otp)
@@ -844,7 +850,7 @@ namespace keepass2android
 				FindViewById(Resource.Id.otps_pending).Visibility = _pendingOtps.Count > 0 ? ViewStates.Visible : ViewStates.Gone;
 			}
 
-			if (KeyProviderType == KeyProviders.Chal) 
+			if (KeyProviderType == KeyProviders.Challenge) 
 			{
 				FindViewById (Resource.Id.otpView).Visibility = ViewStates.Visible;
 				FindViewById(Resource.Id.otps_pending).Visibility = ViewStates.Gone;
@@ -888,7 +894,7 @@ namespace keepass2android
 				}
 				compositeKey.AddUserKey(new KcpCustomKey(OathHotpKeyProv.Name, _otpInfo.Secret, true));
 			}
-			else if (KeyProviderType == KeyProviders.OtpRecovery)
+			else if ((KeyProviderType == KeyProviders.OtpRecovery) || (KeyProviderType == KeyProviders.ChalRecovery))
 			{
 				Spinner stpDataFmtSpinner = FindViewById<Spinner>(Resource.Id.otpsecret_format_spinner);
 				EditText secretEdit = FindViewById<EditText>(Resource.Id.pass_otpsecret);
@@ -904,7 +910,7 @@ namespace keepass2android
 					return;
 				}
 			}
-            else if (KeyProviderType == KeyProviders.Chal)
+            else if (KeyProviderType == KeyProviders.Challenge)
             {
                 compositeKey.AddUserKey(new KcpCustomKey(KeeChallengeProv.Name, _challengeSecret, true));
                  
@@ -1142,6 +1148,11 @@ namespace keepass2android
 
 			UpdateOkButtonState();
 
+			if (KeyProviderType == KeyProviders.Challenge)
+			{
+				FindViewById(Resource.Id.otpInitView).Visibility = _challengeSecret == null ? ViewStates.Visible : ViewStates.Gone;
+			}
+
 			// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
 			// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
 			//use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
@@ -1300,8 +1311,12 @@ namespace keepass2android
 			{
 				SetEditText(otpId, "");
 			}
-			Array.Clear(_challengeSecret, 0, _challengeSecret.Length);
-			_challengeSecret = null;
+			if (_challengeSecret != null)
+			{
+				Array.Clear(_challengeSecret, 0, _challengeSecret.Length);
+				_challengeSecret = null;	
+			}
+			
 		}
 
 		class SaveOtpAuxFileAndLoadDb : LoadDb
