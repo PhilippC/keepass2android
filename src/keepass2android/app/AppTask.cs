@@ -95,6 +95,29 @@ namespace keepass2android
 		#endregion
 	}
 
+	/// <summary>
+	/// represents data stored in an intent or bundle as extra bool
+	/// </summary>
+	public class BoolExtra: IExtra
+	{
+		public string Key { get; set; }
+		public bool Value{ get; set; }
+
+		#region IExtra implementation
+
+		public void ToBundle(Bundle b)
+		{
+			b.PutBoolean(Key, Value);
+		}
+
+		public void ToIntent(Intent i)
+		{
+			i.PutExtra(Key, Value);
+		}
+
+		#endregion
+	}
+
 
 	/// <summary>
 	/// represents data stored in an intent or bundle as extra string array
@@ -675,6 +698,7 @@ namespace keepass2android
 		public const String numberOfGroupsKey = "NumberOfGroups";
 		public const String gUuidKey = "gUuidKey"; 
 		public const String fullGroupNameKey = "fullGroupNameKey";
+		public const String toastEnableKey = "toastEnableKey";
 
 		#if INCLUDE_DEBUG_MOVE_GROUPNAME
 		public const String gNameKey = "gNameKey";
@@ -689,14 +713,27 @@ namespace keepass2android
 			set ;
 		}
 
+		protected bool toastEnable {
+			get;
+			set;
+		}
+
 		public NavigateAndLaunchTask() {
 			this.taskToBeLaunchAfterNavigation = new NullTask();
 			fullGroupName = "";
+			toastEnable = false;
 		}
 
-		protected NavigateAndLaunchTask(PwGroup groups, AppTask taskToBeLaunchAfterNavigation) {
+		/// <summary>
+		/// Initializes a new instance of the <see cref="keepass2android.NavigateAndLaunchTask"/> class.
+		/// </summary>
+		/// <param name="groups">Groups.</param>
+		/// <param name="taskToBeLaunchAfterNavigation">Task to be launched after navigation.</param>
+		/// <param name="toastEnable">If set to <c>true</c>, toast will be displayed after navigation.</param>
+		protected NavigateAndLaunchTask(PwGroup groups, AppTask taskToBeLaunchAfterNavigation, bool toastEnable = false) {
 			this.taskToBeLaunchAfterNavigation = taskToBeLaunchAfterNavigation;
 			populateGroups (groups);
+			this.toastEnable = toastEnable;
 		}
 
 		public void populateGroups(PwGroup groups) {
@@ -736,13 +773,13 @@ namespace keepass2android
 		public override void Setup(Bundle b)
 		{
 			int numberOfGroups = b.GetInt(numberOfGroupsKey);
+
 			groupUuid = new LinkedList<String>{};
 			#if INCLUDE_DEBUG_MOVE_GROUPNAME 
 			groupNameList = new LinkedList<String>{};
 			#endif 
 
 			int i = 0;
-			fullGroupName = "";
 
 			while (i < numberOfGroups) {
 
@@ -754,7 +791,8 @@ namespace keepass2android
 				i++;
 			}
 
-			this.fullGroupName = b.GetString (fullGroupNameKey);
+			fullGroupName = b.GetString (fullGroupNameKey);
+			toastEnable = b.GetBoolean (toastEnableKey);
 				
 		}
 
@@ -783,6 +821,7 @@ namespace keepass2android
 
 				yield return new IntExtra{ Key = numberOfGroupsKey, Value = i };
 				yield return new StringExtra{ Key = fullGroupNameKey, Value = fullGroupName };
+				yield return new BoolExtra{ Key = toastEnableKey, Value = toastEnable };
 
 				// Return afterTaskExtras
 				IEnumerator<IExtra> afterTaskExtras = taskToBeLaunchAfterNavigation.Extras.GetEnumerator();
@@ -798,10 +837,12 @@ namespace keepass2android
 			base.StartInGroupActivity(groupBaseActivity);
 
 			if (GroupIsFound(groupBaseActivity) ){ // Group has been found: display toaster and stop here
-				
-				String toastMessage = groupBaseActivity.GetString(Resource.String.NavigationToGroupCompleted_message);
-				toastMessage = toastMessage.Replace ("%0", this.fullGroupName);
-				Toast.MakeText (groupBaseActivity, toastMessage, ToastLength.Long).Show ();
+
+				if (toastEnable) {
+					String toastMessage = groupBaseActivity.GetString (Resource.String.NavigationToGroupCompleted_message);
+					toastMessage = toastMessage.Replace ("%0", this.fullGroupName);
+					Toast.MakeText (groupBaseActivity, toastMessage, ToastLength.Long).Show ();
+				}
 				
 				groupBaseActivity.StartTask (taskToBeLaunchAfterNavigation);
 				return;
@@ -840,7 +881,8 @@ namespace keepass2android
 		public NavigateToFolder():base() {
 		}
 
-		public NavigateToFolder(PwGroup groups): base(groups, new NullTask()) {
+		public NavigateToFolder(PwGroup groups, bool toastEnable = false)
+			: base(groups, new NullTask(), toastEnable) {
 			return;
 		}
 
@@ -853,8 +895,8 @@ namespace keepass2android
 		}
 
 
-		public NavigateToFolderAndLaunchMoveElementTask(PwGroup groups, PwUuid Uuid):
-			base(groups, new MoveElementTask() { Uuid = Uuid }) {
+		public NavigateToFolderAndLaunchMoveElementTask(PwGroup groups, PwUuid Uuid, bool toastEnable = false)
+			:base(groups, new MoveElementTask() { Uuid = Uuid }, toastEnable) {
 		}
 
 		public override void Setup(Bundle b) {

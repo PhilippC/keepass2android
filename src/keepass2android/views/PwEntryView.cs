@@ -213,11 +213,11 @@ namespace keepass2android.view
 					return true;
 				case MenuMove:
 					NavigateToFolderAndLaunchMoveElementTask navMove = 
-						new NavigateToFolderAndLaunchMoveElementTask(_entry.ParentGroup, _entry.Uuid);
+						new NavigateToFolderAndLaunchMoveElementTask(_entry.ParentGroup, _entry.Uuid, _isSearchResult);
 					_groupActivity.StartTask (navMove);
 					return true;
 				case MenuNavigate: 
-					NavigateToFolder navNavigate = new NavigateToFolder(_entry.ParentGroup);
+					NavigateToFolder navNavigate = new NavigateToFolder(_entry.ParentGroup, true);
 					_groupActivity.StartTask (navNavigate);
 					return true;
 
