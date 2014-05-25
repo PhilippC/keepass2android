@@ -429,7 +429,7 @@ namespace keepass2android
 			                {
 				                AlertDialog.Builder b = new AlertDialog.Builder(this);
 				                b.SetMessage(Resource.String.YubiChallengeNotInstalled);
-				                b.SetPositiveButton(Resource.String.ok, delegate {
+				                b.SetPositiveButton(Android.Resource.String.Ok, delegate {
 						                Util.GotoUrl(this, GetString(Resource.String.MarketURL) + "com.yubichallenge");
 					                });
 				                b.SetNegativeButton(Resource.String.cancel, delegate { });

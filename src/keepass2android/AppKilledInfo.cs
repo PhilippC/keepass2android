@@ -24,7 +24,7 @@ namespace keepass2android
 			((NotificationManager)GetSystemService(Context.NotificationService)).CancelAll();
 			AlertDialog.Builder b = new AlertDialog.Builder(this);
 			b.SetMessage(Resource.String.killed_by_os);
-			b.SetPositiveButton(Resource.String.ok, delegate
+			b.SetPositiveButton(Android.Resource.String.Ok, delegate
 			{
 				Intent i = new Intent(this, typeof(FileSelectActivity));
 				i.AddFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
