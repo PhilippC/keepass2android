@@ -203,10 +203,6 @@
     <None Include="filelist.txt">
       <Visible>False</Visible>
     </None>
-    <AndroidResource Include="Resources\drawable-ldpi\Thumbs.db" />
-    <AndroidResource Include="Resources\drawable-mdpi\Thumbs.db" />
-    <AndroidResource Include="Resources\drawable-xhdpi\Thumbs.db" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\Thumbs.db" />
     <None Include="Resources\drawable\launcher.png">
       <Visible>False</Visible>
     </None>
@@ -234,7 +230,6 @@
     <AndroidResource Include="Resources\layout\sftpcredentials.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\Thumbs.db" />
     <None Include="settings\RoundsPreference %28Kopie%29.cs">
       <Visible>False</Visible>
     </None>
