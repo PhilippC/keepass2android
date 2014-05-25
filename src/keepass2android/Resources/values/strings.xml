@@ -28,7 +28,8 @@
   <string name="application_settings">Application settings</string>
   <string name="ShowGroupnameInSearchResult_title">Display groupname in search result</string>
   <string name="ShowGroupnameInSearchResult_resume">Display groupname below entry titles. Usefull if several entries have the same name.</string>
-	
+  <string name="NavigationToGroupCompleted_message">Display group is now : %0</string>
+
 	<string name="security_prefs">Security</string>
 	<string name="display_prefs">Display</string>
 	<string name="password_access_prefs">Password entry access</string>

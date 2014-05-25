@@ -2,6 +2,7 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Widget;
 using System.Collections.Generic;
 using KeePassLib;
 using KeePassLib.Security;
@@ -673,45 +674,60 @@ namespace keepass2android
 		// The last one is the destination group 
 		public const String numberOfGroupsKey = "NumberOfGroups";
 		public const String gUuidKey = "gUuidKey"; 
+		public const String fullGroupNameKey = "fullGroupNameKey";
 
 		#if INCLUDE_DEBUG_MOVE_GROUPNAME
 		public const String gNameKey = "gNameKey";
-		private LinkedList<string> groupName;
+		private LinkedList<string> groupNameList;
 		#endif
 
 		private LinkedList<string> groupUuid;
 		protected AppTask taskToBeLaunchAfterNavigation;
 
+		protected String fullGroupName {
+			get ;
+			set ;
+		}
+
 		public NavigateAndLaunchTask() {
 			this.taskToBeLaunchAfterNavigation = new NullTask();
+			fullGroupName = "";
 		}
 
 		protected NavigateAndLaunchTask(PwGroup groups, AppTask taskToBeLaunchAfterNavigation) {
 			this.taskToBeLaunchAfterNavigation = taskToBeLaunchAfterNavigation;
-			populateGroupsUuid (groups);
+			populateGroups (groups);
 		}
 
-		public void populateGroupsUuid(PwGroup groups) {
+		public void populateGroups(PwGroup groups) {
 
 			groupUuid = new LinkedList<String>{};
 
 			#if INCLUDE_DEBUG_MOVE_GROUPNAME
-			groupName = new LinkedList<String>{};
+			groupNameList = new LinkedList<String>{};
 			#endif
 
+			fullGroupName = "";
 			PwGroup readGroup = groups;
 			while (readGroup != null) {
+
+				if ( (readGroup.ParentGroup != null) || 
+					(readGroup.ParentGroup == null) && (readGroup == groups) ) {
+					fullGroupName = readGroup.Name + "." + fullGroupName;
+				}
 
 				groupUuid.AddFirst (MemUtil.ByteArrayToHexString (readGroup.Uuid.UuidBytes));
 
 				#if INCLUDE_DEBUG_MOVE_GROUPNAME
-				groupName.AddFirst (readGroup.Name);
+				groupNameList.AddFirst (readGroup.Name);
 				#endif
 
 				readGroup = readGroup.ParentGroup;
+
 			}
 
 		}
+
 
 		/// <summary>
 		/// Loads the parameters of the task from the given bundle. Embeded task is not setup from this bundle
@@ -721,20 +737,24 @@ namespace keepass2android
 		{
 			int numberOfGroups = b.GetInt(numberOfGroupsKey);
 			groupUuid = new LinkedList<String>{};
-#if INCLUDE_DEBUG_MOVE_GROUPNAME
-			groupName = new LinkedList<String>{};
-#endif
+			#if INCLUDE_DEBUG_MOVE_GROUPNAME 
+			groupNameList = new LinkedList<String>{};
+			#endif 
 
 			int i = 0;
+			fullGroupName = "";
+
 			while (i < numberOfGroups) {
 
 				groupUuid.AddLast ( b.GetString (gUuidKey + i) ) ;
-#if INCLUDE_DEBUG_MOVE_GROUPNAME
-				groupName.AddLast ( b.GetString (gNameKey + i) );
-#endif
 
+				#if INCLUDE_DEBUG_MOVE_GROUPNAME 
+				groupNameList.AddLast ( b.GetString (gNameKey + i);
+				#endif 
 				i++;
 			}
+
+			this.fullGroupName = b.GetString (fullGroupNameKey);
 				
 		}
 
@@ -744,22 +764,25 @@ namespace keepass2android
 			{
 				// Return Navigate group Extras
 				IEnumerator<String> eGroupKeys = groupUuid.GetEnumerator ();
-#if INCLUDE_DEBUG_MOVE_GROUPNAME
-				IEnumerator<String> eGroupName = groupName.GetEnumerator ();
-#endif
+
+				#if INCLUDE_DEBUG_MOVE_GROUPNAME
+				IEnumerator<String> eGroupName = groupNameList.GetEnumerator ();
+				#endif
 
 				int i = 0;
 				while (eGroupKeys.MoveNext()) {
 					yield return new StringExtra { Key = gUuidKey + i.ToString (), Value = eGroupKeys.Current };
-#if INCLUDE_DEBUG_MOVE_GROUPNAME
+
+					#if INCLUDE_DEBUG_MOVE_GROUPNAME
 					eGroupName.MoveNext();
 					yield return new StringExtra { Key = gNameKey + i.ToString (), Value = eGroupName.Current };
-#endif
+					#endif
 
 					i++;
 				}
 
 				yield return new IntExtra{ Key = numberOfGroupsKey, Value = i };
+				yield return new StringExtra{ Key = fullGroupNameKey, Value = fullGroupName };
 
 				// Return afterTaskExtras
 				IEnumerator<IExtra> afterTaskExtras = taskToBeLaunchAfterNavigation.Extras.GetEnumerator();
@@ -774,7 +797,12 @@ namespace keepass2android
 		{
 			base.StartInGroupActivity(groupBaseActivity);
 
-			if (GroupIsFound(groupBaseActivity) ){ // Group has been found: stop here
+			if (GroupIsFound(groupBaseActivity) ){ // Group has been found: display toaster and stop here
+				
+				String toastMessage = groupBaseActivity.GetString(Resource.String.NavigationToGroupCompleted_message);
+				toastMessage = toastMessage.Replace ("%0", this.fullGroupName);
+				Toast.MakeText (groupBaseActivity, toastMessage, ToastLength.Long).Show ();
+				
 				groupBaseActivity.StartTask (taskToBeLaunchAfterNavigation);
 				return;
 
