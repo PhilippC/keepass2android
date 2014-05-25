@@ -162,7 +162,7 @@ namespace keepass2android
 			intent.PutExtra(Strings.ExtraEntryOutputData, jsonOutputStr);
 
 			JSONArray jsonProtectedFields = new JSONArray(
-				entry.OutputStrings
+				(System.Collections.ICollection)entry.OutputStrings
 					.Where(pair => pair.Value.IsProtected)
 					.Select(pair => pair.Key)
 					.ToArray());
