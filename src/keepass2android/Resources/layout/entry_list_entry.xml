@@ -30,6 +30,12 @@
                 android:layout_width="wrap_content"
                 android:text="abcde"
                 style="@style/ElementTextSmall" />
+            <TextView
+                android:id="@+id/group_detail"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="group detail"
+                style="@style/GroupDetailInSearchResult" />
         </LinearLayout>
         <View />
     </TableRow>

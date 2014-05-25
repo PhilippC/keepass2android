@@ -33,11 +33,16 @@ namespace keepass2android.view
 		private PwEntry _entry;
 		private readonly TextView _textView;
 		private readonly TextView _textviewDetails;
+		private readonly TextView _textgroupFullPath;
+
 		private int _pos;
 
 		private int? _defaultTextColor;
 
 		readonly bool _showDetail;
+		readonly bool _showGroupFullPath;
+		readonly bool _isSearchResult;
+
 
 		private const int MenuOpen = Menu.First;
 		private const int MenuDelete = MenuOpen + 1;
@@ -66,7 +71,19 @@ namespace keepass2android.view
 			_textviewDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
 			_textviewDetails.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
 
-			_showDetail = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(groupActivity.GetString(Resource.String.ShowUsernameInList_key), Resources.GetBoolean(Resource.Boolean.ShowUsernameInList_default));
+			_textgroupFullPath = (TextView)ev.FindViewById(Resource.Id.group_detail);
+			_textgroupFullPath.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
+
+			_showDetail = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(
+				groupActivity.GetString(Resource.String.ShowUsernameInList_key), 
+				Resources.GetBoolean(Resource.Boolean.ShowUsernameInList_default));
+
+			_showGroupFullPath = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(
+				groupActivity.GetString(Resource.String.ShowGroupnameInSearchResult_key), 
+				Resources.GetBoolean(Resource.Boolean.ShowGroupnameInSearchResult_default));
+
+			_isSearchResult = _groupActivity is keepass2android.search.SearchResults;
+
 
 			PopulateView(ev, pw, pos);
 			
@@ -129,6 +146,24 @@ namespace keepass2android.view
 
 				_textviewDetails.Visibility = ViewStates.Visible;
 			}
+				
+			if ( (!_showGroupFullPath) || (!_isSearchResult) ) {
+				_textgroupFullPath.Visibility = ViewStates.Gone;
+			}
+
+			else {
+				String groupDetail = pw.ParentGroup.GetFullPath();
+
+				var strGroupDetail = new SpannableString (groupDetail);
+
+				if (isExpired) {
+					strGroupDetail.SetSpan (new StrikethroughSpan (), 0, groupDetail.Length, SpanTypes.ExclusiveExclusive);
+				}
+				_textgroupFullPath.TextFormatted = strGroupDetail;
+
+				_textgroupFullPath.Visibility = ViewStates.Visible;
+			}
+
 		}
 		
 		public void ConvertView(PwEntry pw, int pos)

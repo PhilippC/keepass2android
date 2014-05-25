@@ -56,6 +56,9 @@
 		<item name="@android:textColor">#ffffff</item>
 		<item name="@android:textSize">20sp</item>
 	</style>
+	<style name="GroupDetailInSearchResult" parent="ElementTextSmall">
+		<item name="@android:textStyle">italic</item>
+	</style>
 	<style name="WhiteOnBlackSmall" parent="WhiteOnBlack">
 		<item name="@android:textSize">12sp</item>
 	</style>

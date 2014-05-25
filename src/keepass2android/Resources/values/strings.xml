@@ -26,6 +26,8 @@
   <string name="show_kill_app_summary">Show a button in password screen to kill the application process (for paranoid users)</string>
   <string name="application">Application</string>
   <string name="application_settings">Application settings</string>
+  <string name="ShowGroupnameInSearchResult_title">Display groupname in search result</string>
+  <string name="ShowGroupnameInSearchResult_resume">Display groupname below entry titles. Usefull if several entries have the same name.</string>
 	
 	<string name="security_prefs">Security</string>
 	<string name="display_prefs">Display</string>
