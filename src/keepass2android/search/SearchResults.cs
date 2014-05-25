@@ -19,6 +19,7 @@ using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views;
 using Android.Widget;
 using keepass2android.view;
 using KeePassLib;
@@ -45,6 +46,7 @@ namespace keepass2android.search
 			SetResult(KeePass.ExitNormal);
 
 			ProcessIntent(Intent);
+			RegisterForContextMenu(ListView);
 		}
 
 		protected override void OnNewIntent(Intent intent)
@@ -115,6 +117,24 @@ namespace keepass2android.search
 
 			return sp;
 			
+		}
+
+		public override void OnCreateContextMenu(IContextMenu menu, View v,
+			IContextMenuContextMenuInfo  menuInfo) 
+		{
+
+			AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
+			ClickView cv = (ClickView) acmi.TargetView;
+			cv.OnCreateMenu(menu, menuInfo);
+		}
+
+		public override bool OnContextItemSelected(IMenuItem item) {
+			AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+			ClickView cv = (ClickView) acmi.TargetView;
+
+			bool result;
+
+			return cv.OnContextItemSelected(item);
 		}
 
 

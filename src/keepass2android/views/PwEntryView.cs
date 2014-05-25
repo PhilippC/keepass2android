@@ -47,6 +47,7 @@ namespace keepass2android.view
 		private const int MenuOpen = Menu.First;
 		private const int MenuDelete = MenuOpen + 1;
 		private const int MenuMove = MenuDelete + 1;
+		private const int MenuNavigate = MenuMove + 1;
 		
 		public static PwEntryView GetInstance(GroupBaseActivity act, PwEntry pw, int pos)
 		{
@@ -188,7 +189,12 @@ namespace keepass2android.view
 			if (App.Kp2a.GetDb().CanWrite)
 			{
 				menu.Add(0, MenuDelete, 0, Resource.String.menu_delete);
-				menu.Add(0, MenuMove, 0, Resource.String.menu_move);	
+				menu.Add(0, MenuMove, 0, Resource.String.menu_move);
+
+				if (_isSearchResult) {
+					menu.Add (0, MenuNavigate, 0, Resource.String.menu_navigate);
+				}
+
 			}
 		}
 		
@@ -206,9 +212,15 @@ namespace keepass2android.view
 					task.Start();
 					return true;
 				case MenuMove:
-					_groupActivity.StartTask(new MoveElementTask { Uuid = _entry.Uuid});
+					NavigateToFolderAndLaunchMoveElementTask navMove = 
+						new NavigateToFolderAndLaunchMoveElementTask(_entry.ParentGroup, _entry.Uuid);
+					_groupActivity.StartTask (navMove);
 					return true;
-			
+				case MenuNavigate: 
+					NavigateToFolder navNavigate = new NavigateToFolder(_entry.ParentGroup);
+					_groupActivity.StartTask (navNavigate);
+					return true;
+
 				default:
 					return false;
 			}

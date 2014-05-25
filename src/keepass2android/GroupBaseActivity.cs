@@ -121,6 +121,17 @@ namespace keepass2android
 		internal AppTask AppTask;
 		protected GroupView GroupView;
 
+		private String strCachedGroupUuid = null;
+		public String UuidGroup {
+			get {
+				if (strCachedGroupUuid == null) {
+					strCachedGroupUuid = MemUtil.ByteArrayToHexString (Group.Uuid.UuidBytes);
+				}
+				return strCachedGroupUuid;
+			}
+		}
+
+
 		protected override void OnResume() {
 			base.OnResume();
 

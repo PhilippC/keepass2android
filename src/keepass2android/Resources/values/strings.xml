@@ -129,6 +129,7 @@
   <string name="menu_db_settings">Database settings</string>
   <string name="menu_delete">Delete</string>
   <string name="menu_move">Move to another group</string>
+  <string name="menu_navigate">Navigate to this group</string>
   <string name="menu_donate">Donate a beer...</string>
   <string name="menu_edit">Edit</string>
   <string name="menu_hide_password">Hide Password</string>

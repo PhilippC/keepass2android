@@ -28,7 +28,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM;INCLUDE_DEBUG_MOVE_GROUPNAME</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -270,6 +270,33 @@
     <AndroidResource Include="Resources\layout\sftp_credentials.axml" />
     <AndroidResource Include="Resources\layout\Kopie_von_donate.xml" />
     <AndroidResource Include="Resources\xml\method.xml" />
+    <None Include="GroupBaseActivity.cs.bak">
+      <Visible>False</Visible>
+    </None>
+    <None Include="KeePass.cs.bak">
+      <Visible>False</Visible>
+    </None>
+    <None Include="app\AppTask.cs.bak">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\layout\entry_list_entry.xml.bak">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\values\config.xml.bak">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\values\strings.xml.bak">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Resources\xml\preferences.xml.bak">
+      <Visible>False</Visible>
+    </None>
+    <None Include="search\SearchResults.cs.bak">
+      <Visible>False</Visible>
+    </None>
+    <None Include="views\PwEntryView.cs.bak">
+      <Visible>False</Visible>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic00.png" />

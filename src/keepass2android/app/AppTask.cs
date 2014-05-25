@@ -72,6 +72,53 @@ namespace keepass2android
 	}
 
 	/// <summary>
+	/// represents data stored in an intent or bundle as extra int
+	/// </summary>
+	public class IntExtra: IExtra
+	{
+		public string Key { get; set; }
+		public int Value{ get; set; }
+
+		#region IExtra implementation
+
+		public void ToBundle(Bundle b)
+		{
+			b.PutInt(Key, Value);
+		}
+
+		public void ToIntent(Intent i)
+		{
+			i.PutExtra(Key, Value);
+		}
+
+		#endregion
+	}
+
+
+	/// <summary>
+	/// represents data stored in an intent or bundle as extra string array
+	/// </summary>
+	public class StringArrayExtra : IExtra
+	{
+		public string Key { get; set; }
+		public string[] Value { get; set; }
+
+		#region IExtra implementation
+
+		public void ToBundle(Bundle b)
+		{
+			b.PutStringArray(Key, Value);
+		}
+
+		public void ToIntent(Intent i)
+		{
+			i.PutExtra(Key, Value);
+		}
+
+		#endregion
+	}
+
+	/// <summary>
 	/// base class for "tasks": these are things the user wants to do and which require several activities
 	/// </summary>
 	/// Therefore AppTasks need to be serializable to bundles and intents to "survive" saving to instance state and changing activities.
@@ -473,6 +520,7 @@ namespace keepass2android
 		
 	}
 
+
 	/// <summary>
 	/// User is about to move an entry or group to another group
 	/// </summary>
@@ -614,5 +662,183 @@ namespace keepass2android
 			base.CompleteOnCreateEntryActivity(activity);
 		}
 	}
+
+
+	/// <summary>
+	/// Navigate to a folder and open a Task (appear in SearchResult)
+	/// </summary>
+	public abstract class NavigateAndLaunchTask: AppTask
+	{
+		// All group Uuid are stored in guuidKey + indice
+		// The last one is the destination group 
+		public const String numberOfGroupsKey = "NumberOfGroups";
+		public const String gUuidKey = "gUuidKey"; 
+
+		#if INCLUDE_DEBUG_MOVE_GROUPNAME
+		public const String gNameKey = "gNameKey";
+		private LinkedList<string> groupName;
+		#endif
+
+		private LinkedList<string> groupUuid;
+		protected AppTask taskToBeLaunchAfterNavigation;
+
+		public NavigateAndLaunchTask() {
+			this.taskToBeLaunchAfterNavigation = new NullTask();
+		}
+
+		protected NavigateAndLaunchTask(PwGroup groups, AppTask taskToBeLaunchAfterNavigation) {
+			this.taskToBeLaunchAfterNavigation = taskToBeLaunchAfterNavigation;
+			populateGroupsUuid (groups);
+		}
+
+		public void populateGroupsUuid(PwGroup groups) {
+
+			groupUuid = new LinkedList<String>{};
+
+			#if INCLUDE_DEBUG_MOVE_GROUPNAME
+			groupName = new LinkedList<String>{};
+			#endif
+
+			PwGroup readGroup = groups;
+			while (readGroup != null) {
+
+				groupUuid.AddFirst (MemUtil.ByteArrayToHexString (readGroup.Uuid.UuidBytes));
+
+				#if INCLUDE_DEBUG_MOVE_GROUPNAME
+				groupName.AddFirst (readGroup.Name);
+				#endif
+
+				readGroup = readGroup.ParentGroup;
+			}
+
+		}
+
+		/// <summary>
+		/// Loads the parameters of the task from the given bundle. Embeded task is not setup from this bundle
+		/// </summary>
+		/// <param name="b">The bundle component.</param>
+		public override void Setup(Bundle b)
+		{
+			int numberOfGroups = b.GetInt(numberOfGroupsKey);
+			groupUuid = new LinkedList<String>{};
+#if INCLUDE_DEBUG_MOVE_GROUPNAME
+			groupName = new LinkedList<String>{};
+#endif
+
+			int i = 0;
+			while (i < numberOfGroups) {
+
+				groupUuid.AddLast ( b.GetString (gUuidKey + i) ) ;
+#if INCLUDE_DEBUG_MOVE_GROUPNAME
+				groupName.AddLast ( b.GetString (gNameKey + i) );
+#endif
+
+				i++;
+			}
+				
+		}
+
+		public override IEnumerable<IExtra> Extras
+		{
+			get
+			{
+				// Return Navigate group Extras
+				IEnumerator<String> eGroupKeys = groupUuid.GetEnumerator ();
+#if INCLUDE_DEBUG_MOVE_GROUPNAME
+				IEnumerator<String> eGroupName = groupName.GetEnumerator ();
+#endif
+
+				int i = 0;
+				while (eGroupKeys.MoveNext()) {
+					yield return new StringExtra { Key = gUuidKey + i.ToString (), Value = eGroupKeys.Current };
+#if INCLUDE_DEBUG_MOVE_GROUPNAME
+					eGroupName.MoveNext();
+					yield return new StringExtra { Key = gNameKey + i.ToString (), Value = eGroupName.Current };
+#endif
+
+					i++;
+				}
+
+				yield return new IntExtra{ Key = numberOfGroupsKey, Value = i };
+
+				// Return afterTaskExtras
+				IEnumerator<IExtra> afterTaskExtras = taskToBeLaunchAfterNavigation.Extras.GetEnumerator();
+				while (afterTaskExtras.MoveNext ()) {
+					yield return afterTaskExtras.Current;
+				}
+
+			}
+		}
+
+		public override void StartInGroupActivity(GroupBaseActivity groupBaseActivity)
+		{
+			base.StartInGroupActivity(groupBaseActivity);
+
+			if (GroupIsFound(groupBaseActivity) ){ // Group has been found: stop here
+				groupBaseActivity.StartTask (taskToBeLaunchAfterNavigation);
+				return;
+
+			} else if (groupUuid.Contains(groupBaseActivity.UuidGroup)) { // Need to go up in groups tree
+
+				// Get next Group Uuid
+				String nextGroupUuid = groupUuid.Find (groupBaseActivity.UuidGroup).Next.Value;
+				PwUuid nextGroupPwUuid = new PwUuid (MemUtil.HexStringToByteArray (nextGroupUuid));
+
+				// Create Group Activity
+				PwGroup nextGroup = App.Kp2a.GetDb ().Groups [nextGroupPwUuid];
+				GroupActivity.Launch (groupBaseActivity, nextGroup, this);
+				return;
+
+			} else { // Need to go down in groups tree
+				SetActivityResult(groupBaseActivity, KeePass.ExitMoveEntry);
+				groupBaseActivity.Finish();
+
+			} 
+
+		}
+		public override void SetupGroupBaseActivityButtons(GroupBaseActivity groupBaseActivity)
+		{
+			return;
+		}
+
+		public bool GroupIsFound(GroupBaseActivity groupBaseActivity)
+		{
+			return groupUuid.Last.Value.Equals (groupBaseActivity.UuidGroup);
+		}
+	}
+
+	public class NavigateToFolder: NavigateAndLaunchTask {
+
+		public NavigateToFolder():base() {
+		}
+
+		public NavigateToFolder(PwGroup groups): base(groups, new NullTask()) {
+			return;
+		}
+
+	}
+
+	public class NavigateToFolderAndLaunchMoveElementTask: NavigateAndLaunchTask {
+	
+		public NavigateToFolderAndLaunchMoveElementTask():base(){
+
+		}
+
+
+		public NavigateToFolderAndLaunchMoveElementTask(PwGroup groups, PwUuid Uuid):
+			base(groups, new MoveElementTask() { Uuid = Uuid }) {
+		}
+
+		public override void Setup(Bundle b) {
+			base.Setup(b);
+
+			taskToBeLaunchAfterNavigation = new MoveElementTask ();
+			taskToBeLaunchAfterNavigation.Setup (b);
+
+		}
+
+
+	}
+
 }
 
