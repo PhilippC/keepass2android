@@ -65,6 +65,7 @@
   <string name="entry_confpassword">Confirm password</string>
   <string name="entry_created">Created</string>
   <string name="entry_expires">Expires</string>
+  <string name="entry_group_name">Group Name</string>
   <string name="entry_keyfile">Key file (optional)</string>
   <string name="entry_modified">Modified</string>
   <string name="entry_password">Password</string>

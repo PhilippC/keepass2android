@@ -50,6 +50,7 @@ namespace keepass2android
 		public const String KeyEntry = "entry";
 		public const String KeyRefreshPos = "refresh_pos";
 		public const String KeyCloseAfterCreate = "close_after_create";
+		public const String KeyGroupFullPath = "groupfullpath_key";
 
 		public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null)
 		{
@@ -669,14 +670,20 @@ namespace keepass2android
 			ActionBar.Title = Entry.Strings.ReadSafe(PwDefs.TitleField);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 
+			PopulateGroupText (Resource.Id.entry_group_name, Resource.Id.entryfield_group_container, KeyGroupFullPath);
+
 			PopulateStandardText(Resource.Id.entry_user_name, Resource.Id.entryfield_container_username, PwDefs.UserNameField);
 			PopulateStandardText(Resource.Id.entry_url, Resource.Id.entryfield_container_url, PwDefs.UrlField);
 			PopulateStandardText(Resource.Id.entry_password, Resource.Id.entryfield_container_password, PwDefs.PasswordField);
 			RegisterProtectedTextView(FindViewById<TextView>(Resource.Id.entry_password));
 			SetPasswordTypeface(FindViewById<TextView>(Resource.Id.entry_password));
 
+			RegisterTextPopup(FindViewById<RelativeLayout> (Resource.Id.groupname_container),
+				              FindViewById (Resource.Id.entry_group_name), KeyGroupFullPath);
+
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.username_container),
 			                  FindViewById(Resource.Id.username_vdots), PwDefs.UserNameField);
+
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.url_container),
 			                  FindViewById(Resource.Id.url_vdots), PwDefs.UrlField)
 				.Add(new GotoUrlMenuItem(this));
@@ -794,6 +801,12 @@ namespace keepass2android
 		{
 			PopulateText(viewId, containerViewId, Entry.Strings.ReadSafe(key));
 			_stringViews.Add(key, new StandardStringView(viewId, containerViewId, this));
+		}
+
+		private void PopulateGroupText(int viewId, int containerViewId, String key)
+		{
+			PopulateText(viewId, containerViewId, Entry.ParentGroup.GetFullPath());
+			_stringViews.Add (key, new StandardStringView (viewId, containerViewId, this));
 		}
 
 		private void RequiresRefresh()
