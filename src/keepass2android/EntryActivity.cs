@@ -123,6 +123,28 @@ namespace keepass2android
 			
 		}
 
+		protected void SetupMoveButtons() {
+			View moveView =  FindViewById(Resource.Id.entry_move);
+			if (App.Kp2a.GetDb().CanWrite)
+			{
+				moveView.Visibility = ViewStates.Visible;
+				moveView.Click += (sender, e) =>
+				{
+					NavigateToFolderAndLaunchMoveElementTask navMoveTask = 
+						new NavigateToFolderAndLaunchMoveElementTask(Entry.ParentGroup,Entry.Uuid, false);
+					navMoveTask.SetActivityResult(this, KeePass.ExitNormal );
+					Finish();
+
+				};	
+			}
+			else
+			{
+				moveView.Visibility = ViewStates.Gone;
+			}
+
+		}
+
+
 		private class PluginActionReceiver : BroadcastReceiver
 		{
 			private readonly EntryActivity _activity;
@@ -349,6 +371,7 @@ namespace keepass2android
 			FillData();
 
 			SetupEditButtons();
+			SetupMoveButtons ();
 
 			App.Kp2a.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.GetDb().KpDatabase);
 
