@@ -859,7 +859,7 @@ namespace keepass2android
 				return;
 
 			} else { // Need to go down in groups tree
-				SetActivityResult(groupBaseActivity, KeePass.ExitMoveEntry);
+				SetActivityResult(groupBaseActivity, KeePass.ExitNormal);
 				groupBaseActivity.Finish();
 
 			} 
