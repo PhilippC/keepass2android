@@ -828,7 +828,13 @@ namespace keepass2android
 
 		private void PopulateGroupText(int viewId, int containerViewId, String key)
 		{
-			PopulateText(viewId, containerViewId, Entry.ParentGroup.GetFullPath());
+			string groupName = null;
+			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
+				"ShowGroupInEntry", false))
+			{
+				groupName = Entry.ParentGroup.GetFullPath();
+			}
+			PopulateText(viewId, containerViewId, groupName);
 			_stringViews.Add (key, new StandardStringView (viewId, containerViewId, this));
 		}
 

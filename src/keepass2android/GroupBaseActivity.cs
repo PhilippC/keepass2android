@@ -74,6 +74,7 @@ namespace keepass2android
 			{
 				//make sure the app task is passed to the calling activity
 				AppTask.SetActivityResult(this, KeePass.ExitNormal);
+
 			}
 
 			if (resultCode == Result.Ok)
@@ -134,7 +135,7 @@ namespace keepass2android
 
 		protected override void OnResume() {
 			base.OnResume();
-
+			AppTask.StartInGroupActivity(this);
 			AppTask.SetupGroupBaseActivityButtons(this);
 			
 			RefreshIfDirty();
@@ -190,12 +191,6 @@ namespace keepass2android
 			
 			StyleScrollBars();
 			
-		}
-
-		protected override void OnStart()
-		{
-			base.OnStart();
-			AppTask.StartInGroupActivity(this);
 		}
 
 		private void InsertElement()

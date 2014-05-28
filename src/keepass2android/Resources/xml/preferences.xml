@@ -147,7 +147,10 @@
 			  android:title="@string/ShowGroupnameInSearchResult_title"
 			  android:summary="@string/ShowGroupnameInSearchResult_resume"
 			  android:defaultValue="@bool/ShowGroupnameInSearchResult_default"/>
-
+			<CheckBoxPreference
+			  android:key="ShowGroupInEntry"
+			  android:title="@string/ShowGroupInEntry_title"
+			  android:defaultValue="false"/>
 			<ListPreference
 			  android:key="@string/list_size_key"
 			  android:title="@string/list_size_title"

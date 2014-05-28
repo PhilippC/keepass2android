@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -277,7 +278,6 @@ namespace keepass2android
 
 		public virtual void StartInGroupActivity(GroupBaseActivity groupBaseActivity)
 		{
-			return;
 		}
 
 		public virtual void SetupGroupBaseActivityButtons(GroupBaseActivity groupBaseActivity)
@@ -675,7 +675,7 @@ namespace keepass2android
 		public override void AfterAddNewEntry(EntryEditActivity entryEditActivity, PwEntry newEntry)
 		{
 			EntryActivity.Launch(entryEditActivity, newEntry, -1, 
-				new SelectEntryTask() { ShowUserNotifications = this.ShowUserNotifications}, 
+				new SelectEntryTask { ShowUserNotifications = this.ShowUserNotifications}, 
 				ActivityFlags.ForwardResult);
 			//no need to call Finish here, that's done in EntryEditActivity ("closeOrShowError")	
 		}
@@ -695,65 +695,65 @@ namespace keepass2android
 	{
 		// All group Uuid are stored in guuidKey + indice
 		// The last one is the destination group 
-		public const String numberOfGroupsKey = "NumberOfGroups";
-		public const String gUuidKey = "gUuidKey"; 
-		public const String fullGroupNameKey = "fullGroupNameKey";
-		public const String toastEnableKey = "toastEnableKey";
+		public const String NumberOfGroupsKey = "NumberOfGroups";
+		public const String GUuidKey = "gUuidKey"; 
+		public const String FullGroupNameKey = "fullGroupNameKey";
+		public const String ToastEnableKey = "toastEnableKey";
 
 		#if INCLUDE_DEBUG_MOVE_GROUPNAME
 		public const String gNameKey = "gNameKey";
 		private LinkedList<string> groupNameList;
 		#endif
 
-		private LinkedList<string> groupUuid;
-		protected AppTask taskToBeLaunchAfterNavigation;
+		private LinkedList<string> _groupUuid;
+		protected AppTask TaskToBeLaunchedAfterNavigation;
 
-		protected String fullGroupName {
+		protected String FullGroupName {
 			get ;
 			set ;
 		}
 
-		protected bool toastEnable {
+		protected bool ToastEnable {
 			get;
 			set;
 		}
 
-		public NavigateAndLaunchTask() {
-			this.taskToBeLaunchAfterNavigation = new NullTask();
-			fullGroupName = "";
-			toastEnable = false;
+		protected NavigateAndLaunchTask() {
+			TaskToBeLaunchedAfterNavigation = new NullTask();
+			FullGroupName = "";
+			ToastEnable = false;
 		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="keepass2android.NavigateAndLaunchTask"/> class.
 		/// </summary>
 		/// <param name="groups">Groups.</param>
-		/// <param name="taskToBeLaunchAfterNavigation">Task to be launched after navigation.</param>
+		/// <param name="taskToBeLaunchedAfterNavigation">Task to be launched after navigation.</param>
 		/// <param name="toastEnable">If set to <c>true</c>, toast will be displayed after navigation.</param>
-		protected NavigateAndLaunchTask(PwGroup groups, AppTask taskToBeLaunchAfterNavigation, bool toastEnable = false) {
-			this.taskToBeLaunchAfterNavigation = taskToBeLaunchAfterNavigation;
-			populateGroups (groups);
-			this.toastEnable = toastEnable;
+		protected NavigateAndLaunchTask(PwGroup groups, AppTask taskToBeLaunchedAfterNavigation, bool toastEnable = false) {
+			TaskToBeLaunchedAfterNavigation = taskToBeLaunchedAfterNavigation;
+			PopulateGroups (groups);
+			ToastEnable = toastEnable;
 		}
 
-		public void populateGroups(PwGroup groups) {
+		public void PopulateGroups(PwGroup groups) {
 
-			groupUuid = new LinkedList<String>{};
+			_groupUuid = new LinkedList<String>();
 
 			#if INCLUDE_DEBUG_MOVE_GROUPNAME
 			groupNameList = new LinkedList<String>{};
 			#endif
 
-			fullGroupName = "";
+			FullGroupName = "";
 			PwGroup readGroup = groups;
 			while (readGroup != null) {
 
 				if ( (readGroup.ParentGroup != null) || 
 					(readGroup.ParentGroup == null) && (readGroup == groups) ) {
-					fullGroupName = readGroup.Name + "." + fullGroupName;
+					FullGroupName = readGroup.Name + "." + FullGroupName;
 				}
 
-				groupUuid.AddFirst (MemUtil.ByteArrayToHexString (readGroup.Uuid.UuidBytes));
+				_groupUuid.AddFirst (MemUtil.ByteArrayToHexString (readGroup.Uuid.UuidBytes));
 
 				#if INCLUDE_DEBUG_MOVE_GROUPNAME
 				groupNameList.AddFirst (readGroup.Name);
@@ -772,9 +772,9 @@ namespace keepass2android
 		/// <param name="b">The bundle component.</param>
 		public override void Setup(Bundle b)
 		{
-			int numberOfGroups = b.GetInt(numberOfGroupsKey);
+			int numberOfGroups = b.GetInt(NumberOfGroupsKey);
 
-			groupUuid = new LinkedList<String>{};
+			_groupUuid = new LinkedList<String>();
 			#if INCLUDE_DEBUG_MOVE_GROUPNAME 
 			groupNameList = new LinkedList<String>{};
 			#endif 
@@ -783,7 +783,7 @@ namespace keepass2android
 
 			while (i < numberOfGroups) {
 
-				groupUuid.AddLast ( b.GetString (gUuidKey + i) ) ;
+				_groupUuid.AddLast ( b.GetString (GUuidKey + i) ) ;
 
 				#if INCLUDE_DEBUG_MOVE_GROUPNAME 
 				groupNameList.AddLast ( b.GetString (gNameKey + i);
@@ -791,8 +791,8 @@ namespace keepass2android
 				i++;
 			}
 
-			fullGroupName = b.GetString (fullGroupNameKey);
-			toastEnable = b.GetBoolean (toastEnableKey);
+			FullGroupName = b.GetString (FullGroupNameKey);
+			ToastEnable = b.GetBoolean (ToastEnableKey);
 				
 		}
 
@@ -801,7 +801,7 @@ namespace keepass2android
 			get
 			{
 				// Return Navigate group Extras
-				IEnumerator<String> eGroupKeys = groupUuid.GetEnumerator ();
+				IEnumerator<String> eGroupKeys = _groupUuid.GetEnumerator ();
 
 				#if INCLUDE_DEBUG_MOVE_GROUPNAME
 				IEnumerator<String> eGroupName = groupNameList.GetEnumerator ();
@@ -809,7 +809,7 @@ namespace keepass2android
 
 				int i = 0;
 				while (eGroupKeys.MoveNext()) {
-					yield return new StringExtra { Key = gUuidKey + i.ToString (), Value = eGroupKeys.Current };
+					yield return new StringExtra { Key = GUuidKey + i.ToString (CultureInfo.InvariantCulture), Value = eGroupKeys.Current };
 
 					#if INCLUDE_DEBUG_MOVE_GROUPNAME
 					eGroupName.MoveNext();
@@ -819,14 +819,14 @@ namespace keepass2android
 					i++;
 				}
 
-				yield return new IntExtra{ Key = numberOfGroupsKey, Value = i };
-				yield return new StringExtra{ Key = fullGroupNameKey, Value = fullGroupName };
-				yield return new BoolExtra{ Key = toastEnableKey, Value = toastEnable };
+				yield return new IntExtra{ Key = NumberOfGroupsKey, Value = i };
+				yield return new StringExtra{ Key = FullGroupNameKey, Value = FullGroupName };
+				yield return new BoolExtra{ Key = ToastEnableKey, Value = ToastEnable };
 
 				// Return afterTaskExtras
-				IEnumerator<IExtra> afterTaskExtras = taskToBeLaunchAfterNavigation.Extras.GetEnumerator();
-				while (afterTaskExtras.MoveNext ()) {
-					yield return afterTaskExtras.Current;
+				foreach (var extra in TaskToBeLaunchedAfterNavigation.Extras)
+				{
+					yield return extra;
 				}
 
 			}
@@ -838,24 +838,30 @@ namespace keepass2android
 
 			if (GroupIsFound(groupBaseActivity) ){ // Group has been found: display toaster and stop here
 
-				if (toastEnable) {
-					String toastMessage = groupBaseActivity.GetString (Resource.String.NavigationToGroupCompleted_message);
-					toastMessage = toastMessage.Replace ("%0", this.fullGroupName);
+				if (ToastEnable) {
+					String toastMessage = groupBaseActivity.GetString (Resource.String.NavigationToGroupCompleted_message, new Java.Lang.Object[] { FullGroupName});
+					
 					Toast.MakeText (groupBaseActivity, toastMessage, ToastLength.Long).Show ();
 				}
 				
-				groupBaseActivity.StartTask (taskToBeLaunchAfterNavigation);
+				groupBaseActivity.StartTask (TaskToBeLaunchedAfterNavigation);
 				return;
 
-			} else if (groupUuid.Contains(groupBaseActivity.UuidGroup)) { // Need to go up in groups tree
+			} else if (_groupUuid.Contains(groupBaseActivity.UuidGroup)) { // Need to go up in groups tree
 
 				// Get next Group Uuid
-				String nextGroupUuid = groupUuid.Find (groupBaseActivity.UuidGroup).Next.Value;
-				PwUuid nextGroupPwUuid = new PwUuid (MemUtil.HexStringToByteArray (nextGroupUuid));
+				var linkedListNode = _groupUuid.Find(groupBaseActivity.UuidGroup);
+				if (linkedListNode != null)
+				{
+					//Note: Resharper says there is a possible NullRefException.
+					//This is not the case because it was checked above if we're already there or not.
+					String nextGroupUuid = linkedListNode.Next.Value;
+					PwUuid nextGroupPwUuid = new PwUuid (MemUtil.HexStringToByteArray (nextGroupUuid));
 
-				// Create Group Activity
-				PwGroup nextGroup = App.Kp2a.GetDb ().Groups [nextGroupPwUuid];
-				GroupActivity.Launch (groupBaseActivity, nextGroup, this);
+					// Create Group Activity
+					PwGroup nextGroup = App.Kp2a.GetDb ().Groups [nextGroupPwUuid];
+					GroupActivity.Launch (groupBaseActivity, nextGroup, this);
+				}
 				return;
 
 			} else { // Need to go down in groups tree
@@ -867,23 +873,24 @@ namespace keepass2android
 		}
 		public override void SetupGroupBaseActivityButtons(GroupBaseActivity groupBaseActivity)
 		{
-			return;
+			
 		}
 
 		public bool GroupIsFound(GroupBaseActivity groupBaseActivity)
 		{
-			return groupUuid.Last.Value.Equals (groupBaseActivity.UuidGroup);
+			return _groupUuid.Last.Value.Equals (groupBaseActivity.UuidGroup);
 		}
 	}
 
 	public class NavigateToFolder: NavigateAndLaunchTask {
 
-		public NavigateToFolder():base() {
+		public NavigateToFolder()
+		{
 		}
 
 		public NavigateToFolder(PwGroup groups, bool toastEnable = false)
-			: base(groups, new NullTask(), toastEnable) {
-			return;
+			: base(groups, new NullTask(), toastEnable) 
+		{
 		}
 
 	}
@@ -895,15 +902,15 @@ namespace keepass2android
 		}
 
 
-		public NavigateToFolderAndLaunchMoveElementTask(PwGroup groups, PwUuid Uuid, bool toastEnable = false)
-			:base(groups, new MoveElementTask() { Uuid = Uuid }, toastEnable) {
+		public NavigateToFolderAndLaunchMoveElementTask(PwGroup groups, PwUuid uuid, bool toastEnable = false)
+			:base(groups, new MoveElementTask() { Uuid = uuid }, toastEnable) {
 		}
 
 		public override void Setup(Bundle b) {
 			base.Setup(b);
 
-			taskToBeLaunchAfterNavigation = new MoveElementTask ();
-			taskToBeLaunchAfterNavigation.Setup (b);
+			TaskToBeLaunchedAfterNavigation = new MoveElementTask ();
+			TaskToBeLaunchedAfterNavigation.Setup (b);
 
 		}
 
