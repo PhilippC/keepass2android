@@ -242,3 +242,5 @@ Thumbs.db
 /src/PluginHostTest/bin/Debug
 
 /src/java/Keepass2AndroidPluginSDK/bin
+
+/src/TwofishCipher/Resources/Resource.Designer.cs

@@ -3,6 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A6CF8A86-37C1-4197-80FE-519DE2C842F5}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -15,20 +17,20 @@
     <AssemblyName>keepass2android</AssemblyName>
     <newfilesearch>OnLoad</newfilesearch>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <JavaOptions />
+    <AndroidUseLatestPlatformSdk />
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM;INCLUDE_DEBUG_MOVE_GROUPNAME</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -38,7 +40,7 @@
         <Command type="BeforeBuild" command="UseManifestNet.bat" />
       </CustomCommands>
     </CustomCommands>
-    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -48,6 +50,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <ConsolePause>False</ConsolePause>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
     <CustomCommands>
       <CustomCommands>
@@ -58,6 +61,7 @@
     <DefineConstants>RELEASE</DefineConstants>
     <AndroidLinkSkip>System.Core%3b</AndroidLinkSkip>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <BundleAssemblies>False</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -65,6 +69,7 @@
     <OutputPath>bin\ReleaseNoNet</OutputPath>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <DefineConstants>NoNet</DefineConstants>
     <CustomCommands>
       <CustomCommands>
@@ -80,6 +85,9 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Support.v4" />
+    <Reference Include="GooglePlayServicesFroyoLib">
+      <HintPath>..\Components\googleplayservicesfroyo-9.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
@@ -262,39 +270,6 @@
       <Visible>False</Visible>
     </None>
     <None Include="Resources\layout-v14\entry_view_contents.xml">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Properties\AndroidManifest_debug.xml" />
-    <None Include="Properties\AndroidManifest_light.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_action_search_holodark.png" />
-    <AndroidResource Include="Resources\layout\sftp_credentials.axml" />
-    <AndroidResource Include="Resources\layout\Kopie_von_donate.xml" />
-    <AndroidResource Include="Resources\xml\method.xml" />
-    <None Include="GroupBaseActivity.cs.bak">
-      <Visible>False</Visible>
-    </None>
-    <None Include="KeePass.cs.bak">
-      <Visible>False</Visible>
-    </None>
-    <None Include="app\AppTask.cs.bak">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\layout\entry_list_entry.xml.bak">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values\config.xml.bak">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\values\strings.xml.bak">
-      <Visible>False</Visible>
-    </None>
-    <None Include="Resources\xml\preferences.xml.bak">
-      <Visible>False</Visible>
-    </None>
-    <None Include="search\SearchResults.cs.bak">
-      <Visible>False</Visible>
-    </None>
-    <None Include="views\PwEntryView.cs.bak">
       <Visible>False</Visible>
     </None>
   </ItemGroup>
@@ -680,8 +655,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj">
-      <Project>{3C0F7FE5-639F-4422-A087-8B26CF862D1B}</Project>
+      <Project>{3c0f7fe5-639f-4422-a087-8b26cf862d1b}</Project>
       <Name>AndroidFileChooserBinding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
+      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
+      <Name>JavaFileStorageBindings</Name>
     </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
@@ -691,12 +670,20 @@
       <Project>{53A9CB7F-6553-4BC0-B56B-9410BB2E59AA}</Project>
       <Name>Kp2aBusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
+      <Project>{70d3844a-d9fa-4a64-b205-a84c6a822196}</Project>
+      <Name>KP2AKdbLibraryBinding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj">
+      <Project>{a8779d4d-7c49-4c2f-82bd-2cdc448391da}</Project>
+      <Name>Kp2aKeyboardBinding</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PluginSdkBinding\PluginSdkBinding.csproj">
-      <Project>{3DA3911E-36DE-465E-8F15-F1991B6437E5}</Project>
+      <Project>{3da3911e-36de-465e-8f15-f1991b6437e5}</Project>
       <Name>PluginSdkBinding</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
-      <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>
+      <Project>{5cf675a5-9bee-4720-bed9-d5bf14a2ebf9}</Project>
       <Name>TwofishCipher</Name>
     </ProjectReference>
   </ItemGroup>
