@@ -44,7 +44,7 @@ namespace keepass2android
 		}
 		
 		public static void GotoUrl(Context context, String url) {
-			if ( url != null && url.Length > 0 ) {
+			if ( !string.IsNullOrEmpty(url) ) {
 
 				if (url.StartsWith("androidapp://"))
 				{

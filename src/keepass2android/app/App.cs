@@ -34,6 +34,7 @@ using Android.Preferences;
 #if !EXCLUDE_TWOFISH
 using TwofishCipher;
 #endif
+using Keepass2android.Pluginsdk;
 using keepass2android.Io;
 using keepass2android.addons.OtpKeyProv;
 
@@ -96,6 +97,7 @@ namespace keepass2android
 					if (!QuickLocked)
 					{
 						Kp2aLog.Log("QuickLocking database");
+						BroadcastDatabaseAction(Application.Context, Strings.ActionLockDatabase);
 
 						QuickLocked = true;
 					}
@@ -107,6 +109,8 @@ namespace keepass2android
 				else
 				{
 					Kp2aLog.Log("Locking database");
+
+					BroadcastDatabaseAction(Application.Context, Strings.ActionCloseDatabase);
 
 					// Couldn't quick-lock, so unload database instead
 					_db.Clear();
@@ -122,6 +126,21 @@ namespace keepass2android
 			Application.Context.SendBroadcast(new Intent(Intents.DatabaseLocked));
         }
 
+
+		public void BroadcastDatabaseAction(Context ctx, string action)
+		{
+			Intent i = new Intent(action);
+			i.PutExtra(Strings.ExtraDatabaseFileDisplayname, App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc).GetDisplayName(App.Kp2a.GetDb().Ioc));
+			i.PutExtra(Strings.ExtraDatabaseFilepath, App.Kp2a.GetDb().Ioc.Path);
+			foreach (var plugin in new PluginDatabase(ctx).GetPluginsWithAcceptedScope(Strings.ScopeDatabaseActions))
+			{
+				i.SetPackage(plugin);
+				ctx.SendBroadcast(i);
+			}
+		}
+
+
+
 		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseLoader databaseLoader)
 		{
 			_db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseLoader);
@@ -134,6 +153,8 @@ namespace keepass2android
 			QuickLocked = false;
 
 			UpdateOngoingNotification();
+
+			BroadcastDatabaseAction(Application.Context, Strings.ActionUnlockDatabase);
 		}
 
 		public void UpdateOngoingNotification()

@@ -20,12 +20,13 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		protected Context _context;
 		protected Intent _intent;
 		
-		public PluginActionBase(Context context, Intent intent)
+
+		public PluginActionBase(Context context, Intent intent) 
 		{
 			_context = context;
 			_intent = intent;
 		}
-		
+
 		public String getHostPackage() {
 			return _intent.getStringExtra(Strings.EXTRA_SENDER);
 		}
@@ -35,6 +36,16 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 			return _context;
 		}
 
+	}
+	
+	protected abstract class PluginEntryActionBase extends PluginActionBase
+	{
+		
+		public PluginEntryActionBase(Context context, Intent intent)
+		{
+			super(context, intent);
+		}
+		
 		protected HashMap<String, String> getEntryFieldsFromIntent()  
 		{
 			HashMap<String, String> res = new HashMap<String, String>();
@@ -60,7 +71,7 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 	
 	}
 	
-	protected class ActionSelected extends PluginActionBase
+	protected class ActionSelected extends PluginEntryActionBase
 	{
 		public ActionSelected(Context ctx, Intent intent) {
 			super(ctx, intent);
@@ -114,7 +125,7 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		}
 	}
 	
-	protected class CloseEntryView extends PluginActionBase
+	protected class CloseEntryView extends PluginEntryActionBase
 	{
 		public CloseEntryView(Context context, Intent intent) {
 			super(context, intent);
@@ -126,7 +137,7 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		}
 	}
 
-	protected class OpenEntry extends PluginActionBase
+	protected class OpenEntry extends PluginEntryActionBase
 	{
 	
 		public OpenEntry(Context context, Intent intent)
@@ -195,6 +206,29 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		
 	}
 	
+	protected class DatabaseAction extends PluginActionBase
+	{
+
+		public DatabaseAction(Context context, Intent intent) {
+			super(context, intent);
+		}
+		
+		public String getFileDisplayName()
+		{
+			return _intent.getStringExtra(Strings.EXTRA_DATABASE_FILE_DISPLAYNAME);
+		}
+		
+		public String getFilePath()
+		{
+			return _intent.getStringExtra(Strings.EXTRA_DATABASE_FILEPATH);
+		}
+		
+		public String getAction()
+		{
+			return _intent.getAction();
+		}
+		
+	}
 	//EntryOutputModified is very similar to OpenEntry because it receives the same 
 	//data (+ the field id which was modified)
 	protected class EntryOutputModified extends OpenEntry
@@ -233,6 +267,13 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		{
 			entryOutputModified(new EntryOutputModified(ctx, intent));
 		}
+		else if (action.equals(Strings.ACTION_LOCK_DATABASE)
+				|| action.equals(Strings.ACTION_UNLOCK_DATABASE)
+				|| action.equals(Strings.ACTION_OPEN_DATABASE)
+				|| action.equals(Strings.ACTION_CLOSE_DATABASE))
+		{
+			databaseAction(new DatabaseAction(ctx,  intent));
+		}
 		else
 		{
 			//TODO handle unexpected action
@@ -248,5 +289,7 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 	protected void openEntry(OpenEntry oe) {}
 	
 	protected void entryOutputModified(EntryOutputModified eom) {}
+	
+	protected void databaseAction(DatabaseAction db) {}
 
 }

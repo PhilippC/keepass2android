@@ -35,6 +35,7 @@ using Android.Content.PM;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
+using Keepass2android.Pluginsdk;
 using OtpKeyProv;
 using keepass2android.Io;
 using keepass2android.Utils;
@@ -1293,6 +1294,8 @@ namespace keepass2android
 
 					_act.LaunchNextActivity();
 
+					_act.BroadcastOpenDatabase();
+
 
 					GC.Collect(); // Ensure temporary memory used while loading is collected
 				} 
@@ -1301,6 +1304,11 @@ namespace keepass2android
 				_act._performingLoad = false;
 
 			}
+		}
+
+		private void BroadcastOpenDatabase()
+		{
+			App.Kp2a.BroadcastDatabaseAction(this, Strings.ActionOpenDatabase);
 		}
 
 		private void ClearEnteredPassword()

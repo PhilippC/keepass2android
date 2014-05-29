@@ -164,6 +164,21 @@ public class Strings {
 	 */
 	public static final String ACTION_SET_ENTRY_FIELD = "keepass2android.ACTION_SET_ENTRY_FIELD";
 	
+	/** Actions for an intent from KP2A to the plugin to inform that a database was opened, closed, quicklocked or quickunlocked.*/
+	public static final String ACTION_OPEN_DATABASE = "keepass2android.ACTION_OPEN_DATABASE";
+	public static final String ACTION_CLOSE_DATABASE = "keepass2android.ACTION_CLOSE_DATABASE";
+	public static final String ACTION_LOCK_DATABASE = "keepass2android.ACTION_LOCK_DATABASE";
+	public static final String ACTION_UNLOCK_DATABASE = "keepass2android.ACTION_UNLOCK_DATABASE";
+	
+	/** Extra for ACTION_OPEN_DATABASE and ACTION_CLOSE_DATABASE containing a filepath which is used 
+	 * by KP2A internally to identify the file. Use only where necessary, might contain credentials 
+	 * for accessing the file (on remote storage).*/
+	public static final String EXTRA_DATABASE_FILEPATH = "keepass2android.EXTRA_DATABASE_FILEPATH";
+	/** Extra for ACTION_OPEN_DATABASE and ACTION_CLOSE_DATABASE containing a filepath which can be
+	 * displayed to the user.*/
+	public static final String EXTRA_DATABASE_FILE_DISPLAYNAME = "keepass2android.EXTRA_DATABASE_FILE_DISPLAYNAME";
+	
+	
 	public static final String EXTRA_FIELD_VALUE = "keepass2android.EXTRA_FIELD_VALUE";
 	public static final String EXTRA_FIELD_PROTECTED = "keepass2android.EXTRA_FIELD_PROTECTED";
 	
