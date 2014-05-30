@@ -99,6 +99,8 @@ namespace keepass2android
 		
 		//make sure _timer doesn't go out of scope:
 		private Timer _timer;
+		private PluginActionReceiver _pluginActionReceiver;
+		private PluginFieldReceiver _pluginFieldReceiver;
 
 
 		protected void SetEntryView()
@@ -375,8 +377,10 @@ namespace keepass2android
 
 			App.Kp2a.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.GetDb().KpDatabase);
 
-			RegisterReceiver(new PluginActionReceiver(this), new IntentFilter(Strings.ActionAddEntryAction));
-			RegisterReceiver(new PluginFieldReceiver(this), new IntentFilter(Strings.ActionSetEntryField));
+			_pluginActionReceiver = new PluginActionReceiver(this);
+			RegisterReceiver(_pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction));
+			_pluginFieldReceiver = new PluginFieldReceiver(this);
+			RegisterReceiver(_pluginFieldReceiver, new IntentFilter(Strings.ActionSetEntryField));
 
 			new Thread(NotifyPluginsOnOpen).Start();
 
@@ -742,6 +746,10 @@ namespace keepass2android
 		protected override void OnDestroy()
 		{
 			NotifyPluginsOnClose();
+			if (_pluginActionReceiver != null)
+				UnregisterReceiver(_pluginActionReceiver);
+			if (_pluginFieldReceiver != null)
+				UnregisterReceiver(_pluginFieldReceiver);
 			base.OnDestroy();
 		}
 

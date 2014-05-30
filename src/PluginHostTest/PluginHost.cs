@@ -14,33 +14,38 @@ namespace keepass2android
 	/// <summary>
 	/// Class which manages plugins inside the app
 	/// </summary>
-	[BroadcastReceiver()]
-	[IntentFilter(new[] { Strings.ActionRequestAccess})]
-	public class PluginHost: BroadcastReceiver
+	[BroadcastReceiver]
+	[IntentFilter(new[] { Strings.ActionRequestAccess })]
+	public class PluginHost : BroadcastReceiver
 	{
-		
-		private const string _tag = "KP2A_PluginHost";
-		
 
-		private static readonly string[] _validScopes = { Strings.ScopeDatabaseActions, Strings.ScopeCurrentEntry };
+		private const string _tag = "KP2A_PluginHost";
+
+
+		private static readonly string[] _validScopes = { Strings.ScopeDatabaseActions, 
+															Strings.ScopeCurrentEntry,
+															Strings.ScopeQueryCredentials,
+															Strings.ScopeQueryCredentialsForOwnPackage};
+
+		public static IEnumerable<string> GetAllPlugins(Context ctx)
+		{
+			Intent accessIntent = new Intent(Strings.ActionTriggerRequestAccess);
+			PackageManager packageManager = ctx.PackageManager;
+			IList<ResolveInfo> dictPacks = packageManager.QueryBroadcastReceivers(
+				accessIntent, PackageInfoFlags.Receivers);
+			
+			return dictPacks.Select(ri => ri.ActivityInfo.ApplicationInfo).Select(appInfo => appInfo.PackageName);
+			
+		}
 
 		/// <summary>
 		/// Sends a broadcast to all potential plugins prompting them to request access to our app.
 		/// </summary>
 		public static void TriggerRequests(Context ctx)
 		{
-			Intent accessIntent = new Intent(Strings.ActionTriggerRequestAccess);
-			PackageManager packageManager = ctx.PackageManager;
-			IList<ResolveInfo> dictPacks = packageManager.QueryBroadcastReceivers(
-				accessIntent, PackageInfoFlags.Receivers);
 			PluginDatabase pluginDatabase = new PluginDatabase(ctx);
-			foreach (ResolveInfo ri in dictPacks)
-			{
-				ApplicationInfo appInfo = ri.ActivityInfo.ApplicationInfo;
-				String pkgName = appInfo.PackageName;
-				
-				TriggerRequest(ctx, pkgName, pluginDatabase);
-			}
+			foreach (string pkg in GetAllPlugins(ctx))
+				TriggerRequest(ctx, pkg, pluginDatabase);
 
 		}
 
@@ -69,7 +74,7 @@ namespace keepass2android
 				var senderPackage = intent.GetStringExtra(Strings.ExtraSender);
 				var requestToken = intent.GetStringExtra(Strings.ExtraRequestToken);
 
-			 	var requestedScopes = intent.GetStringArrayListExtra(Strings.ExtraScopes);
+				var requestedScopes = intent.GetStringArrayListExtra(Strings.ExtraScopes);
 
 				if (!AreScopesValid(requestedScopes))
 				{
@@ -82,9 +87,9 @@ namespace keepass2android
 					return;
 				}
 				string currentAccessToken = pluginDb.GetAccessToken(senderPackage);
-				if ((currentAccessToken != null) 
+				if ((currentAccessToken != null)
 					&& (AccessManager.IsSubset(requestedScopes,
-				                           pluginDb.GetPluginScopes(senderPackage))))
+										   pluginDb.GetPluginScopes(senderPackage))))
 				{
 					//permission already there.
 					var i = new Intent(Strings.ActionReceiveAccess);
@@ -116,10 +121,10 @@ namespace keepass2android
 						context.SendBroadcast(i);
 						Log.Warn(_tag, "Access token of plugin " + senderPackage + " not (or no more) valid.");
 					}
-					
+
 				}
 				if (OnReceivedRequest != null)
-					OnReceivedRequest(this, new PluginHostEventArgs() { Package = senderPackage});
+					OnReceivedRequest(this, new PluginHostEventArgs() { Package = senderPackage });
 
 			}
 		}
@@ -152,14 +157,16 @@ namespace keepass2android
 			//add the output string array (placeholders replaced taking into account the db context)
 			Dictionary<string, string> outputFields = entry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
 
-			//add field values as JSON ({ "key":"value", ... } form)
-			JSONObject json = new JSONObject(outputFields);
-			var jsonStr = json.ToString();
-			intent.PutExtra(Strings.ExtraEntryOutputData, jsonStr);
+			JSONObject jsonOutput = new JSONObject(outputFields);
+			var jsonOutputStr = jsonOutput.ToString();
+			intent.PutExtra(Strings.ExtraEntryOutputData, jsonOutputStr);
 
-			//add list of which fields are protected (StringArrayExtra)
-			string[] protectedFieldsList = entry.OutputStrings.Where(s=>s.Value.IsProtected).Select(s => s.Key).ToArray();
-			intent.PutExtra(Strings.ExtraProtectedFieldsList, protectedFieldsList);
+			JSONArray jsonProtectedFields = new JSONArray(
+				(System.Collections.ICollection)entry.OutputStrings
+					.Where(pair => pair.Value.IsProtected)
+					.Select(pair => pair.Key)
+					.ToArray());
+			intent.PutExtra(Strings.ExtraProtectedFieldsList, jsonProtectedFields.ToString());
 
 			intent.PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString());
 

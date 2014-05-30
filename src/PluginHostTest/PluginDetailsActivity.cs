@@ -15,14 +15,14 @@ using Android.Views;
 using Android.Widget;
 using Java.Util;
 using Keepass2android.Pluginsdk;
-using keepass2android;
+using PluginHostTest;
 using keepass2android.views;
 
-namespace PluginHostTest
+namespace keepass2android
 {
-	[Activity(Label = "TODO Details")]
-	[IntentFilter(new[] { Strings.ActionEditPluginSettings},
-		Label = AppNames.AppName,
+	[Activity(Label = "bla")]
+	[IntentFilter(new[] { Strings.ActionEditPluginSettings },
+		Label = "bla",
 		Categories = new[] { Intent.CategoryDefault })]
 	public class PluginDetailsActivity : Activity
 	{
@@ -32,7 +32,7 @@ namespace PluginHostTest
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-
+			
 			_pluginPackageName = Intent.GetStringExtra(Strings.ExtraPluginPackage);
 
 			var pluginRes = PackageManager.GetResourcesForApplication(_pluginPackageName);
@@ -40,7 +40,7 @@ namespace PluginHostTest
 			var author = GetStringFromPlugin(pluginRes, _pluginPackageName, "kp2aplugin_author");
 			var shortDesc = GetStringFromPlugin(pluginRes, _pluginPackageName, "kp2aplugin_shortdesc");
 			var version = PackageManager.GetPackageInfo(_pluginPackageName, 0).VersionName;
-			
+
 			SetContentView(Resource.Layout.plugin_details);
 			if (title != null)
 				FindViewById<TextView>(Resource.Id.txtLabel).Text = title;
@@ -49,13 +49,14 @@ namespace PluginHostTest
 			SetTextOrHide(Resource.Id.txtShortDesc, shortDesc);
 
 			_checkbox = FindViewById<CheckBox>(Resource.Id.cb_enabled);
-			_checkbox.CheckedChange += delegate {
-					new PluginDatabase(this).SetEnabled(_pluginPackageName, _checkbox.Checked);
-				};
-			
+			_checkbox.CheckedChange += delegate
+			{
+				new PluginDatabase(this).SetEnabled(_pluginPackageName, _checkbox.Checked);
+			};
+
 			Drawable d = PackageManager.GetApplicationIcon(_pluginPackageName);
 			FindViewById<ImageView>(Resource.Id.imgIcon).SetImageDrawable(d);
-			
+
 			FindViewById<TextView>(Resource.Id.txtVersion).Text = version;
 
 			//cannot be wrong to update the view when we received an update
@@ -72,11 +73,11 @@ namespace PluginHostTest
 				FindViewById(Resource.Id.deny_button).Visibility = ViewStates.Visible;
 
 				FindViewById(Resource.Id.accept_button).Click += delegate(object sender, EventArgs args)
-					{
-						new PluginDatabase(this).SetEnabled(_pluginPackageName, true);
-						SetResult(Result.Ok);
-						Finish();
-					};
+				{
+					new PluginDatabase(this).SetEnabled(_pluginPackageName, true);
+					SetResult(Result.Ok);
+					Finish();
+				};
 
 				FindViewById(Resource.Id.deny_button).Click += delegate(object sender, EventArgs args)
 				{
@@ -120,10 +121,10 @@ namespace PluginHostTest
 				string scopeId = scope.Substring("keepass2android.".Length);
 
 				TextWithHelp help = new TextWithHelp(this,
-				                                     GetString(Resources.GetIdentifier(scopeId + "_title", "string", PackageName)),
-				                                     GetString(Resources.GetIdentifier(scopeId + "_explanation", "string", PackageName)));
+													 GetString(Resources.GetIdentifier(scopeId + "_title", "string", PackageName)),
+													 GetString(Resources.GetIdentifier(scopeId + "_explanation", "string", PackageName)));
 				LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FillParent,
-				                                                                       ViewGroup.LayoutParams.WrapContent);
+																					   ViewGroup.LayoutParams.WrapContent);
 				help.LayoutParameters = layoutParams;
 				scopesContainer.AddView(help);
 			}
@@ -142,7 +143,7 @@ namespace PluginHostTest
 
 		public static string GetStringFromPlugin(Resources pluginRes, string pluginPackage, string stringId)
 		{
-			int titleId = pluginRes.GetIdentifier(pluginPackage + ":string/"+stringId, null, null);
+			int titleId = pluginRes.GetIdentifier(pluginPackage + ":string/" + stringId, null, null);
 			string title = null;
 			if (titleId != 0)
 				title = pluginRes.GetString(titleId);

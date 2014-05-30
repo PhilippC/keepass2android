@@ -68,15 +68,41 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		{
 			return _intent.getStringArrayExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST);
 		}
+		
+
+		public String getEntryId()
+		{
+			return _intent.getStringExtra(Strings.EXTRA_ENTRY_ID);
+		}
+		
+
+		public void setEntryField(String fieldId, String fieldValue, boolean isProtected) throws PluginAccessException
+		{
+			Intent i = new Intent(Strings.ACTION_SET_ENTRY_FIELD);
+			ArrayList<String> scope = new ArrayList<String>();
+			scope.add(Strings.SCOPE_CURRENT_ENTRY);
+			i.putExtra(Strings.EXTRA_ACCESS_TOKEN, AccessManager.getAccessToken(_context, getHostPackage(), scope));
+			i.setPackage(getHostPackage());
+			i.putExtra(Strings.EXTRA_SENDER, _context.getPackageName());
+			i.putExtra(Strings.EXTRA_FIELD_VALUE, fieldValue);
+			i.putExtra(Strings.EXTRA_ENTRY_ID, getEntryId());
+			i.putExtra(Strings.EXTRA_FIELD_ID, fieldId);
+			i.putExtra(Strings.EXTRA_FIELD_PROTECTED, isProtected);
+			
+			_context.sendBroadcast(i);
+		}
 	
 	}
 	
-	protected class ActionSelected extends PluginEntryActionBase
+	protected class ActionSelectedAction extends PluginEntryActionBase
 	{
-		public ActionSelected(Context ctx, Intent intent) {
+		public ActionSelectedAction(Context ctx, Intent intent) {
 			super(ctx, intent);
 
 		}
+		
+
+		
 		
 		/**
 		 * 
@@ -125,9 +151,9 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		}
 	}
 	
-	protected class CloseEntryView extends PluginEntryActionBase
+	protected class CloseEntryViewAction extends PluginEntryActionBase
 	{
-		public CloseEntryView(Context context, Intent intent) {
+		public CloseEntryViewAction(Context context, Intent intent) {
 			super(context, intent);
 		}
 
@@ -137,18 +163,14 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		}
 	}
 
-	protected class OpenEntry extends PluginEntryActionBase
+	protected class OpenEntryAction extends PluginEntryActionBase
 	{
 	
-		public OpenEntry(Context context, Intent intent)
+		public OpenEntryAction(Context context, Intent intent)
 		{
 			super(context, intent);
 		}
 		
-		public String getEntryId()
-		{
-			return _intent.getStringExtra(Strings.EXTRA_ENTRY_ID);
-		}
 		
 		public HashMap<String, String> getEntryFields() 
 		{
@@ -187,21 +209,7 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 			_context.sendBroadcast(i);
 		}
 
-		public void setEntryField(String fieldId, String fieldValue, boolean isProtected) throws PluginAccessException
-		{
-			Intent i = new Intent(Strings.ACTION_SET_ENTRY_FIELD);
-			ArrayList<String> scope = new ArrayList<String>();
-			scope.add(Strings.SCOPE_CURRENT_ENTRY);
-			i.putExtra(Strings.EXTRA_ACCESS_TOKEN, AccessManager.getAccessToken(_context, getHostPackage(), scope));
-			i.setPackage(getHostPackage());
-			i.putExtra(Strings.EXTRA_SENDER, _context.getPackageName());
-			i.putExtra(Strings.EXTRA_FIELD_VALUE, fieldValue);
-			i.putExtra(Strings.EXTRA_ENTRY_ID, getEntryId());
-			i.putExtra(Strings.EXTRA_FIELD_ID, fieldId);
-			i.putExtra(Strings.EXTRA_FIELD_PROTECTED, isProtected);
-			
-			_context.sendBroadcast(i);
-		}
+		
 		
 		
 	}
@@ -231,10 +239,10 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 	}
 	//EntryOutputModified is very similar to OpenEntry because it receives the same 
 	//data (+ the field id which was modified)
-	protected class EntryOutputModified extends OpenEntry
+	protected class EntryOutputModifiedAction extends OpenEntryAction
 	{
 	
-		public EntryOutputModified(Context context, Intent intent)
+		public EntryOutputModifiedAction(Context context, Intent intent)
 		{
 			super(context, intent);
 		}
@@ -253,26 +261,26 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 			return;
 		if (action.equals(Strings.ACTION_OPEN_ENTRY))
 		{
-			openEntry(new OpenEntry(ctx, intent));	
+			openEntry(new OpenEntryAction(ctx, intent));	
 		}
 		else if (action.equals(Strings.ACTION_CLOSE_ENTRY_VIEW))
 		{
-			closeEntryView(new CloseEntryView(ctx, intent));	
+			closeEntryView(new CloseEntryViewAction(ctx, intent));	
 		}		
 		else if (action.equals(Strings.ACTION_ENTRY_ACTION_SELECTED))
 		{
-			actionSelected(new ActionSelected(ctx, intent));
+			actionSelected(new ActionSelectedAction(ctx, intent));
 		}
 		else if (action.equals(Strings.ACTION_ENTRY_OUTPUT_MODIFIED))
 		{
-			entryOutputModified(new EntryOutputModified(ctx, intent));
+			entryOutputModified(new EntryOutputModifiedAction(ctx, intent));
 		}
 		else if (action.equals(Strings.ACTION_LOCK_DATABASE)
 				|| action.equals(Strings.ACTION_UNLOCK_DATABASE)
 				|| action.equals(Strings.ACTION_OPEN_DATABASE)
 				|| action.equals(Strings.ACTION_CLOSE_DATABASE))
 		{
-			databaseAction(new DatabaseAction(ctx,  intent));
+			dbAction(new DatabaseAction(ctx,  intent));
 		}
 		else
 		{
@@ -282,14 +290,14 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		
 	}
 
-	protected void closeEntryView(CloseEntryView closeEntryView) {}
+	protected void closeEntryView(CloseEntryViewAction closeEntryView) {}
 
-	protected void actionSelected(ActionSelected actionSelected) {}
+	protected void actionSelected(ActionSelectedAction actionSelected) {}
 
-	protected void openEntry(OpenEntry oe) {}
+	protected void openEntry(OpenEntryAction oe) {}
 	
-	protected void entryOutputModified(EntryOutputModified eom) {}
+	protected void entryOutputModified(EntryOutputModifiedAction eom) {}
 	
-	protected void databaseAction(DatabaseAction db) {}
+	protected void dbAction(DatabaseAction db) {}
 
 }

@@ -4,14 +4,15 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
+        android:orientation="vertical"
+		android:padding="12dp">
+        <Button
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="plugin text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="plugin_web"
             style="@style/PaddedElement"
-            android:id="@+id/textView"
+            android:id="@+id/btnPluginsOnline"
             android:layout_gravity="left|center_vertical" />
         <ListView
             android:id="@android:id/list"

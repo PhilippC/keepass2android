@@ -56,8 +56,9 @@ namespace keepass2android
 				Intent triggerIntent = new Intent(Strings.ActionTriggerRequestAccess);
 				triggerIntent.SetPackage(pkgName);
 				triggerIntent.PutExtra(Strings.ExtraSender, ctx.PackageName);
-
-				triggerIntent.PutExtra(Strings.ExtraRequestToken, pluginDatabase.GetRequestToken(pkgName));
+				string requestToken = pluginDatabase.GetRequestToken(pkgName);
+				triggerIntent.PutExtra(Strings.ExtraRequestToken, requestToken);
+				Android.Util.Log.Debug(_tag, "Request token: " + requestToken);
 				ctx.SendBroadcast(triggerIntent);
 			}
 			catch (Exception e)

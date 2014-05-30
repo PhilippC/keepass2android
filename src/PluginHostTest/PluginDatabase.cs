@@ -16,7 +16,6 @@ namespace keepass2android
 		private const string _accessToken = "accessToken";
 		private const string _scopes = "scopes";
 		private const string _requesttoken = "requestToken";
-		private const string _pluginlist = "pluginList";
 
 
 
@@ -34,14 +33,7 @@ namespace keepass2android
 				editor.PutString(_requesttoken, Guid.NewGuid().ToString());
 				editor.Commit();
 			}
-			var hostPrefs = GetHostPrefs();
-			var plugins = hostPrefs.GetStringSet(_pluginlist, new List<string>());
-			if (!plugins.Contains(packageName))
-			{
-				plugins.Add(packageName);
-				hostPrefs.Edit().PutStringSet(_pluginlist, plugins).Commit();
-			}
-
+			
 			return prefs;
 		}
 
@@ -62,8 +54,7 @@ namespace keepass2android
 
 		public IEnumerable<String> GetAllPluginPackages()
 		{
-			var hostPrefs = GetHostPrefs();
-			return hostPrefs.GetStringSet(_pluginlist, new List<string>()).Where(IsPackageInstalled);
+			return PluginHost.GetAllPlugins(_ctx);
 		}
 
 		public bool IsPackageInstalled(string targetPackage)
@@ -88,16 +79,11 @@ namespace keepass2android
 		public void StorePlugin(string pluginPackage, string accessToken, IList<string> requestedScopes)
 		{
 			ISharedPreferences pluginPrefs = GetPreferencesForPlugin(pluginPackage);
-			
-			pluginPrefs.Edit()
-			           .PutString(_scopes, AccessManager.StringArrayToString(requestedScopes))
-			           .PutString(_accessToken, accessToken)
-			           .Commit();
-		}
 
-		private ISharedPreferences GetHostPrefs()
-		{
-			return _ctx.GetSharedPreferences("plugins", FileCreationMode.Private);
+			pluginPrefs.Edit()
+					   .PutString(_scopes, AccessManager.StringArrayToString(requestedScopes))
+					   .PutString(_accessToken, accessToken)
+					   .Commit();
 		}
 
 		public void SetEnabled(string pluginPackage, bool enabled)
@@ -114,7 +100,7 @@ namespace keepass2android
 				i.PutExtra(Strings.ExtraAccessToken, accessToken);
 				_ctx.SendBroadcast(i);
 
-				StorePlugin(pluginPackage, accessToken, GetPluginScopes( pluginPackage));
+				StorePlugin(pluginPackage, accessToken, GetPluginScopes(pluginPackage));
 			}
 			else
 			{
@@ -139,7 +125,7 @@ namespace keepass2android
 			{
 				Log.Warn(_tag, "No accessToken specified!");
 				return false;
-			} 
+			}
 
 			var prefs = GetPreferencesForPlugin(pluginPackage);
 			if (prefs.GetString(_accessToken, null) != accessToken)
@@ -166,25 +152,49 @@ namespace keepass2android
 			{
 				GetPreferencesForPlugin(plugin).Edit().Clear().Commit();
 			}
-			GetHostPrefs().Edit().Clear().Commit();
 		}
 
-		
+
 		public IEnumerable<string> GetPluginsWithAcceptedScope(string scope)
 		{
 			return GetAllPluginPackages().Where(plugin =>
-				{
-					var prefs = GetPreferencesForPlugin(plugin);
-					return (prefs.GetString(_accessToken, null) != null)
-						 && AccessManager.StringToStringArray(prefs.GetString(_scopes, "")).Contains(scope);
+			{
+				var prefs = GetPreferencesForPlugin(plugin);
+				return (prefs.GetString(_accessToken, null) != null)
+					 && AccessManager.StringToStringArray(prefs.GetString(_scopes, "")).Contains(scope);
 
-				});
+			});
 		}
 
 		public void ClearPlugin(string plugin)
 		{
 			var prefs = _ctx.GetSharedPreferences("KP2A.Plugin." + plugin, FileCreationMode.Private);
 			prefs.Edit().Clear().Commit();
+		}
+
+		/// <summary>
+		/// Checks if the given pluginPackage has been granted the requiredScope
+		/// </summary>
+		public bool HasAcceptedScope(string pluginPackage, string requiredScope)
+		{
+			if (pluginPackage == null)
+			{
+				Log.Warn(_tag, "No pluginPackage specified!");
+				return false;
+			}
+
+			var prefs = GetPreferencesForPlugin(pluginPackage);
+			if (prefs.GetString(_accessToken, null) == null)
+			{
+				Log.Info(_tag, "No access token for " + pluginPackage);
+				return false;
+			}
+			if (!AccessManager.StringToStringArray(prefs.GetString(_scopes, "")).Contains(requiredScope))
+			{
+				Log.Info(_tag, "Scope " + requiredScope + " not granted for " + pluginPackage);
+				return false;
+			}
+			return true;
 		}
 	}
 }

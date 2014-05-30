@@ -10,7 +10,7 @@ import keepass2android.pluginsdk.Strings;
 
 public class ActionReceiver extends PluginActionBroadcastReceiver{
 	@Override
-	protected void openEntry(OpenEntry oe) {
+	protected void openEntry(OpenEntryAction oe) {
 		try {
 			oe.addEntryAction(oe.getContext().getString(R.string.action_show_qr),
 					R.drawable.qrcode, null);
@@ -26,7 +26,7 @@ public class ActionReceiver extends PluginActionBroadcastReceiver{
 	}
 	
 	@Override
-	protected void actionSelected(ActionSelected actionSelected) {
+	protected void actionSelected(ActionSelectedAction actionSelected) {
 		Intent i = new Intent(actionSelected.getContext(), QRActivity.class);
 		i.putExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA, new JSONObject(actionSelected.getEntryFields()).toString());
 		i.putExtra(Strings.EXTRA_FIELD_ID, actionSelected.getFieldId());
@@ -36,7 +36,7 @@ public class ActionReceiver extends PluginActionBroadcastReceiver{
 	}
 	
 	@Override
-	protected void entryOutputModified(EntryOutputModified eom) {
+	protected void entryOutputModified(EntryOutputModifiedAction eom) {
 		try {
 			eom.addEntryFieldAction("keepass2android.plugin.qr.show", eom.getModifiedFieldId(), eom.getContext().getString(R.string.action_show_qr),
 					R.drawable.qrcode, null);
