@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using Android.Content;
 using Android.Content.PM;
+using Android.OS;
 using Android.Util;
 using Keepass2android.Pluginsdk;
 
@@ -11,6 +14,26 @@ namespace keepass2android
 {
 	public class PluginDatabase
 	{
+		public class KeyGenerator
+		{
+			public static string GetUniqueKey(int maxSize)
+			{
+				char[] chars =
+				"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+				byte[] data = new byte[1];
+				RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
+				crypto.GetNonZeroBytes(data);
+				data = new byte[maxSize];
+				crypto.GetNonZeroBytes(data);
+				StringBuilder result = new StringBuilder(maxSize);
+				foreach (byte b in data)
+				{
+					result.Append(chars[b % (chars.Length)]);
+				}
+				return result.ToString();
+			}
+		}
+
 		private const string _tag = "KP2A_PluginDatabase";
 		private readonly Context _ctx;
 		private const string _accessToken = "accessToken";
@@ -90,7 +113,7 @@ namespace keepass2android
 		{
 			if (enabled)
 			{
-				string accessToken = Guid.NewGuid().ToString();
+				string accessToken = KeyGenerator.GetUniqueKey(32);
 
 				Intent i = new Intent(Strings.ActionReceiveAccess);
 				i.SetPackage(pluginPackage);
@@ -126,6 +149,10 @@ namespace keepass2android
 				Log.Warn(_tag, "No accessToken specified!");
 				return false;
 			}
+
+			//internal access token is valid for all scopes
+			if ((pluginPackage == _ctx.PackageName) && (accessToken == GetInternalToken()))
+				return true;
 
 			var prefs = GetPreferencesForPlugin(pluginPackage);
 			if (prefs.GetString(_accessToken, null) != accessToken)
@@ -195,6 +222,21 @@ namespace keepass2android
 				return false;
 			}
 			return true;
+		}
+
+		public string GetInternalToken()
+		{
+			var prefs = _ctx.GetSharedPreferences("KP2A.PluginHost" , FileCreationMode.Private);
+			if (prefs.Contains(_accessToken))
+			{
+				return prefs.GetString(_accessToken, null);
+			}
+			else
+			{
+				var token = KeyGenerator.GetUniqueKey(32);
+				prefs.Edit().PutString(_accessToken, token).Commit();
+				return token;
+			}
 		}
 	}
 }

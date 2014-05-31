@@ -427,6 +427,14 @@
   <string name="CouldntLoadChalAuxFile_Hint">Please use the KeeChallenge plugin in KeePass 2.x (PC) to configure your database for use with challenge-response!</string>
   <string name="ErrorUpdatingChalAuxFile">Error updating OTP auxiliary file!</string>
 
+	<string name="TrayTotp_SeedField_title">TOTP Seed field name</string>
+	<string name="TrayTotp_SeedField_summary">If you are using the Keepass 2 plugin "TrayTotp" with non-default settings, enter the field name for the seed field here according to the settings on the PC.</string>
+	
+	<string name="TrayTotp_SettingsField_title">TOTP Settings field name</string>
+	<string name="TrayTotp_SettingsField_summary">Enter the field name of the settings field for TrayTotp here.</string>
+	
+	<string name="TrayTotp_prefs">TrayTotp</string>
+
 	<string name="loading">Loading…</string>
 		
 	<string name="plugins">Plug-ins</string>

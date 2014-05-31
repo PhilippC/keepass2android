@@ -100,6 +100,7 @@ namespace keepass2android
 						BroadcastDatabaseAction(Application.Context, Strings.ActionLockDatabase);
 
 						QuickLocked = true;
+						_db.LastOpenedEntry = null;
 					}
 					else
 					{

@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -146,6 +146,13 @@
     <Compile Include="GroupBaseActivity.cs" />
     <Compile Include="LockCloseListActivity.cs" />
     <Compile Include="LockingListActivity.cs" />
+    <Compile Include="Totp\ITotpPluginAdapter.cs" />
+    <Compile Include="Totp\KeeOtpPluginAdapter.cs" />
+    <Compile Include="Totp\Kp2aTotp.cs" />
+    <Compile Include="Totp\TotpData.cs" />
+    <Compile Include="Totp\Totp_Client.cs" />
+    <Compile Include="Totp\TrayTotpPluginAdapter.cs" />
+    <Compile Include="Totp\UpdateTotpTimerTask.cs" />
     <Compile Include="Utils\ActivityDesign.cs" />
     <Compile Include="Utils\LoadingDialog.cs" />
     <Compile Include="Utils\Util.cs" />

@@ -230,7 +230,7 @@ namespace keepass2android
 			//update the Entry output in the App database and notify the CopyToClipboard service
 			App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
 			Intent updateKeyboardIntent = new Intent(this, typeof(CopyToClipboardService));
-			Intent.SetAction(Intents.UpdateKeyboard);
+			updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
 			updateKeyboardIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
 			StartService(updateKeyboardIntent);
 
@@ -394,12 +394,14 @@ namespace keepass2android
 			i.PutExtra(Strings.ExtraSender, PackageName);
 			AddEntryToIntent(i);
 
-
 			foreach (var plugin in new PluginDatabase(this).GetPluginsWithAcceptedScope(Strings.ScopeCurrentEntry))
 			{
 				i.SetPackage(plugin);
 				SendBroadcast(i);
 			}
+
+			new Kp2aTotp().OnOpenEntry();
+
 		}
 		private void NotifyPluginsOnModification(string fieldId)
 		{
