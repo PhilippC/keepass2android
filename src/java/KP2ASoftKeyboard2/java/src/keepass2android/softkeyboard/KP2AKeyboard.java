@@ -1315,7 +1315,9 @@ public class KP2AKeyboard extends InputMethodService
 
 	private void onKp2aLockKeyPressed() {
     	
-		sendBroadcast(new Intent("keepass2android.lock_database"));
+		String action = getPackageName()+".lock_database";
+		android.util.Log.i("KP2A", "sending broadcast with action "+action);
+		sendBroadcast(new Intent(action));
 		
 	}
 

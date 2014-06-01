@@ -27,15 +27,15 @@ namespace keepass2android
 		
 
 		/// <summary>Broadcast this intent to lock the database (with quick unlock if enabled)</summary>
-		public const String LockDatabase = "keepass2android."+AppNames.PackagePart+"lock_database";
+		public const String LockDatabase = "keepass2android."+AppNames.PackagePart+".lock_database";
 		/// <summary>Broadcast this intent to close the database (no quick unlock, full close)</summary>
-		public const String CloseDatabase = "keepass2android." + AppNames.PackagePart + "close_database";
+		public const String CloseDatabase = "keepass2android." + AppNames.PackagePart + ".close_database";
 		
 		/// <summary>This intent will be broadcast once the database has been locked. Sensitive information displayed should be hidden and unloaded.</summary>
-		public const String DatabaseLocked = "keepass2android." + AppNames.PackagePart + "database_locked";
+		public const String DatabaseLocked = "keepass2android." + AppNames.PackagePart + ".database_locked";
 
 		/// <summary>This intent will be broadcast once the keyboard data has been cleared</summary>
-		public const String KeyboardCleared = "keepass2android." + AppNames.PackagePart + "keyboard_cleared";
+		public const String KeyboardCleared = "keepass2android." + AppNames.PackagePart + ".keyboard_cleared";
 
 		public const String CopyUsername = "keepass2android.copy_username";
 		public const String CopyPassword = "keepass2android.copy_password";
