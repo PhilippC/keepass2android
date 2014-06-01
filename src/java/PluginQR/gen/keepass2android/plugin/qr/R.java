@@ -82,6 +82,7 @@ public final class R {
         public static final int history_title=0x7f0b0025;
         public static final int image_view=0x7f0b0019;
         public static final int launch_product_query=0x7f0b0003;
+        public static final int menu_about=0x7f0b0036;
         public static final int menu_encode=0x7f0b0033;
         public static final int menu_history_clear_text=0x7f0b0035;
         public static final int menu_history_send=0x7f0b0034;
@@ -142,6 +143,8 @@ public final class R {
         public static final int beep=0x7f050000;
     }
     public static final class string {
+        public static final int about=0x7f070086;
+        public static final int about_msg=0x7f070087;
         public static final int action_show_qr=0x7f070077;
         public static final int all_fields=0x7f070079;
         public static final int app_name=0x7f070000;

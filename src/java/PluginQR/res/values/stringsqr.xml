@@ -18,4 +18,6 @@
 	<string name="qr_question">Text found on QR code. How do you want to handle this text?</string>
 	<string name="create_entry">Create new entry</string>
 	<string name="search_entry">Search and open existing entry</string>
+	<string name="about">About</string>
+	<string name="about_msg">This app is built based on the ZXing library and barcode scanner app (Copyright by the ZXing team, licensed under the Apache 2.0 license).</string>
 </resources>

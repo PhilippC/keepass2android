@@ -56,6 +56,26 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		new Builder(this)
+		.setMessage(R.string.about_msg)
+		.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+
+		})
+		.create().show();
+		
+		return true;
+	}
 
 
 	@Override

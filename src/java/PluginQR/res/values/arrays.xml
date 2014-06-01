@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-  <string-array name="country_codes">
+  <string-array name="country_codes" translatable="false">
     <item>-</item>
     <item>AR</item>
     <item>AU</item>
@@ -34,12 +34,12 @@
     <item>TW</item>
     <item>US</item>
   </string-array>
-  <string-array name="preferences_front_light_values">
+  <string-array name="preferences_front_light_values" translatable="false">
     <item>ON</item>
     <item>AUTO</item>
     <item>OFF</item>
   </string-array>
-  <string-array name="preferences_front_light_options">
+  <string-array name="preferences_front_light_options" translatable="false">
     <item>@string/preferences_front_light_on</item>
     <item>@string/preferences_front_light_auto</item>
     <item>@string/preferences_front_light_off</item>
