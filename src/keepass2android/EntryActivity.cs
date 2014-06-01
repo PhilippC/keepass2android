@@ -127,6 +127,7 @@ namespace keepass2android
 
 		protected void SetupMoveButtons() {
 			View moveView =  FindViewById(Resource.Id.entry_move);
+			/* Disabled for simpler UI. Wait if users demand that button.
 			if (App.Kp2a.GetDb().CanWrite)
 			{
 				moveView.Visibility = ViewStates.Visible;
@@ -139,7 +140,7 @@ namespace keepass2android
 
 				};	
 			}
-			else
+			else*/
 			{
 				moveView.Visibility = ViewStates.Gone;
 			}
