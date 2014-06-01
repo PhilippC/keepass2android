@@ -7,7 +7,7 @@
     <string name="include_label">Include field label</string>
     <string name="all_fields">All fields</string>
     <string name="kp2aplugin_title">QR Plugin</string>
-    <string name="kp2aplugin_shortdesc">Displays password entries as QR code</string>
+    <string name="kp2aplugin_shortdesc">Displays password entries as QR code; can be used to scan QR codes which can then be added to Keepass2Android.</string>
     <string name="kp2aplugin_author">Philipp Crocoll</string>
     <string name="scan_qr">Scan QR code from other device</string>
     <string name="show_qr">Select entry to show as QR code</string>

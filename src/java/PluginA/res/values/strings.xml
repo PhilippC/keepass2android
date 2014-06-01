@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PluginA</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="kp2aplugin_title">The Great PluginA</string>
+    <string name="kp2aplugin_shortdesc">Test plugin to demonstrate how plugins work</string>
+    <string name="kp2aplugin_author">Philipp Crocoll</string>
+
+</resources>

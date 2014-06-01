@@ -1,0 +1,24 @@
+<PreferenceScreen
+    android:key="general_pref"
+     xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <Preference
+        android:key="enable_plugin_pref"
+        android:title="@string/configure_plugin" />
+
+
+    <!--
+         NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it.
+    -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <ListPreference
+        android:defaultValue="en-US"
+        android:entries="@array/layout_names"
+        android:entryValues="@array/layout_values"
+        android:key="kbd_layout"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/layout_title" />
+
+</PreferenceScreen>

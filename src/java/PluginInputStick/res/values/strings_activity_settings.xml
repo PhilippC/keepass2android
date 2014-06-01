@@ -1,0 +1,24 @@
+<resources>
+
+    <string name="title_activity_settings">KP2A InputStick Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="configure_plugin">Configure as plugin</string>
+
+    <string name="layout_title">Host keyboard layout</string>
+    
+    <string-array name="layout_names">
+        <item>English (United States) - en-US</item>
+        <item>German - de-DE</item>
+        <item>Polish - pl-PL</item>
+        <item>Russian - ru-RU</item>
+    </string-array>
+    
+    <string-array name="layout_values">
+        <item>en-US</item>
+        <item>de-DE</item>
+        <item>pl-PL</item>
+        <item>ru-RU</item>
+    </string-array>
+
+</resources>
