@@ -244,3 +244,17 @@ Thumbs.db
 /src/java/Keepass2AndroidPluginSDK/bin
 
 /src/TwofishCipher/Resources/Resource.Designer.cs
+/src/BindingLibrary1
+/src/PluginSdkBinding/obj/Debug
+
+/src/PluginTOTP
+/src/java/DemoService
+/src/PluginSdkBinding/bin/Debug
+
+/src/java/InputStickAPI/bin
+
+/src/java/PluginA/bin
+
+/src/java/PluginInputStick/bin
+
+/src/java/PluginInputStick/icons
