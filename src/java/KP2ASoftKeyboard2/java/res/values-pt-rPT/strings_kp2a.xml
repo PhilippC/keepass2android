@@ -5,5 +5,11 @@
   <string name="open_entry">Selecionar a entrada</string>
   <string name="open_entry_for_app">Procurar entrada com \"%1$s\"</string>
   <string name="kp2a_user">Utilizador</string>
+  <string name="kp2a_password">Palavra-passe</string>
+  <string name="kp2a_prefs">Configuração da credencial de entrada</string>
+  <string name="kp2a_auto_fill">Auto-preenchimento ativado</string>
+  <string name="kp2a_auto_fill_summary">Preenche automaticamente o texto quando um campo vazio é inserido, se uma entrada de Keepass2Android está disponível para o teclado e existe um valor que coincide com o texto de dica do campo.</string>
+  <string name="kp2a_remember_auto_fill">Lembrar os textos de dica de campo</string>
+  <string name="kp2a_remember_auto_fill_summary">Se um campo de texto é preenchido manualmente selecionando o valor de Keepass2Android, lembra-se de qual valor foi inserido no campo de texto. O campo de texto mais tarde é detectado novamente pelo seu texto de dica.</string>
   <string name="kp2a_simple_keyboard">Teclado simples</string>
 </resources>

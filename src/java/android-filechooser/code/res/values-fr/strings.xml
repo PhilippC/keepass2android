@@ -38,11 +38,11 @@
   <string name="afc_pmsg_cannot_create_folder">Impossible de créer le dossier \"%1$s\"</string>
   <string name="afc_pmsg_cannot_delete_file">Impossible de supprimer %1$s \"%2$s\"</string>
   <string name="afc_pmsg_confirm_delete_file">Êtes-vous sûr de vouloir supprimer ce %1$s \"%2$s\" ?</string>
-  <string name="afc_pmsg_confirm_replace_file">Ce fichier \"%1$s\" existe déjà.\n\nVoulez-vous le remplacer ?</string>
+  <string name="afc_pmsg_confirm_replace_file">Le fichier \"%1$s\" existe déjà.\n\nVoulez-vous le remplacer ?</string>
   <string name="afc_pmsg_deleting_file">Suppression du %1$s \"%2$s\"...</string>
   <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" a été supprimé</string>
   <string name="afc_pmsg_filename_is_directory">\"%1$s\" est un dossier</string>
-  <string name="afc_pmsg_filename_is_invalid">Nom du fichier \"%1$s\" invalide</string>
+  <string name="afc_pmsg_filename_is_invalid">Le nom du fichier \"%1$s\" est invalide</string>
   <string name="afc_pmsg_max_file_count_allowed">...contient trop de fichiers, limite autorisée : %1$,d</string>
   <string name="afc_pmsg_unknown_error">Erreur inconnue : %1$s</string>
   <string name="afc_root">Racine</string>
@@ -59,18 +59,18 @@
   <plurals name="afc_title_choose_directories">
     <item quantity="one">Choisir dossier...</item>
     <item quantity="other">[one]
-Choisir dossier...
+Choisir un dossier...
 
 [other]
-Choisir dossier...
-Choisir dossiers...</item>
+Choisir un dossier...
+Choisir les dossiers...</item>
   </plurals>
   <plurals name="afc_title_choose_files">
     <item quantity="one">[one]
-Choisir fichier...
+Choisir un fichier...
 [other]
-Choisir fichier...
-Choisir fichiers...</item>
+Choisir un fichier...
+Choisir les fichiers...</item>
     <item quantity="other">[one]
 Choisir fichier...
 
@@ -80,11 +80,11 @@ Choisir fichiers...</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">[one]
-Choisir fichier/dossier...
+Choisir un fichier/dossier&#8230;
 
 [other]
-Choisir fichier/dossier...
-Choisir fichiers/dossiers...</item>
+Choisir un fichier/dossier&#8230;
+Choisir des fichiers/dossiers&#8230;</item>
     <item quantity="other">[one]
 Choisir fichier/dossier...
 

@@ -27,8 +27,8 @@
   <string name="afc_msg_app_doesnot_have_permission_to_delete_files">У приложения нет прав на удаление файлов / папок</string>
   <string name="afc_msg_cancelled">Отменено</string>
   <string name="afc_msg_cannot_connect_to_file_provider_service">Не удается подключиться к службе хранения файла</string>
-  <string name="afc_msg_cannot_create_new_folder_here">Создание новой папки здесь невозможно</string>
-  <string name="afc_msg_cannot_save_a_file_here">Не удается здесь сохранить файл</string>
+  <string name="afc_msg_cannot_create_new_folder_here">Не удается создать здесь новую папку</string>
+  <string name="afc_msg_cannot_save_a_file_here">Не удается сохранить здесь файл</string>
   <string name="afc_msg_done">Выполнено</string>
   <string name="afc_msg_empty">Пусто</string>
   <string name="afc_msg_failed_please_try_again">Не получилось. Пожалуйста, попробуйте еще раз.</string>
@@ -58,17 +58,17 @@
   <string name="afc_yesterday">Вчера</string>
   <plurals name="afc_title_choose_directories">
     <item quantity="one">Выберете папку&#8230;</item>
-    <item quantity="few">Выберете папку&#8230;</item>
+    <item quantity="few">Выберете папку…</item>
     <item quantity="other">Выберете папку&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files">
     <item quantity="one">Выберите файл&#8230;</item>
-    <item quantity="few">Выберите файлы&#8230;</item>
+    <item quantity="few">Выберите файлы…</item>
     <item quantity="other">Выберите файл&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">Выберите файл/ папку&#8230;</item>
-    <item quantity="few">Выберите файлы/папки&#8230;</item>
+    <item quantity="few">Выберите файлы/папки…</item>
     <item quantity="other">Выберите файл/папку&#8230;</item>
   </plurals>
 </resources>

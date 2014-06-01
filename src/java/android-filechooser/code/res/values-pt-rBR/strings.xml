@@ -22,6 +22,7 @@
   <string name="afc_hint_clear">limpar</string>
   <string name="afc_hint_folder_name">nome da pasta</string>
   <string name="afc_hint_save_as_filename">nome do arquivo</string>
+  <string name="afc_hint_search">pesquisa</string>
   <string name="afc_msg_app_doesnot_have_permission_to_create_files">Este aplicativo não tem permissão para criar arquivos/pastas</string>
   <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Este aplicativo não tem permissão para excluir arquivos/pastas</string>
   <string name="afc_msg_cancelled">Cancelado</string>
@@ -40,4 +41,32 @@
   <string name="afc_pmsg_confirm_replace_file">Este arquivo \"%1$s\" já existe.\n\nPretende substituí-lo?</string>
   <string name="afc_pmsg_deleting_file">Excluindo o/a %1$s \"%2$s\"&#8230;</string>
   <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" foi excluído</string>
+  <string name="afc_pmsg_filename_is_directory">\"%1$s\" é uma pasta</string>
+  <string name="afc_pmsg_filename_is_invalid">Nome do arquivo \"%1$s\" é inválido</string>
+  <string name="afc_pmsg_max_file_count_allowed">... tem mais arquivos, máximo permitido: %1$,d</string>
+  <string name="afc_pmsg_unknown_error">Erro desconhecido: %1$s</string>
+  <string name="afc_root">Raiz</string>
+  <string name="afc_title_advanced_selection">Selecione&#8230;</string>
+  <string name="afc_title_confirmation">Confirmação</string>
+  <string name="afc_title_date">Data</string>
+  <string name="afc_title_error">Erro</string>
+  <string name="afc_title_info">Informação</string>
+  <string name="afc_title_name">Nome</string>
+  <string name="afc_title_save_as">Salvar como&#8230;</string>
+  <string name="afc_title_size">Tamanho</string>
+  <string name="afc_title_sort_by">Ordenar por&#8230;</string>
+  <string name="afc_yesterday">Ontem</string>
+  <plurals name="afc_title_choose_directories">
+    <item quantity="one">Escolher pasta&#8230;
+Escolher pastas&#8230;</item>
+    <item quantity="other">Escolher pastas&#8230;</item>
+  </plurals>
+  <plurals name="afc_title_choose_files">
+    <item quantity="one">Escolher arquivo&#8230;</item>
+    <item quantity="other">Escolher arquivos&#8230;</item>
+  </plurals>
+  <plurals name="afc_title_choose_files_directories">
+    <item quantity="one">Escolher arquivo/ pasta&#8230;</item>
+    <item quantity="other">Escolher arquivos/ pastas&#8230;</item>
+  </plurals>
 </resources>

@@ -4,4 +4,14 @@
   <string name="change_entry">اختر مُدخل  آخر</string>
   <string name="open_entry">اختر مُدخل</string>
   <string name="open_entry_for_app">البحث عن مُدخل يحتوي على \"%1$s\"</string>
+  <string name="kp2a_password">كلمة السر</string>
+  <string name="kp2a_prefs">اعدادات ادخال البيانات السرية</string>
+  <string name="kp2a_auto_fill_summary">ملئ البيانات تلقائيا عند وجود حقل فارغ اذا وجد keePass2 Android ان البيانات متوفرة للوحة المفاتيح.</string>
+  <string name="kp2a_remember_auto_fill">تذكر نصوص حقول التلميح</string>
+  <string name="kp2a_remember_auto_fill_summary">اذا عبئ الحقل يدويا عن طريق استخدام قيم keepass2Android، تذكر اي قيمة استخدمت و استخدم نص التلميح لذلك الحقل حتى تعاد تعبئتها تلقائيا.</string>
+  <string name="kp2a_simple_keyboard">لوحة المفاتيح بسيطة</string>
+  <string name="kp2a_lock_on_sendgodone">اقفال قاعدة البيانات عند الانتهاء</string>
+  <string name="kp2a_lock_on_sendgodone_summary">عند الضغط على مفتاح \'ذهاب\' على لوحة المفاتيح البسيطة، اقفل قاعدة بيانات.</string>
+  <string name="kp2a_switch_on_sendgodone">بدل لوحة المفاتيح عند الانتهاء</string>
+  <string name="kp2a_switch_on_sendgodone_summary">عند الضغط على مفتاح \'ذهاب\' على لوحة المفاتيح البسيطة، ابدل لوحة المفاتيح.</string>
 </resources>

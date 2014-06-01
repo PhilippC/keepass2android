@@ -38,7 +38,7 @@
   <string name="afc_pmsg_cannot_create_folder">Nem lehet mappát létrehozni \"%1$s\"</string>
   <string name="afc_pmsg_cannot_delete_file">Nem lehet törölni %1$s \"%2$s\"</string>
   <string name="afc_pmsg_confirm_delete_file">Biztosan törölni akarod ezt  %1$s \"%2$s\"?</string>
-  <string name="afc_pmsg_confirm_replace_file">Ez a fájl  \"%1$s\" már létezik.\n\n Biztosan felül akarod írni?</string>
+  <string name="afc_pmsg_confirm_replace_file">\"%1$s\" nevű fájl már létezik.\n\nBiztosan felül akarja írni?</string>
   <string name="afc_pmsg_deleting_file">Törlés %1$s \"%2$s\"&#8230;</string>
   <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\"törölve</string>
   <string name="afc_pmsg_filename_is_directory">\"%1$s\"egy mappa</string>

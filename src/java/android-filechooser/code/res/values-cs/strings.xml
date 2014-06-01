@@ -39,7 +39,7 @@
   <string name="afc_pmsg_cannot_delete_file">Nemohu odstranit %1$s \"%2$s</string>
   <string name="afc_pmsg_confirm_delete_file">Opravdu chcete odstranit %1$s \"%2$s\"?</string>
   <string name="afc_pmsg_confirm_replace_file">Tento soubor \"%1$s\" již existuje.\n\nChcete jej nahradit?</string>
-  <string name="afc_pmsg_deleting_file">Odstraňuje %1$s \"%2$s\" &#8230;</string>
+  <string name="afc_pmsg_deleting_file">Odstraňuje se %1$s \"%2$s\"&#8230;</string>
   <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" byl/a odstraněn/a</string>
   <string name="afc_pmsg_filename_is_directory">\"%1$s\" je složka</string>
   <string name="afc_pmsg_filename_is_invalid">Název souboru \"%1$s\" je neplatný</string>
@@ -57,18 +57,18 @@
   <string name="afc_title_sort_by">Řadit podle &#8230;</string>
   <string name="afc_yesterday">Včera</string>
   <plurals name="afc_title_choose_directories">
-    <item quantity="one">Vyberte složku &#8230;</item>
-    <item quantity="few">Vyberte složku &#8230;</item>
+    <item quantity="one">Vybrat složku &#8230;</item>
+    <item quantity="few">Vyberte složku …</item>
     <item quantity="other">Vyberte složky &#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files">
-    <item quantity="one">Vyberte soubor &#8230;</item>
-    <item quantity="few">Vyberte soubor &#8230;</item>
-    <item quantity="other">Vyberte soubory &#8230;</item>
+    <item quantity="one">Vyberte soubor&#8230;</item>
+    <item quantity="few">Vyberte soubor…</item>
+    <item quantity="other">Vyberte soubory&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
-    <item quantity="one">Vyberte soubor/ složku &#8230;</item>
-    <item quantity="few">Vyberte soubor/ složku &#8230;</item>
-    <item quantity="other">Vyberte soubory/ složky &#8230;</item>
+    <item quantity="one">Vyberte soubor/složku&#8230;</item>
+    <item quantity="few">Vyberte soubor/složku…</item>
+    <item quantity="other">Vyberte soubory/složky&#8230;</item>
   </plurals>
 </resources>
