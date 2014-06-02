@@ -7,6 +7,7 @@
   <string name="CreditsText">Interfejs użytkownika jest wzorowany na aplikacji KeepassDroid opracowanej przez Briana Pellina. Kod źródłowy operacji na bazach danych jest oparty na aplikacji KeePass  Dominika Reichla. Robot Android jest kopią lub modyfikacją wizerunku stworzonego i udostępnianego przez Google i jest wykorzystywany zgodnie z zasadami opisanymi w Licencji Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Wsparcie SFTP jest zaimplementowane przy użyciu biblioteki JSch objętej licencją BSD, stworzonej przez JCraft, Inc.</string>
   <string name="accept">Akceptuj</string>
+  <string name="deny">Zabroń</string>
   <string name="add_entry">Dodaj wpis</string>
   <string name="add_url_entry">Dodaj wpis dla adresu URL</string>
   <string name="add_group">Dodaj grupę</string>
@@ -25,6 +26,10 @@
   <string name="show_kill_app_summary">Pokaż przycisk do zabicia aplikacji na ekranie hasła (dla paranoicznych użytkowników)</string>
   <string name="application">Aplikacja</string>
   <string name="application_settings">Ustawienia aplikacji</string>
+  <string name="ShowGroupnameInSearchResult_title">Wyświetl nazwę grupy w wynikach wyszukiwania</string>
+  <string name="ShowGroupnameInSearchResult_resume">Wyświetl nazwę grupy poniżej tytułów wpisów w wykonach wyszukiwania. Przydatne jeśli masz kilka wpisów z tą samą nazwą.</string>
+  <string name="NavigationToGroupCompleted_message">Wyświetlana grupa to: %1$s</string>
+  <string name="ShowGroupInEntry_title">Pokaż nazwę grupy w widoku wpisów</string>
   <string name="security_prefs">Zabezpieczenia</string>
   <string name="display_prefs">Wygląd</string>
   <string name="password_access_prefs">Hasło dostępu</string>
@@ -58,6 +63,7 @@
   <string name="entry_confpassword">Potwierdź hasło</string>
   <string name="entry_created">Utworzono</string>
   <string name="entry_expires">Wygasa</string>
+  <string name="entry_group_name">Nazwa Grupy</string>
   <string name="entry_keyfile">Plik klucza (opcjonalnie)</string>
   <string name="entry_modified">Zmodyfikowano</string>
   <string name="entry_password">Hasło</string>
@@ -123,6 +129,8 @@
   <string name="menu_db_settings">Ustawienia bazy danych</string>
   <string name="menu_delete">Usuń</string>
   <string name="menu_move">Przenieś do innej grupy</string>
+  <string name="menu_move_light">Przenieś</string>
+  <string name="menu_navigate">Przejdź do grupy nadrzędnej</string>
   <string name="menu_donate">Kup mi piwo</string>
   <string name="menu_edit">Edytuj</string>
   <string name="menu_hide_password">Ukryj hasło</string>
@@ -214,6 +222,8 @@
   <string name="QuickUnlockDefaultEnabled_summary">Określ czy SzybkieOdblokowanie jest włączone domyślnie czy nie.</string>
   <string name="QuickUnlockIconHidden_title">Ukryj ikonę SzybkiegoOdblokowania</string>
   <string name="QuickUnlockIconHidden_summary">SzybkieOdblokowanie niestety nie może działać bez wyświetlania ikony w obszarze powiadomień. Wybierz tę opcję, aby użyć ikony przeźroczystej.</string>
+  <string name="QuickUnlockIconHidden16_title">Ukryj ikonę szybkiego odblokowania</string>
+  <string name="QuickUnlockIconHidden16_summary">Szybkie odblokowanie potrzebuje androidowego powiadomienia aby działało poprawnie. Wybierz tę opcję aby użyć powiadomienia bez ikonki.</string>
   <string name="QuickUnlockLength_title">Długość klucza SzybkiegoOdblokowania</string>
   <string name="QuickUnlockLength_summary">Maksymalna liczba znaków używanych jako hasło SzybkiegoOdblokowania.</string>
   <string name="QuickUnlock_fail">Nie powiodło się SzybkieOdblokowanie: niepoprawne hasło!</string>
@@ -242,6 +252,11 @@
   <string name="UseFileTransactions_summary">Użyj tabeli operacji na pliku do zapisu bazy danych</string>
   <string name="LockWhenScreenOff_title">Zablokuj gdy ekran wyłączony</string>
   <string name="LockWhenScreenOff_summary">Zablokuj bazę danych gdy ekran jest wyłączony.</string>
+  <string name="LockWhenNavigateBack_title">Zablokuj po opuszczeniu aplikacji</string>
+  <string name="LockWhenNavigateBack_summary">Zablokuj bazę danych kiedy opuścisz aplikację poprzez naciśnięcie przycisku wstecz.</string>
+  <string name="NoDonateOption_title">Ukryj opcję dotacji</string>
+  <string name="NoDonateOption_summary">Ta opcja jest dla ludzi którzy złożyli dotację.</string>
+  <string name="NoDonateOption_question">Bez dotacji nieistniałaby ta aplikacja albo niebyłaby rozwijana. Jeśli jeszcze nie złozyłeś dotacji proszę rozważ to. </string>
   <string name="UseOfflineCache_title">Pamięć podręczna baz danych</string>
   <string name="UseOfflineCache_summary">Przechowuj kopię zdalnych baz danych w katalogu pamięci podręcznej aplikacji. Pozwala to na wykorzystanie zdalnych baz danych, nawet w trybie offline.</string>
   <string name="AcceptAllServerCertificates_title">Certyfikaty SSL</string>

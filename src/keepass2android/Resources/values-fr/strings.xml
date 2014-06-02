@@ -7,6 +7,7 @@
   <string name="CreditsText">L\'interface est basée sur un port de KeepassDroid, développée par Brian Pellin. Le code pour les opérations sur la base de donnée est basé sur Keepass, de Dominik Reichl. Le robot Android est une modification d\'une œuvre de Google, utilisée selon les  termes de la licence Creative Commons 3.0 BY.</string>
   <string name="CreditsTextSFTP">Le support du protocole SFTP est implémenté à l\'aide de la bibliothèque JSch sous licence BSD, créée par JCraft, Inc.</string>
   <string name="accept">Accepter</string>
+  <string name="deny">Rejeter</string>
   <string name="add_entry">Ajouter une entrée</string>
   <string name="add_url_entry">Créer une entrée pour l\'URL</string>
   <string name="add_group">Ajouter un groupe</string>
@@ -25,6 +26,10 @@
   <string name="show_kill_app_summary">Afficher un bouton dans l\'écran de mot de passe pour tuer le processus de l\'application (pour les utilisateurs paranoïaques)</string>
   <string name="application">Application</string>
   <string name="application_settings">Paramètres de l\'application</string>
+  <string name="ShowGroupnameInSearchResult_title">Afficher le nom du groupe dans le résultat de la recherche</string>
+  <string name="ShowGroupnameInSearchResult_resume">Afficher le nom du groupe sous les identifiants des résultats de recherches. Utile si plusieurs entrées possèdent le même identifiant.</string>
+  <string name="NavigationToGroupCompleted_message">Le groupe affiché est maintenant \"%1$s\"</string>
+  <string name="ShowGroupInEntry_title">Afficher le nom du groupe avec les informations de l\'entrée</string>
   <string name="security_prefs">Sécurité</string>
   <string name="display_prefs">Affichage</string>
   <string name="password_access_prefs">Accès aux mots de passe</string>
@@ -58,6 +63,7 @@
   <string name="entry_confpassword">Confirmer mot de passe</string>
   <string name="entry_created">Créée</string>
   <string name="entry_expires">Expire</string>
+  <string name="entry_group_name">Nom du groupe parent</string>
   <string name="entry_keyfile">Clé (facultative)</string>
   <string name="entry_modified">Modifié</string>
   <string name="entry_password">Mot de passe</string>
@@ -123,6 +129,8 @@
   <string name="menu_db_settings">Préférences de base de données</string>
   <string name="menu_delete">Supprimer</string>
   <string name="menu_move">Déplacer vers un autre groupe</string>
+  <string name="menu_move_light">Déplacer</string>
+  <string name="menu_navigate">Naviguer au groupe parent</string>
   <string name="menu_donate">Faire don d\'une bière...</string>
   <string name="menu_edit">Modifier</string>
   <string name="menu_hide_password">Masquer le mot de passe</string>
@@ -214,6 +222,8 @@
   <string name="QuickUnlockDefaultEnabled_summary">Définit si QuickUnlock est activé par défaut ou non.</string>
   <string name="QuickUnlockIconHidden_title">Masquer l\'icône QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock ne fonctionne malheureusement pas sans afficher une icône de notification. Sélectionnez cette option pour utiliser une icône transparente.</string>
+  <string name="QuickUnlockIconHidden16_title">Masquer l\'icône QuickUnlock</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock nécessite une notification pour travailler correctement. Sélectionnez cette option pour afficher une notification sans icône.</string>
   <string name="QuickUnlockLength_title">Longueur de la clé QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Nombre maximal de caractères utilisés comme mot de passe QuickUnlock.</string>
   <string name="QuickUnlock_fail">Échec de QuickUnlock : mot de passe incorrect !</string>
@@ -242,6 +252,11 @@
   <string name="UseFileTransactions_summary">Utiliser les opérations sur les fichiers pour écrire les bases de données</string>
   <string name="LockWhenScreenOff_title">Verrouiller lorsque l\'écran s\'éteint</string>
   <string name="LockWhenScreenOff_summary">Verrouiller la base de données lorsque l\'écran est éteint.</string>
+  <string name="LockWhenNavigateBack_title">Verrouiller lors de la fermeture</string>
+  <string name="LockWhenNavigateBack_summary">Verrouiller la base de données lors de la fermeture de l\'application via le bouton back.</string>
+  <string name="NoDonateOption_title">Masquer l\'option de donation</string>
+  <string name="NoDonateOption_summary">Ce réglage est réservé aux donateurs. Il n\'est disponible qu\'après une durée minimale d\'utilisation de Keepass2Android .</string>
+  <string name="NoDonateOption_question">Sans vos dons, cette application n\'existerait pas et ne serait pas améliorée. Si vous n\'avez pas encore donné, merci de l\'envisager dès maintenant.</string>
   <string name="UseOfflineCache_title">Mise en cache de la base de données</string>
   <string name="UseOfflineCache_summary">Conserver une copie des bases de données distantes dans le cache de l\'application. Ceci permet d\'utiliser les bases de données distantes même en mode hors connexion.</string>
   <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
@@ -258,6 +273,7 @@
   <string name="OpenKp2aKeyboardAutomatically_summary">Ouvrir la boite de dialogue de sélection du clavier lorsque l\'entrée est disponible par le biais du clavier KP2A après une recherche à partir du navigateur ou du clavier.</string>
   <string name="kp2a_switch_rooted">Auto-switch sur les matériels \"rootés\"</string>
   <string name="kp2a_switch_rooted_summary">Sur les matériels \"rootés\", il est possible de passer automatiquement au clavier Keepass2Android (après recherche d\'une entrée ou en cliquant sur la notification du clavier KP2A) et pour revenir au clavier précédent sans afficher le sélecteur de méthode d\'entrée. Cela nécessite aussi d\'installer l\'application \"Secure Settings\". Consultez la documentation de KP2A pour plus d\'informations !</string>
+  <string name="ShowUnlockedNotification_title">Icône de notification si déverrouillé</string>
   <string name="ShowUnlockedNotification_summary">Afficher une notification pendant que la base de données est déverrouillée.</string>
   <string name="PreloadDatabaseEnabled_title">Activation du pré-chargement de la base de données</string>
   <string name="PreloadDatabaseEnabled_summary">Démarrer le chargement ou de téléchargement en arrière-plan de la base de données pendant la saisie de mot de passe.</string>
@@ -334,6 +350,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (dossier KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestorage_setup_title">Initialisation de l\'accès aux fichiers</string>
   <string name="database_location">Emplacement de la base de données</string>
@@ -351,6 +368,7 @@
   <string name="init_otp">Charger le fichier OTP auxiliaire...</string>
   <string name="otp_explanation">Entrez le prochain One-time-passwords (OTP). Glissez votre NEO Yubikey au dos de votre appareil pour y accéder via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
+  <string name="YubiChallengeNotInstalled">Impossible de trouver une application qui peut convenir. Installer Yubichallenge de Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Impossible de charger le fichier auxiliaire OTP !</string>
   <string name="CouldntLoadOtpAuxFile_Hint">S\'il vous plaît utilisez le plugin OtpKeyProv dans KeePass 2.x (PC) pour configurer votre base de données pour une utilisation avec OTPs !</string>
   <string name="otp_discarded_because_no_db">Veuillez d\'abord sélectionner la base de données. OTP est écarté pour des raisons de sécurité.</string>
@@ -362,16 +380,59 @@
   <string name="OtpKeyError">Impossible de créer la clé OTP ! Assurez-vous d\'avoir saisi le bon OTP.</string>
   <string name="ErrorUpdatingOtpAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="SavingOtpAuxFile">Enregistrement du fichier OTP auxiliaire...</string>
+  <string name="bad_resp">La réponse au challenge est incorrecte.</string>
+  <string name="CouldntLoadChalAuxFile">Impossible de charger le fichier de challenge auxiliaire!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Utiliser le plugin KeeChallenge de KeePass 2.x (version PC) pour configurer votre base de données pour une utilisation avec challenge-réponse!</string>
+  <string name="ErrorUpdatingChalAuxFile">Erreur de mise à jour du fichier auxiliaire OTP!</string>
+  <string name="TrayTotp_SeedField_title">Nom de domaine des semences TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Si vous utilisez le plug-in Keepass 2 \"TrayTotp\" avec les paramètres par défaut, entrez le même nom de domaine pour le domaine des semences que sur le PC.</string>
+  <string name="TrayTotp_SettingsField_title">Nom de domaine des paramètres TOTP</string>
+  <string name="TrayTotp_SettingsField_summary">Entrer ici le nom de domaine de la zone de paramètres pour TrayTotp.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Chargement...</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Nom du package :</string>
   <string name="plugin_description">Description (non vérifiée) :</string>
   <string name="plugin_author">Auteur (non vérifié) :</string>
+  <string name="plugin_enabled">activé</string>
+  <string name="plugin_disabled">désactivé</string>
+  <string name="plugin_web">Trouver des plug-ins en ligne</string>
+  <string name="query_credentials_for_url">%1$s requiert des informations d\'identification pour %2$s.</string>
+  <string name="query_credentials">%1$s demande des informations d\'identification. Sélectionner une entrée.</string>
+  <string name="plugin_enabled_checkbox">Activé</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Notifications d\'action de la base de données</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Le plug-in sera averti quand une base de données sera ouverte, fermée ou enregistrée.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Données d\'entrée courantes</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Le plug-in recevra toutes les données sur d\'entrée de la base de données et sera autorisé à proposer des actions et modifier l\'affichage de celles-ci.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Interrogation de ses propres informations d\'identification</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Le plug-in sera autorisé à interroger les autorisations liées à son propre package d\'application.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Demander les autorisations</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Le plug-in sera autorisé à demander les autorisations pour les sites Web ou les applications voulues.</string>
   <string name="get_regular_version">Obtenir plus de types de stockage</string>
   <string name="CertificateWarning">AVERTISSEMENT : Le serveur n\'a pas pu valider le certificat : %1$s. Installer le certificat racine approprié sur votre appareil ou consulter les paramètres !</string>
   <string name="CertificateFailure">AVERTISSEMENT : Le serveur n\'a pas pu valider le certificat ! Installer le certificat racine approprié sur votre appareil ou consulter les paramètres !</string>
   <string name="export_fileformats_title">Sélectionner le format de fichier</string>
+  <string name="killed_by_os">Désolé! Keepass2Android a été arrêté par le système d\'exploitation Android. Pour des raisons de sécurité, Keepass2Android ne conservera pas vos informations sur le disque, vous devez ré-ouvrir votre base de données. Note: Ceci ne doit se produire que très rarement. Si c\'est le cas, envoyez-moi un message à crocoapps@gmail.com.</string>
   <string name="ChangeLog_title">Journal des modifications</string>
+  <string name="PreviewWarning">SVP. Il s\'agit d\'une version préliminaire et elle pourrait contenir quelques défauts! Si vous rencontrez quelque chose d\'inattendu, faites le moi savoir (sur Codeplex ou par courriel).</string>
+  <string name="ChangeLog_0_9_4">
+		<b>Version 0.9.4</b>\n
+		* Ajout du support des plug-in: voir les paramètres pour savoir comment obtenir des plug-ins!\n
+		* Ajout du plug-in QR (lecture des mots de passe, affichage des mots de passe en code QR, transfert des entrées à d\'autres dispositifs KP2A)\n
+		* Ajout du plug-in InputStick (transférer les autorisations à votre PC via Bluetooth - nécessite une clé USB)\n
+		* Les applications tierces peuvent interroger KP2A sur les autorisations. Vous êtes développeur? Si vous le désirez, ajoutez ceci à votre application!\n
+		* Ajout du support TOTP (compatible avec KeeOTP et Traytotp)\n
+		* L\'application ne peut plus être arrêtée par Android lorsque la base de données est ouverte\n
+		* La base de données n\'est plus verrouillée quand on quitte l\'application avec le bouton de retour (voir réglages)\n
+		* Affichage des noms de groupes dans les résultats de recherche(*)\n
+		* Ajout d\'un menu contextuel dans les résultats de recherche y compris \"Remonter au parent\" (*)\n
+		* Ajout d\'une option pour afficher le nom du groupe en entrée (*)\n
+		* (*) Merci à Matthieu pour la mise en œuvre de ces fonctionnalités!\n
+		* Support de KeeChallenge (avec Yubikey NEO). Merci à Ben Rush pour la mise en œuvre du connecteur!\n
+		* Interface utilisateur améliorée\n
+		* Correction d\'un bug dans l\'interface Google Drive\n
+		* Ajout d\'une option pour désactiver le \"don\"\n
+		* Icône QuickUnlock maintenant cachée par défaut sur les périphériques ​​Android 4.2+\n </string>
   <string name="ChangeLog_0_9_3_r5">
   <b>Version 0.9.3 r5</b> \n
 * Intégration des correctifs de Xamarin : Keepass2Android est maintenant compatible avec ART sur Android 4.4.2. Enfin! \n
@@ -480,8 +541,8 @@ Première version publique</string>
     <item>Mot de passe + fichier de clé</item>
     <item>Mot de passe + OTP</item>
     <item>Mot de passe + OTP secret (mode de récupération)</item>
-    <item>Password + Challenge-Response</item>
-    <item>Password + Challenge-Response secret (recovery mode)</item>
+    <item>Mot de passe + Challenge-Réponse</item>
+    <item>Mot de passe + Challenge-Réponse secret (mode de récupération)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorer les échecs de validation de certificat</item>

@@ -54,7 +54,6 @@
   <string name="digits">Dígitos</string>
   <string name="disclaimer_formal">Keepass2Android vem com ABSOLUTAMENTE NENHUMA GARANTIA; Este é um software livre, e você está convidado a redistribui-lo sob as condições da GPL versão 2 ou posterior.</string>
   <string name="ellipsis">\u2026</string>
-  <string name="english_ime_settings">Custom.english_ime_setting</string>
   <string name="enter_filename">Digite o nome do arquivo de banco de dados</string>
   <string name="entry_accessed">Acessado</string>
   <string name="entry_cancel">Cancelar</string>
@@ -366,7 +365,6 @@
   <string name="hint_key_file">Escolha se você deseja utilizar um arquivo de chave em adição a sua senha mestra:</string>
   <string name="use_key_file">Usar arquivo de chave</string>
   <string name="error_adding_keyfile">Erro ao adicionar o arquivo de chave!</string>
-  <string name="language_selection_title">Custo.language_selection_title</string>
   <string name="init_otp">Carregar o arquivo auxiliar OTP&#8230;</string>
   <string name="otp_explanation">Digite o seguinte One-time-passwords (OTPs). Deslize seu Yubikey NEO na parte traseira de seu dispositivo para entrar através de NFC.</string>
   <string name="otp_hint">OTP %1$d</string>

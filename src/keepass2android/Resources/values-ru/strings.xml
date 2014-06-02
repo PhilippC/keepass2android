@@ -7,6 +7,7 @@
   <string name="CreditsText">Пользовательский интерфейс основан на портированной версии KeepassDroid, разработанной Брайаном Пеллином. Код для операций с базой данных основан на KeePass Доминика Райхля. Робот Android воссоздан или модифицирован на основе версии, созданной и опубликованной Google, и используются в соответствии с условиями, описанными в лицензии Creative Commons 3.0 Attribution.</string>
   <string name="CreditsTextSFTP">Поддержка SFTP реализована с использованием библиотеки JSch под лицензией BSD, созданной компанией JCraft, Inc.</string>
   <string name="accept">Принять</string>
+  <string name="deny">Отклонить</string>
   <string name="add_entry">Добавить запись</string>
   <string name="add_url_entry">Создать запись для URL</string>
   <string name="add_group">Добавить группу</string>
@@ -25,6 +26,10 @@
   <string name="show_kill_app_summary">Показать кнопку закрытия приложения на экране с паролем (для параноиков)</string>
   <string name="application">Приложение</string>
   <string name="application_settings">Настройки приложения</string>
+  <string name="ShowGroupnameInSearchResult_title">Отображать имя группы в результате поиска</string>
+  <string name="ShowGroupnameInSearchResult_resume">Отображать имя группы ниже заголовка записей в результатах поиска. Полезно, если некоторые записи имеют одинаковые имена.</string>
+  <string name="NavigationToGroupCompleted_message">Отображение группы сейчас: %1$s</string>
+  <string name="ShowGroupInEntry_title">Показывать имя группы в режиме записи</string>
   <string name="security_prefs">Безопасность</string>
   <string name="display_prefs">Отображение</string>
   <string name="password_access_prefs">Парольный доступ</string>
@@ -58,6 +63,7 @@
   <string name="entry_confpassword">Подтверждение пароля</string>
   <string name="entry_created">Создано</string>
   <string name="entry_expires">Истекает</string>
+  <string name="entry_group_name">Имя группы</string>
   <string name="entry_keyfile">Файл-ключ (опционально)</string>
   <string name="entry_modified">Изменено</string>
   <string name="entry_password">Пароль</string>
@@ -123,6 +129,8 @@
   <string name="menu_db_settings">Настройки базы данных</string>
   <string name="menu_delete">Удалить</string>
   <string name="menu_move">Переместить в другую группу</string>
+  <string name="menu_move_light">Переместить</string>
+  <string name="menu_navigate">Перейдите к родительской группе</string>
   <string name="menu_donate">Пожертвуйте на пиво...</string>
   <string name="menu_edit">Изменить</string>
   <string name="menu_hide_password">Скрыть пароль</string>
@@ -214,6 +222,8 @@
   <string name="QuickUnlockDefaultEnabled_summary">Определяет, включен ли QuickUnlock по умолчанию.</string>
   <string name="QuickUnlockIconHidden_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden_summary">К сожалению, QuickUnlock не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
+  <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
+  <string name="QuickUnlockIconHidden16_summary">БыстраяРазблокировка требует уведомления для правильной работы. Выберите этот параметр для отображения уведомления без значка.</string>
   <string name="QuickUnlockLength_title">Длина ключа БыстройРазблокировки</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
   <string name="QuickUnlock_fail">QuickUnlock не сработал: неправильный пароль!</string>
@@ -242,6 +252,11 @@
   <string name="UseFileTransactions_summary">Использовать файловые транзакции для записи баз данных</string>
   <string name="LockWhenScreenOff_title">Блокировка при выключении экрана</string>
   <string name="LockWhenScreenOff_summary">Блокировка базы при выключении экрана.</string>
+  <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
+  <string name="LockWhenNavigateBack_summary">Блокировать базу данных при выходе из приложения, нажав кнопку \"назад\".</string>
+  <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
+  <string name="NoDonateOption_summary">Эта настройка предназначена для тех, кто пожертвовал. Она доступна только после использования Keepass2Android какое-то время.</string>
+  <string name="NoDonateOption_question">Без пожертвования это приложение не будет существовать и постоянно совершенствоваться! Если вы еще этого не сделали, пожалуйста, пожертвуйте сейчас.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
   <string name="UseOfflineCache_summary">Сохранять копию удалённой базы данных в папке кэша приложения. Это даст возможность использовать удалённые базы в даже без доступа к сети.</string>
   <string name="AcceptAllServerCertificates_title">SSL-сертификаты</string>
@@ -258,6 +273,7 @@
   <string name="OpenKp2aKeyboardAutomatically_summary">Открыть диалог выбора клавиатуры, когда запись доступна через клавиатуру KP2A после поиска из браузера или с помощью клавиатуры.</string>
   <string name="kp2a_switch_rooted">Авто-переключение на рутованных устройствах</string>
   <string name="kp2a_switch_rooted_summary">На рутованных устройствах можно автоматически переключаться на клавиатуру Keepass2Android (после поиска записи или нажав уведомление клавиатуры KP2A), чтобы вернуться к предыдущей клавиатуре без отображения диалога выбора метода ввода. При этом требуется установить приложение Secure Settings. Смотрите документацию KP2A для получения дополнительной информации!</string>
+  <string name="ShowUnlockedNotification_title">Значок уведомления при разблокировке</string>
   <string name="ShowUnlockedNotification_summary">Показывать уведомление, когда база разблокирована.</string>
   <string name="PreloadDatabaseEnabled_title">Предварительная загрузка файла базы данных</string>
   <string name="PreloadDatabaseEnabled_summary">Запуск фоновой загрузки или скачивания файла базы данных во время ввода пароля.</string>
@@ -334,6 +350,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если Вы не хотите предоставлять полный доступ к Dropbox, то можете выбрать эту опцию. Будет запрошен доступ только к папке Apps/Keepass2Android. Это особенно удобно при создании нового файла. Если у вас уже есть файл с данными, выберите этот параметр, чтобы создать папку. После скопируйте базу в папку (с компьютера) и повторно выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлов)</string>
   <string name="filestorage_setup_title">Инициализация доступа к файлу</string>
   <string name="database_location">Расположение базы данных</string>
@@ -351,6 +368,7 @@
   <string name="init_otp">Загрузить вспомогательный файл одноразовых паролей&#8230;</string>
   <string name="otp_explanation">Введите следующий одноразовый пароль (OTP). Проведите ваш Yubikey NEO на задней панели устройства через датчик NFC.</string>
   <string name="otp_hint">Одноразовый пароль %1$d</string>
+  <string name="YubiChallengeNotInstalled">Не удалось найти приложение, которое может обработать вызов. Пожалуйста, установите Yubichallenge из Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Не удалось загрузить вспомогательный файл одноразовых паролей!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Пожалуйста, используйте плагин OtpKeyProv в KeePass 2.x (ПК), чтобы настроить базу данных для использования с одноразовыми паролями!</string>
   <string name="otp_discarded_because_no_db">Сначала выберите базу данных. Одноразовый пароль не принят из соображений безопасности.</string>
@@ -362,16 +380,58 @@
   <string name="OtpKeyError">Не удалось создать ключ одноразовых паролей! Убедитесь, что вы ввели корректные одноразовые пароли.</string>
   <string name="ErrorUpdatingOtpAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей!</string>
   <string name="SavingOtpAuxFile">Сохранение вспомогательного файла одноразовых паролей&#8230;</string>
+  <string name="bad_resp">Ответа на запрос является неправильным.</string>
+  <string name="CouldntLoadChalAuxFile">Не удалось загрузить файл вспомогательной задачи!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Пожалуйста, используйте плагин KeeChallenge в KeePass 2.x (ПК) для настройки базы данных для использования с ответом на запрос!</string>
+  <string name="ErrorUpdatingChalAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей (OTP)!</string>
+  <string name="TrayTotp_SeedField_title">Имя поля начального значения TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Если вы используете плагин Keepass 2 \"TrayTotp\" с нестандартными настройками, введите имя поля для поля начального значения в соответствии с настройками на ПК.</string>
+  <string name="TrayTotp_SettingsField_title">Имя поля параметров TOTP</string>
+  <string name="TrayTotp_SettingsField_summary">Введите сюда имя поля параметров настроек TrayTotp.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Загрузка&#8230;</string>
   <string name="plugins">Плагины</string>
   <string name="plugin_packagename">Имя пакета:</string>
   <string name="plugin_description">Описание (не проверено):</string>
   <string name="plugin_author">Автор (не проверено):</string>
+  <string name="plugin_enabled">включено</string>
+  <string name="plugin_disabled">отключено</string>
+  <string name="plugin_web">Найти плагины онлайн</string>
+  <string name="query_credentials_for_url">%1$s запрашивает учетные данные для %2$s.</string>
+  <string name="query_credentials">%1$s запрашивает учетные данные. Пожалуйста, выберите запись.</string>
+  <string name="plugin_enabled_checkbox">Включено</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Уведомления при действиях с базой данных</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Плагин будет уведомлять при открытии, закрытии и сохранении базы данных.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Текущая запись данных</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Плагин будет получать всю информацию о текущей записи базы данных и получит разрешение на предложение операций и модификацию внешнего вида этой записи.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Запрос собственных учетных данных</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Плагин будет разрешено запрашивать учетные данные, связанные с его собственным пакетом приложения.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Запрос учетных данных</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Плагину будет разрешен запрос учетных данных для избранных веб-сайтов или приложений.</string>
   <string name="get_regular_version">Получить больше типов хранения</string>
   <string name="CertificateWarning">Предупреждение: Ошибка проверки сертификата сервера: %1$ s. Установите соответствующий корневой сертификат на вашем устройстве или проверьте настройки!</string>
   <string name="CertificateFailure">Ошибка: проверка сертификата сервера не удалась! Установите соответствующий корневой сертификат или проверьте настройки!</string>
   <string name="export_fileformats_title">Выберите формат файла</string>
+  <string name="killed_by_os">Извините! Keepass2Android был убит ОС Android! По соображениям безопасности Keepass2Android не сохраняет выбранные учетные данные на диске, так что вам нужно повторно открыть базу данных. Примечание: Это должно происходить очень редко. Если это так, пожалуйста, напишите мне сообщение на crocoapps@gmail.com.</string>
   <string name="ChangeLog_title">Список изменений</string>
+  <string name="PreviewWarning">Пожалуйста, обратите внимание! Это предварительный релиз и он может содержать некоторые недостатки! Если вы встретитесь с *чем-то* неожиданным, пожалуйста, дайте мне знать (на сайте Codeplex или по электронной почте).</string>
+  <string name="ChangeLog_0_9_4"><b>Версия 0.9.4</b>\n
+* добавлена поддержка плагинов: перейдите в настройки, чтобы понять, как получить плагины!\n
+* опубликован QR-плагин (сканирование паролей, отображение паролей в виде QR-кодов, передача записей на другие устройства с KP2A)\n
+* опубликован плагин InputStick (передача учётных записей на ПК через bluetooth - требуется InputStick USB stick)\n
+* Сторонние приложения теперь легко могут реализовать запросы учётных данных из KP2A. Вы разработчик? Добавьте поддержку в своё приложение, если это возможно!\n
+* Добавлена поддержка TOTP (совместима с KeeOTP и TrayTotp)\n
+* Приложение теперь не должно принудительно закрываться системой Android, если база данных открыта\n
+* База данных теперь не блокируется при выходе из приложения кнопкой \"Назад\" (см. настройки)\n
+* В результатах поиска отображаются имена групп (*)\n
+* В результатах поиска добавлено контекстное меню при включении опции \"Переход к родителю\" (*)\n
+* Добавлен пункт отображения названия группы при просмотре записи (*)\n
+* (*) Благодарю Matthieu за реализацию этих функций!\n
+* Поддержка KeeChallenge (с Yubikey NEO). Спасибо Ben Rush за реализацию коннектора!\n
+* Улучшен пользовательский интерфейс\n
+* Исправлена ошибка в интерфейсе Google Drive\n
+* Добавлена настройка для отключения опции \"Пожертвовать\"\n
+* Значок БыстройРазблокировки теперь по умолчанию скрыт на устройствах Android 4.2+\n</string>
   <string name="ChangeLog_0_9_3_r5"><b>Версия 0.9.3 r5</b>\n
 * Внедрены исправления из Xamarin: Keepass2Android теперь совместим с ART в Android 4.4.2. Наконец-то!\n
 * Исправления ошибок: ошибки синхронизации (обновление экрана, корректные проверки изменений по http), ошибки на устройствах с Android 2.x, ошибки в реализации работы с хранилищами Google Drive и OneDrive, очистка буфера обмена при закрытии базы данных, ошибки открытия вложенных файлов, ошибки отображения клавиатуры\n</string>
@@ -498,8 +558,8 @@
     <item>Пароль + ключевой файл</item>
     <item>Пароль + ОТР</item>
     <item>Пароль + ОТП секрет (режим восстановления)</item>
-    <item>Password + Challenge-Response</item>
-    <item>Password + Challenge-Response secret (recovery mode)</item>
+    <item>Пароль + Вызов-Ответ</item>
+    <item>Пароль + секрет Вызова-Ответа (режим восстановления)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Игнорировать ошибки проверки сертификата</item>

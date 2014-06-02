@@ -8,6 +8,7 @@
 Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird nach den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
   <string name="CreditsTextSFTP">SFTP-Unterstützung ist implementiert unter Nutzung der JSch-Bibliothek (BSD-Lizenz), erstellt durch JCraft, Inc.</string>
   <string name="accept">Akzeptieren</string>
+  <string name="deny">Verweigern</string>
   <string name="add_entry">Eintrag hinzufügen</string>
   <string name="add_url_entry">Eintrag für URL anlegen</string>
   <string name="add_group">Gruppe hinzufügen</string>
@@ -26,6 +27,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="show_kill_app_summary">Zeige einen Knopf im Passwort-Bildschirm um den App-Prozess zu beenden (für paranoide User)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungs-Einstellungen</string>
+  <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
+  <string name="ShowGroupnameInSearchResult_resume">Gruppennamen unter den Eintragstiteln im Suchergebnis anzeigen. Nützlich, wenn es mehrere Einträge mit dem selben Namen gibt.</string>
+  <string name="NavigationToGroupCompleted_message">Angezeigte Gruppe ist jetzt: %1$s</string>
+  <string name="ShowGroupInEntry_title">Gruppennamen in der Eintragsansicht anzeigen</string>
   <string name="security_prefs">Sicherheit</string>
   <string name="display_prefs">Anzeige</string>
   <string name="password_access_prefs">Passwort-Zugriff</string>
@@ -59,6 +64,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="entry_confpassword">Kennwort wiederholen</string>
   <string name="entry_created">Erstellt</string>
   <string name="entry_expires">Läuft ab</string>
+  <string name="entry_group_name">Name der Gruppe</string>
   <string name="entry_keyfile">Schlüsseldatei (optional)</string>
   <string name="entry_modified">Letzte Änderung</string>
   <string name="entry_password">Kennwort</string>
@@ -124,6 +130,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_db_settings">Datenbank-Einstellungen</string>
   <string name="menu_delete">Löschen</string>
   <string name="menu_move">In andere Gruppe verschieben</string>
+  <string name="menu_move_light">Verschieben</string>
+  <string name="menu_navigate">Zur übergeordneten Gruppe navigieren</string>
   <string name="menu_donate">Spendiere ein Bier...</string>
   <string name="menu_edit">Bearbeiten</string>
   <string name="menu_hide_password">Kennwort verstecken</string>
@@ -215,6 +223,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockDefaultEnabled_summary">Definiert, ob QuickUnlock standardmäßig aktiviert ist oder nicht.</string>
   <string name="QuickUnlockIconHidden_title">QuickUnlock-Symbol verstecken</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock funktioniert leider nicht ohne ein Benachrichtigungssymbol. Wähle diese Option, um ein transparentes Symbol zu verwenden.</string>
+  <string name="QuickUnlockIconHidden16_title">QuickUnlock-Symbol verstecken</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock benötigt eine Benachrichtigung um richtig zu funktionieren. Wähle diese Option um eine Benachrichtigung ohne Symbol anzuzeigen.</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
@@ -243,6 +253,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UseFileTransactions_summary">Dateitransaktionen beim Schreiben von Datenbank-Dateien verwenden</string>
   <string name="LockWhenScreenOff_title">Sperren bei Ausschalten</string>
   <string name="LockWhenScreenOff_summary">Sperre die Datenbank wenn der Bildschirm ausgeschaltet wird.</string>
+  <string name="LockWhenNavigateBack_title">Beim Verlassen der App sperren</string>
+  <string name="LockWhenNavigateBack_summary">Datenbank sperren, wenn die App mit dem Zurück-Knopf verlassen wird.</string>
+  <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
+  <string name="NoDonateOption_summary">Diese Einstellung ist ein Dankeschön an alle, die gespendet haben. Sie steht erst nach einer gewissen Zeit der Benutzung von Keepass2Android zur Verfügung.</string>
+  <string name="NoDonateOption_question">Ohne Spenden würde diese App nicht existieren und würde nicht laufend verbessert! Wenn du noch nicht gespendet hast, hole das bitte jetzt nach. Danke!</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
   <string name="UseOfflineCache_summary">Speichere eine Kopie der Remote-Datenbank-Dateien im Cache-Verzeichnis der App. Das erlaubt die Nutzung von Remote-Datenbanken auch wenn du offline bist.</string>
   <string name="AcceptAllServerCertificates_title">SSL-Zertifikate</string>
@@ -259,6 +274,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zum Auswählen der Eingabemethode öffnen wenn ein Eintrag nach Suche aus dem Browser heraus verfügbar ist.</string>
   <string name="kp2a_switch_rooted">Auto-umschalten auf gerooteten Geräten</string>
   <string name="kp2a_switch_rooted_summary">Auf gerooteten Geräten kann die Tastatur automatisch zur Keepass2Android-Tastatur umgeschaltet werden (nach dem Suchen eines Eintrags aus dem Browser oder der Tastatur, oder wenn auf die Tastaturbenachrichtigung geklickt wird). Ebenso kann automatisch zurückgeschaltet werden, ohne den Dialog zur Auswahl der Eingabemethode anzuzeigen. Dazu muss die Secure Settings App mit dem System+ Modul installiert sein! S. die Keepass2Android-Dokumentation für weitere Informationen.</string>
+  <string name="ShowUnlockedNotification_title">Benachrichtungssymbol anzeigen, solange entsperrt</string>
   <string name="ShowUnlockedNotification_summary">Zeige ein Symbol in der Benachrichtigungsleiste, solange die Datenbank entsperrt ist.</string>
   <string name="PreloadDatabaseEnabled_title">Datenbank vor-laden</string>
   <string name="PreloadDatabaseEnabled_summary">Starte das Laden oder Herunterladen von Datenbank-Dateien im Hintergrund während dem Eingeben des Passworts.</string>
@@ -335,6 +351,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, kannst du diese Option wählen um den Ordner anzulegen, und dann die Datei (vom PC aus) in den neuen Ordner kopieren. Wähle die Option dann nochmal zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
   <string name="database_location">Speicherort der Datenbank</string>
@@ -352,6 +369,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="init_otp">OTP-Hilfsdatei laden&#8230;</string>
   <string name="otp_explanation">Nächste One-Time-Passwörter (OTPs) eingeben. Halten deinen YubiKey NEO hinten an dein Gerät um über NFC einzugeben.</string>
   <string name="otp_hint">OTP %1$d</string>
+  <string name="YubiChallengeNotInstalled">Es wurde keine App gefunden, die die Challenge behandeln kann. Bitte installiere Yubichallenge von Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Bitte nutze das OtpKeyProv-Plugin in Keepass 2.x a PC um deine Datenbank zur Verwendung von One-Time-Passwords einzureichten!</string>
   <string name="otp_discarded_because_no_db">Bitte erst Datenbank laden. OTP wird aus Sicherheitsgründen verworfen.</string>
@@ -363,16 +381,59 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="OtpKeyError">Fehler beim Erstellen des OTP-Schlüssels! Bitte stelle sicher, dass du die richtigen OTPs eingegeben hast.</string>
   <string name="ErrorUpdatingOtpAuxFile">Fehler beim Aktualisieren der OTP-Hilfsdatei!</string>
   <string name="SavingOtpAuxFile">Speichere OTP-Hilfsdatei&#8230;</string>
+  <string name="bad_resp">The Challenge-Antwort ist falsch.</string>
+  <string name="CouldntLoadChalAuxFile">Die externe Challenge-Datei konnte nicht geladen werden!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Bitte verwende das KeeChallenge-Plugin in KeePass 2.x (PC) um die Datenbank für die Verwendung von Challenge-Response zu konfigurieren!</string>
+  <string name="ErrorUpdatingChalAuxFile">Fehler bei der Aktualisierung der externen OTP-Datei!</string>
+  <string name="TrayTotp_SeedField_title">TOTP-Seed-Feldname</string>
+  <string name="TrayTotp_SeedField_summary">Wenn du das Keepass 2-Plugin \"TrayTotp\" nicht mit Standard-Einstellungen verwendest, gib den Feldnamen für das Seed-Feld entsprechend der Einstellungen am PC an.</string>
+  <string name="TrayTotp_SettingsField_title">Feldname für TOTP-Einstellungen</string>
+  <string name="TrayTotp_SettingsField_summary">Feldnamen für TOTP-Einstellungen entsprechend den TrayTotp-Einstellungen eingeben.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Lade&#8230;</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Paketname:</string>
   <string name="plugin_description">Beschreibung (nicht überprüft):</string>
   <string name="plugin_author">Autor (nicht überprüft):</string>
+  <string name="plugin_enabled">aktiviert</string>
+  <string name="plugin_disabled">deaktiviert</string>
+  <string name="plugin_web">Plugins online finden</string>
+  <string name="query_credentials_for_url">%1$s fordert die Anmeldeinformationen für %2$s an.</string>
+  <string name="query_credentials">%1$s fordert Anmeldeinformationen an. Bitte Eintrag wählen.</string>
+  <string name="plugin_enabled_checkbox">Aktiviert</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Datenbank-Aktionsbenachrichtigungen </string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Das Plugin wird benachrichtigt, wenn eine Datenbank geöffnet, geschlossen oder gespeichert wird.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Aktueller Eintrag</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Das Plugin erhält alle Daten über den aktuellen Datenbankeintrag und ist berechtigt, Aktionen anzubieten und die Anzeige zu verändern.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Eigene Anmeldeinformationen abfragen</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Das Plugin ist berechtigt, die Anmeldeinformationen abzufragen, die dem eigenen Applikationspaket zugewiesen sind.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Anmeldeinformationen abfragen</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Das Plugin wird berechtigt, Anmeldeinformationen für bewusst ausgewählte Websites oder Anwendungen abzufragen.</string>
   <string name="get_regular_version">Weitere Speichertypen bekommen</string>
   <string name="CertificateWarning">Warnung: Server-Zertifikat konnte nicht validiert werden: %1$s. Installiere ein passendes Root-Zertifikat auf deinem Gerät oder s. Einstellungen.</string>
   <string name="CertificateFailure">Fehler: Server-Zertifikat konnte nicht validiert werden! Installiere ein passendes Root-Zertifikat auf deinem Android-Gerät oder s. Einstellungen!</string>
   <string name="export_fileformats_title">Dateiformat wählen</string>
+  <string name="killed_by_os">Entschuldigung! Keepass2Android wurde vom Android OS beendet! Aus Sicherheitsgründen hat Keepass2Android die ausgewählten Anmeldeinformationen nicht dauerhaft gespeichert, weshalb die Datenbank erneut geöffnet werden muss. Hinweis: Dies sollte nur sehr selten vorkommen. Wenn das passiert, schreibe mir bitte eine Nachricht an crocoapps@gmail.com.</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (auf Codeplex oder per E-Mail).</string>
+  <string name="ChangeLog_0_9_4">
+		<b>Version 0.9.4</b> \n
+		* Plugin-Unterstützung hinzugefügt: siehe Einstellungen, um Plugins zu bekommen! \n
+		* QR-Plugin veröffentlicht (Passwörter erfassen, Passwörter als QR-Code anzeigen, Einträge auf andere KP2A-Geräte übertragen)\n
+		* InputStick-Plugin veröffentlicht (Anmeldeinformationen per Bluetooth auf den PC übertragen - erfordert InputStick-USB-Stick)\n
+		* Apps von Drittanbieter können nun einfach Funktionen implementieren, um Anmeldeinformationen direkt  von KP2A abzufragen. Du bist ein Entwickler? Bitte bau das in deiner App ein, wenn geeignet!\n
+		* TOTP-Unterstützung hinzugefügt (kompatibel mit KeeOTP und TrayTotp)\n
+		* App sollte von Android nicht mehr beendet werden, wenn die Datenbank geöffnet ist\n
+		* Datenbank ist nicht mehr gesperrt, wenn  die App mit dem Zurück-Knopf verlassen wird (siehe Einstellungen)\n
+		* Gruppennamen können in Suchergebnissen angezeigt werden (*)\n
+		* Kontextmenü in der Ergebnisansicht der Suche hinzugefügt, einschließlich der Option \"Zu übergeordneter Gruppe navigieren\" (*)\n
+		* Option zum Anzeigen des Gruppennamen von Einträgen (*)\n
+		* (*) Danke an Matthieu für die Umsetzung dieser Features!\n
+		* Unterstützung von KeeChallenge (mit Yubikey NEO). Danke an Ben Rush für die Implementierung des Connectors!\n
+		* verbesserte Benutzerschnittstelle.\n
+		* Fehler in der Google Drive-Schnittstelle behoben.\n
+		* Option zum Deaktivieren der \"Spenden\"-Option hinzugefügt\n
+		* QuickUnlock-Symbol jetzt standardmäßig ausgeblendet bei Geräten mit Android 4.2+\n</string>
   <string name="ChangeLog_0_9_3_r5">
 		<b>Version 0.9.3 r5</b>\n
 		* Korrekturen von Xamarin übernommen: Keepass2Android ist jetzt kompatibel mit ART auf Android 4.4.2. Endlich!\n
@@ -505,8 +566,8 @@ Erstes öffentliches Release</string>
     <item>Kennwort + Schlüsseldatei</item>
     <item>Kennwort + OTP</item>
     <item>Kennwort + OTP Secret (Recovery-Modus)</item>
-    <item>Password + Challenge-Response</item>
-    <item>Password + Challenge-Response secret (recovery mode)</item>
+    <item>Passwort + Challenge-Response</item>
+    <item>Passwort + Challenge-Response-Secret (Recovery-Modus)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Fehler bei Zertifikatsvalidierung ignorieren</item>

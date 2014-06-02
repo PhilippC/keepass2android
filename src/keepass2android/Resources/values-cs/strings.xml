@@ -7,6 +7,7 @@
   <string name="CreditsText">Uživatelské rozhraní je založeno na portu KeepassDroid (vyvinul Brian Pellin). Kód pro databázové operace je vychází z kódu pro KeePass (napsal Dominik Reichl). Logo Android robota vychází z verze sdílené Googlem a je upraveno a použito dle podmínek popsaných v licenci Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">SFTP podpora je implementována pomocí knihovny JSch pod BSD licencí, vytvořenou JCraft, Inc.</string>
   <string name="accept">Přijmout</string>
+  <string name="deny">Odmítnout</string>
   <string name="add_entry">Přidat položku</string>
   <string name="add_url_entry">Vytvořit položku pro adresu URL</string>
   <string name="add_group">Přidat skupinu</string>
@@ -25,6 +26,7 @@
   <string name="show_kill_app_summary">Zobrazit tlačítko na obrazovce s heslem pro ukončení aplikace (pro paranoidní uživatele)</string>
   <string name="application">Aplikace</string>
   <string name="application_settings">Nastavení aplikace</string>
+  <string name="ShowGroupnameInSearchResult_title">Zobrazit název skupiny ve výsledku hledání</string>
   <string name="security_prefs">Zabezpečení</string>
   <string name="display_prefs">Displej</string>
   <string name="password_access_prefs">Přístup k heslu</string>
@@ -58,6 +60,7 @@
   <string name="entry_confpassword">Potvrďte heslo</string>
   <string name="entry_created">Vytvořeno</string>
   <string name="entry_expires">Vyprší</string>
+  <string name="entry_group_name">Název skupiny</string>
   <string name="entry_keyfile">Soubor s klíčem (volitelný)</string>
   <string name="entry_modified">Změněno</string>
   <string name="entry_password">Heslo</string>
@@ -123,6 +126,8 @@
   <string name="menu_db_settings">Nastavení databáze</string>
   <string name="menu_delete">Smazat</string>
   <string name="menu_move">Přesunout do jiné skupiny</string>
+  <string name="menu_move_light">Přesunout</string>
+  <string name="menu_navigate">Přejít k nadřazené skupině</string>
   <string name="menu_donate">Přispějte na pivo...</string>
   <string name="menu_edit">Změnit</string>
   <string name="menu_hide_password">Skrýt heslo</string>
@@ -190,7 +195,7 @@
   <string name="please_note">Upozornění</string>
   <string name="contributors">Přispěvatelé</string>
   <string name="regular_expression">Regulární výraz</string>
-  <string name="TanExpiresOnUse_title">Tan vyprší při použití</string>
+  <string name="TanExpiresOnUse_title">Ověřovací kód platí jen jednou</string>
   <string name="TanExpiresOnUse_summary">Při použití označovat vypršelé TAN položky</string>
   <string name="ShowUsernameInList_title">Zobrazit uživatelské jméno v seznamu</string>
   <string name="ShowUsernameInList_summary">Zobrazovat uživatelská jména pod názvy položek. Užitečné pro vícenásobné účty nebo TANy.</string>
@@ -214,6 +219,7 @@
   <string name="QuickUnlockDefaultEnabled_summary">Definuje, zda RychléOdemknutí je ve výchozím nastavení povoleno, nebo ne.</string>
   <string name="QuickUnlockIconHidden_title">Skrýt ikonu RychléhoOdemknutí</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock bohužel nefunguje bez zobrazení ikony upozornění. Vyberte tuto možnost, chcete-li použít transparentní ikonu.</string>
+  <string name="QuickUnlockIconHidden16_title">Skrýt ikonu RychléhoOdemknutí</string>
   <string name="QuickUnlockLength_title">Délka klíče pro RychléOdemknutí</string>
   <string name="QuickUnlockLength_summary">Maximální počet znaků používaných jako heslo pro RychléOdemknutí.</string>
   <string name="QuickUnlock_fail">RychléOdemknutí se nezdařilo: nesprávné heslo!</string>
@@ -242,6 +248,10 @@
   <string name="UseFileTransactions_summary">Použít transakční metodu zápisu do databáze</string>
   <string name="LockWhenScreenOff_title">Uzamknout při zhasnutí displeje</string>
   <string name="LockWhenScreenOff_summary">Zamknout databázi, při zhasnutí displeje.</string>
+  <string name="LockWhenNavigateBack_title">Zamknout při odchodu z aplikace</string>
+  <string name="LockWhenNavigateBack_summary">Zamknout databázi při opouštění aplikace stisknutím tlačítka zpět.</string>
+  <string name="NoDonateOption_title">Skrýt možnost přispění</string>
+  <string name="NoDonateOption_question">Tato aplikace by bez příspěvků nemohla existovat a nebyla by pravidelně zlepšována! Jestliže jste doposud nepřispěl/a, zvažte prosím svou pomoc.</string>
   <string name="UseOfflineCache_title">Ukládání databáze do mezipaměti</string>
   <string name="UseOfflineCache_summary">Ukládání kopií vzdálených databázových souborů v adresáři aplikace. To umožňuje použít vzdálené databáze i v offline režimu.</string>
   <string name="AcceptAllServerCertificates_title">SSL certifikáty</string>
@@ -334,6 +344,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A složka)</string>
   <string name="filestoragehelp_dropboxKP2A">Pokud nechcete, aby měl KP2A plný přístup k vašemu Dropbox účtu, může vybrat tuto možnost. Bude vyžadován pouze přístup k této složce Apps/Keepass2Android. To je vhodné zejména při vytváření nové databáze. Pokud již máte databázi, zvolte na tuto možnos pro vytvoření složky, poté umístěte soubor (z PC) do této složky a zvolte tuto možnost znovu pro otevření souboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH přenos souborů)</string>
   <string name="filestorage_setup_title">Inicializace přístupu souboru</string>
   <string name="database_location">Umístění databáze</string>
@@ -367,11 +378,15 @@
   <string name="plugin_packagename">Název balíčku:</string>
   <string name="plugin_description">Popis (není ověřen):</string>
   <string name="plugin_author">Autor (není ověřen):</string>
+  <string name="plugin_enabled">povoleno</string>
+  <string name="plugin_disabled">zakázáno</string>
+  <string name="plugin_enabled_checkbox">Povoleno</string>
   <string name="get_regular_version">Získat více typů úložišť</string>
   <string name="CertificateWarning">Upozornění: ověření certifikátu serveru se nezdařilo: %1$s. Instalujte vhodný kořenový certifikát v zařízení nebo upravte Nastavení!</string>
   <string name="CertificateFailure">Chyba: Ověření certifikátu serveru se nezdařilo. Nainstalujte odpovídající kořenový certifikát v zařízení nebo upravte Nastavení!</string>
   <string name="export_fileformats_title">Vyberte formát souboru</string>
   <string name="ChangeLog_title">Protokol změn</string>
+  <string name="PreviewWarning">Prosím pozor! Tato verze není konečná a může obsahovat různé nedostatky! Pokud narazíte na *jakýkoliv* problém, dejte mi prosím vědět (na Codeplexu nebo přes e-mail).</string>
   <string name="ChangeLog_0_9_3_r5">
   <b>Verze 0.9.3 r5</b>\n
   * Integrované opravy od uživatele Xamarin: Keepass2Android je nyní kompatibilní s ART na Android 4.4.2. Konečně!\n

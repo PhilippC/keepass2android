@@ -25,6 +25,8 @@
   <string name="show_kill_app_summary">Mostrar un botón en la pantalla de la contraseña para matar el proceso (para usuarios paranoicos)</string>
   <string name="application">Aplicación</string>
   <string name="application_settings">Configuración de la aplicación</string>
+  <string name="ShowGroupnameInSearchResult_title">Mostrar nombre del grupo en resultado de búsqueda</string>
+  <string name="ShowGroupnameInSearchResult_resume">Mostrar nombre del grupo en resultado de búsqueda. Útil si múltiples resultados tiene el mismo nombre.</string>
   <string name="security_prefs">Seguridad</string>
   <string name="display_prefs">Visualización</string>
   <string name="password_access_prefs">Acceso con contraseña</string>
@@ -58,6 +60,7 @@
   <string name="entry_confpassword">Confirmar contraseña</string>
   <string name="entry_created">Creado</string>
   <string name="entry_expires">Caducidad</string>
+  <string name="entry_group_name">Nombre del Grupo</string>
   <string name="entry_keyfile">Archivo de clave (opcional)</string>
   <string name="entry_modified">Modificado</string>
   <string name="entry_password">Contraseña</string>
@@ -123,6 +126,7 @@
   <string name="menu_db_settings">Configuración de Base de datos</string>
   <string name="menu_delete">Eliminar</string>
   <string name="menu_move">Mover a otro grupo</string>
+  <string name="menu_move_light">Mover</string>
   <string name="menu_donate">Donar una cerveza...</string>
   <string name="menu_edit">Editar</string>
   <string name="menu_hide_password">Ocultar Contraseña</string>
@@ -214,6 +218,8 @@
   <string name="QuickUnlockDefaultEnabled_summary">Define si el Desbloqueo Rápido está habilitado de forma predeterminada o no.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar el icono de QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock lamentablemente no funciona sin mostrar un icono de notificación. Seleccione esta opción para utilizar un icono transparente.</string>
+  <string name="QuickUnlockIconHidden16_title">Ocultar icono de DesbloqueoRápido</string>
+  <string name="QuickUnlockIconHidden16_summary">DesbloqueoRápido requiere un notificación para funcionar correctamente. Seleccione esta opción para mostrar la notificación sin un icono.</string>
   <string name="QuickUnlockLength_title">Longitud de la clave de Desbloqueo Rápido</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres que se utiliza para la contraseña de Desbloqueo Rápido.</string>
   <string name="QuickUnlock_fail">¡Error en el Desbloqueo Rápido: contraseña incorrecta!</string>
@@ -242,6 +248,10 @@
   <string name="UseFileTransactions_summary">Utilizar el archivo de movimientos para escribir las bases de datos</string>
   <string name="LockWhenScreenOff_title">Bloquear cuando se apaga la pantalla</string>
   <string name="LockWhenScreenOff_summary">Bloquear base de datos al apagar la pantalla</string>
+  <string name="LockWhenNavigateBack_title">Bloquear al salir de la aplicación</string>
+  <string name="LockWhenNavigateBack_summary">Bloquear base de datos al salir de la aplicación presionando el botón \"atrás\".</string>
+  <string name="NoDonateOption_title">Esconder opción de donación</string>
+  <string name="NoDonateOption_question">Sin donaciones, esta aplicación no existiría y no podría ser mejorada continuamente. Si usted aún no ha donado, por favor considere hacer una donación ahora.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
   <string name="UseOfflineCache_summary">Mantiene una copia de los archivos de base de datos remota en el directorio de caché de la aplicación. Esto permite utilizar bases de datos remotos fuera de línea.</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
@@ -258,6 +268,7 @@
   <string name="OpenKp2aKeyboardAutomatically_summary">Abrir diálogo de selección de teclado cuando la entrada este disponible a través del teclado KP2A después de una búsqueda desde el navegador.</string>
   <string name="kp2a_switch_rooted">Auto-switch en dispositivos rooteados</string>
   <string name="kp2a_switch_rooted_summary">En dispositivos rooteados, es posible cambiar automáticamente el teclado Keepass2Android (después de una búsqueda o haga clic en la notificación de teclado KP2A) y para volver al anterior teclado sin mostrar el selector de método de entrada. Esto también requiere instalar la aplicación de configuración segura (Secure Settings app). Consulte la documentación del KP2A para más información!</string>
+  <string name="ShowUnlockedNotification_title">Icono de notificación mientras desbloqueado</string>
   <string name="ShowUnlockedNotification_summary">Mostrar una notificación en curso mientras la base de datos está desbloqueada.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-cargar archivo de base de datos</string>
   <string name="PreloadDatabaseEnabled_summary">Empezar a descargar del archivo de base de datos durante la entrada de contraseña.</string>
@@ -367,10 +378,18 @@
   <string name="plugin_packagename">Nombre del paquete:</string>
   <string name="plugin_description">Descripción (no verificada):</string>
   <string name="plugin_author">Autor (no verificado):</string>
+  <string name="plugin_enabled">habilitado</string>
+  <string name="plugin_disabled">deshabilitado</string>
+  <string name="plugin_web">Encontrar plug-ins en línea</string>
+  <string name="query_credentials_for_url">%1$s está solicitando credenciales para %2$s.</string>
+  <string name="query_credentials">%1$s está solicitando credenciales. Por favor, seleccione una entrada.</string>
+  <string name="plugin_enabled_checkbox">Habilitado</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Plugin le notificará cuando una base de datos sea abierta, cerrada o guardada.</string>
   <string name="get_regular_version">Consiga más tipos de almacenamiento</string>
   <string name="CertificateWarning">ADVERTENCIA: Error de validación del certificado del servidor: %1$s. ¡Instale el certificado raíz apropiado en su dispositivo o revise la configuración!</string>
   <string name="CertificateFailure">Error: ¡Error de validación del certificado de servidor! ¡Instale el certificado raíz apropiado en su dispositivo o revise la configuración!</string>
   <string name="export_fileformats_title">Seleccione formato de archivo</string>
+  <string name="killed_by_os">¡ Lo siento! Keepass2Android fue terminado por el sistema operativo Android! Por razones de seguridad, Keepass2Android no almacenó sus credenciales seleccionadas, así que tienes que volver a abrir la base de datos. Nota: Esto debe ocurrir muy raramente. Si ocurre, por favor envíeme un mensaje a crocoapps@gmail.com.</string>
   <string name="ChangeLog_title">Registro de cambios</string>
   <string name="ChangeLog_0_9_3_r5">
 		<b>Versión 0.9.3 r5</b>\n

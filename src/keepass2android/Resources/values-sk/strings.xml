@@ -7,6 +7,7 @@
   <string name="CreditsText">Používateľské rozhranie je založené na porte aplikácie KeepassDroid od Briana Pellina. Kód pre operácie v databáze je založený na programe KeePass od Dominika Reichla. Robot Android je reprodukovaný alebo modifikovaný na základe práce vytvorenej a zdieľanej spoločnosťou Google a je použitý podľa podmienok v Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">Podpora pre SFTP je implementovaná s využitím knižnice JSch (s licenciou BSD), vytvorenej JCraft, Inc.</string>
   <string name="accept">Prijať</string>
+  <string name="deny">Odmietnuť</string>
   <string name="add_entry">Pridať záznam</string>
   <string name="add_url_entry">Vytvoriť záznam pre adresu URL</string>
   <string name="add_group">Pridať skupinu</string>
@@ -25,6 +26,10 @@
   <string name="show_kill_app_summary">Na obrazovke s heslom zobraziť tlačidlo pre ukončenie procesu (pre paranoidných používateľov)</string>
   <string name="application">Aplikácia</string>
   <string name="application_settings">Nastavenia aplikácie</string>
+  <string name="ShowGroupnameInSearchResult_title">Zobraziť názov skupina vo výsledku vyhľadávania</string>
+  <string name="ShowGroupnameInSearchResult_resume">Zobraziť názov skupiny pod názvami záznamov vo výsledkoch vyhľadávania. Užitočné v prípade, že viaceré záznamy majú rovnaký názov.</string>
+  <string name="NavigationToGroupCompleted_message">Zobrazenie skupiny je teraz: %1$s</string>
+  <string name="ShowGroupInEntry_title">Zobraziť názov skupiny v zobrazení záznamu</string>
   <string name="security_prefs">Zabezpečenie</string>
   <string name="display_prefs">Displej</string>
   <string name="password_access_prefs">Prístup k záznamu s heslom</string>
@@ -58,6 +63,7 @@
   <string name="entry_confpassword">Potvrdiť heslo</string>
   <string name="entry_created">Vytvorené</string>
   <string name="entry_expires">Expiruje</string>
+  <string name="entry_group_name">Názov skupiny</string>
   <string name="entry_keyfile">Súbor s kľúčom (voliteľne)</string>
   <string name="entry_modified">Upravené</string>
   <string name="entry_password">Heslo</string>
@@ -123,6 +129,8 @@
   <string name="menu_db_settings">Nastavenia databázy</string>
   <string name="menu_delete">Vymazať</string>
   <string name="menu_move">Presunúť do inej skupiny</string>
+  <string name="menu_move_light">Presunúť</string>
+  <string name="menu_navigate">Navigovať do rodičovskej skupiny</string>
   <string name="menu_donate">Kúpiť pivo...</string>
   <string name="menu_edit">Upraviť</string>
   <string name="menu_hide_password">Skryť heslo</string>
@@ -214,6 +222,8 @@
   <string name="QuickUnlockDefaultEnabled_summary">Určuje, či je rýchle odomknutie štandardne zapnuté alebo nie.</string>
   <string name="QuickUnlockIconHidden_title">Skryť ikonu</string>
   <string name="QuickUnlockIconHidden_summary">Rýchle odomknutie nemôže fungovať bez zobrazenia notifikačnej ikony. Ak chcete zobraziť priehľadnú ikonu, vyberte túto možnosť.</string>
+  <string name="QuickUnlockIconHidden16_title">Skryť ikonu pre Rýchle odomknutie</string>
+  <string name="QuickUnlockIconHidden16_summary">Rýchle odomknutie vyžaduje korektné fungovanie notifikácií. Ak chcete zobraziť notifikáciu bez ikony, prosím vyberte túto možnosť.</string>
   <string name="QuickUnlockLength_title">Dĺžka kľúča na rýchle odomknutie</string>
   <string name="QuickUnlockLength_summary">Max. počet znakov použitých ako heslo na rýchle odomknutie.</string>
   <string name="QuickUnlock_fail">Rýchle odomknutie zlyhalo: nesprávne heslo!</string>
@@ -242,6 +252,11 @@
   <string name="UseFileTransactions_summary">Použiť súborové operácie pre zapisovanie databáz</string>
   <string name="LockWhenScreenOff_title">Uzamknúť pri zhasnutí</string>
   <string name="LockWhenScreenOff_summary">Pri zhasnutí obrazovky uzamknúť databázu.</string>
+  <string name="LockWhenNavigateBack_title">Uzamknúť pri opustení aplikácie</string>
+  <string name="LockWhenNavigateBack_summary">Uzamknúť databázu pri opustení aplikácie stlačením tlačidla Späť.</string>
+  <string name="NoDonateOption_title">Skryť možnosti prispenia</string>
+  <string name="NoDonateOption_summary">Toto nastavenie je určené pre sponzorov. Je dostupné po použiť Keepass2Android, len na chvíľu.</string>
+  <string name="NoDonateOption_question">Bez príspevkov by táto aplikácia neexistovala a nebolo by možné ju neustále vylepšovať! Ak ste ešte neprispeli na jej vývoj, prosím zvážte možnosť prispenia teraz.</string>
   <string name="UseOfflineCache_title">Uloženie databázy do vyr. pamäte</string>
   <string name="UseOfflineCache_summary">Zachovať kópiu súborov vzdialenej databázy v priečinku vyr. pamäte programu. Takto môžete používať vzdialené databázy aj v režime offline.</string>
   <string name="AcceptAllServerCertificates_title">Certifikáty SSL</string>
@@ -258,6 +273,7 @@
   <string name="OpenKp2aKeyboardAutomatically_summary">Otvoriť dialóg výberu klávesnice, ak je po vyhľadaní z prehliadača alebo klávesnice dostupný záznam zadávaný cez klávesnicu KP2A.</string>
   <string name="kp2a_switch_rooted">Prepínať, ak je dostupný root</string>
   <string name="kp2a_switch_rooted_summary">Na zariadeniach s najvyššími opráveniami je možné automaticky prepínať na klávesnicu Keepass2Android a naspäť na predchádzajúcu klávesnicu, bez zobrazenia metódy vstupu. Prepnutie je možné po vyhľadaní záznamu alebo kliknutí na notifikáciu klávesnice KP2A. Táto funkcia vyžaduje inštaláciu Secure Settings app. Viac informácií získate v dokumentácii KP2A!</string>
+  <string name="ShowUnlockedNotification_title">Notifikačná ikona počas odomknutia</string>
   <string name="ShowUnlockedNotification_summary">Zobraziť prichádzajúcu notifikáciu aj pri odomknutej databáze.</string>
   <string name="PreloadDatabaseEnabled_title">Vopred načítať databázu</string>
   <string name="PreloadDatabaseEnabled_summary">Spustiť načítavanie alebo sťahovanie databázového súboru na pozadí, počas záznamu hesla.</string>
@@ -334,6 +350,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (priečinok KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Túto možnosť si môžete vybrať, ak nechcete, aby mal KP2A úplný prístup k úložisku Dropbox. Bude sa vyžadovať iba prístup k priečinku Apps/Keepass2Android. Táto možnosť je vhodná pri vytváraní novej databázy. Ak už máte nejakú databázu, kliknite na túto možnosť pre vytvorenie nového priečinka, potom vložte súbor do priečinka (z PC) a potom znovu vyberte túto možnosť pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestorage_setup_title">Inicializácia prístupu k súboru</string>
   <string name="database_location">Umiestnenie databázy</string>
@@ -351,6 +368,7 @@
   <string name="init_otp">Načítať doplnkový súbor pre jednorazové heslá&#8230;</string>
   <string name="otp_explanation">Zadajte ďalšie jednorazové heslá (OTP). Priložte Yubikey NEO na zadnú stranu zariadenia alebo zadajte prostredníctvom NFC.</string>
   <string name="otp_hint">Jednorazové heslo %1$d</string>
+  <string name="YubiChallengeNotInstalled">Nepodarilo sa nájsť aplikáciu pre spracovanie tejto výzvy. Prosím nainštalujte si Yubichallenge z obchodu Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Nemožno načítať doplnkový súbor pre jednorazové heslá!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Na použitie jednorazových hesiel v databáze prosím použite prídavný modul OtpKeyProv v programe keePass 2.x (PC)!</string>
   <string name="otp_discarded_because_no_db">Najskôr vyberte databázu. Jednorazové heslo bolo vymazané z bezpečnostných dôvodov.</string>
@@ -362,16 +380,60 @@
   <string name="OtpKeyError">Nepodarilo sa vytvoriť kľúč s jednorazovým heslom! Uistite sa, že ste zadali správne jednorazové heslá.</string>
   <string name="ErrorUpdatingOtpAuxFile">Chyba pri aktualizovaní doplnkového súboru pre jednorazové heslá!</string>
   <string name="SavingOtpAuxFile">Ukladanie doplnkového súbor pre jednorazové heslá&#8230;</string>
+  <string name="bad_resp">Odpoveď na výzvu nie je správna.</string>
+  <string name="CouldntLoadChalAuxFile">Nemožno načítať doplnkový súbor pre výzvu!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Prosím použite prídavný modul KeeChallenge v programe KeePass 2.x (PC) pre nakonfigurovanie databázy na použitie s odpoveďou na výzvu!</string>
+  <string name="ErrorUpdatingChalAuxFile">Chyba pri aktualizovaní doplnkového súboru OTP!</string>
+  <string name="TrayTotp_SeedField_title">Názov prvotného (seed) poľa TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Ak používate prídavný modul pre Keepass 2 s názvom \"TrayTotp\", nie s predvolenými nastaveniami, zadajte názov pre prvotné (seed) pole, podľa nastavení v PC.</string>
+  <string name="TrayTotp_SettingsField_title">Názov poľa pre nastavenia TOTP</string>
+  <string name="TrayTotp_SettingsField_summary">Sem zadajte názov poľa s nastaveniami pre TrayTotp.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Načítava sa&#8230;</string>
   <string name="plugins">Prídavné moduly</string>
   <string name="plugin_packagename">Názov balíčka:</string>
   <string name="plugin_description">Popis (neoverený):</string>
   <string name="plugin_author">Autor (neoverený):</string>
+  <string name="plugin_enabled">zapnuté</string>
+  <string name="plugin_disabled">vypnuté</string>
+  <string name="plugin_web">Vyhľadať prídavné moduly online</string>
+  <string name="query_credentials_for_url">%1$s požaduje prihlasovacie údaje pre %2$s.</string>
+  <string name="query_credentials">%1$s požaduje prihlasovacie údaje. Prosím vyberte záznam.</string>
+  <string name="plugin_enabled_checkbox">Zapnuté</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Notifikácie pre akciu databázy</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Prídavný modul bude notifikovaný pri otvorení, zatvorení alebo uložení databázy.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Aktuálne údaje záznamu</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Prídavný modul získa všetky údaje o aktuálnom zázname v databáze a bude môcť ponúknuť akcie a upraviť jeho zobrazenie.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Vyžiadať vlastné prihlasovacie údaje</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Prídavný modul si môže vyžiadať prihlasovacie údaje asociované s vlastným balíčkom aplikácie.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Vyžiadať prihlasovacie údaje</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Prídavný modul si bude môcť vyžiadať prihlasovacie údaje pre zamýšľané webstránky alebo aplikácie.</string>
   <string name="get_regular_version">Získať viac spôsobov uloženia</string>
   <string name="CertificateWarning">Upozornenie: nepodarilo sa overiť certifikát servera: %1$s. Nainštalujte správny hlavný certifikát na vaše zariadenie alebo si pozrite nastavenia!</string>
   <string name="CertificateFailure">Chyba: Nepodarilo sa overiť certifikát servera! Nainštalujte správny hlavný certifikát na vaše zariadenie alebo si pozrite nastavenia!</string>
   <string name="export_fileformats_title">Vyberte formát súboru</string>
+  <string name="killed_by_os">Prepáčte! Keepass2Android bol ukončený systémom Android! Z bezpečnostných dôvodov neuchováva Keepass2Android vami vybrané prihlasovacie údaje na disku, takže musíte databázu znovu otvoriť. Poznámka: Táto situácia by mala nastať iba veľmi zriedkavo. Ak sa tak stane, prosím pošlite mi správu na adresu crocoapps@gmail.com.</string>
   <string name="ChangeLog_title">Zoznam zmien</string>
+  <string name="PreviewWarning">Prosím pozor! Toto je náhľadové vydanie novej verzie a môže obsahovať nejaké chybičky! Ak si všimnete *čokoľvek* neočakávané, prosím informujte ma (cez stránky Codeplex alebo e-mailom).</string>
+  <string name="ChangeLog_0_9_4">
+		<b>Verzia 0.9.4</b>\n
+		* pridaná podpora prídavných modulov: na získanie prídavných modulov si pozrite nastavenia!\n
+		* publikovaný QR plugin (skenovanie hesiel, zobrazenie hesiel vo forme QR kódu, prenos záznamov do iných zariadení s KP2A)\n
+		* zverejnený prídavný modul InputStick (prenos prihlasovacích údajov do vášho PC cez Bluetooth – je potrebný USB kľúč InputStick)\n
+		* iné aplikácie teraz môžu implemenovať dopyt KP2A na prihlasovacie údaje. Vyvíjate aplikácie? Ak je to vhodné, pridajte túto funkciu do vašej aplikácie!\n
+		* pridaná podpora TOTP (kompatibilné s KeeOTP a TrayTotp)\n
+		* systém Android by už nemal ukončovať aplikáciu, ak je otvorená databáza\n
+		* databáza už nie je uzamykaná v prípade, že ju opustíte tlačidlom Späť (pozrite si nastavenia)\n
+		* zobrazovanie názvov skupín vo výsledkoch vyhľadávania (*)\n
+		* pridané kontextové menu do výsledkov vyhľadávania, spolu s možnosťou „Návrat na rodičovský prvok“ (*)\n
+		* pridaná funkcia na zobrazenie názvu skupiny pri zobrazení záznamu (*)\n
+		* (*) ďakujeme používateľovi Matthieu za implementovanie týchto týchto funkcií!\n
+		* podpora pre KeeChallenge (s Yubikey NEO). Ďakujeme používateľovi Ben Rush za implementovanie pripájača!\n
+		* vylepšené používateľské rozhranie\n
+		* opravená chyba v rozhraní pre Google Drive\n
+		* pridaná možnosť zablokovania funkcie „Prispieť“\n
+		* ikona funkcie Rýchle odomknutie je štandardne skrytá pri zariadeniach Android 4.2+\n
+	</string>
   <string name="ChangeLog_0_9_3_r5">
 		<b>Verzia 0.9.3 r5</b>\n
 		* Integrované opravy od používateľa Xamarin: Keepass2Android je teraz kompatibilný s ART on Android 4.4.2. Konečne!\n
@@ -515,8 +577,8 @@ Prvé verejné vydanie
     <item>Heslo + súbor s kľúčom</item>
     <item>Heslo + OTP</item>
     <item>Heslo + jadro OTP (režim obnovy)</item>
-    <item>Password + Challenge-Response</item>
-    <item>Password + Challenge-Response secret (recovery mode)</item>
+    <item>Heslo + odpoveď na výzvu</item>
+    <item>Heslo + tajná odpoveď na výzvu (režim obnovenia)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovať zlyhania pri overení certifikátu</item>

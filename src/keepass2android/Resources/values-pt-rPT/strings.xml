@@ -7,6 +7,7 @@
   <string name="CreditsText">A Interface do usuário é baseada numa adaptação da aplicação KeepassDroid desenvolvida por Brian Pellin. O código para as operações da base de dados é baseado no KeePass de Dominik Reichl. O robô Android é reproduzido ou modificado a partir do trabalho criado e compartilhado pelo Google, utilizado de acordo com os termos descritos na licença Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">O suporte para SFTP está implementado usando a biblioteca JSch criada pela JCraft, Inc. com licença BSD.</string>
   <string name="accept">Aceitar</string>
+  <string name="deny">Negar</string>
   <string name="add_entry">Adicionar entrada</string>
   <string name="add_url_entry">Criar entrada por URL</string>
   <string name="add_group">Adicionar grupo</string>
@@ -25,6 +26,7 @@
   <string name="show_kill_app_summary">Mostrar um botão na tela de senha para matar o processo de aplicação (para usuários paranóicos)</string>
   <string name="application">Aplicativo</string>
   <string name="application_settings">Definições da aplicação</string>
+  <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
   <string name="security_prefs">Segurança</string>
   <string name="display_prefs">Ecrã</string>
   <string name="password_access_prefs">Métodos de introdução de passwords</string>
