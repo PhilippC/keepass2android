@@ -7,6 +7,7 @@
   <string name="CreditsText">A Interface do usuário baseia-se no KeepassDroid desenvolvido por Brian Pellin. Código para manipulação do banco de dados baseia-se no KeePass por Dominik Reichl. O robô Android é reproduzido ou modificado do trabalho criado e compartilhado pelo Google e utilizado de acordo com os termos descritos na licença Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">O suporte ao SFTP é implementado utilizando a biblioteca JSch sob licença BSD, criada por JCraft, Inc.</string>
   <string name="accept">Aceitar</string>
+  <string name="deny">Negar</string>
   <string name="add_entry">Adicionar entrada</string>
   <string name="add_url_entry">Criar entrada para URL</string>
   <string name="add_group">Adicionar grupo</string>
@@ -25,6 +26,10 @@
   <string name="show_kill_app_summary">Exibir um botão na tela de senha para encerrar o processo do aplicativo (para usuários paranóicos)</string>
   <string name="application">Aplicação</string>
   <string name="application_settings">Configurações</string>
+  <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
+  <string name="ShowGroupnameInSearchResult_resume">Mostrar nome do grupo abaixo do título de entrada no resultado das pesquisas. Útil se várias entradas têm o mesmo nome.</string>
+  <string name="NavigationToGroupCompleted_message">Grupo de exibição é agora: %1$s</string>
+  <string name="ShowGroupInEntry_title">Mostrar nome do grupo na tela de entrada</string>
   <string name="security_prefs">Segurança</string>
   <string name="display_prefs">Exibição</string>
   <string name="password_access_prefs">Acesso às senhas de entradas</string>
@@ -49,6 +54,7 @@
   <string name="digits">Dígitos</string>
   <string name="disclaimer_formal">Keepass2Android vem com ABSOLUTAMENTE NENHUMA GARANTIA; Este é um software livre, e você está convidado a redistribui-lo sob as condições da GPL versão 2 ou posterior.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="english_ime_settings">Custom.english_ime_setting</string>
   <string name="enter_filename">Digite o nome do arquivo de banco de dados</string>
   <string name="entry_accessed">Acessado</string>
   <string name="entry_cancel">Cancelar</string>
@@ -58,6 +64,7 @@
   <string name="entry_confpassword">Confirmar senha</string>
   <string name="entry_created">Criado</string>
   <string name="entry_expires">Expira</string>
+  <string name="entry_group_name">Nome do grupo</string>
   <string name="entry_keyfile">Arquivo chave (opcional)</string>
   <string name="entry_modified">Modificado</string>
   <string name="entry_password">Senha</string>
@@ -123,6 +130,8 @@
   <string name="menu_db_settings">Configurações do banco de dados</string>
   <string name="menu_delete">Excluir</string>
   <string name="menu_move">Mover para outro grupo</string>
+  <string name="menu_move_light">Mover</string>
+  <string name="menu_navigate">Navegue para o grupo pai</string>
   <string name="menu_donate">Doe uma cerveja...</string>
   <string name="menu_edit">Editar</string>
   <string name="menu_hide_password">Esconder Senha</string>
@@ -214,6 +223,8 @@
   <string name="QuickUnlockDefaultEnabled_summary">Define se o QuickUnlock está habilitado por padrão ou não.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar o ícone do QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">O QuickUnlock infelizmente não funciona sem exibir um ícone de notificação. Selecione esta opção para usar um ícone transparente.</string>
+  <string name="QuickUnlockIconHidden16_title">Ocultar o ícone do QuickUnlock</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock requer uma notificação para funcionar corretamente. Selecione esta opção para exibir uma notificação sem um ícone.</string>
   <string name="QuickUnlockLength_title">Comprimento da senha do QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres usado como senha do QuickUnlock.</string>
   <string name="QuickUnlock_fail">O QuickUnlock falhou: senha incorreta!</string>
@@ -242,6 +253,11 @@
   <string name="UseFileTransactions_summary">Usar transações de arquivo para escrita de bancos de dados</string>
   <string name="LockWhenScreenOff_title">Travar com a tela desligada</string>
   <string name="LockWhenScreenOff_summary">Bloquear o banco de dados quando a tela for desligada.</string>
+  <string name="LockWhenNavigateBack_title">Bloquear quando deixar o app</string>
+  <string name="LockWhenNavigateBack_summary">Feche o banco de dados quando sair do app pressionando o botão voltar.</string>
+  <string name="NoDonateOption_title">Ocultar a opção de doação</string>
+  <string name="NoDonateOption_summary">Esta configuração é para doadores. Está disponível depois de usar o Keepass2Android por um tempo apenas.</string>
+  <string name="NoDonateOption_question">Sem doações, este app não existiria e não poderia ser melhorado continuamente! Se você ainda não doou, por favor, considere fazer uma doação agora.</string>
   <string name="UseOfflineCache_title">Cache do banco de dados</string>
   <string name="UseOfflineCache_summary">Mantém uma cópia de arquivos remotos de banco de dados no diretório de cache do aplicativo. Isto permite o uso de bancos de dados remotos mesmo desconectado.</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
@@ -258,6 +274,7 @@
   <string name="OpenKp2aKeyboardAutomatically_summary">Abre a seleção de teclados quando a inserção estiver disponível através do teclado KP2A após busca do navegador ou do teclado.</string>
   <string name="kp2a_switch_rooted">Trocar automaticamente em dispositivos com root</string>
   <string name="kp2a_switch_rooted_summary">Em dispositivos com root, é possível trocar automaticamente para o teclado Keepass2Android (após a busca por uma entrada ou selecionando a notificação do teclado KP2A) e trocar de volta ao teclado anterior sem exibir o selecionador de método de entrada. Requer a instalação do aplicativo Secure Settings. Veja a documentação do KP2A para mais informações!</string>
+  <string name="ShowUnlockedNotification_title">Ícone de notificação enquanto desbloqueado</string>
   <string name="ShowUnlockedNotification_summary">Mostra uma notificação permanente enquanto o banco de dados está desbloqueado.</string>
   <string name="PreloadDatabaseEnabled_title">Pré-carregar arquivo de banco de dados</string>
   <string name="PreloadDatabaseEnabled_summary">Inicia o carregamento ou download em segundo plano do arquivo de banco de dados durante a inserção da senha.</string>
@@ -334,6 +351,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferência de arquivos)</string>
   <string name="filestorage_setup_title">Inicialização do arquivo de acesso</string>
   <string name="database_location">Localização do banco de dados</string>
@@ -348,9 +366,11 @@
   <string name="hint_key_file">Escolha se você deseja utilizar um arquivo de chave em adição a sua senha mestra:</string>
   <string name="use_key_file">Usar arquivo de chave</string>
   <string name="error_adding_keyfile">Erro ao adicionar o arquivo de chave!</string>
+  <string name="language_selection_title">Custo.language_selection_title</string>
   <string name="init_otp">Carregar o arquivo auxiliar OTP&#8230;</string>
   <string name="otp_explanation">Digite o seguinte One-time-passwords (OTPs). Deslize seu Yubikey NEO na parte traseira de seu dispositivo para entrar através de NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
+  <string name="YubiChallengeNotInstalled">Não foi possível encontrar um app que possa lidar com o desafio. Por favor, instale o Yubichallenge no Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Não foi possível carregar arquivo OTP auxiliar!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Por favor, use o plugin OtpKeyProv no KeePass 2.x (PC) para configurar seu banco de dados para uso com as OTPs!</string>
   <string name="otp_discarded_because_no_db">Por favor, selecione o banco de dados primeiro. OTP foi descartada por motivos de segurança.</string>
@@ -362,16 +382,60 @@
   <string name="OtpKeyError">Falha ao criar a chave OTP! Verifique se que você digitou as corretas OTPs.</string>
   <string name="ErrorUpdatingOtpAuxFile">Erro ao atualizar o arquivo OTP auxiliar!</string>
   <string name="SavingOtpAuxFile">Salvar arquivo OTP auxiliar&#8230;</string>
+  <string name="bad_resp">O resposta de desafio está incorreta.</string>
+  <string name="CouldntLoadChalAuxFile">Não foi possível carregar o arquivo de desafio auxiliar!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Por favor, use o plugin KeeChallenge no KeePass 2.x (PC) para configurar seu banco de dados para uso com desafio-resposta!</string>
+  <string name="ErrorUpdatingChalAuxFile">Erro ao atualizar o arquivo OTP auxiliar!</string>
+  <string name="TrayTotp_SeedField_title">Nome do campo da semente TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Se você estiver usando o plugin Keepass 2 \"TrayTotp\" com configurações não-padrão, digite o nome do campo para o campo de semente aqui de acordo com as configurações no PC.</string>
+  <string name="TrayTotp_SettingsField_title">TOTP configurações nome do campo</string>
+  <string name="TrayTotp_SettingsField_summary">Digite o nome do campo do campo de configurações para TrayTotp aqui.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Carregando&#8230;</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Nome do pacote:</string>
   <string name="plugin_description">Descrição (não verificada):</string>
   <string name="plugin_author">Autor (não verificado):</string>
+  <string name="plugin_enabled">habilitado</string>
+  <string name="plugin_disabled">desativado</string>
+  <string name="plugin_web">Encontrar plug-ins on-line</string>
+  <string name="query_credentials_for_url">%1$s está solicitando credenciais para %2$s.</string>
+  <string name="query_credentials">%1$s está solicitando credenciais. Por favor, selecione uma entrada.</string>
+  <string name="plugin_enabled_checkbox">Ativado</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Notificações de ação do banco de dados</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Plugin será notificado quando um banco de dados está aberto, fechado ou salvo.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Dados de entrada atual</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin receberá todos os dados sobre a entrada do banco de dados atual e poderão oferecer ações e modificar a exibição do mesmo.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consulta próprias credenciais</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin poderá consultar as credenciais associadas com o seu próprio pacote de aplicativo.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Credenciais de consulta</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin permitirá consultar credenciais para web sites ou aplicações deliberadas.</string>
   <string name="get_regular_version">Obter mais tipos de armazenamento</string>
   <string name="CertificateWarning">Aviso: Falha de validação de certificado de servidor: %1$s. Instale o certificado de raiz adequado em seu dispositivo ou consulte as configurações!</string>
   <string name="CertificateFailure">Erro: Falha de validação do certificado do servidor! Instale o certificado raiz apropriado em seu dispositivo ou consulte  as configurações!</string>
   <string name="export_fileformats_title">Selecione o formato de arquivo</string>
+  <string name="killed_by_os">Sinto muito! Keepass2Android foi morto pelo sistema operacional Android! Por razões de segurança, Keepass2Android não mantém suas credenciais selecionadas no disco, então você precisa re-abrir o seu banco de dados. Nota: Isto deve acontecer muito raramente. Se isso acontece, por favor, me deixe uma mensagem no crocoapps@gmail.com.</string>
   <string name="ChangeLog_title">Mudanças</string>
+  <string name="PreviewWarning">Por favor, note! Esta é uma versão preview e pode vir com algumas falhas! Se você experimentar *alguma coisa* inesperada, por favor me avise (no Codeplex ou por e-mail).</string>
+  <string name="ChangeLog_0_9_4">
+		<b>Versão 0.9.4</b>\n
+		*  adicionado suporte a plug-int: Veja em configurações como obter plug-ins!\n
+		*  publicado QR plug-in (escanear senhas, mostrar senhas como QR code, transferir entradas para outros dispositivos KP2A)\n
+		*  publicado o plugin InputStick (transferir credenciais para seu pc via bluetooth - requer o equipamento InputStick USB)\n
+		*  App de terceiros podem agora simplesmente implementar consultas KP2A para credenciais. Você é desenvolvedor? Porfavor adicione isso ao seu app se adequado!\n
+		* adicionado suporte a TOTP (compatível com KeeOTP e TrayTotp)\n
+		* aplicativo não deve mais ser finalizado pelo Android quando banco de dados está aberto\n
+		* banco de dados não fica bloqueado ao sair do aplicativo com o botão voltar (ver configurações)\n
+		* mostrar nomes dos grupos nos resultados de pesquisa (*)\n
+		* adicionado no menu de contexto nos resultados de pesquisa foi incluído a opção \"Navegar para o pai\" (*)\n
+		* adicionado a opção de mostrar no nome do grupo na tela de entrada (*)\n
+		* (*) obrigado ao Matthieu por implementar estes recursos!\n
+		* suporte ao KeeChallenge (com Yubikey NEO). Obrigado a Ben Rush por implementar o conector!\n
+		* melhorado a interface do usuário\n
+		* corrigido o bug na interface do Google Drive\n
+		* adicionado a opção para desativar a \"doação\"\n
+		* Agora o ícone do QuickUnlock está oculto nos equipamentos com Android 4.2+ por padrão\n 
+	</string>
   <string name="ChangeLog_0_9_3_r5">
 		<b>Versão 0.9.3 r5</b>\n
 		* incorporadas correções do Xamarin: Keepass2Android é agora compatível com ART no Android 4.4.2. Finalmente!\n
@@ -515,8 +579,8 @@ Lançamento público inicial
     <item>Senha + Arquivo chave</item>
     <item>Senha + OTP</item>
     <item>Senha + OTP secreto (modo de recuperação)</item>
-    <item>Password + Challenge-Response</item>
-    <item>Password + Challenge-Response secret (recovery mode)</item>
+    <item>Senha + desafio-resposta</item>
+    <item>Senha + Desafio-resposta secreto (modo de recuperação)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar falhas de validação de certificado</item>

@@ -4343,11 +4343,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f090159
 			public const int brackets = 2131296601;
 			
-			// aapt resource value: 0x7f0902e6
-			public const int browser_intall_text = 2131296998;
+			// aapt resource value: 0x7f0902e3
+			public const int browser_intall_text = 2131296995;
 			
-			// aapt resource value: 0x7f0902e7
-			public const int building_search_idx = 2131296999;
+			// aapt resource value: 0x7f0902e4
+			public const int building_search_idx = 2131296996;
 			
 			// aapt resource value: 0x7f090297
 			public const int button_change_location = 2131296919;
@@ -4478,14 +4478,14 @@ namespace keepass2android
 			// aapt resource value: 0x7f090101
 			public const int db_key = 2131296513;
 			
-			// aapt resource value: 0x7f0902e8
-			public const int decrypting_db = 2131297000;
+			// aapt resource value: 0x7f0902e5
+			public const int decrypting_db = 2131296997;
 			
-			// aapt resource value: 0x7f0902e9
-			public const int decrypting_entry = 2131297001;
+			// aapt resource value: 0x7f0902e6
+			public const int decrypting_entry = 2131296998;
 			
-			// aapt resource value: 0x7f0902ea
-			public const int default_checkbox = 2131297002;
+			// aapt resource value: 0x7f0902e7
+			public const int default_checkbox = 2131296999;
 			
 			// aapt resource value: 0x7f0900f3
 			public const int default_file_path = 2131296499;
@@ -4541,12 +4541,6 @@ namespace keepass2android
 			// aapt resource value: 0x7f090168
 			public const int ellipsis = 2131296616;
 			
-			// aapt resource value: 0x7f0902e4
-			public const int enable_plugin_question = 2131296996;
-			
-			// aapt resource value: 0x7f0902e3
-			public const int enable_plugin_title = 2131296995;
-			
 			// aapt resource value: 0x7f090209
 			public const int enable_quickunlock = 2131296777;
 			
@@ -4577,8 +4571,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f09016a
 			public const int entry_accessed = 2131296618;
 			
-			// aapt resource value: 0x7f0902eb
-			public const int entry_and_or = 2131297003;
+			// aapt resource value: 0x7f0902e8
+			public const int entry_and_or = 2131297000;
 			
 			// aapt resource value: 0x7f09017b
 			public const int entry_binaries = 2131296635;
@@ -4634,8 +4628,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f09029f
 			public const int error_adding_keyfile = 2131296927;
 			
-			// aapt resource value: 0x7f0902ec
-			public const int error_arc4 = 2131297004;
+			// aapt resource value: 0x7f0902e9
+			public const int error_arc4 = 2131297001;
 			
 			// aapt resource value: 0x7f09017c
 			public const int error_can_not_handle_uri = 2131296636;
@@ -4676,8 +4670,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f090187
 			public const int error_nopass = 2131296647;
 			
-			// aapt resource value: 0x7f0902ed
-			public const int error_out_of_memory = 2131297005;
+			// aapt resource value: 0x7f0902ea
+			public const int error_out_of_memory = 2131297002;
 			
 			// aapt resource value: 0x7f090188
 			public const int error_pass_gen_type = 2131296648;
@@ -4688,8 +4682,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f09018a
 			public const int error_rounds_not_number = 2131296650;
 			
-			// aapt resource value: 0x7f0902ee
-			public const int error_rounds_too_large = 2131297006;
+			// aapt resource value: 0x7f0902eb
+			public const int error_rounds_too_large = 2131297003;
 			
 			// aapt resource value: 0x7f090221
 			public const int error_string_key = 2131296801;
@@ -4877,11 +4871,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f0901e8
 			public const int insert_element_here = 2131296744;
 			
-			// aapt resource value: 0x7f0902ef
-			public const int install_from_market = 2131297007;
+			// aapt resource value: 0x7f0902ec
+			public const int install_from_market = 2131297004;
 			
-			// aapt resource value: 0x7f0902f0
-			public const int install_from_website = 2131297008;
+			// aapt resource value: 0x7f0902ed
+			public const int install_from_website = 2131297005;
 			
 			// aapt resource value: 0x7f09019f
 			public const int invalid_algorithm = 2131296671;
@@ -5093,8 +5087,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0901b8
 			public const int menu_hide_password = 2131296696;
 			
-			// aapt resource value: 0x7f0902f1
-			public const int menu_homepage = 2131297009;
+			// aapt resource value: 0x7f0902ee
+			public const int menu_homepage = 2131297006;
 			
 			// aapt resource value: 0x7f0901b9
 			public const int menu_lock = 2131296697;
@@ -5248,9 +5242,6 @@ namespace keepass2android
 			
 			// aapt resource value: 0x7f0902b9
 			public const int plugins = 2131296953;
-			
-			// aapt resource value: 0x7f0902e5
-			public const int plugins_text = 2131296997;
 			
 			// aapt resource value: 0x7f09008d
 			public const int popular_domain_0 = 2131296397;

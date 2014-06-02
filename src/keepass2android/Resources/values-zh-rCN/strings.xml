@@ -7,6 +7,7 @@
   <string name="CreditsText">用户界面基于由 Brian Pellin 开发的 KeepassDroid。数据库操作的代码是基于 Dominik Reichl 开发的KeePass。Android 机器人是转载或修改自谷歌创建、共享的并使用根据创作共用 3.0 许可证中所述的条款。</string>
   <string name="CreditsTextSFTP">SFTP 用由 JCraft，Inc. 创建的 JSch 库（BSD许可证）实现</string>
   <string name="accept">接受</string>
+  <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
   <string name="add_url_entry">为链接地址创建条目</string>
   <string name="add_group">添加群组</string>
@@ -25,6 +26,10 @@
   <string name="show_kill_app_summary">在密码界面显示一个结束应用程序进程的按钮</string>
   <string name="application">应用程序</string>
   <string name="application_settings">应用程序设置</string>
+  <string name="ShowGroupnameInSearchResult_title">在搜索结果中显示群组名</string>
+  <string name="ShowGroupnameInSearchResult_resume">在搜索结果中条目标题下显示群组名。如果几个条目具有相同的名称时会很有用。</string>
+  <string name="NavigationToGroupCompleted_message">当前显示群组：%1$s</string>
+  <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
   <string name="security_prefs">安全</string>
   <string name="display_prefs">显示</string>
   <string name="password_access_prefs">密码输入接口</string>
@@ -49,6 +54,7 @@
   <string name="digits">数字</string>
   <string name="disclaimer_formal">Keepass2Android 版权归 Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循 GPL 2 或者更高版本的情况下重新发布。</string>
   <string name="ellipsis">\u2026</string>
+  <string name="english_ime_settings">Custom.english_ime_setting</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间</string>
   <string name="entry_cancel">取消</string>
@@ -58,6 +64,7 @@
   <string name="entry_confpassword">确认密码</string>
   <string name="entry_created">创建时间：</string>
   <string name="entry_expires">失效时间：</string>
+  <string name="entry_group_name">群组名</string>
   <string name="entry_keyfile">密钥文件（可选）</string>
   <string name="entry_modified">修改时间</string>
   <string name="entry_password">密码</string>
@@ -123,6 +130,8 @@
   <string name="menu_db_settings">数据库设置</string>
   <string name="menu_delete">删除</string>
   <string name="menu_move">移动到其他群组</string>
+  <string name="menu_move_light">移动</string>
+  <string name="menu_navigate">导航字父群组</string>
   <string name="menu_donate">捐出一瓶啤酒钱......</string>
   <string name="menu_edit">编辑</string>
   <string name="menu_hide_password">隐藏密码</string>
@@ -214,6 +223,8 @@
   <string name="QuickUnlockDefaultEnabled_summary">设定是否在默认情况下启用快速解锁</string>
   <string name="QuickUnlockIconHidden_title">隐藏快速锁定图标</string>
   <string name="QuickUnlockIconHidden_summary">不幸无法显示快速解锁的通知图标。选择此选项可使用一个透明的图标。</string>
+  <string name="QuickUnlockIconHidden16_title">隐藏快速锁定图标</string>
+  <string name="QuickUnlockIconHidden16_summary">快速解锁需要一条通知以能正常运行。选中本选项以显示一条不带图标的通知。</string>
   <string name="QuickUnlockLength_title">快速解锁密钥的长度</string>
   <string name="QuickUnlockLength_summary">快速解锁密码的最大长度</string>
   <string name="QuickUnlock_fail">解锁失败：密码错误！</string>
@@ -242,6 +253,11 @@
   <string name="UseFileTransactions_summary">使用文件记录来写数据库</string>
   <string name="LockWhenScreenOff_title">在锁屏时锁定</string>
   <string name="LockWhenScreenOff_summary">当锁屏时锁定数据库。</string>
+  <string name="LockWhenNavigateBack_title">离开应用时锁定</string>
+  <string name="LockWhenNavigateBack_summary">当通过点按返回键离开本应用时锁定数据库</string>
+  <string name="NoDonateOption_title">隐藏捐赠选项</string>
+  <string name="NoDonateOption_summary">本设置为捐赠者设定。只有当使用 Keepass2Android 一段时间后才可用。</string>
+  <string name="NoDonateOption_question">若没有捐款，本应用就不存在也不会有不断地改进！若您尚未捐赠，请考虑现在捐赠吧！</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
   <string name="UseOfflineCache_summary">在程序缓存目录保存一份远程数据库文件副本。这允许离线的时候使用远程数据库。</string>
   <string name="AcceptAllServerCertificates_title">SSL 证书</string>
@@ -258,6 +274,7 @@
   <string name="OpenKp2aKeyboardAutomatically_summary">当从浏览器搜索或键盘后可用通过 KP2A 键盘输入时，打开键盘选择对话框。</string>
   <string name="kp2a_switch_rooted">在获得根权限的设备上自动切换</string>
   <string name="kp2a_switch_rooted_summary">在获取根权限的设备上，有可能 （在搜索条目或通过单击 KP2A 键盘通知） 后自动切换到 Keepass2Android 键盘，并切换回先前的键盘且不显示输入法选择框。这还需要安装安全设置应用（Secure Settings app）。详情请参阅 KP2A 文档 ！</string>
+  <string name="ShowUnlockedNotification_title">解锁时通知图标</string>
   <string name="ShowUnlockedNotification_summary">当数据库处于解锁状态栏持续显示通知。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
   <string name="PreloadDatabaseEnabled_summary">当输入密码项时启动后台加载或下载数据库文件。</string>
@@ -334,6 +351,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
   <string name="filestoragehelp_dropboxKP2A">如果你不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 应用/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，点击此选项将创建该新文件夹，然后将你在电脑上的数据库文件放在此文件夹内，然后再选该选项，并以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP（SSH 文件传输）</string>
   <string name="filestorage_setup_title">初始化文件访问</string>
   <string name="database_location">数据库位置</string>
@@ -348,9 +366,11 @@
   <string name="hint_key_file">选择是否用密钥文件而不是您的主密码：</string>
   <string name="use_key_file">使用密钥文件</string>
   <string name="error_adding_keyfile">添加密钥文件时出错 ！</string>
+  <string name="language_selection_title">Custo.language_selection_title</string>
   <string name="init_otp">加载一次性密码辅助文件......</string>
   <string name="otp_explanation">通过 NFC 刷您的 Yubikey NEO 设备来输入下一个一次性密码。</string>
   <string name="otp_hint">一次性密码 %1$ d</string>
+  <string name="YubiChallengeNotInstalled">无应用程序可以处理该操作。请从 Play 商店中安装 Yubichallenge</string>
   <string name="CouldntLoadOtpAuxFile">不能加载一次性密码文件 ！</string>
   <string name="CouldntLoadOtpAuxFile_Hint">请使用 KeePass 2.x（电脑端）的 OtpKeyProv 插件来配置您的数据库使用 OTPs ！</string>
   <string name="otp_discarded_because_no_db">请先选择数据库。出于安全原因，一次性密码将被丢弃。</string>
@@ -362,16 +382,60 @@
   <string name="OtpKeyError">无法创建一次性密码密钥！确保你输入了正确的 OTPs。</string>
   <string name="ErrorUpdatingOtpAuxFile">更新一次性密码辅助文件时出错 ！</string>
   <string name="SavingOtpAuxFile">正在保存一次性密码辅助文件...</string>
+  <string name="bad_resp">挑战响应不正确</string>
+  <string name="CouldntLoadChalAuxFile">无法加载辅助挑战文件！</string>
+  <string name="CouldntLoadChalAuxFile_Hint">请在 KeePass 2.x (PC) 中使用 KeeChallenge 插件，以使用挑战—响应配置您的数据库！</string>
+  <string name="ErrorUpdatingChalAuxFile">更新一次性密码辅助文件时出错 ！</string>
+  <string name="TrayTotp_SeedField_title">一次性密码种子字段名称</string>
+  <string name="TrayTotp_SeedField_summary">如果您在使用 Keepass 2 插件 \"TrayTotp\" 为非默认设置，在电脑上输入设置种子字段的字段名称。</string>
+  <string name="TrayTotp_SettingsField_title">TOTP 字段名称设置</string>
+  <string name="TrayTotp_SettingsField_summary">在这里输入设置字段的字段名称 TrayTotp</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">载入中...</string>
   <string name="plugins">插件</string>
   <string name="plugin_packagename">包名称：</string>
   <string name="plugin_description">说明（未验证）：</string>
   <string name="plugin_author">作者（未验证）：</string>
+  <string name="plugin_enabled">已启用</string>
+  <string name="plugin_disabled">已禁用</string>
+  <string name="plugin_web">发现在线插件</string>
+  <string name="query_credentials_for_url">%1$s 正在请求 %2$s 的证书</string>
+  <string name="query_credentials">%1$s 正在请求证书。请选择一个条目。</string>
+  <string name="plugin_enabled_checkbox">已启用</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">数据库操作通知</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">当数据库进行打开、关闭或保存操作时，插件会发出通知。</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">当前条目数据</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">插件会获取到当前数据库的所有数据，并允许它提供操作并修改显示。</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">查询自己的凭据</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">插件将获准查询与它相关联当应用程序包的证书。</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">查询凭据</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">插件将获准查询特定的网站及应用的证书。</string>
   <string name="get_regular_version">获取更多的存储类型</string>
   <string name="CertificateWarning">警告： 服务器证书验证失败: %1$ s。在您的设备上安装相应的根证书，或请参阅设置 ！</string>
   <string name="CertificateFailure">错误： 服务器证书验证失败！在您的设备上安装相应的根证书，或请参阅设置 ！</string>
   <string name="export_fileformats_title">选择文件格式</string>
+  <string name="killed_by_os">对不起 ！Keepass2Android 被系统结束进程！出于安全原因，Keepass2Android 不在磁盘上存留证书，所以您需要重新打开您的数据库。注：出现该问题的几率极低。如果出现了，请给我发送我邮件至 crocoapps@gmail.com</string>
   <string name="ChangeLog_title">更新记录</string>
+  <string name="PreviewWarning">请注意 ！这是一个预览版本，可能会有一些缺陷 ！如果您遇到*任何*错误，请联系我们（通过 Codeplex 或电子邮件）。</string>
+  <string name="ChangeLog_0_9_4"><b>版本 0.9.4</b>\n
+* 添加插件指出：参阅设置查看如何获得插件！\n
+* 二维码插件（扫描密码、以二维码方式显示密码、转移条目至其他装有 KP2A 的设备）\n
+* InputStick 插件（通过蓝牙转移证书至电脑——需要 InputStick USB 棒）\n
+* 第三方应用可以简单地实现查询 KP2A 证书。您是开发者吗？如果合适的话请添加此证书至您的应用！\n
+* 添加一次性密码（TOTP）的支持（兼容 KeeOTP 和 TrayTotp）\n
+* 当数据库开启时，本应用应该不再会被系统结束进程\n
+- - -\n
+* 允许当通过点击返回键离开本应用时，不会锁定数据库（参见设置）\n
+* 允许在搜索结果中显示群组名\n
+* 允许在搜索结果中添加上下文菜单，包含「导航到父级」选项\n
+* 允许在输入视图中显示组名\n
+感谢 Matthieu 开发的这些新功能！\n
+- - -\n
+* 支持 KeeChallenge（通过 Yubikey NEO）感谢 Ben Rush 实现本功能！\n
+* 改进用户界面\n
+* 修复云端硬盘的界面错误\n
+* 允许隐藏「捐赠」选项\n
+* 快速解锁图标可以在 Android 4.2 及更高版本中隐藏\n </string>
   <string name="ChangeLog_0_9_3_r5"><b>Version 0.9.3 r5</b>\n
 * 合并来自 Xamarin 的修复：Keepass2Android 现在与 Android 4.4.2 上的 ART 兼容了！\n
 * 错误修复：同步过程中的错误（刷新显示，正确检查 http 上的更改），此错误体现在 Android 2.x 设备上使用 Google Drive 和 SkyDrive时关闭数据库后清除剪贴板，打开附件与键盘显示错误。\n
@@ -496,8 +560,8 @@ Initial public release
     <item>密码 + 密钥文件</item>
     <item>密码 + 一次性密码</item>
     <item>密码 + 一次性密码 （恢复模式）</item>
-    <item>Password + Challenge-Response</item>
-    <item>Password + Challenge-Response secret (recovery mode)</item>
+    <item>密码 + 挑战—响应</item>
+    <item>密码 + 挑战—响应（恢复模式）</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>忽略证书验证失败</item>
