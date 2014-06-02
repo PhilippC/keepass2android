@@ -57,7 +57,6 @@
   <string name="disclaimer_formal">Keepass2Android comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under the conditions of the GPL version 2 or later.</string>
   <string name="ellipsis">\u2026</string>
 
-  <string name="english_ime_settings">Custom.english_ime_setting</string>
   <string name="enter_filename">Enter database filename</string>
   <string name="entry_accessed">Accessed</string>
   <string name="entry_cancel">Cancel</string>
@@ -405,7 +404,6 @@
 
 	<string name="error_adding_keyfile">Error while adding the key file!</string>
 
-	<string name="language_selection_title">Custo.language_selection_title</string>
 	<string name="init_otp">Load OTP auxiliary file…</string>
 	<string name="otp_explanation">Enter the next One-time-passwords (OTPs). Swipe your Yubikey NEO at the back of your device to enter via NFC.</string>
 	<string name="otp_hint">OTP %1$d</string>
