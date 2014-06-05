@@ -1,30 +1,34 @@
 using System;
 using System.Collections.Generic;
 using Android.Content;
+using Android.OS;
 using Android.Preferences;
 using Android.Widget;
-using KeePassLib.Collections;
 using keepass2android;
 
 namespace PluginTOTP
 {
 	class TrayTotpPluginAdapter : ITotpPluginAdapter
 	{
-		public TotpData GetTotpData(IDictionary<string, string> entryFields, Context ctx)
+		public TotpData GetTotpData(IDictionary<string, string> entryFields, Context ctx, bool muteWarnings)
 		{
-			return new TrayTotpHandler(ctx).GetTotpData(entryFields);
+			return new TrayTotpHandler(ctx, new Handler(Looper.MainLooper), muteWarnings).GetTotpData(entryFields);
 		}
 
 		private class TrayTotpHandler
 		{
 			private readonly Context _ctx;
+			private readonly Handler _uiThreadHandler;
+			private readonly bool _muteWarnings;
 
 			private string SeedFieldName { get { return PreferenceManager.GetDefaultSharedPreferences(_ctx).GetString(_ctx.GetString(Resource.String.TrayTotp_SeedField_key), "TOTP Seed"); } }
 			private string SettingsFieldName { get { return PreferenceManager.GetDefaultSharedPreferences(_ctx).GetString(_ctx.GetString(Resource.String.TrayTotp_SettingsField_key), "TOTP Settings"); } }
 
-			public TrayTotpHandler(Context ctx)
+			public TrayTotpHandler(Context ctx, Handler uiThreadHandler, bool muteWarnings)
 			{
 				_ctx = ctx;
+				_uiThreadHandler = uiThreadHandler;
+				_muteWarnings = muteWarnings;
 			}
 
 			/// <summary>
@@ -156,7 +160,18 @@ namespace PluginTOTP
 
 			private void ShowWarning(string warning)
 			{
-				Toast.MakeText(_ctx, warning, ToastLength.Short).Show();
+				if (_muteWarnings)
+					return;
+				try
+				{
+					_uiThreadHandler.Post(() => Toast.MakeText(_ctx, warning, ToastLength.Short).Show());
+				}
+				catch (Exception e)
+				{
+					Kp2aLog.Log(e.ToString());
+					//ignore, it's only a warning
+				}
+				
 			}
 
 			private bool SeedValidate(IDictionary<string, string> entryFields, out string invalidCharacters)

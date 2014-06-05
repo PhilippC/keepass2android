@@ -17,7 +17,7 @@ namespace keepass2android
 		{
 			foreach (ITotpPluginAdapter adapter in _pluginAdapters)
 			{
-				TotpData totpData = adapter.GetTotpData(App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), Application.Context);
+				TotpData totpData = adapter.GetTotpData(App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), Application.Context, false);
 				if (totpData.IsTotpEnry)
 				{
 					new UpdateTotpTimerTask(Application.Context, adapter).Run();

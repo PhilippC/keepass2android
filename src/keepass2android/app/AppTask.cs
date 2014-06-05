@@ -586,6 +586,11 @@ namespace keepass2android
 	/// </summary>
 	public class CreateEntryThenCloseTask: AppTask
 	{
+		public CreateEntryThenCloseTask()
+		{
+			ShowUserNotifications = true;
+		}
+
 		/// <summary>
 		/// extra key if only a URL is passed. optional.
 		/// </summary>

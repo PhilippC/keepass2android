@@ -19,7 +19,7 @@ namespace PluginTOTP
 		const string SizeParameter = "size";
         
 
-		public TotpData GetTotpData(IDictionary<string, string> entryFields, Context ctx)
+		public TotpData GetTotpData(IDictionary<string, string> entryFields, Context ctx, bool muteWarnings)
 		{
 			return new KeeOtpHandler(entryFields, ctx).GetData();
 		}

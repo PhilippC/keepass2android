@@ -357,7 +357,7 @@ namespace keepass2android
 					if ((bool) args.NewValue)
 					{
 						new AlertDialog.Builder(ctx)
-							.SetTitle(AppNames.AppName)
+							.SetTitle(ctx.GetString(AppNames.AppNameResource))
 							.SetCancelable(false)
 							.SetPositiveButton(Android.Resource.String.Ok, delegate(object o, DialogClickEventArgs eventArgs)
 								{

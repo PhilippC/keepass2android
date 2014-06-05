@@ -7,6 +7,6 @@ namespace PluginTOTP
 
 	interface ITotpPluginAdapter
 	{
-		TotpData GetTotpData(IDictionary<string, string> entryFields, Context ctx);
+		TotpData GetTotpData(IDictionary<string, string> entryFields, Context ctx, bool muteWarnings);
 	}
 }
