@@ -2,6 +2,7 @@ package keepass2android.pluginsdk;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,6 +71,41 @@ public class Kp2aControl {
 		if (!TextUtils.isEmpty(searchText))
 			i.putExtra(Strings.EXTRA_QUERY_STRING, searchText);
 		return i;
+	}
+	
+	/**
+	 * Creates an intent to query a password entry from KP2A, matching to the current app's package . 
+	 * The credentials are returned as Activity result.
+	 * This requires SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE.
+	 * @return an Intent to start KP2A with
+	 */
+	public static Intent getQueryEntryIntentForOwnPackage()
+	{
+		return new Intent(Strings.ACTION_QUERY_CREDENTIALS_FOR_OWN_PACKAGE);
+	}
+	
+	/**
+	 * Converts the entry fields returned in an intent from a query to a hashmap. 
+	 * @param intent data received in onActivityResult after getQueryEntryIntent(ForOwnPackage)
+	 * @return HashMap with keys = field names (see KeepassDefs for standard keys) and values = values
+	 */
+	public static HashMap<String, String> getEntryFieldsFromIntent(Intent intent)  
+	{
+		HashMap<String, String> res = new HashMap<String, String>();
+		try {
+			JSONObject json = new JSONObject(intent.getStringExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA));
+			for(Iterator<String> iter = json.keys();iter.hasNext();) {
+			    String key = iter.next();
+			    String value = json.get(key).toString();
+			    res.put(key, value);
+			}
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		} 
+		return res;
 	}
 
 }

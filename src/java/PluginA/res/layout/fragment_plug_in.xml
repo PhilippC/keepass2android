@@ -8,9 +8,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="keepass2android.plugina.PlugInA$PlaceholderFragment" >
 
-    <TextView
+    
+    <Button 
+        android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="add credentials to KP2A"/>
+    <Button 
+        android:id="@+id/btnQuery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="query credentials for this package"
+        android:layout_below="@id/btnAdd"
+        />
 
 </RelativeLayout>

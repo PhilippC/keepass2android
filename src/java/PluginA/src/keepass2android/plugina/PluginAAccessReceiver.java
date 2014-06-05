@@ -13,6 +13,7 @@ public class PluginAAccessReceiver
 		ArrayList<String> scopes = new ArrayList<String>();
 		scopes.add(Strings.SCOPE_DATABASE_ACTIONS);
 		scopes.add(Strings.SCOPE_CURRENT_ENTRY);
+		scopes.add(Strings.SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE);
 		return scopes;
 		
 	}

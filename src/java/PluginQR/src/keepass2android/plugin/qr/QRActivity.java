@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import keepass2android.pluginsdk.AccessManager;
 import keepass2android.pluginsdk.KeepassDefs;
+import keepass2android.pluginsdk.Kp2aControl;
 import keepass2android.pluginsdk.Strings;
 
 import com.google.zxing.BarcodeFormat;
@@ -65,8 +66,7 @@ public class QRActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if ((getIntent() != null) && (getIntent().getStringExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA)!= null))
-		
-		setContentView(R.layout.activity_qr);
+			setContentView(R.layout.activity_qr);
 
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -118,24 +118,7 @@ public class QRActivity extends Activity {
 		public PlaceholderFragment() {
 		}
 		
-		protected HashMap<String, String> getEntryFieldsFromIntent(Intent intent)  
-		{
-			HashMap<String, String> res = new HashMap<String, String>();
-			try {
-				JSONObject json = new JSONObject(intent.getStringExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA));
-				for(Iterator<String> iter = json.keys();iter.hasNext();) {
-				    String key = iter.next();
-				    String value = json.get(key).toString();
-				    res.put(key, value);
-				}
-				
-			} catch (JSONException e) {
-				e.printStackTrace();
-			} catch (NullPointerException e) {
-				e.printStackTrace();
-			} 
-			return res;
-		}
+		
 		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -145,7 +128,7 @@ public class QRActivity extends Activity {
 			
 			mSpinner = (Spinner) rootView.findViewById(R.id.spinner);
 			
-			mEntryOutput = getEntryFieldsFromIntent(getActivity().getIntent());
+			mEntryOutput = Kp2aControl.getEntryFieldsFromIntent(getActivity().getIntent());
 			mProtectedFieldsList = getProtectedFieldsList(getActivity().getIntent());
 			
 			ArrayList<String> spinnerItems = new ArrayList<String>();

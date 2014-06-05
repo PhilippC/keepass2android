@@ -28,7 +28,6 @@
                 <action android:name="keepass2android.ACTION_TRIGGER_REQUEST_ACCESS" />
                 <action android:name="keepass2android.ACTION_RECEIVE_ACCESS" />
                 <action android:name="keepass2android.ACTION_REVOKE_ACCESS" />
-                
             </intent-filter>
         </receiver>
         
