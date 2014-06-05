@@ -442,6 +442,7 @@
 	<string name="plugin_enabled">enabled</string>
 	<string name="plugin_disabled">disabled</string>
 	<string name="plugin_web">Find plug-ins online</string>
+	<string name="plugin_scopes">Scopes</string>
 
 	<string name="query_credentials_for_url">%1$s is requesting credentials for %2$s.</string>
 	<string name="query_credentials">%1$s is requesting credentials. Please select an entry.</string>

@@ -117,7 +117,7 @@
 				android:id="@+id/scopes_title"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Scopes"
+				android:text="@string/plugin_scopes"
 				android:layout_marginLeft="10dp"
 				android:layout_marginTop="18dp"
 				style="@style/ExtraFieldHeader" />
