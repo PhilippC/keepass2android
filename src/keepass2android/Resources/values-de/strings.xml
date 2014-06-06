@@ -406,7 +406,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="SCOPE_CURRENT_ENTRY_title">Aktueller Eintrag</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Das Plugin erhält alle Daten über den aktuellen Datenbankeintrag und ist berechtigt, Aktionen anzubieten und die Anzeige zu verändern.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Eigene Anmeldeinformationen abfragen</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Das Plugin ist berechtigt, die Anmeldeinformationen abzufragen, die dem eigenen Applikationspaket zugewiesen sind.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Das Plugin ist berechtigt, Zugangsdaten abzufragen, die mit der Plugin-App verknüpft sind.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Anmeldeinformationen abfragen</string>
   <string name="SCOPE_QUERY_CREDENTIALS_explanation">Das Plugin wird berechtigt, Anmeldeinformationen für bewusst ausgewählte Websites oder Anwendungen abzufragen.</string>
   <string name="get_regular_version">Weitere Speichertypen bekommen</string>

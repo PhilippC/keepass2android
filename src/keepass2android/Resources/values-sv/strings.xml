@@ -162,16 +162,17 @@
   <string name="YesSynchronize">Ja, slå samman</string>
   <string name="NoOverwrite">Nej, skriv över</string>
   <string name="FilesInSync">Filerna är synkroniserade.</string>
+  <string name="key_file">Nyckelfil</string>
   <string name="ChangeLog_title">Ändringslogg</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
     <item>1 minut</item>
     <item>5 minuter</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 minuter</item>
+    <item>15 minuter</item>
+    <item>30 minuter</item>
+    <item>1 timme</item>
+    <item>Aldrig</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Liten</item>

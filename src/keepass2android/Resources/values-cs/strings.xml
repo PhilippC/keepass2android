@@ -27,6 +27,9 @@
   <string name="application">Aplikace</string>
   <string name="application_settings">Nastavení aplikace</string>
   <string name="ShowGroupnameInSearchResult_title">Zobrazit název skupiny ve výsledku hledání</string>
+  <string name="ShowGroupnameInSearchResult_resume">Zobrazovat jméno kategorie pod titulkem záznamu ve výsledcích hledání. Užitečné, máte-li několik záznamů stejného jména.</string>
+  <string name="NavigationToGroupCompleted_message">Zobrazení jména kategorií je nyní: %1$s</string>
+  <string name="ShowGroupInEntry_title">Zobrazit jméno kategorie v detailu záznamu</string>
   <string name="security_prefs">Zabezpečení</string>
   <string name="display_prefs">Displej</string>
   <string name="password_access_prefs">Přístup k heslu</string>
@@ -220,6 +223,7 @@
   <string name="QuickUnlockIconHidden_title">Skrýt ikonu RychléhoOdemknutí</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock bohužel nefunguje bez zobrazení ikony upozornění. Vyberte tuto možnost, chcete-li použít transparentní ikonu.</string>
   <string name="QuickUnlockIconHidden16_title">Skrýt ikonu RychléhoOdemknutí</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock vyžaduje notifikace pro korektní funkčnost. Vyberte tuto možnost, chcete-li zobrazit notifikaci bez ikony.</string>
   <string name="QuickUnlockLength_title">Délka klíče pro RychléOdemknutí</string>
   <string name="QuickUnlockLength_summary">Maximální počet znaků používaných jako heslo pro RychléOdemknutí.</string>
   <string name="QuickUnlock_fail">RychléOdemknutí se nezdařilo: nesprávné heslo!</string>
@@ -251,6 +255,7 @@
   <string name="LockWhenNavigateBack_title">Zamknout při odchodu z aplikace</string>
   <string name="LockWhenNavigateBack_summary">Zamknout databázi při opouštění aplikace stisknutím tlačítka zpět.</string>
   <string name="NoDonateOption_title">Skrýt možnost přispění</string>
+  <string name="NoDonateOption_summary">Toto je nastavení pro dárce. Je dostupné až po nějaké době používání Keepass2Android.</string>
   <string name="NoDonateOption_question">Tato aplikace by bez příspěvků nemohla existovat a nebyla by pravidelně zlepšována! Jestliže jste doposud nepřispěl/a, zvažte prosím svou pomoc.</string>
   <string name="UseOfflineCache_title">Ukládání databáze do mezipaměti</string>
   <string name="UseOfflineCache_summary">Ukládání kopií vzdálených databázových souborů v adresáři aplikace. To umožňuje použít vzdálené databáze i v offline režimu.</string>
@@ -268,6 +273,7 @@
   <string name="OpenKp2aKeyboardAutomatically_summary">Otevřít dialog výběru klávesnice je-li nalezena vhodná položka po hledání z prohlížeče nebo z klávesnice.</string>
   <string name="kp2a_switch_rooted">Automatické přepnutí na rootovaných telefonech</string>
   <string name="kp2a_switch_rooted_summary">Na rootovaných zařízeních je možno automaticky přepnout na Keepass2Android klávesnici (po hledání položky, nebo klepnutím na oznámení KP2A klávesnice) a přepnout zpět na předchozí klávesnici bez zobrazení dialogu pro výběr vstupní metody. Je také nutno nainstalovat aplikaci Secure Settings. Další informace v dokumentaci KP2A!</string>
+  <string name="ShowUnlockedNotification_title">Oznamovací ikona při stavu odemknutí</string>
   <string name="ShowUnlockedNotification_summary">Zobrazovat oznámení zatímco databáze je odemčena.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-load databázový soubor</string>
   <string name="PreloadDatabaseEnabled_summary">Zahájit nahrávání nebo stahování na pozadí.</string>
@@ -362,6 +368,7 @@
   <string name="init_otp">Otevřít pomocný soubor OTP&#8230;</string>
   <string name="otp_explanation">Zadejte další jednorázová hesla (OTP). Přejeďte váš Yubikey NEO přes zadní stranu vašeho zařízení pro vstup přes NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
+  <string name="YubiChallengeNotInstalled">Nelze najít aplikaci, která dokáže zpracovat tuto výzvu. Prosím, nainstalujte Yubichallenge z Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Nelze načíst pomocný soubor OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Použijte OtpKeyProv plugin v KeePass 2.x (PC) pro konfiguraci databáze pro použití s OTP!</string>
   <string name="otp_discarded_because_no_db">Prosím nejprve vyberte databázi. OTP je z bezpečnostních důvodů vyřazen.</string>
@@ -373,6 +380,15 @@
   <string name="OtpKeyError">Nepodařilo se vytvořit klíč OTP! Zkontrolujte, zda že jste zadali správný OTP.</string>
   <string name="ErrorUpdatingOtpAuxFile">Chyba při aktualizaci pomocného souboru OTP!</string>
   <string name="SavingOtpAuxFile">Ukládám pomocný soubor OTP&#8230;</string>
+  <string name="bad_resp">Odpověď výzvy není správná.</string>
+  <string name="CouldntLoadChalAuxFile">Nelze načíst pomocný soubor výzvy!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Použijte zásuvný modul KeeChallenge v KeePass 2.x (PC) pro konfiguraci databáze na reakce na výzvy!</string>
+  <string name="ErrorUpdatingChalAuxFile">Chyba při aktualizaci pomocného souboru OTP!</string>
+  <string name="TrayTotp_SeedField_title">Název \"seed\" položky TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Pokud používáte Keepass 2 modul \"TrayTotp\" v ne-výchozím nastavení, zadejte název položky \"seed\" podle nastavení na PC.</string>
+  <string name="TrayTotp_SettingsField_title">Nastavení jména TOTP položky</string>
+  <string name="TrayTotp_SettingsField_summary">Zde zadejte název položky \"nastavení\" pro TrayTotp.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Probíhá načítání&#8230;</string>
   <string name="plugins">Rozšíření</string>
   <string name="plugin_packagename">Název balíčku:</string>
@@ -380,13 +396,44 @@
   <string name="plugin_author">Autor (není ověřen):</string>
   <string name="plugin_enabled">povoleno</string>
   <string name="plugin_disabled">zakázáno</string>
+  <string name="plugin_web">Vyhledat dostupné zásuvné moduly</string>
+  <string name="query_credentials_for_url">%1$s požaduje pověření pro %2$s.</string>
+  <string name="query_credentials">%1$s vyžaduje pověření. Prosím vyberte položku.</string>
   <string name="plugin_enabled_checkbox">Povoleno</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Upozornění událostí databáze</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Modulu bude oznámen o kdy je databáze otevřená, uzavřená nebo byla uložena.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Aktuální vstupní data</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Zásuvný modul bude přijímat všechna data o aktuálním záznamu databáze, bude moci nabízet akce a upravovat zobrazení.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Dotaz na vlastní pověření</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Modulu bude umožněno zjistit pověření spojené s balíčkem vlastní aplikace.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Dotaz pověření</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Modulu bude dovoleno dotazovat pověření pro webové stránky nebo aplikace.</string>
   <string name="get_regular_version">Získat více typů úložišť</string>
   <string name="CertificateWarning">Upozornění: ověření certifikátu serveru se nezdařilo: %1$s. Instalujte vhodný kořenový certifikát v zařízení nebo upravte Nastavení!</string>
   <string name="CertificateFailure">Chyba: Ověření certifikátu serveru se nezdařilo. Nainstalujte odpovídající kořenový certifikát v zařízení nebo upravte Nastavení!</string>
   <string name="export_fileformats_title">Vyberte formát souboru</string>
+  <string name="killed_by_os">Promiňte! Keepass2Android byl z bezpečnostních důvodů zabit správcem systému!. Keepass2Android neukládá vybrané položky hesel na disku, takže je třeba znovu otevřít databázi. Poznámka: K tomuto by mělo docházet pouze velmi zřídka, máte-li opačnou zkušenost, prosím napište mi zprávu na crocoapps@gmail.com.</string>
   <string name="ChangeLog_title">Protokol změn</string>
   <string name="PreviewWarning">Prosím pozor! Tato verze není konečná a může obsahovat různé nedostatky! Pokud narazíte na *jakýkoliv* problém, dejte mi prosím vědět (na Codeplexu nebo přes e-mail).</string>
+  <string name="ChangeLog_0_9_4">
+		<b>Verze 0.9.4</b>\n
+		* doplněna podpora zásuvných modulů. Prohlédněte Nastavení pro jejich získání\n
+		*  uvolněn modul pro QR kód (načítání hesel, zobrazení hesel jako QR kód, přenos záznamů mezi zařízeními)\n
+		*  uvolněn modul InputStick  (přenost pověření do PC pomocí  bluetooth - vyžaduje InputStick USB)\n
+		*  aplikace třetích stran nyní mohou využívat KP2A pro dotazy na údaje. Jste-li vývojář, využijte toho ve vaší aplikaci!\n
+		* přidána podpora pro TOTP (kompatibilní s KeeOTP a TrayTotp)\n
+		* aplikace by již neměla být nuceně ukončena při otevřenédatabázi\n
+		* databáze již není uzamčena při opuštění aplikace tlačítkem zpět (viz nastavení)\n
+		* zobrazení názvu kategorie ve výsledcích hledání (*)\n
+		* doplněno kontextové menu ve výsledcích hledání. Mimojiné obsahuje volbu \"Navigovat na zdroj\" (*)\n
+		* doplnena volba pro zobrazení názvu kategorie při prohlížení záznamu (*)\n
+		* (*) tyto funkce doplnil Matthieu, díky!\n
+		* doplněna podpora pro KeeChallenge (s Yubikey NEO). Konektor doplnil Ben Rush, díky!\n
+		* zlepšení uživatelského rozhraní\n
+		* opravena chyba v rozhraní ke Google Drive\n
+		* doplněna možnost ke skrytí tlačítka pro příspěvek\n
+		* Ikona QuickUnlock icon je nyní na zařízeních s Android 4.2+ standardně skryta\n 
+	</string>
   <string name="ChangeLog_0_9_3_r5">
   <b>Verze 0.9.3 r5</b>\n
   * Integrované opravy od uživatele Xamarin: Keepass2Android je nyní kompatibilní s ART na Android 4.4.2. Konečně!\n
@@ -525,8 +572,8 @@ První veřejné vydání
     <item>Heslo + soubor klíče</item>
     <item>Heslo + OTP</item>
     <item>Heslo + OTP heslo (režim obnovení)</item>
-    <item>Password + Challenge-Response</item>
-    <item>Password + Challenge-Response secret (recovery mode)</item>
+    <item>Heslo + Odpověď výzvy</item>
+    <item>Heslo + Odpověď výzvy (režim obnovení)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovat neúspěšné ověření certifikátu</item>

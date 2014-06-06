@@ -297,8 +297,19 @@ namespace keepass2android
 			}
             if (requestCode == RequestCodeChallengeYubikey && resultCode == Result.Ok) 
 			{
-				byte[] challengeResponse = data.GetByteArrayExtra("response");
-				_challengeSecret = KeeChallengeProv.GetSecret(_chalInfo, challengeResponse);
+				try
+				{
+					byte[] challengeResponse = data.GetByteArrayExtra("response");
+					_challengeSecret = KeeChallengeProv.GetSecret(_chalInfo, challengeResponse);
+					Array.Clear(challengeResponse, 0, challengeResponse.Length);
+				}
+				catch (Exception e)
+				{
+					Kp2aLog.Log(e.ToString());
+					Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
+					return;
+				}
+				
                 UpdateOkButtonState();
 				FindViewById(Resource.Id.otpInitView).Visibility = ViewStates.Gone;
 			
@@ -320,7 +331,7 @@ namespace keepass2android
 								Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long).Show();
 								return false;
 							}
-							Array.Clear(challengeResponse, 0, challengeResponse.Length);
+							
 						}
 						catch (Exception e)
 						{

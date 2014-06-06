@@ -7,6 +7,7 @@
   <string name="CreditsText">Giao diện người dùng dựa trên một bản chuyển thể từ ứng dụng KeepassDroid phát triển bởi Brian Pellin. Mã cho các thao tác cơ sở dữ liệu dựa trên KeePass bởi Dominik Reichl. Các người máy Android được sao chép hoặc sửa đổi từ công việc tạo ra và chia sẻ của Google và được sử dụng theo điều khoản được mô tả trong Giấy phép Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Hỗ trợ SFTP được thực hiện bằng cách sử dụng thư viện JSch theo giấy phép BSD, tạo ra bởi JCraft, Inc.</string>
   <string name="accept">Đồng ý</string>
+  <string name="deny">Từ chối</string>
   <string name="add_entry">Thêm mục nhập</string>
   <string name="add_url_entry">Tạo mục cho liên kết URL</string>
   <string name="add_group">Thêm nhóm</string>
@@ -25,6 +26,10 @@
   <string name="show_kill_app_summary">Hiển thị một nút trong màn hình mật khẩu để tắt tiến trình ứng dụng (đối với người dùng hoang tưởng)</string>
   <string name="application">Ứng dụng</string>
   <string name="application_settings">Cài đặt ứng dụng</string>
+  <string name="ShowGroupnameInSearchResult_title">Hiển thị tên nhóm trong kết quả tìm kiếm</string>
+  <string name="ShowGroupnameInSearchResult_resume">Hiển thị tên nhóm dưới tiêu đề mục trong kết quả tìm kiếm. Tiện dụng nếu một số mục có cùng tên.</string>
+  <string name="NavigationToGroupCompleted_message">Hiển thị nhóm: %1$s</string>
+  <string name="ShowGroupInEntry_title">Hiển thị tên nhóm trong mục xem</string>
   <string name="security_prefs">Bảo mật</string>
   <string name="display_prefs">Hiển thị</string>
   <string name="password_access_prefs">Mật mã truy cập</string>
@@ -58,6 +63,7 @@
   <string name="entry_confpassword">Xác nhận mật mã</string>
   <string name="entry_created">Đã tạo</string>
   <string name="entry_expires">Hết hạn</string>
+  <string name="entry_group_name">Tên nhóm</string>
   <string name="entry_keyfile">Tập tin khóa (tùy chọn)</string>
   <string name="entry_modified">Đã chỉnh sửa</string>
   <string name="entry_password">Mật mã</string>
@@ -123,6 +129,8 @@
   <string name="menu_db_settings">Cài đặt cơ sở dữ liệu</string>
   <string name="menu_delete">Xóa</string>
   <string name="menu_move">Di chuyển đến một nhóm khác</string>
+  <string name="menu_move_light">Di chuyển</string>
+  <string name="menu_navigate">Chuyển tới nhóm cha</string>
   <string name="menu_donate">Tặng một ly bia…</string>
   <string name="menu_edit">Chỉnh sửa</string>
   <string name="menu_hide_password">Ẩn Mật mã</string>
@@ -214,6 +222,8 @@
   <string name="QuickUnlockDefaultEnabled_summary">Tùy chọn để QuickUnlock được kích hoạt theo mặc định hay không.</string>
   <string name="QuickUnlockIconHidden_title">Dấu biểu tượng QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">Tiếc là QuickUnlock không làm việc mà không hiển thị biểu tượng thông báo. Chọn tùy chọn này để sử dụng một biểu tượng trong suốt.</string>
+  <string name="QuickUnlockIconHidden16_title">Dấu biểu tượng mở khóa nhanh</string>
+  <string name="QuickUnlockIconHidden16_summary">Mở khóa nhanh yêu cầu một thông báo để hoạt động đúng. Chọn tùy chọn này để hiển thị một thông báo mà không có một biểu tượng đi kèm.</string>
   <string name="QuickUnlockLength_title">Chiều dài của khóa QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Số lượng tối đa của số ký tự được sử dụng cho mật mã QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock thất bại: mật mã không đúng!</string>
@@ -242,6 +252,11 @@
   <string name="UseFileTransactions_summary">Sử dụng giao dịch đồng bộ khi ghi cơ sở dữ liệu</string>
   <string name="LockWhenScreenOff_title">Khóa khi tắt màn hình</string>
   <string name="LockWhenScreenOff_summary">Khóa cơ sở dữ liệu khi tắt màn hình.</string>
+  <string name="LockWhenNavigateBack_title">Khóa khi thoát ứng dụng</string>
+  <string name="LockWhenNavigateBack_summary">Khóa cơ sở dữ liệu khi thoát ứng dụng bằng cách nhấn nút quay lại.</string>
+  <string name="NoDonateOption_title">Dấu tùy chọn quyên góp</string>
+  <string name="NoDonateOption_summary">Thiết lập này dành cho các nhà tài trợ. Nó được bật lên sau khi sử dụng Keepass2Android trong một thời gian ngắn.</string>
+  <string name="NoDonateOption_question">Nếu không có quyên góp, ứng dụng này sẽ không tồn tại và sẽ không được cải thiện liên tục! Nếu bạn chưa quyên góp, xin vui lòng xem xét làm điều đó bây giờ.</string>
   <string name="UseOfflineCache_title">Bộ nhớ đệm cho cơ sở dữ liệu</string>
   <string name="UseOfflineCache_summary">Giữ một bản sao của tập tin cơ sở dữ liệu từ xa trong thư mục bộ nhớ đệm của ứng dụng. Điều này cho phép sử dụng cơ sở dữ liệu từ xa trong trường hợp không có kết nối mạng.</string>
   <string name="AcceptAllServerCertificates_title">Giấy chứng nhận SSL</string>
@@ -258,6 +273,7 @@
   <string name="OpenKp2aKeyboardAutomatically_summary">Mở hộp thoại lựa chọn bàn phím khi mục có sẵn thông qua bàn phím KP2A sau khi tìm kiếm từ trình duyệt hoặc từ bàn phím.</string>
   <string name="kp2a_switch_rooted">Tự động-chuyển đổi trên các thiết bị đã mở quyền root</string>
   <string name="kp2a_switch_rooted_summary">Trên các thiết bị đã mở quyền root, có thể tự động chuyển sang bàn phím Keepass2Android (sau khi tìm kiếm cho một mục nhập hoặc bằng cách nhấp vào thông báo của bàn phím KP2A) và chuyển trở lại bàn phím trước mà không hiển thị bộ chọn phương cách nhập. Điều này cũng đòi hỏi phải cài đặt ứng dụng Secure Settings. Xem tài liệu KP2A để biết thêm thông tin!</string>
+  <string name="ShowUnlockedNotification_title">Biểu tượng của thông báo khi mở khóa</string>
   <string name="ShowUnlockedNotification_summary">Hiển thị một thông báo đang diễn ra trong khi cơ sở dữ liệu được mở khóa.</string>
   <string name="PreloadDatabaseEnabled_title">Tải tập tin cơ sở dữ liệu trước</string>
   <string name="PreloadDatabaseEnabled_summary">Khởi động tiến trình xử lý hoặc tải xuống các tập tin cơ sở dữ liệu trong khi nhập mật mã.</string>
@@ -334,6 +350,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (thư mục KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập đầy đủ vô Dropbox, bạn có thể chọn tùy chọn này. Nó sẽ chỉ yêu cầu quyền truy cập vô thư mục Apps/Keepass2Android. Điều này đặc biệt thích hợp khi tạo cơ sở dữ liệu mới. Nếu bạn đã có một cơ sở dữ liệu, hãy nhấp vào tùy chọn này để tạo thư mục, sau đó đặt tập tin của bạn bên trong thư mục (từ máy tính của bạn) và sau đó chọn tùy chọn này một lần nữa để mở tập tin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (bộ chuyển tập tin SSH)</string>
   <string name="filestorage_setup_title">Khởi tạo truy cập tập tin</string>
   <string name="database_location">Vị trí cơ sở dữ liệu</string>
@@ -351,6 +368,7 @@
   <string name="init_otp">Tải tập tin phụ trợ OTP&#8230;</string>
   <string name="otp_explanation">Nhập mật-mã-một-lần tiếp theo (OTPs). Trượt NEO Yubikey của bạn ở mặt sau của điện thoại để nhập qua NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
+  <string name="YubiChallengeNotInstalled">Không thể tìm thấy ứng dụng có thể xử lý những thách thức. Xin vui lòng cài đặt Yubichallenge từ Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Không thể tải tập tin phụ trợ OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Xin vui lòng sử dụng công cụ OtpKeyProv trong KeePass 2.x (PC) để cài đặt cấu hình cơ sở dữ liệu của bạn để sử dụng với OTPs!</string>
   <string name="otp_discarded_because_no_db">Xin vui lòng chọn cơ sở dữ liệu trước. OTP bị loại bỏ vì lý do an ninh.</string>
@@ -362,16 +380,60 @@
   <string name="OtpKeyError">Lỗi khi tạo khóa OTP! Hãy chắc chắn bạn đã nhập đúng OTPs.</string>
   <string name="ErrorUpdatingOtpAuxFile">Lỗi khi cập nhật tập tin phụ trợ OTP!</string>
   <string name="SavingOtpAuxFile">Đang lưu tập tin phụ trợ OTP&#8230;</string>
+  <string name="bad_resp">Trả lời thách thức không đúng.</string>
+  <string name="CouldntLoadChalAuxFile">Không thể tải tập tin hỗ trợ cho thách thức!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Xin vui lòng sử dụng công cụ KeeChallenge trong KeePass 2.x (PC) để cấu hình cơ sở dữ liệu của bạn để sử dụng cho trả lời thách thức!</string>
+  <string name="ErrorUpdatingChalAuxFile">Lỗi khi cập nhật tập tin hỗ trợ OTP!</string>
+  <string name="TrayTotp_SeedField_title">Tên của mục gốc TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Nếu bạn đang sử dụng công cụ Keepass 2 \"TrayTotp\" với các cài đặt không như mặc định, nhập tên mục gốc ở đây tương ứng với các cài đặt trên máy PC.</string>
+  <string name="TrayTotp_SettingsField_title">Tên cài đặt của mục gốc TOTP</string>
+  <string name="TrayTotp_SettingsField_summary">Nhập tên của mục cài đặt cho TrayTotp ở đây.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Đang tải&#8230;</string>
   <string name="plugins">Các tiện ích bổ sung</string>
   <string name="plugin_packagename">Tên kiện hàng:</string>
   <string name="plugin_description">Mô tả (chưa xác nhận):</string>
   <string name="plugin_author">Tác giả (chưa xác nhận):</string>
+  <string name="plugin_enabled">đã kích hoạt</string>
+  <string name="plugin_disabled">không kích hoạt</string>
+  <string name="plugin_web">Tìm các công cụ trực tuyến</string>
+  <string name="query_credentials_for_url">%1$s đang yêu cầu thông tin đăng nhập cho %2$s.</string>
+  <string name="query_credentials">%1$s đang yêu cầu thông tin đăng nhập. Vui lòng chọn một mục.</string>
+  <string name="plugin_enabled_checkbox">Đã kích hoạt</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Các thông báo của hoạt động của cơ sở dữ liệu</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Công cụ sẽ được thông báo khi một cơ sở dữ liệu được mở, đóng hoặc lưu.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Mục dữ liệu hiện tại</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Công cụ sẽ nhận được tất cả dữ liệu của mục dữ liệu hiện tại và sẽ được cho phép thao tác và sửa đổi cách trình bày của nó.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Truy vấn thông tin đăng nhập</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Công cụ sẽ được cho phép để truy vấn các chứng chỉ liên quan tới gói ứng dụng riêng của nó.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Truy vấn thông tin đăng nhập</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Công cụ sẽ được cho phép truy vấn thông tin đăng nhập cho các trang web hoặc các ứng dụng đã cài đặt trước.</string>
   <string name="get_regular_version">Nhận thêm các kiểu lưu trữ</string>
   <string name="CertificateWarning">Cảnh báo: Chứng chỉ máy chủ xác nhận thất bại: %1$s. Hãy cài đặt giấy chứng nhận gốc thích hợp lên thiết bị của bạn hoặc xem cài đặt!</string>
   <string name="CertificateFailure">Lỗi: Chứng chỉ máy chủ xác nhận không thành công! Hãy cài đặt chứng chỉ gốc phù hợp lên thiết bị của bạn hoặc xem cài đặt!</string>
   <string name="export_fileformats_title">Chọn định dạng tập tin</string>
+  <string name="killed_by_os">Xin lỗi! Keepass2Android đã bị tắt bởi hệ điều hành Android! Vì lý do an ninh, Keepass2Android đã không lưu thông tin đăng nhập bạn đã chọn trên thiết bị, do đó bạn cần phải mở lại cơ sở dữ liệu của bạn. Lưu ý: Chuyện này rất ít khi xảy ra. Nếu có, xin vui lòng gởi cho tôi một tin nhắn tại crocoapps@gmail.com.</string>
   <string name="ChangeLog_title">Nhật ký các thay đổi</string>
+  <string name="PreviewWarning">Xin lưu ý! Đây là một bản phát hành xài thử và có thể đi kèm với một số sai sót! Nếu bạn gặp *bất cứ điều gì* không mong muốn, xin vui lòng cho tôi biết (trên Codeplex, hoặc bằng e-mail).</string>
+  <string name="ChangeLog_0_9_4">
+		<b>Phiên bản 0.9.4</b>\n
+		* thêm hỗ trợ cho công cụ gắn rời: Xem cài đặt để biết cách tải các công cụ!\n
+		* chính thức hỗ trợ công cụ QR (quét mật mã, hiển thị mật mã dưới dạng mã QR, truyền tải dữ liệu tới các thiết bị khác chạy KP2A)\n
+		* chính thức hỗ trợ công cụ InputStick (truyền tải các giấy chứng chỉ tới máy PC của bạn qua bluetooth - yêu cầu thẻ USB InputStick)\n
+		* Các ứng dụng của bên thứ ba bây giờ có thể truy vấn KP2A để lấy chứng chỉ đăng nhập. Bạn là nhà phát triển ứng dụng? Vui lòng thêm chức năng này vô ứng dụng của bạn nếu thấy thích hợp!\n
+		* thêm hỗ trợ cho TOTP (tương thích với KeeOTP và TrayTotp)\n
+		* ứng dụng có thể không bao giờ bị tắt bởi Android nữa trong khi cơ sở dữ liệu đang mở\n
+		* cơ sở dữ liệu sẽ không bị khóa nữa khi bạn thoát ứng dụng bằng nút quay lại (xem cài đặt)\n
+		* hiển thị tên nhóm trong kết quả tìm kiếm (*)\n
+		* thêm trình đơn ngữ cảnh trong kết quả tìm kiếm, bao gồm tùy chọn \"Chuyển tới mục cha\" (*)\n
+		* thêm tùy chọn để hiển thị tên nhóm trong khung nhìn dữ liệu (*)\n
+		* (*) cám ơn Matthieu đã phát triển các chức năng này!\n
+		* hỗ trợ KeeChallenge (với Yubikey NEO). Cám ơn Ben Rush đã phát triển bộ kết nối!\n
+		* cải thiện giao diện\n
+		* sửa một lỗi với Google Drive\n
+		* thêm tùy chọn để tắt mục \"quyên góp\"\n
+		* theo mặc định, biểu tượng mở khóa nhanh bây giờ sẽ được giấu trên các thiết bị chạy Android 4.2+\n 
+	</string>
   <string name="ChangeLog_0_9_3_r5">
   <b>Phiên bản 0.9.3 r5</b>\n
  * Kết hợp các bản sửa lỗi từ Xamarin: cuối cùng, Keepass2Android đã tương thích với ART trên Android 4.4.2.\n
@@ -504,8 +566,8 @@ Bản phát hành chính thức đầu tiên</string>
     <item>Mật mã + Tập tin khóa</item>
     <item>Mật mã + OTP</item>
     <item>Mật mã + bí mật OTP (chế độ phục hồi)</item>
-    <item>Password + Challenge-Response</item>
-    <item>Password + Challenge-Response secret (recovery mode)</item>
+    <item>Mật mã + trả lời-thách thức</item>
+    <item>Mật mã + trả lời-thách thức bí mật (chế độ phục hồi)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Bỏ qua các thất bại khi xác nhận chứng chỉ</item>

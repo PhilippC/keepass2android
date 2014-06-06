@@ -142,13 +142,12 @@ namespace KeeChallenge
 		public bool Save(IOConnectionInfo ioc)
 		{
 			Stream sOut = null;
-
 			try
 			{
 				using (var trans = App.Kp2a.GetOtpAuxFileStorage(ioc)
 					.OpenWriteTransaction(ioc, App.Kp2a.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
 				{
-					var stream = trans.OpenFile();
+					sOut = trans.OpenFile();
 					if (SaveStream(sOut))
 					{
 						trans.CommitWrite();
@@ -160,10 +159,8 @@ namespace KeeChallenge
 			catch(Exception) { return false; }
 			finally
 			{
-				if(sOut != null) sOut.Close();
+				if (sOut != null) sOut.Close();
 			}
-
-			return false;
 		}
 
 		private bool SaveStream(Stream file)
