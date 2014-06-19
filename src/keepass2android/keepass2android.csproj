@@ -385,7 +385,9 @@
     <AndroidResource Include="Resources\menu\group.xml" />
     <AndroidResource Include="Resources\menu\password.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
-    <AndroidResource Include="Resources\values\config.xml" />
+    <AndroidResource Include="Resources\values\config.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\values\styles.xml">
       <SubType>Designer</SubType>
     </AndroidResource>

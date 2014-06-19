@@ -12,9 +12,9 @@
   <string name="kp2a_remember_auto_fill">记忆字段提示文本</string>
   <string name="kp2a_remember_auto_fill_summary">如果通过手动选择 Keepass2Android 填充字段，请记住哪个字段在对应字段中输入。该字段是后来由其提示文本重新检测到。</string>
   <string name="kp2a_simple_keyboard">简单键盘</string>
-  <string name="kp2a_simple_keyboard_summary">当一个条目是可用时显示简单的 1 行键盘。如果禁用，当按 Keepass2Android 键时则是显示一个对话框。</string>
+  <string name="kp2a_simple_keyboard_summary">当一个条目是可用时显示单行键盘。如果禁用，当按 Keepass2Android 键时则是显示一个对话框。</string>
   <string name="kp2a_lock_on_sendgodone">完成时锁定数据库</string>
-  <string name="kp2a_lock_on_sendgodone_summary">当点击 1 行键盘上的完成或发送键时，自动锁定数据库。</string>
+  <string name="kp2a_lock_on_sendgodone_summary">当点击单行键盘上的完成或发送键时，自动锁定数据库。</string>
   <string name="kp2a_switch_on_sendgodone">完成后切换键盘</string>
-  <string name="kp2a_switch_on_sendgodone_summary">当点击 1 行键盘上的完成或发送键时，自动切换键盘。</string>
+  <string name="kp2a_switch_on_sendgodone_summary">当点击单行键盘上的完成或发送键时，自动切换键盘。</string>
 </resources>
