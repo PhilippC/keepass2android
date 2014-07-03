@@ -284,8 +284,8 @@ Global
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.Release|x64.ActiveCfg = Release|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
-		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
+		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Mixed Platforms.ActiveCfg = ReleaseNoNet|Any CPU
+		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 		{F46F101D-4076-4E0A-9781-105598E2F42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
