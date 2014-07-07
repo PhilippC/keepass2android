@@ -44,7 +44,7 @@ public class AccessManager
 
 	public static ArrayList<String> stringToStringArray(String s) {
 	    ArrayList<String> strings = new ArrayList<String>();
-	    if ((s != null) && (s != "")) {
+	    if (TextUtils.isEmpty(s) == false) {
 	        try {
 	            JSONArray a = new JSONArray(s);
 	            for (int i = 0; i < a.length(); i++) {
