@@ -590,8 +590,13 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		credential.setSelectedAccountName(accountName);
 
 		return new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential)
-		.setApplicationName("Keepass2Android")
+		.setApplicationName(getApplicationName())
 		.build();
+	}
+	
+	protected String getApplicationName()
+	{
+		return "Keepass2Android";
 	}
 
 	private Drive getDriveService(String accountName)

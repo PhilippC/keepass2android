@@ -11,6 +11,21 @@ namespace MPTest
 	[TestClass()]
 	public class MpAlgorithmTests
 	{
+
+		static sbyte[] ToSignedByteArray(byte[] unsigned)
+		{
+			sbyte[] signed = new sbyte[unsigned.Length];
+			Buffer.BlockCopy(unsigned, 0, signed, 0, unsigned.Length);
+			return signed;
+		}
+		static byte[] ToUnsignedByteArray(sbyte[] signed)
+		{
+			byte[] unsigned = new byte[signed.Length];
+			Buffer.BlockCopy(signed, 0, unsigned, 0, signed.Length);
+			return unsigned;
+		}
+
+
 		private static byte[] HashHMAC(byte[] key, byte[] message)
 		{
 			var hash = new HMACSHA256(key);
@@ -27,9 +42,9 @@ namespace MPTest
 					-126, 24, 15, 65, 9, 17, 0, 123, 91, 105, -46, -99, -64, 123, -12, 80, -37, -77
 				};
 			var result = MpAlgorithm.GetKeyForPassword("u", "test");
-			
-			Assert.IsTrue(expectedRes.SequenceEqual(result));
-			
+
+			Assert.IsTrue(expectedRes.SequenceEqual(ToSignedByteArray(result)));
+
 		}
 		[TestMethod]
 		public void GenerateContentTest()
@@ -63,7 +78,7 @@ namespace MPTest
 				{
 					-53, -69, -89, 48, 122, 56, 34, 13, -70, -103, 102, 90, -96, -75, 45, 68, 43, 67, 97, 60, 84, -90, 98, -95, -2, -2, 99, -60, -121, -2, -26, -45, 53, -31, 47, 0, -46, -97, 77, -41, 63, -15, -30, 60, 4, -120, 32, 122, -94, 42, 122, -103, -61, -115, 75, -123, -15, 47, 61, -100, -119, 115, 118, 82
 				};
-			Assert.IsTrue(expected.SequenceEqual(key));
+			Assert.IsTrue(expected.SequenceEqual(ToSignedByteArray(key)));
 		}
 	}
 }
