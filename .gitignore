@@ -258,3 +258,27 @@ Thumbs.db
 /src/java/PluginInputStick/bin
 
 /src/java/PluginInputStick/icons
+
+/src/PluginSdkBinding/bin/Release
+
+/src/MasterPassword/bin/Debug
+
+/src/MasterPassword/obj/Debug
+
+/src/MasterPassword/obj/Release
+
+/src/MPTest/bin/Debug
+/src/MPTest/obj/Debug
+
+/src/MasterKeePlugin/obj/Release
+/src/MasterKeePlugin/bin/Debug
+
+/src/MasterKeePlugin/bin/Release
+
+/src/MasterKeePlugin/obj/Debug
+/src/PluginSdkBinding/obj/Release
+
+/src/MasterPassword/bin/Release
+/src/java/MasterKee
+
+/src/PluginSdkBinding/obj/ReleaseNoNet

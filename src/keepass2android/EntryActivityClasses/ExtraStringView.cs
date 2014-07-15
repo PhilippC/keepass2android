@@ -31,11 +31,13 @@ namespace keepass2android
 				{
 					_valueView.Visibility = ViewStates.Gone;
 					_keyView.Visibility = ViewStates.Gone;
+					_container.Visibility = ViewStates.Gone;
 				}
 				else
 				{
 					_valueView.Visibility = ViewStates.Visible;
 					_keyView.Visibility = ViewStates.Visible;
+					_container.Visibility = ViewStates.Visible;
 					_valueView.Text = value;
 				}
 			}

@@ -27,6 +27,7 @@ using System.Xml;
 using KeePassLib.Keys;
 using KeePassLib.Utility;
 using KeePassLib.Cryptography;
+using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Serialization;
 
 using keepass2android;
@@ -83,33 +84,26 @@ namespace KeeChallenge
             byte[] key = sha.ComputeHash(resp); // get a 256 bit key from the 160 bit hmac response
             byte[] secretHash = sha.ComputeHash(secret);
 
-            AesManaged aes = new AesManaged();
-            aes.KeySize = key.Length * sizeof(byte) * 8; //pedantic, but foolproof
-            aes.Key = key;
-            aes.GenerateIV();
-            aes.Padding = PaddingMode.PKCS7;
-            byte[] iv = aes.IV;
-
+            StandardAesEngine aes = new StandardAesEngine();
+	        const uint aesIVLenBytes = 16	;
+	        byte[] IV = CryptoRandom.Instance.GetRandomBytes(aesIVLenBytes);            
             byte[] encrypted;
-            ICryptoTransform enc = aes.CreateEncryptor();
+
             using (MemoryStream msEncrypt = new MemoryStream())
             {
-                using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, enc, CryptoStreamMode.Write))
+                using (CryptoStream csEncrypt = (CryptoStream)aes.EncryptStream(msEncrypt, key, IV))
                 {
                     csEncrypt.Write(secret, 0, secret.Length);
-                    csEncrypt.FlushFinalBlock();
-
-                    encrypted = msEncrypt.ToArray();
                     csEncrypt.Close();
-                    csEncrypt.Clear();
                 }
+
+                encrypted = msEncrypt.ToArray();
                 msEncrypt.Close();
             }
 
-			ChallengeInfo inf = new ChallengeInfo (encrypted, aes.IV, challenge, secretHash);
+			ChallengeInfo inf = new ChallengeInfo (encrypted, IV, challenge, secretHash);
 
 			sha.Clear();
-			aes.Clear();
 
 			return inf;
         }
@@ -125,21 +119,14 @@ namespace KeeChallenge
             SHA256 sha = SHA256Managed.Create();
             byte[] key = sha.ComputeHash(yubiResp); // get a 256 bit key from the 160 bit hmac response
 
-            AesManaged aes = new AesManaged();
-            aes.KeySize = key.Length * sizeof(byte) * 8; //pedantic, but foolproof
-            aes.Key = key;
-			aes.IV = inf.IV;
-            aes.Padding = PaddingMode.PKCS7;
+            StandardAesEngine aes = new StandardAesEngine();
 
-           
-            ICryptoTransform dec = aes.CreateDecryptor();
 			using (MemoryStream msDecrypt = new MemoryStream(inf.EncryptedSecret))
             {
-                using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, dec, CryptoStreamMode.Read))
+                using (CryptoStream csDecrypt = (CryptoStream)aes.DecryptStream(msDecrypt, key, inf.IV))
                 {
                     csDecrypt.Read(secret, 0, secret.Length);
                     csDecrypt.Close();
-                    csDecrypt.Clear();
                 }
                 msDecrypt.Close();
             }
@@ -157,7 +144,6 @@ namespace KeeChallenge
 
             //return the secret
             sha.Clear();
-            aes.Clear();
             return true;
         }
     
@@ -168,7 +154,7 @@ namespace KeeChallenge
         /// </summary>
         /// <param name="inf">A pre-populated object containing minimally the IV, EncryptedSecret and Verification fields. 
         ///                   This should be populated from the database.xml auxilliary file</param>
-        /// <param name="resp">The Yubikey's response to the issued challenge</param>
+        /// <param name="resp"	>The Yubikey's response to the issued challenge</param>
         /// <returns>The common secret, used as a composite key to encrypt a Keepass database</returns>
 		public static byte[] GetSecret(ChallengeInfo inf, byte[] resp)
         {

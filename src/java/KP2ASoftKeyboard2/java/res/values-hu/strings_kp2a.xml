@@ -6,7 +6,7 @@
   <string name="open_entry_for_app">Bejegyzés keresése: \"%1$s\"</string>
   <string name="kp2a_user">Felhasználó</string>
   <string name="kp2a_password">Jelszó</string>
-  <string name="kp2a_prefs">Hitelesítőadatok bevitele</string>
+  <string name="kp2a_prefs">Hitelesítő adatok bevitele</string>
   <string name="kp2a_auto_fill">Automatikus kitöltés engedélyezve</string>
   <string name="kp2a_auto_fill_summary">Egy üres mezőbe lépve annak automatikus kitöltése, ha a billentyűzet számára van elérhető Keepass2Android bejegyzés és az tartalmaz a mezőhöz megadott útmutatásnak megfelelő értéket.</string>
   <string name="kp2a_remember_auto_fill">A mezők útmutatásának tárolása</string>

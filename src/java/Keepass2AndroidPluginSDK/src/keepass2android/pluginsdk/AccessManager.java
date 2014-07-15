@@ -44,7 +44,7 @@ public class AccessManager
 
 	public static ArrayList<String> stringToStringArray(String s) {
 	    ArrayList<String> strings = new ArrayList<String>();
-	    if ((s != null) && (s != "")) {
+	    if (TextUtils.isEmpty(s) == false) {
 	        try {
 	            JSONArray a = new JSONArray(s);
 	            for (int i = 0; i < a.length(); i++) {
@@ -116,9 +116,10 @@ public class AccessManager
 			Log.d(_tag, "hostPackage is empty!");
 			return null;
 		}
+		Log.d(_tag, "trying to find prefs for "+hostPackage);
 		SharedPreferences prefs = getPrefsForHost(ctx, hostPackage);
 		String scopesString = prefs.getString(PREF_KEY_SCOPE, "");
-		Log.d(_tag, "scopes: "+ scopesString);
+		Log.d(_tag, "available scopes: "+ scopesString);
 		ArrayList<String> currentScope = stringToStringArray(scopesString);
 		if (isSubset(scopes, currentScope))
 		{
@@ -147,6 +148,7 @@ public class AccessManager
 			String accessToken) {
 		SharedPreferences prefs = getPrefsForHost(ctx, hostPackage);
 
+		Log.d(_tag, "removing AccessToken.");
 		if (prefs.getString(PREF_KEY_TOKEN, "").equals(accessToken))
 		{
 			Editor edit = prefs.edit();

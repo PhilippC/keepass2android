@@ -255,9 +255,9 @@
   <string name="LockWhenNavigateBack_title">Uzamknúť pri opustení aplikácie</string>
   <string name="LockWhenNavigateBack_summary">Uzamknúť databázu pri opustení aplikácie stlačením tlačidla Späť.</string>
   <string name="NoDonateOption_title">Skryť možnosti prispenia</string>
-  <string name="NoDonateOption_summary">Toto nastavenie je určené pre sponzorov. Je dostupné po použiť Keepass2Android, len na chvíľu.</string>
+  <string name="NoDonateOption_summary">Toto nastavenie je určené pre sponzorov. Je dostupné po použití Keepass2Android, len na chvíľu.</string>
   <string name="NoDonateOption_question">Bez príspevkov by táto aplikácia neexistovala a nebolo by možné ju neustále vylepšovať! Ak ste ešte neprispeli na jej vývoj, prosím zvážte možnosť prispenia teraz.</string>
-  <string name="UseOfflineCache_title">Uloženie databázy do vyr. pamäte</string>
+  <string name="UseOfflineCache_title">Ukladať do vyr. pamäte</string>
   <string name="UseOfflineCache_summary">Zachovať kópiu súborov vzdialenej databázy v priečinku vyr. pamäte programu. Takto môžete používať vzdialené databázy aj v režime offline.</string>
   <string name="AcceptAllServerCertificates_title">Certifikáty SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definujte postup pri zlyhaní overenia certifikátu. Poznámka: pri zlyhaní overenia môžete na zariadenie nainštalovať certifikáty!</string>
@@ -272,7 +272,7 @@
   <string name="OpenKp2aKeyboardAutomatically_title">Prepnúť klávesnicu</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Otvoriť dialóg výberu klávesnice, ak je po vyhľadaní z prehliadača alebo klávesnice dostupný záznam zadávaný cez klávesnicu KP2A.</string>
   <string name="kp2a_switch_rooted">Prepínať, ak je dostupný root</string>
-  <string name="kp2a_switch_rooted_summary">Na zariadeniach s najvyššími opráveniami je možné automaticky prepínať na klávesnicu Keepass2Android a naspäť na predchádzajúcu klávesnicu, bez zobrazenia metódy vstupu. Prepnutie je možné po vyhľadaní záznamu alebo kliknutí na notifikáciu klávesnice KP2A. Táto funkcia vyžaduje inštaláciu Secure Settings app. Viac informácií získate v dokumentácii KP2A!</string>
+  <string name="kp2a_switch_rooted_summary">Na zariadeniach s najvyššími oprávneniami je možné automaticky prepínať na klávesnicu Keepass2Android a naspäť na predchádzajúcu klávesnicu, bez zobrazenia metódy vstupu. Prepnutie je možné po vyhľadaní záznamu alebo kliknutí na notifikáciu klávesnice KP2A. Táto funkcia vyžaduje inštaláciu Secure Settings app. Viac informácií získate v dokumentácii KP2A!</string>
   <string name="ShowUnlockedNotification_title">Notifikačná ikona počas odomknutia</string>
   <string name="ShowUnlockedNotification_summary">Zobraziť prichádzajúcu notifikáciu aj pri odomknutej databáze.</string>
   <string name="PreloadDatabaseEnabled_title">Vopred načítať databázu</string>
@@ -384,7 +384,7 @@
   <string name="CouldntLoadChalAuxFile">Nemožno načítať doplnkový súbor pre výzvu!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Prosím použite prídavný modul KeeChallenge v programe KeePass 2.x (PC) pre nakonfigurovanie databázy na použitie s odpoveďou na výzvu!</string>
   <string name="ErrorUpdatingChalAuxFile">Chyba pri aktualizovaní doplnkového súboru OTP!</string>
-  <string name="TrayTotp_SeedField_title">Názov prvotného (seed) poľa TOTP</string>
+  <string name="TrayTotp_SeedField_title">Názov seed poľa TOTP</string>
   <string name="TrayTotp_SeedField_summary">Ak používate prídavný modul pre Keepass 2 s názvom \"TrayTotp\", nie s predvolenými nastaveniami, zadajte názov pre prvotné (seed) pole, podľa nastavení v PC.</string>
   <string name="TrayTotp_SettingsField_title">Názov poľa pre nastavenia TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Sem zadajte názov poľa s nastaveniami pre TrayTotp.</string>

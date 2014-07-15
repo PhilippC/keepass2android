@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:text="Your name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+    <EditText
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etUser" />
+    <TextView
+        android:text="Your MasterKee master password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/toggle_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_menu_view" />
+        <EditText
+            android:id="@+id/entry_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/toggle_password"
+            android:layout_toLeftOf="@id/toggle_password"
+            android:hint="@string/hint_pass"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:typeface="monospace" />
+    <!-- Confirm Password -->
+        <EditText
+            android:id="@+id/entry_confpassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/entry_password"
+            android:hint="@string/hint_conf_pass"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:typeface="monospace" />
+    </RelativeLayout>
+    <Button
+        android:text="@string/button_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_ok" />
+</LinearLayout>

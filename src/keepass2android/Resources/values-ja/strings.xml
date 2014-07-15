@@ -5,6 +5,7 @@
   <string name="about_homepage">WEBサイト</string>
   <string name="AboutText">\"Keepass2Android\"はパスワードマネージャソフト\"KeePass\"をAndroid上で利用する為のアプリです。</string>
   <string name="accept">決定</string>
+  <string name="deny">拒否</string>
   <string name="add_entry">エントリーを追加</string>
   <string name="add_url_entry">URL のエントリを作成します。</string>
   <string name="add_group">グループを追加</string>
@@ -21,11 +22,14 @@
   <string name="kill_app_label">アプリのプロセスを終了</string>
   <string name="application">アプリケーション</string>
   <string name="application_settings">アプリケーション設定</string>
+  <string name="ShowGroupnameInSearchResult_title">検索結果にグループ名を表示する</string>
   <string name="security_prefs">セキュリティ</string>
   <string name="display_prefs">表示</string>
   <string name="password_access_prefs">パスワードエントリーへのアクセス</string>
   <string name="QuickUnlock_prefs">クイック解除</string>
   <string name="FileHandling_prefs">ファイル操作</string>
+  <string name="keyboard_prefs">キーボード</string>
+  <string name="export_prefs">データベースのエクスポート</string>
   <string name="brackets">カッコ</string>
   <string name="cancel">キャンセル</string>
   <string name="ClearClipboard">クリップボードを消去しました。</string>
@@ -43,7 +47,7 @@
   <string name="digits">数字</string>
   <string name="disclaimer_formal">Keepass2Android によって作られたフリーソフトウェアであり、無保証です。GPLバージョン2以上の条件下でこれを再頒布することができます。</string>
   <string name="ellipsis">\u2026</string>
-  <string name="enter_filename">データベースファイル</string>
+  <string name="enter_filename">データベースファイル名の入力</string>
   <string name="entry_accessed">最終アクセス日</string>
   <string name="entry_cancel">キャンセル</string>
   <string name="entry_comment">備考</string>
@@ -52,6 +56,7 @@
   <string name="entry_confpassword">パスワードの確認</string>
   <string name="entry_created">作成日</string>
   <string name="entry_expires">有効期限</string>
+  <string name="entry_group_name">グループ名</string>
   <string name="entry_keyfile">キーファイル(オプション)</string>
   <string name="entry_modified">更新日</string>
   <string name="entry_password">パスワード</string>
@@ -108,7 +113,7 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">パスワードを隠す</string>
   <string name="maskpass_summary">パスワード欄をアスタリスクで表示します</string>
-  <string name="menu_about">について</string>
+  <string name="menu_about">Keepass2Androidについて</string>
   <string name="menu_change_key">マスターキーを変更</string>
   <string name="menu_copy_pass">パスワードをコピー</string>
   <string name="menu_copy_user">ユーザー名をコピー</string>
@@ -117,6 +122,7 @@
   <string name="menu_db_settings">データベース設定</string>
   <string name="menu_delete">削除</string>
   <string name="menu_move">別のグループへ移動</string>
+  <string name="menu_move_light">移動</string>
   <string name="menu_donate">ビールの寄付...</string>
   <string name="menu_edit">編集</string>
   <string name="menu_hide_password">パスワードを隠す</string>
@@ -139,6 +145,7 @@
   <string name="omitbackup_summary">\"バックアップ\"と\"ごみ箱\"を検索対象から除外します</string>
   <string name="pass_filename">KeePassデータベースファイル</string>
   <string name="password_title">データベースのパスワード設定</string>
+  <string name="master_key_type">マスターキータイプの選択</string>
   <string name="progress_create">データベースファイルを作成中&#8230;</string>
   <string name="create_database">データベースを作成</string>
   <string name="progress_title">実行中&#8230;</string>
@@ -153,6 +160,8 @@
   <string name="database_name">データベース名</string>
   <string name="default_username">新しいエントリのデフォルトユーザー名</string>
   <string name="saving_database">データベースを保存中&#8230;</string>
+  <string name="exporting_database">データベースをエクスポート中&#8230;</string>
+  <string name="export_database_successful">データベースのエクスポートが完了しました。</string>
   <string name="space">半角スペース</string>
   <string name="search_label">検索</string>
   <string name="show_password">パスワードを表示</string>
@@ -195,10 +204,27 @@
   <string name="QuickUnlock_lockButton">データベースを閉じる</string>
   <string name="QuickUnlockDefaultEnabled_title">クイック解除をデフォルトで有効にする</string>
   <string name="QuickUnlockIconHidden_title">クイック解除アイコンを隠す</string>
+  <string name="QuickUnlockIconHidden16_title">クイックアンロックアイコンを隠す</string>
   <string name="QuickUnlockLength_title">クイック解除キーの長さ</string>
   <string name="QuickUnlock_fail">クイック解除に失敗しました: パスワードが正しくありません！</string>
   <string name="BinaryDirectory_title">添付ファイルのディレクトリ</string>
+  <string name="SaveAttachmentDialog_title">添付ファイルを保存</string>
   <string name="SaveAttachmentDialog_save">SDカードに保存</string>
+  <string name="field_name">フィールド名</string>
+  <string name="field_value">フィールド値</string>
+  <string name="add_binary">ファイルを添付</string>
+  <string name="credentials_dialog_title">サーバーの資格情報を入力してください。</string>
+  <string name="LockWhenScreenOff_title">スクリーンオフ時にロックする</string>
+  <string name="LockWhenScreenOff_summary">スクリーンがオフに切り替わったときデータベースをロックします。</string>
+  <string name="NoDonateOption_title">寄付オプションを表示しない</string>
+  <string name="UseOfflineCache_title">データベース キャッシュ</string>
+  <string name="AcceptAllServerCertificates_title">SSL 証明書</string>
+  <string name="ClearOfflineCache_title">キャッシュをクリアしますか？</string>
+  <string name="CheckForFileChangesOnSave_title">変更をチェック</string>
+  <string name="AskOverwriteBinary_title">既存のバイナリを上書きしますか。</string>
+  <string name="AskOverwriteBinary_yes">上書き</string>
+  <string name="AskOverwriteBinary_no">名前の変更</string>
+  <string name="RecycleBin">ごみ箱</string>
   <string name="AskReloadFile">現在開いているファイルは、別のプログラムによって変更されました。それを再読み込みしますか。</string>
   <string name="AskDiscardChanges">今までの変更を破棄しますか。([保存] ボタンは、フォームの上部にあります。) </string>
   <string name="AskDiscardChanges_title">変更を破棄しますか。</string>
@@ -210,19 +236,86 @@
   <string name="DeletingEntry">エントリの削除</string>
   <string name="DeletingGroup">グループの削除</string>
   <string name="SettingPassword">パスワードの設定</string>
+  <string name="UndoingChanges">変更を元に戻しています。</string>
+  <string name="TransformingKey">マスターキーを変換しています。</string>
+  <string name="ParsingDatabase">データベースを解析しています.</string>
+  <string name="CheckingTargetFileForChanges">ターゲット ファイルの変更を確認しています。</string>
+  <string name="TitleSyncQuestion">変更をマージしますか？</string>
+  <string name="SynchronizingDatabase">変更をマージしています・・・</string>
+  <string name="YesSynchronize">はい、マージします。</string>
+  <string name="NoOverwrite">いいえ、上書きします。</string>
+  <string name="DownloadingRemoteFile">リモート ファイルをダウンロードしています.</string>
+  <string name="UploadingFile">ファイルをアップロードしています.</string>
+  <string name="RestoringRemoteFile">リモートファイルを復元しています。</string>
+  <string name="CheckingDatabaseForChanges">データベースの変更を確認しています。</string>
+  <string name="RemoteDatabaseUnchanged">変更は検出されませんでした。</string>
+  <string name="database_file">データベースファイル</string>
+  <string name="ErrorOcurred">エラーが発生しました</string>
+  <string name="synchronize_database_menu">データベースの同期</string>
+  <string name="hint_sftp_host">ホスト(例: 192.168.0.1)</string>
+  <string name="hint_sftp_port">ポート</string>
+  <string name="initial_directory">初期ディレクトリ (省略可能):</string>
+  <string name="select_storage_type">ストレージタイプの選択</string>
+  <string name="filestoragename_file">端末内ファイル</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (KP2A フォルダー)</string>
+  <string name="filestoragename_gdrive">Google ドライブ</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestorage_setup_title">ファイルのアクセスの初期化</string>
+  <string name="database_location">データベースの場所</string>
+  <string name="master_password">マスター パスワード</string>
+  <string name="hint_master_password">データベースを保護するマスター パスワードを選択します。</string>
+  <string name="key_file">キー ファイル</string>
+  <string name="use_key_file">キーファイルを使用する</string>
+  <string name="loading">読み込み中&#8230;</string>
+  <string name="plugins">プラグイン</string>
+  <string name="plugin_packagename">パッケージ名:</string>
+  <string name="plugin_enabled">有効</string>
+  <string name="plugin_disabled">無効</string>
+  <string name="plugin_web">オンラインでプラグインを見つける</string>
+  <string name="plugin_enabled_checkbox">有効</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">現在のエントリーデータ</string>
+  <string name="export_fileformats_title">ファイル形式の選択</string>
   <string-array name="clipboard_timeout_options">
     <item>30秒</item>
     <item>1分</item>
     <item>5分</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10分</item>
+    <item>15分</item>
+    <item>30分</item>
+    <item>1時間</item>
+    <item>無し</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 データベース (.kdbx)</item>
+    <item>Keepass 2 XML (暗号化なし) (.xml)</item>
+    <item>Keepass CSV (暗号化なし) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>小</item>
     <item>中</item>
     <item>大</item>
+  </string-array>
+  <string name="design_title">デザイン</string>
+  <string-array name="cred_remember_modes">
+    <item>Do not remember username and password</item>
+    <item>ユーザー名のみ保存</item>
+    <item>ユーザー名とパスワードを保存</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>パスワードのみ</item>
+    <item>パスワード + キー ファイル</item>
+    <item>パスワード + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
+    <item>パスワード + チャレンジ レスポンス</item>
+    <item>Password + Challenge-Response secret (recovery mode)</item>
+  </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>証明書検証エラーを無視する</item>
+    <item>Warn when validation fails</item>
+    <item>無効な証明書を受け入れない</item>
   </string-array>
 </resources>

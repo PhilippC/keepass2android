@@ -6,6 +6,7 @@ import android.R.anim;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 /**
  * Broadcast flow between Host and Plugin
@@ -30,10 +31,13 @@ import android.content.Intent;
  *
  */
 public abstract class PluginAccessBroadcastReceiver extends BroadcastReceiver {
+	
+	private static final String _tag = "Kp2aPluginSDK";
+	
 	@Override
 	public void onReceive(Context ctx, Intent intent) {
 		String action = intent.getAction();
-		android.util.Log.d("KP2A.pluginsdk", "received broadcast with action="+action);
+		android.util.Log.d(_tag, "received broadcast with action="+action);
 		if (action == null)
 			return;
 		if (action.equals(Strings.ACTION_TRIGGER_REQUEST_ACCESS))
@@ -84,7 +88,7 @@ public abstract class PluginAccessBroadcastReceiver extends BroadcastReceiver {
 		}
 		
 		rpi.putStringArrayListExtra(Strings.EXTRA_SCOPES, getScopes());
-		
+		Log.d(_tag, "requesting access for "+getScopes().size()+" tokens.");
 		ctx.sendBroadcast(rpi);
 	}
 
