@@ -20,6 +20,7 @@ import com.jcraft.jsch.SftpATTRS;
 import com.jcraft.jsch.SftpException;
 import com.jcraft.jsch.UserInfo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -422,6 +423,12 @@ public class SftpStorage extends JavaFileStorageBase {
 		if (port != DEFAULT_SFTP_PORT)
 			host += ":"+String.valueOf(port);
 		return getProtocolPrefix()+encode(username)+":"+encode(password)+"@"+host+localPath;
+		
+	}
+
+	@Override
+	public void prepareFileUsage(Context appContext, String path) {
+		//nothing to do
 		
 	}
 }

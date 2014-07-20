@@ -417,6 +417,15 @@ public class DropboxFileStorage extends JavaFileStorageBase {
 		}
 		
 	}
+	
+	@Override
+	public void prepareFileUsage(Context appContext, String path) throws UserInteractionRequiredException {
+		if (!isConnected())
+		{
+			throw new UserInteractionRequiredException();
+		}
+		
+	}
 
 	@Override
 	public void onCreate(FileStorageSetupActivity activity, Bundle savedInstanceState) {

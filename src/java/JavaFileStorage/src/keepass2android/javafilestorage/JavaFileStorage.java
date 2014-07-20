@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -115,6 +116,11 @@ public class FileEntry {
 
 	public void startSelectFile(FileStorageSetupInitiatorActivity activity, boolean isForSave, int requestCode);
 	
+	//prepare the file usage. if not possible, throw an exception. Must throw UserInteractionRequiredException if the
+	// problem can be resolved by the user. Caller should then retry with prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode, boolean alwaysReturnSuccess)
+	public void prepareFileUsage(Context appContext, String path) throws UserInteractionRequiredException, Throwable;
+	
+	//prepare the file usage. if necessary, use the activity to interact with the user, e.g. to grant access.
 	public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode, boolean alwaysReturnSuccess);
 	
 	public String getProtocolId();

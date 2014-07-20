@@ -29,6 +29,7 @@ import com.google.api.services.drive.model.ParentReference;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -58,9 +59,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		Drive drive;
 		
 		//may be null if first initialization failed
-		HashMap<String /*fileId*/, FileSystemEntryData> mFolderCache;
-
-		//may be null if first initialization failed
 		protected String mRootFolderId;
 	};
 	
@@ -89,7 +87,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		public void setPath(String path) throws 
 				InvalidPathException, IOException {
 			setPathWithoutVerify(path);
-			verifyWithRetry();
+			verify();
 		}
 		
 		public void setPathWithoutVerify(String path) throws UnsupportedEncodingException, InvalidPathException
@@ -109,24 +107,14 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 				mAccountLocalPath = mAccountLocalPath + "/";
 			mAccountLocalPath += encode(fileToAppend.getTitle())+NAME_ID_SEP+fileToAppend.getId();
 		}
-
-		private void verifyWithRetry() throws IOException,
-				FileNotFoundException {
-			try
-			{
-				verify();
-			}
-			catch (FileNotFoundException e)
-			{
-				//the folders cache might be out of date -> rebuild and try again:
-				AccountData accountData = mAccountData.get(mAccount);
-				accountData.mFolderCache = buildFoldersCache(mAccount);
-				
-				verify();
-			}
-		}
 		
 		//make sure the path exists
+		/*Note: in earlier versions, this method checked the full path. This was causing trouble 
+		 * for some users, it seems like the IDs of parent folders can behave unexpectedly.
+		 * Now the display name does no longer contain the parent folders, which is why it is no longer 
+		 * necessary to check if they were renamed.
+		 * (The path still contains the parents for file browsing, but this is only required temporarily 
+		 * during setup where everything seems fine.)*/
 		private void verify() throws IOException {
 			
 			if (mAccountLocalPath.equals(""))
@@ -143,37 +131,27 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			//if initialization failed, try to repeat: 
 			finishInitialization(accountData, mAccount);
 			
-			String parentId = accountData.mRootFolderId;
+			String part = parts[parts.length-1];
+			logDebug("parsing part " + part);
+			int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
+			if (indexOfSeparator < 0)
+				throw new FileNotFoundException("invalid path " + mAccountLocalPath);
+			String id = part.substring(indexOfSeparator+NAME_ID_SEP.length());
+			String name = decode(part.substring(0, indexOfSeparator));
+			logDebug("   name=" + name);
 			
-			for (int i=0;i<parts.length;i++)
-			{
-				String part = parts[i];
-				logDebug("parsing part " + part);
-				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
-				if (indexOfSeparator < 0)
-					throw new FileNotFoundException("invalid path " + mAccountLocalPath);
-				String id = part.substring(indexOfSeparator+NAME_ID_SEP.length());
-				String name = decode(part.substring(0, indexOfSeparator));
-				logDebug("   name=" + name);
-				FileSystemEntryData thisFolder = accountData.mFolderCache.get(id);
-				if (thisFolder == null)
-				{
-					if (i== parts.length-1)
-					{
-						//not all files are cached
-						thisFolder =  tryAddFileToCache(this);
-					}
-					//check if it's still null
-					if (thisFolder == null)
-						throw new FileNotFoundException("couldn't find id " + id + " being part of "+ mAccountLocalPath+" in GDrive account " + mAccount);
-				}
-				if (thisFolder.parentIds.contains(parentId) == false)
-					throw new FileNotFoundException("couldn't find parent id " + parentId + " as parent of "+thisFolder.displayName +" in  "+ mAccountLocalPath+" in GDrive account " + mAccount);
-				if (thisFolder.displayName.equals(name) == false)
-					throw new FileNotFoundException("Name of "+id+" changed from "+name+" to "+thisFolder.displayName +" in  "+ mAccountLocalPath+" in GDrive account " + mAccount);
-				
-				parentId = id;				
+			File fl;
+			try {
+				fl = getDriveService(getAccount()).files().get(getGDriveId()).execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new FileNotFoundException("error getting file with for "+ this.getFullPath());
 			}
+			
+			String displayName = fl.getTitle();
+			
+			if (displayName.equals(name) == false)
+				throw new FileNotFoundException("Name of "+id+" changed from "+name+" to "+displayName +" in  "+ mAccountLocalPath+" in GDrive account " + mAccount);
 			
 		}
 		
@@ -204,25 +182,22 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			
 			String[] parts = mAccountLocalPath.split("/");
 			
-			for (int i=0;i<parts.length;i++)
+			String part = parts[parts.length-1];
+			logDebug("parsing part " + part);
+			int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
+			if (indexOfSeparator < 0)
 			{
-				String part = parts[i];
-				logDebug("parsing part " + part);
-				int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
-				if (indexOfSeparator < 0)
-				{
-					//seems invalid, but we're very generous here
-					displayName += "/"+part;
-					continue;
-				}
-				String name = part.substring(0, indexOfSeparator);
-				try {
-					name = decode(name);
-				} catch (UnsupportedEncodingException e) {
-					//ignore
-				}
-				displayName += "/"+name;								
+				//seems invalid, but we're very generous here
+				displayName += "/"+part;
 			}
+			String name = part.substring(0, indexOfSeparator);
+			try {
+				name = decode(name);
+			} catch (UnsupportedEncodingException e) {
+				//ignore
+			}
+			displayName += "/"+name;								
+		
 			return displayName;
 		}
 
@@ -289,34 +264,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			return false;
 		return currentVersion.equals(previousFileVersion) == false;
 	}
-
-	public FileSystemEntryData tryAddFileToCache(GDrivePath path) {
-		FileSystemEntryData thisFile = new FileSystemEntryData();
-		
-		File fl;
-		try {
-			fl = getDriveService(path.getAccount()).files().get(path.getGDriveId()).execute();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-		
-		thisFile.id = fl.getId();
-		thisFile.displayName = fl.getTitle();
-		
-		for (ParentReference parent: fl.getParents())
-		{
-			thisFile.parentIds.add(parent.getId());				
-		}
-		mAccountData.get(path.getAccount()).mFolderCache.put(thisFile.id, thisFile);
-		/*try {
-			Log.d(TAG, "Added "+path.getFullPath()+" to cache");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}*/
-		return thisFile;
-	}
-
 
 	@Override
 	public String getCurrentFileVersionFast(String path) {
@@ -425,13 +372,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			
 			logDebug("created folder "+newDirName+" in "+parentPath+". id: "+file.getId());
 
-			//add to cache to avoid network traffic if this folder is accessed (which is likely to happen soon)
-			FileSystemEntryData newCacheEntry = new FileSystemEntryData();
-			newCacheEntry.displayName = newDirName;
-			newCacheEntry.id = file.getId();
-			newCacheEntry.parentIds.add(parentGdrivePath.getGDriveId());
-			mAccountData.get(parentGdrivePath.getAccount()).mFolderCache.put(file.getId(), newCacheEntry);
-	
 			return new GDrivePath(parentPath, file).getFullPath();
 		}
 		catch (Exception e)
@@ -575,7 +515,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		try
 		{
 			driveService.files().delete(gdrivePath.getGDriveId()).execute();
-			mAccountData.get(gdrivePath.getAccount()).mFolderCache.remove(gdrivePath.getGDriveId());
+			
 		}
 		catch (Exception e)
 		{
@@ -584,9 +524,9 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	}
 
 
-	private Drive createDriveService(String accountName, Activity activity) {
+	private Drive createDriveService(String accountName, Context appContext) {
 		logDebug("createDriveService "+accountName);
-		GoogleAccountCredential credential = createCredential(activity);
+		GoogleAccountCredential credential = createCredential(appContext);
 		credential.setSelectedAccountName(accountName);
 
 		return new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential)
@@ -658,6 +598,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	private void initializeAccountOrPath(final JavaFileStorage.FileStorageSetupActivity setupAct, final String accountNameOrPath) {
 
 		final Activity activity = ((Activity)setupAct);
+		final Context appContext = activity.getApplicationContext();
 		
 		String accountNameTemp;
 		GDrivePath gdrivePath = null;
@@ -685,18 +626,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 				try {
 					
 					
-					if (!mAccountData.containsKey(accountName))
-					{
-						AccountData newAccountData = new AccountData();
-						newAccountData.drive = createDriveService(accountName, activity);
-						mAccountData.put(accountName, newAccountData);
-						logDebug("Added account data for " + accountName);
-						//try to finish the initialization. If this fails, we throw.
-						//in case of "Always return true" (inside CachingFileStorage) this means
-						//we have a partially uninitialized AccountData object. 
-						//We'll try to initialize later in verify() if (e.g.) network is available again.
-						finishInitialization(newAccountData, accountName);
-					}
+					initializeAccount(appContext, accountName);
 					
 					if (setupAct.getProcessName().equals(PROCESS_NAME_SELECTFILE))
 						setupAct.getState().putString(EXTRA_PATH, getRootPathForAccount(accountName));
@@ -710,6 +640,8 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			}
 
 
+
+			
 
 			@Override
 			protected void onPostExecute(AsyncTaskResult<String> result) {
@@ -747,46 +679,32 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	}
 	
+	private void initializeAccount(final Context appContext,
+			final String accountName) throws IOException {
+		if (!mAccountData.containsKey(accountName))
+		{
+			AccountData newAccountData = new AccountData();
+			newAccountData.drive = createDriveService(accountName, appContext);
+			mAccountData.put(accountName, newAccountData);
+			logDebug("Added account data for " + accountName);
+			//try to finish the initialization. If this fails, we throw.
+			//in case of "Always return true" (inside CachingFileStorage) this means
+			//we have a partially uninitialized AccountData object. 
+			//We'll try to initialize later in verify() if (e.g.) network is available again.
+			finishInitialization(newAccountData, accountName);
+		}
+	}
+
+
 
 	private void finishInitialization(AccountData newAccountData, String accountName) throws IOException
 	{
-		if (newAccountData.mFolderCache == null)
-		{
-			newAccountData.mFolderCache = buildFoldersCache(accountName);
-		}
-		
 		if (TextUtils.isEmpty(newAccountData.mRootFolderId))
 		{
 			About about = newAccountData.drive.about().get().execute();
 			newAccountData.mRootFolderId = about.getRootFolderId();
 		}
 	}
-
-	private HashMap<String,FileSystemEntryData> buildFoldersCache(String accountName) throws IOException {
-
-		HashMap<String, FileSystemEntryData> folderCache = new HashMap<String, GoogleDriveFileStorage.FileSystemEntryData>();
-		logDebug("buildFoldersCache");
-		FileList folders=getDriveService(accountName).files().list().setQ("mimeType='"+FOLDER_MIME_TYPE+"' and trashed=false")
-				.setFields("items(id,title,parents),nextPageToken")
-				.execute();
-		for(File fl: folders.getItems()){
-			logDebug("buildFoldersCache: " + fl.getTitle());
-			FileSystemEntryData thisFolder = new FileSystemEntryData();
-			thisFolder.id = fl.getId();
-			thisFolder.displayName = fl.getTitle();
-			
-			for (ParentReference parent: fl.getParents())
-			{
-				thisFolder.parentIds.add(parent.getId());				
-			}
-			folderCache.put(thisFolder.id, thisFolder);
-		}
-
-		logDebug("that's it!");
-		return folderCache;
-
-	}
-
 
 	@Override
 	public void startSelectFile(JavaFileStorage.FileStorageSetupInitiatorActivity activity, boolean isForSave,
@@ -799,6 +717,27 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	public void prepareFileUsage(JavaFileStorage.FileStorageSetupInitiatorActivity activity, String path, int requestCode, boolean alwaysReturnSuccess) {
 		((JavaFileStorage.FileStorageSetupInitiatorActivity)(activity)).startFileUsageProcess(path, requestCode, alwaysReturnSuccess);
 
+	}
+	
+	@Override
+	
+	public void prepareFileUsage(Context appContext, String path) throws UserInteractionRequiredException, Throwable 
+	{
+		String accountName;
+		GDrivePath gdrivePath = null;
+		if (path.startsWith(getProtocolPrefix()))
+		{
+			gdrivePath = new GDrivePath();
+			//don't verify yet, we're not yet initialized:
+			gdrivePath.setPathWithoutVerify(path);
+			
+			accountName = gdrivePath.getAccount();
+		}
+		else
+			accountName = path;
+		
+		initializeAccount(appContext, accountName);
+		
 	}
 
 	@Override
@@ -820,7 +759,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 		if (PROCESS_NAME_SELECTFILE.equals(setupAct.getProcessName()))
 		{
-			GoogleAccountCredential credential = createCredential(activity);
+			GoogleAccountCredential credential = createCredential(activity.getApplicationContext());
 
 			logDebug("starting REQUEST_ACCOUNT_PICKER");
 			activity.startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
@@ -832,10 +771,10 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		}
 	}
 
-	private GoogleAccountCredential createCredential(Activity activity) {
+	private GoogleAccountCredential createCredential(Context appContext) {
 		List<String> scopes = new ArrayList<String>();
 		scopes.add(DriveScopes.DRIVE);
-		GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(activity.getApplicationContext(), scopes);
+		GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(appContext, scopes);
 		return credential;
 	}
 

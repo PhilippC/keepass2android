@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import keepass2android.javafilestorage.skydrive.PrepareFileUsageListener;
 import keepass2android.javafilestorage.skydrive.SkyDriveException;
 import keepass2android.javafilestorage.skydrive.SkyDriveFile;
 import keepass2android.javafilestorage.skydrive.SkyDriveFolder;
@@ -456,8 +457,40 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public void prepareFileUsage(FileStorageSetupInitiatorActivity activity,
 			String path, int requestCode, boolean alwaysReturnSuccess) {
+		
+		//tell the activity which requests the file usage that it must launch the FileStorageSetupActivity
+		// which will then go through the onCreate/onStart/onResume process which is used by our FileStorage
 		((JavaFileStorage.FileStorageSetupInitiatorActivity) (activity))
 				.startFileUsageProcess(path, requestCode, alwaysReturnSuccess);
+
+	}
+	@Override
+	public void prepareFileUsage(Context appContext, String path) throws Exception 
+	{
+		PrepareFileUsageListener listener = new PrepareFileUsageListener();
+		mAuthClient.initialize(Arrays.asList(SCOPES), listener);
+		
+		if (listener.exception != null)
+			throw listener.exception;
+		
+		if (listener.status == LiveStatus.CONNECTED) {
+			if (mFolderCache.isEmpty())
+			{
+				initializeFoldersCache();
+			}
+
+		} else {
+			if (listener.status == LiveStatus.NOT_CONNECTED)
+				logDebug( "not connected");
+			else if (listener.status == LiveStatus.UNKNOWN)
+				logDebug( "unknown");
+			else
+				logDebug( "unexpected status " + listener.status);
+			
+			throw new UserInteractionRequiredException();			
+			
+		}
+
 
 	}
 
