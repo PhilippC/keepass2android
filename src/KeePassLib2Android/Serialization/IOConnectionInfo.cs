@@ -139,7 +139,7 @@ namespace KeePassLib.Serialization
 			return (IOConnectionInfo)this.MemberwiseClone();
 		}
 
-		/*
+
 		/// <summary>
 		/// Serialize the current connection info to a string. Credentials
 		/// are only serialized if the <c>SaveCredentials</c> property
@@ -215,9 +215,9 @@ namespace KeePassLib.Serialization
 			s.Password = TransformUnreadable(vParts[3], false);
 			return s;
 		}
-		*/
 
-		/*
+
+
 		/// <summary>
 		/// Very simple string protection. Doesn't really encrypt the input
 		/// string, only encodes it that it's not readable on the first glance.
@@ -256,7 +256,7 @@ namespace KeePassLib.Serialization
 				return StrUtil.Utf8.GetString(pbBase, 0, pbBase.Length);
 			}
 		}
-		*/
+
 
 		public string GetDisplayName()
 		{
