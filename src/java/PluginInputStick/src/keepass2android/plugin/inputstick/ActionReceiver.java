@@ -1,5 +1,6 @@
 package keepass2android.plugin.inputstick;
 
+import keepass2android.pluginsdk.KeepassDefs;
 import keepass2android.pluginsdk.PluginAccessException;
 import keepass2android.pluginsdk.Strings;
 
@@ -20,12 +21,16 @@ public class ActionReceiver extends keepass2android.pluginsdk.PluginActionBroadc
 				oe.addEntryFieldAction("keepass2android.plugin.inputstick.type", Strings.PREFIX_STRING+field, oe.getContext().getString(R.string.action_input_stick),
 					R.drawable.ic_launcher, null);
 			}
+			
 			Bundle b1 = new Bundle();
 			b1.putString(EXTRA_TEXT, "\t");
 			oe.addEntryAction(oe.getContext().getString(R.string.action_type_tab), R.drawable.ic_launcher, b1);
 			Bundle b2 = new Bundle();
 			b2.putString(EXTRA_TEXT, "\n");
 			oe.addEntryAction(oe.getContext().getString(R.string.action_type_enter), R.drawable.ic_launcher, b2);
+			Bundle b3 = new Bundle();
+			b3.putString(EXTRA_TEXT, "user_pass");
+			oe.addEntryAction(oe.getContext().getString(R.string.action_type_user_tab_pass_enter), R.drawable.ic_launcher, b3);
 		} catch (PluginAccessException e) {
 			e.printStackTrace();
 		}
@@ -45,7 +50,20 @@ public class ActionReceiver extends keepass2android.pluginsdk.PluginActionBroadc
 	protected void actionSelected(ActionSelectedAction actionSelected) {
 		if (actionSelected.isEntryAction())
 		{
-			typeText(actionSelected.getContext(), actionSelected.getActionData().getString(EXTRA_TEXT));
+			String text = actionSelected.getActionData().getString(EXTRA_TEXT);
+			if ("user_pass".equals(text))
+			{
+				typeText(actionSelected.getContext(), 
+						actionSelected.getEntryFields().get(KeepassDefs.UserNameField));
+				typeText(actionSelected.getContext(), "\t");
+				typeText(actionSelected.getContext(), actionSelected.getEntryFields().get(KeepassDefs.PasswordField));
+				typeText(actionSelected.getContext(), "\n");
+				
+			}
+			else
+			{
+				typeText(actionSelected.getContext(), text);
+			}
 		}
 		else
 		{

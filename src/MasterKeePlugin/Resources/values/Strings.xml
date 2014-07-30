@@ -9,7 +9,7 @@
 	<string name="button_ok">OK</string>
 	<string name="error_pass_match">Passwords do not match.</string>
 	<string name="deriving_key">Calculating derived key... This might take a few seconds.</string>
-	<string name="AddMkEntry">Add MasterKee entry</string>
+	<string name="AddMkEntry">Add entry for new site</string>
 
 	<string name="kp2aplugin_title">MasterKee Plugin</string>
 	<string name="kp2aplugin_shortdesc">Plugin to generate passwords compatible with the MasterPassword approach by Maarten Billemont giving you the ability to restore passwords even if your database is lost.</string>

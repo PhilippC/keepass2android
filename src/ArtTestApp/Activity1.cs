@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Security.Cryptography;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -7,21 +9,26 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using KeeChallenge;
-using KeePassLib.Serialization;
-using keepass2android;
-using keepass2android.Io;
+
+//using KeePassLib.Serialization;
+using MasterPassword;
+//using keepass2android;
+//using keepass2android.Io;
 
 namespace ArtTestApp
 {
 	[Activity(Label = "ArtTestApp", MainLauncher = true, Icon = "@drawable/icon")]
 	public class Activity1 : Activity
 	{
-		private ChallengeInfo _chalInfo;
-		private byte[] _challengeSecret;
-		private IOConnectionInfo _ioConnectionInfo;
-		private IOConnectionInfo _ioConnectionInfoOut;
+		//private IOConnectionInfo _ioConnectionInfo;
+		//private IOConnectionInfo _ioConnectionInfoOut;
 		private const int RequestCodeChallengeYubikey = 98;
+
+		private static byte[] HashHMAC(byte[] key, byte[] message)
+		{
+			var hash = new HMACSHA256(key);
+			return hash.ComputeHash(message);
+		}
 
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -30,20 +37,31 @@ namespace ArtTestApp
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Main);
 
-			_ioConnectionInfo = new IOConnectionInfo() { Path = "/mnt/sdcard/keepass/keechallenge.xml" };
+			/*_ioConnectionInfo = new IOConnectionInfo() { Path = "/mnt/sdcard/keepass/keechallenge.xml" };
 			_ioConnectionInfoOut = new IOConnectionInfo() { Path = "/mnt/sdcard/keepass/keechallengeOut.xml" };
-						
+			*/
+
+			FindViewById<Button>(Resource.Id.MyButton1).Text = "";
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
+			var key = new MpAlgorithm().GetKeyForPassword("u", "test");
+			sw.Stop(); 
+			string password = MpAlgorithm.GenerateContent("Long Password", "strn", key, 1, HashHMAC);
+			
+			FindViewById<Button>(Resource.Id.MyButton1).Text = password;
+			FindViewById<Button>(Resource.Id.MyButton2).Text = sw.ElapsedMilliseconds.ToString();
+
 
 			// Get our button from the layout resource,
 			// and attach an event to it
 			FindViewById<Button>(Resource.Id.MyButton1).Click += (sender, args) =>
 				{
-					Decrypt(_ioConnectionInfo);
+				//	Decrypt(_ioConnectionInfo);
 
 				};
 			FindViewById<Button>(Resource.Id.MyButton2).Click += (sender, args) =>
 				{
-					Decrypt(_ioConnectionInfoOut);
+					//Decrypt(_ioConnectionInfoOut);
 				};
 				
 
@@ -51,7 +69,7 @@ namespace ArtTestApp
 			
 		}
 
-		private void Decrypt(IOConnectionInfo ioConnectionInfo)
+		/*private void Decrypt(IOConnectionInfo ioConnectionInfo)
 		{
 			try
 			{
@@ -73,44 +91,8 @@ namespace ArtTestApp
 			{
 				Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
 			}
-		}
+		}*/
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			base.OnActivityResult(requestCode, resultCode, data);
-
-			if (requestCode == RequestCodeChallengeYubikey && resultCode == Result.Ok)
-			{
-				try
-				{
-					byte[] challengeResponse = data.GetByteArrayExtra("response");
-					_challengeSecret = KeeChallengeProv.GetSecret(_chalInfo, challengeResponse);
-					Array.Clear(challengeResponse, 0, challengeResponse.Length);
-				}
-				catch (Exception e)
-				{
-					Kp2aLog.Log(e.ToString());
-					Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
-					return;
-				}
-
-				if (_challengeSecret != null)
-				{
-					Toast.MakeText(this, "OK!", ToastLength.Long).Show();
-					ChallengeInfo temp = KeeChallengeProv.Encrypt(_challengeSecret, _chalInfo.IV);
-					if (!temp.Save(_ioConnectionInfoOut))
-					{
-						Toast.MakeText(this, "error writing file", ToastLength.Long).Show();
-						return;
-					}
-				}
-				else
-				{
-					Toast.MakeText(this, "Not good :-(", ToastLength.Long).Show();
-					return;
-				}
-			}
-		}
 	}
 }
 

@@ -32,7 +32,7 @@ namespace keepass2android
 
 			});
 			b.SetNegativeButton(Resource.String.cancel, delegate { });
-			b.SetTitle(AppNames.AppName);
+			b.SetTitle(GetString(AppNames.AppNameResource));
 			b.SetOnDismissListener(this);
 			var dialog = b.Create();
 			dialog.Show();

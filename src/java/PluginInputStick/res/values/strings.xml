@@ -12,5 +12,6 @@
     <string name="action_input_stick">Type with InputStick</string>
     <string name="action_type_tab">Type Tab with InputStick</string>
     <string name="action_type_enter">Type Enter with InputStick</string>
+    <string name="action_type_user_tab_pass_enter">Type username/password with InputStick</string>
 
 </resources>

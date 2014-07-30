@@ -50,9 +50,6 @@
   <ItemGroup>
     <Compile Include="Activity1.cs" />
     <Compile Include="Activity2.cs" />
-    <Compile Include="App.cs" />
-    <Compile Include="ChallengeInfo.cs" />
-    <Compile Include="KeeChallenge.cs" />
     <Compile Include="PrefActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,16 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Xml\pref.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
-      <Project>{545b4a6b-8bba-4fbe-92fc-4ac060122a54}</Project>
-      <Name>KeePassLib2Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kp2aBusinessLogic\Kp2aBusinessLogic.csproj">
-      <Project>{53a9cb7f-6553-4bc0-b56b-9410bb2e59aa}</Project>
-      <Name>Kp2aBusinessLogic</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

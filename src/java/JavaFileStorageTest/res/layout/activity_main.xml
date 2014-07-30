@@ -43,6 +43,15 @@
         android:layout_marginLeft="17dp"
         android:text="Test File Chooser Save As" />
         
-       
+     
+     <Button
+        android:id="@+id/button_test_preparefileusage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/button_test_filechooser_saveas"
+        android:layout_marginLeft="17dp"
+        android:text="Test Prepare File Usage" />
+     
 
 </RelativeLayout>

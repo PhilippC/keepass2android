@@ -149,10 +149,12 @@ import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
 import keepass2android.javafilestorage.SftpStorage;
 import keepass2android.javafilestorage.SkyDriveFileStorage;
+import keepass2android.javafilestorage.UserInteractionRequiredException;
 import keepass2android.kp2afilechooser.StorageFileProvider;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
@@ -450,11 +452,72 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
         });
 		
 		
+		findViewById(R.id.button_test_preparefileusage).setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+            	
+            	final String path = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).getString("selectedPath", "");
+            	if (path.equals(""))
+            	{
+            		Toast.makeText(MainActivity.this, "select path with file chooser first", Toast.LENGTH_LONG).show();
+            		return;
+            	}
+            		new AsyncTask<Object, Object, Object>() {
+						
+						@Override
+						protected Object doInBackground(Object... params) {
+			            	try
+			            	{
+
+							createStorageToTest(MainActivity.this, MainActivity.this.getApplicationContext()).prepareFileUsage(MainActivity.this, path);
+							runOnUiThread(new Runnable() {
+
+						        @Override
+						        public void run() {
+						        	Toast.makeText(MainActivity.this, "prepare ok", Toast.LENGTH_LONG).show();
+						        }
+						    });
+		            		
+			            	}
+			            	catch (UserInteractionRequiredException e)
+			            	{
+			            		final UserInteractionRequiredException e2 = e;
+			            		runOnUiThread(new Runnable() {
+
+							        @Override
+							        public void run() {
+					            		Toast.makeText(MainActivity.this, "this requires user interaction! "+e2.getClass().getName()+ " "+e2.getMessage(), Toast.LENGTH_LONG).show();
+							        }
+							    });
+
+			            	}
+			            	catch (Throwable t)
+			            	{
+			            		final Throwable t2 = t;
+			            		runOnUiThread(new Runnable() {
+
+							        @Override
+							        public void run() {
+					            		Toast.makeText(MainActivity.this, t2.getClass().getName()+": "+ t2.getMessage(), Toast.LENGTH_LONG).show();
+							        }
+							    });
+
+
+			            	}
+
+							return null;
+						}
+					}.execute();
+            		
+               
+            }
+        });
+		
+		
 	}
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext) {
-		storageToTest = new SftpStorage();
-		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
+		//storageToTest = new SftpStorage();
+		storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
 		//storageToTest = new GoogleDriveFileStorage();
 		//storageToTest =  new DropboxFileStorage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", true);
 		//storageToTest = new DropboxAppFolderFileStorage(ctx,"ax0268uydp1ya57", "3s86datjhkihwyc", true);
@@ -494,6 +557,9 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 			ArrayList<Uri> uris = data
 					.getParcelableArrayListExtra(FileChooserActivity.EXTRA_RESULTS);
 			String path = BaseFileProviderUtils.getRealUri(this, uris.get(0)).toString();
+			
+			PreferenceManager.getDefaultSharedPreferences(this).edit()
+				.putString("selectedPath", path).commit();
 		
 			//create a new storage to simulate the case that the file name was saved and is used again after restarting the app:
 			createStorageToTest(this, getApplicationContext()).prepareFileUsage(this, path, 2123, false);
