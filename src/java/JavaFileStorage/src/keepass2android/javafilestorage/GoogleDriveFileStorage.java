@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
@@ -723,20 +724,28 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	public void prepareFileUsage(Context appContext, String path) throws UserInteractionRequiredException, Throwable 
 	{
-		String accountName;
-		GDrivePath gdrivePath = null;
-		if (path.startsWith(getProtocolPrefix()))
+		try
 		{
-			gdrivePath = new GDrivePath();
-			//don't verify yet, we're not yet initialized:
-			gdrivePath.setPathWithoutVerify(path);
+			String accountName;
+			GDrivePath gdrivePath = null;
+			if (path.startsWith(getProtocolPrefix()))
+			{
+				gdrivePath = new GDrivePath();
+				//don't verify yet, we're not yet initialized:
+				gdrivePath.setPathWithoutVerify(path);
+				
+				accountName = gdrivePath.getAccount();
+			}
+			else
+				accountName = path;
 			
-			accountName = gdrivePath.getAccount();
+			initializeAccount(appContext, accountName);	
 		}
-		else
-			accountName = path;
+		catch (UserRecoverableAuthIOException e)
+		{
+			throw new UserInteractionRequiredException(e);
+		}
 		
-		initializeAccount(appContext, accountName);
 		
 	}
 

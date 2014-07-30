@@ -467,13 +467,18 @@ public class SkyDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public void prepareFileUsage(Context appContext, String path) throws Exception 
 	{
+		
 		PrepareFileUsageListener listener = new PrepareFileUsageListener();
-		mAuthClient.initialize(Arrays.asList(SCOPES), listener);
+		
+		mAuthClient.initializeSynchronous(Arrays.asList(SCOPES), listener, null);
+		
 		
 		if (listener.exception != null)
 			throw listener.exception;
 		
 		if (listener.status == LiveStatus.CONNECTED) {
+			
+			mConnectClient = new LiveConnectClient(listener.session);
 			if (mFolderCache.isEmpty())
 			{
 				initializeFoldersCache();
