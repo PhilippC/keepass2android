@@ -150,9 +150,6 @@
       <Link>Jars\jsr305-1.3.9.jar</Link>
     </EmbeddedReferenceJar>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\livesdk.jar" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

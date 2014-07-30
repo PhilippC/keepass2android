@@ -245,6 +245,11 @@ namespace keepass2android.Io
 			activity.OnImmediateResult(requestCode, (int) FileStorageResults.FileUsagePrepared, intent);
 		}
 
+		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
+		{
+			//nothing to do, we're ready to go
+		}
+
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
 		{
 			throw new NotImplementedException();

@@ -124,6 +124,14 @@ namespace keepass2android.Io
 		/// </summary>
 		void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, bool alwaysReturnSuccess);
 
+		/// <summary>
+		/// Initiates the process for using a file in the given file storage.
+		/// This method either silently prepares using the file (if any preparation is required) or throws
+		/// UserInteractionRequiredException (or any other exception in case of an error). 
+		/// Can be used from a service, i.e. when no Activity is open.
+		/// </summary>
+		void PrepareFileUsage(Context ctx, IOConnectionInfo ioc);
+
 		//Setup methods: these are called from the setup activity so the file storage can handle UI events for authorization etc.
 		void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState);
 		void OnResume(IFileStorageSetupActivity activity);

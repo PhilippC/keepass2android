@@ -10,4 +10,5 @@
 	<remove-node path="/api/package[@name='com.jcraft.jsch.jce']" />
 	<remove-node path="/api/package[@name='com.jcraft.jsch.jcraft']" />
 	<remove-node path="/api/package[@name='com.jcraft.jzlib']" />
+	<remove-node path="/api/package[@name='com.microsoft.live']" />
 </metadata>
