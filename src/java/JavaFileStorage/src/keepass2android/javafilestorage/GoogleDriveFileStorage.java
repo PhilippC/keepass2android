@@ -281,13 +281,16 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public InputStream openFileForRead(String path) throws Exception {
 
+		logDebug("openFileForRead...");
 		GDrivePath gdrivePath = new GDrivePath(path);
 		Drive driveService = getDriveService(gdrivePath.getAccount());
 
 		try
 		{
 			File file = getFileForPath(gdrivePath, driveService);
-			return getFileContent(file, driveService);
+			InputStream res =  getFileContent(file, driveService);
+			logDebug("openFileForRead ok.");
+			return res;
 		}
 		catch (Exception e)
 		{
@@ -340,15 +343,17 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public void uploadFile(String path, byte[] data, boolean writeTransactional)
 			throws Exception {
-		
-		ByteArrayContent content = new ByteArrayContent(null, data);
-		GDrivePath gdrivePath = new GDrivePath(path);
-		Drive driveService = getDriveService(gdrivePath.getAccount());
+		logDebug("upload file...");		
 		try
 		{
+			ByteArrayContent content = new ByteArrayContent(null, data);
+			GDrivePath gdrivePath = new GDrivePath(path);
+			Drive driveService = getDriveService(gdrivePath.getAccount());
+			
 			File driveFile = getFileForPath(gdrivePath, driveService);
 			getDriveService(gdrivePath.getAccount()).files()
 					.update(driveFile.getId(), driveFile, content).execute();
+			logDebug("upload file ok.");
 		}
 		catch (Exception e)
 		{
@@ -451,8 +456,11 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	}
 
 	private Exception convertException(Exception e) {
+		logDebug("Exception: " + e.toString());
+		e.printStackTrace();
 		if (UserRecoverableAuthIOException.class.isAssignableFrom(e.getClass()))
 		{
+			logDebug("clearing account data.");
 			//this is not really nice because it removes data from the cache which might still be valid but we don't have the account name here...
 			mAccountData.clear();
 		}
@@ -682,28 +690,36 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	private void initializeAccount(final Context appContext,
 			final String accountName) throws IOException {
+		logDebug("Init account for " + accountName);
 		if (!mAccountData.containsKey(accountName))
 		{
 			AccountData newAccountData = new AccountData();
 			newAccountData.drive = createDriveService(accountName, appContext);
 			mAccountData.put(accountName, newAccountData);
 			logDebug("Added account data for " + accountName);
-			//try to finish the initialization. If this fails, we throw.
-			//in case of "Always return true" (inside CachingFileStorage) this means
-			//we have a partially uninitialized AccountData object. 
-			//We'll try to initialize later in verify() if (e.g.) network is available again.
-			finishInitialization(newAccountData, accountName);
 		}
+		AccountData accountData = mAccountData.get(accountName);
+		//try to finish the initialization. If this fails, we throw.
+		//in case of "Always return true" (inside CachingFileStorage) this means
+		//we have a partially uninitialized AccountData object. 
+		//We'll try to initialize later in verify() if (e.g.) network is available again.
+		finishInitialization(accountData, accountName);
 	}
 
 
 
 	private void finishInitialization(AccountData newAccountData, String accountName) throws IOException
 	{
+		
 		if (TextUtils.isEmpty(newAccountData.mRootFolderId))
 		{
+			logDebug("Finish init account for " + accountName);
 			About about = newAccountData.drive.about().get().execute();
 			newAccountData.mRootFolderId = about.getRootFolderId();
+		}
+		else
+		{
+			logDebug("Account for " + accountName + " already fully initialized.");
 		}
 	}
 
@@ -726,6 +742,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	{
 		try
 		{
+			logDebug("prepareFileUsage " + path + "...");
 			String accountName;
 			GDrivePath gdrivePath = null;
 			if (path.startsWith(getProtocolPrefix()))
@@ -740,9 +757,11 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 				accountName = path;
 			
 			initializeAccount(appContext, accountName);	
+			logDebug("prepareFileUsage ok");
 		}
 		catch (UserRecoverableAuthIOException e)
 		{
+			logDebug("prepareFileUsage: UserInteractionRequiredException");
 			throw new UserInteractionRequiredException(e);
 		}
 		
@@ -764,6 +783,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public void onStart(final JavaFileStorage.FileStorageSetupActivity setupAct) {
 
+		logDebug("onStart");
 		Activity activity = (Activity)setupAct;
 
 		if (PROCESS_NAME_SELECTFILE.equals(setupAct.getProcessName()))
