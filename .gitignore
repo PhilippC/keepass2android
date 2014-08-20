@@ -4,7 +4,7 @@ PCtest
 *.userprefs
 *.user
 
-*.designer.cs
+Resource.designer.cs
 
 src/java/kp2akeytransform/kp2akeytransform.zip
 
