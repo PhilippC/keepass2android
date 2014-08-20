@@ -482,6 +482,11 @@ namespace keepass2android.Io
 			_cachedStorage.StartSelectFile(activity, isForSave, requestCode, protocolId);
 		}
 
+		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
+		{
+			// Silence Xamarin Studio 5.2.1 build error
+		}
+
 		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, bool alwaysReturnSuccess)
 		{
 			//we try to prepare the file usage by the underlying file storage but if the ioc is cached, set the flag to ignore errors 
