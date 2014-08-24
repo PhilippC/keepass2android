@@ -282,3 +282,5 @@ Thumbs.db
 /src/java/MasterKee
 
 /src/PluginSdkBinding/obj/ReleaseNoNet
+
+/src/packages/
