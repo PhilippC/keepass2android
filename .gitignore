@@ -5,6 +5,7 @@ PCtest
 *.user
 
 Resource.designer.cs
+R.java
 
 src/java/kp2akeytransform/kp2akeytransform.zip
 
