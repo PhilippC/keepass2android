@@ -112,6 +112,9 @@ public class RussianLayout extends KeyboardLayout {
 		
 	};
 	
+	public static final int DEADKEYS[] = null;
+	public static final int DEADKEY_LUT[][] = null;
+	
 	private static RussianLayout instance = new RussianLayout();
 	
 	private RussianLayout() {
@@ -128,7 +131,12 @@ public class RussianLayout extends KeyboardLayout {
 
 	@Override
 	public void type(String text) {
-		super.type(LUT, text);
+		super.type(LUT, DEADKEY_LUT, DEADKEYS, text, (byte)0);
+	}	
+	
+	@Override
+	public void type(String text, byte modifiers) {
+		super.type(LUT, DEADKEY_LUT, DEADKEYS, text, modifiers);
 	}	
 	
 	@Override
@@ -140,5 +148,15 @@ public class RussianLayout extends KeyboardLayout {
 	public String getLocaleName() {		
 		return LOCALE_NAME;
 	}		
+	
+	@Override
+	public int[][] getDeadkeyLUT() {		
+		return DEADKEY_LUT;
+	}
+
+	@Override
+	public int[] getDeadkeys() {
+		return DEADKEYS;
+	}
 
 }

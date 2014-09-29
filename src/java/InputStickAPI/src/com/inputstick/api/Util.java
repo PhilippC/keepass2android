@@ -1,13 +1,25 @@
 package com.inputstick.api;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public abstract class Util {
 	
-	private static final boolean debug = false;
+	public static boolean debug = false;
 	
 	public static void log(String msg) {
+		log(msg, false);
+	}
+	
+	public static void log(String msg, boolean displayTime) {
 		if (debug) {
-			System.out.println("LOG: " + msg);
+			System.out.print("LOG: " + msg);
+			if (displayTime) {
+				System.out.print(" @ " + System.currentTimeMillis());
+			}
+			System.out.println();
 		}
 	}
 	
@@ -21,29 +33,35 @@ public abstract class Util {
 
 	public static void printHex(byte[] toPrint) {
 		if (debug) {
-			int cnt = 0;
-			String s;
-			byte b;
-	        for (int i = 0; i < toPrint.length; i++) {
-	        	b = toPrint[i];    	
-	        	if ((b < 10) && (b >= 0)) {
-	        		s = Integer.toHexString((int)b);
-	        		s = "0" + s;
-	        	} else {
-		        	s = Integer.toHexString((int)b);
-		        	if (s.length() > 2) {
-		        		s = s.substring(s.length() - 2);
+			if (toPrint != null) {
+				int cnt = 0;
+				String s;
+				byte b;
+		        for (int i = 0; i < toPrint.length; i++) {
+		        	b = toPrint[i];  
+		        	//0x0..0xF = 0x00..0x0F
+		        	if ((b < 0x10) && (b >= 0)) {
+		        		s = Integer.toHexString((int)b);
+		        		s = "0" + s;
+		        	} else {
+			        	s = Integer.toHexString((int)b);
+			        	if (s.length() > 2) {
+			        		s = s.substring(s.length() - 2);
+			        	}
+		        	}        	        	
+		        	s = s.toUpperCase();
+		        	System.out.print("0x" + s + " ");
+		        	cnt++;
+		        	if (cnt == 8) {
+		        		System.out.println("");
+		        		cnt = 0;
 		        	}
-	        	}        	        	
-	        	s = s.toUpperCase();
-	        	System.out.print("0x" + s + " ");
-	        	cnt++;
-	        	if (cnt == 8) {
-	        		System.out.println("");
-	        		cnt = 0;
-	        	}
-	        }
-	        System.out.println("\n#####");	
+		        }
+		        
+			} else {
+				System.out.println("null");
+			}
+			System.out.println("\n#####");
 		}
 	}
 	
@@ -77,6 +95,19 @@ public abstract class Util {
 		result <<= 8;
 		result += (b3) & 0xFF;				
 		return result;
+	}
+	
+	
+	public static byte[] getPasswordBytes(String plainText) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");	
+			return md.digest(plainText.getBytes("UTF-8"));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 

@@ -21,7 +21,6 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 	private Application mApp;
 	private BTService mBTService;
 	private PacketManager mPacketManager;
-	//private PacketQueue mPacketQueue;
 	private final BTHandler mBTHandler = new BTHandler(this);				
 	
 	
@@ -45,31 +44,12 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 					break;
 				case BTService.EVENT_CANCELLED:
 					manager.onDisconnected();
-					break;					
-				case BTService.EVENT_CONNECTION_FAILED:
-					manager.onFailure(1); 
+					break;														
+				case BTService.EVENT_ERROR:					
+					manager.onFailure(msg.arg1); 
 					break;
-				case BTService.EVENT_CONNECTION_LOST:
-					manager.onFailure(1); 
-					break;					
-				case BTService.EVENT_NO_BT_HW:
-					manager.onFailure(1); 
-					break;
-				case BTService.EVENT_INVALID_MAC:
-					manager.onFailure(1); 
-					break;
-				case BTService.EVENT_CMD_TIMEOUT:
-					manager.onFailure(1); 
-					break;
-				case BTService.EVENT_INTERVAL_TIMEOUT:
-					manager.onFailure(1); 
-					break;
-				case BTService.EVENT_TURN_ON_TIMEOUT:
-					manager.onFailure(1); 
-					break;					
-				case BTService.EVENT_OTHER_ERROR:
-					manager.onFailure(1); 
-					break;									
+				default:
+					manager.onFailure(InputStickError.ERROR_BLUETOOTH); 
 			}
 		}
     } 		
@@ -80,6 +60,7 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 	
 	private void onConnected() {		
 		stateNotify(ConnectionManager.STATE_CONNECTED);
+		//mInitManager.startTimeoutCountdown(InitManager.DEFAULT_INIT_TIMEOUT);
 		mInitManager.onConnected();
 	}
 	
@@ -89,7 +70,8 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 	
 	private void onFailure(int code) {
 		mErrorCode = code;
-		stateNotify(ConnectionManager.STATE_FAILURE);
+		stateNotify(ConnectionManager.STATE_FAILURE);		
+		disconnect();
 	}
 	
 	private void onData(byte[] rawData) {
@@ -97,16 +79,15 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 		data = mPacketManager.bytesToPacket(rawData);
 		
 		if (data == null) {
-			//TODO
+			//TODO failure?
 			return;
 		}
 		
 		mInitManager.onData(data);
-		
-		//sendNext(); TODO
+
 		for (InputStickDataListener listener : mDataListeners) {
 			listener.onInputStickData(data);
-		}		
+		}			
 	}	
 	
 	
@@ -124,7 +105,7 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 
 	
 	public void connect(boolean reflection, int timeout) {
-		mErrorCode = ConnectionManager.ERROR_NONE;
+		mErrorCode = InputStickError.ERROR_NONE;
 		if (mBTService == null) {
 			mBTService = new BTService(mApp, mBTHandler);
 			mPacketManager = new PacketManager(mBTService, mKey);
@@ -143,10 +124,14 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 		}
 	}
 	
+	public void disconnect(int failureCode) {
+		onFailure(failureCode);
+	}
+	
 
 	@Override
 	public void sendPacket(Packet p) {
-		mPacketManager.sendPacket(p); //TODO tmp; zalozmy z beda same NO_RESP ???
+		mPacketManager.sendPacket(p); 
 	}
 	
 
@@ -162,7 +147,7 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 
 	@Override
 	public void onInitFailure(int code) {
-		onFailure(code);
+		onFailure(code);		
 	}	
 
 }

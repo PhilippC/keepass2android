@@ -1,5 +1,7 @@
 package com.inputstick.api.basic;
 
+import android.util.SparseArray;
+
 import com.inputstick.api.hid.HIDTransaction;
 import com.inputstick.api.hid.MouseReport;
 
@@ -11,6 +13,15 @@ public class InputStickMouse {
 	public static final byte BUTTON_LEFT = 0x01;
 	public static final byte BUTTON_RIGHT = 0x02;
 	public static final byte BUTTON_MIDDLE = 0x04;
+	
+	private static final SparseArray<String> buttonsMap;
+    static
+    {
+    	buttonsMap = new SparseArray<String>();
+    	buttonsMap.put(BUTTON_LEFT, 								"Left");
+    	buttonsMap.put(BUTTON_RIGHT, 								"Right");
+    	buttonsMap.put(BUTTON_MIDDLE, 							"Middle");
+    }
 	
 	private static boolean mReportProtocol;
 	
@@ -53,5 +64,25 @@ public class InputStickMouse {
 		t.addReport(new MouseReport(buttons, x, y, wheel));
 		InputStickHID.addMouseTransaction(t);		
 	}		
+	
+	public static String buttonsToString(byte buttons) {
+    	String result = "None";
+    	boolean first = true;
+    	byte mod;
+    	for (int i = 0; i < 8; i++) {
+    		mod = (byte)(BUTTON_LEFT << i);
+    		if ((buttons & mod) != 0) {  
+    			if ( !first) {
+    				result += ", ";
+    			} else {
+    				result = "";
+    			}
+    			first = false;
+    			result += buttonsMap.get(mod);
+    		}
+    	}
+    	
+    	return result;
+	}
 
 }

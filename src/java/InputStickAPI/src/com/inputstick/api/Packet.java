@@ -22,6 +22,12 @@ public class Packet {
 	
 	public static final byte CMD_FW_INFO =		 		0x10;
 	public static final byte CMD_INIT =			 		0x11;
+	public static final byte CMD_INIT_AUTH =	 		0x12;
+	public static final byte CMD_INIT_CON =		 		0x13;
+	//public static final byte CMD_SET_KEY =		 		0x14;
+	public static final byte CMD_SET_VALUE =	 		0x14;
+	public static final byte CMD_RESTORE_DEFAULTS =	 	0x15;
+	public static final byte CMD_RESTORE_STATUS =	 	0x16;
 	
 	
 	public static final byte CMD_HID_STATUS_REPORT = 	0x20;
@@ -37,6 +43,7 @@ public class Packet {
 	
 	
 	public static final byte RESP_OK =					0x01;
+	public static final byte RESP_UNKNOWN_CMD =			(byte)0xFF;
 	
 	
 	public static final byte[] RAW_OLD_BOOTLOADER = new byte[] {START_TAG, (byte)0x00, (byte)0x02, (byte)0x83, (byte)0x00, (byte)0xDA};			
@@ -119,4 +126,8 @@ public class Packet {
 		return mRespond;
 	}
 
+	public void print() {		
+		Util.printHex(mData, "PACKET DATA:");
+	}
+	
 }

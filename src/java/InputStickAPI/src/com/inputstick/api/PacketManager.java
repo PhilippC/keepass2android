@@ -39,9 +39,13 @@ public class PacketManager {
 		}
 	}
 	
+	public boolean isEncrypted() {
+		return mEncryption;
+	}
+	
 	public Packet encPacket(boolean enable) {
 		Random r = new Random();         
-		Packet p = new Packet(true, Packet.CMD_INIT);
+		Packet p = new Packet(true, Packet.CMD_INIT_AUTH);
 		if (enable) {
 			p.addByte((byte)1);
 		} else {
@@ -68,13 +72,13 @@ public class PacketManager {
 		initData = mAes.encrypt(initData);
 		p.addBytes(initData);				
 		
-		//Util.printHex(initData, "InitData: ");
+		Util.printHex(initData, "InitData: ");
 		
 		cmpData = new byte[16];
 		r.nextBytes(cmpData);
 		p.addBytes(cmpData);
 		
-		//Util.printHex(cmpData, "CmpData: ");		
+		Util.printHex(cmpData, "CmpData: ");		
 		return p;
 	}
 	
@@ -87,11 +91,15 @@ public class PacketManager {
 		
 		payload = Arrays.copyOfRange(data, 2, data.length); //remove TAG, info
 		if ((data[1] & Packet.FLAG_ENCRYPTED) != 0) {
-			Util.log("DECRYPT");
-			payload = mAes.decrypt(payload);
+			//Util.log("DECRYPT");
+			if (mAes.isReady()) {
+				payload = mAes.decrypt(payload);
+			} else {
+				return null;
+			}
 		}
 		
-		Util.printHex(payload, "DATA IN: ");
+		//Util.printHex(payload, "DATA IN: ");
 	
 		//check CRC		
 		crcCompare = Util.getLong(payload[0], payload[1], payload[2], payload[3]);
@@ -104,17 +112,19 @@ public class PacketManager {
 			payload = Arrays.copyOfRange(payload, 4, payload.length); //remove CRC
 			return payload;
 		} else {
-			return null; //TODO
+			return null; //TODO			
 		}		
 		
 	}
 	
 	public void sendRAW(byte[] data) {
 		mBTService.write(data);
-	}
+	}	
 	
 	public void sendPacket(Packet p) {
-		sendPacket(p, mEncryption);
+		if (p != null) {
+			sendPacket(p, mEncryption);
+		}
 	}
 	
 	public void sendPacket(Packet p, boolean encrypt) {
@@ -137,7 +147,7 @@ public class PacketManager {
 		mCrc.reset();
 		mCrc.update(result, CRC_OFFSET, result.length - CRC_OFFSET);		
 		crcValue = mCrc.getValue();
-		Util.log("CRC: "+crcValue);
+		//Util.log("CRC: "+crcValue);
 		result[3] = (byte)crcValue;
 	    crcValue >>= 8;
 	    result[2] = (byte)crcValue;

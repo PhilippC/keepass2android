@@ -19,6 +19,7 @@ import android.os.Message;
 
 import com.inputstick.api.Packet;
 import com.inputstick.api.Util;
+import com.inputstick.api.InputStickError;
 
 public class BTService {
 	
@@ -28,16 +29,7 @@ public class BTService {
 	public static final int EVENT_DATA = 1;
 	public static final int EVENT_CONNECTED = 2;
 	public static final int EVENT_CANCELLED = 3;
-	public static final int EVENT_CONNECTION_FAILED = 4;
-	public static final int EVENT_CONNECTION_LOST = 5;
-	public static final int EVENT_NO_BT_HW = 6;
-	public static final int EVENT_INVALID_MAC = 7;
-	//TODO:
-	public static final int EVENT_CMD_TIMEOUT = 8;
-	public static final int EVENT_INTERVAL_TIMEOUT = 9;
-	public static final int EVENT_TURN_ON_TIMEOUT = 10;
-	public static final int EVENT_OTHER_ERROR = 11;
-	
+	public static final int EVENT_ERROR = 4;	
 	
        
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); //SPP
@@ -71,8 +63,7 @@ public class BTService {
 	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			final String action = intent.getAction();
-			System.out.println("ACTION: "+action);
+			final String action = intent.getAction();	
 			if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
 				final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
 				if ((state == BluetoothAdapter.STATE_ON)  && (turnBluetoothOn)) {					
@@ -102,12 +93,12 @@ public class BTService {
     public void enableReflection(boolean enabled) {
     	mUseReflection = enabled;
     }
-	
-    private synchronized void event(int event) {
+    
+
+    private synchronized void event(int event, int arg1) {
     	Util.log("event() " + mLastEvent + " -> " + event);
-        mLastEvent = event;
-        
-        Message msg = Message.obtain(null, mLastEvent, 0, 0);
+        mLastEvent = event;        
+        Message msg = Message.obtain(null, mLastEvent, arg1, 0);
         mHandler.sendMessage(msg);        
     }        
     
@@ -163,7 +154,7 @@ public class BTService {
 		if (BluetoothAdapter.checkBluetoothAddress(mac)) {
 			BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 			if (mBluetoothAdapter == null) {
-				event(EVENT_NO_BT_HW);
+				event(EVENT_ERROR, InputStickError.ERROR_BLUETOOTH_NOT_SUPPORTED);
 			} else {
 				if (mBluetoothAdapter.isEnabled()) {					
 					doConnect(false);
@@ -172,7 +163,7 @@ public class BTService {
 				}
 			}
 		} else {
-			event(EVENT_INVALID_MAC);
+			event(EVENT_ERROR, InputStickError.ERROR_BLUETOOTH_INVALID_MAC);
 		}
     }    
     
@@ -180,7 +171,7 @@ public class BTService {
     	Util.log("disconnect");
         disconnecting = true;
         cancelThreads();            
-        event(EVENT_CANCELLED);
+        event(EVENT_CANCELLED, 0);
     }
 
 
@@ -226,7 +217,7 @@ public class BTService {
         mConnectedThread.start();
 
         connected = true;
-        event(EVENT_CONNECTED);
+        event(EVENT_CONNECTED, 0);
     }    
     
     
@@ -239,7 +230,7 @@ public class BTService {
 	    		Util.log("RETRY: "+retryCnt + " time left: " + (timeout - System.currentTimeMillis()));    		
 	    		doConnect(true);
 	    	} else {    	
-	    		event(EVENT_CONNECTION_FAILED);
+	    		event(EVENT_ERROR, InputStickError.ERROR_BLUETOOTH_CONNECTION_FAILED);
 	    	}     
     	}
     }    
@@ -249,7 +240,7 @@ public class BTService {
     	if (disconnecting) {
     		disconnecting = false;
     	} else {
-    		event(EVENT_CONNECTION_LOST);
+    		event(EVENT_ERROR, InputStickError.ERROR_BLUETOOTH_CONNECTION_LOST);
     	}
     }    
     
@@ -356,11 +347,13 @@ public class BTService {
             byte[] buffer = null;    
             int rxTmp;
             int lengthByte;
-            int length;            
+            int length;  
+            int wdgCnt = 0;
             while (true) {
                 try {
                 	rxTmp = mmInStream.read();
                 	if (rxTmp == Packet.START_TAG) {
+                		wdgCnt = 0;
 	                	lengthByte = mmInStream.read();
 	                	length = lengthByte;
 						length &= 0x3F;
@@ -373,8 +366,13 @@ public class BTService {
 						}				
 						mHandler.obtainMessage(EVENT_DATA, 0, 0, buffer).sendToTarget();             
                 	} else {
-                		System.out.println("RX: " + rxTmp);
-                		//possible WDG reset															     
+                		Util.log("Unexpected RX byte" + rxTmp);
+                		if (rxTmp == 0xAF) {
+                			wdgCnt++;
+                		}
+                		if (wdgCnt > 1024) {
+                			//TODO
+                		}															     
                 	}
                 } catch (IOException e) {
                     connectionLost();
@@ -388,7 +386,7 @@ public class BTService {
                 mmOutStream.write(buffer);
                 mmOutStream.flush();
             } catch (IOException e) {
-            	Util.log("Exception during write");
+            	Util.log("write() exception");
             }
         }          
 
@@ -396,7 +394,7 @@ public class BTService {
             try {
                 mmSocket.close();
             } catch (IOException e) {
-            	Util.log("close() of connect socket failed");
+            	Util.log("socket close() exception");
             }
         }
     }            

@@ -101,7 +101,7 @@ public abstract class KeyboardLayout {
 		/* 0x53 */ HIDKeycodes.KEY_DELETE,
 		/* 0x54 */ 0,
 		/* 0x55 */ 0,
-		/* 0x56 */ 0,
+		/* 0x56 */ HIDKeycodes.KEY_BACKSLASH_NON_US,  //GERMAN LAYOUT!
 		/* 0x57 */ HIDKeycodes.KEY_F11,
 		/* 0x58 */ HIDKeycodes.KEY_F12,
 		/* 0x59 */ 0,
@@ -117,16 +117,19 @@ public abstract class KeyboardLayout {
 	public static final int LAYOUT_CODE = 0;
 	
 	public abstract int[][] getLUT();
+	public abstract int[][] getDeadkeyLUT();
+	public abstract int[] 	getDeadkeys();
 	public abstract String getLocaleName();
 	public abstract void type(String text);
+	public abstract void type(String text, byte modifiers);
 	public abstract char getChar(int scanCode, boolean capsLock, boolean shift, boolean altGr);
 	
-	public void type(int[][] lut, String text) {
+	public void type(int[][] lut, int[][] deadkeyLUT, int[] deadkeys, String text, byte modifiers) {
 		if (InputStickHID.getState() == ConnectionManager.STATE_READY) {			
 			char[] chars = text.toCharArray();
 			HIDTransaction t;
 			for (char c : chars) {
-				t = getHIDTransaction(lut, c);
+				t = getHIDTransaction(lut, deadkeyLUT, deadkeys, c, modifiers);				
 				if (t != null) {
 					InputStickHID.addKeyboardTransaction(t);
 				}
@@ -194,7 +197,7 @@ public abstract class KeyboardLayout {
 	}
 	
 	public static int getScanCode(int[][] lut, char c) {		
-		for (int scanCode = 0; scanCode < 80; scanCode++) {
+		for (int scanCode = 0; scanCode < 0x60; scanCode++) {
 			if (lut[scanCode][0] == -1) {
 				continue;
 			} else {
@@ -233,19 +236,79 @@ public abstract class KeyboardLayout {
 	}
 	
 	
-	public static HIDTransaction getHIDTransaction(int[][] lut, char c) {
+	public static boolean isDeadkey(int[] deadkeys, char c) {
+		if (deadkeys != null) {
+			for (int key : deadkeys) {
+				if (key == (int)c) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static int searchLUT(int[][] deadkeyLUT, char c, int returnIndex) {
+		if (deadkeyLUT != null) {
+			for (int i = 0; i < deadkeyLUT.length; i++) {
+				if (deadkeyLUT[i][2] == (int)c) {
+					return deadkeyLUT[i][returnIndex];
+				}
+			}
+		}
+		return -1;
+	}
+	
+	public static int findDeadKey(int[][] deadkeyLUT, char c) {
+		return searchLUT(deadkeyLUT, c, 0);
+	}
+	
+	public static int findFollowingKey(int[][] deadkeyLUT, char c) {
+		return searchLUT(deadkeyLUT, c, 1);
+	}
+	
+	public static HIDTransaction getHIDTransaction(int[][] lut, int[][] deadkeyLUT, int[] deadkeys, char c, byte additionalModifierKeys) {
 		byte modifiers, key;
 		int scanCode;
 		
 		HIDTransaction t = new HIDTransaction();		
 		scanCode = getScanCode(lut, c);
-		if (scanCode > 0) {
+		if (scanCode > 0) {			
 			key = getKey(scanCode);
 			modifiers = getModifiers(lut, scanCode, c);
+			modifiers |= additionalModifierKeys;
 			
 			t.addReport(new KeyboardReport(modifiers, (byte)0));
 			t.addReport(new KeyboardReport(modifiers, key));
 			t.addReport(new KeyboardReport());
+			
+			//add space after deadkey!
+			if (isDeadkey(deadkeys, c)) {
+				t.addReport(new KeyboardReport((byte)0, HIDKeycodes.KEY_SPACEBAR)); //this won't work if modifiers are present!
+				t.addReport(new KeyboardReport());
+			}
+			
+		} else {
+			//check if character can be obtained using deadkey:
+			int deadkey = findDeadKey(deadkeyLUT, c);
+			if (deadkey > 0) { 				
+				//yes it can
+				int following = findFollowingKey(deadkeyLUT, c);								
+				
+				scanCode = getScanCode(lut, (char)deadkey);
+				key = getKey(scanCode);
+				modifiers = getModifiers(lut, scanCode, (char)deadkey);
+				t.addReport(new KeyboardReport(modifiers, (byte)0));
+				t.addReport(new KeyboardReport(modifiers, key));
+				t.addReport(new KeyboardReport());
+				
+				scanCode = getScanCode(lut, (char)following);
+				key = getKey(scanCode);
+				modifiers = getModifiers(lut, scanCode, (char)following);
+				t.addReport(new KeyboardReport(modifiers, (byte)0));
+				t.addReport(new KeyboardReport(modifiers, key));
+				t.addReport(new KeyboardReport());
+			}
+			
 		}
 		return t;
 	}		
@@ -260,7 +323,22 @@ public abstract class KeyboardLayout {
 				return RussianLayout.getInstance();
 			} else if (locale.equals(GermanLayout.getInstance().getLocaleName())) {
 				return GermanLayout.getInstance();
-			}
+			} else if (locale.equals(SlovakLayout.getInstance().getLocaleName())) {
+				return SlovakLayout.getInstance();
+			} else if (locale.equals(PortugueseBrazilianLayout.getInstance().getLocaleName())) {
+				return PortugueseBrazilianLayout.getInstance();
+			} else if (locale.equals(DvorakLayout.getInstance().getLocaleName())) {
+				return DvorakLayout.getInstance();
+			} else if (locale.equals(NorwegianLayout.getInstance().getLocaleName())) {
+				return NorwegianLayout.getInstance();
+			} else if (locale.equals(SwedishLayout.getInstance().getLocaleName())) {
+				return SwedishLayout.getInstance();
+			} else if (locale.equals(FrenchLayout.getInstance().getLocaleName())) {
+				return FrenchLayout.getInstance();
+			} else if (locale.equals(SpanishLayout.getInstance().getLocaleName())) {
+				return SpanishLayout.getInstance();
+			}						
+			
 		}
 
 		return UnitedStatesLayout.getInstance();
