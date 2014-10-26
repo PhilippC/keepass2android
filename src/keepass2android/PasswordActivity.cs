@@ -876,7 +876,7 @@ namespace keepass2android
 			//no need to check for validity of password because if this method is called, the Ok button was enabled (i.e. there was a valid password)
 			CompositeKey compositeKey = new CompositeKey();
 			compositeKey.AddUserKey(new KcpPassword(_password));
-			if ((KeyProviderType == KeyProviders.KeyFile) && (_keyFileOrProvider != ""))
+			if (KeyProviderType == KeyProviders.KeyFile)
 			{
 				try
 				{
@@ -895,11 +895,12 @@ namespace keepass2android
 				try
 				{
 					var lOtps = GetOtpsFromUi();
+					Kp2aLog.Log("received " + lOtps.Count + " otps.");
 					OathHotpKeyProv.CreateOtpSecret(lOtps, _otpInfo);
 				}
-				catch (Exception)
+				catch (Exception e)
 				{
-
+					Kp2aLog.Log(e.ToString());
 					Toast.MakeText(this, GetString(Resource.String.OtpKeyError), ToastLength.Long).Show();
 
 					return;
