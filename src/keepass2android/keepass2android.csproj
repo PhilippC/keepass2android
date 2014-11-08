@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;INCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -85,9 +85,6 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Support.v4" />
-    <Reference Include="GooglePlayServicesFroyoLib">
-      <HintPath>..\Components\googleplayservicesfroyo-9.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
@@ -138,6 +135,7 @@
     <Compile Include="fileselect\FileSelectActivity.cs" />
     <Compile Include="fileselect\FileDbHelper.cs" />
     <Compile Include="search\SearchProvider.cs" />
+    <Compile Include="SelectStorageLocationActivity.cs" />
     <Compile Include="services\OngoingNotificationsService.cs" />
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
     <Compile Include="intents\Intents.cs" />
@@ -831,12 +829,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\text_with_help.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="googleplayservicesfroyo">
-      <Version>9.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_storage_skydrive.png" />

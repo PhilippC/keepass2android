@@ -1,4 +1,4 @@
-/*
+﻿/*
 This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
 
   Keepass2Android is free software: you can redistribute it and/or modify
@@ -682,7 +682,7 @@ namespace keepass2android
 			addBinaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuAdd) , null, null, null);
 			addBinaryButton.Click += (sender, e) => 
 			{
-				Util.ShowBrowseDialog("/mnt/sdcard", this, Intents.RequestCodeFileBrowseForBinary, false);
+				Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForBinary, false);
 
 			};
 			binariesGroup.AddView(addBinaryButton,layoutParams);

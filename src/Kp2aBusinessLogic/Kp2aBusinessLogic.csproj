@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;INCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;EXCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -64,6 +64,7 @@
     <Compile Include="DataExchange\Formats\KeePassKdb2x.cs" />
     <Compile Include="DataExchange\Formats\KeePassXml2x.cs" />
     <Compile Include="DataExchange\PwExportInfo.cs" />
+    <Compile Include="Io\AndroidContentStorage.cs" />
     <Compile Include="Io\BuiltInFileStorage.cs" />
     <Compile Include="Io\CachingFileStorage.cs" />
     <Compile Include="Io\DropboxFileStorage.cs" />

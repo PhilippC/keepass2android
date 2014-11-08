@@ -24,6 +24,7 @@ using System.Xml.Serialization;
 using Android.App;
 using Android.Content;
 using Android.Database;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -86,7 +87,7 @@ namespace keepass2android
 		private const int RequestCodePrepareDbFile = 1000;
 		private const int RequestCodePrepareOtpAuxFile = 1001;
         private const int RequestCodeChallengeYubikey = 1002;
-
+		private const int RequestCodeSelectKeyfile = 1003;
 
 		private Task<MemoryStream> _loadDbTask;
 		private IOConnectionInfo _ioConnection;
@@ -136,6 +137,7 @@ namespace keepass2android
 
 		private ActivityDesign _design;
 		private bool _performingLoad;
+		
 
 		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -258,26 +260,20 @@ namespace keepass2android
 							
 							KcpKeyFile kcpKeyfile = (KcpKeyFile)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpKeyFile));
 
-							SetEditText(Resource.Id.pass_keyfile, kcpKeyfile.Path);
-							
+							FindViewById<TextView>(Resource.Id.label_keyfilename).Text =
+								App.Kp2a.GetFileStorage(kcpKeyfile.Ioc).GetDisplayName(kcpKeyfile.Ioc);
+
 						}
 					}
 					App.Kp2a.LockDatabase(false);
 					break;
-				case Result.Ok: // Key file browse dialog OK'ed.
-					if (requestCode == Intents.RequestCodeFileBrowseForKeyfile) {
-						string filename = Util.IntentToFilename(data, this);
-						if (filename != null) {
-							if (filename.StartsWith("file://")) {
-								filename = filename.Substring(7);
-							}
-							
-							filename = URLDecoder.Decode(filename);
-							
-							EditText fn = (EditText) FindViewById(Resource.Id.pass_keyfile);
-							fn.Text = filename;
-							
-						}
+				case Result.Ok:
+					if (requestCode == RequestCodeSelectKeyfile) 
+					{
+						IOConnectionInfo ioc = new IOConnectionInfo();
+						SetIoConnectionFromIntent(ioc, data);
+						_keyFileOrProvider = IOConnectionInfo.SerializeToString(ioc);
+						UpdateKeyfileIocView();
 					}
 					break;
 				case (Result)FileStorageResults.FileUsagePrepared:
@@ -351,6 +347,39 @@ namespace keepass2android
                     return;
                 }
 			}
+		}
+
+
+		private void UpdateKeyfileIocView()
+		{
+			//store keyfile in the view so that we can show the selected keyfile again if the user switches to another key provider and back to key file
+			FindViewById<TextView>(Resource.Id.label_keyfilename).Tag = _keyFileOrProvider;
+			if (string.IsNullOrEmpty(_keyFileOrProvider))
+			{
+				FindViewById<TextView>(Resource.Id.filestorage_label).Visibility = ViewStates.Gone;
+				FindViewById<ImageView>(Resource.Id.filestorage_logo).Visibility = ViewStates.Gone;
+				FindViewById<TextView>(Resource.Id.label_keyfilename).Text = Resources.GetString(Resource.String.no_keyfile_selected);
+			
+				return;
+			}
+			var ioc = IOConnectionInfo.UnserializeFromString(_keyFileOrProvider);
+			string displayPath = App.Kp2a.GetFileStorage(ioc).GetDisplayName(ioc);
+			int protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
+			string protocolId = protocolSeparatorPos < 0 ?
+				"file" : displayPath.Substring(0, protocolSeparatorPos);
+			Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
+			FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
+			FindViewById<ImageView>(Resource.Id.filestorage_logo).Visibility = ViewStates.Visible;
+			
+
+			String title = App.Kp2a.GetResourceString("filestoragename_" + protocolId);
+			FindViewById<TextView>(Resource.Id.filestorage_label).Text = title;
+			FindViewById<TextView>(Resource.Id.filestorage_label).Visibility = ViewStates.Visible;
+
+			FindViewById<TextView>(Resource.Id.label_keyfilename).Text = protocolSeparatorPos < 0 ?
+				displayPath :
+				displayPath.Substring(protocolSeparatorPos + 3);
+
 		}
 
 
@@ -543,14 +572,11 @@ namespace keepass2android
 			InitializeFilenameView();
 
 			if (KeyProviderType == KeyProviders.KeyFile)
-				SetEditText(Resource.Id.pass_keyfile, _keyFileOrProvider);
+			{
+				UpdateKeyfileIocView();
+			}
+				
 
-			FindViewById<EditText>(Resource.Id.pass_keyfile).TextChanged +=
-				(sender, args) =>
-				{
-					_keyFileOrProvider = FindViewById<EditText>(Resource.Id.pass_keyfile).Text;
-					UpdateOkButtonState();
-				};
 
 			FindViewById<EditText>(Resource.Id.password).TextChanged +=
 				(sender, args) =>
@@ -705,20 +731,14 @@ namespace keepass2android
 
 		private void InitializeKeyfileBrowseButton()
 		{
-			ImageButton browse = (ImageButton) FindViewById(Resource.Id.browse_button);
-			browse.Click += (sender, evt) =>
+			var browseButton = (Button)FindViewById(Resource.Id.btn_change_location);
+			browseButton.Click += (sender, evt) =>
 				{
-					string filename = null;
-					if (!String.IsNullOrEmpty(_ioConnection.Path))
-					{
-						File keyfile = new File(_ioConnection.Path);
-						File parent = keyfile.ParentFile;
-						if (parent != null)
-						{
-							filename = parent.AbsolutePath;
-						}
-					}
-					Util.ShowBrowseDialog(filename, this, Intents.RequestCodeFileBrowseForKeyfile, false);
+					Intent intent = new Intent(this, typeof(SelectStorageLocationActivity));
+					intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, true);
+					intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
+					intent.PutExtra(FileStorageSetupDefs.ExtraIsForSave, false);
+					StartActivityForResult(intent, RequestCodeSelectKeyfile);
 				};
 		}
 
@@ -738,7 +758,7 @@ namespace keepass2android
 								break;
 							case 1:
 								//don't set to "" to prevent losing the filename. (ItemSelected is also called during recreation!)
-								_keyFileOrProvider = FindViewById<EditText>(Resource.Id.pass_keyfile).Text;
+								_keyFileOrProvider = (FindViewById(Resource.Id.label_keyfilename).Tag ?? "").ToString();
 								break;
 							case 2:
 								_keyFileOrProvider = KeyProviderIdOtp;
@@ -779,7 +799,7 @@ namespace keepass2android
 				_showPassword = savedInstanceState.GetBoolean(ShowpasswordKey, false);
 				MakePasswordMaskedOrVisible();
 
-				_keyFileOrProvider = FindViewById<EditText>(Resource.Id.pass_keyfile).Text = savedInstanceState.GetString(KeyFileOrProviderKey);
+				_keyFileOrProvider = savedInstanceState.GetString(KeyFileOrProviderKey);
 				_password = FindViewById<EditText>(Resource.Id.password).Text = savedInstanceState.GetString(PasswordKey);
 
 				_pendingOtps = new List<string>(savedInstanceState.GetStringArrayList(PendingOtpsKey));
@@ -850,6 +870,11 @@ namespace keepass2android
 			FindViewById(Resource.Id.keyfileLine).Visibility = KeyProviderType == KeyProviders.KeyFile
 				                                                   ? ViewStates.Visible
 				                                                   : ViewStates.Gone;
+			if (KeyProviderType == KeyProviders.KeyFile)
+			{
+				UpdateKeyfileIocView();
+			}
+			
 			FindViewById(Resource.Id.otpView).Visibility = KeyProviderType == KeyProviders.Otp
 				                                               ? ViewStates.Visible
 				                                               : ViewStates.Gone;
@@ -880,12 +905,26 @@ namespace keepass2android
 			{
 				try
 				{
-					compositeKey.AddUserKey(new KcpKeyFile(_keyFileOrProvider));
+					if (_keyFileOrProvider == "")
+						throw new System.IO.FileNotFoundException();
+					var ioc = IOConnectionInfo.UnserializeFromString(_keyFileOrProvider);
+					using (var stream = App.Kp2a.GetFileStorage(ioc).OpenFileForRead(ioc))
+					{
+						byte[] keyfileData = StreamToMemoryStream(stream).ToArray();
+						compositeKey.AddUserKey(new KcpKeyFile(keyfileData, ioc, true));
+					}
+
+				}
+				catch (System.IO.FileNotFoundException e)
+				{
+					Kp2aLog.Log(e.ToString());
+					Toast.MakeText(this, App.Kp2a.GetResourceString(UiStringKey.keyfile_does_not_exist), ToastLength.Long).Show();
+					return;
 				}
 				catch (Exception e)
 				{
 					Kp2aLog.Log(e.ToString());
-					Toast.MakeText(this, App.Kp2a.GetResourceString(UiStringKey.keyfile_does_not_exist), ToastLength.Long).Show();
+					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
 					return;
 				}
 			}
@@ -1032,23 +1071,29 @@ namespace keepass2android
 			var fileStorage = App.Kp2a.GetFileStorage(_ioConnection);
 			var stream = fileStorage.OpenFileForRead(_ioConnection);
 
+			var memoryStream = StreamToMemoryStream(stream);
+
+			Kp2aLog.Log("Pre-loading database file completed");
+
+			return memoryStream;
+		}
+
+		private static MemoryStream StreamToMemoryStream(Stream stream)
+		{
 			var memoryStream = stream as MemoryStream;
 			if (memoryStream == null)
 			{
-				// Read the file into memory
+				// Read the stream into memory
 				int capacity = 4096; // Default initial capacity, if stream can't report it.
 				if (stream.CanSeek)
 				{
-					capacity = (int)stream.Length;
+					capacity = (int) stream.Length;
 				}
 				memoryStream = new MemoryStream(capacity);
 				stream.CopyTo(memoryStream);
 				stream.Close();
-				memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+				memoryStream.Seek(0, SeekOrigin.Begin);
 			}
-
-			Kp2aLog.Log("Pre-loading database file completed");
-
 			return memoryStream;
 		}
 

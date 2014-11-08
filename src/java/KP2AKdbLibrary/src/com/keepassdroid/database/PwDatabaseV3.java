@@ -47,10 +47,14 @@ package com.keepassdroid.database;
 
 // Java
 import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PushbackInputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.DigestOutputStream;
 import java.security.MessageDigest;
@@ -125,18 +129,18 @@ public class PwDatabaseV3 {
 
 
 	
-	public void setMasterKey(String key, String keyFileName)
+	public void setMasterKey(String key, InputStream keyfileStream)
 			throws InvalidKeyFileException, IOException {
-				assert( key != null && keyFileName != null );
+				assert( key != null && keyfileStream != null );
 			
-				masterKey = getMasterKey(key, keyFileName);
+				masterKey = getMasterKey(key, keyfileStream);
 			}
 
-	protected byte[] getCompositeKey(String key, String keyFileName)
+	protected byte[] getCompositeKey(String key, InputStream keyfileStream)
 			throws InvalidKeyFileException, IOException {
-				assert(key != null && keyFileName != null);
+				assert(key != null && keyfileStream != null);
 				
-				byte[] fileKey = getFileKey(keyFileName);
+				byte[] fileKey = getFileKey(keyfileStream);
 				
 				byte[] passwordKey = getPasswordKey(key);
 				
@@ -151,46 +155,40 @@ public class PwDatabaseV3 {
 				
 				return md.digest(fileKey);
 	}
-
-	protected byte[] getFileKey(String fileName)
+	
+	protected byte[] getFileKey(InputStream keyfileStream)
 			throws InvalidKeyFileException, IOException {
-				assert(fileName != null);
+				assert(keyfileStream != null);
 				
-				File keyfile = new File(fileName);
 				
-				if ( ! keyfile.exists() ) {
-					throw new InvalidKeyFileException();
+				byte[] buff = new byte[8000];
+
+				int bytesRead = 0;
+
+				ByteArrayOutputStream bao = new ByteArrayOutputStream();
+
+				while ((bytesRead = keyfileStream.read(buff)) != -1) {
+					bao.write(buff, 0, bytesRead);
 				}
+
+				byte[] keyFileData = bao.toByteArray();
+
+				ByteArrayInputStream bin = new ByteArrayInputStream(keyFileData);
 				
-				byte[] key = loadXmlKeyFile(fileName);
-				if ( key != null ) {
-					return key;
-				}
-								
-				FileInputStream fis;
-				try {
-					fis = new FileInputStream(keyfile);
-				} catch (FileNotFoundException e) {
-					throw new InvalidKeyFileException();
-				}
 				
-				BufferedInputStream bis = new BufferedInputStream(fis, 64);
 				
-				long fileSize = keyfile.length();
-				if ( fileSize == 0 ) {
-					throw new KeyFileEmptyException();
-				} else if ( fileSize == 32 ) {
+				if ( keyFileData.length == 32 ) {
 					byte[] outputKey = new byte[32];
-					if ( bis.read(outputKey, 0, 32) != 32 ) {
+					if ( bin.read(outputKey, 0, 32) != 32 ) {
 						throw new IOException("Error reading key.");
 					}
 					
 					return outputKey;
-				} else if ( fileSize == 64 ) {
+				} else if ( keyFileData.length == 64 ) {
 					byte[] hex = new byte[64];
 					
-					bis.mark(64);
-					if ( bis.read(hex, 0, 64) != 64 ) {
+					bin.mark(64);
+					if ( bin.read(hex, 0, 64) != 64 ) {
 						throw new IOException("Error reading key.");
 					}
 			
@@ -198,7 +196,7 @@ public class PwDatabaseV3 {
 						return hexStringToByteArray(new String(hex));
 					} catch (IndexOutOfBoundsException e) {
 						// Key is not base 64, treat it as binary data
-						bis.reset();
+						bin.reset();
 					}
 				}
 			
@@ -214,7 +212,7 @@ public class PwDatabaseV3 {
 				
 				try {
 					while (true) {
-						int bytesRead = bis.read(buffer, 0, 2048);
+						bytesRead = bin.read(buffer, 0, 2048);
 						if ( bytesRead == -1 ) break;  // End of file
 						
 						md.update(buffer, 0, bytesRead);
@@ -495,16 +493,16 @@ public class PwDatabaseV3 {
 		return newId;
 	}
 
-	public byte[] getMasterKey(String key, String keyFileName)
+	public byte[] getMasterKey(String key, InputStream keyfileStream)
 			throws InvalidKeyFileException, IOException {
-		assert (key != null && keyFileName != null);
+		assert (key != null && keyfileStream != null);
 
-		if (key.length() > 0 && keyFileName.length() > 0) {
-			return getCompositeKey(key, keyFileName);
+		if (key.length() > 0 && keyfileStream != null) {
+			return getCompositeKey(key, keyfileStream);
 		} else if (key.length() > 0) {
 			return getPasswordKey(key);
-		} else if (keyFileName.length() > 0) {
-			return getFileKey(keyFileName);
+		} else if (keyfileStream != null) {
+			return getFileKey(keyfileStream);
 		} else {
 			throw new IllegalArgumentException("Key cannot be empty.");
 		}
@@ -514,11 +512,6 @@ public class PwDatabaseV3 {
 	public byte[] getPasswordKey(String key) throws IOException {
 		return getPasswordKey(key, "ISO-8859-1");
 	}
-	
-	protected byte[] loadXmlKeyFile(String fileName) {
-		return null;
-	}
-
 
 
 	public long getNumRounds() {

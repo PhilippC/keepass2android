@@ -443,7 +443,8 @@ namespace keepass2android
 							new SftpFileStorage(this),
 #endif
 #endif
-							new BuiltInFileStorage(this)
+							new BuiltInFileStorage(this),
+							new AndroidContentStorage(Application.Context)
 						};
 				}
 				return _fileStorages;

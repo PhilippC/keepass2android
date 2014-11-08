@@ -32,6 +32,8 @@
 
 	<string name="ShowGroupInEntry_title">Show group name in entry view</string>
 
+	<string name="unknown_uri_scheme">Sorry! Keepass2Android cannot handle the returned URI  %1$s. Please contact the developer!</string>
+
 	<string name="security_prefs">Security</string>
 	<string name="display_prefs">Display</string>
 	<string name="password_access_prefs">Password entry access</string>
@@ -68,6 +70,7 @@
   <string name="entry_expires">Expires</string>
   <string name="entry_group_name">Group Name</string>
   <string name="entry_keyfile">Key file (optional)</string>
+	<string name="keyfile_heading">Key file</string>
   <string name="entry_modified">Modified</string>
   <string name="entry_password">Password</string>
   <string name="entry_save">Save</string>
@@ -114,6 +117,7 @@
   <string name="invalid_algorithm">Invalid algorithm.</string>
   <string name="invalid_db_sig">Database format not recognized.</string>
   <string name="keyfile_does_not_exist">Key file does not exist.</string>
+	<string name="no_keyfile_selected">No key file selected.</string>
   <string name="keyfile_is_empty">Key file is empty.</string>
   <string name="length">Length</string>
   <string name="list_size_title">Group list size</string>
