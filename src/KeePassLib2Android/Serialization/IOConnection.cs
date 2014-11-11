@@ -647,14 +647,17 @@ namespace KeePassLib.Serialization
 			try
 			{
 				sIn = IOConnection.OpenRead(ioc);
-				if(sIn == null) return null;
+				if (sIn == null) return null;
 
 				ms = new MemoryStream();
 				MemUtil.CopyStream(sIn, ms);
 
 				return ms.ToArray();
 			}
-			catch(Exception) { }
+			catch (Exception e)
+			{
+				Kp2aLog.Log("error opening file: " + e);
+			}
 			finally
 			{
 				if(sIn != null) sIn.Close();

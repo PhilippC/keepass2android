@@ -36,24 +36,20 @@ namespace keepass2android
 			}
 
 			KcpKeyFile passwordKeyfile = (KcpKeyFile)key.GetUserKey(typeof(KcpKeyFile));
-			string keyfile = ""; 
+			MemoryStream keyfileStream = null;
 			if (passwordKeyfile != null)
 			{
-				keyfile = passwordKeyfile.Path;
+				keyfileStream = new MemoryStream(passwordKeyfile.RawFileData.ReadData());
 			}
 
 
 			try
 			{
-				var dbv3 = importer.OpenDatabase(hashingStream, password, keyfile);
+				var dbv3 = importer.OpenDatabase(hashingStream, password, keyfileStream);
 
 				db.Name = dbv3.Name;
 				db.RootGroup = ConvertGroup(dbv3.RootGroup);
 				
-			}
-			catch (InvalidPasswordException e) {
-			
-				return;
 			}
 			catch (Java.IO.FileNotFoundException e)
 			{

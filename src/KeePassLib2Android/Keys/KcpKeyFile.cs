@@ -43,6 +43,7 @@ namespace KeePassLib.Keys
 	{
 		private IOConnectionInfo m_ioc;
 		private ProtectedBinary m_pbKeyData;
+		private ProtectedBinary m_pbFileData;
 
 		/// <summary>
 		/// Path to the key file.
@@ -65,6 +66,11 @@ namespace KeePassLib.Keys
 		public IOConnectionInfo Ioc
 		{
 			get { return m_ioc; }
+		}
+
+		public ProtectedBinary RawFileData
+		{
+			get { return m_pbFileData; }
 		}
 
 		public KcpKeyFile(string strKeyFile)
@@ -95,6 +101,7 @@ namespace KeePassLib.Keys
 		private void Construct(byte[] pbFileData, IOConnectionInfo iocKeyFile, bool bThrowIfDbFile)
 		{
 			if (pbFileData == null) throw new Java.IO.FileNotFoundException();
+			m_pbFileData = new ProtectedBinary(true, pbFileData);
 
 			if (bThrowIfDbFile && (pbFileData.Length >= 8))
 			{

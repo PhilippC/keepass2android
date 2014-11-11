@@ -2,11 +2,15 @@
 using System.IO;
 using System.Linq;
 using Android.App;
+using Com.Keepassdroid.Database.Load;
+using Java.IO;
 using KeePassLib;
+using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using keepass2android;
 using keepass2android.Io;
+using FileNotFoundException = System.IO.FileNotFoundException;
 
 namespace Kp2aUnitTests
 {
@@ -70,6 +74,56 @@ namespace Kp2aUnitTests
 			Assert.AreEqual(2, generalGroup.Entries.Count());
 			foreach (PwEntry e in generalGroup.Entries)
 				Assert.IsFalse(e.Binaries.Any());
+		}
+
+		[TestMethod]
+		public void TestLoadKdb1WithKeyfileByDirectCall()
+		{
+			ImporterV3 importer = new ImporterV3();
+
+			try
+			{
+				FileStream dbStream = new FileStream(TestDbDirectory+"withkeyfile_nopwd.kdb", FileMode.Open);
+				FileStream keyfileStream = new FileStream(TestDbDirectory + "withkeyfile.key", FileMode.Open);
+				/*
+				for (int i = 0; i < 10; i++)
+				{
+					int b = keyfileStream.ReadByte();
+					Kp2aLog.Log(i+": " + b);
+				}
+				keyfileStream.Close();
+				Kp2aLog.Log("stream 2");
+				var keyfileStream2 = new MemoryStream(new KcpKeyFile(TestDbDirectory + "withkeyfile.key").RawFileData.ReadData());
+				for (int i = 0; i < 10; i++)
+				{
+					int b = keyfileStream2.ReadByte();
+					Kp2aLog.Log(i + ": " + b);
+				}*/
+				importer.OpenDatabase(dbStream, "", keyfileStream);
+			}
+			catch (Exception e)
+			{
+				Kp2aLog.Log(e.ToString());
+				Assert.Fail("exception occured: " + e);
+			}
+
+		}
+
+		[TestMethod]
+		public void TestLoadKdb1WithKeyfile()
+		{
+			var app = PerformLoad("withkeyfile.kdb", "test", TestDbDirectory + "withkeyfile.key");
+
+		}
+
+
+		[TestMethod]
+		public void TestLoadKdb1WithKeyfileOnly()
+		{
+			var app = PerformLoad("withkeyfile_nopwd.kdb", "", TestDbDirectory + "withkeyfile.key");
+
+
+
 		}
 
 		[TestMethod]
