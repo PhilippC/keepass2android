@@ -3296,6 +3296,9 @@ namespace keepass2android
 			// aapt resource value: 0x7f070204
 			public const int BinaryDirectory_title = 2131165700;
 			
+			// aapt resource value: 0x7f0702c5
+			public const int CancelReadOnly = 2131165893;
+			
 			// aapt resource value: 0x7f07026a
 			public const int CannotMoveGroupHere = 2131165802;
 			
@@ -3305,56 +3308,56 @@ namespace keepass2android
 			// aapt resource value: 0x7f0702bb
 			public const int CertificateWarning = 2131165883;
 			
+			// aapt resource value: 0x7f0702d8
+			public const int ChangeLog = 2131165912;
+			
+			// aapt resource value: 0x7f0702d7
+			public const int ChangeLog_0_7 = 2131165911;
+			
+			// aapt resource value: 0x7f0702d5
+			public const int ChangeLog_0_8 = 2131165909;
+			
+			// aapt resource value: 0x7f0702d4
+			public const int ChangeLog_0_8_1 = 2131165908;
+			
+			// aapt resource value: 0x7f0702d3
+			public const int ChangeLog_0_8_2 = 2131165907;
+			
+			// aapt resource value: 0x7f0702d2
+			public const int ChangeLog_0_8_3 = 2131165906;
+			
+			// aapt resource value: 0x7f0702d1
+			public const int ChangeLog_0_8_4 = 2131165905;
+			
 			// aapt resource value: 0x7f0702d0
-			public const int ChangeLog = 2131165904;
+			public const int ChangeLog_0_8_5 = 2131165904;
 			
 			// aapt resource value: 0x7f0702cf
-			public const int ChangeLog_0_7 = 2131165903;
-			
-			// aapt resource value: 0x7f0702cd
-			public const int ChangeLog_0_8 = 2131165901;
-			
-			// aapt resource value: 0x7f0702cc
-			public const int ChangeLog_0_8_1 = 2131165900;
-			
-			// aapt resource value: 0x7f0702cb
-			public const int ChangeLog_0_8_2 = 2131165899;
-			
-			// aapt resource value: 0x7f0702ca
-			public const int ChangeLog_0_8_3 = 2131165898;
-			
-			// aapt resource value: 0x7f0702c9
-			public const int ChangeLog_0_8_4 = 2131165897;
-			
-			// aapt resource value: 0x7f0702c8
-			public const int ChangeLog_0_8_5 = 2131165896;
-			
-			// aapt resource value: 0x7f0702c7
-			public const int ChangeLog_0_8_6 = 2131165895;
-			
-			// aapt resource value: 0x7f0702c6
-			public const int ChangeLog_0_9 = 2131165894;
-			
-			// aapt resource value: 0x7f0702c5
-			public const int ChangeLog_0_9_1 = 2131165893;
-			
-			// aapt resource value: 0x7f0702c4
-			public const int ChangeLog_0_9_2 = 2131165892;
-			
-			// aapt resource value: 0x7f0702c3
-			public const int ChangeLog_0_9_3 = 2131165891;
-			
-			// aapt resource value: 0x7f0702c2
-			public const int ChangeLog_0_9_3_r5 = 2131165890;
-			
-			// aapt resource value: 0x7f0702c1
-			public const int ChangeLog_0_9_4 = 2131165889;
+			public const int ChangeLog_0_8_6 = 2131165903;
 			
 			// aapt resource value: 0x7f0702ce
-			public const int ChangeLog_keptDonate = 2131165902;
+			public const int ChangeLog_0_9 = 2131165902;
 			
-			// aapt resource value: 0x7f0702bf
-			public const int ChangeLog_title = 2131165887;
+			// aapt resource value: 0x7f0702cd
+			public const int ChangeLog_0_9_1 = 2131165901;
+			
+			// aapt resource value: 0x7f0702cc
+			public const int ChangeLog_0_9_2 = 2131165900;
+			
+			// aapt resource value: 0x7f0702cb
+			public const int ChangeLog_0_9_3 = 2131165899;
+			
+			// aapt resource value: 0x7f0702ca
+			public const int ChangeLog_0_9_3_r5 = 2131165898;
+			
+			// aapt resource value: 0x7f0702c9
+			public const int ChangeLog_0_9_4 = 2131165897;
+			
+			// aapt resource value: 0x7f0702d6
+			public const int ChangeLog_keptDonate = 2131165910;
+			
+			// aapt resource value: 0x7f0702c7
+			public const int ChangeLog_title = 2131165895;
 			
 			// aapt resource value: 0x7f070112
 			public const int CheckForFileChangesOnSave_key = 2131165458;
@@ -3380,8 +3383,20 @@ namespace keepass2android
 			// aapt resource value: 0x7f070226
 			public const int ClearOfflineCache_title = 2131165734;
 			
+			// aapt resource value: 0x7f0702c4
+			public const int ClickOkToSelectLocation = 2131165892;
+			
+			// aapt resource value: 0x7f0702c2
+			public const int CopyFileRequired = 2131165890;
+			
+			// aapt resource value: 0x7f0702c3
+			public const int CopyFileRequiredForEditing = 2131165891;
+			
 			// aapt resource value: 0x7f070117
 			public const int CopyToClipboardNotification_key = 2131165463;
+			
+			// aapt resource value: 0x7f0702c6
+			public const int CopyingFile = 2131165894;
 			
 			// aapt resource value: 0x7f07025d
 			public const int CouldNotLoadFromRemote = 2131165789;
@@ -3436,6 +3451,15 @@ namespace keepass2android
 			
 			// aapt resource value: 0x7f070104
 			public const int FileHandling_prefs_key = 2131165444;
+			
+			// aapt resource value: 0x7f0702c0
+			public const int FileIsReadOnly = 2131165888;
+			
+			// aapt resource value: 0x7f0702c1
+			public const int FileIsReadOnlyOnKitkat = 2131165889;
+			
+			// aapt resource value: 0x7f0702bf
+			public const int FileIsTemporarilyAvailable = 2131165887;
 			
 			// aapt resource value: 0x7f07017a
 			public const int FileNotFound = 2131165562;
@@ -3524,8 +3548,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f070234
 			public const int PreloadDatabaseEnabled_title = 2131165748;
 			
-			// aapt resource value: 0x7f0702c0
-			public const int PreviewWarning = 2131165888;
+			// aapt resource value: 0x7f0702c8
+			public const int PreviewWarning = 2131165896;
 			
 			// aapt resource value: 0x7f070105
 			public const int QuickUnlockDefaultEnabled_key = 2131165445;
@@ -4169,11 +4193,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f070145
 			public const int brackets = 2131165509;
 			
-			// aapt resource value: 0x7f0702d3
-			public const int browser_intall_text = 2131165907;
+			// aapt resource value: 0x7f0702db
+			public const int browser_intall_text = 2131165915;
 			
-			// aapt resource value: 0x7f0702d4
-			public const int building_search_idx = 2131165908;
+			// aapt resource value: 0x7f0702dc
+			public const int building_search_idx = 2131165916;
 			
 			// aapt resource value: 0x7f070285
 			public const int button_change_location = 2131165829;
@@ -4259,14 +4283,14 @@ namespace keepass2android
 			// aapt resource value: 0x7f0700ec
 			public const int db_key = 2131165420;
 			
-			// aapt resource value: 0x7f0702d5
-			public const int decrypting_db = 2131165909;
+			// aapt resource value: 0x7f0702dd
+			public const int decrypting_db = 2131165917;
 			
-			// aapt resource value: 0x7f0702d6
-			public const int decrypting_entry = 2131165910;
+			// aapt resource value: 0x7f0702de
+			public const int decrypting_entry = 2131165918;
 			
-			// aapt resource value: 0x7f0702d7
-			public const int default_checkbox = 2131165911;
+			// aapt resource value: 0x7f0702df
+			public const int default_checkbox = 2131165919;
 			
 			// aapt resource value: 0x7f0700de
 			public const int default_file_path = 2131165406;
@@ -4289,8 +4313,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0700f3
 			public const int design_key = 2131165427;
 			
-			// aapt resource value: 0x7f0702d1
-			public const int design_title = 2131165905;
+			// aapt resource value: 0x7f0702d9
+			public const int design_title = 2131165913;
 			
 			// aapt resource value: 0x7f070152
 			public const int digits = 2131165522;
@@ -4352,8 +4376,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f070156
 			public const int entry_accessed = 2131165526;
 			
-			// aapt resource value: 0x7f0702d8
-			public const int entry_and_or = 2131165912;
+			// aapt resource value: 0x7f0702e0
+			public const int entry_and_or = 2131165920;
 			
 			// aapt resource value: 0x7f070168
 			public const int entry_binaries = 2131165544;
@@ -4409,8 +4433,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f07028d
 			public const int error_adding_keyfile = 2131165837;
 			
-			// aapt resource value: 0x7f0702d9
-			public const int error_arc4 = 2131165913;
+			// aapt resource value: 0x7f0702e1
+			public const int error_arc4 = 2131165921;
 			
 			// aapt resource value: 0x7f070169
 			public const int error_can_not_handle_uri = 2131165545;
@@ -4424,8 +4448,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f07016c
 			public const int error_database_exists = 2131165548;
 			
-			// aapt resource value: 0x7f0702d2
-			public const int error_database_settings = 2131165906;
+			// aapt resource value: 0x7f0702da
+			public const int error_database_settings = 2131165914;
 			
 			// aapt resource value: 0x7f07016d
 			public const int error_database_settinoverrgs = 2131165549;
@@ -4454,8 +4478,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f070174
 			public const int error_nopass = 2131165556;
 			
-			// aapt resource value: 0x7f0702da
-			public const int error_out_of_memory = 2131165914;
+			// aapt resource value: 0x7f0702e2
+			public const int error_out_of_memory = 2131165922;
 			
 			// aapt resource value: 0x7f070175
 			public const int error_pass_gen_type = 2131165557;
@@ -4466,8 +4490,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f070177
 			public const int error_rounds_not_number = 2131165559;
 			
-			// aapt resource value: 0x7f0702db
-			public const int error_rounds_too_large = 2131165915;
+			// aapt resource value: 0x7f0702e3
+			public const int error_rounds_too_large = 2131165923;
 			
 			// aapt resource value: 0x7f07020f
 			public const int error_string_key = 2131165711;
@@ -4655,11 +4679,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f0701d6
 			public const int insert_element_here = 2131165654;
 			
-			// aapt resource value: 0x7f0702dc
-			public const int install_from_market = 2131165916;
+			// aapt resource value: 0x7f0702e4
+			public const int install_from_market = 2131165924;
 			
-			// aapt resource value: 0x7f0702dd
-			public const int install_from_website = 2131165917;
+			// aapt resource value: 0x7f0702e5
+			public const int install_from_website = 2131165925;
 			
 			// aapt resource value: 0x7f07018c
 			public const int invalid_algorithm = 2131165580;
@@ -4874,8 +4898,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0701a6
 			public const int menu_hide_password = 2131165606;
 			
-			// aapt resource value: 0x7f0702de
-			public const int menu_homepage = 2131165918;
+			// aapt resource value: 0x7f0702e6
+			public const int menu_homepage = 2131165926;
 			
 			// aapt resource value: 0x7f0701a7
 			public const int menu_lock = 2131165607;

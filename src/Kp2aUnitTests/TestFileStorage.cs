@@ -183,5 +183,15 @@ namespace Kp2aUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+		public bool IsPermanentLocation(IOConnectionInfo ioc)
+		{
+			return true;	
+		}
+
+		public bool IsReadOnly(IOConnectionInfo ioc)
+		{
+			return false;
+		}
 	}
 }

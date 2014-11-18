@@ -267,10 +267,29 @@ namespace keepass2android
 			}
 		}
 
+
+		class CancelListener: Java.Lang.Object, IDialogInterfaceOnCancelListener
+		{
+			private readonly Action _onCancel;
+
+			public CancelListener(Action onCancel)
+			{
+				_onCancel = onCancel;
+			}
+
+			public void OnCancel(IDialogInterface dialog)
+			{
+				_onCancel();
+			}
+		}
+
 		public static void ShowFilenameDialog(Activity activity, FileSelectedHandler onOpen, FileSelectedHandler onCreate, Action onCancel, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.SetView(activity.LayoutInflater.Inflate(Resource.Layout.file_selection_filename, null));
+			
+			if (onCancel != null)
+				builder.SetOnCancelListener(new CancelListener(onCancel));
 			Dialog dialog = builder.Create();
 			dialog.Show();
 
@@ -308,11 +327,13 @@ namespace keepass2android
 			cancelButton.Click += delegate
 				{
 					dialog.Dismiss();
-					
+					if (onCancel != null)
+						onCancel();
 				};
 
-			if (onCancel != null)
-				dialog.SetOnDismissListener(new DismissListener(onCancel));
+			
+
+			
 
 
 			ImageButton browseButton = (ImageButton) dialog.FindViewById(Resource.Id.browse_button);
@@ -324,7 +345,7 @@ namespace keepass2android
 				{
 					string filename = ((EditText) dialog.FindViewById(Resource.Id.file_filename)).Text;
 
-					Util.ShowBrowseDialog(activity, requestCodeBrowse, onCreate != null);
+					ShowBrowseDialog(activity, requestCodeBrowse, onCreate != null);
 
 				};
 

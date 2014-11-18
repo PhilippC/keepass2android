@@ -542,6 +542,19 @@ namespace keepass2android.Io
 			
 		}
 
+		public bool IsPermanentLocation(IOConnectionInfo ioc)
+		{
+			//even though the cache would be permanent, it's not a good idea to cache a temporary file, so return false in that case:
+			return _cachedStorage.IsPermanentLocation(ioc);
+		}
+
+		public bool IsReadOnly(IOConnectionInfo ioc)
+		{
+			//even though the cache can always be written, the changes made in the cache could not be transferred to the cached file
+			//so we better treat the cache as read-only as well.
+			return _cachedStorage.IsReadOnly(ioc);
+		}
+
 		private void StoreFilePath(IOConnectionInfo folderPath, string filename, IOConnectionInfo res)
 		{
 			File.WriteAllText(CachedFilePath(GetPseudoIoc(folderPath, filename)) + ".filepath", res.Path);

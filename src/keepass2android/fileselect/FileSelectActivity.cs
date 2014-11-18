@@ -133,6 +133,7 @@ namespace keepass2android
 				Intent intent = new Intent(this, typeof(SelectStorageLocationActivity));
 				intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, true);
 				intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
+				intent.PutExtra(SelectStorageLocationActivity.ExtraKeyWritableRequirements, (int) SelectStorageLocationActivity.WritableRequirements.WriteDesired);
 				intent.PutExtra(FileStorageSetupDefs.ExtraIsForSave, false);
 				StartActivityForResult(intent, RequestCodeSelectIoc);	
 				                   

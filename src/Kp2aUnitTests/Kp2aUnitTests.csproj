@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestAndroidContentFileStorage.cs" />
     <Compile Include="TestIntentsAndBundles.cs" />
     <Compile Include="ProgressDialogStub.cs" />
     <Compile Include="TestBase.cs" />

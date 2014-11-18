@@ -167,7 +167,7 @@ public class ImporterV3  {
 		hdr.loadFromFile(filebuf, 0 );
 
 		if( (hdr.signature1 != PwDbHeader.PWM_DBSIG_1) || (hdr.signature2 != PwDbHeaderV3.DBSIG_2) ) {
-			throw new InvalidDBSignatureException();
+			throw new InvalidDBSignatureException("Invalid database signature!");
 		}
 
 		if( !hdr.matchesVersion() ) {
@@ -230,7 +230,7 @@ public class ImporterV3  {
 		} catch (IllegalBlockSizeException e1) {
 			throw new IOException("Invalid block size");
 		} catch (BadPaddingException e1) {
-			throw new InvalidPasswordException();
+			throw new InvalidPasswordException("Invalid key!");
 		}
 
 		// Copy decrypted data for testing
@@ -251,7 +251,7 @@ public class ImporterV3  {
 		if( ! Arrays.equals(hash, hdr.contentsHash) ) {
 
 			Log.w("KeePassDroid","Database file did not decrypt correctly. (checksum code is broken)");
-			throw new InvalidPasswordException();
+			throw new InvalidPasswordException("Invalid key!");
 		}
 
 		// Import all groups

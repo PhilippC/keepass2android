@@ -143,6 +143,18 @@ namespace keepass2android.Io
 		{
 			throw new NotImplementedException();
 		}
+
+		public bool IsPermanentLocation(IOConnectionInfo ioc)
+		{
+			//on pre-Kitkat devices, content:// is always temporary:
+			return false;
+		}
+
+		public bool IsReadOnly(IOConnectionInfo ioc)
+		{
+			//on pre-Kitkat devices, we can't write content:// files
+			return true;
+		}
 	}
 
 	class AndroidContentWriteTransaction : IWriteTransaction
