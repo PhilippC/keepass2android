@@ -1,42 +1,26 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using Group.Pals.Android.Lib.UI.Filechooser.Utils.UI;
 using KeePassLib.Serialization;
+using KeePassLib.Utility;
 using keepass2android.Io;
-using Environment = Android.OS.Environment;
+using keepass2android.Utils;
 
 namespace keepass2android
 {
 	[Activity(Label = "")]
-	public class SelectStorageLocationActivity : Activity, IDialogInterfaceOnDismissListener
+	public class SelectStorageLocationActivity : SelectStorageLocationActivityBase, IDialogInterfaceOnDismissListener
 	{
 		private ActivityDesign _design;
-		private bool _isRecreated;
-		private IOConnectionInfo _selectedIoc;
+		
 		private const string BundleKeySelectedIoc = "BundleKeySelectedIoc";
-		private const int RequestCodeFileStorageSelectionForPrimarySelect = 983713;
-		private const int RequestCodeFileStorageSelectionForCopyToWritableLocation = 983714;
-		private const int RequestCodeFileFileBrowseForWritableLocation = 983715;
-
-		public enum WritableRequirements
-		{
-			ReadOnly = 0,
-			WriteDesired = 1,
-			WriteDemanded = 2
-		}
-
+		
+		
 		public const string ExtraKeyWritableRequirements = "EXTRA_KEY_WRITABLE_REQUIREMENTS";
 
-		public SelectStorageLocationActivity()
+		public SelectStorageLocationActivity() : base(App.Kp2a)
 		{
 			_design = new ActivityDesign(this);
 		}
@@ -58,6 +42,8 @@ namespace keepass2android
 
 			bool allowThirdPartyGet = Intent.GetBooleanExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, false);
 			bool allowThirdPartySend = Intent.GetBooleanExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
+
+			bool isRecreated = false;
 			if (bundle == null)
 				State = new Bundle();
 			else
@@ -66,15 +52,14 @@ namespace keepass2android
 				var selectedIocString = bundle.GetString(BundleKeySelectedIoc, null);
 				if (selectedIocString != null)
 					_selectedIoc = IOConnectionInfo.UnserializeFromString(selectedIocString);
-				_isRecreated = true;
+				isRecreated = true;
 			}
 
-			if (!_isRecreated)
+			//todo: handle orientation change while dialog is shown
+
+			if (!isRecreated)
 			{
-				Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
-				intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, allowThirdPartyGet);
-				intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, allowThirdPartySend);
-				StartActivityForResult(intent, RequestCodeFileStorageSelectionForPrimarySelect);	
+				StartFileStorageSelection(RequestCodeFileStorageSelectionForPrimarySelect, allowThirdPartyGet, allowThirdPartySend);
 			}
 				
 
@@ -82,7 +67,58 @@ namespace keepass2android
 
 		protected Bundle State { get; set; }
 
-		protected bool IsStorageSelectionForSave 
+		protected override void ShowToast(string text)
+		{
+			Toast.MakeText(this, text, ToastLength.Long).Show();
+		}
+
+		protected override void ShowInvalidSchemeMessage(string dataString)
+		{
+			Toast.MakeText(this, Resources.GetString(Resource.String.unknown_uri_scheme, new Java.Lang.Object[] { dataString }),
+										   ToastLength.Long).Show();
+		}
+
+		protected override string IntentToFilename(Intent data)
+		{
+			return Util.IntentToFilename(data, this);
+		}
+
+		protected override void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent data)
+		{
+			PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+		}
+
+		protected override Result ExitFileStorageSelectionOk
+		{
+			get { return KeePass.ExitFileStorageSelectionOk; }
+		}
+
+		protected override void StartSelectFile( bool isForSave, int browseRequestCode, string protocolId)
+		{
+			var startManualFileSelect = new Action<string>(defaultPath =>
+							{
+								if (defaultPath.StartsWith("sftp://"))
+									Util.ShowSftpDialog(this, filename => OnReceivedSftpData(filename, browseRequestCode, isForSave), ReturnCancel);
+								else
+									//todo oncreate nur wenn for save?
+									Util.ShowFilenameDialog(this, filename => OnOpenButton(filename, browseRequestCode),
+									                        filename => OnOpenButton(filename, browseRequestCode),
+									                        ReturnCancel, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
+									                        browseRequestCode);
+							});
+			;
+			App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
+																												  OnActivityResult,
+																												  startManualFileSelect
+																				), isForSave, browseRequestCode, protocolId);
+		}
+
+		protected override void ShowAndroidBrowseDialog(int requestCode, bool isForSave)
+		{
+			Util.ShowBrowseDialog(this, requestCode, isForSave);
+		}
+
+		protected override bool IsStorageSelectionForSave 
 		{ 
 			get { return Intent.GetBooleanExtra(FileStorageSetupDefs.ExtraIsForSave, false); }
 		}
@@ -103,241 +139,14 @@ namespace keepass2android
 			_design.ReapplyTheme();
 		}
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			base.OnActivityResult(requestCode, resultCode, data);
-			if ((requestCode == RequestCodeFileStorageSelectionForPrimarySelect) || ((requestCode == RequestCodeFileStorageSelectionForCopyToWritableLocation)))
-			{
-				int browseRequestCode = Intents.RequestCodeFileBrowseForOpen;
-				if (requestCode == RequestCodeFileStorageSelectionForCopyToWritableLocation)
-				{
-					browseRequestCode = RequestCodeFileFileBrowseForWritableLocation;
-				}
 
-				if (resultCode == KeePass.ExitFileStorageSelectionOk)
-				{
-
-					string protocolId = data.GetStringExtra("protocolId");
-
-					if (protocolId == "androidget")
-					{
-						Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForOpen, false);
-					}
-					else
-					{
-						bool isForSave = (requestCode == RequestCodeFileStorageSelectionForPrimarySelect) ?
-							IsStorageSelectionForSave : true;
-						
-						App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
-							OnActivityResult,
-							defaultPath =>
-								{
-								if (defaultPath.StartsWith("sftp://"))
-									Util.ShowSftpDialog(this, filename => OnReceivedSftpData(filename, browseRequestCode, isForSave), ReturnCancel);
-								else
-									//todo oncreate nur wenn for save?
-									Util.ShowFilenameDialog(this, filename => OnOpenButton(filename, browseRequestCode),
-												filename => OnOpenButton(filename, browseRequestCode), 
-												ReturnCancel, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
-													browseRequestCode);
-							}
-							), isForSave, browseRequestCode, protocolId);
-					}
-
-
-				}
-				else
-				{
-					ReturnCancel();
-				}
-	
-			}
-
-			if ((requestCode == Intents.RequestCodeFileBrowseForOpen) || (requestCode == RequestCodeFileFileBrowseForWritableLocation))
-			{
-				if (resultCode == (Result)FileStorageResults.FileChooserPrepared)
-				{
-					IOConnectionInfo ioc = new IOConnectionInfo();
-					PasswordActivity.SetIoConnectionFromIntent(ioc, data);
-#if !EXCLUDE_FILECHOOSER
-					bool isForSave = (requestCode == RequestCodeFileFileBrowseForWritableLocation) ?
-						true : IsStorageSelectionForSave ;
-						
-					StartFileChooser(ioc.Path, requestCode, isForSave);
-#else
-						IocSelected(new IOConnectionInfo { Path = "/mnt/sdcard/keepass/yubi.kdbx" }, requestCode);
-#endif
-					return;
-				}
-				if ((resultCode == Result.Canceled) && (data != null) && (data.HasExtra("EXTRA_ERROR_MESSAGE")))
-				{
-					Toast.MakeText(this, data.GetStringExtra("EXTRA_ERROR_MESSAGE"), ToastLength.Long).Show();
-				}
-
-				if (resultCode == Result.Ok)
-				{
-					string filename = Util.IntentToFilename(data, this);
-					if (filename != null)
-					{
-						if (filename.StartsWith("file://"))
-						{
-							filename = filename.Substring(7);
-							filename = Java.Net.URLDecoder.Decode(filename);
-						}
-
-						IOConnectionInfo ioc = new IOConnectionInfo
-							{
-								Path = filename
-							};
-
-						IocSelected(ioc, requestCode);
-					}
-					else
-					{
-						if (data.Data.Scheme == "content")
-						{
-							IocSelected(IOConnectionInfo.FromPath(data.DataString), requestCode);
-	
-						}
-						else
-						{
-							Toast.MakeText(this, Resources.GetString(Resource.String.unknown_uri_scheme, new Java.Lang.Object[] {data.DataString}),
-							               ToastLength.Long).Show();
-							ReturnCancel();
-						}
-						
-					}
-				}
-				else
-				{
-					ReturnCancel();	
-				}
-				
-				
-			}
-				
-
-
-			
-		}
-
-		private void ReturnCancel()
+		protected override void ReturnCancel()
 		{
 			SetResult(Result.Canceled);
 			Finish();
 		}
 
-		private void IocSelected(IOConnectionInfo ioc, int requestCode)
-		{
-			if (requestCode == RequestCodeFileFileBrowseForWritableLocation)
-			{
-				IocForCopySelected(ioc);
-			}
-			else if (requestCode == Intents.RequestCodeFileBrowseForOpen)
-			{
-				PrimaryIocSelected(ioc);
-			}
-			else
-			{
-#if DEBUG
-				throw new Exception("invalid request code!");
-#endif
-			}
-
-			
-
-		}
-
-		private void IocForCopySelected(IOConnectionInfo targetIoc)
-		{
-			new keepass2android.Utils.SimpleLoadingDialog(this, GetString(Resource.String.CopyingFile), false,
-			() =>
-				{
-					IOConnectionInfo sourceIoc = _selectedIoc;
-
-					try
-					{
-						CopyFile(targetIoc, sourceIoc);
-					}
-					catch (Exception e)
-					{
-						return () =>
-							{
-								Toast.MakeText(this, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, ToastLength.Long).Show();
-								ReturnCancel();
-							};
-					}
-					
-
-					return () => {ReturnOk(targetIoc); };
-				}
-			).Execute(new Object[] {});
-		}
-
-		private static void CopyFile(IOConnectionInfo targetIoc, IOConnectionInfo sourceIoc)
-		{
-			IFileStorage sourceStorage = App.Kp2a.GetFileStorage(sourceIoc);
-			IFileStorage targetStorage = App.Kp2a.GetFileStorage(targetIoc);
-
-			using (
-				var writeTransaction = targetStorage.OpenWriteTransaction(targetIoc,
-				                                                          App.Kp2a.GetBooleanPreference(
-					                                                          PreferenceKey.UseFileTransactions)))
-			{
-				using (var writeStream = writeTransaction.OpenFile())
-				{
-					sourceStorage.OpenFileForRead(sourceIoc).CopyTo(writeStream);
-				}
-				writeTransaction.CommitWrite();
-			}
-		}
-
-		private void PrimaryIocSelected(IOConnectionInfo ioc)
-		{
-			if (!App.Kp2a.GetFileStorage(ioc).IsPermanentLocation(ioc))
-			{
-				new AlertDialog.Builder(this)
-					.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => { MoveToWritableLocation(ioc); })
-					.SetMessage(Resources.GetString(Resource.String.FileIsTemporarilyAvailable) + " "
-							+ Resources.GetString(Resource.String.CopyFileRequired) + " "
-							+ Resources.GetString(Resource.String.ClickOkToSelectLocation))
-					.SetCancelable(false)
-					.SetNegativeButton(Android.Resource.String.Cancel, (sender, args) => { ReturnCancel(); })
-					//.SetOnDismissListener(this)
-					.Create()
-					.Show();
-				return;
-			}
-			var filestorage = App.Kp2a.GetFileStorage(ioc);
-
-			if ((RequestedWritableRequirements != WritableRequirements.ReadOnly) && (filestorage.IsReadOnly(ioc)))
-			{
-				string readOnlyExplanation = Resources.GetString(Resource.String.FileIsReadOnly);
-				BuiltInFileStorage builtInFileStorage = filestorage as BuiltInFileStorage;
-				if (builtInFileStorage != null)
-				{
-					if (builtInFileStorage.IsReadOnlyBecauseKitkatRestrictions(ioc))
-						readOnlyExplanation = Resources.GetString(Resource.String.FileIsReadOnlyOnKitkat);
-				}
-				new AlertDialog.Builder(this)
-						.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => { MoveToWritableLocation(ioc); })
-						.SetCancelable(false)
-						.SetNegativeButton(Android.Resource.String.Cancel, (sender, args) => { ReturnCancel(); })
-					//.SetOnDismissListener(this)
-						.SetMessage(readOnlyExplanation + " "
-							+ (RequestedWritableRequirements == WritableRequirements.WriteDemanded ?
-								Resources.GetString(Resource.String.CopyFileRequired)
-								: Resources.GetString(Resource.String.CopyFileRequiredForEditing))
-							+ " "
-							+ Resources.GetString(Resource.String.ClickOkToSelectLocation))
-						.Create()
-						.Show();
-				return;
-			}
-			ReturnOk(ioc);
-		}
-
-		private void ReturnOk(IOConnectionInfo ioc)
+		protected override void ReturnOk(IOConnectionInfo ioc)
 		{
 			Intent intent = new Intent();
 			PasswordActivity.PutIoConnectionToIntent(ioc, intent);
@@ -345,75 +154,80 @@ namespace keepass2android
 			Finish();
 		}
 
-		private WritableRequirements RequestedWritableRequirements
+		protected override void ShowAlertDialog(string message, EventHandler<DialogClickEventArgs> onOk, EventHandler<DialogClickEventArgs> onCancel)
+		{
+			new AlertDialog.Builder(this)
+					.SetPositiveButton(Android.Resource.String.Ok, onOk)
+					.SetMessage(message)
+					.SetCancelable(false)
+					.SetNegativeButton(Android.Resource.String.Cancel, onCancel)
+					.Create()
+					.Show();
+				
+		}
+
+		protected override WritableRequirements RequestedWritableRequirements
 		{
 			get { return (WritableRequirements) Intent.GetIntExtra(ExtraKeyWritableRequirements, (int)WritableRequirements.ReadOnly); }
 		}
 
-		private void MoveToWritableLocation(IOConnectionInfo ioc)
-		{
-			_selectedIoc = ioc;
+		
 
-			Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
-			intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, false);
-			intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
+#if !EXCLUDE_FILECHOOSER
+		protected override void PerformCopy(Func<Action> copyAndReturnPostExecute)
+		{
 			
-			StartActivityForResult(intent, RequestCodeFileStorageSelectionForCopyToWritableLocation);	
-
+			new SimpleLoadingDialog(this, GetString(Resource.String.CopyingFile), false,
+			                      copyAndReturnPostExecute  
+				).Execute();
 		}
 
-		private bool OnReceivedSftpData(string filename, int requestCode, bool isForSave)
+		protected override void StartFileStorageSelection(int requestCode, bool allowThirdPartyGet,
+		                                                  bool allowThirdPartySend)
 		{
-			IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
-#if !EXCLUDE_FILECHOOSER
-			StartFileChooser(ioc.Path, requestCode, isForSave);
-#else
-			IocSelected(ioc, requestCode);
-#endif
-			return true;
+			Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
+			intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, allowThirdPartyGet);
+			intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, allowThirdPartySend);
+
+			StartActivityForResult(intent, requestCode);
 		}
 
-#if !EXCLUDE_FILECHOOSER
-		private void StartFileChooser(string defaultPath, int requestCode, bool forSave)
+		protected override void StartFileChooser(string defaultPath, int requestCode, bool forSave)
 		{
-			Kp2aLog.Log("FSA: defaultPath="+defaultPath);
+#if !EXCLUDE_FILECHOOSER
+			Kp2aLog.Log("FSA: defaultPath=" + defaultPath);
 			string fileProviderAuthority = FileChooserFileProvider.TheAuthority;
 			if (defaultPath.StartsWith("file://"))
 			{
-				fileProviderAuthority = PackageName+".android-filechooser.localfile";
+				fileProviderAuthority = PackageName + ".android-filechooser.localfile";
 			}
 			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, fileProviderAuthority,
-			                                                                                            defaultPath);
+																										defaultPath);
 
 
 			if (forSave)
 			{
 				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.save_dialog", true);
-				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.default_file_ext", "kdbx");
+				var ext = UrlUtil.GetExtension(defaultPath);
+				if ((ext != String.Empty) && (ext.Contains("?")==false))
+					i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.default_file_ext", ext);
 			}
 			StartActivityForResult(i, requestCode);
+
+#else
+						IocSelected(new IOConnectionInfo { Path = "/mnt/sdcard/keepass/yubi.kdbx" }, requestCode);
+#endif
+		
 		}
 
 #endif
-		private bool OnOpenButton(String fileName, int requestCode)
-		{
-			
 
-			IOConnectionInfo ioc = new IOConnectionInfo
-			{
-				Path = fileName
-			};
-
-			IocSelected(ioc, requestCode);
-
-			return true;
-
-		}
-
+		
 		public void OnDismiss(IDialogInterface dialog)
 		{
 //			ReturnCancel();
 		}
+
 	}
 
 

@@ -84,6 +84,7 @@
     <Compile Include="TestCachingFileStorage.cs" />
     <Compile Include="TestSaveDb.cs" />
     <Compile Include="TestSaveDbCached.cs" />
+    <Compile Include="TestSelectStorageLocation.cs" />
     <Compile Include="TestSynchronizeCachedDatabase.cs" />
   </ItemGroup>
   <ItemGroup>

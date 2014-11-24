@@ -79,7 +79,16 @@ namespace keepass2android
 		Handler UiThreadHandler { get; }
 
 		IProgressDialog CreateProgressDialog(Context ctx);
+
+		/// <summary>
+		/// returns the file storage for the given ioc. might be a caching file storage
+		/// </summary>
 		IFileStorage GetFileStorage(IOConnectionInfo iocInfo);
+
+		/// <summary>
+		/// returns the file storage for the given ioc. if allowCache=false, no cached file storage is returned
+		/// </summary>
+		IFileStorage GetFileStorage(IOConnectionInfo iocInfo, bool allowCache);
 
 		void TriggerReload(Context context);
 
@@ -90,5 +99,7 @@ namespace keepass2android
 		//bool OnServerCertificateError(int certificateProblem);
 
 		RemoteCertificateValidationCallback CertificateValidationCallback { get; }
+
+
 	}
 }

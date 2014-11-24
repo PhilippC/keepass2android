@@ -328,7 +328,7 @@ namespace keepass2android
 				{
 					dialog.Dismiss();
 					if (onCancel != null)
-						onCancel();
+					onCancel();
 				};
 
 			
@@ -345,7 +345,7 @@ namespace keepass2android
 				{
 					string filename = ((EditText) dialog.FindViewById(Resource.Id.file_filename)).Text;
 
-					ShowBrowseDialog(activity, requestCodeBrowse, onCreate != null);
+					Util.ShowBrowseDialog(activity, requestCodeBrowse, onCreate != null);
 
 				};
 

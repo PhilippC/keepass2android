@@ -41,8 +41,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterKeeWinPlugin", "Maste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamplePlugin", "SamplePlugin\SamplePlugin.csproj", "{4C1BB6F8-D2CD-49C2-9053-21705681356C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoTypeNeo", "..\..\..\..\..\Dropbox\programmieren\KeepassPlugins\AutoTypeNeo\AutoTypeNeo.csproj", "{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -446,24 +444,6 @@ Global
 		{4C1BB6F8-D2CD-49C2-9053-21705681356C}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
 		{4C1BB6F8-D2CD-49C2-9053-21705681356C}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
 		{4C1BB6F8-D2CD-49C2-9053-21705681356C}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Release|Win32.ActiveCfg = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.Release|x64.ActiveCfg = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.ReleaseNoNet|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -474,7 +454,6 @@ Global
 		{9A4C5BAA-1A8A-49B4-BBC3-60D4871FB36C} = {CAC7DBC4-E21F-41E1-B33A-E3A04585F6A3}
 		{BBF77830-BC7D-4F28-A255-A348B5C6A925} = {CAC7DBC4-E21F-41E1-B33A-E3A04585F6A3}
 		{4C1BB6F8-D2CD-49C2-9053-21705681356C} = {CAC7DBC4-E21F-41E1-B33A-E3A04585F6A3}
-		{4E5181A6-5FC4-4963-87B3-BAD15E7A765B} = {CAC7DBC4-E21F-41E1-B33A-E3A04585F6A3}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = keepass2android\keepass2android.csproj

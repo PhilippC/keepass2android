@@ -134,8 +134,15 @@ namespace Kp2aUnitTests
 			return new ProgressDialogStub();
 		}
 
-		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
+		public virtual IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
+			return FileStorage;
+		}
+
+		public virtual IFileStorage GetFileStorage(IOConnectionInfo iocInfo, bool allowCache)
+		{
+			if (FileStorage is CachingFileStorage)
+				throw new Exception("bad test class");
 			return FileStorage;
 		}
 

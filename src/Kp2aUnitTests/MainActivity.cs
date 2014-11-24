@@ -22,8 +22,8 @@ namespace Kp2aUnitTests
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadKdb1WithKeyfileByDirectCall"));
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadKdb1WithKeyfileOnly"));
 
-
-			runner.AddTests(new List<Type> { typeof(TestBuiltInFileStorage) });
+			
+			runner.AddTests(new List<Type> { typeof(TestSelectStorageLocation) });
 			//runner.AddTests(new List<Type> { typeof(TestSynchronizeCachedDatabase)});
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("LoadErrorWithCertificateTrustFailure"));
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("LoadWithAcceptedCertificateTrustFailure"));

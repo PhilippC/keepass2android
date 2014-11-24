@@ -80,6 +80,7 @@
     <Compile Include="Io\SkyDriveFileStorage.cs" />
     <Compile Include="IProgressDialog.cs" />
     <Compile Include="PreferenceKey.cs" />
+    <Compile Include="SelectStorageLocationActivityBase.cs" />
     <Compile Include="UiStringKey.cs" />
     <Compile Include="database\Database.cs" />
     <Compile Include="database\edit\ActionOnFinish.cs" />

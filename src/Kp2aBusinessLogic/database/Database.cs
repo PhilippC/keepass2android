@@ -119,7 +119,7 @@ namespace keepass2android
 			KpDatabase = pwDatabase;
 			SearchHelper = new SearchDbHelper(app);
 
-			CanWrite = databaseLoader.CanWrite;
+			CanWrite = databaseLoader.CanWrite && !fileStorage.IsReadOnly(iocInfo);
 		}
 
 		/// <summary>

@@ -48,6 +48,12 @@ namespace keepass2android
 		SynchronizingOtpAuxFile,
 		SavingOtpAuxFile,
 		CertificateFailure,
-		exporting_database
+		exporting_database,
+		FileIsTemporarilyAvailable,
+		CopyFileRequired,
+		ClickOkToSelectLocation,
+		FileIsReadOnly,
+		FileIsReadOnlyOnKitkat,
+		CopyFileRequiredForEditing
     }
 }
