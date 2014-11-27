@@ -244,6 +244,11 @@ namespace keepass2android.Io
 			_jfs.PrepareFileUsage((IJavaFileStorageFileStorageSetupInitiatorActivity)activity, IocToPath(ioc), requestCode, alwaysReturnSuccess);
 		}
 
+		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
+		{
+			_jfs.PrepareFileUsage(ctx, IocToPath(ioc));
+		}
+
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
 		{
 			_jfs.OnCreate(((IJavaFileStorageFileStorageSetupActivity)activity), savedInstanceState);
