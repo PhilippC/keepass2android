@@ -167,7 +167,7 @@ public class ImporterV3  {
 		hdr.loadFromFile(filebuf, 0 );
 
 		if( (hdr.signature1 != PwDbHeader.PWM_DBSIG_1) || (hdr.signature2 != PwDbHeaderV3.DBSIG_2) ) {
-			throw new InvalidDBSignatureException("Invalid database signature!");
+			throw new InvalidDBSignatureException();
 		}
 
 		if( !hdr.matchesVersion() ) {
