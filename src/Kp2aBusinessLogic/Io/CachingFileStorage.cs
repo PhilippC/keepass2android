@@ -488,6 +488,11 @@ namespace keepass2android.Io
 			_cachedStorage.PrepareFileUsage(activity, ioc, requestCode, alwaysReturnSuccess || IsCached(ioc));
 		}
 
+		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
+		{
+			_cachedStorage.PrepareFileUsage(ctx, ioc);
+		}
+
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
 		{
 			_cachedStorage.OnCreate(activity, savedInstanceState);

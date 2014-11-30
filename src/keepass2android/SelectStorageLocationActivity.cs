@@ -173,10 +173,9 @@ namespace keepass2android
 
 		
 
-#if !EXCLUDE_FILECHOOSER
 		protected override void PerformCopy(Func<Action> copyAndReturnPostExecute)
 		{
-			
+
 			new SimpleLoadingDialog(this, GetString(Resource.String.CopyingFile), false,
 			                      copyAndReturnPostExecute  
 				).Execute();
@@ -185,11 +184,16 @@ namespace keepass2android
 		protected override void StartFileStorageSelection(int requestCode, bool allowThirdPartyGet,
 		                                                  bool allowThirdPartySend)
 		{
+			#if !EXCLUDE_FILECHOOSER
+
 			Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
 			intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, allowThirdPartyGet);
 			intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, allowThirdPartySend);
 
 			StartActivityForResult(intent, requestCode);
+			#else
+			Toast.MakeText(this, "File chooser is excluded!", ToastLength.Long).Show();
+			#endif
 		}
 
 		protected override void StartFileChooser(string defaultPath, int requestCode, bool forSave)
@@ -215,12 +219,12 @@ namespace keepass2android
 			StartActivityForResult(i, requestCode);
 
 #else
-						IocSelected(new IOConnectionInfo { Path = "/mnt/sdcard/keepass/yubi.kdbx" }, requestCode);
+			Toast.MakeText(this, "File chooser is excluded!", ToastLength.Long).Show();
 #endif
 		
 		}
 
-#endif
+
 
 		
 		public void OnDismiss(IDialogInterface dialog)

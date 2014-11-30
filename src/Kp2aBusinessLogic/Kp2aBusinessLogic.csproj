@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{53A9CB7F-6553-4BC0-B56B-9410BB2E59AA}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -20,9 +18,10 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;_EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU'">
     <OutputPath>bin\ReleaseNoNet\</OutputPath>
@@ -38,9 +38,10 @@
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -115,19 +116,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
+      <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
       <Name>JavaFileStorageBindings</Name>
     </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
-      <Project>{545b4a6b-8bba-4fbe-92fc-4ac060122a54}</Project>
+      <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
-      <Project>{70d3844a-d9fa-4a64-b205-a84c6a822196}</Project>
+      <Project>{70D3844A-D9FA-4A64-B205-A84C6A822196}</Project>
       <Name>KP2AKdbLibraryBinding</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
-      <Project>{5cf675a5-9bee-4720-bed9-d5bf14a2ebf9}</Project>
+      <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>
       <Name>TwofishCipher</Name>
     </ProjectReference>
   </ItemGroup>

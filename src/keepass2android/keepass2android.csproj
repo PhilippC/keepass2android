@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A6CF8A86-37C1-4197-80FE-519DE2C842F5}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -17,12 +15,9 @@
     <AssemblyName>keepass2android</AssemblyName>
     <newfilesearch>OnLoad</newfilesearch>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
-    <AndroidStoreUncompressedFileExtensions />
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <MandroidI18n />
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
-    <JavaOptions />
-    <AndroidUseLatestPlatformSdk />
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,7 +25,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;INCLUDE_FILECHOOSER;EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;EXCLUDE_KEYBOARD;EXCLUDE_FILECHOOSER;_EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -40,7 +35,8 @@
         <Command type="BeforeBuild" command="UseManifestNet.bat" />
       </CustomCommands>
     </CustomCommands>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -50,7 +46,6 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <ConsolePause>False</ConsolePause>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
     <CustomCommands>
       <CustomCommands>
@@ -61,7 +56,10 @@
     <DefineConstants>RELEASE</DefineConstants>
     <AndroidLinkSkip>System.Core%3b</AndroidLinkSkip>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
+    <JavaOptions>
+    </JavaOptions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -69,7 +67,6 @@
     <OutputPath>bin\ReleaseNoNet</OutputPath>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <DefineConstants>NoNet</DefineConstants>
     <CustomCommands>
       <CustomCommands>
@@ -78,13 +75,28 @@
     </CustomCommands>
     <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
     <DeployExternal>True</DeployExternal>
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
+    <JavaOptions>
+    </JavaOptions>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Mono.Android.Support.v4" />
+    <Reference Include="GooglePlayServicesLib">
+      <HintPath>..\Components\googleplayservices-19.0.0\lib\android\GooglePlayServicesLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\Components\googleplayservices-19.0.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\Components\googleplayservices-19.0.0\lib\android\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
+      <HintPath>..\Components\googleplayservices-19.0.0\lib\android\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
@@ -661,12 +673,8 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj">
-      <Project>{3c0f7fe5-639f-4422-a087-8b26cf862d1b}</Project>
-      <Name>AndroidFileChooserBinding</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
+      <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
       <Name>JavaFileStorageBindings</Name>
     </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
@@ -678,20 +686,24 @@
       <Name>Kp2aBusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
-      <Project>{70d3844a-d9fa-4a64-b205-a84c6a822196}</Project>
+      <Project>{70D3844A-D9FA-4A64-B205-A84C6A822196}</Project>
       <Name>KP2AKdbLibraryBinding</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj">
-      <Project>{a8779d4d-7c49-4c2f-82bd-2cdc448391da}</Project>
+      <Project>{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}</Project>
       <Name>Kp2aKeyboardBinding</Name>
     </ProjectReference>
     <ProjectReference Include="..\PluginSdkBinding\PluginSdkBinding.csproj">
-      <Project>{3da3911e-36de-465e-8f15-f1991b6437e5}</Project>
+      <Project>{3DA3911E-36DE-465E-8F15-F1991B6437E5}</Project>
       <Name>PluginSdkBinding</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
-      <Project>{5cf675a5-9bee-4720-bed9-d5bf14a2ebf9}</Project>
+      <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>
       <Name>TwofishCipher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj">
+      <Project>{3C0F7FE5-639F-4422-A087-8B26CF862D1B}</Project>
+      <Name>AndroidFileChooserBinding</Name>
     </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>
@@ -972,5 +984,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\device_access_new_account_holodark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="googleplayservices">
+      <Version>19.0.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>

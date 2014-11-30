@@ -79,6 +79,11 @@ namespace keepass2android.Io
 			throw new NotImplementedException();
 		}
 
+		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
+		{
+		
+		}
+
 		public bool RequiresSetup(IOConnectionInfo ioConnection)
 		{
 			return false;

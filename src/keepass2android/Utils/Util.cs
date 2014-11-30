@@ -244,7 +244,9 @@ namespace keepass2android
 					                                                                                          password);
 					                          onStartBrowse(sftpPath);
 				                          });
-			builder.SetNegativeButton(Android.Resource.String.Cancel, onCancel);
+			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>( (sender, e) => onCancel());
+
+			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_sftp_login_title));
 			Dialog dialog = builder.Create();
 			

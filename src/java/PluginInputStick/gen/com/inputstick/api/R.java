@@ -7,18 +7,8 @@
 package com.inputstick.api;
 
 public final class R {
-	public static final class dimen {
-		public static final int activity_horizontal_margin = 0x7f050000;
-		public static final int activity_vertical_margin = 0x7f050001;
-	}
 	public static final class drawable {
 		public static final int ic_launcher = 0x7f020000;
-	}
-	public static final class id {
-		public static final int action_settings = 0x7f0a0003;
-	}
-	public static final class menu {
-		public static final int install_utility = 0x7f090000;
 	}
 	public static final class string {
 		public static final int action_settings = 0x7f060002;
