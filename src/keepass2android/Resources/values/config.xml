@@ -72,7 +72,7 @@
     <bool name="TanExpiresOnUse_default">true</bool>
     <bool name="ShowUsernameInList_default">true</bool>
     <bool name="ShowGroupnameInSearchResult_default">true</bool>
-
+	<string name="ViewDatabaseSecure_key">ViewDatabaseSecure</string>
 	<bool name="RememberRecentFiles_default">true</bool>
 	<string name="TrayTotp_SettingsField_key">TrayTotp_SettingsField_key</string>
 	<string name="TrayTotp_SeedField_key">TrayTotp_SeedField_key</string>

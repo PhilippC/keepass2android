@@ -20,6 +20,7 @@ using Android.Content;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
+using Android.Views;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -42,6 +43,13 @@ namespace keepass2android
 		{
 			base.OnCreate(savedInstanceState);
 			_design.ApplyTheme();
+
+			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
+				GetString(Resource.String.ViewDatabaseSecure_key), true))
+			{
+				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
+			}
+
 			_ioc = App.Kp2a.GetDb().Ioc;
 
 			_intentReceiver = new LockCloseListActivityBroadcastReceiver(this);

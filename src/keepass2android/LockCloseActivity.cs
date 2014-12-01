@@ -18,7 +18,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
+using Android.Views;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -52,6 +54,14 @@ namespace keepass2android
 		{
 			base.OnCreate(savedInstanceState);
 			_design.ApplyTheme();
+
+			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
+				GetString(Resource.String.ViewDatabaseSecure_key), true))
+			{
+				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);	
+			}
+			
+
 			_ioc = App.Kp2a.GetDb().Ioc;
 
 			if (Intent.GetBooleanExtra(NoLockCheck, false))

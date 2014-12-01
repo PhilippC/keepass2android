@@ -160,6 +160,15 @@
 			  android:dialogTitle="@string/list_size_summary"
 			  android:defaultValue="@string/list_size_default"/>
 
+			<CheckBoxPreference
+				android:enabled="true"
+					 android:persistent="true"
+					 android:summary="@string/ViewDatabaseSecure_summary"
+					 android:defaultValue="true"
+					 android:title="@string/ViewDatabaseSecure_title"
+					 android:key="@string/ViewDatabaseSecure_key" />
+
+
 			<ListPreference
 			  android:key="@string/design_key"
 			  android:title="@string/design_title"
