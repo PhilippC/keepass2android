@@ -491,8 +491,18 @@
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>
-	
-	<string name="ChangeLog_0_9_4">
+
+	<string name="ChangeLog_0_9_5">
+		<b>Version 0.9.5</b>\n
+		* Fixed issues with file browsing (especially on Android 4.4)\n
+		* Fixed issue with loading .kdb files (Keepass 1) on Nexus 5 with Android Lollipop\n
+		* Added option to prevent taking screenshots/displaying app in recent apps list\n
+		* Fixed issue with Google Drive file storage\n
+		* Updated build tools --> apk size increased :-(\n
+		I have promised some more changes. They will come with the next release - sorry. I wanted to publish these hot fixes as soon as possible.
+	</string>
+
+		<string name="ChangeLog_0_9_4">
 		<b>Version 0.9.4</b>\n
 		* added plug-in support: See settings for how to get plug-ins!\n
 		*  published QR plug-in (scan passwords, display passwords as QR code, transfer entries to other KP2A devices)\n
