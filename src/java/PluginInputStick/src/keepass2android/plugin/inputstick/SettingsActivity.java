@@ -1,29 +1,23 @@
 package keepass2android.plugin.inputstick;
 
+import keepass2android.pluginsdk.AccessManager;
+import keepass2android.pluginsdk.Strings;
+import sheetrock.panda.changelog.ChangeLog;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
-import android.preference.RingtonePreference;
-import android.text.TextUtils;
-
-import java.util.List;
-
-import keepass2android.pluginsdk.AccessManager;
-import keepass2android.pluginsdk.Strings;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -50,6 +44,27 @@ public class SettingsActivity extends PreferenceActivity {
 		super.onPostCreate(savedInstanceState);
 
 		setupSimplePreferencesScreen();
+		
+		if (getIntent().getBooleanExtra(Const.EXTRA_CHANGELOG, false)) {
+			ChangeLog cl = new ChangeLog(this);
+			cl.getLogDialog().show();
+		} else {		
+			//first run ever?			
+			final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+			if (prefs.getBoolean("display_configuration_message", true)) {
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				
+				alert.setTitle(getString(R.string.configuration_title));
+				alert.setMessage(getString(R.string.configuration_message));
+				alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						//disable cfg message ONLY after clicking OK button
+						prefs.edit().putBoolean("display_configuration_message", false).apply();
+					}
+				});
+				alert.show();
+			}		
+		}
 	}
 
 	/**
@@ -69,23 +84,29 @@ public class SettingsActivity extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.pref_general);
 
 		bindPreferenceSummaryToValue(findPreference("kbd_layout"));
+		bindPreferenceSummaryToValue(findPreference("secondary_kbd_layout"));
 		
 		Preference enablePref = findPreference("enable_plugin_pref");
-		
 		enablePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-			
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				try
-				{
-					Intent i = new Intent(Strings.ACTION_EDIT_PLUGIN_SETTINGS);
+				try {
+					Intent i = new Intent( Strings.ACTION_EDIT_PLUGIN_SETTINGS);
 					i.putExtra(Strings.EXTRA_PLUGIN_PACKAGE, SettingsActivity.this.getPackageName());
 					startActivityForResult(i, 123);
-				}
-				catch(Exception e)
-				{
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				return true;
+			}
+		});
+
+		Preference showChangelogPref = (Preference)findPreference("show_changelog_preference_key");
+		showChangelogPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				ChangeLog cl = new ChangeLog(SettingsActivity.this);
+				cl.getFullLogDialog().show();				
 				return true;
 			}
 		});
@@ -95,15 +116,11 @@ public class SettingsActivity extends PreferenceActivity {
 	@Override
 	protected void onResume() {
 		Preference enablePref = findPreference("enable_plugin_pref");
-		if (AccessManager.getAllHostPackages(SettingsActivity.this).isEmpty())
-		{
+		if (AccessManager.getAllHostPackages(SettingsActivity.this).isEmpty()) {
 			enablePref.setSummary("");
-		}
-		else
-		{
+		} else {
 			enablePref.setSummary("enabled.");
 		}
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 

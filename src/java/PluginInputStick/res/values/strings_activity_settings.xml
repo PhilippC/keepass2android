@@ -4,34 +4,77 @@
 
     <!-- Strings related to Settings -->
     <string name="configure_plugin">Configure as plugin</string>
+    
+  	<string name="show_changelog_title">Show changelog</string>
+    
+    <string name="typing_settings_title">USB host keyboard layout settings</string>
+    <string name="connection_settings_title">InputStick connection settings</string>
+    <string name="ui_settings_title">UI settings</string>
 
-    <string name="layout_title">Host keyboard layout</string>
+    <string name="layout_title">Host keyboard layout (primary)</string>
+    
+    <string name="secondary_layout_title">Host keyboard layout (secondary)</string>
+    <string name="enable_secondary_layout_title">Enable secondary layout</string>
+    
+    <string name="show_secondary_title">Enable secondary layout</string>
+    <string name="show_secondary_summary">When enabled, both layouts options will be shown for each entry and field.\nNOTE: will take effect after entry is reloaded!</string>
+    
+    <string name="enter_after_url_title">Always add Enter after typing URL</string>    
+    
+    <string name="autoconnect_title">InputStick autoconnect</string>
+    <string name="autoconnect_summary">Connect to InputStick every time entry is opened. If not checked, connection will be established before typing OR after entry is opened, but only if typing action was used within last 10min.\nENABLE - when InputStick is used most of the time.\nDISABLE - when InputStick is used occasionally</string>
+    
+    <string name="show_tab_enter_title">Show Tab and Enter actions</string>
+    <string name="show_user_pass_title">Show username/password shortcut</string>
+    <string name="show_user_pass_enter_title">Show username/password/enter shortcut</string>
+    <string name="show_masked_title">Show Masked Password shortcut</string>
+    <string name="show_settings_title">Show Settings shortcut</string>
+    <string name="show_quick_settings_title">Show Tab and Enter actions</string>
+    
+    
+    
     
     <string-array name="layout_names">
-        <item>English (US)</item>        
+        <item>Danish</item>
+        <item>English (US)</item>
+        <item>English (UK)</item>
+        <item>Finnish</item>
+        <item>French</item>
+        <item>French (Swiss)</item>
         <item>German</item>
+        <item>German (Mac)</item>
+        <item>German (Swiss)</item>
+        <item>Hebrew</item>
+        <item>Italian</item>
+        <item>Norwegian</item>
         <item>Polish</item>
+        <item>Portuguese (BR)</item>
         <item>Russian</item>
         <item>Slovak</item>
-        <item>Portuguese (BR)</item>
-        <item>Norwegian</item>
-        <item>Swedish</item>
-        <item>French</item>
         <item>Spanish</item>
+        <item>Swedish</item>
         <item>English (Dvorak)</item>
     </string-array>
     
     <string-array name="layout_values">
-        <item>en-US</item>        
+        <item>da-DK</item>
+        <item>en-US</item>
+        <item>en-GB</item>
+        <item>fi-FI</item>
+        <item>fr-FR</item>
+        <item>fr-CH</item>
         <item>de-DE</item>
+        <item>de-DE-mac</item>
+        <item>de-CH</item>
+        <item>he-IL</item>
+        <item>it-IT</item>
+        <item>nb-NO</item>
         <item>pl-PL</item>
+        <item>pt-BR</item>
         <item>ru-RU</item>
         <item>sk-SK</item>
-        <item>pt-BR</item>
-        <item>nb-NO</item>
-        <item>sv-SE</item>
-        <item>fr-FR</item>
         <item>es-ES</item>
+        <item>sv-SE</item>
         <item>en-DV</item>
     </string-array>
 

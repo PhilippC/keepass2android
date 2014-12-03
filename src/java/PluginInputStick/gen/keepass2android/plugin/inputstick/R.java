@@ -9,8 +9,8 @@ package keepass2android.plugin.inputstick;
 
 public final class R {
     public static final class array {
-        public static final int layout_names=0x7f080000;
-        public static final int layout_values=0x7f080001;
+        public static final int layout_names=0x7f090000;
+        public static final int layout_values=0x7f090001;
     }
     public static final class attr {
     }
@@ -23,48 +23,114 @@ public final class R {
     
  Default screen margins, per the Android Design guidelines. 
 
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    
+ Default screen margins, per the Android Design guidelines. 
+
          Example customization of dimensions originally defined in res/values/dimens.xml
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int ic_notification=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0003;
-        public static final int button1=0x7f0a0001;
-        public static final int button2=0x7f0a0002;
-        public static final int container=0x7f0a0000;
+        public static final int LinearLayout1=0x7f0b0016;
+        public static final int RelativeLayout1=0x7f0b0001;
+        public static final int action_settings=0x7f0b001d;
+        public static final int button1=0x7f0b001b;
+        public static final int button2=0x7f0b001c;
+        public static final int buttonChar1=0x7f0b0005;
+        public static final int buttonChar10=0x7f0b000e;
+        public static final int buttonChar11=0x7f0b000f;
+        public static final int buttonChar12=0x7f0b0010;
+        public static final int buttonChar13=0x7f0b0011;
+        public static final int buttonChar14=0x7f0b0012;
+        public static final int buttonChar15=0x7f0b0013;
+        public static final int buttonChar16=0x7f0b0014;
+        public static final int buttonChar2=0x7f0b0006;
+        public static final int buttonChar3=0x7f0b0007;
+        public static final int buttonChar4=0x7f0b0008;
+        public static final int buttonChar5=0x7f0b0009;
+        public static final int buttonChar6=0x7f0b000a;
+        public static final int buttonChar7=0x7f0b000b;
+        public static final int buttonChar8=0x7f0b000c;
+        public static final int buttonChar9=0x7f0b000d;
+        public static final int buttonNext=0x7f0b0004;
+        public static final int buttonPrev=0x7f0b0002;
+        public static final int checkBoxAutoConnect=0x7f0b0017;
+        public static final int checkBoxShowPassword=0x7f0b0015;
+        public static final int container=0x7f0b0000;
+        public static final int linearLayout1=0x7f0b0003;
+        public static final int radioButtonPrimary=0x7f0b0019;
+        public static final int radioButtonSecondary=0x7f0b001a;
+        public static final int radioGroup1=0x7f0b0018;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int fragment_main=0x7f030001;
+        public static final int activity_masked_password=0x7f030001;
+        public static final int activity_quick_settings=0x7f030002;
+        public static final int fragment_main=0x7f030003;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
+        public static final int install_utility=0x7f0a0000;
+        public static final int main=0x7f0a0001;
+    }
+    public static final class raw {
+        public static final int changelog=0x7f050000;
     }
     public static final class string {
-        public static final int action_input_stick=0x7f060007;
-        public static final int action_settings=0x7f060002;
-        public static final int action_type_enter=0x7f060009;
-        public static final int action_type_tab=0x7f060008;
-        public static final int action_type_user_tab_pass_enter=0x7f06000a;
-        public static final int app_name=0x7f060000;
+        public static final int action_input_stick=0x7f070007;
+        public static final int action_masked_password=0x7f07000e;
+        public static final int action_open_settings=0x7f07000d;
+        public static final int action_quick_settings=0x7f07000c;
+        public static final int action_settings=0x7f070002;
+        public static final int action_type_enter=0x7f070009;
+        public static final int action_type_tab=0x7f070008;
+        public static final int action_type_user_tab_pass=0x7f07000a;
+        public static final int action_type_user_tab_pass_enter=0x7f07000b;
+        public static final int app_name=0x7f070000;
+        public static final int autoconnect_summary=0x7f070024;
+        public static final int autoconnect_title=0x7f070023;
+        public static final int changelog_full_title=0x7f070013;
+        public static final int changelog_ok_button=0x7f070015;
+        public static final int changelog_show_full=0x7f070016;
+        public static final int changelog_title=0x7f070014;
+        public static final int configuration_message=0x7f070012;
+        public static final int configuration_title=0x7f070011;
         /**  Strings related to Settings 
          */
-        public static final int configure_plugin=0x7f06000c;
-        public static final int hello_world=0x7f060003;
-        public static final int kp2aplugin_author=0x7f060006;
-        public static final int kp2aplugin_shortdesc=0x7f060005;
-        public static final int kp2aplugin_title=0x7f060004;
-        public static final int layout_title=0x7f06000d;
-        public static final int title_activity_install_utility=0x7f060001;
-        public static final int title_activity_settings=0x7f06000b;
+        public static final int configure_plugin=0x7f070018;
+        public static final int connection_settings_title=0x7f07001b;
+        public static final int enable_secondary_layout_title=0x7f07001f;
+        public static final int enter_after_url_title=0x7f070022;
+        public static final int hello_world=0x7f070003;
+        public static final int kp2aplugin_author=0x7f070006;
+        public static final int kp2aplugin_shortdesc=0x7f070005;
+        public static final int kp2aplugin_title=0x7f070004;
+        public static final int layout_title=0x7f07001d;
+        public static final int secondary_layout_title=0x7f07001e;
+        public static final int show_changelog_title=0x7f070019;
+        public static final int show_masked_title=0x7f070028;
+        public static final int show_quick_settings_title=0x7f07002a;
+        public static final int show_secondary_summary=0x7f070021;
+        public static final int show_secondary_title=0x7f070020;
+        public static final int show_settings_title=0x7f070029;
+        public static final int show_tab_enter_title=0x7f070025;
+        public static final int show_user_pass_enter_title=0x7f070027;
+        public static final int show_user_pass_title=0x7f070026;
+        public static final int title_activity_init=0x7f070010;
+        public static final int title_activity_install_utility=0x7f070001;
+        public static final int title_activity_masked_password=0x7f07000f;
+        public static final int title_activity_settings=0x7f070017;
+        public static final int typing_settings_title=0x7f07001a;
+        public static final int ui_settings_title=0x7f07001c;
     }
     public static final class style {
         /** 
@@ -128,7 +194,7 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
  Application theme. 
@@ -136,7 +202,7 @@ public final class R {
  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
     public static final class xml {
         public static final int pref_general=0x7f040000;

@@ -14,13 +14,12 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="keepass2android.plugin.inputstick.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
-            
         </activity>
 
         <receiver
-            android:name="keepass2android.plugin.inputstick.AccessReceiver"
+            android:name=".AccessReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="keepass2android.ACTION_TRIGGER_REQUEST_ACCESS" />
@@ -29,7 +28,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="keepass2android.plugin.inputstick.ActionReceiver"
+            android:name=".ActionReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="keepass2android.ACTION_OPEN_ENTRY" />
@@ -40,17 +39,24 @@
         </receiver>
 
         <service
-            android:name="keepass2android.plugin.inputstick.InputStickService"
+            android:name=".InputStickService"
             android:enabled="true" >
         </service>
 
         <activity
-            android:name="keepass2android.plugin.inputstick.SettingsActivity"
+            android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MaskedPasswordActivity"
+            android:label="@string/title_activity_masked_password"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
     </application>
 

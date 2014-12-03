@@ -1,24 +1,93 @@
-<PreferenceScreen
-    android:key="general_pref"
-     xmlns:android="http://schemas.android.com/apk/res/android" >
-
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="general_pref" >
+    
     <Preference
         android:key="enable_plugin_pref"
         android:title="@string/configure_plugin" />
-
+    
+    <Preference
+        android:key="show_changelog_preference_key"
+        android:title="@string/show_changelog_title" >
+    </Preference>
 
     <!--
          NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it.
+         dismiss it.
     -->
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-    <ListPreference
-        android:defaultValue="en-US"
-        android:entries="@array/layout_names"
-        android:entryValues="@array/layout_values"
-        android:key="kbd_layout"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/layout_title" />
+    
+
+
+    <PreferenceCategory android:title="@string/typing_settings_title" >        
+        
+        <ListPreference
+            android:defaultValue="en-US"
+            android:entries="@array/layout_names"
+            android:entryValues="@array/layout_values"
+            android:key="kbd_layout"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/layout_title" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="show_secondary"
+            android:summary="@string/show_secondary_summary"
+            android:title="@string/show_secondary_title" />
+
+        <ListPreference
+            android:defaultValue="en-US"
+            android:entries="@array/layout_names"
+            android:entryValues="@array/layout_values"
+            android:key="secondary_kbd_layout"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/secondary_layout_title" />
+        
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="enter_after_url"
+            android:title="@string/enter_after_url_title" />        
+        
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/connection_settings_title" >
+        
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="autoconnect"
+            android:summary="@string/autoconnect_summary"
+            android:title="@string/autoconnect_title" />
+        
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/ui_settings_title" >
+        
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_tab_enter"
+            android:title="@string/show_tab_enter_title" />
+        
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_user_pass"
+            android:title="@string/show_user_pass_title" />
+        
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_user_pass_enter"
+            android:title="@string/show_user_pass_enter_title" />
+        
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_masked"
+            android:title="@string/show_masked_title" />
+        
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_settings"
+            android:title="@string/show_settings_title" />
+        
+    </PreferenceCategory>
 
 </PreferenceScreen>

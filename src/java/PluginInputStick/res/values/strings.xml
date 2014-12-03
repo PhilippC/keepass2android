@@ -2,16 +2,28 @@
 <resources>
 
     <string name="app_name">InputStick Plugin for KP2A</string>
-    
     <string name="action_settings">Settings</string>
-    
     <string name="kp2aplugin_title">InputStick Plugin</string>
     <string name="kp2aplugin_shortdesc">Allows to send text from KP2A via InputStick to your PC.</string>
     <string name="kp2aplugin_author">Philipp Crocoll</string>
-    
     <string name="action_input_stick">Type with InputStick</string>
     <string name="action_type_tab">Type Tab with InputStick</string>
     <string name="action_type_enter">Type Enter with InputStick</string>
-    <string name="action_type_user_tab_pass_enter">Type username/password with InputStick</string>
+    <string name="action_type_user_tab_pass">Type username/password with InputStick</string>
+    <string name="action_type_user_tab_pass_enter">Type username/password/enter with InputStick</string>
+    <string name="action_quick_settings">(InputStick) Quick settings</string>
+    <string name="action_open_settings">(InputStick) Settings</string>
+    <string name="action_masked_password">(InputStick) Masked Password</string>
+    <string name="title_activity_masked_password">Type Masked Password</string>
+    
+    <string name="title_activity_init">Plugin Init</string>
+    
+    <string name="configuration_title">Plugin Configuration</string>    
+    <string name="configuration_message">Please take a minute to configure the plugin.\n\nConfigure as plugin -> Accept\n\nMake sure that host keyboard layout matches the one used by USB host (your PC).\nEnable and set secondary layout if you work with different keyboard layouts.\n\nENABLE autoconnect if InputStick is used most of the time. Application will try to connect to InputStick everytime entry is opened.\nDISABLE autoconnect when InputStick is used occasionally. Application will not connect unless you request typing.\n\nRemember: this plugin requires InputStickUtility app to be installed.</string>    
+    
+    <string name="changelog_full_title">Change Log</string>
+    <string name="changelog_title">What\'s New</string>
+    <string name="changelog_ok_button">OK</string>
+    <string name="changelog_show_full">more...</string>
 
 </resources>
