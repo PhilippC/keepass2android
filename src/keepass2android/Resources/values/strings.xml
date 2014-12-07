@@ -230,7 +230,7 @@
   <string name="QuickUnlockDefaultEnabled_title">Enable QuickUnlock by default</string>
   <string name="QuickUnlockDefaultEnabled_summary">Defines whether QuickUnlock is enabled by default or not.</string>
 	<string name="ViewDatabaseSecure_title">Protect database display</string>
-	<string name="ViewDatabaseSecure_summary">Protect database display</string>
+	<string name="ViewDatabaseSecure_summary">If enabled, no screenshots are allowed and no thumbnail of the app is displayed in the Recent Apps list.</string>
   <string name="QuickUnlockIconHidden_title">Hide QuickUnlock icon</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock unfortunately does not work without displaying a notification icon. Select this option to use a transparent icon.</string>
   <string name="QuickUnlockIconHidden16_title">Hide QuickUnlock icon</string>
@@ -498,6 +498,7 @@
 		* Fixed issue with loading .kdb files (Keepass 1) on Nexus 5 with Android Lollipop\n
 		* Added option to prevent taking screenshots/displaying app in recent apps list\n
 		* Fixed issue with Google Drive file storage\n
+		* Allow key files on deliberate storage types\n
 		* Updated build tools --> apk size increased :-(\n
 		I have promised some more changes. They will come with the next release - sorry. I wanted to publish these hot fixes as soon as possible.
 	</string>

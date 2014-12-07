@@ -88,6 +88,8 @@ namespace keepass2android
 		private const int RequestCodePrepareOtpAuxFile = 1001;
         private const int RequestCodeChallengeYubikey = 1002;
 		private const int RequestCodeSelectKeyfile = 1003;
+		private const int RequestCodePrepareKeyFile = 1004;
+
 
 		private Task<MemoryStream> _loadDbTask;
 		private IOConnectionInfo _ioConnection;
@@ -278,7 +280,22 @@ namespace keepass2android
 					break;
 				case (Result)FileStorageResults.FileUsagePrepared:
 					if (requestCode == RequestCodePrepareDbFile)
+					{
+						if (KeyProviderType == KeyProviders.KeyFile)
+						{
+							var iocKeyfile = IOConnectionInfo.UnserializeFromString(_keyFileOrProvider);
+
+							App.Kp2a.GetFileStorage(iocKeyfile)
+								.PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), iocKeyfile,
+										 RequestCodePrepareKeyFile, false);
+						}
+						else
+							PerformLoadDatabase();
+					}
+					if (requestCode == RequestCodePrepareKeyFile)
+					{
 						PerformLoadDatabase();
+					}
 					if (requestCode == RequestCodePrepareOtpAuxFile)
 					{
 						if (_keyFileOrProvider == KeyProviderIdChallenge) 
@@ -551,7 +568,17 @@ namespace keepass2android
 			else
 			{
 				SetIoConnectionFromIntent(_ioConnection, i);
-				_keyFileOrProvider = i.GetStringExtra(KeyKeyfile);
+				var keyFileFromIntent = i.GetStringExtra(KeyKeyfile);
+				if (keyFileFromIntent != null)
+				{
+					Kp2aLog.Log("try get keyfile from intent");
+					_keyFileOrProvider = IOConnectionInfo.SerializeToString(IOConnectionInfo.FromPath(keyFileFromIntent));
+					Kp2aLog.Log("try get keyfile from intent ok");
+				}
+				else
+				{
+					_keyFileOrProvider = null;
+				}
 				_password = i.GetStringExtra(KeyPassword) ?? "";
 				if (string.IsNullOrEmpty(_keyFileOrProvider))
 				{
@@ -897,9 +924,45 @@ namespace keepass2android
 
 		private void PerformLoadDatabase()
 		{
+			//put loading into background thread to allow loading the key file (potentially over network)
+			new SimpleLoadingDialog(this, GetString(Resource.String.loading),
+			                        true, () =>
+				                        {
+					                        CompositeKey compositeKey;
+					                        if (!CreateCompositeKey(out compositeKey)) return (() => { });
+											return () => { PerformLoadDatabaseWithCompositeKey(compositeKey); };
+				                        }).Execute();
 			
-			//no need to check for validity of password because if this method is called, the Ok button was enabled (i.e. there was a valid password)
-			CompositeKey compositeKey = new CompositeKey();
+			
+		}
+
+		private void PerformLoadDatabaseWithCompositeKey(CompositeKey compositeKey)
+		{
+			CheckBox cbQuickUnlock = (CheckBox) FindViewById(Resource.Id.enable_quickunlock);
+			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
+
+			//avoid password being visible while loading:
+			_showPassword = false;
+			MakePasswordMaskedOrVisible();
+
+			Handler handler = new Handler();
+			OnFinish onFinish = new AfterLoad(handler, this);
+			_performingLoad = true;
+			LoadDb task = (KeyProviderType == KeyProviders.Otp)
+				              ? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider,
+				                                            onFinish, this)
+				              : new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish);
+			_loadDbTask = null; // prevent accidental re-use
+
+			SetNewDefaultFile();
+
+			new ProgressTask(App.Kp2a, this, task).Run();
+		}
+
+		private bool CreateCompositeKey(out CompositeKey compositeKey)
+		{
+//no need to check for validity of password because if this method is called, the Ok button was enabled (i.e. there was a valid password)
+			compositeKey = new CompositeKey();
 			compositeKey.AddUserKey(new KcpPassword(_password));
 			if (KeyProviderType == KeyProviders.KeyFile)
 			{
@@ -913,24 +976,22 @@ namespace keepass2android
 						byte[] keyfileData = StreamToMemoryStream(stream).ToArray();
 						compositeKey.AddUserKey(new KcpKeyFile(keyfileData, ioc, true));
 					}
-
 				}
 				catch (System.IO.FileNotFoundException e)
 				{
 					Kp2aLog.Log(e.ToString());
 					Toast.MakeText(this, App.Kp2a.GetResourceString(UiStringKey.keyfile_does_not_exist), ToastLength.Long).Show();
-					return;
+					return false;
 				}
 				catch (Exception e)
 				{
 					Kp2aLog.Log(e.ToString());
 					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
-					return;
+					return false;
 				}
 			}
 			else if (KeyProviderType == KeyProviders.Otp)
 			{
-
 				try
 				{
 					var lOtps = GetOtpsFromUi();
@@ -942,7 +1003,7 @@ namespace keepass2android
 					Kp2aLog.Log(e.ToString());
 					Toast.MakeText(this, GetString(Resource.String.OtpKeyError), ToastLength.Long).Show();
 
-					return;
+					return false;
 				}
 				compositeKey.AddUserKey(new KcpCustomKey(OathHotpKeyProv.Name, _otpInfo.Secret, true));
 			}
@@ -951,7 +1012,7 @@ namespace keepass2android
 				Spinner stpDataFmtSpinner = FindViewById<Spinner>(Resource.Id.otpsecret_format_spinner);
 				EditText secretEdit = FindViewById<EditText>(Resource.Id.pass_otpsecret);
 
-				byte[] pbSecret = EncodingUtil.ParseKey(secretEdit.Text, (OtpDataFmt)stpDataFmtSpinner.SelectedItemPosition);
+				byte[] pbSecret = EncodingUtil.ParseKey(secretEdit.Text, (OtpDataFmt) stpDataFmtSpinner.SelectedItemPosition);
 				if (pbSecret != null)
 				{
 					compositeKey.AddUserKey(new KcpCustomKey(OathHotpKeyProv.Name, pbSecret, true));
@@ -959,34 +1020,14 @@ namespace keepass2android
 				else
 				{
 					Toast.MakeText(this, Resource.String.CouldntParseOtpSecret, ToastLength.Long).Show();
-					return;
+					return false;
 				}
 			}
-            else if (KeyProviderType == KeyProviders.Challenge)
-            {
-                compositeKey.AddUserKey(new KcpCustomKey(KeeChallengeProv.Name, _challengeSecret, true));
-                 
-            }
-
-			CheckBox cbQuickUnlock = (CheckBox) FindViewById(Resource.Id.enable_quickunlock);
-			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
-
-			//avoid password being visible while loading:
-			_showPassword = false;
-			MakePasswordMaskedOrVisible();
-
-			Handler handler = new Handler();
-			OnFinish onFinish = new AfterLoad(handler, this);
-			_performingLoad = true;	 
-			LoadDb task = (KeyProviderType == KeyProviders.Otp) ?
-				new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish, this)
-				:
-				new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish);
-			_loadDbTask = null; // prevent accidental re-use
-
-			SetNewDefaultFile();
-
-			new ProgressTask(App.Kp2a, this, task).Run();
+			else if (KeyProviderType == KeyProviders.Challenge)
+			{
+				compositeKey.AddUserKey(new KcpCustomKey(KeeChallengeProv.Name, _challengeSecret, true));
+			}
+			return true;
 		}
 
 		private List<string> GetOtpsFromUi()
@@ -1251,8 +1292,26 @@ namespace keepass2android
 		private String GetKeyFile(String filename) {
 			if ( _rememberKeyfile ) {
 				string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(filename);
-				if (keyfile == "")
+				if (String.IsNullOrEmpty(keyfile))
 					return null; //signal no key file
+
+				//test if the filename is properly encoded. 
+				try
+				{
+					Kp2aLog.Log("test if stored filename is ok");
+					IOConnectionInfo.UnserializeFromString(keyfile);
+					Kp2aLog.Log("...ok");
+				}
+				catch (Exception e)
+				{
+					//it's not. This is probably because we're upgrading from app version <= 45
+					//where the keyfile was stored plain text and not serialized
+					Kp2aLog.Log("no, it's not: "+e.GetType().Name);
+					var serializedKeyFile = IOConnectionInfo.SerializeToString(IOConnectionInfo.FromPath(keyfile));
+					Kp2aLog.Log("now it is!");
+					return serializedKeyFile;
+
+				}
 				return keyfile;
 			} else {
 				return null;
