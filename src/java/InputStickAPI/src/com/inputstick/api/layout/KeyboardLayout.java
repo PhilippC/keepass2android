@@ -8,6 +8,8 @@ import com.inputstick.api.hid.KeyboardReport;
 
 public abstract class KeyboardLayout {
 	
+	public static final int MAX_SCANCODE = 0x60;
+	
 	public static final byte[] scanCodeToHID = {
 		/* 0x00 */ 0,
 		/* 0x01 */ HIDKeycodes.KEY_ESCAPE,
@@ -138,7 +140,7 @@ public abstract class KeyboardLayout {
 	}	
 	
 	public static int hidToScanCode(byte key) {
-		for (int scanCode = 0; scanCode < 80; scanCode++) {
+		for (int scanCode = 0; scanCode < MAX_SCANCODE; scanCode++) {
 			if (scanCodeToHID[scanCode] == key) {
 				return scanCode;
 			}
@@ -147,7 +149,7 @@ public abstract class KeyboardLayout {
 	}
 	
 	public static char getChar(int[][] lut, int scanCode, boolean capsLock, boolean shift, boolean altGr) {
-		if ((scanCode > 80) || (scanCode < 0)) {
+		if ((scanCode >= MAX_SCANCODE) || (scanCode < 0)) {
 			return (char)0;
 		}
 		
@@ -197,7 +199,7 @@ public abstract class KeyboardLayout {
 	}
 	
 	public static int getScanCode(int[][] lut, char c) {		
-		for (int scanCode = 0; scanCode < 0x60; scanCode++) {
+		for (int scanCode = 0; scanCode < MAX_SCANCODE; scanCode++) {
 			if (lut[scanCode][0] == -1) {
 				continue;
 			} else {
@@ -337,7 +339,23 @@ public abstract class KeyboardLayout {
 				return FrenchLayout.getInstance();
 			} else if (locale.equals(SpanishLayout.getInstance().getLocaleName())) {
 				return SpanishLayout.getInstance();
-			}						
+			} else if (locale.equals(UnitedKingdomLayout.getInstance().getLocaleName())) {
+				return UnitedKingdomLayout.getInstance();
+			} else if (locale.equals(GermanMacLayout.getInstance().getLocaleName())) {
+				return GermanMacLayout.getInstance(); // TODO
+			} else if (locale.equals(ItalianLayout.getInstance().getLocaleName())) {
+				return ItalianLayout.getInstance();
+			} else if (locale.equals(FinnishLayout.getInstance().getLocaleName())) {
+				return FinnishLayout.getInstance();
+			} else if (locale.equals(SwissFrenchLayout.getInstance().getLocaleName())) {
+				return SwissFrenchLayout.getInstance();
+			} else if (locale.equals(SwissGermanLayout.getInstance().getLocaleName())) {
+				return SwissGermanLayout.getInstance();
+			} else if (locale.equals(HebrewLayout.getInstance().getLocaleName())) {
+				return HebrewLayout.getInstance();
+			} else if (locale.equals(DanishLayout.getInstance().getLocaleName())) {
+				return DanishLayout.getInstance();
+			}													
 			
 		}
 

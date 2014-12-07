@@ -20,8 +20,7 @@ public class UnitedStatesLayout extends KeyboardLayout {
 		/*	0c	*/	{	0	,	0x002d	,	0x005f	,	-1	,	-1	,	-1	}	,
 		/*	0d	*/	{	0	,	0x003d	,	0x002b	,	-1	,	-1	,	-1	}	,
 		/*	0e	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
-		/*	0f	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
-		
+		/*	0f	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,		
 		
 		/*	10	*/	{	1	,	(int)'q'	,	(int)'Q'	,	-1	,	-1	,	-1	}	,
 		/*	11	*/	{	1	,	(int)'w'	,	(int)'W'	,	-1	,	-1	,	-1	}	,
@@ -39,8 +38,7 @@ public class UnitedStatesLayout extends KeyboardLayout {
 		/*	1d	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	1e	*/	{	1	,	(int)'a'	,	(int)'A'	,	-1	,	-1	,	-1	}	,
 		/*	1f	*/	{	1	,	(int)'s'	,	(int)'S' ,	-1	,	-1	,	-1	}	,
-		
-		
+				
 		/*	20	*/	{	1	,	(int)'d'	,	(int)'D'	,	-1	,	-1	,	-1	}	,
 		/*	21	*/	{	1	,	(int)'f'	,	(int)'F'	,	-1	,	-1	,	-1	}	,
 		/*	22	*/	{	1	,	(int)'g'	,	(int)'G'	,	-1	,	-1	,	-1	}	,
@@ -56,8 +54,7 @@ public class UnitedStatesLayout extends KeyboardLayout {
 		/*	2c	*/	{	1	,	(int)'z'	,	(int)'Z'	,	-1	,	-1	,	-1	}	,
 		/*	2d	*/	{	1	,	(int)'x'	,	(int)'X'	,	-1	,	-1	,	-1	}	,
 		/*	2e	*/	{	1	,	(int)'c'	,	(int)'C'	,	-1	,	-1	,	-1	}	,
-		/*	2f	*/	{	1	,	(int)'v'	,	(int)'V'	,	-1	,	-1	,	-1	}	,
-		
+		/*	2f	*/	{	1	,	(int)'v'	,	(int)'V'	,	-1	,	-1	,	-1	}	,		
 		
 		/*	30	*/	{	1	,	(int)'b'	,	(int)'B'	,	-1	,	-1	,	-1	}	,
 		/*	31	*/	{	1	,	(int)'n'	,	(int)'N'	,	-1	,	-1	,	-1	}	,
@@ -74,8 +71,7 @@ public class UnitedStatesLayout extends KeyboardLayout {
 		/*	3c	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	3d	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	3e	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
-		/*	3f	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
-		
+		/*	3f	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,		
 		
 		/*	40	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	41	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
@@ -92,8 +88,7 @@ public class UnitedStatesLayout extends KeyboardLayout {
 		/*	4c	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	4d	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	4e	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
-		/*	4f	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,		
-		
+		/*	4f	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,				
 		
 		/*	50	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	51	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,	

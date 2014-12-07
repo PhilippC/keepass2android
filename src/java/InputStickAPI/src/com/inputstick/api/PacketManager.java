@@ -55,7 +55,9 @@ public class PacketManager {
 		byte[] iv = mAes.init(mKey);		
 		p.addBytes(iv);
 		
-		Util.printHex(iv, "IV: ");
+		//Util.printHex(mKey, "key: "); // TODO prnt
+		
+		//Util.printHex(iv, "IV: ");
 		
 		byte[] initData = new byte[16];
 		r.nextBytes(initData);		
@@ -72,13 +74,13 @@ public class PacketManager {
 		initData = mAes.encrypt(initData);
 		p.addBytes(initData);				
 		
-		Util.printHex(initData, "InitData: ");
+		//Util.printHex(initData, "InitData: ");
 		
 		cmpData = new byte[16];
 		r.nextBytes(cmpData);
 		p.addBytes(cmpData);
 		
-		Util.printHex(cmpData, "CmpData: ");		
+		//Util.printHex(cmpData, "CmpData: ");		
 		return p;
 	}
 	
@@ -89,11 +91,14 @@ public class PacketManager {
 		//boolean decrypt = false;
 		long crcValue, crcCompare;
 		
+		//Util.printHex(data, "RX DATA: "); // TODO prnt
+		
 		payload = Arrays.copyOfRange(data, 2, data.length); //remove TAG, info
 		if ((data[1] & Packet.FLAG_ENCRYPTED) != 0) {
 			//Util.log("DECRYPT");
 			if (mAes.isReady()) {
 				payload = mAes.decrypt(payload);
+				//Util.printHex(payload, "RX DECR: "); // TODO prnt
 			} else {
 				return null;
 			}
@@ -110,6 +115,7 @@ public class PacketManager {
 		
 		if (crcValue == crcCompare) {
 			payload = Arrays.copyOfRange(payload, 4, payload.length); //remove CRC
+			//Util.printHex(payload, "RX PAYLOAD FINAL: "); // TODO prnt
 			return payload;
 		} else {
 			return null; //TODO			
@@ -156,11 +162,10 @@ public class PacketManager {
 		crcValue >>= 8;
 		result[0] = (byte)crcValue;			
 		
-		//Util.printHex(result);
-		
+		//Util.printHex(result, "TX DATA: "); // TODO prnt
 		if (encrypt) {
 			result = mAes.encrypt(result);
-			//Util.printHex(result);			
+			//Util.printHex(result, "ENC DATA: "); // TODO prnt
 		}
 		
 		header = new byte[2];
@@ -172,6 +177,7 @@ public class PacketManager {
 		if (p.getRespond()) {
 			header[1] |= Packet.FLAG_RESPOND;
 		}
+		//Util.printHex(header, "TX HEADER: "); // TODO prnt
 		mBTService.write(header);
 		mBTService.write(result);	
 	}

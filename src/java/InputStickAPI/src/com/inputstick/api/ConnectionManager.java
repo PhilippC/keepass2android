@@ -22,13 +22,20 @@ public abstract class ConnectionManager {
 	public abstract void sendPacket(Packet p);
 	
 	protected void stateNotify(int state) {
-		if (mState != state) {							
+		stateNotify(state, false);
+	}    
+	
+	protected void stateNotify(int state, boolean forceNotification) {
+		if (( !forceNotification) && (mState == state )) {
+			//do nothing
+		} else {
+			//notify all listeners
 			mState = state;
 			for (InputStickStateListener listener : mStateListeners) {
 				listener.onStateChanged(state);
-			}	
+			}
 		}
-	}    
+	}  
 	
 	public int getState() {
 		return mState;

@@ -19,7 +19,7 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 	
 	private InitManager mInitManager;
 	private Application mApp;
-	private BTService mBTService;
+	protected BTService mBTService;
 	private PacketManager mPacketManager;
 	private final BTHandler mBTHandler = new BTHandler(this);				
 	
@@ -103,8 +103,7 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 		connect(false, BTService.DEFAULT_CONNECT_TIMEOUT);
 	}
 
-	
-	public void connect(boolean reflection, int timeout) {
+	public void connect(boolean reflection, int timeout, boolean doNotAsk) {
 		mErrorCode = InputStickError.ERROR_NONE;
 		if (mBTService == null) {
 			mBTService = new BTService(mApp, mBTHandler);
@@ -113,8 +112,12 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 		}
 		mBTService.setConnectTimeout(timeout);
 		mBTService.enableReflection(reflection);
-		mBTService.connect(mMac);
-		onConnecting();
+		mBTService.connect(mMac, doNotAsk);
+		onConnecting();		
+	}
+		
+	public void connect(boolean reflection, int timeout) {
+		connect(reflection, timeout, false);
 	}
 
 	@Override

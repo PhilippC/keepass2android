@@ -3,17 +3,24 @@ package com.inputstick.init;
 import com.inputstick.api.Packet;
 
 
-public class BasicInitManager extends InitManager {		
+public class BasicInitManager extends InitManager {
+	
+	private static final int UPDATES_LIMIT = 50;
+	private static final int RETRY_LIMIT = 3;
+	
+	
+	private int lastStatusParam;
+	private int noInitUpdatesCnt;
+	private int noInitRetryCnt;
 	
 	public BasicInitManager(byte[] key) {
 		super(key);
+		lastStatusParam = 0;
 	}
 	
 
 	@Override
 	public void onConnected() {		
-		/*Packet p = new Packet(false, Packet.RAW_OLD_BOOTLOADER); //compatibility with old protocol version
-		sendPacket(p);*/		
 		sendPacket(new Packet(true, Packet.CMD_RUN_FW));			
 	}
 	
@@ -33,6 +40,8 @@ public class BasicInitManager extends InitManager {
 			case Packet.CMD_INIT:
 				if (respCode == Packet.RESP_OK) {
 					initDone = true;
+					noInitUpdatesCnt = 0;
+					noInitRetryCnt = 0;
 					sendPacket(new Packet(true, Packet.CMD_HID_STATUS_REPORT));			
 				} else {
 					mListener.onInitFailure(respCode);
@@ -43,12 +52,24 @@ public class BasicInitManager extends InitManager {
 				break;
 			case Packet.CMD_HID_STATUS:
 				if (initDone) {
-					if (param == 0x05) {						
-						mListener.onInitReady();
-					} else {
-						mListener.onInitNotReady();
+					if (param != lastStatusParam) {
+						lastStatusParam = param;
+						if (param == 0x05) {						
+							mListener.onInitReady();
+						} else {
+							mListener.onInitNotReady();
+						}
 					}
-				}				
+				} else {
+					noInitUpdatesCnt++;
+					if (noInitUpdatesCnt == UPDATES_LIMIT) {
+						noInitUpdatesCnt = 0;
+						if (noInitRetryCnt < RETRY_LIMIT) {				
+							sendPacket(new Packet(true, Packet.CMD_RUN_FW));
+							noInitRetryCnt++;
+						}
+					}
+				}
 				break;
 		}
 	}

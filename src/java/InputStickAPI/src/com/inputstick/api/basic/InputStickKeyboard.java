@@ -61,13 +61,19 @@ public class InputStickKeyboard {
 	}
 	
 	protected static void setLEDs(boolean numLock, boolean capsLock, boolean scrollLock) {
+		boolean mustUpdate = false;
+		if ((numLock != mNumLock) || (capsLock != mCapsLock) || (scrollLock != mScrollLock)) {
+			mustUpdate = true;
+		}
 		mNumLock = numLock;
 		mCapsLock = capsLock;
 		mScrollLock = scrollLock;
 		
-		for (InputStickKeyboardListener listener : mKeyboardListeners) {
-			listener.onLEDsChanged(mNumLock, mCapsLock, mScrollLock);
-		}			
+		if (mustUpdate) {
+			for (InputStickKeyboardListener listener : mKeyboardListeners) {
+				listener.onLEDsChanged(mNumLock, mCapsLock, mScrollLock);
+			}			
+		}
 	}
 	
 	public static boolean isNumLock() {

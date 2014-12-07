@@ -1,8 +1,5 @@
 package com.inputstick.init;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import com.inputstick.api.InputStickError;
 import com.inputstick.api.Packet;
 import com.inputstick.api.PacketManager;
@@ -16,8 +13,6 @@ public class InitManager {
 	protected byte[] mKey;
 	protected DeviceInfo mInfo;
 	protected boolean initDone;
-	
-	//private Timer t;
 	
 	public InitManager(byte[] key) {
 		mKey = key;					

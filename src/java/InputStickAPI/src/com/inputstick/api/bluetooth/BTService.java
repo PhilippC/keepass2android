@@ -58,6 +58,20 @@ public class BTService {
     
     private boolean disconnecting;
     private boolean connected;
+    
+    //================================================================
+    private static final int RX_TIMEOUT = 3000;
+    
+    private long lastRxTime;
+    private int rxState;
+    private int rxPos;
+    private int rxLength;
+    private byte[] rxData;
+    private int rxWdgCnt;
+    
+    private static final int RX_TAG = 0;
+    private static final int RX_LENGTH = 1;
+    private static final int RX_DATA = 2;
   
     
 	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -108,18 +122,23 @@ public class BTService {
     
     
     
-    private void enableBluetooth() {
+    private void enableBluetooth(boolean doNotAsk) {
     	if (mApp != null) {
 	    	turnBluetoothOn = true;
+	    	
 	    	if ( !receiverRegistered) {
 	    		IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 	    		mCtx.registerReceiver(mReceiver, filter);
 	    		receiverRegistered = true;
+	    	}	    	
+	    	
+	    	if (doNotAsk) {
+	    		BluetoothAdapter.getDefaultAdapter().enable();
+	    	} else {
+		    	Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+		    	enableBtIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		    	mApp.startActivity(enableBtIntent);
 	    	}
-	        
-	    	Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-	    	enableBtIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	    	mApp.startActivity(enableBtIntent);	    	
     	}
     }    
     
@@ -146,6 +165,10 @@ public class BTService {
     
     
     public synchronized void connect(String mac) {
+    	connect(mac, false);
+    }
+    
+    public synchronized void connect(String mac, boolean doNotAsk) {
     	Util.log("connect to: " + mac + " REFLECTION: " + mUseReflection);
 		disconnecting = false;
 		connected = false;
@@ -159,7 +182,7 @@ public class BTService {
 				if (mBluetoothAdapter.isEnabled()) {					
 					doConnect(false);
 				} else {					
-					enableBluetooth();
+					enableBluetooth(doNotAsk);
 				}
 			}
 		} else {
@@ -342,38 +365,68 @@ public class BTService {
             mmOutStream = tmpOut;
         }
 
+        
+        private void rxByte(byte b) {
+        	long time = System.currentTimeMillis();
+        	if (time > lastRxTime + RX_TIMEOUT) {
+        		rxState = RX_TAG;
+        	}
+
+
+        	switch (rxState) {
+        		case RX_TAG:
+        			if (b == Packet.START_TAG) {
+        				rxState = RX_LENGTH;
+        			} else {
+                		Util.log("Unexpected RX byte" + b);
+                		if (b == 0xAF) {
+                			rxWdgCnt++;
+                		}
+                		if (rxWdgCnt > 1024) {
+                			rxWdgCnt = 0;
+                			event(EVENT_ERROR, InputStickError.ERROR_HARDWARE_WDG_RESET);
+                		}	        				
+        			}
+        			break;
+        		case RX_LENGTH:
+        			rxLength = b;
+        			rxLength &= 0x3F;
+        			rxLength *= 16;
+        			rxLength += 2;
+        			rxPos = 2;
+        			
+					rxData = new byte[rxLength];
+					rxData[0] = Packet.START_TAG;
+					rxData[1] = (byte)b;
+					
+					rxState = RX_DATA;
+        			break;
+        		case RX_DATA:
+        			if (rxPos < rxLength) {
+        				rxData[rxPos] = b;
+        				rxPos++;
+        				if (rxPos == rxLength) {
+        					//done!        					
+        					mHandler.obtainMessage(EVENT_DATA, 0, 0, rxData).sendToTarget();
+        					rxState = RX_TAG;
+        				}
+        			} else {
+        				//buffer overrun!
+        				rxState = RX_TAG;
+        			}
+        			break;
+        	}
+        	
+        	lastRxTime = time;
+        }
+
         public void run() {
-        	Util.log("BEGIN mConnectedThread");           
-            byte[] buffer = null;    
-            int rxTmp;
-            int lengthByte;
-            int length;  
-            int wdgCnt = 0;
+        	Util.log("BEGIN mConnectedThread");
+        	int rxTmp;
             while (true) {
                 try {
                 	rxTmp = mmInStream.read();
-                	if (rxTmp == Packet.START_TAG) {
-                		wdgCnt = 0;
-	                	lengthByte = mmInStream.read();
-	                	length = lengthByte;
-						length &= 0x3F;
-						length *= 16;					
-						buffer = new byte[length + 2];
-						buffer[0] = Packet.START_TAG;
-						buffer[1] = (byte)lengthByte;
-						for (int i = 2; i < length + 2; i++) {
-							buffer[i] = (byte)mmInStream.read();
-						}				
-						mHandler.obtainMessage(EVENT_DATA, 0, 0, buffer).sendToTarget();             
-                	} else {
-                		Util.log("Unexpected RX byte" + rxTmp);
-                		if (rxTmp == 0xAF) {
-                			wdgCnt++;
-                		}
-                		if (wdgCnt > 1024) {
-                			//TODO
-                		}															     
-                	}
+                	rxByte((byte)rxTmp);
                 } catch (IOException e) {
                     connectionLost();
                     break;
