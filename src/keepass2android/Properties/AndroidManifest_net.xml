@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="47" android:versionName="0.9.5-preview2" package="keepass2android.keepass2android" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="48" android:versionName="0.9.5" package="keepass2android.keepass2android" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19" />
 	<permission android:description="@string/permission_desc" android:icon="@drawable/ic_launcher" android:label="KP2A internal file browsing" android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" android:protectionLevel="signature" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">

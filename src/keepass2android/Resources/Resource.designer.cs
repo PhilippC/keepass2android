@@ -5603,11 +5603,11 @@ namespace keepass2android
 			// aapt resource value: 0x7f070173
 			public const int brackets = 2131165555;
 			
-			// aapt resource value: 0x7f07030c
-			public const int browser_intall_text = 2131165964;
+			// aapt resource value: 0x7f07030b
+			public const int browser_intall_text = 2131165963;
 			
-			// aapt resource value: 0x7f07030d
-			public const int building_search_idx = 2131165965;
+			// aapt resource value: 0x7f07030c
+			public const int building_search_idx = 2131165964;
 			
 			// aapt resource value: 0x7f0702b5
 			public const int button_change_location = 2131165877;
@@ -5768,14 +5768,14 @@ namespace keepass2android
 			// aapt resource value: 0x7f070119
 			public const int db_key = 2131165465;
 			
+			// aapt resource value: 0x7f07030d
+			public const int decrypting_db = 2131165965;
+			
 			// aapt resource value: 0x7f07030e
-			public const int decrypting_db = 2131165966;
+			public const int decrypting_entry = 2131165966;
 			
 			// aapt resource value: 0x7f07030f
-			public const int decrypting_entry = 2131165967;
-			
-			// aapt resource value: 0x7f070310
-			public const int default_checkbox = 2131165968;
+			public const int default_checkbox = 2131165967;
 			
 			// aapt resource value: 0x7f07010b
 			public const int default_file_path = 2131165451;
@@ -5861,8 +5861,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f070184
 			public const int entry_accessed = 2131165572;
 			
-			// aapt resource value: 0x7f070311
-			public const int entry_and_or = 2131165969;
+			// aapt resource value: 0x7f070310
+			public const int entry_and_or = 2131165968;
 			
 			// aapt resource value: 0x7f070196
 			public const int entry_binaries = 2131165590;
@@ -5918,8 +5918,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f0702bd
 			public const int error_adding_keyfile = 2131165885;
 			
-			// aapt resource value: 0x7f070312
-			public const int error_arc4 = 2131165970;
+			// aapt resource value: 0x7f070311
+			public const int error_arc4 = 2131165969;
 			
 			// aapt resource value: 0x7f070197
 			public const int error_can_not_handle_uri = 2131165591;
@@ -5933,8 +5933,8 @@ namespace keepass2android
 			// aapt resource value: 0x7f07019a
 			public const int error_database_exists = 2131165594;
 			
-			// aapt resource value: 0x7f07030b
-			public const int error_database_settings = 2131165963;
+			// aapt resource value: 0x7f070312
+			public const int error_database_settings = 2131165970;
 			
 			// aapt resource value: 0x7f07019b
 			public const int error_database_settinoverrgs = 2131165595;
