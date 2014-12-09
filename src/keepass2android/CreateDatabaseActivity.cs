@@ -327,9 +327,9 @@ namespace keepass2android
 						defaultPath =>
 						{
 							if (defaultPath.StartsWith("sftp://"))
-								Util.ShowSftpDialog(this, OnReceiveSftpData);
+								Util.ShowSftpDialog(this, OnReceiveSftpData, () => { });
 							else
-								Util.ShowFilenameDialog(this, OnCreateButton, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
+								Util.ShowFilenameDialog(this, OnCreateButton, null, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
 												Intents.RequestCodeFileBrowseForOpen);
 						}
 						), true, RequestCodeDbFilename, protocolId);

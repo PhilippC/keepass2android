@@ -49,20 +49,22 @@ public final class R {
         public static final int main=0x7f090000;
     }
     public static final class string {
-        public static final int action_input_stick=0x7f060005;
-        public static final int action_settings=0x7f060001;
-        public static final int action_type_enter=0x7f060007;
-        public static final int action_type_tab=0x7f060006;
-        public static final int action_type_user_tab_pass_enter=0x7f060008;
+        public static final int action_input_stick=0x7f060007;
+        public static final int action_settings=0x7f060002;
+        public static final int action_type_enter=0x7f060009;
+        public static final int action_type_tab=0x7f060008;
+        public static final int action_type_user_tab_pass_enter=0x7f06000a;
         public static final int app_name=0x7f060000;
         /**  Strings related to Settings 
          */
-        public static final int configure_plugin=0x7f06000a;
-        public static final int kp2aplugin_author=0x7f060004;
-        public static final int kp2aplugin_shortdesc=0x7f060003;
-        public static final int kp2aplugin_title=0x7f060002;
-        public static final int layout_title=0x7f06000b;
-        public static final int title_activity_settings=0x7f060009;
+        public static final int configure_plugin=0x7f06000c;
+        public static final int hello_world=0x7f060003;
+        public static final int kp2aplugin_author=0x7f060006;
+        public static final int kp2aplugin_shortdesc=0x7f060005;
+        public static final int kp2aplugin_title=0x7f060004;
+        public static final int layout_title=0x7f06000d;
+        public static final int title_activity_install_utility=0x7f060001;
+        public static final int title_activity_settings=0x7f06000b;
     }
     public static final class style {
         /** 

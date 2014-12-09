@@ -3,9 +3,7 @@ package com.inputstick.init;
 import com.inputstick.api.Packet;
 
 
-public class BasicInitManager extends InitManager {
-	
-	private boolean initDone = false;	
+public class BasicInitManager extends InitManager {		
 	
 	public BasicInitManager(byte[] key) {
 		super(key);
@@ -14,48 +12,46 @@ public class BasicInitManager extends InitManager {
 
 	@Override
 	public void onConnected() {		
-		/*Packet p = new Packet(false, Packet.RAW_OLD_BOOTLOADER); //compatibility
-		sendPacket(p);*/
-		
+		/*Packet p = new Packet(false, Packet.RAW_OLD_BOOTLOADER); //compatibility with old protocol version
+		sendPacket(p);*/		
 		sendPacket(new Packet(true, Packet.CMD_RUN_FW));			
 	}
 	
-
 	@Override
 	public void onData(byte[] data) {
 		byte cmd = data[0];
 		byte respCode = data[1];
 		byte param = data[1];
 		
-		if (cmd == Packet.CMD_RUN_FW) {
-			sendPacket(new Packet(true, Packet.CMD_GET_INFO));
-		}
-		
-		if (cmd == Packet.CMD_GET_INFO) {
-			//store info
-			sendPacket(new Packet(true, Packet.CMD_INIT)); //TODO params!	
-		}
-		
-		if (cmd == Packet.CMD_INIT) {
-			if (respCode == Packet.RESP_OK) {						
-				initDone = true;
-				sendPacket(new Packet(false, Packet.CMD_HID_STATUS_REPORT));
-			} else {
-				mListener.onInitFailure(respCode);
-			}
-		}
-		
-		if (cmd == Packet.CMD_HID_STATUS) {
-			if (initDone) {
-				if (param == 0x05) {
-					mListener.onInitReady();
+		switch (cmd) {
+			case Packet.CMD_RUN_FW:
+				sendPacket(new Packet(true, Packet.CMD_FW_INFO));
+				break;
+			case Packet.CMD_FW_INFO:
+				onFWInfo(data, true, true, new Packet(true, Packet.CMD_INIT)); //TODO next FW: params!	
+				break;
+			case Packet.CMD_INIT:
+				if (respCode == Packet.RESP_OK) {
+					initDone = true;
+					sendPacket(new Packet(true, Packet.CMD_HID_STATUS_REPORT));			
 				} else {
-					mListener.onInitNotReady();
-				}
-			}
+					mListener.onInitFailure(respCode);
+				}				
+				break;
+			case Packet.CMD_INIT_AUTH:
+				onAuth(data, true, new Packet(true, Packet.CMD_INIT)); //TODO next FW: params!	
+				break;
+			case Packet.CMD_HID_STATUS:
+				if (initDone) {
+					if (param == 0x05) {						
+						mListener.onInitReady();
+					} else {
+						mListener.onInitNotReady();
+					}
+				}				
+				break;
 		}
 	}
-
 	
 
 }

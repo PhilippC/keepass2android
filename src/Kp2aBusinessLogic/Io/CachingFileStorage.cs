@@ -488,6 +488,11 @@ namespace keepass2android.Io
 			_cachedStorage.PrepareFileUsage(activity, ioc, requestCode, alwaysReturnSuccess || IsCached(ioc));
 		}
 
+		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
+		{
+			_cachedStorage.PrepareFileUsage(ctx, ioc);
+		}
+
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
 		{
 			_cachedStorage.OnCreate(activity, savedInstanceState);
@@ -540,6 +545,19 @@ namespace keepass2android.Io
 				return res;
 			}
 			
+		}
+
+		public bool IsPermanentLocation(IOConnectionInfo ioc)
+		{
+			//even though the cache would be permanent, it's not a good idea to cache a temporary file, so return false in that case:
+			return _cachedStorage.IsPermanentLocation(ioc);
+		}
+
+		public bool IsReadOnly(IOConnectionInfo ioc)
+		{
+			//even though the cache can always be written, the changes made in the cache could not be transferred to the cached file
+			//so we better treat the cache as read-only as well.
+			return _cachedStorage.IsReadOnly(ioc);
 		}
 
 		private void StoreFilePath(IOConnectionInfo folderPath, string filename, IOConnectionInfo res)

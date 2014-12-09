@@ -52,7 +52,6 @@ public class IPCConnectionManager extends ConnectionManager {
             	}             	
     			break;
     		case SERVICE_CMD_STATE:
-    			//System.out.println("CMD STATE: "+msg.arg1);
     			manager.stateNotify(msg.arg1);
     			break;             	
         	}         	
@@ -61,7 +60,6 @@ public class IPCConnectionManager extends ConnectionManager {
     
     private ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
-        	//System.out.println("onServiceConnected!");
             mService = new Messenger(service);
             mBound = true;                  
             sendMessage(SERVICE_CMD_CONNECT, 0, 0); 
@@ -69,9 +67,10 @@ public class IPCConnectionManager extends ConnectionManager {
 
         public void onServiceDisconnected(ComponentName className) {
             // unexpectedly disconnected from service
-        	//System.out.println("onService DISCONNECTED!");
             mService = null;
             mBound = false;
+			mErrorCode = InputStickError.ERROR_ANDROID_SERVICE_DISCONNECTED;
+			stateNotify(STATE_FAILURE);
             stateNotify(STATE_DISCONNECTED);
         }
     };  
@@ -130,34 +129,32 @@ public class IPCConnectionManager extends ConnectionManager {
 		}		
 		
 		if (exists) {
-			mErrorCode = ConnectionManager.ERROR_NONE;
+			mErrorCode = InputStickError.ERROR_NONE;
 			Intent intent = new Intent();									
 			intent.setComponent(new ComponentName("com.inputstick.apps.inputstickutility","com.inputstick.apps.inputstickutility.service.InputStickService"));
 			mCtx.startService(intent);
 			mCtx.bindService(intent, mConnection, Context.BIND_AUTO_CREATE); 
 	        if (mBound) {
-	        	//already bound?
-	        	//System.out.println("Service already Connected");
+	        	//already bound
 	        	sendMessage(SERVICE_CMD_CONNECT, 0, 0); 
 	        } 
 		} else {
-			mErrorCode = 1; //TODO
+			mErrorCode = InputStickError.ERROR_ANDROID_NO_UTILITY_APP;
 			stateNotify(STATE_FAILURE);
+			stateNotify(STATE_DISCONNECTED);
 		}
 	}
 
 	@Override
 	public void disconnect() {
 		if (mBound) {
-			//System.out.println("UNBIND");
 			sendMessage(SERVICE_CMD_DISCONNECT, 0, 0); 
 			Intent intent = new Intent();		   
 			intent.setComponent(new ComponentName("com.inputstick.apps.inputstickutility","com.inputstick.apps.inputstickutility.service.InputStickService"));	
 			mCtx.unbindService(mConnection);
-			mCtx.stopService(intent);
+			mCtx.stopService(intent);			
 			mBound = false;
-			//TODO stateNotify 
-			//service will pass notification message
+			//service will pass notification message (disconnected)
 		} else {
 			//just set state, there is nothing else to do
 			stateNotify(STATE_DISCONNECTED);
@@ -172,9 +169,8 @@ public class IPCConnectionManager extends ConnectionManager {
 			} else {
 				sendMessage(IPCConnectionManager.SERVICE_CMD_DATA, 0, 0, p.getBytes());
 			}
-		}
+		}		
 	}
-
 
 
 }

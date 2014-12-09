@@ -1,5 +1,7 @@
 package com.inputstick.api.hid;
 
+import android.util.SparseArray;
+
 public class HIDKeycodes {
 	
 	public static final byte NONE = 0x00;
@@ -13,6 +15,7 @@ public class HIDKeycodes {
 	public static final byte ALT_RIGHT = 0x40;
 	public static final byte GUI_RIGHT = (byte)0x80;	
 	
+
 	public static final byte KEY_ENTER = 0x28;
 	public static final byte KEY_ESCAPE = 0x29;
 	public static final byte KEY_BACKSPACE = 0x2A;
@@ -79,6 +82,8 @@ public class HIDKeycodes {
 	public static final byte KEY_NUM_0 = 			0x62;		
 	public static final byte KEY_NUM_DOT = 			0x63;
 	
+	public static final byte KEY_BACKSLASH_NON_US =	0x64;
+	
 	public static final byte KEY_A = 				0x04;
 	public static final byte KEY_B = 				0x05;
 	public static final byte KEY_C = 				0x06;
@@ -125,6 +130,133 @@ public class HIDKeycodes {
 	public static final byte KEY_APPLICATION = 		0x65;	
 	
 	
+	
+	public static final SparseArray<String> modifiersMap;
+    static
+    {
+    	modifiersMap = new SparseArray<String>();
+    	modifiersMap.put(CTRL_LEFT, 								"Left Ctrl");
+    	modifiersMap.put(SHIFT_LEFT, 								"Left Shift");
+    	modifiersMap.put(ALT_LEFT, 									"Left Alt");
+    	modifiersMap.put(GUI_LEFT, 									"Left GUI");
+    	modifiersMap.put(CTRL_RIGHT, 								"Right Ctrl");
+    	modifiersMap.put(SHIFT_RIGHT, 								"Right Shift");
+    	modifiersMap.put(ALT_RIGHT, 								"Right Alt");
+    	modifiersMap.put(GUI_RIGHT, 								"Right GUI");
+    }
+	
+    public static final SparseArray<String> keyMap;
+    static
+    {
+    	keyMap = new SparseArray<String>();
+    	keyMap.put(0, 											"None");
+    	keyMap.put(KEY_ENTER, 									"Enter");
+    	keyMap.put(KEY_ESCAPE , 								"Esc");
+    	keyMap.put(KEY_BACKSPACE  , 							"Backspace");
+    	keyMap.put(KEY_TAB  , 									"Tab");
+    	keyMap.put(KEY_SPACEBAR  , 								"Space");
+    	
+    	keyMap.put(KEY_CAPS_LOCK  , 							"CapsLock");    	
+    	
+    	keyMap.put(KEY_1  , 									"1");
+    	keyMap.put(KEY_2  , 									"2");
+    	keyMap.put(KEY_3  , 									"3");
+    	keyMap.put(KEY_4  , 									"4");
+    	keyMap.put(KEY_5  , 									"5");
+    	keyMap.put(KEY_6  , 									"6");
+    	keyMap.put(KEY_7  , 									"7");
+    	keyMap.put(KEY_8  , 									"8");
+    	keyMap.put(KEY_9  , 									"9");
+    	keyMap.put(KEY_0  , 									"0");
+    	
+    	keyMap.put(KEY_F1  , 									"F1");
+    	keyMap.put(KEY_F2  , 									"F2");
+    	keyMap.put(KEY_F3  , 									"F3");
+    	keyMap.put(KEY_F4  , 									"F4");
+    	keyMap.put(KEY_F5  , 									"F5");
+    	keyMap.put(KEY_F6  , 									"F6");
+    	keyMap.put(KEY_F7  , 									"F7");
+    	keyMap.put(KEY_F8  , 									"F8");
+    	keyMap.put(KEY_F9  , 									"F9");
+    	keyMap.put(KEY_F10  , 									"F10");
+    	keyMap.put(KEY_F11  , 									"F11");
+    	keyMap.put(KEY_F12  , 									"F12");
+    	    	
+    	keyMap.put(KEY_PRINT_SCREEN   , 						"Print Scrn");
+    	keyMap.put(KEY_SCROLL_LOCK   , 							"ScrollLock");
+    	keyMap.put(KEY_PASUE   , 								"Pause Break");
+    	keyMap.put(KEY_INSERT   , 								"Insert");
+    	keyMap.put(KEY_HOME   , 								"Home");
+    	keyMap.put(KEY_PAGE_UP   , 								"PageUp");
+    	keyMap.put(KEY_DELETE   , 								"Delete");
+    	keyMap.put(KEY_END   , 									"End");
+    	keyMap.put(KEY_PAGE_DOWN   , 							"PageDown");     	
+    	
+    	keyMap.put(KEY_ARROW_RIGHT   , 							"Right Arrow");
+    	keyMap.put(KEY_ARROW_LEFT   , 							"Left Arrow");
+    	keyMap.put(KEY_ARROW_DOWN   , 							"Down Arrow");
+    	keyMap.put(KEY_ARROW_UP   , 							"Up Arrow");
+    	
+    	keyMap.put(KEY_NUM_LOCK   , 							"NumLock");
+    	keyMap.put(KEY_NUM_BACKSLASH   , 						"Num /");
+    	keyMap.put(KEY_NUM_STAR   , 							"Num *");
+    	keyMap.put(KEY_NUM_MINUS   , 							"Num -");
+    	keyMap.put(KEY_NUM_PLUS   , 							"Num +");
+    	keyMap.put(KEY_NUM_ENTER   , 							"Num Enter");
+    	keyMap.put(KEY_NUM_1   , 								"Num 1");
+    	keyMap.put(KEY_NUM_2   , 								"Num 2");
+    	keyMap.put(KEY_NUM_3   , 								"Num 3");
+    	keyMap.put(KEY_NUM_4   , 								"Num 4");
+    	keyMap.put(KEY_NUM_5   , 								"Num 5");
+    	keyMap.put(KEY_NUM_6   , 								"Num 6");
+    	keyMap.put(KEY_NUM_7   , 								"Num 7");
+    	keyMap.put(KEY_NUM_8   , 								"Num 8");
+    	keyMap.put(KEY_NUM_9   , 								"Num 9");
+    	keyMap.put(KEY_NUM_0   , 								"Num 0");
+    	keyMap.put(KEY_NUM_DOT   , 								"Num .");
+    	    	
+    	keyMap.put(KEY_A   , 									"A");
+    	keyMap.put(KEY_B   , 									"B");
+    	keyMap.put(KEY_C   , 									"C");
+    	keyMap.put(KEY_D   , 									"D");
+    	keyMap.put(KEY_E   , 									"E");
+    	keyMap.put(KEY_F   , 									"F");
+    	keyMap.put(KEY_G   , 									"G");
+    	keyMap.put(KEY_H   , 									"H");
+    	keyMap.put(KEY_I   , 									"I");
+    	keyMap.put(KEY_J   , 									"J");
+    	keyMap.put(KEY_K   , 									"K");
+    	keyMap.put(KEY_L   , 									"L");
+    	keyMap.put(KEY_M   , 									"M");
+    	keyMap.put(KEY_N   , 									"N");
+    	keyMap.put(KEY_O   , 									"O");    	
+    	keyMap.put(KEY_P   , 									"P");
+    	keyMap.put(KEY_Q   , 									"Q");
+    	keyMap.put(KEY_R   , 									"R");
+    	keyMap.put(KEY_S   , 									"S");
+    	keyMap.put(KEY_T   , 									"T");
+    	keyMap.put(KEY_U   , 									"U");
+    	keyMap.put(KEY_V   , 									"V");
+    	keyMap.put(KEY_W   , 									"W");    	
+    	keyMap.put(KEY_X   , 									"X");
+    	keyMap.put(KEY_Y   , 									"Y");
+    	keyMap.put(KEY_Z   , 									"Z");
+    	
+    	keyMap.put(KEY_MINUS   , 								"-");
+    	keyMap.put(KEY_EQUALS   , 								"=");
+    	keyMap.put(KEY_LEFT_BRACKET   , 						"[");
+    	keyMap.put(KEY_RIGHT_BRACKET   , 						"]");
+    	keyMap.put(KEY_BACKSLASH   , 							"\\");
+    	//keyMap.put(KEY_GRAVE  , 								"`");
+    	keyMap.put(KEY_SEMICOLON   , 							";");
+    	keyMap.put(KEY_APOSTROPHE   , 							"'");
+    	keyMap.put(KEY_GRAVE   , 								"`");
+    	keyMap.put(KEY_COMA   , 								",");
+    	keyMap.put(KEY_DOT   , 									".");
+    	keyMap.put(KEY_SLASH   , 								"/");
+    	
+    	keyMap.put(KEY_APPLICATION   , 							"Application");
+    }
 	
     public static final int[] ASCIItoHID = {
         0, //000
@@ -257,6 +389,14 @@ public class HIDKeycodes {
         0       //127 just in case...
     };	
     
+    public static char getChar(byte keyCode) {
+    	for (int i = 0; i < ASCIItoHID.length; i++) {
+    		if (ASCIItoHID[i] == keyCode) {
+    			return (char)i;
+    		}
+    	}
+    	return 0;
+    }
     
 	public static byte getKeyCode(char c) {
 		return (byte)ASCIItoHID[c]; //TODO range
@@ -266,7 +406,31 @@ public class HIDKeycodes {
 		return ASCIItoHID[c]; //TODO range
 	}    
     
+    public static String modifiersToString(byte modifiers) {
+    	String result = "None";
+    	boolean first = true;
+    	byte mod;
+    	for (int i = 0; i < 8; i++) {
+    		mod = (byte)(CTRL_LEFT << i);
+    		if ((modifiers & mod) != 0) {  
+    			if ( !first) {
+    				result += ", ";
+    			} else {
+    				result = "";
+    			}
+    			first = false;
+    			result += modifiersMap.get(mod);
+    		}
+    	}
+    	
+    	return result;
+    }
     
-    
-
+    public static String keyToString(byte key) {
+    	String result = keyMap.get(key);
+    	if (result == null) {
+    		result = "Unknown";
+    	}
+    	return result;
+    }
 }

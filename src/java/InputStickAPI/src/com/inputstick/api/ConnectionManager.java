@@ -11,13 +11,6 @@ public abstract class ConnectionManager {
 	public static final int STATE_READY = 4;
 	
 	
-	public static final int ERROR_NONE = 0;
-	
-	public static final int ERROR_UNSUPPORTED_FIRMWARE = 10;
-	public static final int ERROR_PASSWORD_PROTECTED = 11;
-	public static final int ERROR_INVALID_KEY = 12;
-	
-	
 	protected Vector<InputStickStateListener> mStateListeners = new Vector<InputStickStateListener>();
 	protected Vector<InputStickDataListener> mDataListeners = new Vector<InputStickDataListener>();
 	
@@ -47,7 +40,9 @@ public abstract class ConnectionManager {
 	
 	public void addStateListener(InputStickStateListener listener) {
 		if (listener != null) {
-			mStateListeners.add(listener);
+			if ( !mStateListeners.contains(listener)) {
+				mStateListeners.add(listener);
+			}
 		}	
 	}
 	
@@ -59,7 +54,9 @@ public abstract class ConnectionManager {
 	
 	public void addDataListener(InputStickDataListener listener) {
 		if (listener != null) {
-			mDataListeners.add(listener);
+			if ( !mDataListeners.contains(listener)) {
+				mDataListeners.add(listener);
+			}
 		}				
 	}
 	

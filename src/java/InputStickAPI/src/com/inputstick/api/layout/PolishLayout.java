@@ -111,6 +111,32 @@ public class PolishLayout extends KeyboardLayout {
 		
 	};
 	
+	public static final int DEADKEYS[] = {
+		0x007e
+	};
+	
+	public static final int DEADKEY_LUT[][] = {
+		{	0x007e	,	0x006e	,	0x0144	}	,
+		{	0x007e	,	0x0063	,	0x0107	}	,
+		{	0x007e	,	0x0078	,	0x017a	}	,
+		{	0x007e	,	0x007a	,	0x017c	}	,
+		{	0x007e	,	0x0061	,	0x0105	}	,
+		{	0x007e	,	0x0073	,	0x015b	}	,
+		{	0x007e	,	0x006c	,	0x0142	}	,
+		{	0x007e	,	0x0065	,	0x0119	}	,
+		{	0x007e	,	0x006f	,	0x00f3	}	,
+		{	0x007e	,	0x004e	,	0x0143	}	,
+		{	0x007e	,	0x0043	,	0x0106	}	,
+		{	0x007e	,	0x0058	,	0x0179	}	,
+		{	0x007e	,	0x005a	,	0x017b	}	,
+		{	0x007e	,	0x0041	,	0x0104	}	,
+		{	0x007e	,	0x0053	,	0x015a	}	,
+		{	0x007e	,	0x004c	,	0x0141	}	,
+		{	0x007e	,	0x0045	,	0x0118	}	,
+		{	0x007e	,	0x004f	,	0x00d3	}	,
+		{	0x007e	,	0x0020	,	0x007e	}	,
+	};	
+	
 	private static PolishLayout instance = new PolishLayout();
 	
 	private PolishLayout() {
@@ -127,7 +153,12 @@ public class PolishLayout extends KeyboardLayout {
 
 	@Override
 	public void type(String text) {
-		super.type(LUT, text);
+		super.type(LUT, DEADKEY_LUT, DEADKEYS, text, (byte)0);
+	}	
+	
+	@Override
+	public void type(String text, byte modifiers) {
+		super.type(LUT, DEADKEY_LUT, DEADKEYS, text, modifiers);
 	}
 
 	@Override
@@ -140,5 +171,14 @@ public class PolishLayout extends KeyboardLayout {
 		return LOCALE_NAME;
 	}	
 	
+	@Override
+	public int[][] getDeadkeyLUT() {		
+		return DEADKEY_LUT;
+	}
+
+	@Override
+	public int[] getDeadkeys() {
+		return DEADKEYS;
+	}
 
 }

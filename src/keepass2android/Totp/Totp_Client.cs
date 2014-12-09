@@ -114,7 +114,7 @@ namespace OtpProviderClient
                 | ((hash[offset + 2] & 0xff) << 8)              //Math.
                 | (hash[offset + 3] & 0xff);                    //Math.
 
-            int password = binary % (int)Math.Pow(10, _Length); //Math.
+            int password = binary % Convert.ToInt32(Math.Pow(10, _Length)); //Math.
             return password.ToString(new string('0', _Length)); //Math.
         }
     }

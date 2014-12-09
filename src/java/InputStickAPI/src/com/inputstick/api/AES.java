@@ -10,8 +10,10 @@ public class AES {
 	private Cipher mCipherEncr;
 	private Cipher mCipherDecr;
 	private SecretKeySpec mKey;	
+	private boolean ready;
 	
 	public AES() {
+		ready = false;
 	}
 	
 	public static byte[] getMD5(String s) {
@@ -31,10 +33,10 @@ public class AES {
 			mCipherEncr = Cipher.getInstance("AES/CBC/NoPadding");					
 			mCipherEncr.init(Cipher.ENCRYPT_MODE, mKey);
 			iv = mCipherEncr.getIV();
-			//System.out.println("AES IV: ");
-			Util.printHex(iv);
+			Util.printHex(iv, "AES IV: ");
 			mCipherDecr = Cipher.getInstance("AES/CBC/NoPadding");
-			mCipherDecr.init(Cipher.DECRYPT_MODE, mKey, new IvParameterSpec(iv));
+			mCipherDecr.init(Cipher.DECRYPT_MODE, mKey, new IvParameterSpec(iv));			
+			ready = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,4 +51,7 @@ public class AES {
 		return mCipherDecr.update(data);
 	}
 
+	public boolean isReady() {
+		return ready;
+	}
 }

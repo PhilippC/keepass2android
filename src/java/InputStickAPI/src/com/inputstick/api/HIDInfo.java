@@ -15,10 +15,16 @@ public class HIDInfo {
 	private boolean mouseReady;
 	private boolean consumerReady;
 	
+	// >= 0.93
+	private boolean sentToHostInfo;
+	private int keyboardReportsSentToHost;
+	private int mouseReportsSentToHost;
+	private int consumerReportsSentToHost;
 
 	public HIDInfo() {
 		keyboardReportProtocol = true;
 		mouseReportProtocol = true;
+		sentToHostInfo = false;
 	}
 	
 	public void update(byte[] data) {
@@ -70,6 +76,14 @@ public class HIDInfo {
 		} else {
 			consumerReady = true;
 		}			
+		if (data.length >= 12) {	
+			if (data[11] == (byte)0xFF) {
+				sentToHostInfo = true;
+				keyboardReportsSentToHost = data[8] & 0xFF;
+				mouseReportsSentToHost = data[9] & 0xFF;
+				consumerReportsSentToHost = data[10] & 0xFF;
+			}			
+		}
 	}
 	
 	public void setKeyboardBusy() {
@@ -111,5 +125,25 @@ public class HIDInfo {
 	public boolean isConsumerReady() {
 		return consumerReady;
 	}	
+	
+	
+	
+	// > v0.93 firmware only
+	
+	public boolean isSentToHostInfoAvailable() {
+		return sentToHostInfo;
+	}
+	
+	public int getKeyboardReportsSentToHost() {
+		return keyboardReportsSentToHost;
+	}
+	
+	public int getMouseReportsSentToHost() {
+		return mouseReportsSentToHost;
+	}
+	
+	public int getConsumerReportsSentToHost() {
+		return consumerReportsSentToHost;
+	}
 	
 }

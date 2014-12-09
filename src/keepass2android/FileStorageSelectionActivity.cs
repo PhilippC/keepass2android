@@ -14,7 +14,7 @@ namespace keepass2android
 	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden , Theme="@style/NoTitleBar")]		
 	public class FileStorageSelectionActivity : ListActivity
 	{
-		private ActivityDesign _design;
+		private readonly ActivityDesign _design;
 
 		private FileStorageAdapter _fileStorageAdapter;
 
@@ -42,6 +42,9 @@ namespace keepass2android
 				//put file:// to the top
 				_protocolIds.Remove("file");
 				_protocolIds.Insert(0, "file");
+				//remove "content" (covered by androidget)
+				_protocolIds.Remove("content");
+
 				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppGet, false))
 					_protocolIds.Add("androidget");
 				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppSend, false))

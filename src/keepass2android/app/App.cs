@@ -393,15 +393,18 @@ namespace keepass2android
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
+			return GetFileStorage(iocInfo, true);
+		}
+		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo, bool allowCache)
+		{
 			if (iocInfo.IsLocalFile())
 				return new BuiltInFileStorage(this);
 			else
 			{
 				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
 
-				if (DatabaseCacheEnabled)
+				if (DatabaseCacheEnabled && allowCache)
 				{
-					//TODO
 					return new CachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, this);	
 				}
 				else
@@ -443,7 +446,8 @@ namespace keepass2android
 							new SftpFileStorage(this),
 #endif
 #endif
-							new BuiltInFileStorage(this)
+							new BuiltInFileStorage(this),
+							new AndroidContentStorage(Application.Context)
 						};
 				}
 				return _fileStorages;

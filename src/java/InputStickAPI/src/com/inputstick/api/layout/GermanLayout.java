@@ -110,6 +110,49 @@ public class GermanLayout extends KeyboardLayout {
 		
 	};
 	
+	public static final int DEADKEYS[] = {
+		0x0060, 0x00b4, 0x005e
+	};
+	
+	public static final int DEADKEY_LUT[][] = {
+		{	0x00b4	,	0x0079	,	0x00fd	}	,
+		{	0x00b4	,	0x0061	,	0x00e1	}	,
+		{	0x00b4	,	0x0065	,	0x00e9	}	,
+		{	0x00b4	,	0x0075	,	0x00fa	}	,
+		{	0x00b4	,	0x0069	,	0x00ed	}	,
+		{	0x00b4	,	0x006f	,	0x00f3	}	,
+		{	0x00b4	,	0x0059	,	0x00dd	}	,
+		{	0x00b4	,	0x0041	,	0x00c1	}	,
+		{	0x00b4	,	0x0045	,	0x00c9	}	,
+		{	0x00b4	,	0x0055	,	0x00da	}	,
+		{	0x00b4	,	0x0049	,	0x00cd	}	,
+		{	0x00b4	,	0x004f	,	0x00d3	}	,
+		{	0x00b4	,	0x0020	,	0x00b4	}	,
+		{	0x0060	,	0x0061	,	0x00e0	}	,
+		{	0x0060	,	0x0065	,	0x00e8	}	,
+		{	0x0060	,	0x0075	,	0x00f9	}	,
+		{	0x0060	,	0x0069	,	0x00ec	}	,
+		{	0x0060	,	0x006f	,	0x00f2	}	,
+		{	0x0060	,	0x0041	,	0x00c0	}	,
+		{	0x0060	,	0x0045	,	0x00c8	}	,
+		{	0x0060	,	0x0055	,	0x00d9	}	,
+		{	0x0060	,	0x0049	,	0x00cc	}	,
+		{	0x0060	,	0x004f	,	0x00d2	}	,
+		{	0x0060	,	0x0020	,	0x0060	}	,
+		{	0x005e	,	0x0061	,	0x00e2	}	,
+		{	0x005e	,	0x0065	,	0x00ea	}	,
+		{	0x005e	,	0x0075	,	0x00fb	}	,
+		{	0x005e	,	0x0069	,	0x00ee	}	,
+		{	0x005e	,	0x006f	,	0x00f4	}	,
+		{	0x005e	,	0x0041	,	0x00c2	}	,
+		{	0x005e	,	0x0045	,	0x00ca	}	,
+		{	0x005e	,	0x0055	,	0x00db	}	,
+		{	0x005e	,	0x0049	,	0x00ce	}	,
+		{	0x005e	,	0x004f	,	0x00d4	}	,
+		{	0x005e	,	0x0020	,	0x005e	}	,
+		
+	};
+	
 	private static GermanLayout instance = new GermanLayout();
 	
 	private GermanLayout() {
@@ -126,8 +169,13 @@ public class GermanLayout extends KeyboardLayout {
 
 	@Override
 	public void type(String text) {
-		super.type(LUT, text);
+		super.type(LUT, DEADKEY_LUT, DEADKEYS, text, (byte)0);
 	}	
+	
+	@Override
+	public void type(String text, byte modifiers) {
+		super.type(LUT, DEADKEY_LUT, DEADKEYS, text, modifiers);
+	}
 	
 	@Override
 	public char getChar(int scanCode, boolean capsLock, boolean shift, boolean altGr) {
@@ -137,6 +185,16 @@ public class GermanLayout extends KeyboardLayout {
 	@Override
 	public String getLocaleName() {		
 		return LOCALE_NAME;
-	}			
+	}		
+	
+	@Override
+	public int[][] getDeadkeyLUT() {		
+		return DEADKEY_LUT;
+	}
+
+	@Override
+	public int[] getDeadkeys() {
+		return DEADKEYS;
+	}
 
 }

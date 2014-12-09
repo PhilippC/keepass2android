@@ -8,17 +8,31 @@
     <string name="layout_title">Host keyboard layout</string>
     
     <string-array name="layout_names">
-        <item>English (United States) - en-US</item>
-        <item>German - de-DE</item>
-        <item>Polish - pl-PL</item>
-        <item>Russian - ru-RU</item>
+        <item>English (US)</item>        
+        <item>German</item>
+        <item>Polish</item>
+        <item>Russian</item>
+        <item>Slovak</item>
+        <item>Portuguese (BR)</item>
+        <item>Norwegian</item>
+        <item>Swedish</item>
+        <item>French</item>
+        <item>Spanish</item>
+        <item>English (Dvorak)</item>
     </string-array>
     
     <string-array name="layout_values">
-        <item>en-US</item>
+        <item>en-US</item>        
         <item>de-DE</item>
         <item>pl-PL</item>
         <item>ru-RU</item>
+        <item>sk-SK</item>
+        <item>pt-BR</item>
+        <item>nb-NO</item>
+        <item>sv-SE</item>
+        <item>fr-FR</item>
+        <item>es-ES</item>
+        <item>en-DV</item>
     </string-array>
 
 </resources>

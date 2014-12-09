@@ -14,7 +14,10 @@ public final class R {
         public static int ic_launcher=0x7f020000;
     }
     public static final class string {
+        public static int action_settings=0x7f030002;
         public static int app_name=0x7f030000;
+        public static int hello_world=0x7f030003;
+        public static int title_activity_install_utility=0x7f030001;
     }
     public static final class style {
         /** 

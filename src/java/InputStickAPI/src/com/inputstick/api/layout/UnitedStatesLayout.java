@@ -98,10 +98,10 @@ public class UnitedStatesLayout extends KeyboardLayout {
 		/*	50	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	51	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,	
 		/*	52	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,		
-		/*	53	*/	{	0	,	0x002e	,	0x002e	,	-1	,	-1	,	-1	}	,
+		/*	53	*/	{	0	,	0x002e		,	0x002e	,	-1	,	-1	,	-1	}	,
 		/*	54	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	55	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,		
-		/*	56	*/	{	0	,	0x005c	,	0x007c	,	0x001c	,	-1	,	-1	}	,
+		/*	56	*/	{	0	,	0x005c		,	0x007c	,	0x001c	,	-1	,	-1	}	,
 		/*	57	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,	
 		/*	58	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
 		/*	59	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,
@@ -113,6 +113,9 @@ public class UnitedStatesLayout extends KeyboardLayout {
 		/*	5f	*/	{	-1	,	0			,	0		,	0	,	0	,	0	}	,			
 		
 	};
+	
+	public static final int DEADKEYS[] = null;
+	public static final int DEADKEY_LUT[][] = null;
 	
 	private static UnitedStatesLayout instance = new UnitedStatesLayout();
 	
@@ -130,7 +133,12 @@ public class UnitedStatesLayout extends KeyboardLayout {
 
 	@Override
 	public void type(String text) {
-		super.type(LUT, text);
+		super.type(LUT, DEADKEY_LUT, DEADKEYS, text, (byte)0);
+	}	
+	
+	@Override
+	public void type(String text, byte modifiers) {
+		super.type(LUT, DEADKEY_LUT, DEADKEYS, text, modifiers);
 	}	
 	
 	@Override
@@ -141,6 +149,16 @@ public class UnitedStatesLayout extends KeyboardLayout {
 	@Override
 	public String getLocaleName() {		
 		return LOCALE_NAME;
-	}		
+	}	
+	
+	@Override
+	public int[][] getDeadkeyLUT() {		
+		return DEADKEY_LUT;
+	}
+
+	@Override
+	public int[] getDeadkeys() {
+		return DEADKEYS;
+	}
 
 }

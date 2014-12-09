@@ -1,31 +1,32 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+
+using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
 using KeePassLib.Serialization;
-using keepass2android;
-using keepass2android.Io;
 
-namespace Kp2aUnitTests
+namespace keepass2android.Io
 {
-	internal class TestFileStorage: IFileStorage
+	//TODOC,TOTEST, TODO: unimplemented methods?
+	public class AndroidContentStorage: IFileStorage
 	{
-		public TestFileStorage(IKp2aApp app)
+		private readonly Context _ctx;
+
+		public AndroidContentStorage(Context ctx)
 		{
-			_builtIn = new BuiltInFileStorage(app);
+			_ctx = ctx;
 		}
-		private BuiltInFileStorage _builtIn;
 
-		public static bool Offline { get; set; }
-
-		public IEnumerable<string> SupportedProtocols { get { yield return "test"; } }
-
-		public void DeleteFile(IOConnectionInfo ioc)
+		public IEnumerable<string> SupportedProtocols
 		{
-			if (Offline)
-				throw new IOException("offline");
-			_builtIn.Delete(ioc);
+			get { yield return "content"; }
 		}
 
 		public void Delete(IOConnectionInfo ioc)
@@ -35,80 +36,35 @@ namespace Kp2aUnitTests
 
 		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
 		{
-			if (Offline)
-				return false;
-			return _builtIn.CheckForFileChangeFast(ioc, previousFileVersion);
+			return false;
 		}
 
 		public string GetCurrentFileVersionFast(IOConnectionInfo ioc)
 		{
-			if (Offline)
-				throw new IOException("offline");
-			return _builtIn.GetCurrentFileVersionFast(ioc);
+			return null;
 		}
 
 		public Stream OpenFileForRead(IOConnectionInfo ioc)
 		{
-			if (Offline)
-				throw new IOException("offline");
-			return _builtIn.OpenFileForRead(ioc);
+			return _ctx.ContentResolver.OpenInputStream(Android.Net.Uri.Parse(ioc.Path));
 		}
 
 		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
 		{
-			if (Offline)
-				throw new IOException("offline");
-			return new TestFileTransaction(ioc, useFileTransaction, Offline);
+			return new AndroidContentWriteTransaction(ioc.Path, _ctx);
 		}
-
-		public class TestFileTransaction : IWriteTransaction
-		{
-			private readonly bool _offline;
-			private readonly FileTransactionEx _transaction;
-
-			public TestFileTransaction(IOConnectionInfo ioc, bool useFileTransaction, bool offline)
-			{
-				_offline = offline;
-				_transaction = new FileTransactionEx(ioc, useFileTransaction);
-			}
-
-			public void Dispose()
-			{
-
-			}
-
-			public Stream OpenFile()
-			{
-				if (_offline)
-					throw new IOException("offline");
-				return _transaction.OpenWrite();
-			}
-
-			public void CommitWrite()
-			{
-				if (_offline)
-					throw new IOException("offline");
-				_transaction.CommitWrite();
-			}
-		}
-
 
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{
-			return _builtIn.GetFilenameWithoutPathAndExt(ioc);
+			return "";
 		}
 
 		public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
-			return _builtIn.RequiresCredentials(ioc);
+			return false;
 		}
 
 		public void CreateDirectory(IOConnectionInfo ioc, string newDirName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void CreateDirectory(IOConnectionInfo ioc)
 		{
 			throw new NotImplementedException();
 		}
@@ -123,6 +79,11 @@ namespace Kp2aUnitTests
 			throw new NotImplementedException();
 		}
 
+		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
+		{
+		
+		}
+
 		public bool RequiresSetup(IOConnectionInfo ioConnection)
 		{
 			return false;
@@ -135,13 +96,17 @@ namespace Kp2aUnitTests
 
 		public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
 		{
-			throw new NotImplementedException();
+			Intent intent = new Intent();
+			activity.IocToIntent(intent, new IOConnectionInfo() { Path = protocolId + "://" });
+			activity.OnImmediateResult(requestCode, (int)FileStorageResults.FileChooserPrepared, intent);
 		}
 
 		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode,
 		                             bool alwaysReturnSuccess)
 		{
-			throw new NotImplementedException();
+			Intent intent = new Intent();
+			activity.IocToIntent(intent, ioc);
+			activity.OnImmediateResult(requestCode, (int)FileStorageResults.FileUsagePrepared, intent);
 		}
 
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
@@ -186,12 +151,50 @@ namespace Kp2aUnitTests
 
 		public bool IsPermanentLocation(IOConnectionInfo ioc)
 		{
-			return true;	
+			//on pre-Kitkat devices, content:// is always temporary:
+			return false;
 		}
 
 		public bool IsReadOnly(IOConnectionInfo ioc)
 		{
-			return false;
+			//on pre-Kitkat devices, we can't write content:// files
+			return true;
 		}
 	}
+
+	class AndroidContentWriteTransaction : IWriteTransaction
+	{
+		private readonly string _path;
+		private readonly Context _ctx;
+		private MemoryStream _memoryStream;
+
+		public AndroidContentWriteTransaction(string path, Context ctx)
+		{
+			_path = path;
+			_ctx = ctx;
+		}
+
+		public void Dispose()
+		{
+			_memoryStream.Dispose();
+		}
+
+		public Stream OpenFile()
+		{
+			_memoryStream = new MemoryStream();
+			return _memoryStream;
+		}
+
+		public void CommitWrite()
+		{
+			using (Stream outputStream = _ctx.ContentResolver.OpenOutputStream(Android.Net.Uri.Parse(_path)))
+			{
+				outputStream.Write(_memoryStream.ToArray(), 0, (int)_memoryStream.Length);
+			}
+			
+			
+		}
+	}
+
+	
 }

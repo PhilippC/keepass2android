@@ -31,6 +31,6 @@ public class InvalidPasswordException extends InvalidDBException {
 	}
 	
 	public InvalidPasswordException() {
-		super();
+		super("Invalid key!");
 	}
 }

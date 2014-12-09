@@ -41,15 +41,16 @@ namespace KeePassLib.Keys
 	/// </summary>
 	public sealed class KcpKeyFile : IUserKey
 	{
-		private string m_strPath;
+		private IOConnectionInfo m_ioc;
 		private ProtectedBinary m_pbKeyData;
+		private ProtectedBinary m_pbFileData;
 
 		/// <summary>
 		/// Path to the key file.
 		/// </summary>
 		public string Path
 		{
-			get { return m_strPath; }
+			get { return m_ioc.Path; }
 		}
 
 		/// <summary>
@@ -60,6 +61,16 @@ namespace KeePassLib.Keys
 		public ProtectedBinary KeyData
 		{
 			get { return m_pbKeyData; }
+		}
+
+		public IOConnectionInfo Ioc
+		{
+			get { return m_ioc; }
+		}
+
+		public ProtectedBinary RawFileData
+		{
+			get { return m_pbFileData; }
 		}
 
 		public KcpKeyFile(string strKeyFile)
@@ -82,17 +93,22 @@ namespace KeePassLib.Keys
 			Construct(iocKeyFile, bThrowIfDbFile);
 		}
 
-		private void Construct(IOConnectionInfo iocFile, bool bThrowIfDbFile)
+		public KcpKeyFile(byte[] keyFileContents, IOConnectionInfo iocKeyFile, bool bThrowIfDbFile)
 		{
-			byte[] pbFileData = IOConnection.ReadFile(iocFile);
-			if(pbFileData == null) throw new Java.IO.FileNotFoundException();
+			Construct(keyFileContents, iocKeyFile, bThrowIfDbFile);
+		}
 
-			if(bThrowIfDbFile && (pbFileData.Length >= 8))
+		private void Construct(byte[] pbFileData, IOConnectionInfo iocKeyFile, bool bThrowIfDbFile)
+		{
+			if (pbFileData == null) throw new Java.IO.FileNotFoundException();
+			m_pbFileData = new ProtectedBinary(true, pbFileData);
+
+			if (bThrowIfDbFile && (pbFileData.Length >= 8))
 			{
 				uint uSig1 = MemUtil.BytesToUInt32(MemUtil.Mid(pbFileData, 0, 4));
 				uint uSig2 = MemUtil.BytesToUInt32(MemUtil.Mid(pbFileData, 4, 4));
 
-				if(((uSig1 == KdbxFile.FileSignature1) &&
+				if (((uSig1 == KdbxFile.FileSignature1) &&
 					(uSig2 == KdbxFile.FileSignature2)) ||
 					((uSig1 == KdbxFile.FileSignaturePreRelease1) &&
 					(uSig2 == KdbxFile.FileSignaturePreRelease2)) ||
@@ -106,14 +122,20 @@ namespace KeePassLib.Keys
 			}
 
 			byte[] pbKey = LoadXmlKeyFile(pbFileData);
-			if(pbKey == null) pbKey = LoadKeyFile(pbFileData);
+			if (pbKey == null) pbKey = LoadKeyFile(pbFileData);
 
-			if(pbKey == null) throw new InvalidOperationException();
+			if (pbKey == null) throw new InvalidOperationException();
 
-			m_strPath = iocFile.Path;
+			m_ioc = iocKeyFile;
 			m_pbKeyData = new ProtectedBinary(true, pbKey);
 
 			MemUtil.ZeroByteArray(pbKey);
+		}
+
+		private void Construct(IOConnectionInfo iocFile, bool bThrowIfDbFile)
+		{
+			byte[] pbFileData = IOConnection.ReadFile(iocFile);
+			Construct(pbFileData, iocFile, bThrowIfDbFile);
 		}
 
 		// public void Clear()

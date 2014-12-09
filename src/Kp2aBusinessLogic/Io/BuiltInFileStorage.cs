@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Security;
+using System.Security;
 using Android.Content;
 using Android.OS;
 using Java.Security.Cert;
@@ -294,6 +295,68 @@ namespace keepass2android.Io
 				res.Path += "/";
 			res.Path += filename;
 			return res;
+		}
+
+		public bool IsPermanentLocation(IOConnectionInfo ioc)
+		{
+			return true;
+		}
+
+		public bool IsReadOnlyBecauseKitkatRestrictions(IOConnectionInfo ioc)
+		{
+			if (IsLocalFileFlaggedReadOnly(ioc))
+				return false; //it's not read-only because of the restrictions introduced in kitkat
+			try
+			{
+				//test if we can open 
+				//http://www.doubleencore.com/2014/03/android-external-storage/#comment-1294469517
+				using (var writer = new Java.IO.FileOutputStream(ioc.Path, true))
+				{
+					writer.Close();
+					return false; //we can write
+				}
+			}
+			catch (Java.IO.IOException)
+			{
+				//seems like we can't write to that location even though it's not read-only
+				return true;
+			}
+			
+		}
+
+		public bool IsReadOnly(IOConnectionInfo ioc)
+		{
+			if (ioc.IsLocalFile())
+			{
+				if (IsLocalFileFlaggedReadOnly(ioc))
+					return true;
+				if (IsReadOnlyBecauseKitkatRestrictions(ioc))
+					return true;
+
+				return false;
+			}
+			//for remote files assume they can be written: (think positive! :-) )
+			return false;
+		}
+
+		private bool IsLocalFileFlaggedReadOnly(IOConnectionInfo ioc)
+		{
+			try
+			{
+				return new FileInfo(ioc.Path).IsReadOnly;
+			}
+			catch (SecurityException)
+			{
+				return true;
+			}
+			catch (UnauthorizedAccessException)
+			{
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
 		}
 	}
 }

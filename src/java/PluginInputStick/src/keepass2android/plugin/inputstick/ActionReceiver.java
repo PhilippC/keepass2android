@@ -34,7 +34,7 @@ public class ActionReceiver extends keepass2android.pluginsdk.PluginActionBroadc
 		} catch (PluginAccessException e) {
 			e.printStackTrace();
 		}
-		typeText(oe.getContext(), "");
+		//typeText(oe.getContext(), "");
 	}
 	
 	@Override 

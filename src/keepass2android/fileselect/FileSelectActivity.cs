@@ -69,6 +69,7 @@ namespace keepass2android
 		view.FileSelectButtons _fileSelectButtons;
 
 		internal AppTask AppTask;
+		private const int RequestCodeSelectIoc = 456;
 
 		public const string NoForwardToPasswordActivity = "NoForwardToPasswordActivity";
 
@@ -129,9 +130,12 @@ namespace keepass2android
 
 			EventHandler openFileButtonClick = (sender, e) => 
 			{
-				Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
+				Intent intent = new Intent(this, typeof(SelectStorageLocationActivity));
 				intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, true);
-				StartActivityForResult(intent, 0);
+				intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
+				intent.PutExtra(SelectStorageLocationActivity.ExtraKeyWritableRequirements, (int) SelectStorageLocationActivity.WritableRequirements.WriteDesired);
+				intent.PutExtra(FileStorageSetupDefs.ExtraIsForSave, false);
+				StartActivityForResult(intent, RequestCodeSelectIoc);	
 				                   
 			};
 			openFileButton.Click += openFileButtonClick;
@@ -294,19 +298,7 @@ namespace keepass2android
 			App.Kp2a.GetFileStorage(ioc)
 					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc, 0, false);
 		}
-		private bool OnOpenButton(String fileName)
-		{
-			
-			IOConnectionInfo ioc = new IOConnectionInfo
-			{
-				Path = fileName
-			};
-
-			LaunchPasswordActivityForIoc(ioc);
-
-			return true;
-
-		}
+		
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
@@ -326,109 +318,23 @@ namespace keepass2android
 			
 			FillData();
 
-			if (resultCode == KeePass.ExitFileStorageSelectionOk)
-			{
 
-				string protocolId = data.GetStringExtra("protocolId");
-
-				if (protocolId == "androidget")
-				{
-					string defaultFilename = Environment.ExternalStorageDirectory +
-					                         GetString(Resource.String.default_file_path);
-					Util.ShowBrowseDialog(defaultFilename, this, Intents.RequestCodeFileBrowseForOpen, false);
-				}
-				else
-				{
-					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this, 
-						OnActivityResult,
-						defaultPath =>
-							{
-								if (defaultPath.StartsWith("sftp://"))
-									Util.ShowSftpDialog(this, OnReceivedSftpData);
-								else
-									Util.ShowFilenameDialog(this, OnOpenButton, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
-								                    Intents.RequestCodeFileBrowseForOpen);
-							}
-						), false, 0, protocolId);
-				}
-
-				
-			}
-			
-			if ( (requestCode == Intents.RequestCodeFileBrowseForCreate
-			      || requestCode == Intents.RequestCodeFileBrowseForOpen)
-			    && resultCode == Result.Ok) {
-				string filename = Util.IntentToFilename(data, this);
-				if (filename != null) {
-					if (filename.StartsWith("file://")) {
-						filename = filename.Substring(7);
-						filename = Java.Net.URLDecoder.Decode(filename);
-					}
-					
-					if (requestCode == Intents.RequestCodeFileBrowseForOpen)
-					{
-						IOConnectionInfo ioc = new IOConnectionInfo
-						    { 
-							Path = filename
-						};
-						
-						LaunchPasswordActivityForIoc(ioc);
-					}
-
-					
-				}
-				
-			}
-
-			if (resultCode == (Result) FileStorageResults.FileUsagePrepared)
+			if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
 				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
 				LaunchPasswordActivityForIoc(ioc);
 			}
-			if (resultCode == (Result)FileStorageResults.FileChooserPrepared)
+
+			if ((resultCode == Result.Ok) && (requestCode == RequestCodeSelectIoc))
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
 				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
-#if !EXCLUDE_FILECHOOSER
-				StartFileChooser(ioc.Path);
-#else
-				LaunchPasswordActivityForIoc(new IOConnectionInfo { Path = "/mnt/sdcard/keepass/yubi.kdbx"});
-#endif
+				LaunchPasswordActivityForIoc(ioc);
 			}
-			if ((resultCode == Result.Canceled) && (data != null) && (data.HasExtra("EXTRA_ERROR_MESSAGE")))
-			{
-				Toast.MakeText(this, data.GetStringExtra("EXTRA_ERROR_MESSAGE"), ToastLength.Long).Show();
-			}
+			
 		}
 
-		private bool OnReceivedSftpData(string filename)
-		{
-			IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
-#if !EXCLUDE_FILECHOOSER
-			StartFileChooser(ioc.Path);
-#else
-			LaunchPasswordActivityForIoc(ioc);
-#endif
-			return true;
-		}
-
-#if !EXCLUDE_FILECHOOSER
-		private void StartFileChooser(string defaultPath)
-		{
-			Kp2aLog.Log("FSA: defaultPath="+defaultPath);
-			string fileProviderAuthority = FileChooserFileProvider.TheAuthority;
-			if (defaultPath.StartsWith("file://"))
-			{
-				fileProviderAuthority = PackageName+".android-filechooser.localfile";
-			}
-			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, fileProviderAuthority,
-			                                                                                            defaultPath);
-
-			StartActivityForResult(i, Intents.RequestCodeFileBrowseForOpen);
-		}
-
-#endif
 		protected override void OnResume()
 		{
 			base.OnResume();

@@ -283,6 +283,16 @@ namespace keepass2android.Io
 			
 		}
 
+		public bool IsPermanentLocation(IOConnectionInfo ioc)
+		{
+			return true;
+		}
+
+		public bool IsReadOnly(IOConnectionInfo ioc)
+		{
+			return false; //TODO implement. note, however, that we MAY return false even if it's read-only
+		}
+
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
 		{
 			_jfs.OnCreate(((IJavaFileStorageFileStorageSetupActivity)activity), savedInstanceState);

@@ -25,6 +25,10 @@ public class InvalidKeyFileException extends InvalidDBException {
 	private static final long serialVersionUID = 5540694419562294464L;
 
 	public InvalidKeyFileException() {
-		super();
+		super("invalid key file!");
+	}
+	
+	public InvalidKeyFileException(String msg) {
+		super(msg);
 	}
 }

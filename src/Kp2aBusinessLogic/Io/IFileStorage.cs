@@ -157,6 +157,17 @@ namespace keepass2android.Io
 		/// </summary>
 		/// The method may throw FileNotFoundException or not in case the file doesn't exist.
 		IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename);
+
+		/// <summary>
+		/// returns true if it can be expected that this location will be available permanently (in contrast to a cache copy or temporary URI permissions in Android)
+		/// </summary>
+		/// Does not require to exist forever!
+		bool IsPermanentLocation(IOConnectionInfo ioc);
+
+		/// <summary>
+		/// Should return true if the file cannot be written.
+		/// </summary>
+		bool IsReadOnly(IOConnectionInfo ioc);
 	}
 
 	public interface IWriteTransaction: IDisposable

@@ -141,7 +141,7 @@ namespace keepass2android
 			return list.Count > 0;
 		}
 
-		public static void ShowBrowseDialog(string filename, Activity act, int requestCodeBrowse, bool forSaving)
+		public static void ShowBrowseDialog(Activity act, int requestCodeBrowse, bool forSaving)
 		{
 			if ((!forSaving) && (IsIntentAvailable(act, Intent.ActionGetContent, "*/*", new List<string> { Intent.CategoryOpenable})))
 			{
@@ -223,7 +223,7 @@ namespace keepass2android
 
 		public delegate bool FileSelectedHandler(string filename);
 
-		public static void ShowSftpDialog(Activity activity, FileSelectedHandler onStartBrowse)
+		public static void ShowSftpDialog(Activity activity, FileSelectedHandler onStartBrowse, Action onCancel)
 		{
 #if !EXCLUDE_JAVAFILESTORAGE
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -244,7 +244,9 @@ namespace keepass2android
 					                                                                                          password);
 					                          onStartBrowse(sftpPath);
 				                          });
-			builder.SetNegativeButton(Android.Resource.String.Cancel, (sender, args) => {});
+			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>( (sender, e) => onCancel());
+
+			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_sftp_login_title));
 			Dialog dialog = builder.Create();
 			
@@ -252,16 +254,50 @@ namespace keepass2android
 #endif
 		}
 
-		public static void ShowFilenameDialog(Activity activity, FileSelectedHandler onOpen, FileSelectedHandler onCreate, bool showBrowseButton,
-		                                string defaultFilename, string detailsText, int requestCodeBrowse)
+		class DismissListener:  Java.Lang.Object, IDialogInterfaceOnDismissListener
+		{
+			private readonly Action _onDismiss;
+
+			public DismissListener(Action onDismiss)
+			{
+				_onDismiss = onDismiss;
+			}
+
+			public void OnDismiss(IDialogInterface dialog)
+			{
+				_onDismiss();
+			}
+		}
+
+
+		class CancelListener: Java.Lang.Object, IDialogInterfaceOnCancelListener
+		{
+			private readonly Action _onCancel;
+
+			public CancelListener(Action onCancel)
+			{
+				_onCancel = onCancel;
+			}
+
+			public void OnCancel(IDialogInterface dialog)
+			{
+				_onCancel();
+			}
+		}
+
+		public static void ShowFilenameDialog(Activity activity, FileSelectedHandler onOpen, FileSelectedHandler onCreate, Action onCancel, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.SetView(activity.LayoutInflater.Inflate(Resource.Layout.file_selection_filename, null));
+			
+			if (onCancel != null)
+				builder.SetOnCancelListener(new CancelListener(onCancel));
 			Dialog dialog = builder.Create();
 			dialog.Show();
 
 			Button openButton = (Button) dialog.FindViewById(Resource.Id.open);
 			Button createButton = (Button) dialog.FindViewById(Resource.Id.create);
+			
 			TextView enterFilenameDetails = (TextView) dialog.FindViewById(Resource.Id.label_open_by_filename_details);
 			openButton.Visibility = onOpen != null ? ViewStates.Visible : ViewStates.Gone;
 			createButton.Visibility = onCreate != null? ViewStates.Visible : ViewStates.Gone;
@@ -288,9 +324,19 @@ namespace keepass2android
 					if (onCreate(fileName))
 						dialog.Dismiss();
 				}; 
-
+			
 			Button cancelButton = (Button) dialog.FindViewById(Resource.Id.fnv_cancel);
-			cancelButton.Click += (sender, e) => dialog.Dismiss();
+			cancelButton.Click += delegate
+				{
+					dialog.Dismiss();
+					if (onCancel != null)
+					onCancel();
+				};
+
+			
+
+			
+
 
 			ImageButton browseButton = (ImageButton) dialog.FindViewById(Resource.Id.browse_button);
 			if (!showBrowseButton)
@@ -301,7 +347,7 @@ namespace keepass2android
 				{
 					string filename = ((EditText) dialog.FindViewById(Resource.Id.file_filename)).Text;
 
-					Util.ShowBrowseDialog(filename, activity, requestCodeBrowse, onCreate != null);
+					Util.ShowBrowseDialog(activity, requestCodeBrowse, onCreate != null);
 
 				};
 

@@ -58,6 +58,12 @@ namespace keepass2android.fileselect
 
 		}
 
+		protected override void OnRestart()
+		{
+			base.OnRestart();
+			_isRecreated = true;
+		}
+
 		protected override void OnStart()
 		{
 			base.OnStart();

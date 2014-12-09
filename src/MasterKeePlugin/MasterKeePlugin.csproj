@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9A4C5BAA-1A8A-49B4-BBC3-60D4871FB36C}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -26,7 +24,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -37,7 +34,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -86,11 +82,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MasterPassword\MasterPassword.csproj">
-      <Project>{2f7cb5b4-ac2a-4790-b0f3-42e6c9a060d5}</Project>
+      <Project>{2F7CB5B4-AC2A-4790-B0F3-42E6C9A060D5}</Project>
       <Name>MasterPassword</Name>
     </ProjectReference>
     <ProjectReference Include="..\PluginSdkBinding\PluginSdkBinding.csproj">
-      <Project>{3da3911e-36de-465e-8f15-f1991b6437e5}</Project>
+      <Project>{3DA3911E-36DE-465E-8F15-F1991B6437E5}</Project>
       <Name>PluginSdkBinding</Name>
     </ProjectReference>
   </ItemGroup>

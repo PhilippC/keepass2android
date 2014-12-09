@@ -9,13 +9,13 @@ using Object = Java.Lang.Object;
 
 namespace keepass2android.Utils
 {
-	public class LoadingDialog<TParams, TProgress, TResult> : AsyncTask<TParams, TProgress, TResult> 
+	public class LoadingDialog<TParams, TProgress, TResult> : AsyncTask<TParams, TProgress, TResult>
 	{
 		private readonly Context _context;
 		private readonly string _message;
 		private readonly bool _cancelable;
-		readonly Func<Object[], Object> _doInBackground;
-		readonly Action<Object> _onPostExecute;
+		private readonly Func<Object[], Object> _doInBackground;
+		private readonly Action<Object> _onPostExecute;
 
 		private ProgressDialog mDialog;
 		/**
@@ -29,13 +29,14 @@ namespace keepass2android.Utils
 
 		private Exception mLastException;
 
-		
-		public LoadingDialog(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+
+		public LoadingDialog(IntPtr javaReference, JniHandleOwnership transfer)
+			: base(javaReference, transfer)
 		{
 		}
 
-		public LoadingDialog(Context context, string message, bool cancelable, Func<Object[], Object> doInBackground, 
-			Action<Object> onPostExecute)
+		public LoadingDialog(Context context, string message, bool cancelable, Func<Object[], Object> doInBackground,
+		                     Action<Object> onPostExecute)
 		{
 			_context = context;
 			_message = message;
@@ -58,7 +59,8 @@ namespace keepass2android.Utils
 			}
 		}
 
-		public LoadingDialog(Context context, bool cancelable, Func<Object[], Object> doInBackground, Action<Object> onPostExecute)
+		public LoadingDialog(Context context, bool cancelable, Func<Object[], Object> doInBackground,
+		                     Action<Object> onPostExecute)
 		{
 			_message = context.GetString(Resource.String.loading);
 			_context = context;
@@ -89,32 +91,41 @@ namespace keepass2android.Utils
 					}
 
 				}
-				, mDelayTime);
+			                          , mDelayTime);
 		}
-		
-  
+
+
 		/**
 		 * If you override this method, you must call {@code super.onCancelled()} at
 		 * beginning of the method.
 		 */
-		protected override void OnCancelled() {
+
+		protected override void OnCancelled()
+		{
 			DoFinish();
 			base.OnCancelled();
-		}// onCancelled()
+		}
 
-		private void DoFinish() {
+// onCancelled()
+
+		private void DoFinish()
+		{
 			mFinished = true;
-			try {
+			try
+			{
 				/*
 				 * Sometime the activity has been finished before we dismiss this
 				 * dialog, it will raise error.
 				 */
 				mDialog.Dismiss();
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				Kp2aLog.Log(e.ToString());
 			}
-		}// doFinish()
+		}
+
+// doFinish()
 
 
 		/**
@@ -124,18 +135,26 @@ namespace keepass2android.Utils
 		 * @param t
 		 *            {@link Throwable}
 		 */
-		protected void SetLastException(Exception e) {
+
+		protected void SetLastException(Exception e)
+		{
 			mLastException = e;
-		}// setLastException()
+		}
+
+// setLastException()
 
 		/**
 		 * Gets last exception.
 		 * 
 		 * @return {@link Throwable}
 		 */
-		protected Exception GetLastException() {
+
+		protected Exception GetLastException()
+		{
 			return mLastException;
-		}// getLastException()
+		}
+
+// getLastException()
 
 
 		protected override Object DoInBackground(params Object[] @params)
@@ -151,14 +170,47 @@ namespace keepass2android.Utils
 		protected override void OnPostExecute(Object result)
 		{
 			DoFinish();
-			
+
 			if (_onPostExecute != null)
 				_onPostExecute(result);
 		}
 
-		
-		
-		
+
+
+
 
 	}
+
+	public class SimpleLoadingDialog : LoadingDialog<object, object, object>
+	{
+		private class BackgroundResult : Object
+		{
+			private readonly Action _onPostExec;
+
+			public BackgroundResult(Action onPostExec)
+			{
+				_onPostExec = onPostExec;
+			}
+
+			public Action OnPostExec
+			{
+				get { return _onPostExec; }
+			}
+		}
+
+		public SimpleLoadingDialog(IntPtr javaReference, JniHandleOwnership transfer)
+			: base(javaReference, transfer)
+		{
+		}
+
+		public SimpleLoadingDialog(Context ctx, string message, bool cancelable, Func<Action> doInBackgroundReturnOnPostExec)
+			: base(ctx, message, cancelable, input =>
+				{ return new BackgroundResult(doInBackgroundReturnOnPostExec()); }
+				   , res => { ((BackgroundResult) res).OnPostExec(); })
+		{
+
+		}
+
+	}
+
 }
