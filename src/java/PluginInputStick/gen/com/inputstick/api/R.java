@@ -15,7 +15,7 @@ public final class R {
 		public static final int ic_launcher = 0x7f020000;
 	}
 	public static final class id {
-		public static final int action_settings = 0x7f0b001d;
+		public static final int action_settings = 0x7f0b0021;
 	}
 	public static final class menu {
 		public static final int install_utility = 0x7f0a0000;

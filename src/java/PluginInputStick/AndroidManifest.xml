@@ -54,8 +54,14 @@
         </activity>
         <activity
             android:name=".MaskedPasswordActivity"
-            android:label="@string/title_activity_masked_password"
             android:excludeFromRecents="true"
+            android:label="@string/title_activity_masked_password"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name=".MacSetupActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_activity_mac_setup"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
     </application>

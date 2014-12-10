@@ -88,6 +88,12 @@
             android:key="show_settings"
             android:title="@string/show_settings_title" />
         
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_mac_setup"
+            android:summary="@string/mac_setup_summary"
+            android:title="@string/show_mac_setup_title" />        
+        
     </PreferenceCategory>
 
 </PreferenceScreen>

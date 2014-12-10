@@ -16,6 +16,7 @@ public class ActionReceiver extends keepass2android.pluginsdk.PluginActionBroadc
 	private static final String ACTION_SETTINGS = "settings";
 	private static final String ACTION_USER_PASS = "user_pass";
 	private static final String ACTION_USER_PASS_ENTER = "user_pass_enter";
+	private static final String ACTION_MAC_SETUP = "mac_setup";
 	
 	private static final int IC = R.drawable.ic_launcher;
 	
@@ -123,7 +124,13 @@ public class ActionReceiver extends keepass2android.pluginsdk.PluginActionBroadc
 				b = new Bundle();
 				b.putString(Const.EXTRA_TEXT, ACTION_SETTINGS);
 				oe.addEntryAction(ctx.getString(R.string.action_open_settings), IC, b);
-			}								
+			}
+			
+			if (prefs.getBoolean("show_mac_setup", true)) {
+				b = new Bundle();
+				b.putString(Const.EXTRA_TEXT, ACTION_MAC_SETUP);
+				oe.addEntryAction(ctx.getString(R.string.action_open_mac_setup), IC, b);
+			}				
 		} catch (PluginAccessException e) {
 			e.printStackTrace();
 		}
@@ -164,8 +171,7 @@ public class ActionReceiver extends keepass2android.pluginsdk.PluginActionBroadc
 			String text = actionSelected.getActionData().getString(Const.EXTRA_TEXT);
 						
 			if (ACTION_MASKED_PASSWORD.equals(text)) {
-				typeText(ctx, "", "en-US"); //will connect if not already connected
-				
+				typeText(ctx, "", "en-US"); //will connect if not already connected				
 				Intent i = new Intent(ctx.getApplicationContext(), MaskedPasswordActivity.class);
 				i.putExtra(Const.EXTRA_TEXT, actionSelected.getEntryFields().get(KeepassDefs.PasswordField));
 				i.putExtra(Const.EXTRA_LAYOUT, layoutName);
@@ -184,6 +190,11 @@ public class ActionReceiver extends keepass2android.pluginsdk.PluginActionBroadc
 				typeText(ctx, "\t", layoutName);
 				typeText(ctx, actionSelected.getEntryFields().get(KeepassDefs.PasswordField), layoutName);
 				typeText(ctx, "\n", layoutName);				
+			} else if (ACTION_MAC_SETUP.equals(text)) {
+				typeText(ctx, "", "en-US"); //will connect if not already connected
+				Intent i = new Intent(ctx.getApplicationContext(), MacSetupActivity.class);
+				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+				ctx.getApplicationContext().startActivity(i);					
 			} else {
 				typeText(ctx, text, layoutName);
 			}

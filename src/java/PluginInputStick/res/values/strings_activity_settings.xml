@@ -29,8 +29,9 @@
     <string name="show_user_pass_enter_title">Show username/password/enter shortcut</string>
     <string name="show_masked_title">Show Masked Password shortcut</string>
     <string name="show_settings_title">Show Settings shortcut</string>
-    <string name="show_quick_settings_title">Show Tab and Enter actions</string>
     
+    <string name="show_mac_setup_title">Show Mac OSX Setup shortcut</string>
+    <string name="mac_setup_summary">Allows to properly identify InputStick as a keyboard on OSX PCs.</string>
     
     
     
