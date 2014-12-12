@@ -93,13 +93,31 @@ namespace keepass2android.Io
 		}
 
 
-		private Exception LogAndConvertJavaException(Java.Lang.Exception e)
+		private Exception LogAndConvertJavaException(Exception e)
 		{
 			Kp2aLog.Log(e.Message);
-			var ex = new Exception(e.LocalizedMessage ?? 
-				e.Message ?? 
-				_app.GetResourceString(UiStringKey.ErrorOcurred)+e.GetType().Name, e);
-			return ex; 
+
+			if (e is UserInteractionRequiredException)
+				return e;
+			//seems like UserInteractionRequiredException is not propagated correctly into the C# world, we can't catch it
+			// -> rethrow correctly here
+			// Note: the Contains-check looks a bit broad, but it should be safe
+			if (e.ToString().Contains("keepass2android.javafilestorage.UserInteractionRequiredException"))
+			{
+				throw new UserInteractionRequiredException();
+			}
+
+			Java.Lang.Exception exception = e as Java.Lang.Exception;
+			if (exception != null)
+			{
+				var ex = new Exception(exception.LocalizedMessage ??
+					e.Message ??
+					_app.GetResourceString(UiStringKey.ErrorOcurred) + exception.GetType().Name, e);
+				return ex; 	
+			}
+
+			return e;
+
 		}
 
 		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
@@ -241,12 +259,38 @@ namespace keepass2android.Io
 
 		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, Boolean alwaysReturnSuccess)
 		{
-			_jfs.PrepareFileUsage((IJavaFileStorageFileStorageSetupInitiatorActivity)activity, IocToPath(ioc), requestCode, alwaysReturnSuccess);
+			try
+			{
+				_jfs.PrepareFileUsage((IJavaFileStorageFileStorageSetupInitiatorActivity) activity, IocToPath(ioc), requestCode,
+				                      alwaysReturnSuccess);
+			}
+			catch (Exception e)
+			{
+				throw LogAndConvertJavaException(e);
+			}
 		}
 
 		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
 		{
-			_jfs.PrepareFileUsage(ctx, IocToPath(ioc));
+			try
+			{
+				_jfs.PrepareFileUsage(ctx, IocToPath(ioc));
+			}
+			catch (Exception e)
+			{
+				throw LogAndConvertJavaException(e);
+			}
+			
+		}
+
+		public bool IsPermanentLocation(IOConnectionInfo ioc)
+		{
+			return true;
+		}
+
+		public bool IsReadOnly(IOConnectionInfo ioc)
+		{
+			return false; //TODO implement. note, however, that we MAY return false even if it's read-only
 		}
 
 		public bool IsPermanentLocation(IOConnectionInfo ioc)

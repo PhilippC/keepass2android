@@ -175,7 +175,7 @@ public class DropboxFileStorage extends JavaFileStorageBase {
     		Log.d(TAG, "LoggedIn=false (due to unlink exception)");
     		setLoggedIn(false);
     		clearKeys();
-    		return new Exception("Unlinked from Dropbox!", e);
+    		return new UserInteractionRequiredException("Unlinked from Dropbox! User must re-link.", e);
     		
     	}
     	

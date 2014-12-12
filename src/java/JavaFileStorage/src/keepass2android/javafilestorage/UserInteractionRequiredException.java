@@ -1,15 +1,17 @@
 package keepass2android.javafilestorage;
 
-import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
-
 public class UserInteractionRequiredException extends Exception {
 
-	public UserInteractionRequiredException(UserRecoverableAuthIOException e) {
+	public UserInteractionRequiredException(Throwable e) {
 		super(e);
 	}
 	
 	public UserInteractionRequiredException() {
 
+	}
+
+	public UserInteractionRequiredException(String string, Throwable e) {
+		super(string, e);
 	}
 
 	/**
