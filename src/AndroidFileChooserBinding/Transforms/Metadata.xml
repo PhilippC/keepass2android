@@ -1,6 +1,7 @@
 <metadata>
 	<remove-node path="/api/package[@name='group.pals.android.lib.ui.filechooser.providers.localfile']/class[@name='FileObserverEx']" />
 	<remove-node path="/api/package[@name='group.pals.android.lib.ui.filechooser']/class[@name='FragmentFiles']" />
+	<remove-node path="/api/package[@name='group.pals.android.lib.ui.filechooser.prefs']" />
 
 	
 	<!--
