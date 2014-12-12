@@ -437,6 +437,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
 		* Option hinzugefügt, um Screenshots und Darstellungen in der Liste der letzten Apps zu verhindern (standardmäßig aktiviert)\n
 		* Problem mit Google Drive behoben \n
 		* Schlüsseldateien können auf beliebigen Speicherorten abgelegt werden\n
+		* Dropbox-SDK aktualisiert, um offiziellen Sicherheitspatch zu integrieren\n
 		* Build-Tools aktualisiert -> APK-Größe leider gewachsen, sorry :-(\n
 		Ich hatte noch weitere Änderungen versprochen. Diese kommen mit dem nächsten Release, dieses muss wegen aktueller Probleme so früh wie möglich veröffentlicht werden.
 	</string>

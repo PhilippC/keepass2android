@@ -517,9 +517,9 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext) {
 		//storageToTest = new SftpStorage();
-		storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
+		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
 		//storageToTest = new GoogleDriveFileStorage();
-		//storageToTest =  new DropboxFileStorage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", true);
+		storageToTest =  new DropboxFileStorage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", true);
 		//storageToTest = new DropboxAppFolderFileStorage(ctx,"ax0268uydp1ya57", "3s86datjhkihwyc", true);
 		return storageToTest;
 

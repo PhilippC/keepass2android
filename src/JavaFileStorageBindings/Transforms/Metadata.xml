@@ -11,4 +11,10 @@
 	<remove-node path="/api/package[@name='com.jcraft.jsch.jcraft']" />
 	<remove-node path="/api/package[@name='com.jcraft.jzlib']" />
 	<remove-node path="/api/package[@name='com.microsoft.live']" />
+	<remove-node path="/api/package[@name='com.dropbox.client']" />
+	<remove-node path="/api/package[@name='com.dropbox.client2']" />
+	<remove-node path="/api/package[@name='com.dropbox.client2.session']" />
+	<remove-node path="/api/package[@name='com.dropbox.client2.android']" />
+	<remove-node path="/api/package[@name='com.dropbox.client2.jsonextract']" />
+	<remove-node path="/api/package[@name='com.dropbox.client2.exception']" />
 </metadata>

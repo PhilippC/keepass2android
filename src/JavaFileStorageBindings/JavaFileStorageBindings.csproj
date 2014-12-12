@@ -77,11 +77,6 @@
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\dropbox-android-sdk-1.5.4.jar">
-      <Link>Jars\dropbox-android-sdk-1.5.4.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\json_simple-1.1.jar">
       <Link>Jars\json_simple-1.1.jar</Link>
     </EmbeddedReferenceJar>
@@ -169,5 +164,25 @@
       <Version>19.0.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\commons-logging-1.1.1.jar">
+      <Link>Jars\commons-logging-1.1.1.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\dropbox-android-sdk-1.6.2.jar">
+      <Link>Jars\dropbox-android-sdk-1.6.2.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\httpclient-4.0.3.jar">
+      <Link>Jars\httpclient-4.0.3.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\httpcore-4.0.1.jar">
+      <Link>Jars\httpcore-4.0.1.jar</Link>
+    </EmbeddedReferenceJar>
   </ItemGroup>
 </Project>
