@@ -497,9 +497,9 @@
 		* Fixed issues with file browsing (especially on Android 4.4)\n
 		* Fixed issue with loading .kdb files (Keepass 1) on Nexus 5 with Android Lollipop\n
 		* Added option to prevent taking screenshots/displaying app in recent apps list\n
-		* Fixed issue with Google Drive file storage\n
-		* Allow key files on deliberate storage types\n
-		* Updated Dropbox SDK to include an official security patch\n
+		* Fixed issue with Google Drive file storage (regular edition)\n
+		* Allow key files on deliberate storage types (regular edition)\n
+		* Updated Dropbox SDK to include an official security patch (regular edition)\n
 		* Updated build tools --> apk size increased :-(\n
 		I have promised some more changes. They will come with the next release - sorry. I wanted to publish these hot fixes as soon as possible.
 	</string>

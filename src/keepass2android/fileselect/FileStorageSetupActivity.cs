@@ -19,7 +19,9 @@ namespace keepass2android.fileselect
 	           ConfigChanges.KeyboardHidden)]
 	public class FileStorageSetupActivity : Activity, IFileStorageSetupActivity
 #if !EXCLUDE_JAVAFILESTORAGE
+#if !NoNet
 		,Keepass2android.Javafilestorage.IJavaFileStorageFileStorageSetupActivity
+#endif
 #endif
 	{
 		private bool _isRecreated = false;

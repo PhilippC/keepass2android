@@ -10,7 +10,9 @@ namespace keepass2android
 	public class FileStorageSetupInitiatorActivity: 
 #if !EXCLUDE_JAVAFILESTORAGE
 		Java.Lang.Object
+#if !NoNet
 		,Keepass2android.Javafilestorage.IJavaFileStorageFileStorageSetupInitiatorActivity
+#endif
 		,
 #endif
  IFileStorageSetupInitiatorActivity

@@ -225,7 +225,7 @@ namespace keepass2android
 
 		public static void ShowSftpDialog(Activity activity, FileSelectedHandler onStartBrowse, Action onCancel)
 		{
-#if !EXCLUDE_JAVAFILESTORAGE
+#if !EXCLUDE_JAVAFILESTORAGE && !NoNet
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.sftpcredentials, null);
 			builder.SetView(dlgContents);
