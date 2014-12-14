@@ -4,49 +4,19 @@ PCtest
 *.userprefs
 *.user
 
-*.designer.cs
+bin
+obj
+
+Resource.designer.cs
+R.java
 
 src/java/kp2akeytransform/kp2akeytransform.zip
 
-src/Kp2aKeyboardBinding/bin
-src/Kp2aKeyboardBinding/obj
-
-src/kp2akeytransform/bin
-src/kp2akeytransform/obj
-
-src/Kp2aBusinessLogic/bin
-src/Kp2aBusinessLogic/obj
-
-src/Kp2aUnitTests/bin
-src/Kp2aUnitTests/obj
-
-src/monodroid-unittesting/MonoDroidUnitTesting/bin
-src/monodroid-unittesting/MonoDroidUnitTesting/obj
-
 /src/keepass2android/todos.cs
-/src/keepass2android/obj
-/src/keepass2android/bin
-/src/KeePassLib2Android/bin
 /src/KeePass.userprefs
 /src/keepass2android/Properties/AndroidManifest.xml
 
-/src/java/kbbridge/bin/AndroidManifest.xml
-/src/java/kbbridge/bin/R.txt
-/src/java/kbbridge/bin/classes/keepass2android/kbbridge/BuildConfig.class
-/src/java/kbbridge/bin/classes/keepass2android/kbbridge/KeyboardData.class
-/src/java/kbbridge/bin/classes/keepass2android/kbbridge/KeyboardDataBuilder.class
-/src/java/kbbridge/bin/classes/keepass2android/kbbridge/R$attr.class
-/src/java/kbbridge/bin/classes/keepass2android/kbbridge/R$drawable.class
-/src/java/kbbridge/bin/classes/keepass2android/kbbridge/R$string.class
-/src/java/kbbridge/bin/classes/keepass2android/kbbridge/R$style.class
-/src/java/kbbridge/bin/classes/keepass2android/kbbridge/R.class
-/src/java/kbbridge/bin/kp2asoftkeyboardbridge.jar
-/src/java/kbbridge/bin/res/drawable-hdpi/ic_launcher.png
-/src/java/kbbridge/bin/res/drawable-mdpi/ic_launcher.png
-/src/java/kbbridge/bin/res/drawable-xhdpi/ic_launcher.png
-
 /src/java/kbbridge/libs/android-support-v4.jar
-/src/java/KP2ASoftKeyboard/bin
 /src/java/KP2ASoftKeyboard/gen
 /src/java/KP2ASoftKeyboard/projectzip
 /src/java/KP2ASoftKeyboard/createProjectZip.bat
@@ -54,65 +24,17 @@ Thumbs.db
 
 /src/monodroid-unittesting/*.suo
 /src/Kp2aUnitTests/TestLoadDbCredentials.cs
-/src/KP2AKeyboard/bin/Debug/*.dll
-/src/KP2AKeyboard/bin/Debug/KP2AKeyboard.pdb
-/src/KP2AKeyboard/obj/Debug/KP2AKeyboard.csproj.FileListAbsolute.txt
-/src/KP2AKeyboard/obj/Debug/KP2AKeyboard.dll
-/src/KP2AKeyboard/obj/Debug/KP2AKeyboard.pdb
-/src/KP2AKeyboard/obj/Debug/__AndroidLibraryProjects__.zip
-/src/KP2AKeyboard/obj/Debug/library_project_imports/res/values/strings.xml
 /src/KeePass.sln.DotSettings.user
 /src/KeePass.v11.suo
 
-/src/KP2AKeyboard/bin/Debug/KP2AKeyboard.dll.mdb
-/src/Kp2aBusinessLogic/bin/Debug
-
-/src/Kp2aBusinessLogic/bin/Release
-
-/src/Kp2aBusinessLogic/bin/ReleaseNoNet
-
-/src/Kp2aBusinessLogic/obj/Debug
-/src/Kp2aBusinessLogic/obj/Release
-
-/src/Kp2aBusinessLogic/obj/ReleaseNoNet
-/src/Kp2aKeyboardBinding/bin/Debug
-
-/src/Kp2aKeyboardBinding/bin/Release
-
-/src/Kp2aKeyboardBinding/bin/ReleaseNoNet
-/src/Kp2aKeyboardBinding/obj/Debug
-
-/src/Kp2aKeyboardBinding/obj/Release
-/src/Kp2aKeyboardBinding/obj/ReleaseNoNet
 /src/Kp2aUnitTests/Assets/AboutAssets.txt
-/src/Kp2aUnitTests/bin/Debug
-/src/Kp2aUnitTests/bin/Release
-/src/Kp2aUnitTests/obj/Debug
-/src/Kp2aUnitTests/obj/Release
-/src/Kp2aUnitTests/obj/ReleaseNoNet
 /src/java/KP2ASoftKeyboard/project.zip.tmp
 /src/java/workspace/.metadata
-/src/java/workspace/KP2AKeyboardTest/bin
 /src/java/workspace/KP2AKeyboardTest
 /src/keepass2android/*.user
-/src/kp2akeytransform/bin/Debug
-/src/kp2akeytransform/bin/Release
 
-/src/kp2akeytransform/bin/ReleaseNoNet
-/src/kp2akeytransform/obj/ReleaseNoNet
-/src/KP2AKeyboard/bin
-/src/KP2AKeyboard/obj
-/src/Kp2aKeyboardBinding/obj
-/src/Kp2aKeyboardBinding/bin
-/src/kp2akeytransform/obj/Debug
-/src/kp2akeytransform/obj/Release
 /src/monodroid-unittesting/TestTests
 /src/monodroid-unittesting/MonoDroidUnitTestingExample
-/src/monodroid-unittesting/MonoDroidUnitTesting/obj/Release
-/src/monodroid-unittesting/MonoDroidUnitTesting/bin/Debug
-/src/monodroid-unittesting/MonoDroidUnitTesting/obj/Debug
-/src/monodroid-unittesting/MonoDroidUnitTesting/bin/Release
-/src/monodroid-unittesting/MonoDroidUnitTesting/obj/ReleaseNoNet
 
 /src/monodroid-unittesting
 
@@ -121,35 +43,17 @@ Thumbs.db
 /src/java/KP2ASoftKeyboard/.settings
 
 /src/java/kp2akeytransform/.settings
-/src/Kp2aUnitTests/bin/ReleaseNoNet/Jars
-/src/Kp2aUnitTests/bin/ReleaseNoNet
-/src/TwofishCipher/bin
-/src/TwofishCipher/obj
 
 /src/java/workspace/UITest
-/src/java/JavaFileStorage/bin
 /src/java/JavaFileStorage/gen/keepass2android/javafilestorage/BuildConfig.java
 /src/java/JavaFileStorage/gen/keepass2android/javafilestorage/R.java
-/src/JavaFileStorageBindings/bin/Debug
-/src/JavaFileStorageBindings/bin/Release
-/src/JavaFileStorageBindings/obj/Debug
-/src/JavaFileStorageBindings/obj/Release
 /src/JavaFileStorageTest
 /src/java/workspace/DBRoulette
 /src/java/workspace/JavaFileStorageTest
 /src/java/JavaFileStorage/src/keepass2android/javafilestorage/SecretKeys.java
-/src/java/android-filechooser/code/bin
 /src/java/android-filechooser/code/gen
 /src/java/android-filechooser/code/project.zip
-/src/java/android-filechooser/code/projectzip/bin
 /src/java/android-filechooser/code/projectzip/res
-/src/AndroidFileChooserBinding/bin/Debug
-
-/src/AndroidFileChooserBinding/obj/Debug
-
-/src/AppCompatV7Binding/bin/Debug
-
-/src/AppCompatV7Binding/obj/Debug
 
 /src/java/android-filechooser/code/AndroidUnusedResources1.6.2.jar
 /src/java/android-filechooser/code/createProjectZip.bat
@@ -158,37 +62,11 @@ Thumbs.db
 
 /src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs
 
-/src/AndroidFileChooserBinding/bin/Release
-
-/src/AndroidFileChooserBinding/obj/Release
-
-/src/AppCompatV7Binding/bin/Release
-
-/src/AppCompatV7Binding/obj/Release
 /src/java/workspace/DriveTest
 
 /src/Components
 
-/src/AndroidFileChooserBinding/bin/ReleaseNoNet
-
-/src/AndroidFileChooserBinding/obj/ReleaseNoNet
-
-/src/AppCompatV7Binding/obj/ReleaseNoNet
-
-/src/JavaFileStorageBindings/obj/ReleaseNoNet
-
-/src/AppCompatV7Binding/bin/ReleaseNoNet
-
 /src/java/KP2ASoftKeyboard2/java/projectzip
-
-/src/JavaFileStorageBindings/bin/ReleaseNoNet
-
-/src/KP2AKdbLibraryBinding/bin/Debug
-
-/src/KP2AKdbLibraryBinding/bin/Release
-/src/KP2AKdbLibraryBinding/obj/Debug
-
-/src/KP2AKdbLibraryBinding/obj/Release
 
 /src/java/.metadata
 
@@ -198,24 +76,14 @@ Thumbs.db
 
 /src/java/JavaFileStorage/libs
 
-/src/ArtTestApp/obj
-/src/ArtTestApp/bin
-/src/KP2AKdbLibraryBinding/bin
-
-/src/KP2AKdbLibraryBinding/obj
-
 /src/ArtTestApp.zip
 
 /src/java/KP2ASoftKeyboard/alt
-/src/java/KP2ASoftKeyboard/bin
 /src/java/KP2ASoftKeyboard/gen
 /src/java/KP2ASoftKeyboard/projectalt
 /src/java/KP2ASoftKeyboard/projectzip
 /src/java/KP2ASoftKeyboard/projectzip_neu
 
-/src/JavaFileStorageBindings/bin
-
-/src/JavaFileStorageBindings/obj
 /src/java/jsch-0.1.50/ChangeLog
 /src/java/jsch-0.1.50/LICENSE.txt
 /src/java/jsch-0.1.50/README
@@ -230,57 +98,24 @@ Thumbs.db
 /src/java/workspace
 /src/java/workspace_
 /src/java/workspace_tmp_
-/src/KP2AKdbLibraryBinding/Kp2aBusinessLogic/obj/ReleaseNoNet/__library_projects__/JavaFileStorageBindings/library_project_imports
-/src/java/JavaFileStorageTest/bin
 /src/java/JavaFileStorageTest/credentials.txt
 /src/java/JavaFileStorageTest/gen/com/example/javafilestoragetest/BuildConfig.java
 /src/java/JavaFileStorageTest/gen/com/example/javafilestoragetest/R.java
 /src/java/JavaFileStorageTest/gen/com/google/android/gms/R.java
 /src/java/JavaFileStorageTest/gen/group/pals/android/lib/ui/filechooser/R.java
 /src/java/JavaFileStorageTest/gen/keepass2android/javafilestorage/R.java
-/src/java/PluginQR/bin
-/src/PluginHostTest/bin/Debug
-
-/src/java/Keepass2AndroidPluginSDK/bin
 
 /src/TwofishCipher/Resources/Resource.Designer.cs
 /src/BindingLibrary1
-/src/PluginSdkBinding/obj/Debug
 
 /src/PluginTOTP
 /src/java/DemoService
-/src/PluginSdkBinding/bin/Debug
-
-/src/java/InputStickAPI/bin
-
-/src/java/PluginA/bin
-
-/src/java/PluginInputStick/bin
 
 /src/java/PluginInputStick/icons
 
-/src/PluginSdkBinding/bin/Release
-
-/src/MasterPassword/bin/Debug
-
-/src/MasterPassword/obj/Debug
-
-/src/MasterPassword/obj/Release
-
-/src/MPTest/bin/Debug
-/src/MPTest/obj/Debug
-
-/src/MasterKeePlugin/obj/Release
-/src/MasterKeePlugin/bin/Debug
-
-/src/MasterKeePlugin/bin/Release
-
-/src/MasterKeePlugin/obj/Debug
-/src/PluginSdkBinding/obj/Release
-
-/src/MasterPassword/bin/Release
 /src/java/MasterKee
 
 /src/PluginSdkBinding/obj/ReleaseNoNet
 /src/MasterKeeWinPlugin/bin/Release
 /src/SamplePlugin
+/src/packages/

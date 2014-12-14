@@ -1,5 +1,7 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2014 Philipp Crocoll <crocoapps@googlemail.com>
+ * Copyright (C) 2014 Wiktor Lawski <wiktor.lawski@gmail.com>
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -29,6 +31,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
+import android.preference.PreferenceManager;
 import android.speech.SpeechRecognizer;
 import android.text.AutoText;
 import android.util.Log;
@@ -52,11 +55,14 @@ public class LatinIMESettings extends PreferenceActivity
 
     @Override
     protected void onCreate(Bundle icicle) {
+    	SharedPreferences prefs =
+    			PreferenceManager.getDefaultSharedPreferences(this);
+    	Design.updateTheme(this, prefs);
+
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.prefs);
         mQuickFixes = (CheckBoxPreference) findPreference(QUICK_FIXES_KEY);
         mSettingsKeyPreference = (ListPreference) findPreference(PREF_SETTINGS_KEY);
-        SharedPreferences prefs = getPreferenceManager().getSharedPreferences();
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         
