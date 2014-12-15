@@ -55,7 +55,17 @@
 			<intent android:action="keepass2android.ExportDatabaseActivity"/>
 		</PreferenceScreen>
 
-
+		<Preference
+	  android:key="import_db_prefs"
+	  android:title="@string/import_db_prefs"
+	  />
+		
+		<Preference
+			  android:key="import_keyfile_prefs"
+			  android:title="@string/import_keyfile_prefs"
+	  />
+		
+		
 	</PreferenceScreen>
 
 	<PreferenceScreen

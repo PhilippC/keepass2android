@@ -22,7 +22,12 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Android.Preferences;
+using Java.IO;
 using KeePassLib.Cryptography.Cipher;
+using KeePassLib.Serialization;
+using KeePassLib.Utility;
+using keepass2android.Io;
+using keepass2android.Utils;
 
 namespace keepass2android
 {
@@ -173,6 +178,98 @@ namespace keepass2android
 				
 			Preference algorithm = FindPreference(GetString(Resource.String.algorithm_key));
 			SetAlgorithm(db, algorithm);
+
+			UpdateImportDbPref();
+		}
+
+		private void UpdateImportDbPref()
+		{
+//Import db/key file preferences:
+			Preference importDb = FindPreference("import_db_prefs");
+			if (!App.Kp2a.GetDb().Ioc.IsLocalFile())
+			{
+				importDb.Summary = GetString(Resource.String.OnlyAvailableForLocalFiles);
+				importDb.Enabled = false;
+			}
+			else
+			{
+				if (IoUtil.IsInInternalDirectory(App.Kp2a.GetDb().Ioc.Path, this))
+				{
+					importDb.Summary = GetString(Resource.String.FileIsInInternalDirectory);
+					importDb.Enabled = false;
+				}
+				else
+				{
+					importDb.Enabled = true;
+					importDb.PreferenceClick += delegate { MoveDbToInternalFolder(); };
+				}
+			}
+		}
+
+		private void MoveDbToInternalFolder()
+		{
+			Func<Action> copyAndReturnPostExecute = () =>
+				{
+					try
+					{
+						var sourceIoc = App.Kp2a.GetDb().Ioc;
+						var newIoc = ImportFileToInternalDirectory(sourceIoc);
+						return () =>
+							{
+								var builder = new AlertDialog.Builder(this);
+								builder
+									.SetMessage(Resource.String.DatabaseFileMoved);
+								builder.SetPositiveButton(Android.Resource.String.Ok, (sender, args) =>
+								                                                      PasswordActivity.Launch(this, newIoc, new NullTask()));
+								builder.Show();
+
+							};
+
+
+
+
+					}
+					catch (Exception e)
+					{
+						return () =>
+							{
+								Toast.MakeText(this, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, ToastLength.Long).Show();
+							};
+					}
+
+
+					
+				};
+
+			new SimpleLoadingDialog(this, GetString(Resource.String.CopyingFile), false,
+								  copyAndReturnPostExecute
+				).Execute();
+			
+		}
+
+		private IOConnectionInfo ImportFileToInternalDirectory(IOConnectionInfo sourceIoc)
+		{
+			string targetPath = UrlUtil.GetFileName(sourceIoc.Path);
+			targetPath = targetPath.Trim("|\\?*<\":>+[]/'".ToCharArray());
+			if (targetPath == "")
+				targetPath = "imported";
+			if (new File(FilesDir, targetPath).Exists())
+			{
+				int c = 1;
+				var ext = UrlUtil.GetExtension(targetPath);
+				var filenameWithoutExt = UrlUtil.StripExtension(targetPath);
+				do
+				{
+					c++;
+					targetPath = filenameWithoutExt + c;
+					if (!String.IsNullOrEmpty(ext))
+						targetPath += "." + ext;
+				} while (new File(FilesDir, targetPath).Exists());
+			}
+			var targetIoc = IOConnectionInfo.FromPath(new File(FilesDir, targetPath).CanonicalPath);
+
+			IoUtil.Copy(targetIoc, sourceIoc, App.Kp2a);
+			return targetIoc;
 		}
 
 		private void SetRounds(Database db, Preference rounds)

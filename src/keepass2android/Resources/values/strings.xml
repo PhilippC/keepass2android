@@ -41,6 +41,12 @@
 	<string name="FileHandling_prefs">File handling</string>
 	<string name="keyboard_prefs">Keyboard</string>
 	<string name="export_prefs">Export database...</string>
+	<string name="import_db_prefs">Import database to internal folder</string>
+	<string name="import_keyfile_prefs">Import key file to internal folder</string>
+	<string name="OnlyAvailableForLocalFiles">Only available for local files.</string>
+	<string name="FileIsInInternalDirectory">File is stored in internal directory.</string>
+	<string name="DatabaseFileMoved">Database file was copied to internal folder. Press Ok to open from the new location. Note: Do not forget to regularly export/backup the database!</string>
+
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
   <string name="ClearClipboard">Clipboard cleared.</string>

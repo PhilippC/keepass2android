@@ -249,20 +249,7 @@ namespace keepass2android
 
 		protected virtual void CopyFile(IOConnectionInfo targetIoc, IOConnectionInfo sourceIoc)
 		{
-			IFileStorage sourceStorage = _app.GetFileStorage(sourceIoc, false); //don't cache source. file won't be used ever again
-			IFileStorage targetStorage = _app.GetFileStorage(targetIoc);
-
-			using (
-				var writeTransaction = targetStorage.OpenWriteTransaction(targetIoc,
-				                                                          _app.GetBooleanPreference(
-					                                                          PreferenceKey.UseFileTransactions)))
-			{
-				using (var writeStream = writeTransaction.OpenFile())
-				{
-					sourceStorage.OpenFileForRead(sourceIoc).CopyTo(writeStream);
-				}
-				writeTransaction.CommitWrite();
-			}
+			IoUtil.Copy(targetIoc, sourceIoc, _app);
 		}
 
 		private void PrimaryIocSelected(IOConnectionInfo ioc)
