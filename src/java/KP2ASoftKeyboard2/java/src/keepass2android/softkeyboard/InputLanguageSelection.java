@@ -1,5 +1,7 @@
 /*
  * Copyright (C) 2008-2009 Google Inc.
+ * Copyright (C) 2014 Philipp Crocoll <crocoapps@googlemail.com>
+ * Copyright (C) 2014 Wiktor Lawski <wiktor.lawski@gmail.com>
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -75,10 +77,13 @@ public class InputLanguageSelection extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.language_prefs);
         // Get the settings preferences
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Design.updateTheme(this, sp);
+
+    	super.onCreate(icicle);
+        addPreferencesFromResource(R.xml.language_prefs);
         mSelectedLanguages = sp.getString(KP2AKeyboard.PREF_SELECTED_LANGUAGES, "");
         String[] languageList = mSelectedLanguages.split(",");
         mAvailableLanguages = getUniqueLocales();
