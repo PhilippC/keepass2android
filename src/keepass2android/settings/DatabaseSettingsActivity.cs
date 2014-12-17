@@ -24,6 +24,7 @@ using Android.Widget;
 using Android.Preferences;
 using Java.IO;
 using KeePassLib.Cryptography.Cipher;
+using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using keepass2android.Io;
@@ -180,8 +181,90 @@ namespace keepass2android
 			SetAlgorithm(db, algorithm);
 
 			UpdateImportDbPref();
+			UpdateImportKeyfilePref();
 		}
 
+		private void UpdateImportKeyfilePref()
+		{
+			var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+			var rememberKeyfile = prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default));
+
+			Preference importDb = FindPreference("import_keyfile_prefs");
+			importDb.Summary = "";
+
+			if (!rememberKeyfile)
+			{
+				importDb.Summary = GetString(Resource.String.KeyfileMoveRequiresRememberKeyfile);
+				importDb.Enabled = false;
+				return;
+			}
+			CompositeKey masterKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
+			if (masterKey.ContainsType(typeof (KcpKeyFile)))
+			{
+				IOConnectionInfo iocKeyfile = ((KcpKeyFile)masterKey.GetUserKey(typeof (KcpKeyFile))).Ioc;
+				if (iocKeyfile.IsLocalFile() && IoUtil.IsInInternalDirectory(iocKeyfile.Path, this))
+				{
+					importDb.Enabled = false;
+					importDb.Summary = GetString(Resource.String.FileIsInInternalDirectory);
+				}
+				else
+				{
+					importDb.Enabled = true;
+					importDb.PreferenceClick += (sender, args) => { MoveKeyfileToInternalFolder();};
+				}
+				
+
+			}
+			else
+			{
+				importDb.Enabled = false;
+			}
+		}
+
+		private void MoveKeyfileToInternalFolder()
+		{
+			Func<Action> copyAndReturnPostExecute = () =>
+			{
+				try
+				{	
+					CompositeKey masterKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
+					var sourceIoc = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
+					var newIoc = ImportFileToInternalDirectory(sourceIoc);
+					((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).ResetIoc(newIoc);
+					var keyfileString = IOConnectionInfo.SerializeToString(newIoc);
+					App.Kp2a.StoreOpenedFileAsRecent(App.Kp2a.GetDb().Ioc, keyfileString);
+					return () =>
+					{
+						UpdateImportKeyfilePref();
+						var builder = new AlertDialog.Builder(this);
+						builder
+							.SetMessage(Resource.String.KeyfileMoved);
+						builder.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => { });
+						builder.Show();
+
+					};
+
+
+
+
+				}
+				catch (Exception e)
+				{
+					return () =>
+					{
+						Toast.MakeText(this, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, ToastLength.Long).Show();
+					};
+				}
+
+
+
+			};
+
+			new SimpleLoadingDialog(this, GetString(Resource.String.CopyingFile), false,
+								  copyAndReturnPostExecute
+				).Execute();
+
+		}
 		private void UpdateImportDbPref()
 		{
 //Import db/key file preferences:

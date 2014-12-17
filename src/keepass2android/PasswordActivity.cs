@@ -234,6 +234,18 @@ namespace keepass2android
 					break;
 				case KeePass.ExitLock:
 					// The database has already been locked, and the quick unlock screen will be shown if appropriate
+
+					_rememberKeyfile = _prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default)); //update value
+					if ((KeyProviderType == KeyProviders.KeyFile) && (_rememberKeyfile))
+					{
+						//check if the keyfile was changed (by importing to internal directory)
+						var newKeyFile = GetKeyFile(_ioConnection.Path);
+						if (newKeyFile != _keyFileOrProvider)
+						{
+							_keyFileOrProvider = newKeyFile;
+							UpdateKeyfileIocView();
+						}
+					}
 					break;
 				case KeePass.ExitCloseAfterTaskComplete:
 					// Do not lock the database
@@ -261,9 +273,8 @@ namespace keepass2android
 						{
 							
 							KcpKeyFile kcpKeyfile = (KcpKeyFile)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpKeyFile));
-
-							FindViewById<TextView>(Resource.Id.label_keyfilename).Text =
-								App.Kp2a.GetFileStorage(kcpKeyfile.Ioc).GetDisplayName(kcpKeyfile.Ioc);
+							_keyFileOrProvider = IOConnectionInfo.SerializeToString(kcpKeyfile.Ioc);
+							UpdateKeyfileIocView();
 
 						}
 					}
@@ -929,7 +940,11 @@ namespace keepass2android
 			                        true, () =>
 				                        {
 					                        CompositeKey compositeKey;
-					                        if (!CreateCompositeKey(out compositeKey)) return (() => { });
+					                        string errorMessage;
+					                        if (!CreateCompositeKey(out compositeKey, out errorMessage)) return (() =>
+						                        {
+							                        Toast.MakeText(this, errorMessage, ToastLength.Long).Show();
+						                        });
 											return () => { PerformLoadDatabaseWithCompositeKey(compositeKey); };
 				                        }).Execute();
 			
@@ -959,8 +974,9 @@ namespace keepass2android
 			new ProgressTask(App.Kp2a, this, task).Run();
 		}
 
-		private bool CreateCompositeKey(out CompositeKey compositeKey)
+		private bool CreateCompositeKey(out CompositeKey compositeKey, out string errorMessage)
 		{
+			errorMessage = null;
 //no need to check for validity of password because if this method is called, the Ok button was enabled (i.e. there was a valid password)
 			compositeKey = new CompositeKey();
 			compositeKey.AddUserKey(new KcpPassword(_password));
@@ -980,13 +996,13 @@ namespace keepass2android
 				catch (System.IO.FileNotFoundException e)
 				{
 					Kp2aLog.Log(e.ToString());
-					Toast.MakeText(this, App.Kp2a.GetResourceString(UiStringKey.keyfile_does_not_exist), ToastLength.Long).Show();
+					errorMessage = App.Kp2a.GetResourceString(UiStringKey.keyfile_does_not_exist);
 					return false;
 				}
 				catch (Exception e)
 				{
 					Kp2aLog.Log(e.ToString());
-					Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+					errorMessage = e.Message;
 					return false;
 				}
 			}
@@ -1001,7 +1017,7 @@ namespace keepass2android
 				catch (Exception e)
 				{
 					Kp2aLog.Log(e.ToString());
-					Toast.MakeText(this, GetString(Resource.String.OtpKeyError), ToastLength.Long).Show();
+					errorMessage = GetString(Resource.String.OtpKeyError);
 
 					return false;
 				}
@@ -1019,7 +1035,7 @@ namespace keepass2android
 				}
 				else
 				{
-					Toast.MakeText(this, Resource.String.CouldntParseOtpSecret, ToastLength.Long).Show();
+					errorMessage = GetString(Resource.String.CouldntParseOtpSecret);
 					return false;
 				}
 			}

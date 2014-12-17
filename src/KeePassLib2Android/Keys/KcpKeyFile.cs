@@ -326,5 +326,14 @@ namespace KeePassLib.Keys
 
 			sOut.Close();
 		}
+
+		/// <summary>
+		/// Allows to change the ioc value (without reloading the data, assuming it's the same content)
+		/// </summary>
+		/// <param name="newIoc"></param>
+		public void ResetIoc(IOConnectionInfo newIoc)
+		{
+			m_ioc = newIoc;
+		}
 	}
 }

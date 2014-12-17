@@ -45,7 +45,9 @@
 	<string name="import_keyfile_prefs">Import key file to internal folder</string>
 	<string name="OnlyAvailableForLocalFiles">Only available for local files.</string>
 	<string name="FileIsInInternalDirectory">File is stored in internal directory.</string>
-	<string name="DatabaseFileMoved">Database file was copied to internal folder. Press Ok to open from the new location. Note: Do not forget to regularly export/backup the database!</string>
+	<string name="DatabaseFileMoved">Database file was copied to internal folder. Press Ok to open from the new location. Note: Do not forget to regularly export the database to a safe storage!</string>
+	<string name="KeyfileMoved">Keyfile was copied to internal folder. Make sure you have a safe backup before deleting from the current location!</string>
+	<string name="KeyfileMoveRequiresRememberKeyfile">Cannot use internal folder when key file location is not remembered. Change security preferences.</string>
 
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
