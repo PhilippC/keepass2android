@@ -54,7 +54,12 @@ public class ImeSwitcher {
 				String currentIme = android.provider.Settings.Secure.getString(
                         ctx.getContentResolver(),
                         android.provider.Settings.Secure.DEFAULT_INPUT_METHOD);
-								
+				currentIme += ";"+String.valueOf(
+							android.provider.Settings.Secure.getInt(
+									ctx.getContentResolver(),
+									android.provider.Settings.Secure.SELECTED_INPUT_METHOD_SUBTYPE,
+									-1)
+								);
 				SharedPreferences prefs = ctx.getSharedPreferences(KP2A_SWITCHER, Context.MODE_PRIVATE);
 				Editor edit = prefs.edit();
 				
