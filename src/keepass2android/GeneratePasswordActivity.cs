@@ -16,9 +16,11 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Globalization;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 
@@ -48,6 +50,17 @@ namespace keepass2android
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.generate_password);
 			SetResult(KeePass.ExitNormal);
+
+			var prefs = GetPreferences(FileCreationMode.Private);
+			((CheckBox) FindViewById(Resource.Id.cb_uppercase)).Checked = prefs.GetBoolean("cb_uppercase", true);
+			((CheckBox)FindViewById(Resource.Id.cb_lowercase)).Checked = prefs.GetBoolean("cb_lowercase", true);
+			((CheckBox)FindViewById(Resource.Id.cb_digits)).Checked = prefs.GetBoolean("cb_digits", true);
+			((CheckBox)FindViewById(Resource.Id.cb_minus)).Checked = prefs.GetBoolean("cb_minus", false);
+			((CheckBox)FindViewById(Resource.Id.cb_underline)).Checked = prefs.GetBoolean("cb_underline", false);
+			((CheckBox)FindViewById(Resource.Id.cb_space)).Checked = prefs.GetBoolean("cb_space", false);
+			((CheckBox)FindViewById(Resource.Id.cb_specials)).Checked = prefs.GetBoolean("cb_specials", false);
+			((CheckBox)FindViewById(Resource.Id.cb_brackets)).Checked = prefs.GetBoolean("cb_brackets", false);
+			((EditText)FindViewById(Resource.Id.length)).Text = prefs.GetInt("length", 12).ToString(CultureInfo.InvariantCulture);
 			
 			foreach (int id in _buttonIds) {
 				Button button = (Button) FindViewById(id);
@@ -122,6 +135,22 @@ namespace keepass2android
 				                                      ((CheckBox) FindViewById(Resource.Id.cb_space)).Checked,
 				                                      ((CheckBox) FindViewById(Resource.Id.cb_specials)).Checked,
 				                                      ((CheckBox) FindViewById(Resource.Id.cb_brackets)).Checked);
+
+				var prefs = GetPreferences(FileCreationMode.Private);
+				prefs.Edit()
+				     .PutBoolean("cb_uppercase", ((CheckBox) FindViewById(Resource.Id.cb_uppercase)).Checked)
+				     .PutBoolean("cb_lowercase", ((CheckBox) FindViewById(Resource.Id.cb_lowercase)).Checked)
+				     .PutBoolean("cb_digits", ((CheckBox) FindViewById(Resource.Id.cb_digits)).Checked)
+				     .PutBoolean("cb_minus", ((CheckBox) FindViewById(Resource.Id.cb_minus)).Checked)
+				     .PutBoolean("cb_underline", ((CheckBox) FindViewById(Resource.Id.cb_underline)).Checked)
+				     .PutBoolean("cb_space", ((CheckBox) FindViewById(Resource.Id.cb_space)).Checked)
+				     .PutBoolean("cb_specials", ((CheckBox) FindViewById(Resource.Id.cb_specials)).Checked)
+				     .PutBoolean("cb_brackets", ((CheckBox) FindViewById(Resource.Id.cb_brackets)).Checked)
+				     .PutInt("length", length)
+				     .Commit();
+
+
+
 			} catch (ArgumentException e) {
 				Toast.MakeText(this, e.Message, ToastLength.Long).Show();
 			}
