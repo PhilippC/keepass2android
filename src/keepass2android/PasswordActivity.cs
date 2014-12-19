@@ -257,28 +257,29 @@ namespace keepass2android
 					Finish();
 					break;
 				case KeePass.ExitReloadDb:
-					//if the activity was killed, fill password/keyfile so the user can directly hit load again
+					
 					if (App.Kp2a.GetDb().Loaded)
 					{
-						if (App.Kp2a.GetDb().KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)))
-						{
+						//remember the composite key for reloading:
+						var compositeKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
 
-							KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword));
-							String password = kcpPassword.Password.ReadString();
+						//lock the database:
+						App.Kp2a.LockDatabase(false);
 
-							SetEditText(Resource.Id.password, password);
-						
-						}
-						if (App.Kp2a.GetDb().KpDatabase.MasterKey.ContainsType(typeof(KcpKeyFile)))
-						{
-							
-							KcpKeyFile kcpKeyfile = (KcpKeyFile)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpKeyFile));
-							_keyFileOrProvider = IOConnectionInfo.SerializeToString(kcpKeyfile.Ioc);
-							UpdateKeyfileIocView();
 
-						}
+						//reload the database (without most other stuff performed in PerformLoadDatabase.
+						// We're assuming that the db file (and if appropriate also the key file) are still available 
+						// and there's no need to re-init the file storage. if it is, loading will fail and the user has 
+						// to retry with typing the full password, but that's intended to avoid showing the password to a 
+						// a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
+						Handler handler = new Handler();
+						OnFinish onFinish = new AfterLoad(handler, this);
+						_performingLoad = true;
+						LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish);
+						_loadDbTask = null; // prevent accidental re-use
+						new ProgressTask(App.Kp2a, this, task).Run();
 					}
-					App.Kp2a.LockDatabase(false);
+					
 					break;
 				case Result.Ok:
 					if (requestCode == RequestCodeSelectKeyfile) 
