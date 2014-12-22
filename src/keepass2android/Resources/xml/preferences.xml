@@ -214,22 +214,58 @@
 				  android:defaultValue="@bool/UseKp2aKeyboard_default"
 				  android:title="@string/ShowKp2aKeyboardNotification_title"
 				  android:key="@string/UseKp2aKeyboard_key" />
-			<CheckBoxPreference
+
+			<PreferenceScreen
+				 android:key="@string/keyboardswitch_prefs_key"
+	  android:title="@string/keyboardswitch_prefs"
+				 			android:dependency="@string/UseKp2aKeyboard_key"
+
+	  >
+				<CheckBoxPreference
+							android:key="kp2a_switch_rooted"
+							android:title="@string/kp2a_switch_rooted"
+							android:summary="@string/kp2a_switch_rooted_summary"
+							android:persistent="true"
+							android:defaultValue="false"
+            />
+
+
+				<!-- no autoswitch on root only-->
+				<CheckBoxPreference
 				android:enabled="true"
 				  android:persistent="true"
 				  android:summary="@string/OpenKp2aKeyboardAutomatically_summary"
 				  android:defaultValue="@bool/OpenKp2aKeyboardAutomatically_default"
 				  android:title="@string/OpenKp2aKeyboardAutomatically_title"
-				  android:dependency="@string/UseKp2aKeyboard_key"
 				  android:key="@string/OpenKp2aKeyboardAutomatically_key" />
-			<CheckBoxPreference
-            android:key="kp2a_switch_rooted"
-            android:title="@string/kp2a_switch_rooted"
-            android:summary="@string/kp2a_switch_rooted_summary"
+				
+				<!-- autoswitch on root only-->
+				<CheckBoxPreference
+				android:enabled="true"
+				  android:persistent="true"
+				  android:summary="@string/OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary"
+				  android:defaultValue="@bool/OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_default"
+				  android:title="@string/OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title"
+				  android:key="@string/OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key" />
+				
+					<CheckBoxPreference
+				android:enabled="true"
+				  android:persistent="true"
+				  android:summary="@string/AutoSwitchBackKeyboard_summary"
+				  android:defaultValue="@bool/AutoSwitchBackKeyboard_default"
+				  android:title="@string/AutoSwitchBackKeyboard_title"
+				  android:key="@string/AutoSwitchBackKeyboard_key" />
+				
+				<!-- with and without autoswitch on root-->
+				<CheckBoxPreference
+            android:key="kp2a_switch_on_sendgodone"
+            android:title="@string/kp2a_switch_on_sendgodone"
+            android:summary="@string/kp2a_switch_on_sendgodone_summary"
             android:persistent="true"
             android:defaultValue="false"
-			android:dependency="@string/UseKp2aKeyboard_key"
             />
+
+			</PreferenceScreen>
 		</PreferenceScreen>
 		<PreferenceScreen
 			  android:key="@string/QuickUnlock_prefs_key"

@@ -266,12 +266,25 @@ namespace keepass2android
 					_numElementsToWaitFor++;
 					_notificationManager.Notify(NotifyKeyboard, keyboard);
 
-					//if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
-					// automatically bring up the Keyboard selection dialog
-					if ((closeAfterCreate) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
+					if (prefs.GetBoolean("kp2a_switch_rooted", false))
 					{
-						ActivateKp2aKeyboard();
+						//switch rooted
+						bool onlySwitchOnSearch = prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false);
+						if (closeAfterCreate || (!onlySwitchOnSearch))
+						{
+							ActivateKp2aKeyboard();
+						}
 					}
+					else
+					{
+						//if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
+						// automatically bring up the Keyboard selection dialog
+						if ((closeAfterCreate) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
+						{
+							ActivateKp2aKeyboard();
+						}	
+					}
+					
 				}
 
 			}

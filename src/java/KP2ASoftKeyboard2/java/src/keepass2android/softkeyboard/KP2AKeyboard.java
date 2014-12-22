@@ -76,7 +76,10 @@ import java.util.Map;
 public class KP2AKeyboard extends InputMethodService
         implements LatinKeyboardBaseView.OnKeyboardActionListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final String KEEPASS2ANDROID_KEYBOARD_CLEARED = "keepass2android.keyboard_cleared";
+    private static String get_KEEPASS2ANDROID_KEYBOARD_CLEARED(Context ctx)
+    {
+    	return ctx.getPackageName()+".keyboard_cleared";
+    }
 	private static final String KP2A_SAVED_FIELD_HINTS = "savedFieldHints";
 	private static final String PREF_KP2A_REMEMBER_AUTO_FILL = "kp2a_remember_auto_fill";
 	private static final String TAG = "LatinIME";
@@ -289,12 +292,16 @@ public class KP2AKeyboard extends InputMethodService
     public class ClearKeyboardBroadcastReceiver extends BroadcastReceiver {
     	  @Override
     	  public void onReceive(Context context, Intent intent) {
-    	    
+    	    android.util.Log.d("KP2AK", "received clear keyboard broadcast");
     	    mShowKp2aKeyboard = false;
     	    updateKeyboardMode(getCurrentInputEditorInfo());
-    	    
-    	    //switch back, but only "silently" (i.e. if automatic switching is enabled and available)
-    	    keepass2android.kbbridge.ImeSwitcher.switchToPreviousKeyboard(KP2AKeyboard.this, true);
+    	    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+    		boolean switchback = sp.getBoolean("AutoSwitchBackKeyboard_key", true);
+    	    if (switchback)
+    	    {
+    	    	//switch back, but only "silently" (i.e. if automatic switching is enabled and available)
+    	    	keepass2android.kbbridge.ImeSwitcher.switchToPreviousKeyboard(KP2AKeyboard.this, true);
+    	    }
     	  }
 
     	} 
@@ -359,7 +366,8 @@ public class KP2AKeyboard extends InputMethodService
         mHadKp2aData = mShowKp2aKeyboard = keepass2android.kbbridge.KeyboardData.hasData();
         
         mClearKeyboardReceiver = new ClearKeyboardBroadcastReceiver();
-        registerReceiver(mClearKeyboardReceiver, new IntentFilter(KEEPASS2ANDROID_KEYBOARD_CLEARED));
+        registerReceiver(mClearKeyboardReceiver, new IntentFilter(get_KEEPASS2ANDROID_KEYBOARD_CLEARED(this)));
+        android.util.Log.d("KP2AK", "registered receiver for clear keyboard broadcast: "+get_KEEPASS2ANDROID_KEYBOARD_CLEARED(this));
         
     }
 

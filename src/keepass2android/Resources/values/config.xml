@@ -84,6 +84,7 @@
 	<string name="display_prefs_key">display_prefs_key</string>
 	<string name="QuickUnlock_prefs_key">QuickUnlock_prefs_key</string>
 	<string name="FileHandling_prefs_key">FileHandling_prefs_key</string>
+	<string name="keyboardswitch_prefs_key">keyboardswitch_prefs_key</string>
 
 	<string name="QuickUnlockDefaultEnabled_key">Enable_QuickUnlock_by_default</string>
 	<string name="QuickUnlockLength_key">QuickUnlockLength</string>
@@ -96,7 +97,7 @@
 	
 	<string name="UseFileTransactions_key">UseFileTransactions</string>
 	<string name="LockWhenScreenOff_key">LockWhenScreenOff</string>
-	<string name="LockWhenNavigateBack_key">LockWhenNavigateBack</string>
+	<string name="LockWhenNavigateBack_key">kp2a_switch_rootedLockWhenNavigateBack</string>
 
 	<string name="NoDonateOption_key">NoDonateOption</string>
 
@@ -118,8 +119,14 @@
 	
 	<string name="OpenKp2aKeyboardAutomatically_key">OpenKp2aKeyboardAutomatically</string>
 	<bool name="OpenKp2aKeyboardAutomatically_default">true</bool>
-	
-    <string name="clipboard_timeout_default">300000</string>
+
+	<string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key">OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key</string>
+	<bool name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_default">false</bool>
+
+	<string name="AutoSwitchBackKeyboard_key">AutoSwitchBackKeyboard_key</string>
+	<bool name="AutoSwitchBackKeyboard_default">true</bool>
+
+		<string name="clipboard_timeout_default">300000</string>
     <string-array name="clipboard_timeout_values">
     	<item>30000</item>
     	<item>60000</item>

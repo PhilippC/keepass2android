@@ -43,6 +43,7 @@
 	<string name="export_prefs">Export database...</string>
 	<string name="import_db_prefs">Import database to internal folder</string>
 	<string name="import_keyfile_prefs">Import key file to internal folder</string>
+	<string name="keyboardswitch_prefs">Keyboard switching</string>
 	<string name="OnlyAvailableForLocalFiles">Only available for local files.</string>
 	<string name="FileIsInInternalDirectory">File is stored in internal directory.</string>
 	<string name="DatabaseFileMoved">Database file was copied to internal folder. Press Ok to open from the new location. Note: Do not forget to regularly export the database to a safe storage!</string>
@@ -301,9 +302,15 @@
   <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Switch keyboard</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Open keyboard selection dialog when entry is available through KP2A keyboard after search from the browser.</string>
-	
+
 	<string name="kp2a_switch_rooted">Auto-switch on rooted devices</string>
-    <string name="kp2a_switch_rooted_summary">On rooted devices, it is possible to automatically switch to the Keepass2Android keyboard (after search for an entry or by clicking the KP2A keyboard notification) and to switch back to the previous keyboard without showing the Input method picker. This also requires to install the Secure Settings app. See the KP2A documentation for more information!</string>
+	<string name="kp2a_switch_rooted_summary">Automatically switch to KP2A keyboard when entry is opened. Requires root and the Secure Settings app with System+. </string>
+
+	<string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Auto-switch only after search</string>
+	<string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Only automatically switch to KP2A keyboard after using the Share URL function (but not when opening an entry in another way)</string>
+
+	<string name="AutoSwitchBackKeyboard_title">Keyboard switch back</string>
+	<string name="AutoSwitchBackKeyboard_summary">Switch back to previous keyboard when no entry is opened.</string>
 
 	<string name="ShowUnlockedNotification_title">Notification icon while unlocked</string>
 	<string name="ShowUnlockedNotification_summary">Show a notification icon while the database is unlocked.</string>

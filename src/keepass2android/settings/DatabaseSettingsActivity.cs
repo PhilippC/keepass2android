@@ -39,6 +39,7 @@ namespace keepass2android
 	public class DatabaseSettingsActivity : LockingClosePreferenceActivity 
 	{
 		private ActivityDesign _design;
+		private AppSettingsActivity.KeyboardSwitchPrefManager _switchPrefManager;
 
 		public DatabaseSettingsActivity()
 		{
@@ -182,6 +183,8 @@ namespace keepass2android
 
 			UpdateImportDbPref();
 			UpdateImportKeyfilePref();
+			//AppSettingsActivity.PrepareKeyboardSwitchingPreferences(this);
+			_switchPrefManager = new AppSettingsActivity.KeyboardSwitchPrefManager(this);
 		}
 
 		private void UpdateImportKeyfilePref()

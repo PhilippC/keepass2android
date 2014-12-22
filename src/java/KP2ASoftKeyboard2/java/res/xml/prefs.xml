@@ -97,14 +97,6 @@
             android:dependency="kp2a_simple_keyboard"
             />
        
-       <CheckBoxPreference
-            android:key="kp2a_switch_on_sendgodone"
-            android:title="@string/kp2a_switch_on_sendgodone"
-            android:summary="@string/kp2a_switch_on_sendgodone_summary"
-            android:persistent="true" 
-            android:defaultValue="false"
-            android:dependency="kp2a_simple_keyboard"
-            />
        
     </PreferenceCategory>
     

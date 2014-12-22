@@ -32,6 +32,7 @@ namespace keepass2android
 	public class AppSettingsActivity : LockingPreferenceActivity
 	{
 		private ActivityDesign _design;
+		private KeyboardSwitchPrefManager _switchPrefManager;
 
 		public AppSettingsActivity()
 		{
@@ -113,6 +114,81 @@ namespace keepass2android
 			}
 
 			FindPreference(GetString(Resource.String.db_key)).Enabled = false;
+			//PrepareKeyboardSwitchingPreferences(this);
+			_switchPrefManager = new KeyboardSwitchPrefManager(this);
+
+		}
+
+		public class KeyboardSwitchPrefManager
+		{
+			private readonly PreferenceActivity _act;
+			private CheckBoxPreference _switchPref;
+			private CheckBoxPreference _openKp2aAutoPref;
+			private CheckBoxPreference _openOnlyOnSearchPref;
+			private CheckBoxPreference _switchBackPref;
+			private PreferenceScreen _screen;
+
+			public KeyboardSwitchPrefManager(PreferenceActivity act)
+			{
+				this._act = act;
+
+				_switchPref = (CheckBoxPreference)_act.FindPreference("kp2a_switch_rooted");
+				_openKp2aAutoPref =
+					(CheckBoxPreference)act.FindPreference(act.GetString(Resource.String.OpenKp2aKeyboardAutomatically_key));
+				_openOnlyOnSearchPref =
+					(CheckBoxPreference)
+					act.FindPreference(act.GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key));
+				_switchBackPref =
+					(CheckBoxPreference)act.FindPreference(act.GetString(Resource.String.AutoSwitchBackKeyboard_key));
+				_screen = (PreferenceScreen)act.FindPreference(act.GetString(Resource.String.keyboardswitch_prefs_key));
+				EnableSwitchPreferences(_switchPref.Checked);
+				
+				_switchPref.PreferenceChange += (sender, args) =>
+				{
+					bool switchOnRooted = (bool)args.NewValue;
+					EnableSwitchPreferences(switchOnRooted);
+				};
+			}
+
+
+			private void EnableSwitchPreferences(bool switchOnRooted)
+			{
+				if (!switchOnRooted)
+				{
+					if (_act.FindPreference(_act.GetString(Resource.String.OpenKp2aKeyboardAutomatically_key)) == null)
+					{
+						_screen.AddPreference(_openKp2aAutoPref);
+					}
+					if (_act.FindPreference(_act.GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key)) != null)
+					{
+						_screen.RemovePreference(_openOnlyOnSearchPref);
+					}
+					if (_act.FindPreference(_act.GetString(Resource.String.AutoSwitchBackKeyboard_key)) != null)
+					{
+						_screen.RemovePreference(_switchBackPref);
+					}
+				}
+				else
+				{
+					if (_act.FindPreference(_act.GetString(Resource.String.OpenKp2aKeyboardAutomatically_key)) != null)
+					{
+						_screen.RemovePreference(_openKp2aAutoPref);
+					}
+					if (_act.FindPreference(_act.GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key)) == null)
+					{
+						_screen.AddPreference(_openOnlyOnSearchPref);
+					}
+					if (_act.FindPreference(_act.GetString(Resource.String.AutoSwitchBackKeyboard_key)) == null)
+					{
+						_screen.AddPreference(_switchBackPref);
+					}
+				}
+				/*_openKp2aAutoPref.Enabled = !switchOnRooted;
+
+				_openOnlyOnSearchPref.Enabled = switchOnRooted;
+
+				_switchBackPref.Enabled = switchOnRooted;*/
+			}
 		}
 
 		private void OnDesignChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
