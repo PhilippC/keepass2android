@@ -53,23 +53,15 @@ namespace keepass2android
 			
 			public override void Run() {
 				if ( Success ) {
-					// Mark group dirty if title, icon or Expiry stuff changes
-					if ( ! _backup.Strings.ReadSafe (PwDefs.TitleField).Equals(_updatedEntry.Strings.ReadSafe (PwDefs.TitleField)) 
-					    || ! _backup.IconId.Equals(_updatedEntry.IconId)
-						|| !_backup.CustomIconUuid.Equals(_updatedEntry.CustomIconUuid)
-					    || _backup.Expires != _updatedEntry.Expires
-					    || (_backup.Expires && (! _backup.ExpiryTime.Equals(_updatedEntry.ExpiryTime)))
-					    )
-					
-					{
-						PwGroup parent = _updatedEntry.ParentGroup;
-						if ( parent != null ) {
+					// Mark parent group dirty. Even only the last modification date changed, this might affect sort order
+					PwGroup parent = _updatedEntry.ParentGroup;
+					if ( parent != null ) {
 
-							// Mark parent group dirty
-							_app.GetDb().Dirty.Add(parent);
+						// Mark parent group dirty
+						_app.GetDb().Dirty.Add(parent);
 							
-						}
 					}
+					
 				} else {
 					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
 					// If we fail to save, back out changes to global structure

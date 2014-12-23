@@ -27,6 +27,182 @@ using keepass2android.view;
 
 namespace keepass2android
 {
+	public interface IGroupViewSortOrder
+	{
+		int ResourceId { get; }
+		bool RequiresSort { get; }
+		int CompareEntries(PwEntry a, PwEntry b);
+		int CompareGroups(PwGroup a, PwGroup b);
+	}
+
+	class ModDateSortOrder : IGroupViewSortOrder
+	{
+		public int ResourceId
+		{
+			get { return Resource.String.sort_moddate; }
+		}
+
+		public bool RequiresSort
+		{
+			get { return true; }
+		}
+
+		public int CompareEntries(PwEntry a, PwEntry b)
+		{
+			return a.LastModificationTime.CompareTo(b.LastModificationTime);
+		}
+
+		public int CompareGroups(PwGroup a, PwGroup b)
+		{
+			return a.LastModificationTime.CompareTo(b.LastModificationTime);
+		}
+	}
+	class CreationDateSortOrder : IGroupViewSortOrder
+	{
+		public int ResourceId
+		{
+			get { return Resource.String.sort_db; }
+		}
+
+		public bool RequiresSort
+		{
+			get { return true; }
+		}
+
+		public int CompareEntries(PwEntry a, PwEntry b)
+		{
+			return a.CreationTime.CompareTo(b.CreationTime);
+		}
+
+		public int CompareGroups(PwGroup a, PwGroup b)
+		{
+			return a.CreationTime.CompareTo(b.CreationTime);
+		}
+	}
+
+	public class DefaultSortOrder: IGroupViewSortOrder
+	{
+		public int ResourceId
+		{
+			get { return Resource.String.sort_default; }
+		}
+
+		public bool RequiresSort
+		{
+			get { return false; }
+		}
+
+		public int CompareEntries(PwEntry a, PwEntry b)
+		{
+			return 0;
+		}
+
+		public int CompareGroups(PwGroup a, PwGroup b)
+		{
+			return 0;
+		}
+	}
+	public class NameSortOrder: IGroupViewSortOrder
+	{
+		public int ResourceId
+		{
+			get { return Resource.String.sort_name; }
+		}
+
+		public bool RequiresSort
+		{
+			get { return true; }
+		}
+
+		public int CompareEntries(PwEntry x, PwEntry y)
+		{
+			String nameX = x.Strings.ReadSafe(PwDefs.TitleField);
+											String nameY = y.Strings.ReadSafe(PwDefs.TitleField);
+			if (nameX.ToLower() != nameY.ToLower())
+				return String.Compare(nameX, nameY, StringComparison.OrdinalIgnoreCase);
+			else
+			{
+				if (PwDefs.IsTanEntry(x) && PwDefs.IsTanEntry(y))
+				{
+					//compare the user name fields (=TAN index)
+					String userX = x.Strings.ReadSafe(PwDefs.UserNameField);
+					String userY = y.Strings.ReadSafe(PwDefs.UserNameField);
+					if (userX != userY)
+					{
+						try
+						{
+							return int.Parse(userX).CompareTo(int.Parse(userY));
+						}
+						catch (Exception)
+						{
+							//ignore
+						}
+						return String.Compare(userX, userY, StringComparison.OrdinalIgnoreCase);
+					}
+				}
+
+				//use creation time for non-tan entries:
+
+				return x.CreationTime.CompareTo(y.CreationTime);
+			}
+		}
+
+		public int CompareGroups(PwGroup a, PwGroup b)
+		{
+			return String.CompareOrdinal(a.Name, b.Name);
+		}
+	}
+
+	public class GroupViewSortOrderManager
+	{
+		private readonly Context _context;
+		private readonly IGroupViewSortOrder[] _orders = new IGroupViewSortOrder[] { new DefaultSortOrder(), new NameSortOrder(), new ModDateSortOrder(), new CreationDateSortOrder()};
+		private readonly ISharedPreferences _prefs;
+
+		public GroupViewSortOrderManager(Context context)
+		{
+			_context = context;
+			_prefs = PreferenceManager.GetDefaultSharedPreferences(_context);
+		}
+
+		public IGroupViewSortOrder[] SortOrders	
+		{
+			get { return _orders; }
+		}
+
+		public bool SortGroups
+		{
+			get { return true; }
+			//_prefs.GetBoolean(_context.GetString(Resource.String.sortgroups_key), false); }
+		}
+
+		public IGroupViewSortOrder GetCurrentSortOrder()
+		{
+			return SortOrders[GetCurrentSortOrderIndex()];
+		}
+
+		public int GetCurrentSortOrderIndex()
+		{
+			String sortKeyOld = _context.GetString(Resource.String.sort_key_old);
+			String sortKey = _context.GetString(Resource.String.sort_key);
+
+			int sortId = _prefs.GetInt(sortKey, -1);
+			if (sortId == -1)
+			{
+				sortId = _prefs.GetBoolean(sortKeyOld, true) ? 1 : 0;
+			}
+			return sortId;
+		}
+
+		public void SetNewSortOrder(int selectedAfter)
+		{
+			String sortKey = _context.GetString(Resource.String.sort_key);
+			ISharedPreferencesEditor editor = _prefs.Edit();
+			editor.PutInt(sortKey, selectedAfter);
+			//editor.PutBoolean(_context.GetString(Resource.String.sortgroups_key), false);
+			EditorCompat.Apply(editor);
+		}
+	}
 	
 	public class PwGroupListAdapter : BaseAdapter 
 	{
@@ -36,12 +212,12 @@ namespace keepass2android
 		private List<PwGroup> _groupsForViewing;
 		private List<PwEntry> _entriesForViewing;
 
-		private readonly ISharedPreferences _prefs;
+		
 		
 		public PwGroupListAdapter(GroupBaseActivity act, PwGroup group) {
 			_act = act;
 			_group = group;
-			_prefs = PreferenceManager.GetDefaultSharedPreferences(act);
+			
 			
 			FilterAndSort();
 			
@@ -68,45 +244,21 @@ namespace keepass2android
 			{
 				_entriesForViewing.Add(entry);
 			}
-			
-			bool sortLists = _prefs.GetBoolean(_act.GetString(Resource.String.sort_key),	_act.Resources.GetBoolean(Resource.Boolean.sort_default)); 
-			if ( sortLists ) 
-			{
-				_groupsForViewing = new List<PwGroup>(_group.Groups);
-				_groupsForViewing.Sort( (x, y) => { return String.Compare (x.Name, y.Name, true); });
-				_entriesForViewing.Sort( (x, y) => 
-				                       { 
-											String nameX = x.Strings.ReadSafe(PwDefs.TitleField);
-											String nameY = y.Strings.ReadSafe(PwDefs.TitleField);
-											if (nameX.ToLower() != nameY.ToLower())
-						                       return String.Compare(nameX, nameY, StringComparison.OrdinalIgnoreCase);
-					                       else
-					                       {
-											   if (PwDefs.IsTanEntry(x) && PwDefs.IsTanEntry(y))
-											   {
-												   //compare the user name fields (=TAN index)
-												   String userX = x.Strings.ReadSafe(PwDefs.UserNameField);
-												   String userY = y.Strings.ReadSafe(PwDefs.UserNameField);
-												   if (userX != userY)
-												   {
-													   try
-													   {
-														   return int.Parse(userX).CompareTo(int.Parse(userY));
-													   }
-													   catch (Exception)
-													   {
-														   //ignore
-													   }
-													   return String.Compare(userX, userY, StringComparison.OrdinalIgnoreCase);
-												   }
-											   }
+			GroupViewSortOrderManager sortOrderManager = new GroupViewSortOrderManager(_act);
+			var sortOrder = sortOrderManager.GetCurrentSortOrder();
 
-												//use creation time for non-tan entries:
-												   
-						                       return x.CreationTime.CompareTo(y.CreationTime);
-					                       }
-				                       }
-				);
+			if ( sortOrder.RequiresSort )
+			{
+				var sortGroups = sortOrderManager.SortGroups;
+				_groupsForViewing = new List<PwGroup>(_group.Groups);
+				_groupsForViewing.Sort( (x, y) =>
+					{
+						if (sortGroups)
+							return sortOrder.CompareGroups(x, y);
+						else
+							return String.Compare (x.Name, y.Name, true);
+					});
+				_entriesForViewing.Sort(sortOrder.CompareEntries);
 			} else {
 				_groupsForViewing =  new List<PwGroup>(_group.Groups);
 			}

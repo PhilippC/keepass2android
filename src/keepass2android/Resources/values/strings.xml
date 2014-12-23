@@ -190,8 +190,13 @@
 	<string name="space">Space</string>
   <string name="search_label">Search</string>
   <string name="show_password">Show password</string>
+	<string name="sort_menu">Sort by...</string>
   <string name="sort_name">Sort by name</string>
   <string name="sort_db">Sort by creation date</string>
+	<string name="sort_moddate">Sort by modification date</string>
+	<string name="sort_default">Keep default order</string>
+	
+	
   <string name="special">Special</string>
   <string name="search_hint">Find what</string>
   <string name="search_results">Search results</string>

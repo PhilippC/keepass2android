@@ -53,6 +53,7 @@ namespace keepass2android
 			Group.Name = _name;
 			Group.IconId = _iconId;
 			Group.CustomIconUuid = _customIconId;
+			Group.Touch(true);
 
 			// Commit to disk
 			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);

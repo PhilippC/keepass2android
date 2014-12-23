@@ -16,6 +16,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -331,19 +333,7 @@ namespace keepass2android
 			return true;
 		}
 		
-		private void SetSortMenuText(IMenu menu) {
-			bool sortByName = _prefs.GetBoolean(GetString(Resource.String.sort_key), Resources.GetBoolean(Resource.Boolean.sort_default));
-			
-			int resId;
-			if ( sortByName ) {
-				resId = Resource.String.sort_db;
-			} else {
-				resId = Resource.String.sort_name;
-			}
-			
-			menu.FindItem(Resource.Id.menu_sort).SetTitle(resId);
-			
-		}
+		
 
 		public override bool OnPrepareOptionsMenu(IMenu menu) {
 			if ( ! base.OnPrepareOptionsMenu(menu) ) {
@@ -351,7 +341,7 @@ namespace keepass2android
 			}
 
 			Util.PrepareDonateOptionMenu(menu, this);
-			SetSortMenuText(menu);
+			
 			
 			return true;
 		}
@@ -378,7 +368,7 @@ namespace keepass2android
 				return true;
 				
 			case Resource.Id.menu_sort:
-				ToggleSort();
+				ChangeSort();
 				return true;
 			case Android.Resource.Id.Home:
 				//Currently the action bar only displays the home button when we come from a previous activity.
@@ -471,26 +461,41 @@ namespace keepass2android
 			base.OnBackPressed();
 		}
 
-		private void ToggleSort() {
-			// Toggle setting
-			String sortKey = GetString(Resource.String.sort_key);
-			bool sortByName = _prefs.GetBoolean(sortKey, Resources.GetBoolean(Resource.Boolean.sort_default));
-			ISharedPreferencesEditor editor = _prefs.Edit();
-			editor.PutBoolean(sortKey, ! sortByName);
-			EditorCompat.Apply(editor);
+		private void ChangeSort()
+		{
+			var sortOrderManager = new GroupViewSortOrderManager(this);
+			IEnumerable<string> sortOptions = sortOrderManager.SortOrders.Select(
+				o => GetString(o.ResourceId)
+				);
+
+			int selectedBefore = sortOrderManager.GetCurrentSortOrderIndex();
+
+			new AlertDialog.Builder(this)
+				.SetSingleChoiceItems(sortOptions.ToArray(), selectedBefore, (sender, args) =>
+					{
+						int selectedAfter = args.Which;
+
+						sortOrderManager.SetNewSortOrder(selectedAfter);
+						// Refresh menu titles
+						ActivityCompat.InvalidateOptionsMenu(this);
+
+						// Mark all groups as dirty now to refresh them on load
+						Database db = App.Kp2a.GetDb();
+						db.MarkAllGroupsAsDirty();
+						// We'll manually refresh this group so we can remove it
+						db.Dirty.Remove(Group);
+
+						// Tell the adapter to refresh it's list
+						BaseAdapter adapter = (BaseAdapter)ListAdapter;
+						adapter.NotifyDataSetChanged();
 			
-			// Refresh menu titles
-			ActivityCompat.InvalidateOptionsMenu(this);
 			
-			// Mark all groups as dirty now to refresh them on load
-			Database db = App.Kp2a.GetDb();
-			db.MarkAllGroupsAsDirty();
-			// We'll manually refresh this group so we can remove it
-			db.Dirty.Remove(Group);
+					})
+					.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ((Dialog)sender).Dismiss())
+					.Show();
+
 			
-			// Tell the adapter to refresh it's list
-			BaseAdapter adapter = (BaseAdapter) ListAdapter;
-			adapter.NotifyDataSetChanged();
+			
 			
 		}
 		

@@ -56,7 +56,9 @@
     <string name="omitbackup_key">omitbackup</string>    
     <string name="list_size_key">list_size</string>
 	<string name="design_key">design_key</string>
-	<string name="sort_key">sort_key</string>
+	<string name="sort_key_old">sort_key</string>
+	<string name="sort_key">sort_key_new</string>
+	<string name="sortgroups_key">sortgroups_key</string>
 	<string name="TanExpiresOnUse_key">TanExpiresOnUse_key</string>
 	<string name="ShowGroupnameInSearchResult_key">ShowGroupnameInSearchResult_key</string>
 	<string name="ShowUsernameInList_key">ShowUsernameInList_key</string>
@@ -67,7 +69,6 @@
     <string name="BinaryDirectory_default">/mnt/sdcard/keepass2android/binaries/</string>
     <bool name="maskpass_default">true</bool>
     <bool name="keyfile_default">true</bool>
-    <bool name="sort_default">true</bool>
     <bool name="omitbackup_default">true</bool>
     <bool name="TanExpiresOnUse_default">true</bool>
     <bool name="ShowUsernameInList_default">true</bool>
