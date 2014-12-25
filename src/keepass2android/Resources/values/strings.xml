@@ -380,6 +380,7 @@
 	<string name="otp_aux_file">OTP auxiliary file</string>
 
 	<string name="ErrorOcurred">An error occured:</string>
+	<string name="DuplicateUuidsError">Database is corrupt: Duplicate IDs found. (Did you save with Minikeepass?) Please re-import to a new database with Keepass 2 for PC and select \'Create new IDs\'.</string>
 
 	<string name="synchronize_database_menu">Synchronize database…</string>
 

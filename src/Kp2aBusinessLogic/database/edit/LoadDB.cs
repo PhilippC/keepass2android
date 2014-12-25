@@ -54,7 +54,7 @@ namespace keepass2android
 				StatusLogger.UpdateMessage(UiStringKey.loading_database);
 				//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
 				MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
-				MemoryStream databaseStream; 
+				MemoryStream databaseStream;
 				if (preloadedMemoryStream != null)
 					databaseStream = preloadedMemoryStream;
 				else
@@ -83,10 +83,16 @@ namespace keepass2android
 				foreach (var innerException in e.InnerExceptions)
 				{
 					message = innerException.Message;
-						// Override the message shown with the last (hopefully most recent) inner exception
+					// Override the message shown with the last (hopefully most recent) inner exception
 					Kp2aLog.Log("Exception: " + innerException);
 				}
 				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message);
+				return;
+			}
+			catch (DuplicateUuidsException e)
+			{
+				Kp2aLog.Log("Exception: " + e);
+				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError));
 				return;
 			}
 			catch (Exception e)
