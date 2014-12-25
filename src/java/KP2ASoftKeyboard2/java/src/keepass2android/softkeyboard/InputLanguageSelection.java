@@ -42,13 +42,22 @@ public class InputLanguageSelection extends PreferenceActivity {
 
     private static final String[] WHITELIST_LANGUAGES = {
         "cs", "da", "de", "en_GB", "en_US", "es", "es_US", "fr", "it", "nb", "nl", "pl", "pt",
-        "ru", "tr",
+        "ru", "tr"
+    };
+    
+    private static final String[] WEAK_WHITELIST_LANGUAGES = {
+        "cs", "da", "de", "en_GB", "en_US", "es", "es_US", "fr", "it", "nb", "nl", "pl", "pt",
+        "ru", "tr", "en"
     };
 
-    private static boolean isWhitelisted(String lang) {
-        for (String s : WHITELIST_LANGUAGES) {
+    private static boolean isWhitelisted(String lang, boolean strict) {
+        for (String s : (strict? WHITELIST_LANGUAGES : WEAK_WHITELIST_LANGUAGES)) {
             if (s.equalsIgnoreCase(lang)) {
                 return true;
+            }
+            if ((!strict) && (s.length()==2) && lang.toLowerCase(Locale.US).startsWith(s))
+            {
+            	return true;
             }
         }
         return false;
@@ -86,7 +95,14 @@ public class InputLanguageSelection extends PreferenceActivity {
         addPreferencesFromResource(R.xml.language_prefs);
         mSelectedLanguages = sp.getString(KP2AKeyboard.PREF_SELECTED_LANGUAGES, "");
         String[] languageList = mSelectedLanguages.split(",");
-        mAvailableLanguages = getUniqueLocales();
+        
+        //first try to get the unique locales in a strict mode (filtering most redundant layouts like English (Jamaica) etc.)
+        mAvailableLanguages = getUniqueLocales(true);
+        //sometimes the strict check returns only EN_US, EN_GB and ES_US. Accept more in these cases:
+        if (mAvailableLanguages.size() < 5)
+        {
+        	mAvailableLanguages = getUniqueLocales(false);
+        }
         PreferenceGroup parent = getPreferenceScreen();
         for (int i = 0; i < mAvailableLanguages.size(); i++) {
             CheckBoxPreference pref = new CheckBoxPreference(this);
@@ -168,7 +184,7 @@ public class InputLanguageSelection extends PreferenceActivity {
         SharedPreferencesCompat.apply(editor);
     }
 
-    ArrayList<Loc> getUniqueLocales() {
+    ArrayList<Loc> getUniqueLocales(boolean strict) {
         String[] locales = getAssets().getLocales();
         Arrays.sort(locales);
         ArrayList<Loc> uniqueLocales = new ArrayList<Loc>();
@@ -178,6 +194,7 @@ public class InputLanguageSelection extends PreferenceActivity {
         int finalSize = 0;
         for (int i = 0 ; i < origSize; i++ ) {
             String s = locales[i];
+            
             int len = s.length();
             final Locale l;
             final String language;
@@ -189,11 +206,17 @@ public class InputLanguageSelection extends PreferenceActivity {
                 language = s;
                 l = new Locale(language);
             } else {
+            	android.util.Log.d("KP2AK", "locale "+s+" has unexpected length.");
                 continue;
             }
             // Exclude languages that are not relevant to LatinIME
-            if (!isWhitelisted(s)) continue;
+            if (!isWhitelisted(s, strict)) 
+        	{
+            	android.util.Log.d("KP2AK", "locale "+s+" is not white-listed");
+            	continue;
+        	}
 
+            android.util.Log.d("KP2AK", "adding locale "+s);
             if (finalSize == 0) {
                 preprocess[finalSize++] =
                         new Loc(LanguageSwitcher.toTitleCase(l.getDisplayName(l), l), l);
