@@ -1347,6 +1347,11 @@ namespace keepass2android
 			}
 			
 		}
+		protected override void OnPause()
+		{
+			base.OnPause();
+			ClearEnteredPassword(); //if the activity is left without opening the database, clear the password if entered
+		}
 
 		protected override void OnDestroy()
 		{
