@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.Support.V4.App;
 using Java.Util;
 
 using Android.App;
@@ -42,12 +43,185 @@ namespace keepass2android
 	[Service]
 	public class CopyToClipboardService : Service
 	{
+		class PasswordAccessNotificationBuilder
+		{
+			private readonly Context _ctx;
+			private readonly NotificationManager _notificationManager;
 
+			public PasswordAccessNotificationBuilder(Context ctx, NotificationManager notificationManager)
+			{
+				_ctx = ctx;
+				_notificationManager = notificationManager;
+			}
+
+			private bool _hasPassword;
+			private bool _hasUsername;
+			private bool _hasKeyboard;
+
+			public void AddPasswordAccess()
+			{
+				_hasPassword = true;
+			}
+
+			public void AddUsernameAccess()
+			{
+				_hasUsername = true;
+			}
+
+			public void AddKeyboardAccess()
+			{
+				_hasKeyboard = true;
+			}
+
+			public int CreateNotifications(string entryName)
+			{
+				if (((int) Build.VERSION.SdkInt < 16) ||
+				    (PreferenceManager.GetDefaultSharedPreferences(_ctx)
+				                      .GetBoolean(_ctx.GetString(Resource.String.ShowSeparateNotifications_key),
+												  _ctx.Resources.GetBoolean(Resource.Boolean.ShowSeparateNotifications_default))))
+				{
+					return CreateSeparateNotifications(entryName);
+				}
+				else
+				{
+					return CreateCombinedNotification(entryName);
+				}
+				
+			}
+
+			private int CreateCombinedNotification(string entryName)
+			{
+				if ((!_hasUsername) && (!_hasPassword) && (!_hasKeyboard))
+					return 0;
+
+				NotificationCompat.Builder notificationBuilder;
+				if (_hasKeyboard)
+				{
+					notificationBuilder = GetNotificationBuilder(Intents.CheckKeyboard, Resource.String.available_through_keyboard,
+															Resource.Drawable.ic_notify_keyboard, entryName);
+				}
+				else
+				{
+					notificationBuilder = GetNotificationBuilder(null, Resource.String.entry_is_available, Resource.Drawable.ic_launcher_gray,
+					                                   entryName);
+				}
+				
+				//add action buttons to base notification:
+				
+				if (_hasUsername)
+					notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_username, 
+						_ctx.GetString(Resource.String.menu_copy_user), 
+						GetPendingIntent(Intents.CopyUsername, Resource.String.menu_copy_user)));
+				if (_hasPassword)
+					notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_password, 
+						_ctx.GetString(Resource.String.menu_copy_pass), 
+						GetPendingIntent(Intents.CopyPassword, Resource.String.menu_copy_pass)));
+
+				notificationBuilder.SetPriority((int)Android.App.NotificationPriority.High);
+				var notification = notificationBuilder.Build();
+				notification.DeleteIntent = CreateDeleteIntent(NotifyCombined);
+				_notificationManager.Notify(NotifyCombined, notification);
+
+				return 1;
+			}
+
+			private int CreateSeparateNotifications(string entryName)
+			{
+				int numNotifications = 0;
+				if (_hasPassword)
+				{
+					// only show notification if password is available
+					Notification password = GetNotification(Intents.CopyPassword, Resource.String.copy_password,
+					                                        Resource.Drawable.ic_action_password, entryName);
+					numNotifications++;
+					password.DeleteIntent = CreateDeleteIntent(NotifyPassword);
+					_notificationManager.Notify(NotifyPassword, password);
+				}
+				if (_hasUsername)
+				{
+					// only show notification if username is available
+					Notification username = GetNotification(Intents.CopyUsername, Resource.String.copy_username,
+					                                        Resource.Drawable.ic_action_username, entryName);
+					username.DeleteIntent = CreateDeleteIntent(NotifyUsername);
+					_notificationManager.Notify(NotifyUsername, username);
+					numNotifications++;
+				}
+				if (_hasKeyboard)
+				{
+					// only show notification if username is available
+					Notification keyboard = GetNotification(Intents.CheckKeyboard, Resource.String.available_through_keyboard,
+					                                        Resource.Drawable.ic_notify_keyboard, entryName);
+					keyboard.DeleteIntent = CreateDeleteIntent(NotifyKeyboard);
+					_notificationManager.Notify(NotifyKeyboard, keyboard);
+					numNotifications++;
+				}
+				return numNotifications;
+			}
+
+			//creates a delete intent (started when notification is cancelled by user or something else)
+			//requires different request codes for every item (otherwise the intents are identical)
+			PendingIntent CreateDeleteIntent(int requestCode)
+			{
+				Intent intent = new Intent(ActionNotificationCancelled);
+				Bundle extra = new Bundle();
+				extra.PutInt("requestCode", requestCode);
+				intent.PutExtras(extra);
+
+				return PendingIntent.GetBroadcast(_ctx, requestCode, intent, PendingIntentFlags.CancelCurrent);
+			}
+
+
+			private Notification GetNotification(String intentText, int descResId, int drawableResId, String entryName)
+			{
+				var builder = GetNotificationBuilder(intentText, descResId, drawableResId, entryName);
+
+				return builder.Build();
+			}
+
+			private NotificationCompat.Builder GetNotificationBuilder(string intentText, int descResId, int drawableResId, string entryName)
+			{
+				String desc = _ctx.GetString(descResId);
+
+				String title = _ctx.GetString(Resource.String.app_name);
+				if (!String.IsNullOrEmpty(entryName))
+					title += " (" + entryName + ")";
+
+				PendingIntent pending;
+				if (intentText == null)
+				{
+					pending = PendingIntent.GetActivity(_ctx.ApplicationContext, 0, new Intent(), 0);
+				}
+				else
+				{
+					pending = GetPendingIntent(intentText, descResId);
+				}
+
+				var builder = new NotificationCompat.Builder(_ctx);
+				builder.SetSmallIcon(drawableResId)
+				       .SetContentText(desc)
+				       .SetContentTitle(entryName)
+				       .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
+					   .SetTicker(entryName + ": " + desc)
+					   //Android 5 .SetVisibility((int)Android.App.NotificationVisibility.Secret)
+				       .SetContentIntent(pending);
+				return builder;
+			}
+
+			private PendingIntent GetPendingIntent(string intentText, int descResId)
+			{
+				PendingIntent pending;
+				Intent intent = new Intent(intentText);
+				intent.SetPackage(_ctx.PackageName);
+				pending = PendingIntent.GetBroadcast(_ctx, descResId, intent, PendingIntentFlags.CancelCurrent);
+				return pending;
+			}
+		}
 
 		public const int NotifyUsername = 1;
 		public const int NotifyPassword = 2;
 		public const int NotifyKeyboard = 3;
 		public const int ClearClipboard = 4;
+		public const int NotifyCombined = 5;
 
 		static public void CopyValueToClipboardWithTimeout(Context ctx, string text)
 		{
@@ -209,17 +383,6 @@ namespace keepass2android
 
 		private const string ActionNotificationCancelled = "notification_cancelled";
 
-		//creates a delete intent (started when notification is cancelled by user or something else)
-		//requires different request codes for every item (otherwise the intents are identical)
-		PendingIntent CreateDeleteIntent(int requestCode)
-		{
-			Intent intent = new Intent(ActionNotificationCancelled);
-			Bundle extra = new Bundle();
-			extra.PutInt("requestCode", requestCode);
-			intent.PutExtras(extra);
-
-			return PendingIntent.GetBroadcast(this, requestCode, intent, PendingIntentFlags.CancelCurrent);
-		}
 
 		public void DisplayAccessNotifications(PwEntryOutput entry, bool closeAfterCreate)
 		{
@@ -228,27 +391,19 @@ namespace keepass2android
 			String entryName = entry.OutputStrings.ReadSafe(PwDefs.TitleField);
 
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+			var notBuilder = new PasswordAccessNotificationBuilder(this, _notificationManager);
 			if (prefs.GetBoolean(GetString(Resource.String.CopyToClipboardNotification_key), Resources.GetBoolean(Resource.Boolean.CopyToClipboardNotification_default)))
 			{
 
 				if (entry.OutputStrings.ReadSafe(PwDefs.PasswordField).Length > 0)
 				{
-					// only show notification if password is available
-					Notification password = GetNotification(Intents.CopyPassword, Resource.String.copy_password, Resource.Drawable.notify, entryName);
-
-					password.DeleteIntent = CreateDeleteIntent(NotifyPassword);
-					_notificationManager.Notify(NotifyPassword, password);
-					_numElementsToWaitFor++;
+					notBuilder.AddPasswordAccess();
 
 				}
 
 				if (entry.OutputStrings.ReadSafe(PwDefs.UserNameField).Length > 0)
 				{
-					// only show notification if username is available
-					Notification username = GetNotification(Intents.CopyUsername, Resource.String.copy_username, Resource.Drawable.notify, entryName);
-					username.DeleteIntent = CreateDeleteIntent(NotifyUsername);
-					_numElementsToWaitFor++;
-					_notificationManager.Notify(NotifyUsername, username);
+					notBuilder.AddUsernameAccess();
 				}
 			}
 
@@ -260,12 +415,7 @@ namespace keepass2android
 				hasKeyboardDataNow = MakeAccessibleForKeyboard(entry);
 				if (hasKeyboardDataNow)
 				{
-					// only show notification if username is available
-					Notification keyboard = GetNotification(Intents.CheckKeyboard, Resource.String.available_through_keyboard, Resource.Drawable.notify_keyboard, entryName);
-					keyboard.DeleteIntent = CreateDeleteIntent(NotifyKeyboard);
-					_numElementsToWaitFor++;
-					_notificationManager.Notify(NotifyKeyboard, keyboard);
-
+					notBuilder.AddKeyboardAccess();
 					if (prefs.GetBoolean("kp2a_switch_rooted", false))
 					{
 						//switch rooted
@@ -293,6 +443,7 @@ namespace keepass2android
 			{
 				ClearKeyboard(true); //this clears again and then (this is the point) broadcasts that we no longer have keyboard data
 			}
+			_numElementsToWaitFor = notBuilder.CreateNotifications(entryName);
 
 			if (_numElementsToWaitFor == 0)
 			{
@@ -320,6 +471,7 @@ namespace keepass2android
 			_notificationManager.Cancel(NotifyPassword);
 			_notificationManager.Cancel(NotifyUsername);
 			_notificationManager.Cancel(NotifyKeyboard);
+			_notificationManager.Cancel(NotifyCombined);
 			_numElementsToWaitFor = 0;
 			bool hadKeyboardData = ClearKeyboard(false); //do not broadcast if the keyboard was changed
 			return hadKeyboardData;
@@ -387,7 +539,7 @@ namespace keepass2android
 			{
 				StopSelf();
 			}
-			if (itemId == NotifyKeyboard)
+			if ((itemId == NotifyKeyboard) || (itemId == NotifyCombined))
 			{
 				//keyboard notification was deleted -> clear entries in keyboard
 				ClearKeyboard(true);
@@ -467,26 +619,6 @@ namespace keepass2android
 		private const string _stringtocopy = "StringToCopy";
 
 
-
-		private Notification GetNotification(String intentText, int descResId, int drawableResId, String entryName)
-		{
-			String desc = GetString(descResId);
-
-			String title = GetString(Resource.String.app_name);
-			if (!String.IsNullOrEmpty(entryName))
-				title += " (" + entryName + ")";
-
-
-			Notification notify = new Notification(drawableResId, desc, Java.Lang.JavaSystem.CurrentTimeMillis());
-
-			Intent intent = new Intent(intentText);
-			intent.SetPackage(PackageName);
-			PendingIntent pending = PendingIntent.GetBroadcast(this, descResId, intent, PendingIntentFlags.CancelCurrent);
-
-			notify.SetLatestEventInfo(this, title, desc, pending);
-
-			return notify;
-		}
 
 		private class StopOnLockBroadcastReceiver : BroadcastReceiver
 		{

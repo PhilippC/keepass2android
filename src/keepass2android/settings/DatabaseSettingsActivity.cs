@@ -185,6 +185,7 @@ namespace keepass2android
 			UpdateImportKeyfilePref();
 			//AppSettingsActivity.PrepareKeyboardSwitchingPreferences(this);
 			_switchPrefManager = new AppSettingsActivity.KeyboardSwitchPrefManager(this);
+			AppSettingsActivity.PrepareSeparateNotificationsPreference(this);
 		}
 
 		private void UpdateImportKeyfilePref()

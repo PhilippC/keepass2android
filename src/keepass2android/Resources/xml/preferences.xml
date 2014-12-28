@@ -215,6 +215,14 @@
 				  android:title="@string/ShowKp2aKeyboardNotification_title"
 				  android:key="@string/UseKp2aKeyboard_key" />
 
+			<CheckBoxPreference
+				android:enabled="true"
+				  android:persistent="true"
+				  android:summary="@string/ShowSeparateNotifications_summary"
+				  android:defaultValue="@bool/ShowSeparateNotifications_default"
+				  android:title="@string/ShowSeparateNotifications_title"
+				  android:key="@string/ShowSeparateNotifications_key" />
+
 			<PreferenceScreen
 				 android:key="@string/keyboardswitch_prefs_key"
 	  android:title="@string/keyboardswitch_prefs"

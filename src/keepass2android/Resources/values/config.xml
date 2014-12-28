@@ -114,7 +114,12 @@
 	
 	<string name="CopyToClipboardNotification_key">ShowCopyToClipboardNotification</string>
 	<bool name="CopyToClipboardNotification_default">true</bool>
+
+
+	<string name="ShowSeparateNotifications_key">ShowSeparateNotifications_key</string>
+	<bool name="ShowSeparateNotifications_default">false</bool>
 	
+
 	<string name="UseKp2aKeyboard_key">ShowKp2aKeyboardNotification</string>
 	<bool name="UseKp2aKeyboard_default">true</bool>
 	

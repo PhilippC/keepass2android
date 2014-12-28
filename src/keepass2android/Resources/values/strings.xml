@@ -58,6 +58,7 @@
   <string name="copy_username">Select to copy username to clipboard</string>
   <string name="copy_password">Select to copy password to clipboard</string>
   <string name="available_through_keyboard">Entry is available through KP2A Keyboard</string>
+	<string name="entry_is_available">is available</string>
   <string name="not_possible_im_picker">Could not open dialog to select input method. Please activate keyboard manually.</string>
   <string name="please_activate_keyboard">Please enable the Keepass2Android keyboard in your system settings.</string>
   <string name="creating_db_key">Creating database key…</string>
@@ -303,7 +304,11 @@
 	
   <string name="ShowCopyToClipboardNotification_title">Clipboard notifications</string>
   <string name="ShowCopyToClipboardNotification_summary">Make username and password accessible through the notification bar and clipboard. Beware of password sniffers!</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
+
+	<string name="ShowSeparateNotifications_title">Separate notifications</string>
+	<string name="ShowSeparateNotifications_summary">Show separate notifications for copying username and password to clipboard and activating the keyboard.</string>
+	
+	<string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
   <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Switch keyboard</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Open keyboard selection dialog when entry is available through KP2A keyboard after search from the browser.</string>

@@ -114,9 +114,28 @@ namespace keepass2android
 			}
 
 			FindPreference(GetString(Resource.String.db_key)).Enabled = false;
-			//PrepareKeyboardSwitchingPreferences(this);
 			_switchPrefManager = new KeyboardSwitchPrefManager(this);
 
+			PrepareSeparateNotificationsPreference(this);
+
+		}
+
+		public static void PrepareSeparateNotificationsPreference(PreferenceActivity preferenceActivity)
+		{
+			try
+			{
+				//depending on Android version, we offer to show a combined notification (with action buttons) (since API level 16)
+				Preference separateNotificationsPref = preferenceActivity.FindPreference(preferenceActivity.GetString(Resource.String.ShowSeparateNotifications_key));
+				var passwordAccessScreen = ((PreferenceScreen)preferenceActivity.FindPreference(preferenceActivity.GetString(Resource.String.password_access_prefs_key)));
+				if ((int)Build.VERSION.SdkInt < 16)
+				{
+					passwordAccessScreen.RemovePreference(separateNotificationsPref);
+				}
+			}
+			catch (Exception ex)
+			{
+				Kp2aLog.Log(ex.ToString());
+			}
 		}
 
 		public class KeyboardSwitchPrefManager

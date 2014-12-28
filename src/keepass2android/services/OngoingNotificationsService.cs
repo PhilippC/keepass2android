@@ -142,6 +142,7 @@ namespace keepass2android
 				new NotificationCompat.Builder(this)
 					.SetSmallIcon(grayIconResouceId)
 					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.LauncherIcon))
+				//Android 5	.SetVisibility((int)Android.App.NotificationVisibility.Secret)
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_quickunlock_enabled, GetDatabaseName()));
 
@@ -177,7 +178,7 @@ namespace keepass2android
 			NotificationCompat.Builder builder =
 				new NotificationCompat.Builder(this)
 					.SetOngoing(true)
-					.SetSmallIcon(Resource.Drawable.ic_unlocked_gray)
+					.SetSmallIcon(Resource.Drawable.ic_notify)
 					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.ic_launcher_red))
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_unlocked, GetDatabaseName()));
@@ -199,7 +200,7 @@ namespace keepass2android
 			// Default action is to show Kp2A
 			builder.SetContentIntent(GetSwitchToAppPendingIntent());
 			// Additional action to allow locking the database
-			builder.AddAction(Android.Resource.Drawable.IcLockLock, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent));
+			builder.AddAction(Resource.Drawable.ic_action_lock, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent));
 			
 			return builder.Build();
 		}
