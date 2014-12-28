@@ -142,7 +142,7 @@ namespace keepass2android
 				new NotificationCompat.Builder(this)
 					.SetSmallIcon(grayIconResouceId)
 					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.LauncherIcon))
-				//Android 5	.SetVisibility((int)Android.App.NotificationVisibility.Secret)
+					.SetVisibility((int)Android.App.NotificationVisibility.Secret)
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_quickunlock_enabled, GetDatabaseName()));
 
@@ -180,6 +180,7 @@ namespace keepass2android
 					.SetOngoing(true)
 					.SetSmallIcon(Resource.Drawable.ic_notify)
 					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.ic_launcher_red))
+					.SetVisibility((int)Android.App.NotificationVisibility.Public)
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_unlocked, GetDatabaseName()));
 

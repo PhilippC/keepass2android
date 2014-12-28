@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="46" android:versionName="0.9.3-release-3" package="keepass2android.keepass2android_debug" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19" />
-	<permission android:description="@string/permission_desc" android:icon="@drawable/ic_launcher" android:label="KP2A internal file browsing" android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" android:protectionLevel="signature" />
+	<permission android:description="@string/permission_desc" android:icon="@drawable/ic_launcher" android:label="KP2A internal file browsing" android:name="keepass2android.keepass2android_debug.permission.KP2aInternalFileBrowsing" android:protectionLevel="signature" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">
 		
 		<activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
@@ -91,5 +91,5 @@
 	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
 	<uses-permission android:name="android.permission.USE_CREDENTIALS" />
 	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-	<uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
+	<uses-permission android:name="keepass2android.keepass2android_debug.permission.KP2aInternalFileBrowsing" />
 </manifest>

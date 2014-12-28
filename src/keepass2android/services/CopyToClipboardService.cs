@@ -202,7 +202,7 @@ namespace keepass2android
 				       .SetContentTitle(entryName)
 				       .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
 					   .SetTicker(entryName + ": " + desc)
-					   //Android 5 .SetVisibility((int)Android.App.NotificationVisibility.Secret)
+					   .SetVisibility((int)Android.App.NotificationVisibility.Secret)
 				       .SetContentIntent(pending);
 				return builder;
 			}
