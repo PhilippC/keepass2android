@@ -20,6 +20,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Text.Method;
 using Android.Widget;
 using Android.Content.PM;
 
@@ -92,6 +93,9 @@ namespace keepass2android
 		{
 			TextView tv = (TextView)FindViewById(Resource.Id.further_authors);
 			tv.Text = Context.GetString(Resource.String.further_authors, new Java.Lang.Object[] { Context.GetString(Resource.String.further_author_names) });
+
+			TextView tvdesigners = (TextView)FindViewById(Resource.Id.designers);
+			tvdesigners.Text = Context.GetString(Resource.String.designers, new Java.Lang.Object[] { Context.GetString(Resource.String.designer_names) });
 		}
 
 		private void SetVersion() {

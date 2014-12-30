@@ -25,8 +25,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtTestApp", "ArtTestApp\Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginSdkBinding", "PluginSdkBinding\PluginSdkBinding.csproj", "{3DA3911E-36DE-465E-8F15-F1991B6437E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginHostTest", "PluginHostTest\PluginHostTest.csproj", "{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MasterKee", "MasterKee", "{CAC7DBC4-E21F-41E1-B33A-E3A04585F6A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterPassword", "MasterPassword\MasterPassword.csproj", "{2F7CB5B4-AC2A-4790-B0F3-42E6C9A060D5}"
@@ -296,30 +294,6 @@ Global
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Release|Win32.ActiveCfg = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.Release|x64.ActiveCfg = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.ReleaseNoNet|Any CPU.Deploy.0 = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.ReleaseNoNet|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.ReleaseNoNet|Mixed Platforms.Deploy.0 = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
-		{C9F4AE81-0996-4E17-B3F2-D0F652F6AC50}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 		{2F7CB5B4-AC2A-4790-B0F3-42E6C9A060D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2F7CB5B4-AC2A-4790-B0F3-42E6C9A060D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F7CB5B4-AC2A-4790-B0F3-42E6C9A060D5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

@@ -215,6 +215,7 @@
 	<string name="version_history">Version history</string>
 	<string name="author">Keepass2Android is developed by Philipp Crocoll.</string>
 	<string name="further_authors">Thanks to code contributions by %1$s.</string>
+	<string name="designers">Thanks to icon and layout design contributions by %1$s.</string>
 	<string name="credit_plugin1">The Twofish Cipher Plugin for Keepass was developed by Scott Greenberg and is included in KP2A.</string>
 	<string name="credit_android_filechooser">android-filechooser was developed by Hai Bison</string>
 	<string name="credit_keyboard">The KP2A keyboard is based on the Gingerbread keyboard by the Android Open Source Project and uses the Plugin Manager code from Hacker\'s Keyboard by Klaus Weidner.</string>
@@ -518,7 +519,23 @@
 
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>
 
-	<string name="ChangeLog_0_9_5">
+	<string name="ChangeLog_0_9_6">
+		Version 0.9.6\n
+		* allow to import key file and/or local database file to app internal directory (see settings)\n
+		* allow different sorting options\n
+		* improved preferences for automatic keyboard switching\n
+		* updated application logo and notification design, design by Stefano Pignataro (http://www.spstudio.at)\n
+		* password generator remembers last settings\n
+		* set notification visibility for Android 5 lock screen\n
+		* now clearing master password field when leaving the app without clicking OK\n
+		* fixed issue with missing input languages in keyboard setting on some devices\n
+		* fixed issue with automatic keyboard switching on rooted devices\n
+		* added check for corrupt databases (duplicate UUIDs)\n
+		* automatically reload database when change detected, solves security concern about revealing master password\n
+		* improved polish small keyboard layout, fixed keyboard settings theme (thanks to Wiktor Ławski)\n
+	</string>
+	
+		<string name="ChangeLog_0_9_5">
 		<b>Version 0.9.5</b>\n
 		* Fixed issues with file browsing (especially on Android 4.4)\n
 		* Fixed issue with loading .kdb files (Keepass 1) on Nexus 5 with Android Lollipop\n

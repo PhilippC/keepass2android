@@ -37,6 +37,7 @@
     <string name="homepage">http://keepass2android.codeplex.com</string>
     <string name="homepage_short">keepass2android.codeplex.com</string>
 	<string name="further_author_names">Alex Vallat, Ben Rush, Matthieu, Wiktor Ławski</string>
+	<string name="designer_names">Niki Hüttner (http://www.close-cut.de), Stefano Pignataro (http://www.spstudio.at)</string>
     <string name="issues">http://keepass2android.codeplex.com</string>
     <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
     <string name="oi_filemanager_web">https://openintents.googlecode.com/files/FileManager-2.0.2.apk</string>
