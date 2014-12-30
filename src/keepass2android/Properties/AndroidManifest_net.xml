@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="49" 
-			android:versionName="0.9.5b" 
+			android:versionCode="50" 
+			android:versionName="0.9.6-pre1" 
 			package="keepass2android.keepass2android" 
 			android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19" />
+	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
 	<permission android:description="@string/permission_desc" android:icon="@drawable/ic_launcher" android:label="KP2A internal file browsing" android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" android:protectionLevel="signature" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">
 		<activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
