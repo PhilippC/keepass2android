@@ -366,6 +366,7 @@ namespace keepass2android
 				_notificationManager.Cancel(NotifyPassword);
 				_notificationManager.Cancel(NotifyUsername);
 				_notificationManager.Cancel(NotifyKeyboard);
+				_notificationManager.Cancel(NotifyCombined);
 
 				_numElementsToWaitFor = 0;
 				ClearKeyboard(true);
@@ -738,6 +739,7 @@ namespace keepass2android
 				{
 					CopyToClipboardService.CopyValueToClipboardWithTimeout(context, username);
 				}
+				context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
 			}
 			else if (action.Equals(Intents.CopyPassword))
 			{
@@ -746,6 +748,7 @@ namespace keepass2android
 				{
 					CopyToClipboardService.CopyValueToClipboardWithTimeout(context, password);
 				}
+				context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
 			}
 			else if (action.Equals(Intents.CheckKeyboard))
 			{
