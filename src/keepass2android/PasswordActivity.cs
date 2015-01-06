@@ -139,7 +139,8 @@ namespace keepass2android
 
 		private ActivityDesign _design;
 		private bool _performingLoad;
-		
+		private bool _keepPasswordInOnResume;
+
 
 		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -213,7 +214,7 @@ namespace keepass2android
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
-
+			_keepPasswordInOnResume = true; 
 			Kp2aLog.Log("PasswordActivity.OnActivityResult "+resultCode+"/"+requestCode);
 
 			AppTask.TryGetFromActivityResult(data, ref AppTask);
@@ -576,6 +577,7 @@ namespace keepass2android
 			else if ((action != null) && (action.Equals(Intents.StartWithOtp)))
 			{
 				if (!GetIocFromOtpIntent(savedInstanceState, i)) return;
+				_keepPasswordInOnResume = true;
 			}
 			else
 			{
@@ -595,6 +597,10 @@ namespace keepass2android
 				if (string.IsNullOrEmpty(_keyFileOrProvider))
 				{
 					_keyFileOrProvider = GetKeyFile(_ioConnection.Path);
+				}
+				if ((!string.IsNullOrEmpty(_keyFileOrProvider)) || (_password != ""))
+				{
+					_keepPasswordInOnResume = true;
 				}
 			}
 
@@ -1199,7 +1205,7 @@ namespace keepass2android
 			if ((intent != null) && (intent.HasExtra(Intents.OtpExtraKey)))
 			{
 				string otp = intent.GetStringExtra(Intents.OtpExtraKey);
-
+				_keepPasswordInOnResume = true;
 				if (_otpInfo == null)
 				{
 					//Entering OTPs not yet initialized:
@@ -1259,6 +1265,12 @@ namespace keepass2android
 			{
 				killButton.Visibility = ViewStates.Gone;
 			}
+
+			if (!_keepPasswordInOnResume)
+			{
+				ClearEnteredPassword();
+			}
+			_keepPasswordInOnResume = false;
 
 			MakePasswordMaskedOrVisible();
 
@@ -1347,11 +1359,6 @@ namespace keepass2android
 			}
 			
 		}
-		protected override void OnPause()
-		{
-			base.OnPause();
-			ClearEnteredPassword(); //if the activity is left without opening the database, clear the password if entered
-		}
 
 		protected override void OnDestroy()
 		{
@@ -1437,7 +1444,18 @@ namespace keepass2android
 
 					GC.Collect(); // Ensure temporary memory used while loading is collected
 				} 
-				DisplayMessage(_act);
+				if ((Message != null) && (Message.Length > 150)) //show long messages as dialog
+				{
+					new AlertDialog.Builder(_act).SetMessage(Message)
+					                             .SetPositiveButton(Android.Resource.String.Ok,
+					                                                (sender, args) => ((Dialog) sender).Dismiss())
+												.Show();
+				}
+				else
+				{
+					DisplayMessage(_act);	
+				}
+				
 
 				_act._performingLoad = false;
 

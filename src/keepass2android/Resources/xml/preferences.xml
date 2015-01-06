@@ -365,6 +365,13 @@
   android:title="@string/TanExpiresOnUse_title"
   android:summary="@string/TanExpiresOnUse_summary"
   android:defaultValue="@bool/TanExpiresOnUse_default"/>
+			<CheckBoxPreference
+							android:enabled="true"
+							  android:persistent="true"
+							  android:summary="@string/CheckForDuplicateUuids_summary"
+							  android:defaultValue="true"
+							  android:title="@string/CheckForDuplicateUuids_title"
+							  android:key="@string/CheckForDuplicateUuids_key" />
 
 		</PreferenceScreen>
 		<PreferenceScreen

@@ -174,8 +174,7 @@ namespace keepass2android
 			
 		}
 
-		
-		private void PopulateGlobals (PwGroup currentGroup)
+		private void PopulateGlobals(PwGroup currentGroup, bool checkForDuplicateUuids )
 		{
 			
 			var childGroups = currentGroup.Groups;
@@ -183,21 +182,33 @@ namespace keepass2android
 
 			foreach (PwEntry e in childEntries) 
 			{
-				if (Entries.ContainsKey(e.Uuid))
+				if (checkForDuplicateUuids)
 				{
-					throw new DuplicateUuidsException();
+					if (Entries.ContainsKey(e.Uuid))
+					{
+						throw new DuplicateUuidsException();
+					}
+					
 				}
 				Entries [e.Uuid] = e;
 			}
 			foreach (PwGroup g in childGroups) 
 			{
-				if (Groups.ContainsKey(g.Uuid))
+				if (checkForDuplicateUuids)
 				{
-					throw new DuplicateUuidsException();
+
+					if (Groups.ContainsKey(g.Uuid))
+					{
+						throw new DuplicateUuidsException();
+					}
 				}
 				Groups[g.Uuid] = g;
 				PopulateGlobals(g);
 			}
+		}
+		private void PopulateGlobals (PwGroup currentGroup)
+		{
+			PopulateGlobals(currentGroup, _app.CheckForDuplicateUuids);
 		}
 		
 		public void Clear() {

@@ -100,6 +100,6 @@ namespace keepass2android
 
 		RemoteCertificateValidationCallback CertificateValidationCallback { get; }
 
-
+		bool CheckForDuplicateUuids { get; }
 	}
 }

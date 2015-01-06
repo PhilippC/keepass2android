@@ -106,6 +106,7 @@
 	<string name="UseOfflineCache_key">UseOfflineCache</string>
 	<string name="AcceptAllServerCertificates_key">AcceptAllServerCertificates</string>
 	<string name="CheckForFileChangesOnSave_key">CheckForFileChangesOnSave</string>
+	<string name="CheckForDuplicateUuids_key">CheckForDuplicateUuids_key</string>
 
 	<string name="about_prefs_key">about_prefs</string>
 

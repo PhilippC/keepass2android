@@ -514,6 +514,15 @@ namespace keepass2android
 
 		}
 
+		public bool CheckForDuplicateUuids
+		{
+			get
+			{
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+				return prefs.GetBoolean(Application.Context.GetString(Resource.String.CheckForDuplicateUuids_key), true);
+			}
+		}
+
 
 		enum ValidationMode
 		{

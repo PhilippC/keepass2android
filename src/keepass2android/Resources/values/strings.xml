@@ -303,6 +303,9 @@
   <string name="CheckForFileChangesOnSave_title">Check for modifications</string>
   <string name="CheckForFileChangesOnSave_summary">Check whether the file was modified externally before saving changes.</string>
 	
+	<string name="CheckForDuplicateUuids_title">Check for duplicate UUIDs</string>
+  <string name="CheckForDuplicateUuids_summary">Check whether the database file is corrupt by having multiple entries with the same ID. This might cause unexpected behavior.</string>
+	
   <string name="ShowCopyToClipboardNotification_title">Clipboard notifications</string>
   <string name="ShowCopyToClipboardNotification_summary">Make username and password accessible through the notification bar and clipboard. Beware of password sniffers!</string>
 
@@ -387,6 +390,7 @@
 
 	<string name="ErrorOcurred">An error occured:</string>
 	<string name="DuplicateUuidsError">Database is corrupt: Duplicate IDs found. (Did you save with Minikeepass?) Please re-import to a new database with Keepass 2 for PC and select \'Create new IDs\'.</string>
+	<string name="DuplicateUuidsErrorAdditional">You can disable this error message in Settings/Application settings/File handling/Check for duplicate UUIDs. Please note that you might experience unexpected behavior. It is recommended to fix the database.</string>
 
 	<string name="synchronize_database_menu">Synchronize database…</string>
 
