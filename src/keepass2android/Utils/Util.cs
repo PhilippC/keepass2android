@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Android.App;
 using Android.Content;
 using Android.Database;
@@ -200,7 +201,9 @@ namespace keepass2android
 					ICursor c1 = ctx.ContentResolver.Query(uri, col, null, null, null);
 					c1.MoveToFirst();
 
-					return c1.GetString(0);
+					var possibleFilename = c1.GetString(0);
+					if (File.Exists(possibleFilename))
+						return possibleFilename;
 				}
 			}
 			catch (Exception e)
@@ -209,7 +212,7 @@ namespace keepass2android
 			}
 
 			String filename = data.Data.Path;
-			if (String.IsNullOrEmpty(filename))
+			if ((String.IsNullOrEmpty(filename) || (!File.Exists(filename))))
 			 	filename = data.DataString;
 			return filename;
 		}
