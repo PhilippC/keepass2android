@@ -31,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_resume">Відображати ім\'я групи нижче  заголовку записів в результатах пошуку. Корисно, якщо декотрі записи мають однакові імена.</string>
   <string name="NavigationToGroupCompleted_message">Відображення групи в даний час: %1$s</string>
   <string name="ShowGroupInEntry_title">Показати ім\'я групи в режимі запису</string>
+  <string name="unknown_uri_scheme">Вибачте! Keepass2Android не може обробити повернутий URI %1$s. Зв\'яжіться з розробником!</string>
   <string name="security_prefs">Безпека</string>
   <string name="display_prefs">Дисплей</string>
   <string name="password_access_prefs">Парольний доступ</string>
@@ -38,6 +39,11 @@
   <string name="FileHandling_prefs">Обробка файлів</string>
   <string name="keyboard_prefs">Клавіатура</string>
   <string name="export_prefs">Експорт бази даних...</string>
+  <string name="import_db_prefs">Імпортувати базу даних до внутрішньої папки</string>
+  <string name="import_keyfile_prefs">Імпортувати ключовий файл до внутрішньої папки</string>
+  <string name="keyboardswitch_prefs">Переключення клавіатури</string>
+  <string name="OnlyAvailableForLocalFiles">Доступно лише для локальних файлів.</string>
+  <string name="FileIsInInternalDirectory">Файл зберігається у внутрішньому каталозі.</string>
   <string name="brackets">Дужки</string>
   <string name="cancel">Відміна</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
@@ -272,7 +278,6 @@
   <string name="OpenKp2aKeyboardAutomatically_title">Перемкнути клавіатуру</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Відкриті діалогове вікно вибору клавіатури коли запис доступний через клавіатуру KP2A після пошуку з веб-браузеру.</string>
   <string name="kp2a_switch_rooted">Автоматичне переключення на рутованих пристроях</string>
-  <string name="kp2a_switch_rooted_summary">На рутованих пристроях можливо автоматично перейти до клавіатури Keepass2Android (після пошуку запису або клацнувши сповіщення клавіатури KP2A) і повернутися до попередньої клавіатури без меню. Це також вимагає встановлення захищеного аплікації Secure Settings. Зверніться до документації з KP2A для отримання додаткової інформації!</string>
   <string name="ShowUnlockedNotification_title">Піктограма сповіщень при розблокуванні</string>
   <string name="ShowUnlockedNotification_summary">Показувати піктограму сповіщень, коли база даних не заблокована.</string>
   <string name="PreloadDatabaseEnabled_title">Попереднє завантаження файлу бази даних</string>

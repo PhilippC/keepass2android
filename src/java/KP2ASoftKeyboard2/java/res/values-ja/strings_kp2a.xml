@@ -8,6 +8,9 @@
   <string name="kp2a_password">パスワード</string>
   <string name="kp2a_prefs">資格情報の入力の設定</string>
   <string name="kp2a_auto_fill">オートフィルを有効にする</string>
+  <string name="kp2a_auto_fill_summary">Keepass2Android のエントリーでキーボードが使用可能で、フィールドのヒントのテキストに一致する値がある場合、空のフィールドに自動的にテキストが入力されます。</string>
+  <string name="kp2a_remember_auto_fill">フィールドのヒントのテキストを保存</string>
+  <string name="kp2a_remember_auto_fill_summary">Keepass2Android の値を手動で選択してテキスト フィールドを入力する場合、テキスト フィールドに入力された値を保存します。後でそのヒント テキストを使用してテキスト フィールドを検出します。</string>
   <string name="kp2a_simple_keyboard">シンプルキーボード</string>
   <string name="kp2a_simple_keyboard_summary">エントリがキーボードで利用できる場合シンプルな1行のキーボードをを表示します。もし無効にした場合、Keepass2Androidキーが押されたときにダイアログが表示されます。</string>
   <string name="kp2a_lock_on_sendgodone">完了時にデーターベースをロックする</string>

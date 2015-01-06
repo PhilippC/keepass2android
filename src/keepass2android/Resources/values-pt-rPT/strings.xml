@@ -28,6 +28,10 @@
   <string name="application">Aplicativo</string>
   <string name="application_settings">Definições da aplicação</string>
   <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
+  <string name="ShowGroupnameInSearchResult_resume">Mostrar nome do grupo por baixo dos resultados nas procuras.
+Muito útil se existirem muitos resultados iguais.</string>
+  <string name="NavigationToGroupCompleted_message">O grupo mostado agora é: %1$s</string>
+  <string name="ShowGroupInEntry_title">Mostrar nome do grupo ao fazer entradas</string>
   <string name="security_prefs">Segurança</string>
   <string name="display_prefs">Ecrã</string>
   <string name="password_access_prefs">Métodos de introdução de passwords</string>

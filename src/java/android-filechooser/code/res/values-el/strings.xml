@@ -6,4 +6,14 @@
     See the file LICENSE at the root directory of this project for copying
     permission.
 -->
-<resources/>
+<resources>
+  <string name="afc_cmd_advanced_selection_all">Όλα</string>
+  <string name="afc_cmd_advanced_selection_invert">Αντιστροφή επιλογής</string>
+  <string name="afc_cmd_advanced_selection_none">Κανένα</string>
+  <string name="afc_cmd_grid_view">Προβολή πλέγματος</string>
+  <string name="afc_cmd_home">Κεντρική</string>
+  <string name="afc_cmd_list_view">Προβολή λίστας</string>
+  <string name="afc_cmd_new_folder">Νέος φάκελος&#8230;</string>
+  <string name="afc_cmd_select_all_files">Επιλογή όλων</string>
+  <string name="afc_cmd_select_all_folders">Επιλογή όλων των φακέλων</string>
+</resources>

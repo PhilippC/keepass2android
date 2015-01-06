@@ -272,7 +272,6 @@
   <string name="OpenKp2aKeyboardAutomatically_title">Trocar teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abre a seleção de teclados quando a inserção estiver disponível através do teclado KP2A após busca do navegador ou do teclado.</string>
   <string name="kp2a_switch_rooted">Trocar automaticamente em dispositivos com root</string>
-  <string name="kp2a_switch_rooted_summary">Em dispositivos com root, é possível trocar automaticamente para o teclado Keepass2Android (após a busca por uma entrada ou selecionando a notificação do teclado KP2A) e trocar de volta ao teclado anterior sem exibir o selecionador de método de entrada. Requer a instalação do aplicativo Secure Settings. Veja a documentação do KP2A para mais informações!</string>
   <string name="ShowUnlockedNotification_title">Ícone de notificação enquanto desbloqueado</string>
   <string name="ShowUnlockedNotification_summary">Mostra uma notificação permanente enquanto o banco de dados está desbloqueado.</string>
   <string name="PreloadDatabaseEnabled_title">Pré-carregar arquivo de banco de dados</string>

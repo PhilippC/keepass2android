@@ -10,9 +10,9 @@
   <string name="kp2a_auto_fill">Automatické vyplňování povoleno</string>
   <string name="kp2a_auto_fill_summary">Při vstupu do prázdného pole automaticky doplnit text, pokud je pro klávesnici dostupná položka v Keepass2Android a obsahuje hodnotu odpovídající nápovědě pro toto pole.</string>
   <string name="kp2a_remember_auto_fill">Pamatovat si nápovědy pole</string>
-  <string name="kp2a_remember_auto_fill_summary">Je-li pole ručně vyplněno výběrem položky z Keepass2Android, pamatovat si, které položka byla do pole zadána. Pole je později znovu rozpoznáno podle jeho nápovědy.</string>
+  <string name="kp2a_remember_auto_fill_summary">Je-li pole ručně vyplněno výběrem položky z Keepass2Android, pamatovat si, která položka byla do pole zadána. Pole je později znovu rozpoznáno podle jeho nápovědy.</string>
   <string name="kp2a_simple_keyboard">Jednoduchá klávesnice</string>
-  <string name="kp2a_simple_keyboard_summary">Zobrazit jednoduchou jednořádkovou klávesnici je-li položka k dispozici. Je-li klávesnice zakázána, dialogové okno se zobrazí při stisknutí klávesy Keepass2Android.</string>
+  <string name="kp2a_simple_keyboard_summary">Zobrazit jednoduchou jednořádkovou klávesnici, je-li položka k dispozici. Je-li klávesnice zakázána, dialogové okno se zobrazí při stisknutí klávesy Keepass2Android.</string>
   <string name="kp2a_lock_on_sendgodone">Uzamknout databázi po dokončení</string>
   <string name="kp2a_lock_on_sendgodone_summary">Po stisknutí klávesy Hotovo/Odeslat/Dále na jednoduché jednořádkové klávesnici automaticky uzamknout databázi.</string>
   <string name="kp2a_switch_on_sendgodone">Přepnout klávesnice po dokončení</string>

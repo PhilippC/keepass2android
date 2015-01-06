@@ -31,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_resume">Zobraziť názov skupiny pod názvami záznamov vo výsledkoch vyhľadávania. Užitočné v prípade, že viaceré záznamy majú rovnaký názov.</string>
   <string name="NavigationToGroupCompleted_message">Zobrazenie skupiny je teraz: %1$s</string>
   <string name="ShowGroupInEntry_title">Zobraziť názov skupiny v zobrazení záznamu</string>
+  <string name="unknown_uri_scheme">Ospravedlňujeme sa! Keepass2Android nedokáže korektne spracovať vrátený identifikátor zdroja URI  %1$s. Prosím kontaktujte vývojára aplikácie!</string>
   <string name="security_prefs">Zabezpečenie</string>
   <string name="display_prefs">Displej</string>
   <string name="password_access_prefs">Prístup k záznamu s heslom</string>
@@ -38,6 +39,14 @@
   <string name="FileHandling_prefs">Zaobchádzanie so súborom</string>
   <string name="keyboard_prefs">Klávesnica</string>
   <string name="export_prefs">Export databázy...</string>
+  <string name="import_db_prefs">Importovať databázu do interného priečinka</string>
+  <string name="import_keyfile_prefs">Importovať súbor s kľúčom do interného priečinka</string>
+  <string name="keyboardswitch_prefs">Prepínanie klávesnice</string>
+  <string name="OnlyAvailableForLocalFiles">Dostupné len pre lokálne súbory.</string>
+  <string name="FileIsInInternalDirectory">Súbor je uložený v internom priečinku.</string>
+  <string name="DatabaseFileMoved">Súbor s databázou bol skopírovaný do interného priečinka. Pre otvorenie z nového umiestnenia stlačte Ok. Poznámka: nezabudnite vykonávať pravidelný export databázy na bezpečné miesto!</string>
+  <string name="KeyfileMoved">Súbor s kľúčom bol skopírovaný do interného priečinka. Pred vymazaním z aktuálneho umiestnenia sa uistite, že máte uloženú zálohu na bezpečnom mieste!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Interný priečinok nemožno použiť ak nie je uložená pozícia súboru s kľúčom. Zmeňte nastavenia zabezpečenia.</string>
   <string name="brackets">Zátvorky</string>
   <string name="cancel">Zrušiť</string>
   <string name="ClearClipboard">Schránka vyčistená.</string>
@@ -46,6 +55,7 @@
   <string name="copy_username">Meno používateľa skopírované do schránky</string>
   <string name="copy_password">Heslo skopírované do schránky</string>
   <string name="available_through_keyboard">Záznam je dostupný cez klávesnicu KP2A</string>
+  <string name="entry_is_available">je dostupný</string>
   <string name="not_possible_im_picker">Nemožno otvoriť dialóg pre výber metódy vstupu. Prosím aktivujte klávesnicu manuálne.</string>
   <string name="please_activate_keyboard">Prosím aktivujte klávesnicu Keepass2Android v nastaveniach systému.</string>
   <string name="creating_db_key">Vytvára sa kľúč databázy&#8230;</string>
@@ -66,6 +76,7 @@
   <string name="entry_expires">Expiruje</string>
   <string name="entry_group_name">Názov skupiny</string>
   <string name="entry_keyfile">Súbor s kľúčom (voliteľne)</string>
+  <string name="keyfile_heading">Súbor s kľúčom</string>
   <string name="entry_modified">Upravené</string>
   <string name="entry_password">Heslo</string>
   <string name="entry_save">Uložiť</string>
@@ -78,6 +89,7 @@
   <string name="error_could_not_create_group">Chyba pri vytváraní skupiny.</string>
   <string name="error_could_not_create_parent">Nemožno vytvoriť rodičovský priečinok.</string>
   <string name="error_database_exists">Tento súbor už existuje.</string>
+  <string name="error_database_settinoverrgs">Nepodarilo sa určiť nastavenia databázy.</string>
   <string name="error_failed_to_launch_link">Nedá sa spustiť odkaz.</string>
   <string name="error_filename_required">Vyžaduje sa názov súboru.</string>
   <string name="error_file_not_create">Nemožno vytvoriť súbor</string>
@@ -111,6 +123,7 @@
   <string name="invalid_algorithm">Neplatný algoritmus.</string>
   <string name="invalid_db_sig">Formát Databázy nerozpoznaný.</string>
   <string name="keyfile_does_not_exist">Súbor s kľúčom neexistuje.</string>
+  <string name="no_keyfile_selected">Nebol vybraný žiadny súbor s kľúčom.</string>
   <string name="keyfile_is_empty">Súbor s kľúčom je prázdny.</string>
   <string name="length">Dĺžka</string>
   <string name="list_size_title">Dĺžka zoznamu skupiny</string>
@@ -173,8 +186,11 @@
   <string name="space">Miesto</string>
   <string name="search_label">Hľadať</string>
   <string name="show_password">Zobraziť heslo</string>
+  <string name="sort_menu">Zoradiť podľa...</string>
   <string name="sort_name">Zoradiť podľa mena</string>
   <string name="sort_db">Zoradiť podľa dátumu vytvor.</string>
+  <string name="sort_moddate">Zoradiť podľa dátumu úpravy</string>
+  <string name="sort_default">Zachovať predvolené poradie</string>
   <string name="special">Špeciálne</string>
   <string name="search_hint">Nájsť</string>
   <string name="search_results">Výsledky vyhľadávania</string>
@@ -192,6 +208,7 @@
   <string name="version_history">História verzií</string>
   <string name="author">Keepass2Android vyvinul Philipp Crocoll.</string>
   <string name="further_authors">Vďaka za príspevky ku kódu aplikácie od %1$s.</string>
+  <string name="designers">Ďakujeme za príspevky v oblasti ikon a dizajnu rozloženia: %1$s.</string>
   <string name="credit_plugin1">Prídavný modul Twofish Cipher for Keepass vyvinul Scott Greenberg a je zahrnutý do programu KP2A.</string>
   <string name="credit_android_filechooser">Výber súboru v systéme Android vyvinul Hai Bison</string>
   <string name="credit_keyboard">Klávesnica KP2A je založená na klávesnici Gingerbread, z projektu Android Open Souce, a využíva kód pre manažér príd. modulov z Hacker\'s Keyboard od Klausa Weidnera.</string>
@@ -220,6 +237,8 @@
   <string name="QuickUnlock_lockButton">Zatvoriť databázu</string>
   <string name="QuickUnlockDefaultEnabled_title">Zapnúť rýchle odomknutie</string>
   <string name="QuickUnlockDefaultEnabled_summary">Určuje, či je rýchle odomknutie štandardne zapnuté alebo nie.</string>
+  <string name="ViewDatabaseSecure_title">Ochrana zobrazenia databázy</string>
+  <string name="ViewDatabaseSecure_summary">Ak je táto voľba zapnutá, nie je povolené vytváranie snímok obrazovky a aplikácia nie je zobrazená v zozname posledných aplikácií.</string>
   <string name="QuickUnlockIconHidden_title">Skryť ikonu</string>
   <string name="QuickUnlockIconHidden_summary">Rýchle odomknutie nemôže fungovať bez zobrazenia notifikačnej ikony. Ak chcete zobraziť priehľadnú ikonu, vyberte túto možnosť.</string>
   <string name="QuickUnlockIconHidden16_title">Skryť ikonu pre Rýchle odomknutie</string>
@@ -267,12 +286,18 @@
   <string name="CheckForFileChangesOnSave_summary">Pred uložením zmien skontrolovať, či nebol súbor externe upravený.</string>
   <string name="ShowCopyToClipboardNotification_title">Notifikácie v schránke</string>
   <string name="ShowCopyToClipboardNotification_summary">Sprístupniť meno a heslo používateľa cez notifikačný panel a schránku. Pozor na možnosť krádeže hesla!</string>
+  <string name="ShowSeparateNotifications_title">Oddeliť notifikácie</string>
+  <string name="ShowSeparateNotifications_summary">Zobraziť oddelené notifikácie pre kopírovanie mena používateľa a hesla do schránky a aktivovanie klávesnice.</string>
   <string name="ShowKp2aKeyboardNotification_title">Notifikácia klávesnice KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Sprístupniť celý záznam cez klávesnicu KP2A (odporúča sa).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Prepnúť klávesnicu</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Otvoriť dialóg výberu klávesnice, ak je po vyhľadaní z prehliadača alebo klávesnice dostupný záznam zadávaný cez klávesnicu KP2A.</string>
   <string name="kp2a_switch_rooted">Prepínať, ak je dostupný root</string>
-  <string name="kp2a_switch_rooted_summary">Na zariadeniach s najvyššími oprávneniami je možné automaticky prepínať na klávesnicu Keepass2Android a naspäť na predchádzajúcu klávesnicu, bez zobrazenia metódy vstupu. Prepnutie je možné po vyhľadaní záznamu alebo kliknutí na notifikáciu klávesnice KP2A. Táto funkcia vyžaduje inštaláciu Secure Settings app. Viac informácií získate v dokumentácii KP2A!</string>
+  <string name="kp2a_switch_rooted_summary">Pri otvorení záznamu automaticky prepnúť na klávesnicu KP2A. Vyžaduje root oprávnenia a aplikáciu Secure Settings so System+. </string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Autom. prepnutie len po hľadaní</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Automaticky prepnúť na klávesnicu KP2A len po použití funkcie zdieľania URL (ale nie pri otvorení záznamu iným spôsobom)</string>
+  <string name="AutoSwitchBackKeyboard_title">Prepnutie klávesnice späť</string>
+  <string name="AutoSwitchBackKeyboard_summary">Prepnúť späť na predchádzajúcu klávesnicu, ak nebol otvorený záznam.</string>
   <string name="ShowUnlockedNotification_title">Notifikačná ikona počas odomknutia</string>
   <string name="ShowUnlockedNotification_summary">Zobraziť prichádzajúcu notifikáciu aj pri odomknutej databáze.</string>
   <string name="PreloadDatabaseEnabled_title">Vopred načítať databázu</string>
@@ -328,6 +353,7 @@
   <string name="database_file">databázový súbor</string>
   <string name="otp_aux_file">doplnkový súbor OTP</string>
   <string name="ErrorOcurred">Nastala chyba:</string>
+  <string name="DuplicateUuidsError">Databáza je poškodená: našli sa duplicitné ID. (Uloženie s použitím Minikeepass?) Vykonajte import do novej databázy programom Keepass 2 pre PC a vyberte voľbu \'Vytvoriť nové ID\'.</string>
   <string name="synchronize_database_menu">Synchronizuje sa databáza&#8230;</string>
   <string name="CannotMoveGroupHere">Skupinu nemožno presunúť do tejto skupiny.</string>
   <string name="donate_question">Dnes je Oktoberfest! Ak máte radi Keepass2Android: nie je vhodný čas na to, aby ste mi kúpili pivo?</string>
@@ -397,6 +423,7 @@
   <string name="plugin_enabled">zapnuté</string>
   <string name="plugin_disabled">vypnuté</string>
   <string name="plugin_web">Vyhľadať prídavné moduly online</string>
+  <string name="plugin_scopes">Úrovne oprávnení</string>
   <string name="query_credentials_for_url">%1$s požaduje prihlasovacie údaje pre %2$s.</string>
   <string name="query_credentials">%1$s požaduje prihlasovacie údaje. Prosím vyberte záznam.</string>
   <string name="plugin_enabled_checkbox">Zapnuté</string>
@@ -413,8 +440,41 @@
   <string name="CertificateFailure">Chyba: Nepodarilo sa overiť certifikát servera! Nainštalujte správny hlavný certifikát na vaše zariadenie alebo si pozrite nastavenia!</string>
   <string name="export_fileformats_title">Vyberte formát súboru</string>
   <string name="killed_by_os">Prepáčte! Keepass2Android bol ukončený systémom Android! Z bezpečnostných dôvodov neuchováva Keepass2Android vami vybrané prihlasovacie údaje na disku, takže musíte databázu znovu otvoriť. Poznámka: Táto situácia by mala nastať iba veľmi zriedkavo. Ak sa tak stane, prosím pošlite mi správu na adresu crocoapps@gmail.com.</string>
+  <string name="FileIsTemporarilyAvailable">Súbor je len dočasne dostupný pre aplikáciu Keepass2Android.</string>
+  <string name="FileIsReadOnly">Vybraný súbor je určený len na čítanie.</string>
+  <string name="FileIsReadOnlyOnKitkat">Vybraný súbor je určený len na čítanie aplikáciou Keepass2Android, z dôvodu obmedzení v systéme Android 4.4+.</string>
+  <string name="CopyFileRequired">Ak ho chcete použiť, skopíruje ho do iného umiestnenia.</string>
+  <string name="CopyFileRequiredForEditing">Ak ho chcete upraviť, musíte súbor skopírovať do iného umiestnenia.</string>
+  <string name="ClickOkToSelectLocation">Pre výber umiestnenia kliknite na tlačidlo OK na mieste, kde sa má súbor skopírovať.</string>
+  <string name="CancelReadOnly">Zrušiť, otvoriť len na čítanie.</string>
+  <string name="CopyingFile">Prebieha kopírovanie súboru...</string>
   <string name="ChangeLog_title">Zoznam zmien</string>
   <string name="PreviewWarning">Prosím pozor! Toto je náhľadové vydanie novej verzie a môže obsahovať nejaké chybičky! Ak si všimnete *čokoľvek* neočakávané, prosím informujte ma (cez stránky Codeplex alebo e-mailom).</string>
+  <string name="ChangeLog_0_9_6">
+		Verzia 0.9.6\n
+		* povolenie importovania súboru s kľúčom a/alebo lokálnej databázy do interného priečinka aplikácie (pozrite si nastavenia)\n
+		* umožnenie rôznych nastavení zoraďovania\n
+		* vylepšené nastavenia automatického prepínania klávesnice\n
+		* aktualizované logo aplikácie a dizajn notifikácií, dizajn: Stefano Pignataro (http://www.spstudio.at)\n
+		* generátor hesiel ukladá naposledy použité nastavenia\n
+		* nastavenie viditeľnosti notifikácií pre uzamykaciu obrazovku Android 5\n
+		* vyčistenie políčka s primárnym heslom, pokiaľ opustíte aplikáciu bez kliknutia na OK\n
+		* opravený problém s chýbajúcimi vstupnými jazykmi v nastaveniach klávesnice niektorých zariadení\n
+		* opravený problém s automatickým prepínaním klávesnice na zariadeniach s root-oprávneniami\n
+		* pridaná kontrola poškodenia databáz (duplicitné UUIDs)\n
+		* automatické opätovné načítanie databázy ak bola zistená zmena, vyriešenie bezpečnostného problému týkajúceho sa odhalenia primárneho hesla\n
+		* vylepšené rozloženie malej poľskej klávesnice, opravená téma pre nastavenia klávesnice (ďakujeme používateľovi Wiktor Ławski)\n
+	</string>
+  <string name="ChangeLog_0_9_5">
+		<b>Verzia 0.9.5</b>\n
+		* Opravené problémy s prehliadaním (najmä v systéme Android 4.4)\n
+		* Opravený problém s načítavaním súborov .kdb (Keepass 1) na zariadení Nexus 5 so systémom Android Lollipop\n
+		* Pridaná voľba na zabránenie snímania obrazovky/zobrazenie aplikácie v zozname naposledy použitých aplikácií\n
+		* Opravená chyba pri ukladaní do súboru v službe Google Drive\n
+		* Povolenie súborov s kľúčom na overených typoch úložísk\n
+		* Aktualizované nástroje na zostavenie aplikácie --&gt; zväčšená veľkosť aplikácie :-(\n
+		Prisľúbil som väčší počet zmien. Prepáčte, tieto zmeny budú obsiahnuté v ďalšom vydaní. Aktuálne opravy bolo totiž potrebné vydať čo najskôr.
+	</string>
   <string name="ChangeLog_0_9_4">
 		<b>Verzia 0.9.4</b>\n
 		* pridaná podpora prídavných modulov: na získanie prídavných modulov si pozrite nastavenia!\n

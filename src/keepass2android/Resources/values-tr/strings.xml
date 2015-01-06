@@ -27,6 +27,8 @@
   <string name="show_kill_app_summary">(Paranoyak kullanıcılar için) Uygulamayı tamamen kapatmak için şifre ekranda bir düğme göster</string>
   <string name="application">Uygulama</string>
   <string name="application_settings">Uygulama ayarları</string>
+  <string name="ShowGroupnameInSearchResult_title">Grup adını arama sonuçlarında göster</string>
+  <string name="NavigationToGroupCompleted_message">Grup adı şimdi : %1$s</string>
   <string name="security_prefs">Güvenlik</string>
   <string name="display_prefs">Ayarları görüntüle</string>
   <string name="password_access_prefs">Parola kaydı erişim</string>
@@ -62,6 +64,7 @@
   <string name="entry_expires">Son kullanma tarihi</string>
   <string name="entry_group_name">Grup adı</string>
   <string name="entry_keyfile">Anahtar dosyası (isteğe bağlı)</string>
+  <string name="keyfile_heading">Anahtar dosyası</string>
   <string name="entry_modified">Değiştirildi</string>
   <string name="entry_password">Parola</string>
   <string name="entry_save">Kaydet</string>
@@ -107,6 +110,7 @@
   <string name="invalid_algorithm">Geçersiz algoritma.</string>
   <string name="invalid_db_sig">Veritabanı biçimi tanınmadı.</string>
   <string name="keyfile_does_not_exist">Anahtar dosyası yok.</string>
+  <string name="no_keyfile_selected">Anahtar dosyası seçilmedi.</string>
   <string name="keyfile_is_empty">Anahtar dosyası boş.</string>
   <string name="length">Uzunluk</string>
   <string name="list_size_title">Grup listesi boyutu</string>
@@ -125,6 +129,7 @@
   <string name="menu_db_settings">Veritabanı ayarları</string>
   <string name="menu_delete">Sil</string>
   <string name="menu_move">Başka bir gruba taşı</string>
+  <string name="menu_move_light">Taşı</string>
   <string name="menu_donate">Bır bira ısmarla...</string>
   <string name="menu_edit">Düzenle</string>
   <string name="menu_hide_password">Şifreyi gizle</string>
@@ -216,6 +221,7 @@
   <string name="QuickUnlockDefaultEnabled_summary">ÇabukAç varsayılan olarak etkinleştirileceğini tanımlar.</string>
   <string name="QuickUnlockIconHidden_title">ÇabukAç simgesini gizle</string>
   <string name="QuickUnlockIconHidden_summary">ÇabukAç, bir bildirim simgesi görüntülemeden ne yazık ki çalışmıyor. Şeffaf bir simge kullanmak için bu seçeneği seçin.</string>
+  <string name="QuickUnlockIconHidden16_title">ÇabukAç simgesini gizle</string>
   <string name="QuickUnlockLength_title">ÇabukAç anahtar uzunluğu</string>
   <string name="QuickUnlockLength_summary">ÇabukAç anahtar uzunluğu karakter sayısının üst sınırı.</string>
   <string name="QuickUnlock_fail">ÇabukAç başarısız oldu: yanlış şifre!</string>
@@ -228,7 +234,7 @@
   <string name="SaveAttachment_doneMessage">Ek dosya %1$s \'e kaydedildi.</string>
   <string name="SaveAttachment_Failed">Ek dosya %1$s konumuna kaydedilemedi.</string>
   <string name="AddUrlToEntryDialog_title">Arama metni hatırlansınmı?</string>
-  <string name="AddUrlToEntryDialog_text">Otomatik olarak bulunması için \"%1$s\" hafızaya alınsınmi?</string>
+  <string name="AddUrlToEntryDialog_text">Otomatik olarak bulunması için \"%1$s\" hafızaya alınsın mı?</string>
   <string name="error_invalid_expiry_date">Geçerlilik Sonu biçimi geçersiz!</string>
   <string name="error_string_key">Her dizi için bir alan adı gereklidir.</string>
   <string name="field_name">Alan adı</string>
@@ -244,6 +250,7 @@
   <string name="UseFileTransactions_summary">Veritabanları yazmak için dosya işlemlerini kullan</string>
   <string name="LockWhenScreenOff_title">Ekran kapandığında kilitle</string>
   <string name="LockWhenScreenOff_summary">Güç düğmesiyle veritabanını kilitle.</string>
+  <string name="NoDonateOption_title">Bağış seçeneğini gizle</string>
   <string name="UseOfflineCache_title">Veritabanı önbelleğe al</string>
   <string name="UseOfflineCache_summary">Uzak veritabanı dosyalarının bir kopyası uygulama önbellek klasöründe tutulur. Bu uzak veritabanlarını çevrimdışı iken bile kullanmanıza izin verir.</string>
   <string name="AcceptAllServerCertificates_title">SSL sertifikalar</string>
@@ -371,7 +378,20 @@
   <string name="plugin_enabled_checkbox">Etkin</string>
   <string name="get_regular_version">Daha fazla depolama türlerini almak</string>
   <string name="export_fileformats_title">Dosya biçimini seçin</string>
+  <string name="CancelReadOnly">İptal et, salt okunur aç.</string>
+  <string name="CopyingFile">Dosyalar kopyalanıyor...</string>
   <string name="ChangeLog_title">Değişiklik günlüğü</string>
+  <string name="PreviewWarning">Lütfen dikkat! Bu bir ön sürümü ve bazı kusurları ile gelebilir! Eğer beklenmedik * bir şey * olursa  bana bildirin (Codeplex veya e-posta) .</string>
+  <string name="ChangeLog_0_9_5">
+		<b>Version 0.9.5</b>\n
+		* Fixed issues with file browsing (especially on Android 4.4)\n
+		* Fixed issue with loading .kdb files (Keepass 1) on Nexus 5 with Android Lollipop\n
+		* Added option to prevent taking screenshots/displaying app in recent apps list\n
+		* Fixed issue with Google Drive file storage\n
+		* Allow key files on deliberate storage types\n
+		* Updated build tools --&gt; apk size increased :-(\n
+		I have promised some more changes. They will come with the next release - sorry. I wanted to publish these hot fixes as soon as possible.
+	</string>
   <string name="ChangeLog_0_9_4">
 		<b>Version 0.9.4</b>\n
 		* added plug-in support: See settings for how to get plug-ins!\n

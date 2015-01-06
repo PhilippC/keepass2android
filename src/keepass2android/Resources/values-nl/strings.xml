@@ -272,7 +272,6 @@
   <string name="OpenKp2aKeyboardAutomatically_title">Wissel toetsenbord</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Open toetsenbord selectie venster als een regel beschikbaar is via KP2A toetsenbord na zoeken vanaf de browser of het toetsenbord.</string>
   <string name="kp2a_switch_rooted">Wissel automatisch op geroote apparaten</string>
-  <string name="kp2a_switch_rooted_summary">Op geroote apparaten, het is mogelijk om automatisch te wisselen naar het Keepass2Android toetsenbord (na het zoeken van een regel of door het klikken op de KP2A toetsenbord notificatie) en terug te wisselen naar het vorige toetsenbord zonder de invoermethode kiezer. Dit vereist de installatie van de Secure Settings app. Zie de KP2A documentatie voor meer informatie!</string>
   <string name="ShowUnlockedNotification_title">Toon icoon wanneer database ontgrendeld is</string>
   <string name="ShowUnlockedNotification_summary">Toon doorlopend bericht terwijl de database ontgrendeld is.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-load van databasebestand</string>

@@ -31,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_resume">A keresési eredményeknél a csoportnevek megjelenítése a bejegyzések címe alatt.  Hasznos, ha léteznek azonos című bejegyzések.</string>
   <string name="NavigationToGroupCompleted_message">A megjelenített csoport: %1$s</string>
   <string name="ShowGroupInEntry_title">A csoportnév megjelenítése a bejegyzések adatlapján.</string>
+  <string name="unknown_uri_scheme">Elnézést, a Keepass2Android nem tudja kezelni a visszaadott URI-t: %1$s. Kérjük, lépjen kapcsolatba a fejlesztővel!</string>
   <string name="security_prefs">Biztonság</string>
   <string name="display_prefs">Kijelző</string>
   <string name="password_access_prefs">Hozzáférés a jelszavakhoz</string>
@@ -38,6 +39,14 @@
   <string name="FileHandling_prefs">Fájlkezelés</string>
   <string name="keyboard_prefs">Billentyűzet</string>
   <string name="export_prefs">Adatbázis exportálása...</string>
+  <string name="import_db_prefs">Az adatbázis importálása az alkalmazás saját tárterületére</string>
+  <string name="import_keyfile_prefs">A kulcsfájl importálása az alkalmazás saját tárterületére</string>
+  <string name="keyboardswitch_prefs">Billentyűzetváltás</string>
+  <string name="OnlyAvailableForLocalFiles">Csak a készüléken tárolt fájlok esetén lehetséges.</string>
+  <string name="FileIsInInternalDirectory">A fájl az alkalmazás saját tárterületén van.</string>
+  <string name="DatabaseFileMoved">Az adatbázis be lett importálva az alkalmazás saját tárterületére.  Használja az OK gombot az adatbázis új tárhelyről való megnyitásához.  Megjegyzés: ne feledkezzen meg az adatbázist rendszeresen egy biztonságos tárhelyre exportálni!</string>
+  <string name="KeyfileMoved">A kulcsfájl be lett importálva az alkalmazás saját tárterületére.  Bizonyosodjon meg, hogy rendelkezik egy biztonsági mentéssel, mielőtt a kulcsfájlt az eredeti helyéről letörölné.</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">A kulcsfájlt nem lehet az alkalmazás saját tárterületén tárolni, ha az elérhetősége nincs tárolva.  Módosítsa az ehhez tartozó biztonsági beállítást.</string>
   <string name="brackets">Zárójelek</string>
   <string name="cancel">Mégsem</string>
   <string name="ClearClipboard">Vágólap törölve.</string>
@@ -46,6 +55,7 @@
   <string name="copy_username">Felhasználónév másolása a vágólapra</string>
   <string name="copy_password">Jelszó másolása a vágólapra</string>
   <string name="available_through_keyboard">Bejegyzés elérhető KP2A billentyűzeten keresztül</string>
+  <string name="entry_is_available">elérhető</string>
   <string name="not_possible_im_picker">Nem lehet megnyitni a dialógust a kiválasztott módszerrel. Aktiválja a billentyűzetet manuálisan.</string>
   <string name="please_activate_keyboard">Kérem engedélyezze a Keepass2Android billentyűzetet a rendszer beállításokban.</string>
   <string name="creating_db_key">Adatbázis létrehozása&#8230;</string>
@@ -66,6 +76,7 @@
   <string name="entry_expires">Lejárat</string>
   <string name="entry_group_name">Csoportnév</string>
   <string name="entry_keyfile">Kulcsfájl (opcionális)</string>
+  <string name="keyfile_heading">Kulcsfájl</string>
   <string name="entry_modified">Módosítva</string>
   <string name="entry_password">Jelszó</string>
   <string name="entry_save">Mentés</string>
@@ -78,6 +89,7 @@
   <string name="error_could_not_create_group">Hiba a csoport létrehozásakor.</string>
   <string name="error_could_not_create_parent">Nem sikerült létrehozni szülő könyvtárat.</string>
   <string name="error_database_exists">A fájl már létezik.</string>
+  <string name="error_database_settinoverrgs">Az adatbázis-beállítások meghatározása nem sikerült.</string>
   <string name="error_failed_to_launch_link">Hiba a cím megnyitásakor.</string>
   <string name="error_filename_required">Fájlnév szükséges.</string>
   <string name="error_file_not_create">Nem sikerült létrehozni a fájlt</string>
@@ -111,6 +123,7 @@
   <string name="invalid_algorithm">Érvénytelen algoritmus.</string>
   <string name="invalid_db_sig">Az adabázis formátuma nem ismert.</string>
   <string name="keyfile_does_not_exist">A kulcsfájl nem létezik.</string>
+  <string name="no_keyfile_selected">Nincs kijelölt kulcsfájl.</string>
   <string name="keyfile_is_empty">A kulcsfájl üres.</string>
   <string name="length">Hossz</string>
   <string name="list_size_title">Csoportlistázás betűmérete</string>
@@ -157,7 +170,7 @@
   <string name="progress_create">Új adatbázis létrehozása&#8230;</string>
   <string name="create_database">Adatbázis létrehozása</string>
   <string name="progress_title">Feldolgozás&#8230;</string>
-  <string name="remember_keyfile_summary">A kulcsfájlok helyének megjegyzése.</string>
+  <string name="remember_keyfile_summary">A kulcsfájlok elérhetőségének tárolása.</string>
   <string name="remember_keyfile_title">Kulcsfájl mentése</string>
   <string name="remove_from_filelist">Eltávolítás</string>
   <string name="rijndael">Rijndael (AES)</string>
@@ -173,8 +186,11 @@
   <string name="space">Szóköz</string>
   <string name="search_label">Keresés</string>
   <string name="show_password">Jelszó megjelenítése</string>
-  <string name="sort_name">Rendezés név alapján</string>
-  <string name="sort_db">Rendezés dátum alapján</string>
+  <string name="sort_menu">Sorrend</string>
+  <string name="sort_name">Név szerinti rendezés</string>
+  <string name="sort_db">A létrehozás ideje szerinti rendezés</string>
+  <string name="sort_moddate">Az utolsó módosítás ideje szerinti rendezés</string>
+  <string name="sort_default">Alapértelmezett sorrend</string>
   <string name="special">Speciális</string>
   <string name="search_hint">Keresendő szöveg</string>
   <string name="search_results">Keresési eredmények</string>
@@ -192,6 +208,7 @@
   <string name="version_history">Verziótörténet</string>
   <string name="author">Keepass2Android-ot Philipp Crocoll fejleszti.</string>
   <string name="further_authors">Köszönet jár az alábbiaknak az átadott programkódért: %1$s.</string>
+  <string name="designers">Köszönet jár továbbá az ikon és a megjelenítés tervezésében nyújtott segítségért az alábbiaknak: %1$s.</string>
   <string name="credit_plugin1">A KP2A által is használt Twofish Cipher Plugin for Keepass fejlesztését Scott Greenberg végezte.</string>
   <string name="credit_android_filechooser">Az android-filechooser Hai Bison munkája.</string>
   <string name="credit_keyboard">The KP2A billentyűzet az Android Open Source Project által fejlesztett Gingerbread billentyűzetre alapul, használva a Klaus Weidner által írt Hacker\'s Keyboard beépülőmodul-menedzser programkódját is.</string>
@@ -220,6 +237,8 @@
   <string name="QuickUnlock_lockButton">Adatbázis bezárása</string>
   <string name="QuickUnlockDefaultEnabled_title">GyorsFeloldás alapértelmezés szerinti engedélyezése</string>
   <string name="QuickUnlockDefaultEnabled_summary">Megadja, hogy alapértelmezés szerint a GyorsFeloldás funkció engedélyezve legyen-e.</string>
+  <string name="ViewDatabaseSecure_title">Védelem az adatbázis megjelenítése ellen</string>
+  <string name="ViewDatabaseSecure_summary">Az alkalmazás akadályozza meg képernyőképek készítését és ne jelenjen meg az adatbázist mutató kicsinyített alkalmazáskép a legutóbb használt alkalmazások listáján.</string>
   <string name="QuickUnlockIconHidden_title">A GyorsFeloldás ikon elrejtése</string>
   <string name="QuickUnlockIconHidden_summary">A GyorsFeloldás sajnos értesítési ikon nélkül nem működik.  Ezzel a beállítással az ikon láthatatlanná tehető.</string>
   <string name="QuickUnlockIconHidden16_title">A GyorsFeloldás ikon elrejtése</string>
@@ -267,12 +286,18 @@
   <string name="CheckForFileChangesOnSave_summary">Mentés előtt kerüljön ellenőrzésre, hogy a fájlt más módosította-e.</string>
   <string name="ShowCopyToClipboardNotification_title">Vágólap</string>
   <string name="ShowCopyToClipboardNotification_summary">A felhasználónév és jelszó elérhetővé tétele az értesítési sávon és a vágólapon keresztül.  Ne feledkezzen meg a jelszógyűjtés veszélyéről!</string>
+  <string name="ShowSeparateNotifications_title">Részletes értesítések</string>
+  <string name="ShowSeparateNotifications_summary">Külön értesítés jelenjen meg a felhasználónév és a jelszó vágólapra másolásáról és a billentyűzet aktiválásáról.</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A billentyűzet</string>
   <string name="ShowKp2aKeyboardNotification_summary">A teljes bejegyzés elérhetővé tétele a KP2A billentyűzet segítségével (ajánlott).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Billentyűzetváltás</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Nyissa meg a bevitelimód-váltás párbeszédablakot, ha egy böngészőből indított keresés után a KP2A billentyűzet számára elérhető egy bejegyzés.</string>
   <string name="kp2a_switch_rooted">Automatikus billentyűváltás (root jogosultsággal)</string>
-  <string name="kp2a_switch_rooted_summary">Ha rendelkezik root hozzáféréssel, van lehetőség a Keepass2Android billentyűzetre való automatikus átváltásra (egy bejegyzés megkeresése után, vagy a KP2A billentyűzet-értesítésre való kattintással), majd a korábban használt billentyűzetre való automatikus visszaváltásra a bevitelimód-váltás rendszerfunkció használata nélkül.  Ehhez telepíteni kell a Secure Settings alkalmazást is!  További információkat a KP2A dokumentációjában talál.</string>
+  <string name="kp2a_switch_rooted_summary">Automatikus váltás a KP2A billentyűzetre egy bejegyzés megnyitásakor. Használatához szükség van root jogosultságra, a Secure Setting alkalmazásra és annak System+ moduljára is.</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatikus váltás csak keresés után</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Csak az URL megosztása funkció használata esetén váltson automatikusan KP2A billentyűzetre (a bejegyzés más módon történő megnyitása esetén ne)</string>
+  <string name="AutoSwitchBackKeyboard_title">Billentyűzet-visszaváltás</string>
+  <string name="AutoSwitchBackKeyboard_summary">Visszaváltás az előző billentyűzetre ha nem lett bejegyzés megnyitva.</string>
   <string name="ShowUnlockedNotification_title">Értesítés az adatbázis hozzáférhetőségéről</string>
   <string name="ShowUnlockedNotification_summary">Egy értesítési ikon megjelenítése, amíg az adatbázis hozzáférhető.</string>
   <string name="PreloadDatabaseEnabled_title">Adatbázisok előrehozott betöltése</string>
@@ -316,19 +341,20 @@
   <string name="SynchronizedDatabaseSuccessfully">Az adatbázis szinkronizálása sikeres!</string>
   <string name="CheckingDatabaseForChanges">Változások keresése a célfájlban&#8230;</string>
   <string name="CouldNotSaveToRemote">A távoli fájl mentése nem sikerült: %1$s.  Ismételje meg a mentést vagy használja a Szinkronizálás menüt, amikor a távoli elérés ismét elérhetővé válik.</string>
-  <string name="CouldNotLoadFromRemote">Nem sikerült megnyitni a távoli fájlt: %1$s. A fájl helyi másolata lett betöltve.  
+  <string name="CouldNotLoadFromRemote">Nem sikerült megnyitni a távoli fájlt: %1$s. A fájl a készükéken tárolt másolata lett betöltve.  
 Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség.</string>
   <string name="UpdatedRemoteFileOnLoad">A távoli fájl frissítve lett.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">A fájl helyi másolata lett betöltve, mivel eltérés volt a távoli fájl és a helyi másolat között.  Használja az adatbázis szinkronizálása funkciót a változások összefésüléséhez.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">A fájl a készüléken tárolt másolata lett betöltve, mivel eltérés volt a távoli fájl és a helyi másolat között.  Használja az adatbázis szinkronizálása funkciót a változások összefésüléséhez.</string>
   <string name="LoadedFromRemoteInSync">A távoli fájl és a helyi másolat szinkronban vannak.</string>
-  <string name="UpdatedCachedFileOnLoad">%1$s helyi másolata frissítve lett.</string>
+  <string name="UpdatedCachedFileOnLoad">%1$s a készüléken tárolt másolata frissítve lett.</string>
   <string name="RemoteDatabaseUnchanged">Nincs változás.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Az OTP kiegészítő fájl helyi másolata frissítve lett: a távoli példány számlálója magasabb volt.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Az OTP kiegészítő fájl távoli másolata frissítve lett: a helyi példány számlálója magasabb volt.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Az OTP kiegészítő fájl távoli másolata frissítve lett: a készüléken tárolt példány számlálója magasabb volt.</string>
   <string name="SynchronizingOtpAuxFile">Az OTP kiegészítő fájl szinkronizálása&#8230;</string>
   <string name="database_file">adatbázisfájl</string>
   <string name="otp_aux_file">OTP kiegészítő fájl</string>
   <string name="ErrorOcurred">Hiba történt:</string>
+  <string name="DuplicateUuidsError">Az adatbázis sérült: ismétlődő azonosítókat tartalmaz.  (Minikeepass alkalmazással lett elmentve?)  Importálja az adatbázist a Keepass 2 PC alkalmazásba és használja annak \"Új azonosítók létrehozása\" funkcióját.</string>
   <string name="synchronize_database_menu">Az adatbázis szinkronizálása&#8230;</string>
   <string name="CannotMoveGroupHere">A csoportot nem lehet ebbe a csoportba mozgatni.</string>
   <string name="donate_question">Ma kezdődik az Oktoberfest!  Ha kedveli ezt az alkalmazást, nem lenne ez egy jó alkalom, hogy fizessen nekem egy sört?</string>
@@ -341,7 +367,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="initial_directory">Kezdőkönyvtár (opcionális):</string>
   <string name="enter_sftp_login_title">SFTP tárhely adatai:</string>
   <string name="select_storage_type">Tárolási típus kiválasztása:</string>
-  <string name="filestoragename_file">Helyben tárolt fájl</string>
+  <string name="filestoragename_file">A készüléken tárolt fájl</string>
   <string name="filestoragename_androidget">Külső alkalmazás</string>
   <string name="filestoragename_androidsend">Külső alkalmazás</string>
   <string name="filestoragename_ftp">FTP</string>
@@ -399,6 +425,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="plugin_enabled">engedélyezve</string>
   <string name="plugin_disabled">letiltva</string>
   <string name="plugin_web">Beépülő modulok letöltése</string>
+  <string name="plugin_scopes">Lehetőségek</string>
   <string name="query_credentials_for_url">%1$s hitelesítő adatokat kér %2$s számára.</string>
   <string name="query_credentials">%1$s hitelesítő adatokat igényel.  Válasszon egy bejegyzést!</string>
   <string name="plugin_enabled_checkbox">Engedélyezve</string>
@@ -415,6 +442,14 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="CertificateFailure">Hiba: a szerver tanúsítványának ellenőrzése nem sikerült: %1$s.  Telepítse a szükséges hitelesítő tanúsítványt az eszközre vagy módosítsa a beállításokat!</string>
   <string name="export_fileformats_title">Fájlfomátum kiválasztása</string>
   <string name="killed_by_os">Hoppá!  A Keepass2Android alkalmazást az Android operációs rendszere leállította!  Biztonsági okokból a Keepass2Android nem készít mentést a kiválasztott hitelesítő adatokról, ezért az adatbázist újra meg kell nyitnia.  Megjegyzés: ennek legfeljebb ritkán szabad bekövetkezni.  Ha bekövetkezik, kérjük, jelezze ezt a crocoapps@gmail.com címen.</string>
+  <string name="FileIsTemporarilyAvailable">A fájl csak időlegesen érhető el a Keepass2Android számára.</string>
+  <string name="FileIsReadOnly">A kijelölt fájl nem írható.</string>
+  <string name="FileIsReadOnlyOnKitkat">A kijelölt fájl nem írható a Keepass2Android számára az Android 4.4 + korlátozásai miatt.</string>
+  <string name="CopyFileRequired">Használathoz egy más helyre kell másolnia.</string>
+  <string name="CopyFileRequiredForEditing">Módosításhoz egy más helyre kell másolnia.</string>
+  <string name="ClickOkToSelectLocation">Kattintson az OK gombra a másolási hely kiválasztásához.</string>
+  <string name="CancelReadOnly">Megszakítás, megnyitás csak olvasásra.</string>
+  <string name="CopyingFile">Fájl másolása...</string>
   <string name="ChangeLog_title">Verziótörténet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>

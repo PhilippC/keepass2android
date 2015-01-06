@@ -57,12 +57,15 @@
   <string name="afc_title_sort_by">Sıralama&#8230;</string>
   <string name="afc_yesterday">Dün</string>
   <plurals name="afc_title_choose_directories">
+    <item quantity="one">Klasör seçin&#8230;</item>
     <item quantity="other">Klasör seçin&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files">
+    <item quantity="one">Dosya seç&#8230;</item>
     <item quantity="other">Dosya seç&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
+    <item quantity="one">Dosya / klasör seç &#8230;</item>
     <item quantity="other">Dosya / klasör seç &#8230;</item>
   </plurals>
 </resources>

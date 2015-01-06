@@ -217,12 +217,13 @@
   <string name="QuickUnlock_lockButton">데이터베이스 닫기</string>
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock 활성화를 기본설정으로</string>
   <string name="QuickUnlockDefaultEnabled_summary">QuickUnlock을 기본적으로 사용할지를 정의합니다.</string>
+  <string name="ViewDatabaseSecure_summary">스크린샷 기능을 막고 최근 앱 리스트에 앱의 썸네일을 표시하지 않습니다.</string>
   <string name="QuickUnlockIconHidden_title">QuickUnlock 아이콘 숨기기</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock은 알림 아이콘 표시 없이는 동작을 하지 않습니다. 투명한 아이콘을 사용하려면 이 옵션을 선택하세요.</string>
   <string name="QuickUnlockIconHidden16_title">QuickUnlock 아이콘 숨기기</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock이 제대로 작동 하려면 알림창 표시가 필요합니다. 아이콘 없이 알림창을 표시하려면 이 옵션을 선택합니다.</string>
   <string name="QuickUnlockLength_title">QuickUnlock 키 길이</string>
-  <string name="QuickUnlockLength_summary">QuickUnlock 비밀번호로 사용되는 문자 수의 최대입니다.</string>
+  <string name="QuickUnlockLength_summary">QuickUnlock 비밀번호로 사용될 최대 문자 수</string>
   <string name="QuickUnlock_fail">QuickUnlock 실패 : 잘못된 비밀번호!</string>
   <string name="BinaryDirectory_title">첨부파일 폴더</string>
   <string name="BinaryDirectory_summary">첨부파일이 저장될 폴더</string>
@@ -269,7 +270,6 @@
   <string name="OpenKp2aKeyboardAutomatically_title">키보드 바꾸기</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">브라우저에서 검색 후 KP2A 키보드를 통한 항목 선택이 가능할 때 키보드 선택창을 열기</string>
   <string name="kp2a_switch_rooted">루팅 장치에서 자동 전환</string>
-  <string name="kp2a_switch_rooted_summary">루팅된 장치에서는 자동으로 Keepass2Android 키보드를 전환하고(항목 검색 후 또는 KP2A 키보드 알림을 클릭함으로써) 입력 방법 선택창 없이 다시 이전의 키보드로 전환할 수 있습니다. 이는 또한 Secure Settings 앱을 필수적으로 설치해야 합니다. 추가 정보는 매뉴얼을 참고하세요.</string>
   <string name="ShowUnlockedNotification_title">잠금이 해제되어 있는 동안 알림창 아이콘을 표시</string>
   <string name="ShowUnlockedNotification_summary">데이터베이스가 열려있는 동안 알림창에 열림 상태를 알림</string>
   <string name="PreloadDatabaseEnabled_title">데이터베이스 파일을 미리 불러오기</string>
@@ -385,6 +385,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="CertificateWarning">경고: 서버 인증서 유효성 검사에 실패했습니다: %1$s. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하세요!</string>
   <string name="CertificateFailure">오류: 서버 인증서 유효성 검사에 실패했습니다. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하세요!</string>
   <string name="export_fileformats_title">파일 형식 선택</string>
+  <string name="CopyingFile">파일 복사 중...</string>
   <string name="ChangeLog_title">변경 로그</string>
   <string-array name="clipboard_timeout_options">
     <item>30 초</item>

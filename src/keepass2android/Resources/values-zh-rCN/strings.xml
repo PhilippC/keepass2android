@@ -31,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_resume">在搜索结果中条目标题下显示群组名。如果几个条目具有相同的名称时会很有用。</string>
   <string name="NavigationToGroupCompleted_message">当前显示群组：%1$s</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
+  <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发商 ！</string>
   <string name="security_prefs">安全</string>
   <string name="display_prefs">显示</string>
   <string name="password_access_prefs">密码输入接口</string>
@@ -66,6 +67,7 @@
   <string name="entry_expires">失效时间：</string>
   <string name="entry_group_name">群组名</string>
   <string name="entry_keyfile">密钥文件（可选）</string>
+  <string name="keyfile_heading">密钥文件</string>
   <string name="entry_modified">修改时间</string>
   <string name="entry_password">密码</string>
   <string name="entry_save">保存</string>
@@ -78,6 +80,7 @@
   <string name="error_could_not_create_group">创建群组错误。</string>
   <string name="error_could_not_create_parent">无法创建上级目录。</string>
   <string name="error_database_exists">文件已存在。</string>
+  <string name="error_database_settinoverrgs">无法确定数据库设置。</string>
   <string name="error_failed_to_launch_link">无法打开链接。</string>
   <string name="error_filename_required">文件名不能为空。</string>
   <string name="error_file_not_create">无法创建文件</string>
@@ -111,6 +114,7 @@
   <string name="invalid_algorithm">无效的算法</string>
   <string name="invalid_db_sig">数据库格式无法识别。</string>
   <string name="keyfile_does_not_exist">密钥文件不存在。</string>
+  <string name="no_keyfile_selected">没有选定的密钥文件。</string>
   <string name="keyfile_is_empty">密钥文件是空的。</string>
   <string name="length">长度</string>
   <string name="list_size_title">群组列表大小</string>
@@ -220,6 +224,8 @@
   <string name="QuickUnlock_lockButton">关闭数据库</string>
   <string name="QuickUnlockDefaultEnabled_title">默认启用快速解锁</string>
   <string name="QuickUnlockDefaultEnabled_summary">设定是否在默认情况下启用快速解锁</string>
+  <string name="ViewDatabaseSecure_title">数据库保护显示</string>
+  <string name="ViewDatabaseSecure_summary">如果启用，截图和应用程序缩略图将不会展示在最近的应用程序列表中。</string>
   <string name="QuickUnlockIconHidden_title">隐藏快速锁定图标</string>
   <string name="QuickUnlockIconHidden_summary">不幸无法显示快速解锁的通知图标。选择此选项可使用一个透明的图标。</string>
   <string name="QuickUnlockIconHidden16_title">隐藏快速锁定图标</string>
@@ -272,7 +278,6 @@
   <string name="OpenKp2aKeyboardAutomatically_title">切换键盘</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">当从浏览器搜索或键盘后可用通过 KP2A 键盘输入时，打开键盘选择对话框。</string>
   <string name="kp2a_switch_rooted">在获得根权限的设备上自动切换</string>
-  <string name="kp2a_switch_rooted_summary">在获取根权限的设备上，有可能 （在搜索条目或通过单击 KP2A 键盘通知） 后自动切换到 Keepass2Android 键盘，并切换回先前的键盘且不显示输入法选择框。这还需要安装安全设置应用（Secure Settings app）。详情请参阅 KP2A 文档 ！</string>
   <string name="ShowUnlockedNotification_title">解锁时通知图标</string>
   <string name="ShowUnlockedNotification_summary">当数据库处于解锁状态栏持续显示通知。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
@@ -413,6 +418,14 @@
   <string name="CertificateFailure">错误： 服务器证书验证失败！在您的设备上安装相应的根证书，或请参阅设置 ！</string>
   <string name="export_fileformats_title">选择文件格式</string>
   <string name="killed_by_os">对不起 ！Keepass2Android 被系统结束进程！出于安全原因，Keepass2Android 不在磁盘上存留证书，所以您需要重新打开您的数据库。注：出现该问题的几率极低。如果出现了，请给我发送我邮件至 crocoapps@gmail.com</string>
+  <string name="FileIsTemporarilyAvailable">该文件暂时仅供 Keepass2Android使用。</string>
+  <string name="FileIsReadOnly">您选择的文件是只读的。</string>
+  <string name="FileIsReadOnlyOnKitkat">在 Keepass2Android中，由于 Android 4.4 + 的限制，您选定的文件是只读的 。</string>
+  <string name="CopyFileRequired">若要使用它，您必须将其复制到另一个位置。</string>
+  <string name="CopyFileRequiredForEditing">若要编辑它，必须将该文件复制到另一个位置。</string>
+  <string name="ClickOkToSelectLocation">单击确定以选择要复制文件的位置。</string>
+  <string name="CancelReadOnly">取消，以只读形式打开。</string>
+  <string name="CopyingFile">正在复制文件...</string>
   <string name="ChangeLog_title">更新记录</string>
   <string name="PreviewWarning">请注意 ！这是一个预览版本，可能会有一些缺陷 ！如果您遇到*任何*错误，请联系我们（通过 Codeplex 或电子邮件）。</string>
   <string name="ChangeLog_0_9_4"><b>版本 0.9.4</b>\n

@@ -30,7 +30,8 @@
   <string name="ShowGroupnameInSearchResult_title">Отображать имя группы в результате поиска</string>
   <string name="ShowGroupnameInSearchResult_resume">Отображать имя группы ниже заголовка записей в результатах поиска. Полезно, если некоторые записи имеют одинаковые имена.</string>
   <string name="NavigationToGroupCompleted_message">Отображение группы сейчас: %1$s</string>
-  <string name="ShowGroupInEntry_title">Показывать имя группы в режиме записи</string>
+  <string name="ShowGroupInEntry_title">Показывать имя группы при просмотре записи</string>
+  <string name="unknown_uri_scheme">Извините! Keepass2Android не может обработать возвращаемый URI %1$s. Свяжитесь с разработчиком!</string>
   <string name="security_prefs">Безопасность</string>
   <string name="display_prefs">Отображение</string>
   <string name="password_access_prefs">Парольный доступ</string>
@@ -38,6 +39,14 @@
   <string name="FileHandling_prefs">Обработка файлов</string>
   <string name="keyboard_prefs">Клавиатура</string>
   <string name="export_prefs">Экспорт базы данных...</string>
+  <string name="import_db_prefs">Импорт базы данных во внутреннюю папку</string>
+  <string name="import_keyfile_prefs">Импорт ключевого файла во внутреннюю папку</string>
+  <string name="keyboardswitch_prefs">Переключение клавиатуры</string>
+  <string name="OnlyAvailableForLocalFiles">Доступно только для локальных файлов.</string>
+  <string name="FileIsInInternalDirectory">Файл сохранен во внутреннем каталоге.</string>
+  <string name="DatabaseFileMoved">Файл базы данных был скопирован во внутреннюю папку. Нажмите Ok, чтобы открыть его из нового расположения. Примечание: не забывайте регулярно экспортировать базу данных в безопасное место хранения!</string>
+  <string name="KeyfileMoved">Ключевой файл был скопирован во внутреннюю папку. Убедитесь, что у вас есть резервная копия файла, прежде чем удалять его!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Невозможно использовать внутреннюю папку, пока расположение файла-ключа не сохранено. Измените настройки безопасности.</string>
   <string name="brackets">Скобки</string>
   <string name="cancel">Отмена</string>
   <string name="ClearClipboard">Буфер обмена очищен.</string>
@@ -46,6 +55,7 @@
   <string name="copy_username">Скопировать имя пользователя в буфер обмена</string>
   <string name="copy_password">Скопировать пароль в буфер обмена</string>
   <string name="available_through_keyboard">Вход доступен с помощью клавиатуры KP2A</string>
+  <string name="entry_is_available">доступно</string>
   <string name="not_possible_im_picker">Не удалось открыть диалоговое окно для выбора метода ввода. Пожалуйста, активируйте клавиатуру вручную.</string>
   <string name="please_activate_keyboard">Пожалуйста, включите клавиатуру Keepass2Android в системных настройках.</string>
   <string name="creating_db_key">Создание ключа базы данных&#8230;</string>
@@ -66,6 +76,7 @@
   <string name="entry_expires">Истекает</string>
   <string name="entry_group_name">Имя группы</string>
   <string name="entry_keyfile">Файл-ключ (опционально)</string>
+  <string name="keyfile_heading">Файл-ключ</string>
   <string name="entry_modified">Изменено</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_save">Сохранить</string>
@@ -78,6 +89,7 @@
   <string name="error_could_not_create_group">Не удалось создать группу.</string>
   <string name="error_could_not_create_parent">Не удалось создать родительскую папку</string>
   <string name="error_database_exists">Такой файл уже существует.</string>
+  <string name="error_database_settinoverrgs">Не удалось определить параметры базы данных.</string>
   <string name="error_failed_to_launch_link">Не удалось открыть ссылку.</string>
   <string name="error_filename_required">Введите имя файла.</string>
   <string name="error_file_not_create">Не удалось создать файл</string>
@@ -97,7 +109,7 @@
   <string name="hint_comment">комментарий</string>
   <string name="hint_conf_pass">подтверждение</string>
   <string name="hint_generated_password">созданный пароль</string>
-  <string name="hint_group_name">название</string>
+  <string name="hint_group_name">Имя группы</string>
   <string name="hint_keyfile">файл-ключ</string>
   <string name="hint_length">длина</string>
   <string name="hint_pass">пароль</string>
@@ -111,6 +123,7 @@
   <string name="invalid_algorithm">Недопустимый алгоритм.</string>
   <string name="invalid_db_sig">Формат базы не определён.</string>
   <string name="keyfile_does_not_exist">Файл-ключ не существует.</string>
+  <string name="no_keyfile_selected">Файл-ключ не выбран.</string>
   <string name="keyfile_is_empty">Файл-ключ пуст.</string>
   <string name="length">Длина пароля</string>
   <string name="list_size_title">Размер списка группы</string>
@@ -173,16 +186,19 @@
   <string name="space">П р о б е л</string>
   <string name="search_label">Поиск</string>
   <string name="show_password">Показать пароль</string>
+  <string name="sort_menu">Сортировать по...</string>
   <string name="sort_name">Сортировка по имени</string>
   <string name="sort_db">Сортировка по дате</string>
-  <string name="special">$пеци@льные</string>
-  <string name="search_hint">Что ищем</string>
+  <string name="sort_moddate">Сортировать по дате изменения</string>
+  <string name="sort_default">Оставить порядок по-умолчанию</string>
+  <string name="special">Особые</string>
+  <string name="search_hint">Что найти</string>
   <string name="search_results">Результаты поиска</string>
   <string name="search_in">Поиск в</string>
   <string name="select_other_entry">Выбрать другую запись</string>
   <string name="select_group_then_add">Откройте требуемую группу, а затем нажмите \"%1$s\"!</string>
   <string name="insert_element_here">Вставить сюда</string>
-  <string name="twofish">Алгоритм шифрования Twofish</string>
+  <string name="twofish">Twofish</string>
   <string name="underline">_Подчёркивание_</string>
   <string name="unsupported_db_version">Неподдерживаемая версия базы</string>
   <string name="uppercase">ЗАГЛАВНЫЕ</string>
@@ -192,6 +208,7 @@
   <string name="version_history">История версий</string>
   <string name="author">Keepass2Android разработан Philipp Crocoll.</string>
   <string name="further_authors">Благодарю %1$s за участие в разработке.</string>
+  <string name="designers">Спасибо за дизайн значка и макета %1$s.</string>
   <string name="credit_plugin1">Плагин шифрования Twofish для Keepass, включенный в KP2A, был разработан Скоттом Гринбергом.</string>
   <string name="credit_android_filechooser">Android-FileChooser был разработан Hai Bison</string>
   <string name="credit_keyboard">KP2A клавиатура основана на клавиатуре Gingerbread из Android Open Source Project и использует код менеджера плагинов из Hacker\'s Keyboard, Клауса Вейднера.</string>
@@ -220,6 +237,8 @@
   <string name="QuickUnlock_lockButton">Закрыть базу данных</string>
   <string name="QuickUnlockDefaultEnabled_title">Включить БыструюРазблокировку по умолчанию</string>
   <string name="QuickUnlockDefaultEnabled_summary">Определяет, включен ли QuickUnlock по умолчанию.</string>
+  <string name="ViewDatabaseSecure_title">Защита отображения базы данных</string>
+  <string name="ViewDatabaseSecure_summary">Если включено, не разрешены скриншоты и приложение не появится в списке Последних Запущенных.</string>
   <string name="QuickUnlockIconHidden_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden_summary">К сожалению, QuickUnlock не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
@@ -267,12 +286,18 @@
   <string name="CheckForFileChangesOnSave_summary">Проверка был ли файл изменен извне до сохранения изменений.</string>
   <string name="ShowCopyToClipboardNotification_title">Уведомления буфера обмена</string>
   <string name="ShowCopyToClipboardNotification_summary">Сделать имя пользователя и пароль доступными через панель уведомлений и буфер обмена. Остерегайтесь перехватчиков паролей!</string>
+  <string name="ShowSeparateNotifications_title">Раздельные уведомления</string>
+  <string name="ShowSeparateNotifications_summary">Показывать отдельное уведомление для копирования имени пользователя, пароля в буфер обмена и для активации клавиатуры.</string>
   <string name="ShowKp2aKeyboardNotification_title">Уведомления клавиатуры KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Сделать всю запись доступной через клавиатуру KP2A (рекомендуется).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Переключить клавиатуру</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Открыть диалог выбора клавиатуры, когда запись доступна через клавиатуру KP2A после поиска из браузера или с помощью клавиатуры.</string>
   <string name="kp2a_switch_rooted">Авто-переключение на рутованных устройствах</string>
-  <string name="kp2a_switch_rooted_summary">На рутованных устройствах можно автоматически переключаться на клавиатуру Keepass2Android (после поиска записи или нажав уведомление клавиатуры KP2A), чтобы вернуться к предыдущей клавиатуре без отображения диалога выбора метода ввода. При этом требуется установить приложение Secure Settings. Смотрите документацию KP2A для получения дополнительной информации!</string>
+  <string name="kp2a_switch_rooted_summary">Автоматически переключаться на клавиатуру KP2A при открытии записи. Требует права root и Secure Settings System+. </string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Автопереключение только после поиска</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Переключаться автоматически на клавиатуру KP2A только после использования функции Отправить URL (в других вариантах открытия записи - не переключаться)</string>
+  <string name="AutoSwitchBackKeyboard_title">Переключить клавиатуру обратно</string>
+  <string name="AutoSwitchBackKeyboard_summary">Переключиться назад на предыдущую клавиатуру когда ни одна запись не открыта.</string>
   <string name="ShowUnlockedNotification_title">Значок уведомления при разблокировке</string>
   <string name="ShowUnlockedNotification_summary">Показывать уведомление, когда база разблокирована.</string>
   <string name="PreloadDatabaseEnabled_title">Предварительная загрузка файла базы данных</string>
@@ -328,6 +353,7 @@
   <string name="database_file">файл базы данных</string>
   <string name="otp_aux_file">Вспомогательный файл одноразовых паролей</string>
   <string name="ErrorOcurred">Произошла ошибка:</string>
+  <string name="DuplicateUuidsError">База данных повреждена: найдены дублирующиеся ID. (Сохранялись в Minikeepass?) Пожалуйста импортируйте данные в новую базу данных при помощи Keepass 2 для ПК и выберите \'Создать новые ID\'.</string>
   <string name="synchronize_database_menu">Синхронизируйте базу данных&#8230;</string>
   <string name="CannotMoveGroupHere">Не удается переместить группу в эту группу.</string>
   <string name="donate_question">Сегодня Октоберфест! Если вам нравится Keepass2Android: сегодня хороший день, чтобы купить мне пива?</string>
@@ -356,11 +382,11 @@
   <string name="database_location">Расположение базы данных</string>
   <string name="help_database_location">Вы можете хранить базу данных локально на своём Adnroid-устройстве или в облаке (только для онлайн-версии). Keepass2Android даёт возможность доступа к базе даже при отсутствии доступа к сети. Так как база данных зашифрована 256-битным AES алгоритмом, никто, кроме Вас, не сможет получить доступ к паролям. Мы рекомендуем использовать Dropbox - он доступен на всех платформах и сохраняет предыдущие версии файлов.</string>
   <string name="hint_database_location">Выберите место хранения базы данных:</string>
-  <string name="button_change_location">Изменить место нахождения</string>
+  <string name="button_change_location">Изменить местонахождение</string>
   <string name="master_password">Мастер-пароль</string>
   <string name="help_master_password">База шифруется паролем, вводимым сюда. Выберите сложный пароль для безопасности базы данных! Совет: придумайте одно-два предложения и используйте первые буквы слов в качестве пароля. Включая знаки препинания.</string>
   <string name="hint_master_password">Выберите мастер-пароль для защиты базы данных:</string>
-  <string name="key_file">Ключевой файл</string>
+  <string name="key_file">Файл-ключ</string>
   <string name="help_key_file">Ключевой файл - это файл, используемый в качестве пароля. Ключевые файлы обычно предоставляют лучшую защиту чем мастер-пароли, так как они могут иметь сложную структуру; однако, хранить их в секрете также сложнее. Если Вы храните базу данных в облачном хранилище, не храните ключевой файл вместе с базой. Это делает данную схему защиты бесполезной! Важно: не меняйте содержимое ключевого файла после создания базы данных!</string>
   <string name="hint_key_file">Выберите, если вы хотите использовать ключевой файл в дополнение к мастер-паролю:</string>
   <string name="use_key_file">Использовать ключевой файл</string>
@@ -397,6 +423,7 @@
   <string name="plugin_enabled">включено</string>
   <string name="plugin_disabled">отключено</string>
   <string name="plugin_web">Найти плагины онлайн</string>
+  <string name="plugin_scopes">Области</string>
   <string name="query_credentials_for_url">%1$s запрашивает учетные данные для %2$s.</string>
   <string name="query_credentials">%1$s запрашивает учетные данные. Пожалуйста, выберите запись.</string>
   <string name="plugin_enabled_checkbox">Включено</string>
@@ -413,8 +440,41 @@
   <string name="CertificateFailure">Ошибка: проверка сертификата сервера не удалась! Установите соответствующий корневой сертификат или проверьте настройки!</string>
   <string name="export_fileformats_title">Выберите формат файла</string>
   <string name="killed_by_os">Извините! Keepass2Android был убит ОС Android! По соображениям безопасности Keepass2Android не сохраняет выбранные учетные данные на диске, так что вам нужно повторно открыть базу данных. Примечание: Это должно происходить очень редко. Если это так, пожалуйста, напишите мне сообщение на crocoapps@gmail.com.</string>
+  <string name="FileIsTemporarilyAvailable">Этот файл временно доступен в Keepss2Android.</string>
+  <string name="FileIsReadOnly">Выбранный файл доступен только для чтения.</string>
+  <string name="FileIsReadOnlyOnKitkat">Выбранный файл из-за ограничений Android 4.4+ доступен в Keepass2Android только для чтения.</string>
+  <string name="CopyFileRequired">Чтобы использовать его, нужно скопировать в другое место.</string>
+  <string name="CopyFileRequiredForEditing">Чтобы редактировать его, нужно скопировать в другое место.</string>
+  <string name="ClickOkToSelectLocation">Нажмите OK чтобы выбрать место куда файл должен быть скопирован.</string>
+  <string name="CancelReadOnly">Отмена, только для чтения.</string>
+  <string name="CopyingFile">Файл копируется...</string>
   <string name="ChangeLog_title">Список изменений</string>
   <string name="PreviewWarning">Пожалуйста, обратите внимание! Это предварительный релиз и он может содержать некоторые недостатки! Если вы встретитесь с *чем-то* неожиданным, пожалуйста, дайте мне знать (на сайте Codeplex или по электронной почте).</string>
+  <string name="ChangeLog_0_9_6">
+Версия 0.9.6\n
+* возможность импортировать ключевой файл и/или локальную БД во внутреннюю папку приложения (см. настройки)\n
+* различные варианты сортировки\n
+* улучшенные настройки автоматического переключения клавиатуры\n
+* обновленный дизайн логотипа и уведомлений, дизайнер - Stefano Pignataro (http://www.spstudio.at)\n
+* генератор паролей запоминает последние настройки\n
+* настройки уведомлений для экрана блокировки Android 5\n
+* теперь поле мастер-пароля очищается при выходе из приложение не по кнопке ОК\n
+* исправлена проблема с выбором языков клавиатуры на некоторых устройствах\n
+* исправлена проблема с автоматических переключением клавиатуры на рутованых устройствах\n
+* добавлена проверка на повреждение БД (дублирующиеся UUID)\n
+* при обнаружении изменений БД автоматически перезагружается, решает вопрос безопасности мастер-пароля\n
+* улучшена польская маленькая раскладка клавиатуры, исправлено оформление настроек клавиатуры (спасибо Wiktor Ławski)\n
+	</string>
+  <string name="ChangeLog_0_9_5"><b>Версия 0.9.5</b>\n
+* Исправлены проблемы с выбором файлов (особенно на Android 4.4)\n
+* Исправлена проблема с загрузкой .kdb файлов (Keepass 1) на Nexus 5 под Android Lollipop\n
+* Добавлена опция запрета снятия скриншотов/отображения приложения в списке недавних\n
+* Исправлена проблема с хранилищем Google Drive (regular edition)\n
+* Allow key files on deliberate storage types (regular edition)\n
+* Обновлен Dropbox SDK с официальным патчем безопасности (regular edition)\n
+* Обновлены инструменты разработки --&gt; apk увеличился :-(\n
+Я обещал еще некоторые изменения. Они будут в следующем релизе - простите. Я хотел опубликовать это хотфиксы как можно раньше.
+	</string>
   <string name="ChangeLog_0_9_4"><b>Версия 0.9.4</b>\n
 * добавлена поддержка плагинов: перейдите в настройки, чтобы понять, как получить плагины!\n
 * опубликован QR-плагин (сканирование паролей, отображение паролей в виде QR-кодов, передача записей на другие устройства с KP2A)\n
@@ -555,7 +615,7 @@
   </string-array>
   <string-array name="password_modes">
     <item>Только пароль</item>
-    <item>Пароль + ключевой файл</item>
+    <item>Пароль + файл-ключ</item>
     <item>Пароль + ОТР</item>
     <item>Пароль + ОТП секрет (режим восстановления)</item>
     <item>Пароль + Вызов-Ответ</item>
