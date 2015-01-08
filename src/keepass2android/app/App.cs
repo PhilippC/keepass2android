@@ -52,6 +52,8 @@ namespace keepass2android
 		public const string AppLauncherTitle = "@string/short_app_name_nonet";
 		public const string PackagePart = "keepass2android_nonet";
 		public const int LauncherIcon = Resource.Drawable.ic_launcher_offline;
+		public const int NotificationLockedIcon = Resource.Drawable.ic_notify_offline;
+		public const int NotificationUnlockedIcon = Resource.Drawable.ic_notify_locked;
 
 		public const string Searchable = "@xml/searchable_offline";
 	}
@@ -78,7 +80,9 @@ namespace keepass2android
 		public const string Searchable = "@xml/searchable";
 #endif
 		public const int LauncherIcon = Resource.Drawable.ic_launcher;
-		
+		public const int NotificationLockedIcon = Resource.Drawable.ic_notify_loaded;
+		public const int NotificationUnlockedIcon = Resource.Drawable.ic_notify_locked;
+
 	}
 #endif
 	/// <summary>

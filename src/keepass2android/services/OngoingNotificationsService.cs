@@ -141,7 +141,7 @@ namespace keepass2android
 			NotificationCompat.Builder builder = 
 				new NotificationCompat.Builder(this)
 					.SetSmallIcon(grayIconResouceId)
-					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.LauncherIcon))
+					.SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationLockedIcon)))
 					.SetVisibility((int)Android.App.NotificationVisibility.Secret)
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_quickunlock_enabled, GetDatabaseName()));
@@ -169,6 +169,13 @@ namespace keepass2android
 			return builder.Build();
 		}
 
+		private Bitmap MakeLargeIcon(Bitmap unscaled)
+		{
+			int height = (int)(0.9*Resources.GetDimension(Android.Resource.Dimension.NotificationLargeIconHeight));
+			int width = (int)(0.9*Resources.GetDimension(Android.Resource.Dimension.NotificationLargeIconWidth));
+			return Bitmap.CreateScaledBitmap(unscaled, width, height, true);
+		}
+
 		#endregion
 
 		#region Unlocked Warning
@@ -179,7 +186,7 @@ namespace keepass2android
 				new NotificationCompat.Builder(this)
 					.SetOngoing(true)
 					.SetSmallIcon(Resource.Drawable.ic_notify)
-					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.ic_launcher_red))
+					.SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationUnlockedIcon)))
 					.SetVisibility((int)Android.App.NotificationVisibility.Public)
 					.SetContentTitle(GetString(Resource.String.app_name))
 					.SetContentText(GetString(Resource.String.database_loaded_unlocked, GetDatabaseName()));

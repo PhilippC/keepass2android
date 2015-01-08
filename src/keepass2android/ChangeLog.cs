@@ -67,7 +67,7 @@ namespace keepass2android
 			WebView wv = new WebView(ctx);
 
 			wv.SetBackgroundColor(Color.White);
-			wv.LoadDataWithBaseURL(null, GetLog(changeLog, warning), "text/html", "UTF-8", null);
+			wv.LoadDataWithBaseURL(null, GetLog(changeLog, warning, ctx), "text/html", "UTF-8", null);
 
 
 			//builder.SetMessage("");
@@ -109,7 +109,7 @@ namespace keepass2android
   <body>";
 		private const string HtmlEnd = @"</body>
 </html>";
-		private static string GetLog(List<string> changeLog, string warning)
+		private static string GetLog(List<string> changeLog, string warning, Context ctx)
 		{
 			StringBuilder sb = new StringBuilder(HtmlStart);
 			if (!string.IsNullOrEmpty(warning))
@@ -117,10 +117,26 @@ namespace keepass2android
 				sb.Append(warning);
 			}
 			bool inList = false;
+			bool isFirst = true;
 			foreach (string versionLog in changeLog)
 			{
+				string versionLog2 = versionLog; 
 				bool title = true;
-				foreach (string line in versionLog.Split('\n'))
+				if (isFirst)
+				{
+					if (versionLog2.EndsWith("\n") == false)
+						versionLog2 += "\n";
+					string donateUrl = ctx.GetString(Resource.String.donate_url,
+														 new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
+						ctx.PackageName
+					});
+					versionLog2 += " * <a href=\"" + donateUrl
+						+ "\">" +
+						ctx.GetString(Resource.String.ChangeLog_keptDonate)
+							+ "<a/>";
+					isFirst = false;
+				}
+				foreach (string line in versionLog2.Split('\n'))
 				{
 					string w = line.Trim();
 					if (title)
@@ -165,36 +181,6 @@ namespace keepass2android
 			}
 			sb.Append(HtmlEnd);
 			return sb.ToString();
-		}
-
-
-		static string ConcatChangeLog(Context ctx, string[] changeLog)
-		{
-			string res = "";
-			bool isFirst = true;
-			foreach (string c in changeLog)
-			{
-				res += c;
-				if (isFirst)
-				{
-					if (res.EndsWith("\n") == false)
-						res += "\n";
-					string donateUrl = ctx.GetString(Resource.String.donate_url,
-														 new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
-						ctx.PackageName
-					});
-					res += " * <a href=\"" + donateUrl
-						+ "\">" +
-						ctx.GetString(Resource.String.ChangeLog_keptDonate)
-							+ "<a/>";
-					isFirst = false;
-				}
-
-				while (res.EndsWith("\n\n") == false)
-					res += "\n";
-			}
-			return res.Replace("\n", "<br>");
-
 		}
 	}
 }
