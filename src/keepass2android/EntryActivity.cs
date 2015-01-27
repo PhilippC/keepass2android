@@ -928,11 +928,13 @@ namespace keepass2android
 
 				if (_showPassword)
 				{
-					password.TransformationMethod = null;
+					//password.TransformationMethod = null;
+					password.InputType = InputTypes.TextVariationVisiblePassword ; 
 				}
 				else
 				{
-					password.TransformationMethod = PasswordTransformationMethod.Instance;
+					//password.TransformationMethod = PasswordTransformationMethod.Instance;
+					password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 				}
 			}
 		}

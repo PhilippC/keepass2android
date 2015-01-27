@@ -117,7 +117,7 @@ namespace keepass2android
 						_ctx.GetString(Resource.String.menu_copy_pass), 
 						GetPendingIntent(Intents.CopyPassword, Resource.String.menu_copy_pass)));
 
-				notificationBuilder.SetPriority((int)Android.App.NotificationPriority.High);
+				notificationBuilder.SetPriority((int)Android.App.NotificationPriority.Max);
 				var notification = notificationBuilder.Build();
 				notification.DeleteIntent = CreateDeleteIntent(NotifyCombined);
 				_notificationManager.Notify(NotifyCombined, notification);
