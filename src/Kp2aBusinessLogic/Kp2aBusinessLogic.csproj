@@ -58,8 +58,8 @@
     <Compile Include="database\CheckDatabaseForChanges.cs" />
     <Compile Include="database\edit\EditGroup.cs" />
     <Compile Include="database\edit\MoveElement.cs" />
-    <Compile Include="database\KdbDatabaseLoader.cs" />
-    <Compile Include="database\KdbxDatabaseLoader.cs" />
+    <Compile Include="database\KdbDatabaseFormat.cs" />
+    <Compile Include="database\KdbxDatabaseFormat.cs" />
     <Compile Include="database\PwEntryOutput.cs" />
     <Compile Include="database\SynchronizeCachedDatabase.cs" />
     <Compile Include="DataExchange\FileFormatProvider.cs" />

@@ -51,9 +51,9 @@ namespace Kp2aUnitTests
 			throw new NotImplementedException();
 		}
 
-		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger, IDatabaseLoader databaseLoader)
+		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
 		{
-			_db.LoadData(this, ioConnectionInfo, memoryStream, compKey, statusLogger, databaseLoader);
+			_db.LoadData(this, ioConnectionInfo, memoryStream, compKey, statusLogger, databaseFormat);
 		}
 		public Database GetDb()
 		{

@@ -564,12 +564,12 @@ namespace KeePassLib
 		/// <param name="ioSource">IO connection to load the database from.</param>
 		/// s<param name="pwKey">Key used to open the specified database.</param>
 		/// <param name="slLogger">Logger, which gets all status messages.</param>
-		/// <param name="loader"></param>
+		/// <param name="format"></param>
 		public void Open(IOConnectionInfo ioSource, CompositeKey pwKey,
-			IStatusLogger slLogger, IDatabaseLoader loader)
+			IStatusLogger slLogger, IDatabaseFormat format)
 		{
 			Open(IOConnection.OpenRead(ioSource),  UrlUtil.StripExtension(
-					UrlUtil.GetFileName(ioSource.Path)), ioSource, pwKey, slLogger , loader);
+					UrlUtil.GetFileName(ioSource.Path)), ioSource, pwKey, slLogger , format);
 			
 		}
 
@@ -577,7 +577,7 @@ namespace KeePassLib
 		/// Open a database provided as Stream.
 		/// </summary>
 		public void Open(Stream s, string fileNameWithoutPathAndExt, IOConnectionInfo ioSource, CompositeKey pwKey,
-			IStatusLogger slLogger, IDatabaseLoader loader)
+			IStatusLogger slLogger, IDatabaseFormat format)
 		{
 			Debug.Assert(s != null);
 			if (s == null) throw new ArgumentNullException("s");
@@ -600,10 +600,10 @@ namespace KeePassLib
 
 				m_bModified = false;
 
-				loader.PopulateDatabaseFromStream(this, pwKey, s, slLogger);
+				format.PopulateDatabaseFromStream(this, pwKey, s, slLogger);
 				
-				m_pbHashOfLastIO = loader.HashOfLastStream;
-				m_pbHashOfFileOnDisk = loader.HashOfLastStream;
+				m_pbHashOfLastIO = format.HashOfLastStream;
+				m_pbHashOfFileOnDisk = format.HashOfLastStream;
 				Debug.Assert(m_pbHashOfFileOnDisk != null);
 
 				m_bDatabaseOpened = true;

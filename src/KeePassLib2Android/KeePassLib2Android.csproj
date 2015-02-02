@@ -12,6 +12,8 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AssemblyName>KeePassLib2Android</AssemblyName>
+    <AndroidUseLatestPlatformSdk />
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -54,7 +56,7 @@
     <Reference Include="Mono.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDatabaseLoader.cs" />
+    <Compile Include="IDatabaseFormat.cs" />
     <Compile Include="Kp2aLog.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Resources\KLRes.Generated.cs" />

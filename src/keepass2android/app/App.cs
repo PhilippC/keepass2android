@@ -146,9 +146,9 @@ namespace keepass2android
 
 
 
-		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseLoader databaseLoader)
+		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
 		{
-			_db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseLoader);
+			_db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
 
 			UpdateOngoingNotification();
 		}

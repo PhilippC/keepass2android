@@ -27,7 +27,7 @@ namespace keepass2android
 		/// Loads the specified data as the currently open database, as unlocked.
 		/// </summary>
 		void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey,
-		                  ProgressDialogStatusLogger statusLogger, IDatabaseLoader databaseLoader);
+		                  ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat);
 
 		/// <summary>
 		/// Returns the current database

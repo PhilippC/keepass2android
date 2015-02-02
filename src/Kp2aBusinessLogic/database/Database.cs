@@ -15,8 +15,10 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using Android.Content;
 using Java.Lang;
 using KeePassLib;
@@ -73,8 +75,9 @@ namespace keepass2android
 		private bool _loaded;
 
         private bool _reloadRequested;
+		private IDatabaseFormat _databaseFormat;
 
-        public bool ReloadRequested
+		public bool ReloadRequested
         {
             get { return _reloadRequested; }
             set { _reloadRequested = value; }
@@ -99,14 +102,14 @@ namespace keepass2android
 		/// <summary>
 		/// Do not call this method directly. Call App.Kp2a.LoadDatabase instead.
 		/// </summary>
-		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseLoader databaseLoader)
+		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseFormat databaseFormat)
 		{
 			PwDatabase pwDatabase = new PwDatabase();
 
 			IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
 			Stream s = databaseData ?? fileStorage.OpenFileForRead(iocInfo);
 			var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
-			PopulateDatabaseFromStream(pwDatabase, s, iocInfo, compositeKey, status, databaseLoader);
+			PopulateDatabaseFromStream(pwDatabase, s, iocInfo, compositeKey, status, databaseFormat);
 			LastFileVersion = fileVersion;
 			
 			status.UpdateSubMessage("");
@@ -119,7 +122,9 @@ namespace keepass2android
 			KpDatabase = pwDatabase;
 			SearchHelper = new SearchDbHelper(app);
 
-			CanWrite = databaseLoader.CanWrite && !fileStorage.IsReadOnly(iocInfo);
+			_databaseFormat = databaseFormat;
+
+			CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
 		}
 
 		/// <summary>
@@ -127,11 +132,11 @@ namespace keepass2android
 		/// </summary>
 		public bool CanWrite { get; set; }
 
-		protected  virtual void PopulateDatabaseFromStream(PwDatabase pwDatabase, Stream s, IOConnectionInfo iocInfo, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseLoader databaseLoader)
+		protected  virtual void PopulateDatabaseFromStream(PwDatabase pwDatabase, Stream s, IOConnectionInfo iocInfo, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseFormat databaseFormat)
 		{
 			IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
 			var filename = fileStorage.GetFilenameWithoutPathAndExt(iocInfo);
-			pwDatabase.Open(s, filename, iocInfo, compositeKey, status, databaseLoader);
+			pwDatabase.Open(s, filename, iocInfo, compositeKey, status, databaseFormat);
 		}
 
 
@@ -163,12 +168,13 @@ namespace keepass2android
 		}
 
 
-		public virtual void SaveData(Context ctx)  {
+		public void SaveData(Context ctx)  {
             
 			KpDatabase.UseFileTransactions = _app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
 			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, KpDatabase.UseFileTransactions))
 			{
-				KpDatabase.Save(trans.OpenFile(), null);
+				_databaseFormat.Save(KpDatabase, trans.OpenFile());
+				
 				trans.CommitWrite();
 			}
 			
@@ -186,7 +192,7 @@ namespace keepass2android
 				{
 					if (Entries.ContainsKey(e.Uuid))
 					{
-						throw new DuplicateUuidsException();
+						throw new DuplicateUuidsException("Same UUID for entries '"+Entries[e.Uuid].Strings.ReadSafe(PwDefs.TitleField)+"' and '"+e.Strings.ReadSafe(PwDefs.TitleField)+"'.");
 					}
 					
 				}
@@ -196,11 +202,12 @@ namespace keepass2android
 			{
 				if (checkForDuplicateUuids)
 				{
-
+					/*Disable check. Annoying for users, no problem for KP2A.
 					if (Groups.ContainsKey(g.Uuid))
 					{
 						throw new DuplicateUuidsException();
 					}
+					 * */
 				}
 				Groups[g.Uuid] = g;
 				PopulateGlobals(g);
@@ -236,8 +243,22 @@ namespace keepass2android
 		
 	}
 
-	internal class DuplicateUuidsException : Exception
+	[Serializable]
+	public class DuplicateUuidsException : Exception
 	{
+		public DuplicateUuidsException()
+		{
+		}
+
+		public DuplicateUuidsException(string message) : base(message)
+		{
+		}
+
+		protected DuplicateUuidsException(
+			SerializationInfo info,
+			StreamingContext context) : base(info, context)
+		{
+		}
 	}
 }
 

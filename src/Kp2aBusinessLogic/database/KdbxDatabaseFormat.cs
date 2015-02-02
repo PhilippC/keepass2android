@@ -6,11 +6,11 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	public class KdbxDatabaseLoader : IDatabaseLoader
+	public class KdbxDatabaseFormat : IDatabaseFormat
 	{
 		private readonly KdbxFormat _format;
 
-		public KdbxDatabaseLoader(KdbxFormat format)
+		public KdbxDatabaseFormat(KdbxFormat format)
 		{
 			_format = format;
 		}
@@ -29,5 +29,9 @@ namespace keepass2android
 		public byte[] HashOfLastStream { get; private set; }
 		public bool CanWrite { get { return true; } }
 		public string SuccessMessage { get { return null; } }
+		public void Save(PwDatabase kpDatabase, Stream stream)
+		{
+			kpDatabase.Save(stream, null);
+		}
 	}
 }

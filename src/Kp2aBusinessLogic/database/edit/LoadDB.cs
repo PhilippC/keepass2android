@@ -32,7 +32,7 @@ namespace keepass2android
 		private readonly string _keyfileOrProvider;
 		private readonly IKp2aApp _app;
 		private readonly bool _rememberKeyfile;
-		IDatabaseLoader _loader;
+		IDatabaseFormat _format;
 		
 		public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish): base(finish)
 		{
@@ -68,7 +68,7 @@ namespace keepass2android
 				}
 
 				//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
-				_loader = new KdbxDatabaseLoader(KdbpFile.GetFormatToUse(_ioc));
+				_format = new KdbxDatabaseFormat(KdbpFile.GetFormatToUse(_ioc));
 				TryLoad(databaseStream);
 			}
 			catch (KeyFileException)
@@ -92,7 +92,7 @@ namespace keepass2android
 			catch (DuplicateUuidsException e)
 			{
 				Kp2aLog.Log("Exception: " + e);
-				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError)+" " + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional));
+				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError)+" " +e.Message+ _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional));
 				return;
 			}
 			catch (Exception e)
@@ -118,14 +118,14 @@ namespace keepass2android
 			//now let's go:
 			try
 			{
-				_app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _loader);
+				_app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
 				SaveFileData(_ioc, _keyfileOrProvider);
 				Kp2aLog.Log("LoadDB OK");
-				Finish(true, _loader.SuccessMessage);
+				Finish(true, _format.SuccessMessage);
 			}
 			catch (OldFormatException)
 			{
-				_loader = new KdbDatabaseLoader();
+				_format = new KdbDatabaseFormat();
 				TryLoad(databaseStream);
 			}
 			catch (InvalidCompositeKeyException)

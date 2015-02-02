@@ -39,7 +39,7 @@ namespace TwofishCipher
 		
 		private PwUuid m_uuidCipher;
 
-		private static readonly byte[] TwofishCipherUuidBytes = new byte[]{
+		public static readonly byte[] TwofishCipherUuidBytes = new byte[]{
 			0xAD, 0x68, 0xF2, 0x9F, 0x57, 0x6F, 0x4B, 0xB9, 
 			0xA3, 0x6A, 0xD4, 0x7A, 0xF9, 0x65, 0x34, 0x6C
 		};

@@ -4,7 +4,7 @@ using KeePassLib.Keys;
 
 namespace KeePassLib
 {
-	public interface IDatabaseLoader
+	public interface IDatabaseFormat
 	{
 		void PopulateDatabaseFromStream(PwDatabase db, CompositeKey key, Stream s, IStatusLogger slLogger);
 
@@ -12,5 +12,6 @@ namespace KeePassLib
 
 		bool CanWrite { get;  }
 		string SuccessMessage { get; }
+		void Save(PwDatabase kpDatabase, Stream stream);
 	}
 }

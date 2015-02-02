@@ -151,6 +151,11 @@ namespace KeePassLib.Keys
 
 			return null;
 		}
+
+		public T GetUserKey<T>() where T : IUserKey
+		{
+			return (T) GetUserKey(typeof (T));
+		}
 #endif
 
 		/// <summary>
