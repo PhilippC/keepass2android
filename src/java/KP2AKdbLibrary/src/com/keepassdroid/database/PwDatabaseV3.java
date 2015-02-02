@@ -262,7 +262,7 @@ public class PwDatabaseV3 {
 		return md.digest();
 	}
 	
-		public void super_addGroupTo(PwGroupV3 newGroup, PwGroupV3 parent) {
+	public void super_addGroupTo(PwGroupV3 newGroup, PwGroupV3 parent) {
 		// Add group to parent group
 		if ( parent == null ) {
 			parent = rootGroup;

@@ -159,8 +159,7 @@ public class PwDate implements Cloneable {
 		int year = cal.get(Calendar.YEAR);
 		// File format is a 1 based month, java Calendar uses a zero based month
 		int month = cal.get(Calendar.MONTH) + 1;
-		// File format is a 0 based day, java Calendar uses a 1 based day
-		int day = cal.get(Calendar.DAY_OF_MONTH) - 1;
+		int day = cal.get(Calendar.DAY_OF_MONTH);
 		int hour = cal.get(Calendar.HOUR_OF_DAY);
 		int minute = cal.get(Calendar.MINUTE);
 		int second = cal.get(Calendar.SECOND);

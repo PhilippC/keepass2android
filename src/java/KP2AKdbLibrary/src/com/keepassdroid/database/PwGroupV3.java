@@ -67,6 +67,9 @@ public class PwGroupV3 {
 	public PwIconStandard getIcon() {
 		return icon;
 	}
+	public void setIcon(PwIconStandard _icon) {
+		icon = _icon;
+	}
 
 	public void super_initNewGroup(String nm, PwGroupIdV3 newId) {
 		setId(newId);
@@ -145,6 +148,10 @@ public class PwGroupV3 {
 	public String getName() {
 		return name;
 	}
+	public void setName(String n) {
+		name = n;
+	}
+
 
 	public Date getLastMod() {
 		return tLastMod.getJDate();

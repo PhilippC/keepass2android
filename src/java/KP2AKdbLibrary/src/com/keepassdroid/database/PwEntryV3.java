@@ -93,6 +93,10 @@ protected static final String PMS_TAN_ENTRY = "<TAN>";
 	public PwIconStandard getIcon() {
 		return icon;
 	}
+	
+	public void setIcon(PwIconStandard _icon) {
+		icon = _icon;
+	}
 
 	public boolean isTan() {
 		return getTitle().equals(PMS_TAN_ENTRY) && (getUsername().length() > 0);
