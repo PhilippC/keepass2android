@@ -99,6 +99,11 @@ namespace Kp2aUnitTests
 			throw new NotImplementedException();
 		}
 
+		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
 		{
 			throw new NotImplementedException();

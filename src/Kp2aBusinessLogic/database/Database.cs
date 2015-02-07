@@ -75,7 +75,7 @@ namespace keepass2android
 		private bool _loaded;
 
         private bool _reloadRequested;
-		private IDatabaseFormat _databaseFormat;
+		private IDatabaseFormat _databaseFormat = new KdbxDatabaseFormat(KdbxFormat.Default);
 
 		public bool ReloadRequested
         {
@@ -132,6 +132,12 @@ namespace keepass2android
 		/// </summary>
 		public bool CanWrite { get; set; }
 
+		public IDatabaseFormat DatabaseFormat
+		{
+			get { return _databaseFormat; }
+			set { _databaseFormat = value; }
+		}
+
 		protected  virtual void PopulateDatabaseFromStream(PwDatabase pwDatabase, Stream s, IOConnectionInfo iocInfo, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseFormat databaseFormat)
 		{
 			IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
@@ -173,7 +179,7 @@ namespace keepass2android
 			KpDatabase.UseFileTransactions = _app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
 			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, KpDatabase.UseFileTransactions))
 			{
-				_databaseFormat.Save(KpDatabase, trans.OpenFile());
+				DatabaseFormat.Save(KpDatabase, trans.OpenFile());
 				
 				trans.CommitWrite();
 			}

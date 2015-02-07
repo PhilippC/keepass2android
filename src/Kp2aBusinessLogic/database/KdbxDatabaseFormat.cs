@@ -15,7 +15,7 @@ namespace keepass2android
 			_format = format;
 		}
 
-		public void PopulateDatabaseFromStream(PwDatabase db, CompositeKey key, Stream s, IStatusLogger slLogger)
+		public void PopulateDatabaseFromStream(PwDatabase db, Stream s, IStatusLogger slLogger)
 		{
 			KdbxFile kdbx = new KdbxFile(db);
 			kdbx.DetachBinaries = db.DetachBinaries;
@@ -32,6 +32,11 @@ namespace keepass2android
 		public void Save(PwDatabase kpDatabase, Stream stream)
 		{
 			kpDatabase.Save(stream, null);
+		}
+
+		public bool CanHaveEntriesInRootGroup
+		{
+			get { return true; }
 		}
 	}
 }

@@ -600,7 +600,7 @@ namespace KeePassLib
 
 				m_bModified = false;
 
-				format.PopulateDatabaseFromStream(this, pwKey, s, slLogger);
+				format.PopulateDatabaseFromStream(this, s, slLogger);
 				
 				m_pbHashOfLastIO = format.HashOfLastStream;
 				m_pbHashOfFileOnDisk = format.HashOfLastStream;

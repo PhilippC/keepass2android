@@ -218,8 +218,10 @@ namespace keepass2android
 			pwImp.New(new IOConnectionInfo(), pwDatabase.MasterKey);
 			pwImp.MemoryProtection = pwDatabase.MemoryProtection.CloneDeep();
 			pwImp.MasterKey = pwDatabase.MasterKey;
-			KdbxFile kdbx = new KdbxFile(pwImp);
-			kdbx.Load(GetStreamForBaseFile(fileStorage, ioc), KdbpFile.GetFormatToUse(ioc), null);
+			var stream = GetStreamForBaseFile(fileStorage, ioc);
+
+			_app.GetDb().DatabaseFormat.PopulateDatabaseFromStream(pwImp, stream, null);
+			
 
 			pwDatabase.MergeIn(pwImp, PwMergeMethod.Synchronize, null); 
 

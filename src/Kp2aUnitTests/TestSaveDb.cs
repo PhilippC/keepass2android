@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -15,6 +16,14 @@ using keepass2android;
 
 namespace Kp2aUnitTests
 {
+	static class StringExt
+	{
+		public static bool ContainsAny(this string haystack, IEnumerable<string> needles)
+		{
+			return needles.Any(haystack.Contains);
+		}
+	}
+		
 	[TestClass]
 	class TestSaveDb: TestBase
 	{
@@ -54,39 +63,83 @@ namespace Kp2aUnitTests
 		}
 
 
+		[TestMethod]
+		public void TestLoadEditSaveWithSyncKdb()
+		{
+			TestSync(DefaultDirectory + "savetest.kdb");
+		}
+
 		private void TestSync(string filename)
 		{
 //create the default database:
 			IKp2aApp app = SetupAppWithDatabase(filename);
+			DisplayGroups(app, "After create");
 			//save it and reload it so we have a base version
+			Android.Util.Log.Debug("KP2A", "-- Save first version -- ");
 			SaveDatabase(app);
+			Android.Util.Log.Debug("KP2A", "-- Load DB -- ");
 			app = LoadDatabase(filename, DefaultPassword, DefaultKeyfile);
+			DisplayGroups(app, "After reload");
 			//load it once again:
+			Android.Util.Log.Debug("KP2A", "-- Load DB to app 2-- ");
 			IKp2aApp app2 = LoadDatabase(filename, DefaultPassword, DefaultKeyfile);
+			DisplayGroups(app2, "After load to app2");
 
 			//modify the database by adding a group in both databases:
 			app.GetDb().KpDatabase.RootGroup.AddGroup(new PwGroup(true, true, "TestGroup", PwIcon.Apple), true);
 			var group2 = new PwGroup(true, true, "TestGroup2", PwIcon.Energy);
 			app2.GetDb().KpDatabase.RootGroup.AddGroup(group2, true);
 			//save the database from app 1:
+			Android.Util.Log.Debug("KP2A", "-- Save from app 1 (with TestGroup) -- ");
 			SaveDatabase(app);
+			
 
 			((TestKp2aApp) app2).SetYesNoCancelResult(TestKp2aApp.YesNoCancelResult.Yes);
 
 			//save the database from app 2: This save operation must detect the changes made from app 1 and ask if it should sync:
+			Android.Util.Log.Debug("KP2A", "-- Save from app 2 (with TestGroup2, requires merge) -- ");
 			SaveDatabase(app2);
-
+			DisplayGroups(app2, "After save with merge");
 			//make sure the right question was asked
 			Assert.AreEqual(UiStringKey.TitleSyncQuestion, ((TestKp2aApp) app2).LastYesNoCancelQuestionTitle);
 
 			//add group 2 to app 1:
 			app.GetDb().KpDatabase.RootGroup.AddGroup(group2, true);
+			app.GetDb().KpDatabase.RootGroup.SortSubGroups(true);
 
+			Android.Util.Log.Debug("KP2A", "-- Load DB to new app -- ");
 			//load database to a new app instance:
 			IKp2aApp resultApp = LoadDatabase(filename, DefaultPassword, DefaultKeyfile);
-
+			resultApp.GetDb().KpDatabase.RootGroup.SortSubGroups(true);
 			//ensure the sync was successful:
-			AssertDatabasesAreEqual(app.GetDb().KpDatabase, resultApp.GetDb().KpDatabase);
+			string kdbxXml = DatabaseToXml(app);
+			string kdbxResultXml = DatabaseToXml(resultApp);
+
+			RemoveKdbLines(ref kdbxXml, true);
+			RemoveKdbLines(ref kdbxResultXml, true);
+
+			Assert.AreEqual(kdbxXml, kdbxResultXml);
+
+			//AssertDatabasesAreEqual(app.GetDb().KpDatabase, resultApp.GetDb().KpDatabase);
+		}
+
+		private void DisplayGroups(IKp2aApp app, string name)
+		{
+			LogDebug("Groups display: " + name);
+			DisplayGroupRecursive(0, app.GetDb().Root);
+		}
+
+		private void DisplayGroupRecursive(int level, PwGroup g)
+		{
+			LogDebug("Group name="+g.Name+", exp: " + g.Expires+ ", expTime="+g.ExpiryTime.ToString(CultureInfo.InvariantCulture));
+			foreach (var ch in g.Groups)
+				DisplayGroupRecursive(level + 1, ch);
+
+		}
+
+		private static void LogDebug(string text, int indent=0)
+		{
+			Android.Util.Log.Debug("KP2A", text.PadLeft(indent*2));
 		}
 
 
@@ -293,9 +346,97 @@ namespace Kp2aUnitTests
 
 			Assert.AreEqual(kdbxXml,kdbxReloadedXml);
 			
+		}
+
+		[TestMethod]
+		public void TestLoadAndSave_TestIdenticalFiles_kdb()
+		{
+			IKp2aApp app = LoadDatabase(DefaultDirectory + "complexDb.kdb", "test", null);
+			app.GetDb().Root.SortSubGroups(true);
+			string kdbxXml = DatabaseToXml(app);
+
+			newFilename = TestDbDirectory + "tmp_complexDb.kdb";
+			if (File.Exists(newFilename))
+				File.Delete(newFilename);
+			app.GetDb().KpDatabase.IOConnectionInfo.Path = newFilename;
+			app.GetDb().SaveData(Application.Context);
+
+
+			IKp2aApp appReloaded = LoadDatabase(newFilename, "test", null);
+			appReloaded.GetDb().Root.SortSubGroups(true);
+			string kdbxReloadedXml = DatabaseToXml(appReloaded);
+
+			RemoveKdbLines(ref kdbxReloadedXml);
+			RemoveKdbLines(ref kdbxXml);
+
+			Assert.AreEqual(kdbxXml, kdbxReloadedXml);
+
 
 
 		}
+
+
+		[TestMethod]
+		public void TestCreateSaveAndLoad_TestIdenticalFiles_kdb()
+		{
+			string filename = DefaultDirectory + "createsaveandload.kdb";
+			IKp2aApp app = SetupAppWithDatabase(filename);
+			string kdbxXml = DatabaseToXml(app);
+			//save it and reload it 
+			Android.Util.Log.Debug("KP2A", "-- Save DB -- ");
+			SaveDatabase(app);
+			Android.Util.Log.Debug("KP2A", "-- Load DB -- ");
+
+
+			PwDatabase pwImp = new PwDatabase();
+			PwDatabase pwDatabase = app.GetDb().KpDatabase;
+			pwImp.New(new IOConnectionInfo(), pwDatabase.MasterKey);
+			pwImp.MemoryProtection = pwDatabase.MemoryProtection.CloneDeep();
+			pwImp.MasterKey = pwDatabase.MasterKey;
+			
+			IOConnectionInfo ioc = new IOConnectionInfo() {Path = filename};
+			using (Stream s = app.GetFileStorage(ioc).OpenFileForRead(ioc))
+			{
+				app.GetDb().DatabaseFormat.PopulateDatabaseFromStream(pwImp, s, null);	
+			}
+			string kdbxReloadedXml = DatabaseToXml(app);
+
+			RemoveKdbLines(ref kdbxReloadedXml);
+			RemoveKdbLines(ref kdbxXml);
+
+			Assert.AreEqual(kdbxXml, kdbxReloadedXml);
+
+
+
+		}
+		private void RemoveKdbLines(ref string databaseXml, bool removeForAfterSync=false)
+		{
+			//these values are not part of .kdb and thus cannot be the same when comparing two .kdb files
+			// -> remove them from the .xml
+			var stuffToRemove = new string[] {"<DatabaseNameChanged>",
+				"<DatabaseDescriptionChanged>", 
+				"<DefaultUserNameChanged>",
+				"<MasterKeyChanged>",
+				"<RecycleBinChanged>",
+				"<EntryTemplatesGroupChanged>",
+				"<Key>","<Key />" //key of attachments
+			}.ToList();
+			string[] moreStuffToRemove = new string[]
+				{
+					"<UUID>",
+					"<ExpiryTime>",
+					"<LocationChanged>"
+				};
+			if (removeForAfterSync)
+			{
+				stuffToRemove.AddRange(moreStuffToRemove);
+			}
+			string[] lines = databaseXml.Split(new char[] {'\n'});
+			databaseXml = lines
+				.Where(line => !line.ContainsAny(stuffToRemove))
+				.Aggregate("", (current, line) => current + (line + "\n"));
+		}
+
 
 		[TestMethod]
 		public void TestLoadKdbxAndSaveKdbp_TestIdenticalFiles()

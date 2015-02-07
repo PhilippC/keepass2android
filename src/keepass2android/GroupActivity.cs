@@ -85,7 +85,7 @@ namespace keepass2android
 		}
 		private bool AddEntryEnabled
 		{
-			get { return App.Kp2a.GetDb().CanWrite; }
+			get { return App.Kp2a.GetDb().CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.GetDb().DatabaseFormat.CanHaveEntriesInRootGroup); }
 		}
 
 

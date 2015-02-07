@@ -187,8 +187,12 @@ namespace Kp2aUnitTests
 			}
 				
 		}
-		
-		
+
+		public bool CheckForDuplicateUuids
+		{
+			get { return true; }
+		}
+
 
 		public bool OnServerCertificateError(int sslPolicyErrors)
 		{

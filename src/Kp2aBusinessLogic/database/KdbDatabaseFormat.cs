@@ -22,12 +22,12 @@ using Random = System.Random;
 
 namespace keepass2android
 {
-	class KdbDatabaseFormat: IDatabaseFormat
+	public class KdbDatabaseFormat: IDatabaseFormat
 	{
 		private Dictionary<PwUuid, AdditionalGroupData> _groupData = new Dictionary<PwUuid, AdditionalGroupData>();
 		private static readonly DateTime _expireNever = new DateTime(2999,12,28,23,59,59);
 
-		public void PopulateDatabaseFromStream(PwDatabase db, CompositeKey key, Stream s, IStatusLogger slLogger)
+		public void PopulateDatabaseFromStream(PwDatabase db, Stream s, IStatusLogger slLogger)
 		{
 			#if !EXCLUDE_KEYTRANSFORM
 			var importer = new Com.Keepassdroid.Database.Load.ImporterV3();
@@ -35,13 +35,13 @@ namespace keepass2android
 			var hashingStream = new HashingStreamEx(s, false, new SHA256Managed());
 
 			string password = "";//no need to distinguish between null and "" because empty passwords are invalid (and null is not allowed)
-			KcpPassword passwordKey = (KcpPassword)key.GetUserKey(typeof(KcpPassword));
+			KcpPassword passwordKey = (KcpPassword)db.MasterKey.GetUserKey(typeof(KcpPassword));
 			if (passwordKey != null)
 			{
 				password = passwordKey.Password.ReadString();
 			}
 
-			KcpKeyFile passwordKeyfile = (KcpKeyFile)key.GetUserKey(typeof(KcpKeyFile));
+			KcpKeyFile passwordKeyfile = (KcpKeyFile)db.MasterKey.GetUserKey(typeof(KcpKeyFile));
 			MemoryStream keyfileStream = null;
 			if (passwordKeyfile != null)
 			{
@@ -91,22 +91,31 @@ namespace keepass2android
 		private PwGroup ConvertGroup(PwGroupV3 groupV3)
 		{
 			PwGroup pwGroup = new PwGroup(true, false);
-			pwGroup.Name = groupV3.Name;
+			pwGroup.Uuid = CreateUuidFromGroupId(groupV3.Id.Id);
+
+			//check if we have group data for this group already (from loading in a previous pass).
+			//then use the same UUID (important for merging)
+			var gdForGroup = _groupData.Where(g => g.Value.Id == groupV3.Id.Id).ToList();
+			if (gdForGroup.Count == 1)
+			{
+				pwGroup.Uuid = gdForGroup.Single().Key;
+			}
 			
+			pwGroup.Name = groupV3.Name;
+			Android.Util.Log.Debug("KP2A", "load kdb: group " + groupV3.Name);
 			pwGroup.CreationTime = ConvertTime(groupV3.TCreation);
 			pwGroup.LastAccessTime = ConvertTime(groupV3.TLastAccess);
 			pwGroup.LastModificationTime = ConvertTime(groupV3.TLastMod);
-			pwGroup.Expires = !PwGroupV3.NeverExpire.Equals(groupV3.TExpire);
-			if (pwGroup.Expires)
-				pwGroup.ExpiryTime = ConvertTime(groupV3.TExpire);
+			pwGroup.ExpiryTime = ConvertTime(groupV3.TExpire);
+			pwGroup.Expires = !(Math.Abs((pwGroup.ExpiryTime - _expireNever).TotalMilliseconds) < 500); ;
 
 			if (groupV3.Icon != null)
 				pwGroup.IconId = (PwIcon) groupV3.Icon.IconId;
-			_groupData.Add(pwGroup.Uuid, new AdditionalGroupData
+			_groupData[pwGroup.Uuid] = new AdditionalGroupData
 				{
 					Flags = groupV3.Flags,
 					Id = groupV3.Id.Id
-				});
+				};
 
 
 			for (int i = 0; i < groupV3.ChildGroups.Count;i++)
@@ -122,6 +131,20 @@ namespace keepass2android
 			}
 			
 			return pwGroup;
+		}
+
+		private PwUuid CreateUuidFromGroupId(int id)
+		{
+			byte[] template = new byte[] { 0xd2, 0x18, 0x22, 0x93, 
+										   0x8e, 0xa4, 0x43, 0xf2, 
+										   0xb4, 0xb5, 0x2a, 0x49, 
+										   0x00, 0x00, 0x00, 0x00};
+			byte[] idBytes = BitConverter.GetBytes(id);
+			for (int i = 0; i < 4; i++)
+			{
+				template[i + 12] = idBytes[i];
+			}
+			return new PwUuid(template);
 		}
 
 		private PwEntry ConvertEntry(PwEntryV3 fromEntry)
@@ -142,6 +165,7 @@ namespace keepass2android
 			if (fromEntry.Icon != null)
 				toEntry.IconId = (PwIcon) fromEntry.Icon.IconId;
 			SetFieldIfAvailable(toEntry, PwDefs.TitleField, false, fromEntry.Title);
+			Android.Util.Log.Debug("KP2A", "load kdb: entry " + toEntry.Strings.ReadSafe(PwDefs.TitleField));
 			SetFieldIfAvailable(toEntry, PwDefs.UserNameField, false, fromEntry.Username);
 			SetFieldIfAvailable(toEntry, PwDefs.UrlField, false, fromEntry.Url);
 			SetFieldIfAvailable(toEntry, PwDefs.PasswordField, true, fromEntry.Password);
@@ -223,7 +247,9 @@ namespace keepass2android
 			}
 
 			//traverse again and assign parents
-			db.RootGroup = new PwGroupV3() { Level = -1};
+			db.RootGroup = ConvertGroup(kpDatabase.RootGroup, db);
+			db.RootGroup.Level = -1;
+
 			AssignParent(kpDatabase.RootGroup, db, groupV3s);
 			
 			
@@ -238,8 +264,17 @@ namespace keepass2android
 			}
 
 
-			PwDbV3Output output = new PwDbV3Output(db, stream);
+			HashingStreamEx hashedStream = new HashingStreamEx(stream, true, null);
+			PwDbV3Output output = new PwDbV3Output(db, hashedStream);
 			output.Output();
+			hashedStream.Close();
+			HashOfLastStream = hashedStream.Hash;
+			stream.Close();
+		}
+
+		public bool CanHaveEntriesInRootGroup
+		{
+			get { return false; }
 		}
 
 		private void AssignParent(PwGroup kpParent, PwDatabaseV3 dbV3, Dictionary<int, PwGroupV3> groupV3s)
@@ -254,7 +289,7 @@ namespace keepass2android
 				parentV3 = groupV3s[_groupData[kpParent.Uuid].Id];
 			}
 
-			foreach (PwGroup g in kpParent.Groups)
+			foreach (PwGroup g in kpParent.Groups.OrderBy(g => g.Name))
 			{
 				PwGroupV3 groupV3 = groupV3s[_groupData[g.Uuid].Id];
 				
@@ -269,6 +304,7 @@ namespace keepass2android
 		{
 			PwGroupV3 toGroup = new PwGroupV3();
 			toGroup.Name = fromGroup.Name;
+			Android.Util.Log.Debug("KP2A", "save kdb: group " + fromGroup.Name);
 
 			toGroup.TCreation = new PwDate(ConvertTime(fromGroup.CreationTime));
 			toGroup.TLastAccess= new PwDate(ConvertTime(fromGroup.LastAccessTime));
@@ -279,7 +315,7 @@ namespace keepass2android
 			}
 			else
 			{
-				toGroup.TExpire = new PwDate(PwGroupV3.NeverExpire);
+				toGroup.TExpire = new PwDate(ConvertTime(_expireNever));
 			}
 			
 			toGroup.Icon = dbTo.IconFactory.GetIcon((int) fromGroup.IconId);
@@ -327,9 +363,12 @@ namespace keepass2android
 
 			toEntry.Icon = dbTo.IconFactory.GetIcon((int) fromEntry.IconId);
 			toEntry.SetTitle(GetString(fromEntry, PwDefs.TitleField), dbTo);
+			Android.Util.Log.Debug("KP2A", "save kdb: entry " + fromEntry.Strings.ReadSafe(PwDefs.TitleField));
 			toEntry.SetUsername(GetString(fromEntry, PwDefs.UserNameField), dbTo);
 			toEntry.SetUrl(GetString(fromEntry, PwDefs.UrlField), dbTo);
-			toEntry.SetPassword(GetString(fromEntry, PwDefs.PasswordField), dbTo);
+			var pwd = GetString(fromEntry, PwDefs.PasswordField);
+			if (pwd != null)
+				toEntry.SetPassword(pwd, dbTo);
 			toEntry.SetNotes(GetString(fromEntry, PwDefs.NotesField), dbTo);
 			if (fromEntry.Binaries.Any())
 			{
@@ -344,7 +383,7 @@ namespace keepass2android
 		{
 			ProtectedString protectedString = fromEntry.Strings.Get(id);
 			if (protectedString == null)
-				return null;
+				return "";
 			return protectedString.ReadString();
 		}
 

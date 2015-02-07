@@ -174,7 +174,6 @@
     <Compile Include="views\ClickView.cs" />
     <Compile Include="views\FileStorageViewKp2a.cs" />
     <Compile Include="views\GroupView.cs" />
-    <Compile Include="views\GroupRootView.cs" />
     <Compile Include="PwGroupListAdapter.cs" />
     <Compile Include="views\FileStorageView.cs" />
     <Compile Include="views\Kp2aShortHelpView.cs" />

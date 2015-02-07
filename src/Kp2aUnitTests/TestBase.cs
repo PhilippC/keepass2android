@@ -136,6 +136,10 @@ namespace Kp2aUnitTests
 
 			IOConnectionInfo ioc = new IOConnectionInfo {Path = filename};
 			Database db = app.CreateNewDatabase();
+			if (filename.EndsWith(".kdb"))
+			{
+				db.DatabaseFormat = new KdbDatabaseFormat();
+			}
 
 			db.KpDatabase = new PwDatabase();
 

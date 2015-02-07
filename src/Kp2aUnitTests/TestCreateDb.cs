@@ -30,9 +30,12 @@ namespace Kp2aUnitTests
 			bool createSuccesful = false;
 			//create the task:
 			CreateDb createDb = new CreateDb(app, Application.Context, ioc, new ActionOnFinish((success, message) =>
-				{ createSuccesful = success; 
+				{ createSuccesful = success;
+					if (!success)
+						Android.Util.Log.Debug("KP2A_Test", message);
 				}), false);
 			//run it:
+			
 			createDb.Run();
 			//check expectations:
 			Assert.IsTrue(createSuccesful);
@@ -43,7 +46,7 @@ namespace Kp2aUnitTests
 
 			//ensure the the database can be loaded from file:
 			PwDatabase loadedDb = new PwDatabase();
-			loadedDb.Open(ioc, new CompositeKey(), null, new KdbxDatabaseLoader(KdbxFormat.Default));
+			loadedDb.Open(ioc, new CompositeKey(), null, new KdbxDatabaseFormat(KdbxFormat.Default));
 
 			//Check whether the databases are equal
 			AssertDatabasesAreEqual(loadedDb, app.GetDb().KpDatabase);
