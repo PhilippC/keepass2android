@@ -426,11 +426,13 @@ namespace KeePassLib
 		public byte[] HashOfFileOnDisk
 		{
 			get { return m_pbHashOfFileOnDisk; }
+			set { m_pbHashOfFileOnDisk = value; }
 		}
 
 		public byte[] HashOfLastIO
 		{
 			get { return m_pbHashOfLastIO; }
+			set { m_pbHashOfLastIO = value; }
 		}
 
 		public bool UseFileTransactions

@@ -36,7 +36,7 @@ namespace keepass2android
 		{
 			get
 			{
-				return CanRecycleGroup(_entry.ParentGroup);
+				return App.GetDb().DatabaseFormat.CanRecycle && CanRecycleGroup(_entry.ParentGroup);
 			}
 		}
 
@@ -62,7 +62,8 @@ namespace keepass2android
 			if(pgParent != null)
 			{
 				pgParent.Entries.Remove(pe);
-				
+				//TODO check if RecycleBin is deleted
+				//TODO no recycle bin in KDB
 
 				if ((DeletePermanently) || (!CanRecycle))
 				{
@@ -85,7 +86,7 @@ namespace keepass2android
 				}
 				else // Recycle
 				{
-					EnsureRecycleBin(ref pgRecycleBin, ref bUpdateGroupList);
+					EnsureRecycleBinExists(ref pgRecycleBin, ref bUpdateGroupList);
 					
 					pgRecycleBin.AddEntry(pe, true, true);
 					pe.Touch(false);
@@ -97,6 +98,9 @@ namespace keepass2android
 							Db.Dirty.Add(pgParent);
 							// Mark new parent dirty
 							Db.Dirty.Add(pgRecycleBin);
+							// mark root dirty if recycle bin was created
+							if (bUpdateGroupList)
+								Db.Dirty.Add(Db.Root);
 						} else {
 							// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
 							App.LockDatabase(false);

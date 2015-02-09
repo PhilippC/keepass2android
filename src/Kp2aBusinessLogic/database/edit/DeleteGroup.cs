@@ -56,7 +56,7 @@ namespace keepass2android
 		{
 			get
 			{
-				return CanRecycleGroup(_group);
+				return App.GetDb().DatabaseFormat.CanRecycle && CanRecycleGroup(_group);
 			}
 		}
 
@@ -91,8 +91,8 @@ namespace keepass2android
 			}
 			else // Recycle
 			{
-				bool bDummy = false;
-				EnsureRecycleBin(ref pgRecycleBin, ref bDummy);
+				bool groupListUpdateRequired = false;
+				EnsureRecycleBinExists(ref pgRecycleBin, ref groupListUpdateRequired);
 				
 				pgRecycleBin.AddGroup(pg, true, true);
 				pg.Touch(false);
@@ -106,6 +106,10 @@ namespace keepass2android
 						}
 						//Mark old parent dirty:
 						Db.Dirty.Add(pgParent);
+
+						// mark root dirty if recycle bin was created
+						if (groupListUpdateRequired)
+							Db.Dirty.Add(Db.Root);
 					} else {
 						// Let's not bother recovering from a failure to save a deleted group.  It is too much work.
 						App.LockDatabase(false);

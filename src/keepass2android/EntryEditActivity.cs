@@ -261,9 +261,8 @@ namespace keepass2android
 
 				TextView keyView = (TextView) ees.FindViewById(Resource.Id.title);
 				keyView.RequestFocus();
-
-					
 			};
+			SetAddExtraStringEnabled();
 		
 			((CheckBox)FindViewById(Resource.Id.entry_expires_checkbox)).CheckedChange += (sender, e) => 
 			{
@@ -278,6 +277,12 @@ namespace keepass2android
 			};
 
 
+		}
+
+		private void SetAddExtraStringEnabled()
+		{
+			if (!App.Kp2a.GetDb().DatabaseFormat.CanHaveCustomFields)
+				((Button)FindViewById(Resource.Id.add_advanced)).Visibility = ViewStates.Gone;
 		}
 
 		private void MakePasswordVisibleOrHidden()
@@ -663,7 +668,12 @@ namespace keepass2android
 			foreach (KeyValuePair<string, ProtectedBinary> pair in State.Entry.Binaries.OrderBy(p => p.Key) )
 			{
 				String key = pair.Key;
-				Button binaryButton = new Button(this) {Text = key};
+				String label = key;
+				if ((String.IsNullOrEmpty(label) || (!App.Kp2a.GetDb().DatabaseFormat.SupportsAttachmentKeys)))
+				{
+					label = "<attachment>";
+				}
+				Button binaryButton = new Button(this) {Text = label};
 
 				binaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuDelete),null, null, null);
 				binaryButton.Click += (sender, e) => 
@@ -680,6 +690,9 @@ namespace keepass2android
 
 			Button addBinaryButton = new Button(this) {Text = GetString(Resource.String.add_binary)};
 			addBinaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuAdd) , null, null, null);
+			addBinaryButton.Enabled = true;
+			if (!App.Kp2a.GetDb().DatabaseFormat.CanHaveMultipleAttachments)
+				addBinaryButton.Enabled = !State.Entry.Binaries.Any();
 			addBinaryButton.Click += (sender, e) => 
 			{
 				Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForBinary, false);
@@ -837,8 +850,26 @@ namespace keepass2android
 
 			PopulateBinaries();
 
-			PopulateText(Resource.Id.entry_override_url, State.Entry.OverrideUrl);
-			PopulateText(Resource.Id.entry_tags, StrUtil.TagsToString(State.Entry.Tags, true));
+			if (App.Kp2a.GetDb().DatabaseFormat.SupportsOverrideUrl)
+			{
+				PopulateText(Resource.Id.entry_override_url, State.Entry.OverrideUrl);
+			}
+			else
+			{
+				FindViewById(Resource.Id.entry_override_url_label).Visibility = ViewStates.Gone;
+				FindViewById(Resource.Id.entry_override_url).Visibility = ViewStates.Gone;
+			}
+			
+			if (App.Kp2a.GetDb().DatabaseFormat.SupportsTags)
+			{
+				PopulateText(Resource.Id.entry_tags, StrUtil.TagsToString(State.Entry.Tags, true));	
+			}
+			else
+			{
+				FindViewById(Resource.Id.entry_tags_label).Visibility = ViewStates.Gone;
+				FindViewById(Resource.Id.entry_tags).Visibility = ViewStates.Gone;
+			}
+			
 
 			UpdateExpires();
 		}

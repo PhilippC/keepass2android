@@ -15,5 +15,13 @@ namespace KeePassLib
 		void Save(PwDatabase kpDatabase, Stream stream);
 
 		bool CanHaveEntriesInRootGroup { get; }
+		bool CanHaveMultipleAttachments { get;  }
+		bool CanHaveCustomFields { get;  }
+		bool HasDefaultUsername { get; }
+		bool HasDatabaseName { get; }
+		bool SupportsAttachmentKeys { get;  }
+		bool SupportsTags { get; }
+		bool SupportsOverrideUrl { get; }
+		bool CanRecycle { get; }
 	}
 }

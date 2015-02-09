@@ -89,56 +89,71 @@ namespace keepass2android
 			rounds.Enabled = db.CanWrite;
 
 			Preference defaultUser = FindPreference(GetString(Resource.String.default_username_key));
-			defaultUser.Enabled = db.CanWrite;
-			((EditTextPreference)defaultUser).EditText.Text = db.KpDatabase.DefaultUserName;
-			((EditTextPreference)defaultUser).Text = db.KpDatabase.DefaultUserName;
-			defaultUser.PreferenceChange += (sender, e) => 
+			if (!db.DatabaseFormat.HasDefaultUsername)
 			{
-				DateTime previousUsernameChanged = db.KpDatabase.DefaultUserNameChanged;
-				String previousUsername = db.KpDatabase.DefaultUserName;
-				db.KpDatabase.DefaultUserName = e.NewValue.ToString();
-				
-				SaveDb save = new SaveDb(this, App.Kp2a, new ActionOnFinish( (success, message) => 
+				((PreferenceScreen) FindPreference(GetString(Resource.String.db_key))).RemovePreference(defaultUser);
+			}
+			else
+			{
+				defaultUser.Enabled = db.CanWrite;
+				((EditTextPreference)defaultUser).EditText.Text = db.KpDatabase.DefaultUserName;
+				((EditTextPreference)defaultUser).Text = db.KpDatabase.DefaultUserName;
+				defaultUser.PreferenceChange += (sender, e) =>
 				{
-					if (!success)
-					{
-						db.KpDatabase.DefaultUserName = previousUsername;
-						db.KpDatabase.DefaultUserNameChanged = previousUsernameChanged;
-						Toast.MakeText(this, message, ToastLength.Long).Show();
-					}
-				}));
-				ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
-				pt.Run();
-			};
+					DateTime previousUsernameChanged = db.KpDatabase.DefaultUserNameChanged;
+					String previousUsername = db.KpDatabase.DefaultUserName;
+					db.KpDatabase.DefaultUserName = e.NewValue.ToString();
 
+					SaveDb save = new SaveDb(this, App.Kp2a, new ActionOnFinish((success, message) =>
+					{
+						if (!success)
+						{
+							db.KpDatabase.DefaultUserName = previousUsername;
+							db.KpDatabase.DefaultUserNameChanged = previousUsernameChanged;
+							Toast.MakeText(this, message, ToastLength.Long).Show();
+						}
+					}));
+					ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
+					pt.Run();
+				};
+	
+			}
+			
+			
 			Preference databaseName = FindPreference(GetString(Resource.String.database_name_key));
-			databaseName.Enabled = db.CanWrite;
-			((EditTextPreference)databaseName).EditText.Text = db.KpDatabase.Name;
-			((EditTextPreference)databaseName).Text = db.KpDatabase.Name;
-			databaseName.PreferenceChange += (sender, e) => 
+			if (!db.DatabaseFormat.HasDatabaseName)
 			{
-				DateTime previousNameChanged = db.KpDatabase.NameChanged;
-				String previousName = db.KpDatabase.Name;
-				db.KpDatabase.Name = e.NewValue.ToString();
-					
-				SaveDb save = new SaveDb(this, App.Kp2a, new ActionOnFinish( (success, message) => 
-				{
-					if (!success)
+				((PreferenceScreen) FindPreference(GetString(Resource.String.db_key))).RemovePreference(databaseName);
+			}
+			else
+			{
+				databaseName.Enabled = db.CanWrite;
+				((EditTextPreference) databaseName).EditText.Text = db.KpDatabase.Name;
+				((EditTextPreference) databaseName).Text = db.KpDatabase.Name;
+				databaseName.PreferenceChange += (sender, e) =>
 					{
-						db.KpDatabase.Name = previousName;
-						db.KpDatabase.NameChanged = previousNameChanged;
-						Toast.MakeText(this, message, ToastLength.Long).Show();
-					}
-					else
-					{
-						// Name is reflected in notification, so update it
-						App.Kp2a.UpdateOngoingNotification();
-					}
-				}));
-                ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
-				pt.Run();
-			};
+						DateTime previousNameChanged = db.KpDatabase.NameChanged;
+						String previousName = db.KpDatabase.Name;
+						db.KpDatabase.Name = e.NewValue.ToString();
 
+						SaveDb save = new SaveDb(this, App.Kp2a, new ActionOnFinish((success, message) =>
+							{
+								if (!success)
+								{
+									db.KpDatabase.Name = previousName;
+									db.KpDatabase.NameChanged = previousNameChanged;
+									Toast.MakeText(this, message, ToastLength.Long).Show();
+								}
+								else
+								{
+									// Name is reflected in notification, so update it
+									App.Kp2a.UpdateOngoingNotification();
+								}
+							}));
+						ProgressTask pt = new ProgressTask(App.Kp2a, this, save);
+						pt.Run();
+					};
+			}
 			Preference changeMaster = FindPreference(GetString(Resource.String.master_pwd_key));
 			if (App.Kp2a.GetDb().CanWrite)
 			{

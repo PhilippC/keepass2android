@@ -66,7 +66,7 @@ namespace keepass2android
 		}
 
 		
-		protected void EnsureRecycleBin(ref PwGroup pgRecycleBin,
+		protected void EnsureRecycleBinExists(ref PwGroup pgRecycleBin,
 		                                    ref bool bGroupListUpdateRequired)
 		{
 			if ((Db == null) || (Db.KpDatabase == null)) { return; }
@@ -87,7 +87,7 @@ namespace keepass2android
 						};
 
 				Db.KpDatabase.RootGroup.AddGroup(pgRecycleBin, true);
-				
+				Db.Groups[pgRecycleBin.Uuid] = pgRecycleBin;
 				Db.KpDatabase.RecycleBinUuid = pgRecycleBin.Uuid;
 				
 				bGroupListUpdateRequired = true;

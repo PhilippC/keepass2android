@@ -26,6 +26,7 @@ namespace keepass2android
 	{
 		private Dictionary<PwUuid, AdditionalGroupData> _groupData = new Dictionary<PwUuid, AdditionalGroupData>();
 		private static readonly DateTime _expireNever = new DateTime(2999,12,28,23,59,59);
+		private List<PwEntryV3> _metaStreams;
 
 		public void PopulateDatabaseFromStream(PwDatabase db, Stream s, IStatusLogger slLogger)
 		{
@@ -33,6 +34,8 @@ namespace keepass2android
 			var importer = new Com.Keepassdroid.Database.Load.ImporterV3();
 
 			var hashingStream = new HashingStreamEx(s, false, new SHA256Managed());
+
+			_metaStreams = new List<PwEntryV3>();
 
 			string password = "";//no need to distinguish between null and "" because empty passwords are invalid (and null is not allowed)
 			KcpPassword passwordKey = (KcpPassword)db.MasterKey.GetUserKey(typeof(KcpPassword));
@@ -54,6 +57,7 @@ namespace keepass2android
 				var dbv3 = importer.OpenDatabase(hashingStream, password, keyfileStream);
 
 				db.Name = dbv3.Name;
+				db.KeyEncryptionRounds = (ulong) dbv3.NumKeyEncRounds;
 				db.RootGroup = ConvertGroup(dbv3.RootGroup);
 				if (dbv3.Algorithm == PwEncryptionAlgorithm.Rjindal)
 				{
@@ -126,7 +130,11 @@ namespace keepass2android
 			{
 				var entry = groupV3.GetEntryAt(i);
 				if (entry.IsMetaStream)
+				{
+					_metaStreams.Add(entry);
 					continue;
+				}
+					
 				pwGroup.AddEntry(ConvertEntry(entry), true);
 			}
 			
@@ -251,8 +259,6 @@ namespace keepass2android
 			db.RootGroup.Level = -1;
 
 			AssignParent(kpDatabase.RootGroup, db, groupV3s);
-			
-			
 
 			foreach (PwEntry e in kpDatabase.RootGroup.GetEntries(true))
 			{
@@ -263,16 +269,69 @@ namespace keepass2android
 				db.Entries.Add(entryV3);
 			}
 
+			//add meta stream entries:
+			if (db.Groups.Any())
+			{
+				foreach (var metaEntry in _metaStreams)
+				{
+					metaEntry.GroupId = db.Groups.First().Id.Id;
+					db.Entries.Add(metaEntry);
+				}
+	
+			}
+			
 
 			HashingStreamEx hashedStream = new HashingStreamEx(stream, true, null);
 			PwDbV3Output output = new PwDbV3Output(db, hashedStream);
 			output.Output();
 			hashedStream.Close();
 			HashOfLastStream = hashedStream.Hash;
+			
+			kpDatabase.HashOfLastIO = kpDatabase.HashOfFileOnDisk = HashOfLastStream;
 			stream.Close();
 		}
 
 		public bool CanHaveEntriesInRootGroup
+		{
+			get { return false; }
+		}
+
+		public bool CanHaveMultipleAttachments
+		{
+			get { return false; }
+		}
+
+		public bool CanHaveCustomFields
+		{
+			get { return false; }
+		}
+
+		public bool HasDefaultUsername
+		{
+			get { return false; }
+		}
+
+		public bool HasDatabaseName
+		{
+			get { return false; }
+		}
+
+		public bool SupportsAttachmentKeys
+		{
+			get { return false; }
+		}
+
+		public bool SupportsTags
+		{
+			get { return false; }
+		}
+
+		public bool SupportsOverrideUrl
+		{
+			get { return false; }
+		}
+
+		public bool CanRecycle
 		{
 			get { return false; }
 		}
@@ -304,6 +363,7 @@ namespace keepass2android
 		{
 			PwGroupV3 toGroup = new PwGroupV3();
 			toGroup.Name = fromGroup.Name;
+			//todo remove
 			Android.Util.Log.Debug("KP2A", "save kdb: group " + fromGroup.Name);
 
 			toGroup.TCreation = new PwDate(ConvertTime(fromGroup.CreationTime));

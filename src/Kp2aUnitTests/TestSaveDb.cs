@@ -375,6 +375,32 @@ namespace Kp2aUnitTests
 
 		}
 
+		[TestMethod]
+		public void TestSaveTwice_kdb()
+		{
+			var filename = DefaultDirectory + "savetwice.kdb";
+			//create the default database:
+			IKp2aApp app = SetupAppWithDatabase(filename);
+			DisplayGroups(app, "After create 1");
+			//save it and reload it so we have a base version
+			Android.Util.Log.Debug("KP2A", "-- Save first version -- ");
+			SaveDatabase(app);
+			Android.Util.Log.Debug("KP2A", "-- Load DB -- ");
+			app = LoadDatabase(filename, DefaultPassword, DefaultKeyfile);
+			DisplayGroups(app, "After reload");
+			
+			//save the database (first time):
+			Android.Util.Log.Debug("KP2A", "-- Save db first time ");
+			SaveDatabase(app);
+
+			Android.Util.Log.Debug("KP2A", "-- Save db second time ");
+			SaveDatabase(app);
+			
+			//make sure the right question was asked
+			Assert.AreEqual(null, ((TestKp2aApp)app).LastYesNoCancelQuestionTitle);
+
+		}
+
 
 		[TestMethod]
 		public void TestCreateSaveAndLoad_TestIdenticalFiles_kdb()

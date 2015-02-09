@@ -38,5 +38,45 @@ namespace keepass2android
 		{
 			get { return true; }
 		}
+
+		public bool CanHaveMultipleAttachments
+		{
+			get { return true; }
+		}
+
+		public bool CanHaveCustomFields
+		{
+			get { return true; }
+		}
+
+		public bool HasDefaultUsername
+		{
+			get { return true; }
+		}
+
+		public bool HasDatabaseName
+		{
+			get { return true; }
+		}
+
+		public bool SupportsAttachmentKeys
+		{
+			get { return true; }
+		}
+
+		public bool SupportsTags
+		{
+			get { return true; }
+		}
+
+		public bool SupportsOverrideUrl
+		{
+			get { return true; }
+		}
+
+		public bool CanRecycle
+		{
+			get { return true; }
+		}
 	}
 }
