@@ -46,19 +46,40 @@ namespace KeeChallenge
         public const int responseLenBytes = 20;
         public const int secretLenBytes = 20;
 
-		private KeeChallengeProv()
+        //If variable length challenges are enabled, a 63 byte challenge is sent instead.
+        //See GenerateChallenge() and http://forum.yubico.com/viewtopic.php?f=16&t=1078
+        //This field is automatically set by calling GetSecret(). However, when creating 
+        //a new database it will need to be set manually based on the user's yubikey settings
+        public bool LT64
         {
-        }         
-
-        private static byte[] GenerateChallenge()
-        {
-            CryptoRandom rand = CryptoRandom.Instance;
-            return CryptoRandom.Instance.GetRandomBytes(challengeLenBytes);            
+            get;
+            set;
         }
 
-        private static byte[] GenerateResponse(byte[] challenge, byte[] key)
+		private KeeChallengeProv()
+        {
+            LT64 = false;
+        }         
+
+        private byte[] GenerateChallenge()
+        {
+            CryptoRandom rand = CryptoRandom.Instance;
+            byte[] chal = CryptoRandom.Instance.GetRandomBytes(challengeLenBytes);
+            if (LT64)
+            {
+                chal[challengeLenBytes - 2] = (byte)~chal[challengeLenBytes - 1];
+            }
+
+            return chal;  
+        }
+
+        private byte[] GenerateResponse(byte[] challenge, byte[] key)
         {
             HMACSHA1 hmac = new HMACSHA1(key);
+
+            if (LT64)
+                challenge = challenge.Take(challengeLenBytes - 1).ToArray();
+
             byte[] resp = hmac.ComputeHash(challenge);
             hmac.Clear();
             return resp;
@@ -71,7 +92,7 @@ namespace KeeChallenge
         /// </summary>
         /// <param name="secret">The un-encrypted secret</param>
         /// <returns>A fully populated ChallengeInfo object ready to be saved</returns>
-		public static ChallengeInfo Encrypt(byte[] secret)
+		public ChallengeInfo Encrypt(byte[] secret)
         {
             //generate a random challenge for use next time
             byte[] challenge = GenerateChallenge();
@@ -101,14 +122,14 @@ namespace KeeChallenge
                 msEncrypt.Close();
             }
 
-			ChallengeInfo inf = new ChallengeInfo (encrypted, IV, challenge, secretHash);
+			ChallengeInfo inf = new ChallengeInfo (encrypted, IV, challenge, secretHash, LT64);
 
 			sha.Clear();
 
 			return inf;
         }
                 
-		private static bool DecryptSecret(byte[] yubiResp, ChallengeInfo inf, out byte[] secret)
+		private bool DecryptSecret(byte[] yubiResp, ChallengeInfo inf, out byte[] secret)
         {
             secret = new byte[keyLenBytes];
 
@@ -156,7 +177,7 @@ namespace KeeChallenge
         ///                   This should be populated from the database.xml auxilliary file</param>
         /// <param name="resp"	>The Yubikey's response to the issued challenge</param>
         /// <returns>The common secret, used as a composite key to encrypt a Keepass database</returns>
-		public static byte[] GetSecret(ChallengeInfo inf, byte[] resp)
+		public byte[] GetSecret(ChallengeInfo inf, byte[] resp)
         {
 			if (resp.Length != responseLenBytes)
 				return null;
@@ -165,6 +186,8 @@ namespace KeeChallenge
             if (inf.Challenge == null ||
                 inf.Verification == null)
                 return null;
+            
+            LT64 = inf.LT64;
 
 			byte[] secret;
                       

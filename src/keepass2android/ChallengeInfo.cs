@@ -31,6 +31,8 @@ namespace KeeChallenge
 {
 	public class ChallengeInfo
 	{
+        private bool m_LT64;
+
 		public byte[] EncryptedSecret {
 			get;
 			private set;
@@ -51,16 +53,24 @@ namespace KeeChallenge
 			private set;
 		}
 
-        private ChallengeInfo()
+        public bool LT64
         {
+            get { return m_LT64;  }
+            private set { m_LT64 = value; }
         }
 
-		public ChallengeInfo(byte[] encryptedSecret, byte[] iv, byte[] challenge, byte[] verification)
+        private ChallengeInfo()
+        {
+            LT64 = false;
+        }
+
+		public ChallengeInfo(byte[] encryptedSecret, byte[] iv, byte[] challenge, byte[] verification, bool lt64)
 		{
 			EncryptedSecret = encryptedSecret;
 			IV = iv;
 			Challenge = challenge;
 			Verification = verification;
+            LT64 = lt64;
 		}
 
 		public static ChallengeInfo Load(IOConnectionInfo ioc)
@@ -125,6 +135,10 @@ namespace KeeChallenge
 							xml.Read();
 							Verification = Convert.FromBase64String(xml.Value.Trim());
 							break;
+                        case "lt64":
+                            xml.Read();
+                            if (!bool.TryParse(xml.Value.Trim(), out m_LT64)) throw new Exception("Unable to parse LT64 flag");
+                            break;
 						}
 					}
 				}
@@ -184,6 +198,7 @@ namespace KeeChallenge
 
 				xml.WriteElementString("challenge", Convert.ToBase64String(Challenge));
 				xml.WriteElementString("verification", Convert.ToBase64String(Verification));
+                xml.WriteElementString("lt64", LT64.ToString());
 
 				xml.WriteEndElement();
 				xml.WriteEndDocument();

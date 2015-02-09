@@ -129,6 +129,7 @@ namespace keepass2android
 		private OtpInfo _otpInfo;
         private ChallengeInfo _chalInfo;
         private byte[] _challengeSecret;
+        private KeeChallengeProv _challengeProv;
 		private readonly int[] _otpTextViewIds = new[] {Resource.Id.otp1, Resource.Id.otp2, Resource.Id.otp3, Resource.Id.otp4, Resource.Id.otp5, Resource.Id.otp6};
 		private const string OtpInfoKey = "OtpInfoKey";
 		private const string EnteredOtpsKey = "EnteredOtpsKey";
@@ -325,8 +326,9 @@ namespace keepass2android
 			{
 				try
 				{
+                    _challengeProv = new KeeChallengeProv();
 					byte[] challengeResponse = data.GetByteArrayExtra("response");
-					_challengeSecret = KeeChallengeProv.GetSecret(_chalInfo, challengeResponse);
+					_challengeSecret = _challengeProv.GetSecret(_chalInfo, challengeResponse);
 					Array.Clear(challengeResponse, 0, challengeResponse.Length);
 				}
 				catch (Exception e)
@@ -348,7 +350,7 @@ namespace keepass2android
 						//save aux file
 						try
 						{
-							ChallengeInfo temp = KeeChallengeProv.Encrypt(_challengeSecret);
+							ChallengeInfo temp = _challengeProv.Encrypt(_challengeSecret);
 							IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
 							IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(_ioConnection),
 								fileStorage.GetFilenameWithoutPathAndExt(_ioConnection) + ".xml");
