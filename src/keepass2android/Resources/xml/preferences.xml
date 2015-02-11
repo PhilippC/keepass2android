@@ -256,7 +256,9 @@
 				  android:title="@string/OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title"
 				  android:key="@string/OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key" />
 				
-					<CheckBoxPreference
+					
+				<!-- with and without autoswitch on root-->
+				<CheckBoxPreference
 				android:enabled="true"
 				  android:persistent="true"
 				  android:summary="@string/AutoSwitchBackKeyboard_summary"
@@ -264,7 +266,6 @@
 				  android:title="@string/AutoSwitchBackKeyboard_title"
 				  android:key="@string/AutoSwitchBackKeyboard_key" />
 				
-				<!-- with and without autoswitch on root-->
 				<CheckBoxPreference
             android:key="kp2a_switch_on_sendgodone"
             android:title="@string/kp2a_switch_on_sendgodone"

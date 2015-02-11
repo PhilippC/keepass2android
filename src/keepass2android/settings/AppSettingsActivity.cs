@@ -182,10 +182,6 @@ namespace keepass2android
 					{
 						_screen.RemovePreference(_openOnlyOnSearchPref);
 					}
-					if (_act.FindPreference(_act.GetString(Resource.String.AutoSwitchBackKeyboard_key)) != null)
-					{
-						_screen.RemovePreference(_switchBackPref);
-					}
 				}
 				else
 				{
@@ -196,10 +192,6 @@ namespace keepass2android
 					if (_act.FindPreference(_act.GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key)) == null)
 					{
 						_screen.AddPreference(_openOnlyOnSearchPref);
-					}
-					if (_act.FindPreference(_act.GetString(Resource.String.AutoSwitchBackKeyboard_key)) == null)
-					{
-						_screen.AddPreference(_switchBackPref);
 					}
 				}
 				/*_openKp2aAutoPref.Enabled = !switchOnRooted;

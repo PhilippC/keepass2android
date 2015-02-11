@@ -2,7 +2,7 @@
         package="keepass2android.softkeyboard">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-sdk android:targetSdkVersion="14" android:minSdkVersion="9"/>
+    <uses-sdk android:targetSdkVersion="14" android:minSdkVersion="14"/>
 
     <application android:label="MyKeyboard"
             android:killAfterRestore="false">

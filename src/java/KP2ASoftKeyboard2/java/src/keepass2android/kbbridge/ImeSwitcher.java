@@ -11,6 +11,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
 import android.inputmethodservice.InputMethodService;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.inputmethod.InputMethod;
@@ -23,10 +24,20 @@ public class ImeSwitcher {
 	private static final String KP2A_SWITCHER = "KP2A_Switcher";
 	private static final String Tag = "KP2A_SWITCHER";
 	
-	public static void switchToPreviousKeyboard(Context ctx, boolean silent)
+	public static void switchToPreviousKeyboard(InputMethodService ims, boolean silent)
 	{
-		SharedPreferences prefs = ctx.getSharedPreferences(KP2A_SWITCHER, Context.MODE_PRIVATE);
-		switchToKeyboard(ctx, prefs.getString(PREVIOUS_KEYBOARD, null), silent);
+		try {
+		    InputMethodManager imm = (InputMethodManager) ims.getSystemService(Context.INPUT_METHOD_SERVICE);
+		    final IBinder token = ims.getWindow().getWindow().getAttributes().token;
+		    //imm.setInputMethod(token, LATIN);
+		    imm.switchToLastInputMethod(token);
+		} catch (Throwable t) { // java.lang.NoSuchMethodError if API_level<11
+		    Log.e("KP2A","cannot set the previous input method:");
+		    t.printStackTrace();
+		    SharedPreferences prefs = ims.getSharedPreferences(KP2A_SWITCHER, Context.MODE_PRIVATE);
+			switchToKeyboard(ims, prefs.getString(PREVIOUS_KEYBOARD, null), silent);
+		}
+		
 	}
 
 	//silent: if true, do not show picker, only switch in background. Don't do anything if switching fails.
