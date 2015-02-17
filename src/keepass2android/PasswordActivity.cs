@@ -28,6 +28,7 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 using Java.Net;
 using Android.Preferences;
@@ -638,6 +639,11 @@ namespace keepass2android
 					_password = FindViewById<EditText>(Resource.Id.password).Text;
 					UpdateOkButtonState();
 				};
+			FindViewById<EditText>(Resource.Id.password).EditorAction += (sender, args) =>
+				{
+					if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
+						OnOk();
+				};
 
 			FindViewById<EditText>(Resource.Id.pass_otpsecret).TextChanged += (sender, args) => UpdateOkButtonState();
 
@@ -767,10 +773,15 @@ namespace keepass2android
 			Button confirmButton = (Button) FindViewById(Resource.Id.pass_ok);
 			confirmButton.Click += (sender, e) =>
 				{
-					App.Kp2a.GetFileStorage(_ioConnection)
-					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection,
-					                     RequestCodePrepareDbFile, false);
+					OnOk();
 				};
+		}
+
+		private void OnOk()
+		{
+			App.Kp2a.GetFileStorage(_ioConnection)
+			   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection,
+			                     RequestCodePrepareDbFile, false);
 		}
 
 		private void InitializeTogglePasswordButton()
@@ -1277,7 +1288,13 @@ namespace keepass2android
 
 			if (!_keepPasswordInOnResume)
 			{
-				ClearEnteredPassword();
+				if (
+					PreferenceManager.GetDefaultSharedPreferences(this)
+					                 .GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
+				{
+					ClearEnteredPassword();
+				}
+				
 			}
 			_keepPasswordInOnResume = false;
 

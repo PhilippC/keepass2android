@@ -101,20 +101,7 @@ namespace keepass2android
 			Button btnUnlock = (Button) FindViewById(Resource.Id.QuickUnlock_button);
 			btnUnlock.Click += (object sender, EventArgs e) =>
 				{
-					KcpPassword kcpPassword = (KcpPassword) App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof (KcpPassword));
-					String password = kcpPassword.Password.ReadString();
-					String expectedPasswordPart = password.Substring(Math.Max(0, password.Length - quickUnlockLength),
-					                                                 Math.Min(password.Length, quickUnlockLength));
-					if (pwd.Text == expectedPasswordPart)
-					{
-						App.Kp2a.UnlockDatabase();
-					}
-					else
-					{
-						App.Kp2a.LockDatabase(false);
-						Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
-					}
-					Finish();
+					OnUnlock(quickUnlockLength, pwd);
 				};
 
 			Button btnLock = (Button) FindViewById(Resource.Id.QuickUnlock_buttonLock);
@@ -123,11 +110,34 @@ namespace keepass2android
 					App.Kp2a.LockDatabase(false);
 					Finish();
 				};
+			pwd.EditorAction += (sender, args) =>
+				{
+					if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
+						OnUnlock(quickUnlockLength, pwd);
+				};
 
 			_intentReceiver = new QuickUnlockBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
 			RegisterReceiver(_intentReceiver, filter);
+		}
+
+		private void OnUnlock(int quickUnlockLength, EditText pwd)
+		{
+			KcpPassword kcpPassword = (KcpPassword) App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof (KcpPassword));
+			String password = kcpPassword.Password.ReadString();
+			String expectedPasswordPart = password.Substring(Math.Max(0, password.Length - quickUnlockLength),
+			                                                 Math.Min(password.Length, quickUnlockLength));
+			if (pwd.Text == expectedPasswordPart)
+			{
+				App.Kp2a.UnlockDatabase();
+			}
+			else
+			{
+				App.Kp2a.LockDatabase(false);
+				Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
+			}
+			Finish();
 		}
 
 		private void OnLockDatabase()

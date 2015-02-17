@@ -282,6 +282,9 @@
   <string name="UseFileTransactions_summary">Use file transactions for writing databases</string>
 	<string name="LockWhenScreenOff_title">Lock when screen off</string>
   <string name="LockWhenScreenOff_summary">Lock the database when screen is switched off.</string>
+
+	<string name="ClearPasswordOnLeave_title">Clear entered master password</string>
+	<string name="ClearPasswordOnLeave_summary">Clear the entered master password when leaving the screen without unlocking the database.</string>
 	
 	<string name="LockWhenNavigateBack_title">Lock when leaving app</string>
 	<string name="LockWhenNavigateBack_summary">Lock the database when leaving the app by pressing the back button.</string>
