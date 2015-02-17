@@ -353,6 +353,7 @@ namespace keepass2android
 			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			Entry = db.Entries[uuid];
+			Android.Util.Log.Debug("KP2A", "Notes: " + Entry.Strings.ReadSafe(PwDefs.NotesField));
 
 			// Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
 			ActivityCompat.InvalidateOptionsMenu(this);
@@ -734,6 +735,9 @@ namespace keepass2android
 				PopulateText(Resource.Id.entry_expires, Resource.Id.entryfield_container_expires, null);
 			}
 			PopulateStandardText(Resource.Id.entry_comment, Resource.Id.entryfield_container_comment, PwDefs.NotesField);
+			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.comment_container),
+							  FindViewById(Resource.Id.username_vdots), PwDefs.NotesField);
+
 			PopulateText(Resource.Id.entry_tags, Resource.Id.entryfield_container_tags, concatTags(Entry.Tags));
 			PopulateText(Resource.Id.entry_override_url, Resource.Id.entryfield_container_overrideurl, Entry.OverrideUrl);
 

@@ -143,25 +143,42 @@
                 style="@style/EntryItem" />
         </RelativeLayout>
     </LinearLayout>
-    <LinearLayout
+
+	<LinearLayout
         android:id="@+id/entryfield_container_comment"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:orientation="vertical">
-    <!-- Comment -->
-        <TextView
+		<TextView
             android:id="@+id/entry_comment_label"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/entry_comment"
+            android:text="@string/entry_user_name"
             style="@style/EntryFieldHeader" />
-        <TextView
-            android:id="@+id/entry_comment"
-            android:layout_width="fill_parent"
+		<!-- Comment -->
+		<RelativeLayout
+            android:id="@+id/comment_container"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            style="@style/EntryItem" />
-    </LinearLayout>
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground">
+			<ImageView
+                android:id="@+id/comment_vdots"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:src="@drawable/vdots"
+                android:gravity="right|bottom"
+                android:layout_alignParentRight="true" />
+			<TextView
+                android:id="@+id/entry_comment"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/username_vdots"
+                style="@style/EntryItem" />
+		</RelativeLayout>
+	</LinearLayout>
+    
     <LinearLayout
         android:id="@+id/extra_strings"
         android:layout_width="fill_parent"
