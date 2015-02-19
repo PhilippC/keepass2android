@@ -110,21 +110,31 @@ namespace keepass2android
 			Stream s = databaseData ?? fileStorage.OpenFileForRead(iocInfo);
 			var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
 			PopulateDatabaseFromStream(pwDatabase, s, iocInfo, compositeKey, status, databaseFormat);
-			LastFileVersion = fileVersion;
+			try
+			{
+				LastFileVersion = fileVersion;
+
+				status.UpdateSubMessage("");
+
+				Root = pwDatabase.RootGroup;
+				PopulateGlobals(Root);
+
+				Loaded = true;
+				KpDatabase = pwDatabase;
+				SearchHelper = new SearchDbHelper(app);
+
+				_databaseFormat = databaseFormat;
+
+				CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
+			}
+			catch (Exception)
+			{
+				Clear();				
+				throw;
+			}
 			
-			status.UpdateSubMessage("");
 
-			Root = pwDatabase.RootGroup;
-			PopulateGlobals(Root);
-
-
-			Loaded = true;
-			KpDatabase = pwDatabase;
-			SearchHelper = new SearchDbHelper(app);
-
-			_databaseFormat = databaseFormat;
-
-			CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
+			
 		}
 
 		/// <summary>

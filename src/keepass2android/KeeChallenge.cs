@@ -19,6 +19,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using System.Diagnostics;
@@ -56,7 +57,7 @@ namespace KeeChallenge
             set;
         }
 
-		private KeeChallengeProv()
+	    public KeeChallengeProv()
         {
             LT64 = false;
         }         

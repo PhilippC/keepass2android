@@ -119,3 +119,5 @@ Thumbs.db
 /src/MasterKeeWinPlugin/bin/Release
 /src/SamplePlugin
 /src/packages/
+
+*.apk

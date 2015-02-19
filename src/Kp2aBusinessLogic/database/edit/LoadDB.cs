@@ -125,7 +125,7 @@ namespace keepass2android
 			}
 			catch (OldFormatException)
 			{
-				_format = new KdbDatabaseFormat();
+				_format = new KdbDatabaseFormat(_app);
 				TryLoad(databaseStream);
 			}
 			catch (InvalidCompositeKeyException)

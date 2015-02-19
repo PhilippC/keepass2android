@@ -1464,9 +1464,6 @@ namespace keepass2android
 				{
 					
 					_act.ClearEnteredPassword();
-
-					_act.LaunchNextActivity();
-
 					_act.BroadcastOpenDatabase();
 
 
@@ -1476,12 +1473,24 @@ namespace keepass2android
 				{
 					new AlertDialog.Builder(_act).SetMessage(Message)
 					                             .SetPositiveButton(Android.Resource.String.Ok,
-					                                                (sender, args) => ((Dialog) sender).Dismiss())
+					                                                (sender, args) =>
+						                                                {
+							                                                ((Dialog) sender).Dismiss();
+																			_act.LaunchNextActivity();
+						                                                })
+												.SetCancelable(false)
 												.Show();
+					
 				}
 				else
 				{
 					DisplayMessage(_act);	
+					if (Success)
+					{
+						_act.LaunchNextActivity();
+					}
+						
+
 				}
 				
 

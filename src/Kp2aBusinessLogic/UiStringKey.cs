@@ -56,6 +56,7 @@ namespace keepass2android
 		FileIsReadOnlyOnKitkat,
 		CopyFileRequiredForEditing,
 		DuplicateUuidsError,
-		DuplicateUuidsErrorAdditional
+		DuplicateUuidsErrorAdditional,
+		KdbBetaWarning
     }
 }

@@ -49,12 +49,12 @@ namespace keepass2android
 
 		public int CompareEntries(PwEntry a, PwEntry b)
 		{
-			return a.LastModificationTime.CompareTo(b.LastModificationTime);
+			return -a.LastModificationTime.CompareTo(b.LastModificationTime);
 		}
 
 		public int CompareGroups(PwGroup a, PwGroup b)
 		{
-			return a.LastModificationTime.CompareTo(b.LastModificationTime);
+			return -a.LastModificationTime.CompareTo(b.LastModificationTime);
 		}
 	}
 	class CreationDateSortOrder : IGroupViewSortOrder

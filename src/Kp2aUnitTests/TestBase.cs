@@ -138,7 +138,7 @@ namespace Kp2aUnitTests
 			Database db = app.CreateNewDatabase();
 			if (filename.EndsWith(".kdb"))
 			{
-				db.DatabaseFormat = new KdbDatabaseFormat();
+				db.DatabaseFormat = new KdbDatabaseFormat(app);
 			}
 
 			db.KpDatabase = new PwDatabase();

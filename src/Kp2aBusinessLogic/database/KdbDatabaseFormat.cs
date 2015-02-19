@@ -24,9 +24,15 @@ namespace keepass2android
 {
 	public class KdbDatabaseFormat: IDatabaseFormat
 	{
+		private readonly IKp2aApp _app;
 		private Dictionary<PwUuid, AdditionalGroupData> _groupData = new Dictionary<PwUuid, AdditionalGroupData>();
 		private static readonly DateTime _expireNever = new DateTime(2999,12,28,23,59,59);
 		private List<PwEntryV3> _metaStreams;
+
+		public KdbDatabaseFormat(IKp2aApp app)
+		{
+			_app = app;
+		}
 
 		public void PopulateDatabaseFromStream(PwDatabase db, Stream s, IStatusLogger slLogger)
 		{
@@ -215,7 +221,7 @@ namespace keepass2android
 		public bool CanWrite { get { return true; } }
 		public string SuccessMessage { get
 		{
-			return "";
+			return _app.GetResourceString(UiStringKey.KdbBetaWarning);
 		} }
 
 		public void Save(PwDatabase kpDatabase, Stream stream)

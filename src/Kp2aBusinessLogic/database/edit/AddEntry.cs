@@ -48,7 +48,15 @@ namespace keepass2android
 		
 		public override void Run() {	
 			StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
-			_parentGroup.AddEntry(_entry, true);
+
+			//make sure we're not adding the entry if it was added before.
+			//(this might occur in very rare cases where the user dismissis the save dialog 
+			//by rotating the screen while saving and then presses save again)
+			if (_parentGroup.FindEntry(_entry.Uuid, false) == null)
+			{
+				_parentGroup.AddEntry(_entry, true);	
+			}
+			
 			
 			// Commit to disk
 			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);

@@ -367,6 +367,7 @@ namespace keepass2android
 			public RealProgressDialog(Context ctx)
 			{
 				_pd = new ProgressDialog(ctx);
+				_pd.SetCancelable(false);
 			}
 
 			public void SetTitle(string title)
@@ -381,7 +382,15 @@ namespace keepass2android
 
 			public void Dismiss()
 			{
-				_pd.Dismiss();
+				try
+				{
+					_pd.Dismiss();
+				}
+				catch (Exception e)
+				{
+					Kp2aLog.Log(e.ToString());
+				}
+				
 			}
 
 			public void Show()

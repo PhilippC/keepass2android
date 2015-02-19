@@ -521,12 +521,24 @@
 	<string name="CancelReadOnly">Cancel, open read-only.</string>
 	
 	<string name="CopyingFile">Copying file...</string>
+
+	<string name="KdbBetaWarning">Please note: You have loaded a Keepass 1 database. Keepass2Android has recently added write support for this database format. Despite thorough testing, the author does not guarantee that all data will be saved correctly. Please always keep a backup of the original database (Dropbox automatically stores recent versions) before making changes. Please report any issues. Thanks!</string>
 	
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>
 
-	<string name="ChangeLog_0_9_6">
+	<string name="ChangeLog_0_9_7">
+		Version 0.9.7\n
+		* write support for Keepass 1 (kdb) databases (beta!)\n
+		* better switching back to previous keyboard (also works on non-rooted devices)\n
+		* support for KeeChallenge with variable length challenges\n
+		* prevent taking screenshots from QuickUnlock and password screens\n
+		* reverse sort order for Sort by Modification Date (now descending)\n
+		* bug fixes: Notes view now updated correctly after changes, Password views now hiding password correctly on (hopefully)  all devices, fixed issue that allowed to add an entry twice, fixed issue with showing Duplicate UUID warning even after fixing the database\n
+	</string>
+
+		<string name="ChangeLog_0_9_6">
 		Version 0.9.6\n
 		* allow to import key file and/or local database file to app internal directory (see settings)\n
 		* allow different sorting options\n
