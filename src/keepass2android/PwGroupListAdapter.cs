@@ -149,7 +149,7 @@ namespace keepass2android
 
 		public int CompareGroups(PwGroup a, PwGroup b)
 		{
-			return String.CompareOrdinal(a.Name, b.Name);
+			return String.Compare(a.Name, a.Name, StringComparison.OrdinalIgnoreCase);
 		}
 	}
 
