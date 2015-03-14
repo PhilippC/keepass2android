@@ -26,7 +26,7 @@
   <string name="show_kill_app">Pulsante-Chiudi</string>
   <string name="show_kill_app_summary">Mostra un pulsante nella schermata password per terminare il processo dell\'applicazione (per paranoici)</string>
   <string name="application">Applicazione</string>
-  <string name="application_settings">Impostazioni Applicazione</string>
+  <string name="application_settings">Impostazioni applicazione</string>
   <string name="ShowGroupnameInSearchResult_title">Visualizza il nome del gruppo nei risultati di ricerca</string>
   <string name="ShowGroupnameInSearchResult_resume">Visualizza il nome del gruppo sotto i titoli delle voci nei risultati di ricerca. Utile se più voci hanno lo stesso nome.</string>
   <string name="NavigationToGroupCompleted_message">Il gruppo di visualizzazione ora è: %1$s</string>
@@ -36,7 +36,7 @@
   <string name="display_prefs">Visualizzazione</string>
   <string name="password_access_prefs">Inserimento password</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
-  <string name="FileHandling_prefs">Gestione dei file</string>
+  <string name="FileHandling_prefs">Gestione file</string>
   <string name="keyboard_prefs">Tastiera</string>
   <string name="export_prefs">Esporta il database...</string>
   <string name="import_db_prefs">Importa database in cartella interna</string>
@@ -151,7 +151,7 @@
   <string name="menu_open">Apri</string>
   <string name="menu_rename">Rinomina</string>
   <string name="menu_search">Cerca</string>
-  <string name="menu_search_advanced">Ricerca Avanzata</string>
+  <string name="menu_search_advanced">Ricerca avanzata</string>
   <string name="menu_url">Vai all\'URL</string>
   <string name="menu_change_db">Cambia il database&#8230;</string>
   <string name="minus">Meno</string>
@@ -209,8 +209,8 @@
   <string name="author">Keepass2Android è sviluppato da Philipp Crocoll.</string>
   <string name="further_authors">Grazie per i contributi di codice di %1$s.</string>
   <string name="designers">Grazie per i contributi di progettazione di icone e layout a %1$s.</string>
-  <string name="credit_plugin1">il Plugin Twofish Cipher per Keepass è stato sviluppato da Scott Greenberg ed è incluso in KP2A.</string>
-  <string name="credit_android_filechooser">android-filechooser è stato sviluppato da Hai Bison</string>
+  <string name="credit_plugin1">Il Plugin Twofish Cipher per Keepass è stato sviluppato da Scott Greenberg ed è incluso in KP2A.</string>
+  <string name="credit_android_filechooser">L\'android-filechooser è stato sviluppato da Hai Bison.</string>
   <string name="credit_keyboard">La tastiera KP2A è basata sulla tastiera di \"Gingerbread\" del progetto \"Android Open Source Project\" e utilizza il codice del \"Plugin Manager\" della tastiera \"Hacker\'s Keyboard\", di Klaus Weidner.</string>
   <string name="please_note">Si prega di notare</string>
   <string name="contributors">Collaboratori</string>
@@ -271,6 +271,8 @@
   <string name="UseFileTransactions_summary">Usa le transazioni per la scrittura del database</string>
   <string name="LockWhenScreenOff_title">Blocca allo spegnimento dello schermo</string>
   <string name="LockWhenScreenOff_summary">Blocca il database quando lo schermo viene spento.</string>
+  <string name="ClearPasswordOnLeave_title">Cancella la master password inserita</string>
+  <string name="ClearPasswordOnLeave_summary">Quando cambi schermata senza aver sbloccato il database, cancella la master password inserita.</string>
   <string name="LockWhenNavigateBack_title">Blocca quando lasci l\'app</string>
   <string name="LockWhenNavigateBack_summary">Blocca il database quando si lascia l\'app premendo il tasto \"indietro\".</string>
   <string name="NoDonateOption_title">Nascondi l\'opzione della donazione</string>
@@ -284,6 +286,8 @@
   <string name="ClearOfflineCache_question">Quest\'operazione cancellerà tutti i file memorizzati nella cache del database. Tutte le modifiche apportate quando eri offline e che non sono ancora state sincronizzate andranno perse! Continuare?</string>
   <string name="CheckForFileChangesOnSave_title">Controlla modifiche</string>
   <string name="CheckForFileChangesOnSave_summary">Controlla se il file è stato modificato esternamente prima di salvare le modifiche.</string>
+  <string name="CheckForDuplicateUuids_title">Cerca UUID duplicati</string>
+  <string name="CheckForDuplicateUuids_summary">Controlla se il database è danneggiato poiché contiene più voci con lo stesso ID. Ciò potrebbe causare comportamenti imprevisti.</string>
   <string name="ShowCopyToClipboardNotification_title">Notifiche</string>
   <string name="ShowCopyToClipboardNotification_summary">Rendi accessibili nome utente e password tramite gli appunti nella barra delle notifiche. Fai attenzione agli sniffer delle password!</string>
   <string name="ShowSeparateNotifications_title">Notifiche separate</string>
@@ -354,6 +358,7 @@
   <string name="otp_aux_file">File OTP ausiliario</string>
   <string name="ErrorOcurred">Si è verificato un errore:</string>
   <string name="DuplicateUuidsError">Il datbase è corrotto. Sono stati trovati ID duplicati. (Avete salvato con Minikeepass?) Reimportare in un nuovo database con Keepass 2 per PC e selezionare \'Crea nuovi ID\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Puoi disattivare questo messaggio d\'errore in Impostazioni/Impostazioni applicazione/Gestione file/Cerca UUID duplicati. Tieni presente che potresti sperimentare comportamenti inaspettati. E\' consigliato correggere il database.</string>
   <string name="synchronize_database_menu">Sincronizzazione del database&#8230;</string>
   <string name="CannotMoveGroupHere">Non è possibile spostare il gruppo in questo gruppo.</string>
   <string name="donate_question">Oggi è l\'Oktoberfest! Se ti piace Keepass2Android: non sarebbe un buon giorno per offrirmi una birra?</string>
@@ -448,8 +453,18 @@
   <string name="ClickOkToSelectLocation">Premi OK per selezionare il percorso dove copiare il file.</string>
   <string name="CancelReadOnly">Annulla, apri in sola lettura.</string>
   <string name="CopyingFile">Copia dei file...</string>
+  <string name="KdbBetaWarning">Attenzione: hai caricato un database di Keepass 1. Keepass2Android ha integrato solo di recente il supporto per questo formato di database. Nonostante test approfonditi, l\'autore non garantisce che tutti i dati verranno salvati correttamente. Tieni sempre una copia di backup del database originale (Dropbox memorizza automaticamente le versioni recenti) prima di apportare modifiche. Per favore, segnala eventuali problemi. Grazie!</string>
   <string name="ChangeLog_title">log delle modifiche</string>
-  <string name="PreviewWarning">Attenzione! Questa versione è un\'anteprima e potrebbe contenere dei difetti! Se noti una *qualsiasi* strana cosa, per favore fammelo sapere (su Codeplex o via email).</string>
+  <string name="PreviewWarning">Attenzione! Questa versione è un\'anteprima e potrebbe contenere dei difetti! Se noti *qualcosa* di strano, per favore fammelo sapere (su Codeplex o via email).</string>
+  <string name="ChangeLog_0_9_7">
+Versione 0.9.7\n
+* aggiunge il supporto in scrittura per i database di Keepass 1 (kdb) (beta!)\n
+* migliora il ritorno alla tastiera precedente (funziona anche su dispositivi non-root)\n
+* supporta \"challenge\" di lunghezza variabile per KeeChallenge\n
+* impedisce di prendere screenshot dalle schermate QuickUnlock e delle password\n
+* inverte l\'ordinamento per data di modifica (ora è discendente)\n
+* correzioni di bug: la vista Note ora viene aggiornata correttamente dopo le modifiche, la vista Password ora nasconde correttamente (spero) le password su tutti i dispositivi, risolve il problema che ha permesso l\'inserimento di una voce due volte, risolve il problema che mostrava l\'avviso di UUID duplicati anche dopo la correzione del database\n
+</string>
   <string name="ChangeLog_0_9_6">
 Versione 0.9.6\n
 * permette di importare file chiave e/o file database locali in una cartella interna della app (vedere impostazioni)\n
@@ -565,7 +580,7 @@ Grazie a Niki Hüttner (www.close-cut.de) per il logo!\n</string>
 * sistemati alcuni bug nella finestra di modifica\n
 * probabilmente aggiunti nuovi bug :-)
 </string>
-  <string name="ChangeLog_keptDonate">Aggiunta la possibilità di donare una birra o qualcos\'altro</string>
+  <string name="ChangeLog_keptDonate">Estesa la possibilità di donare una birra o qualcos\'altro</string>
   <string name="ChangeLog_0_7"><b>Versione 0.7</b>\n
 * Aumentata la velocità di caricamento: l\'elaborazione delle chiavi ora è 10 volte più veloce!\n
 * Aggiunta la tastiera virtuale di Keepass2Android: usa questa tastiera quando inserisci le credenziali. Ti metterà al riparo dagli sniffer delle password basati sulla clipboard (disabilita le vecchie notifiche della clipboard dalle impostazioni)\n

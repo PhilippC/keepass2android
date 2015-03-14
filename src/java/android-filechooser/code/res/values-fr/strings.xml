@@ -82,18 +82,4 @@ Choisir fichier...
 Choisir fichier...
 Choisir fichiers...</item>
   </plurals>
-  <plurals name="afc_title_choose_files_directories">
-    <item quantity="one">[one]
-Choisir un fichier/dossier&#8230;
-
-[other]
-Choisir un fichier/dossier&#8230;
-Choisir des fichiers/dossiers&#8230;</item>
-    <item quantity="other">[one]
-Choisir fichier/dossier...
-
-[other]
-Choisir fichier/dossier...
-Choisir fichiers/dossiers...</item>
-  </plurals>
 </resources>

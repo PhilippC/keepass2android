@@ -45,7 +45,7 @@
   <string name="afc_pmsg_filename_is_invalid">Dateiname \"%1$s\" ist ungültig</string>
   <string name="afc_pmsg_max_file_count_allowed">&#8230; hat mehr Dateien, maximal erlaubt:  %1$d</string>
   <string name="afc_pmsg_unknown_error">Unerwarteter Fehler: %1$s</string>
-  <string name="afc_root">Start</string>
+  <string name="afc_root">Root</string>
   <string name="afc_title_advanced_selection">Wählen&#8230;</string>
   <string name="afc_title_confirmation">Bestätigung</string>
   <string name="afc_title_date">Datum</string>

@@ -271,6 +271,8 @@
   <string name="UseFileTransactions_summary">Az adatbázisok írásánál a fájlszintű tranzakcionalitás biztosítsa.</string>
   <string name="LockWhenScreenOff_title">Zárolás a képenyő kikapcsolásakor</string>
   <string name="LockWhenScreenOff_summary">Az adatbázis zárolása a képenyő kikapcsolásakor.</string>
+  <string name="ClearPasswordOnLeave_title">A megadott főkulcs (jelszó) törlése</string>
+  <string name="ClearPasswordOnLeave_summary">A beírt főkulcs (jelszó) törlése, ha az adatbázis-feloldó képernyőt az adatbázis feloldása nélkül hagyja el.</string>
   <string name="LockWhenNavigateBack_title">Zárolás kilépéskor</string>
   <string name="LockWhenNavigateBack_summary">Zárolódjon az adatbázis, ha az alkalmazásból a vissza gomb segítségével kilép.</string>
   <string name="NoDonateOption_title">Támogatás-opció elrejtése</string>
@@ -284,6 +286,8 @@
   <string name="ClearOfflineCache_question">Ez a funkció az összes távoli adatbázis helyi másolatát törli.  Minden hálózati kapcsolat hiányában végzett és még szinkronizálásra nem került változás elveszik!  Mehet?</string>
   <string name="CheckForFileChangesOnSave_title">Változások ellenőrzése</string>
   <string name="CheckForFileChangesOnSave_summary">Mentés előtt kerüljön ellenőrzésre, hogy a fájlt más módosította-e.</string>
+  <string name="CheckForDuplicateUuids_title">Ütköző egyedi azonosítók keresése</string>
+  <string name="CheckForDuplicateUuids_summary">Az adatbázis ellenőrzése, hogy tartalmaz-e ütköző egyedi azonosítóval rendelkező bejegyzéseket (ami nem várt viselkedést okozhat).</string>
   <string name="ShowCopyToClipboardNotification_title">Vágólap</string>
   <string name="ShowCopyToClipboardNotification_summary">A felhasználónév és jelszó elérhetővé tétele az értesítési sávon és a vágólapon keresztül.  Ne feledkezzen meg a jelszógyűjtés veszélyéről!</string>
   <string name="ShowSeparateNotifications_title">Részletes értesítések</string>
@@ -354,7 +358,8 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="database_file">adatbázisfájl</string>
   <string name="otp_aux_file">OTP kiegészítő fájl</string>
   <string name="ErrorOcurred">Hiba történt:</string>
-  <string name="DuplicateUuidsError">Az adatbázis sérült: ismétlődő azonosítókat tartalmaz.  (Minikeepass alkalmazással lett elmentve?)  Importálja az adatbázist a Keepass 2 PC alkalmazásba és használja annak \"Új azonosítók létrehozása\" funkcióját.</string>
+  <string name="DuplicateUuidsError">Az adatbázis sérült: ütköző egyedi azonosítókat tartalmaz.  (Minikeepass alkalmazással lett elmentve?)  Importálja az adatbázist a Keepass 2 PC alkalmazásba és használja annak \"Új azonosítók létrehozása\" funkcióját.</string>
+  <string name="DuplicateUuidsErrorAdditional">Ez a hibaüzenet kikapcsolható a Beállítások/Alkalmazás/Fájlkezelés/Ütköző egyedi azonosítók keresése opció segítségével.  Az ütköző egyedi azonosítók azonban nem várt viselkedést okozhatnak, ezért javasoljuk inkább az adatbázis javítását.</string>
   <string name="synchronize_database_menu">Az adatbázis szinkronizálása&#8230;</string>
   <string name="CannotMoveGroupHere">A csoportot nem lehet ebbe a csoportba mozgatni.</string>
   <string name="donate_question">Ma kezdődik az Oktoberfest!  Ha kedveli ezt az alkalmazást, nem lenne ez egy jó alkalom, hogy fizessen nekem egy sört?</string>
@@ -387,7 +392,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="button_change_location">Hely módosítása</string>
   <string name="master_password">Mesterjelszó</string>
   <string name="help_master_password">Az adatbázis az itt megadott jelszóval lesz titkosítva.  Az adatbázis biztonsága érdekében válasszon erős jelszót!  Javaslat: találjon ki egy vagy két mondatot, és használja a szavak első betűit.  Ne hagyja ki az írásjeleket se.</string>
-  <string name="hint_master_password">Az adatbázis védelméhez válasszon egy mesterkulcsot:</string>
+  <string name="hint_master_password">Válasszon egy jelszót, amely, mint a főkulcs, az egész adatbázist védi:</string>
   <string name="key_file">Kulcsfájl</string>
   <string name="help_key_file">A kulcsfájl lényegében egy fájlban eltárolt jelszó.  A kulcsfájlok tipikusan erősebbek mint a mesterjelszavak, mert lényegesen bonyolultabbak lehetnek, ugyanakkor nehezebb őket titokban tartani.  Ha az adatbázist a felhőben tárolja, ne tárolja a kulcsfájlt az adatbázissal együtt, mert akkor a kulcsnak nem lenne semmi haszna!  Fontos: az adatbázis létrehozása után nem módosítsa a kulcsfájl tartalmát!</string>
   <string name="hint_key_file">Adja meg, kíván-e a mesterjelszó mellett kulcsfájlt is használni:</string>
@@ -450,6 +455,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="ClickOkToSelectLocation">Kattintson az OK gombra a másolási hely kiválasztásához.</string>
   <string name="CancelReadOnly">Megszakítás, megnyitás csak olvasásra.</string>
   <string name="CopyingFile">Fájl másolása...</string>
+  <string name="KdbBetaWarning">Figyelem: egy Keepass 1 formátumú adatbázis lett betöltve.  A Keepass 1 formátumú adatbázisok írása a Keepass2Android egy új funkciója, így az alapos tesztelés ellenére sem biztos, hogy minden adat mentése helyes lesz.  Javasoljuk, hogy mindig készítsen mentést az eredeti adatbázisról az adatbázis felülírása előtt.  (A Dropbox automatikusan elmenti az utolsó néhány verziót.)  Kérjük, minden esetleges problémát jelezzen!</string>
   <string name="ChangeLog_title">Verziótörténet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>

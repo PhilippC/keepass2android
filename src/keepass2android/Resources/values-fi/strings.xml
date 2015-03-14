@@ -39,6 +39,14 @@
   <string name="FileHandling_prefs">Tiedostokäsittely</string>
   <string name="keyboard_prefs">Näppäimistö</string>
   <string name="export_prefs">Vie tietokanta...</string>
+  <string name="import_db_prefs">Tuo tietokanta sisäisen kansioon</string>
+  <string name="import_keyfile_prefs">Tuo avaintiedosto sisäiseen kansioon</string>
+  <string name="keyboardswitch_prefs">Näppäimistön vaihtaminen</string>
+  <string name="OnlyAvailableForLocalFiles">Saatavilla vain paikallisia tiedostoja.</string>
+  <string name="FileIsInInternalDirectory">Tiedosto on tallennettu sisäiseen hakemistoon.</string>
+  <string name="DatabaseFileMoved">Tietokantatiedosto kopioitiin sisäiseen kansioon. Paina Ok avataksesi tiedosto sen uudesta sijainnista. Huomio: älä unohda viedä tietokantaa turvalliseen tallennustilaan säännöllisesti!</string>
+  <string name="KeyfileMoved">Avaintiedosto kopioitiin sisäiseen kansioon. Varmista, että sinulla on turvallinen varmuuskopio ennen poistamista nykyisestä sijainnista!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Sisäistä kansiota ei voida käyttää, kun avaintiedoston sijaintia ei muisteta. Vaihda turvallisuusasetuksia.</string>
   <string name="brackets">Hakasulkeet</string>
   <string name="cancel">Peruuta</string>
   <string name="ClearClipboard">Leikepöytä tyhjennetty.</string>
@@ -47,6 +55,7 @@
   <string name="copy_username">Valitse kopioidaksesi käyttäjänimen leikepöydälle</string>
   <string name="copy_password">Valitse ja kopioi salasana leikepöydälle</string>
   <string name="available_through_keyboard">Merkintä saatavana KP2A näppäimistölle</string>
+  <string name="entry_is_available">on saatavilla</string>
   <string name="not_possible_im_picker">Näppäimistön valinta-ikkunaa ei voitu avata. Aktivoi näppäimistö manuaalisesti.</string>
   <string name="please_activate_keyboard">Ota käyttöön Keepass2Android-näppäimistö Järjestelmäasetuksissa.</string>
   <string name="creating_db_key">Luodaan tietokanta-avain...</string>
@@ -177,8 +186,11 @@
   <string name="space">Välilyönti</string>
   <string name="search_label">Haku</string>
   <string name="show_password">Näytä salasana</string>
+  <string name="sort_menu">Lajittele...</string>
   <string name="sort_name">Järjestä nimen mukaan</string>
   <string name="sort_db">Järjestä luontipäivän mukaan</string>
+  <string name="sort_moddate">Lajittele muokkauspäivämäärän mukaan</string>
+  <string name="sort_default">Pidä oletusjärjestys</string>
   <string name="special">Erikoismerkit</string>
   <string name="search_hint">Kirjoita haku</string>
   <string name="search_results">Hakutulokset</string>
@@ -257,6 +269,8 @@
   <string name="UseFileTransactions_summary">Käytä tiedostotapahtumia tietokantoihin kirjoitettaessa</string>
   <string name="LockWhenScreenOff_title">Lukitse kun ei näyttöä</string>
   <string name="LockWhenScreenOff_summary">Lukitse tietokanta kun näyttö sammutetaan.</string>
+  <string name="ClearPasswordOnLeave_title">Tyhjennä syötetty pääsalasana</string>
+  <string name="ClearPasswordOnLeave_summary">Tyhjennä syötetty pääsalasana, kun näkymästä poistutaan tietokantaa avaamatta.</string>
   <string name="LockWhenNavigateBack_title">Lukitse lopetettaessa</string>
   <string name="LockWhenNavigateBack_summary">Lukitse tietokanta poistuttaessa. klikkaamalla Takaisin-painiketta.</string>
   <string name="NoDonateOption_title">Piilota lahjoituspyynnöt</string>
@@ -270,15 +284,27 @@
   <string name="ClearOfflineCache_question">Tämä poistaa kaikki välimuistiin tallennetut tietokantatiedostot. Yhä synkronoimattomat offline-tilassa tehdyt muutokset menetetään! Haluatko jatkaa?</string>
   <string name="CheckForFileChangesOnSave_title">Tarkista muutokset</string>
   <string name="CheckForFileChangesOnSave_summary">Tarkista, onko tiedostoa muokattu ulkoisesti ennen sen tallentamista.</string>
+  <string name="CheckForDuplicateUuids_title">Tarkista UUID-kaksoiskappaleiden varalta</string>
+  <string name="CheckForDuplicateUuids_summary">Tarkista onko tietokantatiedosto korruptoitunut niin, että siinä on monta merkintää samalla tunnusnumerolla. Se saattaa aiheuttaa ohjelman odottamatonta toimintaa.</string>
   <string name="ShowCopyToClipboardNotification_title">Leikepöydän ilmoitukset</string>
   <string name="ShowCopyToClipboardNotification_summary">Käyttää käyttäjätunnusta ja salasanaa Ilmoituspalkin ja Leikepöydän kautta. Varo salasanan paljastumista!</string>
+  <string name="ShowSeparateNotifications_title">Erilliset ilmoitukset</string>
+  <string name="ShowSeparateNotifications_summary">Näytä erilliset ilmoitukset käyttäjätunnuksen ja salasanan kopioimiseksi leikepöydälle ja näppäimistön aktivoimiseksi.</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A näppäimistön ilmoitus</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tee merkinnät KP2A näppäimistön kautta (suositus).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Vaihda näppäimistö</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Avaa näppäimistön valintaikkuna kun merkintä on saatavana KP2A näppäimistölle selainhaun jälkeen.</string>
+  <string name="kp2a_switch_rooted">Vaihda automaattisesti rootatuilla laitteilla</string>
+  <string name="kp2a_switch_rooted_summary">Vaihtaa automaattisesti KP2A-näppäimistöön, kun merkintä on avattu. Vaatii pääkäyttäjätilin ja Secure Settings -ohjelman System+:lla. </string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automaattivaihto vain haun jälkeen
+</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Vaihtaa automaattisesti KP2A-näppäimistöön, kun käytetään Jaa URL -toimintoa (mutta ei avatessa merkintää muilla tavoin)</string>
+  <string name="AutoSwitchBackKeyboard_title">Näppäimistön vaihto takaisin</string>
+  <string name="AutoSwitchBackKeyboard_summary">Vaihda takaisin edelliseen näppäimistöön, kun merkintää ei ole avattu.</string>
   <string name="ShowUnlockedNotification_title">Ilmoituskuvake kun on lukitsematon</string>
   <string name="ShowUnlockedNotification_summary">Näytä ilmoituskuvake kun tietokanta on avattu.</string>
   <string name="PreloadDatabaseEnabled_title">Esilataa tietokanta</string>
+  <string name="PreloadDatabaseEnabled_summary">Aloita tietokantatiedoston taustalataus salasanan syöttövaiheessa.</string>
   <string name="AskOverwriteBinary">Haluatko korvata nykyisen binääritiedoston samalla nimellä?</string>
   <string name="AskOverwriteBinary_title">Haluatko korvata nykyisen binääritiedoston?</string>
   <string name="AskOverwriteBinary_yes">Korvaa</string>
@@ -317,17 +343,24 @@
   <string name="FilesInSync">Tiedostot on synkronoitu.</string>
   <string name="SynchronizedDatabaseSuccessfully">Tietokanta synkronoitu!</string>
   <string name="CheckingDatabaseForChanges">Tarkistetaan tietokannan muutokset...</string>
+  <string name="CouldNotSaveToRemote">Ei voitu tallentaa etäkohteeseen: %1$s. Tallenna uudelleen tai käytä synkronointivalikkoa, kun etäyhteys on taas saatavilla.</string>
+  <string name="CouldNotLoadFromRemote">Ei voitu avata etäkohteesta: %1$s. Tiedosto ladattiin paikallisesta välimuistista. Voit silti tehdä muutoksia tietokantaan ja synkronoida ne myöhemmin.</string>
   <string name="UpdatedRemoteFileOnLoad">Päivitetty etätiedosto.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Paikallinen tiedosto on ristiriidassa etätiedoston kanssa Valitse Valikosta Synkronoi ja yhdistä.</string>
   <string name="LoadedFromRemoteInSync">Etätiedosto ja välimuisti on synkronoitu.</string>
   <string name="UpdatedCachedFileOnLoad">Päivittää paikallisen välimuistin kopion %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Muutoksia ei löytynyt.</string>
-  <string name="SynchronizingOtpAuxFile">Synkronoidaan OTP lisätiedosto...</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Päivitettiin välimuistissa ollut OTP-lisätiedosto: etäversion laskuri oli suurempi.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Päivitettiin etäversio OTP-lisätiedostosta: paikallinen laskuri oli suurempi.</string>
+  <string name="SynchronizingOtpAuxFile">Synkronoidaan OTP-lisätiedostoa&#8230;</string>
   <string name="database_file">tietokantatiedosto</string>
+  <string name="otp_aux_file">OTP-lisätiedosto</string>
   <string name="ErrorOcurred">Tapahtui virhe:</string>
+  <string name="DuplicateUuidsError">Tietokanta on korruptoitunut: siitä löytyi kahdentuneita tunnistenumeroita. (Tallensitko Minikeepass:lla?) Ole hyvä ja tuo tiedot uuteen tietokantaan KeePass 2:n PC-versiolla ja valitse \'Luo uudet ID-numerot\'.</string>
   <string name="synchronize_database_menu">Synkronoi tietokanta...</string>
   <string name="CannotMoveGroupHere">Ryhmää ei voi siirtää tähän ryhmään.</string>
   <string name="donate_question">Tänään on Oktoberfest! Jos pidät Keepass2Androidista: Tänään olisi hyvä päivä ostaa minulle olutta?</string>
+  <string name="donate_bday_question">10. maaliskuuta? Se on syntymäpäiväni! Jos pidät tästä ohjelmasta, miksipä et lähettäisi minulle syntymäpäiväonnitteluja pienen lahjan kera? Se tekisi minut todella onnelliseksi! :-)</string>
   <string name="ok_donate">Kerro lisää!</string>
   <string name="no_thanks">Ei, en pidä sitä niin paljon</string>
   <string name="hint_sftp_host">isäntä (ex: 192.168.0.1)</string>
@@ -346,50 +379,53 @@
   <string name="filestoragehelp_dropboxKP2A">Jos et halua antaa KP2A pääsyä koko Dropboxiin, voit valita tämän vaihtoehdon. Se pyytää vain Keepass2Android-kansion käyttöoikeuksia. Tämä on erityisen hyvä kun luodaan uusi tietokanta. Jos sinulla on jo tietokanta, valitsemalla tämän vaihtoehdon voit luoda kansion, Sijoita sen jälkeen tiedosto kansioon (tietokoneesta) ja valitse sitten tämä vaihtoehto uudelleen avaamalla tiedosto.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
-  <string name="filestoragename_sftp">SFTP (SSH tiedostojen siirto)</string>
+  <string name="filestoragename_sftp">SFTP (SSH-tiedostonsiirto)</string>
   <string name="database_location">Tietokannan sijainti</string>
-  <string name="help_database_location">Voit tallentaa tietokannan Android laitteeseen tai pilveen (vain-Offline versio). Keepass2Android  tietokanta on käytettävissä, vaikka olet offline-tilassa. Tietokanta salataan turvallisesti AES 256-bittinen salauksella. Suosittelemme valitsemaan Dropboxin. Se on käytettävissä kaikilla laitteillasi ja tarjoaa jopa varmuuskopiot edellisiin tiedostokantoihin.</string>
+  <string name="help_database_location">Voit tallentaa tietokannan Android-laitteeseen tai pilveen (vain online-versio). Keepass2Android:lla tietokanta on saatavissa, vaikka olisit offline-tilassa. Tietokanta salataan turvallisesti AES:n 256-bittisellä salauksella, ja vain sinä pääset käsiksi salasanoihisi. Suosittelemme valitsemaan Dropboxin. Se on käytettävissä kaikilla laitteillasi ja tarjoaa jopa varmuuskopiot edellisistä tiedostojen versioista.</string>
   <string name="hint_database_location">Valitse minne tietokanta tallennetaan:</string>
   <string name="button_change_location">Vaihda sijaintia</string>
   <string name="master_password">Pääsalasana</string>
   <string name="help_master_password">Tietokanta on suojattu syöttämälläsi sanasanalla. Valitse vahva salasana tietokannan suojaukseen! Vinkki: Muodosta lause tai kaksi jossa on seassa numeroita ja välimerkkejä.</string>
-  <string name="hint_master_password">Valitse pääsalasana tietokannan suojaukseen:</string>
+  <string name="hint_master_password">Valitse pääsalasana tietokannan suojaamiseksi:</string>
   <string name="key_file">Avaintiedosto</string>
+  <string name="help_key_file">Avaintiedosto on periaatteessa salasana tallennettuna tiedostoon. Avaintiedostot ovat tyypillisesti vahvempia kuin pääsalasanat, koska avain voi olla todella paljon monimutkaisempi; kuitenkin niiden säilyttäminen salaisuuksina on vaikeampaa. Jos tallennat tietokantasi pilveen, älä säilytä avaintiedostoa siellä! Se tekisi siitä täysin hyödyttömän! Tärkeää: Älä vaihda avaintiedoston sisältöä tietokannan luomisen jälkeen!</string>
   <string name="hint_key_file">Valitse, jos haluat käyttää avaintiedoston lisäksi pääsalasanaa:</string>
   <string name="use_key_file">Käytä avaintiedostoa</string>
   <string name="error_adding_keyfile">Virhe avaintiedoston lisäämisessä!</string>
-  <string name="init_otp">Lataa OTP lisätiedosto...</string>
+  <string name="init_otp">Lataa OTP-lisätiedosto&#8230;</string>
   <string name="otp_explanation">Syötä seuraava kertakäyttösalasana (OTP). Pyyhi Yubikey NEO:a laitteesi selkämystä vasten syöttääksesi NFC:llä.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="YubiChallengeNotInstalled">Sovellutusta ei löydy. Asenna Yubichallenge Google Playsta.</string>
-  <string name="CouldntLoadOtpAuxFile">Ylimääräistä OTP-Tiedostoa ei voi ladata!</string>
-  <string name="CouldntLoadOtpAuxFile_Hint">Käytä OtpKeyProv liitännäistä KeePass 2.x:ssa (PC) ja määritä tietokanta käytettäväksi OTP:ssa!</string>
+  <string name="CouldntLoadOtpAuxFile">OTP-lisätiedostoa ei voi ladata!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Käytä OtpKeyProv-liitännäistä KeePass 2.x:ssa (PC) ja määritä tietokanta käytettäväksi OTP-kertakäyttösalasanoilla!</string>
   <string name="otp_discarded_because_no_db">Valitse tietokanta ensin. OTP hylätään turvallisuussyistä.</string>
   <string name="otp_discarded_no_space">Kertakäyttösalasana hylätty: Kaikki salasanat on jo käytetty!</string>
   <string name="otp_discarded_because_db_open">Sulje ensin tietokanta. OTP hylätään.</string>
   <string name="otps_pending">(Yksi tai useampi OTPs on jo saatavilla)</string>
   <string name="otpsecret_hint">OTP salaus (esimerkiksi 01 23 ab cd...)</string>
-  <string name="CouldntParseOtpSecret">Virhe OTP-Salauksen paikannuksessa!</string>
-  <string name="OtpKeyError">OTP-Avaimen luominen epäonnistui Varmista, että OTP on oikein syötetty.</string>
-  <string name="ErrorUpdatingOtpAuxFile">Virhe ylimääräisen OTP-Tiedoston päivityksessä!</string>
-  <string name="SavingOtpAuxFile">Tallennetaan ylimääräinen OTP-Tiedosto...</string>
+  <string name="CouldntParseOtpSecret">Virhe OTP-salaisuuden jäsentämisessä!</string>
+  <string name="OtpKeyError">OTP-avaimen luominen epäonnistui! Varmista, että OTP:t on syötetty oikein.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Virhe OTP-lisätiedoston päivityksessä!</string>
+  <string name="SavingOtpAuxFile">Tallennetaan OTP-lisätiedostoa&#8230;</string>
   <string name="bad_resp">Haaste-vastaus on virheellinen.</string>
-  <string name="CouldntLoadChalAuxFile_Hint">Käytä KeeChallenge liitännäistä KeePass 2.x (PC) ja määritä tietokannan käyttöön vastausvaatimus!</string>
-  <string name="ErrorUpdatingChalAuxFile">Virhe päivitettäessä OTP lisätiedostoa!</string>
-  <string name="TrayTotp_SeedField_summary">Jos et käytä Keepass 2 \"TrayTotp\" liitännäisen oletusasetuksia, kirjoita kentän nimi asetusten mukaisesti PC:n asetuksissa.</string>
-  <string name="TrayTotp_SettingsField_title">TOTP asetusten nimi</string>
-  <string name="TrayTotp_SettingsField_summary">Kirjoita nimi TrayTot asetukset-kenttään täällä.</string>
+  <string name="CouldntLoadChalAuxFile">Ei voitu ladata haastetiedostoa!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Käytä KeeChallenge-liitännäistä KeePass 2.x (PC) ja määritä tietokanta käyttämään haasteeseen vastaamista!</string>
+  <string name="ErrorUpdatingChalAuxFile">Virhe päivitettäessä OTP-lisätiedostoa!</string>
+  <string name="TrayTotp_SeedField_title">TOTP-siemenkentän nimi</string>
+  <string name="TrayTotp_SeedField_summary">Jos et käytä Keepass 2 \"TrayTotp\" liitännäisen oletusasetuksia, kirjoita siemenkentän nimi PC-version asetusten mukaisesti.</string>
+  <string name="TrayTotp_SettingsField_title">TOTP-asetuksien kentän nimi</string>
+  <string name="TrayTotp_SettingsField_summary">Syötä TrayTotp:n asetukset sisältävän kentän nimi tähän.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Ladataan&#8230;</string>
-  <string name="plugins">Lisäosat</string>
+  <string name="plugins">Liitännäiset</string>
   <string name="plugin_packagename">Paketin nimi:</string>
   <string name="plugin_description">Kuvaus (ei varmistettu):</string>
   <string name="plugin_author">Tekijä (ei varmistettu):</string>
   <string name="plugin_enabled">käytössä</string>
-  <string name="plugin_disabled">Ei käytössä</string>
+  <string name="plugin_disabled">ei käytössä</string>
   <string name="plugin_web">Etsi liitännäisiä verkosta</string>
-  <string name="query_credentials_for_url">%1$s pyytää tunnistetietoja %2$s.</string>
-  <string name="query_credentials">%1$s pyytää tunnistetietoja. Valitse kohde.</string>
+  <string name="query_credentials_for_url">%1$s pyytää tunnuksia merkinnälle %2$s.</string>
+  <string name="query_credentials">%1$s pyytää tunnuksia. Valitse merkintä.</string>
   <string name="plugin_enabled_checkbox">Käytössä</string>
   <string name="SCOPE_DATABASE_ACTIONS_title">Tietokannan toiminta-ilmoitukset</string>
   <string name="SCOPE_DATABASE_ACTIONS_explanation">Liitännäisen ilmoitus, kun tietokanta avataan, suljetaan tai on tallennettu.</string>
@@ -406,10 +442,35 @@
   <string name="FileIsReadOnly">Valitsemallasi tiedostolla on vain lukuoikeudet.</string>
   <string name="FileIsReadOnlyOnKitkat">Valitsemallasi tiedostolla Keepass2Android on vain lukuoikeudet , koska Android 4.4 +:ssa on rajoituksia.</string>
   <string name="CopyFileRequired">Käyttääksesi sitä se pitää kopioida toiseen paikkaan.</string>
+  <string name="ClickOkToSelectLocation">Klikkaa OK valitaksesi sijainnin, johon tiedosto kopioidaan.</string>
   <string name="CancelReadOnly">Peruuta, avaa vain luku-tilassa.</string>
   <string name="CopyingFile">Kopioin tiedostoa...</string>
+  <string name="KdbBetaWarning">Huomautus: Olet ladannut Keepass 1 -tietokannan. Keepass2Android-ohjelmaan on vastikään lisätty kirjoitustuki tälle tietokantaformaatille. Perusteellisesta testaamisesta huolimatta tekijä ei kuitenkaan takaa että kaikki data tallentuisi oikein. Pidä aina varmuuskopio alkuperäisestä tietokannasta (Dropbox säilyttää automaattisesti viimeaikaiset versiot) ennen muutosten tekemistä. Ole hyvä ja raportoi kohtaamistasi ongelmista. Kiitos!</string>
   <string name="ChangeLog_title">Muutosloki</string>
   <string name="PreviewWarning">Huomaa! Tämä on ennakkoversio, ja siinä voi olla joitakin puutteita! Jos * mitään * odottamatonta tapahtuu, kerro minulle (Codeplexissä tai sähköpostitse).</string>
+  <string name="ChangeLog_0_9_7">
+Versio 0.9.7\n
+* kirjoitustuki Keepass 1 (kdb) tietokannoille (beta!)\n
+* parempi takaisinvaihto edelliseen näppäimistöön (toimii myös ei-rootatuilla laitteilla)\n
+* tuki KeeChallengelle vaihtelevan mittaisille haasteille\n
+* estä ruutukaappausten ottaminen pika-avauksesta ja salasanaruudusta\n
+* päinvastainen järjestystapa Järjestä muokkauspäivän mukaan -toiminnolle (nyt laskeva)\n
+* bugikorjauksia: Muistiinpanonäkymä päivittyy nyt oikein muutosten jälkeen, salasananäkymät piilottavat salasanat oikein (toivottavasti) kaikilla laitteilla, korjattu tapaus, jossa sallittiin merkinnän lisääminen kahdesti, korjattu tapaus, jossa näytettiin varoitus tuplaantuneista UUID:istä tietokannan korjaamisen jälkeenkin\n</string>
+  <string name="ChangeLog_0_9_6">
+Versio 0.9.6\n
+* sallii avaintiedoston ja/tai paikallisen tietokantatiedoston tuomisen ohjelman sisäiseen hakemistoon (ks. asetukset)\n
+* sallii erilaiset järjestysasetukset\n
+* parannettu automaattisen näppäimistönvaihdon asetuksia\n
+* päivitetty ohjelman logo ja ilmoitusulkoasu, ulkoasun tehnyt Stefano Pignataro (http://www.spstudio.at)\n
+* salasanageneraattori muistaa edelliset asetukset\n
+* ilmoituksen näkyvyyden asettaminen Android 5:n lukitusruudulle\n
+* nyt pääsalasanakenttä tyhjennetään, kun ohjelmasta poistutaan ilman OK:n painamista\n
+* korjattu joidenkin laitteiden osalta tapaus, jossa syötekieliä puuttui näppäimistön asetuksista\n
+* korjattu ongelma automaattisessa näppäimistön vaihtamisessa rootatuilla laitteilla\n
+* lisätty korruptoituneen tietokannan tarkistus (tuplaantuneet UUID:t)\n
+* uudelleenlataa tietokannan automaattisesti, kun muutos havaitaan. Ratkaisee tietoturvahuolen pääsalasanan paljastumisesta\n
+* parannettu puolalaista pientä näppäimistöasettelua, korjattu näppäimistön asetusten teema (kiitokset Wiktor Ławski:lle)\n</string>
+  <string name="ChangeLog_keptDonate">Laajennettu mahdollisuus lahjoittaa olutta tai jotain muuta</string>
   <string-array name="clipboard_timeout_options">
     <item>30  sekunttia</item>
     <item>1 minuutti</item>

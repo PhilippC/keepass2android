@@ -4,7 +4,9 @@
 <resources>
   <string name="about_feedback">التعليقات</string>
   <string name="about_homepage">الصفحة الرئيسية</string>
+  <string name="AboutText">Keepass2Android هو منظم كلمات سر يتيح استخدام قواعد بيانات البرنامج KeePass 2.x على نظام الاندرويد.</string>
   <string name="accept">قبول</string>
+  <string name="deny">رفض</string>
   <string name="add_entry">إضافة مُدخل</string>
   <string name="add_url_entry">إنشاء مُدخل لرابط</string>
   <string name="add_group">إضافة مجموعة</string>
@@ -24,6 +26,7 @@
   <string name="password_access_prefs">الوصول لمُدخل كلمة المرور</string>
   <string name="QuickUnlock_prefs">إزالة التأمين السريع</string>
   <string name="FileHandling_prefs">الملفات التي يمكن استخدامها</string>
+  <string name="keyboard_prefs">لوحة المفاتيح</string>
   <string name="brackets">علامتي تنصيص</string>
   <string name="cancel">إلغاء</string>
   <string name="ClearClipboard">مسح الحافظة.</string>

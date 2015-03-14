@@ -271,6 +271,8 @@
   <string name="UseFileTransactions_summary">Użyj tabeli operacji na pliku do zapisu bazy danych</string>
   <string name="LockWhenScreenOff_title">Zablokuj, gdy ekran wyłączony</string>
   <string name="LockWhenScreenOff_summary">Zablokuj bazę danych, gdy ekran jest wyłączony.</string>
+  <string name="ClearPasswordOnLeave_title">Wyczyść wpisane hasło główne</string>
+  <string name="ClearPasswordOnLeave_summary">Wyczyść wpisane hasło główne podczas opuszczania aplikacji bez odblokowywania bazy danych.</string>
   <string name="LockWhenNavigateBack_title">Zablokuj po opuszczeniu aplikacji</string>
   <string name="LockWhenNavigateBack_summary">Zablokuj bazę danych kiedy opuścisz aplikację poprzez naciśnięcie przycisku wstecz.</string>
   <string name="NoDonateOption_title">Ukryj opcję dotacji</string>
@@ -284,6 +286,8 @@
   <string name="ClearOfflineCache_question">Spowoduje to usunięcie wszystkich plików pamięci podręcznej baz danych. Wszelkie zmiany dokonane będąc offline, które nie zostały jeszcze zsynchronizowane zostaną utracone! Kontynuować?</string>
   <string name="CheckForFileChangesOnSave_title">Sprawdź, czy zmodyfikowano</string>
   <string name="CheckForFileChangesOnSave_summary">Sprawdzenie, czy plik został zmodyfikowany zewnętrznie przed zapisaniem zmian.</string>
+  <string name="CheckForDuplicateUuids_title">Wyszukaj duplikatów UUID</string>
+  <string name="CheckForDuplicateUuids_summary">Sprawdź czy plik bazy danych jest uszkodzony, posiadając wiele wpisów dla tego samego ID. Może to spowodować nieoczekiwane zachowanie.</string>
   <string name="ShowCopyToClipboardNotification_title">Kopiuj dane do schowka</string>
   <string name="ShowCopyToClipboardNotification_summary">Udostępnienie nazwy użytkownika i hasła za pośrednictwem schowka i paska powiadomień. Uwaga na sniffery haseł!</string>
   <string name="ShowSeparateNotifications_title">Oddzielne powiadomienia</string>
@@ -354,6 +358,7 @@
   <string name="otp_aux_file">Pomocniczy plik OTP</string>
   <string name="ErrorOcurred">Wystąpił błąd:</string>
   <string name="DuplicateUuidsError">Baza danych jest uszkodzona: Znaleziono duplikaty identyfikatorów. (Czy może zapisywałeś Minikeepassem?) Proszę ponownie zaimportować do nowej bazy danych z Keepass 2 na PC i wybierz polecenie \"Utwórz nowe identyfikatory\".</string>
+  <string name="DuplicateUuidsErrorAdditional">Możesz wyłączyć ten komunikat o błędzie w Ustawienia/Ustawienia aplikacji/Obsługa plików/Wyszukaj duplikatów UUID. Zauważ, że możesz doświadczyć nieoczekiwanego zachowania. Zaleca się naprawić bazę danych.</string>
   <string name="synchronize_database_menu">Synchronizowanie bazy danych...</string>
   <string name="CannotMoveGroupHere">Nie można przenieść grupy do tej grupy.</string>
   <string name="donate_question">Dzisiaj jest Oktoberfest! Jeśli podoba Ci się Keepass2Android: czemu dzisiaj nie mógłby być dzień, w którym postawiłbyś mi piwo?</string>
@@ -448,8 +453,18 @@
   <string name="ClickOkToSelectLocation">Kliknij przycisk OK, aby wybrać miejsce, gdzie należy skopiować plik.</string>
   <string name="CancelReadOnly">Anuluj, Otwórz tylko do odczytu.</string>
   <string name="CopyingFile">Kopiowanie plików...</string>
+  <string name="KdbBetaWarning">Uwaga: Załadowano bazę danych dla Keepass 1. Keepass2Android ostatnio dodał wsparcie dla zapisu dla tego formatu bazy danych. Pomimo dokładnego badania, autor nie gwarantuje, że wszystkie dane zostaną poprawnie zapisane. Proszę zawsze zachować kopię zapasową oryginalnej bazy danych (Dropbox automatycznie zapisuje ostatnie wersje) przed wprowadzeniem zmian. Proszę zgłaszać wszelkie problemy. Dzięki!</string>
   <string name="ChangeLog_title">Lista zmian</string>
   <string name="PreviewWarning">Uwaga! To jest podglądowe wydanie i może posiadać wady! Jeżeli doświadczasz *czegokolwiek* niespodziewanego, daj mi znać (na Codeplex lub przez email).</string>
+  <string name="ChangeLog_0_9_7">
+		Wersja 0.9.7\n
+		* wsparcie dla zapisu bazy danych (kdb) dla Keepass 1 (beta!)\n
+		* lepsze przełączanie do poprzedniej klawiatury (działa także na nie-zrootowanych urządzeniach)\n
+		* wsparcie dla KeeChallenge ze zmienną długością wyzwań\n
+		* zabezpieczono przed możliwością zrobienia zrzutów ekranu dla ekranów QuickUnlock i hasła\n
+		* odwrócono kolejność sortowania dla Sortuj według daty modyfikacji (teraz malejąco)\n
+		* poprawki błędów: Widok notatek jest teraz poprawnie aktualizowany po zmianach. Widoki haseł teraz chowają hasła poprawnie na (miejmy nadzieję) wszystkich urządzeniach; naprawiono błąd, który powodował, że można było dwukrotnie dodać ten sam wpis; naprawiono problem z pokazywaniem ostrzeżenia o zduplikowanych UUID nawet po naprawieniu bazy danych\n
+	</string>
   <string name="ChangeLog_0_9_6">
 		Wersja 0.9.6\n
 		* umożliwiono importowanie pliku klucza i/lub pliku lokalnej bazy danych do wewnętrznego katalogu aplikacji (patrz ustawienia)\n

@@ -68,7 +68,7 @@
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">Vyberte soubor/složku&#8230;</item>
-    <item quantity="few">Vyberte soubor/složku&#8230;</item>
-    <item quantity="other">Vyberte soubory/složky&#8230;</item>
+    <item quantity="few">Vyberte soubor/ složku &#8230;</item>
+    <item quantity="other">Vyberte soubory/ složky &#8230;</item>
   </plurals>
 </resources>

@@ -10,7 +10,7 @@
   <string name="accept">接受</string>
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
-  <string name="add_url_entry">为链接地址创建条目</string>
+  <string name="add_url_entry">为 URL 创建条目</string>
   <string name="add_group">添加群组</string>
   <string name="add_group_title">添加群组</string>
   <string name="edit_group_title">编辑群组</string>
@@ -31,7 +31,7 @@
   <string name="ShowGroupnameInSearchResult_resume">在搜索结果中条目标题下显示群组名。如果几个条目具有相同的名称时会很有用。</string>
   <string name="NavigationToGroupCompleted_message">当前显示群组：%1$s</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
-  <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发商 ！</string>
+  <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
   <string name="security_prefs">安全</string>
   <string name="display_prefs">显示</string>
   <string name="password_access_prefs">密码输入接口</string>
@@ -39,6 +39,14 @@
   <string name="FileHandling_prefs">文件操作</string>
   <string name="keyboard_prefs">键盘</string>
   <string name="export_prefs">导出数据库...</string>
+  <string name="import_db_prefs">在内部的文件夹中导入数据库</string>
+  <string name="import_keyfile_prefs">将密钥文件导入到内部文件夹</string>
+  <string name="keyboardswitch_prefs">切换键盘</string>
+  <string name="OnlyAvailableForLocalFiles">仅适用于本地文件。</string>
+  <string name="FileIsInInternalDirectory">文件存储在内部目录中。</string>
+  <string name="DatabaseFileMoved">数据库文件已被复制到内部的文件夹。点击确定从新位置打开。注意： 不要忘记要定期将数据库导出到一个安全的地方！</string>
+  <string name="KeyfileMoved">密钥文件被复制到内部的文件夹。从当前位置删除之前请确保您有一个安全的备份！</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">未记住密钥文件位置时不能使用内部文件夹。更改安全首选项。</string>
   <string name="brackets">括号</string>
   <string name="cancel">取消</string>
   <string name="ClearClipboard">剪贴板已清除。</string>
@@ -47,6 +55,7 @@
   <string name="copy_username">复制用户名到剪贴板</string>
   <string name="copy_password">复制密码到剪贴板</string>
   <string name="available_through_keyboard">可通过 KP2A 键盘获得条目</string>
+  <string name="entry_is_available">可用</string>
   <string name="not_possible_im_picker">无法打开输入法选择对话框，请手动激活键盘。</string>
   <string name="please_activate_keyboard">请在系统设置中启用 Keepass2Android 键盘。</string>
   <string name="creating_db_key">正在创建数据库密钥&#8230;</string>
@@ -177,8 +186,11 @@
   <string name="space">空格</string>
   <string name="search_label">搜索</string>
   <string name="show_password">显示密码</string>
+  <string name="sort_menu">排序...</string>
   <string name="sort_name">按名称排序</string>
   <string name="sort_db">按创建日期排序</string>
+  <string name="sort_moddate">按修改日期排序</string>
+  <string name="sort_default">保持默认顺序</string>
   <string name="special">特别</string>
   <string name="search_hint">查找内容</string>
   <string name="search_results">搜索结果</string>
@@ -196,6 +208,7 @@
   <string name="version_history">版本历史记录</string>
   <string name="author">Keepass2Android 由 Philipp Crocoll 开发。</string>
   <string name="further_authors">感谢 %1$s 贡献的代码。</string>
+  <string name="designers">感谢  %1$s 提供的图标和界面设计.</string>
   <string name="credit_plugin1">包含在 KP2A 中的双鱼算法插件是由 Scott Greenberg 为 Keepass 开发的。</string>
   <string name="credit_android_filechooser">Android 文件选择器是由 Hai Bison 开发的</string>
   <string name="credit_keyboard">KP2A 键盘基于 Android 开放源代码项目的姜饼键盘，并使用黑客 Klaus Weidner 的键盘插件管理器代码。</string>
@@ -214,7 +227,7 @@
   <string name="caseSensitive">区分大小写</string>
   <string name="start_open_file">打开文件...</string>
   <string name="start_create">创建新的数据库...</string>
-  <string name="start_open_url">打开链接地址L...</string>
+  <string name="start_open_url">打开 URL...</string>
   <string name="start_create_import">导入文件到新的数据库...</string>
   <string name="enter_filename_details_url">必须指定包含类似 http:// 的完整链接地址</string>
   <string name="enter_filename_details_create_import">所导入的文件将在下一步被选中</string>
@@ -258,6 +271,8 @@
   <string name="UseFileTransactions_summary">使用文件记录来写数据库</string>
   <string name="LockWhenScreenOff_title">在锁屏时锁定</string>
   <string name="LockWhenScreenOff_summary">当锁屏时锁定数据库。</string>
+  <string name="ClearPasswordOnLeave_title">清除已输入的主密码</string>
+  <string name="ClearPasswordOnLeave_summary">当没有解锁数据库就退出时，清除已输入的主密码。</string>
   <string name="LockWhenNavigateBack_title">离开应用时锁定</string>
   <string name="LockWhenNavigateBack_summary">当通过点按返回键离开本应用时锁定数据库</string>
   <string name="NoDonateOption_title">隐藏捐赠选项</string>
@@ -271,13 +286,22 @@
   <string name="ClearOfflineCache_question">这将删除所有缓存的数据库文件，所有你尚未同步的在离线状态下所作的任何更改都将丢失！是否继续？</string>
   <string name="CheckForFileChangesOnSave_title">检查修改</string>
   <string name="CheckForFileChangesOnSave_summary">检查文件是否在保存变更之前被外部修改。</string>
+  <string name="CheckForDuplicateUuids_title">检查重复的 UUID</string>
+  <string name="CheckForDuplicateUuids_summary">通过检查数据库文件是否有多个相同 ID 的项目，来判断数据库是否损坏。这可能会导致意外的行为。</string>
   <string name="ShowCopyToClipboardNotification_title">剪贴板的通知</string>
-  <string name="ShowCopyToClipboardNotification_summary">使用户名和密码可通过通知栏和剪贴板访问。谨防密码嗅探器 ！</string>
+  <string name="ShowCopyToClipboardNotification_summary">让用户名和密码可通过通知栏和剪贴板访问。谨防密码嗅探器 ！</string>
+  <string name="ShowSeparateNotifications_title">独立的通知</string>
+  <string name="ShowSeparateNotifications_summary">为复制账户信息和激活键盘分别显示通知</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A 键盘通知</string>
   <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取 （推荐）。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切换键盘</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">当从浏览器搜索或键盘后可用通过 KP2A 键盘输入时，打开键盘选择对话框。</string>
   <string name="kp2a_switch_rooted">在获得根权限的设备上自动切换</string>
+  <string name="kp2a_switch_rooted_summary">当打开条目时，自动切换到我们提供的键盘。需要 Root 并安装 Secure Settings。</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">仅在搜索后自动切换</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">仅当通过分享链接的方式打开条目时自动切换键盘（但不包括其它打开条目的方式）</string>
+  <string name="AutoSwitchBackKeyboard_title">切换为原来的键盘</string>
+  <string name="AutoSwitchBackKeyboard_summary">没有打开条目时，切换回原来的键盘。</string>
   <string name="ShowUnlockedNotification_title">解锁时通知图标</string>
   <string name="ShowUnlockedNotification_summary">当数据库处于解锁状态栏持续显示通知。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
@@ -333,6 +357,8 @@
   <string name="database_file">数据库文件</string>
   <string name="otp_aux_file">一次性密码辅助文件</string>
   <string name="ErrorOcurred">发生错误：</string>
+  <string name="DuplicateUuidsError">数据库损坏：发现重复的ID。（你曾使用Minikeepass编辑？）请用Keepass 2 for PC并选择创建新的ID重新导入到新的数据库。</string>
+  <string name="DuplicateUuidsErrorAdditional">您可以在 设置/应用设置/文件处理/检查重复的 UUID 中关闭此错误消息。请注意您可能碰到意外的情况，建议您立即修复数据库。</string>
   <string name="synchronize_database_menu">同步数据库...</string>
   <string name="CannotMoveGroupHere">不能将群组移动到这。</string>
   <string name="donate_question">今天是慕尼黑啤酒节 ！如果你喜欢 Keepass2Android：今天难道不是给我买一杯啤酒的好日子吗？</string>
@@ -402,6 +428,7 @@
   <string name="plugin_enabled">已启用</string>
   <string name="plugin_disabled">已禁用</string>
   <string name="plugin_web">发现在线插件</string>
+  <string name="plugin_scopes">作用域</string>
   <string name="query_credentials_for_url">%1$s 正在请求 %2$s 的证书</string>
   <string name="query_credentials">%1$s 正在请求证书。请选择一个条目。</string>
   <string name="plugin_enabled_checkbox">已启用</string>
@@ -426,8 +453,33 @@
   <string name="ClickOkToSelectLocation">单击确定以选择要复制文件的位置。</string>
   <string name="CancelReadOnly">取消，以只读形式打开。</string>
   <string name="CopyingFile">正在复制文件...</string>
+  <string name="KdbBetaWarning">请注意：您读取了一个 Keepass 1 的数据库。我们最近添加了对该格式的修改操作。不过目前还在测试中，作者并不保证数据能正常保存。请确保您总是备份了数据库（Dropbox 会自动保存最近的版本）再进行修改操作。如果碰到问题请使用英语反馈给我们。感谢！</string>
   <string name="ChangeLog_title">更新记录</string>
   <string name="PreviewWarning">请注意 ！这是一个预览版本，可能会有一些缺陷 ！如果您遇到*任何*错误，请联系我们（通过 Codeplex 或电子邮件）。</string>
+  <string name="ChangeLog_0_9_7">
+Version 0.9.7\n
+* 支持修改 Keepass 1 (kdb) 数据库 (测试中!)\n
+* 更好的方式来恢复之前的键盘（非 Root 设备也可使用）\n
+* support for KeeChallenge with variable length challenges\n
+* 阻止在快速解锁和密码界面截屏\n
+* reverse sort order for Sort by Modification Date (now descending)\n
+* bug fixes: Notes view now updated correctly after changes, Password views now hiding password correctly on (hopefully) all devices, fixed issue that allowed to add an entry twice, fixed issue with showing Duplicate UUID warning even after fixing the database\n
+	</string>
+  <string name="ChangeLog_0_9_6">
+版本 0.9.6\n
+* 允许导入密钥文件和本地的数据库文件到应用内部目录（请看设置）\n
+* 支持不同的排序方式\n
+* 优化自动切换键盘的配置\n
+* 更新图标和界面, 由 Stefano Pignataro (http://www.spstudio.at) 设计\n
+* 密码生成器记录最后的配置\n
+* 为 Android 5 的锁屏界面设置通知可见性\n
+* 当没有点击确认就离开应用时，清除主密码\n
+* 修正部分设备无法设置输入语言的问题\n
+* 修正 Root 设备自动切换键盘的问题\n
+* 添加检查数据库的功能 （重复的 UUID）\n
+* 当检测到数据库修改后自动重新读取, 解决一个关于主密码的安全隐患\n
+* 优化波兰语键盘， 修正键盘设置主题样式（感谢 Wiktor Ławski）\n
+	</string>
   <string name="ChangeLog_0_9_4"><b>版本 0.9.4</b>\n
 * 添加插件指出：参阅设置查看如何获得插件！\n
 * 二维码插件（扫描密码、以二维码方式显示密码、转移条目至其他装有 KP2A 的设备）\n

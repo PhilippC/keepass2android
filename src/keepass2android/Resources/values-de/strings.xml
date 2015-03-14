@@ -25,7 +25,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Knopf</string>
-  <string name="show_kill_app_summary">Zeige einen Knopf im Passwort-Bildschirm um den App-Prozess zu beenden (für paranoide User)</string>
+  <string name="show_kill_app_summary">Zeige einen Button im Passwort-Bildschirm um den App-Prozess zu beenden (für paranoide User)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungs-Einstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
@@ -45,9 +45,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="keyboardswitch_prefs">Wechseln der Eingabemethode</string>
   <string name="OnlyAvailableForLocalFiles">Nur für lokale Dateien verfügbar.</string>
   <string name="FileIsInInternalDirectory">Datei ist in internem Ordner gespeichert.</string>
-  <string name="DatabaseFileMoved">Die Datenbank Datei wurde in den internen Ordner kopiert.  Drücke OK um sie vom neuen Ort zu öffnen. Hinweis: Nicht vergessen regelmäßig einen Export der Datenbank zu einem sicheren Speicherort durchzuführen!</string>
+  <string name="DatabaseFileMoved">Die Datenbank-Datei wurde in den internen Ordner kopiert.  Drücke OK, um sie vom neuen Ort zu öffnen. Hinweis: Vergiss nicht, regelmäßig einen Export der Datenbank zu einem sicheren Speicherort durchzuführen!</string>
   <string name="KeyfileMoved">Die Schlüsseldatei wurde in den internen Ordner kopiert. Stelle sicher, dass du ein Backup der Datei hast bevor du sie vom aktuellen Ort löschst!</string>
-  <string name="KeyfileMoveRequiresRememberKeyfile">Der interne Ordner kann nicht genutzt werden, wenn die Option zum merken des Speicherorts der Schlüsseldatei nicht aktiv ist. Ändere die Sicherheitseinstellung.</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Der interne Ordner kann nicht genutzt werden, wenn der Speicherort der Schlüsseldatei nicht gespeichert wird. Ändere die Sicherheitseinstellung.</string>
   <string name="brackets">Klammern</string>
   <string name="cancel">Abbrechen</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
@@ -69,7 +69,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
   <string name="entry_accessed">Letzter Zugriff</string>
   <string name="entry_cancel">Abbrechen</string>
-  <string name="entry_comment">Notiz</string>
+  <string name="entry_comment">Kommentare</string>
   <string name="entry_tags">Tags</string>
   <string name="entry_override_url">Override URL</string>
   <string name="entry_confpassword">Kennwort wiederholen</string>
@@ -272,6 +272,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UseFileTransactions_summary">Dateitransaktionen beim Schreiben von Datenbank-Dateien verwenden</string>
   <string name="LockWhenScreenOff_title">Sperren bei Ausschalten</string>
   <string name="LockWhenScreenOff_summary">Sperre die Datenbank wenn der Bildschirm ausgeschaltet wird.</string>
+  <string name="ClearPasswordOnLeave_title">Eingegebenes Master-Passwort-Feld leeren</string>
+  <string name="ClearPasswordOnLeave_summary">Leere das Eingabefeld für das Master-Passwort, wenn der Passwort-Eingabebildschirm verlassen wird, ohne dass die Datenbank entsperrt wurde.</string>
   <string name="LockWhenNavigateBack_title">Beim Verlassen der App sperren</string>
   <string name="LockWhenNavigateBack_summary">Datenbank sperren, wenn die App mit dem Zurück-Knopf verlassen wird.</string>
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
@@ -285,10 +287,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ClearOfflineCache_question">Alle Datenbank-Dateien im Cache werden gelöscht. Änderungen, die du gemacht hast während du offline warst und die noch nicht synchronisiert wurden, werden verloren gehen! Fortfahren?</string>
   <string name="CheckForFileChangesOnSave_title">Auf Änderungen prüfen</string>
   <string name="CheckForFileChangesOnSave_summary">Vor dem Speichern prüfen, ob die Datei von außerhalb geändert wurde.</string>
+  <string name="CheckForDuplicateUuids_title">Prüfe auf doppelte UUIDs</string>
+  <string name="CheckForDuplicateUuids_summary">Prüfe ob die Datenbank-Datei korrupt ist, weil mehrere Einträge dieselbe ID haben. Das könnte zu unerwartetem Verhalten führen.</string>
   <string name="ShowCopyToClipboardNotification_title">Zwischenablage-Benachrichtigungen</string>
   <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
   <string name="ShowSeparateNotifications_title">Separate Benachrichtigungen</string>
-  <string name="ShowSeparateNotifications_summary">Zeige separate Benachrichtigungen zum kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode.</string>
+  <string name="ShowSeparateNotifications_summary">Zeige separate Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode.</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
   <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
@@ -296,9 +300,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="kp2a_switch_rooted">Auto-umschalten auf gerooteten Geräten</string>
   <string name="kp2a_switch_rooted_summary">Automatischer Wechsel zur KP2A Eingabemethode wenn ein Eintrag geöffnet wird. Benötigt root und die Secure Settings app mit System+.</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatischer Wechsel nur nach Suche</string>
-  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Nur nach dem nutzen der URL teilen Funktion automatisch zur KP2A Eingabemethode wechseln (aber nicht beim öffnen des Eintrags auf einem anderen Weg)</string>
-  <string name="AutoSwitchBackKeyboard_title">Rückwechsel der Eingabemethode</string>
-  <string name="AutoSwitchBackKeyboard_summary">Wechsel zur vorigen Eingabemethode, wenn kein Eintrag ausgewählt ist.</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Nur nach dem Nutzen der \"URL teilen\"-Funktion automatisch zur KP2A-Tastatur wechseln (aber nicht beim Öffnen des Eintrags auf einem anderen Weg)</string>
+  <string name="AutoSwitchBackKeyboard_title">Tastatur zurück wechseln</string>
+  <string name="AutoSwitchBackKeyboard_summary">Wechsel zur vorigen Eingabemethode wenn kein Eintrag ausgewählt ist</string>
   <string name="ShowUnlockedNotification_title">Benachrichtungssymbol anzeigen, solange entsperrt</string>
   <string name="ShowUnlockedNotification_summary">Zeige ein Symbol in der Benachrichtigungsleiste, solange die Datenbank entsperrt ist.</string>
   <string name="PreloadDatabaseEnabled_title">Datenbank vor-laden</string>
@@ -354,7 +358,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="database_file">Datenbankdatei</string>
   <string name="otp_aux_file">OTP-Hilfsdatei</string>
   <string name="ErrorOcurred">Ein Fehler ist aufgetreten:</string>
-  <string name="DuplicateUuidsError">Datenbank ist beschädigt: IDs kommen mehrfach vor. (Hast du mit Minikeepass gespeichert?) Bitte am PC mit Keepass 2 in eine neue Datenbank re-importieren und \'Neue IDs erstellen\' auswählen.</string>
+  <string name="DuplicateUuidsError">Datenbank ist korrupt: IDs kommen mehrfach vor. (Hast du mit Minikeepass gespeichert?) Bitte am PC mit Keepass 2 in eine neue Datenbank re-importieren und \'Neue IDs erstellen\' auswählen.</string>
+  <string name="DuplicateUuidsErrorAdditional">Diese Fehlermeldung kann unter Einstellungen/Anwendungs-Einstellungen/Umgang mit Dateien/Prüfe auf doppelte UUIDs deaktiviert werden. Bitte beachten: Dies kann zu unerwartetem Verhalten führen. Es wird empfohlen, die Datenbank zu reparieren.</string>
   <string name="synchronize_database_menu">Datenbank synchronisieren&#8230;</string>
   <string name="CannotMoveGroupHere">Kann Gruppe nicht hierher verschieben.</string>
   <string name="donate_question">Heute ist Oktoberfest! Wenn dir Keepass2Android gefällt: Wäre heute nicht ein guter Tag, um mir ein Bier zu spendieren?</string>
@@ -449,8 +454,18 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ClickOkToSelectLocation">Wähle OK, um einen Zielort zum Kopieren zu wählen.</string>
   <string name="CancelReadOnly">Abbrechen, nur lesend öffnen.</string>
   <string name="CopyingFile">Kopiere Datei...</string>
+  <string name="KdbBetaWarning">Bitte beachten: Du hast eine Keepass-1-Datenbank geladen. Keepass2Android bietet seit kurzem die Möglichkeit, solche Dateien zu editieren. Trotz gründlicher Tests garantiert der Autor nicht, dass alle Daten korrekt gespeichert werden. Bitte lege immer eine Sicherheitskopie der ursprünglichen Datenbank an, bevor du mit Keepass2Android speicherst (Tipp: Dropbox speichert automatisch ältere Verionen). Sollte ein Problem auftreten, melde diese bitte an den Autor. Danke!</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
   <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (auf Codeplex oder per E-Mail).</string>
+  <string name="ChangeLog_0_9_7">
+		Version 0.9.7\n
+		* Schreibunterstützung für Keepass 1 (kdb) Datenbanken (Beta!)\n
+		* Verbessertes Zurückschalten zur vorherigen Eingabemethode (funktioniert auch auf nicht gerooteten Geräten)\n
+		* Unterstützung für KeeChallenge mit variablen Challenge-Längen\n
+		* Screenshots vom QuickUnlock-Bildschirm und Passwort-Eingabe-Bildschirm nicht mehr möglich\n
+		* Sortierreihenfolge bei Sortierung nach Änderungsdatum (jetzt absteigend)\n
+		* Bugfixes: Notiz-Ansicht wird nach Änderung korrekt aktualisiert; Passwortfelder sollten nun auf allen Geräten korrekt versteckt werden; Problem behoben, wegen dem ein Eintrag doppelt angelegt werden konnte; Problem mit Anzeige der Warnung wegen doppelten UUIDs behoben\n
+	</string>
   <string name="ChangeLog_0_9_6">
 		Version 0.9.6\n
 		* Schlüsseldatei und/oder lokale Datenbank können in ein App-internes Verzeichnis kopiert werden (s. Einstellungen)\n

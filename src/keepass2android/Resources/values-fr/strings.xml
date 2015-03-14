@@ -271,6 +271,8 @@
   <string name="UseFileTransactions_summary">Utiliser les opérations sur les fichiers pour écrire les bases de données</string>
   <string name="LockWhenScreenOff_title">Verrouiller lorsque l\'écran s\'éteint</string>
   <string name="LockWhenScreenOff_summary">Verrouiller la base de données lorsque l\'écran est éteint.</string>
+  <string name="ClearPasswordOnLeave_title">Effacer mot de passe principal entré</string>
+  <string name="ClearPasswordOnLeave_summary">Effacer le mot de passe principal entré lorsque vous quittez l\'écran sans déverrouiller la base de données.</string>
   <string name="LockWhenNavigateBack_title">Verrouiller lors de la fermeture</string>
   <string name="LockWhenNavigateBack_summary">Verrouiller la base de données lors de la fermeture de l\'application via le bouton back.</string>
   <string name="NoDonateOption_title">Masquer l\'option de donation</string>
@@ -284,6 +286,8 @@
   <string name="ClearOfflineCache_question">Cela supprimera toutes les bases de données mises en cache. Toutes les modifications faites en étant hors ligne et qui n\'ont pas encore été synchronisées seront perdues ! Continuer ?</string>
   <string name="CheckForFileChangesOnSave_title">Rechercher des modifications</string>
   <string name="CheckForFileChangesOnSave_summary">Vérifie si le fichier a été modifié par ailleurs avant d\'enregistrer les modifications.</string>
+  <string name="CheckForDuplicateUuids_title">Vérifier les UUID en double</string>
+  <string name="CheckForDuplicateUuids_summary">Vérifier si le fichier de base de données est corrompu par la présence de plusieurs entrées avec le même ID. Cela peut provoquer un comportement inattendu.</string>
   <string name="ShowCopyToClipboardNotification_title">Notifications du presse-papiers</string>
   <string name="ShowCopyToClipboardNotification_summary">Rendre le nom d\'utilisateur et le mot de passe accessibles via la barre de notification et le presse-papiers. Attention au sniffers de mot de passes !</string>
   <string name="ShowSeparateNotifications_title">Notifications séparées</string>
@@ -354,6 +358,7 @@
   <string name="otp_aux_file">Fichier auxiliaire OTP</string>
   <string name="ErrorOcurred">Une erreur est survenue :</string>
   <string name="DuplicateUuidsError">Base de données corrompue : des IDs dupliqués ont été trouvés. (Avez-vous sauvegardé avec Minikeepass ?) S\'il vous plait ré-importez vers une nouvelle base de données avec Keepass 2 pour PC et sélectionnez \'Créer de nouveaux IDs\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Vous pouvez désactiver ce message d\'erreur dans les Préférences de l\'application/Application/Vérifier les UUID en double. Veuillez noter que vous pouvez rencontrer un comportement inattendu. Il est recommandé de corriger la base de données.</string>
   <string name="synchronize_database_menu">Synchroniser la base de données&#8230;</string>
   <string name="CannotMoveGroupHere">Impossible de déplacer le groupe vers ce groupe.</string>
   <string name="donate_question">Aujourd\'hui, c\'est Oktoberfest ! Si vous aimez Keepass2Android ne serait-ce pas une bonne occasion de m\'offrir une bière ?</string>
@@ -448,8 +453,17 @@
   <string name="ClickOkToSelectLocation">Cliquez sur OK pour sélectionner un emplacement où le fichier doit être copié.</string>
   <string name="CancelReadOnly">Annuler, ouverture en lecture seule.</string>
   <string name="CopyingFile">Copie des fichiers...</string>
+  <string name="KdbBetaWarning">Note : Vous avez ouvert une base de données Keepass 1. Keepass2Android support maintenant l\'écriture dans ce format. Malgré des tests rigoureux, l\'auteur ne peut garantir que toutes les données seront sauvegardées correctement. Veuillez conserver une sauvegarde originale de celle-ci (Dropbox sauvegarde automatiquement les versions récentes) avant tout changement. Veuillez également nous rapporter les éventuels problèmes. Merci !</string>
   <string name="ChangeLog_title">Journal des modifications</string>
   <string name="PreviewWarning">SVP. Il s\'agit d\'une version préliminaire et elle pourrait contenir quelques défauts! Si vous rencontrez quelque chose d\'inattendu, faites le moi savoir (sur Codeplex ou par courriel).</string>
+  <string name="ChangeLog_0_9_7">
+		Version 0.9.7\n
+		* Support de l\'écriture des base de données Keepass 1 (kdb) (beta!)\n
+		* Meilleur retour au clavier précédent (fonctionne également sur les appareils non rootés)\n
+		* Support de KeeChallenge\n
+		* Interdit les captures d\'écran à partir des écrans de déverrouillage et de saisie de mots de passe\n
+		* Inverse le tri par date de modification (maintenant descendant)\n
+		* Diverses corrections de bogues\n</string>
   <string name="ChangeLog_0_9_6">
 Version 0.9.6\n
 * possibilité d\'importer un fichier de clé ou un fichier de base de données locale vers une application d\'annuaire interne (voir réglages)\n

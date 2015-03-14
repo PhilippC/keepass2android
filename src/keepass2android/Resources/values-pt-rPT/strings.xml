@@ -32,6 +32,7 @@
 Muito útil se existirem muitos resultados iguais.</string>
   <string name="NavigationToGroupCompleted_message">O grupo mostado agora é: %1$s</string>
   <string name="ShowGroupInEntry_title">Mostrar nome do grupo ao fazer entradas</string>
+  <string name="unknown_uri_scheme">Desculpa! O Keepass2Android não consegue resolver o URI %1$s retornado. Por favor entre em contato com o programador!</string>
   <string name="security_prefs">Segurança</string>
   <string name="display_prefs">Ecrã</string>
   <string name="password_access_prefs">Métodos de introdução de passwords</string>
@@ -39,6 +40,12 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="FileHandling_prefs">Manipulação de arquivos</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exporter base de dados...</string>
+  <string name="import_db_prefs">importar base de dados para pasta interna</string>
+  <string name="import_keyfile_prefs">Importar ficheiro chave para pasta interna</string>
+  <string name="keyboardswitch_prefs">Alterar teclado</string>
+  <string name="OnlyAvailableForLocalFiles">Apenas disponível para ficheiros locais.</string>
+  <string name="FileIsInInternalDirectory">Ficheiro guardado na pasta local.</string>
+  <string name="DatabaseFileMoved">A base de dados foi copiada para a pasta local. Prima OK para abrir a nova localização. Nota: Não se esqueça de exportar a sua base de dados para uma localização segura regularmente!</string>
   <string name="brackets">Parêntesis</string>
   <string name="cancel">Cancelar</string>
   <string name="ClearClipboard">Área de transferência limpa.</string>

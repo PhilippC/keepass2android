@@ -271,6 +271,8 @@
   <string name="UseFileTransactions_summary">Použiť súborové operácie pre zapisovanie databáz</string>
   <string name="LockWhenScreenOff_title">Uzamknúť pri zhasnutí</string>
   <string name="LockWhenScreenOff_summary">Pri zhasnutí obrazovky uzamknúť databázu.</string>
+  <string name="ClearPasswordOnLeave_title">Vyčistiť primárne zadané heslo</string>
+  <string name="ClearPasswordOnLeave_summary">Pri opustení obrazovky bez odomknutia databázy vyčistiť zadané primárne heslo.</string>
   <string name="LockWhenNavigateBack_title">Uzamknúť pri opustení aplikácie</string>
   <string name="LockWhenNavigateBack_summary">Uzamknúť databázu pri opustení aplikácie stlačením tlačidla Späť.</string>
   <string name="NoDonateOption_title">Skryť možnosti prispenia</string>
@@ -284,6 +286,8 @@
   <string name="ClearOfflineCache_question">Týmto sa odstránia všetky súbory databáz, uložené vo vyrovnávacej pamäti. Všetky zmeny vykonané bez synchronizácie, budú vymazané. Chcete pokračovať?</string>
   <string name="CheckForFileChangesOnSave_title">Skontrolovať zmeny</string>
   <string name="CheckForFileChangesOnSave_summary">Pred uložením zmien skontrolovať, či nebol súbor externe upravený.</string>
+  <string name="CheckForDuplicateUuids_title">Kontrolovať duplicitné UUID</string>
+  <string name="CheckForDuplicateUuids_summary">Skontrolujte či nie je súbor s databázou narušený prítomnosťou viacerých záznamov s rovnakým ID. To by totiž mohlo spôsobiť neočakávané problémy s aplikáciou.</string>
   <string name="ShowCopyToClipboardNotification_title">Notifikácie v schránke</string>
   <string name="ShowCopyToClipboardNotification_summary">Sprístupniť meno a heslo používateľa cez notifikačný panel a schránku. Pozor na možnosť krádeže hesla!</string>
   <string name="ShowSeparateNotifications_title">Oddeliť notifikácie</string>
@@ -354,6 +358,7 @@
   <string name="otp_aux_file">doplnkový súbor OTP</string>
   <string name="ErrorOcurred">Nastala chyba:</string>
   <string name="DuplicateUuidsError">Databáza je poškodená: našli sa duplicitné ID. (Uloženie s použitím Minikeepass?) Vykonajte import do novej databázy programom Keepass 2 pre PC a vyberte voľbu \'Vytvoriť nové ID\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Toto hlásenie o chybe môžete vypnúť v časti Nastavenia/Nastavenia aplikácie/Zaobchádzanie so súborom/Kontrolovať duplicitné UUID. Prosím pamätajte na to, že funkcia nemusí pracovať očakávaným spôsobom. Odporúčame opraviť databázu.</string>
   <string name="synchronize_database_menu">Synchronizuje sa databáza&#8230;</string>
   <string name="CannotMoveGroupHere">Skupinu nemožno presunúť do tejto skupiny.</string>
   <string name="donate_question">Dnes je Oktoberfest! Ak máte radi Keepass2Android: nie je vhodný čas na to, aby ste mi kúpili pivo?</string>
@@ -448,8 +453,18 @@
   <string name="ClickOkToSelectLocation">Pre výber umiestnenia kliknite na tlačidlo OK na mieste, kde sa má súbor skopírovať.</string>
   <string name="CancelReadOnly">Zrušiť, otvoriť len na čítanie.</string>
   <string name="CopyingFile">Prebieha kopírovanie súboru...</string>
+  <string name="KdbBetaWarning">Vezmite prosím na vedomie, že: práve je načítaná databáza programu Keepass 1. Keepass2Android má od poslednej verzie podporu pre zápis do tohto formátu. Kvôli testovaniu tejto funkcie však autor nemôže zaručiť, že všetky údaje budú uložené korektne. Preto si prosím vždy odložte zálohu originálnej databázy (služba Dropbox ukladá posledné verzie automaticky) skôr, než vykonáte nejaké zmeny. Prosím informujte nás o prípadných chybách. Ďakujeme!</string>
   <string name="ChangeLog_title">Zoznam zmien</string>
   <string name="PreviewWarning">Prosím pozor! Toto je náhľadové vydanie novej verzie a môže obsahovať nejaké chybičky! Ak si všimnete *čokoľvek* neočakávané, prosím informujte ma (cez stránky Codeplex alebo e-mailom).</string>
+  <string name="ChangeLog_0_9_7">
+		Verzia 0.9.7\n
+		* podpora zápisu pre databázy Keepass 1 (kdb) (beta!)\n
+		* lepšie prepínanie naspäť na predchádzajúcu klávesnicu (funguje aj na zariadeniach bez oprávnení root)\n
+		* podpora pre KeeChallenge s variabilnou dĺžkou\n
+		* ochrana pred vytvorením screenshotov z obrazovky pre rýchle odomknutie a heslo\n
+		* opačné poradie zoraďovania pre zoraďovanie podľa dátumu úpravy (teraz zostupné zoraďovanie)\n
+		* opravy chýb: zobrazovanie poznámok sa teraz aktualizuje po vykonaní zmien, zobrazovanie hesiel bude už korektné (dúfajme) na všetkých zariadeniach, opravená chyba, ktorá umožnila pridanie záznamu dvakrát, opravená chyba súvisiaca so zobrazovaním duplicitného varovania pre UUID aj po oprave databázy\n
+	</string>
   <string name="ChangeLog_0_9_6">
 		Verzia 0.9.6\n
 		* povolenie importovania súboru s kľúčom a/alebo lokálnej databázy do interného priečinka aplikácie (pozrite si nastavenia)\n

@@ -31,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_resume">Vis gruppenavn under titlerne på posterne i søgeresultaterne. Nyttig, hvis flere poster har samme navn.</string>
   <string name="NavigationToGroupCompleted_message">Visningsgruppe er nu: %1$s</string>
   <string name="ShowGroupInEntry_title">Vis gruppenavn i postvisning</string>
+  <string name="unknown_uri_scheme">Beklager! Keepass2Android kan ikke håndtere den returnerede URI %1$s. Kontakt udvikleren!</string>
   <string name="security_prefs">Sikkerhed</string>
   <string name="display_prefs">Visning</string>
   <string name="password_access_prefs">Adgang til adgangskoden</string>
@@ -38,6 +39,14 @@
   <string name="FileHandling_prefs">Filhåndtering</string>
   <string name="keyboard_prefs">Tastatur</string>
   <string name="export_prefs">Eksporter database…</string>
+  <string name="import_db_prefs">Importer database til intern mappe</string>
+  <string name="import_keyfile_prefs">Importer nøglefilen til intern mappe</string>
+  <string name="keyboardswitch_prefs">Skift mellem tastaturer</string>
+  <string name="OnlyAvailableForLocalFiles">Kun tilgængelig for lokale filer.</string>
+  <string name="FileIsInInternalDirectory">Filen gemmes i den interne mappe.</string>
+  <string name="DatabaseFileMoved">Databasefilen blev kopieret til den interne mappe. Tryk på OK for at åbne den fra den nye placering. Bemærk: Husk regelmæssigt at eksportere databasen til en sikker opbevaring!</string>
+  <string name="KeyfileMoved">Nøglefilen blev kopieret til den interne mappe. Vær sikker på du har en god sikkerhedskopi før du sletter nøglefilen fra dens nuværende placering!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Kan ikke bruge intern mappe når nøglefilens placering ikke er husket. Ændr sikkerhedsindstillingerne.</string>
   <string name="brackets">Parenteser</string>
   <string name="cancel">Annuller</string>
   <string name="ClearClipboard">Udklipsholder ryddet.</string>
@@ -46,6 +55,7 @@
   <string name="copy_username">Vælg for at kopiere brugernavn til udklipsholderen</string>
   <string name="copy_password">Vælg for at kopiere adgangskode til udklipsholderen</string>
   <string name="available_through_keyboard">Post er tilgængelig via KP2A-tastaturet</string>
+  <string name="entry_is_available">er tilgængelig</string>
   <string name="not_possible_im_picker">Kunne ikke åbne dialogboksen for valg af inputmetode. Aktiver venligst tastaturet manuelt.</string>
   <string name="please_activate_keyboard">Aktiver venligst Keepass2Android-tastaturet i systemindstillingerne.</string>
   <string name="creating_db_key">Opretter databasenøgle&#8230;</string>
@@ -66,6 +76,7 @@
   <string name="entry_expires">Udløber</string>
   <string name="entry_group_name">Gruppenavn</string>
   <string name="entry_keyfile">Nøglefil (valgfri)</string>
+  <string name="keyfile_heading">Nøglefil</string>
   <string name="entry_modified">Ændret</string>
   <string name="entry_password">Adgangskode</string>
   <string name="entry_save">Gem</string>
@@ -78,6 +89,7 @@
   <string name="error_could_not_create_group">Fejl ved oprettelse af gruppe.</string>
   <string name="error_could_not_create_parent">Kunne ikke oprette rodbiblioteket.</string>
   <string name="error_database_exists">Denne fil eksisterer allerede.</string>
+  <string name="error_database_settinoverrgs">Kunne ikke afgøre databaseindstillinger.</string>
   <string name="error_failed_to_launch_link">Det mislykkedes at åbne linket.</string>
   <string name="error_filename_required">Et filnavn er påkrævet.</string>
   <string name="error_file_not_create">Kunne ikke oprette fil</string>

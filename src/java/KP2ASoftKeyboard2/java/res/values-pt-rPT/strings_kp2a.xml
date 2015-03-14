@@ -12,4 +12,5 @@
   <string name="kp2a_remember_auto_fill">Lembrar os textos de dica de campo</string>
   <string name="kp2a_remember_auto_fill_summary">Se um campo de texto é preenchido manualmente selecionando o valor de Keepass2Android, lembra-se de qual valor foi inserido no campo de texto. O campo de texto mais tarde é detectado novamente pelo seu texto de dica.</string>
   <string name="kp2a_simple_keyboard">Teclado simples</string>
+  <string name="kp2a_lock_on_sendgodone">Bloquear base de dados no final</string>
 </resources>

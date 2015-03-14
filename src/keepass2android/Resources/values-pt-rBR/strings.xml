@@ -31,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nome do grupo abaixo do título de entrada no resultado das pesquisas. Útil se várias entradas têm o mesmo nome.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de exibição é agora: %1$s</string>
   <string name="ShowGroupInEntry_title">Mostrar nome do grupo na tela de entrada</string>
+  <string name="unknown_uri_scheme">O Keepass2Android não pode lidar com a URI %1$s. Entre em contato com o desenvolvedor!</string>
   <string name="security_prefs">Segurança</string>
   <string name="display_prefs">Exibição</string>
   <string name="password_access_prefs">Acesso às senhas de entradas</string>
@@ -66,6 +67,7 @@
   <string name="entry_expires">Expira</string>
   <string name="entry_group_name">Nome do grupoghjhgjjhg</string>
   <string name="entry_keyfile">Arquivo chave (opcional)</string>
+  <string name="keyfile_heading">Arquivo chave</string>
   <string name="entry_modified">Modificado</string>
   <string name="entry_password">Senha</string>
   <string name="entry_save">Salvar</string>
@@ -220,6 +222,7 @@
   <string name="QuickUnlock_lockButton">Fechar banco de dados</string>
   <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por padrão</string>
   <string name="QuickUnlockDefaultEnabled_summary">Define se o QuickUnlock está habilitado por padrão ou não.</string>
+  <string name="ViewDatabaseSecure_summary">Se habilitado, as capturas de tela são bloqueadas e a miniatura do app não é exibida na lista de apps recentes.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar o ícone do QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">O QuickUnlock infelizmente não funciona sem exibir um ícone de notificação. Selecione esta opção para usar um ícone transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar o ícone do QuickUnlock</string>
@@ -396,6 +399,7 @@
   <string name="plugin_enabled">habilitado</string>
   <string name="plugin_disabled">desativado</string>
   <string name="plugin_web">Encontrar plug-ins on-line</string>
+  <string name="plugin_scopes">Escopos</string>
   <string name="query_credentials_for_url">%1$s está solicitando credenciais para %2$s.</string>
   <string name="query_credentials">%1$s está solicitando credenciais. Por favor, selecione uma entrada.</string>
   <string name="plugin_enabled_checkbox">Ativado</string>
@@ -412,6 +416,9 @@
   <string name="CertificateFailure">Erro: Falha de validação do certificado do servidor! Instale o certificado raiz apropriado em seu dispositivo ou consulte  as configurações!</string>
   <string name="export_fileformats_title">Selecione o formato de arquivo</string>
   <string name="killed_by_os">Sinto muito! Keepass2Android foi morto pelo sistema operacional Android! Por razões de segurança, Keepass2Android não mantém suas credenciais selecionadas no disco, então você precisa re-abrir o seu banco de dados. Nota: Isto deve acontecer muito raramente. Se isso acontece, por favor, me deixe uma mensagem no crocoapps@gmail.com.</string>
+  <string name="CancelReadOnly">Cancelar, abrir como somente leitura.</string>
+  <string name="CopyingFile">Copiando arquivo...</string>
+  <string name="KdbBetaWarning">Por favor observe: você carregou um banco de dados Keepass versão 1. Keepass2Android recentemente adicionou suporte de gravação para esse formato de banco de dados. Apesar de testes extensivos, o autor não garante que todos os dados serão salvos corretamente. Por favor, mantenha sempre um backup de banco de dados original (Dropbox automaticamente armazena versões recentes) antes de fazer alterações. Por favor reporte quaisquer problemas. Obrigado!</string>
   <string name="ChangeLog_title">Mudanças</string>
   <string name="PreviewWarning">Por favor, note! Esta é uma versão preview e pode vir com algumas falhas! Se você experimentar *alguma coisa* inesperada, por favor me avise (no Codeplex ou por e-mail).</string>
   <string name="ChangeLog_0_9_4">

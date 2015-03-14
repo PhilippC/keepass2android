@@ -271,6 +271,8 @@
   <string name="UseFileTransactions_summary">Использовать файловые транзакции для записи баз данных</string>
   <string name="LockWhenScreenOff_title">Блокировка при выключении экрана</string>
   <string name="LockWhenScreenOff_summary">Блокировка базы при выключении экрана.</string>
+  <string name="ClearPasswordOnLeave_title">Очистить введенный мастер-пароль</string>
+  <string name="ClearPasswordOnLeave_summary">Очистить введенный мастер-пароль при покидании экрана без разблокировки базы данных.</string>
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
   <string name="LockWhenNavigateBack_summary">Блокировать базу данных при выходе из приложения, нажав кнопку \"назад\".</string>
   <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
@@ -284,6 +286,8 @@
   <string name="ClearOfflineCache_question">Это удалит все кэшированные файлы баз данных. Любые несинхронизированные изменения, внесённые в автономном режиме, будут потеряны! Продолжить?</string>
   <string name="CheckForFileChangesOnSave_title">Проверить на наличие изменений</string>
   <string name="CheckForFileChangesOnSave_summary">Проверка был ли файл изменен извне до сохранения изменений.</string>
+  <string name="CheckForDuplicateUuids_title">Проверить на наличие повторяющихся идентификаторов UUID</string>
+  <string name="CheckForDuplicateUuids_summary">Проверить, испорчен ли файл базы данных  наличием множественных записей с одинаковым ID. Это может вызвать непредсказуемое поведение.</string>
   <string name="ShowCopyToClipboardNotification_title">Уведомления буфера обмена</string>
   <string name="ShowCopyToClipboardNotification_summary">Сделать имя пользователя и пароль доступными через панель уведомлений и буфер обмена. Остерегайтесь перехватчиков паролей!</string>
   <string name="ShowSeparateNotifications_title">Раздельные уведомления</string>
@@ -295,7 +299,7 @@
   <string name="kp2a_switch_rooted">Авто-переключение на рутованных устройствах</string>
   <string name="kp2a_switch_rooted_summary">Автоматически переключаться на клавиатуру KP2A при открытии записи. Требует права root и Secure Settings System+. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Автопереключение только после поиска</string>
-  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Переключаться автоматически на клавиатуру KP2A только после использования функции Отправить URL (в других вариантах открытия записи - не переключаться)</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Переключаться автоматически на клавиатуру KP2A только после использования функции Отправить URL (но не в других вариантах открытия записи)</string>
   <string name="AutoSwitchBackKeyboard_title">Переключить клавиатуру обратно</string>
   <string name="AutoSwitchBackKeyboard_summary">Переключиться назад на предыдущую клавиатуру когда ни одна запись не открыта.</string>
   <string name="ShowUnlockedNotification_title">Значок уведомления при разблокировке</string>
@@ -354,6 +358,7 @@
   <string name="otp_aux_file">Вспомогательный файл одноразовых паролей</string>
   <string name="ErrorOcurred">Произошла ошибка:</string>
   <string name="DuplicateUuidsError">База данных повреждена: найдены дублирующиеся ID. (Сохранялись в Minikeepass?) Пожалуйста импортируйте данные в новую базу данных при помощи Keepass 2 для ПК и выберите \'Создать новые ID\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Вы можете отключить это сообщение об ошибке в пункте Настройки/Настройки приложения/Обработка файлов/Проверка на дубликаты UUID. Имейте в виду, что это может повлечь неожиданные результаты. Рекомендуется исправление базы данных.</string>
   <string name="synchronize_database_menu">Синхронизируйте базу данных&#8230;</string>
   <string name="CannotMoveGroupHere">Не удается переместить группу в эту группу.</string>
   <string name="donate_question">Сегодня Октоберфест! Если вам нравится Keepass2Android: сегодня хороший день, чтобы купить мне пива?</string>
@@ -448,8 +453,18 @@
   <string name="ClickOkToSelectLocation">Нажмите OK чтобы выбрать место куда файл должен быть скопирован.</string>
   <string name="CancelReadOnly">Отмена, только для чтения.</string>
   <string name="CopyingFile">Файл копируется...</string>
+  <string name="KdbBetaWarning">Обратите внимание: вы загрузили базу данных в формате Keepass 1. В Keepass2Android недавно была добавлена поддержка записи в этот формат базы. Несмотря на тщательное тестирование, автор не гарантирует полного и корректного сохранения данных. Пожалуйста, создавайте отдельную резервную копию оригинальной базы (Dropbox автоматически сохраняет предыдущие версии) перед внесением изменений. Пожалуйста, сообщайте обо всех найденных ошибках. Спасибо!</string>
   <string name="ChangeLog_title">Список изменений</string>
   <string name="PreviewWarning">Пожалуйста, обратите внимание! Это предварительный релиз и он может содержать некоторые недостатки! Если вы встретитесь с *чем-то* неожиданным, пожалуйста, дайте мне знать (на сайте Codeplex или по электронной почте).</string>
+  <string name="ChangeLog_0_9_7">
+Версия 0.9.7\n
+* Поддержка записи в файлы баз Keepass 1 (kdb) (beta!)\n
+* Улучшенное переключение на предыдущую клавиатуру (также работает на нерутованных устройствах)\n
+* Поддержка KeeChallenge с переменной длиной ключа\n
+* Предотвращение создания скриншотов с экранов QuickUnlock и паролей\n
+* Обратная сортировка для режима Сортировать по дате модификации (теперь по убыванию)\n
+* Исправления ошибок: Теперь заметки корректно обновляются после изменений. Просмотр пароля теперь прячет пароль корректно на всех устройствах (надеюсь), исправлена ошибка с возможностью повторного добавления записи, исправлена ошибка отображения предупреждения \"Дублирующийся UUID\" даже после исправления базы данных\n
+	</string>
   <string name="ChangeLog_0_9_6">
 Версия 0.9.6\n
 * возможность импортировать ключевой файл и/или локальную БД во внутреннюю папку приложения (см. настройки)\n

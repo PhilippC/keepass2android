@@ -271,6 +271,8 @@
   <string name="UseFileTransactions_summary">Utilizar el archivo de movimientos para escribir las bases de datos</string>
   <string name="LockWhenScreenOff_title">Bloquear cuando se apaga la pantalla</string>
   <string name="LockWhenScreenOff_summary">Bloquear base de datos al apagar la pantalla</string>
+  <string name="ClearPasswordOnLeave_title">Limpiar contraseña maestra ingresada</string>
+  <string name="ClearPasswordOnLeave_summary">Limpiar contraseña maestra ingresada al salir de la pantalla, sin desbloquear la base de datos.</string>
   <string name="LockWhenNavigateBack_title">Bloquear al salir de la aplicación</string>
   <string name="LockWhenNavigateBack_summary">Bloquear base de datos al salir de la aplicación presionando el botón \"atrás\".</string>
   <string name="NoDonateOption_title">Esconder opción de donación</string>
@@ -284,6 +286,8 @@
   <string name="ClearOfflineCache_question">Esto borrará todos los archivos de base de datos en caché. ¡Se perderán los cambios que hizo estando fuera de línea que todavía no se ha sincronizado! ¿Continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Comprobar modificaciones</string>
   <string name="CheckForFileChangesOnSave_summary">Compruebe si el archivo fue modificado externamente antes de guardar los cambios.</string>
+  <string name="CheckForDuplicateUuids_title">Buscar UUIDs duplicados</string>
+  <string name="CheckForDuplicateUuids_summary">Verificar si el archivo con la base de datos esta corrupto por tener varias entradas con el mismo ID. Esto puede producir un comportamiento inesperado.</string>
   <string name="ShowCopyToClipboardNotification_title">Notificaciones del portapapeles</string>
   <string name="ShowCopyToClipboardNotification_summary">Hacer accesible el nombre de usuario y contraseña a través de la barra de notificación y el portapapeles  ¡Cuidado con los sniffers!</string>
   <string name="ShowSeparateNotifications_title">notificaciones por separado</string>
@@ -354,6 +358,7 @@
   <string name="otp_aux_file">Archivo auxiliar OTP</string>
   <string name="ErrorOcurred">Se ha producido un error:</string>
   <string name="DuplicateUuidsError">Base de datos corupta: Se han encontrado indices duplicados. (Se guardó con Minikeepass?) Por favor, volver a importar en una base de datos nueva con Keepass 2 para PC y elegir \'crear indices nuevos\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Puede deshabilitar este mensaje de error en Configuración/Configuración de la Aplicación/Manejo de archivos/Buscar UUIDs duplicados. Por favor tenga en cuenta que es posible que experimente un comportamiento inesperado. Se recomienda reparar la base de datos.</string>
   <string name="synchronize_database_menu">Sincronizar base de datos&#8230;</string>
   <string name="CannotMoveGroupHere">No se puede mover el grupo a este grupo.</string>
   <string name="donate_question">¡Hoy es Oktoberfest! Si te gusta Keepass2Android: ¿no sería un buen día para invitarme a una cerveza?</string>
@@ -448,8 +453,30 @@
   <string name="ClickOkToSelectLocation">Haga clic en OK para seleccionar una ubicación donde se debe copiar el archivo.</string>
   <string name="CancelReadOnly">Cancela, abrir sólo lectura.</string>
   <string name="CopyingFile">Copiando archivos...</string>
+  <string name="KdbBetaWarning">Nota: Ud. ha cargado una base de datos Keepass 1. Keepass2Android recientemente ha añadido soporte de escritura para este formato de base de datos. A pesar de pruebas exhaustivas, el autor no garantiza que se guardarán todos los datos correctamente. Por favor, mantenga siempre una copia de seguridad de la base de datos original (Dropbox almacena automáticamente las versiones recientes) antes de realizar cambios. Por favor informe cualquier problema. ¡Gracias!</string>
   <string name="ChangeLog_title">Registro de cambios</string>
   <string name="PreviewWarning">¡Tener en cuenta! Esto es un preview release y posiblemente puede incluir algunos errores! Si experimenta *cualquier cosa* inesperada, por favor, ¡hágamelo saber (en Codeplex o por correo electrónico)!.</string>
+  <string name="ChangeLog_0_9_7">
+Versión 0.9.7\n
+* escriba soporte para bases de datos de Keepass 1 (kdb) (beta).\n
+* mejor conmutación para regresar al anterior teclado (tambien funciona en dispositivos no rooteados) \n
+* soporte para KeeChallenge con longitud variable de challenges\n
+* evitar tomar capturas de la pantalla de QuickUnlock y de la pantalla de la contraseña\n
+* invertir la forma de ordenación por Fecha de Modificación (ahora descendente)\n
+* bug fixes: visualización de notas ahora actualizada correctamente después de cambios, vistas contraseña ahora ocultando la contraseña correctamente en  todos los dispositivos (esperemos), solucionado el problema que permite agregar una entrada dos veces, solucionado el problema que muestra la advertencia de UUID duplicado incluso después de arreglar la base de datos\n</string>
+  <string name="ChangeLog_0_9_6">Versión 0.9.6\n
+  * permite la importación del archivo de la clave y/o del archivo de la base de datos local a la carpeta interna de la aplicación (ver configuración)\n
+  * permite diferentes opciones de clasificación\n
+  * mejoradas preferencias de cambiar automáticamente el teclado\n
+  * actualizado logotipo de la aplicación y del diseño de las notificaciones, diseño por Stefano Pignataro (http://www.spstudio.at)\n
+  * generador de contraseñas recuerda última configuración\n
+  * configurar visibilidad de las notificaciones para la pantalla de bloque en Android\n
+  * ahora despeja el campo de la contraseña maestra al salir de la aplicación sin hacer clic en OK\n
+  * solucionado el problema con la falta de idiomas de entrada en la configuración en algunos aparatos\n
+  * solucionado el problema con el cambio automático del teclado en algunos aparatos rooteados\n
+  * añadido comprobación para bases de datos corruptas (UUIDs duplicado)\n
+  * recargar automáticamente la base de datos cuando detecta un cambio, resuelve la preocupación de revelar contraseña maestro\n
+  * mejorado teclado polaco pequeño, arreglado el theme de la configuración (gracias a Wiktor Ławski) \n</string>
   <string name="ChangeLog_0_9_5">
 <b>Version 0.9.5</b>\n
 * Solucionado problemas en el archivador (especialmente en Android 4.4)\n
@@ -605,12 +632,12 @@ Publicación inicial</string>
     <item>Grande</item>
   </string-array>
   <string-array name="design_options">
-    <item>Holo Light</item>
-    <item>Holo Dark</item>
+    <item>Holo Claro</item>
+    <item>Holo oscuro</item>
   </string-array>
   <string name="design_title">Diseño</string>
   <string-array name="cred_remember_modes">
-    <item>No recordaré el nombre de usuario y contraseña</item>
+    <item>No recordar el nombre de usuario y contraseña</item>
     <item>Recordar sólo el nombre de usuario</item>
     <item>Recordar nombre de usuario y contraseña</item>
   </string-array>

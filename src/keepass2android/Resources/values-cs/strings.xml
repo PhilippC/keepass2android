@@ -271,6 +271,8 @@
   <string name="UseFileTransactions_summary">Použít transakční metodu zápisu do databáze</string>
   <string name="LockWhenScreenOff_title">Uzamknout při zhasnutí displeje</string>
   <string name="LockWhenScreenOff_summary">Zamknout databázi při zhasnutí displeje.</string>
+  <string name="ClearPasswordOnLeave_title">Vymazat zadané hlavní heslo</string>
+  <string name="ClearPasswordOnLeave_summary">Vymazat zadané hlavní heslo při opuštění obrazovky bez odemčení databáze.</string>
   <string name="LockWhenNavigateBack_title">Uzamknout při odchodu z aplikace</string>
   <string name="LockWhenNavigateBack_summary">Uzamknout databázi při opouštění aplikace stisknutím tlačítka zpět.</string>
   <string name="NoDonateOption_title">Skrýt možnost přispění</string>
@@ -284,6 +286,8 @@
   <string name="ClearOfflineCache_question">Tímto odstraníte všechny soubory v mezipaměti. Veškeré změny, které jste provedli v době bez internetového připojení a nebyly dosud synchronizovány, budou ztraceny! Chcete pokračovat?</string>
   <string name="CheckForFileChangesOnSave_title">Kontrola změn</string>
   <string name="CheckForFileChangesOnSave_summary">Před uložením zkontrolovat, zda byl soubor změněn na jiném zařízení.</string>
+  <string name="CheckForDuplicateUuids_title">Kontrolovat duplikátní UUID</string>
+  <string name="CheckForDuplicateUuids_summary">Kontrolovat, jestli je databáze porušena existencí položek se stejnými ID záznamů. Toto může způsobovat neočekávané chování.</string>
   <string name="ShowCopyToClipboardNotification_title">Upozornění schránky</string>
   <string name="ShowCopyToClipboardNotification_summary">Zpřístupnění uživatelského jména a hesla prostřednictvím oznamovací oblasti a schránky. Pozor na skenery hesel!</string>
   <string name="ShowSeparateNotifications_title">Samostatná oznámení</string>
@@ -354,6 +358,7 @@
   <string name="otp_aux_file">Pomocný OTP soubor</string>
   <string name="ErrorOcurred">Došlo k chybě:</string>
   <string name="DuplicateUuidsError">Databáze je poškozena: duplicitní ID nalezeny. (Provedli jste uložení pomocí Minikeepass?) Importujte databázi do nového souboru pomocí  Keepass 2 na PC a zvolte možnost \'Vytvořit nové ID\' \".</string>
+  <string name="DuplicateUuidsErrorAdditional">Tuto chybovou zprávu můžete vypnout v Nastavení/Aplikace/Zpracování souborů/Kontrolovat duplikátní UUID. Při tomto můžete zaznamenat neočekávané chování aplikace. Je doporučeno   provést opravu databáze.</string>
   <string name="synchronize_database_menu">Synchronizovat databázi&#8230;</string>
   <string name="CannotMoveGroupHere">Skupinu nelze přesunout do této skupiny.</string>
   <string name="donate_question">Dnes je Oktoberfest! Pokud se vám líbí Keepass2Android, nebyl by dnes dobrý den koupit mi pivo?</string>
@@ -448,8 +453,18 @@
   <string name="ClickOkToSelectLocation">Klepněte na tlačítko OK a vyberte místo, kam by měl být soubor zkopírován.</string>
   <string name="CancelReadOnly">Zrušit, otevřete pouze pro čtení.</string>
   <string name="CopyingFile">Kopírování souboru...</string>
+  <string name="KdbBetaWarning">Upozornění: Nahráli jste databázi ve formátu Keepass 1. Keepass2Android nedávno přidal podporu zápisu do toho formátu. I přes důkladné testování autor nezaručuje, že všechna data budou správně uložena. Prosím, před provedením jakýchkoliv změn si vždy zálohujte původní databázi (Dropbox automaticky přepisuje její poslední verzi). Jakékoliv problémy prosím nahlaste autorovi. Děkuji!</string>
   <string name="ChangeLog_title">Protokol změn</string>
   <string name="PreviewWarning">Upozornění! Tato verze není konečná a může obsahovat různé nedostatky! Pokud narazíte na jakýkoliv problém, dejte mi, prosím, vědět (na Codeplexu nebo přes e-mail).</string>
+  <string name="ChangeLog_0_9_7">
+		Verze 0.9.7\n
+		* podpora zápisu pro databáze Keepass 1 (kdb) (beta!)\n
+		* lepší přepínání zpět na předešlou klávesnici (funguje i na zařízeních bez rootu)\n
+		* podpora pro KeeChallenge s proměnnou délkou výzev\n
+		* zabránění snímání obrazovky na obrazovce Rychlého odemknutí a obrazovkách s hesly\n
+		* obrácení směru řazení při řazení podle data změny (nyní sestupně)\n
+		* opravy chyb: Zobrazení poznámek se nyní korektně aktualizuje po provedení změn, Obrazovky s hesly nyní správně skrývají hesla na (snad) všech zařízeních, Opraven problém, který umožňoval přidat záznam dvakrát, Opraven problém se zobrazováním varování na duplicitní UUID i po opravení databáze\n
+	</string>
   <string name="ChangeLog_0_9_6">   
 Verze 0.9.6\n * Povolen import souboru s klíčem nebo místního databázového souboru do vnitřního adresáře aplikace (viz nastavení) \n * povoleny různé volby řazení\n * lepší předvolby pro automatické přepínání klávesnice\n * aktualizováno logo a design oznámení, díky Stefano Pignataro (http://www.spstudio.at) \n * generátor hesel si pamatuje poslední nastavení\n * nastavení viditelnosti oznámení pro zamykací obrazovku Android 5\n * vymazání pole hlavního při odchodu z aplikace bez klepnutím na OK\n * opraven problém s chybějícími vstupními jazyky v nastavení klávesnice na některých zařízeních\n  * opraven problém s automatickým přepínáním klávesnice na zařízeních s rootem\n * přidána kontrola poškozené databáze (duplicitní UUID) \n * automaticky znovu načíst databázi při zjištění změny, řeší bezpečnostní obavy z odhalení hlavního hesla\n * zlepšení rozložení malé polské klávesnice,  opravy motivů klávesnice  (díky Wiktor Ławski) \n  </string>
   <string name="ChangeLog_0_9_5">
