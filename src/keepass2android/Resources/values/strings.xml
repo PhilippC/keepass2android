@@ -68,6 +68,7 @@
   <string name="digits">Digits</string>
   <string name="disclaimer_formal">Keepass2Android comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under the conditions of the GPL version 2 or later.</string>
   <string name="ellipsis">\u2026</string>
+	<string name="copy_to_clipboard">Copy to clipboard</string>
 
   <string name="enter_filename">Enter database filename</string>
   <string name="entry_accessed">Accessed</string>

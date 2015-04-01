@@ -27,8 +27,7 @@ namespace keepass2android
 		}
 		public string Text
 		{
-			//TODO localize
-			get { return "Copy to clipboard"; }
+			get { return _context.Resources.GetString(Resource.String.copy_to_clipboard); }
 		}
 
 		
