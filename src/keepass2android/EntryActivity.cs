@@ -815,8 +815,10 @@ namespace keepass2android
 		private void SetPasswordTypeface(TextView textView)
 		{
 			if (_passwordFont == null)
+			{
 				_passwordFont = Typeface.CreateFromAsset(Assets, "DejaVuSansMono.ttf");
-			textView.Typeface = _passwordFont;
+			}
+			textView.Typeface = _passwordFont;	
 		}
 
 		private void PopulateText(int viewId, int containerViewId, String text)
@@ -933,7 +935,8 @@ namespace keepass2android
 				if (_showPassword)
 				{
 					//password.TransformationMethod = null;
-					password.InputType = InputTypes.TextVariationVisiblePassword ; 
+					password.InputType = password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
+					SetPasswordTypeface(password);
 				}
 				else
 				{
