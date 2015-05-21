@@ -66,6 +66,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="digits">Ziffern</string>
   <string name="disclaimer_formal">Der Autor übernimmt keine Verantwortung gibt KEINERLEI GARANTIE bei der Nutzung der Anwendung; Die Anwendung ist kostenlos und kann unter den Bedingungen der GPL v2 oder später verbreitet werden.</string>
   <string name="ellipsis">…</string>
+  <string name="copy_to_clipboard">In Zwischenablage kopieren</string>
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
   <string name="entry_accessed">Letzter Zugriff</string>
   <string name="entry_cancel">Abbrechen</string>

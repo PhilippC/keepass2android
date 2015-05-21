@@ -19,7 +19,6 @@
     <MandroidI18n />
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
-    <AndroidUseLatestPlatformSdk />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -82,24 +81,20 @@
     </JavaOptions>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GooglePlayServicesLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Xamarin.GooglePlayServices.22.0.0.0\lib\MonoAndroid41\GooglePlayServicesLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="GooglePlayServicesLib">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.22.0.0.0\lib\MonoAndroid41\GooglePlayServicesLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.21.0.3.0\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.AppCompat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
       <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.21.0.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.MediaRouter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
       <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.21.0.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -616,7 +611,9 @@
     <AndroidResource Include="Resources\values-sv\strings.xml" />
     <AndroidResource Include="Resources\values-tr\strings.xml" />
     <AndroidResource Include="Resources\values-vi\strings.xml" />
-    <AndroidResource Include="Resources\values-de\strings.xml" />
+    <AndroidResource Include="Resources\values-de\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\values-ca\strings.xml" />
     <AndroidResource Include="Resources\values-cs\strings.xml" />
     <AndroidResource Include="Resources\values-da\strings.xml" />
@@ -1080,8 +1077,8 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleplayservices">
-      <Visible>False</Visible>
       <Version>22.0.0.0</Version>
+      <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>

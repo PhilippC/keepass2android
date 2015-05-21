@@ -5,8 +5,8 @@
   <string name="about_feedback">反馈</string>
   <string name="about_homepage">主页</string>
   <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的密码管理应用。</string>
-  <string name="CreditsText">用户界面基于由 Brian Pellin 开发的 KeepassDroid。数据库操作的代码是基于 Dominik Reichl 开发的KeePass。Android 机器人是转载或修改自谷歌创建、共享的并使用根据创作共用 3.0 许可证中所述的条款。</string>
-  <string name="CreditsTextSFTP">SFTP 用由 JCraft，Inc. 创建的 JSch 库（BSD许可证）实现</string>
+  <string name="CreditsText">用户界面基于由 Brian Pellin 开发的 KeepassDroid。数据库操作的代码是基于 Dominik Reichl 开发的KeePass。根据google的创作共用3.0许可中的条款中的创建和申请条例的描述对android机器人进行了转载或者修改。</string>
+  <string name="CreditsTextSFTP">SFTP 由 JCraft，Inc. 创建的 JSch 库（基于BSD许可证）来支持</string>
   <string name="accept">接受</string>
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
@@ -15,7 +15,7 @@
   <string name="add_group_title">添加群组</string>
   <string name="edit_group_title">编辑群组</string>
   <string name="algorithm">算法</string>
-  <string name="algorithm_colon">算法</string>
+  <string name="algorithm_colon">算法：</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android 离线版</string>
@@ -29,12 +29,12 @@
   <string name="application_settings">应用程序设置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜索结果中显示群组名</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜索结果中条目标题下显示群组名。如果几个条目具有相同的名称时会很有用。</string>
-  <string name="NavigationToGroupCompleted_message">当前显示群组：%1$s</string>
+  <string name="NavigationToGroupCompleted_message">显示当前群组：%1$s</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
   <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
   <string name="security_prefs">安全</string>
   <string name="display_prefs">显示</string>
-  <string name="password_access_prefs">密码输入接口</string>
+  <string name="password_access_prefs">密码输入口</string>
   <string name="QuickUnlock_prefs">快速解锁</string>
   <string name="FileHandling_prefs">文件操作</string>
   <string name="keyboard_prefs">键盘</string>
@@ -45,7 +45,7 @@
   <string name="OnlyAvailableForLocalFiles">仅适用于本地文件。</string>
   <string name="FileIsInInternalDirectory">文件存储在内部目录中。</string>
   <string name="DatabaseFileMoved">数据库文件已被复制到内部的文件夹。点击确定从新位置打开。注意： 不要忘记要定期将数据库导出到一个安全的地方！</string>
-  <string name="KeyfileMoved">密钥文件被复制到内部的文件夹。从当前位置删除之前请确保您有一个安全的备份！</string>
+  <string name="KeyfileMoved">密钥文件被复制到内部的文件夹。在你从当前位置删除之前请确保你已经有了一个安全的备份！</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">未记住密钥文件位置时不能使用内部文件夹。更改安全首选项。</string>
   <string name="brackets">括号</string>
   <string name="cancel">取消</string>
@@ -227,7 +227,7 @@
   <string name="caseSensitive">区分大小写</string>
   <string name="start_open_file">打开文件...</string>
   <string name="start_create">创建新的数据库...</string>
-  <string name="start_open_url">打开 URL...</string>
+  <string name="start_open_url">打开链接地址L...</string>
   <string name="start_create_import">导入文件到新的数据库...</string>
   <string name="enter_filename_details_url">必须指定包含类似 http:// 的完整链接地址</string>
   <string name="enter_filename_details_create_import">所导入的文件将在下一步被选中</string>
@@ -480,6 +480,15 @@ Version 0.9.7\n
 * 当检测到数据库修改后自动重新读取, 解决一个关于主密码的安全隐患\n
 * 优化波兰语键盘， 修正键盘设置主题样式（感谢 Wiktor Ławski）\n
 	</string>
+  <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
+*修正了文件浏览问题（尤其是在Android 4.4中）\n
+*修正了在Nexus 5手机的Android Lollipop版本中载入文件扩展名为.kbd（keepass1）的问题\n
+*增加了防止截屏/从当前运行的应用列表中隐藏的选项\n
+*修正了与Google Drive服务的文件存储器(普通版)的问题\n
+*允许密钥文件以经过审议的类型存储（普通版）\n
+*更新了DropBox SDK使其包含了一个官方安全补丁程序（普通版）\n
+*更新了构建工具--&gt;apk安装包大小增加:-(\n
+我保证还会有更多的改变。但他们将在下次版本发布-抱歉。我也想让那些补丁尽快发布。</string>
   <string name="ChangeLog_0_9_4"><b>版本 0.9.4</b>\n
 * 添加插件指出：参阅设置查看如何获得插件！\n
 * 二维码插件（扫描密码、以二维码方式显示密码、转移条目至其他装有 KP2A 的设备）\n

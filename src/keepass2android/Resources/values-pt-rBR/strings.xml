@@ -39,6 +39,14 @@
   <string name="FileHandling_prefs">Manipulação de arquivos</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar banco de dados...</string>
+  <string name="import_db_prefs">Importar base de dados para pasta interna</string>
+  <string name="import_keyfile_prefs">Importar arquivo chave para pasta interna</string>
+  <string name="keyboardswitch_prefs">Alterar teclado</string>
+  <string name="OnlyAvailableForLocalFiles">Só disponível para arquivos locais.</string>
+  <string name="FileIsInInternalDirectory">Arquivo armazenado no diretório interno.</string>
+  <string name="DatabaseFileMoved">Base de dados copiada para a pasta interna. Clique em OK para abrir o novo local. Nota: Não se esqueça de exportar a base de dados para um local seguro regularmente!</string>
+  <string name="KeyfileMoved">Arquivo de chaves copiado para a pasta interna. Verifique se que você tem um backup seguro antes de excluir do local atual!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Impossível usar a pasta interna enquanto o local do arquivo de chaves não for memorizado. Modifique as preferências de segurança.</string>
   <string name="brackets">Parênteses</string>
   <string name="cancel">Cancelar</string>
   <string name="ClearClipboard">Área de transferência limpa.</string>
@@ -47,6 +55,7 @@
   <string name="copy_username">Copiar usuário para a área de transferência</string>
   <string name="copy_password">Copiar senha para a área de transferência</string>
   <string name="available_through_keyboard">Entrada está disponível através do teclado KP2A</string>
+  <string name="entry_is_available">está disponível</string>
   <string name="not_possible_im_picker">Não foi possível abrir a caixa de diálogo para selecionar o método de entrada. Por favor, ative o teclado manualmente.</string>
   <string name="please_activate_keyboard">Por favor habilite o teclado do Keepass2Android nas configurações do seu sistema.</string>
   <string name="creating_db_key">Criando a chave do banco de dados&#8230;</string>
@@ -80,6 +89,7 @@
   <string name="error_could_not_create_group">Erro ao criar grupo.</string>
   <string name="error_could_not_create_parent">Não foi possível criar o diretório pai.</string>
   <string name="error_database_exists">Este arquivo já existe.</string>
+  <string name="error_database_settinoverrgs">Falha ao determinar configurações da base de dados.</string>
   <string name="error_failed_to_launch_link">Falha ao executar link.</string>
   <string name="error_filename_required">É necessário um nome de arquivo.</string>
   <string name="error_file_not_create">Não foi possível criar o arquivo</string>
@@ -113,6 +123,7 @@
   <string name="invalid_algorithm">Algoritmo inválido.</string>
   <string name="invalid_db_sig">O formato do banco de dados não foi reconhecido.</string>
   <string name="keyfile_does_not_exist">Arquivo chave não existe.</string>
+  <string name="no_keyfile_selected">Nenhum arquivo de chaves selecionado.</string>
   <string name="keyfile_is_empty">Arquivo chave está vazio.</string>
   <string name="length">Tamanho</string>
   <string name="list_size_title">Tamanho da lista de grupos</string>
@@ -175,8 +186,11 @@
   <string name="space">Espaço</string>
   <string name="search_label">Busca</string>
   <string name="show_password">Mostrar senha</string>
+  <string name="sort_menu">Ordenar por...</string>
   <string name="sort_name">Ordenar por nome</string>
   <string name="sort_db">Ordenar por data de criação</string>
+  <string name="sort_moddate">Ordenar por data de modificação</string>
+  <string name="sort_default">Manter ordem padrão</string>
   <string name="special">Caracteres Especiais</string>
   <string name="search_hint">O que encontrar</string>
   <string name="search_results">Resultado da busca</string>
@@ -194,6 +208,7 @@
   <string name="version_history">Histórico de versões</string>
   <string name="author">Keepass2Android é desenvolvido por Philipp Crocoll.</string>
   <string name="further_authors">Agradecimentos a contribuições de código por %1$s.</string>
+  <string name="designers">Obrigado à %1$s por contribuir com ícones e projetos do layout.</string>
   <string name="credit_plugin1">O Plugin Twofish Cipher para Keepass foi desenvolvido por Scott Greenberg e está incluído em KP2A.</string>
   <string name="credit_android_filechooser">android-filechooser foi desenvolvido por Hai Bison</string>
   <string name="credit_keyboard">O teclado do KP2A é baseado no teclado do Gibgerbread pelo Android Open Source Project e usa o código do Plugin Manager do Hacker\'s Keyboard por Klaus Weidner.</string>
@@ -222,6 +237,7 @@
   <string name="QuickUnlock_lockButton">Fechar banco de dados</string>
   <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por padrão</string>
   <string name="QuickUnlockDefaultEnabled_summary">Define se o QuickUnlock está habilitado por padrão ou não.</string>
+  <string name="ViewDatabaseSecure_title">Proteger a exibição da base de dados</string>
   <string name="ViewDatabaseSecure_summary">Se habilitado, as capturas de tela são bloqueadas e a miniatura do app não é exibida na lista de apps recentes.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar o ícone do QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">O QuickUnlock infelizmente não funciona sem exibir um ícone de notificação. Selecione esta opção para usar um ícone transparente.</string>
@@ -255,6 +271,8 @@
   <string name="UseFileTransactions_summary">Usar transações de arquivo para escrita de bancos de dados</string>
   <string name="LockWhenScreenOff_title">Travar com a tela desligada</string>
   <string name="LockWhenScreenOff_summary">Bloquear o banco de dados quando a tela for desligada.</string>
+  <string name="ClearPasswordOnLeave_title">Limpar a senha mestre digitada</string>
+  <string name="ClearPasswordOnLeave_summary">Limpar a senha mestra digitada ao sair da tela sem desbloquear a base de dados.</string>
   <string name="LockWhenNavigateBack_title">Bloquear quando deixar o app</string>
   <string name="LockWhenNavigateBack_summary">Feche o banco de dados quando sair do app pressionando o botão voltar.</string>
   <string name="NoDonateOption_title">Ocultar a opção de doação</string>
@@ -268,13 +286,22 @@
   <string name="ClearOfflineCache_question">Isto irá apagar todos os arquivos de banco de dados salvos em cache. Quaisquer modificações que você tenha feito enquanto esteve desconectado que não tenham sido sincronizadas serão perdidas! Continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Verificar modificações</string>
   <string name="CheckForFileChangesOnSave_summary">Verifica se o arquivo foi modificado externamente antes de salvar as alterações.</string>
+  <string name="CheckForDuplicateUuids_title">Verificar UUIDs duplicados</string>
+  <string name="CheckForDuplicateUuids_summary">Verifique se o arquivo da base de dados está danificado por ter várias entradas com o mesmo ID. Isto pode causar comportamento inesperado.</string>
   <string name="ShowCopyToClipboardNotification_title">Notificações da área de transferência</string>
   <string name="ShowCopyToClipboardNotification_summary">Tornar usuários e senhas disponíveis através da barra de notificações e da área de transferência. Cuidado com sniffers de senhas!</string>
+  <string name="ShowSeparateNotifications_title">Notificações separadas</string>
+  <string name="ShowSeparateNotifications_summary">Exibir notificações separadas para copiar nome de usuário e senha para área de transferência e ativar o teclado.</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificação do teclado KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tornar toda a entrada disponível através do teclado KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Trocar teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abre a seleção de teclados quando a inserção estiver disponível através do teclado KP2A após busca do navegador ou do teclado.</string>
   <string name="kp2a_switch_rooted">Trocar automaticamente em dispositivos com root</string>
+  <string name="kp2a_switch_rooted_summary">Mudar automaticamente p/ teclado KP2A ao abrir a entrada. Exige root e app de configurações seguras com Sistema +. </string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Auto-mudar só após pesquisar</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Mudar automaticamente para teclado KP2A após usar a função de Compartilhar URL (mas não ao abrir uma entrada de outra forma)</string>
+  <string name="AutoSwitchBackKeyboard_title">Retornar o teclado</string>
+  <string name="AutoSwitchBackKeyboard_summary">Retornar ao teclado anterior se não há entrada aberta.</string>
   <string name="ShowUnlockedNotification_title">Ícone de notificação enquanto desbloqueado</string>
   <string name="ShowUnlockedNotification_summary">Mostra uma notificação permanente enquanto o banco de dados está desbloqueado.</string>
   <string name="PreloadDatabaseEnabled_title">Pré-carregar arquivo de banco de dados</string>
@@ -330,6 +357,8 @@
   <string name="database_file">arquivo de banco de dados</string>
   <string name="otp_aux_file">Arquivo auxiliar de OTP</string>
   <string name="ErrorOcurred">Ocorreu um erro:</string>
+  <string name="DuplicateUuidsError">Base de dados danificada: Há IDs duplicados. (Você salvou com Minikeepass?). Re-importe p/ uma nova base de dados c/ Keepass 2 p/ PC e selec. \'Criar novas IDs\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Desabilite essa mensagem de erro em Configurações/Config. do aplicativo/Manipular arquivo/Verificar UUIDs duplicatas. Note que você poderá enfrentar um comportamento inesperado. Corrija a base de dados.</string>
   <string name="synchronize_database_menu">Sincronizar banco de dados&#8230;</string>
   <string name="CannotMoveGroupHere">Não pode mover o grupo para este grupo.</string>
   <string name="donate_question">Hoje, é a Oktoberfest! Se você gosta de Keepass2Android: hoje não seria um bom dia para me pagar uma cerveja?</string>
@@ -416,11 +445,26 @@
   <string name="CertificateFailure">Erro: Falha de validação do certificado do servidor! Instale o certificado raiz apropriado em seu dispositivo ou consulte  as configurações!</string>
   <string name="export_fileformats_title">Selecione o formato de arquivo</string>
   <string name="killed_by_os">Sinto muito! Keepass2Android foi morto pelo sistema operacional Android! Por razões de segurança, Keepass2Android não mantém suas credenciais selecionadas no disco, então você precisa re-abrir o seu banco de dados. Nota: Isto deve acontecer muito raramente. Se isso acontece, por favor, me deixe uma mensagem no crocoapps@gmail.com.</string>
+  <string name="FileIsTemporarilyAvailable">Arquivo temporariamente disponível só para Keepass2Android.</string>
+  <string name="FileIsReadOnly">Arquivo selecionado é só leitura.</string>
+  <string name="FileIsReadOnlyOnKitkat">Arquivo selecionado é só leitura para Keepass2Android devido a restrições no Android 4.4+.</string>
+  <string name="CopyFileRequired">Para usá-lo, copie-o em outro local.</string>
+  <string name="CopyFileRequiredForEditing">Para editá-lo, copie o arquivo em outro local.</string>
+  <string name="ClickOkToSelectLocation">Clique em OK p/ selecionar o local onde o arquivo será copiado.</string>
   <string name="CancelReadOnly">Cancelar, abrir como somente leitura.</string>
   <string name="CopyingFile">Copiando arquivo...</string>
   <string name="KdbBetaWarning">Por favor observe: você carregou um banco de dados Keepass versão 1. Keepass2Android recentemente adicionou suporte de gravação para esse formato de banco de dados. Apesar de testes extensivos, o autor não garante que todos os dados serão salvos corretamente. Por favor, mantenha sempre um backup de banco de dados original (Dropbox automaticamente armazena versões recentes) antes de fazer alterações. Por favor reporte quaisquer problemas. Obrigado!</string>
   <string name="ChangeLog_title">Mudanças</string>
   <string name="PreviewWarning">Por favor, note! Esta é uma versão preview e pode vir com algumas falhas! Se você experimentar *alguma coisa* inesperada, por favor me avise (no Codeplex ou por e-mail).</string>
+  <string name="ChangeLog_0_9_7">
+		Versão 0.9.7\n
+		* gravar suporte p/ bases de dados do Keepass 1 (kdb) (beta!)\n
+		* retorno ao teclado anterior aprimorado (funciona também em dispositivos sem root)\n
+		* suporte p/ KeeChallenge c/ comprimento de challenges variável\n
+		* evita obter telas cheias do QuickUnlock e telas de senha\n
+		* ordem de classificação reversa p/ Classificar por Data de Modificação (agora decrescente)\n
+		* bugs corrigidos: Notas exibidas são atualizadas corretamente após as modificações; exibições de senha agora ocultam a senha corretamente em todos dispositivos (espero); corrigido o problema que permitia adicionar uma entrada duas vezes; corrigido o problema ao exibir o aviso UUID Duplicado mesmo após corrigir a base de dados\n
+	</string>
   <string name="ChangeLog_0_9_4">
 		<b>Versão 0.9.4</b>\n
 		*  adicionado suporte a plug-int: Veja em configurações como obter plug-ins!\n

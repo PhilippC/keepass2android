@@ -72,6 +72,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="entry_confpassword">Confirmar password</string>
   <string name="entry_created">Criado</string>
   <string name="entry_expires">Expira</string>
+  <string name="entry_group_name">Nome do Grupo</string>
   <string name="entry_keyfile">Arquivo de chave (opcional)</string>
   <string name="entry_modified">Modificado</string>
   <string name="entry_password">Senha</string>
@@ -156,9 +157,11 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Raiz</string>
   <string name="rounds_hint">passos</string>
+  <string name="saving_database">A gravar a base de dados...</string>
   <string name="space">Espaço</string>
   <string name="search_label">Pesquisa</string>
   <string name="show_password">Mostrar senha</string>
+  <string name="sort_menu">Ordenar por...</string>
   <string name="sort_name">Ordenar por nome</string>
   <string name="sort_db">Ordenar por data de criação</string>
   <string name="special">Especial</string>

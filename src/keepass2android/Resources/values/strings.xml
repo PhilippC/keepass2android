@@ -529,6 +529,12 @@
 
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>
 
+	<string name="ChangeLog_0_9_7b">
+		Version 0.9.7b\n
+		* updated translations\n
+		* bug fixes: Password font was missing in 0.9.7, sort by name didn not sort groups\n
+	</string>
+
 	<string name="ChangeLog_0_9_7">
 		Version 0.9.7\n
 		* write support for Keepass 1 (kdb) databases (beta!)\n
