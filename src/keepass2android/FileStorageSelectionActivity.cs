@@ -39,11 +39,25 @@ namespace keepass2android
 				//show all supported protocols:
 				foreach (IFileStorage fs in App.Kp2a.FileStorages)
 					_protocolIds.AddRange(fs.SupportedProtocols);
-				//put file:// to the top
-				_protocolIds.Remove("file");
-				_protocolIds.Insert(0, "file");
-				//remove "content" (covered by androidget)
-				_protocolIds.Remove("content");
+
+				//special handling for local files:
+				if (!Util.IsKitKatOrLater)
+				{
+					//put file:// to the top
+					_protocolIds.Remove("file");
+					_protocolIds.Insert(0, "file");
+					
+					//remove "content" (covered by androidget)
+					//On KitKat, content is handled by AndroidContentStorage taking advantage 
+					//of persistable permissions and ACTION_OPEN/CREATE_DOCUMENT
+					_protocolIds.Remove("content");
+					
+				}
+				else
+				{
+					_protocolIds.Remove("file");
+				}
+					
 
 				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppGet, false))
 					_protocolIds.Add("androidget");

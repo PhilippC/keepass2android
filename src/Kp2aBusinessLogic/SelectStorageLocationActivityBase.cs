@@ -1,6 +1,7 @@
 using System;
 using Android.App;
 using Android.Content;
+using Android.OS;
 using Android.Widget;
 using Java.Net;
 using KeePassLib.Serialization;
@@ -36,6 +37,7 @@ namespace keepass2android
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
+			Kp2aLog.Log("base.onAR");
 			base.OnActivityResult(requestCode, resultCode, data);
 			if ((requestCode == RequestCodeFileStorageSelectionForPrimarySelect) || ((requestCode == RequestCodeFileStorageSelectionForCopyToWritableLocation)))
 			{
@@ -52,7 +54,11 @@ namespace keepass2android
 
 					if (protocolId == "androidget")
 					{
-						ShowAndroidBrowseDialog(RequestCodeFileBrowseForOpen, false);
+						ShowAndroidBrowseDialog(browseRequestCode, false, false);
+					}
+					else if (protocolId == "content")
+					{
+						ShowAndroidBrowseDialog(browseRequestCode, browseRequestCode == RequestCodeFileFileBrowseForWritableLocation, true);
 					}
 					else
 					{
@@ -93,7 +99,10 @@ namespace keepass2android
 
 				if (resultCode == Result.Ok)
 				{
+					Kp2aLog.Log("FileSelection returned "+data.DataString);
+					//TODO: don't try to extract filename if content URI
 					string filename = IntentToFilename(data);
+					Kp2aLog.Log("FileSelection returned filename " + filename);
 					if (filename != null)
 					{
 						if (filename.StartsWith("file://"))
@@ -113,6 +122,24 @@ namespace keepass2android
 					{
 						if (data.Data.Scheme == "content")
 						{
+							if ((int) Build.VERSION.SdkInt >= 19)
+							{
+								//try to take persistable permissions
+								try
+								{
+									Kp2aLog.Log("TakePersistableUriPermission");
+									var takeFlags = data.Flags
+											& (ActivityFlags.GrantReadUriPermission
+											| ActivityFlags.GrantWriteUriPermission);
+									this.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
+								}
+								catch (Exception e)
+								{
+									Kp2aLog.Log(e.ToString());
+								}
+								
+							}
+							
 							IocSelected(IOConnectionInfo.FromPath(data.DataString), requestCode);
 
 						}
@@ -155,7 +182,7 @@ namespace keepass2android
 		/// <param name="protocolId"></param>
 		protected abstract void StartSelectFile(bool isForSave, int browseRequestCode, string protocolId);
 
-		protected abstract void ShowAndroidBrowseDialog(int requestCode, bool isForSave);
+		protected abstract void ShowAndroidBrowseDialog(int requestCode, bool isForSave, bool tryGetPermanentAccess);
 
 		protected abstract bool IsStorageSelectionForSave { get; }
 
@@ -257,7 +284,6 @@ namespace keepass2android
 			var filestorage = _app.GetFileStorage(ioc, false);
 			if (!filestorage.IsPermanentLocation(ioc))
 			{
-				
 				string message = _app.GetResourceString(UiStringKey.FileIsTemporarilyAvailable) + " " + _app.GetResourceString(UiStringKey.CopyFileRequired) + " " + _app.GetResourceString(UiStringKey.ClickOkToSelectLocation);
 				EventHandler<DialogClickEventArgs> onOk = (sender, args) => { MoveToWritableLocation(ioc); };
 				EventHandler<DialogClickEventArgs> onCancel = (sender, args) => { ReturnCancel(); };

@@ -322,17 +322,25 @@ namespace keepass2android
 			if (resultCode == KeePass.ExitFileStorageSelectionOk)
 			{
 				string protocolId = data.GetStringExtra("protocolId");
-				App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
-						OnActivityResult,
-						defaultPath =>
-						{
-							if (defaultPath.StartsWith("sftp://"))
-								Util.ShowSftpDialog(this, OnReceiveSftpData, () => { });
-							else
-								Util.ShowFilenameDialog(this, OnCreateButton, null, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
-												Intents.RequestCodeFileBrowseForOpen);
-						}
-						), true, RequestCodeDbFilename, protocolId);
+				if (protocolId == "content")
+				{
+					Util.ShowBrowseDialog(this, RequestCodeDbFilename, true, true);
+				}
+				else
+				{
+					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
+							OnActivityResult,
+							defaultPath =>
+							{
+								if (defaultPath.StartsWith("sftp://"))
+									Util.ShowSftpDialog(this, OnReceiveSftpData, () => { });
+								else
+									Util.ShowFilenameDialog(this, OnCreateButton, null, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
+													Intents.RequestCodeFileBrowseForOpen);
+							}
+							), true, RequestCodeDbFilename, protocolId);	
+				}
+				
 			}
 
 			if (resultCode == Result.Ok)
@@ -349,7 +357,31 @@ namespace keepass2android
 				}
 				if (requestCode == RequestCodeDbFilename)
 				{
+					if (data.Data.Scheme == "content")
+					{
+						if ((int)Build.VERSION.SdkInt >= 19)
+						{
+							//try to take persistable permissions
+							try
+							{
+								Kp2aLog.Log("TakePersistableUriPermission");
+								var takeFlags = data.Flags
+										& (ActivityFlags.GrantReadUriPermission
+										| ActivityFlags.GrantWriteUriPermission);
+								this.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
+							}
+							catch (Exception e)
+							{
+								Kp2aLog.Log(e.ToString());
+							}
+
+						}
+					}
+
+					
 					string filename = Util.IntentToFilename(data, this);
+					if (filename == null)
+						filename = data.DataString;
 
 					bool fileExists = data.GetBooleanExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.result_file_exists", true);
 
@@ -375,9 +407,6 @@ namespace keepass2android
 						new ProgressTask(App.Kp2a, this, task).Run();
 					}
 
-
-
-					
 				}
 				
 			}

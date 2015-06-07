@@ -2,14 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using Android.Provider;
 using KeePassLib.Serialization;
 
 namespace keepass2android.Io
@@ -97,7 +92,7 @@ namespace keepass2android.Io
 		public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
 		{
 			Intent intent = new Intent();
-			activity.IocToIntent(intent, new IOConnectionInfo() { Path = protocolId + "://" });
+			activity.IocToIntent(intent, new IOConnectionInfo { Path = protocolId + "://" });
 			activity.OnImmediateResult(requestCode, (int)FileStorageResults.FileChooserPrepared, intent);
 		}
 
@@ -131,16 +126,48 @@ namespace keepass2android.Io
 
 		public string GetDisplayName(IOConnectionInfo ioc)
 		{
+			string displayName = null;
+			if (TryGetDisplayName(ioc, ref displayName))
+				return "content://" + displayName; //make sure we return the protocol in the display name for consistency, also expected e.g. by CreateDatabaseActivity
 			return ioc.Path;
+		}
+
+		private bool TryGetDisplayName(IOConnectionInfo ioc, ref string displayName)
+		{
+			var uri = Android.Net.Uri.Parse(ioc.Path);
+			var cursor = _ctx.ContentResolver.Query(uri, null, null, null, null, null);
+
+			try
+			{
+				if (cursor != null && cursor.MoveToFirst())
+				{
+					displayName = cursor.GetString(cursor.GetColumnIndex(OpenableColumns.DisplayName));
+					if (!string.IsNullOrEmpty(displayName))
+					{
+						return true;
+					}
+						
+				}
+			}
+			finally
+			{
+				if (cursor != null)
+					cursor.Close();
+			}
+
+			return false;
 		}
 
 		public string CreateFilePath(string parent, string newFilename)
 		{
-			throw new NotImplementedException();
+			if (!parent.EndsWith("/"))
+				parent += "/";
+			return parent + newFilename;
 		}
 
 		public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
 		{
+			//TODO: required for OTP Aux file retrieval
 			throw new NotImplementedException();
 		}
 
@@ -149,15 +176,49 @@ namespace keepass2android.Io
 			throw new NotImplementedException();
 		}
 
+		private static bool IsKitKatOrLater
+		{
+			get { return (int)Build.VERSION.SdkInt >= 19; }
+		}
+
 		public bool IsPermanentLocation(IOConnectionInfo ioc)
 		{
 			//on pre-Kitkat devices, content:// is always temporary:
-			return false;
+			if (!IsKitKatOrLater)
+				return false;
+
+			//try to get a persisted permission for the file
+			return _ctx.ContentResolver.PersistedUriPermissions.Any(p => p.Uri.ToString().Equals(ioc.Path));
 		}
 
 		public bool IsReadOnly(IOConnectionInfo ioc)
 		{
 			//on pre-Kitkat devices, we can't write content:// files
+			if (!IsKitKatOrLater)
+			{
+				Kp2aLog.Log("File is read-only because we're not on KitKat or later.");
+				return true;
+			}
+				
+
+			//KitKat or later...
+			var uri = Android.Net.Uri.Parse(ioc.Path);
+			var cursor = _ctx.ContentResolver.Query(uri, null, null, null, null, null);
+
+			try
+			{
+				if (cursor != null && cursor.MoveToFirst())
+				{
+					int flags = cursor.GetInt(cursor.GetColumnIndex(DocumentsContract.Document.ColumnFlags));
+					Kp2aLog.Log("File flags: " + flags);
+					return (flags & (long) DocumentContractFlags.SupportsWrite) == 0;
+				}
+			}
+			finally
+			{
+				if (cursor != null)
+					cursor.Close();
+			}
 			return true;
 		}
 	}
@@ -189,7 +250,8 @@ namespace keepass2android.Io
 		{
 			using (Stream outputStream = _ctx.ContentResolver.OpenOutputStream(Android.Net.Uri.Parse(_path)))
 			{
-				outputStream.Write(_memoryStream.ToArray(), 0, (int)_memoryStream.Length);
+				byte[] data = _memoryStream.ToArray();
+				outputStream.Write(data, 0, data.Length);
 			}
 			
 			

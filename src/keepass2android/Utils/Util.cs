@@ -22,6 +22,7 @@ using System.IO;
 using Android.App;
 using Android.Content;
 using Android.Database;
+using Android.OS;
 using Android.Preferences;
 using Android.Provider;
 using Android.Views;
@@ -142,23 +143,50 @@ namespace keepass2android
 			return list.Count > 0;
 		}
 
-		public static void ShowBrowseDialog(Activity act, int requestCodeBrowse, bool forSaving)
+		/// <summary>
+		/// Opens a browse dialog for selecting a file.
+		/// </summary>
+		/// <param name="activity">context activity</param>
+		/// <param name="requestCodeBrowse">requestCode for onActivityResult</param>
+		/// <param name="forSaving">if true, the file location is meant for saving</param>
+		/// <param name="tryGetPermanentAccess">if true, the caller prefers a location that can be used permanently
+		/// This means that ActionOpenDocument should be used instead of ActionGetContent (for not saving), as ActionGetContent
+		/// is more for one-time access, but therefore allows possibly more available sources.</param>
+		public static void ShowBrowseDialog(Activity activity, int requestCodeBrowse, bool forSaving, bool tryGetPermanentAccess)
 		{
-			if ((!forSaving) && (IsIntentAvailable(act, Intent.ActionGetContent, "*/*", new List<string> { Intent.CategoryOpenable})))
+			var loadAction = (tryGetPermanentAccess && IsKitKatOrLater) ? 
+							Intent.ActionOpenDocument : Intent.ActionGetContent;
+			if ((!forSaving) && (IsIntentAvailable(activity, loadAction, "*/*", new List<string> { Intent.CategoryOpenable})))
 			{
-				Intent i = new Intent(Intent.ActionGetContent);
+				Intent i = new Intent(loadAction);
 				i.SetType("*/*");
 				i.AddCategory(Intent.CategoryOpenable);
 
-				act.StartActivityForResult(i, requestCodeBrowse);
+				activity.StartActivityForResult(i, requestCodeBrowse);
 			}
 			else
 			{
-				string defaultPath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+				if ((forSaving) && (IsKitKatOrLater))
+				{
+					Intent i = new Intent(Intent.ActionCreateDocument);
+					i.SetType("*/*");
+					i.AddCategory(Intent.CategoryOpenable);
 
+					activity.StartActivityForResult(i, requestCodeBrowse);
+				}
+				else
+				{
+					string defaultPath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
 
-				ShowInternalLocalFileChooser(act, requestCodeBrowse, forSaving, defaultPath);
+					ShowInternalLocalFileChooser(activity, requestCodeBrowse, forSaving, defaultPath);	
+				}
+				
 			}
+		}
+
+		public static bool IsKitKatOrLater
+		{
+			get { return (int)Build.VERSION.SdkInt >= 19; }
 		}
 
 		private static void ShowInternalLocalFileChooser(Activity act, int requestCodeBrowse, bool forSaving, string defaultPath)
@@ -179,18 +207,17 @@ namespace keepass2android
 #endif
 		}
 
+		/// <summary>
+		/// Tries to extract the filename from the intent. Returns that filename or null if no success
+		/// (e.g. on content-URIs in Android KitKat+). 
+		/// Guarantees that the file exists.
+		/// </summary>
 		public static string IntentToFilename(Intent data, Context ctx)
 		{
-#if !EXCLUDE_FILECHOOSER
-			string EXTRA_RESULTS = "group.pals.android.lib.ui.filechooser.FileChooserActivity.results";
-			if (data.HasExtra(EXTRA_RESULTS))
-			{
-				IList uris = data.GetParcelableArrayListExtra(EXTRA_RESULTS);
-				Uri uri = (Uri) uris[0];
-				return Group.Pals.Android.Lib.UI.Filechooser.Providers.BaseFileProviderUtils.GetRealUri(ctx, uri).ToString();
-			}
+			string s = GetFilenameFromInternalFileChooser(data, ctx);
+			if (!String.IsNullOrEmpty(s))
+				return s;
 
-#endif
 			try
 			{
 				Uri uri = data.Data;
@@ -214,10 +241,30 @@ namespace keepass2android
 			String filename = data.Data.Path;
 			if ((String.IsNullOrEmpty(filename) || (!File.Exists(filename))))
 			 	filename = data.DataString;
-			return filename;
+			if (File.Exists(filename))
+				return filename;
+			//found no valid file
+			return null;
 		}
 
-		
+		public static string GetFilenameFromInternalFileChooser(Intent data, Context ctx)
+		{
+#if !EXCLUDE_FILECHOOSER
+			string EXTRA_RESULTS = "group.pals.android.lib.ui.filechooser.FileChooserActivity.results";
+			if (data.HasExtra(EXTRA_RESULTS))
+			{
+				IList uris = data.GetParcelableArrayListExtra(EXTRA_RESULTS);
+				Uri uri = (Uri) uris[0];
+				{
+					return Group.Pals.Android.Lib.UI.Filechooser.Providers.BaseFileProviderUtils.GetRealUri(ctx, uri).ToString();
+				}
+			}
+
+#endif
+			return null;
+		}
+
+
 		public static bool HasActionBar(Activity activity)
 		{
 			//Actionbar is available since 11, but the layout has its own "pseudo actionbar" until 13
@@ -336,11 +383,6 @@ namespace keepass2android
 					onCancel();
 				};
 
-			
-
-			
-
-
 			ImageButton browseButton = (ImageButton) dialog.FindViewById(Resource.Id.browse_button);
 			if (!showBrowseButton)
 			{
@@ -350,7 +392,7 @@ namespace keepass2android
 				{
 					string filename = ((EditText) dialog.FindViewById(Resource.Id.file_filename)).Text;
 
-					Util.ShowBrowseDialog(activity, requestCodeBrowse, onCreate != null);
+					Util.ShowBrowseDialog(activity, requestCodeBrowse, onCreate != null, /*TODO should we prefer ActionOpenDocument here?*/ false);
 
 				};
 

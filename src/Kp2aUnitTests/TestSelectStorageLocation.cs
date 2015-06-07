@@ -328,7 +328,7 @@ namespace Kp2aUnitTests
 			}
 		}
 
-		protected override void ShowAndroidBrowseDialog(int requestCode, bool isForSave)
+		protected override void ShowAndroidBrowseDialog(int requestCode, bool isForSave, bool tryGetPermanentAccess)
 		{
 			_userAction = new AndroidBrowseDialogAction(requestCode, isForSave, this);
 		}

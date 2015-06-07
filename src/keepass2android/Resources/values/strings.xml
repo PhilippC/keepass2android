@@ -426,6 +426,7 @@
 	<string name="filestoragename_gdrive">Google Drive</string>
 	<string name="filestoragename_skydrive">OneDrive</string>
 	<string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+	<string name="filestoragename_content">System file picker</string>
 
 	<string name="filestorage_setup_title">File access initialization</string>
 

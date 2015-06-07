@@ -450,6 +450,8 @@ namespace keepass2android
 				{
 					_fileStorages = new List<IFileStorage>
 						{
+							
+							new AndroidContentStorage(Application.Context),
 #if !EXCLUDE_JAVAFILESTORAGE
 #if !NoNet
 							new DropboxFileStorage(Application.Context, this),
@@ -459,8 +461,7 @@ namespace keepass2android
 							new SftpFileStorage(this),
 #endif
 #endif
-							new BuiltInFileStorage(this),
-							new AndroidContentStorage(Application.Context)
+							new BuiltInFileStorage(this)
 						};
 				}
 				return _fileStorages;

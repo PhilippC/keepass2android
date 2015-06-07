@@ -113,9 +113,9 @@ namespace keepass2android
 																				), isForSave, browseRequestCode, protocolId);
 		}
 
-		protected override void ShowAndroidBrowseDialog(int requestCode, bool isForSave)
+		protected override void ShowAndroidBrowseDialog(int requestCode, bool isForSave, bool tryGetPermanentAccess)
 		{
-			Util.ShowBrowseDialog(this, requestCode, isForSave);
+			Util.ShowBrowseDialog(this, requestCode, isForSave, tryGetPermanentAccess);
 		}
 
 		protected override bool IsStorageSelectionForSave 
@@ -230,6 +230,12 @@ namespace keepass2android
 		public void OnDismiss(IDialogInterface dialog)
 		{
 //			ReturnCancel();
+		}
+
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			Kp2aLog.Log("onAR");
+			base.OnActivityResult(requestCode, resultCode, data);
 		}
 
 	}

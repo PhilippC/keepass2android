@@ -21,9 +21,11 @@ using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Provider;
 using Android.Views;
 using Android.Widget;
 using Android.Preferences;
+using Java.IO;
 using KeePassLib.Utility;
 using KeePassLib;
 using Android.Text;
@@ -31,6 +33,8 @@ using KeePassLib.Security;
 using Android.Content.PM;
 using System.IO;
 using System.Globalization;
+using File = System.IO.File;
+using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
@@ -491,9 +495,50 @@ namespace keepass2android
 
 		}
 
-		void AddBinaryOrAsk(string filename)
+		public String GetFileName(Uri uri)
 		{
-			string strItem = UrlUtil.GetFileName(filename);
+			String result = null;
+			if (uri.Scheme.Equals("content"))
+			{
+				var cursor = ContentResolver.Query(uri, null, null, null, null);
+				try
+				{
+					if (cursor != null && cursor.MoveToFirst())
+					{
+						result = cursor.GetString(cursor.GetColumnIndex(OpenableColumns.DisplayName));
+					}
+				}
+				finally
+				{
+					if (cursor != null) 
+						cursor.Close();
+				}
+			}
+			if (result == null)
+			{
+				result = uri.Path;
+				int cut = result.LastIndexOf('/');
+				if (cut != -1)
+				{
+					result = result.Substring(cut + 1);
+				}
+
+				cut = result.LastIndexOf('?');
+				if (cut != -1)
+				{
+					result = result.Substring(0, cut);
+				}
+				
+			}
+			return result;
+		}
+
+		void AddBinaryOrAsk(Uri filename)
+		{
+
+			string strItem = GetFileName(filename);
+			if (String.IsNullOrEmpty(strItem))
+				strItem = "attachment.bin";
 
 			if(State.Entry.Binaries.Get(strItem) != null)
 			{
@@ -523,10 +568,9 @@ namespace keepass2android
 				AddBinary(filename, true);
 		}
 
-		void AddBinary(string filename, bool overwrite)
+		void AddBinary(Uri filename, bool overwrite)
 		{
-			string strItem = UrlUtil.GetFileName(filename);
-
+			string strItem = GetFileName(filename);
 			if (!overwrite)
 			{
 				string strFileName = UrlUtil.StripExtension(strItem);
@@ -547,16 +591,41 @@ namespace keepass2android
 			}
 			try
 			{
-				byte[] vBytes = File.ReadAllBytes(filename);
-					ProtectedBinary pb = new ProtectedBinary(false, vBytes);
-				State.Entry.Binaries.Set(strItem, pb);
+
+				byte[] vBytes = null;
+				try
+				{
+					//Android standard way to read the contents (content or file scheme)
+					vBytes = ReadFully(ContentResolver.OpenInputStream(filename));
 				}
+				catch (Exception)
+				{
+					//if standard way fails, try to read as a file
+					vBytes = File.ReadAllBytes(filename.Path);
+				}
+				
+				ProtectedBinary pb = new ProtectedBinary(false, vBytes);
+				State.Entry.Binaries.Set(strItem, pb);
+			}
 			catch(Exception exAttach)
 			{
 				Toast.MakeText(this, GetString(Resource.String.AttachFailed)+" "+exAttach.Message, ToastLength.Long).Show();
 			}
 			State.EntryModified = true;
 			PopulateBinaries();
+		}
+		public static byte[] ReadFully(Stream input)
+		{
+			byte[] buffer = new byte[16 * 1024];
+			using (MemoryStream ms = new MemoryStream())
+			{
+				int read;
+				while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+				{
+					ms.Write(buffer, 0, read);
+				}
+				return ms.ToArray();
+			}
 		}
 
 		protected override void OnSaveInstanceState(Bundle outState)
@@ -637,20 +706,23 @@ namespace keepass2android
 				Reload();
 				break;
 			case Result.Ok:
-					if (requestCode == Intents.RequestCodeFileBrowseForBinary)
+				if (requestCode == Intents.RequestCodeFileBrowseForBinary)
+				{
+					Uri uri = data.Data;
+					if (data.Data == null)
 					{
-						string filename = Util.IntentToFilename(data, this);
-						if (filename != null) {
-							if (filename.StartsWith("file://")) {
-								filename = filename.Substring(7);
-								filename = Java.Net.URLDecoder.Decode(filename);
-							}
-							
-							
-							AddBinaryOrAsk(filename);
+						string s = Util.GetFilenameFromInternalFileChooser(data, this);
+						if (s == null)
+						{
+							Toast.MakeText(this, "No URI retrieved.", ToastLength.Short).Show();
+							return;
 						}
+						uri = Uri.Parse(s);
 					}
-					Reload();
+					AddBinaryOrAsk(uri);
+						
+				}
+				Reload();
 
 
 				break;
@@ -695,7 +767,7 @@ namespace keepass2android
 				addBinaryButton.Enabled = !State.Entry.Binaries.Any();
 			addBinaryButton.Click += (sender, e) => 
 			{
-				Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForBinary, false);
+				Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForBinary, false, false);
 
 			};
 			binariesGroup.AddView(addBinaryButton,layoutParams);
