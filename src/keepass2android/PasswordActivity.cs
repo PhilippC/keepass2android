@@ -90,6 +90,7 @@ namespace keepass2android
         private const int RequestCodeChallengeYubikey = 1002;
 		private const int RequestCodeSelectKeyfile = 1003;
 		private const int RequestCodePrepareKeyFile = 1004;
+		private const int RequestCodeSelectAuxFile = 1005;
 
 
 		private Task<MemoryStream> _loadDbTask;
@@ -128,6 +129,7 @@ namespace keepass2android
 
 		private bool _starting;
 		private OtpInfo _otpInfo;
+		private IOConnectionInfo _otpAuxIoc;
         private ChallengeInfo _chalInfo;
         private byte[] _challengeSecret;
         private KeeChallengeProv _challengeProv;
@@ -313,15 +315,21 @@ namespace keepass2android
 					}
 					if (requestCode == RequestCodePrepareOtpAuxFile)
 					{
-						if (_keyFileOrProvider == KeyProviderIdChallenge) 
-                        {
-                            LoadChalFile();
-                            
-						} else {
-							LoadOtpFile ();
-						}
+						GetAuxFileLoader().LoadAuxFile(true);
 					}
 					break;              
+			}
+			if (requestCode == RequestCodeSelectAuxFile && resultCode == Result.Ok)
+			{
+				IOConnectionInfo auxFileIoc = new IOConnectionInfo();
+				SetIoConnectionFromIntent(auxFileIoc, data);
+				
+				PreferenceManager.GetDefaultSharedPreferences(this).Edit()
+				                 .PutString("KP2A.PasswordAct.AuxFileIoc" + IOConnectionInfo.SerializeToString(_ioConnection), 
+											IOConnectionInfo.SerializeToString(auxFileIoc))
+				                 .Apply();
+				
+				GetAuxFileLoader().LoadAuxFile(false);
 			}
             if (requestCode == RequestCodeChallengeYubikey && resultCode == Result.Ok) 
 			{
@@ -382,7 +390,17 @@ namespace keepass2android
 			}
 		}
 
-
+		private AuxFileLoader GetAuxFileLoader()
+		{
+			if (_keyFileOrProvider == KeyProviderIdChallenge)
+			{
+				return new ChallengeAuxFileLoader(this);
+			}
+			else
+			{
+				return new OtpAuxFileLoader(this);
+			}
+		}
 		private void UpdateKeyfileIocView()
 		{
 			//store keyfile in the view so that we can show the selected keyfile again if the user switches to another key provider and back to key file
@@ -416,102 +434,206 @@ namespace keepass2android
 		}
 
 
-		private void LoadOtpFile()
+		
+		private abstract class AuxFileLoader
 		{
-			new LoadingDialog<object, object, object>(this, true, 
-				//doInBackground
-				delegate
-				{
-					try
-					{
-						_otpInfo = OathHotpKeyProv.LoadOtpInfo(new KeyProviderQueryContext(_ioConnection, false, false));
-					}
-					catch (Exception e)
-					{
-						Kp2aLog.Log(e.ToString());
-					}
-					
-					return null;
-				},
-				//onPostExecute
-				delegate
-					{
-						if (_otpInfo == null)
-						{
-							Toast.MakeText(this,
-								GetString(Resource.String.CouldntLoadOtpAuxFile) + " " + GetString(Resource.String.CouldntLoadOtpAuxFile_Hint)
-								, ToastLength.Long).Show();
-							return;
-						}
+			protected readonly PasswordActivity Activity;
 
-						IList<string> prefilledOtps = _pendingOtps;
-						ShowOtpEntry(prefilledOtps);
-						_pendingOtps.Clear();
-						
-					}
-			).Execute();
+			protected AuxFileLoader(PasswordActivity activity)
+			{
+				Activity = activity;
+			}
+
+			public void LoadAuxFile(bool triggerSelectAuxManuallyOnFailure)
+			{
+				new LoadingDialog<object, object, object>(Activity, true,
+					//doInBackground
+						delegate
+						{
+
+							try
+							{
+								var iocAux = GetDefaultAuxLocation();
+								LoadFile(iocAux);
+							}
+							catch (Exception e)
+							{
+								Kp2aLog.Log(e.ToString());
+								//retry with saved ioc
+								try
+								{
+									var savedManualIoc = IOConnectionInfo.UnserializeFromString(
+										PreferenceManager.GetDefaultSharedPreferences(Activity).GetString(
+											"KP2A.PasswordAct.AuxFileIoc" + IOConnectionInfo.SerializeToString(Activity._ioConnection), null));
+
+									LoadFile((savedManualIoc));
+								}
+								catch (Exception e2)
+								{
+									Kp2aLog.Log(e2.ToString());
+								}
+
+							}
+							return null;
+						}
+						, delegate
+							{
+								if (!AuxDataLoaded)
+								{
+									if (triggerSelectAuxManuallyOnFailure)
+									{
+										Intent intent = new Intent(Activity, typeof(SelectStorageLocationActivity));
+										intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, true);
+										intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
+										intent.PutExtra(FileStorageSetupDefs.ExtraIsForSave, false);
+										intent.PutExtra(SelectStorageLocationActivity.ExtraKeyWritableRequirements, (int)SelectStorageLocationActivity.WritableRequirements.WriteDemanded);
+										Activity.StartActivityForResult(intent, RequestCodeSelectAuxFile);
+									}
+									else
+									{
+										Toast.MakeText(Activity,GetErrorMessage(), ToastLength.Long).Show();
+									}
+									return;
+
+								}
+								HandleSuccess();
+							}).Execute();
+
+			}
+
+			protected abstract bool AuxDataLoaded { get; }
+
+			protected abstract void LoadFile(IOConnectionInfo iocAux);
+
+			protected abstract void HandleSuccess();
+
+			protected abstract string GetErrorMessage();
+
+			protected abstract IOConnectionInfo GetDefaultAuxLocation();
+
+			
+			
+			
 		}
 
-        private void LoadChalFile()
-        {
-	        new LoadingDialog<object, object, object>(this, true,
-	                //doInBackground
-	                delegate
-		                {
+		private class OtpAuxFileLoader : AuxFileLoader
+		{
+			public OtpAuxFileLoader(PasswordActivity activity) : base(activity)
+			{
+			}
 
-			                try
-			                {
-				                IFileStorage fileStorage =
-					                App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
-				                IOConnectionInfo iocAux =
-					                fileStorage.GetFilePath(
-						                fileStorage.GetParentPath(_ioConnection),
-						                fileStorage.GetFilenameWithoutPathAndExt(_ioConnection) +
-						                ".xml");
+			protected override bool AuxDataLoaded
+			{
+				get { return Activity._otpInfo != null; }
+			}
 
-				                _chalInfo = ChallengeInfo.Load(iocAux);
-			                }
-			                catch (Exception e)
-			                {
-				                Kp2aLog.Log(e.ToString());
-			                }
-							return null;
-		                }
-	                , delegate
-		                {
-			                if (_chalInfo == null)
-			                {
-				                Toast.MakeText(this,
-				                                GetString(Resource.String.CouldntLoadChalAuxFile) +
-				                                " " +
-				                                GetString(
-					                                Resource.String.CouldntLoadChalAuxFile_Hint)
-				                                , ToastLength.Long).Show();
-				                return;
+			protected override void LoadFile(IOConnectionInfo iocAux)
+			{
+				Activity._otpInfo = OtpInfo.Load(iocAux);
+				Activity._otpAuxIoc = iocAux;
+			}
 
-			                }
-							Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
-							chalIntent.PutExtra("challenge", _chalInfo.Challenge);
-							chalIntent.PutExtra("slot", 2);
-							IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
-							bool isIntentSafe = activities.Count > 0;
-			                if (isIntentSafe)
-			                {
-				                StartActivityForResult(chalIntent, RequestCodeChallengeYubikey);
-			                }
-			                else
-			                {
-				                AlertDialog.Builder b = new AlertDialog.Builder(this);
-				                b.SetMessage(Resource.String.YubiChallengeNotInstalled);
-				                b.SetPositiveButton(Android.Resource.String.Ok, delegate {
-						                Util.GotoUrl(this, GetString(Resource.String.MarketURL) + "com.yubichallenge");
-					                });
-				                b.SetNegativeButton(Resource.String.cancel, delegate { });
-								b.Create().Show();
-			                }
-		                }).Execute();
-            
-        }
+			private static IOConnectionInfo GetAuxFileIoc(IOConnectionInfo databaseIoc)
+			{
+				IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(databaseIoc);
+				var parentPath = fileStorage.GetParentPath(databaseIoc);
+				var filename = fileStorage.GetFilenameWithoutPathAndExt(databaseIoc) + OathHotpKeyProv.AuxFileExt;
+				IOConnectionInfo iocAux = fileStorage.GetFilePath(parentPath, filename);
+				return iocAux;
+			}
+
+		
+
+			private static IOConnectionInfo GetAuxFileIoc(KeyProviderQueryContext ctx)
+			{
+				IOConnectionInfo ioc = ctx.DatabaseIOInfo.CloneDeep();
+				var iocAux = GetAuxFileIoc(ioc);
+
+				return iocAux;
+			}
+
+			protected override void HandleSuccess()
+			{
+				IList<string> prefilledOtps = Activity._pendingOtps;
+				Activity.ShowOtpEntry(prefilledOtps);
+				Activity._pendingOtps.Clear();
+
+			}
+
+			protected override string GetErrorMessage()
+			{
+				return Activity.GetString(Resource.String.CouldntLoadOtpAuxFile) + " " +
+					Activity.GetString(Resource.String.CouldntLoadOtpAuxFile_Hint);
+			}
+
+			protected override IOConnectionInfo GetDefaultAuxLocation()
+			{
+				return GetAuxFileIoc(Activity._ioConnection);
+			}
+		}
+
+		private class ChallengeAuxFileLoader : AuxFileLoader
+		{
+			public ChallengeAuxFileLoader(PasswordActivity activity) : base(activity)
+			{
+			}
+
+			protected override void HandleSuccess()
+			{
+				Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
+				chalIntent.PutExtra("challenge", Activity._chalInfo.Challenge);
+				chalIntent.PutExtra("slot", 2);
+				IList<ResolveInfo> activities = Activity.PackageManager.QueryIntentActivities(chalIntent, 0);
+				bool isIntentSafe = activities.Count > 0;
+				if (isIntentSafe)
+				{
+					Activity.StartActivityForResult(chalIntent, RequestCodeChallengeYubikey);
+				}
+				else
+				{
+					AlertDialog.Builder b = new AlertDialog.Builder(Activity);
+					b.SetMessage(Resource.String.YubiChallengeNotInstalled);
+					b.SetPositiveButton(Android.Resource.String.Ok,
+										delegate
+										{
+											Util.GotoUrl(Activity, Activity.GetString(Resource.String.MarketURL) + "com.yubichallenge");
+										});
+					b.SetNegativeButton(Resource.String.cancel, delegate { });
+					b.Create().Show();
+				}
+			}
+
+			protected override string GetErrorMessage()
+			{
+				return Activity.GetString(Resource.String.CouldntLoadChalAuxFile) +
+					   " " +
+					   Activity.GetString(
+						   Resource.String.CouldntLoadChalAuxFile_Hint);
+			}
+
+			protected override bool AuxDataLoaded
+			{
+				get { return Activity._chalInfo != null; }
+			}
+
+			protected override void LoadFile(IOConnectionInfo iocAux)
+			{
+				Activity._chalInfo = ChallengeInfo.Load(iocAux);
+			}
+
+
+			protected override IOConnectionInfo GetDefaultAuxLocation()
+			{
+				IFileStorage fileStorage =
+					App.Kp2a.GetOtpAuxFileStorage(Activity._ioConnection);
+				IOConnectionInfo iocAux =
+					fileStorage.GetFilePath(
+						fileStorage.GetParentPath(Activity._ioConnection),
+						fileStorage.GetFilenameWithoutPathAndExt(Activity._ioConnection) +
+						".xml");
+				return iocAux;
+			}
+		}
 
 		private void ShowOtpEntry(IList<string> prefilledOtps)
 		{
@@ -1345,29 +1467,32 @@ namespace keepass2android
 			CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
 			cbQuickUnlock.Checked = _prefs.GetBoolean(GetString(Resource.String.QuickUnlockDefaultEnabled_key), true);
 		}
-		
+			
 		private String GetKeyFile(String filename) {
 			if ( _rememberKeyfile ) {
 				string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(filename);
 				if (String.IsNullOrEmpty(keyfile))
 					return null; //signal no key file
 
-				//test if the filename is properly encoded. 
-				try
+				if (KeyProviderType == KeyProviders.KeyFile)
 				{
-					Kp2aLog.Log("test if stored filename is ok");
-					IOConnectionInfo.UnserializeFromString(keyfile);
-					Kp2aLog.Log("...ok");
-				}
-				catch (Exception e)
-				{
-					//it's not. This is probably because we're upgrading from app version <= 45
-					//where the keyfile was stored plain text and not serialized
-					Kp2aLog.Log("no, it's not: "+e.GetType().Name);
-					var serializedKeyFile = IOConnectionInfo.SerializeToString(IOConnectionInfo.FromPath(keyfile));
-					Kp2aLog.Log("now it is!");
-					return serializedKeyFile;
+					//test if the filename is properly encoded. 
+					try
+					{
+						Kp2aLog.Log("test if stored filename is ok");
+						IOConnectionInfo.UnserializeFromString(keyfile);
+						Kp2aLog.Log("...ok");
+					}
+					catch (Exception e)
+					{
+						//it's not. This is probably because we're upgrading from app version <= 45
+						//where the keyfile was stored plain text and not serialized
+						Kp2aLog.Log("no, it's not: " + e.GetType().Name);
+						var serializedKeyFile = IOConnectionInfo.SerializeToString(IOConnectionInfo.FromPath(keyfile));
+						Kp2aLog.Log("now it is!");
+						return serializedKeyFile;
 
+					}	
 				}
 				return keyfile;
 			} else {
@@ -1537,11 +1662,11 @@ namespace keepass2android
 					StatusLogger.UpdateMessage(UiStringKey.SavingOtpAuxFile);
 
 					KeyProviderQueryContext ctx = new KeyProviderQueryContext(_act._ioConnection, false, false);
-					IOConnectionInfo auxFileIoc = OathHotpKeyProv.GetAuxFileIoc(_act._ioConnection);
-					if (!OathHotpKeyProv.CreateAuxFile(_act._otpInfo, ctx, auxFileIoc))
+					
+					if (!OathHotpKeyProv.CreateAuxFile(_act._otpInfo, ctx, _act._otpAuxIoc))
 						Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile), ToastLength.Long).Show();
 
-					App.Kp2a.GetDb().OtpAuxFileIoc = auxFileIoc;
+					App.Kp2a.GetDb().OtpAuxFileIoc = _act._otpAuxIoc;
 				}
 				catch (Exception e)
 				{

@@ -32,7 +32,7 @@ namespace OtpKeyProv
 	public sealed class OathHotpKeyProv
 		/*removed base class KeyProvider because "synchronous" interface is not suitable on Android*/
 	{
-		private const string AuxFileExt = ".otp.xml";
+		public const string AuxFileExt = ".otp.xml";
 		private const string ProvType = "OATH HOTP / RFC 4226";
 		private const string ProvVersion = "2.0"; // File version, not OtpKeyProv version
 
@@ -46,26 +46,7 @@ namespace OtpKeyProv
 		public const string ProductName = "OtpKeyProv KeePass Plugin";
 
 
-		private static IOConnectionInfo GetAuxFileIoc(KeyProviderQueryContext ctx)
-		{
-			IOConnectionInfo ioc = ctx.DatabaseIOInfo.CloneDeep();
-			var iocAux = GetAuxFileIoc(ioc);
-
-			return iocAux;
-		}
-
-		public static IOConnectionInfo GetAuxFileIoc(IOConnectionInfo databaseIoc)
-		{
-			IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(databaseIoc);
-			IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(databaseIoc),
-			                                                  fileStorage.GetFilenameWithoutPathAndExt(databaseIoc) + AuxFileExt);
-			return iocAux;
-		}
-
-		public static OtpInfo LoadOtpInfo(KeyProviderQueryContext ctx)
-		{
-			return OtpInfo.Load(GetAuxFileIoc(ctx));
-		}
+		
 
 		/*
 		private static byte[] Open(KeyProviderQueryContext ctx, OtpInfo otpInfo)

@@ -6,7 +6,7 @@
 		
 		<activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
-				<data android:scheme="db-i8shu7v1hgh7ynt" />
+				<data android:scheme="db-2gormiq7iq1jls1" />
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.BROWSABLE" />
 				<category android:name="android.intent.category.DEFAULT" />
