@@ -243,7 +243,7 @@ namespace keepass2android
 				{
 				}
 				);
-
+				builder.SetCancelable(false);
 				Dialog dialog = builder.Create();
 				dialog.Show();
 
