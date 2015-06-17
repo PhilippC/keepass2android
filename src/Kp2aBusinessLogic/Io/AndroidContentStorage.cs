@@ -9,7 +9,10 @@ using KeePassLib.Serialization;
 
 namespace keepass2android.Io
 {
-	//TODOC,TOTEST, TODO: unimplemented methods?
+	/** FileStorage to work with content URIs
+	 * Supports both "old" system where data is available only temporarily as
+	 * well as the SAF system. Assumes that persistable permissions are "taken" by
+	 * the activity which receives OnActivityResult from the system file picker.*/
 	public class AndroidContentStorage: IFileStorage
 	{
 		private readonly Context _ctx;
@@ -135,27 +138,39 @@ namespace keepass2android.Io
 		private bool TryGetDisplayName(IOConnectionInfo ioc, ref string displayName)
 		{
 			var uri = Android.Net.Uri.Parse(ioc.Path);
-			var cursor = _ctx.ContentResolver.Query(uri, null, null, null, null, null);
-
 			try
 			{
-				if (cursor != null && cursor.MoveToFirst())
+				var cursor = _ctx.ContentResolver.Query(uri, null, null, null, null, null);
+				try
 				{
-					displayName = cursor.GetString(cursor.GetColumnIndex(OpenableColumns.DisplayName));
-					if (!string.IsNullOrEmpty(displayName))
-					{
-						return true;
-					}
-						
-				}
-			}
-			finally
-			{
-				if (cursor != null)
-					cursor.Close();
-			}
 
-			return false;
+					if (cursor != null && cursor.MoveToFirst())
+					{
+						displayName = cursor.GetString(cursor.GetColumnIndex(OpenableColumns.DisplayName));
+						if (!string.IsNullOrEmpty(displayName))
+						{
+							return true;
+						}
+
+					}
+				}
+				finally
+				{
+					if (cursor != null)
+						cursor.Close();
+				}
+
+				return false;
+			}
+			catch (Exception e)
+			{
+				Kp2aLog.Log(e.ToString());
+
+				return false;
+			}
+			
+			
+			
 		}
 
 		public string CreateFilePath(string parent, string newFilename)

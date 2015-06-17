@@ -23,7 +23,7 @@ namespace Kp2aUnitTests
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadKdb1WithKeyfileOnly"));
 
 			
-			//runner.AddTests(new List<Type> { typeof(TestSelectStorageLocation) });
+			runner.AddTests(new List<Type> { typeof(TestSelectStorageLocation) });
 			//runner.AddTests(new List<Type> { typeof(TestSynchronizeCachedDatabase)});
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("LoadErrorWithCertificateTrustFailure"));
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("LoadWithAcceptedCertificateTrustFailure"));
@@ -36,7 +36,7 @@ namespace Kp2aUnitTests
 			//runner.AddTests(typeof(TestSaveDb).GetMethod("TestLoadAndSave_TestIdenticalFiles_kdb"));
 			//runner.AddTests(typeof(TestSaveDb).GetMethod("TestCreateSaveAndLoad_TestIdenticalFiles_kdb"));
 			
-			runner.AddTests(typeof(TestSaveDb).GetMethod("TestSaveTwice_kdb"));
+		//	runner.AddTests(typeof(TestSaveDb).GetMethod("TestSaveTwice_kdb"));
 			
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("LoadAndSaveFromRemote1And1Ftp"));
 			//runner.AddTests(typeof(TestLoadDb).GetMethod("TestLoadKdbpWithPasswordOnly"));

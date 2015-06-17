@@ -144,7 +144,7 @@ namespace keepass2android
 			get { return 0; }
 		}
 
-		private bool OnCreateButton(string filename)
+		private bool OnCreateButton(string filename, Dialog dialog)
 		{
 			if (filename.Length == 0)
 			{

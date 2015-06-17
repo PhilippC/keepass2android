@@ -335,7 +335,7 @@ namespace keepass2android
 			}
 		}
 
-		public static void ShowFilenameDialog(Activity activity, FileSelectedHandler onOpen, FileSelectedHandler onCreate, Action onCancel, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
+		public static void ShowFilenameDialog(Activity activity, Func<string, Dialog, bool> onOpen, Func<string, Dialog, bool> onCreate, Action onCancel, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.SetView(activity.LayoutInflater.Inflate(Resource.Layout.file_selection_filename, null));
@@ -362,7 +362,7 @@ namespace keepass2android
 				openButton.Click += (sender, args) =>
 					{
 						String fileName = ((EditText) dialog.FindViewById(Resource.Id.file_filename)).Text;
-						if (onOpen(fileName))
+						if (onOpen(fileName, dialog))
 							dialog.Dismiss();
 					};
 
@@ -371,7 +371,7 @@ namespace keepass2android
 				createButton.Click += (sender, args) =>
 				{
 					String fileName = ((EditText)dialog.FindViewById(Resource.Id.file_filename)).Text;
-					if (onCreate(fileName))
+					if (onCreate(fileName, dialog))
 						dialog.Dismiss();
 				}; 
 			

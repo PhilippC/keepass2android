@@ -519,6 +519,11 @@ namespace KeePassLib.Serialization
 		{
 			RaiseIOAccessPreEvent(ioc, IOAccessType.Delete);
 
+			//in case a user entered a directory instead of a filename, make sure we're never 
+			//deleting their whole WebDAV/FTP content
+			if (ioc.Path.EndsWith("/"))
+				throw new IOException("Delete file does not expect directory URIs.");
+
 			if(ioc.IsLocalFile()) { File.Delete(ioc.Path); return; }
 
 #if (!KeePassLibSD && !KeePassRT)

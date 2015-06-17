@@ -441,7 +441,7 @@ namespace keepass2android
 			return filename;
 		}
 
-		private bool OnCreateButton(string filename)
+		private bool OnCreateButton(string filename, Dialog dialog)
 		{
 			// Make sure file name exists
 			if (filename.Length == 0)

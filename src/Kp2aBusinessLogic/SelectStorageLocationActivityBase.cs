@@ -258,20 +258,30 @@ namespace keepass2android
 
 		protected abstract void StartFileChooser(string path, int requestCode, bool isForSave);
 
-		protected bool OnOpenButton(String fileName, int requestCode)
+		protected bool OnOpenButton(string fileName, int requestCode, Action dismissDialog)
 		{
-
 
 			IOConnectionInfo ioc = new IOConnectionInfo
 				{
 					Path = fileName
 				};
 
+			int lastSlashPos = fileName.LastIndexOf('/');
+			int lastDotPos = fileName.LastIndexOf('.');
+			if (lastSlashPos >= lastDotPos) //no dot after last slash or == in case neither / nor .
+			{
+				ShowFilenameWarning(fileName, () => { IocSelected(ioc, requestCode); dismissDialog(); }, () => { /* don't do anything, leave dialog open, let user try again*/ });
+				//signal that the dialog should be kept open
+				return false;
+			}
+
 			IocSelected(ioc, requestCode);
 
 			return true;
 
 		}
+
+		protected abstract void ShowFilenameWarning(string fileName, Action onUserWantsToContinue, Action onUserWantsToCorrect);
 
 
 		protected virtual void CopyFile(IOConnectionInfo targetIoc, IOConnectionInfo sourceIoc)

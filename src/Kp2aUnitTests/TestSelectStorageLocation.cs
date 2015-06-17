@@ -225,6 +225,12 @@ namespace Kp2aUnitTests
 			_userAction = new SelectFileAction(isForSave, browseRequestCode, protocolId, this);
 		}
 
+		protected override void ShowFilenameWarning(string fileName, Action onUserWantsToContinue, Action onUserWantsToCorrect)
+		{
+			_userAction = new ShowAlertDialogAction("filenameWarning", delegate { onUserWantsToContinue(); }, 
+				delegate { onUserWantsToCorrect(); });
+		}
+
 		public void HandleActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			OnActivityResult(requestCode, resultCode, data);
@@ -281,7 +287,7 @@ namespace Kp2aUnitTests
 
 		private void PressOpenButton(string path, int browseRequestCode)
 		{
-			OnOpenButton(path, browseRequestCode);
+			OnOpenButton(path, browseRequestCode, () => { });
 		}
 
 
@@ -523,6 +529,48 @@ namespace Kp2aUnitTests
 
 		}
 
+		[TestMethod]
+		public void TestManualSelectWithDirectoryCancel()
+		{
+			var testee = CreateTestee();
+			var action = (TestControllableSelectStorageLocationActivity.FileStorageSelectionAction)testee._userAction;
+			action.ReturnProtocol("ftp");
+
+			Assert.IsNull(testee._result); //no result yet
+
+			var action2 = (TestControllableSelectStorageLocationActivity.SelectFileAction)testee._userAction;
+			string path = "ftp://crocoll.net/";
+			action2.PerformManualFileSelect(path);
+
+			Assert.IsNull(testee._result);
+
+			var action3 = (TestControllableSelectStorageLocationActivity.ShowAlertDialogAction) testee._userAction;
+			action3.Ok();
+			Assert.IsTrue((bool)testee._result);
+			Assert.AreEqual(testee._resultIoc.Path, path);
+
+		}
+
+
+		[TestMethod]
+		public void TestManualSelectWithDirectory()
+		{
+			var testee = CreateTestee();
+			var action = (TestControllableSelectStorageLocationActivity.FileStorageSelectionAction)testee._userAction;
+			action.ReturnProtocol("ftp");
+
+			Assert.IsNull(testee._result); //no result yet
+
+			var action2 = (TestControllableSelectStorageLocationActivity.SelectFileAction)testee._userAction;
+			string path = "ftp://crocoll.net/";
+			action2.PerformManualFileSelect(path);
+
+			Assert.IsNull(testee._result);
+
+			var action3 = (TestControllableSelectStorageLocationActivity.ShowAlertDialogAction)testee._userAction;
+			action3.Cancel();
+			
+		}
 		[TestMethod]
 		public void TestCancelManualSelect()
 		{

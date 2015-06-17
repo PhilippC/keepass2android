@@ -14,12 +14,13 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
     <JavaOptions />
+    <AndroidUseLatestPlatformSdk />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -101,7 +102,7 @@
       <Name>KeePassLib2Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kp2aBusinessLogic\Kp2aBusinessLogic.csproj">
-      <Project>{53A9CB7F-6553-4BC0-B56B-9410BB2E59AA}</Project>
+      <Project>{53a9cb7f-6553-4bc0-b56b-9410bb2e59aa}</Project>
       <Name>Kp2aBusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">

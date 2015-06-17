@@ -100,9 +100,9 @@ namespace keepass2android
 								if (defaultPath.StartsWith("sftp://"))
 									Util.ShowSftpDialog(this, filename => OnReceivedSftpData(filename, browseRequestCode, isForSave), ReturnCancel);
 								else
-									//todo oncreate nur wenn for save?
-									Util.ShowFilenameDialog(this, filename => OnOpenButton(filename, browseRequestCode),
-									                        filename => OnOpenButton(filename, browseRequestCode),
+									Util.ShowFilenameDialog(this, 
+										!isForSave ? delegate(string filename, Dialog dialog) { return OnOpenButton(filename, browseRequestCode, dialog.Dismiss); } : (Func<string, Dialog, bool>) null,
+										isForSave ? delegate(string filename, Dialog dialog) { return OnOpenButton(filename, browseRequestCode, dialog.Dismiss); } : (Func<string, Dialog, bool>) null,
 									                        ReturnCancel, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
 									                        browseRequestCode);
 							});
@@ -224,9 +224,19 @@ namespace keepass2android
 		
 		}
 
+		protected override void ShowFilenameWarning(string fileName, Action onUserWantsToContinue, Action onUserWantsToCorrect)
+		{
+			new AlertDialog.Builder(this)
+					.SetPositiveButton(Resource.String.Continue, delegate { onUserWantsToContinue(); } )
+					.SetMessage(Resource.String.NoFilenameWarning)
+					.SetCancelable(false)
+					.SetNegativeButton(Android.Resource.String.Cancel, delegate { onUserWantsToCorrect(); })
+					.Create()
+					.Show();
+			
+		}
 
 
-		
 		public void OnDismiss(IDialogInterface dialog)
 		{
 //			ReturnCancel();

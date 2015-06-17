@@ -529,6 +529,9 @@
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>
+	
+	<string name="Continue">Continue</string>
+	<string name="NoFilenameWarning">The URI you have entered does not look like a filename. Are you sure this is a valid file?</string>
 
 	<string name="ChangeLog_0_9_7b">
 		Version 0.9.7b\n
