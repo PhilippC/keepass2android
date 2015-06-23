@@ -377,14 +377,14 @@ public class DropboxFileStorage extends JavaFileStorageBase {
 		
 		String path = getProtocolId()+":///";
 		Log.d("KP2AJ", "startSelectFile "+path+", connected: "+path);
-		if (isConnected())
+		/*if (isConnected())
 		{
 			Intent intent = new Intent();
 			intent.putExtra(EXTRA_IS_FOR_SAVE, isForSave);
 			intent.putExtra(EXTRA_PATH, path);
 			activity.onImmediateResult(requestCode, RESULT_FILECHOOSER_PREPARED, intent);
 		}
-		else
+		else*/
 		{
 			activity.startSelectFileProcess(path, isForSave, requestCode);	
 		}
@@ -440,41 +440,46 @@ public class DropboxFileStorage extends JavaFileStorageBase {
 		if (activity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
 			activity.getState().putString(EXTRA_PATH, activity.getPath());
 		
-		Log.d("KP2AJ", "OnResume. LoggedIn="+mLoggedIn);
-		if (mLoggedIn)
+		Log.d("KP2AJ", "OnResume (3). LoggedIn="+mLoggedIn);
+		/*if (mLoggedIn)
 		{
 			finishActivityWithSuccess(activity);
 			return;
-		}
+		}*/
 		
 		AndroidAuthSession session = mApi.getSession();
 
-        // The next part must be inserted in the onResume() method of the
-        // activity from which session.startAuthentication() was called, so
-        // that Dropbox authentication completes properly.
-        if (session.authenticationSuccessful()) {
-            try {
-                // Mandatory call to complete the auth
-                session.finishAuthentication();
-
-                // Store it locally in our app for later use
-                TokenPair tokens = session.getAccessTokenPair();
-                storeKeys(tokens.key, tokens.secret);
-                setLoggedIn(true);
-                
-                finishActivityWithSuccess(activity);
-                return;
-                
-            } catch (Exception e) {
-                finishWithError(activity, e);
-            	return;
-            }
-        }
 
         JavaFileStorage.FileStorageSetupActivity storageSetupAct = (JavaFileStorage.FileStorageSetupActivity)activity;
         
         if (storageSetupAct.getState().containsKey("hasStartedAuth"))
         {
+        	Log.d("KP2AJ", "auth started");
+            // The next part must be inserted in the onResume() method of the
+            // activity from which session.startAuthentication() was called, so
+            // that Dropbox authentication completes properly.
+            if (session.authenticationSuccessful()) {
+            	Log.d("KP2AJ", "auth successful");
+                try {
+                    // Mandatory call to complete the auth
+                    session.finishAuthentication();
+                    Log.d("KP2AJ", "finished auth ");
+                    // Store it locally in our app for later use
+                    TokenPair tokens = session.getAccessTokenPair();
+                    storeKeys(tokens.key, tokens.secret);
+                    setLoggedIn(true);
+                    Log.d("KP2AJ", "success");
+                    finishActivityWithSuccess(activity);
+                    return;
+                    
+                } catch (Exception e) {
+                	Log.d("KP2AJ", "finish with error: " + e.toString());
+                    finishWithError(activity, e);
+                	return;
+                }
+            }
+
+            
         	Log.i(TAG, "authenticating not succesful");
         	Intent data = new Intent();
         	data.putExtra(EXTRA_ERROR_MESSAGE, "authenticating not succesful");
