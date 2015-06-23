@@ -533,6 +533,16 @@
 	<string name="Continue">Continue</string>
 	<string name="NoFilenameWarning">The URI you have entered does not look like a filename. Are you sure this is a valid file?</string>
 
+	<string name="ChangeLog_0_9_8">
+		Version 0.9.8\n
+		* Support for Storage Access Framework (allows write to SD card and Google Drive in KP2A Offline)\n
+		* Try to detect erroneous user input when entering WebDAV URLs (directory instead of file)\n
+		* Changed password font\n
+		* Allow to change Dropbox account\n
+		* Fixed bug: Now remembering OTP password\n
+		* more to come\n
+	</string>
+
 	<string name="ChangeLog_0_9_7b">
 		Version 0.9.7b\n
 		* updated translations\n
