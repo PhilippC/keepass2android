@@ -25,7 +25,6 @@ public class HIDTransactionQueue {
 	
 	private int mInterfaceType;
 	private boolean mustNotify;
-	private Vector<OnEmptyBufferListener> mBufferEmptyListeners = new Vector<OnEmptyBufferListener>();
 	
 	private Timer t;
 	private boolean timerCancelled;
@@ -132,29 +131,17 @@ public class HIDTransactionQueue {
 		return reports;
 	}
 	
-	public void addBufferEmptyListener(OnEmptyBufferListener listener) {
-		if (listener != null) {
-			if ( !mBufferEmptyListeners.contains(listener)) {
-				mBufferEmptyListeners.add(listener);
-			}
-		}
-	}
-	
-	public void removeBufferEmptyListener(OnEmptyBufferListener listener) {
-		if (listener != null) {
-			mBufferEmptyListeners.remove(listener);
-		}
-	}
-	
 	private void notifyOnRemoteBufferEmpty() {
-		for (OnEmptyBufferListener listener : mBufferEmptyListeners) {
+		Vector<OnEmptyBufferListener> listeners = InputStickHID.getBufferEmptyListeners();
+		for (OnEmptyBufferListener listener : listeners) {
 			listener.onRemoteBufferEmpty(mInterfaceType);
 		}
 	}
 	
 	private void notifyOnLocalBufferEmpty() {
-		for (OnEmptyBufferListener listener : mBufferEmptyListeners) {
-			listener.onRemoteBufferEmpty(mInterfaceType);
+		Vector<OnEmptyBufferListener> listeners = InputStickHID.getBufferEmptyListeners();
+		for (OnEmptyBufferListener listener : listeners) {
+			listener.onLocalBufferEmpty(mInterfaceType);
 		}
 	}
 	

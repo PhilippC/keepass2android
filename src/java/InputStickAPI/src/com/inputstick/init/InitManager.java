@@ -32,21 +32,8 @@ public class InitManager {
 		mListener = listener;
 		mPacketManager = packetManager;
 		
-		initDone = false;	
+		initDone = false;			
 	}	
-	
-	//WRONG THREAD!
-	/*public void startTimeoutCountdown(int timeout) {
-		t = new Timer();
-		t.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				if ( !initDone) {
-					mListener.onInitFailure(InputStickError.ERROR_INIT_TIMEDOUT);
-				}
-			}
-		}, timeout);	
-	}*/
 	
 	public void onConnected() {
 		mListener.onInitReady();
@@ -54,7 +41,7 @@ public class InitManager {
 		
 	public void onData(byte[] data) {
 		//byte cmd = data[0];
-		//byte param = data[1];		
+		//byte param = data[1];				
 	}
 	
 	public void sendPacket(Packet p) {

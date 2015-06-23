@@ -9,6 +9,13 @@
         android:key="show_changelog_preference_key"
         android:title="@string/show_changelog_title" >
     </Preference>
+    
+    <Preference
+        android:key="show_help_webpage_key"
+        android:title="@string/show_help_webpage_title" >
+    </Preference>
+    
+    
 
     <!--
          NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
@@ -32,7 +39,8 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="show_secondary"
-            android:summary="@string/show_secondary_summary"
+            android:summaryOn="@string/show_secondary_summary_on"
+            android:summaryOff="@string/show_secondary_summary_off"
             android:title="@string/show_secondary_title" />
 
         <ListPreference
@@ -47,7 +55,18 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="enter_after_url"
-            android:title="@string/enter_after_url_title" />        
+            android:summaryOn="@string/enter_after_url_summary_on"
+            android:summaryOff="@string/enter_after_url_summary_off"               
+            android:title="@string/enter_after_url_title" />  
+            
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/typing_speed_names"
+            android:entryValues="@array/typing_speed_values"
+            android:key="typing_speed"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/typing_speed_title" />        
         
     </PreferenceCategory>
     
@@ -56,18 +75,48 @@
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="autoconnect"
-            android:summary="@string/autoconnect_summary"
+            android:summaryOn="@string/autoconnect_summary_on"
+            android:summaryOff="@string/autoconnect_summary_off"
             android:title="@string/autoconnect_title" />
+        
+        <ListPreference
+            android:defaultValue="600000"
+            android:entries="@array/autoconnect_timeout_names"
+            android:entryValues="@array/autoconnect_timeout_values"
+            android:key="autoconnect_timeout"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/autoconnect_timeout_title" />               
+        
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="do_not_disconnect"
+            android:summaryOn="@string/do_not_disconnect_summary_on"
+            android:summaryOff="@string/do_not_disconnect_summary_off"
+            android:title="@string/do_not_disconnect_title" />        
         
     </PreferenceCategory>
     
-    <PreferenceCategory android:title="@string/ui_settings_title" >
+    <PreferenceCategory android:title="@string/ui_general_title" >
+        
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_settings"
+            android:title="@string/show_settings_title" />
+        
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_mac_setup"
+            android:summary="@string/mac_setup_summary"
+            android:title="@string/show_mac_setup_title" />            
         
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="show_tab_enter"
             android:title="@string/show_tab_enter_title" />
+	</PreferenceCategory>        
         
+    <PreferenceCategory android:title="@string/ui_entry_primary_title" >
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="show_user_pass"
@@ -81,19 +130,52 @@
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="show_masked"
-            android:title="@string/show_masked_title" />
-        
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="show_settings"
-            android:title="@string/show_settings_title" />
-        
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="show_mac_setup"
-            android:summary="@string/mac_setup_summary"
-            android:title="@string/show_mac_setup_title" />        
-        
+            android:title="@string/show_masked_title" />       
     </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/ui_filed_primary_title" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_field_type"
+            android:title="@string/show_field_type" />
+        
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="show_field_type_slow"
+            android:summary="@string/field_type_slow_summary"
+            android:title="@string/show_field_type_slow" />
+    </PreferenceCategory>    
+    
+    <PreferenceCategory android:title="@string/ui_entry_secondary_title" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="show_user_pass_secondary"
+            android:title="@string/show_user_pass_title" />
+        
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="show_user_pass_enter_secondary"
+            android:title="@string/show_user_pass_enter_title" />
+        
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="show_masked_secondary"
+            android:title="@string/show_masked_title" />       
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/ui_filed_secondary_title" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="show_field_type_secondary"
+            android:title="@string/show_field_type" />
+        
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="show_field_type_slow_secondary"
+            android:summary="@string/field_type_slow_summary"
+            android:title="@string/show_field_type_slow" />
+    </PreferenceCategory>       
+    
+    
 
 </PreferenceScreen>

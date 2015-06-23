@@ -63,7 +63,7 @@ public class HIDInfo {
 			mouseReportProtocol = true;
 		} else {
 			mouseReportProtocol = false;
-		}	
+		}			
 		
 		if (data[6] == 0) {
 			mouseReady = false;

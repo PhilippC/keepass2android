@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -22,14 +24,16 @@ public class InputStickService extends Service implements InputStickStateListene
 	private class ItemToType {
 		public String mText;
 		public String mLayout;
+		public String mParams;
 		
-		ItemToType(String text, String layout) {
+		ItemToType(String text, String layout, String params) {
 			mText = text;
 			mLayout = layout;
+			mParams = params;
 		}
 		
 		public void type() {
-			typeString(mText, mLayout);
+			typeString(mText, mLayout, mParams);
 		}
 	}
 
@@ -81,21 +85,24 @@ public class InputStickService extends Service implements InputStickStateListene
 			int state = InputStickHID.getState();		
 			String stringToType = intent.getStringExtra(Const.EXTRA_TEXT);
 			String layoutToUse = intent.getStringExtra(Const.EXTRA_LAYOUT);
+			String params = intent.getStringExtra(Const.EXTRA_PARAMS);
+			//Toast.makeText(this, "type params: "+params, Toast.LENGTH_LONG).show();
+			//Log.d(_TAG, "type params: "+params);
 			
 			switch (state) {
 				case ConnectionManager.STATE_CONNECTED:
 				case ConnectionManager.STATE_CONNECTING:
 					synchronized (items) {
-						items.add(new ItemToType(stringToType, layoutToUse));
+						items.add(new ItemToType(stringToType, layoutToUse, params));
 					}						
 					break;
 				case ConnectionManager.STATE_READY:
-					typeString(stringToType, layoutToUse);
+					typeString(stringToType, layoutToUse, params);
 					break;
 				case ConnectionManager.STATE_DISCONNECTED:
 				case ConnectionManager.STATE_FAILURE:	
 					synchronized (items) {
-						items.add(new ItemToType(stringToType, layoutToUse));
+						items.add(new ItemToType(stringToType, layoutToUse, params));
 					}										
 					Log.d(_TAG, "trigger connect");
 					InputStickHID.connect(getApplication());
@@ -107,9 +114,26 @@ public class InputStickService extends Service implements InputStickStateListene
 
 	}
 
-	private void typeString(String stringToType, String layoutToUse) {
+	private void typeString(String stringToType, String layoutToUse, String params) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		int reportMultiplier = 1;
+		try {
+			reportMultiplier = Integer.parseInt(prefs.getString("typing_speed", "1"));
+		} catch (Exception e) {	
+			reportMultiplier = 1;
+		}	
+		
+		if (params != null) {
+			//override typing speed
+			if (params.contains(Const.PARAM_SLOW_TYPING)) {
+				reportMultiplier = 10;
+			}
+		}
+		
+		InputStickHID.setKeyboardReportMultiplier(reportMultiplier);
+		
 		if (InputStickHID.getState() == ConnectionManager.STATE_READY) {
-			Log.d(_TAG, "typing "+stringToType + " @ " + layoutToUse);		
+			//Log.d(_TAG, "typing "+stringToType + " @ " + layoutToUse + " @mul: " + reportMultiplier);		
 			if (stringToType.equals("\n")) {
 				InputStickKeyboard.pressAndRelease(HIDKeycodes.NONE, HIDKeycodes.KEY_ENTER);
 				return;
@@ -123,6 +147,7 @@ public class InputStickService extends Service implements InputStickStateListene
 		} else {
 			Log.d(_TAG, "typing NOT READY");		
 		}
+		InputStickHID.setKeyboardReportMultiplier(1);
 	}
 
 	private void typeQueue() {

@@ -4,68 +4,68 @@ import android.util.SparseArray;
 
 public class HIDKeycodes {
 	
-	public static final byte NONE = 0x00;
+	public static final byte NONE = 				0x00;
 	
-	public static final byte CTRL_LEFT = 0x01;
-	public static final byte SHIFT_LEFT = 0x02;
-	public static final byte ALT_LEFT = 0x04;
-	public static final byte GUI_LEFT = 0x08;
-	public static final byte CTRL_RIGHT = 0x10;
-	public static final byte SHIFT_RIGHT = 0x20;
-	public static final byte ALT_RIGHT = 0x40;
-	public static final byte GUI_RIGHT = (byte)0x80;	
+	public static final byte CTRL_LEFT = 			0x01;
+	public static final byte SHIFT_LEFT = 			0x02;
+	public static final byte ALT_LEFT = 			0x04;
+	public static final byte GUI_LEFT = 			0x08;
+	public static final byte CTRL_RIGHT = 			0x10;
+	public static final byte SHIFT_RIGHT = 			0x20;
+	public static final byte ALT_RIGHT = 			0x40;
+	public static final byte GUI_RIGHT = 	  (byte)0x80;	
 	
 
-	public static final byte KEY_ENTER = 0x28;
-	public static final byte KEY_ESCAPE = 0x29;
-	public static final byte KEY_BACKSPACE = 0x2A;
-	public static final byte KEY_TAB = 0x2B;
-	public static final byte KEY_SPACEBAR = 0x2C;
+	public static final byte KEY_ENTER = 			0x28;
+	public static final byte KEY_ESCAPE = 			0x29;
+	public static final byte KEY_BACKSPACE = 		0x2A;
+	public static final byte KEY_TAB = 				0x2B;
+	public static final byte KEY_SPACEBAR = 		0x2C;
 		
-	public static final byte KEY_CAPS_LOCK = 0x39;
+	public static final byte KEY_CAPS_LOCK = 		0x39;
 	
 	
-	public static final byte KEY_1 = 0x1E;
-	public static final byte KEY_2 = 0x1F;
-	public static final byte KEY_3 = 0x20;
-	public static final byte KEY_4 = 0x21;
-	public static final byte KEY_5 = 0x22;
-	public static final byte KEY_6 = 0x23;
-	public static final byte KEY_7 = 0x24;
-	public static final byte KEY_8 = 0x25;
-	public static final byte KEY_9 = 0x26;
-	public static final byte KEY_0 = 0x27;
+	public static final byte KEY_1 = 				0x1E;
+	public static final byte KEY_2 = 				0x1F;
+	public static final byte KEY_3 = 				0x20;
+	public static final byte KEY_4 =				0x21;
+	public static final byte KEY_5 = 				0x22;
+	public static final byte KEY_6 = 				0x23;
+	public static final byte KEY_7 = 				0x24;
+	public static final byte KEY_8 = 				0x25;
+	public static final byte KEY_9 = 				0x26;
+	public static final byte KEY_0 = 				0x27;
 	
-	public static final byte KEY_F1 = 0x3A;
-	public static final byte KEY_F2 = 0x3B;
-	public static final byte KEY_F3 = 0x3C;
-	public static final byte KEY_F4 = 0x3D;
-	public static final byte KEY_F5 = 0x3E;
-	public static final byte KEY_F6 = 0x3F;
-	public static final byte KEY_F7 = 0x40;
-	public static final byte KEY_F8 = 0x41;
-	public static final byte KEY_F9 = 0x42;
-	public static final byte KEY_F10 = 0x43;
-	public static final byte KEY_F11 = 0x44;
-	public static final byte KEY_F12 = 0x45;		
+	public static final byte KEY_F1 = 				0x3A;
+	public static final byte KEY_F2 =				0x3B;
+	public static final byte KEY_F3 =				0x3C;
+	public static final byte KEY_F4 = 				0x3D;
+	public static final byte KEY_F5 = 				0x3E;
+	public static final byte KEY_F6 = 				0x3F;
+	public static final byte KEY_F7 = 				0x40;
+	public static final byte KEY_F8 = 				0x41;
+	public static final byte KEY_F9 = 				0x42;
+	public static final byte KEY_F10 = 				0x43;
+	public static final byte KEY_F11 =				0x44;
+	public static final byte KEY_F12 = 				0x45;		
 	
-	public static final byte KEY_PRINT_SCREEN = 0x46;
-	public static final byte KEY_SCROLL_LOCK = 0x47;
-	public static final byte KEY_PASUE = 0x48;
-	public static final byte KEY_INSERT = 0x49;
-	public static final byte KEY_HOME = 0x4A;
-	public static final byte KEY_PAGE_UP = 0x4B;
-	public static final byte KEY_DELETE = 0x4C;
-	public static final byte KEY_END = 0x4D;
-	public static final byte KEY_PAGE_DOWN = 0x4E;
+	public static final byte KEY_PRINT_SCREEN = 	0x46;
+	public static final byte KEY_SCROLL_LOCK = 		0x47;
+	public static final byte KEY_PASUE = 			0x48;
+	public static final byte KEY_INSERT = 			0x49;
+	public static final byte KEY_HOME = 			0x4A;
+	public static final byte KEY_PAGE_UP = 			0x4B;
+	public static final byte KEY_DELETE = 			0x4C;
+	public static final byte KEY_END = 				0x4D;
+	public static final byte KEY_PAGE_DOWN = 		0x4E;
 	
-	public static final byte KEY_ARROW_RIGHT = 0x4F;
-	public static final byte KEY_ARROW_LEFT = 0x50;
-	public static final byte KEY_ARROW_DOWN = 0x51;
-	public static final byte KEY_ARROW_UP = 0x52;		
+	public static final byte KEY_ARROW_RIGHT = 		0x4F;
+	public static final byte KEY_ARROW_LEFT =		0x50;
+	public static final byte KEY_ARROW_DOWN = 		0x51;
+	public static final byte KEY_ARROW_UP = 		0x52;		
 	
-	public static final byte KEY_NUM_LOCK = 0x53;	
-	public static final byte KEY_NUM_BACKSLASH = 	0x54;
+	public static final byte KEY_NUM_LOCK = 		0x53;	
+	public static final byte KEY_NUM_SLASH = 		0x54;
 	public static final byte KEY_NUM_STAR = 		0x55;
 	public static final byte KEY_NUM_MINUS = 		0x56;
 	public static final byte KEY_NUM_PLUS = 		0x57;	
@@ -198,7 +198,7 @@ public class HIDKeycodes {
     	keyMap.put(KEY_ARROW_UP   , 							"Up Arrow");
     	
     	keyMap.put(KEY_NUM_LOCK   , 							"NumLock");
-    	keyMap.put(KEY_NUM_BACKSLASH   , 						"Num /");
+    	keyMap.put(KEY_NUM_SLASH   , 							"Num /");
     	keyMap.put(KEY_NUM_STAR   , 							"Num *");
     	keyMap.put(KEY_NUM_MINUS   , 							"Num -");
     	keyMap.put(KEY_NUM_PLUS   , 							"Num +");

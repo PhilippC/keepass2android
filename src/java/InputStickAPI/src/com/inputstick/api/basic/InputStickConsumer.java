@@ -5,7 +5,9 @@ import com.inputstick.api.hid.HIDTransaction;
 
 public class InputStickConsumer {
 	
-	//CONSUMER PAGE
+
+	
+	//CONSUMER PAGE (consumerAction)
 	public static final int VOL_UP = 0x00E9;
 	public static final int VOL_DOWN = 0x00EA;
 	public static final int VOL_MUTE = 0x00E2;
@@ -18,18 +20,42 @@ public class InputStickConsumer {
 	public static final int LAUNCH_EMAIL = 0x018A;
 	public static final int LAUNCH_CALC = 0x0192;
 	
-	//SYSTEM CONTROL
-	public static final int POWER_DOWN = 0x81;
-	public static final int SLEEP = 0x82;
-	public static final int WAKEUP = 0x83;		
+	//Android OS:
+	public static final int HOME = 0x0223;
+	public static final int BACK = 0x0224;
+	public static final int SEARCH = 0x0221;
+	
+	
+	//SYSTEM PAGE (systemAction)
+	public static final byte SYSTEM_POWER_DOWN = 0x01;
+	public static final byte SYSTEM_SLEEP = 0x02;
+	public static final byte SYSTEM_WAKEUP = 0x03;		
 	
 	private InputStickConsumer() {
 		
 	}
 	
-	/*public static void systemAction(int action) {
-	}*/	
+	//use only for SYSTEM_POWER_DOWN, SYSTEM_SLEEP and SYSTEM_WAKEUP
+	public static void systemAction(byte action) {
+		HIDTransaction t = new HIDTransaction();
+		t.addReport(new ConsumerReport(ConsumerReport.SYSTEM_REPORT_ID, action, (byte)0));
+		t.addReport(new ConsumerReport(ConsumerReport.SYSTEM_REPORT_ID, (byte)0, (byte)0));
+		InputStickHID.addConsumerTransaction(t);	
+	}	
 	
+	public static void systemPowerDown() {
+		systemAction(SYSTEM_POWER_DOWN);	
+	}
+	
+	public static void systemSleep() {
+		systemAction(SYSTEM_SLEEP);	
+	}
+	
+	public static void systemWakeUp() {
+		systemAction(SYSTEM_WAKEUP);	
+	}
+	
+	//action - see http://www.usb.org/developers/hidpage/Hut1_12v2.pdf (consumer page)
 	public static void consumerAction(int action) {
 		HIDTransaction t = new HIDTransaction();
 		t.addReport(new ConsumerReport(action));

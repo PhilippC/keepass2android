@@ -1,11 +1,6 @@
 package keepass2android.plugin.inputstick;
 
-import com.inputstick.api.ConnectionManager;
-import com.inputstick.api.basic.InputStickHID;
-import com.inputstick.api.basic.InputStickKeyboard;
-
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 
 public class MainActivity extends Activity {
 
@@ -69,11 +63,8 @@ public class MainActivity extends Activity {
 				public void onClick(View v) {
 					
 					String textToType = "some text to transfer";
-					triggerTypeService(textToType);
-					
-					
+					triggerTypeService(textToType);										
 				}
-
 				
 			});
 			

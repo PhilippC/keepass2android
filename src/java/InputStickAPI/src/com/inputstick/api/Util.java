@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 public abstract class Util {
 	
 	public static boolean debug = false;
+	public static boolean flashingToolMode = false;
 	
 	public static void log(String msg) {
 		log(msg, false);
@@ -30,27 +31,31 @@ public abstract class Util {
 		}
 	}
 
+	public static String byteToHexString(byte b) {
+		String s;
+    	//0x0..0xF = 0x00..0x0F
+    	if ((b < 0x10) && (b >= 0)) {
+    		s = Integer.toHexString((int)b);
+    		s = "0" + s;
+    	} else {
+        	s = Integer.toHexString((int)b);
+        	if (s.length() > 2) {
+        		s = s.substring(s.length() - 2);
+        	}
+    	}        	        	
+    	s = s.toUpperCase();
+    	return s;
+	}
 
 	public static void printHex(byte[] toPrint) {
 		if (debug) {
 			if (toPrint != null) {
 				int cnt = 0;
-				String s;
 				byte b;
 		        for (int i = 0; i < toPrint.length; i++) {
 		        	b = toPrint[i];  
-		        	//0x0..0xF = 0x00..0x0F
-		        	if ((b < 0x10) && (b >= 0)) {
-		        		s = Integer.toHexString((int)b);
-		        		s = "0" + s;
-		        	} else {
-			        	s = Integer.toHexString((int)b);
-			        	if (s.length() > 2) {
-			        		s = s.substring(s.length() - 2);
-			        	}
-		        	}        	        	
-		        	s = s.toUpperCase();
-		        	System.out.print("0x" + s + " ");
+
+		        	System.out.print("0x" + byteToHexString(b) + " ");
 		        	cnt++;
 		        	if (cnt == 8) {
 		        		System.out.println("");

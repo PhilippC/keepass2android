@@ -38,6 +38,10 @@ public class HIDTransaction {
 		return report;
 	}
 	
+	public HIDReport getHIDReportAt(int pos) {
+		return reports.elementAt(pos);	
+	}
+	
 	public HIDTransaction split(int n) {
 		HIDTransaction result = new HIDTransaction();
 		HIDReport report;

@@ -16,6 +16,7 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 	
 	private String mMac;
 	private byte[] mKey;		
+	private boolean mIsBT40;
 	
 	private InitManager mInitManager;
 	private Application mApp;
@@ -74,28 +75,29 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 		disconnect();
 	}
 	
-	private void onData(byte[] rawData) {
+	@Override
+	protected void onData(byte[] rawData) {
 		byte[] data;
-		data = mPacketManager.bytesToPacket(rawData);
-		
+		data = mPacketManager.bytesToPacket(rawData);		
 		if (data == null) {
 			//TODO failure?
 			return;
 		}
 		
-		mInitManager.onData(data);
-
-		for (InputStickDataListener listener : mDataListeners) {
-			listener.onInputStickData(data);
-		}			
+		mInitManager.onData(data);		
+		super.onData(data);			
 	}	
 	
-	
-	public BTConnectionManager(InitManager initManager, Application app, String mac, byte[] key) {		
+	public BTConnectionManager(InitManager initManager, Application app, String mac, byte[] key, boolean isBT40) {		
 		mInitManager = initManager;		
 		mMac = mac;		
 		mKey = key;
 		mApp = app;
+		mIsBT40 = isBT40;
+	}
+
+	public BTConnectionManager(InitManager initManager, Application app, String mac, byte[] key) {		
+		this(initManager, app, mac, key, false);
 	}
 	
 	@Override
@@ -112,7 +114,7 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 		}
 		mBTService.setConnectTimeout(timeout);
 		mBTService.enableReflection(reflection);
-		mBTService.connect(mMac, doNotAsk);
+		mBTService.connect(mMac, doNotAsk, mIsBT40);
 		onConnecting();		
 	}
 		

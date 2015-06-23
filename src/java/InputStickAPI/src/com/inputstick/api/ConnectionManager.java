@@ -15,7 +15,7 @@ public abstract class ConnectionManager {
 	protected Vector<InputStickDataListener> mDataListeners = new Vector<InputStickDataListener>();
 	
 	protected int mState;
-	protected int mErrorCode;
+	protected int mErrorCode;	
 	
 	public abstract void connect();
 	public abstract void disconnect();
@@ -41,8 +41,31 @@ public abstract class ConnectionManager {
 		return mState;
 	}
 	
+	public boolean isReady() {
+		if (mState == STATE_READY) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean isConnected() {
+		if ((mState == STATE_READY) || (mState == STATE_CONNECTED)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public int getErrorCode() {
 		return mErrorCode;
+	}
+	
+	
+	protected void onData(byte[] data) {
+		for (InputStickDataListener listener : mDataListeners) {
+			listener.onInputStickData(data);
+		} 
 	}
 	
 	public void addStateListener(InputStickStateListener listener) {

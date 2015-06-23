@@ -1,0 +1,44 @@
+﻿<html>
+  <head>
+    <style type='text/css'>
+      a            { color:#000000 }
+      div.title    { 
+          color:287AA9; 
+          font-size:1.2em; 
+          font-weight:bold; 
+          margin-top:1em; 
+          margin-bottom:0.5em; 
+          text-align:center }
+      div.subtitle { 
+          color:287AA9; 
+          font-size:0.8em; 
+          margin-bottom:1em; 
+          text-align:center }
+      div.freetext { color:#000000 }
+      div.list     { color:#000000 }
+    </style>
+  </head>
+  <body>
+$ 1.31
+  % Version 1.31
+  	* Typing speed can be decreased (Settings)
+  	* Added "Type (slow)" action
+  	* Added option to keep connection after entry is closed (Settings)
+  	* Added "Help" webpage button (Settings)
+  	* Autoconnect timeout can be configured in Settings   
+  	* Action names changed to: "%name (%layout) (InputStick)"
+  	* More UI configuration options
+  	* Added reminder about reloading entry if UI-related settings were modified
+    * Polish translation   
+$ 1.30
+  % Version 1.30
+    * More keyboard layouts
+    * Introduced secondary layout option
+    * Autoconnect can now be disabled
+    * Support for typing masked passwords
+    * UI customization
+    * Mac OSX setup screen (for Keyboard Setup Assistant)   
+    * Changelog   
+$ END_OF_CHANGE_LOG
+  </body>
+</html>

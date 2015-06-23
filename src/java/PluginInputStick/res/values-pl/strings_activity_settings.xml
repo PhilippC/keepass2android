@@ -1,0 +1,105 @@
+<resources>
+
+    <string name="title_activity_settings">KP2A InputStick Ustawienia</string>
+
+    <!-- Strings related to Settings -->
+    <string name="configure_plugin">Ustaw jako plugin</string>
+    
+  	<string name="show_changelog_title">Pokaż zmiany</string>
+  	<string name="show_help_webpage_title">Otwórz stronę z pomocą</string>
+    
+    <string name="typing_settings_title">Układ klawiatury hosta USB</string>
+    <string name="connection_settings_title">Połączenie z InputStick</string>    
+
+    <string name="layout_title">Układ klawiatury (główny)</string>
+    
+    <string name="secondary_layout_title">Układ klawiatury (dodatkowy)</string>
+    
+    <string name="show_secondary_title">Dodatkowy układ klawiatury</string>
+    <string name="show_secondary_summary_on">Dodatkowy układ klawiatury jest włączony. Możesz wybrać jakie akcje będą dostępne dla tego układu (zobacz niżej)</string>
+    <string name="show_secondary_summary_off">Dodatkowy układ klawiatury jest wyłączony</string>    
+    
+    <string name="enter_after_url_title">Enter po URL</string>    
+    <string name="enter_after_url_summary_on">Zawsze dodaj Enter po wpisaniu pola URL</string>
+    <string name="enter_after_url_summary_off">Nic nie rób po wpisaniu pola URL</string>  
+    
+    <string name="autoconnect_title">Łącz automatycznie</string>
+    <string name="autoconnect_summary_on">Łącz z InputStick za każdym razem gdy otwierany jest wpis. Użyj tego trybu gdy korzystasz z InputStick przez większość czasu.</string>
+    <string name="autoconnect_summary_off">Łącz z InputStick tuż przed wpisywaniem tekstu LUB gdy wpis otwierany jest w okresie \"Timeout\" (zobacz poniżej) od ostatniej akcji wpisywania tekstu. Użyj tego trybu gdy rzadko korzystasz z InputStick.</string>
+
+    <string name="autoconnect_timeout_title">Timeout</string>
+    
+    
+    <string name="ui_general_title">Widoczne elementy interfejsu (Ogólne, zakres dla wpisu)</string>    
+    <string name="show_settings_title">Skrót: ustawienia</string>  
+    <string name="show_mac_setup_title">Skrót: konfiguracja OSX</string>  
+    <string name="mac_setup_summary">Pozwala poprawnie zidentyfikować układ klawiatury na OSX</string>
+    <string name="show_tab_enter_title">Akcje: Tab i Enter</string>
+    
+    <string name="ui_entry_primary_title">Widoczne elementy interfejsu (Główny układ klawiatury, zakres dla wpisu)</string>
+    <string name="ui_entry_secondary_title">Widoczne elementy interfejsu (Dodatkowy układ klawiatury, zakres dla wpisu)</string>        
+    <string name="show_user_pass_title">Login/hasło</string>
+    <string name="show_user_pass_enter_title">Login/hasło/enter</string>
+	<string name="show_masked_title">"Maskowane" hasło</string>
+	
+	<string name="ui_filed_primary_title">Widoczne elementy interfejsu (Główny układ klawiatury, zakres dla pola)</string>
+	<string name="ui_filed_secondary_title">Widoczne elementy interfejsu (Dodatkowy układ klawiatury, zakres dla pola)</string>        
+    <string name="show_field_type">Wpisz</string>
+    <string name="show_field_type_slow">Wpisz (powoli)</string>
+    <string name="field_type_slow_summary">Wpisywanie ze zredukowaną szybkością: 0.1x standardowej. Użyj gdy host USB nie akceptuje szybko wprowadzanego tekstu (np: BIOS)</string>
+    
+    
+    
+    <string name="typing_speed_title">Szybkość wpisywania</string>
+    
+    <string name="do_not_disconnect_title">Utrzymuj połączenie</string>
+    <string name="do_not_disconnect_summary_on">Połaczenie NIE zostanie zakończone gdy wpis jest zamykany. Musisz zakończyć połączenie ręcznie lub ustawić maks okres bezczynności w aplikacji InputStickUtility</string>           
+    <string name="do_not_disconnect_summary_off">Połaczenie zostanie zakończone gdy wpis jest zamykany.</string>       
+    
+    
+    <string name="ok">OK</string>
+    <string name="important_title">Ważne!</string>
+    <string name="entry_reload_message">Ustawienia elementów interfejsu będą widoczne dopiero po załadowaniu nowego wpisu</string>
+    <string name="do_not_remind">Nie przypominaj</string>
+    
+	<string-array name="autoconnect_timeout_names">
+        <item>Brak</item>
+        <item>1 min</item>
+        <item>3 min</item>
+        <item>10 min</item>
+        <item>30 min</item>
+        <item>60 min</item>
+    </string-array>	     
+    
+	<string-array name="typing_speed_names">
+        <item>Standardowa (1.0)</item>
+        <item>Wolno (0.5)</item>
+        <item>Wolniej (0.2)</item>
+        <item>Najwolniej (0.1)</item>
+    </string-array>    
+    
+    <string-array name="layout_names">
+        <item>Duński</item>
+        <item>Angielski (US)</item>
+        <item>Angielski (UK)</item>
+        <item>Fiński</item>
+        <item>Francuski</item>
+        <item>Francuski (Swiss)</item>
+        <item>Niemiecki</item>
+        <item>Niemiecki (Mac)</item>
+        <item>Niemiecki (Swiss)</item>
+        <item>Hebrajski</item>
+        <item>Włoski</item>
+        <item>Norweski</item>
+        <item>Polski</item>
+        <item>Portugalski (BR)</item>
+        <item>Rosyjski</item>
+        <item>Słowacki</item>
+        <item>Hiszpański</item>
+        <item>Szwedzki</item>
+        <item>Angielski (Dvorak)</item>
+    </string-array>
+        
+    
+
+</resources>

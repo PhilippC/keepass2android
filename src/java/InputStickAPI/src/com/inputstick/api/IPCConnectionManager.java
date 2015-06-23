@@ -14,7 +14,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
-import android.os.RemoteException;
 
 public class IPCConnectionManager extends ConnectionManager {
 	
@@ -39,22 +38,24 @@ public class IPCConnectionManager extends ConnectionManager {
         }    	
     	
         @Override
-        public void handleMessage(Message msg) {      	
+        public void handleMessage(Message msg) {      
+        	if (ref == null) return;
         	IPCConnectionManager manager = ref.get();
-        	
-        	switch (msg.what) {     	
-    		case SERVICE_CMD_DATA:
-            	byte[] data = null;        	
-            	Bundle b = msg.getData();
-            	if (b != null) {
-            		data = b.getByteArray("data");
-            		manager.onData(data);
-            	}             	
-    			break;
-    		case SERVICE_CMD_STATE:
-    			manager.stateNotify(msg.arg1);
-    			break;             	
-        	}         	
+        	if (manager != null) {
+	        	switch (msg.what) {     	
+		    		case SERVICE_CMD_DATA:
+		            	byte[] data = null;        	
+		            	Bundle b = msg.getData();
+		            	if (b != null) {
+		            		data = b.getByteArray("data");
+		            		manager.onData(data);
+		            	}             	
+		    			break;
+		    		case SERVICE_CMD_STATE:
+		    			manager.stateNotify(msg.arg1);
+		    			break;             	
+	        	}  
+        	}
         }
     }     
     
@@ -90,7 +91,7 @@ public class IPCConnectionManager extends ConnectionManager {
 			msg.replyTo = mMessenger;
 			msg.setData(b);				
 			mService.send(msg);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}    	
     }
@@ -106,11 +107,9 @@ public class IPCConnectionManager extends ConnectionManager {
     	sendMessage(what, arg1, arg2, (Bundle)null);	
     }  	
 	
-	
-	private void onData(byte[] data) {
-		for (InputStickDataListener listener : mDataListeners) {
-			listener.onInputStickData(data);
-		} 		
+    @Override
+    protected void onData(byte[] data) {
+		super.onData(data);
 	}    		
 	
 	
@@ -163,7 +162,7 @@ public class IPCConnectionManager extends ConnectionManager {
 	
 	@Override
 	public void sendPacket(Packet p) {
-		if (mState == ConnectionManager.STATE_READY) {			
+		if ((mState == ConnectionManager.STATE_READY) || (mState == ConnectionManager.STATE_CONNECTED)) {			
 			if (p.getRespond()) {
 				sendMessage(IPCConnectionManager.SERVICE_CMD_DATA, 1, 0, p.getBytes());
 			} else {

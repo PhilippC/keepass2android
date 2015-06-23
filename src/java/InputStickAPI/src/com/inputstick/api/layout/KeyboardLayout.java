@@ -2,6 +2,7 @@ package com.inputstick.api.layout;
 
 import com.inputstick.api.ConnectionManager;
 import com.inputstick.api.basic.InputStickHID;
+import com.inputstick.api.basic.InputStickKeyboard;
 import com.inputstick.api.hid.HIDKeycodes;
 import com.inputstick.api.hid.HIDTransaction;
 import com.inputstick.api.hid.KeyboardReport;
@@ -122,6 +123,8 @@ public abstract class KeyboardLayout {
 	public abstract int[][] getDeadkeyLUT();
 	public abstract int[] 	getDeadkeys();
 	public abstract String getLocaleName();
+	
+	//types text assuming that USB host uses the same keyboard layout
 	public abstract void type(String text);
 	public abstract void type(String text, byte modifiers);
 	public abstract char getChar(int scanCode, boolean capsLock, boolean shift, boolean altGr);
@@ -131,9 +134,15 @@ public abstract class KeyboardLayout {
 			char[] chars = text.toCharArray();
 			HIDTransaction t;
 			for (char c : chars) {
-				t = getHIDTransaction(lut, deadkeyLUT, deadkeys, c, modifiers);				
-				if (t != null) {
-					InputStickHID.addKeyboardTransaction(t);
+				if (c == '\n') {					
+					InputStickKeyboard.pressAndRelease(HIDKeycodes.NONE, HIDKeycodes.KEY_ENTER);
+				} else if (c == '\t') {
+					InputStickKeyboard.pressAndRelease(HIDKeycodes.NONE, HIDKeycodes.KEY_TAB);
+				} else {				
+					t = getHIDTransaction(lut, deadkeyLUT, deadkeys, c, modifiers);				
+					if (t != null) {
+						InputStickHID.addKeyboardTransaction(t);
+					}
 				}
 			}
 		}
@@ -315,6 +324,7 @@ public abstract class KeyboardLayout {
 		return t;
 	}		
 	
+	//returns layout sepcified by locale (example: "de-DE"). If specified layout is not available, en=US will be returned.
 	public static KeyboardLayout getLayout(String locale) {
 		if (locale != null) {
 			if (locale.equals(UnitedStatesLayout.getInstance().getLocaleName())) {

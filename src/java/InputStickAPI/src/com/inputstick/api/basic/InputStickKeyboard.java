@@ -38,6 +38,7 @@ public class InputStickKeyboard {
 	private InputStickKeyboard() {
 	}
 	
+	//listener will be notified when status of keyboard LEDs changes (NumLock, CapsLock, ScrollLock)
 	public static void addKeyboardListener(InputStickKeyboardListener listener) {
 		if (listener != null) {
 			if ( !mKeyboardListeners.contains(listener)) {
@@ -76,30 +77,39 @@ public class InputStickKeyboard {
 		}
 	}
 	
+	//returns true if NumLock LED is set to ON by USB host, otherwise false is returned.
 	public static boolean isNumLock() {
 		return mNumLock;
 	}
 	
+	//returns true if CapsLock LED is set to ON by USB host, otherwise false is returned.
 	public static boolean isCapsLock() {
 		return mCapsLock;
 	}
 	
+	//returns true if ScrollLock LED is set to ON by USB host, otherwise false is returned.
 	public static boolean isScrollLock() {
 		return mScrollLock;
 	}
 	
+	//same as pressing NumLock key
 	public static void toggleNumLock() {
 		pressAndRelease(NONE, HIDKeycodes.KEY_NUM_LOCK);
 	}
 	
+	//same as pressing CapsLock key
 	public static void toggleCapsLock() {
 		pressAndRelease(NONE, HIDKeycodes.KEY_CAPS_LOCK);
 	}
 	
+	//same as pressing ScrollLock key
 	public static void toggleScrollLock() {
 		pressAndRelease(NONE, HIDKeycodes.KEY_SCROLL_LOCK);
 	}
 	
+	//following key combination will be pressed and immediately released
+	//modifier - see HIDKeycodes (CTRL_LEFT .. GUI_RIGHT)
+	//key - see HIDKeycodes
 	public static void pressAndRelease(byte modifier, byte key) {
 		HIDTransaction t = new HIDTransaction();
 		t.addReport(new KeyboardReport(modifier, NONE));
@@ -108,35 +118,40 @@ public class InputStickKeyboard {
 		InputStickHID.addKeyboardTransaction(t);
 	}	
 		
+	//types text assuming that USB host uses en-US keyboard layout.
 	public static void typeASCII(String toType) {
 		int keyCode;
 		int index;
-		for (int i = 0; i < toType.length(); i++) {
+		
+		for (int i = 0; i < toType.length(); i++) {					
 			index = toType.charAt(i);
-			if (index > 127) {
-				index = 127;
-			}
-			keyCode = HIDKeycodes.getKeyCode(index);
-			if (keyCode > 128) {
-				keyCode -= 128;
-				pressAndRelease(HIDKeycodes.SHIFT_LEFT, (byte)keyCode);
-			} else {
-				pressAndRelease(NONE, (byte)keyCode);
+			if (index == '\n') {
+				pressAndRelease(NONE, HIDKeycodes.KEY_ENTER);
+			} else if (index == '\t') {
+				pressAndRelease(NONE, HIDKeycodes.KEY_TAB);
+			} else {			
+				if (index > 127) {
+					index = 127;
+				}
+				keyCode = HIDKeycodes.getKeyCode(index);
+				if (keyCode > 128) {
+					keyCode -= 128;
+					pressAndRelease(HIDKeycodes.SHIFT_LEFT, (byte)keyCode);
+				} else {
+					pressAndRelease(NONE, (byte)keyCode);
+				}
 			}
 		}
 	}		
 	
+	//modifier - see HIDKeycodes (CTRL_LEFT .. GUI_RIGHT)
+	//key0..key5 - see HIDKeycodes
+	//note: keys will not be released until next report is sent!
 	public static void customReport(byte modifier, byte key0, byte key1, byte key2, byte key3, byte key4, byte key5) {
 		HIDTransaction t = new HIDTransaction();
 		t.addReport(new KeyboardReport(modifier, key0, key1, key2, key3, key4, key5));
 		InputStickHID.addKeyboardTransaction(t);
 	}
-	
-	/*public static void customReport(byte[] report) {
-		HIDTransaction t = new HIDTransaction();
-		t.addReport(report);
-		InputStickHID.addKeyboardTransaction(t);	
-	}*/
 	
 	public static String ledsToString(byte leds) {
     	String result = "None";

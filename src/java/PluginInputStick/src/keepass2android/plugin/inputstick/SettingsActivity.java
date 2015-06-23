@@ -10,14 +10,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.widget.CheckBox;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -30,6 +33,8 @@ import android.preference.PreferenceManager;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
+
+@SuppressWarnings("deprecation")
 public class SettingsActivity extends PreferenceActivity {
 	/**
 	 * Determines whether to always show the simplified settings UI, where
@@ -38,6 +43,36 @@ public class SettingsActivity extends PreferenceActivity {
 	 * shown on tablets.
 	 */
 	private static final boolean ALWAYS_SIMPLE_PREFS = false;
+	
+	private Preference prefShowSecondary;
+	private Preference prefSecondaryKbdLayout;
+	
+	private Preference prefAutoconnectTimeout;
+	
+	private Preference prefSettings;
+	private Preference prefMacSetup;
+	private Preference prefTabEnter;
+	
+	private Preference prefUserPass;
+	private Preference prefUserPassEnter;
+	private Preference prefMasked;
+	private Preference prefType;
+	private Preference prefTypeSlow;
+	
+	private Preference prefSecondaryUserPass;
+	private Preference prefSecondaryUserPassEnter;
+	private Preference prefSecondaryMasked;
+	private Preference prefSecondaryType;
+	private Preference prefSecondaryTypeSlow;
+	
+	private boolean displayReloadInfo;
+	private OnPreferenceClickListener reloadInfoListener = new OnPreferenceClickListener() {
+		@Override
+		public boolean onPreferenceClick(Preference preference) {
+			displayReloadInfo = true;
+			return false;
+		}
+	};
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -54,8 +89,8 @@ public class SettingsActivity extends PreferenceActivity {
 			if (prefs.getBoolean("display_configuration_message", true)) {
 				AlertDialog.Builder alert = new AlertDialog.Builder(this);
 				
-				alert.setTitle(getString(R.string.configuration_title));
-				alert.setMessage(getString(R.string.configuration_message));
+				alert.setTitle(R.string.configuration_title);
+				alert.setMessage(R.string.configuration_message);
 				alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						//disable cfg message ONLY after clicking OK button
@@ -72,6 +107,7 @@ public class SettingsActivity extends PreferenceActivity {
 	 * device configuration dictates that a simplified, single-pane UI should be
 	 * shown.
 	 */
+	
 	private void setupSimplePreferencesScreen() {
 		if (!isSimplePreferences(this)) {
 			return;
@@ -85,9 +121,15 @@ public class SettingsActivity extends PreferenceActivity {
 
 		bindPreferenceSummaryToValue(findPreference("kbd_layout"));
 		bindPreferenceSummaryToValue(findPreference("secondary_kbd_layout"));
+		bindPreferenceSummaryToValue(findPreference("typing_speed"));
+		bindPreferenceSummaryToValue(findPreference("autoconnect_timeout"));
 		
-		Preference enablePref = findPreference("enable_plugin_pref");
-		enablePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+		
+		Preference pref;
+		
+		pref = findPreference("enable_plugin_pref");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 				try {
@@ -101,8 +143,8 @@ public class SettingsActivity extends PreferenceActivity {
 			}
 		});
 
-		Preference showChangelogPref = (Preference)findPreference("show_changelog_preference_key");
-		showChangelogPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+		pref = (Preference)findPreference("show_changelog_preference_key");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 				ChangeLog cl = new ChangeLog(SettingsActivity.this);
@@ -111,17 +153,140 @@ public class SettingsActivity extends PreferenceActivity {
 			}
 		});
 		
+		pref = (Preference)findPreference("show_help_webpage_key");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.inputstick.com/help"));
+				startActivity(browserIntent);					
+				return true;
+			}
+		});
+		
+		
+		pref = (Preference) findPreference("show_secondary");
+		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				setSecondaryLayoutEnabled((Boolean)newValue);
+        		return true;
+			}
+        });
+		
+		pref = (Preference) findPreference("autoconnect");
+		pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				setAutoconnectTimeoutEnabled((Boolean)newValue);
+        		return true;
+			}
+        });
+		
+		prefAutoconnectTimeout = (Preference) findPreference("autoconnect_timeout");
+		prefShowSecondary = (Preference) findPreference("show_secondary");
+		
+		prefSettings = (Preference) findPreference("show_settings");		
+		prefMacSetup = (Preference) findPreference("show_mac_setup");		
+		prefTabEnter = (Preference) findPreference("show_tab_enter");
+		
+		prefUserPass = (Preference) findPreference("show_user_pass");		
+		prefUserPassEnter = (Preference) findPreference("show_user_pass_enter");		
+		prefMasked = (Preference) findPreference("show_masked");
+		prefType = (Preference) findPreference("show_field_type");
+		prefTypeSlow = (Preference) findPreference("show_field_type_slow");		
+		
+		prefSecondaryKbdLayout = findPreference("secondary_kbd_layout");
+		prefSecondaryUserPass = findPreference("show_user_pass_secondary");
+		prefSecondaryUserPassEnter = findPreference("show_user_pass_enter_secondary");
+		prefSecondaryMasked = findPreference("show_masked_secondary");
+		prefSecondaryType = findPreference("show_field_type_secondary");
+		prefSecondaryTypeSlow = findPreference("show_field_type_slow_secondary");
+		
+		
+		
+		prefShowSecondary.setOnPreferenceClickListener(reloadInfoListener);
+		
+		prefSettings.setOnPreferenceClickListener(reloadInfoListener);
+		prefMacSetup.setOnPreferenceClickListener(reloadInfoListener);
+		prefTabEnter.setOnPreferenceClickListener(reloadInfoListener);
+
+		prefUserPass.setOnPreferenceClickListener(reloadInfoListener);
+		prefUserPassEnter.setOnPreferenceClickListener(reloadInfoListener);
+		prefMasked.setOnPreferenceClickListener(reloadInfoListener);
+		prefType.setOnPreferenceClickListener(reloadInfoListener);		
+		prefTypeSlow.setOnPreferenceClickListener(reloadInfoListener);		
+
+		prefSecondaryUserPass.setOnPreferenceClickListener(reloadInfoListener);
+		prefSecondaryUserPassEnter.setOnPreferenceClickListener(reloadInfoListener);
+		prefSecondaryMasked.setOnPreferenceClickListener(reloadInfoListener);
+		prefSecondaryType.setOnPreferenceClickListener(reloadInfoListener);
+		prefSecondaryTypeSlow.setOnPreferenceClickListener(reloadInfoListener);		
+
+
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		setSecondaryLayoutEnabled(prefs.getBoolean("show_secondary", false));		
+		setAutoconnectTimeoutEnabled(prefs.getBoolean("autoconnect", true));	
 	}
 	
 	@Override
 	protected void onResume() {
+		displayReloadInfo = false;
 		Preference enablePref = findPreference("enable_plugin_pref");
 		if (AccessManager.getAllHostPackages(SettingsActivity.this).isEmpty()) {
 			enablePref.setSummary("");
 		} else {
-			enablePref.setSummary("enabled.");
-		}
+			enablePref.setSummary(R.string.enabled);
+		}					
+		
 		super.onResume();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if (displayReloadInfo) {
+			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+			if (sharedPref.getBoolean("show_reload_warning", true)) {		
+				displayReloadInfo = false;
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				alert.setTitle(R.string.important_title);
+				alert.setMessage(R.string.entry_reload_message);	
+				
+				final CheckBox cb = new CheckBox(this);
+				cb.setText(R.string.do_not_remind);
+				cb.setChecked(false);
+				alert.setView(cb);
+				
+				alert.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						SettingsActivity.this.onBackPressed();	
+						if (cb.isChecked()) {
+							SharedPreferences.Editor editor = sharedPref.edit();
+							editor.putBoolean("show_reload_warning", false);
+							editor.apply();
+						}
+					}
+				});
+				alert.show();
+			} else {
+				super.onBackPressed();
+			}
+		} else {
+			super.onBackPressed();
+		}
+	}
+	
+	
+	private void setAutoconnectTimeoutEnabled(boolean enabled) {
+		prefAutoconnectTimeout.setEnabled( !enabled); // <<<<<<<<<<< show this pref only if autoconnect is DISABLED
+	}
+	
+	private void setSecondaryLayoutEnabled(boolean enabled) {
+		prefSecondaryKbdLayout.setEnabled(enabled);
+		prefSecondaryUserPass.setEnabled(enabled);
+		prefSecondaryUserPassEnter.setEnabled(enabled);
+		prefSecondaryMasked.setEnabled(enabled);
+		prefSecondaryType.setEnabled(enabled);
+		prefSecondaryTypeSlow.setEnabled(enabled);
 	}
 
 	/** {@inheritDoc} */
