@@ -2,9 +2,12 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Nfc;
 using Android.OS;
 using Android.Widget;
+using Java.Util;
 using Java.Util.Regex;
+using Keepass2android.Yubiclip.Scancode;
 
 namespace keepass2android
 {
@@ -31,11 +34,24 @@ namespace keepass2android
 				String otp = matcher.Group(1);
 				return otp;
 			}
+			else
+			{
+				IParcelable[] raw = Intent.GetParcelableArrayExtra(NfcAdapter.ExtraNdefMessages);
+				
+				byte[] bytes = ((NdefMessage) raw[0]).ToByteArray();
+				bytes = Arrays.CopyOfRange(bytes, DATA_OFFSET, bytes.Length);
+				String layout = "US";
+				KeyboardLayout kbd = KeyboardLayout.ForName(layout);
+				String otp = kbd.FromScanCodes(bytes);
+				return otp;
+			}
 			return null;
 		}
 
 
-		private static readonly Java.Util.Regex.Pattern OtpPattern = Java.Util.Regex.Pattern.Compile("^https://my\\.yubico\\.com/neo/(.+)$");
+		//private static readonly Java.Util.Regex.Pattern OtpPattern = Java.Util.Regex.Pattern.Compile("^https://my\\.yubico\\.com/neo/(.+)$");
+		private static readonly Java.Util.Regex.Pattern OtpPattern = Java.Util.Regex.Pattern.Compile("^https://my\\.yubico\\.com/neo/([a-zA-Z0-9!]+)$");
+		private const int DATA_OFFSET = 23;
 
 		private ActivityDesign _design;
 

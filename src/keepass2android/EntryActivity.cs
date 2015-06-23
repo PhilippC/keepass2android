@@ -816,7 +816,7 @@ namespace keepass2android
 		{
 			if (_passwordFont == null)
 			{
-				_passwordFont = Typeface.CreateFromAsset(Assets, "DejaVuSansMono.ttf");
+				_passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
 			}
 			textView.Typeface = _passwordFont;	
 		}

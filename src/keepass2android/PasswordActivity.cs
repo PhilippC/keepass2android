@@ -844,7 +844,7 @@ namespace keepass2android
 				return false;
 			}
 
-			//user obviously wants to use OTP:
+			//assume user wants to use OTP (for static password, they need to open KP2A first and select the key provider type, then see OnNewIntent)
 			_keyFileOrProvider = KeyProviderIdOtp;
 
 			if (savedInstanceState == null) //only when not re-creating
@@ -1349,39 +1349,51 @@ namespace keepass2android
 			if ((intent != null) && (intent.HasExtra(Intents.OtpExtraKey)))
 			{
 				string otp = intent.GetStringExtra(Intents.OtpExtraKey);
-				_keepPasswordInOnResume = true;
-				if (_otpInfo == null)
+					
+				if (this.KeyProviderType == KeyProviders.Otp)
 				{
-					//Entering OTPs not yet initialized:
-					_pendingOtps.Add(otp);
-					UpdateKeyProviderUiState();
+					_keepPasswordInOnResume = true;
+				
+					if (_otpInfo == null)
+					{
+						//Entering OTPs not yet initialized:
+						_pendingOtps.Add(otp);
+						UpdateKeyProviderUiState();
+					}
+					else
+					{
+						//Entering OTPs is initialized. Write OTP into first empty field:
+						bool foundEmptyField = false;
+						foreach (int otpId in _otpTextViewIds)
+						{
+							EditText otpEdit = FindViewById<EditText>(otpId);
+							if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
+							{
+								otpEdit.Text = otp;
+								foundEmptyField = true;
+								break;
+							}
+						}
+						//did we find a field?
+						if (!foundEmptyField)
+						{
+							Toast.MakeText(this, GetString(Resource.String.otp_discarded_no_space), ToastLength.Long).Show();
+						}
+					}
+
+					Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
+					if (passwordModeSpinner.SelectedItemPosition != (int)KeyProviders.Otp)
+					{
+						passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
+					}	
 				}
 				else
 				{
-					//Entering OTPs is initialized. Write OTP into first empty field:
-					bool foundEmptyField = false;
-					foreach (int otpId in _otpTextViewIds)
-					{
-						EditText otpEdit = FindViewById<EditText>(otpId);
-						if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
-						{
-							otpEdit.Text = otp;
-							foundEmptyField = true;
-							break;
-						}
-					}
-					//did we find a field?
-					if (!foundEmptyField)
-					{
-						Toast.MakeText(this, GetString(Resource.String.otp_discarded_no_space), ToastLength.Long).Show();
-					}
+					//assume the key should be used as static password
+					FindViewById<EditText>(Resource.Id.password).Text += otp;
 				}
 
-				Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
-				if (passwordModeSpinner.SelectedItemPosition != (int) KeyProviders.Otp)
-				{
-					passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
-				}
+				
 			}
 	
 		}

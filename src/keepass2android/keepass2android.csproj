@@ -222,8 +222,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\xml\searchable.xml" />
     <AndroidAsset Include="Assets\fontawesome-webfont.ttf" />
-    <AndroidAsset Include="Assets\DejaVuSansMono.ttf" />
-    <AndroidAsset Include="Assets\LICENSE_dejavu" />
+    <AndroidAsset Include="Assets\SourceCodePro-Regular.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="filelist.txt">
@@ -1100,5 +1099,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_storage_content.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\LICENSE_SourceCodePro.txt" />
   </ItemGroup>
 </Project>
