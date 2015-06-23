@@ -31,7 +31,7 @@
   <string name="afc_msg_cannot_save_a_file_here">Impossible d\'enregistrer un fichier ici</string>
   <string name="afc_msg_done">Valider</string>
   <string name="afc_msg_empty">Vide</string>
-  <string name="afc_msg_failed_please_try_again">Echec. Veuillez faire une nouvelle tentative.</string>
+  <string name="afc_msg_failed_please_try_again">Échec. Veuillez faire une nouvelle tentative.</string>
   <string name="afc_msg_loading">Chargement en cours&#8230;</string>
   <string name="afc_phone">Téléphone</string>
   <string name="afc_pmsg_cannot_access_dir">Impossible d\'accéder à \"%1$s\"</string>

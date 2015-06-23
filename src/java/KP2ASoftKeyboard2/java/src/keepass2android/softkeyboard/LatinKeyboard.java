@@ -425,19 +425,31 @@ public class LatinKeyboard extends Keyboard {
 
     private void updateSpaceBarForLocale(boolean isAutoCompletion, boolean isBlack) {
         // If application locales are explicitly selected.
-        if (mLocale != null) {
-            mSpaceKey.icon = new BitmapDrawable(mRes,
-                    drawSpaceBar(OPACITY_FULLY_OPAQUE, isAutoCompletion, isBlack));
-        } else {
-            // sym_keyboard_space_led can be shared with Black and White symbol themes.
-            if (isAutoCompletion) {
+    	try
+    	{
+    		if (mLocale != null) {
                 mSpaceKey.icon = new BitmapDrawable(mRes,
                         drawSpaceBar(OPACITY_FULLY_OPAQUE, isAutoCompletion, isBlack));
             } else {
-                mSpaceKey.icon = isBlack ? mRes.getDrawable(R.drawable.sym_bkeyboard_space)
-                        : mRes.getDrawable(R.drawable.sym_keyboard_space);
-            }
-        }
+                // sym_keyboard_space_led can be shared with Black and White symbol themes.
+                if (isAutoCompletion) {
+                    mSpaceKey.icon = new BitmapDrawable(mRes,
+                            drawSpaceBar(OPACITY_FULLY_OPAQUE, isAutoCompletion, isBlack));
+                } else {
+                    mSpaceKey.icon = isBlack ? mRes.getDrawable(R.drawable.sym_bkeyboard_space)
+                            : mRes.getDrawable(R.drawable.sym_keyboard_space);
+                }
+            }	
+    	}
+    	catch (NullPointerException e)
+    	{
+    		//this exception was reported through Google Play. I need further info to resolve.
+    		android.util.Log.e("KP2A", "Please report this error to crocoapps@gmail.com");
+    		android.util.Log.e("KP2A", e.toString());
+    		android.util.Log.e("KP2A", ((mSpaceKey==null) ? "1" : "0") 
+    			+ ((mRes==null) ? "1" : "0"));
+    	}
+        
     }
 
     // Compute width of text with specified text size using paint.

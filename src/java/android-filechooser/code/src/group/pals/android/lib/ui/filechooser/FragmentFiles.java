@@ -2014,6 +2014,7 @@ public class FragmentFiles extends Fragment implements
         ArrayList<Uri> list = new ArrayList<Uri>();
         list.add(file);
         Intent intent = new Intent();
+        intent.setData(file);
         intent.putParcelableArrayListExtra(FileChooserActivity.EXTRA_RESULTS,
                 list);
         intent.putExtra(FileChooserActivity.EXTRA_RESULT_FILE_EXISTS,
@@ -2050,8 +2051,13 @@ public class FragmentFiles extends Fragment implements
         }
 
         Intent intent = new Intent();
+        if (files.size() == 1)
+        {
+        	intent.setData(files.get(0));
+        }
         intent.putParcelableArrayListExtra(FileChooserActivity.EXTRA_RESULTS,
                 files);
+        
         getActivity().setResult(FileChooserActivity.RESULT_OK, intent);
 
         if (DisplayPrefs.isRememberLastLocation(getActivity())

@@ -25,6 +25,7 @@
   <string name="afc_msg_app_doesnot_have_permission_to_create_files">Detta program har inte behörighet att skapa filer/mappar</string>
   <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Detta program har inte behörighet att ta bort filer/mappar</string>
   <string name="afc_msg_cancelled">Avbruten</string>
+  <string name="afc_msg_cannot_connect_to_file_provider_service">Kan inte ansluta till tjänsten som tillhandahåller filen</string>
   <string name="afc_msg_cannot_create_new_folder_here">Kan inte skapa ny mapp här</string>
   <string name="afc_msg_cannot_save_a_file_here">Kan inte spara en fil här</string>
   <string name="afc_msg_done">Klar</string>

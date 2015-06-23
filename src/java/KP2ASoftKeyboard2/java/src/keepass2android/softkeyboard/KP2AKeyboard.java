@@ -1415,14 +1415,27 @@ public class KP2AKeyboard extends InputMethodService
 		
 		final String clientPackageName = attribute.packageName;
 
-		if ((clientPackageName != null) && (clientPackageName != ""))
-		{
-			StringForTyping searchEntry = new StringForTyping();
-			searchEntry.key = searchEntry.displayName
-				= getString(R.string.open_entry_for_app, clientPackageName);
-			searchEntry.value = "KP2ASPECIAL_SearchUrlTask";
-			items.add(searchEntry);
-		}
+			if ((clientPackageName != null) && (clientPackageName != ""))
+			{
+				StringForTyping searchEntry = new StringForTyping();
+				try
+				{
+					searchEntry.key = searchEntry.displayName
+						= getString(R.string.open_entry_for_app, clientPackageName);
+				}
+				catch (java.util.FormatFlagsConversionMismatchException e) //buggy crowdin support for Arabic? 
+				{
+		    		android.util.Log.e("KP2A", "Please report this error to crocoapps@gmail.com");
+		    		android.util.Log.e("KP2A", e.toString());
+
+					searchEntry.key = searchEntry.displayName
+							= "Search entry for app";
+				}
+				
+				searchEntry.value = "KP2ASPECIAL_SearchUrlTask";
+				items.add(searchEntry);
+			}
+		
 		
 		builder.setTitle(title);
 
