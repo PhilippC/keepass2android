@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <!--
+        Base application theme for API 21+. This theme replaces
+        MyTheme from resources/values/styles.xml on API 21+ devices.
+    -->
+  <style name="MyTheme" parent="MyTheme.Base">
+    <item name="android:windowContentTransitions">true</item>
+    <item name="android:windowAllowEnterTransitionOverlap">true</item>
+    <item name="android:windowAllowReturnTransitionOverlap">true</item>
+    <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+    <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+  </style>
+</resources>
