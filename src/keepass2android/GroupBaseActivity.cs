@@ -180,7 +180,9 @@ namespace keepass2android
 		//TODO protected GroupView GroupView;
 
 		private String strCachedGroupUuid = null;
-		public String UuidGroup {
+	    
+
+	    public String UuidGroup {
 			get {
 				if (strCachedGroupUuid == null) {
 					strCachedGroupUuid = MemUtil.ByteArrayToHexString (Group.Uuid.UuidBytes);
@@ -210,13 +212,17 @@ namespace keepass2android
 			Database db = App.Kp2a.GetDb();
 			if ( db.Dirty.Contains(Group) ) {
 				db.Dirty.Remove(Group);
-				/*TODO BaseAdapter adapter = (BaseAdapter) ListAdapter;
-				adapter.NotifyDataSetChanged();*/
+				ListAdapter.NotifyDataSetChanged();
 				
 			}
 		}
-		
-		/*TODO 
+
+	    public BaseAdapter ListAdapter
+	    {
+            get { return (BaseAdapter) FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter; }
+	    }
+
+	    /*TODO 
          * protected override void OnListItemClick(ListView l, View v, int position, long id) {
 			base.OnListItemClick(l, v, position, id);
 			
@@ -494,12 +500,11 @@ namespace keepass2android
 				if (!String.IsNullOrEmpty(message))
 					Toast.MakeText(this, message, ToastLength.Long).Show();
 
-                /*TODO
-				// Tell the adapter to refresh it's list
+                // Tell the adapter to refresh it's list
 				BaseAdapter adapter = (BaseAdapter)ListAdapter;
 				adapter.NotifyDataSetChanged();
-                */
-				if (App.Kp2a.GetDb().OtpAuxFileIoc != null)
+                
+                if (App.Kp2a.GetDb().OtpAuxFileIoc != null)
 				{
 					var task2 = new SyncOtpAuxFile(App.Kp2a.GetDb().OtpAuxFileIoc);
 					new ProgressTask(App.Kp2a, this, task2).Run();
@@ -556,10 +561,10 @@ namespace keepass2android
 						db.Dirty.Remove(Group);
 
 						// Tell the adapter to refresh it's list
-                        /*TODO
+                        
 						BaseAdapter adapter = (BaseAdapter)ListAdapter;
 						adapter.NotifyDataSetChanged();
-			*/
+			
 			
 					})
 					.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ((Dialog)sender).Dismiss())
@@ -628,9 +633,9 @@ namespace keepass2android
 		{
             
 			ShowInsertElementButtons();
-            /*TODOGroupView.ListView.InvalidateViews();
+            //TODO Required? GroupView.ListView.InvalidateViews();
             BaseAdapter adapter = (BaseAdapter)ListAdapter;
-            adapter.NotifyDataSetChanged();*/
+            adapter.NotifyDataSetChanged();
 		}
 
 		public void ShowInsertElementButtons()
@@ -661,9 +666,9 @@ namespace keepass2android
 			
 			AppTask = new NullTask();
 			AppTask.SetupGroupBaseActivityButtons(this);
-			/*TODO GroupView.ListView.InvalidateViews();
+			//TODO Required? GroupView.ListView.InvalidateViews();
 			BaseAdapter adapter = (BaseAdapter)ListAdapter;
-			adapter.NotifyDataSetChanged();*/
+			adapter.NotifyDataSetChanged();
 		}
 
 
