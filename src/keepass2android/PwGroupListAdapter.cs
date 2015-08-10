@@ -275,6 +275,11 @@ namespace keepass2android
 		public override Java.Lang.Object GetItem(int position) {
 			return position;
 		}
+
+	    public bool IsGroupAtPosition(int position)
+	    {
+	        return position < _groupsForViewing.Count;
+	    }
 		
 		public override long GetItemId(int position) {
 			return position;
@@ -288,6 +293,7 @@ namespace keepass2android
 			} else {
 				return CreateEntryView(position - size, convertView);
 			}
+            //TODO remove right arrow in actionmode
 		}
 		
 		private View CreateGroupView(int position, View convertView) {

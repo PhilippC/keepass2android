@@ -29,7 +29,7 @@ using Android.Content.PM;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden , Theme="@style/NoTitleBar")]		
+    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]		
 	[MetaData("android.app.default_searchable",Value="keepass2android.search.SearchResults")]
 	public class GroupActivity : GroupBaseActivity {
 		
@@ -75,15 +75,10 @@ namespace keepass2android
 
 		public override void SetupNormalButtons()
 		{
-			GroupView.SetNormalButtonVisibility(AddGroupEnabled, AddEntryEnabled);
-			GroupView.Invalidate();
+		    SetNormalButtonVisibility(AddGroupEnabled, AddEntryEnabled);
 		}
 
-		private bool AddGroupEnabled
-		{
-			get { return App.Kp2a.GetDb().CanWrite; }
-		}
-		private bool AddEntryEnabled
+        protected override bool AddEntryEnabled
 		{
 			get { return App.Kp2a.GetDb().CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.GetDb().DatabaseFormat.CanHaveEntriesInRootGroup); }
 		}
@@ -121,26 +116,25 @@ namespace keepass2android
 			
 			if (AddGroupEnabled) {
 				// Add Group button
-				View addGroup = FindViewById (Resource.Id.add_group);
+				View addGroup = FindViewById (Resource.Id.fabAddNewGroup);
 				addGroup.Click += (sender, e) => {
 					GroupEditActivity.Launch (this, Group);
 				};
 			}
 			
-			if (AddEntryEnabled) {
-				// Add Entry button
-				View addEntry = FindViewById (Resource.Id.add_entry);
-				addEntry.Click += (sender, e) => {
-					EntryEditActivity.Launch (this, Group, AppTask);
-
-				};
+			
+            if (AddEntryEnabled) 
+            {
+				View addEntry = FindViewById (Resource.Id.fabAddNewEntry);
+				addEntry.Click += (sender, e) => { EntryEditActivity.Launch (this, Group, AppTask); };
+                 
 			}
 			
 			SetGroupTitle();
 			SetGroupIcon();
 			
-			ListAdapter = new PwGroupListAdapter(this, Group);
-			RegisterForContextMenu(ListView);
+			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
+			/*TODO RegisterForContextMenu(ListView);*/
 			Log.Warn(Tag, "Finished creating group");
 			
 		}

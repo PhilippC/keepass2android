@@ -1,46 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
- 
-     
- This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
-
-  Keepass2Android is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 2 of the License, or
-  (at your option) any later version.
-
-  Keepass2Android is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
--->
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"
-  android:stretchColumns="1">
-	<TableRow android:layout_width="fill_parent"
-	  android:gravity="center_vertical"
-	  android:layout_height="wrap_content">
-		<ImageView android:id="@+id/group_icon"
+  android:paddingLeft="16dp"
+  android:paddingRight="16dp"
+  android:background="@drawable/grouplistitem_selector">
+
+  <RelativeLayout
+    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:layout_weight="0">
+    <ImageView android:id="@+id/group_icon_bkg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+         android:src="@drawable/group_icon_bkg_drawable"/>
+
+    <ImageView android:id="@+id/icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_storage_content"/>
+    
+  <ImageView android:id="@+id/check_mark"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="5dp"
+        android:src="@drawable/checkmark"/>
+
+  </RelativeLayout>
+  <LinearLayout
+    android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:paddingTop="8dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:orientation="vertical">
+    <TextView android:id="@+id/group_text"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"        
 		  android:layout_width="wrap_content"
-		  android:layout_height="wrap_content"
-		  android:padding="5dp"
-		  android:scaleType="fitXY"
-		  android:src="@drawable/ic99_blank"/>
-		<TextView android:id="@+id/group_text"
-		  android:layout_width="wrap_content"
-		  android:layout_height="wrap_content"
+		  android:textColor="#000"
+      android:layout_height="wrap_content"
 		  android:paddingTop="2dp"
-		  android:paddingBottom="2dp"
-		  style="@style/GroupTextLarge"/>
-		<View/>
-		<TextView android:id="@+id/group_label"
+		  android:paddingBottom="2dp"/>
+
+    <TextView android:id="@+id/group_label"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"
-		  style="@style/GroupLabel"
-		  android:text="@string/group"/>
-	</TableRow>
-</TableLayout>
+  	  android:text="@string/group"/>
+
+  </LinearLayout>
+
+  <ImageView android:id="@+id/right_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0"
+        android:src="@drawable/rightarrow"/>
+
+
+
+</LinearLayout>

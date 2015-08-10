@@ -15,42 +15,43 @@
   You should have received a copy of the GNU General Public License
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/menu_search"
-        android:showAsAction="ifRoom"
-        android:actionViewClass="android.widget.SearchView" 
-    />
+        app:showAsAction="ifRoom"
+        app:actionViewClass="android.support.v7.widget.SearchView" 
+    />  
     <item android:id="@+id/menu_search_advanced"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/menu_search_advanced"
-        android:showAsAction="never"
+        app:showAsAction="never"
     />
     <item android:id="@+id/menu_lock"
-        android:icon="@android:drawable/ic_lock_lock"
+        android:icon="@drawable/ic_menu_lock"
         android:title="@string/menu_lock"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
     />
     <item android:id="@+id/menu_donate"
         android:title="@string/menu_donate"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
     />
     <item android:id="@+id/menu_app_settings"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/menu_app_settings"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
     />
 	<item android:id="@+id/menu_sync"
 		  android:icon="@android:drawable/ic_popup_sync"
 			android:title="@string/synchronize_database_menu"
-			android:showAsAction="never"
+    app:showAsAction="never"
     />
 
 	<item android:id="@+id/menu_sort"
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="@string/sort_menu"
-        android:showAsAction="never"
+      app:showAsAction="never"
     />
     
     

@@ -1,15 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-    <ScrollView
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/entry_scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+
+
+    
+  <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+    <!-- Title -->
+    <RelativeLayout
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+    <ImageButton
+        android:id="@+id/icon_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:layout_margin="0dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic00" />
+      <android.support.design.widget.TextInputLayout
+          style="@style/EntryEditSingleLine_TextInputLayout">
+        <EditText
+            android:id="@+id/entry_title"
+            style="@style/EntryEditSingleLine_EditText"
+            android:hint="@string/hint_title"
+        android:singleLine="true"
+      android:capitalize="sentences"/>
+      </android.support.design.widget.TextInputLayout>
+      
+  </RelativeLayout>    
+
+   <!--User--> 
+    <LinearLayout
+        style="@style/EntryEditSingleLine_container">
+      <ImageView
+          style="@style/EntryEditSingleLine_ImageView"
+          android:src="@drawable/ic_entry_username" />
+      <android.support.design.widget.TextInputLayout
+          style="@style/EntryEditSingleLine_TextInputLayout">
+        <EditText
+            style="@style/EntryEditSingleLine_EditText"
+            android:id="@+id/entry_user_name"
+                android:hint="@string/hint_username"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"/>
+      </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+    <!-- password-->
+    <LinearLayout
+        style="@style/EntryEditSingleLine_container">
+      <ImageView
+          style="@style/EntryEditSingleLine_ImageView"
+          android:src="@drawable/ic_entry_password" />
+      <LinearLayout
+ android:layout_width="match_parent"
+android:layout_height="wrap_content"
+ android:orientation="vertical">
         <RelativeLayout
+   android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+          <android.support.design.widget.TextInputLayout
+          style="@style/EntryEditSingleLine_TextInputLayout">
+
+            <EditText
+            android:id="@+id/entry_password"
+            android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+              android:singleLine="true"
+            android:inputType="textPassword"
+            android:hint="password" />
+          </android.support.design.widget.TextInputLayout>
+
+          <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+            <ImageButton
+              android:id="@+id/toggle_password"
+            android:layout_width="wrap_content"
+              android:paddingLeft="8dp"
+              android:paddingRight="8dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_eye_open"
+            android:background="?android:selectableItemBackground" />
+
+            <ImageButton
+              android:id="@+id/generate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+              android:paddingLeft="8dp"
+              android:paddingRight="8dp"
+            android:src="@drawable/ic_plus_button"
+            android:background="?android:selectableItemBackground" />
+
+          </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/entry_confpassword"
+            android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+              android:singleLine="true"
+            android:inputType="textPassword"
+            android:hint="confirm password" />
+      </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- URL -->
+    <LinearLayout
+        style="@style/EntryEditSingleLine_container">
+      <ImageView
+          style="@style/EntryEditSingleLine_ImageView"
+          android:src="@drawable/ic_entry_url" />
+      <android.support.design.widget.TextInputLayout
+          style="@style/EntryEditSingleLine_TextInputLayout">
+        <EditText
+            style="@style/EntryEditSingleLine_EditText"
+            android:id="@+id/entry_url"
+                android:hint="@string/hint_url"
+                android:inputType="textUri"
+                android:singleLine="true"
+                />
+      </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Comments -->
+    <LinearLayout
+        style="@style/EntryEditSingleLine_container">
+      <ImageView
+          style="@style/EntryEditSingleLine_ImageView"
+          android:src="@drawable/ic_entry_comments" />
+      <android.support.design.widget.TextInputLayout
+          style="@style/EntryEditSingleLine_TextInputLayout">
+        <EditText
+            style="@style/EntryEditSingleLine_EditText"
+            android:id="@+id/entry_comment"
+                android:hint="@string/hint_comment"
+                android:inputType="textMultiLine"
+                />
+      </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+    android:id="@+id/entry_binaries_label"
+            style="@style/EntryEditSingleLine_container">
+      <ImageView
+          style="@style/EntryEditSingleLine_ImageView"
+          android:src="@drawable/ic_entry_extras" />
+
+      <LinearLayout
+
+        android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+        <!-- Extra strings -->
+        <LinearLayout
+            android:id="@+id/advanced_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+        <Button
+            android:id="@+id/add_advanced"
+            style="@style/EditEntryButton"
+            android:layout_marginTop="-4dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_plus_button"
+            android:text="@string/add_extra_string" />
+      </LinearLayout>
+    </LinearLayout>
+    <!-- file attachments -->
+    <LinearLayout
+    android:id="@+id/entry_binaries_label"
+            style="@style/EntryEditSingleLine_container">
+    <ImageView
+        style="@style/EntryEditSingleLine_ImageView"
+        android:src="@drawable/ic_entry_attachments" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+
+      <!-- file attachments -->
+      <TextView
+          android:id="@+id/entry_binaries_label"      
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/entry_binaries"
+           />
+  
+            <LinearLayout
+                android:id="@+id/binaries"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Tags -->
+    <LinearLayout
+        style="@style/EntryEditSingleLine_container">
+      <ImageView
+          style="@style/EntryEditSingleLine_ImageView"
+          android:src="@drawable/ic_entry_tags" />
+      <android.support.design.widget.TextInputLayout
+          style="@style/EntryEditSingleLine_TextInputLayout">
+        <EditText
+            style="@style/EntryEditSingleLine_EditText"
+            android:id="@+id/entry_tags"
+                android:hint="@string/hint_tags"
+                android:inputType="text"
+                android:singleLine="true"
+                />
+      </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+    
+    <!-- Override URL -->
+    <LinearLayout
+      android:id="@+id/entry_override_url_container"
+        style="@style/EntryEditSingleLine_container">
+      <ImageView
+          style="@style/EntryEditSingleLine_ImageView"
+          android:src="@drawable/ic_entry_url" />
+      <android.support.design.widget.TextInputLayout
+          style="@style/EntryEditSingleLine_TextInputLayout">
+        <EditText
+            style="@style/EntryEditSingleLine_EditText"
+                android:id="@+id/entry_override_url"
+                android:hint="@string/hint_override_url"
+                android:inputType="textUri"
+                android:singleLine="true"
+                />
+      </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+
+    <!--expires-->
+    <LinearLayout
+        style="@style/EntryEditSingleLine_container">
+      <ImageView
+          style="@style/EntryEditSingleLine_ImageView"
+          android:layout_width ="40dp"
+          android:layout_height ="40dp"
+          android:src="@drawable/ic_entry_expires" />
+      <LinearLayout
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+        <TextView
+        android:id="@+id/entry_group_name_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/entry_expires"
+        style="@style/EntryFieldHeader"
+        android:layout_marginBottom="-4dp"
+          />
+
+        <LinearLayout
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+
+          <CheckBox
+              android:id="@+id/entry_expires_checkbox"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="-8dp"
+              android:layout_gravity="center_vertical" />
+
+
+          <EditText
+              android:id="@+id/entry_expires"
+              android:layout_marginLeft="-4dip"
+              android:layout_marginRight="12dip"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content" />
+        </LinearLayout>
+      </LinearLayout>
+    </LinearLayout>
+
+    <!--<RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-        <!-- Title -->
+          
+        -->
+    <!-- Title -->
+    <!--
             <ImageButton
                 android:id="@+id/icon_button"
                 android:layout_width="wrap_content"
@@ -26,29 +322,36 @@
                 android:layout_toLeftOf="@+id/icon_button"
                 android:hint="@string/hint_title"
                 android:singleLine="true" />
-        <!-- Username -->
+        -->
+    <!-- Username -->
+    <!--
             <EditText
-                android:id="@+id/entry_user_name"
+                
                 style="@style/TextAppearance_EditEntry_Value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dip"
                 android:layout_below="@id/icon_button"
+                android:id="@+id/entry_user_name"
                 android:hint="@string/hint_username"
                 android:inputType="textEmailAddress"
                 android:singleLine="true" />
-        <!-- URL -->
+        -->
+    <!-- URL -->
+    <!--
             <EditText
-                android:id="@+id/entry_url"
                 style="@style/TextAppearance_EditEntry_Value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dip"
                 android:layout_below="@id/entry_user_name"
+                android:id="@+id/entry_url"
                 android:hint="@string/hint_url"
                 android:inputType="textUri"
                 android:singleLine="true" />
-        <!-- Password -->
+        -->
+    <!-- Password -->
+    <!--
             <TextView
                 android:id="@+id/entry_password_label"
                 style="@style/TextAppearance_EditEntry_LabelSmall"
@@ -87,7 +390,9 @@
 			android:inputType="textPassword"
 			android:singleLine="true"
 			android:typeface="monospace" />
-		<!-- Confirm Password -->
+		-->
+    <!-- Confirm Password -->
+    <!--
 		<EditText
 			android:id="@+id/entry_confpassword"
 			style="@style/TextAppearance_EditEntry_Value"
@@ -100,7 +405,9 @@
 			android:typeface="monospace" />
 
 		</RelativeLayout>
-        <!-- Comment -->
+        -->
+    <!-- Comment -->
+    <!--
             <TextView
                 android:id="@+id/entry_comment_label"
                 style="@style/TextAppearance_EditEntry_LabelSmall"
@@ -109,14 +416,16 @@
                 android:layout_below="@id/password_section"
                 android:text="@string/entry_comment" />
             <EditText
-                android:id="@+id/entry_comment"
                 style="@style/TextAppearance_EditEntry_Value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/entry_comment_label"
+                android:id="@+id/entry_comment"
                 android:hint="@string/hint_comment"
                 android:inputType="textMultiLine" />
-        <!-- Extra strings -->
+        -->
+    <!-- Extra strings -->
+    <!--
             <LinearLayout
                 android:id="@+id/advanced_container"
                 android:layout_width="fill_parent"
@@ -132,7 +441,9 @@
                 android:layout_below="@id/advanced_container"
                 android:drawableLeft="?attr/ic_menu_add_field"
                 android:text="@string/add_extra_string" />
-        <!-- file attachments -->
+        -->
+    <!-- file attachments -->
+    <!--
             <TextView
                 android:id="@+id/entry_binaries_label"
                 style="@style/TextAppearance_EditEntry_LabelSmall"
@@ -146,7 +457,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/entry_binaries_label"
                 android:orientation="vertical" />
-        <!-- Tags -->
+        -->
+    <!-- Tags -->
+    <!--
             <TextView
                 android:id="@+id/entry_tags_label"
                 style="@style/TextAppearance_EditEntry_LabelSmall"
@@ -155,15 +468,18 @@
                 android:layout_below="@id/binaries"
                 android:text="@string/entry_tags" />
             <EditText
-                android:id="@+id/entry_tags"
+                
                 style="@style/TextAppearance_EditEntry_Value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/entry_tags_label"
+                android:id="@+id/entry_tags"
                 android:hint="@string/hint_tags"
                 android:inputType="text"
                 android:singleLine="true" />
-        <!-- Override URL -->
+        -->
+    <!-- Override URL -->
+    <!--
             <TextView
                 android:id="@+id/entry_override_url_label"
                 style="@style/TextAppearance_EditEntry_LabelSmall"
@@ -177,10 +493,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/entry_override_url_label"
+                android:id="@+id/entry_override_url"
                 android:hint="@string/hint_override_url"
                 android:inputType="textUri"
                 android:singleLine="true" />
-        <!-- Expires -->
+        -->
+    <!-- Expires -->
+    <!--
             <TextView
                 android:id="@+id/entry_expires_label"
                 style="@style/TextAppearance_EditEntry_LabelSmall"
@@ -202,6 +521,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/entry_expires_label"
                 android:layout_toRightOf="@id/entry_expires_checkbox" />
-        </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+        </RelativeLayout>-->
+  </LinearLayout>
+</ScrollView>

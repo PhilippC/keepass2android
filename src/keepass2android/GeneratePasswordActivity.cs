@@ -26,7 +26,7 @@ using Android.Widget;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar")]			
 	public class GeneratePasswordActivity : LockCloseActivity {
 		private readonly int[] _buttonIds  = new[]  {Resource.Id.btn_length6, Resource.Id.btn_length8, Resource.Id.btn_length12, Resource.Id.btn_length16};
 		

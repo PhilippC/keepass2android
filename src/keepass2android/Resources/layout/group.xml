@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true">
+  <!-- activity view -->
+  <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal" />
+    <RelativeLayout
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:baselineAligned="false">
+      <Button
+        android:id="@+id/insert_element"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:text="Insert here"
+				style="@style/BottomBarButton" />
+      <Button
+        android:id="@+id/cancel_insert_element"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:text="Cancel"
+				style="@style/BottomBarButton" />
+    </RelativeLayout>
+    <View
+					android:id="@+id/divider2"
+					android:layout_width="fill_parent"
+					android:layout_height="1dp"
+					android:layout_above="@id/bottom_bar"
+					android:background="#b8b8b8" />
+  
+  <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+    <fragment
+        android:name="keepass2android.GroupListFragment"
+        android:id="@+id/list_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabCancelAddNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom|right"
+                android:visibility="gone"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+    
+    <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabAddNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom|right"
+                android:src="@drawable/ic_plus" />
+    
+      
+      <android.support.design.widget.FloatingActionButton
+          android:id="@+id/fabAddNewGroup"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end|top"
+          android:src="@drawable/ic_fab_folder"
+          android:layout_marginBottom="72dp"
+          android:visibility="gone"
+          app:layout_anchor="@id/fabAddNew"
+          app:layout_anchorGravity="bottom|right|end" />
+      <android.support.design.widget.FloatingActionButton
+          android:id="@+id/fabAddNewEntry"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end|top"
+          android:src="@drawable/ic_fab_entry"
+          android:layout_marginBottom="144dp"
+          android:visibility="gone"
+          app:layout_anchor="@id/fabAddNew"
+          app:layout_anchorGravity="bottom|right|end" />
+
+  </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
+  
+  <android.support.design.widget.NavigationView
+      android:id="@+id/nav_view"
+      android:layout_height="match_parent"
+      android:layout_width="wrap_content"
+      android:layout_gravity="start"
+      android:fitsSystemWindows="true"
+      app:headerLayout="@layout/nav_header" />
+</android.support.v4.widget.DrawerLayout>
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal" />
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:divider="?android:attr/dividerVertical"
+        android:showDividers="middle"
+        android:layout_alignParentBottom="true"
+        android:dividerPadding="12dp"
+        android:baselineAligned="false">
+        <FrameLayout
+            android:id="@+id/add_group"
+            style="?android:attr/actionButtonStyle"
+            android:layout_width="0dp"can
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="20dp"
+                android:drawableLeft="?attr/NewGroupDrawable"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/add_group" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/add_entry"
+            style="?android:attr/actionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackground"
+			android:clickable="true"
+            android:layout_weight="1">
+            <TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="20dp"
+                android:drawableLeft="?attr/NewEntryDrawable"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/add_entry" />
+        </FrameLayout>
+		<FrameLayout
+            android:id="@+id/insert_element"
+            style="?android:attr/actionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+			<TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="20dp"
+                android:drawableLeft="?attr/NewGroupDrawable"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/insert_element_here" />
+		</FrameLayout>
+		<FrameLayout
+            android:id="@+id/cancel_insert_element"
+            style="?android:attr/actionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+			<TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="20dp"
+                android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/cancel" />
+		</FrameLayout>
+    </LinearLayout>
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/bottom_bar"
+        android:background="#e0e0e0" />
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/divider2"
+        android:layout_below="@id/top"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp" />
+</RelativeLayout>
+-->

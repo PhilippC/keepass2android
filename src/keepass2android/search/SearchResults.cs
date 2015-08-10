@@ -29,13 +29,13 @@ namespace keepass2android.search
 	/// <summary>
 	/// Activity to show search results
 	/// </summary>
-	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar", LaunchMode=Android.Content.PM.LaunchMode.SingleTop)]
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]
 	[MetaData("android.app.searchable",Resource=AppNames.Searchable)]
 	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
 	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]
 	public class SearchResults : GroupBaseActivity
 	{
-		protected override void OnCreate (Bundle bundle)
+	    protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			
@@ -46,10 +46,20 @@ namespace keepass2android.search
 			SetResult(KeePass.ExitNormal);
 
 			ProcessIntent(Intent);
-			RegisterForContextMenu(ListView);
+			//TODO RegisterForContextMenu(ListView);
 		}
 
-		protected override void OnNewIntent(Intent intent)
+	    protected override bool AddEntryEnabled
+	    {
+	        get { return false; }
+	    }
+        protected override bool AddGroupEnabled
+        {
+            get { return false; }
+        }
+
+
+	    protected override void OnNewIntent(Intent intent)
 		{
 			ProcessIntent(intent);
 		}
@@ -89,12 +99,12 @@ namespace keepass2android.search
 			}
 
 			if ( Group == null || (!Group.Entries.Any()) ) {
-				SetContentView(new GroupEmptyView(this));
+                SetContentView(Resource.Layout.group_empty);
 			} 
 
 			SetGroupTitle();
 			
-			ListAdapter = new PwGroupListAdapter(this, Group);
+			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 		}
 
 		private SearchParameters getSearch(Intent queryIntent) {

@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:paddingTop="1dip"
-    android:gravity="center_vertical"
-    android:layout_height="wrap_content">
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:paddingTop="1dip"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+
+  <Button
+      android:id="@+id/edit_extra"
+      android:text="…"
+      android:layout_width="40dp"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:layout_marginRight="0dip"
+      android:layout_alignParentRight="true"
+                    />
+  <LinearLayout
+    android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    android:layout_toLeftOf="@id/edit_extra">
     <EditText
         android:id="@+id/title"
         android:singleLine="true"
@@ -13,9 +27,10 @@
         style="@style/TextAppearance_EditEntry_Value"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="0.4"
         android:gravity="top|left"
-        android:layout_marginRight="0dip" />
+        android:layout_marginRight="0dip"
+        android:layout_marginLeft="0dip"/>
     <EditText
         android:id="@+id/value"
         android:hint="@string/field_value"
@@ -23,20 +38,14 @@
         style="@style/TextAppearance_EditEntry_Value"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
+        android:layout_weight="0.6"
         android:gravity="top|left"
         android:layout_marginRight="0dip" />
-	<CheckBox
+    <CheckBox
         android:id="@+id/protection"
         android:layout_width="0dip"
         android:layout_height="0dip"
 		 android:visibility="gone"
         android:text="@string/protection"/>
-    <Button
-        android:id="@+id/edit_extra"
-        android:text="…" 
-		android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-		android:layout_marginRight="8dip" />
-</LinearLayout>
+  </LinearLayout>
+</RelativeLayout>

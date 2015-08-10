@@ -43,5 +43,5 @@
 	<style name="ThemeLight" parent="BaseLight"></style>
 	
 	<!-- "default" for Preference activity etc.:-->
-	<style name="NoTitleBar" parent="BaseLight"></style>
+<!--	<style name="NoTitleBar" parent="BaseLight"></style> -->
 </resources>

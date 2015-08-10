@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/menu_edit"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/menu_edit"
+        android:showAsAction="always"
+    />
+  <item android:id="@+id/menu_delete"
+        android:icon="@drawable/ic_menu_delete"
+        android:title="@string/menu_delete"
+        android:showAsAction="always"
+    />
+<item android:id="@+id/menu_move"
+        android:icon="@drawable/ic_menu_cut"
+        android:title="@string/menu_move"
+        android:showAsAction="always"
+    />
+  <item android:id="@+id/menu_navigate"
+        android:icon="@drawable/ic_menu_navigate"
+        android:title="@string/menu_navigate"
+        android:showAsAction="always"
+    />
+
+</menu>

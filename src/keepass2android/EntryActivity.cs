@@ -44,7 +44,8 @@ using Uri = Android.Net.Uri;
 namespace keepass2android
 {
 
-	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/NoTitleBar")]			
+	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden,
+        Theme = "@style/MyTheme_ActionBar")]
 	public class EntryActivity : LockCloseActivity 
 	{
 		public const String KeyEntry = "entry";
@@ -125,29 +126,7 @@ namespace keepass2android
 			
 		}
 
-		protected void SetupMoveButtons() {
-			View moveView =  FindViewById(Resource.Id.entry_move);
-			/* Disabled for simpler UI. Wait if users demand that button.
-			if (App.Kp2a.GetDb().CanWrite)
-			{
-				moveView.Visibility = ViewStates.Visible;
-				moveView.Click += (sender, e) =>
-				{
-					NavigateToFolderAndLaunchMoveElementTask navMoveTask = 
-						new NavigateToFolderAndLaunchMoveElementTask(Entry.ParentGroup,Entry.Uuid, false);
-					navMoveTask.SetActivityResult(this, KeePass.ExitNormal );
-					Finish();
-
-				};	
-			}
-			else*/
-			{
-				moveView.Visibility = ViewStates.Gone;
-			}
-
-		}
-
-
+		
 		private class PluginActionReceiver : BroadcastReceiver
 		{
 			private readonly EntryActivity _activity;
@@ -328,9 +307,10 @@ namespace keepass2android
 
 			_showPassword =
 				!prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
-
+            
+            RequestWindowFeature(WindowFeatures.IndeterminateProgress);
 			base.OnCreate(savedInstanceState);
-			RequestWindowFeature(WindowFeatures.IndeterminateProgress);
+			
 
 			new ActivityDesign(this).ApplyTheme();
 
@@ -375,8 +355,7 @@ namespace keepass2android
 			FillData();
 
 			SetupEditButtons();
-			SetupMoveButtons ();
-
+			
 			App.Kp2a.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.GetDb().KpDatabase);
 
 			_pluginActionReceiver = new PluginActionReceiver(this);
@@ -455,12 +434,14 @@ namespace keepass2android
 		private void PopulateExtraStrings()
 		{
 			ViewGroup extraGroup = (ViewGroup) FindViewById(Resource.Id.extra_strings);
+		    bool hasExtras = false;
 			foreach (var pair in Entry.Strings.Where(pair => !PwDefs.IsStandardField(pair.Key)).OrderBy(pair => pair.Key))
 			{
+			    hasExtras = true;
 				var stringView = CreateExtraSection(pair.Key, pair.Value.ReadString(), pair.Value.IsProtected);
 				extraGroup.AddView(stringView.View);
 			}
-
+            FindViewById(Resource.Id.extra_strings_container).Visibility = hasExtras ? ViewStates.Visible : ViewStates.Gone;
 		}
 
 		private ExtraStringView CreateExtraSection(string key, string value, bool isProtected)
@@ -690,7 +671,7 @@ namespace keepass2android
 		protected void FillData()
 		{
 			_protectedTextViews = new List<TextView>();
-			ImageView iv = (ImageView) FindViewById(Resource.Id.entry_icon);
+			ImageView iv = (ImageView) FindViewById(Resource.Id.icon);
 			if (iv != null)
 			{
 				iv.SetImageDrawable(Resources.GetDrawable(Resource.Drawable.ic00));
@@ -698,8 +679,9 @@ namespace keepass2android
 
 
 
-			ActionBar.Title = Entry.Strings.ReadSafe(PwDefs.TitleField);
-			ActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.Title = Entry.Strings.ReadSafe(PwDefs.TitleField);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
 
 			PopulateGroupText (Resource.Id.entry_group_name, Resource.Id.entryfield_group_container, KeyGroupFullPath);
 
@@ -911,6 +893,8 @@ namespace keepass2android
 			Util.PrepareDonateOptionMenu(menu, this);
 			return base.OnPrepareOptionsMenu(menu);
 		}
+
+        
 
 		
 

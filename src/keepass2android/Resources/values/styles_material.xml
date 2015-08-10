@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
+
+  Keepass2Android is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  Keepass2Android is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="BottomBarButton" parent="@style/Widget.AppCompat.Button.Borderless">
+    <item name="android:textSize">16sp</item>
+    <item name="android:layout_margin">6dp</item>
+    <item name="android:layout_marginLeft">4dp</item>
+    <item name="android:layout_marginRight">4dp</item>
+    <item name="android:paddingBottom">10dp</item>
+    <item name="android:paddingTop">10dp</item>
+    <item name="android:paddingLeft">8dp</item>
+    <item name="android:paddingRight">8dp</item>
+    <item name="android:textColor">#2196f3</item>
+
+  </style>
+
+  <style name="NavDrawerButton" parent="@style/Widget.AppCompat.Button.Borderless">
+    <item name="android:textSize">14sp</item>
+    <item name="android:layout_margin">0dp</item>
+    <item name="android:layout_marginLeft">16dp</item>
+    <item name="android:layout_marginRight">16dp</item>
+    <item name="android:paddingBottom">5dp</item>
+    <item name="android:paddingTop">5dp</item>
+    <item name="android:paddingLeft">8dp</item>
+    <item name="android:paddingRight">8dp</item>
+    <item name="android:drawablePadding">16dp</item>
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:gravity">left|center_vertical</item>
+
+
+
+  </style>
+  
+  <style name="SplashScreenButton" parent="@style/Widget.AppCompat.Button"	>
+    <item name="android:textSize">16sp</item>
+    <item name="android:layout_height">40sp</item>
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:background">@drawable/splash_button_bg</item>
+    <item name="android:layout_marginTop">8dp</item>
+    <item name="android:layout_marginBottom">8dp</item>
+    <item name="android:paddingLeft">16dp</item>
+    <item name="android:drawablePadding">10dp</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:gravity">left|center_vertical</item>
+    <item name="android:textColor">#737373</item>
+  </style>
+
+  <style name="EntryEditSingleLine_ImageView">
+    <item name="android:layout_width">40dp</item>
+    <item name="android:layout_gravity">top</item>
+    <item name="android:layout_marginRight">16dp</item>
+    <item name="android:layout_marginTop">16dp</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_weight">0</item>
+  </style>
+  <style name="EntryEditSingleLine_TextInputLayout">
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_weight">1</item>
+  </style>
+  <style name="EntryEditSingleLine_EditText">
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:paddingTop">0dp</item>
+  </style>
+  <style name="EntryEditSingleLine_container">
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginTop">8dp</item>
+    <item name="android:orientation">horizontal</item>
+    <item name="android:gravity">center_vertical</item>
+  </style>
+  
+  <style name="MyTheme" parent="MyTheme.Base">
+    <item name="actionModeBackground">@color/appAccentColor</item>
+  </style>
+
+
+  <!--style name="MyTheme.ActionMode" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <item name="actionModeBackground">#FFFFFF</item>
+  </style-->
+
+
+  <style name="MyTheme_ActionBar" parent="MyTheme_ActionBar.Base">
+    <item name="actionModeBackground">@color/appAccentColor</item>
+  </style>
+  <!-- Base theme applied no matter what API -->
+  
+  <style name="MyTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="TextColorGroup">?android:attr/textColorPrimary</item>
+    <item name="TextColorHeader">?android:attr/textColorPrimary</item>
+    <item name="TextColorItem">?android:attr/textColorSecondary</item>
+
+    <item name="CancelDrawable">@android:drawable/ic_menu_close_clear_cancel</item>
+
+    <item name="AddFieldDrawable">@drawable/ic_menu_add_field_holo_light</item>
+    <item name="NewGroupDrawable">@drawable/btn_new_group</item>
+    <item name="NewEntryDrawable">@drawable/device_access_new_account</item>
+    <item name="OpenFileDrawable">@drawable/collections_collection</item>
+    <item name="CreateDbDrawable">@drawable/collections_new_label</item>
+    <item name="OpenUrlDrawable">@drawable/location_web_site</item>
+    <item name="ic_menu_add_field">@drawable/ic_menu_add_field_holo_light</item>
+    <item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
+    <item name="ic_action_search_drawable">@drawable/ic_action_search</item>
+    <item name="NavigationAcceptDrawable">@drawable/navigation_accept</item>
+
+
+    <item name="android:windowNoTitle">true</item>
+    <!--We will be using the toolbar so no need to show ActionBar-->
+    <item name="windowActionBar">false</item>
+    <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
+    <!-- colorPrimary is used for the default action bar background -->
+    <item name="colorPrimary">@color/appPrimaryColor</item>
+    <!-- colorPrimaryDark is used for the status bar -->
+    <item name="colorPrimaryDark">@color/appPrimaryDarkColor</item>
+    <!-- colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets -->
+    <item name="colorAccent">@color/appAccentColor</item>
+    <!-- You can also set colorControlNormal, colorControlActivated
+         colorControlHighlight and colorSwitchThumbNormal. -->
+    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+  </style>
+
+
+  <style name="MyTheme_ActionBar.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:windowNoTitle">true</item>
+    <item name="windowActionBar">true</item>
+    <item name="colorPrimary">@color/appPrimaryColor</item>
+    <item name="colorPrimaryDark">@color/appPrimaryDarkColor</item>
+    <item name="colorAccent">@color/appAccentColor</item>
+    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+    <item name="actionModeBackground">@color/appPrimaryDarkColor</item>
+  </style>
+
+
+  <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+    <item name="spinBars">true</item>
+    <item name="color">@android:color/white</item>
+  </style>
+
+  <style name="GroupDetailInSearchResult">
+    <item name="@android:textStyle">italic</item>
+  </style>
+
+  <style name="Base_Dialog" parent="Theme.AppCompat.Light.Dialog" />
+  <style name="Dialog" parent="Base_Dialog"></style>
+
+</resources>

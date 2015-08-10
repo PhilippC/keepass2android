@@ -24,7 +24,7 @@ using Android.Util;
 
 namespace keepass2android.view
 {
-	
+/*TODO Remove	
 	public class GroupEmptyView : RelativeLayout {
 
 		public GroupEmptyView (IntPtr javaReference, JniHandleOwnership transfer)
@@ -52,6 +52,6 @@ namespace keepass2android.view
 		
 		
 	}
-
+    */
 }
 

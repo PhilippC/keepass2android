@@ -24,7 +24,7 @@ using Android.Widget;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar")]			
 	public class IconPickerActivity : LockCloseActivity
 	{
 		public const String KeyIconId = "icon_id";

@@ -1,4 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent">
+  <LinearLayout
+      android:id="@+id/top"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:orientation="horizontal" />
+  <RelativeLayout
+              android:id="@+id/bottom_bar"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:layout_alignParentBottom="true"
+              android:baselineAligned="false">
+    <Button
+           android:text="@string/QuickUnlock_button"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           style="@style/BottomBarButton"
+           android:layout_alignParentRight="true"
+           android:id="@+id/QuickUnlock_button"
+     />
+    <Button
+        android:text="@string/QuickUnlock_lockButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BottomBarButton" 
+        android:id="@+id/QuickUnlock_buttonLock"
+        android:layout_alignParentLeft="true"
+         />
+    
+  </RelativeLayout>
+  <View
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/bottom_bar"
+        android:background="#b8b8b8" />
+
+  <android.support.design.widget.CoordinatorLayout
+          android:id="@+id/main_content"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_above="@id/divider2"
+          android:layout_below="@id/top"
+          android:fitsSystemWindows="true">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_backdrop_height"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:fitsSystemWindows="true">
+      <android.support.design.widget.CollapsingToolbarLayout
+          android:id="@+id/collapsing_toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:layout_scrollFlags="scroll|exitUntilCollapsed"
+          android:fitsSystemWindows="true"
+          app:contentScrim="?attr/colorAccent"
+          app:expandedTitleMarginStart="16dp"
+          app:expandedTitleMarginEnd="24dp"
+          app:expandedTitleMarginBottom="20sp">
+        <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:fitsSystemWindows="true"
+            android:layout_height="fill_parent">
+          <ImageView
+              android:id="@+id/backdrop"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:scaleType="centerCrop"
+              android:fitsSystemWindows="true"
+              android:src="@drawable/toolbar_bg_quickunlock"
+              app:layout_collapseMode="parallax" />
+          <TextView
+              android:id="@+id/qu_filename"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentBottom="true"
+              android:layout_marginBottom="4sp"
+              android:layout_marginLeft="16dp"
+              android:textSize="10sp"
+              android:text="/storage/emulated/0/keepass/keepass/database.kdbx" />
+        </RelativeLayout>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_collapseMode="pin" />
+      </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+      <LinearLayout
+          android:id="@+id/main_content"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+android:paddingLeft="16dp"
+android:paddingRight="16dp"
+          android:paddingTop="16dp">
+
+
+        <TextView
+                android:id="@+id/QuickUnlock_label"
+                android:text="@string/QuickUnlock_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/qu_filename"
+                android:textSize="14sp"
+                />
+        
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <EditText
+            android:inputType="textPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="4"
+            android:layout_below="@id/QuickUnlock_label"
+            android:id="@+id/QuickUnlock_password"
+            android:textSize="20sp"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+          
+            <ImageButton
+              android:id="@+id/unlock_img_button"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="16dp"
+              android:src="@drawable/ic_unlock"
+              android:background="?android:selectableItemBackground" />
+
+        </LinearLayout>
+
+      
+        <View
+        android:id="@+id/spacing"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:background="#0000" />
+
+      </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+  </android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>
+<!--
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -67,4 +226,4 @@
             android:background="@drawable/RedButton"
             android:layout_marginLeft="5dp" />
     </LinearLayout>
-</RelativeLayout>
+</RelativeLayout>-->

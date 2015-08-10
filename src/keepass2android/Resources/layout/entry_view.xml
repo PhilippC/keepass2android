@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+  <ScrollView
+    android:id="@+id/entry_scroll"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:scrollbarStyle="insideOverlay">
+    <keepass2android.view.EntryContentsView
+        android:id="@+id/entry_contents"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent" />
+  </ScrollView>
+
+  <android.support.design.widget.FloatingActionButton
+              android:id="@+id/entry_edit"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="end|bottom|right"
+              android:src="@drawable/ic_fab_edit" />
+</android.support.design.widget.CoordinatorLayout>
+<!--
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
@@ -39,37 +65,37 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
-        <!-- TODO: Modify move icon -->
-            <TextView
-                style="?android:actionBarTabTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingRight="20dp"
-                android:drawableLeft="?attr/NewEntryDrawable"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:text="@string/menu_move_light" />
-        </FrameLayout>
-    </LinearLayout>
-    <ImageView
-        android:id="@+id/entry_divider2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/bottom_bar"
-        android:scaleType="fitXY"
-        android:tint="@color/blue_highlight"
-        android:src="@android:drawable/divider_horizontal_bright" />
-    <ScrollView
-        android:id="@+id/entry_scroll"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@id/entry_divider2"
-        android:fillViewport="true"
-        android:scrollbarStyle="insideOverlay">
-        <keepass2android.view.EntryContentsView
-            android:id="@+id/entry_contents"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent" />
-    </ScrollView>
-</RelativeLayout>
+        
+<TextView
+    style="?android:actionBarTabTextStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:paddingRight="20dp"
+    android:drawableLeft="?attr/NewEntryDrawable"
+    android:drawablePadding="8dp"
+    android:gravity="center_vertical"
+    android:text="@string/menu_move_light" />
+</FrameLayout>
+</LinearLayout>
+<ImageView
+    android:id="@+id/entry_divider2"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@id/bottom_bar"
+    android:scaleType="fitXY"
+    android:tint="@color/blue_highlight"
+    android:src="@android:drawable/divider_horizontal_bright" />
+<ScrollView
+    android:id="@+id/entry_scroll"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_above="@id/entry_divider2"
+    android:fillViewport="true"
+    android:scrollbarStyle="insideOverlay">
+  <keepass2android.view.EntryContentsView
+      android:id="@+id/entry_contents"
+      android:layout_height="wrap_content"
+      android:layout_width="fill_parent" />
+</ScrollView>
+</RelativeLayout>-->

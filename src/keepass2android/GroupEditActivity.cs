@@ -73,6 +73,7 @@ namespace keepass2android
 			SetContentView (Resource.Layout.group_edit);
 
 			ImageButton iconButton = (ImageButton)FindViewById (Resource.Id.icon_button);
+            iconButton.SetScaleType(ImageView.ScaleType.FitXy);
 			iconButton.Click += (sender, e) => 
 			{
 				IconPickerActivity.Launch (this);

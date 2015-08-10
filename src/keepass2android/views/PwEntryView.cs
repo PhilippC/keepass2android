@@ -25,9 +25,10 @@ using Android.Text;
 using Android.Text.Style;
 using Android.Preferences;
 
+
 namespace keepass2android.view
 {
-	public sealed class PwEntryView : ClickView
+	public sealed class PwEntryView : GroupListItemView
 	{
 		private readonly GroupBaseActivity _groupActivity;
 		private PwEntry _entry;
@@ -88,7 +89,7 @@ namespace keepass2android.view
 
 			PopulateView(ev, pw, pos);
 			
-			LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.FillParent, ViewGroup.LayoutParams.WrapContent);
+			LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
 			
 			AddView(ev, lp);
 			
@@ -99,7 +100,7 @@ namespace keepass2android.view
 			_entry = pw;
 			_pos = pos;
 			
-			ImageView iv = (ImageView)ev.FindViewById(Resource.Id.entry_icon);
+			ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
 			if (isExpired)
 			{
@@ -172,17 +173,13 @@ namespace keepass2android.view
 			PopulateView(this, pw, pos);
 		}
 
-		public override void OnClick()
-		{
-			LaunchEntry();
-		}
 		
 		private void LaunchEntry()
 		{
 			_groupActivity.LaunchActivityForEntry(_entry, _pos);
 			_groupActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
 		}
-		
+		/*
 		public override void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo)
 		{
 			menu.Add(0, MenuOpen, 0, Resource.String.menu_open);
@@ -226,7 +223,11 @@ namespace keepass2android.view
 			}
 		}
 
-		
+		*/
+	    public override void OnClick()
+	    {
+	        LaunchEntry();
+	    }
 	}
 }
 

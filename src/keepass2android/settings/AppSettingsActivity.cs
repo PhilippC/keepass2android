@@ -28,7 +28,7 @@ namespace keepass2android
 	/// <summary>
 	/// Activity to configure the application, without database settings. Does not require an unlocked database, or close when the database is locked
 	/// </summary>
-	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar")]			
 	public class AppSettingsActivity : LockingPreferenceActivity
 	{
 		private ActivityDesign _design;

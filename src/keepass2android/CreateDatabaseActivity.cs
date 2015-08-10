@@ -19,7 +19,7 @@ namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 			   ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
-			   Theme = "@style/Base")]
+               Theme = "@style/MyTheme_ActionBar")]
 	public class CreateDatabaseActivity : Activity
 	{
 		private IOConnectionInfo _ioc;

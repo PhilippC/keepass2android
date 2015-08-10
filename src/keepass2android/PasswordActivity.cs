@@ -34,6 +34,11 @@ using Java.Net;
 using Android.Preferences;
 using Android.Text;
 using Android.Content.PM;
+using Android.Graphics;
+using Android.Support.Design.Widget;
+using Android.Support.V4.Widget;
+using Android.Support.V7.App;
+using keepass2android;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -41,22 +46,24 @@ using Keepass2android.Pluginsdk;
 using OtpKeyProv;
 using keepass2android.Io;
 using keepass2android.Utils;
-using Exception = System.Exception;
+
 using File = Java.IO.File;
 using FileNotFoundException = Java.IO.FileNotFoundException;
-using MemoryStream = System.IO.MemoryStream;
+
 using Object = Java.Lang.Object;
 using Process = Android.OS.Process;
-using String = System.String;
+
 using KeeChallenge;
+using AlertDialog = Android.App.AlertDialog;
 
 namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
 		LaunchMode = LaunchMode.SingleInstance,
-		Theme = "@style/Base")]
-	public class PasswordActivity : LockingActivity {
+        Theme = "@style/MyTheme")] /*caution: also contained in AndroidManifest.xml*/
+	//TODO: rotating device crashes the app
+    public class PasswordActivity : LockingActivity {
 
 		enum KeyProviders
 		{
@@ -144,9 +151,13 @@ namespace keepass2android
 		private ActivityDesign _design;
 		private bool _performingLoad;
 		private bool _keepPasswordInOnResume;
+	    private Typeface _passwordFont;
+
+        private ActionBarDrawerToggle mDrawerToggle;
+	    private DrawerLayout _drawerLayout;
 
 
-		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
+	    public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 			_design = new ActivityDesign(this);
@@ -300,6 +311,8 @@ namespace keepass2android
 					{
 						if (KeyProviderType == KeyProviders.KeyFile)
 						{
+                            //TODO: if the user has not yet selected a keyfile, _keyFileOrProvider is empty which 
+                            //gives an (unhandled) exception here
 							var iocKeyfile = IOConnectionInfo.UnserializeFromString(_keyFileOrProvider);
 
 							App.Kp2a.GetFileStorage(iocKeyfile)
@@ -678,8 +691,7 @@ namespace keepass2android
 				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
 			}
 
-
-
+            
 			Intent i = Intent;
 
 			//only load the AppTask if this is the "first" OnCreate (not because of kill/resume, i.e. savedInstanceState==null)
@@ -748,40 +760,55 @@ namespace keepass2android
 			
 			
 			SetContentView(Resource.Layout.password);
-			InitializeFilenameView();
+
+            InitializeToolbar();
+
+
+		    InitializeFilenameView();
 
 			if (KeyProviderType == KeyProviders.KeyFile)
 			{
 				UpdateKeyfileIocView();
 			}
-				
 
 
-			FindViewById<EditText>(Resource.Id.password).TextChanged +=
+		    var passwordEdit = FindViewById<EditText>(Resource.Id.password);
+		    passwordEdit.TextChanged +=
 				(sender, args) =>
 				{
-					_password = FindViewById<EditText>(Resource.Id.password).Text;
+					_password = passwordEdit.Text;
 					UpdateOkButtonState();
 				};
-			FindViewById<EditText>(Resource.Id.password).EditorAction += (sender, args) =>
+			passwordEdit.EditorAction += (sender, args) =>
 				{
 					if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
 						OnOk();
 				};
+		    passwordEdit.FocusChange += (sender, args) =>
+		    {
+		        FindViewById(Resource.Id.unlock_img_button).Visibility = args.HasFocus ? ViewStates.Visible : ViewStates.Gone;
+		    };
 
 			FindViewById<EditText>(Resource.Id.pass_otpsecret).TextChanged += (sender, args) => UpdateOkButtonState();
 
-
-			EditText passwordEdit = FindViewById<EditText>(Resource.Id.password);
 			passwordEdit.Text = _password;
 			passwordEdit.RequestFocus();
 			Window.SetSoftInputMode(SoftInput.StateVisible);
 
-			InitializeOkButton();
+            
+			var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
+			passwordEdit.Typeface = passwordFont;
+
+
+		    FindViewById(Resource.Id.unlock_img_button).Click += (sender, args) => OnOk();
+
+			InitializeBottomBarButtons();
 
 			InitializePasswordModeSpinner();
 
 			InitializeOtpSecretSpinner();
+
+		    InitializeNavDrawerButtons();
 
 			UpdateOkButtonState();
 			
@@ -800,7 +827,70 @@ namespace keepass2android
 			}
 		}
 
-		private void InitializeOtpSecretSpinner()
+	    private void InitializeNavDrawerButtons()
+	    {
+	        FindViewById(Resource.Id.btn_nav_change_db).Click += (sender, args) =>
+	        {
+                GoToFileSelectActivity();
+	        };
+
+	        FindViewById(Resource.Id.btn_nav_donate).Click += (sender, args) =>
+	        {
+                Util.GotoDonateUrl(this);
+	        };
+	        FindViewById(Resource.Id.btn_nav_about).Click += (sender, args) =>
+	        {
+	            AboutDialog dialog = new AboutDialog(this);
+	            dialog.Show();
+	        };
+
+	        FindViewById(Resource.Id.btn_nav_settings).Click += (sender, args) =>
+	        {
+                AppSettingsActivity.Launch(this);
+	        };
+				
+	    }
+
+	    private void InitializeToolbar()
+	    {
+	        var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+
+	        SetSupportActionBar(toolbar);
+
+            var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+            collapsingToolbar.SetTitle(GetString(Resource.String.unlock_database_title));
+
+            _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            mDrawerToggle = new ActionBarDrawerToggle(this, _drawerLayout,
+                Resource.String.menu_open,
+                Resource.String.menu_close);
+            
+
+            _drawerLayout.SetDrawerListener(mDrawerToggle);
+
+	        	        
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
+            mDrawerToggle.SyncState();
+
+            //TODO REMOVE
+            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            //SupportActionBar.SetDisplayShowHomeEnabled(true);
+
+            //toolbar.NavigationClick += (sender, args) => OnBackPressed();
+	    }
+
+	    public override void OnBackPressed()
+	    {
+	        if (_drawerLayout.IsDrawerOpen((int) GravityFlags.Start))
+	        {
+                _drawerLayout.CloseDrawer((int)GravityFlags.Start);
+	            return;
+	        }
+            base.OnBackPressed();
+	    }
+
+	    private void InitializeOtpSecretSpinner()
 		{
 			Spinner spinner = FindViewById<Spinner>(Resource.Id.otpsecret_format_spinner);
 			ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, EncodingUtil.Formats);
@@ -892,13 +982,15 @@ namespace keepass2android
 			return true;
 		}
 
-		private void InitializeOkButton()
+		private void InitializeBottomBarButtons()
 		{
 			Button confirmButton = (Button) FindViewById(Resource.Id.pass_ok);
 			confirmButton.Click += (sender, e) =>
 				{
 					OnOk();
 				};
+
+		    FindViewById(Resource.Id.change_db).Click += (sender, args) => GoToFileSelectActivity();
 		}
 
 		private void OnOk()
@@ -1012,17 +1104,18 @@ namespace keepass2android
 
 		private void UpdateOkButtonState()
 		{
+		    bool enabled = false;
 			switch (KeyProviderType)
 			{
 				case KeyProviders.None:
-					FindViewById(Resource.Id.pass_ok).Enabled = true;
+					enabled = true;
 					break;
 				case KeyProviders.KeyFile:
-					FindViewById(Resource.Id.pass_ok).Enabled = _keyFileOrProvider != "" || _password != "";
+					enabled = _keyFileOrProvider != "" || _password != "";
 					break;
 				case KeyProviders.Otp:
 					
-					bool enabled = true;
+					enabled = true;
 					if (_otpInfo == null)
 						enabled = false;
 					else
@@ -1040,18 +1133,20 @@ namespace keepass2android
 						}	
 					}
 					
-					FindViewById(Resource.Id.pass_ok).Enabled = enabled;
+					
 					break;
 				case KeyProviders.OtpRecovery:
 				case KeyProviders.ChalRecovery:				
-					FindViewById(Resource.Id.pass_ok).Enabled = FindViewById<EditText>(Resource.Id.pass_otpsecret).Text != "";
+					enabled = FindViewById<EditText>(Resource.Id.pass_otpsecret).Text != "";
 					break;
                 case KeyProviders.Challenge:
-					FindViewById(Resource.Id.pass_ok).Enabled = _challengeSecret != null;
+					enabled = _challengeSecret != null;
                     break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
+            FindViewById(Resource.Id.pass_ok).Enabled = enabled;
+            FindViewById(Resource.Id.unlock_img_button).Enabled = enabled;
 		}
 
 		private void UpdateKeyProviderUiState()
@@ -1216,14 +1311,25 @@ namespace keepass2android
 			if (_showPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
+                SetPasswordTypeface(password);
 			}
 			else
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 			}
+            
 		}
 
-		private void SetNewDefaultFile()
+	    private void SetPasswordTypeface(TextView textView)
+	    {
+            if (_passwordFont == null)
+            {
+                _passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
+            }
+            textView.Typeface = _passwordFont;	
+	    }
+
+	    private void SetNewDefaultFile()
 		{
 //Don't allow the current file to be the default if we don't have stored credentials
 			bool makeFileDefault;
@@ -1514,15 +1620,7 @@ namespace keepass2android
 		
 		private void InitializeFilenameView() {
 			SetEditText(Resource.Id.filename, App.Kp2a.GetFileStorage(_ioConnection).GetDisplayName(_ioConnection));
-			if (App.Kp2a.FileDbHelper.NumberOfRecentFiles() < 2)
-			{
-				FindViewById(Resource.Id.filename_group).Visibility = ViewStates.Gone;
-			}
-			else
-			{
-				FindViewById(Resource.Id.filename_group).Visibility = ViewStates.Visible;
-			}
-			
+						
 		}
 
 		protected override void OnDestroy()
@@ -1547,30 +1645,13 @@ namespace keepass2android
 				te.Text = str;
 			}
 		}
-
-		public override bool OnCreateOptionsMenu(IMenu menu) {
-			base.OnCreateOptionsMenu(menu);
-			
-			MenuInflater inflate = MenuInflater;
-			inflate.Inflate(Resource.Menu.password, menu);
-			
-			return true;
-		}
 		
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
-				case Resource.Id.menu_about:
-					AboutDialog dialog = new AboutDialog(this);
-					dialog.Show();
-					return true;
 				
-				case Resource.Id.menu_app_settings:
-					AppSettingsActivity.Launch(this);
-					return true;
-
-				case Resource.Id.menu_change_db:
-					GoToFileSelectActivity();
-					return true;
+                case Android.Resource.Id.Home:
+                    _drawerLayout.OpenDrawer(Android.Support.V4.View.GravityCompat.Start);
+                    return true;
 			}
 			
 			return base.OnOptionsItemSelected(item);

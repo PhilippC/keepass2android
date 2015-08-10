@@ -45,10 +45,10 @@ namespace keepass2android
 		public const String OtpExtraKey = "keepass2android.Otp";
 		
 		public const String FileBrowse = "org.openintents.action.PICK_FILE";
-		public const int RequestCodeFileBrowseForOpen = 987321;
-		public const int RequestCodeFileBrowseForCreate = 987322;
-		public const int RequestCodeFileBrowseForBinary = 987323;
-		public const int RequestCodeFileBrowseForKeyfile = 987324;
+		public const int RequestCodeFileBrowseForOpen = 37321;
+		public const int RequestCodeFileBrowseForCreate = 37322;
+		public const int RequestCodeFileBrowseForBinary = 37323;
+		public const int RequestCodeFileBrowseForKeyfile = 37324;
 
 		public const String ShowNotification = "keepass2android.show_notification";
 		public const String UpdateKeyboard = "keepass2android.update_keyboard";

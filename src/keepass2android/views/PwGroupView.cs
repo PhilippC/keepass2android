@@ -25,8 +25,8 @@ using KeePassLib;
 
 namespace keepass2android.view
 {
-	
-	public sealed class PwGroupView : ClickView 
+
+    public sealed class PwGroupView : GroupListItemView 
 	{
 		private PwGroup _pwGroup;
 		private readonly GroupBaseActivity _groupBaseActivity;
@@ -72,7 +72,7 @@ namespace keepass2android.view
 		private void PopulateView(View gv, PwGroup pw) {
 			_pwGroup = pw;
 			
-			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.group_icon);
+			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
 			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid);
 			
 			_textview.Text = pw.Name;
@@ -95,16 +95,13 @@ namespace keepass2android.view
 			PopulateView(this, pw);
 		}
 		
-		public override void OnClick() {
-			LaunchGroup();
-		}
-
+		
 		private void LaunchGroup() {
 			GroupActivity.Launch(_groupBaseActivity, _pwGroup, _groupBaseActivity.AppTask);
 			_groupBaseActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
 
 		}
-		
+        /*
 		public override void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo) {
 			menu.Add(0, MenuOpen, 0, Resource.String.menu_open);
 			if (App.Kp2a.GetDb().CanWrite)
@@ -136,8 +133,12 @@ namespace keepass2android.view
 				default:
 					return false;
 			}
-		}
-		
+		}*/
+
+        public override void OnClick()
+        {
+            LaunchGroup();
+        }
 	}
 }
 

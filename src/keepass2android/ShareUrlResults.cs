@@ -29,7 +29,7 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/kp2a_findUrl", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/Base")]
+    [Activity(Label = "@string/kp2a_findUrl", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
 	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]	
 	public class ShareUrlResults : GroupBaseActivity
 	{
@@ -115,15 +115,17 @@ namespace keepass2android
 			//show results:
 			if (Group == null || (!Group.Entries.Any()))
 			{
+                //TODO
 				SetContentView(Resource.Layout.searchurlresults_empty);
 			} else
 			{
+                //TODO
 				SetContentView(Resource.Layout.searchurlresults);
 			}
 			
 			SetGroupTitle();
-			
-			ListAdapter = new PwGroupListAdapter(this, Group);
+
+            FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 
 			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
 			selectOtherEntry.Click += (sender, e) => {
