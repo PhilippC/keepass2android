@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Preferences;
+using Android.Support.V7.App;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
@@ -20,7 +21,7 @@ namespace keepass2android
 	[Activity(Label = "@string/app_name",
 			   ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
                Theme = "@style/MyTheme_ActionBar")]
-	public class CreateDatabaseActivity : Activity
+	public class CreateDatabaseActivity : AppCompatActivity
 	{
 		private IOConnectionInfo _ioc;
 		private string _keyfileFilename;
@@ -56,6 +57,9 @@ namespace keepass2android
 		{
 			base.OnCreate(bundle);
 			_design.ApplyTheme();
+
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
 
 			SetContentView(Resource.Layout.create_database);
 			_appTask = AppTask.GetTaskInOnCreate(bundle, Intent);
@@ -578,6 +582,15 @@ namespace keepass2android
 		}
 
 
-		
+	    public override bool OnOptionsItemSelected(IMenuItem item)
+	    {
+	        switch (item.ItemId)
+	        {
+	            case Android.Resource.Id.Home:
+	                OnBackPressed();
+	                return true;
+	        }
+	        return false;
+	    }
 	}
 }

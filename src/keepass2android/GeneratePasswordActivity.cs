@@ -26,8 +26,8 @@ using Android.Widget;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar")]			
-	public class GeneratePasswordActivity : LockCloseActivity {
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden)]		    
+    public class GeneratePasswordActivity : LockCloseActivity {
 		private readonly int[] _buttonIds  = new[]  {Resource.Id.btn_length6, Resource.Id.btn_length8, Resource.Id.btn_length12, Resource.Id.btn_length16};
 		
 		public static void Launch(Activity act) {
@@ -109,6 +109,9 @@ namespace keepass2android
 			EditText txtPasswordToSet = (EditText) FindViewById(Resource.Id.password);
 			txtPasswordToSet.Text = GeneratePassword();
 
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
+
 		}
 		
 		public String GeneratePassword() {
@@ -157,6 +160,18 @@ namespace keepass2android
 			
 			return password;
 		}
+
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    OnBackPressed();
+                    return true;
+            }
+            return false;
+        }
 	}
 
 }
