@@ -4,7 +4,11 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+								   android:gravity="bottom"
     android:minHeight="?attr/actionBarSize"
-    android:background="?attr/colorPrimary"
+android:background="@drawable/toolbar_bg"
     local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    local:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    local:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+	
+		
+</android.support.v7.widget.Toolbar>

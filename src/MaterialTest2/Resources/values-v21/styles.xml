@@ -10,5 +10,22 @@
     <item name="android:windowAllowReturnTransitionOverlap">true</item>
     <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
     <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+    <item name="android:actionModeBackground">@color/appAccentColor</item>
+  </style>
+  <style name="MyTheme_ActionBar" parent="MyTheme_ActionBar.Base">
+    <item name="android:actionModeBackground">@color/appAccentColor</item>
+    <item name="actionModeBackground">@color/appAccentColor</item>
+  </style>
+
+  <style name="EntryFieldHeader">
+    <item name="android:drawablePadding">2dp</item>
+    <item name="android:layout_marginLeft">0dip</item>
+    <item name="android:layout_marginRight">12dip</item>
+    <item name="android:layout_marginBottom">3dp</item>
+    <item name="android:layout_marginTop">8dp</item>
+    <item name="android:paddingLeft">4dp</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:textColor">?android:attr/textColorSecondary</item>
+    <item name="android:textSize">12sp</item>
   </style>
 </resources>

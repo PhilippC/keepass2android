@@ -21,10 +21,10 @@ namespace keepass2android
 			WriteDemanded = 2
 		}
 
-		protected const int RequestCodeFileStorageSelectionForPrimarySelect = 983713;
-		private const int RequestCodeFileStorageSelectionForCopyToWritableLocation = 983714;
-		private const int RequestCodeFileFileBrowseForWritableLocation = 983715;
-		private const int RequestCodeFileBrowseForOpen = 983716;
+		protected const int RequestCodeFileStorageSelectionForPrimarySelect = 33713;
+		private const int RequestCodeFileStorageSelectionForCopyToWritableLocation = 33714;
+		private const int RequestCodeFileFileBrowseForWritableLocation = 33715;
+		private const int RequestCodeFileBrowseForOpen = 33716;
 		
 
 		protected IOConnectionInfo _selectedIoc;

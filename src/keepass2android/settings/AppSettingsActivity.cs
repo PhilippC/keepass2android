@@ -1,3 +1,4 @@
+
 /*
 This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
 
