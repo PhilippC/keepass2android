@@ -432,48 +432,19 @@ namespace keepass2android
 			activity.Finish();
 		}
 
-		public static void PrepareNoDonatePreference(Context ctx, Preference preference)
-		{
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+        public static void PrepareDonateOptionMenu(IMenu menu, Context ctx)
+        {
+            var donateItem = menu.FindItem(Resource.Id.menu_donate);
+            if (donateItem != null)
+            {
+                donateItem.SetVisible(
+                    !PreferenceManager.GetDefaultSharedPreferences(ctx)
+                                     .GetBoolean(ctx.GetString(Resource.String.NoDonateOption_key), false)
+                    );
+            }
+        }
 
-			long usageCount = prefs.GetLong(ctx.GetString(Resource.String.UsageCount_key), 0);
-
-#if DEBUG
-			preference.Enabled = (usageCount > 1);
-#else 
-			preference.Enabled = (usageCount > 50);
-#endif
-			preference.PreferenceChange += delegate(object sender, Preference.PreferenceChangeEventArgs args)
-				{
-					if ((bool) args.NewValue)
-					{
-						new AlertDialog.Builder(ctx)
-							.SetTitle(ctx.GetString(AppNames.AppNameResource))
-							.SetCancelable(false)
-							.SetPositiveButton(Android.Resource.String.Ok, delegate(object o, DialogClickEventArgs eventArgs)
-								{
-									GotoDonateUrl(ctx);
-									((Dialog) o).Dismiss();
-								})
-							.SetMessage(Resource.String.NoDonateOption_question)
-							.Create().Show();
-
-					}
-				};
 		
-		}
-
-		public static void PrepareDonateOptionMenu(IMenu menu, Context ctx)
-		{
-			var donateItem = menu.FindItem(Resource.Id.menu_donate);
-			if (donateItem != null)
-			{
-				donateItem.SetVisible(
-					!PreferenceManager.GetDefaultSharedPreferences(ctx)
-									 .GetBoolean(ctx.GetString(Resource.String.NoDonateOption_key), false)
-					);
-			}
-		}
 	}
 }
 

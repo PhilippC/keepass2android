@@ -18,11 +18,15 @@
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+  android:key="mainprefs">
 	<PreferenceScreen
 	  android:key="@string/db_key"
 	  android:title="@string/database"
 	  android:summary="@string/menu_db_settings">
+    <keepass2android.ToolbarPreference
+    android:key="@string/db_key"
+    android:title="@string/database" />
 		<EditTextPreference
                 android:title="@string/database_name"
                 android:persistent="false"
@@ -72,11 +76,16 @@
 	  android:key="@string/app_key"
 	  android:title="@string/application"
 	  android:summary="@string/application_settings">
-
+    <keepass2android.ToolbarPreference
+        android:key="@string/app_key"
+        android:title="@string/application" />
 		<PreferenceScreen
 	  android:key="@string/security_prefs_key"
 	  android:title="@string/security_prefs"
 	  >
+      <keepass2android.ToolbarPreference
+    android:key="@string/security_prefs_key"
+	  android:title="@string/security_prefs" />
 
 			<ListPreference
 			  android:key="@string/clipboard_timeout_key"
@@ -142,6 +151,9 @@
 	  android:key="@string/display_prefs_key"
 	  android:title="@string/display_prefs"
 	  >
+      <keepass2android.ToolbarPreference
+    android:key="@string/display_prefs_key"
+	  android:title="@string/display_prefs" />
 			<CheckBoxPreference
 				android:enabled="true"
 					 android:persistent="true"
@@ -187,15 +199,6 @@
 					 android:title="@string/ViewDatabaseSecure_title"
 					 android:key="@string/ViewDatabaseSecure_key" />
 
-
-			<ListPreference
-			  android:key="@string/design_key"
-			  android:title="@string/design_title"
-			  android:entries="@array/design_options"
-			  android:entryValues="@array/design_values"
-			  android:dialogTitle="@string/design_title"
-			  android:defaultValue="@string/design_default"/>
-
 			<CheckBoxPreference
 				android:enabled="true"
 					 android:persistent="true"
@@ -209,6 +212,9 @@
 			  android:key="@string/password_access_prefs_key"
 			  android:title="@string/password_access_prefs"
 			  >
+      <keepass2android.ToolbarPreference
+    android:key="@string/password_access_prefs_key"
+			  android:title="@string/password_access_prefs" />
 			<CheckBoxPreference
 				android:enabled="true"
 				  android:persistent="true"
@@ -236,8 +242,10 @@
 				 android:key="@string/keyboardswitch_prefs_key"
 	  android:title="@string/keyboardswitch_prefs"
 				 			android:dependency="@string/UseKp2aKeyboard_key"
-
 	  >
+        <keepass2android.ToolbarPreference
+  android:key="@string/keyboardswitch_prefs_key"
+	  android:title="@string/keyboardswitch_prefs"/>
 				<CheckBoxPreference
 							android:key="kp2a_switch_rooted"
 							android:title="@string/kp2a_switch_rooted"
@@ -289,6 +297,9 @@
 			  android:key="@string/QuickUnlock_prefs_key"
 			  android:title="@string/QuickUnlock_prefs"
 			  >
+      <keepass2android.ToolbarPreference
+  android:key="@string/QuickUnlock_prefs_key"
+			  android:title="@string/QuickUnlock_prefs"/>
 			<CheckBoxPreference
 			android:enabled="true"
 				 android:persistent="true"
@@ -323,6 +334,9 @@
 	  android:key="@string/FileHandling_prefs_key"
 	  android:title="@string/FileHandling_prefs"
 		>
+      <keepass2android.ToolbarPreference
+  android:key="@string/FileHandling_prefs_key"
+	  android:title="@string/FileHandling_prefs"/>
 
 			<EditTextPreference
 				 android:enabled="true"
@@ -395,7 +409,10 @@
 	  android:key="@string/TrayTotp_prefs_key"
 	  android:title="@string/TrayTotp_prefs"
 		>
-
+      <keepass2android.ToolbarPreference
+        android:key="@string/TrayTotp_prefs_key"
+	  android:title="@string/TrayTotp_prefs"/>
+      
 			<EditTextPreference
 				 android:enabled="true"
 				 android:persistent="true"

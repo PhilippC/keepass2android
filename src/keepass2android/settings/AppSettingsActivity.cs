@@ -21,20 +21,70 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Preferences;
+using Android.Runtime;
+using Android.Util;
+using Android.Views;
 using Android.Widget;
 using keepass2android.Io;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace keepass2android
 {
+    public class ToolbarPreference : Preference
+    {
+        #region constructors
+        protected ToolbarPreference(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        {
+        }
+
+        public ToolbarPreference(Context context) : base(context)
+        {
+        }
+
+        public ToolbarPreference(Context context, IAttributeSet attrs) : base(context, attrs)
+        {
+        }
+
+        public ToolbarPreference(Context context, IAttributeSet attrs, int defStyleAttr) : base(context, attrs, defStyleAttr)
+        {
+        }
+
+        public ToolbarPreference(Context context, IAttributeSet attrs, int defStyleAttr, int defStyleRes) : base(context, attrs, defStyleAttr, defStyleRes)
+        {
+        }
+#endregion
+
+        protected override View OnCreateView(ViewGroup parent)
+        {
+            parent.SetPadding(0, 0, 0, 0);
+
+    LayoutInflater inflater = (LayoutInflater) Context.GetSystemService(Context.LayoutInflaterService);
+    View layout = inflater.Inflate(Resource.Layout.toolbar, parent, false);
+
+    Toolbar toolbar = (Toolbar) layout.FindViewById<Toolbar>(Resource.Id.toolbar);
+    toolbar.SetNavigationIcon(Resource.Drawable.ic_arrow_back_white_24dp);
+    toolbar.Title = Title;
+            toolbar.NavigationClick += (sender, args) =>
+            {
+                PreferenceScreen prefScreen = (PreferenceScreen) PreferenceManager.FindPreference(Key);
+                if (prefScreen == null)
+                    throw new Exception("didn't find preference " + Key);
+                prefScreen.Dialog.Dismiss();
+            };
+
+    return layout;
+            
+        }
+    }
+
 	/// <summary>
 	/// Activity to configure the application, without database settings. Does not require an unlocked database, or close when the database is locked
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar")]			
-	public class AppSettingsActivity : LockingPreferenceActivity
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme")]			
+	public class AppSettingsActivity : LockingActivity
 	{
 		private ActivityDesign _design;
-		private KeyboardSwitchPrefManager _switchPrefManager;
-
+		
 		public AppSettingsActivity()
 		{
 			_design = new ActivityDesign(this);
@@ -47,223 +97,16 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState) 
 		{
-			_design.ApplyTheme();
 			base.OnCreate(savedInstanceState);
 			
+			SetContentView(Resource.Layout.preference);
+
+		    SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+
+            FragmentManager.FindFragmentById<SettingsFragment>(Resource.Id.settings_fragment).FindPreference(GetString(Resource.String.db_key)).Enabled = false;
 			
-			AddPreferencesFromResource(Resource.Xml.preferences);
-			
-			FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
-			Preference designPref = FindPreference(GetString(Resource.String.design_key));
-			if (!_design.HasThemes())
-			{
-				try
-				{
-					((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))).RemovePreference(designPref);
-				}
-				catch (Exception ex)
-				{
-					Kp2aLog.Log(ex.ToString());
-					throw;
-				}
-			}
-			else
-			{
-				designPref.PreferenceChange += (sender, args) => Recreate();
-			}
-
-			Util.PrepareNoDonatePreference(this, FindPreference(GetString(Resource.String.NoDonateOption_key)));
-			
-			Preference cachingPreference = FindPreference(GetString(Resource.String.UseOfflineCache_key));
-			cachingPreference.PreferenceChange += OnUseOfflineCacheChanged;
-
-#if NoNet
-			try
-			{
-				((PreferenceScreen) FindPreference(GetString(Resource.String.FileHandling_prefs_key))).RemovePreference(cachingPreference);
-			}
-			catch (Exception ex)
-			{
-				Kp2aLog.Log(ex.ToString());	
-			}
-#endif
-			try
-			{
-				//depending on Android version, we offer to use a transparent icon for QuickUnlock or use the notification priority (since API level 16)
-				Preference hideQuickUnlockTranspIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key));
-				Preference hideQuickUnlockIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden16_key));
-				var quickUnlockScreen = ((PreferenceScreen) FindPreference(GetString(Resource.String.QuickUnlock_prefs_key)));
-				if ((int) Android.OS.Build.VERSION.SdkInt >= 16)
-				{
-					quickUnlockScreen.RemovePreference(hideQuickUnlockTranspIconPref);
-					FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += (sender, args) => App.Kp2a.UpdateOngoingNotification();
-					hideQuickUnlockIconPref.PreferenceChange += OnQuickUnlockHiddenChanged;
-				}
-				else
-				{
-					//old version: only show transparent quickUnlock and no option to hide unlocked icon:
-					quickUnlockScreen.RemovePreference(hideQuickUnlockIconPref);
-					FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key)).PreferenceChange +=
-						delegate { App.Kp2a.UpdateOngoingNotification(); };
-					((PreferenceScreen) FindPreference(GetString(Resource.String.display_prefs_key))).RemovePreference(
-						FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)));
-				}
-			}
-			catch (Exception ex)
-			{
-				Kp2aLog.Log(ex.ToString());
-			}
-
-			FindPreference(GetString(Resource.String.db_key)).Enabled = false;
-			_switchPrefManager = new KeyboardSwitchPrefManager(this);
-
-			PrepareSeparateNotificationsPreference(this);
-
 		}
 
-		public static void PrepareSeparateNotificationsPreference(PreferenceActivity preferenceActivity)
-		{
-			try
-			{
-				//depending on Android version, we offer to show a combined notification (with action buttons) (since API level 16)
-				Preference separateNotificationsPref = preferenceActivity.FindPreference(preferenceActivity.GetString(Resource.String.ShowSeparateNotifications_key));
-				var passwordAccessScreen = ((PreferenceScreen)preferenceActivity.FindPreference(preferenceActivity.GetString(Resource.String.password_access_prefs_key)));
-				if ((int)Build.VERSION.SdkInt < 16)
-				{
-					passwordAccessScreen.RemovePreference(separateNotificationsPref);
-				}
-			}
-			catch (Exception ex)
-			{
-				Kp2aLog.Log(ex.ToString());
-			}
-		}
-
-		public class KeyboardSwitchPrefManager
-		{
-			private readonly PreferenceActivity _act;
-			private CheckBoxPreference _switchPref;
-			private CheckBoxPreference _openKp2aAutoPref;
-			private CheckBoxPreference _openOnlyOnSearchPref;
-			private CheckBoxPreference _switchBackPref;
-			private PreferenceScreen _screen;
-
-			public KeyboardSwitchPrefManager(PreferenceActivity act)
-			{
-				this._act = act;
-
-				_switchPref = (CheckBoxPreference)_act.FindPreference("kp2a_switch_rooted");
-				_openKp2aAutoPref =
-					(CheckBoxPreference)act.FindPreference(act.GetString(Resource.String.OpenKp2aKeyboardAutomatically_key));
-				_openOnlyOnSearchPref =
-					(CheckBoxPreference)
-					act.FindPreference(act.GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key));
-				_switchBackPref =
-					(CheckBoxPreference)act.FindPreference(act.GetString(Resource.String.AutoSwitchBackKeyboard_key));
-				_screen = (PreferenceScreen)act.FindPreference(act.GetString(Resource.String.keyboardswitch_prefs_key));
-				EnableSwitchPreferences(_switchPref.Checked);
-				
-				_switchPref.PreferenceChange += (sender, args) =>
-				{
-					bool switchOnRooted = (bool)args.NewValue;
-					EnableSwitchPreferences(switchOnRooted);
-				};
-			}
-
-
-			private void EnableSwitchPreferences(bool switchOnRooted)
-			{
-				if (!switchOnRooted)
-				{
-					if (_act.FindPreference(_act.GetString(Resource.String.OpenKp2aKeyboardAutomatically_key)) == null)
-					{
-						_screen.AddPreference(_openKp2aAutoPref);
-					}
-					if (_act.FindPreference(_act.GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key)) != null)
-					{
-						_screen.RemovePreference(_openOnlyOnSearchPref);
-					}
-				}
-				else
-				{
-					if (_act.FindPreference(_act.GetString(Resource.String.OpenKp2aKeyboardAutomatically_key)) != null)
-					{
-						_screen.RemovePreference(_openKp2aAutoPref);
-					}
-					if (_act.FindPreference(_act.GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key)) == null)
-					{
-						_screen.AddPreference(_openOnlyOnSearchPref);
-					}
-				}
-				/*_openKp2aAutoPref.Enabled = !switchOnRooted;
-
-				_openOnlyOnSearchPref.Enabled = switchOnRooted;
-
-				_switchBackPref.Enabled = switchOnRooted;*/
-			}
-		}
-
-		private void OnDesignChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
-		{
-			Recreate();
-		}
-
-		private void OnQuickUnlockHiddenChanged(object sender, Preference.PreferenceChangeEventArgs e)
-		{
-			App.Kp2a.UpdateOngoingNotification();
-		}
-
-		private void OnUseOfflineCacheChanged(object sender, Preference.PreferenceChangeEventArgs e)
-		{
-			//ensure the user gets a matching database
-			if (App.Kp2a.GetDb().Loaded && !App.Kp2a.GetDb().Ioc.IsLocalFile())
-				App.Kp2a.LockDatabase(false);
-
-			if (!(bool)e.NewValue)
-			{
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.SetTitle(GetString(Resource.String.ClearOfflineCache_title));
-
-				builder.SetMessage(GetString(Resource.String.ClearOfflineCache_question));
-
-				builder.SetPositiveButton(App.Kp2a.GetResourceString(UiStringKey.yes), (o, args) =>
-					 {
-						 try
-						 {
-							 App.Kp2a.ClearOfflineCache();
-						 }
-						 catch (Exception ex)
-						 {
-							 Kp2aLog.Log(ex.ToString());
-							 Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
-						 }
-					 }
-					);
-
-				builder.SetNegativeButton(App.Kp2a.GetResourceString(UiStringKey.no), (o, args) =>
-				{
-				}
-				);
-				builder.SetCancelable(false);
-				Dialog dialog = builder.Create();
-				dialog.Show();
-
-				
-			}
-		}
-
-		internal static void OnRememberKeyFileHistoryChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
-		{
-			if (!(bool)eventArgs.NewValue)
-			{
-				App.Kp2a.FileDbHelper.DeleteAllKeys();
-			}
-		}
-
-		internal static void OnShowUnlockedNotificationChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
-		{
-			App.Kp2a.UpdateOngoingNotification();
-		}
 	}
 
 }
