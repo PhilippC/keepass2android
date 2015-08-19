@@ -17,10 +17,9 @@
     <ListView
             android:id="@android:id/list"
             android:layout_weight="1"
-            android:textColor="#cccccc"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp" />
+            android:paddingRight="0dp"
+            android:paddingLeft="0dp" />
 
   </LinearLayout>

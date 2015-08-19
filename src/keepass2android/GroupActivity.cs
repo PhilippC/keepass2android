@@ -29,7 +29,8 @@ using Android.Content.PM;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]		
+    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
+	[MetaData("android.app.searchable", Resource = AppNames.Searchable)]
 	[MetaData("android.app.default_searchable",Value="keepass2android.search.SearchResults")]
 	public class GroupActivity : GroupBaseActivity {
 		
@@ -83,8 +84,12 @@ namespace keepass2android
 			get { return App.Kp2a.GetDb().CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.GetDb().DatabaseFormat.CanHaveEntriesInRootGroup); }
 		}
 
+	    public override bool OnCreateOptionsMenu(IMenu menu)
+	    {
+		    return base.OnCreateOptionsMenu(menu);
+	    }
 
-		protected override void OnCreate (Bundle savedInstanceState)
+	    protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			

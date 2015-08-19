@@ -125,7 +125,7 @@ namespace keepass2android.view
 					task.Start();
 					return true;
 				case MenuMove:
-					_groupBaseActivity.StartTask(new MoveElementTask { Uuid = _pwGroup.Uuid });
+					_groupBaseActivity.StartTask(new MoveElementsTask { Uuid = _pwGroup.Uuid });
 					return true;
 				case MenuEdit:
 					_groupBaseActivity.EditGroup(_pwGroup);

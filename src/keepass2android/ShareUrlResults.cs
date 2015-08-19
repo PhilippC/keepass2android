@@ -53,9 +53,14 @@ namespace keepass2android
 
 
 		private Database _db;
+        
 
-		
-		protected override void OnCreate(Bundle savedInstanceState)
+        public override bool IsSearchResult
+        {
+            get { return true; }
+        }
+
+        protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 

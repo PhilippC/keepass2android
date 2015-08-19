@@ -35,17 +35,18 @@
         <Command type="BeforeBuild" command="UseManifestDebug.bat" />
       </CustomCommands>
     </CustomCommands>
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkSkip />
     <BundleAssemblies>False</BundleAssemblies>
     <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
-    <JavaOptions />
-    <MonoDroidExtraArgs />
+    <Debugger>Xamarin</Debugger>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -223,7 +224,9 @@
     <Compile Include="views\TextWithHelp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\xml\searchable.xml" />
+    <AndroidResource Include="Resources\xml\searchable.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidAsset Include="Assets\fontawesome-webfont.ttf" />
     <AndroidAsset Include="Assets\SourceCodePro-Regular.ttf" />
     <None Include="packages.config" />
@@ -540,7 +543,7 @@
       <Name>KeePassLib2Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kp2aBusinessLogic\Kp2aBusinessLogic.csproj">
-      <Project>{53A9CB7F-6553-4BC0-B56B-9410BB2E59AA}</Project>
+      <Project>{53a9cb7f-6553-4bc0-b56b-9410bb2e59aa}</Project>
       <Name>Kp2aBusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
@@ -842,7 +845,9 @@
     <AndroidResource Include="Resources\drawable\ic_menu_copy_holo_light.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\xml\searchable_debug.xml" />
+    <AndroidResource Include="Resources\xml\searchable_debug.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\device_access_new_account_holodark.png" />
@@ -1317,7 +1322,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_nav_about.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_back_white_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_back_white_24dp.png" />

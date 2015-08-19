@@ -57,6 +57,8 @@ namespace keepass2android
 		CopyFileRequiredForEditing,
 		DuplicateUuidsError,
 		DuplicateUuidsErrorAdditional,
-		KdbBetaWarning
+		KdbBetaWarning,
+	    DeletingItems,
+		AskDeletePermanentlyItems
     }
 }

@@ -16,16 +16,19 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections.Generic;
 using Android.Content;
 using KeePassLib;
+using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
 	public class DeleteEntry : DeleteRunnable {
 
         private readonly PwEntry _entry;
+	    private UiStringKey _statusMessage;
 
-		public DeleteEntry(Context ctx, IKp2aApp app, PwEntry entry, OnFinish finish):base(finish, app) {
+	    public DeleteEntry(Context ctx, IKp2aApp app, PwEntry entry, OnFinish finish):base(finish, app) {
 			Ctx = ctx;
 			Db = app.GetDb();
 			_entry = entry;
@@ -48,76 +51,15 @@ namespace keepass2android
 			}
 		}
 
-		public override void Run()
-		{
-			StatusLogger.UpdateMessage(UiStringKey.DeletingEntry);
-			PwDatabase pd = Db.KpDatabase;
+	    protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)
+	    {
+	        DoDeleteEntry(_entry, touchedGroups);
+	    }
 
-			PwGroup pgRecycleBin = pd.RootGroup.FindGroup(pd.RecycleBinUuid, true);
-
-			bool bUpdateGroupList = false;
-			DateTime dtNow = DateTime.Now;
-			PwEntry pe = _entry;
-			PwGroup pgParent = pe.ParentGroup;
-			if(pgParent != null)
-			{
-				pgParent.Entries.Remove(pe);
-				//TODO check if RecycleBin is deleted
-				//TODO no recycle bin in KDB
-
-				if ((DeletePermanently) || (!CanRecycle))
-				{
-					PwDeletedObject pdo = new PwDeletedObject(pe.Uuid, dtNow);
-					pd.DeletedObjects.Add(pdo);
-
-					_onFinishToRun = new ActionOnFinish((success, message) =>
-						{
-							if (success)
-							{
-								// Mark parent dirty
-								Db.Dirty.Add(pgParent);
-							}
-							else
-							{
-								// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
-								App.LockDatabase(false);
-							}
-						}, OnFinishToRun);
-				}
-				else // Recycle
-				{
-					EnsureRecycleBinExists(ref pgRecycleBin, ref bUpdateGroupList);
-					
-					pgRecycleBin.AddEntry(pe, true, true);
-					pe.Touch(false);
-
-					_onFinishToRun = new ActionOnFinish( (success, message) => 
-					                             {
-						if ( success ) {
-							// Mark previous parent dirty
-							Db.Dirty.Add(pgParent);
-							// Mark new parent dirty
-							Db.Dirty.Add(pgRecycleBin);
-							// mark root dirty if recycle bin was created
-							if (bUpdateGroupList)
-								Db.Dirty.Add(Db.Root);
-						} else {
-							// Let's not bother recovering from a failure to save a deleted entry.  It is too much work.
-							App.LockDatabase(false);
-						}
-						
-					}, OnFinishToRun);
-				}
-			}
-
-			// Commit database
-			SaveDb save = new SaveDb(Ctx, App, OnFinishToRun, false);
-			save.SetStatusLogger(StatusLogger);
-			save.Run();
-			
-			
-		}
-		
+	    public override UiStringKey StatusMessage
+	    {
+	        get { return UiStringKey.DeletingEntry; }
+	    }
 	}
 
 }

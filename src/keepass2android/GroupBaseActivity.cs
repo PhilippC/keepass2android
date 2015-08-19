@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
@@ -182,6 +183,7 @@ namespace keepass2android
 		private String strCachedGroupUuid = null;
 	    
 
+
 	    public String UuidGroup {
 			get {
 				if (strCachedGroupUuid == null) {
@@ -222,6 +224,11 @@ namespace keepass2android
             get { return (BaseAdapter) FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter; }
 	    }
 
+	    public virtual bool IsSearchResult
+	    {
+	        get { return false; }
+	    }
+
 	    /*TODO 
          * protected override void OnListItemClick(ListView l, View v, int position, long id) {
 			base.OnListItemClick(l, v, position, id);
@@ -234,7 +241,9 @@ namespace keepass2android
 		*/
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
-			
+
+			Android.Util.Log.Debug("KP2A", "Creating GBA");
+
 			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			
 			// Likely the app has been killed exit the activity 
@@ -266,8 +275,8 @@ namespace keepass2android
 
 
             
-			FindViewById(Resource.Id.cancel_insert_element).Click += (sender, args) => StopMovingElement();
-			FindViewById(Resource.Id.insert_element).Click += (sender, args) => InsertElement();
+			FindViewById(Resource.Id.cancel_insert_element).Click += (sender, args) => StopMovingElements();
+			FindViewById(Resource.Id.insert_element).Click += (sender, args) => InsertElements();
             
             SetResult(KeePass.ExitNormal);
 			
@@ -275,13 +284,15 @@ namespace keepass2android
 			
 		}
 
-		private void InsertElement()
+		private void InsertElements()
 		{
-			MoveElementTask moveElementTask = (MoveElementTask)AppTask;
-			IStructureItem elementToMove = App.Kp2a.GetDb().KpDatabase.RootGroup.FindObject(moveElementTask.Uuid, true, null);
+			MoveElementsTask moveElementsTask = (MoveElementsTask)AppTask;
+		    IEnumerable<IStructureItem> elementsToMove =
+		        moveElementsTask.Uuids.Select(uuid => App.Kp2a.GetDb().KpDatabase.RootGroup.FindObject(uuid, true, null));
+			
 
 
-			var moveElement = new MoveElement(elementToMove, Group, this, App.Kp2a, new ActionOnFinish((success, message) => { StopMovingElement(); if (!String.IsNullOrEmpty(message)) Toast.MakeText(this, message, ToastLength.Long).Show();}));
+			var moveElement = new MoveElements(elementsToMove.ToList(), Group, this, App.Kp2a, new ActionOnFinish((success, message) => { StopMovingElements(); if (!String.IsNullOrEmpty(message)) Toast.MakeText(this, message, ToastLength.Long).Show();}));
 			var progressTask = new ProgressTask(App.Kp2a, this, moveElement);
 			progressTask.Run();
 
@@ -381,34 +392,34 @@ namespace keepass2android
 				return true;
 			}
 		}
+		/*		
+			public override bool OnCreateOptionsMenu(IMenu menu) {
+				return base.OnCreateOptionsMenu(menu);
 		
-		public override bool OnCreateOptionsMenu(IMenu menu) {
-			base.OnCreateOptionsMenu(menu);
-			
-			MenuInflater inflater = MenuInflater;
-			inflater.Inflate(Resource.Menu.group, menu);
-			var searchManager = (SearchManager) GetSystemService(SearchService);
-			IMenuItem searchItem = menu.FindItem(Resource.Id.menu_search);
-            var view = MenuItemCompat.GetActionView(searchItem);
-		    var searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
+				MenuInflater inflater = MenuInflater;
+				inflater.Inflate(Resource.Menu.group, menu);
+				var searchManager = (SearchManager) GetSystemService(SearchService);
+				IMenuItem searchItem = menu.FindItem(Resource.Id.menu_search);
+				var view = MenuItemCompat.GetActionView(searchItem);
+				var searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
 
-            searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
-            searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
-            searchView.SetOnQueryTextListener(new OnQueryTextListener(this));
+				searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
+				searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
+				searchView.SetOnQueryTextListener(new OnQueryTextListener(this));
 		    
-			var item = menu.FindItem(Resource.Id.menu_sync);
-			if (item != null)
-			{
-				if (App.Kp2a.GetDb().Ioc.IsLocalFile())
-					item.SetVisible(false);
-				else
-					item.SetVisible(true);
+				var item = menu.FindItem(Resource.Id.menu_sync);
+				if (item != null)
+				{
+					if (App.Kp2a.GetDb().Ioc.IsLocalFile())
+						item.SetVisible(false);
+					else
+						item.SetVisible(true);
+				}
+				//return true;
 			}
-			
-			return true;
-		}
-		
-		
+			*/
+
+
 
 		public override bool OnPrepareOptionsMenu(IMenu menu) {
 			if ( ! base.OnPrepareOptionsMenu(menu) ) {
@@ -613,10 +624,10 @@ namespace keepass2android
 
 		public bool IsBeingMoved(PwUuid uuid)
 		{
-			MoveElementTask moveElementTask = AppTask as MoveElementTask;
-			if (moveElementTask != null)
+			MoveElementsTask moveElementsTask = AppTask as MoveElementsTask;
+			if (moveElementsTask != null)
 			{
-				if (moveElementTask.Uuid.Equals(uuid))
+				if (moveElementsTask.Uuids.Any(uuidMoved => uuidMoved.Equals(uuid)))
 					return true;
 			}
 			return false;
@@ -629,16 +640,16 @@ namespace keepass2android
 		}
 
 
-		public void StartMovingElement()
+		public void StartMovingElements()
 		{
             
-			ShowInsertElementButtons();
+			ShowInsertElementsButtons();
             //TODO Required? GroupView.ListView.InvalidateViews();
             BaseAdapter adapter = (BaseAdapter)ListAdapter;
             adapter.NotifyDataSetChanged();
 		}
 
-		public void ShowInsertElementButtons()
+		public void ShowInsertElementsButtons()
 		{
             FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Gone;
             FindViewById(Resource.Id.fabAddNewGroup).Visibility = ViewStates.Gone;
@@ -649,14 +660,17 @@ namespace keepass2android
             FindViewById(Resource.Id.divider2).Visibility = ViewStates.Visible;
 		}
 
-		public void StopMovingElement()
+		public void StopMovingElements()
 		{
 			try
 			{
-				MoveElementTask moveElementTask = (MoveElementTask)AppTask;
-				IStructureItem elementToMove = App.Kp2a.GetDb().KpDatabase.RootGroup.FindObject(moveElementTask.Uuid, true, null);
-				if (elementToMove.ParentGroup != Group)
-					App.Kp2a.GetDb().Dirty.Add(elementToMove.ParentGroup);
+				MoveElementsTask moveElementsTask = (MoveElementsTask)AppTask;
+			    foreach (var uuid in moveElementsTask.Uuids)
+			    {
+                    IStructureItem elementToMove = App.Kp2a.GetDb().KpDatabase.RootGroup.FindObject(uuid, true, null);
+                    if (elementToMove.ParentGroup != Group)
+                        App.Kp2a.GetDb().Dirty.Add(elementToMove.ParentGroup);    
+			    }
 			}
 			catch (Exception e)
 			{
@@ -680,7 +694,9 @@ namespace keepass2android
 
     public class GroupListFragment : ListFragment, AbsListView.IMultiChoiceModeListener
     {
-        public override void OnActivityCreated(Bundle savedInstanceState)
+	    private ActionMode _mode;
+
+	    public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
             if (App.Kp2a.GetDb().CanWrite)
@@ -709,29 +725,53 @@ namespace keepass2android
 
         public bool OnActionItemClicked(ActionMode mode, IMenuItem item)
         {
+	        var listView = FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListView;
+	        var checkedItemPositions = listView.CheckedItemPositions;
+
+            List<IStructureItem> checkedItems = new List<IStructureItem>();
+            for (int i = 0; i < checkedItemPositions.Size(); i++)
+            {
+                if (checkedItemPositions.ValueAt(i))
+                {
+                    //TODO make sure position is also correct when scrolling (more items in adapter than on screen)
+                    checkedItems.Add(((PwGroupListAdapter) ListAdapter).GetItemAtPosition(checkedItemPositions.KeyAt(i)));
+                }
+            }
+
+            //shouldn't happen, just in case...
+            if (!checkedItems.Any())
+            {
+                return false;
+            }
+            
             switch (item.ItemId)
             {
 
                 case Resource.Id.menu_delete:
-                    /*Handler handler = new Handler();
-                    DeleteEntry task = new DeleteEntry(Activity, App.Kp2a, _entry,
-                        new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)));
-                    task.Start();*/
-                    Toast.MakeText(((GroupBaseActivity) Activity), "todo delete", ToastLength.Long).Show();
-                    return true;
+                    Handler handler = new Handler();
+					DeleteMultipleItems task = new DeleteMultipleItems((GroupBaseActivity)Activity, App.Kp2a.GetDb(), checkedItems,
+                        new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a);
+                    task.Start();
+                    break;
                 case Resource.Id.menu_move:
-                    /*NavigateToFolderAndLaunchMoveElementTask navMove =
-                        new NavigateToFolderAndLaunchMoveElementTask(_entry.ParentGroup, _entry.Uuid, _isSearchResult);
-                    ((GroupBaseActivity)Activity).StartTask(navMove);*/
-                    Toast.MakeText(((GroupBaseActivity)Activity), "todo move", ToastLength.Long).Show();
-                    return true;
-                /*TODO for search results case Resource.Id.menu_navigate:
-                    NavigateToFolder navNavigate = new NavigateToFolder(_entry.ParentGroup, true);
-                    ((GroupBaseActivity)Activity).StartTask(navNavigate);
-                    return true;*/
+                    var navMove = new NavigateToFolderAndLaunchMoveElementTask(checkedItems.First().ParentGroup, checkedItems.Select(i => i.Uuid).ToList(), ((GroupBaseActivity)Activity).IsSearchResult);
+                    ((GroupBaseActivity)Activity).StartTask(navMove);
+		            break;
+				/*TODO for search results case Resource.Id.menu_navigate:
+					NavigateToFolder navNavigate = new NavigateToFolder(_entry.ParentGroup, true);
+					((GroupBaseActivity)Activity).StartTask(navNavigate);
+					break;*/    
+				default:
+		            return false;
+	            
 
             }
-            return false;
+			listView.ClearChoices();
+			((BaseAdapter)ListAdapter).NotifyDataSetChanged();
+			if (_mode != null)
+				mode.Finish();
+
+            return true;
         }
 
         public bool OnCreateActionMode(ActionMode mode, IMenu menu)
@@ -741,7 +781,7 @@ namespace keepass2android
             //mode.Title = "Select Items";
             Android.Util.Log.Debug("KP2A", "Create action mode" + mode);
             ((PwGroupListAdapter)ListView.Adapter).NotifyDataSetChanged();
-            
+	        _mode = mode;
             return true;
         }
 
@@ -750,6 +790,7 @@ namespace keepass2android
             Android.Util.Log.Debug("KP2A", "Destroy action mode" + mode);
 
             ((PwGroupListAdapter)ListView.Adapter).NotifyDataSetChanged();
+	        _mode = null;
         }
 
         public bool OnPrepareActionMode(ActionMode mode, IMenu menu)

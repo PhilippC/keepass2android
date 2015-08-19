@@ -68,8 +68,8 @@ namespace keepass2android
 
 			if (App.Kp2a.GetDb().KpDatabase.Name != "")
 			{
-				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Invisible;
-				((TextView) FindViewById(Resource.Id.qu_filename)).Text = App.Kp2a.GetDb().KpDatabase.Name;
+				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Visible;
+				((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetDb().KpDatabase.Name;
 			}
 			else
 			{
@@ -78,11 +78,11 @@ namespace keepass2android
 					                 .GetBoolean(GetString(Resource.String.RememberRecentFiles_key),
 					                             Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default)))
 				{
-					((TextView) FindViewById(Resource.Id.qu_filename)).Text = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);
+					((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);
 				}
 				else
 				{
-					((TextView) FindViewById(Resource.Id.qu_filename)).Text = "*****";
+					((TextView) FindViewById(Resource.Id.filename_label)).Text = "*****";
 				}
 
 			}

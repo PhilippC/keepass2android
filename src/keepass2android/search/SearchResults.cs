@@ -58,7 +58,8 @@ namespace keepass2android.search
             get { return false; }
         }
 
-
+        
+        
 	    protected override void OnNewIntent(Intent intent)
 		{
 			ProcessIntent(intent);
@@ -156,6 +157,11 @@ namespace keepass2android.search
 			StartActivity(i);
 			return true;
 		}
+
+	    public override bool IsSearchResult
+        {
+            get { return true; }
+        }
 	}
 }
 

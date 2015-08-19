@@ -24,6 +24,7 @@ using Android.Widget;
 using Android.Preferences;
 using KeePassLib;
 using keepass2android.view;
+using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
@@ -327,7 +328,18 @@ namespace keepass2android
 			
 			return ev;
 		}
-		
+
+	    public IStructureItem GetItemAtPosition(int keyAt)
+	    {
+	        if (keyAt < _groupsForViewing.Count)
+	        {
+	            return _groupsForViewing[keyAt];
+	        }
+	        else
+	        {
+	            return _entriesForViewing[keyAt - _groupsForViewing.Count];
+	        }
+	    }
 	}
 
 }

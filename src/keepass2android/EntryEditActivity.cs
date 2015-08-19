@@ -951,7 +951,9 @@ namespace keepass2android
 			}
 			else
 			{
-				FindViewById(Resource.Id.entry_tags_label).Visibility = ViewStates.Gone;
+				var view = FindViewById(Resource.Id.entry_tags_label);
+				if (view != null)
+					view.Visibility = ViewStates.Gone;
 				FindViewById(Resource.Id.entry_tags).Visibility = ViewStates.Gone;
 			}
 			

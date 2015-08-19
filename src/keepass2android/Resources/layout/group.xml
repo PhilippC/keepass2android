@@ -26,14 +26,14 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_alignParentLeft="true"
-				android:text="Insert here"
+				android:text="@string/insert_element_here"
 				style="@style/BottomBarButton" />
       <Button
         android:id="@+id/cancel_insert_element"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_alignParentRight="true"
-				android:text="Cancel"
+				android:text="@string/cancel"
 				style="@style/BottomBarButton" />
     </RelativeLayout>
     <View
@@ -47,6 +47,8 @@
             android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/divider2"
+            android:layout_below="@id/top"
             android:fitsSystemWindows="true">
     <fragment
         android:name="keepass2android.GroupListFragment"
