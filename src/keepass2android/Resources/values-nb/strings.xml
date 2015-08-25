@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android er en android-utgave av KeePass passordbestyrer.</string>
   <string name="CreditsText">Brukergrensesnittet er basert på en port av KeepassDroid utviklet av Brian Pellin. Kildekode til databaseoperasjoner er basert på KeePass av Dominik Reichl. Android roboten, laget og delt av Google, er reprodusert og modifisert i henhold til Creative Commons 3.0 Navngivelse Lisensen.</string>
   <string name="accept">Godta</string>
-  <string name="add_entry">Legg til post</string>
+  <string name="add_entry">Legg til oppføring</string>
   <string name="add_url_entry">Lag oppføring for URL</string>
   <string name="add_group">Legg til gruppe</string>
   <string name="add_group_title">Legg til gruppe</string>

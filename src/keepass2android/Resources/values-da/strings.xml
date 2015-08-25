@@ -65,6 +65,7 @@
   <string name="digits">Cifre</string>
   <string name="disclaimer_formal">Keepass2Android leveres ABSOLUT UDEN GARANTI. Det er gratis software, og du er velkommen til at videredistribuere det under betingelserne i GPL version 2 eller senere.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Kopiér til upklipsholder</string>
   <string name="enter_filename">Angiv navn på databasefil</string>
   <string name="entry_accessed">Seneste åbnede</string>
   <string name="entry_cancel">Annuller</string>
@@ -172,6 +173,7 @@
   <string name="remember_keyfile_title">Gem nøglefil</string>
   <string name="remove_from_filelist">Fjern</string>
   <string name="rijndael">Rijndael (AES)</string>
+  <string name="root">Rod</string>
   <string name="rounds">Krypterings-gentagelser</string>
   <string name="rounds_explaination">Højere krypterings-gentagelser giver øget beskyttelse imod brute-force angreb, men kan påvirke læsnings- og skrivehastigheden betydentligt.</string>
   <string name="rounds_hint">gentagelser</string>
@@ -183,8 +185,11 @@
   <string name="space">Mellemrum</string>
   <string name="search_label">Søg</string>
   <string name="show_password">Vis adgangskode</string>
+  <string name="sort_menu">Sorter efter...</string>
   <string name="sort_name">Sorter efter navn</string>
   <string name="sort_db">DB sorteringsrækkefølge</string>
+  <string name="sort_moddate">Sorter efter ændringsdato</string>
+  <string name="sort_default">Behold standardrækkefølgen</string>
   <string name="special">Speciel</string>
   <string name="search_hint">Find hvad</string>
   <string name="search_results">Søgeresultater</string>
@@ -200,7 +205,9 @@
   <string name="warning_unmounted">Dit sd-kort er ikke monteret i din enhed. Du vil ikke være i stand til at indlæse eller oprette din database.</string>
   <string name="version_label">Version</string>
   <string name="version_history">Versionshistorik</string>
+  <string name="author">Keepass2Android er udviklet af Philipp Crocoll.</string>
   <string name="further_authors">Tak for kodebidrag af %1$s.</string>
+  <string name="designers">Tak til ikon- og layoutdesignbidrag af %1$s.</string>
   <string name="credit_plugin1">Twofish Cipher-plugin\'et til KeePass blev udviklet af Scott Greenberg og er inkluderet i KP2A.</string>
   <string name="credit_android_filechooser">android-file-chooser blev udviklet af Hai Bison</string>
   <string name="credit_keyboard">KP2A-tastaturet er baseret på Gingerbread-tastaturet fra Android Open Source Project og bruger Plugin Manager-koden fra Hacker\'s Keyboard af Klaus Weidner.</string>
@@ -229,6 +236,7 @@
   <string name="QuickUnlock_lockButton">Luk database</string>
   <string name="QuickUnlockDefaultEnabled_title">Aktiver Hurtigoplåsning som standard</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definerer, om Hurtigoplåsning er aktiveret som standard eller ej.</string>
+  <string name="ViewDatabaseSecure_title">Beskyt databasevisning</string>
   <string name="QuickUnlockIconHidden_title">Skjul Hurtigoplåsning-ikon</string>
   <string name="QuickUnlockIconHidden_summary">Hurtigoplåsning virker desværre ikke uden at vise et beskedikon. Vælg denne indstilling for at bruge et gennemsigtigt ikon.</string>
   <string name="QuickUnlockIconHidden16_title">Skjul Hurtigoplåsning-ikon</string>
@@ -236,6 +244,13 @@
   <string name="QuickUnlockLength_title">Længde af nøgle til Hurtigoplåsning</string>
   <string name="QuickUnlockLength_summary">Maksimalt antal tegn brugt som nøgle til Hurtigoplåsning.</string>
   <string name="QuickUnlock_fail">Hurtigoplåsning mislykkedes: Forkert nøgle!</string>
+  <string name="SaveAttachmentDialog_title">Gem vedhæftet fil</string>
+  <string name="SaveAttachmentDialog_text">Vælg hvor du vil gemme den vedhæftede fil.</string>
+  <string name="SaveAttachmentDialog_save">Gem på SD-kort</string>
+  <string name="SaveAttachmentDialog_open">Gem til cache og åben</string>
+  <string name="SaveAttachment_doneMessage">Gemt fil som %1$s.</string>
+  <string name="SaveAttachment_Failed">Kunne ikke gemme den vedhæftet fil %1$s.</string>
+  <string name="AddUrlToEntryDialog_title">Husk søgetekst?</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Låst. Hurtigoplåsning aktiveret.</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>

@@ -418,6 +418,8 @@
   <string name="CertificateFailure">Помилка: не вдалося перевірити сертифікат сервера! Встановіть відповідний кореневий сертифікат на ваш пристрій або перегляньте налаштування!</string>
   <string name="export_fileformats_title">Виберіть формат файлу</string>
   <string name="killed_by_os">Вибачте! Keepass2Android був убитий ОС Android! З міркувань безпеки Keepass2Android не зберігає вибрані облікові дані на диску, тому потрібно повторно відкрити базу даних. Примітка: Це має відбуватися дуже рідко. Якщо це так, будь ласка, напишіть мені повідомлення на crocoapps@gmail.com.</string>
+  <string name="ClickOkToSelectLocation">Натисніть OK, щоб обрати місце, куди слід скопіювати файл.</string>
+  <string name="CopyingFile">Копіювання файлу...</string>
   <string name="ChangeLog_title">Журнал змін</string>
   <string name="PreviewWarning">Будь ласка, зверніть увагу! Це попередній реліз і може мати деякі недоліки! Якщо у вас виникли *будь-які* несподіванки, будь ласка, дайте мені знати (на Codeplex або електронною поштою).</string>
   <string name="ChangeLog_0_9_4">

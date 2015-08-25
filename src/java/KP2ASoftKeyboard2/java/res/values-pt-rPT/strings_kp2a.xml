@@ -12,6 +12,9 @@
   <string name="kp2a_remember_auto_fill">Lembrar os textos de dica de campo</string>
   <string name="kp2a_remember_auto_fill_summary">Se um campo de texto é preenchido manualmente selecionando o valor de Keepass2Android, lembra-se de qual valor foi inserido no campo de texto. O campo de texto mais tarde é detectado novamente pelo seu texto de dica.</string>
   <string name="kp2a_simple_keyboard">Teclado simples</string>
+  <string name="kp2a_simple_keyboard_summary">Mostrar teclado simples de 1 linha se existir uma entrada disponível para o teclado. Se desactivado, uma caixa de diálogo é mostrada quando é pressionada a tecla Keepass2Android.</string>
   <string name="kp2a_lock_on_sendgodone">Bloquear base de dados no final</string>
+  <string name="kp2a_lock_on_sendgodone_summary">Ao pressionar a tecla Concluido/Enviar/Ir no teclado de 1 linha simples, bloquear a base de dados automaticamente.</string>
   <string name="kp2a_switch_on_sendgodone">Trocar teclado ao concluir</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Ao pressionar a tecla Concluido/Enviar/Ir no teclado de 1 linha simples, trocar o teclado.</string>
 </resources>

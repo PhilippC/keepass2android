@@ -24,7 +24,7 @@
   <string name="app_timeout_summary">Temps abans de bloquejar la base de dades quan l\'applicació està inactiva.</string>
   <string name="kill_app_label">Matar el procés d\'aplicació</string>
   <string name="show_kill_app">Botó de tancament</string>
-  <string name="show_kill_app_summary">Mostra, un botó a la pantalla de contrasenya per matar el procés d\'aplicació (per a usuaris paranoics)</string>
+  <string name="show_kill_app_summary">Mostra un botó a la pantalla de contrasenya per matar el procés d\'aplicació (per a usuaris paranoics)</string>
   <string name="application">Aplicació</string>
   <string name="application_settings">Paràmetres de l\'aplicació</string>
   <string name="ShowGroupnameInSearchResult_title">Mostra el nom de grup en el resultat de la cerca</string>
@@ -32,9 +32,9 @@
   <string name="NavigationToGroupCompleted_message">Grup mostrat ara: %1$s</string>
   <string name="ShowGroupInEntry_title">Mostra el nom de grup en vista d\'entrada</string>
   <string name="unknown_uri_scheme">Em sap greu! Keepass2Android no pot manejar les tornades URI %1$s. Si us plau, contacta amb el desenvolupador!</string>
-  <string name="security_prefs">Securetat</string>
+  <string name="security_prefs">Seguretat</string>
   <string name="display_prefs">Mostrar</string>
-  <string name="password_access_prefs">Accés amb d\'entrada de contrasenya</string>
+  <string name="password_access_prefs">Accés amb entrada de contrasenya</string>
   <string name="QuickUnlock_prefs">Desbloqueig ràpid</string>
   <string name="FileHandling_prefs">Gestor d\'arxius</string>
   <string name="keyboard_prefs">Teclat</string>
@@ -65,6 +65,7 @@
   <string name="digits">Dígits</string>
   <string name="disclaimer_formal">Keepass2Android ve SENSE CAP MENA DE GARANTIA; Això és programari lliure, i pots redistribuïr-lo sota els termes de la llicència GPL versió 2 o posterior.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Copiar al portapapers</string>
   <string name="enter_filename">Introdueix el nom de la base de dades</string>
   <string name="entry_accessed">Accedida</string>
   <string name="entry_cancel">Cancel·la</string>
@@ -123,11 +124,14 @@
   <string name="invalid_algorithm">Algoritme invàlid.</string>
   <string name="invalid_db_sig">Format de base de dades desconegut.</string>
   <string name="keyfile_does_not_exist">Arxiu clau no existeix.</string>
+  <string name="no_keyfile_selected">Cap arxiu clau de seleccionat.</string>
+  <string name="keyfile_is_empty">Arxiu clau és buit.</string>
   <string name="length">Longitud</string>
   <string name="list_size_title">Mida de la llista de grups</string>
   <string name="list_size_summary">Mida del text a la llista de grups</string>
   <string name="loading_database">Carregant base de dades&#8230;</string>
   <string name="lowercase">Minúscules</string>
+  <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Emmascara contrasenya</string>
   <string name="maskpass_summary">Amaga les contrasenyes per defecte</string>
   <string name="menu_about">Sobre</string>
@@ -138,15 +142,23 @@
   <string name="menu_app_settings">Paràmetres</string>
   <string name="menu_db_settings">Paràmetres de la base de dades</string>
   <string name="menu_delete">Esborra</string>
+  <string name="menu_move">Moure a un altre grup</string>
+  <string name="menu_move_light">Moure</string>
+  <string name="menu_navigate">Navegui al grup superior</string>
+  <string name="menu_donate">Donar una cervesa...</string>
   <string name="menu_edit">Editar</string>
   <string name="menu_hide_password">Amaga contrasenya</string>
   <string name="menu_lock">Bloqueja la base de dades</string>
   <string name="menu_open">Obre</string>
   <string name="menu_rename">Reanomena</string>
   <string name="menu_search">Cerca</string>
+  <string name="menu_search_advanced">Cerca avançada</string>
   <string name="menu_url">Ves a la URL</string>
+  <string name="menu_change_db">Canvi de base de dades&#8230;</string>
   <string name="minus">Menys</string>
   <string name="never">Mai</string>
+  <string name="yes">Sí</string>
+  <string name="no">No</string>
   <string name="no_keys">Sense entrades a la base de dades o grup.</string>
   <string name="no_results">Cap resultat de cerca</string>
   <string name="no_url_handler">Sense gestor per aquesta url.</string>
@@ -155,42 +167,349 @@
   <string name="omitbackup_summary">Omet els grups \'Còpia de seguretat\' i paperera dels resultats de cerca</string>
   <string name="pass_filename">Nom de base de dades KeePass</string>
   <string name="password_title">Introdueix contrasenya de la base de dades</string>
+  <string name="master_key_type">Seleccioneu el tipus de clau mestra:</string>
   <string name="progress_create">Creant nova base de dades&#8230;</string>
+  <string name="create_database">Crear base de dades</string>
   <string name="progress_title">Treballant&#8230;</string>
   <string name="remember_keyfile_summary">Recorda la localització d\'arxius clau</string>
   <string name="remember_keyfile_title">Guarda arxiu clau</string>
   <string name="remove_from_filelist">Elimina</string>
+  <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Arrel</string>
   <string name="rounds">Passades d\'encriptació</string>
   <string name="rounds_explaination">Més passades d\'encriptació dónen protecció adicional contra atacs de força bruta, però poden alentir molt carregar i guardar la base de dades.</string>
   <string name="rounds_hint">passades</string>
+  <string name="database_name">Nom de la base de dades</string>
+  <string name="default_username">Nom d\'usuari per defecte per noves entrades</string>
   <string name="saving_database">Guardant la base de dades&#8230;</string>
+  <string name="exporting_database">Exportant la base de dades&#8230;</string>
+  <string name="export_database_successful">Base de dades exportada amb èxit!</string>
   <string name="space">Espai</string>
   <string name="search_label">Cerca</string>
   <string name="show_password">Mostra contrasenya</string>
+  <string name="sort_menu">Ordena per...</string>
   <string name="sort_name">Ordena per nom</string>
   <string name="sort_db">Ordenació de base de dades</string>
+  <string name="sort_moddate">Ordenar per data modificació</string>
+  <string name="sort_default">Mantenir l\'ordre per defecte</string>
   <string name="special">Especial</string>
+  <string name="search_hint">Trobar el que</string>
   <string name="search_results">Resultats de cerca</string>
+  <string name="search_in">Cerca a</string>
+  <string name="select_other_entry">Selecciona una altra entrada</string>
+  <string name="select_group_then_add">Obrir el grup desitjat i prémer \"%1$s\"!</string>
+  <string name="insert_element_here">Inserir aquí</string>
+  <string name="twofish">Twofish</string>
   <string name="underline">Subratllat</string>
   <string name="unsupported_db_version">Versió de la base de dades no suportada.</string>
   <string name="uppercase">Majúscules</string>
   <string name="warning_read_only">La teva tarja SD és de només lectura. No podràs guardar canvis a la teva base de dades.</string>
   <string name="warning_unmounted">La teva tarja SD no està muntada al teu dispositiu. No podràs carregar ni guardar una base de dades.</string>
   <string name="version_label">Versió</string>
+  <string name="version_history">Historial de versions</string>
+  <string name="author">Keepass2Android és desenvolupat per Philipp Crocoll.</string>
+  <string name="further_authors">Gràcies a les aportacions de codi de %1$s.</string>
+  <string name="designers">Gràcies a les aportacions de disseny icona i disseny per %1$s.</string>
+  <string name="credit_plugin1">El Plugin de xifratge Twofish per Keepass va ser desenvolupat per Scott Greenberg i està inclòs en KP2A.</string>
+  <string name="credit_android_filechooser">androide-filechooser va ser desenvolupat per Hai bisó</string>
+  <string name="credit_keyboard">El teclat de l\'KP2A es basa en el teclat de Gingerbread del projecte de font oberta Android i utilitza el codi del Gesto de Conectors del teclat Hacker per Klaus Weidner.</string>
+  <string name="please_note">Tingueu en compte</string>
+  <string name="contributors">Contribuïdors</string>
+  <string name="regular_expression">Expressió regular</string>
+  <string name="TanExpiresOnUse_title">TAN expira en ús</string>
+  <string name="TanExpiresOnUse_summary">Marca entrades TAN caducades quan siguin utilitzades</string>
+  <string name="ShowUsernameInList_title">Mostra nom d\'usuari en llista</string>
+  <string name="ShowUsernameInList_summary">Mostrar noms d\'usuari sota títols d\'entrada. Útil per a comptes múltiples o TANs.</string>
+  <string name="RememberRecentFiles_title">Recordeu les bases de dades</string>
+  <string name="RememberRecentFiles_summary">Recordeu les bases de dades recentment obertes i mostrar-les en la pantalla de d\'obrir base de dades.</string>
+  <string name="kp2a_findUrl">Keepass2Android: Localitzar contrasenya</string>
+  <string name="excludeExpiredEntries">Excloure les entrades caducats</string>
+  <string name="search_options">Opcions</string>
+  <string name="caseSensitive">Majúscules i minúscules</string>
+  <string name="start_open_file">Obrir arxiu...</string>
+  <string name="start_create">Crear base de dades nova...</string>
+  <string name="start_open_url">Obrir URL...</string>
+  <string name="start_create_import">Importar fitxer a nova base de dades...</string>
+  <string name="enter_filename_details_url">Cal especificar l\'URL complet incloent protocol com http://.</string>
+  <string name="enter_filename_details_create_import">En el següent pas serà seleccionat fitxer que voleu importar.</string>
+  <string name="enable_quickunlock">Permetre QuickUnlock</string>
+  <string name="QuickUnlock_label">Introduir últims %1$d caràcters de la seva contrasenya:</string>
+  <string name="QuickUnlock_button">QuickUnlock!</string>
+  <string name="QuickUnlock_lockButton">Tancar base de dades</string>
+  <string name="QuickUnlockDefaultEnabled_title">Permetre QuickUnlock per defecte</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Defineix si QuickUnlock està habilitada per defecte o no.</string>
+  <string name="ViewDatabaseSecure_title">Protegir l\'exhibició de base de dades</string>
+  <string name="ViewDatabaseSecure_summary">Si està activat, no s\'admeten cap captura de pantalla i cap miniatura de l\'aplicació es mostra a la llista d\'aplicacions recents.</string>
+  <string name="QuickUnlockIconHidden_title">Amagar icona de QuickUnlock</string>
+  <string name="QuickUnlockIconHidden_summary">Malauradament QuickUnlock no funciona sense mostrar una icona de notificació. Seleccioneu aquesta opció per utilitzar una icona transparent.</string>
+  <string name="QuickUnlockIconHidden16_title">Amagar icona de QuickUnlock</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock requereix una notificació per treballar pròpiament. Seleccioneu aquesta opció per mostrar una notificació sense una icona.</string>
+  <string name="QuickUnlockLength_title">Longitud de clau QuickUnlock</string>
+  <string name="QuickUnlockLength_summary">Nombre màxim de caràcters utilitzats com a contrasenya de QuickUnlock.</string>
+  <string name="QuickUnlock_fail">QuickUnlock ha fallat: Contrasenya incorrecta!</string>
+  <string name="BinaryDirectory_title">Directori d\'arxius adjunts</string>
+  <string name="BinaryDirectory_summary">Directori on es guarden els fitxers adjunts.</string>
+  <string name="SaveAttachmentDialog_title">Deseu el fitxer adjunt</string>
+  <string name="SaveAttachmentDialog_text">Si us plau seleccioneu on voleu desar el fitxer adjunt.</string>
+  <string name="SaveAttachmentDialog_save">Desar a la targeta SD</string>
+  <string name="SaveAttachmentDialog_open">Desa a la memòria cau i obre</string>
+  <string name="SaveAttachment_doneMessage">Desat l\'arxiu a %1$s.</string>
+  <string name="SaveAttachment_Failed">No s\'ha pogut desar el fitxer adjunt a %1$s.</string>
+  <string name="AddUrlToEntryDialog_title">Recordeu el text de cerca?</string>
+  <string name="AddUrlToEntryDialog_text">Voleu emmagatzemar text de la cerca \"%1$s\" a l\'entrada seleccionada per tal de trobar-lo automàticament la propera vegada?</string>
+  <string name="error_invalid_expiry_date">Format de data/hora no vàlid per a la data de caducitat!</string>
+  <string name="error_string_key">Cal un nom de camp per a cada cadena.</string>
+  <string name="field_name">Nom del camp</string>
+  <string name="field_value">Valor del camp</string>
+  <string name="protection">Camp protegit</string>
+  <string name="add_binary">Afegir el fitxer adjunt...</string>
+  <string name="add_extra_string">Afegir la cadena addicional</string>
+  <string name="delete_extra_string">Suprimir la corda addicional</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: bloquejat. QuickUnlock activat.</string>
+  <string name="database_loaded_unlocked">%1$s: desbloquejat.</string>
+  <string name="credentials_dialog_title">Introduïu les credencials del servidor</string>
+  <string name="UseFileTransactions_title">Operacions d\'arxiu</string>
+  <string name="UseFileTransactions_summary">Utilitzar les operacions d\'arxiu per escriure les bases de dades</string>
+  <string name="LockWhenScreenOff_title">Bloqueja quan la pantalla s\'apagui</string>
+  <string name="LockWhenScreenOff_summary">Bloqueja la base de dades quan la pantalla s\'apagi.</string>
+  <string name="ClearPasswordOnLeave_title">Esborra la contrasenya mestra introduïda</string>
+  <string name="ClearPasswordOnLeave_summary">Esborra la contrasenya mestra introduïda en deixar la pantalla sense obrir la base de dades.</string>
+  <string name="LockWhenNavigateBack_title">Bloqueja quan surtis de l\'aplicació</string>
+  <string name="LockWhenNavigateBack_summary">Tancar la base de dades en deixar l\'aplicació prement el botó endarrere.</string>
+  <string name="NoDonateOption_title">Amagar l\'opció de donació</string>
+  <string name="NoDonateOption_summary">Aquesta configuració és pels donants. Està disponible després d\'utilitzar Keepass2Android durant un temps només.</string>
+  <string name="NoDonateOption_question">Sense les donacions, aquest aplicació no existiria i no milloraria contínuament! Si vostè encara no ha donat, si us plau consideri fer una donació ara.</string>
+  <string name="UseOfflineCache_title">Posant en memòria cau la base de dades</string>
+  <string name="UseOfflineCache_summary">Manté una còpia de la base de dades remota en el directori de memòria cau de l\'aplicació. Això permet utilitzar bases de dades remotes fins i tot quan esteu fora de línia.</string>
+  <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
+  <string name="AcceptAllServerCertificates_summary">Defineix el comportament quan fracassa validació de certificat. Nota: podeu instal·lar certificats en el dispositiu si fracassa la validació!</string>
+  <string name="ClearOfflineCache_title">Neteja la memòria cau?</string>
+  <string name="ClearOfflineCache_question">Se suprimiran tots els arxius de base de dades en memòria cau. Els canvis que heu realitzat mentre sou fora de línia i que encara no han estat sincronitzat es perdran! Voleu continuar?</string>
+  <string name="CheckForFileChangesOnSave_title">Comprovar per modificacions</string>
+  <string name="CheckForFileChangesOnSave_summary">Comprovar si l\'arxiu va ser modificat externament abans de desar els canvis.</string>
+  <string name="CheckForDuplicateUuids_title">Comprovar per duplicats de UUIDs</string>
+  <string name="CheckForDuplicateUuids_summary">Comprova si l\'arxiu de base de dades és corrupte mirant si te diverses entrades amb el mateix identificador. Això podria provocar comportaments inesperats.</string>
+  <string name="ShowCopyToClipboardNotification_title">Notificacions de porta-retalls</string>
+  <string name="ShowCopyToClipboardNotification_summary">Fer l\'usuari i contrasenya accessible a través de la barra de notificació i porta-retalls. Compte amb sniffers de contrasenya!</string>
+  <string name="ShowSeparateNotifications_title">Notificacions independents</string>
+  <string name="ShowSeparateNotifications_summary">Mostrar les notificacions separades per copiar el nom d\'usuari i contrasenya al porta-retalls i activant el teclat.</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificació de teclat KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Fes entrada totalment accessible a través del teclat KP2A (recomanat).</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Canvi de teclat</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Diàleg de selecció de teclat obert quan l\'entrada està disponible a través de teclat KP2A després de cerca del navegador.</string>
+  <string name="kp2a_switch_rooted">Canvi automàtic en dispositius amb accés de superusuari (root)</string>
+  <string name="kp2a_switch_rooted_summary">Canvia automàticament a KP2A teclat quan s\'obre la entrada. Requereix accés superusuari (root) i l\'aplicació Secure Settings amb System+. </string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Canvi automàtic només després de cerca</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Només canvia automàticament a KP2A teclat després d\'utilitzar la funció de compartir URL (però no en obrir una entrada d\'una altra manera)</string>
+  <string name="AutoSwitchBackKeyboard_title">Torna a canviar el teclat</string>
+  <string name="AutoSwitchBackKeyboard_summary">Canviar altra vegada a teclat previ quan no s\'obre cap entrada.</string>
+  <string name="ShowUnlockedNotification_title">Icona de notificació mentre estigui desbloquejat</string>
+  <string name="ShowUnlockedNotification_summary">Mostra una icona de notificació mentre la base de dades està desbloquejada.</string>
+  <string name="PreloadDatabaseEnabled_title">Pre-carregar el fitxer de base de dades</string>
+  <string name="PreloadDatabaseEnabled_summary">Comença carregant de fons o descàrrega de l\'arxiu de base de dades durant l\'entrada de contrasenya d\'inici.</string>
+  <string name="AskOverwriteBinary">Voleu sobreescriure el binari existent amb el mateix nom?</string>
+  <string name="AskOverwriteBinary_title">Voleu sobreescriure binari existent?</string>
+  <string name="AskOverwriteBinary_yes">Sobreescriure</string>
+  <string name="AskOverwriteBinary_no">Canvia el nom</string>
+  <string name="AttachFailed">No s\'ha pogut afegir el fitxer adjunt.</string>
+  <string name="RecycleBin">Paperera de reciclatge</string>
+  <string name="AskDeletePermanentlyEntry">Voleu suprimir permanentment aquesta entrada? Prem No per reciclar.</string>
+  <string name="AskDeletePermanentlyGroup">Voleu suprimir permanentment aquesta entrada? Prem No per reciclar.</string>
+  <string name="AskDeletePermanently_title">Suprimeix permanentment?</string>
+  <string name="AskReloadFile_title">Recarregar fitxer?</string>
+  <string name="AskReloadFile">L\'arxiu que és actualment obert es va canviar per un altre programa. Voleu actualitzar-lo?</string>
+  <string name="AskDiscardChanges">Voleu descartar els canvis fets realment? (El botó de salvar és a la part superior del formulari.)</string>
+  <string name="AskDiscardChanges_title">Descarta els canvis?</string>
+  <string name="suggest_improvements">Suggerir o votar per millores</string>
+  <string name="rate_app">Valora aquesta app</string>
+  <string name="translate_app">Traduir KP2A</string>
+  <string name="AddingEntry">Afegir entrada&#8230;</string>
+  <string name="AddingGroup">Afegir grup&#8230;</string>
+  <string name="DeletingEntry">Suprimint l\'entrada&#8230;</string>
+  <string name="DeletingGroup">Suprimint grup&#8230;</string>
+  <string name="SettingPassword">Fixar contrasenya&#8230;</string>
+  <string name="UndoingChanges">Desfer els canvis&#8230;</string>
+  <string name="TransformingKey">Transformant la clau mestra&#8230;</string>
+  <string name="DecodingDatabase">Descodificant la base de dades&#8230;</string>
+  <string name="ParsingDatabase">Anàlisi de base de dades&#8230;</string>
+  <string name="CheckingTargetFileForChanges">Comprovació fitxer de destinació per canvis&#8230;</string>
+  <string name="TitleSyncQuestion">Combina els canvis?</string>
+  <string name="MessageSyncQuestion">L\'arxiu de base de dades es va modificar externament. Voleu carregar i fusionar els canvis abans de desar? Seleccioneu No si voleu sobreescriure els canvis externs.</string>
+  <string name="SynchronizingDatabase">Fusionant canvis&#8230;</string>
+  <string name="YesSynchronize">Sí, fusionar</string>
+  <string name="NoOverwrite">No, sobreescriure</string>
+  <string name="SynchronizingCachedDatabase">Sincronitzar la base de dades en memòria cau&#8230;</string>
+  <string name="DownloadingRemoteFile">Descarregar fitxer remot&#8230;</string>
+  <string name="UploadingFile">Carregant arxiu&#8230;</string>
+  <string name="RestoringRemoteFile">Restaurant fitxer remot&#8230;</string>
+  <string name="FilesInSync">Els arxius estan sincronitzats.</string>
+  <string name="SynchronizedDatabaseSuccessfully">Base de dades se sincronitzada amb èxit!</string>
+  <string name="CheckingDatabaseForChanges">Comprovació de la base de dades per canvis&#8230;</string>
+  <string name="CouldNotSaveToRemote">No s\'ha pogut desar a remot: %1$s. Torneu a desar o utilitzeu el menú sincronitza quan la connexió remota estigui disponible una altra vegada.</string>
+  <string name="CouldNotLoadFromRemote">No es pot obrir remot: %1$s. Carregat el fitxer de memòria cau local. Encara podeu fer canvis a la base de dades i sincronitzar-los més tard.</string>
+  <string name="UpdatedRemoteFileOnLoad">Actualitzat fitxer remot.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Obert arxiu local degut al conflicte amb els canvis en el fitxer remot. Fes servir menú de Sincronitzar per fusionar.</string>
+  <string name="LoadedFromRemoteInSync">Fitxer remot i memòria cau estan sincronitzats.</string>
+  <string name="UpdatedCachedFileOnLoad">Actualitzat la còpia de la memòria cau local de %1$s.</string>
+  <string name="RemoteDatabaseUnchanged">No s\'han detectat canvis.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Actualitzada memòria cau del fitxer auxiliar OTP: Comptador remot era més alt.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Actualitzada memòria cau del fitxer auxiliar OTP: Comptador local era més alt.</string>
+  <string name="SynchronizingOtpAuxFile">S\'estan sincronitzant els fitxers auxiliars OTP&#8230;</string>
+  <string name="database_file">l\'arxiu de base de dades</string>
+  <string name="otp_aux_file">Arxiu auxiliar OTP</string>
+  <string name="ErrorOcurred">S’ha produït un error:</string>
+  <string name="DuplicateUuidsError">Base de dades és corrupte: identificadors duplicats trobats. (Vols guardar-ho amb Minikeepass?) Si us plau, torneu a importar a una nova base de dades amb Keepass 2 per a PC i seleccioneu \"Crea un nou ID\".</string>
+  <string name="DuplicateUuidsErrorAdditional">Podeu desactivar aquest missatge d\'error en Configuració/Configuració d\'aplicacions/Gestor d\'arxius/Comprova UUIDS duplicats. Tingueu en compte que vostè pot experimentar comportaments inesperats. Es recomana arreglar la base de dades.</string>
+  <string name="synchronize_database_menu">Sincronitzar la base de dades&#8230;</string>
+  <string name="CannotMoveGroupHere">No es pot desplaçar el grup a aquest grup.</string>
+  <string name="donate_question">Avui és Oktoberfest! Si t\'agrada Keepass2Android: no seria avui un bon dia per comprar-me una cervesa?</string>
+  <string name="donate_bday_question">10 de maig? És el meu aniversari! Si t\'agrada aquest aplicació, per què no enviar-me algunes salutacions d\'aniversari amb un petit regal d\'aniversari? Això realment em faria feliç! :-)</string>
+  <string name="donate_missedbday_question">Ah, et vas perdre el meu aniversari el 10 de maig! Si t\'agrada aquest aplicació, per què no enviar-me algunes salutacions d\'aniversari i un regal d\'aniversari poc? Encara no és massa tard per fer-me feliç! :-)</string>
+  <string name="ok_donate">Explica\'m més!</string>
+  <string name="no_thanks">No, no m\'agrada tant</string>
+  <string name="hint_sftp_host">amfitrió (ex: 192.168.0.1)</string>
+  <string name="hint_sftp_port">port</string>
+  <string name="initial_directory">Directori inicial (opcional):</string>
+  <string name="enter_sftp_login_title">Introduir dades de connexió SFTP:</string>
+  <string name="select_storage_type">Seleccioneu el tipus d\'emmagatzematge:</string>
+  <string name="filestoragename_file">Fitxer local</string>
+  <string name="filestoragename_androidget">Obtenir de l\'aplicació de tercers</string>
+  <string name="filestoragename_androidsend">Enviar a l\'aplicació de tercers</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTP (WebDav)</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (carpeta de KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Si no voleu donar accés KP2A al seu Dropbox complet, podeu seleccionar aquesta opció. Es sol·licitarà només l\'accés a la carpeta Apps/Keepass2Android. Això és especialment adequat quan es crea una nova base de dades. Si ja teniu una base de dades, feu clic a aquesta opció per crear la carpeta, a continuació, posar el seu arxiu dins la carpeta (des del seu PC) i llavors seleccioni aquesta opció nou per obrir l\'arxiu.</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_sftp">SFTP (SSH Transferència de fitxer)</string>
+  <string name="filestorage_setup_title">Inicialització d\'accés a arxiu</string>
+  <string name="database_location">Localització de la base de dades</string>
+  <string name="help_database_location">Pot emmagatzemar la base de dades local o al seu dispositu Android o en el núvol (només versió fora de línia). Keepass2Android fa la base de dades disponible fins i tot si vostè està fora de línia. La base de dades segura, encriptada amb AES de 256 bits, ningú no podrà accedir a les vostres contrasenyes excepte vostè. Es recomana seleccionar Dropbox: és accessible a tots els seus mecanismes i fins i tot proporciona còpies de seguretat de versions anteriors d\'arxiu.</string>
+  <string name="hint_database_location">Seleccioneu on voleu emmagatzemar la base de dades:</string>
+  <string name="button_change_location">Canvia la ubicació</string>
+  <string name="master_password">Contrasenya mestra</string>
+  <string name="help_master_password">La base de dades s\'encripta amb la contrasenya que introduïu aquí. Triar una contrasenya forta per tal de mantenir la base de dades segura! Consell: Forma una frase o dues i utilitzar les primeres lletres de les paraules com a contrasenya. Inclou signes de puntuació.</string>
+  <string name="hint_master_password">Seleccioni una contrasenya mestra per protegir la seva base de dades:</string>
+  <string name="key_file">Arxiu clau</string>
+  <string name="help_key_file">Un arxiu clau és bàsicament una contrasenya s\'emmagatzema en un arxiu. Els arxius clau són normalment més forts que les contrasenyes mestres, perquè la clau pot ser molt més complicada; però també és més difícil mantenir el secret. Si emmagatzema la base de dades en el núvol, no emmagatzemi l\'arxiu clau també! Això ho faria completament inútil! Important: No canvieu el contingut del fitxer clau després de crear la base de dades!</string>
+  <string name="hint_key_file">Trieu si voleu utilitzar un arxiu clau a més de la contrasenya mestra:</string>
+  <string name="use_key_file">Fes servir la clau</string>
+  <string name="error_adding_keyfile">Error en afegir l\'arxiu clau!</string>
+  <string name="init_otp">Càrrega arxiu OTP auxiliar&#8230;</string>
+  <string name="otp_explanation">Introduïu la següent Contrasenya-d\'un-sol-us (One-time-passwords OTPs). Llisca la teva Yubikey NEO al darrere el seu dispositiu per entrar mitjançant NFC.</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="YubiChallengeNotInstalled">No puc trobar un aplicació que pugui manegar el desafiament. Si us plau instal·la Yubichallenge del Google Play.</string>
+  <string name="CouldntLoadOtpAuxFile">No s\'ha pogut carregar el fitxer OTP auxiliar!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Si us plau, utilitzeu el connector OtpKeyProv de KeePass 2. x (PC) per configurar la base de dades per usar amb OTPs!</string>
+  <string name="otp_discarded_because_no_db">Seleccioneu primer de base de dades. OTP es descarta per motius de seguretat.</string>
+  <string name="otp_discarded_no_space">OTP descartat: tots els OTPs ja entrats!</string>
+  <string name="otp_discarded_because_db_open">Si us plau, tanqueu primer la base de dades. Es descarta OTP.</string>
+  <string name="otps_pending">(Un o més OTPs ja disponibles)</string>
+  <string name="otpsecret_hint">OTP secret (p. ex. 01 23 ab cd...)</string>
+  <string name="CouldntParseOtpSecret">Error passant OTP secret!</string>
+  <string name="OtpKeyError">No ha pogut crear la clau OTP! Assegureu-vos que ha introduït els OTPs correctes.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Error actualitzant fitxer OTP auxiliar!</string>
+  <string name="SavingOtpAuxFile">Salvant arxiu OTP auxiliar&#8230;</string>
+  <string name="bad_resp">La resposta de desafiament és incorrecte.</string>
+  <string name="CouldntLoadChalAuxFile">No s\'ha pogut carregar el fitxer de repte auxiliar!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Utilitzeu el connector KeeChallenge de KeePass 2. x (PC) per configurar la base de dades per al seu ús amb repte-resposta!</string>
+  <string name="ErrorUpdatingChalAuxFile">Error actualitzant fitxer OTP auxiliar!</string>
+  <string name="TrayTotp_SeedField_title">Nom del camp TOTP llavor</string>
+  <string name="TrayTotp_SeedField_summary">Si està utilitzant el connector de Keepass 2 \"TrayTotp\" amb la configuració de modificada introduïu el nom de camp per al camp llavor aquí segons la configuració en el PC.</string>
+  <string name="TrayTotp_SettingsField_title">Ajustaments del nom del camp TOTP</string>
+  <string name="TrayTotp_SettingsField_summary">Introduïu aquí el nom del camp dels ajustaments del camp TrayTotp.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="loading">Carregant&#8230;</string>
+  <string name="plugins">Connectors</string>
+  <string name="plugin_packagename">Nom del paquet:</string>
+  <string name="plugin_description">Descripció (no verificat):</string>
+  <string name="plugin_author">L\'autor (no verificat):</string>
+  <string name="plugin_enabled">activat</string>
+  <string name="plugin_disabled">desactivat</string>
+  <string name="plugin_web">Trobar connectors en línia</string>
+  <string name="plugin_scopes">Permisos de nivell</string>
+  <string name="query_credentials_for_url">%1$s sol·licita credencials per %2$s.</string>
+  <string name="query_credentials">%1$s sol·licita credencials. Si us plau seleccioni una entrada.</string>
+  <string name="plugin_enabled_checkbox">Activat</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Notificacions d\'acció de base de dades</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">El connector avisaran quan una base de dades és oberta, tancada o salvada.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Dades d\'entrada actual</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">El connector rebrà totes les dades sobre l\'entrada de base de dades actual i se li permetrà oferir accions i modificacions de com es mosta aquesta.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consulta credencials pròpies</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">El connector permetrà consultar les credencials associades amb el seu propi paquet d\'aplicació.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Consulta les credencials</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">El connector permetrà a les credencials consultes per a aplicacions o llocs web.</string>
+  <string name="get_regular_version">Aconseguir més tipus d\'emmagatzematge</string>
+  <string name="CertificateWarning">Advertència: Ha fallat la validació de certificat de servidor: %1$s. Instal·lar el certificat arrel adequat al vostre dispositiu o consulti els ajustaments!</string>
+  <string name="CertificateFailure">Error: Validació de certificat de servidor fracassat! Instal·li el certificat arrel adequat al vostre dispositiu o veure configuració!</string>
+  <string name="export_fileformats_title">Seleccioneu el format de fitxer</string>
+  <string name="killed_by_os">Em sap greu! Keepass2Android fou matat pel Sistema Operatiu d\'Android! Per motius de seguretat, Keepass2Android no persisteixen les vostres credencials seleccionade al disc, pel que cal tornar a obrir la base de dades. Nota: Això succeeix molt poques vegades. Si ho fa, si us plau envieu-me un missatge a crocoapps@gmail.com.</string>
+  <string name="FileIsTemporarilyAvailable">L\'arxiu només està disponible temporalment per Keepass2Android.</string>
+  <string name="FileIsReadOnly">El fitxer que heu seleccionat és només de lectura.</string>
+  <string name="FileIsReadOnlyOnKitkat">El fitxer que heu seleccionat és només de lectura per a Keepass2Android a causa de restriccions en Android 4.4 +.</string>
+  <string name="CopyFileRequired">Per utilitzar-lo, haureu de copiar-lo a una altra ubicació.</string>
+  <string name="CopyFileRequiredForEditing">Per editar-lo, haureu de copiar el fitxer a una altra ubicació.</string>
+  <string name="ClickOkToSelectLocation">Clic Acceptar per seleccionar una ubicació on cal copiar l\'arxiu.</string>
+  <string name="CancelReadOnly">Cancel·lar, obrir només de lectura.</string>
+  <string name="CopyingFile">Copiant el fitxer...</string>
+  <string name="KdbBetaWarning">Tingueu en compte: que heu carregat una base de dades de Keepass 1. Keepass2Android ha afegit recentment suport d\'escriptura per a aquest format de base de dades. A pesar de les proves, l\'autor no garanteix que totes les dades es guardin correctament. Si us plau sempre mantingueu una còpia de seguretat de la base de dades original (Dropbox automàticament emmagatzema versions recents) abans de fer canvis. Si us plau informeu de qualsevol incidència. Gràcies!</string>
+  <string name="ChangeLog_title">Registre de canvi</string>
+  <string name="PreviewWarning">Atenció! Això és un versió prèvia i pot arribar amb alguns defectes! Si vostè experimenta *qualsevol* comportament inesperat, si us plau, faci-m\'ho saber (a Codeplex o per correu electrònic).</string>
+  <string name="ChangeLog_0_9_7"> 		Versió 0.9.7\n
+		* suport per escriure a bases de dades Keepass 1 (kdb) (beta!) \n 
+		* millor canviar a teclat anterior (també treballa en dispositius que no disposin d\'accés de superusuari - rootejats)\n
+		* suport per a KeeChallenge amb challenges\n de longitud variable\n
+		* evitar prendre captures de pantalla des de les pantalles de QuickUnlock i contrasenya\n
+		* ordenació inversa per Ordena per data de modificació (ara descendent) \n
+		* errors arreglats: vista de notes ara actualitzada correctament després de canvis, vistes de contrasenyes ara amaga contrasenya correctament en (esperançadorament) tots els dispositius, arreglat problema que li permetia afegir una entrada doble , solucionat el problema que mostrava avís de duplicat UUID fins i tot després d\'arreglar la base de dades\n 
+	</string>
+  <string name="ChangeLog_0_9_6"> Version 0.9.6\n * allow to import key file and/or local database file to app internal directory (see settings)\n * allow different sorting options\n * improved preferences for automatic keyboard switching\n * updated application logo and notification design, design by Stefano Pignataro (http://www.spstudio.at)\n * password generator remembers last settings\n * set notification visibility for Android 5 lock screen\n * now clearing master password field when leaving the app without clicking OK\n * fixed issue with missing input languages in keyboard setting on some devices\n * fixed issue with automatic keyboard switching on rooted devices\n * added check for corrupt databases (duplicate UUIDs)\n * automatically reload database when change detected, solves security concern about revealing master password\n * improved polish small keyboard layout, fixed keyboard settings theme (thanks to Wiktor Ławski)\n 	</string>
+  <string name="ChangeLog_0_9_5">
+<b>Versió 0.9.5</b> \n * Arreglat problemes amb arxiu de navegació (especialment en Android 4.4) \n * Solucionat el problema amb la càrrega d\'arxius .kdb (Keepass 1) amb el Nexus 5 amb Android Lollipop\n * afegit l\'opció per evitar prendre screenshots/mostrant app a la llista d\'aplicacions recents\n * Solucionat el problema amb Google Drive arxiu d\'emmagatzematge (edició regular) \n * Permeten arxius clau en emmagatzematge deliberada tipus (edició regular) \n * SDK de Dropbox actualitzat per incloure un pedaç de seguretat oficial (edició regular) \n * Actualitzades eines de construcció--&gt; mida dels apk augmentada:-(\ n He promès alguns canvis més. Vindran amb el pròxim llançament- Ho sentim. Volia publicar aquests destrets calents tan aviat com sigui possible.</string>
+  <string name="ChangeLog_keptDonate">Estesa possibilitat de donar una cervesa o una altra cosa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segons</item>
     <item>1 minut</item>
     <item>5 minuts</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
-    <item>Never</item>
+    <item>10 minuts</item>
+    <item>15 minuts</item>
+    <item>30 minuts</item>
+    <item>1hora</item>
+    <item>Mai</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Base de dades KeePass 2 (.kdbx)</item>
+    <item>KeePass 2 XML (sense xifrar) (. xml)</item>
+    <item>KeePass CSV (sense xifrar) (. csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Petita</item>
     <item>Mitjana</item>
     <item>Gran</item>
+  </string-array>
+  <string-array name="design_options">
+    <item>Holo Clar</item>
+    <item>Holo Fosc</item>
+  </string-array>
+  <string name="design_title">Disseny</string>
+  <string-array name="cred_remember_modes">
+    <item>No recordo l\'usuari i contrasenya</item>
+    <item>Recordar només nom d\'usuari</item>
+    <item>Recordar nom d\'usuari i contrasenya</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Contrasenya només</item>
+    <item>Contrasenya + arxiu de clau</item>
+    <item>Contrasenya + OTP</item>
+    <item>Contrasenya + OTP secret (mode de recuperació)</item>
+    <item>Contrasenya + repte-resposta</item>
+    <item>Contrasenya + resposta repte secret (mode de recuperació)</item>
+  </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Ignora els errors de validació de certificat</item>
+    <item>Avisa quan fracassi validació</item>
+    <item>No admetre els certificats no vàlids</item>
   </string-array>
 </resources>

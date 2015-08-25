@@ -8,4 +8,6 @@
   <string name="kp2a_password">密碼</string>
   <string name="kp2a_prefs">憑據輸入設置</string>
   <string name="kp2a_auto_fill">自動輸入啟用</string>
+  <string name="kp2a_auto_fill_summary">當選擇空白欄位時，如果有可使用的 Keepass2Android 條目以及當網站符合條目資訊時將自動填入資料。</string>
+  <string name="kp2a_remember_auto_fill">記住欄位提示訊息</string>
 </resources>

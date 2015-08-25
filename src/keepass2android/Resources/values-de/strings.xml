@@ -385,6 +385,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
   <string name="database_location">Speicherort der Datenbank</string>
   <string name="help_database_location">Du kannst deine Datenbank lokal auf deinem Android-Gerät oder in der Cloud speichern (nur in der Nicht-Offline-Version). Keepass2Android macht die Datenbank dann auch verfügbar, wenn du offline bist. Da die Datenbank sicher mit der AES 256-Bit-Verschlüsselung geschützt ist, erhält auch dann niemand außer dir Zugriff auf deine Datenbank. Wir empfehlen die Benutzung von Dropbox: Es ist auf allen Geräten verfügbar und bietet automatisch Backups aller Dateiversionen.</string>
@@ -458,6 +459,20 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="KdbBetaWarning">Bitte beachten: Du hast eine Keepass-1-Datenbank geladen. Keepass2Android bietet seit kurzem die Möglichkeit, solche Dateien zu editieren. Trotz gründlicher Tests garantiert der Autor nicht, dass alle Daten korrekt gespeichert werden. Bitte lege immer eine Sicherheitskopie der ursprünglichen Datenbank an, bevor du mit Keepass2Android speicherst (Tipp: Dropbox speichert automatisch ältere Verionen). Sollte ein Problem auftreten, melde diese bitte an den Autor. Danke!</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
   <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (auf Codeplex oder per E-Mail).</string>
+  <string name="Continue">Fortfahren</string>
+  <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Bist du sicher, dass es sich um eine gültige Datei handelt?</string>
+  <string name="ChangeLog_0_9_8">		Version 0.9.8\n
+		* Unterstützung für das Storage Access Framework (ermöglicht Schreiben auf SD-Karte und auf Google Drive mit KP2A Offline)\n
+		* Fehlerhafte Benutzereingaben bei WebDAV-URLs werden wenn möglich erkannt (Verzeichnis statt Datei)\n
+		* Passwort-Schriftart geändert\n
+		* Dropbox-Konto kann gewechselt werden\n
+		* Bug-Fix: Passwort-Art bei OTP wird gespeichert\n
+                * Hinweis: Ich hatte Material-Design für dieses Release versprochen. Es ist in Arbeit, braucht aber noch ein bisschen mehr Zeit. Sorry!</string>
+  <string name="ChangeLog_0_9_7b">
+		Version 0.9.7b\n
+		* Übersetzungen aktualisiert\n
+		* Bugs behoben: Passwort-Schriftart fehlte in 0.9.7, Gruppen wurden nicht sortiert, wenn \"Sortieren nach Namen\" ausgewählt war\n
+	</string>
   <string name="ChangeLog_0_9_7">
 		Version 0.9.7\n
 		* Schreibunterstützung für Keepass 1 (kdb) Datenbanken (Beta!)\n

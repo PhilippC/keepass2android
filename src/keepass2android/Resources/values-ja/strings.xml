@@ -65,6 +65,7 @@
   <string name="digits">数字</string>
   <string name="disclaimer_formal">Keepass2Android によって作られたフリーソフトウェアであり、無保証です。GPLバージョン2以上の条件下でこれを再頒布することができます。</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">クリップボードにコピー</string>
   <string name="enter_filename">データベースファイル名の入力</string>
   <string name="entry_accessed">最終アクセス日</string>
   <string name="entry_cancel">キャンセル</string>

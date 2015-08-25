@@ -6,7 +6,7 @@
   <string name="open_entry_for_app">Rechercher une entrée avec \"%1$s\"</string>
   <string name="kp2a_user">Utilisateur</string>
   <string name="kp2a_password">Mot de passe</string>
-  <string name="kp2a_prefs">Paramètres d\'entrée des informations d\'identification</string>
+  <string name="kp2a_prefs">Paramètres d\'entrée des identifiants</string>
   <string name="kp2a_auto_fill">Remplissage automatique activé</string>
   <string name="kp2a_auto_fill_summary">Renseigner automatiquement le texte lorsqu\'un champ vide est saisi, si une entrée Keepass2Android est disponible pour le clavier et qu\'il y a un champ qui correspond au texte d\'indication du champ.</string>
   <string name="kp2a_remember_auto_fill">Rappeler le texte du champ d\'information</string>

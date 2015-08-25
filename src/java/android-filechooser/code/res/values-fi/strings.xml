@@ -45,7 +45,7 @@
   <string name="afc_pmsg_filename_is_invalid">Tiedostonimi \"%1$s\" ei kelpaa</string>
   <string name="afc_pmsg_max_file_count_allowed">...Liikaa tiedostoja, maksimimäärä on %1$,d</string>
   <string name="afc_pmsg_unknown_error">Tuntematon virhe: %1$s</string>
-  <string name="afc_root">Root</string>
+  <string name="afc_root">Juuri</string>
   <string name="afc_title_advanced_selection">Valitse...</string>
   <string name="afc_title_confirmation">Vahvista</string>
   <string name="afc_title_date">Pvm.</string>
