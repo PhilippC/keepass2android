@@ -114,8 +114,10 @@
 
 	</style>
 
+
+
   
-	<style name="MyTheme_ActionBar.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+	<style name="MyTheme_ActionBar.Base" parent="Theme.AppCompat.Light">
 		<item name="android:windowNoTitle">true</item>
 		<item name="windowActionBar">true</item>
 		<item name="colorPrimary">@color/appPrimaryColor</item>
@@ -123,8 +125,22 @@
 		<item name="colorAccent">@color/appAccentColor</item>
 		<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     
-    <item name="actionModeBackground">@color/appPrimaryDarkColor</item>
-	</style>
+    <item name="actionModeBackground">@color/appAccentColor</item>
+    <item name="searchViewStyle">@style/CustomSearchViewStyle</item>
+    <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextView</item>
+
+  </style>
+  <style name="AutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+    <item name="android:textColor">#f0f</item>
+    <item name="android:textCursorDrawable">@null</item>
+    <item name="android:textColorHighlight">#0f0</item>
+  </style>
+  
+
+  <style name="CustomSearchViewStyle" parent="Widget.AppCompat.SearchView">
+    <item name="queryBackground">@color/appPrimaryDarkColor</item>
+
+  </style>
 
 
 	<style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">

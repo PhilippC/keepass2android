@@ -33,7 +33,7 @@ using System.Collections.Generic;
 
 namespace keepass2android.search
 {
-	[ContentProvider(new [] { SearchProvider.Authority })]
+	[ContentProvider(new [] { SearchProvider.Authority }, Exported=false)]
 	public class SearchProvider : ContentProvider
 	{
 		private enum UriMatches

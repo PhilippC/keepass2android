@@ -26,12 +26,24 @@ using Android.Util;
 using KeePassLib.Utility;
 using keepass2android.view;
 using Android.Content.PM;
+using Android.Runtime;
+using Android.Support.V4.View;
+using Android.Support.V7.App;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
-	[MetaData("android.app.searchable", Resource = AppNames.Searchable)]
-	[MetaData("android.app.default_searchable",Value="keepass2android.search.SearchResults")]
+
+
+	//[IntentFilter(new[] { "android.intent.action.SEARCH" })]
+	//[MetaData("android.app.default_searchable", Value = "MaterialTest2.EntryEditActivity")]
+	//[MetaData("android.app.searchable", Resource = "@xml/searchable_mattest")]
+    
+	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
+	//[MetaData("android.app.searchable", Resource = "@xml/searchable_mattest")]
+	//[MetaData("android.app.default_searchable",Value="keepass2android.search.SearchResults")]
+	[IntentFilter(new[] { "android.intent.action.SEARCH" })]
+	[MetaData("android.app.default_searchable", Value = "MaterialTest2.EntryEditActivity")]
+	[MetaData("android.app.searchable", Resource = "@xml/searchable_mattest")]
 	public class GroupActivity : GroupBaseActivity {
 		
 		public const int Uninit = -1;
@@ -86,7 +98,41 @@ namespace keepass2android
 
 	    public override bool OnCreateOptionsMenu(IMenu menu)
 	    {
-		    return base.OnCreateOptionsMenu(menu);
+			// Inflate the menu; this adds items to the action bar if it is present.
+			MenuInflater.Inflate(keepass2android.Resource.Menu.group, menu);
+
+			// Get the SearchView and set the searchable configuration
+			SearchManager searchManager = (SearchManager)GetSystemService(Context.SearchService);
+
+			var searchItem = menu.FindItem(keepass2android.Resource.Id.menu_search);
+
+			//SearchView searchView = (SearchView)Android.Support.V4.View.MenuItemCompat.GetActionView(searchItem);
+			var view = MenuItemCompat.GetActionView(searchItem);
+			var searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
+
+
+			// searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+			// Assumes current activity is the searchable activity
+			searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
+			// searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+			var search_src_text = searchView.FindViewById(keepass2android.Resource.Id.search_src_text);
+
+			try
+			{
+				var autoCompleteTextView = search_src_text.JavaCast< Android.Support.V7.Widget.SearchView.SearchAutoComplete>();
+				if (autoCompleteTextView != null) { 
+					autoCompleteTextView.SetDropDownBackgroundResource(keepass2android.Resource.Drawable.search_dropdown_light);
+				}
+			}
+			catch (Exception e) 
+			{
+				Android.Util.Log.Debug ("e", e.ToString());
+			}
+
+
+			return base.OnCreateOptionsMenu(menu);
 	    }
 
 	    protected override void OnCreate (Bundle savedInstanceState)
