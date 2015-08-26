@@ -31,6 +31,8 @@ namespace keepass2android
 {
 	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden , Theme="@style/NoTitleBar")]		
 	[MetaData("android.app.default_searchable",Value="keepass2android.search.SearchResults")]
+	[IntentFilter(new string[]{"android.intent.action.SEARCH"})]
+	[MetaData("android.app.searchable",Resource=AppNames.Searchable)]
 	public class GroupActivity : GroupBaseActivity {
 		
 		public const int Uninit = -1;
