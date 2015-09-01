@@ -95,7 +95,7 @@ namespace keepass2android
 		{
 			get { return App.Kp2a.GetDb().CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.GetDb().DatabaseFormat.CanHaveEntriesInRootGroup); }
 		}
-
+		/*
 	    public override bool OnCreateOptionsMenu(IMenu menu)
 	    {
 			// Inflate the menu; this adds items to the action bar if it is present.
@@ -117,24 +117,10 @@ namespace keepass2android
 			searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
 			// searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 
-			var search_src_text = searchView.FindViewById(keepass2android.Resource.Id.search_src_text);
-
-			try
-			{
-				var autoCompleteTextView = search_src_text.JavaCast< Android.Support.V7.Widget.SearchView.SearchAutoComplete>();
-				if (autoCompleteTextView != null) { 
-					autoCompleteTextView.SetDropDownBackgroundResource(keepass2android.Resource.Drawable.search_dropdown_light);
-				}
-			}
-			catch (Exception e) 
-			{
-				Android.Util.Log.Debug ("e", e.ToString());
-			}
-
 
 			return base.OnCreateOptionsMenu(menu);
 	    }
-
+*/
 	    protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);

@@ -392,10 +392,9 @@ namespace keepass2android
 				return true;
 			}
 		}
-		/*		
+
 			public override bool OnCreateOptionsMenu(IMenu menu) {
-				return base.OnCreateOptionsMenu(menu);
-		
+				
 				MenuInflater inflater = MenuInflater;
 				inflater.Inflate(Resource.Menu.group, menu);
 				var searchManager = (SearchManager) GetSystemService(SearchService);
@@ -406,6 +405,23 @@ namespace keepass2android
 				searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
 				searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
 				searchView.SetOnQueryTextListener(new OnQueryTextListener(this));
+
+			/*
+				var search_src_text = searchView.FindViewById(Resource.Id.search_src_text);
+
+				try
+				{
+					var autoCompleteTextView = search_src_text.JavaCast< Android.Support.V7.Widget.SearchView.SearchAutoComplete>();
+					if (autoCompleteTextView != null) { 
+						autoCompleteTextView.SetDropDownBackgroundResource(keepass2android.Resource.Drawable.search_dropdown_light);
+
+					}
+				}
+				catch (Exception e) 
+				{
+					Android.Util.Log.Debug ("e", e.ToString());
+				}*/
+
 		    
 				var item = menu.FindItem(Resource.Id.menu_sync);
 				if (item != null)
@@ -415,9 +431,12 @@ namespace keepass2android
 					else
 						item.SetVisible(true);
 				}
-				//return true;
+
+
+				return base.OnCreateOptionsMenu(menu);
+
 			}
-			*/
+
 
 
 
