@@ -77,9 +77,6 @@
 		<item name="android:textColor">?android:attr/textColorSecondary</item>
 		<item name="android:textSize">18sp</item>
 	</style>
-	<style name="MinusButton">
-		<item name="android:src">@drawable/ic_menu_remove_field_holo_light</item>
-	</style>
 	<style name="EntryFieldHeader">
 		<item name="android:drawableBottom">@drawable/section_header</item>
 		<item name="android:drawablePadding">2dp</item>
