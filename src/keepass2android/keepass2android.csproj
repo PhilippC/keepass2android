@@ -916,9 +916,9 @@
     <AndroidResource Include="Resources\drawable\ic_launcher_gray_bday.png" />
   </ItemGroup>
   <ItemGroup>
-    <TransformFile Include="Properties\AndroidManifest.xml">
+    <None Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
-    </TransformFile>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\collections_new_label_holodark.png" />
