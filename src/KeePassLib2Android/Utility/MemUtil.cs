@@ -430,7 +430,7 @@ namespace KeePassLib.Utility
 			if(pbData.Length == 0) return pbData;
 
 			MemoryStream msCompressed = new MemoryStream();
-			GZipStream gz = new GZipStream(msCompressed, CompressionMode.Compress);
+			Ionic.Zlib.GZipStream gz = new Ionic.Zlib.GZipStream(msCompressed, Ionic.Zlib.CompressionMode.Compress);
 			MemoryStream msSource = new MemoryStream(pbData, false);
 			MemUtil.CopyStream(msSource, gz);
 			gz.Close();
@@ -447,7 +447,7 @@ namespace KeePassLib.Utility
 			if(pbCompressed.Length == 0) return pbCompressed;
 
 			MemoryStream msCompressed = new MemoryStream(pbCompressed, false);
-			GZipStream gz = new GZipStream(msCompressed, CompressionMode.Decompress);
+			Ionic.Zlib.GZipStream gz = new Ionic.Zlib.GZipStream(msCompressed, Ionic.Zlib.CompressionMode.Decompress);
 			MemoryStream msData = new MemoryStream();
 			MemUtil.CopyStream(gz, msData);
 			gz.Close();

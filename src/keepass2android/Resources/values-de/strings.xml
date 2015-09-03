@@ -461,7 +461,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (auf Codeplex oder per E-Mail).</string>
   <string name="Continue">Fortfahren</string>
   <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Bist du sicher, dass es sich um eine gültige Datei handelt?</string>
-  <string name="ChangeLog_0_9_8">		Version 0.9.8\n
+  	<string name="NoFilenameWarning">The URI you have entered does not look like a filename. Are you sure this is a valid file?</string>
+		<string name="ChangeLog_0_9_8b">
+		Version 0.9.8b\n
+		* Bugs behoben: Speichern schlug bei manchen Datenbanken fehl, Exportieren mit lokalem Ziel funktionierte nicht, manche Einstellungsoptionen führten zum Absturz\n
+	</string>
+	<string name="ChangeLog_0_9_8">		Version 0.9.8\n
 		* Unterstützung für das Storage Access Framework (ermöglicht Schreiben auf SD-Karte und auf Google Drive mit KP2A Offline)\n
 		* Fehlerhafte Benutzereingaben bei WebDAV-URLs werden wenn möglich erkannt (Verzeichnis statt Datei)\n
 		* Passwort-Schriftart geändert\n

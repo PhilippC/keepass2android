@@ -52,7 +52,7 @@
 	  android:key="export_prefs"
 	  android:title="@string/export_prefs"
 	  >
-			<intent android:action="keepass2android.ExportDatabaseActivity"/>
+			<intent android:action="kp2a.action.ExportDatabaseActivity"/>
 		</PreferenceScreen>
 
 		<Preference
@@ -416,14 +416,14 @@
 	</PreferenceScreen>
 
 	<PreferenceScreen android:key="plugin_key" android:title="@string/plugins">
-		<intent android:action="keepass2android.PluginListActivity"/>
+		<intent android:action="kp2a.action.PluginListActivity"/>
 	</PreferenceScreen>
 
 	<PreferenceScreen
 			  android:key="@string/about_prefs_key"
 			  android:title="@string/menu_about"
 			  >
-		<intent android:action="keepass2android.AboutActivity"/>
+		<intent android:action="kp2a.action.AboutActivity"/>
 	</PreferenceScreen>
 	
 
