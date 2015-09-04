@@ -808,7 +808,7 @@ namespace keepass2android
 			        Finish();
 			        return true;
                 case Android.Resource.Id.Home:
-			        Finish();
+                    OnBackPressed();
 			        return true;
                 default:
                     return base.OnOptionsItemSelected(item);
