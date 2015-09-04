@@ -784,10 +784,7 @@ namespace keepass2android
 					if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
 						OnOk();
 				};
-		    passwordEdit.FocusChange += (sender, args) =>
-		    {
-		        FindViewById(Resource.Id.unlock_img_button).Visibility = args.HasFocus ? ViewStates.Visible : ViewStates.Gone;
-		    };
+		   
 
 			FindViewById<EditText>(Resource.Id.pass_otpsecret).TextChanged += (sender, args) => UpdateOkButtonState();
 
@@ -799,9 +796,7 @@ namespace keepass2android
 			var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
 			passwordEdit.Typeface = passwordFont;
 
-
-		    FindViewById(Resource.Id.unlock_img_button).Click += (sender, args) => OnOk();
-
+            
 			InitializeBottomBarButtons();
 
 			InitializePasswordModeSpinner();
@@ -1146,7 +1141,7 @@ namespace keepass2android
 					throw new ArgumentOutOfRangeException();
 			}
             FindViewById(Resource.Id.pass_ok).Enabled = enabled;
-            FindViewById(Resource.Id.unlock_img_button).Enabled = enabled;
+            
 		}
 
 		private void UpdateKeyProviderUiState()

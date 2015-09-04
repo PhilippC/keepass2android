@@ -51,9 +51,6 @@
 		<item name="android:textStyle">bold</item>
 	</style>
 
-	<style name="BottomBarActionButton">
-		<item name="android:background">?android:attr/selectableItemBackground</item>
-	</style>
 
 	<style name="TextAppearance_EditEntry_Small">
 		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>

@@ -134,15 +134,7 @@ android:paddingRight="16dp"
             android:focusable="true"
             android:focusableInTouchMode="true" />
           
-            <ImageButton
-              android:id="@+id/unlock_img_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="16dp"
-              android:layout_marginBottom="8dp"
-              android:layout_gravity="bottom"
-              android:src="@drawable/ic_unlock"
-              android:background="?android:selectableItemBackground" />
+            
 
         </LinearLayout>
 
@@ -159,73 +151,3 @@ android:paddingRight="16dp"
   </android.support.design.widget.CoordinatorLayout>
 
 </RelativeLayout>
-<!--
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center_horizontal">
-    <TextView
-        android:id="@+id/filename_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pass_filename"
-        android:layout_centerHorizontal="true" />
-    <ImageView
-        android:id="@+id/divider1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/filename_label"
-        android:scaleType="fitXY"
-        android:src="@android:drawable/divider_horizontal_dark" />
-    <TextView
-        android:id="@+id/qu_filename"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:ellipsize="none"
-        android:text="filename"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/divider1"
-        android:gravity="center" />
-    <TextView
-        android:id="@+id/QuickUnlock_label"
-        android:text="@string/QuickUnlock_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/qu_filename"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        android:gravity="center" />
-    <EditText
-        android:inputType="textPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="4"
-        android:layout_below="@id/QuickUnlock_label"
-        android:id="@+id/QuickUnlock_password"
-        android:layout_centerHorizontal="true"
-        android:textSize="28sp"
-        android:focusable="true"
-        android:focusableInTouchMode="true" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/QuickUnlock_password"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true">
-        <Button
-            android:text="@string/QuickUnlock_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/QuickUnlock_button"
-            android:background="@drawable/GreenButton" />
-        <Button
-            android:text="@string/QuickUnlock_lockButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/QuickUnlock_buttonLock"
-            android:background="@drawable/RedButton"
-            android:layout_marginLeft="5dp" />
-    </LinearLayout>
-</RelativeLayout>-->

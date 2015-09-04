@@ -104,10 +104,7 @@ namespace keepass2android
 					OnUnlock(quickUnlockLength, pwd);
 				};
 
-		    FindViewById(Resource.Id.unlock_img_button).Click += (sender, args) =>
-		    {
-                OnUnlock(quickUnlockLength, pwd);
-		    };
+		    
 
 			Button btnLock = (Button) FindViewById(Resource.Id.QuickUnlock_buttonLock);
 			btnLock.Click += (object sender, EventArgs e) =>
