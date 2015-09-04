@@ -17,7 +17,7 @@ namespace keepass2android
 	[Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
         Theme = "@style/MyTheme_ActionBar")]
-	[IntentFilter(new[] {"keepass2android.ExportDatabaseActivity"}, Categories = new[] {Intent.CategoryDefault})]
+	[IntentFilter(new[] {"kp2a.action.ExportDatabaseActivity"}, Categories = new[] {Intent.CategoryDefault})]
 	public class ExportDatabaseActivity : LockCloseActivity
 	{
 		FileFormatProvider[] _ffp = new FileFormatProvider[]
@@ -56,6 +56,12 @@ namespace keepass2android
 			if (resultCode == KeePass.ExitFileStorageSelectionOk)
 			{
 				string protocolId = data.GetStringExtra("protocolId");
+				if (protocolId == "content")
+				{
+					Util.ShowBrowseDialog(this, RequestCodeDbFilename, true, true);
+				}
+				else
+				{
 				App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
 						OnActivityResult,
 						defaultPath =>
@@ -67,6 +73,7 @@ namespace keepass2android
 												Intents.RequestCodeFileBrowseForOpen);
 						}
 						), true, RequestCodeDbFilename, protocolId);
+				}
 				return;
 			}
 
@@ -74,8 +81,33 @@ namespace keepass2android
 			{
 				if (requestCode == RequestCodeDbFilename)
 				{
-					string filename = Util.IntentToFilename(data, this);
 
+					if (data.Data.Scheme == "content")
+					{
+						if ((int)Android.OS.Build.VERSION.SdkInt >= 19)
+						{
+							//try to take persistable permissions
+							try
+							{
+								Kp2aLog.Log("TakePersistableUriPermission");
+								var takeFlags = data.Flags
+									& (ActivityFlags.GrantReadUriPermission
+										| ActivityFlags.GrantWriteUriPermission);
+								this.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
+							}
+							catch (Exception e)
+							{
+								Kp2aLog.Log(e.ToString());
+							}
+
+						}
+					}
+
+
+					string filename = Util.IntentToFilename(data, this);
+					if (filename == null)
+						filename = data.DataString;
+					
 					bool fileExists = data.GetBooleanExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.result_file_exists", true);
 
 					if (fileExists)

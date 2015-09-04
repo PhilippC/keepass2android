@@ -42,14 +42,14 @@
     <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>True</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <ConsolePause>False</ConsolePause>
-    <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a</AndroidSupportedAbis>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="UseManifestNet.bat" />
@@ -148,7 +148,6 @@
     <Compile Include="app\App.cs" />
     <Compile Include="fileselect\FileSelectActivity.cs" />
     <Compile Include="fileselect\FileDbHelper.cs" />
-    <Compile Include="SearchProvider.cs" />
     <Compile Include="search\SearchProvider.cs" />
     <Compile Include="SelectStorageLocationActivity.cs" />
     <Compile Include="services\OngoingNotificationsService.cs" />
@@ -772,9 +771,9 @@
     <AndroidResource Include="Resources\drawable\ic_launcher_gray_bday.png" />
   </ItemGroup>
   <ItemGroup>
-    <TransformFile Include="Properties\AndroidManifest.xml">
+    <None Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
-    </TransformFile>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\collections_new_label_holodark.png" />

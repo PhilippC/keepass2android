@@ -65,6 +65,7 @@
   <string name="digits">Cijfers</string>
   <string name="disclaimer_formal">Keepass2Android biedt GEEN ENKELE GARANTIE; Dit is gratis software, u mag deze software verspreiden onder de voorwaarden van de GPL versie 2 of recenter.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Kopieer_naar_klembord</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
   <string name="entry_accessed">Benaderd</string>
   <string name="entry_cancel">Annuleren</string>

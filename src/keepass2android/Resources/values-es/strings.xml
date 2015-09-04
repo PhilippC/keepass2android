@@ -65,6 +65,7 @@
   <string name="digits">Dígitos</string>
   <string name="disclaimer_formal">Keepass2Android NO TIENE TOTAL GARANTÍA; Este es software libre, y puedes redristribuirlo bajo las condiciones de la licencia GPL version 2 o posterior.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Copiar al portapapeles</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Accedido</string>
   <string name="entry_cancel">Cancelar</string>

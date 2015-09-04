@@ -10,7 +10,7 @@ using Keepass2android.Pluginsdk;
 namespace keepass2android
 {
 	[Activity(Label = "@string/plugins", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden)]
-	[IntentFilter(new[] { "keepass2android.PluginListActivity" }, Categories = new[] { Intent.CategoryDefault })]
+	[IntentFilter(new[] { "kp2a.action.PluginListActivity" }, Categories = new[] { Intent.CategoryDefault })]
 	public class PluginListActivity : ListActivity
 	{
 		private PluginArrayAdapter _pluginArrayAdapter;

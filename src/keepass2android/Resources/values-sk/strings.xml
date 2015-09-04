@@ -65,6 +65,7 @@
   <string name="digits">Číslice</string>
   <string name="disclaimer_formal">Keepass2Android je poskytovaný BEZ AKEJKOĽVEK ZÁRUKY; Toto je voľne dostupný softvér a môžete ho redistribuovať za podmienok licencie GPL verzie 2 alebo novšej.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Kopírovať do schránky</string>
   <string name="enter_filename">Vložte názov databázy</string>
   <string name="entry_accessed">Prístup</string>
   <string name="entry_cancel">Zrušiť</string>

@@ -68,7 +68,7 @@ namespace KeePassLib.Utility
 
 				FileStream fsOut = new FileStream(strPath, FileMode.Create,
 					FileAccess.Write, FileShare.None);
-				GZipStream gz = new GZipStream(fsOut, CompressionMode.Compress);
+				Ionic.Zlib.GZipStream gz = new Ionic.Zlib.GZipStream(fsOut, CompressionMode.Compress);
 				m_swOut = new StreamWriter(gz);
 
 				AppLogEx.Log("Started logging on " + dtNow.ToString("s") + ".");

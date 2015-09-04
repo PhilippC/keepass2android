@@ -26,6 +26,7 @@ namespace keepass2android
 			AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(ctx, Android.Resource.Style.ThemeHoloLightDialog));
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
+					ctx.GetString(Resource.String.ChangeLog_0_9_8b),				
 					ctx.GetString(Resource.String.ChangeLog_0_9_8),
 #if !NoNet
 					//0.9.7b fixes were already included in 0.9.7 offline

@@ -44,6 +44,8 @@ namespace keepass2android
 	[IntentFilter(new[] { "android.intent.action.SEARCH" })]
 	[MetaData("android.app.default_searchable", Value = "MaterialTest2.EntryEditActivity")]
 	[MetaData("android.app.searchable", Resource = "@xml/searchable_mattest")]
+	[IntentFilter(new string[]{"android.intent.action.SEARCH"})]
+	[MetaData("android.app.searchable",Resource=AppNames.Searchable)]
 	public class GroupActivity : GroupBaseActivity {
 		
 		public const int Uninit = -1;

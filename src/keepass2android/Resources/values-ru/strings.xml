@@ -65,6 +65,7 @@
   <string name="digits">Цифры 0…9</string>
   <string name="disclaimer_formal">Keepass2Android поставляется БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ. Это свободное ПО и Вы можете распространять его по лицензии GPL v2 или более поздней.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Скопировать в буфер</string>
   <string name="enter_filename">Введите имя файла базы данных</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Отмена</string>

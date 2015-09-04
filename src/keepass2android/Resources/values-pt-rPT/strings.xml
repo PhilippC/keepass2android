@@ -46,6 +46,8 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="OnlyAvailableForLocalFiles">Apenas disponível para ficheiros locais.</string>
   <string name="FileIsInInternalDirectory">Ficheiro guardado na pasta local.</string>
   <string name="DatabaseFileMoved">A base de dados foi copiada para a pasta local. Prima OK para abrir a nova localização. Nota: Não se esqueça de exportar a sua base de dados para uma localização segura regularmente!</string>
+  <string name="KeyfileMoved">O ficheiro-chave foi copiado para a directoria interna. Verifique se tem uma cópia de seguranca válida antes de a eliminar da directoria actual!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Não é possível usar a directoria interna quando a localização do ficheiro-chave não é guardada. Altere as preferências de segurança.</string>
   <string name="brackets">Parêntesis</string>
   <string name="cancel">Cancelar</string>
   <string name="ClearClipboard">Área de transferência limpa.</string>
@@ -54,6 +56,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="copy_username">Copiar usuário para a área de transferência</string>
   <string name="copy_password">Copiar senha para a área de transferência</string>
   <string name="available_through_keyboard">Entrada está disponível através do teclado KP2A</string>
+  <string name="entry_is_available">está disponível</string>
   <string name="not_possible_im_picker">Não foi possível abrir a caixa de diálogo para selecionar o método de entrada. Por favor, ative o teclado manualmente.</string>
   <string name="please_activate_keyboard">Por favor habilite o teclado Keepass2Android nas configurações do sistema.</string>
   <string name="creating_db_key">Criando a chave da base de dados&#8230;</string>
@@ -63,6 +66,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="digits">Dígitos</string>
   <string name="disclaimer_formal">O Keepass2Android vem ABSOLUTAMENTE SEM GARANTIA; Este software é gratuito, e todos podem distribuí-lo de acordo com as condições do GPL versão 2 ou mais recente.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Copiar para a área de transferencia</string>
   <string name="enter_filename">Introduza o nome do arquivo da base de dados</string>
   <string name="entry_accessed">Acessado</string>
   <string name="entry_cancel">Cancelar</string>
@@ -74,6 +78,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="entry_expires">Expira</string>
   <string name="entry_group_name">Nome do Grupo</string>
   <string name="entry_keyfile">Arquivo de chave (opcional)</string>
+  <string name="keyfile_heading">Ficheiro-chave</string>
   <string name="entry_modified">Modificado</string>
   <string name="entry_password">Senha</string>
   <string name="entry_save">Salvar</string>
@@ -86,6 +91,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="error_could_not_create_group">Erro ao criar o grupo.</string>
   <string name="error_could_not_create_parent">Não foi possível criar o diretório \'pai\'.</string>
   <string name="error_database_exists">Este arquivo já existe.</string>
+  <string name="error_database_settinoverrgs">Falha ao determinar as configurações da base de dados.</string>
   <string name="error_failed_to_launch_link">Falha ao executar link.</string>
   <string name="error_filename_required">É necessário um nome de arquivo.</string>
   <string name="error_file_not_create">Não foi possível criar o ficheiro</string>
@@ -119,6 +125,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="invalid_algorithm">Algoritmo inválido.</string>
   <string name="invalid_db_sig">Formato da base de dados não foi reconhecido.</string>
   <string name="keyfile_does_not_exist">Ficheiro-chave não existe.</string>
+  <string name="no_keyfile_selected">Nenhum ficheiro-chave seleccionado.</string>
   <string name="keyfile_is_empty">Ficheiro-chave está vazio.</string>
   <string name="length">Tamanho</string>
   <string name="list_size_title">Tamanho da lista de grupos</string>
@@ -137,6 +144,8 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="menu_db_settings">Configurações da base de dados</string>
   <string name="menu_delete">Apagar</string>
   <string name="menu_move">Mover para outro grupo</string>
+  <string name="menu_move_light">Mover</string>
+  <string name="menu_navigate">Ir para grupo  parente</string>
   <string name="menu_donate">Doe uma cerveja...</string>
   <string name="menu_edit">Editar</string>
   <string name="menu_hide_password">Esconder palavra-passe</string>
@@ -151,7 +160,11 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="never">Nunca</string>
   <string name="yes">Sim</string>
   <string name="no">Não</string>
+  <string name="no_keys">Não há registos na base de dados ou grupo.</string>
   <string name="no_results">Não há resultados de pesquisa</string>
+  <string name="no_url_handler">Nenhum programa compativel com esta url.</string>
+  <string name="open_recent">Abrir a base de dados recente (clique para abrir)</string>
+  <string name="omitbackup_title">Não pesquisar registos nas cópias de segurança e na lixeira</string>
   <string name="progress_title">A processar&#8230;</string>
   <string name="remove_from_filelist">Remover</string>
   <string name="rijndael">Rijndael (AES)</string>
@@ -217,6 +230,10 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="field_name">Nome do Campo</string>
   <string name="field_value">Valor do campo</string>
   <string name="protection">Campo protegido</string>
+  <string name="add_binary">Anexar ficheiro...</string>
+  <string name="add_extra_string">Adicionar outro texto</string>
+  <string name="delete_extra_string">Eliminar texto adicional</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. Desbloqueamento rápido activo.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
   <string name="credentials_dialog_title">Introduza as credenciais do servidor</string>
   <string name="LockWhenScreenOff_title">Bloquear quando o ecrã se desligar</string>
@@ -232,6 +249,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="RecycleBin">Reciclagem</string>
   <string name="AskDeletePermanentlyEntry">Deseja apagar esta entrada permanentemente? Pressione Não para reciclar.</string>
   <string name="AskDeletePermanently_title">Apagar permanentemente?</string>
+  <string name="AskReloadFile_title">Recarregar ficheiro?</string>
   <string name="AskDiscardChanges_title">Descartar alterações?</string>
   <string name="suggest_improvements">Sugerir ou votar melhorias</string>
   <string name="rate_app">Classifique esta aplicação</string>
@@ -263,6 +281,21 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="hint_sftp_port">porta</string>
   <string name="enter_sftp_login_title">Insira os dados de login SFTP:</string>
   <string name="filestoragename_file">Ficheiro local</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="key_file">Ficheiro-chave</string>
+  <string name="use_key_file">Utilizar ficheiro-chave</string>
+  <string name="TrayTotp_SettingsField_title">TOTP Configurações - Nome do campo</string>
+  <string name="TrayTotp_SettingsField_summary">Escreva o nome do campo de configuração da extensão TrayTotp aqui.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="loading">A Carregar&#8230;</string>
+  <string name="plugins">Extensões</string>
+  <string name="plugin_packagename">Nome do pacote:</string>
+  <string name="plugin_description">Descrição (não verificada):</string>
+  <string name="plugin_author">Autor (não verificado):</string>
+  <string name="plugin_enabled">activo</string>
+  <string name="plugin_disabled">inactivo</string>
+  <string name="plugin_web">Encontrar plug-ins on-line</string>
+  <string name="plugin_scopes">Contexto</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>

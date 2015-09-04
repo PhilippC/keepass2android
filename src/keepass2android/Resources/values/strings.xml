@@ -538,6 +538,10 @@
 	
 	<string name="Continue">Continue</string>
 	<string name="NoFilenameWarning">The URI you have entered does not look like a filename. Are you sure this is a valid file?</string>
+		<string name="ChangeLog_0_9_8b">
+		Version 0.9.8b\n
+		* Bug fixes (Saving failed for some databases, exporting to local device not working, selecting some preference options crashed the app)\n
+	</string>
 
 	<string name="ChangeLog_0_9_8">
 		Version 0.9.8 preview 2 (alpha)\n
@@ -548,7 +552,7 @@
 		* Changed password font\n
 		* Allow to change Dropbox account\n
 		* Fixed bug: Now remembering OTP password\n
-		* more to come\n
+		* Note: I have promised Material Design for this release. I am constantly working on it, but it needs a bit more time. Sorry! \n
 	</string>
 
 	<string name="ChangeLog_0_9_7b">

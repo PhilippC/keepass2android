@@ -43,12 +43,34 @@ namespace keepass2android
 		static IEnumerable<Reminder> GetReminders()
 		{
 			yield return new Reminder
-				{
-					From = new DateTime(2014, 09, 20),
-					To = new DateTime(2014, 10, 06),
-					Key = "DonationOktoberfest2014"
+			{
+				From = new DateTime(2015, 09, 19),
+				To = new DateTime(2015, 10, 05),
+				Key = "DonationOktoberfest2015"
 					,ResourceToShow = Resource.Layout.donate
-				};
+			};
+
+			yield return new Reminder
+			{
+				From = new DateTime(2016, 09, 17),
+				To = new DateTime(2016, 10, 04),
+				Key = "DonationOktoberfest2016"
+					,ResourceToShow = Resource.Layout.donate
+			};
+			yield return new Reminder
+			{
+				From = new DateTime(2015, 09, 16),
+				To = new DateTime(2015, 10, 04),
+				Key = "DonationOktoberfest2017"
+					,ResourceToShow = Resource.Layout.donate
+			};
+			yield return new Reminder
+			{
+				From = new DateTime(2015, 09, 22),
+				To = new DateTime(2015, 10, 08),
+				Key = "DonationOktoberfest2018"
+					,ResourceToShow = Resource.Layout.donate
+			};
 
 			int thisYear = DateTime.Now.Year;
 			

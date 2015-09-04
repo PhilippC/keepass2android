@@ -10,7 +10,7 @@ namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
-        Theme = "@style/MyTheme_ActionBar")]
+		Theme = "@style/MyTheme_ActionBar")]
 	[IntentFilter(new[] { "keepass2android.AboutActivity" }, Categories = new[] { Intent.CategoryDefault })]
 	public class AboutActivity: Activity, IDialogInterfaceOnDismissListener
 	{
