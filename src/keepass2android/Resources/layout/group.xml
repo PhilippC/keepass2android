@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom|right"
                 android:visibility="gone"
-                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+                android:src="@drawable/ic_cross" />
     
     <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fabAddNew"

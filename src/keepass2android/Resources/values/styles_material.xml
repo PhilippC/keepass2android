@@ -108,8 +108,6 @@
 
    <item name="CancelDrawable">@android:drawable/ic_menu_close_clear_cancel</item>
 
-    <item name="OpenFileDrawable">@drawable/collections_collection</item>
-    <item name="ic_menu_add_field">@drawable/ic_menu_add_field_holo_light</item>
     <item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
     <item name="ic_action_search_drawable">@drawable/ic_action_search</item>
     <item name="NavigationAcceptDrawable">@drawable/navigation_accept</item>

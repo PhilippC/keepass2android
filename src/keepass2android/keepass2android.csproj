@@ -358,7 +358,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\set_password.xml" />
-    <AndroidResource Include="Resources\menu\entry.xml" />
+    <AndroidResource Include="Resources\menu\entry.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\menu\entry_edit.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -437,10 +439,7 @@
     <AndroidResource Include="Resources\values-uk\strings.xml" />
     <AndroidResource Include="Resources\values-zh-rCN\strings.xml" />
     <AndroidResource Include="Resources\values-zh-rTW\strings.xml" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_add_field_holo_light.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_remove_field_holo_light.png" />
     <AndroidResource Include="Resources\layout\InViewButton.xml" />
-    <AndroidResource Include="Resources\drawable-mdpi\collections_collection.png" />
     <AndroidResource Include="Resources\layout\entry_view_test.xml" />
     <AndroidResource Include="Resources\layout\entry_extrastring_title.xml" />
     <AndroidResource Include="Resources\layout\entry_extrastring_value.xml" />
@@ -1049,5 +1048,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_eye_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cross.png" />
   </ItemGroup>
 </Project>

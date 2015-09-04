@@ -53,20 +53,3 @@
         />
   
 </LinearLayout>
-<!-- <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_margin="12dip">
-    <TextView
-        android:id="@+id/file_listtop"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="?android:attr/listSeparatorTextViewStyle"
-        android:text="@string/open_recent" />
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/file_listtop" />
-</RelativeLayout>-->
