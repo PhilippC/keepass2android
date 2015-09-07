@@ -94,7 +94,7 @@ android:layout_height="wrap_content"
               android:paddingLeft="8dp"
               android:paddingRight="8dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_eye_open"
+            android:src="@drawable/ic_menu_view"
             android:background="?android:selectableItemBackground" />
 
             <ImageButton

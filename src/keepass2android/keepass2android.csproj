@@ -515,9 +515,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\ic_unlocked_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\values\dimens.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -1045,9 +1042,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_eye_open.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_cross.png" />
