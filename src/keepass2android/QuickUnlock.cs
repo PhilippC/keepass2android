@@ -30,7 +30,7 @@ using KeePassLib.Serialization;
 namespace keepass2android
 {
 	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
-        Theme = "@style/MyTheme")]
+        Theme = "@style/MyTheme_Blue")]
 	public class QuickUnlock : LifecycleDebugActivity
 	{
 		private IOConnectionInfo _ioc;

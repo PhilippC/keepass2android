@@ -1046,4 +1046,10 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_cross.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-v21\styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\fonts.xml" />
+  </ItemGroup>
 </Project>

@@ -23,7 +23,7 @@ using Android.Widget;
 using Android.Text;
 
 namespace keepass2android.view
-{
+{/*
 	public sealed class FileStorageView : ClickView
 	{
 		private readonly TextView _textView;

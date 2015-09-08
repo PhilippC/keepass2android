@@ -93,6 +93,15 @@
     <item name="actionModeBackground">@color/appAccentColor</item>
   </style>
 
+  <style name="MyTheme_Blue" parent="MyTheme">
+    <item name="colorPrimary">@color/appAccentColor</item>
+    <!-- colorPrimaryDark is used for the status bar -->
+    <item name="colorPrimaryDark">@color/appAccentColor</item>
+    <!-- colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets -->
+    <item name="colorAccent">@color/appPrimaryColor</item>
+  </style>
+
 
   <!--style name="MyTheme.ActionMode" parent="@style/Theme.AppCompat.Light.DarkActionBar">
     <item name="actionModeBackground">#FFFFFF</item>
@@ -127,6 +136,17 @@
     <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
     <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+    <item name="actionBarStyle">@style/MyActionBar</item>
+  </style>
+
+  <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+    <item name="titleTextStyle">@style/MyTitleTextStyle</item>
+  </style>
+
+  <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <item name="android:textSize">20dp</item>
+    <item name="android:fontFamily">@string/font_fontFamily_medium</item>
   </style>
 
 
@@ -139,6 +159,7 @@
     <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
 
     <item name="actionModeBackground">@color/appPrimaryDarkColor</item>
+    <item name="actionBarStyle">@style/MyActionBar</item>
   </style>
 
 

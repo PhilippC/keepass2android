@@ -61,7 +61,7 @@ namespace keepass2android
 	[Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
 		LaunchMode = LaunchMode.SingleInstance,
-        Theme = "@style/MyTheme")] /*caution: also contained in AndroidManifest.xml*/
+        Theme = "@style/MyTheme_Blue")] /*caution: also contained in AndroidManifest.xml*/
 	//TODO: rotating device crashes the app
     public class PasswordActivity : LockingActivity {
 

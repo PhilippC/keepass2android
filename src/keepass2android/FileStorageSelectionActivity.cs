@@ -20,7 +20,7 @@ using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme")]
+    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_Blue")]
     public class FileStorageSelectionActivity : AppCompatActivity
 	{
 		private readonly ActivityDesign _design;

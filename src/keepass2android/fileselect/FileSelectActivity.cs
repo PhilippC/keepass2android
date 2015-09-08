@@ -41,7 +41,7 @@ namespace keepass2android
 	[Activity (Label = "@string/app_name", 
 	           ConfigurationChanges=ConfigChanges.Orientation|
 	           ConfigChanges.KeyboardHidden,
-               Theme = "@style/MyTheme")]
+               Theme = "@style/MyTheme_Blue")]
 	[IntentFilter(new [] { Intent.ActionSend }, 
 		Label = "@string/kp2a_findUrl", 
 		Categories=new[]{Intent.CategoryDefault}, 
