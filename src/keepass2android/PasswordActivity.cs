@@ -772,7 +772,7 @@ namespace keepass2android
 			}
 
 
-		    var passwordEdit = FindViewById<EditText>(Resource.Id.password);
+		    var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
 		    passwordEdit.TextChanged +=
 				(sender, args) =>
 				{
@@ -848,7 +848,7 @@ namespace keepass2android
 
 	    private void InitializeToolbar()
 	    {
-	        var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+	        var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar);
 
 	        SetSupportActionBar(toolbar);
 
@@ -872,7 +872,7 @@ namespace keepass2android
             //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             //SupportActionBar.SetDisplayShowHomeEnabled(true);
 
-            //toolbar.NavigationClick += (sender, args) => OnBackPressed();
+            //mytoolbar.NavigationClick += (sender, args) => OnBackPressed();
 	    }
 
 	    public override void OnBackPressed()
@@ -1076,7 +1076,7 @@ namespace keepass2android
 				MakePasswordMaskedOrVisible();
 
 				_keyFileOrProvider = savedInstanceState.GetString(KeyFileOrProviderKey);
-				_password = FindViewById<EditText>(Resource.Id.password).Text = savedInstanceState.GetString(PasswordKey);
+				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = savedInstanceState.GetString(PasswordKey);
 
 				_pendingOtps = new List<string>(savedInstanceState.GetStringArrayList(PendingOtpsKey));
 				
@@ -1302,7 +1302,7 @@ namespace keepass2android
 
 		private void MakePasswordMaskedOrVisible()
 		{
-			TextView password = (TextView) FindViewById(Resource.Id.password);
+			TextView password = (TextView) FindViewById(Resource.Id.password_edit);
 			if (_showPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
@@ -1491,7 +1491,7 @@ namespace keepass2android
 				else
 				{
 					//assume the key should be used as static password
-					FindViewById<EditText>(Resource.Id.password).Text += otp;
+					FindViewById<EditText>(Resource.Id.password_edit).Text += otp;
 				}
 
 				
@@ -1719,7 +1719,7 @@ namespace keepass2android
 
 		private void ClearEnteredPassword()
 		{
-			SetEditText(Resource.Id.password, "");
+			SetEditText(Resource.Id.password_edit, "");
 			SetEditText(Resource.Id.pass_otpsecret, "");
 			foreach (int otpId in _otpTextViewIds)
 			{

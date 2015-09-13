@@ -207,7 +207,7 @@ namespace keepass2android
 			if (State.SelectedIcon)
 			{
 				//TODO: custom image
-				iconButton.SetImageResource(Icons.IconToResId(State.SelectedIconId));
+				iconButton.SetImageResource(Icons.IconToResId(State.SelectedIconId, false));
 			}
 			iconButton.Click += (sender, evt) => {
 				UpdateEntryFromUi(State.Entry);
@@ -910,7 +910,7 @@ namespace keepass2android
 
 		private void FillData() {
 			ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid);
+			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid, false);
 			
 			PopulateText(Resource.Id.entry_title, State.Entry.Strings.ReadSafe (PwDefs.TitleField));
 			PopulateText(Resource.Id.entry_user_name, State.Entry.Strings.ReadSafe (PwDefs.UserNameField));

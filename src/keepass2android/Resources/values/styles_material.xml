@@ -145,7 +145,7 @@
   </style>
 
   <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-    <item name="android:textSize">20dp</item>
+    <item name="android:textSize">20sp</item>
     <item name="android:fontFamily">@string/font_fontFamily_medium</item>
   </style>
 

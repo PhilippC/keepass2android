@@ -28,12 +28,14 @@ namespace keepass2android
 	public class Icons
 	{
 		private static Dictionary<PwIcon, int> _icons;
+		private static Dictionary<PwIcon, int> _folderIcons;
 
 		private static void BuildList()
 		{
 			if (_icons != null) return;
 
 			_icons = new Dictionary<PwIcon, int>();
+			_folderIcons = new Dictionary<PwIcon, int>();
 
 			FieldInfo[] fields = typeof(Resource.Drawable).GetFields(BindingFlags.Static | BindingFlags.Public);
 			foreach (FieldInfo fieldInfo in fields)
@@ -61,14 +63,37 @@ namespace keepass2android
 						_icons[(PwIcon)num] = resId;
 					}
 				}
+				if (fieldName.StartsWith("icf") && (fieldName.Length >= 5))
+				{
+
+					String sNum = fieldName.Substring(3, 2);
+					int num;
+					if (int.TryParse(sNum, out num) && (num < (int)PwIcon.Count))
+					{
+
+						int resId;
+						try
+						{
+							resId = (int)fieldInfo.GetValue(null);
+						}
+						catch (Exception)
+						{
+							continue;
+						}
+
+						_folderIcons[(PwIcon)num] = resId;
+					}
+				}
 			}
 		}
 
-		public static int IconToResId(PwIcon iconId)
+		public static int IconToResId(PwIcon iconId, bool forGroup)
 		{
 			BuildList();
 			int resId;
-			if (_icons.TryGetValue(iconId, out resId))
+			if (forGroup && _folderIcons.TryGetValue(iconId, out resId))
+				return resId;
+			if (!forGroup && _icons.TryGetValue(iconId, out resId))
 				return resId;
 			return Resource.Drawable.ic99_blank;
 		}

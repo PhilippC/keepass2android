@@ -61,7 +61,7 @@ namespace keepass2android
     LayoutInflater inflater = (LayoutInflater) Context.GetSystemService(Context.LayoutInflaterService);
     View layout = inflater.Inflate(Resource.Layout.toolbar, parent, false);
 
-    Toolbar toolbar = (Toolbar) layout.FindViewById<Toolbar>(Resource.Id.toolbar);
+    Toolbar toolbar = (Toolbar) layout.FindViewById<Toolbar>(Resource.Id.mytoolbar);
     toolbar.SetNavigationIcon(Resource.Drawable.ic_arrow_back_white_24dp);
     toolbar.Title = Title;
             toolbar.NavigationClick += (sender, args) =>
@@ -101,7 +101,7 @@ namespace keepass2android
 			
 			SetContentView(Resource.Layout.preference);
 
-		    SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+		    SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar));
 
             FragmentManager.FindFragmentById<SettingsFragment>(Resource.Id.settings_fragment).FindPreference(GetString(Resource.String.db_key)).Enabled = false;
 			

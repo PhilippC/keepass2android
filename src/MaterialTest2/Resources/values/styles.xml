@@ -117,7 +117,7 @@
 
 
   
-	<style name="MyTheme_ActionBar.Base" parent="Theme.AppCompat.Light">
+	<style name="MyTheme_ActionBar.Base" parent="Theme.AppCompat.Light.DarkActionBar">
 		<item name="android:windowNoTitle">true</item>
 		<item name="windowActionBar">true</item>
 		<item name="colorPrimary">@color/appPrimaryColor</item>

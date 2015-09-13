@@ -326,7 +326,7 @@ namespace keepass2android
 		
 		protected void SetGroupIcon() {
 			if (Group != null) {
-				Drawable drawable = App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(Resources, App.Kp2a.GetDb().KpDatabase, Group.IconId, Group.CustomIconUuid);
+				Drawable drawable = App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(Resources, App.Kp2a.GetDb().KpDatabase, Group.IconId, Group.CustomIconUuid, true);
 			    SupportActionBar.SetDisplayShowHomeEnabled(true);
 			    //SupportActionBar.SetIcon(drawable);
 			}

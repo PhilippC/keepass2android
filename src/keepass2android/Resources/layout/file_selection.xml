@@ -6,7 +6,8 @@
     android:layout_height="fill_parent"
     android:paddingLeft="32dp"
     android:paddingRight="32dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:fitsSystemWindows="true">
   <ImageView
       android:id="@+id/splashlogo"
       android:layout_width="wrap_content"

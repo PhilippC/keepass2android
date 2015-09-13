@@ -78,7 +78,7 @@ namespace keepass2android
 			genPassButton.Click += (sender, e) =>  {
 					String password = GeneratePassword();
 					
-					EditText txtPassword = (EditText) FindViewById(Resource.Id.password);
+					EditText txtPassword = (EditText) FindViewById(Resource.Id.password_edit);
 					txtPassword.Text = password;
 			};
 
@@ -86,7 +86,7 @@ namespace keepass2android
 
 			View acceptButton = FindViewById(Resource.Id.accept_button);
 			acceptButton.Click += (sender, e) => {
-					EditText password = (EditText) FindViewById(Resource.Id.password);
+					EditText password = (EditText) FindViewById(Resource.Id.password_edit);
 					
 					Intent intent = new Intent();
 					intent.PutExtra("keepass2android.password.generated_password", password.Text);
@@ -106,7 +106,7 @@ namespace keepass2android
 			};
 
 			
-			EditText txtPasswordToSet = (EditText) FindViewById(Resource.Id.password);
+			EditText txtPasswordToSet = (EditText) FindViewById(Resource.Id.password_edit);
 			txtPasswordToSet.Text = GeneratePassword();
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);

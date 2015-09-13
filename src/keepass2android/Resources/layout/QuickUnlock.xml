@@ -87,7 +87,7 @@
               android:text="/storage/emulated/0/keepass/keepass/database.kdbx" />
         </RelativeLayout>
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/mytoolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"

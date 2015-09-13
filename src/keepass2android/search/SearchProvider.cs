@@ -111,7 +111,7 @@ namespace keepass2android.search
 					var iconId = (PwIcon)Enum.Parse(typeof(PwIcon), uri.GetQueryParameter(IconIdParameter));
 					var customIconUuid = new PwUuid(MemUtil.HexStringToByteArray(uri.GetQueryParameter(CustomIconUuidParameter)));
 
-					var iconDrawable = _db.DrawableFactory.GetIconDrawable(App.Context.Resources, _db.KpDatabase, iconId, customIconUuid) as BitmapDrawable;
+					var iconDrawable = _db.DrawableFactory.GetIconDrawable(App.Context.Resources, _db.KpDatabase, iconId, customIconUuid, false) as BitmapDrawable;
 					if (iconDrawable != null)
 					{
 						var pipe = ParcelFileDescriptor.CreatePipe();

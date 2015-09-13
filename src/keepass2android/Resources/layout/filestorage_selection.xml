@@ -4,12 +4,14 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:background="@drawable/splash_bg_selector"
+    android:fitsSystemWindows="true"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal">
   <android.support.v7.widget.Toolbar
-      android:id="@+id/toolbar"
+      android:id="@+id/mytoolbar"
   app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
   app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+      app:titleTextStyle="@style/MyTitleTextStyle"
       android:layout_height="wrap_content"
       android:layout_width="fill_parent"
       android:minHeight="?attr/actionBarSize"

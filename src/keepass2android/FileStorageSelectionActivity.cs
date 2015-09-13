@@ -107,12 +107,13 @@ namespace keepass2android
                 {  // if it's not recycled, initialize some attributes
 
                     btn = new Button(_context);
-                    btn.LayoutParameters = new GridView.LayoutParams((int)convertDpToPixel(80, _context), (int)convertDpToPixel(100, _context));
+                    btn.LayoutParameters = new GridView.LayoutParams((int)convertDpToPixel(90, _context), (int)convertDpToPixel(110, _context));
                     btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg);
-                    btn.SetPadding(8, 8, 8, 8);
-                    btn.SetTextSize(ComplexUnitType.Sp, 12);
+                    btn.SetPadding(8,64,8,8);
+                    btn.SetTextSize(ComplexUnitType.Sp, 11);
                     btn.SetTextColor(new Color(115, 115, 115));
                     btn.SetSingleLine(false);
+					btn.Gravity = GravityFlags.Center;
                     btn.Click += (sender, args) => _context.OnItemSelected( (string) ((Button)sender).Tag);
                 }
                 else
@@ -199,7 +200,7 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.filestorage_selection);
 
-            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar);
             
             SetSupportActionBar(toolbar);
 

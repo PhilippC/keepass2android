@@ -73,7 +73,7 @@ namespace keepass2android.view
 			_pwGroup = pw;
 			
 			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
-			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid);
+			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid, true);
 			
 			_textview.Text = pw.Name;
 

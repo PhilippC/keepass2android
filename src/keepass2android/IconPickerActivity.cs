@@ -100,7 +100,7 @@ namespace keepass2android
 				TextView tv = (TextView) currView.FindViewById(Resource.Id.icon_text);
 				tv.Text = "" + position;
 				ImageView iv = (ImageView) currView.FindViewById(Resource.Id.icon_image);
-				iv.SetImageResource(Icons.IconToResId((KeePassLib.PwIcon)position));
+				iv.SetImageResource(Icons.IconToResId((KeePassLib.PwIcon)position, false));
 				
 				return currView;
 			}

@@ -3,7 +3,7 @@
   <item android:state_activated="true"
         android:drawable="@drawable/checked_drawable" />
   <item>
-    <color android:color="#00000000" />
+    <color android:color="#ffffffff" />
   </item>
 </selector>
 <!--
