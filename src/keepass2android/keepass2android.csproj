@@ -211,7 +211,6 @@
     <Compile Include="AttachmentContentProvider.cs" />
     <Compile Include="app\AppTask.cs" />
     <Compile Include="views\TextWithHelp.cs" />
-    <Compile Include="EntryEditActivity2.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\searchable.xml">
