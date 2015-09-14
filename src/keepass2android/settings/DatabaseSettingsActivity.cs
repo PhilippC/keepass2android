@@ -185,17 +185,6 @@ namespace keepass2android
             Preference cachingPreference = FindPreference(GetString(Resource.String.UseOfflineCache_key));
             cachingPreference.PreferenceChange += OnUseOfflineCacheChanged;
 
-#if NoNet
-			try
-			{
-				((PreferenceScreen) FindPreference(GetString(Resource.String.FileHandling_prefs_key))).RemovePreference(cachingPreference);
-			}
-			catch (Exception ex)
-			{
-				Kp2aLog.Log(ex.ToString());	
-			}
-#endif
-
             try
             {
                 //depending on Android version, we offer to use a transparent icon for QuickUnlock or use the notification priority (since API level 16)
