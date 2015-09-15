@@ -35,6 +35,9 @@
 
 	<string name="unknown_uri_scheme">Sorry! Keepass2Android cannot handle the returned URI  %1$s. Please contact the developer!</string>
 
+	<string name="Entry_singular">One entry</string>
+	<string name="Entry_plural">%1$d entries</string>
+
 	<string name="security_prefs">Security</string>
 	<string name="display_prefs">Display</string>
 	<string name="password_access_prefs">Password entry access</string>

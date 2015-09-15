@@ -137,6 +137,8 @@
     <Compile Include="icons\DrawableFactory.cs" />
     <Compile Include="icons\Icons.cs" />
     <Compile Include="KeeChallenge.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="MyRelativeLayout.cs" />
     <Compile Include="NfcOtpActivity.cs" />
     <Compile Include="pluginhost\PluginArrayAdapter.cs" />
     <Compile Include="pluginhost\PluginDatabase.cs" />
@@ -1275,5 +1277,10 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\oktoberfest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
 </Project>

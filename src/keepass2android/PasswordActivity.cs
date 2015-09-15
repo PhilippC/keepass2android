@@ -38,6 +38,7 @@ using Android.Graphics;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
+using Android.Util;
 using keepass2android;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -1003,6 +1004,9 @@ namespace keepass2android
 					_showPassword = !_showPassword;
 					MakePasswordMaskedOrVisible();
 				};
+			Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+			Color color = new Color (224, 224, 224);
+			btnTogglePassword.SetColorFilter (color, mMode);
 		}
 
 		private void InitializeKeyfileBrowseButton()

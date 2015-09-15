@@ -144,7 +144,10 @@ namespace keepass2android
 				_showPassword = !_showPassword;
 				MakePasswordMaskedOrVisible();
 			};
-			
+			Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+			Android.Graphics.Color color = new Android.Graphics.Color (224, 224, 224);
+			btnTogglePassword.SetColorFilter (color, mMode);
+
 			
 		}
 

@@ -30,7 +30,7 @@ namespace keepass2android.view
 	{
 		private PwGroup _pwGroup;
 		private readonly GroupBaseActivity _groupBaseActivity;
-		private readonly TextView _textview;
+		private readonly TextView _textview, _label;
 		private int? _defaultTextColor;
 
 		private const int MenuOpen = Menu.First;
@@ -59,8 +59,8 @@ namespace keepass2android.view
 			float size = PrefsUtil.GetListTextSize(act); 
 			_textview.TextSize = size;
 			
-			TextView label = (TextView) gv.FindViewById(Resource.Id.group_label);
-			label.TextSize = size-8;
+			_label = (TextView) gv.FindViewById(Resource.Id.group_label);
+			_label.TextSize = size-8;
 
 			PopulateView(gv, pw);
 			
@@ -88,7 +88,24 @@ namespace keepass2android.view
 			else
 				_textview.SetTextColor(new Color((int)_defaultTextColor));
 
-			
+			_label.Text = _groupBaseActivity.GetString (Resource.String.group)+" - ";
+			uint numEntries = CountEntries (pw);
+			if (numEntries == 1)
+				_label.Text += Context.GetString (Resource.String.Entry_singular);
+			else
+				_label.Text += Context.GetString (Resource.String.Entry_plural, new Java.Lang.Object[] { numEntries });
+		}
+
+		uint CountEntries(PwGroup g)
+		{
+			uint n = g.Entries.UCount;
+
+			foreach (PwGroup subgroup in g.Groups) 
+			{
+				n += CountEntries(subgroup);
+			}
+
+			return n;
 		}
 		
 		public void ConvertView(PwGroup pw) {

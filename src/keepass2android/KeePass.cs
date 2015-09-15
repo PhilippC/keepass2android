@@ -71,7 +71,7 @@ namespace keepass2android
 	/// <summary>
 	/// Launcher activity of Keepass2Android. This activity usually forwards to FileSelect but may show the revision dialog after installation or updates.
 	/// </summary>
-	[Activity(Label = AppNames.AppName, MainLauncher = true, Theme = "@style/MyTheme_ActionBar")]
+	[Activity(Label = AppNames.AppName, MainLauncher = true, Theme = "@style/MyTheme_Blue")]
 	public class KeePass : LifecycleDebugActivity
 	{
 		public const Result ExitNormal = Result.FirstUser;

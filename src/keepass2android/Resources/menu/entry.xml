@@ -24,7 +24,7 @@
     />
     <item android:id="@+id/menu_toggle_pass"
         android:title="@string/show_password"
-        android:icon="@android:drawable/ic_menu_view"
+        android:icon="@drawable/ic_menu_view"
         app:showAsAction="ifRoom"
     />
     <item android:id="@+id/menu_donate"

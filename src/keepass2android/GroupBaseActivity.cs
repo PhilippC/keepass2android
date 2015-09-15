@@ -715,15 +715,17 @@ namespace keepass2android
 
             ListView.ItemClick += (sender, args) => ((GroupListItemView) args.View).OnClick();
             
-            StyleScrollBars();
+            StyleListView();
 
         }
 
-        protected void StyleScrollBars()
+        protected void StyleListView()
         {
             ListView lv = ListView;
             lv.ScrollBarStyle =ScrollbarStyles.InsideInset;
             lv.TextFilterEnabled = true;
+
+			lv.Divider = null;
         }
 
         public bool OnActionItemClicked(ActionMode mode, IMenuItem item)

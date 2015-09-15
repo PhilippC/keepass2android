@@ -99,7 +99,7 @@
     <item name="colorPrimaryDark">@color/appAccentColor</item>
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
-    <item name="colorAccent">@color/appPrimaryColor</item>
+    <item name="colorAccent">@color/appAccentColor</item>
   </style>
 
 

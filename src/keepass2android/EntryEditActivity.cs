@@ -249,6 +249,9 @@ namespace keepass2android
 				State.ShowPassword = !State.ShowPassword;
 				MakePasswordVisibleOrHidden();
 			};
+			Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+			Android.Graphics.Color color = new Android.Graphics.Color (189,189,189);
+			btnTogglePassword.SetColorFilter (color, mMode);
 
 
 			Button addButton = (Button) FindViewById(Resource.Id.add_advanced);
