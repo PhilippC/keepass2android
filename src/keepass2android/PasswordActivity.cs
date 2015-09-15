@@ -38,7 +38,6 @@ using Android.Graphics;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
-using Android.Util;
 using keepass2android;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -56,13 +55,15 @@ using Process = Android.OS.Process;
 
 using KeeChallenge;
 using AlertDialog = Android.App.AlertDialog;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
-		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
+		ConfigurationChanges = ConfigChanges.Orientation,
 		LaunchMode = LaunchMode.SingleInstance,
-        Theme = "@style/MyTheme_Blue")] /*caution: also contained in AndroidManifest.xml*/
+		WindowSoftInputMode = SoftInput.AdjustResize,
+		Theme = "@style/MyTheme_Blue")] /*caution: also contained in AndroidManifest.xml*/
 	//TODO: rotating device crashes the app
     public class PasswordActivity : LockingActivity {
 
@@ -149,7 +150,6 @@ namespace keepass2android
 		private const string KeyFileOrProviderKey = "KeyFileOrProviderKey";
 
 
-		private ActivityDesign _design;
 		private bool _performingLoad;
 		private bool _keepPasswordInOnResume;
 	    private Typeface _passwordFont;
@@ -161,12 +161,12 @@ namespace keepass2android
 	    public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
-			_design = new ActivityDesign(this);
+		
 		}
 
 		public PasswordActivity()
 		{
-			_design = new ActivityDesign(this);
+		
 		}
 
 
@@ -680,11 +680,68 @@ namespace keepass2android
 			}
 		}
 
+		int count = 1;
+
+		private DrawerLayout mDrawerLayout;
+		//private RecyclerView mDrawerList;
+		
+		private string mDrawerTitle;
+		private MeasuringRelativeLayout.MeasureArgs _measureArgs;
+		internal class MyActionBarDrawerToggle : ActionBarDrawerToggle
+		{
+			PasswordActivity owner;
+
+			public MyActionBarDrawerToggle(PasswordActivity activity, DrawerLayout layout, int imgRes, int openRes, int closeRes)
+				: base(activity, layout, openRes, closeRes)
+			{
+				owner = activity;
+			}
+
+			public override void OnDrawerClosed(View drawerView)
+			{
+				owner.SupportActionBar.Title = owner.Title;
+				owner.InvalidateOptionsMenu();
+			}
+
+			public override void OnDrawerOpened(View drawerView)
+			{
+				owner.SupportActionBar.Title = owner.mDrawerTitle;
+				owner.InvalidateOptionsMenu();
+			}
+		}
+		private void UncollapseToolbar()
+		{
+			AppBarLayout appbarLayout = FindViewById<AppBarLayout>(Resource.Id.appbar);
+			var tmp = appbarLayout.LayoutParameters;
+			CoordinatorLayout.LayoutParams p = tmp.JavaCast<CoordinatorLayout.LayoutParams>();
+			var tmp2 = p.Behavior;
+			var behavior = tmp2.JavaCast<AppBarLayout.Behavior>();
+			if (behavior == null)
+			{
+				p.Behavior = behavior = new AppBarLayout.Behavior();
+			}
+			behavior.OnNestedFling(FindViewById<CoordinatorLayout>(Resource.Id.main_content), appbarLayout, null, 0, -10000, false);
+		}
+
+		private void CollapseToolbar()
+		{
+			AppBarLayout appbarLayout = FindViewById<AppBarLayout>(Resource.Id.appbar);
+			ViewGroup.LayoutParams tmp = appbarLayout.LayoutParameters;
+			CoordinatorLayout.LayoutParams p = tmp.JavaCast<CoordinatorLayout.LayoutParams>();
+			var tmp2 = p.Behavior;
+			var behavior = tmp2.JavaCast<AppBarLayout.Behavior>();
+			if (behavior == null)
+			{
+				p.Behavior = behavior = new AppBarLayout.Behavior();
+			}
+			behavior.OnNestedFling(FindViewById<CoordinatorLayout>(Resource.Id.main_content), appbarLayout, null, 0, 200, true);
+		}
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			_design.ApplyTheme();
 
+			
 			//use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
 			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
 				GetString(Resource.String.ViewDatabaseSecure_key), true))
@@ -692,7 +749,6 @@ namespace keepass2android
 				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
 			}
 
-            
 			Intent i = Intent;
 
 			//only load the AppTask if this is the "first" OnCreate (not because of kill/resume, i.e. savedInstanceState==null)
@@ -705,12 +761,12 @@ namespace keepass2android
 			}
 			else
 			{
-				AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);	
+				AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			}
-			
+
 
 			String action = i.Action;
-			
+
 			_prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			_rememberKeyfile = _prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default));
 
@@ -720,7 +776,7 @@ namespace keepass2android
 			if (action != null && action.Equals(ViewIntent))
 			{
 				if (!GetIocFromViewIntent(i)) return;
-			} 
+			}
 			else if ((action != null) && (action.Equals(Intents.StartWithOtp)))
 			{
 				if (!GetIocFromOtpIntent(savedInstanceState, i)) return;
@@ -758,56 +814,49 @@ namespace keepass2android
 				App.Kp2a.LockDatabase(false);
 			}
 
-			
-			
 			SetContentView(Resource.Layout.password);
 
-            InitializeToolbar();
+			InitializeToolbar();
 
-
-		    InitializeFilenameView();
+			InitializeFilenameView();
 
 			if (KeyProviderType == KeyProviders.KeyFile)
 			{
 				UpdateKeyfileIocView();
 			}
 
-
-		    var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
-		    passwordEdit.TextChanged +=
+			var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
+			passwordEdit.TextChanged +=
 				(sender, args) =>
 				{
 					_password = passwordEdit.Text;
 					UpdateOkButtonState();
 				};
 			passwordEdit.EditorAction += (sender, args) =>
-				{
-					if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
-						OnOk();
-				};
-		   
+			{
+				if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
+					OnOk();
+			};
+
 
 			FindViewById<EditText>(Resource.Id.pass_otpsecret).TextChanged += (sender, args) => UpdateOkButtonState();
 
 			passwordEdit.Text = _password;
-			passwordEdit.RequestFocus();
-			Window.SetSoftInputMode(SoftInput.StateVisible);
 
-            
 			var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
 			passwordEdit.Typeface = passwordFont;
 
-            
+
 			InitializeBottomBarButtons();
 
 			InitializePasswordModeSpinner();
 
 			InitializeOtpSecretSpinner();
 
-		    InitializeNavDrawerButtons();
+			InitializeNavDrawerButtons();
 
 			UpdateOkButtonState();
-			
+
 			InitializeTogglePasswordButton();
 			InitializeKeyfileBrowseButton();
 
@@ -821,6 +870,30 @@ namespace keepass2android
 					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection,
 										 RequestCodePrepareDbFile, false);
 			}
+
+
+			mDrawerTitle = this.Title;
+			mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+			var rootview = FindViewById<MeasuringRelativeLayout>(Resource.Id.relative_layout);
+			rootview.ViewTreeObserver.GlobalLayout += (sender, args2) =>
+			{
+				Android.Util.Log.Debug("KP2A", "GlobalLayout");
+				var args = _measureArgs;
+				if (args == null)
+					return;
+				Android.Util.Log.Debug("KP2A", "ActualHeight=" + args.ActualHeight);
+				Android.Util.Log.Debug("KP2A", "ProposedHeight=" + args.ProposedHeight);
+				if (args.ActualHeight < args.ProposedHeight)
+					UncollapseToolbar();
+				if (args.ActualHeight > args.ProposedHeight)
+					CollapseToolbar();
+			};
+			rootview.MeasureEvent += (sender, args) =>
+			{
+				//Snackbar.Make(rootview, "height="+args.ActualHeight, Snackbar.LengthLong).Show();
+				this._measureArgs = args;
+			};
+
 		}
 
 	    private void InitializeNavDrawerButtons()
@@ -1436,7 +1509,7 @@ namespace keepass2android
 
 				outState.PutString(OtpInfoKey, sw.ToString());
 			}
-			
+
 			//more OTP TODO:
 			// * Caching of aux file
 			// *  -> implement IFileStorage in JavaFileStorage based on ListFiles
@@ -1507,7 +1580,12 @@ namespace keepass2android
 		{
 			base.OnResume();
 
-			_design.ReapplyTheme();
+			EditText pwd = FindViewById<EditText>(Resource.Id.password_edit);
+			pwd.PostDelayed(() =>
+			{
+				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
+				keyboard.ShowSoftInput(pwd, 0);
+			}, 50);
 
 			View killButton = FindViewById(Resource.Id.kill_app);
 			if (PreferenceManager.GetDefaultSharedPreferences(this)
@@ -1526,7 +1604,7 @@ namespace keepass2android
 			{
 				killButton.Visibility = ViewStates.Gone;
 			}
-
+			
 			if (!_keepPasswordInOnResume)
 			{
 				if (
