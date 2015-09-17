@@ -52,23 +52,23 @@ namespace keepass2android
 
 			yield return new Reminder
 			{
-				From = new DateTime(2016, 09, 17),
+				From = new DateTime(2016, 09, 17), 
 				To = new DateTime(2016, 10, 04),
 				Key = "DonationOktoberfest2016"
 					,ResourceToShow = Resource.Layout.donate
 			};
 			yield return new Reminder
 			{
-				From = new DateTime(2015, 09, 16),
-				To = new DateTime(2015, 10, 04),
-				Key = "DonationOktoberfest2017"
+				From = new DateTime(2017, 09, 16),
+				To = new DateTime(2017, 10, 04),
+				Key = "DonationOktoberfest2017b"//b because year was incorrectly set to 2015 in 0.9.8b
 					,ResourceToShow = Resource.Layout.donate
 			};
 			yield return new Reminder
 			{
-				From = new DateTime(2015, 09, 22),
-				To = new DateTime(2015, 10, 08),
-				Key = "DonationOktoberfest2018"
+				From = new DateTime(2018, 09, 22),
+				To = new DateTime(2018, 10, 08),
+				Key = "DonationOktoberfest2018b"//b because year was incorrectly set to 2015 in 0.9.8b
 					,ResourceToShow = Resource.Layout.donate
 			};
 
