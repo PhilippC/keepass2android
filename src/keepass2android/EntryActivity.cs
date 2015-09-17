@@ -657,7 +657,7 @@ namespace keepass2android
 			if (extension != null)
 			{
 				MimeTypeMap mime = MimeTypeMap.Singleton;
-				type = mime.GetMimeTypeFromExtension(extension);
+				type = mime.GetMimeTypeFromExtension(extension.ToLowerInvariant());
 			}
 			return type;
 		}
