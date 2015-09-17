@@ -84,18 +84,32 @@ namespace keepass2android
 
         public void SetNormalButtonVisibility(bool showAddGroup, bool showAddEntry)
         {
-            FindViewById(Resource.Id.bottom_bar).Visibility = ViewStates.Gone;
-            FindViewById(Resource.Id.divider2).Visibility = ViewStates.Gone;
+			//check for null in the following because the "empty" layouts may not have all views
 
-            FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Gone;
-            FindViewById(Resource.Id.fabAddNewGroup).Visibility = ViewStates.Gone;
-            FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
+			if (FindViewById(Resource.Id.bottom_bar) != null)
+				FindViewById(Resource.Id.bottom_bar).Visibility = BottomBarAlwaysVisible ? ViewStates.Visible : ViewStates.Gone;
 
-            FindViewById(Resource.Id.fabAddNew).Visibility = (showAddGroup || showAddEntry) ? ViewStates.Visible : ViewStates.Gone;
+			if (FindViewById(Resource.Id.divider2) != null)
+				FindViewById(Resource.Id.divider2).Visibility = BottomBarAlwaysVisible ? ViewStates.Visible : ViewStates.Gone;
+
+	        if (FindViewById(Resource.Id.fabCancelAddNew) != null)
+	        {
+				FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Gone;
+				FindViewById(Resource.Id.fabAddNewGroup).Visibility = ViewStates.Gone;
+				FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
+
+				FindViewById(Resource.Id.fabAddNew).Visibility = (showAddGroup || showAddEntry) ? ViewStates.Visible : ViewStates.Gone;    
+	        }
+            
             
         }
 
-		
+		public virtual bool BottomBarAlwaysVisible
+		{
+			get { return false; }
+		}
+
+
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
@@ -216,33 +230,46 @@ namespace keepass2android
 			_prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 
 			
-			SetContentView(Resource.Layout.group);
+			SetContentView(ContentResourceId);
 
-		    FindViewById(Resource.Id.fabAddNew).Click += (sender, args) =>
+		    if (FindViewById(Resource.Id.fabCancelAddNew) != null)
 		    {
-                FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Visible;
-                FindViewById(Resource.Id.fabAddNewGroup).Visibility = AddGroupEnabled ? ViewStates.Visible : ViewStates.Gone;
-                FindViewById(Resource.Id.fabAddNewEntry).Visibility = AddEntryEnabled ? ViewStates.Visible : ViewStates.Gone;
-                FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
-		    };
+				FindViewById(Resource.Id.fabAddNew).Click += (sender, args) =>
+				{
+					FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Visible;
+					FindViewById(Resource.Id.fabAddNewGroup).Visibility = AddGroupEnabled ? ViewStates.Visible : ViewStates.Gone;
+					FindViewById(Resource.Id.fabAddNewEntry).Visibility = AddEntryEnabled ? ViewStates.Visible : ViewStates.Gone;
+					FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
+				};
 
-            FindViewById(Resource.Id.fabCancelAddNew).Click += (sender, args) =>
-            {
-                FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Gone;
-                FindViewById(Resource.Id.fabAddNewGroup).Visibility = ViewStates.Gone;
-                FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
-                FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Visible;
-            };
+				FindViewById(Resource.Id.fabCancelAddNew).Click += (sender, args) =>
+				{
+					FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Gone;
+					FindViewById(Resource.Id.fabAddNewGroup).Visibility = ViewStates.Gone;
+					FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
+					FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Visible;
+				};
+
+    
+		    }
 
 
-            
-			FindViewById(Resource.Id.cancel_insert_element).Click += (sender, args) => StopMovingElements();
-			FindViewById(Resource.Id.insert_element).Click += (sender, args) => InsertElements();
+		    if (FindViewById(Resource.Id.cancel_insert_element) != null)
+		    {
+				FindViewById(Resource.Id.cancel_insert_element).Click += (sender, args) => StopMovingElements();
+				FindViewById(Resource.Id.insert_element).Click += (sender, args) => InsertElements();    
+		    }
+			
             
             SetResult(KeePass.ExitNormal);
 			
 			
 			
+		}
+
+		protected virtual int ContentResourceId
+		{
+			get { return Resource.Layout.group; }
 		}
 
 		private void InsertElements()
@@ -313,7 +340,6 @@ namespace keepass2android
 				cursor.MoveToPosition(position);
 				string entryIdAsHexString = cursor.GetString(cursor.GetColumnIndexOrThrow(SearchManager.SuggestColumnIntentDataId));
 				EntryActivity.Launch(_activity, App.Kp2a.GetDb().Entries[new PwUuid(MemUtil.HexStringToByteArray(entryIdAsHexString))],-1,_activity.AppTask);
-				((SearchView) _searchItem.ActionView).Iconified = true;
 				return true;
 			}
 

@@ -97,7 +97,7 @@ namespace keepass2android
 		{
 			get { return App.Kp2a.GetDb().CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.GetDb().DatabaseFormat.CanHaveEntriesInRootGroup); }
 		}
-		/*
+		/*TODO
 	    public override bool OnCreateOptionsMenu(IMenu menu)
 	    {
 			// Inflate the menu; this adds items to the action bar if it is present.

@@ -122,11 +122,7 @@ namespace keepass2android
 			{
                 //TODO
 				SetContentView(Resource.Layout.searchurlresults_empty);
-			} else
-			{
-                //TODO
-				SetContentView(Resource.Layout.searchurlresults);
-			}
+			} 
 			
 			SetGroupTitle();
 
@@ -163,5 +159,15 @@ namespace keepass2android
 			StartActivity(i);
 			return true;
 		}
+
+		public override bool BottomBarAlwaysVisible
+		{
+			get { return true; }
+		}
+
+	    protected override int ContentResourceId
+	    {
+			get { return Resource.Layout.searchurlresults; }
+	    }
 	}}
 

@@ -46,7 +46,6 @@ namespace keepass2android.search
 			SetResult(KeePass.ExitNormal);
 
 			ProcessIntent(Intent);
-			//TODO RegisterForContextMenu(ListView);
 		}
 
 	    protected override bool AddEntryEnabled
