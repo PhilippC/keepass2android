@@ -132,8 +132,10 @@ namespace keepass2android
                 //var drawable = ContextCompat.GetDrawable(context, Resource.Drawable.Icon);
                 btn.SetCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
 
-                //TODO kp2a
                 return btn;
+#if NoNet
+				TODO: kp2a button
+#endif
                 /*
 				if (_protocolIds[position] == "kp2a")
 				{

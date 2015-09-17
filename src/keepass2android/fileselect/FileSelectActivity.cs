@@ -48,9 +48,6 @@ namespace keepass2android
 		DataMimeType="text/plain")]
 	[IntentFilter(new[] { Strings.ActionStartWithTask },
 		Categories = new[] { Intent.CategoryDefault })]
-
-    ///TODO:
-    /// * OK not to have the menu here as before?
 	public class FileSelectActivity : AppCompatActivity
 	{
 		private readonly ActivityDesign _design;

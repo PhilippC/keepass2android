@@ -213,6 +213,7 @@ namespace keepass2android
 		private List<PwGroup> _groupsForViewing;
 		private List<PwEntry> _entriesForViewing;
 
+		public bool InActionMode { get; set; }
 		
 		
 		public PwGroupListAdapter(GroupBaseActivity act, PwGroup group) {
@@ -288,16 +289,18 @@ namespace keepass2android
 		
 		public override View GetView(int position, View convertView, ViewGroup parent) {
 			int size = _groupsForViewing.Count;
-			
+			GroupListItemView view;
 			if ( position < size ) { 
-				return CreateGroupView(position, convertView);
+				view = CreateGroupView(position, convertView);
 			} else {
-				return CreateEntryView(position - size, convertView);
+				view = CreateEntryView(position - size, convertView);
 			}
-            //TODO remove right arrow in actionmode
+			view.SetRightArrowVisibility(!InActionMode);
+			return view;
+
 		}
 		
-		private View CreateGroupView(int position, View convertView) {
+		private PwGroupView CreateGroupView(int position, View convertView) {
 			PwGroup g = _groupsForViewing[position];
 			PwGroupView gv;
 			

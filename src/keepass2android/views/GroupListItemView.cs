@@ -60,6 +60,11 @@ namespace keepass2android.view
             }
         }
 
+	    public void SetRightArrowVisibility(bool visible)
+	    {
+			FindViewById(Resource.Id.right_arrow).Visibility = visible ? ViewStates.Visible : ViewStates.Invisible;
+	    }
+
         public abstract void OnClick();
 
     }

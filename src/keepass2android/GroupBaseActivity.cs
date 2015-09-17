@@ -93,34 +93,6 @@ namespace keepass2android
 
             FindViewById(Resource.Id.fabAddNew).Visibility = (showAddGroup || showAddEntry) ? ViewStates.Visible : ViewStates.Gone;
             
-
-            /*TODO Remove
-            View insertElement = FindViewById(Resource.Id.insert_element);
-            insertElement.Visibility = ViewStates.Gone;
-
-            View insertElementCancel = FindViewById(Resource.Id.cancel_insert_element);
-            insertElementCancel.Visibility = ViewStates.Gone;
-            
-            View addGroup = FindViewById(Resource.Id.add_group);
-            addGroup.Visibility = showAddGroup ? ViewStates.Visible : ViewStates.Gone;
-
-
-            View addEntry = FindViewById(Resource.Id.add_entry);
-            addEntry.Visibility = showAddEntry ? ViewStates.Visible : ViewStates.Gone;
-            */
-            /*
-            if (!showAddEntry && !showAddGroup)
-            {
-                View divider2 = FindViewById(Resource.Id.divider2);
-                divider2.Visibility = ViewStates.Gone;
-
-                FindViewById(Resource.Id.bottom_bar).Visibility = ViewStates.Gone;
-
-                View list = FindViewById(Android.Resource.Id.List);
-                var lp = (RelativeLayout.LayoutParams)list.LayoutParameters;
-
-                lp.AddRule(LayoutRules.AlignParentBottom, (int)LayoutRules.True);
-            }*/
         }
 
 		
@@ -178,8 +150,7 @@ namespace keepass2android
 		protected PwGroup Group;
 
 		internal AppTask AppTask;
-		//TODO protected GroupView GroupView;
-
+		
 		private String strCachedGroupUuid = null;
 	    
 
@@ -229,17 +200,7 @@ namespace keepass2android
 	        get { return false; }
 	    }
 
-	    /*TODO 
-         * protected override void OnListItemClick(ListView l, View v, int position, long id) {
-			base.OnListItemClick(l, v, position, id);
-			
-			IListAdapter adapt = ListAdapter;
-			ClickView cv = (ClickView) adapt.GetView(position, null, null);
-			cv.OnClick();
-			
-		}
-		*/
-		protected override void OnCreate(Bundle savedInstanceState) {
+	    protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
 
 			Android.Util.Log.Debug("KP2A", "Creating GBA");
@@ -647,7 +608,6 @@ namespace keepass2android
 		{
             
 			ShowInsertElementsButtons();
-            //TODO Required? GroupView.ListView.InvalidateViews();
             BaseAdapter adapter = (BaseAdapter)ListAdapter;
             adapter.NotifyDataSetChanged();
 		}
@@ -683,7 +643,6 @@ namespace keepass2android
 			
 			AppTask = new NullTask();
 			AppTask.SetupGroupBaseActivityButtons(this);
-			//TODO Required? GroupView.ListView.InvalidateViews();
 			BaseAdapter adapter = (BaseAdapter)ListAdapter;
 			adapter.NotifyDataSetChanged();
 		}
@@ -738,7 +697,6 @@ namespace keepass2android
             {
                 if (checkedItemPositions.ValueAt(i))
                 {
-                    //TODO make sure position is also correct when scrolling (more items in adapter than on screen)
                     checkedItems.Add(((PwGroupListAdapter) ListAdapter).GetItemAtPosition(checkedItemPositions.KeyAt(i)));
                 }
             }
@@ -762,10 +720,13 @@ namespace keepass2android
                     var navMove = new NavigateToFolderAndLaunchMoveElementTask(checkedItems.First().ParentGroup, checkedItems.Select(i => i.Uuid).ToList(), ((GroupBaseActivity)Activity).IsSearchResult);
                     ((GroupBaseActivity)Activity).StartTask(navMove);
 		            break;
-				/*TODO for search results case Resource.Id.menu_navigate:
-					NavigateToFolder navNavigate = new NavigateToFolder(_entry.ParentGroup, true);
+				case Resource.Id.menu_navigate:
+					NavigateToFolder navNavigate = new NavigateToFolder(checkedItems.First().ParentGroup, true);
 					((GroupBaseActivity)Activity).StartTask(navNavigate);
-					break;*/    
+					break;
+				case Resource.Id.menu_edit:
+					GroupEditActivity.Launch(Activity, checkedItems.First().ParentGroup, (PwGroup) checkedItems.First());
+		            break;
 				default:
 		            return false;
 	            
@@ -785,6 +746,7 @@ namespace keepass2android
             inflater.Inflate(Resource.Menu.group_entriesselected, menu);
             //mode.Title = "Select Items";
             Android.Util.Log.Debug("KP2A", "Create action mode" + mode);
+	        ((PwGroupListAdapter) ListView.Adapter).InActionMode = true;
             ((PwGroupListAdapter)ListView.Adapter).NotifyDataSetChanged();
 	        _mode = mode;
             return true;
@@ -793,7 +755,7 @@ namespace keepass2android
         public void OnDestroyActionMode(ActionMode mode)
         {
             Android.Util.Log.Debug("KP2A", "Destroy action mode" + mode);
-
+			((PwGroupListAdapter)ListView.Adapter).InActionMode = true;
             ((PwGroupListAdapter)ListView.Adapter).NotifyDataSetChanged();
 	        _mode = null;
         }
@@ -801,6 +763,7 @@ namespace keepass2android
         public bool OnPrepareActionMode(ActionMode mode, IMenu menu)
         {
             Android.Util.Log.Debug("KP2A", "Prepare action mode" + mode);
+			((PwGroupListAdapter)ListView.Adapter).InActionMode = mode != null;
             ((PwGroupListAdapter)ListView.Adapter).NotifyDataSetChanged();
             return true;
         }
@@ -812,7 +775,12 @@ namespace keepass2android
             {
                 menuItem.SetVisible(IsOnlyOneGroupChecked());
             }
-            
+
+			menuItem = mode.Menu.FindItem(Resource.Id.menu_navigate);
+			if (menuItem != null)
+			{
+				menuItem.SetVisible(((GroupBaseActivity)Activity).IsSearchResult && IsOnlyOneItemChecked());
+			}
         }
 
         private bool IsOnlyOneGroupChecked()
@@ -843,6 +811,28 @@ namespace keepass2android
             }
             return hadCheckedGroup;
         }
+
+		private bool IsOnlyOneItemChecked()
+		{
+			var checkedItems = ListView.CheckedItemPositions;
+			bool hadCheckedItem = false;
+			if (checkedItems != null)
+			{
+				for (int i = 0; i < checkedItems.Size(); i++)
+				{
+					if (checkedItems.ValueAt(i))
+					{
+						if (hadCheckedItem)
+						{
+							return false;
+						}
+
+						hadCheckedItem = true;
+					}
+				}
+			}
+			return hadCheckedItem;
+		}
     }
 }
 

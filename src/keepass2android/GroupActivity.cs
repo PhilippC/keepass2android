@@ -173,7 +173,6 @@ namespace keepass2android
 			SetGroupIcon();
 			
 			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
-			/*TODO RegisterForContextMenu(ListView);*/
 			Log.Warn(Tag, "Finished creating group");
 			
 		}

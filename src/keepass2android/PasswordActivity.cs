@@ -64,7 +64,6 @@ namespace keepass2android
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
 		Theme = "@style/MyTheme_Blue")] /*caution: also contained in AndroidManifest.xml*/
-	//TODO: rotating device crashes the app
     public class PasswordActivity : LockingActivity {
 
 		enum KeyProviders
@@ -942,11 +941,6 @@ namespace keepass2android
             SupportActionBar.SetHomeButtonEnabled(true);
             mDrawerToggle.SyncState();
 
-            //TODO REMOVE
-            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            //SupportActionBar.SetDisplayShowHomeEnabled(true);
-
-            //mytoolbar.NavigationClick += (sender, args) => OnBackPressed();
 	    }
 
 	    public override void OnBackPressed()
@@ -1138,11 +1132,7 @@ namespace keepass2android
                                                 RequestCodePrepareOtpAuxFile, false);
 					};
 			}
-			else
-			{
-				//android 2.x 
-				//TODO test
-			}
+			
 		}
 
 		private void RestoreState(Bundle savedInstanceState)
