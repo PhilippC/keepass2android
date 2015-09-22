@@ -718,7 +718,7 @@ namespace keepass2android
 			}
 			PopulateStandardText(Resource.Id.entry_comment, Resource.Id.entryfield_container_comment, PwDefs.NotesField);
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.comment_container),
-							  FindViewById(Resource.Id.username_vdots), PwDefs.NotesField);
+							  FindViewById(Resource.Id.comment_vdots), PwDefs.NotesField);
 
 			PopulateText(Resource.Id.entry_tags, Resource.Id.entryfield_container_tags, concatTags(Entry.Tags));
 			PopulateText(Resource.Id.entry_override_url, Resource.Id.entryfield_container_overrideurl, Entry.OverrideUrl);

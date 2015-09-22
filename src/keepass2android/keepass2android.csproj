@@ -188,7 +188,6 @@
     <Compile Include="password\PasswordGenerator.cs" />
     <Compile Include="views\EntrySection.cs" />
     <Compile Include="views\EntryContentsView.cs" />
-    <Compile Include="views\GroupEmptyView.cs" />
     <Compile Include="views\TextViewSelect.cs" />
     <Compile Include="IconPickerActivity.cs" />
     <Compile Include="LockingActivity.cs" />
@@ -320,7 +319,9 @@
     <AndroidResource Include="Resources\layout\entry_list_entry.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\entry_section.xml" />
+    <AndroidResource Include="Resources\layout\entry_section.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\entry_view.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -333,7 +334,9 @@
     <AndroidResource Include="Resources\layout\file_selection.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\file_selection_filename.xml" />
+    <AndroidResource Include="Resources\layout\file_selection_filename.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\generate_password.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -658,7 +661,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\fonts.xml" />
+    <AndroidResource Include="Resources\values\fonts.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_lock.png" />
@@ -755,15 +760,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_notify_keyboard.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_notify_loaded.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_notify_locked.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_notify_offline.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_plus.png" />
@@ -1277,5 +1273,25 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\oktoberfest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-land\file_selection.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_notify_loaded.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_notify_locked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_notify_offline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-w360dp\dimens.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-h540dp\dimens.xml" />
   </ItemGroup>
 </Project>

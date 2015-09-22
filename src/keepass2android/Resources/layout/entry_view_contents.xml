@@ -214,7 +214,7 @@
                   android:id="@+id/entry_comment"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
-                  android:layout_toLeftOf="@id/username_vdots"
+                  android:layout_toLeftOf="@id/comment_vdots"
                   style="@style/EntryItem" />
       </RelativeLayout>
     </LinearLayout>

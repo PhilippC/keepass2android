@@ -10,10 +10,10 @@
     android:fitsSystemWindows="true">
   <ImageView
       android:id="@+id/splashlogo"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="@dimen/splash_logo_width"
+      android:layout_height="@dimen/splash_logo_height"
       android:layout_weight="0"
-      android:layout_marginTop="32dp"
+      android:layout_marginTop="@dimen/splash_logo_marginTop"
       android:src="@drawable/splashlogo" />
 
   <TextView
@@ -21,7 +21,8 @@
       android:layout_height="wrap_content"
       android:layout_weight="0"
       android:text="Keepass2Android"
-      android:textSize="38dp"
+      android:inputType="text"
+      android:textSize="@dimen/splash_fontsize"
       android:fontFamily="sans-serif-light"
       android:layout_marginBottom="8dp"
       android:textColor="#fff" />

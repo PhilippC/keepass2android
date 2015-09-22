@@ -170,7 +170,7 @@
         </LinearLayout>
     <!-- file attachments -->
         <LinearLayout
-            android:id="@+id/entry_binaries_label"
+            android:id="@+id/entry_binaries_container"
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"

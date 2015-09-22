@@ -69,23 +69,19 @@
             android:id="@+id/fabAddNewGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|top"
+            android:layout_gravity="end|bottom|right"
             android:src="@drawable/ic_fab_folder"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="88dp"
-            android:visibility="gone"
-            app:layout_anchor="@id/fabAddNew"
-            app:layout_anchorGravity="bottom|right|end" />
+            android:visibility="gone"/>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabAddNewEntry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|top"
+            android:layout_gravity="end|bottom|right"
             android:src="@drawable/ic_fab_entry"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="160dp"
-            android:visibility="gone"
-            app:layout_anchor="@id/fabAddNew"
-            app:layout_anchorGravity="bottom|right|end" />
+            android:visibility="gone"/>
     </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>

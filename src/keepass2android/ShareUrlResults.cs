@@ -120,7 +120,6 @@ namespace keepass2android
 			//show results:
 			if (Group == null || (!Group.Entries.Any()))
 			{
-                //TODO
 				SetContentView(Resource.Layout.searchurlresults_empty);
 			} 
 			

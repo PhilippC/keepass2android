@@ -97,32 +97,7 @@ namespace keepass2android
 		{
 			get { return App.Kp2a.GetDb().CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.GetDb().DatabaseFormat.CanHaveEntriesInRootGroup); }
 		}
-		/*TODO
-	    public override bool OnCreateOptionsMenu(IMenu menu)
-	    {
-			// Inflate the menu; this adds items to the action bar if it is present.
-			MenuInflater.Inflate(keepass2android.Resource.Menu.group, menu);
-
-			// Get the SearchView and set the searchable configuration
-			SearchManager searchManager = (SearchManager)GetSystemService(Context.SearchService);
-
-			var searchItem = menu.FindItem(keepass2android.Resource.Id.menu_search);
-
-			//SearchView searchView = (SearchView)Android.Support.V4.View.MenuItemCompat.GetActionView(searchItem);
-			var view = MenuItemCompat.GetActionView(searchItem);
-			var searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
-
-
-			// searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-			// Assumes current activity is the searchable activity
-			searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
-			// searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-
-
-			return base.OnCreateOptionsMenu(menu);
-	    }
-*/
+		
 	    protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);

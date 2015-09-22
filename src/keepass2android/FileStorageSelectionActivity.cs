@@ -109,7 +109,10 @@ namespace keepass2android
                     btn = new Button(_context);
                     btn.LayoutParameters = new GridView.LayoutParams((int)convertDpToPixel(90, _context), (int)convertDpToPixel(110, _context));
                     btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg);
-                    btn.SetPadding(8,64,8,8);
+					btn.SetPadding((int)convertDpToPixel(4, _context),
+						(int)convertDpToPixel(20, _context),
+						(int)convertDpToPixel(4, _context),
+						(int)convertDpToPixel(4, _context));
                     btn.SetTextSize(ComplexUnitType.Sp, 11);
                     btn.SetTextColor(new Color(115, 115, 115));
                     btn.SetSingleLine(false);
