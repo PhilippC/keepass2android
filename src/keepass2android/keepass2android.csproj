@@ -447,9 +447,13 @@
     <AndroidResource Include="Resources\layout\entry_extrastring_value.xml" />
     <AndroidResource Include="Resources\values-nb\strings.xml" />
     <AndroidResource Include="Resources\anim\anim_enter.xml" />
-    <AndroidResource Include="Resources\anim\anim_leave.xml" />
+    <AndroidResource Include="Resources\anim\anim_leave.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\anim\anim_enter_back.xml" />
-    <AndroidResource Include="Resources\anim\anim_leave_back.xml" />
+    <AndroidResource Include="Resources\anim\anim_leave_back.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\searchurlresults.xml">
       <SubType>Designer</SubType>
     </AndroidResource>

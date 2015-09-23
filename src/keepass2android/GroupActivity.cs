@@ -163,8 +163,8 @@ namespace keepass2android
 		public override void OnBackPressed()
 		{
 			base.OnBackPressed();
-			if ((Group != null) && (Group.ParentGroup != null))
-				OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+			//if ((Group != null) && (Group.ParentGroup != null))
+				//OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
 		}
 		
 		public override bool OnContextItemSelected(IMenuItem item) {

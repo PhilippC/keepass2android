@@ -177,7 +177,7 @@ namespace keepass2android.view
 		private void LaunchEntry()
 		{
 			_groupActivity.LaunchActivityForEntry(_entry, _pos);
-			_groupActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
+			//_groupActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
 		}
 		/*
 		public override void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo)

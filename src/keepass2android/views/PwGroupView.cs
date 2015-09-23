@@ -115,7 +115,7 @@ namespace keepass2android.view
 		
 		private void LaunchGroup() {
 			GroupActivity.Launch(_groupBaseActivity, _pwGroup, _groupBaseActivity.AppTask);
-			_groupBaseActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
+			//_groupBaseActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
 
 		}
         /*

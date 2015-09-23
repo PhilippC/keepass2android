@@ -672,13 +672,13 @@ namespace keepass2android
 			//somehow after re-creating the activity. Maybe a Mono for Android bug?
 			Intent intent = Intent;
 			intent.PutExtra(IntentContinueWithEditing, true);
-			OverridePendingTransition(0, 0);
+			//OverridePendingTransition(0, 0);
 			intent.AddFlags(ActivityFlags.NoAnimation | ActivityFlags.ForwardResult);
 			_closeForReload = true;
 			SetResult(KeePass.ExitRefreshTitle); //probably the entry will be modified -> let the EditActivity refresh to be safe
 			Finish();
 			
-			OverridePendingTransition(0, 0);
+			//OverridePendingTransition(0, 0);
 			StartActivity(intent);
 		}
 		

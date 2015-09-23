@@ -452,7 +452,7 @@ namespace keepass2android
 				//http://developer.android.com/training/implementing-navigation/ancestral.html
 				AppTask.SetActivityResult(this, KeePass.ExitNormal);
 				Finish();
-				OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+				//OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
 
 				return true;
 			}
