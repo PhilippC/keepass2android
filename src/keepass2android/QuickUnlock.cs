@@ -24,30 +24,31 @@ using Android.Widget;
 using Android.Content.PM;
 using KeePassLib.Keys;
 using Android.Preferences;
+using Android.Runtime;
+using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
-		Theme = "@style/Base")]
+	[Activity(Label = "@string/app_name", 
+		ConfigurationChanges = ConfigChanges.Orientation,
+		WindowSoftInputMode = SoftInput.AdjustResize,
+		MainLauncher = false,
+        Theme = "@style/MyTheme_Blue")]
 	public class QuickUnlock : LifecycleDebugActivity
 	{
 		private IOConnectionInfo _ioc;
 		private QuickUnlockBroadcastReceiver _intentReceiver;
 
-		private ActivityDesign _design;
-
 		public QuickUnlock()
 		{
-			_design = new ActivityDesign(this);
 		}
 
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-			_design.ApplyTheme();
-
+			
 			//use FlagSecure to make sure the last (revealed) character of the password is not visible in recent apps
 			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
 				GetString(Resource.String.ViewDatabaseSecure_key), true))
@@ -63,13 +64,12 @@ namespace keepass2android
 				return;
 			}
 
-
 			SetContentView(Resource.Layout.QuickUnlock);
-
+			
 			if (App.Kp2a.GetDb().KpDatabase.Name != "")
 			{
-				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Invisible;
-				((TextView) FindViewById(Resource.Id.qu_filename)).Text = App.Kp2a.GetDb().KpDatabase.Name;
+				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Visible;
+				((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetDb().KpDatabase.Name;
 			}
 			else
 			{
@@ -78,11 +78,11 @@ namespace keepass2android
 					                 .GetBoolean(GetString(Resource.String.RememberRecentFiles_key),
 					                             Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default)))
 				{
-					((TextView) FindViewById(Resource.Id.qu_filename)).Text = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);
+					((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);
 				}
 				else
 				{
-					((TextView) FindViewById(Resource.Id.qu_filename)).Text = "*****";
+					((TextView) FindViewById(Resource.Id.filename_label)).Text = "*****";
 				}
 
 			}
@@ -104,6 +104,8 @@ namespace keepass2android
 					OnUnlock(quickUnlockLength, pwd);
 				};
 
+		    
+
 			Button btnLock = (Button) FindViewById(Resource.Id.QuickUnlock_buttonLock);
 			btnLock.Click += (object sender, EventArgs e) =>
 				{
@@ -120,7 +122,9 @@ namespace keepass2android
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
 			RegisterReceiver(_intentReceiver, filter);
+			
 		}
+
 
 		private void OnUnlock(int quickUnlockLength, EditText pwd)
 		{
@@ -148,9 +152,7 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
-
-			_design.ReapplyTheme();
-
+			
 			CheckIfUnloaded();
 
 			EditText pwd = (EditText) FindViewById(Resource.Id.QuickUnlock_password);

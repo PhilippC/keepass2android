@@ -25,7 +25,7 @@
                 android:layout_gravity="center"
                 android:paddingRight="20dp"
                 android:drawablePadding="8dp"
-				android:drawableLeft="?attr/NavigationAcceptDrawable"
+				android:drawableLeft="@drawable/navigation_accept"
                 android:gravity="center_vertical"
                 android:text="@string/accept" />
 		</FrameLayout>
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingRight="20dp"
-                android:drawableLeft="?attr/CancelDrawable"
+                android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
                 android:text="@string/deny" />

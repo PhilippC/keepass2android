@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="@string/app_name"
+    android:hint="@string/search_hint"
+    android:searchSettingsDescription="Search database"
+ 
+            android:searchMode="showSearchLabelAsBadge"
+            
+    android:searchSuggestAuthority="keepass2android.keepass2android_debug.SearchProvider"
+    android:searchSuggestIntentAction="android.intent.action.VIEW"
+    android:searchSuggestSelection=" ?"
+    android:searchSuggestThreshold="2"  />

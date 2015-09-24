@@ -1,65 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <LinearLayout
-        android:id="@+id/top"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal" />
-    <LinearLayout
-        android:id="@+id/bottom_bar"
-        android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff">
+  <LinearLayout
+      android:id="@+id/top"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:orientation="horizontal" />
+  <LinearLayout
+      android:id="@+id/bottom_bar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_alignParentBottom="true"
+      android:baselineAligned="false">
+    <Button
+        android:id="@+id/select_other_entry"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:divider="?android:attr/dividerVertical"
-        android:showDividers="middle"
-        android:layout_alignParentBottom="true"
-        android:dividerPadding="12dp"
-        android:baselineAligned="false">
-        <FrameLayout
-            android:id="@+id/select_other_entry"
-            style="?android:attr/actionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <TextView
-                style="?android:actionBarTabTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingRight="20dp"
-                android:gravity="center_vertical"
-                android:text="@string/select_other_entry" />
-        </FrameLayout>
-        <FrameLayout
-            android:id="@+id/add_url_entry"
-            style="?android:attr/actionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <TextView
-                style="?android:actionBarTabTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingRight="20dp"
-                android:gravity="center_vertical"
-                android:text="@string/add_url_entry" />
-        </FrameLayout>
-    </LinearLayout>
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_above="@id/bottom_bar"
-        android:background="#b8b8b8" />
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="fill_parent"
+        android:text="@string/select_other_entry"
+        style="@style/BottomBarButton" />
+    <Button
+        android:id="@+id/add_url_entry"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/divider2"
+        android:text="@string/add_url_entry"
+        style="@style/BottomBarButton" />
+  </LinearLayout>
+  <View
+      android:id="@+id/divider2"
+      android:layout_width="fill_parent"
+      android:layout_height="1dp"
+      android:layout_above="@id/bottom_bar"
+      android:background="#b8b8b8" />
+  <fragment
+          android:name="keepass2android.GroupListFragment"
+          android:id="@+id/list_fragment"
+                  android:layout_above="@id/divider2"
         android:layout_below="@id/top"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp" />
+
+          android:layout_width="match_parent"
+          android:layout_height="match_parent" />
+
+
 </RelativeLayout>

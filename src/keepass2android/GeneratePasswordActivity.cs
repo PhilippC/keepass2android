@@ -26,8 +26,8 @@ using Android.Widget;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
-	public class GeneratePasswordActivity : LockCloseActivity {
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden)]		    
+    public class GeneratePasswordActivity : LockCloseActivity {
 		private readonly int[] _buttonIds  = new[]  {Resource.Id.btn_length6, Resource.Id.btn_length8, Resource.Id.btn_length12, Resource.Id.btn_length16};
 		
 		public static void Launch(Activity act) {
@@ -78,7 +78,7 @@ namespace keepass2android
 			genPassButton.Click += (sender, e) =>  {
 					String password = GeneratePassword();
 					
-					EditText txtPassword = (EditText) FindViewById(Resource.Id.password);
+					EditText txtPassword = (EditText) FindViewById(Resource.Id.password_edit);
 					txtPassword.Text = password;
 			};
 
@@ -86,7 +86,7 @@ namespace keepass2android
 
 			View acceptButton = FindViewById(Resource.Id.accept_button);
 			acceptButton.Click += (sender, e) => {
-					EditText password = (EditText) FindViewById(Resource.Id.password);
+					EditText password = (EditText) FindViewById(Resource.Id.password_edit);
 					
 					Intent intent = new Intent();
 					intent.PutExtra("keepass2android.password.generated_password", password.Text);
@@ -106,8 +106,11 @@ namespace keepass2android
 			};
 
 			
-			EditText txtPasswordToSet = (EditText) FindViewById(Resource.Id.password);
+			EditText txtPasswordToSet = (EditText) FindViewById(Resource.Id.password_edit);
 			txtPasswordToSet.Text = GeneratePassword();
+
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
 
 		}
 		
@@ -157,6 +160,18 @@ namespace keepass2android
 			
 			return password;
 		}
+
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    OnBackPressed();
+                    return true;
+            }
+            return false;
+        }
 	}
 
 }

@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections.Generic;
 using Android.Content;
 using KeePassLib;
 
@@ -68,96 +69,15 @@ namespace keepass2android
 			}
 		}
 		
-		
-		public override void Run() {
-			StatusLogger.UpdateMessage(UiStringKey.DeletingGroup);
-			//from KP Desktop
-			PwGroup pg = _group;
-			PwGroup pgParent = pg.ParentGroup;
-			if(pgParent == null) return; // Can't remove virtual or root group
-			
-			PwDatabase pd = Db.KpDatabase;
-			PwGroup pgRecycleBin = pd.RootGroup.FindGroup(pd.RecycleBinUuid, true);
-			
-			pgParent.Groups.Remove(pg);
-			
-			if ((DeletePermanently) || (!CanRecycle))
-			{
-				pg.DeleteAllObjects(pd);
-				
-				PwDeletedObject pdo = new PwDeletedObject(pg.Uuid, DateTime.Now);
-				pd.DeletedObjects.Add(pdo);
-				_onFinishToRun = new AfterDeletePermanently(OnFinishToRun, App, _group);
-			}
-			else // Recycle
-			{
-				bool groupListUpdateRequired = false;
-				EnsureRecycleBinExists(ref pgRecycleBin, ref groupListUpdateRequired);
-				
-				pgRecycleBin.AddGroup(pg, true, true);
-				pg.Touch(false);
-				_onFinishToRun = new ActionOnFinish((success, message) => 
-				                             {
-					if ( success ) {
-						// Mark new parent (Recycle bin) dirty
-						PwGroup parent = _group.ParentGroup;
-						if ( parent != null ) {
-							Db.Dirty.Add(parent);
-						}
-						//Mark old parent dirty:
-						Db.Dirty.Add(pgParent);
+		protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)
+	    {
+	        DoDeleteGroup(_group, touchedGroups, permanentlyDeletedGroups);
+	    }
 
-						// mark root dirty if recycle bin was created
-						if (groupListUpdateRequired)
-							Db.Dirty.Add(Db.Root);
-					} else {
-						// Let's not bother recovering from a failure to save a deleted group.  It is too much work.
-						App.LockDatabase(false);
-					}
-				}, OnFinishToRun);
-			}
-
-			// Save
-			SaveDb save = new SaveDb(Ctx, App, OnFinishToRun, DontSave);
-			save.SetStatusLogger(StatusLogger);
-			save.Run();
-			
-		}
-
-		
-		private class AfterDeletePermanently : OnFinish {
-			readonly IKp2aApp _app;
-
-			readonly PwGroup _group;
-
-			public AfterDeletePermanently(OnFinish finish, IKp2aApp app, PwGroup group):base(finish) {
-				_app = app;
-				_group = group;
-			}
-			
-			public override void Run() {
-				if ( Success ) {
-					// Remove from group global
-                    _app.GetDb().Groups.Remove(_group.Uuid);
-					
-					// Remove group from the dirty global (if it is present), not a big deal if this fails (doesn't throw)
-                    _app.GetDb().Dirty.Remove(_group);
-					
-					// Mark parent dirty
-					PwGroup parent = _group.ParentGroup;
-					if ( parent != null ) {
-                        _app.GetDb().Dirty.Add(parent);
-					}
-				} else {
-					// Let's not bother recovering from a failure to save a deleted group.  It is too much work.
-					_app.LockDatabase(false);
-				}
-				
-				base.Run();
-				
-			}
-			
-		}
+	    public override UiStringKey StatusMessage
+	    {
+	        get { return UiStringKey.DeletingGroup; }
+	    }
 	}
 
 }

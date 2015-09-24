@@ -26,11 +26,24 @@ using Android.Util;
 using KeePassLib.Utility;
 using keepass2android.view;
 using Android.Content.PM;
+using Android.Runtime;
+using Android.Support.V4.View;
+using Android.Support.V7.App;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden , Theme="@style/NoTitleBar")]		
-	[MetaData("android.app.default_searchable",Value="keepass2android.search.SearchResults")]
+
+
+	//[IntentFilter(new[] { "android.intent.action.SEARCH" })]
+	//[MetaData("android.app.default_searchable", Value = "MaterialTest2.EntryEditActivity")]
+	//[MetaData("android.app.searchable", Resource = "@xml/searchable_mattest")]
+    
+	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
+	//[MetaData("android.app.searchable", Resource = "@xml/searchable_mattest")]
+	//[MetaData("android.app.default_searchable",Value="keepass2android.search.SearchResults")]
+	[IntentFilter(new[] { "android.intent.action.SEARCH" })]
+	[MetaData("android.app.default_searchable", Value = "MaterialTest2.EntryEditActivity")]
+	[MetaData("android.app.searchable", Resource = "@xml/searchable_mattest")]
 	[IntentFilter(new string[]{"android.intent.action.SEARCH"})]
 	[MetaData("android.app.searchable",Resource=AppNames.Searchable)]
 	public class GroupActivity : GroupBaseActivity {
@@ -77,21 +90,15 @@ namespace keepass2android
 
 		public override void SetupNormalButtons()
 		{
-			GroupView.SetNormalButtonVisibility(AddGroupEnabled, AddEntryEnabled);
-			GroupView.Invalidate();
+		    SetNormalButtonVisibility(AddGroupEnabled, AddEntryEnabled);
 		}
 
-		private bool AddGroupEnabled
-		{
-			get { return App.Kp2a.GetDb().CanWrite; }
-		}
-		private bool AddEntryEnabled
+        protected override bool AddEntryEnabled
 		{
 			get { return App.Kp2a.GetDb().CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.GetDb().DatabaseFormat.CanHaveEntriesInRootGroup); }
 		}
-
-
-		protected override void OnCreate (Bundle savedInstanceState)
+		
+	    protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			
@@ -123,26 +130,24 @@ namespace keepass2android
 			
 			if (AddGroupEnabled) {
 				// Add Group button
-				View addGroup = FindViewById (Resource.Id.add_group);
+				View addGroup = FindViewById (Resource.Id.fabAddNewGroup);
 				addGroup.Click += (sender, e) => {
 					GroupEditActivity.Launch (this, Group);
 				};
 			}
 			
-			if (AddEntryEnabled) {
-				// Add Entry button
-				View addEntry = FindViewById (Resource.Id.add_entry);
-				addEntry.Click += (sender, e) => {
-					EntryEditActivity.Launch (this, Group, AppTask);
-
-				};
+			
+            if (AddEntryEnabled) 
+            {
+				View addEntry = FindViewById (Resource.Id.fabAddNewEntry);
+				addEntry.Click += (sender, e) => { EntryEditActivity.Launch (this, Group, AppTask); };
+                 
 			}
 			
 			SetGroupTitle();
 			SetGroupIcon();
 			
-			ListAdapter = new PwGroupListAdapter(this, Group);
-			RegisterForContextMenu(ListView);
+			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 			Log.Warn(Tag, "Finished creating group");
 			
 		}
@@ -158,8 +163,8 @@ namespace keepass2android
 		public override void OnBackPressed()
 		{
 			base.OnBackPressed();
-			if ((Group != null) && (Group.ParentGroup != null))
-				OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+			//if ((Group != null) && (Group.ParentGroup != null))
+				//OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
 		}
 		
 		public override bool OnContextItemSelected(IMenuItem item) {

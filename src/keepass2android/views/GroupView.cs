@@ -24,6 +24,7 @@ using Android.Widget;
 
 namespace keepass2android.view
 {
+    /*
 	public class GroupView : RelativeLayout 
 	{
 		public GroupView (IntPtr javaReference, JniHandleOwnership transfer)
@@ -103,6 +104,6 @@ namespace keepass2android.view
 			
 			
 	}
-
+    */
 }
 

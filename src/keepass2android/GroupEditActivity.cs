@@ -73,12 +73,13 @@ namespace keepass2android
 			SetContentView (Resource.Layout.group_edit);
 
 			ImageButton iconButton = (ImageButton)FindViewById (Resource.Id.icon_button);
+            iconButton.SetScaleType(ImageView.ScaleType.FitXy);
 			iconButton.Click += (sender, e) => 
 			{
 				IconPickerActivity.Launch (this);
 			};
 			_selectedIconId = (int) PwIcon.FolderOpen;
-			iconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId));
+			iconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId, true));
 
 			Button okButton = (Button)FindViewById (Resource.Id.ok);
 			okButton.Click += (sender, e) => {
@@ -110,7 +111,7 @@ namespace keepass2android
 				_selectedCustomIconId = _groupToEdit.CustomIconUuid;
 				TextView nameField = (TextView)FindViewById(Resource.Id.group_name);
 				nameField.Text = _groupToEdit.Name;
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iconButton, Resources, App.Kp2a.GetDb().KpDatabase, _groupToEdit.IconId, _groupToEdit.CustomIconUuid);
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iconButton, Resources, App.Kp2a.GetDb().KpDatabase, _groupToEdit.IconId, _groupToEdit.CustomIconUuid, false);
 				SetTitle(Resource.String.edit_group_title);
 			}
 			else
@@ -137,7 +138,7 @@ namespace keepass2android
 					_selectedIconId = data.Extras.GetInt(IconPickerActivity.KeyIconId);
 					_selectedCustomIconId = PwUuid.Zero;
 					ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-					currIconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId));
+					currIconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId, false));
 					break;
 			}
 		}

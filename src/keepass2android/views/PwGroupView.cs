@@ -25,12 +25,12 @@ using KeePassLib;
 
 namespace keepass2android.view
 {
-	
-	public sealed class PwGroupView : ClickView 
+
+    public sealed class PwGroupView : GroupListItemView 
 	{
 		private PwGroup _pwGroup;
 		private readonly GroupBaseActivity _groupBaseActivity;
-		private readonly TextView _textview;
+		private readonly TextView _textview, _label;
 		private int? _defaultTextColor;
 
 		private const int MenuOpen = Menu.First;
@@ -59,8 +59,8 @@ namespace keepass2android.view
 			float size = PrefsUtil.GetListTextSize(act); 
 			_textview.TextSize = size;
 			
-			TextView label = (TextView) gv.FindViewById(Resource.Id.group_label);
-			label.TextSize = size-8;
+			_label = (TextView) gv.FindViewById(Resource.Id.group_label);
+			_label.TextSize = size-8;
 
 			PopulateView(gv, pw);
 			
@@ -72,8 +72,8 @@ namespace keepass2android.view
 		private void PopulateView(View gv, PwGroup pw) {
 			_pwGroup = pw;
 			
-			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.group_icon);
-			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid);
+			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
+			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid, true);
 			
 			_textview.Text = pw.Name;
 
@@ -88,23 +88,37 @@ namespace keepass2android.view
 			else
 				_textview.SetTextColor(new Color((int)_defaultTextColor));
 
-			
+			_label.Text = _groupBaseActivity.GetString (Resource.String.group)+" - ";
+			uint numEntries = CountEntries (pw);
+			if (numEntries == 1)
+				_label.Text += Context.GetString (Resource.String.Entry_singular);
+			else
+				_label.Text += Context.GetString (Resource.String.Entry_plural, new Java.Lang.Object[] { numEntries });
+		}
+
+		uint CountEntries(PwGroup g)
+		{
+			uint n = g.Entries.UCount;
+
+			foreach (PwGroup subgroup in g.Groups) 
+			{
+				n += CountEntries(subgroup);
+			}
+
+			return n;
 		}
 		
 		public void ConvertView(PwGroup pw) {
 			PopulateView(this, pw);
 		}
 		
-		public override void OnClick() {
-			LaunchGroup();
-		}
-
+		
 		private void LaunchGroup() {
 			GroupActivity.Launch(_groupBaseActivity, _pwGroup, _groupBaseActivity.AppTask);
-			_groupBaseActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
+			//_groupBaseActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
 
 		}
-		
+        /*
 		public override void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo) {
 			menu.Add(0, MenuOpen, 0, Resource.String.menu_open);
 			if (App.Kp2a.GetDb().CanWrite)
@@ -128,7 +142,7 @@ namespace keepass2android.view
 					task.Start();
 					return true;
 				case MenuMove:
-					_groupBaseActivity.StartTask(new MoveElementTask { Uuid = _pwGroup.Uuid });
+					_groupBaseActivity.StartTask(new MoveElementsTask { Uuid = _pwGroup.Uuid });
 					return true;
 				case MenuEdit:
 					_groupBaseActivity.EditGroup(_pwGroup);
@@ -136,8 +150,12 @@ namespace keepass2android.view
 				default:
 					return false;
 			}
-		}
-		
+		}*/
+
+        public override void OnClick()
+        {
+            LaunchGroup();
+        }
 	}
 }
 

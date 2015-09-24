@@ -33,12 +33,13 @@ using KeePassLib.Security;
 using Android.Content.PM;
 using System.IO;
 using System.Globalization;
+using Android.Util;
 using File = System.IO.File;
 using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/NoTitleBar")]			
+    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]			
 	public class EntryEditActivity : LockCloseActivity {
 		public const String KeyEntry = "entry";
 		public const String KeyParent = "parent";
@@ -128,7 +129,7 @@ namespace keepass2android
 				{
 					String groupId = i.GetStringExtra(KeyParent);
 					State.ParentGroup = db.KpDatabase.RootGroup.FindGroup(new PwUuid(MemUtil.HexStringToByteArray(groupId)), true);
-					
+
 					State.EntryInDatabase = new PwEntry(true, true);
 					State.EntryInDatabase.Strings.Set(PwDefs.UserNameField, new ProtectedString(
 						db.KpDatabase.MemoryProtection.ProtectUserName, db.KpDatabase.DefaultUserName));
@@ -206,7 +207,7 @@ namespace keepass2android
 			if (State.SelectedIcon)
 			{
 				//TODO: custom image
-				iconButton.SetImageResource(Icons.IconToResId(State.SelectedIconId));
+				iconButton.SetImageResource(Icons.IconToResId(State.SelectedIconId, false));
 			}
 			iconButton.Click += (sender, evt) => {
 				UpdateEntryFromUi(State.Entry);
@@ -215,8 +216,8 @@ namespace keepass2android
 		
 
 			// Generate password button
-			Button generatePassword = (Button)FindViewById(Resource.Id.generate_button);
-			generatePassword.Click += (sender, e) => {
+			FindViewById(Resource.Id.generate_button).Click += (sender, e) => 
+            {
 				UpdateEntryFromUi(State.Entry);
 				GeneratePasswordActivity.Launch(this);
 			};
@@ -225,21 +226,20 @@ namespace keepass2android
 
 
 			// Save button
-			ActionBar.SetCustomView(Resource.Layout.SaveButton);
-			ActionBar.SetDisplayShowCustomEnabled(true);
-			ActionBar.SetDisplayShowTitleEnabled(false);  
-			ActionBar.SetDisplayUseLogoEnabled(false);
-			ActionBar.SetDisplayShowHomeEnabled(false);
-			ActionBar.SetDisplayOptions(ActionBarDisplayOptions.ShowCustom,
-				                        ActionBarDisplayOptions.ShowCustom);
-			var save = FindViewById(Resource.Id.entry_save);
-			save.Click += (sender, e) => 
-			{
-				SaveEntry();
-			};
+			//SupportActionBar.SetCustomView(Resource.Layout.SaveButton);
 
-			FindViewById(Resource.Id.entry_save_cancel).Click += (sender, args) => Finish();
-		
+            if (State.IsNew)
+		    {
+		        SupportActionBar.Title = GetString(Resource.String.add_entry);
+		    }
+		    else
+		    {
+                SupportActionBar.Title = GetString(Resource.String.edit_entry);
+		    }
+
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
+
 			// Respect mask password setting
 			MakePasswordVisibleOrHidden();
 
@@ -249,6 +249,9 @@ namespace keepass2android
 				State.ShowPassword = !State.ShowPassword;
 				MakePasswordVisibleOrHidden();
 			};
+			Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+			Android.Graphics.Color color = new Android.Graphics.Color (189,189,189);
+			btnTogglePassword.SetColorFilter (color, mMode);
 
 
 			Button addButton = (Button) FindViewById(Resource.Id.add_advanced);
@@ -258,7 +261,7 @@ namespace keepass2android
 				LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
 
 				KeyValuePair<string, ProtectedString> pair = new KeyValuePair<string, ProtectedString>("" , new ProtectedString(true, ""));
-				LinearLayout ees = CreateExtraStringView(pair);
+                View ees = CreateExtraStringView(pair);
 				container.AddView(ees);
 
 				State.EntryModified = true;
@@ -669,13 +672,13 @@ namespace keepass2android
 			//somehow after re-creating the activity. Maybe a Mono for Android bug?
 			Intent intent = Intent;
 			intent.PutExtra(IntentContinueWithEditing, true);
-			OverridePendingTransition(0, 0);
+			//OverridePendingTransition(0, 0);
 			intent.AddFlags(ActivityFlags.NoAnimation | ActivityFlags.ForwardResult);
 			_closeForReload = true;
 			SetResult(KeePass.ExitRefreshTitle); //probably the entry will be modified -> let the EditActivity refresh to be safe
 			Finish();
 			
-			OverridePendingTransition(0, 0);
+			//OverridePendingTransition(0, 0);
 			StartActivity(intent);
 		}
 		
@@ -745,9 +748,11 @@ namespace keepass2android
 				{
 					label = "<attachment>";
 				}
-				Button binaryButton = new Button(this) {Text = label};
+				//Button binaryButton = new Button(this, null, Resource.Style.EditEntryButton) {Text = label};
+			    Button binaryButton = (Button)LayoutInflater.Inflate(Resource.Layout.EntryEditButtonDelete, null);
+			    binaryButton.Text = label;
 
-				binaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuDelete),null, null, null);
+				//binaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuDelete),null, null, null);
 				binaryButton.Click += (sender, e) => 
 				{
 					State.EntryModified = true;
@@ -759,10 +764,14 @@ namespace keepass2android
 				
 				
 			}
+            
+			//Button addBinaryButton = new Button(this, null, Resource.Style.EditEntryButton ) {Text = GetString(Resource.String.add_binary)};
+			//addBinaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuAdd) , null, null, null);
+            Button addBinaryButton = (Button)LayoutInflater.Inflate(Resource.Layout.EntryEditButtonAdd, null);
+            addBinaryButton.Text = GetString(Resource.String.add_binary);
 
-			Button addBinaryButton = new Button(this) {Text = GetString(Resource.String.add_binary)};
-			addBinaryButton.SetCompoundDrawablesWithIntrinsicBounds( Resources.GetDrawable(Android.Resource.Drawable.IcMenuAdd) , null, null, null);
 			addBinaryButton.Enabled = true;
+            
 			if (!App.Kp2a.GetDb().DatabaseFormat.CanHaveMultipleAttachments)
 				addBinaryButton.Enabled = !State.Entry.Binaries.Any();
 			addBinaryButton.Click += (sender, e) => 
@@ -795,13 +804,18 @@ namespace keepass2android
 		
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch ( item.ItemId ) {
-			case Resource.Id.menu_donate:
-				return Util.GotoDonateUrl(this);
+			case Resource.Id.menu_save:
+			        SaveEntry();
+			        return true;
+                case Resource.Id.menu_cancel:
+			        Finish();
+			        return true;
+                case Android.Resource.Id.Home:
+                    OnBackPressed();
+			        return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
 			}
-
-
-			
-			return base.OnOptionsItemSelected(item);
 		}
 		
 
@@ -819,15 +833,18 @@ namespace keepass2android
 			FindViewById(Resource.Id.entry_expires).Enabled = State.Entry.Expires;
 		}
 
-		public override Java.Lang.Object OnRetainNonConfigurationInstance()
+		/*
+		 * TODO required??
+		 * 
+		 * public override Java.Lang.Object OnRetainNonConfigurationInstance()
 		{
 			UpdateEntryFromUi(State.Entry);
 			return this;
-		}
+		}*/
 
-		LinearLayout CreateExtraStringView(KeyValuePair<string, ProtectedString> pair)
+        RelativeLayout CreateExtraStringView(KeyValuePair<string, ProtectedString> pair)
 		{
-			LinearLayout ees = (LinearLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
+            RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
 			((TextView)ees.FindViewById(Resource.Id.title)).Text = pair.Key;
 			((TextView)ees.FindViewById(Resource.Id.title)).TextChanged += (sender, e) => State.EntryModified = true;
 			((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
@@ -896,7 +913,7 @@ namespace keepass2android
 
 		private void FillData() {
 			ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid);
+			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid, false);
 			
 			PopulateText(Resource.Id.entry_title, State.Entry.Strings.ReadSafe (PwDefs.TitleField));
 			PopulateText(Resource.Id.entry_user_name, State.Entry.Strings.ReadSafe (PwDefs.UserNameField));
@@ -928,8 +945,7 @@ namespace keepass2android
 			}
 			else
 			{
-				FindViewById(Resource.Id.entry_override_url_label).Visibility = ViewStates.Gone;
-				FindViewById(Resource.Id.entry_override_url).Visibility = ViewStates.Gone;
+				FindViewById(Resource.Id.entry_override_url_container).Visibility = ViewStates.Gone;
 			}
 			
 			if (App.Kp2a.GetDb().DatabaseFormat.SupportsTags)
@@ -938,7 +954,9 @@ namespace keepass2android
 			}
 			else
 			{
-				FindViewById(Resource.Id.entry_tags_label).Visibility = ViewStates.Gone;
+				var view = FindViewById(Resource.Id.entry_tags_label);
+				if (view != null)
+					view.Visibility = ViewStates.Gone;
 				FindViewById(Resource.Id.entry_tags).Visibility = ViewStates.Gone;
 			}
 			
@@ -1016,6 +1034,11 @@ namespace keepass2android
 	
 		private void PopulateText(int viewId, String text) {
 			TextView tv = (TextView) FindViewById(viewId);
+		    if (tv == null)
+		    {
+		        Kp2aLog.Log("Invalid viewId " + viewId);
+		        return;
+		    }
 			tv.Text = text;
 			tv.TextChanged += (sender, e) => {State.EntryModified = true;};
 		}

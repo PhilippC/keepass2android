@@ -9,6 +9,7 @@
   <string name="accept">Accept</string>
   <string name="deny">Deny</string>
   <string name="add_entry">Add entry</string>
+  <string name="edit_entry">Edit entry</string>
   <string name="add_url_entry">Create entry for URL</string>
   <string name="add_group">Add group</string>
   <string name="add_group_title">Add Group</string>
@@ -34,6 +35,9 @@
 
 	<string name="unknown_uri_scheme">Sorry! Keepass2Android cannot handle the returned URI  %1$s. Please contact the developer!</string>
 
+	<string name="Entry_singular">One entry</string>
+	<string name="Entry_plural">%1$d entries</string>
+
 	<string name="security_prefs">Security</string>
 	<string name="display_prefs">Display</string>
 	<string name="password_access_prefs">Password entry access</string>
@@ -50,6 +54,8 @@
 	<string name="KeyfileMoved">Keyfile was copied to internal folder. Make sure you have a safe backup before deleting from the current location!</string>
 	<string name="KeyfileMoveRequiresRememberKeyfile">Cannot use internal folder when key file location is not remembered. Change security preferences.</string>
 
+  <string name="unlock_database_button">Unlock</string>
+  <string name="unlock_database_title">Unlock database</string>
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
   <string name="ClearClipboard">Clipboard cleared.</string>
@@ -154,6 +160,7 @@
   <string name="menu_hide_password">Hide Password</string>
   <string name="menu_lock">Lock Database</string>
   <string name="menu_open">Open</string>
+  <string name="menu_close">Close</string>
   <string name="menu_rename">Rename</string>
   <string name="menu_search">Search</string>
   <string name="menu_search_advanced">Advanced Search</string>
@@ -344,6 +351,7 @@
   <string name="RecycleBin">Recycle Bin</string>
   <string name="AskDeletePermanentlyEntry">Do you want to delete this entry permanently? Press No to recycle.</string>
   <string name="AskDeletePermanentlyGroup">Do you want to delete this group permanently? Press No to recycle.</string>
+  <string name="AskDeletePermanentlyItems">Do you want to delete the selected elements permanently? Press No to recycle.</string>
   <string name="AskDeletePermanently_title">Delete permanently?</string>
   <string name="AskReloadFile_title">Reload file?</string>
   <string name="AskReloadFile">The file which is currently open was changed by another program. Do you want to reload it?</string>
@@ -356,6 +364,7 @@
 	<string name="AddingGroup">Adding group…</string>
 	<string name="DeletingEntry">Deleting entry…</string>
 	<string name="DeletingGroup">Deleting group…</string>
+  <string name="DeletingItems">Deleting elements…</string>
 	<string name="SettingPassword">Setting password…</string>
 	<string name="UndoingChanges">Undoing changes…</string>
 	<string name="TransformingKey">Transforming master key…</string>
@@ -538,7 +547,9 @@
 	</string>
 
 	<string name="ChangeLog_0_9_8">
-		Version 0.9.8\n
+		Version 0.9.8 preview 2 (alpha)\n
+    *** NOTE: This preview is meant for early testing of the new UI design. It is currently not fully functional!***
+    * Material design.
 		* Support for Storage Access Framework (allows write to SD card and Google Drive in KP2A Offline)\n
 		* Try to detect erroneous user input when entering WebDAV URLs (directory instead of file)\n
 		* Changed password font\n

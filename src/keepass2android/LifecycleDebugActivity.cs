@@ -19,11 +19,12 @@ using System;
 using Android.App;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.App;
 
 namespace keepass2android
 {
 				
-	public abstract class LifecycleDebugActivity : Activity
+	public abstract class LifecycleDebugActivity : AppCompatActivity
 	{
 		protected LifecycleDebugActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)

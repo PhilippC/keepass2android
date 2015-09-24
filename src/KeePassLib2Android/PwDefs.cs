@@ -111,7 +111,7 @@ namespace KeePassLib
 		/// <summary>
 		/// Default number of master key encryption/transformation rounds (making dictionary attacks harder).
 		/// </summary>
-		public const ulong DefaultKeyEncryptionRounds = 6000;
+		public const ulong DefaultKeyEncryptionRounds = 500000;
 
 		/// <summary>
 		/// Default identifier string for the title field. Should not contain

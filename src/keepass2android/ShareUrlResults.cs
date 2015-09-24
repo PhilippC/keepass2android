@@ -29,7 +29,7 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/kp2a_findUrl", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden, Theme="@style/Base")]
+    [Activity(Label = "@string/kp2a_findUrl", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
 	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]	
 	public class ShareUrlResults : GroupBaseActivity
 	{
@@ -53,9 +53,14 @@ namespace keepass2android
 
 
 		private Database _db;
+        
 
-		
-		protected override void OnCreate(Bundle savedInstanceState)
+        public override bool IsSearchResult
+        {
+            get { return true; }
+        }
+
+        protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
@@ -116,14 +121,11 @@ namespace keepass2android
 			if (Group == null || (!Group.Entries.Any()))
 			{
 				SetContentView(Resource.Layout.searchurlresults_empty);
-			} else
-			{
-				SetContentView(Resource.Layout.searchurlresults);
-			}
+			} 
 			
 			SetGroupTitle();
-			
-			ListAdapter = new PwGroupListAdapter(this, Group);
+
+            FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 
 			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
 			selectOtherEntry.Click += (sender, e) => {
@@ -156,5 +158,15 @@ namespace keepass2android
 			StartActivity(i);
 			return true;
 		}
+
+		public override bool BottomBarAlwaysVisible
+		{
+			get { return true; }
+		}
+
+	    protected override int ContentResourceId
+	    {
+			get { return Resource.Layout.searchurlresults; }
+	    }
 	}}
 

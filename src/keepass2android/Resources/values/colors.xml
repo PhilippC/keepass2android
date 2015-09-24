@@ -18,6 +18,13 @@
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+
+  <color name="appPrimaryColor">#8bc34a</color>
+  <color name="appPrimaryDarkColor">#548a2e</color>
+  <color name="appAccentColor">#0277bd</color>
+
+
+	
 	<color name="blue_highlight">#0000dd</color>
 	<color name="group">#333333</color>
 	<color name="icon_background">#00555555</color>

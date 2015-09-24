@@ -16,27 +16,29 @@ namespace keepass2android
 
 		public void ApplyTheme()
 		{
-			if (HasThemes())
+			/*if (HasThemes())
 			{
 				var dark = UseDarkTheme;
-				int newTheme = dark ? Resource.Style.ThemeDark : Resource.Style.ThemeLight;
+				//int newTheme = dark ? Resource.Style.ThemeDark : Resource.Style.ThemeLight;
+				int newTheme = Resource.Style.ThemeMaterial;
 				_activity.SetTheme(newTheme);
 				_currentThemeId = newTheme;
-			}
+			}*/
 		}
 
 		public void ReapplyTheme()
 		{
-			if (HasThemes())
+			/*if (HasThemes())
 			{
-				int newTheme = UseDarkTheme ? Resource.Style.ThemeDark : Resource.Style.ThemeLight;
+				//int newTheme = UseDarkTheme ? Resource.Style.ThemeDark : Resource.Style.ThemeLight;
+				int newTheme = Resource.Style.ThemeMaterial;
 				if (newTheme != _currentThemeId)
 				{
 					Kp2aLog.Log("recreating due to theme change.");
 					_activity.Recreate();
 				}	
 			}
-			
+			*/
 			
 		}
 
@@ -56,7 +58,7 @@ namespace keepass2android
 			if (HasThemes())
 			{
 				bool dark = UseDarkTheme;
-				_activity.SetTheme(dark ? Resource.Style.DialogDark : Resource.Style.DialogLight);
+				//_activity.SetTheme(dark ? Resource.Style.DialogDark : Resource.Style.DialogLight);
 			}
 
 		}

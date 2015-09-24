@@ -16,7 +16,7 @@ namespace keepass2android
 
 	[Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
-		Theme = "@style/Base")]
+        Theme = "@style/MyTheme_ActionBar")]
 	[IntentFilter(new[] {"kp2a.action.ExportDatabaseActivity"}, Categories = new[] {Intent.CategoryDefault})]
 	public class ExportDatabaseActivity : LockCloseActivity
 	{
@@ -62,7 +62,7 @@ namespace keepass2android
 				}
 				else
 				{
-					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
+				App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
 						OnActivityResult,
 						defaultPath =>
 						{

@@ -5,6 +5,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using System.Collections.Generic;
+using System.Linq;
 using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Utility;
@@ -546,13 +547,13 @@ namespace keepass2android
 
 
 	/// <summary>
-	/// User is about to move an entry or group to another group
+	/// User is about to move entries and/or groups to another group
 	/// </summary>
-	public class MoveElementTask: AppTask
+	public class MoveElementsTask: AppTask
 	{
-		public const String UuidKey = "MoveElement_Uuid";
+		public const String UuidsKey = "MoveElement_Uuids";
 
-		public PwUuid Uuid
+		public IEnumerable<PwUuid> Uuids
 		{
 			get;
 			set;
@@ -560,23 +561,33 @@ namespace keepass2android
 
 		public override void Setup(Bundle b)
 		{
-			Uuid = new PwUuid(MemUtil.HexStringToByteArray(b.GetString(UuidKey)));
+		    Uuids = b.GetString(UuidsKey).Split(';')
+               .Where(s => !String.IsNullOrEmpty(s)) 
+               .Select(stringPart => new PwUuid(MemUtil.HexStringToByteArray(stringPart)))
+               .ToList(); //property might be accessed several times, avoid parsing each time
 		}
-		public override IEnumerable<IExtra> Extras
-		{
-			get
-			{
-				yield return new StringExtra { Key = UuidKey, Value = MemUtil.ByteArrayToHexString(Uuid.UuidBytes) };
-			}
-		}
+
+	    public override IEnumerable<IExtra> Extras
+	    {
+	        get
+	        {
+	            yield return new StringExtra
+	            {
+	                Key = UuidsKey,
+	                Value = Uuids.Select(uuid => MemUtil.ByteArrayToHexString(uuid.UuidBytes))
+	                    .Aggregate((a, b) => a + ";" + b)
+	            };
+	        } 
+	    }
+	
 		public override void StartInGroupActivity(GroupBaseActivity groupBaseActivity)
 		{
 			base.StartInGroupActivity(groupBaseActivity);
-			groupBaseActivity.StartMovingElement();
+			groupBaseActivity.StartMovingElements();
 		}
 		public override void SetupGroupBaseActivityButtons(GroupBaseActivity groupBaseActivity)
 		{
-			groupBaseActivity.ShowInsertElementButtons();
+			groupBaseActivity.ShowInsertElementsButtons();
 		}
 	}
 
@@ -902,19 +913,20 @@ namespace keepass2android
 
 	public class NavigateToFolderAndLaunchMoveElementTask: NavigateAndLaunchTask {
 	
-		public NavigateToFolderAndLaunchMoveElementTask():base(){
+		public NavigateToFolderAndLaunchMoveElementTask()
+		{
 
 		}
 
 
-		public NavigateToFolderAndLaunchMoveElementTask(PwGroup groups, PwUuid uuid, bool toastEnable = false)
-			:base(groups, new MoveElementTask() { Uuid = uuid }, toastEnable) {
+		public NavigateToFolderAndLaunchMoveElementTask(PwGroup groups, List<PwUuid> uuids, bool toastEnable = false)
+			:base(groups, new MoveElementsTask() { Uuids = uuids }, toastEnable) {
 		}
 
 		public override void Setup(Bundle b) {
 			base.Setup(b);
 
-			TaskToBeLaunchedAfterNavigation = new MoveElementTask ();
+			TaskToBeLaunchedAfterNavigation = new MoveElementsTask ();
 			TaskToBeLaunchedAfterNavigation.Setup (b);
 
 		}

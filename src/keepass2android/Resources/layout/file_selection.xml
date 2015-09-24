@@ -1,17 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
+    android:background="@drawable/splash_bg_selector"
     android:layout_height="fill_parent"
-    android:layout_margin="12dip">
-    <TextView
-        android:id="@+id/file_listtop"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="?android:attr/listSeparatorTextViewStyle"
-        android:text="@string/open_recent" />
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/file_listtop" />
-</RelativeLayout>
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:gravity="center_horizontal"
+    android:fitsSystemWindows="true">
+  <ImageView
+      android:id="@+id/splashlogo"
+      android:layout_width="@dimen/splash_logo_width"
+      android:layout_height="@dimen/splash_logo_height"
+      android:layout_weight="0"
+      android:layout_marginTop="@dimen/splash_logo_marginTop"
+      android:src="@drawable/splashlogo" />
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="0"
+      android:text="Keepass2Android"
+      android:inputType="text"
+      android:textSize="@dimen/splash_fontsize"
+      android:fontFamily="sans-serif-light"
+      android:layout_marginBottom="8dp"
+      android:textColor="#fff" />
+  <View
+      android:id="@+id/dividerTop"
+      android:layout_width="fill_parent"
+      android:layout_height="1dp"
+      android:layout_weight="0"
+      android:layout_marginTop="8dp"
+      android:layout_marginBottom="8dp"
+      android:background="#d1e7f6" />
+  <Button
+      android:id="@+id/start_open_file"
+      android:text="@string/start_open_file"
+      android:layout_weight="0"
+      android:drawableLeft="@drawable/opendb"
+      style="@style/SplashScreenButton" />
+  <Button
+      android:id="@+id/start_create"
+      android:text="@string/start_create"
+      android:layout_weight="0"
+      android:drawableLeft="@drawable/createnewdb"
+      style="@style/SplashScreenButton" />
+
+  <fragment
+          android:name="keepass2android.RecentFilesFragment"
+          android:id="@+id/recent_files"
+          android:layout_width="match_parent"
+           android:layout_height="fill_parent"
+          android:layout_weight="1"
+        />
+  
+</LinearLayout>

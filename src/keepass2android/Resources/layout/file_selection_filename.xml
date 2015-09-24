@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -11,13 +12,12 @@
             android:id="@+id/label_open_by_filename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?android:attr/listSeparatorTextViewStyle"
             android:text="@string/enter_filename" />
         <ImageButton
             android:id="@+id/browse_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="?attr/ic_launcher_folder_small"
+            android:src="@drawable/ic_launcher_folder_small"
             android:layout_alignParentRight="true"
             android:layout_below="@id/label_open_by_filename" />
         <EditText

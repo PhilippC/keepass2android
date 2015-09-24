@@ -25,6 +25,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Support.V7.App;
 using KeePassLib.Serialization;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
@@ -32,20 +33,22 @@ using Environment = Android.OS.Environment;
 
 namespace keepass2android
 {
+
+
 	/// <summary>
 	/// Activity to select the file to use
 	/// </summary>
 	[Activity (Label = "@string/app_name", 
 	           ConfigurationChanges=ConfigChanges.Orientation|
-	           ConfigChanges.KeyboardHidden, 
-	           Theme="@style/Base")]
+	           ConfigChanges.KeyboardHidden,
+               Theme = "@style/MyTheme_Blue")]
 	[IntentFilter(new [] { Intent.ActionSend }, 
 		Label = "@string/kp2a_findUrl", 
 		Categories=new[]{Intent.CategoryDefault}, 
 		DataMimeType="text/plain")]
 	[IntentFilter(new[] { Strings.ActionStartWithTask },
 		Categories = new[] { Intent.CategoryDefault })]
-	public class FileSelectActivity : ListActivity
+	public class FileSelectActivity : AppCompatActivity
 	{
 		private readonly ActivityDesign _design;
 		public FileSelectActivity (IntPtr javaReference, JniHandleOwnership transfer)
@@ -66,8 +69,7 @@ namespace keepass2android
 		private FileDbHelper _dbHelper;
 
 		private bool _recentMode;
-		view.FileSelectButtons _fileSelectButtons;
-
+		
 		internal AppTask AppTask;
 		private const int RequestCodeSelectIoc = 456;
 
@@ -100,20 +102,24 @@ namespace keepass2android
 
 
 			_dbHelper = App.Kp2a.FileDbHelper;
+            SetContentView(Resource.Layout.file_selection);
+				
+
 			if (ShowRecentFiles())
 			{
 				_recentMode = true;
 
-				SetContentView(Resource.Layout.file_selection);
-				_fileSelectButtons = new view.FileSelectButtons(this);
-				((ListView)FindViewById(Android.Resource.Id.List)).AddFooterView(
-					_fileSelectButtons);
+				
+                FindViewById(Resource.Id.recent_files).Visibility = ViewStates.Visible;
+			    Android.Util.Log.Debug("KP2A", "Recent files visible");
 
-			} else
+			}
+            else
 			{
-				SetContentView(Resource.Layout.file_selection_no_recent);
-				_fileSelectButtons = (view.FileSelectButtons)FindViewById(Resource.Id.file_select);
+				FindViewById(Resource.Id.recent_files).Visibility = ViewStates.Invisible;
+                Android.Util.Log.Debug("KP2A", "Recent files invisible");
 #if NoNet
+                TODO
 				ImageView imgView = FindViewById(Resource.Id.imglogo) as ImageView;
 				if (imgView != null)
 				{
@@ -122,11 +128,7 @@ namespace keepass2android
 #endif
 			}
 
-
-
-
 			Button openFileButton = (Button)FindViewById(Resource.Id.start_open_file);
-
 
 			EventHandler openFileButtonClick = (sender, e) => 
 			{
@@ -139,13 +141,7 @@ namespace keepass2android
 				                   
 			};
 			openFileButton.Click += openFileButtonClick;
-			//OPEN URL
-			Button openUrlButton = (Button)FindViewById(Resource.Id.start_open_url);
-
-			openUrlButton.Visibility = ViewStates.Gone;
-
-			//EventHandler openUrlButtonClick = (sender, e) => ShowFilenameDialog(true, false, false, "", GetString(Resource.String.enter_filename_details_url), Intents.RequestCodeFileBrowseForOpen);
-
+			
 			//CREATE NEW
 			Button createNewButton = (Button)FindViewById(Resource.Id.start_create);
 			EventHandler createNewButtonClick = (sender, e) =>
@@ -173,8 +169,6 @@ namespace keepass2android
 
 			FillData();
 			
-			RegisterForContextMenu(ListView);
-
 			if (savedInstanceState != null)
 			{
 				AppTask = AppTask.CreateFromBundle(savedInstanceState);
@@ -248,13 +242,15 @@ namespace keepass2android
 			int[] to = new[] { Resource.Id.file_filename };
 			
 			// Now create a simple cursor adapter and set it to display
-			SimpleCursorAdapter notes = new SimpleCursorAdapter(this,
+			SimpleCursorAdapter recentFilesAdapter = new SimpleCursorAdapter(this,
 			                                                    Resource.Layout.file_row, filesCursor, from, to);
 
 
-			notes.ViewBinder = new MyViewBinder(App.Kp2a);
+			recentFilesAdapter.ViewBinder = new MyViewBinder(App.Kp2a);
 
-			ListAdapter = notes;
+		    FragmentManager.FindFragmentById<RecentFilesFragment>(Resource.Id.recent_files).SetAdapter(recentFilesAdapter);
+
+		    
 		}
 
 
@@ -287,8 +283,7 @@ namespace keepass2android
 			Finish();
 		}
 
-		protected override void OnListItemClick(ListView l, View v, int position, long id) {
-			base.OnListItemClick(l, v, position, id);
+		public void OnListItemClick(ListView l, View v, int position, long id) {
 			
 			ICursor cursor = _dbHelper.FetchFile(id);
 			StartManagingCursor(cursor);
@@ -299,7 +294,7 @@ namespace keepass2android
 					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc, 0, false);
 		}
 		
-
+        
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
@@ -350,9 +345,6 @@ namespace keepass2android
 				return;
 			}
 
-			
-
-			_fileSelectButtons.UpdateExternalStorageWarning();
 
 
 		}
@@ -447,7 +439,7 @@ namespace keepass2android
 				String filename = (string) tv.Tag;
 				_dbHelper.DeleteFile(filename);
 
-				RefreshList();
+				FragmentManager.FindFragmentById<RecentFilesFragment>(Resource.Id.recent_files).RefreshList();
 				
 				
 				return true;
@@ -456,11 +448,45 @@ namespace keepass2android
 			return false;
 		}
 		
-		private void RefreshList() {
-			CursorAdapter ca = (CursorAdapter) ListAdapter;
-			ICursor cursor = ca.Cursor;
-			cursor.Requery();
-		}
+		
+
+	    
 	}
+
+    public class RecentFilesFragment : ListFragment
+    {
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            var view = inflater.Inflate(Resource.Layout.recent_files, container, false);
+            Android.Util.Log.Debug("KP2A", "OnCreateView");
+            return view;
+        }
+
+        public void SetAdapter(BaseAdapter adapter)
+        {
+            ListAdapter = adapter;
+            Android.Util.Log.Debug("KP2A", "SetAdapter");
+        }
+
+        public override void OnActivityCreated(Bundle savedInstanceState)
+        {
+            Android.Util.Log.Debug("KP2A", "OnActCreated");
+            ListView.ItemClick += (sender, args) =>
+            {
+                ((FileSelectActivity) Activity).OnListItemClick((ListView) sender, args.View, args.Position, args.Id);
+            };
+            RefreshList();
+
+            base.OnActivityCreated(savedInstanceState);
+        }
+
+        public void RefreshList()
+        {
+            Android.Util.Log.Debug("KP2A", "RefreshList");
+            CursorAdapter ca = (CursorAdapter)ListAdapter;
+            ICursor cursor = ca.Cursor;
+            cursor.Requery();
+        }
+    }
 }
 

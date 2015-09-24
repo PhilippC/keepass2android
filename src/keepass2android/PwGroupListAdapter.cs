@@ -24,6 +24,7 @@ using Android.Widget;
 using Android.Preferences;
 using KeePassLib;
 using keepass2android.view;
+using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
@@ -212,6 +213,7 @@ namespace keepass2android
 		private List<PwGroup> _groupsForViewing;
 		private List<PwEntry> _entriesForViewing;
 
+		public bool InActionMode { get; set; }
 		
 		
 		public PwGroupListAdapter(GroupBaseActivity act, PwGroup group) {
@@ -275,6 +277,11 @@ namespace keepass2android
 		public override Java.Lang.Object GetItem(int position) {
 			return position;
 		}
+
+	    public bool IsGroupAtPosition(int position)
+	    {
+	        return position < _groupsForViewing.Count;
+	    }
 		
 		public override long GetItemId(int position) {
 			return position;
@@ -282,15 +289,18 @@ namespace keepass2android
 		
 		public override View GetView(int position, View convertView, ViewGroup parent) {
 			int size = _groupsForViewing.Count;
-			
+			GroupListItemView view;
 			if ( position < size ) { 
-				return CreateGroupView(position, convertView);
+				view = CreateGroupView(position, convertView);
 			} else {
-				return CreateEntryView(position - size, convertView);
+				view = CreateEntryView(position - size, convertView);
 			}
+			view.SetRightArrowVisibility(!InActionMode);
+			return view;
+
 		}
 		
-		private View CreateGroupView(int position, View convertView) {
+		private PwGroupView CreateGroupView(int position, View convertView) {
 			PwGroup g = _groupsForViewing[position];
 			PwGroupView gv;
 			
@@ -321,7 +331,18 @@ namespace keepass2android
 			
 			return ev;
 		}
-		
+
+	    public IStructureItem GetItemAtPosition(int keyAt)
+	    {
+	        if (keyAt < _groupsForViewing.Count)
+	        {
+	            return _groupsForViewing[keyAt];
+	        }
+	        else
+	        {
+	            return _entriesForViewing[keyAt - _groupsForViewing.Count];
+	        }
+	    }
 	}
 
 }

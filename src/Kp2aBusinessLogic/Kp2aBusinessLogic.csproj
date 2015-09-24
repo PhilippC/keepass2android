@@ -55,8 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="database\CheckDatabaseForChanges.cs" />
+    <Compile Include="database\edit\DeleteMultipleItems.cs" />
     <Compile Include="database\edit\EditGroup.cs" />
-    <Compile Include="database\edit\MoveElement.cs" />
+    <Compile Include="database\edit\MoveElements.cs" />
     <Compile Include="database\KdbDatabaseFormat.cs" />
     <Compile Include="database\KdbxDatabaseFormat.cs" />
     <Compile Include="database\PwEntryOutput.cs" />

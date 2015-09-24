@@ -45,18 +45,18 @@ namespace keepass2android
 	 */
 		private readonly Dictionary<int/*resId*/, Drawable> _standardIconMap = new Dictionary<int, Drawable>();
 			
-		public void AssignDrawableTo (ImageView iv, Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
+		public void AssignDrawableTo (ImageView iv, Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup)
 		{
-			Drawable draw = GetIconDrawable (res, db, icon, customIconId);
+			Drawable draw = GetIconDrawable (res, db, icon, customIconId, forGroup);
 			iv.SetImageDrawable (draw);
 		}
 			
-		public Drawable GetIconDrawable (Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId)
+		public Drawable GetIconDrawable (Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup)
 		{
 			if (!customIconId.Equals(PwUuid.Zero)) {
 				return GetIconDrawable (res, db, customIconId);
 			}
-		    return GetIconDrawable (res, icon);
+		    return GetIconDrawable (res, icon, forGroup);
 		}
 
 		private static void InitBlank (Resources res)	
@@ -68,9 +68,9 @@ namespace keepass2android
 			}
 		}
 			
-		public Drawable GetIconDrawable (Resources res, PwIcon icon)
+		public Drawable GetIconDrawable (Resources res, PwIcon icon, bool forGroup)
 		{
-			int resId = Icons.IconToResId (icon);
+			int resId = Icons.IconToResId (icon, forGroup);
 				
 			Drawable draw;
 			if (!_standardIconMap.TryGetValue(resId, out draw))

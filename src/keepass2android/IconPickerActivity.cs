@@ -18,13 +18,14 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", Theme="@style/NoTitleBar")]			
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar")]			
 	public class IconPickerActivity : LockCloseActivity
 	{
 		public const String KeyIconId = "icon_id";
@@ -100,8 +101,10 @@ namespace keepass2android
 				TextView tv = (TextView) currView.FindViewById(Resource.Id.icon_text);
 				tv.Text = "" + position;
 				ImageView iv = (ImageView) currView.FindViewById(Resource.Id.icon_image);
-				iv.SetImageResource(Icons.IconToResId((KeePassLib.PwIcon)position));
-				
+				iv.SetImageResource(Icons.IconToResId((KeePassLib.PwIcon)position, false));
+				Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+				Color color = new Color(189, 189, 189);
+				iv.SetColorFilter(color, mMode);
 				return currView;
 			}
 		}
