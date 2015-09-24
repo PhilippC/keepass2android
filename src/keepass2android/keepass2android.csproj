@@ -1298,4 +1298,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values-h540dp\dimens.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\icf48.png" />
+  </ItemGroup>
 </Project>
