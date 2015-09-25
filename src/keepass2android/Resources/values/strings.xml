@@ -533,8 +533,6 @@
 	
 	<string name="CopyingFile">Copying file...</string>
 
-	<string name="KdbBetaWarning">Please note: You have loaded a Keepass 1 database. Keepass2Android has recently added write support for this database format. Despite thorough testing, the author does not guarantee that all data will be saved correctly. Please always keep a backup of the original database (Dropbox automatically stores recent versions) before making changes. Please report any issues. Thanks!</string>
-	
 	<string name="ChangeLog_title">Change log</string>
 
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>

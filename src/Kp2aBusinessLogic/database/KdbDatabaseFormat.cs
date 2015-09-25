@@ -219,10 +219,7 @@ namespace keepass2android
 #endif
 		public byte[] HashOfLastStream { get; private set; }
 		public bool CanWrite { get { return true; } }
-		public string SuccessMessage { get
-		{
-			return _app.GetResourceString(UiStringKey.KdbBetaWarning);
-		} }
+		public string SuccessMessage { get { return null; } }
 
 		public void Save(PwDatabase kpDatabase, Stream stream)
 		{
