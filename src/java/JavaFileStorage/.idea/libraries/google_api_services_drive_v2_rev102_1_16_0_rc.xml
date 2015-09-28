@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="google-api-services-drive-v2-rev102-1.16.0-rc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/google-api-services-drive-v2-rev102-1.16.0-rc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

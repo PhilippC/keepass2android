@@ -6,6 +6,22 @@
   This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
+  <remove-node path="/api/package[starts-with(@name, 'org.apache')]" />
+  <remove-node path="/api/package[starts-with(@name, 'org.codehaus')]" />
+  <remove-node path="/api/package[starts-with(@name, 'com.fasterxml')]" />
+  <remove-node path="/api/package[starts-with(@name, 'com.google')]" />
+  
+  <remove-node path="/api/package[@name='org.apache.http']" />
+  <remove-node path="/api/package[@name='org.apache.http.entity']" />
+  <remove-node path="/api/package[@name='org.apache.http.impl']" />
+  <remove-node path="/api/package[@name='org.apache.http.impl.client']" />
+  <remove-node path="/api/package[@name='org.apache.http.impl.entity']" />
+  <remove-node path="/api/package[@name='org.apache.http.impl.io']" />
+  <remove-node path="/api/package[@name='org.apache.http.io']" />
+  <remove-node path="/api/package[@name='org.apache.http.message']" />
+  <remove-node path="/api/package[@name='org.apache.http.params']" />
+  <remove-node path="/api/package[@name='org.apache.http.protocol']" />
+  <remove-node path="/api/package[@name='org.apache.http.ui']" />
 	<remove-node path="/api/package[@name='com.jcraft.jsch']" />
 	<remove-node path="/api/package[@name='com.jcraft.jsch.jce']" />
 	<remove-node path="/api/package[@name='com.jcraft.jsch.jcraft']" />
