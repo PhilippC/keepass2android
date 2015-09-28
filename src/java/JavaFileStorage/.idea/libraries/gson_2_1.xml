@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="gson-2.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.1/2e66da15851f9f5b5079228f856c2f090ba98c38/gson-2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.1/5c2e6207e9abf9a18bde012371a821196dd18e13/gson-2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

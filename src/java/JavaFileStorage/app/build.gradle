@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 21
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.google.http-client:google-http-client-gson:1.20.0'
+    compile 'com.google.code.gson:gson:2.1'
+    compile files('libs/commons-logging-1.1.1.jar')
+    compile files('libs/dropbox-android-sdk-1.6.2.jar')
+    compile files('libs/google-api-client-1.16.0-rc.jar')
+    compile files('libs/google-api-client-android-1.16.0-rc.jar')
+    compile files('libs/google-api-services-drive-v2-rev102-1.16.0-rc.jar')
+    compile files('libs/google-http-client-1.16.0-rc.jar')
+    compile files('libs/google-http-client-android-1.16.0-rc.jar')
+    compile files('libs/google-http-client-jackson-1.16.0-rc.jar')
+    compile files('libs/google-http-client-jackson2-1.16.0-rc.jar')
+    compile files('libs/google-oauth-client-1.16.0-rc.jar')
+    compile files('libs/httpclient-4.0.3.jar')
+    compile files('libs/httpcore-4.0.1.jar')
+    compile files('libs/httpmime-4.0.3.jar')
+    compile files('libs/jackson-core-2.1.3.jar')
+    compile files('libs/jackson-core-asl-1.9.11.jar')
+    compile files('libs/json_simple-1.1.jar')
+    compile files('libs/jsr305-1.3.9.jar')
+}
