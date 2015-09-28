@@ -277,6 +277,7 @@
 
 	<string name="error_invalid_expiry_date">Invalid date/time format for expiry date!</string>
   <string name="error_string_key">A field name is required for each string.</string>
+  <string name="error_string_duplicate_key">A field name cannot be used twice (%1$s).</string>
   <string name="field_name">Field Name</string>
   <string name="field_value">Field value</string>
   <string name="protection">Protected field</string>

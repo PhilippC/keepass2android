@@ -1015,6 +1015,7 @@ namespace keepass2android
 
 
 			LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
+			HashSet<string> allKeys = new HashSet<string>();
 			for (int i = 0; i < container.ChildCount; i++) {
 				View ees = container.GetChildAt(i);
 				
@@ -1025,7 +1026,15 @@ namespace keepass2android
 					Toast.MakeText(this, Resource.String.error_string_key, ToastLength.Long).Show();
 					return false;
 				}
-				
+
+				if (allKeys.Contains(key))
+				{
+					Toast.MakeText(this, GetString(Resource.String.error_string_duplicate_key, new Java.Lang.Object[]{key}), ToastLength.Long).Show();
+					return false;
+				}
+
+				allKeys.Add(key);
+
 			}
 			
 			return true;
