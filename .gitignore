@@ -121,3 +121,14 @@ Thumbs.db
 /src/packages/
 
 *.apk
+
+/src/java/JavaFileStorage/app/build
+/src/java/JavaFileStorage/build
+/src/java/JavaFileStorage/.gradle/2.2.1/taskArtifacts/cache.properties
+/src/java/JavaFileStorage/.gradle/2.2.1/taskArtifacts/cache.properties.lock
+/src/java/JavaFileStorage/.gradle/2.2.1/taskArtifacts/fileHashes.bin
+/src/java/JavaFileStorage/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin
+/src/java/JavaFileStorage/.gradle/2.2.1/taskArtifacts/outputFileStates.bin
+/src/java/JavaFileStorage/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin
+/src/java/JavaFileStorage/.idea/workspace.xml
+/src/java/JavaFileStorage/local.properties
