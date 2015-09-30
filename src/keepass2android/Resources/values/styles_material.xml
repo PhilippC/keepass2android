@@ -115,7 +115,7 @@
   
   <style name="MyTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
 
-   <item name="CancelDrawable">@android:drawable/ic_menu_close_clear_cancel</item>
+   <item name="CancelDrawable">@drawable/ic_menu_close</item>
 
     <item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
     <item name="ic_action_search_drawable">@drawable/ic_action_search</item>

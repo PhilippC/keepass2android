@@ -19,12 +19,12 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">>
     <item android:id="@+id/menu_save"
         android:title="@string/entry_save"
-          android:icon="@android:drawable/ic_menu_save"
+          android:icon="@drawable/ic_menu_save"
         app:showAsAction="always"
     />
   <item android:id="@+id/menu_cancel"
         android:title="@string/cancel"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:icon="@drawable/ic_menu_close"
         app:showAsAction="always"
     />
 </menu>
