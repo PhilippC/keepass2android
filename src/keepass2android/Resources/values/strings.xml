@@ -532,6 +532,13 @@
 	
 	<string name="Continue">Continue</string>
 	<string name="NoFilenameWarning">The URI you have entered does not look like a filename. Are you sure this is a valid file?</string>
+
+  <string name="ChangeLog_0_9_8c">
+    Version 0.9.8c\n
+    * Fix for SSL vulnerability in Microsoft Live SDK (used when accessing files via OneDrive)\n
+    * Bug fix: Previous release contained two input methods (one crashing)\n
+  </string>
+  
 		<string name="ChangeLog_0_9_8b">
 		Version 0.9.8b\n
 		* Bug fixes (Saving failed for some databases, exporting to local device not working, selecting some preference options crashed the app)\n
