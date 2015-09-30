@@ -133,7 +133,7 @@ namespace keepass2android
 				RunnableOnFinish task;
 				if (strGroupUuid == null)
 				{
-					task = AddGroup.GetInstance(this, App.Kp2a, groupName, groupIconId, Group, new RefreshTask(handler, this), false);
+					task = AddGroup.GetInstance(this, App.Kp2a, groupName, groupIconId, groupCustomIconId, Group, new RefreshTask(handler, this), false);
 				}
 				else
 				{

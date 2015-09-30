@@ -22,6 +22,8 @@ using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using KeePassLib;
+using KeePassLib.Utility;
 
 namespace keepass2android
 {
@@ -44,34 +46,44 @@ namespace keepass2android
 			SetContentView(Resource.Layout.icon_picker);
 			
 			GridView currIconGridView = (GridView)FindViewById(Resource.Id.IconGridView);
-			currIconGridView.Adapter = new ImageAdapter(this);
+			currIconGridView.Adapter = new ImageAdapter(this, App.Kp2a.GetDb().KpDatabase);
 			
-			currIconGridView.ItemClick += (sender, e) =>           {
-			
-					Intent intent = new Intent();
-					
+			currIconGridView.ItemClick += (sender, e) =>
+			{
+
+				Intent intent = new Intent();
+
+				if (((ImageAdapter) currIconGridView.Adapter).IsCustomIcon(e.Position))
+				{
+					intent.PutExtra(KeyCustomIconId,
+						MemUtil.ByteArrayToHexString(((ImageAdapter) currIconGridView.Adapter).GetCustomIcon(e.Position).Uuid.UuidBytes));
+				}
+				else
+				{
 					intent.PutExtra(KeyIconId, e.Position);
-					SetResult((Result)EntryEditActivity.ResultOkIconPicker, intent);
+				}
+				SetResult((Result)EntryEditActivity.ResultOkIconPicker, intent);
 					
-					Finish();
-				};
+				Finish();
+			};
 		}
 		
 		public class ImageAdapter : BaseAdapter
 		{
 			readonly IconPickerActivity _act;
-			
-			public ImageAdapter(IconPickerActivity act)
+			private readonly PwDatabase _db;
+
+			public ImageAdapter(IconPickerActivity act, PwDatabase db)
 			{
 				_act = act;
+				_db = db;
 			}
-			
+
 			public override int Count
 			{
 				get
 				{
-					/* Return number of KeePass icons */
-					return Icons.Count();
+					return Icons.Count() + _db.CustomIcons.Count;
 				}
 			}
 			
@@ -97,15 +109,40 @@ namespace keepass2android
 				{
 					currView = convertView;
 				}
-				
 				TextView tv = (TextView) currView.FindViewById(Resource.Id.icon_text);
-				tv.Text = "" + position;
 				ImageView iv = (ImageView) currView.FindViewById(Resource.Id.icon_image);
-				iv.SetImageResource(Icons.IconToResId((KeePassLib.PwIcon)position, false));
-				Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
-				Color color = new Color(189, 189, 189);
-				iv.SetColorFilter(color, mMode);
+						
+				if (position < Icons.Count())
+				{
+					tv.Text = "" + position;
+					iv.SetImageResource(Icons.IconToResId((KeePassLib.PwIcon) position, false));
+					Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+					Color color = new Color(189, 189, 189);
+					iv.SetColorFilter(color, mMode);
+				}
+				else
+				{
+					int pos = position - Icons.Count();
+					var icon = _db.CustomIcons[pos];
+					tv.Text = pos.ToString();
+					iv.SetColorFilter(null);
+					iv.SetImageBitmap(icon.Image);
+					
+				}
+
 				return currView;
+			}
+
+			public bool IsCustomIcon(int position)
+			{
+				return position >= Icons.Count();
+			}
+
+			public PwCustomIcon GetCustomIcon(int position)
+			{
+				if (!IsCustomIcon(position))
+					return null;
+				return _db.CustomIcons[position - Icons.Count()];
 			}
 		}
 	}

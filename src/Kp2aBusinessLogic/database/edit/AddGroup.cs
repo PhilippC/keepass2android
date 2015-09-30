@@ -30,21 +30,25 @@ namespace keepass2android
 		private IKp2aApp _app;
 		private readonly String _name;
 		private readonly int _iconId;
+		private readonly PwUuid _groupCustomIconId;
 		internal PwGroup Group;
 		internal PwGroup Parent;
 		protected bool DontSave;
 		readonly Context _ctx;
 		
 		
-		public static AddGroup GetInstance(Context ctx, IKp2aApp app, String name, int iconid, PwGroup parent, OnFinish finish, bool dontSave) {
-			return new AddGroup(ctx, app, name, iconid, parent, finish, dontSave);
+		public static AddGroup GetInstance(Context ctx, IKp2aApp app, string name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave) {
+			return new AddGroup(ctx, app, name, iconid, groupCustomIconId, parent, finish, dontSave);
 		}
-		
-		
-		private AddGroup(Context ctx, IKp2aApp app, String name, int iconid, PwGroup parent, OnFinish finish, bool dontSave): base(finish) {
+
+
+		private AddGroup(Context ctx, IKp2aApp app, String name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave)
+			: base(finish)
+		{
 			_ctx = ctx;
 			_name = name;
 			_iconId = iconid;
+			_groupCustomIconId = groupCustomIconId;
 			Parent = parent;
 			DontSave = dontSave;
 			_app = app;
@@ -57,6 +61,10 @@ namespace keepass2android
 			StatusLogger.UpdateMessage(UiStringKey.AddingGroup);
 			// Generate new group
 			Group = new PwGroup(true, true, _name, (PwIcon)_iconId);
+			if (_groupCustomIconId != null)
+			{
+				Group.CustomIconUuid = _groupCustomIconId;
+			}
 			Parent.AddGroup(Group, true);
 
 			// Commit to disk

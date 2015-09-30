@@ -147,12 +147,14 @@ namespace keepass2android
 				pwe.Expires = true;
 				pwe.ExpiryTime = DateTime.Now.AddDays(nExpireDays);
 			}*/
-					
+
 					if ((State.ParentGroup.IconId != PwIcon.Folder) && (State.ParentGroup.IconId != PwIcon.FolderOpen) &&
 					    (State.ParentGroup.IconId != PwIcon.FolderPackage))
 					{
 						State.EntryInDatabase.IconId = State.ParentGroup.IconId; // Inherit icon from group
 					}
+					else
+						State.EntryInDatabase.IconId = PwIcon.Key;
 					State.EntryInDatabase.CustomIconUuid = State.ParentGroup.CustomIconUuid;
 					
 					/*
@@ -206,8 +208,7 @@ namespace keepass2android
 			
 			if (State.SelectedIcon)
 			{
-				//TODO: custom image
-				iconButton.SetImageResource(Icons.IconToResId(State.SelectedIconId, false));
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iconButton, Resources, App.Kp2a.GetDb().KpDatabase, (PwIcon)State.SelectedIconId, State.SelectedCustomIconId, false);
 			}
 			iconButton.Click += (sender, evt) => {
 				UpdateEntryFromUi(State.Entry);
@@ -327,17 +328,11 @@ namespace keepass2android
 			bool bCreateBackup = (!State.IsNew);
 			if(bCreateBackup) newEntry.CreateBackup(null);
 			
-			if (State.SelectedIcon == false) {
-				if (State.IsNew) {
-					newEntry.IconId = PwIcon.Key;
-				} else {
-					// Keep previous icon, if no new one was selected
-				}
-			}
-			else {
+			if (State.SelectedIcon) 
+			{
 				newEntry.IconId = State.SelectedIconId;
 				newEntry.CustomIconUuid = State.SelectedCustomIconId;
-			}
+			} //else the State.EntryInDatabase.Icon
 			/* KPDesktop
 				if(m_cbCustomForegroundColor.Checked)
 					newEntry.ForegroundColor = m_clrForeground;
@@ -687,7 +682,7 @@ namespace keepass2android
 			switch (resultCode)
 			{
 			case (Result)ResultOkIconPicker:
-				State.SelectedIconId = (PwIcon) data.Extras.GetInt(IconPickerActivity.KeyIconId);
+				State.SelectedIconId = (PwIcon) data.Extras.GetInt(IconPickerActivity.KeyIconId,(int)PwIcon.Key);
 				State.SelectedCustomIconId = PwUuid.Zero;
 				String customIconIdString = data.Extras.GetString(IconPickerActivity.KeyCustomIconId);
 				if (!String.IsNullOrEmpty(customIconIdString))

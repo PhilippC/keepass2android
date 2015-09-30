@@ -74,9 +74,9 @@ namespace keepass2android
 			db.SearchHelper = new SearchDbHelper(_app);
 
 			// Add a couple default groups
-			AddGroup internet = AddGroup.GetInstance(_ctx, _app, "Internet", 1, db.KpDatabase.RootGroup, null, true);
+			AddGroup internet = AddGroup.GetInstance(_ctx, _app, "Internet", 1, null, db.KpDatabase.RootGroup, null, true);
 			internet.Run();
-			AddGroup email = AddGroup.GetInstance(_ctx, _app, "eMail", 19, db.KpDatabase.RootGroup, null, true);
+			AddGroup email = AddGroup.GetInstance(_ctx, _app, "eMail", 19, null, db.KpDatabase.RootGroup, null, true);
 			email.Run();
 			
 			// Commit changes

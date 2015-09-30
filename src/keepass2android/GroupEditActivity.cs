@@ -19,6 +19,7 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
 using Android.Widget;
 using KeePassLib;
 using KeePassLib.Utility;
@@ -44,6 +45,13 @@ namespace keepass2android
 		{
 			_design = new ActivityDesign(this);
 		}
+
+		protected GroupEditActivity(IntPtr javaReference, JniHandleOwnership transfer)
+			: base(javaReference, transfer)
+		{
+			
+		}
+
 
 		public static void Launch(Activity act, PwGroup parentGroup)
 		{
@@ -91,7 +99,8 @@ namespace keepass2android
 					
 					intent.PutExtra (KeyName, name);
 					intent.PutExtra (KeyIconId, _selectedIconId);
-					intent.PutExtra(KeyCustomIconId, MemUtil.ByteArrayToHexString(_selectedCustomIconId.UuidBytes));
+					if (_selectedCustomIconId != null)
+						intent.PutExtra(KeyCustomIconId, MemUtil.ByteArrayToHexString(_selectedCustomIconId.UuidBytes));
 					if (_groupToEdit != null)
 						intent.PutExtra(KeyGroupUuid, MemUtil.ByteArrayToHexString(_groupToEdit.Uuid.UuidBytes));
 
@@ -135,10 +144,13 @@ namespace keepass2android
 			switch ((int)resultCode)
 			{
 				case EntryEditActivity.ResultOkIconPicker:
-					_selectedIconId = data.Extras.GetInt(IconPickerActivity.KeyIconId);
-					_selectedCustomIconId = PwUuid.Zero;
+					_selectedIconId = data.Extras.GetInt(IconPickerActivity.KeyIconId, (int) PwIcon.Key);
+					String customIconIdString = data.Extras.GetString(IconPickerActivity.KeyCustomIconId);
+					if (!String.IsNullOrEmpty(customIconIdString))
+						_selectedCustomIconId = new PwUuid(MemUtil.HexStringToByteArray(customIconIdString));
+
 					ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-					currIconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId, false));
+					App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, (PwIcon) _selectedIconId, _selectedCustomIconId, false);
 					break;
 			}
 		}
