@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.IO;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -24,6 +25,8 @@ using Android.Views;
 using Android.Widget;
 using KeePassLib;
 using KeePassLib.Utility;
+using FileNotFoundException = Java.IO.FileNotFoundException;
+using IOException = Java.IO.IOException;
 
 namespace keepass2android
 {
@@ -67,8 +70,86 @@ namespace keepass2android
 				Finish();
 			};
 		}
-		
-		public class ImageAdapter : BaseAdapter
+
+	    private const int AddCustomIconId = 1;
+	    private const int RequestCodePickImage = 2;
+
+	    public override bool OnCreateOptionsMenu(IMenu menu)
+	    {
+		    
+			base.OnCreateOptionsMenu(menu);
+			 
+			menu.Add(0, AddCustomIconId, 0, GetString(Resource.String.AddCustomIcon)); 
+
+			return true;
+    
+	    }
+
+	    public override bool OnOptionsItemSelected(IMenuItem item)
+	    {
+		    if (item.ItemId == AddCustomIconId)
+		    {
+				Intent intent = new Intent();
+				intent.SetType("image/*");
+				intent.SetAction(Intent.ActionGetContent);
+				intent.AddCategory(Intent.CategoryOpenable);
+				StartActivityForResult(intent, RequestCodePickImage);
+		    }
+
+		    return base.OnOptionsItemSelected(item);
+	    }
+
+	    protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+	    {
+
+		    base.OnActivityResult(requestCode, resultCode, data);
+
+			if (requestCode == RequestCodePickImage && resultCode == Result.Ok)
+				try
+				{
+					var stream = ContentResolver.OpenInputStream(data.Data);
+					var bitmap = BitmapFactory.DecodeStream(stream);
+					
+					stream.Close();
+
+					float maxSize = 128;
+
+					using (MemoryStream ms = new MemoryStream())
+					{
+						if ((bitmap.Width > maxSize) || (bitmap.Height > maxSize))
+						{
+							float scale = Math.Min(maxSize / bitmap.Width, maxSize / bitmap.Height);
+							var scaleWidth = (int)(bitmap.Width * scale);
+							var scaleHeight = (int)(bitmap.Height * scale);
+							var scaledBitmap = Bitmap.CreateScaledBitmap(bitmap, scaleWidth, scaleHeight, true);
+							Bitmap newRectBitmap = Bitmap.CreateBitmap((int)maxSize, (int)maxSize, Bitmap.Config.Argb8888);
+							
+							Canvas c = new Canvas(newRectBitmap);
+							c.DrawBitmap(scaledBitmap, (maxSize - scaledBitmap.Width)/2.0f, (maxSize - scaledBitmap.Height)/2.0f, null);
+							bitmap = newRectBitmap;
+						}
+						;
+						bitmap.Compress(Bitmap.CompressFormat.Png, 90, ms);
+						PwCustomIcon pwci = new PwCustomIcon(new PwUuid(true), ms.ToArray());
+
+						App.Kp2a.GetDb().KpDatabase.CustomIcons.Add(pwci);
+						
+					}
+					var gridView = ((GridView)FindViewById(Resource.Id.IconGridView));
+					((BaseAdapter)gridView.Adapter).NotifyDataSetInvalidated();
+					gridView.SmoothScrollToPosition(((BaseAdapter)gridView.Adapter).Count-1);
+				}
+				catch (FileNotFoundException e)
+				{
+					e.PrintStackTrace();
+				}
+				catch (IOException e)
+				{
+					e.PrintStackTrace();
+				}
+	    }
+
+	    public class ImageAdapter : BaseAdapter
 		{
 			readonly IconPickerActivity _act;
 			private readonly PwDatabase _db;
