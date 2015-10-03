@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using Android.Content;
+using KeePassLib;
 using KeePassLib.Serialization;
 using KeePassLib.Keys;
 
@@ -24,7 +25,7 @@ namespace keepass2android
 	
 	public class CreateDb : RunnableOnFinish {
 		
-		private const int DefaultEncryptionRounds = 1000;
+		private const ulong DefaultEncryptionRounds = PwDefs.DefaultKeyEncryptionRounds;
 		
 		private readonly IOConnectionInfo _ioc;
 		private readonly bool _dontSave;
