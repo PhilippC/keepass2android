@@ -98,30 +98,14 @@ namespace keepass2android
 					return _blank;
 				}
 					
-				bitmap = resize (bitmap);
-
 				draw = new BitmapDrawable(res, bitmap);
 				_customIconMap[icon] = draw;
 			}
 				
 			return draw;
 		}
-			
-		/** Resize the custom icon to match the built in icons
-	 * @param bitmap
-	 * @return
-	 */
-		private Bitmap resize (Bitmap bitmap)
-		{
-			int width = bitmap.Width;
-			int height = bitmap.Height;
-				
-			if (width == _blankWidth && height == _blankHeight) {
-				return bitmap;
-			}
-				
-			return Bitmap.CreateScaledBitmap (bitmap, _blankWidth, _blankHeight, true);
-		}
+		
+		
 			
 		public void Clear ()
 		{

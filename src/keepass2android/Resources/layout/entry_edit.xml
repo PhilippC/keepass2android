@@ -17,8 +17,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:padding="8dp"
-                android:layout_margin="0dp"
-                android:scaleType="fitXY"
+                android:layout_margin="2dp"
+                android:scaleType="fitCenter"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic00" />
             <android.support.design.widget.TextInputLayout
