@@ -42,7 +42,7 @@ namespace keepass2android.search
 			GetIcon,
 			GetSuggestions
 		}
-		public const String Authority = "keepass2android." + AppNames.PackagePart + ".SearchProvider";
+		public const String Authority = "kp2a." + AppNames.PackagePart + ".SearchProvider";
 		
 		private const string GetIconPathQuery = "get_icon";
 		private const string IconIdParameter = "IconId";
@@ -103,7 +103,16 @@ namespace keepass2android.search
 			return null;
 		}
 
-		public override ParcelFileDescriptor OpenFile(Android.Net.Uri uri, string mode)
+
+        public static float convertDpToPixel(float dp, Context context)
+        {
+            Resources resources = context.Resources;
+            Android.Util.DisplayMetrics metrics = resources.DisplayMetrics;
+            float px = dp * metrics.Density;
+            return px;
+        }
+
+        public override ParcelFileDescriptor OpenFile(Android.Net.Uri uri, string mode)
 		{
 			switch ((UriMatches)UriMatcher.Match(uri))
 			{
@@ -119,7 +128,23 @@ namespace keepass2android.search
 
 						ThreadPool.QueueUserWorkItem(state =>
 							{
-								iconDrawable.Bitmap.Compress(Bitmap.CompressFormat.Png, 100, outStream);
+                                var original = iconDrawable.Bitmap;
+                                Bitmap copy = Bitmap.CreateBitmap(original.Width, original.Height, original.GetConfig());
+                                Canvas copiedCanvas = new Canvas(copy);
+                                copiedCanvas.DrawBitmap(original, 0f, 0f, null);
+
+                                var bitmap = copy;
+                                float maxSize = convertDpToPixel(60, App.Context);
+                                float scale = Math.Min(maxSize / bitmap.Width, maxSize / bitmap.Height);
+                                var scaleWidth = (int)(bitmap.Width * scale);
+                                var scaleHeight = (int)(bitmap.Height * scale);
+                                var scaledBitmap = Bitmap.CreateScaledBitmap(bitmap, scaleWidth, scaleHeight, true);
+                                Bitmap newRectBitmap = Bitmap.CreateBitmap((int)maxSize, (int)maxSize, Bitmap.Config.Argb8888);
+
+                                Canvas c = new Canvas(newRectBitmap);
+                                c.DrawBitmap(scaledBitmap, (maxSize - scaledBitmap.Width) / 2.0f, (maxSize - scaledBitmap.Height) / 2.0f, null);
+                                bitmap = newRectBitmap;
+                                bitmap.Compress(Bitmap.CompressFormat.Png, 100, outStream);
 								outStream.Close();
 							});
 						
