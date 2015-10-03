@@ -6,7 +6,7 @@
         android:id="@+id/icon_button"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic00"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" />

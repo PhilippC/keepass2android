@@ -552,10 +552,11 @@
   <string name="ChangeLog_0_9_9">
 		Version 0.9.9\n
 		* Complete UI redesign. Thanks a lot to Stefano Pignataro (http://www.spstudio.at) for his support!\n
+    * Allow to add custom icons\n
     * Support for Multi Window mode on Samsung devices\n
     * Increased default number of encryption rounds for new databases\n
     * Check for duplicate keys of additional fields to avoid losing data\n
-    * Allow to add custom icons
+    
 	</string>
 
   
