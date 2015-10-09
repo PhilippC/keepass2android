@@ -145,7 +145,7 @@ namespace keepass2android.AutoFillPlugin
             var builder = new Notification.Builder(this);
             //TODO icon
             //TODO plugin icon
-            builder.SetSmallIcon(Resource.Drawable.ic_notify_keyboard)
+            builder.SetSmallIcon(Resource.Drawable.ic_notify_autofill)
                    .SetContentText(GetString(Resource.String.NotificationContentText, new Java.Lang.Object[] { targetName }))
                    .SetContentTitle(GetString(Resource.String.NotificationTitle))
                    .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
