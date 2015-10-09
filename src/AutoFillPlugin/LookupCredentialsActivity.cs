@@ -45,7 +45,7 @@ namespace keepass2android.AutoFillPlugin
             string user = "", password = "";
             output.TryGetValue(KeePassLib.PwDefs.UserNameField, out user);
             output.TryGetValue(KeePassLib.PwDefs.PasswordField, out password);
-
+			Android.Util.Log.Debug ("KP2AAS", "Received credentials for " + _lastQueriedUrl);
             LastReceivedCredentials = new Credentials() { User = user, Password = password, Url = _lastQueriedUrl };
             
             Finish();

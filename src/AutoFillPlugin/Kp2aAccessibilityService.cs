@@ -40,13 +40,16 @@ namespace keepass2android.AutoFillPlugin
         {
             
             Android.Util.Log.Debug(_logTag, "OnAccEvent");
-            bool cancelNotification = true;
             if (e.EventType == EventTypes.WindowContentChanged || e.EventType == EventTypes.WindowStateChanged)
             {
                 Android.Util.Log.Debug(_logTag, "event: " + e.EventType + ", package = " + e.PackageName);
+				if (e.PackageName == "com.android.systemui")
+					return; //avoid that the notification is cancelled when pulling down notif drawer
                 var root = RootInActiveWindow;
                 if ((ExistsNodeOrChildren(root, n => n.WindowId == e.WindowId) && !ExistsNodeOrChildren(root, n => (n.ViewIdResourceName != null) && (n.ViewIdResourceName.StartsWith("com.android.systemui")))))
                 {
+					bool cancelNotification = true;
+
                     var allEditTexts = GetNodeOrChildren(root, n=> { return IsEditText(n); });
 
                     var usernameEdit = allEditTexts.TakeWhile(edit => (edit.Password == false)).LastOrDefault();
@@ -72,21 +75,32 @@ namespace keepass2android.AutoFillPlugin
                     {
                         if ((LookupCredentialsActivity.LastReceivedCredentials != null) && (LookupCredentialsActivity.LastReceivedCredentials.Url == url))
                         {
+							Android.Util.Log.Debug ("KP2AAS", "Filling credentials for " + url);
+
                             FillPassword(url, usernameEdit, emptyPasswordFields);
                         }
                         else
                         {
+							Android.Util.Log.Debug ("KP2AAS", "Notif for " + url );
+							if (LookupCredentialsActivity.LastReceivedCredentials != null) {
+								Android.Util.Log.Debug ("KP2AAS", LookupCredentialsActivity.LastReceivedCredentials.Url);
+
+								Android.Util.Log.Debug ("KP2AAS", url);}
+
                             AskFillPassword(url, usernameEdit, emptyPasswordFields);
                             cancelNotification = false;
                         }
                         
                     }
-            
+					if (cancelNotification)
+					{
+						((NotificationManager)GetSystemService(NotificationService)).Cancel(autoFillNotificationId);
+						Android.Util.Log.Debug ("KP2AAS","Cancel notif");
+					}
                 }
 
             }
-            if (cancelNotification)
-                ((NotificationManager)GetSystemService(NotificationService)).Cancel(autoFillNotificationId);
+            
 
         }
         private static void UrlFromAddressField(ref string url, AccessibilityNodeInfo addressField)
@@ -128,7 +142,8 @@ namespace keepass2android.AutoFillPlugin
                 var packageName = url.Substring(androidAppPrefix.Length);
                 try
                 {
-                    targetName = PackageManager.GetPackageInfo(packageName, 0).ApplicationInfo.Name;
+					var appInfo = PackageManager.GetApplicationInfo(packageName, 0);
+					targetName = (string) (appInfo != null ? PackageManager.GetApplicationLabel(appInfo) : packageName);
                 }
                 catch (Exception e)
                 {
