@@ -32,23 +32,32 @@ namespace keepass2android.AutoFillPlugin
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            var jsonOutput = new Org.Json.JSONObject(data.GetStringExtra(Strings.ExtraEntryOutputData));
-            Dictionary<string, string> output = new Dictionary<string, string>();
-            for (var iter = jsonOutput.Keys(); iter.HasNext;)
-            {
-                string key = iter.Next().ToString();
-                string value = jsonOutput.Get(key).ToString();
-                output[key] = value;
-            }
+			try
+			{
+					
+	            var jsonOutput = new Org.Json.JSONObject(data.GetStringExtra(Strings.ExtraEntryOutputData));
+	            Dictionary<string, string> output = new Dictionary<string, string>();
+	            for (var iter = jsonOutput.Keys(); iter.HasNext;)
+	            {
+	                string key = iter.Next().ToString();
+	                string value = jsonOutput.Get(key).ToString();
+	                output[key] = value;
+	            }
 
 
-            string user = "", password = "";
-            output.TryGetValue(KeePassLib.PwDefs.UserNameField, out user);
-            output.TryGetValue(KeePassLib.PwDefs.PasswordField, out password);
-			Android.Util.Log.Debug ("KP2AAS", "Received credentials for " + _lastQueriedUrl);
-            LastReceivedCredentials = new Credentials() { User = user, Password = password, Url = _lastQueriedUrl };
-            
-            Finish();
+	            string user = "", password = "";
+	            output.TryGetValue(KeePassLib.PwDefs.UserNameField, out user);
+	            output.TryGetValue(KeePassLib.PwDefs.PasswordField, out password);
+				Android.Util.Log.Debug ("KP2AAS", "Received credentials for " + _lastQueriedUrl);
+	            LastReceivedCredentials = new Credentials() { User = user, Password = password, Url = _lastQueriedUrl };
+			}
+			catch(Exception e) {
+				Android.Util.Log.Debug ("KP2AAS", "Exception while receiving credentials: " + e.ToString());
+			}
+			finally {
+				
+				Finish ();
+			}
         }
 
         public static Credentials LastReceivedCredentials;

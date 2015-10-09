@@ -73,7 +73,7 @@ namespace keepass2android.AutoFillPlugin
                     var emptyPasswordFields = GetNodeOrChildren(root, n => { return IsPasswordField(n); }).ToList();
                     if (emptyPasswordFields.Any())
                     {
-                        if ((LookupCredentialsActivity.LastReceivedCredentials != null) && (LookupCredentialsActivity.LastReceivedCredentials.Url == url))
+						if ((LookupCredentialsActivity.LastReceivedCredentials != null) && IsSame(LookupCredentialsActivity.LastReceivedCredentials.Url, url))
                         {
 							Android.Util.Log.Debug ("KP2AAS", "Filling credentials for " + url);
 
@@ -82,10 +82,11 @@ namespace keepass2android.AutoFillPlugin
                         else
                         {
 							Android.Util.Log.Debug ("KP2AAS", "Notif for " + url );
-							if (LookupCredentialsActivity.LastReceivedCredentials != null) {
+							if (LookupCredentialsActivity.LastReceivedCredentials != null) 
+							{
 								Android.Util.Log.Debug ("KP2AAS", LookupCredentialsActivity.LastReceivedCredentials.Url);
-
-								Android.Util.Log.Debug ("KP2AAS", url);}
+								Android.Util.Log.Debug ("KP2AAS", url);
+							}
 
                             AskFillPassword(url, usernameEdit, emptyPasswordFields);
                             cancelNotification = false;
@@ -113,6 +114,13 @@ namespace keepass2android.AutoFillPlugin
             }
             
         }
+
+		private bool IsSame(string url1, string url2)
+		{
+			if (url1.StartsWith ("androidapp://"))
+				return url1 == url2;
+			return KeePassLib.Utility.UrlUtil.GetHost (url1) == KeePassLib.Utility.UrlUtil.GetHost (url2);
+		}
 
         private static bool IsPasswordField(AccessibilityNodeInfo n)
         {
