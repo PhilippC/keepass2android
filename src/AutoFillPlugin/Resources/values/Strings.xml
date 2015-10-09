@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="LookupTitle">Look up credentials</string>
+    <string name="ApplicationName">KP2A AutoFillPlugin</string>
+  <string name="NotificationTitle">Keepass2Android AutoFill</string>
+    <string name="NotificationContentText">AutoFill form for %1$s</string>
+  <string name="NotificationTickerText">AutoFill available for %1$s</string>
+</resources>
