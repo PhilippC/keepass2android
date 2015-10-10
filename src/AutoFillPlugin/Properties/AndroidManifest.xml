@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="kp2a.plugin.AutoFill" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="21" />
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="21" />
 	<application android:label="KP2A AutoFillPlugin" android:icon="@drawable/Icon"></application>
 </manifest>

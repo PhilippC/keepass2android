@@ -14,7 +14,7 @@ using Keepass2android.Pluginsdk;
 
 namespace keepass2android.AutoFillPlugin
 {
-    [Activity(Label = "@string/LookupTitle", LaunchMode = Android.Content.PM.LaunchMode.SingleInstance)]
+	[Activity(Label = "@string/LookupTitle", LaunchMode = Android.Content.PM.LaunchMode.SingleInstance, Theme="@style/android:Theme.Material.Light")]
     public class LookupCredentialsActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)

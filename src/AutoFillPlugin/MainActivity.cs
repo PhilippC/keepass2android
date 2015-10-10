@@ -12,6 +12,7 @@ using Android.Widget;
 
 namespace keepass2android.AutoFillPlugin
 {
+	#if DEBUG
     [Activity(Label = "MainActivity", MainLauncher =true)]
     public class MainActivity : Activity
     {
@@ -22,4 +23,5 @@ namespace keepass2android.AutoFillPlugin
             // Create your application here
         }
     }
+	#endif
 }

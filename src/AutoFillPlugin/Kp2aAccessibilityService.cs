@@ -91,7 +91,7 @@ namespace keepass2android.AutoFillPlugin
                             AskFillPassword(url, usernameEdit, emptyPasswordFields);
                             cancelNotification = false;
                         }
-                        
+
                     }
 					if (cancelNotification)
 					{
