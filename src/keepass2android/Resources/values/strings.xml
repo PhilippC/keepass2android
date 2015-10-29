@@ -566,15 +566,12 @@
 	</string>
 
 	<string name="ChangeLog_0_9_8">
-		Version 0.9.8 preview 2 (alpha)\n
-    *** NOTE: This preview is meant for early testing of the new UI design. It is currently not fully functional!***
-    * Material design.
+		Version 0.9.8\n
 		* Support for Storage Access Framework (allows write to SD card and Google Drive in KP2A Offline)\n
 		* Try to detect erroneous user input when entering WebDAV URLs (directory instead of file)\n
 		* Changed password font\n
 		* Allow to change Dropbox account\n
-		* Fixed bug: Now remembering OTP password\n
-		* Note: I have promised Material Design for this release. I am constantly working on it, but it needs a bit more time. Sorry! \n
+		* Fixed bug: Now remembering OTP password
 	</string>
 
 	<string name="ChangeLog_0_9_7b">

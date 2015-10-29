@@ -685,6 +685,7 @@ namespace keepass2android
     public class GroupListFragment : ListFragment, AbsListView.IMultiChoiceModeListener
     {
 	    private ActionMode _mode;
+	    private int _statusBarColor;
 
 	    public override void OnActivityCreated(Bundle savedInstanceState)
         {
@@ -777,6 +778,11 @@ namespace keepass2android
 	        ((PwGroupListAdapter) ListView.Adapter).InActionMode = true;
             ((PwGroupListAdapter)ListView.Adapter).NotifyDataSetChanged();
 	        _mode = mode;
+	        if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+	        {
+		        _statusBarColor = Activity.Window.StatusBarColor;
+		        Activity.Window.SetStatusBarColor(Activity.Resources.GetColor(Resource.Color.appAccentColorDark));
+	        }
             return true;
         }
 
@@ -786,6 +792,10 @@ namespace keepass2android
 			((PwGroupListAdapter)ListView.Adapter).InActionMode = true;
             ((PwGroupListAdapter)ListView.Adapter).NotifyDataSetChanged();
 	        _mode = null;
+			if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+			{
+				Activity.Window.SetStatusBarColor( new Android.Graphics.Color(_statusBarColor));
+			}
         }
 
         public bool OnPrepareActionMode(ActionMode mode, IMenu menu)
