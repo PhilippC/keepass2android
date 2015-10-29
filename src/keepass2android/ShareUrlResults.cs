@@ -30,7 +30,17 @@ using KeePassLib.Utility;
 namespace keepass2android
 {
     [Activity(Label = "@string/kp2a_findUrl", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
-	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]	
+#if NoNet
+    [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
+#else
+#if DEBUG
+	[MetaData("android.app.searchable", Resource = "@xml/searchable_debug")]
+#else
+    [MetaData("android.app.searchable", Resource = "@xml/searchable")]
+#endif
+#endif
+	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
+	[IntentFilter(new[] { Intent.ActionSearch }, Categories = new[] { Intent.CategoryDefault })]
 	public class ShareUrlResults : GroupBaseActivity
 	{
 

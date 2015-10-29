@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/entry_scroll"
+    android:background="#ffffffff"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <LinearLayout
@@ -66,7 +67,6 @@
                             android:id="@+id/entry_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="0dp"
                             android:paddingTop="0dp"
                             android:singleLine="true"
                             android:inputType="textPassword"
@@ -77,25 +77,24 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="12dp"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
+                        android:layout_centerVertical ="true"
                         android:orientation="horizontal">
                         <ImageButton
                             android:id="@+id/toggle_password"
                             android:layout_width="wrap_content"
+                            android:layout_gravity="center_vertical"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
                             android:src="@drawable/ic_menu_view"
                             android:background="?android:selectableItemBackground" />
                         <ImageButton
                             android:id="@+id/generate_button"
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginBottom="8dp"
                             android:src="@drawable/ic_plus_button"
                             android:background="?android:selectableItemBackground" />
                     </LinearLayout>
@@ -104,7 +103,6 @@
                     android:id="@+id/entry_confpassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="0dp"
                     android:paddingTop="0dp"
                     android:singleLine="true"
                     android:inputType="textPassword"
@@ -148,24 +146,29 @@
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
                 android:src="@drawable/ic_entry_extras" />
-            <LinearLayout
+          <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
             <!-- Extra strings -->
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/advanced_container"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
-                <Button
-                    android:id="@+id/add_advanced"
-                    style="@style/EditEntryButton"
-                    android:layout_marginTop="-4dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_plus_button"
-                    android:text="@string/add_extra_string" />
+              <Button
+                android:id="@+id/add_advanced"
+                android:background="?android:selectableItemBackground"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textAllCaps="true"
+    android:drawableLeft="@drawable/ic_plus_button"
+    android:paddingLeft="8dp"
+    android:layout_width="match_parent"
+    android:layout_weight="1"
+    android:layout_height="wrap_content"
+    android:text="@string/add_extra_string"/>
+                
             </LinearLayout>
         </LinearLayout>
     <!-- file attachments -->
@@ -230,8 +233,6 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
                 android:src="@drawable/ic_entry_expires" />
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -252,7 +253,6 @@
                         android:id="@+id/entry_expires_checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="-8dp"
                         android:layout_gravity="center_vertical" />
                     <EditText
                         android:id="@+id/entry_expires"

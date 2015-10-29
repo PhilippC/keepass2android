@@ -1053,7 +1053,10 @@ namespace keepass2android
 					OnOk();
 				};
 
-		    FindViewById(Resource.Id.change_db).Click += (sender, args) => GoToFileSelectActivity();
+			string label = FindViewById<Button>(Resource.Id.change_db).Text;
+			if (label.EndsWith("…"))
+				FindViewById<Button>(Resource.Id.change_db).Text = label.Substring(0, label.Length - 1);
+		    FindViewById<Button>(Resource.Id.change_db).Click += (sender, args) => GoToFileSelectActivity();
 		}
 
 		private void OnOk()

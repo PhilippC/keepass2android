@@ -1322,4 +1322,10 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\splashlogo_offline.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_copy_holo_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_view_grey.png" />
+  </ItemGroup>
 </Project>

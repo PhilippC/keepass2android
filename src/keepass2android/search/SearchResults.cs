@@ -30,7 +30,15 @@ namespace keepass2android.search
 	/// Activity to show search results
 	/// </summary>
     [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]
-	[MetaData("android.app.searchable",Resource=AppNames.Searchable)]
+#if NoNet
+    [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
+#else
+#if DEBUG
+	[MetaData("android.app.searchable", Resource = "@xml/searchable_debug")]
+#else
+    [MetaData("android.app.searchable", Resource = "@xml/searchable")]
+#endif
+#endif
 	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
 	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]
 	public class SearchResults : GroupBaseActivity

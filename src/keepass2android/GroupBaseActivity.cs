@@ -393,6 +393,8 @@ namespace keepass2android
 				searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
 				searchView.SetOnQueryTextListener(new OnQueryTextListener(this));
             
+				ActionBar.LayoutParams lparams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MatchParent, ActionBar.LayoutParams.MatchParent);
+				searchView.LayoutParameters = lparams;
 		    
 				var item = menu.FindItem(Resource.Id.menu_sync);
 				if (item != null)

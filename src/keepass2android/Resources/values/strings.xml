@@ -165,7 +165,7 @@
   <string name="menu_search">Search</string>
   <string name="menu_search_advanced">Advanced Search</string>
   <string name="menu_url">Go to URL</string>
-	<string name="menu_change_db">Change database…</string>
+	<string name="menu_change_db">Change database</string>
   <string name="minus">Minus</string>
   <string name="never">Never</string>
   <string name="yes">Yes</string>
@@ -281,7 +281,7 @@
   <string name="field_name">Field Name</string>
   <string name="field_value">Field value</string>
   <string name="protection">Protected field</string>
-  <string name="add_binary">Add file attachment...</string>
+  <string name="add_binary">Add file attachment</string>
   <string name="add_extra_string">Add additional string</string>
 	<string name="delete_extra_string">Delete additional string</string>
 	<string name="database_loaded_quickunlock_enabled">%1$s: Locked. QuickUnlock enabled.</string>

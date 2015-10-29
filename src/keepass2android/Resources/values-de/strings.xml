@@ -263,7 +263,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="field_name">Feldname</string>
   <string name="field_value">Feldwert</string>
   <string name="protection">Geschütztes Feld</string>
-  <string name="add_binary">Dateianhang hinzufügen...</string>
+  <string name="add_binary">Dateianhang dazu</string>
   <string name="add_extra_string">Zusätzliches Feld hinzufügen</string>
   <string name="delete_extra_string">Zusätzliches Feld löschen</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: gesperrt. QuickUnlock aktiviert.</string>

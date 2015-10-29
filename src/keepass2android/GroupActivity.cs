@@ -32,17 +32,8 @@ using Android.Support.V7.App;
 
 namespace keepass2android
 {
-
-
-	//[IntentFilter(new[] { "android.intent.action.SEARCH" })]
-	//[MetaData("android.app.default_searchable", Value = "MaterialTest2.EntryEditActivity")]
-	//[MetaData("android.app.searchable", Resource = "@xml/searchable_mattest")]
-    
 	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
-	//[MetaData("android.app.searchable", Resource = "@xml/searchable_mattest")]
-	//[MetaData("android.app.default_searchable",Value="keepass2android.search.SearchResults")]
-	[IntentFilter(new[] { "android.intent.action.SEARCH" })]
-	[MetaData("android.app.default_searchable", Value = "MaterialTest2.EntryEditActivity")]
+	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else

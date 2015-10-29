@@ -22,7 +22,7 @@ namespace keepass2android
 		{ 
 			get
 			{
-				return _context.Resources.GetDrawable(Resource.Drawable.ic_menu_copy_holo_light);
+				return _context.Resources.GetDrawable(Resource.Drawable.ic_menu_copy_holo_dark);
 			}
 		}
 		public string Text
