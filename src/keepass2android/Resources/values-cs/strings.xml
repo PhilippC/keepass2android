@@ -10,6 +10,7 @@
   <string name="accept">Přijmout</string>
   <string name="deny">Odmítnout</string>
   <string name="add_entry">Přidat položku</string>
+  <string name="edit_entry">Editovat položku</string>
   <string name="add_url_entry">Vytvořit položku pro adresu URL</string>
   <string name="add_group">Přidat skupinu</string>
   <string name="add_group_title">Přidat skupinu</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Zobrazení jména kategorií je nyní: %1$s</string>
   <string name="ShowGroupInEntry_title">Zobrazit jméno kategorie v detailu záznamu</string>
   <string name="unknown_uri_scheme">Keepass2Android nemůže zpracovat adresu URI %1$s. Obraťte se na vývojáře!</string>
+  <string name="Entry_singular">Jedna položka</string>
+  <string name="Entry_plural">%1$d položek</string>
   <string name="security_prefs">Zabezpečení</string>
   <string name="display_prefs">Zobrazení</string>
   <string name="password_access_prefs">Přístup k heslu</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">Databázový soubor byl zkopírován do vnitřní složky. Klepnutím na tlačítko Ok jej otevřete z nového umístění. Poznámka: Nezapomeňte pravidelně exportovat databázi na bezpečné místo!</string>
   <string name="KeyfileMoved">Soubor s klíčem byl zkopírován do vnitřní složky. Před odstraněním z aktuálního umístění se ujistěte, že jej máte bezpečné zálohovaný!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Vnitřní složku nelze použít, pokud není nastaveno zapamatování umístění souboru s klíčem. Změňte předvolby zabezpečení.</string>
+  <string name="unlock_database_button">Odemknout</string>
+  <string name="unlock_database_title">Odemknout databázi</string>
   <string name="brackets">Závorky</string>
   <string name="cancel">Storno</string>
   <string name="ClearClipboard">Schránka vyčištěna.</string>
@@ -150,11 +155,12 @@
   <string name="menu_hide_password">Skrýt heslo</string>
   <string name="menu_lock">Zamknout databázi</string>
   <string name="menu_open">Otevřít</string>
+  <string name="menu_close">Zavřít</string>
   <string name="menu_rename">Přejmenovat</string>
   <string name="menu_search">Hledat</string>
   <string name="menu_search_advanced">Pokročilé vyhledávání</string>
   <string name="menu_url">Přejít na adresu URL</string>
-  <string name="menu_change_db">Změnit databázi&#8230;</string>
+  <string name="menu_change_db">Změnit databázi…</string>
   <string name="minus">Mínus</string>
   <string name="never">Nikdy</string>
   <string name="yes">Ano</string>
@@ -259,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">Chcete hledaný text \"%1$s\" ve vybrané položce uložit pro příští automatické vyhledání?</string>
   <string name="error_invalid_expiry_date">Neplatný formát data a času pro datum expirace!</string>
   <string name="error_string_key">Název pole je vyžadován pro každý řetězec.</string>
+  <string name="error_string_duplicate_key">Název pole nemůže být použit dvakrát (%1$s).</string>
   <string name="field_name">Název pole</string>
   <string name="field_value">Hodnota pole</string>
   <string name="protection">Chráněné pole</string>
@@ -315,6 +322,7 @@
   <string name="RecycleBin">Koš</string>
   <string name="AskDeletePermanentlyEntry">Chcete trvale odstranit tuto položku? Stiskněte Ne pro obnovení.</string>
   <string name="AskDeletePermanentlyGroup">Chcete trvale odstranit tuto skupinu? Stiskněte Ne pro obnovení.</string>
+  <string name="AskDeletePermanentlyItems">Chcete trvale smazat vybrané elementy? Stiskněte Ne pro přesun do koše.</string>
   <string name="AskDeletePermanently_title">Trvale odstranit?</string>
   <string name="AskReloadFile_title">Znovu načíst soubor?</string>
   <string name="AskReloadFile">Soubor, který je v současné době otevřen, byl změněn jiným programem. Přejete si jej znovu načíst?</string>
@@ -327,6 +335,7 @@
   <string name="AddingGroup">Přidávám skupinu&#8230;</string>
   <string name="DeletingEntry">Mažu položku&#8230;</string>
   <string name="DeletingGroup">Mažu skupinu&#8230;</string>
+  <string name="DeletingItems">Mazání elementů&#8230;</string>
   <string name="SettingPassword">Nastavuji heslo&#8230;</string>
   <string name="UndoingChanges">Vracím změny&#8230;</string>
   <string name="TransformingKey">Transformace hlavního klíče&#8230;</string>
@@ -384,6 +393,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH přenos souborů)</string>
+  <string name="filestoragename_content">Výběr systému souborů</string>
   <string name="filestorage_setup_title">Inicializace přístupu k souboru</string>
   <string name="database_location">Umístění databáze</string>
   <string name="help_database_location">Databázi můžete uložit lokálně na vašem zařízení Android nebo ve vzdáleném úložišti (pouze ne-offline verze). Keepass2Android zpřístupní databázi, i když jste v režimu offline. Databáze je bezpečně zašifrována pomocí AES 256 bit šifrování, kromě vás nebude mít k heslům přístup nikdo jiný. Doporučujeme vybrat Dropbox: je přístupný na všech zařízeních a navíc poskytuje zálohy předchozích verzí souborů.</string>
@@ -453,10 +463,37 @@
   <string name="CopyFileRequiredForEditing">Chcete-li soubor upravit, musíte jej soubor do jiného umístění.</string>
   <string name="ClickOkToSelectLocation">Klepněte na tlačítko OK a vyberte místo, kam by měl být soubor zkopírován.</string>
   <string name="CancelReadOnly">Zrušit, otevřete pouze pro čtení.</string>
+  <string name="AddCustomIcon">Přidat ikonu ze souboru...</string>
   <string name="CopyingFile">Kopírování souboru...</string>
-  <string name="KdbBetaWarning">Upozornění: Nahráli jste databázi ve formátu Keepass 1. Keepass2Android nedávno přidal podporu zápisu do toho formátu. I přes důkladné testování autor nezaručuje, že všechna data budou správně uložena. Prosím, před provedením jakýchkoliv změn si vždy zálohujte původní databázi (Dropbox automaticky přepisuje její poslední verzi). Jakékoliv problémy prosím nahlaste autorovi. Děkuji!</string>
   <string name="ChangeLog_title">Protokol změn</string>
   <string name="PreviewWarning">Upozornění! Tato verze není konečná a může obsahovat různé nedostatky! Pokud narazíte na jakýkoliv problém, dejte mi, prosím, vědět (na Codeplexu nebo přes e-mail).</string>
+  <string name="Continue">Pokračovat</string>
+  <string name="NoFilenameWarning">Adresa URI, kterou jste zadali, nevypadá jako název souboru. Jste si jistí, že je to platný soubor?</string>
+  <string name="ChangeLog_0_9_8c">
+Verze 0.9.8c\n 
+* Oprava chyby zabezpečení SSL v Microsoft Live SDK (používá se při přístupu k souborům přes OneDrive) \n 
+* Oprava: Předchozí vydání obsahovalo dvě vstupní metody (jedna padala) \n  </string>
+  <string name="ChangeLog_0_9_9">
+Verze 0.9.9\n 
+* Kompletní přepracování vzhledu aplikace. Velké díky Stefanu Pignatarovi (http://www.spstudio.at) za jeho podporu! \n 
+* Možnost přidávat vlastní ikony\n
+* Přidání podpory režimu více oken na zařízeních Samsung\n 
+* Navýšení výchozího počtu šifrovacích cyklů pro nové databáze\n
+* Zjišťování duplicitních klíčů dodatečných polí, aby nedocházelo ke ztrátě dat\n</string>
+  <string name="ChangeLog_0_9_8b">
+Verze 0.9.8b\n 
+* Opravy chyb (uložení selhávalo pro některé databáze, nefungoval export do místního zařízení, výběr některých možností v nastavení shazoval aplikaci) \n</string>
+  <string name="ChangeLog_0_9_8">
+Verze 0.9.8\n
+* Podpora Storage Access Frameworku (umožňuje zápis na SD kartu a na Google Drive z KP2A Offline) \n 
+* Pokus o detekci chybného uživatelského vstupu při zadávání URL adresy WebDAV (adresář místo souboru) \n 
+* Změna fontu pro hesla\n 
+* Umožnění změny účtu Dropbox\n 
+* Oprava chyby: Pamatování OTP hesla nyní funguje\n</string>
+  <string name="ChangeLog_0_9_7b">
+Verze 0.9.7b\n
+* aktualizovány překlady\n
+* opravy chyb: Chybějící font pro hesla ve verzi 0.9.7, řazení podle názvu neřadilo skupiny\n</string>
   <string name="ChangeLog_0_9_7">
 		Verze 0.9.7\n
 		* podpora zápisu pro databáze Keepass 1 (kdb) (beta!)\n

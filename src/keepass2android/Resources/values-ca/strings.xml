@@ -10,6 +10,7 @@
   <string name="accept">Accepta</string>
   <string name="deny">Denega</string>
   <string name="add_entry">Afegeix entrada</string>
+  <string name="edit_entry">Editar entrada</string>
   <string name="add_url_entry">Crear l\'entrada per a URL</string>
   <string name="add_group">Afegeix grup</string>
   <string name="add_group_title">Afegeix grup</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Grup mostrat ara: %1$s</string>
   <string name="ShowGroupInEntry_title">Mostra el nom de grup en vista d\'entrada</string>
   <string name="unknown_uri_scheme">Em sap greu! Keepass2Android no pot manejar les tornades URI %1$s. Si us plau, contacta amb el desenvolupador!</string>
+  <string name="Entry_singular">Una entrada</string>
+  <string name="Entry_plural">entrades de %1$d</string>
   <string name="security_prefs">Seguretat</string>
   <string name="display_prefs">Mostrar</string>
   <string name="password_access_prefs">Accés amb entrada de contrasenya</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">L\'arxiu de base de dades va ser copiat a una carpeta interna. Premeu d\'acord per obrir la nova ubicació. Nota: No oblidis regularment exportar la base de dades a un emmagatzematge segur!</string>
   <string name="KeyfileMoved">L\'arxiu clau va ser copiat a la carpeta interna. Asseguri\'s que tingui una còpia de seguretat abans de suprimir de la ubicació actual!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">No podeu utilitzar la carpeta interna quan la ubicació del arxiu clau no es recordada. Canviï les preferències de seguretat.</string>
+  <string name="unlock_database_button">Desblocar</string>
+  <string name="unlock_database_title">Desbloca la base de dades</string>
   <string name="brackets">Parèntesis</string>
   <string name="cancel">Cancel·la</string>
   <string name="ClearClipboard">Porta-retalls netejat.</string>
@@ -150,11 +155,12 @@
   <string name="menu_hide_password">Amaga contrasenya</string>
   <string name="menu_lock">Bloqueja la base de dades</string>
   <string name="menu_open">Obre</string>
+  <string name="menu_close">Tanca</string>
   <string name="menu_rename">Reanomena</string>
   <string name="menu_search">Cerca</string>
   <string name="menu_search_advanced">Cerca avançada</string>
   <string name="menu_url">Ves a la URL</string>
-  <string name="menu_change_db">Canvi de base de dades&#8230;</string>
+  <string name="menu_change_db">Canvi de base de dades…</string>
   <string name="minus">Menys</string>
   <string name="never">Mai</string>
   <string name="yes">Sí</string>
@@ -259,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">Voleu emmagatzemar text de la cerca \"%1$s\" a l\'entrada seleccionada per tal de trobar-lo automàticament la propera vegada?</string>
   <string name="error_invalid_expiry_date">Format de data/hora no vàlid per a la data de caducitat!</string>
   <string name="error_string_key">Cal un nom de camp per a cada cadena.</string>
+  <string name="error_string_duplicate_key">Un nom de camp no es pot utilitzar dues vegades (%1$s).</string>
   <string name="field_name">Nom del camp</string>
   <string name="field_value">Valor del camp</string>
   <string name="protection">Camp protegit</string>
@@ -315,6 +322,7 @@
   <string name="RecycleBin">Paperera de reciclatge</string>
   <string name="AskDeletePermanentlyEntry">Voleu suprimir permanentment aquesta entrada? Prem No per reciclar.</string>
   <string name="AskDeletePermanentlyGroup">Voleu suprimir permanentment aquesta entrada? Prem No per reciclar.</string>
+  <string name="AskDeletePermanentlyItems">Voleu suprimir permanentment els elements seleccionats? Prem No per reciclar.</string>
   <string name="AskDeletePermanently_title">Suprimeix permanentment?</string>
   <string name="AskReloadFile_title">Recarregar fitxer?</string>
   <string name="AskReloadFile">L\'arxiu que és actualment obert es va canviar per un altre programa. Voleu actualitzar-lo?</string>
@@ -327,6 +335,7 @@
   <string name="AddingGroup">Afegir grup&#8230;</string>
   <string name="DeletingEntry">Suprimint l\'entrada&#8230;</string>
   <string name="DeletingGroup">Suprimint grup&#8230;</string>
+  <string name="DeletingItems">Esborrant elements&#8230;</string>
   <string name="SettingPassword">Fixar contrasenya&#8230;</string>
   <string name="UndoingChanges">Desfer els canvis&#8230;</string>
   <string name="TransformingKey">Transformant la clau mestra&#8230;</string>
@@ -384,6 +393,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH Transferència de fitxer)</string>
+  <string name="filestoragename_content">Selector d\'arxiu de sistema</string>
   <string name="filestorage_setup_title">Inicialització d\'accés a arxiu</string>
   <string name="database_location">Localització de la base de dades</string>
   <string name="help_database_location">Pot emmagatzemar la base de dades local o al seu dispositu Android o en el núvol (només versió fora de línia). Keepass2Android fa la base de dades disponible fins i tot si vostè està fora de línia. La base de dades segura, encriptada amb AES de 256 bits, ningú no podrà accedir a les vostres contrasenyes excepte vostè. Es recomana seleccionar Dropbox: és accessible a tots els seus mecanismes i fins i tot proporciona còpies de seguretat de versions anteriors d\'arxiu.</string>
@@ -453,10 +463,17 @@
   <string name="CopyFileRequiredForEditing">Per editar-lo, haureu de copiar el fitxer a una altra ubicació.</string>
   <string name="ClickOkToSelectLocation">Clic Acceptar per seleccionar una ubicació on cal copiar l\'arxiu.</string>
   <string name="CancelReadOnly">Cancel·lar, obrir només de lectura.</string>
+  <string name="AddCustomIcon">Afegir una icona d\'arxiu...</string>
   <string name="CopyingFile">Copiant el fitxer...</string>
-  <string name="KdbBetaWarning">Tingueu en compte: que heu carregat una base de dades de Keepass 1. Keepass2Android ha afegit recentment suport d\'escriptura per a aquest format de base de dades. A pesar de les proves, l\'autor no garanteix que totes les dades es guardin correctament. Si us plau sempre mantingueu una còpia de seguretat de la base de dades original (Dropbox automàticament emmagatzema versions recents) abans de fer canvis. Si us plau informeu de qualsevol incidència. Gràcies!</string>
   <string name="ChangeLog_title">Registre de canvi</string>
   <string name="PreviewWarning">Atenció! Això és un versió prèvia i pot arribar amb alguns defectes! Si vostè experimenta *qualsevol* comportament inesperat, si us plau, faci-m\'ho saber (a Codeplex o per correu electrònic).</string>
+  <string name="Continue">Continuar</string>
+  <string name="NoFilenameWarning">L\'URI que heu introduït no sembla un nom de fitxer. Esteu segurs que és un fitxer vàlid?</string>
+  <string name="ChangeLog_0_9_8c">
+    Versió 0.9.8c\n
+     * Arreglat vulnerabilitat SSL en el Microsoft Live SDK (utilitzat en accedir a arxius mitjançant OneDrive) \n 
+    * Arreglat error: versió anterior contenia dos mètodes d\'entrada (un petaba) \n
+  </string>
   <string name="ChangeLog_0_9_7"> 		Versió 0.9.7\n
 		* suport per escriure a bases de dades Keepass 1 (kdb) (beta!) \n 
 		* millor canviar a teclat anterior (també treballa en dispositius que no disposin d\'accés de superusuari - rootejats)\n

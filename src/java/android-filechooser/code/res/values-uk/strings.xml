@@ -58,17 +58,17 @@
   <string name="afc_yesterday">Вчора</string>
   <plurals name="afc_title_choose_directories">
     <item quantity="one">Виберіть папку&#8230;</item>
-    <item quantity="few">Виберіть папки&#8230;</item>
+    <item quantity="few">Виберіть папки…</item>
     <item quantity="other">Виберіть папки&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files">
     <item quantity="one">Виберіть файл&#8230;</item>
-    <item quantity="few">Виберіть файли&#8230;</item>
+    <item quantity="few">Виберіть файли…</item>
     <item quantity="other">Виберіть файли&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">Виберіть файл/папку&#8230;</item>
-    <item quantity="few">Виберіть файли/папки&#8230;</item>
+    <item quantity="few">Виберіть файли/папки…</item>
     <item quantity="other">Виберіть файли/папки&#8230;</item>
   </plurals>
 </resources>

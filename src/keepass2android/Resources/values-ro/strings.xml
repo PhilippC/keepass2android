@@ -154,7 +154,7 @@
   <string name="menu_search">Căutare</string>
   <string name="menu_search_advanced">Căutare avansată</string>
   <string name="menu_url">Du-te la URL-ul</string>
-  <string name="menu_change_db">Schimbă baza de date&#8230;</string>
+  <string name="menu_change_db">Schimbă baza de date…</string>
   <string name="minus">Minus</string>
   <string name="never">Niciodată</string>
   <string name="yes">Da</string>
@@ -455,7 +455,6 @@
   <string name="ClickOkToSelectLocation">Apasă pe OK pentru a selecta locația în care se va copia fișierul.</string>
   <string name="CancelReadOnly">Anulați, deschideți read-only.</string>
   <string name="CopyingFile">Se copiază fișierul...</string>
-  <string name="KdbBetaWarning">Vă rugăm să reţineţi: aţi încărcat o bază de date Keepass 1. Keepass2Android a adăugat recent suport pentru scrierea în acest format de bază de date. În ciuda testărilor riguroase, autorul nu garantează că toate datele vor fi salvate corect. Vă rugăm să păstraţi întotdeauna o copie de rezervă a bazei de date originale (Dropbox stochează automat versiunile recente) înainte de a face modificări. Vă rugăm să raportaţi orice probleme. Mulţumesc!</string>
   <string name="ChangeLog_title">Jurnal modificări</string>
   <string name="PreviewWarning">Rețineți! Aceasta este o versiune de examinare și poate avea unele defecte! Dacă vă confruntați cu *ceva* neașteptat, vă rog să îmi spuneți (pe Codeplex sau prin email).</string>
   <string name="ChangeLog_0_9_7">

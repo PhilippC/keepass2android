@@ -58,17 +58,17 @@
   <string name="afc_yesterday">Včera</string>
   <plurals name="afc_title_choose_directories">
     <item quantity="one">Vybrat složku &#8230;</item>
-    <item quantity="few">Vyberte složku &#8230;</item>
+    <item quantity="few">Vyberte složku …</item>
     <item quantity="other">Vyberte složky &#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files">
     <item quantity="one">Vyberte soubor&#8230;</item>
-    <item quantity="few">Vyberte soubor&#8230;</item>
+    <item quantity="few">Vyberte soubor…</item>
     <item quantity="other">Vyberte soubory&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">Vyberte soubor/ složku &#8230;</item>
-    <item quantity="few">Vyberte soubor/ složku &#8230;</item>
+    <item quantity="few">Vyberte soubor/ složku …</item>
     <item quantity="other">Vyberte soubory/ složky &#8230;</item>
   </plurals>
 </resources>

@@ -10,6 +10,7 @@
   <string name="accept">Прийняти</string>
   <string name="deny">Відхилити</string>
   <string name="add_entry">Додати запис</string>
+  <string name="edit_entry">Редагування запису</string>
   <string name="add_url_entry">Створення запису для URL-адреси</string>
   <string name="add_group">Додати групу</string>
   <string name="add_group_title">Додати групу</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Відображення групи в даний час: %1$s</string>
   <string name="ShowGroupInEntry_title">Показати ім\'я групи в режимі запису</string>
   <string name="unknown_uri_scheme">Вибачте! Keepass2Android не може обробити повернутий URI %1$s. Зв\'яжіться з розробником!</string>
+  <string name="Entry_singular">Один запис</string>
+  <string name="Entry_plural">%1$d записи</string>
   <string name="security_prefs">Безпека</string>
   <string name="display_prefs">Дисплей</string>
   <string name="password_access_prefs">Парольний доступ</string>
@@ -44,6 +47,9 @@
   <string name="keyboardswitch_prefs">Переключення клавіатури</string>
   <string name="OnlyAvailableForLocalFiles">Доступно лише для локальних файлів.</string>
   <string name="FileIsInInternalDirectory">Файл зберігається у внутрішньому каталозі.</string>
+  <string name="DatabaseFileMoved">Файл бази даних було скопійовано до внутрішнього папки. Натисніть Ok, щоб відкрити в новому розташуванні. Примітка: Не забувайте регулярно експортувати базу даних до безпечного розташування!</string>
+  <string name="unlock_database_button">Розблокування</string>
+  <string name="unlock_database_title">Розблокувати базу даних</string>
   <string name="brackets">Дужки</string>
   <string name="cancel">Відміна</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
@@ -52,6 +58,7 @@
   <string name="copy_username">Копіювати ім’я користувача до буфера обміну</string>
   <string name="copy_password">Копіювати пароль до буфера обміну</string>
   <string name="available_through_keyboard">Вхід доступний за допомогою KP2A клавіатури</string>
+  <string name="entry_is_available">доступно</string>
   <string name="not_possible_im_picker">Не вдалося відкрити діалогове вікно для вибору методу вводу. Активуйте клавіатуру вручну.</string>
   <string name="please_activate_keyboard">Будь ласка, увімкніть клавіатуру Keepass2Android в налаштуваннях системи.</string>
   <string name="creating_db_key">Створення ключа бази даних&#8230;</string>
@@ -61,6 +68,7 @@
   <string name="digits">Цифри</string>
   <string name="disclaimer_formal">Keepass2Android поставляється абсолютно без гарантії; Це вільне програмне забезпечення, воно розповсюджується на умовах ліцензії GPL v2 або новішої.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Копіювати у буфер</string>
   <string name="enter_filename">Введіть ім’я бази даних</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Відміна</string>
@@ -72,6 +80,7 @@
   <string name="entry_expires">Закінчується</string>
   <string name="entry_group_name">Ім\'я групи</string>
   <string name="entry_keyfile">Файл ключа (необов’язково)</string>
+  <string name="keyfile_heading">Ключовий файл</string>
   <string name="entry_modified">Змінено</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_save">Зберегти</string>
@@ -84,6 +93,7 @@
   <string name="error_could_not_create_group">Помилка створення групи.</string>
   <string name="error_could_not_create_parent">Не вдалося створити батьківський каталог.</string>
   <string name="error_database_exists">Файл вже існує.</string>
+  <string name="error_database_settinoverrgs">Не вдалося визначити параметри бази даних.</string>
   <string name="error_failed_to_launch_link">Не вдалося відкрити посилання.</string>
   <string name="error_filename_required">Необхідно ім’я файла.</string>
   <string name="error_file_not_create">Не можливо створити файл</string>
@@ -117,6 +127,7 @@
   <string name="invalid_algorithm">Неприпустимий алгоритм.</string>
   <string name="invalid_db_sig">Формат бази даних не розпізнано.</string>
   <string name="keyfile_does_not_exist">Файл ключа не існує.</string>
+  <string name="no_keyfile_selected">Ключовий файл не вибрано.</string>
   <string name="keyfile_is_empty">Файл ключа порожній.</string>
   <string name="length">Довжина</string>
   <string name="list_size_title">Розмір списку груп</string>
@@ -142,11 +153,12 @@
   <string name="menu_hide_password">Приховати пароль</string>
   <string name="menu_lock">Блокувати базу даних</string>
   <string name="menu_open">Відкрити</string>
+  <string name="menu_close">Закрити</string>
   <string name="menu_rename">Перейменувати</string>
   <string name="menu_search">Пошук</string>
   <string name="menu_search_advanced">Розширений пошук</string>
   <string name="menu_url">Перейти по посиланню</string>
-  <string name="menu_change_db">Змінити базу даних&#8230;</string>
+  <string name="menu_change_db">Змінити базу даних…</string>
   <string name="minus">-Дефіс-</string>
   <string name="never">Ніколи</string>
   <string name="yes">Так</string>
@@ -179,8 +191,11 @@
   <string name="space">Пропуск</string>
   <string name="search_label">Пошук</string>
   <string name="show_password">Показати пароль</string>
+  <string name="sort_menu">Сортувати за...</string>
   <string name="sort_name">Упорядкувати за ім’ям</string>
   <string name="sort_db">Упорядкування БД</string>
+  <string name="sort_moddate">Сортувати за датою зміни</string>
+  <string name="sort_default">Зберегти порядок за замовчанням</string>
   <string name="special">Спеціальний</string>
   <string name="search_hint">Що знайти</string>
   <string name="search_results">Результати пошуку</string>
@@ -419,9 +434,11 @@
   <string name="export_fileformats_title">Виберіть формат файлу</string>
   <string name="killed_by_os">Вибачте! Keepass2Android був убитий ОС Android! З міркувань безпеки Keepass2Android не зберігає вибрані облікові дані на диску, тому потрібно повторно відкрити базу даних. Примітка: Це має відбуватися дуже рідко. Якщо це так, будь ласка, напишіть мені повідомлення на crocoapps@gmail.com.</string>
   <string name="ClickOkToSelectLocation">Натисніть OK, щоб обрати місце, куди слід скопіювати файл.</string>
+  <string name="AddCustomIcon">Додати іконку з файлу...</string>
   <string name="CopyingFile">Копіювання файлу...</string>
   <string name="ChangeLog_title">Журнал змін</string>
   <string name="PreviewWarning">Будь ласка, зверніть увагу! Це попередній реліз і може мати деякі недоліки! Якщо у вас виникли *будь-які* несподіванки, будь ласка, дайте мені знати (на Codeplex або електронною поштою).</string>
+  <string name="Continue">Продовжити</string>
   <string name="ChangeLog_0_9_4">
 <b>Версія 0.9.4</b>\n
 * додана підтримка плагінів: перейдіть в налаштування, щоб зрозуміти, як отримати плагіни!\n

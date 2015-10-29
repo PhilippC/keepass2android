@@ -455,9 +455,9 @@
   <string name="ClickOkToSelectLocation">Klikkaa OK valitaksesi sijainnin, johon tiedosto kopioidaan.</string>
   <string name="CancelReadOnly">Peruuta, avaa vain luku-tilassa.</string>
   <string name="CopyingFile">Kopioin tiedostoa...</string>
-  <string name="KdbBetaWarning">Huomautus: Olet ladannut Keepass 1 -tietokannan. Keepass2Android-ohjelmaan on vastikään lisätty kirjoitustuki tälle tietokantaformaatille. Perusteellisesta testaamisesta huolimatta tekijä ei kuitenkaan takaa että kaikki data tallentuisi oikein. Pidä aina varmuuskopio alkuperäisestä tietokannasta (Dropbox säilyttää automaattisesti viimeaikaiset versiot) ennen muutosten tekemistä. Ole hyvä ja raportoi kohtaamistasi ongelmista. Kiitos!</string>
   <string name="ChangeLog_title">Muutosloki</string>
   <string name="PreviewWarning">Huomaa! Tämä on ennakkoversio, ja siinä voi olla joitakin puutteita! Jos * mitään * odottamatonta tapahtuu, kerro minulle (Codeplexissä tai sähköpostitse).</string>
+  <string name="NoFilenameWarning">Antamasi osoite ei vaikuta tiedostonimeltä. Oletko varma oikeasta tiedostosta?</string>
   <string name="ChangeLog_0_9_7">
 Versio 0.9.7\n
 * kirjoitustuki Keepass 1 (kdb) tietokannoille (beta!)\n

@@ -10,6 +10,7 @@
   <string name="accept">Accepteren</string>
   <string name="deny">Weigeren</string>
   <string name="add_entry">Record toevoegen</string>
+  <string name="edit_entry">Invoer bewerken</string>
   <string name="add_url_entry">URL invoeren</string>
   <string name="add_group">Groep toevoegen</string>
   <string name="add_group_title">Groep toevoegen</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Getoonde groep is nu: %1$s</string>
   <string name="ShowGroupInEntry_title">Toon groepsnaam in record venster</string>
   <string name="unknown_uri_scheme">Sorry! Keepass2Android kan niet overweg met de ontvangen URI %1$s. Neem contact op met de ontwikkelaar!</string>
+  <string name="Entry_singular">Eén invoer</string>
+  <string name="Entry_plural">%1$d invoeren</string>
   <string name="security_prefs">Beveiliging</string>
   <string name="display_prefs">Weergave</string>
   <string name="password_access_prefs">Wachtwoordtoegang</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">De database is geïmporteerd. Druk op Ok om de database te openen van de nieuwe locatie. Let op: Vergeet niet om regelmatig de database te exporteren!</string>
   <string name="KeyfileMoved">Sleutelbestand geïmporteerd. Zorg voor een back-up voordat u het bestand verwijdert!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Om de interne map te gebruiken moet de locatie van het sleutelbestand bewaard blijven. Pas uw beveiligingsinstellingen aan.</string>
+  <string name="unlock_database_button">Ontsluiten</string>
+  <string name="unlock_database_title">Database ontsluiten</string>
   <string name="brackets">Haakjes</string>
   <string name="cancel">Annuleren</string>
   <string name="ClearClipboard">Klembord gewist.</string>
@@ -150,11 +155,12 @@
   <string name="menu_hide_password">Wachtwoord verbergen</string>
   <string name="menu_lock">Vergrendel database</string>
   <string name="menu_open">Openen</string>
+  <string name="menu_close">Sluit</string>
   <string name="menu_rename">Hernoemen</string>
   <string name="menu_search">Zoeken</string>
   <string name="menu_search_advanced">Geavanceerd zoeken</string>
   <string name="menu_url">Ga naar URL</string>
-  <string name="menu_change_db">Wijzig database&#8230;</string>
+  <string name="menu_change_db">Wijzig database…</string>
   <string name="minus">Min</string>
   <string name="never">Nooit</string>
   <string name="yes">Ja</string>
@@ -259,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">Zou u graag de zoektekst \"%1$s\" willen opslaan in de geselecteerde regel, zodat het de volgende keer automatisch gevonden wordt?</string>
   <string name="error_invalid_expiry_date">Ongeldige datum/tijdnotatie voor vervaldatum!</string>
   <string name="error_string_key">Een veldnaam is vereist voor elke waarde.</string>
+  <string name="error_string_duplicate_key">Een veldnaam kan niet tweemaal worden gebruikt (%1$s).</string>
   <string name="field_name">Veldnaam</string>
   <string name="field_value">Veldwaarde</string>
   <string name="protection">Beveiligd veld</string>
@@ -315,6 +322,7 @@
   <string name="RecycleBin">Prullenbak</string>
   <string name="AskDeletePermanentlyEntry">Wilt u dit item permanent verwijderen? Druk op \"nee\" om te herstellen.</string>
   <string name="AskDeletePermanentlyGroup">Wilt u deze groep permanent verwijderen? Druk op \"nee\" om te recyclen.</string>
+  <string name="AskDeletePermanentlyItems">Wilt u de geselecteerde elementen permanent verwijderen? Druk op Neen om te behouden.</string>
   <string name="AskDeletePermanently_title">Definitief verwijderen?</string>
   <string name="AskReloadFile_title">Bestand opnieuw laden?</string>
   <string name="AskReloadFile">Het bestand dat momenteel geopend is werd veranderd door een ander programma. Wilt u het herladen?</string>
@@ -327,6 +335,7 @@
   <string name="AddingGroup">Groep toevoegen&#8230;</string>
   <string name="DeletingEntry">Invoer wissen&#8230;</string>
   <string name="DeletingGroup">Groep verwijderen&#8230;</string>
+  <string name="DeletingItems">Elementen verwijderen&#8230;</string>
   <string name="SettingPassword">Wachtwoord instellen&#8230;</string>
   <string name="UndoingChanges">Wijzigingen ongedaan maken&#8230;</string>
   <string name="TransformingKey">Hoofdsleutel transformeren&#8230;</string>
@@ -384,6 +393,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_content">Systeem bestand kiezer</string>
   <string name="filestorage_setup_title">Bestandstoegang initaliseren</string>
   <string name="database_location">Database locatie</string>
   <string name="help_database_location">U kunt uw database lokaal op uw Android toestel of in de cloud opslaan (alleen de niet-Offline versie). Keepass2Android maakt de database beschikbaar, zelfs als u offline bent. Omdat de database veilig is versleuteld met AES 256 bit encryptie, kan niemand toegang krijgen tot uw wachtwoorden behalve u. We adviseren Dropbox te kiezen: Het is beschikbaar op al uw apparaten en voorziet zelfs in backups van vorige bestandsversies.</string>
@@ -453,10 +463,37 @@
   <string name="CopyFileRequiredForEditing">Om het te bewerken moet u het kopiëren naar een andere locatie.</string>
   <string name="ClickOkToSelectLocation">Klik op OK om een locatie te kiezen waar het bestand naartoe moet worden gekopieerd.</string>
   <string name="CancelReadOnly">Annuleren, open als alleen-lezen.</string>
+  <string name="AddCustomIcon">Pictogram toevoegen uit bestand...</string>
   <string name="CopyingFile">Bestand kopiëren...</string>
-  <string name="KdbBetaWarning">Let op: U heeft een Keepass 1 database geladen. Keepass2Android heeft recent opslag ondersteuning toegevoegd voor dit database formaat. Ondanks grondige tests geeft de auteur geen garantie dat alle data correct wordt opgeslagen. Bewaar dus altijd een back-up van de originele database (Dropbox bewaart automatisch recente versies) voordat u wijzigingen maakt. Meld eventuele problemen. Bedankt!</string>
   <string name="ChangeLog_title">Veranderingen</string>
   <string name="PreviewWarning">Let op! Dit is een proefversie en kan dus fouten bevatten! Als u iets onverwachts ervaart laat het dan weten via de website of via e-mail.</string>
+  <string name="Continue">Ga verder</string>
+  <string name="NoFilenameWarning">De URI die u hebt ingevoerd lijkt niet in een bestandsnaam. Weet u zeker dat dit een geldig bestand is?</string>
+  <string name="ChangeLog_0_9_8c">
+Versie 0.9.8c\n 
+ * Oplossing voor het beveiligingslek in SSL in Microsoft Live SDK (gebruikt bij het benaderen van bestanden via OneDrive) \n 
+  * Bug oplossing: vorige release bevatte twee invoermethoden (één crashte) \n  </string>
+  <string name="ChangeLog_0_9_9">
+Versie 0.9.9\n
+ * volledige UI herontwerp. Dikke merci voor Stefano Pignataro (-http://www.spstudio.at) voor zijn steun! \n
+ * aangepast pictogram toevoegen toestaan\n
+ * ondersteuning voor Multi Window mode op de Samsung devices\n
+ * verhoogd standaard aantal codering rondes voor nieuwe databases\n
+ * controleren op dubbele sleutels van extra velden om het verliezen van gegevens te voorkomen\n</string>
+  <string name="ChangeLog_0_9_8b">
+Versie 0.9.8b\n
+ * Bug oplossingen(opslaan mislukte voor sommige databases, exporteren naar lokale apparaat werkt niet, selecteren van bepaalde voorkeursopties crashte de app) \n</string>
+  <string name="ChangeLog_0_9_8">
+Versie 0.9.8\n 
+ * Steun voor Storage Access Framework (staat toe te schrijven naar SD-kaart en Google Drive in KP2A Offline) \n
+ * probeer foutieve gebruikersinvoer te detecteren bij het invoeren van WebDAV URLs (map in plaats van bestand) \n
+ * gewijzigde wachtwoord font\n
+ * toestaan om Dropbox account te veranderen\n
+ * Opgeloste fout: herinneren OTP password nu\n</string>
+  <string name="ChangeLog_0_9_7b">
+Versie 0.9.7b\n
+* bijgewerkte vertaling\n 
+* fout oplossingen: wachtwoord lettertype ontbrak in 0.9.7, sorteren op naam sorteerde de groepen niet\n</string>
   <string name="ChangeLog_0_9_7">
 		Versie 0.9.7\n
 		* Schrijf ondersteuning voor Keepass 1 (kdb) databases (beta!)\n

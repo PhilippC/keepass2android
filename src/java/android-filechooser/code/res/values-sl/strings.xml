@@ -58,20 +58,20 @@
   <string name="afc_yesterday">Včeraj</string>
   <plurals name="afc_title_choose_directories">
     <item quantity="one">Izberite mapo &#8230;</item>
-    <item quantity="two">Izberite mapi &#8230;</item>
-    <item quantity="few">Izberite mape &#8230;</item>
+    <item quantity="two">Izberite mapi …</item>
+    <item quantity="few">Izberite mape …</item>
     <item quantity="other">Izberite mape &#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files">
     <item quantity="one">Izberite datoteko &#8230;</item>
-    <item quantity="two">Izberite datoteki &#8230;</item>
-    <item quantity="few">Izberite datoteke &#8230;</item>
+    <item quantity="two">Izberite datoteki …</item>
+    <item quantity="few">Izberite datoteke …</item>
     <item quantity="other">Izberite datoteke &#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">Izberite datoteko/mapo &#8230;</item>
-    <item quantity="two">Izberite datoteki/mapi &#8230;</item>
-    <item quantity="few">Izberite datoteke/mape &#8230;</item>
+    <item quantity="two">Izberite datoteki/mapi …</item>
+    <item quantity="few">Izberite datoteke/mape …</item>
     <item quantity="other">Izberite datoteke/mape &#8230;</item>
   </plurals>
 </resources>

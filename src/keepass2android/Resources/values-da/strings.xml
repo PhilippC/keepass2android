@@ -152,7 +152,7 @@
   <string name="menu_search">Søg</string>
   <string name="menu_search_advanced">Avanceret søgning</string>
   <string name="menu_url">Gå til URL</string>
-  <string name="menu_change_db">Skift database&#8230;</string>
+  <string name="menu_change_db">Skift database…</string>
   <string name="minus">Minus</string>
   <string name="never">Aldrig</string>
   <string name="yes">Ja</string>

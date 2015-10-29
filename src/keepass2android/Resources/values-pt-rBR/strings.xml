@@ -10,6 +10,7 @@
   <string name="accept">Aceitar</string>
   <string name="deny">Negar</string>
   <string name="add_entry">Adicionar entrada</string>
+  <string name="edit_entry">Editar entrada</string>
   <string name="add_url_entry">Criar entrada para URL</string>
   <string name="add_group">Adicionar grupo</string>
   <string name="add_group_title">Adicionar Grupo</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Grupo de exibição é agora: %1$s</string>
   <string name="ShowGroupInEntry_title">Mostrar nome do grupo na tela de entrada</string>
   <string name="unknown_uri_scheme">O Keepass2Android não pode lidar com a URI %1$s. Entre em contato com o desenvolvedor!</string>
+  <string name="Entry_singular">Uma entrada</string>
+  <string name="Entry_plural">%1$d entradas</string>
   <string name="security_prefs">Segurança</string>
   <string name="display_prefs">Exibição</string>
   <string name="password_access_prefs">Acesso às senhas de entradas</string>
@@ -44,9 +47,11 @@
   <string name="keyboardswitch_prefs">Alterar teclado</string>
   <string name="OnlyAvailableForLocalFiles">Só disponível para arquivos locais.</string>
   <string name="FileIsInInternalDirectory">Arquivo armazenado no diretório interno.</string>
-  <string name="DatabaseFileMoved">Base de dados copiada para a pasta interna. Clique em OK para abrir o novo local. Nota: Não se esqueça de exportar a base de dados para um local seguro regularmente!</string>
+  <string name="DatabaseFileMoved">Banco de dados copiado para a pasta interna. Clique em OK para abrir o novo local. Nota: Não se esqueça de exportar o banco de dados para um local seguro regularmente!</string>
   <string name="KeyfileMoved">Arquivo de chaves copiado para a pasta interna. Verifique se que você tem um backup seguro antes de excluir do local atual!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Impossível usar a pasta interna enquanto o local do arquivo de chaves não for memorizado. Modifique as preferências de segurança.</string>
+  <string name="unlock_database_button">Desbloquear</string>
+  <string name="unlock_database_title">Desbloquear banco de dados</string>
   <string name="brackets">Parênteses</string>
   <string name="cancel">Cancelar</string>
   <string name="ClearClipboard">Área de transferência limpa.</string>
@@ -65,6 +70,7 @@
   <string name="digits">Dígitos</string>
   <string name="disclaimer_formal">Keepass2Android vem com ABSOLUTAMENTE NENHUMA GARANTIA; Este é um software livre, e você está convidado a redistribui-lo sob as condições da GPL versão 2 ou posterior.</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Copiar para a área de transferencia</string>
   <string name="enter_filename">Digite o nome do arquivo de banco de dados</string>
   <string name="entry_accessed">Acessado</string>
   <string name="entry_cancel">Cancelar</string>
@@ -149,11 +155,12 @@
   <string name="menu_hide_password">Esconder Senha</string>
   <string name="menu_lock">Trancar banco de dados</string>
   <string name="menu_open">Abrir</string>
+  <string name="menu_close">Fechar</string>
   <string name="menu_rename">Renomear</string>
   <string name="menu_search">Procurar</string>
   <string name="menu_search_advanced">Pesquisa avançada</string>
   <string name="menu_url">Ir para URL</string>
-  <string name="menu_change_db">Alterar banco de dados&#8230;</string>
+  <string name="menu_change_db">Alterar banco de dados…</string>
   <string name="minus">Menos</string>
   <string name="never">Nunca</string>
   <string name="yes">Sim</string>
@@ -258,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">Você gostaria de armazenar o texto de pesquisa \"%1$s\" na entrada selecionada para encontrá-lo automaticamente na próxima vez?</string>
   <string name="error_invalid_expiry_date">Formato de data/hora inválido para data de validade!</string>
   <string name="error_string_key">Um nome de campo é necessário para cada sequência de caracteres.</string>
+  <string name="error_string_duplicate_key">Um nome de campo não pode ser repetido (%1$s).</string>
   <string name="field_name">Nome do campo</string>
   <string name="field_value">Valor do campo</string>
   <string name="protection">Campo protegido</string>
@@ -314,6 +322,7 @@
   <string name="RecycleBin">Lixeira</string>
   <string name="AskDeletePermanentlyEntry">Você deseja apagar esta entrada permanentemente? Pressione Não para enviar à Lixeira.</string>
   <string name="AskDeletePermanentlyGroup">Você deseja apagar este grupo permanentemente? Pressione Não para enviar à lixeira.</string>
+  <string name="AskDeletePermanentlyItems">Deseja apagar permanentemente os elementos selecionados? Pressione Não para reciclar.</string>
   <string name="AskDeletePermanently_title">Apagar permanentemente?</string>
   <string name="AskReloadFile_title">Recarregar arquivo?</string>
   <string name="AskReloadFile">O arquivo que está atualmente aberto foi modificado por outro programa. Você deseja recarregá-lo?</string>
@@ -326,6 +335,7 @@
   <string name="AddingGroup">Adicionando grupo&#8230;</string>
   <string name="DeletingEntry">Apagando entrada&#8230;</string>
   <string name="DeletingGroup">Apagando grupo&#8230;</string>
+  <string name="DeletingItems">Apagando elementos&#8230;</string>
   <string name="SettingPassword">Definindo senha&#8230;</string>
   <string name="UndoingChanges">Desfazendo alterações&#8230;</string>
   <string name="TransformingKey">Transformando a chave mestra&#8230;</string>
@@ -453,7 +463,6 @@
   <string name="ClickOkToSelectLocation">Clique em OK p/ selecionar o local onde o arquivo será copiado.</string>
   <string name="CancelReadOnly">Cancelar, abrir como somente leitura.</string>
   <string name="CopyingFile">Copiando arquivo...</string>
-  <string name="KdbBetaWarning">Por favor observe: você carregou um banco de dados Keepass versão 1. Keepass2Android recentemente adicionou suporte de gravação para esse formato de banco de dados. Apesar de testes extensivos, o autor não garante que todos os dados serão salvos corretamente. Por favor, mantenha sempre um backup de banco de dados original (Dropbox automaticamente armazena versões recentes) antes de fazer alterações. Por favor reporte quaisquer problemas. Obrigado!</string>
   <string name="ChangeLog_title">Mudanças</string>
   <string name="PreviewWarning">Por favor, note! Esta é uma versão preview e pode vir com algumas falhas! Se você experimentar *alguma coisa* inesperada, por favor me avise (no Codeplex ou por e-mail).</string>
   <string name="ChangeLog_0_9_7">

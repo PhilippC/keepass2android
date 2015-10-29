@@ -10,6 +10,7 @@
   <string name="accept">Accepter</string>
   <string name="deny">Rejeter</string>
   <string name="add_entry">Ajouter une entrée</string>
+  <string name="edit_entry">Modifier l\'entrée</string>
   <string name="add_url_entry">Créer une entrée pour l\'URL</string>
   <string name="add_group">Ajouter un groupe</string>
   <string name="add_group_title">Ajouter un groupe</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Le groupe affiché est maintenant : \"%1$s\"</string>
   <string name="ShowGroupInEntry_title">Afficher le nom du groupe dans la vue des entrées</string>
   <string name="unknown_uri_scheme">Désolé ! Keepass2Android ne peut pas gérer l\'URI %1$s retourné. S\'il vous plaît contactez le développeur !</string>
+  <string name="Entry_singular">Une seule entrée</string>
+  <string name="Entry_plural">%1$d entrées</string>
   <string name="security_prefs">Sécurité</string>
   <string name="display_prefs">Affichage</string>
   <string name="password_access_prefs">Accès aux mots de passe</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">Le fichier de base de données a été copié dans le répertoire local. Pressez OK pour l\'ouvrir à partir du nouveau répertoire. A noter : N\'oubliez pas d\'exporter régulièrement la base de données sur un stockage sûr !</string>
   <string name="KeyfileMoved">Le fichier clé a été copié dans le répertoire local. Assurez vous d\'avoir une sauvegarde sûr avant de le supprimer du dossier actuel !</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Impossible d\'utiliser un dossier local lorsque l\'emplacement du fichier clé n\'est pas connu. Modifiez les paramètres de sécurité.</string>
+  <string name="unlock_database_button">Dévérrouiller</string>
+  <string name="unlock_database_title">Déverrouiller la base de données</string>
   <string name="brackets">Parenthèses, accolades et crochets</string>
   <string name="cancel">Annuler</string>
   <string name="ClearClipboard">Presse-papier nettoyé.</string>
@@ -150,11 +155,12 @@
   <string name="menu_hide_password">Masquer le mot de passe</string>
   <string name="menu_lock">Verrouiller la base de données</string>
   <string name="menu_open">Ouvrir</string>
+  <string name="menu_close">Fermer</string>
   <string name="menu_rename">Renommer</string>
   <string name="menu_search">Rechercher</string>
   <string name="menu_search_advanced">Recherche avancée</string>
   <string name="menu_url">Aller à l\'adresse URL</string>
-  <string name="menu_change_db">Modifier la base de données&#8230;</string>
+  <string name="menu_change_db">Modifier la base de données…</string>
   <string name="minus">Moins</string>
   <string name="never">Jamais</string>
   <string name="yes">Oui</string>
@@ -176,8 +182,8 @@
   <string name="remove_from_filelist">Supprimer</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Racine</string>
-  <string name="rounds">Niveau du cryptage</string>
-  <string name="rounds_explaination">Un niveau de cryptage supérieur assure une protection supplémentaire contre les attaques de force brute, mais peut considérablement ralentir le chargement et la sauvegarde.</string>
+  <string name="rounds">Niveau du chiffrement</string>
+  <string name="rounds_explaination">Un niveau de chiffrement supérieur assure une protection supplémentaire contre les attaques de force brute, mais peut considérablement ralentir le chargement et la sauvegarde.</string>
   <string name="rounds_hint">niveaux</string>
   <string name="database_name">Nom de la base de données</string>
   <string name="default_username">Nom d\'utilisateur par défaut pour les nouvelles entrées</string>
@@ -255,10 +261,11 @@
   <string name="SaveAttachmentDialog_open">Enregistrer pour mettre en cache et ouvrir</string>
   <string name="SaveAttachment_doneMessage">Enregistrement du fichier dans %1$s.</string>
   <string name="SaveAttachment_Failed">Impossible d\'enregistrer la pièce jointe vers %1$s.</string>
-  <string name="AddUrlToEntryDialog_title">Se rappeler du texte de recherche ?</string>
+  <string name="AddUrlToEntryDialog_title">Se rappeler le texte de recherche ?</string>
   <string name="AddUrlToEntryDialog_text">Souhaitez-vous stocker le texte de recherche \"%1$s\" dans l\'entrée sélectionnée afin de la trouver automatiquement la prochaine fois ?</string>
   <string name="error_invalid_expiry_date">Format de date/heure invalide pour la date d\'expiration !</string>
   <string name="error_string_key">Un nom de champ est requis pour chaque chaîne de caractères.</string>
+  <string name="error_string_duplicate_key">Un nom de champ ne peut pas être utilisé deux fois (%1$s).</string>
   <string name="field_name">Nom du champ</string>
   <string name="field_value">Valeur du champ</string>
   <string name="protection">Champ protégé</string>
@@ -315,6 +322,7 @@
   <string name="RecycleBin">Corbeille</string>
   <string name="AskDeletePermanentlyEntry">Voulez-vous supprimer cette entrée définitivement ? Appuyez sur Non pour la mettre dans la corbeille.</string>
   <string name="AskDeletePermanentlyGroup">Voulez-vous supprimer ce groupe définitivement? Appuyez sur Non pour mettre à la corbeille.</string>
+  <string name="AskDeletePermanentlyItems">Voulez-vous supprimer les éléments sélectionnés de manière permanente ? Appuyez sur non pour annuler.</string>
   <string name="AskDeletePermanently_title">Supprimer définitivement ?</string>
   <string name="AskReloadFile_title">Recharger le fichier ?</string>
   <string name="AskReloadFile">Le fichier qui est actuellement utilisé a été modifié par un autre programme. Voulez-vous le recharger ?</string>
@@ -327,6 +335,7 @@
   <string name="AddingGroup">Ajout du groupe en cours&#8230;</string>
   <string name="DeletingEntry">Suppression de l\'entrée&#8230;</string>
   <string name="DeletingGroup">Suppression du groupe&#8230;</string>
+  <string name="DeletingItems">Suppression des éléments&#8230;</string>
   <string name="SettingPassword">Prise en compte du mot de passe&#8230;</string>
   <string name="UndoingChanges">Annulation de modifications&#8230;</string>
   <string name="TransformingKey">Changement de la clé principale&#8230;</string>
@@ -384,13 +393,14 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_content">Sélecteur de fichier système</string>
   <string name="filestorage_setup_title">Initialisation de l\'accès aux fichiers</string>
   <string name="database_location">Emplacement de la base de données</string>
-  <string name="help_database_location">Vous pouvez stocker votre base de données localement sur votre appareil Android ou dans le cloud (seulement pour la version connectée). Keepass2Android rend la base de données disponible même si vous êtes en mode hors connexion. Comme la base de données est sécurisée avec un cryptage AES 256 bit, personne ne sera en mesure d\'accéder à vos mots de passe sauf vous. Nous vous recommandons de sélectionner Dropbox : il est accessible sur tous vos appareils et fournit même des sauvegardes des versions précédentes des fichiers.</string>
+  <string name="help_database_location">Vous pouvez stocker votre base de données localement sur votre appareil Android ou dans le cloud (seulement pour la version connectée). Keepass2Android rend la base de données disponible même si vous êtes en mode hors connexion. La base de données étant sécurisée avec l\'algorithme de chiffrement AES 256 bit, personne d\'autre que vous ne sera en mesure d\'accéder à vos mots de passe. Nous vous recommandons de sélectionner Dropbox : il est accessible sur tous vos appareils et fournit même des sauvegardes des versions précédentes des fichiers.</string>
   <string name="hint_database_location">Sélectionnez où vous voulez stocker la base de données :</string>
   <string name="button_change_location">Changer l\'emplacement</string>
   <string name="master_password">Mot de passe principal</string>
-  <string name="help_master_password">Votre base de données est chiffrée avec le mot de passe que vous entrez ici. Choisissez un mot de passe fort pour préserver la sûreté de la base de données ! Astuce : Formez une phrase ou deux et utilisez les premières lettres des mots comme mot de passe. Utilisez les marques de ponctuation.</string>
+  <string name="help_master_password">Votre base de données est chiffrée avec le mot de passe que vous entrez ici. Choisissez un mot de passe robuste pour préserver la sûreté de la base de données ! Astuce : Formez une phrase ou deux et utilisez les premières lettres des mots comme mot de passe. Utilisez les marques de ponctuation.</string>
   <string name="hint_master_password">Choisir un mot de passe principal pour protéger votre base de données :</string>
   <string name="key_file">Fichier de clé</string>
   <string name="help_key_file">Un fichier de clé est en fait un mot de passe stocké dans un fichier. Les fichiers de clés sont généralement plus forts que les mots de passe maîtres, parce que la clé peut être beaucoup plus compliquée ; cependant il est également plus difficile de les garder secret. Si vous stockez votre base de données dans le cloud, ne stockez pas le fichier de clé ici également ! Cela le rendrait complètement inutile ! Important : Ne modifiez pas le contenu du fichier clé après avoir créé la base de données !</string>
@@ -453,10 +463,41 @@
   <string name="CopyFileRequiredForEditing">Pour le modifier, vous devez copier le fichier vers un autre emplacement.</string>
   <string name="ClickOkToSelectLocation">Cliquez sur OK pour sélectionner un emplacement où le fichier doit être copié.</string>
   <string name="CancelReadOnly">Annuler, ouverture en lecture seule.</string>
+  <string name="AddCustomIcon">Ajouter un icône à partir d\'un fichier...</string>
   <string name="CopyingFile">Copie des fichiers...</string>
-  <string name="KdbBetaWarning">Note : Vous avez ouvert une base de données Keepass 1. Keepass2Android support maintenant l\'écriture dans ce format. Malgré des tests rigoureux, l\'auteur ne peut garantir que toutes les données seront sauvegardées correctement. Veuillez conserver une sauvegarde originale de celle-ci (Dropbox sauvegarde automatiquement les versions récentes) avant tout changement. Veuillez également nous rapporter les éventuels problèmes. Merci !</string>
   <string name="ChangeLog_title">Journal des modifications</string>
   <string name="PreviewWarning">SVP. Il s\'agit d\'une version préliminaire et elle pourrait contenir quelques défauts! Si vous rencontrez quelque chose d\'inattendu, faites le moi savoir (sur Codeplex ou par courriel).</string>
+  <string name="Continue">Suivant</string>
+  <string name="NoFilenameWarning">L\'URI que vous avez entré ne ressemble pas à un nom de fichier. Etes-vous sûr qu\'il s\'agit d\'un fichier valide ?</string>
+  <string name="ChangeLog_0_9_8c">
+Version 0.9.8c\n
+* Correctif pour la vulnérabilité SSL dans Microsoft Live SDK (utilisé lorsque vous accédez à des fichiers via OneDrive)\n
+* Bug fix : la version précédente contenait deux méthodes de saisie (l\'une des deux plante)\n  </string>
+  <string name="ChangeLog_0_9_9">
+		Version 0.9.9\n
+		* Refonte complète de l\'interface utilisateur. Merci beaucoup à Stefano Pignataro (http://www.spstudio.at) pour son aide!\n
+    * Permet l\'ajout d\'icônes personnalisées\n
+    * Support pour l\'affichage fractionné sur les appareils Samsung\n
+    * Nombre de rotation par défaut pour le chiffrement de nouvelle base de données\n
+    * Vérification des clés dupliquées des champs supplémentaires pour éviter la perte de données\n
+    
+	</string>
+  <string name="ChangeLog_0_9_8b">
+		Version 0.9.8b\n
+		* corrections de bugs (Sauvegarde a échoué pour certaines bases, exporter vers le périphérique local ne fonctionne pas, sélectionner certaines options de préférence crash l\'app)\n
+	</string>
+  <string name="ChangeLog_0_9_8">
+		Version 0.9.8\n
+		* Support du Storage Access Framework (permet l\'écriture sur carte SD et Google Drive dans KP2A Offline)\n
+		* Essai de détecter les erreurs de saisie dans les URL WebDAV (répertoire au lieu du fichier)\n
+		* Police de mot de passe modifié\n
+		* Autorise le changement de compte Dropbox\n
+		* correction de bug: maintenant se souvient du mot de passe OTP\n
+	</string>
+  <string name="ChangeLog_0_9_7b">
+		Version 0.9.7b\n
+		* traductions actualisés\n
+		* corrections de bugs: polices de mot de passe était manquant dans 0.9.7, trie par nom ne trie pas les groupes\n</string>
   <string name="ChangeLog_0_9_7">
 		Version 0.9.7\n
 		* Support de l\'écriture des base de données Keepass 1 (kdb) (beta!)\n

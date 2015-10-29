@@ -10,6 +10,7 @@
   <string name="accept">Akceptuj</string>
   <string name="deny">Zabroń</string>
   <string name="add_entry">Dodaj wpis</string>
+  <string name="edit_entry">Edytuj wpis</string>
   <string name="add_url_entry">Dodaj wpis dla adresu URL</string>
   <string name="add_group">Dodaj grupę</string>
   <string name="add_group_title">Dodaj grupę</string>
@@ -31,7 +32,9 @@
   <string name="ShowGroupnameInSearchResult_resume">Wyświetl nazwę grupy poniżej tytułów wpisów w wykonach wyszukiwania. Przydatne jeśli masz kilka wpisów z tą samą nazwą.</string>
   <string name="NavigationToGroupCompleted_message">Wyświetlana grupa to: %1$s</string>
   <string name="ShowGroupInEntry_title">Pokaż nazwę grupy w widoku wpisów</string>
-  <string name="unknown_uri_scheme">Przepraszam! Keepass2Android nie może obsłużyć tego adresu %1$s URI. Prosimy o kontakt z autorem!</string>
+  <string name="unknown_uri_scheme">Przepraszam! Keepass2Android nie może obsłużyć tego URI %1$s. Prosimy o kontakt z autorem!</string>
+  <string name="Entry_singular">Jeden wpis</string>
+  <string name="Entry_plural">%1$d wpisów</string>
   <string name="security_prefs">Zabezpieczenia</string>
   <string name="display_prefs">Wygląd</string>
   <string name="password_access_prefs">Hasło dostępu</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">Plik bazy danych został skopiowany do folderu wewnętrznego. Naciśnij przycisk Ok, aby otworzyć z nowej lokalizacji. Uwaga: Nie zapomnij, aby regularnie eksportować bazę danych w celu bezpiecznego przechowywania!</string>
   <string name="KeyfileMoved">Plik klucza został skopiowany do folderu wewnętrznego. Upewnij się, że masz bezpieczną kopię zapasową przed usunięciem z bieżącej lokalizacji!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Nie można użyć folderu wewnętrznego podczas gdy lokalizacja pliku klucza nie jest pamiętana. Zmień preferencje zabezpieczeń.</string>
+  <string name="unlock_database_button">Odblokuj</string>
+  <string name="unlock_database_title">Odblokowanie bazy danych</string>
   <string name="brackets">Nawiasy</string>
   <string name="cancel">Anuluj</string>
   <string name="ClearClipboard">Schowek wyczyszczony.</string>
@@ -86,7 +91,7 @@
   <string name="entry_user_name">Nazwa użytkownika</string>
   <string name="entry_extra_strings">Dodatkowe pola</string>
   <string name="entry_binaries">Załączniki</string>
-  <string name="error_can_not_handle_uri">Keepass2Android nie potrafi obsłużyć tego adresu URL.</string>
+  <string name="error_can_not_handle_uri">Keepass2Android nie potrafi obsłużyć tego URI.</string>
   <string name="error_could_not_create_group">Błąd podczas tworzenia grupy.</string>
   <string name="error_could_not_create_parent">Nie można utworzyć folderu nadrzędnego.</string>
   <string name="error_database_exists">Taki plik już istnieje.</string>
@@ -150,6 +155,7 @@
   <string name="menu_hide_password">Ukryj hasło</string>
   <string name="menu_lock">Zablokuj bazę danych</string>
   <string name="menu_open">Otwórz</string>
+  <string name="menu_close">Zamknij</string>
   <string name="menu_rename">Zmień nazwę</string>
   <string name="menu_search">Szukaj</string>
   <string name="menu_search_advanced">Wyszukiwanie zaawansowane</string>
@@ -259,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">Czy chciałbyś zachować wyszukiwany tekst \"%1$s\" w wybranym wpisie w celu automatycznego znalezienia go następnym razem?</string>
   <string name="error_invalid_expiry_date">Nieprawny format daty/godziny dla czasu wygaśnięcia!</string>
   <string name="error_string_key">Nazwa pola jest wymagana dla każdego ciągu znaków.</string>
+  <string name="error_string_duplicate_key">Nazwy pola nie można użyć dwa razy (%1$s).</string>
   <string name="field_name">Nazwa pola</string>
   <string name="field_value">Wartość pola</string>
   <string name="protection">Pole zabezpieczone</string>
@@ -315,6 +322,7 @@
   <string name="RecycleBin">Kosz</string>
   <string name="AskDeletePermanentlyEntry">Czy chcesz trwale usunąć ten wpis? Wciśnij Nie aby przesunąć do kosza.</string>
   <string name="AskDeletePermanentlyGroup">Czy chcesz trwale usunąć tę grupę? Wciśnij Nie aby przesunąć do kosza.</string>
+  <string name="AskDeletePermanentlyItems">Czy chcesz trwale usunąć wybrane elementy? Wciśnij Nie, żeby przenieść do kosza.</string>
   <string name="AskDeletePermanently_title">Trwale usunąć?</string>
   <string name="AskReloadFile_title">Wczytać plik ponownie?</string>
   <string name="AskReloadFile">Plik, który jest obecnie otwarty został zmieniony przez inny program. Czy chcesz go ponownie wczytać?</string>
@@ -327,6 +335,7 @@
   <string name="AddingGroup">Dodawanie grupy...</string>
   <string name="DeletingEntry">Usuwanie wpisu...</string>
   <string name="DeletingGroup">Usuwanie grupy...</string>
+  <string name="DeletingItems">Usuwanie elementów&#8230;</string>
   <string name="SettingPassword">Ustawianie hasła...</string>
   <string name="UndoingChanges">Cofanie zmian...</string>
   <string name="TransformingKey">Przekształcenie klucza głównego...</string>
@@ -384,6 +393,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (transfer plików przez SSH)</string>
+  <string name="filestoragename_content">Systemowa przeglądarka plików</string>
   <string name="filestorage_setup_title">Inicjowanie dostępu do pliku</string>
   <string name="database_location">Miejsce zapisu bazy danych</string>
   <string name="help_database_location">Możesz przechowywać bazę danych lokalnie, na urządzeniu z systemem Android, lub w Chmurze (tylko w przypadku wersji nie Offline). Keepass2Android przetwarza bazę danych tak, że jest ona dostępna, nawet gdy jesteś offline. Baza danych jest zabezpieczona 256 bitowym szyfrowaniem AES, więc nikt nie będzie miał dostępu do twoich haseł oprócz Ciebie. Zalecamy aby wybrać Dropbox: jest dostępny na wszystkie urządzenia i zapewnia nawet kopie zapasowe poprzednich wersji plików.</string>
@@ -453,10 +463,42 @@
   <string name="CopyFileRequiredForEditing">Aby edytować, należy skopiować plik do innej lokalizacji.</string>
   <string name="ClickOkToSelectLocation">Kliknij przycisk OK, aby wybrać miejsce, gdzie należy skopiować plik.</string>
   <string name="CancelReadOnly">Anuluj, Otwórz tylko do odczytu.</string>
+  <string name="AddCustomIcon">Dodaj ikonę z pliku...</string>
   <string name="CopyingFile">Kopiowanie plików...</string>
-  <string name="KdbBetaWarning">Uwaga: Załadowano bazę danych dla Keepass 1. Keepass2Android ostatnio dodał wsparcie dla zapisu dla tego formatu bazy danych. Pomimo dokładnego badania, autor nie gwarantuje, że wszystkie dane zostaną poprawnie zapisane. Proszę zawsze zachować kopię zapasową oryginalnej bazy danych (Dropbox automatycznie zapisuje ostatnie wersje) przed wprowadzeniem zmian. Proszę zgłaszać wszelkie problemy. Dzięki!</string>
   <string name="ChangeLog_title">Lista zmian</string>
   <string name="PreviewWarning">Uwaga! To jest podglądowe wydanie i może posiadać wady! Jeżeli doświadczasz *czegokolwiek* niespodziewanego, daj mi znać (na Codeplex lub przez email).</string>
+  <string name="Continue">Kontynuuj</string>
+  <string name="NoFilenameWarning">Wprowadzone URI nie wygląda jak nazwa pliku. Jesteś pewien, że to prawidłowy plik?</string>
+  <string name="ChangeLog_0_9_8c">
+Wersja 0.9.8c\n
+    * Poprawka luki bezpieczeństwa protokołu SSL w Microsoft Live SDK (używany podczas uzyskiwania dostępu do plików za pośrednictwem OneDrive)\n
+    * Poprawka błędu: Poprzednia wersja zawierała dwie metody wprowadzania (jedną wysypującą się)\n  </string>
+  <string name="ChangeLog_0_9_9">
+		Wersja 0.9.9\n
+		* Kompletne przeprojektowanie interfejsu użytkownika. Wielkie podziękowania dla Stefano Pignataro (http://www.spstudio.at) za jego pomoc!\n
+    * Umożliwiono dodawania własnych ikon\n
+    * Wsparcie dla trybu Multi Window na urządzeniach marki Samsung\n
+    * Zwiększono domyślną liczbę rund szyfrowania dla nowych baz danych\n
+    * Sprawdzanie duplikujących kluczy dodatkowych pól w celu uniknięcia utraty danych\n
+    
+	</string>
+  <string name="ChangeLog_0_9_8b">
+		Wersja 0.9.8b\n
+		* Poprawki błędów (Zapisywanie nie udawało się dla niektórych baz danych, nie działało eksportowanie do lokalnego urządzenia, wybieranie niektórych opcji wysypywało aplikację)\n
+	</string>
+  <string name="ChangeLog_0_9_8">
+		Wersja 0.9.8\n
+		* Wsparcie dla Storage Access Framework (umożliwia zapis na kartę SD i Google Drive w KP2A Offline)\n
+		* Próba wykrywania błędnych danych wprowadzanych przez użytkownika podczas wpisywania WebDAV URLs (katalog zamiast pliku)\n
+		* Zmieniono czcionkę hasła\n
+		* Umożliwiono zmianę konta Dropbox\n
+		* Poprawka błędu: Teraz hasło OTP jest zapamiętywane\n
+	</string>
+  <string name="ChangeLog_0_9_7b">
+		Wersja 0.9.7b\n
+		* Zaktualizowane tłumaczenia\n
+		* Poprawki błędów: brakowało czcionki do haseł w wersji 0.9.7, sortowanie po nazwie nie sortowało grup\n
+	</string>
   <string name="ChangeLog_0_9_7">
 		Wersja 0.9.7\n
 		* wsparcie dla zapisu bazy danych (kdb) dla Keepass 1 (beta!)\n

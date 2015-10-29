@@ -10,6 +10,7 @@
   <string name="accept">決定</string>
   <string name="deny">拒否</string>
   <string name="add_entry">エントリーを追加</string>
+  <string name="edit_entry">エントリーを編集</string>
   <string name="add_url_entry">URL のエントリを作成します。</string>
   <string name="add_group">グループを追加</string>
   <string name="add_group_title">新しいグループ名を入力</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">表示中のグループ: %1$s</string>
   <string name="ShowGroupInEntry_title">エントリー表示画面にグループ名を表示する。</string>
   <string name="unknown_uri_scheme">申し訳ありません! Keepass2Android は、返された URI %1$s を処理できません。開発者にお問い合わせください!</string>
+  <string name="Entry_singular">単一のエントリ</string>
+  <string name="Entry_plural">%1$d エントリ</string>
   <string name="security_prefs">セキュリティ</string>
   <string name="display_prefs">表示</string>
   <string name="password_access_prefs">パスワードエントリーへのアクセス</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">データベースファイルは内部のフォルダへコピーされます。OKを押して新しい場所からデータベースを開いてください。注）データベースを安全なストレージへ定期的にエクスポートすることを忘れないで下さい。</string>
   <string name="KeyfileMoved">キーファイルは内部のフォルダへコピーされました。現在のキーファイルを削除する前に必ずバックアップを行ってください。</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">キーファイルの場所を記憶しない場合内部のディレクトリを使用できません。セキュリティの設定を変更してください。</string>
+  <string name="unlock_database_button">ロック解除</string>
+  <string name="unlock_database_title">データベースのロック解除</string>
   <string name="brackets">カッコ</string>
   <string name="cancel">キャンセル</string>
   <string name="ClearClipboard">クリップボードを消去しました。</string>
@@ -150,6 +155,7 @@
   <string name="menu_hide_password">パスワードを隠す</string>
   <string name="menu_lock">データベースをロック</string>
   <string name="menu_open">開く</string>
+  <string name="menu_close">閉じる</string>
   <string name="menu_rename">タイトルの変更</string>
   <string name="menu_search">検索</string>
   <string name="menu_search_advanced">詳細検索</string>
@@ -259,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">次回自動的に検索するために、選択したエントリーの検索テキスト \"%1$s\" を保存しますか?</string>
   <string name="error_invalid_expiry_date">有効期限の日付/時刻の形式が無効です!</string>
   <string name="error_string_key">各文字列にフィールド名は必須入力です。</string>
+  <string name="error_string_duplicate_key">同じフィールド名を使うことはできません (%1$s)</string>
   <string name="field_name">フィールド名</string>
   <string name="field_value">フィールド値</string>
   <string name="protection">保護されたフィールド</string>
@@ -315,6 +322,7 @@
   <string name="RecycleBin">ごみ箱</string>
   <string name="AskDeletePermanentlyEntry">このエントリーを完全に削除しますか？ゴミ箱へ移動する場合はいいえを押してください。</string>
   <string name="AskDeletePermanentlyGroup">このグループを完全に削除しますか？ゴミ箱へ移動する場合はいいえを押してください。</string>
+  <string name="AskDeletePermanentlyItems">選択した要素をデータベースから削除しますか？ Noで再利用します。</string>
   <string name="AskDeletePermanently_title">完全に削除しますか?</string>
   <string name="AskReloadFile_title">ファイルを再読込しますか?</string>
   <string name="AskReloadFile">現在開いているファイルは、別のプログラムによって変更されました。それを再読み込みしますか。</string>
@@ -327,6 +335,7 @@
   <string name="AddingGroup">グループの追加</string>
   <string name="DeletingEntry">エントリの削除</string>
   <string name="DeletingGroup">グループの削除</string>
+  <string name="DeletingItems">要素を削除中です</string>
   <string name="SettingPassword">パスワードの設定</string>
   <string name="UndoingChanges">変更を元に戻しています。</string>
   <string name="TransformingKey">マスターキーを変換しています。</string>
@@ -384,6 +393,7 @@
   <string name="filestoragename_gdrive">Google ドライブ</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH ファイル転送)</string>
+  <string name="filestoragename_content">システム ファイル ピッカー</string>
   <string name="filestorage_setup_title">ファイルのアクセスの初期化</string>
   <string name="database_location">データベースの場所</string>
   <string name="help_database_location">データベースは、お使いの Android デバイス上でローカルに、またはクラウド (非オフライン バージョンのみ) に格納できます。オフラインの場合、Keepass2Android はデータベースを利用可能にします。データベースは AES 256 ビット暗号化で安全に暗号化されているので、あなたを除いて、誰もパスワードにアクセスすることができません。私たちは Dropbox を選択することをお勧めします： すべてのお使いのデバイスでアクセス可能で、以前のファイル バージョンのバックアップを提供しています。</string>
@@ -453,10 +463,37 @@
   <string name="CopyFileRequiredForEditing">これを編集するには、別の場所にファイルをコピーする必要があります。</string>
   <string name="ClickOkToSelectLocation">ファイルのコピー先の場所を選択して、OK をクリックしてください。</string>
   <string name="CancelReadOnly">キャンセル、読み取り専用で開く。</string>
+  <string name="AddCustomIcon">ファイルからアイコンを追加する</string>
   <string name="CopyingFile">ファイルをコピーしています</string>
-  <string name="KdbBetaWarning">ご注意: Keepass 1 データベースを読み込みました。 Keepass2Android はこのデータベース形式の書き込みサポートを最近追加しました。徹底的にテストを行っていますが、作者はすべてのデータが正しく保存されることは保証しません。変更する前に、必ず元のデータベースのバックアップを保管してください (Dropbox は、自動的に最新バージョンを格納します)。何か問題があれば報告してください。ありがとうございます!</string>
   <string name="ChangeLog_title">変更履歴</string>
   <string name="PreviewWarning">ご注意ください! これはプレビュー リリースのため、不具合があるかもしれません! *何か* 予期しない事象が発生した場合は、(Codeplex かメールで) 私にお知らせください。</string>
+  <string name="Continue">続行</string>
+  <string name="NoFilenameWarning">入力した URI はファイル名ではないようです。これは有効なファイルですか?</string>
+  <string name="ChangeLog_0_9_8c">
+Version 0.9.8c\n
+ * マイクロソフト Live SDKのSSL脆弱性が修正されました(ファイルをOneDriveでアクセスする際に使用されます)\n
+* バグ修正: 以前のリリースで2つのIMEが含まれていた(一方はクラッシュしていた)  </string>
+  <string name="ChangeLog_0_9_9">
+Version 0.9.9\n
+* ユーザーインターフェイスを作り直しました。Stefano Pignataro (http://www.spstudio.at) 氏のサポートの感謝します。\n
+    * カスタムアイコンを追加できるようになしました\n
+    * サムソン製端末のマルチウィンドウモードに対応しました\n    
+    * データベース作成時のデフォルト暗号化回数を増やしました\n
+* データ消失防止のため、要素追加時にキーが重複していないかチェックされるようになりました。\n</string>
+  <string name="ChangeLog_0_9_8b">
+Version 0.9.8b\n 
+* バグ修正 (一部のデータベース保存に失敗する, ローカル端末へのエクスポートができない, 一部の設定を選択した時にアプリがクラッシュする)\n 	</string>
+  <string name="ChangeLog_0_9_8">
+Version 0.9.8\n
+		* ストレージアクセスフレームワークに対応しました (KP2Aオフライン版でSDカードとGoogleドライブに書込めるようになります)\n
+		* WebDAV URLを (ファイルの代わりに)入力したときに誤入力をチェックすようになりました\n
+		* パスワード変更時のフォントを変更しました\n
+		* Dropboxのアカウントを変更できるようになりました\n
+		* バグ修正: 今のワンタイムパスワードが記録される\n</string>
+  <string name="ChangeLog_0_9_7b">
+バージョン 0.9.7b\n
+* 翻訳を更新\n
+* バグ修正: 0.9.7、パスワード フォントが見つからない、名前順でグループの並べ替えができない\n</string>
   <string name="ChangeLog_0_9_7">
 バージョン 0.9.7\n
 * Keepass 1 (kdb) データベースの書き込みサポート (ベータ!)\n

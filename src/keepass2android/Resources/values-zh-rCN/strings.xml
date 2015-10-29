@@ -10,6 +10,7 @@
   <string name="accept">接受</string>
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
+  <string name="edit_entry">编辑项目</string>
   <string name="add_url_entry">为 URL 创建条目</string>
   <string name="add_group">添加群组</string>
   <string name="add_group_title">添加群组</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">显示当前群组：%1$s</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
   <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
+  <string name="Entry_singular">一条项目</string>
+  <string name="Entry_plural">%1$d 个项目</string>
   <string name="security_prefs">安全</string>
   <string name="display_prefs">显示</string>
   <string name="password_access_prefs">密码输入口</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">数据库文件已被复制到内部的文件夹。点击确定从新位置打开。注意： 不要忘记要定期将数据库导出到一个安全的地方！</string>
   <string name="KeyfileMoved">密钥文件被复制到内部的文件夹。在你从当前位置删除之前请确保你已经有了一个安全的备份！</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">未记住密钥文件位置时不能使用内部文件夹。更改安全首选项。</string>
+  <string name="unlock_database_button">解锁</string>
+  <string name="unlock_database_title">解锁数据库</string>
   <string name="brackets">括号</string>
   <string name="cancel">取消</string>
   <string name="ClearClipboard">剪贴板已清除。</string>
@@ -65,10 +70,11 @@
   <string name="digits">数字</string>
   <string name="disclaimer_formal">Keepass2Android 版权归 Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循 GPL 2 或者更高版本的情况下重新发布。</string>
   <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">复制到剪贴板</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间</string>
   <string name="entry_cancel">取消</string>
-  <string name="entry_comment">备注：</string>
+  <string name="entry_comment">备注</string>
   <string name="entry_tags">标签</string>
   <string name="entry_override_url">覆盖链接地址</string>
   <string name="entry_confpassword">确认密码</string>
@@ -149,6 +155,7 @@
   <string name="menu_hide_password">隐藏密码</string>
   <string name="menu_lock">锁定数据库</string>
   <string name="menu_open">打开</string>
+  <string name="menu_close">关闭</string>
   <string name="menu_rename">重命名</string>
   <string name="menu_search">搜索</string>
   <string name="menu_search_advanced">高级搜索</string>
@@ -258,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">你想存储在选定项目中的搜索文本「%1$s」来在下次搜索时自动匹配吗？</string>
   <string name="error_invalid_expiry_date">有效期限的日期或时间格式有误！</string>
   <string name="error_string_key">每个字符串的字段名称不能为空。</string>
+  <string name="error_string_duplicate_key">字段名称不能使用两次 (%1$s)。</string>
   <string name="field_name">字段名</string>
   <string name="field_value">字段值</string>
   <string name="protection">受保护的字段</string>
@@ -314,6 +322,7 @@
   <string name="RecycleBin">回收站</string>
   <string name="AskDeletePermanentlyEntry">是否要永久删除此条目？按否取消。</string>
   <string name="AskDeletePermanentlyGroup">是否要永久删除此群组？按否取消操作。</string>
+  <string name="AskDeletePermanentlyItems">你想要永久删除选定的元素？选否回到垃圾箱。</string>
   <string name="AskDeletePermanently_title">确定永久删除？</string>
   <string name="AskReloadFile_title">重新载入文件？</string>
   <string name="AskReloadFile">当前所打开的文件已被别的程序所更改，是否要重新载入？</string>
@@ -326,6 +335,7 @@
   <string name="AddingGroup">添加群组...</string>
   <string name="DeletingEntry">删除条目...</string>
   <string name="DeletingGroup">删除群组...</string>
+  <string name="DeletingItems">删除元素中&#8230;</string>
   <string name="SettingPassword">设置密码...</string>
   <string name="UndoingChanges">撤消更改...</string>
   <string name="TransformingKey">变更主键...</string>
@@ -383,6 +393,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP（SSH 文件传输）</string>
+  <string name="filestoragename_content">系统文件选择器</string>
   <string name="filestorage_setup_title">初始化文件访问</string>
   <string name="database_location">数据库位置</string>
   <string name="help_database_location">您可以在您的 Andr​​oid 设备或云端存储你的数据库（非离线版本）。 即使您处于脱机状态 Keepass2Android 也依然可以使用。数据库采用安全的 AES 256 位加密，若没有您的密码任何人都无法访问它。我们建议选择存储在 Dropbox：在所有设备上皆可访问，甚至还提供了文件的早期版本备份。</string>
@@ -452,10 +463,17 @@
   <string name="CopyFileRequiredForEditing">若要编辑它，必须将该文件复制到另一个位置。</string>
   <string name="ClickOkToSelectLocation">单击确定以选择要复制文件的位置。</string>
   <string name="CancelReadOnly">取消，以只读形式打开。</string>
+  <string name="AddCustomIcon">从文件添加图标...</string>
   <string name="CopyingFile">正在复制文件...</string>
-  <string name="KdbBetaWarning">请注意：您读取了一个 Keepass 1 的数据库。我们最近添加了对该格式的修改操作。不过目前还在测试中，作者并不保证数据能正常保存。请确保您总是备份了数据库（Dropbox 会自动保存最近的版本）再进行修改操作。如果碰到问题请使用英语反馈给我们。感谢！</string>
   <string name="ChangeLog_title">更新记录</string>
   <string name="PreviewWarning">请注意 ！这是一个预览版本，可能会有一些缺陷 ！如果您遇到*任何*错误，请联系我们（通过 Codeplex 或电子邮件）。</string>
+  <string name="Continue">继续</string>
+  <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
+  <string name="ChangeLog_0_9_7b">
+		版本 0.9.7b\n
+		* 更新翻译\n
+		* 修复错误： 0.9.7 版本中密码字体丢失；“按名称排序”功能没有排序组\n
+	</string>
   <string name="ChangeLog_0_9_7">
 Version 0.9.7\n
 * 支持修改 Keepass 1 (kdb) 数据库 (测试中!)\n

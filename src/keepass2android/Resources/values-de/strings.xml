@@ -11,6 +11,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="accept">Akzeptieren</string>
   <string name="deny">Verweigern</string>
   <string name="add_entry">Eintrag hinzufügen</string>
+  <string name="edit_entry">Eintrag bearbeiten</string>
   <string name="add_url_entry">Eintrag für URL anlegen</string>
   <string name="add_group">Gruppe hinzufügen</string>
   <string name="add_group_title">Gruppe hinzufügen</string>
@@ -33,6 +34,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NavigationToGroupCompleted_message">Anzeigegruppe ist jetzt: %1$s</string>
   <string name="ShowGroupInEntry_title">Gruppennamen in der Eintragsansicht anzeigen</string>
   <string name="unknown_uri_scheme">Tut mir Leid! Keepass2Android kann die zurückgegebene URI %1$s nicht verarbeiten. Bitte kontaktiere den Entwickler!</string>
+  <string name="Entry_singular">Ein Eintrag</string>
+  <string name="Entry_plural">%1$d Einträge</string>
   <string name="security_prefs">Sicherheit</string>
   <string name="display_prefs">Anzeige</string>
   <string name="password_access_prefs">Passwort-Zugriff</string>
@@ -48,6 +51,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="DatabaseFileMoved">Die Datenbank-Datei wurde in den internen Ordner kopiert.  Drücke OK, um sie vom neuen Ort zu öffnen. Hinweis: Vergiss nicht, regelmäßig einen Export der Datenbank zu einem sicheren Speicherort durchzuführen!</string>
   <string name="KeyfileMoved">Die Schlüsseldatei wurde in den internen Ordner kopiert. Stelle sicher, dass du ein Backup der Datei hast bevor du sie vom aktuellen Ort löschst!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Der interne Ordner kann nicht genutzt werden, wenn der Speicherort der Schlüsseldatei nicht gespeichert wird. Ändere die Sicherheitseinstellung.</string>
+  <string name="unlock_database_button">Entsperren</string>
+  <string name="unlock_database_title">Datenbank entsperren</string>
   <string name="brackets">Klammern</string>
   <string name="cancel">Abbrechen</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
@@ -151,11 +156,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_hide_password">Kennwort verstecken</string>
   <string name="menu_lock">Datenbank sperren</string>
   <string name="menu_open">Öffnen</string>
+  <string name="menu_close">Schließen</string>
   <string name="menu_rename">Umbenennen</string>
   <string name="menu_search">Suchen</string>
   <string name="menu_search_advanced">Erweiterte Suche</string>
   <string name="menu_url">URL öffnen</string>
-  <string name="menu_change_db">Datenbank wechseln&#8230;</string>
+  <string name="menu_change_db">Datenbank wechseln…</string>
   <string name="minus">Bindestrich</string>
   <string name="never">Nie</string>
   <string name="yes">Ja</string>
@@ -260,10 +266,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AddUrlToEntryDialog_text">Soll der Suchtext \"%1$s\" im gewählten Eintrag gespeichert werden? Dann wird er bei der nächsten Suche automatisch gefunden!</string>
   <string name="error_invalid_expiry_date">Ungültiges Datums-/Zeitformat für Ablaufdatum!</string>
   <string name="error_string_key">Ein Feldname ist für jeden Eintrag erforderlich.</string>
+  <string name="error_string_duplicate_key">Ein Feldname kann nicht doppelt genutzt werden (%1$s).</string>
   <string name="field_name">Feldname</string>
   <string name="field_value">Feldwert</string>
   <string name="protection">Geschütztes Feld</string>
-  <string name="add_binary">Dateianhang dazu</string>
+  <string name="add_binary">Dateianhang hinzufügen...</string>
   <string name="add_extra_string">Zusätzliches Feld hinzufügen</string>
   <string name="delete_extra_string">Zusätzliches Feld löschen</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: gesperrt. QuickUnlock aktiviert.</string>
@@ -316,6 +323,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="RecycleBin">Papierkorb</string>
   <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Drücke nein, um ihn in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyGroup">Soll diese Gruppe endgültig gelöscht werden? Drücke nein, um sie in den Papierkorb zu verschieben.</string>
+  <string name="AskDeletePermanentlyItems">Gewählte Elemente permanent löschen? Nein wählen, um in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanently_title">Endgültig löschen?</string>
   <string name="AskReloadFile_title">Datei neu laden?</string>
   <string name="AskReloadFile">Die gerade geöffnete Datei wurde von einem anderen Programm geändert. Möchtest du sie neu laden?</string>
@@ -328,6 +336,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AddingGroup">Füge Gruppe hinzu&#8230;</string>
   <string name="DeletingEntry">Lösche Eintrag&#8230;</string>
   <string name="DeletingGroup">Lösche Gruppe&#8230;</string>
+  <string name="DeletingItems">Lösche Elemente&#8230;</string>
   <string name="SettingPassword">Setze Passwort&#8230;</string>
   <string name="UndoingChanges">Nehme Änderungen zurück&#8230;</string>
   <string name="TransformingKey">Führe Schlüsseltransformationen durch&#8230;</string>
@@ -455,24 +464,38 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="CopyFileRequiredForEditing">Um sie zu bearbeiten, muss sie an einen anderen Speicherort kopiert werden.</string>
   <string name="ClickOkToSelectLocation">Wähle OK, um einen Zielort zum Kopieren zu wählen.</string>
   <string name="CancelReadOnly">Abbrechen, nur lesend öffnen.</string>
+  <string name="AddCustomIcon">Icon aus Datei hinzufügen...</string>
   <string name="CopyingFile">Kopiere Datei...</string>
-  <string name="KdbBetaWarning">Bitte beachten: Du hast eine Keepass-1-Datenbank geladen. Keepass2Android bietet seit kurzem die Möglichkeit, solche Dateien zu editieren. Trotz gründlicher Tests garantiert der Autor nicht, dass alle Daten korrekt gespeichert werden. Bitte lege immer eine Sicherheitskopie der ursprünglichen Datenbank an, bevor du mit Keepass2Android speicherst (Tipp: Dropbox speichert automatisch ältere Verionen). Sollte ein Problem auftreten, melde diese bitte an den Autor. Danke!</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
   <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (auf Codeplex oder per E-Mail).</string>
   <string name="Continue">Fortfahren</string>
   <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Bist du sicher, dass es sich um eine gültige Datei handelt?</string>
-  	<string name="NoFilenameWarning">The URI you have entered does not look like a filename. Are you sure this is a valid file?</string>
-		<string name="ChangeLog_0_9_8b">
-		Version 0.9.8b\n
-		* Bugs behoben: Speichern schlug bei manchen Datenbanken fehl, Exportieren mit lokalem Ziel funktionierte nicht, manche Einstellungsoptionen führten zum Absturz\n
+  <string name="ChangeLog_0_9_8c">
+    Version 0.9.8c\n
+    * Fix für SSL-Schwachstelle im Microsoft Live-SDK (wird benutzt beim Zugriff auf Dateien mit OneDrive)\n
+    * Bugfix: Vorige Veröffentlichung enthielt zwei Eingabemethoden (eine funktionierte nicht)\n
+  </string>
+  <string name="ChangeLog_0_9_9">
+		Version 0.9.9\n
+		* Komplett neues Design. Vielen Dank an Stefano Pignataro (http://www.spstudio.at) für seine Unterstützung!\n
+    * Möglichkeit eigene Icons für Einträge hinzuzufügen\n
+    * Unterstützung des Multi-Window-Modus auf Samsung-Geräten\n
+    * Standard-Anzahl der Verschlüsselungsrunden für neue Datenbanken erhöht\n
+    * Prüfung nach mehrfach vorkommenden Schlüsseln von zusätzlichen Feldern um Datenverlust zu verhindern\n
+    
 	</string>
-	<string name="ChangeLog_0_9_8">		Version 0.9.8\n
-		* Unterstützung für das Storage Access Framework (ermöglicht Schreiben auf SD-Karte und auf Google Drive mit KP2A Offline)\n
-		* Fehlerhafte Benutzereingaben bei WebDAV-URLs werden wenn möglich erkannt (Verzeichnis statt Datei)\n
-		* Passwort-Schriftart geändert\n
-		* Dropbox-Konto kann gewechselt werden\n
-		* Bug-Fix: Passwort-Art bei OTP wird gespeichert\n
-                * Hinweis: Ich hatte Material-Design für dieses Release versprochen. Es ist in Arbeit, braucht aber noch ein bisschen mehr Zeit. Sorry!</string>
+  <string name="ChangeLog_0_9_8b">
+		Version 0.9.8b\n
+		* Bug fixes (Speichern funktionierte bei einigen Datenbanken nicht, Export zum lokalen Gerät funktionierte nicht, einige Einstellungsoptionen verursachten einen Absturz der App)\n
+	</string>
+  <string name="ChangeLog_0_9_8">
+		Version 0.9.8\n
+		* Unterstützung des Storage Access Framework (erlaubt schreiben auf SD Kartr und Google Drive in KP2A Offline)\n
+		* Versuche, fehlerhafte Nutzereingaben bei der Eingabe von WebDAV URLs zu erkennen (Verzeichnis statt Datei)\n
+		* Passwort Schriftart geändert\n
+		* Möglichkeit, das Dropbox-Konto zu ändern\n
+		* Bug Fix: Speichern des OTP-Passwort-Modus
+	</string>
   <string name="ChangeLog_0_9_7b">
 		Version 0.9.7b\n
 		* Übersetzungen aktualisiert\n

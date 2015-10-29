@@ -10,6 +10,7 @@
   <string name="accept">Accetta</string>
   <string name="deny">Nega</string>
   <string name="add_entry">Aggiungi voce</string>
+  <string name="edit_entry">Modifica voce</string>
   <string name="add_url_entry">Crea voce per l\'URL</string>
   <string name="add_group">Aggiungi gruppo</string>
   <string name="add_group_title">Aggiungi Gruppo</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Il gruppo di visualizzazione ora è: %1$s</string>
   <string name="ShowGroupInEntry_title">Mostra il nome del gruppo della voce</string>
   <string name="unknown_uri_scheme">Spiacente! Keepass2Android non può gestire l\'URI %1$s. Per favore, contatta lo sviluppatore!</string>
+  <string name="Entry_singular">Una voce</string>
+  <string name="Entry_plural">%1$d voci</string>
   <string name="security_prefs">Sicurezza</string>
   <string name="display_prefs">Visualizzazione</string>
   <string name="password_access_prefs">Inserimento password</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">Il file database è stato salvato in una cartella interna: Premere OK per aprirlo dalla nuova posizione. Nota: non dimenticare di esportare regolarmente il database in una locazione sicura!</string>
   <string name="KeyfileMoved">Il file chiave è stato copiato in una cartella interna. Accertatevi di avere un backup sicuro prima di cancellarlo dalla posizione attuale!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Impossibile usare la cartella interna se la posizione del file chiave non è nota. Modificare le impostazioni di sicurezza.</string>
+  <string name="unlock_database_button">Sblocca</string>
+  <string name="unlock_database_title">Sblocca il database</string>
   <string name="brackets">Parentesi</string>
   <string name="cancel">Annulla</string>
   <string name="ClearClipboard">Appunti eliminati.</string>
@@ -150,11 +155,12 @@
   <string name="menu_hide_password">Nascondi Password</string>
   <string name="menu_lock">Blocca Database</string>
   <string name="menu_open">Apri</string>
+  <string name="menu_close">Chiudi</string>
   <string name="menu_rename">Rinomina</string>
   <string name="menu_search">Cerca</string>
   <string name="menu_search_advanced">Ricerca avanzata</string>
   <string name="menu_url">Vai all\'URL</string>
-  <string name="menu_change_db">Cambia il database&#8230;</string>
+  <string name="menu_change_db">Cambia il database…</string>
   <string name="minus">Meno</string>
   <string name="never">Mai</string>
   <string name="yes">Sì</string>
@@ -259,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">Vuoi memorizzare il testo di ricerca \"%1$s\" nella voce selezionata per poterlo riutilizzare la prossima volta?</string>
   <string name="error_invalid_expiry_date">Formato data/ora non valido per la data di scadenza!</string>
   <string name="error_string_key">Devi specificare un nome per ogni campo stringa.</string>
+  <string name="error_string_duplicate_key">Un nome di campo non può essere usato due volte (%1$s).</string>
   <string name="field_name">Nome del campo</string>
   <string name="field_value">Valore del campo</string>
   <string name="protection">Campo protetto</string>
@@ -315,6 +322,7 @@
   <string name="RecycleBin">Cestino</string>
   <string name="AskDeletePermanentlyEntry">Vuoi eliminare definitivamente questa voce? Premi No per cestinare.</string>
   <string name="AskDeletePermanentlyGroup">Vuoi eliminare definitivamente questo gruppo? Premere No per cestinare.</string>
+  <string name="AskDeletePermanentlyItems">Vuoi eliminare definitivamente gli elementi selezionati? Premi No per cestinarli.</string>
   <string name="AskDeletePermanently_title">Eliminare definitivamente?</string>
   <string name="AskReloadFile_title">Ricaricare il file?</string>
   <string name="AskReloadFile">Il file attualmente aperto è stato modificato da un altro programma. Vuoi ricaricarlo?</string>
@@ -327,6 +335,7 @@
   <string name="AddingGroup">Aggiungi gruppo&#8230;</string>
   <string name="DeletingEntry">Eliminazione della voce...</string>
   <string name="DeletingGroup">Elimina gruppo&#8230;</string>
+  <string name="DeletingItems">Eliminazione elementi&#8230;</string>
   <string name="SettingPassword">Imposta password&#8230;</string>
   <string name="UndoingChanges">Annulla modifiche&#8230;</string>
   <string name="TransformingKey">Trasformazione della chiave principale&#8230;</string>
@@ -384,6 +393,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_content">Selettore file di sistema</string>
   <string name="filestorage_setup_title">Inizializzazione dell\'accesso al file</string>
   <string name="database_location">Posizione del database</string>
   <string name="help_database_location">Puoi salvare il database localmente, sul tuo dispositivo Android, o nel Cloud (solo versione non-Offline). Keepass2Android rende il database disponibile anche se sei offline. Dato che il database è cifrato con AES 256 bit, nessuno potrà accedere alle tue password, tranne te. Noi raccomandiamo di usare Dropbox: è accessibile tramite tutti i dispositivi e fornisce il backup di versioni precedenti dei file.</string>
@@ -453,10 +463,40 @@
   <string name="CopyFileRequiredForEditing">Per modificarlo, devi copiare il file in un\'altra posizione.</string>
   <string name="ClickOkToSelectLocation">Premi OK per selezionare il percorso dove copiare il file.</string>
   <string name="CancelReadOnly">Annulla, apri in sola lettura.</string>
+  <string name="AddCustomIcon">Aggiungi icona da file...</string>
   <string name="CopyingFile">Copia dei file...</string>
-  <string name="KdbBetaWarning">Attenzione: hai caricato un database di Keepass 1. Keepass2Android ha integrato solo di recente il supporto per questo formato di database. Nonostante test approfonditi, l\'autore non garantisce che tutti i dati verranno salvati correttamente. Tieni sempre una copia di backup del database originale (Dropbox memorizza automaticamente le versioni recenti) prima di apportare modifiche. Per favore, segnala eventuali problemi. Grazie!</string>
   <string name="ChangeLog_title">log delle modifiche</string>
   <string name="PreviewWarning">Attenzione! Questa versione è un\'anteprima e potrebbe contenere dei difetti! Se noti *qualcosa* di strano, per favore fammelo sapere (su Codeplex o via email).</string>
+  <string name="Continue">Continua</string>
+  <string name="NoFilenameWarning">L\'URI inserito non sembra il nome di un file. Sei sicuro che sia un file valido?</string>
+  <string name="ChangeLog_0_9_8c">
+Versione 0.9.8c\n
+* risolve la vulnerabilità SSL in Microsoft Live SDK (utilizzato per l\'accesso ai file via OneDrive)\n
+* bugfix: la precedente release conteneva due metodi di input (una andava in crash)\n  </string>
+  <string name="ChangeLog_0_9_9">
+Versione 0.9.9\n
+* interfaccia completamente riprogettata. Grazie mille a Stefano Pignataro (l\'http://www.spstudio.at) per il suo supporto!\n
+* consente di aggiungere icone personalizzate\n
+* supporta la modalità Multi Window sui dispositivi Samsung\n
+* aumenta il numero predefinito di cicli di cifratura per i nuovi database\n
+* controlla la presenza di chiavi duplicate tra i campi aggiuntivi per evitare la perdita di dati\n</string>
+  <string name="ChangeLog_0_9_8b">
+Versione 0.9.8b\n
+* bugfix (il salvataggio di alcuni database fallisce, l\'esportazione su periferica locale non funziona, la selezione di alcune opzioni manda l\'app in crash)\n</string>
+  <string name="ChangeLog_0_9_8">
+Versione 0.9.8 preview 2 (alpha)\n
+*** NOTA: questa anteprima è intesa per i test preliminari della nuova interfaccia utente. Attualmente non è completa! ***
+* Material design.
+* supporto per Storage Access Framework (permette a KP2A Offline di scrivere su scheda SD e Google Drive)\n
+* tenta di rilevare errori dell\'utente nell\'inserimento degli URL di WebDAV (cartella al posto di file)\n
+* cambia il font della password\n
+* consente di modificare l\'account di Dropbox\n 
+* bugfix: ora ricorda la password OTP\n
+* Nota: avevo promesso il Material Design per questa versione. Ci sto lavorando costantemente, ma c\'è bisogno di un po\' più di tempo. Scusate!\n</string>
+  <string name="ChangeLog_0_9_7b">
+Versione 0.9.7b\n
+* aggiorna le traduzioni\n
+* bugfix: mancava il carattere Password nella versione 0.9.7; ordina per nome non ordinava i gruppi\n</string>
   <string name="ChangeLog_0_9_7">
 Versione 0.9.7\n
 * aggiunge il supporto in scrittura per i database di Keepass 1 (kdb) (beta!)\n

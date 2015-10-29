@@ -36,8 +36,8 @@
   <string name="afc_phone">电话</string>
   <string name="afc_pmsg_cannot_access_dir">无法访问「%1$s」</string>
   <string name="afc_pmsg_cannot_create_folder">无法创建「%1$s」文件夹</string>
-  <string name="afc_pmsg_cannot_delete_file">无法删除「%2$s」%1$s</string>
-  <string name="afc_pmsg_confirm_delete_file">是否确实要删除「%2$s」%1$s？</string>
+  <string name="afc_pmsg_cannot_delete_file">无法删除 \"%2$s\" %1$s</string>
+  <string name="afc_pmsg_confirm_delete_file">是否确实要删除 \"%2$s\" %1$s？</string>
   <string name="afc_pmsg_confirm_replace_file">「%1$s」文件已存在。\n\n你想要覆盖它吗？</string>
   <string name="afc_pmsg_deleting_file">正在删除「%2$s」%1$s&#8230;</string>
   <string name="afc_pmsg_file_has_been_deleted">「%2$s」%1$s已删除</string>

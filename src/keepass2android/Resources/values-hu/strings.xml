@@ -10,6 +10,7 @@
   <string name="accept">Elfogadás</string>
   <string name="deny">Elutasít</string>
   <string name="add_entry">Bejegyzés hozzáadása</string>
+  <string name="edit_entry">Bejegyzés szerkesztése</string>
   <string name="add_url_entry">Bejegyzés létrehozása az URL-hez</string>
   <string name="add_group">Csoport hozzáadása</string>
   <string name="add_group_title">Csoport hozzáadása</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">A megjelenített csoport: %1$s</string>
   <string name="ShowGroupInEntry_title">A csoportnév megjelenítése a bejegyzések adatlapján.</string>
   <string name="unknown_uri_scheme">Elnézést, a Keepass2Android nem tudja kezelni a visszaadott URI-t: %1$s. Kérjük, lépjen kapcsolatba a fejlesztővel!</string>
+  <string name="Entry_singular">Egy bejegyzés</string>
+  <string name="Entry_plural">%1$d bejegyzés</string>
   <string name="security_prefs">Biztonság</string>
   <string name="display_prefs">Kijelző</string>
   <string name="password_access_prefs">Hozzáférés a jelszavakhoz</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">Az adatbázis be lett importálva az alkalmazás saját tárterületére.  Használja az OK gombot az adatbázis új tárhelyről való megnyitásához.  Megjegyzés: ne feledkezzen meg az adatbázist rendszeresen egy biztonságos tárhelyre exportálni!</string>
   <string name="KeyfileMoved">A kulcsfájl be lett importálva az alkalmazás saját tárterületére.  Bizonyosodjon meg, hogy rendelkezik egy biztonsági mentéssel, mielőtt a kulcsfájlt az eredeti helyéről letörölné.</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">A kulcsfájlt nem lehet az alkalmazás saját tárterületén tárolni, ha az elérhetősége nincs tárolva.  Módosítsa az ehhez tartozó biztonsági beállítást.</string>
+  <string name="unlock_database_button">Feloldás</string>
+  <string name="unlock_database_title">Adatbázis feloldása</string>
   <string name="brackets">Zárójelek</string>
   <string name="cancel">Mégsem</string>
   <string name="ClearClipboard">Vágólap törölve.</string>
@@ -65,6 +70,7 @@
   <string name="digits">Számok</string>
   <string name="disclaimer_formal">Ehhez a programhoz SEMMILYEN GARANCIA NEM JÁR. Ez egy szabad szoftver, GNU General Public License v2 vagy későbbi verziójának feltételei mellett terjeszthető, illetve módosítható.</string>
   <string name="ellipsis">…</string>
+  <string name="copy_to_clipboard">Másolás vágólapra</string>
   <string name="enter_filename">Adja meg az adatbázis fájlnevét</string>
   <string name="entry_accessed">Utolsó hozzáférés</string>
   <string name="entry_cancel">Mégsem</string>
@@ -85,7 +91,7 @@
   <string name="entry_user_name">Felhasználónév</string>
   <string name="entry_extra_strings">Kiegészítő szövegmezők</string>
   <string name="entry_binaries">Csatolt fájlok</string>
-  <string name="error_can_not_handle_uri">Nem található kezelő ehhez az uri-hez.</string>
+  <string name="error_can_not_handle_uri">Nem található kezelő ehhez az URI-hez.</string>
   <string name="error_could_not_create_group">Hiba a csoport létrehozásakor.</string>
   <string name="error_could_not_create_parent">Nem sikerült létrehozni szülő könyvtárat.</string>
   <string name="error_database_exists">A fájl már létezik.</string>
@@ -149,11 +155,12 @@
   <string name="menu_hide_password">Jelszó elrejtése</string>
   <string name="menu_lock">Adatbázis zárolása</string>
   <string name="menu_open">Megnyitás</string>
+  <string name="menu_close">Bezárás</string>
   <string name="menu_rename">Átnevezés</string>
   <string name="menu_search">Keresés</string>
   <string name="menu_search_advanced">Részletes keresés</string>
   <string name="menu_url">Ugrás az URL-re</string>
-  <string name="menu_change_db">Adatbázis-váltás&#8230;</string>
+  <string name="menu_change_db">Adatbázis-váltás…</string>
   <string name="minus">Mínusz</string>
   <string name="never">Soha</string>
   <string name="yes">Igen</string>
@@ -258,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">Szeretne hozzárendelni a keresett szöveget (\"%1$s\") a kiválasztott bejegyzéshez, hogy legközelebb ennek alapján a mezőt automatikusan ki lehessen tölteni?</string>
   <string name="error_invalid_expiry_date">Érvénytelen lejárati idő!</string>
   <string name="error_string_key">A kiegészítő mezőknek nevet kell adni.</string>
+  <string name="error_string_duplicate_key">Egy mezőnevet nem lehet többször használni (%1$s).</string>
   <string name="field_name">Mezőnév</string>
   <string name="field_value">Mező értéke</string>
   <string name="protection">Védett mező</string>
@@ -314,6 +322,7 @@
   <string name="RecycleBin">Lomtár</string>
   <string name="AskDeletePermanentlyEntry">Nyomja meg az Igen gombot a bejegyzés végleges törléséhez, vagy a Nem gombot Lomtárba helyezéséhez.</string>
   <string name="AskDeletePermanentlyGroup">Nyomja meg az Igen gombot a csoport végleges törléséhez, vagy a Nem gombot Lomtárba helyezéséhez.</string>
+  <string name="AskDeletePermanentlyItems">Véglegesen törölni kívánja a kiválasztott elemet? Válassza a \"Nem\" opciót a lomtárba helyezéshez.</string>
   <string name="AskDeletePermanently_title">Végleges törlés?</string>
   <string name="AskReloadFile_title">Fájl újraolvasása?</string>
   <string name="AskReloadFile">A megnyitott fájlt egy másik program módosította. Szeretné újraolvasni?</string>
@@ -326,6 +335,7 @@
   <string name="AddingGroup">Csoport hozzáadása...</string>
   <string name="DeletingEntry">Bejegyzés törlése&#8230;</string>
   <string name="DeletingGroup">Csoport törlése&#8230;</string>
+  <string name="DeletingItems">Elemek törlése&#8230;</string>
   <string name="SettingPassword">Jelszó beállítása&#8230;</string>
   <string name="UndoingChanges">Módosítások visszavonása&#8230;</string>
   <string name="TransformingKey">Mesterkulcs átalakítása&#8230;</string>
@@ -384,6 +394,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_content">Alapértelmezett fájlválasztó</string>
   <string name="filestorage_setup_title">A fájlhozzáférés inicializálása</string>
   <string name="database_location">Adatbázis helye</string>
   <string name="help_database_location">Az adatbázis tárolhatja helyben, az Android készüléken, vagy a felhőben (csak nem Offline verzió esetén). Keepass2Android biztosítja, hogy az adatbázist akkor is tudja használni, ha nem áll rendelkezésre hálózati kapcsolat.  Az adatbázis biztonságosan, 
@@ -454,9 +465,11 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="CopyFileRequiredForEditing">Módosításhoz egy más helyre kell másolnia.</string>
   <string name="ClickOkToSelectLocation">Kattintson az OK gombra a másolási hely kiválasztásához.</string>
   <string name="CancelReadOnly">Megszakítás, megnyitás csak olvasásra.</string>
+  <string name="AddCustomIcon">Ikon hozzáadása fájlból...</string>
   <string name="CopyingFile">Fájl másolása...</string>
-  <string name="KdbBetaWarning">Figyelem: egy Keepass 1 formátumú adatbázis lett betöltve.  A Keepass 1 formátumú adatbázisok írása a Keepass2Android egy új funkciója, így az alapos tesztelés ellenére sem biztos, hogy minden adat mentése helyes lesz.  Javasoljuk, hogy mindig készítsen mentést az eredeti adatbázisról az adatbázis felülírása előtt.  (A Dropbox automatikusan elmenti az utolsó néhány verziót.)  Kérjük, minden esetleges problémát jelezzen!</string>
   <string name="ChangeLog_title">Verziótörténet</string>
+  <string name="Continue">Folytatás</string>
+  <string name="NoFilenameWarning">A megadott URI nem tűnik fájlnévnek. Biztos benne, hogy jó URI-t adott meg?</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>
     <item>1 perc</item>

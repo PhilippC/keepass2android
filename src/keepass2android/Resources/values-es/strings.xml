@@ -10,6 +10,7 @@
   <string name="accept">Aceptar</string>
   <string name="deny">Denegar</string>
   <string name="add_entry">Añadir entrada</string>
+  <string name="edit_entry">Editar entrada</string>
   <string name="add_url_entry">Crear entrada para URL</string>
   <string name="add_group">Añadir grupo</string>
   <string name="add_group_title">Añadir grupo</string>
@@ -18,7 +19,7 @@
   <string name="algorithm_colon">Algoritmo</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Offline (fuera de línea)</string>
+  <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Tiempo de espera de aplicación</string>
   <string name="app_timeout_summary">Tiempo hasta bloquear la base de datos cuando la aplicación está inactiva.</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Grupo de visualización es ahora: %1$s</string>
   <string name="ShowGroupInEntry_title">Mostrar el nombre del grupo en vista de entrada</string>
   <string name="unknown_uri_scheme">¡ Lo siento! Keepass2Android no puede manejar la URI devuelto %1$s. Póngase en contacto con el desarrollador.</string>
+  <string name="Entry_singular">Una entrada</string>
+  <string name="Entry_plural">%1$d entradas</string>
   <string name="security_prefs">Seguridad</string>
   <string name="display_prefs">Visualización</string>
   <string name="password_access_prefs">Acceso con contraseña</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">El archivo de la base de datos ha sido copiado en la carpeta interna. Pulse Aceptar para abrir desde la nueva ubicación. Nota: No olvide regularmente exportar la base de datos a un almacenamiento seguro!</string>
   <string name="KeyfileMoved">El archivo de claves ha sido copiado a la carpeta interna. Asegúrese que tiene una copia de seguridad valida antes de eliminar desde la ubicación actual.</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">No se puede usar la carpeta interna cuando no se recuerda la ubicación del archivo de clave. Cambiar preferencias de seguridad.</string>
+  <string name="unlock_database_button">Desbloquear</string>
+  <string name="unlock_database_title">Desbloquear la base de datos</string>
   <string name="brackets">Paréntesis</string>
   <string name="cancel">Cancelar</string>
   <string name="ClearClipboard">Portapapeles vaciado.</string>
@@ -150,11 +155,12 @@
   <string name="menu_hide_password">Ocultar Contraseña</string>
   <string name="menu_lock">Bloquear Base de datos</string>
   <string name="menu_open">Abrir</string>
+  <string name="menu_close">Cerrar</string>
   <string name="menu_rename">Renombar</string>
   <string name="menu_search">Buscar</string>
   <string name="menu_search_advanced">Búsqueda Avanzada</string>
   <string name="menu_url">Ir a URL</string>
-  <string name="menu_change_db">Cambiar base de datos&#8230;</string>
+  <string name="menu_change_db">Cambiar base de datos…</string>
   <string name="minus">Menos</string>
   <string name="never">Nunca</string>
   <string name="yes">Sí</string>
@@ -216,7 +222,7 @@
   <string name="please_note">Tenga en cuenta</string>
   <string name="contributors">Colaboradores</string>
   <string name="regular_expression">Expresión común</string>
-  <string name="TanExpiresOnUse_title">Tan caduca con el uso</string>
+  <string name="TanExpiresOnUse_title">TAN caduca con el uso</string>
   <string name="TanExpiresOnUse_summary">Marcar entradas TAN vencidas al usarlas</string>
   <string name="ShowUsernameInList_title">Mostrar Usuario en la lista</string>
   <string name="ShowUsernameInList_summary">Mostrar nombres de usuario por debajo de los títulos de entrada. Útil para múltiples cuentas o TANs.</string>
@@ -226,7 +232,7 @@
   <string name="excludeExpiredEntries">Excluir las entradas caducadas</string>
   <string name="search_options">Opciones</string>
   <string name="caseSensitive">Distingue mayúsculas</string>
-  <string name="start_open_file">Abrir el archivo...</string>
+  <string name="start_open_file">Abrir archivo...</string>
   <string name="start_create">Crear nueva base de datos...</string>
   <string name="start_open_url">Abrir URL...</string>
   <string name="start_create_import">Importar archivo a una nueva base de datos...</string>
@@ -253,12 +259,13 @@
   <string name="SaveAttachmentDialog_text">Por favor seleccione dónde guardar el archivo adjunto.</string>
   <string name="SaveAttachmentDialog_save">Guardar en la tarjeta SD</string>
   <string name="SaveAttachmentDialog_open">Guardar en la caché y abrir</string>
-  <string name="SaveAttachment_doneMessage">Guardar el archivo en %1$s.</string>
+  <string name="SaveAttachment_doneMessage">Archivo guardado en %1$s.</string>
   <string name="SaveAttachment_Failed">No se puede guardar el archivo adjunto en %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Recordar el texto de búsqueda?</string>
   <string name="AddUrlToEntryDialog_text">¿Quiere guardar el texto de buqueda \"%1$s\" en la entrada seleccionada para encontrarlo automáticamente la próxima vez?</string>
   <string name="error_invalid_expiry_date">¡Formato de fecha/hora no válida para establecer fecha de caducidad!</string>
   <string name="error_string_key">Se requiere un nombre por cada entrada.</string>
+  <string name="error_string_duplicate_key">Un nombre de campo no puede utilizarse dos veces (%1$s).</string>
   <string name="field_name">Nombre del campo</string>
   <string name="field_value">Valor del campo</string>
   <string name="protection">Campo protegido</string>
@@ -315,6 +322,7 @@
   <string name="RecycleBin">Papelera de reciclaje</string>
   <string name="AskDeletePermanentlyEntry">¿Desea eliminar esta entrada de forma permanente? Presione No para mover a la Papelera de reciclaje.</string>
   <string name="AskDeletePermanentlyGroup">¿Desea eliminar este grupo de forma permanente? Presione No para reciclar.</string>
+  <string name="AskDeletePermanentlyItems">¿Desea eliminar permanentemente los elementos seleccionados? Presione No para reciclar.</string>
   <string name="AskDeletePermanently_title">¿Borrar permanentemente?</string>
   <string name="AskReloadFile_title">¿Volver a cargar el archivo?</string>
   <string name="AskReloadFile">El archivo que está actualmente abierto fue modificado por otro programa. ¿Desea la recarga?</string>
@@ -327,6 +335,7 @@
   <string name="AddingGroup">Añadiendo grupo&#8230;</string>
   <string name="DeletingEntry">Eliminando entrada&#8230;</string>
   <string name="DeletingGroup">Eliminando grupo&#8230;</string>
+  <string name="DeletingItems">Eliminando elementos&#8230;</string>
   <string name="SettingPassword">Estableciendo contraseña&#8230;</string>
   <string name="UndoingChanges">Deshaciendo cambios&#8230;</string>
   <string name="TransformingKey">Transformación de llave maestra&#8230;</string>
@@ -384,6 +393,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferencia de archivos)</string>
+  <string name="filestoragename_content">Selector de archivo del sistema</string>
   <string name="filestorage_setup_title">Inicialización de acceso de archivo</string>
   <string name="database_location">Ubicación de la base de datos</string>
   <string name="help_database_location">Puede almacenar su base de datos localmente en su dispositivo Android o en la nube(solo en la versión non-Offline). Keepass2Android permite acceder a la base de datos aun cuando estas sin conexión a Internet. Como la base de datos es encriptada de forma segura con una encriptación AES de 256 bit, nadie podrá acceder a sus contraseñas a excepción de usted. Recomendamos el uso de Dropbox ya que es se puede utilizar desde todos los dispositivos y también proporciona copias de seguridad de las versiones anteriores de las bases de datos.</string>
@@ -453,10 +463,43 @@
   <string name="CopyFileRequiredForEditing">Para editarlo, debe copiar el archivo a otra ubicación.</string>
   <string name="ClickOkToSelectLocation">Haga clic en OK para seleccionar una ubicación donde se debe copiar el archivo.</string>
   <string name="CancelReadOnly">Cancela, abrir sólo lectura.</string>
+  <string name="AddCustomIcon">Agregar icono desde archivo...</string>
   <string name="CopyingFile">Copiando archivos...</string>
-  <string name="KdbBetaWarning">Nota: Ud. ha cargado una base de datos Keepass 1. Keepass2Android recientemente ha añadido soporte de escritura para este formato de base de datos. A pesar de pruebas exhaustivas, el autor no garantiza que se guardarán todos los datos correctamente. Por favor, mantenga siempre una copia de seguridad de la base de datos original (Dropbox almacena automáticamente las versiones recientes) antes de realizar cambios. Por favor informe cualquier problema. ¡Gracias!</string>
   <string name="ChangeLog_title">Registro de cambios</string>
   <string name="PreviewWarning">¡Tener en cuenta! Esto es un preview release y posiblemente puede incluir algunos errores! Si experimenta *cualquier cosa* inesperada, por favor, ¡hágamelo saber (en Codeplex o por correo electrónico)!.</string>
+  <string name="Continue">Continuar</string>
+  <string name="NoFilenameWarning">El URI que ha introducido no parece ser un nombre de archivo. ¿Está seguro que es un archivo válido?</string>
+  <string name="ChangeLog_0_9_8c">
+    Versión 0.9.8c\n
+    * Arreglo para vulnerabilidad SSL en Microsoft Live SDK (usado para accessar archivos de OneDrive)\n
+    * Arreglo de pulga: Versión anterior contenía dos métodos de entrada (uno fallaba)\n
+  </string>
+  <string name="ChangeLog_0_9_9">
+		Versión 0.9.9\n
+		* Completo rediseño de interfaz gráfica. Muchas gracias a Stefano Pignataro (http://www.spstudio.at) por su ayuda!\n
+    * Permite agregar íconos personalizados\n
+    * Soporta Multi Ventanas en dispositivos Samsung\n
+    * Se incrementó el número rondas de cifrado por defecto para bases de datos nuevas\n
+    * Busca llaves duplicadas de campos adicionales para evitar perder datos\n
+    
+	</string>
+  <string name="ChangeLog_0_9_8b">
+		Versión 0.9.8b\n
+		* Arreglo de pulgas (Guardar fallaba en algunas bases de datos, exportar a dispositivo local no funcionaba, seleccionar algunas opciones hacía que la aplicación se cerrara)\n
+	</string>
+  <string name="ChangeLog_0_9_8">
+		Versión 0.9.8\n
+		* Soporte para Storage Access Framework (permite escribir a tarjeta SD y Google Drive en KP2A Offline)\n
+		* Intenta detectar entradas de usuario erróneas cuando se ingresa URLs de WebDAV (directorio en lugar de archivo)\n
+		* Se cambió el tipo de letra de las contraseñas\n
+		* Permite cambiar la cuenta de Dropbox\n
+		* Pulga arreglada: Ahora recuerda contraseñas OTP\n
+	</string>
+  <string name="ChangeLog_0_9_7b">
+		Versión 0.9.7b\n
+		* Traducciones actualizadas\n
+		* Pulgas arregladas: Fuente de contraseña no estaba en 0.9.7, ordenar por nombre no ordenaba los grupos\n
+	</string>
   <string name="ChangeLog_0_9_7">
 Versión 0.9.7\n
 * escriba soporte para bases de datos de Keepass 1 (kdb) (beta).\n

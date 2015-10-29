@@ -10,6 +10,7 @@
   <string name="accept">Принять</string>
   <string name="deny">Отклонить</string>
   <string name="add_entry">Добавить запись</string>
+  <string name="edit_entry">Редактировать запись</string>
   <string name="add_url_entry">Создать запись для URL</string>
   <string name="add_group">Добавить группу</string>
   <string name="add_group_title">Добавить группу</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Отображение группы сейчас: %1$s</string>
   <string name="ShowGroupInEntry_title">Показывать имя группы при просмотре записи</string>
   <string name="unknown_uri_scheme">Извините! Keepass2Android не может обработать возвращаемый URI %1$s. Свяжитесь с разработчиком!</string>
+  <string name="Entry_singular">Одна запись</string>
+  <string name="Entry_plural">%1$d записей</string>
   <string name="security_prefs">Безопасность</string>
   <string name="display_prefs">Отображение</string>
   <string name="password_access_prefs">Парольный доступ</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">Файл базы данных был скопирован во внутреннюю папку. Нажмите Ok, чтобы открыть его из нового расположения. Примечание: не забывайте регулярно экспортировать базу данных в безопасное место хранения!</string>
   <string name="KeyfileMoved">Ключевой файл был скопирован во внутреннюю папку. Убедитесь, что у вас есть резервная копия файла, прежде чем удалять его!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Невозможно использовать внутреннюю папку, пока расположение файла-ключа не сохранено. Измените настройки безопасности.</string>
+  <string name="unlock_database_button">Разблокировка</string>
+  <string name="unlock_database_title">Разблокировать базу данных</string>
   <string name="brackets">Скобки</string>
   <string name="cancel">Отмена</string>
   <string name="ClearClipboard">Буфер обмена очищен.</string>
@@ -150,11 +155,12 @@
   <string name="menu_hide_password">Скрыть пароль</string>
   <string name="menu_lock">Блокировка базы данных</string>
   <string name="menu_open">Открыть</string>
+  <string name="menu_close">Закрыть</string>
   <string name="menu_rename">Переименовать</string>
   <string name="menu_search">Поиск</string>
   <string name="menu_search_advanced">Расширенный поиск</string>
   <string name="menu_url">Ссылка</string>
-  <string name="menu_change_db">Изменить базу данных&#8230;</string>
+  <string name="menu_change_db">Изменить базу данных…</string>
   <string name="minus">Минус</string>
   <string name="never">Никогда</string>
   <string name="yes">Да</string>
@@ -259,6 +265,7 @@
   <string name="AddUrlToEntryDialog_text">Вы хотели бы сохранить поисковый запрос \"%1$s\" в выбранной записи, чтобы найти его автоматически в следующий раз?</string>
   <string name="error_invalid_expiry_date">Неверный формат даты/времени для срока окончания!</string>
   <string name="error_string_key">Имя поля обязательно для каждой строки.</string>
+  <string name="error_string_duplicate_key">Имя поля не может быть использовано дважды (%1$s).</string>
   <string name="field_name">Имя поля</string>
   <string name="field_value">Значение поля</string>
   <string name="protection">Защищённое поле</string>
@@ -315,6 +322,7 @@
   <string name="RecycleBin">Корзина</string>
   <string name="AskDeletePermanentlyEntry">Вы хотите окончательно удалить эту запись? Нажмите Нет, чтобы переместить в корзину.</string>
   <string name="AskDeletePermanentlyGroup">Вы хотите окончательно удалить эту группу? Нажмите Нет, чтобы переместить в корзину.</string>
+  <string name="AskDeletePermanentlyItems">Вы хотите удалить навсегда выбранные элементы? Нажмите No для отмены.</string>
   <string name="AskDeletePermanently_title">Окончательно удалить?</string>
   <string name="AskReloadFile_title">Перезагрузить файл?</string>
   <string name="AskReloadFile">Был изменен файл, который в настоящее время открыт другой программой. Вы хотите перезагрузить его?</string>
@@ -327,6 +335,7 @@
   <string name="AddingGroup">Добавление группы&#8230;</string>
   <string name="DeletingEntry">Удаление записи&#8230;</string>
   <string name="DeletingGroup">Удаление группы&#8230;</string>
+  <string name="DeletingItems">Удаление элементов&#8230;</string>
   <string name="SettingPassword">Установка пароля&#8230;</string>
   <string name="UndoingChanges">Отмена изменений&#8230;</string>
   <string name="TransformingKey">Преобразование мастер-ключа&#8230;</string>
@@ -384,6 +393,7 @@
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлов)</string>
+  <string name="filestoragename_content">Системный выбор файла</string>
   <string name="filestorage_setup_title">Инициализация доступа к файлу</string>
   <string name="database_location">Расположение базы данных</string>
   <string name="help_database_location">Вы можете хранить базу данных локально на своём Adnroid-устройстве или в облаке (только для онлайн-версии). Keepass2Android даёт возможность доступа к базе даже при отсутствии доступа к сети. Так как база данных зашифрована 256-битным AES алгоритмом, никто, кроме Вас, не сможет получить доступ к паролям. Мы рекомендуем использовать Dropbox - он доступен на всех платформах и сохраняет предыдущие версии файлов.</string>
@@ -453,10 +463,38 @@
   <string name="CopyFileRequiredForEditing">Чтобы редактировать его, нужно скопировать в другое место.</string>
   <string name="ClickOkToSelectLocation">Нажмите OK чтобы выбрать место куда файл должен быть скопирован.</string>
   <string name="CancelReadOnly">Отмена, только для чтения.</string>
+  <string name="AddCustomIcon">Добавить значок из файла...</string>
   <string name="CopyingFile">Файл копируется...</string>
-  <string name="KdbBetaWarning">Обратите внимание: вы загрузили базу данных в формате Keepass 1. В Keepass2Android недавно была добавлена поддержка записи в этот формат базы. Несмотря на тщательное тестирование, автор не гарантирует полного и корректного сохранения данных. Пожалуйста, создавайте отдельную резервную копию оригинальной базы (Dropbox автоматически сохраняет предыдущие версии) перед внесением изменений. Пожалуйста, сообщайте обо всех найденных ошибках. Спасибо!</string>
   <string name="ChangeLog_title">Список изменений</string>
   <string name="PreviewWarning">Пожалуйста, обратите внимание! Это предварительный релиз и он может содержать некоторые недостатки! Если вы встретитесь с *чем-то* неожиданным, пожалуйста, дайте мне знать (на сайте Codeplex или по электронной почте).</string>
+  <string name="Continue">Продолжить</string>
+  <string name="NoFilenameWarning">URI, который Вы ввели, не похож на имя файла. Вы уверены, что это правильно?</string>
+  <string name="ChangeLog_0_9_8c">
+Версия 0.9.8c\n
+* Исправление уязвимости SSL в Microsoft Live SDK (используется при доступе к файлам через OneDrive) \n
+* Исправление ошибок: предыдущая версия содержала два методы ввода (один сбоил) \n  </string>
+  <string name="ChangeLog_0_9_9">
+Версия 0.9.9\n
+* Полный редизайн пользовательского интерфейса. Большое спасибо Stefano Pignataro (http://www.spstudio.at) за его поддержку! \n
+* Возможность добавления пользовательских значков\n
+* Поддержка многооконного режима на устройствах Samsung\n
+* Увеличено по-умолчанию количество циклов шифрования для новых баз данных\n
+* Проверка на повторяющиеся ключи дополнительных полей, чтобы избежать потери данных\n</string>
+  <string name="ChangeLog_0_9_8b">
+Версия 0.9.8b\n
+* Исправление ошибок (неудачное сохранение для некоторых баз данных, экспорт на локальное устройство не работал, выбор некоторых параметров приводил к ошибке в приложении) \n</string>
+  <string name="ChangeLog_0_9_8">
+Версия 0.9.8 \n
+* Поддержка Storage Access Framework (позволяет записывать на SD карту и Google Диск в KP2A оффлайн) \n
+* Попытка обнаружить ошибки пользовательского ввода при вводе URL WebDAV (каталог вместо файла) \n
+* Изменен шрифт пароля\n
+* Разрешено изменять аккаунт Dropbox\n
+* Исправлена ошибка: Запоминание OTP пароля\n</string>
+  <string name="ChangeLog_0_9_7b">
+Версия 0.9.7b\n
+* обновление переводов\n
+* исправление ошибок: шрифт пароля был утерян в 0.9.7, сортировка по имени не сортировала группы\n
+	</string>
   <string name="ChangeLog_0_9_7">
 Версия 0.9.7\n
 * Поддержка записи в файлы баз Keepass 1 (kdb) (beta!)\n
