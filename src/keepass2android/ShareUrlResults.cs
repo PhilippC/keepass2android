@@ -99,12 +99,16 @@ namespace keepass2android
 			{
 				//first: search for exact url
 				Group = _db.SearchForExactUrl(url);
-				//if no results, search for host (e.g. "accounts.google.com")
-				if (!Group.Entries.Any())
-					Group = _db.SearchForHost(url, false);
-				//if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
-				if (!Group.Entries.Any())
-					Group = _db.SearchForHost(url, true);
+				if (!url.StartsWith("androidapp://"))
+				{
+					//if no results, search for host (e.g. "accounts.google.com")
+					if (!Group.Entries.Any())
+						Group = _db.SearchForHost(url, false);
+					//if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
+					if (!Group.Entries.Any())
+						Group = _db.SearchForHost(url, true);
+					
+				}
 				//if no results returned up to now, try to search through other fields as well:
 				if (!Group.Entries.Any())
 					Group = _db.SearchForText(url);
