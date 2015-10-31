@@ -96,7 +96,7 @@
   <style name="MyTheme_Blue" parent="MyTheme">
     <item name="colorPrimary">@color/appAccentColor</item>
     <!-- colorPrimaryDark is used for the status bar -->
-    <item name="colorPrimaryDark">@color/appAccentColor</item>
+    <item name="colorPrimaryDark">@color/appAccentColorDark</item>
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
     <item name="colorAccent">@color/appAccentColor</item>

@@ -35,7 +35,6 @@ android:fitsSystemWindows="true">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/BottomBarButton" 
-        android:singleLine="true" 
         android:id="@+id/QuickUnlock_buttonLock"
         android:layout_alignParentLeft="true"
          />

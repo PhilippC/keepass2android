@@ -114,6 +114,7 @@ namespace keepass2android
 		    
 
 			Button btnLock = (Button) FindViewById(Resource.Id.QuickUnlock_buttonLock);
+			btnLock.Text = btnLock.Text.Replace("ß", "ss");
 			btnLock.Click += (object sender, EventArgs e) =>
 				{
 					App.Kp2a.LockDatabase(false);
