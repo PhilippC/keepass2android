@@ -86,7 +86,8 @@ namespace keepass2android
 				IconPickerActivity.Launch (this);
 			};
 			_selectedIconId = (int) PwIcon.FolderOpen;
-			iconButton.SetImageResource(Icons.IconToResId((PwIcon)_selectedIconId, true));
+			
+			iconButton.SetImageDrawable(App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(this, App.Kp2a.GetDb().KpDatabase, (PwIcon)_selectedIconId, null, true));
 
 			Button okButton = (Button)FindViewById (Resource.Id.ok);
 			okButton.Click += (sender, e) => {
@@ -119,7 +120,7 @@ namespace keepass2android
 				_selectedCustomIconId = _groupToEdit.CustomIconUuid;
 				TextView nameField = (TextView)FindViewById(Resource.Id.group_name);
 				nameField.Text = _groupToEdit.Name;
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iconButton, Resources, App.Kp2a.GetDb().KpDatabase, _groupToEdit.IconId, _groupToEdit.CustomIconUuid, false);
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iconButton, this, App.Kp2a.GetDb().KpDatabase, _groupToEdit.IconId, _groupToEdit.CustomIconUuid, false);
 				SetTitle(Resource.String.edit_group_title);
 			}
 			else
@@ -149,7 +150,7 @@ namespace keepass2android
 						_selectedCustomIconId = new PwUuid(MemUtil.HexStringToByteArray(customIconIdString));
 
 					ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-					App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, Resources, App.Kp2a.GetDb().KpDatabase, (PwIcon) _selectedIconId, _selectedCustomIconId, false);
+					App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, this, App.Kp2a.GetDb().KpDatabase, (PwIcon) _selectedIconId, _selectedCustomIconId, false);
 					break;
 			}
 		}

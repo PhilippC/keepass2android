@@ -45,6 +45,8 @@ namespace keepass2android
 		public const String KeyEntry = "entry";
 		public const String KeyMode = "mode";
 
+		private ActivityDesign _design;
+
 		public virtual void LaunchActivityForEntry(PwEntry pwEntry, int pos)
 		{
 			EntryActivity.Launch(this, pwEntry, pos, AppTask);
@@ -52,7 +54,7 @@ namespace keepass2android
 
 		protected GroupBaseActivity ()
 		{
-
+			_design = new ActivityDesign(this);
 		}
 
 		protected GroupBaseActivity (IntPtr javaReference, JniHandleOwnership transfer)
@@ -181,6 +183,7 @@ namespace keepass2android
 
 		protected override void OnResume() {
 			base.OnResume();
+			_design.ReapplyTheme();
 			AppTask.StartInGroupActivity(this);
 			AppTask.SetupGroupBaseActivityButtons(this);
 			
@@ -216,7 +219,7 @@ namespace keepass2android
 
 	    protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
-
+			_design.ApplyTheme();
 			Android.Util.Log.Debug("KP2A", "Creating GBA");
 
 			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
@@ -314,7 +317,7 @@ namespace keepass2android
 		
 		protected void SetGroupIcon() {
 			if (Group != null) {
-				Drawable drawable = App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(Resources, App.Kp2a.GetDb().KpDatabase, Group.IconId, Group.CustomIconUuid, true);
+				Drawable drawable = App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(this, App.Kp2a.GetDb().KpDatabase, Group.IconId, Group.CustomIconUuid, true);
 			    SupportActionBar.SetDisplayShowHomeEnabled(true);
 			    //SupportActionBar.SetIcon(drawable);
 			}

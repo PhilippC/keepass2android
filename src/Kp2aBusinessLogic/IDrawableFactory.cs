@@ -1,3 +1,4 @@
+using Android.Content;
 using Android.Widget;
 using Android.Content.Res;
 using KeePassLib;
@@ -7,10 +8,11 @@ namespace keepass2android
 {
     public interface IDrawableFactory
     {
-        void AssignDrawableTo (ImageView iv, Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup);
+		void AssignDrawableTo(ImageView iv, Context context, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup);
 
-		Drawable GetIconDrawable(Resources res, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup);
+		Drawable GetIconDrawable(Context context, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup);
 
+		bool IsWhiteIconSet { get; }
 
         void Clear();
     }

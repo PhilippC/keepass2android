@@ -70,6 +70,9 @@ namespace keepass2android.view
 			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
 			_textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
 
+			
+			ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = App.Kp2a.GetDb().DrawableFactory.IsWhiteIconSet ?  ViewStates.Visible : ViewStates.Gone;
+
 			_textviewDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
 			_textviewDetails.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
 
@@ -104,10 +107,10 @@ namespace keepass2android.view
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
 			if (isExpired)
 			{
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Context, App.Kp2a.GetDb().KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
 			} else
 			{
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Resources, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid, false);
+				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Context, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid, false);
 			}
 
 			String title = pw.Strings.ReadSafe(PwDefs.TitleField);

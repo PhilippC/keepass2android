@@ -191,6 +191,11 @@
 			  android:dialogTitle="@string/list_size_summary"
 			  android:defaultValue="@string/list_size_default"/>
 
+      <keepass2android.IconSetPreference
+                android:title="@string/IconSet_title"
+                android:persistent="false"
+                android:key="IconSetKey"/>
+
 			<CheckBoxPreference
 				android:enabled="true"
 					 android:persistent="true"

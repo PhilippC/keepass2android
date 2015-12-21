@@ -17,8 +17,12 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
+using Android.Content.Res;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
@@ -26,6 +30,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using keepass2android.Io;
+using Object = Java.Lang.Object;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace keepass2android
@@ -76,6 +81,8 @@ namespace keepass2android
             
         }
     }
+
+
 
 	/// <summary>
 	/// Activity to configure the application, without database settings. Does not require an unlocked database, or close when the database is locked

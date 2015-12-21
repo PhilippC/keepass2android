@@ -175,6 +175,12 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@id/Credit"
 			android:text="@string/CreditsTextSFTP" />
+    <TextView
+			android:id="@+id/Credit3"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/Credit2"
+			android:text="@string/CreditsIcons" />
 	</RelativeLayout>
 
 </ScrollView>

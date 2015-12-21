@@ -34,11 +34,12 @@
         app:showAsAction="ifRoom"
     />
     <item android:id="@+id/menu_donate"
+          android:icon="@drawable/ic_menu_donatebeer"
         android:title="@string/menu_donate"
         app:showAsAction="ifRoom"
     />
     <item android:id="@+id/menu_app_settings"
-        android:icon="@android:drawable/ic_menu_preferences"
+        android:icon="@drawable/ic_menu_settings"
         android:title="@string/menu_app_settings"
         app:showAsAction="ifRoom"
     />

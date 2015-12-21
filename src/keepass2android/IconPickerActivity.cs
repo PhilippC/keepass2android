@@ -21,6 +21,7 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
+using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 using KeePassLib;
@@ -164,7 +165,7 @@ namespace keepass2android
 			{
 				get
 				{
-					return Icons.Count() + _db.CustomIcons.Count;
+					return (int)PwIcon.Count + _db.CustomIcons.Count;
 				}
 			}
 			
@@ -193,17 +194,26 @@ namespace keepass2android
 				TextView tv = (TextView) currView.FindViewById(Resource.Id.icon_text);
 				ImageView iv = (ImageView) currView.FindViewById(Resource.Id.icon_image);
 						
-				if (position < Icons.Count())
+				if (position < (int)PwIcon.Count)
 				{
 					tv.Text = "" + position;
-					iv.SetImageResource(Icons.IconToResId((KeePassLib.PwIcon) position, false));
-					Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
-					Color color = new Color(189, 189, 189);
-					iv.SetColorFilter(color, mMode);
+					App.Kp2a.GetDb()
+						.DrawableFactory.AssignDrawableTo(iv, _act, App.Kp2a.GetDb().KpDatabase, (KeePassLib.PwIcon) position, null, false);
+
+					if (
+						PreferenceManager.GetDefaultSharedPreferences(currView.Context)
+							.GetString("IconSetKey", currView.Context.PackageName) == currView.Context.PackageName)
+					{
+						Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+						Color color = new Color(189, 189, 189);
+						iv.SetImageDrawable(iv.Drawable.Mutate());
+						iv.SetColorFilter(color, mMode);	
+					}
+					
 				}
 				else
 				{
-					int pos = position - Icons.Count();
+					int pos = position - (int)PwIcon.Count;
 					var icon = _db.CustomIcons[pos];
 					tv.Text = pos.ToString();
 					iv.SetColorFilter(null);
@@ -216,14 +226,14 @@ namespace keepass2android
 
 			public bool IsCustomIcon(int position)
 			{
-				return position >= Icons.Count();
+				return position >= (int)PwIcon.Count;
 			}
 
 			public PwCustomIcon GetCustomIcon(int position)
 			{
 				if (!IsCustomIcon(position))
 					return null;
-				return _db.CustomIcons[position - Icons.Count()];
+				return _db.CustomIcons[position - (int)PwIcon.Count];
 			}
 		}
 	}

@@ -9,6 +9,8 @@ namespace keepass2android
 
 		private int? _currentThemeId;
 
+		private string _currentIconSet;
+
 		public ActivityDesign(Activity activity)
 		{
 			_activity = activity;
@@ -24,6 +26,8 @@ namespace keepass2android
 				_activity.SetTheme(newTheme);
 				_currentThemeId = newTheme;
 			}*/
+			_currentIconSet = PreferenceManager.GetDefaultSharedPreferences(_activity)
+				.GetString("IconSetKey", _activity.PackageName);
 		}
 
 		public void ReapplyTheme()
@@ -36,10 +40,17 @@ namespace keepass2android
 				{
 					Kp2aLog.Log("recreating due to theme change.");
 					_activity.Recreate();
+					return;
 				}	
 			}
 			*/
-			
+			if (PreferenceManager.GetDefaultSharedPreferences(_activity)
+				.GetString("IconSetKey", _activity.PackageName) != _currentIconSet)
+			{
+				Kp2aLog.Log("recreating due to icon set change.");
+				_activity.Recreate();
+				
+			}
 		}
 
 		public bool UseDarkTheme

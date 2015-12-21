@@ -6,6 +6,7 @@
   <string name="AboutText">Keepass2Android is a password manager providing read/write access to KeePass 2.x databases on Android.</string>
   <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP support is implemented using the JSch library under BSD licence, created by JCraft, Inc.</string>
+  <string name="CreditsIcons">The Hammer Icon is Created by John Caserta from the Noun Project. The Penguin Icon is Created by Adriano Emerick from the Noun Project. The Feather icon is Created by Jon Testa from the Noun Project. The Apple icon is Created by Ava Rowell from the Noun Project. </string>
   <string name="accept">Accept</string>
   <string name="deny">Deny</string>
   <string name="add_entry">Add entry</string>
@@ -37,6 +38,9 @@
 
 	<string name="Entry_singular">One entry</string>
 	<string name="Entry_plural">%1$d entries</string>
+
+  <string name="IconSet_title">Icon set</string>
+  <string name="IconSet_install">Find more...</string>
 
 	<string name="security_prefs">Security</string>
 	<string name="display_prefs">Display</string>
