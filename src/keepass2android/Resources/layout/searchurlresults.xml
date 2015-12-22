@@ -4,7 +4,7 @@
     android:fitsSystemWindows="true"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#fff">
+    android:background="?activityBackgroundColor">
   <LinearLayout
       android:id="@+id/top"
       android:layout_width="match_parent"

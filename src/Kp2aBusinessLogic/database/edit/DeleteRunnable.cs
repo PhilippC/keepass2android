@@ -107,17 +107,23 @@ namespace keepass2android
 			else { System.Diagnostics.Debug.Assert(pgRecycleBin.Uuid.Equals(Db.KpDatabase.RecycleBinUuid)); }
 		}
 
-		protected abstract UiStringKey QuestionsResourceId
+		protected abstract UiStringKey QuestionRecycleResourceId
 		{
 			get;
 		}
+
+		protected abstract UiStringKey QuestionNoRecycleResourceId
+		{
+			get;
+		}
+
 
 		public void Start()
 		{
 			if (CanRecycle)
 			{
 				App.AskYesNoCancel(UiStringKey.AskDeletePermanently_title,
-					QuestionsResourceId,
+					QuestionRecycleResourceId,
 					(dlgSender, dlgEvt) =>
 					{
 						DeletePermanently = true;
@@ -138,11 +144,22 @@ namespace keepass2android
 			}
 			else
 			{
-				ProgressTask pt = new ProgressTask(App, Ctx, this);
-				pt.Run();
+				App.AskYesNoCancel(UiStringKey.AskDeletePermanently_title,
+					QuestionNoRecycleResourceId,
+					(dlgSender, dlgEvt) =>
+					{
+						ProgressTask pt = new ProgressTask(App, Ctx, this);
+						pt.Run();
+					},
+				null,
+				(dlgSender, dlgEvt) => { },
+				Ctx);
+
+				
 			}
 		}
 
+		
 		protected void DoDeleteEntry(PwEntry pe, List<PwGroup> touchedGroups)
 		{
 			PwDatabase pd = Db.KpDatabase;

@@ -48,12 +48,16 @@ private static Drawable _blank;
 	 *  Keys: Integer, Values: Drawables
 	 */
 		private readonly Dictionary<int/*icon key*/, Drawable> _standardIconMap = new Dictionary<int, Drawable>();
-			
-		public void AssignDrawableTo (ImageView iv, Context context, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup)
+
+		public void AssignDrawableTo(ImageView iv, Context context, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup)
 		{
 			Drawable draw = GetIconDrawable (context, db, icon, customIconId, forGroup);
 			if (draw != null)
+			{
+				draw = draw.Mutate();
 				iv.SetImageDrawable(draw);
+			}
+				
 			else
 				Kp2aLog.Log("icon not found : " + icon);
 		}
@@ -171,6 +175,7 @@ private static Drawable _blank;
 			_standardIconMap.Clear ();
 			_customIconMap.Clear ();
 		}
+
 
 	}
 }

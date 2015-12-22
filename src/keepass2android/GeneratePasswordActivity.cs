@@ -29,7 +29,13 @@ namespace keepass2android
     [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden)]		    
     public class GeneratePasswordActivity : LockCloseActivity {
 		private readonly int[] _buttonIds  = new[]  {Resource.Id.btn_length6, Resource.Id.btn_length8, Resource.Id.btn_length12, Resource.Id.btn_length16};
-		
+
+	    private ActivityDesign _design;
+	    public GeneratePasswordActivity()
+	    {
+		    _design = new ActivityDesign(this);
+	    }
+
 		public static void Launch(Activity act) {
 			Intent i = new Intent(act, typeof(GeneratePasswordActivity));
 			
@@ -48,6 +54,7 @@ namespace keepass2android
 		
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
+			_design.ApplyTheme();
 			SetContentView(Resource.Layout.generate_password);
 			SetResult(KeePass.ExitNormal);
 

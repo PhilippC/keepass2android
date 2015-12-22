@@ -357,6 +357,11 @@
   <string name="AskDeletePermanentlyEntry">Do you want to delete this entry permanently? Press No to recycle.</string>
   <string name="AskDeletePermanentlyGroup">Do you want to delete this group permanently? Press No to recycle.</string>
   <string name="AskDeletePermanentlyItems">Do you want to delete the selected elements permanently? Press No to recycle.</string>
+
+  <string name="AskDeletePermanentlyEntryNoRecycle">Do you want to delete this entry permanently?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Do you want to delete this group permanently?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Do you want to delete the selected elements permanently?</string>
+  
   <string name="AskDeletePermanently_title">Delete permanently?</string>
   <string name="AskReloadFile_title">Reload file?</string>
   <string name="AskReloadFile">The file which is currently open was changed by another program. Do you want to reload it?</string>
@@ -780,8 +785,8 @@ Initial public release
   </string-array>
 
 	<string-array name="design_options">
-		<item>Holo Light</item>
-		<item>Holo Dark</item>
+		<item>Light</item>
+		<item>Dark</item>
 	</string-array>
 
 	<string name="design_title">Design</string>

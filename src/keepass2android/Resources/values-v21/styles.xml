@@ -17,6 +17,19 @@
     <item name="actionModeBackground">@color/appAccentColor</item>
   </style>
 
+  <style name="MyTheme_Dark" parent="MyTheme_Dark.Base">
+    <item name="android:windowContentTransitions">true</item>
+    <item name="android:windowAllowEnterTransitionOverlap">true</item>
+    <item name="android:windowAllowReturnTransitionOverlap">true</item>
+    <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+    <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+    <item name="android:actionModeBackground">@color/appAccentColor</item>
+  </style>
+  <style name="MyTheme_ActionBar_Dark" parent="MyTheme_ActionBar_Dark.Base">
+    <item name="android:actionModeBackground">@color/appAccentColor</item>
+    <item name="actionModeBackground">@color/appAccentColor</item>
+  </style>
+
   <style name="EntryFieldHeader">
     <item name="android:drawablePadding">2dp</item>
     <item name="android:layout_marginLeft">0dip</item>

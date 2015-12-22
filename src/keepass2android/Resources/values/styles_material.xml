@@ -17,6 +17,136 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+  <style name="MyTheme_ActionBar.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:windowNoTitle">true</item>
+    <item name="windowActionBar">true</item>
+    <item name="colorPrimary">@color/appPrimaryColor</item>
+    <item name="colorPrimaryDark">@color/appPrimaryDarkColor</item>
+    <item name="colorAccent">@color/appAccentColor</item>
+    <item name="activityBackgroundColor">@color/bgColorLight</item>
+    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+    <item name="actionModeBackground">@color/appPrimaryDarkColor</item>
+    <item name="actionBarStyle">@style/MyActionBar</item>
+  </style>
+
+
+  <style name="MyTheme_ActionBar" parent="MyTheme_ActionBar.Base">
+    <item name="actionModeBackground">@color/appAccentColor</item>
+  </style>
+
+  <style name="MyTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="activityBackgroundColor">@color/bgColorLight</item>
+    <item name="CancelDrawable">@drawable/ic_menu_close</item>
+
+    <item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
+    <item name="ic_action_search_drawable">@drawable/ic_action_search</item>
+    <item name="NavigationAcceptDrawable">@drawable/navigation_accept</item>
+
+
+    <item name="android:windowNoTitle">true</item>
+    <!--We will be using the toolbar so no need to show ActionBar-->
+    <item name="windowActionBar">false</item>
+    <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
+    <!-- colorPrimary is used for the default action bar background -->
+    <item name="colorPrimary">@color/appPrimaryColor</item>
+    <!-- colorPrimaryDark is used for the status bar -->
+    <item name="colorPrimaryDark">@color/appPrimaryDarkColor</item>
+    <!-- colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets -->
+    <item name="colorAccent">@color/appAccentColor</item>
+    <!-- You can also set colorControlNormal, colorControlActivated
+         colorControlHighlight and colorSwitchThumbNormal. -->
+    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+    <item name="actionBarStyle">@style/MyActionBar</item>
+  </style>
+
+
+  <style name="MyTheme" parent="MyTheme.Base">
+    <item name="actionModeBackground">@color/appAccentColor</item>
+  </style>
+
+  <style name="MyTheme_Blue" parent="MyTheme">
+    <item name="colorPrimary">@color/appAccentColor</item>
+    <!-- colorPrimaryDark is used for the status bar -->
+    <item name="colorPrimaryDark">@color/appAccentColorDark</item>
+    <!-- colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets -->
+    <item name="colorAccent">@color/appAccentColor</item>
+  </style>
+
+  <style name="Base_Dialog" parent="Theme.AppCompat.Light.Dialog" />
+
+  <!-- dark themes -->
+
+
+  <style name="MyTheme_ActionBar_Dark.Base" parent="Theme.AppCompat">
+    <item name="activityBackgroundColor">@color/bgColorDark</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="windowActionBar">true</item>
+    <item name="colorPrimary">@color/appPrimaryColor</item>
+    <item name="colorPrimaryDark">@color/appPrimaryDarkColor</item>
+    <item name="colorAccent">@color/appAccentColor</item>
+    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+    <item name="actionModeBackground">@color/appPrimaryDarkColor</item>
+    <item name="actionBarStyle">@style/MyActionBar</item>
+  </style>
+
+
+  <style name="MyTheme_ActionBar_Dark" parent="MyTheme_ActionBar_Dark.Base">
+    <item name="actionModeBackground">@color/appAccentColor</item>
+  </style>
+  <!-- Base theme applied no matter what API -->
+
+  <style name="MyTheme_Dark.Base" parent="Theme.AppCompat.NoActionBar">
+    <item name="activityBackgroundColor">@color/bgColorDark</item>
+    <item name="CancelDrawable">@drawable/ic_menu_close</item>
+
+    <item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
+    <item name="ic_action_search_drawable">@drawable/ic_action_search</item>
+    <item name="NavigationAcceptDrawable">@drawable/navigation_accept</item>
+
+
+    <item name="android:windowNoTitle">true</item>
+    <!--We will be using the toolbar so no need to show ActionBar-->
+    <item name="windowActionBar">false</item>
+    <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
+    <!-- colorPrimary is used for the default action bar background -->
+    <item name="colorPrimary">@color/appPrimaryColor</item>
+    <!-- colorPrimaryDark is used for the status bar -->
+    <item name="colorPrimaryDark">@color/appPrimaryDarkColor</item>
+    <!-- colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets -->
+    <item name="colorAccent">@color/appAccentColor</item>
+    <!-- You can also set colorControlNormal, colorControlActivated
+         colorControlHighlight and colorSwitchThumbNormal. -->
+    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+    <item name="actionBarStyle">@style/MyActionBar</item>
+  </style>
+
+
+  <style name="MyTheme_Dark" parent="MyTheme_Dark.Base">
+    <item name="actionModeBackground">@color/appAccentColor</item>
+  </style>
+
+  <style name="MyTheme_Blue_Dark" parent="MyTheme_Dark">
+    <item name="colorPrimary">@color/appAccentColor</item>
+    <!-- colorPrimaryDark is used for the status bar -->
+    <item name="colorPrimaryDark">@color/appAccentColorDark</item>
+    <!-- colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets -->
+    <item name="colorAccent">@color/appAccentColor</item>
+  </style>
+
+  <style name="Base_Dialog_Dark" parent="Theme.AppCompat.Dialog" />
+  
+  <!-- end dark themen -->
+  
+
   <style name="BottomBarButton" parent="@style/Widget.AppCompat.Button.Borderless">
     <item name="android:textSize">16sp</item>
     <item name="android:layout_margin">6dp</item>
@@ -89,56 +219,7 @@
     <item name="android:gravity">center_vertical</item>
   </style>
   
-  <style name="MyTheme" parent="MyTheme.Base">
-    <item name="actionModeBackground">@color/appAccentColor</item>
-  </style>
-
-  <style name="MyTheme_Blue" parent="MyTheme">
-    <item name="colorPrimary">@color/appAccentColor</item>
-    <!-- colorPrimaryDark is used for the status bar -->
-    <item name="colorPrimaryDark">@color/appAccentColorDark</item>
-    <!-- colorAccent is used as the default value for colorControlActivated
-         which is used to tint widgets -->
-    <item name="colorAccent">@color/appAccentColor</item>
-  </style>
-
-
-  <!--style name="MyTheme.ActionMode" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-    <item name="actionModeBackground">#FFFFFF</item>
-  </style-->
-
-
-  <style name="MyTheme_ActionBar" parent="MyTheme_ActionBar.Base">
-    <item name="actionModeBackground">@color/appAccentColor</item>
-  </style>
-  <!-- Base theme applied no matter what API -->
   
-  <style name="MyTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-
-   <item name="CancelDrawable">@drawable/ic_menu_close</item>
-
-    <item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
-    <item name="ic_action_search_drawable">@drawable/ic_action_search</item>
-    <item name="NavigationAcceptDrawable">@drawable/navigation_accept</item>
-
-
-    <item name="android:windowNoTitle">true</item>
-    <!--We will be using the toolbar so no need to show ActionBar-->
-    <item name="windowActionBar">false</item>
-    <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
-    <!-- colorPrimary is used for the default action bar background -->
-    <item name="colorPrimary">@color/appPrimaryColor</item>
-    <!-- colorPrimaryDark is used for the status bar -->
-    <item name="colorPrimaryDark">@color/appPrimaryDarkColor</item>
-    <!-- colorAccent is used as the default value for colorControlActivated
-         which is used to tint widgets -->
-    <item name="colorAccent">@color/appAccentColor</item>
-    <!-- You can also set colorControlNormal, colorControlActivated
-         colorControlHighlight and colorSwitchThumbNormal. -->
-    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-
-    <item name="actionBarStyle">@style/MyActionBar</item>
-  </style>
 
   <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
     <item name="titleTextStyle">@style/MyTitleTextStyle</item>
@@ -150,19 +231,7 @@
   </style>
 
 
-  <style name="MyTheme_ActionBar.Base" parent="Theme.AppCompat.Light.DarkActionBar">
-    <item name="android:windowNoTitle">true</item>
-    <item name="windowActionBar">true</item>
-    <item name="colorPrimary">@color/appPrimaryColor</item>
-    <item name="colorPrimaryDark">@color/appPrimaryDarkColor</item>
-    <item name="colorAccent">@color/appAccentColor</item>
-    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-
-    <item name="actionModeBackground">@color/appPrimaryDarkColor</item>
-    <item name="actionBarStyle">@style/MyActionBar</item>
-  </style>
-
-
+  
   <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
     <item name="spinBars">true</item>
     <item name="color">@android:color/white</item>
@@ -172,7 +241,7 @@
     <item name="@android:textStyle">italic</item>
   </style>
 
-  <style name="Base_Dialog" parent="Theme.AppCompat.Light.Dialog" />
+  
   <style name="Dialog" parent="Base_Dialog"></style>
 
 </resources>

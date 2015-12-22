@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Android.App;
 using Android.Preferences;
 
@@ -11,31 +13,73 @@ namespace keepass2android
 
 		private string _currentIconSet;
 
+		private readonly string _attributeTheme;
+
 		public ActivityDesign(Activity activity)
 		{
 			_activity = activity;
+			try
+			{
+				var activityAttr = activity.GetType().GetCustomAttributes(false).Where(
+				x => x is Android.App.ActivityAttribute
+				).Cast<ActivityAttribute>().First();
+				_attributeTheme = activityAttr.Theme;
+			}
+			catch (Exception e)
+			{
+				Kp2aLog.Log(e.ToString());
+			}
+			
 		}
 
 		public void ApplyTheme()
 		{
-			/*if (HasThemes())
+			if (HasThemes())
 			{
 				var dark = UseDarkTheme;
-				//int newTheme = dark ? Resource.Style.ThemeDark : Resource.Style.ThemeLight;
-				int newTheme = Resource.Style.ThemeMaterial;
+				int newTheme = dark ? DarkTheme : LightTheme;
 				_activity.SetTheme(newTheme);
 				_currentThemeId = newTheme;
-			}*/
+			}
 			_currentIconSet = PreferenceManager.GetDefaultSharedPreferences(_activity)
 				.GetString("IconSetKey", _activity.PackageName);
 		}
 
+		public int DarkTheme
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(_attributeTheme))
+					return Resource.Style.MyTheme_Dark;
+				if (_attributeTheme.Contains("MyTheme_Blue"))
+					return Resource.Style.MyTheme_Blue_Dark;
+				if (_attributeTheme.Contains("MyTheme_ActionBar"))
+					return Resource.Style.MyTheme_ActionBar_Dark;
+				return Resource.Style.MyTheme_Dark;
+			}
+			
+		}
+
+		public int LightTheme
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(_attributeTheme))
+					return Resource.Style.MyTheme;
+				if (_attributeTheme.Contains("MyTheme_Blue"))
+					return Resource.Style.MyTheme_Blue;
+				if (_attributeTheme.Contains("MyTheme_ActionBar"))
+					return Resource.Style.MyTheme_ActionBar;
+				return Resource.Style.MyTheme;
+			}
+
+		}
+
 		public void ReapplyTheme()
 		{
-			/*if (HasThemes())
+			if (HasThemes())
 			{
-				//int newTheme = UseDarkTheme ? Resource.Style.ThemeDark : Resource.Style.ThemeLight;
-				int newTheme = Resource.Style.ThemeMaterial;
+				int newTheme = UseDarkTheme ? DarkTheme : LightTheme;
 				if (newTheme != _currentThemeId)
 				{
 					Kp2aLog.Log("recreating due to theme change.");
@@ -43,7 +87,7 @@ namespace keepass2android
 					return;
 				}	
 			}
-			*/
+			
 			if (PreferenceManager.GetDefaultSharedPreferences(_activity)
 				.GetString("IconSetKey", _activity.PackageName) != _currentIconSet)
 			{
@@ -69,7 +113,7 @@ namespace keepass2android
 			if (HasThemes())
 			{
 				bool dark = UseDarkTheme;
-				//_activity.SetTheme(dark ? Resource.Style.DialogDark : Resource.Style.DialogLight);
+				_activity.SetTheme(dark ? Resource.Style.Base_Dialog : Resource.Style.Base_Dialog_Dark);
 			}
 
 		}

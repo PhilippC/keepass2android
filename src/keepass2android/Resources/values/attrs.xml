@@ -17,6 +17,8 @@
 	<attr name="ic_launcher_folder_small" format="reference"></attr>
 	<attr name="ic_action_search_drawable" format="reference"></attr>
 	<attr name="NavigationAcceptDrawable" format="reference"></attr>
+
+  <attr name="activityBackgroundColor" format="reference|color" />
     
     
 </resources>

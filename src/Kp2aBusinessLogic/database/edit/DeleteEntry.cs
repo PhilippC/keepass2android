@@ -43,11 +43,19 @@ namespace keepass2android
 			}
 		}
 
-		protected override UiStringKey QuestionsResourceId
+		protected override UiStringKey QuestionRecycleResourceId
 		{
 			get
 			{
 				return UiStringKey.AskDeletePermanentlyEntry;
+			}
+		}
+
+		protected override UiStringKey QuestionNoRecycleResourceId
+		{
+			get
+			{
+				return UiStringKey.AskDeletePermanentlyEntryNoRecycle;
 			}
 		}
 

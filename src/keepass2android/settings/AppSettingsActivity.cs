@@ -104,7 +104,9 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState) 
 		{
+			_design.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
+			
 			
 			SetContentView(Resource.Layout.preference);
 

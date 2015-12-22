@@ -61,14 +61,19 @@ namespace keepass2android
 			}
 		}
 
-		protected override UiStringKey QuestionsResourceId
+		protected override UiStringKey QuestionRecycleResourceId
 		{
 			get
 			{
 				return UiStringKey.AskDeletePermanentlyGroup;
 			}
 		}
-		
+
+		protected override UiStringKey QuestionNoRecycleResourceId
+		{
+			get { return UiStringKey.AskDeletePermanentlyGroupNoRecycle; }
+		}
+
 		protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)
 	    {
 	        DoDeleteGroup(_group, touchedGroups, permanentlyDeletedGroups);

@@ -9,8 +9,10 @@ namespace keepass2android
     public enum UiStringKey
     {
         AskDeletePermanentlyGroup,
+		AskDeletePermanentlyGroupNoRecycle,
         progress_title,
         AskDeletePermanentlyEntry,
+		AskDeletePermanentlyEntryNoRecycle,
         search_results,
         AskDeletePermanently_title,
         saving_database,
@@ -58,6 +60,7 @@ namespace keepass2android
 		DuplicateUuidsError,
 		DuplicateUuidsErrorAdditional,
 		DeletingItems,
-		AskDeletePermanentlyItems
+		AskDeletePermanentlyItems,
+		AskDeletePermanentlyItemsNoRecycle
     }
 }

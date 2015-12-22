@@ -50,9 +50,14 @@ namespace keepass2android
 			get { return _canRecycle; }
 		}
 
-		protected override UiStringKey QuestionsResourceId
+		protected override UiStringKey QuestionRecycleResourceId
 		{
 			get { return UiStringKey.AskDeletePermanentlyItems; }
+		}
+
+		protected override UiStringKey QuestionNoRecycleResourceId
+		{
+			get { return UiStringKey.AskDeletePermanentlyItemsNoRecycle; }
 		}
 
 		protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)

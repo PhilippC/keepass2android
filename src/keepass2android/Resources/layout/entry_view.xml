@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="true"
-        android:background="#ffffffff"
+        android:background="?activityBackgroundColor"
         android:scrollbarStyle="insideOverlay">
         <keepass2android.view.EntryContentsView
             android:id="@+id/entry_contents"

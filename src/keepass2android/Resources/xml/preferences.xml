@@ -196,7 +196,16 @@
                 android:persistent="false"
                 android:key="IconSetKey"/>
 
-			<CheckBoxPreference
+      <ListPreference
+			  android:key="@string/design_key"
+			  android:title="@string/design_title"
+			  android:entries="@array/design_options"
+			  android:entryValues="@array/design_values"
+			  android:dialogTitle="@string/design_title"
+			  android:defaultValue="@string/design_default"/>
+
+      
+      <CheckBoxPreference
 				android:enabled="true"
 					 android:persistent="true"
 					 android:summary="@string/ViewDatabaseSecure_summary"

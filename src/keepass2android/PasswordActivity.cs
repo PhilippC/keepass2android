@@ -159,13 +159,13 @@ namespace keepass2android
 
 	    public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
-		{
-		
-		}
+	    {
+		    _activityDesign = new ActivityDesign(this);
+	    }
 
 		public PasswordActivity()
 		{
-		
+			_activityDesign = new ActivityDesign(this);
 		}
 
 
@@ -686,6 +686,8 @@ namespace keepass2android
 		
 		private string mDrawerTitle;
 		private MeasuringRelativeLayout.MeasureArgs _measureArgs;
+		private ActivityDesign _activityDesign;
+
 		internal class MyActionBarDrawerToggle : ActionBarDrawerToggle
 		{
 			PasswordActivity owner;
@@ -739,7 +741,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-
+			_activityDesign.ApplyTheme();
 			
 			//use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
 			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
@@ -1572,6 +1574,7 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
+			_activityDesign.ReapplyTheme();
 
 			EditText pwd = FindViewById<EditText>(Resource.Id.password_edit);
 			pwd.PostDelayed(() =>

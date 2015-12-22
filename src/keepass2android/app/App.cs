@@ -337,8 +337,8 @@ namespace keepass2android
 					builder.SetMessage(GetResourceString(messageKey));
 
 					builder.SetPositiveButton(GetResourceString(yesString), yesHandler);
-
-					builder.SetNegativeButton(GetResourceString(noString), noHandler);
+					if (noHandler != null)
+						builder.SetNegativeButton(GetResourceString(noString), noHandler);
 
 					if (cancelHandler != null)
 					{
