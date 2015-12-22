@@ -35,7 +35,7 @@ namespace OtpKeyProv
 		private const string FmtDec = "Dec";
 
 		public static readonly string[] Formats = new string[]{
-			FmtHex, FmtBase64, FmtBase32, FmtUtf8, FmtDec
+			FmtHex, FmtBase64, FmtUtf8, FmtDec, FmtBase32
 		};
 
 		public static OtpDataFmt? GetOtpDataFormat(String strFmt)
