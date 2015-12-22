@@ -20,8 +20,7 @@
 <resources>
 
   <color name="bgColorLight">#fff</color>
-  <color name="bgColorDark">#000</color>
-  <color name="bgColor">#000</color>
+  <color name="bgColorDark">#0000</color>
   
   <color name="appPrimaryColor">#8bc34a</color>
   <color name="appPrimaryDarkColor">#548a2e</color>

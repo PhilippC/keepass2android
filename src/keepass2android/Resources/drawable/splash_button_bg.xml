@@ -9,13 +9,13 @@
 	<item android:state_focused="true">
 		<shape android:shape="rectangle"  >
 			<corners android:radius="2dip" />
-			<solid android:color="?activityBackgroundColor"/>
+			<solid android:color="#fff"/>
 		</shape>
 	</item>
 	<item >
 		<shape android:shape="rectangle"  >
 			<corners android:radius="2dip" />
-			<solid android:color="?activityBackgroundColor" />
+			<solid android:color="#fff" />
 		</shape>
 	</item>
 </selector>

@@ -53,8 +53,9 @@ namespace keepass2android
 
 		
 		protected override void OnCreate(Bundle savedInstanceState) {
+			_design.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
-			_design.ApplyTheme();
+			
 			SetContentView(Resource.Layout.generate_password);
 			SetResult(KeePass.ExitNormal);
 

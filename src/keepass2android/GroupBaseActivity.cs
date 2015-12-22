@@ -218,8 +218,9 @@ namespace keepass2android
 	    }
 
 	    protected override void OnCreate(Bundle savedInstanceState) {
+			_design.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
-			_design.ApplyTheme();
+			
 			Android.Util.Log.Debug("KP2A", "Creating GBA");
 
 			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);

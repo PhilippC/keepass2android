@@ -55,8 +55,9 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle bundle)
 		{
+			_design.ApplyTheme(); 
 			base.OnCreate(bundle);
-			_design.ApplyTheme();
+			
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);

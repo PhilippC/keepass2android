@@ -18,9 +18,10 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle bundle)
 		{
+			new ActivityDesign(this).ApplyTheme();
 			base.OnCreate(bundle);
 
-			new ActivityDesign(this).ApplyTheme();
+			
 
 			SetContentView(Resource.Layout.plugin_list);
 

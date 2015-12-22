@@ -78,7 +78,7 @@ namespace keepass2android
 
 		public EntryActivity()
 		{
-			
+			_activityDesign = new ActivityDesign(this);
 		}
 
 		protected PwEntry Entry;
@@ -102,6 +102,7 @@ namespace keepass2android
 		private Timer _timer;
 		private PluginActionReceiver _pluginActionReceiver;
 		private PluginFieldReceiver _pluginFieldReceiver;
+		private ActivityDesign _activityDesign;
 
 
 		protected void SetEntryView()
@@ -309,10 +310,12 @@ namespace keepass2android
 				!prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
             
             RequestWindowFeature(WindowFeatures.IndeterminateProgress);
+			
+			_activityDesign.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
 			
 
-			new ActivityDesign(this).ApplyTheme();
+			
 
 			SetEntryView();
 
@@ -934,6 +937,7 @@ namespace keepass2android
 		{
 			ClearCache();
 			base.OnResume();
+			_activityDesign.ReapplyTheme();
 		}
 
 		public void ClearCache()

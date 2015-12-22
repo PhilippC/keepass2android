@@ -91,8 +91,9 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(savedInstanceState);
 			_design.ApplyTheme();
+			base.OnCreate(savedInstanceState);
+			
 			//see comment to this in PasswordActivity.
 			//Note that this activity is affected even though it's finished when the app is closed because it
 			//seems that the "app launch intent" is re-delivered, so this might end up here.

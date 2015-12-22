@@ -30,8 +30,9 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle bundle)
 		{
-			base.OnCreate(bundle);
 			new ActivityDesign(this).ApplyTheme();
+			base.OnCreate(bundle);
+			
 
 			_pluginPackageName = Intent.GetStringExtra(Strings.ExtraPluginPackage);
 

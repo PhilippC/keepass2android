@@ -545,9 +545,17 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_download.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_share.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_upload.png" />
+    <AndroidResource Include="Resources\drawable-mdpi-v4\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi-v4\ic_launcher_offline.png" />
+    <AndroidResource Include="Resources\drawable-mdpi-v4\ic_launcher_online.png" />
+    <AndroidResource Include="Resources\drawable-hdpi-v4\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi-v4\ic_launcher_offline.png" />
+    <AndroidResource Include="Resources\drawable-hdpi-v4\ic_launcher_online.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi-v4\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic99_blank.png" />
+    <AndroidResource Include="Resources\drawable\ic_launcher.png" />
     <AndroidResource Include="Resources\layout\about.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -708,6 +716,9 @@
     <Folder Include="Resources\drawable-ldpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="SupportLib\" />
+    <Folder Include="Resources\drawable-mdpi-v4\" />
+    <Folder Include="Resources\drawable-hdpi-v4\" />
+    <Folder Include="Resources\drawable-xhdpi-v4\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">

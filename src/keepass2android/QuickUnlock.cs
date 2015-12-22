@@ -40,13 +40,16 @@ namespace keepass2android
 	{
 		private IOConnectionInfo _ioc;
 		private QuickUnlockBroadcastReceiver _intentReceiver;
+		private ActivityDesign _design;
 
 		public QuickUnlock()
 		{
+			_design = new ActivityDesign(this);
 		}
 
 		protected override void OnCreate(Bundle bundle)
 		{
+			_design.ApplyTheme();
 			base.OnCreate(bundle);
 			
 			//use FlagSecure to make sure the last (revealed) character of the password is not visible in recent apps
@@ -160,6 +163,7 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
+			_design.ReapplyTheme();
 			
 			CheckIfUnloaded();
 

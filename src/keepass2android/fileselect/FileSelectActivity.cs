@@ -77,8 +77,9 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
+			_design.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
-			_design.ApplyTheme();
+			
 
 			Kp2aLog.Log("FileSelect.OnCreate");
 			Kp2aLog.Log("FileSelect:apptask="+Intent.GetStringExtra("KP2A_APPTASK"));

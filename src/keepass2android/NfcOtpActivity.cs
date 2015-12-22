@@ -62,8 +62,9 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle bundle)
 		{
-			base.OnCreate(bundle);
 			_design.ApplyTheme();
+			base.OnCreate(bundle);
+			
 
 			Intent i = new Intent(this, typeof (PasswordActivity));
 			i.SetAction(Intents.StartWithOtp);

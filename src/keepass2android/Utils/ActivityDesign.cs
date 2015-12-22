@@ -15,6 +15,8 @@ namespace keepass2android
 
 		private readonly string _attributeTheme;
 
+		private bool _secureWindow;
+
 		public ActivityDesign(Activity activity)
 		{
 			_activity = activity;
@@ -24,12 +26,19 @@ namespace keepass2android
 				x => x is Android.App.ActivityAttribute
 				).Cast<ActivityAttribute>().First();
 				_attributeTheme = activityAttr.Theme;
+				
 			}
 			catch (Exception e)
 			{
 				Kp2aLog.Log(e.ToString());
 			}
 			
+		}
+
+		private bool SecureWindowPref()
+		{
+			return (PreferenceManager.GetDefaultSharedPreferences(_activity).GetBoolean(
+				_activity.GetString(Resource.String.ViewDatabaseSecure_key), true));
 		}
 
 		public void ApplyTheme()
@@ -40,6 +49,7 @@ namespace keepass2android
 				int newTheme = dark ? DarkTheme : LightTheme;
 				_activity.SetTheme(newTheme);
 				_currentThemeId = newTheme;
+				_secureWindow = SecureWindowPref();
 			}
 			_currentIconSet = PreferenceManager.GetDefaultSharedPreferences(_activity)
 				.GetString("IconSetKey", _activity.PackageName);
@@ -93,7 +103,15 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("recreating due to icon set change.");
 				_activity.Recreate();
-				
+				return;
+
+			}
+
+			if (SecureWindowPref() != _secureWindow)
+			{
+				Kp2aLog.Log("recreating due to secure window change.");
+				_activity.Recreate();
+				return;
 			}
 		}
 

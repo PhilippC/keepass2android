@@ -200,8 +200,9 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle bundle)
 		{
+			_design.ApplyTheme(); 
 			base.OnCreate(bundle);
-			_design.ApplyTheme();
+			
 
 			SetContentView(Resource.Layout.filestorage_selection);
 

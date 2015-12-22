@@ -740,8 +740,9 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(savedInstanceState);
 			_activityDesign.ApplyTheme();
+			base.OnCreate(savedInstanceState);
+			
 			
 			//use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
 			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
