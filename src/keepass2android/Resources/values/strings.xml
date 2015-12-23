@@ -568,6 +568,14 @@
     
 	</string>
 
+  <string name="ChangeLog_0_9_9c">
+    Version 0.9.9c\n
+    * Dark theme is back\n
+    * You can install other icon packs (ancient Windows-style icons are available on Play store)\n
+    * Added confirmation question when deleting elements without recycle bin\n
+    * Bug fixes (wrong display of OTP secret encoding, wrong app icon in some places)\n
+  </string>
+
   
 		<string name="ChangeLog_0_9_8b">
 		Version 0.9.8b\n
