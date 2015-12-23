@@ -19,7 +19,7 @@
     android:layout_width="fill_parent"
         android:layout_height="wrap_content"
     android:layout_toLeftOf="@id/edit_extra">
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/title"
         android:singleLine="true"
         android:inputType="text"
@@ -30,7 +30,9 @@
         android:layout_weight="0.4"
         android:gravity="top|left"
         android:layout_marginRight="0dip"
-        android:layout_marginLeft="0dip"/>
+        android:layout_marginLeft="0dip"
+        android:dropDownWidth="match_parent"
+        />
     <EditText
         android:id="@+id/value"
         android:hint="@string/field_value"

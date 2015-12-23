@@ -840,8 +840,10 @@ namespace keepass2android
         RelativeLayout CreateExtraStringView(KeyValuePair<string, ProtectedString> pair)
 		{
             RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
-			((TextView)ees.FindViewById(Resource.Id.title)).Text = pair.Key;
-			((TextView)ees.FindViewById(Resource.Id.title)).TextChanged += (sender, e) => State.EntryModified = true;
+	        var titleView = ((AutoCompleteTextView)ees.FindViewById(Resource.Id.title));
+	        titleView.Text = pair.Key;
+			titleView.TextChanged += (sender, e) => State.EntryModified = true;
+			titleView.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, AdditionalKeys);
 			((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
 			((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
 
@@ -852,7 +854,26 @@ namespace keepass2android
 			return ees;
 		}
 
-		private void EditAdvancedString(View sender)
+	    private string[] _additionalKeys = null;
+
+	    public string[] AdditionalKeys
+	    {
+		    get
+		    {
+			    if (_additionalKeys == null)
+			    {
+				    _additionalKeys = App.Kp2a.GetDb().Entries
+						.Select(kvp => kvp.Value)
+						.SelectMany(x => x.Strings.GetKeys().Where(k => !PwDefs.IsStandardField(k)))
+						.Distinct()
+						.ToArray();
+			    }
+			    return _additionalKeys;
+		    }
+		    
+	    }
+
+	    private void EditAdvancedString(View sender)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			View dlgView = LayoutInflater.Inflate(Resource.Layout.edit_extra_string_dialog, null);
