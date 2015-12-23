@@ -423,35 +423,6 @@ namespace keepass2android
 			return base.OnOptionsItemSelected(item);
 		}
 		
-		public override void OnCreateContextMenu(IContextMenu menu, View v,
-		                                         IContextMenuContextMenuInfo menuInfo) {
-			base.OnCreateContextMenu(menu, v, menuInfo);
-			
-			menu.Add(0, CmenuClear, 0, Resource.String.remove_from_filelist);
-		}
-		
-		public override bool OnContextItemSelected(IMenuItem item) {
-			base.OnContextItemSelected(item);
-			
-			if ( item.ItemId == CmenuClear ) {
-				AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
-				
-				TextView tv = (TextView) acmi.TargetView;
-				String filename = (string) tv.Tag;
-				_dbHelper.DeleteFile(filename);
-
-				FragmentManager.FindFragmentById<RecentFilesFragment>(Resource.Id.recent_files).RefreshList();
-				
-				
-				return true;
-			}
-			
-			return false;
-		}
-		
-		
-
-	    
 	}
 
     public class RecentFilesFragment : ListFragment
@@ -471,14 +442,15 @@ namespace keepass2android
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
-            Android.Util.Log.Debug("KP2A", "OnActCreated");
+			base.OnActivityCreated(savedInstanceState); 
+			Android.Util.Log.Debug("KP2A", "OnActCreated");
             ListView.ItemClick += (sender, args) =>
             {
                 ((FileSelectActivity) Activity).OnListItemClick((ListView) sender, args.View, args.Position, args.Id);
             };
             RefreshList();
-
-            base.OnActivityCreated(savedInstanceState);
+	        RegisterForContextMenu(ListView);
+            
         }
 
         public void RefreshList()
@@ -488,6 +460,32 @@ namespace keepass2android
             ICursor cursor = ca.Cursor;
             cursor.Requery();
         }
+
+	    public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+	    {
+		    base.OnCreateContextMenu(menu, v, menuInfo);
+			menu.Add(0, Menu.First, 0, Resource.String.remove_from_filelist);
+	    }
+
+	    public override bool OnContextItemSelected(IMenuItem item)
+	    {
+			if (item.ItemId == Menu.First)
+			{
+				AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+
+				TextView tv = (TextView)acmi.TargetView;
+				String filename = (string)tv.Tag;
+				App.Kp2a.FileDbHelper.DeleteFile(filename);
+
+				RefreshList();
+
+
+				return true;
+			}
+			return base.OnContextItemSelected(item);
+
+	    }
+		
     }
 }
 
