@@ -102,6 +102,8 @@ namespace keepass2android
 
 
 		private Task<MemoryStream> _loadDbTask;
+		private bool _loadDbTaskOffline; //indicate if preloading was started with offline mode
+
 		private IOConnectionInfo _ioConnection;
 		private String _keyFileOrProvider;
 		bool _showPassword;
@@ -687,6 +689,7 @@ namespace keepass2android
 		private string mDrawerTitle;
 		private MeasuringRelativeLayout.MeasureArgs _measureArgs;
 		private ActivityDesign _activityDesign;
+		
 
 		internal class MyActionBarDrawerToggle : ActionBarDrawerToggle
 		{
@@ -862,7 +865,7 @@ namespace keepass2android
 			InitializeTogglePasswordButton();
 			InitializeKeyfileBrowseButton();
 
-			InitializeQuickUnlockCheckbox();
+			InitializeOptionCheckboxes();
 
 			RestoreState(savedInstanceState);
 
@@ -1270,6 +1273,17 @@ namespace keepass2android
 			CheckBox cbQuickUnlock = (CheckBox) FindViewById(Resource.Id.enable_quickunlock);
 			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
 
+			if (App.Kp2a.OfflineMode != _loadDbTaskOffline)
+			{
+				//keep the loading result if we loaded in online-mode (now offline) and the task is completed
+				if (!App.Kp2a.OfflineMode || !_loadDbTask.IsCompleted)
+				{
+					//discard the pre-loading task
+					_loadDbTask = null;	
+				}
+				
+			}
+
 			//avoid password being visible while loading:
 			_showPassword = false;
 			MakePasswordMaskedOrVisible();
@@ -1577,6 +1591,20 @@ namespace keepass2android
 			base.OnResume();
 			_activityDesign.ReapplyTheme();
 
+			CheckBox cbOfflineMode = (CheckBox)FindViewById(Resource.Id.work_offline);
+			App.Kp2a.OfflineMode = cbOfflineMode.Checked = App.Kp2a.OfflineModePreference; //this won't overwrite new user settings because every change is directly saved in settings
+			LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container);
+			if (App.Kp2a.GetFileStorage(_ioConnection) is IOfflineSwitchable)
+			{
+				offlineModeContainer.Visibility = ViewStates.Visible;
+			}
+			else
+			{
+				offlineModeContainer.Visibility = ViewStates.Gone;
+				App.Kp2a.OfflineMode = false;
+			}
+			
+
 			EditText pwd = FindViewById<EditText>(Resource.Id.password_edit);
 			pwd.PostDelayed(() =>
 			{
@@ -1650,14 +1678,22 @@ namespace keepass2android
 					{
 						// Create task to kick off file loading while the user enters the password
 						_loadDbTask = Task.Factory.StartNew<MemoryStream>(PreloadDbFile);
+						_loadDbTaskOffline = App.Kp2a.OfflineMode;
 					}
 				}
 			}
 		}
 		
-		private void InitializeQuickUnlockCheckbox() {
+		private void InitializeOptionCheckboxes() {
 			CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
 			cbQuickUnlock.Checked = _prefs.GetBoolean(GetString(Resource.String.QuickUnlockDefaultEnabled_key), true);
+
+			CheckBox cbOfflineMode = (CheckBox)FindViewById(Resource.Id.work_offline);
+			cbOfflineMode.CheckedChange += (sender, args) =>
+			{
+				App.Kp2a.OfflineModePreference = App.Kp2a.OfflineMode = args.IsChecked;
+			};
+			
 		}
 			
 		private String GetKeyFile(String filename) {

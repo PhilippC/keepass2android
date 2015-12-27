@@ -386,6 +386,11 @@
 	<string name="SynchronizingDatabase">Merging changes…</string>
 	<string name="YesSynchronize">Yes, merge</string>
 	<string name="NoOverwrite">No, overwrite</string>
+  
+  <string name="UseOfflineMode">Work offline</string>
+  <string name="UseOnlineMode">Work online</string>
+  <string name="UseOfflineMode_Info">Avoid any network traffic by using the local cache copy of the file. Changes are stored in the local cache only and will only be uploaded when switching back to online mode.</string>
+  <string name="InOfflineMode">Working offline.</string>
 
 	<string name="SynchronizingCachedDatabase">Synchronizing cached database…</string>
 	<string name="DownloadingRemoteFile">Downloading remote file…</string>
@@ -453,7 +458,9 @@
 	<string name="help_database_location">You can store your database locally on your Android device or in the cloud (non-Offline version only). Keepass2Android makes the database available even if you are offline. As the database is securely encrypted with AES 256 bit encryption, nobody will be able to access your passwords except you. We recommend to select Dropbox: It\'s accessible on all your devices and even provides backups of previous file versions.</string>
 	<string name="hint_database_location">Select where you want to store the database:</string>
 	<string name="button_change_location">Change location</string>
-
+  
+  <string name="help_quickunlock">If enabled, Keepass2Android stays running in the background even when the database is locked. This allows to unlock the database later with only a short part of the master password.</string>
+  
 	<string name="master_password">Master password</string>
 	<string name="help_master_password">Your database is encrypted with the password you enter here. Choose a strong password in order to keep the database safe! Tip: Make up a sentence or two and use the first letters of the words as password. Include punctuation marks.</string>
 	<string name="hint_master_password">Select a master password to protect your database:</string>

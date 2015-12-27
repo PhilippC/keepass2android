@@ -410,21 +410,27 @@ namespace keepass2android
 		}
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo, bool allowCache)
 		{
+			IFileStorage fileStorage;
 			if (iocInfo.IsLocalFile())
-				return new BuiltInFileStorage(this);
+				fileStorage = new BuiltInFileStorage(this);
 			else
 			{
 				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
 
 				if (DatabaseCacheEnabled && allowCache)
 				{
-					return new CachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, this);	
+					fileStorage = new CachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, this);
 				}
 				else
 				{
-					return innerFileStorage;
+					fileStorage = innerFileStorage;
 				}
 			}
+			if (fileStorage is IOfflineSwitchable)
+			{
+				((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
+			}
+			return fileStorage;
 		}
 
 		private IFileStorage GetCloudFileStorage(IOConnectionInfo iocInfo)
@@ -591,13 +597,23 @@ namespace keepass2android
 
 		public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception e)
 		{
-			ShowToast(Application.Context.GetString(Resource.String.CouldNotSaveToRemote, e.Message));
+			var errorMessage = GetErrorMessageForFileStorageException(e);
+			ShowToast(Application.Context.GetString(Resource.String.CouldNotSaveToRemote, errorMessage));
 		}
 
-		
+		private string GetErrorMessageForFileStorageException(Exception e)
+		{
+			string errorMessage = e.Message;
+			if (e is OfflineModeException)
+				errorMessage = GetResourceString(UiStringKey.InOfflineMode);
+			return errorMessage;
+		}
+
+
 		public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
 		{
-			ShowToast(Application.Context.GetString(Resource.String.CouldNotLoadFromRemote, ex.Message));
+			var errorMessage = GetErrorMessageForFileStorageException(ex);
+			ShowToast(Application.Context.GetString(Resource.String.CouldNotLoadFromRemote, errorMessage));
 		}
 
 		public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
@@ -665,6 +681,31 @@ namespace keepass2android
 				                                     true);
 				return cacheEnabled;
 			}
+		}
+
+		public bool OfflineModePreference
+		{
+			get
+			{
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context); 
+				return prefs.GetBoolean(Application.Context.GetString(Resource.String.OfflineMode_key), false);
+			}
+			set
+			{
+				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+				ISharedPreferencesEditor edit = prefs.Edit();
+				edit.PutBoolean(Application.Context.GetString(Resource.String.OfflineMode_key), value);
+				edit.Commit();
+
+			}
+		}
+
+		/// <summary>
+		/// true if the app is used in offline mode
+		/// </summary>
+		public bool OfflineMode
+		{
+			get; set;
 		}
 
 		public void OnScreenOff()

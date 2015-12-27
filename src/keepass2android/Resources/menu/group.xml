@@ -48,6 +48,14 @@
 			android:title="@string/synchronize_database_menu"
     app:showAsAction="never"
     />
+  <item android:id="@+id/menu_work_offline"
+		  android:title="@string/UseOfflineMode"
+    app:showAsAction="never"
+    />
+  <item android:id="@+id/menu_work_online"
+		  android:title="@string/UseOnlineMode"
+    app:showAsAction="never"
+    />
 
 	<item android:id="@+id/menu_sort"
         android:icon="@android:drawable/ic_menu_sort_by_size"

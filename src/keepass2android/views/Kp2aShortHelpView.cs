@@ -50,6 +50,8 @@ namespace keepass2android.views
 			}
 		}
 
+		public string TitleText { get; set; }
+
 		private void UpdateView()
 		{
 			if (!String.IsNullOrEmpty(_helpText))
@@ -72,8 +74,11 @@ namespace keepass2android.views
 				MovementMethod = LinkMovementMethod.Instance;
 				Click += (sender, args) =>
 				{
+					string title = Context.GetString(AppNames.AppNameResource);
+					if (!string.IsNullOrEmpty(TitleText))
+						title = TitleText;
 					new AlertDialog.Builder(Context)
-						.SetTitle(Context.GetString(AppNames.AppNameResource))
+						.SetTitle(title)
 						.SetMessage(_helpText)
 						.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => { })
 					.Show();
@@ -91,6 +96,7 @@ namespace keepass2android.views
 			TypedArray a = Context.ObtainStyledAttributes(
 		 attrs,
 		 Resource.Styleable.Kp2aShortHelpView);
+			TitleText = a.GetString(Resource.Styleable.Kp2aShortHelpView_title_text);
 			HelpText = a.GetString(Resource.Styleable.Kp2aShortHelpView_help_text);
 		
 		}

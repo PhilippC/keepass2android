@@ -20,9 +20,11 @@
 <resources>
 
 	<attr name="help_text" format="string" />
+  <attr name="title_text" format="string" />
 	<declare-styleable name="Kp2aShortHelpView">
 		<attr name="android:text"/>
 		<attr name="help_text" />
+    <attr name="title_text" />
 	</declare-styleable>
 	<declare-styleable name="TextWithHelp">
 		<attr name="android:text"/>
@@ -87,6 +89,8 @@
 	<string name="QuickUnlock_prefs_key">QuickUnlock_prefs_key</string>
 	<string name="FileHandling_prefs_key">FileHandling_prefs_key</string>
 	<string name="keyboardswitch_prefs_key">keyboardswitch_prefs_key</string>
+
+  <string name="OfflineMode_key">OfflineMode_key</string>
 
 	<string name="QuickUnlockDefaultEnabled_key">Enable_QuickUnlock_by_default</string>
 	<string name="QuickUnlockLength_key">QuickUnlockLength</string>

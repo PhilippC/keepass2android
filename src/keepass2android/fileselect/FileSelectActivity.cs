@@ -334,6 +334,7 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
+			App.Kp2a.OfflineMode = false; //no matter what the preferences are, file selection or db creation is performed offline. PasswordActivity might set this to true.
 			Kp2aLog.Log("FileSelect.OnResume");
 
 			_design.ReapplyTheme();

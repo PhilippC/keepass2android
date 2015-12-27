@@ -54,19 +54,21 @@ namespace keepass2android.Io
 		void LoadedFromRemoteInSync(IOConnectionInfo ioc);
 	}
 
+
 	/// <summary>
 	/// Implements the IFileStorage interface as a proxy: A base storage is used as a remote storage. Local files are used to cache the
 	/// files on remote.
 	/// </summary>
-	public class CachingFileStorage: IFileStorage
+	public class CachingFileStorage : IFileStorage, IOfflineSwitchable
 	{
-		protected readonly IFileStorage _cachedStorage;
+		
+		protected readonly OfflineSwitchableFileStorage _cachedStorage;
 		private readonly ICacheSupervisor _cacheSupervisor;
 		private readonly string _streamCacheDir;
 
 		public CachingFileStorage(IFileStorage cachedStorage, string cacheDir, ICacheSupervisor cacheSupervisor)
 		{
-			_cachedStorage = cachedStorage;
+			_cachedStorage = new OfflineSwitchableFileStorage(cachedStorage);
 			_cacheSupervisor = cacheSupervisor;
 			_streamCacheDir = cacheDir + Java.IO.File.Separator + "OfflineCache" + Java.IO.File.Separator;
 			if (!Directory.Exists(_streamCacheDir))
@@ -609,6 +611,12 @@ namespace keepass2android.Io
 			{
 				return File.OpenRead(CachedFilePath(ioc));
 			}
+		}
+
+		public bool IsOffline
+		{
+			get { return _cachedStorage.IsOffline; }
+			set { _cachedStorage.IsOffline = value; }
 		}
 	}
 }

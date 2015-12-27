@@ -116,7 +116,20 @@
 	</style>
 
 
-	<style name="EditEntryButton">
+  <style name="TextAppearance_Help_Dense">
+    <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:paddingLeft">6sp</item>
+    <item name="android:paddingRight">6sp</item>
+    <item name="android:paddingBottom">0sp</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:layout_gravity">center_vertical</item>
+    <item name="android:layout_marginRight">4dip</item>
+    <item name="android:layout_marginLeft">4dip</item>
+  </style>
+
+
+  <style name="EditEntryButton">
 		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
 		<item name="android:layout_marginTop">12dip</item>
 		<item name="android:layout_marginLeft">24dip</item>

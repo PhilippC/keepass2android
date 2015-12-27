@@ -61,6 +61,7 @@ namespace keepass2android
 		DuplicateUuidsErrorAdditional,
 		DeletingItems,
 		AskDeletePermanentlyItems,
-		AskDeletePermanentlyItemsNoRecycle
+		AskDeletePermanentlyItemsNoRecycle,
+		InOfflineMode
     }
 }
