@@ -813,12 +813,12 @@ namespace keepass2android
 			{
 				return false;
 			}
-
+			Handler handler = new Handler();
 			switch (item.ItemId)
 			{
 
 				case Resource.Id.menu_delete:
-					Handler handler = new Handler();
+					
 					DeleteMultipleItems task = new DeleteMultipleItems((GroupBaseActivity)Activity, App.Kp2a.GetDb(), checkedItems,
 						new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a);
 					task.Start();
@@ -827,6 +827,15 @@ namespace keepass2android
 					var navMove = new NavigateToFolderAndLaunchMoveElementTask(checkedItems.First().ParentGroup, checkedItems.Select(i => i.Uuid).ToList(), ((GroupBaseActivity)Activity).IsSearchResult);
 					((GroupBaseActivity)Activity).StartTask(navMove);
 					break;
+				case Resource.Id.menu_copy:
+
+					var copyTask = new CopyEntry((GroupBaseActivity)Activity, App.Kp2a, (PwEntry) checkedItems.First(),
+						new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)));
+					
+					ProgressTask pt = new ProgressTask(App.Kp2a, Activity, copyTask);
+					pt.Run();
+					break;
+				
 				case Resource.Id.menu_navigate:
 					NavigateToFolder navNavigate = new NavigateToFolder(checkedItems.First().ParentGroup, true);
 					((GroupBaseActivity)Activity).StartTask(navNavigate);
@@ -897,6 +906,12 @@ namespace keepass2android
 			{
 				menuItem.SetVisible(((GroupBaseActivity)Activity).IsSearchResult && IsOnlyOneItemChecked());
 			}
+
+			menuItem = mode.Menu.FindItem(Resource.Id.menu_copy);
+			if (menuItem != null)
+			{
+				menuItem.SetVisible(IsOnlyOneEntryChecked());
+			}
 		}
 
 		private bool IsOnlyOneGroupChecked()
@@ -948,6 +963,11 @@ namespace keepass2android
 				}
 			}
 			return hadCheckedItem;
+		}
+
+		private bool IsOnlyOneEntryChecked()
+		{
+			return IsOnlyOneItemChecked() && !IsOnlyOneGroupChecked();
 		}
 	}
 }

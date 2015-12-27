@@ -156,6 +156,7 @@
   <string name="menu_app_settings">Settings</string>
   <string name="menu_db_settings">Database settings</string>
   <string name="menu_delete">Delete</string>
+  <string name="menu_copy">Create duplicate</string>
   <string name="menu_move">Move to another group</string>
   <string name="menu_move_light">Move</string>
   <string name="menu_navigate">Navigate to parent group</string>
@@ -553,6 +554,8 @@
 	<string name="CopyingFile">Copying file...</string>
 
 	<string name="ChangeLog_title">Change log</string>
+  
+  <string name="DuplicateTitle">Copy</string>
 
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>
 	

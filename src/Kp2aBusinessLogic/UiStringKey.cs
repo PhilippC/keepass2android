@@ -62,6 +62,7 @@ namespace keepass2android
 		DeletingItems,
 		AskDeletePermanentlyItems,
 		AskDeletePermanentlyItemsNoRecycle,
-		InOfflineMode
+		InOfflineMode,
+		DuplicateTitle
     }
 }
