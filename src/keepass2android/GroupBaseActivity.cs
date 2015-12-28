@@ -876,7 +876,7 @@ namespace keepass2android
 		public void OnDestroyActionMode(ActionMode mode)
 		{
 			Android.Util.Log.Debug("KP2A", "Destroy action mode" + mode);
-			((PwGroupListAdapter)ListView.Adapter).InActionMode = true;
+			((PwGroupListAdapter)ListView.Adapter).InActionMode = false;
 			((PwGroupListAdapter)ListView.Adapter).NotifyDataSetChanged();
 			_mode = null;
 			if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
