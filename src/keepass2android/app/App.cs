@@ -64,7 +64,7 @@ namespace keepass2android
 	public static class AppNames
 	{
 #if DEBUG
-		public const string AppName = "Keepass2Android Debug";
+		public const string AppName = "@string/app_name_debug";
 #else
 		public const string AppName = "@string/app_name";
 #endif
