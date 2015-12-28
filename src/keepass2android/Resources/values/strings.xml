@@ -553,10 +553,12 @@
 	
 	<string name="CopyingFile">Copying file...</string>
 
-	<string name="ChangeLog_title">Change log</string>
-  
   <string name="DuplicateTitle">Copy</string>
 
+
+	<string name="ChangeLog_title">Change log</string>
+  
+  
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>
 	
 	<string name="Continue">Continue</string>
@@ -567,6 +569,16 @@
     * Fix for SSL vulnerability in Microsoft Live SDK (used when accessing files via OneDrive)\n
     * Bug fix: Previous release contained two input methods (one crashing)\n
   </string>
+
+  <string name="ChangeLog_1_0_0">
+    Version 1.0.0 - preview 1\n
+    * Added "work offline" mode\n
+    * Allow to copy entries\n
+    * Auto-complete mode for field names\n
+    * Allow to remove items from recent files list\n
+    * more to come...\n
+  </string>
+	
   
   <string name="ChangeLog_0_9_9">
 		Version 0.9.9\n
