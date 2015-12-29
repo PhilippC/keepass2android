@@ -166,7 +166,7 @@ namespace keepass2android
 
 				_iconSets.Add(new IconSet()
 				{
-					DisplayName = AppNames.AppName,
+					DisplayName = Context.GetString(AppNames.AppNameResource),
 					PackageName = Context.PackageName
 				});
 
