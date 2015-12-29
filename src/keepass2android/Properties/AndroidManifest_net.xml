@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="66" 
+			android:versionCode="68" 
 			android:versionName="0.9.9e" 
 			package="keepass2android.keepass2android" 
 			android:installLocation="auto">
