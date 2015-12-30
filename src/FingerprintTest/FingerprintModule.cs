@@ -9,8 +9,11 @@ using Android.Hardware.Fingerprints;
 using Android.OS;
 using Android.Security.Keystore;
 using Android.Preferences;
+using Android.Util;
+using Android.Widget;
 using Java.IO;
 using Java.Security.Cert;
+using Javax.Crypto.Spec;
 
 namespace keepass2android
 {
@@ -25,7 +28,7 @@ namespace keepass2android
 
 		public FingerprintManager FingerprintManager 
 		{
-			get { return (FingerprintManager) Context.GetSystemService("FingerprintManager"); }
+			get { return (FingerprintManager) Context.GetSystemService(Context.FingerprintService); }
 		}
 
 		public KeyguardManager KeyguardManager 
@@ -103,8 +106,9 @@ namespace keepass2android
 		}
 	}
 
-	public class FingerprintEncryptionModule: FingerprintManager.AuthenticationCallback
+	public abstract class FingerprintCrypt: FingerprintManager.AuthenticationCallback
 	{
+		protected const string FailedToInitCipher = "Failed to init Cipher";
 		public override void OnAuthenticationError(FingerprintState errorCode, ICharSequence errString)
 		{
 			_callback.OnAuthenticationError(errorCode, errString);
@@ -126,21 +130,180 @@ namespace keepass2android
 			_callback.OnAuthenticationSucceeded(result);
 		}
 
-		private readonly FingerprintModule _fingerprint;
-		private readonly string _keyId;
-		private Cipher _cipher;
+		protected readonly string _keyId;
+
+		protected Cipher _cipher;
 		private bool _selfCancelled;
 		private CancellationSignal _cancellationSignal;
-		private FingerprintManager.CryptoObject _cryptoObject;
+		protected FingerprintManager.CryptoObject _cryptoObject;
 		private FingerprintManager.AuthenticationCallback _callback;
+		protected KeyStore _keystore;
+		
+		private FingerprintManager _fingerprintManager;
 
-		public FingerprintEncryptionModule(FingerprintModule fingerprint, string keyId)
+		public FingerprintCrypt(FingerprintModule fingerprint, string keyId)
 		{
-			_fingerprint = fingerprint;
+			
 			_keyId = keyId;
+			
 			_cipher = fingerprint.Cipher;
+			_keystore = fingerprint.Keystore;
+			
+			_fingerprintManager = fingerprint.FingerprintManager;
+			
+		}
+
+		public abstract bool InitCipher();
+		protected static string GetAlias(string keyId)
+		{
+			return "keepass2android." + keyId;
+		}
+		protected static string GetIvPrefKey(string prefKey)
+		{
+			return prefKey + "_iv";
+		}
+		public bool IsFingerprintAuthAvailable
+		{
+			get
+			{
+				return _fingerprintManager.IsHardwareDetected
+					&& _fingerprintManager.HasEnrolledFingerprints;
+			}
+		}
+
+		public void StartListening(FingerprintManager.AuthenticationCallback callback)
+		{
+			if (!IsFingerprintAuthAvailable)
+				return;
+
+			_cancellationSignal = new CancellationSignal();
+			_selfCancelled = false;
+			_callback = callback;
+			_fingerprintManager.Authenticate(_cryptoObject, _cancellationSignal, 0 /* flags */, this, null);
+			
+		}
+
+		public void StopListening()
+		{
+			if (_cancellationSignal != null)
+			{
+				_selfCancelled = true;
+				_cancellationSignal.Cancel();
+				_cancellationSignal = null;
+			}
+		}
+
+		public string Encrypt(string textToEncrypt)
+		{
+			return Base64.EncodeToString(_cipher.DoFinal(System.Text.Encoding.UTF8.GetBytes(textToEncrypt)), 0);
+		}
+
+
+		public void StoreEncrypted(string textToEncrypt, string prefKey, Context context)
+		{
+			var edit = PreferenceManager.GetDefaultSharedPreferences(context).Edit();
+
+			edit.PutString(prefKey, Encrypt(textToEncrypt));
+			edit.PutString(GetIvPrefKey(prefKey), Base64.EncodeToString(CipherIv,0));
+			edit.Commit();
+		}
+
+		
+
+		private byte[] CipherIv
+		{
+			get { return _cipher.GetIV(); }
+		}
+	}
+
+	public class FingerprintDecryption : FingerprintCrypt
+	{
+		private readonly byte[] _iv;
+		
+
+		public FingerprintDecryption(FingerprintModule fingerprint, string keyId, byte[] iv) : base(fingerprint, keyId)
+		{
+			_iv = iv;
+		}
+
+		public FingerprintDecryption(FingerprintModule fingerprint, string keyId, Context context, string prefKey)
+			: base(fingerprint, keyId)
+		{
+			_iv = Base64.Decode(PreferenceManager.GetDefaultSharedPreferences(context).GetString(GetIvPrefKey(prefKey), null), 0);
+		}
+
+		public override bool InitCipher()
+		{
+			
+			try
+			{
+				_keystore.Load(null);
+				var key = _keystore.GetKey(GetAlias(_keyId), null);
+				var ivParams = new IvParameterSpec(_iv);
+				_cipher.Init(CipherMode.DecryptMode, key, ivParams);
+
+				_cryptoObject = new FingerprintManager.CryptoObject(_cipher);
+				return true;
+			}
+			catch (KeyPermanentlyInvalidatedException)
+			{
+				return false;
+			}
+			catch (KeyStoreException e)
+			{
+				throw new RuntimeException(FailedToInitCipher, e);
+			}
+			catch (CertificateException e)
+			{
+				throw new RuntimeException(FailedToInitCipher, e);
+			}
+			catch (UnrecoverableKeyException e)
+			{
+				throw new RuntimeException(FailedToInitCipher, e);
+			}
+			catch (IOException e)
+			{
+				throw new RuntimeException(FailedToInitCipher, e);
+			}
+			catch (NoSuchAlgorithmException e)
+			{
+				throw new RuntimeException(FailedToInitCipher, e);
+			}
+			catch (InvalidKeyException e)
+			{
+				throw new RuntimeException(FailedToInitCipher, e);
+			}
+		}
+
+
+		public string Decrypt(string encryted)
+		{
+			byte[] encryptedBytes = Base64.Decode(encryted, 0);
+			return System.Text.Encoding.UTF8.GetString(_cipher.DoFinal(encryptedBytes));
+		}
+
+		public string DecryptStored(string prefKey, Context context)
+		{
+			string enc = PreferenceManager.GetDefaultSharedPreferences(context).GetString(prefKey, null);
+
+			Toast.MakeText(context, "len="+Base64.Decode(enc, 0).Length.ToString(), ToastLength.Long).Show();
+			return Decrypt(enc);
+		}
+	}
+
+	public class FingerprintEncryption : FingerprintCrypt
+	{
+		
+		private KeyGenerator _keyGen;
+		
+
+		public FingerprintEncryption(FingerprintModule fingerprint, string keyId) : 
+			base(fingerprint, keyId)
+		{
+			_keyGen = fingerprint.KeyGenerator;
 			CreateKey();
 		}
+
 
 		/// <summary>
 		/// Creates a symmetric key in the Android Key Store which can only be used after the user 
@@ -148,15 +311,10 @@ namespace keepass2android
 		/// </summary>
 		private void CreateKey()
 		{
-			// The enrolling flow for fingerprint. This is where you ask the user to set up fingerprint
-			// for your flow. Use of keys is necessary if you need to know if the set of
-			// enrolled fingerprints has changed.
 			try
 			{
-				_fingerprint.Keystore.Load(null);
-				// Set the alias of the entry in Android KeyStore where the key will appear
-				// and the constrains (purposes) in the constructor of the Builder
-				_fingerprint.KeyGenerator.Init(new KeyGenParameterSpec.Builder(GetAlias(_keyId),
+				_keystore.Load(null);
+				_keyGen.Init(new KeyGenParameterSpec.Builder(GetAlias(_keyId),
 					KeyStorePurpose.Encrypt | KeyStorePurpose.Decrypt)
 					.SetBlockModes(KeyProperties.BlockModeCbc)
 					// Require the user to authenticate with a fingerprint to authorize every use
@@ -164,7 +322,7 @@ namespace keepass2android
 					.SetUserAuthenticationRequired(true)
 					.SetEncryptionPaddings(KeyProperties.EncryptionPaddingPkcs7)
 					.Build());
-				_fingerprint.KeyGenerator.GenerateKey();
+				_keyGen.GenerateKey();
 			}
 			catch (NoSuchAlgorithmException e)
 			{
@@ -184,13 +342,14 @@ namespace keepass2android
 			}
 		}
 
-		public bool InitCipher()
+		public override bool InitCipher()
 		{
 			try
 			{
-				_fingerprint.Keystore.Load(null);
-				var key = _fingerprint.Keystore.GetKey(GetAlias(_keyId), null);
+				_keystore.Load(null);
+				var key = _keystore.GetKey(GetAlias(_keyId), null);
 				_cipher.Init(CipherMode.EncryptMode, key);
+
 				_cryptoObject = new FingerprintManager.CryptoObject(_cipher);
 				return true;
 			}
@@ -200,69 +359,28 @@ namespace keepass2android
 			}
 			catch (KeyStoreException e)
 			{
-				throw new RuntimeException("Failed to init Cipher", e);
+				throw new RuntimeException(FailedToInitCipher, e);
 			}
 			catch (CertificateException e)
 			{
-				throw new RuntimeException("Failed to init Cipher", e);
+				throw new RuntimeException(FailedToInitCipher, e);
 			}
 			catch (UnrecoverableKeyException e)
 			{
-				throw new RuntimeException("Failed to init Cipher", e);
+				throw new RuntimeException(FailedToInitCipher, e);
 			}
 			catch (IOException e)
 			{
-				throw new RuntimeException("Failed to init Cipher", e);
+				throw new RuntimeException(FailedToInitCipher, e);
 			}
 			catch (NoSuchAlgorithmException e)
 			{
-				throw new RuntimeException("Failed to init Cipher", e);
+				throw new RuntimeException(FailedToInitCipher, e);
 			}
 			catch (InvalidKeyException e)
 			{
-				throw new RuntimeException("Failed to init Cipher", e);
+				throw new RuntimeException(FailedToInitCipher, e);
 			}
-		}
-
-		private string GetAlias(string keyId)
-		{
-			return "keepass2android." + keyId;
-		}
-
-		public bool IsFingerprintAuthAvailable
-		{
-			get
-			{
-				return _fingerprint.FingerprintManager.IsHardwareDetected
-					&& _fingerprint.FingerprintManager.HasEnrolledFingerprints;
-			}
-		}
-
-		public void StartListening(FingerprintManager.AuthenticationCallback callback)
-		{
-			if (!IsFingerprintAuthAvailable)
-				return;
-
-			_cancellationSignal = new CancellationSignal();
-			_selfCancelled = false;
-			_callback = callback;
-			_fingerprint.FingerprintManager.Authenticate(_cryptoObject, _cancellationSignal, 0 /* flags */, this, null);
-			
-		}
-
-		public void StopListening()
-		{
-			if (_cancellationSignal != null)
-			{
-				_selfCancelled = true;
-				_cancellationSignal.Cancel();
-				_cancellationSignal = null;
-			}
-		}
-
-		public void Encrypt(string textToEncrypt)
-		{
-			_cipher.DoFinal(MemUtil)
 		}
 	}
 }
