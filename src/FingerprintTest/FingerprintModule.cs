@@ -218,6 +218,7 @@ namespace keepass2android
 
 	public class FingerprintDecryption : FingerprintCrypt
 	{
+		private readonly Context _context;
 		private readonly byte[] _iv;
 		
 
@@ -229,6 +230,7 @@ namespace keepass2android
 		public FingerprintDecryption(FingerprintModule fingerprint, string keyId, Context context, string prefKey)
 			: base(fingerprint, keyId)
 		{
+			_context = context;
 			_iv = Base64.Decode(PreferenceManager.GetDefaultSharedPreferences(context).GetString(GetIvPrefKey(prefKey), null), 0);
 		}
 
@@ -282,11 +284,9 @@ namespace keepass2android
 			return System.Text.Encoding.UTF8.GetString(_cipher.DoFinal(encryptedBytes));
 		}
 
-		public string DecryptStored(string prefKey, Context context)
+		public string DecryptStored(string prefKey)
 		{
-			string enc = PreferenceManager.GetDefaultSharedPreferences(context).GetString(prefKey, null);
-
-			Toast.MakeText(context, "len="+Base64.Decode(enc, 0).Length.ToString(), ToastLength.Long).Show();
+			string enc = PreferenceManager.GetDefaultSharedPreferences(_context).GetString(prefKey, null);
 			return Decrypt(enc);
 		}
 	}

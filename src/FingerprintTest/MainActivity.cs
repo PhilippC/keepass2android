@@ -124,7 +124,7 @@ namespace FingerprintTest
 		public override void OnAuthenticationSucceeded(FingerprintManager.AuthenticationResult result)
 		{
 			var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
-			Toast.MakeText(_context, _fingerprintDec.DecryptStored(_prefKey, _context), ToastLength.Long).Show();
+			Toast.MakeText(_context, _fingerprintDec.DecryptStored(_prefKey), ToastLength.Long).Show();
 		}
 	}
 
