@@ -138,6 +138,16 @@ android:paddingRight="16dp"
             android:textSize="20sp"
             android:focusable="true"
             android:focusableInTouchMode="true" />
+
+          <ImageButton
+                                    android:id="@+id/fingerprintbtn"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_margin="4dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:src="@drawable/ic_fp_40px"
+                                    android:scaleType="fitXY"
+                                    android:background="?android:selectableItemBackground" />
           
             
 

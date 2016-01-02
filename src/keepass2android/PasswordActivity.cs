@@ -21,6 +21,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.Database;
@@ -908,7 +909,8 @@ namespace keepass2android
 				this._measureArgs = args;
 			};
 
-			RequestPermissions(new[] { Android.Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);	
+			if ((int)Build.VERSION.SdkInt >= 23)
+				RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);
 			
 		}
 		const int FingerprintPermissionRequestCode = 0;
@@ -1600,10 +1602,6 @@ namespace keepass2android
 				outState.PutString(OtpInfoKey, sw.ToString());
 			}
 
-			//more OTP TODO:
-			// * Caching of aux file
-			// *  -> implement IFileStorage in JavaFileStorage based on ListFiles
-			// *  -> Sync
 		}
 
 		protected override void OnNewIntent(Intent intent)
