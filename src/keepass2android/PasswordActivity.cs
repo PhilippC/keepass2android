@@ -35,9 +35,12 @@ using Android.Preferences;
 using Android.Text;
 using Android.Content.PM;
 using Android.Graphics;
+using Android.Hardware.Fingerprints;
+using Android.Provider;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
+using Java.Lang;
 using keepass2android;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -55,6 +58,9 @@ using Process = Android.OS.Process;
 
 using KeeChallenge;
 using AlertDialog = Android.App.AlertDialog;
+using Enum = System.Enum;
+using Exception = System.Exception;
+using String = System.String;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace keepass2android
@@ -64,7 +70,8 @@ namespace keepass2android
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
 		Theme = "@style/MyTheme_Blue")] /*caution: also contained in AndroidManifest.xml*/
-    public class PasswordActivity : LockingActivity {
+    public class PasswordActivity : LockingActivity, IFingerprintAuthCallback
+	{
 
 		enum KeyProviders
 		{
@@ -689,7 +696,9 @@ namespace keepass2android
 		private string mDrawerTitle;
 		private MeasuringRelativeLayout.MeasureArgs _measureArgs;
 		private ActivityDesign _activityDesign;
-		
+		private FingerprintDecryption _fingerprintDec;
+		private bool _fingerprintPermissionGranted;
+
 
 		internal class MyActionBarDrawerToggle : ActionBarDrawerToggle
 		{
@@ -899,9 +908,71 @@ namespace keepass2android
 				this._measureArgs = args;
 			};
 
+			RequestPermissions(new[] { Android.Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);	
+			
+		}
+		const int FingerprintPermissionRequestCode = 0;
+
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+		{
+			if (requestCode == FingerprintPermissionRequestCode && grantResults[0] == Permission.Granted)
+			{
+				var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+				btn.Click += (sender, args) =>
+				{
+					AlertDialog.Builder b = new AlertDialog.Builder(this);
+					b.SetTitle(Resource.String.fingerprint_prefs);
+					b.SetMessage(btn.Tag.ToString());
+					b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
+					b.Show();
+				};
+				_fingerprintPermissionGranted = true;
+			}
 		}
 
-	    private void InitializeNavDrawerButtons()
+		private void ClearFingerprintUnlockData()
+		{
+			ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
+			edit.PutString(Database.GetFingerprintPrefKey(_ioConnection), "");
+			edit.PutString(Database.GetFingerprintModePrefKey(_ioConnection), FingerprintUnlockMode.Disabled.ToString());
+			edit.Commit();
+		}
+
+		
+		public void OnFingerprintError(string message)
+		{
+			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+
+			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+			btn.PostDelayed(() =>
+			{
+				btn.SetImageResource(Resource.Drawable.ic_fp_40px);
+				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
+			}, 1300);
+			Toast.MakeText(this, message, ToastLength.Long).Show();
+		}
+
+		public void OnFingerprintAuthSucceeded()
+		{
+			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+
+			btn.SetImageResource(Resource.Drawable.ic_fingerprint_success);
+			
+			var masterPassword = _fingerprintDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
+			_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
+
+			btn.PostDelayed(() =>
+			{
+				//re-init fingerprint unlock in case something goes wrong with opening the database 
+				InitFingerprintUnlock(); 
+				//fire
+				OnOk();	
+			}, 1000);
+
+			
+		}
+
+		private void InitializeNavDrawerButtons()
 	    {
 	        FindViewById(Resource.Id.btn_nav_change_db).Click += (sender, args) =>
 	        {
@@ -1402,7 +1473,16 @@ namespace keepass2android
             
 		}
 
-	    private void SetPasswordTypeface(TextView textView)
+		protected override void OnPause()
+		{
+			base.OnPause();
+			if (_fingerprintDec != null)
+			{
+				_fingerprintDec.StopListening();
+			}
+		}
+
+		private void SetPasswordTypeface(TextView textView)
 	    {
             if (_passwordFont == null)
             {
@@ -1682,8 +1762,65 @@ namespace keepass2android
 					}
 				}
 			}
+
+			if (_fingerprintPermissionGranted)
+			{
+				InitFingerprintUnlock();
+			}
+			else
+			{
+				FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
+
+			}
+			
 		}
-		
+
+		private void InitFingerprintUnlock()
+		{
+			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+			try
+			{
+				FingerprintUnlockMode um;
+				Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(_ioConnection), ""), out um);
+				btn.Visibility = (um == FingerprintUnlockMode.FullUnlock) ? ViewStates.Visible : ViewStates.Gone;
+
+				if (um != FingerprintUnlockMode.FullUnlock)
+				{
+					return;
+				}
+
+				FingerprintModule fpModule = new FingerprintModule(this);
+				_fingerprintDec = new FingerprintDecryption(fpModule, Database.GetFingerprintPrefKey(_ioConnection), this,
+					Database.GetFingerprintPrefKey(_ioConnection));
+
+				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
+
+				if (_fingerprintDec.InitCipher())
+				{
+					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
+					_fingerprintDec.StartListening(new FingerprintAuthCallbackAdapter(this, this));
+				}
+				else
+				{
+					//key invalidated permanently
+					btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+					btn.Tag = GetString(Resource.String.fingerprint_unlock_failed);
+					_fingerprintDec = null;
+
+					ClearFingerprintUnlockData();
+				}
+			}
+			catch (Exception e)
+			{
+				btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+				btn.Tag = "Error initializing Fingerprint Unlock: " + e;
+
+				_fingerprintDec = null;
+			}
+				
+				
+		}
+
 		private void InitializeOptionCheckboxes() {
 			CheckBox cbQuickUnlock = (CheckBox)FindViewById(Resource.Id.enable_quickunlock);
 			cbQuickUnlock.Checked = _prefs.GetBoolean(GetString(Resource.String.QuickUnlockDefaultEnabled_key), true);
@@ -1788,15 +1925,16 @@ namespace keepass2android
 
 			public override void Run()
 			{
-				if ( Success ) 
+				if (Success)
 				{
-					
+
 					_act.ClearEnteredPassword();
 					_act.BroadcastOpenDatabase();
 
 
 					GC.Collect(); // Ensure temporary memory used while loading is collected
-				} 
+				}
+				
 				if ((Message != null) && (Message.Length > 150)) //show long messages as dialog
 				{
 					new AlertDialog.Builder(_act).SetMessage(Message)
@@ -1885,6 +2023,12 @@ namespace keepass2android
 			}
 		}
 		
+	}
+
+	public interface IFingerprintAuthCallback
+	{
+		void OnFingerprintAuthSucceeded();
+		void OnFingerprintError(string toString);
 	}
 }
 

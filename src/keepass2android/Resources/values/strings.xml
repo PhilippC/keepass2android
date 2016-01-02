@@ -49,6 +49,7 @@
 	<string name="FileHandling_prefs">File handling</string>
 	<string name="keyboard_prefs">Keyboard</string>
 	<string name="export_prefs">Export database...</string>
+  <string name="fingerprint_prefs">Fingerprint unlock</string>
 	<string name="import_db_prefs">Import database to internal folder</string>
 	<string name="import_keyfile_prefs">Import key file to internal folder</string>
 	<string name="keyboardswitch_prefs">Keyboard switching</string>
@@ -79,6 +80,26 @@
   <string name="disclaimer_formal">Keepass2Android comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under the conditions of the GPL version 2 or later.</string>
   <string name="ellipsis">\u2026</string>
 	<string name="copy_to_clipboard">Copy to clipboard</string>
+  <string name="fingerprint_hint">Touch sensor</string>
+  <string name="fingerprint_description">Confirm fingerprint to continue</string>
+  <string name="fingerprint_fatal">Cannot setup Fingerprint Unlock:</string>
+  <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again</string>
+  <string name="fingerprint_success">Fingerprint recognized</string>
+  <string name="fingerprint_os_error">Fingerprint Unlock requires Android 6.0 or later.</string>
+  <string name="fingerprint_hardware_error">No fingerprint hardware detected.</string>
+  <string name="fingerprint_no_enrolled">You have no enrolled fingerprints on this device. Please go to system settings first.</string>
+  <string name="disable_fingerprint_unlock">Disable Fingerprint Unlock</string>
+  <string name="enable_fingerprint_unlock">Enable full Fingerprint Unlock</string>
+  <string name="enable_fingerprint_quickunlock">Enable Fingerprint Unlock for QuickUnlock</string>
+  <string name="fingerprint_unlock_hint">Touch sensor to unlock database</string>
+  <string name="fingerprint_unlock_failed">Fingerprint Unlock failed. Decryption key was invalidated by Android OS. This usually happens if a new fingerprint was enrolled or security settings were changed. Please unlock with your password and then re-enabled Fingerprint Unlock in the database settings.</string>
+
+  <string name="enable_fingerprint_unlock_Info">
+    This will store your master password on this device,
+    encrypted with the Android Keystore and protected
+    using fingerprint authentication. Allows to unlock your database only with your fingerprint.
+  </string>
+  <string name="enable_fingerprint_quickunlock_Info">Allows to use fingerprint authentication instead of the QuickUnlock code. Does not require to store any information related to your master password.</string>
 
   <string name="enter_filename">Enter database filename</string>
   <string name="entry_accessed">Accessed</string>

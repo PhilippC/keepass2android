@@ -51,7 +51,14 @@
 		<Preference android:key="@string/master_pwd_key"
 		  android:title="@string/menu_change_key"
 					/>
-
+    
+    <PreferenceScreen
+        android:key="fingerprint_prefs"
+        android:title="@string/fingerprint_prefs"
+	  >
+      <intent android:action="kp2a.action.FingerprintSetupActivity"/>
+    </PreferenceScreen>
+    
 		<PreferenceScreen
 	  android:key="export_prefs"
 	  android:title="@string/export_prefs"
@@ -70,6 +77,7 @@
 	  />
 		
 		
+    
 	</PreferenceScreen>
 
 	<PreferenceScreen

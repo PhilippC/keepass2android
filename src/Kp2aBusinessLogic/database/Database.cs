@@ -19,12 +19,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
+using System.Text;
 using Android.Content;
 using Java.Lang;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using KeePassLib.Utility;
 using Exception = System.Exception;
 using String = System.String;
 
@@ -146,6 +149,29 @@ namespace keepass2android
 		{
 			get { return _databaseFormat; }
 			set { _databaseFormat = value; }
+		}
+
+		public static string GetFingerprintPrefKey(IOConnectionInfo ioc)
+		{
+			SHA256Managed sha256 = new SHA256Managed();
+			string iocAsHexString = MemUtil.ByteArrayToHexString(sha256.ComputeHash(Encoding.Unicode.GetBytes(ioc.Path.ToCharArray())));
+
+			return "kp2a_ioc_" + iocAsHexString;
+		}
+
+		public static string GetFingerprintModePrefKey(IOConnectionInfo ioc)
+		{
+			return GetFingerprintPrefKey(ioc) + "_mode";
+		}
+
+		public string CurrentFingerprintPrefKey	
+		{
+			get { return GetFingerprintPrefKey(Ioc); }
+		}
+
+		public string CurrentFingerprintModePrefKey
+		{
+			get { return GetFingerprintModePrefKey(Ioc); }
 		}
 
 		protected  virtual void PopulateDatabaseFromStream(PwDatabase pwDatabase, Stream s, IOConnectionInfo iocInfo, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseFormat databaseFormat)

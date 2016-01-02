@@ -35,6 +35,8 @@ namespace FingerprintTest
 			
 			RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FINGERPRINT_PERMISSION_REQUEST_CODE);
 		}
+
+
 		string prefKey = "enc_pref_key";
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
