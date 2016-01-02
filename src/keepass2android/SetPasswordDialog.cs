@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Widget;
 
 namespace keepass2android
@@ -26,16 +27,11 @@ namespace keepass2android
 	{
 		
 		internal String Keyfile;
-		private readonly FileOnFinish _finish;
 		
 		public SetPasswordDialog(Context context):base(context) {
 		}
 		
-		public SetPasswordDialog(Context context, FileOnFinish finish):base(context) {
-			
-			_finish = finish;
-		}
-
+		
 		
 		protected override void OnCreate(Bundle savedInstanceState) 
 		{
@@ -71,7 +67,7 @@ namespace keepass2android
 					
 				}
 				
-				SetPassword sp = new SetPassword(Context, App.Kp2a, pass, keyfile, new AfterSave(this, _finish, new Handler()));
+				SetPassword sp = new SetPassword(Context, App.Kp2a, pass, keyfile, new AfterSave(this, null, new Handler()));
 				ProgressTask pt = new ProgressTask(App.Kp2a, Context, sp);
 				pt.Run();
 			};
@@ -82,9 +78,6 @@ namespace keepass2android
 			Button cancelButton = (Button) FindViewById(Resource.Id.cancel);
 			cancelButton.Click += (sender,e) => {
 				Cancel();
-				if ( _finish != null ) {
-					_finish.Run();
-				}
 			}; 
 		}
 
@@ -105,6 +98,19 @@ namespace keepass2android
 				if ( Success ) {
 					if ( _finish != null ) {
 						_finish.Filename = _dlg.Keyfile;
+					}
+					FingerprintUnlockMode um;
+					Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).GetString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, ""), out um);
+
+					if (um == FingerprintUnlockMode.FullUnlock)
+					{
+						ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).Edit();
+						edit.PutString(App.Kp2a.GetDb().CurrentFingerprintPrefKey, "");
+						edit.PutString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, FingerprintUnlockMode.Disabled.ToString());
+						edit.Commit();
+
+						Toast.MakeText(_dlg.Context, Resource.String.fingerprint_reenable, ToastLength.Long).Show();
+						_dlg.Context.StartActivity(typeof(FingerprintSetupActivity));
 					}
 
 					_dlg.Dismiss();

@@ -94,6 +94,7 @@
   <string name="fingerprint_unlock_hint">Touch sensor to unlock database</string>
   <string name="fingerprint_unlock_failed">Fingerprint Unlock failed. Decryption key was invalidated by Android OS. This usually happens if a new fingerprint was enrolled or security settings were changed. Please unlock with your password and then re-enabled Fingerprint Unlock in the database settings.</string>
   <string name="fingerprint_disabled_wrong_masterkey">Unlocking the database failed: Invalid composite key. Fingerprint Unlock was disabled because apparently the stored master password is no longer valid. Please unlock with your password and then re-enabled Fingerprint Unlock in the database settings.</string>
+  <string name="fingerprint_reenable">Please re-enable Fingerprint Unlock for the new master password.</string>
 
   <string name="enable_fingerprint_unlock_Info">
     This will store your master password on this device,
