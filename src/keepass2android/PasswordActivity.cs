@@ -968,7 +968,7 @@ namespace keepass2android
 				//re-init fingerprint unlock in case something goes wrong with opening the database 
 				InitFingerprintUnlock(); 
 				//fire
-				OnOk();	
+				OnOk(true);	
 			}, 1000);
 
 			
@@ -1138,12 +1138,15 @@ namespace keepass2android
 		    FindViewById<Button>(Resource.Id.change_db).Click += (sender, args) => GoToFileSelectActivity();
 		}
 
-		private void OnOk()
+		private void OnOk(bool usedFingerprintUnlock = false)
 		{
+			UsedFingerprintUnlock = usedFingerprintUnlock;
 			App.Kp2a.GetFileStorage(_ioConnection)
 			   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), _ioConnection,
 			                     RequestCodePrepareDbFile, false);
 		}
+
+		public bool UsedFingerprintUnlock { get; set; }
 
 		private void InitializeTogglePasswordButton()
 		{
@@ -1932,6 +1935,22 @@ namespace keepass2android
 
 					GC.Collect(); // Ensure temporary memory used while loading is collected
 				}
+
+
+				if (Exception is InvalidCompositeKeyException)
+				{
+					if (_act.UsedFingerprintUnlock)
+					{
+						//disable fingerprint unlock if master password changed
+						_act.ClearFingerprintUnlockData();
+						_act.InitFingerprintUnlock();
+
+						Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey);
+					}
+					
+
+				}
+				
 				
 				if ((Message != null) && (Message.Length > 150)) //show long messages as dialog
 				{
@@ -1956,7 +1975,7 @@ namespace keepass2android
 						
 
 				}
-				
+
 
 				_act._performingLoad = false;
 

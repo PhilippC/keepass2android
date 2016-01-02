@@ -51,31 +51,41 @@ namespace keepass2android
 		{
 			try
 			{
-				StatusLogger.UpdateMessage(UiStringKey.loading_database);
-				//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
-				MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
-				MemoryStream databaseStream;
-				if (preloadedMemoryStream != null)
-					databaseStream = preloadedMemoryStream;
-				else
+				try
 				{
-					using (Stream s = _app.GetFileStorage(_ioc).OpenFileForRead(_ioc))
-					{
-						databaseStream = new MemoryStream();
-						s.CopyTo(databaseStream);
-						databaseStream.Seek(0, SeekOrigin.Begin);
-					}
-				}
 
-				//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
-				_format = new KdbxDatabaseFormat(KdbpFile.GetFormatToUse(_ioc));
-				TryLoad(databaseStream);
+
+					StatusLogger.UpdateMessage(UiStringKey.loading_database);
+					//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
+					MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
+					MemoryStream databaseStream;
+					if (preloadedMemoryStream != null)
+						databaseStream = preloadedMemoryStream;
+					else
+					{
+						using (Stream s = _app.GetFileStorage(_ioc).OpenFileForRead(_ioc))
+						{
+							databaseStream = new MemoryStream();
+							s.CopyTo(databaseStream);
+							databaseStream.Seek(0, SeekOrigin.Begin);
+						}
+					}
+
+					//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
+					_format = new KdbxDatabaseFormat(KdbpFile.GetFormatToUse(_ioc));
+					TryLoad(databaseStream);
+				}
+				catch (Exception e)
+				{
+					this.Exception = e;
+					throw;
+				}
 			}
 			catch (KeyFileException)
 			{
 				Kp2aLog.Log("KeyFileException");
 				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/
-				       _app.GetResourceString(UiStringKey.keyfile_does_not_exist));
+				       _app.GetResourceString(UiStringKey.keyfile_does_not_exist), Exception);
 			}
 			catch (AggregateException e)
 			{
@@ -86,24 +96,29 @@ namespace keepass2android
 					// Override the message shown with the last (hopefully most recent) inner exception
 					Kp2aLog.Log("Exception: " + innerException);
 				}
-				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message);
+				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message, Exception);
 				return;
 			}
 			catch (DuplicateUuidsException e)
 			{
 				Kp2aLog.Log("Exception: " + e);
-				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError)+" " +e.Message+ _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional));
+				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + e.Message + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), Exception);
 				return;
 			}
 			catch (Exception e)
 			{
 				Kp2aLog.Log("Exception: " + e);
-				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message);
+				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, Exception);
 				return;
 			}
 			
 			
 		}
+
+		/// <summary>
+		/// Holds the exception which was thrown during execution (if any)
+		/// </summary>
+		public Exception Exception { get; set; }
 
 		private void TryLoad(MemoryStream databaseStream)
 		{

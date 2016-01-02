@@ -34,9 +34,9 @@ namespace keepass2android
 			set { _onFinishToRun = value; }
 		}
 
-		protected void Finish(bool result, String message) {
+		protected void Finish(bool result, String message, Exception exception = null) {
 			if ( OnFinishToRun != null ) {
-				OnFinishToRun.SetResult(result, message);
+				OnFinishToRun.SetResult(result, message, exception);
 				OnFinishToRun.Run();
 			}
 		}
