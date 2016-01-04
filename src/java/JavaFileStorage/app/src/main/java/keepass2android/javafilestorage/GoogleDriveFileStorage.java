@@ -27,11 +27,14 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.ParentReference;
 
+import android.Manifest;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 
@@ -43,9 +46,9 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	static final int MAGIC_GDRIVE=2082334;
 	static final int REQUEST_ACCOUNT_PICKER = MAGIC_GDRIVE+1;
 	static final int REQUEST_AUTHORIZATION = MAGIC_GDRIVE+2;
+	private boolean mRequiresRuntimePermissions = false;
 
-		
-	
+
 	class FileSystemEntryData
 	{
 		String displayName;
@@ -253,7 +256,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	public GoogleDriveFileStorage()
 	{
-		logDebug("Creating GDrive FileStorage");
+		logDebug("Creating GDrive FileStorage.");
 	}
 
 	@Override
@@ -370,7 +373,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		GDrivePath parentGdrivePath = new GDrivePath(parentPath);
 		
 		body.setParents(
-		          Arrays.asList(new ParentReference().setId(parentGdrivePath.getGDriveId())));
+				Arrays.asList(new ParentReference().setId(parentGdrivePath.getGDriveId())));
 		try
 		{
 			File file = getDriveService(parentGdrivePath.getAccount()).files().insert(body).execute();
@@ -393,7 +396,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		GDrivePath parentGdrivePath = new GDrivePath(parentPath);
 		
 		body.setParents(
-		          Arrays.asList(new ParentReference().setId(parentGdrivePath.getGDriveId())));
+				Arrays.asList(new ParentReference().setId(parentGdrivePath.getGDriveId())));
 		try
 		{
 			File file = getDriveService(parentGdrivePath.getAccount()).files().insert(body).execute();
@@ -424,7 +427,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 				throw new FileNotFoundException(parentPath + " is trashed!");
 			logDebug("listing files in "+parentId);
 			Files.List request = driveService.files().list()
-					.setQ("trashed=false and '"+parentId+"' in parents");
+					.setQ("trashed=false and '" + parentId + "' in parents");
 	
 			do {
 				try {
@@ -505,7 +508,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			FileEntry res =  convertToFileEntry(
 					getFileForPath(gdrivePath, getDriveService(gdrivePath.getAccount())),
 					filename);
-			logDebug("getFileEntry res"+res);
+			logDebug("getFileEntry res" + res);
 			return res;
 		}
 		catch (Exception e)
@@ -551,13 +554,13 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	{
 		logDebug("getDriveService "+accountName);
 		AccountData accountData = mAccountData.get(accountName);
-		logDebug("accountData "+accountData);
+		logDebug("accountData " + accountData);
 		return accountData.drive;
 	}
 
 	@Override
 	public void onActivityResult(final JavaFileStorage.FileStorageSetupActivity setupAct, int requestCode, int resultCode, Intent data) {
-		logDebug("ActivityResult: "+requestCode+"/"+resultCode);
+		logDebug("ActivityResult: " + requestCode + "/" + resultCode);
 		switch (requestCode) {
 		case REQUEST_ACCOUNT_PICKER:
 			logDebug("ActivityResult: REQUEST_ACCOUNT_PICKER");
@@ -773,6 +776,38 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	}
 
 
+	@Override
+	public void onRequestPermissionsResult(FileStorageSetupActivity setupAct, int requestCode, String[] permissions, int[] grantResults)
+	{
+		logDebug("onRequestPermissionsResult");
+		if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+		{
+			logDebug("granted");
+			initFileStorage(setupAct);
+		}
+		else
+		{
+			logDebug("denied");
+			finishWithError(setupAct, new Exception("You must grant the requested permissions to continue."));
+		}
+	}
+
+	private void initFileStorage(FileStorageSetupActivity setupAct) {
+		Activity activity = (Activity)setupAct;
+
+		if (PROCESS_NAME_SELECTFILE.equals(setupAct.getProcessName()))
+        {
+            GoogleAccountCredential credential = createCredential(activity.getApplicationContext());
+
+            logDebug("starting REQUEST_ACCOUNT_PICKER");
+            activity.startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+        }
+
+		if (PROCESS_NAME_FILE_USAGE_SETUP.equals(setupAct.getProcessName()))
+        {
+            initializeAccountOrPath(setupAct, setupAct.getPath());
+        }
+	}
 
 	@Override
 	public void onResume(JavaFileStorage.FileStorageSetupActivity setupAct) {
@@ -781,22 +816,13 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public void onStart(final JavaFileStorage.FileStorageSetupActivity setupAct) {
-
-		logDebug("onStart");
-		Activity activity = (Activity)setupAct;
-
-		if (PROCESS_NAME_SELECTFILE.equals(setupAct.getProcessName()))
+		logDebug("onStart "+mRequiresRuntimePermissions);
+		if (!mRequiresRuntimePermissions)
 		{
-			GoogleAccountCredential credential = createCredential(activity.getApplicationContext());
-
-			logDebug("starting REQUEST_ACCOUNT_PICKER");
-			activity.startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+			initFileStorage(setupAct);
 		}
 
-		if (PROCESS_NAME_FILE_USAGE_SETUP.equals(setupAct.getProcessName()))
-		{
-			initializeAccountOrPath(setupAct, setupAct.getPath());	
-		}
+
 	}
 
 	private GoogleAccountCredential createCredential(Context appContext) {
@@ -815,6 +841,21 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public void onCreate(FileStorageSetupActivity activity,
 			Bundle savedInstanceState) {
+
+		logDebug("onCreate");
+		mRequiresRuntimePermissions = false;
+		if (Build.VERSION.SDK_INT >= 23)
+		{
+			Activity act = (Activity)activity;
+			int permissionRes = act.checkSelfPermission(Manifest.permission.GET_ACCOUNTS);
+			logDebug("permissionRes="+permissionRes);
+			if (permissionRes == PackageManager.PERMISSION_DENIED)
+			{
+				logDebug("requestPermissions");
+				mRequiresRuntimePermissions = true;
+				act.requestPermissions(new String[] {Manifest.permission.GET_ACCOUNTS}, 0);
+			}
+		}
 
 	}
 

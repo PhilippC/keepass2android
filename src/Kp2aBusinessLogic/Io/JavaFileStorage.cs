@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -16,7 +17,7 @@ using FileNotFoundException = Java.IO.FileNotFoundException;
 namespace keepass2android.Io
 {
 	#if !EXCLUDE_JAVAFILESTORAGE
-	public abstract class JavaFileStorage: IFileStorage
+	public abstract class JavaFileStorage: IFileStorage, IPermissionRequestingFileStorage
 	{
 		protected string Protocol { get { return _jfs.ProtocolId; } }
 
@@ -356,6 +357,12 @@ namespace keepass2android.Io
 			return ioc.Path;
 		}
 
+		public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
+			string[] permissions, Permission[] grantResults)
+		{
+			_jfs.OnRequestPermissionsResult(((IJavaFileStorageFileStorageSetupActivity) fileStorageSetupActivity), requestCode,
+				permissions, grantResults.Select(p => (int)p).ToArray());
+		}
 	}
 #endif
 }

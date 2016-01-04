@@ -5,6 +5,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using KeePassLib.Cryptography;
 using KeePassLib.Serialization;
@@ -59,7 +60,7 @@ namespace keepass2android.Io
 	/// Implements the IFileStorage interface as a proxy: A base storage is used as a remote storage. Local files are used to cache the
 	/// files on remote.
 	/// </summary>
-	public class CachingFileStorage : IFileStorage, IOfflineSwitchable
+	public class CachingFileStorage : IFileStorage, IOfflineSwitchable, IPermissionRequestingFileStorage
 	{
 		
 		protected readonly OfflineSwitchableFileStorage _cachedStorage;
@@ -617,6 +618,12 @@ namespace keepass2android.Io
 		{
 			get { return _cachedStorage.IsOffline; }
 			set { _cachedStorage.IsOffline = value; }
+		}
+
+		public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
+			string[] permissions, Permission[] grantResults)
+		{
+			_cachedStorage.OnRequestPermissionsResult(fileStorageSetupActivity, requestCode, permissions, grantResults);
 		}
 	}
 }

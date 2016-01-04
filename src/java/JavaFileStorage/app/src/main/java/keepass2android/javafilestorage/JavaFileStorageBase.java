@@ -147,5 +147,10 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 
 	}
 
+	public void onRequestPermissionsResult(FileStorageSetupActivity activity, int requestCode, String[] permissions, int[] grantResults)
+	{
+
+	}
+
 
 }

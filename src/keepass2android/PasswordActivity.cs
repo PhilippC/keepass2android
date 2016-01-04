@@ -71,7 +71,8 @@ namespace keepass2android
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
 		Theme = "@style/MyTheme_Blue")] /*caution: also contained in AndroidManifest.xml*/
-    public class PasswordActivity : LockingActivity, IFingerprintAuthCallback
+	[IntentFilter(new[] { "kp2a.action.PasswordActivity" }, Categories = new[] { Intent.CategoryDefault })]
+	public class PasswordActivity : LockingActivity, IFingerprintAuthCallback
 	{
 
 		enum KeyProviders

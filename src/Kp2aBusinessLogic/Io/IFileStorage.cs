@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using KeePassLib.Serialization;
 
@@ -22,7 +23,7 @@ namespace keepass2android.Io
 
 		public static String ExtraProcessName = "EXTRA_PROCESS_NAME";
 		public static String ExtraAlwaysReturnSuccess = "EXTRA_ALWAYS_RETURN_SUCCESS";
-		public static String ExtraPath = "PATH";
+		public static String ExtraPath = "fileName"; //match KP2A PasswordActivity Ioc-Path Extra key
 		public static String ExtraIsForSave = "IS_FOR_SAVE";
 		public static String ExtraErrorMessage = "EXTRA_ERROR_MESSAGE";
 
@@ -168,6 +169,11 @@ namespace keepass2android.Io
 		/// Should return true if the file cannot be written.
 		/// </summary>
 		bool IsReadOnly(IOConnectionInfo ioc);
+	}
+
+	public interface IPermissionRequestingFileStorage
+	{
+		void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode, string[] permissions, Permission[] grantResults);
 	}
 
 	public interface IWriteTransaction: IDisposable

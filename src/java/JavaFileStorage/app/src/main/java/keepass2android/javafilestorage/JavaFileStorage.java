@@ -18,7 +18,7 @@ public interface JavaFileStorage {
 	public static final String EXTRA_PATH = "fileName"; //match KP2A PasswordActivity Ioc-Path Extra key
 	public static final String EXTRA_IS_FOR_SAVE = "IS_FOR_SAVE";
 	public static final String EXTRA_ERROR_MESSAGE = "EXTRA_ERROR_MESSAGE";
-	public static final String EXTRA_ALWAYS_RETURN_SUCCESS = "EXTRA_ALWAYS_RETURN_SUCCESS";;
+	public static final String EXTRA_ALWAYS_RETURN_SUCCESS = "EXTRA_ALWAYS_RETURN_SUCCESS";
 
 	
 public interface FileStorageSetupInitiatorActivity
@@ -155,5 +155,6 @@ public class FileEntry {
 	public void onResume(FileStorageSetupActivity activity);
 	public void onStart(FileStorageSetupActivity activity);
 	public void onActivityResult(FileStorageSetupActivity activity, int requestCode, int resultCode, Intent data);
+	public void onRequestPermissionsResult(FileStorageSetupActivity activity, int requestCode, String[] permissions, int[] grantResults);
 	
 }

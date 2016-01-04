@@ -287,13 +287,20 @@ namespace keepass2android
 
 		private void SetDefaultIoc()
 		{
-			var sdDir = SdDir;
-			string filename = sdDir + "keepass.kdbx";
+			File directory = GetExternalFilesDir(null);
+			if (directory == null)
+				directory = FilesDir;
+
+			string strDir = directory.CanonicalPath;
+			if (!strDir.EndsWith(File.Separator))
+				strDir += File.Separator;
+
+			string filename = strDir + "keepass.kdbx";
 			filename = ConvertFilenameToIocPath(filename);
 			int count = 2;
 			while (new File(filename).Exists())
 			{
-				filename = ConvertFilenameToIocPath(sdDir + "keepass" + count + ".kdbx");
+				filename = ConvertFilenameToIocPath(strDir + "keepass" + count + ".kdbx");
 				count++;
 			}
 			

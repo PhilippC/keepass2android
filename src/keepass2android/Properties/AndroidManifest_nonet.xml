@@ -4,7 +4,7 @@
 			android:versionName="0.9.8b" 
 			package="keepass2android.keepass2android_nonet"
 			android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
+	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher_offline">
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.localfile" android:exported="false" />
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.history" android:exported="false" />

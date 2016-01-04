@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using KeePassLib.Serialization;
 
@@ -16,7 +17,7 @@ namespace keepass2android.Io
 	/// Encapsulates another IFileStorage. Allows to switch to offline mode by throwing
 	/// an exception when trying to read or write a file.
 	/// </summary>
-	public class OfflineSwitchableFileStorage : IFileStorage, IOfflineSwitchable
+	public class OfflineSwitchableFileStorage : IFileStorage, IOfflineSwitchable, IPermissionRequestingFileStorage
 	{
 		private readonly IFileStorage _baseStorage;
 		public bool IsOffline { get; set; }
@@ -179,6 +180,15 @@ namespace keepass2android.Io
 		{
 			return _baseStorage.IsReadOnly(ioc);
 		}
+
+	public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
+		string[] permissions, Permission[] grantResults)
+	{
+		if (_baseStorage is IPermissionRequestingFileStorage)
+		{
+			((IPermissionRequestingFileStorage)_baseStorage).OnRequestPermissionsResult(fileStorageSetupActivity, requestCode, permissions, grantResults);
+		}
+	}
 	}
 
 	public class OfflineModeException : Exception

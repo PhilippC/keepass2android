@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net;
-using System.Net.Security;
 using System.Security;
+using Android;
+using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
-using Java.Security.Cert;
+using Java.IO;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
+using File = System.IO.File;
+using FileNotFoundException = System.IO.FileNotFoundException;
+using IOException = System.IO.IOException;
 
 namespace keepass2android.Io
 {
-	public class BuiltInFileStorage: IFileStorage
+	public class BuiltInFileStorage : IFileStorage, IPermissionRequestingFileStorage
 	{
+		private const string PermissionGrantedKey = "PermissionGranted";
+
 		public enum CertificateProblem :long
 		{
 			CertEXPIRED = 0x800B0101,
@@ -112,7 +119,8 @@ namespace keepass2android.Io
 
 		private void ConvertException(IOConnectionInfo ioc, WebException ex)
 		{
-			if ((ex.Response is HttpWebResponse) && (((HttpWebResponse) ex.Response).StatusCode == HttpStatusCode.NotFound))
+			var response = ex.Response as HttpWebResponse;
+			if ((response != null) && (response.StatusCode == HttpStatusCode.NotFound))
 			{
 				throw new FileNotFoundException(ex.Message, ioc.Path, ex);
 			}
@@ -241,6 +249,26 @@ namespace keepass2android.Io
 
 		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, bool alwaysReturnSuccess)
 		{
+			//check if we need to request the external-storage-permission at runtime
+			if (ioc.IsLocalFile())
+			{
+				bool requiresPermission = !ioc.Path.StartsWith(activity.Activity.FilesDir.CanonicalPath);
+				
+				var extDirectory = activity.Activity.GetExternalFilesDir(null);
+				if ((extDirectory != null) && (ioc.Path.StartsWith(extDirectory.CanonicalPath)))
+					requiresPermission = false;
+
+				if (requiresPermission && (Build.VERSION.SdkInt >= BuildVersionCodes.M))
+				{
+					if (activity.Activity.CheckSelfPermission(Manifest.Permission.WriteExternalStorage) ==
+						Permission.Denied)
+					{
+						activity.StartFileUsageProcess(ioc, requestCode, alwaysReturnSuccess);
+						return;
+					}	
+				}
+				
+			}
 			Intent intent = new Intent();
 			activity.IocToIntent(intent, ioc);
 			activity.OnImmediateResult(requestCode, (int) FileStorageResults.FileUsagePrepared, intent);
@@ -251,24 +279,42 @@ namespace keepass2android.Io
 			//nothing to do, we're ready to go
 		}
 
-		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
+		public void OnCreate(IFileStorageSetupActivity fileStorageSetupActivity, Bundle savedInstanceState)
 		{
-			throw new NotImplementedException();
+			((Activity)fileStorageSetupActivity).RequestPermissions(new[] { Manifest.Permission.WriteExternalStorage }, 0);
 		}
 
 		public void OnResume(IFileStorageSetupActivity activity)
 		{
-			throw new NotImplementedException();
+			if (activity.State.ContainsKey(PermissionGrantedKey))
+			{
+				if (activity.State.GetBoolean(PermissionGrantedKey))
+				{
+					Intent data = new Intent();
+					data.PutExtra(FileStorageSetupDefs.ExtraIsForSave, activity.IsForSave);
+					data.PutExtra(FileStorageSetupDefs.ExtraPath, IocToPath(activity.Ioc));
+					((Activity) activity).SetResult((Result) FileStorageResults.FileUsagePrepared, data);
+					((Activity) activity).Finish();
+				}
+				else
+				{
+					Intent data = new Intent();
+					data.PutExtra(FileStorageSetupDefs.ExtraErrorMessage, "Permission denied. Please grant file access permission for this app.");
+					((Activity)activity).SetResult(Result.Canceled, data);
+					((Activity)activity).Finish();
+					
+				}
+			}
 		}
 
 		public void OnStart(IFileStorageSetupActivity activity)
 		{
-			throw new NotImplementedException();
+			
 		}
 
 		public void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data)
 		{
-			throw new NotImplementedException();
+			
 		}
 
 		public string GetDisplayName(IOConnectionInfo ioc)
@@ -310,7 +356,7 @@ namespace keepass2android.Io
 			{
 				//test if we can open 
 				//http://www.doubleencore.com/2014/03/android-external-storage/#comment-1294469517
-				using (var writer = new Java.IO.FileOutputStream(ioc.Path, true))
+				using (var writer = new FileOutputStream(ioc.Path, true))
 				{
 					writer.Close();
 					return false; //we can write
@@ -357,6 +403,12 @@ namespace keepass2android.Io
 			{
 				return false;
 			}
+		}
+
+		public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
+			string[] permissions, Permission[] grantResults)
+		{
+			fileStorageSetupActivity.State.PutBoolean(PermissionGrantedKey, grantResults[0] == Permission.Granted);
 		}
 	}
 }

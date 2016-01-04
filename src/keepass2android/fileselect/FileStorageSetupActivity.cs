@@ -87,7 +87,18 @@ namespace keepass2android.fileselect
 			App.Kp2a.GetFileStorage(Ioc).OnActivityResult(this, requestCode, (int) resultCode, data);
 		}
 
-		protected override void OnSaveInstanceState(Bundle outState)
+	    public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+	    {
+		    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+		    var fileStorage = App.Kp2a.GetFileStorage(Ioc);
+		    if (fileStorage is IPermissionRequestingFileStorage)
+		    {
+				((IPermissionRequestingFileStorage)fileStorage).OnRequestPermissionsResult(this, requestCode, permissions, grantResults);    
+		    }
+		    
+	    }
+
+	    protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
 
