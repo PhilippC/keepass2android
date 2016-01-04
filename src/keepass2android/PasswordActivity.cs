@@ -1133,10 +1133,13 @@ namespace keepass2android
 					OnOk();
 				};
 
-			string label = FindViewById<Button>(Resource.Id.change_db).Text;
+			var changeDbButton = FindViewById<Button>(Resource.Id.change_db);
+			string label = changeDbButton.Text;
 			if (label.EndsWith("…"))
-				FindViewById<Button>(Resource.Id.change_db).Text = label.Substring(0, label.Length - 1);
-		    FindViewById<Button>(Resource.Id.change_db).Click += (sender, args) => GoToFileSelectActivity();
+				changeDbButton.Text = label.Substring(0, label.Length - 1);
+		    changeDbButton.Click += (sender, args) => GoToFileSelectActivity();
+
+			Util.MoveBottomBarButtons(Resource.Id.change_db, Resource.Id.pass_ok, Resource.Id.bottom_bar, this);
 		}
 
 		private void OnOk(bool usedFingerprintUnlock = false)
@@ -2003,6 +2006,7 @@ namespace keepass2android
 			}
 			
 		}
+
 
 		class SaveOtpAuxFileAndLoadDb : LoadDb
 		{

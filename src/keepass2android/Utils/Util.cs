@@ -28,6 +28,8 @@ using Android.Provider;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Content.Res;
+using Android.Util;
 using KeePassLib.Serialization;
 using Uri = Android.Net.Uri;
 
@@ -35,6 +37,14 @@ namespace keepass2android
 {
 	
 	public class Util {
+
+		public static float convertDpToPixel(float dp, Context context)
+		{
+			Resources resources = context.Resources;
+			DisplayMetrics metrics = resources.DisplayMetrics;
+			float px = dp * metrics.Density;
+			return px;
+		}
 		public static String GetClipboard(Context context) {
 			Android.Text.ClipboardManager clipboard = (Android.Text.ClipboardManager) context.GetSystemService(Context.ClipboardService);
 			return clipboard.Text;
@@ -444,7 +454,20 @@ namespace keepass2android
             }
         }
 
-		
+
+		public static void MoveBottomBarButtons(int btn1Id, int btn2Id, int bottomBarId, Activity context)
+		{
+			var btn1 = context.FindViewById<Button>(btn1Id);
+			var btn2 = context.FindViewById<Button>(btn2Id);
+			var rl = context.FindViewById<RelativeLayout>(bottomBarId);
+			rl.ViewTreeObserver.GlobalLayout += (sender, args) =>
+			{
+				if (btn1.Width + btn2.Width > rl.Width)
+				{
+					btn2.SetPadding(btn2.PaddingLeft, (int) Util.convertDpToPixel(40, context), btn2.PaddingRight, btn2.PaddingBottom);
+				}
+			};
+		}
 	}
 }
 

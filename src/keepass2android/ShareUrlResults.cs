@@ -162,6 +162,8 @@ namespace keepass2android
 			{
 				createUrlEntry.Visibility = ViewStates.Gone;
 			}
+
+			Util.MoveBottomBarButtons(Resource.Id.select_other_entry, Resource.Id.add_url_entry, Resource.Id.bottom_bar, this);
 		}
 
 		public override bool OnSearchRequested()

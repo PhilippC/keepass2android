@@ -91,10 +91,7 @@ namespace keepass2android
 
             public static float convertDpToPixel(float dp, Context context)
             {
-                Resources resources = context.Resources;
-                DisplayMetrics metrics = resources.DisplayMetrics;
-                float px = dp * metrics.Density;
-                return px;
+	            return Util.convertDpToPixel(dp, context);
             }
 
 

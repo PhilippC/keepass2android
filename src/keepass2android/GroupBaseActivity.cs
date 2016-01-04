@@ -273,6 +273,7 @@ namespace keepass2android
 			{
 				FindViewById(Resource.Id.cancel_insert_element).Click += (sender, args) => StopMovingElements();
 				FindViewById(Resource.Id.insert_element).Click += (sender, args) => InsertElements();
+				Util.MoveBottomBarButtons(Resource.Id.cancel_insert_element, Resource.Id.insert_element, Resource.Id.bottom_bar, this);
 			}
 
 

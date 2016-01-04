@@ -111,7 +111,7 @@ namespace keepass2android
 
 			EditText pwd = (EditText) FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.SetEms(_quickUnlockLength);
-
+			Util.MoveBottomBarButtons(Resource.Id.QuickUnlock_buttonLock, Resource.Id.QuickUnlock_button, Resource.Id.bottom_bar, this);
 
 			Button btnUnlock = (Button) FindViewById(Resource.Id.QuickUnlock_button);
 			btnUnlock.Click += (object sender, EventArgs e) =>
@@ -176,13 +176,14 @@ namespace keepass2android
 
 		public void OnFingerprintAuthSucceeded()
 		{
+			_fingerprintDec.StopListening();
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_success);
 
 			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.Text = ExpectedPasswordPart;
-
+			
 			btn.PostDelayed(() =>
 			{
 			
@@ -199,9 +200,9 @@ namespace keepass2android
 			{
 				FingerprintUnlockMode um;
 				Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(this).GetString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, ""), out um);
-				btn.Visibility = (um == FingerprintUnlockMode.FullUnlock) ? ViewStates.Visible : ViewStates.Gone;
+				btn.Visibility = (um != FingerprintUnlockMode.Disabled) ? ViewStates.Visible : ViewStates.Gone;
 
-				if (um != FingerprintUnlockMode.FullUnlock)
+				if (um == FingerprintUnlockMode.Disabled)
 				{
 					return;
 				}

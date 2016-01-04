@@ -594,7 +594,7 @@
   </string>
 
   <string name="ChangeLog_1_0_0">
-    Version 1.0.0 - preview 2\n
+    Version 1.0.0 - preview 3\n
     * Fingerprint Unlock (requires Android 6.0 or later)\n
     * Added "work offline" mode\n
     * Allow to copy entries\n

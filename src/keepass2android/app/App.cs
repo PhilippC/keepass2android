@@ -336,18 +336,40 @@ namespace keepass2android
 
 					builder.SetMessage(GetResourceString(messageKey));
 
-					builder.SetPositiveButton(GetResourceString(yesString), yesHandler);
+					string yesText = GetResourceString(yesString);
+					builder.SetPositiveButton(yesText, yesHandler);
+					string noText = "";
 					if (noHandler != null)
-						builder.SetNegativeButton(GetResourceString(noString), noHandler);
-
+					{
+						noText = GetResourceString(noString);
+						builder.SetNegativeButton(noText, noHandler);
+					}
+					string cancelText = "";
 					if (cancelHandler != null)
 					{
-						builder.SetNeutralButton(ctx.GetString(Android.Resource.String.Cancel),
+						cancelText = ctx.GetString(Android.Resource.String.Cancel);
+						builder.SetNeutralButton(cancelText,
 												 cancelHandler);	
 					}
 
-					Dialog dialog = builder.Create();
+					AlertDialog dialog = builder.Create();
 					dialog.Show();
+
+					if (yesText.Length + noText.Length + cancelText.Length >= 20)
+					{
+						try
+						{
+							Button button = dialog.GetButton((int)DialogButtonType.Positive);
+							LinearLayout linearLayout = (LinearLayout)button.Parent;
+							linearLayout.Orientation = Orientation.Vertical;
+						}
+						catch (Exception e)
+						{
+							Kp2aLog.Log(e.ToString());
+						}
+	
+					}
+					
 				}
 			);
         }
