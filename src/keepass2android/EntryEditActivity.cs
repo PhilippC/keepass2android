@@ -267,8 +267,9 @@ namespace keepass2android
 
 				State.EntryModified = true;
 
-				TextView keyView = (TextView) ees.FindViewById(Resource.Id.title);
-				keyView.RequestFocus();
+				/*TextView keyView = (TextView) ees.FindViewById(Resource.Id.title);
+				keyView.RequestFocus();*/
+				EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
 			};
 			SetAddExtraStringEnabled();
 		
@@ -462,7 +463,7 @@ namespace keepass2android
 
 				if (String.IsNullOrEmpty(key))
 					continue;
-				
+
 				TextView valueView = (TextView)view.FindViewById(Resource.Id.value);
 				String value = valueView.Text;
 
@@ -840,17 +841,15 @@ namespace keepass2android
         RelativeLayout CreateExtraStringView(KeyValuePair<string, ProtectedString> pair)
 		{
             RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
-	        var titleView = ((AutoCompleteTextView)ees.FindViewById(Resource.Id.title));
+	        var titleView = ((TextView)ees.FindViewById(Resource.Id.title));
 	        titleView.Text = pair.Key;
-			titleView.TextChanged += (sender, e) => State.EntryModified = true;
-			titleView.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, AdditionalKeys);
-			((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
+	        ((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
 			((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
-
+			
 			((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
 			
 			//ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => DeleteAdvancedString((View)sender);
-			ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => EditAdvancedString((View)sender);
+			ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => EditAdvancedString(ees);
 			return ees;
 		}
 
@@ -876,7 +875,11 @@ namespace keepass2android
 	    private void EditAdvancedString(View sender)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			View dlgView = LayoutInflater.Inflate(Resource.Layout.edit_extra_string_dialog, null);
+			View dlgView = LayoutInflater.Inflate(Resource.Layout.
+				edit_extra_string_dialog, null);
+
+			
+
 			builder.SetView(dlgView);
 			builder.SetNegativeButton(Android.Resource.String.Cancel, (o, args) => { });
 			builder.SetPositiveButton(Android.Resource.String.Ok, (o, args) =>
@@ -897,9 +900,13 @@ namespace keepass2android
 				};
 			//copy values:
 			View ees = (View) sender.Parent;
-			dlgView.FindViewById<EditText>(Resource.Id.title).Text = ees.FindViewById<EditText>(Resource.Id.title).Text;
+			dlgView.FindViewById<TextView>(Resource.Id.title).Text = ees.FindViewById<TextView>(Resource.Id.title).Text;
 			dlgView.FindViewById<EditText>(Resource.Id.value).Text = ees.FindViewById<EditText>(Resource.Id.value).Text;
 			dlgView.FindViewById<CheckBox>(Resource.Id.protection).Checked = ees.FindViewById<CheckBox>(Resource.Id.protection).Checked;
+
+			var titleView = ((AutoCompleteTextView)dlgView.FindViewById(Resource.Id.title));
+			titleView.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, AdditionalKeys);
+
 			
 			dialog.Show();
 

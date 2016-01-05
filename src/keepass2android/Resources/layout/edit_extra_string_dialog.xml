@@ -2,13 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-    <EditText
+
+  <AutoCompleteTextView
         android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:singleLine="true"
         android:inputType="text"
-        android:hint="@string/field_name" />
+        android:hint="@string/field_name"
+        android:dropDownWidth="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
     <EditText
         android:id="@+id/value"
         android:layout_width="fill_parent"

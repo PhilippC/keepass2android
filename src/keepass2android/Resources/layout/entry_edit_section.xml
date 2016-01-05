@@ -14,35 +14,28 @@
       android:gravity="center"
       android:layout_marginRight="0dip"
       android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
                     />
   <LinearLayout
     android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:layout_toLeftOf="@id/edit_extra">
-    <AutoCompleteTextView
-        android:id="@+id/title"
-        android:singleLine="true"
-        android:inputType="text"
-        android:hint="@string/field_name"
-        style="@style/TextAppearance_EditEntry_Value"
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.4"
-        android:gravity="top|left"
-        android:layout_marginRight="0dip"
-        android:layout_marginLeft="0dip"
-        android:dropDownWidth="match_parent"
-        />
-    <EditText
-        android:id="@+id/value"
-        android:hint="@string/field_value"
-        android:inputType="textMultiLine"
-        style="@style/TextAppearance_EditEntry_Value"
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.6"
-        android:gravity="top|left"
-        android:layout_marginRight="0dip" />
+
+    <TextView
+          android:id="@+id/title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="0dip"
+        style="@style/EntryFieldHeader" />
+
+      <EditText
+          android:id="@+id/value"
+          android:hint="@string/field_value"
+          android:inputType="textMultiLine"
+          style="@style/EntryEditSingleLine_EditText"
+          android:layout_marginRight="0dip" />
+    
     <CheckBox
         android:id="@+id/protection"
         android:layout_width="0dip"
