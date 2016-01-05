@@ -305,6 +305,15 @@ namespace keepass2android
 			}
 		}
 
+		protected override void OnPause()
+		{
+			base.OnPause();
+			if (_fingerprintDec != null)
+			{
+				_fingerprintDec.StopListening();
+			}
+		}
+
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();

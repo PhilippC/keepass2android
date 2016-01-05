@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:background="?activityBackgroundColor"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="12dip"
+    android:layout_marginLeft="12dip"
+    android:layout_marginRight="12dip"
+    android:layout_marginTop="12dip">
+    <TextView
+        android:id="@+id/tvFatalError"
+        android:text="@string/fingerprint_os_error"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/radio_buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/radio_fingerprint_disabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/disable_fingerprint_unlock" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/radio_fingerprint_quickunlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enable_fingerprint_quickunlock" />
+            <keepass2android.views.Kp2aShortHelpView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance_Help_Dense"
+                android:textColor="@color/light_gray"
+                app:help_text="@string/enable_fingerprint_quickunlock_Info"
+                app:title_text="@string/enable_fingerprint_quickunlock"
+                android:background="?android:attr/selectableItemBackground" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/radio_fingerprint_unlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enable_fingerprint_unlock" />
+            <keepass2android.views.Kp2aShortHelpView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance_Help_Dense"
+                android:textColor="@color/light_gray"
+                app:help_text="@string/enable_fingerprint_unlock_Info"
+                app:title_text="@string/enable_fingerprint_unlock"
+                android:background="?android:attr/selectableItemBackground" />
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/fingerprint_auth_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp">
+        <TextView
+            android:id="@+id/fingerprint_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/fingerprint_description"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            android:textColor="?android:attr/textColorSecondary" />
+        <ImageView
+            android:id="@+id/fingerprint_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/fingerprint_description"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_fp_40px" />
+        <TextView
+            android:id="@+id/fingerprint_status"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fingerprint_icon"
+            android:layout_alignTop="@+id/fingerprint_icon"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/fingerprint_icon"
+            android:gravity="center_vertical"
+            android:text="@string/fingerprint_hint"
+            android:textColor="@color/hint_color" />
+        <Button
+            android:id="@+id/cancel_button"
+            android:text="@string/cancel"
+            android:paddingTop="16dp"
+            android:layout_below="@id/fingerprint_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>
