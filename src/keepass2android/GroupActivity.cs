@@ -16,6 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -26,9 +29,15 @@ using Android.Util;
 using KeePassLib.Utility;
 using keepass2android.view;
 using Android.Content.PM;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
+using KeePassLib.Security;
+using AlertDialog = Android.App.AlertDialog;
+using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
@@ -96,7 +105,77 @@ namespace keepass2android
 		{
 			get { return App.Kp2a.GetDb().CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.GetDb().DatabaseFormat.CanHaveEntriesInRootGroup); }
 		}
-		
+
+		private class TemplateListAdapter : ArrayAdapter<PwEntry>
+		{
+			public TemplateListAdapter(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
+			{
+			}
+
+			public TemplateListAdapter(Context context, int textViewResourceId) : base(context, textViewResourceId)
+			{
+			}
+
+			public TemplateListAdapter(Context context, int resource, int textViewResourceId) : base(context, resource, textViewResourceId)
+			{
+			}
+
+			public TemplateListAdapter(Context context, int textViewResourceId, PwEntry[] objects) : base(context, textViewResourceId, objects)
+			{
+			}
+
+			public TemplateListAdapter(Context context, int resource, int textViewResourceId, PwEntry[] objects) : base(context, resource, textViewResourceId, objects)
+			{
+			}
+
+			public TemplateListAdapter(Context context, int textViewResourceId, IList<PwEntry> objects) : base(context, textViewResourceId, objects)
+			{
+			}
+
+			public TemplateListAdapter(Context context, int resource, int textViewResourceId, IList<PwEntry> objects) : base(context, resource, textViewResourceId, objects)
+			{
+			}
+
+			public override View GetView(int position, View convertView, ViewGroup parent)
+			{
+				View v = base.GetView(position, convertView, parent);
+
+				TextView tv = (TextView)v.FindViewById(Android.Resource.Id.Text1);
+				tv.SetPadding(tv.PaddingLeft,0,tv.PaddingRight,0);
+
+				PwEntry templateEntry = this.GetItem(position);
+
+				var bmp =
+					Bitmap.CreateScaledBitmap(
+						Util.DrawableToBitmap(App.Kp2a.GetDb()
+							.DrawableFactory.GetIconDrawable(Context, App.Kp2a.GetDb().KpDatabase, templateEntry.IconId, PwUuid.Zero, false)),
+						(int)Util.convertDpToPixel(80, Context),
+						(int)Util.convertDpToPixel(80, Context),
+						true);
+				
+				
+				Drawable icon = new BitmapDrawable(bmp);
+
+				if (
+						PreferenceManager.GetDefaultSharedPreferences(Context)
+							.GetString("IconSetKey", Context.PackageName) == Context.PackageName)
+				{
+					Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+					Color color = new Color(189, 189, 189);
+					icon.SetColorFilter(color, mMode);
+				}
+				
+				//Put the image on the TextView
+				tv.SetCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+				tv.Text = templateEntry.Strings.ReadSafe(PwDefs.TitleField);
+				tv.SetTextSize(ComplexUnitType.Dip, 20);
+				
+				tv.CompoundDrawablePadding = (int)Util.convertDpToPixel(8, Context);
+
+				return v;
+			}
+		};
+
 	    protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -139,7 +218,29 @@ namespace keepass2android
             if (AddEntryEnabled) 
             {
 				View addEntry = FindViewById (Resource.Id.fabAddNewEntry);
-				addEntry.Click += (sender, e) => { EntryEditActivity.Launch (this, Group, AppTask); };
+				addEntry.Click += (sender, e) =>
+				{
+					PwEntry defaultTemplate = new PwEntry(false, false);
+					defaultTemplate.IconId = PwIcon.Key;
+					defaultTemplate.Strings.Set(PwDefs.TitleField, new ProtectedString(false, GetString(Resource.String.DefaultTemplate)));
+					List<PwEntry> templates = new List<PwEntry>() { defaultTemplate }; 
+					if (!PwUuid.Zero.Equals(App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup))
+					{
+						templates.AddRange(App.Kp2a.GetDb().Groups[App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup].Entries.OrderBy(entr => entr.Strings.ReadSafe(PwDefs.TitleField)));
+					}
+
+					new AlertDialog.Builder(this)
+						.SetAdapter(new TemplateListAdapter(this, Android.Resource.Layout.SelectDialogItem,
+							Android.Resource.Id.Text1, templates), (o, args) =>
+							{
+
+								EntryEditActivity.Launch(this, Group, templates[args.Which].Uuid, AppTask); 
+							})
+						.Show();
+
+
+					
+				};
                  
 			}
 			

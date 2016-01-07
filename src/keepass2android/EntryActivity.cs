@@ -438,11 +438,18 @@ namespace keepass2android
 		{
 			ViewGroup extraGroup = (ViewGroup) FindViewById(Resource.Id.extra_strings);
 		    bool hasExtras = false;
-			foreach (var pair in Entry.Strings.Where(pair => !PwDefs.IsStandardField(pair.Key)).OrderBy(pair => pair.Key))
+			IEditMode editMode = new DefaultEdit();
+			if (KpEntryTemplatedEdit.IsTemplated(App.Kp2a.GetDb(), this.Entry))
+				editMode = new KpEntryTemplatedEdit(App.Kp2a.GetDb(), this.Entry);
+			foreach (var key in  editMode.SortExtraFieldKeys(Entry.Strings.GetKeys().Where(key=> !PwDefs.IsStandardField(key))))
 			{
-			    hasExtras = true;
-				var stringView = CreateExtraSection(pair.Key, pair.Value.ReadString(), pair.Value.IsProtected);
-				extraGroup.AddView(stringView.View);
+				if (editMode.IsVisible(key))
+				{
+					hasExtras = true;
+					var value = Entry.Strings.Get(key);
+					var stringView = CreateExtraSection(key, value.ReadString(), value.IsProtected);
+					extraGroup.AddView(stringView.View);
+				}
 			}
             FindViewById(Resource.Id.extra_strings_container).Visibility = hasExtras ? ViewStates.Visible : ViewStates.Gone;
 		}

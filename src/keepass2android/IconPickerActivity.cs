@@ -180,32 +180,6 @@ namespace keepass2android
 				return 0;
 			}
 
-			
-
-public static Bitmap DrawableToBitmap (Drawable drawable) {
-    Bitmap bitmap = null;
-
-    if (drawable is BitmapDrawable) {
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-        if(bitmapDrawable.Bitmap != null) {
-            return bitmapDrawable.Bitmap;
-        }
-    }
-
-    if(drawable.IntrinsicWidth <= 0 || drawable.IntrinsicHeight <= 0) {
-        bitmap = Bitmap.CreateBitmap(1, 1, Bitmap.Config.Argb8888); // Single color bitmap will be created of 1x1 pixel
-    } else {
-        bitmap = Bitmap.CreateBitmap(drawable.IntrinsicWidth, drawable.IntrinsicHeight, Bitmap.Config.Argb8888);
-    }
-
-    Canvas canvas = new Canvas(bitmap);
-    drawable.SetBounds(0, 0, canvas.Width, canvas.Height);
-    drawable.Draw(canvas);
-    return bitmap;
-}
-
-
-			
 			public override View GetView(int position, View convertView, ViewGroup parent)
 			{
 				View currView;
@@ -226,7 +200,7 @@ public static Bitmap DrawableToBitmap (Drawable drawable) {
 					tv.Text = "" + position;
 					var drawable = App.Kp2a.GetDb()
 						.DrawableFactory.GetIconDrawable(_act, App.Kp2a.GetDb().KpDatabase, (KeePassLib.PwIcon) position, null, false);
-					drawable = new BitmapDrawable(DrawableToBitmap(drawable));
+					drawable = new BitmapDrawable(Util.DrawableToBitmap(drawable));
 					iv.SetImageDrawable(drawable);
 					//App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, _act, App.Kp2a.GetDb().KpDatabase, (KeePassLib.PwIcon) position, null, false);
 

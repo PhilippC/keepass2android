@@ -11,6 +11,7 @@
         android:padding="16dp">
     <!-- Title -->
         <RelativeLayout
+            android:id="@+id/title_section"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
             <ImageButton
@@ -35,6 +36,7 @@
         </RelativeLayout>
     <!--User-->
         <LinearLayout
+          android:id="@+id/user_section"
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
@@ -50,7 +52,8 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     <!-- password-->
-        <LinearLayout
+      <LinearLayout
+        android:id="@+id/password_section"
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
@@ -111,7 +114,8 @@
             </LinearLayout>
         </LinearLayout>
     <!-- URL -->
-        <LinearLayout
+      <LinearLayout
+        android:id="@+id/url_section"
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
@@ -127,7 +131,8 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     <!-- Comments -->
-        <LinearLayout
+      <LinearLayout
+        android:id="@+id/comments_section"
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
@@ -141,8 +146,8 @@
                     android:inputType="textMultiLine" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/entry_extras_label"
+      <LinearLayout
+            android:id="@+id/entry_extras_container"
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
@@ -197,7 +202,8 @@
             </LinearLayout>
         </LinearLayout>
     <!-- Tags -->
-        <LinearLayout
+      <LinearLayout
+        android:id="@+id/tags_section"
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
@@ -230,7 +236,8 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     <!--expires-->
-        <LinearLayout
+      <LinearLayout
+        android:id="@+id/expires_section"
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"

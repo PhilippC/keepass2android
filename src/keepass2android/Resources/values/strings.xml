@@ -106,7 +106,7 @@
   <string name="enter_filename">Enter database filename</string>
   <string name="entry_accessed">Accessed</string>
   <string name="entry_cancel">Cancel</string>
-  <string name="entry_comment">Comments</string>
+  <string name="entry_comment">Notes</string>
   <string name="entry_tags">Tags</string>
   <string name="entry_override_url">Override URL</string>
   <string name="entry_confpassword">Confirm password</string>
@@ -144,7 +144,7 @@
   <string name="file_browser">File Browser</string>
   <string name="generate_password">Generate Password</string>
   <string name="group">Group</string>
-  <string name="hint_comment">comment</string>
+  <string name="hint_comment">notes</string>
   <string name="hint_conf_pass">confirm password</string>
   <string name="hint_generated_password">generated password</string>
   <string name="hint_group_name">Group name</string>
@@ -194,6 +194,7 @@
   <string name="menu_search_advanced">Advanced Search</string>
   <string name="menu_url">Go to URL</string>
 	<string name="menu_change_db">Change database</string>
+  <string name="menu_show_all">Show all fields</string>
   <string name="minus">Minus</string>
   <string name="never">Never</string>
   <string name="yes">Yes</string>
@@ -577,6 +578,8 @@
 	<string name="CopyingFile">Copying file...</string>
 
   <string name="DuplicateTitle">Copy</string>
+
+  <string name="DefaultTemplate">Standard-Eintrag</string>
 
 
 	<string name="ChangeLog_title">Change log</string>

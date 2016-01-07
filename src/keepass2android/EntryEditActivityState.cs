@@ -1,7 +1,16 @@
+using System.Collections.Generic;
 using KeePassLib;
 
 namespace keepass2android
 {
+	interface IEditMode
+	{
+		bool IsVisible(string fieldKey);
+
+		IEnumerable<string> SortExtraFieldKeys(IEnumerable<string> keys);
+
+	}
+
 	/// <summary>
 	/// Holds the state of the EntrryEditActivity. This is required to be able to keep a partially modified entry in memory
 	/// through the App variable. Serializing this state (especially the Entry/EntryInDatabase) can be a performance problem
@@ -20,6 +29,7 @@ namespace keepass2android
 		
 		internal bool EntryModified;
 
+		public IEditMode EditMode { get; set; }
 	}
 }
 

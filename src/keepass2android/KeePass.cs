@@ -86,6 +86,11 @@ namespace keepass2android
 		public const Result ExitFileStorageSelectionOk = Result.FirstUser + 8;
 		public const Result ResultOkPasswordGenerator = Result.FirstUser + 9;
 
+		public const string TagsKey = "@tags";
+		public const string OverrideUrlKey = "@override";
+		public const string ExpDateKey = "@exp_date";
+
+
 		AppTask _appTask;
 		private ActivityDesign _design;
 
