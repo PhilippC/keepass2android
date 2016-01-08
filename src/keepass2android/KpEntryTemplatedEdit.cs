@@ -89,7 +89,7 @@ namespace keepass2android
 
 					String type = templateEntry.Strings.ReadSafe("_etm_type_" + fieldName);
 
-					if (type == "Divider")
+					if ((type == "Divider") || (type == "@confirm"))
 						continue;
 
 					bool protectedField = type.StartsWith("Protected");
