@@ -339,6 +339,11 @@ namespace keepass2android
 			get { return false; }
 		}
 
+		public bool SupportsTemplates
+		{
+			get { return false; }
+		}
+
 		private void AssignParent(PwGroup kpParent, PwDatabaseV3 dbV3, Dictionary<int, PwGroupV3> groupV3s)
 		{
 			PwGroupV3 parentV3;

@@ -249,6 +249,12 @@ namespace keepass2android
 			PwDatabase pd = Db.KpDatabase;
 			PwGroup pgRecycleBin = pd.RootGroup.FindGroup(pd.RecycleBinUuid, true);
 
+			if (pg.Uuid.Equals(pd.EntryTemplatesGroup))
+			{
+				pd.EntryTemplatesGroup = PwUuid.Zero;
+				pd.EntryTemplatesGroupChanged = DateTime.Now;
+			}
+
 			pgParent.Groups.Remove(pg);
 			touchedGroups.Add(pgParent);
 			if ((DeletePermanently) || (!CanRecycle))

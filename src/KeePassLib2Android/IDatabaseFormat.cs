@@ -23,5 +23,6 @@ namespace KeePassLib
 		bool SupportsTags { get; }
 		bool SupportsOverrideUrl { get; }
 		bool CanRecycle { get; }
+		bool SupportsTemplates { get; }
 	}
 }

@@ -579,10 +579,33 @@
 
   <string name="DuplicateTitle">Copy</string>
 
-  <string name="DefaultTemplate">Standard-Eintrag</string>
-
+  <string name="DefaultTemplate">Standard entry</string>
+  <string name="TemplateGroupName">Templates</string>
+  
+  
+  <string name="TemplateTitle_IdCard">ID card</string>
+  
+  <string name="TemplateField_IdCard_Name">Name</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Place of issue</string>
+  <string name="TemplateField_IdCard_IssueDate">Date of issue</string>
+  <string name="TemplateTitle_EMail">E-Mail</string>
+  <string name="TemplateField_EMail_EMail">E-Mail address</string>
+  <string name="TemplateTitle_WLan">Wireless LAN</string>
+  <string name="TemplateTitle_Notes">Secure note</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Number</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Card holder</string>
+  <string name="TemplateTitle_CreditCard">Credit card</string>
+  <string name="TemplateTitle_Membership">Membership</string>
 
 	<string name="ChangeLog_title">Change log</string>
+  <string name="AskAddTemplatesTitle">Add templates?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android contains entry templates for E-Mail accounts, Wireless-LAN passwords, secure notes and more. Would you like to add these to your database? If you choose No, you can add them later in the database settings.</string>
+  
+  <string name="AddTemplates_pref">Add templates to database</string>
+		
   
   
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>

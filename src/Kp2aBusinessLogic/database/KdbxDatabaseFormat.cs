@@ -78,5 +78,10 @@ namespace keepass2android
 		{
 			get { return true; }
 		}
+
+		public bool SupportsTemplates
+		{
+			get { return true; }
+		}
 	}
 }

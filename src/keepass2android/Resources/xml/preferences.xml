@@ -58,8 +58,13 @@
 	  >
       <intent android:action="kp2a.action.FingerprintSetupActivity"/>
     </PreferenceScreen>
+
+    <Preference android:key="AddTemplates_pref_key"
+		  android:title="@string/AddTemplates_pref"
+					/>
     
-		<PreferenceScreen
+
+    <PreferenceScreen
 	  android:key="export_prefs"
 	  android:title="@string/export_prefs"
 	  >

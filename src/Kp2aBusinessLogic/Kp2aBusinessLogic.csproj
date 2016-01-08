@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="database\CheckDatabaseForChanges.cs" />
+    <Compile Include="database\edit\AddTemplateEntries.cs" />
     <Compile Include="database\edit\CopyEntry.cs" />
     <Compile Include="database\edit\DeleteMultipleItems.cs" />
     <Compile Include="database\edit\EditGroup.cs" />

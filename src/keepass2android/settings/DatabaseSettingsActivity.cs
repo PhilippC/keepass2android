@@ -351,6 +351,7 @@ namespace keepass2android
                 PrepareDefaultUsername(db);
                 PrepareDatabaseName(db);
                 PrepareMasterPassword();
+	            PrepareTemplates(db);
                 
                 Preference algorithm = FindPreference(GetString(Resource.String.algorithm_key));
                 SetAlgorithm(db, algorithm);
@@ -434,7 +435,30 @@ namespace keepass2android
 			
         }
 
-        private void PrepareMasterPassword()
+	    private void PrepareTemplates(Database db)
+	    {
+			Preference pref = FindPreference("AddTemplates_pref_key");
+		    if ((!db.DatabaseFormat.SupportsTemplates) || (AddTemplateEntries.ContainsAllTemplates(App.Kp2a)))
+		    {
+			    pref.Enabled = false;
+		    }
+			else
+		    {
+			    pref.PreferenceClick += (sender, args) =>
+			    {
+					ProgressTask pt = new ProgressTask(App.Kp2a, Activity,
+									new AddTemplateEntries(Activity, App.Kp2a, new ActionOnFinish(
+										delegate
+										{
+											pref.Enabled = false;
+										})));
+					pt.Run();		
+			    };
+		    }
+			
+	    }
+
+	    private void PrepareMasterPassword()
         {
             Preference changeMaster = FindPreference(GetString(Resource.String.master_pwd_key));
             if (App.Kp2a.GetDb().CanWrite)

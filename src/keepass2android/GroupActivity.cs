@@ -60,7 +60,8 @@ namespace keepass2android
 		
 		
 		private const String Tag = "Group Activity:";
-		
+		private const string Askaddtemplates = "AskAddTemplates";
+
 		public static void Launch(Activity act, AppTask appTask) {
 			Launch(act, null, appTask);
 		}
@@ -220,26 +221,34 @@ namespace keepass2android
 				View addEntry = FindViewById (Resource.Id.fabAddNewEntry);
 				addEntry.Click += (sender, e) =>
 				{
-					PwEntry defaultTemplate = new PwEntry(false, false);
-					defaultTemplate.IconId = PwIcon.Key;
-					defaultTemplate.Strings.Set(PwDefs.TitleField, new ProtectedString(false, GetString(Resource.String.DefaultTemplate)));
-					List<PwEntry> templates = new List<PwEntry>() { defaultTemplate }; 
-					if (!PwUuid.Zero.Equals(App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup))
+					if (App.Kp2a.GetDb().DatabaseFormat.SupportsTemplates &&
+						!AddTemplateEntries.ContainsAllTemplates(App.Kp2a) &&
+						PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(Askaddtemplates, true))
 					{
-						templates.AddRange(App.Kp2a.GetDb().Groups[App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup].Entries.OrderBy(entr => entr.Strings.ReadSafe(PwDefs.TitleField)));
-					}
-
-					new AlertDialog.Builder(this)
-						.SetAdapter(new TemplateListAdapter(this, Android.Resource.Layout.SelectDialogItem,
-							Android.Resource.Id.Text1, templates), (o, args) =>
+						App.Kp2a.AskYesNoCancel(UiStringKey.AskAddTemplatesTitle, UiStringKey.AskAddTemplatesMessage,UiStringKey.yes, UiStringKey.no,
+							(o, args) =>
 							{
-
-								EntryEditActivity.Launch(this, Group, templates[args.Which].Uuid, AppTask); 
-							})
-						.Show();
-
-
-					
+								//yes
+								ProgressTask pt = new ProgressTask(App.Kp2a, this,
+									new AddTemplateEntries(this, App.Kp2a, new ActionOnFinish(
+										delegate
+										{
+											StartAddEntry();
+										})));
+								pt.Run();		
+							},
+							(o, args) =>
+							{
+								var edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
+								edit.PutBoolean(Askaddtemplates, false);
+								edit.Commit();
+								//no 
+								StartAddEntry();
+							},null, this);
+						
+					}
+					else
+						StartAddEntry();
 				};
                  
 			}
@@ -250,6 +259,33 @@ namespace keepass2android
 			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 			Log.Warn(Tag, "Finished creating group");
 			
+		}
+
+		private void StartAddEntry()
+		{
+			PwEntry defaultTemplate = new PwEntry(false, false);
+			defaultTemplate.IconId = PwIcon.Key;
+			defaultTemplate.Strings.Set(PwDefs.TitleField, new ProtectedString(false, GetString(Resource.String.DefaultTemplate)));
+			List<PwEntry> templates = new List<PwEntry>() {defaultTemplate};
+			if ((!PwUuid.Zero.Equals(App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup))
+				&& (App.Kp2a.GetDb().KpDatabase.RootGroup.FindGroup(App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup, true) != null))
+			{
+				templates.AddRange(
+					App.Kp2a.GetDb().Groups[App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup].Entries.OrderBy(
+						entr => entr.Strings.ReadSafe(PwDefs.TitleField)));
+			}
+			if (templates.Count > 1)
+			{
+				new AlertDialog.Builder(this)
+					.SetAdapter(new TemplateListAdapter(this, Android.Resource.Layout.SelectDialogItem,
+						Android.Resource.Id.Text1, templates),
+						(o, args) => { EntryEditActivity.Launch(this, Group, templates[args.Which].Uuid, AppTask); })
+					.Show();
+			}
+			else
+			{
+				EntryEditActivity.Launch(this, Group, PwUuid.Zero, AppTask);
+			}
 		}
 
 		public override void OnCreateContextMenu(IContextMenu menu, View v,

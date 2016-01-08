@@ -63,6 +63,24 @@ namespace keepass2android
 		AskDeletePermanentlyItems,
 		AskDeletePermanentlyItemsNoRecycle,
 		InOfflineMode,
-		DuplicateTitle
+		DuplicateTitle,
+		TemplateTitle_IdCard,
+		TemplateField_IdCard_Name,
+		TemplateField_IdCard_PlaceOfIssue,
+		TemplateField_IdCard_IssueDate,
+		TemplateTitle_EMail,
+		TemplateField_EMail_EMail,
+		TemplateTitle_WLan,
+		TemplateTitle_Notes,
+		TemplateField_WLan_SSID,
+		TemplateField_Number,
+		TemplateField_CreditCard_CVV,
+		TemplateField_CreditCard_PIN,
+		TemplateField_CreditCard_Owner,
+		TemplateTitle_CreditCard,
+		TemplateTitle_Membership,
+		TemplateGroupName,
+		AskAddTemplatesTitle,
+		AskAddTemplatesMessage
     }
 }
