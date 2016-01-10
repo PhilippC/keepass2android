@@ -1,0 +1,6 @@
+[submodule "SamsungPass"]
+	path = SamsungPass
+	url = https://github.com/sraiteri/Xamarin-Samsung-Pass.git
+[submodule "src/SamsungPass"]
+	path = src/SamsungPass
+	url = https://github.com/sraiteri/Xamarin-Samsung-Pass.git

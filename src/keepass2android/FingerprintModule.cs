@@ -17,6 +17,12 @@ using Javax.Crypto.Spec;
 
 namespace keepass2android
 {
+	public interface IFingerprintAuthCallback
+	{
+		void OnFingerprintAuthSucceeded();
+		void OnFingerprintError(string toString);
+	}
+
 	public class FingerprintModule
 	{
 		public Context Context { get; set; }
@@ -106,7 +112,7 @@ namespace keepass2android
 		}
 	}
 
-	public abstract class FingerprintCrypt: FingerprintManager.AuthenticationCallback
+	public abstract class FingerprintCrypt: FingerprintManager.AuthenticationCallback, IFingerprintIdentifier
 	{
 		protected const string FailedToInitCipher = "Failed to init Cipher";
 		public override void OnAuthenticationError(FingerprintState errorCode, ICharSequence errString)
@@ -157,7 +163,9 @@ namespace keepass2android
 			
 		}
 
-		public abstract bool InitCipher();
+		public abstract bool Init();
+		
+
 		protected static string GetAlias(string keyId)
 		{
 			return "keepass2android." + keyId;
@@ -173,6 +181,11 @@ namespace keepass2android
 				return _fingerprintManager.IsHardwareDetected
 					&& _fingerprintManager.HasEnrolledFingerprints;
 			}
+		}
+
+		public void StartListening(Context ctx, IFingerprintAuthCallback callback)
+		{
+			StartListening(new FingerprintAuthCallbackAdapter(callback, ctx));
 		}
 
 		public void StartListening(FingerprintManager.AuthenticationCallback callback)
@@ -227,6 +240,13 @@ namespace keepass2android
 		}
 	}
 
+	public interface IFingerprintIdentifier
+	{
+		bool Init();
+		void StartListening(Context ctx, IFingerprintAuthCallback callback);
+		void StopListening();
+	}
+
 	public class FingerprintDecryption : FingerprintCrypt
 	{
 		private readonly Context _context;
@@ -245,9 +265,9 @@ namespace keepass2android
 			_iv = Base64.Decode(PreferenceManager.GetDefaultSharedPreferences(context).GetString(GetIvPrefKey(prefKey), null), 0);
 		}
 
-		public override bool InitCipher()
+		public override bool Init()
 		{
-			Kp2aLog.Log("FP: InitCipher for Dec");
+			Kp2aLog.Log("FP: Init for Dec");
 			try
 			{
 				_keystore.Load(null);
@@ -355,9 +375,9 @@ namespace keepass2android
 			}
 		}
 
-		public override bool InitCipher()
+		public override bool Init()
 		{
-			Kp2aLog.Log("FP: InitCipher for Enc ");
+			Kp2aLog.Log("FP: Init for Enc ");
 			try
 			{
 				_keystore.Load(null);

@@ -700,6 +700,7 @@ namespace keepass2android
 		private ActivityDesign _activityDesign;
 		private FingerprintDecryption _fingerprintDec;
 		private bool _fingerprintPermissionGranted;
+		private PasswordActivityBroadcastReceiver _intentReceiver;
 
 
 		internal class MyActionBarDrawerToggle : ActionBarDrawerToggle
@@ -756,6 +757,11 @@ namespace keepass2android
 		{
 			_activityDesign.ApplyTheme();
 			base.OnCreate(savedInstanceState);
+
+			_intentReceiver = new PasswordActivityBroadcastReceiver(this);
+			IntentFilter filter = new IntentFilter();
+			filter.AddAction(Intent.ActionScreenOff);
+			RegisterReceiver(_intentReceiver, filter);
 			
 			
 			//use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
@@ -1800,7 +1806,7 @@ namespace keepass2android
 
 				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
 
-				if (_fingerprintDec.InitCipher())
+				if (_fingerprintDec.Init())
 				{
 					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
 					_fingerprintDec.StartListening(new FingerprintAuthCallbackAdapter(this, this));
@@ -2044,13 +2050,36 @@ namespace keepass2android
 
 			}
 		}
-		
+		private class PasswordActivityBroadcastReceiver : BroadcastReceiver
+		{
+			readonly PasswordActivity _activity;
+			public PasswordActivityBroadcastReceiver(PasswordActivity activity)
+			{
+				_activity = activity;
+			}
+
+			public override void OnReceive(Context context, Intent intent)
+			{
+				switch (intent.Action)
+				{
+					case Intent.ActionScreenOff:
+						Kp2aLog.Log("bla");
+						_activity.OnScreenLocked();
+						break;
+				}
+			}
+		}
+
+		private void OnScreenLocked()
+		{
+			if (_fingerprintDec != null)
+				_fingerprintDec.StopListening();
+			
+		}
 	}
 
-	public interface IFingerprintAuthCallback
-	{
-		void OnFingerprintAuthSucceeded();
-		void OnFingerprintError(string toString);
-	}
+
+
+	
 }
 

@@ -24,7 +24,7 @@ namespace keepass2android
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
 		Theme = "@style/MyTheme_ActionBar", MainLauncher = false)]
 	[IntentFilter(new[] { "kp2a.action.FingerprintSetupActivity" }, Categories = new[] { Intent.CategoryDefault })]
-	public class FingerprintSetupActivity : LockCloseActivity
+	public class FingerprintSetupActivity : LockCloseActivity, IFingerprintAuthCallback
 	{
 		private readonly ActivityDesign _activityDesign;
 
@@ -119,8 +119,29 @@ namespace keepass2android
 			FindViewById(Resource.Id.radio_buttons).Visibility = ViewStates.Gone;
 			FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
 
-			if ((int)Build.VERSION.SdkInt >= 23)
-				RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);
+			if ((int) Build.VERSION.SdkInt >= 23)
+				RequestPermissions(new[] {Manifest.Permission.UseFingerprint}, FingerprintPermissionRequestCode);
+			else
+			{
+				try
+				{
+					//try to create a Samsung ID object 
+					_samsungFingerprint = new FingerprintSamsungIdentifier(this);
+					if (!_samsungFingerprint.Init())
+					{
+						SetError(Resource.String.fingerprint_no_enrolled);
+					}
+					ShowRadioButtons();
+				}
+				catch (Exception)
+				{
+					_samsungFingerprint = null;
+				}
+				
+			}
+			FindViewById(Resource.Id.container_fingerprint_unlock).Visibility = _samsungFingerprint == null
+				? ViewStates.Visible
+				: ViewStates.Gone;
 		}
 
 		string CurrentPreferenceKey
@@ -181,17 +202,31 @@ namespace keepass2android
 					SetError(Resource.String.fingerprint_no_enrolled);
 					return;
 				}
-				FindViewById<TextView>(Resource.Id.tvFatalError).Visibility = ViewStates.Gone;
-				FindViewById(Resource.Id.radio_buttons).Visibility = ViewStates.Visible;
-				FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
+				ShowRadioButtons();
 			}
 		}
-			
+
+		private void ShowRadioButtons()
+		{
+			FindViewById<TextView>(Resource.Id.tvFatalError).Visibility = ViewStates.Gone;
+			FindViewById(Resource.Id.radio_buttons).Visibility = ViewStates.Visible;
+			FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
+		}
+
 
 		private void ChangeUnlockMode(FingerprintUnlockMode oldMode, FingerprintUnlockMode newMode)
 		{
 			if (oldMode == newMode)
 				return;
+
+			if (_samsungFingerprint != null)
+			{
+				_unlockMode = newMode;
+				ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
+				edit.PutString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, _unlockMode.ToString());
+				edit.Commit();
+				return;
+			}
 
 			if (newMode == FingerprintUnlockMode.Disabled)
 			{
@@ -207,10 +242,10 @@ namespace keepass2android
 			_enc = new FingerprintEncryption(new FingerprintModule(this), CurrentPreferenceKey);
 			try
 			{
-				if (!_enc.InitCipher())
+				if (!_enc.Init())
 					throw new Exception("Failed to initialize cipher");
 				ResetErrorTextRunnable();
-				_enc.StartListening(new SetupCallback(this));
+				_enc.StartListening(new FingerprintAuthCallbackAdapter(this, this));
 			}
 			catch (Exception e)
 			{
@@ -227,7 +262,10 @@ namespace keepass2android
 		static readonly long SUCCESS_DELAY_MILLIS = 1300;
 		private ImageView _fpIcon;
 		private TextView _fpTextView;
-		public void OnAuthSucceeded()
+		
+		private FingerprintSamsungIdentifier _samsungFingerprint;
+
+		public void OnFingerprintAuthSucceeded()
 		{
 			_unlockMode = _desiredUnlockMode;
 
@@ -248,6 +286,7 @@ namespace keepass2android
 		}
 
 
+		
 		public void OnFingerprintError(string error)
 		{
 			_fpIcon.SetImageResource(Resource.Drawable.ic_fingerprint_error);
@@ -270,7 +309,7 @@ namespace keepass2android
 		{
 			base.OnResume();
 			if (_enc != null)
-				_enc.StartListening(new SetupCallback(this));
+				_enc.StartListening(new FingerprintAuthCallbackAdapter(this, this));
 		}
 
 		protected override void OnPause()
@@ -281,33 +320,4 @@ namespace keepass2android
 		}
 	}
 
-	internal class SetupCallback : FingerprintManager.AuthenticationCallback
-	{
-		private readonly FingerprintSetupActivity _fingerprintSetupActivity;
-
-		public SetupCallback(FingerprintSetupActivity fingerprintSetupActivity)
-		{
-			_fingerprintSetupActivity = fingerprintSetupActivity;
-		}
-
-		public override void OnAuthenticationSucceeded(FingerprintManager.AuthenticationResult result)
-		{
-			_fingerprintSetupActivity.OnAuthSucceeded();
-		}
-
-		public override void OnAuthenticationError(FingerprintState errorCode, ICharSequence errString)
-		{
-			_fingerprintSetupActivity.OnFingerprintError(errString.ToString());
-		}
-
-		public override void OnAuthenticationHelp(FingerprintState helpCode, ICharSequence helpString)
-		{
-			_fingerprintSetupActivity.OnFingerprintError(helpString.ToString());
-		}
-
-		public override void OnAuthenticationFailed()
-		{
-			_fingerprintSetupActivity.OnFingerprintError(_fingerprintSetupActivity.Resources.GetString(Resource.String.fingerprint_not_recognized));
-		}
-	}
 }
