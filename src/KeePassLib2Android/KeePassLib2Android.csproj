@@ -162,10 +162,6 @@
       <Project>{70D3844A-D9FA-4A64-B205-A84C6A822196}</Project>
       <Name>KP2AKdbLibraryBinding</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ZlibAndroid\ZlibAndroid.csproj">
-      <Project>{6C29A7E7-E016-4FC1-B1A0-DEE26AC711BB}</Project>
-      <Name>ZlibAndroid</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.11.3\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.3\build\MonoAndroid10\Xamarin.Insights.targets')" />

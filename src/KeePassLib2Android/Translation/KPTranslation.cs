@@ -103,7 +103,7 @@ namespace KeePassLib.Translation
 				FileAccess.Write, FileShare.None);
 
 #if !KeePassLibSD
-			Ionic.Zlib.GZipStream gz = new Ionic.Zlib.GZipStream(fs, Ionic.Zlib.CompressionMode.Compress);
+			GZipStream gz = new GZipStream(fs, CompressionMode.Compress);
 #else
 			GZipOutputStream gz = new GZipOutputStream(fs);
 #endif
@@ -132,7 +132,7 @@ namespace KeePassLib.Translation
 				FileAccess.Read, FileShare.Read);
 
 #if !KeePassLibSD
-			Ionic.Zlib.GZipStream gz = new Ionic.Zlib.GZipStream(fs, Ionic.Zlib.CompressionMode.Decompress);
+			GZipStream gz = new GZipStream(fs, CompressionMode.Decompress);
 #else
 			GZipInputStream gz = new GZipInputStream(fs);
 #endif

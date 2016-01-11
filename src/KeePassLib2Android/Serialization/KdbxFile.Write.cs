@@ -115,7 +115,7 @@ namespace KeePassLib.Serialization
 					Stream sHashed = new HashedBlockStream(sEncrypted, true);
 
 					if(m_pwDatabase.Compression == PwCompressionAlgorithm.GZip)
-						writerStream = new Ionic.Zlib.GZipStream(sHashed, Ionic.Zlib.CompressionMode.Compress);
+						writerStream = new GZipStream(sHashed, CompressionMode.Compress);
 					else
 						writerStream = sHashed;
 				}

@@ -114,7 +114,7 @@ namespace KeePassLib.Serialization
 						!m_bRepairMode);
 
 					if(m_pwDatabase.Compression == PwCompressionAlgorithm.GZip)
-						readerStream = new Ionic.Zlib.GZipStream(sHashed, Ionic.Zlib.CompressionMode.Decompress);
+						readerStream = new GZipStream(sHashed, CompressionMode.Decompress);
 					else readerStream = sHashed;
 				}
 				else if(kdbFormat == KdbxFormat.PlainXml)
