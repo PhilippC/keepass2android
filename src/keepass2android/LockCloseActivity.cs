@@ -85,7 +85,7 @@ namespace keepass2android
 				}
 				catch (Exception ex)
 				{
-					Kp2aLog.Log(ex.ToString());
+					Kp2aLog.LogUnexpectedError(ex);
 				}
 				
 			}

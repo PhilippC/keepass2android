@@ -168,7 +168,7 @@ namespace PluginTOTP
 				}
 				catch (Exception e)
 				{
-					Kp2aLog.Log(e.ToString());
+					Kp2aLog.LogUnexpectedError(e);
 					//ignore, it's only a warning
 				}
 				

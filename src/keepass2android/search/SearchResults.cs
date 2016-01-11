@@ -100,7 +100,7 @@ namespace keepass2android.search
 			try {
 				Group = App.Kp2a.GetDb().Search (searchParams, null);
 			} catch (Exception e) {
-				Kp2aLog.Log(e.ToString());
+				Kp2aLog.LogUnexpectedError(e);
 				Toast.MakeText(this,e.Message, ToastLength.Long).Show();
 				Finish();
 				return;

@@ -251,7 +251,7 @@ namespace KeePassLib.Serialization
 						Kp2aLog.Log(e.ToString());
 					} catch (Exception e)
 					{ 
-						Kp2aLog.Log(e.ToString());
+						Kp2aLog.LogUnexpectedError(e);
 						Debug.Assert(false); 
 					}
 				}

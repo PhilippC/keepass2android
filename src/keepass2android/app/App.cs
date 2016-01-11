@@ -31,6 +31,7 @@ using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
+using Android.Support.V4.App;
 #if !EXCLUDE_TWOFISH
 using TwofishCipher;
 #endif
@@ -365,7 +366,7 @@ namespace keepass2android
 						}
 						catch (Exception e)
 						{
-							Kp2aLog.Log(e.ToString());
+							Kp2aLog.LogUnexpectedError(e);
 						}
 	
 					}
@@ -410,7 +411,7 @@ namespace keepass2android
 				}
 				catch (Exception e)
 				{
-					Kp2aLog.Log(e.ToString());
+					Kp2aLog.LogUnexpectedError(e);
 				}
 				
 			}
@@ -566,7 +567,7 @@ namespace keepass2android
 		}
 
 
-		enum ValidationMode
+		public enum ValidationMode
 		{
 			Ignore, Warn, Error
 		}
@@ -754,6 +755,9 @@ namespace keepass2android
 #endif
 #endif
 	public class App : Application {
+		public const string Kp2AActionDisableerrorreport = "kp2a.action.DisableErrorReport";
+		public const string Kp2AActionEnableerrorreport = "kp2a.action.EnableErrorReport";
+		public const string PrefErrorreportmode = "pref_ErrorReportMode";
 
 		public App (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -761,6 +765,13 @@ namespace keepass2android
 		}
 
         public static readonly Kp2aApp Kp2a = new Kp2aApp();
+
+		public enum ErrorReportMode
+		{
+			AskAgain=0,
+			Disabled=1,
+			Enabled=2
+		}
         
 		public override void OnCreate() {
 			base.OnCreate();
@@ -769,12 +780,50 @@ namespace keepass2android
 
             Kp2a.OnCreate(this);
 			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
+			Kp2aLog.OnUnexpectedError += (sender, exception) =>
+			{
+				var currentErrorReportMode = GetErrorReportMode();
+				if (currentErrorReportMode == ErrorReportMode.AskAgain)
+				{
+					NotificationCompat.Builder builder = new NotificationCompat.Builder(ApplicationContext);
+					var notification = 
+						builder.SetContentTitle(Resources.GetString(Resource.String.ErrorReportTitle))
+						.SetContentText(Resources.GetString(Resource.String.ErrorReportText) + " " +
+						                Resources.GetString(Resource.String.ErrorReportPromise))
+						.AddAction(Android.Resource.Drawable.IcMenuCloseClearCancel, Resource.String.ErrorReportDisable,
+							PendingIntent.GetBroadcast(ApplicationContext, 0, new Intent(Kp2AActionDisableerrorreport),
+								PendingIntentFlags.CancelCurrent))
+						.AddAction(Android.Resource.Drawable.IcMenuCloseClearCancel, Resource.String.ErrorReportEnable,
+							PendingIntent.GetBroadcast(ApplicationContext, 0, new Intent(Kp2AActionEnableerrorreport),
+								PendingIntentFlags.CancelCurrent))
+						.Build();
+					((NotificationManager) GetSystemService(NotificationService)).Notify(18919, notification);
+
+					var filter = new IntentFilter();
+					filter.AddAction(Kp2AActionDisableerrorreport);
+					filter.AddAction(Kp2AActionEnableerrorreport);
+					RegisterReceiver(new ErrorReportSettingsReceiver(), filter);
+				}
+			};
+			Xamarin.Insights.Initialize("fed2b273ed2a964d0ba6acc3743e68f7a04da957", ApplicationContext);
+			Xamarin.Insights.DisableExceptionCatching = true;
+			var errorReportMode = GetErrorReportMode();
+			Xamarin.Insights.DisableDataTransmission = errorReportMode != ErrorReportMode.Enabled;
+		}
+
+		private ErrorReportMode GetErrorReportMode()
+		{
+			ErrorReportMode errorReportMode;
+			Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(this.ApplicationContext)
+				.GetString(PrefErrorreportmode, ErrorReportMode.AskAgain.ToString()), out errorReportMode);
+			return errorReportMode;
 		}
 
 
 		void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
 		{
-			Kp2aLog.Log(e.Exception.ToString());
+			Kp2aLog.LogUnexpectedError(e.Exception);
+			Xamarin.Insights.Save();
 			// Do your error handling here.
 			throw e.Exception;
 		}
@@ -793,5 +842,24 @@ namespace keepass2android
 
         
     }
+
+	public class ErrorReportSettingsReceiver : BroadcastReceiver
+	{
+		public override void OnReceive(Context context, Intent intent)
+		{
+			if (intent.Action == App.Kp2AActionDisableerrorreport)
+			{
+				PreferenceManager.GetDefaultSharedPreferences(context)
+					.Edit()
+					.PutString(App.PrefErrorreportmode, App.ErrorReportMode.Disabled.ToString());
+			}
+			if (intent.Action == App.Kp2AActionEnableerrorreport)
+			{
+				PreferenceManager.GetDefaultSharedPreferences(context)
+					.Edit()
+					.PutString(App.PrefErrorreportmode, App.ErrorReportMode.Enabled.ToString());
+			}
+		}
+	}
 }
 

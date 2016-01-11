@@ -745,7 +745,7 @@ namespace keepass2android
 			catch (Exception e)
 			{
 				//don't crash if adding to dirty fails but log the exception:
-				Kp2aLog.Log(e.ToString());
+				Kp2aLog.LogUnexpectedError(e);
 			}
 
 			AppTask = new NullTask();

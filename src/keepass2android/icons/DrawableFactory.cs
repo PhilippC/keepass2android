@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
@@ -59,7 +60,7 @@ private static Drawable _blank;
 			}
 				
 			else
-				Kp2aLog.Log("icon not found : " + icon);
+				Kp2aLog.LogUnexpectedError(new Exception("icon not found : " + icon));
 		}
 			
 		public Drawable GetIconDrawable (Context context, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup)
@@ -113,7 +114,7 @@ private static Drawable _blank;
 				}
 				catch (System.Exception e)
 				{
-					Kp2aLog.Log(e.ToString());
+					Kp2aLog.LogUnexpectedError(e);
 					draw = context.Resources.GetDrawable(Resource.Drawable.ic99_blank);
 				}
 				

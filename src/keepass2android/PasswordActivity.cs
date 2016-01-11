@@ -396,7 +396,7 @@ namespace keepass2android
 						}
 						catch (Exception e)
 						{
-							Kp2aLog.Log(e.ToString());
+							Kp2aLog.LogUnexpectedError(e);
 						}
 						return null;
 					}
@@ -482,7 +482,7 @@ namespace keepass2android
 							}
 							catch (Exception e)
 							{
-								Kp2aLog.Log(e.ToString());
+								Kp2aLog.LogUnexpectedError(e);
 								//retry with saved ioc
 								try
 								{
@@ -494,7 +494,7 @@ namespace keepass2android
 								}
 								catch (Exception e2)
 								{
-									Kp2aLog.Log(e2.ToString());
+									Kp2aLog.LogUnexpectedError(e2);
 								}
 
 							}
@@ -701,6 +701,7 @@ namespace keepass2android
 		private FingerprintDecryption _fingerprintDec;
 		private bool _fingerprintPermissionGranted;
 		private PasswordActivityBroadcastReceiver _intentReceiver;
+		private int _appnameclickCount;
 
 
 		internal class MyActionBarDrawerToggle : ActionBarDrawerToggle
@@ -1002,7 +1003,21 @@ namespace keepass2android
 	        {
                 AppSettingsActivity.Launch(this);
 	        };
-				
+
+			FindViewById(Resource.Id.nav_app_name).Click += (sender, args) =>
+			{
+				_appnameclickCount++;
+				if (_appnameclickCount == 6)
+					Toast.MakeText(this, "Once again and the app will crash.", ToastLength.Long).Show();
+				if (_appnameclickCount == 7)
+				{
+					Xamarin.Insights.Report(new Exception("blabla"), new Dictionary<string, string>() { { "key", "the value"}});
+					throw new Exception("This is an easter egg crash (for testing unhandled exceptions.)");
+				}
+					
+
+			};
+
 	    }
 
 	    private void InitializeToolbar()
@@ -1415,7 +1430,7 @@ namespace keepass2android
 				}
 				catch (Exception e)
 				{
-					Kp2aLog.Log(e.ToString());
+					Kp2aLog.LogUnexpectedError(e);
 					errorMessage = e.Message;
 					return false;
 				}
@@ -1430,7 +1445,7 @@ namespace keepass2android
 				}
 				catch (Exception e)
 				{
-					Kp2aLog.Log(e.ToString());
+					Kp2aLog.LogUnexpectedError(e);
 					errorMessage = GetString(Resource.String.OtpKeyError);
 
 					return false;
@@ -1941,6 +1956,7 @@ namespace keepass2android
 
 					_act.ClearEnteredPassword();
 					_act.BroadcastOpenDatabase();
+					_act.InvalidCompositeKeyCount = 0;
 
 
 					GC.Collect(); // Ensure temporary memory used while loading is collected
@@ -1949,6 +1965,7 @@ namespace keepass2android
 
 				if (Exception is InvalidCompositeKeyException)
 				{
+					_act.InvalidCompositeKeyCount++;
 					if (_act.UsedFingerprintUnlock)
 					{
 						//disable fingerprint unlock if master password changed
@@ -1957,8 +1974,23 @@ namespace keepass2android
 
 						Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey);
 					}
+					else
+					{
+						if (_act.InvalidCompositeKeyCount > 1)
+						{
+							Message = _act.GetString(Resource.String.RepeatedInvalidCompositeKeyHelp);
+						}
+						else
+						{
+							Message = _act.GetString(Resource.String.FirstInvalidCompositeKeyError);
+						}
+					}
 					
 
+				}
+				if ((Exception != null) && (Exception.Message == KeePassLib.Resources.KLRes.FileCorrupted))
+				{
+					Message = _act.GetString(Resource.String.CorruptDatabaseHelp);
 				}
 				
 				
@@ -1990,6 +2022,11 @@ namespace keepass2android
 				_act._performingLoad = false;
 
 			}
+		}
+
+		public int InvalidCompositeKeyCount
+		{
+			get; set;
 		}
 
 		private void BroadcastOpenDatabase()
@@ -2039,7 +2076,7 @@ namespace keepass2android
 				}
 				catch (Exception e)
 				{
-					Kp2aLog.Log(e.Message);
+					Kp2aLog.LogUnexpectedError(e);
 
 					Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + e.Message,
 								   ToastLength.Long).Show();
@@ -2063,7 +2100,6 @@ namespace keepass2android
 				switch (intent.Action)
 				{
 					case Intent.ActionScreenOff:
-						Kp2aLog.Log("bla");
 						_activity.OnScreenLocked();
 						break;
 				}

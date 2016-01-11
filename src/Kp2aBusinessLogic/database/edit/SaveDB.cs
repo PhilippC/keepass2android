@@ -164,7 +164,7 @@ namespace keepass2android
 				bSuccess = false;
 			}
 */
-					Kp2aLog.Log("Error while saving: " + e.ToString());
+					Kp2aLog.LogUnexpectedError(e);
 					Finish(false, e.Message);
 					return;
 				}
@@ -188,6 +188,7 @@ namespace keepass2android
 						}
 						catch (Exception e)
 						{
+							Kp2aLog.LogUnexpectedError(e);
 							Kp2aLog.Log("Error in worker thread of SaveDb: " + e);
 							Finish(false, e.Message);
 						}
@@ -197,6 +198,7 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
+				Kp2aLog.LogUnexpectedError(e);
 				Kp2aLog.Log("Error starting worker thread of SaveDb: "+e);
 				Finish(false, e.Message);
 			}

@@ -86,7 +86,7 @@ namespace keepass2android.Utils
 						}
 						catch (Exception t)
 						{
-							Kp2aLog.Log(t.ToString());
+							Kp2aLog.LogUnexpectedError(t);
 						}
 					}
 
@@ -121,7 +121,7 @@ namespace keepass2android.Utils
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.Log(e.ToString());
+				Kp2aLog.LogUnexpectedError(e);
 			}
 		}
 

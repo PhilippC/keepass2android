@@ -1128,7 +1128,8 @@ namespace keepass2android
 			TextView tv = (TextView) FindViewById(viewId);
 		    if (tv == null)
 		    {
-		        Kp2aLog.Log("Invalid viewId " + viewId);
+		        var e = new Exception("Invalid viewId " + viewId);
+				Kp2aLog.LogUnexpectedError(e);
 		        return;
 		    }
 			tv.Text = text;

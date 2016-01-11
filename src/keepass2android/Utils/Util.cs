@@ -276,7 +276,7 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.Log(e.ToString());
+				Kp2aLog.LogUnexpectedError(e);
 			}
 
 			String filename = data.Data.Path;

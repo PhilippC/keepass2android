@@ -101,7 +101,7 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.Log(e.ToString());
+				Kp2aLog.LogUnexpectedError(e);
 			}
 			if (String.IsNullOrEmpty(_requestedUrl))
 				Toast.MakeText(this, GetString(Resource.String.query_credentials, new Java.Lang.Object[] {pluginDisplayName}), ToastLength.Long).Show();
@@ -156,7 +156,7 @@ namespace keepass2android
 					//double check we really have the permission
 					if (!new PluginDatabase(this).HasAcceptedScope(_pluginPackage, _requiredScope))
 					{
-						Kp2aLog.Log("Ohoh! Scope not available, shouldn't get here. Malicious app somewhere?");
+						Kp2aLog.LogUnexpectedError(new Exception("Ohoh! Scope not available, shouldn't get here. Malicious app somewhere?"));
 						SetResult(Result.Canceled);
 						Finish();
 						return;

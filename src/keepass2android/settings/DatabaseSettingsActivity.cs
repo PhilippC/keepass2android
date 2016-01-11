@@ -385,7 +385,7 @@ namespace keepass2android
             }
             catch (Exception ex)
             {
-                Kp2aLog.Log(ex.ToString());
+				Kp2aLog.LogUnexpectedError(ex);
             }
 
             
@@ -428,7 +428,7 @@ namespace keepass2android
             }
             catch (Exception ex)
             {
-                Kp2aLog.Log(ex.ToString());
+				Kp2aLog.LogUnexpectedError(ex);
             }
 
             
@@ -553,7 +553,7 @@ namespace keepass2android
             }
             catch (Exception ex)
             {
-                Kp2aLog.Log(ex.ToString());
+				Kp2aLog.LogUnexpectedError(ex);
             }
         }
 
@@ -585,7 +585,7 @@ namespace keepass2android
                     }
                     catch (Exception ex)
                     {
-                        Kp2aLog.Log(ex.ToString());
+						Kp2aLog.LogUnexpectedError(ex);
                         Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
                     }
                 }

@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Android.Preferences;
 using KeePassLib.Serialization;
@@ -67,6 +68,14 @@ namespace keepass2android
 					_logToFile = File.Exists(LogFilename);
 				return (bool) _logToFile;
 			}
+		}
+		public static event EventHandler<Exception> OnUnexpectedError;
+
+		public static void LogUnexpectedError(Exception exception)
+		{
+			Log(exception.ToString());
+			if (OnUnexpectedError != null)
+				OnUnexpectedError(null, exception);
 		}
 	}
 }

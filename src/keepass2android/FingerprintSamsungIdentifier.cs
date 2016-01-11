@@ -134,7 +134,7 @@ namespace keepass2android
 			}
 			catch (IllegalStateException ise)
 			{
-				Kp2aLog.Log(ise.Message);
+				Kp2aLog.LogUnexpectedError(ise);
 			}
 		}
 	}

@@ -94,20 +94,20 @@ namespace keepass2android
 				{
 					message = innerException.Message;
 					// Override the message shown with the last (hopefully most recent) inner exception
-					Kp2aLog.Log("Exception: " + innerException);
+					Kp2aLog.LogUnexpectedError(innerException);
 				}
 				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message, Exception);
 				return;
 			}
 			catch (DuplicateUuidsException e)
 			{
-				Kp2aLog.Log("Exception: " + e);
+				Kp2aLog.LogUnexpectedError(e);
 				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + e.Message + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), Exception);
 				return;
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.Log("Exception: " + e);
+				Kp2aLog.LogUnexpectedError(e);
 				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, Exception);
 				return;
 			}

@@ -178,7 +178,7 @@ namespace OtpKeyProv
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.Log(e.ToString());
+				Kp2aLog.LogUnexpectedError(e);
 			}
 			finally
 			{
