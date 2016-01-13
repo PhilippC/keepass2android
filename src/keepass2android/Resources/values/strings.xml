@@ -615,21 +615,30 @@
 
   <string name="FirstInvalidCompositeKeyError">Invalid composite key! Please try again.</string>
   <string name="RepeatedInvalidCompositeKeyHelp">Invalid composite key! Please try the following steps to unlock your database:\n
-  * Make sure you have entered the correct password. Use the eye icon to reveal the entered password.\n
-  * Make sure you have selected the correct password type. Make sure this matches the type used when creating the database.\n
-  * Make sure you have selected the correct database file.</string>
+  
+    &#8226; Make sure you have entered the correct password. Use the eye icon to reveal the entered password.\n
+   &#8226; Make sure you have selected the correct password type. Make sure this matches the type used when creating the database.\n
+   &#8226; Make sure you have selected the correct database file.
+ 
+</string>
+  
   <string name="CorruptDatabaseHelp">
     File is corrupted. \n
     Here are some hints which might help to diagnose the issue:\n
-    * If you copied the file over USB (MTP-Mode), please try again with tools like MyPhoneExplorer. MTP truncates files in certain cases.\n
-    * If you cannot open the file from the same location on your PC, it is very likely that the file is actually corrupted. Please use a database backup then. If you assume that Keepass2Android has corrupted the file, please contact support.\n
-    * If you can still open the file on your PC, please contact support. You might try to save it with different settings (e.g. unzipped) on the PC and retry to open in Keepass2Android.</string>
+    
+    &#8226; If you copied the file over USB (MTP-Mode), please try again with tools like MyPhoneExplorer. MTP truncates files in certain cases.\n
+    &#8226; If you cannot open the file from the same location on your PC, it is very likely that the file is actually corrupted. Please use a database backup then. If you assume that Keepass2Android has corrupted the file, please contact support.\n
+    &#8226; If you can still open the file on your PC, please contact support. You might try to save it with different settings (e.g. unzipped) on the PC and retry to open in Keepass2Android.
+
+  </string>
 
   <string name="ErrorReportTitle">Keepass2Android: An error occurred.</string>
-  <string name="ErrorReportText">An unexpected error occurred. Please help us fix this by enabling error reports.</string>
+  <string name="ErrorReportText">An unexpected error occurred while running Keepass2Android. Please help us fix this by allowing the app to send error reports.</string>
   <string name="ErrorReportPromise">Error reports will never contain any contents of your database or master password. You can disable them in the application settings.</string>
   <string name="ErrorReportEnable">Enable</string>
   <string name="ErrorReportDisable">Disable</string>
+  <string name="ErrorReportAsk">Ask after error</string>
+  <string name="ErrorReportPrefTitle">Send error reports</string>
   
   
   <string name="ChangeLog_0_9_8c">
