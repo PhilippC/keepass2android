@@ -406,26 +406,15 @@ namespace keepass2android
 
             try
             {
-                //depending on Android version, we offer to use a transparent icon for QuickUnlock or use the notification priority (since API level 16)
-                Preference hideQuickUnlockTranspIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key));
-                Preference hideQuickUnlockIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden16_key));
-                var quickUnlockScreen = ((PreferenceScreen)FindPreference(GetString(Resource.String.QuickUnlock_prefs_key)));
-                if ((int)Android.OS.Build.VERSION.SdkInt >= 16)
-                {
-                    quickUnlockScreen.RemovePreference(hideQuickUnlockTranspIconPref);
-                    FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += (sender, args) => App.Kp2a.UpdateOngoingNotification();
-                    hideQuickUnlockIconPref.PreferenceChange += OnQuickUnlockHiddenChanged;
-                }
-                else
-                {
-                    //old version: only show transparent quickUnlock and no option to hide unlocked icon:
-                    quickUnlockScreen.RemovePreference(hideQuickUnlockIconPref);
-                    FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key)).PreferenceChange +=
-                        delegate { App.Kp2a.UpdateOngoingNotification(); };
-                    ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))).RemovePreference(
-                        FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)));
-                }
-            }
+                
+	            var errorReportModePref = (ListPreference)FindPreference(App.PrefErrorreportmode);
+				
+#if NoNet
+				((PreferenceScreen)FindPreference(Resource.String.app_key)).RemovePreference(errorReportModePref);
+#else
+				SetupErrorReportModePref(errorReportModePref);
+#endif
+			}
             catch (Exception ex)
             {
 				Kp2aLog.LogUnexpectedError(ex);
@@ -434,6 +423,33 @@ namespace keepass2android
             
 			
         }
+
+	    private void SetupErrorReportModePref(ListPreference errorReportModePref)
+	    {
+		    errorReportModePref.SetEntries(new string[]
+		    {
+			    GetString(Resource.String.ErrorReportEnable),
+			    GetString(Resource.String.ErrorReportAsk),
+			    GetString(Resource.String.ErrorReportDisable)
+		    });
+		    var entryValues = new string[]
+		    {
+			    App.ErrorReportMode.Enabled.ToString(),
+			    App.ErrorReportMode.AskAgain.ToString(),
+			    App.ErrorReportMode.Disabled.ToString(),
+		    };
+		    errorReportModePref.SetEntryValues(entryValues);
+		    errorReportModePref.SetDefaultValue(App.ErrorReportMode.Disabled.ToString());
+		    string currentValue = PreferenceManager.GetDefaultSharedPreferences(Activity)
+			    .GetString(App.PrefErrorreportmode, App.ErrorReportMode.Disabled.ToString());
+			errorReportModePref.SetValueIndex(entryValues.Select((v, index) => new {value = v, index}).First(el => el.value == currentValue).index);
+		    errorReportModePref.PreferenceChange += (sender, args) =>
+		    {
+			    App.ErrorReportMode mode;
+			    Enum.TryParse((string) args.NewValue, out mode);
+			    App.SetErrorReportMode(Activity, mode);
+		    };
+	    }
 
 	    private void PrepareTemplates(Database db)
 	    {
@@ -555,13 +571,6 @@ namespace keepass2android
             {
 				Kp2aLog.LogUnexpectedError(ex);
             }
-        }
-
-
-
-        private void OnQuickUnlockHiddenChanged(object sender, Preference.PreferenceChangeEventArgs e)
-        {
-            App.Kp2a.UpdateOngoingNotification();
         }
 
         private void OnUseOfflineCacheChanged(object sender, Preference.PreferenceChangeEventArgs e)

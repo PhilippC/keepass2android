@@ -755,9 +755,8 @@ namespace keepass2android
 #endif
 #endif
 	public class App : Application {
-		public const string Kp2AActionDisableerrorreport = "kp2a.action.DisableErrorReport";
-		public const string Kp2AActionEnableerrorreport = "kp2a.action.EnableErrorReport";
 		public const string PrefErrorreportmode = "pref_ErrorReportMode";
+		public const string PrefHaspendingerrorreport = "pref_hasPendingErrorReport";
 
 		public App (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -782,39 +781,27 @@ namespace keepass2android
 			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
 			Kp2aLog.OnUnexpectedError += (sender, exception) =>
 			{
-				var currentErrorReportMode = GetErrorReportMode();
-				if (currentErrorReportMode == ErrorReportMode.AskAgain)
+				var currentErrorReportMode = GetErrorReportMode(ApplicationContext);
+				if (currentErrorReportMode != ErrorReportMode.Disabled)
 				{
-					NotificationCompat.Builder builder = new NotificationCompat.Builder(ApplicationContext);
-					var notification = 
-						builder.SetContentTitle(Resources.GetString(Resource.String.ErrorReportTitle))
-						.SetContentText(Resources.GetString(Resource.String.ErrorReportText) + " " +
-						                Resources.GetString(Resource.String.ErrorReportPromise))
-						.AddAction(Android.Resource.Drawable.IcMenuCloseClearCancel, Resource.String.ErrorReportDisable,
-							PendingIntent.GetBroadcast(ApplicationContext, 0, new Intent(Kp2AActionDisableerrorreport),
-								PendingIntentFlags.CancelCurrent))
-						.AddAction(Android.Resource.Drawable.IcMenuCloseClearCancel, Resource.String.ErrorReportEnable,
-							PendingIntent.GetBroadcast(ApplicationContext, 0, new Intent(Kp2AActionEnableerrorreport),
-								PendingIntentFlags.CancelCurrent))
-						.Build();
-					((NotificationManager) GetSystemService(NotificationService)).Notify(18919, notification);
-
-					var filter = new IntentFilter();
-					filter.AddAction(Kp2AActionDisableerrorreport);
-					filter.AddAction(Kp2AActionEnableerrorreport);
-					RegisterReceiver(new ErrorReportSettingsReceiver(), filter);
+					Xamarin.Insights.Report(exception);
+					if (Xamarin.Insights.DisableDataTransmission)
+					{
+						PreferenceManager.GetDefaultSharedPreferences(ApplicationContext)
+							.Edit().PutBoolean(PrefHaspendingerrorreport, true).Commit();
+					}
 				}
 			};
 			Xamarin.Insights.Initialize("fed2b273ed2a964d0ba6acc3743e68f7a04da957", ApplicationContext);
 			Xamarin.Insights.DisableExceptionCatching = true;
-			var errorReportMode = GetErrorReportMode();
-			Xamarin.Insights.DisableDataTransmission = errorReportMode != ErrorReportMode.Enabled;
+			var errorReportMode = GetErrorReportMode(ApplicationContext);
+			SetErrorReportMode(ApplicationContext, errorReportMode);
 		}
 
-		private ErrorReportMode GetErrorReportMode()
+		public static ErrorReportMode GetErrorReportMode(Context ctx)
 		{
 			ErrorReportMode errorReportMode;
-			Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(this.ApplicationContext)
+			Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(ctx)
 				.GetString(PrefErrorreportmode, ErrorReportMode.AskAgain.ToString()), out errorReportMode);
 			return errorReportMode;
 		}
@@ -825,7 +812,7 @@ namespace keepass2android
 			Kp2aLog.LogUnexpectedError(e.Exception);
 			Xamarin.Insights.Save();
 			// Do your error handling here.
-			throw e.Exception;
+			//throw e.Exception;
 		}
 
 		protected override void Dispose(bool disposing)
@@ -840,26 +827,24 @@ namespace keepass2android
             Kp2a.OnTerminate();
 		}
 
-        
-    }
 
-	public class ErrorReportSettingsReceiver : BroadcastReceiver
-	{
-		public override void OnReceive(Context context, Intent intent)
+		public static void SetErrorReportMode(Context ctx, ErrorReportMode mode)
 		{
-			if (intent.Action == App.Kp2AActionDisableerrorreport)
+			Xamarin.Insights.DisableCollection = (mode == ErrorReportMode.Disabled);
+			Xamarin.Insights.DisableDataTransmission = mode != ErrorReportMode.Enabled;
+
+			var pref = PreferenceManager.GetDefaultSharedPreferences(ctx); 
+			var edit = pref.Edit();
+			if (mode != ErrorReportMode.AskAgain)
 			{
-				PreferenceManager.GetDefaultSharedPreferences(context)
-					.Edit()
-					.PutString(App.PrefErrorreportmode, App.ErrorReportMode.Disabled.ToString());
+				edit.PutBoolean(PrefHaspendingerrorreport, false);	
 			}
-			if (intent.Action == App.Kp2AActionEnableerrorreport)
-			{
-				PreferenceManager.GetDefaultSharedPreferences(context)
-					.Edit()
-					.PutString(App.PrefErrorreportmode, App.ErrorReportMode.Enabled.ToString());
-			}
+			edit.PutString(PrefErrorreportmode, mode.ToString());
+			edit.Commit();
+
+
 		}
 	}
+
 }
 

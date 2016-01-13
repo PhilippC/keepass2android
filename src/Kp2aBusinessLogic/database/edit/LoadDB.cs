@@ -107,7 +107,8 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.LogUnexpectedError(e);
+				if (!(e is InvalidCompositeKeyException))
+					Kp2aLog.LogUnexpectedError(e);
 				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, Exception);
 				return;
 			}

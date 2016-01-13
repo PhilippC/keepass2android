@@ -1008,11 +1008,14 @@ namespace keepass2android
 			{
 				_appnameclickCount++;
 				if (_appnameclickCount == 6)
+				{
+					Kp2aLog.LogUnexpectedError(new Exception("some blabla"));
 					Toast.MakeText(this, "Once again and the app will crash.", ToastLength.Long).Show();
+				}
+					
 				if (_appnameclickCount == 7)
 				{
-					Xamarin.Insights.Report(new Exception("blabla"), new Dictionary<string, string>() { { "key", "the value"}});
-					throw new Exception("This is an easter egg crash (for testing unhandled exceptions.)");
+					throw new Exception("this is an easter egg crash (to test uncaught exceptions.");
 				}
 					
 

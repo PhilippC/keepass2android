@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using System;
 using Android.App;
 using Android.Content;
 using Android.Widget;
@@ -73,7 +74,7 @@ namespace keepass2android
 	/// </summary>
 	[Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue")]
 	[IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "android.intent.category.LAUNCHER", "android.intent.category.MULTIWINDOW_LAUNCHER" })]
-	public class KeePass : LifecycleDebugActivity
+	public class KeePass : LifecycleDebugActivity, IDialogInterfaceOnDismissListener
 	{
 		public const Result ExitNormal = Result.FirstUser;
 		public const Result ExitLock = Result.FirstUser+1;
@@ -184,13 +185,40 @@ namespace keepass2android
 			}
 			else
 			{
-				LaunchNextActivity();
+				var pref = PreferenceManager.GetDefaultSharedPreferences(this);
+				if ((pref.GetBoolean(App.PrefHaspendingerrorreport, false)
+					&& (App.GetErrorReportMode(this) == App.ErrorReportMode.AskAgain))
+					)
+				{
+					ShowErrorReportQuestion(LaunchNextActivity);
+				}
+				else
+					LaunchNextActivity();
 			}
 
 		}
 
+		private void ShowErrorReportQuestion(Action launchNextActivity)
+		{
 
+			AlertDialog.Builder b = new AlertDialog.Builder(this);
+			b.SetTitle(Resource.String.ErrorReportTitle);
+			b.SetMessage(GetString(Resource.String.ErrorReportText) + " " + GetString(Resource.String.ErrorReportPromise));
+			b.SetPositiveButton(Resource.String.ErrorReportEnable, (sender, args) =>
+			{
+				App.SetErrorReportMode(this, App.ErrorReportMode.Enabled);
+				launchNextActivity();
+			});
+			b.SetNegativeButton(Resource.String.ErrorReportDisable, (sender, args) =>
+			{
+				App.SetErrorReportMode(this, App.ErrorReportMode.Disabled); 
+				launchNextActivity();
+			});
+			b.SetOnDismissListener(this);
+			
+			b.Show();
 
+		}
 
 
 		private static String SELECT_RUNTIME_PROPERTY = "persist.sys.dalvik.vm.lib";
@@ -314,6 +342,10 @@ namespace keepass2android
 		}
 
 
+		public void OnDismiss(IDialogInterface dialog)
+		{
+			LaunchNextActivity();
+		}
 	}
 }
 
