@@ -148,6 +148,8 @@ namespace keepass2android
 					String customIconIdString = data.Extras.GetString(IconPickerActivity.KeyCustomIconId);
 					if (!String.IsNullOrEmpty(customIconIdString))
 						_selectedCustomIconId = new PwUuid(MemUtil.HexStringToByteArray(customIconIdString));
+					else
+						_selectedCustomIconId = PwUuid.Zero;
 
 					ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
 					App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, this, App.Kp2a.GetDb().KpDatabase, (PwIcon) _selectedIconId, _selectedCustomIconId, false);
