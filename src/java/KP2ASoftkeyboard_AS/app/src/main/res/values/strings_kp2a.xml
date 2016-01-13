@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="change_entry">Select another entry</string>
+    <string name="open_entry">Select entry</string>
+    <string name="open_entry_for_app">Search for entry with "%1$s"</string>
+    <string name="kp2a_user">User</string>
+    <string name="kp2a_password">Password</string>
+    
+    <string name="kp2a_prefs">Credential input settings</string>
+    <string name="kp2a_auto_fill">Auto-Fill enabled</string>
+    <string name="kp2a_auto_fill_summary">Automatically fill in text when an empty field is entered, if a Keepass2Android entry is available for the keyboard and there is a value which matches the field\'s hint text.</string>
+    <string name="kp2a_remember_auto_fill">Remember field hint texts</string>
+    <string name="kp2a_remember_auto_fill_summary">If a text field is filled by manually selecting the Keepass2Android value, remember which value was entered into the text field. The text field is later redetected by its hint text.</string>
+    <string name="kp2a_simple_keyboard">Simple keyboard</string>
+    <string name="kp2a_simple_keyboard_summary">Show the simple 1-row keyboard if an entry is available for the keyboard. If disabled, a dialog is shown when the Keepass2Android key is pressed.</string>
+    
+    <string name="kp2a_lock_on_sendgodone">Lock database when done</string>
+    <string name="kp2a_lock_on_sendgodone_summary">When pressing the Done/Send/Go key on the simple 1-row keyboard, automatically lock the database.</string>
+    
+    <string name="kp2a_switch_on_sendgodone">Switch keyboard when done</string>
+    <string name="kp2a_switch_on_sendgodone_summary">When pressing the Done/Send/Go key on the simple 1-row keyboard, switch the keyboard.</string>
+    
+</resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2008 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        android:title="@string/english_ime_settings"
+        android:key="english_ime_settings">
+        
+    
+
+    <CheckBoxPreference
+            android:key="vibrate_on"
+            android:title="@string/vibrate_on_keypress"
+            android:persistent="true"
+            />
+
+    <CheckBoxPreference
+            android:key="sound_on"
+            android:title="@string/sound_on_keypress"
+            android:persistent="true" 
+            />
+
+    <CheckBoxPreference
+            android:key="popup_on"
+            android:title="@string/popup_on_keypress"
+            android:persistent="true"
+            android:defaultValue="@bool/default_popup_preview"
+            />
+
+    <CheckBoxPreference
+            android:key="recorrection_enabled"
+            android:title="@string/prefs_enable_recorrection"
+            android:summary="@string/prefs_enable_recorrection_summary"
+            android:persistent="true"
+            android:defaultValue="@bool/default_recorrection_enabled"
+            />
+
+    <CheckBoxPreference
+            android:key="auto_cap"
+            android:title="@string/auto_cap"
+            android:persistent="true"
+            android:defaultValue="true"
+            />
+			
+	<PreferenceScreen
+            android:title="@string/language_selection_title"
+            android:summary="@string/language_selection_summary">
+        <intent
+                android:action="keepass2android.softkeyboard.INPUT_LANGUAGE_SELECTION"/>
+    </PreferenceScreen>
+
+        
+    <PreferenceCategory
+        android:title="@string/kp2a_prefs"
+            android:key="kp2a_settings">
+       <CheckBoxPreference
+            android:key="kp2a_auto_fill"
+            android:title="@string/kp2a_auto_fill"
+            android:summary="@string/kp2a_auto_fill_summary"
+            android:persistent="true" 
+            android:defaultValue="true"
+            />
+       <CheckBoxPreference
+            android:key="kp2a_remember_auto_fill"
+            android:title="@string/kp2a_remember_auto_fill"
+            android:summary="@string/kp2a_remember_auto_fill_summary"
+            android:persistent="true" 
+            android:defaultValue="true"
+            android:dependency="kp2a_auto_fill"
+            />
+       <CheckBoxPreference
+            android:key="kp2a_simple_keyboard"
+            android:title="@string/kp2a_simple_keyboard"
+            android:summary="@string/kp2a_simple_keyboard_summary"
+            android:persistent="true" 
+            android:defaultValue="true"
+            />
+       
+       <CheckBoxPreference
+            android:key="kp2a_lock_on_sendgodone"
+            android:title="@string/kp2a_lock_on_sendgodone"
+            android:summary="@string/kp2a_lock_on_sendgodone_summary"
+            android:persistent="true" 
+            android:defaultValue="false"
+            android:dependency="kp2a_simple_keyboard"
+            />
+       
+       
+    </PreferenceCategory>
+    
+    
+    <PreferenceCategory
+            android:title="@string/prediction_category"
+            android:key="prediction_settings">
+
+        <CheckBoxPreference
+            android:key="quick_fixes"
+            android:title="@string/quick_fixes"
+            android:summary="@string/quick_fixes_summary"
+            android:persistent="true"
+            android:defaultValue="true"
+            />
+
+        <CheckBoxPreference
+            android:key="show_suggestions"
+            android:title="@string/show_suggestions"
+            android:summary="@string/show_suggestions_summary"
+            android:persistent="true"
+            android:defaultValue="true"
+            />
+
+        <CheckBoxPreference
+            android:key="auto_complete"
+            android:title="@string/auto_complete"
+            android:summary="@string/auto_complete_summary"
+            android:persistent="true" 
+            android:defaultValue="@bool/enable_autocorrect"
+            android:dependency="show_suggestions"
+            />
+    </PreferenceCategory>            
+
+</PreferenceScreen>
