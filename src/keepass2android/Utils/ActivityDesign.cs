@@ -131,7 +131,7 @@ namespace keepass2android
 			if (HasThemes())
 			{
 				bool dark = UseDarkTheme;
-				_activity.SetTheme(dark ? Resource.Style.Base_Dialog : Resource.Style.Base_Dialog_Dark);
+				_activity.SetTheme(dark ? Resource.Style.Base_Dialog_Dark : Resource.Style.Base_Dialog);
 			}
 
 		}
