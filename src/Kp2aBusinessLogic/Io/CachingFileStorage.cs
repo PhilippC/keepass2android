@@ -556,11 +556,11 @@ namespace keepass2android.Io
 			return _cachedStorage.IsPermanentLocation(ioc);
 		}
 
-		public bool IsReadOnly(IOConnectionInfo ioc)
+		public bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null)
 		{
 			//even though the cache can always be written, the changes made in the cache could not be transferred to the cached file
 			//so we better treat the cache as read-only as well.
-			return _cachedStorage.IsReadOnly(ioc);
+			return _cachedStorage.IsReadOnly(ioc, reason);
 		}
 
 		private void StoreFilePath(IOConnectionInfo folderPath, string filename, IOConnectionInfo res)

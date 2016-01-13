@@ -15,6 +15,11 @@ namespace keepass2android.Io
 		FileChooserPrepared = FullFilenameSelected + 1,
 		FileUsagePrepared = FileChooserPrepared + 1
 	}
+	
+		public class OptionalOut<T>
+		{
+			public T Result { get; set; }
+		}
 
 	public static class FileStorageSetupDefs
 	{
@@ -165,10 +170,14 @@ namespace keepass2android.Io
 		/// Does not require to exist forever!
 		bool IsPermanentLocation(IOConnectionInfo ioc);
 
+		
+
 		/// <summary>
 		/// Should return true if the file cannot be written.
 		/// </summary>
-		bool IsReadOnly(IOConnectionInfo ioc);
+		bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null );
+
+		
 	}
 
 	public interface IPermissionRequestingFileStorage

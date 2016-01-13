@@ -370,14 +370,24 @@ namespace keepass2android.Io
 			
 		}
 
-		public bool IsReadOnly(IOConnectionInfo ioc)
+		public bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null)
 		{
 			if (ioc.IsLocalFile())
 			{
 				if (IsLocalFileFlaggedReadOnly(ioc))
+				{
+					if (reason != null)
+						reason.Result = UiStringKey.ReadOnlyReason_ReadOnlyFlag;
 					return true;
+				}
+
 				if (IsReadOnlyBecauseKitkatRestrictions(ioc))
+				{
+					if (reason != null)
+						reason.Result = UiStringKey.ReadOnlyReason_ReadOnlyKitKat;
 					return true;
+				}
+					
 
 				return false;
 			}

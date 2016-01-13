@@ -81,6 +81,9 @@ namespace keepass2android
 		TemplateTitle_Membership,
 		TemplateGroupName,
 		AskAddTemplatesTitle,
-		AskAddTemplatesMessage
+		AskAddTemplatesMessage,
+		ReadOnlyReason_PreKitKat,
+		ReadOnlyReason_ReadOnlyFlag,
+		ReadOnlyReason_ReadOnlyKitKat
     }
 }

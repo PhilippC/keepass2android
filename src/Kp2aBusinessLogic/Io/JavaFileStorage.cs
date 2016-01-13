@@ -289,7 +289,7 @@ namespace keepass2android.Io
 			return true;
 		}
 
-		public bool IsReadOnly(IOConnectionInfo ioc)
+		public bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null)
 		{
 			return false; //TODO implement. note, however, that we MAY return false even if it's read-only
 		}

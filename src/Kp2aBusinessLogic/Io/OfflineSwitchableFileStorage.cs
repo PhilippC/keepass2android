@@ -176,9 +176,9 @@ namespace keepass2android.Io
 			return _baseStorage.IsPermanentLocation(ioc);
 		}
 
-		public bool IsReadOnly(IOConnectionInfo ioc)
+		public bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null)
 		{
-			return _baseStorage.IsReadOnly(ioc);
+			return _baseStorage.IsReadOnly(ioc, reason);
 		}
 
 	public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,

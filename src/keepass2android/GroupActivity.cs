@@ -35,6 +35,7 @@ using Android.Preferences;
 using Android.Runtime;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
+using keepass2android.Io;
 using KeePassLib.Security;
 using AlertDialog = Android.App.AlertDialog;
 using Object = Java.Lang.Object;
@@ -255,9 +256,32 @@ namespace keepass2android
 			
 			SetGroupTitle();
 			SetGroupIcon();
-			
+
 			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 			Log.Warn(Tag, "Finished creating group");
+
+		    var ioc = App.Kp2a.GetDb().Ioc;
+		    OptionalOut<UiStringKey> reason = new OptionalOut<UiStringKey>();
+		    
+		    if (App.Kp2a.GetFileStorage(ioc).IsReadOnly(ioc, reason))
+		    {
+				bool hasShownReadOnlyReason =
+					PreferenceManager.GetDefaultSharedPreferences(this)
+						.GetBoolean(App.Kp2a.GetDb().IocAsHexString() + "_readonlyreason", false);
+			    if (!hasShownReadOnlyReason)
+			    {
+				    var b = new AlertDialog.Builder(this);
+					b.SetTitle(Resource.String.FileReadOnlyTitle);
+					b.SetMessage(GetString(Resource.String.FileReadOnlyMessagePre) + " " + App.Kp2a.GetResourceString(reason.Result));
+				    b.SetPositiveButton(Android.Resource.String.Ok,
+					    (sender, args) =>
+					    {
+							PreferenceManager.GetDefaultSharedPreferences(this).
+						Edit().PutBoolean(App.Kp2a.GetDb().IocAsHexString() + "_readonlyreason", true).Commit();
+					    });
+				    b.Show();
+			    }
+		    }
 			
 		}
 

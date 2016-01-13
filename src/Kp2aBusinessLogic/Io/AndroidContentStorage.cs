@@ -206,12 +206,15 @@ namespace keepass2android.Io
 			return _ctx.ContentResolver.PersistedUriPermissions.Any(p => p.Uri.ToString().Equals(ioc.Path));
 		}
 
-		public bool IsReadOnly(IOConnectionInfo ioc)
+
+		public bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null)
 		{
 			//on pre-Kitkat devices, we can't write content:// files
 			if (!IsKitKatOrLater)
 			{
 				Kp2aLog.Log("File is read-only because we're not on KitKat or later.");
+				if (reason != null)
+					reason.Result = UiStringKey.ReadOnlyReason_PreKitKat;
 				return true;
 			}
 				
@@ -226,7 +229,12 @@ namespace keepass2android.Io
 				{
 					int flags = cursor.GetInt(cursor.GetColumnIndex(DocumentsContract.Document.ColumnFlags));
 					Kp2aLog.Log("File flags: " + flags);
-					return (flags & (long) DocumentContractFlags.SupportsWrite) == 0;
+					if ((flags & (long) DocumentContractFlags.SupportsWrite) == 0)
+					{
+						if (reason != null)
+							reason.Result = UiStringKey.ReadOnlyReason_ReadOnlyFlag;
+						return true;
+					}
 				}
 			}
 			finally

@@ -153,10 +153,22 @@ namespace keepass2android
 
 		public static string GetFingerprintPrefKey(IOConnectionInfo ioc)
 		{
-			SHA256Managed sha256 = new SHA256Managed();
-			string iocAsHexString = MemUtil.ByteArrayToHexString(sha256.ComputeHash(Encoding.Unicode.GetBytes(ioc.Path.ToCharArray())));
+			var iocAsHexString = IocAsHexString(ioc);
 
 			return "kp2a_ioc_" + iocAsHexString;
+		}
+
+		public string IocAsHexString()
+		{
+			return IocAsHexString(Ioc);
+		}
+
+		private static string IocAsHexString(IOConnectionInfo ioc)
+		{
+			SHA256Managed sha256 = new SHA256Managed();
+			string iocAsHexString =
+				MemUtil.ByteArrayToHexString(sha256.ComputeHash(Encoding.Unicode.GetBytes(ioc.Path.ToCharArray())));
+			return iocAsHexString;
 		}
 
 		public static string GetFingerprintModePrefKey(IOConnectionInfo ioc)
