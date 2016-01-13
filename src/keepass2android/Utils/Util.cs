@@ -103,7 +103,9 @@ namespace keepass2android
 				else
 				{
 					Uri uri = Uri.Parse(url);
-					context.StartActivity(new Intent(Intent.ActionView, uri));
+					context.StartActivity(new Intent(
+						url.StartsWith("tel:") ? Intent.ActionDial : Intent.ActionView, 
+						uri));
 				}
 			}
 		}

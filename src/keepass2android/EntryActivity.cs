@@ -1066,7 +1066,7 @@ namespace keepass2android
 			if (url == null) return false;
 
 			// Default http:// if no protocol specified
-			if (!url.Contains("://"))
+			if ((!url.Contains(":") || (url.StartsWith("www."))))
 			{
 				url = "http://" + url;
 			}
