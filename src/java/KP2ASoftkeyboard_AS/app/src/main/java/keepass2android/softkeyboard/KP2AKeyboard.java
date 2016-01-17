@@ -989,7 +989,7 @@ public class KP2AKeyboard extends InputMethodService
 
     @Override
     public void setCandidatesViewShown(boolean shown) {
-        setCandidatesViewShownInternal(shown, true /* needsInputViewShown */ );
+        setCandidatesViewShownInternal(shown, true /* needsInputViewShown */);
     }
 
     @Override
@@ -1689,7 +1689,7 @@ public class KP2AKeyboard extends InputMethodService
             }
             postUpdateSuggestions();
         } else {
-            sendKeyChar((char)primaryCode);
+            sendKeyChar((char) primaryCode);
         }
         updateShiftKeyState(getCurrentInputEditorInfo());
         if (KP2AKeyboard.PERF_DEBUG) measureCps();
@@ -1815,12 +1815,13 @@ public class KP2AKeyboard extends InputMethodService
           public void run() {
               mRecognizing = false;
               if (mKeyboardSwitcher.getInputView() != null) {
-                setInputView(mKeyboardSwitcher.getInputView());
+                  setInputView(mKeyboardSwitcher.getInputView());
               }
               setCandidatesViewShown(true);
               updateInputViewShown();
               postUpdateSuggestions();
-          }});
+          }
+      });
     }
     
     private void clearSuggestions() {
@@ -2234,7 +2235,7 @@ public class KP2AKeyboard extends InputMethodService
 
     public boolean isWordSeparator(int code) {
         String separators = getWordSeparators();
-        return separators.contains(String.valueOf((char)code));
+        return separators.contains(String.valueOf((char) code));
     }
 
     private boolean isSentenceSeparator(int code) {
@@ -2460,32 +2461,54 @@ public class KP2AKeyboard extends InputMethodService
         startActivity(intent);
     }
 
-    private void loadSettings() {
-        // Get the settings preferences
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        mVibrateOn = sp.getBoolean(PREF_VIBRATE_ON, false);
-        mSoundOn = sp.getBoolean(PREF_SOUND_ON, false);
-        mPopupOn = sp.getBoolean(PREF_POPUP_ON,
-                mResources.getBoolean(R.bool.default_popup_preview));
-        mAutoCap = sp.getBoolean(PREF_AUTO_CAP, true);
-        mQuickFixes = sp.getBoolean(PREF_QUICK_FIXES, true);
-        
-        mKp2aAutoFillOn = sp.getBoolean("kp2a_auto_fill", true);
-        mKp2aRememberAutoFill = sp.getBoolean(PREF_KP2A_REMEMBER_AUTO_FILL, true);
-        mKp2aEnableSimpleKeyboard = sp.getBoolean("kp2a_simple_keyboard", true);
-        mKp2aSwitchKeyboardOnSendGoDone = sp.getBoolean("kp2a_switch_on_sendgodone", false);        
-        mKp2aLockOnSendGoDone = sp.getBoolean("kp2a_lock_on_sendgodone", false);
-        
-       
-        mShowSuggestions = sp.getBoolean(PREF_SHOW_SUGGESTIONS, true);
+    private void loadSettings()
+    {
+        try {
+            // Get the settings preferences
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+            mVibrateOn = sp.getBoolean(PREF_VIBRATE_ON, false);
+            mSoundOn = sp.getBoolean(PREF_SOUND_ON, false);
+            mPopupOn = sp.getBoolean(PREF_POPUP_ON,
+                    mResources.getBoolean(R.bool.default_popup_preview));
+            mAutoCap = sp.getBoolean(PREF_AUTO_CAP, true);
+            mQuickFixes = sp.getBoolean(PREF_QUICK_FIXES, true);
 
-        mAutoCorrectEnabled = sp.getBoolean(PREF_AUTO_COMPLETE,
-                mResources.getBoolean(R.bool.enable_autocorrect)) & mShowSuggestions;
-        //mBigramSuggestionEnabled = sp.getBoolean(
-        //        PREF_BIGRAM_SUGGESTIONS, true) & mShowSuggestions;
-        updateCorrectionMode();
-        updateAutoTextEnabled(mResources.getConfiguration().locale);
-        mLanguageSwitcher.loadLocales(sp);
+            mKp2aAutoFillOn = sp.getBoolean("kp2a_auto_fill", true);
+            mKp2aRememberAutoFill = sp.getBoolean(PREF_KP2A_REMEMBER_AUTO_FILL, true);
+            mKp2aEnableSimpleKeyboard = sp.getBoolean("kp2a_simple_keyboard", true);
+            mKp2aSwitchKeyboardOnSendGoDone = sp.getBoolean("kp2a_switch_on_sendgodone", false);
+            mKp2aLockOnSendGoDone = sp.getBoolean("kp2a_lock_on_sendgodone", false);
+
+
+            mShowSuggestions = sp.getBoolean(PREF_SHOW_SUGGESTIONS, true);
+
+            mAutoCorrectEnabled = sp.getBoolean(PREF_AUTO_COMPLETE,
+                    mResources.getBoolean(R.bool.enable_autocorrect)) & mShowSuggestions;
+            //mBigramSuggestionEnabled = sp.getBoolean(
+            //        PREF_BIGRAM_SUGGESTIONS, true) & mShowSuggestions;
+            updateCorrectionMode();
+            updateAutoTextEnabled(mResources.getConfiguration().locale);
+            mLanguageSwitcher.loadLocales(sp);
+        }
+        catch (Exception e)
+        {
+            android.util.Log.d("KP2AK", e.toString());
+            //in a very special case loading the settings might fail. revert to defaults then.
+            /*this case occurs on some Samsung devices when an external Bluetooth Keyboard is connected
+             the code is then run from a different user id.
+              */
+            mQuickFixes = true;
+
+            mKp2aAutoFillOn = true;
+            mKp2aRememberAutoFill = true;
+            mKp2aEnableSimpleKeyboard = true;
+
+            mShowSuggestions = true;
+
+            mAutoCorrectEnabled = mResources.getBoolean(R.bool.enable_autocorrect) & mShowSuggestions;
+            updateCorrectionMode();
+            updateAutoTextEnabled(mResources.getConfiguration().locale);
+        }
     }
 
     private void initSuggestPuncList() {

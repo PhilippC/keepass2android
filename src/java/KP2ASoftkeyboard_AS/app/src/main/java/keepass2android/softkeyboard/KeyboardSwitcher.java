@@ -575,7 +575,7 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
     }
 
     private void updateSettingsKeyState(SharedPreferences prefs) {
-        Resources resources = mInputMethodService.getResources();
+        /*Resources resources = mInputMethodService.getResources();
         final String settingsKeyMode = prefs.getString(LatinIMESettings.PREF_SETTINGS_KEY,
                 resources.getString(DEFAULT_SETTINGS_KEY_MODE));
         // We show the settings key when 1) SETTINGS_KEY_MODE_ALWAYS_SHOW or
@@ -586,6 +586,7 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
             mHasSettingsKey = true;
         } else {
             mHasSettingsKey = false;
-        }
+        }*/
+        mHasSettingsKey = true;
     }
 }

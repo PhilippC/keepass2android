@@ -191,7 +191,7 @@ public class LanguageSwitcher {
         SharedPreferencesCompat.apply(editor);
     }
 
-    static String toTitleCase(String s, Locale locale) {
+    public static String toTitleCase(String s, Locale locale) {
         if (s.length() == 0) {
             return s;
         }
