@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using System.Collections.Generic;
 using Android.Content;
 using KeePassLib;
 using KeePassLib.Serialization;
@@ -79,6 +80,10 @@ namespace keepass2android
 			internet.Run();
 			AddGroup email = AddGroup.GetInstance(_ctx, _app, "eMail", 19, null, db.KpDatabase.RootGroup, null, true);
 			email.Run();
+
+			List<PwEntry> addedEntries;
+			AddTemplateEntries addTemplates = new AddTemplateEntries(_ctx, _app, null);
+			addTemplates.AddTemplates(out addedEntries);
 			
 			// Commit changes
 			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, _dontSave);

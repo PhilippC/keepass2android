@@ -292,6 +292,22 @@ namespace keepass2android
 		public override void Run() {	
 			StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
 
+			List<PwEntry> addedEntries;
+			var templateGroup = AddTemplates(out addedEntries);
+
+			if (addedEntries.Any())
+			{
+				_app.GetDb().Dirty.Add(templateGroup);
+
+				// Commit to disk
+				SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
+				save.SetStatusLogger(StatusLogger);
+				save.Run();
+			}
+		}
+
+		public PwGroup AddTemplates(out List<PwEntry> addedEntries)
+		{
 			if (TemplateEntries.GroupBy(e => e.Uuid).Any(g => g.Count() > 1))
 			{
 				throw new Exception("invalid UUIDs in template list!");
@@ -308,7 +324,7 @@ namespace keepass2android
 				_app.GetDb().Dirty.Add(_app.GetDb().KpDatabase.RootGroup);
 				_app.GetDb().Groups[templateGroup.Uuid] = templateGroup;
 			}
-			List<PwEntry> addedEntries = new List<PwEntry>();
+			addedEntries = new List<PwEntry>();
 
 			foreach (var template in TemplateEntries)
 			{
@@ -319,16 +335,7 @@ namespace keepass2android
 				addedEntries.Add(entry);
 				_app.GetDb().Entries[entry.Uuid] = entry;
 			}
-
-			if (addedEntries.Any())
-			{
-				_app.GetDb().Dirty.Add(templateGroup);
-
-				// Commit to disk
-				SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
-				save.SetStatusLogger(StatusLogger);
-				save.Run();
-			}
+			return templateGroup;
 		}
 
 		private PwEntry CreateEntry(TemplateEntry template)
