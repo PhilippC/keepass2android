@@ -990,7 +990,7 @@ namespace KeePassLib
 					if (contextString.Length > SearchContextStringMaxLength)
 					{
 						// Start 10% before actual data, and don't run over
-						var startPos = Math.Min(matchPos - (SearchContextStringMaxLength / 10), contextString.Length - SearchContextStringMaxLength);
+						var startPos = Math.Max(0, Math.Min(matchPos - (SearchContextStringMaxLength / 10), contextString.Length - SearchContextStringMaxLength));
 						contextString = "… " + contextString.Substring(startPos, SearchContextStringMaxLength) + ((startPos + SearchContextStringMaxLength < contextString.Length) ? " …" : null);
 					}
 					resultContexts[pe.Uuid] = new KeyValuePair<string, string>(contextFieldName, contextString);

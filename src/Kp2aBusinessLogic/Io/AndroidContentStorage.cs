@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Android.Content;
+using Android.Database;
 using Android.OS;
 using Android.Provider;
 using KeePassLib.Serialization;
@@ -209,22 +210,23 @@ namespace keepass2android.Io
 
 		public bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null)
 		{
-			//on pre-Kitkat devices, we can't write content:// files
-			if (!IsKitKatOrLater)
-			{
-				Kp2aLog.Log("File is read-only because we're not on KitKat or later.");
-				if (reason != null)
-					reason.Result = UiStringKey.ReadOnlyReason_PreKitKat;
-				return true;
-			}
+			ICursor cursor = null;
+			try
+			{	
+				//on pre-Kitkat devices, we can't write content:// files
+				if (!IsKitKatOrLater)
+				{
+					Kp2aLog.Log("File is read-only because we're not on KitKat or later.");
+					if (reason != null)
+						reason.Result = UiStringKey.ReadOnlyReason_PreKitKat;
+					return true;
+				}
 				
 
-			//KitKat or later...
-			var uri = Android.Net.Uri.Parse(ioc.Path);
-			var cursor = _ctx.ContentResolver.Query(uri, null, null, null, null, null);
+				//KitKat or later...
+				var uri = Android.Net.Uri.Parse(ioc.Path);
+				cursor = _ctx.ContentResolver.Query(uri, null, null, null, null, null);
 
-			try
-			{
 				if (cursor != null && cursor.MoveToFirst())
 				{
 					int flags = cursor.GetInt(cursor.GetColumnIndex(DocumentsContract.Document.ColumnFlags));
@@ -235,14 +237,23 @@ namespace keepass2android.Io
 							reason.Result = UiStringKey.ReadOnlyReason_ReadOnlyFlag;
 						return true;
 					}
+					else return false;
 				}
+				else throw new Exception("couldn't move to first result element");
+			}
+			catch (Exception e)
+			{
+				Kp2aLog.LogUnexpectedError(e);
+				//better return false here. We don't really know what happened (as this is unexpected).
+				//let the user try to write the file. If it fails they will get an exception string.
+				return false;
 			}
 			finally
 			{
 				if (cursor != null)
 					cursor.Close();
 			}
-			return true;
+			
 		}
 	}
 
