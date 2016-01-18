@@ -616,8 +616,7 @@
   
   
 	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>
-  <string name="PreviewErrorReports"> Whenever you see a question if you want to enable error reports, please do so!</string>
-	
+  
 	<string name="Continue">Continue</string>
 	<string name="NoFilenameWarning">The URI you have entered does not look like a filename. Are you sure this is a valid file?</string>
 
@@ -656,7 +655,7 @@
   </string>
 
   <string name="ChangeLog_1_0_0">
-    Version 1.0.0 - preview 5\n
+    Version 1.0.0 - preview 6\n
     * Fingerprint Unlock (requires Android 6.0+ or a Samsung device)\n
     * Added support for entry templates\n
     * Added "work offline" mode\n
