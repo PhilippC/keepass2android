@@ -48,11 +48,12 @@ namespace keepass2android.AutoFill
 				if (e.PackageName == "com.android.systemui")
 					return; //avoid that the notification is cancelled when pulling down notif drawer
                 var root = RootInActiveWindow;
-                if ((ExistsNodeOrChildren(root, n => n.WindowId == e.WindowId) && !ExistsNodeOrChildren(root, n => (n.ViewIdResourceName != null) && (n.ViewIdResourceName.StartsWith("com.android.systemui")))))
+	            int eventWindowId = e.WindowId;
+				if ((ExistsNodeOrChildren(root, n => n.WindowId == eventWindowId) && !ExistsNodeOrChildren(root, IsSystemUi)))
                 {
 					bool cancelNotification = true;
 
-                    var allEditTexts = GetNodeOrChildren(root, n=> { return IsEditText(n); });
+                    var allEditTexts = GetNodeOrChildren(root, IsEditText);
 
                     var usernameEdit = allEditTexts.TakeWhile(edit => (edit.Password == false)).LastOrDefault();
 
@@ -72,7 +73,7 @@ namespace keepass2android.AutoFill
                         UrlFromAddressField(ref url, addressField);
                     }
 
-                    List<AccessibilityNodeInfo> emptyPasswordFields = GetNodeOrChildren(root, n => { return IsPasswordField(n); }).ToList();
+                    List<AccessibilityNodeInfo> emptyPasswordFields = GetNodeOrChildren(root, IsPasswordField);
                     if (emptyPasswordFields.Any())
                     {
 						if ((LastReceivedCredentialsUser != null) && IsSame(GetCredentialsField(PwDefs.UrlField), url))
@@ -91,7 +92,7 @@ namespace keepass2android.AutoFill
 							}
 
                             AskFillPassword(url, usernameEdit, emptyPasswordFields);
-                            cancelNotification = false;
+							cancelNotification = false;
                         }
 
                     }
@@ -107,7 +108,13 @@ namespace keepass2android.AutoFill
 
 
         }
-        private static void UrlFromAddressField(ref string url, AccessibilityNodeInfo addressField)
+
+	    private bool IsSystemUi(AccessibilityNodeInfo n)
+	    {
+		    return (n.ViewIdResourceName != null) && (n.ViewIdResourceName.StartsWith("com.android.systemui"));
+	    }
+
+	    private static void UrlFromAddressField(ref string url, AccessibilityNodeInfo addressField)
         {
             if (addressField != null)
             {
@@ -139,7 +146,7 @@ namespace keepass2android.AutoFill
             return (n.ClassName != null) && (n.ClassName.Contains("EditText"));
         }
 
-        private void AskFillPassword(string url, AccessibilityNodeInfo usernameEdit, IEnumerable<AccessibilityNodeInfo> passwordFields)
+        private void AskFillPassword(string url, AccessibilityNodeInfo usernameEdit, List<AccessibilityNodeInfo> passwordFields)
         {
 			
 			Intent startKp2aIntent = PackageManager.GetLaunchIntentForPackage(ApplicationContext.PackageName);
@@ -190,7 +197,7 @@ namespace keepass2android.AutoFill
             
         }
 
-        private void FillPassword(string url, AccessibilityNodeInfo usernameEdit, IEnumerable<AccessibilityNodeInfo> passwordFields)
+        private void FillPassword(string url, AccessibilityNodeInfo usernameEdit, List<AccessibilityNodeInfo> passwordFields)
         {
 	        if ((Keepass2android.Kbbridge.KeyboardData.HasData) && (_hasUsedData == false))
 	        {
@@ -236,22 +243,29 @@ namespace keepass2android.AutoFill
 
         private bool ExistsNodeOrChildren(AccessibilityNodeInfo n, Func<AccessibilityNodeInfo, bool> p)
         {
-            return GetNodeOrChildren(n, p).Any();
+	        if (p(n))
+		        return true;
+	        for (int i = 0; i < n.ChildCount; i++)
+	        {
+		        if (ExistsNodeOrChildren(n.GetChild(i), p))
+			        return true;
+	        }
+	        return false;
         }
 
-        private IEnumerable<AccessibilityNodeInfo> GetNodeOrChildren(AccessibilityNodeInfo n, Func<AccessibilityNodeInfo, bool> p)
+        private List<AccessibilityNodeInfo> GetNodeOrChildren(AccessibilityNodeInfo n, Func<AccessibilityNodeInfo, bool> p)
         {
+	        List<AccessibilityNodeInfo> result = new List<AccessibilityNodeInfo>();
             if (n != null)
             {
-                if (p(n))
-                    yield return n;
+	            if (p(n))
+		            result.Add(n);
                 for (int i = 0; i < n.ChildCount; i++)
                 {
-                    foreach (var x in GetNodeOrChildren(n.GetChild(i), p))
-                        yield return x;
+	                result.AddRange(GetNodeOrChildren(n.GetChild(i), p));
                 }
-            }           
-            
+            }
+	        return result;
         }
 
         public override void OnInterrupt()
