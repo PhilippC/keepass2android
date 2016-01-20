@@ -30,6 +30,7 @@ using Android.Preferences;
 using KeePassLib;
 using KeePassLib.Utility;
 using Android.Views.InputMethods;
+using keepass2android.AutoFill;
 using KeePass.Util.Spr;
 
 namespace keepass2android
@@ -527,6 +528,8 @@ namespace keepass2android
 			kbdataBuilder.Commit();
 			Keepass2android.Kbbridge.KeyboardData.EntryName = entry.OutputStrings.ReadSafe(PwDefs.TitleField);
 			Keepass2android.Kbbridge.KeyboardData.EntryId = entry.Uuid.ToHexString();
+			if (hasData)
+				Kp2aAccessibilityService.NotifyNewData();
 
 			return hasData;
 #endif

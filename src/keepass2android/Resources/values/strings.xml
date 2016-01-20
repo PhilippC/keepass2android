@@ -646,7 +646,12 @@
   <string name="ErrorReportDisable">Disable</string>
   <string name="ErrorReportAsk">Ask after error</string>
   <string name="ErrorReportPrefTitle">Send error reports</string>
-  
+
+  <string name="LookupTitle">Look up credentials</string>
+  <string name="ApplicationName">KP2A AutoFillPlugin</string>
+  <string name="AutoFillServiceDescription">Monitors apps and websites for password fields. Offers to look up credentials from Keepass2Android and auto-fill them into the forms.</string>
+  <string name="NotificationTitle">Keepass2Android AutoFill</string>
+  <string name="NotificationContentText">AutoFill form for %1$s</string>
   
   <string name="ChangeLog_0_9_8c">
     Version 0.9.8c\n

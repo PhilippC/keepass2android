@@ -128,6 +128,7 @@
     <Compile Include="ChallengeInfo.cs" />
     <Compile Include="CreateDatabaseActivity.cs" />
     <Compile Include="CreateNewFilename.cs" />
+    <Compile Include="Credentials.cs" />
     <Compile Include="EntryActivityClasses\CopyToClipboardPopupMenuIcon.cs" />
     <Compile Include="EntryActivityClasses\ExtraStringView.cs" />
     <Compile Include="EntryActivityClasses\GotoUrlMenuItem.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="icons\DrawableFactory.cs" />
     <Compile Include="KeeChallenge.cs" />
     <Compile Include="FixedDrawerLayout.cs" />
+    <Compile Include="Kp2aAccessibilityService.cs" />
     <Compile Include="KpEntryTemplatedEdit.cs" />
     <Compile Include="MeasuringRelativeLayout.cs" />
     <Compile Include="NfcOtpActivity.cs" />
@@ -1668,6 +1670,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\ic_fp_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_notify_autofill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\accserviceconfig.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.11.3\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.3\build\MonoAndroid10\Xamarin.Insights.targets')" />
