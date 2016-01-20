@@ -10,7 +10,7 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:orientation="horizontal" />
-  <LinearLayout
+  <RelativeLayout
       android:id="@+id/bottom_bar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -21,15 +21,17 @@
         android:id="@+id/select_other_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:text="@string/select_other_entry"
         style="@style/BottomBarButton" />
     <Button
         android:id="@+id/add_url_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:text="@string/add_url_entry"
         style="@style/BottomBarButton" />
-  </LinearLayout>
+  </RelativeLayout>
   <View
       android:id="@+id/divider2"
       android:layout_width="fill_parent"
