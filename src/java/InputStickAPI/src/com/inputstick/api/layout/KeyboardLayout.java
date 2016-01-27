@@ -120,16 +120,50 @@ public abstract class KeyboardLayout {
 	public static final int LAYOUT_CODE = 0;
 	
 	public abstract int[][] getLUT();
+	public abstract int[][] getFastLUT();
 	public abstract int[][] getDeadkeyLUT();
 	public abstract int[] 	getDeadkeys();
-	public abstract String getLocaleName();
+	public abstract String getLocaleName();	
 	
-	//types text assuming that USB host uses the same keyboard layout
+	/*
+	 * Type text using InputStick. Assumes that USB host uses matching keyboard layout.
+	 * 
+	 *  @param text	text to type
+	 */
 	public abstract void type(String text);
+	
+	
+	/*
+	 * Type text using InputStick. Assumes that USB host uses matching keyboard layout.
+	 * Note: use only if you are certain that specified modifier keys will not cause any side effects during typing.
+	 * 
+	 *  @param text	text to type
+	 *  @param modifiers	state of keyboard modifier keys (CTRL_LEFT .. GUI_RIGHT, see HIDKeycodes)
+	 */
 	public abstract void type(String text, byte modifiers);
+	
 	public abstract char getChar(int scanCode, boolean capsLock, boolean shift, boolean altGr);
 	
-	public void type(int[][] lut, int[][] deadkeyLUT, int[] deadkeys, String text, byte modifiers) {
+	public void type(int[][] fastLUT, String text, byte modifiers) {
+		if (InputStickHID.getState() == ConnectionManager.STATE_READY) {			
+			char[] chars = text.toCharArray();
+			HIDTransaction t;
+			for (char c : chars) {
+				if (c == '\n') {					
+					InputStickKeyboard.pressAndRelease(HIDKeycodes.NONE, HIDKeycodes.KEY_ENTER);
+				} else if (c == '\t') {
+					InputStickKeyboard.pressAndRelease(HIDKeycodes.NONE, HIDKeycodes.KEY_TAB);
+				} else {				
+					t = getHIDTransaction(fastLUT, c, modifiers);				
+					if (t != null) {
+						InputStickHID.addKeyboardTransaction(t);
+					}
+				}
+			}
+		}
+	}
+	
+	/*public void type(int[][] lut, int[][] deadkeyLUT, int[] deadkeys, String text, byte modifiers) {
 		if (InputStickHID.getState() == ConnectionManager.STATE_READY) {			
 			char[] chars = text.toCharArray();
 			HIDTransaction t;
@@ -146,7 +180,7 @@ public abstract class KeyboardLayout {
 				}
 			}
 		}
-	}	
+	}	*/
 	
 	public static int hidToScanCode(byte key) {
 		for (int scanCode = 0; scanCode < MAX_SCANCODE; scanCode++) {
@@ -276,6 +310,30 @@ public abstract class KeyboardLayout {
 	public static int findFollowingKey(int[][] deadkeyLUT, char c) {
 		return searchLUT(deadkeyLUT, c, 1);
 	}
+		
+	public static HIDTransaction getHIDTransaction(int[][] fastLUT, char c, byte additionalModifierKeys) {
+		byte modifiers, key, deadKey, deadKeyModifiers;
+		HIDTransaction t = new HIDTransaction();		
+		
+		for (int i = 0; i < fastLUT.length; i++) {
+			if (fastLUT[i][0] == c) {					
+				modifiers = (byte)fastLUT[i][1];
+				key = (byte)fastLUT[i][2];
+				deadKeyModifiers = (byte)fastLUT[i][3];
+				deadKey = (byte)fastLUT[i][4];
+									
+				if (deadKey > 0) {
+					t.addReport(new KeyboardReport(deadKeyModifiers, (byte)0));
+					t.addReport(new KeyboardReport(deadKeyModifiers, deadKey));
+					t.addReport(new KeyboardReport());
+				}
+				t.addReport(new KeyboardReport(modifiers, (byte)0));
+				t.addReport(new KeyboardReport(modifiers, key));
+				t.addReport(new KeyboardReport());															
+			}
+		}	
+		return t;
+	}
 	
 	public static HIDTransaction getHIDTransaction(int[][] lut, int[][] deadkeyLUT, int[] deadkeys, char c, byte additionalModifierKeys) {
 		byte modifiers, key;
@@ -325,48 +383,47 @@ public abstract class KeyboardLayout {
 	}		
 	
 	//returns layout sepcified by locale (example: "de-DE"). If specified layout is not available, en=US will be returned.
-	public static KeyboardLayout getLayout(String locale) {
+	public static KeyboardLayout getLayout(String locale) {		
 		if (locale != null) {
-			if (locale.equals(UnitedStatesLayout.getInstance().getLocaleName())) {
+			if (locale.equalsIgnoreCase(UnitedStatesLayout.LOCALE_NAME)) {
 				return UnitedStatesLayout.getInstance();
-			} else if (locale.equals(PolishLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(PolishLayout.LOCALE_NAME)) {
 				return PolishLayout.getInstance();
-			} else if (locale.equals(RussianLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(RussianLayout.LOCALE_NAME)) {
 				return RussianLayout.getInstance();
-			} else if (locale.equals(GermanLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(GermanLayout.LOCALE_NAME)) {
 				return GermanLayout.getInstance();
-			} else if (locale.equals(SlovakLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(SlovakLayout.LOCALE_NAME)) {
 				return SlovakLayout.getInstance();
-			} else if (locale.equals(PortugueseBrazilianLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(PortugueseBrazilianLayout.LOCALE_NAME)) {
 				return PortugueseBrazilianLayout.getInstance();
-			} else if (locale.equals(DvorakLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(DvorakLayout.LOCALE_NAME)) {
 				return DvorakLayout.getInstance();
-			} else if (locale.equals(NorwegianLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(NorwegianLayout.LOCALE_NAME)) {
 				return NorwegianLayout.getInstance();
-			} else if (locale.equals(SwedishLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(SwedishLayout.LOCALE_NAME)) {
 				return SwedishLayout.getInstance();
-			} else if (locale.equals(FrenchLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(FrenchLayout.LOCALE_NAME)) {
 				return FrenchLayout.getInstance();
-			} else if (locale.equals(SpanishLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(SpanishLayout.LOCALE_NAME)) {
 				return SpanishLayout.getInstance();
-			} else if (locale.equals(UnitedKingdomLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(UnitedKingdomLayout.LOCALE_NAME)) {
 				return UnitedKingdomLayout.getInstance();
-			} else if (locale.equals(GermanMacLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(GermanMacLayout.LOCALE_NAME)) {
 				return GermanMacLayout.getInstance(); // TODO
-			} else if (locale.equals(ItalianLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(ItalianLayout.LOCALE_NAME)) {
 				return ItalianLayout.getInstance();
-			} else if (locale.equals(FinnishLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(FinnishLayout.LOCALE_NAME)) {
 				return FinnishLayout.getInstance();
-			} else if (locale.equals(SwissFrenchLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(SwissFrenchLayout.LOCALE_NAME)) {
 				return SwissFrenchLayout.getInstance();
-			} else if (locale.equals(SwissGermanLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(SwissGermanLayout.LOCALE_NAME)) {
 				return SwissGermanLayout.getInstance();
-			} else if (locale.equals(HebrewLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(HebrewLayout.LOCALE_NAME)) {
 				return HebrewLayout.getInstance();
-			} else if (locale.equals(DanishLayout.getInstance().getLocaleName())) {
+			} else if (locale.equalsIgnoreCase(DanishLayout.LOCALE_NAME)) {
 				return DanishLayout.getInstance();
-			}													
-			
+			}																
 		}
 
 		return UnitedStatesLayout.getInstance();

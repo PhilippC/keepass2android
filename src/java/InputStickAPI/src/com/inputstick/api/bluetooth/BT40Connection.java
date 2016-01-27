@@ -1,10 +1,8 @@
 package com.inputstick.api.bluetooth;
 
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
-import java.util.Vector;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -18,29 +16,32 @@ import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
+import android.os.Handler;
 
 import com.inputstick.api.InputStickError;
 import com.inputstick.api.Util;
 
 @SuppressLint("NewApi")
 public class BT40Connection extends BTConnection {	
+	
+	private static final int CONNECTION_TIMEOUT = 10000;
     
-	private static String MOD_CHARACTERISTIC_CONFIG = 	"00002902-0000-1000-8000-00805f9b34fb";
-	private static String MOD_CONF = 					"0000ffe0-0000-1000-8000-00805f9b34fb";
-	private static String MOD_RX_TX = 					"0000ffe1-0000-1000-8000-00805f9b34fb";															  	
-	private final static UUID UUID_HM_RX_TX = UUID.fromString(MOD_RX_TX);	   
+	private static final String MOD_CHARACTERISTIC_CONFIG = 	"00002902-0000-1000-8000-00805f9b34fb";
+	private static final String MOD_CONF = 					"0000ffe0-0000-1000-8000-00805f9b34fb";
+	private static final String MOD_RX_TX = 					"0000ffe1-0000-1000-8000-00805f9b34fb";															  	
+	private static final UUID UUID_HM_RX_TX = UUID.fromString(MOD_RX_TX);	   
     
     private BluetoothManager mBluetoothManager;
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothGatt mBluetoothGatt;
     private BluetoothGattCharacteristic characteristicTX;
     private BluetoothGattCharacteristic characteristicRX;
-    
-    private static final int REFRESH_INTERVAL = 10; 
-    private Timer t1;
-    private Vector<byte[]> txBuffer;
+
+    private LinkedList<byte[]> txBuffer;
     private boolean canSend;
     
+    private boolean isConnecting;
+    private Handler handler;
 	
     public BT40Connection(Application app, BTService btService, String mac, boolean reflections) {
     	super(app, btService, mac, reflections);    	     	
@@ -52,8 +53,20 @@ public class BT40Connection extends BTConnection {
 	@Override
 	public void connect() {		
 		final BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(mMac);
-		if (device != null) {
+		if (device != null) {			
 			mBluetoothGatt = device.connectGatt(mCtx, false, mGattCallback);
+			
+			isConnecting = true;
+			handler = new Handler();
+			handler.postDelayed(new Runnable() {
+			    @Override
+			    public void run() {
+					if (isConnecting) {
+						disconnect();
+						mBTservice.connectionFailed(true, 0);
+					}
+			    }
+			}, CONNECTION_TIMEOUT);
 		} else {
 			mBTservice.connectionFailed(false, InputStickError.ERROR_BLUETOOTH_NO_REMOTE_DEVICE);
 		}		
@@ -62,14 +75,6 @@ public class BT40Connection extends BTConnection {
 	@Override
 	public void disconnect() {
 		txBuffer = null;
-		try {
-			if (t1 != null) {
-				t1.cancel();
-				t1 = null;
-			}
-		} catch (Exception e) {
-
-		}
 		try {
 			if (mBluetoothGatt != null) {
 				mBluetoothGatt.close();
@@ -90,6 +95,8 @@ public class BT40Connection extends BTConnection {
     	
     	//SPECIAL CASES for flashing utility
     	if (Util.flashingToolMode) {
+    		//txBuffer.add(out);
+    		//return;
 	    	if (out.length == 1) {
 	    		txBuffer.add(out);
 	    		return;
@@ -122,7 +129,7 @@ public class BT40Connection extends BTConnection {
     			offset += 16;
     			addData16(tmp);
     		}
-    		
+    		sendNext();
     	}
 	}	
 	
@@ -161,8 +168,7 @@ public class BT40Connection extends BTConnection {
 	private synchronized byte[] getData() {
 		if (txBuffer != null) {
 			if (!txBuffer.isEmpty()) {
-				byte[] data = txBuffer.firstElement();
-				txBuffer.removeElementAt(0);
+				byte[] data = txBuffer.poll();
 				return data;
 			}
 		}
@@ -175,7 +181,9 @@ public class BT40Connection extends BTConnection {
 			if (data != null) {
 				canSend = false;
 				characteristicTX.setValue(data);
-				mBluetoothGatt.writeCharacteristic(characteristicTX);
+				characteristicTX.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE); //TODO
+				//characteristicTX.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT); //TODO				
+				mBluetoothGatt.writeCharacteristic(characteristicTX);				
 			}			
 		}
 	}
@@ -187,9 +195,11 @@ public class BT40Connection extends BTConnection {
 		@Override
 		public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
 			if (newState == BluetoothProfile.STATE_CONNECTED) {
+				isConnecting = false;
 				Util.log("Connected to GATT server.");
 				Util.log("Attempting to start service discovery:" + mBluetoothGatt.discoverServices());
 			} else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+				isConnecting = false;
 				Util.log("Disconnected from GATT server.");
 				mBTservice.connectionFailed(false, InputStickError.ERROR_BLUETOOTH_CONNECTION_LOST);
 			}			
@@ -228,18 +238,10 @@ public class BT40Connection extends BTConnection {
 		            if (UUID_HM_RX_TX.equals(characteristicRX.getUuid())) {
 		            	Util.log("RXTX SERVICE DISCOVERED!");
 		                BluetoothGattDescriptor descriptor = characteristicRX.getDescriptor(UUID.fromString(MOD_CHARACTERISTIC_CONFIG));
-		                descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+		                descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);		                
 		                mBluetoothGatt.writeDescriptor(descriptor);	
 		                
-			            txBuffer = new Vector<byte[]>();		     
-			    		t1 = new Timer();
-			    		t1.schedule(new TimerTask() {
-			    			@Override
-			    			public void run() {
-			    				sendNext();
-			    			}
-			    		}, REFRESH_INTERVAL, REFRESH_INTERVAL);
-			            
+			            txBuffer = new LinkedList<byte[]>();		     			            
 		                canSend = true;
 		                sendNext();
 			            
@@ -266,10 +268,8 @@ public class BT40Connection extends BTConnection {
 		public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
 			byte b[] = characteristic.getValue();
 			if (b != null) {
-				for (int i = 0; i < b.length; i++) {
-					mBTservice.onByteRx(b[i]);
-				}
-			} //TODO error code?				
+				mBTservice.onByteRx(b);
+			}	
 		}
 
 		@Override

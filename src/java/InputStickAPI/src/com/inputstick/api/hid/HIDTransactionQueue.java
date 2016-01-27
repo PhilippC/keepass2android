@@ -1,5 +1,6 @@
 package com.inputstick.api.hid;
 
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
@@ -18,7 +19,7 @@ public class HIDTransactionQueue {
 	private static final int MAX_PACKETS_PER_UPDATE = 10;
 	private static final int MAX_IMMEDIATE_PACKETS = 3;
 
-	private final Vector<HIDTransaction> queue;
+	private final LinkedList<HIDTransaction> queue;
 	private final ConnectionManager mConnectionManager;
 	private final byte cmd;
 	private boolean ready;
@@ -39,16 +40,16 @@ public class HIDTransactionQueue {
 	private boolean constantUpdateMode;
 	private int bufferFreeSpace;
 	private int immediatePacketsLeft;
-	//private int reportsSentSinceLastUpdate;
 	private int packetsSentSinceLastUpdate;
 	
-	
+	private int interfaceReadyCnt; //fix BT4.0 lost packet problem
 	
 	public HIDTransactionQueue(int interfaceType, ConnectionManager connectionManager) {
 		constantUpdateMode = false;
 		bufferFreeSpace = BUFFER_SIZE;
+		interfaceReadyCnt = 0;
 		
-		queue = new Vector<HIDTransaction>();
+		queue = new LinkedList<HIDTransaction>();
 		mConnectionManager = connectionManager;
 		ready = false;
 		sentAhead = false;
@@ -60,6 +61,8 @@ public class HIDTransactionQueue {
 		switch (interfaceType) {
 			case InputStickHID.INTERFACE_KEYBOARD:
 				cmd = Packet.CMD_HID_DATA_KEYB;
+				//TODO mod
+				//cmd = Packet.CMD_HID_DATA_KEYB_FAST;
 				break;
 			case InputStickHID.INTERFACE_MOUSE:
 				cmd = Packet.CMD_HID_DATA_MOUSE;
@@ -76,7 +79,7 @@ public class HIDTransactionQueue {
 		HIDTransaction transaction;		
 		
 		//assume there is at least 1 element in queue		
-		transaction = queue.firstElement();
+		transaction = queue.peek();
 		if (transaction.getReportsCount() > maxReports) {
 			// v0.92
 			if (maxReports < BUFFER_SIZE) {
@@ -87,7 +90,7 @@ public class HIDTransactionQueue {
 			//transaction too big to fit single packet! split
 			transaction = transaction.split(BUFFER_SIZE);
 		} else {
-			queue.removeElementAt(0);						
+			queue.removeFirst();						
 		}
 		
 		byte reports = 0;
@@ -96,6 +99,11 @@ public class HIDTransactionQueue {
 				
 		while (transaction.hasNext()) {
 			p.addBytes(transaction.getNextReport());
+			//TODO mod
+			//byte[] r = transaction.getNextReport();
+			//p.addByte(r[0]);
+			//p.addByte(r[2]);
+			
 			reports++;
 		}		
 		
@@ -104,11 +112,16 @@ public class HIDTransactionQueue {
 				break;
 			}
 			
-			transaction = queue.firstElement();			
+			transaction = queue.peek();
 			if (reports + transaction.getReportsCount() < maxReports) {
-				queue.removeElementAt(0);	
+				queue.removeFirst();	
 				while (transaction.hasNext()) {
 					p.addBytes(transaction.getNextReport());
+					//TODO mod
+					//byte[] r = transaction.getNextReport();
+					//p.addByte(r[0]);
+					//p.addByte(r[2]);
+					
 					reports++;
 				}				
 			} else {
@@ -120,6 +133,7 @@ public class HIDTransactionQueue {
 		p.modifyByte(1, reports); //set reports count
 		mConnectionManager.sendPacket(p);			
 		
+		interfaceReadyCnt = 0;
 		lastReports = reports;
 		lastTime = System.currentTimeMillis();
 		minNextTime = lastTime + (lastReports * 4) + BT_DELAY;
@@ -162,7 +176,7 @@ public class HIDTransactionQueue {
 	}
 	
 	public synchronized void clearBuffer() {
-		queue.removeAllElements();
+		queue.clear();
 	}
 	
 	public synchronized void addTransaction(HIDTransaction transaction) {
@@ -210,6 +224,30 @@ public class HIDTransactionQueue {
 		
 		if (hidInfo != null) {			
 			if (hidInfo.isSentToHostInfoAvailable()) {
+				
+				//BT4.0 lost packets fix:
+				if (bufferFreeSpace < BUFFER_SIZE) {
+					boolean interfaceReady = false;
+					if (mInterfaceType == InputStickHID.INTERFACE_KEYBOARD) {
+						interfaceReady = hidInfo.isKeyboardReady();
+					}
+					if (mInterfaceType == InputStickHID.INTERFACE_MOUSE) {
+						interfaceReady = hidInfo.isMouseReady();
+					}
+					if (mInterfaceType == InputStickHID.INTERFACE_CONSUMER) {
+						interfaceReady = hidInfo.isConsumerReady();
+					}
+					if (interfaceReady) {
+						interfaceReadyCnt++;
+						if (interfaceReadyCnt == 10) {
+							bufferFreeSpace = BUFFER_SIZE;
+						}
+					} else {
+						interfaceReadyCnt = 0;
+					}
+				}
+				
+				
 				constantUpdateMode = true;
 				// >= FW 0.93
 				bufferFreeSpace += reportsSentToHost;

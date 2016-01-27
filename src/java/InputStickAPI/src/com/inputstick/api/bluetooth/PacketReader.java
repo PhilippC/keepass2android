@@ -30,8 +30,8 @@ public class PacketReader {
     }
 	
 	
-	public void rxByte(int rxByte) {
-		byte b = (byte)rxByte;
+	public void rxByte(byte b) {
+		//byte b = (byte)rxByte;
     	long time = System.currentTimeMillis();
     	if (time > lastRxTime + RX_TIMEOUT) {
     		rxState = RX_TAG;

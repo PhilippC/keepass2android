@@ -7,8 +7,8 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.inputstick.api.bluetooth.BTService;
-import com.inputstick.init.InitManager;
-import com.inputstick.init.InitManagerListener;
+import com.inputstick.api.init.InitManager;
+import com.inputstick.api.init.InitManagerListener;
 
 public class BTConnectionManager extends ConnectionManager implements InitManagerListener {
 	
@@ -67,6 +67,7 @@ public class BTConnectionManager extends ConnectionManager implements InitManage
 	
 	private void onDisconnected() {
 		stateNotify(ConnectionManager.STATE_DISCONNECTED);
+		mInitManager.onDisconnected();
 	}
 	
 	private void onFailure(int code) {

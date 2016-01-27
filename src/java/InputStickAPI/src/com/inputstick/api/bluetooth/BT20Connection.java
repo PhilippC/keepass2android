@@ -119,18 +119,12 @@ public class BT20Connection extends BTConnection {
                 return;
             }
 
-            //synchronized (BTService.this) {
-                mConnectThread = null; //TODO
-            //}
+           	mConnectThread = null;
+            cancelThreads();   
 
-            //connected(mmSocket, mmDevice); :
-            cancelThreads();        
-            //receiver
-
-            // Start the thread to manage the connection and perform transmissions
+            //now connected:
             mConnectedThread = new ConnectedThread(mmSocket);
-            mConnectedThread.start();
-            
+            mConnectedThread.start();            
             mBTservice.connectedEstablished();
         }
 

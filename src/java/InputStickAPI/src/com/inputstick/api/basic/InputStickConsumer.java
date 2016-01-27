@@ -5,8 +5,6 @@ import com.inputstick.api.hid.HIDTransaction;
 
 public class InputStickConsumer {
 	
-
-	
 	//CONSUMER PAGE (consumerAction)
 	public static final int VOL_UP = 0x00E9;
 	public static final int VOL_DOWN = 0x00EA;
@@ -20,7 +18,7 @@ public class InputStickConsumer {
 	public static final int LAUNCH_EMAIL = 0x018A;
 	public static final int LAUNCH_CALC = 0x0192;
 	
-	//Android OS:
+	//Android OS (consumer):
 	public static final int HOME = 0x0223;
 	public static final int BACK = 0x0224;
 	public static final int SEARCH = 0x0221;
@@ -35,7 +33,12 @@ public class InputStickConsumer {
 		
 	}
 	
-	//use only for SYSTEM_POWER_DOWN, SYSTEM_SLEEP and SYSTEM_WAKEUP
+	
+	/*
+	 * Use only for system actions SYSTEM_POWER_DOWN, SYSTEM_SLEEP and SYSTEM_WAKEUP
+	 * 
+	 * @param action	code of system action
+	 */
 	public static void systemAction(byte action) {
 		HIDTransaction t = new HIDTransaction();
 		t.addReport(new ConsumerReport(ConsumerReport.SYSTEM_REPORT_ID, action, (byte)0));
@@ -43,19 +46,39 @@ public class InputStickConsumer {
 		InputStickHID.addConsumerTransaction(t);	
 	}	
 	
+	
+	/*
+	 * Requests USB host to power down. Must be supported and enabled by USB host.
+	 */
 	public static void systemPowerDown() {
 		systemAction(SYSTEM_POWER_DOWN);	
 	}
 	
+	
+	/*
+	 * Requests USB host to go into sleep/standby mode. Must be supported and enabled by USB host.
+	 */
 	public static void systemSleep() {
 		systemAction(SYSTEM_SLEEP);	
 	}
 	
+	
+	/*
+	 * Requests USB host to resume from sleep/standby mode. Must be supported and enabled by USB host.
+	 * Note: USB host must supply USB power when suspended. Otherwise InputStick will not work.
+	 */
 	public static void systemWakeUp() {
 		systemAction(SYSTEM_WAKEUP);	
 	}
 	
-	//action - see http://www.usb.org/developers/hidpage/Hut1_12v2.pdf (consumer page)
+	
+	/*
+	 * Consumer control action: media playback, volume etc. 
+	 * See http://www.usb.org/developers/hidpage/Hut1_12v2.pdf (consumer page).
+	 * USB host may not support certain action codes
+	 * 
+	 * @param action	code of consumer control action
+	 */
 	public static void consumerAction(int action) {
 		HIDTransaction t = new HIDTransaction();
 		t.addReport(new ConsumerReport(action));

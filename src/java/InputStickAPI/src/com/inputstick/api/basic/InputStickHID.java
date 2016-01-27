@@ -7,12 +7,10 @@ import java.util.Vector;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 
 import com.inputstick.api.BTConnectionManager;
 import com.inputstick.api.ConnectionManager;
+import com.inputstick.api.DownloadDialog;
 import com.inputstick.api.HIDInfo;
 import com.inputstick.api.IPCConnectionManager;
 import com.inputstick.api.InputStickDataListener;
@@ -20,13 +18,12 @@ import com.inputstick.api.InputStickError;
 import com.inputstick.api.InputStickStateListener;
 import com.inputstick.api.OnEmptyBufferListener;
 import com.inputstick.api.Packet;
-import com.inputstick.api.Util;
 import com.inputstick.api.hid.HIDReport;
 import com.inputstick.api.hid.HIDTransaction;
 import com.inputstick.api.hid.HIDTransactionQueue;
-import com.inputstick.init.BasicInitManager;
-import com.inputstick.init.DeviceInfo;
-import com.inputstick.init.InitManager;
+import com.inputstick.api.init.BasicInitManager;
+import com.inputstick.api.init.DeviceInfo;
+import com.inputstick.api.init.InitManager;
 
 public class InputStickHID implements InputStickStateListener, InputStickDataListener  {
 	
@@ -34,8 +31,6 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 	public static final int INTERFACE_CONSUMER = 1;
 	public static final int INTERFACE_MOUSE = 2;
 	
-	
-	//private static final String mTag = "InputStickBasic";		
 	private static ConnectionManager mConnectionManager;
 	
 	private static Vector<InputStickStateListener> mStateListeners = new Vector<InputStickStateListener>();
@@ -49,11 +44,9 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 	private static HIDTransactionQueue mouseQueue;
 	private static HIDTransactionQueue consumerQueue;
 	
-	
-	
-	// >= FW 0.93
-	private static Timer t1;
-	private static boolean constantUpdateMode;
+		
+	//FW 0.93 - 0.95
+	private static Timer updateQueueTimer;
 	
 	
 	private static int mKeyboardReportMultiplier; //enables "slow" typing by multiplying HID reports
@@ -67,7 +60,6 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 	
 	private static void init() {
 		mHIDInfo = new HIDInfo();
-		constantUpdateMode = false;
 		keyboardQueue = new HIDTransactionQueue(INTERFACE_KEYBOARD, mConnectionManager);
 		mouseQueue = new HIDTransactionQueue(INTERFACE_MOUSE, mConnectionManager);
 		consumerQueue = new HIDTransactionQueue(INTERFACE_CONSUMER, mConnectionManager);		
@@ -77,52 +69,138 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		mConnectionManager.connect();		
 	}
 	
-	//direct Bluetooth connection, custom InitManager (use BT2.0)
-	//mac - Bluetooth MAC address
-	//key - use null if InputStick is not password protected, otherwise provide 16byte key: MD5(password)
-	public static void connect(Application app, String mac, byte[] key, InitManager initManager) {
-		connect(app, mac, key, initManager, false);
+	/*
+	 * Returns download InputStickUtility AlertDialog if InputStickUtility is not installed. Returns null is InputStickUtility application is installed.
+	 * Should be called when your application is started or before InputStick functionality is about to be used. 
+	 * 
+	 * @return download InputStickUtility AlertDialog or null
+	 */
+	public static AlertDialog getDownloadDialog(final Context ctx) {
+		if (mConnectionManager.getErrorCode() == InputStickError.ERROR_ANDROID_NO_UTILITY_APP) {
+			return DownloadDialog.getDialog(ctx, DownloadDialog.NOT_INSTALLED);
+		} else {
+			return null;
+		}
 	}	
 	
-	//direct Bluetooth connection, custom InitManager
-	//is40 - use true if target device is BluetoothLowEnergy (4.0) type
-	//mac - Bluetooth MAC address
-	//key - use null if InputStick is not password protected, otherwise provide 16byte key: MD5(password)
-	//is40 - use true if target device is BluetoothLowEnergy (4.0) type
-	public static void connect(Application app, String mac, byte[] key, InitManager initManager, boolean isBT40) {
-		mConnectionManager = new BTConnectionManager(initManager, app, mac, key, isBT40);		
-		init();
-	}
 	
-	//direct Bluetooth connection
-	//key - use null if InputStick is not password protected, otherwise provide 16byte key: MD5(password)
-	//is40 - use true if target device is BluetoothLowEnergy (4.0) type
-	public static void connect(Application app, String mac, byte[] key, boolean isBT40) {
-		mConnectionManager = new BTConnectionManager(new BasicInitManager(key), app, mac, key, isBT40);
-		init();
-	}
-	
-	//direct Bluetooth connection (use BT2.0)
-	//key - use null if InputStick is not password protected, otherwise provide 16byte key: MD5(password)
-	public static void connect(Application app, String mac, byte[] key) {
-		connect(app, mac, key, false);
-	}
-	
-	//use InputStickUtility to connect with InputStick
+	/*
+	 * Connect using InputStickUtility application.
+	 * IN MOST CASES THIS METHOD SHOULD BE USED TO INITIATE CONNECTION!
+	 * 
+	 * @param app	Application 
+	 */
 	public static void connect(Application app) {
 		mConnectionManager = new IPCConnectionManager(app);
 		init();
 	}			
 	
-	//closes Bluetooth connection
+	
+	/*
+	 * Close connection
+	 */
 	public static void disconnect() { 
 		if (mConnectionManager != null) {
 			mConnectionManager.disconnect();
 		}
 	}
+
+
+	/*
+	 * Direct connection to InputStick (BT2.1 only!). InputStickUtility application is not required in this case.
+	 * TIP: use Util.getPasswordBytes(plainText) to get key.
+	 * 
+	 * @param app	Application
+	 * @param mac	Bluetooth MAC address
+	 * @param key	MD5(password) - must be provided if InputStick is password protected. Use null otherwise
+	 * @param initManager	custom init manager	 
+	 */
+	public static void connect(Application app, String mac, byte[] key, InitManager initManager) {
+		connect(app, mac, key, initManager, false);
+	}	
 	
-	//requests USB host to resume from sleep mode (must be supported by USB host)
-	//note: InputStick will most likely be in STATE_CONNECTED state instead of STATE_READY
+	
+	/*
+	 * Direct connection to InputStick. InputStickUtility application is not required in this case.
+	 * TIP: use Util.getPasswordBytes(plainText) to get key.
+	 * 
+	 * @param app	Application
+	 * @param mac	Bluetooth MAC address
+	 * @param key	MD5(password) - must be provided if InputStick is password protected. Use null otherwise
+	 * @param initManager	custom init manager	 
+	 * @param isBT40	specify Bluetooth version. Must match your hardware (InputStick BT2.1 or BT4.0)!
+	 */	
+	public static void connect(Application app, String mac, byte[] key, InitManager initManager, boolean isBT40) {
+		mConnectionManager = new BTConnectionManager(initManager, app, mac, key, isBT40);		
+		init();
+	}
+	
+
+	/*
+	 * Direct connection to InputStick. InputStickUtility application is not required in this case.
+	 * TIP: use Util.getPasswordBytes(plainText) to get key.
+	 * 
+	 * @param app	Application
+	 * @param mac	Bluetooth MAC address
+	 * @param key	MD5(password) - must be provided if InputStick is password protected. Use null otherwise
+	 * @param initManager	custom init manager	 
+	 * @param isBT40	specify Bluetooth version. Must match your hardware (InputStick BT2.1 or BT4.0)!
+	 */	
+	public static void connect(Application app, String mac, byte[] key, boolean isBT40) {
+		mConnectionManager = new BTConnectionManager(new BasicInitManager(key), app, mac, key, isBT40);
+		init();
+	}
+	
+
+	/*
+	 * Direct connection to InputStick (BT2.1 only!). InputStickUtility application is not required in this case.
+	 * TIP: use Util.getPasswordBytes(plainText) to get key.
+	 * 
+	 * @param app	Application
+	 * @param mac	Bluetooth MAC address
+	 * @param key	MD5(password) - must be provided if InputStick is password protected. Use null otherwise
+	 */	
+	public static void connect(Application app, String mac, byte[] key) {
+		connect(app, mac, key, false);
+	}
+	
+	
+	/*
+	 * When keyboard transactions are queued, each individual HID keyboard report is duplicated by reportMultiplier.
+	 * Allows to control typing speed. Can help with missing characters (for example in BIOS).
+	 * Important! Value of multiplier should be manually restored back to 1, when slow typing is no longer needed!
+	 *  
+	 * Example: press and release "a" key:
+	 * 1) Multiplier = 1
+	 * "a" key presses, all keys released
+	 * 2 HID reports, fastest typing speed
+	 * 2) Multiplier = 2
+	 * "a" key presses, "a" key presses, all keys released, all keys released
+	 * 4 HID reports, 50% slower typing speed
+	 * 
+	 * 
+	 * @param reportMultiplier	number by which each HID report will be duplicated
+	 */
+	public static void setKeyboardReportMultiplier(int reportMultiplier) {
+		mKeyboardReportMultiplier = reportMultiplier;
+	}
+	
+	
+	/*
+	 * Returns value of keyboard report multiplier
+	 * 
+	 * @return keyboard report multiplier
+	 */
+	public static int getKeyboardReportMultiplier(int reportMultiplier) {
+		return mKeyboardReportMultiplier;
+	}
+
+
+	/*
+	 * Requests USB host to resume from sleep / suspended state. Feature must be supported and enabled by USB host.
+	 * Note 1: when USB host is suspended, device state will be STATE_CONNECTED.
+	 * Note 2: some USB hosts may cut off USB power when suspended.	 
+	 */
 	public static void wakeUpUSBHost() {
 		if (isConnected()) {
 			Packet p = new Packet(false, Packet.CMD_USB_RESUME);
@@ -131,6 +209,12 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
+	
+	/*
+	 * Get device info of connected device
+	 * 
+	 * @return Device info of connected device. Null if info is not available
+	 */
 	public static DeviceInfo getDeviceInfo() {
 		if ((isReady()) && (mDeviceInfo != null)) {
 			return mDeviceInfo;
@@ -139,11 +223,22 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
+	
+	/*
+	 * Get latest status update received from InputStick.
+	 * 
+	 * @return	latest status update
+	 */
 	public static HIDInfo getHIDInfo() {
 		return mHIDInfo;
 	}
 	
-	//returns current connection state
+
+	/*
+	 * Returns current state of the connection.
+	 * 
+	 * @return state of the connection
+	 */
 	public static int getState() {
 		if (mConnectionManager != null) {
 			return mConnectionManager.getState();
@@ -152,7 +247,12 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
-	//returns last error code
+	
+	/*
+	 * Returns last error code. See class InputStickError.
+	 * 
+	 * @return last error code	 
+	 */
 	public static int getErrorCode() {
 		if (mConnectionManager != null) {
 			return mConnectionManager.getErrorCode();
@@ -161,8 +261,13 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		} 
 	}
 	
-	//returns true if Bluetooth connection is established between the device and InputStick.
-	//note - InputStick may be not ready yet to accept keyboard/mouse data
+
+	/*
+	 * Checks if Bluetooth connection between Android device and InputStick is established.
+	 * Note -  InputStick may be not ready yet to accept keyboard/mouse data.
+	 * 
+	 * @return true if Bluetooth connection is established
+	 */
 	public static boolean isConnected() {
 		if ((getState() == ConnectionManager.STATE_READY) ||  (getState() == ConnectionManager.STATE_CONNECTED)) {
 			return true;
@@ -171,7 +276,12 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
-	//returns true if InputStick is ready for keyboard/mouse data
+	
+	/*
+	 * Checks if InputStick is ready to accept keyboard/mouse/etc. data.
+	 * 
+	 * @return true if InputStick is ready to accept data
+	 */
 	public static boolean isReady() {
 		if (getState() == ConnectionManager.STATE_READY) {
 			return true;
@@ -179,8 +289,13 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 			return false;
 		}
 	}
-	
-	//adds state listener. Listeners will be notified about change of connection state
+
+
+	/*
+	 * Adds InputStickStateListener. Listener will be notified when connection state changes. 
+	 * 
+	 * @param listener	listener to add
+	 */
 	public static void addStateListener(InputStickStateListener listener) {
 		if (listener != null) {
 			if ( !mStateListeners.contains(listener)) {
@@ -190,13 +305,23 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 	}
 	
 	
+	/*
+	 * Removes InputStickStateListener. Listener will no longer be notified when connection state changes. 
+	 * 
+	 * @param listener	listener to remove
+	 */	
 	public static void removeStateListener(InputStickStateListener listener) {
 		if (listener != null) {
 			mStateListeners.remove(listener);
 		}
 	}
-	
-	//adds buffer listener. Listeners will be notified when local (application) or remote (InputStick) HID report buffer is empty
+
+
+	/*
+	 * Adds OnEmptyBufferListener.  Listeners will be notified when local (application) or remote (InputStick) HID report buffer is empty.
+	 * 
+	 * @param listener	listener to add
+	 */
 	public static void addBufferEmptyListener(OnEmptyBufferListener listener) {
 		if (listener != null) {
 			if ( !mBufferEmptyListeners.contains(listener)) {
@@ -205,25 +330,36 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
+	
+	/*
+	 * Removes OnEmptyBufferListener.
+	 * 
+	 * @param listener	listener to remove
+	 */	
 	public static void removeBufferEmptyListener(OnEmptyBufferListener listener) {
 		if (listener != null) {
 			mBufferEmptyListeners.remove(listener);
 		}		
 	}
 	
+	
+	/*
+	 * Returns vector with registered OnEmptyBuffer listeners.
+	 * 
+	 * @return vector with OnEmptyBuffer listeners 
+	 */
 	public static Vector<OnEmptyBufferListener> getBufferEmptyListeners() {
 		return mBufferEmptyListeners;
 	}
 	
-	//reports added to keyboard queue will be multiplied by reportMultiplier times. This allows to type text slower.
-	//NOTE: using high multiplier values can make transactions larger than available buffer and as a result they will be splitted!
-	//this can cause problem if connection is lost (stuck keys)
-	//TIP: remember to manually set multiplier value back to 1 when slow typing mode is no longer needed!!!
-	public static void setKeyboardReportMultiplier(int reportMultiplier) {
-		mKeyboardReportMultiplier = reportMultiplier;
-	}
 
-	//adds transaction to keyboard queue. If possible, all reports form a signel transactions will be sent in a single packet
+	/*
+	 * Adds transaction to keyboard queue. 
+	 * If possible, all reports form a single transactions will be sent in a single packet.
+	 * This should prevent from key being stuck in pressed position when connection is suddenly lost.
+	 * 
+	 * @param transaction	transaction to be queued
+	 */
 	public static void addKeyboardTransaction(HIDTransaction transaction) {
 		if ((transaction != null) && (keyboardQueue != null)) {
 			//keyboardQueue.addTransaction(transaction);
@@ -244,42 +380,68 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
-	//adds transaction to mouse queue. If possible, all reports form a signel transactions will be sent in a single packet
+
+	/*
+	 * Adds transaction to mouse queue. 
+	 * If possible, all reports form a single transactions will be sent in a single packet.
+	 * 
+	 * @param transaction	transaction to be queued	 
+	 */
 	public static void addMouseTransaction(HIDTransaction transaction) {
 		if ((transaction != null) && (mouseQueue != null)) {
 			mouseQueue.addTransaction(transaction);
 		}
 	}
 	
-	//adds transaction to consumer queue. If possible, all reports form a signel transactions will be sent in a single packet
+	
+	/*
+	 * Adds transaction to consumer control queue. 
+	 * If possible, all reports form a single transactions will be sent in a single packet.
+	 * 
+	 * @param transaction	transaction to be queued	 
+	 */
 	public static void addConsumerTransaction(HIDTransaction transaction) {
 		if ((transaction != null) && (consumerQueue != null)) {
 			consumerQueue.addTransaction(transaction);
 		}
 	}
-	
-	//removes all reports from keyboard buffer
+
+
+	/*
+	 * Removes all reports from keyboard buffer.	 
+	 */
 	public static void clearKeyboardBuffer() {
 		if (keyboardQueue != null) {
 			keyboardQueue.clearBuffer();
 		}
 	}
 	
-	//removes all reports from mouse buffer
+	
+	/*
+	 * Removes all reports from mouse buffer.	 
+	 */
 	public static void clearMouseBuffer() {
 		if (mouseQueue != null) {
 			mouseQueue.clearBuffer();
 		}
 	}
 	
-	//removes all reports from consumer buffer
+
+	/*
+	 * Removes all reports from consumer control buffer.	 
+	 */
 	public static void clearConsumerBuffer() {
 		if (consumerQueue != null) {
 			consumerQueue.clearBuffer();
 		}
 	}
 	
-	//sends packet to InputStick
+
+	/*
+	 * Sends custom packet to InputStick.
+	 * 
+	 * @param p	packet to send.	 
+	 */
 	public static boolean sendPacket(Packet p) {
 		if (mConnectionManager != null) {
 			mConnectionManager.sendPacket(p);
@@ -287,20 +449,14 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		} else {
 			return false;
 		}
-	}				
+	}					
+
 	
-	@Override
-	public void onStateChanged(int state) {		
-		if ((state == ConnectionManager.STATE_DISCONNECTED) && (t1 != null)) {
-			t1.cancel();
-			t1 = null;
-		}
-		for (InputStickStateListener listener : mStateListeners) {
-			listener.onStateChanged(state);
-		}		
-	}
-	
-	//returns true if local (application) keyboard report buffer is empty. It is still possible that there are reports queued in InputStick's buffer.
+	/*
+	 * Checks if local (Android device) keyboard report buffer is empty. It is possible that there are reports queued in InputStick's buffer.
+	 *
+	 * @return true if local keyboard buffer is empty, false otherwise
+	 */
 	public static boolean isKeyboardLocalBufferEmpty() {
 		if (keyboardQueue != null) {
 			return keyboardQueue.isLocalBufferEmpty();
@@ -309,7 +465,12 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
-	//returns true if local (application) mouse report buffer is empty. It is still possible that there are reports queued in InputStick's buffer.
+	
+	/*
+	 * Checks if local (Android device) mouse report buffer is empty. It is possible that there are reports queued in InputStick's buffer.
+	 *
+	 * @return true if local mouse buffer is empty, false otherwise
+	 */
 	public static boolean isMouseLocalBufferEmpty() {
 		if (mouseQueue != null) {
 			return mouseQueue.isLocalBufferEmpty();
@@ -318,7 +479,12 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
-	//returns true if local (application) consumer report buffer is empty. It is still possible that there are reports queued in InputStick's buffer.
+	
+	/*
+	 * Checks if local (Android device) consumer control report buffer is empty. It is possible that there are reports queued in InputStick's buffer.
+	 *
+	 * @return true if local consumer control buffer is empty, false otherwise
+	 */
 	public static boolean isConsumerLocalBufferEmpty() {
 		if (consumerQueue != null) {
 			return consumerQueue.isLocalBufferEmpty();
@@ -327,7 +493,12 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
-	//returns true if remote (InputStick) keyboard report buffer is empty. No more keyboard reports will be send to USB host
+	
+	/*
+	 * Checks if local (Android device) AND remote (InputStick) keyboard report buffers are empty.
+	 *
+	 * @return true if local and remote keyboard buffers are empty, false otherwise
+	 */
 	public static boolean isKeyboardRemoteBufferEmpty() {
 		if (keyboardQueue != null) {
 			return keyboardQueue.isRemoteBufferEmpty();
@@ -336,7 +507,12 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}		
 	}
 	
-	//returns true if remote (InputStick) mouse report buffer is empty. No more mouse reports will be send to USB host
+	
+	/*
+	 * Checks if local (Android device) AND remote (InputStick) mouse report buffers are empty.
+	 *
+	 * @return true if local and remote mouse buffers are empty, false otherwise
+	 */
 	public static boolean isMouseRemoteBufferEmpty() {
 		if (mouseQueue != null) {
 			return mouseQueue.isRemoteBufferEmpty();
@@ -345,13 +521,34 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 		}
 	}
 	
-	//returns true if remote (InputStick) consumer report buffer is empty. No more consumer reports will be send to USB host
+	
+	/*
+	 * Checks if local (Android device) AND remote (InputStick) consumer control report buffers are empty.
+	 *
+	 * @return true if local and remote consumer control buffers are empty, false otherwise
+	 */
 	public static boolean isConsumerRemoteBufferEmpty() {
 		if (consumerQueue != null) {
 			return consumerQueue.isRemoteBufferEmpty();
 		} else {
 			return true;
 		}
+	}
+
+	
+	
+	
+	
+	
+	@Override
+	public void onStateChanged(int state) {		
+		if ((state == ConnectionManager.STATE_DISCONNECTED) && (updateQueueTimer != null)) {
+			updateQueueTimer.cancel();
+			updateQueueTimer = null;
+		}
+		for (InputStickStateListener listener : mStateListeners) {
+			listener.onStateChanged(state);
+		}		
 	}
 
 	@Override
@@ -370,19 +567,19 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 				mouseQueue.deviceReady(mHIDInfo, mHIDInfo.getMouseReportsSentToHost());
 				consumerQueue.deviceReady(mHIDInfo, mHIDInfo.getConsumerReportsSentToHost());
 				
-				if ( !constantUpdateMode) {
-					Util.log("Constatnt update mode enabled");
-					constantUpdateMode = true;
-					t1 = new Timer();
-					t1.schedule(new TimerTask() {
-						@Override
-						public void run() {
-							keyboardQueue.sendToBuffer(false);
-							mouseQueue.sendToBuffer(false);
-							consumerQueue.sendToBuffer(false);
-						}
-					}, 5,5);	
-				}			
+				if (mDeviceInfo != null) {
+					if ((updateQueueTimer == null) && (mDeviceInfo.getFirmwareVersion() < 97)) {
+						updateQueueTimer = new Timer();
+						updateQueueTimer.schedule(new TimerTask() {
+							@Override
+							public void run() {
+								keyboardQueue.sendToBuffer(false);
+								mouseQueue.sendToBuffer(false);
+								consumerQueue.sendToBuffer(false);
+							}
+						}, 5, 5);						
+					}
+				}
 			} else { 					
 				//previous FW versions
 				if (mHIDInfo.isKeyboardReady()) {
@@ -398,44 +595,8 @@ public class InputStickHID implements InputStickStateListener, InputStickDataLis
 			
 			InputStickKeyboard.setLEDs(mHIDInfo.getNumLock(), mHIDInfo.getCapsLock(), mHIDInfo.getScrollLock());			
 		}
-	}	
+	}		
 	
-	//returns "Download InputStickUtility" dialog, if connection attepmt resulted in error caused by InputStickUtility not being installed on the device.
-	//otherwise returns null
-	public static AlertDialog getDownloadDialog(final Context ctx) {
-		if (mConnectionManager.getErrorCode() == InputStickError.ERROR_ANDROID_NO_UTILITY_APP) {
-			AlertDialog.Builder downloadDialog = new AlertDialog.Builder(ctx);
-			downloadDialog.setTitle("No InputStickUtility app installed");
-			downloadDialog.setMessage("InputStickUtility is required to run this application. Download now?\nNote: InputStick USB receiver hardware is also required.");
-			downloadDialog.setPositiveButton("Yes",
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialogInterface, int i) {
-							final String appPackageName = "com.inputstick.apps.inputstickutility";
-							try {
-								ctx.startActivity(new Intent(
-										Intent.ACTION_VIEW, Uri
-												.parse("market://details?id="
-														+ appPackageName)));
-							} catch (android.content.ActivityNotFoundException anfe) {
-								ctx.startActivity(new Intent(
-										Intent.ACTION_VIEW,
-										Uri.parse("http://play.google.com/store/apps/details?id="
-												+ appPackageName)));
-							}
-						}
-					});
-			downloadDialog.setNegativeButton("No",
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialogInterface, int i) {
-						}
-					});
-			return downloadDialog.show();
-		} else {
-			return null;
-		}
-	}	
 	
 
 }

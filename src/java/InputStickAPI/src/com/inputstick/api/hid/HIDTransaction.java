@@ -1,14 +1,14 @@
 package com.inputstick.api.hid;
 
-import java.util.Vector;
+import java.util.LinkedList;
 
 public class HIDTransaction {
 
 	private int mID;
-	private Vector<HIDReport> reports;
+	private LinkedList<HIDReport> reports;
 	
 	public HIDTransaction() {
-		reports = new Vector<HIDReport>();
+		reports = new LinkedList<HIDReport>();
 	}
 	
 	public void addReport(HIDReport report) {
@@ -32,14 +32,11 @@ public class HIDTransaction {
 	}
 	
 	public byte[] getNextReport() {
-		byte[] report;
-		report = reports.elementAt(0).getBytes();
-		reports.removeElementAt(0);
-		return report;
+		return reports.poll().getBytes();
 	}
 	
 	public HIDReport getHIDReportAt(int pos) {
-		return reports.elementAt(pos);	
+		return reports.get(pos);
 	}
 	
 	public HIDTransaction split(int n) {
@@ -47,8 +44,7 @@ public class HIDTransaction {
 		HIDReport report;
 		if (n <= reports.size()) {
 			while(n > 0) {
-				report = reports.firstElement();
-				reports.remove(0);
+				report = reports.poll();
 				result.addReport(report);
 				n--;
 			}		

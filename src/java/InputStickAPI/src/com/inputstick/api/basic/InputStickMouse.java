@@ -28,16 +28,14 @@ public class InputStickMouse {
 	private InputStickMouse() {
 		
 	}
+		
 	
-	protected void setReportProtocol(boolean reportProtocol) {
-		mReportProtocol = reportProtocol;				
-	}
-	
-	public boolean isReportProtocol() {
-		return mReportProtocol;
-	}		
-	
-	//clicks button (BUTTON_LEFT..BUTTON_MIDDLE) n times. 
+	/*
+	 * Clicks selected mouse button (BUTTON_LEFT etc) N times
+	 * 
+	 * @param button	code of mouse button 
+	 * @param n	number of button clicks (press and release events)
+	 */
 	public static void click(byte button, int n) {
 		HIDTransaction t = new HIDTransaction();
 		t.addReport(new MouseReport()); //release
@@ -48,14 +46,23 @@ public class InputStickMouse {
 		InputStickHID.addMouseTransaction(t);	
 	}
 	
-	//moves mouse pointer by x,y
+	/*
+	 * Move mouse pointer
+	 * 
+	 * @param x		x displacement
+	 * @param y		y dispalcement
+	 */
 	public static void move(byte x, byte y) {
 		HIDTransaction t = new HIDTransaction();
 		t.addReport(new MouseReport(NONE, x, y, NONE));
 		InputStickHID.addMouseTransaction(t);	
 	}
 	
-	//moves scroll wheel by "wheel"
+	/*
+	 * Moves mouse scroll wheel
+	 * 
+	 * @param wheel		scroll wheel displacement	 
+	 */
 	public static void scroll(byte wheel) {
 		HIDTransaction t = new HIDTransaction();
 		t.addReport(new MouseReport(NONE, NONE, NONE, wheel));
@@ -63,12 +70,27 @@ public class InputStickMouse {
 	}	
 	
 	//sends custom mouse report (buttons will remain in pressed state until released by next report)
+	
+	/*
+	 * Sends custom HID mouse report. Mouse buttons will remain in selected state until new report is received.
+	 * 
+	 * @param buttons	state of mouse buttons
+	 * @param x		x displacement
+	 * @param y		y dispalcement
+	 * @param wheel		scroll wheel displacement	 
+	 */
 	public static void customReport(byte buttons, byte x, byte y, byte wheel) {
 		HIDTransaction t = new HIDTransaction();
 		t.addReport(new MouseReport(buttons, x, y, wheel));
 		InputStickHID.addMouseTransaction(t);		
 	}		
 	
+	
+	/*
+	 * Returns names of buttons in "pressed" state
+	 * 
+	 * @param buttons	state of mouse buttons
+	 */
 	public static String buttonsToString(byte buttons) {
     	String result = "None";
     	boolean first = true;
@@ -87,6 +109,23 @@ public class InputStickMouse {
     	}
     	
     	return result;
+	}
+	
+	
+	/*
+	 * When report protocol is used, scroll wheel is enabled. Otherwise, simplified boot protocol is selected by USB host.
+	 * Report protocol is in most cases used by OS.
+	 * Boot protocol is used by BIOS, or when OS is booting.
+	 *
+	 * @return true if USB host uses report protocol, false if USB host uses boot protocol
+	 */
+	public boolean isReportProtocol() {
+		return mReportProtocol;
+	}
+	
+	
+	protected void setReportProtocol(boolean reportProtocol) {
+		mReportProtocol = reportProtocol;				
 	}
 
 }

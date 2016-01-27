@@ -63,7 +63,7 @@ public class IPCConnectionManager extends ConnectionManager {
         public void onServiceConnected(ComponentName className, IBinder service) {
             mService = new Messenger(service);
             mBound = true;                  
-            sendMessage(SERVICE_CMD_CONNECT, 0, 0); 
+            sendConnectMessage();
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -81,7 +81,11 @@ public class IPCConnectionManager extends ConnectionManager {
 	
 	
 	
-	
+	private void sendConnectMessage() {
+        Bundle b = new Bundle();
+        b.putLong("TIME", System.currentTimeMillis());
+        sendMessage(SERVICE_CMD_CONNECT, 0, 0, b); 	
+	}
 
     
     private void sendMessage(int what, int arg1, int arg2, Bundle b) {
@@ -131,11 +135,12 @@ public class IPCConnectionManager extends ConnectionManager {
 			mErrorCode = InputStickError.ERROR_NONE;
 			Intent intent = new Intent();									
 			intent.setComponent(new ComponentName("com.inputstick.apps.inputstickutility","com.inputstick.apps.inputstickutility.service.InputStickService"));
+			intent.putExtra("TIME", System.currentTimeMillis());
 			mCtx.startService(intent);
 			mCtx.bindService(intent, mConnection, Context.BIND_AUTO_CREATE); 
 	        if (mBound) {
 	        	//already bound
-	        	sendMessage(SERVICE_CMD_CONNECT, 0, 0); 
+	        	sendConnectMessage();
 	        } 
 		} else {
 			mErrorCode = InputStickError.ERROR_ANDROID_NO_UTILITY_APP;

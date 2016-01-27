@@ -1,5 +1,6 @@
 package com.inputstick.api;
 
+import android.annotation.SuppressLint;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -31,6 +32,7 @@ public abstract class Util {
 		}
 	}
 
+	@SuppressLint("DefaultLocale")
 	public static String byteToHexString(byte b) {
 		String s;
     	//0x0..0xF = 0x00..0x0F

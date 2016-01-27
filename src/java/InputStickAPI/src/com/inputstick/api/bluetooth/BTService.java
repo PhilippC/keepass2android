@@ -204,8 +204,14 @@ public class BTService {
     }      
     
     
-    protected void onByteRx(int rxByte) {
-    	mPacketReader.rxByte(rxByte);
+    protected synchronized void onByteRx(int rxByte) {
+    	mPacketReader.rxByte((byte)rxByte);
+    }
+    
+    protected synchronized void onByteRx(byte[] rxBytes) {
+    	for (int i = 0; i < rxBytes.length; i++) {
+    		mPacketReader.rxByte(rxBytes[i]);
+    	}
     }
     
     
