@@ -12,14 +12,14 @@ using Android.Views.Accessibility;
 using Android.Widget;
 using KeePassLib;
 
-
+/*
 namespace keepass2android.AutoFill
 {
     //<meta-data android:name="android.accessibilityservice" android:resource="@xml/serviceconfig" />
     [Service(Enabled =true, Permission= "android.permission.BIND_ACCESSIBILITY_SERVICE")]
     [IntentFilter(new[] { "android.accessibilityservice.AccessibilityService" })]
     [MetaData("android.accessibilityservice", Resource = "@xml/accserviceconfig")]
-    public class Kp2aAccessibilityService : Android.AccessibilityServices.AccessibilityService
+    public class AccessibilityService : Android.AccessibilityServices.AccessibilityService
     {
 	    private static bool _hasUsedData;
 	    const string _logTag = "KP2AAS";
@@ -53,13 +53,7 @@ namespace keepass2android.AutoFill
                 {
 					bool cancelNotification = true;
 
-                    var allEditTexts = GetNodeOrChildren(root, IsEditText);
-
-                    var usernameEdit = allEditTexts.TakeWhile(edit => (edit.Password == false)).LastOrDefault();
-
-                    string searchString = androidAppPrefix + root.PackageName;
-
-                    string url = androidAppPrefix + root.PackageName;
+					string url = androidAppPrefix + root.PackageName;
 
                     if (root.PackageName == "com.android.chrome")
                     {
@@ -73,14 +67,24 @@ namespace keepass2android.AutoFill
                         UrlFromAddressField(ref url, addressField);
                     }
 
-                    List<AccessibilityNodeInfo> emptyPasswordFields = GetNodeOrChildren(root, IsPasswordField);
-                    if (emptyPasswordFields.Any())
+	                if (ExistsNodeOrChildren(root, IsPasswordField))
                     {
+
 						if ((LastReceivedCredentialsUser != null) && IsSame(GetCredentialsField(PwDefs.UrlField), url))
                         {
 							Android.Util.Log.Debug ("KP2AAS", "Filling credentials for " + url);
 
+							List<AccessibilityNodeInfo> emptyPasswordFields = new List<AccessibilityNodeInfo>();
+							GetNodeOrChildren(root, IsPasswordField, ref emptyPasswordFields);
+
+	                        List<AccessibilityNodeInfo> allEditTexts = new List<AccessibilityNodeInfo>();
+							GetNodeOrChildren(root, IsEditText, ref allEditTexts);
+
+							var usernameEdit = allEditTexts.TakeWhile(edit => (edit.Password == false)).LastOrDefault();
+
                             FillPassword(url, usernameEdit, emptyPasswordFields);
+	                        allEditTexts.Clear();
+	                        emptyPasswordFields.Clear();
                         }
                         else
                         {
@@ -91,7 +95,7 @@ namespace keepass2android.AutoFill
 								Android.Util.Log.Debug ("KP2AAS", url);
 							}
 
-                            AskFillPassword(url, usernameEdit, emptyPasswordFields);
+                            AskFillPassword(url);
 							cancelNotification = false;
                         }
 
@@ -105,9 +109,10 @@ namespace keepass2android.AutoFill
 
             }
 	        GC.Collect();
-
+			Java.Lang.JavaSystem.Gc();
 
         }
+
 
 	    private bool IsSystemUi(AccessibilityNodeInfo n)
 	    {
@@ -146,7 +151,12 @@ namespace keepass2android.AutoFill
             return (n.ClassName != null) && (n.ClassName.Contains("EditText"));
         }
 
-        private void AskFillPassword(string url, AccessibilityNodeInfo usernameEdit, List<AccessibilityNodeInfo> passwordFields)
+	    private static bool IsNonPasswordEditText(AccessibilityNodeInfo n)
+	    {
+		    return IsEditText(n) && n.Password == false;
+	    }
+
+        private void AskFillPassword(string url)
         {
 			
 			Intent startKp2aIntent = PackageManager.GetLaunchIntentForPackage(ApplicationContext.PackageName);
@@ -243,6 +253,7 @@ namespace keepass2android.AutoFill
 
         private bool ExistsNodeOrChildren(AccessibilityNodeInfo n, Func<AccessibilityNodeInfo, bool> p)
         {
+	        if (n == null) return false;
 	        if (p(n))
 		        return true;
 	        for (int i = 0; i < n.ChildCount; i++)
@@ -253,22 +264,20 @@ namespace keepass2android.AutoFill
 	        return false;
         }
 
-        private List<AccessibilityNodeInfo> GetNodeOrChildren(AccessibilityNodeInfo n, Func<AccessibilityNodeInfo, bool> p)
+        private void GetNodeOrChildren(AccessibilityNodeInfo n, Func<AccessibilityNodeInfo, bool> p, ref List<AccessibilityNodeInfo> result)
         {
-	        List<AccessibilityNodeInfo> result = new List<AccessibilityNodeInfo>();
-            if (n != null)
+	        if (n != null)
             {
 	            if (p(n))
 		            result.Add(n);
                 for (int i = 0; i < n.ChildCount; i++)
                 {
-	                result.AddRange(GetNodeOrChildren(n.GetChild(i), p));
+	                GetNodeOrChildren(n.GetChild(i), p, ref result);
                 }
             }
-	        return result;
         }
 
-        public override void OnInterrupt()
+	    public override void OnInterrupt()
         {
             
         }
@@ -283,4 +292,4 @@ namespace keepass2android.AutoFill
 		    _hasUsedData = false;
 	    }
     }
-}
+}*/

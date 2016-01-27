@@ -322,11 +322,22 @@ namespace keepass2android
 				yesHandler, noHandler, cancelHandler, ctx);
 		}
 
-        public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+			UiStringKey yesString, UiStringKey noString,
+			EventHandler<DialogClickEventArgs> yesHandler,
+			EventHandler<DialogClickEventArgs> noHandler,
+			EventHandler<DialogClickEventArgs> cancelHandler,
+			Context ctx)
+		{
+			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, ctx);
+		}
+
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
 			UiStringKey yesString, UiStringKey noString,
 			EventHandler<DialogClickEventArgs> yesHandler,
             EventHandler<DialogClickEventArgs> noHandler,
             EventHandler<DialogClickEventArgs> cancelHandler,
+			EventHandler dismissHandler,
             Context ctx)
         {
 	        Handler handler = new Handler(Looper.MainLooper);
@@ -353,7 +364,11 @@ namespace keepass2android
 												 cancelHandler);	
 					}
 
+					
+
 					AlertDialog dialog = builder.Create();
+					if (dismissHandler != null)
+						dialog.SetOnDismissListener(new Util.DismissListener(() => dismissHandler(dialog, EventArgs.Empty)));
 					dialog.Show();
 
 					if (yesText.Length + noText.Length + cancelText.Length >= 20)

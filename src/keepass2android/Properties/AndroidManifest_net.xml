@@ -33,6 +33,13 @@
 				<category android:name="android.intent.category.OPENABLE" />
 			</intent-filter>
 		</activity>
+		<service android:name="keepass2android.autofill.AutoFillService"
+			android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+		  <intent-filter>
+			<action android:name="android.accessibilityservice.AccessibilityService" />
+		  </intent-filter>
+		</service>
+
 		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">
 			<intent-filter>
 				<action android:name="android.view.InputMethod" />
@@ -102,6 +109,8 @@
 	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 	<uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
 	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
+	<uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+
 	<!-- Samsung Pass permission -->
 	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
 </manifest>

@@ -15,6 +15,11 @@ public class KeyboardData
 	{
 		return !TextUtils.isEmpty(entryId); 
 	}
+
+	public static boolean bla2()
+	{
+		return !TextUtils.isEmpty(entryId);
+	}
 	 
 	public static void clear()
 	{

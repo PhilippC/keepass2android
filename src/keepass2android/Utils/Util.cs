@@ -347,7 +347,7 @@ namespace keepass2android
 #endif
 		}
 
-		class DismissListener:  Java.Lang.Object, IDialogInterfaceOnDismissListener
+		public class DismissListener:  Java.Lang.Object, IDialogInterfaceOnDismissListener
 		{
 			private readonly Action _onDismiss;
 

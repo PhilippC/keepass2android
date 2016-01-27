@@ -16,6 +16,12 @@
 				<category android:name="android.intent.category.OPENABLE" />
 			</intent-filter>
 		</activity>
+		<service android:name="keepass2android.autofill.AutoFillService"
+			android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+		  <intent-filter>
+			<action android:name="android.accessibilityservice.AccessibilityService" />
+		  </intent-filter>
+		</service>
 		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">
 			<intent-filter>
 				<action android:name="android.view.InputMethod" />

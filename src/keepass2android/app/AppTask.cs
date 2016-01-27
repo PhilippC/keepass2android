@@ -327,6 +327,11 @@ namespace keepass2android
 		{
 			activity.StartNotificationsService(false);
 		}
+
+		virtual public void PopulatePasswordAccessServiceIntent(Intent intent)
+		{
+			
+		}
 	}
 
 	/// <summary>
@@ -393,7 +398,11 @@ namespace keepass2android
 			//act.AppTask = new NullTask();
 		}
 
-
+		public override void PopulatePasswordAccessServiceIntent(Intent intent)
+		{
+			base.PopulatePasswordAccessServiceIntent(intent);
+			intent.PutExtra(UrlToSearchKey, UrlToSearchFor);
+		}
 	}
 
 	

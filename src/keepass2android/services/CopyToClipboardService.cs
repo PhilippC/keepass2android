@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.AccessibilityServices;
 using Android.Support.V4.App;
 using Java.Util;
 
@@ -27,10 +28,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using Android.Preferences;
+using Android.Views.Accessibility;
 using KeePassLib;
 using KeePassLib.Utility;
 using Android.Views.InputMethods;
-using keepass2android.AutoFill;
 using KeePass.Util.Spr;
 
 namespace keepass2android
@@ -278,6 +279,7 @@ namespace keepass2android
 			if ((intent.Action == Intents.ShowNotification) || (intent.Action == Intents.UpdateKeyboard))
 			{
 				String uuidBytes = intent.GetStringExtra(EntryActivity.KeyEntry);
+				String searchUrl = intent.GetStringExtra(SearchUrlTask.UrlToSearchKey);
 
 				PwUuid entryId = PwUuid.Zero;
 				if (uuidBytes != null)
@@ -308,7 +310,7 @@ namespace keepass2android
 				{
 					//first time opening the entry -> bring up the notifications
 					bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KeyCloseAfterCreate, false);
-					DisplayAccessNotifications(entry, closeAfterCreate);
+					DisplayAccessNotifications(entry, closeAfterCreate, searchUrl);
 				}
 				else //UpdateKeyboard
 				{
@@ -317,7 +319,7 @@ namespace keepass2android
 					//update the keyboard data.
 					//Check if keyboard is (still) available
 					if (Keepass2android.Kbbridge.KeyboardData.EntryId == entry.Uuid.ToHexString())
-						MakeAccessibleForKeyboard(entry);
+						MakeAccessibleForKeyboard(entry, searchUrl);
 #endif
 				}
 			}
@@ -386,7 +388,7 @@ namespace keepass2android
 		private const string ActionNotificationCancelled = "notification_cancelled";
 
 
-		public void DisplayAccessNotifications(PwEntryOutput entry, bool closeAfterCreate)
+		public void DisplayAccessNotifications(PwEntryOutput entry, bool closeAfterCreate, string searchUrl)
 		{
 			var hadKeyboardData = ClearNotifications();
 
@@ -414,28 +416,22 @@ namespace keepass2android
 			{
 
 				//keyboard
-				hasKeyboardDataNow = MakeAccessibleForKeyboard(entry);
+				hasKeyboardDataNow = MakeAccessibleForKeyboard(entry, searchUrl);
 				if (hasKeyboardDataNow)
 				{
 					notBuilder.AddKeyboardAccess();
-					if (prefs.GetBoolean("kp2a_switch_rooted", false))
+
+					if (Keepass2android.Autofill.AutoFillService.IsAvailable && (!Keepass2android.Autofill.AutoFillService.IsRunning))
 					{
-						//switch rooted
-						bool onlySwitchOnSearch = prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false);
-						if (closeAfterCreate || (!onlySwitchOnSearch))
+						if (!prefs.GetBoolean("has_asked_autofillservice", false))
 						{
-							ActivateKp2aKeyboard();
+							var i = new Intent(this, typeof (ActivateAutoFillActivity));
+							i.AddFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
+							StartActivity(i);
+							prefs.Edit().PutBoolean("has_asked_autofillservice", true).Commit();
 						}
 					}
-					else
-					{
-						//if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
-						// automatically bring up the Keyboard selection dialog
-						if ((closeAfterCreate) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
-						{
-							ActivateKp2aKeyboard();
-						}	
-					}
+					else ActivateKeyboardIfAppropriate(closeAfterCreate, prefs);
 					
 				}
 
@@ -465,6 +461,31 @@ namespace keepass2android
 			RegisterReceiver(_notificationDeletedBroadcastReceiver, deletefilter);
 		}
 
+		public void ActivateKeyboardIfAppropriate(bool closeAfterCreate, ISharedPreferences prefs)
+		{
+			if (prefs.GetBoolean("kp2a_switch_rooted", false))
+			{
+				//switch rooted
+				bool onlySwitchOnSearch = prefs.GetBoolean(
+					GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false);
+				if (closeAfterCreate || (!onlySwitchOnSearch))
+				{
+					ActivateKp2aKeyboard();
+				}
+			}
+			else
+			{
+				//if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
+				// automatically bring up the Keyboard selection dialog
+				if ((closeAfterCreate) &&
+				    prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key),
+					    Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
+				{
+					ActivateKp2aKeyboard();
+				}
+			}
+		}
+
 		private bool ClearNotifications()
 		{
 			// Notification Manager
@@ -479,7 +500,7 @@ namespace keepass2android
 			return hadKeyboardData;
 		}
 
-		bool MakeAccessibleForKeyboard(PwEntryOutput entry)
+		bool MakeAccessibleForKeyboard(PwEntryOutput entry, string searchUrl)
 		{
 #if EXCLUDE_KEYBOARD
 			return false;
@@ -529,7 +550,7 @@ namespace keepass2android
 			Keepass2android.Kbbridge.KeyboardData.EntryName = entry.OutputStrings.ReadSafe(PwDefs.TitleField);
 			Keepass2android.Kbbridge.KeyboardData.EntryId = entry.Uuid.ToHexString();
 			if (hasData)
-				Kp2aAccessibilityService.NotifyNewData();
+				Keepass2android.Autofill.AutoFillService.NotifyNewData(searchUrl);
 
 			return hasData;
 #endif

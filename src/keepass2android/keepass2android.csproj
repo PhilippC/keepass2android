@@ -116,6 +116,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivateAutoFillActivity.cs" />
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
     <Compile Include="addons\OtpKeyProv\OathHotpKeyProv.cs" />
     <Compile Include="addons\OtpKeyProv\OtpAuxCachingFileStorage.cs" />
@@ -155,7 +156,7 @@
     <Compile Include="icons\DrawableFactory.cs" />
     <Compile Include="KeeChallenge.cs" />
     <Compile Include="FixedDrawerLayout.cs" />
-    <Compile Include="Kp2aAccessibilityService.cs" />
+    <Compile Include="AccessibilityService.cs" />
     <Compile Include="KpEntryTemplatedEdit.cs" />
     <Compile Include="MeasuringRelativeLayout.cs" />
     <Compile Include="NfcOtpActivity.cs" />
@@ -1670,14 +1671,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\ic_fp_40px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_notify_autofill.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\xml\accserviceconfig.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.11.3\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.3\build\MonoAndroid10\Xamarin.Insights.targets')" />
