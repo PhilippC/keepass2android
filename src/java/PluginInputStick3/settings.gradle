@@ -1,0 +1,3 @@
+include ':inputStickAPI'
+include ':keepass2AndroidPluginSDK'
+include ':pluginInputStick'

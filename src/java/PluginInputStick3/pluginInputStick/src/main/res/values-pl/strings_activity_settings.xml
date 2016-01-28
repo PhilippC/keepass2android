@@ -1,0 +1,126 @@
+<resources>
+
+    <string name="title_activity_settings">KP2A InputStick Ustawienia</string>
+
+    <!-- Strings related to Settings -->
+    <string name="configure_plugin">Ustaw jako plugin</string>
+	<string name="enabled">Włączony</string>    
+	<string name="not_configured">NIE ustawiono!</string> 
+	
+    <string name="configuration_message">Poświęć moment na konfigurację pluginu.\n\Ustaw jako plugin-> Akceptuj\n\nUpewnij się, że wybrany układ klawiatury odpowiada układowi z którego korzysta host USB (Twój PC).\nWłącz dodatkowy układ klawiatury, jeżeli często korzystasz z różnych układów.\n\nWŁĄCZ automatyczne łączenie, jeżeli korzystasz z InputStick w większości przypadków. Aplikacja rozpocznie nawiązywanie połączenia z InputStick gdy tylko wpis zostanie otwarty.\nWYŁĄCZ automatyczne łączenie, jeżeli planujesz korzystać z InputStick okazjonalnie . Aplikacja nie będzie nawiązywać połączenia dopóki nie wybierzesz opcji wpisywania tekstu.\n\nPamiętaj: aplikacja InputStickUtility musi być zainstalowana.</string>
+    <string name="secondary_layout_action_reminder_message">Pamiętaj aby włączyć wyświetlanie przynajmniej jednej akcji dla dodatkowego układu klawiatury (zobacz \"Widoczne elementy UI\" poniżej)</string>        		
+	
+  	<string name="show_changelog_title">Pokaż zmiany</string>
+  	<string name="show_help_webpage_title">Otwórz stronę z pomocą</string>
+  	<string name="show_source_title">Kod źródłowy (GitHub)</string>    	
+    
+    <string name="typing_settings_title">Układ klawiatury hosta USB</string>
+    <string name="connection_settings_title">Połączenie z InputStick</string>    
+
+    <string name="layout_title">Układ klawiatury (główny)</string>
+    <string name="secondary_layout_title">Układ klawiatury (dodatkowy)</string>
+    
+    <string name="show_secondary_title">Dodatkowy układ klawiatury</string>
+    <string name="show_secondary_summary_on">Dodatkowy układ klawiatury jest włączony. Możesz wybrać jakie akcje będą dostępne dla tego układu (zobacz niżej)</string>
+    <string name="show_secondary_summary_off">Dodatkowy układ klawiatury jest wyłączony</string>    
+    
+    <string name="enter_after_url_title">Enter po URL</string>    
+    <string name="enter_after_url_summary_on">Dodaj Enter po wpisaniu pola URL</string>
+    <string name="enter_after_url_summary_off">Nic nie rób po wpisaniu pola URL</string>  
+    
+    <string name="autoconnect_title">Łącz automatycznie</string>
+    <string name="autoconnect_summary_on">Łącz z InputStick za każdym razem gdy otwierany jest wpis. Użyj tego trybu gdy korzystasz z InputStick przez większość czasu.</string>
+    <string name="autoconnect_summary_off">Łącz z InputStick tuż przed wpisywaniem tekstu LUB gdy wpis otwierany jest po upływie max okresu bezczynności (zobacz poniżej) od ostatniej akcji wpisywania tekstu. Użyj tego trybu gdy rzadko korzystasz z InputStick.</string>
+
+    <string name="autoconnect_timeout_title">Max okres bezczynności</string>
+    
+    <string name="typing_speed_title">Szybkość wpisywania</string>
+    
+    <string name="do_not_disconnect_title">Utrzymuj połączenie</string>
+    <string name="do_not_disconnect_summary_on">Połaczenie NIE zostanie zakończone gdy wpis jest zamykany. Musisz zakończyć połączenie ręcznie lub ustawić maks okres bezczynności w aplikacji InputStickUtility</string>           
+    <string name="do_not_disconnect_summary_off">Połaczenie zostanie zakończone gdy wpis jest zamykany.</string>       
+    
+    <string name="entry_reload_message">Zmiany ustawień interfejsu będą widoczne po przeładowaniu wpisu lub po załadowaniu nowego wpisu</string>
+    
+    
+
+    <string name="clipboard_typing_settings_title">Pisanie ze schowka</string>	
+	<string name="clipboard_launch_authenticator_title">Google Authenticator</string>
+	<string name="clipboard_launch_authenticator_summary_on">Uruchom Google Authenticator po wybraniu opcji pisanie ze schowka</string>
+	<string name="clipboard_launch_authenticator_summary_off">Nie uruchamiaj Google Authenticator</string>
+	<string name="clipboard_auto_enter_title">Dodaj Enter</string>
+	<string name="clipboard_auto_enter_summary_on">Dodaj Enter po wpisaniu tekstu ze schowka</string>
+	<string name="clipboard_auto_enter_summary_off">Nic nie rób po wpisaniu tekstu ze schowka</string>
+	<string name="clipboard_auto_disable_title">Deaktywuj po wpisywaniu</string>
+	<string name="clipboard_auto_disable_summary_on">Deaktywuj pisanie ze schowka po pierwszym wpisaniu tekstu</string>
+	<string name="clipboard_auto_disable_summary_off">Opcja zawsze aktywna przez 30 sekund od uruchomienia</string>
+    
+	<string-array name="autoconnect_timeout_names">
+        <item>Brak</item>
+        <item>1 min</item>
+        <item>3 min</item>
+        <item>10 min</item>
+        <item>30 min</item>
+        <item>60 min</item>
+    </string-array>	     
+    
+	<string-array name="typing_speed_names">
+        <item>Standardowa (1.0)</item>
+        <item>Wolno (0.5)</item>
+        <item>Wolniej (0.2)</item>
+        <item>Najwolniej (0.1)</item>
+    </string-array>    
+    
+    <string-array name="layout_names">
+        <item>Duński</item>
+        <item>Angielski (US)</item>
+        <item>Angielski (UK)</item>
+        <item>Fiński</item>
+        <item>Francuski</item>
+        <item>Francuski (Swiss)</item>
+        <item>Niemiecki</item>
+        <item>Niemiecki (Mac)</item>
+        <item>Niemiecki (Swiss)</item>
+        <item>Hebrajski</item>
+        <item>Włoski</item>
+        <item>Norweski</item>
+        <item>Polski</item>
+        <item>Portugalski (BR)</item>
+        <item>Rosyjski</item>
+        <item>Słowacki</item>
+        <item>Hiszpański</item>
+        <item>Szwedzki</item>
+        <item>Angielski (Dvorak)</item>
+    </string-array>
+    
+    
+	<string name="display_inputstick_text_title">Wyświetlaj \"(IS)\"</string>       
+    <string name="display_inputstick_text_summary_on">Pokaż nazwę akcji + (IS), przykład: Wpisz (IS)</string>           
+    <string name="display_inputstick_text_summary_off">Pokaż tylko nazwę akcji, przykład: Wpisz</string>		       
+    <string name="ui_settings_title">Widoczne elementy UI:</string>
+	<string name="items_general_title">Ogólne</string>
+	<string name="items_entry_primary_title">Akcje dla wpisu (główny układ klaw.)</string>
+	<string name="items_entry_secondary_title">Akcje dla wpisu (dodatkowy układ klaw.)</string>
+	<string name="items_field_primary_title">Akcje dla pola (główny układ klaw.)</string>
+	<string name="items_field_secondary_title">Akcje dla pola (dodatkowy układ klaw.)</string>	    
+    
+    <string-array name="generalItemsDisplayList">
+        <item>Ustawienia</item>
+        <item>Połącz/Rozłącz</item>  
+        <item>Konfiguracja OSX</item>
+        <item>Dodaj/Edytuj makro</item>
+        <item>Klawisze Tab i Enter</item>        
+    </string-array>
+    <string-array name="entryItemsDisplayList">
+        <item>Login/Hasło</item>
+        <item>Login/Hasło/Enter</item>
+        <item>Maskowane hasło</item>
+        <item>Uruchom makro</item>
+		<item>Schowek/Authenticator</item>        
+    </string-array>
+    <string-array name="fieldItemsDisplayList">
+        <item>Wpisz</item>
+        <item>Wpisz (powoli)</item>
+    </string-array>
+
+</resources>

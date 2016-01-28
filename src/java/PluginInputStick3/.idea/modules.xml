@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PluginInputStick3.iml" filepath="$PROJECT_DIR$/PluginInputStick3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inputStickAPI/inputStickAPI.iml" filepath="$PROJECT_DIR$/inputStickAPI/inputStickAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/keepass2AndroidPluginSDK/keepass2AndroidPluginSDK.iml" filepath="$PROJECT_DIR$/keepass2AndroidPluginSDK/keepass2AndroidPluginSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pluginInputStick/pluginInputStick.iml" filepath="$PROJECT_DIR$/pluginInputStick/pluginInputStick.iml" />
+    </modules>
+  </component>
+</project>

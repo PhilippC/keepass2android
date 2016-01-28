@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">InputStick Plugin for KP2A</string>
+    <string name="kp2aplugin_title">InputStick Plugin</string>
+    <string name="kp2aplugin_shortdesc">Allows to send text from KP2A via InputStick to your PC.</string>
+    <string name="kp2aplugin_author">Philipp Crocoll and Jakub Zawadzki</string>
+    <string name="changelog_full_title">Change Log</string>
+    <string name="changelog_title">What\'s New</string>
+    <string name="changelog_show_full">more&#8230;</string>
+    <string name="title_activity_init">Plugin Init</string>
+    <string name="title_activity_all_actions">Select action:</string>
+    <string name="text_locked">Locked after 3 minutes of inactivity. Open again from Keepass2Android application.</string>
+    <string name="text_authenticator_app_not_found">InputStick plugin: Google Authenticator is NOT installed!</string>
+    <string name="text_connection_failed">InputStick plugin: connection failed!</string>
+    <string name="text_clipboard_disabled">InputStick plugin: Clipboard typing disabled</string>
+    <string name="text_clipboard_copy_now">InputStick plugin: Copy code to clipboard (30 seconds remaining)</string>
+    <string name="action_type">Type</string>
+    <string name="action_type_slow">Type (slow)</string>
+    <string name="action_type_tab">Tab</string>
+    <string name="action_type_enter">Enter</string>
+    <string name="action_type_user_tab_pass">Username/password</string>
+    <string name="action_type_user_tab_pass_enter">Username/password/Enter</string>
+    <string name="action_show_all">Show all actions</string>
+    <string name="action_connect">Connect now</string>
+    <string name="action_disconnect">Disconnect now</string>
+    <string name="action_open_settings">Settings</string>
+    <string name="action_open_mac_setup">OSX setup</string>
+    <string name="action_masked_password">Masked Password</string>
+    <string name="action_macro_run">Execute Macro</string>
+    <string name="action_macro_add_edit">Add/Edit macro</string>
+    <string name="action_clipboard">Clipboard/Authenticator</string>
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="do_not_remind">Do not remind</string>
+    <string name="error">Error</string>
+    <string name="info">Info</string>
+    <string name="help">Help</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="add">Add</string>
+    <string name="save">Save</string>
+    <string name="important_title">Important!</string>
+    <string name="configuration_title">Configuration</string>
+    <string name="hello_world">Hello world!</string>
+    
+    
+    <string name="title_activity_migration_message">Manual update</string>
+    <string name="update_required">Manual update required</string>
+    <string name="update_download">Download from Google Play</string>
+    <string name="update_text">IMPORTANT:\nInputStick Plugin for KP2A is now published on Google Play on "InputStick" developer account. This will allow for more frequent and faster updates. Current release of the plugin (published by "Croco Apps") will no longer be updated and will soon be removed from Google Play store. At this moment both releases offer the same functionality, but it is highly recommended to migrate to the new release as soon as possible.\n\nMore info:\nhttp://blog.inputstick.com/2016/01/kp2a-plugin-migration.html\n\nHow to migrate:\n1. Click "Download" button below and install new release from Google Play store. \nAlternatively for can download .apk file from http://inputstick.com/download\nSource code is available here: https://github.com/inputstick\n2. Run new app. It will ask you to remove old version of the plugin (to avoid duplicated actions in Keepass2Android).\n3. Remember to configure new app ("Configure as plugin", set keyboard layout, etc.).\n4. Check out new features (Macros, Clipboard/Authenticator).</string>    
+
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_macro">Macro Editor</string>
+    
+    <string name="macro_current_content">Macro for this entry:</string>
+    <string name="url">Type URL field</string>
+    <string name="user_name">Type user name filed</string>
+    <string name="password">Type password field</string>
+    <string name="password_masked">Masked Password action</string>        
+    <string name="clipboard_authenticator">Clipboard/Authenticator action</string>            
+    <string name="tab">Tab</string>
+    <string name="enter">Enter</string>
+    <string name="custom">Custom</string>
+    <string name="add_delay">Add delay (empty keys):</string>
+    <string name="add_text">Add custom text:</string>
+    <string name="add_key">Press and release key:</string>
+    <string name="add_from_field">Add text from field/action</string>
+    <string name="added">Added:</string>
+    <string name="save_title">Save?</string>
+    <string name="save_message">Save changes?</string>
+    <string name="delete_title">Delete?</string>
+    <string name="delete_message">Delete the macro?</string>
+    <string name="custom_key_title">Custom key</string>
+    <string name="custom_key_message">Select key combination:</string>
+    <string name="illegal_character_toast">Illegal character: %</string>
+    <string name="no_macro_create_new">No macro assigned. Create new one.</string>        
+    <string name="saved_toast">Saved</string>
+    <string name="deleted_toast">Deleted</string>
+    <string name="add_macro_title">Add macro</string>
+    <string name="edit_macro_title">Edit macro</string>
+    <string name="macro_help">Macro allows to create a custom, automatic login procedure for each account:\n\nExample 1: type user name, press ENTER, type password, press ENTER\n\nExample 2: type user name, press TAB, type password, press ENTER\n\nMacro can be executed manually (you must confirm each step) or automatically in background (be careful when using this option!).\n\nUse templates to assign the same type of macro to several KP2A entries.</string>
+    
+    <string name="use_as_template">Use as template:</string>
+    <string name="save_as">Save as</string>
+    <string name="load_from">Load from</string>
+    <string name="empty">Template is empty!</string>    
+    <string name="template_name">Template name:</string>    
+    
+    <string name="execution">Macro execution:</string>    
+    <string name="execution_background">In background, auto (careful!)</string>    
+    <string name="execution_show_controls">Step-by-step, manual</string>        
+    
+    <string name="title_activity_macro_execute">Macro (manual execution)</string>
+    <string name="next">Next</string>
+    <string name="prev">Prev</string>
+    <string name="execute">Execute</string>
+    <string name="done">Close</string>
+    <string name="end">*End*</string>    
+    <string name="preview">Preview:</string>   
+    <string name="current_position">Current position (action):</string>           
+    
+	<string-array name="delay_values">
+	    <item>10</item>
+	    <item>25</item>
+	    <item>50</item>
+	    <item>100</item>
+	    <item>200</item>
+	    <item>500</item>
+	</string-array>    
+</resources>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="appcompat-v7-19.1.0">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/pluginInputStick/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res" />
+      <root url="jar://$PROJECT_DIR$/pluginInputStick/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_mac_setup">Konfiguracja Mac OSX</string>
+    <string name="not_ready">InputStick NIE jest gotowy!</string>
+    <string name="selected_keyboard_layout">Wybrany układ klawiatury: </string>
+    <string name="osx_setup_note">Ważne: skorzystaj z tego ekranu, gdy OSX poprosi o naciśnięcie klawisza na prawo od lewego Shifta (podczas wykrywania układu klawiatury)</string>
+
+</resources>

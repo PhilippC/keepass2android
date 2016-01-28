@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="title_activity_mac_setup">Mac OSX Setup</string>
+    <string name="not_ready">InputStick is NOT ready!</string>
+    <string name="selected_keyboard_layout">Selected keyboard layout: </string>
+    <string name="osx_setup_note">Note: use this screen when OSX &quot;Keyboard Setup Assistant&quot; asks you to: &quot;Press the key immediatelly to the right of the Shift key on the left side of the keyboard that can't be identified&quot;</string>    
+    
+    <string name="osx_shift_key">Shift</string>
+    <string name="osx_z_key">Z</string>
+    
+</resources>

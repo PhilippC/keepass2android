@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">InputStick Plugin dla KP2A</string>
+    <string name="kp2aplugin_title">InputStick Plugin</string>
+    <string name="kp2aplugin_shortdesc">Pozwól na przesyłanie tekstu z KP2A do Twojego PC poprzez InputStick.</string>
+    <string name="kp2aplugin_author">Philipp Crocoll i Jakub Zawadzki</string>
+    
+    <string name="changelog_full_title">Historia zmian</string>
+    <string name="changelog_title">Ostatnie zmiany</string>
+    <string name="changelog_show_full">więcej&#8230;</string>    
+         
+    <string name="title_activity_init">Plugin Init</string>
+	<string name="title_activity_all_actions">Wybierz akcję:</string>
+	<string name="text_locked">Zablokowano po 3 minutach bezczynności. Otwórz ponownie z aplikacji Keepass2Android.</string>  
+	<string name="text_authenticator_app_not_found">InputStick plugin: Google Authenticator NIE jest zainstalowany!</string>  
+	<string name="text_connection_failed">InputStick plugin: błąd połaczenia!</string>  
+	<string name="text_clipboard_disabled">InputStick plugin: Pisanie ze schowka zostało wyłączone</string>  
+	<string name="text_clipboard_copy_now">InputStick plugin: Skopiuj kod do schowka (pozostało 30 sekund)</string>  		
+
+    <string name="action_type">Wpisz</string>
+    <string name="action_type_slow">Wpisz (powoli)</string>
+    <string name="action_type_tab">Tab</string>
+    <string name="action_type_enter">Enter</string>
+    <string name="action_type_user_tab_pass">Login/hasło</string>
+    <string name="action_type_user_tab_pass_enter">Login/hasło/Enter</string>
+    <string name="action_show_all">Pokaż wszystkie opcje</string>
+    <string name="action_connect">Połącz teraz</string>
+    <string name="action_disconnect">Rozłącz teraz</string>      
+    <string name="action_open_settings">Ustawienia</string>
+    <string name="action_open_mac_setup">OSX konfiguracja</string>
+    <string name="action_masked_password">Maskowane hasło</string>
+	<string name="action_macro_run">Uruchom makro</string>   
+	<string name="action_clipboard">Schowek/Authenticator</string>
+    
+    <string name="ok">OK</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="cancel">Anuluj</string>
+    <string name="do_not_remind">Nie przypominaj</string>
+    <string name="error">Błąd</string>
+    <string name="info">Informacja</string>
+    <string name="help">Pomoc</string>
+    <string name="delete">Usuń</string>
+    <string name="edit">Edytuj</string>
+    <string name="add">Dodaj</string>
+    <string name="save">Zapisz</string>    
+    <string name="important_title">Ważne!</string>   
+	<string name="configuration_title">Konfiguracja</string>  	
+	
+	
+	<string name="title_activity_migration_message">Ręczna aktualizacja</string>
+    <string name="update_required">Wymagana jest ręczna aktualizacja</string>
+    <string name="update_download">Pobierz z Google Play</string>
+    <string name="update_text">WAŻNE:\nInputStick Plugin dla KP2A jest teraz publikowany w Google Play w ramach konta developerskiego "InputStick". Pozwoli to na częstsze i szybsze aktualizacje. Obecna wersja pluginu (publikowana przez "Croco Apps") nie będzie aktualizowana oraz zostanie wkrótce usunięta z Google Play. Obecnie obie wersje posiadają identyczne funkcje, ale zalecane jest jak najszybsze przejście na nową wersję.\n\nWięcej szczegółów:\nhttp://blog.inputstick.com/2016/01/kp2a-plugin-migration.html\n\nJak przejść na nową wersję:\n1. Kliknij przycisk "Pobierz" i zainstaluj nową wersję z Google Play. \nMożesz też pobrać plik .apk z http://inputstick.com/download\nKod źródłowy dostępny jest pod adresem: https://github.com/inputstick\n2. Uruchom nową aplikację. Aplikacja poprosi o odinstalowanie poprzedniej wersji (aby uniknąć duplikatów akcji w Keepass2Android).\n3. Pamiętaj aby skonfigurować nową aplikację ("Ustaw jako plugin", ustaw układ klawiatury, itp.).\n4. Sprawdź nowe funkcje (Makra, Schowek/Authenticator).</string>
+    
+</resources>

@@ -1,8 +1,0 @@
--keep class keepass2android.softkeyboard.BinaryDictionary {
-  int mDictLength;
-  <init>(...); 
-}
-
--keep class keepass2android.softkeyboard.Suggest {
-  <init>(...);
-}

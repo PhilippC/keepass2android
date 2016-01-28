@@ -1,0 +1,263 @@
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="${relativePackage}.${activityClass}" >
+
+        <TextView
+            android:id="@+id/textViewInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/macro_current_content" />
+
+        <EditText
+            android:id="@+id/editTextMacro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textViewInfo"
+            android:ems="10"
+            android:inputType="text|textNoSuggestions" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/editTextMacro" >
+
+            <Button
+                android:id="@+id/buttonSave"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/save" />
+
+            <Button
+                android:id="@+id/buttonDelete"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/delete" />
+
+            <Button
+                android:id="@+id/buttonHelp"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/help" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonAddFromField"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayoutControls"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="@string/add_from_field" />
+
+        <TextView
+            android:id="@+id/textViewAddKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/buttonAddFromField"
+            android:layout_marginTop="10dp"
+            android:text="@string/add_key" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutAddKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textViewAddKey" >
+
+            <Button
+                android:id="@+id/buttonAddTab"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/tab" />
+
+            <Button
+                android:id="@+id/buttonAddEnter"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/enter" />
+
+            <Button
+                android:id="@+id/buttonAddCustom"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/custom" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewAddStirng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayoutAddKey"
+            android:layout_marginTop="10dp"
+            android:text="@string/add_text" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutAddString"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textViewAddStirng" >
+
+            <EditText
+                android:id="@+id/editTextString"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:ems="10"
+                android:inputType="text" >
+
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/buttonAddString"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/add" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewAddDelay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayoutAddString"
+            android:layout_marginTop="10dp"
+            android:text="@string/add_delay" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutAddDelay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textViewAddDelay" >
+
+            <Spinner
+                android:id="@+id/spinnerDelay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:entries="@array/delay_values" />
+
+            <Button
+                android:id="@+id/buttonAddDelay"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/add" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewExecute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayoutAddDelay"
+            android:layout_marginTop="10dp"
+            android:text="@string/execution" />
+
+        <RadioGroup
+            android:id="@+id/radioExecuteMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textViewExecute" >
+            
+            <RadioButton
+                android:id="@+id/radioButtonShowControls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:singleLine="true"
+                android:text="@string/execution_show_controls" />            
+
+            <RadioButton
+                android:id="@+id/radioButtonBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"                
+                android:singleLine="true"
+                android:text="@string/execution_background" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textViewTemplate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/radioExecuteMode"
+            android:layout_marginTop="10dp"
+            android:text="@string/use_as_template" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTemplate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textViewTemplate" >
+
+            <Button
+                android:id="@+id/buttonTemplateSave"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/save_as" />
+
+            <Button
+                android:id="@+id/buttonTemplateLoad"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/load_from" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>

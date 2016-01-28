@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_macro">Edytor makr</string>
+    
+    <string name="macro_current_content">Makro dla tego wpisu:</string>
+    <string name="url">Wpisz URL</string>
+    <string name="user_name">Wpisz nazwę użytkownika</string>
+    <string name="password">Wpisz hasło</string>
+    <string name="password_masked">Akcja: Maskowane hasło</string>        
+    <string name="clipboard_authenticator">Akcja Schowek/Authenticator</string>  
+    <string name="tab">Tab</string>
+    <string name="enter">Enter</string>
+    <string name="custom">Inny</string>
+    <string name="add_delay">Dodaj opóźnienie (puste znaki):</string>
+    <string name="add_text">Dodaj tekst:</string>
+    <string name="add_key">Naciśnij klawisz:</string>
+    <string name="add_from_field">Dodaj tekst z pola/akcję</string>
+    <string name="added">Dodano:</string>
+    <string name="save_title">Zapisać?</string>
+    <string name="save_message">Czy chcesz zapisać zmiany?</string>
+    <string name="delete_title">Usunąć?</string>
+    <string name="delete_message">Czy chcesz usunąc makro?</string>
+    <string name="custom_key_title">Dowolny klawisz</string>
+    <string name="custom_key_message">Wybierz kombinację klawiszy:</string>
+    <string name="illegal_character_toast">Nie można użyć znaku: %</string>
+    <string name="no_macro_create_new">Brak przypisanego makra. Utwórz nowe.</string>        
+    <string name="saved_toast">Zapisano</string>
+    <string name="deleted_toast">Usunięto</string>
+    <string name="add_macro_title">Dodaj macro</string>
+    <string name="edit_macro_title">Edytuj macro</string>
+    <string name="macro_help">Makra pozwalają na automatyzowanie procedury logowania dla każdego konta:\n\nPrzykład 1: wpisz nazwę użytkownika, naciśnij ENTER, wpisz hasło, naciśnij ENTER\n\nPrzykład 2: wpisz nazwę użytkownika, naciśnij TAB, wpisz hasło, naciśnij ENTER\n\nMakro może zostać wykonane manualnie (musisz potwierdzić każdy krok) albo automatycznie w tle (bądź ostrożny korzystając z tej opcji!).\n\nUżyj szablonów aby przypisać ten sam rodzaj makra do wielu wpisów KP2A.</string>
+ 
+	<string name="use_as_template">Użyj jako szablon:</string>
+    <string name="save_as">Zapisz jako</string>
+    <string name="load_from">Wczytaj z</string>
+    <string name="empty">Szablon jest pusty!</string> 
+	<string name="template_name">Nazwa szablonu:</string>        
+    
+    <string name="execution">Wykonanie makra:</string>    
+    <string name="execution_background">W tle ,automatycznie (ostrożnie!)</string>    
+    <string name="execution_show_controls">Krok po kroku, ręcznie</string>        
+        
+    <string name="title_activity_macro_execute">Makro (sterowanie ręczne)</string>
+    <string name="next">Dalej</string>
+    <string name="prev">Wstecz</string>
+    <string name="execute">Wykonaj</string>
+    <string name="done">Zamknij</string>
+    <string name="end">*Koniec*</string>    
+    <string name="preview">Podgląd:</string>   
+    <string name="current_position">Pozycja (akcja):</string>     
+
+</resources>

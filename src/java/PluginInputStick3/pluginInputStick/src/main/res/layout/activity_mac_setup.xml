@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/textViewLayoutInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/selected_keyboard_layout" />
+
+    <Button
+        android:id="@+id/buttonShiftDummy"
+        android:enabled="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textViewLayoutInfo"
+        android:layout_marginTop="10dp"
+        android:text="@string/osx_shift_key" />
+
+    <Button
+        android:id="@+id/buttonNextToShift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buttonShiftDummy"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/buttonShiftDummy"
+        android:text="@string/osx_z_key" />
+
+    <TextView
+        android:id="@+id/textViewMacSetupInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/buttonShiftDummy"
+        android:layout_marginTop="15dp"
+        android:text="@string/osx_setup_note" />
+
+</RelativeLayout>
