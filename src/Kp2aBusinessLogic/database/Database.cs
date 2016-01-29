@@ -122,13 +122,14 @@ namespace keepass2android
 				Root = pwDatabase.RootGroup;
 				PopulateGlobals(Root);
 
-				Loaded = true;
+				
 				KpDatabase = pwDatabase;
 				SearchHelper = new SearchDbHelper(app);
 
 				_databaseFormat = databaseFormat;
 
 				CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
+				Loaded = true;
 			}
 			catch (Exception)
 			{
@@ -203,6 +204,8 @@ namespace keepass2android
 
 		public PwGroup Search(SearchParameters searchParams, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts)
 		{
+			if (SearchHelper == null)
+				throw new Exception("SearchHelper is null");
 			return SearchHelper.Search(this, searchParams, resultContexts);
 		}
 
@@ -273,6 +276,8 @@ namespace keepass2android
 		}
 		
 		public void Clear() {
+			_loaded = false; 
+			
 			Groups.Clear();
 			Entries.Clear();
 			Dirty.Clear();
@@ -280,7 +285,7 @@ namespace keepass2android
 			
 			Root = null;
 			KpDatabase = null;
-			_loaded = false;
+			
 			CanWrite = true;
 			_reloadRequested = false;
 			OtpAuxFileIoc = null;

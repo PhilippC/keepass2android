@@ -83,6 +83,8 @@ namespace keepass2android
 			}  
 			catch (Java.Lang.Exception e)
 			{
+				if (e.Message == "Invalid key!")
+					throw new InvalidCompositeKeyException();
 				throw new Exception(e.LocalizedMessage ??
 				e.Message ??
 				e.GetType().Name, e);

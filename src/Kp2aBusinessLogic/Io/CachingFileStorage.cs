@@ -103,7 +103,7 @@ namespace keepass2android.Io
 			return _streamCacheDir + iocAsHexString;
 		}
 
-		private bool IsCached(IOConnectionInfo ioc)
+		public bool IsCached(IOConnectionInfo ioc)
 		{
 			return File.Exists(CachedFilePath(ioc))
 				&& File.Exists(VersionFilePath(ioc))

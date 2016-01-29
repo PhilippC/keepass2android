@@ -225,6 +225,11 @@ namespace keepass2android
 			{
 				try
 				{
+					if (!_popupMenuItems.ContainsKey(fieldId))
+					{
+						Kp2aLog.Log("Did not find field with key " + fieldId);
+						return;
+					}
 					//create a new popup item for the plugin action:
 					var newPopup = new PluginPopupMenuItem(this, pluginPackage, fieldId, popupItemId, displayText, iconId, bundleExtra);
 					//see if we already have a popup item for this field with the same item id

@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
@@ -322,13 +323,17 @@ namespace keepass2android
 					{
 						if (KeyProviderType == KeyProviders.KeyFile)
 						{
-                            //TODO: if the user has not yet selected a keyfile, _keyFileOrProvider is empty which 
-                            //gives an (unhandled) exception here
-							var iocKeyfile = IOConnectionInfo.UnserializeFromString(_keyFileOrProvider);
+							
+                            //if the user has not yet selected a keyfile, _keyFileOrProvider is empty 
+							if (string.IsNullOrEmpty(_keyFileOrProvider) == false)
+							{
+								var iocKeyfile = IOConnectionInfo.UnserializeFromString(_keyFileOrProvider);
 
-							App.Kp2a.GetFileStorage(iocKeyfile)
-								.PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), iocKeyfile,
-										 RequestCodePrepareKeyFile, false);
+								App.Kp2a.GetFileStorage(iocKeyfile)
+									.PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), iocKeyfile,
+											 RequestCodePrepareKeyFile, false);	
+							}
+							
 						}
 						else
 							PerformLoadDatabase();
@@ -384,10 +389,7 @@ namespace keepass2android
 						try
 						{
 							ChallengeInfo temp = _challengeProv.Encrypt(_challengeSecret);
-							IFileStorage fileStorage = App.Kp2a.GetOtpAuxFileStorage(_ioConnection);
-							IOConnectionInfo iocAux = fileStorage.GetFilePath(fileStorage.GetParentPath(_ioConnection),
-								fileStorage.GetFilenameWithoutPathAndExt(_ioConnection) + ".xml");
-							if (!temp.Save(iocAux))
+							if (!temp.Save(_otpAuxIoc))
 							{
 								Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long).Show();
 								return false;
@@ -482,7 +484,8 @@ namespace keepass2android
 							}
 							catch (Exception e)
 							{
-								Kp2aLog.LogUnexpectedError(e);
+								//this can happen e.g. if the file storage does not support GetParentPath
+								Kp2aLog.Log(e.ToString());
 								//retry with saved ioc
 								try
 								{
@@ -643,6 +646,7 @@ namespace keepass2android
 			protected override void LoadFile(IOConnectionInfo iocAux)
 			{
 				Activity._chalInfo = ChallengeInfo.Load(iocAux);
+				Activity._otpAuxIoc = iocAux;
 			}
 
 
@@ -925,7 +929,7 @@ namespace keepass2android
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		{
-			if (requestCode == FingerprintPermissionRequestCode && grantResults[0] == Permission.Granted)
+			if ((requestCode == FingerprintPermissionRequestCode) && (grantResults.Any()) && (grantResults[0] == Permission.Granted))
 			{
 				var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 				btn.Click += (sender, args) =>
@@ -1390,20 +1394,29 @@ namespace keepass2android
 
 			//avoid password being visible while loading:
 			_showPassword = false;
-			MakePasswordMaskedOrVisible();
+			try
+			{
+				MakePasswordMaskedOrVisible();
 
-			Handler handler = new Handler();
-			OnFinish onFinish = new AfterLoad(handler, this);
-			_performingLoad = true;
-			LoadDb task = (KeyProviderType == KeyProviders.Otp)
-				              ? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider,
-				                                            onFinish, this)
-				              : new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish);
-			_loadDbTask = null; // prevent accidental re-use
+				Handler handler = new Handler();
+				OnFinish onFinish = new AfterLoad(handler, this);
+				_performingLoad = true;
+				LoadDb task = (KeyProviderType == KeyProviders.Otp)
+					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider,
+						onFinish, this)
+					: new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish);
+				_loadDbTask = null; // prevent accidental re-use
 
-			SetNewDefaultFile();
+				SetNewDefaultFile();
 
-			new ProgressTask(App.Kp2a, this, task).Run();
+				new ProgressTask(App.Kp2a, this, task).Run();
+			}
+			catch (Exception e)
+			{
+				Kp2aLog.LogUnexpectedError(new Exception("cannot load database: "+e + ", c: " + (compositeKey != null) + (_ioConnection != null) + (_keyFileOrProvider != null), e));
+				throw;
+			}
+			
 		}
 
 		private bool CreateCompositeKey(out CompositeKey compositeKey, out string errorMessage)
@@ -1703,8 +1716,9 @@ namespace keepass2android
 			CheckBox cbOfflineMode = (CheckBox)FindViewById(Resource.Id.work_offline);
 			App.Kp2a.OfflineMode = cbOfflineMode.Checked = App.Kp2a.OfflineModePreference; //this won't overwrite new user settings because every change is directly saved in settings
 			LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container);
-			if (App.Kp2a.GetFileStorage(_ioConnection) is IOfflineSwitchable)
-			{
+			var cachingFileStorage = App.Kp2a.GetFileStorage(_ioConnection) as CachingFileStorage;
+			if ((cachingFileStorage != null) && cachingFileStorage.IsCached(_ioConnection))
+			{	
 				offlineModeContainer.Visibility = ViewStates.Visible;
 			}
 			else

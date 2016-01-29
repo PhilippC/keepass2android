@@ -165,7 +165,7 @@ namespace keepass2android.Io
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.LogUnexpectedError(e);
+				Kp2aLog.Log(e.ToString());
 
 				return false;
 			}
@@ -239,7 +239,7 @@ namespace keepass2android.Io
 					}
 					else return false;
 				}
-				else throw new Exception("couldn't move to first result element");
+				else throw new Exception("couldn't move to first result element: " + (cursor == null) + uri.ToString());
 			}
 			catch (Exception e)
 			{

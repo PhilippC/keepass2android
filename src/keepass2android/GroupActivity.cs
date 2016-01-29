@@ -146,13 +146,12 @@ namespace keepass2android
 				tv.SetPadding(tv.PaddingLeft,0,tv.PaddingRight,0);
 
 				PwEntry templateEntry = this.GetItem(position);
-
+				int size = (int)(Util.convertDpToPixel(Util.convertDpToPixel(20, Context), Context));
 				var bmp =
 					Bitmap.CreateScaledBitmap(
 						Util.DrawableToBitmap(App.Kp2a.GetDb()
 							.DrawableFactory.GetIconDrawable(Context, App.Kp2a.GetDb().KpDatabase, templateEntry.IconId, PwUuid.Zero, false)),
-						(int)Util.convertDpToPixel(80, Context),
-						(int)Util.convertDpToPixel(80, Context),
+						size, size,
 						true);
 				
 				

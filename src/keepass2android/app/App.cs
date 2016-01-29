@@ -136,6 +136,14 @@ namespace keepass2android
 		public void BroadcastDatabaseAction(Context ctx, string action)
 		{
 			Intent i = new Intent(action);
+
+			//seems like this can happen. This code is for debugging.
+			if (App.Kp2a.GetDb().Ioc == null)
+			{
+				Kp2aLog.LogUnexpectedError(new Exception("App.Kp2a.GetDb().Ioc is null"));
+				return;
+			}
+
 			i.PutExtra(Strings.ExtraDatabaseFileDisplayname, App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc).GetDisplayName(App.Kp2a.GetDb().Ioc));
 			i.PutExtra(Strings.ExtraDatabaseFilepath, App.Kp2a.GetDb().Ioc.Path);
 			foreach (var plugin in new PluginDatabase(ctx).GetPluginsWithAcceptedScope(Strings.ScopeDatabaseActions))
