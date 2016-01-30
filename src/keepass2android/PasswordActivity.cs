@@ -929,7 +929,7 @@ namespace keepass2android
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		{
-			if ((requestCode == FingerprintPermissionRequestCode) && (grantResults.Any()) && (grantResults[0] == Permission.Granted))
+			if ((requestCode == FingerprintPermissionRequestCode) && (grantResults.Length > 0) && (grantResults[0] == Permission.Granted))
 			{
 				var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 				btn.Click += (sender, args) =>
