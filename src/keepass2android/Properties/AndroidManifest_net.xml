@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="73" 
-			android:versionName="1.0.0 preview 6" 
+			android:versionCode="74" 
+			android:versionName="1.0.0 preview 7" 
 			package="keepass2android.keepass2android" 
 			android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
@@ -34,10 +34,14 @@
 			</intent-filter>
 		</activity>
 		<service android:name="keepass2android.autofill.AutoFillService"
+             android:enabled="true"
 			android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
 		  <intent-filter>
 			<action android:name="android.accessibilityservice.AccessibilityService" />
 		  </intent-filter>
+		  <meta-data
+		 android:name="android.accessibilityservice"
+		 android:resource="@xml/accserviceconfig" />
 		</service>
 
 		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">

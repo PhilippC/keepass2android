@@ -421,7 +421,7 @@ namespace keepass2android
 				{
 					notBuilder.AddKeyboardAccess();
 
-					if (Keepass2android.Autofill.AutoFillService.IsAvailable && (!Keepass2android.Autofill.AutoFillService.IsRunning))
+					if (closeAfterCreate && Keepass2android.Autofill.AutoFillService.IsAvailable && (!Keepass2android.Autofill.AutoFillService.IsRunning))
 					{
 						if (!prefs.GetBoolean("has_asked_autofillservice", false))
 						{

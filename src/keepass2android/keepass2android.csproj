@@ -156,7 +156,6 @@
     <Compile Include="icons\DrawableFactory.cs" />
     <Compile Include="KeeChallenge.cs" />
     <Compile Include="FixedDrawerLayout.cs" />
-    <Compile Include="AccessibilityService.cs" />
     <Compile Include="KpEntryTemplatedEdit.cs" />
     <Compile Include="MeasuringRelativeLayout.cs" />
     <Compile Include="NfcOtpActivity.cs" />

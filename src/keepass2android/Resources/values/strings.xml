@@ -353,7 +353,7 @@
 	<string name="ShowSeparateNotifications_title">Separate notifications</string>
 	<string name="ShowSeparateNotifications_summary">Show separate notifications for copying username and password to clipboard and activating the keyboard.</string>
 	
-	<string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
+	<string name="ShowKp2aKeyboardNotification_title">Keyboard/AutoFill notification</string>
   <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard and AutoFill service (recommended).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Switch keyboard</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Open keyboard selection dialog when entry is available through KP2A keyboard after search from the browser.</string>
@@ -660,8 +660,9 @@
   </string>
 
   <string name="ChangeLog_1_0_0">
-    Version 1.0.0 - preview 6\n
+    Version 1.0.0 - preview 7\n
     * Fingerprint Unlock (requires Android 6.0+ or a Samsung device)\n
+    * Added Auto-Fill service (requires Android 5.0+)\n
     * Added support for entry templates\n
     * Added "work offline" mode\n
     * Allow to copy entries\n
@@ -671,7 +672,6 @@
     * Bug fixes (in built-in keyboard, when selecting icons)\n
     * Included option to send error reports\n
     * Added help messages at several points\n
-    * more to come...\n
   </string>
 	
   

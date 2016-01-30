@@ -301,8 +301,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
   <string name="ShowSeparateNotifications_title">Separate Benachrichtigungen</string>
   <string name="ShowSeparateNotifications_summary">Zeige separate Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode.</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
+  <string name="ShowKp2aKeyboardNotification_title">Tastatur/AutoFill-Benachrichtigung</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur und den AutoFill-Service bereitstellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zum Auswählen der Eingabemethode öffnen wenn ein Eintrag nach Suche aus dem Browser heraus verfügbar ist.</string>
   <string name="kp2a_switch_rooted">Auto-umschalten auf gerooteten Geräten</string>

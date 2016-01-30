@@ -30,6 +30,16 @@
 				<category android:name="android.intent.category.OPENABLE" />
 			</intent-filter>
 		</activity>
+		<service android:name="keepass2android.autofill.AutoFillService"
+             android:enabled="true"
+			android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+		  <intent-filter>
+			<action android:name="android.accessibilityservice.AccessibilityService" />
+		  </intent-filter>
+		  <meta-data
+		 android:name="android.accessibilityservice"
+		 android:resource="@xml/accserviceconfig" />
+		</service>
 		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">
 			<intent-filter>
 				<action android:name="android.view.InputMethod" />
@@ -55,11 +65,16 @@
         </activity>
 		
 		<service android:name="keepass2android.autofill.AutoFillService"
+             android:enabled="true"
 			android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
 		  <intent-filter>
 			<action android:name="android.accessibilityservice.AccessibilityService" />
 		  </intent-filter>
-		</service>
+      <meta-data
+    android:name="android.accessibilityservice"
+    android:resource="@xml/accserviceconfig" />
+
+    </service>
  
 		<activity android:configChanges="orientation" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.PasswordActivity"  android:windowSoftInputMode="adjustResize">
 			<intent-filter android:label="@string/app_name">

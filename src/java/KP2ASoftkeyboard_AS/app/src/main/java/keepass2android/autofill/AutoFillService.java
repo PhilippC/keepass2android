@@ -198,13 +198,21 @@ public class AutoFillService extends AccessibilityService {
         {
             android.util.Log.e(_logTag, e.toString());
 
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("message/rfc822");
+            String to =  "crocoapps@gmail.com";
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Error report");
+            intent.putExtra(Intent.EXTRA_TEXT,
+                    "Please send the following text as an error report to crocoapps@gmail.com. You may also add additional information about the workflow you tried to perform. This will help me improve the app. Thanks! \n"+e.toString() );
+
+
             Notification.Builder builder = new Notification.Builder(this);
-            //TODO remove on release
             builder.setSmallIcon(keepass2android.softkeyboard.R.drawable.ic_notify_autofill)
                     .setContentText(e.toString())
                     .setContentTitle("error information")
-                    .setWhen(java.lang.System.currentTimeMillis());
-
+                    .setWhen(java.lang.System.currentTimeMillis())
+            .setContentIntent(PendingIntent.getActivity(this, 0, Intent.createChooser(intent, "Send error report"), PendingIntent.FLAG_CANCEL_CURRENT));
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             notificationManager.notify(autoFillNotificationId+1, builder.build());
