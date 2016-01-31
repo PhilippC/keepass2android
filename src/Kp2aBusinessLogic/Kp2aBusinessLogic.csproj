@@ -35,7 +35,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU'">
     <OutputPath>bin\ReleaseNoNet\</OutputPath>
-    <DefineConstants>TRACE;NoNet</DefineConstants>
+    <DefineConstants>TRACE;NoNet;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -119,10 +119,6 @@
     <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
-      <Name>JavaFileStorageBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
