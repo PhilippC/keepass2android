@@ -329,7 +329,7 @@
     <AndroidResource Include="Resources\drawable\search_dropdown_light.xml" />
     <AndroidResource Include="Resources\drawable-mdpi\checkmark.png" />
     <AndroidResource Include="Resources\drawable-mdpi\createnewdb.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\downloadstoragetypes.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_storage_kp2a" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_lock.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_password.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_search.png" />
@@ -1576,7 +1576,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\icf48.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\downloadstoragetypes.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_kp2a.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_close.png" />

@@ -120,11 +120,10 @@ namespace keepass2android
 				FindViewById(Resource.Id.recent_files).Visibility = ViewStates.Invisible;
                 Android.Util.Log.Debug("KP2A", "Recent files invisible");
 #if NoNet
-                TODO
-				ImageView imgView = FindViewById(Resource.Id.imglogo) as ImageView;
+				ImageView imgView = FindViewById(Resource.Id.splashlogo) as ImageView;
 				if (imgView != null)
 				{
-					imgView.SetImageDrawable(Resources.GetDrawable(Resource.Drawable.ic_keepass2android_nonet));
+					imgView.SetImageDrawable(Resources.GetDrawable(Resource.Drawable.splashlogo_offline));
 				}
 #endif
 			}

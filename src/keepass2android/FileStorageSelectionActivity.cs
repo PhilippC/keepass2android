@@ -123,9 +123,15 @@ namespace keepass2android
 			    
 			    var protocolId = _protocolIds[position];
                 btn.Tag = protocolId;
+
+
+
                 Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
-                
-                String title = App.Kp2a.GetResourceString("filestoragename_" + protocolId);
+
+				String title =
+					protocolId == "kp2a" ? App.Kp2a.GetResourceString("get_regular_version")
+						:
+						App.Kp2a.GetResourceString("filestoragename_" + protocolId);
                 var str = new SpannableString(title);
 
 			    btn.TextFormatted = str;
@@ -133,21 +139,6 @@ namespace keepass2android
                 btn.SetCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
 
                 return btn;
-#if NoNet
-				TODO: kp2a button
-#endif
-                /*
-				if (_protocolIds[position] == "kp2a")
-				{
-					return new FileStorageViewKp2a(_context);
-				}
-				else
-				{
-					var view = new FileStorageView(_context, _protocolIds[position], position);
-					return view;	
-				}
-				*/
-
 			}
 
 			public override int Count
