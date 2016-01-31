@@ -298,10 +298,14 @@ public class AutoFillService extends AccessibilityService {
 
 
     private boolean isSame(String url1, String url2) {
-        if (url1.startsWith("androidapp://"))
-            return url1.equals(url2);
         if (url1 == null)
             return (url2 == null);
+        if (url2 == null)
+            return (url1 == null);
+
+        if (url1.startsWith("androidapp://"))
+            return url1.equals(url2);
+
         return getHost(url1).equals(getHost(url2));
     }
 
