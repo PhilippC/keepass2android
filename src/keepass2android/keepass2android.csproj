@@ -1558,7 +1558,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\icf48.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filestorage_kp2a.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_kp2a.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_close.png" />

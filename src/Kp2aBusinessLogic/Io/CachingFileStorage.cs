@@ -59,7 +59,7 @@ namespace keepass2android.Io
 	/// Implements the IFileStorage interface as a proxy: A base storage is used as a remote storage. Local files are used to cache the
 	/// files on remote.
 	/// </summary>
-	public class CachingFileStorage : IFileStorage, IOfflineSwitchable
+	public class CachingFileStorage : IFileStorage
 	{
 		
 		protected readonly OfflineSwitchableFileStorage _cachedStorage;
