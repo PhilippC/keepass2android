@@ -395,6 +395,11 @@ namespace keepass2android.Io
 			return false;
 		}
 
+		public void ResolveAccount(IOConnectionInfo ioc)
+		{
+			
+		}
+
 		private bool IsLocalFileFlaggedReadOnly(IOConnectionInfo ioc)
 		{
 			try

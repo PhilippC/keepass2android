@@ -42,50 +42,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="2618" column="0" selection-start-line="2618" selection-start-column="0" selection-end-line="2618" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#100279#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#8691#8692#0" expanded="false" />
-                <element signature="e#8739#8740#0" expanded="false" />
-                <element signature="e#8790#8791#0" expanded="false" />
-                <element signature="e#8843#8844#0" expanded="false" />
-                <element signature="e#8947#8948#0" expanded="false" />
-                <element signature="e#8989#8990#0" expanded="false" />
-                <element signature="e#9468#9469#0" expanded="false" />
-                <element signature="e#9518#9519#0" expanded="false" />
-                <element signature="e#9591#9592#0" expanded="false" />
-                <element signature="e#9647#9648#0" expanded="false" />
-                <element signature="e#51293#51294#0" expanded="false" />
-                <element signature="e#51354#51355#0" expanded="false" />
-                <element signature="e#59864#59865#0" expanded="false" />
-                <element signature="e#59905#59906#0" expanded="false" />
-                <element signature="e#59939#59940#0" expanded="false" />
-                <element signature="e#59981#59982#0" expanded="false" />
-                <element signature="e#67589#67590#0" expanded="false" />
-                <element signature="e#67625#67626#0" expanded="false" />
-                <element signature="e#67674#67675#0" expanded="false" />
-                <element signature="e#67733#67734#0" expanded="false" />
-                <element signature="e#68330#68331#0" expanded="false" />
-                <element signature="e#68387#68388#0" expanded="false" />
-                <element signature="e#81359#81360#0" expanded="false" />
-                <element signature="e#81428#81429#0" expanded="false" />
-                <element signature="e#85149#85150#0" expanded="false" />
-                <element signature="e#85187#85188#0" expanded="false" />
-                <element signature="e#85712#85713#0" expanded="false" />
-                <element signature="e#85765#85766#0" expanded="false" />
-                <element signature="e#87861#87862#0" expanded="false" />
-                <element signature="e#87890#87891#0" expanded="false" />
-                <element signature="e#89833#89834#0" expanded="false" />
-                <element signature="e#89875#89876#0" expanded="false" />
-                <element signature="e#91923#91924#0" expanded="false" />
-                <element signature="e#91951#91952#0" expanded="false" />
-                <element signature="e#91993#91994#0" expanded="false" />
-                <element signature="e#92024#92025#0" expanded="false" />
-                <element signature="e#93068#93069#0" expanded="false" />
-                <element signature="e#93122#93123#0" expanded="false" />
-                <element signature="e#93163#93164#0" expanded="false" />
-                <element signature="e#93222#93223#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -143,7 +100,7 @@
       <file leaf-file-name="AutoFillService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/keepass2android/autofill/AutoFillService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33242506">
+            <state vertical-scroll-proportion="0.0">
               <caret line="149" column="44" selection-start-line="149" selection-start-column="44" selection-end-line="149" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -1520,21 +1477,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1570,6 +1512,21 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -1766,26 +1723,26 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3270869" sideWeight="0.4969743" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3270869" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32879046" sideWeight="0.52723145" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.47579426" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32879046" sideWeight="0.47276855" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24886535" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24886535" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3270869" sideWeight="0.4969743" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2131,50 +2088,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2618" column="0" selection-start-line="2618" selection-start-column="0" selection-end-line="2618" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#100279#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#8691#8692#0" expanded="false" />
-            <element signature="e#8739#8740#0" expanded="false" />
-            <element signature="e#8790#8791#0" expanded="false" />
-            <element signature="e#8843#8844#0" expanded="false" />
-            <element signature="e#8947#8948#0" expanded="false" />
-            <element signature="e#8989#8990#0" expanded="false" />
-            <element signature="e#9468#9469#0" expanded="false" />
-            <element signature="e#9518#9519#0" expanded="false" />
-            <element signature="e#9591#9592#0" expanded="false" />
-            <element signature="e#9647#9648#0" expanded="false" />
-            <element signature="e#51293#51294#0" expanded="false" />
-            <element signature="e#51354#51355#0" expanded="false" />
-            <element signature="e#59864#59865#0" expanded="false" />
-            <element signature="e#59905#59906#0" expanded="false" />
-            <element signature="e#59939#59940#0" expanded="false" />
-            <element signature="e#59981#59982#0" expanded="false" />
-            <element signature="e#67589#67590#0" expanded="false" />
-            <element signature="e#67625#67626#0" expanded="false" />
-            <element signature="e#67674#67675#0" expanded="false" />
-            <element signature="e#67733#67734#0" expanded="false" />
-            <element signature="e#68330#68331#0" expanded="false" />
-            <element signature="e#68387#68388#0" expanded="false" />
-            <element signature="e#81359#81360#0" expanded="false" />
-            <element signature="e#81428#81429#0" expanded="false" />
-            <element signature="e#85149#85150#0" expanded="false" />
-            <element signature="e#85187#85188#0" expanded="false" />
-            <element signature="e#85712#85713#0" expanded="false" />
-            <element signature="e#85765#85766#0" expanded="false" />
-            <element signature="e#87861#87862#0" expanded="false" />
-            <element signature="e#87890#87891#0" expanded="false" />
-            <element signature="e#89833#89834#0" expanded="false" />
-            <element signature="e#89875#89876#0" expanded="false" />
-            <element signature="e#91923#91924#0" expanded="false" />
-            <element signature="e#91951#91952#0" expanded="false" />
-            <element signature="e#91993#91994#0" expanded="false" />
-            <element signature="e#92024#92025#0" expanded="false" />
-            <element signature="e#93068#93069#0" expanded="false" />
-            <element signature="e#93122#93123#0" expanded="false" />
-            <element signature="e#93163#93164#0" expanded="false" />
-            <element signature="e#93222#93223#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2228,7 +2142,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/keepass2android/autofill/AutoFillService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33242506">
+        <state vertical-scroll-proportion="0.0">
           <caret line="149" column="44" selection-start-line="149" selection-start-column="44" selection-end-line="149" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />

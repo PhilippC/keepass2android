@@ -177,7 +177,12 @@ namespace keepass2android.Io
 		/// </summary>
 		bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null );
 
-		
+		/// <summary>
+		/// if the ioc.Path contains a string which refers to a stored account (like FTP account with specific settings),
+		/// this method resolves the path so that it is a path which can be consumed by the file storage "operational" methods (=all other methods)
+		/// </summary>
+		/// <param name="ioc"></param>
+		void ResolveAccount(IOConnectionInfo ioc);
 	}
 
 	public interface IPermissionRequestingFileStorage

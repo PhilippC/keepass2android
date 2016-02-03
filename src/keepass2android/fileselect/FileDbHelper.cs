@@ -273,7 +273,7 @@ namespace keepass2android
 				return null;
 			var ioc = new IOConnectionInfo
 			    {
-			        Path = cursor.GetString(cursor
+			        Path =  cursor.GetString(cursor
 			                                    .GetColumnIndexOrThrow(KeyFileFilename)),
 			        UserName = cursor.GetString(cursor
 			                                        .GetColumnIndexOrThrow(KeyFileUsername)),
@@ -284,7 +284,10 @@ namespace keepass2android
 			        CredProtMode = IOCredProtMode.Obf
 			    };
 
-		    ioc.Obfuscate(false);
+			ioc.Obfuscate(false);
+
+			App.Kp2a.GetFileStorage(ioc).ResolveAccount(ioc);
+
 			return ioc;
 		}
 	}

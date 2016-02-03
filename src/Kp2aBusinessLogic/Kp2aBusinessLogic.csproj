@@ -86,6 +86,7 @@
     <Compile Include="Io\IFileStorage.cs" />
     <Compile Include="Io\IoUtil.cs" />
     <Compile Include="Io\JavaFileStorage.cs" />
+    <Compile Include="Io\NetFtpFileStorage.cs" />
     <Compile Include="Io\OfflineSwitchableFileStorage.cs" />
     <Compile Include="Io\SftpFileStorage.cs" />
     <Compile Include="Io\SkyDriveFileStorage.cs" />
@@ -132,6 +133,10 @@
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
       <Project>{70D3844A-D9FA-4A64-B205-A84C6A822196}</Project>
       <Name>KP2AKdbLibraryBinding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\netftpandroid\System.Net.FtpClient\System.Net.FtpClient.Android.csproj">
+      <Project>{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}</Project>
+      <Name>System.Net.FtpClient.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
       <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>

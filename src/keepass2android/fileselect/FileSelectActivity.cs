@@ -218,7 +218,9 @@ namespace keepass2android
 					String path = cursor.GetString(columnIndex);
 					TextView textView = (TextView)view;
 					IOConnectionInfo ioc = new IOConnectionInfo {Path = path};
-					textView.Text = _app.GetFileStorage(ioc).GetDisplayName(ioc);
+					var fileStorage = _app.GetFileStorage(ioc);
+					fileStorage.ResolveAccount(ioc);
+					textView.Text = fileStorage.GetDisplayName(ioc);
 					textView.Tag = ioc.Path;
 					return true;
 				}

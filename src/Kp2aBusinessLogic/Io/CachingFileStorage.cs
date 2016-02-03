@@ -563,6 +563,11 @@ namespace keepass2android.Io
 			return _cachedStorage.IsReadOnly(ioc, reason);
 		}
 
+		public void ResolveAccount(IOConnectionInfo ioc)
+		{
+			_cachedStorage.ResolveAccount(ioc);
+		}
+
 		private void StoreFilePath(IOConnectionInfo folderPath, string filename, IOConnectionInfo res)
 		{
 			File.WriteAllText(CachedFilePath(GetPseudoIoc(folderPath, filename)) + ".filepath", res.Path);

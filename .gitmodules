@@ -4,3 +4,6 @@
 [submodule "src/SamsungPass"]
 	path = src/SamsungPass
 	url = https://github.com/sraiteri/Xamarin-Samsung-Pass.git
+[submodule "src/netftpandroid"]
+	path = src/netftpandroid
+	url = https://git01.codeplex.com/forks/philippc/netftpandroid

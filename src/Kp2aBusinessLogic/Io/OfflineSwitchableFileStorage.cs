@@ -181,6 +181,11 @@ namespace keepass2android.Io
 			return _baseStorage.IsReadOnly(ioc, reason);
 		}
 
+	public void ResolveAccount(IOConnectionInfo ioc)
+	{
+		_baseStorage.ResolveAccount(ioc);
+	}
+
 	public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
 		string[] permissions, Permission[] grantResults)
 	{

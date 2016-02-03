@@ -549,18 +549,16 @@ namespace keepass2android
 				switch (validationMode)
 				{
 					case ValidationMode.Ignore:
+						return (sender, certificate, chain, errors) => true;
+					case ValidationMode.Warn:
 						return (sender, certificate, chain, errors) =>
 						{
-							ShowToast(Application.Context.GetString(Resource.String.CertificateWarning,
+							if (errors != SslPolicyErrors.None)
+								ShowToast(Application.Context.GetString(Resource.String.CertificateWarning,
 															new Java.Lang.Object[]
 					                                        {
 						                                       errors.ToString()
 					                                        }));
-							return true;
-						};
-					case ValidationMode.Warn:
-						return (sender, certificate, chain, errors) =>
-						{
 							return true;
 						};
 						
