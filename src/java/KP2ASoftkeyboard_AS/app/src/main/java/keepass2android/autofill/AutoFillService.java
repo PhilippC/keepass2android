@@ -113,7 +113,8 @@ public class AutoFillService extends AccessibilityService {
             if (event.getEventType() ==  AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
                     || event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED)
             {
-                android.util.Log.d(_logTag, "event: " + event.getEventType() + ", package = " + event.getPackageName());
+                CharSequence packageName = event.getPackageName();
+                android.util.Log.d(_logTag, "event: " + event.getEventType() + ", package = " + packageName);
                 if ( "com.android.systemui".equals(event.getPackageName()) )
                 {
                     android.util.Log.d(_logTag, "return.");
@@ -122,6 +123,13 @@ public class AutoFillService extends AccessibilityService {
                 else
                 {
                     android.util.Log.d(_logTag, "no com.android.systemui");
+                }
+
+                if ((packageName != null)
+                    && (packageName.toString().startsWith("keepass2android.")))
+                {
+                    android.util.Log.d(_logTag, "don't autofill kp2a.");
+                    return;
                 }
 
                 AccessibilityNodeInfo root = getRootInActiveWindow();
@@ -289,7 +297,7 @@ public class AutoFillService extends AccessibilityService {
     }
 
     private void fillDataInTextField(AccessibilityNodeInfo edit, String value) {
-        if (value == null)
+        if ((value == null) || (edit == null))
             return;
         Bundle b = new Bundle();
         b.putString(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, value);
@@ -315,11 +323,14 @@ public class AutoFillService extends AccessibilityService {
         try {
             uri = new URI(url);
             String domain = uri.getHost();
+            if (domain == null)
+                return url;
             return domain.startsWith("www.") ? domain.substring(4) : domain;
         } catch (URISyntaxException e) {
             android.util.Log.d(_logTag, "error parsing url: "+ url + e.toString());
             return url;
         }
+
 
     }
 
@@ -370,9 +381,13 @@ public class AutoFillService extends AccessibilityService {
         if (!urlFields.isEmpty())
         {
             AccessibilityNodeInfo addressField = urlFields.get(0);
-            url = addressField.getText().toString();
-            if (!url.contains("://"))
-                url = "http://" + url;
+            CharSequence text = addressField.getText();
+            if (text != null)
+            {
+                url = text.toString();
+                if (!url.contains("://"))
+                    url = "http://" + url;
+            }
         }
         return url;
     }

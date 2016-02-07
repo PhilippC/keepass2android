@@ -9,7 +9,19 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4fa0d1a-5b1d-4c4c-9674-0eb896f6d066" name="Default" comment="" />
+    <list default="true" id="d4fa0d1a-5b1d-4c4c-9674-0eb896f6d066" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../JavaFileStorage/app/build/outputs/aar/app-debug.aar" afterPath="$PROJECT_DIR$/../JavaFileStorage/app/build/outputs/aar/app-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/aar/app-debug.aar" afterPath="$PROJECT_DIR$/app/build/outputs/aar/app-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/keepass2android/autofill/AutoFillService.java" afterPath="$PROJECT_DIR$/app/src/main/java/keepass2android/autofill/AutoFillService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Kp2aBusinessLogic/Io/CachingFileStorage.cs" afterPath="$PROJECT_DIR$/../../Kp2aBusinessLogic/Io/CachingFileStorage.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../keepass2android/ChangeLog.cs" afterPath="$PROJECT_DIR$/../../keepass2android/ChangeLog.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Kp2aBusinessLogic/Kp2aBusinessLogic.csproj" afterPath="$PROJECT_DIR$/../../Kp2aBusinessLogic/Kp2aBusinessLogic.csproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../JavaFileStorage/app/app.iml" afterPath="$PROJECT_DIR$/../JavaFileStorage/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../keepass2android/Resources/layout/password.xml" afterPath="$PROJECT_DIR$/../../keepass2android/Resources/layout/password.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../JavaFileStorage/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../JavaFileStorage/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -45,6 +57,8 @@
               <folding>
                 <element signature="e#0#100279#0" expanded="false" />
                 <element signature="imports" expanded="false" />
+                <element signature="e#8338#8366#0" expanded="false" />
+                <element signature="e#8439#8457#0" expanded="false" />
                 <element signature="e#8691#8692#0" expanded="false" />
                 <element signature="e#8739#8740#0" expanded="false" />
                 <element signature="e#8790#8791#0" expanded="false" />
@@ -55,8 +69,19 @@
                 <element signature="e#9518#9519#0" expanded="false" />
                 <element signature="e#9591#9592#0" expanded="false" />
                 <element signature="e#9647#9648#0" expanded="false" />
+                <element signature="e#9693#10226#0" expanded="false" />
+                <element signature="e#10225#10226#0" expanded="false" />
+                <element signature="e#14396#14405#0" expanded="false" />
+                <element signature="e#37639#37653#0" expanded="false" />
                 <element signature="e#51293#51294#0" expanded="false" />
                 <element signature="e#51354#51355#0" expanded="false" />
+                <element signature="e#52556#52660#0" expanded="false" />
+                <element signature="e#52659#52660#0" expanded="false" />
+                <element signature="e#52722#52739#0" expanded="false" />
+                <element signature="e#54257#55536#0" expanded="false" />
+                <element signature="e#55535#55536#0" expanded="false" />
+                <element signature="e#55597#55743#0" expanded="false" />
+                <element signature="e#55742#55743#0" expanded="false" />
                 <element signature="e#59864#59865#0" expanded="false" />
                 <element signature="e#59905#59906#0" expanded="false" />
                 <element signature="e#59939#59940#0" expanded="false" />
@@ -65,6 +90,8 @@
                 <element signature="e#67625#67626#0" expanded="false" />
                 <element signature="e#67674#67675#0" expanded="false" />
                 <element signature="e#67733#67734#0" expanded="false" />
+                <element signature="e#67913#68280#0" expanded="false" />
+                <element signature="e#68279#68280#0" expanded="false" />
                 <element signature="e#68330#68331#0" expanded="false" />
                 <element signature="e#68387#68388#0" expanded="false" />
                 <element signature="e#81359#81360#0" expanded="false" />
@@ -75,8 +102,8 @@
                 <element signature="e#85765#85766#0" expanded="false" />
                 <element signature="e#87861#87862#0" expanded="false" />
                 <element signature="e#87890#87891#0" expanded="false" />
-                <element signature="e#89833#89834#0" expanded="false" />
-                <element signature="e#89875#89876#0" expanded="false" />
+                <element signature="e#89727#89882#0" expanded="false" />
+                <element signature="e#89881#89882#0" expanded="false" />
                 <element signature="e#91923#91924#0" expanded="false" />
                 <element signature="e#91951#91952#0" expanded="false" />
                 <element signature="e#91993#91994#0" expanded="false" />
@@ -85,6 +112,8 @@
                 <element signature="e#93122#93123#0" expanded="false" />
                 <element signature="e#93163#93164#0" expanded="false" />
                 <element signature="e#93222#93223#0" expanded="false" />
+                <element signature="e#96878#97414#0" expanded="false" />
+                <element signature="e#97413#97414#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -143,10 +172,14 @@
       <file leaf-file-name="AutoFillService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/keepass2android/autofill/AutoFillService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33242506">
-              <caret line="149" column="44" selection-start-line="149" selection-start-column="44" selection-end-line="149" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.5964392">
+              <caret line="384" column="29" selection-start-line="384" selection-start-column="29" selection-end-line="384" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2880#2881#0" expanded="true" />
+                <element signature="e#2913#2914#0" expanded="true" />
+                <element signature="e#13075#13076#0" expanded="true" />
+                <element signature="e#13129#13130#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -177,7 +210,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#0#3436#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -192,6 +228,9 @@
         <option value="valueResourceFile" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -1218,7 +1257,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4359057111489" />
+        <entry key="$PROJECT_DIR$" value="4363927957950" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1497,7 +1536,7 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -1520,21 +1559,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1567,10 +1593,109 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KP2ASoftkeyboard_AS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KP2ASoftkeyboard_AS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="keepass2android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KP2ASoftkeyboard_AS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="keepass2android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autofill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1761,19 +1886,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3270869" sideWeight="0.4969743" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3270869" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32879046" sideWeight="0.53630865" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.47579426" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32879046" sideWeight="0.46369138" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1782,10 +1906,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24886535" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3270869" sideWeight="0.4969743" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1839,6 +1964,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2880#2881#0" expanded="true" />
+            <element signature="e#2913#2914#0" expanded="true" />
+            <element signature="e#13075#13076#0" expanded="true" />
+            <element signature="e#13129#13130#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1863,7 +1992,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#3436#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2115,7 +2247,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#3436#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2134,6 +2269,8 @@
           <folding>
             <element signature="e#0#100279#0" expanded="false" />
             <element signature="imports" expanded="false" />
+            <element signature="e#8338#8366#0" expanded="false" />
+            <element signature="e#8439#8457#0" expanded="false" />
             <element signature="e#8691#8692#0" expanded="false" />
             <element signature="e#8739#8740#0" expanded="false" />
             <element signature="e#8790#8791#0" expanded="false" />
@@ -2144,8 +2281,19 @@
             <element signature="e#9518#9519#0" expanded="false" />
             <element signature="e#9591#9592#0" expanded="false" />
             <element signature="e#9647#9648#0" expanded="false" />
+            <element signature="e#9693#10226#0" expanded="false" />
+            <element signature="e#10225#10226#0" expanded="false" />
+            <element signature="e#14396#14405#0" expanded="false" />
+            <element signature="e#37639#37653#0" expanded="false" />
             <element signature="e#51293#51294#0" expanded="false" />
             <element signature="e#51354#51355#0" expanded="false" />
+            <element signature="e#52556#52660#0" expanded="false" />
+            <element signature="e#52659#52660#0" expanded="false" />
+            <element signature="e#52722#52739#0" expanded="false" />
+            <element signature="e#54257#55536#0" expanded="false" />
+            <element signature="e#55535#55536#0" expanded="false" />
+            <element signature="e#55597#55743#0" expanded="false" />
+            <element signature="e#55742#55743#0" expanded="false" />
             <element signature="e#59864#59865#0" expanded="false" />
             <element signature="e#59905#59906#0" expanded="false" />
             <element signature="e#59939#59940#0" expanded="false" />
@@ -2154,6 +2302,8 @@
             <element signature="e#67625#67626#0" expanded="false" />
             <element signature="e#67674#67675#0" expanded="false" />
             <element signature="e#67733#67734#0" expanded="false" />
+            <element signature="e#67913#68280#0" expanded="false" />
+            <element signature="e#68279#68280#0" expanded="false" />
             <element signature="e#68330#68331#0" expanded="false" />
             <element signature="e#68387#68388#0" expanded="false" />
             <element signature="e#81359#81360#0" expanded="false" />
@@ -2164,8 +2314,8 @@
             <element signature="e#85765#85766#0" expanded="false" />
             <element signature="e#87861#87862#0" expanded="false" />
             <element signature="e#87890#87891#0" expanded="false" />
-            <element signature="e#89833#89834#0" expanded="false" />
-            <element signature="e#89875#89876#0" expanded="false" />
+            <element signature="e#89727#89882#0" expanded="false" />
+            <element signature="e#89881#89882#0" expanded="false" />
             <element signature="e#91923#91924#0" expanded="false" />
             <element signature="e#91951#91952#0" expanded="false" />
             <element signature="e#91993#91994#0" expanded="false" />
@@ -2174,6 +2324,8 @@
             <element signature="e#93122#93123#0" expanded="false" />
             <element signature="e#93163#93164#0" expanded="false" />
             <element signature="e#93222#93223#0" expanded="false" />
+            <element signature="e#96878#97414#0" expanded="false" />
+            <element signature="e#97413#97414#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2228,10 +2380,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/keepass2android/autofill/AutoFillService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33242506">
-          <caret line="149" column="44" selection-start-line="149" selection-start-column="44" selection-end-line="149" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.5964392">
+          <caret line="384" column="29" selection-start-line="384" selection-start-column="29" selection-end-line="384" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2880#2881#0" expanded="true" />
+            <element signature="e#2913#2914#0" expanded="true" />
+            <element signature="e#13075#13076#0" expanded="true" />
+            <element signature="e#13129#13130#0" expanded="true" />
           </folding>
         </state>
       </provider>
