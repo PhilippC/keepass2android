@@ -174,12 +174,6 @@ public class AutoFillService extends AccessibilityService {
                         else
                         {
                             android.util.Log.d (_logTag, "Notif for " + url );
-                            if (getLastReceivedCredentialsUser() != null)
-                            {
-                                android.util.Log.d (_logTag, getCredentialsField("URL"));
-                                android.util.Log.d (_logTag, url);
-                            }
-
                             AskFillPassword(url);
                             cancelNotification = false;
                         }
@@ -196,13 +190,13 @@ public class AutoFillService extends AccessibilityService {
         }
         catch (Exception e)
         {
-            android.util.Log.e(_logTag, e.toString());
+            android.util.Log.e(_logTag, (e.toString() == null) ? "(null)" : e.toString() );
 
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("message/rfc822");
             String to =  "crocoapps@gmail.com";
             intent.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Error report");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Error report 7d+");
             intent.putExtra(Intent.EXTRA_TEXT,
                     "Please send the following text as an error report to crocoapps@gmail.com. You may also add additional information about the workflow you tried to perform. This will help me improve the app. Thanks! \n"+e.toString() );
 
@@ -247,7 +241,7 @@ public class AutoFillService extends AccessibilityService {
             }
             catch (Exception e)
             {
-                android.util.Log.d(_logTag, e.toString());
+                android.util.Log.d(_logTag, (e.toString() == null) ? "(null)" : e.toString());
                 targetName = packageName;
             }
         }
