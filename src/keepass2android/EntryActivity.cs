@@ -39,6 +39,7 @@ using KeePassLib.Security;
 using KeePassLib.Utility;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
+using KeePass.Util.Spr;
 using Uri = Android.Net.Uri;
 
 namespace keepass2android
@@ -341,8 +342,7 @@ namespace keepass2android
 			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			Entry = db.Entries[uuid];
-			Android.Util.Log.Debug("KP2A", "Notes: " + Entry.Strings.ReadSafe(PwDefs.NotesField));
-
+			
 			// Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
 			ActivityCompat.InvalidateOptionsMenu(this);
 
@@ -836,7 +836,9 @@ namespace keepass2android
 
 		private void PopulateStandardText(int viewId, int containerViewId, String key)
 		{
-			PopulateText(viewId, containerViewId, Entry.Strings.ReadSafe(key));
+			String value = Entry.Strings.ReadSafe(key);
+			value = SprEngine.Compile(value, new SprContext(Entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
+			PopulateText(viewId, containerViewId, value);
 			_stringViews.Add(key, new StandardStringView(viewId, containerViewId, this));
 		}
 
