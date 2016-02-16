@@ -104,8 +104,8 @@
     <orderEntry type="library" exported="" name="httpcore-4.0.1" level="project" />
     <orderEntry type="library" exported="" name="json_simple-1.1" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-android-1.16.0-rc" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.1" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-gson-1.20.0" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.1" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-jackson-1.16.0-rc" level="project" />
     <orderEntry type="library" exported="" name="commons-logging-1.1.1" level="project" />
   </component>
