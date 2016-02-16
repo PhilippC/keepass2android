@@ -126,6 +126,10 @@
     <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
+      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
+      <Name>JavaFileStorageBindings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>

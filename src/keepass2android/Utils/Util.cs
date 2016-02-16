@@ -84,6 +84,9 @@ namespace keepass2android
 		public static void CopyToClipboard(Context context, String text) {
 			Android.Text.ClipboardManager clipboard = (Android.Text.ClipboardManager) context.GetSystemService(Context.ClipboardService);
 			clipboard.Text = text;
+			//some devices don't accept empty strings. Replace with *** then.
+			if (clipboard.Text == "")
+				clipboard.Text = "***";
 		}
 		
 		public static void GotoUrl(Context context, String url) {

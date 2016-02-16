@@ -24,6 +24,7 @@ using KeePassLib;
 using Android.Text;
 using Android.Text.Style;
 using Android.Preferences;
+using KeePass.Util.Spr;
 
 
 namespace keepass2android.view
@@ -134,6 +135,7 @@ namespace keepass2android.view
 				_textView.SetTextColor(new Color((int)_defaultTextColor));
 
 			String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
+			detail = SprEngine.Compile(detail, new SprContext(_entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
 
 			if ((_showDetail == false) || (String.IsNullOrEmpty(detail)))
 			{
