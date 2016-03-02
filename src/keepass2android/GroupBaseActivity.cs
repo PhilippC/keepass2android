@@ -432,31 +432,37 @@ namespace keepass2android
 
 		private void UpdateOfflineModeMenu()
 		{
-			if (_syncItem != null)
+			try
 			{
-				if (App.Kp2a.GetDb().Ioc.IsLocalFile())
-					_syncItem.SetVisible(false);
+				if (_syncItem != null)
+				{
+					if (App.Kp2a.GetDb().Ioc.IsLocalFile())
+						_syncItem.SetVisible(false);
+					else
+						_syncItem.SetVisible(!App.Kp2a.OfflineMode);
+				}
+
+				if (App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc) is IOfflineSwitchable)
+				{
+					if (_offlineItem != null)
+						_offlineItem.SetVisible(App.Kp2a.OfflineMode == false);
+					if (_onlineItem != null)
+						_onlineItem.SetVisible(App.Kp2a.OfflineMode);
+				}
 				else
-					_syncItem.SetVisible(!App.Kp2a.OfflineMode);
-			}
+				{
+					if (_offlineItem != null)
+						_offlineItem.SetVisible(false);
+					if (_onlineItem != null)
+						_onlineItem.SetVisible(false);
 
-			if (App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc) is IOfflineSwitchable)
+				}
+			}
+			catch (Exception e)
 			{
-				if (_offlineItem != null)
-					_offlineItem.SetVisible(App.Kp2a.OfflineMode == false);
-				if (_onlineItem != null)
-					_onlineItem.SetVisible(App.Kp2a.OfflineMode);
+				Kp2aLog.LogUnexpectedError(new Exception("Cannot UpdateOfflineModeMenu " + (App.Kp2a == null) + " " + ((App.Kp2a == null) || (App.Kp2a.GetDb() == null)) + " " (((App.Kp2a == null) || (App.Kp2a.GetDb() == null) || (App.Kp2a.GetDb().Ioc == null)) + " " + (_syncItem != null) + " " + (_offlineItem != null) + " " + (_onlineItem != null))));
 			}
-			else
-			{
-				if (_offlineItem != null)
-					_offlineItem.SetVisible(false);
-				if (_onlineItem != null)
-					_onlineItem.SetVisible(false);
-
-				
-
-			}
+			
 		}
 
 
