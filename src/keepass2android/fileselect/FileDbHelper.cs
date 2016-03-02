@@ -286,7 +286,7 @@ namespace keepass2android
 
 			ioc.Obfuscate(false);
 
-			App.Kp2a.GetFileStorage(ioc).ResolveAccount(ioc);
+			//TODO enable for 1.1 release App.Kp2a.GetFileStorage(ioc).ResolveAccount(ioc);
 
 			return ioc;
 		}
