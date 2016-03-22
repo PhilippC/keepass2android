@@ -460,7 +460,7 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.LogUnexpectedError(new Exception("Cannot UpdateOfflineModeMenu " + (App.Kp2a == null) + " " + ((App.Kp2a == null) || (App.Kp2a.GetDb() == null)) + " " (((App.Kp2a == null) || (App.Kp2a.GetDb() == null) || (App.Kp2a.GetDb().Ioc == null)) + " " + (_syncItem != null) + " " + (_offlineItem != null) + " " + (_onlineItem != null))));
+				Kp2aLog.LogUnexpectedError(new Exception("Cannot UpdateOfflineModeMenu " + (App.Kp2a == null) + " " + ((App.Kp2a == null) || (App.Kp2a.GetDb() == null)) + " " + (((App.Kp2a == null) || (App.Kp2a.GetDb() == null) || (App.Kp2a.GetDb().Ioc == null)) + " " + (_syncItem != null) + " " + (_offlineItem != null) + " " + (_onlineItem != null))));
 			}
 			
 		}

@@ -997,6 +997,11 @@ namespace keepass2android
 	        {
                 Util.GotoDonateUrl(this);
 	        };
+			FindViewById(Resource.Id.btn_nav_donate).Visibility =
+				PreferenceManager.GetDefaultSharedPreferences(this)
+					.GetBoolean(this.GetString(Resource.String.NoDonateOption_key), false)
+					? ViewStates.Gone
+					: ViewStates.Visible;
 	        FindViewById(Resource.Id.btn_nav_about).Click += (sender, args) =>
 	        {
 	            AboutDialog dialog = new AboutDialog(this);
