@@ -764,7 +764,7 @@ namespace keepass2android
             targetPath = targetPath.Trim("|\\?*<\":>+[]/'".ToCharArray());
             if (targetPath == "")
                 targetPath = "imported";
-            if (new File(Activity.FilesDir, targetPath).Exists())
+            if (new File(Activity.NoBackupFilesDir, targetPath).Exists())
             {
                 int c = 1;
                 var ext = UrlUtil.GetExtension(targetPath);
@@ -775,9 +775,9 @@ namespace keepass2android
                     targetPath = filenameWithoutExt + c;
                     if (!String.IsNullOrEmpty(ext))
                         targetPath += "." + ext;
-                } while (new File(Activity.FilesDir, targetPath).Exists());
+				} while (new File(Activity.NoBackupFilesDir, targetPath).Exists());
             }
-            var targetIoc = IOConnectionInfo.FromPath(new File(Activity.FilesDir, targetPath).CanonicalPath);
+			var targetIoc = IOConnectionInfo.FromPath(new File(Activity.NoBackupFilesDir, targetPath).CanonicalPath);
 
             IoUtil.Copy(targetIoc, sourceIoc, App.Kp2a);
             return targetIoc;

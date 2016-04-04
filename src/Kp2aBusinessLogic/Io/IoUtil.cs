@@ -53,13 +53,14 @@ namespace keepass2android.Io
 			try
 			{
 				File filesDir = context.FilesDir.CanonicalFile;
+				File noBackupDir = context.NoBackupFilesDir.CanonicalFile;
 				File ourFile = new File(path).CanonicalFile;
 				//http://www.java2s.com/Tutorial/Java/0180__File/Checkswhetherthechilddirectoryisasubdirectoryofthebasedirectory.htm
 
 				File parentFile = ourFile;
 				while (parentFile != null)
 				{
-					if (filesDir.Equals(parentFile))
+					if ((filesDir.Equals(parentFile) || noBackupDir.Equals(parentFile)))
 					{
 						return true;
 					}
