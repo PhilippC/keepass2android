@@ -6,9 +6,9 @@
   <string name="open_entry_for_app">Cerca la voce \"%1$s\"</string>
   <string name="kp2a_user">Utente</string>
   <string name="kp2a_password">Password</string>
-  <string name="kp2a_prefs">Impostazioni delle credenziali di ingresso</string>
-  <string name="kp2a_auto_fill">Auto-Compilazione abilitata</string>
-  <string name="kp2a_auto_fill_summary">Inserisci automaticamente il testo, quando si entra in un campo vuoto, se è selezionata una voce di Keepass2Android per la tastiera ed esiste un valore che corrisponde al testo di suggerimento del campo.</string>
+  <string name="kp2a_prefs">Impostazioni di inserimento credenziali</string>
+  <string name="kp2a_auto_fill">Completamento automatico abilitato</string>
+  <string name="kp2a_auto_fill_summary">Inserisci automaticamente il testo quando si entra in un campo vuoto, se è disponibile per la tastiera una voce di Keepass2Android ed esiste un valore che corrisponde al testo di suggerimento del campo.</string>
   <string name="kp2a_remember_auto_fill">Ricorda i testi di suggerimento del campo</string>
   <string name="kp2a_remember_auto_fill_summary">Se un campo di testo viene compilato selezionando manualmente il valore di Keepass2Android, ricorda quale valore è stato immesso nel campo. In seguito il campo di testo verrà rilevato tramite il suo testo di suggerimento.</string>
   <string name="kp2a_simple_keyboard">Tastiera semplice</string>

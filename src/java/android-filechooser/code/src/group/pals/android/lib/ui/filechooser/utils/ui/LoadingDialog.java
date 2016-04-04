@@ -22,6 +22,7 @@ import android.util.Log;
  * @author Hai Bison
  * @since v2.1 alpha
  */
+
 public abstract class LoadingDialog<Params, Progress, Result> extends
         AsyncTask<Params, Progress, Result> {
 

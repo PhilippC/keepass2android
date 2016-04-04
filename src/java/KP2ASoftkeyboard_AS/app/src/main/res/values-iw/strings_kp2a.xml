@@ -8,6 +8,7 @@
   <string name="kp2a_password">סיסמה</string>
   <string name="kp2a_prefs">הגדרות קלט האימות</string>
   <string name="kp2a_auto_fill">השלמה-אוטומאטית מאופשרת</string>
+  <string name="kp2a_auto_fill_summary">מילוי אוטומטי בטקסט בעת הזנת שדה ריק, אם ערך Keepass2Android אינו זמין עבור לוח המקשים, יש ערך אשר תואם את טקסט הרמז של השדה.</string>
   <string name="kp2a_remember_auto_fill">זכור את שדה טקסט הרמזים</string>
   <string name="kp2a_simple_keyboard">מקלדת פשוטה</string>
   <string name="kp2a_lock_on_sendgodone">נעל מסד הנתונים בסיום</string>

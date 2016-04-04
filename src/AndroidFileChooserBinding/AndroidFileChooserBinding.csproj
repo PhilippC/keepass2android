@@ -54,6 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <LibraryProjectZip Include="..\java\android-filechooser-AS\app\build\outputs\aar\app-debug.aar">
+      <Link>Jars\app-debug.aar</Link>
+    </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
     <None Include="packages.config" />
@@ -71,11 +74,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <LibraryProjectZip Include="..\java\android-filechooser\code\project.zip">
-      <Link>project.zip</Link>
-    </LibraryProjectZip>
-  </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamandroidsupportv4-18">
       <Version>20.0.0.4</Version>

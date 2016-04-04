@@ -10,6 +10,7 @@
   <string name="afc_cmd_advanced_selection_all">Alla</string>
   <string name="afc_cmd_advanced_selection_invert">Omvänd markering</string>
   <string name="afc_cmd_advanced_selection_none">Avmarkera alla</string>
+  <string name="afc_cmd_grid_view">Rutnätsvy</string>
   <string name="afc_cmd_home">Hem</string>
   <string name="afc_cmd_list_view">Listvy</string>
   <string name="afc_cmd_new_folder">Ny mapp&#8230;</string>
@@ -32,6 +33,7 @@
   <string name="afc_msg_empty">Tom</string>
   <string name="afc_msg_failed_please_try_again">Misslyckades. Vänligen försök igen.</string>
   <string name="afc_msg_loading">Laddar&#8230;</string>
+  <string name="afc_phone">Telefon</string>
   <string name="afc_pmsg_cannot_access_dir">Kan inte komma åt \"%1$s\"</string>
   <string name="afc_pmsg_cannot_create_folder">Kan inte skapa mappen \"%1$s\"</string>
   <string name="afc_pmsg_cannot_delete_file">Kan inte ta bort %1$s \"%2$s\"</string>

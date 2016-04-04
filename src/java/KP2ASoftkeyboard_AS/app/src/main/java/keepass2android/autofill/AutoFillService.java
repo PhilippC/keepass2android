@@ -200,7 +200,7 @@ public class AutoFillService extends AccessibilityService {
         {
             android.util.Log.e(_logTag, (e.toString() == null) ? "(null)" : e.toString() );
 
-            Intent intent = new Intent(Intent.ACTION_SEND);
+            /*Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("message/rfc822");
             String to =  "crocoapps@gmail.com";
             intent.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
@@ -217,7 +217,7 @@ public class AutoFillService extends AccessibilityService {
             .setContentIntent(PendingIntent.getActivity(this, 0, Intent.createChooser(intent, "Send error report"), PendingIntent.FLAG_CANCEL_CURRENT));
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            notificationManager.notify(autoFillNotificationId+1, builder.build());
+            notificationManager.notify(autoFillNotificationId+1, builder.build());*/
         }
 
     }

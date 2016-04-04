@@ -23,15 +23,15 @@
   <string name="afc_hint_folder_name">nome cartella</string>
   <string name="afc_hint_save_as_filename">nome file</string>
   <string name="afc_hint_search">cerca</string>
-  <string name="afc_msg_app_doesnot_have_permission_to_create_files">Questa applicazione non ha i permessi per creare file / cartelle</string>
-  <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Questa applicazione non ha i permessi per eliminare file / cartelle</string>
+  <string name="afc_msg_app_doesnot_have_permission_to_create_files">Questa applicazione non ha i permessi per creare file/ cartelle</string>
+  <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Questa applicazione non ha i permessi per eliminare file/ cartelle</string>
   <string name="afc_msg_cancelled">Annullato</string>
   <string name="afc_msg_cannot_connect_to_file_provider_service">Impossibile connettersi al fornitore del file</string>
   <string name="afc_msg_cannot_create_new_folder_here">Non è possibile creare una nuova cartella qui</string>
   <string name="afc_msg_cannot_save_a_file_here">Non è possibile salvare un file qui</string>
   <string name="afc_msg_done">Fatto</string>
   <string name="afc_msg_empty">Vuoto</string>
-  <string name="afc_msg_failed_please_try_again">Fallito. Per favore riprova.</string>
+  <string name="afc_msg_failed_please_try_again">Errore. Per favore riprova.</string>
   <string name="afc_msg_loading">Caricamento&#8230;</string>
   <string name="afc_phone">Telefono</string>
   <string name="afc_pmsg_cannot_access_dir">Impossibile accedere a \"%1$s\"</string>
@@ -45,7 +45,7 @@
   <string name="afc_pmsg_filename_is_invalid">Il nome del file \"%1$s\" non è valido</string>
   <string name="afc_pmsg_max_file_count_allowed">&#8230;ha più file, massimo consentito: %1$,d</string>
   <string name="afc_pmsg_unknown_error">Errore sconosciuto: %1$s</string>
-  <string name="afc_root">Root</string>
+  <string name="afc_root">Principale</string>
   <string name="afc_title_advanced_selection">Seleziona&#8230;</string>
   <string name="afc_title_confirmation">Conferma</string>
   <string name="afc_title_date">Data</string>
@@ -66,6 +66,6 @@
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">Scegli file/ cartella&#8230;</item>
-    <item quantity="other">Scegli file / cartelle&#8230;</item>
+    <item quantity="other">Scegli file/ cartelle&#8230;</item>
   </plurals>
 </resources>

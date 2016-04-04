@@ -11,7 +11,7 @@
   <string name="afc_cmd_advanced_selection_invert">Käänteinen valinta</string>
   <string name="afc_cmd_advanced_selection_none">Tyhjennä valinta</string>
   <string name="afc_cmd_grid_view">Ruudukko</string>
-  <string name="afc_cmd_home">Etusivu</string>
+  <string name="afc_cmd_home">Juuri</string>
   <string name="afc_cmd_list_view">Luettelonäkymä</string>
   <string name="afc_cmd_new_folder">Uusi kansio</string>
   <string name="afc_cmd_select_all_files">Valitse kaikki</string>

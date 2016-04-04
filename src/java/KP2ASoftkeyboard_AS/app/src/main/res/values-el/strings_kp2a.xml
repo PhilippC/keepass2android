@@ -6,5 +6,15 @@
   <string name="open_entry_for_app">Αναζήτηση για καταχώρηση με \"%1$s\"</string>
   <string name="kp2a_user">Χρήστης</string>
   <string name="kp2a_password">Κωδικός Πρόσβασης</string>
+  <string name="kp2a_prefs">Ρυθμίσεις των διαπιστευτηρίων εισόδου</string>
+  <string name="kp2a_auto_fill">Αυτόματη συμπλήρωση ενεργή</string>
+  <string name="kp2a_auto_fill_summary">Συμπληρώστε αυτόματα το κείμενο όταν εισάγεται ένα κενό πεδίο, εάν μια καταχώρηση του Keepass2Android είναι διαθέσιμη για το πληκτρολόγιο και να υπάρχει μια τιμή που ταιριάζει με το κείμενο υποδείξεων του πεδίου.</string>
+  <string name="kp2a_remember_auto_fill">Να θυμάται τις υποδείξεις του πεδίου</string>
+  <string name="kp2a_remember_auto_fill_summary">Εάν ένα πεδίο κειμένου συμπληρωθεί επιλέγοντας χειροκίνητα την τιμή Keepass2Android, να θυμάται την τιμή που πληκτρολογήθηκε στο πεδίο κειμένου. Το πεδίο κειμένου αργότερα μπορεί να εντοπιστεί ξανά από το κείμενο υποδείξεων.</string>
   <string name="kp2a_simple_keyboard">Απλό πληκτρολόγιο</string>
+  <string name="kp2a_simple_keyboard_summary">Εμφάνισε το απλό πληκτρολόγιο μιας γραμμής αν μια καταχώριση είναι διαθέσιμη. Αν είναι απενεργοποιημένο τότε ένα παράθυρο διαλόγου θα εμφανιστεί όταν πατηθεί το πλήκτρο Keepass2Android.</string>
+  <string name="kp2a_lock_on_sendgodone">Κλείδωμα της βάσης δεδομένων μετά τη χρήση</string>
+  <string name="kp2a_lock_on_sendgodone_summary">Όταν πατηθεί το πλήκτρο Ολοκλήρωση/Αποστολή/Go στο απλό πληκτρολόγιο μιας σειράς, αυτόματα να κλειδωθεί η βάση δεδομένων.</string>
+  <string name="kp2a_switch_on_sendgodone">Εναλλαγή πληκτρολογίου μετά τη χρήση</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Όταν πατηθεί το πλήκτρο Ολοκλήρωση/Αποστολή/Go στο απλό πληκτρολόγιο μιας σειράς, αυτόματα να αλλαχθεί το πληκτρολόγιο.</string>
 </resources>
