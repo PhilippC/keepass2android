@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android je správca hesiel umožňujúci čítanie/zápis do databáz KeePass 2.x, v systéme Android.</string>
   <string name="CreditsText">Používateľské rozhranie je založené na porte aplikácie KeepassDroid od Briana Pellina. Kód pre operácie v databáze je založený na programe KeePass od Dominika Reichla. Robot Android je reprodukovaný alebo modifikovaný na základe práce vytvorenej a zdieľanej spoločnosťou Google a je použitý podľa podmienok v Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">Podpora pre SFTP je implementovaná s využitím knižnice JSch (s licenciou BSD), vytvorenej JCraft, Inc.</string>
+  <string name="CreditsIcons">Ikonu kladiva vytvoril John Caserta z projektu Noun Project. Ikonu tučniaka vytvoril Adriano Emerick z projektu Noun. Ikonu pera vytvoril Jon Testa z projektu Noun Project. Ikonu jablka vytvoril Ava Rowell z projektu Noun Project. </string>
   <string name="accept">Prijať</string>
   <string name="deny">Odmietnuť</string>
   <string name="add_entry">Pridať záznam</string>
@@ -35,6 +36,8 @@
   <string name="unknown_uri_scheme">Ospravedlňujeme sa! Keepass2Android nedokáže korektne spracovať vrátený identifikátor zdroja URI  %1$s. Prosím kontaktujte vývojára aplikácie!</string>
   <string name="Entry_singular">Jeden záznam</string>
   <string name="Entry_plural">%1$d záznamov</string>
+  <string name="IconSet_title">Súprava ikon</string>
+  <string name="IconSet_install">Nájsť viac...</string>
   <string name="security_prefs">Zabezpečenie</string>
   <string name="display_prefs">Displej</string>
   <string name="password_access_prefs">Prístup k záznamu s heslom</string>
@@ -42,6 +45,7 @@
   <string name="FileHandling_prefs">Zaobchádzanie so súborom</string>
   <string name="keyboard_prefs">Klávesnica</string>
   <string name="export_prefs">Export databázy...</string>
+  <string name="fingerprint_prefs">Odtlačok – odomknutie</string>
   <string name="import_db_prefs">Importovať databázu do interného priečinka</string>
   <string name="import_keyfile_prefs">Importovať súbor s kľúčom do interného priečinka</string>
   <string name="keyboardswitch_prefs">Prepínanie klávesnice</string>
@@ -71,10 +75,31 @@
   <string name="disclaimer_formal">Keepass2Android je poskytovaný BEZ AKEJKOĽVEK ZÁRUKY; Toto je voľne dostupný softvér a môžete ho redistribuovať za podmienok licencie GPL verzie 2 alebo novšej.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopírovať do schránky</string>
+  <string name="fingerprint_hint">Dotykový senzor</string>
+  <string name="fingerprint_description">Pre pokračovanie potvrďte odtlačok</string>
+  <string name="fingerprint_fatal">Nemožno nastaviť odtlačok pre odomknutie:</string>
+  <string name="fingerprint_not_recognized">Odtlačok nebol rozpoznaný. Skúste to ešte raz</string>
+  <string name="fingerprint_success">Odtlačok bol rozpoznaný</string>
+  <string name="fingerprint_os_error">Odomknutie pomocou odtlačku si vyžaduje systém Android 6.0 alebo novší.</string>
+  <string name="fingerprint_hardware_error">Nebol zistený hardvér na snímanie odtlačkov.</string>
+  <string name="fingerprint_no_enrolled">Na zariadení nemáte zaznamenané žiadne odtlačky. Prosím prejdite najskôr do nastavení systému.</string>
+  <string name="disable_fingerprint_unlock">Zablokovať odomknutie odtlačkom</string>
+  <string name="enable_fingerprint_unlock">Zapnúť úplné odomknutie odtlačkom</string>
+  <string name="enable_fingerprint_quickunlock">Zapnúť odomykanie odtlačkom pre rýchle odomknutie</string>
+  <string name="fingerprint_unlock_hint">Dotykový senzor pre odomknutie databázy</string>
+  <string name="fingerprint_unlock_failed">Odomknutie pomocou odtlačku bolo neúspešné. Dešifrovací kľúč bol zneplatnený systémom Android. To sa stáva väčšinou pri zápise nového odtlačku alebo zmene nastavení zabezpečenia. Prosím odomknite pomocou hesla a potom opätovne zapnite odomknutie odtlačkom. Môžete to urobiť v nastaveniach databázy.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Odomykanie databázy bolo neúspešné: kompozitný kľúč nie je platný. Odomknutie odtlačkom bolo zablokované pretože zrejme nie je už platné uložené primárne heslo. Prosím odomknite pomocou hesla a potom opäť zapnite odomknutie odtlačkom. Môžete to urobiť v nastaveniach databázy.</string>
+  <string name="fingerprint_reenable">Prosím zapnite Odomknutie odtlačkom pre nové primárne heslo.</string>
+  <string name="enable_fingerprint_unlock_Info">
+    Týmto uložíte vaše primárne heslo na tomto zariadení,
+    v šifrovanej podobe, s použitím Android Keystore a s ochranou
+    pomocou autentifikácie odtlačkom. Umožní vám to odomknúť databázu len pomocou odtlačku.
+  </string>
+  <string name="enable_fingerprint_quickunlock_Info">Umožňuje použiť autentifikáciu odtlačkom namiesto kódu pre rýchle odomknutie. Nevyžaduje uloženie informácie týkajúcej sa primárneho hesla.</string>
   <string name="enter_filename">Vložte názov databázy</string>
   <string name="entry_accessed">Prístup</string>
   <string name="entry_cancel">Zrušiť</string>
-  <string name="entry_comment">Komentáre</string>
+  <string name="entry_comment">Poznámky</string>
   <string name="entry_tags">Tagy</string>
   <string name="entry_override_url">Prepísanie URL</string>
   <string name="entry_confpassword">Potvrdiť heslo</string>
@@ -112,7 +137,7 @@
   <string name="file_browser">Správca súborov</string>
   <string name="generate_password">Generovať heslo</string>
   <string name="group">Skupina</string>
-  <string name="hint_comment">Komentár</string>
+  <string name="hint_comment">poznámky</string>
   <string name="hint_conf_pass">potvrdiť heslo</string>
   <string name="hint_generated_password">generované heslo</string>
   <string name="hint_group_name">Názov skupiny</string>
@@ -147,6 +172,7 @@
   <string name="menu_app_settings">Nastavenia</string>
   <string name="menu_db_settings">Nastavenia databázy</string>
   <string name="menu_delete">Vymazať</string>
+  <string name="menu_copy">Vytvoriť duplikát</string>
   <string name="menu_move">Presunúť do inej skupiny</string>
   <string name="menu_move_light">Presunúť</string>
   <string name="menu_navigate">Navigovať do rodičovskej skupiny</string>
@@ -161,6 +187,7 @@
   <string name="menu_search_advanced">Pokročilé vyhľadávanie</string>
   <string name="menu_url">Ísť na URL</string>
   <string name="menu_change_db">Zmeniť databázu…</string>
+  <string name="menu_show_all">Zobraziť všetky polia</string>
   <string name="minus">Mínus</string>
   <string name="never">Nikdy</string>
   <string name="yes">Áno</string>
@@ -300,8 +327,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Sprístupniť meno a heslo používateľa cez notifikačný panel a schránku. Pozor na možnosť krádeže hesla!</string>
   <string name="ShowSeparateNotifications_title">Oddeliť notifikácie</string>
   <string name="ShowSeparateNotifications_summary">Zobraziť oddelené notifikácie pre kopírovanie mena používateľa a hesla do schránky a aktivovanie klávesnice.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notifikácia klávesnice KP2A</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Sprístupniť celý záznam cez klávesnicu KP2A (odporúča sa).</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notifikácia pre klávesnicu/automatické doplnenie</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Sprístupniť celý záznam cez klávesnicu KP2A a službu autom. doplnenia (odporúča sa).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Prepnúť klávesnicu</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Otvoriť dialóg výberu klávesnice, ak je po vyhľadaní z prehliadača alebo klávesnice dostupný záznam zadávaný cez klávesnicu KP2A.</string>
   <string name="kp2a_switch_rooted">Prepínať, ak je dostupný root</string>
@@ -323,6 +350,9 @@
   <string name="AskDeletePermanentlyEntry">Chcete natrvalo odstrániť tento záznam? Stlačte Nie, ak sa má záznam vyhodiť do koša.</string>
   <string name="AskDeletePermanentlyGroup">Chcete natrvalo odstrániť túto skupinu? Ak stlačíte Nie, skupina sa vyhodí do koša.</string>
   <string name="AskDeletePermanentlyItems">Chcete natrvalo vymazať vybrané prvky? Pre vyhodenie do koša stlačte Nie.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Chcete natrvalo vymazať tento záznam?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Chcete natrvalo vymazať túto skupinu?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Chcete natrvalo vymazať vybrané prvky?</string>
   <string name="AskDeletePermanently_title">Odstrániť natrvalo?</string>
   <string name="AskReloadFile_title">Znovu načítať súbor?</string>
   <string name="AskReloadFile">Súbor, ktorý je práve otvorený, bol zmenený v inom programe. Chcete ho načítať znovu?</string>
@@ -347,6 +377,10 @@
   <string name="SynchronizingDatabase">Prebieha zlučovanie&#8230;</string>
   <string name="YesSynchronize">Áno, zlúčiť</string>
   <string name="NoOverwrite">Nie, prepísať</string>
+  <string name="UseOfflineMode">Pracovať offline</string>
+  <string name="UseOnlineMode">Pracovať online</string>
+  <string name="UseOfflineMode_Info">Pri použití lokálnej kópie súboru vo vyrovnávacej pamäti sa vyhýbajte akejkoľvek sieťovej komunikácii. Zmeny sa ukladajú len do lokálnej vyrovnávacej pamäte a odošlú sa len pri prepnutí naspäť do režimu online.</string>
+  <string name="InOfflineMode">Práca offline.</string>
   <string name="SynchronizingCachedDatabase">Synchronizácia databázy vo vyr. pamäti&#8230;</string>
   <string name="DownloadingRemoteFile">Sťahuje sa vzdialený súbor&#8230;</string>
   <string name="UploadingFile">Odosiela sa súbor&#8230;</string>
@@ -399,6 +433,7 @@
   <string name="help_database_location">Databázu môžete uložiť lokálne vo vašom zariadení Android, alebo do úložiska cloud (len pri verzii non-Offline). Keepass2Android sprístupní databázu aj keď ste offline. Keďže databáza je bezpečne šifrovaná pomocou AES 256-bit, k vašim heslám budete mať prístup iba vy, nikto iný. Odporúčame vám vybrať si úložisko Dropbox: je prístupné na všetkých vašich zariadeniach a poskytuje aj zálohy predošlých verzií súboru.</string>
   <string name="hint_database_location">Vyberte si, kam chcete uložiť databázu:</string>
   <string name="button_change_location">Zmeniť umiestnenie</string>
+  <string name="help_quickunlock">Ak je táto voľba zapnutá, Keepass2Android zozname spustený v pozadí aj pri zamknutej databáze. To vám umižní odomknúť databázu neskôr len pomocou krátkej časti primárneho hesla.</string>
   <string name="master_password">Primárne heslo</string>
   <string name="help_master_password">Vaša databáza je šifrovaná heslom, ktoré zadáte sem. Vyberte si silné heslo, aby bola databáza dobre zabezpečená! Tip: Vymyslite si jednu či dve vety a prvé písmená slov môžete použiť ako heslo. Zahrňte aj interpunkčné znamienka.</string>
   <string name="hint_master_password">Vyberte si primárne heslo na ochranu databázy:</string>
@@ -463,16 +498,85 @@
   <string name="CopyFileRequiredForEditing">Ak ho chcete upraviť, musíte súbor skopírovať do iného umiestnenia.</string>
   <string name="ClickOkToSelectLocation">Pre výber umiestnenia kliknite na tlačidlo OK na mieste, kde sa má súbor skopírovať.</string>
   <string name="CancelReadOnly">Zrušiť, otvoriť len na čítanie.</string>
+  <string name="FileReadOnlyTitle">Databáza je určená len na čítanie</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android otvoril aktuálnu databázu len v režime na čítanie.</string>
+  <string name="ReadOnlyReason_PreKitKat">Zdá sa, že ste súbor otvorili z externej aplikácie. Takýmto spôsobom však nie je podporovaný zápis. Ak chcete v databáze niečo zmeniť, prosím zatvorte ju a vyberte možnosť Zmeniť databázu. Potom súbor otvorte pomocou jednej z dostupných možností.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Je nastavený príznak: Len na čítanie. Ak chcete niečo v databáze zmeniť, odstráňte ho.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Zápis nie je možný z dôvodu obmedzení v systéme Android KitKat. Ak chcete databázu upraviť, zatvorte ju a vyberte možnosť Zmeniť databázu. Potom otvorte súbor pomocou systémovej súčasti na výber súboru.</string>
   <string name="AddCustomIcon">Pridať ikonu zo súboru...</string>
   <string name="CopyingFile">Prebieha kopírovanie súboru...</string>
+  <string name="DuplicateTitle">Kopírovanie</string>
+  <string name="DefaultTemplate">Štandardný záznam</string>
+  <string name="TemplateGroupName">Šablóny</string>
+  <string name="TemplateTitle_IdCard">ID karta</string>
+  <string name="TemplateField_IdCard_Name">Názov</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Miesto vydania</string>
+  <string name="TemplateField_IdCard_IssueDate">Dátum vydania</string>
+  <string name="TemplateTitle_EMail">E-mail</string>
+  <string name="TemplateField_EMail_EMail">E-mailová adresa</string>
+  <string name="TemplateTitle_WLan">Bezdrôtová sieť LAN</string>
+  <string name="TemplateTitle_Notes">Bezpečná poznámka</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Číslo</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Držiteľ karty</string>
+  <string name="TemplateTitle_CreditCard">Kreditná karta</string>
+  <string name="TemplateTitle_Membership">Členstvo</string>
   <string name="ChangeLog_title">Zoznam zmien</string>
+  <string name="AskAddTemplatesTitle">Pridať šablóny?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android obsahuje šablóny záznamu pre č-mailové účty, heslá WiFi, bezpečnostné poznámky a iné. Chcete ich pridať do vašej databázy? Ak si vyberiete možnosť Nie, môžete ich do databázy pridať neskôr.</string>
+  <string name="AddTemplates_pref">Pridať šablóny do databázy</string>
   <string name="PreviewWarning">Prosím pozor! Toto je náhľadové vydanie novej verzie a môže obsahovať nejaké chybičky! Ak si všimnete *čokoľvek* neočakávané, prosím informujte ma (cez stránky Codeplex alebo e-mailom).</string>
   <string name="Continue">Pokračovať</string>
   <string name="NoFilenameWarning">Zadaná URI pravdepodobne nie je názvom súboru. Ste si istí, že ide o platný súbor?</string>
+  <string name="FirstInvalidCompositeKeyError">Neplatný kompozitný kľúč! Prosím skúste to ešte raz.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Neplatný kompozitný kľúč! Prosím skúste odomknúť databázu pomocou týchto krokov:\n
+  
+    • Uistite sa, že ste zadali správne heslo. Na odkrytie zadaného hesla môžete použiť ikonu oka.\n
+   • Uistite sa, že ste vybrali správny typ hesla. Uistite sa, že zodpovedá typu použitému pri vytváraní databázy.\n
+   • Uistite sa, že je vybraný správny súbor s databázou.
+ 
+</string>
+  <string name="CorruptDatabaseHelp">
+    Súbor je poškodený. \n
+    Tu je niekoľko nápadov, ktoré vám môžu pomôcť odhaliť problém:\n
+    
+    • Skopírovali ste súbor cez USB (režim MTP), prosím skúste to ešte raz pomocou nástrojov, ako je napríklad MyPhoneExplorer. MTP môže v niektorých prípadoch rozdeliť súbory.\n
+    • Ak nemôžete otvoriť súbor z rovnakého umiestnenia vo vašom PC, je pravdepodobné, že je momentálne poškodený. V takom prípade prosím použite zálohu databázy. Ak predpokladáte, že Keepass2Android porušil súbor, prosím kontaktujte technickú podporu.\n
+    • Ak je možné otvoriť súbor na počítači, prosím kontaktujte podporu. Môžete sa pokúsiť uložiť ho s rôznymi nastaveniami (napríklad v nezbalenom stave) an počítači a potom sa pokúsiť otvoriť ho v aplikácii Keepass2Android.
+
+  </string>
+  <string name="ErrorReportTitle">Keepass2Android: Došlo k nejakej chybe.</string>
+  <string name="ErrorReportText">Počas behu aplikácie Keepass2Android došlo k neočakávanej chybe. Prosím pomôžte nám s jej opravou tým, že umožníte aplikácii odosielať záznamy o chybách.</string>
+  <string name="ErrorReportPromise">Záznamy o chybách nikdy nebudú obsahovať nič z vašej databázy a ani primárne heslo. Túto funkciu môžete zablokovať v nastaveniach aplikácie.</string>
+  <string name="ErrorReportEnable">Zapnúť</string>
+  <string name="ErrorReportDisable">Vypnúť</string>
+  <string name="ErrorReportAsk">Opýtať sa po výskyte chyby</string>
+  <string name="ErrorReportPrefTitle">Odosielanie záznamov o chybe</string>
+  <string name="ActivateAutoFillService_title">Aktivovať automatické dopĺňanie?</string>
+  <string name="ActivateAutoFillService_message">Prihlasovacie údaje je možné prenášať do iných aplikácii viacerými spôsobmi. Môžete skopírovať hodnoty do schránky, ale pamätajte prosím na to, že schránka systému Android nie je bezpečná. Zabudovaná klávesnica vám tiež poskytne úplný prístup k danému záznamu, ale je potrebné zapnúť ju vždy vtedy, keď zadávate prihlasovacie údaje. Na systéme Android 5 a novšom, môže aplikácia Keepass2Android doplniť meno používateľa a heslo aj automaticky, pomocou služby pre automatické dopĺňanie.</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Použiť vstavanú klávesnicu</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Použiť službu pre automatické doplňanie</string>
+  <string name="ActivateAutoFillService_toast">Prosím zapnite službu Keepass2Android.</string>
   <string name="ChangeLog_0_9_8c">
     Verzia 0.9.8c\n
     * Oprava zraniteľnosti SSL v Microsoft Live SDK (používa sa pri prístupe k súborom cez OneDrive)\n
     * Oprava chyby: Predchádzajúce vydanie obsahovalo dve metódy vstupu (jedna spôsobovala ukončenie)\n
+  </string>
+  <string name="ChangeLog_1_0_0">
+    Verzia 1.0.0\n
+    * Odomykanie odtlačkom (vyžaduje Android 6.0+ alebo zariadenie značky Samsung)\n
+    * Pridaná služba pre automatické dopĺňanie (vyžaduje 5.0+)\n
+    * Pridaná podpora pre šablóny záznamov\n
+    * Pridaný režim „pracovať offline“\n
+    * Umožniť kopírovanie záznamov\n
+    * Režim automatického dopĺňania pre názvy polí\n
+    * Umožniť odstraňovanie položiek zo zoznamu naposledy otvorených súborov\n
+    * Vyžadovať oprávnenia pre chod v systéme Android 6.0\n
+    * Opravy chýb vstavanej klávesnice, pri výbere ikon)\n
+    * Pridaná možnosť odoslania záznamov o chybe\n
+    * Pridané pomocné správy na rôznych bodoch\n
   </string>
   <string name="ChangeLog_0_9_9">
 		Verzia 0.9.9\n
@@ -483,6 +587,13 @@
     * Kontrola duplicitných kľúčov v prídavných poliach, aby sa zabránilo strate údajov\n
     
 	</string>
+  <string name="ChangeLog_0_9_9c">
+    Verzia 0.9.9c\n
+    * Bola vrátená tmavá téma\n
+    * Pridaná možnosť nainštalovania iných balíčkov s ikonami (staršie ikony v štýle Windows sú dostupné v obchode Play)\n
+    * Pridaný potvrdzovacia otázka pri vymazávaní prvkov bez použitia koša\n
+    * Oprava chýb (nesprávne zobrazenie tajného kódovania OTP, nesprávne ikona aplikácie na niektorých miestach)\n
+  </string>
   <string name="ChangeLog_0_9_8b">
 		Verzia 0.9.8b\n
 		* Opravy chýb (neúspešného ukladania niektorých databáz, nefunkčného importovania do lokálneho zariadenia, výber niektorých nastavení spôsoboval ukončenie aplikácie)\n
@@ -682,8 +793,8 @@ Prvé verejné vydanie
     <item>Veľké</item>
   </string-array>
   <string-array name="design_options">
-    <item>Holo Light</item>
-    <item>Holo Dark</item>
+    <item>Svetlá</item>
+    <item>Tmavá</item>
   </string-array>
   <string name="design_title">Dizajn</string>
   <string-array name="cred_remember_modes">

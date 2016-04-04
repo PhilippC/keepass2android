@@ -7,9 +7,11 @@
   <string name="AboutText">Keepass2Android on salasanojen hallintaohjelma, jolla voit lukea ja kirjoittaa KeePass 2.x versioiden tietokantoja Androidilla.</string>
   <string name="CreditsText">Käyttöliittymä perustuu Brian Pellinin kehittämään KeepassDroid -porttaukseen. Tietokantatoimintojen lähdekoodi perustuu Dominik Reichlin KeePass -sovellukseen. Android Robot on kopioitu tai muokattu Googlen jakamista julkaisuista ja sitä käytetään Creative Commons 3.0 Attribution Licensen kuvaamien ehtojen mukaisesti.</string>
   <string name="CreditsTextSFTP">SFTP tuki toteutetaan käyttämällä JSch Kirjastoa BSD lisenssillä, jonka on luonut  JCraft, Inc.</string>
+  <string name="CreditsIcons">Vasarakuvake syntyi John Casertan Noun-projektista. Pingviinikuvake on luotu Adriano Emerickin Noun-projektista. Sulka-kuvake on luotu Jon Testan Noun-projektista. Applen kuvake syntyi Ava Rowellin Noun-projektista. </string>
   <string name="accept">Hyväksy</string>
   <string name="deny">Älä hyväksy</string>
   <string name="add_entry">Lisää merkintä</string>
+  <string name="edit_entry">Muokkaa merkintää</string>
   <string name="add_url_entry">Luo tapahtuman URL</string>
   <string name="add_group">Lisää ryhmä</string>
   <string name="add_group_title">Lisää ryhmä</string>
@@ -32,6 +34,8 @@
   <string name="NavigationToGroupCompleted_message">Nyt näytettävä ryhmä on: %1$s</string>
   <string name="ShowGroupInEntry_title">Ryhmien nimet merkinnöissä</string>
   <string name="unknown_uri_scheme">Keepass2Android ei voi käsitellä palautettua URI-%1$s. Ota yhteyttä kehittäjään!</string>
+  <string name="Entry_singular">Yksi merkintä</string>
+  <string name="Entry_plural">%1$d tapahtumat</string>
   <string name="security_prefs">Turvallisuus</string>
   <string name="display_prefs">Näyttö</string>
   <string name="password_access_prefs">Salasanavalinnat</string>
@@ -47,11 +51,13 @@
   <string name="DatabaseFileMoved">Tietokantatiedosto kopioitiin sisäiseen kansioon. Paina Ok avataksesi tiedosto sen uudesta sijainnista. Huomio: älä unohda viedä tietokantaa turvalliseen tallennustilaan säännöllisesti!</string>
   <string name="KeyfileMoved">Avaintiedosto kopioitiin sisäiseen kansioon. Varmista, että sinulla on turvallinen varmuuskopio ennen poistamista nykyisestä sijainnista!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Sisäistä kansiota ei voida käyttää, kun avaintiedoston sijaintia ei muisteta. Vaihda turvallisuusasetuksia.</string>
+  <string name="unlock_database_button">Avaa</string>
+  <string name="unlock_database_title">Avaa tietokanta</string>
   <string name="brackets">Hakasulkeet</string>
   <string name="cancel">Peruuta</string>
   <string name="ClearClipboard">Leikepöytä tyhjennetty.</string>
   <string name="clipboard_timeout">Leikepöydän aikakatkaisu</string>
-  <string name="clipboard_timeout_summary">Aika ennen kuin leikepöytä tyhjennetään</string>
+  <string name="clipboard_timeout_summary">Aika leikepöydän tyhjennykseen.</string>
   <string name="copy_username">Valitse ja kopioi käyttäjänimi leikepöydälle</string>
   <string name="copy_password">Valitse ja kopioi salasana leikepöydälle</string>
   <string name="available_through_keyboard">Merkintä saatavana KP2A näppäimistölle</string>
@@ -66,10 +72,12 @@
   <string name="disclaimer_formal">Keepass2Androidissa ei ole mukana takuuta; Tämä on vapaa ohjelmisto ja sitä saa levittää GPL-version 2 tai uudemman mukaan.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopioi leikepöydälle</string>
-  <string name="enter_filename">Kirjoita tietokannan tiedostonimi</string>
+  <string name="fingerprint_description">Vahvista sormenjälki jatkaaksesi</string>
+  <string name="fingerprint_not_recognized">Sormenjälkeä ei tunnistettu. Yritä uudelleen.</string>
+  <string name="fingerprint_success">Sormenjälki tunnistettu</string>
+  <string name="enter_filename">Kirjoita tietokannan nimi</string>
   <string name="entry_accessed">Käytetty</string>
   <string name="entry_cancel">Peruuta</string>
-  <string name="entry_comment">Kommentit</string>
   <string name="entry_tags">Tunnisteet</string>
   <string name="entry_override_url">Korvaa URL</string>
   <string name="entry_confpassword">Vahvista salasana</string>
@@ -82,7 +90,7 @@
   <string name="entry_password">Salasana</string>
   <string name="entry_save">Tallenna</string>
   <string name="entry_title">Nimi</string>
-  <string name="entry_url">URL-OSOITE</string>
+  <string name="entry_url">URL</string>
   <string name="entry_user_name">Käyttäjänimi</string>
   <string name="entry_extra_strings">Lisäkentät</string>
   <string name="entry_binaries">Liitetiedostot</string>
@@ -95,7 +103,7 @@
   <string name="error_filename_required">Tiedoston nimi on pakollinen.</string>
   <string name="error_file_not_create">Tiedostoa ei voitu luoda</string>
   <string name="error_invalid_db">Kelvoton tietokanta.</string>
-  <string name="error_invalid_path">Polku ei kelpaa.</string>
+  <string name="error_invalid_path">Kelvoton polku.</string>
   <string name="error_no_name">Nimi on pakollinen.</string>
   <string name="error_nopass">Salasana tai avain pääavain on pakollinen.</string>
   <string name="error_pass_gen_type">Täytyy valita ainakin yksi salasanan generointityyppi</string>
@@ -107,7 +115,6 @@
   <string name="file_browser">Tiedostoselain</string>
   <string name="generate_password">Generoi salasana</string>
   <string name="group">Ryhmä</string>
-  <string name="hint_comment">kommentti</string>
   <string name="hint_conf_pass">Vahvista salasana</string>
   <string name="hint_generated_password">Generoi salasana</string>
   <string name="hint_group_name">Ryhmän nimi</string>
@@ -150,6 +157,7 @@
   <string name="menu_hide_password">Piilota salasana</string>
   <string name="menu_lock">Lukitse tietokanta</string>
   <string name="menu_open">Avaa</string>
+  <string name="menu_close">Sulje</string>
   <string name="menu_rename">Nimeä uudelleen</string>
   <string name="menu_search">Hae</string>
   <string name="menu_search_advanced">Tarkennettu haku</string>
@@ -259,6 +267,7 @@
   <string name="AddUrlToEntryDialog_text">Haluatko tallentaa Etsi tekstin \"%1$s\" valitun merkinnän löytämiseksi automaattisesti seuraavan kerran?</string>
   <string name="error_invalid_expiry_date">Virheellinen päivämäärä ja kellonaika vanhenemisajassa!</string>
   <string name="error_string_key">Kenttänimi vaaditaan jokaiseen merkkijonoon.</string>
+  <string name="error_string_duplicate_key">Kentän nimeä ei voi käyttää kahdesti (%1$s).</string>
   <string name="field_name">Kentän nimi</string>
   <string name="field_value">Kenttäarvo</string>
   <string name="protection">Kentän suojaus</string>
@@ -293,8 +302,6 @@
   <string name="ShowCopyToClipboardNotification_summary">Käyttää käyttäjätunnusta ja salasanaa Ilmoituspalkin ja Leikepöydän kautta. Varo salasanan paljastumista!</string>
   <string name="ShowSeparateNotifications_title">Erilliset ilmoitukset</string>
   <string name="ShowSeparateNotifications_summary">Näytä erilliset ilmoitukset käyttäjätunnuksen ja salasanan kopioimiseksi leikepöydälle ja näppäimistön aktivoimiseksi.</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A näppäimistön ilmoitus</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Tee merkinnät KP2A näppäimistön kautta (suositus).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Vaihda näppäimistö</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Avaa näppäimistön valintaikkuna kun merkintä on saatavana KP2A näppäimistölle selainhaun jälkeen.</string>
   <string name="kp2a_switch_rooted">Vaihda automaattisesti rootatuilla laitteilla</string>
@@ -385,6 +392,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH-tiedostonsiirto)</string>
+  <string name="filestoragename_content">Järjestelmän tiedostonvalitsin</string>
   <string name="filestorage_setup_title">Tiedoston käytön alustaminen</string>
   <string name="database_location">Tietokannan sijainti</string>
   <string name="help_database_location">Voit tallentaa tietokannan Android-laitteeseen tai pilveen (vain online-versio). Keepass2Android:lla tietokanta on saatavissa, vaikka olisit offline-tilassa. Tietokanta salataan turvallisesti AES:n 256-bittisellä salauksella, ja vain sinä pääset käsiksi salasanoihisi. Suosittelemme valitsemaan Dropboxin. Se on käytettävissä kaikilla laitteillasi ja tarjoaa jopa varmuuskopiot edellisistä tiedostojen versioista.</string>
@@ -454,10 +462,18 @@
   <string name="CopyFileRequiredForEditing">Jos muokkaat sitä niin kopioi Tiedosto toiseen hakemistoon.</string>
   <string name="ClickOkToSelectLocation">Klikkaa OK valitaksesi sijainnin, johon tiedosto kopioidaan.</string>
   <string name="CancelReadOnly">Peruuta, avaa vain luku-tilassa.</string>
+  <string name="FileReadOnlyTitle">Tietokanta on vain luku -tilassa</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android on avannut nykyisen tietokannan vain luku-tilassa.</string>
+  <string name="AddCustomIcon">Lisää kuvake tiedostosta...</string>
   <string name="CopyingFile">Kopioin tiedostoa...</string>
+  <string name="DuplicateTitle">Kopioi</string>
+  <string name="TemplateField_IdCard_Name">Nimi</string>
+  <string name="TemplateTitle_EMail">Sähköposti</string>
   <string name="ChangeLog_title">Muutosloki</string>
   <string name="PreviewWarning">Huomaa! Tämä on ennakkoversio, ja siinä voi olla joitakin puutteita! Jos * mitään * odottamatonta tapahtuu, kerro minulle (Codeplexissä tai sähköpostitse).</string>
+  <string name="Continue">Jatka</string>
   <string name="NoFilenameWarning">Antamasi osoite ei vaikuta tiedostonimeltä. Oletko varma oikeasta tiedostosta?</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Käytä sisäänrakennettua näppäimistöä</string>
   <string name="ChangeLog_0_9_7">
 Versio 0.9.7\n
 * kirjoitustuki Keepass 1 (kdb) tietokannoille (beta!)\n
@@ -500,10 +516,6 @@ Versio 0.9.6\n
     <item>Pieni</item>
     <item>Keskikoko</item>
     <item>Suuri</item>
-  </string-array>
-  <string-array name="design_options">
-    <item>Vaalea</item>
-    <item>Tumma</item>
   </string-array>
   <string name="design_title">Ulkoasu</string>
   <string-array name="cred_remember_modes">

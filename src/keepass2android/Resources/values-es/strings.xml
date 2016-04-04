@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android es una implementación completa para Android del gestor de contraseñas KeePass 2.x.</string>
   <string name="CreditsText">La interfaz de usuario se basa en un port de KeepassDroid, desarrollado por Brian Pellin. El código para las operaciones de la base de datos se basa en el KeePass de Dominik Reichl. El robot Android es reproducido o modificado sobre un trabajo creado y compartido por Google y utilizado según los términos descritos en la licencia de Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Soporte SFTP implementado por la biblioteca JSch bajo licencia BSD, creado por JCraft, Inc.</string>
+  <string name="CreditsIcons">El icono del martillo es creado por John Caserta del proyecto Noun. El icono del pingüino es creado por Adriano Emerick del proyecto Noun. El icono de pluma es creado por Jon Testa del proyecto Noun. El icono de Apple es creado por Ava Rowell del proyecto Noun. </string>
   <string name="accept">Aceptar</string>
   <string name="deny">Denegar</string>
   <string name="add_entry">Añadir entrada</string>
@@ -35,6 +36,8 @@
   <string name="unknown_uri_scheme">¡ Lo siento! Keepass2Android no puede manejar la URI devuelto %1$s. Póngase en contacto con el desarrollador.</string>
   <string name="Entry_singular">Una entrada</string>
   <string name="Entry_plural">%1$d entradas</string>
+  <string name="IconSet_title">Conjunto de iconos</string>
+  <string name="IconSet_install">Más...</string>
   <string name="security_prefs">Seguridad</string>
   <string name="display_prefs">Visualización</string>
   <string name="password_access_prefs">Acceso con contraseña</string>
@@ -42,6 +45,7 @@
   <string name="FileHandling_prefs">Manejo de ficheros</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar base de datos...</string>
+  <string name="fingerprint_prefs">Desbloqueo con huella digital</string>
   <string name="import_db_prefs">Importar base de satos a carpeta interna</string>
   <string name="import_keyfile_prefs">Importar archivo de clave a la carpeta interna</string>
   <string name="keyboardswitch_prefs">Cambio de teclado</string>
@@ -71,10 +75,30 @@
   <string name="disclaimer_formal">Keepass2Android NO TIENE TOTAL GARANTÍA; Este es software libre, y puedes redristribuirlo bajo las condiciones de la licencia GPL version 2 o posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiar al portapapeles</string>
+  <string name="fingerprint_hint">Sensor táctil</string>
+  <string name="fingerprint_description">Confirmar huella dactilar para continuar</string>
+  <string name="fingerprint_fatal">No se puede configurar desbloqueo con huella digital:</string>
+  <string name="fingerprint_not_recognized">Huella digital no reconocida. Vuelve a intentarlo</string>
+  <string name="fingerprint_success">Huella digital reconocida</string>
+  <string name="fingerprint_os_error">El desbloqueo con huellas dactilares requiere Android 6.0 o posterior.</string>
+  <string name="fingerprint_hardware_error">Hardware de huellas dactilares no detectado.</string>
+  <string name="fingerprint_no_enrolled">Este dispositivo no tiene huellas dactilares almacenadas. Por favor, ve a configuración de sistema primero.</string>
+  <string name="disable_fingerprint_unlock">Desactivar desbloque con huella digital</string>
+  <string name="enable_fingerprint_unlock">Habilitar desbloqueo completo con huella dactilar</string>
+  <string name="enable_fingerprint_quickunlock">Habilitar desbloqueo con huella dactilar para QuickUnlock</string>
+  <string name="fingerprint_unlock_hint">Sensor táctil para desbloqueo de base de datos</string>
+  <string name="fingerprint_unlock_failed">El desbloqueo mediante huella dactilar ha fallado. La clave de descifrado fue invalidada por el sistema operativo Android. Esto suele pasar si se guardó una nueva huella o se cambió la configuración de seguridad. Por favor, desbloquee con contraseña y luego vuelva habilitar el desbloqueo con huella en la configuración de la base de datos.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Fallo en el desbloqueo de la base de datos: clave compuesta no válida. Desbloqueo de huellas dactilares ha sido desactivado debido a que al parecer la contraseña maestra almacenada ya no es válida. Por favor desbloquee con la contraseña y luego vuelva a habilitar el desbloqueo con la huella dactilar en la configuración de la base de datos.</string>
+  <string name="fingerprint_reenable">Por favor, vuelva a activar el desbloqueo con la huella digital para la nueva contraseña maestra.</string>
+  <string name="enable_fingerprint_unlock_Info">
+Esto almacenará tu contraseña maestra en este dispositivo,
+cifrada con las claves de Android Keystore y protegidos
+mediante la autenticación de huellas dactilares. Esto permite desbloquear la base de datos solamente con su huella digital.  </string>
+  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación de la huella digital en lugar del código de QuickUnlock. No requiere almacenar información relacionada con su contraseña maestra.</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Accedido</string>
   <string name="entry_cancel">Cancelar</string>
-  <string name="entry_comment">Comentarios</string>
+  <string name="entry_comment">Notas</string>
   <string name="entry_tags">Etiquetas</string>
   <string name="entry_override_url">Reemplazar URL</string>
   <string name="entry_confpassword">Confirmar contraseña</string>
@@ -112,7 +136,7 @@
   <string name="file_browser">Explorador de archivos</string>
   <string name="generate_password">Generar Contraseña</string>
   <string name="group">Grupo</string>
-  <string name="hint_comment">comentario</string>
+  <string name="hint_comment">notas</string>
   <string name="hint_conf_pass">confirmar contraseña</string>
   <string name="hint_generated_password">contraseña generada</string>
   <string name="hint_group_name">Nombre de grupo</string>
@@ -147,6 +171,7 @@
   <string name="menu_app_settings">Configuración</string>
   <string name="menu_db_settings">Configuración de Base de datos</string>
   <string name="menu_delete">Eliminar</string>
+  <string name="menu_copy">Crear duplicado</string>
   <string name="menu_move">Mover a otro grupo</string>
   <string name="menu_move_light">Mover</string>
   <string name="menu_navigate">Desplazarse al grupo de padres</string>
@@ -161,6 +186,7 @@
   <string name="menu_search_advanced">Búsqueda Avanzada</string>
   <string name="menu_url">Ir a URL</string>
   <string name="menu_change_db">Cambiar base de datos…</string>
+  <string name="menu_show_all">Mostrar todos los campos</string>
   <string name="minus">Menos</string>
   <string name="never">Nunca</string>
   <string name="yes">Sí</string>
@@ -300,8 +326,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Hacer accesible el nombre de usuario y contraseña a través de la barra de notificación y el portapapeles  ¡Cuidado con los sniffers!</string>
   <string name="ShowSeparateNotifications_title">notificaciones por separado</string>
   <string name="ShowSeparateNotifications_summary">Mostrar notificaciones separados para copiar el nombre del usuario y palabra clave al portapapeles y para activar el teclado.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notificación de teclado KP2A</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Hacer toda la entrada accesible a través del teclado de KP2A (recomendado).</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificación de teclado/autocompletado</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Hacer entrada accesible a través del teclado de KP2A y servicio de Auto Llenado (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Cambiar Teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abrir diálogo de selección de teclado cuando la entrada este disponible a través del teclado KP2A después de una búsqueda desde el navegador.</string>
   <string name="kp2a_switch_rooted">Auto-switch en dispositivos rooteados</string>
@@ -323,6 +349,9 @@
   <string name="AskDeletePermanentlyEntry">¿Desea eliminar esta entrada de forma permanente? Presione No para mover a la Papelera de reciclaje.</string>
   <string name="AskDeletePermanentlyGroup">¿Desea eliminar este grupo de forma permanente? Presione No para reciclar.</string>
   <string name="AskDeletePermanentlyItems">¿Desea eliminar permanentemente los elementos seleccionados? Presione No para reciclar.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">¿Desea eliminar esta entrada de forma permanente?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">¿Desea eliminar este grupo de forma permanente?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">¿Desea eliminar permanentemente los elementos seleccionados?</string>
   <string name="AskDeletePermanently_title">¿Borrar permanentemente?</string>
   <string name="AskReloadFile_title">¿Volver a cargar el archivo?</string>
   <string name="AskReloadFile">El archivo que está actualmente abierto fue modificado por otro programa. ¿Desea la recarga?</string>
@@ -347,6 +376,10 @@
   <string name="SynchronizingDatabase">Combinando cambios&#8230;</string>
   <string name="YesSynchronize">Si, combinar</string>
   <string name="NoOverwrite">No, sobreescribir</string>
+  <string name="UseOfflineMode">Trabajar sin conexión</string>
+  <string name="UseOnlineMode">Trabajar en línea</string>
+  <string name="UseOfflineMode_Info">Evitar cualquier tráfico de red usando la copia local del archivo. Los cambios se almacenan en la memoria local sólo y sólo se cargarán cuando se vuelva al modo en línea.</string>
+  <string name="InOfflineMode">Trabajar sin conexión.</string>
   <string name="SynchronizingCachedDatabase">Sincronización de base de datos en caché&#8230;</string>
   <string name="DownloadingRemoteFile">Descargando archivo remoto&#8230;</string>
   <string name="UploadingFile">Cargando archivo&#8230;</string>
@@ -399,6 +432,7 @@
   <string name="help_database_location">Puede almacenar su base de datos localmente en su dispositivo Android o en la nube(solo en la versión non-Offline). Keepass2Android permite acceder a la base de datos aun cuando estas sin conexión a Internet. Como la base de datos es encriptada de forma segura con una encriptación AES de 256 bit, nadie podrá acceder a sus contraseñas a excepción de usted. Recomendamos el uso de Dropbox ya que es se puede utilizar desde todos los dispositivos y también proporciona copias de seguridad de las versiones anteriores de las bases de datos.</string>
   <string name="hint_database_location">Seleccione dónde desea almacenar la base de datos:</string>
   <string name="button_change_location">Cambiar ubicación</string>
+  <string name="help_quickunlock">Si está habilitado, Keepass2Android se queda funcionando en segundo plano incluso cuando la base de datos está bloqueada. Esto permite abrir la base de datos más adelante con sólo una pequeña parte de la contraseña maestra.</string>
   <string name="master_password">Contraseña maestra</string>
   <string name="help_master_password">Su base de datos está encriptada con la contraseña que introduzca aquí. ¡Elija una contraseña fuerte para mantener la base de datos segura!. Consejos: Hacer una frase o dos y utilizar las primeras letras de las palabras como contraseña. Incluir signos de puntuación.</string>
   <string name="hint_master_password">Seleccione una contraseña maestra para proteger su base de datos:</string>
@@ -463,16 +497,84 @@
   <string name="CopyFileRequiredForEditing">Para editarlo, debe copiar el archivo a otra ubicación.</string>
   <string name="ClickOkToSelectLocation">Haga clic en OK para seleccionar una ubicación donde se debe copiar el archivo.</string>
   <string name="CancelReadOnly">Cancela, abrir sólo lectura.</string>
+  <string name="FileReadOnlyTitle">La base de datos es de sólo lectura</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android ha abierto la base de datos en modo de sólo lectura.</string>
+  <string name="ReadOnlyReason_PreKitKat">Parece que abrió el archivo desde una aplicación externa. De esta manera no admite escritura. Si desea realizar cambios en la base de datos, cierre la base de datos y seleccione Cambiar Base de Datos. Luego, si es posible, abra el archivo desde una de las opciones disponibles.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Está activado el indicador de sólo lectura. Quite este indicador si desea realizar cambios en la base de datos.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">La escritura no es posible debido a restricciones en Android KitKat. Si desea realizar cambios en la base de datos, cierre la base de datos y seleccione Cambiar Base de Datos. A continuación, abra el archivo usando el selector de archivos del sistema.</string>
   <string name="AddCustomIcon">Agregar icono desde archivo...</string>
   <string name="CopyingFile">Copiando archivos...</string>
+  <string name="DuplicateTitle">Copiar</string>
+  <string name="DefaultTemplate">Entrada estándar</string>
+  <string name="TemplateGroupName">Plantillas</string>
+  <string name="TemplateTitle_IdCard">Tarjeta de identificación</string>
+  <string name="TemplateField_IdCard_Name">Nombre</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Lugar de expedición</string>
+  <string name="TemplateField_IdCard_IssueDate">Fecha expedición</string>
+  <string name="TemplateTitle_EMail">Correo electrónico</string>
+  <string name="TemplateField_EMail_EMail">Dirección de correo electrónico</string>
+  <string name="TemplateTitle_WLan">Red inalámbrica</string>
+  <string name="TemplateTitle_Notes">Nota segura</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Número</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Titular de la tarjeta</string>
+  <string name="TemplateTitle_CreditCard">Tarjeta de crédito</string>
+  <string name="TemplateTitle_Membership">Afiliación</string>
   <string name="ChangeLog_title">Registro de cambios</string>
+  <string name="AskAddTemplatesTitle">¿Añadir plantillas?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android contiene plantillas de entrada de cuentasde E-Mail, contraseñas Wireless-LAN, notas seguras y más. ¿Le gustaría agregar estas a su base de datos? Si selecciona No, puede agregarlas más adelante en la configuración de la base de datos.</string>
+  <string name="AddTemplates_pref">Agregar plantillas a base de datos</string>
   <string name="PreviewWarning">¡Tener en cuenta! Esto es un preview release y posiblemente puede incluir algunos errores! Si experimenta *cualquier cosa* inesperada, por favor, ¡hágamelo saber (en Codeplex o por correo electrónico)!.</string>
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">El URI que ha introducido no parece ser un nombre de archivo. ¿Está seguro que es un archivo válido?</string>
+  <string name="FirstInvalidCompositeKeyError">Clave compuesta no válida! Por favor, inténtelo de nuevo.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">¡Clave compuesta no valida! Por favor intente los siguientes pasos para desbloquear su base de datos:\n
+  
+    • Asegúrese que haya introducido la contraseña correcta. Use el ícono de ojo para revelar la contraseña ingresada.\n
+   • Asegúrese que haya seleccionado el tipo correcto de contraseña. Asegúrese que este tipo concuerde con el tipo usado al crear la base de datos.\n
+   • Asegúrese que haya seleccionado el archivo de base de datos correcto.
+</string>
+  <string name="CorruptDatabaseHelp">
+El Archivo está dañado. \n
+    Estas son algunas sugerencias que pueden ayudarle a diagnosticar el problema:\n
+    
+    • Si usted copió el archivo por medio de USB (Modo MTP), por favor inténtelo de nuevo con herramientas como MyPhoneExplorer. MTP trunca archivos en algunas ocasiones.\n
+    • Si usted no puede abrir el archivo desde la misma ubicación en su PC, es muy posible que el archivo esta de hecho dañado. Por favor use un respaldo de la base de datos. Si usted cree que Keepass2Android ha dañado el archivo, por favor contacte a soporte.\n
+    • Si usted aún puede abrir el archivo en su PC, por favor contacte a soporte. Intente guardar el archivo con una configuración distinta (por ejemplo, descomprimido) en la PC y vuelva a intentar abrirlo en Keepass2Android.
+
+  </string>
+  <string name="ErrorReportTitle">Keepass2Android: Se produjo un error.</string>
+  <string name="ErrorReportText">Se ha producido un error inesperado durante la ejecución de Keepass2Android. Por favor ayúdenos a solucionar este problema permitiendo que la aplicación envíe informes de errores.</string>
+  <string name="ErrorReportPromise">Los informes de error no tienen contenido de su base de datos o contraseña maestra. Puede desactivarlas en la configuración de la aplicación.</string>
+  <string name="ErrorReportEnable">Habilitar</string>
+  <string name="ErrorReportDisable">Deshabilitar</string>
+  <string name="ErrorReportAsk">Preguntar después del error</string>
+  <string name="ErrorReportPrefTitle">Enviar informe de errores</string>
+  <string name="ActivateAutoFillService_title">¿Activar Autorrelleno?</string>
+  <string name="ActivateAutoFillService_message">Las credenciales pueden ser transferidas a otras aplicaciones de varias maneras: usted puede copiar los valores al portapapeles, pero tenga en cuenta que el portapapeles no es seguro en Android. El teclado incorporado da acceso completo a la entrada seleccionada pero debe ser activado cada vez que desee acceder a las credenciales. En Android 5 y posteriores, Keepass2Android puede introducir nombre de usuario y contraseña automáticamente utilizando el servicio de AutoFill.</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Usar teclado incorporado</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Utilice el servicio de autocompletado</string>
+  <string name="ActivateAutoFillService_toast">Por favor, active el servicio de Keepass2Android.</string>
   <string name="ChangeLog_0_9_8c">
     Versión 0.9.8c\n
     * Arreglo para vulnerabilidad SSL en Microsoft Live SDK (usado para accessar archivos de OneDrive)\n
     * Arreglo de pulga: Versión anterior contenía dos métodos de entrada (uno fallaba)\n
+  </string>
+  <string name="ChangeLog_1_0_0">
+    Versión 1.0.0\n
+    * Desbloqueo por huella (requiere Android 6.0+ o un dispositivo Samsung)\n
+    * Se agregó soporte para el servicio Auto-Fill (requiere Android 5.0+)\n
+    * Se agregó soporte para plantillas\n
+    * Se agregó modo sin conexión\n
+    * Permite copiar entradas\n
+    * Modo de auto-completar para nombres de campos\n
+    * Permite quitar elementos de la lista de archivos recientes\n
+    * Solicitud de Permisos durante ejecución en Android 6.0\n
+    * Errores corregidos (en teclado incorporado, al seleccionar iconos)\n
+    * Se incluyó una opción para enviar reportes de error\n
+    * Se agregaron mensajes de ayuda en distintos puntos\n
   </string>
   <string name="ChangeLog_0_9_9">
 		Versión 0.9.9\n
@@ -483,6 +585,15 @@
     * Busca llaves duplicadas de campos adicionales para evitar perder datos\n
     
 	</string>
+  <string name="ChangeLog_0_9_9c">
+Text for Translation
+
+    Versión 0.9.9c\n
+    * Regresó el tema oscuro\n
+    * Usted puede instalar otros paquetes de íconos (estilo Windows antiguo está disponible en el Play store)\n
+    * Se agregó confirmación cuando se borran elementos sin papelera de reciclaje\n
+    * Errores arreglados (se mostraba incorrecto OTP secret encoding, ícono de applicación incorrecto en algunos lugares)\n
+  </string>
   <string name="ChangeLog_0_9_8b">
 		Versión 0.9.8b\n
 		* Arreglo de pulgas (Guardar fallaba en algunas bases de datos, exportar a dispositivo local no funcionaba, seleccionar algunas opciones hacía que la aplicación se cerrara)\n
@@ -676,8 +787,8 @@ Publicación inicial</string>
     <item>Grande</item>
   </string-array>
   <string-array name="design_options">
-    <item>Holo Claro</item>
-    <item>Holo oscuro</item>
+    <item>Claro</item>
+    <item>Oscuro</item>
   </string-array>
   <string name="design_title">Diseño</string>
   <string-array name="cred_remember_modes">

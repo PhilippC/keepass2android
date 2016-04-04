@@ -35,6 +35,7 @@
   <string name="FileHandling_prefs">الملفات التي يمكن استخدامها</string>
   <string name="keyboard_prefs">لوحة المفاتيح</string>
   <string name="export_prefs">تصدير قاعدة البيانات...</string>
+  <string name="fingerprint_prefs">فك القفل بالبصمة</string>
   <string name="import_db_prefs">استيراد قاعدة البيانات إلى مجلد داخلي</string>
   <string name="import_keyfile_prefs">استيراد ملف المفتاح إلى المجلد الداخلية</string>
   <string name="keyboardswitch_prefs">تبديل لوحة المفاتيح</string>
@@ -61,10 +62,17 @@
   <string name="disclaimer_formal">Keepass2Android يأتي دون أدنى ضمان، هذا البرنامج مجاني، وإعادة توزيعه مرحب بها تحت شروط GPL الإصدار 2 أو ما بعده.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">انسخ إلى الحافظة</string>
+  <string name="fingerprint_fatal">لا يمكن اعداد فك القفل بالبصمة:</string>
+  <string name="fingerprint_not_recognized">لم يتم التعرف على البصمة. حاول مجددا</string>
+  <string name="fingerprint_success">تم التعرف على البصمة</string>
+  <string name="fingerprint_os_error">فك القفل بالبصمة يتطلب Android 6.0 او احدث.</string>
+  <string name="fingerprint_hardware_error">لا يوجد حساس بصمة.</string>
+  <string name="fingerprint_no_enrolled">لا يوجد بصمات مسجلة على الجهاز. الرجاء الذهاب لاعدادات الجهاز اولا.</string>
+  <string name="disable_fingerprint_unlock">إبطال فك القفل بالبصمة</string>
+  <string name="enable_fingerprint_unlock">تفعيل فك القفل بالبصمة كاملاً</string>
   <string name="enter_filename">أدخل اسم ملف قاعدة البيانات</string>
   <string name="entry_accessed">وصول</string>
   <string name="entry_cancel">إلغاء</string>
-  <string name="entry_comment">تعليقات</string>
   <string name="entry_tags">وسوم</string>
   <string name="entry_override_url">تخطي الرابط</string>
   <string name="entry_confpassword">تأكيد كلمة المرور</string>
@@ -102,7 +110,6 @@
   <string name="file_browser">متصفح الملف</string>
   <string name="generate_password">توليد كلمة المرور</string>
   <string name="group">مجموعة</string>
-  <string name="hint_comment">تعليق</string>
   <string name="hint_conf_pass">تأكيد كلمة المرور</string>
   <string name="hint_generated_password">كلمة المرور التي تم إنشاؤها</string>
   <string name="hint_group_name">اسم المجموعة</string>

@@ -10,6 +10,7 @@
   <string name="accept">Accepta</string>
   <string name="deny">Interzice</string>
   <string name="add_entry">Adăugă o înregistrare</string>
+  <string name="edit_entry">Editeaza inregistrare</string>
   <string name="add_url_entry">Creaţi înregistrare pentru URL</string>
   <string name="add_group">Adăugă un grup</string>
   <string name="add_group_title">Adăugare grup</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Grupul afișat este acum: %1$s</string>
   <string name="ShowGroupInEntry_title">Arată numele grupului în vizualizarea înregistrărilor</string>
   <string name="unknown_uri_scheme">Scuze! Keepass2Android nu poate interpreta URI-ul returnat %1$s. Te rog să contactezi producătorul!</string>
+  <string name="Entry_singular">O inregistrare</string>
+  <string name="Entry_plural">%1$d inregistrari</string>
   <string name="security_prefs">Securitate</string>
   <string name="display_prefs">Afişare</string>
   <string name="password_access_prefs">Acces introducere parolă</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">Baza de date a fost copiată în folderul intern. Apasă Ok pentru a o deschide din noua locație. Notă: Nu uita să exporți periodic baza de date pe un spațiu de stocare sigur!</string>
   <string name="KeyfileMoved">Fișierul-cheie a fost copiat în folderul intern. Asigură-te că ai o copie de rezervă înainte de al șterge din locația curentă!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Imposibil de folosit folderul intern când locația fișierului cheie  nu este memorară. Schimbă preferințele de securitate.</string>
+  <string name="unlock_database_button">Deblocare</string>
+  <string name="unlock_database_title">Deblocarea bazei de date</string>
   <string name="brackets">Paranteze</string>
   <string name="cancel">Anulează</string>
   <string name="ClearClipboard">Clipboard golit.</string>
@@ -69,7 +74,6 @@
   <string name="enter_filename">Alegeți numele bazei de date</string>
   <string name="entry_accessed">Accesat</string>
   <string name="entry_cancel">Anulează</string>
-  <string name="entry_comment">Comentarii</string>
   <string name="entry_tags">Tag-uri</string>
   <string name="entry_override_url">Rescrie URL-ul</string>
   <string name="entry_confpassword">Confirmă parola</string>
@@ -107,7 +111,6 @@
   <string name="file_browser">Browser fișiere</string>
   <string name="generate_password">Generare parolă</string>
   <string name="group">Grup</string>
-  <string name="hint_comment">comentariu</string>
   <string name="hint_conf_pass">confirmă parola</string>
   <string name="hint_generated_password">parola generată</string>
   <string name="hint_group_name">Nume grup</string>
@@ -150,6 +153,7 @@
   <string name="menu_hide_password">Ascunde parola</string>
   <string name="menu_lock">Blochează baza de date</string>
   <string name="menu_open">Deschide</string>
+  <string name="menu_close">Inchide</string>
   <string name="menu_rename">Redenumește</string>
   <string name="menu_search">Căutare</string>
   <string name="menu_search_advanced">Căutare avansată</string>
@@ -260,6 +264,7 @@
   <string name="AddUrlToEntryDialog_text">Doriți să adăugați textul căutat \"%1$s\" la înregistrarea selectată pentru a o găsi automat următoarea dată?</string>
   <string name="error_invalid_expiry_date">Format dată/timp invalid pentru data expirării!</string>
   <string name="error_string_key">Este necesar un nume câmp pentru fiecare string.</string>
+  <string name="error_string_duplicate_key">Un nume de camp nu poate fi utilizat dublu (%1$s).</string>
   <string name="field_name">Numele câmpului</string>
   <string name="field_value">Valoarea câmpului</string>
   <string name="protection">Câmp protejat</string>
@@ -294,8 +299,6 @@
   <string name="ShowCopyToClipboardNotification_summary">Oferă utilizatorul şi parolă prin bara de notificări şi clipboard. Atenţie la \"password sniffers\"!</string>
   <string name="ShowSeparateNotifications_title">Separă notificările</string>
   <string name="ShowSeparateNotifications_summary">Arată notificări separate pentru copierea numelui utilizatorului și a parolei în clipboard și activarea tastaturii.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notificare tastatură KP2A</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Oferă întreaga înregistrare folosind tastatura KP2A (recomandat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Comută tastatura</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Deschide fereastra de selecție a tastaturii când o înregistrare este disponibilă prin tastatura KP2A după căutarea din browser.</string>
   <string name="kp2a_switch_rooted">Comută automat dacă e rootat</string>
@@ -316,6 +319,7 @@
   <string name="RecycleBin">Coș de gunoi</string>
   <string name="AskDeletePermanentlyEntry">Doriţi să ştergeţi permanent această înregistrare? Apăsaţi Nu pentru a muta în coş.</string>
   <string name="AskDeletePermanentlyGroup">Doriţi să ştergeţi permanent acest grup? Apăsaţi Nu pentru a muta în coş.</string>
+  <string name="AskDeletePermanentlyItems">Doriţi să ştergeţi elementele selectate permanent? Apasa Nu pentru a recicla.</string>
   <string name="AskDeletePermanently_title">Ștergeți definitiv?</string>
   <string name="AskReloadFile_title">Reîncărcaţi fişierul?</string>
   <string name="AskReloadFile">Fişierul deschis a fost modificat de alt program. Doriţi să îl reîncărcaţi?</string>
@@ -328,6 +332,7 @@
   <string name="AddingGroup">Se adaugă grup&#8230;</string>
   <string name="DeletingEntry">Se şterge înregistrarea&#8230;</string>
   <string name="DeletingGroup">Se şterge grupul&#8230;</string>
+  <string name="DeletingItems">Ştergerea elementelor&#8230;</string>
   <string name="SettingPassword">Se setează parola&#8230;</string>
   <string name="UndoingChanges">Se anulează modificările&#8230;</string>
   <string name="TransformingKey">Se transformă cheia principală&#8230;</string>
@@ -385,6 +390,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_content">Selector de fisiere sistem</string>
   <string name="filestorage_setup_title">Iniţializare acces fişier</string>
   <string name="database_location">Locaţie bază de date</string>
   <string name="help_database_location">Puteţi stoca baza de date local pe aparatul dvs. sau în cloud (versiunea non-Offline). Keepass2Android face baza de date disponibilă şi dacă sunteţi offline. Deoarece baza de date este criptată AES 256 bit nimeni nu va putea accesa parolele dvs. Vă recomandăm Dropbox: este accesibil pe toate aparatele dvs. şi oferă chiar copii de siguranţă a versiunilor anterioare ale unui fişier.</string>
@@ -454,9 +460,16 @@
   <string name="CopyFileRequiredForEditing">Pentru a-l edita, trebuie copiat fișierul într-o altă locație.</string>
   <string name="ClickOkToSelectLocation">Apasă pe OK pentru a selecta locația în care se va copia fișierul.</string>
   <string name="CancelReadOnly">Anulați, deschideți read-only.</string>
+  <string name="AddCustomIcon">Adaugă pictogramă din file...</string>
   <string name="CopyingFile">Se copiază fișierul...</string>
   <string name="ChangeLog_title">Jurnal modificări</string>
   <string name="PreviewWarning">Rețineți! Aceasta este o versiune de examinare și poate avea unele defecte! Dacă vă confruntați cu *ceva* neașteptat, vă rog să îmi spuneți (pe Codeplex sau prin email).</string>
+  <string name="Continue">Continuare</string>
+  <string name="NoFilenameWarning">URI introdus nu arata ca un nume de file. Sunteţi sigur că acesta este un file valid?</string>
+  <string name="ChangeLog_0_9_8c">
+Versiunea 0.9.8c\n * Fix pentru SSL vulnerabilitatea din Microsoft Live SDK (folosite la accesarea fişierelor prin intermediul OneDrive) \n * Bug fix: versiune anterioară conţinea două metode de intrare (unul nu functiona) \n  </string>
+  <string name="ChangeLog_0_9_9">
+Versiunea 0.9.9\n * UI complet reproiectat. Multumesc mult lui Stefano Pignataro (http://www.spstudio.at) pentru sprijinul lui! \n * Adaugarea personalizata a iconitelor\n * Suport pentru Multi Window mode pe telefoanele Samsung\n * Crescut implicit numărul de runde de criptare pentru baze de date noi\n * Verificarea cheilor duplicate a câmpurilor suplimentare pentru a evita pierderea de date\n</string>
   <string name="ChangeLog_0_9_7">
 Versiunea 0.9.7\n
 * suport pentru scrierea bazelor de date Keepass 1 (kdb) (beta)!\n
@@ -626,10 +639,6 @@ Versiunea publică iniţială
     <item>Mic</item>
     <item>Mediu</item>
     <item>Mare</item>
-  </string-array>
-  <string-array name="design_options">
-    <item>Holo Light</item>
-    <item>Holo Dark</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="cred_remember_modes">

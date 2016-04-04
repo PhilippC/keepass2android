@@ -35,6 +35,8 @@
   <string name="unknown_uri_scheme">Elnézést, a Keepass2Android nem tudja kezelni a visszaadott URI-t: %1$s. Kérjük, lépjen kapcsolatba a fejlesztővel!</string>
   <string name="Entry_singular">Egy bejegyzés</string>
   <string name="Entry_plural">%1$d bejegyzés</string>
+  <string name="IconSet_title">Ikonkészlet</string>
+  <string name="IconSet_install">Még több...</string>
   <string name="security_prefs">Biztonság</string>
   <string name="display_prefs">Kijelző</string>
   <string name="password_access_prefs">Hozzáférés a jelszavakhoz</string>
@@ -42,6 +44,7 @@
   <string name="FileHandling_prefs">Fájlkezelés</string>
   <string name="keyboard_prefs">Billentyűzet</string>
   <string name="export_prefs">Adatbázis exportálása...</string>
+  <string name="fingerprint_prefs">Feloldás ujjlenyomattal</string>
   <string name="import_db_prefs">Az adatbázis importálása az alkalmazás saját tárterületére</string>
   <string name="import_keyfile_prefs">A kulcsfájl importálása az alkalmazás saját tárterületére</string>
   <string name="keyboardswitch_prefs">Billentyűzetváltás</string>
@@ -71,10 +74,18 @@
   <string name="disclaimer_formal">Ehhez a programhoz SEMMILYEN GARANCIA NEM JÁR. Ez egy szabad szoftver, GNU General Public License v2 vagy későbbi verziójának feltételei mellett terjeszthető, illetve módosítható.</string>
   <string name="ellipsis">…</string>
   <string name="copy_to_clipboard">Másolás vágólapra</string>
+  <string name="fingerprint_hint">Érintés érzékelő</string>
+  <string name="fingerprint_description">Ujjlenyomat megerősítése a folytatáshoz</string>
+  <string name="fingerprint_not_recognized">Az ujjlenyomat nem ismerhető fel. Próbálja újra</string>
+  <string name="fingerprint_success">Ujjlenyomat azonosítva</string>
+  <string name="fingerprint_os_error">Az ujjlenyomattal való feloldáshoz Androdi 6.0 vagy újabb szükséges.</string>
+  <string name="fingerprint_hardware_error">Nincs ujjlenyomat-leolvasó észlelve.</string>
+  <string name="disable_fingerprint_unlock">Ujjlenyomattal való feloldás letiltása</string>
+  <string name="enable_fingerprint_unlock">Ujjlenyomattal való feloldás engedélyezése</string>
   <string name="enter_filename">Adja meg az adatbázis fájlnevét</string>
   <string name="entry_accessed">Utolsó hozzáférés</string>
   <string name="entry_cancel">Mégsem</string>
-  <string name="entry_comment">Megjegyzés</string>
+  <string name="entry_comment">Megjegyzések</string>
   <string name="entry_tags">Címkék</string>
   <string name="entry_override_url">URL felülírása</string>
   <string name="entry_confpassword">Jelszó megerősítése</string>
@@ -112,7 +123,7 @@
   <string name="file_browser">Fájlkezelő</string>
   <string name="generate_password">Jelszógenerálás</string>
   <string name="group">Csoport</string>
-  <string name="hint_comment">megjegyzés</string>
+  <string name="hint_comment">megjegyzések</string>
   <string name="hint_conf_pass">jelszó megerősítése</string>
   <string name="hint_generated_password">generált jelszó</string>
   <string name="hint_group_name">Csoportnév</string>
@@ -147,6 +158,7 @@
   <string name="menu_app_settings">Beállítások</string>
   <string name="menu_db_settings">Adatbázis-beállítások</string>
   <string name="menu_delete">Törlés</string>
+  <string name="menu_copy">Másolat létrehozása</string>
   <string name="menu_move">Áthelyezése egy másik csoportba</string>
   <string name="menu_move_light">Áthelyezés</string>
   <string name="menu_navigate">A bejegyzést tartalmazó csoport megnyitása</string>
@@ -161,6 +173,7 @@
   <string name="menu_search_advanced">Részletes keresés</string>
   <string name="menu_url">Ugrás az URL-re</string>
   <string name="menu_change_db">Adatbázis-váltás…</string>
+  <string name="menu_show_all">Minden mező megjelenítése</string>
   <string name="minus">Mínusz</string>
   <string name="never">Soha</string>
   <string name="yes">Igen</string>
@@ -300,8 +313,7 @@
   <string name="ShowCopyToClipboardNotification_summary">A felhasználónév és jelszó elérhetővé tétele az értesítési sávon és a vágólapon keresztül.  Ne feledkezzen meg a jelszógyűjtés veszélyéről!</string>
   <string name="ShowSeparateNotifications_title">Részletes értesítések</string>
   <string name="ShowSeparateNotifications_summary">Külön értesítés jelenjen meg a felhasználónév és a jelszó vágólapra másolásáról és a billentyűzet aktiválásáról.</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A billentyűzet</string>
-  <string name="ShowKp2aKeyboardNotification_summary">A teljes bejegyzés elérhetővé tétele a KP2A billentyűzet segítségével (ajánlott).</string>
+  <string name="ShowKp2aKeyboardNotification_title">Billentyűzet/automatikus kitöltés értesítés</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Billentyűzetváltás</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Nyissa meg a bevitelimód-váltás párbeszédablakot, ha egy böngészőből indított keresés után a KP2A billentyűzet számára elérhető egy bejegyzés.</string>
   <string name="kp2a_switch_rooted">Automatikus billentyűváltás (root jogosultsággal)</string>
@@ -323,6 +335,8 @@
   <string name="AskDeletePermanentlyEntry">Nyomja meg az Igen gombot a bejegyzés végleges törléséhez, vagy a Nem gombot Lomtárba helyezéséhez.</string>
   <string name="AskDeletePermanentlyGroup">Nyomja meg az Igen gombot a csoport végleges törléséhez, vagy a Nem gombot Lomtárba helyezéséhez.</string>
   <string name="AskDeletePermanentlyItems">Véglegesen törölni kívánja a kiválasztott elemet? Válassza a \"Nem\" opciót a lomtárba helyezéshez.</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Szeretné véglegesen törölni ezt a csoportot?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Szeretné véglegesen törölni a kiválasztott elemeket?</string>
   <string name="AskDeletePermanently_title">Végleges törlés?</string>
   <string name="AskReloadFile_title">Fájl újraolvasása?</string>
   <string name="AskReloadFile">A megnyitott fájlt egy másik program módosította. Szeretné újraolvasni?</string>
@@ -347,6 +361,8 @@
   <string name="SynchronizingDatabase">Módosítások egyesítése...</string>
   <string name="YesSynchronize">Igen, egyesítse!</string>
   <string name="NoOverwrite">Nem, írja felül!</string>
+  <string name="UseOfflineMode">Offline munka</string>
+  <string name="UseOnlineMode">Online munka</string>
   <string name="SynchronizingCachedDatabase">Az adatbázis helyi másolatának szinkronizálása&#8230;</string>
   <string name="DownloadingRemoteFile">Távoli fájl letöltése&#8230;</string>
   <string name="UploadingFile">Fájl feltöltése&#8230;</string>
@@ -465,11 +481,37 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="CopyFileRequiredForEditing">Módosításhoz egy más helyre kell másolnia.</string>
   <string name="ClickOkToSelectLocation">Kattintson az OK gombra a másolási hely kiválasztásához.</string>
   <string name="CancelReadOnly">Megszakítás, megnyitás csak olvasásra.</string>
+  <string name="FileReadOnlyTitle">Az adatbázis csak olvasható</string>
+  <string name="FileReadOnlyMessagePre">A Keepass2Android a jelenlegi adatbázist csak olvasható módban nyitotta meg.</string>
   <string name="AddCustomIcon">Ikon hozzáadása fájlból...</string>
   <string name="CopyingFile">Fájl másolása...</string>
+  <string name="DuplicateTitle">Másolás</string>
+  <string name="DefaultTemplate">Szabványos belépés</string>
+  <string name="TemplateGroupName">Sablonok</string>
+  <string name="TemplateTitle_IdCard">Személyigazolvány</string>
+  <string name="TemplateField_IdCard_Name">Név</string>
+  <string name="TemplateTitle_EMail">E-mail</string>
+  <string name="TemplateField_EMail_EMail">E-mail cím</string>
+  <string name="TemplateTitle_WLan">Vezetéknélküli LAN</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Telefonszám</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Kártya tulajdonosa</string>
+  <string name="TemplateTitle_CreditCard">Hitelkártya</string>
+  <string name="TemplateTitle_Membership">Tagság</string>
   <string name="ChangeLog_title">Verziótörténet</string>
+  <string name="AskAddTemplatesTitle">Sablonok hozzáadása?</string>
+  <string name="AddTemplates_pref">Sablonok hozzáadása az adatbázishoz</string>
   <string name="Continue">Folytatás</string>
   <string name="NoFilenameWarning">A megadott URI nem tűnik fájlnévnek. Biztos benne, hogy jó URI-t adott meg?</string>
+  <string name="ErrorReportTitle">Keepass2Android: Hiba történt.</string>
+  <string name="ErrorReportEnable">Engedélyezés</string>
+  <string name="ErrorReportDisable">Letiltás</string>
+  <string name="ErrorReportPrefTitle">Hibajelentések küldése</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Beépített billentyűzet használata</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Automatikus kitöltés szolgáltatás használata</string>
+  <string name="ActivateAutoFillService_toast">Kérjük, engedélyezze a Keepass2Android szolgáltatást.</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>
     <item>1 perc</item>
@@ -491,8 +533,8 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
     <item>Nagy</item>
   </string-array>
   <string-array name="design_options">
-    <item>Világos Holo</item>
-    <item>Sötét Holo</item>
+    <item>Világos</item>
+    <item>Sötét</item>
   </string-array>
   <string name="design_title">Megjelenés</string>
   <string-array name="cred_remember_modes">

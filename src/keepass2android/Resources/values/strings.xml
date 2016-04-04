@@ -660,7 +660,7 @@
   </string>
 
   <string name="ChangeLog_1_0_0">
-    Version 1.0.0 - preview 7\n
+    Version 1.0.0\n
     * Fingerprint Unlock (requires Android 6.0+ or a Samsung device)\n
     * Added Auto-Fill service (requires Android 5.0+)\n
     * Added support for entry templates\n

@@ -10,6 +10,7 @@
   <string name="accept">接受</string>
   <string name="deny">拒絕</string>
   <string name="add_entry">添加項目</string>
+  <string name="edit_entry">編輯項目</string>
   <string name="add_url_entry">為 URL 創建條目</string>
   <string name="add_group">添加組</string>
   <string name="add_group_title">添加群</string>
@@ -32,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">顯示群組現在是: %1$s</string>
   <string name="ShowGroupInEntry_title">在項目視圖中顯示群組名稱</string>
   <string name="unknown_uri_scheme">抱歉! Keepass2Android 不能處理返回的 URI %1$s。請聯繫開發人員!</string>
+  <string name="Entry_singular">一個項目</string>
+  <string name="Entry_plural">%1$d 項目</string>
   <string name="security_prefs">安全性</string>
   <string name="display_prefs">顯示</string>
   <string name="password_access_prefs">密碼輸入訪問</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">資料庫檔案被覆制到內部的資料夾。按確定，從新位置打開。注意: 不要忘記定期將資料庫匯出到一個安全的存儲裝置!</string>
   <string name="KeyfileMoved">金鑰檔被覆制到內部的資料夾。從當前位置刪除之前請確保您有一個安全的備份!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">當忘記金鑰檔位置時不能使用內部資料夾。更改安全選項。</string>
+  <string name="unlock_database_button">解鎖</string>
+  <string name="unlock_database_title">解鎖資料庫</string>
   <string name="brackets">括弧</string>
   <string name="cancel">取消</string>
   <string name="ClearClipboard">剪貼板已清除。</string>
@@ -69,7 +74,6 @@
   <string name="enter_filename">輸入資料庫名：</string>
   <string name="entry_accessed">訪問時間：</string>
   <string name="entry_cancel">取消</string>
-  <string name="entry_comment">備註：</string>
   <string name="entry_tags">標籤</string>
   <string name="entry_override_url">URL 覆蓋</string>
   <string name="entry_confpassword">確認密碼：</string>
@@ -107,7 +111,6 @@
   <string name="file_browser">檔流覽</string>
   <string name="generate_password">生成密碼</string>
   <string name="group">群組</string>
-  <string name="hint_comment">備註</string>
   <string name="hint_conf_pass">確認密碼</string>
   <string name="hint_generated_password">生成密碼</string>
   <string name="hint_group_name">群組名</string>
@@ -150,6 +153,7 @@
   <string name="menu_hide_password">隱藏密碼</string>
   <string name="menu_lock">鎖定資料庫</string>
   <string name="menu_open">開啟</string>
+  <string name="menu_close">關閉</string>
   <string name="menu_rename">重新命名</string>
   <string name="menu_search">搜索</string>
   <string name="menu_search_advanced">進階搜尋</string>
@@ -259,6 +263,7 @@
   <string name="AddUrlToEntryDialog_text">你想將搜索文字存儲在\"%1$s\"在所選的項目以便下一次自動完成嗎?</string>
   <string name="error_invalid_expiry_date">到期日期為不正確日期時間格式!</string>
   <string name="error_string_key">每個字串需要一個欄位名稱。</string>
+  <string name="error_string_duplicate_key">欄位名稱不能使用兩次 (%1$s)。</string>
   <string name="field_name">欄位名稱</string>
   <string name="field_value">欄位值</string>
   <string name="protection">受保護的欄位</string>
@@ -293,8 +298,6 @@
   <string name="ShowCopyToClipboardNotification_summary">使用者名稱和密碼可以藉由通知列和剪貼簿取得。謹防密碼竊取器！</string>
   <string name="ShowSeparateNotifications_title">分開的通知</string>
   <string name="ShowSeparateNotifications_summary">顯示分開的通知以便用於將使用者名和密碼複製到剪貼簿並啟動鍵盤。</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A 鍵盤通知</string>
-  <string name="ShowKp2aKeyboardNotification_summary">藉 KP2A 鍵盤 (推薦) 使整個項目可取得。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切換鍵盤</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">從瀏覽器搜索後，當項目可透過KP2A 鍵盤取得時打開鍵盤選擇對話方塊 。</string>
   <string name="kp2a_switch_rooted">在取得最高權限的設備自動切換</string>
@@ -315,6 +318,7 @@
   <string name="RecycleBin">資源回收筒</string>
   <string name="AskDeletePermanentlyEntry">你想要永久刪除此項目嗎？按否以丟到回收桶。</string>
   <string name="AskDeletePermanentlyGroup">你想要永久刪除此群組嗎？按否以丟到回收桶。</string>
+  <string name="AskDeletePermanentlyItems">你想要永久刪除選項? 按否回收。</string>
   <string name="AskDeletePermanently_title">永久刪除嗎?</string>
   <string name="AskReloadFile_title">重新載入檔案？</string>
   <string name="AskReloadFile">當前打開的檔案已被另一個程式更改。你想要重新載入它嗎?</string>
@@ -327,6 +331,7 @@
   <string name="AddingGroup">正在添加群組...</string>
   <string name="DeletingEntry">項目刪除中...</string>
   <string name="DeletingGroup">刪除群組組中...</string>
+  <string name="DeletingItems">刪除選項...</string>
   <string name="SettingPassword">設置密碼中...</string>
   <string name="UndoingChanges">撤銷更改中...</string>
   <string name="TransformingKey">轉換主金鑰中...</string>
@@ -454,11 +459,13 @@
   <string name="CopyFileRequiredForEditing">若要編輯它，必須將該檔案複製到另一個位置。</string>
   <string name="ClickOkToSelectLocation">按一下確定，選擇要複製檔的位置。</string>
   <string name="CancelReadOnly">取消，打開唯讀模式。</string>
+  <string name="AddCustomIcon">從檔案添加圖示...</string>
   <string name="CopyingFile">複製檔案中...</string>
   <string name="ChangeLog_title">更改日誌</string>
   <string name="PreviewWarning">請注意! 這是一個預覽版本，可能會附帶一些缺陷! 如果您遇到 *任何* 意外，請讓我知道 (在 Codeplex 上或通過電子郵件)。</string>
   <string name="Continue">繼續</string>
   <string name="NoFilenameWarning">您輸入的 URI 不像一個檔案名。你確定這是一個有效的檔?</string>
+  <string name="ChangeLog_keptDonate">捐出一瓶啤酒或別的東西以擴展K2A的可能性</string>
   <string-array name="clipboard_timeout_options">
     <item>30秒</item>
     <item>1分鐘</item>
@@ -478,10 +485,6 @@
     <item>小</item>
     <item>中</item>
     <item>大</item>
-  </string-array>
-  <string-array name="design_options">
-    <item>Holo Light</item>
-    <item>Holo Dark</item>
   </string-array>
   <string name="design_title">設計</string>
   <string-array name="cred_remember_modes">

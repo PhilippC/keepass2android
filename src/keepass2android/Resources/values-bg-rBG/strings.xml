@@ -32,6 +32,8 @@
   <string name="NavigationToGroupCompleted_message">Групата за показване е: %1$s</string>
   <string name="ShowGroupInEntry_title">Покажи името на групата във вид на запис</string>
   <string name="unknown_uri_scheme">Съжалявам! Keepass2Android не може да обработи върнатите URI %1$s. Свържете се с разработчика!</string>
+  <string name="IconSet_title">Набор икони</string>
+  <string name="IconSet_install">Търси още... </string>
   <string name="security_prefs">Сигурност</string>
   <string name="display_prefs">Покажи</string>
   <string name="password_access_prefs">Достъп до въведените пароло</string>
@@ -39,6 +41,7 @@
   <string name="FileHandling_prefs">Работа с файлове</string>
   <string name="keyboard_prefs">Клавиатура</string>
   <string name="export_prefs">Експортиране на база данни...</string>
+  <string name="fingerprint_prefs">Отключване с отпечатък</string>
   <string name="import_db_prefs">Импортиране на БД във вътрешна папка</string>
   <string name="import_keyfile_prefs">Импортирай ключ от вътрешна папка</string>
   <string name="keyboardswitch_prefs">Превключване на клавиатурата</string>
@@ -47,6 +50,8 @@
   <string name="DatabaseFileMoved">База данни файлът е копиран във вътрешна папка. Натиснете Ok, за да отворите ново местоположение. Забележка: Не забравяйте редовно да експортирате базата данни на безопасно място</string>
   <string name="KeyfileMoved">Keyfile е копиран във вътрешна папка. Уверете се, че имате бекъп преди да го изтриете от текущото му място!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Не можете да използвате вътрешна папка ако key файла не е запомнен. Променете настройките на сигурността.</string>
+  <string name="unlock_database_button">Отключване</string>
+  <string name="unlock_database_title">Отключи базата данни</string>
   <string name="brackets">Скоби</string>
   <string name="cancel">Прекъсни</string>
   <string name="ClearClipboard">Клиброда е изчистен.</string>
@@ -66,10 +71,17 @@
   <string name="disclaimer_formal">Keepass2Android е с АБСОЛЮТНО НИКАКВИ ГАРАНЦИИ. Това е свободен софтуер и вие сте свободни да го разпространявате при условията на GPL врсия 2 и по-късни.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Копиране в клипборда</string>
+  <string name="fingerprint_description">Потвърди отпечатъка за продължение</string>
+  <string name="fingerprint_fatal">Не може да настрои отключването с отпечатък:</string>
+  <string name="fingerprint_not_recognized">Не разпознат.  Опитайте пак</string>
+  <string name="fingerprint_success">Разпознат</string>
+  <string name="fingerprint_os_error">Отпечатъка изисква Android 6.0 или по нов. </string>
+  <string name="fingerprint_hardware_error">Нямате устройство за отпечатък. </string>
+  <string name="disable_fingerprint_unlock">Изключи  отключването с отпечатък</string>
+  <string name="fingerprint_unlock_hint">Докоснете сензора за отключване на базата данни</string>
   <string name="enter_filename">Въведете име на файла на базаданни</string>
   <string name="entry_accessed">Достъп до</string>
   <string name="entry_cancel">Отказ</string>
-  <string name="entry_comment">Коментари</string>
   <string name="entry_tags">Тагове</string>
   <string name="entry_override_url">Замени URL</string>
   <string name="entry_confpassword">Потвърди паролата</string>
@@ -107,7 +119,6 @@
   <string name="file_browser">Файл браузър</string>
   <string name="generate_password">Генериране на парола</string>
   <string name="group">Група</string>
-  <string name="hint_comment">коментар</string>
   <string name="hint_conf_pass">Потвърди паролата</string>
   <string name="hint_generated_password">генерира парола</string>
   <string name="hint_group_name">Име на група</string>
@@ -292,8 +303,6 @@
   <string name="ShowCopyToClipboardNotification_summary">Направи достъпни чрез лентата за уведомление и клипборда потребителското име и парола. Пазете се прехващачи на пароли!</string>
   <string name="ShowSeparateNotifications_title">Отделни уведомления</string>
   <string name="ShowSeparateNotifications_summary">Показвай отделни съобщения за копиране на потребителско име и парола към clipboard и активиране от клавиатурата.</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A клавиатура уведомяване</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Направете пълния запис достъпен чрез KP2A клавиатурата (препоръчва се).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Превключване на клавиатурата</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Отвори диалог за избор на клавиатура когато стойност е налична през KP2A клавиатура след търсене от браузъра.</string>
   <string name="kp2a_switch_rooted">Автоматично превключване при рутнати устройства</string>

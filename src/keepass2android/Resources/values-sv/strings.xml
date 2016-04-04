@@ -22,8 +22,13 @@
   <string name="application">Program</string>
   <string name="application_settings">Applikationsinställningar</string>
   <string name="security_prefs">Säkerhet</string>
+  <string name="display_prefs">Bildskärm</string>
   <string name="QuickUnlock_prefs">Snabbupplåsning</string>
   <string name="FileHandling_prefs">Filhantering</string>
+  <string name="keyboard_prefs">Tangentbord</string>
+  <string name="keyboardswitch_prefs">Tangentbordetsväxling</string>
+  <string name="unlock_database_button">Lås upp</string>
+  <string name="unlock_database_title">Lås upp databas</string>
   <string name="brackets">Parenteser</string>
   <string name="cancel">Avbryt</string>
   <string name="ClearClipboard">Urklippshanteraren rensad.</string>
@@ -31,6 +36,7 @@
   <string name="clipboard_timeout_summary">Tiden innan användarnamn och lösenord rensas från urklipp</string>
   <string name="copy_username">Kopiera användarnamnet till urklipp</string>
   <string name="copy_password">Kopiera lösenordet till urklipp</string>
+  <string name="entry_is_available">är tillgänglig</string>
   <string name="please_activate_keyboard">Var vänlig aktivera tangentbordet Keepass2Android i systeminställningarna.</string>
   <string name="creating_db_key">Skapar databasnyckel...</string>
   <string name="current_group">Aktuell grupp</string>
@@ -42,12 +48,13 @@
   <string name="enter_filename">Ange databasnamn</string>
   <string name="entry_accessed">Senast använd</string>
   <string name="entry_cancel">Avbryt</string>
-  <string name="entry_comment">Kommentarer</string>
   <string name="entry_tags">Taggar</string>
   <string name="entry_confpassword">Bekräfta lösenord</string>
   <string name="entry_created">Skapad</string>
   <string name="entry_expires">Upphör</string>
+  <string name="entry_group_name">Gruppnamn</string>
   <string name="entry_keyfile">Nyckelfil (valfritt)</string>
+  <string name="keyfile_heading">Nyckelfil</string>
   <string name="entry_modified">Ändrad</string>
   <string name="entry_password">Lösenord</string>
   <string name="entry_save">Spara</string>
@@ -69,9 +76,9 @@
   <string name="error_rounds_not_number">Antalet rundor måste vara en siffra.</string>
   <string name="error_title_required">Titel krävs.</string>
   <string name="FileNotFound">Hittar inte filen.</string>
+  <string name="file_browser">Filbläddrare</string>
   <string name="generate_password">Generera lösenord</string>
   <string name="group">Grupp</string>
-  <string name="hint_comment">kommentar</string>
   <string name="hint_conf_pass">Bekräfta lösenord</string>
   <string name="hint_generated_password">lösenordet skapat</string>
   <string name="hint_group_name">Gruppnamn</string>
@@ -101,11 +108,13 @@
   <string name="menu_app_settings">Inställningar</string>
   <string name="menu_db_settings">Databasinställningar</string>
   <string name="menu_delete">Radera</string>
+  <string name="menu_move_light">Flytta</string>
   <string name="menu_donate">Donera en öl...</string>
   <string name="menu_edit">Ändra</string>
   <string name="menu_hide_password">Dölj lösenord</string>
   <string name="menu_lock">Lås databasen</string>
   <string name="menu_open">Öppna</string>
+  <string name="menu_close">Stäng</string>
   <string name="menu_rename">Byt namn</string>
   <string name="menu_search">Sök</string>
   <string name="menu_search_advanced">Avancerad sökning</string>
@@ -116,6 +125,7 @@
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
   <string name="no_results">Inga sökresultat</string>
+  <string name="create_database">Skapa databas</string>
   <string name="progress_title">Arbetar...</string>
   <string name="remember_keyfile_summary">Kom ihåg platsen för nyckelfilen</string>
   <string name="remember_keyfile_title">Spara nyckelfil</string>
@@ -125,12 +135,14 @@
   <string name="rounds_hint">rundor</string>
   <string name="database_name">Databasnamn</string>
   <string name="saving_database">Sparar databasen...</string>
+  <string name="exporting_database">Exporterar databas&#8230;</string>
   <string name="space">Utrymme</string>
   <string name="search_label">Sök</string>
   <string name="show_password">Visa lösenord</string>
   <string name="sort_name">Sortera efter namn</string>
   <string name="sort_db">Sortera efter datum</string>
   <string name="special">Special</string>
+  <string name="search_hint">Hitta vad</string>
   <string name="search_results">Sökresultat</string>
   <string name="search_in">Sök i</string>
   <string name="select_other_entry">Välj en annan post</string>
@@ -141,8 +153,10 @@
   <string name="warning_unmounted">Ditt sd-kort är för närvarande inte monterad på din enhet. Du kommer inte att kunna läsa in eller skapa databasen.</string>
   <string name="version_label">Version</string>
   <string name="version_history">Versionshistorik</string>
+  <string name="please_note">Observera</string>
   <string name="RememberRecentFiles_title">Kom ihåg databaser</string>
   <string name="search_options">Alternativ</string>
+  <string name="caseSensitive">Skiftlägeskänslig</string>
   <string name="start_open_file">Öppna fil...</string>
   <string name="start_create">Skapa ny databas...</string>
   <string name="start_open_url">Öppna URL...</string>
@@ -156,16 +170,46 @@
   <string name="SaveAttachmentDialog_save">Spara till SD-kort</string>
   <string name="field_name">Fältnamn</string>
   <string name="field_value">Värdet i fältet</string>
+  <string name="protection">Skyddat fält</string>
+  <string name="UseFileTransactions_title">Filtransaktioner</string>
+  <string name="AcceptAllServerCertificates_title">SSL-certifikat</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Växla tangentbord</string>
   <string name="AskOverwriteBinary_yes">Skriv över</string>
   <string name="AskOverwriteBinary_no">Ändra namn</string>
   <string name="RecycleBin">Papperskorgen</string>
   <string name="AskDeletePermanently_title">Ta bort permanent?</string>
+  <string name="rate_app">Betygsätt denna app</string>
   <string name="translate_app">Översätt KP2A</string>
+  <string name="AddingGroup">Lägger till grupp&#8230;</string>
+  <string name="DeletingGroup">Tar bort grupp&#8230;</string>
+  <string name="UndoingChanges">Ångrar ändringar&#8230;</string>
   <string name="YesSynchronize">Ja, slå samman</string>
   <string name="NoOverwrite">Nej, skriv över</string>
+  <string name="UploadingFile">Laddar upp fil&#8230;</string>
   <string name="FilesInSync">Filerna är synkroniserade.</string>
+  <string name="database_file">databasfil</string>
+  <string name="synchronize_database_menu">Synkronisera databas&#8230;</string>
+  <string name="ok_donate">Berätta mer!</string>
+  <string name="hint_sftp_port">port</string>
+  <string name="filestoragename_file">Lokal fil</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="database_location">Databasplacering</string>
+  <string name="button_change_location">Ändra plats</string>
+  <string name="master_password">Huvudlösenord</string>
   <string name="key_file">Nyckelfil</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="loading">Laddar&#8230;</string>
+  <string name="plugins">Plugins</string>
+  <string name="plugin_packagename">Paketnamn:</string>
+  <string name="plugin_enabled">aktiverad</string>
+  <string name="plugin_disabled">inaktiverad</string>
+  <string name="plugin_enabled_checkbox">Aktiverad</string>
+  <string name="CopyingFile">Kopierar fil...</string>
   <string name="ChangeLog_title">Ändringslogg</string>
+  <string name="Continue">Fortsätt</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
     <item>1 minut</item>
@@ -181,9 +225,18 @@
     <item>Medium</item>
     <item>Stor</item>
   </string-array>
+  <string name="design_title">Design</string>
   <string-array name="cred_remember_modes">
     <item>Do not remember username and password</item>
     <item>Kom endast ihåg användarnamnet</item>
     <item>Kom ihåg användarnamn och lösenord</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Password only</item>
+    <item>Password + Key file</item>
+    <item>Lösenord + OTP</item>
+    <item>Password + OTP secret (recovery mode)</item>
+    <item>Password + Challenge-Response</item>
+    <item>Password + Challenge-Response secret (recovery mode)</item>
   </string-array>
 </resources>
