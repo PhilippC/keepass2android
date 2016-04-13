@@ -101,7 +101,7 @@ namespace keepass2android
 			}
 			catch (DuplicateUuidsException e)
 			{
-				Kp2aLog.LogUnexpectedError(e);
+				Kp2aLog.Log(e.ToString());
 				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + e.Message + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), Exception);
 				return;
 			}

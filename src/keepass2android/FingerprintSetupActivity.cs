@@ -123,25 +123,32 @@ namespace keepass2android
 				RequestPermissions(new[] {Manifest.Permission.UseFingerprint}, FingerprintPermissionRequestCode);
 			else
 			{
-				try
-				{
-					//try to create a Samsung ID object 
-					_samsungFingerprint = new FingerprintSamsungIdentifier(this);
-					if (!_samsungFingerprint.Init())
-					{
-						SetError(Resource.String.fingerprint_no_enrolled);
-					}
-					ShowRadioButtons();
-				}
-				catch (Exception)
-				{
-					_samsungFingerprint = null;
-				}
+				TrySetupSamsung();
 				
 			}
 			FindViewById(Resource.Id.container_fingerprint_unlock).Visibility = _samsungFingerprint == null
 				? ViewStates.Visible
 				: ViewStates.Gone;
+		}
+
+		private bool TrySetupSamsung()
+		{
+			try
+			{
+				//try to create a Samsung ID object 
+				_samsungFingerprint = new FingerprintSamsungIdentifier(this);
+				if (!_samsungFingerprint.Init())
+				{
+					SetError(Resource.String.fingerprint_no_enrolled);
+				}
+				ShowRadioButtons();
+				return true;
+			}
+			catch (Exception)
+			{
+				_samsungFingerprint = null;
+				return false;
+			}
 		}
 
 		string CurrentPreferenceKey
@@ -194,7 +201,9 @@ namespace keepass2android
 				FingerprintModule fpModule = new FingerprintModule(this);
 				if (!fpModule.FingerprintManager.IsHardwareDetected)
 				{
-					SetError(Resource.String.fingerprint_hardware_error);
+					//seems like not all Samsung Devices (e.g. Note 4) don't support the Android 6 fingerprint API
+					if (!TrySetupSamsung())
+						SetError(Resource.String.fingerprint_hardware_error);
 					return;
 				}
 				if (!fpModule.FingerprintManager.HasEnrolledFingerprints)

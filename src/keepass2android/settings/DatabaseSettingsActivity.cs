@@ -760,11 +760,12 @@ namespace keepass2android
 
         private IOConnectionInfo ImportFileToInternalDirectory(IOConnectionInfo sourceIoc)
         {
+	        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(Activity);
             string targetPath = UrlUtil.GetFileName(sourceIoc.Path);
             targetPath = targetPath.Trim("|\\?*<\":>+[]/'".ToCharArray());
             if (targetPath == "")
                 targetPath = "imported";
-            if (new File(Activity.NoBackupFilesDir, targetPath).Exists())
+			if (new File(internalDirectory, targetPath).Exists())
             {
                 int c = 1;
                 var ext = UrlUtil.GetExtension(targetPath);
@@ -775,9 +776,9 @@ namespace keepass2android
                     targetPath = filenameWithoutExt + c;
                     if (!String.IsNullOrEmpty(ext))
                         targetPath += "." + ext;
-				} while (new File(Activity.NoBackupFilesDir, targetPath).Exists());
+				} while (new File(internalDirectory, targetPath).Exists());
             }
-			var targetIoc = IOConnectionInfo.FromPath(new File(Activity.NoBackupFilesDir, targetPath).CanonicalPath);
+			var targetIoc = IOConnectionInfo.FromPath(new File(internalDirectory, targetPath).CanonicalPath);
 
             IoUtil.Copy(targetIoc, sourceIoc, App.Kp2a);
             return targetIoc;

@@ -253,7 +253,7 @@ namespace keepass2android.Io
 			if (ioc.IsLocalFile())
 			{
 				bool requiresPermission = !(ioc.Path.StartsWith(activity.Activity.FilesDir.CanonicalPath)
-												|| ioc.Path.StartsWith(activity.Activity.NoBackupFilesDir.CanonicalPath));
+												|| ioc.Path.StartsWith(IoUtil.GetInternalDirectory(activity.Activity).CanonicalPath));
 				
 				var extDirectory = activity.Activity.GetExternalFilesDir(null);
 				if ((extDirectory != null) && (ioc.Path.StartsWith(extDirectory.CanonicalPath)))

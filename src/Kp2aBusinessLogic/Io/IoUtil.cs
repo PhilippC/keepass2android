@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Android.Content;
+using Android.OS;
 using Java.IO;
 using KeePassLib.Serialization;
 
@@ -53,7 +54,7 @@ namespace keepass2android.Io
 			try
 			{
 				File filesDir = context.FilesDir.CanonicalFile;
-				File noBackupDir = context.NoBackupFilesDir.CanonicalFile;
+				File noBackupDir = GetInternalDirectory(context).CanonicalFile;
 				File ourFile = new File(path).CanonicalFile;
 				//http://www.java2s.com/Tutorial/Java/0180__File/Checkswhetherthechilddirectoryisasubdirectoryofthebasedirectory.htm
 
@@ -92,6 +93,14 @@ namespace keepass2android.Io
 				}
 				writeTransaction.CommitWrite();
 			}
+		}
+
+		public static Java.IO.File GetInternalDirectory(Context ctx)
+		{
+			if ((int)Android.OS.Build.VERSION.SdkInt >= 21)
+				return ctx.NoBackupFilesDir;
+			else
+				return ctx.FilesDir;
 		}
 	}
 }
