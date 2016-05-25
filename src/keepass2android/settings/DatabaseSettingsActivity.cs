@@ -337,6 +337,7 @@ namespace keepass2android
             FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
             FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
             PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
+			PrepareNoDonationReminderPreference(Activity, ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))), FindPreference(GetString(Resource.String.NoDonationReminder_key)));
 
 	        FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) => Activity.Recreate();
             
@@ -423,6 +424,18 @@ namespace keepass2android
             
 			
         }
+
+		private void PrepareNoDonationReminderPreference(Activity ctx, PreferenceScreen screen, Preference preference)
+	    {
+			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+
+			if (!prefs.GetBoolean("DismissedDonateReminder", false))
+			{
+				screen.RemovePreference(preference);
+			}
+				
+
+	    }
 
 	    private void SetupErrorReportModePref(ListPreference errorReportModePref)
 	    {

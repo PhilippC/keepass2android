@@ -233,6 +233,14 @@
 					 android:defaultValue="false"
 					 android:title="@string/NoDonateOption_title"
 					 android:key="@string/NoDonateOption_key" />
+
+      <CheckBoxPreference
+				android:enabled="true"
+					 android:persistent="true"
+					 android:summary="@string/NoDonationReminder_summary"
+					 android:defaultValue="false"
+					 android:title="@string/NoDonationReminder_title"
+					 android:key="@string/NoDonationReminder_key" />
 		</PreferenceScreen>
 
 		<PreferenceScreen

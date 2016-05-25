@@ -148,6 +148,13 @@ namespace keepass2android
 
 		}
 
+		protected override void OnStart()
+		{
+			base.OnStart();
+			DonateReminder.ShowDonateReminderIfAppropriate(this);
+			
+		}
+
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		{
 			if (requestCode == FingerprintPermissionRequestCode && grantResults[0] == Permission.Granted)

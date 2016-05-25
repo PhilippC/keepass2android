@@ -107,6 +107,7 @@
 	<string name="LockWhenNavigateBack_key">kp2a_switch_rootedLockWhenNavigateBack</string>
 
 	<string name="NoDonateOption_key">NoDonateOption</string>
+  <string name="NoDonationReminder_key">NoDonationReminder</string>
 
 	<string name="UseOfflineCache_key">UseOfflineCache</string>
 	<string name="AcceptAllServerCertificates_key">AcceptAllServerCertificates</string>

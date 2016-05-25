@@ -1575,14 +1575,8 @@ namespace keepass2android
 			base.OnStart();
 			_starting = true;
 
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-
-			long usageCount = prefs.GetLong(GetString(Resource.String.UsageCount_key), 0);
-
-			if (usageCount > 5)
-			{
-				DonateReminder.ShowDonateReminderIfAppropriate(this);
-			}
+			DonateReminder.ShowDonateReminderIfAppropriate(this);
+			
 			
 		}
 
