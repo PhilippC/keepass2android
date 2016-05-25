@@ -214,10 +214,11 @@ namespace keepass2android
 				if (_fingerprintPermissionGranted)
 				{
 					FingerprintModule fpModule = new FingerprintModule(this);
-					_fingerprintIdentifier = new FingerprintDecryption(fpModule, App.Kp2a.GetDb().CurrentFingerprintPrefKey, this,
-						App.Kp2a.GetDb().CurrentFingerprintPrefKey);
+					if (fpModule.FingerprintManager.IsHardwareDetected) //see FingerprintSetupActivity
+						_fingerprintIdentifier = new FingerprintDecryption(fpModule, App.Kp2a.GetDb().CurrentFingerprintPrefKey, this,
+							App.Kp2a.GetDb().CurrentFingerprintPrefKey);
 				}
-				else
+				if (_fingerprintIdentifier == null)
 				{
 					try
 					{
