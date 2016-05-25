@@ -1127,33 +1127,39 @@ namespace keepass2android
 			//started from "view" intent (e.g. from file browser)
 			_ioConnection.Path = i.DataString;
 
-			if (! _ioConnection.Path.Substring(0, 7).Equals("file://"))
+			if (_ioConnection.Path.StartsWith("file://"))
 			{
-				//TODO: this might no longer be required as we can handle http(s) and ftp as well (but we need server credentials therefore)
-				Toast.MakeText(this, Resource.String.error_can_not_handle_uri, ToastLength.Long).Show();
-				Finish();
-				return false;
+				_ioConnection.Path = URLDecoder.Decode(_ioConnection.Path.Substring(7));
+
+				if (_ioConnection.Path.Length == 0)
+				{
+					// No file name
+					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
+					Finish();
+					return false;
+				}
+
+				File dbFile = new File(_ioConnection.Path);
+				if (!dbFile.Exists())
+				{
+					// File does not exist
+					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
+					Finish();
+					return false;
+				}
+			}
+			else
+			{
+				if (!_ioConnection.Path.StartsWith("content://"))
+				{
+			
+					Toast.MakeText(this, Resource.String.error_can_not_handle_uri, ToastLength.Long).Show();
+					Finish();
+					return false;
+				}
 			}
 
-			_ioConnection.Path = URLDecoder.Decode(_ioConnection.Path.Substring(7));
-
-			if (_ioConnection.Path.Length == 0)
-			{
-				// No file name
-				Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
-				Finish();
-				return false;
-			}
-
-			File dbFile = new File(_ioConnection.Path);
-			if (! dbFile.Exists())
-			{
-				// File does not exist
-				Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
-				Finish();
-				return false;
-			}
-
+			
 			_keyFileOrProvider = GetKeyFile(_ioConnection.Path);
 			return true;
 		}
