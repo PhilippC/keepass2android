@@ -41,7 +41,7 @@
   <string name="security_prefs">Безопасность</string>
   <string name="display_prefs">Отображение</string>
   <string name="password_access_prefs">Парольный доступ</string>
-  <string name="QuickUnlock_prefs">БыстраяРазблокировка</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Обработка файлов</string>
   <string name="keyboard_prefs">Клавиатура</string>
   <string name="export_prefs">Экспорт БД...</string>

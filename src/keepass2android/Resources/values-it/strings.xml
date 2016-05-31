@@ -80,16 +80,16 @@
   <string name="fingerprint_fatal">Non posso impostare lo sblocco con Impronta:</string>
   <string name="fingerprint_not_recognized">Impronta digitale non riconosciuta. Riprova</string>
   <string name="fingerprint_success">Impronta riconosciuta</string>
-  <string name="fingerprint_os_error">Sblocco con Impronta digitale richiede Android 6.0 o versione successiva.</string>
+  <string name="fingerprint_os_error">Lo sblocco con impronta digitale richiede Android 6.0 o successivo.</string>
   <string name="fingerprint_hardware_error">Nessun lettore di impronta digitale rilevato.</string>
   <string name="fingerprint_no_enrolled">Non hai nessuna impronta digitale registrata su questo dispositivo. Per prima cosa vai nelle impostazioni di sistema.</string>
-  <string name="disable_fingerprint_unlock">Disabilita lo sblocco con Impronta</string>
-  <string name="enable_fingerprint_unlock">Abilita lo sblocco totale con Impronta</string>
+  <string name="disable_fingerprint_unlock">Disabilita lo sblocco con impronta</string>
+  <string name="enable_fingerprint_unlock">Abilita lo sblocco totale con impronta</string>
   <string name="enable_fingerprint_quickunlock">Abilita lo sblocco con Impronta per QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Tocca il sensore per sbloccare il database</string>
   <string name="fingerprint_unlock_failed">Sblocco con Impronta digitali non riuscita. La chiave di decodifica è stata invalidata dal sistema operativo. Questo solitamente accade se una nuova impronta digitale è stata registrata o sono state modificate le impostazioni di protezione. Sblocca con la password e quindi riattiva lo sblocco con Impronta nelle impostazioni del database.</string>
   <string name="fingerprint_disabled_wrong_masterkey">Sblocco del database fallito: chiave composita non valida. Lo sblocco con Impronta è stato disabilitato perché sembra che la password principale memorizzata non sia più valida. Sblocca con la password e poi riattiva lo sblocco con Impronta nelle impostazioni del database.</string>
-  <string name="fingerprint_reenable">Per favore riattiva lo sblocco con Impronta per la nuova password principale.</string>
+  <string name="fingerprint_reenable">Per favore riattiva lo sblocco con impronta per la nuova password principale.</string>
   <string name="enable_fingerprint_unlock_Info">
 Questo memorizzerà la password principale su questo dispositivo, cifrata con il Keystore Android e protetta tramite autenticazione con impronta digitale. Permette di sbloccare il database solo con l\'impronta digitale.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Permette di utilizzare l\'autenticazione tramite impronta digitale anziché il codice di QuickUnlock. Non necessita di memorizzare alcuna informazione relativa alla tua password principale.</string>
@@ -495,7 +495,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="CopyFileRequiredForEditing">Per modificarlo, devi copiare il file in un\'altra posizione.</string>
   <string name="ClickOkToSelectLocation">Premi OK per selezionare il percorso dove copiare il file.</string>
   <string name="CancelReadOnly">Annulla, apri in sola lettura.</string>
-  <string name="FileReadOnlyTitle">Il database è di sola lettura</string>
+  <string name="FileReadOnlyTitle">Il database è in sola lettura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha aperto il database corrente in sola lettura.</string>
   <string name="ReadOnlyReason_PreKitKat">Sembra che tu abbia aperto il file da un\'app esterna. In questa modalità non è supportata la scrittura. Se vuoi modificare il database, chiudilo e seleziona \"Cambia il database\". Quindi apri il file utilizzando una delle opzioni disponibili, se possibile.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">C\'è impostato il flag di sola lettura. Rimuovi il flag vuoi modificare il database.</string>
@@ -548,14 +548,14 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ErrorReportDisable">Disabilita</string>
   <string name="ErrorReportAsk">Chiedi dopo un errore</string>
   <string name="ErrorReportPrefTitle">Segnalazione errori</string>
-  <string name="ActivateAutoFillService_title">Attivare l\'Autoriempimento?</string>
+  <string name="ActivateAutoFillService_title">Attivare l\'autoriempimento?</string>
   <string name="ActivateAutoFillService_message">Le credenziali possono essere trasferite ad altre app in modi differenti: puoi copiare i dati negli appunti, ma tieni presente che, in Android, gli appunti non sono sicuri. La tastiera incorporata fornisce accesso completo alla voce selezionata, ma deve essere abilitata ogni volta che devi accedere alle credenziali. Da Android 5, Keepass2Android può inserire automaticamente nome utente e password tramite il servizio di Autoriempimento.</string>
   <string name="ActivateAutoFillService_btnKeyboard">Usa tastiera incorporata</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Usa il servizio di Autoriempimento</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Usa il servizio di autoriempimento</string>
   <string name="ActivateAutoFillService_toast">Per favore abilita il servizio di Keepass2Android.</string>
   <string name="ChangeLog_0_9_8c">
 Versione 0.9.8c\n
-* risolve la vulnerabilità SSL in Microsoft Live SDK (utilizzato per l\'accesso ai file via OneDrive)\n
+* risolte la vulnerabilità SSL in Microsoft Live SDK (utilizzato per l\'accesso ai file via OneDrive)\n
 * bugfix: la precedente release conteneva due metodi di input (una andava in crash)\n  </string>
   <string name="ChangeLog_1_0_0">
 Versione 1.0.0\n
@@ -721,7 +721,7 @@ Grazie a Niki Hüttner (www.close-cut.de) per il logo!\n</string>
 * sistemati alcuni bug nella finestra di modifica\n
 * probabilmente aggiunti nuovi bug :-)
 </string>
-  <string name="ChangeLog_keptDonate">Estesa la possibilità di donare una birra o qualcos\'altro</string>
+  <string name="ChangeLog_keptDonate">Aggiunta la possibilità di donare una birra o qualcos\'altro</string>
   <string name="ChangeLog_0_7"><b>Versione 0.7</b>\n
 * Aumentata la velocità di caricamento: l\'elaborazione delle chiavi ora è 10 volte più veloce!\n
 * Aggiunta la tastiera virtuale di Keepass2Android: usa questa tastiera quando inserisci le credenziali. Ti metterà al riparo dagli sniffer delle password basati sugli appunti (disabilita le vecchie notifiche degli appunti nelle impostazioni)\n

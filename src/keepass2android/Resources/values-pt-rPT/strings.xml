@@ -353,6 +353,20 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="plugin_disabled">inactivo</string>
   <string name="plugin_web">Encontrar plug-ins on-line</string>
   <string name="plugin_scopes">Contexto</string>
+  <string name="ReadOnlyReason_PreKitKat">Parece que você abriu o arquivo de um aplicativo externo. Desta forma não oferece suporte para gravação. Se você quiser fazer alterações no banco de dados, feche o banco de dados e selecione Alterar banco de dados. De seguida, abra o arquivo de uma das opções disponíveis, se possível.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Escrever não é possível devido a restrições introduzidas no Android KitKat. Se você quiser fazer alterações no banco de dados, feche o banco de dados e selecione o banco de dados de alteração. De seguida, abra o arquivo usando o seletor de arquivo de sistema.</string>
+  <string name="ChangeLog_1_0_0">     Versão 1.0.0 - preview 7\n 
+* Desbloquear por impressão digital (requer Android 6.0 + ou um dispositivo Samsung) \n 
+* Serviço de Auto-preenchimento adicionado (requer Android 5.0+) \n
+* Adicionado suporte para templates\n 
+* Adicionado modo \"trabalhar offline\"\n 
+* Permitir copia de dados\n 
+* Modo de preenchimento automático para campo nomes\n 
+* Permitir remoção de itens da lista n de arquivos recentes\n 
+* Solicitar permissões em tempo de execução no Android 6.0\n
+* Correções (no teclado embutido ao selecionar ícones)\n 
+* Incluída opção de Enviar erro reports\n 
+* Acrescentadas mensagens de ajuda em vários pontos\n   </string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>

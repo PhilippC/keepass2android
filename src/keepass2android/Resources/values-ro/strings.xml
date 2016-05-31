@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android este un manager de parole ce oferă citire/scriere la baze de date KeePass 2.x pe Android.</string>
   <string name="CreditsText">Interfaţa cu utilizatorul este bazată pe un port al KeepassDroid dezvoltat de Brian Pellin. Codul pentru operaţiunile cu baza de date este bazat pe KeePass de Dominik Reichl. Robotul Android este reprodus sau modificate din materiale create şi împărtăşite de Google şi utilizate în conformitate cu condiţiile descrise de licenţa Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Suportul pentru SFTP este implementat folosind librăria JSch sub licență BDS, creată de JCraft, Inc.</string>
+  <string name="CreditsIcons">Sigla Hammer (ciocan) este creată de John Caserta de la Noun Project. Sigla Penguin (pinguin) este creată de Adriano Emerick de la Noun Project. Sigla Feather (pană) este creată de Jon Testa de la Noun Project. Sigla Apple (măr) este creată de Ava Rowell de la Noun Project. </string>
   <string name="accept">Accepta</string>
   <string name="deny">Interzice</string>
   <string name="add_entry">Adăugă o înregistrare</string>
@@ -35,6 +36,8 @@
   <string name="unknown_uri_scheme">Scuze! Keepass2Android nu poate interpreta URI-ul returnat %1$s. Te rog să contactezi producătorul!</string>
   <string name="Entry_singular">O inregistrare</string>
   <string name="Entry_plural">%1$d inregistrari</string>
+  <string name="IconSet_title">Set de sigle</string>
+  <string name="IconSet_install">Găsește mai multe...</string>
   <string name="security_prefs">Securitate</string>
   <string name="display_prefs">Afişare</string>
   <string name="password_access_prefs">Acces introducere parolă</string>
@@ -42,6 +45,7 @@
   <string name="FileHandling_prefs">Utilizare fişiere</string>
   <string name="keyboard_prefs">Tastatură</string>
   <string name="export_prefs">Exportă baza de date...</string>
+  <string name="fingerprint_prefs">Descuie cu amprentă</string>
   <string name="import_db_prefs">Importă baza de date în folderul intern</string>
   <string name="import_keyfile_prefs">Importă fișierul cheie în folderul intern</string>
   <string name="keyboardswitch_prefs">Comutare tastaturi</string>
@@ -71,6 +75,16 @@
   <string name="disclaimer_formal">Keepass2Android este oferit FĂRĂ NICI O GARANȚIE; Acesta este software gratuit și sunteți bine venit să îl redistribuiți respectând condițiile GPL versiunea 2 sau mai nouă.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiază în clipboard</string>
+  <string name="fingerprint_hint">Senzor tactil</string>
+  <string name="fingerprint_description">Confirmați amprenta pentru continuare</string>
+  <string name="fingerprint_fatal">Nu se poate seta deblocarea prin amprentă:</string>
+  <string name="fingerprint_not_recognized">Amprentă nerecunoscută. Mai încercați</string>
+  <string name="fingerprint_success">Amprentă recunoscută</string>
+  <string name="fingerprint_os_error">Deblocarea prin amprentă necesită Android 6.0 sau peste.</string>
+  <string name="fingerprint_hardware_error">Nu s-a detectat dispozitiv hardware pentru recunoaștere de amprente.</string>
+  <string name="fingerprint_no_enrolled">Nu aveți amprente digitale înregistrate pe acest dispozitiv. Vă rugăm să vă duceți mai întâi la setările sistemului.</string>
+  <string name="disable_fingerprint_unlock">Dezactivează deblocarea prin amprentă</string>
+  <string name="enable_fingerprint_unlock">Activează deblocarea completă prin amprentă</string>
   <string name="enter_filename">Alegeți numele bazei de date</string>
   <string name="entry_accessed">Accesat</string>
   <string name="entry_cancel">Anulează</string>

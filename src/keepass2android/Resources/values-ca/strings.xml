@@ -406,8 +406,8 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="synchronize_database_menu">Sincronitzar la base de dades&#8230;</string>
   <string name="CannotMoveGroupHere">No es pot desplaçar el grup a aquest grup.</string>
   <string name="donate_question">Avui és Oktoberfest! Si t\'agrada Keepass2Android: no seria avui un bon dia per comprar-me una cervesa?</string>
-  <string name="donate_bday_question">10 de maig? És el meu aniversari! Si t\'agrada aquest aplicació, per què no enviar-me algunes salutacions d\'aniversari amb un petit regal d\'aniversari? Això realment em faria feliç! :-)</string>
-  <string name="donate_missedbday_question">Ah, et vas perdre el meu aniversari el 10 de maig! Si t\'agrada aquest aplicació, per què no enviar-me algunes salutacions d\'aniversari i un regal d\'aniversari poc? Encara no és massa tard per fer-me feliç! :-)</string>
+  <string name="donate_bday_question">10 de maig? És el meu aniversari! Si t\'agrada aquest aplicació, per què no enviar-me algunes salutacions d\'aniversari amb un petit regal? Això realment em faria feliç! :-)</string>
+  <string name="donate_missedbday_question">Ah, et vas perdre el meu aniversari el 10 de maig! Si t\'agrada aquest aplicació, per què no enviar-me algunes salutacions d\'aniversari i un petit regal d\'aniversari? Encara no és massa tard per fer-me feliç! :-)</string>
   <string name="ok_donate">Explica\'m més!</string>
   <string name="no_thanks">No, no m\'agrada tant</string>
   <string name="hint_sftp_host">amfitrió (ex: 192.168.0.1)</string>
@@ -584,6 +584,13 @@ Arxiu està corrupte. \n
     * Comprovació de claus duplicades en cams addicionals per evitar pèrdues de dades\n
     
 	</string>
+  <string name="ChangeLog_0_9_9c">
+    Versió 0.9.9c\n
+    * Ha tornat el tema fosc\n
+    * Es poden instal·lar altres paquets d\'icona (icones d\'estil de Windows estan disponibles a la botiga)\n
+    * Afegida la pregunta de confirmació quan s\'esborrin elements sense paperera de reciclatge\n
+    * Errors arreglats (mostra incorrectament la codificació secreta de OTP, icona de la app incorrecte en alguns llocs) \n
+  </string>
   <string name="ChangeLog_0_9_8b">
 		Version 0.9.8b\n
 		* Errors corregits (Errors al guardar algunes bases de dades, mal funcionament de l\'exportació a dispositiu local, crash de l\'app al seleccionar algunes opcions de preferències)\n

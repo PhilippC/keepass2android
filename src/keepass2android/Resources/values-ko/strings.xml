@@ -10,6 +10,7 @@
   <string name="accept">승인</string>
   <string name="deny">거절</string>
   <string name="add_entry">항목 추가</string>
+  <string name="edit_entry">항목 편집</string>
   <string name="add_url_entry">URL에 관한 항목</string>
   <string name="add_group">그룹 추가</string>
   <string name="add_group_title">그룹 추가</string>
@@ -31,6 +32,9 @@
   <string name="ShowGroupnameInSearchResult_resume">검색 결과 중 항목의 제목 아래에 그룹 이름을 표시 합니다. 여러 항목의 이름이 같은 경우에 유용합니다.</string>
   <string name="NavigationToGroupCompleted_message">표시 그룹은 지금: %1$s</string>
   <string name="ShowGroupInEntry_title">항목 보기에서 그룹 이름 표시</string>
+  <string name="unknown_uri_scheme">죄송 합니다! Keepass2Android는 반환된 URI %1$s을 처리할 수 없습니다. 개발자에게 연락 하십시오!</string>
+  <string name="Entry_singular">한개의 항목</string>
+  <string name="Entry_plural">%1$d 항목들</string>
   <string name="security_prefs">보안</string>
   <string name="display_prefs">화면</string>
   <string name="password_access_prefs">비밀번호 항목 접속</string>

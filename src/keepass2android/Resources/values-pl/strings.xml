@@ -334,7 +334,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="kp2a_switch_rooted_summary">Automatycznie przełącz klawiaturę KP2A po otwarciu wpisu. Wymaga dostępu do roota i aplikacji Secure Settings z System+. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatycznie przełącz tylko po szukaniu</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Tylko przełącz klawiaturę automatycznie KP2A po użyciu funkcja Wyślij adresu URL (ale nie wtedy, gdy otwarto wpis w inny sposób)</string>
-  <string name="AutoSwitchBackKeyboard_title">Przełącz klawiaturę spowrotem</string>
+  <string name="AutoSwitchBackKeyboard_title">Przełącz klawiaturę z powrotem</string>
   <string name="AutoSwitchBackKeyboard_summary">Przełączy do poprzedniej klawiatury jeśli nie otwarto wpisu.</string>
   <string name="ShowUnlockedNotification_title">Ikona powiadomienia podczas blokady</string>
   <string name="ShowUnlockedNotification_summary">Pokazuje powiadomienie gdy baza danych gdy jest odblokowana.</string>
@@ -507,6 +507,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="DuplicateTitle">Kopiuj</string>
   <string name="DefaultTemplate">Standardowy wpis</string>
   <string name="TemplateGroupName">Szablony</string>
+  <string name="TemplateTitle_IdCard">Dokument tożsamości</string>
   <string name="TemplateField_IdCard_Name">Nazwa</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Miejsce utworzenia</string>
   <string name="TemplateField_IdCard_IssueDate">Data utworzenia</string>
@@ -564,7 +565,7 @@ Wersja 0.9.8c\n
   <string name="ChangeLog_1_0_0">
 Wersja 1.0.0\n
     * Odblokowywanie odciskiem palca (wymagany Android 6.0+ lub urządzenie marki Samsung)\n
-    * Dodano usługę autowypełniania (wymagany Android 5.0+)\n
+    * Dodano usługę automatycznego wypełniania (wymagany Android 5.0+)\n
     * Dodano wsparcie dla szablonów wiadomości\n
     * Dodano tryb \"pracy offline\"\n
     * Umożliwiono kopiowanie wpisów\n
