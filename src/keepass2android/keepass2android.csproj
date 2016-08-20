@@ -99,21 +99,6 @@
     <Reference Include="Xamarin.Android.Support.Design">
       <HintPath>..\packages\Xamarin.Android.Support.Design.22.2.1.0\lib\MonoAndroid403\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Base">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Base.27.0.0.0\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Basement">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.27.0.0.0\lib\MonoAndroid41\Xamarin.GooglePlayServices.Basement.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Drive">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Drive.27.0.0.0\lib\MonoAndroid41\Xamarin.GooglePlayServices.Drive.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Insights">
-      <HintPath>..\packages\Xamarin.Insights.1.11.3\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivateAutoFillActivity.cs" />
@@ -739,10 +724,6 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
-      <Name>JavaFileStorageBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
