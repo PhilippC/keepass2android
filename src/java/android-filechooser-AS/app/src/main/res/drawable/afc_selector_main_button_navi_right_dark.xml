@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/afc_main_button_navi_right_pressed_dark" android:state_pressed="true"/> <!-- pressed -->
+    <item android:drawable="@drawable/afc_main_button_navi_right_disabled_dark" android:state_enabled="false"/> <!-- enabled -->
+    <item android:drawable="@drawable/afc_main_button_navi_right_dark"/> <!-- default -->
+
+</selector>

@@ -185,6 +185,7 @@ namespace keepass2android
 			}
 			else
 			{
+#if !NoNet
 				var pref = PreferenceManager.GetDefaultSharedPreferences(this);
 				if ((pref.GetBoolean(App.PrefHaspendingerrorreport, false)
 					&& (App.GetErrorReportMode(this) == App.ErrorReportMode.AskAgain))
@@ -194,10 +195,13 @@ namespace keepass2android
 				}
 				else
 					LaunchNextActivity();
+#else
+				LaunchNextActivity();
+#endif
 			}
 
 		}
-
+#if !NoNet
 		private void ShowErrorReportQuestion(Action launchNextActivity)
 		{
 
@@ -220,7 +224,7 @@ namespace keepass2android
 
 		}
 
-
+#endif
 		private static String SELECT_RUNTIME_PROPERTY = "persist.sys.dalvik.vm.lib";
 		private static String LIB_DALVIK = "libdvm.so";
 		private static String LIB_ART = "libart.so";

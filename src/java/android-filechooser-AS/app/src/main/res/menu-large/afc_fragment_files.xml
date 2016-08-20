@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:afc="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/afc_menuitem_sort"
+        android:showAsAction="ifRoom"
+        android:title="@string/afc_cmd_sort"/>
+    <item
+        android:id="@+id/afc_menuitem_switch_viewmode"
+        android:showAsAction="ifRoom"
+        android:title="@null"/>
+    <item
+        android:id="@+id/afc_menuitem_new_folder"
+        android:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/afc_cmd_new_folder"/>
+
+</menu>

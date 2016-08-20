@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<resources>
+
+    <dimen name="afc_30dp">30dp</dimen>
+    <dimen name="afc_15dp">15dp</dimen>
+    <dimen name="afc_10dp">10dp</dimen>
+    <dimen name="afc_5dp">5dp</dimen>
+    <dimen name="afc_2dp">2dp</dimen>
+    <dimen name="afc_10sp">10sp</dimen>
+    <dimen name="afc_5sp">5sp</dimen>
+    <dimen name="afc_2sp">2sp</dimen>
+    <dimen name="afc_button_location_max_width">256sp</dimen>
+    <dimen name="afc_button_location_min_width">80sp</dimen>
+    <dimen name="afc_context_menu_item_padding">9sp</dimen>
+    <dimen name="afc_context_menu_item_padding_left">18sp</dimen>
+    <dimen name="afc_context_menu_width">290dp</dimen>
+    <dimen name="afc_single_button_min_width">192sp</dimen>
+    <dimen name="afc_viewgroup_button_locations_bottom_divider_height">1dp</dimen>
+
+</resources>

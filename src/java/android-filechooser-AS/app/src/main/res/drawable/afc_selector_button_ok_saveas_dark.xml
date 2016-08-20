@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/afc_ic_button_ok_saveas_light_pressed" android:state_pressed="true"/>
+    <item android:drawable="@drawable/afc_ic_button_ok_saveas_light_focused" android:state_focused="true"/>
+    <item android:drawable="@drawable/afc_ic_button_ok_saveas_light"/>
+
+</selector>

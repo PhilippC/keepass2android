@@ -411,7 +411,7 @@ namespace keepass2android
 	            var errorReportModePref = (ListPreference)FindPreference(App.PrefErrorreportmode);
 				
 #if NoNet
-				((PreferenceScreen)FindPreference(Resource.String.app_key)).RemovePreference(errorReportModePref);
+				((PreferenceScreen)FindPreference(GetString(Resource.String.app_key))).RemovePreference(errorReportModePref);
 #else
 				SetupErrorReportModePref(errorReportModePref);
 #endif
@@ -436,7 +436,7 @@ namespace keepass2android
 				
 
 	    }
-
+#if !NoNet
 	    private void SetupErrorReportModePref(ListPreference errorReportModePref)
 	    {
 		    errorReportModePref.SetEntries(new string[]
@@ -463,7 +463,7 @@ namespace keepass2android
 			    App.SetErrorReportMode(Activity, mode);
 		    };
 	    }
-
+#endif
 	    private void PrepareTemplates(Database db)
 	    {
 			Preference pref = FindPreference("AddTemplates_pref_key");
