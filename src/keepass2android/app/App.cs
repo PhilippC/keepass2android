@@ -722,7 +722,12 @@ namespace keepass2android
 			{
 				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
 				bool cacheEnabled = prefs.GetBoolean(Application.Context.Resources.GetString(Resource.String.UseOfflineCache_key),
-				                                     true);
+#if NoNet
+					false
+#else
+					true
+#endif
+				    );
 				return cacheEnabled;
 			}
 		}
