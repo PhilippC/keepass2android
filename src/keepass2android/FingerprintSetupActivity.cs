@@ -126,9 +126,7 @@ namespace keepass2android
 				TrySetupSamsung();
 				
 			}
-			FindViewById(Resource.Id.container_fingerprint_unlock).Visibility = _samsungFingerprint == null
-				? ViewStates.Visible
-				: ViewStates.Gone;
+			
 		}
 
 		private bool TrySetupSamsung()
@@ -142,6 +140,9 @@ namespace keepass2android
 					SetError(Resource.String.fingerprint_no_enrolled);
 				}
 				ShowRadioButtons();
+				FindViewById(Resource.Id.container_fingerprint_unlock).Visibility = _samsungFingerprint == null
+					? ViewStates.Visible
+					: ViewStates.Gone;
 				return true;
 			}
 			catch (Exception)
