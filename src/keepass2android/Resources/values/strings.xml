@@ -655,14 +655,21 @@
   <string name="ActivateAutoFillService_btnKeyboard">Use built-in keyboard</string>
   <string name="ActivateAutoFillService_btnAutoFill">Use AutoFill service</string>
   <string name="ActivateAutoFillService_toast">Please enable the Keepass2Android service.</string>
-  
+  <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
   <string name="ChangeLog_0_9_8c">
     Version 0.9.8c\n
     * Fix for SSL vulnerability in Microsoft Live SDK (used when accessing files via OneDrive)\n
     * Bug fix: Previous release contained two input methods (one crashing)\n
   </string>
 
-  <string name="ChangeLog_1_0_0">
+  <string name="ChangeLog_1_0_0e">
+    Version 1.0.0e\n
+    * fix for Fingerprint Unlock on older Samsung devices with Android 6\n
+    * add native support for x86 devices\n
+    * allow to hide softkeyboard during fingerprint scan\n
+    * build system update
+  </string>
+    <string name="ChangeLog_1_0_0">
     Version 1.0.0\n
     * Fingerprint Unlock (requires Android 6.0+ or a Samsung device)\n
     * Added Auto-Fill service (requires Android 5.0+)\n

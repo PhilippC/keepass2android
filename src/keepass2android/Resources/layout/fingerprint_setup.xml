@@ -67,6 +67,12 @@
                 app:title_text="@string/enable_fingerprint_unlock"
                 android:background="?android:attr/selectableItemBackground" />
         </LinearLayout>
+      <CheckBox
+        android:id="@+id/show_keyboard_while_fingerprint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_marginLeft="12dp"
+        android:text="@string/ShowKeyboardDuringFingerprintAuth" />
     </LinearLayout>
     <RelativeLayout
         android:id="@+id/fingerprint_auth_container"

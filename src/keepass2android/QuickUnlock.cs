@@ -213,7 +213,7 @@ namespace keepass2android
 
 
 		}
-		private void InitFingerprintUnlock()
+		private bool InitFingerprintUnlock()
 		{
 			Kp2aLog.Log("InitFingerprintUnlock");
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
@@ -225,7 +225,7 @@ namespace keepass2android
 
 				if (um == FingerprintUnlockMode.Disabled)
 				{
-					return;
+					return false;
 				}
 
 				if (_fingerprintPermissionGranted)
@@ -254,7 +254,7 @@ namespace keepass2android
 					{
 						Kp2aLog.Log("trying Samsung Fingerprint API...failed.");
 						FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
-						return;	
+						return false;	
 					}
 				}
 				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
@@ -264,6 +264,7 @@ namespace keepass2android
 					Kp2aLog.Log("successfully initialized fingerprint.");
 					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
 					_fingerprintIdentifier.StartListening(this, this);
+					return true;
 				}
 				else
 				{
@@ -284,7 +285,7 @@ namespace keepass2android
 
 				_fingerprintIdentifier = null;
 			}
-
+			return false;
 
 		}
 
@@ -335,18 +336,28 @@ namespace keepass2android
 			
 			CheckIfUnloaded();
 
-			EditText pwd = (EditText) FindViewById(Resource.Id.QuickUnlock_password);
+
+			bool showKeyboard = ((!InitFingerprintUnlock()) || (Util.GetShowKeyboardDuringFingerprintUnlock(this)));			
+
+			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.PostDelayed(() =>
-				{
-					InputMethodManager keyboard = (InputMethodManager) GetSystemService(Context.InputMethodService);
+			{
+				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
+				if (showKeyboard)
 					keyboard.ShowSoftInput(pwd, 0);
-				}, 50);
+				else
+					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
+			}, 50);
+	
+			
 
 
 			
-			InitFingerprintUnlock();
+			
 			
 		}
+
+		
 
 		protected override void OnPause()
 		{

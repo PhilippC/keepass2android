@@ -1733,12 +1733,7 @@ namespace keepass2android
 			}
 			
 
-			EditText pwd = FindViewById<EditText>(Resource.Id.password_edit);
-			pwd.PostDelayed(() =>
-			{
-				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
-				keyboard.ShowSoftInput(pwd, 0);
-			}, 50);
+			
 
 			View killButton = FindViewById(Resource.Id.kill_app);
 			if (PreferenceManager.GetDefaultSharedPreferences(this)
@@ -1811,19 +1806,33 @@ namespace keepass2android
 				}
 			}
 
+			bool showKeyboard = (Util.GetShowKeyboardDuringFingerprintUnlock(this));
+
+
 			if (_fingerprintPermissionGranted)
 			{
-				InitFingerprintUnlock();
+				if (!InitFingerprintUnlock())
+					showKeyboard = true;
 			}
 			else
 			{
 				FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
-
+				showKeyboard = true;
 			}
 			
+			
+			EditText pwd = (EditText)FindViewById(Resource.Id.password_edit);
+			pwd.PostDelayed(() =>
+			{
+				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
+				if (showKeyboard)
+					keyboard.ShowSoftInput(pwd, 0);
+				else
+					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
+			}, 50);
 		}
 
-		private void InitFingerprintUnlock()
+		private bool InitFingerprintUnlock()
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 			try
@@ -1834,7 +1843,7 @@ namespace keepass2android
 
 				if (um != FingerprintUnlockMode.FullUnlock)
 				{
-					return;
+					return false;
 				}
 
 				FingerprintModule fpModule = new FingerprintModule(this);
@@ -1847,6 +1856,7 @@ namespace keepass2android
 				{
 					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
 					_fingerprintDec.StartListening(new FingerprintAuthCallbackAdapter(this, this));
+					return true;
 				}
 				else
 				{
@@ -1856,6 +1866,7 @@ namespace keepass2android
 					_fingerprintDec = null;
 
 					ClearFingerprintUnlockData();
+					return false;
 				}
 			}
 			catch (Exception e)
@@ -1864,6 +1875,7 @@ namespace keepass2android
 				btn.Tag = "Error initializing Fingerprint Unlock: " + e;
 
 				_fingerprintDec = null;
+				return false;
 			}
 				
 				

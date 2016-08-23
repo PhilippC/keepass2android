@@ -62,9 +62,17 @@ namespace keepass2android
 			yield return new Reminder
 			{
 				From = new DateTime(2016, 09, 17), 
-				To = new DateTime(2016, 10, 04),
+				To = new DateTime(2016, 09, 26),
 				Key = "DonationOktoberfest2016"
 					,ResourceToShow = Resource.Layout.donate
+			};
+			yield return new Reminder
+			{
+				From = new DateTime(2016, 09, 26),
+				To = new DateTime(2016, 10, 04),
+				Key = "DonationOktoberfest2016-2"
+					,
+				ResourceToShow = Resource.Layout.donate
 			};
 			yield return new Reminder
 			{
