@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,8 +19,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+
+#if !KeePassUAP
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
+#endif
 
 using KeePassLib.Utility;
 
@@ -42,6 +51,61 @@ namespace KeePassLib.Native
 		{
 			get { return m_bAllowNative; }
 			set { m_bAllowNative = value; }
+		}
+
+		private static int? g_oiPointerSize = null;
+		/// <summary>
+		/// Size of a native pointer (in bytes).
+		/// </summary>
+		public static int PointerSize
+		{
+			get
+			{
+				if(!g_oiPointerSize.HasValue)
+#if KeePassUAP
+					g_oiPointerSize = Marshal.SizeOf<IntPtr>();
+#else
+					g_oiPointerSize = Marshal.SizeOf(typeof(IntPtr));
+#endif
+				return g_oiPointerSize.Value;
+			}
+		}
+
+		private static ulong? m_ouMonoVersion = null;
+		public static ulong MonoVersion
+		{
+			get
+			{
+				if(m_ouMonoVersion.HasValue) return m_ouMonoVersion.Value;
+
+				ulong uVersion = 0;
+				try
+				{
+					Type t = Type.GetType("Mono.Runtime");
+					if(t != null)
+					{
+						MethodInfo mi = t.GetMethod("GetDisplayName",
+							BindingFlags.NonPublic | BindingFlags.Static);
+						if(mi != null)
+						{
+							string strName = (mi.Invoke(null, null) as string);
+							if(!string.IsNullOrEmpty(strName))
+							{
+								Match m = Regex.Match(strName, "\\d+(\\.\\d+)+");
+								if(m.Success)
+									uVersion = StrUtil.ParseVersion(m.Value);
+								else { Debug.Assert(false); }
+							}
+							else { Debug.Assert(false); }
+						}
+						else { Debug.Assert(false); }
+					}
+				}
+				catch(Exception) { Debug.Assert(false); }
+
+				m_ouMonoVersion = uVersion;
+				return uVersion;
+			}
 		}
 
 		/// <summary>
@@ -87,9 +151,13 @@ namespace KeePassLib.Native
 		{
 			if(m_platID.HasValue) return m_platID.Value;
 
+#if KeePassUAP
+			m_platID = EnvironmentExt.OSVersion.Platform;
+#else
 			m_platID = Environment.OSVersion.Platform;
+#endif
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassUAP)
 			// Mono returns PlatformID.Unix on Mac OS X, workaround this
 			if(m_platID.Value == PlatformID.Unix)
 			{
@@ -102,7 +170,55 @@ namespace KeePassLib.Native
 			return m_platID.Value;
 		}
 
-#if !KeePassLibSD
+		private static DesktopType? m_tDesktop = null;
+		public static DesktopType GetDesktopType()
+		{
+			if(!m_tDesktop.HasValue)
+			{
+				DesktopType t = DesktopType.None;
+				if(!IsUnix()) t = DesktopType.Windows;
+				else
+				{
+					try
+					{
+						string strXdg = (Environment.GetEnvironmentVariable(
+							"XDG_CURRENT_DESKTOP") ?? string.Empty).Trim();
+						string strGdm = (Environment.GetEnvironmentVariable(
+							"GDMSESSION") ?? string.Empty).Trim();
+						StringComparison sc = StrUtil.CaseIgnoreCmp;
+
+						if(strXdg.Equals("Unity", sc))
+							t = DesktopType.Unity;
+						else if(strXdg.Equals("LXDE", sc))
+							t = DesktopType.Lxde;
+						else if(strXdg.Equals("XFCE", sc))
+							t = DesktopType.Xfce;
+						else if(strXdg.Equals("MATE", sc))
+							t = DesktopType.Mate;
+						else if(strXdg.Equals("X-Cinnamon", sc))
+							t = DesktopType.Cinnamon;
+						else if(strXdg.Equals("Pantheon", sc)) // Elementary OS
+							t = DesktopType.Pantheon;
+						else if(strXdg.Equals("KDE", sc) || // Mint 16
+							strGdm.Equals("kde-plasma", sc)) // Ubuntu 12.04
+							t = DesktopType.Kde;
+						else if(strXdg.Equals("GNOME", sc))
+						{
+							if(strGdm.Equals("cinnamon", sc)) // Mint 13
+								t = DesktopType.Cinnamon;
+							else t = DesktopType.Gnome;
+						}
+					}
+					catch(Exception) { Debug.Assert(false); }
+				}
+
+				m_tDesktop = t;
+			}
+
+			return m_tDesktop.Value;
+		}
+
+#if (!KeePassLibSD && !KeePassUAP)
 		public static string RunConsoleApp(string strAppPath, string strParams)
 		{
 			return RunConsoleApp(strAppPath, strParams, null);
@@ -111,39 +227,133 @@ namespace KeePassLib.Native
 		public static string RunConsoleApp(string strAppPath, string strParams,
 			string strStdInput)
 		{
+			return RunConsoleApp(strAppPath, strParams, strStdInput,
+				(AppRunFlags.GetStdOutput | AppRunFlags.WaitForExit));
+		}
+
+		private delegate string RunProcessDelegate();
+
+		public static string RunConsoleApp(string strAppPath, string strParams,
+			string strStdInput, AppRunFlags f)
+		{
 			if(strAppPath == null) throw new ArgumentNullException("strAppPath");
 			if(strAppPath.Length == 0) throw new ArgumentException("strAppPath");
 
-			try
+			bool bStdOut = ((f & AppRunFlags.GetStdOutput) != AppRunFlags.None);
+
+			RunProcessDelegate fnRun = delegate()
 			{
-				ProcessStartInfo psi = new ProcessStartInfo();
-
-				psi.CreateNoWindow = true;
-				psi.FileName = strAppPath;
-				psi.WindowStyle = ProcessWindowStyle.Hidden;
-				psi.UseShellExecute = false;
-				psi.RedirectStandardOutput = true;
-
-				if(strStdInput != null) psi.RedirectStandardInput = true;
-
-				if(!string.IsNullOrEmpty(strParams)) psi.Arguments = strParams;
-
-				Process p = Process.Start(psi);
-
-				if(strStdInput != null)
+				try
 				{
-					p.StandardInput.Write(strStdInput);
-					p.StandardInput.Close();
+					ProcessStartInfo psi = new ProcessStartInfo();
+
+					psi.CreateNoWindow = true;
+					psi.FileName = strAppPath;
+					psi.WindowStyle = ProcessWindowStyle.Hidden;
+					psi.UseShellExecute = false;
+					psi.RedirectStandardOutput = bStdOut;
+
+					if(strStdInput != null) psi.RedirectStandardInput = true;
+
+					if(!string.IsNullOrEmpty(strParams)) psi.Arguments = strParams;
+
+					Process p = Process.Start(psi);
+
+					if(strStdInput != null)
+					{
+						EnsureNoBom(p.StandardInput);
+
+						p.StandardInput.Write(strStdInput);
+						p.StandardInput.Close();
+					}
+
+					string strOutput = string.Empty;
+					if(bStdOut) strOutput = p.StandardOutput.ReadToEnd();
+
+					if((f & AppRunFlags.WaitForExit) != AppRunFlags.None)
+						p.WaitForExit();
+					else if((f & AppRunFlags.GCKeepAlive) != AppRunFlags.None)
+					{
+						Thread th = new Thread(delegate()
+						{
+							try { p.WaitForExit(); }
+							catch(Exception) { Debug.Assert(false); }
+						});
+						th.Start();
+					}
+
+					return strOutput;
+				}
+				catch(Exception) { Debug.Assert(false); }
+
+				return null;
+			};
+
+			if((f & AppRunFlags.DoEvents) != AppRunFlags.None)
+			{
+				List<Form> lDisabledForms = new List<Form>();
+				if((f & AppRunFlags.DisableForms) != AppRunFlags.None)
+				{
+					foreach(Form form in Application.OpenForms)
+					{
+						if(!form.Enabled) continue;
+
+						lDisabledForms.Add(form);
+						form.Enabled = false;
+					}
 				}
 
-				string strOutput = p.StandardOutput.ReadToEnd();
-				p.WaitForExit();
+				IAsyncResult ar = fnRun.BeginInvoke(null, null);
 
-				return strOutput;
+				while(!ar.AsyncWaitHandle.WaitOne(0))
+				{
+					Application.DoEvents();
+					Thread.Sleep(2);
+				}
+
+				string strRet = fnRun.EndInvoke(ar);
+
+				for(int i = lDisabledForms.Count - 1; i >= 0; --i)
+					lDisabledForms[i].Enabled = true;
+
+				return strRet;
+			}
+
+			return fnRun();
+		}
+
+		private static void EnsureNoBom(StreamWriter sw)
+		{
+			if(sw == null) { Debug.Assert(false); return; }
+			if(!MonoWorkarounds.IsRequired(1219)) return;
+
+			try
+			{
+				Encoding enc = sw.Encoding;
+				if(enc == null) { Debug.Assert(false); return; }
+				byte[] pbBom = enc.GetPreamble();
+				if((pbBom == null) || (pbBom.Length == 0)) return;
+
+				// For Mono >= 4.0 (using Microsoft's reference source)
+				try
+				{
+					FieldInfo fi = typeof(StreamWriter).GetField("haveWrittenPreamble",
+						BindingFlags.Instance | BindingFlags.NonPublic);
+					if(fi != null)
+					{
+						fi.SetValue(sw, true);
+						return;
+					}
+				}
+				catch(Exception) { Debug.Assert(false); }
+
+				// For Mono < 4.0
+				FieldInfo fiPD = typeof(StreamWriter).GetField("preamble_done",
+					BindingFlags.Instance | BindingFlags.NonPublic);
+				if(fiPD != null) fiPD.SetValue(sw, true);
+				else { Debug.Assert(false); }
 			}
 			catch(Exception) { Debug.Assert(false); }
-
-			return null;
 		}
 #endif
 
@@ -157,7 +367,10 @@ namespace KeePassLib.Native
 		public static bool TransformKey256(byte[] pBuf256, byte[] pKey256,
 			ulong uRounds)
 		{
-			if(m_bAllowNative == false) return false;
+#if KeePassUAP
+			return false;
+#else
+			if(!m_bAllowNative) return false;
 
 			KeyValuePair<IntPtr, IntPtr> kvp = PrepareArrays256(pBuf256, pKey256);
 			bool bResult = false;
@@ -170,26 +383,31 @@ namespace KeePassLib.Native
 
 			if(bResult) GetBuffers256(kvp, pBuf256, pKey256);
 
-			NativeLib.FreeArrays(kvp);
+			FreeArrays(kvp);
 			return bResult;
+#endif
 		}
 
 		/// <summary>
 		/// Benchmark key transformation.
 		/// </summary>
-		/// <param name="uTimeMs">Number of seconds to perform the benchmark.</param>
+		/// <param name="uTimeMs">Number of milliseconds to perform the benchmark.</param>
 		/// <param name="puRounds">Number of transformations done.</param>
 		/// <returns>Returns <c>true</c>, if the benchmark was successful.</returns>
 		public static bool TransformKeyBenchmark256(uint uTimeMs, out ulong puRounds)
 		{
 			puRounds = 0;
 
-			if(m_bAllowNative == false) return false;
+#if KeePassUAP
+			return false;
+#else
+			if(!m_bAllowNative) return false;
 
 			try { puRounds = NativeMethods.TransformKeyBenchmark(uTimeMs); }
 			catch(Exception) { return false; }
 
 			return true;
+#endif
 		}
 
 		private static KeyValuePair<IntPtr, IntPtr> PrepareArrays256(byte[] pBuf256,

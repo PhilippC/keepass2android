@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,15 +19,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
-using System.Windows.Forms;
 using System.Diagnostics;
-using System.Xml.Serialization;
 using System.Globalization;
-using System.IO;
-using System.Security.Cryptography;
+using System.Text;
+using System.Xml.Serialization;
+
+#if !KeePassUAP
 using System.Drawing;
+using System.Security.Cryptography;
+using System.Windows.Forms;
+#endif
 
 using KeePassLib.Utility;
 
@@ -42,8 +44,8 @@ namespace KeePassLib.Translation
 
 		private const string m_strControlRelative = @"%c";
 
-		internal const NumberStyles m_nsParser = NumberStyles.AllowLeadingSign |
-			NumberStyles.AllowDecimalPoint;
+		internal const NumberStyles m_nsParser = (NumberStyles.AllowLeadingSign |
+			NumberStyles.AllowDecimalPoint);
 		internal static readonly CultureInfo m_lclInv = CultureInfo.InvariantCulture;
 
 		private string m_strPosX = string.Empty;
@@ -112,7 +114,7 @@ namespace KeePassLib.Translation
 			else { Debug.Assert(false); }
 		}
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassUAP)
 		internal void ApplyTo(Control c)
 		{
 			Debug.Assert(c != null); if(c == null) return;
@@ -267,7 +269,7 @@ namespace KeePassLib.Translation
 			return m_strMemberName.CompareTo(kpOther.Name);
 		}
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassUAP)
 		private static readonly Type[] m_vTextControls = new Type[] {
 			typeof(MenuStrip), typeof(PictureBox), typeof(ListView),
 			typeof(TreeView), typeof(ToolStrip), typeof(WebBrowser),
@@ -309,8 +311,8 @@ namespace KeePassLib.Translation
 
 			if(c is Form)
 			{
-				WriteCpiParam(sb, c.ClientSize.Width.ToString());
-				WriteCpiParam(sb, c.ClientSize.Height.ToString());
+				WriteCpiParam(sb, c.ClientSize.Width.ToString(KpccLayout.m_lclInv));
+				WriteCpiParam(sb, c.ClientSize.Height.ToString(KpccLayout.m_lclInv));
 			}
 			else // Normal control
 			{

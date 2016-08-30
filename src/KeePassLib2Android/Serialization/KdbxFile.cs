@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,15 +19,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Xml;
-using System.Text;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Diagnostics;
-
-#if !KeePassLibSD
-using System.IO.Compression;
-#endif
+using System.Text;
+using System.Xml;
 
 using KeePassLib.Collections;
 using KeePassLib.Cryptography;
@@ -63,12 +59,12 @@ namespace KeePassLib.Serialization
 		/// <summary>
 		/// File identifier, first 32-bit value.
 		/// </summary>
-		private const uint FileSignature1 = 0x9AA2D903;
+		internal const uint FileSignature1 = 0x9AA2D903;
 
 		/// <summary>
 		/// File identifier, second 32-bit value.
 		/// </summary>
-		private const uint FileSignature2 = 0xB54BFB67;
+		internal const uint FileSignature2 = 0xB54BFB67;
 
 		/// <summary>
 		/// File version of files saved by the current <c>KdbxFile</c> class.
@@ -82,11 +78,11 @@ namespace KeePassLib.Serialization
 		private const uint FileVersionCriticalMask = 0xFFFF0000;
 
 		// KeePass 1.x signature
-		private const uint FileSignatureOld1 = 0x9AA2D903;
-		private const uint FileSignatureOld2 = 0xB54BFB65;
+		internal const uint FileSignatureOld1 = 0x9AA2D903;
+		internal const uint FileSignatureOld2 = 0xB54BFB65;
 		// KeePass 2.x pre-release (alpha and beta) signature
-		private const uint FileSignaturePreRelease1 = 0x9AA2D903;
-		private const uint FileSignaturePreRelease2 = 0xB54BFB66;
+		internal const uint FileSignaturePreRelease1 = 0x9AA2D903;
+		internal const uint FileSignaturePreRelease2 = 0xB54BFB66;
 
 		private const string ElemDocNode = "KeePassFile";
 		private const string ElemMeta = "Meta";
@@ -191,7 +187,7 @@ namespace KeePassLib.Serialization
 
 		private PwDatabase m_pwDatabase; // Not null, see constructor
 
-		private XmlTextWriter m_xmlWriter = null;
+		private XmlWriter m_xmlWriter = null;
 		private CryptoRandomStream m_randomStream = null;
 		private KdbxFormat m_format = KdbxFormat.Default;
 		private IStatusLogger m_slLogger = null;
@@ -324,7 +320,8 @@ namespace KeePassLib.Serialization
 
 			if(BinPoolFind(pb) != null) return; // Exists already
 
-			m_dictBinPool.Add(m_dictBinPool.Count.ToString(), pb);
+			m_dictBinPool.Add(m_dictBinPool.Count.ToString(
+				NumberFormatInfo.InvariantInfo), pb);
 		}
 
 		private string BinPoolFind(ProtectedBinary pb)
@@ -366,7 +363,9 @@ namespace KeePassLib.Serialization
 				string strDesc = UrlUtil.StripExtension(strName);
 
 				strPath += strDesc;
-				if(iTry > 1) strPath += " (" + iTry.ToString() + ")";
+				if(iTry > 1)
+					strPath += " (" + iTry.ToString(NumberFormatInfo.InvariantInfo) +
+						")";
 
 				if(!string.IsNullOrEmpty(strExt)) strPath += "." + strExt;
 

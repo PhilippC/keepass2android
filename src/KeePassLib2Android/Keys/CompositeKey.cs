@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,11 +18,17 @@
 */
 
 using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
+using System.Text;
+
+#if KeePassUAP
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Engines;
+using Org.BouncyCastle.Crypto.Parameters;
+#else
 using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Native;
 using KeePassLib.Resources;
@@ -118,8 +124,15 @@ namespace KeePassLib.Keys
 
 			foreach(IUserKey pKey in m_vUserKeys)
 			{
+				if(pKey == null) { Debug.Assert(false); continue; }
+
+#if KeePassUAP
+				if(pKey.GetType() == tUserKeyType)
+					return true;
+#else
 				if(tUserKeyType.IsInstanceOfType(pKey))
 					return true;
+#endif
 			}
 
 			return false;
@@ -138,8 +151,15 @@ namespace KeePassLib.Keys
 
 			foreach(IUserKey pKey in m_vUserKeys)
 			{
+				if(pKey == null) { Debug.Assert(false); continue; }
+
+#if KeePassUAP
+				if(pKey.GetType() == tUserKeyType)
+					return pKey;
+#else
 				if(tUserKeyType.IsInstanceOfType(pKey))
 					return pKey;
+#endif
 			}
 
 			return null;
@@ -154,21 +174,32 @@ namespace KeePassLib.Keys
 			ValidateUserKeys();
 
 			// Concatenate user key data
-			MemoryStream ms = new MemoryStream();
+			List<byte[]> lData = new List<byte[]>();
+			int cbData = 0;
 			foreach(IUserKey pKey in m_vUserKeys)
 			{
 				ProtectedBinary b = pKey.KeyData;
 				if(b != null)
 				{
 					byte[] pbKeyData = b.ReadData();
-					ms.Write(pbKeyData, 0, pbKeyData.Length);
-					MemUtil.ZeroByteArray(pbKeyData);
+					lData.Add(pbKeyData);
+					cbData += pbKeyData.Length;
 				}
 			}
 
+			byte[] pbAllData = new byte[cbData];
+			int p = 0;
+			foreach(byte[] pbData in lData)
+			{
+				Array.Copy(pbData, 0, pbAllData, p, pbData.Length);
+				p += pbData.Length;
+				MemUtil.ZeroByteArray(pbData);
+			}
+			Debug.Assert(p == cbData);
+
 			SHA256Managed sha256 = new SHA256Managed();
-			byte[] pbHash = sha256.ComputeHash(ms.ToArray());
-			ms.Close();
+			byte[] pbHash = sha256.ComputeHash(pbAllData);
+			MemUtil.ZeroByteArray(pbAllData);
 			return pbHash;
 		}
 
@@ -179,8 +210,8 @@ namespace KeePassLib.Keys
 			byte[] pbThis = CreateRawCompositeKey32();
 			byte[] pbOther = ckOther.CreateRawCompositeKey32();
 			bool bResult = MemUtil.ArraysEqual(pbThis, pbOther);
-			Array.Clear(pbOther, 0, pbOther.Length);
-			Array.Clear(pbThis, 0, pbThis.Length);
+			MemUtil.ZeroByteArray(pbOther);
+			MemUtil.ZeroByteArray(pbThis);
 
 			return bResult;
 		}
@@ -256,20 +287,34 @@ namespace KeePassLib.Keys
 			byte[] pbNewKey = new byte[32];
 			Array.Copy(pbOriginalKey32, pbNewKey, pbNewKey.Length);
 
-			// Try to use the native library first
-			if(NativeLib.TransformKey256(pbNewKey, pbKeySeed32, uNumRounds))
+			try
+			{
+				// Try to use the native library first
+				if(NativeLib.TransformKey256(pbNewKey, pbKeySeed32, uNumRounds))
+					return (new SHA256Managed()).ComputeHash(pbNewKey);
+
+				if(!TransformKeyManaged(pbNewKey, pbKeySeed32, uNumRounds))
+					return null;
+
 				return (new SHA256Managed()).ComputeHash(pbNewKey);
-
-			if(TransformKeyManaged(pbNewKey, pbKeySeed32, uNumRounds) == false)
-				return null;
-
-			SHA256Managed sha256 = new SHA256Managed();
-			return sha256.ComputeHash(pbNewKey);
+			}
+			finally { MemUtil.ZeroByteArray(pbNewKey); }
 		}
 
 		public static bool TransformKeyManaged(byte[] pbNewKey32, byte[] pbKeySeed32,
 			ulong uNumRounds)
 		{
+#if KeePassUAP
+			KeyParameter kp = new KeyParameter(pbKeySeed32);
+			AesEngine aes = new AesEngine();
+			aes.Init(true, kp);
+
+			for(ulong i = 0; i < uNumRounds; ++i)
+			{
+				aes.ProcessBlock(pbNewKey32, 0, pbNewKey32, 0);
+				aes.ProcessBlock(pbNewKey32, 16, pbNewKey32, 16);
+			}
+#else
 			byte[] pbIV = new byte[16];
 			Array.Clear(pbIV, 0, pbIV.Length);
 
@@ -301,6 +346,7 @@ namespace KeePassLib.Keys
 				iCrypt.TransformBlock(pbNewKey32, 0, 16, pbNewKey32, 0);
 				iCrypt.TransformBlock(pbNewKey32, 16, 16, pbNewKey32, 16);
 			}
+#endif
 
 			return true;
 		}
@@ -325,9 +371,6 @@ namespace KeePassLib.Keys
 			if(NativeLib.TransformKeyBenchmark256(uMilliseconds, out uRounds))
 				return uRounds;
 
-			byte[] pbIV = new byte[16];
-			Array.Clear(pbIV, 0, pbIV.Length);
-
 			byte[] pbKey = new byte[32];
 			byte[] pbNewKey = new byte[32];
 			for(int i = 0; i < pbKey.Length; ++i)
@@ -335,6 +378,14 @@ namespace KeePassLib.Keys
 				pbKey[i] = (byte)i;
 				pbNewKey[i] = (byte)i;
 			}
+
+#if KeePassUAP
+			KeyParameter kp = new KeyParameter(pbKey);
+			AesEngine aes = new AesEngine();
+			aes.Init(true, kp);
+#else
+			byte[] pbIV = new byte[16];
+			Array.Clear(pbIV, 0, pbIV.Length);
 
 			RijndaelManaged r = new RijndaelManaged();
 			if(r.BlockSize != 128) // AES block size
@@ -358,18 +409,21 @@ namespace KeePassLib.Keys
 				Debug.Assert(iCrypt.OutputBlockSize == 16, "Invalid output block size!");
 				return PwDefs.DefaultKeyEncryptionRounds;
 			}
-
-			DateTime dtStart = DateTime.Now;
-			TimeSpan ts;
-			double dblReqMillis = uMilliseconds;
+#endif
 
 			uRounds = 0;
+			int tStart = Environment.TickCount;
 			while(true)
 			{
 				for(ulong j = 0; j < uStep; ++j)
 				{
+#if KeePassUAP
+					aes.ProcessBlock(pbNewKey, 0, pbNewKey, 0);
+					aes.ProcessBlock(pbNewKey, 16, pbNewKey, 16);
+#else
 					iCrypt.TransformBlock(pbNewKey, 0, 16, pbNewKey, 0);
 					iCrypt.TransformBlock(pbNewKey, 16, 16, pbNewKey, 16);
+#endif
 				}
 
 				uRounds += uStep;
@@ -379,8 +433,8 @@ namespace KeePassLib.Keys
 					break;
 				}
 
-				ts = DateTime.Now - dtStart;
-				if(ts.TotalMilliseconds > dblReqMillis) break;
+				uint tElapsed = (uint)(Environment.TickCount - tStart);
+				if(tElapsed > uMilliseconds) break;
 			}
 
 			return uRounds;

@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,18 +19,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Security;
-using System.Security.Cryptography;
-using System.Drawing;
-using System.Xml;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Xml;
+
+#if !KeePassUAP
+using System.Drawing;
+#endif
 
 using KeePassLib;
 using KeePassLib.Collections;
-using KeePassLib.Cryptography;
-using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Interfaces;
 using KeePassLib.Resources;
 using KeePassLib.Security;
@@ -100,11 +99,15 @@ namespace KeePassLib.Serialization
 			xrs.IgnoreProcessingInstructions = true;
 			xrs.IgnoreWhitespace = true;
 
+#if KeePassUAP
+			xrs.DtdProcessing = DtdProcessing.Prohibit;
+#else
 #if !KeePassLibSD
-			xrs.ProhibitDtd = true;
+			xrs.ProhibitDtd = true; // Obsolete in .NET 4, but still there
+			// xrs.DtdProcessing = DtdProcessing.Prohibit; // .NET 4 only
 #endif
-
 			xrs.ValidationType = ValidationType.None;
+#endif
 
 			return xrs;
 		}
@@ -451,10 +454,10 @@ namespace KeePassLib.Serialization
 						(ITimeLogger)m_ctxGroup : (ITimeLogger)m_ctxEntry);
 					Debug.Assert(tl != null);
 
-					if(xr.Name == ElemLastModTime)
-						tl.LastModificationTime = ReadTime(xr);
-					else if(xr.Name == ElemCreationTime)
+					if(xr.Name == ElemCreationTime)
 						tl.CreationTime = ReadTime(xr);
+					else if(xr.Name == ElemLastModTime)
+						tl.LastModificationTime = ReadTime(xr);
 					else if(xr.Name == ElemLastAccessTime)
 						tl.LastAccessTime = ReadTime(xr);
 					else if(xr.Name == ElemExpiryTime)
@@ -560,7 +563,8 @@ namespace KeePassLib.Serialization
 				return KdbContext.Meta;
 			else if((ctx == KdbContext.CustomIcon) && (xr.Name == ElemCustomIconItem))
 			{
-				if((m_uuidCustomIconID != PwUuid.Zero) && (m_pbCustomIconData != null))
+				if(!m_uuidCustomIconID.Equals(PwUuid.Zero) &&
+					(m_pbCustomIconData != null))
 					m_pwDatabase.CustomIcons.Add(new PwCustomIcon(
 						m_uuidCustomIconID, m_pbCustomIconData));
 				else { Debug.Assert(false); }
@@ -587,7 +591,7 @@ namespace KeePassLib.Serialization
 			}
 			else if((ctx == KdbContext.Group) && (xr.Name == ElemGroup))
 			{
-				if(PwUuid.Zero.EqualsValue(m_ctxGroup.Uuid))
+				if(PwUuid.Zero.Equals(m_ctxGroup.Uuid))
 					m_ctxGroup.Uuid = new PwUuid(true); // No assert (import)
 
 				m_ctxGroups.Pop();
@@ -608,7 +612,7 @@ namespace KeePassLib.Serialization
 			else if((ctx == KdbContext.Entry) && (xr.Name == ElemEntry))
 			{
 				// Create new UUID if absent
-				if(PwUuid.Zero.EqualsValue(m_ctxEntry.Uuid))
+				if(PwUuid.Zero.Equals(m_ctxEntry.Uuid))
 					m_ctxEntry.Uuid = new PwUuid(true); // No assert (import)
 
 				if(m_bEntryInHistory)
@@ -716,6 +720,9 @@ namespace KeePassLib.Serialization
 			string str = ReadString(xr);
 
 			int n;
+			if(StrUtil.TryParseIntInvariant(str, out n)) return n;
+
+			// Backward compatibility
 			if(StrUtil.TryParseInt(str, out n)) return n;
 
 			Debug.Assert(false);
@@ -727,6 +734,9 @@ namespace KeePassLib.Serialization
 			string str = ReadString(xr);
 
 			uint u;
+			if(StrUtil.TryParseUIntInvariant(str, out u)) return u;
+
+			// Backward compatibility
 			if(StrUtil.TryParseUInt(str, out u)) return u;
 
 			Debug.Assert(false);
@@ -738,6 +748,9 @@ namespace KeePassLib.Serialization
 			string str = ReadString(xr);
 
 			long l;
+			if(StrUtil.TryParseLongInvariant(str, out l)) return l;
+
+			// Backward compatibility
 			if(StrUtil.TryParseLong(str, out l)) return l;
 
 			Debug.Assert(false);
@@ -749,6 +762,9 @@ namespace KeePassLib.Serialization
 			string str = ReadString(xr);
 
 			ulong u;
+			if(StrUtil.TryParseULongInvariant(str, out u)) return u;
+
+			// Backward compatibility
 			if(StrUtil.TryParseULong(str, out u)) return u;
 
 			Debug.Assert(false);
@@ -793,7 +809,19 @@ namespace KeePassLib.Serialization
 				if(strRef != null)
 				{
 					ProtectedBinary pb = BinPoolGet(strRef);
-					if(pb != null) return pb;
+					if(pb != null)
+					{
+						// https://sourceforge.net/p/keepass/feature-requests/2023/
+						xr.MoveToElement();
+#if DEBUG
+						string strInner = ReadStringRaw(xr);
+						Debug.Assert(string.IsNullOrEmpty(strInner));
+#else
+						ReadStringRaw(xr);
+#endif
+
+						return pb;
+					}
 					else { Debug.Assert(false); }
 				}
 				else { Debug.Assert(false); }

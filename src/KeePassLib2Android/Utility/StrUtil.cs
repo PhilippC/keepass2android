@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,16 +21,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-using System.Drawing;
+using System.Globalization;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
+
+#if !KeePassUAP
+using System.Drawing;
 using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Collections;
+using KeePassLib.Cryptography.PasswordGenerator;
 using KeePassLib.Native;
 using KeePassLib.Security;
-using KeePassLib.Resources;
 
 namespace KeePassLib.Utility
 {
@@ -212,41 +216,47 @@ namespace KeePassLib.Utility
 		{
 			get
 			{
-				if(m_lEncs == null)
-				{
-					m_lEncs = new List<StrEncodingInfo>();
+				if(m_lEncs != null) return m_lEncs;
 
-					m_lEncs.Add(new StrEncodingInfo(StrEncodingType.Default,
-#if !KeePassLibSD
-						Encoding.Default.EncodingName,
+				List<StrEncodingInfo> l = new List<StrEncodingInfo>();
+
+				l.Add(new StrEncodingInfo(StrEncodingType.Default,
+#if KeePassUAP
+					"Unicode (UTF-8)", StrUtil.Utf8, 1, new byte[] { 0xEF, 0xBB, 0xBF }));
 #else
-						Encoding.Default.WebName,
-#endif
-						Encoding.Default,
-						(uint)Encoding.Default.GetBytes("a").Length, null));
-					m_lEncs.Add(new StrEncodingInfo(StrEncodingType.Ascii,
-						"ASCII", Encoding.ASCII, 1, null));
-					m_lEncs.Add(new StrEncodingInfo(StrEncodingType.Utf7,
-						"Unicode (UTF-7)", Encoding.UTF7, 1, null));
-					m_lEncs.Add(new StrEncodingInfo(StrEncodingType.Utf8,
-						"Unicode (UTF-8)", StrUtil.Utf8, 1, new byte[] { 0xEF, 0xBB, 0xBF }));
-					m_lEncs.Add(new StrEncodingInfo(StrEncodingType.Utf16LE,
-						"Unicode (UTF-16 LE)", new UnicodeEncoding(false, false),
-						2, new byte[] { 0xFF, 0xFE }));
-					m_lEncs.Add(new StrEncodingInfo(StrEncodingType.Utf16BE,
-						"Unicode (UTF-16 BE)", new UnicodeEncoding(true, false),
-						2, new byte[] { 0xFE, 0xFF }));
 #if !KeePassLibSD
-					m_lEncs.Add(new StrEncodingInfo(StrEncodingType.Utf32LE,
-						"Unicode (UTF-32 LE)", new UTF32Encoding(false, false),
-						4, new byte[] { 0xFF, 0xFE, 0x0, 0x0 }));
-					m_lEncs.Add(new StrEncodingInfo(StrEncodingType.Utf32BE,
-						"Unicode (UTF-32 BE)", new UTF32Encoding(true, false),
-						4, new byte[] { 0x0, 0x0, 0xFE, 0xFF }));
+					Encoding.Default.EncodingName,
+#else
+					Encoding.Default.WebName,
 #endif
-				}
+					Encoding.Default,
+					(uint)Encoding.Default.GetBytes("a").Length, null));
+#endif
 
-				return m_lEncs;
+				l.Add(new StrEncodingInfo(StrEncodingType.Ascii,
+					"ASCII", Encoding.ASCII, 1, null));
+				l.Add(new StrEncodingInfo(StrEncodingType.Utf7,
+					"Unicode (UTF-7)", Encoding.UTF7, 1, null));
+				l.Add(new StrEncodingInfo(StrEncodingType.Utf8,
+					"Unicode (UTF-8)", StrUtil.Utf8, 1, new byte[] { 0xEF, 0xBB, 0xBF }));
+				l.Add(new StrEncodingInfo(StrEncodingType.Utf16LE,
+					"Unicode (UTF-16 LE)", new UnicodeEncoding(false, false),
+					2, new byte[] { 0xFF, 0xFE }));
+				l.Add(new StrEncodingInfo(StrEncodingType.Utf16BE,
+					"Unicode (UTF-16 BE)", new UnicodeEncoding(true, false),
+					2, new byte[] { 0xFE, 0xFF }));
+
+#if !KeePassLibSD
+				l.Add(new StrEncodingInfo(StrEncodingType.Utf32LE,
+					"Unicode (UTF-32 LE)", new UTF32Encoding(false, false),
+					4, new byte[] { 0xFF, 0xFE, 0x0, 0x0 }));
+				l.Add(new StrEncodingInfo(StrEncodingType.Utf32BE,
+					"Unicode (UTF-32 BE)", new UTF32Encoding(true, false),
+					4, new byte[] { 0x0, 0x0, 0xFE, 0xFF }));
+#endif
+
+				m_lEncs = l;
+				return l;
 			}
 		}
 
@@ -274,15 +284,20 @@ namespace KeePassLib.Utility
 		//	{
 		//		char ch = str[i];
 		//		if((int)ch >= 256)
-		//		{
-		//			sbEncoded.Append("\\u");
-		//			sbEncoded.Append((int)ch);
-		//			sbEncoded.Append('?');
-		//		}
+		//			sbEncoded.Append(StrUtil.RtfEncodeChar(ch));
 		//		else sbEncoded.Append(ch);
 		//	}
 		//	return sbEncoded.ToString();
 		// }
+
+		public static string RtfEncodeChar(char ch)
+		{
+			// Unicode character values must be encoded using
+			// 16-bit numbers (decimal); Unicode values greater
+			// than 32767 must be expressed as negative numbers
+			short sh = (short)ch;
+			return ("\\u" + sh.ToString(NumberFormatInfo.InvariantInfo) + "?");
+		}
 
 		/// <summary>
 		/// Convert a string into a valid HTML sequence representing that string.
@@ -300,7 +315,7 @@ namespace KeePassLib.Utility
 			str = str.Replace("\'", @"&#39;");
 
 			str = NormalizeNewLines(str, false);
-			str = str.Replace("\n", @"<br />");
+			str = str.Replace("\n", @"<br />" + MessageService.NewLine);
 
 			return str;
 		}
@@ -343,9 +358,9 @@ namespace KeePassLib.Utility
 		}
 
 		/// <summary>
-		/// Split up a command-line into application and argument.
+		/// Split up a command line into application and argument.
 		/// </summary>
-		/// <param name="strCmdLine">Command-line to split.</param>
+		/// <param name="strCmdLine">Command line to split.</param>
 		/// <param name="strApp">Application path.</param>
 		/// <param name="strArgs">Arguments.</param>
 		public static void SplitCommandLine(string strCmdLine, out string strApp, out string strArgs)
@@ -482,8 +497,10 @@ namespace KeePassLib.Utility
 			if(excp.StackTrace != null)
 				strText += excp.StackTrace + MessageService.NewLine;
 #if !KeePassLibSD
+#if !KeePassUAP
 			if(excp.TargetSite != null)
 				strText += excp.TargetSite.ToString() + MessageService.NewLine;
+#endif
 
 			if(excp.Data != null)
 			{
@@ -506,8 +523,10 @@ namespace KeePassLib.Utility
 				if(excp.InnerException.StackTrace != null)
 					strText += excp.InnerException.StackTrace + MessageService.NewLine;
 #if !KeePassLibSD
+#if !KeePassUAP
 				if(excp.InnerException.TargetSite != null)
 					strText += excp.InnerException.TargetSite.ToString();
+#endif
 
 				if(excp.InnerException.Data != null)
 				{
@@ -538,7 +557,25 @@ namespace KeePassLib.Utility
 			return int.TryParse(str, out n);
 #else
 			try { n = int.Parse(str); return true; }
-			catch(Exception) { n = 0; return false; }
+			catch(Exception) { n = 0; }
+			return false;
+#endif
+		}
+
+		public static bool TryParseIntInvariant(string str, out int n)
+		{
+#if !KeePassLibSD
+			return int.TryParse(str, NumberStyles.Integer,
+				NumberFormatInfo.InvariantInfo, out n);
+#else
+			try
+			{
+				n = int.Parse(str, NumberStyles.Integer,
+					NumberFormatInfo.InvariantInfo);
+				return true;
+			}
+			catch(Exception) { n = 0; }
+			return false;
 #endif
 		}
 
@@ -548,7 +585,25 @@ namespace KeePassLib.Utility
 			return uint.TryParse(str, out u);
 #else
 			try { u = uint.Parse(str); return true; }
-			catch(Exception) { u = 0; return false; }
+			catch(Exception) { u = 0; }
+			return false;
+#endif
+		}
+
+		public static bool TryParseUIntInvariant(string str, out uint u)
+		{
+#if !KeePassLibSD
+			return uint.TryParse(str, NumberStyles.Integer,
+				NumberFormatInfo.InvariantInfo, out u);
+#else
+			try
+			{
+				u = uint.Parse(str, NumberStyles.Integer,
+					NumberFormatInfo.InvariantInfo);
+				return true;
+			}
+			catch(Exception) { u = 0; }
+			return false;
 #endif
 		}
 
@@ -558,7 +613,25 @@ namespace KeePassLib.Utility
 			return long.TryParse(str, out n);
 #else
 			try { n = long.Parse(str); return true; }
-			catch(Exception) { n = 0; return false; }
+			catch(Exception) { n = 0; }
+			return false;
+#endif
+		}
+
+		public static bool TryParseLongInvariant(string str, out long n)
+		{
+#if !KeePassLibSD
+			return long.TryParse(str, NumberStyles.Integer,
+				NumberFormatInfo.InvariantInfo, out n);
+#else
+			try
+			{
+				n = long.Parse(str, NumberStyles.Integer,
+					NumberFormatInfo.InvariantInfo);
+				return true;
+			}
+			catch(Exception) { n = 0; }
+			return false;
 #endif
 		}
 
@@ -568,7 +641,25 @@ namespace KeePassLib.Utility
 			return ulong.TryParse(str, out u);
 #else
 			try { u = ulong.Parse(str); return true; }
-			catch(Exception) { u = 0; return false; }
+			catch(Exception) { u = 0; }
+			return false;
+#endif
+		}
+
+		public static bool TryParseULongInvariant(string str, out ulong u)
+		{
+#if !KeePassLibSD
+			return ulong.TryParse(str, NumberStyles.Integer,
+				NumberFormatInfo.InvariantInfo, out u);
+#else
+			try
+			{
+				u = ulong.Parse(str, NumberStyles.Integer,
+					NumberFormatInfo.InvariantInfo);
+				return true;
+			}
+			catch(Exception) { u = 0; }
+			return false;
 #endif
 		}
 
@@ -636,25 +727,40 @@ namespace KeePassLib.Utility
 			Debug.Assert(strText != null); // No throw
 			if(string.IsNullOrEmpty(strText)) return strText;
 
-			char[] vChars = strText.ToCharArray();
-			StringBuilder sb = new StringBuilder(strText.Length, strText.Length);
-			char ch;
+			int nLength = strText.Length;
+			StringBuilder sb = new StringBuilder(nLength);
 
-			for(int i = 0; i < vChars.Length; ++i)
+			for(int i = 0; i < nLength; ++i)
 			{
-				ch = vChars[i];
+				char ch = strText[i];
 
-				if(((ch >= 0x20) && (ch <= 0xD7FF)) ||
-					(ch == 0x9) || (ch == 0xA) || (ch == 0xD) ||
-					((ch >= 0xE000) && (ch <= 0xFFFD)))
+				if(((ch >= '\u0020') && (ch <= '\uD7FF')) ||
+					(ch == '\u0009') || (ch == '\u000A') || (ch == '\u000D') ||
+					((ch >= '\uE000') && (ch <= '\uFFFD')))
 					sb.Append(ch);
-				// Range ((ch >= 0x10000) && (ch <= 0x10FFFF)) excluded
+				else if((ch >= '\uD800') && (ch <= '\uDBFF')) // High surrogate
+				{
+					if((i + 1) < nLength)
+					{
+						char chLow = strText[i + 1];
+						if((chLow >= '\uDC00') && (chLow <= '\uDFFF')) // Low sur.
+						{
+							sb.Append(ch);
+							sb.Append(chLow);
+							++i;
+						}
+						else { Debug.Assert(false); } // Low sur. invalid
+					}
+					else { Debug.Assert(false); } // Low sur. missing
+				}
+
+				Debug.Assert((ch < '\uDC00') || (ch > '\uDFFF')); // Lonely low sur.
 			}
 
 			return sb.ToString();
 		}
 
-		private static Regex m_rxNaturalSplit = null;
+		/* private static Regex g_rxNaturalSplit = null;
 		public static int CompareNaturally(string strX, string strY)
 		{
 			Debug.Assert(strX != null);
@@ -665,34 +771,31 @@ namespace KeePassLib.Utility
 			if(NativeMethods.SupportsStrCmpNaturally)
 				return NativeMethods.StrCmpNaturally(strX, strY);
 
-			strX = strX.ToLower(); // Case-insensitive comparison
-			strY = strY.ToLower();
+			if(g_rxNaturalSplit == null)
+				g_rxNaturalSplit = new Regex(@"([0-9]+)", RegexOptions.Compiled);
 
-			if(m_rxNaturalSplit == null)
-				m_rxNaturalSplit = new Regex(@"([0-9]+)", RegexOptions.Compiled);
+			string[] vPartsX = g_rxNaturalSplit.Split(strX);
+			string[] vPartsY = g_rxNaturalSplit.Split(strY);
 
-			string[] vPartsX = m_rxNaturalSplit.Split(strX);
-			string[] vPartsY = m_rxNaturalSplit.Split(strY);
-
-			for(int i = 0; i < Math.Min(vPartsX.Length, vPartsY.Length); ++i)
+			int n = Math.Min(vPartsX.Length, vPartsY.Length);
+			for(int i = 0; i < n; ++i)
 			{
 				string strPartX = vPartsX[i], strPartY = vPartsY[i];
 				int iPartCompare;
 
 #if KeePassLibSD
-				ulong uX = 0, uY = 0;
 				try
 				{
-					uX = ulong.Parse(strPartX);
-					uY = ulong.Parse(strPartY);
+					ulong uX = ulong.Parse(strPartX);
+					ulong uY = ulong.Parse(strPartY);
 					iPartCompare = uX.CompareTo(uY);
 				}
-				catch(Exception) { iPartCompare = strPartX.CompareTo(strPartY); }
+				catch(Exception) { iPartCompare = string.Compare(strPartX, strPartY, true); }
 #else
 				ulong uX, uY;
 				if(ulong.TryParse(strPartX, out uX) && ulong.TryParse(strPartY, out uY))
 					iPartCompare = uX.CompareTo(uY);
-				else iPartCompare = strPartX.CompareTo(strPartY);
+				else iPartCompare = string.Compare(strPartX, strPartY, true);
 #endif
 
 				if(iPartCompare != 0) return iPartCompare;
@@ -700,6 +803,106 @@ namespace KeePassLib.Utility
 
 			if(vPartsX.Length == vPartsY.Length) return 0;
 			if(vPartsX.Length < vPartsY.Length) return -1;
+			return 1;
+		} */
+
+		public static int CompareNaturally(string strX, string strY)
+		{
+			Debug.Assert(strX != null);
+			if(strX == null) throw new ArgumentNullException("strX");
+			Debug.Assert(strY != null);
+			if(strY == null) throw new ArgumentNullException("strY");
+
+			if(NativeMethods.SupportsStrCmpNaturally)
+				return NativeMethods.StrCmpNaturally(strX, strY);
+
+			int cX = strX.Length;
+			int cY = strY.Length;
+			if(cX == 0) return ((cY == 0) ? 0 : -1);
+			if(cY == 0) return 1;
+
+			char chFirstX = strX[0];
+			char chFirstY = strY[0];
+			bool bExpNum = ((chFirstX >= '0') && (chFirstX <= '9'));
+			bool bExpNumY = ((chFirstY >= '0') && (chFirstY <= '9'));
+			if(bExpNum != bExpNumY) return string.Compare(strX, strY, true);
+
+			int pX = 0;
+			int pY = 0;
+			while((pX < cX) && (pY < cY))
+			{
+				Debug.Assert(((strX[pX] >= '0') && (strX[pX] <= '9')) == bExpNum);
+				Debug.Assert(((strY[pY] >= '0') && (strY[pY] <= '9')) == bExpNum);
+
+				int pExclX = pX + 1;
+				while(pExclX < cX)
+				{
+					char ch = strX[pExclX];
+					bool bChNum = ((ch >= '0') && (ch <= '9'));
+					if(bChNum != bExpNum) break;
+					++pExclX;
+				}
+
+				int pExclY = pY + 1;
+				while(pExclY < cY)
+				{
+					char ch = strY[pExclY];
+					bool bChNum = ((ch >= '0') && (ch <= '9'));
+					if(bChNum != bExpNum) break;
+					++pExclY;
+				}
+
+				string strPartX = strX.Substring(pX, pExclX - pX);
+				string strPartY = strY.Substring(pY, pExclY - pY);
+
+				bool bStrCmp = true;
+				if(bExpNum)
+				{
+					// 2^64 - 1 = 18446744073709551615 has length 20
+					if((strPartX.Length <= 19) && (strPartY.Length <= 19))
+					{
+						ulong uX, uY;
+						if(ulong.TryParse(strPartX, out uX) && ulong.TryParse(strPartY, out uY))
+						{
+							if(uX < uY) return -1;
+							if(uX > uY) return 1;
+
+							bStrCmp = false;
+						}
+						else { Debug.Assert(false); }
+					}
+					else
+					{
+						double dX, dY;
+						if(double.TryParse(strPartX, out dX) && double.TryParse(strPartY, out dY))
+						{
+							if(dX < dY) return -1;
+							if(dX > dY) return 1;
+
+							bStrCmp = false;
+						}
+						else { Debug.Assert(false); }
+					}
+				}
+				if(bStrCmp)
+				{
+					int c = string.Compare(strPartX, strPartY, true);
+					if(c != 0) return c;
+				}
+
+				bExpNum = !bExpNum;
+				pX = pExclX;
+				pY = pExclY;
+			}
+
+			if(pX >= cX)
+			{
+				Debug.Assert(pX == cX);
+				if(pY >= cY) { Debug.Assert(pY == cY); return 0; }
+				return -1;
+			}
+
+			Debug.Assert(pY == cY);
 			return 1;
 		}
 
@@ -722,6 +925,54 @@ namespace KeePassLib.Utility
 			str = str.Replace(@"&", string.Empty);
 
 			return str;
+		}
+
+		public static string AddAccelerator(string strMenuText,
+			List<char> lAvailKeys)
+		{
+			if(strMenuText == null) { Debug.Assert(false); return null; }
+			if(lAvailKeys == null) { Debug.Assert(false); return strMenuText; }
+
+			int xa = -1, xs = 0;
+			for(int i = 0; i < strMenuText.Length; ++i)
+			{
+				char ch = strMenuText[i];
+
+#if KeePassLibSD
+				char chUpper = char.ToUpper(ch);
+#else
+				char chUpper = char.ToUpperInvariant(ch);
+#endif
+				xa = lAvailKeys.IndexOf(chUpper);
+				if(xa >= 0) { xs = i; break; }
+
+#if KeePassLibSD
+				char chLower = char.ToLower(ch);
+#else
+				char chLower = char.ToLowerInvariant(ch);
+#endif
+				xa = lAvailKeys.IndexOf(chLower);
+				if(xa >= 0) { xs = i; break; }
+			}
+
+			if(xa < 0) return strMenuText;
+
+			lAvailKeys.RemoveAt(xa);
+			return strMenuText.Insert(xs, @"&");
+		}
+
+		public static string EncodeMenuText(string strText)
+		{
+			if(strText == null) throw new ArgumentNullException("strText");
+
+			return strText.Replace(@"&", @"&&");
+		}
+
+		public static string EncodeToolTipText(string strText)
+		{
+			if(strText == null) throw new ArgumentNullException("strText");
+
+			return strText.Replace(@"&", @"&&&");
 		}
 
 		public static bool IsHexString(string str, bool bStrict)
@@ -872,6 +1123,36 @@ namespace KeePassLib.Utility
 			}
 		}
 
+		public static string GetNewLineSeq(string str)
+		{
+			if(str == null) { Debug.Assert(false); return MessageService.NewLine; }
+
+			int n = str.Length, nLf = 0, nCr = 0, nCrLf = 0;
+			char chLast = char.MinValue;
+			for(int i = 0; i < n; ++i)
+			{
+				char ch = str[i];
+
+				if(ch == '\r') ++nCr;
+				else if(ch == '\n')
+				{
+					++nLf;
+					if(chLast == '\r') ++nCrLf;
+				}
+
+				chLast = ch;
+			}
+
+			nCr -= nCrLf;
+			nLf -= nCrLf;
+
+			int nMax = Math.Max(nCrLf, Math.Max(nCr, nLf));
+			if(nMax == 0) return MessageService.NewLine;
+
+			if(nCrLf == nMax) return "\r\n";
+			return ((nLf == nMax) ? "\n" : "\r");
+		}
+
 		public static string AlphaNumericOnly(string str)
 		{
 			if(string.IsNullOrEmpty(str)) return str;
@@ -949,37 +1230,44 @@ namespace KeePassLib.Utility
 
 		public static string VersionToString(ulong uVersion)
 		{
-			return VersionToString(uVersion, false);
+			return VersionToString(uVersion, 1U);
 		}
 
+		[Obsolete]
 		public static string VersionToString(ulong uVersion,
 			bool bEnsureAtLeastTwoComp)
 		{
-			string str = string.Empty;
-			bool bMultiComp = false;
+			return VersionToString(uVersion, (bEnsureAtLeastTwoComp ? 2U : 1U));
+		}
+
+		public static string VersionToString(ulong uVersion, uint uMinComp)
+		{
+			StringBuilder sb = new StringBuilder();
+			uint uComp = 0;
 
 			for(int i = 0; i < 4; ++i)
 			{
-				ushort us = (ushort)(uVersion & 0xFFFFUL);
+				if(uVersion == 0UL) break;
 
-				if((us != 0) || (str.Length > 0))
-				{
-					if(str.Length > 0)
-					{
-						str = "." + str;
-						bMultiComp = true;
-					}
+				ushort us = (ushort)(uVersion >> 48);
 
-					str = us.ToString() + str;
-				}
+				if(sb.Length > 0) sb.Append('.');
 
-				uVersion >>= 16;
+				sb.Append(us.ToString(NumberFormatInfo.InvariantInfo));
+				++uComp;
+
+				uVersion <<= 16;
 			}
 
-			if(bEnsureAtLeastTwoComp && !bMultiComp && (str.Length > 0))
-				str += ".0";
+			while(uComp < uMinComp)
+			{
+				if(sb.Length > 0) sb.Append('.');
 
-			return str;
+				sb.Append('0');
+				++uComp;
+			}
+
+			return sb.ToString();
 		}
 
 		private static readonly byte[] m_pbOptEnt = { 0xA5, 0x74, 0x2E, 0xEC };
@@ -994,7 +1282,7 @@ namespace KeePassLib.Utility
 				byte[] pbEnc = ProtectedData.Protect(pbPlain, m_pbOptEnt,
 					DataProtectionScope.CurrentUser);
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassUAP)
 				return Convert.ToBase64String(pbEnc, Base64FormattingOptions.None);
 #else
 				return Convert.ToBase64String(pbEnc);
@@ -1030,7 +1318,7 @@ namespace KeePassLib.Utility
 			for(int i = 0; i < vNumbers.Length; ++i)
 			{
 				if(i > 0) sb.Append(' ');
-				sb.Append(vNumbers[i]);
+				sb.Append(vNumbers[i].ToString(NumberFormatInfo.InvariantInfo));
 			}
 
 			return sb.ToString();
@@ -1047,14 +1335,14 @@ namespace KeePassLib.Utility
 			for(int i = 0; i < vParts.Length; ++i)
 			{
 				int n;
-				if(!TryParseInt(vParts[i], out n)) { Debug.Assert(false); }
+				if(!TryParseIntInvariant(vParts[i], out n)) { Debug.Assert(false); }
 				v[i] = n;
 			}
 
 			return v;
 		}
 
-		private static readonly char[] m_vTagSep = new char[]{ ',', ';', ':' };
+		private static readonly char[] m_vTagSep = new char[] { ',', ';', ':' };
 		public static string TagsToString(List<string> vTags, bool bForDisplay)
 		{
 			if(vTags == null) throw new ArgumentNullException("vTags");
@@ -1107,7 +1395,7 @@ namespace KeePassLib.Utility
 			Array.Reverse(pb);
 			for(int i = 0; i < pb.Length; ++i) pb[i] = (byte)(pb[i] ^ 0x65);
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassUAP)
 			return Convert.ToBase64String(pb, Base64FormattingOptions.None);
 #else
 			return Convert.ToBase64String(pb);
@@ -1225,9 +1513,33 @@ namespace KeePassLib.Utility
 
 		public static bool IsDataUri(string strUri)
 		{
-			if(strUri == null) { Debug.Assert(false); return false; }
+			return IsDataUri(strUri, null);
+		}
 
-			return strUri.StartsWith("data:", StrUtil.CaseIgnoreCmp);
+		public static bool IsDataUri(string strUri, string strReqMimeType)
+		{
+			if(strUri == null) { Debug.Assert(false); return false; }
+			// strReqMimeType may be null
+
+			const string strPrefix = "data:";
+			if(!strUri.StartsWith(strPrefix, StrUtil.CaseIgnoreCmp))
+				return false;
+
+			int iC = strUri.IndexOf(',');
+			if(iC < 0) return false;
+
+			if(!string.IsNullOrEmpty(strReqMimeType))
+			{
+				int iS = strUri.IndexOf(';', 0, iC);
+				int iTerm = ((iS >= 0) ? iS : iC);
+
+				string strMime = strUri.Substring(strPrefix.Length,
+					iTerm - strPrefix.Length);
+				if(!strMime.Equals(strReqMimeType, StrUtil.CaseIgnoreCmp))
+					return false;
+			}
+
+			return true;
 		}
 
 		/// <summary>
@@ -1243,7 +1555,7 @@ namespace KeePassLib.Utility
 
 			if(strMimeType == null) strMimeType = "application/octet-stream";
 
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassUAP)
 			return ("data:" + strMimeType + ";base64," + Convert.ToBase64String(
 				pbData, Base64FormattingOptions.None));
 #else
@@ -1273,14 +1585,15 @@ namespace KeePassLib.Utility
 			if(bBase64) return Convert.FromBase64String(strData);
 
 			MemoryStream ms = new MemoryStream();
+			Encoding enc = Encoding.ASCII;
 
 			string[] v = strData.Split('%');
-			byte[] pb = Encoding.ASCII.GetBytes(v[0]);
+			byte[] pb = enc.GetBytes(v[0]);
 			ms.Write(pb, 0, pb.Length);
 			for(int i = 1; i < v.Length; ++i)
 			{
 				ms.WriteByte(Convert.ToByte(v[i].Substring(0, 2), 16));
-				pb = Encoding.ASCII.GetBytes(v[i].Substring(2));
+				pb = enc.GetBytes(v[i].Substring(2));
 				ms.Write(pb, 0, pb.Length);
 			}
 
@@ -1329,6 +1642,73 @@ namespace KeePassLib.Utility
 			}
 
 			return null;
+		}
+
+		private static string[] m_vPrefSepChars = null;
+		/// <summary>
+		/// Find a character that does not occur within a given text.
+		/// </summary>
+		public static char GetUnusedChar(string strText)
+		{
+			if(strText == null) { Debug.Assert(false); return '@'; }
+
+			if(m_vPrefSepChars == null)
+				m_vPrefSepChars = new string[5] {
+					"@!$%#/\\:;,.*-_?",
+					PwCharSet.UpperCase, PwCharSet.LowerCase,
+					PwCharSet.Digits, PwCharSet.PrintableAsciiSpecial
+				};
+
+			for(int i = 0; i < m_vPrefSepChars.Length; ++i)
+			{
+				foreach(char ch in m_vPrefSepChars[i])
+				{
+					if(strText.IndexOf(ch) < 0) return ch;
+				}
+			}
+
+			for(char ch = '\u00C0'; ch < char.MaxValue; ++ch)
+			{
+				if(strText.IndexOf(ch) < 0) return ch;
+			}
+
+			return char.MinValue;
+		}
+
+		public static char ByteToSafeChar(byte bt)
+		{
+			const char chDefault = '.';
+
+			// 00-1F are C0 control chars
+			if(bt < 0x20) return chDefault;
+
+			// 20-7F are basic Latin; 7F is DEL
+			if(bt < 0x7F) return (char)bt;
+
+			// 80-9F are C1 control chars
+			if(bt < 0xA0) return chDefault;
+
+			// A0-FF are Latin-1 supplement; AD is soft hyphen
+			if(bt == 0xAD) return '-';
+			return (char)bt;
+		}
+
+		public static int Count(string str, string strNeedle)
+		{
+			if(str == null) { Debug.Assert(false); return 0; }
+			if(string.IsNullOrEmpty(strNeedle)) { Debug.Assert(false); return 0; }
+
+			int iOffset = 0, iCount = 0;
+			while(iOffset < str.Length)
+			{
+				int p = str.IndexOf(strNeedle, iOffset);
+				if(p < 0) break;
+
+				++iCount;
+				iOffset = p + 1;
+			}
+
+			return iCount;
 		}
 	}
 }

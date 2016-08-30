@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Xml;
+
+#if !KeePassUAP
 using System.Drawing;
+#endif
 
 using KeePassLib.Collections;
 using KeePassLib.Interfaces;
@@ -83,7 +85,7 @@ namespace KeePassLib
 		{
 			get { return m_pParentGroup; }
 
-			/// Plugins: use <c>PwGroup.AddEntry</c> instead.
+			// Plugins: use <c>PwGroup.AddEntry</c> instead.
 			internal set { m_pParentGroup = value; }
 		}
 
@@ -200,21 +202,21 @@ namespace KeePassLib
 		}
 
 		/// <summary>
-		/// The date/time when this entry was last accessed (read).
-		/// </summary>
-		public DateTime LastAccessTime
-		{
-			get { return m_tLastAccess; }
-			set { m_tLastAccess = value; }
-		}
-
-		/// <summary>
 		/// The date/time when this entry was last modified.
 		/// </summary>
 		public DateTime LastModificationTime
 		{
 			get { return m_tLastMod; }
 			set { m_tLastMod = value; }
+		}
+
+		/// <summary>
+		/// The date/time when this entry was last accessed (read).
+		/// </summary>
+		public DateTime LastAccessTime
+		{
+			get { return m_tLastAccess; }
+			set { m_tLastAccess = value; }
 		}
 
 		/// <summary>
@@ -320,6 +322,14 @@ namespace KeePassLib
 			}
 		}
 
+#if DEBUG
+		// For display in debugger
+		public override string ToString()
+		{
+			return (@"PwEntry '" + m_listStrings.ReadSafe(PwDefs.TitleField) + @"'");
+		}
+#endif
+
 		/// <summary>
 		/// Clone the current entry. The returned entry is an exact value copy
 		/// of the current entry (including UUID and parent group reference).
@@ -413,7 +423,7 @@ namespace KeePassLib
 			bool bIgnoreLastMod = ((pwOpt & PwCompareOptions.IgnoreLastMod) !=
 				PwCompareOptions.None);
 
-			if(!m_uuid.EqualsValue(pe.m_uuid)) return false;
+			if(!m_uuid.Equals(pe.m_uuid)) return false;
 			if((pwOpt & PwCompareOptions.IgnoreParentGroup) == PwCompareOptions.None)
 			{
 				if(m_pParentGroup != pe.m_pParentGroup) return false;
@@ -456,7 +466,7 @@ namespace KeePassLib
 			}
 
 			if(m_pwIcon != pe.m_pwIcon) return false;
-			if(!m_pwCustomIconID.EqualsValue(pe.m_pwCustomIconID)) return false;
+			if(!m_pwCustomIconID.Equals(pe.m_pwCustomIconID)) return false;
 
 			if(m_clrForeground != pe.m_clrForeground) return false;
 			if(m_clrBackground != pe.m_clrBackground) return false;
@@ -494,10 +504,12 @@ namespace KeePassLib
 		{
 			Debug.Assert(peTemplate != null); if(peTemplate == null) throw new ArgumentNullException("peTemplate");
 
-			if(bOnlyIfNewer && (peTemplate.m_tLastMod < m_tLastMod)) return;
+			if(bOnlyIfNewer && (TimeUtil.Compare(peTemplate.m_tLastMod, m_tLastMod,
+				true) < 0))
+				return;
 
 			// Template UUID should be the same as the current one
-			Debug.Assert(m_uuid.EqualsValue(peTemplate.m_uuid));
+			Debug.Assert(m_uuid.Equals(peTemplate.m_uuid));
 			m_uuid = peTemplate.m_uuid;
 
 			if(bAssignLocationChanged)
@@ -692,7 +704,7 @@ namespace KeePassLib
 			for(uint u = 0; u < m_listHistory.UCount; ++u)
 			{
 				PwEntry pe = m_listHistory.GetAt(u);
-				if(pe.LastModificationTime < dtMin)
+				if(TimeUtil.Compare(pe.LastModificationTime, dtMin, true) < 0)
 				{
 					idxRemove = u;
 					dtMin = pe.LastModificationTime;
@@ -844,6 +856,24 @@ namespace KeePassLib
 				}
 			}
 		}
+
+		public void SetCreatedNow()
+		{
+			DateTime dt = DateTime.Now;
+
+			m_tCreation = dt;
+			m_tLastAccess = dt;
+		}
+
+		public PwEntry Duplicate()
+		{
+			PwEntry pe = CloneDeep();
+
+			pe.SetUuid(new PwUuid(true), true);
+			pe.SetCreatedNow();
+
+			return pe;
+		}
 	}
 
 	public sealed class PwEntryComparer : IComparer<PwEntry>
@@ -868,6 +898,7 @@ namespace KeePassLib
 			string strB = b.Strings.ReadSafe(m_strFieldName);
 
 			if(m_bCompareNaturally) return StrUtil.CompareNaturally(strA, strB);
+
 			return string.Compare(strA, strB, m_bCaseInsensitive);
 		}
 	}

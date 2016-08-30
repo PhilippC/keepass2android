@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,8 +19,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+
+#if !KeePassUAP
 using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Utility;
 
@@ -39,7 +43,7 @@ namespace KeePassLib.Cryptography
 			uint uCodeDigits, bool bAddChecksum, int iTruncationOffset)
 		{
 			byte[] pbText = MemUtil.UInt64ToBytes(uFactor);
-			Array.Reverse(pbText); // Big-Endian
+			Array.Reverse(pbText); // To big-endian
 
 			HMACSHA1 hsha1 = new HMACSHA1(pbSecret);
 			byte[] pbHash = hsha1.ComputeHash(pbText);
@@ -58,7 +62,8 @@ namespace KeePassLib.Cryptography
 				uOtp = ((uOtp * 10) + CalculateChecksum(uOtp, uCodeDigits));
 
 			uint uDigits = (bAddChecksum ? (uCodeDigits + 1) : uCodeDigits);
-			return uOtp.ToString().PadLeft((int)uDigits, '0');
+			return uOtp.ToString(NumberFormatInfo.InvariantInfo).PadLeft(
+				(int)uDigits, '0');
 		}
 
 		private static readonly uint[] vDoubleDigits = new uint[]{ 0, 2, 4, 6, 8,

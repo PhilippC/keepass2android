@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,10 +18,13 @@
 */
 
 using System;
-using System.IO;
-using System.Security.Cryptography;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
+
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Native;
 using KeePassLib.Utility;
@@ -104,9 +107,9 @@ namespace KeePassLib.Serialization
 			m_bVerify = bVerify;
 
 			UTF8Encoding utf8 = StrUtil.Utf8;
-			if(m_bWriting == false) // Reading mode
+			if(!m_bWriting) // Reading mode
 			{
-				if(m_sBaseStream.CanRead == false)
+				if(!m_sBaseStream.CanRead)
 					throw new InvalidOperationException();
 
 				m_brInput = new BinaryReader(sBaseStream, utf8);
@@ -115,7 +118,7 @@ namespace KeePassLib.Serialization
 			}
 			else // Writing mode
 			{
-				if(m_sBaseStream.CanWrite == false)
+				if(!m_sBaseStream.CanWrite)
 					throw new InvalidOperationException();
 
 				m_bwOutput = new BinaryWriter(sBaseStream, utf8);
@@ -129,8 +132,14 @@ namespace KeePassLib.Serialization
 			if(m_bWriting) m_bwOutput.Flush();
 		}
 
+#if KeePassUAP
+		protected override void Dispose(bool disposing)
+		{
+			if(!disposing) return;
+#else
 		public override void Close()
 		{
+#endif
 			if(m_sBaseStream != null)
 			{
 				if(m_bWriting == false) // Reading mode
@@ -178,7 +187,7 @@ namespace KeePassLib.Serialization
 				if(m_nBufferPos == m_pbBuffer.Length)
 				{
 					if(ReadHashedBlock() == false)
-						return nCount - nRemaining; // Bytes actually read
+						return (nCount - nRemaining); // Bytes actually read
 				}
 
 				int nCopy = Math.Min(m_pbBuffer.Length - m_nBufferPos, nRemaining);

@@ -29,6 +29,7 @@ namespace KeePassLib.Resources
 			m_strCryptoStreamFailed = TryGetEx(dictNew, "CryptoStreamFailed", m_strCryptoStreamFailed);
 			m_strEncAlgorithmAes = TryGetEx(dictNew, "EncAlgorithmAes", m_strEncAlgorithmAes);
 			m_strErrorInClipboard = TryGetEx(dictNew, "ErrorInClipboard", m_strErrorInClipboard);
+			m_strExpect100Continue = TryGetEx(dictNew, "Expect100Continue", m_strExpect100Continue);
 			m_strFatalError = TryGetEx(dictNew, "FatalError", m_strFatalError);
 			m_strFatalErrorText = TryGetEx(dictNew, "FatalErrorText", m_strFatalErrorText);
 			m_strFileCorrupted = TryGetEx(dictNew, "FileCorrupted", m_strFileCorrupted);
@@ -44,21 +45,28 @@ namespace KeePassLib.Resources
 			m_strFileVersionUnsupported = TryGetEx(dictNew, "FileVersionUnsupported", m_strFileVersionUnsupported);
 			m_strFinalKeyCreationFailed = TryGetEx(dictNew, "FinalKeyCreationFailed", m_strFinalKeyCreationFailed);
 			m_strFrameworkNotImplExcp = TryGetEx(dictNew, "FrameworkNotImplExcp", m_strFrameworkNotImplExcp);
+			m_strGeneral = TryGetEx(dictNew, "General", m_strGeneral);
 			m_strInvalidCompositeKey = TryGetEx(dictNew, "InvalidCompositeKey", m_strInvalidCompositeKey);
 			m_strInvalidCompositeKeyHint = TryGetEx(dictNew, "InvalidCompositeKeyHint", m_strInvalidCompositeKeyHint);
 			m_strInvalidDataWhileDecoding = TryGetEx(dictNew, "InvalidDataWhileDecoding", m_strInvalidDataWhileDecoding);
 			m_strKeePass1xHint = TryGetEx(dictNew, "KeePass1xHint", m_strKeePass1xHint);
+			m_strKeyFileDbSel = TryGetEx(dictNew, "KeyFileDbSel", m_strKeyFileDbSel);
 			m_strMasterSeedLengthInvalid = TryGetEx(dictNew, "MasterSeedLengthInvalid", m_strMasterSeedLengthInvalid);
 			m_strOldFormat = TryGetEx(dictNew, "OldFormat", m_strOldFormat);
+			m_strPassive = TryGetEx(dictNew, "Passive", m_strPassive);
+			m_strPreAuth = TryGetEx(dictNew, "PreAuth", m_strPreAuth);
+			m_strTimeout = TryGetEx(dictNew, "Timeout", m_strTimeout);
 			m_strTryAgainSecs = TryGetEx(dictNew, "TryAgainSecs", m_strTryAgainSecs);
 			m_strUnknownHeaderId = TryGetEx(dictNew, "UnknownHeaderId", m_strUnknownHeaderId);
 			m_strUserAccountKeyError = TryGetEx(dictNew, "UserAccountKeyError", m_strUserAccountKeyError);
+			m_strUserAgent = TryGetEx(dictNew, "UserAgent", m_strUserAgent);
 		}
 
 		private static readonly string[] m_vKeyNames = {
 			"CryptoStreamFailed",
 			"EncAlgorithmAes",
 			"ErrorInClipboard",
+			"Expect100Continue",
 			"FatalError",
 			"FatalErrorText",
 			"FileCorrupted",
@@ -74,15 +82,21 @@ namespace KeePassLib.Resources
 			"FileVersionUnsupported",
 			"FinalKeyCreationFailed",
 			"FrameworkNotImplExcp",
+			"General",
 			"InvalidCompositeKey",
 			"InvalidCompositeKeyHint",
 			"InvalidDataWhileDecoding",
 			"KeePass1xHint",
+			"KeyFileDbSel",
 			"MasterSeedLengthInvalid",
 			"OldFormat",
+			"Passive",
+			"PreAuth",
+			"Timeout",
 			"TryAgainSecs",
 			"UnknownHeaderId",
-			"UserAccountKeyError"
+			"UserAccountKeyError",
+			"UserAgent"
 		};
 
 		public static string[] GetKeyNames()
@@ -121,6 +135,17 @@ namespace KeePassLib.Resources
 		public static string ErrorInClipboard
 		{
 			get { return m_strErrorInClipboard; }
+		}
+
+		private static string m_strExpect100Continue =
+			@"Expect 100-Continue responses";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Expect 100-Continue responses'.
+		/// </summary>
+		public static string Expect100Continue
+		{
+			get { return m_strExpect100Continue; }
 		}
 
 		private static string m_strFatalError =
@@ -288,6 +313,17 @@ namespace KeePassLib.Resources
 			get { return m_strFrameworkNotImplExcp; }
 		}
 
+		private static string m_strGeneral =
+			@"General";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'General'.
+		/// </summary>
+		public static string General
+		{
+			get { return m_strGeneral; }
+		}
+
 		private static string m_strInvalidCompositeKey =
 			@"The composite key is invalid!";
 		/// <summary>
@@ -332,6 +368,17 @@ namespace KeePassLib.Resources
 			get { return m_strKeePass1xHint; }
 		}
 
+		private static string m_strKeyFileDbSel =
+			@"Database files cannot be used as key files.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Database files cannot be used as key files.'.
+		/// </summary>
+		public static string KeyFileDbSel
+		{
+			get { return m_strKeyFileDbSel; }
+		}
+
 		private static string m_strMasterSeedLengthInvalid =
 			@"The length of the master key seed is invalid!";
 		/// <summary>
@@ -352,6 +399,39 @@ namespace KeePassLib.Resources
 		public static string OldFormat
 		{
 			get { return m_strOldFormat; }
+		}
+
+		private static string m_strPassive =
+			@"Passive";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Passive'.
+		/// </summary>
+		public static string Passive
+		{
+			get { return m_strPassive; }
+		}
+
+		private static string m_strPreAuth =
+			@"Pre-authenticate";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Pre-authenticate'.
+		/// </summary>
+		public static string PreAuth
+		{
+			get { return m_strPreAuth; }
+		}
+
+		private static string m_strTimeout =
+			@"Timeout";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Timeout'.
+		/// </summary>
+		public static string Timeout
+		{
+			get { return m_strTimeout; }
 		}
 
 		private static string m_strTryAgainSecs =
@@ -385,6 +465,17 @@ namespace KeePassLib.Resources
 		public static string UserAccountKeyError
 		{
 			get { return m_strUserAccountKeyError; }
+		}
+
+		private static string m_strUserAgent =
+			@"User agent";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'User agent'.
+		/// </summary>
+		public static string UserAgent
+		{
+			get { return m_strUserAgent; }
 		}
 	}
 }

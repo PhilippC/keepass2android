@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Cryptography.Cipher
 {
-	public sealed class Salsa20Cipher
+	public sealed class Salsa20Cipher : IDisposable
 	{
 		private uint[] m_state = new uint[16];
 		private uint[] m_x = new uint[16]; // Working buffer
@@ -34,7 +34,7 @@ namespace KeePassLib.Cryptography.Cipher
 		private byte[] m_output = new byte[64];
 		private int m_outputPos = 64;
 
-		private static readonly uint[] m_sigma = new uint[4]{
+		private static readonly uint[] m_sigma = new uint[4] {
 			0x61707865, 0x3320646E, 0x79622D32, 0x6B206574
 		};
 
@@ -45,6 +45,17 @@ namespace KeePassLib.Cryptography.Cipher
 		}
 
 		~Salsa20Cipher()
+		{
+			Dispose(false);
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		private void Dispose(bool bDisposing)
 		{
 			// Clear sensitive data
 			Array.Clear(m_state, 0, m_state.Length);

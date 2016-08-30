@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -137,7 +137,7 @@ namespace KeePassLib
 		{
 			get { return m_pParentGroup; }
 
-			/// Plugins: use <c>PwGroup.AddGroup</c> instead.
+			// Plugins: use <c>PwGroup.AddGroup</c> instead.
 			internal set { Debug.Assert(value != this); m_pParentGroup = value; }
 		}
 
@@ -329,6 +329,14 @@ namespace KeePassLib
 			m_pwIcon = pwIcon;
 		}
 
+#if DEBUG
+		// For display in debugger
+		public override string ToString()
+		{
+			return (@"PwGroup '" + m_strName + @"'");
+		}
+#endif
+
 		/// <summary>
 		/// Deeply clone the current group. The returned group will be an exact
 		/// value copy of the current object (including UUID, etc.).
@@ -352,9 +360,9 @@ namespace KeePassLib
 			pg.m_pwCustomIconID = m_pwCustomIconID;
 
 			pg.m_tCreation = m_tCreation;
-			pg.m_tExpire = m_tExpire;
-			pg.m_tLastAccess = m_tLastAccess;
 			pg.m_tLastMod = m_tLastMod;
+			pg.m_tLastAccess = m_tLastAccess;
+			pg.m_tExpire = m_tExpire;
 			pg.m_bExpires = m_bExpires;
 			pg.m_uUsageCount = m_uUsageCount;
 
@@ -362,6 +370,9 @@ namespace KeePassLib
 			pg.m_bVirtual = m_bVirtual;
 
 			pg.m_strDefaultAutoTypeSequence = m_strDefaultAutoTypeSequence;
+
+			pg.m_bEnableAutoType = m_bEnableAutoType;
+			pg.m_bEnableSearching = m_bEnableSearching;
 
 			pg.m_pwLastTopVisibleEntry = m_pwLastTopVisibleEntry;
 
@@ -385,6 +396,76 @@ namespace KeePassLib
 			return pg;
 		}
 
+		public bool EqualsGroup(PwGroup pg, PwCompareOptions pwOpt,
+			MemProtCmpMode mpCmpStr)
+		{
+			if(pg == null) { Debug.Assert(false); return false; }
+
+			bool bIgnoreLastAccess = ((pwOpt & PwCompareOptions.IgnoreLastAccess) !=
+				PwCompareOptions.None);
+			bool bIgnoreLastMod = ((pwOpt & PwCompareOptions.IgnoreLastMod) !=
+				PwCompareOptions.None);
+
+			if(!m_uuid.Equals(pg.m_uuid)) return false;
+			if((pwOpt & PwCompareOptions.IgnoreParentGroup) == PwCompareOptions.None)
+			{
+				if(m_pParentGroup != pg.m_pParentGroup) return false;
+				if(!bIgnoreLastMod && (m_tParentGroupLastMod != pg.m_tParentGroupLastMod))
+					return false;
+			}
+
+			if(m_strName != pg.m_strName) return false;
+			if(m_strNotes != pg.m_strNotes) return false;
+
+			if(m_pwIcon != pg.m_pwIcon) return false;
+			if(!m_pwCustomIconID.Equals(pg.m_pwCustomIconID)) return false;
+
+			if(m_tCreation != pg.m_tCreation) return false;
+			if(!bIgnoreLastMod && (m_tLastMod != pg.m_tLastMod)) return false;
+			if(!bIgnoreLastAccess && (m_tLastAccess != pg.m_tLastAccess)) return false;
+			if(m_tExpire != pg.m_tExpire) return false;
+			if(m_bExpires != pg.m_bExpires) return false;
+			if(!bIgnoreLastAccess && (m_uUsageCount != pg.m_uUsageCount)) return false;
+
+			// if(m_bIsExpanded != pg.m_bIsExpanded) return false;
+
+			if(m_strDefaultAutoTypeSequence != pg.m_strDefaultAutoTypeSequence) return false;
+
+			if(m_bEnableAutoType.HasValue != pg.m_bEnableAutoType.HasValue) return false;
+			if(m_bEnableAutoType.HasValue)
+			{
+				if(m_bEnableAutoType.Value != pg.m_bEnableAutoType.Value) return false;
+			}
+			if(m_bEnableSearching.HasValue != pg.m_bEnableSearching.HasValue) return false;
+			if(m_bEnableSearching.HasValue)
+			{
+				if(m_bEnableSearching.Value != pg.m_bEnableSearching.Value) return false;
+			}
+
+			if(!m_pwLastTopVisibleEntry.Equals(pg.m_pwLastTopVisibleEntry)) return false;
+
+			if((pwOpt & PwCompareOptions.PropertiesOnly) == PwCompareOptions.None)
+			{
+				if(m_listEntries.UCount != pg.m_listEntries.UCount) return false;
+				for(uint u = 0; u < m_listEntries.UCount; ++u)
+				{
+					PwEntry peA = m_listEntries.GetAt(u);
+					PwEntry peB = pg.m_listEntries.GetAt(u);
+					if(!peA.EqualsEntry(peB, pwOpt, mpCmpStr)) return false;
+				}
+
+				if(m_listGroups.UCount != pg.m_listGroups.UCount) return false;
+				for(uint u = 0; u < m_listGroups.UCount; ++u)
+				{
+					PwGroup pgA = m_listGroups.GetAt(u);
+					PwGroup pgB = pg.m_listGroups.GetAt(u);
+					if(!pgA.EqualsGroup(pgB, pwOpt, mpCmpStr)) return false;
+				}
+			}
+
+			return true;
+		}
+
 		/// <summary>
 		/// Assign properties to the current group based on a template group.
 		/// </summary>
@@ -398,10 +479,12 @@ namespace KeePassLib
 		{
 			Debug.Assert(pgTemplate != null); if(pgTemplate == null) throw new ArgumentNullException("pgTemplate");
 
-			if(bOnlyIfNewer && (pgTemplate.m_tLastMod < m_tLastMod)) return;
+			if(bOnlyIfNewer && (TimeUtil.Compare(pgTemplate.m_tLastMod, m_tLastMod,
+				true) < 0))
+				return;
 
 			// Template UUID should be the same as the current one
-			Debug.Assert(m_uuid.EqualsValue(pgTemplate.m_uuid));
+			Debug.Assert(m_uuid.Equals(pgTemplate.m_uuid));
 			m_uuid = pgTemplate.m_uuid;
 
 			if(bAssignLocationChanged)
@@ -421,6 +504,9 @@ namespace KeePassLib
 			m_uUsageCount = pgTemplate.m_uUsageCount;
 
 			m_strDefaultAutoTypeSequence = pgTemplate.m_strDefaultAutoTypeSequence;
+
+			m_bEnableAutoType = pgTemplate.m_bEnableAutoType;
+			m_bEnableSearching = pgTemplate.m_bEnableSearching;
 
 			m_pwLastTopVisibleEntry = pgTemplate.m_pwLastTopVisibleEntry;
 		}
@@ -573,8 +659,6 @@ namespace KeePassLib
 
 		/// <summary>
 		/// Pack all groups into one flat linked list of references (recursively).
-		/// Temporary IDs (<c>TemporaryID</c> field) and levels (<c>TemporaryLevel</c>)
-		/// are assigned automatically.
 		/// </summary>
 		/// <returns>Flat list of all groups.</returns>
 		public LinkedList<PwGroup> GetFlatGroupList()
@@ -671,6 +755,7 @@ namespace KeePassLib
 		/// <param name="sp">Specifies the search method.</param>
 		/// <param name="listStorage">Entry list in which the search results will
 		/// be stored.</param>
+		/// <param name="slStatus">Optional status reporting object.</param>
 		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage,
 			IStatusLogger slStatus)
 		{
@@ -764,9 +849,11 @@ namespace KeePassLib
 			Regex rx = null;
 			if(sp.RegularExpression)
 			{
-				RegexOptions ro = RegexOptions.Compiled;
+				RegexOptions ro = RegexOptions.None; // RegexOptions.Compiled
 				if((sp.ComparisonMode == StringComparison.CurrentCultureIgnoreCase) ||
+#if !KeePassUAP
 					(sp.ComparisonMode == StringComparison.InvariantCultureIgnoreCase) ||
+#endif
 					(sp.ComparisonMode == StringComparison.OrdinalIgnoreCase))
 				{
 					ro |= RegexOptions.IgnoreCase;
@@ -938,6 +1025,30 @@ namespace KeePassLib
 			return vTags;
 		}
 
+#if !KeePassLibSD
+		public IDictionary<string, uint> BuildEntryTagsDict(bool bSort)
+		{
+			IDictionary<string, uint> d;
+			if(!bSort) d = new Dictionary<string, uint>(StrUtil.CaseIgnoreComparer);
+			else d = new SortedDictionary<string, uint>(StrUtil.CaseIgnoreComparer);
+
+			EntryHandler eh = delegate(PwEntry pe)
+			{
+				foreach(string strTag in pe.Tags)
+				{
+					uint u;
+					if(d.TryGetValue(strTag, out u)) d[strTag] = u + 1;
+					else d[strTag] = 1;
+				}
+
+				return true;
+			};
+
+			TraverseTree(TraversalMethod.PreOrder, null, eh);
+			return d;
+		}
+#endif
+
 		public void FindEntriesByTag(string strTag, PwObjectList<PwEntry> listStorage,
 			bool bSearchRecursive)
 		{
@@ -972,7 +1083,7 @@ namespace KeePassLib
 		public PwGroup FindGroup(PwUuid uuid, bool bSearchRecursive)
 		{
 			// Do not assert on PwUuid.Zero
-			if(m_uuid.EqualsValue(uuid)) return this;
+			if(m_uuid.Equals(uuid)) return this;
 
 			if(bSearchRecursive)
 			{
@@ -987,7 +1098,7 @@ namespace KeePassLib
 			{
 				foreach(PwGroup pg in m_listGroups)
 				{
-					if(pg.m_uuid.EqualsValue(uuid))
+					if(pg.m_uuid.Equals(uuid))
 						return pg;
 				}
 			}
@@ -1051,7 +1162,7 @@ namespace KeePassLib
 		{
 			foreach(PwEntry pe in m_listEntries)
 			{
-				if(pe.Uuid.EqualsValue(uuid)) return pe;
+				if(pe.Uuid.Equals(uuid)) return pe;
 			}
 
 			if(bSearchRecursive)
@@ -1081,6 +1192,8 @@ namespace KeePassLib
 		/// </summary>
 		/// <param name="strSeparator">String that separates the group
 		/// names.</param>
+		/// <param name="bIncludeTopMostGroup">Specifies whether the returned
+		/// path starts with the topmost group.</param>
 		/// <returns>Full path of the group.</returns>
 		public string GetFullPath(string strSeparator, bool bIncludeTopMostGroup)
 		{
@@ -1151,6 +1264,7 @@ namespace KeePassLib
 			}
 		}
 
+#if !KeePassLibSD
 		/// <summary>
 		/// Find/create a subtree of groups.
 		/// </summary>
@@ -1165,10 +1279,22 @@ namespace KeePassLib
 		public PwGroup FindCreateSubTree(string strTree, char[] vSeparators,
 			bool bAllowCreate)
 		{
+			if(vSeparators == null) { Debug.Assert(false); vSeparators = new char[0]; }
+
+			string[] v = new string[vSeparators.Length];
+			for(int i = 0; i < vSeparators.Length; ++i)
+				v[i] = new string(vSeparators[i], 1);
+
+			return FindCreateSubTree(strTree, v, bAllowCreate);
+		}
+
+		public PwGroup FindCreateSubTree(string strTree, string[] vSeparators,
+			bool bAllowCreate)
+		{
 			Debug.Assert(strTree != null); if(strTree == null) return this;
 			if(strTree.Length == 0) return this;
 
-			string[] vGroups = strTree.Split(vSeparators);
+			string[] vGroups = strTree.Split(vSeparators, StringSplitOptions.None);
 			if((vGroups == null) || (vGroups.Length == 0)) return this;
 
 			PwGroup pgContainer = this;
@@ -1199,6 +1325,7 @@ namespace KeePassLib
 
 			return pgContainer;
 		}
+#endif
 
 		/// <summary>
 		/// Get the level of the group (i.e. the number of parent groups).
@@ -1421,6 +1548,69 @@ namespace KeePassLib
 				pdContext.DeletedObjects.Add(pdo);
 			}
 			m_listGroups.Clear();
+		}
+
+		internal List<PwGroup> GetTopSearchSkippedGroups()
+		{
+			List<PwGroup> l = new List<PwGroup>();
+
+			if(!GetSearchingEnabledInherited()) l.Add(this);
+			else GetTopSearchSkippedGroupsRec(l);
+
+			return l;
+		}
+
+		private void GetTopSearchSkippedGroupsRec(List<PwGroup> l)
+		{
+			if(m_bEnableSearching.HasValue && !m_bEnableSearching.Value)
+			{
+				l.Add(this);
+				return;
+			}
+			else { Debug.Assert(GetSearchingEnabledInherited()); }
+
+			foreach(PwGroup pgSub in m_listGroups)
+				pgSub.GetTopSearchSkippedGroupsRec(l);
+		}
+
+		public void SetCreatedNow(bool bRecursive)
+		{
+			DateTime dt = DateTime.Now;
+
+			m_tCreation = dt;
+			m_tLastAccess = dt;
+
+			if(!bRecursive) return;
+
+			GroupHandler gh = delegate(PwGroup pg)
+			{
+				pg.m_tCreation = dt;
+				pg.m_tLastAccess = dt;
+				return true;
+			};
+
+			EntryHandler eh = delegate(PwEntry pe)
+			{
+				pe.CreationTime = dt;
+				pe.LastAccessTime = dt;
+				return true;
+			};
+
+			TraverseTree(TraversalMethod.PreOrder, gh, eh);
+		}
+
+		public PwGroup Duplicate()
+		{
+			PwGroup pg = CloneDeep();
+
+			pg.Uuid = new PwUuid(true);
+			pg.CreateNewItemUuids(true, true, true);
+
+			pg.SetCreatedNow(true);
+
+			pg.TakeOwnership(true, true, true);
+
+			return pg;
 		}
 	}
 

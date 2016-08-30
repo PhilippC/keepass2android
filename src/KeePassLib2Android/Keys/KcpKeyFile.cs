@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,14 +18,18 @@
 */
 
 using System;
-using System.Text;
-using System.IO;
-using System.Xml;
-using System.Security;
-using System.Security.Cryptography;
 using System.Diagnostics;
+using System.IO;
+using System.Security;
+using System.Text;
+using System.Xml;
+
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Cryptography;
+using KeePassLib.Resources;
 using KeePassLib.Security;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -60,18 +64,46 @@ namespace KeePassLib.Keys
 
 		public KcpKeyFile(string strKeyFile)
 		{
-			Construct(IOConnectionInfo.FromPath(strKeyFile));
+			Construct(IOConnectionInfo.FromPath(strKeyFile), false);
+		}
+
+		public KcpKeyFile(string strKeyFile, bool bThrowIfDbFile)
+		{
+			Construct(IOConnectionInfo.FromPath(strKeyFile), bThrowIfDbFile);
 		}
 
 		public KcpKeyFile(IOConnectionInfo iocKeyFile)
 		{
-			Construct(iocKeyFile);
+			Construct(iocKeyFile, false);
 		}
 
-		private void Construct(IOConnectionInfo iocFile)
+		public KcpKeyFile(IOConnectionInfo iocKeyFile, bool bThrowIfDbFile)
+		{
+			Construct(iocKeyFile, bThrowIfDbFile);
+		}
+
+		private void Construct(IOConnectionInfo iocFile, bool bThrowIfDbFile)
 		{
 			byte[] pbFileData = IOConnection.ReadFile(iocFile);
 			if(pbFileData == null) throw new FileNotFoundException();
+
+			if(bThrowIfDbFile && (pbFileData.Length >= 8))
+			{
+				uint uSig1 = MemUtil.BytesToUInt32(MemUtil.Mid(pbFileData, 0, 4));
+				uint uSig2 = MemUtil.BytesToUInt32(MemUtil.Mid(pbFileData, 4, 4));
+
+				if(((uSig1 == KdbxFile.FileSignature1) &&
+					(uSig2 == KdbxFile.FileSignature2)) ||
+					((uSig1 == KdbxFile.FileSignaturePreRelease1) &&
+					(uSig2 == KdbxFile.FileSignaturePreRelease2)) ||
+					((uSig1 == KdbxFile.FileSignatureOld1) &&
+					(uSig2 == KdbxFile.FileSignatureOld2)))
+#if KeePassLibSD
+					throw new Exception(KLRes.KeyFileDbSel);
+#else
+					throw new InvalidDataException(KLRes.KeyFileDbSel);
+#endif
+			}
 
 			byte[] pbKey = LoadXmlKeyFile(pbFileData);
 			if(pbKey == null) pbKey = LoadKeyFile(pbFileData);
@@ -124,7 +156,7 @@ namespace KeePassLib.Keys
 
 			try
 			{
-				string strHex = Encoding.ASCII.GetString(pbFileData, 0, 64);
+				string strHex = StrUtil.Utf8.GetString(pbFileData, 0, 64);
 				if(!StrUtil.IsHexString(strHex, true)) return null;
 
 				byte[] pbKey = MemUtil.HexStringToByteArray(strHex);
@@ -235,7 +267,18 @@ namespace KeePassLib.Keys
 			Debug.Assert(pbKeyData != null);
 			if(pbKeyData == null) throw new ArgumentNullException("pbKeyData");
 
-			XmlTextWriter xtw = new XmlTextWriter(strFile, StrUtil.Utf8);
+			IOConnectionInfo ioc = IOConnectionInfo.FromPath(strFile);
+			Stream sOut = IOConnection.OpenWrite(ioc);
+
+#if KeePassUAP
+			XmlWriterSettings xws = new XmlWriterSettings();
+			xws.Encoding = StrUtil.Utf8;
+			xws.Indent = false;
+
+			XmlWriter xtw = XmlWriter.Create(sOut, xws);
+#else
+			XmlTextWriter xtw = new XmlTextWriter(sOut, StrUtil.Utf8);
+#endif
 
 			xtw.WriteStartDocument();
 			xtw.WriteWhitespace("\r\n");
@@ -266,6 +309,8 @@ namespace KeePassLib.Keys
 			xtw.WriteWhitespace("\r\n");
 			xtw.WriteEndDocument(); // End KeyFile
 			xtw.Close();
+
+			sOut.Close();
 		}
 	}
 }

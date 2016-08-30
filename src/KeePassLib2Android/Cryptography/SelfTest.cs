@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,21 +20,32 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Security;
-using System.Security.Cryptography;
 using System.Text;
+
+#if KeePassUAP
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Engines;
+using Org.BouncyCastle.Crypto.Parameters;
+#else
+using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
 using KeePassLib.Native;
-using KeePassLib.Utility;
 using KeePassLib.Resources;
 using KeePassLib.Security;
+using KeePassLib.Utility;
+
+#if (KeePassUAP && KeePassLibSD)
+#error KeePassUAP and KeePassLibSD are mutually exclusive.
+#endif
 
 namespace KeePassLib.Cryptography
 {
-/* #pragma warning disable 1591
-	/// <summary>
+	/* /// <summary>
 	/// Return values of the <c>SelfTest.Perform</c> method.
 	/// </summary>
 	public enum SelfTestResult
@@ -43,8 +54,7 @@ namespace KeePassLib.Cryptography
 		RijndaelEcbError = 1,
 		Salsa20Error = 2,
 		NativeKeyTransformationError = 3
-	}
-#pragma warning restore 1591 */
+	} */
 
 	/// <summary>
 	/// Class containing self-test methods.
@@ -73,15 +83,21 @@ namespace KeePassLib.Cryptography
 			Debug.Assert((int)PwIcon.World == 1);
 			Debug.Assert((int)PwIcon.Warning == 2);
 			Debug.Assert((int)PwIcon.BlackBerry == 68);
+
+#if KeePassUAP
+			SelfTestEx.Perform();
+#endif
 		}
 
 		internal static void TestFipsComplianceProblems()
 		{
+#if !KeePassUAP
 			try { new RijndaelManaged(); }
 			catch(Exception exAes)
 			{
 				throw new SecurityException("AES/Rijndael: " + exAes.Message);
 			}
+#endif
 
 			try { new SHA256Managed(); }
 			catch(Exception exSha256)
@@ -106,6 +122,13 @@ namespace KeePassLib.Cryptography
 			for(i = 0; i < 16; ++i) pbTestData[i] = 0;
 			pbTestData[0] = 0x04;
 
+#if KeePassUAP
+			AesEngine r = new AesEngine();
+			r.Init(true, new KeyParameter(pbTestKey));
+			if(r.GetBlockSize() != pbTestData.Length)
+				throw new SecurityException(KLRes.EncAlgorithmAes + " (BS).");
+			r.ProcessBlock(pbTestData, 0, pbTestData, 0);
+#else
 			RijndaelManaged r = new RijndaelManaged();
 
 			if(r.BlockSize != 128) // AES block size
@@ -121,6 +144,7 @@ namespace KeePassLib.Cryptography
 			ICryptoTransform iCrypt = r.CreateEncryptor();
 
 			iCrypt.TransformBlock(pbTestData, 0, 16, pbTestData, 0);
+#endif
 
 			if(!MemUtil.ArraysEqual(pbTestData, pbReferenceCT))
 				throw new SecurityException(KLRes.EncAlgorithmAes + ".");
@@ -146,7 +170,7 @@ namespace KeePassLib.Cryptography
 			Salsa20Cipher c = new Salsa20Cipher(pbKey, pbIV);
 			c.Encrypt(pb, pb.Length, false);
 			if(!MemUtil.ArraysEqual(pb, pbExpected))
-				throw new SecurityException("Salsa20.");
+				throw new SecurityException("Salsa20-1");
 
 #if DEBUG
 			// Extended test in debug mode
@@ -163,13 +187,24 @@ namespace KeePassLib.Cryptography
 			int nPos = Salsa20ToPos(c, r, pb.Length, 65536);
 			c.Encrypt(pb, pb.Length, false);
 			if(!MemUtil.ArraysEqual(pb, pbExpected2))
-				throw new SecurityException("Salsa20-2.");
+				throw new SecurityException("Salsa20-2");
 
 			nPos = Salsa20ToPos(c, r, nPos + pb.Length, 131008);
 			Array.Clear(pb, 0, pb.Length);
 			c.Encrypt(pb, pb.Length, true);
 			if(!MemUtil.ArraysEqual(pb, pbExpected3))
-				throw new SecurityException("Salsa20-3.");
+				throw new SecurityException("Salsa20-3");
+
+			Dictionary<string, bool> d = new Dictionary<string, bool>();
+			const int nRounds = 100;
+			for(int i = 0; i < nRounds; ++i)
+			{
+				byte[] z = new byte[32];
+				c = new Salsa20Cipher(z, BitConverter.GetBytes((long)i));
+				c.Encrypt(z, z.Length, true);
+				d[MemUtil.ByteArrayToHexString(z)] = true;
+			}
+			if(d.Count != nRounds) throw new SecurityException("Salsa20-4");
 #endif
 		}
 
@@ -200,12 +235,12 @@ namespace KeePassLib.Cryptography
 
 			byte[] pbManaged = new byte[32];
 			Array.Copy(pbOrgKey, pbManaged, 32);
-			if(CompositeKey.TransformKeyManaged(pbManaged, pbSeed, uRounds) == false)
+			if(!CompositeKey.TransformKeyManaged(pbManaged, pbSeed, uRounds))
 				throw new SecurityException("Managed transform.");
 
 			byte[] pbNative = new byte[32];
 			Array.Copy(pbOrgKey, pbNative, 32);
-			if(NativeLib.TransformKey256(pbNative, pbSeed, uRounds) == false)
+			if(!NativeLib.TransformKey256(pbNative, pbSeed, uRounds))
 				return; // Native library not available ("success")
 
 			if(!MemUtil.ArraysEqual(pbManaged, pbNative))
@@ -224,35 +259,64 @@ namespace KeePassLib.Cryptography
 			if(!MemUtil.ArraysEqual(MemUtil.Decompress(pbCompressed), pb))
 				throw new InvalidOperationException("GZip");
 
-			pb = Encoding.ASCII.GetBytes("012345678901234567890a");
-			byte[] pbN = Encoding.ASCII.GetBytes("9012");
+			Encoding enc = StrUtil.Utf8;
+			pb = enc.GetBytes("012345678901234567890a");
+			byte[] pbN = enc.GetBytes("9012");
 			if(MemUtil.IndexOf<byte>(pb, pbN) != 9)
 				throw new InvalidOperationException("MemUtil-1");
-			pbN = Encoding.ASCII.GetBytes("01234567890123");
+			pbN = enc.GetBytes("01234567890123");
 			if(MemUtil.IndexOf<byte>(pb, pbN) != 0)
 				throw new InvalidOperationException("MemUtil-2");
-			pbN = Encoding.ASCII.GetBytes("a");
+			pbN = enc.GetBytes("a");
 			if(MemUtil.IndexOf<byte>(pb, pbN) != 21)
 				throw new InvalidOperationException("MemUtil-3");
-			pbN = Encoding.ASCII.GetBytes("0a");
+			pbN = enc.GetBytes("0a");
 			if(MemUtil.IndexOf<byte>(pb, pbN) != 20)
 				throw new InvalidOperationException("MemUtil-4");
-			pbN = Encoding.ASCII.GetBytes("1");
+			pbN = enc.GetBytes("1");
 			if(MemUtil.IndexOf<byte>(pb, pbN) != 1)
 				throw new InvalidOperationException("MemUtil-5");
-			pbN = Encoding.ASCII.GetBytes("b");
+			pbN = enc.GetBytes("b");
 			if(MemUtil.IndexOf<byte>(pb, pbN) >= 0)
 				throw new InvalidOperationException("MemUtil-6");
-			pbN = Encoding.ASCII.GetBytes("012b");
+			pbN = enc.GetBytes("012b");
 			if(MemUtil.IndexOf<byte>(pb, pbN) >= 0)
 				throw new InvalidOperationException("MemUtil-7");
+
+			byte[] pbRes = MemUtil.ParseBase32("MY======");
+			byte[] pbExp = Encoding.ASCII.GetBytes("f");
+			if(!MemUtil.ArraysEqual(pbRes, pbExp)) throw new Exception("Base32-1");
+
+			pbRes = MemUtil.ParseBase32("MZXQ====");
+			pbExp = Encoding.ASCII.GetBytes("fo");
+			if(!MemUtil.ArraysEqual(pbRes, pbExp)) throw new Exception("Base32-2");
+
+			pbRes = MemUtil.ParseBase32("MZXW6===");
+			pbExp = Encoding.ASCII.GetBytes("foo");
+			if(!MemUtil.ArraysEqual(pbRes, pbExp)) throw new Exception("Base32-3");
+
+			pbRes = MemUtil.ParseBase32("MZXW6YQ=");
+			pbExp = Encoding.ASCII.GetBytes("foob");
+			if(!MemUtil.ArraysEqual(pbRes, pbExp)) throw new Exception("Base32-4");
+
+			pbRes = MemUtil.ParseBase32("MZXW6YTB");
+			pbExp = Encoding.ASCII.GetBytes("fooba");
+			if(!MemUtil.ArraysEqual(pbRes, pbExp)) throw new Exception("Base32-5");
+
+			pbRes = MemUtil.ParseBase32("MZXW6YTBOI======");
+			pbExp = Encoding.ASCII.GetBytes("foobar");
+			if(!MemUtil.ArraysEqual(pbRes, pbExp)) throw new Exception("Base32-6");
+
+			pbRes = MemUtil.ParseBase32("JNSXSIDQOJXXM2LEMVZCAYTBONSWIIDPNYQG63TFFV2GS3LFEBYGC43TO5XXEZDTFY======");
+			pbExp = Encoding.ASCII.GetBytes("Key provider based on one-time passwords.");
+			if(!MemUtil.ArraysEqual(pbRes, pbExp)) throw new Exception("Base32-7");
 #endif
 		}
 
 		private static void TestHmacOtp()
 		{
 #if (DEBUG && !KeePassLibSD)
-			byte[] pbSecret = Encoding.ASCII.GetBytes("12345678901234567890");
+			byte[] pbSecret = StrUtil.Utf8.GetBytes("12345678901234567890");
 			string[] vExp = new string[]{ "755224", "287082", "359152",
 				"969429", "338314", "254676", "287922", "162583", "399871",
 				"520489" };
@@ -268,7 +332,9 @@ namespace KeePassLib.Cryptography
 		private static void TestProtectedObjects()
 		{
 #if DEBUG
-			byte[] pbData = Encoding.ASCII.GetBytes("Test Test Test Test");
+			Encoding enc = StrUtil.Utf8;
+
+			byte[] pbData = enc.GetBytes("Test Test Test Test");
 			ProtectedBinary pb = new ProtectedBinary(true, pbData);
 			if(!pb.IsProtected) throw new SecurityException("ProtectedBinary-1");
 
@@ -277,8 +343,8 @@ namespace KeePassLib.Cryptography
 				throw new SecurityException("ProtectedBinary-2");
 			if(!pb.IsProtected) throw new SecurityException("ProtectedBinary-3");
 
-			byte[] pbData2 = Encoding.ASCII.GetBytes("Test Test Test Test");
-			byte[] pbData3 = Encoding.ASCII.GetBytes("Test Test Test Test Test");
+			byte[] pbData2 = enc.GetBytes("Test Test Test Test");
+			byte[] pbData3 = enc.GetBytes("Test Test Test Test Test");
 			ProtectedBinary pb2 = new ProtectedBinary(true, pbData2);
 			ProtectedBinary pb3 = new ProtectedBinary(true, pbData3);
 			if(!pb.Equals(pb2)) throw new SecurityException("ProtectedBinary-4");
@@ -301,8 +367,7 @@ namespace KeePassLib.Cryptography
 				throw new SecurityException("ProtectedString-3");
 
 			ps = new ProtectedString(true, "Test");
-			ProtectedString ps2 = new ProtectedString(true,
-				StrUtil.Utf8.GetBytes("Test"));
+			ProtectedString ps2 = new ProtectedString(true, enc.GetBytes("Test"));
 			if(ps.IsEmpty) throw new SecurityException("ProtectedString-4");
 			pbData = ps.ReadUtf8();
 			pbData2 = ps2.ReadUtf8();
@@ -318,6 +383,41 @@ namespace KeePassLib.Cryptography
 				throw new SecurityException("ProtectedString-8");
 			if(!ps.IsProtected) throw new SecurityException("ProtectedString-9");
 			if(!ps2.IsProtected) throw new SecurityException("ProtectedString-10");
+
+			Random r = new Random();
+			string str = string.Empty;
+			ps = new ProtectedString();
+			for(int i = 0; i < 100; ++i)
+			{
+				bool bProt = ((r.Next() % 4) != 0);
+				ps = ps.WithProtection(bProt);
+
+				int x = r.Next(str.Length + 1);
+				int c = r.Next(20);
+				char ch = (char)r.Next(1, 256);
+
+				string strIns = new string(ch, c);
+				str = str.Insert(x, strIns);
+				ps = ps.Insert(x, strIns);
+
+				if(ps.IsProtected != bProt)
+					throw new SecurityException("ProtectedString-11");
+				if(ps.ReadString() != str)
+					throw new SecurityException("ProtectedString-12");
+
+				ps = ps.WithProtection(bProt);
+
+				x = r.Next(str.Length);
+				c = r.Next(str.Length - x + 1);
+
+				str = str.Remove(x, c);
+				ps = ps.Remove(x, c);
+
+				if(ps.IsProtected != bProt)
+					throw new SecurityException("ProtectedString-13");
+				if(ps.ReadString() != str)
+					throw new SecurityException("ProtectedString-14");
+			}
 #endif
 		}
 
@@ -358,16 +458,74 @@ namespace KeePassLib.Cryptography
 				throw new InvalidOperationException("StrUtil-V3");
 			if(StrUtil.VersionToString(0x00FF000000000000UL) != "255")
 				throw new InvalidOperationException("StrUtil-V4");
-			if(StrUtil.VersionToString(0x00FF000000000000UL, true) != "255.0")
+			if(StrUtil.VersionToString(0x00FF000000000000UL, 2) != "255.0")
 				throw new InvalidOperationException("StrUtil-V5");
-			if(StrUtil.VersionToString(0x0000000000070000UL, true) != "0.0.7")
+			if(StrUtil.VersionToString(0x0000000000070000UL) != "0.0.7")
 				throw new InvalidOperationException("StrUtil-V6");
+			if(StrUtil.VersionToString(0x0000000000000000UL) != "0")
+				throw new InvalidOperationException("StrUtil-V7");
+			if(StrUtil.VersionToString(0x00000000FFFF0000UL, 4) != "0.0.65535.0")
+				throw new InvalidOperationException("StrUtil-V8");
+			if(StrUtil.VersionToString(0x0000000000000000UL, 4) != "0.0.0.0")
+				throw new InvalidOperationException("StrUtil-V9");
+
+			if(StrUtil.RtfEncodeChar('\u0000') != "\\u0?")
+				throw new InvalidOperationException("StrUtil-Rtf1");
+			if(StrUtil.RtfEncodeChar('\u7FFF') != "\\u32767?")
+				throw new InvalidOperationException("StrUtil-Rtf2");
+			if(StrUtil.RtfEncodeChar('\u8000') != "\\u-32768?")
+				throw new InvalidOperationException("StrUtil-Rtf3");
+			if(StrUtil.RtfEncodeChar('\uFFFF') != "\\u-1?")
+				throw new InvalidOperationException("StrUtil-Rtf4");
+
+			if(!StrUtil.StringToBool(Boolean.TrueString))
+				throw new InvalidOperationException("StrUtil-Bool1");
+			if(StrUtil.StringToBool(Boolean.FalseString))
+				throw new InvalidOperationException("StrUtil-Bool2");
+
+			if(StrUtil.Count("Abracadabra", "a") != 4)
+				throw new InvalidOperationException("StrUtil-Count1");
+			if(StrUtil.Count("Bla", "U") != 0)
+				throw new InvalidOperationException("StrUtil-Count2");
+			if(StrUtil.Count("AAAAA", "AA") != 4)
+				throw new InvalidOperationException("StrUtil-Count3");
+
+			const string sU = "data:mytype;base64,";
+			if(!StrUtil.IsDataUri(sU))
+				throw new InvalidOperationException("StrUtil-DataUri1");
+			if(!StrUtil.IsDataUri(sU, "mytype"))
+				throw new InvalidOperationException("StrUtil-DataUri2");
+			if(StrUtil.IsDataUri(sU, "notmytype"))
+				throw new InvalidOperationException("StrUtil-DataUri3");
+
+			uint u = 0x7FFFFFFFU;
+			if(u.ToString(NumberFormatInfo.InvariantInfo) != "2147483647")
+				throw new InvalidOperationException("StrUtil-Inv1");
+			if(uint.MaxValue.ToString(NumberFormatInfo.InvariantInfo) !=
+				"4294967295")
+				throw new InvalidOperationException("StrUtil-Inv2");
+			if(long.MinValue.ToString(NumberFormatInfo.InvariantInfo) !=
+				"-9223372036854775808")
+				throw new InvalidOperationException("StrUtil-Inv3");
+			if(short.MinValue.ToString(NumberFormatInfo.InvariantInfo) !=
+				"-32768")
+				throw new InvalidOperationException("StrUtil-Inv4");
+
+			if(!string.Equals("abcd", "aBcd", StrUtil.CaseIgnoreCmp))
+				throw new InvalidOperationException("StrUtil-Case1");
+			if(string.Equals(@"a<b", @"a>b", StrUtil.CaseIgnoreCmp))
+				throw new InvalidOperationException("StrUtil-Case2");
 #endif
 		}
 
 		private static void TestUrlUtil()
 		{
 #if DEBUG
+#if !KeePassUAP
+			Debug.Assert(Uri.UriSchemeHttp.Equals("http", StrUtil.CaseIgnoreCmp));
+			Debug.Assert(Uri.UriSchemeHttps.Equals("https", StrUtil.CaseIgnoreCmp));
+#endif
+
 			if(UrlUtil.GetHost(@"scheme://domain:port/path?query_string#fragment_id") !=
 				"domain")
 				throw new InvalidOperationException("UrlUtil-H1");
@@ -396,6 +554,13 @@ namespace KeePassLib.Cryptography
 
 			str = UrlUtil.MakeAbsolutePath(strBase, strRel);
 			if(!str.Equals(strDoc)) throw new InvalidOperationException("UrlUtil-R2");
+
+			str = UrlUtil.GetQuotedAppPath(" \"Test\" \"%1\" ");
+			if(str != "Test") throw new InvalidOperationException("UrlUtil-Q1");
+			str = UrlUtil.GetQuotedAppPath("C:\\Program Files\\Test.exe");
+			if(str != "C:\\Program Files\\Test.exe") throw new InvalidOperationException("UrlUtil-Q2");
+			str = UrlUtil.GetQuotedAppPath("Reg.exe \"Test\" \"Test 2\"");
+			if(str != "Reg.exe \"Test\" \"Test 2\"") throw new InvalidOperationException("UrlUtil-Q3");
 #endif
 		}
 	}

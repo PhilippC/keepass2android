@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -133,6 +133,14 @@ namespace KeePassLib.Collections
 			}
 		}
 
+		public void Insert(uint uIndex, T pwObject)
+		{
+			Debug.Assert(pwObject != null);
+			if(pwObject == null) throw new ArgumentNullException("pwObject");
+
+			m_vObjects.Insert((int)uIndex, pwObject);
+		}
+
 		/// <summary>
 		/// Get an object of the list.
 		/// </summary>
@@ -225,7 +233,7 @@ namespace KeePassLib.Collections
 			if(nCount <= 1) return;
 
 			int nIndex = m_vObjects.IndexOf(tObject);
-			Debug.Assert(nIndex >= 0);
+			if(nIndex < 0) { Debug.Assert(false); return; }
 
 			if(bUp && (nIndex > 0)) // No assert for top item
 			{
@@ -238,6 +246,68 @@ namespace KeePassLib.Collections
 				T tTemp = m_vObjects[nIndex + 1];
 				m_vObjects[nIndex + 1] = m_vObjects[nIndex];
 				m_vObjects[nIndex] = tTemp;
+			}
+		}
+
+		public void MoveOne(T[] vObjects, bool bUp)
+		{
+			Debug.Assert(vObjects != null);
+			if(vObjects == null) throw new ArgumentNullException("vObjects");
+
+			List<int> lIndices = new List<int>();
+			foreach(T t in vObjects)
+			{
+				if(t == null) { Debug.Assert(false); continue; }
+
+				int p = IndexOf(t);
+				if(p >= 0) lIndices.Add(p);
+				else { Debug.Assert(false); }
+			}
+
+			MoveOne(lIndices.ToArray(), bUp);
+		}
+
+		public void MoveOne(int[] vIndices, bool bUp)
+		{
+			Debug.Assert(vIndices != null);
+			if(vIndices == null) throw new ArgumentNullException("vIndices");
+
+			int n = m_vObjects.Count;
+			if(n <= 1) return; // No moving possible
+
+			int m = vIndices.Length;
+			if(m == 0) return; // Nothing to move
+
+			int[] v = new int[m];
+			Array.Copy(vIndices, v, m);
+			Array.Sort<int>(v);
+
+			if((bUp && (v[0] <= 0)) || (!bUp && (v[m - 1] >= (n - 1))))
+				return; // Moving as a block is not possible
+
+			int iStart = (bUp ? 0 : (m - 1));
+			int iExcl = (bUp ? m : -1);
+			int iStep = (bUp ? 1 : -1);
+
+			for(int i = iStart; i != iExcl; i += iStep)
+			{
+				int p = v[i];
+				if((p < 0) || (p >= n)) { Debug.Assert(false); continue; }
+
+				T t = m_vObjects[p];
+
+				if(bUp)
+				{
+					Debug.Assert(p > 0);
+					m_vObjects.RemoveAt(p);
+					m_vObjects.Insert(p - 1, t);
+				}
+				else // Down
+				{
+					Debug.Assert(p < (n - 1));
+					m_vObjects.RemoveAt(p);
+					m_vObjects.Insert(p + 1, t);
+				}
 			}
 		}
 

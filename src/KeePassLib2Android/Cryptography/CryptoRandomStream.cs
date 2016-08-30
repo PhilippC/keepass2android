@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,7 +19,10 @@
 
 using System;
 using System.Diagnostics;
+
+#if !KeePassUAP
 using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Cryptography.Cipher;
 
@@ -113,7 +116,7 @@ namespace KeePassLib.Cryptography
 			{
 				SHA256Managed sha256 = new SHA256Managed();
 				byte[] pbKey32 = sha256.ComputeHash(pbKey);
-				byte[] pbIV = new byte[]{ 0xE8, 0x30, 0x09, 0x4B,
+				byte[] pbIV = new byte[8] { 0xE8, 0x30, 0x09, 0x4B,
 					0x97, 0x20, 0x5D, 0x2A }; // Unique constant
 
 				m_salsa20 = new Salsa20Cipher(pbKey32, pbIV);

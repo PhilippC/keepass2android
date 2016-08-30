@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,11 +19,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Net;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Xml.Serialization;
 
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
@@ -119,22 +119,67 @@ namespace KeePassLib.Serialization
 			set { m_ioCredSaveMode = value; }
 		}
 
+		private bool m_bComplete = false;
+		[XmlIgnore]
+		public bool IsComplete // Credentials etc. fully specified
+		{
+			get { return m_bComplete; }
+			set { m_bComplete = value; }
+		}
+
 		/* public IOFileFormatHint FileFormatHint
 		{
 			get { return m_ioHint; }
 			set { m_ioHint = value; }
 		} */
 
+		private IocProperties m_props = new IocProperties();
+		[XmlIgnore]
+		public IocProperties Properties
+		{
+			get { return m_props; }
+			set
+			{
+				if(value == null) throw new ArgumentNullException("value");
+				m_props = value;
+			}
+		}
+
+		/// <summary>
+		/// For serialization only; use <c>Properties</c> in code.
+		/// </summary>
+		[DefaultValue("")]
+		public string PropertiesEx
+		{
+			get { return m_props.Serialize(); }
+			set
+			{
+				if(value == null) throw new ArgumentNullException("value");
+
+				IocProperties p = IocProperties.Deserialize(value);
+				Debug.Assert(p != null);
+				m_props = (p ?? new IocProperties());
+			}
+		}
+
 		public IOConnectionInfo CloneDeep()
 		{
-			return (IOConnectionInfo)this.MemberwiseClone();
+			IOConnectionInfo ioc = (IOConnectionInfo)this.MemberwiseClone();
+			ioc.m_props = m_props.CloneDeep();
+			return ioc;
 		}
+
+#if DEBUG // For debugger display only
+		public override string ToString()
+		{
+			return GetDisplayName();
+		}
+#endif
 
 		/*
 		/// <summary>
 		/// Serialize the current connection info to a string. Credentials
-		/// are only serialized if the <c>SaveCredentials</c> property
-		/// is <c>true</c>.
+		/// are serialized based on the <c>CredSaveMode</c> property.
 		/// </summary>
 		/// <param name="iocToCompile">Input object to be serialized.</param>
 		/// <returns>Serialized object as string.</returns>
@@ -146,31 +191,9 @@ namespace KeePassLib.Serialization
 			string strUrl = iocToCompile.Path;
 			string strUser = TransformUnreadable(iocToCompile.UserName, true);
 			string strPassword = TransformUnreadable(iocToCompile.Password, true);
-			string strAll = strUrl + strUser + strPassword;
-			char chSep = char.MinValue;
 
-			char[] vPrefSeps = new char[]{ '@', '#', '!', '$', '*' };
-			foreach(char ch in vPrefSeps)
-			{
-				if(strAll.IndexOf(ch) < 0)
-				{
-					chSep = ch;
-					break;
-				}
-			}
-
-			if(chSep == char.MinValue)
-			{
-				for(char chEnum = '!'; chEnum < char.MaxValue; ++chEnum)
-				{
-					if(strAll.IndexOf(chEnum) < 0)
-					{
-						chSep = chEnum;
-						break;
-					}
-				}
-			}
-
+			string strAll = strUrl + strUser + strPassword + "CUN";
+			char chSep = StrUtil.GetUnusedChar(strAll);
 			if(chSep == char.MinValue) throw new FormatException();
 
 			StringBuilder sb = new StringBuilder();
@@ -276,14 +299,14 @@ namespace KeePassLib.Serialization
 			string str = m_strUrl;
 
 			if(m_strUser.Length > 0)
-				str += " (" + m_strUser + ")";
+				str += (" (" + m_strUser + ")");
 
 			return str;
 		}
 
 		public bool IsEmpty()
 		{
-			return (m_strUrl.Length > 0);
+			return (m_strUrl.Length == 0);
 		}
 
 		public static IOConnectionInfo FromPath(string strPath)
@@ -306,7 +329,7 @@ namespace KeePassLib.Serialization
 		public bool IsLocalFile()
 		{
 			// Not just ":/", see e.g. AppConfigEx.ChangePathRelAbs
-			return (m_strUrl.IndexOf(@"://") < 0);
+			return (m_strUrl.IndexOf("://") < 0);
 		}
 
 		public void ClearCredentials(bool bDependingOnRememberMode)

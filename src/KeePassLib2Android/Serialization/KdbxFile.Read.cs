@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,12 +19,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 using System.Security;
-using System.Security.Cryptography;
+using System.Text;
 using System.Xml;
+
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
 
 #if !KeePassLibSD
 using System.IO.Compression;
@@ -127,6 +130,22 @@ namespace KeePassLib.Serialization
 				}
 				else m_randomStream = null; // No random stream for plain-text files
 
+#if KeePassDebug_WriteXml
+				// FileStream fsOut = new FileStream("Raw.xml", FileMode.Create,
+				//	FileAccess.Write, FileShare.None);
+				// try
+				// {
+				//	while(true)
+				//	{
+				//		int b = readerStream.ReadByte();
+				//		if(b == -1) break;
+				//		fsOut.WriteByte((byte)b);
+				//	}
+				// }
+				// catch(Exception) { }
+				// fsOut.Close();
+#endif
+
 				ReadXmlStreamed(readerStream, hashedStream);
 				// ReadXmlDom(readerStream);
 
@@ -158,6 +177,12 @@ namespace KeePassLib.Serialization
 			// case a different application has created the KDBX file and ignored
 			// the history maintenance settings)
 			m_pwDatabase.MaintainBackups(); // Don't mark database as modified
+
+			// Expand the root group, such that in case the user accidently
+			// collapses the root group he can simply reopen the database
+			PwGroup pgRoot = m_pwDatabase.RootGroup;
+			if(pgRoot != null) pgRoot.IsExpanded = true;
+			else { Debug.Assert(false); }
 
 			m_pbHashOfHeader = null;
 		}

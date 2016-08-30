@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,19 +18,21 @@
 */
 
 using System;
-using System.Text;
-using System.Security;
-using System.Runtime.InteropServices;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
 
 using KeePassLib.Utility;
 
 namespace KeePassLib.Native
 {
-	internal static class NativeMethods
+	internal static partial class NativeMethods
 	{
 		internal const int MAX_PATH = 260;
+
+		// internal const uint TF_SFT_SHOWNORMAL = 0x00000001;
+		// internal const uint TF_SFT_HIDDEN = 0x00000008;
 
 		/* [DllImport("KeePassNtv32.dll", EntryPoint = "TransformKey")]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -70,6 +72,7 @@ namespace KeePassLib.Native
 				return TransformKeyTimed32(pBuf256, pKey256, ref puRounds, uSeconds);
 		} */
 
+#if !KeePassUAP
 		[DllImport("KeePassLibC32.dll", EntryPoint = "TransformKey256")]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		private static extern bool TransformKey32(IntPtr pBuf256,
@@ -83,7 +86,7 @@ namespace KeePassLib.Native
 		internal static bool TransformKey(IntPtr pBuf256, IntPtr pKey256,
 			UInt64 uRounds)
 		{
-			if(Marshal.SizeOf(typeof(IntPtr)) == 8)
+			if(NativeLib.PointerSize == 8)
 				return TransformKey64(pBuf256, pKey256, uRounds);
 			else
 				return TransformKey32(pBuf256, pKey256, uRounds);
@@ -97,67 +100,88 @@ namespace KeePassLib.Native
 
 		internal static UInt64 TransformKeyBenchmark(UInt32 uTimeMs)
 		{
-			if(Marshal.SizeOf(typeof(IntPtr)) == 8)
+			if(NativeLib.PointerSize == 8)
 				return TransformKeyBenchmark64(uTimeMs);
-			else
-				return TransformKeyBenchmark32(uTimeMs);
+			return TransformKeyBenchmark32(uTimeMs);
 		}
+#endif
 
-#if !KeePassLibSD
-		[DllImport("ShlWApi.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-		internal static extern int StrCmpLogicalW(string x, string y);
+		/* [DllImport("KeePassLibC32.dll", EntryPoint = "TF_ShowLangBar")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool TF_ShowLangBar32(UInt32 dwFlags);
 
+		[DllImport("KeePassLibC64.dll", EntryPoint = "TF_ShowLangBar")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool TF_ShowLangBar64(UInt32 dwFlags);
+
+		internal static bool TfShowLangBar(uint dwFlags)
+		{
+			if(Marshal.SizeOf(typeof(IntPtr)) == 8)
+				return TF_ShowLangBar64(dwFlags);
+			return TF_ShowLangBar32(dwFlags);
+		} */
+
+#if (!KeePassLibSD && !KeePassUAP)
 		[DllImport("ShlWApi.dll", CharSet = CharSet.Auto)]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		internal static extern bool PathRelativePathTo([Out] StringBuilder pszPath,
-			[In] string pszFrom, [In] uint dwAttrFrom, [In] string pszTo,
-			[In] uint dwAttrTo);
-#endif
+			[In] string pszFrom, uint dwAttrFrom, [In] string pszTo, uint dwAttrTo);
 
-		private static bool? m_bSupportsLogicalCmp = null;
+		[DllImport("ShlWApi.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+		private static extern int StrCmpLogicalW(string x, string y);
+
+		private static bool? m_obSupportsLogicalCmp = null;
 
 		private static void TestNaturalComparisonsSupport()
 		{
-#if KeePassLibSD
-#warning No native natural comparisons supported.
-			m_bSupportsLogicalCmp = false;
-#else
 			try
 			{
 				StrCmpLogicalW("0", "0"); // Throws exception if unsupported
-				m_bSupportsLogicalCmp = true;
+				m_obSupportsLogicalCmp = true;
 			}
-			catch(Exception) { m_bSupportsLogicalCmp = false; }
-#endif
+			catch(Exception) { m_obSupportsLogicalCmp = false; }
 		}
+#endif
 
 		internal static bool SupportsStrCmpNaturally
 		{
 			get
 			{
-				if(m_bSupportsLogicalCmp.HasValue == false)
+#if (!KeePassLibSD && !KeePassUAP)
+				if(!m_obSupportsLogicalCmp.HasValue)
 					TestNaturalComparisonsSupport();
 
-				return m_bSupportsLogicalCmp.Value;
+				return m_obSupportsLogicalCmp.Value;
+#else
+				return false;
+#endif
 			}
 		}
 
 		internal static int StrCmpNaturally(string x, string y)
 		{
-			if(m_bSupportsLogicalCmp.HasValue == false) TestNaturalComparisonsSupport();
-			if(m_bSupportsLogicalCmp.Value == false) return 0;
+#if (!KeePassLibSD && !KeePassUAP)
+			if(!NativeMethods.SupportsStrCmpNaturally)
+			{
+				Debug.Assert(false);
+				return string.Compare(x, y, true);
+			}
 
-#if KeePassLibSD
-#warning No native natural comparisons supported.
-			return x.CompareTo(y);
-#else
 			return StrCmpLogicalW(x, y);
+#else
+			Debug.Assert(false);
+			return string.Compare(x, y, true);
 #endif
 		}
 
 		internal static string GetUserRuntimeDir()
 		{
-#if !KeePassLibSD
+#if KeePassLibSD
+			return Path.GetTempPath();
+#else
+#if KeePassUAP
+			string strRtDir = EnvironmentExt.AppDataLocalFolderPath;
+#else
 			string strRtDir = Environment.GetEnvironmentVariable("XDG_RUNTIME_DIR");
 			if(string.IsNullOrEmpty(strRtDir))
 				strRtDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -166,13 +190,12 @@ namespace KeePassLib.Native
 				Debug.Assert(false);
 				return Path.GetTempPath(); // Not UrlUtil (otherwise cyclic)
 			}
+#endif
 
 			strRtDir = UrlUtil.EnsureTerminatingSeparator(strRtDir, false);
 			strRtDir += PwDefs.ShortProductName;
 
 			return strRtDir;
-#else
-			return Path.GetTempPath();
 #endif
 		}
 	}

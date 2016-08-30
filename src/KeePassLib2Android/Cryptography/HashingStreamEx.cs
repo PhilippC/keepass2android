@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,10 +19,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Security.Cryptography;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
+
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Utility;
 
@@ -87,12 +90,9 @@ namespace KeePassLib.Cryptography
 			if(m_hash == null) { Debug.Assert(false); return; }
 
 			// Validate hash algorithm
-			if((!m_hash.CanReuseTransform) || (!m_hash.CanTransformMultipleBlocks) ||
-				(m_hash.InputBlockSize != 1) || (m_hash.OutputBlockSize != 1))
+			if(!m_hash.CanReuseTransform || !m_hash.CanTransformMultipleBlocks)
 			{
-#if DEBUG
-				MessageService.ShowWarning("Broken HashAlgorithm object in HashingStreamEx.");
-#endif
+				Debug.Assert(false);
 				m_hash = null;
 			}
 		}
@@ -102,8 +102,14 @@ namespace KeePassLib.Cryptography
 			m_sBaseStream.Flush();
 		}
 
+#if KeePassUAP
+		protected override void Dispose(bool disposing)
+		{
+			if(!disposing) return;
+#else
 		public override void Close()
 		{
+#endif
 			if(m_hash != null)
 			{
 				try

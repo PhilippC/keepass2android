@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2012 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,9 +18,13 @@
 */
 
 using System;
-using System.Security;
-using System.Security.Cryptography;
+using System.Diagnostics;
 using System.IO;
+using System.Security;
+
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Cryptography;
 using KeePassLib.Resources;
@@ -37,7 +41,7 @@ namespace KeePassLib.Keys
 		private ProtectedBinary m_pbKeyData = null;
 
 		// Constant initialization vector (unique for KeePass)
-		private static readonly byte[] m_pbEntropy = new byte[]{
+		private static readonly byte[] m_pbEntropy = new byte[] {
 			0xDE, 0x13, 0x5B, 0x5F, 0x18, 0xA3, 0x46, 0x70,
 			0xB2, 0x57, 0x24, 0x29, 0x69, 0x88, 0x98, 0xE6
 		};
@@ -67,10 +71,14 @@ namespace KeePassLib.Keys
 
 			byte[] pbKey = LoadUserKey(false);
 			if(pbKey == null) pbKey = CreateUserKey();
-			if(pbKey == null) throw new SecurityException(KLRes.UserAccountKeyError);
+			if(pbKey == null) // Should never happen
+			{
+				Debug.Assert(false);
+				throw new SecurityException(KLRes.UserAccountKeyError);
+			}
 
 			m_pbKeyData = new ProtectedBinary(true, pbKey);
-			Array.Clear(pbKey, 0, pbKey.Length);
+			MemUtil.ZeroByteArray(pbKey);
 		}
 
 		// public void Clear()
@@ -80,8 +88,12 @@ namespace KeePassLib.Keys
 
 		private static string GetUserKeyFilePath(bool bCreate)
 		{
+#if KeePassUAP
+			string strUserDir = EnvironmentExt.AppDataRoamingFolderPath;
+#else
 			string strUserDir = Environment.GetFolderPath(
 				Environment.SpecialFolder.ApplicationData);
+#endif
 
 			strUserDir = UrlUtil.EnsureTerminatingSeparator(strUserDir, false);
 			strUserDir += PwDefs.ShortProductName;
@@ -90,10 +102,10 @@ namespace KeePassLib.Keys
 				Directory.CreateDirectory(strUserDir);
 
 			strUserDir = UrlUtil.EnsureTerminatingSeparator(strUserDir, false);
-			return strUserDir + UserKeyFileName;
+			return (strUserDir + UserKeyFileName);
 		}
 
-		private static byte[] LoadUserKey(bool bShowWarning)
+		private static byte[] LoadUserKey(bool bThrow)
 		{
 			byte[] pbKey = null;
 
@@ -105,13 +117,10 @@ namespace KeePassLib.Keys
 
 				pbKey = ProtectedData.Unprotect(pbProtectedKey, m_pbEntropy,
 					DataProtectionScope.CurrentUser);
-
-				Array.Clear(pbProtectedKey, 0, pbProtectedKey.Length);
 			}
-			catch(Exception exLoad)
+			catch(Exception)
 			{
-				if(bShowWarning) MessageService.ShowWarning(exLoad);
-
+				if(bThrow) throw;
 				pbKey = null;
 			}
 #endif
@@ -121,28 +130,23 @@ namespace KeePassLib.Keys
 
 		private static byte[] CreateUserKey()
 		{
-			byte[] pbKey = null;
+#if KeePassLibSD
+			return null;
+#else
+			string strFilePath = GetUserKeyFilePath(true);
 
-#if !KeePassLibSD
-			try
-			{
-				string strFilePath = GetUserKeyFilePath(true);
+			byte[] pbRandomKey = CryptoRandom.Instance.GetRandomBytes(64);
+			byte[] pbProtectedKey = ProtectedData.Protect(pbRandomKey,
+				m_pbEntropy, DataProtectionScope.CurrentUser);
 
-				byte[] pbRandomKey = CryptoRandom.Instance.GetRandomBytes(64);
-				byte[] pbProtectedKey = ProtectedData.Protect(pbRandomKey,
-					m_pbEntropy, DataProtectionScope.CurrentUser);
+			File.WriteAllBytes(strFilePath, pbProtectedKey);
 
-				File.WriteAllBytes(strFilePath, pbProtectedKey);
+			byte[] pbKey = LoadUserKey(true);
+			Debug.Assert(MemUtil.ArraysEqual(pbKey, pbRandomKey));
 
-				Array.Clear(pbProtectedKey, 0, pbProtectedKey.Length);
-				Array.Clear(pbRandomKey, 0, pbRandomKey.Length);
-
-				pbKey = LoadUserKey(true);
-			}
-			catch(Exception) { pbKey = null; }
-#endif
-
+			MemUtil.ZeroByteArray(pbRandomKey);
 			return pbKey;
+#endif
 		}
 	}
 }
