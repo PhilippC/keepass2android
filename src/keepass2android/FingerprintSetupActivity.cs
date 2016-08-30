@@ -96,7 +96,7 @@ namespace keepass2android
 					FingerprintUnlockMode newMode;
 					Enum.TryParse(rbSender.Tag.ToString(), out newMode);
 					ChangeUnlockMode(_unlockMode, newMode);
-
+					
 				};
 			}
 
@@ -118,30 +118,58 @@ namespace keepass2android
 
 			FindViewById(Resource.Id.radio_buttons).Visibility = ViewStates.Gone;
 			FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
+			FindViewById<CheckBox>(Resource.Id.show_keyboard_while_fingerprint).Checked =
+				Util.GetShowKeyboardDuringFingerprintUnlock(this);
 
-			if ((int) Build.VERSION.SdkInt >= 23)
+			FindViewById<CheckBox>(Resource.Id.show_keyboard_while_fingerprint).CheckedChange += (sender, args) =>
+			{
+				PreferenceManager.GetDefaultSharedPreferences(this)
+					.Edit()
+					.PutBoolean(GetString(Resource.String.ShowKeyboardWhileFingerprint_key), args.IsChecked)
+					.Commit();
+			};
+			if ((int)Build.VERSION.SdkInt >= 23)
 				RequestPermissions(new[] {Manifest.Permission.UseFingerprint}, FingerprintPermissionRequestCode);
 			else
 			{
-				try
-				{
-					//try to create a Samsung ID object 
-					_samsungFingerprint = new FingerprintSamsungIdentifier(this);
-					if (!_samsungFingerprint.Init())
-					{
-						SetError(Resource.String.fingerprint_no_enrolled);
-					}
-					ShowRadioButtons();
-				}
-				catch (Exception)
-				{
-					_samsungFingerprint = null;
-				}
+				TrySetupSamsung();
 				
 			}
-			FindViewById(Resource.Id.container_fingerprint_unlock).Visibility = _samsungFingerprint == null
-				? ViewStates.Visible
-				: ViewStates.Gone;
+
+			UpdateKeyboardCheckboxVisibility();
+			
+			
+		}
+
+		private void UpdateKeyboardCheckboxVisibility()
+		{
+			FindViewById(Resource.Id.show_keyboard_while_fingerprint).Visibility = (_unlockMode == FingerprintUnlockMode.Disabled) ||
+			                                                                       (_samsungFingerprint != null)
+				? ViewStates.Gone
+				: ViewStates.Visible;
+		}
+
+		private bool TrySetupSamsung()
+		{
+			try
+			{
+				//try to create a Samsung ID object 
+				_samsungFingerprint = new FingerprintSamsungIdentifier(this);
+				if (!_samsungFingerprint.Init())
+				{
+					SetError(Resource.String.fingerprint_no_enrolled);
+				}
+				ShowRadioButtons();
+				FindViewById(Resource.Id.container_fingerprint_unlock).Visibility = _samsungFingerprint == null
+					? ViewStates.Visible
+					: ViewStates.Gone;
+				return true;
+			}
+			catch (Exception)
+			{
+				_samsungFingerprint = null;
+				return false;
+			}
 		}
 
 		string CurrentPreferenceKey
@@ -194,7 +222,10 @@ namespace keepass2android
 				FingerprintModule fpModule = new FingerprintModule(this);
 				if (!fpModule.FingerprintManager.IsHardwareDetected)
 				{
-					SetError(Resource.String.fingerprint_hardware_error);
+					//seems like not all Samsung Devices (e.g. Note 4) don't support the Android 6 fingerprint API
+					if (!TrySetupSamsung())
+						SetError(Resource.String.fingerprint_hardware_error);
+					UpdateKeyboardCheckboxVisibility();
 					return;
 				}
 				if (!fpModule.FingerprintManager.HasEnrolledFingerprints)
@@ -203,6 +234,7 @@ namespace keepass2android
 					return;
 				}
 				ShowRadioButtons();
+				UpdateKeyboardCheckboxVisibility();
 			}
 		}
 
@@ -219,9 +251,12 @@ namespace keepass2android
 			if (oldMode == newMode)
 				return;
 
+				
 			if (_samsungFingerprint != null)
 			{
 				_unlockMode = newMode;
+				UpdateKeyboardCheckboxVisibility();
+			
 				ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
 				edit.PutString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, _unlockMode.ToString());
 				edit.Commit();
@@ -231,14 +266,17 @@ namespace keepass2android
 			if (newMode == FingerprintUnlockMode.Disabled)
 			{
 				_unlockMode = newMode;
+				UpdateKeyboardCheckboxVisibility();
+			
 				StoreUnlockMode();
 				return;
 			}
 
 			_desiredUnlockMode = newMode;
 			FindViewById(Resource.Id.radio_buttons).Visibility = ViewStates.Gone;
-			FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Visible;
+			FindViewById(Resource.Id.show_keyboard_while_fingerprint).Visibility = ViewStates.Gone;
 
+			FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Visible;
 			_enc = new FingerprintEncryption(new FingerprintModule(this), CurrentPreferenceKey);
 			try
 			{
@@ -279,6 +317,8 @@ namespace keepass2android
 				FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
 
 				StoreUnlockMode();
+				UpdateKeyboardCheckboxVisibility();
+			
 
 			}, SUCCESS_DELAY_MILLIS);
 

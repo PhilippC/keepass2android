@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的密码管理应用。</string>
   <string name="CreditsText">用户界面基于由 Brian Pellin 开发的 KeepassDroid。数据库操作的代码是基于 Dominik Reichl 开发的KeePass。根据google的创作共用3.0许可中的条款中的创建和申请条例的描述对android机器人进行了转载或者修改。</string>
   <string name="CreditsTextSFTP">SFTP 由 JCraft，Inc. 创建的 JSch 库（基于BSD许可证）来支持</string>
+  <string name="CreditsIcons">锤子图标是由John Caserta通过Noun Project创建的.企鹅图标是由Adriano Emerick通过Noun Project创建的.羽毛图标是由 Jon Testa通过Noun Project创建的.苹果图标是由Ava Rowell通过Noun Project创建的.</string>
   <string name="accept">接受</string>
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
@@ -33,8 +34,10 @@
   <string name="NavigationToGroupCompleted_message">显示当前群组：%1$s</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
   <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
-  <string name="Entry_singular">一条项目</string>
+  <string name="Entry_singular">1个项目</string>
   <string name="Entry_plural">%1$d 个项目</string>
+  <string name="IconSet_title">图标集</string>
+  <string name="IconSet_install">发现更多...</string>
   <string name="security_prefs">安全</string>
   <string name="display_prefs">显示</string>
   <string name="password_access_prefs">密码输入口</string>
@@ -42,6 +45,7 @@
   <string name="FileHandling_prefs">文件操作</string>
   <string name="keyboard_prefs">键盘</string>
   <string name="export_prefs">导出数据库...</string>
+  <string name="fingerprint_prefs">指纹解锁</string>
   <string name="import_db_prefs">在内部的文件夹中导入数据库</string>
   <string name="import_keyfile_prefs">将密钥文件导入到内部文件夹</string>
   <string name="keyboardswitch_prefs">切换键盘</string>
@@ -71,10 +75,29 @@
   <string name="disclaimer_formal">Keepass2Android 版权归 Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循 GPL 2 或者更高版本的情况下重新发布。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">复制到剪贴板</string>
+  <string name="fingerprint_hint">触摸传感器</string>
+  <string name="fingerprint_description">确认以指纹继续</string>
+  <string name="fingerprint_fatal">不能安装指纹解锁:</string>
+  <string name="fingerprint_not_recognized">指纹无法识别.请重试</string>
+  <string name="fingerprint_success">指纹识别成功</string>
+  <string name="fingerprint_os_error">指纹识别需要android 6.0或更新的版本.</string>
+  <string name="fingerprint_hardware_error">未检测到指纹识别硬件.</string>
+  <string name="fingerprint_no_enrolled">你还未在这个设备上登记过指纹.请先去系统中进行设置.</string>
+  <string name="disable_fingerprint_unlock">禁用指纹解锁</string>
+  <string name="enable_fingerprint_unlock">启用完整的指纹解锁</string>
+  <string name="enable_fingerprint_quickunlock">对快速解锁启用指纹解锁</string>
+  <string name="fingerprint_unlock_hint">触摸感应解锁数据库</string>
+  <string name="fingerprint_unlock_failed">指纹解锁失败.解锁密钥无法通过android操作系统.这一情况通常是在一个新的指纹被设入系统或者在修改过安全设置后产生.请使用你的密码解锁然后在数据库的设置处重新启动指纹解锁.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">解锁数据库失败:无效的复合密钥.因为很明显主密码已经不再有效了,指纹解锁已被禁用.请用你的密码解锁然后去数据库设置去重新启用指纹解锁.</string>
+  <string name="fingerprint_reenable">请为这个新的主密码重新启用指纹解锁.</string>
+  <string name="enable_fingerprint_unlock_Info">这将保存你的主密码在这台设备上.
+使用android密码存储库来解密和保护
+使用指纹认证.只允许通过你的指纹来解锁你的数据库.</string>
+  <string name="enable_fingerprint_quickunlock_Info">允许使用指纹认证来代替快速解锁代码.不再需要保存任何与你的主密码关联的信息.</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间</string>
   <string name="entry_cancel">取消</string>
-  <string name="entry_comment">备注</string>
+  <string name="entry_comment">特别提示</string>
   <string name="entry_tags">标签</string>
   <string name="entry_override_url">覆盖链接地址</string>
   <string name="entry_confpassword">确认密码</string>
@@ -112,7 +135,7 @@
   <string name="file_browser">文件浏览器</string>
   <string name="generate_password">生成密码</string>
   <string name="group">群组</string>
-  <string name="hint_comment">备注</string>
+  <string name="hint_comment">特别提示</string>
   <string name="hint_conf_pass">确认密码</string>
   <string name="hint_generated_password">生成密码</string>
   <string name="hint_group_name">群组名</string>
@@ -147,6 +170,7 @@
   <string name="menu_app_settings">设置</string>
   <string name="menu_db_settings">数据库设置</string>
   <string name="menu_delete">删除</string>
+  <string name="menu_copy">创建副本</string>
   <string name="menu_move">移动到其他群组</string>
   <string name="menu_move_light">移动</string>
   <string name="menu_navigate">导航字父群组</string>
@@ -161,6 +185,7 @@
   <string name="menu_search_advanced">高级搜索</string>
   <string name="menu_url">转到链接地址</string>
   <string name="menu_change_db">更改数据库...</string>
+  <string name="menu_show_all">显示所有字段</string>
   <string name="minus">减</string>
   <string name="never">从不</string>
   <string name="yes">是</string>
@@ -300,8 +325,8 @@
   <string name="ShowCopyToClipboardNotification_summary">让用户名和密码可通过通知栏和剪贴板访问。谨防密码嗅探器 ！</string>
   <string name="ShowSeparateNotifications_title">独立的通知</string>
   <string name="ShowSeparateNotifications_summary">为复制账户信息和激活键盘分别显示通知</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A 键盘通知</string>
-  <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取 （推荐）。</string>
+  <string name="ShowKp2aKeyboardNotification_title">键盘/自动填充 通知</string>
+  <string name="ShowKp2aKeyboardNotification_summary">使用KP2A键盘全接通进入和自动填充服务(推荐)</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切换键盘</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">当从浏览器搜索或键盘后可用通过 KP2A 键盘输入时，打开键盘选择对话框。</string>
   <string name="kp2a_switch_rooted">在获得根权限的设备上自动切换</string>
@@ -323,6 +348,9 @@
   <string name="AskDeletePermanentlyEntry">是否要永久删除此条目？按否取消。</string>
   <string name="AskDeletePermanentlyGroup">是否要永久删除此群组？按否取消操作。</string>
   <string name="AskDeletePermanentlyItems">你想要永久删除选定的元素？选否回到垃圾箱。</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">你想完全的删除这个登陆记录吗?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">你想永久的删除这个组吗?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">你想永久的删除已选择的元素吗?</string>
   <string name="AskDeletePermanently_title">确定永久删除？</string>
   <string name="AskReloadFile_title">重新载入文件？</string>
   <string name="AskReloadFile">当前所打开的文件已被别的程序所更改，是否要重新载入？</string>
@@ -347,6 +375,10 @@
   <string name="SynchronizingDatabase">合并更改...</string>
   <string name="YesSynchronize">是的，合并</string>
   <string name="NoOverwrite">不，覆盖</string>
+  <string name="UseOfflineMode">脱机工作</string>
+  <string name="UseOnlineMode">在线工作</string>
+  <string name="UseOfflineMode_Info">通过使用本地的缓存文件副本来避免产生网络流量.只更改将被保存在本地缓存中并且仅当切换回在线模式时才会上传.</string>
+  <string name="InOfflineMode">离线工作中.</string>
   <string name="SynchronizingCachedDatabase">同步缓存的数据库...</string>
   <string name="DownloadingRemoteFile">下载远程文件...</string>
   <string name="UploadingFile">上传文件...</string>
@@ -399,6 +431,7 @@
   <string name="help_database_location">您可以在您的 Andr​​oid 设备或云端存储你的数据库（非离线版本）。 即使您处于脱机状态 Keepass2Android 也依然可以使用。数据库采用安全的 AES 256 位加密，若没有您的密码任何人都无法访问它。我们建议选择存储在 Dropbox：在所有设备上皆可访问，甚至还提供了文件的早期版本备份。</string>
   <string name="hint_database_location">选择数据库存储的位置：</string>
   <string name="button_change_location">更改位置</string>
+  <string name="help_quickunlock">一旦启用,即便数据库被锁定,Keepass2Android将停在后台运行.这样允许仅用主密码的一小部分来解锁数据库.</string>
   <string name="master_password">主密码</string>
   <string name="help_master_password">您的数据库是使用您在此处输入的密码进行加密的。为了保证数据库的安全请选择强密码 ！建议：同时使用大小写英文字母、数字及特殊字符。</string>
   <string name="hint_master_password">请选择一个主密码来保护您的数据库：</string>
@@ -463,12 +496,100 @@
   <string name="CopyFileRequiredForEditing">若要编辑它，必须将该文件复制到另一个位置。</string>
   <string name="ClickOkToSelectLocation">单击确定以选择要复制文件的位置。</string>
   <string name="CancelReadOnly">取消，以只读形式打开。</string>
+  <string name="FileReadOnlyTitle">数据库时只读的.</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android 已在只读模式打开当前数据库.</string>
+  <string name="ReadOnlyReason_PreKitKat">这看起来像你从一个外部app打开这个文件.这种方式不支持写入.如果你想修改数据库,请先关闭数据库并且选择修改数据库.然后如果可能的话从一个可用的选项打开这个文件.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">已经设置了只读标记.如果你想修改数据库请解除这个标记.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">因为引入了android KitKat 的限制不能进行写入.如果你想对数据库进行修改,请先关闭数据库然后选择修改数据库.接下来使用文件系统选择器打开文件.</string>
   <string name="AddCustomIcon">从文件添加图标...</string>
   <string name="CopyingFile">正在复制文件...</string>
+  <string name="DuplicateTitle">副本</string>
+  <string name="DefaultTemplate">进入数据库的标准</string>
+  <string name="TemplateGroupName">模板</string>
+  <string name="TemplateTitle_IdCard">身份卡</string>
+  <string name="TemplateField_IdCard_Name">名称</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">存放的位置</string>
+  <string name="TemplateField_IdCard_IssueDate">数据的位置</string>
+  <string name="TemplateTitle_EMail">电子邮箱</string>
+  <string name="TemplateField_EMail_EMail">电子邮箱地址</string>
+  <string name="TemplateTitle_WLan">无线局域网</string>
+  <string name="TemplateTitle_Notes">安全说明</string>
+  <string name="TemplateField_WLan_SSID">无线网络名称</string>
+  <string name="TemplateField_Number">数值</string>
+  <string name="TemplateField_CreditCard_CVV">验证码</string>
+  <string name="TemplateField_CreditCard_PIN">个人认证密码</string>
+  <string name="TemplateField_CreditCard_Owner">卡的持有者</string>
+  <string name="TemplateTitle_CreditCard">信用卡</string>
+  <string name="TemplateTitle_Membership">会员
+</string>
   <string name="ChangeLog_title">更新记录</string>
+  <string name="AskAddTemplatesTitle">增加模板</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android包含了将电子邮箱账户,无线局域网密码,安全记录和别的更多的连入数据库模板.你想把这些加入你的数据库吗?如果你选择了否,你可以稍后在数据库设置中添加它们.</string>
+  <string name="AddTemplates_pref">添加模板到数据库中</string>
   <string name="PreviewWarning">请注意 ！这是一个预览版本，可能会有一些缺陷 ！如果您遇到*任何*错误，请联系我们（通过 Codeplex 或电子邮件）。</string>
   <string name="Continue">继续</string>
   <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
+  <string name="FirstInvalidCompositeKeyError">无效的组合键!请重试.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">无效的组合键!请按照下面的步骤解锁你的数据库:
+ •确保你输入了正确的密码.使用眼睛图标即可显示你输入的密码.
+ •确保你已经选择了正确的密码格式.确保使用的类型与创建的数据库匹配.
+ •确保你已经选择了正确的数据库文件.</string>
+  <string name="CorruptDatabaseHelp">文件已损坏。\n
+ 在这里是一些提示，这可能会有助于诊断问题: \n 
+• 如果您通过 USB (MTP 模式)复制该文件，请用类型 MyPhoneExplorer 这样的工具再试一次。在某些情况下MTP会 截断文件 \n
+ • 如果您无法在您的 PC 上相同的位置打开该文件，很有可能该文件实际上已损坏。请使用数据库备份。如果你假设 Keepass2Android 的文件已损坏，请联系开发者 \n 
+• 如果你仍然可以打开您的 PC 上的文件，请与支持人员联系。你可以尝试以不同的设置 (例如解压缩)将其保存到 PC，然后重试，再在 Keepass2Android 中打开。   </string>
+  <string name="ErrorReportTitle">Keepass2Android: 出现一个错误。</string>
+  <string name="ErrorReportText">运行 Keepass2Android 时出现意外的错误。请通过允许应用程序发送错误报告来帮助我们进行修复。</string>
+  <string name="ErrorReportPromise">错误报告绝对不会包含任何内容的数据库或主密码。您可以在应用程序设置中禁用它们。</string>
+  <string name="ErrorReportEnable">启用</string>
+  <string name="ErrorReportDisable">禁用</string>
+  <string name="ErrorReportAsk">出错后询问</string>
+  <string name="ErrorReportPrefTitle">发送错误报告</string>
+  <string name="ActivateAutoFillService_title">激活自动填充吗?</string>
+  <string name="ActivateAutoFillService_message">认证证书可以通过这几种方法转移到其他应用程序: 你可以将值复制到剪贴板上，但请注意，剪贴板在安卓系统中是不安全的。内置键盘给所选条目的完全访问权限，必须在每次你想要访问的时候启用认证证书。关于 Android 5 及更高版本，Keepass2Android 可以自动使用自动填充服务输入用户名和密码。</string>
+  <string name="ActivateAutoFillService_btnKeyboard">使用内置键盘</string>
+  <string name="ActivateAutoFillService_btnAutoFill">使用自动填充服务</string>
+  <string name="ActivateAutoFillService_toast">请启用 Keepass2Android 服务。</string>
+  <string name="ChangeLog_0_9_8c">
+    版本 0.9.8c\n
+    * 修复 Microsoft Live SDK（使用 OneDrive 存取文件时用到）中的 SSL 漏洞\n
+    * 漏洞修复：上一版本附带了两个输入法项，其中一个不停崩溃\n  </string>
+  <string name="ChangeLog_1_0_0">版本 1.0.0\n 
+ * 指纹解锁 (需要 Android 6.0 + 或一个三星设备) \n 
+ * 添加自动填充服务 (需要 Android 5.0+) \n 
+ * 添加支持登入数据库条目模板\n 
+ * 添加\"脱机工作\"模式\n
+ * 允许复制多个登入数据库条目 \n 
+ *  名字字段自动填充模式\n
+ * 允许从最近的文件删除项目 \n 
+ * 在 Android 6.0运行时请求权限\n 
+ * Bug 修复 (在内置键盘选择图标时) \n 
+ * 包括了发送错误 reports 选项 \n
+ * 增加帮助消息在几个地方\n  </string>
+  <string name="ChangeLog_0_9_9">
+版本 0.9.9\n
+* 重新设计用户界面，非常感谢 Stefano Pignataro (http://www.spstudio.at) 的支持! \n
+* 允许添加自定义 icons\n
+* 针对三星设备支持多窗口模式\n
+* 增加加密轮为新 databases 的默认数量 \n
+* 检查重复键的附加字段来避免丢失数据\n</string>
+  <string name="ChangeLog_0_9_9c">版本 0.9.9c\n 
+* 夜间主题来临\n 
+* 您可以安装其他图标包 (早期的 Windows 风格图标可以进行播放存储) \n 
+* 删除元素不放入回收箱时,增加了确认问题\n
+* Bug 修复 (OTP 秘密编码错误显示，在一些地方的错误应用程序图标) \n</string>
+  <string name="ChangeLog_0_9_8b">版本 0.9.8b\n 
+* Bug 修复 (对于某些数据库保存失败，导出到本地设备不能工作，选择一些偏好选项时app崩溃) \n</string>
+  <string name="ChangeLog_0_9_8">
+		版本 0.9.8\n
+		* 支持 Storage Access Framework (KP2A 离线版具有写入SD卡或 Google 云端硬盘的能力)\n
+		* 尝试检测用户在输入 WebDAV  URLs (指向目录而非文件) 时的错误	\n
+		* 密码字体变更\n
+		* 允许更改 Dropbox 账户\n
+		* 修复错误：现在可以记住一次性密码 (OTP)\n
+		
+	</string>
   <string name="ChangeLog_0_9_7b">
 		版本 0.9.7b\n
 		* 更新翻译\n
@@ -636,8 +757,8 @@ Initial public release
     <item>大</item>
   </string-array>
   <string-array name="design_options">
-    <item>亮色</item>
-    <item>暗色</item>
+    <item>白天模式</item>
+    <item>夜间模式</item>
   </string-array>
   <string name="design_title">设计</string>
   <string-array name="cred_remember_modes">

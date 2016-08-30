@@ -331,8 +331,11 @@
 	<string name="NoDonateOption_summary">This setting is for donators. It is available after using Keepass2Android for a while only.</string>
 	<string name="NoDonateOption_question">Without donations, this app would not exist and would not be improved continually! If you have not yet donated, please consider making a donation now.</string>
 
-	
-	<string name="UseOfflineCache_title">Database caching</string>
+  <string name="NoDonationReminder_title">Never ever ask for donation</string>
+  <string name="NoDonationReminder_summary">I won\'t give you a dime or I have already donated. Don\'t ask for a donation, not even at the author\'s birthday.</string>
+
+  
+  <string name="UseOfflineCache_title">Database caching</string>
 	<string name="UseOfflineCache_summary">Keep a copy of remote database files in the application cache directory. This allows to use remote databases even when offline.</string>
 
 	<string name="AcceptAllServerCertificates_title">SSL certificates</string>
@@ -652,15 +655,22 @@
   <string name="ActivateAutoFillService_btnKeyboard">Use built-in keyboard</string>
   <string name="ActivateAutoFillService_btnAutoFill">Use AutoFill service</string>
   <string name="ActivateAutoFillService_toast">Please enable the Keepass2Android service.</string>
-  
+  <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
   <string name="ChangeLog_0_9_8c">
     Version 0.9.8c\n
     * Fix for SSL vulnerability in Microsoft Live SDK (used when accessing files via OneDrive)\n
     * Bug fix: Previous release contained two input methods (one crashing)\n
   </string>
 
-  <string name="ChangeLog_1_0_0">
-    Version 1.0.0 - preview 7\n
+  <string name="ChangeLog_1_0_0e">
+    Version 1.0.0e\n
+    * fix for Fingerprint Unlock on older Samsung devices with Android 6\n
+    * add native support for x86 devices\n
+    * allow to hide softkeyboard during fingerprint scan\n
+    * build system update
+  </string>
+    <string name="ChangeLog_1_0_0">
+    Version 1.0.0\n
     * Fingerprint Unlock (requires Android 6.0+ or a Samsung device)\n
     * Added Auto-Fill service (requires Android 5.0+)\n
     * Added support for entry templates\n

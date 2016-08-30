@@ -8,6 +8,7 @@
   <string name="CreditsText">Die Benutzeroberfläche basiert auf einem Port von Keepassdroid (entwickelt von Brian Pellin) nach Mono for Android. Der Code für die Datenbank-Operationen nutzt eine angepasste Version einer Bibliothek aus KeePass (entwickelt von Dominik Reichl).
 Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird nach den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
   <string name="CreditsTextSFTP">SFTP-Unterstützung ist implementiert unter Nutzung der JSch-Bibliothek (BSD-Lizenz), erstellt durch JCraft, Inc.</string>
+  <string name="CreditsIcons">Das Hammer-Icon wurde von John Caserta aus dem Noun Project erstellt. Das Pinguin-Icon wurde von Adriano Emerick aus dem Noun Project erstellt. Das Feder-Icon wurde von Jon Testa aus dem Noun Project erstellt. Das Apfel-Icon wurde von Ava Rowell aus dem Noun Project erstellt. </string>
   <string name="accept">Akzeptieren</string>
   <string name="deny">Verweigern</string>
   <string name="add_entry">Eintrag hinzufügen</string>
@@ -36,6 +37,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="unknown_uri_scheme">Tut mir Leid! Keepass2Android kann die zurückgegebene URI %1$s nicht verarbeiten. Bitte kontaktiere den Entwickler!</string>
   <string name="Entry_singular">Ein Eintrag</string>
   <string name="Entry_plural">%1$d Einträge</string>
+  <string name="IconSet_title">Icon-Sammlung</string>
+  <string name="IconSet_install">Weitere finden...</string>
   <string name="security_prefs">Sicherheit</string>
   <string name="display_prefs">Anzeige</string>
   <string name="password_access_prefs">Passwort-Zugriff</string>
@@ -43,6 +46,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="FileHandling_prefs">Umgang mit Dateien</string>
   <string name="keyboard_prefs">Tastatur</string>
   <string name="export_prefs">Datenbank exportieren…</string>
+  <string name="fingerprint_prefs">Entsperren mit Fingerabdruck</string>
   <string name="import_db_prefs">Datenbank in internen Ordner importieren</string>
   <string name="import_keyfile_prefs">Schlüsseldatei in internen Ordner kopieren</string>
   <string name="keyboardswitch_prefs">Wechseln der Eingabemethode</string>
@@ -72,10 +76,28 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="disclaimer_formal">Der Autor übernimmt keine Verantwortung gibt KEINERLEI GARANTIE bei der Nutzung der Anwendung; Die Anwendung ist kostenlos und kann unter den Bedingungen der GPL v2 oder später verbreitet werden.</string>
   <string name="ellipsis">…</string>
   <string name="copy_to_clipboard">In Zwischenablage kopieren</string>
+  <string name="fingerprint_hint">Sensor berühren</string>
+  <string name="fingerprint_description">Fingerabdruck bestätigen um fortzufahren</string>
+  <string name="fingerprint_fatal">Entsperren mit Fingerabdruck kann nicht eingerichtet werden:</string>
+  <string name="fingerprint_not_recognized">Fingerabdruck nicht erkannt. Erneut versuchen</string>
+  <string name="fingerprint_success">Fingerabdruck erkannt</string>
+  <string name="fingerprint_os_error">Entsperren mit Fingerabdruck benötigt Android 6.0 oder später.</string>
+  <string name="fingerprint_hardware_error">Keine Fingerabdruck-Hardware erkannt.</string>
+  <string name="fingerprint_no_enrolled">Auf diesem Gerät sind keine Fingerabdrücke verfügbar. Bitte erst die Systemeinstellungen anpassen.</string>
+  <string name="disable_fingerprint_unlock">Entsperren mit Fingerabdruck deaktivieren</string>
+  <string name="enable_fingerprint_unlock">Volles Entsperren mit Fingerabdruck aktivieren</string>
+  <string name="enable_fingerprint_quickunlock">Entsperren mit Fingerabdruck für QuickUnlock</string>
+  <string name="fingerprint_unlock_hint">Sensor zum Entsperren berühren</string>
+  <string name="fingerprint_unlock_failed">Entsperren mit Fingerabdruck fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn ein neuer Fingerabdruck hinzugefügt wurde oder die Sicherheitseinstellungen geändert wurden. Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Öffnen mit Fingerabdruck erneut aktivieren.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Entsperren mit Fingerabdruck wurde deaktiviert, da das gespeicherte Masterpasswort nicht länger gültig ist. Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Öffnen mit Fingerabdruck erneut aktivieren.</string>
+  <string name="fingerprint_reenable">Bitte Fingerabdruck für das neue Masterpasswort erneut aktivieren.</string>
+  <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Masterpasswort im Android-Keystore auf dem Gerät gespeichert, verschlüsselt und geschützt mit dem Fingerabdruck. Ermöglicht es, die Datenbank mit dem Fingerabdruck zu öffnen.
+  </string>
+  <string name="enable_fingerprint_quickunlock_Info">Erlaubt es, den Fingerabdruck anstelle des QuickUnlock-Codes zu nutzen. Speichert keine Informationen bezüglich des Masterpassworts.</string>
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
   <string name="entry_accessed">Letzter Zugriff</string>
   <string name="entry_cancel">Abbrechen</string>
-  <string name="entry_comment">Kommentare</string>
+  <string name="entry_comment">Notizen</string>
   <string name="entry_tags">Tags</string>
   <string name="entry_override_url">Override URL</string>
   <string name="entry_confpassword">Kennwort wiederholen</string>
@@ -113,7 +135,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="file_browser">Dateimanager</string>
   <string name="generate_password">Kennwort erzeugen</string>
   <string name="group">Gruppe</string>
-  <string name="hint_comment">Notiz</string>
+  <string name="hint_comment">Notizen</string>
   <string name="hint_conf_pass">Kennwort wiederholen</string>
   <string name="hint_generated_password">Erzeugtes Kennwort</string>
   <string name="hint_group_name">Name der Gruppe</string>
@@ -148,6 +170,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_app_settings">Einstellungen</string>
   <string name="menu_db_settings">Datenbank-Einstellungen</string>
   <string name="menu_delete">Löschen</string>
+  <string name="menu_copy">Duplizieren</string>
   <string name="menu_move">In andere Gruppe verschieben</string>
   <string name="menu_move_light">Verschieben</string>
   <string name="menu_navigate">Zur übergeordneten Gruppe navigieren</string>
@@ -162,6 +185,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_search_advanced">Erweiterte Suche</string>
   <string name="menu_url">URL öffnen</string>
   <string name="menu_change_db">Datenbank wechseln…</string>
+  <string name="menu_show_all">Alle Felder anzeigen</string>
   <string name="minus">Bindestrich</string>
   <string name="never">Nie</string>
   <string name="yes">Ja</string>
@@ -301,8 +325,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
   <string name="ShowSeparateNotifications_title">Separate Benachrichtigungen</string>
   <string name="ShowSeparateNotifications_summary">Zeige separate Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Tastatur/AutoFill-Benachrichtigung</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur und den AutoFill-Service bereitstellen (empfohlen).</string>
+  <string name="ShowKp2aKeyboardNotification_title">Tastatur/AutoEingabe-Benachrichtigung</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über KP2A-Tastatur und AutoFill zur Verfügung stellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zum Auswählen der Eingabemethode öffnen wenn ein Eintrag nach Suche aus dem Browser heraus verfügbar ist.</string>
   <string name="kp2a_switch_rooted">Auto-umschalten auf gerooteten Geräten</string>
@@ -324,6 +348,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Drücke nein, um ihn in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyGroup">Soll diese Gruppe endgültig gelöscht werden? Drücke nein, um sie in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyItems">Gewählte Elemente permanent löschen? Nein wählen, um in den Papierkorb zu verschieben.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Eintrag wirklich permanent löschen?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Gruppe wirklich permanent löschen?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Ausgewählte Elemente wirklich permanent löschen?</string>
   <string name="AskDeletePermanently_title">Endgültig löschen?</string>
   <string name="AskReloadFile_title">Datei neu laden?</string>
   <string name="AskReloadFile">Die gerade geöffnete Datei wurde von einem anderen Programm geändert. Möchtest du sie neu laden?</string>
@@ -348,6 +375,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="SynchronizingDatabase">Führe Änderungen zusammen&#8230;</string>
   <string name="YesSynchronize">Ja, zusammenführen</string>
   <string name="NoOverwrite">Nein, überschreiben</string>
+  <string name="UseOfflineMode">Offline arbeiten</string>
+  <string name="UseOnlineMode">Online arbeiten</string>
+  <string name="UseOfflineMode_Info">Verwende die lokale Datenbankkopie um Netzwerkverkehr zu vermeiden. Änderungen werden lokal gespeichert und erst hochgeladen wenn der Online-Modus wieder aktiviert wird.</string>
+  <string name="InOfflineMode">Offline arbeiten.</string>
   <string name="SynchronizingCachedDatabase">Synchronisiere gecachte Datenbank&#8230;</string>
   <string name="DownloadingRemoteFile">Lade Remote-Datei herunter&#8230;</string>
   <string name="UploadingFile">Lade Datei hoch&#8230;</string>
@@ -400,6 +431,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="help_database_location">Du kannst deine Datenbank lokal auf deinem Android-Gerät oder in der Cloud speichern (nur in der Nicht-Offline-Version). Keepass2Android macht die Datenbank dann auch verfügbar, wenn du offline bist. Da die Datenbank sicher mit der AES 256-Bit-Verschlüsselung geschützt ist, erhält auch dann niemand außer dir Zugriff auf deine Datenbank. Wir empfehlen die Benutzung von Dropbox: Es ist auf allen Geräten verfügbar und bietet automatisch Backups aller Dateiversionen.</string>
   <string name="hint_database_location">Wähle, wo du deine Datenbank speichern möchtest:</string>
   <string name="button_change_location">Speicherort ändern</string>
+  <string name="help_quickunlock">Wenn aktiviert läuft Keepass2Android im Hintergrund weiter, auch wenn die Datenbank gesperrt ist. Das ermöglicht das Öffnen der Datenbank mit QuickUnlock.</string>
   <string name="master_password">Master-Passwort</string>
   <string name="help_master_password">Deine Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Wähle ein starkes Passwort, um deine Datenbank zu schützen! Tipp: Denke dir ein oder zwei Sätze aus und nutze die Anfangsbuchstaben als Passwort. Übernimm auch die Satzzeichen.</string>
   <string name="hint_master_password">Wähle ein Master-Passwort, mit dem deine Datenbank geschützt wird:</string>
@@ -464,17 +496,83 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="CopyFileRequiredForEditing">Um sie zu bearbeiten, muss sie an einen anderen Speicherort kopiert werden.</string>
   <string name="ClickOkToSelectLocation">Wähle OK, um einen Zielort zum Kopieren zu wählen.</string>
   <string name="CancelReadOnly">Abbrechen, nur lesend öffnen.</string>
+  <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android hat die Datenbank im Lese-Modus geöffnet.</string>
+  <string name="ReadOnlyReason_PreKitKat">Es scheint als hättest du die Datei über eine externe App geöffnet. Diese Vorgehensweise unterstützt keinen Schreibzugriff. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne dann die Datei mit einer der angebotenen Optionen.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Entferne das Attribut, um Änderungen an der Datenbank vorzunehmen.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne die Datei dann über die System-Dateiauswahl.</string>
   <string name="AddCustomIcon">Icon aus Datei hinzufügen...</string>
   <string name="CopyingFile">Kopiere Datei...</string>
+  <string name="DuplicateTitle">Kopieren</string>
+  <string name="DefaultTemplate">Standardeintrag</string>
+  <string name="TemplateGroupName">Vorlagen</string>
+  <string name="TemplateTitle_IdCard">Ausweis</string>
+  <string name="TemplateField_IdCard_Name">Name</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Ausstellungsort</string>
+  <string name="TemplateField_IdCard_IssueDate">Ausstellungsdatum</string>
+  <string name="TemplateTitle_EMail">E-Mail</string>
+  <string name="TemplateField_EMail_EMail">E-Mail-Adresse</string>
+  <string name="TemplateTitle_WLan">Funknetzwerk</string>
+  <string name="TemplateTitle_Notes">Sichere Notiz</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Nummer</string>
+  <string name="TemplateField_CreditCard_CVV">Sicherheitscode</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Inhaber</string>
+  <string name="TemplateTitle_CreditCard">Kreditkarte</string>
+  <string name="TemplateTitle_Membership">Mitgliedschaft</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
+  <string name="AskAddTemplatesTitle">Vorlagen hinzufügen?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android kann Vorlagen für E-Mail Accounts, W-LAN-Passwörter, sichere Notizen und mehr erstellen. Sollen diese der Datenbank hinzugefügt werden? Dies kann auch später über die Datenbankeinstellungen gemacht werden.</string>
+  <string name="AddTemplates_pref">Vorlagen zu Datenbank hinzufügen</string>
   <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (auf Codeplex oder per E-Mail).</string>
   <string name="Continue">Fortfahren</string>
   <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Bist du sicher, dass es sich um eine gültige Datei handelt?</string>
+  <string name="FirstInvalidCompositeKeyError">Ungültiger zusammengesetzter Schlüssel! Bitte erneut probieren.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Ungültiger zusammengesetzter Schlüssel! Bitte probiere die folgenden Schritte, um die Datenbank zu entsperren:\n
+  
+    • Stelle sicher, dass du das richtige Passwort eingegeben hast. Das Augensymbol kann genutzt werden um das eingegebene Passwort anzuzeigen.\n
+   • Stelle sicher, dass du den richtigen Passworttyp ausgewählt hast. Er muss mit dem Typ übereinstimmen, der beim Erstellen der Datenbank gewählt wurde.\n
+   • Stelle sicher, dass du die richtige Datenbankdatei gewählt hast.
+ 
+</string>
+  <string name="CorruptDatabaseHelp">
+Die Datei ist beschädigt.\n
+Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
+
+• Wenn du die Datei über USB kopiert hast (MTP-Modus), versuche es noch einmal mit Tools wie MyPhoneExplorer. MTP schneidet die Dateien in manchen Fällen ab.\n
+• Wenn du die Datei nicht von der gleichen Stelle auf deinem PC öffnen kannst, ist es sehr wahrscheinlich, dass die Datei tatsächlich beschädigt ist. Bitte verwende in diesem Fall eine Datenbanksicherung. Wenn du annimmst, dass Keepass2Android die Datei beschädigt hat, nimm bitte Kontakt mit dem Support auf.\n
+• Wenn du die Datei auf dem PC noch öffnen kannst, nimm Sie bitte Kontakt mit dem Suppot auf. Du kannst versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z.B. nicht ZIP-komprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
+  <string name="ErrorReportTitle">Keepass2Android: Ein Fehler ist aufgetreten.</string>
+  <string name="ErrorReportText">Ein unerwarteter Fehler ist während der Ausführung von Keepass2Android aufgetreten. Bitte hilf uns indem du erlaubst, einen Fehlerbericht zu senden.</string>
+  <string name="ErrorReportPromise">Fehlerberichte werden nie den Inhalt deiner Datenbank oder des Master-Passworts enthalten. Du kannst sie in den Anwendungseinstellungen deaktivieren.</string>
+  <string name="ErrorReportEnable">Aktivieren</string>
+  <string name="ErrorReportDisable">Deaktivieren</string>
+  <string name="ErrorReportAsk">Nach Fehler fragen</string>
+  <string name="ErrorReportPrefTitle">Fehlerbericht senden</string>
+  <string name="ActivateAutoFillService_title">AutoEingabe aktivieren?</string>
+  <string name="ActivateAutoFillService_message">Anmeldeinformationen können zu anderen Apps auf verschiedene Weise übertragen werden: Du kanst die Werte in die Zwischenablage kopieren - bedenke dabei aber, dass die Zwischenablage in Android nicht sicher ist. Die eingebaute Tastatur gibt dir vollen Zugriff auf den gewählten Eintrag, muss aber jedesmal aktiviert werden, wenn du auf die Anmeldeinformationen zugreifen möchtest. Unter Android 5 oder später kann Keepass2Android Benutzername und Passwort mit dem AutoEingabe-Dienst automatisch eintragen.</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Integrierte Tastatur verwenden</string>
+  <string name="ActivateAutoFillService_btnAutoFill">AutoEingabe-Dienst benutzen</string>
+  <string name="ActivateAutoFillService_toast">Bitte aktiviere den Keepass2Android-Dienst.</string>
   <string name="ChangeLog_0_9_8c">
     Version 0.9.8c\n
     * Fix für SSL-Schwachstelle im Microsoft Live-SDK (wird benutzt beim Zugriff auf Dateien mit OneDrive)\n
     * Bugfix: Vorige Veröffentlichung enthielt zwei Eingabemethoden (eine funktionierte nicht)\n
   </string>
+  <string name="ChangeLog_1_0_0">
+Version 1.0.0\n
+* Entsperren mit Fingerabdruck (benötigt Android 6.0+ oder ein Samsung-Gerät)\n
+* Auto-Fill-Dienst hinzugefügt (benötigt Android 5.0+)\n
+* Unterstützung für Eintrags-Vorlagen hinzugefügt\n
+* Modus \"offline arbeiten\" hinzugefügt\n
+* Kopieren von Einträgen ermöglicht\n
+* Automatische Vervollständigung für Feldnamen\n
+* Einträge können aus der Liste der zuletzt verwendeten Dateien entfernt werden\n
+* Rechte werden in Android 6.0 zur Laufzeit angefragt\n
+* Fehlerbehebungen (integrierte Tastatatur wenn Icons ausgewählt werden)\n
+* Option zum Senden von Fehlerberichten hinzugefügt\n
+* Hilfemeldungen an verschiedenen Stellen hinzugefügt\n  \n</string>
   <string name="ChangeLog_0_9_9">
 		Version 0.9.9\n
 		* Komplett neues Design. Vielen Dank an Stefano Pignataro (http://www.spstudio.at) für seine Unterstützung!\n
@@ -484,6 +582,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
     * Prüfung nach mehrfach vorkommenden Schlüsseln von zusätzlichen Feldern um Datenverlust zu verhindern\n
     
 	</string>
+  <string name="ChangeLog_0_9_9c">
+Version 0.9.9c\n
+* Dark Theme ist zurück\n
+* Man kann jetzt weitere Icon-Packs installieren (Icons im alten Windows-Stil sind im Play Store verfügbar)\n
+* Bestätigungsabfrage für das Löschen von Elementen ohne Papierkorb hinzugefügt\n
+* Fehlerbehebungen (falsche Anzeige des OTP Secret Encoding, falsches App-Icon an manchen Stellen)\n  </string>
   <string name="ChangeLog_0_9_8b">
 		Version 0.9.8b\n
 		* Bug fixes (Speichern funktionierte bei einigen Datenbanken nicht, Export zum lokalen Gerät funktionierte nicht, einige Einstellungsoptionen verursachten einen Absturz der App)\n
@@ -672,8 +776,8 @@ Erstes öffentliches Release</string>
     <item>Groß</item>
   </string-array>
   <string-array name="design_options">
-    <item>Holo Light</item>
-    <item>Holo Dark</item>
+    <item>Hell</item>
+    <item>Dunkel</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="cred_remember_modes">

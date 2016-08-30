@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    ABOUT THEMES
+    
+    - BaseThemes: just inherit from Android themes. Customizations go to BaseThemeHelpers.
+    - BaseThemeHelpers: contain customizations that are different on every API levels.
+    - Actual themes which extend BaseThemeHelpers: contain customizations that are the same for all API levels.
+    -->
+
+    <style name="Afc.BaseTheme.Dark" parent="@android:style/Theme"></style>
+
+    <style name="Afc.BaseThemeHelper.Dark" parent="@style/Afc.BaseTheme.Dark">
+        <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home</item>
+        <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview</item>
+        <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview</item>
+        <item name="afc_ic_menu_sort_by_date_asc">@drawable/afc_ic_menu_sort_by_date_asc</item>
+        <item name="afc_ic_menu_sort_by_date_desc">@drawable/afc_ic_menu_sort_by_date_desc</item>
+        <item name="afc_ic_menu_sort_by_name_asc">@drawable/afc_ic_menu_sort_by_name_asc</item>
+        <item name="afc_ic_menu_sort_by_name_desc">@drawable/afc_ic_menu_sort_by_name_desc</item>
+        <item name="afc_ic_menu_sort_by_size_asc">@drawable/afc_ic_menu_sort_by_size_asc</item>
+        <item name="afc_ic_menu_sort_by_size_desc">@drawable/afc_ic_menu_sort_by_size_desc</item>
+        <item name="afc_ic_button_sort_by_date_asc">@drawable/afc_ic_menu_sort_by_date_asc</item>
+        <item name="afc_ic_button_sort_by_date_desc">@drawable/afc_ic_menu_sort_by_date_desc</item>
+        <item name="afc_ic_button_sort_by_name_asc">@drawable/afc_ic_menu_sort_by_name_asc</item>
+        <item name="afc_ic_button_sort_by_name_desc">@drawable/afc_ic_menu_sort_by_name_desc</item>
+        <item name="afc_ic_button_sort_by_size_asc">@drawable/afc_ic_menu_sort_by_size_asc</item>
+        <item name="afc_ic_button_sort_by_size_desc">@drawable/afc_ic_menu_sort_by_size_desc</item>
+        <item name="afc_button_bar_style">@null</item>
+        <item name="afc_button_bar_button_style">@null</item>
+        <item name="afc_ic_widget_search_view_action_clear">@drawable/afc_ic_action_clear_dark</item>
+    </style>
+
+    <style name="Afc.BaseTheme.Dialog.Dark" parent="@android:style/Theme" />
+
+    <style name="Afc.BaseThemeHelper.Dialog.Dark" parent="@style/Afc.BaseTheme.Dialog.Dark">
+
+        <!-- AOSP -->
+
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowTitleStyle">@style/AOSP_DialogWindowTitle</item>
+        <item name="android:windowBackground">@drawable/aosp_dialog_full_holo_dark</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+
+        <!-- android-filechooser -->
+
+        <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home</item>
+        <item name="afc_ic_menu_gridview">@drawable/afc_ic_menu_gridview</item>
+        <item name="afc_ic_menu_listview">@drawable/afc_ic_menu_listview</item>
+        <item name="afc_ic_menu_sort_by_date_asc">@drawable/afc_ic_menu_sort_by_date_asc</item>
+        <item name="afc_ic_menu_sort_by_date_desc">@drawable/afc_ic_menu_sort_by_date_desc</item>
+        <item name="afc_ic_menu_sort_by_name_asc">@drawable/afc_ic_menu_sort_by_name_asc</item>
+        <item name="afc_ic_menu_sort_by_name_desc">@drawable/afc_ic_menu_sort_by_name_desc</item>
+        <item name="afc_ic_menu_sort_by_size_asc">@drawable/afc_ic_menu_sort_by_size_asc</item>
+        <item name="afc_ic_menu_sort_by_size_desc">@drawable/afc_ic_menu_sort_by_size_desc</item>
+        <item name="afc_ic_button_sort_by_date_asc">@drawable/afc_ic_menu_sort_by_date_asc</item>
+        <item name="afc_ic_button_sort_by_date_desc">@drawable/afc_ic_menu_sort_by_date_desc</item>
+        <item name="afc_ic_button_sort_by_name_asc">@drawable/afc_ic_menu_sort_by_name_asc</item>
+        <item name="afc_ic_button_sort_by_name_desc">@drawable/afc_ic_menu_sort_by_name_desc</item>
+        <item name="afc_ic_button_sort_by_size_asc">@drawable/afc_ic_menu_sort_by_size_asc</item>
+        <item name="afc_ic_button_sort_by_size_desc">@drawable/afc_ic_menu_sort_by_size_desc</item>
+        <item name="afc_button_bar_style">@null</item>
+        <item name="afc_button_bar_button_style">@null</item>
+        <item name="afc_ic_widget_search_view_action_clear">@drawable/afc_ic_action_clear_dark</item>
+    </style>
+
+    <style name="Afc.Theme.Dark" parent="@style/Afc.BaseThemeHelper.Dark">
+
+        <!-- AOSP -->
+
+        <item name="android:windowBackground">@drawable/aosp_background_holo_dark</item>
+
+        <!-- android-filechooser -->
+
+        <item name="afc_theme_dialog">@style/Afc.Theme.Dialog.Dark</item>
+        <item name="afc_button_home">@drawable/afc_button_home_light</item>
+        <item name="afc_ic_widget_search_view_action_search">@drawable/afc_ic_action_search_light</item>
+        <item name="afc_badge_file_provider_localfile">@drawable/afc_badge_file_provider_localfile_light</item>
+        <item name="afc_selector_image_button">@drawable/afc_selector_image_button_dark</item>
+        <item name="afc_selector_button_location">@drawable/afc_selector_button_location_dark</item>
+        <item name="afc_selector_main_button_navi_left">@drawable/afc_selector_main_button_navi_left_dark</item>
+        <item name="afc_selector_main_button_navi_right">@drawable/afc_selector_main_button_navi_right_dark</item>
+        <item name="afc_selector_button_ok_saveas">@drawable/afc_selector_button_ok_saveas_dark</item>
+        <item name="afc_selector_action_navi_left_foreground">@drawable/afc_selector_action_navi_left_dark_foreground</item>
+        <item name="afc_selector_action_navi_right_foreground">@drawable/afc_selector_action_navi_right_dark_foreground</item>
+        <item name="afc_color_listview_cache_hint">@color/afc_listview_cache_hint_dark</item>
+        <item name="afc_color_list_group_view_background">@color/afc_list_group_view_background_dark</item>
+    </style>
+
+    <style name="Afc.Theme.Dialog.Dark" parent="@style/Afc.BaseThemeHelper.Dialog.Dark">
+        <item name="afc_theme_dialog">@style/Afc.Theme.Dialog.Dark</item>
+        <item name="afc_button_home">@drawable/afc_button_home_light</item>
+        <item name="afc_ic_widget_search_view_action_search">@drawable/afc_ic_action_search_light</item>
+        <item name="afc_badge_file_provider_localfile">@drawable/afc_badge_file_provider_localfile_light</item>
+        <item name="afc_selector_image_button">@drawable/afc_selector_image_button_dark</item>
+        <item name="afc_selector_button_location">@drawable/afc_selector_button_location_dark</item>
+        <item name="afc_selector_main_button_navi_left">@drawable/afc_selector_main_button_navi_left_dark</item>
+        <item name="afc_selector_main_button_navi_right">@drawable/afc_selector_main_button_navi_right_dark</item>
+        <item name="afc_selector_button_ok_saveas">@drawable/afc_selector_button_ok_saveas_dark</item>
+        <item name="afc_selector_action_navi_left_foreground">@drawable/afc_selector_action_navi_left_dark_foreground</item>
+        <item name="afc_selector_action_navi_right_foreground">@drawable/afc_selector_action_navi_right_dark_foreground</item>
+        <item name="afc_color_listview_cache_hint">@color/afc_listview_cache_hint_dark</item>
+        <item name="afc_color_list_group_view_background">@color/afc_list_group_view_background_dark</item>
+    </style>
+
+</resources>

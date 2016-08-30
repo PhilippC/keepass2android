@@ -722,7 +722,12 @@ namespace keepass2android
 			{
 				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
 				bool cacheEnabled = prefs.GetBoolean(Application.Context.Resources.GetString(Resource.String.UseOfflineCache_key),
-				                                     true);
+#if NoNet
+					false
+#else
+					true
+#endif
+				    );
 				return cacheEnabled;
 			}
 		}
@@ -800,6 +805,7 @@ namespace keepass2android
 
             Kp2a.OnCreate(this);
 			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
+#if !NoNet
 			Kp2aLog.OnUnexpectedError += (sender, exception) =>
 			{
 				var currentErrorReportMode = GetErrorReportMode(ApplicationContext);
@@ -817,6 +823,7 @@ namespace keepass2android
 			Xamarin.Insights.DisableExceptionCatching = true;
 			var errorReportMode = GetErrorReportMode(ApplicationContext);
 			SetErrorReportMode(ApplicationContext, errorReportMode);
+#endif
 		}
 
 		public static ErrorReportMode GetErrorReportMode(Context ctx)
@@ -828,6 +835,15 @@ namespace keepass2android
 		}
 
 
+		
+		
+		public override void OnTerminate() {
+			base.OnTerminate();
+			Kp2aLog.Log("Terminating application");
+            Kp2a.OnTerminate();
+		}
+
+#if !NoNet
 		void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
 		{
 			Kp2aLog.LogUnexpectedError(e.Exception);
@@ -835,19 +851,11 @@ namespace keepass2android
 			// Do your error handling here.
 			//throw e.Exception;
 		}
-
 		protected override void Dispose(bool disposing)
 		{
 			AndroidEnvironment.UnhandledExceptionRaiser -= MyApp_UnhandledExceptionHandler;
 			base.Dispose(disposing);
 		}
-
-		public override void OnTerminate() {
-			base.OnTerminate();
-			Kp2aLog.Log("Terminating application");
-            Kp2a.OnTerminate();
-		}
-
 
 		public static void SetErrorReportMode(Context ctx, ErrorReportMode mode)
 		{
@@ -865,6 +873,12 @@ namespace keepass2android
 
 
 		}
+#else
+		private void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
+		{
+			Kp2aLog.LogUnexpectedError(e.Exception);
+		}
+#endif
 	}
 
 }

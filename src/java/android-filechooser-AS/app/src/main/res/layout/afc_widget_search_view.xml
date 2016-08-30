@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageButton
+        android:id="@+id/afc_widget_search_view_button_search"
+        style="@style/afc_widget_search_view_button_search"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/afc_hint_search"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <EditText
+        android:id="@+id/afc_widget_search_view_textview_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/afc_widget_search_view_button_search"
+        android:gravity="center_vertical"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:paddingRight="@dimen/afc_widget_search_view_button_clear_size"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/afc_widget_search_view_button_clear"
+        style="@style/afc_widget_search_view_button_clear"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/afc_hint_clear"
+        android:visibility="gone" />
+
+</RelativeLayout>

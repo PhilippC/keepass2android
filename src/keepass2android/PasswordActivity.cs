@@ -997,6 +997,11 @@ namespace keepass2android
 	        {
                 Util.GotoDonateUrl(this);
 	        };
+			FindViewById(Resource.Id.btn_nav_donate).Visibility =
+				PreferenceManager.GetDefaultSharedPreferences(this)
+					.GetBoolean(this.GetString(Resource.String.NoDonateOption_key), false)
+					? ViewStates.Gone
+					: ViewStates.Visible;
 	        FindViewById(Resource.Id.btn_nav_about).Click += (sender, args) =>
 	        {
 	            AboutDialog dialog = new AboutDialog(this);
@@ -1122,33 +1127,39 @@ namespace keepass2android
 			//started from "view" intent (e.g. from file browser)
 			_ioConnection.Path = i.DataString;
 
-			if (! _ioConnection.Path.Substring(0, 7).Equals("file://"))
+			if (_ioConnection.Path.StartsWith("file://"))
 			{
-				//TODO: this might no longer be required as we can handle http(s) and ftp as well (but we need server credentials therefore)
-				Toast.MakeText(this, Resource.String.error_can_not_handle_uri, ToastLength.Long).Show();
-				Finish();
-				return false;
+				_ioConnection.Path = URLDecoder.Decode(_ioConnection.Path.Substring(7));
+
+				if (_ioConnection.Path.Length == 0)
+				{
+					// No file name
+					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
+					Finish();
+					return false;
+				}
+
+				File dbFile = new File(_ioConnection.Path);
+				if (!dbFile.Exists())
+				{
+					// File does not exist
+					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
+					Finish();
+					return false;
+				}
+			}
+			else
+			{
+				if (!_ioConnection.Path.StartsWith("content://"))
+				{
+			
+					Toast.MakeText(this, Resource.String.error_can_not_handle_uri, ToastLength.Long).Show();
+					Finish();
+					return false;
+				}
 			}
 
-			_ioConnection.Path = URLDecoder.Decode(_ioConnection.Path.Substring(7));
-
-			if (_ioConnection.Path.Length == 0)
-			{
-				// No file name
-				Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
-				Finish();
-				return false;
-			}
-
-			File dbFile = new File(_ioConnection.Path);
-			if (! dbFile.Exists())
-			{
-				// File does not exist
-				Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
-				Finish();
-				return false;
-			}
-
+			
 			_keyFileOrProvider = GetKeyFile(_ioConnection.Path);
 			return true;
 		}
@@ -1570,14 +1581,8 @@ namespace keepass2android
 			base.OnStart();
 			_starting = true;
 
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-
-			long usageCount = prefs.GetLong(GetString(Resource.String.UsageCount_key), 0);
-
-			if (usageCount > 5)
-			{
-				DonateReminder.ShowDonateReminderIfAppropriate(this);
-			}
+			DonateReminder.ShowDonateReminderIfAppropriate(this);
+			
 			
 		}
 
@@ -1728,12 +1733,7 @@ namespace keepass2android
 			}
 			
 
-			EditText pwd = FindViewById<EditText>(Resource.Id.password_edit);
-			pwd.PostDelayed(() =>
-			{
-				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
-				keyboard.ShowSoftInput(pwd, 0);
-			}, 50);
+			
 
 			View killButton = FindViewById(Resource.Id.kill_app);
 			if (PreferenceManager.GetDefaultSharedPreferences(this)
@@ -1806,19 +1806,33 @@ namespace keepass2android
 				}
 			}
 
+			bool showKeyboard = (Util.GetShowKeyboardDuringFingerprintUnlock(this));
+
+
 			if (_fingerprintPermissionGranted)
 			{
-				InitFingerprintUnlock();
+				if (!InitFingerprintUnlock())
+					showKeyboard = true;
 			}
 			else
 			{
 				FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
-
+				showKeyboard = true;
 			}
 			
+			
+			EditText pwd = (EditText)FindViewById(Resource.Id.password_edit);
+			pwd.PostDelayed(() =>
+			{
+				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
+				if (showKeyboard)
+					keyboard.ShowSoftInput(pwd, 0);
+				else
+					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
+			}, 50);
 		}
 
-		private void InitFingerprintUnlock()
+		private bool InitFingerprintUnlock()
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 			try
@@ -1829,7 +1843,7 @@ namespace keepass2android
 
 				if (um != FingerprintUnlockMode.FullUnlock)
 				{
-					return;
+					return false;
 				}
 
 				FingerprintModule fpModule = new FingerprintModule(this);
@@ -1842,6 +1856,7 @@ namespace keepass2android
 				{
 					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
 					_fingerprintDec.StartListening(new FingerprintAuthCallbackAdapter(this, this));
+					return true;
 				}
 				else
 				{
@@ -1851,6 +1866,7 @@ namespace keepass2android
 					_fingerprintDec = null;
 
 					ClearFingerprintUnlockData();
+					return false;
 				}
 			}
 			catch (Exception e)
@@ -1859,6 +1875,7 @@ namespace keepass2android
 				btn.Tag = "Error initializing Fingerprint Unlock: " + e;
 
 				_fingerprintDec = null;
+				return false;
 			}
 				
 				

@@ -31,17 +31,18 @@
   <string name="security_prefs">الأمن</string>
   <string name="display_prefs">العرض</string>
   <string name="password_access_prefs">الوصول لمُدخل كلمة المرور</string>
-  <string name="QuickUnlock_prefs">إزالة التأمين السريع</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">الملفات التي يمكن استخدامها</string>
   <string name="keyboard_prefs">لوحة المفاتيح</string>
   <string name="export_prefs">تصدير قاعدة البيانات...</string>
+  <string name="fingerprint_prefs">فك القفل بالبصمة</string>
   <string name="import_db_prefs">استيراد قاعدة البيانات إلى مجلد داخلي</string>
   <string name="import_keyfile_prefs">استيراد ملف المفتاح إلى المجلد الداخلية</string>
   <string name="keyboardswitch_prefs">تبديل لوحة المفاتيح</string>
   <string name="OnlyAvailableForLocalFiles">متاح فقط للملفات المحلية.</string>
   <string name="FileIsInInternalDirectory">تم تخزين الملف.</string>
   <string name="unlock_database_button">افتح</string>
-  <string name="unlock_database_title">افتح قاعدة البيانات</string>
+  <string name="unlock_database_title">فتح قاعدة البيانات</string>
   <string name="brackets">علامتي تنصيص</string>
   <string name="cancel">إلغاء</string>
   <string name="ClearClipboard">مسح الحافظة.</string>
@@ -61,10 +62,30 @@
   <string name="disclaimer_formal">Keepass2Android يأتي دون أدنى ضمان، هذا البرنامج مجاني، وإعادة توزيعه مرحب بها تحت شروط GPL الإصدار 2 أو ما بعده.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">انسخ إلى الحافظة</string>
+  <string name="fingerprint_hint">إلمس الحسّاس</string>
+  <string name="fingerprint_description">أكِّد بصمتك للإستمرار</string>
+  <string name="fingerprint_fatal">لا يمكن اعداد فك القفل بالبصمة:</string>
+  <string name="fingerprint_not_recognized">لم يتم التعرف على البصمة. حاول مجدداً</string>
+  <string name="fingerprint_success">تم التعرف على البصمة</string>
+  <string name="fingerprint_os_error">فك القفل بالبصمة يتطلب Android 6.0 او احدث.</string>
+  <string name="fingerprint_hardware_error">لا يوجد حساس بصمة.</string>
+  <string name="fingerprint_no_enrolled">لا يوجد بصمات مسجلة على الجهاز. الرجاء الذهاب لإعدادات الجهاز اولاً.</string>
+  <string name="disable_fingerprint_unlock">إبطال فك القفل بالبصمة</string>
+  <string name="enable_fingerprint_unlock">تفعيل فك القفل بالبصمة كاملاً</string>
+  <string name="enable_fingerprint_quickunlock">تفعيل فك القفل بالبصمة لـQuickUnlock</string>
+  <string name="fingerprint_unlock_hint">إلمس الحساس لفتح قاعدة البيانات</string>
+  <string name="fingerprint_unlock_failed">فشل في الفتح عن طريق البصمة. مفتاح فك التشفير أُبطِل من نظام التشغيل. يحدث هذا عادة إذا عُيِّنَت بصمة جديدة أو تم تغيير إعدادات الأمان. حاول مجدداً باستخدام كلمة المرور الخاصة بك وثم أعد تفعيل \"فك الفقل بالبصمة\" من إعدادات قاعدة البيانات.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">فتح قاعدة البيانات فشِل: تركيبة مفتاح المرور غير صالحة. فك القفل بالبصمة تم تعطيله لأن كلمة المرور الحاكمة المخزنة غير صالحة. يرجى الدخول باستخدام كلمة المرور و من ثم اعادة تفعيل \"فك القفل بالبصمة\" من إعدادات قاعدة البيانات.</string>
+  <string name="fingerprint_reenable">الرجاء اعادة تفعيل \"فك القفل بالبصمة\" لكلمة المرور الحاكمة الجديدة.</string>
+  <string name="enable_fingerprint_unlock_Info">
+هذا سيقوم بتخزين كلمة المرور الحاكمة على هذا الجهاز،
+مشفرة بـ Android Keystore و محمية
+ببصمة الاصبع. يسمح لك هذا بفتح
+قاعدة بياناتك فقط ببصمة إصبعك.  </string>
+  <string name="enable_fingerprint_quickunlock_Info">يمكنك باستخدام بصمتك للتصديق بدلاً من QuickUnlock. لا يتطلب تخزين أي معلومات متعلقة بكلمة مرورك الحاكمة.</string>
   <string name="enter_filename">أدخل اسم ملف قاعدة البيانات</string>
   <string name="entry_accessed">وصول</string>
   <string name="entry_cancel">إلغاء</string>
-  <string name="entry_comment">تعليقات</string>
   <string name="entry_tags">وسوم</string>
   <string name="entry_override_url">تخطي الرابط</string>
   <string name="entry_confpassword">تأكيد كلمة المرور</string>
@@ -102,7 +123,6 @@
   <string name="file_browser">متصفح الملف</string>
   <string name="generate_password">توليد كلمة المرور</string>
   <string name="group">مجموعة</string>
-  <string name="hint_comment">تعليق</string>
   <string name="hint_conf_pass">تأكيد كلمة المرور</string>
   <string name="hint_generated_password">كلمة المرور التي تم إنشاؤها</string>
   <string name="hint_group_name">اسم المجموعة</string>
@@ -163,7 +183,7 @@
   <string name="omitbackup_summary">تجاهل \"النسخ الاحتياطي\" ومجموعة سلة المحذوفات من نتائج البحث</string>
   <string name="pass_filename">اسم ملف قاعدة بيانات KeePass</string>
   <string name="password_title">أدخل كلمة مرور قاعدة البيانات</string>
-  <string name="master_key_type">حدد نوع المفتاح الرئيسي:</string>
+  <string name="master_key_type">اختر نوع المفتاح الحاكم:</string>
   <string name="progress_create">إنشاء قاعدة بيانات جديدة...</string>
   <string name="create_database">إنشاء قاعدة بيانات</string>
   <string name="progress_title">يعمل&#8230;</string>
@@ -228,4 +248,24 @@
   <string name="QuickUnlockDefaultEnabled_title">تمكين إلغاء التأمين السريع افتراضياً</string>
   <string name="QuickUnlockDefaultEnabled_summary">تحدد ما إذا تم تمكين إلغاء التأمين السريع افتراضياً أم لا.</string>
   <string name="QuickUnlockIconHidden_title">إخفاء أيقونة إلغاء التأمين السريع</string>
+  <string name="QuickUnlockIconHidden_summary">ميزة QuickUnlock لا تعمل الا بوجود ايقونة اشعار. أختر هذا الخيار لأستخدام ايقونة فارغة.</string>
+  <string name="QuickUnlockIconHidden16_title">أخفاء ايقونة QuickUnlock</string>
+  <string name="QuickUnlockIconHidden16_summary">ميزة QuickUnlock لا تعمل الا بوجود ايقونة اشعار. أختر هذا الخيار لأستخدام ايقونة فارغة.</string>
+  <string name="QuickUnlockLength_title">طول مفتاح QuickUnlock</string>
+  <string name="QuickUnlockLength_summary">اقصى رقم احرف مفتاح QuickUnlock.</string>
+  <string name="QuickUnlock_fail">مفتاح QuickUnlock خاطئ!</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: مقفل. QuickUnlock مفعل.</string>
+  <string name="database_loaded_unlocked">%1$s: مفتوح.</string>
+  <string name="ShowUnlockedNotification_title">ايقونة الاشعار بينما القفل مفتوح</string>
+  <string name="ShowUnlockedNotification_summary">إظهار اشعار بينما قاعدة البيانات مفتوحة.</string>
+  <string name="help_quickunlock">إذا مفعّل, Keepass2Android يبقى قيد التشغيل في الخلفية حتى بعد قَفل قاعدة البيانات. هذا يسمح بفتح القاعدة لاحقاً بجزء قصير من كلمة المرور الحاكمة.</string>
+  <string name="master_password">كلمة المرور الحاكمة</string>
+  <string name="hint_master_password">إختر كلمة مرور حاكمة لحماية قاعدة بياناتك:</string>
+  <string name="FirstInvalidCompositeKeyError">تركيبة مفتاح المرور غير صالحة! يرجى المحاولة مجدداً.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">تركيبة مفتاح المرور غير صالحة! حاول الخطوات التالية لفتح قاعدة بياناتك:\n
+  •تأكد من ادخالك لكلمة مرورك بصحة. ايقونة العين تكشف الكلمة.\n
+   •تأكد من تحديدك لنوع كلمة المرور الصحيح. هذا عليه ان يطابق النوع الذي أستخدم عند تأليف القاعدة لأول مرة.\n
+   •تأكد انك اخترت ملف قاعدة البيانات الصحيح.
+ 
+</string>
 </resources>

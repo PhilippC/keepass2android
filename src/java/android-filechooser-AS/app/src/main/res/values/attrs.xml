@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<resources>
+
+    <declare-styleable name="AfcSearchView">
+
+        <!--
+             Delay time to invoke a submission after the user entered a search query and waited for.
+             Format in milliseconds.
+        -->
+        <attr name="delayTimeSubmission" format="integer" />
+
+        <!-- Specifies if the view is iconfied or not. True is default. -->
+        <attr name="iconified" format="boolean" />
+
+        <!-- Specifies if this view is closable. True is default. -->
+        <attr name="closable" format="boolean" />
+        <attr name="enabled" format="boolean" />
+        <attr name="hint" format="string" />
+    </declare-styleable>
+
+    <attr name="afc_theme_dialog" format="reference" />
+    <attr name="afc_button_home" format="reference" />
+    <attr name="afc_ic_menu_home" format="reference" />
+    <attr name="afc_ic_menu_gridview" format="reference" />
+    <attr name="afc_ic_menu_listview" format="reference" />
+    <attr name="afc_ic_menu_sort_by_date_asc" format="reference" />
+    <attr name="afc_ic_menu_sort_by_date_desc" format="reference" />
+    <attr name="afc_ic_menu_sort_by_name_asc" format="reference" />
+    <attr name="afc_ic_menu_sort_by_name_desc" format="reference" />
+    <attr name="afc_ic_menu_sort_by_size_asc" format="reference" />
+    <attr name="afc_ic_menu_sort_by_size_desc" format="reference" />
+    <attr name="afc_ic_button_sort_by_date_asc" format="reference" />
+    <attr name="afc_ic_button_sort_by_date_desc" format="reference" />
+    <attr name="afc_ic_button_sort_by_name_asc" format="reference" />
+    <attr name="afc_ic_button_sort_by_name_desc" format="reference" />
+    <attr name="afc_ic_button_sort_by_size_asc" format="reference" />
+    <attr name="afc_ic_button_sort_by_size_desc" format="reference" />
+    <attr name="afc_ic_widget_search_view_action_search" format="reference" />
+    <attr name="afc_ic_widget_search_view_action_clear" format="reference" />
+    <attr name="afc_badge_file_provider_localfile" format="reference" />
+    <attr name="afc_selector_image_button" format="reference" />
+    <attr name="afc_selector_button_location" format="reference" />
+    <attr name="afc_selector_main_button_navi_left" format="reference" />
+    <attr name="afc_selector_main_button_navi_right" format="reference" />
+    <attr name="afc_selector_button_ok_saveas" format="reference" />
+    <attr name="afc_selector_action_navi_left_foreground" format="reference" />
+    <attr name="afc_selector_action_navi_right_foreground" format="reference" />
+    <attr name="afc_button_bar_style" format="reference" />
+    <attr name="afc_button_bar_button_style" format="reference" />
+
+</resources>

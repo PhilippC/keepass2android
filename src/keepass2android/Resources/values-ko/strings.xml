@@ -10,6 +10,7 @@
   <string name="accept">승인</string>
   <string name="deny">거절</string>
   <string name="add_entry">항목 추가</string>
+  <string name="edit_entry">항목 편집</string>
   <string name="add_url_entry">URL에 관한 항목</string>
   <string name="add_group">그룹 추가</string>
   <string name="add_group_title">그룹 추가</string>
@@ -31,6 +32,9 @@
   <string name="ShowGroupnameInSearchResult_resume">검색 결과 중 항목의 제목 아래에 그룹 이름을 표시 합니다. 여러 항목의 이름이 같은 경우에 유용합니다.</string>
   <string name="NavigationToGroupCompleted_message">표시 그룹은 지금: %1$s</string>
   <string name="ShowGroupInEntry_title">항목 보기에서 그룹 이름 표시</string>
+  <string name="unknown_uri_scheme">죄송 합니다! Keepass2Android는 반환된 URI %1$s을 처리할 수 없습니다. 개발자에게 연락 하십시오!</string>
+  <string name="Entry_singular">한개의 항목</string>
+  <string name="Entry_plural">%1$d 항목들</string>
   <string name="security_prefs">보안</string>
   <string name="display_prefs">화면</string>
   <string name="password_access_prefs">비밀번호 항목 접속</string>
@@ -57,7 +61,6 @@
   <string name="enter_filename">데이터베이스 파일 이름을 입력하세요.</string>
   <string name="entry_accessed">접속됨</string>
   <string name="entry_cancel">최소</string>
-  <string name="entry_comment">설명</string>
   <string name="entry_tags">태그</string>
   <string name="entry_override_url">URL 덮어쓰기</string>
   <string name="entry_confpassword">비밀번호 확인</string>
@@ -93,7 +96,6 @@
   <string name="file_browser">파일탐색기</string>
   <string name="generate_password">비밀번호 생성</string>
   <string name="group">그룹</string>
-  <string name="hint_comment">설명</string>
   <string name="hint_conf_pass">비밀번호 확인</string>
   <string name="hint_generated_password">생성 된 비밀번호</string>
   <string name="hint_group_name">그룹 이름</string>
@@ -265,8 +267,6 @@
   <string name="CheckForFileChangesOnSave_summary">파일이 외부에서 수정되었는지 변경사항을 저장하기 전에 확인하기</string>
   <string name="ShowCopyToClipboardNotification_title">클립보드 알림</string>
   <string name="ShowCopyToClipboardNotification_summary">계정과 비밀번호를 알림창과 클립보드를 통해 접근할 수 있도록 함. 비밀번호 유출 주의!</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A 키보드 알림</string>
-  <string name="ShowKp2aKeyboardNotification_summary">KP2A 키보드를 통해 전체 항목에 접근할 수 있도록 합니다. (권장)</string>
   <string name="OpenKp2aKeyboardAutomatically_title">키보드 바꾸기</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">브라우저에서 검색 후 KP2A 키보드를 통한 항목 선택이 가능할 때 키보드 선택창을 열기</string>
   <string name="kp2a_switch_rooted">루팅 장치에서 자동 전환</string>
@@ -401,10 +401,6 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     <item>작게</item>
     <item>중간</item>
     <item>크게</item>
-  </string-array>
-  <string-array name="design_options">
-    <item>밝게</item>
-    <item>어둡게</item>
   </string-array>
   <string name="design_title">디자인</string>
   <string-array name="cred_remember_modes">

@@ -69,7 +69,6 @@
   <string name="enter_filename">Angiv navn på databasefil</string>
   <string name="entry_accessed">Seneste åbnede</string>
   <string name="entry_cancel">Annuller</string>
-  <string name="entry_comment">Kommentarer</string>
   <string name="entry_tags">Mærker</string>
   <string name="entry_override_url">Tilsidesæt webadresse</string>
   <string name="entry_confpassword">Bekræft adgangskode</string>
@@ -107,7 +106,6 @@
   <string name="file_browser">Fil-browser</string>
   <string name="generate_password">Generer adgangskode</string>
   <string name="group">Gruppe</string>
-  <string name="hint_comment">kommentar</string>
   <string name="hint_conf_pass">bekræft adgangskode</string>
   <string name="hint_generated_password">genereret adgangskode</string>
   <string name="hint_group_name">Gruppenavn</string>

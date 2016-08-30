@@ -33,7 +33,6 @@
   <string name="enter_filename">Skriv filnamnet til databasen</string>
   <string name="entry_accessed">Brukt</string>
   <string name="entry_cancel">Avbryt</string>
-  <string name="entry_comment">Merknader</string>
   <string name="entry_confpassword">Stadfest passordet</string>
   <string name="entry_created">Laga</string>
   <string name="entry_expires">Går ut</string>
@@ -64,7 +63,6 @@
   <string name="file_browser">Filbehandlar</string>
   <string name="generate_password">Lag passord</string>
   <string name="group">Gruppe</string>
-  <string name="hint_comment">merknad</string>
   <string name="hint_conf_pass">stadfest passordet</string>
   <string name="hint_generated_password">laga passord</string>
   <string name="hint_group_name">Gruppenamn</string>

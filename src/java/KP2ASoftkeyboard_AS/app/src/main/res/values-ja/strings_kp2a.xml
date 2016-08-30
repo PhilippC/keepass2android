@@ -3,18 +3,18 @@
 <resources>
   <string name="change_entry">別のエントリを選択</string>
   <string name="open_entry">エントリの選択</string>
-  <string name="open_entry_for_app">エントリを\"%1$s\"で検索します。</string>
+  <string name="open_entry_for_app">エントリを\"%1$s\"で検索</string>
   <string name="kp2a_user">ユーザー</string>
   <string name="kp2a_password">パスワード</string>
   <string name="kp2a_prefs">資格情報の入力の設定</string>
   <string name="kp2a_auto_fill">オートフィルを有効にする</string>
-  <string name="kp2a_auto_fill_summary">Keepass2Android のエントリーでキーボードが使用可能で、フィールドのヒントのテキストに一致する値がある場合、空のフィールドに自動的にテキストが入力されます。</string>
-  <string name="kp2a_remember_auto_fill">フィールドのヒントのテキストを保存</string>
-  <string name="kp2a_remember_auto_fill_summary">Keepass2Android の値を手動で選択してテキスト フィールドを入力する場合、テキスト フィールドに入力された値を保存します。後でそのヒント テキストを使用してテキスト フィールドを検出します。</string>
+  <string name="kp2a_auto_fill_summary">Keepass2Android のエントリーでキーボードが使用可能で、フィールドのヒントテキストに一致する値がある場合、空のフィールドに自動的にテキストが入力されます。</string>
+  <string name="kp2a_remember_auto_fill">フィールドのヒントテキストを保存</string>
+  <string name="kp2a_remember_auto_fill_summary">Keepass2Android の値を手動で選択してテキストフィールドを入力する場合、テキストフィールドに入力された値を保存します。後でそのヒントテキストを使用してテキストフィールドを検出します。</string>
   <string name="kp2a_simple_keyboard">シンプルキーボード</string>
-  <string name="kp2a_simple_keyboard_summary">エントリがキーボードで利用できる場合シンプルな1行のキーボードをを表示します。もし無効にした場合、Keepass2Androidキーが押されたときにダイアログが表示されます。</string>
-  <string name="kp2a_lock_on_sendgodone">完了時にデーターベースをロックする</string>
-  <string name="kp2a_lock_on_sendgodone_summary">シンプルな1行のキーボードで完了/送信/実行キーを押したときにデーターベースを自動でロックします。</string>
+  <string name="kp2a_simple_keyboard_summary">エントリーがキーボードで利用できる場合にシンプルな1行のキーボードを表示します。無効の場合、Keepass2Androidキーが押されるとダイアログが表示されます。</string>
+  <string name="kp2a_lock_on_sendgodone">完了時にデータベースをロックする</string>
+  <string name="kp2a_lock_on_sendgodone_summary">シンプルな1行のキーボードで完了/送信/実行キーを押したときにデータベースを自動でロックします。</string>
   <string name="kp2a_switch_on_sendgodone">完了時にキーボードを切り替える</string>
   <string name="kp2a_switch_on_sendgodone_summary">シンプルな1行のキーボードで完了/送信/実行キーを押したときにキーボードを切り替えます。</string>
 </resources>

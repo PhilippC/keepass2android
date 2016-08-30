@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android é um gestor de senhas, que fornece acesso de leitura/gravação às bases de dados do KeePass 2.x, em Android.</string>
   <string name="CreditsText">A Interface do usuário é baseada numa adaptação da aplicação KeepassDroid desenvolvida por Brian Pellin. O código para as operações da base de dados é baseado no KeePass de Dominik Reichl. O robô Android é reproduzido ou modificado a partir do trabalho criado e compartilhado pelo Google, utilizado de acordo com os termos descritos na licença Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">O suporte para SFTP está implementado usando a biblioteca JSch criada pela JCraft, Inc. com licença BSD.</string>
+  <string name="CreditsIcons">O ícone do Martelo é criado por John Caserta do Noun Project. O ícone de Pingüim é criado por Adriano Emerick do Noun Project. O ícone das Penas é criado por Jon Testa do Noun Project. O ícone da Maçã é criado pela Ava Rowell do Noun Project. </string>
   <string name="accept">Aceitar</string>
   <string name="deny">Negar</string>
   <string name="add_entry">Adicionar entrada</string>
@@ -36,6 +37,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="unknown_uri_scheme">Desculpa! O Keepass2Android não consegue resolver o URI %1$s retornado. Por favor entre em contato com o programador!</string>
   <string name="Entry_singular">Uma entrada</string>
   <string name="Entry_plural">%1$d registos</string>
+  <string name="IconSet_install">Encontrar mais...</string>
   <string name="security_prefs">Segurança</string>
   <string name="display_prefs">Ecrã</string>
   <string name="password_access_prefs">Métodos de introdução de passwords</string>
@@ -75,7 +77,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="enter_filename">Introduza o nome do arquivo da base de dados</string>
   <string name="entry_accessed">Acessado</string>
   <string name="entry_cancel">Cancelar</string>
-  <string name="entry_comment">Comentários</string>
+  <string name="entry_comment">Notas</string>
   <string name="entry_tags">Tags</string>
   <string name="entry_override_url">Substituir URL</string>
   <string name="entry_confpassword">Confirmar password</string>
@@ -113,7 +115,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="file_browser">Explorador de ficheiros</string>
   <string name="generate_password">Gerar Senha</string>
   <string name="group">Grupo</string>
-  <string name="hint_comment">comentário</string>
+  <string name="hint_comment">notes</string>
   <string name="hint_conf_pass">confirmar senha</string>
   <string name="hint_generated_password">senha gerada</string>
   <string name="hint_group_name">Nome do grupo</string>
@@ -148,6 +150,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="menu_app_settings">Configurações</string>
   <string name="menu_db_settings">Configurações da base de dados</string>
   <string name="menu_delete">Apagar</string>
+  <string name="menu_copy">Criar duplicado</string>
   <string name="menu_move">Mover para outro grupo</string>
   <string name="menu_move_light">Mover</string>
   <string name="menu_navigate">Ir para grupo  parente</string>
@@ -162,6 +165,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="menu_search_advanced">Pesquisa Avançada</string>
   <string name="menu_url">Ir para URL</string>
   <string name="menu_change_db">Alterar base de dados…</string>
+  <string name="menu_show_all">Mostrar todos os campos</string>
   <string name="minus">Menos</string>
   <string name="never">Nunca</string>
   <string name="yes">Sim</string>
@@ -254,6 +258,8 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="SaveAttachment_doneMessage">Ficheiro guardado em %1$s.</string>
   <string name="SaveAttachment_Failed">Não foi possível guar dar o anexo para %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Lermbrar texto da procura?</string>
+  <string name="error_string_key">Um nome de campo é necessário para cada sequência de caracteres.</string>
+  <string name="error_string_duplicate_key">Um nome de campo não pode ser usado duas vezes (%1$s).</string>
   <string name="field_name">Nome do Campo</string>
   <string name="field_value">Valor do campo</string>
   <string name="protection">Campo protegido</string>
@@ -269,12 +275,13 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="NoDonateOption_title">Esconder opção para doar</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="ClearOfflineCache_title">Eliminar a cache?</string>
+  <string name="CheckForFileChangesOnSave_title">Verificar alterações</string>
   <string name="ShowCopyToClipboardNotification_summary">Permitir acesso ao nome do utilizador e password através da barra de notificação e a área de transferência. Cuidado com os farejadores de passwords!</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notificações de teclado KP2A</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Trocar o teclado</string>
   <string name="ShowUnlockedNotification_summary">Mostrar uma notificação em curso enquanto a base de dados está desbloqueada.</string>
   <string name="AskOverwriteBinary">Pretende substituir o binário existente com o mesmo nome?</string>
   <string name="AskOverwriteBinary_title">Substituir o binário existente?</string>
+  <string name="AskOverwriteBinary_yes">Sobrescrever</string>
   <string name="AskOverwriteBinary_no">Renomear</string>
   <string name="RecycleBin">Reciclagem</string>
   <string name="AskDeletePermanentlyEntry">Deseja apagar esta entrada permanentemente? Pressione Não para reciclar.</string>
@@ -300,6 +307,9 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="SynchronizingDatabase">Fundindo alterações&#8230;</string>
   <string name="YesSynchronize">Sim, fundir</string>
   <string name="NoOverwrite">Não, sobre-escrever</string>
+  <string name="UseOfflineMode">Funcionar offline</string>
+  <string name="UseOnlineMode">Funcionar online</string>
+  <string name="InOfflineMode">Funcionando offline.</string>
   <string name="SynchronizingCachedDatabase">Sincronização da base de dados em cache&#8230;</string>
   <string name="DownloadingRemoteFile">Carregando ficheiro remoto&#8230;</string>
   <string name="UploadingFile">Uploading&#8230;</string>
@@ -323,6 +333,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (transferência de ficheiros por SSH)</string>
   <string name="database_location">Localização da base de dados</string>
@@ -342,6 +353,20 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="plugin_disabled">inactivo</string>
   <string name="plugin_web">Encontrar plug-ins on-line</string>
   <string name="plugin_scopes">Contexto</string>
+  <string name="ReadOnlyReason_PreKitKat">Parece que você abriu o arquivo de um aplicativo externo. Desta forma não oferece suporte para gravação. Se você quiser fazer alterações no banco de dados, feche o banco de dados e selecione Alterar banco de dados. De seguida, abra o arquivo de uma das opções disponíveis, se possível.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Escrever não é possível devido a restrições introduzidas no Android KitKat. Se você quiser fazer alterações no banco de dados, feche o banco de dados e selecione o banco de dados de alteração. De seguida, abra o arquivo usando o seletor de arquivo de sistema.</string>
+  <string name="ChangeLog_1_0_0">     Versão 1.0.0 - preview 7\n 
+* Desbloquear por impressão digital (requer Android 6.0 + ou um dispositivo Samsung) \n 
+* Serviço de Auto-preenchimento adicionado (requer Android 5.0+) \n
+* Adicionado suporte para templates\n 
+* Adicionado modo \"trabalhar offline\"\n 
+* Permitir copia de dados\n 
+* Modo de preenchimento automático para campo nomes\n 
+* Permitir remoção de itens da lista n de arquivos recentes\n 
+* Solicitar permissões em tempo de execução no Android 6.0\n
+* Correções (no teclado embutido ao selecionar ícones)\n 
+* Incluída opção de Enviar erro reports\n 
+* Acrescentadas mensagens de ajuda em vários pontos\n   </string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>

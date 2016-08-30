@@ -140,7 +140,10 @@ namespace keepass2android
 			RegisterReceiver(_intentReceiver, filter);
 
 			if ((int) Build.VERSION.SdkInt >= 23)
-				RequestPermissions(new[] {Manifest.Permission.UseFingerprint}, FingerprintPermissionRequestCode);
+			{
+				Kp2aLog.Log("requesting fingerprint permission");
+				RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);
+			}
 			else
 			{
 				
@@ -148,8 +151,18 @@ namespace keepass2android
 
 		}
 
+		protected override void OnStart()
+		{
+			base.OnStart();
+			DonateReminder.ShowDonateReminderIfAppropriate(this);
+			
+		}
+
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		{
+			Kp2aLog.Log("OnRequestPermissionsResult " + (requestCode == FingerprintPermissionRequestCode) +
+			            ((grantResults.Length > 0) && (grantResults[0] == Permission.Granted)));
+			
 			if (requestCode == FingerprintPermissionRequestCode && grantResults[0] == Permission.Granted)
 			{
 				var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
@@ -162,11 +175,13 @@ namespace keepass2android
 					b.Show();
 				};
 				_fingerprintPermissionGranted = true;
+				Kp2aLog.Log("_fingerprintPermissionGranted");
 			}
 		}
 
 		public void OnFingerprintError(string message)
 		{
+			Kp2aLog.Log("fingerprint error: " + message);
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
@@ -180,6 +195,7 @@ namespace keepass2android
 
 		public void OnFingerprintAuthSucceeded()
 		{
+			Kp2aLog.Log("OnFingerprintAuthSucceeded");
 			_fingerprintIdentifier.StopListening();
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
@@ -197,8 +213,9 @@ namespace keepass2android
 
 
 		}
-		private void InitFingerprintUnlock()
+		private bool InitFingerprintUnlock()
 		{
+			Kp2aLog.Log("InitFingerprintUnlock");
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 			try
 			{
@@ -208,41 +225,50 @@ namespace keepass2android
 
 				if (um == FingerprintUnlockMode.Disabled)
 				{
-					return;
+					return false;
 				}
 
 				if (_fingerprintPermissionGranted)
 				{
 					FingerprintModule fpModule = new FingerprintModule(this);
-					_fingerprintIdentifier = new FingerprintDecryption(fpModule, App.Kp2a.GetDb().CurrentFingerprintPrefKey, this,
-						App.Kp2a.GetDb().CurrentFingerprintPrefKey);
+					Kp2aLog.Log("fpModule.FingerprintManager.IsHardwareDetected=" + fpModule.FingerprintManager.IsHardwareDetected);
+					if (fpModule.FingerprintManager.IsHardwareDetected) //see FingerprintSetupActivity
+						_fingerprintIdentifier = new FingerprintDecryption(fpModule, App.Kp2a.GetDb().CurrentFingerprintPrefKey, this,
+							App.Kp2a.GetDb().CurrentFingerprintPrefKey);
+					else _fingerprintIdentifier = null; //force re-init Samsung
 				}
-				else
+				if (_fingerprintIdentifier == null)
 				{
 					try
 					{
+						Kp2aLog.Log("trying Samsung Fingerprint API...");
 						_fingerprintIdentifier = new FingerprintSamsungIdentifier(this);
 						btn.Click += (sender, args) =>
 						{
 							if (_fingerprintIdentifier.Init())
 								_fingerprintIdentifier.StartListening(this, this);
 						};
+						Kp2aLog.Log("trying Samsung Fingerprint API...Seems to work!");
 					}
 					catch (Exception)
 					{
+						Kp2aLog.Log("trying Samsung Fingerprint API...failed.");
 						FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
-						return;	
+						return false;	
 					}
 				}
 				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
 
 				if (_fingerprintIdentifier.Init())
 				{
+					Kp2aLog.Log("successfully initialized fingerprint.");
 					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
 					_fingerprintIdentifier.StartListening(this, this);
+					return true;
 				}
 				else
 				{
+					Kp2aLog.Log("failed to initialize fingerprint.");
 					//key invalidated permanently
 					btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 					btn.Tag = GetString(Resource.String.fingerprint_unlock_failed);
@@ -253,12 +279,13 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
+				Kp2aLog.Log("Error initializing Fingerprint Unlock: " + e);
 				btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 				btn.Tag = "Error initializing Fingerprint Unlock: " + e;
 
 				_fingerprintIdentifier = null;
 			}
-
+			return false;
 
 		}
 
@@ -309,24 +336,35 @@ namespace keepass2android
 			
 			CheckIfUnloaded();
 
-			EditText pwd = (EditText) FindViewById(Resource.Id.QuickUnlock_password);
+
+			bool showKeyboard = ((!InitFingerprintUnlock()) || (Util.GetShowKeyboardDuringFingerprintUnlock(this)));			
+
+			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.PostDelayed(() =>
-				{
-					InputMethodManager keyboard = (InputMethodManager) GetSystemService(Context.InputMethodService);
+			{
+				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
+				if (showKeyboard)
 					keyboard.ShowSoftInput(pwd, 0);
-				}, 50);
+				else
+					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
+			}, 50);
+	
+			
 
 
 			
-			InitFingerprintUnlock();
+			
 			
 		}
+
+		
 
 		protected override void OnPause()
 		{
 			base.OnPause();
 			if (_fingerprintIdentifier != null)
 			{
+				Kp2aLog.Log("FP: Stop listening");
 				_fingerprintIdentifier.StopListening();
 			}
 		}

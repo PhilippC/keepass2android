@@ -94,7 +94,6 @@
     <Compile Include="Io\IFileStorage.cs" />
     <Compile Include="Io\IoUtil.cs" />
     <Compile Include="Io\JavaFileStorage.cs" />
-    <Compile Include="Io\NetFtpFileStorage.cs" />
     <Compile Include="Io\OfflineSwitchableFileStorage.cs" />
     <Compile Include="Io\SftpFileStorage.cs" />
     <Compile Include="Io\SkyDriveFileStorage.cs" />

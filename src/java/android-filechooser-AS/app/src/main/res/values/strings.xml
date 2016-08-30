@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<resources>
+
+    <string name="afc_cmd_advanced_selection_all">All</string>
+    <string name="afc_cmd_advanced_selection_invert">Invert selection</string>
+    <string name="afc_cmd_advanced_selection_none">None</string>
+    <string name="afc_cmd_grid_view">Grid view</string>
+    <string name="afc_cmd_home">Home</string>
+    <string name="afc_cmd_list_view">List view</string>
+    <string name="afc_cmd_new_folder">New folder…</string>
+    <string name="afc_cmd_select_all_files">Select all files</string>
+    <string name="afc_cmd_select_all_folders">Select all folders</string>
+    <string name="afc_cmd_sort">Sort…</string>
+    <string name="afc_file">file</string>
+    <string name="afc_folder">folder</string>
+    <string name="afc_hint_clear">clear</string>
+    <string name="afc_hint_folder_name">folder name</string>
+    <string name="afc_hint_save_as_filename">filename</string>
+    <string name="afc_hint_search">search</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_create_files">This application does not have permission to create files/ folders</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_delete_files">This application does not have permission to delete files/ folders</string>
+    <string name="afc_msg_cancelled">Cancelled</string>
+    <string name="afc_msg_cannot_connect_to_file_provider_service">Cannot connect to file provider service</string>
+    <string name="afc_msg_cannot_create_new_folder_here">Cannot create new folder here</string>
+    <string name="afc_msg_cannot_save_a_file_here">Cannot save a file here</string>
+    <string name="afc_msg_done">Done</string>
+    <string name="afc_msg_empty">Empty</string>
+    <string name="afc_msg_failed_please_try_again">Failed. Please try again.</string>
+    <string name="afc_msg_loading">Loading…</string>
+    <string name="afc_phone">Phone</string>
+    <string name="afc_pmsg_cannot_access_dir">Cannot access \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_create_folder">Cannot create folder \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_delete_file">Cannot delete %1$s \"%2$s\"</string>
+    <string name="afc_pmsg_confirm_delete_file">Are you sure you want to delete this %1$s \"%2$s\"?</string>
+    <string name="afc_pmsg_confirm_replace_file">This file \"%1$s\" already exists.\n\nDo you want to replace it?</string>
+    <string name="afc_pmsg_deleting_file">Deleting %1$s \"%2$s\"…</string>
+    <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" has been deleted</string>
+    <string name="afc_pmsg_filename_is_directory">\"%1$s\" is a folder</string>
+    <string name="afc_pmsg_filename_is_invalid">File name \"%1$s\" is invalid</string>
+    <string name="afc_pmsg_max_file_count_allowed">…has more files, max allowed: %1$,d</string>
+    <string name="afc_pmsg_unknown_error">Unknown error: %1$s</string>
+    <string name="afc_root">Root</string>
+    <string name="afc_title_advanced_selection">Select…</string>
+    <string name="afc_title_confirmation">Confirmation</string>
+    <string name="afc_title_date">Date</string>
+    <string name="afc_title_error">Error</string>
+    <string name="afc_title_info">Info</string>
+    <string name="afc_title_name">Name</string>
+    <string name="afc_title_save_as">Save as…</string>
+    <string name="afc_title_size">Size</string>
+    <string name="afc_title_sort_by">Sort by…</string>
+    <string name="afc_yesterday">Yesterday</string>
+
+    <plurals name="afc_title_choose_directories">
+        <item quantity="zero">Choose folder…</item>
+        <item quantity="one">Choose folder…</item>
+        <item quantity="other">Choose folders…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="zero">Choose file…</item>
+        <item quantity="one">Choose file…</item>
+        <item quantity="other">Choose files…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="zero">Choose file/ folder…</item>
+        <item quantity="one">Choose file/ folder…</item>
+        <item quantity="other">Choose files/ folders…</item>
+    </plurals>
+
+</resources>

@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android est un portage du logiciel KeePass Password Manager. Pour l\'instant, vous devez créer une base de données avec le logiciel KeePass sur votre ordinateur puis la transférer sur la carte mémoire de votre appareil mobile.</string>
   <string name="CreditsText">L\'interface utilisateur repose sur un portage de KeepassDroid, développée par Brian Pellin. Le code pour les opérations sur la base de donnée s\'appuie sur Keepass, de Dominik Reichl. Le robot Android est une modification d\'une œuvre de Google, utilisée selon les  termes de la licence Creative Commons 3.0 BY.</string>
   <string name="CreditsTextSFTP">Le support du protocole SFTP est implémenté à l\'aide de la bibliothèque JSch sous licence BSD, créée par JCraft, Inc.</string>
+  <string name="CreditsIcons">L\'icone marteau a été créee par John Caserta du projet Noun. L\'icone pinguin a été créee par Adriano Emerick du projet Noun. L\'icone plume a été créée par Jon Testa du projet Noun. L\'icone pomme a été créée par Ava Rowell du projet Noun. </string>
   <string name="accept">Accepter</string>
   <string name="deny">Rejeter</string>
   <string name="add_entry">Ajouter une entrée</string>
@@ -22,7 +23,7 @@
   <string name="app_name_nonet">Keepass2Android Hors-ligne</string>
   <string name="short_app_name_nonet">KP2A Hors-ligne</string>
   <string name="app_timeout">Délai de verrouillage de l\'application</string>
-  <string name="app_timeout_summary">Délai avant de bloquer la base de donnée lorsque l\'application est inactive.</string>
+  <string name="app_timeout_summary">Délai avant de verrouiller la base de donnée lorsque l\'application est inactive.</string>
   <string name="kill_app_label">Tuer le processus</string>
   <string name="show_kill_app">Fermer</string>
   <string name="show_kill_app_summary">Afficher un bouton dans l\'écran de mot de passe pour tuer le processus de l\'application (pour les utilisateurs paranoïaques)</string>
@@ -35,6 +36,8 @@
   <string name="unknown_uri_scheme">Désolé ! Keepass2Android ne peut pas gérer l\'URI %1$s retourné. S\'il vous plaît contactez le développeur !</string>
   <string name="Entry_singular">Une seule entrée</string>
   <string name="Entry_plural">%1$d entrées</string>
+  <string name="IconSet_title">Jeu d\'icônes</string>
+  <string name="IconSet_install">En savoir plus...</string>
   <string name="security_prefs">Sécurité</string>
   <string name="display_prefs">Affichage</string>
   <string name="password_access_prefs">Accès aux mots de passe</string>
@@ -42,6 +45,7 @@
   <string name="FileHandling_prefs">Gestion de fichiers</string>
   <string name="keyboard_prefs">Clavier</string>
   <string name="export_prefs">Exporter la base de données...</string>
+  <string name="fingerprint_prefs">Déverrouillage par empreinte digitale</string>
   <string name="import_db_prefs">Importer la base de données à partir d\'un dossier local</string>
   <string name="import_keyfile_prefs">Importer le fichier clé à partir d\'un dossier local</string>
   <string name="keyboardswitch_prefs">Changement de clavier</string>
@@ -71,10 +75,28 @@
   <string name="disclaimer_formal">Keepass2Android n\'offre ABSOLUMENT AUCUNE GARANTIE ; il s\'agit d\'un logiciel gratuit, et vous pouvez le redistribuer sous les conditions de la licenceGPL v2 ou ultérieure.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copier dans le Presse-papier</string>
+  <string name="fingerprint_hint">Capteur tactile</string>
+  <string name="fingerprint_description">Confirmer l\'empreinte digitale pour continuer</string>
+  <string name="fingerprint_fatal">Configuration du déverouillage par empreinte digitale impossible:</string>
+  <string name="fingerprint_not_recognized">Empreinte digitale non reconnue. Réessayez</string>
+  <string name="fingerprint_success">Empreinte digitale reconnue</string>
+  <string name="fingerprint_os_error">Le déverrouillage par empreinte digitale requiert Android version 6.0 ou ultérieure.</string>
+  <string name="fingerprint_hardware_error">Aucun matériel d\'empreintes digitales détecté.</string>
+  <string name="fingerprint_no_enrolled">Vous n\'avez aucune empreinte digitale enregistré sur cet appareil. Allez dans les paramètres système.</string>
+  <string name="disable_fingerprint_unlock">Désactiver le déverrouillage par empreinte digitale</string>
+  <string name="enable_fingerprint_unlock">Activer le déverrouillage par empreinte digitale</string>
+  <string name="enable_fingerprint_quickunlock">Activer le déverrouillage par empreinte digitale pour QuickUnlock</string>
+  <string name="fingerprint_unlock_hint">Capteur tactile pour déverrouiller la base de données</string>
+  <string name="fingerprint_unlock_failed">Le déverrouillage de l\'empreinte digitale a échoué. La clé de décryptage a été invalidée par Android OS. Cela se produit généralement si une nouvelle empreinte a été inscrit ou si les paramètres de sécurité ont été changés. S\'il vous plaît débloquer avec votre mot de passe, puis réactiver le déverrouillage d\'empreintes digitales dans les paramètres de base de données.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">La déverrouillage de la base de données a échoué : clé composite non valide. Le déverrouillage de l\'empreinte digitale a été désactivé car apparemment le mot de passe stocké n\'est plus valide. S\'il vous plaît débloquer avec votre mot de passe, puis réactiver le déverrouillage d\'empreintes digitales dans les paramètres de base de données.</string>
+  <string name="fingerprint_reenable">Veuillez ré-activer le déverrouillage d\'empreintes digitales pour le nouveau mot de passe maître.</string>
+  <string name="enable_fingerprint_unlock_Info">
+Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Android Keystore et protégé à l\'aide de l\'authentification d\'empreintes digitales. Cela permet de déverrouiller votre base de données uniquement avec vos empreintes digitales.  </string>
+  <string name="enable_fingerprint_quickunlock_Info">Permet d\'utiliser l\'authentification par empreinte au lieu du code QuickUnlock. Ne nécessite pas de stocker des informations liées à votre mot de passe principal.</string>
   <string name="enter_filename">Entrez le nom de fichier de la base de données</string>
   <string name="entry_accessed">Accédé</string>
   <string name="entry_cancel">Annuler</string>
-  <string name="entry_comment">Commentaires</string>
+  <string name="entry_comment">Notes</string>
   <string name="entry_tags">Étiquettes</string>
   <string name="entry_override_url">Outrepasser l\'URL</string>
   <string name="entry_confpassword">Confirmer mot de passe</string>
@@ -112,7 +134,7 @@
   <string name="file_browser">Gestionnaire de fichiers</string>
   <string name="generate_password">Générer un mot de passe</string>
   <string name="group">Groupe</string>
-  <string name="hint_comment">commentaire</string>
+  <string name="hint_comment">notes</string>
   <string name="hint_conf_pass">confirmez mot de passe</string>
   <string name="hint_generated_password">mot de passe généré</string>
   <string name="hint_group_name">Nom de groupe</string>
@@ -147,6 +169,7 @@
   <string name="menu_app_settings">Paramètres</string>
   <string name="menu_db_settings">Préférences de base de données</string>
   <string name="menu_delete">Supprimer</string>
+  <string name="menu_copy">Cloner</string>
   <string name="menu_move">Déplacer vers un autre groupe</string>
   <string name="menu_move_light">Déplacer</string>
   <string name="menu_navigate">Naviguer au groupe parent</string>
@@ -160,7 +183,8 @@
   <string name="menu_search">Rechercher</string>
   <string name="menu_search_advanced">Recherche avancée</string>
   <string name="menu_url">Aller à l\'adresse URL</string>
-  <string name="menu_change_db">Modifier la base de données…</string>
+  <string name="menu_change_db">Changer de base</string>
+  <string name="menu_show_all">Afficher tous les champs</string>
   <string name="minus">Moins</string>
   <string name="never">Jamais</string>
   <string name="yes">Oui</string>
@@ -300,8 +324,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Rendre le nom d\'utilisateur et le mot de passe accessibles via la barre de notification et le presse-papiers. Attention au renifleurs de mot de passes !</string>
   <string name="ShowSeparateNotifications_title">Notifications séparées</string>
   <string name="ShowSeparateNotifications_summary">Afficher des notifications séparées pour copier le nom d\'utilisateur et le mot de passe dans le presse-papiers et l\'activer le clavier.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notification du clavier KP2A</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Rendre l\'entrée pleinement accessible via le clavier KP2A (recommandé).</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notification de saisie automatique</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Rendre l\'entrée pleinement accessible via le clavier KP2A et la saisie automatique (recommandé).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Changer de clavier</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Ouvrir la boite de dialogue de sélection du clavier lorsque l\'entrée est disponible par le biais du clavier KP2A après une recherche à partir du navigateur.</string>
   <string name="kp2a_switch_rooted">Auto-switch sur les terminaux \"rootés\"</string>
@@ -323,6 +347,9 @@
   <string name="AskDeletePermanentlyEntry">Voulez-vous supprimer cette entrée définitivement ? Appuyez sur Non pour la mettre dans la corbeille.</string>
   <string name="AskDeletePermanentlyGroup">Voulez-vous supprimer ce groupe définitivement? Appuyez sur Non pour mettre à la corbeille.</string>
   <string name="AskDeletePermanentlyItems">Voulez-vous supprimer les éléments sélectionnés de manière permanente ? Appuyez sur non pour annuler.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Souhaitez-vous supprimer définitivement cette entrée ?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Souhaitez-vous supprimer définitivement ce groupe ?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Souhaitez-vous supprimer définitivement les éléments sélectionnés ?</string>
   <string name="AskDeletePermanently_title">Supprimer définitivement ?</string>
   <string name="AskReloadFile_title">Recharger le fichier ?</string>
   <string name="AskReloadFile">Le fichier qui est actuellement utilisé a été modifié par un autre programme. Voulez-vous le recharger ?</string>
@@ -347,6 +374,10 @@
   <string name="SynchronizingDatabase">Importation des modifications&#8230;</string>
   <string name="YesSynchronize">Oui, fusionner</string>
   <string name="NoOverwrite">Non, l\'écraser</string>
+  <string name="UseOfflineMode">Travailler en mode hors connexion</string>
+  <string name="UseOnlineMode">Travailler en ligne</string>
+  <string name="UseOfflineMode_Info">Éviter tout trafic réseau en utilisant la copie du fichier du cache local. Les changements sont stockés uniquement dans le cache local et seront téléchargés uniquement lors du retour au mode connecté.</string>
+  <string name="InOfflineMode">Travail hors connexion.</string>
   <string name="SynchronizingCachedDatabase">Synchronisation de la base de données mise en cache&#8230;</string>
   <string name="DownloadingRemoteFile">Téléchargement du fichier distant&#8230;</string>
   <string name="UploadingFile">Téléchargement du fichier&#8230;</string>
@@ -399,6 +430,7 @@
   <string name="help_database_location">Vous pouvez stocker votre base de données localement sur votre appareil Android ou dans le cloud (seulement pour la version connectée). Keepass2Android rend la base de données disponible même si vous êtes en mode hors connexion. La base de données étant sécurisée avec l\'algorithme de chiffrement AES 256 bit, personne d\'autre que vous ne sera en mesure d\'accéder à vos mots de passe. Nous vous recommandons de sélectionner Dropbox : il est accessible sur tous vos appareils et fournit même des sauvegardes des versions précédentes des fichiers.</string>
   <string name="hint_database_location">Sélectionnez où vous voulez stocker la base de données :</string>
   <string name="button_change_location">Changer l\'emplacement</string>
+  <string name="help_quickunlock">Si activé, Keepass2Android reste en marche en arrière-plan, même lorsque la base de données est verrouillée. Ceci permet de déverrouiller la base de données plus tard, avec seulement une courte partie du mot de passe maître.</string>
   <string name="master_password">Mot de passe principal</string>
   <string name="help_master_password">Votre base de données est chiffrée avec le mot de passe que vous entrez ici. Choisissez un mot de passe robuste pour préserver la sûreté de la base de données ! Astuce : Formez une phrase ou deux et utilisez les premières lettres des mots comme mot de passe. Utilisez les marques de ponctuation.</string>
   <string name="hint_master_password">Choisir un mot de passe principal pour protéger votre base de données :</string>
@@ -463,16 +495,66 @@
   <string name="CopyFileRequiredForEditing">Pour le modifier, vous devez copier le fichier vers un autre emplacement.</string>
   <string name="ClickOkToSelectLocation">Cliquez sur OK pour sélectionner un emplacement où le fichier doit être copié.</string>
   <string name="CancelReadOnly">Annuler, ouverture en lecture seule.</string>
+  <string name="FileReadOnlyTitle">La base de données est en lecture seule</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android a ouvert la base de données active en mode lecture seule.</string>
+  <string name="ReadOnlyReason_PreKitKat">Il semble que vous avez ouvert le fichier depuis une application externe. Cette utilisation ne supporte pas l\'écriture. Si vous souhaitez apporter des modifications à la base de données, fermez la base de données et sélectionnez Changer de base de données. Ensuite, si possible, ouvrez le fichier en utilisant une des options disponibles.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">L\'indicateur de lecture seule est activé. Supprimer cette option si vous souhaitez apporter des modifications à la base de données.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">L\'écriture n\'est pas possible en raison de restrictions introduites dans Android KitKat. Si vous souhaitez apporter des modifications à la base de données, fermez la base de données et sélectionnez Changer de base de données. Ensuite, ouvrez le fichier à l\'aide du sélecteur de fichier système.</string>
   <string name="AddCustomIcon">Ajouter un icône à partir d\'un fichier...</string>
   <string name="CopyingFile">Copie des fichiers...</string>
+  <string name="DuplicateTitle">Copier</string>
+  <string name="DefaultTemplate">Entrée standard</string>
+  <string name="TemplateGroupName">Templates</string>
+  <string name="TemplateTitle_IdCard">Carte d\'identité</string>
+  <string name="TemplateField_IdCard_Name">Nom</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Lieu de délivrance</string>
+  <string name="TemplateField_IdCard_IssueDate">Date de délivrance</string>
+  <string name="TemplateTitle_EMail">E-mail</string>
+  <string name="TemplateField_EMail_EMail">Adresse e-mail</string>
+  <string name="TemplateTitle_WLan">LAN sans fil</string>
+  <string name="TemplateTitle_Notes">Note sécurisée</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Nombre</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">Code PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Titulaire de la carte</string>
+  <string name="TemplateTitle_CreditCard">Carte de crédit</string>
+  <string name="TemplateTitle_Membership">Adhésion</string>
   <string name="ChangeLog_title">Journal des modifications</string>
+  <string name="AskAddTemplatesTitle">Ajoutez des templates ?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android contient des modèles de saisie de courriel, mots de passe WIFI, notes sécurisées et plus. Souhaitez-vous les ajouter à votre base de données ? Si vous choisissez non, vous pourrez les ajouter plus tard dans les paramètres de base de données.</string>
+  <string name="AddTemplates_pref">Ajouter des templates à la base de données</string>
   <string name="PreviewWarning">SVP. Il s\'agit d\'une version préliminaire et elle pourrait contenir quelques défauts! Si vous rencontrez quelque chose d\'inattendu, faites le moi savoir (sur Codeplex ou par courriel).</string>
   <string name="Continue">Suivant</string>
   <string name="NoFilenameWarning">L\'URI que vous avez entré ne ressemble pas à un nom de fichier. Etes-vous sûr qu\'il s\'agit d\'un fichier valide ?</string>
+  <string name="FirstInvalidCompositeKeyError">Clé composite invalide ! S\'il vous plaît essayez encore.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Clé composite non valide ! S\'il vous plaît essayez les étapes suivantes pour débloquer votre base de données : \n • Assurez-vous que vous avez entré le bon mot de passe. Utiliser l\'icône \"œil\" pour afficher le mot de passe saisie. \n • Assurez-vous que vous avez sélectionné le type de mot de passe correct. Assurez-vous que ce type est le même que celui utilisé lors de la création de la base de données. \n • Assurez-vous que vous ont sélectionné le bon fichier de base de données.
+</string>
+  <string name="CorruptDatabaseHelp">
+Le fichier est corrompu. \n
+Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
+
+• Si vous avez copié le fichier via le port USB (Mode MTP), essayez à nouveau avec des outils comme MyPhoneExplorer. MTP tronque les fichiers dans certains cas.\n
+• Si vous ne pouvez pas ouvrir le fichier sur votre PC, à partir du même endroit, il est très probable que le fichier soit corrompu. Utilisez alors une sauvegarde de base de données. Si vous supposez que Keepass2Android a corrompu le fichier, s\'il vous plaît contactez le support. \n
+• Si vous pouvez toujours ouvrir le fichier sur votre PC, veuillez contacter le support. Vous pouvez essayer de l\'enregistrer avec des paramètres différents (ex. le décompresser) sur le PC et réessayer de l\'ouvrir dans Keepass2Android.  </string>
+  <string name="ErrorReportTitle">Keepass2Android : Une erreur s\'est produite.</string>
+  <string name="ErrorReportText">Une erreur inattendue s\'est produite lors de l\'exécution de Keepass2Android. S\'il vous plaît aidez-nous à résoudre ce problème en permettant à l\'application d\'envoyer des rapports d\'erreurs.</string>
+  <string name="ErrorReportPromise">Les rapports d\'erreur ne contiendront jamais le contenu de votre base de données ou le mot de passe principal. Vous pouvez les désactiver dans les paramètres de l\'application.</string>
+  <string name="ErrorReportEnable">Activer</string>
+  <string name="ErrorReportDisable">Désactiver</string>
+  <string name="ErrorReportAsk">Demander après une erreur</string>
+  <string name="ErrorReportPrefTitle">Envoyer des rapports d\'erreurs</string>
+  <string name="ActivateAutoFillService_title">Activer le remplissage automatique ?</string>
+  <string name="ActivateAutoFillService_message">Les informations d\'identification peuvent être transférées vers d\'autres applications de plusieurs façons : vous pouvez copier les valeurs dans le presse-papiers, mais veuillez noter que le presse-papiers n\'est pas sûr dans Android. Le clavier intégré donne un accès complet à l\'entrée sélectionnée, mais doit être activé à chaque fois que vous voulez accéder aux informations d\'identification. Avec Android 5 et plus, Keepass2Android peut saisir le nom d\'utilisateur et le mot de passe automatiquement à l\'aide de la fonction de remplissage automatique.</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Utiliser le clavier intégré</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Utiliser la fonction de remplissage automatique</string>
+  <string name="ActivateAutoFillService_toast">Veuillez activer le service Keepass2Android.</string>
   <string name="ChangeLog_0_9_8c">
 Version 0.9.8c\n
 * Correctif pour la vulnérabilité SSL dans Microsoft Live SDK (utilisé lorsque vous accédez à des fichiers via OneDrive)\n
 * Bug fix : la version précédente contenait deux méthodes de saisie (l\'une des deux plante)\n  </string>
+  <string name="ChangeLog_1_0_0">
+Version 1.0.0\n * Déverrouiller par empreinte digitale (nécessite Android 6.0+ ou un appareil Samsung)\n * Ajout du service de saisie automatique (nécessite Android 5.0+)\n * Ajout du support pour l\'entrée templates\n * Ajout d\'un mode \"hors connexion\"\n * Possibilité de copier les entrées\n * Mode semi-automatique pour les champs noms\n * Possibilité de supprimer des éléments de liste des fichiers récents\n * Demande des autorisations à l\'exécution pour Android 6.0\n * Corrections de bugs (dans le clavier intégré, lorsque vous sélectionnez les icônes)\n * Ajout d\'une option pour envoyer des rapports d\'erreur\n * Ajouts de plusieurs messages d\'aide\n  </string>
   <string name="ChangeLog_0_9_9">
 		Version 0.9.9\n
 		* Refonte complète de l\'interface utilisateur. Merci beaucoup à Stefano Pignataro (http://www.spstudio.at) pour son aide!\n
@@ -482,6 +564,13 @@ Version 0.9.8c\n
     * Vérification des clés dupliquées des champs supplémentaires pour éviter la perte de données\n
     
 	</string>
+  <string name="ChangeLog_0_9_9c">
+    Version 0.9.9c
+    * Retour du thème sombre
+    * Vous pouvez installer d\'autres pack d\'icones (Icones Windows ancien sont disponibles sur le Play Store)
+    * Ajout d\'une confirmation lors d\'une suppression d\'éléments sans passer par la corbeille
+    * Correction de bugs (mauvais affichage de l\'encodage secret OTP, mauvaise icone de l\'application dans certains endroits)
+  </string>
   <string name="ChangeLog_0_9_8b">
 		Version 0.9.8b\n
 		* corrections de bugs (Sauvegarde a échoué pour certaines bases, exporter vers le périphérique local ne fonctionne pas, sélectionner certaines options de préférence crash l\'app)\n
@@ -641,8 +730,8 @@ Première version publique</string>
     <item>Grand</item>
   </string-array>
   <string-array name="design_options">
-    <item>Holo Light</item>
-    <item>Holo Dark</item>
+    <item>Clair</item>
+    <item>Sombre</item>
   </string-array>
   <string name="design_title">Conception</string>
   <string-array name="cred_remember_modes">

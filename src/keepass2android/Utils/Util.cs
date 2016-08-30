@@ -490,6 +490,13 @@ namespace keepass2android
             }
         }
 
+		public static bool GetShowKeyboardDuringFingerprintUnlock(Context ctx)
+		{
+				return (PreferenceManager.GetDefaultSharedPreferences(ctx).GetBoolean(
+					ctx.GetString(Resource.String.ShowKeyboardWhileFingerprint_key), true));
+			
+		}
+
 
 		public static void MoveBottomBarButtons(int btn1Id, int btn2Id, int bottomBarId, Activity context)
 		{

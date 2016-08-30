@@ -254,7 +254,8 @@ namespace keepass2android.Io
 			//check if we need to request the external-storage-permission at runtime
 			if (ioc.IsLocalFile())
 			{
-				bool requiresPermission = !ioc.Path.StartsWith(activity.Activity.FilesDir.CanonicalPath);
+				bool requiresPermission = !(ioc.Path.StartsWith(activity.Activity.FilesDir.CanonicalPath)
+												|| ioc.Path.StartsWith(IoUtil.GetInternalDirectory(activity.Activity).CanonicalPath));
 				
 				var extDirectory = activity.Activity.GetExternalFilesDir(null);
 				if ((extDirectory != null) && (ioc.Path.StartsWith(extDirectory.CanonicalPath)))

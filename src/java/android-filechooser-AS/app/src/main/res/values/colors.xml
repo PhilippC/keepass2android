@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<resources>
+
+    <attr name="afc_color_listview_cache_hint" format="reference" />
+    <attr name="afc_color_list_group_view_background" format="reference" />
+
+    <color name="afc_border_line_dark">#ff4a8cf7</color>
+    <!-- <color name="afc_listview_cache_hint_dark">#20252a</color> OR 080c21 -->
+    <color name="afc_listview_cache_hint_dark">#00000000</color>
+    <color name="afc_listview_cache_hint_light">#efefef</color>
+    <color name="afc_list_group_view_background_dark">#cc1f1f1f</color>
+    <color name="afc_list_group_view_background_light">#ffd9d9d9</color>
+
+</resources>

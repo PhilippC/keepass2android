@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android egy jelszókezelő alkalmazás, amely KeePass 2.x adatbázisokhoz írás-olvasási hozzáférést biztosít Android eszközökön.</string>
   <string name="CreditsText">A felhasználói felület a Brian Pellin által feljesztett KeepassDroid portolásán alapul. Az adatbáziskód a KeePassen alapul, amely Dominik Reichl munkája. Az Android robot a Google által készített és megosztottság logo Creative Commons 3.0 licensz szerint újrapublikált és/vagy módosított verziója.</string>
   <string name="CreditsTextSFTP">Az SFTP támogatás a JCraft, Inc. által fejlesztett, BSD licensz szerint felhasználható JSch programkönyvtárra alapul.</string>
+  <string name="CreditsIcons">A kalapács ikon John Caserta, a pingvin ikon Adriano Emerick, a toll ikon Jon Testa, az alma ikon pedig Ava Rowell munkája. Mind a négy ikon elérhető a Noun Project keretein belül.</string>
   <string name="accept">Elfogadás</string>
   <string name="deny">Elutasít</string>
   <string name="add_entry">Bejegyzés hozzáadása</string>
@@ -35,6 +36,8 @@
   <string name="unknown_uri_scheme">Elnézést, a Keepass2Android nem tudja kezelni a visszaadott URI-t: %1$s. Kérjük, lépjen kapcsolatba a fejlesztővel!</string>
   <string name="Entry_singular">Egy bejegyzés</string>
   <string name="Entry_plural">%1$d bejegyzés</string>
+  <string name="IconSet_title">Ikonkészlet</string>
+  <string name="IconSet_install">Még több...</string>
   <string name="security_prefs">Biztonság</string>
   <string name="display_prefs">Kijelző</string>
   <string name="password_access_prefs">Hozzáférés a jelszavakhoz</string>
@@ -42,6 +45,7 @@
   <string name="FileHandling_prefs">Fájlkezelés</string>
   <string name="keyboard_prefs">Billentyűzet</string>
   <string name="export_prefs">Adatbázis exportálása...</string>
+  <string name="fingerprint_prefs">Feloldás ujjlenyomattal</string>
   <string name="import_db_prefs">Az adatbázis importálása az alkalmazás saját tárterületére</string>
   <string name="import_keyfile_prefs">A kulcsfájl importálása az alkalmazás saját tárterületére</string>
   <string name="keyboardswitch_prefs">Billentyűzetváltás</string>
@@ -71,10 +75,32 @@
   <string name="disclaimer_formal">Ehhez a programhoz SEMMILYEN GARANCIA NEM JÁR. Ez egy szabad szoftver, GNU General Public License v2 vagy későbbi verziójának feltételei mellett terjeszthető, illetve módosítható.</string>
   <string name="ellipsis">…</string>
   <string name="copy_to_clipboard">Másolás vágólapra</string>
+  <string name="fingerprint_hint">Érintse meg az érzékelőt</string>
+  <string name="fingerprint_description">Ujjlenyomat megerősítése a folytatáshoz</string>
+  <string name="fingerprint_fatal">Ujjlenyomattal való feloldás beállítása nem sikerült:</string>
+  <string name="fingerprint_not_recognized">Az ujjlenyomat nem ismerhető fel. Próbálja újra</string>
+  <string name="fingerprint_success">Ujjlenyomat azonosítva</string>
+  <string name="fingerprint_os_error">Az ujjlenyomattal való feloldáshoz Androdi 6.0 vagy újabb szükséges.</string>
+  <string name="fingerprint_hardware_error">Nincs ujjlenyomat-leolvasó észlelve.</string>
+  <string name="fingerprint_no_enrolled">Nincs egyetlen ujjlenyomat sem regisztrálva ezen az eszközön. Kérjük, használja a rendszerbeállításokat.</string>
+  <string name="disable_fingerprint_unlock">Ujjlenyomattal való feloldás letiltása</string>
+  <string name="enable_fingerprint_unlock">Ujjlenyomattal való feloldás engedélyezése</string>
+  <string name="enable_fingerprint_quickunlock">Ujjlenyomat alapú GyorsFeloldás engedélyezése</string>
+  <string name="fingerprint_unlock_hint">Érintse meg az érzékelőt az adatbázis feloldásához</string>
+  <string name="fingerprint_unlock_failed">Ujjlenyomat feloldása nem sikerült. Visszafejtési kulcsot az operációs rendszer érvénytelenítette. Ez általában akkor történik, ha egy új ujjlenyomat lett regisztrálva vagy megváltoztatta biztonsági beállításokat. Kérjük nyissa meg az adatbázist jelszó segítségével, majd engedélyezze újra az ujjlenyomat alapú feloldást az adatbázisbeállításoknál.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Az adatbázis feloldása nem sikerült: az összetett kulcs érvénytelen. Ujjlenyomat alapú feloldás le lett tiltva, mert a tárolt főkulcs (jelszó) a jelek szerint már nem érvényes. Használja a főkulcsot az adatbázis feloldásához, majd engedélyezze újra az ujjlenyomat alapú feloldást.</string>
+  <string name="fingerprint_reenable">Engedélyezze újra az ujjlenyomat alapú feloldást az új főkulccsal (jelszóval).</string>
+  <string name="enable_fingerprint_unlock_Info">
+    Ez a funkció le fogja tárolni a főkulcsot (jelszót) az 
+    eszközön, az Android Kulcstár által titkosítva, és 
+    ujjlenyomat alapú authentikációval védve. Ez lehetővé
+    teszi, hogy az adatbázist ujjlenyomat segítségével
+    történő feloldását.  </string>
+  <string name="enable_fingerprint_quickunlock_Info">Ujjlenyomat alapú GyorsFeloldás engedélyezése a szokásos kód-alapú GyorsFeloldás helyett. Ezzel elkerülhető a főkulcshoz kötődő bármiféle információ tárolása.</string>
   <string name="enter_filename">Adja meg az adatbázis fájlnevét</string>
   <string name="entry_accessed">Utolsó hozzáférés</string>
   <string name="entry_cancel">Mégsem</string>
-  <string name="entry_comment">Megjegyzés</string>
+  <string name="entry_comment">Megjegyzések</string>
   <string name="entry_tags">Címkék</string>
   <string name="entry_override_url">URL felülírása</string>
   <string name="entry_confpassword">Jelszó megerősítése</string>
@@ -112,7 +138,7 @@
   <string name="file_browser">Fájlkezelő</string>
   <string name="generate_password">Jelszógenerálás</string>
   <string name="group">Csoport</string>
-  <string name="hint_comment">megjegyzés</string>
+  <string name="hint_comment">megjegyzések</string>
   <string name="hint_conf_pass">jelszó megerősítése</string>
   <string name="hint_generated_password">generált jelszó</string>
   <string name="hint_group_name">Csoportnév</string>
@@ -140,13 +166,14 @@
   <string name="maskpass_title">Jelszó elrejtése</string>
   <string name="maskpass_summary">Jelszavak elrejtése alapértelmezésben.</string>
   <string name="menu_about">Névjegy</string>
-  <string name="menu_change_key">Mesterkulcs megváltoztatása</string>
+  <string name="menu_change_key">Főkulcs (jelszó) megváltoztatása</string>
   <string name="menu_copy_pass">Jelszó másolása</string>
   <string name="menu_copy_user">Felhasználónév másolása</string>
   <string name="menu_create">Létrehozás</string>
   <string name="menu_app_settings">Beállítások</string>
   <string name="menu_db_settings">Adatbázis-beállítások</string>
   <string name="menu_delete">Törlés</string>
+  <string name="menu_copy">Másolat létrehozása</string>
   <string name="menu_move">Áthelyezése egy másik csoportba</string>
   <string name="menu_move_light">Áthelyezés</string>
   <string name="menu_navigate">A bejegyzést tartalmazó csoport megnyitása</string>
@@ -161,6 +188,7 @@
   <string name="menu_search_advanced">Részletes keresés</string>
   <string name="menu_url">Ugrás az URL-re</string>
   <string name="menu_change_db">Adatbázis-váltás…</string>
+  <string name="menu_show_all">Minden mező megjelenítése</string>
   <string name="minus">Mínusz</string>
   <string name="never">Soha</string>
   <string name="yes">Igen</string>
@@ -173,7 +201,7 @@
   <string name="omitbackup_summary">A Backup és Lomtár csoportok kihagyása a keresésből</string>
   <string name="pass_filename">KeePass adatbázisfájl</string>
   <string name="password_title">Adatbázis-jelszó megadása</string>
-  <string name="master_key_type">A mesterkulcs típusának kiválasztása:</string>
+  <string name="master_key_type">A főkulcs típusának kiválasztása:</string>
   <string name="progress_create">Új adatbázis létrehozása&#8230;</string>
   <string name="create_database">Adatbázis létrehozása</string>
   <string name="progress_title">Feldolgozás&#8230;</string>
@@ -300,8 +328,8 @@
   <string name="ShowCopyToClipboardNotification_summary">A felhasználónév és jelszó elérhetővé tétele az értesítési sávon és a vágólapon keresztül.  Ne feledkezzen meg a jelszógyűjtés veszélyéről!</string>
   <string name="ShowSeparateNotifications_title">Részletes értesítések</string>
   <string name="ShowSeparateNotifications_summary">Külön értesítés jelenjen meg a felhasználónév és a jelszó vágólapra másolásáról és a billentyűzet aktiválásáról.</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A billentyűzet</string>
-  <string name="ShowKp2aKeyboardNotification_summary">A teljes bejegyzés elérhetővé tétele a KP2A billentyűzet segítségével (ajánlott).</string>
+  <string name="ShowKp2aKeyboardNotification_title">Billentyűzet/automatikus kitöltés értesítés</string>
+  <string name="ShowKp2aKeyboardNotification_summary">A teljes bejegyzés elérhetővé tétele a KP2A billentyűzet és az Automatikus kitöltés szolgáltatás segítségével (ajánlott).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Billentyűzetváltás</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Nyissa meg a bevitelimód-váltás párbeszédablakot, ha egy böngészőből indított keresés után a KP2A billentyűzet számára elérhető egy bejegyzés.</string>
   <string name="kp2a_switch_rooted">Automatikus billentyűváltás (root jogosultsággal)</string>
@@ -323,6 +351,9 @@
   <string name="AskDeletePermanentlyEntry">Nyomja meg az Igen gombot a bejegyzés végleges törléséhez, vagy a Nem gombot Lomtárba helyezéséhez.</string>
   <string name="AskDeletePermanentlyGroup">Nyomja meg az Igen gombot a csoport végleges törléséhez, vagy a Nem gombot Lomtárba helyezéséhez.</string>
   <string name="AskDeletePermanentlyItems">Véglegesen törölni kívánja a kiválasztott elemet? Válassza a \"Nem\" opciót a lomtárba helyezéshez.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Szeretné véglegesen törölni a kiválasztott elemet?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Szeretné véglegesen törölni ezt a csoportot?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Szeretné véglegesen törölni a kiválasztott elemeket?</string>
   <string name="AskDeletePermanently_title">Végleges törlés?</string>
   <string name="AskReloadFile_title">Fájl újraolvasása?</string>
   <string name="AskReloadFile">A megnyitott fájlt egy másik program módosította. Szeretné újraolvasni?</string>
@@ -338,7 +369,7 @@
   <string name="DeletingItems">Elemek törlése&#8230;</string>
   <string name="SettingPassword">Jelszó beállítása&#8230;</string>
   <string name="UndoingChanges">Módosítások visszavonása&#8230;</string>
-  <string name="TransformingKey">Mesterkulcs átalakítása&#8230;</string>
+  <string name="TransformingKey">Főkulcs átalakítása&#8230;</string>
   <string name="DecodingDatabase">Adatbázis dekódolása&#8230;</string>
   <string name="ParsingDatabase">Adatbázis elemzése&#8230;</string>
   <string name="CheckingTargetFileForChanges">Változások keresése a távoli fájlban&#8230;</string>
@@ -347,6 +378,10 @@
   <string name="SynchronizingDatabase">Módosítások egyesítése...</string>
   <string name="YesSynchronize">Igen, egyesítse!</string>
   <string name="NoOverwrite">Nem, írja felül!</string>
+  <string name="UseOfflineMode">Kapcsolat nélküli munka</string>
+  <string name="UseOnlineMode">Online munka</string>
+  <string name="UseOfflineMode_Info">Teljesen hálózati forgalom nélküli működés, a helyi másolatok kizárólagos használatával. A változások a helyi másolatban rögzítődnek, de csak a hálózati módra történő visszaváltás után lesznek felmásolva a szerverre.</string>
+  <string name="InOfflineMode">Kapcsolat nélküli munka bekapcsolva.</string>
   <string name="SynchronizingCachedDatabase">Az adatbázis helyi másolatának szinkronizálása&#8230;</string>
   <string name="DownloadingRemoteFile">Távoli fájl letöltése&#8230;</string>
   <string name="UploadingFile">Fájl feltöltése&#8230;</string>
@@ -401,7 +436,8 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
 256 bites AES kódolással van titkosítva, így Önön kívül más az abban tárolt adatokhoz nem fog tudni hozzáférni.  Javasoljuk a Dropbox használatát: minden eszközről elérhető és még automatikus mentést biztosít a fájlok korábbi változatainak elérésére.</string>
   <string name="hint_database_location">Válassza ki, hol kívánja tárolni az adatbázist:</string>
   <string name="button_change_location">Hely módosítása</string>
-  <string name="master_password">Mesterjelszó</string>
+  <string name="help_quickunlock">Ha engedélyezve van, a Keepass2Android a háttérben tovább fog futni, akkor is, ha az adatbázis zárolva van. Ez lehetővé teszi, hogy később az adatbázist a főkulcs egy kicsi részének segítségével feloldhassa.</string>
+  <string name="master_password">Főkulcs (jelszó)</string>
   <string name="help_master_password">Az adatbázis az itt megadott jelszóval lesz titkosítva.  Az adatbázis biztonsága érdekében válasszon erős jelszót!  Javaslat: találjon ki egy vagy két mondatot, és használja a szavak első betűit.  Ne hagyja ki az írásjeleket se.</string>
   <string name="hint_master_password">Válasszon egy jelszót, amely, mint a főkulcs, az egész adatbázist védi:</string>
   <string name="key_file">Kulcsfájl</string>
@@ -465,11 +501,63 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="CopyFileRequiredForEditing">Módosításhoz egy más helyre kell másolnia.</string>
   <string name="ClickOkToSelectLocation">Kattintson az OK gombra a másolási hely kiválasztásához.</string>
   <string name="CancelReadOnly">Megszakítás, megnyitás csak olvasásra.</string>
+  <string name="FileReadOnlyTitle">Az adatbázis csak olvasható</string>
+  <string name="FileReadOnlyMessagePre">A Keepass2Android a jelenlegi adatbázist csak olvasható módban nyitotta meg.</string>
+  <string name="ReadOnlyReason_PreKitKat">Úgy tűnik, hogy a fájlt egy külső alkalmazásból nyitotta meg. Ily módon történő megnyitás esetén a fájl módosítása nem lehetséges. Ha módosítani szeretné az adatbázist, először zárja azt be, majd az Adatbázis-váltás funkció valamelyik opciója segítségével nyissa meg újra az adatbázist.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Az adatbázis csak olvashatónak van beállítva. Ha módosítani szeretné az adatbázist, módosítsa a beállítást.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Az Android KitKat bevezetett korlátozások miatt az írás nem lehetséges. Ha módosítani kívánja az adatbázist, zárja azt be, majd az Adatbázis-váltás funkció Alapértelmezett fájlválasztójával nyissa meg újra az adatbázist.</string>
   <string name="AddCustomIcon">Ikon hozzáadása fájlból...</string>
   <string name="CopyingFile">Fájl másolása...</string>
+  <string name="DuplicateTitle">Másolás</string>
+  <string name="DefaultTemplate">Szabványos belépés</string>
+  <string name="TemplateGroupName">Sablonok</string>
+  <string name="TemplateTitle_IdCard">Személyigazolvány</string>
+  <string name="TemplateField_IdCard_Name">Név</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">A kiállítás helye</string>
+  <string name="TemplateField_IdCard_IssueDate">Kibocsátás kelte</string>
+  <string name="TemplateTitle_EMail">E-mail</string>
+  <string name="TemplateField_EMail_EMail">E-mail cím</string>
+  <string name="TemplateTitle_WLan">Vezetéknélküli LAN</string>
+  <string name="TemplateTitle_Notes">Titkosított jegyzet</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Telefonszám</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Kártya tulajdonosa</string>
+  <string name="TemplateTitle_CreditCard">Hitelkártya</string>
+  <string name="TemplateTitle_Membership">Tagság</string>
   <string name="ChangeLog_title">Verziótörténet</string>
+  <string name="AskAddTemplatesTitle">Sablonok hozzáadása?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android részét képezi néhány beépített sablon, egyebek mellett e-mail fiókok, WLAN jelszavak és titkosított jegyzetek számára. Kívánja ezeket hozzáadni az adatbázishoz? Ha most nem teszi ezt meg, később pótolhatja, a megfelelő adatbázis-beállítás segítségével.</string>
+  <string name="AddTemplates_pref">Sablonok hozzáadása az adatbázishoz</string>
   <string name="Continue">Folytatás</string>
   <string name="NoFilenameWarning">A megadott URI nem tűnik fájlnévnek. Biztos benne, hogy jó URI-t adott meg?</string>
+  <string name="FirstInvalidCompositeKeyError">Az összetett kulcs érvénytelen! Próbálkozzon újra.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Az összetett kulcs érvénytelen! Az alábbi lépések segíthetnek az adatbázis feloldásában:\n
+  
+    • Ellenőrizze, hogy a helyes jelszót adta-e meg.  A szem ikon megérintésével megjelenítheti a beírt jelszót.\n
+    • Ellenőrizze, hogy a helyes jelszótípust adott-e meg. Ellenőrizze, hogy ez ugyan az a típus-e, mint amit az adatbázis létrehozásakor megadott.\n
+    • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.
+</string>
+  <string name="CorruptDatabaseHelp">
+    A fájl sérült. \n 
+    Néhány javaslat a probléma felderítésére:\n
+    
+    • Ha a fájlt USB kapcsolaton keresztül másolta át (MTP-mód), próbáljon meg egy másik alkalmazást, például a MyPhoneExplorert használni, mert az MTP egyes esetekben a fájlok végét levágja.\n
+    • Ha a fájlt a korábbi helyről asztali számítógépről sem tudja megnyitni, nagyon valószínű, hogy a fájl ténylegesen megsérült.  Próbálja meg az adatbázist mentésből visszaállítani.  Ha úgy gondolja, hogy a fájl sérülését a Keepass2Android okozta, kérjük, értesítse a fejlesztőket.\n
+    •  Ha a fájlt a korábbi helyről asztali számítógépről meg tudja megnyitni, kérjük, értesítse a fejlesztőket.  Átmeneti megoldásként megpróbálhatja az asztali számítógépen a fájlt más formátumban kimenteni (például tömörítés nélkül), hátha talál olyan formátumot, amit a Keepass2Android meg tud nyitni.  </string>
+  <string name="ErrorReportTitle">Keepass2Android: Hiba történt.</string>
+  <string name="ErrorReportText">Váratlan hiba történt a Keepass2Android futtatása közben. Kérjük, engedélyezze a hibajelentés küldését, segítve ezzel a hiba kijavítását.</string>
+  <string name="ErrorReportPromise">A hibajelentések soha nem tartalmaznak az adatbázisból származó információt vagy a főkulcsot (jelszót). Az alkalmazásbeállítások segítségével tilthatók.</string>
+  <string name="ErrorReportEnable">Engedélyezés</string>
+  <string name="ErrorReportDisable">Letiltás</string>
+  <string name="ErrorReportAsk">Hiba esetén rákérdez</string>
+  <string name="ErrorReportPrefTitle">Hibajelentések küldése</string>
+  <string name="ActivateAutoFillService_title">Automatikus kitöltés aktiválása?</string>
+  <string name="ActivateAutoFillService_message">A hitelesítő adatok más alkalmazás számára több módon is elérhetővé tehetők. Megtehető ez a vágólapon keresztül, bár az Android vágólapja nem biztonságos. A beépített billentyűzet a teljes bejegyzést elérhetővé teszi, de minden alkalommal kézzel át kell rá váltani, ha hozzá akar férni a hitelesítő adatokhoz. végül Android 5 és annál újabb verziójú eszközök esetén a Keepass2Android a felhasználónevet és a jelszót az Automatikus kitöltés szolgáltatás segítségével is elérhetővé tudja tenni.</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Beépített billentyűzet használata</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Automatikus kitöltés szolgáltatás használata</string>
+  <string name="ActivateAutoFillService_toast">Kérjük, engedélyezze a Keepass2Android szolgáltatást.</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>
     <item>1 perc</item>
@@ -491,8 +579,8 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
     <item>Nagy</item>
   </string-array>
   <string-array name="design_options">
-    <item>Világos Holo</item>
-    <item>Sötét Holo</item>
+    <item>Világos</item>
+    <item>Sötét</item>
   </string-array>
   <string name="design_title">Megjelenés</string>
   <string-array name="cred_remember_modes">

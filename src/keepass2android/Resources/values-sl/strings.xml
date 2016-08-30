@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android je upravitelj gesel, ki omogoča branje/pisanje podatkovnih zbirk KeePass 2.x na Androidu.</string>
   <string name="CreditsText">Uporabniški vmesnik temelji na predelavi KeepassDroida, ki ga je razvil Brian Pellin. Koda za opravila podatkovnih zbirk temelji na KeePassu od Dominika Reickla. Robot Android je kopirano ali prirejeno delo izdelka, ki ga ustvarja in deli Google in je uporabljeno v skladu s pogoji opisanimi v licenci za priznanje avtorstva Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Podpora SFTP je izvedena z uporabo knjižnice JSch pod licenco BSD, ki jo je ustvaril JCraft, Inc.</string>
+  <string name="CreditsIcons">Ikono kladiva je oblikoval John Caserta, ikono pengvina Adriano Emerick, ikono peresa Jon Testa in ikono jabolka Ava Rowell, vsi iz projekta Noun. </string>
   <string name="accept">Sprejmi</string>
   <string name="deny">Zavrni</string>
   <string name="add_entry">Dodaj vnos</string>
@@ -35,6 +36,8 @@
   <string name="unknown_uri_scheme">Žal Keepass2Android ne more obdelati vrnjenega URI-ja %1$s. Navežite stik z razvijalcem!</string>
   <string name="Entry_singular">En vnos</string>
   <string name="Entry_plural">%1$d vnosov</string>
+  <string name="IconSet_title">Nabor ikon</string>
+  <string name="IconSet_install">Poišči več …</string>
   <string name="security_prefs">Varnost</string>
   <string name="display_prefs">Prikaz</string>
   <string name="password_access_prefs">Dostop z vnosom gesla</string>
@@ -42,6 +45,7 @@
   <string name="FileHandling_prefs">Ravnanje z datotekami</string>
   <string name="keyboard_prefs">Tipkovnica</string>
   <string name="export_prefs">Izvozi podatkovno zbirko …</string>
+  <string name="fingerprint_prefs">Odklepanje s prstnim odtisom</string>
   <string name="import_db_prefs">Uvozi podatkovno zbirko v notranjo mapo</string>
   <string name="import_keyfile_prefs">Uvozi datoteko ključa v notranjo mapo</string>
   <string name="keyboardswitch_prefs">Preklapljanje tipkovnice</string>
@@ -71,10 +75,31 @@
   <string name="disclaimer_formal">Keepass2Android je brez VSAKRŠNE GARANCIJE; to je brezplačna programska oprema in lahko jo razširjate pod pogoji GPL-a različice 2 ali kasnejše.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiraj na odložišče</string>
+  <string name="fingerprint_hint">Tipalo dotika</string>
+  <string name="fingerprint_description">Za nadaljevanje potrdite prstni odtis</string>
+  <string name="fingerprint_fatal">Odklepanja s prstnim odtisom ni mogoče nastaviti:</string>
+  <string name="fingerprint_not_recognized">Prstni odtis ni bil prepoznan. Poizkusite znova</string>
+  <string name="fingerprint_success">Prstni odtis je bil prepoznan</string>
+  <string name="fingerprint_os_error">Odklepanje s prstnim odtisom zahteva Android 6.0 ali kasnejšega.</string>
+  <string name="fingerprint_hardware_error">Strojne opreme za prstne odtise ni bilo zaznane.</string>
+  <string name="fingerprint_no_enrolled">Na tej naprave nimate vpisanih prstnih odtisov. Najprej pojdite v sistemske nastavitve.</string>
+  <string name="disable_fingerprint_unlock">Onemogoči odklepanje s prstnim odtisom</string>
+  <string name="enable_fingerprint_unlock">Omogoči popolno odklepanje s prstnim odtisom</string>
+  <string name="enable_fingerprint_quickunlock">Omogoči odklepanje s prstnim odtisom za Hitro odklepanje</string>
+  <string name="fingerprint_unlock_hint">Tipalo dotika za odklepanje podatkovne zbirke</string>
+  <string name="fingerprint_unlock_failed">Odklepanje s prstnim odtisom je spodletelo. OS Android je razveljavil odšifrirni ključ. To se običajno zgodi, če vpišete nov prstni odtis ali spremenite varnostne nastavitve. Odklenite z geslom in ponovno omogočite odklepanje s prtnim odtisom v nastavitvah podatkovne zbirke.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Odklepanje podatkovne zbirke je spodletelo: neveljaven sestavljen ključ. Odklepanje s prstnim odtisom je bilo onemogočeno, ker je očitno shranjeno glavno geslo neveljavno. Odklenite s svojim geslom in ponovno omogočite odklepanje s prstnim odtisom v nastavitvah podatkovne zbirke.</string>
+  <string name="fingerprint_reenable">Ponovno omogočite odklepanje s prstnim odtisom za novo glavno geslo.</string>
+  <string name="enable_fingerprint_unlock_Info">
+    To bo shranilo glavno geslo na tej napravi, ki bo
+    šifrirano z Androidovo zbirko ključev in zaščiteno
+    z uporabo overitve s prstnim odtisom. Omogoča odklepanje podatkovne zbirke samo s prstnim odtisom.
+  </string>
+  <string name="enable_fingerprint_quickunlock_Info">Omogoča uporabo overitve s prstnim odtisom namesto s kodo Hitrega odklepanja. Ne zahteva shranjevanje podatkov, ki so povezani z glavnim geslom.</string>
   <string name="enter_filename">Vnesite ime datoteke podatkovne zbirke</string>
   <string name="entry_accessed">Dostopano</string>
   <string name="entry_cancel">Prekliči</string>
-  <string name="entry_comment">Pripombe</string>
+  <string name="entry_comment">Opombe</string>
   <string name="entry_tags">Oznake</string>
   <string name="entry_override_url">Preglasi URL</string>
   <string name="entry_confpassword">Potrdite geslo</string>
@@ -112,7 +137,7 @@
   <string name="file_browser">Brskalnik datotek</string>
   <string name="generate_password">Ustvari geslo</string>
   <string name="group">Skupina</string>
-  <string name="hint_comment">pripomba</string>
+  <string name="hint_comment">opombe</string>
   <string name="hint_conf_pass">potrdite geslo</string>
   <string name="hint_generated_password">ustvarjeno geslo</string>
   <string name="hint_group_name">Ime skupine</string>
@@ -147,6 +172,7 @@
   <string name="menu_app_settings">Nastavitve</string>
   <string name="menu_db_settings">Nastavitve podatkovne zbirke</string>
   <string name="menu_delete">Izbriši</string>
+  <string name="menu_copy">Ustvari dvojnik</string>
   <string name="menu_move">Premakni v drugo skupino</string>
   <string name="menu_move_light">Premakni</string>
   <string name="menu_navigate">Pomakni se v nadrejeno skupino</string>
@@ -161,6 +187,7 @@
   <string name="menu_search_advanced">Napredno iskanje</string>
   <string name="menu_url">Pojdi na URL</string>
   <string name="menu_change_db">Spremeni podatkovno zbirko …</string>
+  <string name="menu_show_all">Prikaži vsa polja</string>
   <string name="minus">Minus</string>
   <string name="never">Nikoli</string>
   <string name="yes">Da</string>
@@ -300,8 +327,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Naredi uporabniško ime in geslo dostopno preko vrstice za obvestila in odložišča. Pazite se vohljačev gesel!</string>
   <string name="ShowSeparateNotifications_title">Loči obvestila</string>
   <string name="ShowSeparateNotifications_summary">Prikaži ločena obvestila za kopiranje uporabniškega imena in gesla na odložišče in omogočanje tipkovnice.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Obvestilo tipkovnice KP2A</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Naredi poln vnos dostopen preko tipkovnice KP2A (priporočljivo).</string>
+  <string name="ShowKp2aKeyboardNotification_title">Obvestilo o tipkovnici/samodejnem izpolnjevanju</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Naredi poln vnos dostopen preko tipkovnice KP2A in storitve samodejnega izpolnjevanja (priporočljivo).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Preklopi tipkovnico</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Odpri pogovorno okno za izbiro tipkovnice, ko je vnos na voljo preko tipkovnice KP2A po iskanju iz brskalnika.</string>
   <string name="kp2a_switch_rooted">Sam. pr. na nap. s skr. do.</string>
@@ -323,6 +350,9 @@
   <string name="AskDeletePermanentlyEntry">Ali želite ta vnos trajno izbrisati? Pritisnite Ne, da ga premaknete v Koš.</string>
   <string name="AskDeletePermanentlyGroup">Ali želite to skupino trajno izbrisati? Pritisnite Ne, da jo premaknete v Koš.</string>
   <string name="AskDeletePermanentlyItems">Ali želite izbrane predmete trajno izbrisati? Pritisnite Ne, da jih premaknete v Koš.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Ali želite ta vnos trajno izbrisati?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Ali želite to skupino trajno izbrisati?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Ali želite izbrane predmete trajno izbrisati?</string>
   <string name="AskDeletePermanently_title">Trajno izbriši?</string>
   <string name="AskReloadFile_title">Ponovno naloži datoteko?</string>
   <string name="AskReloadFile">Trenutno odprto datoteko je drug program spremenil. Ali jo želite ponovno naložiti?</string>
@@ -347,6 +377,10 @@
   <string name="SynchronizingDatabase">Združevanje sprememb &#8230;</string>
   <string name="YesSynchronize">Da, združi</string>
   <string name="NoOverwrite">Ne, prepiši</string>
+  <string name="UseOfflineMode">Delaj brez povezave</string>
+  <string name="UseOnlineMode">Delaj s povezavo</string>
+  <string name="UseOfflineMode_Info">Izognite se omrežnemu prometu z uporabo krajevne kopije datoteke v predpomnilniku. Spremembe v krajevnem predpomnilniku bodo poslane, ko preklopite nazaj na povezan način.</string>
+  <string name="InOfflineMode">Delo brez povezave.</string>
   <string name="SynchronizingCachedDatabase">Usklajevanje predpomnjene podatkovne zbirke &#8230;</string>
   <string name="DownloadingRemoteFile">Prejemanje oddaljene datoteke &#8230;</string>
   <string name="UploadingFile">Pošiljanje datoteke &#8230;</string>
@@ -399,6 +433,7 @@
   <string name="help_database_location">Svojo pod. zbirko lahko krajevno shranite na svoji napravi Android ali v oblak (samo povezana različica). Keepass2Android da pod. zbirko na razpolago tudi, če niste povezani. Ker je pod. zbirka varno šifrirana s 256-bitnim šifriranjem AES, ne bo nihče mogel dostopati do vaših gesel razen vas. Priporočamo Dropbox: na voljo je na vseh vaših napravah in ponuja tudi varnostne kopije prejšnjih različic.</string>
   <string name="hint_database_location">Izberite mesto za shranjevanje podatkovne zbirke:</string>
   <string name="button_change_location">Spremeni mesto</string>
+  <string name="help_quickunlock">Če je omogočeno, se bo Keepass2Android še naprej izvajal v ozadju, tudi če je podatkovna zbirka zaklenjena. To omogoča kasnejše odklepanje podatkovne zbirke samo z delom glavnega gesla.</string>
   <string name="master_password">Glavno geslo</string>
   <string name="help_master_password">Vaša pod. zbirka je šifrirana z geslom, ki ga vnesete tu. izberite močno geslo, da zagotovite varnost svoje pod. zbirke! Nasvet: sestavite stavek ali dva in za geslo uporabite prve črke besed. Vključite ločila.</string>
   <string name="hint_master_password">Izberite glavno geslo, da zaščitite svojo pod. zbirko:</string>
@@ -463,16 +498,85 @@
   <string name="CopyFileRequiredForEditing">Daj jo uredite, jo morate kopirati na drugo mesto.</string>
   <string name="ClickOkToSelectLocation">Kliknite V redu, da izberete mesto, kamor je treba kopirati datoteko.</string>
   <string name="CancelReadOnly">Prekliči, odpri samo za branje.</string>
+  <string name="FileReadOnlyTitle">Podatkovna zbirka je samo za branje</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android je trenutno podatkovno zbirko odprl samo za branje.</string>
+  <string name="ReadOnlyReason_PreKitKat">Videti je, da ste datoteko odprli z zunanjim programom. Ta način en podpira zapisovanja. Če želite v podatkovni zbirki narediti spremembe, jo zaprite in izberite Spremeni podatkovno zbirko. Potem datoteko odprite z eno od razpoložljivih možnosti.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Zastavica samo za branje je nastavljena. Odstranite jo, če želite v podatkovni zbirki narediti spremembe.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Pisanje ni mogoče zaradi omejitev, ki jih je uvedel Android KitKat. Če želitev podatkovni zbirki narediti spremembe, jo zaprite in izberite Spremeni podatkovno zbirko. Potem datoteko odprite z sistemskim izbirnikom datotek.</string>
   <string name="AddCustomIcon">Dodaj ikono iz datoteke …</string>
   <string name="CopyingFile">Kopiranje datoteke …</string>
+  <string name="DuplicateTitle">Kopiraj</string>
+  <string name="DefaultTemplate">Običajni vnos</string>
+  <string name="TemplateGroupName">Predloge</string>
+  <string name="TemplateTitle_IdCard">Os. izkaznica</string>
+  <string name="TemplateField_IdCard_Name">Ime</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Kraj izdaje</string>
+  <string name="TemplateField_IdCard_IssueDate">Datum izdaje</string>
+  <string name="TemplateTitle_EMail">E-pošta</string>
+  <string name="TemplateField_EMail_EMail">E-poštni naslov</string>
+  <string name="TemplateTitle_WLan">Brezžični LAN</string>
+  <string name="TemplateTitle_Notes">Varni zapisek</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Številka</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Imetnik kartice</string>
+  <string name="TemplateTitle_CreditCard">Kreditna kartica</string>
+  <string name="TemplateTitle_Membership">Članstvo</string>
   <string name="ChangeLog_title">Dnevnik sprememb</string>
+  <string name="AskAddTemplatesTitle">Dodaj predloge?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android vsebuje predloge vnosov za e-poštne račune, gesla za brezžične LAN-e, varne zapiske in več. Ali bi radi te dodali v podatkovno zbirko? Če izberete Ne, jih lahko dodate kasneje v nastavitvah podatkovne zbirke.</string>
+  <string name="AddTemplates_pref">Dodaj predloge v podatkovno zbirko</string>
   <string name="PreviewWarning">Upoštevajte! To je predogledna različica in lahko vsebuje nekaj napak! Če izkusite *karkoli* nepričakovanega, me o tem obvestite (na Codeplexu ali po e-pošti).</string>
   <string name="Continue">Nadaljuj</string>
   <string name="NoFilenameWarning">URI, ki ste ga vnesli, ni videti kot ime datoteke. Ali je to res veljavna datoteka?</string>
+  <string name="FirstInvalidCompositeKeyError">Neveljaven sestavljen ključ! Poizkusite znova.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Neveljaven sestavljen ključ! Za odklepanje podatkovne zbirke poizkusite z naslednjimi koraki:\n
+  
+    • Prepričajte se, da ste vnesli pravilno geslo. Uporabite ikono očesa, da prikažete vneseno geslo.\n
+   • Prepričajte se, da ste izbrali pravo vrsto gesla. Prepričajte se, da se ujema z vrsto gesla, ki ste ga uporabili ob ustvarjanju podatkovne zbirke.\n
+   • Prepričajte se, da izbrali pravo datoteko podatkovne zbirke.
+ 
+</string>
+  <string name="CorruptDatabaseHelp">
+    Datoteka je pokvarjena. \n
+    Tukaj je nekaj nasvetov, ki vam lahko pomagajo pri prepoznavanju težave:\n
+    
+    • Če ste datoteko kopirali preko USB-ja (v načinu MTP), poizkusite znova z orodji, kot je npr. MyPhoneExplorer. MTP v nekaterih primerih prireže datoteke.\n
+    • Če datoteke ne morete odpreti iz istega mesta na računalniku, je zelo verjetno, da je datoteka pokvarjena. Uporabite varnostno kopijo podatkovne zbirke. Če sumite, da je datoteko pokvaril Keepass2Android, navežite stik s podporo.\n
+    • Če datoteko lahko še vedno odprete na računalniku, navežite stik s podporo. Lahko jo poizkusite na računalniku shraniti z drugačnimi nastavitvami (npr. nestisnjeno) in jo ponovno odpreti v Keepass2Androidu.
+
+  </string>
+  <string name="ErrorReportTitle">Keepass2Android: pojavila se je napaka.</string>
+  <string name="ErrorReportText">Med izvajanjem Keepass2Androida se je pojavila nepričakovana napaka. Pomagajte nam to popraviti z omogočanjem pošiljanja poročil o napakah.</string>
+  <string name="ErrorReportPromise">Poročila o napakah nikoli ne vsebujejo vsebine podatkovne zbirke ali glavnega gesla. Onemogočite jih lahko v nastavitvah programa.</string>
+  <string name="ErrorReportEnable">Omogoči</string>
+  <string name="ErrorReportDisable">Onemogoči</string>
+  <string name="ErrorReportAsk">Vprašaj po napaki</string>
+  <string name="ErrorReportPrefTitle">Pošiljaj poročila o napakah</string>
+  <string name="ActivateAutoFillService_title">Omogoči samodejno izpolnjevanje?</string>
+  <string name="ActivateAutoFillService_message">Poverila lahko prenesete v druge programa na več načinov: vrednosti lahko kopirate na odložišče, vendar upoštevajte, da v Androidu odložišče ni varno. Vgrajena tipkovnica omogoča poln dostop do izbranega vnosa, vendar jo je treba vsakič omogočiti, če želite dostop do poveril. Na Androidu 5 in kasnejših lahko Keepass2Android samodejno vnese uporabniško ime in geslo s storitvijo samodejnega izpolnjevanja.</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Uporabi vgrajeno tipkovnico</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Uporabi storitev sam. izpolnjevanja</string>
+  <string name="ActivateAutoFillService_toast">Omogočite storitev Keepass2Android.</string>
   <string name="ChangeLog_0_9_8c">
     Različica 0.9.8c\n
     * Popravek za ranljivost SSL v Microsoftovem Live SDK (uporabljeno za dostop do datotek preko storitve OneDrive)\n
     * Popravek hrošča: prejšnja izdaja je vsebovala dva načina načina vnosa (en se je sesuval)\n
+  </string>
+  <string name="ChangeLog_1_0_0">
+    Različica 1.0.0\n
+    * Odklepanje s prstnim odtisom (zahteva Android 6.0+ ali napravo Samsung)\n
+    * Dodana storitev samodejnega izpolnjevanja (zahteva Android 5.0+)\n
+    * Dodana podpora za predloge vnosov\n
+    * Dodan način za \"delo brez povezave\"\n
+    * Omogočeno kopiranje vnosov\n
+    * Način samodokončanja za imena polj\n
+    * Omogočeno odstranjevanje predmetov s seznama nedavnih datotek\n
+    * V času izvajanja so zahtevana dovoljenja v Androidu 6.0\n
+    * Popravki hroščev (v vgrajeni tipkovnici, ko izbirate ikone)\n
+    * Vključena možnost pošiljanja poročil o napakah\n
+    * Na več točkah dodana sporočila za pomoč\n
   </string>
   <string name="ChangeLog_0_9_9">
 		Različica 0.9.9\n
@@ -483,6 +587,13 @@
     * Preverjanje za podvojene ključe dodatnih polj zaradi izognitve izgubi podatkov\n
     
 	</string>
+  <string name="ChangeLog_0_9_9c">
+    Različica 0.9.9c\n
+    * Vrnila se je temna tema\n
+    * Namestite lahko druge pakete ikon (starodavne ikone v slogu Windows so na voljo v Trgovnini Play)\n
+    * Dodano vprašanje za potrditev ob izbrisu predmetov brez Koša\n
+    * Popravki hroščev (napačen prikaz kodiranja skrivnosti OTP, napačna ikona programa na nekaterih mestih)\n
+  </string>
   <string name="ChangeLog_0_9_8b">
 		Različica 0.9.8b\n
 		* Popravki hroščev (shranjevanje nekaterih podatkovnih zbirk je spodletelo, izvoz v krajevno napravo ni deloval, izbira nekaterih možnosti nastavitev je sesula program)\n
@@ -679,8 +790,8 @@ Začetna javna izdaja
     <item>Velika</item>
   </string-array>
   <string-array name="design_options">
-    <item>Holo svetla</item>
-    <item>Holo temna</item>
+    <item>Svetla</item>
+    <item>Temna</item>
   </string-array>
   <string name="design_title">Tema</string>
   <string-array name="cred_remember_modes">

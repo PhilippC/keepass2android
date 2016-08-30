@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center" >
+
+        <TableRow
+            android:layout_marginLeft="@dimen/afc_10dp"
+            android:layout_marginRight="@dimen/afc_10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/afc_30dp"
+                android:text="@string/afc_title_name"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Button
+                android:id="@+id/afc_button_sort_by_name_asc"
+                style="@style/afc_button_sort"
+                android:contentDescription="@string/afc_title_name"
+                android:drawableRight="?attr/afc_ic_button_sort_by_name_asc" />
+
+            <Button
+                android:id="@+id/afc_button_sort_by_name_desc"
+                style="@style/afc_button_sort"
+                android:contentDescription="@string/afc_title_name"
+                android:drawableRight="?attr/afc_ic_button_sort_by_name_desc" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="@dimen/afc_10dp"
+            android:layout_marginRight="@dimen/afc_10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/afc_30dp"
+                android:text="@string/afc_title_size"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Button
+                android:id="@+id/afc_button_sort_by_size_asc"
+                style="@style/afc_button_sort"
+                android:contentDescription="@string/afc_title_size"
+                android:drawableRight="?attr/afc_ic_button_sort_by_size_asc" />
+
+            <Button
+                android:id="@+id/afc_button_sort_by_size_desc"
+                style="@style/afc_button_sort"
+                android:contentDescription="@string/afc_title_size"
+                android:drawableRight="?attr/afc_ic_button_sort_by_size_desc" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="@dimen/afc_10dp"
+            android:layout_marginRight="@dimen/afc_10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/afc_30dp"
+                android:text="@string/afc_title_date"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Button
+                android:id="@+id/afc_button_sort_by_date_asc"
+                style="@style/afc_button_sort"
+                android:contentDescription="@string/afc_title_date"
+                android:drawableRight="?attr/afc_ic_button_sort_by_date_asc" />
+
+            <Button
+                android:id="@+id/afc_button_sort_by_date_desc"
+                style="@style/afc_button_sort"
+                android:contentDescription="@string/afc_title_date"
+                android:drawableRight="?attr/afc_ic_button_sort_by_date_desc" />
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

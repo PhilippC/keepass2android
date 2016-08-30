@@ -430,6 +430,7 @@ namespace keepass2android
 							StartActivity(i);
 							prefs.Edit().PutBoolean("has_asked_autofillservice", true).Commit();
 						}
+						else ActivateKeyboardIfAppropriate(closeAfterCreate, prefs);
 					}
 					else ActivateKeyboardIfAppropriate(closeAfterCreate, prefs);
 					

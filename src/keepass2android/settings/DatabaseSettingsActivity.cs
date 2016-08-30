@@ -337,6 +337,7 @@ namespace keepass2android
             FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
             FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
             PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
+			PrepareNoDonationReminderPreference(Activity, ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))), FindPreference(GetString(Resource.String.NoDonationReminder_key)));
 
 	        FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) => Activity.Recreate();
             
@@ -410,7 +411,7 @@ namespace keepass2android
 	            var errorReportModePref = (ListPreference)FindPreference(App.PrefErrorreportmode);
 				
 #if NoNet
-				((PreferenceScreen)FindPreference(Resource.String.app_key)).RemovePreference(errorReportModePref);
+				((PreferenceScreen)FindPreference(GetString(Resource.String.app_key))).RemovePreference(errorReportModePref);
 #else
 				SetupErrorReportModePref(errorReportModePref);
 #endif
@@ -424,6 +425,18 @@ namespace keepass2android
 			
         }
 
+		private void PrepareNoDonationReminderPreference(Activity ctx, PreferenceScreen screen, Preference preference)
+	    {
+			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+
+			if (!prefs.GetBoolean("DismissedDonateReminder", false))
+			{
+				screen.RemovePreference(preference);
+			}
+				
+
+	    }
+#if !NoNet
 	    private void SetupErrorReportModePref(ListPreference errorReportModePref)
 	    {
 		    errorReportModePref.SetEntries(new string[]
@@ -450,7 +463,7 @@ namespace keepass2android
 			    App.SetErrorReportMode(Activity, mode);
 		    };
 	    }
-
+#endif
 	    private void PrepareTemplates(Database db)
 	    {
 			Preference pref = FindPreference("AddTemplates_pref_key");
@@ -760,11 +773,12 @@ namespace keepass2android
 
         private IOConnectionInfo ImportFileToInternalDirectory(IOConnectionInfo sourceIoc)
         {
+	        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(Activity);
             string targetPath = UrlUtil.GetFileName(sourceIoc.Path);
             targetPath = targetPath.Trim("|\\?*<\":>+[]/'".ToCharArray());
             if (targetPath == "")
                 targetPath = "imported";
-            if (new File(Activity.FilesDir, targetPath).Exists())
+			if (new File(internalDirectory, targetPath).Exists())
             {
                 int c = 1;
                 var ext = UrlUtil.GetExtension(targetPath);
@@ -775,9 +789,9 @@ namespace keepass2android
                     targetPath = filenameWithoutExt + c;
                     if (!String.IsNullOrEmpty(ext))
                         targetPath += "." + ext;
-                } while (new File(Activity.FilesDir, targetPath).Exists());
+				} while (new File(internalDirectory, targetPath).Exists());
             }
-            var targetIoc = IOConnectionInfo.FromPath(new File(Activity.FilesDir, targetPath).CanonicalPath);
+			var targetIoc = IOConnectionInfo.FromPath(new File(internalDirectory, targetPath).CanonicalPath);
 
             IoUtil.Copy(targetIoc, sourceIoc, App.Kp2a);
             return targetIoc;
