@@ -27,7 +27,7 @@ namespace KeePassLib.Resources
 			if(dictNew == null) throw new ArgumentNullException("dictNew");
 
 			m_strCryptoStreamFailed = TryGetEx(dictNew, "CryptoStreamFailed", m_strCryptoStreamFailed);
-			m_strEncAlgorithmAes = TryGetEx(dictNew, "EncAlgorithmAes", m_strEncAlgorithmAes);
+			m_strEncDataTooLarge = TryGetEx(dictNew, "EncDataTooLarge", m_strEncDataTooLarge);
 			m_strErrorInClipboard = TryGetEx(dictNew, "ErrorInClipboard", m_strErrorInClipboard);
 			m_strExpect100Continue = TryGetEx(dictNew, "Expect100Continue", m_strExpect100Continue);
 			m_strFatalError = TryGetEx(dictNew, "FatalError", m_strFatalError);
@@ -36,6 +36,7 @@ namespace KeePassLib.Resources
 			m_strFileHeaderEndEarly = TryGetEx(dictNew, "FileHeaderEndEarly", m_strFileHeaderEndEarly);
 			m_strFileLoadFailed = TryGetEx(dictNew, "FileLoadFailed", m_strFileLoadFailed);
 			m_strFileLockedWrite = TryGetEx(dictNew, "FileLockedWrite", m_strFileLockedWrite);
+			m_strFileNewVerOrPlgReq = TryGetEx(dictNew, "FileNewVerOrPlgReq", m_strFileNewVerOrPlgReq);
 			m_strFileNewVerReq = TryGetEx(dictNew, "FileNewVerReq", m_strFileNewVerReq);
 			m_strFileSaveCorruptionWarning = TryGetEx(dictNew, "FileSaveCorruptionWarning", m_strFileSaveCorruptionWarning);
 			m_strFileSaveFailed = TryGetEx(dictNew, "FileSaveFailed", m_strFileSaveFailed);
@@ -50,6 +51,7 @@ namespace KeePassLib.Resources
 			m_strInvalidCompositeKeyHint = TryGetEx(dictNew, "InvalidCompositeKeyHint", m_strInvalidCompositeKeyHint);
 			m_strInvalidDataWhileDecoding = TryGetEx(dictNew, "InvalidDataWhileDecoding", m_strInvalidDataWhileDecoding);
 			m_strKeePass1xHint = TryGetEx(dictNew, "KeePass1xHint", m_strKeePass1xHint);
+			m_strKeyBits = TryGetEx(dictNew, "KeyBits", m_strKeyBits);
 			m_strKeyFileDbSel = TryGetEx(dictNew, "KeyFileDbSel", m_strKeyFileDbSel);
 			m_strMasterSeedLengthInvalid = TryGetEx(dictNew, "MasterSeedLengthInvalid", m_strMasterSeedLengthInvalid);
 			m_strOldFormat = TryGetEx(dictNew, "OldFormat", m_strOldFormat);
@@ -58,13 +60,14 @@ namespace KeePassLib.Resources
 			m_strTimeout = TryGetEx(dictNew, "Timeout", m_strTimeout);
 			m_strTryAgainSecs = TryGetEx(dictNew, "TryAgainSecs", m_strTryAgainSecs);
 			m_strUnknownHeaderId = TryGetEx(dictNew, "UnknownHeaderId", m_strUnknownHeaderId);
+			m_strUnknownKdf = TryGetEx(dictNew, "UnknownKdf", m_strUnknownKdf);
 			m_strUserAccountKeyError = TryGetEx(dictNew, "UserAccountKeyError", m_strUserAccountKeyError);
 			m_strUserAgent = TryGetEx(dictNew, "UserAgent", m_strUserAgent);
 		}
 
 		private static readonly string[] m_vKeyNames = {
 			"CryptoStreamFailed",
-			"EncAlgorithmAes",
+			"EncDataTooLarge",
 			"ErrorInClipboard",
 			"Expect100Continue",
 			"FatalError",
@@ -73,6 +76,7 @@ namespace KeePassLib.Resources
 			"FileHeaderEndEarly",
 			"FileLoadFailed",
 			"FileLockedWrite",
+			"FileNewVerOrPlgReq",
 			"FileNewVerReq",
 			"FileSaveCorruptionWarning",
 			"FileSaveFailed",
@@ -87,6 +91,7 @@ namespace KeePassLib.Resources
 			"InvalidCompositeKeyHint",
 			"InvalidDataWhileDecoding",
 			"KeePass1xHint",
+			"KeyBits",
 			"KeyFileDbSel",
 			"MasterSeedLengthInvalid",
 			"OldFormat",
@@ -95,6 +100,7 @@ namespace KeePassLib.Resources
 			"Timeout",
 			"TryAgainSecs",
 			"UnknownHeaderId",
+			"UnknownKdf",
 			"UserAccountKeyError",
 			"UserAgent"
 		};
@@ -115,15 +121,15 @@ namespace KeePassLib.Resources
 			get { return m_strCryptoStreamFailed; }
 		}
 
-		private static string m_strEncAlgorithmAes =
-			@"AES/Rijndael (256-Bit Key)";
+		private static string m_strEncDataTooLarge =
+			@"The data is too large to be encrypted/decrypted securely using {PARAM}.";
 		/// <summary>
 		/// Look up a localized string similar to
-		/// 'AES/Rijndael (256-Bit Key)'.
+		/// 'The data is too large to be encrypted/decrypted securely using {PARAM}.'.
 		/// </summary>
-		public static string EncAlgorithmAes
+		public static string EncDataTooLarge
 		{
-			get { return m_strEncAlgorithmAes; }
+			get { return m_strEncDataTooLarge; }
 		}
 
 		private static string m_strErrorInClipboard =
@@ -212,6 +218,17 @@ namespace KeePassLib.Resources
 		public static string FileLockedWrite
 		{
 			get { return m_strFileLockedWrite; }
+		}
+
+		private static string m_strFileNewVerOrPlgReq =
+			@"A newer KeePass version or a plugin is required to open this file.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'A newer KeePass version or a plugin is required to open this file.'.
+		/// </summary>
+		public static string FileNewVerOrPlgReq
+		{
+			get { return m_strFileNewVerOrPlgReq; }
 		}
 
 		private static string m_strFileNewVerReq =
@@ -368,6 +385,17 @@ namespace KeePassLib.Resources
 			get { return m_strKeePass1xHint; }
 		}
 
+		private static string m_strKeyBits =
+			@"{PARAM}-bit key";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// '{PARAM}-bit key'.
+		/// </summary>
+		public static string KeyBits
+		{
+			get { return m_strKeyBits; }
+		}
+
 		private static string m_strKeyFileDbSel =
 			@"Database files cannot be used as key files.";
 		/// <summary>
@@ -454,6 +482,17 @@ namespace KeePassLib.Resources
 		public static string UnknownHeaderId
 		{
 			get { return m_strUnknownHeaderId; }
+		}
+
+		private static string m_strUnknownKdf =
+			@"Unknown key derivation function!";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Unknown key derivation function!'.
+		/// </summary>
+		public static string UnknownKdf
+		{
+			get { return m_strUnknownKdf; }
 		}
 
 		private static string m_strUserAccountKeyError =

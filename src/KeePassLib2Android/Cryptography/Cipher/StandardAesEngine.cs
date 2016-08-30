@@ -42,7 +42,7 @@ namespace KeePassLib.Cryptography.Cipher
 		private const PaddingMode m_rCipherPadding = PaddingMode.PKCS7;
 #endif
 
-		private static PwUuid m_uuidAes = null;
+		private static PwUuid g_uuidAes = null;
 
 		/// <summary>
 		/// UUID of the cipher engine. This ID uniquely identifies the
@@ -52,12 +52,16 @@ namespace KeePassLib.Cryptography.Cipher
 		{
 			get
 			{
-				if(m_uuidAes == null)
-					m_uuidAes = new PwUuid(new byte[]{
+				PwUuid pu = g_uuidAes;
+				if(pu == null)
+				{
+					pu = new PwUuid(new byte[] {
 						0x31, 0xC1, 0xF2, 0xE6, 0xBF, 0x71, 0x43, 0x50,
 						0xBE, 0x58, 0x05, 0x21, 0x6A, 0xFC, 0x5A, 0xFF });
+					g_uuidAes = pu;
+				}
 
-				return m_uuidAes;
+				return pu;
 			}
 		}
 
@@ -72,7 +76,14 @@ namespace KeePassLib.Cryptography.Cipher
 		/// <summary>
 		/// Get a displayable name describing this cipher engine.
 		/// </summary>
-		public string DisplayName { get { return KLRes.EncAlgorithmAes; } }
+		public string DisplayName
+		{
+			get
+			{
+				return ("AES/Rijndael (" + KLRes.KeyBits.Replace(@"{PARAM}",
+					"256") + ", FIPS 197)");
+			}
+		}
 
 		private static void ValidateArguments(Stream stream, bool bEncrypt, byte[] pbKey, byte[] pbIV)
 		{

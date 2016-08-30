@@ -76,7 +76,7 @@ namespace KeePassLib.Security
 		{
 			None = 0,
 			ProtectedMemory,
-			Salsa20,
+			ChaCha20,
 			ExtCrypt
 		}
 
@@ -166,7 +166,7 @@ namespace KeePassLib.Security
 		/// </summary>
 		public ProtectedBinary()
 		{
-			Init(false, new byte[0]);
+			Init(false, MemUtil.EmptyByteArray);
 		}
 
 		/// <summary>
@@ -263,11 +263,13 @@ namespace KeePassLib.Security
 				if(pbUpd != null) pbKey32 = pbUpd;
 			}
 
-			Salsa20Cipher s = new Salsa20Cipher(pbKey32,
-				BitConverter.GetBytes(m_lID));
-			s.Encrypt(m_pbData, m_pbData.Length, true);
-			s.Dispose();
-			m_mp = PbMemProt.Salsa20;
+			byte[] pbIV = new byte[12];
+			MemUtil.UInt64ToBytesEx((ulong)m_lID, pbIV, 4);
+			using(ChaCha20Cipher c = new ChaCha20Cipher(pbKey32, pbIV, true))
+			{
+				c.Encrypt(m_pbData, 0, m_pbData.Length);
+			}
+			m_mp = PbMemProt.ChaCha20;
 		}
 
 		private void Decrypt()
@@ -276,12 +278,14 @@ namespace KeePassLib.Security
 
 			if(m_mp == PbMemProt.ProtectedMemory)
 				ProtectedMemory.Unprotect(m_pbData, MemoryProtectionScope.SameProcess);
-			else if(m_mp == PbMemProt.Salsa20)
+			else if(m_mp == PbMemProt.ChaCha20)
 			{
-				Salsa20Cipher s = new Salsa20Cipher(g_pbKey32,
-					BitConverter.GetBytes(m_lID));
-				s.Encrypt(m_pbData, m_pbData.Length, true);
-				s.Dispose();
+				byte[] pbIV = new byte[12];
+				MemUtil.UInt64ToBytesEx((ulong)m_lID, pbIV, 4);
+				using(ChaCha20Cipher c = new ChaCha20Cipher(g_pbKey32, pbIV, true))
+				{
+					c.Decrypt(m_pbData, 0, m_pbData.Length);
+				}
 			}
 			else if(m_mp == PbMemProt.ExtCrypt)
 				m_fExtCrypt(m_pbData, PbCryptFlags.Decrypt, m_lID);
@@ -300,7 +304,7 @@ namespace KeePassLib.Security
 		/// protected data and can therefore be cleared safely.</returns>
 		public byte[] ReadData()
 		{
-			if(m_uDataLen == 0) return new byte[0];
+			if(m_uDataLen == 0) return MemUtil.EmptyByteArray;
 
 			byte[] pbReturn = new byte[m_uDataLen];
 

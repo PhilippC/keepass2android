@@ -152,7 +152,7 @@ namespace KeePassLib.Serialization
 				try
 				{
 					byte[] pbID = CryptoRandom.Instance.GetRandomBytes(16);
-					string strTime = TimeUtil.SerializeUtc(DateTime.Now);
+					string strTime = TimeUtil.SerializeUtc(DateTime.UtcNow);
 
 					lfi = new LockFileInfo(Convert.ToBase64String(pbID), strTime,
 #if KeePassUAP

@@ -22,10 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-#if !KeePassUAP
-using System.Security.Cryptography;
-#endif
-
+using KeePassLib.Cryptography;
 using KeePassLib.Security;
 
 namespace KeePassLib.Keys
@@ -57,8 +54,7 @@ namespace KeePassLib.Keys
 
 			if(bPerformHash)
 			{
-				SHA256Managed sha256 = new SHA256Managed();
-				byte[] pbRaw = sha256.ComputeHash(pbKeyData);
+				byte[] pbRaw = CryptoUtil.HashSha256(pbKeyData);
 				m_pbKey = new ProtectedBinary(true, pbRaw);
 			}
 			else m_pbKey = new ProtectedBinary(true, pbKeyData);

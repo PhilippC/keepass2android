@@ -70,6 +70,12 @@ namespace KeePassLib.Utility
 		// 1418:
 		//   Minimizing a form while loading it doesn't work.
 		//   https://sourceforge.net/p/keepass/bugs/1418/
+		// 2139:
+		//   Shortcut keys are ignored.
+		//   https://sourceforge.net/p/keepass/feature-requests/2139/
+		// 2140:
+		//   Explicit control focusing is ignored.
+		//   https://sourceforge.net/p/keepass/feature-requests/2140/
 		// 5795:
 		//   Text in input field is incomplete.
 		//   https://bugzilla.xamarin.com/show_bug.cgi?id=5795

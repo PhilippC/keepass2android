@@ -19,10 +19,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 
 using KeePassLib.Security;
+using KeePassLib.Utility;
 
 namespace KeePassLib.Cryptography.PasswordGenerator
 {
@@ -62,16 +64,20 @@ namespace KeePassLib.Cryptography.PasswordGenerator
 
 		private static CryptoRandomStream CreateCryptoStream(byte[] pbAdditionalEntropy)
 		{
-			byte[] pbKey = CryptoRandom.Instance.GetRandomBytes(256);
+			byte[] pbKey = CryptoRandom.Instance.GetRandomBytes(128);
 
 			// Mix in additional entropy
+			Debug.Assert(pbKey.Length >= 64);
 			if((pbAdditionalEntropy != null) && (pbAdditionalEntropy.Length > 0))
 			{
-				for(int nKeyPos = 0; nKeyPos < pbKey.Length; ++nKeyPos)
-					pbKey[nKeyPos] ^= pbAdditionalEntropy[nKeyPos % pbAdditionalEntropy.Length];
+				using(SHA512Managed h = new SHA512Managed())
+				{
+					byte[] pbHash = h.ComputeHash(pbAdditionalEntropy);
+					MemUtil.XorArray(pbHash, 0, pbKey, 0, pbHash.Length);
+				}
 			}
 
-			return new CryptoRandomStream(CrsAlgorithm.Salsa20, pbKey);
+			return new CryptoRandomStream(CrsAlgorithm.ChaCha20, pbKey);
 		}
 
 		internal static char GenerateCharacter(PwProfile pwProfile,

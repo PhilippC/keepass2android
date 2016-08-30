@@ -32,14 +32,14 @@ using KeePassLibSD;
 namespace KeePassLib.Collections
 {
 	public sealed class StringDictionaryEx : IDeepCloneable<StringDictionaryEx>,
-		IEnumerable<KeyValuePair<string, string>>
+		IEnumerable<KeyValuePair<string, string>>, IEquatable<StringDictionaryEx>
 	{
-		private SortedDictionary<string, string> m_vDict =
+		private SortedDictionary<string, string> m_dict =
 			new SortedDictionary<string, string>();
 
 		public int Count
 		{
-			get { return m_vDict.Count; }
+			get { return m_dict.Count; }
 		}
 
 		public StringDictionaryEx()
@@ -48,39 +48,53 @@ namespace KeePassLib.Collections
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return m_vDict.GetEnumerator();
+			return m_dict.GetEnumerator();
 		}
 
 		public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
 		{
-			return m_vDict.GetEnumerator();
+			return m_dict.GetEnumerator();
 		}
 
 		public StringDictionaryEx CloneDeep()
 		{
-			StringDictionaryEx plNew = new StringDictionaryEx();
+			StringDictionaryEx sdNew = new StringDictionaryEx();
 
-			foreach(KeyValuePair<string, string> kvpStr in m_vDict)
-				plNew.Set(kvpStr.Key, kvpStr.Value);
+			foreach(KeyValuePair<string, string> kvp in m_dict)
+				sdNew.m_dict[kvp.Key] = kvp.Value; // Strings are immutable
 
-			return plNew;
+			return sdNew;
+		}
+
+		public bool Equals(StringDictionaryEx sdOther)
+		{
+			if(sdOther == null) { Debug.Assert(false); return false; }
+
+			if(m_dict.Count != sdOther.m_dict.Count) return false;
+
+			foreach(KeyValuePair<string, string> kvp in sdOther.m_dict)
+			{
+				string str = Get(kvp.Key);
+				if((str == null) || (str != kvp.Value)) return false;
+			}
+
+			return true;
 		}
 
 		public string Get(string strName)
 		{
-			Debug.Assert(strName != null); if(strName == null) throw new ArgumentNullException("strName");
+			if(strName == null) { Debug.Assert(false); throw new ArgumentNullException("strName"); }
 
 			string s;
-			if(m_vDict.TryGetValue(strName, out s)) return s;
-
+			if(m_dict.TryGetValue(strName, out s)) return s;
 			return null;
 		}
 
 		public bool Exists(string strName)
 		{
-			Debug.Assert(strName != null); if(strName == null) throw new ArgumentNullException("strName");
+			if(strName == null) { Debug.Assert(false); throw new ArgumentNullException("strName"); }
 
-			return m_vDict.ContainsKey(strName);
+			return m_dict.ContainsKey(strName);
 		}
 
 		/// <summary>
@@ -92,25 +106,25 @@ namespace KeePassLib.Collections
 		/// parameters is <c>null</c>.</exception>
 		public void Set(string strField, string strNewValue)
 		{
-			Debug.Assert(strField != null); if(strField == null) throw new ArgumentNullException("strField");
-			Debug.Assert(strNewValue != null); if(strNewValue == null) throw new ArgumentNullException("strNewValue");
+			if(strField == null) { Debug.Assert(false); throw new ArgumentNullException("strField"); }
+			if(strNewValue == null) { Debug.Assert(false); throw new ArgumentNullException("strNewValue"); }
 
-			m_vDict[strField] = strNewValue;
+			m_dict[strField] = strNewValue;
 		}
 
 		/// <summary>
 		/// Delete a string.
 		/// </summary>
 		/// <param name="strField">Name of the string field to delete.</param>
-		/// <returns>Returns <c>true</c> if the field has been successfully
-		/// removed, otherwise the return value is <c>false</c>.</returns>
+		/// <returns>Returns <c>true</c>, if the field has been successfully
+		/// removed. Otherwise, the return value is <c>false</c>.</returns>
 		/// <exception cref="System.ArgumentNullException">Thrown if the input
 		/// parameter is <c>null</c>.</exception>
 		public bool Remove(string strField)
 		{
-			Debug.Assert(strField != null); if(strField == null) throw new ArgumentNullException("strField");
+			if(strField == null) { Debug.Assert(false); throw new ArgumentNullException("strField"); }
 
-			return m_vDict.Remove(strField);
+			return m_dict.Remove(strField);
 		}
 	}
 }

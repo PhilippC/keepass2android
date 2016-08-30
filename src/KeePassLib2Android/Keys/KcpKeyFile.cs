@@ -133,10 +133,7 @@ namespace KeePassLib.Keys
 			else if(iLength == 64) pbKey = LoadHexKey32(pbFileData);
 
 			if(pbKey == null)
-			{
-				SHA256Managed sha256 = new SHA256Managed();
-				pbKey = sha256.ComputeHash(pbFileData);
-			}
+				pbKey = CryptoUtil.HashSha256(pbFileData);
 
 			return pbKey;
 		}
@@ -156,12 +153,15 @@ namespace KeePassLib.Keys
 
 			try
 			{
-				string strHex = StrUtil.Utf8.GetString(pbFileData, 0, 64);
-				if(!StrUtil.IsHexString(strHex, true)) return null;
+				if(!StrUtil.IsHexString(pbFileData, true)) return null;
 
+				string strHex = StrUtil.Utf8.GetString(pbFileData);
 				byte[] pbKey = MemUtil.HexStringToByteArray(strHex);
 				if((pbKey == null) || (pbKey.Length != 32))
+				{
+					Debug.Assert(false);
 					return null;
+				}
 
 				return pbKey;
 			}
@@ -189,13 +189,13 @@ namespace KeePassLib.Keys
 				pbFinalKey32 = pbKey32;
 			else
 			{
-				MemoryStream ms = new MemoryStream();
-				ms.Write(pbAdditionalEntropy, 0, pbAdditionalEntropy.Length);
-				ms.Write(pbKey32, 0, 32);
+				using(MemoryStream ms = new MemoryStream())
+				{
+					MemUtil.Write(ms, pbAdditionalEntropy);
+					MemUtil.Write(ms, pbKey32);
 
-				SHA256Managed sha256 = new SHA256Managed();
-				pbFinalKey32 = sha256.ComputeHash(ms.ToArray());
-				ms.Close();
+					pbFinalKey32 = CryptoUtil.HashSha256(ms.ToArray());
+				}
 			}
 
 			CreateXmlKeyFile(strFilePath, pbFinalKey32);

@@ -22,13 +22,21 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Security;
 using System.Text;
 using System.Xml;
 
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
+
 using KeePassLib.Collections;
 using KeePassLib.Cryptography;
+using KeePassLib.Cryptography.Cipher;
+using KeePassLib.Cryptography.KeyDerivation;
 using KeePassLib.Delegates;
 using KeePassLib.Interfaces;
+using KeePassLib.Resources;
 using KeePassLib.Security;
 using KeePassLib.Utility;
 
@@ -73,7 +81,8 @@ namespace KeePassLib.Serialization
 		/// The first 2 bytes are critical (i.e. loading will fail, if the
 		/// file version is too high), the last 2 bytes are informational.
 		/// </summary>
-		private const uint FileVersion32 = 0x00030001;
+		private const uint FileVersion32 = 0x00040000;
+		private const uint FileVersion32_3 = 0x00030001; // Old format
 
 		private const uint FileVersionCriticalMask = 0xFFFF0000;
 
@@ -92,6 +101,7 @@ namespace KeePassLib.Serialization
 
 		private const string ElemGenerator = "Generator";
 		private const string ElemHeaderHash = "HeaderHash";
+		private const string ElemSettingsChanged = "SettingsChanged";
 		private const string ElemDbName = "DatabaseName";
 		private const string ElemDbNameChanged = "DatabaseNameChanged";
 		private const string ElemDbDesc = "DatabaseDescription";
@@ -192,14 +202,15 @@ namespace KeePassLib.Serialization
 		private KdbxFormat m_format = KdbxFormat.Default;
 		private IStatusLogger m_slLogger = null;
 
+		private uint m_uFileVersion = 0;
 		private byte[] m_pbMasterSeed = null;
-		private byte[] m_pbTransformSeed = null;
+		// private byte[] m_pbTransformSeed = null;
 		private byte[] m_pbEncryptionIV = null;
 		private byte[] m_pbProtectedStreamKey = null;
 		private byte[] m_pbStreamStartBytes = null;
 
-		// ArcFourVariant only for compatibility; KeePass will default to a
-		// different (more secure) algorithm when *writing* databases
+		// ArcFourVariant only for backward compatibility; KeePass defaults
+		// to a more secure algorithm when *writing* databases
 		private CrsAlgorithm m_craInnerRandomStream = CrsAlgorithm.ArcFourVariant;
 
 		private Dictionary<string, ProtectedBinary> m_dictBinPool =
@@ -222,12 +233,14 @@ namespace KeePassLib.Serialization
 			CipherID = 2,
 			CompressionFlags = 3,
 			MasterSeed = 4,
-			TransformSeed = 5,
-			TransformRounds = 6,
+			TransformSeed = 5, // KDBX 3.1, for backward compatibility only
+			TransformRounds = 6, // KDBX 3.1, for backward compatibility only
 			EncryptionIV = 7,
 			ProtectedStreamKey = 8,
-			StreamStartBytes = 9,
-			InnerRandomStreamID = 10
+			StreamStartBytes = 9, // KDBX 3.1, for backward compatibility only
+			InnerRandomStreamID = 10,
+			KdfParameters = 11, // KDBX 4
+			PublicCustomData = 12 // KDBX 4
 		}
 
 		public byte[] HashOfFileOnDisk
@@ -284,6 +297,152 @@ namespace KeePassLib.Serialization
 
 				m_bLocalizedNames = (uTest != NeutralLanguageID);
 			}
+		}
+
+		private uint GetMinKdbxVersion()
+		{
+			AesKdf kdfAes = new AesKdf();
+			if(!kdfAes.Uuid.Equals(m_pwDatabase.KdfParameters.KdfUuid))
+				return FileVersion32;
+
+			if(m_pwDatabase.PublicCustomData.Count > 0)
+				return FileVersion32;
+
+			bool bCustomData = false;
+			GroupHandler gh = delegate(PwGroup pg)
+			{
+				if(pg == null) { Debug.Assert(false); return true; }
+				if(pg.CustomData.Count > 0) { bCustomData = true; return false; }
+				return true;
+			};
+			EntryHandler eh = delegate(PwEntry pe)
+			{
+				if(pe == null) { Debug.Assert(false); return true; }
+				if(pe.CustomData.Count > 0) { bCustomData = true; return false; }
+				return true;
+			};
+			gh(m_pwDatabase.RootGroup);
+			m_pwDatabase.RootGroup.TraverseTree(TraversalMethod.PreOrder, gh, eh);
+			if(bCustomData) return FileVersion32;
+
+			return FileVersion32_3; // KDBX 3.1 is sufficient
+		}
+
+		private void ComputeKeys(out byte[] pbCipherKey, int cbCipherKey,
+			out byte[] pbHmacKey64)
+		{
+			byte[] pbCmp = new byte[32 + 32 + 1];
+			try
+			{
+				Debug.Assert(m_pbMasterSeed != null);
+				if(m_pbMasterSeed == null)
+					throw new ArgumentNullException("m_pbMasterSeed");
+				Debug.Assert(m_pbMasterSeed.Length == 32);
+				if(m_pbMasterSeed.Length != 32)
+					throw new FormatException(KLRes.MasterSeedLengthInvalid);
+				Array.Copy(m_pbMasterSeed, 0, pbCmp, 0, 32);
+
+				Debug.Assert(m_pwDatabase != null);
+				Debug.Assert(m_pwDatabase.MasterKey != null);
+				ProtectedBinary pbinUser = m_pwDatabase.MasterKey.GenerateKey32(
+					m_pwDatabase.KdfParameters);
+				Debug.Assert(pbinUser != null);
+				if(pbinUser == null)
+					throw new SecurityException(KLRes.InvalidCompositeKey);
+				byte[] pUserKey32 = pbinUser.ReadData();
+				if((pUserKey32 == null) || (pUserKey32.Length != 32))
+					throw new SecurityException(KLRes.InvalidCompositeKey);
+				Array.Copy(pUserKey32, 0, pbCmp, 32, 32);
+				MemUtil.ZeroByteArray(pUserKey32);
+
+				pbCipherKey = CryptoUtil.ResizeKey(pbCmp, 0, 64, cbCipherKey);
+
+				pbCmp[64] = 1;
+				using(SHA512Managed h = new SHA512Managed())
+				{
+					pbHmacKey64 = h.ComputeHash(pbCmp);
+				}
+			}
+			finally { MemUtil.ZeroByteArray(pbCmp); }
+		}
+
+		private ICipherEngine GetCipher(out int cbEncKey, out int cbEncIV)
+		{
+			PwUuid pu = m_pwDatabase.DataCipherUuid;
+			ICipherEngine iCipher = CipherPool.GlobalPool.GetCipher(pu);
+			if(iCipher == null) // CryptographicExceptions are translated to "file corrupted"
+				throw new Exception(KLRes.FileUnknownCipher +
+					MessageService.NewParagraph + KLRes.FileNewVerOrPlgReq +
+					MessageService.NewParagraph + "UUID: " + pu.ToHexString() + ".");
+
+			ICipherEngine2 iCipher2 = (iCipher as ICipherEngine2);
+			if(iCipher2 != null)
+			{
+				cbEncKey = iCipher2.KeyLength;
+				if(cbEncKey < 0) throw new InvalidOperationException("EncKey.Length");
+
+				cbEncIV = iCipher2.IVLength;
+				if(cbEncIV < 0) throw new InvalidOperationException("EncIV.Length");
+			}
+			else
+			{
+				cbEncKey = 32;
+				cbEncIV = 16;
+			}
+
+			return iCipher;
+		}
+
+		private Stream EncryptStream(Stream s, ICipherEngine iCipher,
+			byte[] pbKey, int cbIV, bool bEncrypt)
+		{
+			byte[] pbIV = (m_pbEncryptionIV ?? MemUtil.EmptyByteArray);
+			if(pbIV.Length != cbIV)
+			{
+				Debug.Assert(false);
+				throw new Exception(KLRes.FileCorrupted);
+			}
+
+			if(bEncrypt)
+				return iCipher.EncryptStream(s, pbKey, pbIV);
+			return iCipher.DecryptStream(s, pbKey, pbIV);
+		}
+
+		private byte[] ComputeHeaderHmac(byte[] pbHeader, byte[] pbKey)
+		{
+			byte[] pbHeaderHmac;
+			byte[] pbBlockKey = HmacBlockStream.GetHmacKey64(
+				pbKey, ulong.MaxValue);
+			using(HMACSHA256 h = new HMACSHA256(pbBlockKey))
+			{
+				pbHeaderHmac = h.ComputeHash(pbHeader);
+			}
+			MemUtil.ZeroByteArray(pbBlockKey);
+
+			return pbHeaderHmac;
+		}
+
+		private void CloseStreams(List<Stream> lStreams)
+		{
+			if(lStreams == null) { Debug.Assert(false); return; }
+
+			// Typically, closing a stream also closes its base
+			// stream; however, there may be streams that do not
+			// do this (e.g. some cipher plugin), thus for safety
+			// we close all streams manually, from the innermost
+			// to the outermost
+
+			for(int i = lStreams.Count - 1; i >= 0; --i)
+			{
+				// Check for duplicates
+				Debug.Assert((lStreams.IndexOf(lStreams[i]) == i) &&
+					(lStreams.LastIndexOf(lStreams[i]) == i));
+
+				try { lStreams[i].Close(); }
+				catch(Exception) { Debug.Assert(false); }
+			}
+
+			// Do not clear the list
 		}
 
 		private void BinPoolBuild(PwGroup pgDataSource)

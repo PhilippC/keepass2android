@@ -58,13 +58,17 @@ namespace KeePassLib.Serialization
 			DeletedObject,
 			Group,
 			GroupTimes,
+			GroupCustomData,
+			GroupCustomDataItem,
 			Entry,
 			EntryTimes,
 			EntryString,
 			EntryBinary,
 			EntryAutoType,
 			EntryAutoTypeItem,
-			EntryHistory
+			EntryHistory,
+			EntryCustomData,
+			EntryCustomDataItem
 		}
 
 		private bool m_bReadNextNode = true;
@@ -84,10 +88,14 @@ namespace KeePassLib.Serialization
 		private byte[] m_pbCustomIconData = null;
 		private string m_strCustomDataKey = null;
 		private string m_strCustomDataValue = null;
+		private string m_strGroupCustomDataKey = null;
+		private string m_strGroupCustomDataValue = null;
+		private string m_strEntryCustomDataKey = null;
+		private string m_strEntryCustomDataValue = null;
 
-		private void ReadXmlStreamed(Stream readerStream, Stream sParentStream)
+		private void ReadXmlStreamed(Stream sXml, Stream sParent)
 		{
-			ReadDocumentStreamed(CreateXmlReader(readerStream), sParentStream);
+			ReadDocumentStreamed(CreateXmlReader(sXml), sParent);
 		}
 
 		internal static XmlReaderSettings CreateStdXmlReaderSettings()
@@ -215,15 +223,25 @@ namespace KeePassLib.Serialization
 						ReadString(xr); // Ignore
 					else if(xr.Name == ElemHeaderHash)
 					{
+						// The header hash is typically only stored in
+						// KDBX <= 3.1 files, not in KDBX >= 4 files
+						// (here, the header is verified via a HMAC),
+						// but we also support it for KDBX >= 4 files
+						// (i.e. if it's present, we check it)
+
 						string strHash = ReadString(xr);
 						if(!string.IsNullOrEmpty(strHash) && (m_pbHashOfHeader != null) &&
 							!m_bRepairMode)
 						{
+							Debug.Assert(m_uFileVersion <= FileVersion32_3);
+
 							byte[] pbHash = Convert.FromBase64String(strHash);
 							if(!MemUtil.ArraysEqual(pbHash, m_pbHashOfHeader))
 								throw new IOException(KLRes.FileCorrupted);
 						}
 					}
+					else if(xr.Name == ElemSettingsChanged)
+						m_pwDatabase.SettingsChanged = ReadTime(xr);
 					else if(xr.Name == ElemDbName)
 						m_pwDatabase.Name = ReadString(xr);
 					else if(xr.Name == ElemDbNameChanged)
@@ -383,6 +401,8 @@ namespace KeePassLib.Serialization
 						m_ctxGroup.EnableSearching = StrUtil.StringToBoolEx(ReadString(xr));
 					else if(xr.Name == ElemLastTopVisibleEntry)
 						m_ctxGroup.LastTopVisibleEntry = ReadUuid(xr);
+					else if(xr.Name == ElemCustomData)
+						return SwitchContext(ctx, KdbContext.GroupCustomData, xr);
 					else if(xr.Name == ElemGroup)
 					{
 						m_ctxGroup = new PwGroup(false, false);
@@ -400,6 +420,20 @@ namespace KeePassLib.Serialization
 						m_bEntryInHistory = false;
 						return SwitchContext(ctx, KdbContext.Entry, xr);
 					}
+					else ReadUnknown(xr);
+					break;
+
+				case KdbContext.GroupCustomData:
+					if(xr.Name == ElemStringDictExItem)
+						return SwitchContext(ctx, KdbContext.GroupCustomDataItem, xr);
+					else ReadUnknown(xr);
+					break;
+
+				case KdbContext.GroupCustomDataItem:
+					if(xr.Name == ElemKey)
+						m_strGroupCustomDataKey = ReadString(xr);
+					else if(xr.Name == ElemValue)
+						m_strGroupCustomDataValue = ReadString(xr);
 					else ReadUnknown(xr);
 					break;
 
@@ -434,6 +468,8 @@ namespace KeePassLib.Serialization
 						return SwitchContext(ctx, KdbContext.EntryBinary, xr);
 					else if(xr.Name == ElemAutoType)
 						return SwitchContext(ctx, KdbContext.EntryAutoType, xr);
+					else if(xr.Name == ElemCustomData)
+						return SwitchContext(ctx, KdbContext.EntryCustomData, xr);
 					else if(xr.Name == ElemHistory)
 					{
 						Debug.Assert(m_bEntryInHistory == false);
@@ -505,6 +541,20 @@ namespace KeePassLib.Serialization
 						m_ctxATName = ReadString(xr);
 					else if(xr.Name == ElemKeystrokeSequence)
 						m_ctxATSeq = ReadString(xr);
+					else ReadUnknown(xr);
+					break;
+
+				case KdbContext.EntryCustomData:
+					if(xr.Name == ElemStringDictExItem)
+						return SwitchContext(ctx, KdbContext.EntryCustomDataItem, xr);
+					else ReadUnknown(xr);
+					break;
+
+				case KdbContext.EntryCustomDataItem:
+					if(xr.Name == ElemKey)
+						m_strEntryCustomDataKey = ReadString(xr);
+					else if(xr.Name == ElemValue)
+						m_strEntryCustomDataValue = ReadString(xr);
 					else ReadUnknown(xr);
 					break;
 
@@ -609,6 +659,19 @@ namespace KeePassLib.Serialization
 			}
 			else if((ctx == KdbContext.GroupTimes) && (xr.Name == ElemTimes))
 				return KdbContext.Group;
+			else if((ctx == KdbContext.GroupCustomData) && (xr.Name == ElemCustomData))
+				return KdbContext.Group;
+			else if((ctx == KdbContext.GroupCustomDataItem) && (xr.Name == ElemStringDictExItem))
+			{
+				if((m_strGroupCustomDataKey != null) && (m_strGroupCustomDataValue != null))
+					m_ctxGroup.CustomData.Set(m_strGroupCustomDataKey, m_strGroupCustomDataValue);
+				else { Debug.Assert(false); }
+
+				m_strGroupCustomDataKey = null;
+				m_strGroupCustomDataValue = null;
+
+				return KdbContext.GroupCustomData;
+			}
 			else if((ctx == KdbContext.Entry) && (xr.Name == ElemEntry))
 			{
 				// Create new UUID if absent
@@ -658,6 +721,19 @@ namespace KeePassLib.Serialization
 				m_ctxATName = null;
 				m_ctxATSeq = null;
 				return KdbContext.EntryAutoType;
+			}
+			else if((ctx == KdbContext.EntryCustomData) && (xr.Name == ElemCustomData))
+				return KdbContext.Entry;
+			else if((ctx == KdbContext.EntryCustomDataItem) && (xr.Name == ElemStringDictExItem))
+			{
+				if((m_strEntryCustomDataKey != null) && (m_strEntryCustomDataValue != null))
+					m_ctxEntry.CustomData.Set(m_strEntryCustomDataKey, m_strEntryCustomDataValue);
+				else { Debug.Assert(false); }
+
+				m_strEntryCustomDataKey = null;
+				m_strEntryCustomDataValue = null;
+
+				return KdbContext.EntryCustomData;
 			}
 			else if((ctx == KdbContext.EntryHistory) && (xr.Name == ElemHistory))
 			{
@@ -883,7 +959,7 @@ namespace KeePassLib.Serialization
 						byte[] pbEncrypted;
 						if(strEncrypted.Length > 0)
 							pbEncrypted = Convert.FromBase64String(strEncrypted);
-						else pbEncrypted = new byte[0];
+						else pbEncrypted = MemUtil.EmptyByteArray;
 
 						byte[] pbPad = m_randomStream.GetRandomBytes((uint)pbEncrypted.Length);
 

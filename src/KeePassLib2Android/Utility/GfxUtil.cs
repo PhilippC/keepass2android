@@ -214,14 +214,11 @@ namespace KeePassLib.Utility
 			const int SizeICONDIR = 6;
 			const int SizeICONDIRENTRY = 16;
 
-			Debug.Assert(BitConverter.ToInt32(new byte[] { 1, 2, 3, 4 },
-				0) == 0x04030201); // Little-endian
-
 			if(pb.Length < SizeICONDIR) return null;
-			if(BitConverter.ToUInt16(pb, 0) != 0) return null; // Reserved, 0
-			if(BitConverter.ToUInt16(pb, 2) != 1) return null; // ICO type, 1
+			if(MemUtil.BytesToUInt16(pb, 0) != 0) return null; // Reserved, 0
+			if(MemUtil.BytesToUInt16(pb, 2) != 1) return null; // ICO type, 1
 
-			int n = BitConverter.ToUInt16(pb, 4);
+			int n = MemUtil.BytesToUInt16(pb, 4);
 			if(n < 0) { Debug.Assert(false); return null; }
 
 			int cbDir = SizeICONDIR + (n * SizeICONDIRENTRY);
@@ -235,10 +232,10 @@ namespace KeePassLib.Utility
 				int h = pb[iOffset + 1];
 				if((w < 0) || (h < 0)) { Debug.Assert(false); return null; }
 
-				int cb = BitConverter.ToInt32(pb, iOffset + 8);
+				int cb = MemUtil.BytesToInt32(pb, iOffset + 8);
 				if(cb <= 0) return null; // Data must have header (even BMP)
 
-				int p = BitConverter.ToInt32(pb, iOffset + 12);
+				int p = MemUtil.BytesToInt32(pb, iOffset + 12);
 				if(p < cbDir) return null;
 				if((p + cb) > pb.Length) return null;
 

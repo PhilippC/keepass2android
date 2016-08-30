@@ -40,12 +40,17 @@ namespace KeePassLib.Cryptography.Cipher
 		{
 			get
 			{
-				if(m_poolGlobal != null) return m_poolGlobal;
+				CipherPool cp = m_poolGlobal;
+				if(cp == null)
+				{
+					cp = new CipherPool();
+					cp.AddCipher(new StandardAesEngine());
+					cp.AddCipher(new ChaCha20Engine());
 
-				m_poolGlobal = new CipherPool();
-				m_poolGlobal.AddCipher(new StandardAesEngine());
+					m_poolGlobal = cp;
+				}
 
-				return m_poolGlobal;
+				return cp;
 			}
 		}
 

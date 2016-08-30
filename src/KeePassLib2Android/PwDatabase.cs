@@ -29,6 +29,7 @@ using System.Drawing;
 using KeePassLib.Collections;
 using KeePassLib.Cryptography;
 using KeePassLib.Cryptography.Cipher;
+using KeePassLib.Cryptography.KeyDerivation;
 using KeePassLib.Delegates;
 using KeePassLib.Interfaces;
 using KeePassLib.Keys;
@@ -50,13 +51,14 @@ namespace KeePassLib
 
 		private static bool m_bPrimaryCreated = false;
 
-		// Initializations see Clear()
+		// Initializations: see Clear()
 		private PwGroup m_pgRootGroup = null;
 		private PwObjectList<PwDeletedObject> m_vDeletedObjects = new PwObjectList<PwDeletedObject>();
 
 		private PwUuid m_uuidDataCipher = StandardAesEngine.AesUuid;
 		private PwCompressionAlgorithm m_caCompression = PwCompressionAlgorithm.GZip;
-		private ulong m_uKeyEncryptionRounds = PwDefs.DefaultKeyEncryptionRounds;
+		// private ulong m_uKeyEncryptionRounds = PwDefs.DefaultKeyEncryptionRounds;
+		private KdfParameters m_kdfParams = KdfPool.GetDefaultParameters();
 
 		private CompositeKey m_pwUserKey = null;
 		private MemoryProtectionConfig m_memProtConfig = new MemoryProtectionConfig();
@@ -64,6 +66,7 @@ namespace KeePassLib
 		private List<PwCustomIcon> m_vCustomIcons = new List<PwCustomIcon>();
 		private bool m_bUINeedsIconUpdate = true;
 
+		private DateTime m_dtSettingsChanged = PwDefs.DtDefaultNow;
 		private string m_strName = string.Empty;
 		private DateTime m_dtNameChanged = PwDefs.DtDefaultNow;
 		private string m_strDesc = string.Empty;
@@ -93,7 +96,8 @@ namespace KeePassLib
 		private int m_nHistoryMaxItems = DefaultHistoryMaxItems;
 		private long m_lHistoryMaxSize = DefaultHistoryMaxSize; // In bytes
 
-		private StringDictionaryEx m_vCustomData = new StringDictionaryEx();
+		private StringDictionaryEx m_dCustomData = new StringDictionaryEx();
+		private VariantDictionary m_dPublicCustomData = new VariantDictionary();
 
 		private byte[] m_pbHashOfFileOnDisk = null;
 		private byte[] m_pbHashOfLastIO = null;
@@ -166,6 +170,12 @@ namespace KeePassLib
 
 				m_pwUserKey = value;
 			}
+		}
+
+		public DateTime SettingsChanged
+		{
+			get { return m_dtSettingsChanged; }
+			set { m_dtSettingsChanged = value; }
 		}
 
 		/// <summary>
@@ -281,14 +291,23 @@ namespace KeePassLib
 			set { m_caCompression = value; }
 		}
 
-		/// <summary>
-		/// Number of key transformation rounds (in order to make dictionary
-		/// attacks harder).
-		/// </summary>
-		public ulong KeyEncryptionRounds
+		// /// <summary>
+		// /// Number of key transformation rounds (KDF parameter).
+		// /// </summary>
+		// public ulong KeyEncryptionRounds
+		// {
+		//	get { return m_uKeyEncryptionRounds; }
+		//	set { m_uKeyEncryptionRounds = value; }
+		// }
+
+		public KdfParameters KdfParameters
 		{
-			get { return m_uKeyEncryptionRounds; }
-			set { m_uKeyEncryptionRounds = value; }
+			get { return m_kdfParams; }
+			set
+			{
+				if(value == null) throw new ArgumentNullException("value");
+				m_kdfParams = value;
+			}
 		}
 
 		/// <summary>
@@ -408,14 +427,37 @@ namespace KeePassLib
 		/// <summary>
 		/// Custom data container that can be used by plugins to store
 		/// own data in KeePass databases.
+		/// The data is stored in the encrypted part of encrypted
+		/// database files.
+		/// Use unique names for your items, e.g. "PluginName_ItemName".
 		/// </summary>
 		public StringDictionaryEx CustomData
 		{
-			get { return m_vCustomData; }
-			set
+			get { return m_dCustomData; }
+			internal set
 			{
-				Debug.Assert(value != null); if(value == null) throw new ArgumentNullException("value");
-				m_vCustomData = value;
+				if(value == null) { Debug.Assert(false); throw new ArgumentNullException("value"); }
+				m_dCustomData = value;
+			}
+		}
+
+		/// <summary>
+		/// Custom data container that can be used by plugins to store
+		/// own data in KeePass databases.
+		/// The data is stored in the *unencrypted* part of database files,
+		/// and it is not supported by all file formats (e.g. supported by KDBX,
+		/// unsupported by XML).
+		/// It is highly recommended to use <c>CustomData</c> instead,
+		/// if possible.
+		/// Use unique names for your items, e.g. "PluginName_ItemName".
+		/// </summary>
+		public VariantDictionary PublicCustomData
+		{
+			get { return m_dPublicCustomData; }
+			internal set
+			{
+				if(value == null) { Debug.Assert(false); throw new ArgumentNullException("value"); }
+				m_dPublicCustomData = value;
 			}
 		}
 
@@ -484,7 +526,8 @@ namespace KeePassLib
 
 			m_uuidDataCipher = StandardAesEngine.AesUuid;
 			m_caCompression = PwCompressionAlgorithm.GZip;
-			m_uKeyEncryptionRounds = PwDefs.DefaultKeyEncryptionRounds;
+			// m_uKeyEncryptionRounds = PwDefs.DefaultKeyEncryptionRounds;
+			m_kdfParams = KdfPool.GetDefaultParameters();
 
 			m_pwUserKey = null;
 			m_memProtConfig = new MemoryProtectionConfig();
@@ -494,6 +537,7 @@ namespace KeePassLib
 
 			DateTime dtNow = DateTime.Now;
 
+			m_dtSettingsChanged = dtNow;
 			m_strName = string.Empty;
 			m_dtNameChanged = dtNow;
 			m_strDesc = string.Empty;
@@ -523,7 +567,8 @@ namespace KeePassLib
 			m_nHistoryMaxItems = DefaultHistoryMaxItems;
 			m_lHistoryMaxSize = DefaultHistoryMaxSize;
 
-			m_vCustomData = new StringDictionaryEx();
+			m_dCustomData = new StringDictionaryEx();
+			m_dPublicCustomData = new VariantDictionary();
 
 			m_pbHashOfFileOnDisk = null;
 			m_pbHashOfLastIO = null;
@@ -1393,6 +1438,14 @@ namespace KeePassLib
 				return;
 
 			bool bForce = (mm == PwMergeMethod.OverwriteExisting);
+			bool bSourceNewer = (pdSource.m_dtSettingsChanged > m_dtSettingsChanged);
+
+			if(bForce || bSourceNewer)
+			{
+				m_dtSettingsChanged = pdSource.m_dtSettingsChanged;
+
+				m_clr = pdSource.m_clr;
+			}
 
 			if(bForce || (pdSource.m_dtNameChanged > m_dtNameChanged))
 			{
@@ -1411,8 +1464,6 @@ namespace KeePassLib
 				m_strDefaultUserName = pdSource.m_strDefaultUserName;
 				m_dtDefaultUserChanged = pdSource.m_dtDefaultUserChanged;
 			}
-
-			if(bForce) m_clr = pdSource.m_clr;
 
 			PwUuid pwPrefBin = m_pwRecycleBin, pwAltBin = pdSource.m_pwRecycleBin;
 			if(bForce || (pdSource.m_dtRecycleBinChanged > m_dtRecycleBinChanged))
@@ -1440,6 +1491,16 @@ namespace KeePassLib
 			else if(m_pgRootGroup.FindGroup(pwAltTmp, true) != null)
 				m_pwEntryTemplatesGroup = pwAltTmp;
 			else m_pwEntryTemplatesGroup = PwUuid.Zero; // Debug.Assert(false);
+
+			foreach(KeyValuePair<string, string> kvp in pdSource.m_dCustomData)
+			{
+				if(bSourceNewer || !m_dCustomData.Exists(kvp.Key))
+					m_dCustomData.Set(kvp.Key, kvp.Value);
+			}
+
+			VariantDictionary vdLocal = m_dPublicCustomData; // Backup
+			m_dPublicCustomData = (VariantDictionary)pdSource.m_dPublicCustomData.Clone();
+			if(!bSourceNewer) vdLocal.CopyTo(m_dPublicCustomData); // Merge
 		}
 
 		private void MergeEntryHistory(PwEntry pe, PwEntry peSource,

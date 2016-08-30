@@ -34,7 +34,7 @@ namespace KeePassLib.Cryptography
 	public sealed class HashingStreamEx : Stream
 	{
 		private Stream m_sBaseStream;
-		private bool m_bWriting;
+		private readonly bool m_bWriting;
 		private HashAlgorithm m_hash;
 
 		private byte[] m_pbFinalHash = null;
@@ -67,7 +67,7 @@ namespace KeePassLib.Cryptography
 		public override long Position
 		{
 			get { return m_sBaseStream.Position; }
-			set { throw new NotSupportedException(); }
+			set { Debug.Assert(false); throw new NotSupportedException(); }
 		}
 
 		public HashingStreamEx(Stream sBaseStream, bool bWriting, HashAlgorithm hashAlgorithm)
@@ -114,7 +114,7 @@ namespace KeePassLib.Cryptography
 			{
 				try
 				{
-					m_hash.TransformFinalBlock(new byte[0], 0, 0);
+					m_hash.TransformFinalBlock(MemUtil.EmptyByteArray, 0, 0);
 
 					m_pbFinalHash = m_hash.Hash;
 				}

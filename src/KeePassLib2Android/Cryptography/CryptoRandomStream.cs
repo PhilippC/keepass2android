@@ -25,6 +25,7 @@ using System.Security.Cryptography;
 #endif
 
 using KeePassLib.Cryptography.Cipher;
+using KeePassLib.Utility;
 
 namespace KeePassLib.Cryptography
 {
@@ -40,6 +41,7 @@ namespace KeePassLib.Cryptography
 
 		/// <summary>
 		/// A variant of the ARCFour algorithm (RC4 incompatible).
+		/// Insecure; for backward compatibility only.
 		/// </summary>
 		ArcFourVariant = 1,
 
@@ -48,7 +50,12 @@ namespace KeePassLib.Cryptography
 		/// </summary>
 		Salsa20 = 2,
 
-		Count = 3
+		/// <summary>
+		/// ChaCha20 stream cipher algorithm.
+		/// </summary>
+		ChaCha20 = 3,
+
+		Count = 4
 	}
 
 	/// <summary>
@@ -59,45 +66,68 @@ namespace KeePassLib.Cryptography
 	/// </summary>
 	public sealed class CryptoRandomStream
 	{
-		private CrsAlgorithm m_crsAlgorithm;
+		private readonly CrsAlgorithm m_crsAlgorithm;
 
 		private byte[] m_pbState = null;
 		private byte m_i = 0;
 		private byte m_j = 0;
 
 		private Salsa20Cipher m_salsa20 = null;
+		private ChaCha20Cipher m_chacha20 = null;
 
 		/// <summary>
 		/// Construct a new cryptographically secure random stream object.
 		/// </summary>
-		/// <param name="genAlgorithm">Algorithm to use.</param>
+		/// <param name="a">Algorithm to use.</param>
 		/// <param name="pbKey">Initialization key. Must not be <c>null</c> and
 		/// must contain at least 1 byte.</param>
-		/// <exception cref="System.ArgumentNullException">Thrown if the
-		/// <paramref name="pbKey" /> parameter is <c>null</c>.</exception>
-		/// <exception cref="System.ArgumentException">Thrown if the
-		/// <paramref name="pbKey" /> parameter contains no bytes or the
-		/// algorithm is unknown.</exception>
-		public CryptoRandomStream(CrsAlgorithm genAlgorithm, byte[] pbKey)
+		public CryptoRandomStream(CrsAlgorithm a, byte[] pbKey)
 		{
-			m_crsAlgorithm = genAlgorithm;
+			if(pbKey == null) { Debug.Assert(false); throw new ArgumentNullException("pbKey"); }
 
-			Debug.Assert(pbKey != null); if(pbKey == null) throw new ArgumentNullException("pbKey");
+			int cbKey = pbKey.Length;
+			if(cbKey <= 0)
+			{
+				Debug.Assert(false); // Need at least one byte
+				throw new ArgumentOutOfRangeException("pbKey");
+			}
 
-			uint uKeyLen = (uint)pbKey.Length;
-			Debug.Assert(uKeyLen != 0); if(uKeyLen == 0) throw new ArgumentException();
+			m_crsAlgorithm = a;
 
-			if(genAlgorithm == CrsAlgorithm.ArcFourVariant)
+			if(a == CrsAlgorithm.ChaCha20)
+			{
+				byte[] pbKey32 = new byte[32];
+				byte[] pbIV12 = new byte[12];
+
+				using(SHA512Managed h = new SHA512Managed())
+				{
+					byte[] pbHash = h.ComputeHash(pbKey);
+					Array.Copy(pbHash, pbKey32, 32);
+					Array.Copy(pbHash, 32, pbIV12, 0, 12);
+					MemUtil.ZeroByteArray(pbHash);
+				}
+
+				m_chacha20 = new ChaCha20Cipher(pbKey32, pbIV12, true);
+			}
+			else if(a == CrsAlgorithm.Salsa20)
+			{
+				byte[] pbKey32 = CryptoUtil.HashSha256(pbKey);
+				byte[] pbIV8 = new byte[8] { 0xE8, 0x30, 0x09, 0x4B,
+					0x97, 0x20, 0x5D, 0x2A }; // Unique constant
+
+				m_salsa20 = new Salsa20Cipher(pbKey32, pbIV8);
+			}
+			else if(a == CrsAlgorithm.ArcFourVariant)
 			{
 				// Fill the state linearly
 				m_pbState = new byte[256];
-				for(uint w = 0; w < 256; ++w) m_pbState[w] = (byte)w;
+				for(int w = 0; w < 256; ++w) m_pbState[w] = (byte)w;
 
 				unchecked
 				{
 					byte j = 0, t;
-					uint inxKey = 0;
-					for(uint w = 0; w < 256; ++w) // Key setup
+					int inxKey = 0;
+					for(int w = 0; w < 256; ++w) // Key setup
 					{
 						j += (byte)(m_pbState[w] + pbKey[inxKey]);
 
@@ -106,25 +136,16 @@ namespace KeePassLib.Cryptography
 						m_pbState[j] = t;
 
 						++inxKey;
-						if(inxKey >= uKeyLen) inxKey = 0;
+						if(inxKey >= cbKey) inxKey = 0;
 					}
 				}
 
 				GetRandomBytes(512); // Increases security, see cryptanalysis
 			}
-			else if(genAlgorithm == CrsAlgorithm.Salsa20)
-			{
-				SHA256Managed sha256 = new SHA256Managed();
-				byte[] pbKey32 = sha256.ComputeHash(pbKey);
-				byte[] pbIV = new byte[8] { 0xE8, 0x30, 0x09, 0x4B,
-					0x97, 0x20, 0x5D, 0x2A }; // Unique constant
-
-				m_salsa20 = new Salsa20Cipher(pbKey32, pbIV);
-			}
 			else // Unknown algorithm
 			{
 				Debug.Assert(false);
-				throw new ArgumentException();
+				throw new ArgumentOutOfRangeException("a");
 			}
 		}
 
@@ -135,15 +156,23 @@ namespace KeePassLib.Cryptography
 		/// <returns>Returns <paramref name="uRequestedCount" /> random bytes.</returns>
 		public byte[] GetRandomBytes(uint uRequestedCount)
 		{
-			if(uRequestedCount == 0) return new byte[0];
+			if(uRequestedCount == 0) return MemUtil.EmptyByteArray;
 
-			byte[] pbRet = new byte[uRequestedCount];
+			if(uRequestedCount > (uint)int.MaxValue)
+				throw new ArgumentOutOfRangeException("uRequestedCount");
+			int cb = (int)uRequestedCount;
 
-			if(m_crsAlgorithm == CrsAlgorithm.ArcFourVariant)
+			byte[] pbRet = new byte[cb];
+
+			if(m_crsAlgorithm == CrsAlgorithm.ChaCha20)
+				m_chacha20.Encrypt(pbRet, 0, cb);
+			else if(m_crsAlgorithm == CrsAlgorithm.Salsa20)
+				m_salsa20.Encrypt(pbRet, 0, cb);
+			else if(m_crsAlgorithm == CrsAlgorithm.ArcFourVariant)
 			{
 				unchecked
 				{
-					for(uint w = 0; w < uRequestedCount; ++w)
+					for(int w = 0; w < cb; ++w)
 					{
 						++m_i;
 						m_j += m_pbState[m_i];
@@ -157,8 +186,6 @@ namespace KeePassLib.Cryptography
 					}
 				}
 			}
-			else if(m_crsAlgorithm == CrsAlgorithm.Salsa20)
-				m_salsa20.Encrypt(pbRet, pbRet.Length, false);
 			else { Debug.Assert(false); }
 
 			return pbRet;
@@ -167,14 +194,7 @@ namespace KeePassLib.Cryptography
 		public ulong GetRandomUInt64()
 		{
 			byte[] pb = GetRandomBytes(8);
-
-			unchecked
-			{
-				return ((ulong)pb[0]) | ((ulong)pb[1] << 8) |
-					((ulong)pb[2] << 16) | ((ulong)pb[3] << 24) |
-					((ulong)pb[4] << 32) | ((ulong)pb[5] << 40) |
-					((ulong)pb[6] << 48) | ((ulong)pb[7] << 56);
-			}
+			return MemUtil.BytesToUInt64(pb);
 		}
 
 #if CRSBENCHMARK

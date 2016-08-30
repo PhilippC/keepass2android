@@ -978,13 +978,12 @@ namespace KeePassLib.Utility
 		public static bool IsHexString(string str, bool bStrict)
 		{
 			if(str == null) throw new ArgumentNullException("str");
-			if(str.Length == 0) return true;
 
 			foreach(char ch in str)
 			{
 				if((ch >= '0') && (ch <= '9')) continue;
-				if((ch >= 'a') && (ch <= 'z')) continue;
-				if((ch >= 'A') && (ch <= 'Z')) continue;
+				if((ch >= 'a') && (ch <= 'f')) continue;
+				if((ch >= 'A') && (ch <= 'F')) continue;
 
 				if(bStrict) return false;
 
@@ -997,8 +996,31 @@ namespace KeePassLib.Utility
 			return true;
 		}
 
+		public static bool IsHexString(byte[] pbUtf8, bool bStrict)
+		{
+			if(pbUtf8 == null) throw new ArgumentNullException("pbUtf8");
+
+			for(int i = 0; i < pbUtf8.Length; ++i)
+			{
+				byte bt = pbUtf8[i];
+				if((bt >= (byte)'0') && (bt <= (byte)'9')) continue;
+				if((bt >= (byte)'a') && (bt <= (byte)'f')) continue;
+				if((bt >= (byte)'A') && (bt <= (byte)'F')) continue;
+
+				if(bStrict) return false;
+
+				if((bt == (byte)' ') || (bt == (byte)'\t') ||
+					(bt == (byte)'\r') || (bt == (byte)'\n'))
+					continue;
+
+				return false;
+			}
+
+			return true;
+		}
+
 #if !KeePassLibSD
-		private static readonly char[] m_vPatternPartsSep = new char[]{ '*' };
+		private static readonly char[] m_vPatternPartsSep = new char[] { '*' };
 		public static bool SimplePatternMatch(string strPattern, string strText,
 			StringComparison sc)
 		{

@@ -27,10 +27,10 @@ using System.Xml.Serialization;
 
 #if !KeePassUAP
 using System.Drawing;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 #endif
 
+using KeePassLib.Cryptography;
 using KeePassLib.Utility;
 
 namespace KeePassLib.Translation
@@ -333,9 +333,7 @@ namespace KeePassLib.Translation
 			WriteControlDependentParams(sb, c);
 
 			byte[] pb = StrUtil.Utf8.GetBytes(sb.ToString());
-
-			SHA256Managed sha256 = new SHA256Managed();
-			byte[] pbSha = sha256.ComputeHash(pb);
+			byte[] pbSha = CryptoUtil.HashSha256(pb);
 
 			// Also see MatchHash
 			return "v1:" + Convert.ToBase64String(pbSha, 0, 3,

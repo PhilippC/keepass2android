@@ -21,10 +21,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 
-#if !KeePassUAP
-using System.Security.Cryptography;
-#endif
-
+using KeePassLib.Cryptography;
 using KeePassLib.Security;
 using KeePassLib.Utility;
 
@@ -75,8 +72,7 @@ namespace KeePassLib.Keys
 			Debug.Assert(ValidatePassword(pbPasswordUtf8));
 #endif
 
-			SHA256Managed sha256 = new SHA256Managed();
-			byte[] pbRaw = sha256.ComputeHash(pbPasswordUtf8);
+			byte[] pbRaw = CryptoUtil.HashSha256(pbPasswordUtf8);
 
 			m_psPassword = new ProtectedString(true, pbPasswordUtf8);
 			m_pbKeyData = new ProtectedBinary(true, pbRaw);

@@ -67,6 +67,8 @@ namespace KeePassLib
 
 		private PwUuid m_pwLastTopVisibleEntry = PwUuid.Zero;
 
+		private StringDictionaryEx m_dCustomData = new StringDictionaryEx();
+
 		/// <summary>
 		/// UUID of this group.
 		/// </summary>
@@ -281,6 +283,23 @@ namespace KeePassLib
 			}
 		}
 
+		/// <summary>
+		/// Custom data container that can be used by plugins to store
+		/// own data in KeePass groups.
+		/// The data is stored in the encrypted part of encrypted
+		/// database files.
+		/// Use unique names for your items, e.g. "PluginName_ItemName".
+		/// </summary>
+		public StringDictionaryEx CustomData
+		{
+			get { return m_dCustomData; }
+			internal set
+			{
+				if(value == null) { Debug.Assert(false); throw new ArgumentNullException("value"); }
+				m_dCustomData = value;
+			}
+		}
+
 		public static EventHandler<ObjectTouchedEventArgs> GroupTouched;
 		public EventHandler<ObjectTouchedEventArgs> Touched;
 
@@ -376,6 +395,8 @@ namespace KeePassLib
 
 			pg.m_pwLastTopVisibleEntry = m_pwLastTopVisibleEntry;
 
+			pg.m_dCustomData = m_dCustomData.CloneDeep();
+
 			return pg;
 		}
 
@@ -444,6 +465,8 @@ namespace KeePassLib
 
 			if(!m_pwLastTopVisibleEntry.Equals(pg.m_pwLastTopVisibleEntry)) return false;
 
+			if(!m_dCustomData.Equals(pg.m_dCustomData)) return false;
+
 			if((pwOpt & PwCompareOptions.PropertiesOnly) == PwCompareOptions.None)
 			{
 				if(m_listEntries.UCount != pg.m_listEntries.UCount) return false;
@@ -509,6 +532,8 @@ namespace KeePassLib
 			m_bEnableSearching = pgTemplate.m_bEnableSearching;
 
 			m_pwLastTopVisibleEntry = pgTemplate.m_pwLastTopVisibleEntry;
+
+			m_dCustomData = pgTemplate.m_dCustomData.CloneDeep();
 		}
 
 		/// <summary>
