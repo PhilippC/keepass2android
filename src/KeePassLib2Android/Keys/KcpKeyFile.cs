@@ -1,8 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
-  
-  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,12 +18,15 @@
 */
 
 using System;
-using System.Text;
-using System.IO;
-using System.Xml;
-using System.Security;
-using System.Security.Cryptography;
 using System.Diagnostics;
+using System.IO;
+using System.Security;
+using System.Text;
+using System.Xml;
+
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Cryptography;
 using KeePassLib.Resources;
@@ -103,12 +104,12 @@ namespace KeePassLib.Keys
 			if (pbFileData == null) throw new Java.IO.FileNotFoundException();
 			m_pbFileData = new ProtectedBinary(true, pbFileData);
 
-			if (bThrowIfDbFile && (pbFileData.Length >= 8))
+			if(bThrowIfDbFile && (pbFileData.Length >= 8))
 			{
 				uint uSig1 = MemUtil.BytesToUInt32(MemUtil.Mid(pbFileData, 0, 4));
 				uint uSig2 = MemUtil.BytesToUInt32(MemUtil.Mid(pbFileData, 4, 4));
 
-				if (((uSig1 == KdbxFile.FileSignature1) &&
+				if(((uSig1 == KdbxFile.FileSignature1) &&
 					(uSig2 == KdbxFile.FileSignature2)) ||
 					((uSig1 == KdbxFile.FileSignaturePreRelease1) &&
 					(uSig2 == KdbxFile.FileSignaturePreRelease2)) ||
@@ -122,9 +123,9 @@ namespace KeePassLib.Keys
 			}
 
 			byte[] pbKey = LoadXmlKeyFile(pbFileData);
-			if (pbKey == null) pbKey = LoadKeyFile(pbFileData);
+			if(pbKey == null) pbKey = LoadKeyFile(pbFileData);
 
-			if (pbKey == null) throw new InvalidOperationException();
+			if(pbKey == null) throw new InvalidOperationException();
 
 			m_ioc = iocKeyFile;
 			m_pbKeyData = new ProtectedBinary(true, pbKey);
@@ -137,12 +138,12 @@ namespace KeePassLib.Keys
 			byte[] pbFileData = IOConnection.ReadFile(iocFile);
 			Construct(pbFileData, iocFile, bThrowIfDbFile);
 		}
-
 		// public void Clear()
 		// {
 		//	m_strPath = string.Empty;
 		//	m_pbKeyData = null;
 		// }
+
 
 		private static byte[] LoadKeyFile(byte[] pbFileData)
 		{
@@ -155,10 +156,7 @@ namespace KeePassLib.Keys
 			else if(iLength == 64) pbKey = LoadHexKey32(pbFileData);
 
 			if(pbKey == null)
-			{
-				SHA256Managed sha256 = new SHA256Managed();
-				pbKey = sha256.ComputeHash(pbFileData);
-			}
+				pbKey = CryptoUtil.HashSha256(pbFileData);
 
 			return pbKey;
 		}
@@ -178,12 +176,15 @@ namespace KeePassLib.Keys
 
 			try
 			{
-				string strHex = StrUtil.Utf8.GetString(pbFileData, 0, 64);
-				if(!StrUtil.IsHexString(strHex, true)) return null;
+				if(!StrUtil.IsHexString(pbFileData, true)) return null;
 
+				string strHex = StrUtil.Utf8.GetString(pbFileData);
 				byte[] pbKey = MemUtil.HexStringToByteArray(strHex);
 				if((pbKey == null) || (pbKey.Length != 32))
+				{
+					Debug.Assert(false);
 					return null;
+				}
 
 				return pbKey;
 			}
@@ -211,13 +212,13 @@ namespace KeePassLib.Keys
 				pbFinalKey32 = pbKey32;
 			else
 			{
-				MemoryStream ms = new MemoryStream();
-				ms.Write(pbAdditionalEntropy, 0, pbAdditionalEntropy.Length);
-				ms.Write(pbKey32, 0, 32);
+				using(MemoryStream ms = new MemoryStream())
+				{
+					MemUtil.Write(ms, pbAdditionalEntropy);
+					MemUtil.Write(ms, pbKey32);
 
-				SHA256Managed sha256 = new SHA256Managed();
-				pbFinalKey32 = sha256.ComputeHash(ms.ToArray());
-				ms.Close();
+					pbFinalKey32 = CryptoUtil.HashSha256(ms.ToArray());
+				}
 			}
 
 			CreateXmlKeyFile(strFilePath, pbFinalKey32);
@@ -292,7 +293,15 @@ namespace KeePassLib.Keys
 			IOConnectionInfo ioc = IOConnectionInfo.FromPath(strFile);
 			Stream sOut = IOConnection.OpenWrite(ioc);
 
+#if KeePassUAP
+			XmlWriterSettings xws = new XmlWriterSettings();
+			xws.Encoding = StrUtil.Utf8;
+			xws.Indent = false;
+
+			XmlWriter xtw = XmlWriter.Create(sOut, xws);
+#else
 			XmlTextWriter xtw = new XmlTextWriter(sOut, StrUtil.Utf8);
+#endif
 
 			xtw.WriteStartDocument();
 			xtw.WriteWhitespace("\r\n");
@@ -334,6 +343,6 @@ namespace KeePassLib.Keys
 		public void ResetIoc(IOConnectionInfo newIoc)
 		{
 			m_ioc = newIoc;
-		}
 	}
+}
 }

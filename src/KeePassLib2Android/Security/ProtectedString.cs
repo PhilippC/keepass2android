@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@
 */
 
 using System;
-using System.Text;
 using System.Diagnostics;
+using System.Text;
 
 using KeePassLib.Cryptography;
 using KeePassLib.Utility;
@@ -47,7 +47,7 @@ namespace KeePassLib.Security
 
 		private bool m_bIsProtected;
 
-		private static ProtectedString m_psEmpty = new ProtectedString();
+		private static readonly ProtectedString m_psEmpty = new ProtectedString();
 		public static ProtectedString Empty
 		{
 			get { return m_psEmpty; }
@@ -55,7 +55,7 @@ namespace KeePassLib.Security
 
 		/// <summary>
 		/// A flag specifying whether the <c>ProtectedString</c> object
-		/// has turned on in-memory protection or not.
+		/// has turned on memory protection or not.
 		/// </summary>
 		public bool IsProtected
 		{
@@ -112,10 +112,9 @@ namespace KeePassLib.Security
 		/// to the value supplied in the parameters.
 		/// </summary>
 		/// <param name="bEnableProtection">If this parameter is <c>true</c>,
-		/// the string will be protected in-memory (encrypted). If it
+		/// the string will be protected in memory (encrypted). If it
 		/// is <c>false</c>, the string will be stored as plain-text.</param>
-		/// <param name="strValue">The initial string value. This
-		/// parameter won't be modified.</param>
+		/// <param name="strValue">The initial string value.</param>
 		public ProtectedString(bool bEnableProtection, string strValue)
 		{
 			Init(bEnableProtection, strValue);
@@ -126,7 +125,7 @@ namespace KeePassLib.Security
 		/// to the value supplied in the parameters (UTF-8 encoded string).
 		/// </summary>
 		/// <param name="bEnableProtection">If this parameter is <c>true</c>,
-		/// the string will be protected in-memory (encrypted). If it
+		/// the string will be protected in memory (encrypted). If it
 		/// is <c>false</c>, the string will be stored as plain-text.</param>
 		/// <param name="vUtf8Value">The initial string value, encoded as
 		/// UTF-8 byte array. This parameter won't be modified; the caller
@@ -144,15 +143,15 @@ namespace KeePassLib.Security
 		/// <param name="xbProtected"><c>XorredBuffer</c> object containing the
 		/// string in UTF-8 representation. The UTF-8 string must not
 		/// be <c>null</c>-terminated.</param>
-		/// <exception cref="System.ArgumentNullException">Thrown if the input
-		/// parameter is <c>null</c>.</exception>
 		public ProtectedString(bool bEnableProtection, XorredBuffer xbProtected)
 		{
+			Debug.Assert(xbProtected != null);
 			if(xbProtected == null) throw new ArgumentNullException("xbProtected");
 
 			byte[] pb = xbProtected.ReadPlainText();
 			Init(bEnableProtection, pb);
-			MemUtil.ZeroByteArray(pb);
+
+			if(bEnableProtection) MemUtil.ZeroByteArray(pb);
 		}
 
 		private void Init(bool bEnableProtection, string str)
@@ -222,8 +221,6 @@ namespace KeePassLib.Security
 		/// </summary>
 		/// <param name="crsRandomSource">Random number source.</param>
 		/// <returns>Protected string.</returns>
-		/// <exception cref="System.ArgumentNullException">Thrown if the input
-		/// parameter is <c>null</c>.</exception>
 		public byte[] ReadXorredString(CryptoRandomStream crsRandomSource)
 		{
 			Debug.Assert(crsRandomSource != null); if(crsRandomSource == null) throw new ArgumentNullException("crsRandomSource");
@@ -232,7 +229,7 @@ namespace KeePassLib.Security
 			uint uLen = (uint)pbData.Length;
 
 			byte[] randomPad = crsRandomSource.GetRandomBytes(uLen);
-			Debug.Assert(randomPad.Length == uLen);
+			Debug.Assert(randomPad.Length == pbData.Length);
 
 			for(uint i = 0; i < uLen; ++i)
 				pbData[i] ^= randomPad[i];
@@ -246,7 +243,103 @@ namespace KeePassLib.Security
 
 			byte[] pb = ReadUtf8();
 			ProtectedString ps = new ProtectedString(bProtect, pb);
-			MemUtil.ZeroByteArray(pb);
+
+			if(bProtect) MemUtil.ZeroByteArray(pb);
+			return ps;
+		}
+
+		public ProtectedString Insert(int iStart, string strInsert)
+		{
+			if(iStart < 0) throw new ArgumentOutOfRangeException("iStart");
+			if(strInsert == null) throw new ArgumentNullException("strInsert");
+			if(strInsert.Length == 0) return this;
+
+			// Only operate directly with strings when m_bIsProtected is
+			// false, not in the case of non-null m_strPlainText, because
+			// the operation creates a new sequence in memory
+			if(!m_bIsProtected)
+				return new ProtectedString(false, ReadString().Insert(
+					iStart, strInsert));
+
+			UTF8Encoding utf8 = StrUtil.Utf8;
+
+			byte[] pb = ReadUtf8();
+			char[] v = utf8.GetChars(pb);
+			char[] vNew;
+
+			try
+			{
+				if(iStart > v.Length)
+					throw new ArgumentOutOfRangeException("iStart");
+
+				char[] vIns = strInsert.ToCharArray();
+
+				vNew = new char[v.Length + vIns.Length];
+				Array.Copy(v, 0, vNew, 0, iStart);
+				Array.Copy(vIns, 0, vNew, iStart, vIns.Length);
+				Array.Copy(v, iStart, vNew, iStart + vIns.Length,
+					v.Length - iStart);
+			}
+			finally
+			{
+				Array.Clear(v, 0, v.Length);
+				MemUtil.ZeroByteArray(pb);
+			}
+
+			byte[] pbNew = utf8.GetBytes(vNew);
+			ProtectedString ps = new ProtectedString(m_bIsProtected, pbNew);
+
+			Debug.Assert(utf8.GetString(pbNew, 0, pbNew.Length) ==
+				ReadString().Insert(iStart, strInsert));
+
+			Array.Clear(vNew, 0, vNew.Length);
+			MemUtil.ZeroByteArray(pbNew);
+			return ps;
+		}
+
+		public ProtectedString Remove(int iStart, int nCount)
+		{
+			if(iStart < 0) throw new ArgumentOutOfRangeException("iStart");
+			if(nCount < 0) throw new ArgumentOutOfRangeException("nCount");
+			if(nCount == 0) return this;
+
+			// Only operate directly with strings when m_bIsProtected is
+			// false, not in the case of non-null m_strPlainText, because
+			// the operation creates a new sequence in memory
+			if(!m_bIsProtected)
+				return new ProtectedString(false, ReadString().Remove(
+					iStart, nCount));
+
+			UTF8Encoding utf8 = StrUtil.Utf8;
+
+			byte[] pb = ReadUtf8();
+			char[] v = utf8.GetChars(pb);
+			char[] vNew;
+
+			try
+			{
+				if((iStart + nCount) > v.Length)
+					throw new ArgumentException("iStart + nCount");
+
+				vNew = new char[v.Length - nCount];
+				Array.Copy(v, 0, vNew, 0, iStart);
+				Array.Copy(v, iStart + nCount, vNew, iStart, v.Length -
+					(iStart + nCount));
+			}
+			finally
+			{
+				Array.Clear(v, 0, v.Length);
+				MemUtil.ZeroByteArray(pb);
+			}
+
+			byte[] pbNew = utf8.GetBytes(vNew);
+			ProtectedString ps = new ProtectedString(m_bIsProtected, pbNew);
+
+			Debug.Assert(utf8.GetString(pbNew, 0, pbNew.Length) ==
+				ReadString().Remove(iStart, nCount));
+
+			Array.Clear(vNew, 0, vNew.Length);
+			MemUtil.ZeroByteArray(pbNew);
 			return ps;
 		}
 	}

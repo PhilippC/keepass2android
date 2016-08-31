@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -163,6 +163,26 @@ namespace KeePassLib
 		Manual = 2
 	}
 
+	public enum ProxyAuthType
+	{
+		None = 0,
+
+		/// <summary>
+		/// Use default user credentials (provided by the system).
+		/// </summary>
+		Default = 1,
+
+		Manual = 2,
+
+		/// <summary>
+		/// <c>Default</c> or <c>Manual</c>, depending on whether
+		/// manual credentials are available.
+		/// This type exists for supporting upgrading from KeePass
+		/// 2.28 to 2.29; the user cannot select this type.
+		/// </summary>
+		Auto = 3
+	}
+
 	/// <summary>
 	/// Comparison modes for in-memory protected objects.
 	/// </summary>
@@ -203,6 +223,9 @@ namespace KeePassLib
 		IgnoreLastMod = 0x8,
 		IgnoreHistory = 0x10,
 		IgnoreLastBackup = 0x20,
+
+		// For groups:
+		PropertiesOnly = 0x40,
 
 		IgnoreTimes = (IgnoreLastAccess | IgnoreLastMod)
 	}
@@ -254,14 +277,43 @@ namespace KeePassLib
 		GetStdOutput = 1,
 		WaitForExit = 2,
 
-		// This flag prevents any handles being garbage-collected
-		// before the started process has terminated, without
-		// blocking the current thread;
 		// https://sourceforge.net/p/keepass/patches/84/
+		/// <summary>
+		/// This flag prevents any handles being garbage-collected
+		/// before the started process has terminated, without
+		/// blocking the current thread.
+		/// </summary>
 		GCKeepAlive = 4,
 
 		// https://sourceforge.net/p/keepass/patches/85/
 		DoEvents = 8,
 		DisableForms = 16
+	}
+
+	[Flags]
+	public enum ScaleTransformFlags
+	{
+		None = 0,
+
+		/// <summary>
+		/// <c>UIIcon</c> indicates that the returned image is going
+		/// to be displayed as icon in the UI and that it is not
+		/// subject to future changes in size.
+		/// </summary>
+		UIIcon = 1
+	}
+
+	public enum DesktopType
+	{
+		None = 0,
+		Windows,
+		Gnome,
+		Kde,
+		Unity,
+		Lxde,
+		Xfce,
+		Mate,
+		Cinnamon,
+		Pantheon
 	}
 }

@@ -27,14 +27,16 @@ namespace KeePassLib.Resources
 			if(dictNew == null) throw new ArgumentNullException("dictNew");
 
 			m_strCryptoStreamFailed = TryGetEx(dictNew, "CryptoStreamFailed", m_strCryptoStreamFailed);
-			m_strEncAlgorithmAes = TryGetEx(dictNew, "EncAlgorithmAes", m_strEncAlgorithmAes);
+			m_strEncDataTooLarge = TryGetEx(dictNew, "EncDataTooLarge", m_strEncDataTooLarge);
 			m_strErrorInClipboard = TryGetEx(dictNew, "ErrorInClipboard", m_strErrorInClipboard);
+			m_strExpect100Continue = TryGetEx(dictNew, "Expect100Continue", m_strExpect100Continue);
 			m_strFatalError = TryGetEx(dictNew, "FatalError", m_strFatalError);
 			m_strFatalErrorText = TryGetEx(dictNew, "FatalErrorText", m_strFatalErrorText);
 			m_strFileCorrupted = TryGetEx(dictNew, "FileCorrupted", m_strFileCorrupted);
 			m_strFileHeaderEndEarly = TryGetEx(dictNew, "FileHeaderEndEarly", m_strFileHeaderEndEarly);
 			m_strFileLoadFailed = TryGetEx(dictNew, "FileLoadFailed", m_strFileLoadFailed);
 			m_strFileLockedWrite = TryGetEx(dictNew, "FileLockedWrite", m_strFileLockedWrite);
+			m_strFileNewVerOrPlgReq = TryGetEx(dictNew, "FileNewVerOrPlgReq", m_strFileNewVerOrPlgReq);
 			m_strFileNewVerReq = TryGetEx(dictNew, "FileNewVerReq", m_strFileNewVerReq);
 			m_strFileSaveCorruptionWarning = TryGetEx(dictNew, "FileSaveCorruptionWarning", m_strFileSaveCorruptionWarning);
 			m_strFileSaveFailed = TryGetEx(dictNew, "FileSaveFailed", m_strFileSaveFailed);
@@ -44,28 +46,37 @@ namespace KeePassLib.Resources
 			m_strFileVersionUnsupported = TryGetEx(dictNew, "FileVersionUnsupported", m_strFileVersionUnsupported);
 			m_strFinalKeyCreationFailed = TryGetEx(dictNew, "FinalKeyCreationFailed", m_strFinalKeyCreationFailed);
 			m_strFrameworkNotImplExcp = TryGetEx(dictNew, "FrameworkNotImplExcp", m_strFrameworkNotImplExcp);
+			m_strGeneral = TryGetEx(dictNew, "General", m_strGeneral);
 			m_strInvalidCompositeKey = TryGetEx(dictNew, "InvalidCompositeKey", m_strInvalidCompositeKey);
 			m_strInvalidCompositeKeyHint = TryGetEx(dictNew, "InvalidCompositeKeyHint", m_strInvalidCompositeKeyHint);
 			m_strInvalidDataWhileDecoding = TryGetEx(dictNew, "InvalidDataWhileDecoding", m_strInvalidDataWhileDecoding);
 			m_strKeePass1xHint = TryGetEx(dictNew, "KeePass1xHint", m_strKeePass1xHint);
+			m_strKeyBits = TryGetEx(dictNew, "KeyBits", m_strKeyBits);
 			m_strKeyFileDbSel = TryGetEx(dictNew, "KeyFileDbSel", m_strKeyFileDbSel);
 			m_strMasterSeedLengthInvalid = TryGetEx(dictNew, "MasterSeedLengthInvalid", m_strMasterSeedLengthInvalid);
 			m_strOldFormat = TryGetEx(dictNew, "OldFormat", m_strOldFormat);
+			m_strPassive = TryGetEx(dictNew, "Passive", m_strPassive);
+			m_strPreAuth = TryGetEx(dictNew, "PreAuth", m_strPreAuth);
+			m_strTimeout = TryGetEx(dictNew, "Timeout", m_strTimeout);
 			m_strTryAgainSecs = TryGetEx(dictNew, "TryAgainSecs", m_strTryAgainSecs);
 			m_strUnknownHeaderId = TryGetEx(dictNew, "UnknownHeaderId", m_strUnknownHeaderId);
+			m_strUnknownKdf = TryGetEx(dictNew, "UnknownKdf", m_strUnknownKdf);
 			m_strUserAccountKeyError = TryGetEx(dictNew, "UserAccountKeyError", m_strUserAccountKeyError);
+			m_strUserAgent = TryGetEx(dictNew, "UserAgent", m_strUserAgent);
 		}
 
 		private static readonly string[] m_vKeyNames = {
 			"CryptoStreamFailed",
-			"EncAlgorithmAes",
+			"EncDataTooLarge",
 			"ErrorInClipboard",
+			"Expect100Continue",
 			"FatalError",
 			"FatalErrorText",
 			"FileCorrupted",
 			"FileHeaderEndEarly",
 			"FileLoadFailed",
 			"FileLockedWrite",
+			"FileNewVerOrPlgReq",
 			"FileNewVerReq",
 			"FileSaveCorruptionWarning",
 			"FileSaveFailed",
@@ -75,16 +86,23 @@ namespace KeePassLib.Resources
 			"FileVersionUnsupported",
 			"FinalKeyCreationFailed",
 			"FrameworkNotImplExcp",
+			"General",
 			"InvalidCompositeKey",
 			"InvalidCompositeKeyHint",
 			"InvalidDataWhileDecoding",
 			"KeePass1xHint",
+			"KeyBits",
 			"KeyFileDbSel",
 			"MasterSeedLengthInvalid",
 			"OldFormat",
+			"Passive",
+			"PreAuth",
+			"Timeout",
 			"TryAgainSecs",
 			"UnknownHeaderId",
-			"UserAccountKeyError"
+			"UnknownKdf",
+			"UserAccountKeyError",
+			"UserAgent"
 		};
 
 		public static string[] GetKeyNames()
@@ -103,15 +121,15 @@ namespace KeePassLib.Resources
 			get { return m_strCryptoStreamFailed; }
 		}
 
-		private static string m_strEncAlgorithmAes =
-			@"AES/Rijndael (256-Bit Key)";
+		private static string m_strEncDataTooLarge =
+			@"The data is too large to be encrypted/decrypted securely using {PARAM}.";
 		/// <summary>
 		/// Look up a localized string similar to
-		/// 'AES/Rijndael (256-Bit Key)'.
+		/// 'The data is too large to be encrypted/decrypted securely using {PARAM}.'.
 		/// </summary>
-		public static string EncAlgorithmAes
+		public static string EncDataTooLarge
 		{
-			get { return m_strEncAlgorithmAes; }
+			get { return m_strEncDataTooLarge; }
 		}
 
 		private static string m_strErrorInClipboard =
@@ -123,6 +141,17 @@ namespace KeePassLib.Resources
 		public static string ErrorInClipboard
 		{
 			get { return m_strErrorInClipboard; }
+		}
+
+		private static string m_strExpect100Continue =
+			@"Expect 100-Continue responses";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Expect 100-Continue responses'.
+		/// </summary>
+		public static string Expect100Continue
+		{
+			get { return m_strExpect100Continue; }
 		}
 
 		private static string m_strFatalError =
@@ -189,6 +218,17 @@ namespace KeePassLib.Resources
 		public static string FileLockedWrite
 		{
 			get { return m_strFileLockedWrite; }
+		}
+
+		private static string m_strFileNewVerOrPlgReq =
+			@"A newer KeePass version or a plugin is required to open this file.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'A newer KeePass version or a plugin is required to open this file.'.
+		/// </summary>
+		public static string FileNewVerOrPlgReq
+		{
+			get { return m_strFileNewVerOrPlgReq; }
 		}
 
 		private static string m_strFileNewVerReq =
@@ -290,6 +330,17 @@ namespace KeePassLib.Resources
 			get { return m_strFrameworkNotImplExcp; }
 		}
 
+		private static string m_strGeneral =
+			@"General";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'General'.
+		/// </summary>
+		public static string General
+		{
+			get { return m_strGeneral; }
+		}
+
 		private static string m_strInvalidCompositeKey =
 			@"The composite key is invalid!";
 		/// <summary>
@@ -334,6 +385,17 @@ namespace KeePassLib.Resources
 			get { return m_strKeePass1xHint; }
 		}
 
+		private static string m_strKeyBits =
+			@"{PARAM}-bit key";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// '{PARAM}-bit key'.
+		/// </summary>
+		public static string KeyBits
+		{
+			get { return m_strKeyBits; }
+		}
+
 		private static string m_strKeyFileDbSel =
 			@"Database files cannot be used as key files.";
 		/// <summary>
@@ -367,6 +429,39 @@ namespace KeePassLib.Resources
 			get { return m_strOldFormat; }
 		}
 
+		private static string m_strPassive =
+			@"Passive";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Passive'.
+		/// </summary>
+		public static string Passive
+		{
+			get { return m_strPassive; }
+		}
+
+		private static string m_strPreAuth =
+			@"Pre-authenticate";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Pre-authenticate'.
+		/// </summary>
+		public static string PreAuth
+		{
+			get { return m_strPreAuth; }
+		}
+
+		private static string m_strTimeout =
+			@"Timeout";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Timeout'.
+		/// </summary>
+		public static string Timeout
+		{
+			get { return m_strTimeout; }
+		}
+
 		private static string m_strTryAgainSecs =
 			@"Please try it again in a few seconds.";
 		/// <summary>
@@ -389,6 +484,17 @@ namespace KeePassLib.Resources
 			get { return m_strUnknownHeaderId; }
 		}
 
+		private static string m_strUnknownKdf =
+			@"Unknown key derivation function!";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Unknown key derivation function!'.
+		/// </summary>
+		public static string UnknownKdf
+		{
+			get { return m_strUnknownKdf; }
+		}
+
 		private static string m_strUserAccountKeyError =
 			@"The operating system did not grant KeePass read/write access to the user profile folder, where the protected user key is stored.";
 		/// <summary>
@@ -398,6 +504,17 @@ namespace KeePassLib.Resources
 		public static string UserAccountKeyError
 		{
 			get { return m_strUserAccountKeyError; }
+		}
+
+		private static string m_strUserAgent =
+			@"User agent";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'User agent'.
+		/// </summary>
+		public static string UserAgent
+		{
+			get { return m_strUserAgent; }
 		}
 	}
 }

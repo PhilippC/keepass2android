@@ -1,8 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
-  
-  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,10 +18,16 @@
 */
 
 using System;
-using System.Security.Cryptography;
 using System.Diagnostics;
+using System.Threading;
+
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Cryptography;
+using KeePassLib.Cryptography.Cipher;
+using KeePassLib.Native;
 using KeePassLib.Utility;
 
 #if KeePassLibSD
@@ -32,6 +36,17 @@ using KeePassLibSD;
 
 namespace KeePassLib.Security
 {
+	[Flags]
+	public enum PbCryptFlags
+	{
+		None = 0,
+		Encrypt = 1,
+		Decrypt = 2
+	}
+
+	public delegate void PbCryptDelegate(byte[] pbData, PbCryptFlags cf,
+		long lID);
+
 	/// <summary>
 	/// Represents a protected binary, i.e. a byte array that is encrypted
 	/// in memory. A <c>ProtectedBinary</c> object is immutable and
@@ -39,26 +54,97 @@ namespace KeePassLib.Security
 	/// </summary>
 	public sealed class ProtectedBinary : IEquatable<ProtectedBinary>
 	{
-		private const int PmBlockSize = 16;
+		private const int BlockSize = 16;
 
-		// In-memory protection is supported only on Windows 2000 SP3 and
-		// higher.
-		private static bool m_bProtectionSupported;
+		private static PbCryptDelegate g_fExtCrypt = null;
+		/// <summary>
+		/// A plugin can provide a custom memory protection method
+		/// by assigning a non-null delegate to this property.
+		/// </summary>
+		public static PbCryptDelegate ExtCrypt
+		{
+			get { return g_fExtCrypt; }
+			set { g_fExtCrypt = value; }
+		}
+
+		// Local copy of the delegate that was used for encryption,
+		// in order to allow correct decryption even when the global
+		// delegate changes
+		private PbCryptDelegate m_fExtCrypt = null;
+
+		private enum PbMemProt
+		{
+			None = 0,
+			ProtectedMemory,
+			ChaCha20,
+			ExtCrypt
+		}
+
+		// ProtectedMemory is supported only on Windows 2000 SP3 and higher
+#if !KeePassLibSD
+		private static bool? g_obProtectedMemorySupported = null;
+#endif
+		private static bool ProtectedMemorySupported
+		{
+			get
+			{
+#if KeePassLibSD
+				return false;
+#else
+				bool? ob = g_obProtectedMemorySupported;
+				if(ob.HasValue) return ob.Value;
+
+				// Mono does not implement any encryption for ProtectedMemory;
+				// https://sourceforge.net/p/keepass/feature-requests/1907/
+				if(NativeLib.IsUnix())
+				{
+					g_obProtectedMemorySupported = false;
+					return false;
+				}
+
+				ob = false;
+				try // Test whether ProtectedMemory is supported
+				{
+					// BlockSize * 3 in order to test encryption for multiple
+					// blocks, but not introduce a power of 2 as factor
+					byte[] pb = new byte[ProtectedBinary.BlockSize * 3];
+					for(int i = 0; i < pb.Length; ++i) pb[i] = (byte)i;
+
+					throw new NotSupportedException();
+					for(int i = 0; i < pb.Length; ++i)
+					{
+						if(pb[i] != (byte)i) { ob = true; break; }
+					}
+				}
+				catch(Exception) { } // Windows 98 / ME
+
+				g_obProtectedMemorySupported = ob;
+				return ob.Value;
+#endif
+			}
+		}
+
+		private static long g_lCurID = 0;
+		private long m_lID;
 
 		private byte[] m_pbData; // Never null
 
-		// The real length of the data. This value can be different than
+		// The real length of the data; this value can be different from
 		// m_pbData.Length, as the length of m_pbData always is a multiple
-		// of PmBlockSize (required for fast in-memory protection).
+		// of BlockSize (required for ProtectedMemory)
 		private uint m_uDataLen;
 
-		private bool m_bProtected;
+		private bool m_bProtected; // Protection requested by the caller
+
+		private PbMemProt m_mp = PbMemProt.None; // Actual protection
 
 		private object m_objSync = new object();
 
+		private static byte[] g_pbKey32 = null;
+
 		/// <summary>
 		/// A flag specifying whether the <c>ProtectedBinary</c> object has
-		/// turned on in-memory protection or not.
+		/// turned on memory protection or not.
 		/// </summary>
 		public bool IsProtected
 		{
@@ -73,19 +159,13 @@ namespace KeePassLib.Security
 			get { return m_uDataLen; }
 		}
 
-		static ProtectedBinary()
-		{
-			//protection not supported on Android currently
-			m_bProtectionSupported = false;
-		}
-
 		/// <summary>
-		/// Construct a new, empty protected binary data object. Protection
-		/// is disabled.
+		/// Construct a new, empty protected binary data object.
+		/// Protection is disabled.
 		/// </summary>
 		public ProtectedBinary()
 		{
-			Init(false, new byte[0]);
+			Init(false, MemUtil.EmptyByteArray);
 		}
 
 		/// <summary>
@@ -110,34 +190,99 @@ namespace KeePassLib.Security
 		/// <param name="bEnableProtection">Enable protection or not.</param>
 		/// <param name="xbProtected"><c>XorredBuffer</c> object used to
 		/// initialize the <c>ProtectedBinary</c> object.</param>
-		/// <exception cref="System.ArgumentNullException">Thrown if the input
-		/// parameter is <c>null</c>.</exception>
 		public ProtectedBinary(bool bEnableProtection, XorredBuffer xbProtected)
 		{
-			Debug.Assert(xbProtected != null); if(xbProtected == null) throw new ArgumentNullException("xbProtected");
+			Debug.Assert(xbProtected != null);
+			if(xbProtected == null) throw new ArgumentNullException("xbProtected");
 
 			byte[] pb = xbProtected.ReadPlainText();
 			Init(bEnableProtection, pb);
-			MemUtil.ZeroByteArray(pb);
+
+			if(bEnableProtection) MemUtil.ZeroByteArray(pb);
 		}
 
 		private void Init(bool bEnableProtection, byte[] pbData)
 		{
 			if(pbData == null) throw new ArgumentNullException("pbData");
 
+#if KeePassLibSD
+			m_lID = ++g_lCurID;
+#else
+			m_lID = Interlocked.Increment(ref g_lCurID);
+#endif
+
 			m_bProtected = bEnableProtection;
 			m_uDataLen = (uint)pbData.Length;
 
-			int nBlocks = (int)m_uDataLen / PmBlockSize;
-			if((nBlocks * PmBlockSize) < (int)m_uDataLen) ++nBlocks;
-			Debug.Assert((nBlocks * PmBlockSize) >= (int)m_uDataLen);
+			const int bs = ProtectedBinary.BlockSize;
+			int nBlocks = (int)m_uDataLen / bs;
+			if((nBlocks * bs) < (int)m_uDataLen) ++nBlocks;
+			Debug.Assert((nBlocks * bs) >= (int)m_uDataLen);
 
-			m_pbData = new byte[nBlocks * PmBlockSize];
+			m_pbData = new byte[nBlocks * bs];
 			Array.Copy(pbData, m_pbData, (int)m_uDataLen);
 
-			// Data size must be > 0, otherwise 'Protect' throws
-			if(m_bProtected && m_bProtectionSupported && (m_uDataLen > 0))
-				throw new NotSupportedException();
+			Encrypt();
+		}
+
+		private void Encrypt()
+		{
+			Debug.Assert(m_mp == PbMemProt.None);
+
+			// Nothing to do if caller didn't request protection
+			if(!m_bProtected) return;
+
+			// ProtectedMemory.Protect throws for data size == 0
+			if(m_pbData.Length == 0) return;
+
+			PbCryptDelegate f = g_fExtCrypt;
+			if(f != null)
+			{
+				f(m_pbData, PbCryptFlags.Encrypt, m_lID);
+
+				m_fExtCrypt = f;
+				m_mp = PbMemProt.ExtCrypt;
+				return;
+			}
+
+			
+
+			byte[] pbKey32 = g_pbKey32;
+			if(pbKey32 == null)
+			{
+				pbKey32 = CryptoRandom.Instance.GetRandomBytes(32);
+
+				byte[] pbUpd = Interlocked.Exchange<byte[]>(ref g_pbKey32, pbKey32);
+				if(pbUpd != null) pbKey32 = pbUpd;
+			}
+
+			byte[] pbIV = new byte[12];
+			MemUtil.UInt64ToBytesEx((ulong)m_lID, pbIV, 4);
+			using(ChaCha20Cipher c = new ChaCha20Cipher(pbKey32, pbIV, true))
+			{
+				c.Encrypt(m_pbData, 0, m_pbData.Length);
+			}
+			m_mp = PbMemProt.ChaCha20;
+		}
+
+		private void Decrypt()
+		{
+			if(m_pbData.Length == 0) return;
+
+			else if(m_mp == PbMemProt.ChaCha20)
+			{
+				byte[] pbIV = new byte[12];
+				MemUtil.UInt64ToBytesEx((ulong)m_lID, pbIV, 4);
+				using(ChaCha20Cipher c = new ChaCha20Cipher(g_pbKey32, pbIV, true))
+				{
+					c.Decrypt(m_pbData, 0, m_pbData.Length);
+				}
+			}
+			else if(m_mp == PbMemProt.ExtCrypt)
+				m_fExtCrypt(m_pbData, PbCryptFlags.Decrypt, m_lID);
+			else { Debug.Assert(m_mp == PbMemProt.None); }
+
+			m_mp = PbMemProt.None;
 		}
 
 		/// <summary>
@@ -150,18 +295,16 @@ namespace KeePassLib.Security
 		/// protected data and can therefore be cleared safely.</returns>
 		public byte[] ReadData()
 		{
-			if(m_uDataLen == 0) return new byte[0];
+			if(m_uDataLen == 0) return MemUtil.EmptyByteArray;
 
 			byte[] pbReturn = new byte[m_uDataLen];
 
-			if(m_bProtected && m_bProtectionSupported)
+			lock(m_objSync)
 			{
-				lock(m_objSync)
-				{
-					throw new NotSupportedException();
-				}
+				Decrypt();
+				Array.Copy(m_pbData, pbReturn, (int)m_uDataLen);
+				Encrypt();
 			}
-			else Array.Copy(m_pbData, pbReturn, (int)m_uDataLen);
 
 			return pbReturn;
 		}
@@ -171,9 +314,6 @@ namespace KeePassLib.Security
 		/// of bytes generated by a random stream.
 		/// </summary>
 		/// <param name="crsRandomSource">Random number source.</param>
-		/// <returns>Protected data.</returns>
-		/// <exception cref="System.ArgumentNullException">Thrown if the input
-		/// parameter is <c>null</c>.</exception>
 		public byte[] ReadXorredData(CryptoRandomStream crsRandomSource)
 		{
 			Debug.Assert(crsRandomSource != null);
@@ -183,7 +323,7 @@ namespace KeePassLib.Security
 			uint uLen = (uint)pbData.Length;
 
 			byte[] randomPad = crsRandomSource.GetRandomBytes(uLen);
-			Debug.Assert(randomPad.Length == uLen);
+			Debug.Assert(randomPad.Length == pbData.Length);
 
 			for(uint i = 0; i < uLen; ++i)
 				pbData[i] ^= randomPad[i];
@@ -191,8 +331,11 @@ namespace KeePassLib.Security
 			return pbData;
 		}
 
+		private int? m_hash = null;
 		public override int GetHashCode()
 		{
+			if(m_hash.HasValue) return m_hash.Value;
+
 			int h = (m_bProtected ? 0x7B11D289 : 0);
 
 			byte[] pb = ReadData();
@@ -203,6 +346,7 @@ namespace KeePassLib.Security
 			}
 			MemUtil.ZeroByteArray(pb);
 
+			m_hash = h;
 			return h;
 		}
 

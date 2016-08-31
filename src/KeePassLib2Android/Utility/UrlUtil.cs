@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,10 +19,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 
 using KeePassLib.Native;
 
@@ -41,17 +40,14 @@ namespace KeePassLib.Utility
 
 		public static char LocalDirSepChar
 		{
-#if KeePassRT
-			get { return '\\'; }
-#else
 			get { return Path.DirectorySeparatorChar; }
-#endif
 		}
 
 		/// <summary>
-		/// Get the directory (path) of a file name. The returned string is
+		/// Get the directory (path) of a file name. The returned string may be
 		/// terminated by a directory separator character. Example:
 		/// passing <c>C:\\My Documents\\My File.kdb</c> in <paramref name="strFile" />
+		/// and <c>true</c> to <paramref name="bAppendTerminatingChar"/>
 		/// would produce this string: <c>C:\\My Documents\\</c>.
 		/// </summary>
 		/// <param name="strFile">Full path of a file.</param>
@@ -62,8 +58,7 @@ namespace KeePassLib.Utility
 		/// of <c>X:</c>, overriding <paramref name="bAppendTerminatingChar" />).
 		/// This should only be set to <c>true</c>, if the returned path is directly
 		/// passed to some directory API.</param>
-		/// <returns>Directory of the file. The return value is an empty string
-		/// (<c>""</c>) if the input parameter is <c>null</c>.</returns>
+		/// <returns>Directory of the file.</returns>
 		public static string GetFileDirectory(string strFile, bool bAppendTerminatingChar,
 			bool bEnsureValidDirSpec)
 		{
@@ -71,14 +66,15 @@ namespace KeePassLib.Utility
 			if(strFile == null) throw new ArgumentNullException("strFile");
 
 			int nLastSep = strFile.LastIndexOfAny(m_vDirSeps);
-			if(nLastSep < 0) return strFile; // None
+			if(nLastSep < 0) return string.Empty; // No directory
 
 			if(bEnsureValidDirSpec && (nLastSep == 2) && (strFile[1] == ':') &&
 				(strFile[2] == '\\')) // Length >= 3 and Windows root directory
 				bAppendTerminatingChar = true;
 
 			if(!bAppendTerminatingChar) return strFile.Substring(0, nLastSep);
-			return EnsureTerminatingSeparator(strFile.Substring(0, nLastSep), false);
+			return EnsureTerminatingSeparator(strFile.Substring(0, nLastSep),
+				(strFile[nLastSep] == '/'));
 		}
 
 		/// <summary>
@@ -317,10 +313,11 @@ namespace KeePassLib.Utility
 					return strTargetFile;
 			}
 
-#if (!KeePassLibSD && !KeePassRT)
+#if (!KeePassLibSD && !KeePassUAP)
 			if(NativeLib.IsUnix())
 #endif
 			{
+
 				bool bBaseUnc = IsUncPath(strBaseFile);
 				bool bTargetUnc = IsUncPath(strTargetFile);
 				if((!bBaseUnc && bTargetUnc) || (bBaseUnc && !bTargetUnc))
@@ -348,9 +345,9 @@ namespace KeePassLib.Utility
 				}
 
 				return sbRel.ToString();
+#if (!KeePassLibSD && !KeePassUAP)
 			}
 
-#if (!KeePassLibSD && !KeePassRT)
 			try // Windows
 			{
 				const int nMaxPath = NativeMethods.MAX_PATH * 2;
@@ -624,7 +621,7 @@ namespace KeePassLib.Utility
 			string strDir;
 			if(NativeLib.IsUnix())
 				strDir = NativeMethods.GetUserRuntimeDir();
-#if KeePassRT
+#if KeePassUAP
 			else strDir = Windows.Storage.ApplicationData.Current.TemporaryFolder.Path;
 #else
 			else strDir = Path.GetTempPath();
@@ -632,8 +629,7 @@ namespace KeePassLib.Utility
 
 			try
 			{
-				if(Directory.Exists(strDir) == false)
-					Directory.CreateDirectory(strDir);
+				if(!Directory.Exists(strDir)) Directory.CreateDirectory(strDir);
 			}
 			catch(Exception) { Debug.Assert(false); }
 

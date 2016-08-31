@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -62,5 +62,26 @@ namespace KeePassLib.Cryptography.Cipher
 		/// <param name="pbIV">Initialization vector.</param>
 		/// <returns>Stream, from which the decrypted data can be read.</returns>
 		Stream DecryptStream(Stream sEncrypted, byte[] pbKey, byte[] pbIV);
+	}
+
+	public interface ICipherEngine2 : ICipherEngine
+	{
+		/// <summary>
+		/// Length of an encryption key in bytes.
+		/// The base <c>ICipherEngine</c> assumes 32.
+		/// </summary>
+		int KeyLength
+		{
+			get;
+}
+
+		/// <summary>
+		/// Length of the initialization vector in bytes.
+		/// The base <c>ICipherEngine</c> assumes 16.
+		/// </summary>
+		int IVLength
+		{
+			get;
+		}
 	}
 }

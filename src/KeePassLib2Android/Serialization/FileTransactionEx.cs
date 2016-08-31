@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
   
   Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
@@ -21,11 +21,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 
-#if (!KeePassLibSD && !KeePassRT)
+#if (!KeePassLibSD && !KeePassUAP)
 using System.Security.AccessControl;
 #endif
 
@@ -43,6 +43,9 @@ namespace KeePassLib.Serialization
 		private bool m_bMadeUnhidden = false;
 
 		private const string StrTempSuffix = ".tmp";
+
+		private static Dictionary<string, bool> g_dEnabled =
+			new Dictionary<string, bool>(StrUtil.CaseIgnoreComparer);
 
 		public FileTransactionEx(IOConnectionInfo iocBaseFile)
 		{
@@ -101,7 +104,7 @@ namespace KeePassLib.Serialization
 		{
 			bool bMadeUnhidden = UrlUtil.UnhideFile(m_iocBase.Path);
 
-#if (!KeePassLibSD && !KeePassRT)
+#if (!KeePassLibSD && !KeePassUAP)
 
 			bool bEfsEncrypted = false;
 #endif
@@ -130,7 +133,7 @@ namespace KeePassLib.Serialization
 
 			IOConnection.RenameFile(m_iocTemp, m_iocBase);
 
-#if (!KeePassLibSD && !KeePassRT)
+#if (!KeePassLibSD && !KeePassUAP)
 			if(m_iocBase.IsLocalFile())
 			{
 				try
@@ -148,5 +151,15 @@ namespace KeePassLib.Serialization
 
 			if(bMadeUnhidden) UrlUtil.HideFile(m_iocBase.Path, true); // Hide again
 		}
+
+		// For plugins
+		public static void Configure(string strPrefix, bool? obTransacted)
+		{
+			if(string.IsNullOrEmpty(strPrefix)) { Debug.Assert(false); return; }
+
+			if(obTransacted.HasValue)
+				g_dEnabled[strPrefix] = obTransacted.Value;
+			else g_dEnabled.Remove(strPrefix);
 	}
+}
 }

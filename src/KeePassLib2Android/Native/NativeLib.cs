@@ -1,8 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
-  
-  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,12 +19,19 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Diagnostics;
-using Android.Util;
-using KeePassLib.Utility;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using Java.Text;
 using keepass2android;
+#if !KeePassUAP
+using System.IO;
+using System.Threading;
+#endif
+
+using KeePassLib.Utility;
 
 namespace KeePassLib.Native
 {
@@ -46,6 +51,61 @@ namespace KeePassLib.Native
 		{
 			get { return m_bAllowNative; }
 			set { m_bAllowNative = value; }
+		}
+
+		private static int? g_oiPointerSize = null;
+		/// <summary>
+		/// Size of a native pointer (in bytes).
+		/// </summary>
+		public static int PointerSize
+		{
+			get
+			{
+				if(!g_oiPointerSize.HasValue)
+#if KeePassUAP
+					g_oiPointerSize = Marshal.SizeOf<IntPtr>();
+#else
+					g_oiPointerSize = Marshal.SizeOf(typeof(IntPtr));
+#endif
+				return g_oiPointerSize.Value;
+			}
+		}
+
+		private static ulong? m_ouMonoVersion = null;
+		public static ulong MonoVersion
+		{
+			get
+			{
+				if(m_ouMonoVersion.HasValue) return m_ouMonoVersion.Value;
+
+				ulong uVersion = 0;
+				try
+				{
+					Type t = Type.GetType("Mono.Runtime");
+					if(t != null)
+					{
+						MethodInfo mi = t.GetMethod("GetDisplayName",
+							BindingFlags.NonPublic | BindingFlags.Static);
+						if(mi != null)
+						{
+							string strName = (mi.Invoke(null, null) as string);
+							if(!string.IsNullOrEmpty(strName))
+							{
+								Match m = Regex.Match(strName, "\\d+(\\.\\d+)+");
+								if(m.Success)
+									uVersion = StrUtil.ParseVersion(m.Value);
+								else { Debug.Assert(false); }
+							}
+							else { Debug.Assert(false); }
+						}
+						else { Debug.Assert(false); }
+					}
+				}
+				catch(Exception) { Debug.Assert(false); }
+
+				m_ouMonoVersion = uVersion;
+				return uVersion;
+			}
 		}
 
 		/// <summary>
@@ -91,15 +151,15 @@ namespace KeePassLib.Native
 		{
 			if(m_platID.HasValue) return m_platID.Value;
 
-#if KeePassRT
-			m_platID = PlatformID.Win32NT;
+#if KeePassUAP
+			m_platID = EnvironmentExt.OSVersion.Platform;
 #else
 			m_platID = Environment.OSVersion.Platform;
 #endif
 
-#if (!KeePassLibSD && !KeePassRT)
+#if (!KeePassLibSD && !KeePassUAP)
 			/*// Mono returns PlatformID.Unix on Mac OS X, workaround this
-			//fails on Anroid
+			//not supported on Mono
 			if(m_platID.Value == PlatformID.Unix)
 			{
 				if((RunConsoleApp("uname", null) ?? string.Empty).Trim().Equals(
@@ -111,7 +171,111 @@ namespace KeePassLib.Native
 			return m_platID.Value;
 		}
 
+		private static DesktopType? m_tDesktop = null;
+		public static DesktopType GetDesktopType()
+		{
+			if(!m_tDesktop.HasValue)
+			{
+				DesktopType t = DesktopType.None;
+				if(!IsUnix()) t = DesktopType.Windows;
+				else
+				{
+					try
+					{
+						string strXdg = (Environment.GetEnvironmentVariable(
+							"XDG_CURRENT_DESKTOP") ?? string.Empty).Trim();
+						string strGdm = (Environment.GetEnvironmentVariable(
+							"GDMSESSION") ?? string.Empty).Trim();
+						StringComparison sc = StrUtil.CaseIgnoreCmp;
 
+						if(strXdg.Equals("Unity", sc))
+							t = DesktopType.Unity;
+						else if(strXdg.Equals("LXDE", sc))
+							t = DesktopType.Lxde;
+						else if(strXdg.Equals("XFCE", sc))
+							t = DesktopType.Xfce;
+						else if(strXdg.Equals("MATE", sc))
+							t = DesktopType.Mate;
+						else if(strXdg.Equals("X-Cinnamon", sc))
+							t = DesktopType.Cinnamon;
+						else if(strXdg.Equals("Pantheon", sc)) // Elementary OS
+							t = DesktopType.Pantheon;
+						else if(strXdg.Equals("KDE", sc) || // Mint 16
+							strGdm.Equals("kde-plasma", sc)) // Ubuntu 12.04
+							t = DesktopType.Kde;
+						else if(strXdg.Equals("GNOME", sc))
+						{
+							if(strGdm.Equals("cinnamon", sc)) // Mint 13
+								t = DesktopType.Cinnamon;
+							else t = DesktopType.Gnome;
+						}
+					}
+					catch(Exception) { Debug.Assert(false); }
+				}
+
+				m_tDesktop = t;
+			}
+
+			return m_tDesktop.Value;
+		}
+
+#if (!KeePassLibSD && !KeePassUAP)
+		/* Not supported on Android
+		public static string RunConsoleApp(string strAppPath, string strParams)
+		{
+			return RunConsoleApp(strAppPath, strParams, null);
+		}
+		public static string RunConsoleApp(string strAppPath, string strParams,
+			string strStdInput)
+		{
+			return RunConsoleApp(strAppPath, strParams, strStdInput,
+				(AppRunFlags.GetStdOutput | AppRunFlags.WaitForExit));
+		}
+		*/
+		private delegate string RunProcessDelegate();
+
+		private static void EnsureNoBom(StreamWriter sw)
+		{
+			if(sw == null) { Debug.Assert(false); return; }
+			if(!MonoWorkarounds.IsRequired(1219)) return;
+
+			try
+			{
+				Encoding enc = sw.Encoding;
+				if(enc == null) { Debug.Assert(false); return; }
+				byte[] pbBom = enc.GetPreamble();
+				if((pbBom == null) || (pbBom.Length == 0)) return;
+
+				// For Mono >= 4.0 (using Microsoft's reference source)
+				try
+				{
+					FieldInfo fi = typeof(StreamWriter).GetField("haveWrittenPreamble",
+						BindingFlags.Instance | BindingFlags.NonPublic);
+					if(fi != null)
+					{
+						fi.SetValue(sw, true);
+						return;
+					}
+				}
+				catch(Exception) { Debug.Assert(false); }
+
+				// For Mono < 4.0
+				FieldInfo fiPD = typeof(StreamWriter).GetField("preamble_done",
+					BindingFlags.Instance | BindingFlags.NonPublic);
+				if(fiPD != null) fiPD.SetValue(sw, true);
+				else { Debug.Assert(false); }
+			}
+			catch(Exception) { Debug.Assert(false); }
+		}
+#endif
+
+		/// <summary>
+		/// Transform a key.
+		/// </summary>
+		/// <param name="pBuf256">Source and destination buffer.</param>
+		/// <param name="pKey256">Key to use in the transformation.</param>
+		/// <param name="uRounds">Number of transformation rounds.</param>
+		/// <returns>Returns <c>true</c>, if the key was transformed successfully.</returns>
 		/// <summary>
 		/// Transform a key.
 		/// </summary>
@@ -122,7 +286,7 @@ namespace KeePassLib.Native
 		public static bool TransformKey256(byte[] pBuf256, byte[] pKey256,
 			ulong uRounds)
 		{
-			if(m_bAllowNative == false) return false;
+			if (m_bAllowNative == false) return false;
 
 			try
 			{
@@ -136,10 +300,10 @@ namespace KeePassLib.Native
 				return false;
 #endif
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
 				Kp2aLog.Log(e.Message);
-				return false; 
+				return false;
 			}
 
 			return true;
@@ -148,19 +312,23 @@ namespace KeePassLib.Native
 		/// <summary>
 		/// Benchmark key transformation.
 		/// </summary>
-		/// <param name="uTimeMs">Number of seconds to perform the benchmark.</param>
+		/// <param name="uTimeMs">Number of milliseconds to perform the benchmark.</param>
 		/// <param name="puRounds">Number of transformations done.</param>
 		/// <returns>Returns <c>true</c>, if the benchmark was successful.</returns>
 		public static bool TransformKeyBenchmark256(uint uTimeMs, out ulong puRounds)
 		{
 			puRounds = 0;
 
-			if(m_bAllowNative == false) return false;
+#if KeePassUAP
+			return false;
+#else
+			if(!m_bAllowNative) return false;
 
 			try { puRounds = NativeMethods.TransformKeyBenchmark(uTimeMs); }
 			catch(Exception) { return false; }
 
 			return true;
+#endif
 		}
 
 		private static KeyValuePair<IntPtr, IntPtr> PrepareArrays256(byte[] pBuf256,

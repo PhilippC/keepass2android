@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -136,12 +136,6 @@ namespace KeePassLib
 		public bool Equals(PwUuid other)
 		{
 			if(other == null) { Debug.Assert(false); return false; }
-
-			// Shortcut
-			if (Object.ReferenceEquals(this, other))
-			{
-				return true;
-			}
 
 			for(int i = 0; i < (int)UuidSize; ++i)
 			{

@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
   
   Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
@@ -20,9 +20,13 @@
 */
 
 using System;
-using System.Security;
-using System.Security.Cryptography;
+using System.Diagnostics;
 using System.IO;
+using System.Security;
+
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Cryptography;
 using KeePassLib.Resources;

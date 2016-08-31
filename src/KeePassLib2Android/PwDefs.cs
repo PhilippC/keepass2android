@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,9 +19,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Xml.Serialization;
 
 using KeePassLib.Delegates;
 using KeePassLib.Interfaces;
@@ -55,20 +55,20 @@ namespace KeePassLib
 		/// e.g. 2.19 = 0x02130000.
 		/// It is highly recommended to use <c>FileVersion64</c> instead.
 		/// </summary>
-		public const uint Version32 = 0x02180000;
+		public const uint Version32 = 0x02220000;
 
 		/// <summary>
 		/// Version, encoded as 64-bit unsigned integer
 		/// (component-wise, 16 bits per component).
 		/// </summary>
-		public const ulong FileVersion64 = 0x0002001800000000UL;
+		public const ulong FileVersion64 = 0x0002002200000000UL;
 
 		/// <summary>
 		/// Version, encoded as string.
 		/// </summary>
-		public const string VersionString = "2.24";
+		public const string VersionString = "2.34";
 
-		public const string Copyright = @"Copyright © 2003-2013 Dominik Reichl";
+		public const string Copyright = @"Copyright © 2003-2016 Dominik Reichl";
 
 		/// <summary>
 		/// Product website URL. Terminated by a forward slash.
@@ -94,7 +94,8 @@ namespace KeePassLib
 		/// URL to a TXT file (eventually compressed) that contains information
 		/// about the latest KeePass version available on the website.
 		/// </summary>
-		public const string VersionUrl = "http://keepass.info/update/version2x.txt.gz";
+		public const string VersionUrl = "https://sslsites.de/keepass.info/update/version2x.txt.gz";
+		// public const string VersionUrl = "http://keepass.info/update/version2x.txt.gz";
 
 		/// <summary>
 		/// URL to the root path of the online KeePass help. Terminated by
@@ -220,7 +221,7 @@ namespace KeePassLib
 		}
 	}
 
-	#pragma warning disable 1591 // Missing XML comments warning
+	// #pragma warning disable 1591 // Missing XML comments warning
 	/// <summary>
 	/// Search parameters for group and entry searches.
 	/// </summary>
@@ -318,7 +319,7 @@ namespace KeePassLib
 			set { m_bSearchInTags = value; }
 		}
 
-#if KeePassRT
+#if KeePassUAP
 		private StringComparison m_scType = StringComparison.OrdinalIgnoreCase;
 #else
 		private StringComparison m_scType = StringComparison.InvariantCultureIgnoreCase;
@@ -410,9 +411,9 @@ namespace KeePassLib
 			return (SearchParameters)this.MemberwiseClone();
 		}
 	}
-	#pragma warning restore 1591 // Missing XML comments warning
+	// #pragma warning restore 1591 // Missing XML comments warning
 
-	#pragma warning disable 1591 // Missing XML comments warning
+	// #pragma warning disable 1591 // Missing XML comments warning
 	/// <summary>
 	/// Memory protection configuration structure (for default fields).
 	/// </summary>
@@ -442,7 +443,7 @@ namespace KeePassLib
 			return false;
 		}
 	}
-	#pragma warning restore 1591 // Missing XML comments warning
+	// #pragma warning restore 1591 // Missing XML comments warning
 
 	public sealed class ObjectTouchedEventArgs : EventArgs
 	{

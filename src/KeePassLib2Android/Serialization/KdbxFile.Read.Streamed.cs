@@ -1,8 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
-  
-  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,18 +19,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Security;
-using System.Security.Cryptography;
-using System.Drawing;
-using System.Xml;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Xml;
+
+#if !KeePassUAP
+using System.Drawing;
+#endif
 
 using KeePassLib;
 using KeePassLib.Collections;
-using KeePassLib.Cryptography;
-using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Interfaces;
 using KeePassLib.Resources;
 using KeePassLib.Security;
@@ -45,49 +42,6 @@ namespace KeePassLib.Serialization
 	/// </summary>
 	public sealed partial class KdbxFile
 	{
-		private class ColorTranslator
-		{
-			public static Color FromHtml(String colorString)
-			{
-				Color color;
-				
-				if (colorString.StartsWith("#"))
-				{
-					colorString = colorString.Substring(1);
-				}
-				if (colorString.EndsWith(";"))
-				{
-					colorString = colorString.Substring(0, colorString.Length - 1);
-				}
-				
-				int red, green, blue;
-				switch (colorString.Length)
-				{
-				case 6:
-					red = int.Parse(colorString.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-					green = int.Parse(colorString.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-					blue = int.Parse(colorString.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-					color = Color.FromArgb(red, green, blue);
-					break;
-				case 3:
-					red = int.Parse(colorString.Substring(0, 1), System.Globalization.NumberStyles.HexNumber);
-					green = int.Parse(colorString.Substring(1, 1), System.Globalization.NumberStyles.HexNumber);
-					blue = int.Parse(colorString.Substring(2, 1), System.Globalization.NumberStyles.HexNumber);
-					color = Color.FromArgb(red, green, blue);
-					break;
-				case 1:
-					red = green = blue = int.Parse(colorString.Substring(0, 1), System.Globalization.NumberStyles.HexNumber);
-					color = Color.FromArgb(red, green, blue);
-					break;
-				default:
-					throw new ArgumentException("Invalid color: " + colorString);
-				}
-				return color;
-			}
-
-		}
-
-
 		private enum KdbContext
 		{
 			Null,
@@ -104,13 +58,17 @@ namespace KeePassLib.Serialization
 			DeletedObject,
 			Group,
 			GroupTimes,
+			GroupCustomData,
+			GroupCustomDataItem,
 			Entry,
 			EntryTimes,
 			EntryString,
 			EntryBinary,
 			EntryAutoType,
 			EntryAutoTypeItem,
-			EntryHistory
+			EntryHistory,
+			EntryCustomData,
+			EntryCustomDataItem
 		}
 
 		private bool m_bReadNextNode = true;
@@ -130,10 +88,14 @@ namespace KeePassLib.Serialization
 		private byte[] m_pbCustomIconData = null;
 		private string m_strCustomDataKey = null;
 		private string m_strCustomDataValue = null;
+		private string m_strGroupCustomDataKey = null;
+		private string m_strGroupCustomDataValue = null;
+		private string m_strEntryCustomDataKey = null;
+		private string m_strEntryCustomDataValue = null;
 
-		private void ReadXmlStreamed(Stream readerStream, Stream sParentStream)
+		private void ReadXmlStreamed(Stream sXml, Stream sParent)
 		{
-			ReadDocumentStreamed(CreateXmlReader(readerStream), sParentStream);
+			ReadDocumentStreamed(CreateXmlReader(sXml), sParent);
 		}
 
 		internal static XmlReaderSettings CreateStdXmlReaderSettings()
@@ -145,9 +107,12 @@ namespace KeePassLib.Serialization
 			xrs.IgnoreProcessingInstructions = true;
 			xrs.IgnoreWhitespace = true;
 
-#if !KeePassRT
+#if KeePassUAP
+			xrs.DtdProcessing = DtdProcessing.Prohibit;
+#else
 #if !KeePassLibSD
-			xrs.ProhibitDtd = true;
+			xrs.ProhibitDtd = true; // Obsolete in .NET 4, but still there
+			// xrs.DtdProcessing = DtdProcessing.Prohibit; // .NET 4 only
 #endif
 			xrs.ValidationType = ValidationType.None;
 #endif
@@ -258,15 +223,25 @@ namespace KeePassLib.Serialization
 						ReadString(xr); // Ignore
 					else if(xr.Name == ElemHeaderHash)
 					{
+						// The header hash is typically only stored in
+						// KDBX <= 3.1 files, not in KDBX >= 4 files
+						// (here, the header is verified via a HMAC),
+						// but we also support it for KDBX >= 4 files
+						// (i.e. if it's present, we check it)
+
 						string strHash = ReadString(xr);
 						if(!string.IsNullOrEmpty(strHash) && (m_pbHashOfHeader != null) &&
 							!m_bRepairMode)
 						{
+							Debug.Assert(m_uFileVersion <= FileVersion32_3);
+
 							byte[] pbHash = Convert.FromBase64String(strHash);
 							if(!MemUtil.ArraysEqual(pbHash, m_pbHashOfHeader))
 								throw new IOException(KLRes.FileCorrupted);
 						}
 					}
+					else if(xr.Name == ElemSettingsChanged)
+						m_pwDatabase.SettingsChanged = ReadTime(xr);
 					else if(xr.Name == ElemDbName)
 						m_pwDatabase.Name = ReadString(xr);
 					else if(xr.Name == ElemDbNameChanged)
@@ -426,6 +401,8 @@ namespace KeePassLib.Serialization
 						m_ctxGroup.EnableSearching = StrUtil.StringToBoolEx(ReadString(xr));
 					else if(xr.Name == ElemLastTopVisibleEntry)
 						m_ctxGroup.LastTopVisibleEntry = ReadUuid(xr);
+					else if(xr.Name == ElemCustomData)
+						return SwitchContext(ctx, KdbContext.GroupCustomData, xr);
 					else if(xr.Name == ElemGroup)
 					{
 						m_ctxGroup = new PwGroup(false, false);
@@ -443,6 +420,20 @@ namespace KeePassLib.Serialization
 						m_bEntryInHistory = false;
 						return SwitchContext(ctx, KdbContext.Entry, xr);
 					}
+					else ReadUnknown(xr);
+					break;
+
+				case KdbContext.GroupCustomData:
+					if(xr.Name == ElemStringDictExItem)
+						return SwitchContext(ctx, KdbContext.GroupCustomDataItem, xr);
+					else ReadUnknown(xr);
+					break;
+
+				case KdbContext.GroupCustomDataItem:
+					if(xr.Name == ElemKey)
+						m_strGroupCustomDataKey = ReadString(xr);
+					else if(xr.Name == ElemValue)
+						m_strGroupCustomDataValue = ReadString(xr);
 					else ReadUnknown(xr);
 					break;
 
@@ -477,6 +468,8 @@ namespace KeePassLib.Serialization
 						return SwitchContext(ctx, KdbContext.EntryBinary, xr);
 					else if(xr.Name == ElemAutoType)
 						return SwitchContext(ctx, KdbContext.EntryAutoType, xr);
+					else if(xr.Name == ElemCustomData)
+						return SwitchContext(ctx, KdbContext.EntryCustomData, xr);
 					else if(xr.Name == ElemHistory)
 					{
 						Debug.Assert(m_bEntryInHistory == false);
@@ -497,15 +490,15 @@ namespace KeePassLib.Serialization
 						(ITimeLogger)m_ctxGroup : (ITimeLogger)m_ctxEntry);
 					Debug.Assert(tl != null);
 
-					if(xr.Name == ElemLastModTime)
-						tl.SetLazyLastModificationTime(ReadString(xr));
-					else if(xr.Name == ElemCreationTime)
+					if(xr.Name == ElemCreationTime)
 						tl.SetLazyCreationTime(ReadString(xr));
-					else if(xr.Name == ElemLastAccessTime)
+					else if (xr.Name == ElemLastModTime)
+						tl.SetLazyLastModificationTime(ReadString(xr));
+					else if (xr.Name == ElemLastAccessTime)
 						tl.SetLazyLastAccessTime(ReadString(xr));
-					else if(xr.Name == ElemExpiryTime)
+					else if (xr.Name == ElemExpiryTime)
 						tl.SetLazyExpiryTime(ReadString(xr));
-					else if(xr.Name == ElemExpires)
+					else if (xr.Name == ElemExpires)
 						tl.Expires = ReadBool(xr, false);
 					else if(xr.Name == ElemUsageCount)
 						tl.UsageCount = ReadULong(xr, 0);
@@ -548,6 +541,20 @@ namespace KeePassLib.Serialization
 						m_ctxATName = ReadString(xr);
 					else if(xr.Name == ElemKeystrokeSequence)
 						m_ctxATSeq = ReadString(xr);
+					else ReadUnknown(xr);
+					break;
+
+				case KdbContext.EntryCustomData:
+					if(xr.Name == ElemStringDictExItem)
+						return SwitchContext(ctx, KdbContext.EntryCustomDataItem, xr);
+					else ReadUnknown(xr);
+					break;
+
+				case KdbContext.EntryCustomDataItem:
+					if(xr.Name == ElemKey)
+						m_strEntryCustomDataKey = ReadString(xr);
+					else if(xr.Name == ElemValue)
+						m_strEntryCustomDataValue = ReadString(xr);
 					else ReadUnknown(xr);
 					break;
 
@@ -652,6 +659,19 @@ namespace KeePassLib.Serialization
 			}
 			else if((ctx == KdbContext.GroupTimes) && (xr.Name == ElemTimes))
 				return KdbContext.Group;
+			else if((ctx == KdbContext.GroupCustomData) && (xr.Name == ElemCustomData))
+				return KdbContext.Group;
+			else if((ctx == KdbContext.GroupCustomDataItem) && (xr.Name == ElemStringDictExItem))
+			{
+				if((m_strGroupCustomDataKey != null) && (m_strGroupCustomDataValue != null))
+					m_ctxGroup.CustomData.Set(m_strGroupCustomDataKey, m_strGroupCustomDataValue);
+				else { Debug.Assert(false); }
+
+				m_strGroupCustomDataKey = null;
+				m_strGroupCustomDataValue = null;
+
+				return KdbContext.GroupCustomData;
+			}
 			else if((ctx == KdbContext.Entry) && (xr.Name == ElemEntry))
 			{
 				// Create new UUID if absent
@@ -701,6 +721,19 @@ namespace KeePassLib.Serialization
 				m_ctxATName = null;
 				m_ctxATSeq = null;
 				return KdbContext.EntryAutoType;
+			}
+			else if((ctx == KdbContext.EntryCustomData) && (xr.Name == ElemCustomData))
+				return KdbContext.Entry;
+			else if((ctx == KdbContext.EntryCustomDataItem) && (xr.Name == ElemStringDictExItem))
+			{
+				if((m_strEntryCustomDataKey != null) && (m_strEntryCustomDataValue != null))
+					m_ctxEntry.CustomData.Set(m_strEntryCustomDataKey, m_strEntryCustomDataValue);
+				else { Debug.Assert(false); }
+
+				m_strEntryCustomDataKey = null;
+				m_strEntryCustomDataValue = null;
+
+				return KdbContext.EntryCustomData;
 			}
 			else if((ctx == KdbContext.EntryHistory) && (xr.Name == ElemHistory))
 			{
@@ -852,7 +885,19 @@ namespace KeePassLib.Serialization
 				if(strRef != null)
 				{
 					ProtectedBinary pb = BinPoolGet(strRef);
-					if(pb != null) return pb;
+					if(pb != null)
+					{
+						// https://sourceforge.net/p/keepass/feature-requests/2023/
+						xr.MoveToElement();
+#if DEBUG
+						string strInner = ReadStringRaw(xr);
+						Debug.Assert(string.IsNullOrEmpty(strInner));
+#else
+						ReadStringRaw(xr);
+#endif
+
+						return pb;
+					}
 					else { Debug.Assert(false); }
 				}
 				else { Debug.Assert(false); }
@@ -914,7 +959,7 @@ namespace KeePassLib.Serialization
 						byte[] pbEncrypted;
 						if(strEncrypted.Length > 0)
 							pbEncrypted = Convert.FromBase64String(strEncrypted);
-						else pbEncrypted = new byte[0];
+						else pbEncrypted = MemUtil.EmptyByteArray;
 
 						byte[] pbPad = m_randomStream.GetRandomBytes((uint)pbEncrypted.Length);
 

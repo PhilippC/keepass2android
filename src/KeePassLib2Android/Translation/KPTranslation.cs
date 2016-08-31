@@ -1,8 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
-  
-  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,23 +19,21 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-using System.ComponentModel;
-using System.Drawing;
-using System.Diagnostics;
+#if KeePassLibSD
+using ICSharpCode.SharpZipLib.GZip;
+#else
+using System.IO.Compression;
+#endif
 
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
-
-#if !KeePassLibSD
-using System.IO.Compression;
-#else
-using ICSharpCode.SharpZipLib.GZip;
-#endif
 
 namespace KeePassLib.Translation
 {
@@ -66,7 +62,7 @@ namespace KeePassLib.Translation
 				m_vStringTables = value;
 			}
 		}
-
+		/*
 		private List<KPFormCustomization> m_vForms = new List<KPFormCustomization>();
 
 		[XmlArrayItem("Form")]
@@ -80,7 +76,7 @@ namespace KeePassLib.Translation
 				m_vForms = value;
 			}
 		}
-
+		*/
 		private string m_strUnusedText = string.Empty;
 		[DefaultValue("")]
 		public string UnusedText
@@ -94,18 +90,25 @@ namespace KeePassLib.Translation
 			}
 		}
 
-		public static void SaveToFile(KPTranslation kpTrl, string strFileName,
+		public static void Save(KPTranslation kpTrl, string strFileName,
+			IXmlSerializerEx xs)
+		{
+			using(FileStream fs = new FileStream(strFileName, FileMode.Create,
+				FileAccess.Write, FileShare.None))
+			{
+				Save(kpTrl, fs, xs);
+			}
+		}
+
+		public static void Save(KPTranslation kpTrl, Stream sOut,
 			IXmlSerializerEx xs)
 		{
 			if(xs == null) throw new ArgumentNullException("xs");
 
-			FileStream fs = new FileStream(strFileName, FileMode.Create,
-				FileAccess.Write, FileShare.None);
-
 #if !KeePassLibSD
-			GZipStream gz = new GZipStream(fs, CompressionMode.Compress);
+			GZipStream gz = new GZipStream(sOut, CompressionMode.Compress);
 #else
-			GZipOutputStream gz = new GZipOutputStream(fs);
+			GZipOutputStream gz = new GZipOutputStream(sOut);
 #endif
 
 			XmlWriterSettings xws = new XmlWriterSettings();
@@ -120,27 +123,36 @@ namespace KeePassLib.Translation
 
 			xw.Close();
 			gz.Close();
-			fs.Close();
+			sOut.Close();
 		}
 
-		public static KPTranslation LoadFromFile(string strFile,
-			IXmlSerializerEx xs)
+		public static KPTranslation Load(string strFile, IXmlSerializerEx xs)
+		{
+			KPTranslation kpTrl = null;
+
+			using(FileStream fs = new FileStream(strFile, FileMode.Open,
+				FileAccess.Read, FileShare.Read))
+			{
+				kpTrl = Load(fs, xs);
+			}
+
+			return kpTrl;
+		}
+
+		public static KPTranslation Load(Stream s, IXmlSerializerEx xs)
 		{
 			if(xs == null) throw new ArgumentNullException("xs");
 
-			FileStream fs = new FileStream(strFile, FileMode.Open,
-				FileAccess.Read, FileShare.Read);
-
 #if !KeePassLibSD
-			GZipStream gz = new GZipStream(fs, CompressionMode.Decompress);
+			GZipStream gz = new GZipStream(s, CompressionMode.Decompress);
 #else
-			GZipInputStream gz = new GZipInputStream(fs);
+			GZipInputStream gz = new GZipInputStream(s);
 #endif
 
 			KPTranslation kpTrl = (xs.Deserialize(gz) as KPTranslation);
 
 			gz.Close();
-			fs.Close();
+			s.Close();
 			return kpTrl;
 		}
 
@@ -154,9 +166,9 @@ namespace KeePassLib.Translation
 
 			return new Dictionary<string, string>();
 		}
-
-#if (!KeePassLibSD && !KeePassRT)
-		/*public void ApplyTo(Form form)
+		/*
+#if (!KeePassLibSD && !KeePassUAP)
+		public void ApplyTo(Form form)
 		{
 			if(form == null) throw new ArgumentNullException("form");
 
@@ -185,8 +197,8 @@ namespace KeePassLib.Translation
 				try { RtlApplyToControls(form.Controls); }
 				catch(Exception) { Debug.Assert(false); }
 			}
-		}*/
-		/*
+		}
+
 		private static void RtlApplyToControls(Control.ControlCollection cc)
 		{
 			foreach(Control c in cc)
@@ -212,9 +224,9 @@ namespace KeePassLib.Translation
 
 				if((c is GroupBox) || (c is Panel)) RtlMoveChildControls(c);
 			}
-		}*/
+		}
 
-		/*private static void RtlMoveChildControls(Control cParent)
+		private static void RtlMoveChildControls(Control cParent)
 		{
 			int nParentWidth = cParent.Size.Width;
 
@@ -248,7 +260,7 @@ namespace KeePassLib.Translation
 			}
 
 			if(kpst != null) kpst.ApplyTo(tsic);
-		}*/
-#endif
+		}
+#endif*/
 	}
 }

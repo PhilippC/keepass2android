@@ -60,6 +60,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\VariantDictionary.cs" />
+    <Compile Include="Cryptography\Cipher\ChaCha20Cipher.cs" />
+    <Compile Include="Cryptography\Cipher\ChaCha20Engine.cs" />
+    <Compile Include="Cryptography\Cipher\CtrBlockCipher.cs" />
+    <Compile Include="Cryptography\CryptoUtil.cs" />
+    <Compile Include="Cryptography\Hash\Blake2b.cs" />
+    <Compile Include="Cryptography\KeyDerivation\AesKdf.cs" />
+    <Compile Include="Cryptography\KeyDerivation\Argon2Kdf.Core.cs" />
+    <Compile Include="Cryptography\KeyDerivation\Argon2Kdf.cs" />
+    <Compile Include="Cryptography\KeyDerivation\KdfEngine.cs" />
+    <Compile Include="Cryptography\KeyDerivation\KdfParameters.cs" />
+    <Compile Include="Cryptography\KeyDerivation\KdfPool.cs" />
     <Compile Include="IDatabaseFormat.cs" />
     <Compile Include="Kp2aLog.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -87,7 +99,6 @@
     <Compile Include="Cryptography\PasswordGenerator\PwProfile.cs" />
     <Compile Include="Cryptography\PopularPasswords.cs" />
     <Compile Include="Cryptography\QualityEstimation.cs" />
-    <Compile Include="Cryptography\SelfTest.cs" />
     <Compile Include="Cryptography\PasswordGenerator\PwGenerator.cs" />
     <Compile Include="PwCustomIcon.cs" />
     <Compile Include="PwDatabase.cs" />
@@ -124,9 +135,13 @@
     <Compile Include="Serialization\FileLock.cs" />
     <Compile Include="Serialization\FileTransactionEx.cs" />
     <Compile Include="Serialization\HashedBlockStream.cs" />
+    <Compile Include="Serialization\HmacBlockStream.cs" />
     <Compile Include="Serialization\IOConnection.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Serialization\IocProperties.cs" />
+    <Compile Include="Serialization\IocPropertyInfo.cs" />
+    <Compile Include="Serialization\IocPropertyInfoPool.cs" />
     <Compile Include="Serialization\KdbxFile.cs" />
     <Compile Include="Serialization\KdbxFile.Read.cs" />
     <Compile Include="Serialization\KdbxFile.Read.Streamed.cs" />
@@ -134,8 +149,6 @@
     <Compile Include="Serialization\IOConnectionInfo.cs" />
     <Compile Include="Serialization\OldFormatException.cs" />
     <Compile Include="Serialization\ProtoBuf\KdbpFile.cs" />
-    <Compile Include="Translation\KPControlCustomization.cs" />
-    <Compile Include="Translation\KPFormCustomization.cs" />
     <Compile Include="Translation\KPStringTable.cs" />
     <Compile Include="Translation\KPStringTableItem.cs" />
     <Compile Include="Translation\KPTranslation.cs" />
@@ -144,6 +157,7 @@
     <Compile Include="Utility\GfxUtil.cs" />
     <Compile Include="Utility\MemUtil.cs" />
     <Compile Include="Utility\MessageService.cs" />
+    <Compile Include="Utility\MonoWorkarounds.cs" />
     <Compile Include="Utility\StrUtil.cs" />
     <Compile Include="Utility\UrlUtil.cs" />
     <Compile Include="Utility\TimeUtil.cs" />

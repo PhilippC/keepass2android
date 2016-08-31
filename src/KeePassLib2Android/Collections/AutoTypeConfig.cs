@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -194,19 +194,28 @@ namespace KeePassLib.Collections
 			return true;
 		}
 
-		public void Add(AutoTypeAssociation a)
-		{
-			Debug.Assert(a != null); if(a == null) throw new ArgumentNullException("a");
-
-			m_lWindowAssocs.Add(a);
-		}
-
 		public AutoTypeAssociation GetAt(int iIndex)
 		{
 			if((iIndex < 0) || (iIndex >= m_lWindowAssocs.Count))
 				throw new ArgumentOutOfRangeException("iIndex");
 
 			return m_lWindowAssocs[iIndex];
+		}
+
+		public void Add(AutoTypeAssociation a)
+		{
+			if(a == null) { Debug.Assert(false); throw new ArgumentNullException("a"); }
+
+			m_lWindowAssocs.Add(a);
+		}
+
+		public void Insert(int iIndex, AutoTypeAssociation a)
+		{
+			if((iIndex < 0) || (iIndex > m_lWindowAssocs.Count))
+				throw new ArgumentOutOfRangeException("iIndex");
+			if(a == null) { Debug.Assert(false); throw new ArgumentNullException("a"); }
+
+			m_lWindowAssocs.Insert(iIndex, a);
 		}
 
 		public void RemoveAt(int iIndex)
@@ -216,5 +225,20 @@ namespace KeePassLib.Collections
 
 			m_lWindowAssocs.RemoveAt(iIndex);
 		}
+
+		// public void Sort()
+		// {
+		//	m_lWindowAssocs.Sort(AutoTypeConfig.AssocCompareFn);
+		// }
+
+		// private static int AssocCompareFn(AutoTypeAssociation x,
+		//	AutoTypeAssociation y)
+		// {
+		//	if(x == null) { Debug.Assert(false); return ((y == null) ? 0 : -1); }
+		//	if(y == null) { Debug.Assert(false); return 1; }
+		//	int cn = x.WindowName.CompareTo(y.WindowName);
+		//	if(cn != 0) return cn;
+		//	return x.Sequence.CompareTo(y.Sequence);
+		// }
 	}
 }

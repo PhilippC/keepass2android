@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,12 +19,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Net;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Xml.Serialization;
 
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
@@ -122,7 +121,7 @@ namespace KeePassLib.Serialization
 
 		private bool m_bComplete = false;
 		[XmlIgnore]
-		internal bool IsComplete // Credentials etc. fully specified
+		public bool IsComplete // Credentials etc. fully specified
 		{
 			get { return m_bComplete; }
 			set { m_bComplete = value; }
@@ -134,16 +133,53 @@ namespace KeePassLib.Serialization
 			set { m_ioHint = value; }
 		} */
 
-		public IOConnectionInfo CloneDeep()
+		private IocProperties m_props = new IocProperties();
+		[XmlIgnore]
+		public IocProperties Properties
 		{
-			return (IOConnectionInfo)this.MemberwiseClone();
+			get { return m_props; }
+			set
+			{
+				if(value == null) throw new ArgumentNullException("value");
+				m_props = value;
+			}
 		}
 
+		/// <summary>
+		/// For serialization only; use <c>Properties</c> in code.
+		/// </summary>
+		[DefaultValue("")]
+		public string PropertiesEx
+		{
+			get { return m_props.Serialize(); }
+			set
+			{
+				if(value == null) throw new ArgumentNullException("value");
 
+				IocProperties p = IocProperties.Deserialize(value);
+				Debug.Assert(p != null);
+				m_props = (p ?? new IocProperties());
+			}
+		}
+
+		public IOConnectionInfo CloneDeep()
+		{
+			IOConnectionInfo ioc = (IOConnectionInfo)this.MemberwiseClone();
+			ioc.m_props = m_props.CloneDeep();
+			return ioc;
+		}
+
+#if DEBUG // For debugger display only
+		public override string ToString()
+		{
+			return GetDisplayName();
+		}
+#endif
+
+		
 		/// <summary>
 		/// Serialize the current connection info to a string. Credentials
-		/// are only serialized if the <c>SaveCredentials</c> property
-		/// is <c>true</c>.
+		/// are serialized based on the <c>CredSaveMode</c> property.
 		/// </summary>
 		/// <param name="iocToCompile">Input object to be serialized.</param>
 		/// <returns>Serialized object as string.</returns>
@@ -215,9 +251,8 @@ namespace KeePassLib.Serialization
 			s.Password = TransformUnreadable(vParts[3], false);
 			return s;
 		}
-
-
-
+		
+		
 		/// <summary>
 		/// Very simple string protection. Doesn't really encrypt the input
 		/// string, only encodes it that it's not readable on the first glance.
@@ -256,21 +291,21 @@ namespace KeePassLib.Serialization
 				return StrUtil.Utf8.GetString(pbBase, 0, pbBase.Length);
 			}
 		}
-
+		
 
 		public string GetDisplayName()
 		{
 			string str = m_strUrl;
 
 			if(m_strUser.Length > 0)
-				str += " (" + m_strUser + ")";
+				str += (" (" + m_strUser + ")");
 
 			return str;
 		}
 
 		public bool IsEmpty()
 		{
-			return (m_strUrl.Length > 0);
+			return (m_strUrl.Length == 0);
 		}
 
 		public static IOConnectionInfo FromPath(string strPath)
@@ -293,7 +328,7 @@ namespace KeePassLib.Serialization
 		public bool IsLocalFile()
 		{
 			// Not just ":/", see e.g. AppConfigEx.ChangePathRelAbs
-			return (m_strUrl.IndexOf(@"://") < 0);
+			return (m_strUrl.IndexOf("://") < 0);
 		}
 
 		public void ClearCredentials(bool bDependingOnRememberMode)

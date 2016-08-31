@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Xml;
+
+#if !KeePassUAP
 using System.Drawing;
+#endif
 
 using KeePassLib.Collections;
 using KeePassLib.Interfaces;
@@ -70,8 +72,10 @@ namespace KeePassLib
 
 		private List<string> m_vTags = new List<string>();
 
+		private StringDictionaryEx m_dCustomData = new StringDictionaryEx();
 		/// <summary>
 		/// UUID of this entry.
+		/// </summary>
 		/// </summary>
 		public PwUuid Uuid
 		{
@@ -304,6 +308,23 @@ namespace KeePassLib
 			}
 		}
 
+		/// <summary>
+		/// Custom data container that can be used by plugins to store
+		/// own data in KeePass entries.
+		/// The data is stored in the encrypted part of encrypted
+		/// database files.
+		/// Use unique names for your items, e.g. "PluginName_ItemName".
+		/// </summary>
+		public StringDictionaryEx CustomData
+		{
+			get { return m_dCustomData; }
+			internal set
+			{
+				if(value == null) { Debug.Assert(false); throw new ArgumentNullException("value"); }
+				m_dCustomData = value;
+			}
+		}
+
 		public static EventHandler<ObjectTouchedEventArgs> EntryTouched;
 		public EventHandler<ObjectTouchedEventArgs> Touched;
 
@@ -352,10 +373,18 @@ namespace KeePassLib
 			}
 		}
 
+#if DEBUG
 		/// <summary>
+		public override string ToString()
+		{
+			return (@"PwEntry '" + m_listStrings.ReadSafe(PwDefs.TitleField) + @"'");
+		}
+#endif
 		/// Clone the current entry. The returned entry is an exact value copy
 		/// of the current entry (including UUID and parent group reference).
 		/// All mutable members are cloned.
+		/// </summary>
+		/// <returns>Exact value clone. All references to mutable values changed.</returns>
 		/// </summary>
 		/// <returns>Exact value clone. All references to mutable values changed.</returns>
 		public PwEntry CloneDeep()
@@ -393,6 +422,8 @@ namespace KeePassLib
 			peNew.m_strOverrideUrl = m_strOverrideUrl;
 
 			peNew.m_vTags = new List<string>(m_vTags);
+
+			peNew.m_dCustomData = m_dCustomData.CloneDeep();
 
 			return peNew;
 		}
@@ -515,6 +546,8 @@ namespace KeePassLib
 				if(m_vTags[iTag] != pe.m_vTags[iTag]) return false;
 			}
 
+			if(!m_dCustomData.Equals(pe.m_dCustomData)) return false;
+
 			return true;
 		}
 
@@ -531,7 +564,7 @@ namespace KeePassLib
 		public void AssignProperties(PwEntry peTemplate, bool bOnlyIfNewer,
 			bool bIncludeHistory, bool bAssignLocationChanged)
 		{
-			Debug.Assert(peTemplate != null); if(peTemplate == null) throw new ArgumentNullException("peTemplate");
+			if(peTemplate == null) { Debug.Assert(false); throw new ArgumentNullException("peTemplate"); }
 
 			if(bOnlyIfNewer && (TimeUtil.Compare(peTemplate.LastModificationTime,LastModificationTime,true) < 0)) return;
 
@@ -542,10 +575,11 @@ namespace KeePassLib
 			if(bAssignLocationChanged)
 				m_tParentGroupLastMod = peTemplate.LocationChanged;
 
-			m_listStrings = peTemplate.m_listStrings;
-			m_listBinaries = peTemplate.m_listBinaries;
-			m_listAutoType = peTemplate.m_listAutoType;
-			if(bIncludeHistory) m_listHistory = peTemplate.m_listHistory;
+			m_listStrings = peTemplate.m_listStrings.CloneDeep();
+			m_listBinaries = peTemplate.m_listBinaries.CloneDeep();
+			m_listAutoType = peTemplate.m_listAutoType.CloneDeep();
+			if(bIncludeHistory)
+				m_listHistory = peTemplate.m_listHistory.CloneDeep();
 
 			m_pwIcon = peTemplate.m_pwIcon;
 			m_pwCustomIconID = peTemplate.m_pwCustomIconID; // Immutable
@@ -563,6 +597,8 @@ namespace KeePassLib
 			m_strOverrideUrl = peTemplate.m_strOverrideUrl;
 
 			m_vTags = new List<string>(peTemplate.m_vTags);
+
+			m_dCustomData = peTemplate.m_dCustomData.CloneDeep();
 		}
 
 		/// <summary>
@@ -814,6 +850,9 @@ namespace KeePassLib
 			foreach(string strTag in m_vTags)
 				uSize += (ulong)strTag.Length;
 
+			foreach(KeyValuePair<string, string> kvp in m_dCustomData)
+				uSize += (ulong)kvp.Key.Length + (ulong)kvp.Value.Length;
+
 			return uSize;
 		}
 
@@ -893,6 +932,25 @@ namespace KeePassLib
 			}
 			return dateTime; 
 		}		
+	
+
+		public void SetCreatedNow()
+		{
+			DateTime dt = DateTime.Now;
+
+			m_tCreation = dt;
+			m_tLastAccess = dt;
+		}
+
+		public PwEntry Duplicate()
+		{
+			PwEntry pe = CloneDeep();
+
+			pe.SetUuid(new PwUuid(true), true);
+			pe.SetCreatedNow();
+
+			return pe;
+		}
 	}
 
 	public sealed class PwEntryComparer : IComparer<PwEntry>
@@ -918,12 +976,7 @@ namespace KeePassLib
 
 			if(m_bCompareNaturally) return StrUtil.CompareNaturally(strA, strB);
 
-#if KeePassRT
-			return string.Compare(strA, strB, m_bCaseInsensitive ?
-				StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture);
-#else
 			return string.Compare(strA, strB, m_bCaseInsensitive);
-#endif
 		}
 	}
 }

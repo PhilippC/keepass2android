@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,22 +18,16 @@
 */
 
 using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Security.Cryptography;
+using System.Text;
 
-#if KeePassRT
-using Org.BouncyCastle.Crypto.Engines;
-using Org.BouncyCastle.Crypto.Parameters;
-#endif
-
+using KeePassLib.Cryptography;
+using KeePassLib.Cryptography.KeyDerivation;
 using KeePassLib.Native;
 using KeePassLib.Resources;
 using KeePassLib.Security;
 using KeePassLib.Utility;
-using keepass2android;
 
 namespace KeePassLib.Keys
 {
@@ -109,7 +103,6 @@ namespace KeePassLib.Keys
 			return m_vUserKeys.Remove(pKey);
 		}
 
-#if !KeePassRT
 		/// <summary>
 		/// Test whether the composite key contains a specific type of
 		/// user keys (password, key file, ...). If at least one user
@@ -125,8 +118,15 @@ namespace KeePassLib.Keys
 
 			foreach(IUserKey pKey in m_vUserKeys)
 			{
+				if(pKey == null) { Debug.Assert(false); continue; }
+
+#if KeePassUAP
+				if(pKey.GetType() == tUserKeyType)
+					return true;
+#else
 				if(tUserKeyType.IsInstanceOfType(pKey))
 					return true;
+#endif
 			}
 
 			return false;
@@ -145,8 +145,15 @@ namespace KeePassLib.Keys
 
 			foreach(IUserKey pKey in m_vUserKeys)
 			{
+				if(pKey == null) { Debug.Assert(false); continue; }
+
+#if KeePassUAP
+				if(pKey.GetType() == tUserKeyType)
+					return pKey;
+#else
 				if(tUserKeyType.IsInstanceOfType(pKey))
 					return pKey;
+#endif
 			}
 
 			return null;
@@ -156,8 +163,6 @@ namespace KeePassLib.Keys
 		{
 			return (T) GetUserKey(typeof (T));
 		}
-#endif
-
 		/// <summary>
 		/// Creates the composite key from the supplied user key sources (password,
 		/// key file, user account, computer ID, etc.).
@@ -167,21 +172,31 @@ namespace KeePassLib.Keys
 			ValidateUserKeys();
 
 			// Concatenate user key data
-			MemoryStream ms = new MemoryStream();
+			List<byte[]> lData = new List<byte[]>();
+			int cbData = 0;
 			foreach(IUserKey pKey in m_vUserKeys)
 			{
 				ProtectedBinary b = pKey.KeyData;
 				if(b != null)
 				{
 					byte[] pbKeyData = b.ReadData();
-					ms.Write(pbKeyData, 0, pbKeyData.Length);
-					MemUtil.ZeroByteArray(pbKeyData);
+					lData.Add(pbKeyData);
+					cbData += pbKeyData.Length;
 				}
 			}
 
-			SHA256Managed sha256 = new SHA256Managed();
-			byte[] pbHash = sha256.ComputeHash(ms.ToArray());
-			ms.Close();
+			byte[] pbAllData = new byte[cbData];
+			int p = 0;
+			foreach(byte[] pbData in lData)
+			{
+				Array.Copy(pbData, 0, pbAllData, p, pbData.Length);
+				p += pbData.Length;
+				MemUtil.ZeroByteArray(pbData);
+			}
+			Debug.Assert(p == cbData);
+
+			byte[] pbHash = CryptoUtil.HashSha256(pbAllData);
+			MemUtil.ZeroByteArray(pbAllData);
 			return pbHash;
 		}
 
@@ -192,21 +207,13 @@ namespace KeePassLib.Keys
 			byte[] pbThis = CreateRawCompositeKey32();
 			byte[] pbOther = ckOther.CreateRawCompositeKey32();
 			bool bResult = MemUtil.ArraysEqual(pbThis, pbOther);
-			Array.Clear(pbOther, 0, pbOther.Length);
-			Array.Clear(pbThis, 0, pbThis.Length);
+			MemUtil.ZeroByteArray(pbOther);
+			MemUtil.ZeroByteArray(pbThis);
 
 			return bResult;
 		}
 
-		/// <summary>
-		/// Generate a 32-bit wide key out of the composite key.
-		/// </summary>
-		/// <param name="pbKeySeed32">Seed used in the key transformation
-		/// rounds. Must be a byte array containing exactly 32 bytes; must
-		/// not be null.</param>
-		/// <param name="uNumRounds">Number of key transformation rounds.</param>
-		/// <returns>Returns a protected binary object that contains the
-		/// resulting 32-bit wide key.</returns>
+		[Obsolete]
 		public ProtectedBinary GenerateKey32(byte[] pbKeySeed32, ulong uNumRounds)
 		{
 			Debug.Assert(pbKeySeed32 != null);
@@ -214,18 +221,43 @@ namespace KeePassLib.Keys
 			Debug.Assert(pbKeySeed32.Length == 32);
 			if(pbKeySeed32.Length != 32) throw new ArgumentException("pbKeySeed32");
 
+			AesKdf kdf = new AesKdf();
+			KdfParameters p = kdf.GetDefaultParameters();
+			p.SetUInt64(AesKdf.ParamRounds, uNumRounds);
+			p.SetByteArray(AesKdf.ParamSeed, pbKeySeed32);
+
+			return GenerateKey32(p);
+		}
+
+		/// <summary>
+		/// Generate a 32-byte (256-bit) key from the composite key.
+		/// </summary>
+		public ProtectedBinary GenerateKey32(KdfParameters p)
+		{
+			if(p == null) { Debug.Assert(false); throw new ArgumentNullException("p"); }
+
 			byte[] pbRaw32 = CreateRawCompositeKey32();
 			if((pbRaw32 == null) || (pbRaw32.Length != 32))
 				{ Debug.Assert(false); return null; }
 
-			byte[] pbTrf32 = TransformKey(pbRaw32, pbKeySeed32, uNumRounds);
-			if((pbTrf32 == null) || (pbTrf32.Length != 32))
-				{ Debug.Assert(false); return null; }
+			KdfEngine kdf = KdfPool.Get(p.KdfUuid);
+			if(kdf == null) // CryptographicExceptions are translated to "file corrupted"
+				throw new Exception(KLRes.UnknownKdf + MessageService.NewParagraph +
+					KLRes.FileNewVerOrPlgReq + MessageService.NewParagraph +
+					"UUID: " + p.KdfUuid.ToHexString() + ".");
+
+			byte[] pbTrf32 = kdf.Transform(pbRaw32, p);
+			if(pbTrf32 == null) { Debug.Assert(false); return null; }
+
+			if(pbTrf32.Length != 32)
+			{
+				Debug.Assert(false);
+				pbTrf32 = CryptoUtil.HashSha256(pbTrf32);
+			}
 
 			ProtectedBinary pbRet = new ProtectedBinary(true, pbTrf32);
 			MemUtil.ZeroByteArray(pbTrf32);
 			MemUtil.ZeroByteArray(pbRaw32);
-
 			return pbRet;
 		}
 
@@ -244,192 +276,6 @@ namespace KeePassLib.Keys
 				Debug.Assert(false);
 				throw new InvalidOperationException();
 			}
-		}
-
-		/// <summary>
-		/// Transform the current key <c>uNumRounds</c> times.
-		/// </summary>
-		/// <param name="pbOriginalKey32">The original key which will be transformed.
-		/// This parameter won't be modified.</param>
-		/// <param name="pbKeySeed32">Seed used for key transformations. Must not
-		/// be <c>null</c>. This parameter won't be modified.</param>
-		/// <param name="uNumRounds">Transformation count.</param>
-		/// <returns>256-bit transformed key.</returns>
-		private static byte[] TransformKey(byte[] pbOriginalKey32, byte[] pbKeySeed32,
-			ulong uNumRounds)
-		{
-			Debug.Assert((pbOriginalKey32 != null) && (pbOriginalKey32.Length == 32));
-			if (pbOriginalKey32 == null)
-				throw new ArgumentNullException("pbOriginalKey32");
-			if (pbOriginalKey32.Length != 32)
-				throw new ArgumentException();
-
-			Debug.Assert((pbKeySeed32 != null) && (pbKeySeed32.Length == 32));
-			if (pbKeySeed32 == null)
-				throw new ArgumentNullException("pbKeySeed32");
-			if (pbKeySeed32.Length != 32)
-				throw new ArgumentException();
-
-			byte[] pbNewKey = new byte[32];
-			Array.Copy(pbOriginalKey32, pbNewKey, pbNewKey.Length);
-
-			// Try to use the native library first
-			Stopwatch sw = new Stopwatch();
-			sw.Start();
-			if (NativeLib.TransformKey256(pbNewKey, pbKeySeed32, uNumRounds))
-			{
-				sw.Stop();
-				Kp2aLog.Log("Native transform:" +sw.ElapsedMilliseconds+"ms");
-				return pbNewKey;
-			}
-
-			sw.Restart();
-			if(TransformKeyManaged(pbNewKey, pbKeySeed32, uNumRounds) == false)
-				return null;
-			sw.Stop();
-			Kp2aLog.Log("Managed transform:" +sw.ElapsedMilliseconds+"ms");
-
-			SHA256Managed sha256 = new SHA256Managed();
-			return sha256.ComputeHash(pbNewKey);
-		}
-
-		public static bool TransformKeyManaged(byte[] pbNewKey32, byte[] pbKeySeed32,
-			ulong uNumRounds)
-		{
-#if KeePassRT
-			KeyParameter kp = new KeyParameter(pbKeySeed32);
-			AesEngine aes = new AesEngine();
-			aes.Init(true, kp);
-
-			for(ulong i = 0; i < uNumRounds; ++i)
-			{
-				aes.ProcessBlock(pbNewKey32, 0, pbNewKey32, 0);
-				aes.ProcessBlock(pbNewKey32, 16, pbNewKey32, 16);
-			}
-#else
-			byte[] pbIV = new byte[16];
-			Array.Clear(pbIV, 0, pbIV.Length);
-
-			RijndaelManaged r = new RijndaelManaged();
-			if(r.BlockSize != 128) // AES block size
-			{
-				Debug.Assert(false);
-				r.BlockSize = 128;
-			}
-
-			r.IV = pbIV;
-			r.Mode = CipherMode.ECB;
-			r.KeySize = 256;
-			r.Key = pbKeySeed32;
-			ICryptoTransform iCrypt = r.CreateEncryptor();
-
-			// !iCrypt.CanReuseTransform -- doesn't work with Mono
-			if((iCrypt == null) || (iCrypt.InputBlockSize != 16) ||
-				(iCrypt.OutputBlockSize != 16))
-			{
-				Debug.Assert(false, "Invalid ICryptoTransform.");
-				Debug.Assert((iCrypt.InputBlockSize == 16), "Invalid input block size!");
-				Debug.Assert((iCrypt.OutputBlockSize == 16), "Invalid output block size!");
-				return false;
-			}
-
-			for(ulong i = 0; i < uNumRounds; ++i)
-			{
-				iCrypt.TransformBlock(pbNewKey32, 0, 16, pbNewKey32, 0);
-				iCrypt.TransformBlock(pbNewKey32, 16, 16, pbNewKey32, 16);
-			}
-#endif
-
-			return true;
-		}
-
-		/// <summary>
-		/// Benchmark the <c>TransformKey</c> method. Within
-		/// <paramref name="uMilliseconds"/> ms, random keys will be transformed
-		/// and the number of performed transformations are returned.
-		/// </summary>
-		/// <param name="uMilliseconds">Test duration in ms.</param>
-		/// <param name="uStep">Stepping.
-		/// <paramref name="uStep" /> should be a prime number. For fast processors
-		/// (PCs) a value of <c>3001</c> is recommended, for slower processors (PocketPC)
-		/// a value of <c>401</c> is recommended.</param>
-		/// <returns>Number of transformations performed in the specified
-		/// amount of time. Maximum value is <c>uint.MaxValue</c>.</returns>
-		public static ulong TransformKeyBenchmark(uint uMilliseconds, ulong uStep)
-		{
-			ulong uRounds;
-
-			// Try native method
-			if(NativeLib.TransformKeyBenchmark256(uMilliseconds, out uRounds))
-				return uRounds;
-
-			byte[] pbKey = new byte[32];
-			byte[] pbNewKey = new byte[32];
-			for(int i = 0; i < pbKey.Length; ++i)
-			{
-				pbKey[i] = (byte)i;
-				pbNewKey[i] = (byte)i;
-			}
-
-#if KeePassRT
-			KeyParameter kp = new KeyParameter(pbKey);
-			AesEngine aes = new AesEngine();
-			aes.Init(true, kp);
-#else
-			byte[] pbIV = new byte[16];
-			Array.Clear(pbIV, 0, pbIV.Length);
-
-			RijndaelManaged r = new RijndaelManaged();
-			if(r.BlockSize != 128) // AES block size
-			{
-				Debug.Assert(false);
-				r.BlockSize = 128;
-			}
-
-			r.IV = pbIV;
-			r.Mode = CipherMode.ECB;
-			r.KeySize = 256;
-			r.Key = pbKey;
-			ICryptoTransform iCrypt = r.CreateEncryptor();
-
-			// !iCrypt.CanReuseTransform -- doesn't work with Mono
-			if((iCrypt == null) || (iCrypt.InputBlockSize != 16) ||
-				(iCrypt.OutputBlockSize != 16))
-			{
-				Debug.Assert(false, "Invalid ICryptoTransform.");
-				Debug.Assert(iCrypt.InputBlockSize == 16, "Invalid input block size!");
-				Debug.Assert(iCrypt.OutputBlockSize == 16, "Invalid output block size!");
-				return PwDefs.DefaultKeyEncryptionRounds;
-			}
-#endif
-
-			uRounds = 0;
-			int tStart = Environment.TickCount;
-			while(true)
-			{
-				for(ulong j = 0; j < uStep; ++j)
-				{
-#if KeePassRT
-					aes.ProcessBlock(pbNewKey, 0, pbNewKey, 0);
-					aes.ProcessBlock(pbNewKey, 16, pbNewKey, 16);
-#else
-					iCrypt.TransformBlock(pbNewKey, 0, 16, pbNewKey, 0);
-					iCrypt.TransformBlock(pbNewKey, 16, 16, pbNewKey, 16);
-#endif
-				}
-
-				uRounds += uStep;
-				if(uRounds < uStep) // Overflow check
-				{
-					uRounds = ulong.MaxValue;
-					break;
-				}
-
-				uint tElapsed = (uint)(Environment.TickCount - tStart);
-				if(tElapsed > uMilliseconds) break;
-			}
-
-			return uRounds;
 		}
 	}
 
