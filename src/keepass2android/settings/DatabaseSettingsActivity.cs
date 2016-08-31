@@ -344,11 +344,11 @@ namespace keepass2android
             Database db = App.Kp2a.GetDb();
             if (db.Loaded)
             {
-                Preference rounds = FindPreference(GetString(Resource.String.rounds_key));
+                /*Preference rounds = FindPreference(GetString(Resource.String.rounds_key));
                 rounds.PreferenceChange += (sender, e) => SetRounds(db, e.Preference);
                 rounds.Enabled = db.CanWrite;
                 SetRounds(db, rounds);
-
+				*/
                 PrepareDefaultUsername(db);
                 PrepareDatabaseName(db);
                 PrepareMasterPassword();
@@ -797,11 +797,11 @@ namespace keepass2android
             return targetIoc;
         }
 
-
+		/*
         private void SetRounds(Database db, Preference rounds)
         {
             rounds.Summary = db.KpDatabase.KeyEncryptionRounds.ToString(CultureInfo.InvariantCulture);
-        }
+        }*/
 
         private void SetAlgorithm(Database db, Preference algorithm)
         {

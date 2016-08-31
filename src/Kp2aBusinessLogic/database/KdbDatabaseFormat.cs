@@ -13,10 +13,10 @@ using Java.Util;
 using KeePassLib;
 using KeePassLib.Cryptography;
 using KeePassLib.Cryptography.Cipher;
+using KeePassLib.Cryptography.KeyDerivation;
 using KeePassLib.Interfaces;
 using KeePassLib.Keys;
 using KeePassLib.Security;
-using Exception = System.Exception;
 using PwIcon = KeePassLib.PwIcon;
 using Random = System.Random;
 
@@ -63,7 +63,10 @@ namespace keepass2android
 				var dbv3 = importer.OpenDatabase(hashingStream, password, keyfileStream);
 
 				db.Name = dbv3.Name;
-				db.KeyEncryptionRounds = (ulong) dbv3.NumKeyEncRounds;
+				db.KdfParameters = (new AesKdf()).GetDefaultParameters();
+				db.KdfParameters.SetUInt64(AesKdf.ParamRounds, (ulong)dbv3.NumKeyEncRounds);
+			
+
 				db.RootGroup = ConvertGroup(dbv3.RootGroup);
 				if (dbv3.Algorithm == PwEncryptionAlgorithm.Rjindal)
 				{
@@ -235,7 +238,20 @@ namespace keepass2android
 				keyfileContents = new MemoryStream(keyfile.RawFileData.ReadData());
 			}
 			db.SetMasterKey(password, keyfileContents);
-			db.NumRounds = (long) kpDatabase.KeyEncryptionRounds;
+
+			AesKdf kdf = new AesKdf();
+			if (!kdf.Uuid.Equals(kpDatabase.KdfParameters.KdfUuid))
+				db.NumRounds = (uint)PwDefs.DefaultKeyEncryptionRounds;
+			else
+			{
+				ulong uRounds = kpDatabase.KdfParameters.GetUInt64(
+					AesKdf.ParamRounds, PwDefs.DefaultKeyEncryptionRounds);
+				uRounds = Math.Min(uRounds, 0xFFFFFFFEUL);
+
+				db.NumRounds = (uint)uRounds;
+			}
+			
+			
 			db.Name = kpDatabase.Name;
 			if (kpDatabase.DataCipherUuid.Equals(StandardAesEngine.AesUuid))
 			{

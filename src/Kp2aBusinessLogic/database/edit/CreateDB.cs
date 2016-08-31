@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System.Collections.Generic;
 using Android.Content;
 using KeePassLib;
+using KeePassLib.Cryptography.KeyDerivation;
 using KeePassLib.Serialization;
 using KeePassLib.Keys;
 
@@ -65,7 +66,7 @@ namespace keepass2android
 			
 			db.KpDatabase.New(_ioc, _key);
 
-			db.KpDatabase.KeyEncryptionRounds = DefaultEncryptionRounds;
+			db.KpDatabase.KdfParameters = (new AesKdf()).GetDefaultParameters();
 			db.KpDatabase.Name = "Keepass2Android Password Database";
 			//re-set the name of the root group because the PwDatabase uses UrlUtil which is not appropriate for all file storages:
 			db.KpDatabase.RootGroup.Name = _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc);

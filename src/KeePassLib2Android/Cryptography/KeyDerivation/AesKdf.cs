@@ -122,7 +122,7 @@ namespace KeePassLib.Cryptography.KeyDerivation
 				// Try to use the native library first
 				if(NativeLib.TransformKey256(pbNewKey, pbKeySeed32, uNumRounds))
 					return CryptoUtil.HashSha256(pbNewKey);
-
+				
 				if(TransformKeyManaged(pbNewKey, pbKeySeed32, uNumRounds))
 					return CryptoUtil.HashSha256(pbNewKey);
 			}

@@ -26,6 +26,7 @@ using System.Diagnostics;
 
 using KeePassLib.Cryptography;
 using KeePassLib.Cryptography.Cipher;
+using KeePassLib.Cryptography.KeyDerivation;
 using KeePassLib.Keys;
 using KeePassLib.Utility;
 
@@ -72,7 +73,7 @@ namespace OtpKeyProv
 			Array.Copy(pbData, pbEnc, pbData.Length);
 
 			Salsa20Cipher enc = new Salsa20Cipher(pbKey32, pbIV8);
-			enc.Encrypt(pbEnc, pbEnc.Length, true);
+			enc.Encrypt(pbEnc, 0, pbEnc.Length);
 
 			return ("s20://" + Convert.ToBase64String(pbEnc,
 				Base64FormattingOptions.None));
@@ -90,7 +91,7 @@ namespace OtpKeyProv
 			Array.Copy(pbIV16, 0, pbIV8, 0, 8);
 
 			Salsa20Cipher dec = new Salsa20Cipher(pbKey32, pbIV8);
-			dec.Encrypt(pb, pb.Length, true);
+			dec.Encrypt(pb, 0, pb.Length);
 
 			return pb;
 		}
@@ -102,7 +103,7 @@ namespace OtpKeyProv
 			byte[] pbHash = sha256.ComputeHash(pbData);
 			sha256.Clear();
 
-			if(!CompositeKey.TransformKeyManaged(pbHash, pbTrfKey32, uTrfRounds))
+			if(!AesKdf.TransformKeyManaged(pbHash, pbTrfKey32, uTrfRounds))
 				return null;
 
 			sha256 = new SHA256Managed();

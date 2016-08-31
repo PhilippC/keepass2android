@@ -23,6 +23,7 @@ using Android.Widget;
 using Android.Preferences;
 using KeePassLib;
 using Android.Util;
+using KeePassLib.Cryptography.KeyDerivation;
 
 namespace keepass2android.settings
 {
@@ -37,14 +38,33 @@ namespace keepass2android.settings
 			View view =  base.OnCreateDialogView();
 			
 			RoundsView = (TextView) view.FindViewById(Resource.Id.rounds);
-			
-			Database db = App.Kp2a.GetDb();
-			ulong numRounds = db.KpDatabase.KeyEncryptionRounds;
+
+
+			ulong numRounds = KeyEncryptionRounds;
 			RoundsView.Text = numRounds.ToString(CultureInfo.InvariantCulture);
 
 			return view;
 		}
-		
+
+		public ulong KeyEncryptionRounds
+		{
+			get
+			{
+				AesKdf kdf = new AesKdf();
+				if (!kdf.Uuid.Equals(App.Kp2a.GetDb().KpDatabase.KdfParameters.KdfUuid))
+					return (uint) PwDefs.DefaultKeyEncryptionRounds;
+				else
+				{
+					ulong uRounds = App.Kp2a.GetDb().KpDatabase.KdfParameters.GetUInt64(
+						AesKdf.ParamRounds, PwDefs.DefaultKeyEncryptionRounds);
+					uRounds = Math.Min(uRounds, 0xFFFFFFFEUL);
+
+					return (uint) uRounds;
+				}
+			}
+			set { App.Kp2a.GetDb().KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, value); }
+		}
+
 		public RoundsPreference(Context context, IAttributeSet attrs):base(context, attrs) {
 		}
 		
@@ -70,14 +90,14 @@ namespace keepass2android.settings
 
 				Database db = App.Kp2a.GetDb();
 
-				ulong oldRounds = db.KpDatabase.KeyEncryptionRounds;
+				ulong oldRounds = KeyEncryptionRounds;
 
 				if (oldRounds == rounds)
 				{
 					return;
 				}
 
-				db.KpDatabase.KeyEncryptionRounds = rounds;
+				KeyEncryptionRounds = rounds;
 
 				Handler handler = new Handler();
 				SaveDb save = new SaveDb(Context, App.Kp2a, new AfterSave(Context, handler, oldRounds, this));
@@ -109,7 +129,7 @@ namespace keepass2android.settings
 				} else {
 					DisplayMessage(_ctx);
 
-					App.Kp2a.GetDb().KpDatabase.KeyEncryptionRounds = _oldRounds;
+					App.Kp2a.GetDb().KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, _oldRounds);
 				}
 				
 				base.Run();
