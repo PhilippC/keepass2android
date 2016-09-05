@@ -1390,10 +1390,16 @@ namespace keepass2android
 		private void PerformLoadDatabaseWithCompositeKey(CompositeKey compositeKey)
 		{
 			CheckBox cbQuickUnlock = (CheckBox) FindViewById(Resource.Id.enable_quickunlock);
+			if (cbQuickUnlock == null)
+				throw new NullPointerException("cpQuickUnlock");
 			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
 
 			if (App.Kp2a.OfflineMode != _loadDbTaskOffline)
 			{
+				if (_loadDbTask == null)
+					throw new NullPointerException("_loadDbTask");
+				if (App.Kp2a == null)
+					throw new NullPointerException("App.Kp2a");
 				//keep the loading result if we loaded in online-mode (now offline) and the task is completed
 				if (!App.Kp2a.OfflineMode || !_loadDbTask.IsCompleted)
 				{
