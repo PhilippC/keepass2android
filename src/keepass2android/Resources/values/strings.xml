@@ -64,6 +64,9 @@
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
   <string name="ClearClipboard">Clipboard cleared.</string>
+  
+  
+  
   <string name="clipboard_timeout">Clipboard timeout</string>
   <string name="clipboard_timeout_summary">Time before clearing clipboard after copying username or password</string>
   <string name="copy_username">Select to copy username to clipboard</string>
@@ -138,6 +141,8 @@
   <string name="error_pass_gen_type">At least one password generation type must be selected</string>
   <string name="error_pass_match">Passwords do not match.</string>
   <string name="error_rounds_not_number">Rounds must be a number.</string>
+  <string name="error_param_not_number">Parameter must be a number.</string>
+  
   <string name="error_title_required">A title is required.</string>
   <string name="error_wrong_length">Enter a positive integer on length field</string>
   <string name="FileNotFound">File not found.</string>
@@ -216,9 +221,17 @@
   <string name="remove_from_filelist">Remove</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+
+  <string name="KeyDerivFunc">Key derivation function</string>
+  
   <string name="rounds">Encryption Rounds</string>
   <string name="rounds_explaination">Higher encryption rounds provide additional protection against brute force attacks, but can really slow down loading and saving.</string>
   <string name="rounds_hint">rounds</string>
+
+
+  <string name="argon2memory">Memory for Argon 2 (bytes)</string>
+  <string name="argon2parallelism">Parallelism for Argon 2</string>
+
   <string name="database_name">Database name</string>
   <string name="default_username">Default user name for new entries</string>
   <string name="saving_database">Saving database…</string>
@@ -660,6 +673,12 @@
     Version 0.9.8c\n
     * Fix for SSL vulnerability in Microsoft Live SDK (used when accessing files via OneDrive)\n
     * Bug fix: Previous release contained two input methods (one crashing)\n
+  </string>
+
+  <string name="ChangeLog_1_01_preview">
+    Version 1.01-pre1\n
+    * NOTE: this is a preview, ONLY use for testing!\n
+    * added preview-support for the new KDBX-4-format (see http://keepass.info/help/kb/kdbx_4.html) including Argon2 key derivation and ChaCha20 encryption. Argon2 is currently only implemented in managed code. Expect a slow transformation process.\n
   </string>
 
   <string name="ChangeLog_1_0_0e">

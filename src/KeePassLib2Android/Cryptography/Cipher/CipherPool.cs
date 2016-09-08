@@ -46,7 +46,6 @@ namespace KeePassLib.Cryptography.Cipher
 					cp = new CipherPool();
 					cp.AddCipher(new StandardAesEngine());
 					cp.AddCipher(new ChaCha20Engine());
-
 					m_poolGlobal = cp;
 				}
 
@@ -159,6 +158,13 @@ namespace KeePassLib.Cryptography.Cipher
 					throw new ArgumentOutOfRangeException("nIndex");
 
 				return m_vCiphers[nIndex];
+			}
+		}
+
+		public IEnumerable<ICipherEngine> Engines
+		{
+			get {
+				return m_vCiphers;
 			}
 		}
 	}

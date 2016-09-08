@@ -39,6 +39,8 @@ using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using keepass2android.Io;
 using keepass2android.Utils;
+using KeePassLib;
+using KeePassLib.Cryptography.KeyDerivation;
 
 namespace keepass2android
 {
@@ -313,8 +315,9 @@ namespace keepass2android
         }
 
         private KeyboardSwitchPrefManager _switchPrefManager;
+		private Preference aesRounds, argon2parallelism, argon2rounds, argon2memory;
 
-        void OnRememberKeyFileHistoryChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
+	    void OnRememberKeyFileHistoryChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
         {
             if (!(bool)eventArgs.NewValue)
             {
@@ -344,19 +347,38 @@ namespace keepass2android
             Database db = App.Kp2a.GetDb();
             if (db.Loaded)
             {
-                /*Preference rounds = FindPreference(GetString(Resource.String.rounds_key));
-                rounds.PreferenceChange += (sender, e) => SetRounds(db, e.Preference);
-                rounds.Enabled = db.CanWrite;
-                SetRounds(db, rounds);
-				*/
+	            ListPreference kdfPref = (ListPreference) FindPreference(GetString(Resource.String.kdf_key));
+	            kdfPref.SetEntries(KdfPool.Engines.Select(eng => eng.Name).ToArray());
+	            string[] kdfValues = KdfPool.Engines.Select(eng => eng.Uuid.ToHexString()).ToArray();
+				kdfPref.SetEntryValues(kdfValues);
+				kdfPref.SetValueIndex(kdfValues.Select((v, i) => new {kdf = v, index = i}).First(el => el.kdf == db.KpDatabase.KdfParameters.KdfUuid.ToHexString()).index);
+				kdfPref.PreferenceChange += OnKdfChange;
+				
+				aesRounds = FindPreference(GetString(Resource.String.rounds_key));
+				argon2rounds = FindPreference("argon2rounds");
+				argon2memory = FindPreference("argon2memory");
+				argon2parallelism = FindPreference("argon2parallelism");
+
+				aesRounds.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
+				argon2rounds.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
+				argon2memory.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
+				argon2parallelism.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
+
+	            UpdateKdfScreen();
+				
                 PrepareDefaultUsername(db);
                 PrepareDatabaseName(db);
                 PrepareMasterPassword();
 	            PrepareTemplates(db);
                 
-                Preference algorithm = FindPreference(GetString(Resource.String.algorithm_key));
-                SetAlgorithm(db, algorithm);
-
+                ListPreference algorithmPref = (ListPreference)FindPreference(GetString(Resource.String.algorithm_key));
+				algorithmPref.SetEntries(CipherPool.GlobalPool.Engines.Select(eng => eng.DisplayName).ToArray());
+				string[] algoValues = CipherPool.GlobalPool.Engines.Select(eng => eng.CipherUuid.ToHexString()).ToArray();
+				algorithmPref.SetEntryValues(algoValues);
+				algorithmPref.SetValueIndex(algoValues.Select((v, i) => new { kdf = v, index = i }).First(el => el.kdf == db.KpDatabase.DataCipherUuid.ToHexString()).index);
+				algorithmPref.PreferenceChange += AlgorithmPrefChange;
+	            algorithmPref.Summary =
+		            CipherPool.GlobalPool.GetCipher(App.Kp2a.GetDb().KpDatabase.DataCipherUuid).DisplayName;
                 UpdateImportDbPref();
                 UpdateImportKeyfilePref();
             }
@@ -425,7 +447,99 @@ namespace keepass2android
 			
         }
 
-		private void PrepareNoDonationReminderPreference(Activity ctx, PreferenceScreen screen, Preference preference)
+	    private void AlgorithmPrefChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
+	    {
+			var db = App.Kp2a.GetDb();
+			var previousCipher = db.KpDatabase.DataCipherUuid;
+			db.KpDatabase.DataCipherUuid = new PwUuid(MemUtil.HexStringToByteArray((string)preferenceChangeEventArgs.NewValue));
+
+			SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish((success, message) =>
+			{
+				if (!success)
+				{
+					db.KpDatabase.DataCipherUuid = previousCipher;
+					Toast.MakeText(Activity, message, ToastLength.Long).Show();
+					return;
+				}
+				preferenceChangeEventArgs.Preference.Summary =
+					CipherPool.GlobalPool.GetCipher(db.KpDatabase.DataCipherUuid).DisplayName;
+			}));
+			ProgressTask pt = new ProgressTask(App.Kp2a, Activity, save);
+			pt.Run();
+	    }
+
+	    private void UpdateKdfScreen()
+	    {
+		    var db = App.Kp2a.GetDb();
+			var kdf = KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid);
+
+			var kdfpref = FindPreference(GetString(Resource.String.kdf_key));
+
+
+		    kdfpref.Summary = kdf.Name;
+			
+			var kdfscreen = ((PreferenceScreen)FindPreference(GetString(Resource.String.kdf_screen_key)));
+			if (kdf is AesKdf)
+			{
+				if (kdfscreen.FindPreference(GetString(Resource.String.rounds_key)) == null)
+					kdfscreen.AddPreference(aesRounds);
+				kdfscreen.RemovePreference(argon2rounds);
+				kdfscreen.RemovePreference(argon2memory);
+				kdfscreen.RemovePreference(argon2parallelism);
+
+				aesRounds.Enabled = db.CanWrite;
+				UpdateKdfSummary(aesRounds);
+			}
+			else
+			{
+				kdfscreen.RemovePreference(aesRounds);
+				if (kdfscreen.FindPreference("argon2rounds") == null)
+				{
+					kdfscreen.AddPreference(argon2rounds);
+					kdfscreen.AddPreference(argon2memory);
+					kdfscreen.AddPreference(argon2parallelism);
+				}
+				UpdateKdfSummary(argon2rounds);
+				UpdateKdfSummary(argon2memory);
+				UpdateKdfSummary(argon2parallelism);
+			}
+				
+	    }
+
+	    private void OnKdfChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
+	    {
+		    var db = App.Kp2a.GetDb();
+		    var previousKdfParams = db.KpDatabase.KdfParameters;
+			Kp2aLog.Log("previous kdf: " + KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid) + " " + db.KpDatabase.KdfParameters.KdfUuid.ToHexString() );
+		    db.KpDatabase.KdfParameters =
+			    KdfPool.Get(
+				    new PwUuid(MemUtil.HexStringToByteArray((string)preferenceChangeEventArgs.NewValue)))
+				    .GetDefaultParameters();
+
+			Kp2aLog.Log("--new    kdf: " + KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid) + " " + db.KpDatabase.KdfParameters.KdfUuid.ToHexString());
+		    
+			SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish((success, message) =>
+			{
+				if (!success)
+				{
+					db.KpDatabase.KdfParameters = previousKdfParams;
+					Toast.MakeText(Activity, message, ToastLength.Long).Show();
+					return;
+				}
+				UpdateKdfScreen();
+				
+			}));
+			ProgressTask pt = new ProgressTask(App.Kp2a, Activity, save);
+			pt.Run();
+
+	    }
+
+	    private void UpdateKdfSummary(Preference preference)
+		{
+			preference.Summary = ((keepass2android.settings.KdfNumberParamPreference)preference).ParamValue.ToString();
+		}
+
+	    private void PrepareNoDonationReminderPreference(Activity ctx, PreferenceScreen screen, Preference preference)
 	    {
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
 
@@ -797,12 +911,8 @@ namespace keepass2android
             return targetIoc;
         }
 
-		/*
-        private void SetRounds(Database db, Preference rounds)
-        {
-            rounds.Summary = db.KpDatabase.KeyEncryptionRounds.ToString(CultureInfo.InvariantCulture);
-        }*/
-
+		
+        
         private void SetAlgorithm(Database db, Preference algorithm)
         {
             algorithm.Summary = CipherPool.GlobalPool.GetCipher(db.KpDatabase.DataCipherUuid).DisplayName;

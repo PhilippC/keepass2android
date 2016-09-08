@@ -31,18 +31,59 @@
                 android:title="@string/database_name"
                 android:persistent="false"
                 android:key="@string/database_name_key"/>
-		<Preference
-		  android:key="@string/algorithm_key"
-		  android:title="@string/algorithm"
-		  android:enabled="false"/>
-		<keepass2android.settings.RoundsPreference
+		
+      <ListPreference
+			  android:key="@string/algorithm_key"
+			  android:title="@string/algorithm"
+			  android:dialogTitle="@string/algorithm"/>
+
+    <PreferenceScreen
+	  android:key="@string/kdf_screen_key"
+	  android:title="@string/KeyDerivFunc" >
+<keepass2android.ToolbarPreference
+    android:key="@string/kdf_screen_key"
+    android:title="@string/KeyDerivFunc" />
+     
+      <ListPreference
+			  android:key="@string/kdf_key"
+			  android:title="@string/KeyDerivFunc"
+			  android:dialogTitle="@string/KeyDerivFunc"/>
+
+      
+
+    <keepass2android.settings.RoundsPreference
 		  android:key="@string/rounds_key"
 		  android:persistent="false"
 		  android:title="@string/rounds"
 		  android:dialogLayout="@layout/database_settings"
 		  android:positiveButtonText="@string/entry_save"
 		  android:negativeButtonText="@string/entry_cancel"/>
-
+    
+    <keepass2android.settings.Argon2RoundsPreference
+		  android:key="argon2rounds"
+		  android:persistent="false"
+		  android:title="@string/rounds"
+		  android:dialogLayout="@layout/database_settings"
+		  android:positiveButtonText="@string/entry_save"
+		  android:negativeButtonText="@string/entry_cancel"/>
+    
+    <keepass2android.settings.Argon2MemoryPreference
+		  android:key="argon2memory"
+		  android:persistent="false"
+		  android:title="@string/argon2memory"
+		  android:dialogLayout="@layout/database_settings"
+		  android:positiveButtonText="@string/entry_save"
+		  android:negativeButtonText="@string/entry_cancel"/>
+    
+    <keepass2android.settings.Argon2ParallelismPreference
+		  android:key="argon2parallelism"
+		  android:persistent="false"
+		  android:title="@string/argon2parallelism"
+		  android:dialogLayout="@layout/database_settings"
+		  android:positiveButtonText="@string/entry_save"
+		  android:negativeButtonText="@string/entry_cancel"/>
+</PreferenceScreen>
+  
 		<EditTextPreference
 			  android:title="@string/default_username"
 			  android:persistent="false"
@@ -84,6 +125,7 @@
 		
     
 	</PreferenceScreen>
+	
 
 	<PreferenceScreen
 	  android:key="@string/app_key"

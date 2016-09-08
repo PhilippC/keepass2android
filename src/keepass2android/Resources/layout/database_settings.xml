@@ -26,7 +26,6 @@
 	  android:layout_width="fill_parent"
 	  android:inputType="number"/> 
 	<TextView android:id="@+id/rounds_explaination" 
-	  android:text="@string/rounds_explaination"
 	  android:layout_height="wrap_content"
 	  android:layout_width="wrap_content" 
 	  android:layout_below="@id/rounds"/>

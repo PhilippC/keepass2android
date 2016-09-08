@@ -27,80 +27,68 @@ using KeePassLib.Cryptography.KeyDerivation;
 
 namespace keepass2android.settings
 {
-	/// <summary>
-	/// Represents the setting for the number of key transformation rounds. Changing this requires to save the database.
-	/// </summary>
-	public class RoundsPreference : DialogPreference {
+	public abstract class KdfNumberParamPreference: DialogPreference {
 		
-		internal TextView RoundsView;
+		internal TextView edittext;
 		
 		protected override View OnCreateDialogView() {
 			View view =  base.OnCreateDialogView();
 			
-			RoundsView = (TextView) view.FindViewById(Resource.Id.rounds);
+			edittext = (TextView) view.FindViewById(Resource.Id.rounds);
 
 
-			ulong numRounds = KeyEncryptionRounds;
-			RoundsView.Text = numRounds.ToString(CultureInfo.InvariantCulture);
+			ulong numRounds = ParamValue;
+			edittext.Text = numRounds.ToString(CultureInfo.InvariantCulture);
+
+			view.FindViewById<TextView>(Resource.Id.rounds_explaination).Text = ExplanationString;
 
 			return view;
 		}
 
-		public ulong KeyEncryptionRounds
+		public virtual string ExplanationString
 		{
-			get
-			{
-				AesKdf kdf = new AesKdf();
-				if (!kdf.Uuid.Equals(App.Kp2a.GetDb().KpDatabase.KdfParameters.KdfUuid))
-					return (uint) PwDefs.DefaultKeyEncryptionRounds;
-				else
-				{
-					ulong uRounds = App.Kp2a.GetDb().KpDatabase.KdfParameters.GetUInt64(
-						AesKdf.ParamRounds, PwDefs.DefaultKeyEncryptionRounds);
-					uRounds = Math.Min(uRounds, 0xFFFFFFFEUL);
-
-					return (uint) uRounds;
-				}
-			}
-			set { App.Kp2a.GetDb().KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, value); }
+			get { return ""; }
 		}
 
-		public RoundsPreference(Context context, IAttributeSet attrs):base(context, attrs) {
+		public abstract ulong ParamValue { get; set; }
+		public KdfNumberParamPreference(Context context, IAttributeSet attrs):base(context, attrs) {
 		}
-		
-		public RoundsPreference(Context context, IAttributeSet attrs, int defStyle): base(context, attrs, defStyle) {
+
+		public KdfNumberParamPreference(Context context, IAttributeSet attrs, int defStyle)
+			: base(context, attrs, defStyle)
+		{
 		}
 		
 		protected override void OnDialogClosed(bool positiveResult) {
 			base.OnDialogClosed(positiveResult);
 			
 			if ( positiveResult ) {
-				ulong rounds;
+				ulong paramValue;
 				
-				String strRounds = RoundsView.Text; 
-				if (!(ulong.TryParse(strRounds,out rounds)))
+				String strRounds = edittext.Text; 
+				if (!(ulong.TryParse(strRounds,out paramValue)))
 				{
-					Toast.MakeText(Context, Resource.String.error_rounds_not_number, ToastLength.Long).Show();
+					Toast.MakeText(Context, Resource.String.error_param_not_number, ToastLength.Long).Show();
 					return;
 				}
 				
-				if ( rounds < 1 ) {
-					rounds = 1;
+				if ( paramValue < 1 ) {
+					paramValue = 1;
 				}
 
 				Database db = App.Kp2a.GetDb();
 
-				ulong oldRounds = KeyEncryptionRounds;
+				ulong oldValue = ParamValue;
 
-				if (oldRounds == rounds)
+				if (oldValue == paramValue)
 				{
 					return;
 				}
 
-				KeyEncryptionRounds = rounds;
+				ParamValue = paramValue;
 
 				Handler handler = new Handler();
-				SaveDb save = new SaveDb(Context, App.Kp2a, new AfterSave(Context, handler, oldRounds, this));
+				SaveDb save = new SaveDb(Context, App.Kp2a, new KdfNumberParamPreference.AfterSave(Context, handler, oldValue, this));
 				ProgressTask pt = new ProgressTask(App.Kp2a, Context, save);
 				pt.Run();
 				
@@ -111,9 +99,9 @@ namespace keepass2android.settings
 		private class AfterSave : OnFinish {
 			private readonly ulong _oldRounds;
 			private readonly Context _ctx;
-			private readonly RoundsPreference _pref;
+			private readonly KdfNumberParamPreference _pref;
 			
-			public AfterSave(Context ctx, Handler handler, ulong oldRounds, RoundsPreference pref):base(handler) {
+			public AfterSave(Context ctx, Handler handler, ulong oldRounds, KdfNumberParamPreference pref):base(handler) {
 
 				_pref = pref;
 				_ctx = ctx;
@@ -137,6 +125,55 @@ namespace keepass2android.settings
 			
 		}
 		
+	}
+
+	/// <summary>
+	/// Represents the setting for the number of key transformation rounds. Changing this requires to save the database.
+	/// </summary>
+	public class RoundsPreference : KdfNumberParamPreference {
+		private readonly Context _context;
+
+
+		public ulong KeyEncryptionRounds
+		{
+			get
+			{
+				AesKdf kdf = new AesKdf();
+				if (!kdf.Uuid.Equals(App.Kp2a.GetDb().KpDatabase.KdfParameters.KdfUuid))
+					return (uint) PwDefs.DefaultKeyEncryptionRounds;
+				else
+				{
+					ulong uRounds = App.Kp2a.GetDb().KpDatabase.KdfParameters.GetUInt64(
+						AesKdf.ParamRounds, PwDefs.DefaultKeyEncryptionRounds);
+					uRounds = Math.Min(uRounds, 0xFFFFFFFEUL);
+
+					return (uint) uRounds;
+				}
+			}
+			set { App.Kp2a.GetDb().KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, value); }
+		}
+
+		public RoundsPreference(Context context, IAttributeSet attrs):base(context, attrs)
+		{
+			_context = context;
+		}
+
+		public RoundsPreference(Context context, IAttributeSet attrs, int defStyle): base(context, attrs, defStyle)
+		{
+			_context = context;
+		}
+
+		public override string ExplanationString
+		{
+			get { return _context.GetString(Resource.String.rounds_explaination); }
+		}
+
+		public override ulong ParamValue
+		{
+			get { return KeyEncryptionRounds; }
+			set { KeyEncryptionRounds = value; }
+		}
+	
 	}
 
 }

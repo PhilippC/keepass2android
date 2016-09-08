@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;_EXCLUDE_KEYBOARD;_EXCLUDE_FILECHOOSER;_EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
+    <DefineConstants>DEBUG;_EXCLUDE_TWOFISH;_EXCLUDE_KEYBOARD;_EXCLUDE_FILECHOOSER;_EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -182,6 +182,7 @@
     <Compile Include="search\SearchProvider.cs" />
     <Compile Include="SelectStorageLocationActivity.cs" />
     <Compile Include="services\OngoingNotificationsService.cs" />
+    <Compile Include="settings\Argon2Preference.cs" />
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
     <Compile Include="intents\Intents.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
@@ -590,7 +591,9 @@
     <AndroidResource Include="Resources\layout\about.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\database_settings.xml" />
+    <AndroidResource Include="Resources\layout\database_settings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\entry_edit.xml">
       <SubType>Designer</SubType>
     </AndroidResource>

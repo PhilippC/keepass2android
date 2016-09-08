@@ -122,6 +122,7 @@ namespace KeePassLib.Cryptography.KeyDerivation
 				// Try to use the native library first
 				if (NativeLib.TransformKey256(pbNewKey, pbKeySeed32, uNumRounds))
 				{
+					//no need to hash, this is already done in the native library.
 					byte[] pbKey = new byte[32];
 					Array.Copy(pbNewKey, pbKey, pbNewKey.Length);
 
