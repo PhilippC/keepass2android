@@ -1538,11 +1538,11 @@ namespace keepass2android
 
 		protected override void OnPause()
 		{
-			base.OnPause();
 			if (_fingerprintDec != null)
 			{
 				_fingerprintDec.StopListening();
 			}
+			base.OnPause();
 		}
 
 		private void SetPasswordTypeface(TextView textView)
@@ -1613,21 +1613,7 @@ namespace keepass2android
 
 		private static MemoryStream StreamToMemoryStream(Stream stream)
 		{
-			var memoryStream = stream as MemoryStream;
-			if (memoryStream == null)
-			{
-				// Read the stream into memory
-				int capacity = 4096; // Default initial capacity, if stream can't report it.
-				if (stream.CanSeek)
-				{
-					capacity = (int) stream.Length;
-				}
-				memoryStream = new MemoryStream(capacity);
-				stream.CopyTo(memoryStream);
-				stream.Close();
-				memoryStream.Seek(0, SeekOrigin.Begin);
-			}
-			return memoryStream;
+			return Util.StreamToMemoryStream(stream);
 		}
 
 		protected override void OnSaveInstanceState(Bundle outState)
