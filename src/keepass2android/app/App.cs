@@ -458,7 +458,7 @@ namespace keepass2android
 		{
 			IFileStorage fileStorage;
 			if (iocInfo.IsLocalFile())
-				fileStorage = new BuiltInFileStorage(this);
+				fileStorage = new LocalFileStorage(this);
 			else
 			{
 				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
@@ -511,9 +511,10 @@ namespace keepass2android
 							new GoogleDriveFileStorage(Application.Context, this),
 							new SkyDriveFileStorage(Application.Context, this),
 							new SftpFileStorage(this),
+							new NetFtpFileStorage(Application.Context),
 #endif
 #endif
-							new BuiltInFileStorage(this)
+							new LocalFileStorage(this)
 						};
 				}
 				return _fileStorages;

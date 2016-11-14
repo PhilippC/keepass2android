@@ -256,10 +256,6 @@ namespace keepass2android.Io
 			
 		}
 
-		public void ResolveAccount(IOConnectionInfo ioc)
-		{
-			
-		}
 	}
 
 	class AndroidContentWriteTransaction : IWriteTransaction

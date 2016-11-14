@@ -294,11 +294,6 @@ namespace keepass2android.Io
 			return false; //TODO implement. note, however, that we MAY return false even if it's read-only
 		}
 
-		public void ResolveAccount(IOConnectionInfo ioc)
-		{
-			
-		}
-
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
 		{
 			_jfs.OnCreate(((IJavaFileStorageFileStorageSetupActivity)activity), savedInstanceState);

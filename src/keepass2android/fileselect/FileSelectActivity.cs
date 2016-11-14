@@ -219,7 +219,6 @@ namespace keepass2android
 					TextView textView = (TextView)view;
 					IOConnectionInfo ioc = new IOConnectionInfo {Path = path};
 					var fileStorage = _app.GetFileStorage(ioc);
-					//TODO enable for 1.1 release fileStorage.ResolveAccount(ioc);
 					textView.Text = fileStorage.GetDisplayName(ioc);
 					textView.Tag = ioc.Path;
 					return true;

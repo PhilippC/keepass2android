@@ -20,7 +20,7 @@ using IOException = System.IO.IOException;
 
 namespace keepass2android.Io
 {
-	public class BuiltInFileStorage : IFileStorage, IPermissionRequestingFileStorage
+	public abstract class BuiltInFileStorage : IFileStorage, IPermissionRequestingFileStorage
 	{
 		private const string PermissionGrantedKey = "PermissionGranted";
 
@@ -56,18 +56,8 @@ namespace keepass2android.Io
 
 		}
 
-		public IEnumerable<string> SupportedProtocols 
-		{ 
-			get 
-			{
-				yield return "file";
-#if !NoNet
-				yield return "ftp";
-				yield return "http";
-				yield return "https";
-#endif
-			}
-		}
+
+		public abstract IEnumerable<string> SupportedProtocols { get; }
 
 		public void Delete(IOConnectionInfo ioc)
 		{
@@ -398,11 +388,6 @@ namespace keepass2android.Io
 			return false;
 		}
 
-		public void ResolveAccount(IOConnectionInfo ioc)
-		{
-			
-		}
-
 		private bool IsLocalFileFlaggedReadOnly(IOConnectionInfo ioc)
 		{
 			try
@@ -427,6 +412,57 @@ namespace keepass2android.Io
 			string[] permissions, Permission[] grantResults)
 		{
 			fileStorageSetupActivity.State.PutBoolean(PermissionGrantedKey, grantResults[0] == Permission.Granted);
+		}
+	}
+
+	class LegacyFtpStorage : BuiltInFileStorage
+	{
+		public LegacyFtpStorage(IKp2aApp app) : base(app)
+		{
+		}
+
+		public override IEnumerable<string> SupportedProtocols
+		{
+			get
+			{
+#if !NoNet
+				yield return "ftp";
+#endif
+			}
+		}
+	}
+
+	class LegacyWebDavStorage : BuiltInFileStorage
+	{
+		public LegacyWebDavStorage(IKp2aApp app) : base(app)
+		{
+		}
+
+		public override IEnumerable<string> SupportedProtocols
+		{
+			get
+			{
+#if !NoNet
+				yield return "http";
+				yield return "https";
+#endif
+
+			}
+		}
+	}
+
+	public class LocalFileStorage : BuiltInFileStorage
+	{
+		public LocalFileStorage(IKp2aApp app) : base(app)
+		{
+		}
+
+		public override IEnumerable<string> SupportedProtocols
+		{
+			get
+			{
+				yield return "file";
+			}
 		}
 	}
 }
