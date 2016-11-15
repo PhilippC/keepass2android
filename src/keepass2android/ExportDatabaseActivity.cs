@@ -62,17 +62,19 @@ namespace keepass2android
 				}
 				else
 				{
-				App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
-						OnActivityResult,
-						defaultPath =>
-						{
-							if (defaultPath.StartsWith("sftp://"))
-								Util.ShowSftpDialog(this, OnReceiveSftpData, () => { });
-							else
-								Util.ShowFilenameDialog(this, OnCreateButton, null, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
-												Intents.RequestCodeFileBrowseForOpen);
-						}
-						), true, RequestCodeDbFilename, protocolId);
+					FileSelectHelper fileSelectHelper = new FileSelectHelper(this, true, RequestCodeDbFilename)
+					{
+						DefaultExtension = _ffp[_fileFormatIndex].DefaultExtension
+					};
+					fileSelectHelper.OnOpen += (sender, ioc) =>
+					{
+						ExportTo(ioc);
+					};
+					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(
+							new FileStorageSetupInitiatorActivity(this, OnActivityResult, s => fileSelectHelper.PerformManualFileSelect(s)),
+							true,
+							RequestCodeDbFilename,
+							protocolId);	
 				}
 				return;
 			}
@@ -149,7 +151,9 @@ namespace keepass2android
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
 				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
-				StartFileChooser(ioc.Path, RequestCodeDbFilename, true);
+				new FileSelectHelper(this, true, RequestCodeDbFilename) 
+					{ DefaultExtension =  _ffp[_fileFormatIndex].DefaultExtension}
+					.StartFileChooser(ioc.Path);
 				return;
 			}
 			Finish();
@@ -176,39 +180,6 @@ namespace keepass2android
 			get { return 0; }
 		}
 
-		private bool OnCreateButton(string filename, Dialog dialog)
-		{
-			if (filename.Length == 0)
-			{
-				Toast.MakeText(this,
-								Resource.String.error_filename_required,
-								ToastLength.Long).Show();
-				return false;
-			}
-
-			IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
-			try
-			{
-				App.Kp2a.GetFileStorage(ioc);
-			}
-			catch (NoFileStorageFoundException)
-			{
-				Toast.MakeText(this,
-								"Unexpected scheme in " + filename,
-								ToastLength.Long).Show();
-				return false;
-			}
-
-			ExportTo(new IOConnectionInfo() { Path = filename });
-			return true;
-		}
-
-		private bool OnReceiveSftpData(string filename)
-		{
-			StartFileChooser(filename, RequestCodeDbFilename, true);
-			return true;
-		}
-
 		private static string ConvertFilenameToIocPath(string filename)
 		{
 			if ((filename != null) && (filename.StartsWith("file://")))
@@ -217,29 +188,6 @@ namespace keepass2android
 				filename = Java.Net.URLDecoder.Decode(filename);
 			}
 			return filename;
-		}
-
-		private void StartFileChooser(string defaultPath, int requestCode, bool forSave)
-		{
-#if !EXCLUDE_FILECHOOSER
-			Kp2aLog.Log("FSA: defaultPath=" + defaultPath);
-			string fileProviderAuthority = FileChooserFileProvider.TheAuthority;
-			if (defaultPath.StartsWith("file://"))
-			{
-				fileProviderAuthority = "keepass2android."+AppNames.PackagePart+".android-filechooser.localfile";
-			}
-			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, fileProviderAuthority,
-																										defaultPath);
-
-			if (forSave)
-			{
-				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.save_dialog", true);
-				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.default_file_ext", _ffp[_fileFormatIndex].DefaultExtension);
-			}
-
-			StartActivityForResult(i, requestCode);
-#endif
-
 		}
 
 		public class ExportDb : RunnableOnFinish

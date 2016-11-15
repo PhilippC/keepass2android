@@ -111,7 +111,7 @@ namespace keepass2android
 								defaulFilename = "file://" + defaulFilename;
 						}
 
-						StartFileChooser(defaulFilename, RequestCodeKeyFile, false);
+						new FileSelectHelper(this, false, RequestCodeKeyFile).StartFileChooser(defaulFilename);
 
 					}
 					else
@@ -244,28 +244,6 @@ namespace keepass2android
 			_restoringInstanceState = false;
 		}
 
-		private void StartFileChooser(string defaultPath, int requestCode, bool forSave)
-		{
-#if !EXCLUDE_FILECHOOSER
-			Kp2aLog.Log("FSA: defaultPath=" + defaultPath);
-			string fileProviderAuthority = FileChooserFileProvider.TheAuthority;
-			if (defaultPath.StartsWith("file://"))
-			{
-				fileProviderAuthority = "keepass2android."+AppNames.PackagePart+".android-filechooser.localfile";
-			}
-			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, fileProviderAuthority,
-																										defaultPath);
-
-			if (forSave)
-			{
-				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.save_dialog", true);
-				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.default_file_ext", "kdbx");
-			}
-
-			StartActivityForResult(i, requestCode);
-#endif
-		}
-
 
 		private void UpdateIocView()
 		{
@@ -343,17 +321,20 @@ namespace keepass2android
 				}
 				else
 				{
-					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
-							OnActivityResult,
-							defaultPath =>
-							{
-								if (defaultPath.StartsWith("sftp://"))
-									Util.ShowSftpDialog(this, OnReceiveSftpData, () => { });
-								else
-									Util.ShowFilenameDialog(this, OnCreateButton, null, null, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
-													Intents.RequestCodeFileBrowseForOpen);
-							}
-							), true, RequestCodeDbFilename, protocolId);	
+					FileSelectHelper fileSelectHelper = new FileSelectHelper(this, true, RequestCodeDbFilename)
+					{
+						DefaultExtension = "kdbx"
+					};
+					fileSelectHelper.OnOpen += (sender, info) =>
+					{
+						_ioc = info;
+						UpdateIocView();
+					};
+					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(
+							new FileStorageSetupInitiatorActivity(this,OnActivityResult,s => fileSelectHelper.PerformManualFileSelect(s)), 
+							true, 
+							RequestCodeDbFilename, 
+							protocolId);	
 				}
 				
 			}
@@ -436,16 +417,14 @@ namespace keepass2android
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
 				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
-				StartFileChooser(ioc.Path, RequestCodeDbFilename, true);
+				
+				new FileSelectHelper(this, true, RequestCodeDbFilename) { DefaultExtension = "kdbx" }
+					.StartFileChooser(ioc.Path);
+				
 			}
 
 		}
 
-		private bool OnReceiveSftpData(string filename)
-		{
-			StartFileChooser(filename, RequestCodeDbFilename, true);
-			return true;
-		}
 
 		private static string ConvertFilenameToIocPath(string filename)
 		{
@@ -457,86 +436,6 @@ namespace keepass2android
 			return filename;
 		}
 
-		private bool OnCreateButton(string filename, Dialog dialog)
-		{
-			// Make sure file name exists
-			if (filename.Length == 0)
-			{
-				Toast.MakeText(this,
-								Resource.String.error_filename_required,
-								ToastLength.Long).Show();
-				return false;
-			}
-
-			IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
-			IFileStorage fileStorage;
-			try
-			{
-				fileStorage = App.Kp2a.GetFileStorage(ioc);
-			}
-			catch (NoFileStorageFoundException)
-			{
-				Toast.MakeText(this,
-								"Unexpected scheme in "+filename,
-								ToastLength.Long).Show();
-				return false;
-			}
-
-			if (ioc.IsLocalFile())
-			{
-				// Try to create the file
-				File file = new File(filename);
-				try
-				{
-					File parent = file.ParentFile;
-
-					if (parent == null || (parent.Exists() && !parent.IsDirectory))
-					{
-						Toast.MakeText(this,
-							            Resource.String.error_invalid_path,
-							            ToastLength.Long).Show();
-						return false;
-					}
-
-					if (!parent.Exists())
-					{
-						// Create parent dircetory
-						if (!parent.Mkdirs())
-						{
-							Toast.MakeText(this,
-								            Resource.String.error_could_not_create_parent,
-								            ToastLength.Long).Show();
-							return false;
-
-						}
-					}
-					System.IO.File.Create(filename);
-
-				}
-				catch (IOException ex)
-				{
-					Toast.MakeText(
-						this,
-						GetText(Resource.String.error_file_not_create) + " "
-						+ ex.LocalizedMessage,
-						ToastLength.Long).Show();
-					return false;
-				}
-
-			}
-			if (fileStorage.RequiresCredentials(ioc))
-			{
-				Util.QueryCredentials(ioc, AfterQueryCredentials, this);
-			}
-			else
-			{
-				_ioc = ioc;
-				UpdateIocView();	
-			}
-			
-
-			return true;
-		}
 
 		private void AfterQueryCredentials(IOConnectionInfo ioc)
 		{

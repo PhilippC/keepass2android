@@ -149,6 +149,7 @@
     <Compile Include="EntryActivityClasses\StandardStringView.cs" />
     <Compile Include="EntryActivityClasses\ToggleVisibilityPopupMenuItem.cs" />
     <Compile Include="EntryActivityClasses\WriteBinaryToFilePopupItem.cs" />
+    <Compile Include="FileSelectHelper.cs" />
     <Compile Include="FingerprintModule.cs" />
     <Compile Include="FingerprintSamsungIdentifier.cs" />
     <Compile Include="FingerprintSetupActivity.cs" />

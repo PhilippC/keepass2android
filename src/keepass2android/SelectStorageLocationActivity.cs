@@ -96,21 +96,15 @@ namespace keepass2android
 
 		protected override void StartSelectFile( bool isForSave, int browseRequestCode, string protocolId)
 		{
-			var startManualFileSelect = new Action<string>(defaultPath =>
-							{
-								if (defaultPath.StartsWith("sftp://"))
-									Util.ShowSftpDialog(this, filename => OnReceivedSftpData(filename, browseRequestCode, isForSave), ReturnCancel);
-								else
-									Util.ShowFilenameDialog(this, 
-										!isForSave ? delegate(string filename, Dialog dialog) { return OnOpenButton(filename, browseRequestCode, dialog.Dismiss); } : (Func<string, Dialog, bool>) null,
-										isForSave ? delegate(string filename, Dialog dialog) { return OnOpenButton(filename, browseRequestCode, dialog.Dismiss); } : (Func<string, Dialog, bool>) null,
-									                        ReturnCancel, false, defaultPath, GetString(Resource.String.enter_filename_details_url),
-									                        browseRequestCode);
-							});
-			;
+			FileSelectHelper fileSelectHelper = new FileSelectHelper(this, isForSave, browseRequestCode);
+			fileSelectHelper.OnOpen += (sender, ioc) =>
+			{
+				IocSelected(ioc,browseRequestCode);
+			};
+
 			App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
 																												  OnActivityResult,
-																												  startManualFileSelect
+																												  s => fileSelectHelper.PerformManualFileSelect(s)
 																				), isForSave, browseRequestCode, protocolId);
 		}
 
@@ -199,43 +193,9 @@ namespace keepass2android
 
 		protected override void StartFileChooser(string defaultPath, int requestCode, bool forSave)
 		{
-#if !EXCLUDE_FILECHOOSER
-			Kp2aLog.Log("FSA: defaultPath=" + defaultPath);
-			string fileProviderAuthority = FileChooserFileProvider.TheAuthority;
-			if (defaultPath.StartsWith("file://"))
-			{
-				fileProviderAuthority = PackageName + ".android-filechooser.localfile";
-			}
-			Intent i = Keepass2android.Kp2afilechooser.Kp2aFileChooserBridge.GetLaunchFileChooserIntent(this, fileProviderAuthority,
-																										defaultPath);
-
-
-			if (forSave)
-			{
-				i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.save_dialog", true);
-				var ext = UrlUtil.GetExtension(defaultPath);
-				if ((ext != String.Empty) && (ext.Contains("?")==false))
-					i.PutExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.default_file_ext", ext);
-			}
-			StartActivityForResult(i, requestCode);
-
-#else
-			Toast.MakeText(this, "File chooser is excluded!", ToastLength.Long).Show();
-#endif
-		
+			new FileSelectHelper(this, forSave, requestCode).StartFileChooser(defaultPath);
 		}
 
-		protected override void ShowFilenameWarning(string fileName, Action onUserWantsToContinue, Action onUserWantsToCorrect)
-		{
-			new AlertDialog.Builder(this)
-					.SetPositiveButton(Resource.String.Continue, delegate { onUserWantsToContinue(); } )
-					.SetMessage(Resource.String.NoFilenameWarning)
-					.SetCancelable(false)
-					.SetNegativeButton(Android.Resource.String.Cancel, delegate { onUserWantsToCorrect(); })
-					.Create()
-					.Show();
-			
-		}
 
 
 		public void OnDismiss(IDialogInterface dialog)

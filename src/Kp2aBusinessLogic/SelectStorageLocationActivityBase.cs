@@ -62,8 +62,8 @@ namespace keepass2android
 					}
 					else
 					{
-						bool isForSave = (requestCode == RequestCodeFileStorageSelectionForPrimarySelect) ?
-							                 IsStorageSelectionForSave : true;
+						bool isForSave = (requestCode != RequestCodeFileStorageSelectionForPrimarySelect) 
+							|| IsStorageSelectionForSave;
 
 						
 						StartSelectFile(isForSave, browseRequestCode, protocolId);
@@ -85,8 +85,8 @@ namespace keepass2android
 				{
 					IOConnectionInfo ioc = new IOConnectionInfo();
 					SetIoConnectionFromIntent(ioc, data);
-					bool isForSave = (requestCode == RequestCodeFileFileBrowseForWritableLocation) ?
-						                 true : IsStorageSelectionForSave;
+					bool isForSave = (requestCode == RequestCodeFileFileBrowseForWritableLocation)
+						|| IsStorageSelectionForSave;
 
 					StartFileChooser(ioc.Path, requestCode, isForSave);
 
@@ -164,6 +164,8 @@ namespace keepass2android
 
 		}
 
+		protected abstract void StartFileChooser(string path, int requestCode, bool isForSave);
+
 		protected abstract void ShowToast(string text);
 
 		protected abstract void ShowInvalidSchemeMessage(string dataString);
@@ -187,7 +189,7 @@ namespace keepass2android
 		protected abstract bool IsStorageSelectionForSave { get; }
 
 
-		private void IocSelected(IOConnectionInfo ioc, int requestCode)
+		protected void IocSelected(IOConnectionInfo ioc, int requestCode)
 		{
 			if (requestCode == RequestCodeFileFileBrowseForWritableLocation)
 			{
@@ -244,44 +246,6 @@ namespace keepass2android
 
 		protected abstract void StartFileStorageSelection(int requestCode,
 		                                                  bool allowThirdPartyGet, bool allowThirdPartySend);
-
-		protected bool OnReceivedSftpData(string filename, int requestCode, bool isForSave)
-		{
-			IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
-#if !EXCLUDE_FILECHOOSER
-			StartFileChooser(ioc.Path, requestCode, isForSave);
-#else
-			IocSelected(ioc, requestCode);
-#endif
-			return true;
-		}
-
-		protected abstract void StartFileChooser(string path, int requestCode, bool isForSave);
-
-		protected bool OnOpenButton(string fileName, int requestCode, Action dismissDialog)
-		{
-
-			IOConnectionInfo ioc = new IOConnectionInfo
-				{
-					Path = fileName
-				};
-
-			int lastSlashPos = fileName.LastIndexOf('/');
-			int lastDotPos = fileName.LastIndexOf('.');
-			if (lastSlashPos >= lastDotPos) //no dot after last slash or == in case neither / nor .
-			{
-				ShowFilenameWarning(fileName, () => { IocSelected(ioc, requestCode); dismissDialog(); }, () => { /* don't do anything, leave dialog open, let user try again*/ });
-				//signal that the dialog should be kept open
-				return false;
-			}
-
-			IocSelected(ioc, requestCode);
-
-			return true;
-
-		}
-
-		protected abstract void ShowFilenameWarning(string fileName, Action onUserWantsToContinue, Action onUserWantsToCorrect);
 
 
 		protected virtual void CopyFile(IOConnectionInfo targetIoc, IOConnectionInfo sourceIoc)
