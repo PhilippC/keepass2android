@@ -12,11 +12,23 @@ using keepass2android.Io;
 
 namespace keepass2android
 {
+	public interface ICertificateValidationHandler
+	{
+		/// <summary>
+		/// Handles a failed certificate validation. Returns true if the users wants to continue, false otherwise.
+		/// see http://msdn.microsoft.com/en-us/library/system.net.icertificatepolicy(v=vs.110).aspx
+		/// </summary>
+		//bool OnServerCertificateError(int certificateProblem);
+
+		RemoteCertificateValidationCallback CertificateValidationCallback { get; }
+
+	}
+
 	/// <summary>
 	/// Interface through which Activities and the logic layer can access some app specific functionalities and Application static data
 	/// </summary>
 	/// This also contains methods which are UI specific and should be replacable for testing.
-	public interface IKp2aApp
+	public interface IKp2aApp: ICertificateValidationHandler
 	{
 		/// <summary>
 		/// Locks the currently open database, quicklocking if available (unless false is passed for allowQuickUnlock)
@@ -92,14 +104,7 @@ namespace keepass2android
 
 		void TriggerReload(Context context);
 
-		/// <summary>
-		/// Handles a failed certificate validation. Returns true if the users wants to continue, false otherwise.
-		/// see http://msdn.microsoft.com/en-us/library/system.net.icertificatepolicy(v=vs.110).aspx
-		/// </summary>
-		//bool OnServerCertificateError(int certificateProblem);
-
-		RemoteCertificateValidationCallback CertificateValidationCallback { get; }
-
+		
 		bool CheckForDuplicateUuids { get; }
 	}
 }

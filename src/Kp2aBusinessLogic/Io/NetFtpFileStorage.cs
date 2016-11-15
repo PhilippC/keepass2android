@@ -106,13 +106,13 @@ namespace keepass2android.Io
 			}
 		}
 
-		private readonly Context _context;
+		private readonly ICertificateValidationHandler _app;
 
 		public MemoryStream traceStream;
 
-		public NetFtpFileStorage(Context context)
+		public NetFtpFileStorage(Context context, ICertificateValidationHandler app)
 		{
-			_context = context;
+			_app = app;
 			traceStream = new MemoryStream();
 			FtpTrace.AddListener(new System.Diagnostics.TextWriterTraceListener(traceStream));
 			
@@ -171,18 +171,15 @@ namespace keepass2android.Io
 			if (!uri.IsDefaultPort) //TODO test
 				client.Port = uri.Port;
 			
-			//TODO Validate 
-			//client.ValidateCertificate += app...
-
-			// we don't need to be thread safe in a classic sense, but OpenRead and OpenWrite don't 
-			//perform the actual stream operation so we'd need to wrap the stream (or just enable this:)
-			
+			client.ValidateCertificate += (control, args) =>
+			{
+				args.Accept = _app.CertificateValidationCallback(control, args.Certificate, args.Chain, args.PolicyErrors);
+			};
 
 			client.EncryptionMode = ConnectionSettings.FromIoc(ioc).EncryptionMode;
-
 			
-				client.Connect();
-				return client;
+			client.Connect();
+			return client;
 			
 		}
 
@@ -373,7 +370,7 @@ namespace keepass2android.Io
 
 		public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
 		{
-			throw new NotImplementedException();
+			activity.PerformManualFileSelect(isForSave, requestCode, "ftp");
 		}
 
 		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode,
