@@ -40,46 +40,46 @@ namespace keepass2android
 
 			private readonly FileStorageSelectionActivity _context;
 
-			private readonly List<string> _protocolIds = new List<string>(); 
+			private readonly List<string> _displayedProtocolIds = new List<string>(); 
 
 			public FileStorageAdapter(FileStorageSelectionActivity context)
 			{
 				_context = context;
 				//show all supported protocols:
 				foreach (IFileStorage fs in App.Kp2a.FileStorages)
-					_protocolIds.AddRange(fs.SupportedProtocols);
+					_displayedProtocolIds.AddRange(fs.SupportedProtocols);
 
 				//special handling for local files:
 				if (!Util.IsKitKatOrLater)
 				{
 					//put file:// to the top
-					_protocolIds.Remove("file");
-					_protocolIds.Insert(0, "file");
+					_displayedProtocolIds.Remove("file");
+					_displayedProtocolIds.Insert(0, "file");
 					
 					//remove "content" (covered by androidget)
 					//On KitKat, content is handled by AndroidContentStorage taking advantage 
 					//of persistable permissions and ACTION_OPEN/CREATE_DOCUMENT
-					_protocolIds.Remove("content");
+					_displayedProtocolIds.Remove("content");
 					
 				}
 				else
 				{
-					_protocolIds.Remove("file");
+					_displayedProtocolIds.Remove("file");
 				}
 					
 
 				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppGet, false))
-					_protocolIds.Add("androidget");
+					_displayedProtocolIds.Add("androidget");
 				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppSend, false))
-					_protocolIds.Add("androidsend");
+					_displayedProtocolIds.Add("androidsend");
 #if NoNet
-				_protocolIds.Add("kp2a");
+				_displayedProtocolIds.Add("kp2a");
 #endif
 			}
 
 			public override Object GetItem(int position)
 			{
-				return _protocolIds[position];
+				return _displayedProtocolIds[position];
 			}
 
 			public override long GetItemId(int position)
@@ -121,7 +121,7 @@ namespace keepass2android
                     btn = (Button)convertView;
                 }
 			    
-			    var protocolId = _protocolIds[position];
+			    var protocolId = _displayedProtocolIds[position];
                 btn.Tag = protocolId;
 
 
@@ -143,7 +143,7 @@ namespace keepass2android
 
 			public override int Count
 			{
-				get { return _protocolIds.Count; }
+				get { return _displayedProtocolIds.Count; }
 			}
 		}
 

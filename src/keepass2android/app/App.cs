@@ -511,7 +511,7 @@ namespace keepass2android
 							new GoogleDriveFileStorage(Application.Context, this),
 							new SkyDriveFileStorage(Application.Context, this),
 							new SftpFileStorage(this),
-							new NetFtpFileStorage(Application.Context),
+							new NetFtpFileStorage(Application.Context, this),
 #endif
 #endif
 							new LocalFileStorage(this)
@@ -684,7 +684,7 @@ namespace keepass2android
 
 		public void ClearOfflineCache()
 		{
-			new CachingFileStorage(new BuiltInFileStorage(this), Application.Context.CacheDir.Path, this).ClearCache();
+			new CachingFileStorage(new LocalFileStorage(this), Application.Context.CacheDir.Path, this).ClearCache();
 		}
 
 		public IFileStorage GetFileStorage(string protocolId)
@@ -700,7 +700,7 @@ namespace keepass2android
 		{
 
 			if (iocInfo.IsLocalFile())
-				return new BuiltInFileStorage(this);
+				return new LocalFileStorage(this);
 			else
 			{
 				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);

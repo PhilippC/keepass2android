@@ -678,7 +678,9 @@
     <AndroidResource Include="Resources\layout\QuickUnlock.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\url_credentials.xml" />
+    <AndroidResource Include="Resources\layout\url_credentials.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable\section_header.xml" />
     <AndroidResource Include="Resources\drawable\extra_string_header.xml" />
     <AndroidResource Include="Resources\layout\entry_edit_section.xml">
@@ -770,6 +772,10 @@
     <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj">
       <Project>{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}</Project>
       <Name>Kp2aKeyboardBinding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\netftpandroid\System.Net.FtpClient\System.Net.FtpClient.Android.csproj">
+      <Project>{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}</Project>
+      <Name>System.Net.FtpClient.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\PluginSdkBinding\PluginSdkBinding.csproj">
       <Project>{3DA3911E-36DE-465E-8F15-F1991B6437E5}</Project>
@@ -1682,6 +1688,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\ic_fp_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ftpcredentials.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.11.3\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.3\build\MonoAndroid10\Xamarin.Insights.targets')" />

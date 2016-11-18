@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.FtpClient;
 using System.Text;
 
 using Android.App;
@@ -62,13 +63,49 @@ namespace keepass2android
 #endif
 		}
 
+		private void ShowFtpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel)
+		{
+#if !NoNet
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.ftpcredentials, null);
+			builder.SetView(dlgContents);
+			builder.SetPositiveButton(Android.Resource.String.Ok,
+									  (sender, args) =>
+									  {
+										  string host = dlgContents.FindViewById<EditText>(Resource.Id.ftp_host).Text;
+										  string portText = dlgContents.FindViewById<EditText>(Resource.Id.ftp_port).Text;
+										  FtpEncryptionMode encryption =
+											  (FtpEncryptionMode) dlgContents.FindViewById<Spinner>(Resource.Id.ftp_encryption).SelectedItemPosition;
+										  int port = NetFtpFileStorage.GetDefaultPort(encryption);
+										  if (!string.IsNullOrEmpty(portText))
+											  int.TryParse(portText, out port);
+										  string user = dlgContents.FindViewById<EditText>(Resource.Id.ftp_user).Text;
+										  string password = dlgContents.FindViewById<EditText>(Resource.Id.ftp_password).Text;
+										  string initialPath = dlgContents.FindViewById<EditText>(Resource.Id.ftp_initial_dir).Text;
+										  string ftpPath = new NetFtpFileStorage(_activity, App.Kp2a).BuildFullPath(host, port, initialPath, user,
+																										  password, encryption);
+										  onStartBrowse(ftpPath);
+									  });
+			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
+
+			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
+			builder.SetTitle(activity.GetString(Resource.String.enter_sftp_login_title));
+			Dialog dialog = builder.Create();
+
+			dialog.Show();
+#endif
+		}
+
+
 		public void PerformManualFileSelect(string defaultPath)
 		{
 			if (defaultPath.StartsWith("sftp://"))
 				ShowSftpDialog(_activity, StartFileChooser, ReturnCancel);
+			else if ((defaultPath.StartsWith("ftp://")) || (defaultPath.StartsWith("ftps://")))
+				ShowFtpDialog(_activity, StartFileChooser, ReturnCancel);
 			else
 			{
-				Func<string, Dialog, bool> onOpen = (filename, dialog) => OnOpenButton(filename, dialog);
+				Func<string, Dialog, bool> onOpen = OnOpenButton;
 				Util.ShowFilenameDialog(_activity,
 										!_isForSave ? onOpen : null,
 										_isForSave ? onOpen : null,
@@ -202,7 +239,6 @@ namespace keepass2android
 		public bool StartFileChooser(string defaultPath)
 		{
 #if !EXCLUDE_FILECHOOSER
-			Kp2aLog.Log("FSA: defaultPath=" + defaultPath);
 			string fileProviderAuthority = FileChooserFileProvider.TheAuthority;
 			if (defaultPath.StartsWith("file://"))
 			{

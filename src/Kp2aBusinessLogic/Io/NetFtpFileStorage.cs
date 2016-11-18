@@ -87,22 +87,45 @@ namespace keepass2android.Io
 		{
 			public FtpEncryptionMode EncryptionMode {get; set; }
 
+			public string Username
+			{
+				get;set;
+			}
+			public string Password
+			{
+				get;
+				set;
+			}
+			
 			public static ConnectionSettings FromIoc(IOConnectionInfo ioc)
 			{
 				string path = ioc.Path;
 				int schemeLength = path.IndexOf("://", StringComparison.Ordinal);
 				path = path.Substring(schemeLength + 3);
-				string settings = path.Substring(0, path.IndexOf("/", StringComparison.Ordinal));
+				string settings = path.Substring(0, path.IndexOf(SettingsPostFix, StringComparison.Ordinal));
+				if (!settings.StartsWith(SettingsPrefix))
+					throw new Exception("unexpected settings in path");
+				settings = settings.Substring(SettingsPrefix.Length);
+				var tokens = settings.Split(Separator);
 				return new ConnectionSettings()
 				{
-					EncryptionMode = (FtpEncryptionMode) int.Parse(settings)
+					EncryptionMode = (FtpEncryptionMode) int.Parse(tokens[2]),
+					Username = tokens[0],
+					Password = tokens[1]
 				};
 
 			}
 
-			public string ToString()
+			public const string SettingsPrefix = "SET";
+			public const string SettingsPostFix = "%";
+			public const char Separator = ':';
+			public override string ToString()
 			{
-				return ((int) EncryptionMode).ToString();
+				return SettingsPrefix + 
+					System.Net.WebUtility.UrlEncode(Username) + Separator +
+					WebUtility.UrlEncode(Password) + Separator +
+				       (int) EncryptionMode;
+				;
 			}
 		}
 
@@ -120,7 +143,10 @@ namespace keepass2android.Io
 
 		public IEnumerable<string> SupportedProtocols
 		{
-			get { yield return "ftp"; }
+			get 
+			{ 
+				yield return "ftp";
+			}
 		}
 
 		public void Delete(IOConnectionInfo ioc)
@@ -160,9 +186,11 @@ namespace keepass2android.Io
 
 		internal FtpClient GetClient(IOConnectionInfo ioc, bool enableCloneClient = true)
 		{
+			var settings = ConnectionSettings.FromIoc(ioc);
+			
 			FtpClient client = new RetryConnectFtpClient();
-			if ((ioc.UserName.Length > 0) || (ioc.Password.Length > 0))
-				client.Credentials = new NetworkCredential(ioc.UserName, ioc.Password);
+			if ((settings.Username.Length > 0) || (settings.Password.Length > 0))
+				client.Credentials = new NetworkCredential(settings.Username, settings.Password);
 			else
 				client.Credentials = new NetworkCredential("anonymous", ""); //TODO TEST
 
@@ -176,7 +204,7 @@ namespace keepass2android.Io
 				args.Accept = _app.CertificateValidationCallback(control, args.Certificate, args.Chain, args.PolicyErrors);
 			};
 
-			client.EncryptionMode = ConnectionSettings.FromIoc(ioc).EncryptionMode;
+			client.EncryptionMode = settings.EncryptionMode;
 			
 			client.Connect();
 			return client;
@@ -192,7 +220,7 @@ namespace keepass2android.Io
 			int schemeLength = path.IndexOf("://", StringComparison.Ordinal);
 			string scheme = path.Substring(0, schemeLength);
 			path = path.Substring(schemeLength + 3);
-			string settings = path.Substring(0, path.IndexOf("/", StringComparison.Ordinal));
+			string settings = path.Substring(0, path.IndexOf(ConnectionSettings.SettingsPostFix, StringComparison.Ordinal));
 			path = path.Substring(settings.Length + 1);
 			return new Uri(scheme + "://" + path);
 		}
@@ -203,10 +231,10 @@ namespace keepass2android.Io
 			int schemeLength = basePath.IndexOf("://", StringComparison.Ordinal);
 			string scheme = basePath.Substring(0, schemeLength);
 			basePath = basePath.Substring(schemeLength + 3);
-			string baseSettings = basePath.Substring(0, basePath.IndexOf("/", StringComparison.Ordinal));
+			string baseSettings = basePath.Substring(0, basePath.IndexOf(ConnectionSettings.SettingsPostFix, StringComparison.Ordinal));
 			basePath = basePath.Substring(baseSettings.Length+1);
 			string baseHost = basePath.Substring(0, basePath.IndexOf("/", StringComparison.Ordinal));
-			return scheme + "://" + baseSettings + "/" + baseHost + uri.AbsolutePath; //TODO does this contain Query?
+			return scheme + "://" + baseSettings + ConnectionSettings.SettingsPostFix + baseHost + uri.AbsolutePath; //TODO does this contain Query?
 		}
 
 
@@ -261,7 +289,7 @@ namespace keepass2android.Io
 
 		public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
-			return ioc.CredSaveMode != IOCredSaveMode.SaveCred;
+			return false;
 		}
 
 		public void CreateDirectory(IOConnectionInfo ioc, string newDirName)
@@ -340,16 +368,19 @@ namespace keepass2android.Io
 					
 					var uri = IocPathToUri(ioc.Path);
 					string path = uri.PathAndQuery;
-					return new FileDescription()
+					if (!client.FileExists(path) && (!client.DirectoryExists(path)))
+						throw new FileNotFoundException();
+					var fileDesc = new FileDescription()
 					{
 						CanRead = true,
 						CanWrite = true,
 						Path = ioc.Path,
 						LastModified = client.GetModifiedTime(path),
 						SizeInBytes = client.GetFileSize(path),
-						DisplayName = UrlUtil.GetFileName(path),
-						IsDirectory = false
+						DisplayName = UrlUtil.GetFileName(path)
 					};
+					fileDesc.IsDirectory = fileDesc.Path.EndsWith("/");
+					return fileDesc;
 				}
 			}
 			catch (FtpCommandException ex)
@@ -457,6 +488,34 @@ namespace keepass2android.Io
 				throw ConvertException(ex);
 			}
 		}
+
+		public static int GetDefaultPort(FtpEncryptionMode encryption)
+		{
+			return new FtpClient() { EncryptionMode =  encryption}.Port;
+		}
+
+		public string BuildFullPath(string host, int port, string initialPath, string user, string password, FtpEncryptionMode encryption)
+		{
+			var connectionSettings = new ConnectionSettings()
+			{
+				EncryptionMode = encryption,
+				Username = user,
+				Password = password
+			};
+
+			string scheme = "ftp";
+
+			string fullPath = scheme + "://" + connectionSettings.ToString() + ConnectionSettings.SettingsPostFix + host;
+			if (port != GetDefaultPort(encryption))
+				fullPath += ":" + port;
+
+			if (!initialPath.StartsWith("/"))
+				initialPath = "/" + initialPath;
+			fullPath += initialPath;
+
+			return fullPath;
+		}
+
 	}
 
 	public class TransactedWrite : IWriteTransaction

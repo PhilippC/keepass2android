@@ -944,8 +944,12 @@ Initial public release
 	</string-array>
 
 	<string name="design_title">Design</string>
-
-	<string-array name="cred_remember_modes">
+  <string-array name="ftp_encryption_modes">
+    <item>No encryption (FTP)</item>
+    <item>Implicit encryption (FTP over TLS, FTPS)</item>
+    <item>Explicit encryption (FTP over TLS, FTPS)</item>
+  </string-array>
+    <string-array name="cred_remember_modes">
     <item>Do not remember username and password</item>
     <item>Remember username only</item>
     <item>Remember username and password</item>
