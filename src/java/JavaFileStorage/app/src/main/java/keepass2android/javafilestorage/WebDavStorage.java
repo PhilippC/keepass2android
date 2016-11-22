@@ -13,24 +13,30 @@ import com.burgstaller.okhttp.basic.BasicAuthenticator;
 import com.burgstaller.okhttp.digest.CachingAuthenticator;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+
+import keepass2android.javafilestorage.webdav.DecoratedTrustManager;
 import keepass2android.javafilestorage.webdav.PropfindXmlParser;
 import keepass2android.javafilestorage.webdav.WebDavUtil;
 import okhttp3.MediaType;
@@ -40,6 +46,14 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class WebDavStorage extends JavaFileStorageBase {
+
+    private final ICertificateErrorHandler mCertificateErrorHandler;
+
+    public WebDavStorage(ICertificateErrorHandler certificateErrorHandler)
+    {
+
+        mCertificateErrorHandler = certificateErrorHandler;
+    }
 
     public String buildFullPath(String url, String username, String password) throws UnsupportedEncodingException {
         String scheme = url.substring(0, url.indexOf("://"));
@@ -104,7 +118,8 @@ public class WebDavStorage extends JavaFileStorageBase {
         }
     }
 
-    private OkHttpClient getClient(ConnectionInfo ci) {
+    private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException {
+
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
 
@@ -117,10 +132,28 @@ public class WebDavStorage extends JavaFileStorageBase {
                 .with("digest", digestAuthenticator)
                 .with("basic", basicAuthenticator)
                 .build();
-        OkHttpClient client = builder
-                .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache))
-                .addInterceptor(new AuthenticationCacheInterceptor(authCache))
-                .build();
+
+        builder = builder.authenticator(new CachingAuthenticatorDecorator(authenticator, authCache))
+                .addInterceptor(new AuthenticationCacheInterceptor(authCache));
+        if ((mCertificateErrorHandler != null) && (mCertificateErrorHandler.alwaysFailOnValidationError())) {
+            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+                    TrustManagerFactory.getDefaultAlgorithm());
+            trustManagerFactory.init((KeyStore) null);
+            TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+            if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+                throw new IllegalStateException("Unexpected default trust managers:"
+                        + Arrays.toString(trustManagers));
+            }
+            X509TrustManager trustManager = (X509TrustManager) trustManagers[0];
+            trustManager = new DecoratedTrustManager(trustManager, mCertificateErrorHandler);
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[] { trustManager }, null);
+            SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            builder = builder.sslSocketFactory(sslSocketFactory, trustManager);
+        }
+
+        OkHttpClient client =  builder.build();
         return client;
     }
 
@@ -279,6 +312,7 @@ public class WebDavStorage extends JavaFileStorageBase {
         String userPwd = filename.substring(0, filename.indexOf('@'));
         String username_enc = (userPwd.substring(0, userPwd.indexOf(":")));
         String password_enc = (userPwd.substring(userPwd.indexOf(":") + 1));
+
 
         String host = filename.substring(filename.indexOf('@')+1);
         int firstSlashPos = host.indexOf("/");
