@@ -13,12 +13,15 @@ import com.onedrive.sdk.concurrency.ICallback;
 import com.onedrive.sdk.core.ClientException;
 import com.onedrive.sdk.core.DefaultClientConfig;
 import com.onedrive.sdk.core.IClientConfig;
+import com.onedrive.sdk.core.OneDriveErrorCodes;
 import com.onedrive.sdk.extensions.IItemCollectionPage;
 import com.onedrive.sdk.extensions.IItemCollectionRequestBuilder;
 import com.onedrive.sdk.extensions.IOneDriveClient;
 import com.onedrive.sdk.extensions.Item;
 import com.onedrive.sdk.extensions.OneDriveClient;
+import com.onedrive.sdk.http.OneDriveServiceException;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,33 +54,6 @@ public class OneDriveStorage extends JavaFileStorageBase
 
     }
 
-    public void bla(final Activity activity) {
-        android.util.Log.d("KP2A", "0");
-
-        android.util.Log.d("KP2A", "1");
-
-        android.util.Log.d("KP2A", "2");
-        oneDriveClient
-                .getDrive()
-                .getRoot()
-                .buildRequest()
-                .get(new ICallback<Item>() {
-                    @Override
-                    public void success(final Item result) {
-                        final String msg = "Found Root " + result.id;
-                        Toast.makeText(activity, msg, Toast.LENGTH_SHORT)
-                                .show();
-                    }
-
-                    @Override
-                    public void failure(ClientException ex) {
-                        Toast.makeText(activity, ex.toString(), Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                });
-        android.util.Log.d("KP2A", "3");
-
-    }
 
     @Override
     public boolean requiresSetup(String path) {
@@ -269,24 +245,41 @@ public class OneDriveStorage extends JavaFileStorageBase
 
     @Override
     public InputStream openFileForRead(String path) throws Exception {
-        path = removeProtocol(path);
-        return oneDriveClient.getDrive()
-                .getRoot()
-                .getItemWithPath(path)
-                .getContent()
-                .buildRequest()
-                .get();
+        try {
+            path = removeProtocol(path);
+            return oneDriveClient.getDrive()
+                    .getRoot()
+                    .getItemWithPath(path)
+                    .getContent()
+                    .buildRequest()
+                    .get();
+        }
+        catch (OneDriveServiceException e)
+        {
+            throw convertException(e);
+        }
+
+    }
+
+    private Exception convertException(OneDriveServiceException e) {
+        if (e.isError(OneDriveErrorCodes.ItemNotFound))
+            return new FileNotFoundException(e.getMessage());
+        return e;
     }
 
     @Override
     public void uploadFile(String path, byte[] data, boolean writeTransactional) throws Exception {
-        path = removeProtocol(path);
-        oneDriveClient.getDrive()
-                .getRoot()
-                .getItemWithPath(path)
-                .getContent()
-                .buildRequest()
-                .put(data);
+        try {
+            path = removeProtocol(path);
+            oneDriveClient.getDrive()
+                    .getRoot()
+                    .getItemWithPath(path)
+                    .getContent()
+                    .buildRequest()
+                    .put(data);
+        } catch (OneDriveServiceException e) {
+            throw convertException(e);
+        }
     }
 
     @Override
@@ -306,33 +299,37 @@ public class OneDriveStorage extends JavaFileStorageBase
 
     @Override
     public List<FileEntry> listFiles(String parentPath) throws Exception {
-        ArrayList<FileEntry> result = new ArrayList<FileEntry>();
-        parentPath = removeProtocol(parentPath);
-        IItemCollectionPage itemsPage = oneDriveClient.getDrive()
-                .getRoot()
-                .getItemWithPath(parentPath)
-                .getChildren()
-                .buildRequest()
-                .get();
-        if (parentPath.endsWith("/"))
-            parentPath = parentPath.substring(0,parentPath.length()-1);
-        while (true)
-        {
-            List<Item> items = itemsPage.getCurrentPage();
-            if (items.isEmpty())
-                return result;
-
-            for (Item i: items)
+        try {
+            ArrayList<FileEntry> result = new ArrayList<FileEntry>();
+            parentPath = removeProtocol(parentPath);
+            IItemCollectionPage itemsPage = oneDriveClient.getDrive()
+                    .getRoot()
+                    .getItemWithPath(parentPath)
+                    .getChildren()
+                    .buildRequest()
+                    .get();
+            if (parentPath.endsWith("/"))
+                parentPath = parentPath.substring(0,parentPath.length()-1);
+            while (true)
             {
-                FileEntry e = getFileEntry(getProtocolId() +"://"+ parentPath + "/" + i.name, i);
-                Log.d("KP2AJ", e.path);
-                result.add(e);
-            }
-            IItemCollectionRequestBuilder nextPageReqBuilder = itemsPage.getNextPage();
-            if (nextPageReqBuilder == null)
-                return result;
-            itemsPage = nextPageReqBuilder.buildRequest().get();
+                List<Item> items = itemsPage.getCurrentPage();
+                if (items.isEmpty())
+                    return result;
 
+                for (Item i: items)
+                {
+                    FileEntry e = getFileEntry(parentPath + "/" + i.name, i);
+                    Log.d("KP2AJ", e.path);
+                    result.add(e);
+                }
+                IItemCollectionRequestBuilder nextPageReqBuilder = itemsPage.getNextPage();
+                if (nextPageReqBuilder == null)
+                    return result;
+                itemsPage = nextPageReqBuilder.buildRequest().get();
+
+            }
+        } catch (OneDriveServiceException e) {
+            throw convertException(e);
         }
     }
 
@@ -342,7 +339,7 @@ public class OneDriveStorage extends JavaFileStorageBase
         e.sizeInBytes = i.size;
         e.displayName = i.name;
         e.canRead = e.canWrite = true;
-        e.path = path;
+        e.path = getProtocolId() +"://"+path;
         e.lastModifiedTime = i.lastModifiedDateTime.getTimeInMillis();
         e.isDirectory = i.folder != null;
         return e;
@@ -350,23 +347,31 @@ public class OneDriveStorage extends JavaFileStorageBase
 
     @Override
     public FileEntry getFileEntry(String filename) throws Exception {
-        filename = removeProtocol(filename);
-        Item item = oneDriveClient.getDrive()
-                .getRoot()
-                .getItemWithPath(filename)
-                .buildRequest()
-                .get();
-        return getFileEntry(filename, item);
+        try {
+            filename = removeProtocol(filename);
+            Item item = oneDriveClient.getDrive()
+                    .getRoot()
+                    .getItemWithPath(filename)
+                    .buildRequest()
+                    .get();
+            return getFileEntry(filename, item);
+        } catch (OneDriveServiceException e) {
+            throw convertException(e);
+        }
     }
 
     @Override
     public void delete(String path) throws Exception {
-        path = removeProtocol(path);
-        oneDriveClient.getDrive()
-                .getRoot()
-                .getItemWithPath(path)
-                .buildRequest()
-                .delete();
+        try {
+            path = removeProtocol(path);
+            oneDriveClient.getDrive()
+                    .getRoot()
+                    .getItemWithPath(path)
+                    .buildRequest()
+                    .delete();
+        } catch (OneDriveServiceException e) {
+            throw convertException(e);
+        }
     }
 
     @Override
