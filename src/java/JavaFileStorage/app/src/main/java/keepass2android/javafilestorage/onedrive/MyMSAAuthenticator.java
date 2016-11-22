@@ -6,6 +6,7 @@ package keepass2android.javafilestorage.onedrive;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.microsoft.onedrivesdk.BuildConfig;
 import com.microsoft.services.msa.LiveAuthClient;
@@ -36,6 +37,12 @@ import java.util.concurrent.atomic.AtomicReference;
 @SuppressWarnings("ThrowableResultOfMethodCallIgnored")
 public abstract class MyMSAAuthenticator implements IAuthenticator {
 
+    private final Context mContext;
+
+    public MyMSAAuthenticator(Context context)
+    {
+        mContext = context;
+    }
 
     /**
      * The sign in cancellation message.
@@ -118,15 +125,16 @@ public abstract class MyMSAAuthenticator implements IAuthenticator {
                                   final IHttpProvider httpProvider,
                                   final Activity activity,
                                   final ILogger logger) {
+        mActivity = activity;
+
         if (mInitialized) {
             return;
         }
 
         mExecutors = executors;
-        mActivity = activity;
         mLogger = logger;
         mInitialized = true;
-        mAuthClient = new LiveAuthClient(activity, getClientId(), Arrays.asList(getScopes()));
+        mAuthClient = new LiveAuthClient(mContext, getClientId(), Arrays.asList(getScopes()));
 
         final SharedPreferences prefs = getSharedPreferences();
         mUserId.set(prefs.getString(USER_ID_KEY, null));
@@ -139,6 +147,7 @@ public abstract class MyMSAAuthenticator implements IAuthenticator {
      */
     @Override
     public void login(final String emailAddressHint, final ICallback<IAccountInfo> loginCallback) {
+        Log.d("KP2AJ", "login()");
         if (!mInitialized) {
             throw new IllegalStateException("init must be called");
         }
@@ -431,7 +440,7 @@ public abstract class MyMSAAuthenticator implements IAuthenticator {
      * @return The shared preferences.
      */
     private SharedPreferences getSharedPreferences() {
-        return mActivity.getSharedPreferences(MSA_AUTHENTICATOR_PREFS, Context.MODE_PRIVATE);
+        return mContext.getSharedPreferences(MSA_AUTHENTICATOR_PREFS, Context.MODE_PRIVATE);
     }
 
 }

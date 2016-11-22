@@ -3,6 +3,7 @@ package keepass2android.javafilestorage;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.onedrive.sdk.core.ClientException;
 import com.onedrive.sdk.core.DefaultClientConfig;
 import com.onedrive.sdk.core.IClientConfig;
 import com.onedrive.sdk.extensions.IItemCollectionPage;
+import com.onedrive.sdk.extensions.IItemCollectionRequestBuilder;
 import com.onedrive.sdk.extensions.IOneDriveClient;
 import com.onedrive.sdk.extensions.Item;
 import com.onedrive.sdk.extensions.OneDriveClient;
@@ -26,21 +28,30 @@ import java.util.List;
  */
 public class OneDriveStorage extends JavaFileStorageBase
 {
-    final keepass2android.javafilestorage.onedrive.MyMSAAuthenticator msaAuthenticator = new keepass2android.javafilestorage.onedrive.MyMSAAuthenticator() {
-        @Override
-        public String getClientId() {
-            return "000000004010C234";
-        }
-
-        @Override
-        public String[] getScopes() {
-            return new String[] { "offline_access", "onedrive.readwrite" };
-        }
-    };
+    final IClientConfig oneDriveConfig;
+    final keepass2android.javafilestorage.onedrive.MyMSAAuthenticator msaAuthenticator;
 
     IOneDriveClient oneDriveClient;
 
-   public void bla(final Activity activity) {
+    public OneDriveStorage(final Context context, final String clientId) {
+        msaAuthenticator = new keepass2android.javafilestorage.onedrive.MyMSAAuthenticator(context) {
+            @Override
+            public String getClientId() {
+                return clientId;
+            }
+
+            @Override
+            public String[] getScopes() {
+                return new String[] { "offline_access", "onedrive.readwrite" };
+            }
+        };
+        oneDriveConfig = DefaultClientConfig.createWithAuthenticator(msaAuthenticator);
+        initAuthenticator(null);
+
+
+    }
+
+    public void bla(final Activity activity) {
         android.util.Log.d("KP2A", "0");
 
         android.util.Log.d("KP2A", "1");
@@ -70,14 +81,17 @@ public class OneDriveStorage extends JavaFileStorageBase
 
     @Override
     public boolean requiresSetup(String path) {
-        return !isConnected();
+        return !isConnected(null);
     }
 
     @Override
     public void startSelectFile(FileStorageSetupInitiatorActivity activity, boolean isForSave, int requestCode) {
+
+        initAuthenticator((Activity)activity);
+
         String path = getProtocolId()+":///";
         Log.d("KP2AJ", "startSelectFile "+path+", connected: "+path);
-		if (isConnected())
+		if (isConnected(null))
 		{
 			Intent intent = new Intent();
 			intent.putExtra(EXTRA_IS_FOR_SAVE, isForSave);
@@ -90,14 +104,41 @@ public class OneDriveStorage extends JavaFileStorageBase
         }
     }
 
-    private boolean isConnected() {
-        return msaAuthenticator.loginSilent() != null;
+    private boolean isConnected(Activity activity) {
+        if (oneDriveClient == null)
+        {
+            Log.d("KP2AJ", "trying silent login");
+            if (msaAuthenticator.loginSilent() != null)
+            {
+                Log.d("KP2AJ", "ok: silent login");
+                try
+                {
+                    oneDriveClient = buildClient(activity);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+            else Log.d("KP2AJ", "trying silent login failed.");
+        }
+        return oneDriveClient != null;
+    }
+
+    private void initAuthenticator(Activity activity) {
+        msaAuthenticator.init(
+                oneDriveConfig.getExecutors(),
+                oneDriveConfig.getHttpProvider(),
+                activity,
+                oneDriveConfig.getLogger());
     }
 
 
     @Override
     public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode, boolean alwaysReturnSuccess) {
-        if (isConnected())
+        initAuthenticator((Activity)activity);
+        if (isConnected((Activity)activity))
         {
             Intent intent = new Intent();
             intent.putExtra(EXTRA_PATH, path);
@@ -117,7 +158,7 @@ public class OneDriveStorage extends JavaFileStorageBase
 
     @Override
     public void prepareFileUsage(Context appContext, String path) throws UserInteractionRequiredException {
-        if (!isConnected())
+        if (!isConnected(null))
         {
             throw new UserInteractionRequiredException();
         }
@@ -132,8 +173,9 @@ public class OneDriveStorage extends JavaFileStorageBase
     }
 
     @Override
-    public void onResume(FileStorageSetupActivity activity) {
+    public void onResume(final FileStorageSetupActivity activity) {
 
+        Log.d("KP2AJ", "onResume");
         if (activity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
             activity.getState().putString(EXTRA_PATH, activity.getPath());
 
@@ -168,20 +210,32 @@ public class OneDriveStorage extends JavaFileStorageBase
         else
         {
             Log.d("KP2AJ", "Starting auth");
-            final IClientConfig oneDriveConfig = new DefaultClientConfig() { };
+            new AsyncTask<Object, Object, Object>() {
 
-            oneDriveClient = new OneDriveClient.Builder()
-                //.fromConfig(oneDriveConfig)
-                .authenticator(msaAuthenticator)
-                .executors(oneDriveConfig.getExecutors())
-                .httpProvider(oneDriveConfig.getHttpProvider())
-                .serializer(oneDriveConfig.getSerializer())
-                .loginAndBuildClient((Activity)activity);
+                @Override
+                protected Object doInBackground(Object... params) {
+                    return buildClient((Activity)activity);
+                }
 
+                @Override
+                protected void onPostExecute(Object o) {
+                    oneDriveClient = (IOneDriveClient) o;
+                    finishActivityWithSuccess(activity);
+
+                }
+            }.execute();
             storageSetupAct.getState().putBoolean("hasStartedAuth", true);
 
         }
 
+
+    }
+
+    private IOneDriveClient buildClient(Activity activity) {
+
+        return new OneDriveClient.Builder()
+                .fromConfig(oneDriveConfig)
+                .loginAndBuildClient(activity);
 
     }
 
@@ -260,19 +314,25 @@ public class OneDriveStorage extends JavaFileStorageBase
                 .getChildren()
                 .buildRequest()
                 .get();
+        if (parentPath.endsWith("/"))
+            parentPath = parentPath.substring(0,parentPath.length()-1);
         while (true)
         {
             List<Item> items = itemsPage.getCurrentPage();
             if (items.isEmpty())
                 return result;
 
-            itemsPage = itemsPage.getNextPage().buildRequest().get();
-
             for (Item i: items)
             {
                 FileEntry e = getFileEntry(getProtocolId() +"://"+ parentPath + "/" + i.name, i);
+                Log.d("KP2AJ", e.path);
                 result.add(e);
             }
+            IItemCollectionRequestBuilder nextPageReqBuilder = itemsPage.getNextPage();
+            if (nextPageReqBuilder == null)
+                return result;
+            itemsPage = nextPageReqBuilder.buildRequest().get();
+
         }
     }
 
@@ -283,6 +343,7 @@ public class OneDriveStorage extends JavaFileStorageBase
         e.displayName = i.name;
         e.canRead = e.canWrite = true;
         e.path = path;
+        e.lastModifiedTime = i.lastModifiedDateTime.getTimeInMillis();
         e.isDirectory = i.folder != null;
         return e;
     }
