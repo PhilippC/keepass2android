@@ -117,7 +117,7 @@ namespace keepass2android.Io
 			}
 
 			public const string SettingsPrefix = "SET";
-			public const string SettingsPostFix = "%";
+			public const string SettingsPostFix = "#";
 			public const char Separator = ':';
 			public override string ToString()
 			{
