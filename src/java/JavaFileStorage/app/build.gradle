@@ -2,9 +2,9 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.0'
+    buildToolsVersion '23.0.2'
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 23
     }
     buildTypes {
@@ -18,23 +18,61 @@ android {
 }
 
 dependencies {
-    compile 'com.google.http-client:google-http-client-gson:1.20.0'
-    compile 'com.google.code.gson:gson:2.1'
-    compile files('libs/commons-logging-1.1.1.jar')
-    compile files('libs/dropbox-android-sdk-1.6.2.jar')
-    compile files('libs/google-api-client-1.16.0-rc.jar')
-    compile files('libs/google-api-client-android-1.16.0-rc.jar')
-    compile files('libs/google-api-services-drive-v2-rev102-1.16.0-rc.jar')
-    compile files('libs/google-http-client-1.16.0-rc.jar')
-    compile files('libs/google-http-client-android-1.16.0-rc.jar')
-    compile files('libs/google-http-client-jackson-1.16.0-rc.jar')
-    compile files('libs/google-http-client-jackson2-1.16.0-rc.jar')
-    compile files('libs/google-oauth-client-1.16.0-rc.jar')
-    compile files('libs/httpclient-4.0.3.jar')
-    compile files('libs/httpcore-4.0.1.jar')
-    compile files('libs/httpmime-4.0.3.jar')
-    compile files('libs/jackson-core-2.1.3.jar')
-    compile files('libs/jackson-core-asl-1.9.11.jar')
-    compile files('libs/json_simple-1.1.jar')
-    compile files('libs/jsr305-1.3.9.jar')
+    /*
+    //compile files('libs/google-api-services-drive-v2-rev102-1.16.0-rc')
+    compile 'com.google.android.gms:play-services:6.5.+'
+    compile 'com.google.api-client:google-api-client-xml:1.18.0-rc'
+    compile 'com.google.http-client:google-http-client-gson:1.18.0-rc'
+    compile 'com.google.api-client:google-api-client-android:1.18.0-rc'
+    compile 'com.google.apis:google-api-services-drive:v2-rev155-1.19.0'
+*/
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.burgstaller:okhttp-digest:1.7'
+
+//    compile files('libs/dropbox-android-sdk-1.6.2.jar')
+
+    compile 'com.google.android.gms:play-services:4.0.30'
+
+    compile('com.google.api-client:google-api-client-xml:1.17.0-rc') {
+        exclude group: 'com.google.android.google-play-services'
+    }
+    compile 'com.google.http-client:google-http-client-gson:1.17.0-rc'
+    compile('com.google.api-client:google-api-client-android:1.17.0-rc') {
+        exclude group: 'com.google.android.google-play-services'
+    }
+    compile 'com.google.apis:google-api-services-drive:v2-rev105-1.17.0-rc'
+
+    //compile 'com.dropbox.core:dropbox-core-sdk:2.0.1'
+    //compile group: 'com.dropbox.core', name: 'dropbox-core-sdk', version: '0-SNAPSHOT', changing: true
+
+    compile 'com.dropbox.core:dropbox-core-sdk:2.1.1'
+
+
+    //onedrive:
+    compile ('com.onedrive.sdk:onedrive-sdk-android:1.2+') {
+        transitive = false
+    }
+    // Include the gson dependency
+    compile ('com.google.code.gson:gson:2.3.1')
+    compile ('com.microsoft.services.msa:msa-auth:0.8.+')
+    compile ('com.microsoft.aad:adal:1.1.+')
+
+    /*  compile 'com.google.http-client:google-http-client-gson:1.20.0'
+      compile 'com.google.code.gson:gson:2.1'
+      compile files('libs/commons-logging-1.1.1.jar')
+      compile files('libs/dropbox-android-sdk-1.6.2.jar')
+      compile files('libs/google-api-client-1.16.0-rc.jar')
+      compile files('libs/google-api-client-android-1.16.0-rc.jar')
+      compile files('libs/google-http-client-1.16.0-rc.jar')
+      compile files('libs/google-http-client-android-1.16.0-rc.jar')
+      compile files('libs/google-http-client-jackson-1.16.0-rc.jar')
+      compile files('libs/google-http-client-jackson2-1.16.0-rc.jar')
+      compile files('libs/google-oauth-client-1.16.0-rc.jar')
+      compile files('libs/httpclient-4.0.3.jar')
+      compile files('libs/httpcore-4.0.1.jar')
+      compile files('libs/httpmime-4.0.3.jar')
+      compile files('libs/jackson-core-2.1.3.jar')
+      compile files('libs/jackson-core-asl-1.9.11.jar')
+      compile files('libs/json_simple-1.1.jar')
+      compile files('libs/jsr305-1.3.9.jar')*/
 }

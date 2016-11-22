@@ -9,7 +9,6 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import org.apache.http.protocol.HTTP;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +17,7 @@ import android.util.Log;
 
 public abstract class JavaFileStorageBase implements JavaFileStorage{
 
+	protected  static final String UTF_8 = "UTF-8";
 	private static final String ISO_8859_1 = "ISO-8859-1";
 	
 	private static final String UTF8_PREFIX = ".U8-";
@@ -64,7 +64,7 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 	
 	protected String encode(final String unencoded)
 			throws UnsupportedEncodingException {
-		return UTF8_PREFIX+java.net.URLEncoder.encode(unencoded, HTTP.UTF_8);
+		return UTF8_PREFIX+java.net.URLEncoder.encode(unencoded, UTF_8);
 	}
 
 
@@ -73,10 +73,12 @@ public abstract class JavaFileStorageBase implements JavaFileStorage{
 		//the first version of encode/decode used ISO 8859-1 which doesn't work with Cyrillic characters
 		//this is why we need to check for the prefix, even though all new strings are UTF8 encoded. 
 		if (encodedString.startsWith(UTF8_PREFIX))
-			return java.net.URLDecoder.decode(encodedString.substring(UTF8_PREFIX.length()), HTTP.UTF_8);
+			return java.net.URLDecoder.decode(encodedString.substring(UTF8_PREFIX.length()), UTF_8);
 		else
 			return java.net.URLDecoder.decode(encodedString, ISO_8859_1);
 	}
+
+
 
 
 	public class InvalidPathException extends Exception

@@ -8,8 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.protocol.HTTP;
-
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.ChannelSftp.LsEntry;
@@ -307,13 +305,13 @@ public class SftpStorage extends JavaFileStorageBase {
 	@Override
 	protected String decode(String encodedString)
 			throws UnsupportedEncodingException {
-		return java.net.URLDecoder.decode(encodedString, HTTP.UTF_8);
+		return java.net.URLDecoder.decode(encodedString, UTF_8);
 	}
 	
 	@Override
 	protected String encode(final String unencoded)
 			throws UnsupportedEncodingException {
-		return java.net.URLEncoder.encode(unencoded, HTTP.UTF_8);
+		return java.net.URLEncoder.encode(unencoded, UTF_8);
 	}
 	
 	ChannelSftp init(String filename) throws JSchException, UnsupportedEncodingException {
@@ -321,7 +319,6 @@ public class SftpStorage extends JavaFileStorageBase {
 		ConnectionInfo ci = splitStringToConnectionInfo(filename);
 
 		Session session = jsch.getSession(ci.username, ci.host, ci.port);
-
 		UserInfo ui = new SftpUserInfo(ci.password);
 		session.setUserInfo(ui);
 

@@ -18,3 +18,17 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-verbose
+-dontobfuscate
+
+-keep class keepass2android.javafilestorage.** {*; }
+-keep class keepass2android.javafilestorage.JavaFileStorage {*; }
+-keep class keepass2android.javafilestorage.JavaFileStorage$* {*; }
+-keep interface keepass2android.javafilestorage.JavaFileStorage$* {*; }
+-keep class keepass2android.javafilestorage.JavaFileStorage$FileEntry {*; }
+-keepclassmembers class keepass2android.javafilestorage.JavaFileStorage {*; }
+
+-keep interface keepass2android.javafilestorage.** {*; }
+
+-keep interface keepass2android.javafilestorage.JavaFileStorage$FileStorageSetupActivity {*; }
