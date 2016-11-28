@@ -387,7 +387,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A 資料夾)</string>
   <string name="filestoragehelp_dropboxKP2A">如果你不想要給 KP2A 你完整的 Dropbox 訪問權限，您可以選擇此選項。它將請求只訪問應用程式/Keepass2Android 資料夾。這特別適合創建新資料庫時。如果你已經有一個資料庫，請按一下此選項可創建該資料夾，然後 (從您的 PC) 將檔放在資料夾的內部，然後選擇此選項用，再打開檔案。</string>
   <string name="filestoragename_gdrive">Google 雲端硬碟</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH 檔案傳輸)</string>
   <string name="filestoragename_content">系統檔選擇器</string>
   <string name="filestorage_setup_title">檔案存取權限初始化</string>

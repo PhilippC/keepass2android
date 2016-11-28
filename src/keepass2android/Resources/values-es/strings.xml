@@ -424,7 +424,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no quieres que KP2A acceda a todo tu contenido en Dropbox, selecciona esta opción. Solicitará acceso sólo a la carpeta Apps/Keepass2Android. Esta opción esta especialmente pensada para cuándo se crea una nueva base de datos. Si tienes una base de datos pre-existente, haz click en esta opción para crear la carpeta. Luego mueve el archivo hasta esta carpeta (desde tu computador) y finalmente selecciona esta opción nuevamente para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferencia de archivos)</string>
   <string name="filestoragename_content">Selector de archivo del sistema</string>
   <string name="filestorage_setup_title">Inicialización de acceso de archivo</string>

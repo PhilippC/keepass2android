@@ -22,7 +22,6 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -36,6 +35,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import keepass2android.javafilestorage.webdav.ConnectionInfo;
 import keepass2android.javafilestorage.webdav.DecoratedTrustManager;
 import keepass2android.javafilestorage.webdav.PropfindXmlParser;
 import keepass2android.javafilestorage.webdav.WebDavUtil;
@@ -59,12 +59,6 @@ public class WebDavStorage extends JavaFileStorageBase {
         String scheme = url.substring(0, url.indexOf("://"));
         url = url.substring(scheme.length() + 3);
         return scheme + "://" + encode(username)+":"+encode(password)+"@"+url;
-    }
-
-    static class ConnectionInfo {
-        String URL;
-        String username;
-        String password;
     }
 
     private ConnectionInfo splitStringToConnectionInfo(String filename)

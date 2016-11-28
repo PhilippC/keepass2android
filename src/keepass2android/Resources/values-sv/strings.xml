@@ -238,7 +238,7 @@
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="database_location">Databasplacering</string>
   <string name="button_change_location">Ändra plats</string>

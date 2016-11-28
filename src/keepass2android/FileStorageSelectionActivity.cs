@@ -48,7 +48,10 @@ namespace keepass2android
 				//show all supported protocols:
 				foreach (IFileStorage fs in App.Kp2a.FileStorages)
 					_displayedProtocolIds.AddRange(fs.SupportedProtocols);
-
+				
+				//this is there for legacy reasons, new protocol is onedrive
+				_displayedProtocolIds.Remove("skydrive");
+					
 				//special handling for local files:
 				if (!Util.IsKitKatOrLater)
 				{

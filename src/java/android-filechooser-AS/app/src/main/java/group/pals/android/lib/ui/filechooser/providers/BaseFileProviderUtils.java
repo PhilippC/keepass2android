@@ -216,6 +216,9 @@ public class BaseFileProviderUtils {
             BaseFile.COLUMN_TYPE, BaseFile.COLUMN_MODIFICATION_TIME,
             BaseFile.COLUMN_ICON_ID };
 
+    public static final String[] CONNECTION_CHECK_CURSOR_COLUMNS = {"error"};
+
+
     /**
      * Creates new cursor which holds default properties of a base file for
      * client to access.

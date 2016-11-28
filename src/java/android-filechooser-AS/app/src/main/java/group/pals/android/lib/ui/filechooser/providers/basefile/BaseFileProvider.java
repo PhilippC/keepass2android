@@ -52,6 +52,12 @@ public abstract class BaseFileProvider extends ContentProvider {
     protected static final int URI_API_COMMAND = 4;
 
     /**
+     * Check if connection to the file service is ok.
+     */
+    protected static final int URI_CHECK_CONNECTION = 5;
+
+
+    /**
      * A {@link UriMatcher} instance.
      */
     protected static final UriMatcher URI_MATCHER = new UriMatcher(
@@ -79,8 +85,9 @@ public abstract class BaseFileProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
         case URI_API:
         case URI_API_COMMAND:
-        case URI_DIRECTORY:
-            return BaseFile.CONTENT_TYPE;
+            case URI_DIRECTORY :
+            case URI_CHECK_CONNECTION:
+                return BaseFile.CONTENT_TYPE;
 
         case URI_FILE:
             return BaseFile.CONTENT_ITEM_TYPE;

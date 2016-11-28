@@ -6,7 +6,7 @@ namespace keepass2android.Io
 	public partial class DropboxFileStorage: JavaFileStorage
 	{
 		public DropboxFileStorage(Context ctx, IKp2aApp app) :
-			base(new Keepass2android.Javafilestorage.DropboxFileStorage(ctx, AppKey, AppSecret), app)
+			base(new Keepass2android.Javafilestorage.DropboxV2Storage(ctx, AppKey, AppSecret), app)
 		{
 		}
 
@@ -16,7 +16,7 @@ namespace keepass2android.Io
 	public partial class DropboxAppFolderFileStorage: JavaFileStorage
 	{
 		public DropboxAppFolderFileStorage(Context ctx, IKp2aApp app) :
-			base(new Keepass2android.Javafilestorage.DropboxAppFolderFileStorage(ctx, AppKey, AppSecret), app)
+			base(new Keepass2android.Javafilestorage.DropboxV2AppFolderStorage(ctx, AppKey, AppSecret), app)
 		{
 		}
 

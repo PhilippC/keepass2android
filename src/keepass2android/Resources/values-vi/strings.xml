@@ -360,7 +360,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (thư mục KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập đầy đủ vô Dropbox, bạn có thể chọn tùy chọn này. Nó sẽ chỉ yêu cầu quyền truy cập vô thư mục Apps/Keepass2Android. Điều này đặc biệt thích hợp khi tạo cơ sở dữ liệu mới. Nếu bạn đã có một cơ sở dữ liệu, hãy nhấp vào tùy chọn này để tạo thư mục, sau đó đặt tập tin của bạn bên trong thư mục (từ máy tính của bạn) và sau đó chọn tùy chọn này một lần nữa để mở tập tin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (bộ chuyển tập tin SSH)</string>
   <string name="filestorage_setup_title">Khởi tạo truy cập tập tin</string>
   <string name="database_location">Vị trí cơ sở dữ liệu</string>

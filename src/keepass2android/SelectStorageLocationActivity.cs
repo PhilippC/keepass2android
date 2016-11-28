@@ -101,6 +101,10 @@ namespace keepass2android
 			{
 				IocSelected(ioc,browseRequestCode);
 			};
+			fileSelectHelper.OnCancel += (sender, args) =>
+			{
+				ReturnCancel();
+			};
 
 			App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
 																												  OnActivityResult,

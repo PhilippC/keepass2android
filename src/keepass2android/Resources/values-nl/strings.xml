@@ -422,7 +422,7 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A map)</string>
   <string name="filestoragehelp_dropboxKP2A">Als u KP2A volledige toegang tot dropbox wilt geven, kiest u deze optie. Het zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het maken van een nieuwe database. Als u al een database heeft, gebruik deze optie om de map te maken, plaats daarna het bestand in de map (vanaf uw PC) en kies deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Systeem bestand kiezer</string>
   <string name="filestorage_setup_title">Bestandstoegang initaliseren</string>

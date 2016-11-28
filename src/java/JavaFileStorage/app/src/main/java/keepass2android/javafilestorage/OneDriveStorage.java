@@ -63,7 +63,7 @@ public class OneDriveStorage extends JavaFileStorageBase
     @Override
     public void startSelectFile(FileStorageSetupInitiatorActivity activity, boolean isForSave, int requestCode) {
 
-        initAuthenticator((Activity)activity);
+        initAuthenticator((Activity)activity.getActivity());
 
         String path = getProtocolId()+":///";
         Log.d("KP2AJ", "startSelectFile "+path+", connected: "+path);
@@ -113,8 +113,8 @@ public class OneDriveStorage extends JavaFileStorageBase
 
     @Override
     public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode, boolean alwaysReturnSuccess) {
-        initAuthenticator((Activity)activity);
-        if (isConnected((Activity)activity))
+        initAuthenticator((Activity)activity.getActivity());
+        if (isConnected((Activity)activity.getActivity()))
         {
             Intent intent = new Intent();
             intent.putExtra(EXTRA_PATH, path);
@@ -151,58 +151,7 @@ public class OneDriveStorage extends JavaFileStorageBase
     @Override
     public void onResume(final FileStorageSetupActivity activity) {
 
-        Log.d("KP2AJ", "onResume");
-        if (activity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
-            activity.getState().putString(EXTRA_PATH, activity.getPath());
 
-        JavaFileStorage.FileStorageSetupActivity storageSetupAct = activity;
-
-        if (storageSetupAct.getState().containsKey("hasStartedAuth"))
-        {
-            Log.d("KP2AJ", "auth started");
-
-
-            if (oneDriveClient != null) {
-                Log.d("KP2AJ", "auth successful");
-                try {
-
-                    finishActivityWithSuccess(activity);
-                    return;
-
-                } catch (Exception e) {
-                    Log.d("KP2AJ", "finish with error: " + e.toString());
-                    finishWithError(activity, e);
-                    return;
-                }
-            }
-
-
-            Log.i(TAG, "authenticating not succesful");
-            Intent data = new Intent();
-            data.putExtra(EXTRA_ERROR_MESSAGE, "authenticating not succesful");
-            ((Activity)activity).setResult(Activity.RESULT_CANCELED, data);
-            ((Activity)activity).finish();
-        }
-        else
-        {
-            Log.d("KP2AJ", "Starting auth");
-            new AsyncTask<Object, Object, Object>() {
-
-                @Override
-                protected Object doInBackground(Object... params) {
-                    return buildClient((Activity)activity);
-                }
-
-                @Override
-                protected void onPostExecute(Object o) {
-                    oneDriveClient = (IOneDriveClient) o;
-                    finishActivityWithSuccess(activity);
-
-                }
-            }.execute();
-            storageSetupAct.getState().putBoolean("hasStartedAuth", true);
-
-        }
 
 
     }
@@ -375,8 +324,63 @@ public class OneDriveStorage extends JavaFileStorageBase
     }
 
     @Override
-    public void onStart(FileStorageSetupActivity activity) {
+    public void onStart(final FileStorageSetupActivity activity) {
+        Log.d("KP2AJ", "onStart");
+        if (activity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
+            activity.getState().putString(EXTRA_PATH, activity.getPath());
 
+        JavaFileStorage.FileStorageSetupActivity storageSetupAct = activity;
+
+        if (oneDriveClient != null) {
+            Log.d("KP2AJ", "auth successful");
+            try {
+
+                finishActivityWithSuccess(activity);
+                return;
+
+            } catch (Exception e) {
+                Log.d("KP2AJ", "finish with error: " + e.toString());
+                finishWithError(activity, e);
+                return;
+            }
+        }
+
+
+        {
+            Log.d("KP2AJ", "Starting auth");
+            new AsyncTask<Object, Object, Object>() {
+
+                @Override
+                protected Object doInBackground(Object... params) {
+                    try {
+                        return buildClient((Activity) activity);
+                    } catch (Exception e) {
+                        return null;
+                    }
+                }
+
+                @Override
+                protected void onPostExecute(Object o) {
+                    if (o == null)
+                    {
+                        Log.i(TAG, "authenticating not successful");
+                        Intent data = new Intent();
+                        data.putExtra(EXTRA_ERROR_MESSAGE, "authenticating not succesful");
+                        ((Activity)activity).setResult(Activity.RESULT_CANCELED, data);
+                        ((Activity)activity).finish();
+
+                    }
+                    else
+                    {
+                        Log.i(TAG, "authenticating successful");
+
+                        oneDriveClient = (IOneDriveClient) o;
+                        finishActivityWithSuccess(activity);
+                    }
+                }
+            }.execute();
+
+        }
     }
 
     @Override

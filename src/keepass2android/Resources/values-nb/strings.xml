@@ -355,7 +355,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
   <string name="filestoragehelp_dropboxKP2A">Hvis du ikke vil gi KP2A tilgang til hele Dropbox-mappen din, kan du velge dette alternativet. KP2A vil da bare spørre om tilgang til mappen Apps/Keepass2Android. Dette er spesielt egnet når du oppretter en ny database. Hvis du allerede har en database, trykk på dette alternativet for å opprette mappen, for deretter å plassere filen i mappen (fra en PC) og velge dette alternativet igjen for å åpne filen.</string>
   <string name="filestoragename_gdrive">Google Disk</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="master_password">Hovedpassord</string>
   <string name="help_master_password">Databasen din er kryptert med passordet du angir her. Velg et sterkt passord for å sikre databasen! Tips: Lag en setning eller to og bruk de første bokstavene til ordene som et passord. Inkluder skilletegn.</string>

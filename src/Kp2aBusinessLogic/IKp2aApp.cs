@@ -9,6 +9,7 @@ using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using Keepass2android.Javafilestorage;
 
 namespace keepass2android
 {
@@ -28,7 +29,7 @@ namespace keepass2android
 	/// Interface through which Activities and the logic layer can access some app specific functionalities and Application static data
 	/// </summary>
 	/// This also contains methods which are UI specific and should be replacable for testing.
-	public interface IKp2aApp: ICertificateValidationHandler
+	public interface IKp2aApp : ICertificateValidationHandler
 	{
 		/// <summary>
 		/// Locks the currently open database, quicklocking if available (unless false is passed for allowQuickUnlock)
@@ -106,5 +107,6 @@ namespace keepass2android
 
 		
 		bool CheckForDuplicateUuids { get; }
+		ICertificateErrorHandler CertificateErrorHandler { get; }
 	}
 }

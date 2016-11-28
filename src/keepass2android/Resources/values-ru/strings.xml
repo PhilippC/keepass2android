@@ -425,7 +425,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если Вы не хотите предоставлять полный доступ к Dropbox, то можете выбрать эту опцию. Будет запрошен доступ только к папке Apps/Keepass2Android. Это особенно удобно при создании нового файла. Если у вас уже есть файл с данными, выберите этот параметр, чтобы создать папку. После скопируйте базу в папку (с компьютера) и повторно выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлов)</string>
   <string name="filestoragename_content">Системный выбор файла</string>
   <string name="filestorage_setup_title">Инициализация доступа к файлу</string>

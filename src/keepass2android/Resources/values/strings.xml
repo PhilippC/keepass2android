@@ -471,12 +471,18 @@
 	<string name="ok_donate">Tell me more!</string>
 	<string name="no_thanks">No, I don\'t like it that much</string>
 
-	<string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
+  <string name="enter_http_login_title">Enter WebDav login data:</string>
+  <string name="hint_http_url">URL of folder or file (ex: mycloud.me.com/webdav/)</string>
+
+  <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
 	<string name="hint_sftp_port">port</string>
 	<string name="initial_directory">Initial directory (optional):</string>
 	<string name="enter_sftp_login_title">Enter SFTP login data:</string>
 
-	<string name="select_storage_type">Select the storage type:</string>
+  <string name="enter_ftp_login_title">Enter FTP login data:</string>
+
+
+  <string name="select_storage_type">Select the storage type:</string>
 	
 
 	<string name="filestoragename_file">Local file</string>
@@ -489,8 +495,8 @@
 	<string name="filestoragename_dropboxKP2A">Dropbox (KP2A folder)</string>
 	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, click this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
 	<string name="filestoragename_gdrive">Google Drive</string>
-	<string name="filestoragename_skydrive">OneDrive</string>
-	<string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
 	<string name="filestoragename_content">System file picker</string>
 
 	<string name="filestorage_setup_title">File access initialization</string>

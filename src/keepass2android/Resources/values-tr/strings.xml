@@ -415,7 +415,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox(KP2A Klasörü)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH dosya aktarımı)</string>
   <string name="filestoragename_content">Sistem dosyası seçicisi</string>
   <string name="filestorage_setup_title">Dosya erişimi başlatma</string>

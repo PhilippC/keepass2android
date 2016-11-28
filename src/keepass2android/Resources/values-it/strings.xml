@@ -422,7 +422,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="filestoragename_dropboxKP2A">Dropbox (cartella KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Apps/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (dal PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selettore file di sistema</string>
   <string name="filestorage_setup_title">Inizializzazione dell\'accesso al file</string>

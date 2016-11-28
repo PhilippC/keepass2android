@@ -425,7 +425,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (priečinok KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Túto možnosť si môžete vybrať, ak nechcete, aby mal KP2A úplný prístup k úložisku Dropbox. Bude sa vyžadovať iba prístup k priečinku Apps/Keepass2Android. Táto možnosť je vhodná pri vytváraní novej databázy. Ak už máte nejakú databázu, kliknite na túto možnosť pre vytvorenie nového priečinka, potom vložte súbor do priečinka (z PC) a potom znovu vyberte túto možnosť pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Systémový prehliadač súborov</string>
   <string name="filestorage_setup_title">Inicializácia prístupu k súboru</string>

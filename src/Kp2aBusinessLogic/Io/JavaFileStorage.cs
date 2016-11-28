@@ -21,7 +21,7 @@ namespace keepass2android.Io
 	{
 		protected string Protocol { get { return _jfs.ProtocolId; } }
 
-		public IEnumerable<string> SupportedProtocols { get { yield return Protocol; } }
+		public virtual IEnumerable<string> SupportedProtocols { get { yield return Protocol; } }
 
 
 		private readonly IJavaFileStorage _jfs;

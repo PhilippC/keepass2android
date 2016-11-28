@@ -424,7 +424,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferência de arquivos)</string>
   <string name="filestoragename_content">Seletor de arquivo de sistema</string>
   <string name="filestorage_setup_title">Inicialização do arquivo de acesso</string>

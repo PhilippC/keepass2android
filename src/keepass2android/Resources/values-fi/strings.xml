@@ -425,7 +425,7 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A kansio)</string>
   <string name="filestoragehelp_dropboxKP2A">Jos et halua antaa KP2A pääsyä koko Dropboxiin, voit valita tämän vaihtoehdon. Se pyytää vain Keepass2Android-kansion käyttöoikeuksia. Tämä on erityisen hyvä kun luodaan uusi tietokanta. Jos sinulla on jo tietokanta, valitsemalla tämän vaihtoehdon voit luoda kansion, Sijoita sen jälkeen tiedosto kansioon (tietokoneesta) ja valitse sitten tämä vaihtoehto uudelleen avaamalla tiedosto.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH-tiedostonsiirto)</string>
   <string name="filestoragename_content">Järjestelmän tiedostonvalitsin</string>
   <string name="filestorage_setup_title">Tiedoston käytön alustaminen</string>

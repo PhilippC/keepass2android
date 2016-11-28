@@ -124,6 +124,7 @@ public class BaseFileContract {
          */
         public static final String PATH_API = "api";
 
+
         /*
          * COMMANDS.
          */
@@ -186,6 +187,9 @@ public class BaseFileContract {
          * let the providers know when they can shutdown the background jobs.
          */
         public static final String CMD_SHUTDOWN = "shutdown";
+
+
+        public static final String CMD_CHECK_CONNECTION = "check_connection";
 
         /*
          * PARAMETERS.

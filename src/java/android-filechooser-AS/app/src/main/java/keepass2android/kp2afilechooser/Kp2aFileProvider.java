@@ -8,6 +8,7 @@ package keepass2android.kp2afilechooser;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,6 +23,7 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MatrixCursor.RowBuilder;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import group.pals.android.lib.ui.filechooser.R;
 import group.pals.android.lib.ui.filechooser.providers.BaseFileProviderUtils;
@@ -216,6 +218,41 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         }
     }// query()
 
+    @Nullable
+    private MatrixCursor getCheckConnectionCursor(Uri uri) {
+        try
+        {
+            checkConnection(uri);
+            return null;
+        }
+        catch (Exception e)
+        {
+            MatrixCursor matrixCursor = new MatrixCursor(BaseFileProviderUtils.CONNECTION_CHECK_CURSOR_COLUMNS);
+            RowBuilder newRow = matrixCursor.newRow();
+            String message = e.getLocalizedMessage();
+            if (message == null)
+                message = e.getMessage();
+            if (message == null)
+                message = e.toString();
+            newRow.add(message);
+            return matrixCursor;
+        }
+    }
+
+    private void checkConnection(Uri uri) throws Exception {
+       try
+       {
+           String path = Uri.parse(
+                   uri.getQueryParameter(BaseFile.PARAM_SOURCE)).toString();
+            getFileEntry(path);
+
+        }
+        catch (FileNotFoundException ex)
+        {
+            return;
+        }
+    }
+
     /*
      * UTILITIES
      */
@@ -256,7 +293,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         	
         	{
         		String path = Uri.parse(
-	                    uri.getQueryParameter(BaseFile.PARAM_SOURCE)).toString();
+                    uri.getQueryParameter(BaseFile.PARAM_SOURCE)).toString();
 	
 	            String parentPath = getParentPath(path);
 	            
@@ -306,6 +343,9 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
             // mMapInterruption.put(mMapInterruption.keyAt(i), true);
             // }
 
+        } else if (BaseFile.CMD_CHECK_CONNECTION.equals(lastPathSegment))
+        {
+            return getCheckConnectionCursor(uri);
         }
 
         return matrixCursor;
@@ -538,9 +578,15 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 		if (Utils.doLog())
 			Log.d(CLASSNAME, "getFileEntryCached: not in cache :-( " + filename);
 
-    	
-    	//it's not -> query the information.
-		FileEntry newEntry = getFileEntry(filename);
+
+        FileEntry newEntry ;
+        try {
+            //it's not -> query the information.
+           newEntry = getFileEntry(filename);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 		
 		if (!cacheBlockedFiles.contains(filename))
 			updateFileEntryCache(newEntry);
@@ -729,7 +775,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     
     
 
-	protected abstract FileEntry getFileEntry(String path);
+	protected abstract FileEntry getFileEntry(String path) throws Exception;
     
 	/**
      * Lists all file inside {@code dirName}.

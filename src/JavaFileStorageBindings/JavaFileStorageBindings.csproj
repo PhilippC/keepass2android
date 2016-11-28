@@ -64,8 +64,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\java\JavaFileStorage\app\build\outputs\aar\app-debug.aar">
-      <Link>Jars\app-debug.aar</Link>
+    <LibraryProjectZip Include="..\java\JavaFileStorage\app\build\outputs\aar\JavaFileStorage-debug.aar">
+      <Link>Jars\JavaFileStorage-debug.aar</Link>
     </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
@@ -74,81 +74,6 @@
     <TransformFile Include="Transforms\Metadata.xml" />
     <TransformFile Include="Transforms\EnumFields.xml" />
     <TransformFile Include="Transforms\EnumMethods.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\json_simple-1.1.jar">
-      <Link>Jars\json_simple-1.1.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-api-client-1.16.0-rc.jar">
-      <Link>Jars\google-api-client-1.16.0-rc.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-api-client-android-1.16.0-rc.jar">
-      <Link>Jars\google-api-client-android-1.16.0-rc.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-api-services-drive-v2-rev102-1.16.0-rc.jar">
-      <Link>Jars\google-api-services-drive-v2-rev102-1.16.0-rc.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-1.16.0-rc.jar">
-      <Link>Jars\google-http-client-1.16.0-rc.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-android-1.16.0-rc.jar">
-      <Link>Jars\google-http-client-android-1.16.0-rc.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-gson-1.16.0-rc.jar">
-      <Link>Jars\google-http-client-gson-1.16.0-rc.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-jackson-1.16.0-rc.jar">
-      <Link>Jars\google-http-client-jackson-1.16.0-rc.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-http-client-jackson2-1.16.0-rc.jar">
-      <Link>Jars\google-http-client-jackson2-1.16.0-rc.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\google-oauth-client-1.16.0-rc.jar">
-      <Link>Jars\google-oauth-client-1.16.0-rc.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\gson-2.1.jar">
-      <Link>Jars\gson-2.1.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\httpmime-4.0.3.jar">
-      <Link>Jars\httpmime-4.0.3.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\jackson-core-2.1.3.jar">
-      <Link>Jars\jackson-core-2.1.3.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\jackson-core-asl-1.9.11.jar">
-      <Link>Jars\jackson-core-asl-1.9.11.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="..\java\JavaFileStorage\libs\jsr305-1.3.9.jar">
-      <Link>Jars\jsr305-1.3.9.jar</Link>
-    </EmbeddedReferenceJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -163,5 +88,77 @@
       <Version>19.0.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\okhttp-3.4.1.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\okhttp-digest-1.7.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\dropbox-core-sdk-2.1.1.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gson-2.3.1.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\msa-auth-0.8.6\classes-msa-auth.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\onedrive-sdk-android-1.2.2\classes-onedrive-sdk.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\adal-1.1.19\classes-adal.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\commons-logging-1.1.1.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\google-api-client-1.16.0-rc.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\google-api-client-android-1.16.0-rc.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\google-api-services-drive-v2-rev102-1.16.0-rc.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-1.16.0-rc.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-android-1.16.0-rc.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-jackson-1.16.0-rc.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-jackson2-1.16.0-rc.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\google-oauth-client-1.16.0-rc.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\httpclient-4.0.3.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\httpcore-4.0.1.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\httpmime-4.0.3.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\json_simple-1.1.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\jsr305-1.3.9.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-gson-1.16.0-rc.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\jackson-core-2.7.4.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\okio-1.9.0.jar" />
   </ItemGroup>
 </Project>

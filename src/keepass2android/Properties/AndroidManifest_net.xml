@@ -7,7 +7,7 @@
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
 	<permission android:description="@string/permission_desc" android:icon="@drawable/ic_launcher_online" android:label="KP2A internal file browsing" android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" android:protectionLevel="signature" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher_online">
-		<activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
+		<activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
 				<data android:scheme="db-i8shu7v1hgh7ynt" />
 				<action android:name="android.intent.action.VIEW" />

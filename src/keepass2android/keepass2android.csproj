@@ -38,7 +38,12 @@
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
-    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -294,6 +299,9 @@
     <AndroidResource Include="Resources\layout\fingerprint_setup.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\httpcredentials.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <None Include="settings\RoundsPreference %28Kopie%29.cs">
       <Visible>False</Visible>
     </None>
@@ -424,7 +432,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_https.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_owncloud.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_sftp.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_storage_skydrive.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_storage_onedrive.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic00.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic01.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic02.png" />
@@ -702,7 +710,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\values-sr\strings.xml" />
     <AndroidResource Include="Resources\values-sv\strings.xml" />
-    <AndroidResource Include="Resources\values-tr\strings.xml" />
+    <AndroidResource Include="Resources\values-tr\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\values-vi\strings.xml" />
     <AndroidResource Include="Resources\values-de\strings.xml">
       <SubType>Designer</SubType>
@@ -722,7 +732,9 @@
     <AndroidResource Include="Resources\values-ru\strings.xml" />
     <AndroidResource Include="Resources\values-sk\strings.xml" />
     <AndroidResource Include="Resources\values-uk\strings.xml" />
-    <AndroidResource Include="Resources\values-zh-rCN\strings.xml" />
+    <AndroidResource Include="Resources\values-zh-rCN\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\values-zh-rTW\strings.xml" />
     <AndroidResource Include="Resources\layout\InViewButton.xml">
       <SubType>Designer</SubType>
@@ -1103,7 +1115,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_sftp.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_skydrive.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_onedrive.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic00.png" />

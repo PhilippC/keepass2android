@@ -422,7 +422,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="filestoragename_dropboxKP2A">Dropbox (dossier KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Sélecteur de fichier système</string>
   <string name="filestorage_setup_title">Initialisation de l\'accès aux fichiers</string>

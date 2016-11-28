@@ -33,14 +33,14 @@ dependencies {
 
     compile 'com.google.android.gms:play-services:4.0.30'
 
-    compile('com.google.api-client:google-api-client-xml:1.17.0-rc') {
+  /*  compile('com.google.api-client:google-api-client-xml:1.16.0-rc') {
+        exclude group: 'com.google.android.google-play-services'
+    }*/
+    compile 'com.google.http-client:google-http-client-gson:1.16.0-rc'
+    compile('com.google.api-client:google-api-client-android:1.16.0-rc') {
         exclude group: 'com.google.android.google-play-services'
     }
-    compile 'com.google.http-client:google-http-client-gson:1.17.0-rc'
-    compile('com.google.api-client:google-api-client-android:1.17.0-rc') {
-        exclude group: 'com.google.android.google-play-services'
-    }
-    compile 'com.google.apis:google-api-services-drive:v2-rev105-1.17.0-rc'
+    compile 'com.google.apis:google-api-services-drive:v2-rev102-1.16.0-rc'
 
     //compile 'com.dropbox.core:dropbox-core-sdk:2.0.1'
     //compile group: 'com.dropbox.core', name: 'dropbox-core-sdk', version: '0-SNAPSHOT', changing: true
@@ -52,7 +52,6 @@ dependencies {
     compile ('com.onedrive.sdk:onedrive-sdk-android:1.2+') {
         transitive = false
     }
-    // Include the gson dependency
     compile ('com.google.code.gson:gson:2.3.1')
     compile ('com.microsoft.services.msa:msa-auth:0.8.+')
     compile ('com.microsoft.aad:adal:1.1.+')

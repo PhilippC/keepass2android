@@ -63,6 +63,37 @@ namespace keepass2android
 #endif
 		}
 
+		private void ShowHttpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
+		{
+#if !EXCLUDE_JAVAFILESTORAGE && !NoNet
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.httpcredentials, null);
+			builder.SetView(dlgContents);
+			builder.SetPositiveButton(Android.Resource.String.Ok,
+									  (sender, args) =>
+									  {
+										  string host = dlgContents.FindViewById<EditText>(Resource.Id.http_url).Text;
+											
+										  string user = dlgContents.FindViewById<EditText>(Resource.Id.http_user).Text;
+										  string password = dlgContents.FindViewById<EditText>(Resource.Id.http_password).Text;
+
+										  string scheme = defaultPath.Substring(defaultPath.IndexOf("://", StringComparison.Ordinal));
+										  if (host.Contains("://") == false)
+											  host = scheme + "://" + host;
+										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(host, user,
+																										  password);
+										  onStartBrowse(httpPath);
+									  });
+			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
+
+			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
+			builder.SetTitle(activity.GetString(Resource.String.enter_http_login_title));
+			Dialog dialog = builder.Create();
+
+			dialog.Show();
+#endif
+		}
+
 		private void ShowFtpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel)
 		{
 #if !NoNet
@@ -89,7 +120,7 @@ namespace keepass2android
 			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
-			builder.SetTitle(activity.GetString(Resource.String.enter_sftp_login_title));
+			builder.SetTitle(activity.GetString(Resource.String.enter_ftp_login_title));
 			Dialog dialog = builder.Create();
 
 			dialog.Show();
@@ -100,9 +131,11 @@ namespace keepass2android
 		public void PerformManualFileSelect(string defaultPath)
 		{
 			if (defaultPath.StartsWith("sftp://"))
-				ShowSftpDialog(_activity, StartFileChooser, ReturnCancel);
+				ShowSftpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel);
 			else if ((defaultPath.StartsWith("ftp://")) || (defaultPath.StartsWith("ftps://")))
-				ShowFtpDialog(_activity, StartFileChooser, ReturnCancel);
+				ShowFtpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel);
+			else if ((defaultPath.StartsWith("http://")) || (defaultPath.StartsWith("https://")))
+				ShowHttpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
 			else
 			{
 				Func<string, Dialog, bool> onOpen = OnOpenButton;
@@ -116,6 +149,20 @@ namespace keepass2android
 										_requestCode)
 				;
 			}
+		}
+
+		private bool ReturnFileOrStartFileChooser(string filename)
+		{
+			int lastSlashPos = filename.LastIndexOf('/');
+			int lastDotPos = filename.LastIndexOf('.');
+			if (lastSlashPos >= lastDotPos) //no dot after last slash or == in case neither / nor .
+			{
+				//looks like a folder.
+				return StartFileChooser(filename);
+			}
+			//looks like a file
+			IocSelected(IOConnectionInfo.FromPath(filename));
+			return true;
 		}
 
 		private void ReturnCancel()

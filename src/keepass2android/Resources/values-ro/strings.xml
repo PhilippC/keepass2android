@@ -402,7 +402,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Dacă nu doriți să oferiți KP2A acces la tot Dropbox-ul, poți selecta această opțiune. Aceasta va solicita acces doar la folderul Apps/Keepass2Android. Acest lucru este ideal când creați o bază de date nouă. Dacă ai deja o bază de date, apasă această opțiune pentru a crea folderul, puneți baza de date în folder (de pe PC) apoi selectați opțiunea aceasta din nou pentru a deschide fișierul.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selector de fisiere sistem</string>
   <string name="filestorage_setup_title">Iniţializare acces fişier</string>
