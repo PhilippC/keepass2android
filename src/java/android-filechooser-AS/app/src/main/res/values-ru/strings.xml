@@ -28,7 +28,7 @@
   <string name="afc_msg_cancelled">Отменено</string>
   <string name="afc_msg_cannot_connect_to_file_provider_service">Не удается подключиться к службе хранения файла</string>
   <string name="afc_msg_cannot_create_new_folder_here">Создание новой папки здесь невозможно</string>
-  <string name="afc_msg_cannot_save_a_file_here">Не удается сохранить файл здесь</string>
+  <string name="afc_msg_cannot_save_a_file_here">Не удается сохранить здесь файл</string>
   <string name="afc_msg_done">Выполнено</string>
   <string name="afc_msg_empty">Пусто</string>
   <string name="afc_msg_failed_please_try_again">Не получилось. Пожалуйста, попробуйте еще раз.</string>
@@ -41,7 +41,7 @@
   <string name="afc_pmsg_confirm_replace_file">Файл \"%1$s\" уже существует.\n\nХотите заменить его?</string>
   <string name="afc_pmsg_deleting_file">Удаление %1$s \"%2$s\"&#8230;</string>
   <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" удалён</string>
-  <string name="afc_pmsg_filename_is_directory">\"%1$s\" - папка</string>
+  <string name="afc_pmsg_filename_is_directory">\"%1$s\" является папкой</string>
   <string name="afc_pmsg_filename_is_invalid">Недопустимое имя файла \"%1$s\"</string>
   <string name="afc_pmsg_max_file_count_allowed">&#8230;содержит больше файлов, максимально допустимо: %1$,d</string>
   <string name="afc_pmsg_unknown_error">Неизвестная ошибка: %1$s</string>

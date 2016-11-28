@@ -425,7 +425,6 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta de KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no voleu donar accés KP2A al seu Dropbox complet, podeu seleccionar aquesta opció. Es sol·licitarà només l\'accés a la carpeta Apps/Keepass2Android. Això és especialment adequat quan es crea una nova base de dades. Si ja teniu una base de dades, feu clic a aquesta opció per crear la carpeta, a continuació, posar el seu arxiu dins la carpeta (des del seu PC) i llavors seleccioni aquesta opció nou per obrir l\'arxiu.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH Transferència de fitxer)</string>
   <string name="filestoragename_content">Selector d\'arxiu de sistema</string>
   <string name="filestorage_setup_title">Inicialització d\'accés a arxiu</string>

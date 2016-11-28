@@ -16,7 +16,7 @@
   <string name="afc_cmd_new_folder">Ny mappe&#8230;</string>
   <string name="afc_cmd_select_all_files">Marker alle filer</string>
   <string name="afc_cmd_select_all_folders">Marker alle mapper</string>
-  <string name="afc_cmd_sort">Sorter&#8230;</string>
+  <string name="afc_cmd_sort">Sortér&#8230;</string>
   <string name="afc_file">fil</string>
   <string name="afc_folder">mappe</string>
   <string name="afc_hint_clear">ryd</string>
@@ -61,8 +61,8 @@
     <item quantity="other">Vælg mapper&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files">
-    <item quantity="one">Vælg mappe&#8230;</item>
-    <item quantity="other">Vælg mapper&#8230;</item>
+    <item quantity="one">Vælg fil&#8230;</item>
+    <item quantity="other">Vælg filer&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">Vælg fil/mappe&#8230;</item>

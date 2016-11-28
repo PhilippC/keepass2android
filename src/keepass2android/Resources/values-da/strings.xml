@@ -7,9 +7,11 @@
   <string name="AboutText">Keepass2Android er en Android implementering af KeePass password manager.</string>
   <string name="CreditsText">Brugergrænsefladen er baseret på en portering af KeePassDroid, udviklet af Brian Pellin. Koden for databaseoperationerne er baseret på KeePass af Dominik Reichl. Android-robotten er reproduceret eller ændret fra arbejde skabt og delt af Google og brugt ifølge betingelserne beskrevet i \"Creative Commons 3.0 Attribution License\".</string>
   <string name="CreditsTextSFTP">SFTP-understøttelse er implementeret ved brug af JSch-biblioteket under BSD-licensen, skabt af JCraft, Inc.</string>
+  <string name="CreditsIcons">The Hammer Icon is Created by John Caserta from the Noun Project. The Penguin Icon is Created by Adriano Emerick from the Noun Project. The Feather icon is Created by Jon Testa from the Noun Project. The Apple icon is Created by Ava Rowell from the Noun Project. </string>
   <string name="accept">Accepter</string>
   <string name="deny">Afvis</string>
   <string name="add_entry">Tilføj post</string>
+  <string name="edit_entry">Redigér post</string>
   <string name="add_url_entry">Opret post for webadresse</string>
   <string name="add_group">Tilføj gruppe</string>
   <string name="add_group_title">Tilføj gruppe</string>
@@ -32,6 +34,10 @@
   <string name="NavigationToGroupCompleted_message">Visningsgruppe er nu: %1$s</string>
   <string name="ShowGroupInEntry_title">Vis gruppenavn i postvisning</string>
   <string name="unknown_uri_scheme">Beklager! Keepass2Android kan ikke håndtere den returnerede URI %1$s. Kontakt udvikleren!</string>
+  <string name="Entry_singular">Én post</string>
+  <string name="Entry_plural">%1$d poster</string>
+  <string name="IconSet_title">Ikon sat</string>
+  <string name="IconSet_install">Find mere...</string>
   <string name="security_prefs">Sikkerhed</string>
   <string name="display_prefs">Visning</string>
   <string name="password_access_prefs">Adgang til adgangskoden</string>
@@ -39,6 +45,7 @@
   <string name="FileHandling_prefs">Filhåndtering</string>
   <string name="keyboard_prefs">Tastatur</string>
   <string name="export_prefs">Eksporter database…</string>
+  <string name="fingerprint_prefs">Fingeraftryksoplåsning</string>
   <string name="import_db_prefs">Importer database til intern mappe</string>
   <string name="import_keyfile_prefs">Importer nøglefilen til intern mappe</string>
   <string name="keyboardswitch_prefs">Skift mellem tastaturer</string>
@@ -47,6 +54,8 @@
   <string name="DatabaseFileMoved">Databasefilen blev kopieret til den interne mappe. Tryk på OK for at åbne den fra den nye placering. Bemærk: Husk regelmæssigt at eksportere databasen til en sikker opbevaring!</string>
   <string name="KeyfileMoved">Nøglefilen blev kopieret til den interne mappe. Vær sikker på du har en god sikkerhedskopi før du sletter nøglefilen fra dens nuværende placering!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Kan ikke bruge intern mappe når nøglefilens placering ikke er husket. Ændr sikkerhedsindstillingerne.</string>
+  <string name="unlock_database_button">Lås op</string>
+  <string name="unlock_database_title">Oplås database</string>
   <string name="brackets">Parenteser</string>
   <string name="cancel">Annuller</string>
   <string name="ClearClipboard">Udklipsholder ryddet.</string>
@@ -66,6 +75,20 @@
   <string name="disclaimer_formal">Keepass2Android leveres ABSOLUT UDEN GARANTI. Det er gratis software, og du er velkommen til at videredistribuere det under betingelserne i GPL version 2 eller senere.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiér til upklipsholder</string>
+  <string name="fingerprint_hint">Tryk sensor</string>
+  <string name="fingerprint_description">Bekræft fingeraftryk for at fortsætte</string>
+  <string name="fingerprint_fatal">Ikke muligt at opsætte Fingeraftryksoplåsning:</string>
+  <string name="fingerprint_not_recognized">Fingeraftryk blev ikke genkendt. Prøv igen</string>
+  <string name="fingerprint_success">Fingeraftryk genkendt</string>
+  <string name="fingerprint_os_error">Fingeraftryksoplåsning kræver Android 6.0 eller nyere.</string>
+  <string name="fingerprint_hardware_error">Ingen fingeraftrykslæser fundet.</string>
+  <string name="fingerprint_no_enrolled">Du har ingen gemte fingeraftryk på denne enhed.
+Gå venligst til systemindstillinger først.</string>
+  <string name="disable_fingerprint_unlock">Slå Fingeraftryksoplåsning fra</string>
+  <string name="enable_fingerprint_unlock">Slå fuld Fingeraftryksoplåsning til</string>
+  <string name="enable_fingerprint_quickunlock">Slå Fingeraftryksoplåsning til for hurtigoplåsning</string>
+  <string name="fingerprint_unlock_hint">Rør sensoren for at låse databasen op</string>
+  <string name="fingerprint_unlock_failed">Fingerprint Unlock mislykkedes. Krypteringsnøglen blev ugyldiggjort af Android OS. Dette sker normalt, hvis et nyt fingeraftryk blev tilmeldt eller sikkerhedsindstillinger blev ændret. Venligst lås op med din adgangskode og derefter genaktivér Fingeraftryksoplåsning i databaseindstillingerne.</string>
   <string name="enter_filename">Angiv navn på databasefil</string>
   <string name="entry_accessed">Seneste åbnede</string>
   <string name="entry_cancel">Annuller</string>

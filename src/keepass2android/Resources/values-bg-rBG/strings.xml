@@ -33,6 +33,7 @@
   <string name="NavigationToGroupCompleted_message">Групата за показване е: %1$s</string>
   <string name="ShowGroupInEntry_title">Покажи името на групата във вид на запис</string>
   <string name="unknown_uri_scheme">Съжалявам! Keepass2Android не може да обработи върнатите URI %1$s. Свържете се с разработчика!</string>
+  <string name="Entry_singular">Един запис</string>
   <string name="Entry_plural">%1$d записи</string>
   <string name="IconSet_title">Набор икони</string>
   <string name="IconSet_install">Търси още... </string>
@@ -83,6 +84,7 @@
   <string name="disable_fingerprint_unlock">Изключи  отключването с отпечатък</string>
   <string name="enable_fingerprint_unlock">Разреши отключването с отпечатък</string>
   <string name="fingerprint_unlock_hint">Докоснете сензора за отключване на базата данни</string>
+  <string name="enable_fingerprint_quickunlock_Info">Позволява да използвате пръстов отпечатък вместо QuickUnlock код. Не изисква да запазва каквато и да е информация свързана с вашата главна парола.</string>
   <string name="enter_filename">Въведете име на файла на базаданни</string>
   <string name="entry_accessed">Достъп до</string>
   <string name="entry_cancel">Отказ</string>
@@ -124,6 +126,7 @@
   <string name="file_browser">Файл браузър</string>
   <string name="generate_password">Генериране на парола</string>
   <string name="group">Група</string>
+  <string name="hint_comment">бележки</string>
   <string name="hint_conf_pass">Потвърди паролата</string>
   <string name="hint_generated_password">генерира парола</string>
   <string name="hint_group_name">Име на група</string>
@@ -328,12 +331,15 @@
   <string name="AskDiscardChanges_title">Отхвърляне на промените?</string>
   <string name="rate_app">Оценете това приложение</string>
   <string name="translate_app">Превод на KP2A</string>
+  <string name="AddingEntry">Добавяне на запис&#8230;</string>
+  <string name="AddingGroup">Добавяне на група&#8230;</string>
   <string name="DeletingEntry">Изтриване на запис&#8230;</string>
   <string name="DeletingGroup">Изтриване на група&#8230;</string>
   <string name="DeletingItems">Изтриване на елементи&#8230;</string>
   <string name="SettingPassword">Задаване на парола&#8230;</string>
   <string name="UndoingChanges">Отмяна на промените&#8230;</string>
   <string name="DecodingDatabase">Декодиране на базата данни&#8230;</string>
+  <string name="MessageSyncQuestion">Файлът на базата данни беше променен външно. Искате ли да заредите и да обедините промените преди записване? Изберете \"не\" ако искате да замените външните промени.</string>
   <string name="DuplicateUuidsError">Базата данни е повредена: дубликат идентификатори намерени. (Знаете запишете с Minikeepass?) Моля да импортирате отново в нова база данни с Keepass 2 за PC и изберете \"Създай нов ИД\".</string>
   <string name="DuplicateUuidsErrorAdditional">Можете да забраните това съобщение за грешка в приложението настройки/настройки/файл обработка/проверка за дублирани UUID. Моля, обърнете внимание, че е възможно да имате неочаквано поведение. Препоръчително е да се определи на базата данни.</string>
   <string name="synchronize_database_menu">Синхронизиране на базата данни...</string>
@@ -358,7 +364,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A папка)</string>
   <string name="filestoragehelp_dropboxKP2A">Ако не искате да дадете KP2A достъп до пълен живея, можете да изберете тази опция. Тя ще поиска достъп само до папката приложения/Keepass2Android. Това е особено подходящ, когато създавате нова база данни. Ако вече имате база данни, щракнете върху тази опция, за да създаде папката, след което поставете вашия файл в папката (от вашия компютър) и след това изберете тази опция отново за отваряне на файла.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH прехвърляне на файлове)</string>
   <string name="filestorage_setup_title">Файла достъп инициализация</string>
   <string name="database_location">Database местоположение</string>

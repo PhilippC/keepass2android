@@ -32,6 +32,7 @@
   <string name="unknown_uri_scheme">Beklager! Keepass2Android kan ikke håndtere den returnerte URI %1$s. Vennligst kontakt utvikleren!</string>
   <string name="Entry_singular">En oppføring</string>
   <string name="Entry_plural">%1$d oppføringer</string>
+  <string name="IconSet_install">Finn mer...</string>
   <string name="security_prefs">Sikkerhet</string>
   <string name="display_prefs">Vis</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
@@ -137,6 +138,7 @@
   <string name="menu_app_settings">Innstillinger</string>
   <string name="menu_db_settings">Databaseinnstillinger</string>
   <string name="menu_delete">Slett</string>
+  <string name="menu_copy">Opprett duplikat</string>
   <string name="menu_move">Flytt til en annen gruppe</string>
   <string name="menu_move_light">Flytt</string>
   <string name="menu_navigate">Naviger til overordnede gruppe</string>
@@ -151,6 +153,7 @@
   <string name="menu_search_advanced">Avansert søk</string>
   <string name="menu_url">Gå til nettadresse</string>
   <string name="menu_change_db">Endre database</string>
+  <string name="menu_show_all">Vis alle felt</string>
   <string name="minus">Minus</string>
   <string name="never">Aldri</string>
   <string name="yes">Ja</string>
@@ -278,6 +281,7 @@
   <string name="NoDonateOption_question">Uten donasjoner ville ikke denne appen eksistert, og den ville ikke fått stadige forbedringer. Hvis du ikke har donert enda, vurder å gjøre det nå.</string>
   <string name="UseOfflineCache_title">Hurtiglagring av databaser</string>
   <string name="UseOfflineCache_summary">Behold en kopi av eksterne databasefiler i hurtiglageret. Dette lar deg bruke eksterne databaser uten nett.</string>
+  <string name="AcceptAllServerCertificates_title">SSL-sertifikater</string>
   <string name="ClearOfflineCache_title">Tømme hurtiglager?</string>
   <string name="ClearOfflineCache_question">Dette sletter alle hurtiglagrede databasefiler. Eventuelle usynkroniserte endringer du har foretatt mens du var frakoblet går tapt. Fortsette?</string>
   <string name="CheckForFileChangesOnSave_title">Se etter endringer</string>
@@ -288,6 +292,7 @@
   <string name="ShowCopyToClipboardNotification_summary">Gjør brukernavn og passord tilgjengelige fra varslingsfeltet og utklippstavlen. Vokt deg for passordsniffere!</string>
   <string name="ShowSeparateNotifications_title">Separate varsler</string>
   <string name="ShowSeparateNotifications_summary">Vis separate varsler for å kopiere brukernavn og passord til utklippstavlen og for å vise tastaturet.</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Bytt tastatur</string>
   <string name="AskOverwriteBinary">Overskrive eksisterende binærfil med samme navn?</string>
   <string name="AskOverwriteBinary_title">Overskrive eksisterende binærfil?</string>
   <string name="AskOverwriteBinary_yes">Overskriv</string>
@@ -355,7 +360,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
   <string name="filestoragehelp_dropboxKP2A">Hvis du ikke vil gi KP2A tilgang til hele Dropbox-mappen din, kan du velge dette alternativet. KP2A vil da bare spørre om tilgang til mappen Apps/Keepass2Android. Dette er spesielt egnet når du oppretter en ny database. Hvis du allerede har en database, trykk på dette alternativet for å opprette mappen, for deretter å plassere filen i mappen (fra en PC) og velge dette alternativet igjen for å åpne filen.</string>
   <string name="filestoragename_gdrive">Google Disk</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="master_password">Hovedpassord</string>
   <string name="help_master_password">Databasen din er kryptert med passordet du angir her. Velg et sterkt passord for å sikre databasen! Tips: Lag en setning eller to og bruk de første bokstavene til ordene som et passord. Inkluder skilletegn.</string>
@@ -395,8 +399,12 @@
   <string name="CancelReadOnly">Avbryt, åpne i skrivebeskyttet modus.</string>
   <string name="AddCustomIcon">Legg til ikon fra fil...</string>
   <string name="CopyingFile">Kopierer filen...</string>
+  <string name="TemplateGroupName">Maler</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
   <string name="ChangeLog_title">Endringslogg</string>
   <string name="Continue">Fortsett</string>
+  <string name="ErrorReportEnable">Aktiver</string>
+  <string name="ErrorReportDisable">Deaktiver</string>
   <string name="ChangeLog_keptDonate">Utvidet mulighet til å donere en øl, eller noe annet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
@@ -407,6 +415,11 @@
     <item>30 minutter</item>
     <item>1 time</item>
     <item>Aldri</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (ukryptert) (.xml)</item>
+    <item>Keepass CSV (ukryptert) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Liten</item>

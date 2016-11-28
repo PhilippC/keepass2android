@@ -85,7 +85,6 @@
   <string name="search_options">Opcións</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="database_location">Localización da base de datos</string>
   <string name="TemplateGroupName">Modelos</string>
   <string name="TemplateField_EMail_EMail">Enderezo electrónico</string>

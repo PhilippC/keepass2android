@@ -31,7 +31,7 @@
   <string name="afc_msg_cannot_save_a_file_here">No se puede guardar un archivo aquí</string>
   <string name="afc_msg_done">Hecho</string>
   <string name="afc_msg_empty">Vacío</string>
-  <string name="afc_msg_failed_please_try_again">Fallo. Por favor intentelo de nuevo.</string>
+  <string name="afc_msg_failed_please_try_again">Fallo. Por favor inténtelo de nuevo.</string>
   <string name="afc_msg_loading">Cargando&#8230;</string>
   <string name="afc_phone">Teléfono</string>
   <string name="afc_pmsg_cannot_access_dir">No se puede acceder a \"%1$s\"</string>
@@ -62,10 +62,10 @@
   </plurals>
   <plurals name="afc_title_choose_files">
     <item quantity="one">Elija archivo&#8230;</item>
-    <item quantity="other">Elija varios archivos&#8230;</item>
+    <item quantity="other">Elija archivo&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">Elija archivo / carpeta&#8230;</item>
-    <item quantity="other">Elija archivos / carpetas&#8230;</item>
+    <item quantity="other">Elija archivo / carpeta&#8230;</item>
   </plurals>
 </resources>

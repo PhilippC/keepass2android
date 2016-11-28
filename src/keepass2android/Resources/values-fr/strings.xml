@@ -5,7 +5,7 @@
   <string name="about_feedback">Commentaires </string>
   <string name="about_homepage">Site web </string>
   <string name="AboutText">Keepass2Android est un portage du logiciel KeePass Password Manager. Pour l\'instant, vous devez créer une base de données avec le logiciel KeePass sur votre ordinateur puis la transférer sur la carte mémoire de votre appareil mobile.</string>
-  <string name="CreditsText">L\'interface utilisateur repose sur un portage de KeepassDroid, développée par Brian Pellin. Le code pour les opérations sur la base de donnée s\'appuie sur Keepass, de Dominik Reichl. Le robot Android est une modification d\'une œuvre de Google, utilisée selon les  termes de la licence Creative Commons 3.0 BY.</string>
+  <string name="CreditsText">L\'interface est basée sur un port de KeepassDroid, développée par Brian Pellin. Le code pour les opérations sur la base de donnée est basé sur Keepass, de Dominik Reichl. Le robot Android est une modification d\'une œuvre de Google, utilisée selon les  termes de la licence Creative Commons 3.0 BY.</string>
   <string name="CreditsTextSFTP">Le support du protocole SFTP est implémenté à l\'aide de la bibliothèque JSch sous licence BSD, créée par JCraft, Inc.</string>
   <string name="CreditsIcons">L\'icone marteau a été créee par John Caserta du projet Noun. L\'icone pinguin a été créee par Adriano Emerick du projet Noun. L\'icone plume a été créée par Jon Testa du projet Noun. L\'icone pomme a été créée par Ava Rowell du projet Noun. </string>
   <string name="accept">Accepter</string>
@@ -24,9 +24,9 @@
   <string name="short_app_name_nonet">KP2A Hors-ligne</string>
   <string name="app_timeout">Délai de verrouillage de l\'application</string>
   <string name="app_timeout_summary">Délai avant de verrouiller la base de donnée lorsque l\'application est inactive.</string>
-  <string name="kill_app_label">Tuer le processus</string>
+  <string name="kill_app_label">Arrêter le processus</string>
   <string name="show_kill_app">Fermer</string>
-  <string name="show_kill_app_summary">Afficher un bouton dans l\'écran de mot de passe pour tuer le processus de l\'application (pour les utilisateurs paranoïaques)</string>
+  <string name="show_kill_app_summary">Afficher un bouton dans l\'écran de mot de passe pour arrêter le processus de l\'application (pour les utilisateurs paranoïaques)</string>
   <string name="application">Application</string>
   <string name="application_settings">Paramètres de l\'application</string>
   <string name="ShowGroupnameInSearchResult_title">Afficher le nom du groupe dans le résultat de la recherche</string>
@@ -51,10 +51,10 @@
   <string name="keyboardswitch_prefs">Changement de clavier</string>
   <string name="OnlyAvailableForLocalFiles">Disponible uniquement pour les fichiers locaux.</string>
   <string name="FileIsInInternalDirectory">Le fichier est stocké dans le répertoire local.</string>
-  <string name="DatabaseFileMoved">Le fichier de base de données a été copié dans le répertoire local. Pressez OK pour l\'ouvrir à partir du nouveau répertoire. A noter : N\'oubliez pas d\'exporter régulièrement la base de données sur un stockage sûr !</string>
+  <string name="DatabaseFileMoved">Le fichier de base de données a été copié dans le répertoire local. Pressez Ok pour ouvrir à partir du nouvel emplacement. A noter : N\'oubliez pas d\'exporter régulièrement la base de données pour un stockage sûr !</string>
   <string name="KeyfileMoved">Le fichier clé a été copié dans le répertoire local. Assurez vous d\'avoir une sauvegarde sûr avant de le supprimer du dossier actuel !</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Impossible d\'utiliser un dossier local lorsque l\'emplacement du fichier clé n\'est pas connu. Modifiez les paramètres de sécurité.</string>
-  <string name="unlock_database_button">Dévérrouiller</string>
+  <string name="unlock_database_button">Déverrouiller</string>
   <string name="unlock_database_title">Déverrouiller la base de données</string>
   <string name="brackets">Parenthèses, accolades et crochets</string>
   <string name="cancel">Annuler</string>
@@ -262,7 +262,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="start_create_import">Importer le fichier dans une nouvelle base de données...</string>
   <string name="enter_filename_details_url">L\'URL complète doit être spécifié, y compris le protocole comme http:// ou https://.</string>
   <string name="enter_filename_details_create_import">Les fichiers à importer seront choisis à la prochaine étape.</string>
-  <string name="enable_quickunlock">Activer QuickUnlock</string>
+  <string name="enable_quickunlock">Activer DéverrouillageRapide</string>
   <string name="QuickUnlock_label">Entrez les %1$d derniers caractères de votre mot de passe :</string>
   <string name="QuickUnlock_button">QuickUnlock !</string>
   <string name="QuickUnlock_lockButton">Fermer la base de données</string>
@@ -422,7 +422,6 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="filestoragename_dropboxKP2A">Dropbox (dossier KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Sélecteur de fichier système</string>
   <string name="filestorage_setup_title">Initialisation de l\'accès aux fichiers</string>

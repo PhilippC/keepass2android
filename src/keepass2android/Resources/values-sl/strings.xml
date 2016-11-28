@@ -425,7 +425,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, kliknite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (prenos datotek SSH)</string>
   <string name="filestoragename_content">Sistemski izbirnik datotek</string>
   <string name="filestorage_setup_title">Začenjanje dostopa do datoteke</string>
@@ -505,7 +504,7 @@
   <string name="ReadOnlyReason_ReadOnlyKitKat">Pisanje ni mogoče zaradi omejitev, ki jih je uvedel Android KitKat. Če želitev podatkovni zbirki narediti spremembe, jo zaprite in izberite Spremeni podatkovno zbirko. Potem datoteko odprite z sistemskim izbirnikom datotek.</string>
   <string name="AddCustomIcon">Dodaj ikono iz datoteke …</string>
   <string name="CopyingFile">Kopiranje datoteke …</string>
-  <string name="DuplicateTitle">Kopiraj</string>
+  <string name="DuplicateTitle">kopija</string>
   <string name="DefaultTemplate">Običajni vnos</string>
   <string name="TemplateGroupName">Predloge</string>
   <string name="TemplateTitle_IdCard">Os. izkaznica</string>

@@ -85,9 +85,18 @@
   <string name="fingerprint_no_enrolled">Nu aveți amprente digitale înregistrate pe acest dispozitiv. Vă rugăm să vă duceți mai întâi la setările sistemului.</string>
   <string name="disable_fingerprint_unlock">Dezactivează deblocarea prin amprentă</string>
   <string name="enable_fingerprint_unlock">Activează deblocarea completă prin amprentă</string>
+  <string name="enable_fingerprint_quickunlock">Activeaza deblocarea cu amprentă pentru Deblocare rapida</string>
+  <string name="fingerprint_unlock_hint">Atinge sensorul pentru a debloca baza de date</string>
+  <string name="fingerprint_unlock_failed">Deblocarea cu amprentă nu a reuşit. Cheia de decriptare a fost infirmată de sistem de operare Android. Acest lucru se întâmplă de obicei în cazul în care o nouă amprentă a fost înregistrata sau setările de securitate s-au schimbat. Vă rugăm să deblocati cu parolă şi apoi să re-activati Deblocare cu amprenta in setarile pentru baza de date.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Deblocarea bazei de date a eşuat: Cheie compozită invalida. Deblocarea cu amprentă a fost dezactivată, deoarece aparent parola principala nu mai este valabilă. Vă rugăm să deblocati cu parola şi apoi sa re-activati Deblocarea cu amprentă in setarile pentru baza de date.</string>
+  <string name="fingerprint_reenable">Vă rugăm să re-activati deblocarea cu amprenta pentru noua parola principala.</string>
+  <string name="enable_fingerprint_unlock_Info">
+Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore şi protejata utilizând autentificarea cu amprentă. Permite deblocarea bazei de date numai cu amprenta dvs.  </string>
+  <string name="enable_fingerprint_quickunlock_Info">Permite autentificarea cu amprentă în locul codului QuickUnlock. Nu are nevoie de a stoca informaţii legate de parola master.</string>
   <string name="enter_filename">Alegeți numele bazei de date</string>
   <string name="entry_accessed">Accesat</string>
   <string name="entry_cancel">Anulează</string>
+  <string name="entry_comment">Mențiuni</string>
   <string name="entry_tags">Tag-uri</string>
   <string name="entry_override_url">Rescrie URL-ul</string>
   <string name="entry_confpassword">Confirmă parola</string>
@@ -125,6 +134,7 @@
   <string name="file_browser">Browser fișiere</string>
   <string name="generate_password">Generare parolă</string>
   <string name="group">Grup</string>
+  <string name="hint_comment">mențiuni</string>
   <string name="hint_conf_pass">confirmă parola</string>
   <string name="hint_generated_password">parola generată</string>
   <string name="hint_group_name">Nume grup</string>
@@ -159,6 +169,7 @@
   <string name="menu_app_settings">Setări</string>
   <string name="menu_db_settings">Setări bază de date</string>
   <string name="menu_delete">Şterge</string>
+  <string name="menu_copy">Creaza duplicat</string>
   <string name="menu_move">Muta într-un alt grup</string>
   <string name="menu_move_light">Mută</string>
   <string name="menu_navigate">Navighează la grupul părinte</string>
@@ -173,6 +184,7 @@
   <string name="menu_search_advanced">Căutare avansată</string>
   <string name="menu_url">Du-te la URL-ul</string>
   <string name="menu_change_db">Schimbă baza de date…</string>
+  <string name="menu_show_all">Arată toate câmpurile</string>
   <string name="minus">Minus</string>
   <string name="never">Niciodată</string>
   <string name="yes">Da</string>
@@ -313,6 +325,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Oferă utilizatorul şi parolă prin bara de notificări şi clipboard. Atenţie la \"password sniffers\"!</string>
   <string name="ShowSeparateNotifications_title">Separă notificările</string>
   <string name="ShowSeparateNotifications_summary">Arată notificări separate pentru copierea numelui utilizatorului și a parolei în clipboard și activarea tastaturii.</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificare pentru tastatură/auto completare</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Face intrarea completă accesibila prin intermediul tastaturii KP2A si a serviciul de auto completare (recomandat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Comută tastatura</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Deschide fereastra de selecție a tastaturii când o înregistrare este disponibilă prin tastatura KP2A după căutarea din browser.</string>
   <string name="kp2a_switch_rooted">Comută automat dacă e rootat</string>
@@ -334,6 +348,9 @@
   <string name="AskDeletePermanentlyEntry">Doriţi să ştergeţi permanent această înregistrare? Apăsaţi Nu pentru a muta în coş.</string>
   <string name="AskDeletePermanentlyGroup">Doriţi să ştergeţi permanent acest grup? Apăsaţi Nu pentru a muta în coş.</string>
   <string name="AskDeletePermanentlyItems">Doriţi să ştergeţi elementele selectate permanent? Apasa Nu pentru a recicla.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Doriţi să ştergeţi definitiv această intrare?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Doriţi să ştergeţi definitiv acest grup?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Doriţi să ştergeţi elementele selectate permanent?</string>
   <string name="AskDeletePermanently_title">Ștergeți definitiv?</string>
   <string name="AskReloadFile_title">Reîncărcaţi fişierul?</string>
   <string name="AskReloadFile">Fişierul deschis a fost modificat de alt program. Doriţi să îl reîncărcaţi?</string>
@@ -358,6 +375,10 @@
   <string name="SynchronizingDatabase">Se îmbină modificările&#8230;</string>
   <string name="YesSynchronize">Da, îmbină</string>
   <string name="NoOverwrite">Nu, suprascrie</string>
+  <string name="UseOfflineMode">Lucraţi offline</string>
+  <string name="UseOnlineMode">Lucraţi online</string>
+  <string name="UseOfflineMode_Info">Evita orice trafic de reţea utilizând copie cache locală a fişierului. Modificările sunt stocate în memoria cache locală şi vor fi încărcate numai atunci când se comută înapoi în modul online.</string>
+  <string name="InOfflineMode">Se lucrează offline.</string>
   <string name="SynchronizingCachedDatabase">Sincronizează baza de date din cache&#8230;</string>
   <string name="DownloadingRemoteFile">Se descarcă fişierul de la distanţă&#8230;</string>
   <string name="UploadingFile">Se încarcă fişierul&#8230;</string>
@@ -402,7 +423,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Dacă nu doriți să oferiți KP2A acces la tot Dropbox-ul, poți selecta această opțiune. Aceasta va solicita acces doar la folderul Apps/Keepass2Android. Acest lucru este ideal când creați o bază de date nouă. Dacă ai deja o bază de date, apasă această opțiune pentru a crea folderul, puneți baza de date în folder (de pe PC) apoi selectați opțiunea aceasta din nou pentru a deschide fișierul.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selector de fisiere sistem</string>
   <string name="filestorage_setup_title">Iniţializare acces fişier</string>
@@ -474,12 +494,46 @@
   <string name="CopyFileRequiredForEditing">Pentru a-l edita, trebuie copiat fișierul într-o altă locație.</string>
   <string name="ClickOkToSelectLocation">Apasă pe OK pentru a selecta locația în care se va copia fișierul.</string>
   <string name="CancelReadOnly">Anulați, deschideți read-only.</string>
+  <string name="FileReadOnlyTitle">Baza de date permite doar citirea</string>
+  <string name="ReadOnlyReason_PreKitKat">Se pare ca ai deschis fişierul dintr-o aplicaţie externă. În acest fel nu se acceptă modificări. Dacă doriţi să faceţi modificări în baza de date, închideţi baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind una dintre opţiunile disponibile.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Modificarea nu este posibilă din cauza restricţiilor introduse în Android KitKat. Dacă doriţi să faceţi modificări în baza de date, închideți baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind selectorul de fisiere al sistemului.</string>
   <string name="AddCustomIcon">Adaugă pictogramă din file...</string>
   <string name="CopyingFile">Se copiază fișierul...</string>
+  <string name="DuplicateTitle">Copiază</string>
+  <string name="DefaultTemplate">Intrare standard</string>
+  <string name="TemplateGroupName">Șabloane</string>
+  <string name="TemplateTitle_IdCard">Carte de identitate</string>
+  <string name="TemplateField_IdCard_Name">Nume</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Locul eliberării</string>
+  <string name="TemplateField_IdCard_IssueDate">Data emiterii</string>
+  <string name="TemplateTitle_EMail">E-Mail</string>
+  <string name="TemplateField_EMail_EMail">Adresă de E-Mail</string>
+  <string name="TemplateTitle_WLan">Wireless LAN</string>
+  <string name="TemplateTitle_Notes">Mențiune securizata</string>
+  <string name="TemplateField_WLan_SSID">SSID-ul</string>
+  <string name="TemplateField_Number">Numărul</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Deținatorul card-ului</string>
+  <string name="TemplateTitle_CreditCard">Card de credit</string>
+  <string name="TemplateTitle_Membership">Apartenenta</string>
   <string name="ChangeLog_title">Jurnal modificări</string>
+  <string name="AskAddTemplatesTitle">Adauga template-uri?</string>
+  <string name="AddTemplates_pref">Adauga template-uri in baza de date</string>
   <string name="PreviewWarning">Rețineți! Aceasta este o versiune de examinare și poate avea unele defecte! Dacă vă confruntați cu *ceva* neașteptat, vă rog să îmi spuneți (pe Codeplex sau prin email).</string>
   <string name="Continue">Continuare</string>
   <string name="NoFilenameWarning">URI introdus nu arata ca un nume de file. Sunteţi sigur că acesta este un file valid?</string>
+  <string name="FirstInvalidCompositeKeyError">Cheie compusă invalidă! Vă rugăm să încercaţi din nou.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Cheie compusă invalida! Vă rugăm să încercaţi următorii paşi pentru a debloca baza dumneavoastră de date: \n • asiguraţi-vă că aţi introdus parola corectă. Utilizati pictograma in forma de ochi să dezvăluiti parola introdusă. \n • asiguraţi-vă că aţi selectat tipul de parola corectă. Asiguraţi-vă că aceasta este de acelasi fel cu tipul utilizat la crearea bazei de date. \n • asiguraţi-vă că aţi selectat fişierul bazei de date corecte.
+</string>
+  <string name="ErrorReportTitle">Keepass2Android: Eroare.</string>
+  <string name="ErrorReportEnable">Activează</string>
+  <string name="ErrorReportDisable">Dezactivează</string>
+  <string name="ErrorReportAsk">Intreaba după eroare</string>
+  <string name="ErrorReportPrefTitle">Trimite raportul de eroare</string>
+  <string name="ActivateAutoFillService_title">Activati funcţia de completare automată?</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Utilizati tastatura existentă</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Utilizaţi funcţia de completare automată</string>
   <string name="ChangeLog_0_9_8c">
 Versiunea 0.9.8c\n * Fix pentru SSL vulnerabilitatea din Microsoft Live SDK (folosite la accesarea fişierelor prin intermediul OneDrive) \n * Bug fix: versiune anterioară conţinea două metode de intrare (unul nu functiona) \n  </string>
   <string name="ChangeLog_0_9_9">
@@ -653,6 +707,10 @@ Versiunea publică iniţială
     <item>Mic</item>
     <item>Mediu</item>
     <item>Mare</item>
+  </string-array>
+  <string-array name="design_options">
+    <item>Luminoasă</item>
+    <item>Întunecată</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="cred_remember_modes">

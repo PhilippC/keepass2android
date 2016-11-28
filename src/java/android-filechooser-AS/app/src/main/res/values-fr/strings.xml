@@ -58,10 +58,10 @@
   <string name="afc_yesterday">Hier</string>
   <plurals name="afc_title_choose_directories">
     <item quantity="one">[one]
-Choisir un dossier...
+Choisir dossier...
 [other]
-Choisir un dossier...
-Choisir des dossiers&#8230;</item>
+Choisir dossier...
+Choisir dossiers...</item>
     <item quantity="other">[one]
 Choisir un dossier...
 
@@ -89,6 +89,6 @@ Choisir un fichier/dossier&#8230;
 [other]
 Choisir un fichier/dossier&#8230;
 Choisir des fichiers/dossiers&#8230;</item>
-    <item quantity="other">Choisir des fichiers/dossiers&#8230;</item>
+    <item quantity="other">Choisir fichiers/dossiers&#8230;</item>
   </plurals>
 </resources>

@@ -427,7 +427,6 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="filestoragename_dropboxKP2A">Dropbox (KPA2 mappa)</string>
   <string name="filestoragehelp_dropboxKP2A">Válassza ezt az opciót, ha nem akarja, hogy a KP2A a teljes Dropbox tárhelyhez hozzáférjen.  A KP2A csak az Apps/Keepass2Android könyvtárhoz fog hozzáférést igényelni.  Ha már meglévő, de máshol tárolt adatbázist kíván ilyen módon elérni, akkor válassza ezt az opciót a könyvtár létrehozásához, majd helyezze át az adatbázisfájlt a létrehozott könyvtárba (például egy PC-ről), majd válassza még egyszer ezt az opciót a fájl megnyitásához.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Alapértelmezett fájlválasztó</string>
   <string name="filestorage_setup_title">A fájlhozzáférés inicializálása</string>

@@ -186,7 +186,6 @@
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (پوشه KP2A)</string>
   <string name="filestoragename_gdrive">گوگل درایو</string>
-  <string name="filestoragename_skydrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH انتقال فایل)</string>
   <string name="database_location">محل پایگاه داده</string>
   <string name="button_change_location">تغییر محل</string>

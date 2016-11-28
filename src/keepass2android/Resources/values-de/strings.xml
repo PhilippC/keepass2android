@@ -423,7 +423,6 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, kannst du diese Option wählen um den Ordner anzulegen, und dann die Datei (vom PC aus) in den neuen Ordner kopieren. Wähle die Option dann nochmal zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
@@ -503,7 +502,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne die Datei dann über die System-Dateiauswahl.</string>
   <string name="AddCustomIcon">Icon aus Datei hinzufügen...</string>
   <string name="CopyingFile">Kopiere Datei...</string>
-  <string name="DuplicateTitle">Kopieren</string>
+  <string name="DuplicateTitle">Kopie</string>
   <string name="DefaultTemplate">Standardeintrag</string>
   <string name="TemplateGroupName">Vorlagen</string>
   <string name="TemplateTitle_IdCard">Ausweis</string>

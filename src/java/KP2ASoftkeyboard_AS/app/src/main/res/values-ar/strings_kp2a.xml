@@ -6,15 +6,15 @@
   <string name="open_entry_for_app">البحث عن مُدخل يحتوي على \"%1$s\"</string>
   <string name="kp2a_user">المستخدم</string>
   <string name="kp2a_password">كلمة السر</string>
-  <string name="kp2a_prefs">اعدادات ادخال البيانات السرية</string>
-  <string name="kp2a_auto_fill">التعبئة الاوتوماتيكية مفعلة</string>
-  <string name="kp2a_auto_fill_summary">ملئ البيانات تلقائيا عند وجود حقل فارغ اذا وجد keePass2 Android ان البيانات متوفرة للوحة المفاتيح.</string>
-  <string name="kp2a_remember_auto_fill">تذكر نصوص حقول التلميح</string>
-  <string name="kp2a_remember_auto_fill_summary">اذا عبئ الحقل يدويا عن طريق استخدام قيم keepass2Android، تذكر اي قيمة استخدمت و استخدم نص التلميح لذلك الحقل حتى تعاد تعبئتها تلقائيا.</string>
-  <string name="kp2a_simple_keyboard">لوحة المفاتيح بسيطة</string>
-  <string name="kp2a_simple_keyboard_summary">إظهار لوحة المفاتيح ذات الصف الواحد إذا وجد إدخال متاح للوحة المفاتيح. في حالة التعطيل، يظهر صندوق حوار عند الضغط على مفتاح Keepass2Android.</string>
-  <string name="kp2a_lock_on_sendgodone">اقفال قاعدة البيانات عند الانتهاء</string>
-  <string name="kp2a_lock_on_sendgodone_summary">عند الضغط على مفتاح \'ذهاب\' على لوحة المفاتيح البسيطة، اقفل قاعدة بيانات.</string>
-  <string name="kp2a_switch_on_sendgodone">بدل لوحة المفاتيح عند الانتهاء</string>
-  <string name="kp2a_switch_on_sendgodone_summary">عند الضغط على مفتاح \'ذهاب\' على لوحة المفاتيح البسيطة، ابدل لوحة المفاتيح.</string>
+  <string name="kp2a_prefs">إعدادات إدخال بيانات تسجيل الدخول</string>
+  <string name="kp2a_auto_fill">التعبئة التلقائية مفعلة</string>
+  <string name="kp2a_auto_fill_summary">تعبيئة البيانات تلقائيًا عند الدخول إلى حقل فارغ، إذا وجد قيد Keepass2Android للوحة المفاتيح وكان هناك بيانات تطابق نص التلميح للحقل.</string>
+  <string name="kp2a_remember_auto_fill">تذكر نصوص التلميح للحقول</string>
+  <string name="kp2a_remember_auto_fill_summary">عند تعبئة حقل باختيار بيانات Keepass2Android يدويا، تذكر البيانات التي تم إدخالها في هذا الحقل. لاحقًا، يمكن العثور على هذا الحقل بواسطة التلميح الخاص به.</string>
+  <string name="kp2a_simple_keyboard">لوحة المفاتيح البسيطة</string>
+  <string name="kp2a_simple_keyboard_summary">إظهار لوحة المفاتيح ذات الصف الواحد في حال وجود قيد متاح للوحة المفاتيح. عند التعطيل، سيتم إظهار صندوق حوار عند الضغط على مفتاح Keepass2Android.</string>
+  <string name="kp2a_lock_on_sendgodone">تأمين قاعدة البيانات عند الانتهاء</string>
+  <string name="kp2a_lock_on_sendgodone_summary">عند الضغط على مفتاح \'تم/ارسل/اذهب\' على لوحة المفاتيح البسيطة، أمّن قاعدة بيانات تلقائيًا.</string>
+  <string name="kp2a_switch_on_sendgodone">تبديل لوحة المفاتيح عند الانتهاء</string>
+  <string name="kp2a_switch_on_sendgodone_summary">عند الضغط على مفتاح \'تم/ارسل/اذهب\' على لوحة المفاتيح البسيطة، بدّل لوحة المفاتيح.</string>
 </resources>

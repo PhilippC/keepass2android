@@ -33,7 +33,7 @@
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nombre del grupo por debajo de los títulos en resultados de búsqueda. Útil si múltiples entradas tienen el mismo nombre.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de visualización es ahora: %1$s</string>
   <string name="ShowGroupInEntry_title">Mostrar el nombre del grupo en vista de entrada</string>
-  <string name="unknown_uri_scheme">¡ Lo siento! Keepass2Android no puede manejar la URI devuelto %1$s. Póngase en contacto con el desarrollador.</string>
+  <string name="unknown_uri_scheme">¡Lo sentimos! Keepass2Android no puede manejar la URI devuelta %1$s. ¡Póngase en contacto con el desarrollador!</string>
   <string name="Entry_singular">Una entrada</string>
   <string name="Entry_plural">%1$d entradas</string>
   <string name="IconSet_title">Conjunto de iconos</string>
@@ -46,8 +46,8 @@
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar base de datos...</string>
   <string name="fingerprint_prefs">Desbloqueo con huella digital</string>
-  <string name="import_db_prefs">Importar base de satos a carpeta interna</string>
-  <string name="import_keyfile_prefs">Importar archivo de clave a la carpeta interna</string>
+  <string name="import_db_prefs">Importar base de datos a carpeta interna</string>
+  <string name="import_keyfile_prefs">Importar archivo de clave a carpeta interna</string>
   <string name="keyboardswitch_prefs">Cambio de teclado</string>
   <string name="OnlyAvailableForLocalFiles">Sólo disponible para archivos locales.</string>
   <string name="FileIsInInternalDirectory">El archivo se almacena en el directorio interno.</string>
@@ -424,7 +424,6 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no quieres que KP2A acceda a todo tu contenido en Dropbox, selecciona esta opción. Solicitará acceso sólo a la carpeta Apps/Keepass2Android. Esta opción esta especialmente pensada para cuándo se crea una nueva base de datos. Si tienes una base de datos pre-existente, haz click en esta opción para crear la carpeta. Luego mueve el archivo hasta esta carpeta (desde tu computador) y finalmente selecciona esta opción nuevamente para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferencia de archivos)</string>
   <string name="filestoragename_content">Selector de archivo del sistema</string>
   <string name="filestorage_setup_title">Inicialización de acceso de archivo</string>

@@ -14,17 +14,17 @@
   <string name="afc_cmd_home">Κεντρική</string>
   <string name="afc_cmd_list_view">Προβολή λίστας</string>
   <string name="afc_cmd_new_folder">Νέος φάκελος&#8230;</string>
-  <string name="afc_cmd_select_all_files">Επιλογή όλων</string>
+  <string name="afc_cmd_select_all_files">Επιλογή όλων των αρχείων</string>
   <string name="afc_cmd_select_all_folders">Επιλογή όλων των φακέλων</string>
   <string name="afc_cmd_sort">Ταξινόμηση&#8230;</string>
   <string name="afc_file">αρχείο</string>
   <string name="afc_folder">φάκελος</string>
   <string name="afc_hint_clear">καθαρισμός</string>
-  <string name="afc_hint_folder_name">Όνομα φακέλου</string>
+  <string name="afc_hint_folder_name">όνομα φακέλου</string>
   <string name="afc_hint_save_as_filename">όνομα αρχείου</string>
-  <string name="afc_hint_search">Αναζήτηση</string>
+  <string name="afc_hint_search">αναζήτηση</string>
   <string name="afc_msg_app_doesnot_have_permission_to_create_files">Αυτή η εφαρμογή δεν έχει δικαιώματα δημιουργίας αρχείων / φακέλων</string>
-  <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Αυτή η εφαρμογή δεν έχει δικαιώματα διαγραφής αρχείων/φακέλων</string>
+  <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Αυτή η εφαρμογή δεν έχει δικαιώματα διαγραφής αρχείων / φακέλων</string>
   <string name="afc_msg_cancelled">Ακυρώθηκε</string>
   <string name="afc_msg_cannot_connect_to_file_provider_service">Αδυναμία σύνδεσης στην υπηρεσία παροχής του αρχείου</string>
   <string name="afc_msg_cannot_create_new_folder_here">Δεν μπορώ να δημιουργήσω νέο φάκελο εδώ</string>
@@ -36,9 +36,9 @@
   <string name="afc_phone">Τηλέφωνο</string>
   <string name="afc_pmsg_cannot_access_dir">Αδυναμία πρόσβασης του \"%1$s\"</string>
   <string name="afc_pmsg_cannot_create_folder">Αδυναμία δημιουργίας φακέλου \"%1$s\"</string>
-  <string name="afc_pmsg_cannot_delete_file">Αδυναμία διαγραφής του %1$s \"%2$s\"</string>
-  <string name="afc_pmsg_confirm_delete_file">Είσαι σίγουρος ότι θέλεις να διαγράψεις το %1$s \"%2$s\";</string>
-  <string name="afc_pmsg_confirm_replace_file">Αυτό το αρχείο \"%1$s\" υπάρχει ήδη.\n\nθέλετε να το αντικαταστήσετε;</string>
+  <string name="afc_pmsg_cannot_delete_file">Αδυναμία διαγραφής %1$s \"%2$s\"</string>
+  <string name="afc_pmsg_confirm_delete_file">Είστε βέβαιοι ότι θέλετε να διαγράψετε το %1$s %2$s;</string>
+  <string name="afc_pmsg_confirm_replace_file">Το αρχείο \"%1$s\" υπάρχει ήδη.\n\nθέλετε να το αντικαταστήσετε;</string>
   <string name="afc_pmsg_deleting_file">Διαγραφή %1$s \"%2$s\"&#8230;</string>
   <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" έχει διαγραφεί</string>
   <string name="afc_pmsg_filename_is_directory">\"%1$s\" είναι φάκελος</string>
@@ -55,7 +55,7 @@
   <string name="afc_title_save_as">Αποθήκευση ως&#8230;</string>
   <string name="afc_title_size">Μέγεθος</string>
   <string name="afc_title_sort_by">Ταξινόμηση κατά&#8230;</string>
-  <string name="afc_yesterday">Χθές</string>
+  <string name="afc_yesterday">Χθες</string>
   <plurals name="afc_title_choose_directories">
     <item quantity="one">Επιλέξτε φάκελο&#8230;</item>
     <item quantity="other">Επιλέξτε φακέλους&#8230;</item>
@@ -65,7 +65,7 @@
     <item quantity="other">Επιλέξτε αρχεία&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
-    <item quantity="one">Επιλέξτε αρχείο/ φάκελο&#8230;</item>
-    <item quantity="other">Επιλέξτε αρχεία/ φακέλους&#8230;</item>
+    <item quantity="one">Επιλέξτε αρχείο / φάκελο&#8230;</item>
+    <item quantity="other">Επιλέξτε αρχεία / φακέλους&#8230;</item>
   </plurals>
 </resources>

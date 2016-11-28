@@ -424,7 +424,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferência de arquivos)</string>
   <string name="filestoragename_content">Seletor de arquivo de sistema</string>
   <string name="filestorage_setup_title">Inicialização do arquivo de acesso</string>
@@ -537,12 +536,45 @@
    • Assegure-se de ter selecionado o arquivo correto da base de dados.
  
 </string>
+  <string name="CorruptDatabaseHelp">
+    O arquivo está corrompido.\n
+    Aqui estão algumas dicas que podem ajudar a diagnosticar o problema:\n
+    
+    • Se você copiou o arquivo através de USB (MTP-Mode), tente novamente com ferramentas como o MyPhoneExplorer. MTP corrompe arquivos em algumas situações.\n
+    • Se você não é capaz de abrir o arquivo no seu computador, é muito provável que o arquivo está corrompido. Utilize um backup do arquivo então. Se você acredita que o Keepass2Android corrompeu o arquivo, entre em contato com o suporte.\n
+    • Se você é capaz de abrir o arquivo no seu computador, entre em contato com o suporte. Você pode tentar salvá-lo com configurações diferentes (p.e. descompactado) no computador e tentar abri-lo novamente com o Keepass2Android.
+
+  </string>
+  <string name="ErrorReportTitle">Keepass2Android: Um erro ocorreu.</string>
+  <string name="ErrorReportText">Um erro inesperado ocorreu durante a execução do Keepass2Android. Por favor ajude-nos a consertá-lo permitindo que o aplicativo envie relatórios de erros.</string>
+  <string name="ErrorReportPromise">Relatórios de erros nunca conterão nenhum conteúdo de sua base de dados ou senha mestre. Você pode desabilitá-los nas configurações da aplicação.</string>
   <string name="ErrorReportEnable">Habilitar</string>
   <string name="ErrorReportDisable">Desabilitar</string>
+  <string name="ErrorReportAsk">Perguntar após erro</string>
+  <string name="ErrorReportPrefTitle">Enviar relatórios de erros</string>
+  <string name="ActivateAutoFillService_title">Ativar preenchimento automático?</string>
+  <string name="ActivateAutoFillService_message">As credenciais podem ser transferidas para outros apps de várias maneiras: você pode copiar os valores de transferência, mas por favor, note que a área de transferência não é segura no Android. O teclado embutido dá acesso completo a entrada selecionada, mas deve ser habilitado para cada vez que você deseja acessar as credenciais. No Android 5 e posteriores, Keepass2Android pode inserir nome de usuário e senha automaticamente usando o serviço de preenchimento automático.</string>
+  <string name="ActivateAutoFillService_btnKeyboard">Utilizar teclado nativo</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Utilizar o serviço de preenchimento automático</string>
+  <string name="ActivateAutoFillService_toast">Favor habilitar o serviço Keepass2Android.</string>
   <string name="ChangeLog_0_9_8c">
 Versão 0.9.8c\n 
      * Correção para a vulnerabilidade SSL no SDK do Microsoft Live (usado ao acessar arquivos via       OneDrive)\n 
      * Correção de Bug: A versão anterior continha dois métodos de entrada (uma danificada)\n  </string>
+  <string name="ChangeLog_1_0_0">
+    Versão 1.0.0 - preview 7\n 
+* Desbloquear por impressão digital (requer Android 6.0 + ou um dispositivo Samsung) \n 
+* Serviço de Auto-preenchimento adicionado (requer Android 5.0+) \n
+* Adicionado suporte para templates\n 
+* Adicionado modo \"trabalhar offline\"\n 
+* Permitir copia de dados\n 
+* Modo de preenchimento automático para campo nomes\n 
+* Permitir remoção de itens da lista n de arquivos recentes\n 
+* Solicitar permissões em tempo de execução no Android 6.0\n
+* Correções (no teclado embutido ao selecionar ícones)\n 
+* Incluída opção de Enviar erro reports\n 
+* Acrescentadas mensagens de ajuda em vários pontos\n
+  </string>
   <string name="ChangeLog_0_9_9">
 Versão 0.9.9\n 
    * Interface do usuário completamente redesenhada. Muito obrigado à Stefano Pignataro ( http://www.spstudio.at) pela sua ajuda!\n 
@@ -550,8 +582,26 @@ Versão 0.9.9\n
    * Suporte para o modo Multi Janelas em dispositivos Samsung\n 
    * O número padrão de etapas para criptografia de novas bases de dados aumentou\n
    * Verificar chaves duplicadas de campos adicionais para evitar a perda de dados\n</string>
+  <string name="ChangeLog_0_9_9c">
+Versão 0.9.9c \n
+* tema escuro está de volta \n
+* você pode instalar outros pacotes de ícone (antigo estilo Windows ícones estão disponíveis na Play Store) \n
+* acrescentado pergunta de confirmação quando excluir elementos sem envio para lixeira \n
+* correções (exibição incorreta da codificação de senha OTP, ícone do app errado em alguns lugares) \n
+  </string>
   <string name="ChangeLog_0_9_8b">
 Versão 0.9.8b\n* Falhas corrigidas (a operação de salvar estava falhando em alguns bancos de dados, a exportação para o dispositivo local estava falhando, a seleção de algumas opções de preferência encerrava o aplicativo)\n</string>
+  <string name="ChangeLog_0_9_8">
+   Versão 0.9.8\n
+* suporte para \"Storage Access Framework\" (permite a gravação para cartão SD e Google Drive pelo KP2A Offline) \n
+* Tenta detectar a entrada do usuário errônea ao inserir URLs WebDAV (Diretório em vez de arquivo) \n
+* Alterada a fonte de senha \n
+* Permitir mudar a conta Dropbox \n
+* Corrigido um bug: agora lembrar senha OTP</string>
+  <string name="ChangeLog_0_9_7b">
+Versão 0.9.7b\n
+* Traduções atualizadas\n 
+* Correções: Fonte de senha estava faltando em 0.9.7, ordenar por nome não classificava grupos\n</string>
   <string name="ChangeLog_0_9_7">
 		Versão 0.9.7\n
 		* gravar suporte p/ bases de dados do Keepass 1 (kdb) (beta!)\n
@@ -561,6 +611,30 @@ Versão 0.9.8b\n* Falhas corrigidas (a operação de salvar estava falhando em a
 		* ordem de classificação reversa p/ Classificar por Data de Modificação (agora decrescente)\n
 		* bugs corrigidos: Notas exibidas são atualizadas corretamente após as modificações; exibições de senha agora ocultam a senha corretamente em todos dispositivos (espero); corrigido o problema que permitia adicionar uma entrada duas vezes; corrigido o problema ao exibir o aviso UUID Duplicado mesmo após corrigir a base de dados\n
 	</string>
+  <string name="ChangeLog_0_9_6">
+Versão 0.9.6 \n 
+* Permitir importar o arquivo de chave e/ou arquivo de banco de dados local para diretório interno do app (ver configurações) \n 
+* Permitir diferentes opções de classificação \n 
+* Melhorado preferências para alteração automática de teclado \n 
+* Logotipo do aplicativo atualizado e design das notificações, design por Stefano Pignataro (http://www.spstudio.at) \n 
+* Gerador de senha se lembra da última configuração \n 
+* Definir visibilidade de notificação para tela de bloqueio do Android 5 \n 
+* Agora limpa o campo de senha mestra quando deixar o app sem clicar OK \n 
+* Corrigido problema com falta de idiomas de entrada nas configuração de teclado em alguns dispositivos \n 
+* Corrigido problema com alteração automática do teclado em dispositivos com root \n 
+* Adicionado verificação de bancos de dados corrompidos (UUIDs duplicados) \n 
+* Recarregar automaticamente o banco de dados quando alteração detectada, resolve preocupação de segurança de revelar senha mestre \n 
+* Layout de pequeno teclado polonês melhorada, fixada configurações de tema de teclado (graças a Wiktor Ławski) \n</string>
+  <string name="ChangeLog_0_9_5">
+<b>Versão 0.9.5</b> \n 
+* Corrigido problemas com navegação de arquivos (especialmente no Android 4.4) \n 
+* Corrigido problema com carregamento de arquivos .kdb (Keepass 1) nos Nexus 5 com Android Lollipop \n 
+* Adicionada opção para evitar tirar screenshots/exibir app em lista de apps recentes \n 
+* Corrigido problema com armazenamento de arquivo no Google Drive (edição normal) \n 
+* Permitir que arquivos de chave em tipos de armazenamentos deliberado (edição normal) \n 
+* Atualizado Dropbox SDK para incluir um patch oficial de segurança (edição normal) \n 
+* Atualizado ferramentas de compilação --&gt; maior tamanho do apk :-( \n
+Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculpa. Eu queria publicar essas correções quão logo possível.</string>
   <string name="ChangeLog_0_9_4">
 		<b>Versão 0.9.4</b>\n
 		*  adicionado suporte a plug-int: Veja em configurações como obter plug-ins!\n

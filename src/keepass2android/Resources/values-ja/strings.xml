@@ -25,11 +25,11 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android オフライン版</string>
   <string name="short_app_name_nonet">KP2A オフライン版</string>
-  <string name="app_timeout">アプリケーション タイムアウト</string>
+  <string name="app_timeout">アプリケーションのタイムアウト</string>
   <string name="app_timeout_summary">アプリケーションが非アクティブな場合にデータベースがロックされるまでの時間。</string>
-  <string name="kill_app_label">アプリのプロセスを終了</string>
+  <string name="kill_app_label">アプリケーションのプロセスを終了</string>
   <string name="show_kill_app">終了ボタン</string>
-  <string name="show_kill_app_summary">パスワード入力画面で、アプリケーションのプロセスを終了するためのボタンを表示します。(神経質なユーザー向けです)</string>
+  <string name="show_kill_app_summary">パスワード入力画面にアプリケーションのプロセスを終了するためのボタンを表示します。 (神経質なユーザー向け)</string>
   <string name="application">アプリケーション</string>
   <string name="application_settings">アプリケーション設定</string>
   <string name="ShowGroupnameInSearchResult_title">検索結果にグループ名を表示する</string>
@@ -62,8 +62,8 @@
   <string name="brackets">括弧</string>
   <string name="cancel">キャンセル</string>
   <string name="ClearClipboard">クリップボードを消去しました。</string>
-  <string name="clipboard_timeout">クリップボード タイムアウト</string>
-  <string name="clipboard_timeout_summary">コピーした情報がクリップボードから消去されるまでの時間。</string>
+  <string name="clipboard_timeout">クリップボードのタイムアウト</string>
+  <string name="clipboard_timeout_summary">コピーされたユーザー名やパスワードがクリップボードから消去されるまでの時間。</string>
   <string name="copy_username">ここをタップするとユーザー名をクリップボードにコピーします</string>
   <string name="copy_password">ここをタップするとパスワードをクリップボードにコピーします</string>
   <string name="available_through_keyboard">KP2A キーボードで入力できます</string>
@@ -99,9 +99,9 @@
   <string name="enter_filename">データベースファイル名の入力</string>
   <string name="entry_accessed">最終アクセス日</string>
   <string name="entry_cancel">キャンセル</string>
-  <string name="entry_comment">メモ</string>
+  <string name="entry_comment">備考</string>
   <string name="entry_tags">タグ</string>
-  <string name="entry_override_url">URL を上書きします。</string>
+  <string name="entry_override_url">URL を上書きする</string>
   <string name="entry_confpassword">パスワードの確認</string>
   <string name="entry_created">作成日</string>
   <string name="entry_expires">有効期限</string>
@@ -114,7 +114,7 @@
   <string name="entry_title">タイトル</string>
   <string name="entry_url">URL</string>
   <string name="entry_user_name">ユーザー名</string>
-  <string name="entry_extra_strings">助長な文字列フィールド</string>
+  <string name="entry_extra_strings">その他の文字列フィールド</string>
   <string name="entry_binaries">添付ファイル</string>
   <string name="error_can_not_handle_uri">Keepass2Androidはこのuriを処理できません。</string>
   <string name="error_could_not_create_group">グループ追加エラー</string>
@@ -137,7 +137,7 @@
   <string name="file_browser">ファイルブラウザ</string>
   <string name="generate_password">パスワードを生成する</string>
   <string name="group">グループ</string>
-  <string name="hint_comment">メモ</string>
+  <string name="hint_comment">備考</string>
   <string name="hint_conf_pass">パスワードをもう一度入力</string>
   <string name="hint_generated_password">生成されたパスワードが表示されます</string>
   <string name="hint_group_name">グループ名</string>
@@ -147,7 +147,7 @@
   <string name="hint_login_pass">パスワード</string>
   <string name="hint_title">タイトル</string>
   <string name="hint_url">url</string>
-  <string name="hint_override_url">url を上書きします</string>
+  <string name="hint_override_url">URL を上書きする</string>
   <string name="hint_tags">タグ1, タグ2</string>
   <string name="hint_username">ユーザー名</string>
   <string name="InvalidPassword">パスワード/キーファイルが違います。</string>
@@ -195,18 +195,18 @@
   <string name="no_keys">データベース・グループがありません。</string>
   <string name="no_results">検索結果に該当するものはありません。</string>
   <string name="no_url_handler">このuriを処理できません。</string>
-  <string name="open_recent">以前使用したデータベースを開く(クリック)</string>
+  <string name="open_recent">最近使用したデータベースを開く (クリックで開く)</string>
   <string name="omitbackup_title">検索対象から除外</string>
   <string name="omitbackup_summary">\"バックアップ\"と\"ごみ箱\"を検索対象から除外します</string>
   <string name="pass_filename">KeePassデータベースファイル</string>
   <string name="password_title">データベースのパスワード設定</string>
-  <string name="master_key_type">マスターキータイプの選択</string>
+  <string name="master_key_type">マスターキーの種類を選択:</string>
   <string name="progress_create">データベースファイルを作成中&#8230;</string>
   <string name="create_database">データベースを作成</string>
   <string name="progress_title">実行中&#8230;</string>
-  <string name="remember_keyfile_summary">前回使用したキーファイルを次回も表示します</string>
-  <string name="remember_keyfile_title">キーファイルを記憶</string>
-  <string name="remove_from_filelist">消去</string>
+  <string name="remember_keyfile_summary">キーファイルの場所を記憶します。</string>
+  <string name="remember_keyfile_title">キーファイルを記憶する</string>
+  <string name="remove_from_filelist">削除</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">ルート</string>
   <string name="rounds">暗号化レベル</string>
@@ -220,15 +220,15 @@
   <string name="space">半角スペース</string>
   <string name="search_label">検索</string>
   <string name="show_password">パスワードを表示</string>
-  <string name="sort_menu">並べ替え</string>
-  <string name="sort_name">A-Z順に並び替え</string>
-  <string name="sort_db">作成日順に並べ替え</string>
-  <string name="sort_moddate">更新日順に並び替え</string>
-  <string name="sort_default">既定の順番を維持する</string>
+  <string name="sort_menu">並べ替え...</string>
+  <string name="sort_name">タイトル順</string>
+  <string name="sort_db">作成日順</string>
+  <string name="sort_moddate">更新日順</string>
+  <string name="sort_default">デフォルトの順序を保持</string>
   <string name="special">記号</string>
-  <string name="search_hint">検索:</string>
+  <string name="search_hint">検索文字列</string>
   <string name="search_results">検索結果</string>
-  <string name="search_in">検索：</string>
+  <string name="search_in">検索対象</string>
   <string name="select_other_entry">別のエントリを選択</string>
   <string name="select_group_then_add">目的のグループを開き、\"%1$s\"キーを押してください!</string>
   <string name="insert_element_here">ここに挿入</string>
@@ -254,20 +254,20 @@
   <string name="ShowUsernameInList_title">リスト内のユーザー名を表示</string>
   <string name="ShowUsernameInList_summary">エントリのタイトルの下にユーザー名を表示します。複数のアカウントやTANに役立ちます。</string>
   <string name="RememberRecentFiles_title">データベースを記憶</string>
-  <string name="RememberRecentFiles_summary">最近開いたデーターベースを記憶して、データベース選択画面で表示する。</string>
+  <string name="RememberRecentFiles_summary">最近開いたデータベースを記憶して、データベース選択画面に表示します。</string>
   <string name="kp2a_findUrl">Keepass2Android: パスワードの検索</string>
-  <string name="excludeExpiredEntries">期限切れのエントリの除外</string>
+  <string name="excludeExpiredEntries">期限切れのエントリを除外する</string>
   <string name="search_options">オプション</string>
-  <string name="caseSensitive">大文字小文字を区別する</string>
-  <string name="start_open_file">ファイルを開く</string>
-  <string name="start_create">新しいデータベースを作成する.</string>
-  <string name="start_open_url">URL を開く.</string>
-  <string name="start_create_import">新しいデータベースにファイルをインポートする。</string>
+  <string name="caseSensitive">大文字と小文字を区別する</string>
+  <string name="start_open_file">ファイルを開く...</string>
+  <string name="start_create">新しいデータベースを作成する...</string>
+  <string name="start_open_url">URL を開く...</string>
+  <string name="start_create_import">新しいデータベースにファイルをインポートする...</string>
   <string name="enter_filename_details_url">http://のようなプロトコルを含む完全な URL を指定しなければなりません。</string>
   <string name="enter_filename_details_create_import">インポートするファイルは、次の手順で選択します。</string>
-  <string name="enable_quickunlock">クイック解除を有効化</string>
+  <string name="enable_quickunlock">クイック解除を有効にする</string>
   <string name="QuickUnlock_label">パスワードの最後の %1$d 文字を入力:</string>
-  <string name="QuickUnlock_button">クイック解除！</string>
+  <string name="QuickUnlock_button">クイック解除!</string>
   <string name="QuickUnlock_lockButton">データベースを閉じる</string>
   <string name="QuickUnlockDefaultEnabled_title">クイック解除をデフォルトで有効にする</string>
   <string name="QuickUnlockDefaultEnabled_summary">クイック解除をデフォルトで有効にするかしないかを指定します。</string>
@@ -296,20 +296,20 @@
   <string name="field_name">フィールド名</string>
   <string name="field_value">フィールド値</string>
   <string name="protection">保護されたフィールド</string>
-  <string name="add_binary">ファイルを添付</string>
-  <string name="add_extra_string">補足的な文字列を追加</string>
-  <string name="delete_extra_string">補足的な文字列を削除</string>
+  <string name="add_binary">添付ファイルを追加</string>
+  <string name="add_extra_string">追加文字列を追加</string>
+  <string name="delete_extra_string">追加文字列を削除</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: ロック中。クイック解除が有効です。</string>
   <string name="database_loaded_unlocked">%1$s: ロック解除。</string>
   <string name="credentials_dialog_title">サーバーの資格情報を入力してください。</string>
   <string name="UseFileTransactions_title">ファイル トランザクション</string>
   <string name="UseFileTransactions_summary">データベースの書き込みにファイル トランザクションを使用します</string>
-  <string name="LockWhenScreenOff_title">スクリーンオフ時にロックする</string>
-  <string name="LockWhenScreenOff_summary">スクリーンがオフに切り替わったときデータベースをロックします。</string>
-  <string name="ClearPasswordOnLeave_title">入力したマスター パスワードをクリア</string>
-  <string name="ClearPasswordOnLeave_summary">データベースのロックを解除しないで画面から離れるときは、入力されたマスター パスワードをクリアします。</string>
+  <string name="LockWhenScreenOff_title">画面オフ時にロックする</string>
+  <string name="LockWhenScreenOff_summary">画面がオフになったときにデータベースをロックします。</string>
+  <string name="ClearPasswordOnLeave_title">入力済みのマスターパスワードをクリアする</string>
+  <string name="ClearPasswordOnLeave_summary">データベースのロック解除をせずに画面を離れると、入力済みのマスターパスワードをクリアします。</string>
   <string name="LockWhenNavigateBack_title">アプリから抜けたときにロックする</string>
-  <string name="LockWhenNavigateBack_summary">戻るボタンを押してこのアプリから抜けたときにデーターベースをロックします。</string>
+  <string name="LockWhenNavigateBack_summary">戻るボタンを押してこのアプリから抜けたときにデータベースをロックします。</string>
   <string name="NoDonateOption_title">寄付オプションを表示しない</string>
   <string name="NoDonateOption_summary">この設定は寄贈者向けです。Keepass2Android をしばらく使用した後でのみ利用可能です。</string>
   <string name="NoDonateOption_question">寄付がなければ、このアプリは存在しないかもしれないし、継続的な改善を行うことができないかもしれません! まだ寄付を頂いていなければ、今すぐ寄付をご検討ください。</string>
@@ -371,28 +371,28 @@
   <string name="TransformingKey">マスターキーを変換しています。</string>
   <string name="DecodingDatabase">データーベースの復号中&#8230;</string>
   <string name="ParsingDatabase">データベースを解析しています.</string>
-  <string name="CheckingTargetFileForChanges">ターゲット ファイルの変更を確認しています。</string>
+  <string name="CheckingTargetFileForChanges">対象ファイルの変更を確認中...</string>
   <string name="TitleSyncQuestion">変更をマージしますか？</string>
-  <string name="MessageSyncQuestion">データベースファイルは他のアプリから更新されました。保存する前に変更を統合しますか？他のアプリの変更を上書きする場合はいいえを選んでください。</string>
+  <string name="MessageSyncQuestion">データベースファイルは外部で更新されました。保存する前に変更をマージしますか? 外部での変更を上書きする場合は、いいえを選択してください。</string>
   <string name="SynchronizingDatabase">変更をマージしています...</string>
-  <string name="YesSynchronize">はい、マージします。</string>
-  <string name="NoOverwrite">いいえ、上書きします。</string>
-  <string name="UseOfflineMode">オフラインで作業</string>
-  <string name="UseOnlineMode">オンラインで作業</string>
-  <string name="UseOfflineMode_Info">ローカルのキャッシュコピーを使用することにより、ネットワークトラフィックを回避します。データベースへの変更はローカルのキャッシュにのみ保存され、オンラインモードに切り替わった際にアップロードされます。</string>
+  <string name="YesSynchronize">はい、マージします</string>
+  <string name="NoOverwrite">いいえ、上書きします</string>
+  <string name="UseOfflineMode">オフライン作業</string>
+  <string name="UseOnlineMode">オンライン作業</string>
+  <string name="UseOfflineMode_Info">ローカルキャッシュコピーを使用することにより、ネットワークトラフィックを回避します。データベースへの変更はローカルキャッシュのみに保存され、オンラインモードに切り替わった際にアップロードされます。</string>
   <string name="InOfflineMode">オフラインで作業します。</string>
   <string name="SynchronizingCachedDatabase">キャッシュされたデータベースを同期中&#8230;</string>
-  <string name="DownloadingRemoteFile">リモート ファイルをダウンロードしています.</string>
+  <string name="DownloadingRemoteFile">リモートファイルをダウンロード中...</string>
   <string name="UploadingFile">ファイルをアップロードしています.</string>
-  <string name="RestoringRemoteFile">リモートファイルを復元しています。</string>
-  <string name="FilesInSync">ファイル同期中</string>
+  <string name="RestoringRemoteFile">リモートファイルを復元中...</string>
+  <string name="FilesInSync">ファイルは同期中です。</string>
   <string name="SynchronizedDatabaseSuccessfully">データベースは正常に同期されました。</string>
   <string name="CheckingDatabaseForChanges">データベースの変更を確認しています。</string>
   <string name="CouldNotSaveToRemote">リモートに保存できませんでした: %1$s。リモート接続が利用可能なときに同期メニューから再度保存してください。</string>
   <string name="CouldNotLoadFromRemote">リモートから開くことができませんでした: %1$s。ローカルキャッシュからファイルをロードしました。データベースの変更や後で同期することができます。</string>
   <string name="UpdatedRemoteFileOnLoad">リモートファイルを更新しました。</string>
   <string name="NotifyOpenFromLocalDueToConflict">リモートファイルの変更と競合するためローカルファイルを開きます。マージするには同期メニューを使用してください。</string>
-  <string name="LoadedFromRemoteInSync">リモートファイルとキャッシュが同期されます。</string>
+  <string name="LoadedFromRemoteInSync">リモートファイルとキャッシュが同期されました。</string>
   <string name="UpdatedCachedFileOnLoad">%1$s のローカルキャッシュコピーを更新します。</string>
   <string name="RemoteDatabaseUnchanged">変更は検出されませんでした。</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">キャッシュの OTP 補助ファイルを更新しました: リモートのカウンターが高いため。</string>
@@ -403,7 +403,7 @@
   <string name="ErrorOcurred">エラーが発生しました</string>
   <string name="DuplicateUuidsError">データベースが破損しています: 重複する ID が見つかりました。(Minikeepass で保存しましたか?) PC 用 Keepass 2 で新しいデータベースに再インポートして、\'新しい ID の作成\' を選択してください。</string>
   <string name="DuplicateUuidsErrorAdditional">このエラー メッセージは、設定/アプリケーション設定/ファイル処理/UUID の重複をチェック で無効にできます。予期しない動作が発生する可能性があることにご注意ください。データベースを修正することをお勧めします。</string>
-  <string name="synchronize_database_menu">データベースの同期</string>
+  <string name="synchronize_database_menu">データベースの同期...</string>
   <string name="CannotMoveGroupHere">このグループにグループを移動できません。</string>
   <string name="donate_question">今日はオクトーバーフェスト! Keepass2Android を気に入って頂いたとしたら、今日は私のためにビールを買うのにいい日ではありませんか?</string>
   <string name="donate_bday_question">5月10日は私の誕生日です! もしあなたがこのアプリを気に入ったのなら、ささやかな誕生日プレゼントとお祝いのメッセージを送ってくれませんか？送ってくれるならとても嬉しいです!(^_^)</string>
@@ -415,8 +415,8 @@
   <string name="initial_directory">初期ディレクトリ (省略可能):</string>
   <string name="enter_sftp_login_title">SFTP のログイン データを入力してください:</string>
   <string name="select_storage_type">ストレージタイプの選択</string>
-  <string name="filestoragename_file">端末内ファイル</string>
-  <string name="filestoragename_androidget">サード パーティーのアプリを取得</string>
+  <string name="filestoragename_file">ローカルファイル</string>
+  <string name="filestoragename_androidget">サードパーティーのアプリから取得</string>
   <string name="filestoragename_androidsend">他のアプリへ送る</string>
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
@@ -425,15 +425,14 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A フォルダー)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox の全てに KP2A がアクセスできるようにしたくない場合にこのオプションを選択してください。このオプションを選択すると、Apps/Keepass2Android フォルダーだけにアクセスを要求します。これは特に新しいデータベースを作成するときに向いています。既にデータベースがある場合は、このオプションを選択してフォルダーを作成し、その後 (PC から) フォルダー内にファイルを配置し、そのファイルを開く際にもう一度このオプションを選択します。</string>
   <string name="filestoragename_gdrive">Google ドライブ</string>
-  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH ファイル転送)</string>
-  <string name="filestoragename_content">システム ファイル ピッカー</string>
+  <string name="filestoragename_content">システムファイルピッカー</string>
   <string name="filestorage_setup_title">ファイルのアクセスの初期化</string>
   <string name="database_location">データベースの場所</string>
   <string name="help_database_location">データベースは、お使いの Android デバイス上でローカルに、またはクラウド (非オフライン バージョンのみ) に格納できます。オフラインの場合、Keepass2Android はデータベースを利用可能にします。データベースは AES 256 ビット暗号化で安全に暗号化されているので、あなたを除いて、誰もパスワードにアクセスすることができません。私たちは Dropbox を選択することをお勧めします： すべてのお使いのデバイスでアクセス可能で、以前のファイル バージョンのバックアップを提供しています。</string>
   <string name="hint_database_location">データベースを格納する場所を選択してください:</string>
   <string name="button_change_location">場所の変更</string>
-  <string name="help_quickunlock">有効にした場合、データベースがロックされている場合でも、Keepass2Android はバックグラウンドで実行しつづけます。これにより、後で、マスターパスワードの短い部分だけで、データベースのロックを解除することができます。</string>
+  <string name="help_quickunlock">有効にした場合、データベースがロックされても Keepass2Android はバックグラウンドで実行しつづけます。これにより、あとでマスターパスワードの一部分のみでデータベースのロックを解除できます。</string>
   <string name="master_password">マスター パスワード</string>
   <string name="help_master_password">データベースはここで入力したパスワードで暗号化されます。データベースを安全に保つために、強力なパスワードを選択してください! ヒント: 1 つまたは 2 つの文章を作成し、単語の最初の文字をパスワードとして使用します。記号を含めましょう。</string>
   <string name="hint_master_password">データベースを保護するマスター パスワードを選択します。</string>
@@ -442,7 +441,7 @@
   <string name="hint_key_file">マスター パスワードに加えてキー ファイルを使用するかを選択してください:</string>
   <string name="use_key_file">キーファイルを使用する</string>
   <string name="error_adding_keyfile">キー ファイル追加エラー!</string>
-  <string name="init_otp">OTP 補助ファイルの読込&#8230;</string>
+  <string name="init_otp">OTP 補助ファイルの読み込み&#8230;</string>
   <string name="otp_explanation">次のワンタイム パスワード (OTP) を入力してください。NFC 経由で入力するには、お使いのデバイスの背面にある Yubikey NEO をスワイプします。</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="YubiChallengeNotInstalled">チャレンジを処理できるアプリケーションが見つかりませんでした。Google Play から Yubichallenge をインストールしてください。</string>
@@ -452,8 +451,8 @@
   <string name="otp_discarded_no_space">OTP 破棄されました: すべての OTP はすでに入力されました!</string>
   <string name="otp_discarded_because_db_open">最初にデータベースを閉じてください。OTP は破棄されます。</string>
   <string name="otps_pending">(1 または複数の OTP が既に利用可能)</string>
-  <string name="otpsecret_hint">OTP 秘密 (例 01 23 ab cd&#8230;)</string>
-  <string name="CouldntParseOtpSecret">OTP 秘密解析エラー!</string>
+  <string name="otpsecret_hint">OTP secret (例: 01 23 ab cd&#8230;)</string>
+  <string name="CouldntParseOtpSecret">OTP secret 解析エラー!</string>
   <string name="OtpKeyError">OTP キーの作成に失敗しました! 正しい OTP を入力したか確認してください。</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP 補助ファイル更新エラー!</string>
   <string name="SavingOtpAuxFile">OTP 補助ファイルを保存中&#8230;</string>
@@ -515,7 +514,7 @@
   <string name="TemplateTitle_EMail">メール</string>
   <string name="TemplateField_EMail_EMail">メールアドレス</string>
   <string name="TemplateTitle_WLan">無線 LAN</string>
-  <string name="TemplateTitle_Notes">セキュリティで保護されたメモ</string>
+  <string name="TemplateTitle_Notes">セキュリティで保護された備考</string>
   <string name="TemplateField_WLan_SSID">SSID</string>
   <string name="TemplateField_Number">番号</string>
   <string name="TemplateField_CreditCard_CVV">CVV</string>
@@ -534,8 +533,8 @@
   <string name="RepeatedInvalidCompositeKeyHelp">複合キーが無効です! 次の手順を試してデータベースのロックを解除してください:\n
 
  • 正しいパスワードを入力したことを確認してください。入力したパスワードを表示するには、目のアイコンを使用してください。\n
- • 正しいパスワードの種類を選択したことを確認してください。データベースを作成するときに使用する種類が一致することを確認してください。\n
- • 正しいデータベース ファイルが選択されていることを確認してください。 
+ • 正しいパスワードの種類を選択したことを確認してください。データベースを作成するときに使用した種類と一致することを確認してください。\n
+ • 正しいデータベースファイルが選択されていることを確認してください。 
 </string>
   <string name="CorruptDatabaseHelp">
 ファイルが壊れています。\n
@@ -545,12 +544,12 @@
  • お使いの PC で同じ場所からファイルを開くことができない場合、ファイルが実際に破損している可能性が高いです。その場合は、データベースのバックアップを使用してください。Keepass2Android がファイルを破損すると思われる場合は、サポートにお問い合わせください。\n
  • お使いの PC でファイルを開くことができる場合は、サポートにお問い合わせください。PC で、(解凍してなど) 異なる設定でそれを保存して、Keepass2Android で再度開いてみることも試してください。  </string>
   <string name="ErrorReportTitle">Keepass2Android: エラーが発生しました。</string>
-  <string name="ErrorReportText">Keepass2Android の実行中に、予期しないエラーが発生しました。アプリがエラー レポートを送信することを許可して、この問題の解決を手伝ってください。</string>
-  <string name="ErrorReportPromise">エラー レポートは、データベースやマスター パスワードの内容は含まれません。アプリケーションの設定でそれらを無効にできます。</string>
+  <string name="ErrorReportText">Keepass2Android の実行中に予期しないエラーが発生しました。エラーレポートの送信を有効にし、この問題の解決にご協力ください。</string>
+  <string name="ErrorReportPromise">エラーレポートにはデータベースやマスターパスワードの内容は一切含まれません。アプリケーション設定でエラーレポートを無効にできます。</string>
   <string name="ErrorReportEnable">有効にする</string>
   <string name="ErrorReportDisable">無効にする</string>
-  <string name="ErrorReportAsk">エラーの問い合わせ</string>
-  <string name="ErrorReportPrefTitle">エラーレポートを送信</string>
+  <string name="ErrorReportAsk">エラー発生時に確認する</string>
+  <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
   <string name="ActivateAutoFillService_title">オートフィルを有効にしますか?</string>
   <string name="ActivateAutoFillService_message">いくつかの方法で証明書を他のアプリに転送できます: 値をクリップボードにコピーできますが、クリップボードは Android のセキュリティで保護されないことに注意してください。内蔵キーボードは選択したエントリにフル アクセスすることができますが、証明書にアクセスするたびに有効にする必要があります。Android 5 およびそれ以降では、Keepass2Android は、ユーザー名とパスワードのオートフィル サービスを使用して自動的に入力できます。</string>
   <string name="ActivateAutoFillService_btnKeyboard">内蔵キーボードを使用する</string>
@@ -758,7 +757,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>15分</item>
     <item>30分</item>
     <item>1時間</item>
-    <item>無し</item>
+    <item>無期限</item>
   </string-array>
   <string-array name="export_fileformat_options">
     <item>Keepass 2 データベース (.kdbx)</item>
@@ -782,11 +781,11 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   </string-array>
   <string-array name="password_modes">
     <item>パスワードのみ</item>
-    <item>パスワード + キー ファイル</item>
+    <item>パスワード + キーファイル</item>
     <item>パスワード + OTP</item>
-    <item>パスワード + OTP 秘密 (回復モード)</item>
-    <item>パスワード + チャレンジ レスポンス</item>
-    <item>パスワード + チャレンジ レスポンス秘密 (回復モード)</item>
+    <item>パスワード + OTP secret (回復モード)</item>
+    <item>パスワード + チャレンジ/レスポンス</item>
+    <item>パスワード + チャレンジ/レスポンス secret (回復モード)</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>証明書検証エラーを無視する</item>
