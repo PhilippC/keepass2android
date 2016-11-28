@@ -515,6 +515,8 @@ namespace keepass2android
 							new SftpFileStorage(this),
 							new NetFtpFileStorage(Application.Context, this),
 							new WebDavFileStorage(this),
+							//new LegacyWebDavStorage(this),
+							//new LegacyFtpStorage(this),
 #endif
 #endif
 							new LocalFileStorage(this)

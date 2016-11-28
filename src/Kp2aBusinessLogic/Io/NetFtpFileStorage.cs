@@ -99,6 +99,17 @@ namespace keepass2android.Io
 			
 			public static ConnectionSettings FromIoc(IOConnectionInfo ioc)
 			{
+				if (!string.IsNullOrEmpty(ioc.UserName))
+				{
+					//legacy support
+					return new ConnectionSettings()
+					{
+						EncryptionMode = FtpEncryptionMode.None,
+						Username = ioc.UserName,
+						Password = ioc.Password
+					};
+				}
+
 				string path = ioc.Path;
 				int schemeLength = path.IndexOf("://", StringComparison.Ordinal);
 				path = path.Substring(schemeLength + 3);
@@ -155,7 +166,7 @@ namespace keepass2android.Io
 			{
 				using (FtpClient client = GetClient(ioc))
 				{
-					string localPath = IocPathToUri(ioc.Path).PathAndQuery;
+					string localPath = IocToUri(ioc).PathAndQuery;
 					if (client.DirectoryExists(localPath))
 						client.DeleteDirectory(localPath, true);
 					else
@@ -194,7 +205,7 @@ namespace keepass2android.Io
 			else
 				client.Credentials = new NetworkCredential("anonymous", ""); //TODO TEST
 
-			Uri uri = IocPathToUri(ioc.Path);
+			Uri uri = IocToUri(ioc);
 			client.Host = uri.Host;
 			if (!uri.IsDefaultPort) //TODO test
 				client.Port = uri.Port;
@@ -214,14 +225,25 @@ namespace keepass2android.Io
 
 		
 
-		internal Uri IocPathToUri(string path)
+		internal Uri IocToUri(IOConnectionInfo ioc)
 		{
+			if (!string.IsNullOrEmpty(ioc.UserName))
+			{
+				//legacy support.
+				return new Uri(ioc.Path);
+			}
+			string path = ioc.Path;
 			//remove additional stuff like TLS param
 			int schemeLength = path.IndexOf("://", StringComparison.Ordinal);
 			string scheme = path.Substring(0, schemeLength);
 			path = path.Substring(schemeLength + 3);
-			string settings = path.Substring(0, path.IndexOf(ConnectionSettings.SettingsPostFix, StringComparison.Ordinal));
-			path = path.Substring(settings.Length + 1);
+			if (path.StartsWith(ConnectionSettings.SettingsPrefix))
+			{
+				//this should always be the case. However, in rare cases we might get an ioc with legacy path but no username set (if they only want to get a display name)
+				string settings = path.Substring(0, path.IndexOf(ConnectionSettings.SettingsPostFix, StringComparison.Ordinal));
+				path = path.Substring(settings.Length + 1);
+				
+			}
 			return new Uri(scheme + "://" + path);
 		}
 
@@ -254,7 +276,7 @@ namespace keepass2android.Io
 			{
 				using (var cl = GetClient(ioc))
 				{
-					return cl.OpenRead(IocPathToUri(ioc.Path).PathAndQuery, FtpDataType.Binary, 0);
+					return cl.OpenRead(IocToUri(ioc).PathAndQuery, FtpDataType.Binary, 0);
 				}
 			}
 			catch (FtpCommandException ex)
@@ -282,7 +304,6 @@ namespace keepass2android.Io
 
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{
-			//TODO does this work when flags are encoded in the iocPath?
 			return UrlUtil.StripExtension(
 				UrlUtil.GetFileName(ioc.Path));
 		}
@@ -298,7 +319,7 @@ namespace keepass2android.Io
 			{
 				using (var client = GetClient(ioc))
 				{
-					client.CreateDirectory(IocPathToUri(GetFilePath(ioc, newDirName).Path).PathAndQuery);
+					client.CreateDirectory(IocToUri(GetFilePath(ioc, newDirName)).PathAndQuery);
 				}
 			}
 			catch (FtpCommandException ex)
@@ -314,7 +335,7 @@ namespace keepass2android.Io
 				using (var client = GetClient(ioc))
 				{
 					List<FileDescription> files = new List<FileDescription>();
-					foreach (FtpListItem item in client.GetListing(IocPathToUri(ioc.Path).PathAndQuery,
+					foreach (FtpListItem item in client.GetListing(IocToUri(ioc).PathAndQuery,
 						FtpListOption.Modify | FtpListOption.Size | FtpListOption.DerefLinks))
 					{
 
@@ -366,7 +387,7 @@ namespace keepass2android.Io
 				using (FtpClient client = GetClient(ioc))
 				{
 					
-					var uri = IocPathToUri(ioc.Path);
+					var uri = IocToUri(ioc);
 					string path = uri.PathAndQuery;
 					if (!client.FileExists(path) && (!client.DirectoryExists(path)))
 						throw new FileNotFoundException();
@@ -439,7 +460,7 @@ namespace keepass2android.Io
 
 		public string GetDisplayName(IOConnectionInfo ioc)
 		{
-			var uri = IocPathToUri(ioc.Path);
+			var uri = IocToUri(ioc);
 			return uri.ToString(); //TODO is this good?
 		}
 
@@ -479,7 +500,7 @@ namespace keepass2android.Io
 			{
 				using (var client = GetClient(ioc))
 				{
-					return client.OpenWrite(IocPathToUri(ioc.Path).PathAndQuery);
+					return client.OpenWrite(IocToUri(ioc).PathAndQuery);
 
 				}
 			}
@@ -548,7 +569,7 @@ namespace keepass2android.Io
 			{
 
 				_client = _fileStorage.GetClient(_ioc, false);
-				_stream = _client.OpenWrite(_fileStorage.IocPathToUri(_iocTemp.Path).PathAndQuery);
+				_stream = _client.OpenWrite(_fileStorage.IocToUri(_iocTemp).PathAndQuery);
 				return _stream;
 			}
 			catch (FtpCommandException ex)
@@ -568,8 +589,8 @@ namespace keepass2android.Io
 				//make sure target file does not exist:
 				//try
 				{
-					if (_client.FileExists(_fileStorage.IocPathToUri(_ioc.Path).PathAndQuery))
-						_client.DeleteFile(_fileStorage.IocPathToUri(_ioc.Path).PathAndQuery);
+					if (_client.FileExists(_fileStorage.IocToUri(_ioc).PathAndQuery))
+						_client.DeleteFile(_fileStorage.IocToUri(_ioc).PathAndQuery);
 
 				}
 				//catch (FtpCommandException)
@@ -577,8 +598,8 @@ namespace keepass2android.Io
 					//TODO get a new clien? might be stale
 				}
 
-				_client.Rename(_fileStorage.IocPathToUri(_iocTemp.Path).PathAndQuery,
-					_fileStorage.IocPathToUri(_ioc.Path).PathAndQuery);
+				_client.Rename(_fileStorage.IocToUri(_iocTemp).PathAndQuery,
+					_fileStorage.IocToUri(_ioc).PathAndQuery);
 				
 			}
 			catch (FtpCommandException ex)

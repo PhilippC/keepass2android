@@ -415,7 +415,7 @@ namespace keepass2android.Io
 		}
 	}
 
-	class LegacyFtpStorage : BuiltInFileStorage
+	public class LegacyFtpStorage : BuiltInFileStorage
 	{
 		public LegacyFtpStorage(IKp2aApp app) : base(app)
 		{
@@ -432,7 +432,7 @@ namespace keepass2android.Io
 		}
 	}
 
-	class LegacyWebDavStorage : BuiltInFileStorage
+	public class LegacyWebDavStorage : BuiltInFileStorage
 	{
 		public LegacyWebDavStorage(IKp2aApp app) : base(app)
 		{

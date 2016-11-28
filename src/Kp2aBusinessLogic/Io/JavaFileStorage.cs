@@ -352,7 +352,7 @@ namespace keepass2android.Io
 
 		}
 
-		public string IocToPath(IOConnectionInfo ioc)
+		public virtual string IocToPath(IOConnectionInfo ioc)
 		{
 			return ioc.Path;
 		}
