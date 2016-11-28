@@ -425,6 +425,8 @@ public class DropboxV2Storage extends JavaFileStorageBase
             //querying root is not supported
             if ((filename.equals("")) || (filename.equals("/")))
                 return getRootFileEntry();
+            if (filename.endsWith("/"))
+                filename = filename.substring(0,filename.length()-1);
 
             Metadata dbEntry = dbxClient.files().getMetadata(filename);
             return convertToFileEntry(dbEntry);

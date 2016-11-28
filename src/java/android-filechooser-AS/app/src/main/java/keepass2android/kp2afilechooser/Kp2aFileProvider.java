@@ -304,9 +304,18 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         				Log.d(CLASSNAME, "parent file is null");
 	                return null;
 	            }
-	            
-	            FileEntry e = this.getFileEntryCached(parentPath);
-	
+                FileEntry e;
+                try {
+                    e = this.getFileEntryCached(parentPath);
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    return null;
+                }
+                if (e == null)
+                    return null;
+
 	            matrixCursor = BaseFileProviderUtils.newBaseFileCursor();
 	
 	            int type = parentPath != null ? BaseFile.FILE_TYPE_DIRECTORY 

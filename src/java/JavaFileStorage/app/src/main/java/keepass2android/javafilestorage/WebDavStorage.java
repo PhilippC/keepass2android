@@ -3,6 +3,7 @@ package keepass2android.javafilestorage;
 import android.content.Context;
 import android.content.Intent;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -265,7 +266,7 @@ public class WebDavStorage extends JavaFileStorageBase {
                     e.displayName = okprop.DisplayName;
                     if (e.displayName == null)
                     {
-                        e.displayName = getDisplayName(r.href);
+                        e.displayName = getDisplayNameFromHref(r.href);
                     }
                     e.path = r.href;
 
@@ -418,15 +419,28 @@ public class WebDavStorage extends JavaFileStorageBase {
 
     }
 
+    String getDisplayNameFromHref(String href)
+    {
+        if (href.endsWith("/"))
+            href = href.substring(0, href.length()-1);
+        int lastIndex = href.lastIndexOf("/");
+        if (lastIndex >= 0)
+            return href.substring(lastIndex + 1);
+        else
+            return href;
+    }
+
     @Override
     public String getDisplayName(String path) {
-        if (path.endsWith("/"))
-            path = path.substring(0, path.length()-1);
-        int lastIndex = path.lastIndexOf("/");
-        if (lastIndex >= 0)
-            return path.substring(lastIndex + 1);
-        else
-            return path;
+
+        try {
+            ConnectionInfo ci = splitStringToConnectionInfo(path);
+            return ci.URL;
+        }
+        catch (Exception e)
+        {
+            return getDisplayNameFromHref(path);
+        }
 
     }
 
