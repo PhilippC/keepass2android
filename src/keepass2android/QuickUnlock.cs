@@ -361,12 +361,13 @@ namespace keepass2android
 
 		protected override void OnPause()
 		{
-			base.OnPause();
 			if (_fingerprintIdentifier != null)
 			{
 				Kp2aLog.Log("FP: Stop listening");
 				_fingerprintIdentifier.StopListening();
 			}
+
+			base.OnPause();
 		}
 
 		protected override void OnDestroy()

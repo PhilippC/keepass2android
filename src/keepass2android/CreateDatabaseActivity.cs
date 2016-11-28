@@ -103,15 +103,7 @@ namespace keepass2android
 						if (_restoringInstanceState)
 							return;
 
-						string defaulFilename = _keyfileFilename;
-						if (_keyfileFilename == null)
-						{
-							defaulFilename = _keyfileFilename = SdDir + "keyfile.txt";
-							if (defaulFilename.StartsWith("file://") == false)
-								defaulFilename = "file://" + defaulFilename;
-						}
-
-						new FileSelectHelper(this, false, RequestCodeKeyFile).StartFileChooser(defaulFilename);
+						Util.ShowBrowseDialog(this, RequestCodeKeyFile, false, true);
 
 					}
 					else
@@ -193,7 +185,13 @@ namespace keepass2android
 			{
 				try
 				{
-					newKey.AddUserKey(new KcpKeyFile(_keyfileFilename));
+					var ioc = IOConnectionInfo.FromPath(_keyfileFilename);
+					using (var stream = App.Kp2a.GetFileStorage(ioc).OpenFileForRead(ioc))
+					{
+						byte[] keyfileData =  Util.StreamToMemoryStream(stream).ToArray();
+						newKey.AddUserKey(new KcpKeyFile(keyfileData, ioc, true));
+				}
+
 				}
 				catch (Exception)
 				{
@@ -343,14 +341,38 @@ namespace keepass2android
 			{
 				if (requestCode == RequestCodeKeyFile)
 				{
-					string filename = Util.IntentToFilename(data, this);
-					if (filename != null)
+					if (data.Data.Scheme == "content")
 					{
+						if ((int)Build.VERSION.SdkInt >= 19)
+						{
+							//try to take persistable permissions
+							try
+							{
+								Kp2aLog.Log("TakePersistableUriPermission");
+								var takeFlags = data.Flags
+										& (ActivityFlags.GrantReadUriPermission
+										| ActivityFlags.GrantWriteUriPermission);
+								this.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
+							}
+							catch (Exception e)
+							{
+								Kp2aLog.Log(e.ToString());
+							}
+
+						}
+					}
+
+					
+					string filename = Util.IntentToFilename(data, this);
+					if (filename == null)
+						filename = data.DataString;
+
+					
 						_keyfileFilename = ConvertFilenameToIocPath(filename);
 						FindViewById<TextView>(Resource.Id.keyfile_filename).Text = _keyfileFilename;
 						FindViewById(Resource.Id.keyfile_filename).Visibility = ViewStates.Visible;
+					
 					}
-				}
 				if (requestCode == RequestCodeDbFilename)
 				{
 					
