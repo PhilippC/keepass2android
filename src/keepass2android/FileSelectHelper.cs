@@ -136,6 +136,8 @@ namespace keepass2android
 				ShowFtpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel);
 			else if ((defaultPath.StartsWith("http://")) || (defaultPath.StartsWith("https://")))
 				ShowHttpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
+			else if (defaultPath.StartsWith("owncloud://"))
+				ShowOwncloudDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
 			else
 			{
 				Func<string, Dialog, bool> onOpen = OnOpenButton;
@@ -149,6 +151,38 @@ namespace keepass2android
 										_requestCode)
 				;
 			}
+		}
+
+		private void ShowOwncloudDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
+		{
+#if !EXCLUDE_JAVAFILESTORAGE && !NoNet
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.owncloudcredentials, null);
+			builder.SetView(dlgContents);
+			builder.SetPositiveButton(Android.Resource.String.Ok,
+									  (sender, args) =>
+									  {
+										  string host = dlgContents.FindViewById<EditText>(Resource.Id.owncloud_url).Text;
+
+										  string user = dlgContents.FindViewById<EditText>(Resource.Id.http_user).Text;
+										  string password = dlgContents.FindViewById<EditText>(Resource.Id.http_password).Text;
+
+										  string scheme = defaultPath.Substring(defaultPath.IndexOf("://", StringComparison.Ordinal));
+										  if (host.Contains("://") == false)
+											  host = scheme + "://" + host;
+										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(WebDavFileStorage.Owncloud2Webdav(host), user,
+																										  password);
+										  onStartBrowse(httpPath);
+									  });
+			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
+
+			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
+			builder.SetTitle(activity.GetString(Resource.String.enter_owncloud_login_title));
+			Dialog dialog = builder.Create();
+
+			dialog.Show();
+#endif
+
 		}
 
 		private bool ReturnFileOrStartFileChooser(string filename)

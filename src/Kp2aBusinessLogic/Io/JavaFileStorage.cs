@@ -252,7 +252,7 @@ namespace keepass2android.Io
 			return _jfs.RequiresSetup(IocToPath(ioConnection));
 		}
 
-		public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
+		public virtual void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
 		{
 			Kp2aLog.Log("StartSelectFile " + protocolId);
 			_jfs.StartSelectFile((IJavaFileStorageFileStorageSetupInitiatorActivity) activity, isForSave, requestCode);
