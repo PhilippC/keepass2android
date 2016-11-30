@@ -130,7 +130,7 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         builder = builder.authenticator(new CachingAuthenticatorDecorator(authenticator, authCache))
                 .addInterceptor(new AuthenticationCacheInterceptor(authCache));
-        if ((mCertificateErrorHandler != null) && (mCertificateErrorHandler.alwaysFailOnValidationError())) {
+        if ((mCertificateErrorHandler != null) && (!mCertificateErrorHandler.alwaysFailOnValidationError())) {
             TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
                     TrustManagerFactory.getDefaultAlgorithm());
             trustManagerFactory.init((KeyStore) null);

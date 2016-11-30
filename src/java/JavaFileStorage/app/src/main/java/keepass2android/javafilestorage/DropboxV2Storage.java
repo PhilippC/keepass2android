@@ -33,6 +33,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -271,21 +272,6 @@ public class DropboxV2Storage extends JavaFileStorageBase
 
         String v2Token = getKeyV2();
 
-        if (v2Token == null) {
-            String[] storedV1Keys = getKeysV1();
-            if (storedV1Keys != null) {
-                DbxOAuth1AccessToken v1Token = new DbxOAuth1AccessToken(storedV1Keys[0], storedV1Keys[1]);
-                DbxOAuth1Upgrader upgrader = new DbxOAuth1Upgrader(requestConfig, appInfo);
-                try {
-                    v2Token = upgrader.createOAuth2AccessToken(v1Token);
-                    upgrader.disableOAuth1AccessToken(v1Token);
-                    storeKey(v2Token);
-                } catch (DbxException e) {
-
-                }
-            }
-        }
-
         if (v2Token != null)
         {
             dbxClient = new DbxClientV2(requestConfig, v2Token);
@@ -502,7 +488,7 @@ public class DropboxV2Storage extends JavaFileStorageBase
     }
 
     @Override
-    public void onResume(FileStorageSetupActivity activity) {
+    public void onResume(final FileStorageSetupActivity activity) {
 
         if (activity.getProcessName().equals(PROCESS_NAME_SELECTFILE))
             activity.getState().putString(EXTRA_PATH, activity.getPath());
@@ -514,10 +500,52 @@ public class DropboxV2Storage extends JavaFileStorageBase
 			return;
 		}*/
 
-        JavaFileStorage.FileStorageSetupActivity storageSetupAct = (JavaFileStorage.FileStorageSetupActivity)activity;
 
-        if (storageSetupAct.getState().containsKey("hasStartedAuth"))
-        {
+        final String[] storedV1Keys = getKeysV1();
+        if (storedV1Keys != null) {
+           new AsyncTask<Object, Object, Object>()
+            {
+                @Override
+                protected Object doInBackground(Object... objects) {
+                    DbxOAuth1AccessToken v1Token = new DbxOAuth1AccessToken(storedV1Keys[0], storedV1Keys[1]);
+                    DbxOAuth1Upgrader upgrader = new DbxOAuth1Upgrader(requestConfig, appInfo);
+                    try {
+                        String v2Token = upgrader.createOAuth2AccessToken(v1Token);
+                        upgrader.disableOAuth1AccessToken(v1Token);
+                        storeKey(v2Token);
+                        return v2Token;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        clearKeys();
+                        return null;
+                    }
+
+                }
+
+                @Override
+                protected void onPostExecute(Object o) {
+                    if (o != null) {
+                        buildSession();
+                        finishActivityWithSuccess(activity);
+                    }
+                    else
+                        resumeGetAuthToken(activity);
+                }
+            }.execute();
+        }
+
+        else {
+
+            resumeGetAuthToken(activity);
+        }
+
+
+    }
+
+    private void resumeGetAuthToken(FileStorageSetupActivity activity) {
+        FileStorageSetupActivity storageSetupAct = activity;
+
+        if (storageSetupAct.getState().containsKey("hasStartedAuth")) {
             Log.d("KP2AJ", "auth started");
 
             String v2Token = Auth.getOAuth2Token();
@@ -542,18 +570,14 @@ public class DropboxV2Storage extends JavaFileStorageBase
             Log.i(TAG, "authenticating not succesful");
             Intent data = new Intent();
             data.putExtra(EXTRA_ERROR_MESSAGE, "authenticating not succesful");
-            ((Activity)activity).setResult(Activity.RESULT_CANCELED, data);
-            ((Activity)activity).finish();
-        }
-        else
-        {
+            ((Activity) activity).setResult(Activity.RESULT_CANCELED, data);
+            ((Activity) activity).finish();
+        } else {
             Log.d("KP2AJ", "Starting auth");
-            Auth.startOAuth2Authentication((Activity)activity, appInfo.getKey());
+            Auth.startOAuth2Authentication((Activity) activity, appInfo.getKey());
             storageSetupAct.getState().putBoolean("hasStartedAuth", true);
 
         }
-
-
     }
 
     @Override
