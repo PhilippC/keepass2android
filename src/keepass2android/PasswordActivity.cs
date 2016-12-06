@@ -1710,6 +1710,8 @@ namespace keepass2android
 			base.OnResume();
 			_activityDesign.ReapplyTheme();
 
+			Kp2aLog.Log("starting: " + _starting + ", Finishing: " + IsFinishing + ", _performingLoad: " + _performingLoad);
+
 			CheckBox cbOfflineMode = (CheckBox)FindViewById(Resource.Id.work_offline);
 			App.Kp2a.OfflineMode = cbOfflineMode.Checked = App.Kp2a.OfflineModePreference; //this won't overwrite new user settings because every change is directly saved in settings
 			LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container);

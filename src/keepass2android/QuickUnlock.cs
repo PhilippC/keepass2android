@@ -302,10 +302,12 @@ namespace keepass2android
 			var expectedPasswordPart = ExpectedPasswordPart;
 			if (pwd.Text == expectedPasswordPart)
 			{
+				Kp2aLog.Log("QuickUnlock successful!");
 				App.Kp2a.UnlockDatabase();
 			}
 			else
 			{
+				Kp2aLog.Log("QuickUnlock not successful!");
 				App.Kp2a.LockDatabase(false);
 				Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
 			}
