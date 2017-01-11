@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -115,18 +115,21 @@ namespace KeePassLib.Cryptography.Cipher
 
 		protected override void Dispose(bool bDisposing)
 		{
-			if(!bDisposing) return;
-
-			if(m_sBase != null)
+			if(bDisposing)
 			{
-				m_c.Dispose();
-				m_c = null;
+				if(m_sBase != null)
+				{
+					m_c.Dispose();
+					m_c = null;
 
-				m_sBase.Close();
-				m_sBase = null;
+					m_sBase.Close();
+					m_sBase = null;
+				}
+
+				m_pbBuffer = null;
 			}
 
-			m_pbBuffer = null;
+			base.Dispose(bDisposing);
 		}
 
 		public override void Flush()

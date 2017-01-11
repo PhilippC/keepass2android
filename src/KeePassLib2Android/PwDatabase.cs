@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -79,6 +79,7 @@ namespace KeePassLib
 		private DateTime m_dtKeyLastChanged = PwDefs.DtDefaultNow;
 		private long m_lKeyChangeRecDays = -1;
 		private long m_lKeyChangeForceDays = -1;
+		private bool m_bKeyChangeForceOnce = false;
 
 		private IOConnectionInfo m_ioSource = new IOConnectionInfo();
 		private bool m_bDatabaseOpened = false;
@@ -267,6 +268,12 @@ namespace KeePassLib
 		{
 			get { return m_lKeyChangeForceDays; }
 			set { m_lKeyChangeForceDays = value; }
+		}
+
+		public bool MasterKeyChangeForceOnce
+		{
+			get { return m_bKeyChangeForceOnce; }
+			set { m_bKeyChangeForceOnce = value; }
 		}
 
 		/// <summary>
@@ -537,7 +544,7 @@ namespace KeePassLib
 			m_vCustomIcons = new List<PwCustomIcon>();
 			m_bUINeedsIconUpdate = true;
 
-			DateTime dtNow = DateTime.Now;
+			DateTime dtNow = DateTime.UtcNow;
 
 			m_dtSettingsChanged = dtNow;
 			m_strName = string.Empty;
@@ -552,6 +559,7 @@ namespace KeePassLib
 			m_dtKeyLastChanged = dtNow;
 			m_lKeyChangeRecDays = -1;
 			m_lKeyChangeForceDays = -1;
+			m_bKeyChangeForceOnce = false;
 
 			m_ioSource = new IOConnectionInfo();
 			m_bDatabaseOpened = false;
@@ -1347,7 +1355,7 @@ namespace KeePassLib
 			where T : class, ITimeLogger, IStructureItem, IDeepCloneable<T>
 		{
 			PwObjectPoolEx p = null;
-			dtLoc = DateTime.MinValue;
+			dtLoc = TimeUtil.SafeMinValueUtc;
 
 			IStructureItem ptOrg = ppOrg.GetItemByUuid(t.Uuid);
 			if(ptOrg != null)
@@ -1374,7 +1382,7 @@ namespace KeePassLib
 			pPool = null;
 
 			int iPosMax = kvpRange.Key;
-			DateTime dtMax = DateTime.MinValue;
+			DateTime dtMax = TimeUtil.SafeMinValueUtc;
 
 			for(int i = kvpRange.Key; i <= kvpRange.Value; ++i)
 			{
@@ -1885,7 +1893,7 @@ namespace KeePassLib
 			if(m_bUseRecycleBin)
 				pgRecycleBin = m_pgRootGroup.FindGroup(m_pwRecycleBin, true);
 
-			DateTime dtNow = DateTime.Now;
+			DateTime dtNow = DateTime.UtcNow;
 			PwObjectList<PwEntry> l = m_pgRootGroup.GetEntries(true);
 			int i = 0;
 			while(true)
@@ -2010,7 +2018,7 @@ namespace KeePassLib
 				if((pg.Groups.UCount > 0) || (pg.Entries.UCount > 0)) continue;
 
 				pg.ParentGroup.Groups.Remove(pg);
-				m_vDeletedObjects.Add(new PwDeletedObject(pg.Uuid, DateTime.Now));
+				m_vDeletedObjects.Add(new PwDeletedObject(pg.Uuid, DateTime.UtcNow));
 
 				++uDeleted;
 			}

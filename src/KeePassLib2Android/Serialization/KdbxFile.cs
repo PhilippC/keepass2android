@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -125,7 +125,9 @@ namespace KeePassLib.Serialization
 		/// file version is too high), the last 2 bytes are informational.
 		/// </summary>
 		private const uint FileVersion32 = 0x00040000;
-		private const uint FileVersion32_3 = 0x00030001; // Old format
+
+		internal const uint FileVersion32_4 = 0x00040000; // First of 4.x series
+		internal const uint FileVersion32_3 = 0x00030001; // Old format 3.1
 
 		private const uint FileVersionCriticalMask = 0xFFFF0000;
 
@@ -156,6 +158,7 @@ namespace KeePassLib.Serialization
 		private const string ElemDbKeyChanged = "MasterKeyChanged";
 		private const string ElemDbKeyChangeRec = "MasterKeyChangeRec";
 		private const string ElemDbKeyChangeForce = "MasterKeyChangeForce";
+		private const string ElemDbKeyChangeForceOnce = "MasterKeyChangeForceOnce";
 		private const string ElemRecycleBinEnabled = "RecycleBinEnabled";
 		private const string ElemRecycleBinUuid = "RecycleBinUUID";
 		private const string ElemRecycleBinChanged = "RecycleBinChanged";
@@ -239,6 +242,7 @@ namespace KeePassLib.Serialization
 		private const string ElemStringDictExItem = "Item";
 
 		private PwDatabase m_pwDatabase; // Not null, see constructor
+		private bool m_bUsedOnce = false;
 
 		private XmlWriter m_xmlWriter = null;
 		private CryptoRandomStream m_randomStream = null;
@@ -249,20 +253,19 @@ namespace KeePassLib.Serialization
 		private byte[] m_pbMasterSeed = null;
 		// private byte[] m_pbTransformSeed = null;
 		private byte[] m_pbEncryptionIV = null;
-		private byte[] m_pbProtectedStreamKey = null;
 		private byte[] m_pbStreamStartBytes = null;
 
 		// ArcFourVariant only for backward compatibility; KeePass defaults
 		// to a more secure algorithm when *writing* databases
 		private CrsAlgorithm m_craInnerRandomStream = CrsAlgorithm.ArcFourVariant;
+		private byte[] m_pbInnerRandomStreamKey = null;
 
-		private Dictionary<string, ProtectedBinary> m_dictBinPool =
-			new Dictionary<string, ProtectedBinary>();
+		private ProtectedBinarySet m_pbsBinaries = new ProtectedBinarySet();
 
 		private byte[] m_pbHashOfHeader = null;
 		private byte[] m_pbHashOfFileOnDisk = null;
 
-		private readonly DateTime m_dtNow = DateTime.Now; // Cache current time
+		private readonly DateTime m_dtNow = DateTime.UtcNow; // Cache current time
 
 		private const uint NeutralLanguageOffset = 0x100000; // 2^20, see 32-bit Unicode specs
 		private const uint NeutralLanguageIDSec = 0x7DC5C; // See 32-bit Unicode specs
@@ -279,11 +282,27 @@ namespace KeePassLib.Serialization
 			TransformSeed = 5, // KDBX 3.1, for backward compatibility only
 			TransformRounds = 6, // KDBX 3.1, for backward compatibility only
 			EncryptionIV = 7,
-			ProtectedStreamKey = 8,
+			InnerRandomStreamKey = 8, // KDBX 3.1, for backward compatibility only
 			StreamStartBytes = 9, // KDBX 3.1, for backward compatibility only
-			InnerRandomStreamID = 10,
-			KdfParameters = 11, // KDBX 4
+			InnerRandomStreamID = 10, // KDBX 3.1, for backward compatibility only
+			KdfParameters = 11, // KDBX 4, superseding Transform*
 			PublicCustomData = 12 // KDBX 4
+		}
+
+		// Inner header in KDBX >= 4 files
+		private enum KdbxInnerHeaderFieldID : byte
+		{
+			EndOfHeader = 0,
+			InnerRandomStreamID = 1, // Supersedes KdbxHeaderFieldID.InnerRandomStreamID
+			InnerRandomStreamKey = 2, // Supersedes KdbxHeaderFieldID.InnerRandomStreamKey
+			Binary = 3
+		}
+
+		[Flags]
+		private enum KdbxBinaryFlags : byte
+		{
+			None = 0,
+			Protected = 1
 		}
 
 		public byte[] HashOfFileOnDisk
@@ -296,6 +315,13 @@ namespace KeePassLib.Serialization
 		{
 			get { return m_bRepairMode; }
 			set { m_bRepairMode = value; }
+		}
+
+		private uint m_uForceVersion = 0;
+		internal uint ForceVersion
+		{
+			get { return m_uForceVersion; }
+			set { m_uForceVersion = value; }
 		}
 
 		private string m_strDetachBins = null;
@@ -344,6 +370,10 @@ namespace KeePassLib.Serialization
 
 		private uint GetMinKdbxVersion()
 		{
+			if(m_uForceVersion != 0) return m_uForceVersion;
+
+			// See also KeePassKdb2x3.Export (KDBX 3.1 export module)
+
 			AesKdf kdfAes = new AesKdf();
 			if(!kdfAes.Uuid.Equals(m_pwDatabase.KdfParameters.KdfUuid))
 				return FileVersion32;
@@ -488,64 +518,12 @@ namespace KeePassLib.Serialization
 			// Do not clear the list
 		}
 
-		private void BinPoolBuild(PwGroup pgDataSource)
+		private void CleanUpInnerRandomStream()
 		{
-			m_dictBinPool = new Dictionary<string, ProtectedBinary>();
+			if(m_randomStream != null) m_randomStream.Dispose();
 
-			if(pgDataSource == null) { Debug.Assert(false); return; }
-
-			EntryHandler eh = delegate(PwEntry pe)
-			{
-				foreach(PwEntry peHistory in pe.History)
-				{
-					BinPoolAdd(peHistory.Binaries);
-				}
-
-				BinPoolAdd(pe.Binaries);
-				return true;
-			};
-
-			pgDataSource.TraverseTree(TraversalMethod.PreOrder, null, eh);
-		}
-
-		private void BinPoolAdd(ProtectedBinaryDictionary dict)
-		{
-			foreach(KeyValuePair<string, ProtectedBinary> kvp in dict)
-			{
-				BinPoolAdd(kvp.Value);
-			}
-		}
-
-		private void BinPoolAdd(ProtectedBinary pb)
-		{
-			if(pb == null) { Debug.Assert(false); return; }
-
-			if(BinPoolFind(pb) != null) return; // Exists already
-
-			m_dictBinPool.Add(m_dictBinPool.Count.ToString(
-				NumberFormatInfo.InvariantInfo), pb);
-		}
-
-		private string BinPoolFind(ProtectedBinary pb)
-		{
-			if(pb == null) { Debug.Assert(false); return null; }
-
-			foreach(KeyValuePair<string, ProtectedBinary> kvp in m_dictBinPool)
-			{
-				if(pb.Equals(kvp.Value)) return kvp.Key;
-			}
-
-			return null;
-		}
-
-		private ProtectedBinary BinPoolGet(string strKey)
-		{
-			if(strKey == null) { Debug.Assert(false); return null; }
-
-			ProtectedBinary pb;
-			if(m_dictBinPool.TryGetValue(strKey, out pb)) return pb;
-
-			return null;
+			if(m_pbInnerRandomStreamKey != null)
+				MemUtil.ZeroByteArray(m_pbInnerRandomStreamKey);
 		}
 
 		private static void SaveBinary(string strName, ProtectedBinary pb,

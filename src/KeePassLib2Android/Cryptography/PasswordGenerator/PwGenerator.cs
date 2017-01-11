@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,6 +21,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
 
 using KeePassLib.Security;
 
@@ -46,8 +50,12 @@ namespace KeePassLib.Cryptography.PasswordGenerator
 			Debug.Assert(pwProfile != null);
 			if(pwProfile == null) throw new ArgumentNullException("pwProfile");
 
-			CryptoRandomStream crs = CreateCryptoStream(pbUserEntropy);
 			PwgError e = PwgError.Unknown;
+			CryptoRandomStream crs = null;
+			byte[] pbKey = null;
+			try
+			{
+				crs = CreateRandomStream(pbUserEntropy, out pbKey);
 
 			if(pwProfile.GeneratorType == PasswordGeneratorType.CharSet)
 				e = CharSetBasedGenerator.Generate(out psOut, pwProfile, crs);
@@ -56,13 +64,20 @@ namespace KeePassLib.Cryptography.PasswordGenerator
 			else if(pwProfile.GeneratorType == PasswordGeneratorType.Custom)
 				e = GenerateCustom(out psOut, pwProfile, crs, pwAlgorithmPool);
 			else { Debug.Assert(false); psOut = ProtectedString.Empty; }
+			}
+			finally
+			{
+				if(crs != null) crs.Dispose();
+				if(pbKey != null) MemUtil.ZeroByteArray(pbKey);
+			}
 
 			return e;
 		}
 
-		private static CryptoRandomStream CreateCryptoStream(byte[] pbAdditionalEntropy)
+		private static CryptoRandomStream CreateRandomStream(byte[] pbAdditionalEntropy,
+			out byte[] pbKey)
 		{
-			byte[] pbKey = CryptoRandom.Instance.GetRandomBytes(256);
+			pbKey = CryptoRandom.Instance.GetRandomBytes(256);
 
 			// Mix in additional entropy
 			if((pbAdditionalEntropy != null) && (pbAdditionalEntropy.Length > 0))

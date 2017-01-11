@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -39,18 +39,18 @@ namespace KeePassLib.Interfaces
 		}
 
 		/// <summary>
-		/// The date/time when the object was last accessed.
+		/// The date/time when the object was last modified.
 		/// </summary>
-		DateTime LastAccessTime
+		DateTime LastModificationTime
 		{
 			get;
 			set;
 		}
 
 		/// <summary>
-		/// The date/time when the object was last modified.
+		/// The date/time when the object was last accessed.
 		/// </summary>
-		DateTime LastModificationTime
+		DateTime LastAccessTime
 		{
 			get;
 			set;
@@ -101,19 +101,5 @@ namespace KeePassLib.Interfaces
 		/// </summary>
 		/// <param name="bModified">Update last modification time.</param>
 		void Touch(bool bModified);
-
-		#region Set times lazily
-		// Passing xml datetime string to be parsed only on demand
-
-		void SetLazyLastModificationTime(string xmlDateTime);
-
-		void SetLazyCreationTime(string xmlDateTime);
-
-		void SetLazyLastAccessTime(string xmlDateTime);
-
-		void SetLazyExpiryTime(string xmlDateTime);
-
-		void SetLazyLocationChanged(string xmlDateTime);
-		#endregion
 	}
 }

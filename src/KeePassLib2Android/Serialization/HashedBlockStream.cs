@@ -164,21 +164,10 @@ namespace KeePassLib.Serialization
 			}
 		}
 
-		public override void Flush()
-		{
-			if(m_bWriting) m_bwOutput.Flush();
-		}
-
-#if KeePassUAP
 		protected override void Dispose(bool disposing)
 		{
-			if(!disposing) return;
-#else
-		public override void Close()
+			if(disposing && (m_sBaseStream != null))
 		{
-#endif
-			if(m_sBaseStream != null)
-			{
 				if(!m_bWriting) // Reading mode
 				{
 					m_brInput.Close();
@@ -202,6 +191,13 @@ namespace KeePassLib.Serialization
 				m_sBaseStream.Close();
 				m_sBaseStream = null;
 			}
+
+			base.Dispose(disposing);
+		}
+
+		public override void Flush()
+		{
+			if(m_bWriting) m_bwOutput.Flush();
 		}
 
 		public override long Seek(long lOffset, SeekOrigin soOrigin)

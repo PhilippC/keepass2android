@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -165,7 +165,7 @@ namespace KeePassLib.Security
 		/// </summary>
 		public ProtectedBinary()
 		{
-			Init(false, MemUtil.EmptyByteArray);
+			Init(false, MemUtil.EmptyByteArray, 0, 0);
 		}
 
 		/// <summary>
@@ -180,7 +180,27 @@ namespace KeePassLib.Security
 		/// i.e. the caller is responsible for clearing it.</param>
 		public ProtectedBinary(bool bEnableProtection, byte[] pbData)
 		{
-			Init(bEnableProtection, pbData);
+			if(pbData == null) throw new ArgumentNullException("pbData");
+
+			Init(bEnableProtection, pbData, 0, pbData.Length);
+		}
+
+		/// <summary>
+		/// Construct a new protected binary data object.
+		/// </summary>
+		/// <param name="bEnableProtection">If this paremeter is <c>true</c>,
+		/// the data will be encrypted in memory. If it is <c>false</c>, the
+		/// data is stored in plain-text in the process memory.</param>
+		/// <param name="pbData">Value of the protected object.
+		/// The input parameter is not modified and
+		/// <c>ProtectedBinary</c> doesn't take ownership of the data,
+		/// i.e. the caller is responsible for clearing it.</param>
+		/// <param name="iOffset">Offset for <paramref name="pbData" />.</param>
+		/// <param name="cbSize">Size for <paramref name="pbData" />.</param>
+		public ProtectedBinary(bool bEnableProtection, byte[] pbData,
+			int iOffset, int cbSize)
+		{
+			Init(bEnableProtection, pbData, iOffset, cbSize);
 		}
 
 		/// <summary>
@@ -196,14 +216,19 @@ namespace KeePassLib.Security
 			if(xbProtected == null) throw new ArgumentNullException("xbProtected");
 
 			byte[] pb = xbProtected.ReadPlainText();
-			Init(bEnableProtection, pb);
+			Init(bEnableProtection, pb, 0, pb.Length);
 
 			if(bEnableProtection) MemUtil.ZeroByteArray(pb);
 		}
 
-		private void Init(bool bEnableProtection, byte[] pbData)
+		private void Init(bool bEnableProtection, byte[] pbData, int iOffset,
+			int cbSize)
 		{
 			if(pbData == null) throw new ArgumentNullException("pbData");
+			if(iOffset < 0) throw new ArgumentOutOfRangeException("iOffset");
+			if(cbSize < 0) throw new ArgumentOutOfRangeException("cbSize");
+			if(iOffset > (pbData.Length - cbSize))
+				throw new ArgumentOutOfRangeException("cbSize");
 
 #if KeePassLibSD
 			m_lID = ++g_lCurID;
@@ -212,15 +237,15 @@ namespace KeePassLib.Security
 #endif
 
 			m_bProtected = bEnableProtection;
-			m_uDataLen = (uint)pbData.Length;
+			m_uDataLen = (uint)cbSize;
 
 			const int bs = ProtectedBinary.BlockSize;
-			int nBlocks = (int)m_uDataLen / bs;
-			if((nBlocks * bs) < (int)m_uDataLen) ++nBlocks;
-			Debug.Assert((nBlocks * bs) >= (int)m_uDataLen);
+			int nBlocks = cbSize / bs;
+			if((nBlocks * bs) < cbSize) ++nBlocks;
+			Debug.Assert((nBlocks * bs) >= cbSize);
 
 			m_pbData = new byte[nBlocks * bs];
-			Array.Copy(pbData, m_pbData, (int)m_uDataLen);
+			Array.Copy(pbData, iOffset, m_pbData, 0, cbSize);
 
 			Encrypt();
 		}

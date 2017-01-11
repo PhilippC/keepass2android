@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ namespace KeePassLib.Cryptography
 {
 	public sealed class HashingStreamEx : Stream
 	{
-		private Stream m_sBaseStream;
+		private readonly Stream m_sBaseStream;
 		private bool m_bWriting;
 		private HashAlgorithm m_hash;
 
@@ -105,11 +105,8 @@ namespace KeePassLib.Cryptography
 #if KeePassRT
 		protected override void Dispose(bool disposing)
 		{
-			if(!disposing) return;
-#else
-		public override void Close()
+			if(disposing)
 		{
-#endif
 			if(m_hash != null)
 			{
 				try
@@ -124,6 +121,14 @@ namespace KeePassLib.Cryptography
 			}
 
 			m_sBaseStream.Close();
+		}
+
+			base.Dispose(disposing);
+		}
+
+		public override void Flush()
+		{
+			m_sBaseStream.Flush();
 		}
 
 		public override long Seek(long lOffset, SeekOrigin soOrigin)

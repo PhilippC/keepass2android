@@ -24,6 +24,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Xml;
 
 
@@ -34,6 +35,8 @@ namespace KeePassLib.Utility
 	public static class MonoWorkarounds
 	{
 		private static Dictionary<uint, bool> m_dForceReq = new Dictionary<uint, bool>();
+		private static Thread m_thFixClip = null;
+
 
 		private static bool? m_bReq = null;
 		public static bool IsRequired()
@@ -114,6 +117,17 @@ namespace KeePassLib.Utility
 		// 3574233558:
 		//   Problems with minimizing windows, no content rendered.
 		//   https://sourceforge.net/p/keepass/discussion/329220/thread/d50a79d6/
+		//   https://bugs.launchpad.net/ubuntu/+source/keepass2/+bug/801414
+		// 891029:
+		//   Increase tab control height, otherwise Mono throws exceptions.
+		//   https://sourceforge.net/projects/keepass/forums/forum/329221/topic/4519750
+		//   https://bugs.launchpad.net/ubuntu/+source/keepass2/+bug/891029
+		// 836428016:
+		//   ListView group header selection unsupported.
+		//   https://sourceforge.net/p/keepass/discussion/329221/thread/31dae0f0/
+		// 3574233558:
+		//   Problems with minimizing windows, no content rendered.
+		//   https://sourceforge.net/p/keepass/discussion/329220/thread/d50a79d6/
 		public static bool IsRequired(uint uBugID)
 		{
 			if(!MonoWorkarounds.IsRequired()) return false;
@@ -146,6 +160,118 @@ namespace KeePassLib.Utility
 			}
 		}
 
+		internal static void Initialize()
+		{
+			Terminate();
+
+			// m_fOwnWindow = fOwnWindow;
+
+			if(IsRequired(1530))
+			{
+				try
+				{
+					ThreadStart ts = new ThreadStart(MonoWorkarounds.FixClipThread);
+					m_thFixClip = new Thread(ts);
+					m_thFixClip.Start();
+				}
+				catch(Exception) { Debug.Assert(false); }
+			}
+		}
+
+		internal static void Terminate()
+		{
+			if(m_thFixClip != null)
+			{
+				try { m_thFixClip.Abort(); }
+				catch(Exception) { Debug.Assert(false); }
+
+				m_thFixClip = null;
+			}
+		}
+
+		private static void FixClipThread()
+		{
+			try
+			{
+#if !KeePassUAP
+				const string strXSel = "xsel";
+				const AppRunFlags rfW = AppRunFlags.WaitForExit;
+
+				string strLast = null;
+				while(true)
+				{
+					string str = NativeLib.RunConsoleApp(strXSel,
+						"--output --clipboard");
+					if(str == null) return; // 'xsel' not installed
+
+					if(str != strLast)
+					{
+						if(NeedClipboardWorkaround())
+							NativeLib.RunConsoleApp(strXSel,
+								"--input --clipboard", str, rfW);
+
+						strLast = str;
+					}
+
+					Thread.Sleep(250);
+				}
+#endif
+			}
+			catch(ThreadAbortException)
+			{
+				try { Thread.ResetAbort(); }
+				catch(Exception) { Debug.Assert(false); }
+			}
+			catch(Exception) { Debug.Assert(false); }
+			finally { m_thFixClip = null; }
+		}
+
+		private static bool NeedClipboardWorkaround()
+		{
+			const bool bDef = true;
+
+			try
+			{
+				string strHandle = (NativeLib.RunConsoleApp("xdotool",
+					"getactivewindow") ?? string.Empty).Trim();
+				if(strHandle.Length == 0) return bDef;
+
+				// IntPtr h = new IntPtr(long.Parse(strHandle));
+				long.Parse(strHandle); // Validate
+
+				// Detection of own windows based on Form.Handle
+				// comparisons doesn't work reliably (Mono's handles
+				// are usually off by 1)
+				// Predicate<IntPtr> fOwnWindow = m_fOwnWindow;
+				// if(fOwnWindow != null)
+				// {
+				//	if(fOwnWindow(h)) return true;
+				// }
+				// else { Debug.Assert(false); }
+
+				string strWmClass = (NativeLib.RunConsoleApp("xprop",
+					"-id " + strHandle + " WM_CLASS") ?? string.Empty);
+
+				if(strWmClass.IndexOf("\"" + PwDefs.ResClass + "\"",
+					StrUtil.CaseIgnoreCmp) >= 0) return true;
+
+				// Workaround for Remmina
+				if(strWmClass.IndexOf("\"Remmina\"",
+					StrUtil.CaseIgnoreCmp) >= 0) return true;
+
+				return false;
+			}
+			catch(ThreadAbortException) { throw; }
+			catch(Exception) { Debug.Assert(false); }
+
+			return bDef;
+		}
+
+#if !KeePassUAP
+		public static void ApplyTo(Form f)
+		{
+			if(!MonoWorkarounds.IsRequired()) return;
+			if(f == null) { Debug.Assert(false); return; }
 		/// <summary>
 		/// Ensure that the file ~/.recently-used is valid (in order to
 		/// prevent Mono's FileDialog from crashing).

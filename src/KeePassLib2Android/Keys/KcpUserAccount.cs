@@ -1,8 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
-  
-  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -43,7 +41,7 @@ namespace KeePassLib.Keys
 		private ProtectedBinary m_pbKeyData = null;
 
 		// Constant initialization vector (unique for KeePass)
-		private static readonly byte[] m_pbEntropy = new byte[]{
+		private static readonly byte[] m_pbEntropy = new byte[] {
 			0xDE, 0x13, 0x5B, 0x5F, 0x18, 0xA3, 0x46, 0x70,
 			0xB2, 0x57, 0x24, 0x29, 0x69, 0x88, 0x98, 0xE6
 		};
@@ -65,7 +63,22 @@ namespace KeePassLib.Keys
 		/// </summary>
 		public KcpUserAccount()
 		{
-			throw new NotSupportedException("DataProtection not supported on MonoForAndroid!");
+			// Test if ProtectedData is supported -- throws an exception
+			// when running on an old system (Windows 98 / ME).
+			byte[] pbDummyData = new byte[128];
+			ProtectedData.Protect(pbDummyData, m_pbEntropy,
+				DataProtectionScope.CurrentUser);
+
+			byte[] pbKey = LoadUserKey(false);
+			if(pbKey == null) pbKey = CreateUserKey();
+			if(pbKey == null) // Should never happen
+			{
+				Debug.Assert(false);
+				throw new SecurityException(KLRes.UserAccountKeyError);
+			}
+
+			m_pbKeyData = new ProtectedBinary(true, pbKey);
+			MemUtil.ZeroByteArray(pbKey);
 		}
 
 		// public void Clear()
@@ -75,8 +88,8 @@ namespace KeePassLib.Keys
 
 		private static string GetUserKeyFilePath(bool bCreate)
 		{
-#if KeePassRT
-			string strUserDir = Windows.Storage.ApplicationData.Current.RoamingFolder.Path;
+#if KeePassUAP
+			string strUserDir = EnvironmentExt.AppDataRoamingFolderPath;
 #else
 			string strUserDir = Environment.GetFolderPath(
 				Environment.SpecialFolder.ApplicationData);
@@ -89,22 +102,25 @@ namespace KeePassLib.Keys
 				Directory.CreateDirectory(strUserDir);
 
 			strUserDir = UrlUtil.EnsureTerminatingSeparator(strUserDir, false);
-			return strUserDir + UserKeyFileName;
+			return (strUserDir + UserKeyFileName);
 		}
 
-		private static byte[] LoadUserKey(bool bShowWarning)
+		private static byte[] LoadUserKey(bool bThrow)
 		{
 			byte[] pbKey = null;
 
 #if !KeePassLibSD
 			try
 			{
-				throw new NotSupportedException("DataProtection not supported on MonoForAndroid!");
-			}
-			catch(Exception exLoad)
-			{
-				if(bShowWarning) MessageService.ShowWarning(exLoad);
+				string strFilePath = GetUserKeyFilePath(false);
+				byte[] pbProtectedKey = File.ReadAllBytes(strFilePath);
 
+				pbKey = ProtectedData.Unprotect(pbProtectedKey, m_pbEntropy,
+					DataProtectionScope.CurrentUser);
+			}
+			catch(Exception)
+			{
+				if(bThrow) throw;
 				pbKey = null;
 			}
 #endif
@@ -114,17 +130,23 @@ namespace KeePassLib.Keys
 
 		private static byte[] CreateUserKey()
 		{
-			byte[] pbKey = null;
+#if KeePassLibSD
+			return null;
+#else
+			string strFilePath = GetUserKeyFilePath(true);
 
-#if !KeePassLibSD
-			try
-			{
-				throw new NotSupportedException("DataProtection not supported on MonoForAndroid!");
-			}
-			catch(Exception) { pbKey = null; }
-#endif
+			byte[] pbRandomKey = CryptoRandom.Instance.GetRandomBytes(64);
+			byte[] pbProtectedKey = ProtectedData.Protect(pbRandomKey,
+				m_pbEntropy, DataProtectionScope.CurrentUser);
 
+			File.WriteAllBytes(strFilePath, pbProtectedKey);
+
+			byte[] pbKey = LoadUserKey(true);
+			Debug.Assert(MemUtil.ArraysEqual(pbKey, pbRandomKey));
+
+			MemUtil.ZeroByteArray(pbRandomKey);
 			return pbKey;
+#endif
 		}
 	}
 }

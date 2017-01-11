@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -132,7 +132,6 @@ namespace KeePassLib.Serialization
 			if(xr == null) throw new ArgumentNullException("xr");
 
 			m_ctxGroups.Clear();
-			m_dictBinPool = new Dictionary<string, ProtectedBinary>();
 
 			KdbContext ctx = KdbContext.Null;
 
@@ -233,11 +232,11 @@ namespace KeePassLib.Serialization
 						if(!string.IsNullOrEmpty(strHash) && (m_pbHashOfHeader != null) &&
 							!m_bRepairMode)
 						{
-							Debug.Assert(m_uFileVersion <= FileVersion32_3);
+							Debug.Assert(m_uFileVersion < FileVersion32_4);
 
 							byte[] pbHash = Convert.FromBase64String(strHash);
 							if(!MemUtil.ArraysEqual(pbHash, m_pbHashOfHeader))
-								throw new IOException(KLRes.FileCorrupted);
+								throw new InvalidDataException(KLRes.FileCorrupted);
 						}
 					}
 					else if(xr.Name == ElemSettingsChanged)
@@ -268,6 +267,8 @@ namespace KeePassLib.Serialization
 						m_pwDatabase.MasterKeyChangeRec = ReadLong(xr, -1);
 					else if(xr.Name == ElemDbKeyChangeForce)
 						m_pwDatabase.MasterKeyChangeForce = ReadLong(xr, -1);
+					else if(xr.Name == ElemDbKeyChangeForceOnce)
+						m_pwDatabase.MasterKeyChangeForceOnce = ReadBool(xr, false);
 					else if(xr.Name == ElemMemoryProt)
 						return SwitchContext(ctx, KdbContext.MemoryProtection, xr);
 					else if(xr.Name == ElemCustomIcons)
@@ -340,7 +341,14 @@ namespace KeePassLib.Serialization
 							string strKey = xr.Value;
 							ProtectedBinary pbData = ReadProtectedBinary(xr);
 
-							m_dictBinPool[strKey ?? string.Empty] = pbData;
+							int iKey;
+							if(!StrUtil.TryParseIntInvariant(strKey, out iKey))
+								throw new FormatException();
+							if(iKey < 0) throw new FormatException();
+
+							Debug.Assert(m_pbsBinaries.Get(iKey) == null);
+							Debug.Assert(m_pbsBinaries.Find(pbData) < 0);
+							m_pbsBinaries.Set(iKey, pbData);
 						}
 						else ReadUnknown(xr);
 					}
@@ -386,7 +394,7 @@ namespace KeePassLib.Serialization
 					else if(xr.Name == ElemNotes)
 						m_ctxGroup.Notes = ReadString(xr);
 					else if(xr.Name == ElemIcon)
-						m_ctxGroup.IconId = (PwIcon)ReadInt(xr, (int)PwIcon.Folder);
+						m_ctxGroup.IconId = ReadIconId(xr, PwIcon.Folder);
 					else if(xr.Name == ElemCustomIconID)
 						m_ctxGroup.CustomIconUuid = ReadUuid(xr);
 					else if(xr.Name == ElemTimes)
@@ -441,7 +449,7 @@ namespace KeePassLib.Serialization
 					if(xr.Name == ElemUuid)
 						m_ctxEntry.Uuid = ReadUuid(xr);
 					else if(xr.Name == ElemIcon)
-						m_ctxEntry.IconId = (PwIcon)ReadInt(xr, (int)PwIcon.Key);
+						m_ctxEntry.IconId = ReadIconId(xr, PwIcon.Key);
 					else if(xr.Name == ElemCustomIconID)
 						m_ctxEntry.CustomIconUuid = ReadUuid(xr);
 					else if(xr.Name == ElemFgColor)
@@ -849,13 +857,43 @@ namespace KeePassLib.Serialization
 
 		private DateTime ReadTime(XmlReader xr)
 		{
-			string str = ReadString(xr);
+			// Cf. WriteObject(string, DateTime)
+			if((m_format == KdbxFormat.Default) && (m_uFileVersion >= FileVersion32_4))
+			{
+				// long l = ReadLong(xr, -1);
+				// if(l != -1) return DateTime.FromBinary(l);
 
-			DateTime dt;
-			if(TimeUtil.TryDeserializeUtc(str, out dt)) return dt;
+				string str = ReadString(xr);
+				byte[] pb = Convert.FromBase64String(str);
+				if(pb.Length != 8)
+				{
+					Debug.Assert(false);
+					byte[] pb8 = new byte[8];
+					Array.Copy(pb, pb8, Math.Min(pb.Length, 8)); // Little-endian
+					pb = pb8;
+				}
+				long lSec = MemUtil.BytesToInt64(pb);
+				return new DateTime(lSec * TimeSpan.TicksPerSecond, DateTimeKind.Utc);
+			}
+			else
+			{
+				string str = ReadString(xr);
+
+				DateTime dt;
+				if(TimeUtil.TryDeserializeUtc(str, out dt)) return dt;
+			}
 
 			Debug.Assert(false);
 			return m_dtNow;
+		}
+
+		private PwIcon ReadIconId(XmlReader xr, PwIcon icDefault)
+		{
+			int i = ReadInt(xr, (int)icDefault);
+			if((i >= 0) && (i < (int)PwIcon.Count)) return (PwIcon)i;
+
+			Debug.Assert(false);
+			return icDefault;
 		}
 
 		private ProtectedString ReadProtectedString(XmlReader xr)
@@ -882,21 +920,26 @@ namespace KeePassLib.Serialization
 			if(xr.MoveToAttribute(AttrRef))
 			{
 				string strRef = xr.Value;
-				if(strRef != null)
+				if(!string.IsNullOrEmpty(strRef))
 				{
-					ProtectedBinary pb = BinPoolGet(strRef);
-					if(pb != null)
+					int iRef;
+					if(StrUtil.TryParseIntInvariant(strRef, out iRef))
 					{
-						// https://sourceforge.net/p/keepass/feature-requests/2023/
-						xr.MoveToElement();
+						ProtectedBinary pb = m_pbsBinaries.Get(iRef);
+						if(pb != null)
+						{
+							// https://sourceforge.net/p/keepass/feature-requests/2023/
+							xr.MoveToElement();
 #if DEBUG
-						string strInner = ReadStringRaw(xr);
-						Debug.Assert(string.IsNullOrEmpty(strInner));
+							string strInner = ReadStringRaw(xr);
+							Debug.Assert(string.IsNullOrEmpty(strInner));
 #else
-						ReadStringRaw(xr);
+							ReadStringRaw(xr);
 #endif
 
-						return pb;
+							return pb;
+						}
+						else { Debug.Assert(false); }
 					}
 					else { Debug.Assert(false); }
 				}

@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -45,6 +45,8 @@ namespace KeePassLib.Cryptography.PasswordGenerator
 
 		public const string Invalid = "\t\r\n";
 		public const string LookAlike = @"O0l1I|";
+
+		internal const string MenuAccels = PwCharSet.LowerCase + PwCharSet.Digits;
 
 		private const int CharTabSize = (0x10000 / 8);
 
