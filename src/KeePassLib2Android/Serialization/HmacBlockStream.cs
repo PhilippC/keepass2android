@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -98,21 +98,9 @@ namespace KeePassLib.Serialization
 			}
 		}
 
-		public override void Flush()
-		{
-			Debug.Assert(m_sBase != null); // Object should not be disposed
-			if(m_bWriting && (m_sBase != null)) m_sBase.Flush();
-		}
-
-#if KeePassUAP
 		protected override void Dispose(bool disposing)
 		{
-			if(!disposing) return;
-#else
-		public override void Close()
-		{
-#endif
-			if(m_sBase != null)
+			if(disposing && (m_sBase != null))
 			{
 				if(m_bWriting)
 				{
@@ -130,6 +118,14 @@ namespace KeePassLib.Serialization
 				m_sBase.Close();
 				m_sBase = null;
 			}
+
+			base.Dispose(disposing);
+		}
+
+		public override void Flush()
+		{
+			Debug.Assert(m_sBase != null); // Object should not be disposed
+			if(m_bWriting && (m_sBase != null)) m_sBase.Flush();
 		}
 
 		public override long Seek(long lOffset, SeekOrigin soOrigin)
@@ -206,7 +202,8 @@ namespace KeePassLib.Serialization
 
 			byte[] pbStoredHmac = MemUtil.Read(m_sBase, 32);
 			if((pbStoredHmac == null) || (pbStoredHmac.Length != 32))
-				throw new EndOfStreamException();
+				throw new EndOfStreamException(KLRes.FileCorrupted + " " +
+					KLRes.FileIncomplete);
 
 			// Block index is implicit: it's used in the HMAC computation,
 			// but does not need to be stored
@@ -220,7 +217,8 @@ namespace KeePassLib.Serialization
 
 			byte[] pbBlockSize = MemUtil.Read(m_sBase, 4);
 			if((pbBlockSize == null) || (pbBlockSize.Length != 4))
-				throw new EndOfStreamException();
+				throw new EndOfStreamException(KLRes.FileCorrupted + " " +
+					KLRes.FileIncomplete);
 			int nBlockSize = MemUtil.BytesToInt32(pbBlockSize);
 			if(nBlockSize < 0)
 				throw new InvalidDataException(KLRes.FileCorrupted);
@@ -229,7 +227,8 @@ namespace KeePassLib.Serialization
 
 			m_pbBuffer = MemUtil.Read(m_sBase, nBlockSize);
 			if((m_pbBuffer == null) || ((m_pbBuffer.Length != nBlockSize) && m_bVerify))
-				throw new EndOfStreamException();
+				throw new EndOfStreamException(KLRes.FileCorrupted + " " +
+					KLRes.FileIncompleteExpc);
 
 			if(m_bVerify)
 			{

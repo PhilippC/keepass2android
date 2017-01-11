@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,7 +18,10 @@
 */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 
 #if !KeePassUAP
@@ -33,8 +36,8 @@ using KeePassLib.Utility;
 namespace KeePassLib.Cryptography
 {
 	/// <summary>
-	/// Cryptographically strong random number generator. The returned
-	/// values are unpredictable and cannot be reproduced.
+	/// Cryptographically secure pseudo-random number generator.
+	/// The returned values are unpredictable and cannot be reproduced.
 	/// <c>CryptoRandom</c> is a singleton class.
 	/// </summary>
 	public sealed class CryptoRandom
@@ -90,12 +93,13 @@ namespace KeePassLib.Cryptography
 
 		private CryptoRandom()
 		{
-			Random rWeak = new Random();
-			byte[] pb = new byte[8];
-			rWeak.NextBytes(pb);
-			m_uCounter = MemUtil.BytesToUInt64(pb);
+			// Random rWeak = new Random(); // Based on tick count
+			// byte[] pb = new byte[8];
+			// rWeak.NextBytes(pb);
+			// m_uCounter = MemUtil.BytesToUInt64(pb);
+			m_uCounter = (ulong)DateTime.UtcNow.ToBinary();
 
-			AddEntropy(GetSystemData(rWeak));
+			AddEntropy(GetSystemData());
 			AddEntropy(GetCspData());
 		}
 
@@ -147,7 +151,7 @@ namespace KeePassLib.Cryptography
 			}
 		}
 
-		private static byte[] GetSystemData(Random rWeak)
+		private static byte[] GetSystemData()
 		{
 			MemoryStream ms = new MemoryStream();
 			byte[] pb;
@@ -172,29 +176,37 @@ namespace KeePassLib.Cryptography
 			catch(Exception) { }
 #endif
 
-			pb = MemUtil.Int32ToBytes(rWeak.Next());
-			MemUtil.Write(ms, pb);
-
 			pb = MemUtil.UInt32ToBytes((uint)NativeLib.GetPlatformID());
 			MemUtil.Write(ms, pb);
 
 			try
 			{
+#if KeePassUAP
+				string strOS = EnvironmentExt.OSVersion.VersionString;
+#else
+				string strOS = Environment.OSVersion.VersionString;
+#endif
+				AddStrHash(ms, strOS);
+
 				pb = MemUtil.Int32ToBytes(Environment.ProcessorCount);
 				MemUtil.Write(ms, pb);
 
-#if KeePassUAP
-				Version v = EnvironmentExt.OSVersion.Version;
-#else
-				Version v = Environment.OSVersion.Version;
-#endif
-				pb = MemUtil.Int32ToBytes(v.GetHashCode());
-				MemUtil.Write(ms, pb);
-
 #if !KeePassUAP
+				AddStrHash(ms, Environment.CommandLine);
+
 				pb = MemUtil.Int64ToBytes(Environment.WorkingSet);
 				MemUtil.Write(ms, pb);
 #endif
+			}
+			catch(Exception) { Debug.Assert(false); }
+
+			try
+			{
+				foreach(DictionaryEntry de in Environment.GetEnvironmentVariables())
+				{
+					AddStrHash(ms, (de.Key as string));
+					AddStrHash(ms, (de.Value as string));
+				}
 			}
 			catch(Exception) { Debug.Assert(false); }
 
@@ -246,12 +258,34 @@ namespace KeePassLib.Cryptography
 			}
 #endif
 
+			try
+			{
+				CultureInfo ci = CultureInfo.CurrentCulture;
+				if(ci != null)
+				{
+					pb = MemUtil.Int32ToBytes(ci.GetHashCode());
+					MemUtil.Write(ms, pb);
+				}
+				else { Debug.Assert(false); }
+			}
+			catch(Exception) { Debug.Assert(false); }
+
 			pb = Guid.NewGuid().ToByteArray();
 			MemUtil.Write(ms, pb);
 
 			byte[] pbAll = ms.ToArray();
 			ms.Close();
 			return pbAll;
+		}
+
+		private static void AddStrHash(Stream s, string str)
+		{
+			if(s == null) { Debug.Assert(false); return; }
+			if(string.IsNullOrEmpty(str)) return;
+
+			byte[] pbUtf8 = StrUtil.Utf8.GetBytes(str);
+			byte[] pbHash = CryptoUtil.HashSha256(pbUtf8);
+			MemUtil.Write(s, pbHash);
 		}
 
 		private byte[] GetCspData()
@@ -318,7 +352,7 @@ namespace KeePassLib.Cryptography
 				byte[] pbRandom256 = GenerateRandom256();
 				Debug.Assert(pbRandom256.Length == 32);
 
-				int cbCopy = Math.Min(cbRem, 32);
+				int cbCopy = Math.Min(cbRem, pbRandom256.Length);
 				Array.Copy(pbRandom256, 0, pbRes, iPos, cbCopy);
 
 				MemUtil.ZeroByteArray(pbRandom256);

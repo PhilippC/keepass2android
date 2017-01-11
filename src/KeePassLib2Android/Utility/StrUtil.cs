@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -669,7 +669,8 @@ namespace KeePassLib.Utility
 			return DateTime.TryParse(str, out dt);
 #else
 			try { dt = DateTime.Parse(str); return true; }
-			catch(Exception) { dt = DateTime.MinValue; return false; }
+			catch(Exception) { dt = DateTime.UtcNow; }
+			return false;
 #endif
 		}
 
@@ -1731,6 +1732,17 @@ namespace KeePassLib.Utility
 			}
 
 			return iCount;
+		}
+
+		internal static string ReplaceNulls(string str)
+		{
+			if(str == null) { Debug.Assert(false); return null; }
+
+			if(str.IndexOf('\0') < 0) return str;
+
+			// Replacing null characters by spaces is the
+			// behavior of Notepad (on Windows 10)
+			return str.Replace('\0', ' ');
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Xml;
 
 #if !KeePassUAP
@@ -37,6 +38,8 @@ namespace KeePassLib.Utility
 	public static class MonoWorkarounds
 	{
 		private static Dictionary<uint, bool> m_dForceReq = new Dictionary<uint, bool>();
+		private static Thread m_thFixClip = null;
+		// private static Predicate<IntPtr> m_fOwnWindow = null;
 
 		private static bool? m_bReq = null;
 		public static bool IsRequired()
@@ -56,6 +59,7 @@ namespace KeePassLib.Utility
 		//   https://sourceforge.net/p/keepass/bugs/1254/
 		// 1354:
 		//   Finalizer of NotifyIcon throws on Unity.
+		//   See also 1574.
 		//   https://sourceforge.net/p/keepass/bugs/1354/
 		// 1358:
 		//   FileDialog crashes when ~/.recently-used is invalid.
@@ -70,6 +74,16 @@ namespace KeePassLib.Utility
 		// 1418:
 		//   Minimizing a form while loading it doesn't work.
 		//   https://sourceforge.net/p/keepass/bugs/1418/
+		// 1527:
+		//   Timer causes 100% CPU load.
+		//   https://sourceforge.net/p/keepass/bugs/1527/
+		// 1530:
+		//   Mono's clipboard functions don't work properly.
+		//   https://sourceforge.net/p/keepass/bugs/1530/
+		// 1574:
+		//   Finalizer of NotifyIcon throws on Mac OS X.
+		//   See also 1354.
+		//   https://sourceforge.net/p/keepass/bugs/1574/
 		// 2139:
 		//   Shortcut keys are ignored.
 		//   https://sourceforge.net/p/keepass/feature-requests/2139/
@@ -147,6 +161,113 @@ namespace KeePassLib.Utility
 				if(StrUtil.TryParseUInt(strID.Trim(), out uID))
 					m_dForceReq[uID] = bEnabled;
 			}
+		}
+
+		internal static void Initialize()
+		{
+			Terminate();
+
+			// m_fOwnWindow = fOwnWindow;
+
+			if(IsRequired(1530))
+			{
+				try
+				{
+					ThreadStart ts = new ThreadStart(MonoWorkarounds.FixClipThread);
+					m_thFixClip = new Thread(ts);
+					m_thFixClip.Start();
+				}
+				catch(Exception) { Debug.Assert(false); }
+			}
+		}
+
+		internal static void Terminate()
+		{
+			if(m_thFixClip != null)
+			{
+				try { m_thFixClip.Abort(); }
+				catch(Exception) { Debug.Assert(false); }
+
+				m_thFixClip = null;
+			}
+		}
+
+		private static void FixClipThread()
+		{
+			try
+			{
+#if !KeePassUAP
+				const string strXSel = "xsel";
+				const AppRunFlags rfW = AppRunFlags.WaitForExit;
+
+				string strLast = null;
+				while(true)
+				{
+					string str = NativeLib.RunConsoleApp(strXSel,
+						"--output --clipboard");
+					if(str == null) return; // 'xsel' not installed
+
+					if(str != strLast)
+					{
+						if(NeedClipboardWorkaround())
+							NativeLib.RunConsoleApp(strXSel,
+								"--input --clipboard", str, rfW);
+
+						strLast = str;
+					}
+
+					Thread.Sleep(250);
+				}
+#endif
+			}
+			catch(ThreadAbortException)
+			{
+				try { Thread.ResetAbort(); }
+				catch(Exception) { Debug.Assert(false); }
+			}
+			catch(Exception) { Debug.Assert(false); }
+			finally { m_thFixClip = null; }
+		}
+
+		private static bool NeedClipboardWorkaround()
+		{
+			const bool bDef = true;
+
+			try
+			{
+				string strHandle = (NativeLib.RunConsoleApp("xdotool",
+					"getactivewindow") ?? string.Empty).Trim();
+				if(strHandle.Length == 0) return bDef;
+
+				// IntPtr h = new IntPtr(long.Parse(strHandle));
+				long.Parse(strHandle); // Validate
+
+				// Detection of own windows based on Form.Handle
+				// comparisons doesn't work reliably (Mono's handles
+				// are usually off by 1)
+				// Predicate<IntPtr> fOwnWindow = m_fOwnWindow;
+				// if(fOwnWindow != null)
+				// {
+				//	if(fOwnWindow(h)) return true;
+				// }
+				// else { Debug.Assert(false); }
+
+				string strWmClass = (NativeLib.RunConsoleApp("xprop",
+					"-id " + strHandle + " WM_CLASS") ?? string.Empty);
+
+				if(strWmClass.IndexOf("\"" + PwDefs.ResClass + "\"",
+					StrUtil.CaseIgnoreCmp) >= 0) return true;
+
+				// Workaround for Remmina
+				if(strWmClass.IndexOf("\"Remmina\"",
+					StrUtil.CaseIgnoreCmp) >= 0) return true;
+
+				return false;
+			}
+			catch(ThreadAbortException) { throw; }
+			catch(Exception) { Debug.Assert(false); }
+
+			return bDef;
 		}
 
 #if !KeePassUAP

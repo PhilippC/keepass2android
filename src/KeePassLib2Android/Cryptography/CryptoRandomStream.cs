@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ namespace KeePassLib.Cryptography
 	/// properties, but for the same seed always the same stream
 	/// is produced, i.e. this class can be used as stream cipher.
 	/// </summary>
-	public sealed class CryptoRandomStream
+	public sealed class CryptoRandomStream : IDisposable
 	{
 		private readonly CrsAlgorithm m_crsAlgorithm;
 
@@ -149,6 +149,30 @@ namespace KeePassLib.Cryptography
 			}
 		}
 
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		private void Dispose(bool disposing)
+		{
+			if(disposing)
+			{
+				if(m_crsAlgorithm == CrsAlgorithm.ChaCha20)
+					m_chacha20.Dispose();
+				else if(m_crsAlgorithm == CrsAlgorithm.Salsa20)
+					m_salsa20.Dispose();
+				else if(m_crsAlgorithm == CrsAlgorithm.ArcFourVariant)
+				{
+					MemUtil.ZeroByteArray(m_pbState);
+					m_i = 0;
+					m_j = 0;
+				}
+				else { Debug.Assert(false); }
+			}
+		}
+
 		/// <summary>
 		/// Get <paramref name="uRequestedCount" /> random bytes.
 		/// </summary>
@@ -220,8 +244,10 @@ namespace KeePassLib.Cryptography
 			int nStart = Environment.TickCount;
 			for(int i = 0; i < nRounds; ++i)
 			{
-				CryptoRandomStream c = new CryptoRandomStream(cra, pbKey);
-				c.GetRandomBytes((uint)nDataSize);
+				using(CryptoRandomStream c = new CryptoRandomStream(cra, pbKey))
+				{
+					c.GetRandomBytes((uint)nDataSize);
+				}
 			}
 			int nEnd = Environment.TickCount;
 

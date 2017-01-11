@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -81,13 +81,21 @@ namespace KeePassLib.Serialization
 			Debug.Assert(sSaveTo != null);
 			if(sSaveTo == null) throw new ArgumentNullException("sSaveTo");
 
+			if(m_bUsedOnce)
+				throw new InvalidOperationException("Do not reuse KdbxFile objects!");
+			m_bUsedOnce = true;
+
 			m_format = fmt;
 			m_slLogger = slLogger;
 
+			PwGroup pgRoot = (pgDataSource ?? m_pwDatabase.RootGroup);
 			UTF8Encoding encNoBom = StrUtil.Utf8;
 			CryptoRandom cr = CryptoRandom.Instance;
 			byte[] pbCipherKey = null;
 			byte[] pbHmacKey64 = null;
+
+			m_pbsBinaries.Clear();
+			m_pbsBinaries.AddFrom(pgRoot);
 
 			List<Stream> lStreams = new List<Stream>();
 			lStreams.Add(sSaveTo);
@@ -114,20 +122,24 @@ namespace KeePassLib.Serialization
 						"UUID: " + puKdf.ToHexString() + ".");
 				kdf.Randomize(m_pwDatabase.KdfParameters);
 
-				if(m_uFileVersion <= FileVersion32_3)
+				if(m_format == KdbxFormat.Default)
 				{
-					m_craInnerRandomStream = CrsAlgorithm.Salsa20;
-					m_pbProtectedStreamKey = cr.GetRandomBytes(32);
-				}
-				else // KDBX >= 4
-				{
-					m_craInnerRandomStream = CrsAlgorithm.ChaCha20;
-					m_pbProtectedStreamKey = cr.GetRandomBytes(64);
-				}
-				m_randomStream = new CryptoRandomStream(m_craInnerRandomStream,
-					m_pbProtectedStreamKey);
+					if(m_uFileVersion < FileVersion32_4)
+					{
+						m_craInnerRandomStream = CrsAlgorithm.Salsa20;
+						m_pbInnerRandomStreamKey = cr.GetRandomBytes(32);
+					}
+					else // KDBX >= 4
+					{
+						m_craInnerRandomStream = CrsAlgorithm.ChaCha20;
+						m_pbInnerRandomStreamKey = cr.GetRandomBytes(64);
+					}
 
-				if(m_uFileVersion <= FileVersion32_3)
+					m_randomStream = new CryptoRandomStream(m_craInnerRandomStream,
+						m_pbInnerRandomStreamKey);
+				}
+
+				if(m_uFileVersion < FileVersion32_4)
 					m_pbStreamStartBytes = cr.GetRandomBytes(32);
 
 				Stream sXml;
@@ -142,7 +154,7 @@ namespace KeePassLib.Serialization
 					ComputeKeys(out pbCipherKey, cbEncKey, out pbHmacKey64);
 
 					Stream sPlain;
-					if(m_uFileVersion <= FileVersion32_3)
+					if(m_uFileVersion < FileVersion32_4)
 					{
 						Stream sEncrypted = EncryptStream(sHashing, iCipher,
 							pbCipherKey, cbEncIV, true);
@@ -156,6 +168,9 @@ namespace KeePassLib.Serialization
 					}
 					else // KDBX >= 4
 					{
+						// For integrity checking (without knowing the master key)
+						MemUtil.Write(sHashing, m_pbHashOfHeader);
+
 						byte[] pbHeaderHmac = ComputeHeaderHmac(pbHeader, pbHmacKey64);
 						MemUtil.Write(sHashing, pbHeaderHmac);
 
@@ -176,6 +191,9 @@ namespace KeePassLib.Serialization
 						lStreams.Add(sXml);
 					}
 					else sXml = sPlain;
+
+					if(m_uFileVersion >= FileVersion32_4)
+						WriteInnerHeader(sXml); // Binary header before XML
 				}
 				else if(m_format == KdbxFormat.PlainXml)
 					sXml = sHashing;
@@ -202,7 +220,7 @@ namespace KeePassLib.Serialization
 #endif
 				m_xmlWriter = xw;
 
-				WriteDocument(pgDataSource);
+				WriteDocument(pgRoot);
 
 				m_xmlWriter.Flush();
 				m_xmlWriter.Close();
@@ -223,6 +241,8 @@ namespace KeePassLib.Serialization
 			Debug.Assert(lStreams.Contains(sHashing)); // sHashing must be closed
 			m_pbHashOfFileOnDisk = sHashing.Hash;
 			Debug.Assert(m_pbHashOfFileOnDisk != null);
+
+			CleanUpInnerRandomStream();
 
 			m_xmlWriter = null;
 			m_pbHashOfHeader = null;
@@ -246,7 +266,7 @@ namespace KeePassLib.Serialization
 
 				WriteHeaderField(ms, KdbxHeaderFieldID.MasterSeed, m_pbMasterSeed);
 
-				if(m_uFileVersion <= FileVersion32_3)
+				if(m_uFileVersion < FileVersion32_4)
 				{
 					Debug.Assert(m_pwDatabase.KdfParameters.KdfUuid.Equals(
 						(new AesKdf()).Uuid));
@@ -263,15 +283,18 @@ namespace KeePassLib.Serialization
 				if(m_pbEncryptionIV.Length > 0)
 					WriteHeaderField(ms, KdbxHeaderFieldID.EncryptionIV, m_pbEncryptionIV);
 
-				WriteHeaderField(ms, KdbxHeaderFieldID.ProtectedStreamKey, m_pbProtectedStreamKey);
+				if(m_uFileVersion < FileVersion32_4)
+				{
+					WriteHeaderField(ms, KdbxHeaderFieldID.InnerRandomStreamKey,
+						m_pbInnerRandomStreamKey);
 
-				if(m_uFileVersion <= FileVersion32_3)
 					WriteHeaderField(ms, KdbxHeaderFieldID.StreamStartBytes,
 						m_pbStreamStartBytes);
 
-				int nIrsID = (int)m_craInnerRandomStream;
-				WriteHeaderField(ms, KdbxHeaderFieldID.InnerRandomStreamID,
-					MemUtil.Int32ToBytes(nIrsID));
+					int nIrsID = (int)m_craInnerRandomStream;
+					WriteHeaderField(ms, KdbxHeaderFieldID.InnerRandomStreamID,
+						MemUtil.Int32ToBytes(nIrsID));
+				}
 
 				// Write public custom data only when there is at least one item,
 				// because KDBX 3.1 didn't support this field yet
@@ -298,7 +321,7 @@ namespace KeePassLib.Serialization
 			if(cb < 0) { Debug.Assert(false); throw new OutOfMemoryException(); }
 
 			Debug.Assert(m_uFileVersion > 0);
-			if(m_uFileVersion <= FileVersion32_3)
+			if(m_uFileVersion < FileVersion32_4)
 			{
 				if(cb > (int)ushort.MaxValue)
 				{
@@ -310,20 +333,63 @@ namespace KeePassLib.Serialization
 			}
 			else MemUtil.Write(s, MemUtil.Int32ToBytes(cb));
 
-			if(cb > 0) s.Write(pb, 0, cb);
+			MemUtil.Write(s, pb);
 		}
 
-		private void WriteDocument(PwGroup pgDataSource)
+		private void WriteInnerHeader(Stream s)
+		{
+			int nIrsID = (int)m_craInnerRandomStream;
+			WriteInnerHeaderField(s, KdbxInnerHeaderFieldID.InnerRandomStreamID,
+				MemUtil.Int32ToBytes(nIrsID), null);
+
+			WriteInnerHeaderField(s, KdbxInnerHeaderFieldID.InnerRandomStreamKey,
+				m_pbInnerRandomStreamKey, null);
+
+			ProtectedBinary[] vBin = m_pbsBinaries.ToArray();
+			for(int i = 0; i < vBin.Length; ++i)
+			{
+				ProtectedBinary pb = vBin[i];
+				if(pb == null) throw new InvalidOperationException();
+
+				KdbxBinaryFlags f = KdbxBinaryFlags.None;
+				if(pb.IsProtected) f |= KdbxBinaryFlags.Protected;
+
+				byte[] pbFlags = new byte[1] { (byte)f };
+				byte[] pbData = pb.ReadData();
+
+				WriteInnerHeaderField(s, KdbxInnerHeaderFieldID.Binary,
+					pbFlags, pbData);
+
+				if(pb.IsProtected) MemUtil.ZeroByteArray(pbData);
+			}
+
+			WriteInnerHeaderField(s, KdbxInnerHeaderFieldID.EndOfHeader,
+				null, null);
+		}
+
+		private void WriteInnerHeaderField(Stream s, KdbxInnerHeaderFieldID kdbID,
+			byte[] pbData1, byte[] pbData2)
+		{
+			s.WriteByte((byte)kdbID);
+
+			byte[] pb1 = (pbData1 ?? MemUtil.EmptyByteArray);
+			byte[] pb2 = (pbData2 ?? MemUtil.EmptyByteArray);
+
+			int cb = pb1.Length + pb2.Length;
+			if(cb < 0) { Debug.Assert(false); throw new OutOfMemoryException(); }
+
+			MemUtil.Write(s, MemUtil.Int32ToBytes(cb));
+			MemUtil.Write(s, pb1);
+			MemUtil.Write(s, pb2);
+		}
+
+		private void WriteDocument(PwGroup pgRoot)
 		{
 			Debug.Assert(m_xmlWriter != null);
 			if(m_xmlWriter == null) throw new InvalidOperationException();
 
-			PwGroup pgRoot = (pgDataSource ?? m_pwDatabase.RootGroup);
-
 			uint uNumGroups, uNumEntries, uCurEntry = 0;
 			pgRoot.GetCounts(true, out uNumGroups, out uNumEntries);
-
-			BinPoolBuild(pgRoot);
 
 			m_xmlWriter.WriteStartDocument(true);
 			m_xmlWriter.WriteStartElement(ElemDocNode);
@@ -398,11 +464,11 @@ namespace KeePassLib.Serialization
 
 			WriteObject(ElemGenerator, PwDatabase.LocalizedAppName, false);
 
-			if((m_pbHashOfHeader != null) && (m_uFileVersion <= FileVersion32_3))
+			if((m_pbHashOfHeader != null) && (m_uFileVersion < FileVersion32_4))
 				WriteObject(ElemHeaderHash, Convert.ToBase64String(
 					m_pbHashOfHeader), false);
 
-			if(m_uFileVersion > FileVersion32_3)
+			if(m_uFileVersion >= FileVersion32_4)
 				WriteObject(ElemSettingsChanged, m_pwDatabase.SettingsChanged);
 
 			WriteObject(ElemDbName, m_pwDatabase.Name, true);
@@ -416,6 +482,8 @@ namespace KeePassLib.Serialization
 			WriteObject(ElemDbKeyChanged, m_pwDatabase.MasterKeyChanged);
 			WriteObject(ElemDbKeyChangeRec, m_pwDatabase.MasterKeyChangeRec);
 			WriteObject(ElemDbKeyChangeForce, m_pwDatabase.MasterKeyChangeForce);
+			if(m_pwDatabase.MasterKeyChangeForceOnce)
+				WriteObject(ElemDbKeyChangeForceOnce, true);
 
 			WriteList(ElemMemoryProt, m_pwDatabase.MemoryProtection);
 
@@ -432,7 +500,9 @@ namespace KeePassLib.Serialization
 			WriteObject(ElemLastSelectedGroup, m_pwDatabase.LastSelectedGroup);
 			WriteObject(ElemLastTopVisibleGroup, m_pwDatabase.LastTopVisibleGroup);
 
-			WriteBinPool();
+			if((m_format != KdbxFormat.Default) || (m_uFileVersion < FileVersion32_4))
+				WriteBinPool();
+
 			WriteList(ElemCustomData, m_pwDatabase.CustomData);
 
 			m_xmlWriter.WriteEndElement();
@@ -700,8 +770,28 @@ namespace KeePassLib.Serialization
 		private void WriteObject(string name, DateTime value)
 		{
 			Debug.Assert(name != null);
+			Debug.Assert(value.Kind == DateTimeKind.Utc);
 
-			WriteObject(name, TimeUtil.SerializeUtc(value), false);
+			// Cf. ReadTime
+			if((m_format == KdbxFormat.Default) && (m_uFileVersion >= FileVersion32_4))
+			{
+				DateTime dt = TimeUtil.ToUtc(value, false);
+
+				// DateTime dtBase = new DateTime(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+				// dt -= new TimeSpan(dtBase.Ticks);
+
+				// WriteObject(name, dt.ToBinary());
+
+				// dt = TimeUtil.RoundToMultOf2PowLess1s(dt);
+				// long lBin = dt.ToBinary();
+
+				long lSec = dt.Ticks / TimeSpan.TicksPerSecond;
+				// WriteObject(name, lSec);
+
+				byte[] pb = MemUtil.Int64ToBytes(lSec);
+				WriteObject(name, Convert.ToBase64String(pb), false);
+			}
+			else WriteObject(name, TimeUtil.SerializeUtc(value), false);
 		}
 
 		private void WriteObject(string name, string strKeyName,
@@ -748,7 +838,7 @@ namespace KeePassLib.Serialization
 					bProtected = m_pwDatabase.MemoryProtection.ProtectNotes;
 			}
 
-			if(bProtected && (m_format != KdbxFormat.PlainXml))
+			if(bProtected && (m_format == KdbxFormat.Default))
 			{
 				m_xmlWriter.WriteAttributeString(AttrProtected, ValTrue);
 
@@ -823,11 +913,15 @@ namespace KeePassLib.Serialization
 			m_xmlWriter.WriteEndElement();
 			m_xmlWriter.WriteStartElement(ElemValue);
 
-			string strRef = (bAllowRef ? BinPoolFind(value) : null);
-			if(strRef != null)
+			string strRef = null;
+			if(bAllowRef)
 			{
-				m_xmlWriter.WriteAttributeString(AttrRef, strRef);
+				int iRef = m_pbsBinaries.Find(value);
+				if(iRef >= 0) strRef = iRef.ToString(NumberFormatInfo.InvariantInfo);
+				else { Debug.Assert(false); }
 			}
+			if(strRef != null)
+				m_xmlWriter.WriteAttributeString(AttrRef, strRef);
 			else SubWriteValue(value);
 
 			m_xmlWriter.WriteEndElement(); // ElemValue
@@ -836,7 +930,7 @@ namespace KeePassLib.Serialization
 
 		private void SubWriteValue(ProtectedBinary value)
 		{
-			if(value.IsProtected && (m_format != KdbxFormat.PlainXml))
+			if(value.IsProtected && (m_format == KdbxFormat.Default))
 			{
 				m_xmlWriter.WriteAttributeString(AttrProtected, ValTrue);
 
@@ -846,18 +940,26 @@ namespace KeePassLib.Serialization
 			}
 			else
 			{
-				if(m_pwDatabase.Compression == PwCompressionAlgorithm.GZip)
+				if(m_pwDatabase.Compression != PwCompressionAlgorithm.None)
 				{
 					m_xmlWriter.WriteAttributeString(AttrCompressed, ValTrue);
 
 					byte[] pbRaw = value.ReadData();
 					byte[] pbCmp = MemUtil.Compress(pbRaw);
 					m_xmlWriter.WriteBase64(pbCmp, 0, pbCmp.Length);
+
+					if(value.IsProtected)
+					{
+						MemUtil.ZeroByteArray(pbRaw);
+						MemUtil.ZeroByteArray(pbCmp);
+					}
 				}
 				else
 				{
 					byte[] pbRaw = value.ReadData();
 					m_xmlWriter.WriteBase64(pbRaw, 0, pbRaw.Length);
+
+					if(value.IsProtected) MemUtil.ZeroByteArray(pbRaw);
 				}
 			}
 		}
@@ -877,11 +979,13 @@ namespace KeePassLib.Serialization
 		{
 			m_xmlWriter.WriteStartElement(ElemBinaries);
 
-			foreach(KeyValuePair<string, ProtectedBinary> kvp in m_dictBinPool)
+			ProtectedBinary[] v = m_pbsBinaries.ToArray();
+			for(int i = 0; i < v.Length; ++i)
 			{
 				m_xmlWriter.WriteStartElement(ElemBinary);
-				m_xmlWriter.WriteAttributeString(AttrId, kvp.Key);
-				SubWriteValue(kvp.Value);
+				m_xmlWriter.WriteAttributeString(AttrId,
+					i.ToString(NumberFormatInfo.InvariantInfo));
+				SubWriteValue(v[i]);
 				m_xmlWriter.WriteEndElement();
 			}
 
@@ -889,21 +993,18 @@ namespace KeePassLib.Serialization
 		}
 
 		[Obsolete]
-		public static bool WriteEntries(Stream msOutput, PwDatabase pwDatabase,
-			PwEntry[] vEntries)
-		{
-			return WriteEntries(msOutput, vEntries);
-		}
-
-		/// <summary>
-		/// Write entries to a stream.
-		/// </summary>
-		/// <param name="msOutput">Output stream to which the entries will be written.</param>
-		/// <param name="vEntries">Entries to serialize.</param>
-		/// <returns>Returns <c>true</c>, if the entries were written successfully
-		/// to the stream.</returns>
 		public static bool WriteEntries(Stream msOutput, PwEntry[] vEntries)
 		{
+			return WriteEntries(msOutput, null, vEntries);
+		}
+
+		public static bool WriteEntries(Stream msOutput, PwDatabase pdContext,
+			PwEntry[] vEntries)
+		{
+			if(msOutput == null) { Debug.Assert(false); return false; }
+			// pdContext may be null
+			if(vEntries == null) { Debug.Assert(false); return false; }
+
 			/* KdbxFile f = new KdbxFile(pwDatabase);
 			f.m_format = KdbxFormat.PlainXml;
 
@@ -934,8 +1035,27 @@ namespace KeePassLib.Serialization
 			PwDatabase pd = new PwDatabase();
 			pd.New(new IOConnectionInfo(), new CompositeKey());
 
-			foreach(PwEntry peCopy in vEntries)
-				pd.RootGroup.AddEntry(peCopy.CloneDeep(), true);
+			PwGroup pg = pd.RootGroup;
+			if(pg == null) { Debug.Assert(false); return false; }
+
+			foreach(PwEntry pe in vEntries)
+			{
+				PwUuid pu = pe.CustomIconUuid;
+				if(!pu.Equals(PwUuid.Zero) && (pd.GetCustomIconIndex(pu) < 0))
+				{
+					int i = -1;
+					if(pdContext != null) i = pdContext.GetCustomIconIndex(pu);
+					if(i >= 0)
+					{
+						PwCustomIcon ci = pdContext.CustomIcons[i];
+						pd.CustomIcons.Add(ci);
+					}
+					else { Debug.Assert(pdContext == null); }
+				}
+
+				PwEntry peCopy = pe.CloneDeep();
+				pg.AddEntry(peCopy, true);
+			}
 
 			KdbxFile f = new KdbxFile(pd);
 			f.Save(msOutput, null, KdbxFormat.PlainXml, null);

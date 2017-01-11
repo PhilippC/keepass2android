@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -124,20 +124,9 @@ namespace KeePassLib.Serialization
 			}
 		}
 
-		public override void Flush()
-		{
-			if(m_bWriting) m_bwOutput.Flush();
-		}
-
-#if KeePassUAP
 		protected override void Dispose(bool disposing)
 		{
-			if(!disposing) return;
-#else
-		public override void Close()
-		{
-#endif
-			if(m_sBaseStream != null)
+			if(disposing && (m_sBaseStream != null))
 			{
 				if(!m_bWriting) // Reading mode
 				{
@@ -162,6 +151,13 @@ namespace KeePassLib.Serialization
 				m_sBaseStream.Close();
 				m_sBaseStream = null;
 			}
+
+			base.Dispose(disposing);
+		}
+
+		public override void Flush()
+		{
+			if(m_bWriting) m_bwOutput.Flush();
 		}
 
 		public override long Seek(long lOffset, SeekOrigin soOrigin)

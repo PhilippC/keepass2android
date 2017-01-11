@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -77,6 +77,16 @@ namespace KeePassLib.Cryptography.KeyDerivation
 			public ulong Lane = 0;
 			public ulong Slice = 0;
 			public ulong Index = 0;
+
+			public void Release()
+			{
+				if(this.Finished != null)
+				{
+					this.Finished.Close();
+					this.Finished = null;
+				}
+				else { Debug.Assert(false); }
+			}
 		}
 
 		private static byte[] Argon2d(byte[] pbMsg, byte[] pbSalt, uint uParallel,
@@ -104,7 +114,12 @@ namespace KeePassLib.Cryptography.KeyDerivation
 			ctx.LaneLength = ctx.SegmentLength * NbSyncPoints;
 
 			Debug.Assert(NbBlockSize == (NbBlockSizeInQW *
-				(ulong)Marshal.SizeOf(typeof(ulong))));
+#if KeePassUAP
+				(ulong)Marshal.SizeOf<ulong>()
+#else
+				(ulong)Marshal.SizeOf(typeof(ulong))
+#endif
+				));
 			ctx.Mem = new ulong[ctx.MemoryBlocks * NbBlockSizeInQW];
 
 			Blake2b h = new Blake2b();
@@ -186,8 +201,13 @@ namespace KeePassLib.Cryptography.KeyDerivation
 			// for(int i = 0; i < (int)NbBlockSizeInQW; ++i)
 			//	vDst[iDstOffset + i] = vSrc[iSrcOffset + i];
 
+#if KeePassUAP
+			Array.Copy(vSrc, (int)uSrcOffset, vDst, (int)uDstOffset,
+				(int)NbBlockSizeInQW);
+#else
 			Array.Copy(vSrc, (long)uSrcOffset, vDst, (long)uDstOffset,
 				(long)NbBlockSizeInQW);
+#endif
 		}
 
 		private static void XorBlock(ulong[] vDst, ulong uDstOffset, ulong[] vSrc,
@@ -456,7 +476,10 @@ namespace KeePassLib.Cryptography.KeyDerivation
 					}
 
 					for(int l = 0; l < np; ++l)
+					{
 						v[l].Finished.WaitOne();
+						v[l].Release();
+					}
 				}
 			}
 		}

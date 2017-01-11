@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ namespace KeePassLib.Cryptography.PasswordGenerator
 
 				if(ch == char.MinValue)
 				{
-					Array.Clear(vGenerated, 0, vGenerated.Length);
+					MemUtil.ZeroArray<char>(vGenerated);
 					return PwgError.TooFewCharacters;
 				}
 
@@ -57,7 +57,7 @@ namespace KeePassLib.Cryptography.PasswordGenerator
 			byte[] pbUtf8 = StrUtil.Utf8.GetBytes(vGenerated);
 			psOut = new ProtectedString(true, pbUtf8);
 			MemUtil.ZeroByteArray(pbUtf8);
-			Array.Clear(vGenerated, 0, vGenerated.Length);
+			MemUtil.ZeroArray<char>(vGenerated);
 
 			return PwgError.Success;
 		}

@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -72,6 +72,27 @@ namespace KeePassLib.Serialization
 
 			string strPath = m_iocBase.Path;
 
+			if(m_iocBase.IsLocalFile())
+			{
+				try
+				{
+					if(File.Exists(strPath))
+					{
+						// Symbolic links are realized via reparse points;
+						// https://msdn.microsoft.com/en-us/library/windows/desktop/aa365503.aspx
+						// https://msdn.microsoft.com/en-us/library/windows/desktop/aa365680.aspx
+						// https://msdn.microsoft.com/en-us/library/windows/desktop/aa365006.aspx
+						// Performing a file transaction on a symbolic link
+						// would delete/replace the symbolic link instead of
+						// writing to its target
+						FileAttributes fa = File.GetAttributes(strPath);
+						if((long)(fa & FileAttributes.ReparsePoint) != 0)
+							m_bTransacted = false;
+					}
+				}
+				catch(Exception) { Debug.Assert(false); }
+			}
+
 #if !KeePassUAP
 			// Prevent transactions for FTP URLs under .NET 4.0 in order to
 			// avoid/workaround .NET bug 621450:
@@ -79,20 +100,16 @@ namespace KeePassLib.Serialization
 			if(strPath.StartsWith("ftp:", StrUtil.CaseIgnoreCmp) &&
 				(Environment.Version.Major >= 4) && !NativeLib.IsUnix())
 				m_bTransacted = false;
-			else
+#endif
+
+			foreach(KeyValuePair<string, bool> kvp in g_dEnabled)
 			{
-#endif
-				foreach(KeyValuePair<string, bool> kvp in g_dEnabled)
+				if(strPath.StartsWith(kvp.Key, StrUtil.CaseIgnoreCmp))
 				{
-					if(strPath.StartsWith(kvp.Key, StrUtil.CaseIgnoreCmp))
-					{
-						m_bTransacted = kvp.Value;
-						break;
-					}
+					m_bTransacted = kvp.Value;
+					break;
 				}
-#if !KeePassUAP
 			}
-#endif
 
 			if(m_bTransacted)
 			{
@@ -150,8 +167,8 @@ namespace KeePassLib.Serialization
 						FileAttributes faBase = File.GetAttributes(m_iocBase.Path);
 						bEfsEncrypted = ((long)(faBase & FileAttributes.Encrypted) != 0);
 #endif
-						DateTime tCreation = File.GetCreationTime(m_iocBase.Path);
-						File.SetCreationTime(m_iocTemp.Path, tCreation);
+						DateTime tCreation = File.GetCreationTimeUtc(m_iocBase.Path);
+						File.SetCreationTimeUtc(m_iocTemp.Path, tCreation);
 #if !KeePassUAP
 						// May throw with Mono
 						bkSecurity = File.GetAccessControl(m_iocBase.Path);

@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -130,17 +130,12 @@ namespace KeePassLib.Serialization
 		}
 #endif
 
-#if KeePassUAP
 		protected override void Dispose(bool disposing)
 		{
 			if(disposing) m_s.Dispose();
+
+			base.Dispose(disposing);
 		}
-#else
-		public override void Close()
-		{
-			m_s.Close();
-		}
-#endif
 
 #if !KeePassUAP
 		public override int EndRead(IAsyncResult asyncResult)
@@ -193,22 +188,19 @@ namespace KeePassLib.Serialization
 	internal sealed class IocStream : WrapperStream
 	{
 		private readonly bool m_bWrite; // Initially opened for writing
+		private bool m_bDisposed = false;
 
 		public IocStream(Stream sBase) : base(sBase)
 		{
 			m_bWrite = sBase.CanWrite;
 		}
 
-#if KeePassUAP
 		protected override void Dispose(bool disposing)
 		{
 			base.Dispose(disposing);
-#else
-		public override void Close()
-		{
-			base.Close();
-#endif
-			if(MonoWorkarounds.IsRequired(10163) && m_bWrite)
+
+			if(disposing && MonoWorkarounds.IsRequired(10163) && m_bWrite &&
+				!m_bDisposed)
 			{
 				try
 				{
@@ -230,6 +222,8 @@ namespace KeePassLib.Serialization
 				}
 				catch(Exception) { Debug.Assert(false); }
 			}
+
+			m_bDisposed = true;
 		}
 
 		public static Stream WrapIfRequired(Stream s)

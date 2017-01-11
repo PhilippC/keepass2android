@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ namespace KeePassLib.Cryptography
 {
 	public sealed class HashingStreamEx : Stream
 	{
-		private Stream m_sBaseStream;
+		private readonly Stream m_sBaseStream;
 		private readonly bool m_bWriting;
 		private HashAlgorithm m_hash;
 
@@ -97,33 +97,32 @@ namespace KeePassLib.Cryptography
 			}
 		}
 
+		protected override void Dispose(bool disposing)
+		{
+			if(disposing)
+			{
+				if(m_hash != null)
+				{
+					try
+					{
+						m_hash.TransformFinalBlock(MemUtil.EmptyByteArray, 0, 0);
+
+						m_pbFinalHash = m_hash.Hash;
+					}
+					catch(Exception) { Debug.Assert(false); }
+
+					m_hash = null;
+				}
+
+				m_sBaseStream.Close();
+			}
+
+			base.Dispose(disposing);
+		}
+
 		public override void Flush()
 		{
 			m_sBaseStream.Flush();
-		}
-
-#if KeePassUAP
-		protected override void Dispose(bool disposing)
-		{
-			if(!disposing) return;
-#else
-		public override void Close()
-		{
-#endif
-			if(m_hash != null)
-			{
-				try
-				{
-					m_hash.TransformFinalBlock(MemUtil.EmptyByteArray, 0, 0);
-
-					m_pbFinalHash = m_hash.Hash;
-				}
-				catch(Exception) { Debug.Assert(false); }
-
-				m_hash = null;
-			}
-
-			m_sBaseStream.Close();
 		}
 
 		public override long Seek(long lOffset, SeekOrigin soOrigin)

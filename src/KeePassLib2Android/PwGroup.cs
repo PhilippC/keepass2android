@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -321,8 +321,11 @@ namespace KeePassLib
 
 			if(bSetTimes)
 			{
-				m_tCreation = m_tLastMod = m_tLastAccess =
-					m_tParentGroupLastMod = DateTime.Now;
+				DateTime dtNow = DateTime.UtcNow;
+				m_tCreation = dtNow;
+				m_tLastMod = dtNow;
+				m_tLastAccess = dtNow;
+				m_tParentGroupLastMod = dtNow;
 			}
 		}
 
@@ -339,8 +342,11 @@ namespace KeePassLib
 
 			if(bSetTimes)
 			{
-				m_tCreation = m_tLastMod = m_tLastAccess =
-					m_tParentGroupLastMod = DateTime.Now;
+				DateTime dtNow = DateTime.UtcNow;
+				m_tCreation = dtNow;
+				m_tLastMod = dtNow;
+				m_tLastAccess = dtNow;
+				m_tParentGroupLastMod = dtNow;
 			}
 
 			if(strName != null) m_strName = strName;
@@ -557,7 +563,7 @@ namespace KeePassLib
 		/// get touched, too.</param>
 		public void Touch(bool bModified, bool bTouchParents)
 		{
-			m_tLastAccess = DateTime.Now;
+			m_tLastAccess = DateTime.UtcNow;
 			++m_uUsageCount;
 
 			if(bModified) m_tLastMod = m_tLastAccess;
@@ -662,21 +668,14 @@ namespace KeePassLib
 				}
 			}
 
-			if(groupHandler != null)
+			foreach(PwGroup pg in m_listGroups)
 			{
-				foreach(PwGroup pg in m_listGroups)
+				if(groupHandler != null)
 				{
 					if(!groupHandler(pg)) return false;
+				}
 
-					pg.PreOrderTraverseTree(groupHandler, entryHandler);
-				}
-			}
-			else // groupHandler == null
-			{
-				foreach(PwGroup pg in m_listGroups)
-				{
-					pg.PreOrderTraverseTree(null, entryHandler);
-				}
+				pg.PreOrderTraverseTree(groupHandler, entryHandler);
 			}
 
 			return true;
@@ -766,96 +765,112 @@ namespace KeePassLib
 		/// <summary>
 		/// Search this group and all subgroups for entries.
 		/// </summary>
-		/// <param name="sp">Specifies the search method.</param>
-		/// <param name="listStorage">Entry list in which the search results will
-		/// be stored.</param>
-		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage)
+		/// <param name="sp">Specifies the search parameters.</param>
+		/// <param name="lResults">Entry list in which the search results
+		/// will be stored.</param>
+		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> lResults)
 		{
-			SearchEntries(sp, listStorage, null);
+			SearchEntries(sp, lResults, null);
 		}
 
 		/// <summary>
 		/// Search this group and all subgroups for entries.
 		/// </summary>
-		/// <param name="sp">Specifies the search method.</param>
-		/// <param name="listStorage">Entry list in which the search results will
-		/// be stored.</param>
+		/// <param name="sp">Specifies the search parameters.</param>
+		/// <param name="lResults">Entry list in which the search results
+		/// will be stored.</param>
 		/// <param name="slStatus">Optional status reporting object.</param>
-		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> listStorage,
+		public void SearchEntries(SearchParameters sp, PwObjectList<PwEntry> lResults,
 			IStatusLogger slStatus)
 		{
 			if(sp == null) { Debug.Assert(false); return; }
-			if(listStorage == null) { Debug.Assert(false); return; }
+			if(lResults == null) { Debug.Assert(false); return; }
 
-			ulong uCurEntries = 0, uTotalEntries = 0;
+			PwObjectList<PwEntry> lCand = GetEntries(true);
+			DateTime dtNow = DateTime.UtcNow;
 
-			List<string> lTerms = StrUtil.SplitSearchTerms(sp.SearchString);
-			if((lTerms.Count <= 1) || sp.RegularExpression)
+			PwObjectList<PwEntry> l = new PwObjectList<PwEntry>();
+			foreach(PwEntry pe in lCand)
 			{
-				if(slStatus != null) uTotalEntries = GetEntriesCount(true);
-				SearchEntriesSingle(sp, listStorage, slStatus, ref uCurEntries,
-					uTotalEntries);
-				return;
+				if(sp.RespectEntrySearchingDisabled && !pe.GetSearchingEnabled())
+					continue;
+				if(sp.ExcludeExpired && pe.Expires && (pe.ExpiryTime <= dtNow))
+					continue;
+
+				l.Add(pe);
 			}
+			lCand = l;
+
+			List<string> lTerms;
+			if(sp.RegularExpression)
+			{
+				lTerms = new List<string>();
+				lTerms.Add((sp.SearchString ?? string.Empty).Trim());
+			}
+			else lTerms = StrUtil.SplitSearchTerms(sp.SearchString);
 
 			// Search longer strings first (for improved performance)
 			lTerms.Sort(StrUtil.CompareLengthGt);
 
-			string strFullSearch = sp.SearchString; // Backup
+			ulong uPrcEntries = 0, uTotalEntries = lCand.UCount;
+			SearchParameters spSub = sp.Clone();
 
-			PwGroup pg = this;
 			for(int iTerm = 0; iTerm < lTerms.Count; ++iTerm)
 			{
 				// Update counters for a better state guess
 				if(slStatus != null)
 				{
 					ulong uRemRounds = (ulong)(lTerms.Count - iTerm);
-					uTotalEntries = uCurEntries + (uRemRounds *
-						pg.GetEntriesCount(true));
+					uTotalEntries = uPrcEntries + (uRemRounds *
+						lCand.UCount);
 				}
 
-				PwGroup pgNew = new PwGroup();
-
-				sp.SearchString = lTerms[iTerm];
+				spSub.SearchString = lTerms[iTerm]; // No trim
+				// spSub.RespectEntrySearchingDisabled = false; // Ignored by sub
+				// spSub.ExcludeExpired = false; // Ignored by sub
 
 				bool bNegate = false;
-				if(sp.SearchString.StartsWith("-"))
+				if(spSub.SearchString.StartsWith(@"-") &&
+					(spSub.SearchString.Length >= 2))
 				{
-					sp.SearchString = sp.SearchString.Substring(1);
-					bNegate = (sp.SearchString.Length > 0);
+					spSub.SearchString = spSub.SearchString.Substring(1);
+					bNegate = true;
 				}
 
-				if(!pg.SearchEntriesSingle(sp, pgNew.Entries, slStatus,
-					ref uCurEntries, uTotalEntries))
+				l = new PwObjectList<PwEntry>();
+				if(!SearchEntriesSingle(lCand, spSub, l, slStatus,
+					ref uPrcEntries, uTotalEntries))
 				{
-					pg = null;
+					lCand.Clear();
 					break;
 				}
 
 				if(bNegate)
 				{
-					PwObjectList<PwEntry> lCand = pg.GetEntries(true);
-
-					pg = new PwGroup();
-					foreach(PwEntry peCand in lCand)
+					PwObjectList<PwEntry> lRem = new PwObjectList<PwEntry>();
+					foreach(PwEntry pe in lCand)
 					{
-						if(pgNew.Entries.IndexOf(peCand) < 0) pg.Entries.Add(peCand);
+						if(l.IndexOf(pe) < 0) lRem.Add(pe);
 					}
+
+					lCand = lRem;
 				}
-				else pg = pgNew;
+				else lCand = l;
 			}
 
-			if(pg != null) listStorage.Add(pg.Entries);
-			sp.SearchString = strFullSearch; // Restore
+			Debug.Assert(lResults.UCount == 0);
+			lResults.Clear();
+			lResults.Add(lCand);
 		}
 
-		private bool SearchEntriesSingle(SearchParameters spIn,
-			PwObjectList<PwEntry> listStorage, IStatusLogger slStatus,
-			ref ulong uCurEntries, ulong uTotalEntries)
+		private static bool SearchEntriesSingle(PwObjectList<PwEntry> lSource,
+			SearchParameters sp, PwObjectList<PwEntry> lResults,
+			IStatusLogger slStatus, ref ulong uPrcEntries, ulong uTotalEntries)
 		{
-			SearchParameters sp = spIn.Clone();
-			if(sp.SearchString == null) { Debug.Assert(false); return true; }
-			sp.SearchString = sp.SearchString.Trim();
+			if(lSource == null) { Debug.Assert(false); return true; }
+			if(sp == null) { Debug.Assert(false); return true; }
+			if(lResults == null) { Debug.Assert(false); return true; }
+			Debug.Assert(lResults.UCount == 0);
 
 			bool bTitle = sp.SearchInTitles;
 			bool bUserName = sp.SearchInUserNames;
@@ -866,10 +881,8 @@ namespace KeePassLib
 			bool bUuids = sp.SearchInUuids;
 			bool bGroupName = sp.SearchInGroupNames;
 			bool bTags = sp.SearchInTags;
-			bool bExcludeExpired = sp.ExcludeExpired;
-			bool bRespectEntrySearchingDisabled = sp.RespectEntrySearchingDisabled;
-
-			DateTime dtNow = DateTime.Now;
+			// bool bExcludeExpired = sp.ExcludeExpired;
+			// bool bRespectEntrySearchingDisabled = sp.RespectEntrySearchingDisabled;
 
 			Regex rx = null;
 			if(sp.RegularExpression)
@@ -887,46 +900,26 @@ namespace KeePassLib
 				rx = new Regex(sp.SearchString, ro);
 			}
 
-			ulong uLocalCurEntries = uCurEntries;
+			ulong uLocalPrcEntries = uPrcEntries;
 
-			EntryHandler eh = null;
-			if(sp.SearchString.Length <= 0) // Report all
-			{
-				eh = delegate(PwEntry pe)
-				{
-					if(slStatus != null)
-					{
-						if(!slStatus.SetProgress((uint)((uLocalCurEntries *
-							100UL) / uTotalEntries))) return false;
-						++uLocalCurEntries;
-					}
-
-					if(bRespectEntrySearchingDisabled && !pe.GetSearchingEnabled())
-						return true; // Skip
-					if(bExcludeExpired && pe.Expires && (dtNow > pe.ExpiryTime))
-						return true; // Skip
-
-					listStorage.Add(pe);
-					return true;
-				};
-			}
+			if(sp.SearchString.Length == 0) lResults.Add(lSource);
 			else
 			{
-				eh = delegate(PwEntry pe)
+				foreach(PwEntry pe in lSource)
 				{
 					if(slStatus != null)
 					{
-						if(!slStatus.SetProgress((uint)((uLocalCurEntries *
+						if(!slStatus.SetProgress((uint)((uLocalPrcEntries *
 							100UL) / uTotalEntries))) return false;
-						++uLocalCurEntries;
+						++uLocalPrcEntries;
 					}
 
-					if(bRespectEntrySearchingDisabled && !pe.GetSearchingEnabled())
-						return true; // Skip
-					if(bExcludeExpired && pe.Expires && (dtNow > pe.ExpiryTime))
-						return true; // Skip
+					// if(bRespectEntrySearchingDisabled && !pe.GetSearchingEnabled())
+					//	continue;
+					// if(bExcludeExpired && pe.Expires && (pe.ExpiryTime <= dtNow))
+					//	continue;
 
-					uint uInitialResults = listStorage.UCount;
+					uint uInitialResults = lResults.UCount;
 
 					foreach(KeyValuePair<string, ProtectedString> kvp in pe.Strings)
 					{
@@ -935,76 +928,77 @@ namespace KeePassLib
 						if(strKey == PwDefs.TitleField)
 						{
 							if(bTitle) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, lResults);
 						}
 						else if(strKey == PwDefs.UserNameField)
 						{
 							if(bUserName) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, lResults);
 						}
 						else if(strKey == PwDefs.PasswordField)
 						{
 							if(bPassword) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, lResults);
 						}
 						else if(strKey == PwDefs.UrlField)
 						{
 							if(bUrl) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, lResults);
 						}
 						else if(strKey == PwDefs.NotesField)
 						{
 							if(bNotes) SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, lResults);
 						}
 						else if(bOther)
 							SearchEvalAdd(sp, kvp.Value.ReadString(),
-								rx, pe, listStorage);
+								rx, pe, lResults);
 
 						// An entry can match only once => break if we have added it
-						if(listStorage.UCount > uInitialResults) break;
+						if(lResults.UCount != uInitialResults) break;
 					}
 
-					if(bUuids && (listStorage.UCount == uInitialResults))
-						SearchEvalAdd(sp, pe.Uuid.ToHexString(), rx, pe, listStorage);
+					if(bUuids && (lResults.UCount == uInitialResults))
+						SearchEvalAdd(sp, pe.Uuid.ToHexString(), rx, pe, lResults);
 
-					if(bGroupName && (listStorage.UCount == uInitialResults) &&
+					if(bGroupName && (lResults.UCount == uInitialResults) &&
 						(pe.ParentGroup != null))
-						SearchEvalAdd(sp, pe.ParentGroup.Name, rx, pe, listStorage);
+						SearchEvalAdd(sp, pe.ParentGroup.Name, rx, pe, lResults);
 
 					if(bTags)
 					{
 						foreach(string strTag in pe.Tags)
 						{
-							if(listStorage.UCount != uInitialResults) break; // Match
+							if(lResults.UCount != uInitialResults) break;
 
-							SearchEvalAdd(sp, strTag, rx, pe, listStorage);
+							SearchEvalAdd(sp, strTag, rx, pe, lResults);
 						}
 					}
-
-					return true;
-				};
+				}
 			}
 
-			if(!PreOrderTraverseTree(null, eh)) return false;
-			uCurEntries = uLocalCurEntries;
+			uPrcEntries = uLocalPrcEntries;
 			return true;
 		}
 
-		private static void SearchEvalAdd(SearchParameters sp, string strDataField,
+		private static void SearchEvalAdd(SearchParameters sp, string strData,
 			Regex rx, PwEntry pe, PwObjectList<PwEntry> lResults)
 		{
-			bool bMatch = false;
+			if(sp == null) { Debug.Assert(false); return; }
+			if(strData == null) { Debug.Assert(false); return; }
+			if(pe == null) { Debug.Assert(false); return; }
+			if(lResults == null) { Debug.Assert(false); return; }
 
+			bool bMatch;
 			if(rx == null)
-				bMatch = (strDataField.IndexOf(sp.SearchString,
+				bMatch = (strData.IndexOf(sp.SearchString,
 					sp.ComparisonMode) >= 0);
-			else bMatch = rx.IsMatch(strDataField);
+			else bMatch = rx.IsMatch(strData);
 
 			if(!bMatch && (sp.DataTransformationFn != null))
 			{
-				string strCmp = sp.DataTransformationFn(strDataField, pe);
-				if(!object.ReferenceEquals(strCmp, strDataField))
+				string strCmp = sp.DataTransformationFn(strData, pe);
+				if(!object.ReferenceEquals(strCmp, strData))
 				{
 					if(rx == null)
 						bMatch = (strCmp.IndexOf(sp.SearchString,
@@ -1424,15 +1418,20 @@ namespace KeePassLib
 
 		public PwObjectList<PwEntry> GetEntries(bool bIncludeSubGroupEntries)
 		{
-			if(bIncludeSubGroupEntries == false) return m_listEntries;
+			PwObjectList<PwEntry> l = new PwObjectList<PwEntry>();
 
-			PwObjectList<PwEntry> list = m_listEntries.CloneShallow();
-			foreach(PwGroup pgSub in m_listGroups)
+			GroupHandler gh = delegate(PwGroup pg)
 			{
-				list.Add(pgSub.GetEntries(true));
-			}
+				l.Add(pg.Entries);
+				return true;
+			};
 
-			return list;
+			gh(this);
+			if(bIncludeSubGroupEntries)
+				PreOrderTraverseTree(gh, null);
+
+			Debug.Assert(l.UCount == GetEntriesCount(bIncludeSubGroupEntries));
+			return l;
 		}
 
 		/// <summary>
@@ -1505,7 +1504,7 @@ namespace KeePassLib
 
 			if(bTakeOwnership) subGroup.m_pParentGroup = this;
 
-			if(bUpdateLocationChangedOfSub) subGroup.LocationChanged = DateTime.Now;
+			if(bUpdateLocationChangedOfSub) subGroup.LocationChanged = DateTime.UtcNow;
 		}
 
 		/// <summary>
@@ -1540,7 +1539,7 @@ namespace KeePassLib
 			// only assign it to the new one
 			if(bTakeOwnership) pe.ParentGroup = this;
 
-			if(bUpdateLocationChangedOfEntry) pe.LocationChanged = DateTime.Now;
+			if(bUpdateLocationChangedOfEntry) pe.LocationChanged = DateTime.UtcNow;
 		}
 
 		public void SortSubGroups(bool bRecursive)
@@ -1556,7 +1555,7 @@ namespace KeePassLib
 
 		public void DeleteAllObjects(PwDatabase pdContext)
 		{
-			DateTime dtNow = DateTime.Now;
+			DateTime dtNow = DateTime.UtcNow;
 
 			foreach(PwEntry pe in m_listEntries)
 			{
@@ -1600,7 +1599,7 @@ namespace KeePassLib
 
 		public void SetCreatedNow(bool bRecursive)
 		{
-			DateTime dt = DateTime.Now;
+			DateTime dt = DateTime.UtcNow;
 
 			m_tCreation = dt;
 			m_tLastAccess = dt;

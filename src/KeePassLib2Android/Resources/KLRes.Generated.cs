@@ -33,7 +33,9 @@ namespace KeePassLib.Resources
 			m_strFatalError = TryGetEx(dictNew, "FatalError", m_strFatalError);
 			m_strFatalErrorText = TryGetEx(dictNew, "FatalErrorText", m_strFatalErrorText);
 			m_strFileCorrupted = TryGetEx(dictNew, "FileCorrupted", m_strFileCorrupted);
-			m_strFileHeaderEndEarly = TryGetEx(dictNew, "FileHeaderEndEarly", m_strFileHeaderEndEarly);
+			m_strFileHeaderCorrupted = TryGetEx(dictNew, "FileHeaderCorrupted", m_strFileHeaderCorrupted);
+			m_strFileIncomplete = TryGetEx(dictNew, "FileIncomplete", m_strFileIncomplete);
+			m_strFileIncompleteExpc = TryGetEx(dictNew, "FileIncompleteExpc", m_strFileIncompleteExpc);
 			m_strFileLoadFailed = TryGetEx(dictNew, "FileLoadFailed", m_strFileLoadFailed);
 			m_strFileLockedWrite = TryGetEx(dictNew, "FileLockedWrite", m_strFileLockedWrite);
 			m_strFileNewVerOrPlgReq = TryGetEx(dictNew, "FileNewVerOrPlgReq", m_strFileNewVerOrPlgReq);
@@ -73,7 +75,9 @@ namespace KeePassLib.Resources
 			"FatalError",
 			"FatalErrorText",
 			"FileCorrupted",
-			"FileHeaderEndEarly",
+			"FileHeaderCorrupted",
+			"FileIncomplete",
+			"FileIncompleteExpc",
 			"FileLoadFailed",
 			"FileLockedWrite",
 			"FileNewVerOrPlgReq",
@@ -187,15 +191,37 @@ namespace KeePassLib.Resources
 			get { return m_strFileCorrupted; }
 		}
 
-		private static string m_strFileHeaderEndEarly =
-			@"The file header is corrupted! Some header data was declared but is not present.";
+		private static string m_strFileHeaderCorrupted =
+			@"The file header is corrupted.";
 		/// <summary>
 		/// Look up a localized string similar to
-		/// 'The file header is corrupted! Some header data was declared but is not present.'.
+		/// 'The file header is corrupted.'.
 		/// </summary>
-		public static string FileHeaderEndEarly
+		public static string FileHeaderCorrupted
 		{
-			get { return m_strFileHeaderEndEarly; }
+			get { return m_strFileHeaderCorrupted; }
+		}
+
+		private static string m_strFileIncomplete =
+			@"Data is missing at the end of the file, i.e. the file is incomplete.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Data is missing at the end of the file, i.e. the file is incomplete.'.
+		/// </summary>
+		public static string FileIncomplete
+		{
+			get { return m_strFileIncomplete; }
+		}
+
+		private static string m_strFileIncompleteExpc =
+			@"Less data than expected could be read from the file.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Less data than expected could be read from the file.'.
+		/// </summary>
+		public static string FileIncompleteExpc
+		{
+			get { return m_strFileIncompleteExpc; }
 		}
 
 		private static string m_strFileLoadFailed =

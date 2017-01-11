@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -688,6 +688,15 @@ namespace KeePassLib.Cryptography
 				byte[] pbHash = h.Hash;
 				if(!MemUtil.ArraysEqual(pbHash, pbExpc))
 					throw new SecurityException("HMAC-SHA-256-" + strID);
+
+				// Reuse the object
+				h.Initialize();
+				h.TransformBlock(pbMsg, 0, pbMsg.Length, pbMsg, 0);
+				h.TransformFinalBlock(MemUtil.EmptyByteArray, 0, 0);
+
+				pbHash = h.Hash;
+				if(!MemUtil.ArraysEqual(pbHash, pbExpc))
+					throw new SecurityException("HMAC-SHA-256-" + strID + "-R");
 			}
 		}
 #endif

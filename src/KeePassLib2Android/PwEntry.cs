@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -311,8 +311,11 @@ namespace KeePassLib
 
 			if(bSetTimes)
 			{
-				m_tCreation = m_tLastMod = m_tLastAccess =
-					m_tParentGroupLastMod = DateTime.Now;
+				DateTime dtNow = DateTime.UtcNow;
+				m_tCreation = dtNow;
+				m_tLastMod = dtNow;
+				m_tLastAccess = dtNow;
+				m_tParentGroupLastMod = dtNow;
 			}
 		}
 
@@ -336,8 +339,11 @@ namespace KeePassLib
 
 			if(bSetTimes)
 			{
-				m_tCreation = m_tLastMod = m_tLastAccess =
-					m_tParentGroupLastMod = DateTime.Now;
+				DateTime dtNow = DateTime.UtcNow;
+				m_tCreation = dtNow;
+				m_tLastMod = dtNow;
+				m_tLastAccess = dtNow;
+				m_tParentGroupLastMod = dtNow;
 			}
 		}
 
@@ -585,7 +591,7 @@ namespace KeePassLib
 		/// get touched, too.</param>
 		public void Touch(bool bModified, bool bTouchParents)
 		{
-			m_tLastAccess = DateTime.Now;
+			m_tLastAccess = DateTime.UtcNow;
 			++m_uUsageCount;
 
 			if(bModified) m_tLastMod = m_tLastAccess;
@@ -724,7 +730,7 @@ namespace KeePassLib
 
 		private void RemoveOldestBackup()
 		{
-			DateTime dtMin = DateTime.MaxValue;
+			DateTime dtMin = TimeUtil.SafeMaxValueUtc;
 			uint idxRemove = uint.MaxValue;
 
 			for(uint u = 0; u < m_listHistory.UCount; ++u)
@@ -888,7 +894,7 @@ namespace KeePassLib
 
 		public void SetCreatedNow()
 		{
-			DateTime dt = DateTime.Now;
+			DateTime dt = DateTime.UtcNow;
 
 			m_tCreation = dt;
 			m_tLastAccess = dt;
