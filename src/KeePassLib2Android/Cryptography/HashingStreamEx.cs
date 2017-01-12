@@ -96,13 +96,6 @@ namespace KeePassLib.Cryptography
 				m_hash = null;
 			}
 		}
-
-		public override void Flush()
-		{
-			m_sBaseStream.Flush();
-		}
-
-#if KeePassRT
 		protected override void Dispose(bool disposing)
 		{
 			if(disposing)

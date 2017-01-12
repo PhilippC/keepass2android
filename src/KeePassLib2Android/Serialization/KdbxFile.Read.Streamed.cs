@@ -499,22 +499,21 @@ namespace KeePassLib.Serialization
 					Debug.Assert(tl != null);
 
 					if(xr.Name == ElemCreationTime)
-						tl.SetLazyCreationTime(ReadString(xr));
-					else if (xr.Name == ElemLastModTime)
-						tl.SetLazyLastModificationTime(ReadString(xr));
-					else if (xr.Name == ElemLastAccessTime)
-						tl.SetLazyLastAccessTime(ReadString(xr));
-					else if (xr.Name == ElemExpiryTime)
-						tl.SetLazyExpiryTime(ReadString(xr));
-					else if (xr.Name == ElemExpires)
+						tl.CreationTime = ReadTime(xr);
+					else if(xr.Name == ElemLastModTime)
+						tl.LastModificationTime = ReadTime(xr);
+					else if(xr.Name == ElemLastAccessTime)
+						tl.LastAccessTime = ReadTime(xr);
+					else if(xr.Name == ElemExpiryTime)
+						tl.ExpiryTime = ReadTime(xr);
+					else if(xr.Name == ElemExpires)
 						tl.Expires = ReadBool(xr, false);
 					else if(xr.Name == ElemUsageCount)
 						tl.UsageCount = ReadULong(xr, 0);
 					else if(xr.Name == ElemLocationChanged)
-						tl.SetLazyLocationChanged(ReadString(xr));
+						tl.LocationChanged = ReadTime(xr);
 					else ReadUnknown(xr);
 					break;
-
 				case KdbContext.EntryString:
 					if(xr.Name == ElemKey)
 						m_ctxStringName = ReadString(xr);

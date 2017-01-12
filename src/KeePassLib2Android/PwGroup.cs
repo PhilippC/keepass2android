@@ -47,7 +47,6 @@ namespace KeePassLib
 		private PwObjectList<PwEntry> m_listEntries = new PwObjectList<PwEntry>();
 		private PwGroup m_pParentGroup = null;
 		private DateTime m_tParentGroupLastMod = PwDefs.DtDefaultNow;
-		private string m_tParentGroupLastModLazy;
 
 		private PwUuid m_uuid = PwUuid.Zero;
 		private string m_strName = string.Empty;
@@ -62,12 +61,6 @@ namespace KeePassLib
 		private DateTime m_tExpire = PwDefs.DtDefaultNow;
 		private bool m_bExpires = false;
 		private ulong m_uUsageCount = 0;
-
-
-		private string m_tCreationLazy;
-		private string m_tLastModLazy;
-		private string m_tLastAccessLazy;
-		private string m_tExpireLazy;
 
 		private bool m_bIsExpanded = true;
 		private bool m_bVirtual = false;
@@ -160,12 +153,8 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime LocationChanged
 		{
-			get { return GetLazyTime(ref m_tParentGroupLastModLazy, ref m_tParentGroupLastMod); }
-			set { m_tParentGroupLastMod = value; m_tParentGroupLastModLazy = null; }
-		}
-		public void SetLazyLocationChanged(string xmlDateTime)
-		{
-			m_tParentGroupLastModLazy = xmlDateTime;
+			get { return m_tParentGroupLastMod; }
+			set { m_tParentGroupLastMod = value; }
 		}
 
 		/// <summary>
@@ -183,13 +172,8 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime CreationTime
 		{
-			get { return GetLazyTime(ref m_tCreationLazy, ref m_tCreation); }
-			set { m_tCreation = value; m_tCreationLazy = null; }
-		}
-
-		public void SetLazyCreationTime(string xmlDateTime)
-		{
-			m_tCreationLazy = xmlDateTime;
+			get { return m_tCreation; }
+			set { m_tCreation = value; }
 		}
 
 		/// <summary>
@@ -197,13 +181,8 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime LastModificationTime
 		{
-			get { return GetLazyTime(ref m_tLastModLazy, ref m_tLastMod); }
-			set { m_tLastMod = value; m_tLastModLazy = null; }
-		}
-
-		public void SetLazyLastModificationTime(string xmlDateTime)
-		{
-			m_tLastModLazy = xmlDateTime;
+			get { return m_tLastMod; }
+			set { m_tLastMod = value; }
 		}
 
 		/// <summary>
@@ -211,13 +190,8 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime LastAccessTime
 		{
-			get { return GetLazyTime(ref m_tLastAccessLazy, ref m_tLastAccess); }
-			set { m_tLastAccess = value; m_tLastAccessLazy = null; }
-		}
-
-		public void SetLazyLastAccessTime(string xmlDateTime)
-		{
-			m_tLastAccessLazy = xmlDateTime;
+			get { return m_tLastAccess; }
+			set { m_tLastAccess = value; }
 		}
 
 		/// <summary>
@@ -225,12 +199,8 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime ExpiryTime
 		{
-			get { return GetLazyTime(ref m_tExpireLazy, ref m_tExpire); }
-			set { m_tExpire = value; m_tExpireLazy = null; }
-		}
-		public void SetLazyExpiryTime(string xmlDateTime)
-		{
-			m_tExpireLazy = xmlDateTime;
+			get { return m_tExpire; }
+			set { m_tExpire = value; }
 		}
 
 		/// <summary>
@@ -406,7 +376,6 @@ namespace KeePassLib
 			pg.m_listEntries = m_listEntries.CloneDeep();
 			pg.m_pParentGroup = m_pParentGroup;
 			pg.m_tParentGroupLastMod = m_tParentGroupLastMod;
-			pg.m_tParentGroupLastModLazy = m_tParentGroupLastModLazy;
 
 			pg.m_strName = m_strName;
 			pg.m_strNotes = m_strNotes;
@@ -420,11 +389,6 @@ namespace KeePassLib
 			pg.m_tExpire = m_tExpire;
 			pg.m_bExpires = m_bExpires;
 			pg.m_uUsageCount = m_uUsageCount;
-
-			pg.m_tCreationLazy = m_tCreationLazy;
-			pg.m_tLastModLazy = m_tLastModLazy;
-			pg.m_tLastAccessLazy = m_tLastAccessLazy;
-			pg.m_tExpireLazy = m_tExpireLazy;
 
 			pg.m_bIsExpanded = m_bIsExpanded;
 			pg.m_bVirtual = m_bVirtual;
@@ -483,7 +447,7 @@ namespace KeePassLib
 			if (!m_pwCustomIconID.Equals(pg.m_pwCustomIconID)) return false;
 
 			if (m_tCreation != pg.m_tCreation) return false;
-			if (!bIgnoreLastMod && (LastModificationTime != pg.LastModificationTime)) return false;
+			if(!bIgnoreLastMod && (m_tLastMod != pg.m_tLastMod)) return false;
 			if (!bIgnoreLastAccess && (m_tLastAccess != pg.m_tLastAccess)) return false;
 			if (m_tExpire != pg.m_tExpire) return false;
 			if (m_bExpires != pg.m_bExpires) return false;
@@ -541,9 +505,9 @@ namespace KeePassLib
 		public void AssignProperties(PwGroup pgTemplate, bool bOnlyIfNewer,
 			bool bAssignLocationChanged)
 		{
-			Debug.Assert(pgTemplate != null); if (pgTemplate == null) throw new ArgumentNullException("pgTemplate");
+			Debug.Assert(pgTemplate != null); if(pgTemplate == null) throw new ArgumentNullException("pgTemplate");
 
-			if (bOnlyIfNewer && (TimeUtil.Compare(pgTemplate.LastModificationTime, LastModificationTime,
+			if(bOnlyIfNewer && (TimeUtil.Compare(pgTemplate.m_tLastMod, m_tLastMod,
 				true) < 0))
 				return;
 
@@ -551,7 +515,7 @@ namespace KeePassLib
 			Debug.Assert(m_uuid.Equals(pgTemplate.m_uuid));
 			m_uuid = pgTemplate.m_uuid;
 
-			if (bAssignLocationChanged)
+			if(bAssignLocationChanged)
 				m_tParentGroupLastMod = pgTemplate.m_tParentGroupLastMod;
 
 			m_strName = pgTemplate.m_strName;
@@ -560,11 +524,10 @@ namespace KeePassLib
 			m_pwIcon = pgTemplate.m_pwIcon;
 			m_pwCustomIconID = pgTemplate.m_pwCustomIconID;
 
-			m_tCreation = pgTemplate.CreationTime;
-			m_tLastMod = pgTemplate.LastModificationTime;
-			m_tLastAccess = pgTemplate.LastAccessTime;
-			m_tExpire = pgTemplate.ExpiryTime;
-
+			m_tCreation = pgTemplate.m_tCreation;
+			m_tLastMod = pgTemplate.m_tLastMod;
+			m_tLastAccess = pgTemplate.m_tLastAccess;
+			m_tExpire = pgTemplate.m_tExpire;
 			m_bExpires = pgTemplate.m_bExpires;
 			m_uUsageCount = pgTemplate.m_uUsageCount;
 
@@ -602,16 +565,16 @@ namespace KeePassLib
 			m_tLastAccess = DateTime.Now;
 			++m_uUsageCount;
 
-			if (bModified) m_tLastMod = m_tLastAccess;
+			if(bModified) m_tLastMod = m_tLastAccess;
 
-			if (this.Touched != null)
+			if(this.Touched != null)
 				this.Touched(this, new ObjectTouchedEventArgs(this,
 					bModified, bTouchParents));
-			if (PwGroup.GroupTouched != null)
+			if(PwGroup.GroupTouched != null)
 				PwGroup.GroupTouched(this, new ObjectTouchedEventArgs(this,
 					bModified, bTouchParents));
 
-			if (bTouchParents && (m_pParentGroup != null))
+			if(bTouchParents && (m_pParentGroup != null))
 				m_pParentGroup.Touch(bModified, true);
 		}
 
@@ -628,13 +591,13 @@ namespace KeePassLib
 		/// <param name="uNumEntries">Number of entries.</param>
 		public void GetCounts(bool bRecursive, out uint uNumGroups, out uint uNumEntries)
 		{
-			if (bRecursive)
+			if(bRecursive)
 			{
 				uint uTotalGroups = m_listGroups.UCount;
 				uint uTotalEntries = m_listEntries.UCount;
 				uint uSubGroupCount, uSubEntryCount;
 
-				foreach (PwGroup pg in m_listGroups)
+				foreach(PwGroup pg in m_listGroups)
 				{
 					pg.GetCounts(true, out uSubGroupCount, out uSubEntryCount);
 
@@ -678,7 +641,7 @@ namespace KeePassLib
 		{
 			bool bRet = false;
 
-			switch (tm)
+			switch(tm)
 			{
 				case TraversalMethod.None:
 					bRet = true;
@@ -696,26 +659,26 @@ namespace KeePassLib
 
 		private bool PreOrderTraverseTree(GroupHandler groupHandler, EntryHandler entryHandler)
 		{
-			if (entryHandler != null)
+			if(entryHandler != null)
 			{
-				foreach (PwEntry pe in m_listEntries)
+				foreach(PwEntry pe in m_listEntries)
 				{
-					if (!entryHandler(pe)) return false;
+					if(!entryHandler(pe)) return false;
 				}
 			}
 
-			if (groupHandler != null)
+			if(groupHandler != null)
 			{
-				foreach (PwGroup pg in m_listGroups)
+				foreach(PwGroup pg in m_listGroups)
 				{
-					if (!groupHandler(pg)) return false;
+					if(!groupHandler(pg)) return false;
 
 					pg.PreOrderTraverseTree(groupHandler, entryHandler);
 				}
 			}
 			else // groupHandler == null
 			{
-				foreach (PwGroup pg in m_listGroups)
+				foreach(PwGroup pg in m_listGroups)
 				{
 					pg.PreOrderTraverseTree(null, entryHandler);
 				}
@@ -732,11 +695,11 @@ namespace KeePassLib
 		{
 			LinkedList<PwGroup> list = new LinkedList<PwGroup>();
 
-			foreach (PwGroup pg in m_listGroups)
+			foreach(PwGroup pg in m_listGroups)
 			{
 				list.AddLast(pg);
 
-				if (pg.Groups.UCount != 0)
+				if(pg.Groups.UCount != 0)
 					LinearizeGroupRecursive(list, pg, 1);
 			}
 
@@ -745,13 +708,13 @@ namespace KeePassLib
 
 		private void LinearizeGroupRecursive(LinkedList<PwGroup> list, PwGroup pg, ushort uLevel)
 		{
-			Debug.Assert(pg != null); if (pg == null) return;
+			Debug.Assert(pg != null); if(pg == null) return;
 
-			foreach (PwGroup pwg in pg.Groups)
+			foreach(PwGroup pwg in pg.Groups)
 			{
 				list.AddLast(pwg);
 
-				if (pwg.Groups.UCount != 0)
+				if(pwg.Groups.UCount != 0)
 					LinearizeGroupRecursive(list, pwg, (ushort)(uLevel + 1));
 			}
 		}
@@ -765,12 +728,12 @@ namespace KeePassLib
 		/// <returns>Flat list of all entries.</returns>
 		public static LinkedList<PwEntry> GetFlatEntryList(LinkedList<PwGroup> flatGroupList)
 		{
-			Debug.Assert(flatGroupList != null); if (flatGroupList == null) return null;
+			Debug.Assert(flatGroupList != null); if(flatGroupList == null) return null;
 
 			LinkedList<PwEntry> list = new LinkedList<PwEntry>();
-			foreach (PwGroup pg in flatGroupList)
+			foreach(PwGroup pg in flatGroupList)
 			{
-				foreach (PwEntry pe in pg.Entries)
+				foreach(PwEntry pe in pg.Entries)
 					list.AddLast(pe);
 			}
 
@@ -794,7 +757,7 @@ namespace KeePassLib
 				pe.Strings.EnableProtection(strFieldName, bEnable);
 
 				// Do the same for all history items
-				foreach (PwEntry peHistory in pe.History)
+				foreach(PwEntry peHistory in pe.History)
 				{
 					peHistory.Strings.EnableProtection(strFieldName, bEnable);
 				}
@@ -1722,15 +1685,6 @@ namespace KeePassLib
 			pg.TakeOwnership(true, true, true);
 
 			return pg;
-		}
-		private DateTime GetLazyTime(ref string lazyTime, ref DateTime dateTime)
-		{
-			if (lazyTime != null)
-			{
-				dateTime = TimeUtil.DeserializeUtcOrDefault(lazyTime, m_tLastMod);
-				lazyTime = null;
-			}
-			return dateTime;
 		}
 	}
 

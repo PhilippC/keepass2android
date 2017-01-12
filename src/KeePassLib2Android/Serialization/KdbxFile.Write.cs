@@ -209,7 +209,7 @@ namespace KeePassLib.Serialization
 
 				if (m_format == KdbxFormat.ProtocolBuffers)
 				{
-					KdbpFile.WriteDocument(m_pwDatabase, sXml, m_pbProtectedStreamKey, m_pbHashOfHeader);
+					KdbpFile.WriteDocument(m_pwDatabase, sXml, m_pbInnerRandomStreamKey, m_pbHashOfHeader);
 				}
 				else
 				{
@@ -1014,17 +1014,12 @@ namespace KeePassLib.Serialization
 		}
 
 		public static bool WriteEntries(Stream msOutput, PwDatabase pdContext,
-			PwEntry[] vEntries)
+	PwEntry[] vEntries)
 		{
-			if(msOutput == null) { Debug.Assert(false); return false; }
-		/// <summary>
-			if(vEntries == null) { Debug.Assert(false); return false; }
-		/// Write entries to a stream.
-		/// </summary>
-		/// <param name="msOutput">Output stream to which the entries will be written.</param>
-		/// <param name="vEntries">Entries to serialize.</param>
-		/// <returns>Returns <c>true</c>, if the entries were written successfully
-		/// to the stream.</returns>
+			if (msOutput == null) { Debug.Assert(false); return false; }
+			// pdContext may be null
+			if (vEntries == null) { Debug.Assert(false); return false; }
+
 			/* KdbxFile f = new KdbxFile(pwDatabase);
 			f.m_format = KdbxFormat.PlainXml;
 
@@ -1047,31 +1042,36 @@ namespace KeePassLib.Serialization
 
 			xtw.WriteEndElement();
 			xtw.WriteEndDocument();
+
+			xtw.Flush();
+			xtw.Close();
+			return true; */
+
 			PwDatabase pd = new PwDatabase();
 			pd.New(new IOConnectionInfo(), new CompositeKey());
 
 			PwGroup pg = pd.RootGroup;
-			if(pg == null) { Debug.Assert(false); return false; }
-			xtw.Flush();
-			foreach(PwEntry pe in vEntries)
+			if (pg == null) { Debug.Assert(false); return false; }
+
+			foreach (PwEntry pe in vEntries)
 			{
 				PwUuid pu = pe.CustomIconUuid;
-				if(!pu.Equals(PwUuid.Zero) && (pd.GetCustomIconIndex(pu) < 0))
+				if (!pu.Equals(PwUuid.Zero) && (pd.GetCustomIconIndex(pu) < 0))
 				{
 					int i = -1;
-					if(pdContext != null) i = pdContext.GetCustomIconIndex(pu);
-					if(i >= 0)
+					if (pdContext != null) i = pdContext.GetCustomIconIndex(pu);
+					if (i >= 0)
 					{
 						PwCustomIcon ci = pdContext.CustomIcons[i];
 						pd.CustomIcons.Add(ci);
 					}
 					else { Debug.Assert(pdContext == null); }
 				}
-			xtw.Close();
+
 				PwEntry peCopy = pe.CloneDeep();
 				pg.AddEntry(peCopy, true);
 			}
-			return true; */
+
 			KdbxFile f = new KdbxFile(pd);
 			f.Save(msOutput, null, KdbxFormat.PlainXml, null);
 			return true;

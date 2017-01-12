@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\ProtectedBinarySet.cs" />
     <Compile Include="Collections\VariantDictionary.cs" />
     <Compile Include="Cryptography\Cipher\ChaCha20Cipher.cs" />
     <Compile Include="Cryptography\Cipher\ChaCha20Engine.cs" />

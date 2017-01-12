@@ -1,6 +1,8 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
+  
+  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,29 +22,45 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Text;
 
-#if !KeePassUAP
-using System.Windows.Forms;
-#endif
+using System.Diagnostics;
 
 using KeePassLib.Resources;
 using KeePassLib.Serialization;
 
 namespace KeePassLib.Utility
 {
+	public enum MessageBoxButtons
+	{
+		OK, OKCancel, AbortRetryIgnore, YesNoCancel, YesNo, RetryCancel
+	}
+	public enum MessageBoxIcon
+	{
+		Information, Warning, Error, Question
+	}
+	public enum MessageBoxDefaultButton
+	{
+		Button1, Button2, Button3
+	}
+
+	public enum DialogResult
+	{
+		Yes, No, Cancel, Retry, Abort
+	}
+
+
 	public sealed class MessageServiceEventArgs : EventArgs
 	{
 		private string m_strTitle = string.Empty;
 		private string m_strText = string.Empty;
-		private MessageBoxButtons m_msgButtons = MessageBoxButtons.OK;
-		private MessageBoxIcon m_msgIcon = MessageBoxIcon.None;
+		//private MessageBoxButtons m_msgButtons = MessageBoxButtons.OK;
+		//private MessageBoxIcon m_msgIcon = MessageBoxIcon.None;
 
 		public string Title { get { return m_strTitle; } }
 		public string Text { get { return m_strText; } }
-		public MessageBoxButtons Buttons { get { return m_msgButtons; } }
-		public MessageBoxIcon Icon { get { return m_msgIcon; } }
+		//public MessageBoxButtons Buttons { get { return m_msgButtons; } }
+		//public MessageBoxIcon Icon { get { return m_msgIcon; } }
 
 		public MessageServiceEventArgs() { }
 
@@ -51,8 +69,7 @@ namespace KeePassLib.Utility
 		{
 			m_strTitle = (strTitle ?? string.Empty);
 			m_strText = (strText ?? string.Empty);
-			m_msgButtons = msgButtons;
-			m_msgIcon = msgIcon;
+
 		}
 	}
 
@@ -65,14 +82,12 @@ namespace KeePassLib.Utility
 		private const MessageBoxIcon m_mbiWarning = MessageBoxIcon.Warning;
 		private const MessageBoxIcon m_mbiFatal = MessageBoxIcon.Error;
 
-		private const MessageBoxOptions m_mboRtl = (MessageBoxOptions.RtlReading |
-			MessageBoxOptions.RightAlign);
 #else
 		private const MessageBoxIcon m_mbiInfo = MessageBoxIcon.Asterisk;
 		private const MessageBoxIcon m_mbiWarning = MessageBoxIcon.Exclamation;
 		private const MessageBoxIcon m_mbiFatal = MessageBoxIcon.Hand;
 #endif
-		private const MessageBoxIcon m_mbiQuestion = MessageBoxIcon.Question;
+		//private const MessageBoxIcon m_mbiQuestion = MessageBoxIcon.Question;
 
 		public static string NewLine
 		{
@@ -97,9 +112,7 @@ namespace KeePassLib.Utility
 			get { return m_uCurrentMessageCount; }
 		}
 
-#if !KeePassUAP
 		public static event EventHandler<MessageServiceEventArgs> MessageShowing;
-#endif
 
 		private static string ObjectsToMessage(object[] vLines)
 		{
@@ -108,52 +121,52 @@ namespace KeePassLib.Utility
 
 		private static string ObjectsToMessage(object[] vLines, bool bFullExceptions)
 		{
-			if(vLines == null) return string.Empty;
+			if (vLines == null) return string.Empty;
 
 			string strNewPara = MessageService.NewParagraph;
 
 			StringBuilder sbText = new StringBuilder();
 			bool bSeparator = false;
 
-			foreach(object obj in vLines)
+			foreach (object obj in vLines)
 			{
-				if(obj == null) continue;
+				if (obj == null) continue;
 
 				string strAppend = null;
 
 				Exception exObj = (obj as Exception);
 				string strObj = (obj as string);
-#if !KeePassLibSD
+#if (!KeePassLibSD && !KeePassRT)
 				StringCollection scObj = (obj as StringCollection);
 #endif
 
-				if(exObj != null)
+				if (exObj != null)
 				{
-					if(bFullExceptions)
+					if (bFullExceptions)
 						strAppend = StrUtil.FormatException(exObj);
-					else if((exObj.Message != null) && (exObj.Message.Length > 0))
+					else if ((exObj.Message != null) && (exObj.Message.Length > 0))
 						strAppend = exObj.Message;
 				}
-#if !KeePassLibSD
-				else if(scObj != null)
+#if (!KeePassLibSD && !KeePassRT)
+				else if (scObj != null)
 				{
 					StringBuilder sb = new StringBuilder();
-					foreach(string strCollLine in scObj)
+					foreach (string strCollLine in scObj)
 					{
-						if(sb.Length > 0) sb.AppendLine();
+						if (sb.Length > 0) sb.AppendLine();
 						sb.Append(strCollLine.TrimEnd());
 					}
 					strAppend = sb.ToString();
 				}
 #endif
-				else if(strObj != null)
+				else if (strObj != null)
 					strAppend = strObj;
 				else
 					strAppend = obj.ToString();
 
-				if(!string.IsNullOrEmpty(strAppend))
+				if (!string.IsNullOrEmpty(strAppend))
 				{
-					if(bSeparator) sbText.Append(strNewPara);
+					if (bSeparator) sbText.Append(strNewPara);
 					else bSeparator = true;
 
 					sbText.Append(strAppend);
@@ -163,24 +176,30 @@ namespace KeePassLib.Utility
 			return sbText.ToString();
 		}
 
-#if (!KeePassLibSD && !KeePassUAP)
-		internal static Form GetTopForm()
+#if (!KeePassLibSD && !KeePassRT)
+		/*internal static Form GetTopForm()
 		{
 			FormCollection fc = Application.OpenForms;
 			if((fc == null) || (fc.Count == 0)) return null;
 
 			return fc[fc.Count - 1];
-		}
+		}*/
 #endif
 
-#if !KeePassUAP
-		internal static DialogResult SafeShowMessageBox(string strText, string strTitle,
+		private static DialogResult SafeShowMessageBox(string strText, string strTitle,
 			MessageBoxButtons mb, MessageBoxIcon mi, MessageBoxDefaultButton mdb)
 		{
-#if KeePassLibSD
+#if (KeePassLibSD || KeePassRT)
 			return MessageBox.Show(strText, strTitle, mb, mi, mdb);
 #else
-			IWin32Window wnd = null;
+
+			if (mb == MessageBoxButtons.OK)
+			{
+				//Android.Widget.Toast toast = ..
+			}
+			//this might help: http://www.gregshackles.com/2011/04/using-background-threads-in-mono-for-android-applications/
+			throw new NotImplementedException();
+			/*IWin32Window wnd = null;
 			try
 			{
 				Form f = GetTopForm();
@@ -209,11 +228,12 @@ namespace KeePassLib.Utility
 			if(StrUtil.RightToLeft)
 				return MessageBox.Show(strText, strTitle, mb, mi, mdb, m_mboRtl);
 			return MessageBox.Show(strText, strTitle, mb, mi, mdb);
+			*/
 #endif
 		}
 
-#if !KeePassLibSD
-		internal delegate DialogResult SafeShowMessageBoxInternalDelegate(IWin32Window iParent,
+#if (!KeePassLibSD && !KeePassRT)
+		/*	internal delegate DialogResult SafeShowMessageBoxInternalDelegate(IWin32Window iParent,
 			string strText, string strTitle, MessageBoxButtons mb, MessageBoxIcon mi,
 			MessageBoxDefaultButton mdb);
 
@@ -224,7 +244,7 @@ namespace KeePassLib.Utility
 			if(StrUtil.RightToLeft)
 				return MessageBox.Show(iParent, strText, strTitle, mb, mi, mdb, m_mboRtl);
 			return MessageBox.Show(iParent, strText, strTitle, mb, mi, mdb);
-		}
+		}*/
 #endif
 
 		public static void ShowInfo(params object[] vLines)
@@ -239,7 +259,7 @@ namespace KeePassLib.Utility
 			strTitle = (strTitle ?? PwDefs.ShortProductName);
 			string strText = ObjectsToMessage(vLines);
 
-			if(MessageService.MessageShowing != null)
+			if (MessageService.MessageShowing != null)
 				MessageService.MessageShowing(null, new MessageServiceEventArgs(
 					strTitle, strText, MessageBoxButtons.OK, m_mbiInfo));
 
@@ -266,7 +286,7 @@ namespace KeePassLib.Utility
 			string strTitle = PwDefs.ShortProductName;
 			string strText = ObjectsToMessage(vLines, bFullExceptions);
 
-			if(MessageService.MessageShowing != null)
+			if (MessageService.MessageShowing != null)
 				MessageService.MessageShowing(null, new MessageServiceEventArgs(
 					strTitle, strText, MessageBoxButtons.OK, m_mbiWarning));
 
@@ -289,18 +309,17 @@ namespace KeePassLib.Utility
 
 			try
 			{
-				string strDetails = ObjectsToMessage(vLines, true);
-
-#if KeePassLibSD
-				Clipboard.SetDataObject(strDetails);
+#if !KeePassLibSD
+				/* nicht benoetigt - hoffentlich :-)
+Clipboard.Clear();
+Clipboard.SetText(ObjectsToMessage(vLines, true));*/
 #else
-				Clipboard.Clear();
-				Clipboard.SetText(strDetails);
+				Clipboard.SetDataObject(ObjectsToMessage(vLines, true));
 #endif
 			}
-			catch(Exception) { Debug.Assert(false); }
+			catch (Exception) { Debug.Assert(false); }
 
-			if(MessageService.MessageShowing != null)
+			if (MessageService.MessageShowing != null)
 				MessageService.MessageShowing(null, new MessageServiceEventArgs(
 					strTitle, strText, MessageBoxButtons.OK, m_mbiFatal));
 
@@ -318,12 +337,12 @@ namespace KeePassLib.Utility
 			string strTextEx = (strText ?? string.Empty);
 			string strTitleEx = (strTitle ?? PwDefs.ShortProductName);
 
-			if(MessageService.MessageShowing != null)
+			if (MessageService.MessageShowing != null)
 				MessageService.MessageShowing(null, new MessageServiceEventArgs(
-					strTitleEx, strTextEx, mbb, m_mbiQuestion));
+					strTitleEx, strTextEx, mbb, MessageBoxIcon.Question));
 
 			DialogResult dr = SafeShowMessageBox(strTextEx, strTitleEx, mbb,
-				m_mbiQuestion, MessageBoxDefaultButton.Button1);
+												 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
 			--m_uCurrentMessageCount;
 			return dr;
@@ -337,12 +356,12 @@ namespace KeePassLib.Utility
 			string strTextEx = (strText ?? string.Empty);
 			string strTitleEx = (strTitle ?? PwDefs.ShortProductName);
 
-			if(MessageService.MessageShowing != null)
+			if (MessageService.MessageShowing != null)
 				MessageService.MessageShowing(null, new MessageServiceEventArgs(
-					strTitleEx, strTextEx, MessageBoxButtons.YesNo, mbi));
+					strTitleEx, strTextEx, MessageBoxButtons.YesNo, MessageBoxIcon.Question));
 
 			DialogResult dr = SafeShowMessageBox(strTextEx, strTitleEx,
-				MessageBoxButtons.YesNo, mbi, bDefaultToYes ?
+												 MessageBoxButtons.YesNo, MessageBoxIcon.Question, bDefaultToYes ?
 				MessageBoxDefaultButton.Button1 : MessageBoxDefaultButton.Button2);
 
 			--m_uCurrentMessageCount;
@@ -351,17 +370,17 @@ namespace KeePassLib.Utility
 
 		public static bool AskYesNo(string strText, string strTitle, bool bDefaultToYes)
 		{
-			return AskYesNo(strText, strTitle, bDefaultToYes, m_mbiQuestion);
+			return AskYesNo(strText, strTitle, bDefaultToYes, MessageBoxIcon.Question);
 		}
 
 		public static bool AskYesNo(string strText, string strTitle)
 		{
-			return AskYesNo(strText, strTitle, true, m_mbiQuestion);
+			return AskYesNo(strText, strTitle, true, MessageBoxIcon.Question);
 		}
 
 		public static bool AskYesNo(string strText)
 		{
-			return AskYesNo(strText, null, true, m_mbiQuestion);
+			return AskYesNo(strText, null, true, MessageBoxIcon.Question);
 		}
 
 		public static void ShowLoadWarning(string strFilePath, Exception ex)
@@ -372,12 +391,26 @@ namespace KeePassLib.Utility
 		public static void ShowLoadWarning(string strFilePath, Exception ex,
 			bool bFullException)
 		{
-			ShowWarning(GetLoadWarningMessage(strFilePath, ex, bFullException));
+			string str = string.Empty;
+
+			if ((strFilePath != null) && (strFilePath.Length > 0))
+				str += strFilePath + MessageService.NewParagraph;
+
+			str += KLRes.FileLoadFailed;
+
+			if ((ex != null) && (ex.Message != null) && (ex.Message.Length > 0))
+			{
+				str += MessageService.NewParagraph;
+				if (!bFullException) str += ex.Message;
+				else str += ObjectsToMessage(new object[] { ex }, true);
+			}
+
+			ShowWarning(str);
 		}
 
 		public static void ShowLoadWarning(IOConnectionInfo ioConnection, Exception ex)
 		{
-			if(ioConnection != null)
+			if (ioConnection != null)
 				ShowLoadWarning(ioConnection.GetDisplayName(), ex, false);
 			else ShowWarning(ex);
 		}
@@ -386,61 +419,33 @@ namespace KeePassLib.Utility
 			bool bCorruptionWarning)
 		{
 			FileLockException fl = (ex as FileLockException);
-			if(fl != null)
+			if (fl != null)
 			{
 				ShowWarning(fl.Message);
 				return;
 			}
 
-			string str = GetSaveWarningMessage(strFilePath, ex, bCorruptionWarning);
+			string str = string.Empty;
+			if ((strFilePath != null) && (strFilePath.Length > 0))
+				str += strFilePath + MessageService.NewParagraph;
+
+			str += KLRes.FileSaveFailed;
+
+			if ((ex != null) && (ex.Message != null) && (ex.Message.Length > 0))
+				str += MessageService.NewParagraph + ex.Message;
+
+			if (bCorruptionWarning)
+				str += MessageService.NewParagraph + KLRes.FileSaveCorruptionWarning;
+
 			ShowWarning(str);
 		}
 
 		public static void ShowSaveWarning(IOConnectionInfo ioConnection, Exception ex,
 			bool bCorruptionWarning)
 		{
-			if(ioConnection != null)
+			if (ioConnection != null)
 				ShowSaveWarning(ioConnection.GetDisplayName(), ex, bCorruptionWarning);
 			else ShowWarning(ex);
-		}
-#endif // !KeePassUAP
-
-		internal static string GetLoadWarningMessage(string strFilePath,
-			Exception ex, bool bFullException)
-		{
-			string str = string.Empty;
-
-			if(!string.IsNullOrEmpty(strFilePath))
-				str += strFilePath + MessageService.NewParagraph;
-
-			str += KLRes.FileLoadFailed;
-
-			if((ex != null) && !string.IsNullOrEmpty(ex.Message))
-			{
-				str += MessageService.NewParagraph;
-				if(!bFullException) str += ex.Message;
-				else str += ObjectsToMessage(new object[] { ex }, true);
-			}
-
-			return str;
-		}
-
-		internal static string GetSaveWarningMessage(string strFilePath,
-			Exception ex, bool bCorruptionWarning)
-		{
-			string str = string.Empty;
-			if(!string.IsNullOrEmpty(strFilePath))
-				str += strFilePath + MessageService.NewParagraph;
-
-			str += KLRes.FileSaveFailed;
-
-			if((ex != null) && !string.IsNullOrEmpty(ex.Message))
-				str += MessageService.NewParagraph + ex.Message;
-
-			if(bCorruptionWarning)
-				str += MessageService.NewParagraph + KLRes.FileSaveCorruptionWarning;
-
-			return str;
 		}
 
 		public static void ExternalIncrementMessageCount()

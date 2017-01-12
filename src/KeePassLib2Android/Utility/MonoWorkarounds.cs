@@ -166,16 +166,7 @@ namespace KeePassLib.Utility
 
 			// m_fOwnWindow = fOwnWindow;
 
-			if(IsRequired(1530))
-			{
-				try
-				{
-					ThreadStart ts = new ThreadStart(MonoWorkarounds.FixClipThread);
-					m_thFixClip = new Thread(ts);
-					m_thFixClip.Start();
-				}
-				catch(Exception) { Debug.Assert(false); }
-			}
+			
 		}
 
 		internal static void Terminate()
@@ -189,89 +180,6 @@ namespace KeePassLib.Utility
 			}
 		}
 
-		private static void FixClipThread()
-		{
-			try
-			{
-#if !KeePassUAP
-				const string strXSel = "xsel";
-				const AppRunFlags rfW = AppRunFlags.WaitForExit;
-
-				string strLast = null;
-				while(true)
-				{
-					string str = NativeLib.RunConsoleApp(strXSel,
-						"--output --clipboard");
-					if(str == null) return; // 'xsel' not installed
-
-					if(str != strLast)
-					{
-						if(NeedClipboardWorkaround())
-							NativeLib.RunConsoleApp(strXSel,
-								"--input --clipboard", str, rfW);
-
-						strLast = str;
-					}
-
-					Thread.Sleep(250);
-				}
-#endif
-			}
-			catch(ThreadAbortException)
-			{
-				try { Thread.ResetAbort(); }
-				catch(Exception) { Debug.Assert(false); }
-			}
-			catch(Exception) { Debug.Assert(false); }
-			finally { m_thFixClip = null; }
-		}
-
-		private static bool NeedClipboardWorkaround()
-		{
-			const bool bDef = true;
-
-			try
-			{
-				string strHandle = (NativeLib.RunConsoleApp("xdotool",
-					"getactivewindow") ?? string.Empty).Trim();
-				if(strHandle.Length == 0) return bDef;
-
-				// IntPtr h = new IntPtr(long.Parse(strHandle));
-				long.Parse(strHandle); // Validate
-
-				// Detection of own windows based on Form.Handle
-				// comparisons doesn't work reliably (Mono's handles
-				// are usually off by 1)
-				// Predicate<IntPtr> fOwnWindow = m_fOwnWindow;
-				// if(fOwnWindow != null)
-				// {
-				//	if(fOwnWindow(h)) return true;
-				// }
-				// else { Debug.Assert(false); }
-
-				string strWmClass = (NativeLib.RunConsoleApp("xprop",
-					"-id " + strHandle + " WM_CLASS") ?? string.Empty);
-
-				if(strWmClass.IndexOf("\"" + PwDefs.ResClass + "\"",
-					StrUtil.CaseIgnoreCmp) >= 0) return true;
-
-				// Workaround for Remmina
-				if(strWmClass.IndexOf("\"Remmina\"",
-					StrUtil.CaseIgnoreCmp) >= 0) return true;
-
-				return false;
-			}
-			catch(ThreadAbortException) { throw; }
-			catch(Exception) { Debug.Assert(false); }
-
-			return bDef;
-		}
-
-#if !KeePassUAP
-		public static void ApplyTo(Form f)
-		{
-			if(!MonoWorkarounds.IsRequired()) return;
-			if(f == null) { Debug.Assert(false); return; }
 		/// <summary>
 		/// Ensure that the file ~/.recently-used is valid (in order to
 		/// prevent Mono's FileDialog from crashing).

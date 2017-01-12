@@ -42,7 +42,6 @@ namespace KeePassLib
 		private PwUuid m_uuid = PwUuid.Zero;
 		private PwGroup m_pParentGroup = null;
 		private DateTime m_tParentGroupLastMod = PwDefs.DtDefaultNow;
-		private string m_tParentGroupLastModLazy;
 
 		private ProtectedStringDictionary m_listStrings = new ProtectedStringDictionary();
 		private ProtectedBinaryDictionary m_listBinaries = new ProtectedBinaryDictionary();
@@ -59,12 +58,6 @@ namespace KeePassLib
 		private DateTime m_tLastMod = PwDefs.DtDefaultNow;
 		private DateTime m_tLastAccess = PwDefs.DtDefaultNow;
 		private DateTime m_tExpire = PwDefs.DtDefaultNow;
-
-		private string m_tCreationLazy;
-		private string m_tLastModLazy;
-		private string m_tLastAccessLazy;
-		private string m_tExpireLazy;
-
 		private bool m_bExpires = false;
 		private ulong m_uUsageCount = 0;
 
@@ -82,7 +75,7 @@ namespace KeePassLib
 			get { return m_uuid; }
 			set
 			{
-				Debug.Assert(value != null); if(value == null) throw new ArgumentNullException("value");
+				Debug.Assert(value != null); if (value == null) throw new ArgumentNullException("value");
 				m_uuid = value;
 			}
 		}
@@ -103,14 +96,10 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime LocationChanged
 		{
-			get { return GetLazyTime(ref m_tParentGroupLastModLazy, ref m_tParentGroupLastMod); }
-			set { m_tParentGroupLastMod = value; m_tParentGroupLastModLazy = null; }
+			get { return m_tParentGroupLastMod; }
+			set { m_tParentGroupLastMod = value; }
 		}
 
-		public void SetLazyLocationChanged(string xmlDateTime)
-		{
-			m_tParentGroupLastModLazy = xmlDateTime;
-		}
 
 		/// <summary>
 		/// Get or set all entry strings.
@@ -120,7 +109,7 @@ namespace KeePassLib
 			get { return m_listStrings; }
 			set
 			{
-				Debug.Assert(value != null); if(value == null) throw new ArgumentNullException("value");
+				Debug.Assert(value != null); if (value == null) throw new ArgumentNullException("value");
 				m_listStrings = value;
 			}
 		}
@@ -133,7 +122,7 @@ namespace KeePassLib
 			get { return m_listBinaries; }
 			set
 			{
-				Debug.Assert(value != null); if(value == null) throw new ArgumentNullException("value");
+				Debug.Assert(value != null); if (value == null) throw new ArgumentNullException("value");
 				m_listBinaries = value;
 			}
 		}
@@ -146,7 +135,7 @@ namespace KeePassLib
 			get { return m_listAutoType; }
 			set
 			{
-				Debug.Assert(value != null); if(value == null) throw new ArgumentNullException("value");
+				Debug.Assert(value != null); if (value == null) throw new ArgumentNullException("value");
 				m_listAutoType = value;
 			}
 		}
@@ -159,7 +148,7 @@ namespace KeePassLib
 			get { return m_listHistory; }
 			set
 			{
-				Debug.Assert(value != null); if(value == null) throw new ArgumentNullException("value");
+				Debug.Assert(value != null); if (value == null) throw new ArgumentNullException("value");
 				m_listHistory = value;
 			}
 		}
@@ -183,7 +172,7 @@ namespace KeePassLib
 			get { return m_pwCustomIconID; }
 			set
 			{
-				Debug.Assert(value != null); if(value == null) throw new ArgumentNullException("value");
+				Debug.Assert(value != null); if (value == null) throw new ArgumentNullException("value");
 				m_pwCustomIconID = value;
 			}
 		}
@@ -211,27 +200,8 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime CreationTime
 		{
-			get { return GetLazyTime(ref m_tCreationLazy, ref m_tCreation); }
-			set { m_tCreation = value; m_tCreationLazy = null; }
-		}
-
-		public void SetLazyCreationTime(string xmlDateTime)
-		{
-			m_tCreationLazy = xmlDateTime;
-		}
-
-		/// <summary>
-		/// The date/time when this entry was last accessed (read).
-		/// </summary>
-		public DateTime LastAccessTime
-		{
-			get { return GetLazyTime(ref m_tLastAccessLazy, ref m_tLastAccess); }
-			set { m_tLastAccess = value; m_tLastAccessLazy = null; }
-		}
-
-		public void SetLazyLastAccessTime(string xmlDateTime)
-		{
-			m_tLastAccessLazy = xmlDateTime;
+			get { return m_tCreation; }
+			set { m_tCreation = value; }
 		}
 
 		/// <summary>
@@ -239,13 +209,17 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime LastModificationTime
 		{
-			get { return GetLazyTime(ref m_tLastModLazy, ref m_tLastMod); }
-			set { m_tLastMod = value; m_tLastModLazy = null; }
+			get { return m_tLastMod; }
+			set { m_tLastMod = value; }
 		}
 
-		public void SetLazyLastModificationTime(string xmlDateTime)
+		/// <summary>
+		/// The date/time when this entry was last accessed (read).
+		/// </summary>
+		public DateTime LastAccessTime
 		{
-			m_tLastModLazy = xmlDateTime;
+			get { return m_tLastAccess; }
+			set { m_tLastAccess = value; }
 		}
 
 		/// <summary>
@@ -254,13 +228,8 @@ namespace KeePassLib
 		/// </summary>
 		public DateTime ExpiryTime
 		{
-			get { return GetLazyTime(ref m_tExpireLazy, ref m_tExpire); }
-			set { m_tExpire = value; m_tExpireLazy = null; }
-		}
-
-		public void SetLazyExpiryTime(string xmlDateTime)
-		{
-			m_tExpireLazy = xmlDateTime;
+			get { return m_tExpire; }
+			set { m_tExpire = value; }
 		}
 
 		/// <summary>
@@ -290,7 +259,7 @@ namespace KeePassLib
 			get { return m_strOverrideUrl; }
 			set
 			{
-				if(value == null) throw new ArgumentNullException("value");
+				if (value == null) throw new ArgumentNullException("value");
 				m_strOverrideUrl = value;
 			}
 		}
@@ -303,7 +272,7 @@ namespace KeePassLib
 			get { return m_vTags; }
 			set
 			{
-				if(value == null) throw new ArgumentNullException("value");
+				if (value == null) throw new ArgumentNullException("value");
 				m_vTags = value;
 			}
 		}
@@ -320,7 +289,7 @@ namespace KeePassLib
 			get { return m_dCustomData; }
 			internal set
 			{
-				if(value == null) { Debug.Assert(false); throw new ArgumentNullException("value"); }
+				if (value == null) { Debug.Assert(false); throw new ArgumentNullException("value"); }
 				m_dCustomData = value;
 			}
 		}
@@ -339,9 +308,9 @@ namespace KeePassLib
 		/// and last access times will be set to the current system time.</param>
 		public PwEntry(bool bCreateNewUuid, bool bSetTimes)
 		{
-			if(bCreateNewUuid) m_uuid = new PwUuid(true);
+			if (bCreateNewUuid) m_uuid = new PwUuid(true);
 
-			if(bSetTimes)
+			if (bSetTimes)
 			{
 				DateTime dtNow = DateTime.UtcNow;
 				m_tCreation = dtNow;
@@ -367,9 +336,9 @@ namespace KeePassLib
 		{
 			m_pParentGroup = pwParentGroup;
 
-			if(bCreateNewUuid) m_uuid = new PwUuid(true);
+			if (bCreateNewUuid) m_uuid = new PwUuid(true);
 
-			if(bSetTimes)
+			if (bSetTimes)
 			{
 				DateTime dtNow = DateTime.UtcNow;
 				m_tCreation = dtNow;
@@ -400,7 +369,6 @@ namespace KeePassLib
 			peNew.m_uuid = m_uuid; // PwUuid is immutable
 			peNew.m_pParentGroup = m_pParentGroup;
 			peNew.m_tParentGroupLastMod = m_tParentGroupLastMod;
-			peNew.m_tParentGroupLastModLazy = m_tParentGroupLastModLazy;
 
 			peNew.m_listStrings = m_listStrings.CloneDeep();
 			peNew.m_listBinaries = m_listBinaries.CloneDeep();
@@ -419,11 +387,6 @@ namespace KeePassLib
 			peNew.m_tExpire = m_tExpire;
 			peNew.m_bExpires = m_bExpires;
 			peNew.m_uUsageCount = m_uUsageCount;
-			
-			peNew.m_tCreationLazy = m_tCreationLazy;
-			peNew.m_tLastModLazy = m_tLastModLazy;
-			peNew.m_tLastAccessLazy = m_tLastAccessLazy;
-			peNew.m_tExpireLazy = m_tExpireLazy;
 
 			peNew.m_strOverrideUrl = m_strOverrideUrl;
 
@@ -440,7 +403,6 @@ namespace KeePassLib
 
 			peNew.m_uuid = m_uuid; // PwUuid is immutable
 			peNew.m_tParentGroupLastMod = m_tParentGroupLastMod;
-			peNew.m_tParentGroupLastModLazy = m_tParentGroupLastModLazy;
 			// Do not assign m_pParentGroup
 
 			return peNew;
@@ -451,11 +413,11 @@ namespace KeePassLib
 			bool bIgnoreThisLastBackup)
 		{
 			PwCompareOptions pwOpt = PwCompareOptions.None;
-			if(bIgnoreParentGroup) pwOpt |= PwCompareOptions.IgnoreParentGroup;
-			if(bIgnoreLastMod) pwOpt |= PwCompareOptions.IgnoreLastMod;
-			if(bIgnoreLastAccess) pwOpt |= PwCompareOptions.IgnoreLastAccess;
-			if(bIgnoreHistory) pwOpt |= PwCompareOptions.IgnoreHistory;
-			if(bIgnoreThisLastBackup) pwOpt |= PwCompareOptions.IgnoreLastBackup;
+			if (bIgnoreParentGroup) pwOpt |= PwCompareOptions.IgnoreParentGroup;
+			if (bIgnoreLastMod) pwOpt |= PwCompareOptions.IgnoreLastMod;
+			if (bIgnoreLastAccess) pwOpt |= PwCompareOptions.IgnoreLastAccess;
+			if (bIgnoreHistory) pwOpt |= PwCompareOptions.IgnoreHistory;
+			if (bIgnoreThisLastBackup) pwOpt |= PwCompareOptions.IgnoreLastBackup;
 			return pwOpt;
 		}
 
@@ -480,7 +442,7 @@ namespace KeePassLib
 		public bool EqualsEntry(PwEntry pe, PwCompareOptions pwOpt,
 			MemProtCmpMode mpCmpStr)
 		{
-			if(pe == null) { Debug.Assert(false); return false; }
+			if (pe == null) { Debug.Assert(false); return false; }
 
 			bool bNeEqStd = ((pwOpt & PwCompareOptions.NullEmptyEquivStd) !=
 				PwCompareOptions.None);
@@ -489,70 +451,70 @@ namespace KeePassLib
 			bool bIgnoreLastMod = ((pwOpt & PwCompareOptions.IgnoreLastMod) !=
 				PwCompareOptions.None);
 
-			if(!m_uuid.Equals(pe.m_uuid)) return false;
-			if((pwOpt & PwCompareOptions.IgnoreParentGroup) == PwCompareOptions.None)
+			if (!m_uuid.Equals(pe.m_uuid)) return false;
+			if ((pwOpt & PwCompareOptions.IgnoreParentGroup) == PwCompareOptions.None)
 			{
-				if(m_pParentGroup != pe.m_pParentGroup) return false;
-				if(!bIgnoreLastMod && (LocationChanged != pe.LocationChanged))
+				if (m_pParentGroup != pe.m_pParentGroup) return false;
+				if (!bIgnoreLastMod && (m_tParentGroupLastMod != pe.m_tParentGroupLastMod))
 					return false;
 			}
 
-			if(!m_listStrings.EqualsDictionary(pe.m_listStrings, pwOpt, mpCmpStr))
+			if (!m_listStrings.EqualsDictionary(pe.m_listStrings, pwOpt, mpCmpStr))
 				return false;
-			if(!m_listBinaries.EqualsDictionary(pe.m_listBinaries)) return false;
+			if (!m_listBinaries.EqualsDictionary(pe.m_listBinaries)) return false;
 
-			if(!m_listAutoType.Equals(pe.m_listAutoType)) return false;
+			if (!m_listAutoType.Equals(pe.m_listAutoType)) return false;
 
-			if((pwOpt & PwCompareOptions.IgnoreHistory) == PwCompareOptions.None)
+			if ((pwOpt & PwCompareOptions.IgnoreHistory) == PwCompareOptions.None)
 			{
 				bool bIgnoreLastBackup = ((pwOpt & PwCompareOptions.IgnoreLastBackup) !=
 					PwCompareOptions.None);
 
-				if(!bIgnoreLastBackup && (m_listHistory.UCount != pe.m_listHistory.UCount))
+				if (!bIgnoreLastBackup && (m_listHistory.UCount != pe.m_listHistory.UCount))
 					return false;
-				if(bIgnoreLastBackup && (m_listHistory.UCount == 0))
+				if (bIgnoreLastBackup && (m_listHistory.UCount == 0))
 				{
 					Debug.Assert(false);
 					return false;
 				}
-				if(bIgnoreLastBackup && ((m_listHistory.UCount - 1) != pe.m_listHistory.UCount))
+				if (bIgnoreLastBackup && ((m_listHistory.UCount - 1) != pe.m_listHistory.UCount))
 					return false;
 
 				PwCompareOptions cmpSub = PwCompareOptions.IgnoreParentGroup;
-				if(bNeEqStd) cmpSub |= PwCompareOptions.NullEmptyEquivStd;
-				if(bIgnoreLastMod) cmpSub |= PwCompareOptions.IgnoreLastMod;
-				if(bIgnoreLastAccess) cmpSub |= PwCompareOptions.IgnoreLastAccess;
+				if (bNeEqStd) cmpSub |= PwCompareOptions.NullEmptyEquivStd;
+				if (bIgnoreLastMod) cmpSub |= PwCompareOptions.IgnoreLastMod;
+				if (bIgnoreLastAccess) cmpSub |= PwCompareOptions.IgnoreLastAccess;
 
-				for(uint uHist = 0; uHist < pe.m_listHistory.UCount; ++uHist)
+				for (uint uHist = 0; uHist < pe.m_listHistory.UCount; ++uHist)
 				{
-					if(!m_listHistory.GetAt(uHist).EqualsEntry(pe.m_listHistory.GetAt(
+					if (!m_listHistory.GetAt(uHist).EqualsEntry(pe.m_listHistory.GetAt(
 						uHist), cmpSub, MemProtCmpMode.None))
 						return false;
 				}
 			}
 
-			if(m_pwIcon != pe.m_pwIcon) return false;
-			if(!m_pwCustomIconID.Equals(pe.m_pwCustomIconID)) return false;
+			if (m_pwIcon != pe.m_pwIcon) return false;
+			if (!m_pwCustomIconID.Equals(pe.m_pwCustomIconID)) return false;
 
-			if(m_clrForeground != pe.m_clrForeground) return false;
-			if(m_clrBackground != pe.m_clrBackground) return false;
+			if (m_clrForeground != pe.m_clrForeground) return false;
+			if (m_clrBackground != pe.m_clrBackground) return false;
 
-			if(CreationTime != pe.CreationTime) return false;
-			if(!bIgnoreLastMod && (LastModificationTime != pe.LastModificationTime)) return false;
-			if(!bIgnoreLastAccess && (LastAccessTime != pe.LastAccessTime)) return false;
-			if(ExpiryTime != pe.ExpiryTime) return false;
-			if(m_bExpires != pe.m_bExpires) return false;
-			if(!bIgnoreLastAccess && (m_uUsageCount != pe.m_uUsageCount)) return false;
+			if (m_tCreation != pe.m_tCreation) return false;
+			if (!bIgnoreLastMod && (m_tLastMod != pe.m_tLastMod)) return false;
+			if (!bIgnoreLastAccess && (m_tLastAccess != pe.m_tLastAccess)) return false;
+			if (m_tExpire != pe.m_tExpire) return false;
+			if (m_bExpires != pe.m_bExpires) return false;
+			if (!bIgnoreLastAccess && (m_uUsageCount != pe.m_uUsageCount)) return false;
 
-			if(m_strOverrideUrl != pe.m_strOverrideUrl) return false;
+			if (m_strOverrideUrl != pe.m_strOverrideUrl) return false;
 
-			if(m_vTags.Count != pe.m_vTags.Count) return false;
-			for(int iTag = 0; iTag < m_vTags.Count; ++iTag)
+			if (m_vTags.Count != pe.m_vTags.Count) return false;
+			for (int iTag = 0; iTag < m_vTags.Count; ++iTag)
 			{
-				if(m_vTags[iTag] != pe.m_vTags[iTag]) return false;
+				if (m_vTags[iTag] != pe.m_vTags[iTag]) return false;
 			}
 
-			if(!m_dCustomData.Equals(pe.m_dCustomData)) return false;
+			if (!m_dCustomData.Equals(pe.m_dCustomData)) return false;
 
 			return true;
 		}
@@ -570,21 +532,23 @@ namespace KeePassLib
 		public void AssignProperties(PwEntry peTemplate, bool bOnlyIfNewer,
 			bool bIncludeHistory, bool bAssignLocationChanged)
 		{
-			if(peTemplate == null) { Debug.Assert(false); throw new ArgumentNullException("peTemplate"); }
+			if (peTemplate == null) { Debug.Assert(false); throw new ArgumentNullException("peTemplate"); }
 
-			if(bOnlyIfNewer && (TimeUtil.Compare(peTemplate.LastModificationTime,LastModificationTime,true) < 0)) return;
+			if (bOnlyIfNewer && (TimeUtil.Compare(peTemplate.m_tLastMod,
+				m_tLastMod, true) < 0))
+				return;
 
 			// Template UUID should be the same as the current one
 			Debug.Assert(m_uuid.Equals(peTemplate.m_uuid));
 			m_uuid = peTemplate.m_uuid;
 
-			if(bAssignLocationChanged)
-				m_tParentGroupLastMod = peTemplate.LocationChanged;
+			if (bAssignLocationChanged)
+				m_tParentGroupLastMod = peTemplate.m_tParentGroupLastMod;
 
 			m_listStrings = peTemplate.m_listStrings.CloneDeep();
 			m_listBinaries = peTemplate.m_listBinaries.CloneDeep();
 			m_listAutoType = peTemplate.m_listAutoType.CloneDeep();
-			if(bIncludeHistory)
+			if (bIncludeHistory)
 				m_listHistory = peTemplate.m_listHistory.CloneDeep();
 
 			m_pwIcon = peTemplate.m_pwIcon;
@@ -593,10 +557,10 @@ namespace KeePassLib
 			m_clrForeground = peTemplate.m_clrForeground;
 			m_clrBackground = peTemplate.m_clrBackground;
 
-			m_tCreation = peTemplate.CreationTime;
-			m_tLastMod = peTemplate.LastModificationTime;
-			m_tLastAccess = peTemplate.LastAccessTime;
-			m_tExpire = peTemplate.ExpiryTime;
+			m_tCreation = peTemplate.m_tCreation;
+			m_tLastMod = peTemplate.m_tLastMod;
+			m_tLastAccess = peTemplate.m_tLastAccess;
+			m_tExpire = peTemplate.m_tExpire;
 			m_bExpires = peTemplate.m_bExpires;
 			m_uUsageCount = peTemplate.m_uUsageCount;
 
@@ -631,16 +595,16 @@ namespace KeePassLib
 			m_tLastAccess = DateTime.UtcNow;
 			++m_uUsageCount;
 
-			if(bModified) m_tLastMod = m_tLastAccess;
+			if (bModified) m_tLastMod = m_tLastAccess;
 
-			if(this.Touched != null)
+			if (this.Touched != null)
 				this.Touched(this, new ObjectTouchedEventArgs(this,
 					bModified, bTouchParents));
-			if(PwEntry.EntryTouched != null)
+			if (PwEntry.EntryTouched != null)
 				PwEntry.EntryTouched(this, new ObjectTouchedEventArgs(this,
 					bModified, bTouchParents));
 
-			if(bTouchParents && (m_pParentGroup != null))
+			if (bTouchParents && (m_pParentGroup != null))
 				m_pParentGroup.Touch(bModified, true);
 		}
 
@@ -669,7 +633,7 @@ namespace KeePassLib
 
 			m_listHistory.Add(peCopy); // Must be added at end, see EqualsEntry
 
-			if(pwHistMntcSettings != null) MaintainBackups(pwHistMntcSettings);
+			if (pwHistMntcSettings != null) MaintainBackups(pwHistMntcSettings);
 		}
 
 		/// <summary>
@@ -695,11 +659,11 @@ namespace KeePassLib
 		public void RestoreFromBackup(uint uBackupIndex, PwDatabase pwHistMntcSettings)
 		{
 			Debug.Assert(uBackupIndex < m_listHistory.UCount);
-			if(uBackupIndex >= m_listHistory.UCount)
+			if (uBackupIndex >= m_listHistory.UCount)
 				throw new ArgumentOutOfRangeException("uBackupIndex");
 
 			PwEntry pe = m_listHistory.GetAt(uBackupIndex);
-			Debug.Assert(pe != null); if(pe == null) throw new InvalidOperationException();
+			Debug.Assert(pe != null); if (pe == null) throw new InvalidOperationException();
 
 			CreateBackup(pwHistMntcSettings); // Backup current data before restoring
 			AssignProperties(pe, false, false, false);
@@ -708,16 +672,16 @@ namespace KeePassLib
 		public bool HasBackupOfData(PwEntry peData, bool bIgnoreLastMod,
 			bool bIgnoreLastAccess)
 		{
-			if(peData == null) { Debug.Assert(false); return false; }
+			if (peData == null) { Debug.Assert(false); return false; }
 
 			PwCompareOptions cmpOpt = (PwCompareOptions.IgnoreParentGroup |
 				PwCompareOptions.IgnoreHistory | PwCompareOptions.NullEmptyEquivStd);
-			if(bIgnoreLastMod) cmpOpt |= PwCompareOptions.IgnoreLastMod;
-			if(bIgnoreLastAccess) cmpOpt |= PwCompareOptions.IgnoreLastAccess;
+			if (bIgnoreLastMod) cmpOpt |= PwCompareOptions.IgnoreLastMod;
+			if (bIgnoreLastAccess) cmpOpt |= PwCompareOptions.IgnoreLastAccess;
 
-			foreach(PwEntry pe in m_listHistory)
+			foreach (PwEntry pe in m_listHistory)
 			{
-				if(pe.EqualsEntry(peData, cmpOpt, MemProtCmpMode.None)) return true;
+				if (pe.EqualsEntry(peData, cmpOpt, MemProtCmpMode.None)) return true;
 			}
 
 			return false;
@@ -731,14 +695,14 @@ namespace KeePassLib
 		/// </summary>
 		public bool MaintainBackups(PwDatabase pwSettings)
 		{
-			if(pwSettings == null) { Debug.Assert(false); return false; }
+			if (pwSettings == null) { Debug.Assert(false); return false; }
 
 			bool bDeleted = false;
 
 			int nMaxItems = pwSettings.HistoryMaxItems;
-			if(nMaxItems >= 0)
+			if (nMaxItems >= 0)
 			{
-				while(m_listHistory.UCount > (uint)nMaxItems)
+				while (m_listHistory.UCount > (uint)nMaxItems)
 				{
 					RemoveOldestBackup();
 					bDeleted = true;
@@ -746,14 +710,14 @@ namespace KeePassLib
 			}
 
 			long lMaxSize = pwSettings.HistoryMaxSize;
-			if(lMaxSize >= 0)
+			if (lMaxSize >= 0)
 			{
-				while(true)
+				while (true)
 				{
 					ulong uHistSize = 0;
-					foreach(PwEntry pe in m_listHistory) { uHistSize += pe.GetSize(); }
+					foreach (PwEntry pe in m_listHistory) { uHistSize += pe.GetSize(); }
 
-					if(uHistSize > (ulong)lMaxSize)
+					if (uHistSize > (ulong)lMaxSize)
 					{
 						RemoveOldestBackup();
 						bDeleted = true;
@@ -770,24 +734,24 @@ namespace KeePassLib
 			DateTime dtMin = TimeUtil.SafeMaxValueUtc;
 			uint idxRemove = uint.MaxValue;
 
-			for(uint u = 0; u < m_listHistory.UCount; ++u)
+			for (uint u = 0; u < m_listHistory.UCount; ++u)
 			{
 				PwEntry pe = m_listHistory.GetAt(u);
-				if(TimeUtil.Compare(pe.LastModificationTime, dtMin, true) < 0)
+				if (TimeUtil.Compare(pe.LastModificationTime, dtMin, true) < 0)
 				{
 					idxRemove = u;
 					dtMin = pe.LastModificationTime;
 				}
 			}
 
-			if(idxRemove != uint.MaxValue) m_listHistory.RemoveAt(idxRemove);
+			if (idxRemove != uint.MaxValue) m_listHistory.RemoveAt(idxRemove);
 		}
 
 		public bool GetAutoTypeEnabled()
 		{
-			if(!m_listAutoType.Enabled) return false;
+			if (!m_listAutoType.Enabled) return false;
 
-			if(m_pParentGroup != null)
+			if (m_pParentGroup != null)
 				return m_pParentGroup.GetAutoTypeEnabledInherited();
 
 			return PwGroup.DefaultAutoTypeEnabled;
@@ -798,23 +762,23 @@ namespace KeePassLib
 			string strSeq = m_listAutoType.DefaultSequence;
 
 			PwGroup pg = m_pParentGroup;
-			while(pg != null)
+			while (pg != null)
 			{
-				if(strSeq.Length != 0) break;
+				if (strSeq.Length != 0) break;
 
 				strSeq = pg.DefaultAutoTypeSequence;
 				pg = pg.ParentGroup;
 			}
 
-			if(strSeq.Length != 0) return strSeq;
+			if (strSeq.Length != 0) return strSeq;
 
-			if(PwDefs.IsTanEntry(this)) return PwDefs.DefaultAutoTypeSequenceTan;
+			if (PwDefs.IsTanEntry(this)) return PwDefs.DefaultAutoTypeSequenceTan;
 			return PwDefs.DefaultAutoTypeSequence;
 		}
 
 		public bool GetSearchingEnabled()
 		{
-			if(m_pParentGroup != null)
+			if (m_pParentGroup != null)
 				return m_pParentGroup.GetSearchingEnabledInherited();
 
 			return PwGroup.DefaultSearchingEnabled;
@@ -829,34 +793,34 @@ namespace KeePassLib
 		{
 			ulong uSize = 128; // Approx fixed length data
 
-			foreach(KeyValuePair<string, ProtectedString> kvpStr in m_listStrings)
+			foreach (KeyValuePair<string, ProtectedString> kvpStr in m_listStrings)
 			{
 				uSize += (ulong)kvpStr.Key.Length;
 				uSize += (ulong)kvpStr.Value.Length;
 			}
 
-			foreach(KeyValuePair<string, ProtectedBinary> kvpBin in m_listBinaries)
+			foreach (KeyValuePair<string, ProtectedBinary> kvpBin in m_listBinaries)
 			{
 				uSize += (ulong)kvpBin.Key.Length;
 				uSize += kvpBin.Value.Length;
 			}
 
 			uSize += (ulong)m_listAutoType.DefaultSequence.Length;
-			foreach(AutoTypeAssociation a in m_listAutoType.Associations)
+			foreach (AutoTypeAssociation a in m_listAutoType.Associations)
 			{
 				uSize += (ulong)a.WindowName.Length;
 				uSize += (ulong)a.Sequence.Length;
 			}
 
-			foreach(PwEntry peHistory in m_listHistory)
+			foreach (PwEntry peHistory in m_listHistory)
 				uSize += peHistory.GetSize();
 
 			uSize += (ulong)m_strOverrideUrl.Length;
 
-			foreach(string strTag in m_vTags)
+			foreach (string strTag in m_vTags)
 				uSize += (ulong)strTag.Length;
 
-			foreach(KeyValuePair<string, string> kvp in m_dCustomData)
+			foreach (KeyValuePair<string, string> kvp in m_dCustomData)
 				uSize += (ulong)kvp.Key.Length + (ulong)kvp.Value.Length;
 
 			return uSize;
@@ -864,11 +828,11 @@ namespace KeePassLib
 
 		public bool HasTag(string strTag)
 		{
-			if(string.IsNullOrEmpty(strTag)) { Debug.Assert(false); return false; }
+			if (string.IsNullOrEmpty(strTag)) { Debug.Assert(false); return false; }
 
-			for(int i = 0; i < m_vTags.Count; ++i)
+			for (int i = 0; i < m_vTags.Count; ++i)
 			{
-				if(m_vTags[i].Equals(strTag, StrUtil.CaseIgnoreCmp)) return true;
+				if (m_vTags[i].Equals(strTag, StrUtil.CaseIgnoreCmp)) return true;
 			}
 
 			return false;
@@ -876,11 +840,11 @@ namespace KeePassLib
 
 		public bool AddTag(string strTag)
 		{
-			if(string.IsNullOrEmpty(strTag)) { Debug.Assert(false); return false; }
+			if (string.IsNullOrEmpty(strTag)) { Debug.Assert(false); return false; }
 
-			for(int i = 0; i < m_vTags.Count; ++i)
+			for (int i = 0; i < m_vTags.Count; ++i)
 			{
-				if(m_vTags[i].Equals(strTag, StrUtil.CaseIgnoreCmp)) return false;
+				if (m_vTags[i].Equals(strTag, StrUtil.CaseIgnoreCmp)) return false;
 			}
 
 			m_vTags.Add(strTag);
@@ -889,11 +853,11 @@ namespace KeePassLib
 
 		public bool RemoveTag(string strTag)
 		{
-			if(string.IsNullOrEmpty(strTag)) { Debug.Assert(false); return false; }
+			if (string.IsNullOrEmpty(strTag)) { Debug.Assert(false); return false; }
 
-			for(int i = 0; i < m_vTags.Count; ++i)
+			for (int i = 0; i < m_vTags.Count; ++i)
 			{
-				if(m_vTags[i].Equals(strTag, StrUtil.CaseIgnoreCmp))
+				if (m_vTags[i].Equals(strTag, StrUtil.CaseIgnoreCmp))
 				{
 					m_vTags.RemoveAt(i);
 					return true;
@@ -906,9 +870,9 @@ namespace KeePassLib
 		public bool IsContainedIn(PwGroup pgContainer)
 		{
 			PwGroup pgCur = m_pParentGroup;
-			while(pgCur != null)
+			while (pgCur != null)
 			{
-				if(pgCur == pgContainer) return true;
+				if (pgCur == pgContainer) return true;
 
 				pgCur = pgCur.ParentGroup;
 			}
@@ -920,25 +884,14 @@ namespace KeePassLib
 		{
 			this.Uuid = pwNewUuid;
 
-			if(bAlsoChangeHistoryUuids)
+			if (bAlsoChangeHistoryUuids)
 			{
-				foreach(PwEntry peHist in m_listHistory)
+				foreach (PwEntry peHist in m_listHistory)
 				{
 					peHist.Uuid = pwNewUuid;
 				}
 			}
 		}
-
-		private DateTime GetLazyTime(ref string lazyTime, ref DateTime dateTime)
-		{
-			if (lazyTime != null)
-			{
-				dateTime = TimeUtil.DeserializeUtcOrDefault(lazyTime, dateTime);
-				lazyTime = null;
-			}
-			return dateTime; 
-		}		
-	
 
 		public void SetCreatedNow()
 		{
@@ -968,7 +921,7 @@ namespace KeePassLib
 		public PwEntryComparer(string strFieldName, bool bCaseInsensitive,
 			bool bCompareNaturally)
 		{
-			if(strFieldName == null) throw new ArgumentNullException("strFieldName");
+			if (strFieldName == null) throw new ArgumentNullException("strFieldName");
 
 			m_strFieldName = strFieldName;
 			m_bCaseInsensitive = bCaseInsensitive;
@@ -980,7 +933,7 @@ namespace KeePassLib
 			string strA = a.Strings.ReadSafe(m_strFieldName);
 			string strB = b.Strings.ReadSafe(m_strFieldName);
 
-			if(m_bCompareNaturally) return StrUtil.CompareNaturally(strA, strB);
+			if (m_bCompareNaturally) return StrUtil.CompareNaturally(strA, strB);
 
 			return string.Compare(strA, strB, m_bCaseInsensitive);
 		}

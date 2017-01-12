@@ -225,7 +225,7 @@ namespace KeePassLib.Serialization
 				
 				if (fmt == KdbxFormat.ProtocolBuffers)
 				{
-					KdbpFile.ReadDocument(m_pwDatabase, sXml, m_pbProtectedStreamKey, m_pbHashOfHeader);
+					KdbpFile.ReadDocument(m_pwDatabase, sXml, m_pbInnerRandomStreamKey, m_pbHashOfHeader);
 
 					Kp2aLog.Log(String.Format("KdbpFile.ReadDocument: {0}ms", stopWatch.ElapsedMilliseconds));
 
@@ -576,8 +576,6 @@ namespace KeePassLib.Serialization
 				}
 				else { Debug.Assert(false); }
 			}
-
-			return vEntries; */
 
 
 			return vEntries; */
