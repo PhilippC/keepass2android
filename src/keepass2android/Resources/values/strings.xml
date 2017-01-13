@@ -687,11 +687,13 @@
   </string>
   <string name="ChangeLog_1_01">
     Version 1.01 preview\n
+    * added support for the new KDBX-4-format (compatible with Keepass 2.35) including Argon2 key derivation and ChaCha20 encryption. Argon2 is currently only implemented in managed code. Expect a slow transformation process. Note: This is still in testing, please make sure you have backups of your files before using these features!\n
     * Reimplemented WebDav file storage, now allows file browsing and supports modern encryption.\n
     * Reimpleented FTP file storage, now allows file browsing and supports encryption (FTPS).\n
     * Updated to OneDrive SDK (previously used Live SDK is no longer updated)\n
     * Updated to Dropbox SDK v2 (previously v1 SDK is deprecated).\n
-    * added preview-support for the new KDBX-4-format (see http://keepass.info/help/kb/kdbx_4.html) including Argon2 key derivation and ChaCha20 encryption. Argon2 is currently only implemented in managed code. Expect a slow transformation process. This is for TESTING ONLY!\n
+    * Added support for OwnCloud.\n
+    * Prompt for storage permission before opening local files
   </string>
   <string name="ChangeLog_1_0_0e">
     Version 1.0.0e\n
