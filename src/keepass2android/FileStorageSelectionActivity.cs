@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -26,8 +28,9 @@ namespace keepass2android
 		private readonly ActivityDesign _design;
 
 		private FileStorageAdapter _fileStorageAdapter;
+	    private const int RequestExternalStoragePermission = 1;
 
-		public FileStorageSelectionActivity()
+	    public FileStorageSelectionActivity()
 		{
 			_design = new ActivityDesign(this);
 		}
@@ -181,15 +184,29 @@ namespace keepass2android
 
 		}
 
-		private void ReturnProtocol(string protocolId)
-		{
+	    private void ReturnProtocol(string protocolId)
+	    {
+		    if ((protocolId == "androidget") && ((int) Build.VERSION.SdkInt >= 23) &&
+		       ( CheckSelfPermission(Manifest.Permission.WriteExternalStorage) != Permission.Granted))
+			{
+				RequestPermissions(new string[]{Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage},RequestExternalStoragePermission);
+				return;
+			}
 			Intent intent = new Intent();
 			intent.PutExtra("protocolId", protocolId);
 			SetResult(KeePass.ExitFileStorageSelectionOk, intent);
 			Finish();
 		}
 
-		protected override void OnCreate(Bundle bundle)
+	    public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+	    {
+		    if ((requestCode == RequestExternalStoragePermission) && (grantResults[0] == Permission.Granted))
+		    {
+			    ReturnProtocol("androidget");
+		    }
+	    }
+
+	    protected override void OnCreate(Bundle bundle)
 		{
 			_design.ApplyTheme(); 
 			base.OnCreate(bundle);
