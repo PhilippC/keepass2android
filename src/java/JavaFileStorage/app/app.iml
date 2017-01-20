@@ -62,13 +62,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
@@ -76,46 +69,63 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/bundles" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-safeguard" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/proguard-rules" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services/4.0.30/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.microsoft.aad/adal/1.1.19/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.microsoft.services.msa/msa-auth/0.8.6/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.onedrive.sdk/onedrive-sdk-android/1.2.2/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="httpmime-4.0.3" level="project" />
+    <orderEntry type="library" exported="" name="support-core-utils-24.2.0" level="project" />
+    <orderEntry type="library" exported="" name="dropbox-core-sdk-2.1.1" level="project" />
+    <orderEntry type="library" exported="" name="onedrive-sdk-android-1.2.2" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="httpclient-4.0.1" level="project" />
+    <orderEntry type="library" exported="" name="google-api-client-android-1.16.0-rc" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-24.2.0" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="mockable-android-23" level="project" />
+    <orderEntry type="library" exported="" name="jackson-core-2.7.4" level="project" />
+    <orderEntry type="library" exported="" name="msa-auth-0.8.6" level="project" />
+    <orderEntry type="library" exported="" name="google-http-client-android-1.16.0-rc" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-24.2.0" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="xpp3-1.1.4c" level="project" />
+    <orderEntry type="library" exported="" name="play-services-4.0.30" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="commons-logging-1.1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="commons-codec-1.3" level="project" />
     <orderEntry type="library" exported="" name="jsr305-1.3.9" level="project" />
-    <orderEntry type="library" exported="" name="1_jsr305-1.3.9" level="project" />
-    <orderEntry type="library" exported="" name="google-http-client-1.20.0" level="project" />
     <orderEntry type="library" exported="" name="google-api-services-drive-v2-rev102-1.16.0-rc" level="project" />
-    <orderEntry type="library" exported="" name="jackson-core-2.1.3" level="project" />
-    <orderEntry type="library" exported="" name="dropbox-android-sdk-1.6.2" level="project" />
+    <orderEntry type="library" exported="" name="support-fragment-24.2.0" level="project" />
+    <orderEntry type="library" exported="" name="adal-1.1.19" level="project" />
+    <orderEntry type="library" exported="" name="okio-1.9.0" level="project" />
     <orderEntry type="library" exported="" name="google-api-client-1.16.0-rc" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-1.16.0-rc" level="project" />
     <orderEntry type="library" exported="" name="google-oauth-client-1.16.0-rc" level="project" />
-    <orderEntry type="library" exported="" name="google-api-client-android-1.16.0-rc" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="httpclient-4.0.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="mockable-android-23" level="project" />
-    <orderEntry type="library" exported="" name="jackson-core-asl-1.9.11" level="project" />
-    <orderEntry type="library" exported="" name="google-http-client-jackson2-1.16.0-rc" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-3.4.1" level="project" />
+    <orderEntry type="library" exported="" name="support-compat-24.2.0" level="project" />
+    <orderEntry type="library" exported="" name="support-core-ui-24.2.0" level="project" />
+    <orderEntry type="library" exported="" name="google-http-client-gson-1.16.0-rc" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="httpcore-4.0.1" level="project" />
-    <orderEntry type="library" exported="" name="1_httpcore-4.0.1" level="project" />
-    <orderEntry type="library" exported="" name="httpclient-4.0.3" level="project" />
-    <orderEntry type="library" exported="" name="json_simple-1.1" level="project" />
-    <orderEntry type="library" exported="" name="google-http-client-android-1.16.0-rc" level="project" />
-    <orderEntry type="library" exported="" name="google-http-client-gson-1.20.0" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.1" level="project" />
-    <orderEntry type="library" exported="" name="google-http-client-jackson-1.16.0-rc" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="commons-logging-1.1.1" level="project" />
-    <orderEntry type="library" exported="" name="1_commons-logging-1.1.1" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-digest-1.7" level="project" />
+    <orderEntry type="library" exported="" name="support-media-compat-24.2.0" level="project" />
   </component>
 </module>

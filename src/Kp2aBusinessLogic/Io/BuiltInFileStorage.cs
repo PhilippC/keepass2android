@@ -390,6 +390,7 @@ namespace keepass2android.Io
 
 		private bool IsLocalFileFlaggedReadOnly(IOConnectionInfo ioc)
 		{
+			//see http://stackoverflow.com/a/33292700/292233
 			try
 			{
 				return new FileInfo(ioc.Path).IsReadOnly;
