@@ -131,6 +131,7 @@
   <string name="error_pass_gen_type">Повинен бути вибраний принаймні один тип генерації паролю.</string>
   <string name="error_pass_match">Паролі не збігаються.</string>
   <string name="error_rounds_not_number">Кількість циклів повинна бути числом.</string>
+  <string name="error_param_not_number">Параметр має бути числом.</string>
   <string name="error_title_required">Необхідно ввести назву.</string>
   <string name="error_wrong_length">Введіть ціле число на всю довжину поля</string>
   <string name="FileNotFound">Файл не знайдено.</string>
@@ -209,9 +210,12 @@
   <string name="remove_from_filelist">Вилучити</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Корінь</string>
+  <string name="KeyDerivFunc">Функція походження ключа</string>
   <string name="rounds">Циклів шифрування</string>
   <string name="rounds_explaination">Більша кількість циклів шифрування забезпечує додатковий захист від грубих атак, але може значно сповільнити завантаження та збереження.</string>
   <string name="rounds_hint">цикли</string>
+  <string name="argon2memory">Пам\'ять для Argon 2 (байт)</string>
+  <string name="argon2parallelism">Паралелізм для Argon 2</string>
   <string name="database_name">Назва бази даних</string>
   <string name="default_username">Типове ім\'я користувача для нових записів</string>
   <string name="saving_database">Збереження бази&#8230;</string>
@@ -313,6 +317,8 @@
   <string name="NoDonateOption_title">Приховати опцію внеску</string>
   <string name="NoDonateOption_summary">Це параметр для дарувальників. Він доступний лише після використання Keepass2Android протягом деякого часу.</string>
   <string name="NoDonateOption_question">Без внесків ця програма не існувала б і не вдосконалювалася б! Якщо ви ще не зробили внесок, розгляньте можливість зробити це зараз.</string>
+  <string name="NoDonationReminder_title">Ніколи не запитувати про внесок</string>
+  <string name="NoDonationReminder_summary">Я не дам вам ані копійки, або я вже зробив внесок. Не питати про внесок, навіть в день народження автора.</string>
   <string name="UseOfflineCache_title">Кешування бази даних</string>
   <string name="UseOfflineCache_summary">Зберігати копію файлів віддаленої бази даних в каталозі кешу програми. Це дозволяє використовувати віддалені бази даних навіть в автономному режимі.</string>
   <string name="AcceptAllServerCertificates_title">SSL-сертифікати</string>
@@ -410,10 +416,15 @@
   <string name="donate_missedbday_question">Ой, ви пропустили мій день народження 10 травня! Якщо вам подобається ця програма, чому б не відправити мені привітання та невеличкий подарунок? Ще не занадто пізно зробити мене щасливим! :-)</string>
   <string name="ok_donate">Розкажіть мені ще!</string>
   <string name="no_thanks">Ні, більше не треба</string>
+  <string name="enter_http_login_title">Введіть дані входу WebDav:</string>
+  <string name="hint_http_url">URL-адреса теки чи файлу (н-д: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Введіть дані входу OwnCloud:</string>
+  <string name="hint_owncloud_url">URL-адреса OwnCloud (н-д: owncloud.me.com)</string>
   <string name="hint_sftp_host">хост (наприклад: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
   <string name="initial_directory">Початковий каталог (необов\'язково):</string>
   <string name="enter_sftp_login_title">Введіть дані входу SFTP:</string>
+  <string name="enter_ftp_login_title">Введіть дані входу FTP:</string>
   <string name="select_storage_type">Виберіть тип сховища:</string>
   <string name="filestoragename_file">Локальний файл</string>
   <string name="filestoragename_androidget">Отримати від сторонньої програми</string>
@@ -421,10 +432,12 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлів)</string>
   <string name="filestoragename_content">Системний вибір файлу</string>
   <string name="filestorage_setup_title">Ініціалізація доступу до файлу</string>
@@ -558,11 +571,16 @@
   <string name="ActivateAutoFillService_btnKeyboard">Використовувати вбудовану клавіатуру</string>
   <string name="ActivateAutoFillService_btnAutoFill">Використовувати службу автозаповнення</string>
   <string name="ActivateAutoFillService_toast">Будь ласка, увімкніть службу Keepass2Android.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
   <string name="ChangeLog_0_9_8c">
     Версія 0.9.8c\n
     * Виправлення вразливості SSL в Microsoft Live SDK (використовується при доступі до файлів через OneDrive)\n
     * Виправлення помилок: попередня версія містила два методи введення (один збій)\n
   </string>
+  <string name="ChangeLog_1_01">
+     Версія 1.01\n * Додана підтримка нового KDBX-4 формату (сумісного з Keepass 2,35) включаючи функцію формування ключа Argon2 та шифрування ChaCha20. \n * зберігання файлів на WebDav, тепер воно дозволяє перегляд файлів та підтримує сучасне шифрування. \n * Переписане зберігання файлів на FTP, тепер воно дозволяє перегляд файлів та підтримує шифрування (FTPS). \n * Версія оновлена до OneDrive SDK (раніше використовувався Live SDK, який більше не оновлюється) \n * Версія оновлена до Dropbox SDK версії 2 (версія 1 SDK, що раніше використовувалася, тепер застаріла). \n * Додана підтримка OwnCloud.\n * Запит про дозвіл доступу до сховища перед відкриттям локальних файлів  </string>
+  <string name="ChangeLog_1_0_0e">
+Версія 1.0.0e\n * виправлене розблокування за відбитком пальцю на старих Samsung з Android 6\n * додана підтримка для пристроїв з архітектурою x86\n * дозволяє приховати клавіатуру під час сканування відбитків пальців\n * оновлення системи збірки  </string>
   <string name="ChangeLog_1_0_0">
 Версія 1.0.0\n
 * Розблокування відбитками пальців (необхідний Android 6.0+ або пристрій Samsung)\n
@@ -796,6 +814,11 @@ Initial public release
     <item>Темна</item>
   </string-array>
   <string name="design_title">Дизайн</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Без шифрування (FTP)</item>
+    <item>Неявне шифрування (FTP через TLS, FTPS)</item>
+    <item>Явне шифрування (FTP через TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Не запам\'ятовувати ім\'я користувача і пароль</item>
     <item>Запам\'ятовувати тільки ім\'я користувача</item>

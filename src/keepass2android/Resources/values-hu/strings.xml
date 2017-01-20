@@ -132,6 +132,7 @@
   <string name="error_pass_gen_type">Legalább egy jelszógenerálási típust kell választania</string>
   <string name="error_pass_match">A jelszavak nem egyeznek meg.</string>
   <string name="error_rounds_not_number">A menetek csak számokat tartalmazhatnak.</string>
+  <string name="error_param_not_number">A paraméternek egy számnak kell lennie.</string>
   <string name="error_title_required">Cím szükséges.</string>
   <string name="error_wrong_length">Írjon be egy pozitív egész számot a hossz mezőbe</string>
   <string name="FileNotFound">A fájl nem található.</string>
@@ -210,9 +211,12 @@
   <string name="remove_from_filelist">Eltávolítás</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Gyökérkönyvár</string>
+  <string name="KeyDerivFunc">Kulcsszármaztatási függvény</string>
   <string name="rounds">Titkosítási menetek száma</string>
   <string name="rounds_explaination">A titkosítási menetek számának növelésével extra védelemet kaphat a brute force támadások ellen, ugyanakkor jelentősen lassíthatja az adatbázis betöltését vagy mentését.</string>
   <string name="rounds_hint">Menetek száma</string>
+  <string name="argon2memory">Argon 2 memória (byte)</string>
+  <string name="argon2parallelism">Párhuzamosság Argon 2-höz</string>
   <string name="database_name">Adatbázis neve</string>
   <string name="default_username">Alapértelmezett felhasználónév az új bejegyzésekhez</string>
   <string name="saving_database">Adatbázis mentése&#8230;</string>
@@ -314,6 +318,8 @@
   <string name="NoDonateOption_title">Támogatás-opció elrejtése</string>
   <string name="NoDonateOption_summary">Ez a beállítás a támogatók számára készült, és csak akkor érhető el, ha a Keepass2Android-ot már egy ideje használja.</string>
   <string name="NoDonateOption_question">Támogatások nélkül ez az alkalmazás nem létezne, és nem lehetne folyamatosan továbbfejleszteni!  Ha még nem támogatta a fejlesztést, kérjük, tegye meg azt most!</string>
+  <string name="NoDonationReminder_title">Soha ne kérjen adományt</string>
+  <string name="NoDonationReminder_summary">Nem adok egy fillér hozzájárulást se vagy pedig már adtam. Nem kérek emlékeztetőt a hozzájárulásról, még a szerző születésnapján se.</string>
   <string name="UseOfflineCache_title">Helyi másolatok</string>
   <string name="UseOfflineCache_summary">Készüljön helyi másolat a távoli adatbázisokról, hogy azokat hálózati kapcsolat hiányában is lehessen használni.</string>
   <string name="AcceptAllServerCertificates_title">SSL tanúsítványok</string>
@@ -412,10 +418,15 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="donate_missedbday_question">Ó, lecsúszta a születésnapomat május 10-én! Ha kedveli ezt az alkalmazást, miért nem küld valamiféle születésnapi üdvözletet, esetleg némi ajándékkel megtoldva?  Még nem késő, és igazán örülnék neki!  :-)</string>
   <string name="ok_donate">Mit kell tennem?</string>
   <string name="no_thanks">Köszönöm, annyira azért nem kedvelem</string>
+  <string name="enter_http_login_title">WebDav bejelentkezési adatok:</string>
+  <string name="hint_http_url">Fájl vagy mappa URL-je (például mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Adja meg az OwnCloud bejelentkezési adatait:</string>
+  <string name="hint_owncloud_url">OwnCloud URL (pl.: owncloud.me.com)</string>
   <string name="hint_sftp_host">szerver (pl. 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Kezdőkönyvtár (opcionális):</string>
   <string name="enter_sftp_login_title">SFTP tárhely adatai:</string>
+  <string name="enter_ftp_login_title">Adja meg az FTP bejelentkezési adatait:</string>
   <string name="select_storage_type">Tárolási típus kiválasztása:</string>
   <string name="filestoragename_file">A készüléken tárolt fájl</string>
   <string name="filestoragename_androidget">Külső alkalmazás</string>
@@ -423,10 +434,12 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KPA2 mappa)</string>
   <string name="filestoragehelp_dropboxKP2A">Válassza ezt az opciót, ha nem akarja, hogy a KP2A a teljes Dropbox tárhelyhez hozzáférjen.  A KP2A csak az Apps/Keepass2Android könyvtárhoz fog hozzáférést igényelni.  Ha már meglévő, de máshol tárolt adatbázist kíván ilyen módon elérni, akkor válassza ezt az opciót a könyvtár létrehozásához, majd helyezze át az adatbázisfájlt a létrehozott könyvtárba (például egy PC-ről), majd válassza még egyszer ezt az opciót a fájl megnyitásához.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Alapértelmezett fájlválasztó</string>
   <string name="filestorage_setup_title">A fájlhozzáférés inicializálása</string>
@@ -529,6 +542,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="AskAddTemplatesTitle">Sablonok hozzáadása?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android részét képezi néhány beépített sablon, egyebek mellett e-mail fiókok, WLAN jelszavak és titkosított jegyzetek számára. Kívánja ezeket hozzáadni az adatbázishoz? Ha most nem teszi ezt meg, később pótolhatja, a megfelelő adatbázis-beállítás segítségével.</string>
   <string name="AddTemplates_pref">Sablonok hozzáadása az adatbázishoz</string>
+  <string name="PreviewWarning">Figyelem! Ez egy technikai előzetes kiadás és mint ilyen, mutathat hibás működést! Ha *bármi* szokatlant tapasztal, kérjük, jelezze (a Codeplex-en vagy e-mail-en keresztül).</string>
   <string name="Continue">Folytatás</string>
   <string name="NoFilenameWarning">A megadott URI nem tűnik fájlnévnek. Biztos benne, hogy jó URI-t adott meg?</string>
   <string name="FirstInvalidCompositeKeyError">Az összetett kulcs érvénytelen! Próbálkozzon újra.</string>
@@ -557,6 +571,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="ActivateAutoFillService_btnKeyboard">Beépített billentyűzet használata</string>
   <string name="ActivateAutoFillService_btnAutoFill">Automatikus kitöltés szolgáltatás használata</string>
   <string name="ActivateAutoFillService_toast">Kérjük, engedélyezze a Keepass2Android szolgáltatást.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">A billentyűzet megjelenítése a jelszóbeíráshoz ujjlenyomat-leolvasás közben.</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>
     <item>1 perc</item>
@@ -582,6 +597,11 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
     <item>Sötét</item>
   </string-array>
   <string name="design_title">Megjelenés</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Nincs titkosítás (FTP)</item>
+    <item>Implicit titkosítás (FTP TLS fölött, FLPS)</item>
+    <item>Explicit titkosítás (FTP TLS fölött, FLPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Felhasználónév és jelszó ne legyen tárolva</item>
     <item>Felhasználónév legyen tárolva, a jelszó nem</item>

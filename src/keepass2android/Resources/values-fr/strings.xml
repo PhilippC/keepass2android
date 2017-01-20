@@ -128,6 +128,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="error_pass_gen_type">Au moins une méthode de génération de mot de passe doit être sélectionné</string>
   <string name="error_pass_match">Les mots de passe ne correspondent pas.</string>
   <string name="error_rounds_not_number">La série doit être un nombre.</string>
+  <string name="error_param_not_number">Le paramètre doit être un nombre.</string>
   <string name="error_title_required">Le titre est obligatoire.</string>
   <string name="error_wrong_length">Entrez un entier positif dans le champ \"longueur\"</string>
   <string name="FileNotFound">Fichier non trouvé.</string>
@@ -206,9 +207,12 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="remove_from_filelist">Supprimer</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Racine</string>
+  <string name="KeyDerivFunc">Fonction de dérivation de clés</string>
   <string name="rounds">Niveau du chiffrement</string>
   <string name="rounds_explaination">Un niveau de chiffrement supérieur assure une protection supplémentaire contre les attaques de force brute, mais peut considérablement ralentir le chargement et la sauvegarde.</string>
   <string name="rounds_hint">niveaux</string>
+  <string name="argon2memory">Mémoire pour Argon 2 (octets)</string>
+  <string name="argon2parallelism">Parallélisme pour Argon 2</string>
   <string name="database_name">Nom de la base de données</string>
   <string name="default_username">Nom d\'utilisateur par défaut pour les nouvelles entrées</string>
   <string name="saving_database">Enregistrement de la base de données&#8230;</string>
@@ -310,6 +314,8 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="NoDonateOption_title">Masquer l\'option de donation</string>
   <string name="NoDonateOption_summary">Ce réglage est réservé aux donateurs. Il n\'est disponible qu\'après une durée minimale d\'utilisation de Keepass2Android .</string>
   <string name="NoDonateOption_question">Sans vos dons, cette application n\'existerait pas et ne serait pas améliorée. Si vous n\'avez pas encore donné, merci de l\'envisager dès maintenant.</string>
+  <string name="NoDonationReminder_title">Ne jamais demander de donation</string>
+  <string name="NoDonationReminder_summary">Je ne donnerai pas un sou, ou j’ai déjà donné. Ne demandez rien, même pas à l’anniversaire de l’auteur.</string>
   <string name="UseOfflineCache_title">Mise en cache de la base de données</string>
   <string name="UseOfflineCache_summary">Conserver une copie des bases de données distantes dans le cache de l\'application. Ceci permet d\'utiliser les bases de données distantes même en mode hors connexion.</string>
   <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
@@ -407,10 +413,15 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="donate_missedbday_question">Oh, vous avez manqué mon anniversaire le 10 mai ! Si vous aimez cette application, pourquoi ne pas m\'envoyer des vœux d\'anniversaire et un cadeau d\'anniversaire ? Il n\'est pas encore trop tard pour me faire plaisir ! :-)</string>
   <string name="ok_donate">En savoir plus !</string>
   <string name="no_thanks">Non, je n\'aime pas tant que ça</string>
+  <string name="enter_http_login_title">Entrez les données de connexion du WebDav :</string>
+  <string name="hint_http_url">URL du dossier ou du fichier (ex : mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Entrez le nom d\'utilisateur d\'OwnCloud:</string>
+  <string name="hint_owncloud_url">URL d\'OwnCloud (ex: owncloud.me.com)</string>
   <string name="hint_sftp_host">Adresse IP du serveur (ex : 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Répertoire initial (facultatif) :</string>
   <string name="enter_sftp_login_title">Entrez les données de connexion SFTP :</string>
+  <string name="enter_ftp_login_title">Entrez les données de connexion FTP:</string>
   <string name="select_storage_type">Sélectionner le type de stockage :</string>
   <string name="filestoragename_file">Fichier local</string>
   <string name="filestoragename_androidget">Recevoir depuis une application tierce</string>
@@ -418,10 +429,12 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (dossier KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Sélecteur de fichier système</string>
   <string name="filestorage_setup_title">Initialisation de l\'accès aux fichiers</string>
@@ -548,10 +561,19 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ActivateAutoFillService_btnKeyboard">Utiliser le clavier intégré</string>
   <string name="ActivateAutoFillService_btnAutoFill">Utiliser la fonction de remplissage automatique</string>
   <string name="ActivateAutoFillService_toast">Veuillez activer le service Keepass2Android.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
   <string name="ChangeLog_0_9_8c">
 Version 0.9.8c\n
 * Correctif pour la vulnérabilité SSL dans Microsoft Live SDK (utilisé lorsque vous accédez à des fichiers via OneDrive)\n
 * Bug fix : la version précédente contenait deux méthodes de saisie (l\'une des deux plante)\n  </string>
+  <string name="ChangeLog_1_01">
+Version 1.01\n * Ajout du support pour le nouveau format KDBX-4 (compatible avec Keepass 2.35) y compris la dérivation de clés Argon2 et ChaCha20 cryptage.\n * Nouvelle implémentation du stockage WebDav, il est maintenant possible de parcourir les fichiers et le stockage prend en charge un chiffrement moderne.\n * Nouvelle implémentation du stockage FTP qui permet maintenant de parcourir les fichiers et de prendre en charge le cryptage (FTPS).\n * Mise à jour du SDK OneDrive (le SDK Live précédemment utilisé n’est plus mis à jour).\n * Mise à jour du SDK Dropbox vers la version 2 (la version 1 n\'est plus supportée).\n * Ajout du support pour OwnCloud.\n *Demande d’autorisation de stockage avant d’ouvrir les fichiers locaux.  </string>
+  <string name="ChangeLog_1_0_0e">
+Version 1.0.0e\n 
+* Règle un problème avec le scaneur d\'empreintes digitales sur les anciens appareils Samsung tournant avec Android 6.\n 
+* Ajout d\'un support natif pour les processeurs x86.\n 
+* Permet d\'afficher ou cacher les caractères dans les champs texte de saisie si le scanner d\'empreinte digital a été activé. \n
+* Construction de mise à jour système  </string>
   <string name="ChangeLog_1_0_0">
 Version 1.0.0\n * Déverrouiller par empreinte digitale (nécessite Android 6.0+ ou un appareil Samsung)\n * Ajout du service de saisie automatique (nécessite Android 5.0+)\n * Ajout du support pour l\'entrée templates\n * Ajout d\'un mode \"hors connexion\"\n * Possibilité de copier les entrées\n * Mode semi-automatique pour les champs noms\n * Possibilité de supprimer des éléments de liste des fichiers récents\n * Demande des autorisations à l\'exécution pour Android 6.0\n * Corrections de bugs (dans le clavier intégré, lorsque vous sélectionnez les icônes)\n * Ajout d\'une option pour envoyer des rapports d\'erreur\n * Ajouts de plusieurs messages d\'aide\n  </string>
   <string name="ChangeLog_0_9_9">
@@ -733,6 +755,11 @@ Première version publique</string>
     <item>Sombre</item>
   </string-array>
   <string name="design_title">Conception</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Aucun chiffrement (FTP)</item>
+    <item>Chiffrement Implicit (FTP sur TLS, FTPS)</item>
+    <item>Chiffrement Explicit (FTP sur TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Ne pas se souvenir des identifiants</item>
     <item>Ne se rappeler que le nom d\'utilisateur</item>

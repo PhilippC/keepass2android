@@ -4,9 +4,10 @@
 <resources>
   <string name="about_feedback">回饋意見：</string>
   <string name="about_homepage">主頁：</string>
-  <string name="AboutText">Keepass2Android是KeePass密碼管理軟體的Android版本。</string>
+  <string name="AboutText">Keepass2Android 是 Android 版本的 KeePass 密碼管理軟體。</string>
   <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
-  <string name="CreditsTextSFTP">SFTP 支援被實現使用 BSD 許可證，創建 JCraft，inc. 下的 JSch 庫。</string>
+  <string name="CreditsTextSFTP">SFTP 支援是使用 JCraft，inc. 的 JSch 資料庫所寫且授權於 BSD 授權。</string>
+  <string name="CreditsIcons">槌子圖示是由 Noun Project 的 John Caserta 所做。企鵝圖示是由 Noun Project 的 Adriano Emerick 所做。羽毛圖示是由 Noun Project 的 Jon Testa 所做。頻果圖樣是由 Noun Project 的 Ava Rowell 所做。 </string>
   <string name="accept">接受</string>
   <string name="deny">拒絕</string>
   <string name="add_entry">添加項目</string>
@@ -32,10 +33,11 @@
   <string name="ShowGroupnameInSearchResult_resume">在搜尋結果中顯示條目標題下面的群組名稱。如果幾個條目具有相同的名稱有幫助。</string>
   <string name="NavigationToGroupCompleted_message">顯示群組現在是: %1$s</string>
   <string name="ShowGroupInEntry_title">在項目視圖中顯示群組名稱</string>
-  <string name="unknown_uri_scheme">抱歉! Keepass2Android 不能處理返回的 URI %1$s。請聯繫開發人員!</string>
+  <string name="unknown_uri_scheme">抱歉! Keepass2Android 無法處理交回的 URI %1$s。請聯繫開發人員!</string>
   <string name="Entry_singular">一個項目</string>
   <string name="Entry_plural">%1$d 項目</string>
   <string name="IconSet_title">圖示集</string>
+  <string name="IconSet_install">找尋更多...</string>
   <string name="security_prefs">安全性</string>
   <string name="display_prefs">顯示</string>
   <string name="password_access_prefs">密碼輸入訪問</string>
@@ -47,7 +49,7 @@
   <string name="import_db_prefs">導入資料庫到內部資料夾</string>
   <string name="import_keyfile_prefs">將金鑰檔導入到內部資料夾</string>
   <string name="keyboardswitch_prefs">鍵盤轉換</string>
-  <string name="OnlyAvailableForLocalFiles">僅適用于本地檔。</string>
+  <string name="OnlyAvailableForLocalFiles">僅適用於本地檔。</string>
   <string name="FileIsInInternalDirectory">檔存儲在內部目錄中。</string>
   <string name="DatabaseFileMoved">資料庫檔案被覆制到內部的資料夾。按確定，從新位置打開。注意: 不要忘記定期將資料庫匯出到一個安全的存儲裝置!</string>
   <string name="KeyfileMoved">金鑰檔被覆制到內部的資料夾。從當前位置刪除之前請確保您有一個安全的備份!</string>
@@ -82,7 +84,18 @@
   <string name="fingerprint_hardware_error">未能發現指紋認證硬體。</string>
   <string name="fingerprint_no_enrolled">在此設備上沒有已登記的指紋。請先到系統設置進行登記。</string>
   <string name="disable_fingerprint_unlock">禁用指紋解鎖</string>
+  <string name="enable_fingerprint_unlock">啟用完整指紋解鎖</string>
   <string name="enable_fingerprint_quickunlock">啟用指紋解鎖進行快速解鎖</string>
+  <string name="fingerprint_unlock_hint">觸碰指紋感應器以解鎖資料庫</string>
+  <string name="fingerprint_unlock_failed">指紋解鎖失敗。解密金鑰已被 Android 系統無效化。這通常是因為有新的指紋被加入或是安全性設定被變更了。請以密碼解鎖並於資料庫設定中重新啟用指紋解鎖。</string>
+  <string name="fingerprint_disabled_wrong_masterkey">資料庫解鎖失敗：無效的金鑰組合。指紋解鎖已被關閉，因為先前所存的主密碼已失效。請以密碼解鎖並於資料庫設定中重新啟用指紋解鎖。</string>
+  <string name="fingerprint_reenable">請重新為新的主密碼啟用指紋解鎖</string>
+  <string name="enable_fingerprint_unlock_Info">
+    這將把主密碼存在你裝置上，
+    並透過 Android Keystore 加密
+    且將被指紋驗證保護。這將讓你透過指紋解鎖你的資料庫。
+  </string>
+  <string name="enable_fingerprint_quickunlock_Info">將不使用 QuickUnlock 代碼，而是透過指紋驗證。不需要於裝置上存任何與主密碼相關的資料。</string>
   <string name="enter_filename">輸入資料庫名：</string>
   <string name="entry_accessed">訪問時間：</string>
   <string name="entry_cancel">取消</string>
@@ -118,6 +131,7 @@
   <string name="error_pass_gen_type">至少必須選擇一個密碼生成類型</string>
   <string name="error_pass_match">密碼不匹配。</string>
   <string name="error_rounds_not_number">次數必須是數位。</string>
+  <string name="error_param_not_number">參數必須是數字。</string>
   <string name="error_title_required">標題是必填項。</string>
   <string name="error_wrong_length">長度欄位輸入一個正整數</string>
   <string name="FileNotFound">文件未找到。</string>
@@ -159,10 +173,11 @@
   <string name="menu_app_settings">設置</string>
   <string name="menu_db_settings">資料庫設置</string>
   <string name="menu_delete">刪除</string>
+  <string name="menu_copy">建立新的複製</string>
   <string name="menu_move">移動到另一個群組</string>
   <string name="menu_move_light">移動</string>
   <string name="menu_navigate">移動到父群組</string>
-  <string name="menu_donate">捐出一瓶啤酒......</string>
+  <string name="menu_donate">捐贈一瓶啤酒......</string>
   <string name="menu_edit">編輯</string>
   <string name="menu_hide_password">隱藏密碼</string>
   <string name="menu_lock">鎖定資料庫</string>
@@ -172,7 +187,7 @@
   <string name="menu_search">搜索</string>
   <string name="menu_search_advanced">進階搜尋</string>
   <string name="menu_url">轉到網址</string>
-  <string name="menu_change_db">更改資料庫...</string>
+  <string name="menu_change_db">變更資料庫</string>
   <string name="menu_show_all">顯示所有欄位</string>
   <string name="minus">減</string>
   <string name="never">永不</string>
@@ -195,9 +210,11 @@
   <string name="remove_from_filelist">移除</string>
   <string name="rijndael">Rijndael加密(AES)</string>
   <string name="root">根目錄</string>
+  <string name="KeyDerivFunc">金鑰派生函數</string>
   <string name="rounds">加密次數</string>
   <string name="rounds_explaination">更高級的加密次數對暴力攻擊能提供額外保護，但也會增加載入和保存的時間。</string>
   <string name="rounds_hint">次數</string>
+  <string name="argon2memory">Arrgon 2 記憶體用量 (位元)</string>
   <string name="database_name">資料庫名稱</string>
   <string name="default_username">新輸入項使用預設使用者名稱</string>
   <string name="saving_database">正在保存資料庫&#8230;</string>
@@ -299,6 +316,8 @@
   <string name="NoDonateOption_title">隱藏捐贈選項</string>
   <string name="NoDonateOption_summary">此設置是為捐贈者設立。使用 Keepass2Android 一段時間後才可使用。</string>
   <string name="NoDonateOption_question">沒有捐款，這個應用程式就不會存在，且不會不斷改進！如果您還未捐贈，請考慮現在捐贈。</string>
+  <string name="NoDonationReminder_title">別再跟我講捐贈的事啦</string>
+  <string name="NoDonationReminder_summary">我不會給你一毛錢的，或者我之前就捐贈過了。就算是你生日也一樣，別問我捐贈的問題了。</string>
   <string name="UseOfflineCache_title">資料庫緩存中</string>
   <string name="UseOfflineCache_summary">在應用程式暫存目錄下保存遠端資料庫檔的副本。這允許在離線時使用遠端資料庫。</string>
   <string name="AcceptAllServerCertificates_title">SSL 憑證</string>
@@ -313,6 +332,8 @@
   <string name="ShowCopyToClipboardNotification_summary">使用者名稱和密碼可以藉由通知列和剪貼簿取得。謹防密碼竊取器！</string>
   <string name="ShowSeparateNotifications_title">分開的通知</string>
   <string name="ShowSeparateNotifications_summary">顯示分開的通知以便用於將使用者名和密碼複製到剪貼簿並啟動鍵盤。</string>
+  <string name="ShowKp2aKeyboardNotification_title">鍵盤/自動填滿通知</string>
+  <string name="ShowKp2aKeyboardNotification_summary">透過 KP2A 鍵盤及自動填滿服務（推薦）取得項目資訊。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切換鍵盤</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">從瀏覽器搜索後，當項目可透過KP2A 鍵盤取得時打開鍵盤選擇對話方塊 。</string>
   <string name="kp2a_switch_rooted">在取得最高權限的設備自動切換</string>
@@ -334,6 +355,9 @@
   <string name="AskDeletePermanentlyEntry">你想要永久刪除此項目嗎？按否以丟到回收桶。</string>
   <string name="AskDeletePermanentlyGroup">你想要永久刪除此群組嗎？按否以丟到回收桶。</string>
   <string name="AskDeletePermanentlyItems">你想要永久刪除選項? 按否回收。</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">您確定要刪除此項目嗎？</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">您確定要刪除此群組嗎？</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">您確定要刪除選擇的項目嗎？</string>
   <string name="AskDeletePermanently_title">永久刪除嗎?</string>
   <string name="AskReloadFile_title">重新載入檔案？</string>
   <string name="AskReloadFile">當前打開的檔案已被另一個程式更改。你想要重新載入它嗎?</string>
@@ -358,6 +382,9 @@
   <string name="SynchronizingDatabase">合併更改中...</string>
   <string name="YesSynchronize">是的，合併</string>
   <string name="NoOverwrite">不，覆蓋</string>
+  <string name="UseOfflineMode">離線操作</string>
+  <string name="UseOnlineMode">在線操作</string>
+  <string name="InOfflineMode">離線操作中。</string>
   <string name="SynchronizingCachedDatabase">同步已暫存的資料庫中...</string>
   <string name="DownloadingRemoteFile">下載遠端檔案中...</string>
   <string name="UploadingFile">上傳檔案中...</string>
@@ -387,10 +414,15 @@
   <string name="donate_missedbday_question">哦，你錯過了我的 5 月 10 日生日！如果你喜歡這款應用程式，為什麼不給我一些生日問候和一個小小的生日禮物？現在仍然不會太晚使我高興！:-)</string>
   <string name="ok_donate">告訴我更多!</string>
   <string name="no_thanks">不，我並沒有那麼喜歡</string>
+  <string name="enter_http_login_title">輸入 WebDav 登入資訊：</string>
+  <string name="hint_http_url">資料夾或檔案的連結（例：mycloud.me.com/webdav/）</string>
+  <string name="enter_owncloud_login_title">輸入 OwnCloud 登入資訊︰</string>
+  <string name="hint_owncloud_url">OwnCloud 連結（例：owncloud.me.com）</string>
   <string name="hint_sftp_host">主機 (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">連接埠</string>
   <string name="initial_directory">初始目錄 (可選):</string>
   <string name="enter_sftp_login_title">輸入 SFTP 登錄資料:</string>
+  <string name="enter_ftp_login_title">輸入 FTP 登入資訊：</string>
   <string name="select_storage_type">選擇存儲類型:</string>
   <string name="filestoragename_file">本機檔案</string>
   <string name="filestoragename_androidget">從第三方應用程式取得</string>
@@ -398,10 +430,12 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A 資料夾)</string>
   <string name="filestoragehelp_dropboxKP2A">如果你不想要給 KP2A 你完整的 Dropbox 訪問權限，您可以選擇此選項。它將請求只訪問應用程式/Keepass2Android 資料夾。這特別適合創建新資料庫時。如果你已經有一個資料庫，請按一下此選項可創建該資料夾，然後 (從您的 PC) 將檔放在資料夾的內部，然後選擇此選項用，再打開檔案。</string>
   <string name="filestoragename_gdrive">Google 雲端硬碟</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH 檔案傳輸)</string>
   <string name="filestoragename_content">系統檔選擇器</string>
   <string name="filestorage_setup_title">檔案存取權限初始化</string>
@@ -409,6 +443,7 @@
   <string name="help_database_location">您可以存放您的資料庫在你的 Android 設備上或在雲端 (僅適用于非離線版本)。即使您處於離線狀態 Keepass2Android 仍可使用資料庫。當資料庫安全的加密與 AES 256 位加密，除了你任何人都無法訪問您的密碼。我們建議選擇 Dropbox: 它提供各種裝置應用程式，並提供備份以前檔案的版本。</string>
   <string name="hint_database_location">選擇位置來存儲資料庫:</string>
   <string name="button_change_location">更改位置</string>
+  <string name="help_quickunlock">若啟用，就算鎖上資料庫，Keepass2Android 仍將於背景執行。這可以讓您稍後解鎖時，僅需要輸入主密碼的一部份即可。</string>
   <string name="master_password">主密碼</string>
   <string name="help_master_password">您的資料庫將以您在此處輸入的密碼進行加密。為了保證資料庫的安全，選擇強式密碼！提示: 自創一兩英文句子，使用句中單詞首字母作為密碼。包括標點符號。</string>
   <string name="hint_master_password">選擇一個主密碼來保護您的資料庫:</string>
@@ -473,20 +508,41 @@
   <string name="CopyFileRequiredForEditing">若要編輯它，必須將該檔案複製到另一個位置。</string>
   <string name="ClickOkToSelectLocation">按一下確定，選擇要複製檔的位置。</string>
   <string name="CancelReadOnly">取消，打開唯讀模式。</string>
+  <string name="FileReadOnlyTitle">資料庫僅唯獨</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android 已將目前的資料庫以唯讀方式開啟。</string>
+  <string name="ReadOnlyReason_PreKitKat">你似乎是從外部的應用程式開啟本資料庫檔案。這樣的方法不支援存檔。如果你想要存下任何的變更，請關閉本資料庫並選擇變更資料庫。然後再以其他方式開啟本檔案。</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">唯獨標記已啟用。如果你想進行任何變更，請先將本標記移除。</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">因為 Android KitKat 加入了新的限制，無法變更資料庫內的資料。如果你想變更資料庫內的資料，請先關閉資料庫並選擇變更資料庫。然後再透過系統檔案選擇器選擇本檔案。</string>
   <string name="AddCustomIcon">從檔案添加圖示...</string>
   <string name="CopyingFile">複製檔案中...</string>
   <string name="DuplicateTitle">複製</string>
   <string name="DefaultTemplate">標準的條目</string>
+  <string name="TemplateGroupName">樣本</string>
+  <string name="TemplateTitle_IdCard">ID 卡</string>
   <string name="TemplateField_IdCard_Name">名稱</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">簽發地點</string>
   <string name="TemplateField_IdCard_IssueDate">簽發日期</string>
   <string name="TemplateTitle_EMail">電郵</string>
   <string name="TemplateField_EMail_EMail">電郵地址</string>
   <string name="TemplateTitle_WLan">無線網絡</string>
+  <string name="TemplateTitle_Notes">安全記事</string>
+  <string name="TemplateField_WLan_SSID">Wi-Fi 名稱 (SSID)</string>
+  <string name="TemplateField_Number">號碼</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN 碼</string>
+  <string name="TemplateField_CreditCard_Owner">持卡人</string>
+  <string name="TemplateTitle_CreditCard">信用卡</string>
+  <string name="TemplateTitle_Membership">會員</string>
   <string name="ChangeLog_title">更改日誌</string>
+  <string name="AskAddTemplatesTitle">新增樣本?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android 有附些 E-Mail 帳號、無線網路密碼、安全記事等樣本。想把這些加到資料庫中嗎？如果不想的話，你待會可以在資料庫設定中加入。</string>
   <string name="PreviewWarning">請注意! 這是一個預覽版本，可能會附帶一些缺陷! 如果您遇到 *任何* 意外，請讓我知道 (在 Codeplex 上或通過電子郵件)。</string>
   <string name="Continue">繼續</string>
   <string name="NoFilenameWarning">您輸入的 URI 不像一個檔案名。你確定這是一個有效的檔?</string>
+  <string name="ErrorReportEnable">啟用</string>
+  <string name="ErrorReportDisable">關閉</string>
+  <string name="ActivateAutoFillService_btnAutoFill">使用自動填滿服務</string>
+  <string name="ActivateAutoFillService_toast">請啟用 Keepass2Android 服務。</string>
   <string name="ChangeLog_keptDonate">捐出一瓶啤酒或別的東西以擴展K2A的可能性</string>
   <string-array name="clipboard_timeout_options">
     <item>30秒</item>
@@ -509,6 +565,11 @@
     <item>大</item>
   </string-array>
   <string name="design_title">設計</string>
+  <string-array name="ftp_encryption_modes">
+    <item>No encryption (FTP)</item>
+    <item>隱式加密 (透過 TLS 的 FTP，FTPS)</item>
+    <item>顯式加密 (透過 TLS 的 FTP，FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>不記住使用者名和密碼</item>
     <item>只記住使用者名</item>

@@ -82,6 +82,12 @@
   <string name="fingerprint_success">اثر انگشت شناخته شد</string>
   <string name="fingerprint_os_error">بازگشایی با اثر انگشت نیاز به اندیشه Android 6.0 یا بالاتر دارد.</string>
   <string name="fingerprint_hardware_error">هیچ سخت افزار شناسایی اثر انگشت پیدا نشد.</string>
+  <string name="fingerprint_no_enrolled">شما هیچ مشخصه شناسایی -مانند اثر انگشت- در این دستگاه ثبت نکرده اید.
+لطفا ابتدا به تنظیمات سیستم بروید.</string>
+  <string name="disable_fingerprint_unlock">غیر فعال کردن قفل اثر انگشت</string>
+  <string name="enable_fingerprint_unlock">فعال سازی کامل قفل اثر انگشت</string>
+  <string name="enable_fingerprint_quickunlock">فعال سازی قفل اثر انگشت برای بازگشایی سریع</string>
+  <string name="fingerprint_unlock_hint">لمس سنسور برای بازگشایی پایگاه داده ها</string>
   <string name="entry_cancel">لغو کردن</string>
   <string name="entry_comment">یادداشت ها</string>
   <string name="entry_tags">برچسب ها</string>

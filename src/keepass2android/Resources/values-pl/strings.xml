@@ -130,6 +130,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="error_pass_gen_type">Musisz wybrać przynajmniej jeden sposób generowania hasła</string>
   <string name="error_pass_match">Hasła nie pasują do siebie.</string>
   <string name="error_rounds_not_number">Wartość musi być liczbą.</string>
+  <string name="error_param_not_number">Parametr portu musi być liczbą.</string>
   <string name="error_title_required">Wymagany tytuł.</string>
   <string name="error_wrong_length">Wprowadź dodatnią liczbę całkowitą w polu długość</string>
   <string name="FileNotFound">Plik nie istnieje.</string>
@@ -208,9 +209,12 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="remove_from_filelist">Usuń</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Katalog główny</string>
+  <string name="KeyDerivFunc">Funkcja generująca klucze</string>
   <string name="rounds">Złożoność szyfrowania</string>
   <string name="rounds_explaination">Większa złożoność zapewnia dodatkowe zabezpieczenie przed atakiem brute force ale może spowolnić wczytywanie i zapisywanie bazy danych.</string>
   <string name="rounds_hint">złożoność</string>
+  <string name="argon2memory">Pamięć na Argon 2 (bajty)</string>
+  <string name="argon2parallelism">Równoległość dla Argon 2</string>
   <string name="database_name">Nazwa bazy danych</string>
   <string name="default_username">Domyślna nazwa użytkownika dla nowych wpisów</string>
   <string name="saving_database">Zapisywanie bazy danych&#8230;</string>
@@ -312,6 +316,8 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="NoDonateOption_title">Ukryj opcję dotacji</string>
   <string name="NoDonateOption_summary">Ta opcja jest dla ludzi którzy złożyli dotację.</string>
   <string name="NoDonateOption_question">Bez dotacji nieistniałaby ta aplikacja albo niebyłaby rozwijana. Jeśli jeszcze nie złozyłeś dotacji proszę rozważ to. </string>
+  <string name="NoDonationReminder_title">Nigdy nie proś o darowiznę</string>
+  <string name="NoDonationReminder_summary">Nie chcę dać Ci kasy albo już to zrobiłem. Nie pytaj o darowiznę, nawet na urodziny autora.</string>
   <string name="UseOfflineCache_title">Pamięć podręczna baz danych</string>
   <string name="UseOfflineCache_summary">Przechowuj kopię zdalnych baz danych w katalogu pamięci podręcznej aplikacji. Pozwala to na wykorzystanie zdalnych baz danych, nawet w trybie offline.</string>
   <string name="AcceptAllServerCertificates_title">Certyfikaty SSL</string>
@@ -409,10 +415,15 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="donate_missedbday_question">Oh, przegapiłeś moje urodziny 10 maja! Jeżeli podoba ci się ta aplikcja, czemu nie wysłałbyś mi życzeń urodzinowych i małego prezentu urodzinowego? Jeszcze nie jest za późno żeby poprawić mi humor! :-)</string>
   <string name="ok_donate">Wyślij mi wiadomość!</string>
   <string name="no_thanks">Nie, nie podoba mi się na tyle</string>
+  <string name="enter_http_login_title">Wpisz dane do logowania WebDav:</string>
+  <string name="hint_http_url">Adres URL folderu lub pliku (np.: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Wpisz dane do logowania OwnCloud:</string>
+  <string name="hint_owncloud_url">Adres URL OwnCloud (np: owncloud.me.com)</string>
   <string name="hint_sftp_host">host (np: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Katalog początkowy (opcjonalne):</string>
   <string name="enter_sftp_login_title">Wprowadź dane loginu SFTP:</string>
+  <string name="enter_ftp_login_title">Wprowadź dane logowania FTP:</string>
   <string name="select_storage_type">Wybierz miejsce zapisu:</string>
   <string name="filestoragename_file">Plik lokalny</string>
   <string name="filestoragename_androidget">Z aplikacji zewnętrznej</string>
@@ -420,10 +431,12 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (transfer plików przez SSH)</string>
   <string name="filestoragename_content">Systemowa przeglądarka plików</string>
   <string name="filestorage_setup_title">Inicjowanie dostępu do pliku</string>
@@ -557,10 +570,28 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ActivateAutoFillService_btnKeyboard">Użyj wbudowanej klawiatury</string>
   <string name="ActivateAutoFillService_btnAutoFill">Użyj usługi autouzupełniania</string>
   <string name="ActivateAutoFillService_toast">Proszę włączyć usługę Keepass2Android.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
   <string name="ChangeLog_0_9_8c">
 Wersja 0.9.8c\n
     * Poprawka luki bezpieczeństwa protokołu SSL w Microsoft Live SDK (używany podczas uzyskiwania dostępu do plików za pośrednictwem OneDrive)\n
     * Poprawka błędu: Poprzednia wersja zawierała dwie metody wprowadzania (jedną wysypującą się)\n  </string>
+  <string name="ChangeLog_1_01">
+    Wersja 1.01\n
+    * dodano wsparcie dla nowego formatu KDBX-4-format (kompatybilne z Keepass 2.35) włącznie z generowaniem kluczy Argon2 i szyfrowaniem ChaCha20.\n
+    * Przepisano przechowywanie plików  WebDav, umożliwiając teraz przeglądanie plików i wspierając nowoczesne szyfrowanie.\n
+    * Przepisano przechowywanie plików FTP, umożliwiając teraz przechowywanie plików i wspierając szyfrowanie (FTPS).\n
+    * Zaktualizowano do OneDrive SDK (poprzednio używane Live SDK nie jest już aktualizowane)\n
+    * Zaktualizowano do Dropbox SDK wersja 2 (poprzednio używana wersja 1 SDK jest oznaczona jako przestarzała).\n
+    * Dodano wsparcie dla OwnCloud.\n
+    * Monit o pozwolenie o dostęp do pamięci przed otwieraniem lokalnych plików
+  </string>
+  <string name="ChangeLog_1_0_0e">
+    Wersja 1.0.0e\n
+    * poprawka do odblokowywania odciskiem palca na starszych urządzeniach marki Samsung z Androidem 6\n
+    * dodane natywne wsparcie dla urządzeń x86\n
+    * pozwolono chować klawiaturę programową podczas skanowania odcisku palca\n
+    * aktualizacja systemu budowania
+  </string>
   <string name="ChangeLog_1_0_0">
 Wersja 1.0.0\n
     * Odblokowywanie odciskiem palca (wymagany Android 6.0+ lub urządzenie marki Samsung)\n
@@ -770,6 +801,11 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Ciemny</item>
   </string-array>
   <string name="design_title">Design</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Bez szyfrowania (FTP)</item>
+    <item>Szyfrowanie niejawne (FTP po TLS, FTPS)</item>
+    <item>Szyfrowanie jawne (FTP po TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Nie zapamiętuj nazwy użytkownika i hasła</item>
     <item>Pamiętaj tylko nazwę użytkownika</item>

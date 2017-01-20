@@ -131,6 +131,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="error_pass_gen_type">Has de seleccionar almenys un tipus de generador de contrasenyes</string>
   <string name="error_pass_match">Les contrasenyes no coincideixen.</string>
   <string name="error_rounds_not_number">Les passades han de ser un número.</string>
+  <string name="error_param_not_number">El paràmetre ha de ser un nombre.</string>
   <string name="error_title_required">És necessari un títol.</string>
   <string name="error_wrong_length">Insereix un enter positiu al camp longitud</string>
   <string name="FileNotFound">Arxiu no trobat.</string>
@@ -209,9 +210,12 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="remove_from_filelist">Elimina</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Arrel</string>
+  <string name="KeyDerivFunc">Funció clau de derivació</string>
   <string name="rounds">Passades d\'encriptació</string>
   <string name="rounds_explaination">Més passades d\'encriptació dónen protecció adicional contra atacs de força bruta, però poden alentir molt carregar i guardar la base de dades.</string>
   <string name="rounds_hint">passades</string>
+  <string name="argon2memory">Memòria per Argó 2 (bytes)</string>
+  <string name="argon2parallelism">Paral·lelisme per a Argó 2</string>
   <string name="database_name">Nom de la base de dades</string>
   <string name="default_username">Nom d\'usuari per defecte per noves entrades</string>
   <string name="saving_database">Guardant la base de dades&#8230;</string>
@@ -313,6 +317,8 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="NoDonateOption_title">Amagar l\'opció de donació</string>
   <string name="NoDonateOption_summary">Aquesta configuració és pels donants. Està disponible després d\'utilitzar Keepass2Android durant un temps només.</string>
   <string name="NoDonateOption_question">Sense les donacions, aquest aplicació no existiria i no milloraria contínuament! Si vostè encara no ha donat, si us plau consideri fer una donació ara.</string>
+  <string name="NoDonationReminder_title">No demanar mai donació</string>
+  <string name="NoDonationReminder_summary">Jo no li donaria un cèntim o ja he fet donació. No demanar donació, ni tan sols a l\'aniversari de l\'autor.</string>
   <string name="UseOfflineCache_title">Posant en memòria cau la base de dades</string>
   <string name="UseOfflineCache_summary">Manté una còpia de la base de dades remota en el directori de memòria cau de l\'aplicació. Això permet utilitzar bases de dades remotes fins i tot quan esteu fora de línia.</string>
   <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
@@ -410,10 +416,15 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="donate_missedbday_question">Ah, et vas perdre el meu aniversari el 10 de maig! Si t\'agrada aquest aplicació, per què no enviar-me algunes salutacions d\'aniversari i un petit regal d\'aniversari? Encara no és massa tard per fer-me feliç! :-)</string>
   <string name="ok_donate">Explica\'m més!</string>
   <string name="no_thanks">No, no m\'agrada tant</string>
+  <string name="enter_http_login_title">Introduir dades de connexió WebDav:</string>
+  <string name="hint_http_url">URL de la carpeta o arxiu (ex: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Introduir dades de connexió de OwnCloud:</string>
+  <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
   <string name="hint_sftp_host">amfitrió (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Directori inicial (opcional):</string>
   <string name="enter_sftp_login_title">Introduir dades de connexió SFTP:</string>
+  <string name="enter_ftp_login_title">Introduir dades de connexió FTP:</string>
   <string name="select_storage_type">Seleccioneu el tipus d\'emmagatzematge:</string>
   <string name="filestoragename_file">Fitxer local</string>
   <string name="filestoragename_androidget">Obtenir de l\'aplicació de tercers</string>
@@ -421,10 +432,12 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta de KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no voleu donar accés KP2A al seu Dropbox complet, podeu seleccionar aquesta opció. Es sol·licitarà només l\'accés a la carpeta Apps/Keepass2Android. Això és especialment adequat quan es crea una nova base de dades. Si ja teniu una base de dades, feu clic a aquesta opció per crear la carpeta, a continuació, posar el seu arxiu dins la carpeta (des del seu PC) i llavors seleccioni aquesta opció nou per obrir l\'arxiu.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH Transferència de fitxer)</string>
   <string name="filestoragename_content">Selector d\'arxiu de sistema</string>
   <string name="filestorage_setup_title">Inicialització d\'accés a arxiu</string>
@@ -555,11 +568,28 @@ Arxiu està corrupte. \n
   <string name="ActivateAutoFillService_btnKeyboard">Ús de teclat incorporat</string>
   <string name="ActivateAutoFillService_btnAutoFill">Utilitzar el servei d\'emplenament automàtic</string>
   <string name="ActivateAutoFillService_toast">Si us plau, habiliteu el servei Keepass2Android.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Mostra el teclat per introduir la contrasenya quan l\'escàner d\'empremta digital és actiu.</string>
   <string name="ChangeLog_0_9_8c">
     Versió 0.9.8c\n
      * Arreglat vulnerabilitat SSL en el Microsoft Live SDK (utilitzat en accedir a arxius mitjançant OneDrive) \n 
     * Arreglat error: versió anterior contenia dos mètodes d\'entrada (un petaba) \n
   </string>
+  <string name="ChangeLog_1_01">
+Versió 1.01\n
+    * afegit suport per al nou format KDBX-4 (compatible amb Keepass 2.35) incloent derivació clau Argó 2 i encriptació ChaCha20.\n
+    * Re implementat emmagatzematge d\'arxiu WebDav, ara permet navegació d\'arxiu i dóna suport a encriptació moderna.\n
+    * Re implementat emmagatzematge d\'arxiu FTP, ara permet navegació d\'arxiu i dóna suport a encriptació (FTPS).\n
+    * Actualitzat a SDK OneDrive (l\'utilitzat prèviament Live SDK ja no es actualitzat)\n
+    * Actualitzat a SDK Dropbox SDK versió 2 (la versió 1 prèviament utilitzada del SDK es obsoleta).\n
+    * Afegit suport per a OwnCloud.\n
+    * Sol·licitud de permís d\'emmagatzematge abans d\'obrir fitxers locals
+  </string>
+  <string name="ChangeLog_1_0_0e">
+Versió 1.0.0e\n
+* arreglat desblocatge amb empremta en dispositus antics Samsung amb Android 6\n
+* afegit suport natiu per a dispostius x86 devices\n
+* permeten amagar teclat durant l\'escan de l\'empremta digital\n
+* actualització de sistema  </string>
   <string name="ChangeLog_1_0_0">
     Versió 1.0.0\n
     * Fingerprint, desbloqueig per empremta dactilar (necessita Android 6.0+ o un dispositiu Samsung)\n
@@ -661,6 +691,11 @@ Revisió inicial per al públic
     <item>Fosc</item>
   </string-array>
   <string name="design_title">Disseny</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Sense xifratge (FTP)</item>
+    <item>Encriptació implícita (FTP amb TLS, FTPS)</item>
+    <item>Encriptació explícita (FTP amb TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>No recordo l\'usuari i contrasenya</item>
     <item>Recordar només nom d\'usuari</item>

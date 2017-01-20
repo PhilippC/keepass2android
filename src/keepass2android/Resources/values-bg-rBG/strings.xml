@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android е мениджър за пароли който осигурява достъп четене/записване до KeePass 2.x база данни на Android.</string>
   <string name="CreditsText">Потребителският интерфейс е базиран на KeepassDroid създаден от Brian Pellin. Кода действие на базите данни е базиран на KeePass на Dominik Reichl. Робота Android е репродукция или модифициран от разработения и споделен от Google и се използва в съответствие с  лиценза Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP поддръжка се осъществява чрез използване на библиотеката на JSch под BSD лиценз, създаден от JCraft, Inc.</string>
+  <string name="CreditsIcons">Иконата на чук е създадена от Джон Казерта от проекта \"Съществително\". Иконата на пингвин е създадена от Адриано Емерик от проекта \"Съществително\". Иконата на перо е създадена от Джон Теста от проекта \"Съществително\". Иконата на ябълка е създадена от Ава Роуел от проекта \"Съществително\". </string>
   <string name="accept">Приемам</string>
   <string name="deny">Отказано</string>
   <string name="add_entry">Добавям запис</string>
@@ -81,9 +82,12 @@
   <string name="fingerprint_success">Разпознат</string>
   <string name="fingerprint_os_error">Отпечатъка изисква Android 6.0 или по нов. </string>
   <string name="fingerprint_hardware_error">Нямате устройство за отпечатък. </string>
+  <string name="fingerprint_no_enrolled">Нямате запазени пръстови отпечатъци на това устройство. Моля посетете състемните настройки.</string>
   <string name="disable_fingerprint_unlock">Изключи  отключването с отпечатък</string>
   <string name="enable_fingerprint_unlock">Разреши отключването с отпечатък</string>
+  <string name="enable_fingerprint_quickunlock">Включи Отключване с Пръстов Отпечатък при Бързо Отключване</string>
   <string name="fingerprint_unlock_hint">Докоснете сензора за отключване на базата данни</string>
+  <string name="fingerprint_unlock_failed">Отключване с Пръстов Отпечатък се провали: Ключът беше отхвърлен от Андроид състемата. Това обикновено се случва когато нов пръстов отпечатък е добавен или има промняна в настройките. Моля отключете с вашата парола и след това включете Отключване с Пръстов Отпечатък отново през настройките за база данни.</string>
   <string name="enable_fingerprint_quickunlock_Info">Позволява да използвате пръстов отпечатък вместо QuickUnlock код. Не изисква да запазва каквато и да е информация свързана с вашата главна парола.</string>
   <string name="enter_filename">Въведете име на файла на базаданни</string>
   <string name="entry_accessed">Достъп до</string>

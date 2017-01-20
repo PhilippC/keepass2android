@@ -67,6 +67,7 @@
   <string name="enter_filename">Angi filnavnet for databasen</string>
   <string name="entry_accessed">Brukt</string>
   <string name="entry_cancel">Avbryt</string>
+  <string name="entry_comment">Notater</string>
   <string name="entry_tags">Etiketter</string>
   <string name="entry_override_url">Overstyr nettadresse</string>
   <string name="entry_confpassword">Bekreft passordet</string>
@@ -104,6 +105,7 @@
   <string name="file_browser">Filbehandler</string>
   <string name="generate_password">Lag passord</string>
   <string name="group">Gruppe</string>
+  <string name="hint_comment">notater</string>
   <string name="hint_conf_pass">Bekreft passordet</string>
   <string name="hint_generated_password">generert passord</string>
   <string name="hint_group_name">Gruppenavn</string>
@@ -356,10 +358,12 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
   <string name="filestoragehelp_dropboxKP2A">Hvis du ikke vil gi KP2A tilgang til hele Dropbox-mappen din, kan du velge dette alternativet. KP2A vil da bare spørre om tilgang til mappen Apps/Keepass2Android. Dette er spesielt egnet når du oppretter en ny database. Hvis du allerede har en database, trykk på dette alternativet for å opprette mappen, for deretter å plassere filen i mappen (fra en PC) og velge dette alternativet igjen for å åpne filen.</string>
   <string name="filestoragename_gdrive">Google Disk</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="master_password">Hovedpassord</string>
   <string name="help_master_password">Databasen din er kryptert med passordet du angir her. Velg et sterkt passord for å sikre databasen! Tips: Lag en setning eller to og bruk de første bokstavene til ordene som et passord. Inkluder skilletegn.</string>

@@ -312,6 +312,8 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="NoDonateOption_title">Piilota lahjoituspyynnöt</string>
   <string name="NoDonateOption_summary">Tämä asetus on tarkoitettu lahjoittajille. Se on käytettävissä vasta kun Keepass2Androidia on käytetty jonkin aikaa.</string>
   <string name="NoDonateOption_question">Ilman lahjoituksia tätä sovellusta ei olisi olemassa eikä se olisi kehittynyt paremmaksi! Jos et ole vielä lahjoittanut niin harkitse lahjoittamista nyt.</string>
+  <string name="NoDonationReminder_title">Älä koskaan pyydä lahjoitusta</string>
+  <string name="NoDonationReminder_summary">En aio antaa teille penniäkään tai olen jo lahjoittanut. Älä pyydä lahjoituksia koskaan, edes tekijän syntymäpäivänä.</string>
   <string name="UseOfflineCache_title">Tietokannan säilöminen välimuistiin</string>
   <string name="UseOfflineCache_summary">Säilytä kopio etätietokannan tiedostoista sovelluksen välimuistissa. Tämän avulla voidaan käyttää etätietokantoja myös offline-tilassa.</string>
   <string name="AcceptAllServerCertificates_title">SSL-varmenteet</string>
@@ -410,10 +412,13 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="donate_missedbday_question">Voih! Unohdit syntymäpäiväni 10. Toukokuuta ! Jos pidät tästä sovelluksesta niin etkö voisi lähettää minulle syntymäpäiväterveisiä ja pientä syntymäpäivälahjaa? Vielä ehdit tehdä minut onnelliseksi! :-)</string>
   <string name="ok_donate">Kerro lisää!</string>
   <string name="no_thanks">Ei, en pidä sitä niin paljon</string>
+  <string name="enter_http_login_title">Syötä WebDavin kirjautumistiedot:</string>
+  <string name="enter_owncloud_login_title">Syötä OwnCloudin kirjautumistiedot:</string>
   <string name="hint_sftp_host">isäntäkone (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">Portti</string>
   <string name="initial_directory">Aloitushakemisto (valinnainen):</string>
   <string name="enter_sftp_login_title">Syötä SFTP kirjautumistiedot:</string>
+  <string name="enter_ftp_login_title">Syötä FTP:n kirjautumistiedot:</string>
   <string name="select_storage_type">Valitse tallennustyyppi:</string>
   <string name="filestoragename_file">Paikallinen tiedosto</string>
   <string name="filestoragename_androidget">Hae kolmannen osapuolen sovelluksesta</string>
@@ -421,10 +426,12 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDAV)</string>
   <string name="filestoragename_https">HTTPS (WebDAV)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A kansio)</string>
   <string name="filestoragehelp_dropboxKP2A">Jos et halua antaa KP2A:lle pääsyä koko Dropboxiisi, voit valita tämän vaihtoehdon. Se pyytää käyttöoikeuksia vain \"Apps/Keepass2Android\" kansioon. Tämä on erityisen hyvä kun luodaan uusi tietokanta. Jos sinulla on jo tietokanta, valitsemalla tämän vaihtoehdon voit luoda kansion. Sijoita sen jälkeen tietokantatiedosto kansioon (tietokoneestasi) ja valitse sitten tämä vaihtoehto avataksesi tietokanta.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH-tiedostonsiirto)</string>
   <string name="filestoragename_content">Järjestelmän tiedostonvalitsin</string>
   <string name="filestorage_setup_title">Tiedoston käytön alustaminen</string>

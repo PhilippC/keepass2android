@@ -63,7 +63,7 @@
   <string name="clipboard_timeout_summary">Tijd tussen het kopiëren van gebruikersnaam of wachtwoord en het wissen van het klembord</string>
   <string name="copy_username">Selecteer om gebruikersnaam naar klembord te kopiëren</string>
   <string name="copy_password">Selecteer om wachtwoord naar klembord te kopiëren</string>
-  <string name="available_through_keyboard">Invoer is mogelijk via KP2A-toestenbord</string>
+  <string name="available_through_keyboard">Invoer is mogelijk via KP2A-toetsenbord</string>
   <string name="entry_is_available">is beschikbaar</string>
   <string name="not_possible_im_picker">Kan venster om invoermethode te selecteren niet openen. Activeer toetsenbord handmatig.</string>
   <string name="please_activate_keyboard">Activeer het Keepass2Android-toetsenbord in uw systeeminstellingen.</string>
@@ -128,6 +128,7 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="error_pass_gen_type">U moet minstens één type van wachtwoordgeneratie kiezen.</string>
   <string name="error_pass_match">Wachtwoorden komen niet overeen.</string>
   <string name="error_rounds_not_number">Cycli-waarde moet een getal zijn.</string>
+  <string name="error_param_not_number">De parameter moet een getal zijn.</string>
   <string name="error_title_required">Een titel ontbreekt.</string>
   <string name="error_wrong_length">Geef een positief geheel getal voor het lengteveld</string>
   <string name="FileNotFound">Bestand niet gevonden.</string>
@@ -206,9 +207,12 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="remove_from_filelist">Verwijder</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="KeyDerivFunc">Functie die sleutels maakt uit geheime waarden</string>
   <string name="rounds">Encryptie-cycli</string>
   <string name="rounds_explaination">Een hoger aantal encryptie-cycli geeft bijkomende bescherming tegen brute-force aanvallen, maar kan het laden en opslaan sterk vertragen.</string>
   <string name="rounds_hint">cycli</string>
+  <string name="argon2memory">Geheugen voor Argon 2 (bytes)</string>
+  <string name="argon2parallelism">Parallellisme voor Argon 2</string>
   <string name="database_name">Databasenaam</string>
   <string name="default_username">Standaard gebruikersnaam voor nieuwe invoer</string>
   <string name="saving_database">Database wordt opgeslagen&#8230;</string>
@@ -310,6 +314,8 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="NoDonateOption_title">Verberg donatie-optie</string>
   <string name="NoDonateOption_summary">Deze instelling is voor donateurs. Die is pas beschikbaar nadat Keepass2Android een tijdje wordt gebruikt.</string>
   <string name="NoDonateOption_question">Zonder donaties zou deze app niet kunnen bestaan en constant verbeterd worden! Wanneer u nog niet gedoneerd heeft, overweeg dan dat nu te doen.</string>
+  <string name="NoDonationReminder_title">Nooit vragen om een donatie</string>
+  <string name="NoDonationReminder_summary">Ik geef u nog geen dubbeltje of ik heb al gedoneerd. Niet vragen om een donatie, zelfs niet op de verjaardag van de auteur.</string>
   <string name="UseOfflineCache_title">Database caching</string>
   <string name="UseOfflineCache_summary">Houd een kopie van externe databasebestanden in de cachemap van de toepassing. Hierdoor kunt u ook externe databases gebruiken wanneer u offline bent.</string>
   <string name="AcceptAllServerCertificates_title">SSL certificaten</string>
@@ -407,10 +413,15 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="donate_missedbday_question">Oh, je hebt mijn verjaardag van 10 mei gemist! Als je deze app waardeert, stuur me dan eens een kaartje en cadeautje voor mijn verjaardag. Het is nog niet te laat om me een plezier te doen! :-)</string>
   <string name="ok_donate">Vertel me hoe!</string>
   <string name="no_thanks">Nee, zo leuk vind het ook weer niet</string>
+  <string name="enter_http_login_title">WebDav logingegevens invoeren:</string>
+  <string name="hint_http_url">URL van de map of het bestand (bijv: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Voer uw OwnCloud inloggevens in:</string>
+  <string name="hint_owncloud_url">OwnCloud URL (vb. owncloud.me.com)</string>
   <string name="hint_sftp_host">host (bijv: 192.168.0.1)</string>
   <string name="hint_sftp_port">poort</string>
   <string name="initial_directory">Initiële map (optioneel):</string>
   <string name="enter_sftp_login_title">SFTP logingegevens invoeren:</string>
+  <string name="enter_ftp_login_title">SFTP logingegevens invoeren:</string>
   <string name="select_storage_type">Selecteer het opslagtype:</string>
   <string name="filestoragename_file">Lokaal bestand</string>
   <string name="filestoragename_androidget">Krijg via externe app</string>
@@ -418,10 +429,12 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A map)</string>
   <string name="filestoragehelp_dropboxKP2A">Als u KP2A volledige toegang tot dropbox wilt geven, kiest u deze optie. Het zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het maken van een nieuwe database. Als u al een database heeft, gebruik deze optie om de map te maken, plaats daarna het bestand in de map (vanaf uw PC) en kies deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Systeem bestand kiezer</string>
   <string name="filestorage_setup_title">Bestandstoegang initaliseren</string>
@@ -553,10 +566,26 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="ActivateAutoFillService_btnKeyboard">Gebruik ingebouwd toetsenbord</string>
   <string name="ActivateAutoFillService_btnAutoFill">Gebruik AutoFill-functionaliteit</string>
   <string name="ActivateAutoFillService_toast">Activeer aub de Keepass2Android-functionaliteit.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Toon zacht toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
   <string name="ChangeLog_0_9_8c">
 Versie 0.9.8c\n 
  * Oplossing voor het beveiligingslek in SSL in Microsoft Live SDK (gebruikt bij het benaderen van bestanden via OneDrive) \n 
   * Bug oplossing: vorige release bevatte twee invoermethoden (één crashte) \n  </string>
+  <string name="ChangeLog_1_01">
+Versie 1.01\n
+* Ondersteuning toegevoegd voor het nieuwe KDBX-4-formaat (combineerbaar met Keepass 2.35) inbegrepen de afleidingen van Argon2-versleuteling en ChaCha20-encryptie.\n
+*Opnieuw geïmplementeerde WebDav-opslag van bestanden; het is nu nu mogelijk om te zoeken in bestanden en ondersteunt moderne encryptie.\n
+*Opnieuw geïmplementeerde FTP-opslag van bestanden; het is nu mogelijk om te zoeken in bestanden en ondersteunt (FTPS) encryptie.\n
+*Geüpdatet naar OneDrive SDK (de voorheen gebruikte Live SDK wordt niet langer geüpdatet).\n
+*Geüpdatet naar Dropbox SDK versie 2 (de voorheen gebruikte versie 1 SDK is verouderd).\n
+*Toegevoegde ondersteuning voor OwnCloud.\n
+*Bevestiging vragen voor OPSLAAN alvorens lokale bestanden te openen  </string>
+  <string name="ChangeLog_1_0_0e">
+Versie 1.0.0e\
+* fix voor vingerafdruk ontgrendelen op oudere Samsung apparaten met Android 6
+* native ondersteuning voor x86 devices toegevoegd
+* softkeyboard verbergen tijdens vingerafdruk scan
+* systeemupdate bouwen  </string>
   <string name="ChangeLog_1_0_0">
     Versie 1.0.0\n
     * Ontgrendelen met vingerafdruk (Android 6.0+ of Samsung-apparaat benodigd)\n
@@ -702,7 +731,7 @@ Versie 0.9.7b\n
  * Verbeterde bepaling van versleutelingsstatus in sommige situaties\n
  * Database-bestanden worden in het geheugen geladen terwijl u het wachtwoord aan het typen bent voor betere prestaties (zie instellingen)\n
  * Items kunnen aan de root-groep worden toegevoegd \n
- * Bug fixes (oplossing voor verwijzingen, problemen met toetsenbord op Italiaanse en Chinse toestellen)</string>
+ * Bug fixes (oplossing voor verwijzingen, problemen met toetsenbord op Italiaanse en Chinese toestellen)</string>
   <string name="ChangeLog_0_8_4">
   <b>Version 0.8.4</b>\n
  * Veranderingen in externe database worden herkend en samengevoegd bij opslaan\n
@@ -781,6 +810,11 @@ Eerste publieke publicatie
     <item>Donker</item>
   </string-array>
   <string name="design_title">Ontwerp</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Geen codering (FTP)</item>
+    <item>Impliciete codering (FTP over TLS, FTPS)</item>
+    <item>Expliciete codering (FTP over TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Gebruikersnaam en wachtwoord niet onthouden</item>
     <item>Alleen gebruikersnaam onthouden</item>

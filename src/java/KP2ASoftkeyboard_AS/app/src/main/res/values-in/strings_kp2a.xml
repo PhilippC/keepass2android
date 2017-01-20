@@ -4,4 +4,17 @@
   <string name="change_entry">Pilih entri lain</string>
   <string name="open_entry">Pilih entri</string>
   <string name="open_entry_for_app">Mencari entri dengan \"%1$s\"</string>
+  <string name="kp2a_user">Pengguna</string>
+  <string name="kp2a_password">Kata kunci</string>
+  <string name="kp2a_prefs">Pengaturan input kredensial</string>
+  <string name="kp2a_auto_fill">Jalankan isi otomatis</string>
+  <string name="kp2a_auto_fill_summary">Secara otomatis mengisi teks ketika bidang kosong dimasukkan, jika sebuah catatan Keepass2Android tersedia untuk keyboard dan ada nilai yang sesuai dengan teks petunjuk bidang.</string>
+  <string name="kp2a_remember_auto_fill">Ingat bidang teks petunjuk</string>
+  <string name="kp2a_remember_auto_fill_summary">Jika kolom teks diisi dengan secara manual memilih nilai Keepass2Android, mengingat nilai yang dimasukan ke dalam bidang teks. Bidang teks kemudian dideteksiulang oleh teks petunjuk ini.</string>
+  <string name="kp2a_simple_keyboard">Keyboard sederhana</string>
+  <string name="kp2a_simple_keyboard_summary">Tampilkan 1-baris keyboard sederhana jika entri tersedia untuk keyboard. Jika dinonaktifkan, dialog ditampilkan ketika tombol Keepass2Android ditekan.</string>
+  <string name="kp2a_lock_on_sendgodone">Kunci basis data ketika selesai</string>
+  <string name="kp2a_lock_on_sendgodone_summary">Ketika menekan tombol selesai/kirim/Go pada keyboard 1-baris sederhana, secara otomatis mengunci database.</string>
+  <string name="kp2a_switch_on_sendgodone">beralih Keyboard ketika selesai</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Ketika menekan tombol selesai/kirim/Go pada keyboard 1-baris sederhana, beralih keyboard.</string>
 </resources>

@@ -80,16 +80,16 @@
   <string name="fingerprint_fatal">Non posso impostare lo sblocco con Impronta:</string>
   <string name="fingerprint_not_recognized">Impronta digitale non riconosciuta. Riprova</string>
   <string name="fingerprint_success">Impronta riconosciuta</string>
-  <string name="fingerprint_os_error">Lo sblocco con impronta digitale richiede Android 6.0 o successivo.</string>
+  <string name="fingerprint_os_error">Lo Sblocco con Impronta digitale richiede Android 6.0 o versione successiva.</string>
   <string name="fingerprint_hardware_error">Nessun lettore di impronta digitale rilevato.</string>
   <string name="fingerprint_no_enrolled">Non hai nessuna impronta digitale registrata su questo dispositivo. Per prima cosa vai nelle impostazioni di sistema.</string>
-  <string name="disable_fingerprint_unlock">Disabilita lo sblocco con impronta</string>
-  <string name="enable_fingerprint_unlock">Abilita lo sblocco totale con impronta</string>
+  <string name="disable_fingerprint_unlock">Disabilita lo Sblocco con Impronta</string>
+  <string name="enable_fingerprint_unlock">Abilita lo Sblocco totale con Impronta</string>
   <string name="enable_fingerprint_quickunlock">Abilita lo sblocco con Impronta per QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Tocca il sensore per sbloccare il database</string>
   <string name="fingerprint_unlock_failed">Sblocco con Impronta digitali non riuscita. La chiave di decodifica è stata invalidata dal sistema operativo. Questo solitamente accade se una nuova impronta digitale è stata registrata o sono state modificate le impostazioni di protezione. Sblocca con la password e quindi riattiva lo sblocco con Impronta nelle impostazioni del database.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Sblocco del database fallito: chiave composita non valida. Lo sblocco con Impronta è stato disabilitato perché sembra che la password principale memorizzata non sia più valida. Sblocca con la password e poi riattiva lo sblocco con Impronta nelle impostazioni del database.</string>
-  <string name="fingerprint_reenable">Per favore riattiva lo sblocco con impronta per la nuova password principale.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Sblocco del database fallito: chiave composita non valida. Lo sblocco con Impronta è stato disabilitato perché sembra che la password principale memorizzata non sia più valida. Sblocca con la password e poi riattiva lo Sblocco con Impronta nelle impostazioni del database.</string>
+  <string name="fingerprint_reenable">Per favore riattiva lo Sblocco con Impronta per la nuova password principale.</string>
   <string name="enable_fingerprint_unlock_Info">
 Questo memorizzerà la password principale su questo dispositivo, cifrata con il Keystore Android e protetta tramite autenticazione con impronta digitale. Permette di sbloccare il database solo con l\'impronta digitale.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Permette di utilizzare l\'autenticazione tramite impronta digitale anziché il codice di QuickUnlock. Non necessita di memorizzare alcuna informazione relativa alla tua password principale.</string>
@@ -113,7 +113,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="entry_user_name">Nome utente</string>
   <string name="entry_extra_strings">Campi di testo extra</string>
   <string name="entry_binaries">File allegati</string>
-  <string name="error_can_not_handle_uri">Keepass2Android non può gestire questo URL.</string>
+  <string name="error_can_not_handle_uri">Keepass2Android non può gestire questo URI.</string>
   <string name="error_could_not_create_group">Errore di creazione del gruppo.</string>
   <string name="error_could_not_create_parent">Impossibile creare la cartella principale.</string>
   <string name="error_database_exists">File già esistente.</string>
@@ -128,6 +128,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="error_pass_gen_type">Devi indicare almeno un metodo di generazione della password</string>
   <string name="error_pass_match">Le password non corrispondono.</string>
   <string name="error_rounds_not_number">Il livello deve essere un numero.</string>
+  <string name="error_param_not_number">Il parametro deve essere un numero.</string>
   <string name="error_title_required">E\' necessario un titolo.</string>
   <string name="error_wrong_length">Inserisci un valore positivo come lunghezza del campo</string>
   <string name="FileNotFound">File non trovato.</string>
@@ -206,9 +207,12 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="remove_from_filelist">Elimina</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Radice</string>
+  <string name="KeyDerivFunc">Funzione di derivazione chiave</string>
   <string name="rounds">Cicli di cifratura</string>
   <string name="rounds_explaination">Un livello di cifratura elevato fornisce una protezione maggiore contro attacchi di tipo \"forza bruta\", ma può rallentare di molto sia il caricamento che il salvataggio.</string>
   <string name="rounds_hint">cicli</string>
+  <string name="argon2memory">Memoria per Argon 2 (bytes)</string>
+  <string name="argon2parallelism">Parallelismo per Argon 2</string>
   <string name="database_name">Nome del database</string>
   <string name="default_username">Nome utente predefinito per le nuove voci</string>
   <string name="saving_database">Salvataggio del database&#8230;</string>
@@ -310,6 +314,8 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="NoDonateOption_title">Nascondi l\'opzione della donazione</string>
   <string name="NoDonateOption_summary">Questa impostazione è per i donatori. E\' disponibile solo dopo aver usato Keepass2Android per un po\'.</string>
   <string name="NoDonateOption_question">Senza donazioni, quest\'app non potrebbe esistere né venire continuamente migliorata! Se non hai ancora donato, puoi fare una donazione ora.</string>
+  <string name="NoDonationReminder_title">Non chiedere mai di donare</string>
+  <string name="NoDonationReminder_summary">Non ti darò un centesimo oppure ho già donato. Non chiedere una donazione, nemmeno al compleanno dell\'autore.</string>
   <string name="UseOfflineCache_title">Cache del database</string>
   <string name="UseOfflineCache_summary">Mantieni una copia dei database remoti nella cartella della cache dell\'applicazione, in modo da poterli usare anche offline.</string>
   <string name="AcceptAllServerCertificates_title">Certificati SSL</string>
@@ -407,10 +413,15 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="donate_missedbday_question">Oh, il 10 maggio ti sei perso il mio compleanno! Se ti piace questa app, perché non mi mandi gli auguri di buon compleanno ed un piccolo regalo? Non è ancora troppo tardi per farmi felice! :-)</string>
   <string name="ok_donate">Dimmi di più!</string>
   <string name="no_thanks">No, non mi piace più di tanto</string>
+  <string name="enter_http_login_title">Inserisci i dati di accesso WebDav:</string>
+  <string name="hint_http_url">URL della cartella o del file (es: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Inserisci i dati di accesso OwnCloud:</string>
+  <string name="hint_owncloud_url">URL di OwnCloud (esempio: owncloud.me.com)</string>
   <string name="hint_sftp_host">host (es: 192.168.0.1)</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Cartella iniziale (opzionale):</string>
   <string name="enter_sftp_login_title">Inserisci i dati di accesso SFTP:</string>
+  <string name="enter_ftp_login_title">Inserisci i dati di accesso FTP:</string>
   <string name="select_storage_type">Seleziona il tipo di archiviazione:</string>
   <string name="filestoragename_file">File locale</string>
   <string name="filestoragename_androidget">Ottieni da app esterna</string>
@@ -418,10 +429,12 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (cartella KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Apps/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (dal PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selettore file di sistema</string>
   <string name="filestorage_setup_title">Inizializzazione dell\'accesso al file</string>
@@ -497,14 +510,14 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="FileReadOnlyTitle">Il database è in sola lettura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha aperto il database corrente in sola lettura.</string>
   <string name="ReadOnlyReason_PreKitKat">Sembra che tu abbia aperto il file da un\'app esterna. In questa modalità non è supportata la scrittura. Se vuoi modificare il database, chiudilo e seleziona \"Cambia il database\". Quindi apri il file utilizzando una delle opzioni disponibili, se possibile.</string>
-  <string name="ReadOnlyReason_ReadOnlyFlag">C\'è impostato il flag di sola lettura. Rimuovi il flag vuoi modificare il database.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">È impostato il flag di sola lettura. Rimuovi il flag vuoi modificare il database.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">La scrittura non è possibile a causa delle restrizioni introdotte in Android KitKat. Se vuoi apportare modifiche al database, chiudilo e seleziona \"Cambia il database\". Quindi apri il file utilizzando il Selettore file di sistema.</string>
   <string name="AddCustomIcon">Aggiungi icona da file...</string>
   <string name="CopyingFile">Copia dei file...</string>
   <string name="DuplicateTitle">Copia</string>
-  <string name="DefaultTemplate">Voce standard</string>
+  <string name="DefaultTemplate">Voce predefinita</string>
   <string name="TemplateGroupName">Modelli</string>
-  <string name="TemplateTitle_IdCard">ID Carta</string>
+  <string name="TemplateTitle_IdCard">Carta d\'identità</string>
   <string name="TemplateField_IdCard_Name">Nome</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Luogo di emissione</string>
   <string name="TemplateField_IdCard_IssueDate">Data di emissione</string>
@@ -518,8 +531,8 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="TemplateField_CreditCard_PIN">PIN</string>
   <string name="TemplateField_CreditCard_Owner">Titolare carta</string>
   <string name="TemplateTitle_CreditCard">Carta di credito</string>
-  <string name="TemplateTitle_Membership">Membership</string>
-  <string name="ChangeLog_title">log delle modifiche</string>
+  <string name="TemplateTitle_Membership">Abbonamento</string>
+  <string name="ChangeLog_title">Log delle modifiche</string>
   <string name="AskAddTemplatesTitle">Vuoi aggiungere i modelli?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android ha dei modelli per l\'inserimento di account E-Mail, password di reti Wireless, note sicure ed altre cose. Vuoi aggiungere questi modelli al database? Se scegli \"No\", li puoi comunque aggiungere in seguito, tramite le Impostazioni del database.</string>
   <string name="AddTemplates_pref">Aggiungi i modelli al database</string>
@@ -552,10 +565,28 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ActivateAutoFillService_btnKeyboard">Usa tastiera incorporata</string>
   <string name="ActivateAutoFillService_btnAutoFill">Usa il servizio di autoriempimento</string>
   <string name="ActivateAutoFillService_toast">Per favore abilita il servizio di Keepass2Android.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando la scansione dell\'impronta è attiva.</string>
   <string name="ChangeLog_0_9_8c">
 Versione 0.9.8c\n
 * risolte la vulnerabilità SSL in Microsoft Live SDK (utilizzato per l\'accesso ai file via OneDrive)\n
 * bugfix: la precedente release conteneva due metodi di input (una andava in crash)\n  </string>
+  <string name="ChangeLog_1_01">
+    Versione 1.01\n
+    * aggiunto il supporto per il nuovo formato  KDBX-4 (compatibile con Keepass 2.35) che include la derivazione di chiavi Argon2 e la crittografia ChaCha20.\n
+    * Riscritta l\'integrazione con l\'archiviazione file WebDav, ora permette di navigare fra i file e supporta crittografia moderna.\n
+    * Riscritta l\'integrazione con l\'archiviazione file FTP, ora permette di navigare fra i file e supporta crittografia (FTPS).\n
+    * Aggiornato all\'SDK di  OneDrive (il Live SDK usato in precedenza non è più aggiornato)\n
+    * Aggiornato all\'SDK versione 2 di Dropbox (la versione 1 precedentemente usata è sconsigliata).\n
+    * Aggiunto il supporto a OwnCloud.\n
+    * Chiede i permessi di archiviazione prima di aprire i file locali
+  </string>
+  <string name="ChangeLog_1_0_0e">
+    Versione 1.0.0e\n
+    * correzione per Sblocco con Impronta su vecchi dispositivi Samsung con Android 6\n
+    * aggiunto supporto nativo per dispositivi x86\n
+    * possibilità di nascondere la Soft-Keyboard durante la scansione dell\'impronta\n
+    * aggiornato compilatore
+  </string>
   <string name="ChangeLog_1_0_0">
 Versione 1.0.0\n
 * sblocco con impronta (richiede Android 6.0+ o un dispositivo Samsung)\n
@@ -580,8 +611,8 @@ Versione 0.9.9\n
 Versione 0.9.9c\n
 * il tema scuro è tornato\n
 * puoi installare altri pacchetti di icone (le vecchie icone in stile Windows sono disponibili sul Play Store)\n
-* aggiunge richiesta di conferma prima di eliminare voci senza passare da cestino\n
-* bugfix (errata visualizzazione dell\'OTP-secret, icona dell\'app errata in certi posti)\n  </string>
+* aggiunge richiesta di conferma prima di eliminare voci senza passare dal cestino\n
+* correzione d\'errori (errata visualizzazione dell\'OTP-secret, icona dell\'app errata in certi posti)\n  </string>
   <string name="ChangeLog_0_9_8b">
 Versione 0.9.8b\n
 * correzione di errori (il salvataggio di alcuni database fallisce, l\'esportazione su periferica locale non funziona, la selezione di alcune opzioni manda l\'app in crash)\n</string>
@@ -625,9 +656,10 @@ Versione 0.9.6\n
 * corregge i problemi con la navigazione delle cartelle (in particolare su Android 4.4)\n
 * risolve il problema con il caricamento dei file .kdb (Keepass 1) su Nexus 5 con Android Lollipop\n
 * aggiunge un\'opzione per impedire la cattura delle schermate e nascondere KP2A dalla lista delle App Recenti\n
-* risolve il problema con l\'archiviazione su Google Drive\n
-* permette i file chiave sui tipi di storage voluti\n
-* aggiorna i tool di sviluppo --&gt; aumenta dimensione apk :-(\n
+* risolve il problema con l\'archiviazione su Google Drive (edizione normale)\n
+* permette i file chiave sui tipi di storage voluti (edizione normale)\n
+* aggiornato SDK di Dropbox per includere un aggiornamento di sicurezza (edizione normale)\n
+* aggiornati i tool di sviluppo --&gt; aumentata dimensione apk :-(\n
 Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scusate. Ho voluto pubblicare queste correzioni il più presto possibile.</string>
   <string name="ChangeLog_0_9_4">
 <b>Versione 0.9.4</b>\n
@@ -654,39 +686,47 @@ Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scu
 		* Correzioni di errori: errori in sincronizzazione (aggiornamento visualizzazione, corretto controllo per modifiche in http), errori su dispositivi Android 2.x, errori nelle implementazioni di archiviazione con Google Drive e OneDrive, pulizia degli appunti alla chiusura del database, errori in apertura allegati, problemi di visualizzazione della tastiera\n</string>
   <string name="ChangeLog_0_9_3">
 <b>Versione 0.9.3</b>\n
-* Nuova tastiera con molti miglioramenti. Vedi Impostazioni.\n
+* Nuova tastiera con molti miglioramenti. Vedi le Impostazioni.\n
 * Supporto in sola lettura per file kdb (Keepass 1). Sperimentale!\n
 * Aggiunto supporto SFTP\n
-* Aggiunto workaround per il bug con ART (Android 4.4.2)\n
+* Aggiunto soluzione temporanea per il bug con ART (Android 4.4.2)\n
 * Bugfix\n</string>
-  <string name="ChangeLog_0_9_2"><b>Versione 0.9.2</b>\n
+  <string name="ChangeLog_0_9_2">
+<b>Versione 0.9.2</b>\n
 * Aggiunto supporto OTP (compatibile con il plugin OtpKeyProv)\n
 * Integrato supporto NFC per le OTP dal NEO YubiKey\n
 * Aggiornata l\'interfaccia utente\n
 * Integrata la libreria di Keepass 2.24\n
-* Aggiunta un\'opzione per terminare il processo dell\'app (vedi impostazioni)\n
-* Corretti alcuni bug\n  </string>
+* Aggiunta un\'opzione per terminare il processo dell\'app (vedi le Impostazioni)\n
+* Migliorata la validazione del certificato SSL\n
+* Corretti alcuni errori\n</string>
   <string name="ChangeLog_0_9_1"><b>Versione 0.9.1</b>\n
 * Aggiunto il supporto per SkyDrive (solo nell\'edizione normale di Keepass2Android)\n
 * Corretti i problemi di integrazione con Google Drive\n
 * Aggiunto supporto NTLM
 </string>
-  <string name="ChangeLog_0_9"><b>Versione 0.9</b> \n * integrato supporto per Dropbox e Google Drive (database in lettura/scrittura; solo per Keepass2Android edizione regolare) \n * integrata una dialog per la selezione dei file (basata su android-filechooser di HBA) \n * migliorata l\'interfaccia per la creazione di nuovi database \n * incluso il font DejaVu Sans Mono per la visualizzazione passwords \n * corretti alcuni bug \n</string>
+  <string name="ChangeLog_0_9">
+<b>Versione 0.9</b> \n
+* integrato supporto per Dropbox e Google Drive (database in lettura/scrittura; solo per Keepass2Android edizione regolare)\n
+* integrata la selezione dei file (basata su android-filechooser di HBA)\n
+* migliorata l\'interfaccia per la creazione di nuovi database\n
+* incluso il font DejaVu Sans Mono per la visualizzazione passwords\n
+* corretti alcuni errori</string>
   <string name="ChangeLog_0_8_6">
 <b>Versione 0.8.6</b>\n
 * Supporto per cifratura Twofish\n
 * Consentita la modifica dei gruppi\n
 * Consentito lo spostamento di voci e gruppi\n
-* L\'icona QuickUnlock può essere resa trasparente (vedi impostazioni)\n
-* Correzioni di bug</string>
+* L\'icona QuickUnlock può essere resa trasparente (vedi le impostazioni)\n
+* Correzioni di errori</string>
   <string name="ChangeLog_0_8_5">
 <b>Versione 0.8.5</b>\n
-* i file remoti vengono mantenuti nella cache locale dell\'applicazione per permetterne l\'uso offline (compresa la modifica e la successiva sincronizzazione). Vedi Impostazioni. \n
+* i file remoti vengono mantenuti nella cache locale dell\'applicazione per permetterne l\'uso offline (compresa la modifica e la successiva sincronizzazione). Vedi le impostazioni. \n
 * Icona di notifica per visualizzare lo stato del blocco del database (vedi Impostazioni)\n
 * Migliorato il rilevamento dello stato del blocco del database in alcune circostanze \n
 * I file dei database vengono caricati in memoria mentre stai digitando la password per aumentare la velocità di caricamento (vedi Impostazioni) \n
 * Le voci possono essere aggiunte al gruppo principale \n
-* Correzione di bug (risoluzione campi con riferimenti, problemi con la tastiera su dispositivi italiani e cinesi)</string>
+* Correzione di errori (risoluzione campi con riferimenti, problemi con la tastiera su dispositivi italiani e cinesi)</string>
   <string name="ChangeLog_0_8_4">
 <b>Versione 0.8.4</b>\n
 * Le modifiche al database esterno vengono rilevate ed unite durante il salvataggio\n
@@ -698,16 +738,16 @@ Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scu
 Grazie ad Alex Vallat per il suo contributo al codice!\n
 Grazie a Niki Hüttner (www.close-cut.de) per il logo!\n</string>
   <string name="ChangeLog_0_8_3"><b> Versione 0.8.3 </b>\n
-* Le voci nome utente e indice TAN vengono visualizzati nella lista delle voci di immissione (vedere Impostazioni)\n
+* Le voci nome utente e indice TAN vengono visualizzati nella lista delle voci di immissione (vedi le impostazioni)\n
 * Le voci possono essere create se la ricerca da browser non restituisce alcun risultato\n
-* La tastiera KP2A offre possibilità di ricercare le credenziali per l\'attuale applicazione\n
-* L\'applicazione si chiude automaticamente dopo aver selezionato una voce per l\'uso nella tastiera\n
-* La finestra di selezione della tastiera si apre automaticamente dopo la ricerca di URL (vedere Impostazioni)\n
-* I segnalibri nei campi di immissione vengono sostituiti prima della copia (la maggior parte dei segnalibri sono supportati)\n
-* Correzioni di bugs minori</string>
+* La tastiera KP2A offre possibilità di ricercare le credenziali per l\'applicazione attuale\n
+* L\'applicazione si chiude automaticamente dopo aver selezionato una voce per l\'uso dalla tastiera\n
+* La finestra di selezione della tastiera si apre automaticamente dopo la ricerca di URL (vedi le impostazioni)\n
+* I segnaposto nei campi di immissione vengono sostituiti prima della copia (la maggior parte dei segnaposto sono supportati)\n
+* Correzioni di errori minori  </string>
   <string name="ChangeLog_0_8_2"><b>Versione 0.8.2</b>\n
 * Supporto per la Digest Authentication in WebDAV\n
-* Bugfix (OI File manager, Open URL)
+* Correzione di errori (OI File manager, Open URL)
 </string>
   <string name="ChangeLog_0_8_1"><b>Versione 0.8.1</b>\n
 * KP2A Offline e \"Online\" possono di nuovo essere installati insieme\n
@@ -715,10 +755,10 @@ Grazie a Niki Hüttner (www.close-cut.de) per il logo!\n</string>
 </string>
   <string name="ChangeLog_0_8"><b>Versione 0.8</b>\n
 * Migliorata l\'interfaccia utente in particolare per i dispositivi con Android 4.x\n
-* Consentito l\'utilizzo di gestori di file personalizzati per selezionare file esistenti\n
+* Consentito l\'utilizzo di gestori di file personali per selezionare file esistenti\n
 * Aggiunto un modo più sicuro per l\'apertura degli allegati (tramite cartella di cache)\n
-* sistemati alcuni bug nella finestra di modifica\n
-* probabilmente aggiunti nuovi bug :-)
+* sistemati alcuni errori nella finestra di modifica\n
+* probabilmente aggiunti nuovi errori :-)
 </string>
   <string name="ChangeLog_keptDonate">Aggiunta la possibilità di donare una birra o qualcos\'altro</string>
   <string name="ChangeLog_0_7"><b>Versione 0.7</b>\n
@@ -764,6 +804,11 @@ Prima release pubblica
     <item>Scuro</item>
   </string-array>
   <string name="design_title">Tema</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Nessuna cifratura (FTP)</item>
+    <item>Cifratura implicita (FTP su TLS, FTPS)</item>
+    <item>Cifratura esplicita (FTP su TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Non ricordare nome utente e password</item>
     <item>Ricorda solo il nome utente</item>

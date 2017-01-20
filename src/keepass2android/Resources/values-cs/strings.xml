@@ -131,6 +131,7 @@
   <string name="error_pass_gen_type">Minimálně jeden typ generování hesla musí být zvolen</string>
   <string name="error_pass_match">Hesla se neshodují.</string>
   <string name="error_rounds_not_number">Počet opakování musí být číslo.</string>
+  <string name="error_param_not_number">Parametr musí být číslo.</string>
   <string name="error_title_required">Název je povinný.</string>
   <string name="error_wrong_length">Zadejte celé kladné číslo do délky pole</string>
   <string name="FileNotFound">Soubor nenalezen.</string>
@@ -209,9 +210,12 @@
   <string name="remove_from_filelist">Odstranit</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Kořen</string>
+  <string name="KeyDerivFunc">Funkce pro odvození klíče</string>
   <string name="rounds">Počet zašifrování</string>
   <string name="rounds_explaination">Vyšší počet opakování šifrování zvýší bezpečnost proti hrubému útoku, ale může výrazně zpomalit načítání a ukládání.</string>
   <string name="rounds_hint">opakování</string>
+  <string name="argon2memory">Paměť pro Argon 2 (v bytech)</string>
+  <string name="argon2parallelism">Paralelismus pro Argon 2</string>
   <string name="database_name">Jméno databáze</string>
   <string name="default_username">Výchozí uživatelské jméno pro nové položky</string>
   <string name="saving_database">Ukládám databázi&#8230;</string>
@@ -313,6 +317,8 @@
   <string name="NoDonateOption_title">Skrýt možnost přispění</string>
   <string name="NoDonateOption_summary">Toto je nastavení pro dárce. Je dostupné až po nějaké době používání Keepass2Android.</string>
   <string name="NoDonateOption_question">Tato aplikace by bez příspěvků nemohla existovat a nebyla by pravidelně zlepšována! Jestliže jste doposud nepřispěl/a, zvažte prosím svou pomoc.</string>
+  <string name="NoDonationReminder_title">Nikdy se neptat na darování</string>
+  <string name="NoDonationReminder_summary">Nedám ti ani korunu, případně jsem už jsem daroval. Neptej se na darování, ani v den autorových narozenin.</string>
   <string name="UseOfflineCache_title">Ukládání databáze do mezipaměti</string>
   <string name="UseOfflineCache_summary">Ukládat kopií vzdálených databázových souborů v adresáři aplikace. Toto umožňuje používat vzdálené databáze i v offline režimu.</string>
   <string name="AcceptAllServerCertificates_title">SSL certifikáty</string>
@@ -410,10 +416,15 @@
   <string name="donate_missedbday_question">Zmeškal jsi moje narozeniny 10. května! Pokud se vám líbí tato aplikace, proč mi neposlat nějaké blahopřání k narozeninám a malý dárek? Ještě není pozdě udělat mi radost! :-)</string>
   <string name="ok_donate">Chci vědět víc!</string>
   <string name="no_thanks">Ne, tak moc se mi to nelíbí</string>
+  <string name="enter_http_login_title">Zadejte přihlašovací údaje pro WebDav:</string>
+  <string name="hint_http_url">URL nebo adresář se souborem (např. mycloud.me.com/webdaw/)</string>
+  <string name="enter_owncloud_login_title">Zadejte přihlašovací údaje pro OwnCloud:</string>
+  <string name="hint_owncloud_url">URL adresa OwnCloud (např. owncloud.me.com)</string>
   <string name="hint_sftp_host">počítač (např: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Počáteční adresář (nepovinné):</string>
   <string name="enter_sftp_login_title">Zadejte přihlašovací údaje k SFTP:</string>
+  <string name="enter_ftp_login_title">Zadejte přihlašovací údaje pro FTP:</string>
   <string name="select_storage_type">Vyberte typ úložiště:</string>
   <string name="filestoragename_file">Místní soubor</string>
   <string name="filestoragename_androidget">Získat od aplikace třetí strany</string>
@@ -421,10 +432,12 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A složka)</string>
   <string name="filestoragehelp_dropboxKP2A">Pokud nechcete, aby měl KP2A plný přístup k vašemu Dropbox účtu, může vybrat tuto možnost. Bude vyžadován pouze přístup ke složce Apps/Keepass2Android. Toto je vhodné zejména při vytváření nové databáze. Pokud již máte databázi, zvolte na tuto možnost pro vytvoření složky, poté umístěte soubor (z PC) do této složky a zvolte tuto možnost znovu pro otevření souboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH přenos souborů)</string>
   <string name="filestoragename_content">Výběr systému souborů</string>
   <string name="filestorage_setup_title">Inicializace přístupu k souboru</string>
@@ -557,10 +570,28 @@
   <string name="ActivateAutoFillService_btnKeyboard">Použít vestavěnou klávesnici</string>
   <string name="ActivateAutoFillService_btnAutoFill">Použít službu automatického vyplňování</string>
   <string name="ActivateAutoFillService_toast">Prosím povolte službu Keepass2Android.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
   <string name="ChangeLog_0_9_8c">
 Verze 0.9.8c\n 
 * Oprava chyby zabezpečení SSL v Microsoft Live SDK (používá se při přístupu k souborům přes OneDrive) \n 
 * Oprava: Předchozí vydání obsahovalo dvě vstupní metody (jedna padala) \n  </string>
+  <string name="ChangeLog_1_01">
+    Verze 1.01\n
+    * přidána podpora pro nový formát KDBX-4 (kompaktuibilní s Keepass 2.35) včetně odvozování klíčů Argon2 key a ChaCha20 šifrování.\n
+    * Nová implementace WebDav úložiště, nyní umožňuje procházení souborů a podporuje moderní šifrování.\n
+    * Nová implementace FTP úložiště, nyní umožňuje procházení souborů a podporuje šifrování (FTPS).\n
+    * Aktulizace na OneDrive SDK (dříve používané Live SDK již nění aktualizováno)\n
+    * Aktualizace na Dropbox SDK verze 2 (dříve používaná verze 1 je zastarallá).\n
+    * Přidána podpora pro OwnCloud.\n
+    * Dotaz na práva k úložišti před otevíráním lokáních souborů
+  </string>
+  <string name="ChangeLog_1_0_0e">
+    Verze 1.0.0e\n
+    * oprava odemykání otiskem prstu na starších zařízeních Samsung s Android 6\n
+    * přidána nativní podpora pro x86 zařízení\n
+    * umožnění skrytí softwarové klávesnice během skenování otisku prstu\n
+    * aktualizace build systému
+  </string>
   <string name="ChangeLog_1_0_0">
     Verze 1.0.0\n
     * Odemknutí dotykem prstu (vyžaduje Android 6.0+ nebo zařízení Samsung)\n
@@ -763,6 +794,11 @@ První veřejné vydání
     <item>Tmavý</item>
   </string-array>
   <string name="design_title">Vzhled</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Žádné šifrování (FTP)</item>
+    <item>Implicitní šifrování (FTP over TLS, FTPS)</item>
+    <item>Explicitní šifrování (FTP over TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Nepamatovat si uživatelské jméno a heslo</item>
     <item>Pamatovat si jen uživatelské jméno</item>

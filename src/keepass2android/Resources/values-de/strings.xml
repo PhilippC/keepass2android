@@ -129,6 +129,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="error_pass_gen_type">Mindestens eine Form der Passwort-Generierung muss ausgewählt werden</string>
   <string name="error_pass_match">Die Kennwörter stimmen nicht überein.</string>
   <string name="error_rounds_not_number">Anzahl der Wiederholungen muss eine Zahl sein.</string>
+  <string name="error_param_not_number">Der Parameter muss eine Zahl sein.</string>
   <string name="error_title_required">Ein Titel ist erforderlich.</string>
   <string name="error_wrong_length">Bitte eine positive Ganzzahl für die Feldlänge eingeben</string>
   <string name="FileNotFound">Datei nicht gefunden.</string>
@@ -207,9 +208,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="remove_from_filelist">Löschen</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Start</string>
+  <string name="KeyDerivFunc">Schlüsselableitungsfunktion</string>
   <string name="rounds">Schlüsseltransformationen</string>
   <string name="rounds_explaination">Je höher die Anzahl der Schlüsseltransformationen, desto besser ist der Schutz gegen Wörterbuch- oder Brute-Force-Angriffe. Allerdings dauert dann auch das Laden und Speichern der Datenbank entsprechend länger.</string>
   <string name="rounds_hint">Schlüsseltransformationen</string>
+  <string name="argon2memory">Speicher für Argon 2 (in Bytes)</string>
+  <string name="argon2parallelism">Parallelisierung für Argon 2</string>
   <string name="database_name">Datenbankname</string>
   <string name="default_username">Standard-Benutzername für neue Einträge</string>
   <string name="saving_database">Speichere Datenbank\u2026</string>
@@ -311,6 +315,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
   <string name="NoDonateOption_summary">Diese Einstellung ist ein Dankeschön an alle, die gespendet haben. Sie steht erst nach einer gewissen Zeit der Benutzung von Keepass2Android zur Verfügung.</string>
   <string name="NoDonateOption_question">Ohne Spenden würden diese App nicht existieren und würde nicht laufend verbessert! Wenn Sie noch nicht gespendet haben, erwägen Sie bitte jetzt eine Spende.</string>
+  <string name="NoDonationReminder_title">Nie um eine Spende bitten</string>
+  <string name="NoDonationReminder_summary">Ich werde keinen Cent spenden oder habe bereits gespendet. Bitte niemals um eine Spende, nicht einmal am Geburtstag des Autors.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
   <string name="UseOfflineCache_summary">Speichere eine Kopie der Remote-Datenbank-Dateien im Cache-Verzeichnis der App. Das erlaubt die Nutzung von Remote-Datenbanken auch wenn du offline bist.</string>
   <string name="AcceptAllServerCertificates_title">SSL-Zertifikate</string>
@@ -408,10 +414,15 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="donate_missedbday_question">Oh, du hast meinen Geburtstag am 10. Mai verpasst! Wenn du diese App magst, warum schickst du mir nicht ein paar Geburtstagsgrüße zusammen mit einem kleinen Geburtstagsgeschenk? Es ist noch nicht zu spät um mir eine Freude zu machen! :-)</string>
   <string name="ok_donate">Warum nicht?</string>
   <string name="no_thanks">So gut gefällt mir\'s dann auch nicht</string>
+  <string name="enter_http_login_title">WebDav-Zugangsdaten eingeben:</string>
+  <string name="hint_http_url">URL des Ordners oder der Datei (z.B. mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">OwnCloud-Zugangsdaten eingeben:</string>
+  <string name="hint_owncloud_url">OwnCloud-URL (z.B. owncloud.me.com)</string>
   <string name="hint_sftp_host">Host (z.B. 192.168.0.1)</string>
   <string name="hint_sftp_port">Port</string>
   <string name="initial_directory">Startverzeichnis (optional):</string>
   <string name="enter_sftp_login_title">SFTP-Zugangsdaten eingeben:</string>
+  <string name="enter_ftp_login_title">FTP-Zugangsdaten eingeben:</string>
   <string name="select_storage_type">Speichertyp wählen:</string>
   <string name="filestoragename_file">Lokale Datei</string>
   <string name="filestoragename_androidget">Mit externer App suchen</string>
@@ -419,10 +430,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, kannst du diese Option wählen um den Ordner anzulegen, und dann die Datei (vom PC aus) in den neuen Ordner kopieren. Wähle die Option dann nochmal zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
@@ -554,11 +567,26 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ActivateAutoFillService_btnKeyboard">Integrierte Tastatur verwenden</string>
   <string name="ActivateAutoFillService_btnAutoFill">AutoEingabe-Dienst benutzen</string>
   <string name="ActivateAutoFillService_toast">Bitte aktiviere den Keepass2Android-Dienst.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
   <string name="ChangeLog_0_9_8c">
     Version 0.9.8c\n
     * Fix für SSL-Schwachstelle im Microsoft Live-SDK (wird benutzt beim Zugriff auf Dateien mit OneDrive)\n
     * Bugfix: Vorige Veröffentlichung enthielt zwei Eingabemethoden (eine funktionierte nicht)\n
   </string>
+  <string name="ChangeLog_1_01">
+Version 1.01\n
+* Unterstützung für das neue KDBX-4-Format hinzugefügt (kompatibel mit Keepass 2.35), inkl. Argon2-Schlüsselableitung und ChaCha20-Verschlüsselung.\n
+* WebDav-Zugriff neu implementiert, erlaubt nun Browsen in Ordnern und unterstützt moderne Verschlüsselung.\n
+* FTP-Zugriff neu implementiert, erlaubt nun Browsen in Ordnern und unterstützt verschlüsselung (FTPS).\n
+* OneDrive-SDK aktualisiert (zuvor verwendetes Live-SDK wird nicht mehr aktualisiert)\n
+* Update auf Dropbox-SDK Version 2 (zuvor verwendete Version 1 ist veraltet).\n
+* Unterstützung für OwnCloud integriert.\n
+* Frage nach Speicherzugriffsberechtigung vor dem Öffnen von lokalen Dateien.</string>
+  <string name="ChangeLog_1_0_0e">Version 1.0.0e\n
+* Bugfix für Fingerabdruckerkennung auf älteren Samsunggeräten mit Android 6\n
+* Native x86-Unterstützung hinzugefügt\n
+* Bildschirmtastatur kann während Fingerabdruckerkennung deaktiviert werden\n
+* Update des Buildsystems  </string>
   <string name="ChangeLog_1_0_0">
 Version 1.0.0\n
 * Entsperren mit Fingerabdruck (benötigt Android 6.0+ oder ein Samsung-Gerät)\n
@@ -779,6 +807,11 @@ Erstes öffentliches Release</string>
     <item>Dunkel</item>
   </string-array>
   <string name="design_title">Design</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Keine Verschlüsselung (FTP)</item>
+    <item>Implizite Verschlüsselung (FTP über TLS, FTPS)</item>
+    <item>Explizite Verschlüsselung (FTP über TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Benutzername und Passwort nicht merken</item>
     <item>Nur Benutzername merken</item>

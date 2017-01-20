@@ -129,6 +129,7 @@
   <string name="error_pass_gen_type">至少必须选择一个密码生成类型</string>
   <string name="error_pass_match">密码不匹配。</string>
   <string name="error_rounds_not_number">密钥加密次数必须为数字。</string>
+  <string name="error_param_not_number">参数必须是一个数字</string>
   <string name="error_title_required">标题不能为空。</string>
   <string name="error_wrong_length">长度字段输入一个正整数</string>
   <string name="FileNotFound">文件未找到。</string>
@@ -207,6 +208,7 @@
   <string name="remove_from_filelist">移除</string>
   <string name="rijndael">Rijndael 加密（AES）</string>
   <string name="root">管理员权限</string>
+  <string name="KeyDerivFunc">密匙派生函数</string>
   <string name="rounds">加密次数</string>
   <string name="rounds_explaination">更高的加密次数能对暴力攻击提供额外保护，但也会增加加载和保存的时间。</string>
   <string name="rounds_hint">次数</string>
@@ -311,6 +313,8 @@
   <string name="NoDonateOption_title">隐藏捐赠选项</string>
   <string name="NoDonateOption_summary">本设置为捐赠者设定。只有当使用 Keepass2Android 一段时间后才可用。</string>
   <string name="NoDonateOption_question">若没有捐款，本应用就不存在也不会有不断地改进！若您尚未捐赠，请考虑现在捐赠吧！</string>
+  <string name="NoDonationReminder_title">不再要求捐赠</string>
+  <string name="NoDonationReminder_summary">我不会捐赠或已经捐赠. 请不要继续要求捐赠, 即便是在开发者的生日.</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
   <string name="UseOfflineCache_summary">在程序缓存目录保存一份远程数据库文件副本。这允许离线的时候使用远程数据库。</string>
   <string name="AcceptAllServerCertificates_title">SSL 证书</string>
@@ -408,10 +412,15 @@
   <string name="donate_missedbday_question">呃，您错过了我5月10日的生日！如果您喜欢本应用，为什么不送我点生日问候与生日礼物？还不算太晚，这会让我非常高兴！:-)</string>
   <string name="ok_donate">告诉我更多 ！</string>
   <string name="no_thanks">不，我不是那么喜欢。</string>
+  <string name="enter_http_login_title">输入 WebDav 登录数据：</string>
+  <string name="hint_http_url">文件夹或文件 URL (如: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">输入 OwnCloud 登录信息:</string>
+  <string name="hint_owncloud_url">OwnCloud 地址 (例如: owncloud.me.com)</string>
   <string name="hint_sftp_host">主机（比如: 192.168.0.1）</string>
   <string name="hint_sftp_port">端口</string>
   <string name="initial_directory">初始目录 （可选）：</string>
   <string name="enter_sftp_login_title">输入 SFTP 登录数据：</string>
+  <string name="enter_ftp_login_title">输入 FTP 登录数据:</string>
   <string name="select_storage_type">选择存储类型：</string>
   <string name="filestoragename_file">本地文件</string>
   <string name="filestoragename_androidget">从第三方应用程序中获取</string>
@@ -419,10 +428,12 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
   <string name="filestoragehelp_dropboxKP2A">如果你不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 应用/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，点击此选项将创建该新文件夹，然后将你在电脑上的数据库文件放在此文件夹内，然后再选该选项，并以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP（SSH 文件传输）</string>
   <string name="filestoragename_content">系统文件选择器</string>
   <string name="filestorage_setup_title">初始化文件访问</string>
@@ -550,10 +561,18 @@
   <string name="ActivateAutoFillService_btnKeyboard">使用内置键盘</string>
   <string name="ActivateAutoFillService_btnAutoFill">使用自动填充服务</string>
   <string name="ActivateAutoFillService_toast">请启用 Keepass2Android 服务。</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
   <string name="ChangeLog_0_9_8c">
     版本 0.9.8c\n
     * 修复 Microsoft Live SDK（使用 OneDrive 存取文件时用到）中的 SSL 漏洞\n
     * 漏洞修复：上一版本附带了两个输入法项，其中一个不停崩溃\n  </string>
+  <string name="ChangeLog_1_0_0e">
+    版本 1.0.0e\n
+    * 修复老旧的三星设备 Android 6 下的指纹解锁\n
+    * 添加 x86 设备原生支持\n
+    * 允许指纹扫描期间隐藏软键盘\n
+    * 构建系统更新
+  </string>
   <string name="ChangeLog_1_0_0">版本 1.0.0\n 
  * 指纹解锁 (需要 Android 6.0 + 或一个三星设备) \n 
  * 添加自动填充服务 (需要 Android 5.0+) \n 
@@ -760,6 +779,11 @@ Initial public release
     <item>夜间模式</item>
   </string-array>
   <string name="design_title">设计</string>
+  <string-array name="ftp_encryption_modes">
+    <item>无加密 (FTP)</item>
+    <item>隐式加密 (FTP over TLS, FTPS)</item>
+    <item>显式加密 (FTP over TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>不记得用户名和密码</item>
     <item>仅记得用户名</item>

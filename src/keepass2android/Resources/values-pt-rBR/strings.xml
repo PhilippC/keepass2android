@@ -130,6 +130,7 @@
   <string name="error_pass_gen_type">Pelo menos um tipo de geração de senhas deve ser selecionado</string>
   <string name="error_pass_match">As senhas não combinam.</string>
   <string name="error_rounds_not_number">Número de rodadas deve ser um número.</string>
+  <string name="error_param_not_number">Parâmetro precisa ser um número.</string>
   <string name="error_title_required">É necessário um título.</string>
   <string name="error_wrong_length">Digite um número inteiro positivo no campo de tamanho</string>
   <string name="FileNotFound">Arquivo não encontrado.</string>
@@ -208,9 +209,12 @@
   <string name="remove_from_filelist">Remover</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Raiz</string>
+  <string name="KeyDerivFunc">Função chave da derivação</string>
   <string name="rounds">Rodadas de criptografia</string>
   <string name="rounds_explaination">Maior número de rodadas de criptografia adiciona mais proteção contra ataques de força bruta, porém pode tornar o processo de carregar e salvar mais lentos.</string>
   <string name="rounds_hint">rodadas</string>
+  <string name="argon2memory">Memória para Argon2 (bytes)</string>
+  <string name="argon2parallelism">Paralelismo para Argon2</string>
   <string name="database_name">Nome do banco de dados</string>
   <string name="default_username">Nome de usuário padrão para novas entradas</string>
   <string name="saving_database">Salvando banco de dados&#8230;</string>
@@ -312,6 +316,8 @@
   <string name="NoDonateOption_title">Ocultar a opção de doação</string>
   <string name="NoDonateOption_summary">Esta configuração é para doadores. Está disponível depois de usar o Keepass2Android por um tempo apenas.</string>
   <string name="NoDonateOption_question">Sem doações, este app não existiria e não poderia ser melhorado continuamente! Se você ainda não doou, por favor, considere fazer uma doação agora.</string>
+  <string name="NoDonationReminder_title">Nunca pedir doações</string>
+  <string name="NoDonationReminder_summary">Já doei ou não doarei nenum centavo. Não me peça doação novamente, nem no aniversário do criador.</string>
   <string name="UseOfflineCache_title">Cache do banco de dados</string>
   <string name="UseOfflineCache_summary">Mantém uma cópia de arquivos remotos de banco de dados no diretório de cache do aplicativo. Isto permite o uso de bancos de dados remotos mesmo desconectado.</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
@@ -409,10 +415,15 @@
   <string name="donate_missedbday_question">Ah, você esqueceu do meu aniversário no dia 10 de maio! Se você gosta deste app, porque não enviar-me algumas saudações de aniversário e um pequeno presente de aniversário? Ainda não é tarde demais para me fazer feliz! :-)</string>
   <string name="ok_donate">Conte-me mais!</string>
   <string name="no_thanks">Não, não me agrada muito</string>
+  <string name="enter_http_login_title">Insira os dados de login WebDav:</string>
+  <string name="hint_http_url">URL do arquivo ou pasta (ex: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Insira os dados de login do OwnCloud:</string>
+  <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
   <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Diretório inicial (opcional):</string>
   <string name="enter_sftp_login_title">Insira os dados de login SFTP:</string>
+  <string name="enter_ftp_login_title">Insira os dados de login FTP:</string>
   <string name="select_storage_type">Selecione o tipo de armazenamento:</string>
   <string name="filestoragename_file">Arquivo local</string>
   <string name="filestoragename_androidget">Obter de app de terceiros</string>
@@ -420,10 +431,12 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferência de arquivos)</string>
   <string name="filestoragename_content">Seletor de arquivo de sistema</string>
   <string name="filestorage_setup_title">Inicialização do arquivo de acesso</string>
@@ -557,10 +570,27 @@
   <string name="ActivateAutoFillService_btnKeyboard">Utilizar teclado nativo</string>
   <string name="ActivateAutoFillService_btnAutoFill">Utilizar o serviço de preenchimento automático</string>
   <string name="ActivateAutoFillService_toast">Favor habilitar o serviço Keepass2Android.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Mostre o teclado compacto para senhas quando a verificação de impressão digital estiver ativa.</string>
   <string name="ChangeLog_0_9_8c">
 Versão 0.9.8c\n 
      * Correção para a vulnerabilidade SSL no SDK do Microsoft Live (usado ao acessar arquivos via       OneDrive)\n 
      * Correção de Bug: A versão anterior continha dois métodos de entrada (uma danificada)\n  </string>
+  <string name="ChangeLog_1_01">
+Versão 1.01\n
+    * adicionado suporte para o novo KDBX-4-formato (compatível com Keepass 2,35) incluindo derivação de chave Argon2 e criptografia de ChaCha20.\n
+    * Reimplementado armazenamento de arquivos WebDav, agora permite a navegação de arquivo e suporta criptografia moderna.\n
+    * Reimplementado armazenamento de arquivo de FTP, agora permite a navegação de arquivo e suporta criptografia (FTPS).\n
+    * Atualizado para OneDrive SDK (Live SDK utilizado anteriormente sem atualizações)\n
+    * Atualizado para Dropbox SDK versão 2 (versão utilizada anteriormente 1 SDK foi depreciada).\n
+    * adicionado suporte para OwnCloud.\n
+    * Prompt para permissão de armazenamento antes de abrir arquivos locais
+  </string>
+  <string name="ChangeLog_1_0_0e">
+    Versão 1.0.0e\n
+    * correção para desbloqueio de impressão digital em dispositivos mais antigos da Samsung com Android 6\n
+    * adiciona suporte nativo para dispositivos x86\n
+    * permissão para esconder softkeyboard durante leitura de impressão digital\n
+    * Sistema de build atualizado  </string>
   <string name="ChangeLog_1_0_0">
     Versão 1.0.0 - preview 7\n 
 * Desbloquear por impressão digital (requer Android 6.0 + ou um dispositivo Samsung) \n 
@@ -787,6 +817,11 @@ Lançamento público inicial
     <item>Escuro</item>
   </string-array>
   <string name="design_title">Design</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Sem criptografia (FTP)</item>
+    <item>Criptografia implícita (FTP sobre TLS, FTPS)</item>
+    <item>Criptografia explícita (FTP sobre TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Não lembra o usuário e senha</item>
     <item>Lembrar apenas nome do usuário</item>

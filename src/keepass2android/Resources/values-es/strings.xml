@@ -77,19 +77,19 @@
   <string name="copy_to_clipboard">Copiar al portapapeles</string>
   <string name="fingerprint_hint">Sensor táctil</string>
   <string name="fingerprint_description">Confirmar huella dactilar para continuar</string>
-  <string name="fingerprint_fatal">No se puede configurar desbloqueo con huella digital:</string>
-  <string name="fingerprint_not_recognized">Huella digital no reconocida. Vuelve a intentarlo</string>
-  <string name="fingerprint_success">Huella digital reconocida</string>
+  <string name="fingerprint_fatal">No se puede configurar desbloqueo con huella dactilar:</string>
+  <string name="fingerprint_not_recognized">Huella dactilar no reconocida. Vuelve a intentarlo</string>
+  <string name="fingerprint_success">Huella dactilar reconocida</string>
   <string name="fingerprint_os_error">El desbloqueo con huellas dactilares requiere Android 6.0 o posterior.</string>
   <string name="fingerprint_hardware_error">Hardware de huellas dactilares no detectado.</string>
   <string name="fingerprint_no_enrolled">Este dispositivo no tiene huellas dactilares almacenadas. Por favor, ve a configuración de sistema primero.</string>
-  <string name="disable_fingerprint_unlock">Desactivar desbloque con huella digital</string>
+  <string name="disable_fingerprint_unlock">Desactivar desbloque con huella dactilar</string>
   <string name="enable_fingerprint_unlock">Habilitar desbloqueo completo con huella dactilar</string>
   <string name="enable_fingerprint_quickunlock">Habilitar desbloqueo con huella dactilar para QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Sensor táctil para desbloqueo de base de datos</string>
   <string name="fingerprint_unlock_failed">El desbloqueo mediante huella dactilar ha fallado. La clave de descifrado fue invalidada por el sistema operativo Android. Esto suele pasar si se guardó una nueva huella o se cambió la configuración de seguridad. Por favor, desbloquee con contraseña y luego vuelva habilitar el desbloqueo con huella en la configuración de la base de datos.</string>
   <string name="fingerprint_disabled_wrong_masterkey">Fallo en el desbloqueo de la base de datos: clave compuesta no válida. Desbloqueo de huellas dactilares ha sido desactivado debido a que al parecer la contraseña maestra almacenada ya no es válida. Por favor desbloquee con la contraseña y luego vuelva a habilitar el desbloqueo con la huella dactilar en la configuración de la base de datos.</string>
-  <string name="fingerprint_reenable">Por favor, vuelva a activar el desbloqueo con la huella digital para la nueva contraseña maestra.</string>
+  <string name="fingerprint_reenable">Por favor, vuelva a activar el desbloqueo con la huella dactilar para la nueva contraseña maestra.</string>
   <string name="enable_fingerprint_unlock_Info">
 Esto almacenará tu contraseña maestra en este dispositivo,
 cifrada con las claves de Android Keystore y protegidos
@@ -130,6 +130,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="error_pass_gen_type">Debe seleccionar al menos un tipo de generación de contraseñas</string>
   <string name="error_pass_match">Las contraseñas no coinciden.</string>
   <string name="error_rounds_not_number">Pasadas debe de ser un número.</string>
+  <string name="error_param_not_number">El parámetro debe ser un número.</string>
   <string name="error_title_required">Se necesita un título.</string>
   <string name="error_wrong_length">Introduzca un entero positivo en el campo longitud</string>
   <string name="FileNotFound">Archivo no encontrado.</string>
@@ -208,9 +209,12 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="remove_from_filelist">Borrar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="KeyDerivFunc">Función de derivación de claves</string>
   <string name="rounds">Pasadas de Cifrado</string>
   <string name="rounds_explaination">Un alto número de pasadas de cifrado proporciona protección adicional contra ataques de fuerza bruta, pero puede ralentizar mucho el cargado y el guardado.</string>
   <string name="rounds_hint">pasadas</string>
+  <string name="argon2memory">Memoria para Argon 2 (bytes)</string>
+  <string name="argon2parallelism">Paralelismo para Argon 2</string>
   <string name="database_name">Nombre de la base de datos</string>
   <string name="default_username">Nombre de usuario predeterminado para las nuevas entradas</string>
   <string name="saving_database">Guardando base de datos&#8230;</string>
@@ -312,6 +316,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="NoDonateOption_title">Esconder opción de donación</string>
   <string name="NoDonateOption_summary">Este ajuste es para donantes. Está disponible después de usar Keepass2Android por un tiempo sólo.</string>
   <string name="NoDonateOption_question">Sin donaciones, esta aplicación no existiría y no podría ser mejorada continuamente. Si usted aún no ha donado, por favor considere hacer una donación ahora.</string>
+  <string name="NoDonationReminder_title">No solicitar nunca una donación</string>
+  <string name="NoDonationReminder_summary">No le voy a dar un céntimo o ya he donado. No solicite una donación, ni en el cumpleaños del autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
   <string name="UseOfflineCache_summary">Mantiene una copia de los archivos de base de datos remota en el directorio de caché de la aplicación. Esto permite utilizar bases de datos remotos fuera de línea.</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
@@ -409,10 +415,15 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="donate_missedbday_question">¿Oh, Te perdiste mi cumpleaños el 10 de mayo? Si te gusta esta aplicación, ¿por qué no enviarme algunos saludos de cumpleaños y un pequeño regalo? Todavía no es demasiado tarde para hacerme feliz. :-)</string>
   <string name="ok_donate">¡Cuéntame más!</string>
   <string name="no_thanks">No, no me gusta mucho</string>
+  <string name="enter_http_login_title">Introducir datos de acceso WebDav:</string>
+  <string name="hint_http_url">URL de la carpeta o del archivo (ex: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Introduzca datos de usuario de OwnCloud:</string>
+  <string name="hint_owncloud_url">OwnCloud URL (ej: owncloud.me.com)</string>
   <string name="hint_sftp_host">host (ejemplo: 192.168.0.1)</string>
   <string name="hint_sftp_port">Puerto</string>
   <string name="initial_directory">Directorio inicial (opcional):</string>
   <string name="enter_sftp_login_title">Introduzca los datos de acceso SFTP:</string>
+  <string name="enter_ftp_login_title">Introducir datos de acceso FTP:</string>
   <string name="select_storage_type">Seleccione el tipo de almacenamiento:</string>
   <string name="filestoragename_file">Archivo local</string>
   <string name="filestoragename_androidget">Coger de una aplicación de terceros</string>
@@ -420,10 +431,12 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no quieres que KP2A acceda a todo tu contenido en Dropbox, selecciona esta opción. Solicitará acceso sólo a la carpeta Apps/Keepass2Android. Esta opción esta especialmente pensada para cuándo se crea una nueva base de datos. Si tienes una base de datos pre-existente, haz click en esta opción para crear la carpeta. Luego mueve el archivo hasta esta carpeta (desde tu computador) y finalmente selecciona esta opción nuevamente para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferencia de archivos)</string>
   <string name="filestoragename_content">Selector de archivo del sistema</string>
   <string name="filestorage_setup_title">Inicialización de acceso de archivo</string>
@@ -556,10 +569,26 @@ El Archivo está dañado. \n
   <string name="ActivateAutoFillService_btnKeyboard">Usar teclado incorporado</string>
   <string name="ActivateAutoFillService_btnAutoFill">Utilice el servicio de autocompletado</string>
   <string name="ActivateAutoFillService_toast">Por favor, active el servicio de Keepass2Android.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
   <string name="ChangeLog_0_9_8c">
     Versión 0.9.8c\n
     * Arreglo para vulnerabilidad SSL en Microsoft Live SDK (usado para accessar archivos de OneDrive)\n
     * Arreglo de pulga: Versión anterior contenía dos métodos de entrada (uno fallaba)\n
+  </string>
+  <string name="ChangeLog_1_01">
+Versión 1.01\n
+ * Añadido soporte para el nuevo formato KDBX-4 (compatible con Keepass 2.35) incluyendo derivación de claves Argon2 y cifrado ChaCha20. \n
+ * Almacén de archivos WebDav reimplementado, ahora permite navegación de archivos y soporta cifrado moderno. \n
+ * Reimplementado almacenamiento de archivos FTP, ahora permite navegación de archivos y soporta protocolo cifrado (FTPS). \n
+ * Actualizado a SDK de OneDrive (anteriormente utilizado SDK de Live pero se ha dejado de actualizar) \n
+ * Actualizado a SDK de Dropbox versión 2 (la anterior versión usada, versión 1, se ha marcado como obsoleto). \n
+ * Añadido soporte para OwnCloud.\n * Petición de permisos de almacenamiento antes de abrir archivos locales  </string>
+  <string name="ChangeLog_1_0_0e">
+Versión 1.0.0e\n
+ * arreglado desbloqueo por huella en dispositivos Samsung más viejos con Android 6\n
+ * añadido soporte nativo para dispositivos x86\n
+ * permite ocultar teclado durante la captura de huella digital\n
+ * actualización del sistema de construcción
   </string>
   <string name="ChangeLog_1_0_0">
     Versión 1.0.0\n
@@ -790,6 +819,11 @@ Publicación inicial</string>
     <item>Oscuro</item>
   </string-array>
   <string name="design_title">Diseño</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Sin cifrado (FTP)</item>
+    <item>Cifrado implícito (FTP sobre TLS, FTPS)</item>
+    <item>Cifrado explícito (FTP sobre TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>No recordar el nombre de usuario y contraseña</item>
     <item>Recordar sólo el nombre de usuario</item>

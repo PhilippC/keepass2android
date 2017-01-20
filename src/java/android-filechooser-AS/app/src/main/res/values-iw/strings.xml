@@ -56,10 +56,22 @@
   <string name="afc_title_size">גודל</string>
   <string name="afc_title_sort_by">מיון לפי&#8230;</string>
   <string name="afc_yesterday">אתמול</string>
+  <plurals name="afc_title_choose_directories">
+    <item quantity="one">בחר תיקיה&#8230;</item>
+    <item quantity="two">בחר תיקיות...</item>
+    <item quantity="many">בחר תיקיות...</item>
+    <item quantity="other">בחר תיקיות...</item>
+  </plurals>
   <plurals name="afc_title_choose_files">
     <item quantity="one">בחר קובץ...</item>
     <item quantity="two">בחר קבצים...</item>
     <item quantity="many">בחר קבצים...</item>
     <item quantity="other">בחר קבצים...</item>
+  </plurals>
+  <plurals name="afc_title_choose_files_directories">
+    <item quantity="one">בחר קובץ / תיקיה&#8230;</item>
+    <item quantity="two">בחר קובץ / תיקיה&#8230;</item>
+    <item quantity="many">בחר קובץ / תיקיה&#8230;</item>
+    <item quantity="other">בחר קובץ / תיקיה&#8230;</item>
   </plurals>
 </resources>

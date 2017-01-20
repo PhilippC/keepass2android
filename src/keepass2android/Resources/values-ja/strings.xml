@@ -11,13 +11,13 @@
 \"Penguin\" アイコンは Noun Project において Adriano Emerick によって作成されました。
 \"Feather\" アイコンは Noun Project において Jon Testa によって作成されました。
 \"Apple\" アイコンは Noun Project において Ava Rowell によって作成されました。 </string>
-  <string name="accept">決定</string>
+  <string name="accept">承諾</string>
   <string name="deny">拒否</string>
   <string name="add_entry">エントリーを追加</string>
   <string name="edit_entry">エントリーを編集</string>
-  <string name="add_url_entry">URL のエントリーを作成します。</string>
+  <string name="add_url_entry">URL のエントリを作成します。</string>
   <string name="add_group">グループを追加</string>
-  <string name="add_group_title">グループを追加</string>
+  <string name="add_group_title">新しいグループ名を入力</string>
   <string name="edit_group_title">グループを編集</string>
   <string name="algorithm">アルゴリズム</string>
   <string name="algorithm_colon">アルゴリズム</string>
@@ -25,9 +25,9 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android オフライン版</string>
   <string name="short_app_name_nonet">KP2A オフライン版</string>
-  <string name="app_timeout">アプリケーションのタイムアウト</string>
-  <string name="app_timeout_summary">アプリケーションが非アクティブな場合にデータベースがロックされるまでの時間。</string>
-  <string name="kill_app_label">アプリケーションのプロセスを終了</string>
+  <string name="app_timeout">アプリケーション タイムアウト</string>
+  <string name="app_timeout_summary">KeePassがこの時間非アクティブだった場合、データベースをロックします。</string>
+  <string name="kill_app_label">アプリのプロセスを終了</string>
   <string name="show_kill_app">終了ボタン</string>
   <string name="show_kill_app_summary">パスワード入力画面にアプリケーションのプロセスを終了するためのボタンを表示します。 (神経質なユーザー向け)</string>
   <string name="application">アプリケーション</string>
@@ -131,6 +131,7 @@
   <string name="error_pass_gen_type">少なくとも1つ以上のパスワード生成タイプを選択する必要があります。</string>
   <string name="error_pass_match">パスワードが一致しません。</string>
   <string name="error_rounds_not_number">数値を入力してください。</string>
+  <string name="error_param_not_number">パラメーターが数値でなければなりません。</string>
   <string name="error_title_required">タイトルは必須入力です。</string>
   <string name="error_wrong_length">\"長さ\"欄には正の整数を入力してください。</string>
   <string name="FileNotFound">ファイルが見つかりません。</string>
@@ -209,9 +210,12 @@
   <string name="remove_from_filelist">削除</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">ルート</string>
+  <string name="KeyDerivFunc">キー派生関数</string>
   <string name="rounds">暗号化レベル</string>
   <string name="rounds_explaination">暗号化レベルを高く設定するとブルートフォース(総当り)攻撃に強くなりますが、保存や読込に時間が掛かります。</string>
   <string name="rounds_hint">レベル</string>
+  <string name="argon2memory">アルゴン 2 (バイト) のメモリ</string>
+  <string name="argon2parallelism">アルゴン 2 の並列処理</string>
   <string name="database_name">データベース名</string>
   <string name="default_username">新しいエントリーのデフォルトユーザー名</string>
   <string name="saving_database">データベースを保存中&#8230;</string>
@@ -313,6 +317,8 @@
   <string name="NoDonateOption_title">寄付オプションを表示しない</string>
   <string name="NoDonateOption_summary">この設定は寄贈者向けです。Keepass2Android をしばらく使用した後でのみ利用可能です。</string>
   <string name="NoDonateOption_question">寄付がなければ、このアプリは存在しないかもしれないし、継続的な改善を行うことができないかもしれません! まだ寄付を頂いていなければ、今すぐ寄付をご検討ください。</string>
+  <string name="NoDonationReminder_title">絶対に寄付を求めない</string>
+  <string name="NoDonationReminder_summary">ダイムを与えないまたはすでに寄付されました。著者の誕生日でさえ、寄付金を求めません。</string>
   <string name="UseOfflineCache_title">データベース キャッシュ</string>
   <string name="UseOfflineCache_summary">アプリケーション キャッシュ ディレクトリにリモート データベース ファイルのコピーを保存します。これによりオフライン時でもリモート データベースを使用することができます。</string>
   <string name="AcceptAllServerCertificates_title">SSL 証明書</string>
@@ -410,10 +416,15 @@
   <string name="donate_missedbday_question">ああ、あなたは 5 月 10 日の私の誕生日を忘れていましたね! あなたがこのアプリを気に入って頂いたとしたら、誕生日のお祝いの言葉やわずかの誕生日プレゼントを贈っていただけませんか? まだ遅くありませんよ! :-)</string>
   <string name="ok_donate">さらに詳しく!</string>
   <string name="no_thanks">いいえ、それほど気に入っていません</string>
+  <string name="enter_http_login_title">WebDavのログインデータを入力してください：</string>
+  <string name="hint_http_url">フォルダーまたはファイルの URL (例: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">OwnCloudのログイン情報を入力:</string>
+  <string name="hint_owncloud_url">OwnCloudのURL (例: owncloud.me.com)</string>
   <string name="hint_sftp_host">ホスト(例: 192.168.0.1)</string>
   <string name="hint_sftp_port">ポート</string>
   <string name="initial_directory">初期ディレクトリ (省略可能):</string>
   <string name="enter_sftp_login_title">SFTP のログイン データを入力してください:</string>
+  <string name="enter_ftp_login_title">FTP のログイン データを入力してください:</string>
   <string name="select_storage_type">ストレージタイプの選択</string>
   <string name="filestoragename_file">ローカルファイル</string>
   <string name="filestoragename_androidget">サードパーティーのアプリから取得</string>
@@ -421,10 +432,12 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A フォルダー)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox の全てに KP2A がアクセスできるようにしたくない場合にこのオプションを選択してください。このオプションを選択すると、Apps/Keepass2Android フォルダーだけにアクセスを要求します。これは特に新しいデータベースを作成するときに向いています。既にデータベースがある場合は、このオプションを選択してフォルダーを作成し、その後 (PC から) フォルダー内にファイルを配置し、そのファイルを開く際にもう一度このオプションを選択します。</string>
   <string name="filestoragename_gdrive">Google ドライブ</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH ファイル転送)</string>
   <string name="filestoragename_content">システムファイルピッカー</string>
   <string name="filestorage_setup_title">ファイルのアクセスの初期化</string>
@@ -555,10 +568,26 @@
   <string name="ActivateAutoFillService_btnKeyboard">内蔵キーボードを使用する</string>
   <string name="ActivateAutoFillService_btnAutoFill">オートフィル サービスを使用する</string>
   <string name="ActivateAutoFillService_toast">Keepass2Android サービスを有効にしてください。</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンがアクティブな場合、パスワード入力用のソフト キーボードを表示します。</string>
   <string name="ChangeLog_0_9_8c">
 Version 0.9.8c\n
  * マイクロソフト Live SDKのSSL脆弱性が修正されました(ファイルをOneDriveでアクセスする際に使用されます)\n
 * バグ修正: 以前のリリースで2つのIMEが含まれていた(一方はクラッシュしていた)  </string>
+  <string name="ChangeLog_1_01">
+Version 1.01\n
+    * KDBX-4フォーマット(Keepass 2.35と互換)をサポート。 鍵導出アルゴリズムのArgon2と暗号方式のChaCha20が含まれます。\n
+    * WebDavファイルストレージを再実装し、ファイルブラウジングと最新の暗号方式をサポート。\n
+    * FTPファイルストレージを再実装し、ファイルブラウジングと暗号化通信をサポート (FTPS)。\n
+    * OneDrive SDKへ更新 (以前に使用していたLive SDKは更新されなくなりました)\n
+    * Dropbox SDKバージョン2へ更新(以前に使用していたバージョン1 SDKは非推奨になりました).\n
+    * OwnCloudをサポート.\n
+    * ローカルファイルを開く前にストレージのアクセス許可を求めるようになりました。  </string>
+  <string name="ChangeLog_1_0_0e">
+バージョン 1.0.0e\n
+* アンドロイド 6がもつ古いサムスンのデバイスにロックを解除する指紋の修正\n
+* x86 のネイティブ サポートを追加返しました \n 
+* 指紋スキャン中にソフトキーボードを非表示にするを許可す\n
+* システム更新をビルド  </string>
   <string name="ChangeLog_1_0_0">
 バージョン 1.0.0\n
  * 指紋ロック解除 (Android 6.0+ または Samsung のデバイスが必要)\n
@@ -774,6 +803,11 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>ダーク</item>
   </string-array>
   <string name="design_title">デザイン</string>
+  <string-array name="ftp_encryption_modes">
+    <item>暗号化なし (FTP)</item>
+    <item>暗黙的な暗号化 (TLS経由のFTP、FTPS)</item>
+    <item>明示的な暗号化 (TLS経由のFTP、FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>ユーザー名とパスワードを保存しない</item>
     <item>ユーザー名のみ保存</item>
