@@ -680,6 +680,11 @@
   <string name="ActivateAutoFillService_btnAutoFill">Use AutoFill service</string>
   <string name="ActivateAutoFillService_toast">Please enable the Keepass2Android service.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
+  <string name="ChangeLog_1_01b">
+    Version 1.01-b\n
+    * Fix for QuickUnlock sometimes failing despite correct code.\n
+  </string>
+  
   <string name="ChangeLog_0_9_8c">
     Version 0.9.8c\n
     * Fix for SSL vulnerability in Microsoft Live SDK (used when accessing files via OneDrive)\n

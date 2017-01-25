@@ -229,7 +229,10 @@ namespace keepass2android.Io
 
 				if (cursor != null && cursor.MoveToFirst())
 				{
-					int flags = cursor.GetInt(cursor.GetColumnIndex(DocumentsContract.Document.ColumnFlags));
+					int column = cursor.GetColumnIndex(DocumentsContract.Document.ColumnFlags);
+					if (column < 0)
+						return false; //seems like this is not supported. See below for reasoning to return false.
+					int flags = cursor.GetInt(column);
 					Kp2aLog.Log("File flags: " + flags);
 					if ((flags & (long) DocumentContractFlags.SupportsWrite) == 0)
 					{

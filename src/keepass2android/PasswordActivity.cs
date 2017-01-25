@@ -925,7 +925,7 @@ namespace keepass2android
 				RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);
 			
 		}
-		const int FingerprintPermissionRequestCode = 0;
+		const int FingerprintPermissionRequestCode = 99;
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		{
@@ -1768,34 +1768,39 @@ namespace keepass2android
 				FindViewById(Resource.Id.otpInitView).Visibility = _challengeSecret == null ? ViewStates.Visible : ViewStates.Gone;
 			}
 
-			// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
-			// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
 			//use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
 			//use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbTask to exist when we reload later!)
-			if (_starting && !IsFinishing && !_performingLoad)  
+			if ( !IsFinishing && !_performingLoad)  
 			{
-				_starting = false;
 				if (App.Kp2a.DatabaseIsUnlocked)
 				{
 					LaunchNextActivity();
 				}
 				else if (App.Kp2a.QuickUnlockEnabled && App.Kp2a.QuickLocked)
 				{
-					var i = new Intent(this, typeof(QuickUnlock));
+					var i = new Intent(this, typeof (QuickUnlock));
 					PutIoConnectionToIntent(_ioConnection, i);
 					Kp2aLog.Log("Starting QuickUnlock");
 					StartActivityForResult(i, 0);
 				}
-				else 
+				else
 				{
-					//database not yet loaded.
-
-					//check if pre-loading is enabled but wasn't started yet:
-					if (_loadDbTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+					// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
+					// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
+					if (!_starting)
 					{
-						// Create task to kick off file loading while the user enters the password
-						_loadDbTask = Task.Factory.StartNew<MemoryStream>(PreloadDbFile);
-						_loadDbTaskOffline = App.Kp2a.OfflineMode;
+
+						_starting = false;
+
+						//database not yet loaded.
+
+						//check if pre-loading is enabled but wasn't started yet:
+						if (_loadDbTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+						{
+							// Create task to kick off file loading while the user enters the password
+							_loadDbTask = Task.Factory.StartNew<MemoryStream>(PreloadDbFile);
+							_loadDbTaskOffline = App.Kp2a.OfflineMode;
+						}
 					}
 				}
 			}

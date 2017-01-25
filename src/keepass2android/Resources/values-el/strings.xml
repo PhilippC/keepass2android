@@ -710,7 +710,7 @@
 * Bug fixes
 	</string>
   <string name="ChangeLog_0_8_6">
-Έκδοση 0.8.6</b>\n
+Έκδοση 0.8.6\n
 * Support for Twofish cipher\n
 * Allow editing of groups\n
 * Allow moving of entries and groups\n
