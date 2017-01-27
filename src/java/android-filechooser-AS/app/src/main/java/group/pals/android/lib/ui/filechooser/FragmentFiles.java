@@ -1024,6 +1024,8 @@ public class FragmentFiles extends Fragment implements
             String errMsg = null;
             boolean errorMessageInDialog = false;
 
+            String log = "";
+
             @Override
             protected Bundle doInBackground(Void... params) {
                 /*
@@ -1031,6 +1033,12 @@ public class FragmentFiles extends Fragment implements
                  */
                 Uri path = (Uri) (savedInstanceState != null ? savedInstanceState
                         .getParcelable(CURRENT_LOCATION) : null);
+
+                log += "savedInstanceState != null ? " + (savedInstanceState != null);
+                log += "\npath != null ? " + (path != null);
+                if (path != null) log += path;
+                log += "\nmRoot != null ? " + (mRoot != null);
+                if (mRoot != null) log += mRoot;
 
                 if (mRoot != null) {
                     Uri queryUri = BaseFile.genContentUriApi(mRoot.getAuthority())
@@ -1042,10 +1050,11 @@ public class FragmentFiles extends Fragment implements
                     Cursor cursor = getActivity().getContentResolver().query(
                             queryUri,
                             null, null, null, null);
+                    log += "\ncursor != null ? " + (cursor != null);
                     if (cursor != null) {
                         cursor.moveToFirst();
 
-                        errMsg = getString(R.string.afc_msg_cannot_connect_to_file_provider_service) + " " + cursor.getString(0);
+                        errMsg = getString(R.string.afc_msg_cannot_connect_to_file_provider_service) + " " + " " + cursor.getString(0);
                         errorMessageInDialog = true;
                         return null;
                     }
@@ -1057,6 +1066,7 @@ public class FragmentFiles extends Fragment implements
                 /*
                  * Selected file
                  */
+                    log += "try selected file ";
                     if (path == null) {
                         path = (Uri) getArguments().getParcelable(
                                 FileChooserActivity.EXTRA_SELECT_FILE);
@@ -1067,14 +1077,22 @@ public class FragmentFiles extends Fragment implements
                             path = BaseFileProviderUtils.getParentFile(
                                     getActivity(), path);
                     }
+                    log += "success ? " + (path != null);
 
                 /*
                  * Rootpath
                  */
-                    if (path == null
-                            || !BaseFileProviderUtils.isDirectory(getActivity(),
-                            path)) {
+                    log += "rootpath";
+                    if ((path == null)
+                            || (!BaseFileProviderUtils.isDirectory(getActivity(),
+                            path))) {
+                        log += " assign";
                         path = mRoot;
+                    }
+                    if (path != null) {
+                        log += " path=" + path;
+                        log += " isdir?" + BaseFileProviderUtils.isDirectory(getActivity(),
+                                path);
                     }
 
                 /*
@@ -1084,29 +1102,35 @@ public class FragmentFiles extends Fragment implements
                             && DisplayPrefs.isRememberLastLocation(getActivity())) {
                         String lastLocation = DisplayPrefs
                                 .getLastLocation(getActivity());
-                        if (lastLocation != null)
+                        if (lastLocation != null) {
                             path = Uri.parse(lastLocation);
+                            log += " from last loc";
+                        }
                     }
 
                     if (path == null
                             || !BaseFileProviderUtils.isDirectory(getActivity(),
-                            path))
+                            path)) {
                         path = BaseFileProviderUtils.getDefaultPath(
                                 getActivity(),
                                 path == null ? mFileProviderAuthority : path
                                         .getAuthority());
+                        log += " getDefault. path==null?" + (path == null);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    errMsg = getString(R.string.afc_msg_cannot_connect_to_file_provider_service) + " " + ex.toString();
+                    errMsg = getString(R.string.afc_msg_cannot_connect_to_file_provider_service)  + " " + ex.toString() ;
                     errorMessageInDialog = true;
                     return null;
                 }
 
 
-                if (path == null)
+                if (path == null) {
+                    errMsg = "Did not find initial path.";
+                    errorMessageInDialog = true;
                     return null;
-
+                }
                 if (BuildConfig.DEBUG)
                     Log.d(CLASSNAME, "loadInitialPath() >> " + path);
 
@@ -1117,6 +1141,7 @@ public class FragmentFiles extends Fragment implements
                     result.putParcelable(PATH, path);
                     return result;
                 } else {
+                    errorMessageInDialog = true;
                     errMsg = getString(R.string.afc_pmsg_cannot_access_dir,
                             BaseFileProviderUtils.getFileName(getActivity(),
                                     path));
@@ -1162,7 +1187,7 @@ public class FragmentFiles extends Fragment implements
                     }
 
                 } else
-                    showCannotConnectToServiceAndWaitForTheUserToFinish();
+                    showCannotConnectToServiceAndWaitForTheUserToFinish("loadInitialPath");
             }// onPostExecute()
 
         }.execute();
@@ -1195,9 +1220,9 @@ public class FragmentFiles extends Fragment implements
     /**
      * As the name means...
      */
-    private void showCannotConnectToServiceAndWaitForTheUserToFinish() {
+    private void showCannotConnectToServiceAndWaitForTheUserToFinish(String info) {
         Dlg.showError(getActivity(),
-                R.string.afc_msg_cannot_connect_to_file_provider_service,
+                getActivity().getString(R.string.afc_msg_cannot_connect_to_file_provider_service) + " " + info,
                 new DialogInterface.OnCancelListener() {
 
                     @Override
@@ -1808,7 +1833,7 @@ public class FragmentFiles extends Fragment implements
      *            a directory, of course.
      * @since v4.3 beta
      */
-    private void goTo(Uri dir) {
+    private void goTo(final Uri dir) {
         new LoadingDialog<Uri, String, Bundle>(getActivity(), false) {
 
             /**
@@ -1866,7 +1891,7 @@ public class FragmentFiles extends Fragment implements
                     Dlg.toast(getActivity(), errMsg, Dlg.LENGTH_SHORT);
                 }
                 else
-                    showCannotConnectToServiceAndWaitForTheUserToFinish();
+                    showCannotConnectToServiceAndWaitForTheUserToFinish("goTo: " + dir.toString());
             }// onPostExecute()
 
         }.execute(dir);

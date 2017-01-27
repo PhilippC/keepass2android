@@ -66,6 +66,9 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
     @Override
     public boolean onCreate() {
+
+        Log.d("KP2A_FC_P", "onCreate");
+
         BaseFileProviderUtils.registerProviderInfo(_ID,
                 getAuthority());
 
@@ -84,7 +87,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         if (Utils.doLog())
-            Log.d(CLASSNAME, "delete() >> " + uri);
+            Log.d("KP2A_FC_P", "delete() >> " + uri);
 
         int count = 0;
         
@@ -136,7 +139,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	@Override
     public Uri insert(Uri uri, ContentValues values) {
         if (Utils.doLog())
-            Log.d(CLASSNAME, "insert() >> " + uri);
+            Log.d("KP2A_FC_P", "insert() >> " + uri);
 
         switch (URI_MATCHER.match(uri)) {
         case URI_DIRECTORY:
@@ -184,7 +187,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
             String[] selectionArgs, String sortOrder) {
         if (Utils.doLog())
-            Log.d(CLASSNAME, String.format(
+            Log.d("KP2A_FC_P", String.format(
                     "query() >> uri = %s (%s) >> match = %s", uri,
                     uri.getLastPathSegment(), URI_MATCHER.match(uri)));
 
@@ -223,10 +226,13 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         try
         {
             checkConnection(uri);
+            Log.d("KP2A_FC_P", "checking connection for " + uri + " ok.");
             return null;
         }
         catch (Exception e)
         {
+            Log.d("KP2A_FC_P","Check connection failed with: " + e.toString());
+
             MatrixCursor matrixCursor = new MatrixCursor(BaseFileProviderUtils.CONNECTION_CHECK_CURSOR_COLUMNS);
             RowBuilder newRow = matrixCursor.newRow();
             String message = e.getLocalizedMessage();
@@ -244,11 +250,17 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
        {
            String path = Uri.parse(
                    uri.getQueryParameter(BaseFile.PARAM_SOURCE)).toString();
-            getFileEntry(path);
+           StringBuilder sb = new StringBuilder();
+           FileEntry result = getFileEntry(path, sb);
+           if (result == null)
+               throw new Exception(sb.toString());
+
 
         }
         catch (FileNotFoundException ex)
         {
+            Log.d("KP2A_FC_P","File not found. Ignore.");
+
             return;
         }
     }
@@ -269,7 +281,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
         String lastPathSegment = uri.getLastPathSegment();
         
-        //Log.d(CLASSNAME, "lastPathSegment:" + lastPathSegment);
+        Log.d("KP2A_FC_P", "lastPathSegment:" + lastPathSegment);
         
         if (BaseFile.CMD_CANCEL.equals(lastPathSegment)) {
             int taskId = ProviderUtils.getIntQueryParam(uri,
@@ -354,6 +366,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
         } else if (BaseFile.CMD_CHECK_CONNECTION.equals(lastPathSegment))
         {
+            Log.d("KP2A_FC_P","Check connection...");
             return getCheckConnectionCursor(uri);
         }
 
@@ -591,7 +604,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         FileEntry newEntry ;
         try {
             //it's not -> query the information.
-           newEntry = getFileEntry(filename);
+           newEntry = getFileEntry(filename, null);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -680,11 +693,11 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
             });
         } catch (CancellationException e) {
             if (Utils.doLog())
-                Log.d(CLASSNAME, "sortFiles() >> cancelled...");
+                Log.d("KP2A_FC_P", "sortFiles() >> cancelled...");
         }
         catch (Exception e)
         {
-            Log.d(CLASSNAME, "sortFiles() >> "+e);
+            Log.d("KP2A_FC_P", "sortFiles() >> "+e);
             throw e;
         }
     }// sortFiles()
@@ -721,11 +734,11 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         if (targetParent != null && targetParent.startsWith(source))
         {
         	if (Utils.doLog())
-        		Log.d(CLASSNAME, source+" is parent of "+target);
+        		Log.d("KP2A_FC_P", source+" is parent of "+target);
             return BaseFileProviderUtils.newClosedCursor();
         }
         if (Utils.doLog())
-    		Log.d(CLASSNAME, source+" is no parent of "+target);
+    		Log.d("KP2A_FC_P", source+" is no parent of "+target);
 
         return null;
     }// doCheckAncestor()
@@ -764,27 +777,27 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     	path = removeTrailingSlash(path);
     	if (path.indexOf("://") == -1)
     	{
-    		Log.d(CLASSNAME, "invalid path: " + path);
+    		Log.d("KP2A_FC_P", "invalid path: " + path);
     		return null; 
     	}
     	String pathWithoutProtocol = path.substring(path.indexOf("://")+3);
     	int lastSlashPos = path.lastIndexOf("/");
     	if (pathWithoutProtocol.indexOf("/") == -1)
     	{
-    		Log.d(CLASSNAME, "parent of " + path +" is null");
+    		Log.d("KP2A_FC_P", "parent of " + path +" is null");
     		return null;
     	}
     	else
     	{
     		String parent = path.substring(0, lastSlashPos)+"/";
-    		Log.d(CLASSNAME, "parent of " + path +" is "+parent);
+    		Log.d("KP2A_FC_P", "parent of " + path +" is "+parent);
     		return parent;
     	}
     }
     
     
 
-	protected abstract FileEntry getFileEntry(String path) throws Exception;
+	protected abstract FileEntry getFileEntry(String path, StringBuilder errorMessageBuilder) throws Exception;
     
 	/**
      * Lists all file inside {@code dirName}.

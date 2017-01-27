@@ -289,7 +289,8 @@ public class OneDriveStorage extends JavaFileStorageBase
         e.displayName = i.name;
         e.canRead = e.canWrite = true;
         e.path = getProtocolId() +"://"+path;
-        e.lastModifiedTime = i.lastModifiedDateTime.getTimeInMillis();
+        if (i.lastModifiedDateTime != null)
+            e.lastModifiedTime = i.lastModifiedDateTime.getTimeInMillis();
         e.isDirectory = i.folder != null;
         return e;
     }

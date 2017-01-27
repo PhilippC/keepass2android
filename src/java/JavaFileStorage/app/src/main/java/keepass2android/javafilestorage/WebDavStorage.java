@@ -37,6 +37,7 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 import keepass2android.javafilestorage.webdav.ConnectionInfo;
+import keepass2android.javafilestorage.webdav.DecoratedHostnameVerifier;
 import keepass2android.javafilestorage.webdav.DecoratedTrustManager;
 import keepass2android.javafilestorage.webdav.PropfindXmlParser;
 import keepass2android.javafilestorage.webdav.WebDavUtil;
@@ -45,6 +46,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.internal.tls.OkHostnameVerifier;
 
 public class WebDavStorage extends JavaFileStorageBase {
 
@@ -131,6 +133,8 @@ public class WebDavStorage extends JavaFileStorageBase {
         builder = builder.authenticator(new CachingAuthenticatorDecorator(authenticator, authCache))
                 .addInterceptor(new AuthenticationCacheInterceptor(authCache));
         if ((mCertificateErrorHandler != null) && (!mCertificateErrorHandler.alwaysFailOnValidationError())) {
+
+
             TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
                     TrustManagerFactory.getDefaultAlgorithm());
             trustManagerFactory.init((KeyStore) null);
@@ -145,7 +149,10 @@ public class WebDavStorage extends JavaFileStorageBase {
             sslContext.init(null, new TrustManager[] { trustManager }, null);
             SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
-            builder = builder.sslSocketFactory(sslSocketFactory, trustManager);
+            builder = builder.sslSocketFactory(sslSocketFactory, trustManager)
+                             .hostnameVerifier(new DecoratedHostnameVerifier(OkHostnameVerifier.INSTANCE, mCertificateErrorHandler));
+
+
         }
 
         OkHttpClient client =  builder.build();

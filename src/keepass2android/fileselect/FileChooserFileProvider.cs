@@ -62,7 +62,7 @@ namespace keepass2android
 			}
 		}
 
-		protected override FileEntry GetFileEntry(string filename)
+		protected override FileEntry GetFileEntry(string filename, Java.Lang.StringBuilder errorMessageBuilder)
 		{
 			try
 			{
@@ -70,6 +70,8 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
+				if (errorMessageBuilder != null)
+					errorMessageBuilder.Append(e.Message);
 				Kp2aLog.Log(e.ToString());
 				return null;
 			}
