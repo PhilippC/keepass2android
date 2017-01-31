@@ -285,13 +285,19 @@ public class OneDriveStorage extends JavaFileStorageBase
     @NonNull
     private FileEntry getFileEntry(String path, Item i) {
         FileEntry e = new FileEntry();
-        e.sizeInBytes = i.size;
+        if (i.size != null)
+            e.sizeInBytes = i.size;
+        else if ((i.remoteItem != null) && (i.remoteItem.size != null))
+            e.sizeInBytes = i.remoteItem.size;
+
         e.displayName = i.name;
         e.canRead = e.canWrite = true;
         e.path = getProtocolId() +"://"+path;
         if (i.lastModifiedDateTime != null)
             e.lastModifiedTime = i.lastModifiedDateTime.getTimeInMillis();
-        e.isDirectory = i.folder != null;
+        else if ((i.remoteItem != null)&&(i.remoteItem.lastModifiedDateTime != null))
+            e.lastModifiedTime = i.remoteItem.lastModifiedDateTime.getTimeInMillis();
+        e.isDirectory = (i.folder != null) || ((i.remoteItem != null) && (i.remoteItem.folder != null));
         return e;
     }
 
