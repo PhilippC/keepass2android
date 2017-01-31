@@ -121,8 +121,8 @@ namespace keepass2android.Io
 				return new ConnectionSettings()
 				{
 					EncryptionMode = (FtpEncryptionMode) int.Parse(tokens[2]),
-					Username = tokens[0],
-					Password = tokens[1]
+					Username = WebUtility.UrlDecode(tokens[0]),
+					Password = WebUtility.UrlDecode(tokens[1])
 				};
 
 			}
