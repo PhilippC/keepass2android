@@ -680,6 +680,12 @@
   <string name="ActivateAutoFillService_btnAutoFill">Use AutoFill service</string>
   <string name="ActivateAutoFillService_toast">Please enable the Keepass2Android service.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
+  <string name="ChangeLog_1_01e">
+    Version 1.01-e\n
+    * Fix for crash when trying to work offline\n
+    * Fix for incorrect encoding of FTP(S) credentials\n
+    * Display times as local time in entry screen\n
+  </string>
   <string name="ChangeLog_1_01d">
     Version 1.01-d\n
     * Fix for OneDrive file listing\n
