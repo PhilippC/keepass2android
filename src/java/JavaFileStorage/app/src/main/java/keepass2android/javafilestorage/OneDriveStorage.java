@@ -83,21 +83,23 @@ public class OneDriveStorage extends JavaFileStorageBase
     private boolean isConnected(Activity activity) {
         if (oneDriveClient == null)
         {
-            Log.d("KP2AJ", "trying silent login");
-            if (msaAuthenticator.loginSilent() != null)
+            try
             {
-                Log.d("KP2AJ", "ok: silent login");
-                try
+                Log.d("KP2AJ", "trying silent login");
+                if (msaAuthenticator.loginSilent() != null)
                 {
-                    oneDriveClient = buildClient(activity);
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
+                    Log.d("KP2AJ", "ok: silent login");
 
+                    oneDriveClient = buildClient(activity);
+
+
+                }
+                else Log.d("KP2AJ", "trying silent login failed.");
             }
-            else Log.d("KP2AJ", "trying silent login failed.");
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
         return oneDriveClient != null;
     }

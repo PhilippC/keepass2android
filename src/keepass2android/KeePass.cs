@@ -218,9 +218,10 @@ namespace keepass2android
 				App.SetErrorReportMode(this, App.ErrorReportMode.Disabled); 
 				launchNextActivity();
 			});
-			b.SetOnDismissListener(this);
+			var dialog = b.Create();
+			dialog.SetOnDismissListener(this);
 			
-			b.Show();
+			dialog.Show();
 
 		}
 

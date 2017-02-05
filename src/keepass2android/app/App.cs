@@ -316,6 +316,8 @@ namespace keepass2android
 		}
 		public Drawable GetResourceDrawable(string key)
 		{
+			if (key == "ic_storage_skydrive")
+				key = "ic_storage_onedrive"; //resource was renamed. do this to avoid crashes with legacy file entries.
 			var field = typeof(Resource.Drawable).GetField(key);
 			if (field == null)
 				throw new Exception("Invalid key " + key);
