@@ -1,6 +1,7 @@
 package keepass2android.autofill;
 
 import android.accessibilityservice.AccessibilityService;
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -68,6 +69,7 @@ public class AutoFillService extends AccessibilityService {
         }
     }
 
+    @TargetApi(21)
     class SystemUiCondition implements NodeCondition
     {
         @Override
@@ -108,6 +110,18 @@ public class AutoFillService extends AccessibilityService {
     public void onAccessibilityEvent(AccessibilityEvent event) {
         android.util.Log.d(_logTag, "OnAccEvent");
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+        {
+            android.util.Log.d(_logTag, "AndroidVersion not supported");
+            return;
+        }
+
+        handleAccessibilityEvent(event);
+
+    }
+
+    @TargetApi(21)
+    private void handleAccessibilityEvent(AccessibilityEvent event) {
         try
         {
             if (event.getEventType() ==  AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
@@ -219,9 +233,9 @@ public class AutoFillService extends AccessibilityService {
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             notificationManager.notify(autoFillNotificationId+1, builder.build());*/
         }
-
     }
 
+    @TargetApi(21)
     private void AskFillPassword(String url)
     {
 
@@ -273,6 +287,7 @@ public class AutoFillService extends AccessibilityService {
 
     }
 
+    @TargetApi(21)
     private void FillPassword(String url, AccessibilityNodeInfo usernameEdit, List<AccessibilityNodeInfo> passwordFields)
     {
         if ((keepass2android.kbbridge.KeyboardData.hasData()) && (_hasUsedData == false))
@@ -290,6 +305,7 @@ public class AutoFillService extends AccessibilityService {
         //LookupCredentialsActivity.LastReceivedCredentials = null;
     }
 
+    @TargetApi(21)
     private void fillDataInTextField(AccessibilityNodeInfo edit, String value) {
         if ((value == null) || (edit == null))
             return;

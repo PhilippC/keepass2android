@@ -3,7 +3,7 @@
     android:description="@string/AutoFillServiceDescription"
     android:accessibilityEventTypes="typeAllMask"
     android:accessibilityFlags="flagDefault"
-    android:accessibilityFeedbackType="feedbackSpoken"
+    android:accessibilityFeedbackType="feedbackGeneric"
     android:notificationTimeout="100"
     android:canRetrieveWindowContent="true"
 
