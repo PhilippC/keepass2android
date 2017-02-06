@@ -278,8 +278,9 @@ namespace keepass2android
 				_cryptoObject = new FingerprintManager.CryptoObject(_cipher);
 				return true;
 			}
-			catch (KeyPermanentlyInvalidatedException)
+			catch (KeyPermanentlyInvalidatedException e)
 			{
+				Kp2aLog.Log("FP: KeyPermanentlyInvalidatedException." + e.ToString());
 				return false;
 			}
 			catch (KeyStoreException e)

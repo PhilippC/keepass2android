@@ -23,6 +23,7 @@ import com.onedrive.sdk.http.OneDriveServiceException;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -166,16 +167,52 @@ public class OneDriveStorage extends JavaFileStorageBase
 
     }
 
-
-    String removeProtocol(String path)
+    String getPathFromSkydrivePath(String skydrivePath)
     {
+        String path = "";
+        if (skydrivePath.equals(""))
+            return "";
+
+        String[] parts = skydrivePath.split("/");
+
+        for (int i = 0; i < parts.length; i++) {
+            String part = parts[i];
+            logDebug("parsing part " + part);
+            int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
+            if (indexOfSeparator < 0) {
+                // seems invalid, but we're very generous here
+                path += "/" + part;
+                continue;
+            }
+            String name = part.substring(0, indexOfSeparator);
+            try {
+                name = decode(name);
+            } catch (UnsupportedEncodingException e) {
+                // ignore
+            }
+            path += "/" + name;
+        }
+        logDebug("return " +path + ". original was " + skydrivePath);
+        return path;
+
+    }
+
+    String removeProtocol(String path) throws Exception {
         if (path == null)
             return null;
+        if (path.startsWith("skydrive"))
+            return getPathFromSkydrivePath(path.substring("skydrive://".length()));
         return path.substring(getProtocolId().length()+3);
     }
 
     @Override
     public String getDisplayName(String path) {
+
+        if (path == null)
+            return null;
+        if (path.startsWith("skydrive"))
+            return getProtocolId()+"://"+getPathFromSkydrivePath(path.substring("skydrive://".length()));
+
         return path;
     }
 
@@ -198,18 +235,21 @@ public class OneDriveStorage extends JavaFileStorageBase
     public InputStream openFileForRead(String path) throws Exception {
         try {
             path = removeProtocol(path);
-            return oneDriveClient.getDrive()
+            logDebug("openFileForRead. Path="+path);
+            InputStream result = oneDriveClient.getDrive()
                     .getRoot()
                     .getItemWithPath(path)
                     .getContent()
                     .buildRequest()
                     .get();
+            logDebug("ok");
+            return result;
+
         }
         catch (OneDriveServiceException e)
         {
             throw convertException(e);
         }
-
     }
 
     private Exception convertException(OneDriveServiceException e) {
