@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net;
-using System.Net.Http;
+
 using System.Security;
 using Android;
 using Android.App;
@@ -13,7 +13,7 @@ using Android.OS;
 using Java.IO;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
-using ModernHttpClient;
+
 using File = System.IO.File;
 using FileNotFoundException = System.IO.FileNotFoundException;
 using IOException = System.IO.IOException;
@@ -416,6 +416,23 @@ namespace keepass2android.Io
 		}
 	}
 
+
+	public class LocalFileStorage : BuiltInFileStorage
+	{
+		public LocalFileStorage(IKp2aApp app)
+			: base(app)
+		{
+		}
+
+		public override IEnumerable<string> SupportedProtocols
+		{
+			get
+			{
+				yield return "file";
+			}
+		}
+	}
+#if !NoNet
 	public class LegacyFtpStorage : BuiltInFileStorage
 	{
 		public LegacyFtpStorage(IKp2aApp app) : base(app)
@@ -426,9 +443,9 @@ namespace keepass2android.Io
 		{
 			get
 			{
-#if !NoNet
+
 				yield return "ftp";
-#endif
+
 			}
 		}
 	}
@@ -443,27 +460,14 @@ namespace keepass2android.Io
 		{
 			get
 			{
-#if !NoNet
+
 				yield return "http";
 				yield return "https";
+
+
+			}
+		}
+	}
+
 #endif
-
-			}
-		}
-	}
-
-	public class LocalFileStorage : BuiltInFileStorage
-	{
-		public LocalFileStorage(IKp2aApp app) : base(app)
-		{
-		}
-
-		public override IEnumerable<string> SupportedProtocols
-		{
-			get
-			{
-				yield return "file";
-			}
-		}
-	}
 }

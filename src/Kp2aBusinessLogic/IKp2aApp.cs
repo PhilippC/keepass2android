@@ -9,7 +9,9 @@ using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+#if !NoNet
 using Keepass2android.Javafilestorage;
+#endif 
 
 namespace keepass2android
 {
@@ -107,6 +109,8 @@ namespace keepass2android
 
 		
 		bool CheckForDuplicateUuids { get; }
+#if !NoNet
 		ICertificateErrorHandler CertificateErrorHandler { get; }
+#endif
 	}
 }

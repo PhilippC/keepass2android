@@ -1,3 +1,4 @@
+#if !NoNet
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -640,3 +641,4 @@ namespace keepass2android.Io
 		}
 	}
 }
+#endif
