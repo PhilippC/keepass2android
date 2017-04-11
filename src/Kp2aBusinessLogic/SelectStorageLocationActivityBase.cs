@@ -122,23 +122,7 @@ namespace keepass2android
 					{
 						if (data.Data.Scheme == "content")
 						{
-							if ((int) Build.VERSION.SdkInt >= 19)
-							{
-								//try to take persistable permissions
-								try
-								{
-									Kp2aLog.Log("TakePersistableUriPermission");
-									var takeFlags = data.Flags
-											& (ActivityFlags.GrantReadUriPermission
-											| ActivityFlags.GrantWriteUriPermission);
-									this.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
-								}
-								catch (Exception e)
-								{
-									Kp2aLog.Log(e.ToString());
-								}
-								
-							}
+							IoUtil.TryTakePersistablePermissions(this.ContentResolver, data.Data);
 							
 							IocSelected(IOConnectionInfo.FromPath(data.DataString), requestCode);
 

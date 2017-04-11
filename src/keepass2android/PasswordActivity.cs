@@ -1157,6 +1157,9 @@ namespace keepass2android
 					Finish();
 					return false;
 				}
+				IoUtil.TryTakePersistablePermissions(this.ContentResolver, i.Data);
+
+
 			}
 
 			
