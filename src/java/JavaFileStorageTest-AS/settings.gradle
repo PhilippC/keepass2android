@@ -1,0 +1,6 @@
+include ':app'
+include ':JavaFileStorage'
+project(':JavaFileStorage').projectDir = new File(settingsDir,"../JavaFileStorage/app")
+
+include ':android-filechooser'
+project(':android-filechooser').projectDir = new File(settingsDir,"../android-filechooser-AS/app")

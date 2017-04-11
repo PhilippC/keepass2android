@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if !NoNet
 using System.Net.FtpClient;
+#endif
 using System.Text;
 
 using Android.App;

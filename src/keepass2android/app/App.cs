@@ -38,9 +38,10 @@ using TwofishCipher;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
 using keepass2android.addons.OtpKeyProv;
+#if !NoNet
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
-
+#endif
 namespace keepass2android
 {
 #if NoNet
@@ -603,11 +604,12 @@ namespace keepass2android
 				return prefs.GetBoolean(Application.Context.GetString(Resource.String.CheckForDuplicateUuids_key), true);
 			}
 		}
-
+#if !NoNet
 		public ICertificateErrorHandler CertificateErrorHandler
 		{
 			get { return new CertificateErrorHandlerImpl(this); }
 		}
+
 
 		public class CertificateErrorHandlerImpl : Java.Lang.Object, Keepass2android.Javafilestorage.ICertificateErrorHandler
 		{
@@ -641,7 +643,7 @@ namespace keepass2android
 
 			}
 		}
-
+#endif
 		private void ShowValidationWarning(string error)
 		{
 			ShowToast(Application.Context.GetString(Resource.String.CertificateWarning, error));
