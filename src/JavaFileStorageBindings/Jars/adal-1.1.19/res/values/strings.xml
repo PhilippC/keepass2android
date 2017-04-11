@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation"> 
+
+    <string name="app_loading">Loading&#8230;</string>
+    <string name="broker_processing">Broker is processing</string>
+    <string name="http_auth_dialog_username">Username</string>
+    <string name="http_auth_dialog_password">Password</string>
+    <string name="http_auth_dialog_title">Enter your credentials</string>
+    <string name="http_auth_dialog_login">Login</string>
+    <string name="http_auth_dialog_cancel">Cancel</string>
+
+</resources>

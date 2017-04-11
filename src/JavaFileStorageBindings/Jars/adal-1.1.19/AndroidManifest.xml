@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.microsoft.aad.adal"
+    android:versionCode="1"
+    android:versionName="0.1.1" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <application>
+        <activity android:name="com.microsoft.aad.adal.AuthenticationActivity" >
+        </activity>
+        
+        <receiver
+            android:name = "com.microsoft.aad.adal.ApplicationReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_INSTALL"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver> 
+    </application>
+    
+    
+
+</manifest>
