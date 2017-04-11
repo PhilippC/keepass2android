@@ -32,3 +32,6 @@
 -keep interface keepass2android.javafilestorage.** {*; }
 
 -keep interface keepass2android.javafilestorage.JavaFileStorage$FileStorageSetupActivity {*; }
+
+-dontwarn
+-ignorewarnings

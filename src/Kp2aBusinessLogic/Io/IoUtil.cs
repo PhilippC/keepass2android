@@ -10,6 +10,28 @@ namespace keepass2android.Io
 {
 	public static class IoUtil
 	{
+
+		public static bool TryTakePersistablePermissions(ContentResolver contentResolver, Android.Net.Uri uri)
+		{
+			if ((int)Build.VERSION.SdkInt >= 19)
+			{
+				//try to take persistable permissions
+				try
+				{
+					Kp2aLog.Log("TakePersistableUriPermission");
+					var takeFlags = (ActivityFlags.GrantReadUriPermission
+							| ActivityFlags.GrantWriteUriPermission);
+					contentResolver.TakePersistableUriPermission(uri, takeFlags);
+					return true;
+				}
+				catch (Exception e)
+				{
+					Kp2aLog.Log(e.ToString());
+				}
+
+			}
+			return false;
+		}
 		public static bool DeleteDir(File dir, bool contentsOnly=false)
 		{
 			if (dir != null && dir.IsDirectory)
@@ -102,5 +124,6 @@ namespace keepass2android.Io
 			else
 				return ctx.FilesDir;
 		}
+
 	}
 }
