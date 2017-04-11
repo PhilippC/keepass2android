@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.crocoapps.javafilestoragetest">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        tools:replace="android:icon"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="keepass2android.kp2afilechooser.StorageFileProvider"
+            android:authorities="keepass2android.kp2afilechooser.StorageFileProvider"
+            android:exported="false" />
+
+        <provider
+            android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider"
+            android:authorities="com.crocoapps.javafilestoragetest.android-filechooser.localfile"
+            android:exported="false" />
+
+
+        <provider
+            android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider"
+            android:authorities="com.crocoapps.javafilestoragetest.android-filechooser.history"
+            android:exported="false" />
+
+
+        <activity
+            android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="user"
+            android:theme="@style/Afc.Theme.Light" />
+
+        <activity
+            android:name="com.crocoapps.javafilestoragetest.FileStorageSetupActivity"
+            android:label="@string/title_activity_file_storage_setup" >
+        </activity>
+        <activity
+            android:name="com.dropbox.core.android.AuthActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask" >
+            <intent-filter>
+
+                <data android:scheme="db-4ybka4p4a1027n6" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+</manifest>
