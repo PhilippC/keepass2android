@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kp2aUnitTests2", "Kp2aUnitT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDavAndroid", "WebDavAndroid\WebDavAndroid.csproj", "{B6B866AF-D69C-4317-9838-51CF743E24B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamsungPass", "SamsungPass\Xamarin.SamsungPass\SamsungPass\SamsungPass.csproj", "{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -617,6 +619,24 @@ Global
 		{B6B866AF-D69C-4317-9838-51CF743E24B3}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
 		{B6B866AF-D69C-4317-9838-51CF743E24B3}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
 		{B6B866AF-D69C-4317-9838-51CF743E24B3}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Win32.ActiveCfg = Release|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|x64.ActiveCfg = Release|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Any CPU.ActiveCfg = ReleaseNoNet|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Any CPU.Build.0 = ReleaseNoNet|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Mixed Platforms.ActiveCfg = ReleaseNoNet|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Win32.ActiveCfg = ReleaseNoNet|Any CPU
+		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|x64.ActiveCfg = ReleaseNoNet|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
