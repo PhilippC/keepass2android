@@ -6,11 +6,13 @@ The current build-scripts assume that the native libraries are already built (th
 
 To build KP2A from scratch, make sure that you have Xamarin's Mono for Android installed and also install Android Studio. Make sure that both point to the same Android SDK location.
 
-Then you can use
+On Windows you can use
 
 cd build-scripts
 build-java.bat
 build-xamarin.bat
+
+build-java.bat will call gradlew for several Java modules. build-xamarin.bat will first make sure that you have all files at their place. (There is a "secret" file for Dropbox SDK keys which is not in the repo, this is replaced with a dummy file. There are also different Android Manifest files depending on the configuration which is selected by calling the appropriate script.)
 
 
 * Notes *
