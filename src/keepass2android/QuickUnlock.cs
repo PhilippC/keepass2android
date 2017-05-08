@@ -176,8 +176,15 @@ namespace keepass2android
 				};
 				_fingerprintPermissionGranted = true;
 				Kp2aLog.Log("_fingerprintPermissionGranted");
+				if (_onResumeDone)
+				{
+					//it seems the permission result is called after onResume sometimes. Repeat fingerprint unlock then.
+					InitFingerprintUnlock();	
+				}
 			}
 		}
+
+		bool _onResumeDone = false;
 
 		public void OnFingerprintError(string message)
 		{
@@ -274,7 +281,6 @@ namespace keepass2android
 					btn.Tag = GetString(Resource.String.fingerprint_unlock_failed);
 					_fingerprintIdentifier = null;
 
-					ClearFingerprintUnlockData();
 				}
 			}
 			catch (Exception e)
@@ -350,7 +356,8 @@ namespace keepass2android
 				else
 					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
 			}, 50);
-	
+
+			_onResumeDone = true;
 			
 
 
