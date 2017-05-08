@@ -200,7 +200,7 @@ namespace keepass2android
 		/// is more for one-time access, but therefore allows possibly more available sources.</param>
 		public static void ShowBrowseDialog(Activity activity, int requestCodeBrowse, bool forSaving, bool tryGetPermanentAccess)
 		{
-			var loadAction = (tryGetPermanentAccess && IsKitKatOrLater) ? 
+			var loadAction = IsKitKatOrLater ? 
 							Intent.ActionOpenDocument : Intent.ActionGetContent;
 			if ((!forSaving) && (IsIntentAvailable(activity, loadAction, "*/*", new List<string> { Intent.CategoryOpenable})))
 			{

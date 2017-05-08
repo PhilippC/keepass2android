@@ -33,6 +33,7 @@ using KeePassLib.Security;
 using Android.Content.PM;
 using System.IO;
 using System.Globalization;
+using Android.Database;
 using Android.Graphics;
 using Android.Util;
 using Debug = System.Diagnostics.Debug;
@@ -523,13 +524,20 @@ namespace keepass2android
 			String result = null;
 			if (uri.Scheme.Equals("content"))
 			{
-				var cursor = ContentResolver.Query(uri, null, null, null, null);
+				ICursor cursor = null;
+
 				try
 				{
+					cursor = ContentResolver.Query(uri, null, null, null, null);
+
 					if (cursor != null && cursor.MoveToFirst())
 					{
 						result = cursor.GetString(cursor.GetColumnIndex(OpenableColumns.DisplayName));
 					}
+				}
+				catch (Exception e)
+				{
+					Kp2aLog.Log(e.ToString());
 				}
 				finally
 				{
@@ -621,8 +629,9 @@ namespace keepass2android
 					//Android standard way to read the contents (content or file scheme)
 					vBytes = ReadFully(ContentResolver.OpenInputStream(filename));
 				}
-				catch (Exception)
+				catch (Exception ex)
 				{
+					Kp2aLog.Log(ex.ToString());
 					//if standard way fails, try to read as a file
 					vBytes = File.ReadAllBytes(filename.Path);
 				}
