@@ -187,7 +187,10 @@ namespace keepass2android
 			else
 			{
 				if (_unlockMode == FingerprintUnlockMode.FullUnlock)
-					_enc.StoreEncrypted(App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey<KcpPassword>().Password.ReadString(), CurrentPreferenceKey, edit);
+				{
+					var userKey = App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey<KcpPassword>();
+					_enc.StoreEncrypted(userKey != null ? userKey.Password.ReadString() : "", CurrentPreferenceKey, edit);
+				}
 				else
 					_enc.StoreEncrypted("QuickUnlock" /*some dummy data*/, CurrentPreferenceKey, edit);
 			}
