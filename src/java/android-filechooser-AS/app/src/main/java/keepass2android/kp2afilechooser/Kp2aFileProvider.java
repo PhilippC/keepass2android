@@ -42,7 +42,6 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
      * 
      * abstract because the concrete authority can be decided by the overriding class.
      *
-     * @param context the context.
      * @return the authority.
      */
     public abstract String getAuthority();
@@ -645,9 +644,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
      * @param ascending
      *            {@code true} or {@code false}.
      * @param sortBy
-     *            can be one of {@link BaseFile.#_SortByModificationTime},
-     *            {@link BaseFile.#_SortByName}, {@link BaseFile.#_SortBySize}.
-     * @throws Exception 
+     * @throws Exception
      */
     private void sortFiles(final int taskId, final List<FileEntry> files,
             final boolean ascending, final int sortBy) throws Exception {
@@ -804,7 +801,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
      * 
      * @param taskId
      *            the task ID.
-     * @param dir
+     * @param dirName
      *            the source directory.
      * @param showHiddenFiles
      *            {@code true} or {@code false}.

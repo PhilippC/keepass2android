@@ -54,41 +54,60 @@ public class ImeSwitcher {
 			} 
 			return;			
 		}
-		Intent qi = new Intent("com.twofortyfouram.locale.intent.action.FIRE_SETTING");
-		List<ResolveInfo> pkgAppsList = ctx.getPackageManager().queryBroadcastReceivers(qi, 0);
+		Intent swapPluginIntent = ctx.getPackageManager().getLaunchIntentForPackage("keepass2android.plugin.keyboardswap");
+		if (newImeName != null) {
+			swapPluginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			swapPluginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			swapPluginIntent.putExtra("ImeName", newImeName);
+		}
+
+
 		boolean sentBroadcast = false;
-		for (ResolveInfo ri: pkgAppsList)
+
+		if (!ctx.getPackageManager().queryIntentActivities(swapPluginIntent,0).isEmpty())
 		{
-			if (ri.activityInfo.packageName.equals(SECURE_SETTINGS_PACKAGE_NAME))
-			{
-				
-				String currentIme = android.provider.Settings.Secure.getString(
-                        ctx.getContentResolver(),
-                        android.provider.Settings.Secure.DEFAULT_INPUT_METHOD);
-				currentIme += ";"+String.valueOf(
+			Log.d(Tag, "Found keyboard swap plugin.");
+			ctx.startActivity(swapPluginIntent);
+			sentBroadcast = true;
+		}
+		else
+		{
+			Log.d(Tag, "Did not find keyboard swap plugin. Trying secure settings.");
+			Intent qi = new Intent("com.twofortyfouram.locale.intent.action.FIRE_SETTING");
+			List<ResolveInfo> pkgAppsList = ctx.getPackageManager().queryBroadcastReceivers(qi, 0);
+
+
+			for (ResolveInfo ri : pkgAppsList) {
+				if (ri.activityInfo.packageName.equals(SECURE_SETTINGS_PACKAGE_NAME)) {
+
+					String currentIme = android.provider.Settings.Secure.getString(
+							ctx.getContentResolver(),
+							android.provider.Settings.Secure.DEFAULT_INPUT_METHOD);
+					currentIme += ";" + String.valueOf(
 							android.provider.Settings.Secure.getInt(
 									ctx.getContentResolver(),
 									android.provider.Settings.Secure.SELECTED_INPUT_METHOD_SUBTYPE,
 									-1)
-								);
-				SharedPreferences prefs = ctx.getSharedPreferences(KP2A_SWITCHER, Context.MODE_PRIVATE);
-				Editor edit = prefs.edit();
-				
-				edit.putString(PREVIOUS_KEYBOARD, currentIme);
-				edit.commit();
-				
-				Intent i=new Intent("com.twofortyfouram.locale.intent.action.FIRE_SETTING");
-				Bundle b = new Bundle();
+					);
+					SharedPreferences prefs = ctx.getSharedPreferences(KP2A_SWITCHER, Context.MODE_PRIVATE);
+					Editor edit = prefs.edit();
 
-				b.putString("com.intangibleobject.securesettings.plugin.extra.BLURB", "Input Method/SwitchIME");
-				b.putString("com.intangibleobject.securesettings.plugin.extra.INPUT_METHOD", newImeName);
-				b.putString("com.intangibleobject.securesettings.plugin.extra.SETTING","default_input_method");
-				i.putExtra("com.twofortyfouram.locale.intent.extra.BUNDLE", b);
-				i.setPackage(SECURE_SETTINGS_PACKAGE_NAME);
-				Log.d(Tag,"trying to switch by broadcast to SecureSettings");
-				ctx.sendBroadcast(i);
-				sentBroadcast = true;
-				break;
+					edit.putString(PREVIOUS_KEYBOARD, currentIme);
+					edit.commit();
+
+					Intent i = new Intent("com.twofortyfouram.locale.intent.action.FIRE_SETTING");
+					Bundle b = new Bundle();
+
+					b.putString("com.intangibleobject.securesettings.plugin.extra.BLURB", "Input Method/SwitchIME");
+					b.putString("com.intangibleobject.securesettings.plugin.extra.INPUT_METHOD", newImeName);
+					b.putString("com.intangibleobject.securesettings.plugin.extra.SETTING", "default_input_method");
+					i.putExtra("com.twofortyfouram.locale.intent.extra.BUNDLE", b);
+					i.setPackage(SECURE_SETTINGS_PACKAGE_NAME);
+					Log.d(Tag, "trying to switch by broadcast to SecureSettings");
+					ctx.sendBroadcast(i);
+					sentBroadcast = true;
+					break;
+				}
 			}
 		}
 		if ((!sentBroadcast) && (!silent))
