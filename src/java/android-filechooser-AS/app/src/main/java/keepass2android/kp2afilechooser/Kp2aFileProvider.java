@@ -7,7 +7,13 @@ package keepass2android.kp2afilechooser;
 
 
 
-import java.io.File;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.MatrixCursor.RowBuilder;
+import android.net.Uri;
+import android.util.Log;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,22 +21,14 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CancellationException;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.MatrixCursor;
-import android.database.MatrixCursor.RowBuilder;
-import android.net.Uri;
-import android.support.annotation.Nullable;
-import android.util.Log;
+
 import group.pals.android.lib.ui.filechooser.R;
 import group.pals.android.lib.ui.filechooser.providers.BaseFileProviderUtils;
 import group.pals.android.lib.ui.filechooser.providers.ProviderUtils;
 import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileContract.BaseFile;
 import group.pals.android.lib.ui.filechooser.providers.basefile.BaseFileProvider;
-
 import group.pals.android.lib.ui.filechooser.utils.FileUtils;
 import group.pals.android.lib.ui.filechooser.utils.Utils;
 
@@ -220,7 +218,6 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         }
     }// query()
 
-    @Nullable
     private MatrixCursor getCheckConnectionCursor(Uri uri) {
         try
         {
