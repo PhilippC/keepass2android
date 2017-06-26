@@ -81,9 +81,7 @@ public class AutoFillService extends AccessibilityService {
     private class PasswordFieldCondition implements NodeCondition {
         @Override
         public boolean check(AccessibilityNodeInfo n) {
-            return n.isPassword() && (
-                    (n.getText() == null)
-                            || ("".equals(n.getText())));
+            return n.isPassword();
         }
     }
 
@@ -158,6 +156,7 @@ public class AutoFillService extends AccessibilityService {
                     {
                         List<AccessibilityNodeInfo> urlFields = root.findAccessibilityNodeInfosByViewId("com.android.chrome:id/url_bar");
                         url = urlFromAddressFields(urlFields, url);
+
                     }
                     else if ("com.android.browser".equals(root.getPackageName()))
                     {
@@ -165,9 +164,10 @@ public class AutoFillService extends AccessibilityService {
                         url = urlFromAddressFields(urlFields, url);
                     }
 
+                    android.util.Log.d(_logTag, "URL=" + url);
+
                     if (ExistsNodeOrChildren(root, new PasswordFieldCondition()))
                     {
-
                         if ((getLastReceivedCredentialsUser() != null) &&
                                 (Objects.equals(url, _lastSearchUrl)
                                 || isSame(getCredentialsField("URL"), url)))
