@@ -23,6 +23,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
@@ -263,6 +264,22 @@ namespace keepass2android
                 var act = fragment.Activity;
                 this._act = act;
                 this._fragment = fragment;
+				this._screen = (PreferenceScreen)_fragment.FindPreference(act.GetString(Resource.String.keyboardswitch_prefs_key));
+
+	            var keyboardSwapPref = _fragment.FindPreference("get_keyboardswap");
+	            var pm = fragment.Context.PackageManager;
+	            var intnt = Keepass2android.Kbbridge.ImeSwitcher.GetLaunchIntentForKeyboardSwap(fragment.Context);
+	            if ((intnt != null) && pm.QueryIntentActivities(intnt, 0).Any())
+	            {
+		            _screen.RemovePreference(keyboardSwapPref);
+	            }
+	            else
+	            {
+		            keyboardSwapPref.PreferenceClick += (sender, args) =>
+		            {
+						Util.GotoUrl(fragment.Context, fragment.Context.GetString(Resource.String.MarketURL) + "keepass2android.plugin.keyboardswap2");
+		            };
+	            }
 
                 _switchPref = (CheckBoxPreference)_fragment.FindPreference("kp2a_switch_rooted");
                 _openKp2aAutoPref =
@@ -272,7 +289,7 @@ namespace keepass2android
                     _fragment.FindPreference(act.GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key));
                 _switchBackPref =
                     (CheckBoxPreference)_fragment.FindPreference(act.GetString(Resource.String.AutoSwitchBackKeyboard_key));
-                _screen = (PreferenceScreen)_fragment.FindPreference(act.GetString(Resource.String.keyboardswitch_prefs_key));
+                
                 EnableSwitchPreferences(_switchPref.Checked);
 
                 _switchPref.PreferenceChange += (sender, args) =>

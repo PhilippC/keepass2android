@@ -77,9 +77,9 @@ namespace keepass2android
 
 			public int CreateNotifications(string entryName)
 			{
-				if (((int) Build.VERSION.SdkInt < 16) ||
-				    (PreferenceManager.GetDefaultSharedPreferences(_ctx)
-				                      .GetBoolean(_ctx.GetString(Resource.String.ShowSeparateNotifications_key),
+				if (((int)Build.VERSION.SdkInt < 16) ||
+					(PreferenceManager.GetDefaultSharedPreferences(_ctx)
+									  .GetBoolean(_ctx.GetString(Resource.String.ShowSeparateNotifications_key),
 												  _ctx.Resources.GetBoolean(Resource.Boolean.ShowSeparateNotifications_default))))
 				{
 					return CreateSeparateNotifications(entryName);
@@ -88,7 +88,7 @@ namespace keepass2android
 				{
 					return CreateCombinedNotification(entryName);
 				}
-				
+
 			}
 
 			private int CreateCombinedNotification(string entryName)
@@ -105,18 +105,18 @@ namespace keepass2android
 				else
 				{
 					notificationBuilder = GetNotificationBuilder(null, Resource.String.entry_is_available, Resource.Drawable.ic_launcher_gray,
-					                                   entryName);
+													   entryName);
 				}
-				
+
 				//add action buttons to base notification:
-				
+
 				if (_hasUsername)
-					notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_username, 
-						_ctx.GetString(Resource.String.menu_copy_user), 
+					notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_username,
+						_ctx.GetString(Resource.String.menu_copy_user),
 						GetPendingIntent(Intents.CopyUsername, Resource.String.menu_copy_user)));
 				if (_hasPassword)
-					notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_password, 
-						_ctx.GetString(Resource.String.menu_copy_pass), 
+					notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_password,
+						_ctx.GetString(Resource.String.menu_copy_pass),
 						GetPendingIntent(Intents.CopyPassword, Resource.String.menu_copy_pass)));
 
 				notificationBuilder.SetPriority((int)Android.App.NotificationPriority.Max);
@@ -134,7 +134,7 @@ namespace keepass2android
 				{
 					// only show notification if password is available
 					Notification password = GetNotification(Intents.CopyPassword, Resource.String.copy_password,
-					                                        Resource.Drawable.ic_action_password, entryName);
+															Resource.Drawable.ic_action_password, entryName);
 					numNotifications++;
 					password.DeleteIntent = CreateDeleteIntent(NotifyPassword);
 					_notificationManager.Notify(NotifyPassword, password);
@@ -143,7 +143,7 @@ namespace keepass2android
 				{
 					// only show notification if username is available
 					Notification username = GetNotification(Intents.CopyUsername, Resource.String.copy_username,
-					                                        Resource.Drawable.ic_action_username, entryName);
+															Resource.Drawable.ic_action_username, entryName);
 					username.DeleteIntent = CreateDeleteIntent(NotifyUsername);
 					_notificationManager.Notify(NotifyUsername, username);
 					numNotifications++;
@@ -152,7 +152,7 @@ namespace keepass2android
 				{
 					// only show notification if username is available
 					Notification keyboard = GetNotification(Intents.CheckKeyboard, Resource.String.available_through_keyboard,
-					                                        Resource.Drawable.ic_notify_keyboard, entryName);
+															Resource.Drawable.ic_notify_keyboard, entryName);
 					keyboard.DeleteIntent = CreateDeleteIntent(NotifyKeyboard);
 					_notificationManager.Notify(NotifyKeyboard, keyboard);
 					numNotifications++;
@@ -200,12 +200,12 @@ namespace keepass2android
 
 				var builder = new NotificationCompat.Builder(_ctx);
 				builder.SetSmallIcon(drawableResId)
-				       .SetContentText(desc)
-				       .SetContentTitle(entryName)
-				       .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
+					   .SetContentText(desc)
+					   .SetContentTitle(entryName)
+					   .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
 					   .SetTicker(entryName + ": " + desc)
 					   .SetVisibility((int)Android.App.NotificationVisibility.Secret)
-				       .SetContentIntent(pending);
+					   .SetContentIntent(pending);
 				return builder;
 			}
 
@@ -421,19 +421,25 @@ namespace keepass2android
 				{
 					notBuilder.AddKeyboardAccess();
 
-					if (closeAfterCreate && Keepass2android.Autofill.AutoFillService.IsAvailable && (!Keepass2android.Autofill.AutoFillService.IsRunning))
+					if (closeAfterCreate && Keepass2android.Autofill.AutoFillService.IsAvailable)
 					{
-						if (!prefs.GetBoolean("has_asked_autofillservice", false))
+						if (IsKp2aInputMethodEnabled)
 						{
-							var i = new Intent(this, typeof (ActivateAutoFillActivity));
+							ActivateKeyboardIfAppropriate(closeAfterCreate, prefs);
+						} else if (Keepass2android.Autofill.AutoFillService.IsRunning)
+						{
+							//don't do anything, service is notified
+						}
+						else //neither keyboard nor activity service are running/enabled. Ask the user what to do.
+						{
+							var i = new Intent(this, typeof(ActivateAutoFillActivity));
 							i.AddFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
 							StartActivity(i);
 							prefs.Edit().PutBoolean("has_asked_autofillservice", true).Commit();
 						}
-						else ActivateKeyboardIfAppropriate(closeAfterCreate, prefs);
 					}
 					else ActivateKeyboardIfAppropriate(closeAfterCreate, prefs);
-					
+
 				}
 
 			}
@@ -479,8 +485,8 @@ namespace keepass2android
 				//if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
 				// automatically bring up the Keyboard selection dialog
 				if ((closeAfterCreate) &&
-				    prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key),
-					    Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
+					prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key),
+						Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
 				{
 					ActivateKp2aKeyboard();
 				}
@@ -522,7 +528,7 @@ namespace keepass2android
 				Resource.String.entry_title };
 
 			//add standard fields:
-			int i=0;
+			int i = 0;
 			foreach (string key in keys)
 			{
 				String value = entry.OutputStrings.ReadSafe(key);
@@ -540,7 +546,8 @@ namespace keepass2android
 				var key = pair.Key;
 				var value = pair.Value.ReadString();
 
-				if (!PwDefs.IsStandardField(key)) {
+				if (!PwDefs.IsStandardField(key))
+				{
 					kbdataBuilder.AddString(pair.Key, pair.Key, value);
 					hasData = true;
 				}
@@ -692,25 +699,26 @@ namespace keepass2android
 								ContentResolver,
 								Android.Provider.Settings.Secure.DefaultInputMethod);
 
-			string kp2aIme = PackageName + "/keepass2android.softkeyboard.KP2AKeyboard";
+			string kp2aIme = Kp2aInputMethodName;
 
-			InputMethodManager imeManager = (InputMethodManager)ApplicationContext.GetSystemService(InputMethodService);
-			if (imeManager == null)
-			{
-				Toast.MakeText(this, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
-				return;
-			}
+
 
 			if (currentIme == kp2aIme)
 			{
+				InputMethodManager imeManager = (InputMethodManager)ApplicationContext.GetSystemService(InputMethodService);
+				if (imeManager == null)
+				{
+					Toast.MakeText(this, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
+					return;
+				}
 				imeManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.None);
 			}
 			else
 			{
 
-				IList<InputMethodInfo> inputMethodProperties = imeManager.EnabledInputMethodList;
 
-				if (!inputMethodProperties.Any(imi => imi.Id.Equals(kp2aIme)))
+
+				if (!IsKp2aInputMethodEnabled)
 				{
 					Toast.MakeText(this, Resource.String.please_activate_keyboard, ToastLength.Long).Show();
 					Intent settingsIntent = new Intent(Android.Provider.Settings.ActionInputMethodSettings);
@@ -720,13 +728,28 @@ namespace keepass2android
 				else
 				{
 #if !EXCLUDE_KEYBOARD
-	                Keepass2android.Kbbridge.ImeSwitcher.SwitchToKeyboard(this, kp2aIme, false);
+					Keepass2android.Kbbridge.ImeSwitcher.SwitchToKeyboard(this, kp2aIme, false);
 #endif
 				}
 			}
 		}
 
+		public bool IsKp2aInputMethodEnabled
+		{
+			get
+			{
+				InputMethodManager imeManager = (InputMethodManager)ApplicationContext.GetSystemService(InputMethodService);
+				if (imeManager == null)
+					return false;
+				IList<InputMethodInfo> inputMethodProperties = imeManager.EnabledInputMethodList;
+				return inputMethodProperties.Any(imi => imi.Id.Equals(Kp2aInputMethodName));
+			}
+		}
 
+		private string Kp2aInputMethodName
+		{
+			get { return PackageName + "/keepass2android.softkeyboard.KP2AKeyboard"; }
+		}
 	}
 
 	[BroadcastReceiver(Permission = "keepass2android." + AppNames.PackagePart + ".permission.CopyToClipboard")]

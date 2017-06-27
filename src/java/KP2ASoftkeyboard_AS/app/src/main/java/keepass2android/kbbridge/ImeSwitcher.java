@@ -54,8 +54,10 @@ public class ImeSwitcher {
 			} 
 			return;			
 		}
-		Intent swapPluginIntent = ctx.getPackageManager().getLaunchIntentForPackage("keepass2android.plugin.keyboardswap");
-		if (newImeName != null) {
+		Intent swapPluginIntent = getLaunchIntentForKeyboardSwap(ctx);
+
+		if ((swapPluginIntent != null) && (newImeName != null))
+		{
 			swapPluginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			swapPluginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			swapPluginIntent.putExtra("ImeName", newImeName);
@@ -64,7 +66,7 @@ public class ImeSwitcher {
 
 		boolean sentBroadcast = false;
 
-		if (!ctx.getPackageManager().queryIntentActivities(swapPluginIntent,0).isEmpty())
+		if ((swapPluginIntent != null) && (!ctx.getPackageManager().queryIntentActivities(swapPluginIntent,0).isEmpty()))
 		{
 			Log.d(Tag, "Found keyboard swap plugin.");
 			ctx.startActivity(swapPluginIntent);
@@ -115,6 +117,10 @@ public class ImeSwitcher {
 			showPicker(ctx);	
 		}
 
+	}
+
+	public static Intent getLaunchIntentForKeyboardSwap(Context ctx) {
+		return ctx.getPackageManager().getLaunchIntentForPackage("keepass2android.plugin.keyboardswap2");
 	}
 
 	private static boolean autoSwitchEnabled(Context ctx) {

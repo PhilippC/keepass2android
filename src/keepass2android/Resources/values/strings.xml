@@ -376,8 +376,10 @@
 
 	<string name="kp2a_switch_rooted">Auto-switch keyboard</string>
 	<string name="kp2a_switch_rooted_summary">Automatically switch to KP2A keyboard when entry is opened. Requires correctly prepared KeyboardSwap Plugin or a rooted device and the Secure Settings app with System+. </string>
+  <string name="get_keyboardswap">Install KeyboardSwap Plugin</string>
+  <string name="get_keyboardswap_summary">This plugin allows to switch to the KP2A keyboard without root. Requires ADB. </string>
 
-	<string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Auto-switch only after search</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Auto-switch only after search</string>
 	<string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Only automatically switch to KP2A keyboard after using the Share URL function (but not when opening an entry in another way)</string>
 
 	<string name="AutoSwitchBackKeyboard_title">Keyboard switch back</string>
@@ -680,7 +682,17 @@
   <string name="ActivateAutoFillService_btnAutoFill">Use AutoFill service</string>
   <string name="ActivateAutoFillService_toast">Please enable the Keepass2Android service.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
-  <string name="ChangeLog_1_01g">
+  <string name="ChangeLog_1_02">
+    Version 1.02\n
+    * Support for KeyboardSwapPlugin (see password access options): allows to switch input method automatically on non-rooted devices. Thanks to Mishaal Rahman from XDA-Developers to make this possible.\n
+    * Fix for Accessibility Service with recent Chrome versions\n
+    * Fix for unnecessary clearing of fingerprint data\n
+    * Fix minor crashes\n
+    * Updated build tools\n
+  </string>
+
+
+    <string name="ChangeLog_1_01g">
     Version 1.01-g\n
     * Fix for crash when trying to work offline\n
     * Fix for incorrect encoding of FTP(S) credentials\n

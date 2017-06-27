@@ -330,7 +330,12 @@
 							android:persistent="true"
 							android:defaultValue="false"
             />
-
+        
+        <Preference 
+          android:key="get_keyboardswap" 
+          		android:summary="@string/get_keyboardswap_summary"
+          android:title="@string/get_keyboardswap" 
+          />
 
 				<!-- no autoswitch on root only-->
 				<CheckBoxPreference
