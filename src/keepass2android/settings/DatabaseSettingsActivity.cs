@@ -267,8 +267,8 @@ namespace keepass2android
 				this._screen = (PreferenceScreen)_fragment.FindPreference(act.GetString(Resource.String.keyboardswitch_prefs_key));
 
 	            var keyboardSwapPref = _fragment.FindPreference("get_keyboardswap");
-	            var pm = fragment.Context.PackageManager;
-	            var intnt = Keepass2android.Kbbridge.ImeSwitcher.GetLaunchIntentForKeyboardSwap(fragment.Context);
+	            var pm = act.PackageManager;
+	            var intnt = Keepass2android.Kbbridge.ImeSwitcher.GetLaunchIntentForKeyboardSwap(act);
 	            if ((intnt != null) && pm.QueryIntentActivities(intnt, 0).Any())
 	            {
 		            _screen.RemovePreference(keyboardSwapPref);
@@ -277,7 +277,7 @@ namespace keepass2android
 	            {
 		            keyboardSwapPref.PreferenceClick += (sender, args) =>
 		            {
-						Util.GotoUrl(fragment.Context, fragment.Context.GetString(Resource.String.MarketURL) + "keepass2android.plugin.keyboardswap2");
+						Util.GotoUrl(act, act.GetString(Resource.String.MarketURL) + "keepass2android.plugin.keyboardswap2");
 		            };
 	            }
 
