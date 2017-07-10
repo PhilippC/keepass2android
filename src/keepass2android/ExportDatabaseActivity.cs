@@ -211,7 +211,12 @@ namespace keepass2android
 				
 				try
 				{
-					using (var writeTransaction =_app.GetFileStorage(_targetIoc).OpenWriteTransaction(_targetIoc, _app.GetDb().KpDatabase.UseFileTransactions))
+					var fileStorage = _app.GetFileStorage(_targetIoc);
+					if (fileStorage is IOfflineSwitchable)
+					{
+						((IOfflineSwitchable) fileStorage).IsOffline = false;
+					}
+					using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetDb().KpDatabase.UseFileTransactions))
 					{
 						Stream sOut = writeTransaction.OpenFile();
 						_fileFormat.Export(pwInfo, sOut, new NullStatusLogger());
@@ -221,6 +226,11 @@ namespace keepass2android
 						writeTransaction.CommitWrite();
 						
 					}
+					if (fileStorage is IOfflineSwitchable)
+					{
+						((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
+					}
+					
 					Finish(true);
 
 					
