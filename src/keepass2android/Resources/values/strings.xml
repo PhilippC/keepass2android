@@ -64,6 +64,7 @@
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
   <string name="ClearClipboard">Clipboard cleared.</string>
+  <string name="ClearClipboardWarning">Make sure this works on your system and consider using the built-in keyboard if not.</string>
   
   
   

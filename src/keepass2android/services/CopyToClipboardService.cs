@@ -639,7 +639,10 @@ namespace keepass2android
 					Util.CopyToClipboard(_service, "");
 					_handler.Post(() =>
 					{
-						Toast.MakeText(_service, Resource.String.ClearClipboard, ToastLength.Long).Show();
+						Toast.MakeText(_service, 
+							_service.GetString( Resource.String.ClearClipboard) + " " 
+							+ _service.GetString(Resource.String.ClearClipboardWarning), 
+							ToastLength.Long).Show();
 					});
 				}
 			}
