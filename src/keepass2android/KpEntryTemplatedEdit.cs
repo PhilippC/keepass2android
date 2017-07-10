@@ -67,6 +67,11 @@ namespace keepass2android
 		{
 			entry.Strings.Set("_etm_template_uuid", new ProtectedString(false, templateEntry.Uuid.ToHexString()));
 			entry.IconId = templateEntry.IconId;
+			entry.CustomIconUuid = templateEntry.CustomIconUuid;
+			entry.AutoType = templateEntry.AutoType.CloneDeep();
+			entry.Binaries = templateEntry.Binaries.CloneDeep();
+			entry.BackgroundColor = templateEntry.BackgroundColor;
+			entry.ForegroundColor = templateEntry.ForegroundColor;
 
 			foreach (string name in templateEntry.Strings.GetKeys())
 			{
