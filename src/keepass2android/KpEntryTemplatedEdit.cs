@@ -48,11 +48,14 @@ namespace keepass2android
 		{
 			if (entry.Strings.Exists(EtmTemplateUuid))
 			{
-				PwUuid templateUuid = new PwUuid(MemUtil.HexStringToByteArray(entry.Strings.ReadSafe(EtmTemplateUuid)));
-				return db.Entries.ContainsKey(templateUuid);
+				byte[] uuidBytes = MemUtil.HexStringToByteArray(entry.Strings.ReadSafe(EtmTemplateUuid));
+				if (uuidBytes != null)
+				{
+						PwUuid templateUuid = new PwUuid(uuidBytes);
+						return db.Entries.ContainsKey(templateUuid);
+				}
 			}
-			else
-				return false;
+			return false;
 		}
 
 		public KpEntryTemplatedEdit(Database db, PwEntry entry)
