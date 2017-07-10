@@ -35,15 +35,16 @@
         <Command type="BeforeBuild" command="UseManifestDebug.bat" />
       </CustomCommands>
     </CustomCommands>
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <BundleAssemblies>False</BundleAssemblies>
     <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <EnableProguard>true</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -70,7 +71,7 @@
     <AotAssemblies>False</AotAssemblies>
     <EnableLLVM>False</EnableLLVM>
     <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
-    <EnableProguard>False</EnableProguard>
+    <EnableProguard>true</EnableProguard>
     <DevInstrumentationEnabled>False</DevInstrumentationEnabled>
     <DebugSymbols>False</DebugSymbols>
   </PropertyGroup>
@@ -253,6 +254,7 @@
     </AndroidResource>
     <AndroidAsset Include="Assets\fontawesome-webfont.ttf" />
     <AndroidAsset Include="Assets\SourceCodePro-Regular.ttf" />
+    <ProguardConfiguration Include="proguard.cfg" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="filelist.txt">
       <Visible>False</Visible>

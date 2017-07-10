@@ -51,7 +51,7 @@ public class DropboxV2Storage extends JavaFileStorageBase
 
     }
     DbxRequestConfig requestConfig = DbxRequestConfig.newBuilder("kp2a")
-            .withHttpRequestor(OkHttp3Requestor.INSTANCE)
+            .withHttpRequestor(new OkHttp3Requestor(OkHttp3Requestor.defaultOkHttpClient()))
             .build();
 
     final static private String TAG = "KP2AJ";

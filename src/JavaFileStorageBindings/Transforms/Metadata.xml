@@ -11,6 +11,12 @@
 	<remove-node path="/api/package[@name='com.jcraft.jsch.jcraft']" />
 	<remove-node path="/api/package[@name='com.jcraft.jzlib']" />
 
+  <remove-node path="/api/package[@name='com.dropbox.core']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.util']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.http']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.sharing']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.team']" />
+
 <remove-node path="/api/package[@name='keepass2android.javafilestorage.webdav']" />
 <remove-node path="/api/package[@name='keepass2android.javafilestorage.onedrive']" />
 </metadata>

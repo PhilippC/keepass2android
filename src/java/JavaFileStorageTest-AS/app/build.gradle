@@ -29,6 +29,8 @@ android {
     }
 }
 
+apply plugin: 'com.getkeepsafe.dexcount'
+
 dependencies {
     compile project(':android-filechooser')
     compile project(':JavaFileStorage')

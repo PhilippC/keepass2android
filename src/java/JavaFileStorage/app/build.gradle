@@ -44,7 +44,7 @@ dependencies {
     compile 'com.google.apis:google-api-services-drive:v2-rev102-1.16.0-rc'
     //compile 'com.dropbox.core:dropbox-core-sdk:2.0.1'
     //compile group: 'com.dropbox.core', name: 'dropbox-core-sdk', version: '0-SNAPSHOT', changing: true
-    compile 'com.dropbox.core:dropbox-core-sdk:2.1.1'
+    compile 'com.dropbox.core:dropbox-core-sdk:3.0.3'
     //onedrive:
     compile('com.onedrive.sdk:onedrive-sdk-android:1.2+') {
         transitive = false

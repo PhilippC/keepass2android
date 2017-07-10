@@ -20,7 +20,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -96,9 +96,6 @@
     <EmbeddedReferenceJar Include="Jars\okhttp-digest-1.7.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\dropbox-core-sdk-2.1.1.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\gson-2.3.1.jar" />
   </ItemGroup>
   <ItemGroup>
@@ -160,5 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\okio-1.9.0.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedJar Include="Jars\dropbox-core-sdk-3.0.3.jar" />
   </ItemGroup>
 </Project>
