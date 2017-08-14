@@ -64,7 +64,6 @@
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
   <string name="ClearClipboard">Clipboard cleared.</string>
-  <string name="ClearClipboardWarning">Make sure this works on your system and consider using the built-in keyboard if not.</string>
   
   
   
@@ -1008,5 +1007,9 @@ Initial public release
 		<item>Warn when validation fails</item>
 		<item>Do not accept invalid certificates</item>
 	</string-array>
+
+
+  <string name="ClearClipboardWarning">Make sure this works on your system and consider using the built-in keyboard if not.</string>
+
 
 </resources>

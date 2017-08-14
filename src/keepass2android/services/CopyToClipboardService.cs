@@ -639,9 +639,11 @@ namespace keepass2android
 					Util.CopyToClipboard(_service, "");
 					_handler.Post(() =>
 					{
+						string message = _service.GetString(Resource.String.ClearClipboard) + " "
+						                 + _service.GetString(Resource.String.ClearClipboardWarning);
+						Android.Util.Log.Debug("KP2A", message);
 						Toast.MakeText(_service, 
-							_service.GetString( Resource.String.ClearClipboard) + " " 
-							+ _service.GetString(Resource.String.ClearClipboardWarning), 
+							message, 
 							ToastLength.Long).Show();
 					});
 				}
