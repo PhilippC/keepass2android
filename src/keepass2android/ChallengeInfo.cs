@@ -81,8 +81,7 @@ namespace KeeChallenge
 			{
 				sIn = App.Kp2a.GetOtpAuxFileStorage(ioc).OpenFileForRead(ioc);
 
-				XmlSerializer xs = new XmlSerializer(typeof (ChallengeInfo));
-                if (!inf.LoadStream(sIn)) return null;
+				if (!inf.LoadStream(sIn)) return null;
 			}
 			catch (Exception e)
 			{
@@ -103,7 +102,8 @@ namespace KeeChallenge
 			try
 			{
 				XmlReaderSettings settings = new XmlReaderSettings();
-				settings.CloseInput = true;                
+				settings.CloseInput = true;     
+           		settings.XmlResolver = null;
 				xml = XmlReader.Create(AuxFile,settings);
 			}
 			catch (Exception) 

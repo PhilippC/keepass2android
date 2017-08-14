@@ -3,6 +3,7 @@ using System.Xml.Serialization;
 using KeePassLib.Serialization;
 using OtpKeyProv;
 using keepass2android.Io;
+using System.Xml;
 
 namespace keepass2android.addons.OtpKeyProv
 {
@@ -38,9 +39,13 @@ namespace keepass2android.addons.OtpKeyProv
 			OtpInfo remoteOtpInfo, localOtpInfo;
 			//load both files
 			XmlSerializer xs = new XmlSerializer(typeof(OtpInfo));
+
 			using (var cacheStream = File.OpenRead(cachedFilePath))
 			{	
-				localOtpInfo = (OtpInfo) xs.Deserialize(cacheStream);	
+				XmlReaderSettings settings = new XmlReaderSettings() { XmlResolver = null, DtdProcessing = DtdProcessing.Ignore};
+				var reader = XmlReader.Create(cacheStream, settings);
+				
+				localOtpInfo = (OtpInfo) xs.Deserialize(reader);	
 			}
 			using (Stream remoteStream = _cachedStorage.OpenFileForRead(ioc))
 			{

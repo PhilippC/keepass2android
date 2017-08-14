@@ -254,7 +254,7 @@ namespace KeePassLib.Keys
 
 			try
 			{
-				XmlDocument doc = new XmlDocument();
+				XmlDocument doc = new XmlDocument() { XmlResolver = null };
 				doc.Load(ms);
 
 				XmlElement el = doc.DocumentElement;

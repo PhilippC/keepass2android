@@ -1283,7 +1283,11 @@ namespace keepass2android
 				{
 					
 					XmlSerializer xs = new XmlSerializer(typeof(OtpInfo));
-					_otpInfo = (OtpInfo)xs.Deserialize(new StringReader(otpInfoString));
+
+					XmlReaderSettings settings = new XmlReaderSettings() { XmlResolver = null, DtdProcessing = DtdProcessing.Ignore };
+					var reader = XmlReader.Create(new StringReader(otpInfoString), settings);
+				
+					_otpInfo = (OtpInfo)xs.Deserialize(reader);
 
 					var enteredOtps = savedInstanceState.GetStringArrayList(EnteredOtpsKey);
 

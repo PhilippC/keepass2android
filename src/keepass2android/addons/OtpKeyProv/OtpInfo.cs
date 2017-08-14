@@ -174,7 +174,10 @@ namespace OtpKeyProv
 				sIn = App.Kp2a.GetOtpAuxFileStorage(ioc).OpenFileForRead(ioc);
 
 				XmlSerializer xs = new XmlSerializer(typeof (OtpInfo));
-				return (OtpInfo) xs.Deserialize(sIn);
+				XmlReaderSettings settings = new XmlReaderSettings() { XmlResolver = null, DtdProcessing = DtdProcessing.Ignore };
+				var reader = XmlReader.Create(sIn, settings);
+				
+				return (OtpInfo) xs.Deserialize(reader);
 			}
 			catch (Exception e)
 			{
