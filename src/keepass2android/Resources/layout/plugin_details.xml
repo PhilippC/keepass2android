@@ -5,7 +5,7 @@
 	<LinearLayout
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:divider="?android:attr/dividerVertical"
         android:showDividers="middle"
@@ -47,6 +47,35 @@
                 android:text="@string/deny" />
 		</FrameLayout>
 	</LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/bottom_bar_scopes"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingBottom="56dp"
+      android:orientation="vertical"
+      android:divider="?android:attr/dividerVertical"
+      android:showDividers="middle"
+      android:layout_alignParentBottom="true"
+      android:dividerPadding="12dp"
+      android:baselineAligned="false">
+
+
+    <TextView
+      android:id="@+id/scopes_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/plugin_scopes"
+      android:layout_marginLeft="10dp"
+      android:layout_marginTop="18dp"
+      style="@style/ExtraFieldHeader" />
+    <LinearLayout android:id="@+id/scopes_list"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+    </LinearLayout>
+    
+  </LinearLayout>
 	<ScrollView
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -98,7 +127,15 @@
 					android:layout_height="wrap_content" />
 			</RelativeLayout>
 
-			<TextView
+      <TextView
+					android:id="@+id/txtPluginDescription"
+					android:text="@string/PluginDescription"
+					android:textSize="16dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+
+
+      <TextView
 					android:id="@+id/txtShortDesc"
 					android:text=""
 					android:textSize="14dp"
@@ -113,19 +150,6 @@
 					android:checked="true"
                  />
 
-			<TextView
-				android:id="@+id/scopes_title"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/plugin_scopes"
-				android:layout_marginLeft="10dp"
-				android:layout_marginTop="18dp"
-				style="@style/ExtraFieldHeader" />
-			<LinearLayout android:id="@+id/scopes_list"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>
 </RelativeLayout>

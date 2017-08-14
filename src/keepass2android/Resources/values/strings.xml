@@ -1010,6 +1010,6 @@ Initial public release
 
 
   <string name="ClearClipboardWarning">Make sure this works on your system and consider using the built-in keyboard if not.</string>
-
+  <string name="PluginDescription">Description provided by the plugin:</string>
 
 </resources>
