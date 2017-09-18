@@ -38,6 +38,10 @@ namespace keepass2android
 				// E.g.
 				// 'content://keepass2android.provider/Test.txt'
 				// Take this and build the path to the file
+
+				//Protect against path traversal with an uri like content://keepass2android.keepass2android.provider/..%2F..%2Fshared_prefs%2FKP2A.Plugin.keepass2android.plugin.qr.xml
+				if (uri.LastPathSegment.Contains("/"))
+					throw new Exception("invalid path ");
 				
 				String fileLocation = Context.CacheDir + File.Separator + AttachmentCacheSubDir + File.Separator
 					+ uri.LastPathSegment;

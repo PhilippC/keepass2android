@@ -45,8 +45,10 @@
     <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
     <string name="oi_filemanager_web">https://openintents.googlecode.com/files/FileManager-2.0.2.apk</string>
 	<string name="permission_desc">KP2A Internal File Browsing Permission</string>
-   
-    <!--  Preference settings -->
+  <string name="permission_desc2">KP2A Search</string>
+  
+
+  <!--  Preference settings -->
     <string name="algorithm_key">algorithm</string>
     <string name="app_key">app</string>
     <string name="app_timeout_key">app_timeout_key</string>

@@ -70,7 +70,7 @@ namespace keepass2android
 				PluginHost.TriggerRequest(this, _pluginPackageName, new PluginDatabase(this));
 				//show the buttons instead of the checkbox
 				_checkbox.Visibility = ViewStates.Invisible;
-				FindViewById(Resource.Id.accept_button).Visibility = ViewStates.Visible;
+				FindViewById(Resource.Id.accept_button).Visibility = ViewStates.Invisible; //show them only after access is requested
 				FindViewById(Resource.Id.deny_button).Visibility = ViewStates.Visible;
 
 				FindViewById(Resource.Id.accept_button).Click += delegate(object sender, EventArgs args)
@@ -86,6 +86,9 @@ namespace keepass2android
 					SetResult(Result.Canceled);
 					Finish();
 				};
+
+				//in case the plugin requested scopes previously, make sure we display them
+				UpdateView();
 			}
 			else
 			{
@@ -100,6 +103,7 @@ namespace keepass2android
 		{
 			if (args.Package == _pluginPackageName)
 			{
+				FindViewById(Resource.Id.accept_button).Visibility = ViewStates.Visible;
 				UpdateView();
 			}
 		}

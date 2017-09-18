@@ -29,7 +29,7 @@ namespace keepass2android.search
 	/// <summary>
 	/// Activity to show search results
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Permission="keepass2android."+AppNames.PackagePart+".permission.KP2aInternalSearch")]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else

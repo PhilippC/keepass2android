@@ -5,6 +5,7 @@
 			package="keepass2android.keepass2android_nonet"
 			android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
+  <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher_online" android:label="KP2A entry search" android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalSearch" android:protectionLevel="signature" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher_offline">
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.localfile" android:exported="false" />
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.history" android:exported="false" />
@@ -126,6 +127,8 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
 	<uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+  <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
+  <uses-permission android:name="keepass2android.keepass2android_debug.permission.KP2aInternalSearch" />
 	<!-- Samsung Pass permission -->
 	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
 </manifest>

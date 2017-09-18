@@ -132,7 +132,7 @@ namespace keepass2android
 				i.PutExtra(Strings.ExtraSender, _ctx.PackageName);
 				i.PutExtra(Strings.ExtraRequestToken, GetPreferencesForPlugin(pluginPackage).GetString(_requesttoken, null));
 				_ctx.SendBroadcast(i);
-				StorePlugin(pluginPackage, null, GetPluginScopes(pluginPackage));
+				StorePlugin(pluginPackage, null, new List<string>());
 			}
 		}
 
