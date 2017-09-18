@@ -444,23 +444,6 @@ namespace keepass2android
             Preference cachingPreference = FindPreference(GetString(Resource.String.UseOfflineCache_key));
             cachingPreference.PreferenceChange += OnUseOfflineCacheChanged;
 
-            try
-            {
-                
-	            var errorReportModePref = (ListPreference)FindPreference(App.PrefErrorreportmode);
-				
-#if NoNet
-				((PreferenceScreen)FindPreference(GetString(Resource.String.app_key))).RemovePreference(errorReportModePref);
-#else
-				SetupErrorReportModePref(errorReportModePref);
-#endif
-			}
-            catch (Exception ex)
-            {
-				Kp2aLog.LogUnexpectedError(ex);
-            }
-
-            
 			
         }
 
@@ -567,34 +550,6 @@ namespace keepass2android
 				
 
 	    }
-#if !NoNet
-	    private void SetupErrorReportModePref(ListPreference errorReportModePref)
-	    {
-		    errorReportModePref.SetEntries(new string[]
-		    {
-			    GetString(Resource.String.ErrorReportEnable),
-			    GetString(Resource.String.ErrorReportAsk),
-			    GetString(Resource.String.ErrorReportDisable)
-		    });
-		    var entryValues = new string[]
-		    {
-			    App.ErrorReportMode.Enabled.ToString(),
-			    App.ErrorReportMode.AskAgain.ToString(),
-			    App.ErrorReportMode.Disabled.ToString(),
-		    };
-		    errorReportModePref.SetEntryValues(entryValues);
-		    errorReportModePref.SetDefaultValue(App.ErrorReportMode.Disabled.ToString());
-		    string currentValue = PreferenceManager.GetDefaultSharedPreferences(Activity)
-			    .GetString(App.PrefErrorreportmode, App.ErrorReportMode.Disabled.ToString());
-			errorReportModePref.SetValueIndex(entryValues.Select((v, index) => new {value = v, index}).First(el => el.value == currentValue).index);
-		    errorReportModePref.PreferenceChange += (sender, args) =>
-		    {
-			    App.ErrorReportMode mode;
-			    Enum.TryParse((string) args.NewValue, out mode);
-			    App.SetErrorReportMode(Activity, mode);
-		    };
-	    }
-#endif
 	    private void PrepareTemplates(Database db)
 	    {
 			Preference pref = FindPreference("AddTemplates_pref_key");

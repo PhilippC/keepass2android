@@ -55,9 +55,6 @@
     <Reference Include="Mono.Android" />
     <Reference Include="OpenTK-1.0" />
     <Reference Include="Mono.Security" />
-    <Reference Include="Xamarin.Insights">
-      <HintPath>..\packages\Xamarin.Insights.1.11.3\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\ProtectedBinarySet.cs" />

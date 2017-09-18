@@ -185,47 +185,10 @@ namespace keepass2android
 			}
 			else
 			{
-#if !NoNet
-				var pref = PreferenceManager.GetDefaultSharedPreferences(this);
-				if ((pref.GetBoolean(App.PrefHaspendingerrorreport, false)
-					&& (App.GetErrorReportMode(this) == App.ErrorReportMode.AskAgain))
-					)
-				{
-					ShowErrorReportQuestion(LaunchNextActivity);
-				}
-				else
-					LaunchNextActivity();
-#else
 				LaunchNextActivity();
-#endif
 			}
 
 		}
-#if !NoNet
-		private void ShowErrorReportQuestion(Action launchNextActivity)
-		{
-
-			AlertDialog.Builder b = new AlertDialog.Builder(this);
-			b.SetTitle(Resource.String.ErrorReportTitle);
-			b.SetMessage(GetString(Resource.String.ErrorReportText) + " " + GetString(Resource.String.ErrorReportPromise));
-			b.SetPositiveButton(Resource.String.ErrorReportEnable, (sender, args) =>
-			{
-				App.SetErrorReportMode(this, App.ErrorReportMode.Enabled);
-				launchNextActivity();
-			});
-			b.SetNegativeButton(Resource.String.ErrorReportDisable, (sender, args) =>
-			{
-				App.SetErrorReportMode(this, App.ErrorReportMode.Disabled); 
-				launchNextActivity();
-			});
-			var dialog = b.Create();
-			dialog.SetOnDismissListener(this);
-			
-			dialog.Show();
-
-		}
-
-#endif
 		private static String SELECT_RUNTIME_PROPERTY = "persist.sys.dalvik.vm.lib";
 		private static String LIB_DALVIK = "libdvm.so";
 		private static String LIB_ART = "libart.so";

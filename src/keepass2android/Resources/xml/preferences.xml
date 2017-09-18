@@ -511,10 +511,6 @@
 				 android:key="@string/TrayTotp_SettingsField_key" />
 	</PreferenceScreen>
 		
-<ListPreference
-			  android:key="pref_ErrorReportMode"
-			  android:title="@string/ErrorReportPrefTitle"
-			  android:summary="@string/ErrorReportPromise"/>
 			
 	</PreferenceScreen>
 

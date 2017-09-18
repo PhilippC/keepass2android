@@ -843,8 +843,6 @@ namespace keepass2android
 #endif
 #endif
 	public class App : Application {
-		public const string PrefErrorreportmode = "pref_ErrorReportMode";
-		public const string PrefHaspendingerrorreport = "pref_hasPendingErrorReport";
 
 		public App (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -852,13 +850,6 @@ namespace keepass2android
 		}
 
         public static readonly Kp2aApp Kp2a = new Kp2aApp();
-
-		public enum ErrorReportMode
-		{
-			AskAgain=0,
-			Disabled=1,
-			Enabled=2
-		}
         
 		public override void OnCreate() {
 			base.OnCreate();
@@ -867,33 +858,6 @@ namespace keepass2android
 
             Kp2a.OnCreate(this);
 			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
-#if !NoNet
-			Kp2aLog.OnUnexpectedError += (sender, exception) =>
-			{
-				var currentErrorReportMode = GetErrorReportMode(ApplicationContext);
-				if (currentErrorReportMode != ErrorReportMode.Disabled)
-				{
-					Xamarin.Insights.Report(exception);
-					if (Xamarin.Insights.DisableDataTransmission)
-					{
-						PreferenceManager.GetDefaultSharedPreferences(ApplicationContext)
-							.Edit().PutBoolean(PrefHaspendingerrorreport, true).Commit();
-					}
-				}
-			};
-			Xamarin.Insights.Initialize("fed2b273ed2a964d0ba6acc3743e68f7a04da957", ApplicationContext);
-			Xamarin.Insights.DisableExceptionCatching = true;
-			var errorReportMode = GetErrorReportMode(ApplicationContext);
-			SetErrorReportMode(ApplicationContext, errorReportMode);
-#endif
-		}
-
-		public static ErrorReportMode GetErrorReportMode(Context ctx)
-		{
-			ErrorReportMode errorReportMode;
-			Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(ctx)
-				.GetString(PrefErrorreportmode, ErrorReportMode.AskAgain.ToString()), out errorReportMode);
-			return errorReportMode;
 		}
 
 
@@ -905,42 +869,11 @@ namespace keepass2android
             Kp2a.OnTerminate();
 		}
 
-#if !NoNet
-		void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
-		{
-			Kp2aLog.LogUnexpectedError(e.Exception);
-			Xamarin.Insights.Save();
-			// Do your error handling here.
-			//throw e.Exception;
-		}
-		protected override void Dispose(bool disposing)
-		{
-			AndroidEnvironment.UnhandledExceptionRaiser -= MyApp_UnhandledExceptionHandler;
-			base.Dispose(disposing);
-		}
-
-		public static void SetErrorReportMode(Context ctx, ErrorReportMode mode)
-		{
-			Xamarin.Insights.DisableCollection = (mode == ErrorReportMode.Disabled);
-			Xamarin.Insights.DisableDataTransmission = mode != ErrorReportMode.Enabled;
-
-			var pref = PreferenceManager.GetDefaultSharedPreferences(ctx); 
-			var edit = pref.Edit();
-			if (mode != ErrorReportMode.AskAgain)
-			{
-				edit.PutBoolean(PrefHaspendingerrorreport, false);	
-			}
-			edit.PutString(PrefErrorreportmode, mode.ToString());
-			edit.Commit();
-
-
-		}
-#else
 		private void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
 		{
 			Kp2aLog.LogUnexpectedError(e.Exception);
 		}
-#endif
+
 	}
 
 }
