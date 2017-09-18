@@ -52,11 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\java\KP2ASoftkeyboard_AS\app\build\outputs\aar\app-debug.aar">
-      <Link>Jars\app-debug.aar</Link>
-    </LibraryProjectZip>
     <None Include="Additions\AboutAdditions.txt" />
     <None Include="Jars\AboutJars.txt" />
+    <LibraryProjectZip Include="Jars\KP2ASoftKeyboard-debug.aar" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\EnumFields.xml" />
