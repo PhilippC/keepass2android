@@ -684,10 +684,13 @@
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
   <string name="ChangeLog_1_02">
     Version 1.02\n
+    * Several security improvements\n
     * Support for KeyboardSwapPlugin (see password access options): allows to switch input method automatically on non-rooted devices. Thanks to Mishaal Rahman from XDA-Developers to make this possible.\n
     * Fix for Accessibility Service with recent Chrome versions\n
     * Fix for unnecessary clearing of fingerprint data\n
     * Fix minor crashes\n
+    * Updated Dropbox SDK to ensure future compatibility\n
+    * Removed error reporting through Xamarin Insights\n
     * Updated build tools\n
   </string>
 
