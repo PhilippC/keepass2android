@@ -1,10 +1,10 @@
 cd ..\java\JavaFileStorageTest-AS
-gradlew assemble
+call gradlew assemble
 
 cd ..\KP2ASoftkeyboard_AS
-gradlew assemble
+call gradlew assemble
 
 cd ..\Keepass2AndroidPluginSDK2
-gradlew assemble
+call gradlew assemble
 
 cd ..\..\build-scripts
