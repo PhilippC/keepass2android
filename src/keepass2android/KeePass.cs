@@ -131,29 +131,7 @@ namespace keepass2android
 			Kp2aLog.Log("KeePass.OnStart");
 
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-			/*if (GetCurrentRuntimeValue().StartsWith("ART"))
-			{
-				
-				if (!prefs.GetBoolean("ART_WARNING", false))
-				{
-
-					ISharedPreferencesEditor edit = prefs.Edit();
-					edit.PutBoolean("ART_WARNING", true);
-					EditorCompat.Apply(edit);
-
-					new AlertDialog.Builder(this)
-					.SetTitle("Warning")
-					.SetMessage(
-						//"It looks like you are running ART (Android Runtime). Please note: At the time of this app's release, Google says ART is experimental. And indeed, the early releases of ART (e.g. in Android 4.4, 4.4.1 and 4.4.2) contain a bug which causes crashes in Mono for Android apps including Keepass2Android. This bug was fixed after the 4.4.2 release so if you have a later Android release, you might be able to use this app. If not, please switch to Dalvik. Please do not downrate Keepass2Android for this problem, it's not our bug :-). Thanks! See our website (keepass2android.codeplex.com) for more information on this issue.")
-						"It looks like you are running ART (Android Runtime). Please note: At the time of this app's release, this app does not run completely stable with ART. I am waiting for more fixes regarding ART from the makers of Mono for Android. As ART is still not yet meant for every-day use, please do not down rate KP2A for this. Thanks.")
-					.SetPositiveButton("OK", (sender, args) => LaunchNextActivity())
-					.Create()
-					.Show();
-
-					return;
-				}
-				
-			}*/
+		
 
 			
 			bool showChangeLog = false;

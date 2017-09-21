@@ -644,7 +644,7 @@
 		
   
   
-	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on Codeplex or by email).</string>
+	<string name="PreviewWarning">Please note! This is a preview release and might come with some flaws! If you experience *anything* unexpected, please let me know (on the Google+ beta tester group or by email).</string>
   
 	<string name="Continue">Continue</string>
 	<string name="NoFilenameWarning">The URI you have entered does not look like a filename. Are you sure this is a valid file?</string>
@@ -684,7 +684,7 @@
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
   <string name="ChangeLog_1_02">
     Version 1.02\n
-    * Several security improvements\n
+    * Several security improvements. Thanks a lot for the security report by jean-baptiste.cayrou@thalesgroup.com and vincent.fargues@thalesgroup.com and for their collaboration!\n
     * Support for KeyboardSwapPlugin (see password access options): allows to switch input method automatically on non-rooted devices. Thanks to Mishaal Rahman from XDA-Developers to make this possible.\n
     * Fix for Accessibility Service with recent Chrome versions\n
     * Fix for unnecessary clearing of fingerprint data\n
