@@ -58,14 +58,14 @@ Assume you want to create an account on a website. If you do not have a database
 * If the user name you entered is not available or valid, choose a different one but copy it to clipboard. After creating the account, don't forget to update the new entry.
 
 # Keepass2Android vs Keepass2Android Offline vs Keepassdroid
-What's the difference between these apps? There is a short comparison on [Comparison of Keepass apps for Android](Comparison of-Keepass apps for Android.md) to help you pick the best for you!
+What's the difference between these apps? There is a short comparison on [Comparison of Keepass apps for Android](Comparison-of-Keepass-apps-for-Android.md) to help you pick the best for you!
 
 # Advanced topics
 ## YubiKey NEO support for One-Time-Passwords
-Please see the [How to use Keepass2Android with YubiKey NEO](How to use Keepass2Android with YubiKey NEO.md) page.
+Please see the [How to use Keepass2Android with YubiKey NEO](How-to-use-Keepass2Android-with-YubiKey-NEO.md) page.
 
 ## Advanced usage of the Keepass2Android keyboard
-Please see the [Advanced usage of the Keepass2Android keyboard](Advanced usage of the Keepass2Android keyboard.md) page.
+Please see the [Advanced usage of the Keepass2Android keyboard](Advanced-usage-of-the-Keepass2Android-keyboard.md) page.
 
 # FAQ
 
@@ -77,8 +77,8 @@ The KP2A keyboard is meant to quickly "paste" or "type" values from your databas
 While it may happen that someone gets access to your kdbx file in the cloud, there is still no need to worry: the purpose of encryption is to protect the data even in case someone gets the kdbx file! As long as you are using a safe master key, you're safe!
 
 * Why is Keepass2Android so big?
-Please see [Keepass2Android Apk](Keepass2Android Apk.md) for more information.
+Please see [Keepass2Android Apk](Keepass2Android-Apk.md) for more information.
 
 # For developers
 If you are interested in adding new features, you have two options:
-Either your features can be implemented as a plug-in. Please see [How to create a plug-in?](How to create a plug-in_.md) for more information. Or you add the features directly in the source code of the projects and create a pull request.
+Either your features can be implemented as a plug-in. Please see [How to create a plug-in?](How-to-create-a-plug-in_.md) for more information. Or you add the features directly in the source code of the projects and create a pull request.
