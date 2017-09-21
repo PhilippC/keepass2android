@@ -14,4 +14,4 @@ Beta-releases can be obtained by opting in to the [Beta testing channel](https:/
 * [Make a donation](http://philipp.crocoll.net/donate.php)
 
 # How do I learn more?
-Please see the [documentation](Documentation).
+Please see the [documentation](Documentation.md).

@@ -31,10 +31,14 @@ There are many ways how to enter the passwords from your database in the corresp
 * The clipboard based approach can be used as well: Pull the notification bar down and select "Copy username/password to clipboard". Then long-tap the field where you want to paste the data. A small "paste" button should come up. Note, however, that information in the clipboard can be monitored by all apps on your device.
 
 These options can be used in different workflows:
-# Browser-based workflow: If you are browsing the web and need to enter crendentials for a webpage, a simple and powerful workflow is to use the "Share URL" option from the browser's menu. Then select Keepass2Android (or KP2A Offline). Open your database (if it's not already opened) and select the entry you want to enter (if KP2A did not already select the appropriate entry). Use the built-in keyboard or the clipboard to enter the password.
-# Autofill service based workflow: If you have enabled the autofill service and open a (supported) app with a password field, a notification appears in the notification bar. Select this notification to select the appropriate entry. When you return to the app, the password and user field should be filled already.
-# KP2A based workflow for websites: Open KP2A, open your database, select your entry (in this step, the notification bar items should show up already). Now click the URL link of the entry to open a browser window with the website. Use one of the methods described above to enter the credentials. 
-# KP2A Keyboard based workflow: When you are in a text field, you can use the Android icon in the notification bar to switch to the KP2A keyboard. Hit the KP2A key to select an icon. After it's selected, hit the KP2A key again to enter the desired field.
+### Browser-based workflow
+If you are browsing the web and need to enter crendentials for a webpage, a simple and powerful workflow is to use the "Share URL" option from the browser's menu. Then select Keepass2Android (or KP2A Offline). Open your database (if it's not already opened) and select the entry you want to enter (if KP2A did not already select the appropriate entry). Use the built-in keyboard or the clipboard to enter the password.
+### Autofill service based workflow
+If you have enabled the autofill service and open a (supported) app with a password field, a notification appears in the notification bar. Select this notification to select the appropriate entry. When you return to the app, the password and user field should be filled already.
+### KP2A based workflow for websites
+Open KP2A, open your database, select your entry (in this step, the notification bar items should show up already). Now click the URL link of the entry to open a browser window with the website. Use one of the methods described above to enter the credentials. 
+### KP2A Keyboard based workflow
+When you are in a text field, you can use the Android icon in the notification bar to switch to the KP2A keyboard. Hit the KP2A key to select an icon. After it's selected, hit the KP2A key again to enter the desired field.
 
 ## Creating a new account
 Assume you want to create an account on a website. If you do not have a database yet, see above. As soon as you have a database, you may proceed as follows:
@@ -54,14 +58,14 @@ Assume you want to create an account on a website. If you do not have a database
 * If the user name you entered is not available or valid, choose a different one but copy it to clipboard. After creating the account, don't forget to update the new entry.
 
 # Keepass2Android vs Keepass2Android Offline vs Keepassdroid
-What's the difference between these apps? There is a short comparison on [Comparison of Keepass apps for Android](Comparison-of-Keepass-apps-for-Android) to help you pick the best for you!
+What's the difference between these apps? There is a short comparison on [Comparison of Keepass apps for Android](Comparison of-Keepass apps for Android.md) to help you pick the best for you!
 
 # Advanced topics
 ## YubiKey NEO support for One-Time-Passwords
-Please see the [How to use Keepass2Android with YubiKey NEO](How-to-use-Keepass2Android-with-YubiKey-NEO) page.
+Please see the [How to use Keepass2Android with YubiKey NEO](How to use Keepass2Android with YubiKey NEO.md) page.
 
 ## Advanced usage of the Keepass2Android keyboard
-Please see the [Advanced usage of the Keepass2Android keyboard](Advanced-usage-of-the-Keepass2Android-keyboard) page.
+Please see the [Advanced usage of the Keepass2Android keyboard](Advanced usage of the Keepass2Android keyboard.md) page.
 
 # FAQ
 
@@ -73,8 +77,8 @@ The KP2A keyboard is meant to quickly "paste" or "type" values from your databas
 While it may happen that someone gets access to your kdbx file in the cloud, there is still no need to worry: the purpose of encryption is to protect the data even in case someone gets the kdbx file! As long as you are using a safe master key, you're safe!
 
 * Why is Keepass2Android so big?
-Please see [Keepass2Android Apk](Keepass2Android-Apk) for more information.
+Please see [Keepass2Android Apk](Keepass2Android Apk.md) for more information.
 
 # For developers
 If you are interested in adding new features, you have two options:
-Either your features can be implemented as a plug-in. Please see [How to create a plug-in?](How-to-create-a-plug-in_) for more information. Or you add the features directly in the source code of the projects and create a pull request.
+Either your features can be implemented as a plug-in. Please see [How to create a plug-in?](How to create a plug-in_.md) for more information. Or you add the features directly in the source code of the projects and create a pull request.
