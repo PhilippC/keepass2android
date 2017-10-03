@@ -223,6 +223,7 @@ namespace keepass2android
 		private bool InitFingerprintUnlock()
 		{
 			Kp2aLog.Log("InitFingerprintUnlock");
+
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 			try
 			{
@@ -232,6 +233,7 @@ namespace keepass2android
 
 				if (um == FingerprintUnlockMode.Disabled)
 				{
+					_fingerprintIdentifier = null;
 					return false;
 				}
 
@@ -242,7 +244,6 @@ namespace keepass2android
 					if (fpModule.FingerprintManager.IsHardwareDetected) //see FingerprintSetupActivity
 						_fingerprintIdentifier = new FingerprintDecryption(fpModule, App.Kp2a.GetDb().CurrentFingerprintPrefKey, this,
 							App.Kp2a.GetDb().CurrentFingerprintPrefKey);
-					else _fingerprintIdentifier = null; //force re-init Samsung
 				}
 				if (_fingerprintIdentifier == null)
 				{
@@ -261,6 +262,7 @@ namespace keepass2android
 					{
 						Kp2aLog.Log("trying Samsung Fingerprint API...failed.");
 						FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
+						_fingerprintIdentifier = null;
 						return false;	
 					}
 				}
@@ -374,6 +376,7 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("FP: Stop listening");
 				_fingerprintIdentifier.StopListening();
+				_fingerprintIdentifier = null;
 			}
 
 			base.OnPause();
