@@ -224,6 +224,13 @@ namespace keepass2android
 		{
 			Kp2aLog.Log("InitFingerprintUnlock");
 
+			if (_fingerprintIdentifier != null)
+			{
+				Kp2aLog.Log("Already listening for fingerprint!");
+				return true;
+			}
+
+
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 			try
 			{
