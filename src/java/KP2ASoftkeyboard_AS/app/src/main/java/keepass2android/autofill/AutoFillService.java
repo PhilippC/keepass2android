@@ -69,12 +69,19 @@ public class AutoFillService extends AccessibilityService {
         }
     }
 
+    boolean isLauncherPackage(CharSequence packageName)
+    {
+        return "com.android.systemui".equals(packageName)
+                || "com.android.launcher3".equals(packageName);
+    }
+
     @TargetApi(21)
     class SystemUiCondition implements NodeCondition
     {
         @Override
         public boolean check(AccessibilityNodeInfo n) {
-            return (n.getViewIdResourceName() != null) && (n.getViewIdResourceName().startsWith("com.android.systemui"));
+            return (n.getViewIdResourceName() != null) && (
+                    (n.getViewIdResourceName().startsWith("com.android.systemui")) || (n.getViewIdResourceName().startsWith("com.android.launcher3")));
         }
     }
 
@@ -127,14 +134,14 @@ public class AutoFillService extends AccessibilityService {
             {
                 CharSequence packageName = event.getPackageName();
                 android.util.Log.d(_logTag, "event: " + event.getEventType() + ", package = " + packageName);
-                if ( "com.android.systemui".equals(event.getPackageName()) )
+                if ( isLauncherPackage(event.getPackageName()) )
                 {
                     android.util.Log.d(_logTag, "return.");
                     return; //avoid that the notification is cancelled when pulling down notif drawer
                 }
                 else
                 {
-                    android.util.Log.d(_logTag, "no com.android.systemui");
+                    android.util.Log.d(_logTag, "event package is no launcher");
                 }
 
                 if ((packageName != null)
@@ -145,6 +152,17 @@ public class AutoFillService extends AccessibilityService {
                 }
 
                 AccessibilityNodeInfo root = getRootInActiveWindow();
+
+                if ( isLauncherPackage(root.getPackageName()) )
+                {
+                    android.util.Log.d(_logTag, "return, root is from launcher.");
+                    return; //avoid that the notification is cancelled when pulling down notif drawer
+                }
+                else
+                {
+                    android.util.Log.d(_logTag, "root package is no launcher");
+                }
+
                 int eventWindowId = event.getWindowId();
                 if ((ExistsNodeOrChildren(root, new WindowIdCondition(eventWindowId)) && !ExistsNodeOrChildren(root, new SystemUiCondition())))
                 {
@@ -157,6 +175,11 @@ public class AutoFillService extends AccessibilityService {
                         List<AccessibilityNodeInfo> urlFields = root.findAccessibilityNodeInfosByViewId("com.android.chrome:id/url_bar");
                         url = urlFromAddressFields(urlFields, url);
 
+                    }
+                    else if (packageName == "com.sec.android.app.sbrowser")
+                    {
+                        List<AccessibilityNodeInfo> urlFields = root.findAccessibilityNodeInfosByViewId("com.sec.android.app.sbrowser:id/location_bar_edit_text");
+                        url = urlFromAddressFields(urlFields, url);
                     }
                     else if ("com.android.browser".equals(root.getPackageName()))
                     {
