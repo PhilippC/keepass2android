@@ -34,6 +34,7 @@ using Android.Content.PM;
 using Android.Webkit;
 using Android.Graphics;
 using Java.IO;
+using keepass2android.EntryActivityClasses;
 using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Utility;
@@ -623,6 +624,7 @@ namespace keepass2android
 				var itemList = RegisterPopup(popupKey, valueViewContainer, valueViewContainer.FindViewById(Resource.Id.extra_vdots));
 				itemList.Add(new WriteBinaryToFilePopupItem(key, this));
 				itemList.Add(new OpenBinaryPopupItem(key, this));
+				itemList.Add(new ViewImagePopupItem(key, this));
 
 
 
@@ -1114,6 +1116,20 @@ namespace keepass2android
 						);
 				},
 				null, timeToWait, TimeSpan.FromMilliseconds(-1));
+		}
+
+		public void ShowAttachedImage(string key)
+		{
+			ProtectedBinary pb = Entry.Binaries.Get(key);
+			System.Diagnostics.Debug.Assert(pb != null);
+			if (pb == null)
+				throw new ArgumentException();
+			byte[] pbData = pb.ReadData();		
+
+			Intent imageViewerIntent = new Intent(this, typeof(ImageViewActivity));
+			imageViewerIntent.PutExtra("EntryId", Entry.Uuid.ToHexString());
+			imageViewerIntent.PutExtra("EntryKey", key);
+			StartActivity(imageViewerIntent);
 		}
 	}
 }
