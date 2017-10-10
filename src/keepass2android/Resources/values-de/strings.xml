@@ -507,7 +507,6 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="CopyFileRequired">Um sie zu benutzen, musst sie an einen anderen Speicherort kopiert werden.</string>
   <string name="CopyFileRequiredForEditing">Um sie zu bearbeiten, muss sie an einen anderen Speicherort kopiert werden.</string>
   <string name="ClickOkToSelectLocation">Wähle OK, um einen Zielort zum Kopieren zu wählen.</string>
-  <string name="CancelReadOnly">Abbrechen, nur lesend öffnen.</string>
   <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android hat die Datenbank im Lese-Modus geöffnet.</string>
   <string name="ReadOnlyReason_PreKitKat">Es scheint als hättest du die Datei über eine externe App geöffnet. Diese Vorgehensweise unterstützt keinen Schreibzugriff. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne dann die Datei mit einer der angebotenen Optionen.</string>

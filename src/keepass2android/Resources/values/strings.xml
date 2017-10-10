@@ -99,12 +99,8 @@
   <string name="fingerprint_disabled_wrong_masterkey">Unlocking the database failed: Invalid composite key. Fingerprint Unlock was disabled because apparently the stored master password is no longer valid. Please unlock with your password and then re-enabled Fingerprint Unlock in the database settings.</string>
   <string name="fingerprint_reenable">Please re-enable Fingerprint Unlock for the new master password.</string>
 
-  <string name="enable_fingerprint_unlock_Info">
-    This will store your master password on this device,
-    encrypted with the Android Keystore and protected
-    using fingerprint authentication. Allows to unlock your database only with your fingerprint.
-  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Allows to use fingerprint authentication instead of the QuickUnlock code. Does not require to store any information related to your master password.</string>
+  <string name="enable_fingerprint_unlock_Info">This will store your master password on this device, encrypted with the Android Keystore and protected using fingerprint authentication. Allows to unlock your database only with your fingerprint.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Allows to use fingerprint authentication instead of the QuickUnlock code. Does not store any information related to your master password.</string>
 
   <string name="enter_filename">Enter database filename</string>
   <string name="entry_accessed">Accessed</string>
