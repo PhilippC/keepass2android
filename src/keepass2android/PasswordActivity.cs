@@ -111,7 +111,7 @@ namespace keepass2android
 		private const int RequestCodeSelectAuxFile = 1005;
 
 
-		private Task<MemoryStream> _loadDbTask;
+		private Task<MemoryStream> _loadDbFileTask;
 		private bool _loadDbTaskOffline; //indicate if preloading was started with offline mode
 
 		private IOConnectionInfo _ioConnection;
@@ -303,8 +303,8 @@ namespace keepass2android
 						Handler handler = new Handler();
 						OnFinish onFinish = new AfterLoad(handler, this);
 						_performingLoad = true;
-						LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish);
-						_loadDbTask = null; // prevent accidental re-use
+						LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider, onFinish);
+						_loadDbFileTask = null; // prevent accidental re-use
 						new ProgressTask(App.Kp2a, this, task).Run();
 					}
 					
@@ -1403,15 +1403,15 @@ namespace keepass2android
 
 			if (App.Kp2a.OfflineMode != _loadDbTaskOffline)
 			{
-				if (_loadDbTask == null)
-					throw new NullPointerException("_loadDbTask");
+				if (_loadDbFileTask == null)
+					throw new NullPointerException("_loadDbFileTask");
 				if (App.Kp2a == null)
 					throw new NullPointerException("App.Kp2a");
 				//keep the loading result if we loaded in online-mode (now offline) and the task is completed
-				if (!App.Kp2a.OfflineMode || !_loadDbTask.IsCompleted)
+				if (!App.Kp2a.OfflineMode || !_loadDbFileTask.IsCompleted)
 				{
 					//discard the pre-loading task
-					_loadDbTask = null;	
+					_loadDbFileTask = null;	
 				}
 				
 			}
@@ -1426,10 +1426,10 @@ namespace keepass2android
 				OnFinish onFinish = new AfterLoad(handler, this);
 				_performingLoad = true;
 				LoadDb task = (KeyProviderType == KeyProviders.Otp)
-					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider,
+					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider,
 						onFinish, this)
-					: new LoadDb(App.Kp2a, _ioConnection, _loadDbTask, compositeKey, _keyFileOrProvider, onFinish);
-				_loadDbTask = null; // prevent accidental re-use
+					: new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider, onFinish);
+				_loadDbFileTask = null; // prevent accidental re-use
 
 				SetNewDefaultFile();
 
@@ -1776,7 +1776,7 @@ namespace keepass2android
 			}
 
 			//use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
-			//use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbTask to exist when we reload later!)
+			//use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
 			if ( !IsFinishing && !_performingLoad)  
 			{
 				if (App.Kp2a.DatabaseIsUnlocked)
@@ -1802,10 +1802,10 @@ namespace keepass2android
 						//database not yet loaded.
 
 						//check if pre-loading is enabled but wasn't started yet:
-						if (_loadDbTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+						if (_loadDbFileTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
 						{
 							// Create task to kick off file loading while the user enters the password
-							_loadDbTask = Task.Factory.StartNew<MemoryStream>(PreloadDbFile);
+							_loadDbFileTask = Task.Factory.StartNew<MemoryStream>(PreloadDbFile);
 							_loadDbTaskOffline = App.Kp2a.OfflineMode;
 						}
 					}
