@@ -88,6 +88,10 @@
   <string name="enable_fingerprint_quickunlock">Включи Отключване с Пръстов Отпечатък при Бързо Отключване</string>
   <string name="fingerprint_unlock_hint">Докоснете сензора за отключване на базата данни</string>
   <string name="fingerprint_unlock_failed">Отключване с Пръстов Отпечатък се провали: Ключът беше отхвърлен от Андроид състемата. Това обикновено се случва когато нов пръстов отпечатък е добавен или има промняна в настройките. Моля отключете с вашата парола и след това включете Отключване с Пръстов Отпечатък отново през настройките за база данни.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Отключването на базата данни е неуспешно: грешен композитен ключ. Отключването с пръстов отпечатък е изключено, понеже съхранената главна парола вече е не е валидна. Моля отключете с вашата парола и отново включете пръстовия отпечатък в настройките.</string>
+  <string name="fingerprint_reenable">Моля активирайте повторно отключването с пръстов отпечатък за новата главна парола.</string>
+  <string name="enable_fingerprint_unlock_Info">
+Това ще запише вашата главна парола криптирана с Android Keystore и защитена с пръстовия ви отпечатък. Можете да отключите само с вашия отпечатък.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Позволява да използвате пръстов отпечатък вместо QuickUnlock код. Не изисква да запазва каквато и да е информация свързана с вашата главна парола.</string>
   <string name="enter_filename">Въведете име на файла на базаданни</string>
   <string name="entry_accessed">Достъп до</string>
@@ -124,6 +128,7 @@
   <string name="error_pass_gen_type">Трябва да бъде избран поне един вид генератор за парола</string>
   <string name="error_pass_match">Паролите не съвпадат.</string>
   <string name="error_rounds_not_number">Кръга трябва да бъде число.</string>
+  <string name="error_param_not_number">Въведения параметър трябва да бъде число.</string>
   <string name="error_title_required">Изисква се заглавие.</string>
   <string name="error_wrong_length">Въведете положително число в полето \"дължина\"</string>
   <string name="FileNotFound">Файлът не е намерен.</string>
@@ -320,15 +325,18 @@
   <string name="ShowSeparateNotifications_summary">Показвай отделни съобщения за копиране на потребителско име и парола към clipboard и активиране от клавиатурата.</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Превключване на клавиатурата</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Отвори диалог за избор на клавиатура когато стойност е налична през KP2A клавиатура след търсене от браузъра.</string>
-  <string name="kp2a_switch_rooted">Автоматично превключване при рутнати устройства</string>
-  <string name="kp2a_switch_rooted_summary">Автоматично превключване към KP2A клавиатура, когато записът е отворен. Изисква рут достъп и Secure Settings приложение със System+. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Автоматично превключване само след търсене</string>
+  <string name="ShowUnlockedNotification_summary">Показвай иконка за уведомяване когато базата данни е отключена.</string>
+  <string name="PreloadDatabaseEnabled_title">Презарежда файла с базата данни</string>
   <string name="AskOverwriteBinary_yes">Презаписване</string>
   <string name="AskOverwriteBinary_no">Преименувай</string>
   <string name="AttachFailed">Неуспешно добавяне на прикачен файл.</string>
   <string name="RecycleBin">Кошче</string>
   <string name="AskDeletePermanentlyEntry">Искате ли да изтриете този елемент окончателно? Натиснете не за рециклиране.</string>
   <string name="AskDeletePermanentlyGroup">Искате ли да изтриете този елемент окончателно? Натиснете не за рециклиране.</string>
+  <string name="AskDeletePermanentlyItems">Искате ли да изтриете избрания елемент завинаги? Натиснете Не за възстановяване.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Искате ли да изтриете избрания елемент завинаги?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Искате ли да изтриете тази група завинаги?</string>
   <string name="AskDeletePermanently_title">Изтриване завинаги?</string>
   <string name="AskReloadFile_title">Презареди файла?</string>
   <string name="AskReloadFile">Файла който е отворен в момента е променен от друга програма. Искате ли да го презареди?</string>
@@ -343,7 +351,13 @@
   <string name="SettingPassword">Задаване на парола&#8230;</string>
   <string name="UndoingChanges">Отмяна на промените&#8230;</string>
   <string name="DecodingDatabase">Декодиране на базата данни&#8230;</string>
+  <string name="TitleSyncQuestion">Обедини и съхрани промените?</string>
   <string name="MessageSyncQuestion">Файлът на базата данни беше променен външно. Искате ли да заредите и да обедините промените преди записване? Изберете \"не\" ако искате да замените външните промени.</string>
+  <string name="SynchronizingDatabase">Добавя промените&#8230;</string>
+  <string name="NoOverwrite">Не, презапиши</string>
+  <string name="UseOfflineMode">Работа офлайн</string>
+  <string name="UseOnlineMode">Работа онлайн</string>
+  <string name="SynchronizedDatabaseSuccessfully">Базата данни е синхронизирана успешно!</string>
   <string name="DuplicateUuidsError">Базата данни е повредена: дубликат идентификатори намерени. (Знаете запишете с Minikeepass?) Моля да импортирате отново в нова база данни с Keepass 2 за PC и изберете \"Създай нов ИД\".</string>
   <string name="DuplicateUuidsErrorAdditional">Можете да забраните това съобщение за грешка в приложението настройки/настройки/файл обработка/проверка за дублирани UUID. Моля, обърнете внимание, че е възможно да имате неочаквано поведение. Препоръчително е да се определи на базата данни.</string>
   <string name="synchronize_database_menu">Синхронизиране на базата данни...</string>

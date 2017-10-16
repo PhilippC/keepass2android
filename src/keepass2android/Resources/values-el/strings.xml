@@ -336,8 +336,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">Κάντε προσβάσιμη την πλήρη καταχώριση μέσω του πληκτρολογίου KP2A και της υπηρεσίας αυτόματης συμπλήρωσης (συνιστάται).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Εναλλαγή πληκτρολογίου</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Ανοίξτε το διάλογο επιλογής πληκτρολογίου όταν είναι διαθέσιμη είσοδος μέσω του πληκτρολογίου KP2A μετά από αναζήτηση από το πρόγραμμα περιήγησης.</string>
-  <string name="kp2a_switch_rooted">Αυτόματη εναλλαγή σε συσκευές root</string>
-  <string name="kp2a_switch_rooted_summary">Αυτόματη εναλλαγή σε πληκτρολόγιο KP2A. Απαιτεί root και την εφαρμογή Secure Settings με System+. </string>
+  <string name="kp2a_switch_rooted">Αυτόματη εναλλαγή πληκτρολογίου</string>
+  <string name="kp2a_switch_rooted_summary">Αυτόματη αλλαγή στο πληκτρολόγιο KP2A όταν απαιτείται είσοδος. Προϋποθέτει το πρόσθετο KeyboardSwap ή να είναι root η συσκευή και την εφαρμογή Secure Settings με το System+.</string>
+  <string name="get_keyboardswap">Εγκατάσταση προσθέτου KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Αυτό το πρόσθετο επιτρέπει αλλαγή στο πληκτρολόγιο KP2A δίχως root. Απαιτεί ADB.</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Αυτόματη εναλλαγή μόνο μετά από αναζήτηση</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Αυτόματη μετάβαση στο πληκτρολόγιο KP2A μετά τη χρήση της λειτουργίας Share URL (αλλά όχι κατά το άνοιγμα καταχώρισης με άλλο τρόπο)</string>
   <string name="AutoSwitchBackKeyboard_title">Επαναφορά πληκτρολογίου</string>
@@ -508,7 +510,6 @@
   <string name="CopyFileRequired">Για να το χρησιμοποιήσετε, πρέπει να το αντιγράψετε σε άλλη θέση.</string>
   <string name="CopyFileRequiredForEditing">Για να το επεξεργαστείτε, πρέπει να αντιγράψετε το αρχείο σε άλλη θέση.</string>
   <string name="ClickOkToSelectLocation">Κάντε κλικ στο κουμπί OK για να επιλέξετε θέση όπου θα αντιγραφεί το αρχείο.</string>
-  <string name="CancelReadOnly">Άκυρο, άνοιγμα μόνο για ανάγνωση.</string>
   <string name="FileReadOnlyTitle">Η βάση δεδομένων είναι μόνο για ανάγνωση</string>
   <string name="FileReadOnlyMessagePre">Το Keepass2Android έχει ανοίξει την τρέχουσα βάση δεδομένων μόνο για ανάγνωση.</string>
   <string name="ReadOnlyReason_PreKitKat">Φαίνεται πως ανοίξατε το αρχείο από μια εξωτερική εφαρμογή. Γι αυτό δεν υποστηρίζεται η τροποποίηση. Αν θέλετε να κάνετε αλλαγές στη βάση δεδομένων, κλείστε τη βάση δεδομένων και επιλέξτε Αλλαγή βάσης δεδομένων. Στη συνέχεια ανοίξτε το αρχείο με μια από τις διαθέσιμες επιλογές αν είναι δυνατόν.</string>
@@ -538,7 +539,7 @@
   <string name="AskAddTemplatesTitle">Προσθήκη Προτύπων;</string>
   <string name="AskAddTemplatesMessage">Το Keepass2Android περιέχει πρότυπα για λογαριασμούς ηλεκτρονικού ταχυδρομείου, συνθηματικών ασύρματου LAN, ασφαλείς σημειώσεις και άλλα. Θέλετε να τα προσθέσετε στη βάση δεδομένων σας; Αν επιλέξετε όχι, μπορείτε να τα προσθέσετε αργότερα στις ρυθμίσεις της βάσης δεδομένων.</string>
   <string name="AddTemplates_pref">Προσθήκη προτύπων βάσης δεδομένων</string>
-  <string name="PreviewWarning">Προειδοποίηση: Πρόκειται για αρχική έκδοση και θα μπορούσε να έχει ατέλειες! Αν αντιμετωπίσετε οτιδήποτε απρόσμενο, πείτε μου το (στο Codeplex ή μέσω ηλεκτρονικού ταχυδρομείου).</string>
+  <string name="PreviewWarning">Προειδοποίηση: Αυτή είναι μια προέκδοση και μπορεί να έχει ατέλειες! Αν αντιμετωπίσετε οτιδήποτε απρόσμενο, ενημερώστε με (στην ομάδα Google+ beta tester ή με email).</string>
   <string name="Continue">Συνέχεια</string>
   <string name="NoFilenameWarning">Το URI που έχετε εισάγατε δεν μοιάζει με όνομα αρχείου. Είστε βέβαιοι ότι είναι έγκυρο αρχείο;</string>
   <string name="FirstInvalidCompositeKeyError">Μη έγκυρο σύνθετο κλειδί! Παρακαλώ δοκιμάστε ξανά.</string>
@@ -568,6 +569,27 @@
   <string name="ActivateAutoFillService_btnAutoFill">Χρησιμοποίηση της λειτουργίας αυτόματης συμπλήρωσης</string>
   <string name="ActivateAutoFillService_toast">Ενεργοποιήστε την υπηρεσία Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Προβάλει το πληκτρολόγιο για εισαγωγή συνθηματικού όταν είναι ενεργή η σάρωση δακτυλικού αποτυπώματος.</string>
+  <string name="ChangeLog_1_02">
+Έκδοση 1.02\n
+* Αρκετές βελτιώσεις ασφαλείας. Ευχαριστώ πολύ για την έκθεση ασφάλειας των jean-baptiste.cayrou@thalesgroup.com και vincent.fargues@thalesgroup.com και για τη συνεργασία τους! \n 
+* Υποστήριξη του πρόσθετου KeyboardSwap (δείτε επιλογές κωδικού πρόσβασης): επιτρέπει την αυτόματη αλλαγή μεθόδου εισαγωγής για συσκευές που δεν είναι root. Ευχαριστώ τον Mishaal Rahman από τους XDA-Developers. \n 
+* Διόρθωση στην υπηρεσία προσβασιμότητας με πρόσφατες εκδόσεις του Chrome\n 
+* Διόρθωση για περιττές εκκαθαρίσεις δεδομένων των δακτυλικών αποτυπωμάτων\n 
+* Διόρθωση ήσσονος σημασίας καταρρεύσεων\n 
+* Ενημέρωση του Dropbox SDK για να εξασφαλιστεί μελλοντική συμβατότητα \n 
+* Αφαίρεση αναφοράς σφαλμάτων μέσω Xamarin Insights\n 
+* Ενημερωμένα εργαλεία ανάπτυξης\n   </string>
+  <string name="ChangeLog_1_01g">
+Έκδοση 1.01-g\n 
+* Διόρθωση για αιφνίδια διακοπή λειτουργίας κατά την λειτουργία offline\n
+* Διόρθωση για εσφαλμένη κωδικοποίηση των πιστοποιητικών FTP (S)\n 
+* Διόρθωση για καταρρεύσεις κατά τη χτήση του OneDrive και σε παλιότερες εκδόσεις Android\n 
+* Προβολή της τοπικής ώρας στην οθόνη εισόδου\n   </string>
+  <string name="ChangeLog_1_01d">
+Έκδοση 1.01-d\n 
+* Διόρθωση για λίστα αρχείων στο OneDrive\n 
+* Επιτρέπεται η αγνόηση σφαλμάτων πιστοποιητικών όταν αποτυγχάνει η επαλήθευση του host name (δεν συνιστάται για κανονική χρήση)\n 
+* Διόρθωση για QuickUnlock που μερικές φορές αποτυγχάνει παρά το σωστό κωδικό ξεκλειδώματος\n   </string>
   <string name="ChangeLog_0_9_8c">
 Έκδοση 0.9.8c\n * ΕΝΗΜΕΡΩΣΗ για ευπάθεια SSL στο Microsoft Live SDK (που χρησιμοποιείται κατά την πρόσβαση σε αρχεία μέσω OneDrive) \n * Bug fix: η προηγούμενη έκδοση περιείχε δύο μεθόδους εισόδου (ή μια κρεμά) \n  </string>
   <string name="ChangeLog_1_01">Έκδοση 1.01\n 
@@ -828,4 +850,6 @@ Initial public release
     <item>Προειδοποίηση όταν αποτύχει η επικύρωση</item>
     <item>Να μην γίνονται αποδεκτά μη έγκυρα πιστοποιητικά</item>
   </string-array>
+  <string name="ClearClipboardWarning">Βεβαιωθείτε ότι αυτό λειτουργεί στο σύστημά σας, αλλιώς χρησιμοποιήστε το ενσωματωμένο πληκτρολόγιο.</string>
+  <string name="PluginDescription">Περιγραφή που παρέχεται από το πρόσθετο:</string>
 </resources>

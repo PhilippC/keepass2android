@@ -6,8 +6,15 @@
   <string name="open_entry_for_app">Sök efter post med \"%1$s\"</string>
   <string name="kp2a_user">Användare</string>
   <string name="kp2a_password">Lösenord</string>
+  <string name="kp2a_prefs">Autentiseringsinmatningsinställningar</string>
   <string name="kp2a_auto_fill">Auto-ifyllning aktiverad</string>
+  <string name="kp2a_auto_fill_summary">Fyll i text automatiskt när ett tomt fält fokuseras, om en Keepass2Android-post finns tillgänglig för tangentbordet och det finns ett värde som matchar fältets tipstexten.</string>
+  <string name="kp2a_remember_auto_fill">Kom ihåg ledtrådstexter för fält</string>
+  <string name="kp2a_remember_auto_fill_summary">Om ett textfält fylls i genom att manuellt välja Keepass2Android-värdet, kom ihåg vilket värde har angetts i textfältet. Textfältet är senare återfunnet av dess tipstext.</string>
   <string name="kp2a_simple_keyboard">Enkelt tangentbord</string>
+  <string name="kp2a_simple_keyboard_summary">Visa det enkla 1-rad tangentbordet om det finns en post för tangentbordet. Om inaktiverat, visas en dialogruta när Keepass2Android-knappen trycks.</string>
   <string name="kp2a_lock_on_sendgodone">Lås databasen när jag är klar</string>
+  <string name="kp2a_lock_on_sendgodone_summary">När du trycker på knappen Klar/Skicka/Gå på det enkla 1-radstangentbordet, lås då databasen automatiskt.</string>
   <string name="kp2a_switch_on_sendgodone">Växla tangentbord när jag är klar</string>
+  <string name="kp2a_switch_on_sendgodone_summary">När du trycker på knappen Klar/Skicka/Gå på det enkla 1-radstangentbordet, växla tangentbordet.</string>
 </resources>

@@ -128,6 +128,7 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="error_pass_gen_type">Trebuie selectat cel puțin un tip de generare de parole</string>
   <string name="error_pass_match">Parolele nu se potrivesc.</string>
   <string name="error_rounds_not_number">Etapele trebuie să fie un număr.</string>
+  <string name="error_param_not_number">Parametru trebuie să fie un număr.</string>
   <string name="error_title_required">Este necesar un titlu.</string>
   <string name="error_wrong_length">Introduceți un număr întreg pozitiv pentru lungimea câmpului</string>
   <string name="FileNotFound">Fișierul nu s-a găsit.</string>
@@ -206,9 +207,12 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="remove_from_filelist">Elimină</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="KeyDerivFunc">Funcția de derivare a cheii</string>
   <string name="rounds">Etape de criptare</string>
   <string name="rounds_explaination">Mai multe etape de criptare oferă protecţie împotriva atacurilor prin forță brută, dar pot încetini semnificativ încărcarea şi salvarea.</string>
   <string name="rounds_hint">etape</string>
+  <string name="argon2memory">Memorie pentru Argon 2 (octeţi)</string>
+  <string name="argon2parallelism">Paralelismul pentru Argon 2</string>
   <string name="database_name">Numele bazei de date</string>
   <string name="default_username">Nume utilizator implicit pentru intrări noi</string>
   <string name="saving_database">Se salvează baza de date&#8230;</string>
@@ -311,6 +315,8 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="NoDonateOption_title">Ascunde opțiunea de donație</string>
   <string name="NoDonateOption_summary">Această setare este pentru donatori. Este valabilă doar după ce folosiți Keepass2Android o vreme.</string>
   <string name="NoDonateOption_question">Fără donații, această aplicație nu ar exista și nu ar fi îmbunătățită continuu! Dacă nu ai donat încă, te invităm să faci o donație acum.</string>
+  <string name="NoDonationReminder_title">Nu mai cere niciodata donație</string>
+  <string name="NoDonationReminder_summary">N-o să-ți dau niciun ban sau am donat deja. Nu mai cere donație, nici măcar de ziua autorului.</string>
   <string name="UseOfflineCache_title">Caching bază de date</string>
   <string name="UseOfflineCache_summary">Păstrează o copie a bazelor de date remote în folderul cache. Aceasta vă permite să le utilizaţi şi offline.</string>
   <string name="AcceptAllServerCertificates_title">Certificate SSL</string>
@@ -329,8 +335,6 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="ShowKp2aKeyboardNotification_summary">Face intrarea completă accesibila prin intermediul tastaturii KP2A si a serviciul de auto completare (recomandat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Comută tastatura</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Deschide fereastra de selecție a tastaturii când o înregistrare este disponibilă prin tastatura KP2A după căutarea din browser.</string>
-  <string name="kp2a_switch_rooted">Comută automat dacă e rootat</string>
-  <string name="kp2a_switch_rooted_summary">Comută automat la tastatura KP2A când o înregistrare este disponibilă. Necesită un telefon rootat și aplicația Secure Settings cu System+.</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Comută automat tastatura doar după căutare</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Comută automat la tastatura KP2A doar după utilizarea funcției Share URL (și nu când se deschide o înregistrare în alt fel)</string>
   <string name="AutoSwitchBackKeyboard_title">Comutare înapoi la tastatură</string>
@@ -408,10 +412,15 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="donate_missedbday_question">Oh, ai pierdut ziua mea de naștere pe 10 mai! Dacă îți place această aplicație, de ce să nu-mi trimiți niște felicitări împreună cu un mic cadou? Încă nu e prea târziu să fiu fericit! :-)</string>
   <string name="ok_donate">Spune-mi mai multe!</string>
   <string name="no_thanks">Nu, nu-mi place atât de mult</string>
+  <string name="enter_http_login_title">Introdu datele de conectare WebDav:</string>
+  <string name="hint_http_url">URL-ul folder sau fişier (ex: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Introdu datele de conectare OwnCloud:</string>
+  <string name="hint_owncloud_url">URL-ul OwnCloud (ex: owncloud.me.com)</string>
   <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Folder inițial (opțional):</string>
   <string name="enter_sftp_login_title">Introduceţi datele de conectare SFTP:</string>
+  <string name="enter_ftp_login_title">Introdu datele de conectare FTP:</string>
   <string name="select_storage_type">Selectaţi tipul de stocare:</string>
   <string name="filestoragename_file">Fişier local</string>
   <string name="filestoragename_androidget">Obţine de la aplicaţie externă</string>
@@ -419,10 +428,12 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Dacă nu doriți să oferiți KP2A acces la tot Dropbox-ul, poți selecta această opțiune. Aceasta va solicita acces doar la folderul Apps/Keepass2Android. Acest lucru este ideal când creați o bază de date nouă. Dacă ai deja o bază de date, apasă această opțiune pentru a crea folderul, puneți baza de date în folder (de pe PC) apoi selectați opțiunea aceasta din nou pentru a deschide fișierul.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selector de fisiere sistem</string>
   <string name="filestorage_setup_title">Iniţializare acces fişier</string>
@@ -493,7 +504,6 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="CopyFileRequired">Pentru a-l folosi, trebuie copiat într-o altă locație.</string>
   <string name="CopyFileRequiredForEditing">Pentru a-l edita, trebuie copiat fișierul într-o altă locație.</string>
   <string name="ClickOkToSelectLocation">Apasă pe OK pentru a selecta locația în care se va copia fișierul.</string>
-  <string name="CancelReadOnly">Anulați, deschideți read-only.</string>
   <string name="FileReadOnlyTitle">Baza de date permite doar citirea</string>
   <string name="ReadOnlyReason_PreKitKat">Se pare ca ai deschis fişierul dintr-o aplicaţie externă. În acest fel nu se acceptă modificări. Dacă doriţi să faceţi modificări în baza de date, închideţi baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind una dintre opţiunile disponibile.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Modificarea nu este posibilă din cauza restricţiilor introduse în Android KitKat. Dacă doriţi să faceţi modificări în baza de date, închideți baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind selectorul de fisiere al sistemului.</string>
@@ -520,7 +530,6 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="ChangeLog_title">Jurnal modificări</string>
   <string name="AskAddTemplatesTitle">Adauga template-uri?</string>
   <string name="AddTemplates_pref">Adauga template-uri in baza de date</string>
-  <string name="PreviewWarning">Rețineți! Aceasta este o versiune de examinare și poate avea unele defecte! Dacă vă confruntați cu *ceva* neașteptat, vă rog să îmi spuneți (pe Codeplex sau prin email).</string>
   <string name="Continue">Continuare</string>
   <string name="NoFilenameWarning">URI introdus nu arata ca un nume de file. Sunteţi sigur că acesta este un file valid?</string>
   <string name="FirstInvalidCompositeKeyError">Cheie compusă invalidă! Vă rugăm să încercaţi din nou.</string>

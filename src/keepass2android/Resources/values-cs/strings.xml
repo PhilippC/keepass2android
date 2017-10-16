@@ -337,8 +337,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">Zpřístupnit celou položku prostřednictvím KP2A klávesnice a služby Automatického vyplňování (doporučeno).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Přepnout klávesnici</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Otevřít dialog pro výběr klávesnice je-li nalezena vhodná položka po hledání z prohlížeče.</string>
-  <string name="kp2a_switch_rooted">Automatické přepnutí na rootovaných telefonech</string>
-  <string name="kp2a_switch_rooted_summary">Automaticky přepne na KP2A klávesnici při otevření záznamu. Vyžaduje root a aplikaci Secure Settings spolu se  System+. </string>
+  <string name="kp2a_switch_rooted">Automatické přepínání klávesnice</string>
+  <string name="kp2a_switch_rooted_summary">Při otevření položky přepnout automaticky na klávesnici KP2A. Vyžaduje správně nastavený zásuvný modul KeyboardSwap nebo zařízení s rootem a zabezpečené nastavení aplikace se System+. </string>
+  <string name="get_keyboardswap">Instalovat zásuvný modul KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Tento modul umožňuje přepnout na KP2A klávesnici bez root oprávnění. Vyžaduje ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatické přepínání až po hledání</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Automaticky přepínat do KP2A klávesnice pouze po použití funkce sdílet URL (ne při otevírání položky jiným způsobem)</string>
   <string name="AutoSwitchBackKeyboard_title">Přepnutí klávesnice zpět</string>
@@ -509,7 +511,6 @@
   <string name="CopyFileRequired">Chcete-li soubor použít, musíte jej zkopírovat do jiného umístění.</string>
   <string name="CopyFileRequiredForEditing">Chcete-li soubor upravit, musíte jej soubor do jiného umístění.</string>
   <string name="ClickOkToSelectLocation">Klepněte na tlačítko OK a vyberte místo, kam by měl být soubor zkopírován.</string>
-  <string name="CancelReadOnly">Zrušit, otevřete pouze pro čtení.</string>
   <string name="FileReadOnlyTitle">Databáze je určena jen pro čtení</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android otevřel aktuální databázi v režimu pouze pro čtení.</string>
   <string name="ReadOnlyReason_PreKitKat">Vypadá to, že jste otevřeli soubor z externí aplikace. Tento způsob nepodporuje zapisování. Pokud chcete provést změny v databázi, zavřete databázi a vyberte možnost Změnit databázi. Potom otevřete soubor jednou z dostupných možností, pokud je to možné.</string>
@@ -539,7 +540,7 @@
   <string name="AskAddTemplatesTitle">Přidat šablony?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android obsahuje šablony položek pro e-mailové účty, hesla pro bezdrátové LAN sítě, bezpečné poznámky a další. Chcete přidat tyto šablony do databáze? Pokud vyberete možnost Ne, můžete je přidat později v nastavení databáze.</string>
   <string name="AddTemplates_pref">Přidat šablony do databáze</string>
-  <string name="PreviewWarning">Upozornění! Tato verze není konečná a může obsahovat různé nedostatky! Pokud narazíte na jakýkoliv problém, dejte mi, prosím, vědět (na Codeplexu nebo přes e-mail).</string>
+  <string name="PreviewWarning">Upozornění! Tato verze není konečná a může obsahovat různé nedostatky! Pokud narazíte na jakýkoliv problém, dejte mi, prosím, vědět (na na Codeplexu nebo přes e-mail).</string>
   <string name="Continue">Pokračovat</string>
   <string name="NoFilenameWarning">Adresa URI, kterou jste zadali, nevypadá jako název souboru. Jste si jistí, že je to platný soubor?</string>
   <string name="FirstInvalidCompositeKeyError">Neplatný složený klíč! Zkuste to znovu.</string>
@@ -571,6 +572,30 @@
   <string name="ActivateAutoFillService_btnAutoFill">Použít službu automatického vyplňování</string>
   <string name="ActivateAutoFillService_toast">Prosím povolte službu Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
+  <string name="ChangeLog_1_02">
+    Verze 1.02\n
+    * Různá bezpečnostní vylepšení. Děkuji za bezpečnostní hlášení od jean-baptiste.cayrou@thalesgroup.com a vincent.fargues@thalesgroup.com a za jejich spolupráci!\n
+    * Podpora zásuvného modulu KeyboardSwap (viz nastavení přístupového hesla): umožňuje automaticky přepnout metodu zadávání na zařízeních bez rootu. Děkuji Mishaalu Rahmanovi z XDA-Developers za spolupráci.\n
+    * Oprava pro službu dostupnosti s posledními verzemi Chrome\n
+    * Oprava nepotřebného čištění dat z čtečky otisků prstů\n
+    * Oprava menších pádů\n
+    * Aktualizované Dropbox SDK pro zajištění budoucí kompaktibility\n
+    * Odstraněno hlášení chyb pomocí Xamarin Insights\n
+    * Aktualizované nástroje pro překlad\n
+  </string>
+  <string name="ChangeLog_1_01g">
+    Verze 1.01-g\n
+    * Oprava pádu při pokusu o práci offline\n
+    * Oprava nesprávného kódování přihlašovacích údajů pro FTP(S)\n
+    * Oprava pádů při používání OneDrive na starších verzích Androidu\n
+    * Zobrazení času coby lokálního času na zadávacích obrazovkách\n
+  </string>
+  <string name="ChangeLog_1_01d">
+    Verze 1.01-d\n
+    * Oprava výpisu souborů na OneDrive\n
+    * Umožnění ignorování chyb certifikátu pokud současně selže i ověření názvu hosta (nedoporučuje se pro produkční využití)\n
+    * Oprava občasného selhání Rychlého Odemknutí při zadání správného kódu\n
+  </string>
   <string name="ChangeLog_0_9_8c">
 Verze 0.9.8c\n 
 * Oprava chyby zabezpečení SSL v Microsoft Live SDK (používá se při přístupu k souborům přes OneDrive) \n 
@@ -817,4 +842,6 @@ První veřejné vydání
     <item>Varovat, pokud selže ověření</item>
     <item>Nepřijímat neplatné certifikáty</item>
   </string-array>
+  <string name="ClearClipboardWarning">Ujistěte se, že toto funguje na vašem systému a pokud ne, zvažte použití vestavěné klávesnice.</string>
+  <string name="PluginDescription">Popis poskytnutý zásuvným modulem:</string>
 </resources>

@@ -215,6 +215,7 @@
   <string name="rounds_explaination">更高級的加密次數對暴力攻擊能提供額外保護，但也會增加載入和保存的時間。</string>
   <string name="rounds_hint">次數</string>
   <string name="argon2memory">Arrgon 2 記憶體用量 (位元)</string>
+  <string name="argon2parallelism">平行處理</string>
   <string name="database_name">資料庫名稱</string>
   <string name="default_username">新輸入項使用預設使用者名稱</string>
   <string name="saving_database">正在保存資料庫&#8230;</string>
@@ -336,8 +337,6 @@
   <string name="ShowKp2aKeyboardNotification_summary">透過 KP2A 鍵盤及自動填滿服務（推薦）取得項目資訊。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切換鍵盤</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">從瀏覽器搜索後，當項目可透過KP2A 鍵盤取得時打開鍵盤選擇對話方塊 。</string>
-  <string name="kp2a_switch_rooted">在取得最高權限的設備自動切換</string>
-  <string name="kp2a_switch_rooted_summary">項目打開時自動切換到 KP2A 鍵盤。需要最高權限和System+安全設置應程式。 </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">搜索後才自動切換</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">僅由分享連結方式自動切換到 KP2A 鍵盤（但不包括其他打開項目的方式）</string>
   <string name="AutoSwitchBackKeyboard_title">鍵盤切換回來</string>
@@ -384,6 +383,7 @@
   <string name="NoOverwrite">不，覆蓋</string>
   <string name="UseOfflineMode">離線操作</string>
   <string name="UseOnlineMode">在線操作</string>
+  <string name="UseOfflineMode_Info">通過使用資料檔的本機快取副本以避免產生網路流量。更改僅存儲在本機快取中，只有切換回線上模式時才會上傳。</string>
   <string name="InOfflineMode">離線操作中。</string>
   <string name="SynchronizingCachedDatabase">同步已暫存的資料庫中...</string>
   <string name="DownloadingRemoteFile">下載遠端檔案中...</string>
@@ -507,7 +507,6 @@
   <string name="CopyFileRequired">若要使用它，您必須將其複製到另一個位置。</string>
   <string name="CopyFileRequiredForEditing">若要編輯它，必須將該檔案複製到另一個位置。</string>
   <string name="ClickOkToSelectLocation">按一下確定，選擇要複製檔的位置。</string>
-  <string name="CancelReadOnly">取消，打開唯讀模式。</string>
   <string name="FileReadOnlyTitle">資料庫僅唯獨</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android 已將目前的資料庫以唯讀方式開啟。</string>
   <string name="ReadOnlyReason_PreKitKat">你似乎是從外部的應用程式開啟本資料庫檔案。這樣的方法不支援存檔。如果你想要存下任何的變更，請關閉本資料庫並選擇變更資料庫。然後再以其他方式開啟本檔案。</string>
@@ -536,13 +535,55 @@
   <string name="ChangeLog_title">更改日誌</string>
   <string name="AskAddTemplatesTitle">新增樣本?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android 有附些 E-Mail 帳號、無線網路密碼、安全記事等樣本。想把這些加到資料庫中嗎？如果不想的話，你待會可以在資料庫設定中加入。</string>
-  <string name="PreviewWarning">請注意! 這是一個預覽版本，可能會附帶一些缺陷! 如果您遇到 *任何* 意外，請讓我知道 (在 Codeplex 上或通過電子郵件)。</string>
+  <string name="AddTemplates_pref">添加範本到資料庫</string>
   <string name="Continue">繼續</string>
   <string name="NoFilenameWarning">您輸入的 URI 不像一個檔案名。你確定這是一個有效的檔?</string>
+  <string name="FirstInvalidCompositeKeyError">複合金鑰無效！請重試。</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">複合金鑰無效！請嘗試根據下述步驟解鎖資料庫：\n
+
+• 確保您鍵入了準確的密碼。使用「眼睛」圖示可顯示鍵入的密碼。\n
+• 確保您已選擇正確的密碼類型。 確保這與創建資料庫時使用的類型相匹配。\n
+• 確保已選擇正確的資料庫（或金鑰檔）文件。
+</string>
+  <string name="CorruptDatabaseHelp">
+資料檔已損壞。\n
+以下是一些有助於診斷問題的提示：\n
+
+• 若您通過 USB（MTP 模式）複製資料檔，請嘗試使用 MyPhoneExplorer 等工具。在某些情況下，MTP 會截斷文件。\n
+• 若您使用 PC（KeePass）仍然無打開該資料檔，則該檔很可能已損壞。請使用資料檔備份。如果您懷疑是 Keepass2Android 損壞了該檔，請聯絡開發者。\n
+• 若您可在 PC 上打開該檔，請將這一情況告知開發者。您還可以嘗試使用不同的設置（例如：壓縮演算法）將其保存在 PC 上，再使用 Keepass2Android 打開。  </string>
+  <string name="ErrorReportTitle">Keepass2Android︰發生錯誤。</string>
+  <string name="ErrorReportText">運行 Keepass2Android 時發生意外的錯誤。請允許應用程式傳送錯誤報告來幫助我們解決此問題。</string>
+  <string name="ErrorReportPromise">錯誤報告絕不包含資料檔或主密碼中的任何內容。 您可在「設置」中禁用之。</string>
   <string name="ErrorReportEnable">啟用</string>
   <string name="ErrorReportDisable">關閉</string>
+  <string name="ErrorReportAsk">每次詢問</string>
+  <string name="ErrorReportPrefTitle">傳送錯誤報告</string>
+  <string name="ActivateAutoFillService_title">要啟用自動填滿嗎？</string>
+  <string name="ActivateAutoFillService_message">登入資訊可以通過以下幾種方式傳輸到其他應用程式：1. 您可以複製到剪貼板，但請注意：剪貼板在 Android 中並不安全。2. 使用 KP2A 內建的鍵盤，但必須在每次訪問登入資訊時切換。3. 在 Android 5 及更高版本上，Keepass2Android 可以使用自動填滿服務自動輸入用戶名和密碼。</string>
+  <string name="ActivateAutoFillService_btnKeyboard">使用內置鍵盤</string>
   <string name="ActivateAutoFillService_btnAutoFill">使用自動填滿服務</string>
   <string name="ActivateAutoFillService_toast">請啟用 Keepass2Android 服務。</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">指紋掃描處於活動狀態時顯示軟鍵盤以輸入密碼。</string>
+  <string name="ChangeLog_0_9_8c">
+版本0.9.8c\n
+* 修補 Microsoft Live SDK (用於 OneDrive) 的 SSL 漏洞。\n
+* 修改之前的版本包含兩個內建輸入法，其中一個不停崩潰的錯誤。\n  </string>
+  <string name="ChangeLog_1_01">
+版本1.01\n
+* 支持 KDBX-4 格式（相容於 KeePass 2.35），包括 Argon2 密鑰推導和 ChaCha20 加密。\n
+* 重新構建 WebDav 文件存儲，現可進行瀏覽並支持現代加密（例如 SSL）。\n
+* 重新構建 FTP 文件存儲，現可進行瀏覽並支持加密的 FTPS 。\n
+* 更新 OneDrive SDK（此前使用的 Live SDK 不再更新）。\n
+* 更新 Dropbox SDK 第2版（此前使用的第1版 SDK 已棄用）。\n
+* 支持 OwnCloud 。\n
+* 在打開本地文件之前提示存儲權限。  </string>
+  <string name="ChangeLog_1_0_0e">
+版本1.0.0e\n
+* 修復舊版三星設備在 Android 6 中出現的指紋解鎖異常。\n
+* 原生支持 x86 設備。\n
+* 允許在指紋掃描期間隱藏軟鍵盤。\n
+* 構建系統更新。  </string>
   <string name="ChangeLog_keptDonate">捐出一瓶啤酒或別的東西以擴展K2A的可能性</string>
   <string-array name="clipboard_timeout_options">
     <item>30秒</item>
@@ -564,9 +605,13 @@
     <item>中</item>
     <item>大</item>
   </string-array>
+  <string-array name="design_options">
+    <item>亮色主題</item>
+    <item>暗色主題</item>
+  </string-array>
   <string name="design_title">設計</string>
   <string-array name="ftp_encryption_modes">
-    <item>No encryption (FTP)</item>
+    <item>無加密 (FTP)</item>
     <item>隱式加密 (透過 TLS 的 FTP，FTPS)</item>
     <item>顯式加密 (透過 TLS 的 FTP，FTPS)</item>
   </string-array>

@@ -4,8 +4,8 @@
 <resources>
   <string name="about_feedback">التعليقات</string>
   <string name="about_homepage">الصفحة الرئيسية</string>
-  <string name="AboutText">Keepass2Android هو مدير كلمات سر يتيح القراءة/الكتابة على قواعد بيانات KeePass 2.x على نظام الـAndroid.</string>
-  <string name="CreditsText">واجهة المستخدم مبنية على تطبيق KeepassDroid الذي قام بتطويره Brian Pellin. الكود المستخدم لعمليات قاعدة البيانات مبني على برنامج KeePass المطور بواسطة Dominik Reichl. تم تطوير وتعديل برنامج الـAndroid باستخدام بعض من أعمال Google حسب شروط الاستخدام المذكورة في رخصة Creative Commons 3.0 Attribution License.</string>
+  <string name="AboutText">Keepass2Android هو مدير كلمات سر يتيح القراءة والكتابة على قواعد بيانات KeePass 2.x على نظام الـAndroid.</string>
+  <string name="CreditsText">واجهة المستخدم مبنية على تطبيق KeepassDroid الذي طوّره Brian Pellin. الكود المستخدم لعمليات قاعدة البيانات مبني على برنامج KeePass الذي طوّرهDominik Reichl. تم تطوير أو تعديل برنامج Android باستخدام بعض من أعمال Google حسب شروط الاستخدام المذكورة في رخصة Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">دعم SFTP مطور باستخدام مكتبة JSch تحت رخصة BSD، التي تم إنشاؤها بواسطة شركة JCraft.</string>
   <string name="CreditsIcons">تم إنشاء أيقونة \"المطرقة\" بواسطة John Caserta. تم إنشاء أيقونة \"البطريق\" بواسطة Adriano Emerick من مشروع \"Noun\". تم إنشاء أيقونة \"الريشة\" بواسطة Jon Testa من مشروع \"Noun\". تم إنشاء أيقونة \"آبل\" بواسطة Ava Rowell من مشروع \"Noun\". </string>
   <string name="accept">موافق</string>
@@ -337,8 +337,7 @@
   <string name="ShowKp2aKeyboardNotification_summary">إتاحة القيد كاملًا من خلال لوحة مفاتيح KP2A وخدمة التعبئة التلقائية (مستحسن).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">تبديل لوحة المفاتيح</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">قم بفتح مربع حوار لتحديد لوحة المفاتيح عندما يتوفر قيد من خلال لوحة مفاتيح KP2A بعد البحث من المتصفح.</string>
-  <string name="kp2a_switch_rooted">التبديل التلقائي على أجهزة مكسورة الحماية (rooted)</string>
-  <string name="kp2a_switch_rooted_summary">التبديل تلقائياً إلى لوحة مفاتيح KP2A عندما يتم فتح القيد. يتطلب كسر الحماية \"root\" وتطبيق \"Secure Settings\" مع تطبيق \"System+\". </string>
+  <string name="kp2a_switch_rooted">تبديل تلقائي للوحة المفاتيح</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">التبديل تلقائيًا فقط بعد البحث</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">التبديل تلقائياً إلى لوحة مفاتيح KP2A فقط بعد استخدام \"مشاركة الرابط\" (ولكن ليس عند فتح قيد ما بطريقة أخرى)</string>
   <string name="AutoSwitchBackKeyboard_title">استرجاع لوحة المفاتيح الأصلية</string>
@@ -473,6 +472,7 @@
   <string name="SavingOtpAuxFile">جاري حفظ الملف الخارجي الخاص بكلمة المرور أحادية الاستخدام&#8230;</string>
   <string name="bad_resp">إجابة السؤال غير صحيحة.</string>
   <string name="CouldntLoadChalAuxFile">تعذر تحميل الملف الخارجي الخاص بالسؤال!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">من فضلك استعمل ملحق KeeChallenge فالنّسخة 2.0 من KeePass للحاسوب، وذلك لإعداد قاعدة البيانات من أجل استعمال نظام تحدّي/استجابة (Challenge-response)!</string>
   <string name="ErrorUpdatingChalAuxFile">خطأ أثناء تحديث الملف الخارجي الخاص بكلمة المرور أحادية الاستخدام!</string>
   <string name="TrayTotp_SeedField_title">اسم الحقل \"بذور TOTP\"</string>
   <string name="TrayTotp_SeedField_summary">إذا كنت تستخدم إضافة Keepass 2 \"TrayTotp\" مع الإعدادات غير الافتراضية، قم بإدخال اسم لحقل البذور هنا وفقا للإعدادات على جهاز الكمبيوتر.</string>
@@ -510,7 +510,6 @@
   <string name="CopyFileRequired">لاستخدامه، يجب أن تقوم بنسخه إلى موقع آخر.</string>
   <string name="CopyFileRequiredForEditing">لتعديله، يجب أن تقوم بنسخه إلى موقع آخر.</string>
   <string name="ClickOkToSelectLocation">اضغط على \"موافق\" لتحديد موقع نسخ الملف.</string>
-  <string name="CancelReadOnly">إلغاء وفتح للقراءة فقط.</string>
   <string name="FileReadOnlyTitle">قاعدة البيانات للقراءة فقط</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android فتح قاعدة البيانات الحالية في وضع للقراءة فقط.</string>
   <string name="ReadOnlyReason_PreKitKat">يبدو أنك قمت بفتح الملف من تطبيق خارجي. هذه الطريقة لا تدعم الكتابة. إذا كنت ترغب في إجراء تغييرات على قاعدة البيانات، الرجاء إغلاق قاعدة البيانات وحدد \"تعديل قاعدة البيانات\". ثم افتح الملف من أحد الخيارات المتاحة إذا كان ذلك ممكناً.</string>
@@ -524,6 +523,24 @@
   <string name="TemplateTitle_IdCard">بطاقة التعريف/الهوية</string>
   <string name="TemplateField_IdCard_Name">الإسم</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">مكان الإصدار</string>
+  <string name="TemplateField_IdCard_IssueDate">تاريخ الصّدور</string>
+  <string name="TemplateTitle_EMail">البريد الإلكتروني</string>
+  <string name="TemplateField_EMail_EMail">عنوان البريد الإلكتروني</string>
+  <string name="TemplateTitle_WLan">الشّبكة المحلية اللاسلكية</string>
+  <string name="TemplateTitle_Notes">تدوينة آمنة</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">عدد</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">رقم التعريف الشخصي (PIN)</string>
+  <string name="TemplateField_CreditCard_Owner">صاحب البطاقة</string>
+  <string name="TemplateTitle_CreditCard">بطاقة الائتمان</string>
+  <string name="TemplateTitle_Membership">العضوية</string>
+  <string name="ChangeLog_title">سِجلّ التّغييرات</string>
+  <string name="AskAddTemplatesTitle">إضافة قوالب؟</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android يحتوي على قوالب لسجلات الدخول للبريد الإلكتروني، كلمات السّر للشبكات المحلية اللاسلكية، تدوينات آمنة وأكثر. هل ترغب في إضافة هذه إلى قاعدة البيانات الخاصة بك؟ إن اخترت لا فيُمكنك إضافتها لاحقاً في إعدادات قاعدة البيانات.</string>
+  <string name="AddTemplates_pref">إضافة قوالب لقاعدة البيانات</string>
+  <string name="Continue">استمر</string>
+  <string name="NoFilenameWarning">الـ URI المدرجة لا تبدو اسم ملف. هل أنت متأكد من أن هذا ملف صحيح؟</string>
   <string name="FirstInvalidCompositeKeyError">تركيبة مفتاح المرور غير صالحة! يرجى المحاولة مجدداً.</string>
   <string name="RepeatedInvalidCompositeKeyHelp">تركيبة مفتاح المرور غير صالحة! حاول الخطوات التالية لفتح قاعدة بياناتك:\n
   •تأكد من ادخالك لكلمة مرورك بصحة. ايقونة العين تكشف الكلمة.\n
@@ -531,6 +548,48 @@
    •تأكد انك اخترت ملف قاعدة البيانات الصحيح.
  
 </string>
+  <string name="CorruptDatabaseHelp">
+الملف معطوب.\n
+هنا هي بعض التلميحات التي قد تساعد على تشخيص المسألة: \n إن قمت بنسخ الملف عبر USB (وضع الخطة المتوسطة الأجل)، الرجاء المحاولة مرة أخرى باستخدام أدوات مثل MyPhoneExplorer. الخطة المتوسطة الأجل تقتطع الملفات في بعض الحالات. \n • إذا تعذر عليك فتح الملف من نفس الموقع على جهاز الكمبيوتر الخاص بك، فمن المحتمل جداً أن الملف معطوب فعلا. الرجاء استخدام نسخة احتياطية من قاعدة البيانات. إذا كنت تفترض أن Keepass2Android قد أتلف الملف، الرجاء الاتصال بالمساعدة. \n • إذا تمكنت من فتح الملف على جهاز الكمبيوتر الخاص بك، الرجاء الاتصال بالمساعدة. يمكنك محاولة حفظه باستخدام إعدادات مختلفة (مثلا، غير مضغوط) على جهاز الكمبيوتر وإعادة محاولة فتحه في Keepass2Android.  </string>
+  <string name="ErrorReportTitle">Keepass2Android : حدث خطأ.</string>
+  <string name="ErrorReportText">حدث خطأ غير متوقع أثناء تشغيل Keepass2Android. الرجاء مساعدتنا في حل هذه المشكلة بالسماح للتطبيق بإرسال التقارير عن الأخطاء.</string>
+  <string name="ErrorReportPromise">لا تحتوي تقارير الأخطاء أبدا على أي محتويات من قاعدة البيانات الخاصة بك ولا على كلمة السر الرئيسية. يمكنك تعطيلها في إعدادات التطبيق.</string>
+  <string name="ErrorReportEnable">تفعيل</string>
+  <string name="ErrorReportDisable">تعطيل</string>
+  <string name="ErrorReportAsk">اسأل بعد الخطأ</string>
+  <string name="ErrorReportPrefTitle">إرسال تقارير الأخطاء</string>
+  <string name="ActivateAutoFillService_title">تنشيط ميزة التعبئة التلقائية؟</string>
+  <string name="ActivateAutoFillService_message">يمكن نقل بيانات الاعتماد لتطبيقات أخرى بعدة طرق: يمكنك نسخ المعلومات إلى الحافظة، ولكن الحافظة ليست آمنة في Android. لوحة المفاتيح المدمجة تتيح الوصول الكامل إلى السجلات المطلوبة ولكن يجب الإنتقال إليها في كل مرة تريد الحصول على بيانات الاعتماد. في Keepass2Android على Android 5 والإصدارات الأحدث، يمكن إدخال اسم المستخدم وكلمة المرور تلقائياً باستخدام خدمة التعبئة التلقائية.</string>
+  <string name="ActivateAutoFillService_btnKeyboard">استخدام لوحة المفاتيح المُدمجة</string>
+  <string name="ActivateAutoFillService_btnAutoFill">استخدام خدمة التعبئة التلقائية</string>
+  <string name="ActivateAutoFillService_toast">الرجاء تمكين خدمة Keepass2Android.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">إظهار لوحة المفاتيح على الشاشة لإدخال كلمة السر عند استعمال ماسح بصمات الأصابع.</string>
+  <string name="ChangeLog_0_9_8c">
+الإصدار 0.9.8c
+* إصلاح مشكلة ضعف طبقة المقابس الآمنة (SSL) في Microsoft Live SDK (تستخدم عند الوصول إلى الملفات عبر OneDrive)
+* إصلاح بعض الأخطاء: الإصدار السابق يحتوي على طرقتين للإدخال (واحدة تحطمت)  </string>
+  <string name="ChangeLog_1_01">
+الإصدار 1.01
+    * إضافة دعم لصيغة KDBX-4 الجديدة (متوافق مع Keepass 2.35) ومتضمن اشتقاق مفتاح Argon2 و تشفير ChaCha20.
+    * إعادة تنفيذ لتخزين ملفات WebDav, الآن يسمح بتصفح الملفات ويدعم التشفير الجديد.
+    * إعادة تنفيذ لتخزين ملفات FTP, يسمح الآن بتصفح الملفات ويدعم تشفير (FTPS).
+    * التحديث ل OneDrive SDK ( المستخدم سابقاً من  SDK لم يعد محدث).
+    * التحديث ل Dropbox SDK الإصدار 2 ( تم إهمال المستخدم سابقاً من SDK الإصدار 1).
+    *إضافة دعم ل OwnCloud.
+    * طلب إذن للتخزين قبل فتح الملفات المحلية
+    </string>
+  <string name="ChangeLog_0_9_1">
+الإصدار 0.9.1
+*دعم متكامل ل SkyDrive (النسخة النظامية فقط منKeepass2Android)
+*حل مشاكل التكامل مع Google Drive.
+*إضافة دعم لميزة NTLM</string>
+  <string name="ChangeLog_0_8_6">
+الإصدار 0.8.6
+*دعم ميزة Twofish cipher.
+*السماح بتعديل المجموعات.
+*السماح بنقل القيود والمجموعات.
+*يمكن جعل أيقونة(فتح القفل السريع) QuickUnlock شفافة (راجع الإعدادات).
+*إصلاحات أخرى</string>
   <string name="ChangeLog_0_8_4">
 <b>الإصدار 0.8.4</b>\n
 * يتم الكشف عن تغييرات قاعدة البيانات الخارجية ودمجها عند الحفظ\n 
@@ -607,6 +666,11 @@
     <item>مظلم</item>
   </string-array>
   <string name="design_title">التصميم</string>
+  <string-array name="ftp_encryption_modes">
+    <item>غير مشفّر (FTP)</item>
+    <item>تشفير ضمني (FTP عبر TLS، أي FTPS)</item>
+    <item>تشفير علني (FTP عبر TLS، أي FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>لا تتذكر اسم المستخدم وكلمة السر</item>
     <item>تذكر اسم المستخدم فقط</item>
@@ -625,4 +689,5 @@
     <item>تحذير عند فشل التحقق من الصحة</item>
     <item>لا تقبل شهادات غير صالحة</item>
   </string-array>
+  <string name="PluginDescription">الوصف المقدم من العنصر الإضافي :</string>
 </resources>

@@ -337,8 +337,6 @@
   <string name="ShowKp2aKeyboardNotification_summary">Naredi poln vnos dostopen preko tipkovnice KP2A in storitve samodejnega izpolnjevanja (priporočljivo).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Preklopi tipkovnico</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Odpri pogovorno okno za izbiro tipkovnice, ko je vnos na voljo preko tipkovnice KP2A po iskanju iz brskalnika.</string>
-  <string name="kp2a_switch_rooted">Sam. pr. na nap. s skr. do.</string>
-  <string name="kp2a_switch_rooted_summary">Samodejno prekopi na tipkovnico KP2A, ko je vnos odprt. Zahteva skrbniški dostop in program Secure Settings z modulom System+. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Samodejno preklopi samo po iskanju</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Samodejno preklopi samo na tipkovnico KP2A po uporabi zmožnosti Deli URL (vendar ne ob odpiranju vnosa na drug način)</string>
   <string name="AutoSwitchBackKeyboard_title">Preklapljanje tipk. nazaj</string>
@@ -509,7 +507,6 @@
   <string name="CopyFileRequired">Da jo uporabite, jo morate kopirati na drugo mesto.</string>
   <string name="CopyFileRequiredForEditing">Daj jo uredite, jo morate kopirati na drugo mesto.</string>
   <string name="ClickOkToSelectLocation">Kliknite V redu, da izberete mesto, kamor je treba kopirati datoteko.</string>
-  <string name="CancelReadOnly">Prekliči, odpri samo za branje.</string>
   <string name="FileReadOnlyTitle">Podatkovna zbirka je samo za branje</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android je trenutno podatkovno zbirko odprl samo za branje.</string>
   <string name="ReadOnlyReason_PreKitKat">Videti je, da ste datoteko odprli z zunanjim programom. Ta način en podpira zapisovanja. Če želite v podatkovni zbirki narediti spremembe, jo zaprite in izberite Spremeni podatkovno zbirko. Potem datoteko odprite z eno od razpoložljivih možnosti.</string>
@@ -539,7 +536,6 @@
   <string name="AskAddTemplatesTitle">Dodaj predloge?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android vsebuje predloge vnosov za e-poštne račune, gesla za brezžične LAN-e, varne zapiske in več. Ali bi radi te dodali v podatkovno zbirko? Če izberete Ne, jih lahko dodate kasneje v nastavitvah podatkovne zbirke.</string>
   <string name="AddTemplates_pref">Dodaj predloge v podatkovno zbirko</string>
-  <string name="PreviewWarning">Upoštevajte! To je predogledna različica in lahko vsebuje nekaj napak! Če izkusite *karkoli* nepričakovanega, me o tem obvestite (na Codeplexu ali po e-pošti).</string>
   <string name="Continue">Nadaljuj</string>
   <string name="NoFilenameWarning">URI, ki ste ga vnesli, ni videti kot ime datoteke. Ali je to res veljavna datoteka?</string>
   <string name="FirstInvalidCompositeKeyError">Neveljaven sestavljen ključ! Poizkusite znova.</string>

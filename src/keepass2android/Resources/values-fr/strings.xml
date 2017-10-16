@@ -4,10 +4,10 @@
 <resources>
   <string name="about_feedback">Commentaires </string>
   <string name="about_homepage">Site web </string>
-  <string name="AboutText">Keepass2Android est un portage du logiciel KeePass Password Manager. Pour l\'instant, vous devez créer une base de données avec le logiciel KeePass sur votre ordinateur puis la transférer sur la carte mémoire de votre appareil mobile.</string>
+  <string name="AboutText">Keepass2Android est un gestionnaire de mot de passe pour Android permettant de lire et écrire des bases de données KeePass 2.x.</string>
   <string name="CreditsText">L\'interface est basée sur un port de KeepassDroid, développée par Brian Pellin. Le code pour les opérations sur la base de donnée est basé sur Keepass, de Dominik Reichl. Le robot Android est une modification d\'une œuvre de Google, utilisée selon les  termes de la licence Creative Commons 3.0 BY.</string>
   <string name="CreditsTextSFTP">Le support du protocole SFTP est implémenté à l\'aide de la bibliothèque JSch sous licence BSD, créée par JCraft, Inc.</string>
-  <string name="CreditsIcons">L\'icone marteau a été créee par John Caserta du projet Noun. L\'icone pinguin a été créee par Adriano Emerick du projet Noun. L\'icone plume a été créée par Jon Testa du projet Noun. L\'icone pomme a été créée par Ava Rowell du projet Noun. </string>
+  <string name="CreditsIcons">L\'icone marteau a été créée par John Caserta du projet Noun. L\'icone pinguin a été créée par Adriano Emerick du projet Noun. L\'icone plume a été créée par Jon Testa du projet Noun. L\'icone pomme a été créée par Ava Rowell du projet Noun. </string>
   <string name="accept">Accepter</string>
   <string name="deny">Rejeter</string>
   <string name="add_entry">Ajouter une entrée</string>
@@ -42,7 +42,7 @@
   <string name="display_prefs">Affichage</string>
   <string name="password_access_prefs">Accès aux mots de passe</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
-  <string name="FileHandling_prefs">Gestion de fichiers</string>
+  <string name="FileHandling_prefs">Gestion des fichiers</string>
   <string name="keyboard_prefs">Clavier</string>
   <string name="export_prefs">Exporter la base de données...</string>
   <string name="fingerprint_prefs">Déverrouillage par empreinte digitale</string>
@@ -334,8 +334,10 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="ShowKp2aKeyboardNotification_summary">Rendre l\'entrée pleinement accessible via le clavier KP2A et la saisie automatique (recommandé).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Changer de clavier</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Ouvrir la boite de dialogue de sélection du clavier lorsque l\'entrée est disponible par le biais du clavier KP2A après une recherche à partir du navigateur.</string>
-  <string name="kp2a_switch_rooted">Auto-switch sur les terminaux \"rootés\"</string>
-  <string name="kp2a_switch_rooted_summary">Bascule automatiquement sur le clavier KP2A lorsque cette entrée est ouverte. Nécessite un accès root et l\'application \"Secure Settings\" avec \"System+\". </string>
+  <string name="kp2a_switch_rooted">Changer le clavier automatiquement</string>
+  <string name="kp2a_switch_rooted_summary">Changer vers le clavier KP2A automatiquement quand une entrée est ouverte. Nécessite que le plugin KeyboardSwap soit configuré ou un appareil avec \'root\' et l\'application Secure Settings avec System+. </string>
+  <string name="get_keyboardswap">Installer le plugin KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Ce plugin vous permet de changer vers le clavier KP2A sans root. Nécessite ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Basculer automatiquement seulement après la recherche</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Passera automatiquement au clavier KP2A uniquement après l\'utilisation de la fonction de partage d\'URL (mais pas lors de l\'ouverture d\'une entrée d\'une autre manière)</string>
   <string name="AutoSwitchBackKeyboard_title">Basculer vers le clavier</string>
@@ -506,7 +508,6 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="CopyFileRequired">Pour l\'utiliser, vous devez le copier vers un autre emplacement.</string>
   <string name="CopyFileRequiredForEditing">Pour le modifier, vous devez copier le fichier vers un autre emplacement.</string>
   <string name="ClickOkToSelectLocation">Cliquez sur OK pour sélectionner un emplacement où le fichier doit être copié.</string>
-  <string name="CancelReadOnly">Annuler, ouverture en lecture seule.</string>
   <string name="FileReadOnlyTitle">La base de données est en lecture seule</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android a ouvert la base de données active en mode lecture seule.</string>
   <string name="ReadOnlyReason_PreKitKat">Il semble que vous avez ouvert le fichier depuis une application externe. Cette utilisation ne supporte pas l\'écriture. Si vous souhaitez apporter des modifications à la base de données, fermez la base de données et sélectionnez Changer de base de données. Ensuite, si possible, ouvrez le fichier en utilisant une des options disponibles.</string>
@@ -536,7 +537,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="AskAddTemplatesTitle">Ajoutez des templates ?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android contient des modèles de saisie de courriel, mots de passe WIFI, notes sécurisées et plus. Souhaitez-vous les ajouter à votre base de données ? Si vous choisissez non, vous pourrez les ajouter plus tard dans les paramètres de base de données.</string>
   <string name="AddTemplates_pref">Ajouter des templates à la base de données</string>
-  <string name="PreviewWarning">SVP. Il s\'agit d\'une version préliminaire et elle pourrait contenir quelques défauts! Si vous rencontrez quelque chose d\'inattendu, faites le moi savoir (sur Codeplex ou par courriel).</string>
+  <string name="PreviewWarning">Attention! Ceci est une version préliminaire contenant des défauts potentiels! Si vous rencontrez *quoi que ce soit* d\'inattendu, faites le moi savoir (via la page Google+ beta ou par courriel).</string>
   <string name="Continue">Suivant</string>
   <string name="NoFilenameWarning">L\'URI que vous avez entré ne ressemble pas à un nom de fichier. Etes-vous sûr qu\'il s\'agit d\'un fichier valide ?</string>
   <string name="FirstInvalidCompositeKeyError">Clé composite invalide ! S\'il vous plaît essayez encore.</string>
@@ -562,6 +563,21 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ActivateAutoFillService_btnAutoFill">Utiliser la fonction de remplissage automatique</string>
   <string name="ActivateAutoFillService_toast">Veuillez activer le service Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
+  <string name="ChangeLog_1_02">
+    Version 1.02\n
+    * Quelques améliorations liées à la sécurité. Merci beaucoup pour le rapport jean-baptiste.cayrou@thalesgroup.com et vincent.fargues@thalesgroup.com et aussi pour votre collaboration !\n
+    * Support de KeyboardSwapPlugin (voir les paramètres d\'accès aux mots de passe) : permet de changer de méthode de saisie automatiquement sur les appareils sans « root ». Merci à Mishaal Rahman d\'XDA-Developers de l\'avoir rendu possible.\n
+    * Correction pour les services d’accessibilité avec les versions récentes de Chrome\n
+    * Correction pour les nettoyages non nécessaires des données d\'empreintes digitales\n
+    * Correction de plantages mineurs\n
+    * Mise à jour du kit de développement Dropbox pour s\'assurer de la compatibilité future\n
+    * Suppression des rapports d\'erreur en utilisant Xamarin Insights\n
+    * Mise à jour des outils de compilation\n
+  </string>
+  <string name="ChangeLog_1_01g">
+Version 1.01-g\n * Correction sur le mode offline\n * Correction de l\'encodage incorrect des credentials FTP(S)\n * Correction avec OneDrive sur des versions anciennes d\'Android\n * Affichage de l’heure en heure locale sur l\'écran d\'accueil\n  </string>
+  <string name="ChangeLog_1_01d">
+Version 1.01-d\n * Correction pour le listing des fichiers OneDrive\n * Possibilité d’ignorer les erreurs de certificat lorsque la vérification du nom de l’hôte échoue (non recommandé pour une utilisation en production) \n * Correction pour QuickUnlock qui parfois ne fonctionnait malgré la saisie correcte du code\n  </string>
   <string name="ChangeLog_0_9_8c">
 Version 0.9.8c\n
 * Correctif pour la vulnérabilité SSL dans Microsoft Live SDK (utilisé lorsque vous accédez à des fichiers via OneDrive)\n
@@ -778,4 +794,6 @@ Première version publique</string>
     <item>Avertir lorsque la validation échoue</item>
     <item>Ne pas accepter les certificats non valides</item>
   </string-array>
+  <string name="ClearClipboardWarning">Assurez vous que ceci fonctionne sur votre système ou sinon considérez d\'utiliser le clavier fourni.</string>
+  <string name="PluginDescription">Description fournie par le plugin:</string>
 </resources>

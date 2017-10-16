@@ -5,7 +5,7 @@
   <string name="about_feedback">Feedback</string>
   <string name="about_homepage">Startpagina</string>
   <string name="AboutText">Keepass2Android is een wachtwoordmanager met lees/schrijf toegang tot KeePass 2.x databases in Android.</string>
-  <string name="CreditsText">De gebruikersinterface is gebaseerd op KeepassDroid een port ontwikkeld door Brian Pellin. Code voor de database operaties is gebaseerd op KeePass door Dominik Reichl. De Android robot is gereproduceerd of aangepast van het werk gemaakt en gedeeld door Google en gebruikt in overeenstemming met de voorwaarden beschreven in de Creative Commons 3.0 Attribution License.</string>
+  <string name="CreditsText">De gebruikersinterface is gebaseerd op KeepassDroid, een port ontwikkeld door Brian Pellin. Code voor de database operaties is gebaseerd op KeePass door Dominik Reichl. De Android robot is gereproduceerd of aangepast van het werk gemaakt en gedeeld door Google en gebruikt in overeenstemming met de voorwaarden beschreven in de Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP ondersteuning is geïmplementeerd door middel van de JSch-bibliotheek onder BSD-licentie, gemaakt door JCraft, Inc.</string>
   <string name="CreditsIcons">Het hamer-pictogram is gemaakt door John Caserta van het Noun Project. Het pinguïn-pictogram is gemaakt door Adriano Emerick van het Noun Project. Het veer-pictogram is gemaakt door Jon Testa van het Noun Project. Het Apple-pictogram is gemaakt door Ava Rowell van het Noun Project. </string>
   <string name="accept">Accepteren</string>
@@ -119,7 +119,7 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="error_database_exists">Dit bestand bestaat reeds.</string>
   <string name="error_database_settinoverrgs">Kon de instellingen van de database niet bepalen.</string>
   <string name="error_failed_to_launch_link">Kon de koppeling niet opstarten.</string>
-  <string name="error_filename_required">Een bestandsnaam ontbreekt.</string>
+  <string name="error_filename_required">Een bestandsnaam is vereist.</string>
   <string name="error_file_not_create">Kon het bestand niet aanmaken</string>
   <string name="error_invalid_db">Ongeldige database.</string>
   <string name="error_invalid_path">Ongeldig pad.</string>
@@ -334,8 +334,10 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="ShowKp2aKeyboardNotification_summary">Maak volledige element beschikbaar via het KP2A-toetsenbord en AutoFill-functionaliteit (aanbevolen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Wissel toetsenbord</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Open toetsenbord selectie venster als een regel beschikbaar is via KP2A toetsenbord na zoeken vanaf de browser of het toetsenbord.</string>
-  <string name="kp2a_switch_rooted">Wissel automatisch op geroote apparaten</string>
-  <string name="kp2a_switch_rooted_summary">Automatisch overschakelen naar KP2A-toetsenbord wanneer een item wordt geopend. Vereist root-toegang en de app Secure Settings met System+. </string>
+  <string name="kp2a_switch_rooted">Wissel toetsenbord</string>
+  <string name="kp2a_switch_rooted_summary">Automatisch overschakelen naar KP2A toetsenbord wanneer het item wordt geopend. Vereist een goed voorbereide KeyboardSwap Plugin of een geroot apparaat en de Secure Settings app met Systeem+. </string>
+  <string name="get_keyboardswap">Installeer de KeyboardSwap Plugin</string>
+  <string name="get_keyboardswap_summary">Deze plugin maakt het mogelijk om het KP2A toetsenbord te schakelen zonder root. Vereist ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatisch wisselen enkel na zoekopdracht</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Alleen automatisch overschakelen naar KP2A-toetsenbord na het gebruik van de Share URL-functie (maar niet bij het openen van een item op een andere manier)</string>
   <string name="AutoSwitchBackKeyboard_title">Toetsenbord terugwisselen</string>
@@ -506,7 +508,6 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="CopyFileRequired">Om het te gebruiken moet u het kopiëren naar een andere locatie.</string>
   <string name="CopyFileRequiredForEditing">Om het te bewerken moet u het kopiëren naar een andere locatie.</string>
   <string name="ClickOkToSelectLocation">Klik op OK om een locatie te kiezen waar het bestand naartoe moet worden gekopieerd.</string>
-  <string name="CancelReadOnly">Annuleren, open als alleen-lezen.</string>
   <string name="FileReadOnlyTitle">Database is alleen-lezen</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android heeft de huidige database geopend in de modus alleen-lezen.</string>
   <string name="ReadOnlyReason_PreKitKat">Het lijkt alsof u het bestand hebt geopend vanuit een externe app. Dit biedt geen ondersteuning voor schrijven. Als u wijzigingen wilt aanbrengen aan de database: sluit de database en selecteer \'database wijzigen\'. Open vervolgens het bestand indien mogelijk opnieuw vanaf een van de beschikbare opties.</string>
@@ -536,7 +537,7 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="AskAddTemplatesTitle">Sjablonen toevoegen?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android bevat elementsjablonen voor e-mailgegevens, WLAN-wachtwoorden, beveiligde notities en meer. Wilt u deze toevoegen aan de database? Als u Nee kiest dan kunt u ze later alsnog toevoegen via de database-instellingen.</string>
   <string name="AddTemplates_pref">Sjablonen aan de database toevoegen</string>
-  <string name="PreviewWarning">Let op! Dit is een proefversie en kan dus fouten bevatten! Als u iets onverwachts ervaart laat het dan weten via de website of via e-mail.</string>
+  <string name="PreviewWarning">Let op! Dit is een proefversie en kan dus fouten bevatten! Als u ook maar *iets* onverwachts ervaart, laat het dan weten via de Google+ beta tester group of via e-mail.</string>
   <string name="Continue">Ga verder</string>
   <string name="NoFilenameWarning">De URI die u hebt ingevoerd lijkt niet in een bestandsnaam. Weet u zeker dat dit een geldig bestand is?</string>
   <string name="FirstInvalidCompositeKeyError">Ongeldige sleutelcombinatie! Probeer het opnieuw.</string>
@@ -567,6 +568,29 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="ActivateAutoFillService_btnAutoFill">Gebruik AutoFill-functionaliteit</string>
   <string name="ActivateAutoFillService_toast">Activeer aub de Keepass2Android-functionaliteit.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Toon zacht toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
+  <string name="ChangeLog_1_02">
+Versie 1.02\n
+    * Verschillende beveiligingsverbeteringen. Dank gaat uit naar jean-baptiste.cayrou@thalesgroup.com en vincent.fargues@thalesgroup.com voor hun veiligheidsrapport en samenwerking!\n
+    * Ondersteuning voor KeyboardSwapPlugin (zie verder wachtwoord toegang opties): staat automatisch wisselen van een input methode toe op non-rooted apparaten. Met dank aan Mishaal Rahman van XDA-Developers die dit mogelijk maakte.\n
+    * Fix voor toegankelijkheids service met recente Chrome versies.\n
+    * Fix om onnodig wissen van de vingerafdrukdata te voorkomen\n
+    * Fix voor onbelangrijke chrashes\n
+    * Dropbox SDK geupdated om compabiliteit in de toekomst te garanderen\n
+    * Fout rapporten van Xamarin Insights verwijderd\n
+    * Ontwikkeltools geupdated\n  </string>
+  <string name="ChangeLog_1_01g">
+  Versie 1.01-g\n
+  * Oplossing voor een crash tijdens offline werken\n
+  * Oplossing voor onjuiste codering van FTP(S) inloggegevens\n
+  * Oplossing voor crashes bij het gebruik van OneDrive op oudere Android versies\n
+  * Tijden weergegeven als lokale tijd in beginscherm\n
+  </string>
+  <string name="ChangeLog_1_01d">
+  Versie 1.01-d\n
+  * Fix voor OneDrive bestandslijst\n
+  * Sta toe certificaat fouten te negeren, ook wanneer hos tnaam verificatie mislukt (niet aanbevolen voor productiedoeleinden)\n
+  * Correctie voor QuickUnlock welke soms faalde ondanks correcte ontgrendelingscode\n
+  </string>
   <string name="ChangeLog_0_9_8c">
 Versie 0.9.8c\n 
  * Oplossing voor het beveiligingslek in SSL in Microsoft Live SDK (gebruikt bij het benaderen van bestanden via OneDrive) \n 
@@ -833,4 +857,6 @@ Eerste publieke publicatie
     <item>Waarschuw als validatie mislukt</item>
     <item>Accepteer geen ongeldige certificaten</item>
   </string-array>
+  <string name="ClearClipboardWarning">Controleer of dit werkt op uw systeem. Zo niet, overweeg dan het gebruik van het ingebouwde toetsenbord.</string>
+  <string name="PluginDescription">Beschrijving door de plugin:</string>
 </resources>

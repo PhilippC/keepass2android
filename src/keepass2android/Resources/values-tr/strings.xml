@@ -20,7 +20,7 @@
   <string name="algorithm_colon">Algoritma</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Offline</string>
+  <string name="app_name_nonet">Keepass2Android Çevrimdışı</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Uygulama zaman aşımı</string>
   <string name="app_timeout_summary">Uygulama pasif iken veritabanını otomatik kilitleme zaman aşımı.</string>
@@ -128,6 +128,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="error_pass_gen_type">En azından bir parola oluşturma türü seçilmelidir</string>
   <string name="error_pass_match">Parolalar uyuşmuyor.</string>
   <string name="error_rounds_not_number">Tur bir sayı olmalıdır.</string>
+  <string name="error_param_not_number">Parametre bir sayı olması gerekir.</string>
   <string name="error_title_required">Bir başlık gereklidir.</string>
   <string name="error_wrong_length">Uzunluk alanında pozitif bir tamsayı girin</string>
   <string name="FileNotFound">Dosya bulunamadı.</string>
@@ -206,9 +207,12 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="remove_from_filelist">Kaldır</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Kök</string>
+  <string name="KeyDerivFunc">English</string>
   <string name="rounds">Şifreleme tur sayısı</string>
   <string name="rounds_explaination">Fazla tur sayısı kaba kuvvet saldırılarına karşı ek koruma sağlar, ama yüklemeyi ve kaydetmeyi epeyce yavaşlatır.</string>
   <string name="rounds_hint">Tur sayısı</string>
+  <string name="argon2memory">Bellek Argon 2 (bayt)</string>
+  <string name="argon2parallelism">Argon 2 için paralellik</string>
   <string name="database_name">Veritabanı adı</string>
   <string name="default_username">Yeni kayıtlar için varsayılan kullanıcı adı</string>
   <string name="saving_database">Veritabanı kaydediliyor&#8230;</string>
@@ -310,6 +314,8 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="NoDonateOption_title">Bağış seçeneğini gizle</string>
   <string name="NoDonateOption_summary">Bu ayar bağışçılar içindir. Sadece Keepass2Android bir süre kullandıktan sonra geçerlidir.</string>
   <string name="NoDonateOption_question">Bağışlar olmadan, bu uygulama var olamazdı ve sürekli olarak geliştirilemezdi! Henüz bağış yapmadıysan, lütfen şimdi bir bağış yapmayı düşün.</string>
+  <string name="NoDonationReminder_title">Asla bağış isteme</string>
+  <string name="NoDonationReminder_summary">Sana bir kuruş bile vermeyeceğim ya da zaten bağış yapmıştım. Yazarın doğum gününde bile bağış isteme.</string>
   <string name="UseOfflineCache_title">Veritabanı önbelleğe al</string>
   <string name="UseOfflineCache_summary">Uzak veritabanı dosyalarının bir kopyası uygulama önbellek klasöründe tutulur. Bu uzak veritabanlarını çevrimdışı iken bile kullanmanıza izin verir.</string>
   <string name="AcceptAllServerCertificates_title">SSL sertifikalar</string>
@@ -327,8 +333,11 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ShowKp2aKeyboardNotification_title">Klavye/otomatik doldurma bildirimi</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tüm kayıtları KP2A klavyesi ve otomatik doldurma hizmeti üzerinden erişebilir hale getir(önerilir).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Klavyeyi değiştir</string>
-  <string name="kp2a_switch_rooted">Rootlu cihazlarda otomatik geçiş</string>
-  <string name="kp2a_switch_rooted_summary">Kayıt açıldığında KP2A klavyesine otomatik geçiş yap. Root izni ve sistem güvenlik ayarları gerektirir. </string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Tarayıcıdan arama yaptıktan sonra KP2A klavyesinden giriş mümkünse klavye seçim iletişim kutusunu açın.</string>
+  <string name="kp2a_switch_rooted">Klavyeyi otomatik değiştir</string>
+  <string name="kp2a_switch_rooted_summary">Kayıt açıldığında otomatik olarak KP2A klavyeye geç. Düzgün hazırlanmış KeyboardSwap eklentisine ya da güvenli bir uygulamayla rootlanmış bir aygıt gerektirir. </string>
+  <string name="get_keyboardswap">KeyboardSwap eklentisini kur</string>
+  <string name="get_keyboardswap_summary">Bu eklenti root olmadan KP2A klavyesine geçiş yapmayı sağlar. ADB gerektirir. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Sadece aramadan sonra otomatik değiştir</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">URL Paylaş işlevini kullandıktan sonra KP2A klavyesine geç (başka bir yolla kayıt açıldığında yapma)</string>
   <string name="AutoSwitchBackKeyboard_title">Önceki klavyeye dön</string>
@@ -375,6 +384,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="NoOverwrite">Hayır, üzerine yaz</string>
   <string name="UseOfflineMode">Çevrimdışı çalış</string>
   <string name="UseOnlineMode">Çevrimiçi çalış</string>
+  <string name="UseOfflineMode_Info">Dosyanın yerel olarak önbelleğe alınmış kopyasını kullanırken herhangi bir ağ trafiğinden kaçının. Değişiklikler yalnızca yerel önbellekte saklanır ve çevrimiçi moda geçilirken yüklenir.</string>
   <string name="InOfflineMode">Çevrimdışı çalışıyor.</string>
   <string name="SynchronizingCachedDatabase">Önbelleğe alınan veritabanı eşleştiriliyor&#8230;</string>
   <string name="DownloadingRemoteFile">Uzak dosya indiriliyor&#8230;</string>
@@ -405,10 +415,15 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="donate_missedbday_question">Oh, 10 Mayıs doğum günümü kaçırdın! Bu uygulamayı beğendiysen, neden bana bir doğum günü kutlaması ve hediyesi göndermiyorsun? Henüz beni mutlu etmek için çok geç değil! :-)</string>
   <string name="ok_donate">Daha fazla bilgi ver!</string>
   <string name="no_thanks">Hayır, çok hoşuma gitmiyor</string>
+  <string name="enter_http_login_title">WebDav oturum açma verilerini girin:</string>
+  <string name="hint_http_url">Klasör veya dosyanın URL (örn: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">OwnCloud oturum açma verilerini girin:</string>
+  <string name="hint_owncloud_url">OwnCloud URL (örn: owncloud.me.com)</string>
   <string name="hint_sftp_host">sunucu (ör: 192.168.0.1)</string>
   <string name="hint_sftp_port">bağlantı noktası</string>
   <string name="initial_directory">Başlangıç dizini (isteğe bağlı):</string>
   <string name="enter_sftp_login_title">SFTP oturum açma verilerini girin:</string>
+  <string name="enter_ftp_login_title">FTP oturum açma verilerini girin:</string>
   <string name="select_storage_type">Depolama türünü seçin:</string>
   <string name="filestoragename_file">Yerel dosya</string>
   <string name="filestoragename_androidget">Diğer uygulama ile seç</string>
@@ -416,10 +431,12 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox(KP2A Klasörü)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH dosya aktarımı)</string>
   <string name="filestoragename_content">Sistem dosyası seçicisi</string>
   <string name="filestorage_setup_title">Dosya erişimi başlatma</string>
@@ -456,7 +473,9 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="CouldntLoadChalAuxFile_Hint">Veri tabanını kimlik doğrulma kullanımına ayarlamak için lütfen KeePass 2.x (PC) üzerinde KeeChallenge eklentisini kullanın!</string>
   <string name="ErrorUpdatingChalAuxFile">Yedek tek kullanımlık şifre dosyası güncelleştirme hatası!</string>
   <string name="TrayTotp_SeedField_title">TOTP seed alan adı</string>
+  <string name="TrayTotp_SeedField_summary">Varsayılan olmayan ayarlarla \"TrayTotp\" adındaki Keepass 2 eklentisini kullanıyorsanız, PC\'deki ayarlara göre seed alanının adını buraya girin.</string>
   <string name="TrayTotp_SettingsField_title">TOTP ayarları alan adı</string>
+  <string name="TrayTotp_SettingsField_summary">TrayTotp için ayarlar alanının adını buraya girin.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Yükleniyor&#8230;</string>
   <string name="plugins">Eklentiler</string>
@@ -473,8 +492,11 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="SCOPE_DATABASE_ACTIONS_title">Veritabanı eylem bildirimleri</string>
   <string name="SCOPE_DATABASE_ACTIONS_explanation">Bir veritabanı açıldığında, kapandığında veya kaydedildiğinde eklenti bildirecek.</string>
   <string name="SCOPE_CURRENT_ENTRY_title">Geçerli kayıt verisi</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Eklentiye, mevcut veritabanı kayıtları hakkındaki tüm verileri alıp; eylem sunma ve görüntüsünü değiştirme izni verilecektir.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Kimlik bilgilerin</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Eklentinin, kendi uygulama paketi ile ilişkili kimlik bilgilerini sorgulamasına izin verilecektir.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Kimlik bilgileri</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Eklentiye, kasıtlı internet siteleri veya uygulamaların kimlik bilgilerini sorgulama izni verilecek.</string>
   <string name="get_regular_version">Daha fazla depolama türlerini almak</string>
   <string name="CertificateWarning">Hata: Sunucu sertifika doğrulaması başarısız: %1$s. Aygıtınıza uygun kök sertifikasını yükleyin veya ayarlara bakın!</string>
   <string name="CertificateFailure">Hata: Sunucu sertifika doğrulaması başarısız oldu! Aygıtınıza uygun kök sertifikasını yükleyin veya ayarlara bakın!</string>
@@ -486,7 +508,6 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="CopyFileRequired">Kullanmak için başka bir konuma kopyalamanız gerekir.</string>
   <string name="CopyFileRequiredForEditing">Düzenlemek için başka bir konuma kopyalamanız gerekir.</string>
   <string name="ClickOkToSelectLocation">Dosyanın kopyalanacağı konumu seçmek için Tamam\'ı tıklayın.</string>
-  <string name="CancelReadOnly">İptal et, salt okunur aç.</string>
   <string name="FileReadOnlyTitle">Veritabanı salt okunur</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android geçerli veri tabanını salt okunur modda açtı.</string>
   <string name="ReadOnlyReason_PreKitKat">Görünüşe göre bir dış uygulamadan dosya açıldı. Bu şekilde yazma desteklenmiyor. Veritabanında değişiklik yapmak istiyorsanız, lütfen veritabanını kapatın ve veritabanı değiştiri seçin. Mümkünse kullanılabilir seçeneklerden biriyle dosyayı açın.</string>
@@ -516,7 +537,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="AskAddTemplatesTitle">Şablonlar eklensin mi?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android e-posta hesapları, kablosuz ağ parolaları, güvenli Notlar ve daha fazlası için kayıt şablonları içerir. Bunları, veritabanına eklemek ister misiniz? Hayır\'ı seçerseniz, daha sonra veritabanı ayarlarından ekleyebilirsiniz.</string>
   <string name="AddTemplates_pref">Veritabanına şablon ekle</string>
-  <string name="PreviewWarning">Lütfen dikkat! Bu bir ön sürümü ve bazı kusurları ile gelebilir! Eğer beklenmedik * bir şey * olursa  bana bildirin (Codeplex veya e-posta) .</string>
+  <string name="PreviewWarning">Lütfen dikkat! Bu bir ön sürüm ve bazı kusurlar ile gelebilir! Eğer beklenmedik bir şey olursa lütfen bana bildirin (Google+ beta test grubu veya e-posta ile).</string>
   <string name="Continue">Devam Et</string>
   <string name="NoFilenameWarning">Girdiğiniz URI bir dosya adı gibi görünmüyor. Bunun geçerli bir dosya olduğundan emin misin?</string>
   <string name="FirstInvalidCompositeKeyError">Geçersiz anahtar! Lütfen yeniden deneyin.</string>
@@ -548,10 +569,52 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ActivateAutoFillService_btnKeyboard">Dahili klavyeyi kullan</string>
   <string name="ActivateAutoFillService_btnAutoFill">Otomatik Doldur hizmetini kullan</string>
   <string name="ActivateAutoFillService_toast">Lütfen Keepass2Android hizmetini etkinleştirin.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
+  <string name="ChangeLog_1_02">
+    Sürüm 1.02\n
+    * Birkaç güvenlik iyileştirmesi. jean-baptiste.cayrou@thalesgroup.com ve vincent.fargues@thalesgroup.com tarafından hazırlanan güvenlik raporu ve işbirliği için teşekkürler!\n
+    * KeyboardSwapPlugin desteği (bkz. Şifre erişim seçenekleri): root yetkisi olmayan cihazlarda giriş yöntemini otomatik olarak değiştirmeye olanak tanır. Bunun olmasını sağladığı için XDA-Developers\'tan Mishaal Rahman\'a teşekkürler.\n
+    * Son Chrome sürümlerindeki Erişilebilirlik Hizmeti için düzeltme\n
+    * Parmak izi verilerinin gereksiz şekilde silinmesi için düzeltme\n
+    * Küçük çökme düzeltmeleri\n
+    * Gelecekteki uyumluluğu sağlamak için Dropbox SDK güncellemesi\n
+    * Xamarin Insights üzerinden hata raporlama kaldırıldı.\n
+    * Yapı araçları güncellenmesi\n
+  </string>
+  <string name="ChangeLog_1_01g">
+    Sürüm 1.01-g\n
+    * Çevrimdışı çalışma denemesindeki kilitlenme düzeltildi\n
+    * FTP(S) kimlik bilgilerinin hatalı kodlanması düzeltildi\n
+    * Eski Android sürümlerindeki ve OneDrive\'ı kullanırken oluşan çökmeler düzeltildi\n
+    * Giriş ekranındaki saat yerel saat olarak gösterildi\n
+  </string>
+  <string name="ChangeLog_1_01d">
+    Sürüm 1.01-d\n
+    * OneDrive dosya listelemesi düzeltildi\n
+    * Ana makine doğrulaması başarısız olduğunda sertifika hatalarını yok saymaya izin verilmesi( üretim için kullanılması önerilmez)\n
+    * Hızlı kilit açmada bazen doğru kod girilmesine rağmen hata verme olayı düzeltildi\n
+  </string>
   <string name="ChangeLog_0_9_8c">
     Sürüm 0.9.8c\n
     * Microsoft Live SDK SSL güvenlik açığına yönelik düzeltme (One Drive üzerinde dosya erişiminde kullanılan)\n
     * Hata düzeltme: İki giriş yöntemi içeren önceki sürüm (birinin çökmesi)\n
+  </string>
+  <string name="ChangeLog_1_01">
+    Sürüm 1.01\n
+    * Argon2 anahtar türetme ve ChaCha20 şifrelemesini içeren KDBX-4-format desteği eklendi (Keepass 2.35 ile uyumlu).\n
+    * WebDav dosya depolama yeniden uygulamaya kondu, şimdi dosyalara gözatma imkanı sağlıyor ve modern şifrelemeyi destekliyor.\n
+    * FTP dosya depolama yeniden uygulamaya kondu, şimdi dosyalara gözatma imkanı sağlıyor ve şifrelemeyi destekliyor (FTPS).\n
+    * OneDrive SDK güncellendi (daha önce kullanılan Canlı SDK artık güncellenmiyor)\n
+    * Dropbox SDK sürüm 2\'ye güncellendi (daha önce kullanılan sürüm 1 SDK kullanımdan kaldırıldı).\n
+    * OwnCloud desteği eklendi.\n
+    * Yerel dosyaları açmadan önce depolama izin istemi
+  </string>
+  <string name="ChangeLog_1_0_0e">
+    Sürüm 1.0.0e\n
+    * android 6 sürümlü eski Samsung cihazlarda parmak izi açma düzeltildi\n
+    * x86 cihazlar desteklendi\n
+    * parmak izi tarama sırasında klavyeyi gizlemeye izin verildi\n
+    * sistem güncellemesi oluşturuldu
   </string>
   <string name="ChangeLog_1_0_0">
     Sürüm 1.0.0 - önizleme 7\n
@@ -785,6 +848,11 @@ Initial public release
     <item>Karanlık</item>
   </string-array>
   <string name="design_title">Dizayn</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Şifresiz (FTP)</item>
+    <item>Örtülü şifreleme (FTP üzerinden TLS, FTPS)</item>
+    <item>Açık şifreleme (FTP üzerinden TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Kullanıcı adını ve şifreyi kaydetme</item>
     <item>Sadece kullanıcı adını hatırla</item>
@@ -803,4 +871,6 @@ Initial public release
     <item>Doğrulama başarısız olduğunda uyar</item>
     <item>Geçersiz sertifikaları kabul etme</item>
   </string-array>
+  <string name="ClearClipboardWarning">Bunun sisteminizde çalıştığından emin olun, eğer çalışmıyorsa yerleşik klavyeyi kullanın.</string>
+  <string name="PluginDescription">Eklenti tarafından sağlanan açıklama:</string>
 </resources>

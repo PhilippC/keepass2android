@@ -27,7 +27,7 @@
   <string name="kill_app_label">Encerrar o processo do aplicativo</string>
   <string name="show_kill_app">Botão fechar</string>
   <string name="show_kill_app_summary">Exibir um botão na tela de senha para encerrar o processo do aplicativo (para usuários paranóicos)</string>
-  <string name="application">Aplicação</string>
+  <string name="application">Aplicativo</string>
   <string name="application_settings">Configurações</string>
   <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nome do grupo abaixo do título de entrada no resultado das pesquisas. Útil se várias entradas têm o mesmo nome.</string>
@@ -104,7 +104,7 @@
   <string name="entry_confpassword">Confirmar senha</string>
   <string name="entry_created">Criado</string>
   <string name="entry_expires">Expira</string>
-  <string name="entry_group_name">Nome do grupoghjhgjjhg</string>
+  <string name="entry_group_name">Nome do Grupo</string>
   <string name="entry_keyfile">Arquivo chave (opcional)</string>
   <string name="keyfile_heading">Arquivo chave</string>
   <string name="entry_modified">Modificado</string>
@@ -270,10 +270,10 @@
   <string name="enter_filename_details_create_import">O arquivo a ser importado será selecionado na próxima etapa.</string>
   <string name="enable_quickunlock">Habilitar o QuickUnlock</string>
   <string name="QuickUnlock_label">Digite os últimos %1$d caracteres de sua senha:</string>
-  <string name="QuickUnlock_button">QuickUnlock!</string>
+  <string name="QuickUnlock_button">Desbloqueio Rápido!</string>
   <string name="QuickUnlock_lockButton">Fechar banco de dados</string>
-  <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por padrão</string>
-  <string name="QuickUnlockDefaultEnabled_summary">Define se o QuickUnlock está habilitado por padrão ou não.</string>
+  <string name="QuickUnlockDefaultEnabled_title">Habilitar Desbloqueio Rápido por padrão</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Define se o Desbloqueio Rápido está habilitado por padrão ou não.</string>
   <string name="ViewDatabaseSecure_title">Proteger a exibição da base de dados</string>
   <string name="ViewDatabaseSecure_summary">Se habilitado, as capturas de tela são bloqueadas e a miniatura do app não é exibida na lista de apps recentes.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar o ícone do QuickUnlock</string>
@@ -302,7 +302,7 @@
   <string name="add_binary">Adicione o arquivo anexo...</string>
   <string name="add_extra_string">Adicionar sequência de caracteres adicional</string>
   <string name="delete_extra_string">Excluir caracteres adicionais</string>
-  <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. QuickUnlock habilitado.</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. Desbloqueio Rápido habilitado.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
   <string name="credentials_dialog_title">Digite as credenciais do servidor</string>
   <string name="UseFileTransactions_title">Arquivo de transações</string>
@@ -317,7 +317,7 @@
   <string name="NoDonateOption_summary">Esta configuração é para doadores. Está disponível depois de usar o Keepass2Android por um tempo apenas.</string>
   <string name="NoDonateOption_question">Sem doações, este app não existiria e não poderia ser melhorado continuamente! Se você ainda não doou, por favor, considere fazer uma doação agora.</string>
   <string name="NoDonationReminder_title">Nunca pedir doações</string>
-  <string name="NoDonationReminder_summary">Já doei ou não doarei nenum centavo. Não me peça doação novamente, nem no aniversário do criador.</string>
+  <string name="NoDonationReminder_summary">Já doei ou não doarei nenhum centavo. Não me peça doação novamente, nem no aniversário do criador.</string>
   <string name="UseOfflineCache_title">Cache do banco de dados</string>
   <string name="UseOfflineCache_summary">Mantém uma cópia de arquivos remotos de banco de dados no diretório de cache do aplicativo. Isto permite o uso de bancos de dados remotos mesmo desconectado.</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
@@ -336,8 +336,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">Fazer a entrada inteira acessível através do teclado KP2A e do serviço de Preenchimento Automático (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Trocar teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abre a seleção de teclados quando a inserção estiver disponível através do teclado KP2A após busca do navegador ou do teclado.</string>
-  <string name="kp2a_switch_rooted">Trocar automaticamente em dispositivos com root</string>
-  <string name="kp2a_switch_rooted_summary">Mudar automaticamente p/ teclado KP2A ao abrir a entrada. Exige root e app de configurações seguras com Sistema +. </string>
+  <string name="kp2a_switch_rooted">Trocar teclado automaticamente</string>
+  <string name="kp2a_switch_rooted_summary">Trocar automaticamente para o teclado KP2A quando uma entrada for aberta. Requer o Plugin KeyboardSwap corretamente configurado ou um dispositivo rooted e o app Secure Settings com System+.</string>
+  <string name="get_keyboardswap">Instalar o Plugin KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Este plugin possibilita trocar para o teclado KP2A sem root. Requer ADB.</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Auto-mudar só após pesquisar</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Mudar automaticamente para teclado KP2A após usar a função de Compartilhar URL (mas não ao abrir uma entrada de outra forma)</string>
   <string name="AutoSwitchBackKeyboard_title">Retornar o teclado</string>
@@ -431,7 +433,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
-  <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_owncloud">Nuvem Própria</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
@@ -508,7 +510,6 @@
   <string name="CopyFileRequired">Para usá-lo, copie-o em outro local.</string>
   <string name="CopyFileRequiredForEditing">Para editá-lo, copie o arquivo em outro local.</string>
   <string name="ClickOkToSelectLocation">Clique em OK p/ selecionar o local onde o arquivo será copiado.</string>
-  <string name="CancelReadOnly">Cancelar, abrir como somente leitura.</string>
   <string name="FileReadOnlyTitle">Banco de dados é só leitura</string>
   <string name="FileReadOnlyMessagePre">O Keepass2Android abriu a base de dados atual em modo de somente leitura.</string>
   <string name="ReadOnlyReason_PreKitKat">Parece que você abriu o arquivo de um aplicativo externo. Esta forma não oferece suporte a gravação. Se você desejar fazer alterações na base de dados, por favor, feche-o e selecione Alterar a base de dados. Depois, se possível, abra o arquivo a partir de uma das opções disponíveis.</string>
@@ -538,7 +539,7 @@
   <string name="AskAddTemplatesTitle">Adicionar modelos?</string>
   <string name="AskAddTemplatesMessage">O Keepass2Android contém modelos de entrada para Contas de E-Mail, senhas Wireless LAN, notas seguras e muito mais. Você gostaria de adicioná-los à sua base de dados? Se você optar por Não, você pode adicioná-los depois nas configurações da base de dados.</string>
   <string name="AddTemplates_pref">Adicionar modelos à base de dados</string>
-  <string name="PreviewWarning">Por favor, note! Esta é uma versão preview e pode vir com algumas falhas! Se você experimentar *alguma coisa* inesperada, por favor me avise (no Codeplex ou por e-mail).</string>
+  <string name="PreviewWarning">Importante! Essa é uma versão preview e pode conter defeitos! Se você perceber *qualquer coisa* inesperada, por favor me avise (na comunidade Beta Tester no Google+ ou por email).</string>
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">A URI digitada não parece ser um nome de arquivo. Tem certeza que este é um arquivo válido?</string>
   <string name="FirstInvalidCompositeKeyError">Chave composta inválida! Por favor, tente novamente.</string>
@@ -571,6 +572,28 @@
   <string name="ActivateAutoFillService_btnAutoFill">Utilizar o serviço de preenchimento automático</string>
   <string name="ActivateAutoFillService_toast">Favor habilitar o serviço Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostre o teclado compacto para senhas quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_02">
+Versão 1.02\n
+  * Diversas melhorias de segurança. Muito obrigado pelo informe de segurança de jean-baptiste.cayrou@thalesgroup.com e  vincent.fargues@thalesgroup.com e sua colaboração!\n
+  * Suporte ao Plugin KeyboardSwap (veja as opções de acesso à senha): permite trocar o teclado automaticamente em dispositivos sem root. Obrigado a Mishaal Rahman do XDA-Developers por tornar isso possível.\n
+  * Correção para o Serviço de Acessibilidade com versões recentes do Chrome\n
+  * Correção para a remoção desnecessária de dados de impressão digital\n
+  * Correção de crashs menos importantes\n
+  * Atualização do SDK Dropbox para garantir compatibilidate futura\n
+  * Remoção de relatório de erro através de Xamarin Insights\n
+  * Atualização de ferramentas de build\n
+  </string>
+  <string name="ChangeLog_1_01g">
+Versão 1.01-g\n
+* Correção do crash ao tentar funcionar offline\n
+* Correção da codificação incorreta de credenciais FPT(S)\n
+* Correção de crashes ao usar OneDrive em versões antigas de Android\n
+* Exibição de horas no formato local na tela de registro\n  </string>
+  <string name="ChangeLog_1_01d">
+Versão 1.01-d\n
+* Correção da listagem de arquivos para OneDrive\n
+* Permite ignorar erros de certificado quando a verificação de hostname falha (não recomendado para uso em produção)\n
+* Correção para quando o QuickUnlock às vezes falha apesar de o código estar correto\n  </string>
   <string name="ChangeLog_0_9_8c">
 Versão 0.9.8c\n 
      * Correção para a vulnerabilidade SSL no SDK do Microsoft Live (usado ao acessar arquivos via       OneDrive)\n 
@@ -840,4 +863,6 @@ Lançamento público inicial
     <item>Avisar quando a validação falhar</item>
     <item>Não aceitar certificados inválidos</item>
   </string-array>
+  <string name="ClearClipboardWarning">Certifique-se de que isto funciona no seu sistema e considere usar o teclado embutido se não.</string>
+  <string name="PluginDescription">Descrição fornecida pelo plugin:</string>
 </resources>

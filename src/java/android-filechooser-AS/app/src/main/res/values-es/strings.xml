@@ -62,10 +62,10 @@
   </plurals>
   <plurals name="afc_title_choose_files">
     <item quantity="one">Elija archivo&#8230;</item>
-    <item quantity="other">Elija archivo&#8230;</item>
+    <item quantity="other">Elija varios archivos&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
     <item quantity="one">Elija archivo / carpeta&#8230;</item>
-    <item quantity="other">Elija archivo / carpeta&#8230;</item>
+    <item quantity="other">Elija archivos / carpetas&#8230;</item>
   </plurals>
 </resources>

@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android es una implementación completa para Android del gestor de contraseñas KeePass 2.x.</string>
   <string name="CreditsText">La interfaz de usuario se basa en un port de KeepassDroid, desarrollado por Brian Pellin. El código para las operaciones de la base de datos se basa en el KeePass de Dominik Reichl. El robot Android es reproducido o modificado sobre un trabajo creado y compartido por Google y utilizado según los términos descritos en la licencia de Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Soporte SFTP implementado por la biblioteca JSch bajo licencia BSD, creado por JCraft, Inc.</string>
-  <string name="CreditsIcons">El icono del martillo es creado por John Caserta del proyecto Noun. El icono del pingüino es creado por Adriano Emerick del proyecto Noun. El icono de pluma es creado por Jon Testa del proyecto Noun. El icono de Apple es creado por Ava Rowell del proyecto Noun. </string>
+  <string name="CreditsIcons">El icono del martillo es obra de John Caserta del proyecto Noun. El icono del pingüino es obra de Adriano Emerick del proyecto Noun. El icono de la pluma es obra de Jon Testa del proyecto Noun. El icono de Apple es obra de Ava Rowell del proyecto Noun. </string>
   <string name="accept">Aceptar</string>
   <string name="deny">Denegar</string>
   <string name="add_entry">Añadir entrada</string>
@@ -83,7 +83,7 @@
   <string name="fingerprint_os_error">El desbloqueo con huellas dactilares requiere Android 6.0 o posterior.</string>
   <string name="fingerprint_hardware_error">Hardware de huellas dactilares no detectado.</string>
   <string name="fingerprint_no_enrolled">Este dispositivo no tiene huellas dactilares almacenadas. Por favor, ve a configuración de sistema primero.</string>
-  <string name="disable_fingerprint_unlock">Desactivar desbloque con huella dactilar</string>
+  <string name="disable_fingerprint_unlock">Desactivar desbloqueo con huella dactilar</string>
   <string name="enable_fingerprint_unlock">Habilitar desbloqueo completo con huella dactilar</string>
   <string name="enable_fingerprint_quickunlock">Habilitar desbloqueo con huella dactilar para QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Sensor táctil para desbloqueo de base de datos</string>
@@ -336,8 +336,10 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="ShowKp2aKeyboardNotification_summary">Hacer entrada accesible a través del teclado de KP2A y servicio de Auto Llenado (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Cambiar Teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abrir diálogo de selección de teclado cuando la entrada este disponible a través del teclado KP2A después de una búsqueda desde el navegador.</string>
-  <string name="kp2a_switch_rooted">Auto-switch en dispositivos rooteados</string>
-  <string name="kp2a_switch_rooted_summary">Cambiar automáticamente al teclado de KP2A cuando se abre la introducioón de datos. Requiere ser root y la aplicación Secure Settings con System+. </string>
+  <string name="kp2a_switch_rooted">Teclado Auto-intercambiable</string>
+  <string name="kp2a_switch_rooted_summary">Automáticamente cambia al teclado de KP2A cuando una entrada esté disponible. Esto requiere del plugin KeyboardSwap o de un dispositivo con acceso Root y la app Secure Settings con System+. </string>
+  <string name="get_keyboardswap">Instalar el plugin KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Este plugin permite cambiar automáticamente al teclado de KP2A sin Root. Requiere ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Cambio automático solo después de busqueda</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Sólo cambiar automáticamente al teclado de KP2A después de utilizar la función Compatir URL (pero no cuando abrir la introducción de datos de otra forma)</string>
   <string name="AutoSwitchBackKeyboard_title">Volver al teclado anterior</string>
@@ -508,7 +510,6 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="CopyFileRequired">Para usarlo, debe copiarlo a otro lugar.</string>
   <string name="CopyFileRequiredForEditing">Para editarlo, debe copiar el archivo a otra ubicación.</string>
   <string name="ClickOkToSelectLocation">Haga clic en OK para seleccionar una ubicación donde se debe copiar el archivo.</string>
-  <string name="CancelReadOnly">Cancela, abrir sólo lectura.</string>
   <string name="FileReadOnlyTitle">La base de datos es de sólo lectura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha abierto la base de datos en modo de sólo lectura.</string>
   <string name="ReadOnlyReason_PreKitKat">Parece que abrió el archivo desde una aplicación externa. De esta manera no admite escritura. Si desea realizar cambios en la base de datos, cierre la base de datos y seleccione Cambiar Base de Datos. Luego, si es posible, abra el archivo desde una de las opciones disponibles.</string>
@@ -538,7 +539,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="AskAddTemplatesTitle">¿Añadir plantillas?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android contiene plantillas de entrada de cuentasde E-Mail, contraseñas Wireless-LAN, notas seguras y más. ¿Le gustaría agregar estas a su base de datos? Si selecciona No, puede agregarlas más adelante en la configuración de la base de datos.</string>
   <string name="AddTemplates_pref">Agregar plantillas a base de datos</string>
-  <string name="PreviewWarning">¡Tener en cuenta! Esto es un preview release y posiblemente puede incluir algunos errores! Si experimenta *cualquier cosa* inesperada, por favor, ¡hágamelo saber (en Codeplex o por correo electrónico)!.</string>
+  <string name="PreviewWarning">¡Por favor tenga en cuenta! Esta es una entrega previa y podría venir con algunos errores. Si experimenta *algo* inesperado, por favor háganoslo saber (a través del group de Google+ beta tester o por email).</string>
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">El URI que ha introducido no parece ser un nombre de archivo. ¿Está seguro que es un archivo válido?</string>
   <string name="FirstInvalidCompositeKeyError">Clave compuesta no válida! Por favor, inténtelo de nuevo.</string>
@@ -570,6 +571,29 @@ El Archivo está dañado. \n
   <string name="ActivateAutoFillService_btnAutoFill">Utilice el servicio de autocompletado</string>
   <string name="ActivateAutoFillService_toast">Por favor, active el servicio de Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
+  <string name="ChangeLog_1_02">
+Versión 1.02\n 
+  * Mejoras de seguridad. ¡Muchas gracias por los reportes de seguridad de jean-baptiste.cayrou@thalesgroup.com y vincent.fargues@thalesgroup.com y por su colaboración!\n 
+  * KeyboardSwap Plugin (ver opciones de acceso con contraseña): Permite cambiar automáticamente el método de entrada en dispositivos sin acceso Root. Gracias a Mishaal Rahman de XDA-Developers por hacer este posible.\n 
+  * Arreglado el servicio de accesibilidad con las  nuevas versiones de Chrome.\n 
+  * Arreglado limpiar datos de huella dactilar innecesariamente.\n 
+  * Arreglados inestabilidades menores.\n 
+  * Actualizado el SDK de Dropbox para garantizar la compatibilidad.\n 
+  * Actualizado las herramientas de desarrollo.\n   
+  * Eliminado el sistema de reportes de error a través de Xamarin Insights.\n 
+  </string>
+  <string name="ChangeLog_1_01g">
+    Version 1.01-g\n
+    * Arreglo para fallo cuando se trabaja offline\n
+    * Arreglo para encoding incorrecto de credenciales de FTP(S)\n
+    * Arreglo para fallos cuando se usa OneDrive y una versión antigua de Android\n
+    * Mostrar horas en formato local en pantalla de entrada\n
+  </string>
+  <string name="ChangeLog_1_01d">
+Version 1.01-d\n
+     * Corrección de listado en OneDrive\n
+     * Permitir ignorar errores de certificados también cuando la verificación del nombre del host falla (no recomendado para uso en producción)\n
+     * Corrección de fallo de a veces QuickUnlock, a pesar de introducir el código de desbloqueo correcto\n  </string>
   <string name="ChangeLog_0_9_8c">
     Versión 0.9.8c\n
     * Arreglo para vulnerabilidad SSL en Microsoft Live SDK (usado para accessar archivos de OneDrive)\n
@@ -842,4 +866,6 @@ Publicación inicial</string>
     <item>Advertir cuando la validación falla</item>
     <item>No aceptar certificados inválidos</item>
   </string-array>
+  <string name="ClearClipboardWarning">Asegúrese de que esto funciona en su dispositivo y si no es así, use el teclado incorporado.</string>
+  <string name="PluginDescription">Descripción proporcionada por el plugin:</string>
 </resources>

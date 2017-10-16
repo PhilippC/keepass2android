@@ -4,7 +4,7 @@
   <string name="change_entry">Выбрать другую запись</string>
   <string name="open_entry">Выбрать запись</string>
   <string name="open_entry_for_app">Поиск записи с \"%1$s\"</string>
-  <string name="kp2a_user">Пользователь</string>
+  <string name="kp2a_user">Логин</string>
   <string name="kp2a_password">Пароль</string>
   <string name="kp2a_prefs">Параметры ввода учетных данных</string>
   <string name="kp2a_auto_fill">АвтоЗаполнение включено</string>

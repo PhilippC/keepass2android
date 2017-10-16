@@ -337,8 +337,10 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="ShowKp2aKeyboardNotification_summary">Fes entrada totalment accessible a través del teclat KP2A i servei d\'emplenament automàtic (recomanat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Canvi de teclat</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Diàleg de selecció de teclat obert quan l\'entrada està disponible a través de teclat KP2A després de cerca del navegador.</string>
-  <string name="kp2a_switch_rooted">Canvi automàtic en dispositius amb accés de superusuari (root)</string>
-  <string name="kp2a_switch_rooted_summary">Canvia automàticament a KP2A teclat quan s\'obre la entrada. Requereix accés superusuari (root) i l\'aplicació Secure Settings amb System+. </string>
+  <string name="kp2a_switch_rooted">Canvi automàtic de teclat</string>
+  <string name="kp2a_switch_rooted_summary">Canvia automàticament al teclat KP2A quan s\'obre la entrada. Exigeix tenir correctament preparat el connector KeyboardSwap o un dispositiu \"rotejat\" i l\'aplicació de configuració segura amb System+. </string>
+  <string name="get_keyboardswap">Instal·lar el connector KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Aquest connector permet canviar el teclat KP2A sense ser \"root\". Requereix ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Canvi automàtic només després de cerca</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Només canvia automàticament a KP2A teclat després d\'utilitzar la funció de compartir URL (però no en obrir una entrada d\'una altra manera)</string>
   <string name="AutoSwitchBackKeyboard_title">Torna a canviar el teclat</string>
@@ -509,7 +511,6 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="CopyFileRequired">Per utilitzar-lo, haureu de copiar-lo a una altra ubicació.</string>
   <string name="CopyFileRequiredForEditing">Per editar-lo, haureu de copiar el fitxer a una altra ubicació.</string>
   <string name="ClickOkToSelectLocation">Clic Acceptar per seleccionar una ubicació on cal copiar l\'arxiu.</string>
-  <string name="CancelReadOnly">Cancel·lar, obrir només de lectura.</string>
   <string name="FileReadOnlyTitle">Base de dades és només de lectura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha obert la base actual en el mode només lectura.</string>
   <string name="ReadOnlyReason_PreKitKat">Sembla que vostè ha obert l\'arxiu des d\'una aplicació externa. D\'aquesta manera no s\'admet el suport d\'escriptura. Si voleu fer canvis a la base de dades, tanqueu la base de dades i seleccioneu Canviar base de dades. Llavors obri l\'arxiu des d\'una de les opcions disponibles si és possible.</string>
@@ -539,7 +540,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="AskAddTemplatesTitle">Afegir plantilles?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android conté plantilles d\'entrada per comptes de correu electrònic, contrasenyes de xarxes sense fils, notes segures i més. Voleu afegir aquests a la base de dades? Si decidiu No, podeu afegir-los posteriorment en la configuració de la base de dades.</string>
   <string name="AddTemplates_pref">Afegir plantilles a base de dades</string>
-  <string name="PreviewWarning">Atenció! Això és un versió prèvia i pot arribar amb alguns defectes! Si vostè experimenta *qualsevol* comportament inesperat, si us plau, faci-m\'ho saber (a Codeplex o per correu electrònic).</string>
+  <string name="PreviewWarning">Tingueu en compte! Això és un versió prèvia i pot arribar amb alguns defectes! Si vostè experimenta *qualsevol* comportament inesperat, si us plau, faci-m\'ho saber (al grup beta tester de Google+ o per correu electrònic).</string>
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">L\'URI que heu introduït no sembla un nom de fitxer. Esteu segurs que és un fitxer vàlid?</string>
   <string name="FirstInvalidCompositeKeyError">Token invàlid! Intenta-ho de nou.</string>
@@ -569,6 +570,23 @@ Arxiu està corrupte. \n
   <string name="ActivateAutoFillService_btnAutoFill">Utilitzar el servei d\'emplenament automàtic</string>
   <string name="ActivateAutoFillService_toast">Si us plau, habiliteu el servei Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostra el teclat per introduir la contrasenya quan l\'escàner d\'empremta digital és actiu.</string>
+  <string name="ChangeLog_1_02">
+Versió 1.02\n
+     * Diverses millores de seguretat. Moltes gràcies per a l\'informe de seguretat de jean-baptiste.cayrou@thalesgroup.com i vincent.fargues@thalesgroup.com i per la seva col·laboració! \n
+    * Suport per al connector KeyboardSwap (mireu les opcions d\'accés de contrasenya): permet canviar automàticament el mètode d\'entrada en dispositius no \"rotejats\". Gràcies a Mishaal Rahman de XDA-Developers per fer això possible. \n
+    * Arreglat servei d\'accessibilitat en versions recents de  Chrome\n
+    * Arreglat neteja innecessària de les dades d\'empremta digital\n
+    * Arreglat fallades menors\n
+    * Actualitzat Dropbox SDK per assegurar la compatibilitat futura\n
+    * Eliminat la informació d\'errors a través de Xamarin Insights\n
+    * Actualitzada les eines de compilació\n
+  </string>
+  <string name="ChangeLog_1_01g">
+Versió 1.01-g\n
+* Arreglat incident quan s\'intenta treballar fora de línea\n
+* Arreglat codificació incorrecta de credencials d\'FTP(S)\n
+* Arreglat incident quan s\'utilitza OneDrive en una versió antiga d\'Android\n
+* Mostrar hora local en pantalla d\'entrada\n  </string>
   <string name="ChangeLog_0_9_8c">
     Versió 0.9.8c\n
      * Arreglat vulnerabilitat SSL en el Microsoft Live SDK (utilitzat en accedir a arxius mitjançant OneDrive) \n 
@@ -714,4 +732,6 @@ Revisió inicial per al públic
     <item>Avisa quan fracassi validació</item>
     <item>No admetre els certificats no vàlids</item>
   </string-array>
+  <string name="ClearClipboardWarning">Assegureu-vos que això funciona en el seu sistema i consideri si ha de fer ús o no del teclat incorporat.</string>
+  <string name="PluginDescription">Descripció proporcionada pel connector:</string>
 </resources>

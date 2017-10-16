@@ -212,6 +212,8 @@
   <string name="rounds">加密次数</string>
   <string name="rounds_explaination">更高的加密次数能对暴力攻击提供额外保护，但也会增加加载和保存的时间。</string>
   <string name="rounds_hint">次数</string>
+  <string name="argon2memory">内存（字节）</string>
+  <string name="argon2parallelism">并行处理</string>
   <string name="database_name">数据库名称</string>
   <string name="default_username">新条目的默认用户名</string>
   <string name="saving_database">正在保存数据库&#8230;</string>
@@ -333,8 +335,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">使用KP2A键盘全接通进入和自动填充服务(推荐)</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切换键盘</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">当从浏览器搜索或键盘后可用通过 KP2A 键盘输入时，打开键盘选择对话框。</string>
-  <string name="kp2a_switch_rooted">在获得根权限的设备上自动切换</string>
-  <string name="kp2a_switch_rooted_summary">当打开条目时，自动切换到我们提供的键盘。需要 Root 并安装 Secure Settings。</string>
+  <string name="kp2a_switch_rooted">自动切换键盘</string>
+  <string name="kp2a_switch_rooted_summary">条目打开时，自动切换到 KP2A 键盘。需要正确设定的 KeyboardSwap 插件或在获取root权限的设备的安全设置应用程序中获得许可。 </string>
+  <string name="get_keyboardswap">安装 KeyboardSwap 插件</string>
+  <string name="get_keyboardswap_summary">此插件可以在没有root权限的情况下切换 KP2A 键盘。要求ADB。 </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">仅在搜索后自动切换</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">仅当通过分享链接的方式打开条目时自动切换键盘（但不包括其它打开条目的方式）</string>
   <string name="AutoSwitchBackKeyboard_title">切换为原来的键盘</string>
@@ -381,7 +385,7 @@
   <string name="NoOverwrite">不，覆盖</string>
   <string name="UseOfflineMode">脱机工作</string>
   <string name="UseOnlineMode">在线工作</string>
-  <string name="UseOfflineMode_Info">通过使用本地的缓存文件副本来避免产生网络流量.只更改将被保存在本地缓存中并且仅当切换回在线模式时才会上传.</string>
+  <string name="UseOfflineMode_Info">通过使用资料库的本地缓存副本来避免产生网络流量。更改仅存储在本地缓存中，只有切换回在线模式时才会上传。</string>
   <string name="InOfflineMode">离线工作中.</string>
   <string name="SynchronizingCachedDatabase">同步缓存的数据库...</string>
   <string name="DownloadingRemoteFile">下载远程文件...</string>
@@ -505,7 +509,6 @@
   <string name="CopyFileRequired">若要使用它，您必须将其复制到另一个位置。</string>
   <string name="CopyFileRequiredForEditing">若要编辑它，必须将该文件复制到另一个位置。</string>
   <string name="ClickOkToSelectLocation">单击确定以选择要复制文件的位置。</string>
-  <string name="CancelReadOnly">取消，以只读形式打开。</string>
   <string name="FileReadOnlyTitle">数据库时只读的.</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android 已在只读模式打开当前数据库.</string>
   <string name="ReadOnlyReason_PreKitKat">这看起来像你从一个外部app打开这个文件.这种方式不支持写入.如果你想修改数据库,请先关闭数据库并且选择修改数据库.然后如果可能的话从一个可用的选项打开这个文件.</string>
@@ -536,7 +539,7 @@
   <string name="AskAddTemplatesTitle">增加模板</string>
   <string name="AskAddTemplatesMessage">Keepass2Android包含了将电子邮箱账户,无线局域网密码,安全记录和别的更多的连入数据库模板.你想把这些加入你的数据库吗?如果你选择了否,你可以稍后在数据库设置中添加它们.</string>
   <string name="AddTemplates_pref">添加模板到数据库中</string>
-  <string name="PreviewWarning">请注意 ！这是一个预览版本，可能会有一些缺陷 ！如果您遇到*任何*错误，请联系我们（通过 Codeplex 或电子邮件）。</string>
+  <string name="PreviewWarning">请注意！这是一个预览版本，可能会有一些缺陷！如果您遇到“任何”意外，请告诉我（通过Google+ beta tester group或电子邮件）。</string>
   <string name="Continue">继续</string>
   <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
   <string name="FirstInvalidCompositeKeyError">无效的组合键!请重试.</string>
@@ -562,10 +565,42 @@
   <string name="ActivateAutoFillService_btnAutoFill">使用自动填充服务</string>
   <string name="ActivateAutoFillService_toast">请启用 Keepass2Android 服务。</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
+  <string name="ChangeLog_1_02">
+  版本 1.02\n 
+  * 几项安全改进。非常感谢jean-baptiste.cayrou@thalesgroup.com 和 vincent.fargues@thalesgroup.com 的安全报告与合作 ！ \n 
+  * 支持KeyboardSwapPlugin （请参阅密码访问选项）： 允许在非root设备上自动切换输入法。感谢来自XDA-Developers的Mishaal Rahman，使这一功能成为可能。 \n 
+  * 修复了最近几个Chrome版本的辅助功能服务 \n
+  * 修复了不必要的指纹数据清除 \n 
+  * 修复了少量闪退 \n 
+  * 更新了Dropbox SDK，以确保未来的兼容性\n 
+  * 删除通过Xamarin Insights的错误报告\n 
+  * 更新了生成工具\n  </string>
+  <string name="ChangeLog_1_01g">
+版本 1.01-g\n
+    * 修复了离线使用时闪退的问题\n
+    * 修复了错误的FTP(S) 凭证编码\n
+    * 修复了使用OneDrive和较老的安卓版本时闪退的问题\n
+    * 在条目页显示本地时间\n
+  </string>
+  <string name="ChangeLog_1_01d">
+版本 1.01-d\n
+    * 修复了OneDrive文件列表\n
+    * 允许忽略主机名称验证失败时的证书错误（不推荐用于生产环境）\n
+    * 修复了QuickUnlock不时失效，尽管解码是正确的\n)  </string>
   <string name="ChangeLog_0_9_8c">
     版本 0.9.8c\n
     * 修复 Microsoft Live SDK（使用 OneDrive 存取文件时用到）中的 SSL 漏洞\n
     * 漏洞修复：上一版本附带了两个输入法项，其中一个不停崩溃\n  </string>
+  <string name="ChangeLog_1_01">
+版本 1.01\n
+    * 新增 KDBX-4 格式（兼容于 Keepass 2.35）的支持，包括 Argon2 密钥求导和 ChaCha20 加密。\n
+    * 实现 WebDav 文件存储，现可进行文件浏览并支持现代加密（如 SSL）。\n
+    * 实现 FTP 文件存储，现可进行文件浏览并支持加密的 FTPS 。\n
+    * 更新 OneDrive SDK（以前使用的 Live SDK 不再更新）。\n
+    * 更新 Dropbox SDK 第2版（以前使用的第1版 SDK 已弃用）。\n
+    * 新增支持 OwnCloud 。\n
+    * 在打开本地文件之前提示存储权限。
+  </string>
   <string name="ChangeLog_1_0_0e">
     版本 1.0.0e\n
     * 修复老旧的三星设备 Android 6 下的指纹解锁\n
@@ -802,4 +837,6 @@ Initial public release
     <item>在验证失败时发出警告</item>
     <item>不接受无效的证书</item>
   </string-array>
+  <string name="ClearClipboardWarning">请确认您的系统可以使用，否则请使用内置键盘。</string>
+  <string name="PluginDescription">为插件提供说明：</string>
 </resources>
