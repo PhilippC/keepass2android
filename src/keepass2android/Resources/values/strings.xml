@@ -596,7 +596,6 @@
 	<string name="CopyFileRequired">To use it, you must copy it to another location.</string>
 	<string name="CopyFileRequiredForEditing">To edit it, you must copy the file to another location.</string>
 	<string name="ClickOkToSelectLocation">Click OK to select a location where the file should be copied.</string>
-	<string name="CancelReadOnly">Cancel, open read-only.</string>
   
   <string name="FileReadOnlyTitle">Database is read-only</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android has opened the current database in read-only mode.</string>
