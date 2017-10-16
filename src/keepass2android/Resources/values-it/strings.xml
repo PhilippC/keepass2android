@@ -160,7 +160,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="loading_database">Caricamento del database&#8230;</string>
   <string name="lowercase">Minuscolo</string>
   <string name="MaskedPassword">*****</string>
-  <string name="maskpass_title">Nascondi la password</string>
+  <string name="maskpass_title">Maschera password</string>
   <string name="maskpass_summary">Nascondi le password in modo predefinito</string>
   <string name="menu_about">Info</string>
   <string name="menu_change_key">Modifica la Chiave Principale</string>
@@ -334,8 +334,10 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="ShowKp2aKeyboardNotification_summary">Rendi la voce selezionata accessibile tramite la tastiera KP2A e l\'Autoriempimento (raccomandato).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Cambia tastiera</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Apri il dialogo di selezione della tastiera quando la voce è disponibile tramite la tastiera KP2A dopo una ricerca nel browser.</string>
-  <string name="kp2a_switch_rooted">Cambio automatico sui dispositivi con \"root\"</string>
-  <string name="kp2a_switch_rooted_summary">Commuta automaticamente alla tastiera KP2A quando viene aperta una voce. Richiede root ed app Secure Setting con System+. </string>
+  <string name="kp2a_switch_rooted">Cambia tastiera automaticamente</string>
+  <string name="kp2a_switch_rooted_summary">Passa automaticamente alla tastiera KP2A quando viene aperta una voce. Richiede che il KeyboardSwap plugin sia correttamente configurato o un dispositivo con permessi di root e l\'app Secure Settings con System+. </string>
+  <string name="get_keyboardswap">Installa il KeyboardSwap plugin</string>
+  <string name="get_keyboardswap_summary">Questo plugin consente di passare alla tastiera KP2A senza bisogno dei permessi di root. Necessita di ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Cambio automatico solo dopo una ricerca</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Commuta automaticamente alla tastiera KP2A solo dopo aver utilizzato la funzione Share URL (ma non quando si apre una voce in un altro modo)</string>
   <string name="AutoSwitchBackKeyboard_title">Ritorno alla tastiera precedente</string>
@@ -506,7 +508,6 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="CopyFileRequired">Per poterlo usare, devi copiarlo in un\'altra posizione.</string>
   <string name="CopyFileRequiredForEditing">Per modificarlo, devi copiare il file in un\'altra posizione.</string>
   <string name="ClickOkToSelectLocation">Premi OK per selezionare il percorso dove copiare il file.</string>
-  <string name="CancelReadOnly">Annulla, apri in sola lettura.</string>
   <string name="FileReadOnlyTitle">Il database è in sola lettura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha aperto il database corrente in sola lettura.</string>
   <string name="ReadOnlyReason_PreKitKat">Sembra che tu abbia aperto il file da un\'app esterna. In questa modalità non è supportata la scrittura. Se vuoi modificare il database, chiudilo e seleziona \"Cambia il database\". Quindi apri il file utilizzando una delle opzioni disponibili, se possibile.</string>
@@ -536,7 +537,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="AskAddTemplatesTitle">Vuoi aggiungere i modelli?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android ha dei modelli per l\'inserimento di account E-Mail, password di reti Wireless, note sicure ed altre cose. Vuoi aggiungere questi modelli al database? Se scegli \"No\", li puoi comunque aggiungere in seguito, tramite le Impostazioni del database.</string>
   <string name="AddTemplates_pref">Aggiungi i modelli al database</string>
-  <string name="PreviewWarning">Attenzione! Questa versione è un\'anteprima e potrebbe contenere dei difetti! Se noti *qualcosa* di strano, per favore fammelo sapere (su Codeplex o via email).</string>
+  <string name="PreviewWarning">Fai attenzione! Questa versione è un\'anteprima di rilascio e potrebbe presentare dei difetti! Se noti *qualcosa* di strano, per favore fammelo sapere (sul gruppo beta tester di Google+ o via email).</string>
   <string name="Continue">Continua</string>
   <string name="NoFilenameWarning">L\'URI inserito non sembra il nome di un file. Sei sicuro che sia un file valido?</string>
   <string name="FirstInvalidCompositeKeyError">Chiave composita non valida! Riprova.</string>
@@ -566,6 +567,30 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ActivateAutoFillService_btnAutoFill">Usa il servizio di autoriempimento</string>
   <string name="ActivateAutoFillService_toast">Per favore abilita il servizio di Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando la scansione dell\'impronta è attiva.</string>
+  <string name="ChangeLog_1_02">
+    Versione 1.02\n
+    * Diversi miglioramenti di sicurezza. Un sincero ringraziamento per i rapporti di sicurezza di jean-baptiste.cayrou@thalesgroup.com e vincent.fargues@thalesgroup.com e per la loro collaborazione!\n
+    * Supporto per KeyboardSwapPlugin (vedi le opzioni di accesso per le password): consente il cambio automatico del metodo di input su dispositivi senza permessi di root. Ringrazio Mishaal Rahman di XDA-Developers per averlo reso possibile.\n
+    * Correzione per il servizio Accessibilità con le versioni recenti di Chrome\n
+    * Correzione per la pulizia non necessaria dei dati delle impronte digitali\n
+    * Risolti problemi di instabilità minori\n
+    * Aggiornamento di Dropbox SDK per assicurare un compatibilità futura\n
+    * Rimosso il sistema di segnalazione di errori tramite Xamarin Insights\n
+    * Aggiornamento build tools\n
+  </string>
+  <string name="ChangeLog_1_01g">
+Versione 1.01-g\n
+    * Risolto l\'arresto dell\'app in modalità offline\n
+    * Correzione della codifica non corretta delle credenziali FTP(S)\n
+    * Correzione degli arresti dell\'app durante l\'utilizzo di OneDrive e su precedenti versioni di Android\n
+    * Viene mostrata l\'ora come ora locale nella schermata di accesso\n
+  </string>
+  <string name="ChangeLog_1_01d">
+Versione 1.01-d\n
+    * Fix per l\'elenco dei file di OneDrive\n
+    * Consente di ignorare gli errori dei certificati anche quando la verifica del nome host fallisce (non raccomandato per uso reale, usare in ambiente di prova)\n
+    * Fix per QuickUnlock che a volte fallisce nonostante il codice di sblocco sia corretto\n
+  </string>
   <string name="ChangeLog_0_9_8c">
 Versione 0.9.8c\n
 * risolte la vulnerabilità SSL in Microsoft Live SDK (utilizzato per l\'accesso ai file via OneDrive)\n
@@ -827,4 +852,6 @@ Prima release pubblica
     <item>Avvisa quando la convalida fallisce</item>
     <item>Non accettare certificati non validi</item>
   </string-array>
+  <string name="ClearClipboardWarning">Assicurati che questo funzioni sul tuo sistema, in caso contrario prendi in considerazione l\'utilizzo della tastiera integrata.</string>
+  <string name="PluginDescription">Descrizione fornita dal plugin:</string>
 </resources>

@@ -4,7 +4,7 @@
   <string name="change_entry">Вибрати інший запис</string>
   <string name="open_entry">Вибрати запис</string>
   <string name="open_entry_for_app">Пошук запису з \"%1$s\"</string>
-  <string name="kp2a_user">Користувач</string>
+  <string name="kp2a_user">Логін</string>
   <string name="kp2a_password">Пароль</string>
   <string name="kp2a_prefs">Налаштування вводу облікових даних</string>
   <string name="kp2a_auto_fill">Автозаповнення увімкнено</string>

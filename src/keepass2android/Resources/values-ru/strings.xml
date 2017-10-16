@@ -59,7 +59,7 @@
   <string name="brackets">Скобки</string>
   <string name="cancel">Отмена</string>
   <string name="ClearClipboard">Буфер обмена очищен.</string>
-  <string name="clipboard_timeout">Таймаут очистки буфера обмена</string>
+  <string name="clipboard_timeout">Тайм-аут очистки буфера обмена</string>
   <string name="clipboard_timeout_summary">Задержка очистки после копирования в буфер обмена логина или пароля</string>
   <string name="copy_username">Скопировать имя пользователя в буфер обмена</string>
   <string name="copy_password">Скопировать пароль в буфер обмена</string>
@@ -269,7 +269,7 @@
   <string name="start_create_import">Импортировать файл в новую базу данных...</string>
   <string name="enter_filename_details_url">Необходимо указать полный URL, включая протокол, например http://.</string>
   <string name="enter_filename_details_create_import">В следующем шаге будет выбран файл для импортирования.</string>
-  <string name="enable_quickunlock">Включить БыструюРазблокировку</string>
+  <string name="enable_quickunlock">Включить QuickUnlock</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
   <string name="QuickUnlock_button">БыстраяРазблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть базу данных</string>
@@ -313,7 +313,7 @@
   <string name="ClearPasswordOnLeave_title">Очистить введенный мастер-пароль</string>
   <string name="ClearPasswordOnLeave_summary">Очистить введенный мастер-пароль при покидании экрана без разблокировки базы данных.</string>
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
-  <string name="LockWhenNavigateBack_summary">Блокировать базу данных при выходе по кнопке \"назад\".</string>
+  <string name="LockWhenNavigateBack_summary">Блокировать БД при выходе кнопкой \"назад\".</string>
   <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
   <string name="NoDonateOption_summary">Эта настройка предназначена для тех, кто пожертвовал. Она доступна только после использования Keepass2Android какое-то время.</string>
   <string name="NoDonateOption_question">Без пожертвования это приложение не будет существовать и постоянно совершенствоваться! Если вы еще этого не сделали, пожалуйста, пожертвуйте сейчас.</string>
@@ -337,8 +337,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">Сделать запись полностью доступной через KP2A-клавиатуру и службу автозаполнения (рекомендуется).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Переключить клавиатуру</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Открыть диалог выбора клавиатуры, когда запись доступна через клавиатуру KP2A после поиска из браузера или с помощью клавиатуры.</string>
-  <string name="kp2a_switch_rooted">Авто-переключение на устройствах с root-правами</string>
-  <string name="kp2a_switch_rooted_summary">Автоматически переключаться на клавиатуру KP2A при открытии записи. Требует права root и Secure Settings System+. </string>
+  <string name="kp2a_switch_rooted">Авто-переключение клавиатуры</string>
+  <string name="kp2a_switch_rooted_summary">Автоматическое переключение на клавиатуру KP2A, когда запись открыта. Требуется правильно настроенный плагин KeyboardSwap или устройство с root-правами и приложение Secure Settings с System+. </string>
+  <string name="get_keyboardswap">Установить плагин KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Этот плагин позволяет переключиться на клавиатуру KP2A без root-прав. Требуется ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Автопереключение только после поиска</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Переключаться автоматически на клавиатуру KP2A только после использования функции \"Отправить URL\" (но не в других вариантах открытия записи)</string>
   <string name="AutoSwitchBackKeyboard_title">Переключить клавиатуру обратно</string>
@@ -509,7 +511,6 @@
   <string name="CopyFileRequired">Чтобы использовать его, нужно скопировать в другое место.</string>
   <string name="CopyFileRequiredForEditing">Чтобы редактировать его, нужно скопировать в другое место.</string>
   <string name="ClickOkToSelectLocation">Нажмите OK, чтобы выбрать место, куда файл должен быть скопирован.</string>
-  <string name="CancelReadOnly">Отмена, открыть только для чтения.</string>
   <string name="FileReadOnlyTitle">База данных доступна только для чтения</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android открыл текущую базу данных в режиме только для чтения.</string>
   <string name="ReadOnlyReason_PreKitKat">Кажется, вы открыли файл из внешнего приложения. Поэтому запись не поддерживается. Если вы хотите внести изменения в базу данных, пожалуйста, закройте ее и выберите пункт изменить базу данных. Затем откройте файл одним из доступных вариантов, если это возможно.</string>
@@ -539,7 +540,7 @@
   <string name="AskAddTemplatesTitle">Добавить шаблоны?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android содержит шаблоны записей для электронной почты, паролей беспроводных сетей, защищенных заметок и многого другого. Вы хотели бы добавить их к вашей базе данных? Если вы выбрали Нет, их можно добавить позже в настройках базы данных.</string>
   <string name="AddTemplates_pref">Добавить шаблоны в базу данных</string>
-  <string name="PreviewWarning">Пожалуйста, обратите внимание! Это предварительный релиз и он может содержать некоторые недостатки! Если вы встретитесь с *чем-то* неожиданным, пожалуйста, дайте мне знать (на сайте Codeplex или по электронной почте).</string>
+  <string name="PreviewWarning">Пожалуйста, обратите внимание! Это предварительный релиз и может содержать некоторые недостатки! Если вы встретитесь с *чем-то* неожиданным, пожалуйста, дайте мне знать (на странице Google+ в группе бета-тестеров или по электронной почте).</string>
   <string name="Continue">Продолжить</string>
   <string name="NoFilenameWarning">URI, который Вы ввели, не похож на имя файла. Вы уверены, что это правильно?</string>
   <string name="FirstInvalidCompositeKeyError">Неверный составной ключ! Пожалуйста, попробуйте еще раз.</string>
@@ -571,6 +572,30 @@
   <string name="ActivateAutoFillService_btnAutoFill">Использовать службу автозаполнения</string>
   <string name="ActivateAutoFillService_toast">Пожалуйста, включите службу Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показывать клавиатуру для ввода пароля, если сканер отпечатка пальца включен.</string>
+  <string name="ChangeLog_1_02">
+    Версия 1.02\n
+    * Некоторые улучшения безопасности. Большое спасибо за отчет по безопасности от jean-baptiste.cayrou@thalesgroup.com и vincent.fargues@thalesgroup.com и их сотрудничество!\n
+    * Поддержка плагина KeyboardSwap (см. параметры парольного доступа): позволяет переключать автоматически метод ввода на устройствах без root-прав. Спасибо Mishaal Rahman из XDA-Developers, что сделал это возможным.\n
+    * Исправление для Спец.возможностей и недавних версий Chrome\n
+    * Исправлена ненужная очистка данных для отпечатков пальцев\n
+    * Исправлены незначительные сбои\n
+    * Обновленный SDK Dropbox для обеспечения совместимости в будущем\n
+    * Убраны отчеты об ошибках через Xamarin Insights\n
+    * Обновленные инструменты сборки\n
+  </string>
+  <string name="ChangeLog_1_01g">
+    Версия 1.01-g\n
+    * Исправлен сбой при попытке работать оффлайн\n
+    * Исправлено неправильное кодирование полномочий FTP(S)\n
+    * Исправлены сбои при использовании OneDrive и на старых версиях Android\n
+    * Отображение времени как местное в окне ввода\n
+  </string>
+  <string name="ChangeLog_1_01d">
+    Версия 1.01-d\n
+    * Исправлен просмотр списка файлов OneDrive\n
+    * Разрешено игнорировать ошибки сертификата при сбое проверки имени хоста (не рекомендуется для обычного использования)\n
+    * Исправление QuickUnlock, иногда он приводил к неудаче, несмотря на правильный код разблокировки\n
+  </string>
   <string name="ChangeLog_0_9_8c">
 Версия 0.9.8c\n
 * Исправление уязвимости SSL в Microsoft Live SDK (используется при доступе к файлам через OneDrive) \n
@@ -825,4 +850,6 @@
     <item>Предупреждать при неудачной проверке</item>
     <item>Не принимать недействительные сертификаты</item>
   </string-array>
+  <string name="ClearClipboardWarning">Убедитесь, что это работает на вашей системе и используйте встроенную клавиатуру, если нет.</string>
+  <string name="PluginDescription">Описание предоставлено плагином:</string>
 </resources>

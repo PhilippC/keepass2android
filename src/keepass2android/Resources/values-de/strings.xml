@@ -32,7 +32,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="application_settings">Anwendungs-Einstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
   <string name="ShowGroupnameInSearchResult_resume">Gruppennamen unter den Eintragstiteln im Suchergebnis anzeigen. Nützlich, wenn es mehrere Einträge mit dem selben Namen gibt.</string>
-  <string name="NavigationToGroupCompleted_message">Anzeigegruppe ist jetzt: %1$s</string>
+  <string name="NavigationToGroupCompleted_message">Angezeigte Gruppe ist jetzt: %1$s</string>
   <string name="ShowGroupInEntry_title">Gruppennamen in der Eintragsansicht anzeigen</string>
   <string name="unknown_uri_scheme">Tut mir Leid! Keepass2Android kann die zurückgegebene URI %1$s nicht verarbeiten. Bitte kontaktiere den Entwickler!</string>
   <string name="Entry_singular">Ein Eintrag</string>
@@ -48,11 +48,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="export_prefs">Datenbank exportieren…</string>
   <string name="fingerprint_prefs">Entsperren mit Fingerabdruck</string>
   <string name="import_db_prefs">Datenbank in internen Ordner importieren</string>
-  <string name="import_keyfile_prefs">Schlüsseldatei in internen Ordner kopieren</string>
+  <string name="import_keyfile_prefs">Schlüsseldatei in internen Ordner importieren</string>
   <string name="keyboardswitch_prefs">Wechseln der Eingabemethode</string>
   <string name="OnlyAvailableForLocalFiles">Nur für lokale Dateien verfügbar.</string>
   <string name="FileIsInInternalDirectory">Datei ist in internem Ordner gespeichert.</string>
-  <string name="DatabaseFileMoved">Die Datenbank-Datei wurde in den internen Ordner kopiert.  Drücke OK, um sie vom neuen Ort zu öffnen. Hinweis: Vergiss nicht, regelmäßig einen Export der Datenbank zu einem sicheren Speicherort durchzuführen!</string>
+  <string name="DatabaseFileMoved">Die Datenbank-Datei wurde in den internen Ordner kopiert. Drücke OK, um sie vom neuen Ort zu öffnen. Hinweis: Denke daran, die Datenbank regelmäßig an einen sicheren Speicherort zu exportieren!</string>
   <string name="KeyfileMoved">Die Schlüsseldatei wurde in den internen Ordner kopiert. Stelle sicher, dass du ein Backup der Datei hast bevor du sie vom aktuellen Ort löschst!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Der interne Ordner kann nicht genutzt werden, wenn der Speicherort der Schlüsseldatei nicht gespeichert wird. Ändere die Sicherheitseinstellung.</string>
   <string name="unlock_database_button">Entsperren</string>
@@ -89,9 +89,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="enable_fingerprint_quickunlock">Entsperren mit Fingerabdruck für QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Sensor zum Entsperren berühren</string>
   <string name="fingerprint_unlock_failed">Entsperren mit Fingerabdruck fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn ein neuer Fingerabdruck hinzugefügt wurde oder die Sicherheitseinstellungen geändert wurden. Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Öffnen mit Fingerabdruck erneut aktivieren.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Entsperren mit Fingerabdruck wurde deaktiviert, da das gespeicherte Masterpasswort nicht länger gültig ist. Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Öffnen mit Fingerabdruck erneut aktivieren.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Entsperren per Fingerabdruck wurde deaktiviert, da das gespeicherte Masterpasswort nicht länger gültig ist. Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Entsperren per Fingerabdruck erneut aktivieren.</string>
   <string name="fingerprint_reenable">Bitte Fingerabdruck für das neue Masterpasswort erneut aktivieren.</string>
-  <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Masterpasswort im Android-Keystore auf dem Gerät gespeichert, verschlüsselt und geschützt mit dem Fingerabdruck. Ermöglicht es, die Datenbank mit dem Fingerabdruck zu öffnen.
+  <string name="enable_fingerprint_unlock_Info">
+Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Ermöglicht es, die Datenbank per Fingerabdruck zu entsperren.
   </string>
   <string name="enable_fingerprint_quickunlock_Info">Erlaubt es, den Fingerabdruck anstelle des QuickUnlock-Codes zu nutzen. Speichert keine Informationen bezüglich des Masterpassworts.</string>
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
@@ -127,14 +128,14 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="error_no_name">Ein Name ist erforderlich.</string>
   <string name="error_nopass">Ein Kennwort oder eine Schlüsseldatei wird benötigt.</string>
   <string name="error_pass_gen_type">Mindestens eine Form der Passwort-Generierung muss ausgewählt werden</string>
-  <string name="error_pass_match">Die Kennwörter stimmen nicht überein.</string>
+  <string name="error_pass_match">Die Passwörter stimmen nicht überein.</string>
   <string name="error_rounds_not_number">Anzahl der Wiederholungen muss eine Zahl sein.</string>
   <string name="error_param_not_number">Der Parameter muss eine Zahl sein.</string>
   <string name="error_title_required">Ein Titel ist erforderlich.</string>
   <string name="error_wrong_length">Bitte eine positive Ganzzahl für die Feldlänge eingeben</string>
   <string name="FileNotFound">Datei nicht gefunden.</string>
   <string name="file_browser">Dateimanager</string>
-  <string name="generate_password">Kennwort erzeugen</string>
+  <string name="generate_password">Passwort erzeugen</string>
   <string name="group">Gruppe</string>
   <string name="hint_comment">Notizen</string>
   <string name="hint_conf_pass">Kennwort wiederholen</string>
@@ -142,8 +143,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_group_name">Name der Gruppe</string>
   <string name="hint_keyfile">Schlüsseldatei</string>
   <string name="hint_length">Länge</string>
-  <string name="hint_pass">Kennwort</string>
-  <string name="hint_login_pass">Kennwort</string>
+  <string name="hint_pass">Passwort</string>
+  <string name="hint_login_pass">Passwort</string>
   <string name="hint_title">Name</string>
   <string name="hint_url">Webadresse</string>
   <string name="hint_override_url">Override URL</string>
@@ -285,7 +286,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="BinaryDirectory_title">Verzeichnis für Datei-Anhänge</string>
   <string name="BinaryDirectory_summary">Verzeichnis, in dem Datei-Anhänge gespeichert werden.</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
-  <string name="SaveAttachmentDialog_text">Bitte den Ort zum Speichern wählen.</string>
+  <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
   <string name="SaveAttachmentDialog_save">Auf SD-Karte speichern</string>
   <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
@@ -335,8 +336,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über KP2A-Tastatur und AutoFill zur Verfügung stellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zum Auswählen der Eingabemethode öffnen wenn ein Eintrag nach Suche aus dem Browser heraus verfügbar ist.</string>
-  <string name="kp2a_switch_rooted">Auto-umschalten auf gerooteten Geräten</string>
-  <string name="kp2a_switch_rooted_summary">Automatischer Wechsel zur KP2A Eingabemethode wenn ein Eintrag geöffnet wird. Benötigt root und die Secure Settings app mit System+.</string>
+  <string name="kp2a_switch_rooted">Auto-Umschalten der Tastatur</string>
+  <string name="kp2a_switch_rooted_summary">Wechselt automatisch zur KP2A-Tastatur, wenn ein Eintrag geöffnet wird. Benötigt korrekt konfiguriertes KeyboardSwap-Plugin oder ein gerootetes Gerät und die SecureSettings-App mit System+. </string>
+  <string name="get_keyboardswap">KeyboardSwap-Plugin installieren</string>
+  <string name="get_keyboardswap_summary">Dieses Plugin erlaubt es, auch ohne gerootetes Gerät automatisch zur KP2A-Tastatur zu wechseln. Benötigt ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatischer Wechsel nur nach Suche</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Nur nach dem Nutzen der \"URL teilen\"-Funktion automatisch zur KP2A-Tastatur wechseln (aber nicht beim Öffnen des Eintrags auf einem anderen Weg)</string>
   <string name="AutoSwitchBackKeyboard_title">Tastatur zurück wechseln</string>
@@ -354,12 +357,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Drücke nein, um ihn in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyGroup">Soll diese Gruppe endgültig gelöscht werden? Drücke nein, um sie in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyItems">Gewählte Elemente permanent löschen? Nein wählen, um in den Papierkorb zu verschieben.</string>
-  <string name="AskDeletePermanentlyEntryNoRecycle">Eintrag wirklich permanent löschen?</string>
-  <string name="AskDeletePermanentlyGroupNoRecycle">Gruppe wirklich permanent löschen?</string>
-  <string name="AskDeletePermanentlyItemsNoRecycle">Ausgewählte Elemente wirklich permanent löschen?</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Eintrag permanent löschen?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Gruppe permanent löschen?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Ausgewählte Elemente permanent löschen?</string>
   <string name="AskDeletePermanently_title">Endgültig löschen?</string>
   <string name="AskReloadFile_title">Datei neu laden?</string>
-  <string name="AskReloadFile">Die gerade geöffnete Datei wurde von einem anderen Programm geändert. Möchtest du sie neu laden?</string>
+  <string name="AskReloadFile">Die geöffnete Datei wurde von einem anderen Programm geändert. Möchtest du sie neu laden?</string>
   <string name="AskDiscardChanges">Möchtest du die gerade gemachten Änderungen wirklich verwerfen? (Der Button zum Speichern befindet sich oberhalb des Formulars.)</string>
   <string name="AskDiscardChanges_title">Änderungen verwerfen?</string>
   <string name="suggest_improvements">Verbesserungen vorschlagen</string>
@@ -536,7 +539,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AskAddTemplatesTitle">Vorlagen hinzufügen?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android kann Vorlagen für E-Mail Accounts, W-LAN-Passwörter, sichere Notizen und mehr erstellen. Sollen diese der Datenbank hinzugefügt werden? Dies kann auch später über die Datenbankeinstellungen gemacht werden.</string>
   <string name="AddTemplates_pref">Vorlagen zu Datenbank hinzufügen</string>
-  <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (auf Codeplex oder per E-Mail).</string>
+  <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (über die Google+ Beta-Tester-Community oder per E-Mail).</string>
   <string name="Continue">Fortfahren</string>
   <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Bist du sicher, dass es sich um eine gültige Datei handelt?</string>
   <string name="FirstInvalidCompositeKeyError">Ungültiger zusammengesetzter Schlüssel! Bitte erneut probieren.</string>
@@ -567,6 +570,27 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ActivateAutoFillService_btnAutoFill">AutoEingabe-Dienst benutzen</string>
   <string name="ActivateAutoFillService_toast">Bitte aktiviere den Keepass2Android-Dienst.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
+  <string name="ChangeLog_1_02">
+Version 1.02\n 
+ * mehrere Sicherheitsverbesserungen. Danke an jean-baptiste.cayrou@thalesgroup.com und vincent.fargues@thalesgroup.com für die Analyse und Zusammenarbeit! \n 
+ * Unterstützung für KeyboardSwapPlugin (siehe Passwort-Eingabe-Optionen): erlaubt es, die Eingabemethode automatisch auf die KP2A-Tastatur zu wechseln, auch ohne gerootetes Gerät. Danke an Mishaal Rahman von XDA-Developers! \n 
+ * Fix für Accessibility-Service mit neueren Chrome-Versionen\n 
+ * Fix für unnötiges Löschen der Fingerabdruckdaten\n 
+ * Fix für kleinere Crashes\n  
+ * Dropbox-SDK aktualisiert, um zukünftige Kompatibilität zu gewährleisten \n 
+ * Fehlerberichterstattung mittels durch Xamarin Insights entfernt\n 
+ * Build-Tools aktualisiert\n  </string>
+  <string name="ChangeLog_1_01g">
+Version 1.01-g\n     
+* Fix für Absturz wenn \"Offline-Arbeiten\" aktviert ist\n
+* Fix für Encoding der FTP(S)-Zugangsdaten\n
+* Fix für Abstürze bei Verwendung von OneDrive und auf älteren Android-Versionen\n
+* Zeiten werden als lokale Zeiten dargestellt\n  </string>
+  <string name="ChangeLog_1_01d">
+Version 1.01-d\n     
+ * Fix beim Auflisten von Dateien mit OneDrive\n
+ * Erlaube das Ignorieren von Zertifikatsfehlern auch wenn Host-Name-Verification fehlschlägt (nicht für produktiven Einsatz empfohlen)\n
+* Fix: QuickUnlock schlug manchmal fehl trotz korrektem Entsperr-Code\n  </string>
   <string name="ChangeLog_0_9_8c">
     Version 0.9.8c\n
     * Fix für SSL-Schwachstelle im Microsoft Live-SDK (wird benutzt beim Zugriff auf Dateien mit OneDrive)\n
@@ -830,4 +854,6 @@ Erstes öffentliches Release</string>
     <item>Warnen, wenn die Validierung fehlschlägt</item>
     <item>Ungültige Zertifikate nicht akzeptieren</item>
   </string-array>
+  <string name="ClearClipboardWarning">Bitte stelle sicher, dass dies auf deinem System funktioniert; falls nicht, nutze bitte die standard Tastatur.</string>
+  <string name="PluginDescription">Vom Plugin gelieferte Beschreibung:</string>
 </resources>

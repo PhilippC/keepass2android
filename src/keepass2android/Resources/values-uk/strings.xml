@@ -22,17 +22,17 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Тайм-аут програми</string>
+  <string name="app_timeout">Блокування бази даних</string>
   <string name="app_timeout_summary">Час блокування бази паролів при неактивній програмі.</string>
   <string name="kill_app_label">Завершити процес програми</string>
   <string name="show_kill_app">Кнопка закриття</string>
   <string name="show_kill_app_summary">Показувати на екрані з паролем кнопку завершення процесу програми (для параноїдальних користувачів)</string>
   <string name="application">Програма</string>
   <string name="application_settings">Налаштування програми</string>
-  <string name="ShowGroupnameInSearchResult_title">Показувати назву групи в результаті пошуку</string>
-  <string name="ShowGroupnameInSearchResult_resume">Відображати назву групи під заголовками записів у результатах пошуку. Корисно, якщо декілька записів мають однакові назви.</string>
+  <string name="ShowGroupnameInSearchResult_title">Назва групи в результаті пошуку</string>
+  <string name="ShowGroupnameInSearchResult_resume">Показувати назву групи під заголовками записів у результатах пошуку. Корисно, якщо декілька записів мають однакові назви.</string>
   <string name="NavigationToGroupCompleted_message">Відображення групи зараз: %1$s</string>
-  <string name="ShowGroupInEntry_title">Показувати назву групи при перегляді запису</string>
+  <string name="ShowGroupInEntry_title">Назва групи при перегляді запису</string>
   <string name="unknown_uri_scheme">Вибачте! Keepass2Android не може обробити повернутий URI %1$s. Зв\'яжіться з розробником!</string>
   <string name="Entry_singular">Один запис</string>
   <string name="Entry_plural">%1$d записів</string>
@@ -59,7 +59,7 @@
   <string name="brackets">Дужки</string>
   <string name="cancel">Скасувати</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
-  <string name="clipboard_timeout">Тайм-аут буфера обміну</string>
+  <string name="clipboard_timeout">Очищення буфера обміну</string>
   <string name="clipboard_timeout_summary">Час очищення буфера обміну після копіювання імені користувача або пароля</string>
   <string name="copy_username">Копіювати ім’я користувача до буфера обміну</string>
   <string name="copy_password">Копіювати пароль до буфера обміну</string>
@@ -87,8 +87,8 @@
   <string name="enable_fingerprint_unlock">Увімкнути повне розблокування відбитками пальців</string>
   <string name="enable_fingerprint_quickunlock">Увімкнути розблокування відбитками пальців для QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Торкніться датчика, щоб розблокувати базу даних</string>
-  <string name="fingerprint_unlock_failed">Не вдалося розблокувати за відбитком пальця. Система Android визнала ключ дешифрування недійсним. Зазвичай це трапляється, коли було зареєстровано новий відбиток пальця, або змінено налаштування безпеки. Будь ласка, розблокуйте за допомогою свого паролю, після чого повторно активуйте розблокування за відбитком пальця в налаштуваннях бази паролів.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Не вдалося розблокувати базу паролів: Недійсний комбінований ключ. Розблокування за відбитком пальця було вимкнено, тому що схоже, що збережений головний пароль більше не дійсний. Будь ласка, розблокуйте за допомогою свого паролю, після чого повторно активуйте розблокування за відбитком пальця в налаштуваннях бази паролів.</string>
+  <string name="fingerprint_unlock_failed">Не вдалося розблокувати за відбитком пальця. Система Android визнала ключ дешифрування недійсним. Зазвичай це трапляється, коли було зареєстровано новий відбиток пальця, або змінено налаштування безпеки. Будь ласка, розблокуйте за допомогою свого пароля, після чого повторно активуйте розблокування за відбитком пальця в налаштуваннях бази паролів.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Не вдалося розблокувати базу паролів: Недійсний комбінований ключ. Розблокування за відбитком пальця було вимкнено, тому що схоже, що збережений головний пароль більше не дійсний. Будь ласка, розблокуйте за допомогою свого пароля, після чого повторно активуйте розблокування за відбитком пальця в налаштуваннях бази паролів.</string>
   <string name="fingerprint_reenable">Будь ласка, повторно увімкніть розблокування за відбитком пальця для нового головного пароля.</string>
   <string name="enable_fingerprint_unlock_Info">
     Це збереже ваш головний пароль на цьому пристрої,
@@ -128,7 +128,7 @@
   <string name="error_invalid_path">Недійсний шлях.</string>
   <string name="error_no_name">Необхідно ввести ім\'я.</string>
   <string name="error_nopass">Необхідний пароль або ключовий файл.</string>
-  <string name="error_pass_gen_type">Повинен бути вибраний принаймні один тип генерації паролю.</string>
+  <string name="error_pass_gen_type">Повинен бути вибраний принаймні один тип генерації пароля</string>
   <string name="error_pass_match">Паролі не збігаються.</string>
   <string name="error_rounds_not_number">Кількість циклів повинна бути числом.</string>
   <string name="error_param_not_number">Параметр має бути числом.</string>
@@ -163,8 +163,8 @@
   <string name="loading_database">Завантаження бази даних&#8230;</string>
   <string name="lowercase">Нижній регістр</string>
   <string name="MaskedPassword">*****</string>
-  <string name="maskpass_title">Приховати пароль</string>
-  <string name="maskpass_summary">Приховувати паролі</string>
+  <string name="maskpass_title">Приховувати пароль</string>
+  <string name="maskpass_summary">Приховувати всі паролі</string>
   <string name="menu_about">Про</string>
   <string name="menu_change_key">Змінити головний ключ</string>
   <string name="menu_copy_pass">Копіювати пароль</string>
@@ -196,7 +196,7 @@
   <string name="no_keys">Немає записів у базі даних чи групі.</string>
   <string name="no_results">Нічого не знайдено</string>
   <string name="no_url_handler">Немає обробника для цього посилання.</string>
-  <string name="open_recent">Відкрити недавню базу</string>
+  <string name="open_recent">Відкрити останню базу даних</string>
   <string name="omitbackup_title">Не шукати в записах резервних копій та смітника</string>
   <string name="omitbackup_summary">Не показувати групи Резервна копія і Смітник в результатах пошуку</string>
   <string name="pass_filename">Назва файлу бази даних KeePass</string>
@@ -206,7 +206,7 @@
   <string name="create_database">Створити базу даних</string>
   <string name="progress_title">Обробка&#8230;</string>
   <string name="remember_keyfile_summary">Пам\'ятати розташування ключових файлів</string>
-  <string name="remember_keyfile_title">Зберегти ключовий файл</string>
+  <string name="remember_keyfile_title">Зберігати ключовий файл</string>
   <string name="remove_from_filelist">Вилучити</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Корінь</string>
@@ -253,10 +253,10 @@
   <string name="please_note">Зверніть увагу</string>
   <string name="contributors">Учасники</string>
   <string name="regular_expression">Звичайний вираз</string>
-  <string name="TanExpiresOnUse_title">TAN стає недійсним після використання</string>
+  <string name="TanExpiresOnUse_title">TAN недійсний після використання</string>
   <string name="TanExpiresOnUse_summary">Позначати використані записи TAN, як недійсні</string>
-  <string name="ShowUsernameInList_title">Показувати ім\'я користувача в списку</string>
-  <string name="ShowUsernameInList_summary">Показувати імена користувачів під заголовками. Корисно для багатьох облікових записів або TAN.</string>
+  <string name="ShowUsernameInList_title">Ім\'я користувача в списку записів</string>
+  <string name="ShowUsernameInList_summary">Показувати ім\'я користувача під назвою запису в списку. Корисно для декількох облікових записів або TAN.</string>
   <string name="RememberRecentFiles_title">Пам\'ятати бази даних</string>
   <string name="RememberRecentFiles_summary">Пам\'ятати недавно відкриті бази даних і відображати їх на екрані відкриття бази даних.</string>
   <string name="kp2a_findUrl">Keepass2Android: Знайти пароль</string>
@@ -275,11 +275,11 @@
   <string name="QuickUnlock_lockButton">Закрити базу</string>
   <string name="QuickUnlockDefaultEnabled_title">Увімкнути QuickUnlock типово</string>
   <string name="QuickUnlockDefaultEnabled_summary">Визначає, чи QuickUnlock типово увімкнено.</string>
-  <string name="ViewDatabaseSecure_title">Захист відображення бази даних</string>
-  <string name="ViewDatabaseSecure_summary">Якщо увімкнено, не дозволяються знімки екрану і програма не показується у списку останніх програм.</string>
-  <string name="QuickUnlockIconHidden_title">Приховати піктограму QuickUnlock</string>
+  <string name="ViewDatabaseSecure_title">Захищати екран бази даних</string>
+  <string name="ViewDatabaseSecure_summary">Якщо увімкнено, не дозволяються знімки екрану і програма не показується в списку останніх програм.</string>
+  <string name="QuickUnlockIconHidden_title">Приховувати піктограму QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">На жаль, QuickUnlock не працює без відображення піктограми сповіщення. Виберіть цей параметр для використання прозорої піктограми.</string>
-  <string name="QuickUnlockIconHidden16_title">Приховати піктограму QuickUnlock</string>
+  <string name="QuickUnlockIconHidden16_title">Приховувати піктограму QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock потребує сповіщення для належної роботи. Виберіть цей параметр для відображення сповіщень без піктограми.</string>
   <string name="QuickUnlockLength_title">Довжина ключа QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Максимальна кількість символів, що використовуються як пароль QuickUnlock.</string>
@@ -300,22 +300,22 @@
   <string name="field_name">Назва поля</string>
   <string name="field_value">Значення поля</string>
   <string name="protection">Захищене поле</string>
-  <string name="add_binary">Додати вкладений файл</string>
-  <string name="add_extra_string">Додати додатковий рядок</string>
-  <string name="delete_extra_string">Видалити додатковий рядок</string>
+  <string name="add_binary">Додати файл</string>
+  <string name="add_extra_string">Додати рядок</string>
+  <string name="delete_extra_string">Видалити рядок</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблоковано. QuickUnlock увімкнено.</string>
   <string name="database_loaded_unlocked">%1$s: Розблоковано.</string>
   <string name="credentials_dialog_title">Введіть облікові дані сервера</string>
   <string name="UseFileTransactions_title">Файлові транзакції</string>
-  <string name="UseFileTransactions_summary">Вживати файлові транзакції для запису баз даних</string>
+  <string name="UseFileTransactions_summary">Використовувати файлові транзакції для запису баз даних</string>
   <string name="LockWhenScreenOff_title">Блокування при вимкненні екрану</string>
-  <string name="LockWhenScreenOff_summary">Блокування бази даних при вимкненні екрану.</string>
-  <string name="ClearPasswordOnLeave_title">Стерти введений головний пароль</string>
-  <string name="ClearPasswordOnLeave_summary">Стерти введений головний пароль при залишенні екрану без розблокування бази даних.</string>
+  <string name="LockWhenScreenOff_summary">Блокувати базу даних при вимкненні екрану.</string>
+  <string name="ClearPasswordOnLeave_title">Стирати введений головний пароль</string>
+  <string name="ClearPasswordOnLeave_summary">Стирати введений головний пароль, якщо база даних не розблокована.</string>
   <string name="LockWhenNavigateBack_title">Блокувати при виході з програми</string>
   <string name="LockWhenNavigateBack_summary">Блокувати базу даних при виході з програми натисканням кнопки \"назад\".</string>
   <string name="NoDonateOption_title">Приховати опцію внеску</string>
-  <string name="NoDonateOption_summary">Це параметр для дарувальників. Він доступний лише після використання Keepass2Android протягом деякого часу.</string>
+  <string name="NoDonateOption_summary">Це опція для можливості внеску. Вона стає доступна лише через деякий час використання Keepass2Android.</string>
   <string name="NoDonateOption_question">Без внесків ця програма не існувала б і не вдосконалювалася б! Якщо ви ще не зробили внесок, розгляньте можливість зробити це зараз.</string>
   <string name="NoDonationReminder_title">Ніколи не запитувати про внесок</string>
   <string name="NoDonationReminder_summary">Я не дам вам ані копійки, або я вже зробив внесок. Не питати про внесок, навіть в день народження автора.</string>
@@ -325,33 +325,35 @@
   <string name="AcceptAllServerCertificates_summary">Визначають поведінку, коли перевірка сертифікату не вдалася. Примітка: ви можете встановити сертифікати на пристрої, якщо перевірка не вдалася!</string>
   <string name="ClearOfflineCache_title">Очистити кеш?</string>
   <string name="ClearOfflineCache_question">Це видалить всі кешовані файли баз даних. Будь-які зміни, що були внесені в автономному режимі та не були синхронізовані, будуть втрачені! Продовжити?</string>
-  <string name="CheckForFileChangesOnSave_title">Перевірити наявність змін</string>
+  <string name="CheckForFileChangesOnSave_title">Перевіряти наявність змін</string>
   <string name="CheckForFileChangesOnSave_summary">Перевірка, чи файл було змінено ззовні, перед збереженням змін.</string>
   <string name="CheckForDuplicateUuids_title">Перевірка дублікатів UUID</string>
-  <string name="CheckForDuplicateUuids_summary">Перевірити, чи не пошкоджений файл бази даних наявністю багатьох записів з однаковим ID. Це може призвести до неочікуваної поведінки.</string>
+  <string name="CheckForDuplicateUuids_summary">Перевіряти, чи не пошкоджений файл бази даних наявністю багатьох записів з однаковим ID. Це може призвести до неочікуваної поведінки.</string>
   <string name="ShowCopyToClipboardNotification_title">Сповіщення буфера обміну</string>
   <string name="ShowCopyToClipboardNotification_summary">Зробити ім\'я користувача і пароль доступними через панель сповіщень і буфер обміну. Стережіться перехоплювачів паролів!</string>
   <string name="ShowSeparateNotifications_title">Окремі сповіщення</string>
-  <string name="ShowSeparateNotifications_summary">Показувати окремі сповіщення для копіювання імені користувача й паролю до буфера обміну та активації клавіатури.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Сповіщення для Клавіатура/Автозаповнення</string>
+  <string name="ShowSeparateNotifications_summary">Показувати окремі сповіщення для копіювання імені користувача й пароля до буфера обміну та активації клавіатури.</string>
+  <string name="ShowKp2aKeyboardNotification_title">Сповіщення автозаповнення</string>
   <string name="ShowKp2aKeyboardNotification_summary">Зробити запис доступним через клавіатуру KP2A і службу автозаповнення (рекомендовано).</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">Перемкнути клавіатуру</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Відкрити діалогове вікно вибору клавіатури, коли запис доступний через клавіатуру KP2A після пошуку з веб-браузера.</string>
-  <string name="kp2a_switch_rooted">Автоматичне перемикання на рутованих пристроях</string>
-  <string name="kp2a_switch_rooted_summary">Автоматично змінити клавіатуру на KP2A після відкриття запису. Потребує root і програму Secure Settings з System+. </string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Перемикати клавіатуру</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Відкривати діалогове вікно вибору клавіатури, коли запис доступний через клавіатуру KP2A після пошуку з веб-браузера.</string>
+  <string name="kp2a_switch_rooted">Авто-перемикання клавіатури</string>
+  <string name="kp2a_switch_rooted_summary">Автоматичне перемикання на клавіатуру KP2A при відкритті запису. Потребує правильно налаштований плагін KeyboardSwap або пристрій з правами root та програму Secure Settings з System+. </string>
+  <string name="get_keyboardswap">Встановити плагін KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Цей плагін дозволяє перемикатися на клавіатуру KP2A без прав root. Потребує ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Авто-перемикання тільки після пошуку</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Автоматично змінити клавіатуру на K2PA тільки якщо попередньо була застосована функція Share URL (але жоден інший варіант відкриття запису)</string>
-  <string name="AutoSwitchBackKeyboard_title">Змінити клавіатуру на попередню</string>
-  <string name="AutoSwitchBackKeyboard_summary">Змінити клавіатуру на попередню якщо не відкрито жодного запису.</string>
-  <string name="ShowUnlockedNotification_title">Піктограма сповіщень при розблокуванні</string>
-  <string name="ShowUnlockedNotification_summary">Показувати піктограму сповіщень, коли база даних розблокована.</string>
-  <string name="PreloadDatabaseEnabled_title">Попереднє завантаження файлу бази даних</string>
-  <string name="PreloadDatabaseEnabled_summary">Почати завантаження файлу бази даних під час введення пароля.</string>
+  <string name="AutoSwitchBackKeyboard_title">Перемикати клавіатуру назад</string>
+  <string name="AutoSwitchBackKeyboard_summary">Змінювати клавіатуру на попередню, якщо не відкрито жодного запису.</string>
+  <string name="ShowUnlockedNotification_title">Піктограма в області сповіщень</string>
+  <string name="ShowUnlockedNotification_summary">Показувати піктограму в області сповіщень, коли база даних розблокована.</string>
+  <string name="PreloadDatabaseEnabled_title">Попереднє завантаження</string>
+  <string name="PreloadDatabaseEnabled_summary">Починати завантаження файлу бази даних під час введення пароля.</string>
   <string name="AskOverwriteBinary">Хочете перезаписати наявний бінарний файл з тим самим іменем?</string>
   <string name="AskOverwriteBinary_title">Перезаписати наявний бінарний файл?</string>
   <string name="AskOverwriteBinary_yes">Перезаписати</string>
   <string name="AskOverwriteBinary_no">Перейменувати</string>
-  <string name="AttachFailed">Не вдалося додати вкладений файл.</string>
+  <string name="AttachFailed">Не вдалося додати файл.</string>
   <string name="RecycleBin">Смітник</string>
   <string name="AskDeletePermanentlyEntry">Хочете остаточно видалити цей запис? Натисніть \"Ні\", щоб перенести в Смітник.</string>
   <string name="AskDeletePermanentlyGroup">Хочете остаточно видалити цю групу? Натисніть \"Ні\", щоб перенести в Смітник.</string>
@@ -445,13 +447,13 @@
   <string name="help_database_location">Ви можете зберігати базу даних локально на пристрої Android або у хмарі (за винятком автономної версії). Keepass2Android робить базу даних доступною навіть без Інтернету. Оскільки базу даних надійно зашифровано за допомогою 256-бітного шифрування AES, ніхто не зможе отримати доступ до ваших паролів, окрім вас. Ми рекомендуємо обрати Dropbox: він доступний для всіх пристроїв і навіть забезпечує резервне копіювання попередніх версій файлів.</string>
   <string name="hint_database_location">Виберіть місце для зберігання бази даних:</string>
   <string name="button_change_location">Змінити розташування</string>
-  <string name="help_quickunlock">Якщо увімкнено, Keepass2Android продовжує працювати на задньому плані, навіть якщо база паролів заблокована. Це дозволяє розблокувати базу паролів пізніше за допомогою лише короткої частини головного паролю.</string>
+  <string name="help_quickunlock">Якщо увімкнено, Keepass2Android продовжує працювати на задньому плані, навіть якщо база паролів заблокована. Це дозволяє розблокувати базу паролів пізніше за допомогою лише короткої частини головного пароля.</string>
   <string name="master_password">Головний пароль</string>
   <string name="help_master_password">Базу даних шифрується за допомогою введеного тут пароля. Оберіть надійний пароль для захисту бази даних! Порада: вигадайте одне чи два речення і використовуйте перші літери слів як пароль. Додайте знаки пунктуації.</string>
   <string name="hint_master_password">Виберіть головний пароль для захисту вашої бази даних:</string>
   <string name="key_file">Ключовий файл</string>
   <string name="help_key_file">Ключовий файл загалом є паролем, що зберігається у файлі. Ключові файли зазвичай сильніші від головних паролів, оскільки ключ може бути набагато складнішим; однак їх важче тримати в секреті. Якщо ви зберігаєте базу даних у хмарному сховищі, не зберігайте там також і ключовий файл! Це зробить його даремним! Важливо: не змінюйте вміст ключового файлу після створення бази даних!</string>
-  <string name="hint_key_file">Виберіть, якщо ви хочете використовувати ключовий файл на додаток до головного паролю:</string>
+  <string name="hint_key_file">Виберіть, якщо ви хочете використовувати ключовий файл на додаток до головного пароля:</string>
   <string name="use_key_file">Використовувати ключовий файл</string>
   <string name="error_adding_keyfile">Помилка при додаванні ключового файлу!</string>
   <string name="init_otp">Завантажити допоміжний файл одноразових паролів&#8230;</string>
@@ -473,10 +475,10 @@
   <string name="CouldntLoadChalAuxFile">Не вдалося завантажити файл допоміжного завдання!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Використайте плагін KeeChallenge в KeePass 2.x (ПК), щоб налаштувати базу даних для використання з відповіддю на завдання!</string>
   <string name="ErrorUpdatingChalAuxFile">Помилка оновлення допоміжного файлу одноразових паролів!</string>
-  <string name="TrayTotp_SeedField_title">Ім\'я поля початкового значення TOTP</string>
-  <string name="TrayTotp_SeedField_summary">Якщо ви використовуєте з Keepass 2 плагін \"TrayTotp\" з нестандартними налаштуваннями, введіть тут ім\'я поля для поля початкового значення відповідно до параметрів на ПК.</string>
-  <string name="TrayTotp_SettingsField_title">Ім\'я поля параметрів TOTP</string>
-  <string name="TrayTotp_SettingsField_summary">Введіть сюди ім\'я поля параметрів для TrayTotp.</string>
+  <string name="TrayTotp_SeedField_title">Назва поля початкового значення TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Якщо ви використовуєте з Keepass 2 плагін \"TrayTotp\" з нестандартними налаштуваннями, введіть тут назву поля для початкового значення відповідно до налаштувань на ПК.</string>
+  <string name="TrayTotp_SettingsField_title">Назва поля параметрів TOTP</string>
+  <string name="TrayTotp_SettingsField_summary">Введіть сюди назву поля параметрів для TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Завантаження&#8230;</string>
   <string name="plugins">Плагіни</string>
@@ -509,7 +511,6 @@
   <string name="CopyFileRequired">Для можливості використання, вам потрібно копіювати його до іншого розташування.</string>
   <string name="CopyFileRequiredForEditing">Для можливості редагування, вам потрібно копіювати файл до іншого розташування.</string>
   <string name="ClickOkToSelectLocation">Натисніть OK, щоб обрати місце, куди слід скопіювати файл.</string>
-  <string name="CancelReadOnly">Скасувати, відкрити лише для читання.</string>
   <string name="FileReadOnlyTitle">База даних доступна тільки для читання</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android відкрив поточну базу даних у режимі тільки для читання.</string>
   <string name="ReadOnlyReason_PreKitKat">Схоже, що ви відкрили файл із зовнішньої програми. Цей спосіб не підтримує запис. Якщо ви хочете внести зміни в базу паролів, закрийте її та виберіть Змінити базу паролів. Після чого відкрийте файл за допомогою одного з доступних варіантів.</string>
@@ -520,7 +521,7 @@
   <string name="DuplicateTitle">Копіювати</string>
   <string name="DefaultTemplate">Стандартний запис</string>
   <string name="TemplateGroupName">Шаблони</string>
-  <string name="TemplateTitle_IdCard">ID карти</string>
+  <string name="TemplateTitle_IdCard">ID карта</string>
   <string name="TemplateField_IdCard_Name">Ім’я</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Місце видачі</string>
   <string name="TemplateField_IdCard_IssueDate">Дата випуску</string>
@@ -539,14 +540,14 @@
   <string name="AskAddTemplatesTitle">Додати шаблони?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android містить шаблони записів для облікових записів електронної пошти, паролів Wireless-LAN, захищених нотаток та іншого. Чи бажаєте додати їх до своєї бази паролів? Якщо ви відмовитесь, то зможете додати їх пізніше через налаштування бази паролів.</string>
   <string name="AddTemplates_pref">Додати шаблони до бази даних</string>
-  <string name="PreviewWarning">Зверніть увагу! Це попередній випуск і він може мати деякі недоліки! При виникненні *будь-яких* несподіванок, дайте мені знати (на Codeplex або е-поштою).</string>
+  <string name="PreviewWarning">Зверніть увагу! Це попередній випуск і він може мати деякі проблеми! Якщо ви побачите щось неочікуване, будь ласка, повідомте мене (в групі Google+ beta tester або електронною поштою).</string>
   <string name="Continue">Продовжити</string>
   <string name="NoFilenameWarning">Введений вами URI не схожий на ім\'я файлу. Ви впевнені, що це правильний файл?</string>
   <string name="FirstInvalidCompositeKeyError">Недійсний комбінований ключ! Спробуйте знову.</string>
   <string name="RepeatedInvalidCompositeKeyHelp">Недійсний комбінований ключ! Спробуйте наступні кроки для розблокування своєї бази паролів:\n
   
     • Переконайтеся, що ви ввели правильний пароль. Використайте піктограму ока, щоб відобразити пароль.\n
-   • Переконайтеся, що ви обрали правильний тип паролю. Переконайтеся, що він збігається з типом, використаним при створенні бази паролів.\n
+   • Переконайтеся, що ви обрали правильний тип пароля. Переконайтеся, що він збігається з типом, використаним при створенні бази паролів.\n
    • Переконайтеся, що ви обрали правильний файл бази паролів.
  
 </string>
@@ -572,15 +573,52 @@
   <string name="ActivateAutoFillService_btnAutoFill">Використовувати службу автозаповнення</string>
   <string name="ActivateAutoFillService_toast">Будь ласка, увімкніть службу Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
+  <string name="ChangeLog_1_02">
+    Версія 1.02\n
+    * Вдосконалення безпеки. Велика подяка за звіт про безпеку та співпрацю jean-baptiste.cayrou@thalesgroup.com та vincent.fargues@thalesgroup.com!\n
+    * Підтримка плагіна KeyboardSwapPlugin (меню Налаштування - Програма - Парольний доступ): дозволяє автоматично змінювати спосіб введення на пристроях без прав root. Подяка за цю функцію Mishaal Rahman з XDA-Developers.\n
+    * Виправлення для Служби доступності з останніми версіями Chrome\n
+    * Виправлено стирання даних відбитків пальців без необхідності\n
+    * Виправлення незначних збоїв\n
+    * Оновлено Dropbox SDK для подальшої сумісності\n
+    * Вилучено звітування про помилки через Xamarin Insights\n
+    * Оновлено інструменти створення\n
+  </string>
+  <string name="ChangeLog_1_01g">
+    Версія 1.01-g\n
+    * Виправлення збоїв під час роботи поза мережею\n
+    * Виправлення неправильного кодування записів FTP(S)\n
+    * Виправлення збоїв при роботі з OneDrive та на старіших версіях Android\n
+    * Показ локального часу на екрані запису\n
+  </string>
+  <string name="ChangeLog_1_01d">
+    Версія 1.01-d\n
+    * Виправлення відображення файлів OneDrive\n
+    * Дозвіл ігнорування помилок сертифіката також при невдалому засвідченні назви хоста (не рекомендовано для звичайного використання)\n
+    * Виправлення неправильної роботи QuickUnlock при розблокуванні\n
+  </string>
   <string name="ChangeLog_0_9_8c">
     Версія 0.9.8c\n
     * Виправлення вразливості SSL в Microsoft Live SDK (використовується при доступі до файлів через OneDrive)\n
     * Виправлення помилок: попередня версія містила два методи введення (один збій)\n
   </string>
   <string name="ChangeLog_1_01">
-     Версія 1.01\n * Додана підтримка нового KDBX-4 формату (сумісного з Keepass 2,35) включаючи функцію формування ключа Argon2 та шифрування ChaCha20. \n * зберігання файлів на WebDav, тепер воно дозволяє перегляд файлів та підтримує сучасне шифрування. \n * Переписане зберігання файлів на FTP, тепер воно дозволяє перегляд файлів та підтримує шифрування (FTPS). \n * Версія оновлена до OneDrive SDK (раніше використовувався Live SDK, який більше не оновлюється) \n * Версія оновлена до Dropbox SDK версії 2 (версія 1 SDK, що раніше використовувалася, тепер застаріла). \n * Додана підтримка OwnCloud.\n * Запит про дозвіл доступу до сховища перед відкриттям локальних файлів  </string>
+    Версія 1.01\n
+    * додано підтримку для нового формату KDBX-4 (сумісність з Keepass 2.35), включаючи функцію деривації ключа Argon2 і шифрування ChaCha20.\n
+    * Перероблено сховище файлів WebDav. Тепер є можливість перегляду файлів і підтримка сучасного шифрування.\n
+    * Перероблено сховище файлів FTP. Тепер є можливість перегляду файлів і підтримка шифрування (FTPS).\n
+    * Оновлення до OneDrive SDK (попередній Live SDK більше не оновлюється)\n
+    * Оновлення до Dropbox SDK версії 2 (попередня версія 1 SDK є застарілою).\n
+    * Додано підтримку для OwnCloud.\n
+    * Запит дозволу на доступ до сховища перед відкриттям локальних файлів
+  </string>
   <string name="ChangeLog_1_0_0e">
-Версія 1.0.0e\n * виправлене розблокування за відбитком пальцю на старих Samsung з Android 6\n * додана підтримка для пристроїв з архітектурою x86\n * дозволяє приховати клавіатуру під час сканування відбитків пальців\n * оновлення системи збірки  </string>
+    Версія 1.0.0e\n
+    * виправлення для розблокування відбитком пальця на старіших пристроях Samsung з системою Android 6\n
+    * додано підтримку для пристроїв x86\n
+    * дозвіл на приховування клавіатури під час сканування відбитку пальця\n
+    * оновлення системного складання
+  </string>
   <string name="ChangeLog_1_0_0">
 Версія 1.0.0\n
 * Розблокування відбитками пальців (необхідний Android 6.0+ або пристрій Samsung)\n
@@ -595,20 +633,20 @@
 * Додана можливість надсилання повідомлень про помилки\n
  * Додані підказки в деяких місцях\n  </string>
   <string name="ChangeLog_0_9_9">
-		Version 0.9.9\n
-		* Complete UI redesign. Thanks a lot to Stefano Pignataro (http://www.spstudio.at) for his support!\n
-    * Allow to add custom icons\n
-    * Support for Multi Window mode on Samsung devices\n
-    * Increased default number of encryption rounds for new databases\n
-    * Check for duplicate keys of additional fields to avoid losing data\n
+		Версія 0.9.9\n
+		* Повна зміна інтерфейсу користувача. Велика подяка за підтримку Stefano Pignataro (http://www.spstudio.at)!\n
+    * Можливість додавання власних піктограм\n
+    * Підтримка багатовіконного режиму на пристроях Samsung\n
+    * Збільшена типова кількість циклів шифрування для нових баз даних\n
+    * Перевірка дублікатів ключів у додаткових полях для запобігання втрати даних\n
     
 	</string>
   <string name="ChangeLog_0_9_9c">
-    Version 0.9.9c\n
-    * Dark theme is back\n
-    * You can install other icon packs (ancient Windows-style icons are available on Play store)\n
-    * Added confirmation question when deleting elements without recycle bin\n
-    * Bug fixes (wrong display of OTP secret encoding, wrong app icon in some places)\n
+    Версія 0.9.9c\n
+    * Повернення темної теми\n
+    * Можливість встановлення інших пакунків піктограм (піктограми в старому стилі Windows доступні на Google Play)\n
+    * Додано запит підтвердження при остаточному видаленні елементів, оминаючи смітник\n
+    * Виправлення помилок (неправильний показ секретного кодування OTP, неправильна піктограма програми в деяких місцях)\n
   </string>
   <string name="ChangeLog_0_9_8b">
 		Версія 0.9.8b\n
@@ -625,14 +663,14 @@
   <string name="ChangeLog_0_9_7b">
 		Версія 0.9.7b\n
 		* оновлені переклади\n
-		* виправлені помилки: Втрачений шрифт паролю в 0.9.7, сортування груп за назвами\n
+		* виправлені помилки: Втрачений шрифт пароля в 0.9.7, впорядкування груп за назвами\n
 	</string>
   <string name="ChangeLog_0_9_7">
 		Версія 0.9.7\n
 		* підтримка запису для баз даних Keepass 1 (kdb) (beta!)\n
-		* краще перемикання назад до попередньої клавіатури (також працює на нерутованих пристроях)\n
+		* краще перемикання назад до попередньої клавіатури (також працює на пристроях без root)\n
 		* підтримка KeeChallenge зі змінною довжиною ключа\n
-		* запобігання отримання знімків екрану в режимі QuickUnlock і при введенні паролю\n
+		* запобігання отримання знімків екрану в режимі QuickUnlock і при введенні пароля\n
 		* зворотній порядок сортування за датою зміни (тепер за спаданням)\n
 		* виправлення помилок: Нотатки тепер оновлюються коректно після змін, Паролі тепер приховуються коректно на всіх пристроях, виправлено проблему, яка дозволяла двічі додавати запис, виправлена проблема показу попередження про дублікат UUID, навіть після виправлення бази даних\n
 	</string>
@@ -642,9 +680,9 @@
 		* можливість різних варіантів сортування\n
 		* покращені налаштування для автоматичного перемикання клавіатури\n
 		* оновлено логотип програми та дизайн сповіщення, дизайн від Stefano Pignataro (http://www.spstudio.at)\n
-		* генератор паролю запам\'ятовує останні налаштування\n
+		* генератор пароля запам\'ятовує останні налаштування\n
 		* встановлення видимості сповіщення для екрану блокування в Android 5\n
-		* тепер поле головного паролю очищується при виході з програми без натискання OK\n
+		* тепер поле головного пароля очищується при виході з програми без натискання OK\n
 		* виправлена проблема втрачених мов у налаштуваннях клавіатури на деяких пристроях\n
 		* виправлена проблема автоматичного перемикання клавіатури на рутованих пристроях\n
 		* додано перевірку для пошкоджених баз даних (дублікати UUID)\n
@@ -663,77 +701,77 @@
 		Я обіцяв деякі інші зміни. Вибачте, але вони будуть впроваджені з наступним випуском. Я хотів опублікувати дані критичні виправлення якнайшвидше.
 	</string>
   <string name="ChangeLog_0_9_4">
-		<b>Version 0.9.4</b>\n
-		* added plug-in support: See settings for how to get plug-ins!\n
-		*  published QR plug-in (scan passwords, display passwords as QR code, transfer entries to other KP2A devices)\n
-		*  published InputStick plugin (transfer credentials to your PC via bluetooth - requires InputStick USB stick)\n
-		*  Third party apps can now simply implement querying KP2A for credentials. Are you a developer? Please add this to your app if suitable!\n
-		* added TOTP support (compatible with KeeOTP and TrayTotp)\n
-		* app should no longer be killed by Android when database is open\n
-		* database is no longer locked when leaving the app with the back button (see settings)\n
-		* display group names in search results view (*)\n
-		* added context menu in search results view including \"Navigate to parent\" option (*)\n
-		* added option to display group name in entry view (*)\n
-		* (*) thanks to Matthieu for implementing these features!\n
-		* support KeeChallenge (with Yubikey NEO). Thanks to Ben Rush for implementing the connector!\n
-		* improved user interface\n
-		* fixed a bug in Google Drive interface\n
-		* added option to disable the \"donate\" option\n
-		* QuickUnlock icon now hidden on Android 4.2+ devices by default\n 
+		<b>Версія 0.9.4</b>\n
+		* додано підтримку плагінів: Для отримання плагінів дивіться налаштування!\n
+		*  опубліковано QR-плагін (сканує паролі, показує паролі у вигляді QR-коду, переносить записи на інші пристрої з KP2A)\n
+		*  опубліковано плагін InputStick (передавання даних на ПК через bluetooth - потрібен InputStick USB-носій)\n
+		*  Сторонні програми тепер можуть легко впроваджувати запит даних для KP2A. Ви розробник? Будь ласка, додайте цю можливість до своєї програми!\n
+		* додано підтримку TOTP (сумісно з KeeOTP та TrayTotp)\n
+		* процес програми тепер не завершується системою Android, коли база даних розблокована\n
+		* база даних більше не блокується при натисканні кнопки \"Назад\" (див. налаштування)\n
+		* показ назв груп при перегляді результатів пошуку (*)\n
+		* додано контекстне меню при перегляді результатів пошуку, включаючи опцію \"Navigate to parent\" (*)\n
+		* додано опцію для показу назви групи при перегляді запису (*)\n
+		* (*) подяка Matthieu за впровадження цих функцій!\n
+		* підтримка KeeChallenge (з Yubikey NEO). Подяка Ben Rush за впровадження можливості зв\'язку!\n
+		* вдосконалено інтерфейс користувача\n
+		* виправлено помилку в інтерфейсі Google Drive\n
+		* додано можливість вимкнення опції \"зробити внесок\"\n
+		* піктограма QuickUnlock тепер типово прихована на пристроях Android 4.2+\n 
 	</string>
   <string name="ChangeLog_0_9_3_r5">
-		<b>Version 0.9.3 r5</b>\n
-		* Incorporated fixes from Xamarin: Keepass2Android now compatible with ART on Android 4.4.2. Finally!\n
-		* Bug fixes: bugs in synchronization (refresh display, correct check for changes on http), bugs on Android 2.x devices, bugs in Google Drive and OneDrive storage implementations, clear clipboard on close database, bug opening attachments, display problems with keyboard\n
+		<b>Версія 0.9.3 r5</b>\n
+		* Об\'єднані виправлення від Xamarin: Keepass2Android тепер сумісний з ART на Android 4.4.2. Нарешті!\n
+		* Виправлення: помилки синхронізації (оновлення екрану, правильна перевірка змін на http), помилки на пристроях з Android 2.x, помилки зі сховищами Google Drive і OneDrive, очищення буфера обміну при закритті бази даних, помилка з відкриттям вкладень, проблеми з клавіатурою\n
 	</string>
   <string name="ChangeLog_0_9_3">
-		<b>Version 0.9.3</b>\n
-		* New keyboard with many improvements. See settings to customize.\n
-		* Read-only support for kdb (Keepass 1 files). Experimental!\n
-		* Added SFTP support\n
-		* Added workaround for bug in ART (Android 4.4.2)\n
-		* Bug fixes\n
+		<b>Версія 0.9.3</b>\n
+		* Нова клавіатура з багатьма вдосконаленнями. Дивіться налаштування.\n
+		* Експериментальна підтримка режиму Лише читання для kdb (файли Keepass версії 1).\n
+		* Додано підтримку SFTP (Secure File Transfer Protocol)\n
+		* Додано тимчасове рішення для помилки з ART (Android 4.4.2)\n
+		* Виправлення помилок\n
 	</string>
   <string name="ChangeLog_0_9_2">
-		<b>Version 0.9.2</b>\n
-		* Added OTP support (compatible with OtpKeyProv plugin)\n
-		* Integrated NFC support for OTPs from YubiKey NEO \n
-		* Several UI improvements\n
-		* Integrated Keepass 2.24 library\n
-		* Added option to kill the app process (see settings)\n
-		* Improved SSL certificate validation\n
-		* Bug fixes\n
+		<b>Версія 0.9.2</b>\n
+		* Додано підтримку OTP (сумісність з плагіном OtpKeyProv)\n
+		* Інтегрована підтримка NFC для OTP з YubiKey NEO \n
+		* Декілька вдосконалень інтерфейсу\n
+		* Інтегрована бібліотека Keepass 2.24\n
+		* Додано можливість завершення процесу програми (див. налаштування)\n
+		* Вдосконалена перевірка сертифікатів SSL\n
+		* Виправлено помилки\n
 	</string>
   <string name="ChangeLog_0_9_1">
-		<b>Version 0.9.1</b>\n
-		* Integrated SkyDrive support (Keepass2Android regular edition only)\n
-		* Fixed problems with Google Drive integration\n
-		* Added NTLM support
+		<b>Версія 0.9.1</b>\n
+		* Інтегрована підтримка SkyDrive (лише звичайна версія Keepass2Android)\n
+		* Виправлено помилки інтеграції з Google Drive\n
+		* Додано підтримку NTLM
 	</string>
   <string name="ChangeLog_0_9">
-		<b>Version 0.9</b>\n
-		* Integrated Dropbox and Google Drive support (read/write databases; Keepass2Android regular edition only)\n
-		* Integrated custom file browser (based on android-filechooser by HBA)\n
-		* Improved user interface for creating new databases\n
-		* Included custom font DejaVu Sans Mono for displaying passwords\n
-		* Bug fixes
+		<b>Версія 0.9</b>\n
+		* Інтегрована підтримка Dropbox і Google Drive (читання/запис баз даних; лише звичайна версія Keepass2Android)\n
+		* Інтегрований власний браузер файлів (на основі android-filechooser від HBA)\n
+		* Вдосконалено інтерфейс для створення нової бази даних\n
+		* Включено шрифт DejaVu Sans Mono для показу паролів\n
+		* Виправлено помилки
 	</string>
   <string name="ChangeLog_0_8_6">
-		<b>Version 0.8.6</b>\n
-		* Support for Twofish cipher\n
-		* Allow editing of groups\n
-		* Allow moving of entries and groups\n
-		* QuickUnlock icon can be made transparent (see settings)\n
-		* Bug fixes
+		<b>Версія 0.8.6</b>\n
+		* Підтримка шифрування Twofish\n
+		* Можливість редагування груп\n
+		* Можливість переміщення записів і груп\n
+		* Можливість зробити піктограму QuickUnlock прозорою (див. налаштування)\n
+		* Виправлення помилок
 	</string>
   <string name="ChangeLog_0_8_5">
-		<b>Version 0.8.5</b>\n
-		* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
-		* Notification icon to visualize the lock-state of the database (see settings)\n
-		* Improved determination of lock-state in some situations\n
-		* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
-		* Entries can be added to root group\n
-		* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)
+		<b>Версія 0.8.5</b>\n
+		* Можливість зберігання віддалених файлів в локальному кеші програми для автономного використання (включаючи редагування й подальшу синхронізацію змін). Див. налаштування. \n
+		* Піктограма в області сповіщень для показу стану бази даних (див. налаштування)\n
+		* Вдосконалено визначення стану блокування в деяких ситуаціях\n
+		* Файли бази даних завантажуються в пам\'ять під час введення пароля для підвищення швидкості доступу (див. налаштування)\n
+		* Можливість додавання записів до кореневої групи\n
+		* Виправлення помилок (проблеми з пов\'язаними полями, проблеми з клавіатурою для італійських і китайських пристроях)
 	</string>
   <string name="ChangeLog_0_8_4">
 		<b>Version 0.8.4</b>\n
@@ -771,10 +809,10 @@
 * probably introduced new bugs :-)
 </string>
   <string name="ChangeLog_keptDonate">Розширена можливість зробити внесок на пиво чи щось інше</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
-* Increased loading speed: key transformations now 10x faster!\n
-* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
-* Added option to donate a beer or something else (see menu)</string>
+  <string name="ChangeLog_0_7"><b>Версія 0.7</b>\n
+* Покращена швидкість завантаження: передавання ключа тепер до 10 разів швидше!\n
+* Додано програмна клавіатура Keepass2Android: Перемикайтесь на цю клавіатуру для введення облікових даних. Захищає від перехоплення введених даних з клавіатури (вимкнення старих сповіщень клавіатури в налаштуваннях)\n
+* Додано опцію для внеску на пиво, чи щось інше (див. меню)</string>
   <string name="ChangeLog"><b>Version 0.6.2</b>\n
 * Google Drive/Dropbox/... integration: Use the official Google Drive or Dropbox App and open any .kdbx-file. This will now bring up KP2A.\n
 * Improved Search Dialog \n
@@ -813,7 +851,7 @@ Initial public release
     <item>Світла</item>
     <item>Темна</item>
   </string-array>
-  <string name="design_title">Дизайн</string>
+  <string name="design_title">Тема</string>
   <string-array name="ftp_encryption_modes">
     <item>Без шифрування (FTP)</item>
     <item>Неявне шифрування (FTP через TLS, FTPS)</item>
@@ -837,4 +875,6 @@ Initial public release
     <item>Попереджати при невдалій перевірці</item>
     <item>Не приймати недійсні сертифікати</item>
   </string-array>
+  <string name="ClearClipboardWarning">Переконайтеся, що це працює на вашій системі, і якщо не працює, розгляньте можливість використання стандартної клавіатури.</string>
+  <string name="PluginDescription">Опис надається плагіном:</string>
 </resources>

@@ -338,8 +338,10 @@
   <string name="ShowKp2aKeyboardNotification_summary">A teljes bejegyzés elérhetővé tétele a KP2A billentyűzet és az Automatikus kitöltés szolgáltatás segítségével (ajánlott).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Billentyűzetváltás</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Nyissa meg a bevitelimód-váltás párbeszédablakot, ha egy böngészőből indított keresés után a KP2A billentyűzet számára elérhető egy bejegyzés.</string>
-  <string name="kp2a_switch_rooted">Automatikus billentyűváltás (root jogosultsággal)</string>
-  <string name="kp2a_switch_rooted_summary">Automatikus váltás a KP2A billentyűzetre egy bejegyzés megnyitásakor. Használatához szükség van root jogosultságra, a Secure Setting alkalmazásra és annak System+ moduljára is.</string>
+  <string name="kp2a_switch_rooted">Automatikus billentyűzetváltás</string>
+  <string name="kp2a_switch_rooted_summary">Automatikusan aktiválódjon a KP2A billentyűzet a bejegyzés megnyitásakor. Használatához megfelelően beállított KeyboardSwap beépülő modul vagy root-olt telefon esetén Secure Setting alkalmazás és System+ szükséges.</string>
+  <string name="get_keyboardswap">KeyboardSwap beépülő modul telepítése</string>
+  <string name="get_keyboardswap_summary">Ez a beépülő modul lehetővé teszi KP2A billentyűzet automatikus aktiválását. A modul használatához root jogosultságra nincs szükség, ADB-re azonban szükség van. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatikus váltás csak keresés után</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Csak az URL megosztása funkció használata esetén váltson automatikusan KP2A billentyűzetre (a bejegyzés más módon történő megnyitása esetén ne)</string>
   <string name="AutoSwitchBackKeyboard_title">Billentyűzet-visszaváltás</string>
@@ -512,7 +514,6 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="CopyFileRequired">Használathoz egy más helyre kell másolnia.</string>
   <string name="CopyFileRequiredForEditing">Módosításhoz egy más helyre kell másolnia.</string>
   <string name="ClickOkToSelectLocation">Kattintson az OK gombra a másolási hely kiválasztásához.</string>
-  <string name="CancelReadOnly">Megszakítás, megnyitás csak olvasásra.</string>
   <string name="FileReadOnlyTitle">Az adatbázis csak olvasható</string>
   <string name="FileReadOnlyMessagePre">A Keepass2Android a jelenlegi adatbázist csak olvasható módban nyitotta meg.</string>
   <string name="ReadOnlyReason_PreKitKat">Úgy tűnik, hogy a fájlt egy külső alkalmazásból nyitotta meg. Ily módon történő megnyitás esetén a fájl módosítása nem lehetséges. Ha módosítani szeretné az adatbázist, először zárja azt be, majd az Adatbázis-váltás funkció valamelyik opciója segítségével nyissa meg újra az adatbázist.</string>
@@ -542,7 +543,6 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="AskAddTemplatesTitle">Sablonok hozzáadása?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android részét képezi néhány beépített sablon, egyebek mellett e-mail fiókok, WLAN jelszavak és titkosított jegyzetek számára. Kívánja ezeket hozzáadni az adatbázishoz? Ha most nem teszi ezt meg, később pótolhatja, a megfelelő adatbázis-beállítás segítségével.</string>
   <string name="AddTemplates_pref">Sablonok hozzáadása az adatbázishoz</string>
-  <string name="PreviewWarning">Figyelem! Ez egy technikai előzetes kiadás és mint ilyen, mutathat hibás működést! Ha *bármi* szokatlant tapasztal, kérjük, jelezze (a Codeplex-en vagy e-mail-en keresztül).</string>
   <string name="Continue">Folytatás</string>
   <string name="NoFilenameWarning">A megadott URI nem tűnik fájlnévnek. Biztos benne, hogy jó URI-t adott meg?</string>
   <string name="FirstInvalidCompositeKeyError">Az összetett kulcs érvénytelen! Próbálkozzon újra.</string>
@@ -620,4 +620,5 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
     <item>Figyelmeztetés a problémára</item>
     <item>Ne fogadjon el érvénytelen tanúsítványt</item>
   </string-array>
+  <string name="PluginDescription">A beépülő modul által nyújtott leírás:</string>
 </resources>

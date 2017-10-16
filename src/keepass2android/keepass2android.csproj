@@ -718,6 +718,7 @@
     <AndroidResource Include="Resources\values-de\strings.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+	<AndroidResource Include="Resources\values-gl-rES\strings.xml" />
     <AndroidResource Include="Resources\values-ca\strings.xml" />
     <AndroidResource Include="Resources\values-cs\strings.xml" />
     <AndroidResource Include="Resources\values-da\strings.xml" />

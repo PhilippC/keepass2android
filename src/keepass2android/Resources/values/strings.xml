@@ -221,7 +221,7 @@
   <string name="KeyDerivFunc">Key derivation function</string>
   
   <string name="rounds">Encryption Rounds</string>
-  <string name="rounds_explaination">Higher encryption rounds provide additional protection against brute force attacks, but can really slow down loading and saving.</string>
+  <string name="rounds_explaination">More encryption rounds provide additional protection against brute force attacks, but can really slow down loading and saving.</string>
   <string name="rounds_hint">rounds</string>
 
 
@@ -339,7 +339,7 @@
 	<string name="LockWhenNavigateBack_summary">Lock the database when leaving the app by pressing the back button.</string>
 
 	<string name="NoDonateOption_title">Hide donation option</string>
-	<string name="NoDonateOption_summary">This setting is for donators. It is available after using Keepass2Android for a while only.</string>
+	<string name="NoDonateOption_summary">This setting is for donators. Becomes available after using Keepass2Android for a while.</string>
 	<string name="NoDonateOption_question">Without donations, this app would not exist and would not be improved continually! If you have not yet donated, please consider making a donation now.</string>
 
   <string name="NoDonationReminder_title">Never ever ask for donation</string>
@@ -598,7 +598,6 @@
 	<string name="CopyFileRequired">To use it, you must copy it to another location.</string>
 	<string name="CopyFileRequiredForEditing">To edit it, you must copy the file to another location.</string>
 	<string name="ClickOkToSelectLocation">Click OK to select a location where the file should be copied.</string>
-	<string name="CancelReadOnly">Cancel, open read-only.</string>
   
   <string name="FileReadOnlyTitle">Database is read-only</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android has opened the current database in read-only mode.</string>

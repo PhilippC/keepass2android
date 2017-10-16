@@ -3,9 +3,18 @@
 <resources>
   <string name="change_entry">Seleccionar outra entrada</string>
   <string name="open_entry">Seleccionar entrada</string>
+  <string name="open_entry_for_app">Buscar entrada con \"%1$s\"</string>
   <string name="kp2a_user">Usuario</string>
   <string name="kp2a_password">Contrasinal</string>
+  <string name="kp2a_prefs">Configuración de credenciais</string>
+  <string name="kp2a_auto_fill">Autocompletado habilitado</string>
+  <string name="kp2a_auto_fill_summary">Completar automáticamente o campo baleiro cando se seleccione, se hai unha entrada de Keepass2Android dispoñible para o teclado e hai un valor que coincida coa suxerencia do campo.</string>
+  <string name="kp2a_remember_auto_fill">Lembrar textos de suxerencia</string>
+  <string name="kp2a_remember_auto_fill_summary">Se un campo é enchido manualmente ó escoller un valor de Keepass2Android, lembrar valor esollido. O campo será detectado de novo pola suxerencia.</string>
   <string name="kp2a_simple_keyboard">Teclado simple</string>
+  <string name="kp2a_simple_keyboard_summary">Amosar teclado simple de 1 liña se a entrada está dispoñible para o teclado. Se deshabilitado, amósase unha caixa de diálogo ó premer sobre a tecla de Keepass2Android.</string>
   <string name="kp2a_lock_on_sendgodone">Bloquear a base de datos ao rematar</string>
+  <string name="kp2a_lock_on_sendgodone_summary">Cando se prema a tecla Feito/Enviar/Adiante no teclado simple de unha liña, pechar automáticamente a base de datos.</string>
   <string name="kp2a_switch_on_sendgodone">Cambiar de teclado ao rematar</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Ó premer a tecla Feito/Enviar/Adiante no teclado simple de 1 liña, cambiar de teclado.</string>
 </resources>

@@ -269,7 +269,6 @@
   <string name="ShowCopyToClipboardNotification_summary">계정과 비밀번호를 알림창과 클립보드를 통해 접근할 수 있도록 함. 비밀번호 유출 주의!</string>
   <string name="OpenKp2aKeyboardAutomatically_title">키보드 바꾸기</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">브라우저에서 검색 후 KP2A 키보드를 통한 항목 선택이 가능할 때 키보드 선택창을 열기</string>
-  <string name="kp2a_switch_rooted">루팅 장치에서 자동 전환</string>
   <string name="ShowUnlockedNotification_title">잠금이 해제되어 있는 동안 알림창 아이콘을 표시</string>
   <string name="ShowUnlockedNotification_summary">데이터베이스가 열려있는 동안 알림창에 열림 상태를 알림</string>
   <string name="PreloadDatabaseEnabled_title">데이터베이스 파일을 미리 불러오기</string>

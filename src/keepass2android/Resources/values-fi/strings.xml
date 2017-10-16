@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android on salasanojen hallintaohjelma, jolla voit katsella ja muokata KeePass 2.x tietokantoja Androidilla.</string>
   <string name="CreditsText">Käyttöliittymä perustuu Brian Pellinin kehittämään KeepassDroid -porttaukseen. Tietokantatoimintojen lähdekoodi perustuu Dominik Reichlin KeePass -sovellukseen. Android Robot on kopioitu tai muokattu Googlen jakamista julkaisuista ja sitä käytetään Creative Commons 3.0 Attribution Licensen kuvaamien ehtojen mukaisesti.</string>
   <string name="CreditsTextSFTP">SFTP tuki toteutetaan käyttämällä JCraft, Inc.:in luomaa JSch kirjastoa BSD lisenssillä.</string>
-  <string name="CreditsIcons">Vasarakuvake syntyi John Casertan Noun-projektista. Pingviinikuvake on luotu Adriano Emerickin Noun-projektista. Sulka-kuvake on luotu Jon Testan Noun-projektista. Applen kuvake syntyi Ava Rowellin Noun-projektista. </string>
+  <string name="CreditsIcons">Vasarakuvakkeen loi John Caserta Noun-projektista. Pingviinikuvakkeen loi Adriano Emerick Noun-projektista. Sulkakuvakkeen loi Jon Testa Noun-projektista. Omenakuvakkeen loi Ava Rowell Noun-projektista. </string>
   <string name="accept">Hyväksy</string>
   <string name="deny">Älä hyväksy</string>
   <string name="add_entry">Lisää merkintä</string>
@@ -23,14 +23,14 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Aikakatkaisu</string>
-  <string name="app_timeout_summary">Aika jonka jälkeen tietokanta lukkiutuu automaattisesti jos ohjelmaa ei käytetä.</string>
+  <string name="app_timeout_summary">Aika, jonka jälkeen tietokanta lukkiutuu automaattisesti jos ohjelmaa ei käytetä.</string>
   <string name="kill_app_label">Tapa prosessi</string>
   <string name="show_kill_app">Sulje-painike</string>
   <string name="show_kill_app_summary">Näytä painike \"Tapa prosessi\" (vainoharhaisille käyttäjille)</string>
   <string name="application">Sovellus</string>
   <string name="application_settings">Asetukset</string>
   <string name="ShowGroupnameInSearchResult_title">Näytä ryhmien nimet hakutuloksissa</string>
-  <string name="ShowGroupnameInSearchResult_resume">Näytä hakutuloksissa ryhmän nimi merkinnän otsikon alla. Hyödyllinen, jos on useita samannimisiä merkintöjä.</string>
+  <string name="ShowGroupnameInSearchResult_resume">Näytä hakutuloksissa ryhmän nimi merkinnän otsikon alla. Hyödyllinen, jos useammalla merkinnällä on sama nimi.</string>
   <string name="NavigationToGroupCompleted_message">Nyt näytettävä ryhmä on: %1$s</string>
   <string name="ShowGroupInEntry_title">Näytä ryhmän nimi merkinnässä</string>
   <string name="unknown_uri_scheme">Pahoittelut! Keepass2Android ei osaa käsitellä vastaanotettua URI-osoitetta %1$s. Ota yhteyttä kehittäjään!</string>
@@ -91,10 +91,11 @@
   <string name="fingerprint_disabled_wrong_masterkey">Tietokannan avaus epäonnistui: virheellinen yhdistelmäavain. Sormenjälkitunnistus on poisttettu, koska ilmeisesti tallennettu pääsalasana ei ole enää voimassa. Ole hyvä ja avaa tietokanta salasanallasi ja ota sormenjälkiavaus uudelleen käyttöön tietokanta-asetuksista.</string>
   <string name="fingerprint_reenable">Ole hyvä ja ota sormenjälkitunnistus käyttöön uudelle pääsalasanalle.</string>
   <string name="enable_fingerprint_unlock_Info">
-Tämä tallentaa pääsalasanasi laitteeseen,
-salattuna Android Keystorea käyttäen ja suojattuna sormenjälkitunnistautumisella.
-Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Mahdollistaa sormenjälkitunnistautumisen pika-avauskoodin sijaan. Ei vaadi minkään pääsalasanaan liittyvän tiedon tallentamista.</string>
+    Tämä tallentaa pääsalasanasi laitteeseen,
+    salattuna Android Keystorea käyttäen ja suojattuna sormenjälkitunnistautumisella.
+    Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä.
+  </string>
+  <string name="enable_fingerprint_quickunlock_Info">Mahdollistaa sormenjälkitunnistautumisen Pika-avauskoodin sijaan. Ei vaadi minkään pääsalasanaan liittyvän tiedon tallentamista.</string>
   <string name="enter_filename">Kirjoita tietokannan tiedostonimi</string>
   <string name="entry_accessed">Käytetty</string>
   <string name="entry_cancel">Peruuta</string>
@@ -130,6 +131,7 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="error_pass_gen_type">Täytyy valita ainakin yksi salasanan luontitapa</string>
   <string name="error_pass_match">Salasanat eivät täsmää.</string>
   <string name="error_rounds_not_number">Kierrosmäärän tulee olla numero.</string>
+  <string name="error_param_not_number">Parametrin tulee olla numero.</string>
   <string name="error_title_required">Otsikko vaaditaan.</string>
   <string name="error_wrong_length">Kirjoita Pituus-kenttään positiivinen kokonaisluku</string>
   <string name="FileNotFound">Tiedostoa ei löydy.</string>
@@ -208,9 +210,12 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="remove_from_filelist">Poista</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Juurihakemisto</string>
+  <string name="KeyDerivFunc">Avaimenjohtamisfunktio</string>
   <string name="rounds">Salauskierrokset</string>
   <string name="rounds_explaination">Suurempi salauskierrosten määrä antaa paremman suojauksen, mutta se voi merkittävästi hidastaa lataamista ja tallentamista.</string>
   <string name="rounds_hint">kierrokset</string>
+  <string name="argon2memory">Muistia Argon 2:lle (tavua)</string>
+  <string name="argon2parallelism">Rinnakkaisuus Argon 2:lle</string>
   <string name="database_name">Tietokannan nimi</string>
   <string name="default_username">Oletuskäyttäjänimi uusille merkinnöille</string>
   <string name="saving_database">Tallennetaan tietokantaa...</string>
@@ -332,8 +337,10 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="ShowKp2aKeyboardNotification_summary">Tarjoa koko merkintä KP2A-näppäimistön ja automaattitäytön kautta (suositellaan).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Vaihda näppäimistö</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Avaa näppäimistön valintaikkuna kun merkintä on saatavilla KP2A näppäimistölle selainhaun jälkeen.</string>
-  <string name="kp2a_switch_rooted">Vaihda automaattisesti rootatuilla laitteilla</string>
-  <string name="kp2a_switch_rooted_summary">Vaihtaa automaattisesti KP2A-näppäimistöön, kun merkintä on avataan. Vaatii pääkäyttäjätilin ja Secure Settings -sovelluksen System+:lla. </string>
+  <string name="kp2a_switch_rooted">Automaattinen näppäimistön vaihto</string>
+  <string name="kp2a_switch_rooted_summary">Vaihtaa automaattisesti KP2A näppäimistön, kun merkintä on avattu. Edellyttää oikein asennettua KeyboardSwap Pluginiä tai rootattua laitetta ja Secure settings ja System + sovellusta. </string>
+  <string name="get_keyboardswap">Asenna KeyboardSwap Plugin</string>
+  <string name="get_keyboardswap_summary">Tämän laajennuksen avulla voit siirtyä KP2A näppäimistö ilman root oikeuksia. Edellyttää ADB: tä. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automaattivaihto vain haun jälkeen
 </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Vaihtaa automaattisesti KP2A-näppäimistöön vain kun käytetään Share URL -toimintoa (mutta ei avatessa merkintää muilla tavoin)</string>
@@ -413,7 +420,9 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="ok_donate">Kerro lisää!</string>
   <string name="no_thanks">Ei, en pidä sitä niin paljon</string>
   <string name="enter_http_login_title">Syötä WebDavin kirjautumistiedot:</string>
+  <string name="hint_http_url">Kansion tai tiedoston URL (esim. mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Syötä OwnCloudin kirjautumistiedot:</string>
+  <string name="hint_owncloud_url">OwnCloud URL (esim. owncloud.me.com)</string>
   <string name="hint_sftp_host">isäntäkone (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">Portti</string>
   <string name="initial_directory">Aloitushakemisto (valinnainen):</string>
@@ -503,7 +512,6 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="CopyFileRequired">Käyttääksesi sitä sinun täytyy kopioida se toiseen paikkaan.</string>
   <string name="CopyFileRequiredForEditing">Muokataksesi sitä sinun täytyy kopioida se toiseen paikkaan.</string>
   <string name="ClickOkToSelectLocation">Klikkaa OK valitaksesi sijainnin, johon tiedosto kopioidaan.</string>
-  <string name="CancelReadOnly">Peruuta, avaa \"vain luku\" -tilassa.</string>
   <string name="FileReadOnlyTitle">Tietokanta on \"vain luku\" -tilassa</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android on avannut nykyisen tietokannan \"vain luku\" -tilassa.</string>
   <string name="ReadOnlyReason_PreKitKat">Näyttäisi, että avasit tiedoston ulkoista sovellusta käyttäen. Tällä tavoin avaaminen ei tue kirjoitusta. Jos haluat tehdä muutoksia tietokantaan, sulje se ja valitse Uusi tietokanta. Avaa tämän jälkeen tiedosto käyttämällä esitettyjä vaihtoehtoja.</string>
@@ -533,7 +541,7 @@ Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä. 
   <string name="AskAddTemplatesTitle">Lisää valmiita pohjia?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android sisältää valmiita pohjia sähköpostitileille, WLAN-salasanoille, suojatuille muistiinpanoille ja monille muille merkinnöille. Haluatko lisätä nämä tietokantaasi? Jos valitset \"Ei\", voit lisätä ne myöhemmin tietokannan asetuksista.</string>
   <string name="AddTemplates_pref">Lisää valmiit pohjat tietokantaan</string>
-  <string name="PreviewWarning">Huomio! Tämä on ennakkoversio, ja siinä voi olla joitakin puutteita! Jos *mitään* odottamatonta tapahtuu, ole hyvä ja kerro siitä minulle (Codeplexissä tai sähköpostitse).</string>
+  <string name="PreviewWarning">Huomaa! Tämä on ennakkoversio, ja siinä voi olla joitakin vikoja! Jos koet * mitään * odottamaton, ole hyvä ja kerro siitä minulle (Google + beta testaaja-ryhmässä tai sähköpostitse).</string>
   <string name="Continue">Jatka</string>
   <string name="NoFilenameWarning">Antamasi URI osoite ei vaikuta tiedostonimeltä. Oletko varma, että se on tiedosto?</string>
   <string name="FirstInvalidCompositeKeyError">Väärä yhdistelmäavain! Ole hyvä ja yritä uudelleen.</string>
@@ -562,11 +570,48 @@ Tässä vihjeitä, joiden avulla voit diagnosoida ongelmaa:\n
   <string name="ActivateAutoFillService_btnKeyboard">Käytä sisäänrakennettua näppäimistöä</string>
   <string name="ActivateAutoFillService_btnAutoFill">Käytä automaattitäyttöä</string>
   <string name="ActivateAutoFillService_toast">Ole hyvä ja ota käyttöön Keepass2Android-palvelu.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Näytä näppäimistö salasanan syöttöä varten sormenjälkien lukijan ollessa käytössä.</string>
+  <string name="ChangeLog_1_02">
+Versio 1.02\n 
+    * Useita parannuksia tietoturvaan. Kiitos paljon jean-baptiste.cayrou@thalesgroup.com ja vincent.fargues@thalesgroup.com turvallisuus mietinnöstä ja yhteistyöstä! \n 
+    * Tuki KeyboardSwapPlugin (ks. salasana Accessin asetukset): voit vaihtaa syöttötavan automaattisesti edelleen ei rootatulla laitteella. Kiitos Mishaal Rahman  XDA-Developersista joka mahdollisti tämän. \n 
+    * Korjaus Helppokäyttöisyys palveluihin uusimmassa Chrome versiossa\n 
+    * Korjaus tarpeeton sormenjälki datan poisto\n 
+    * Pieniä kaatuilukorjauksia\n 
+    * Päivitetty Dropbox SDK varmistaaksemme yhteensopivuus myös tulevaisuudessa \n 
+    * Poistimme virheiden raportoimisen Xamarin Insights kautta\n 
+    * Päivitetty build työkalut\n  </string>
+  <string name="ChangeLog_1_01g">
+Versio 1.01-g\n 
+* Korjaus ongelmaan kaatuu kun yrittää työskennellä offline tilassa\n 
+* Korjaus väärään FTP (S) valtuutuskoodaukseen\n 
+* Korjaus ongelmaan kaatuu käytettäessä OneDrivea vanhemmissa Android versioissa\n 
+* Näyttää aikaa paikallista aikaa merkintänä aloitusnäytössä\n  </string>
+  <string name="ChangeLog_1_01d">
+Versio 1.01-d\n 
+* Korjattu OneDrive tiedostojen listaus\n 
+* Salli ohittamaan sertifikaatti virheitä myös kun isäntä nimen todentaminen epäonnistuu (ei suositella tuotantokäyttöön) \n 
+* Korjaus QuickUnlock omituisesti epäonnistuu huolimatta oikeasta koodista\n  </string>
   <string name="ChangeLog_0_9_8c">
     Versio 0.9.8c\n
 * Korjattu SSL-haavoittuvuus Microsoft Live SDK:ssa (käytössä kun avataan tiedostoja OneDriven kautta)\n
 * Korjattu: Edellinen julkaisu sisälsi kaksi syöttömenetelmää (toinen kaatui)\n
   </string>
+  <string name="ChangeLog_1_01">
+Versio 1.01\n
+     * lisätty tuki uudelle KDBX-4-tiedostomuodolle (Keepass 2.35 yhteensopiva) sisältäen Argon2 avaintenjohtaminen ja ChaCha20 salaus.\n
+     * Uusittu WebDav tallennus mahdollistaa tiedostojen selailun ja tukee ajantasaista salausta.\n
+     * Uusittu FTP tallennus mahdollistaa tiedostojen selailun ja tukee salausta (FTPS).\n
+     * Päivitetty OneDrive SDK:n (aiemmin käytettyä Live SDK:ta ei enää päivitetä)\n
+     * Päivitetty Dropbox SDK versioon 2 (aiemmin käytetty versio 1 SDK poistuu käytöstä).\n
+     * Lisätty OwnCloud tuki.\n
+     * Lupapyyntö ennen paikallisten tiedostojen avausta  </string>
+  <string name="ChangeLog_1_0_0e">
+Versio 1.0.0e\n
+     * korjattu lukituksen avaus sormenjäljellä vanhemmilla Samsung Android 6 -laitteilla\n
+     * lisätty natiivituki x86 laitteille\n
+     * salli näppäimistön piilotus sormenjälkeä luettaessa\n
+     * koontijärjestelmän päivitys  </string>
   <string name="ChangeLog_1_0_0">
 Versio 1.0.0 - ennakkojulkaisu 7\n
 * Sormenjälkiavaus (vaatii Android 6.0+ tai Samsung-laitteen)\n
@@ -596,6 +641,18 @@ Versio 0.9.9c\n
   <string name="ChangeLog_0_9_8b">
 Versio 0.9.8b\n
 * Ohjelmointivirheiden korjauksia (Tallennus epäonnistui joillain tietokannoilla, paikalliseen laitteeseen vieminen ei toimi, joidenkin ominaisuuksien valitseminen asetuksista kaataa sovelluksen)\n</string>
+  <string name="ChangeLog_0_9_8">
+Versio 0.9.8\n
+		* Tuki Storage Access Framework (Sallii tallennuksen sd-kortille ja Google Drive palveluun KP2A Offline)\n
+		* Yriittää tunnistaa virheitä kun annetaan WebDAV osoitteita (hakemisto tiedoston sijasta)\n
+		* Muutettu salasanan fonttia\n
+		* Pystyy muokkaamaan Dropbox tiliä\n
+		* Korjattu Bugi: Muistaa nyt OTP salasanan</string>
+  <string name="ChangeLog_0_9_7b">
+Versio 0.9.7b\n
+		* päivitetyt käännökset\n
+		* korjattu bugi: Salasanan fontti puuttui versiossa 0.9.7, järjestä nimen mukaan ei järjestänyt ryhmiä\n
+	</string>
   <string name="ChangeLog_0_9_7">
 Versio 0.9.7\n
 * kirjoitustuki Keepass 1 (kdb) tietokannoille (beta!)\n
@@ -618,7 +675,135 @@ Versio 0.9.6\n
 * lisätty korruptoituneen tietokannan tarkistus (tuplaantuneet UUID:t)\n
 * uudelleenlataa tietokannan automaattisesti, kun muutos havaitaan. Ratkaisee tietoturvahuolen pääsalasanan paljastumisesta\n
 * parannettu puolalaista pientä näppäimistöasettelua, korjattu näppäimistön asetusten teema (kiitokset Wiktor Ławski:lle)\n</string>
+  <string name="ChangeLog_0_9_5">
+<b>Versio 0.9.5</b>\n
+		* Korjattu ongelma tiedostojen selauksessa (erityisesti Android 4.4:ssä)\n
+		* Korjattu ongelma ladataan .kdb tiedostoja (Keepass 1) Nexus 5 jossa on Android Lollipop\n
+		* Lisättiin vaihtoehto kuvakaappauksen kieltämiseen/sovelluksen näkyminen viimeaikaisissa sovelluksissa\n
+		* Korjattu ongelma Google Drive tiedoston tallennuksessa (perusversio)\n
+		* Salli avaintiedoston tallennustyyppi (perusversio)\n
+		* Päivitetty Dropbox SDK sisältämään virallinen turvallisuuspäivitys (perusversio)\n
+		* Päivitetyt sovellustyökalut --&gt; apk:n kokoa kasvatettu :-(\n
+		Olen luvannnut muutaman lisämuutoksen. Ne tulevat seuraavassa päivityksessä - anteeksi. Halusin julkaista nämä tärkeät korjaukset mahdollisimman pian.
+	</string>
+  <string name="ChangeLog_0_9_4">
+<b>Versio 0.9.4</b> \n 
+* Lisätty plug-in tuki: Katso asetukset Miten saada laajennuksia! \n 
+* Julkaistu QR plug-in (scannaa salasanat, näytä salasanoja QR code, siirrä merkintöjä muille KP2A laitteille) \n 
+* Julkaistu InputStick plugin (siirtää tunnistetiedot PC: lle bluetoothilla - vaatii InputStick USB-tikun) \n 
+* Kolmannen osapuolen sovellukset voivat yksinkertaisesti kysellä KP2A tunnistetietoja. 
+Oletko kehittäjä? Lisätkää tämä sovellukseenne jos soveltuvat! \n 
+* Lisätty TOTP tuki (yhteensopiva KeeOTP ja TrayTotp) \n 
+* Sovelluksen ei pitäisi enää sulkeutua Androidin toimesta  kun tietokanta avataan\n 
+* Tietokanta ei ole enää lukittu poistuttaessa sovelluksesta takaisin-painikkeesta (Katso asetukset) \n 
+* Näytä ryhmien nimet Etsi tulokset näkymässä (*) \n 
+* Lisätty asiayhteys valikko Etsi tulokset näkymään sisältäen ”Navigoi vanhempien luokse” vaihtoehto (*) \n 
+* Lisätty mahdollisuus näyttää ryhmänimen alkunäytössä (*) \n 
+* (*) Kiitos Matthieulle näiden ominaisuuksien toteuttamisesta! \n 
+* Tukevat KeeChallenge (jossa Yubikey NEO). Kiitos Ben Rush liitännän sovittamisesta! \n 
+* Parannettu käyttäjän näkymää\n 
+* Korjattiin bugi Google Drive näkymässä\n 
+* Lisätty mahdollisuus poistaa ”lahjoittaa” vaihtoehto\n 
+* QuickUnlock ikoni nyt piilotettu Android 4.2 + laitteissa oletuksena\n</string>
+  <string name="ChangeLog_0_9_3_r5">
+<b>Käännös 0.9.3 r5</b> \n 
+* Sisältyviä korjauksia Xamarilta: Keepass2Android nyt yhteensopiva ART:in kanssa Android 4.4.2:ssa. Lopultakin! \n 
+* Korjauksia: Vikoja synkronoinnissa (Päivitä näyttö, Tarkista muutokset http) bugeja Android 2.x laitteissa, bugit Google Drive ja OneDrive tallennus osioissa, leikepöydän tyhjennys tietokantaa suljettaessa, bugi liitteiden avaaminen, näppäimistön näyttö ongelmia\n</string>
+  <string name="ChangeLog_0_9_3">
+<b>Käännös 0.9.3</b> \n 
+* Uusi näppäimistö jossa monia parannuksia. Katso asetusten mukauttaminen. \n 
+* Vain luku-tuki kdb (Keepass 1-tiedostot). Kokeellinen versio! \n 
+* Lisätty SFTP tuki\n 
+* Lisätty kiertotie bugiin ART: issa (Android 4.4.2)\n 
+* Bugi korjauksia\n</string>
+  <string name="ChangeLog_0_9_2">
+<b>Versio 0.9.2</b> \n 
+* Lisätty OTP tuki (yhteensopiva OtpKeyProv laajennuksen kanssa) \n 
+* Integroitu NFC tukea OTP: lle YubiKey NEO: lta \n 
+* Useita käyttöliittymän parannuksia\n 
+* Integroitu Keepass 2.24 kirjasto\n 
+* Lisätty mahdollisuus tappaa sovelluksen prosessi (Katso asetukset) \n 
+* Parannettu SSL sertifikaatin varmistus\n 
+* Bugi korjauksia\n</string>
+  <string name="ChangeLog_0_9_1">
+<b>Versio 0.9.1</b> \n 
+* Integroitu SkyDrive tuki (Keepass2Android vain tavallinen versio) \n 
+* Korjattu ongelmia Google Drive integroinnissa\n 
+* Lisätty NTLM-tuki</string>
+  <string name="ChangeLog_0_9">
+<b>Käännös 0.9</b> \n 
+* Integroitu Dropbox ja Google Drive tuki (lue/kirjoita tietokantoja. Keepass2Android vain tavallinen versio) \n 
+* Integroitu oletustiedostoselain (perustuu android-filechooseriin HBA: lta) \n 
+* Parannettu käyttöliittymää uusien tietokantojen luomisessa\n 
+* Mukana mukautettu fontti DejaVu Sans Mono salasanojen näyttämiseen\n 
+* Bugi korjauksia</string>
+  <string name="ChangeLog_0_8_6">
+<b>Versio 0.8.6</b> \n 
+* Tuki Twofish cipher: ille\n 
+* Ryhmien muokkaamisen salliminen\n 
+* Salli tietueiden ja ryhmien siirtäminen\n 
+* QuickUnlock kuvake voidaan tehdä läpinäkyväksi (Katso asetukset) \n 
+* Bugi korjauksia</string>
+  <string name="ChangeLog_0_8_5">
+<b>Versio 0.8.5</b> \n 
+* Etätiedostoja tallennetaan paikallisen sovelluksen välimuistiin offline-käyttön onnistumiseksi (mukaan lukien editointi ja myöhempi synkronointi). Katso asetukset. \n 
+* Ilmoituskuvake havainnollistaa tietokannan lukitustilaa (Katso asetukset) \n 
+* Parantaa lock-tilasta poistumista joissakin tilanteissa\n 
+* Tietokannan tiedostot ladataan muistiin, kun kirjoitat salasanaasi lisätäksemme lastausnopeutta (Katso asetukset) \n 
+* Tietueita voi lisätä ryhmän juureen\n 
+* Bugi korjauksia (ratkaistaan näppäimistön ongelmat Italian ja Kiinan laitteissa)</string>
+  <string name="ChangeLog_0_8_4">
+<b>Versio 0.8.4</b> \n 
+* Ulkoisen tietokannan muutokset havaitaan ja yhdistetään kun tallennetaan\n 
+* Parantaa latausnopeutta\n 
+* Parannettu search-työkalurivin ehdotuksia\n 
+* Uusi sovelluslogo! \n 
+* Lisätty tuki .kdbp muotoon jossa nopeampi lataus/tallennus\n 
+* Parannettu ylimääräisten merkkijonojen ja piilotettujen näyttöjen muuttamista kun suojattuna\n 
+Kiitos Alex Vallat koodi panoksestasi! \n 
+Kiitos Niki Hüttner (www.close-cut.de) uudesta logosta! \n</string>
+  <string name="ChangeLog_0_8_3"><b>Versio 0.8.3</b> \n 
+* Käyttäjätunnus/TAN hakemiston merkintä luettelossa (Katso asetukset) \n 
+* Merkinnät voidaan luoda, jos haku selaimessa ei tuota tuloksia\n 
+* KP2A näppäimistö antaa mahdollisuuden etsiä tunnistetiedot nykyiselle sovellukselle\n 
+* Sovellus automaattisesti sulkeutuu valittuasi kohteen käytettäväksi näppäimistöltä\n 
+* Näppäimistö-valintaikkuna avautuu automaattisesti haettuasi URL: lia (Katso asetukset) \n 
+* Paikkamerkit korvataan ennen kopiointia (useimpia paikkamerkkejä tuetaan) \n
+* Pieniä bugi korjauksia  </string>
+  <string name="ChangeLog_0_8_2"><b>Versio 0.8.2</b> \n 
+* Tuki Digest-varmistus WebDAV\n 
+* Bugikorjauksia (OI Tiedostonhallinta, Avaa URL)
+</string>
+  <string name="ChangeLog_0_8_1"><b>Versio 0.8.1</b> \n 
+* KP2A offline-tilassa ja ”Online” voidaan asentaa uudelleen\n 
+* Lisätty uusia käännöksiä (Kiitos kaikille osallistujille!)
+</string>
+  <string name="ChangeLog_0_8"><b>Versio 0.8</b> \n 
+* Parannettu käyttöliittymää erityisesti Android 4.x laitteilla\n 
+* Salli käyttäen normaaleja tiedostonhallintaohjelmia olemassa olevien tiedostojen valitsemiseen\n 
+* Lisätty turvallisempi tapa avata liitteitä (välimuistikansion kautta) \n 
+* Korjattu bugeja Muokkaa aktiviteettia osiossa\n 
+* Luultavasti uusia vikoja :-)
+</string>
   <string name="ChangeLog_keptDonate">Laajennettu mahdollisuus lahjoittaa olutta tai jotain muuta</string>
+  <string name="ChangeLog_0_7"><b>Versio 0.7</b> \n 
+* Lisätään lastausnopeutta: avain muutokset nyt 10 kertaa nopeampia! \n 
+* Lisätty Keepass2Android soft-näppäimistö: Vaihda tähän näppäimistöön valitaksesi tunnisteet. 
+Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanhan Leikepöydän ilmoitukset asetuksista) \n 
+* Lisätty mahdollisuus lahjoittaa olutta tai jotain muuta (Katso valikko)</string>
+  <string name="ChangeLog"><b>Versio 0.6.2</b>\n
+ * Google Drive/Dropbox/... integraatio: Käytä virallista Google Drive tai Dropbox sovellusta ja avaa mikä tahansa .kdbx-tiedosto. Tämä avaa nyt KP2A:in.\n
+ * Paranneltu Hakudialogi \n
+ * Paranneltu hakutuloksia Jaa URL aliverkkotunnuksille\n
+ * Lisätty Palaute-toiminto, sekä Arvostele ja Käännä sovellus valikkoon\n
+ \n
+ <b>Versio 0.6.1</b>\n
+ * Tunnista tietokannan muutokset taustalla (eli synkronoinnin johdosta)\n
+ * Paranneltu URL-haku selaimesta\n
+ * Vahvistusdialogi muutoksia peruttaessa\n
+ \n
+<b>Versio 0.6</b>\n
+ Alustava julkaisu  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekuntia</item>
     <item>1 minuutti</item>
@@ -644,6 +829,11 @@ Versio 0.9.6\n
     <item>Tumma</item>
   </string-array>
   <string name="design_title">Ulkoasu</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Ei salausta (FTP)</item>
+    <item>Oletettu salaus (FTP TLS:n yli, FTPS)</item>
+    <item>Määritelty salaus (FTP TLS:n yli, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Älä muista käyttäjätunnusta ja salasanaa</item>
     <item>Muista vain käyttäjätunnus</item>
@@ -662,4 +852,6 @@ Versio 0.9.6\n
     <item>Varoita, jos vahvistaminen epäonnistuu</item>
     <item>Älä hyväksy virheellisiä varmenteita</item>
   </string-array>
+  <string name="ClearClipboardWarning">Varmista että tämä toimii järjestelmässäsi ja harkitse sisäänrakennetun näppäimistön käyttöä, jos se ei toimi.</string>
+  <string name="PluginDescription">Laajennuksen antama kuvaus:</string>
 </resources>

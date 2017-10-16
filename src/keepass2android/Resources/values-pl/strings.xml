@@ -336,8 +336,9 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ShowKp2aKeyboardNotification_summary">Utwórz pełny wpis dostępny przez klawiaturę KP2A i usługę autouzupełniania (zalecane).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Przełącz klawiaturę</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Otwórz dialog wyboru klawiatury gdy wpis jest dostępny przez klawiaturę KP2A po wyszukiwaniu z przeglądarki lub z klawiatury.</string>
-  <string name="kp2a_switch_rooted">Automatyczne przełączanie na zrootowanych urządzeniach</string>
-  <string name="kp2a_switch_rooted_summary">Automatycznie przełącz klawiaturę KP2A po otwarciu wpisu. Wymaga dostępu do roota i aplikacji Secure Settings z System+. </string>
+  <string name="kp2a_switch_rooted">Pokaż klawiaturę</string>
+  <string name="get_keyboardswap">Zainstaluj wtyczkę KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Wtyczka umożliwia przełączanie do klawiatury KP2A na urządzeniu bez roota. Wymaga ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatycznie przełącz tylko po szukaniu</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Tylko przełącz klawiaturę automatycznie KP2A po użyciu funkcja Wyślij adresu URL (ale nie wtedy, gdy otwarto wpis w inny sposób)</string>
   <string name="AutoSwitchBackKeyboard_title">Przełącz klawiaturę z powrotem</string>
@@ -508,7 +509,6 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="CopyFileRequired">Aby go użyć, należy skopiować go do innej lokalizacji.</string>
   <string name="CopyFileRequiredForEditing">Aby edytować, należy skopiować plik do innej lokalizacji.</string>
   <string name="ClickOkToSelectLocation">Kliknij przycisk OK, aby wybrać miejsce, gdzie należy skopiować plik.</string>
-  <string name="CancelReadOnly">Anuluj, Otwórz tylko do odczytu.</string>
   <string name="FileReadOnlyTitle">Baza danych jest w trybie tylko do odczytu</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android otworzył aktualną bazę danych w trybie tylko do odczytu.</string>
   <string name="ReadOnlyReason_PreKitKat">Wygląda na to, że otworzyłeś plik z zewnętrznej aplikacji. Ta metoda nie wspiera zapisywania. Jeśli chcesz wprowadzić zmiany w bazie danych, zamknij proszę bazę danych i wybierz Zmień bazę danych. Następnie otwórz plik używając jednej z dostępnych opcji, jeżeli to możliwe.</string>
@@ -538,7 +538,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="AskAddTemplatesTitle">Dodać szablony?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android zawiera szablony wpisów dla kont e-mail, haseł sieci bezprzewodowych, bezpiecznych notatek itp. Czy chciałbyś je dodać do bazy danych? Jeśli wybierzesz Nie, możesz dodać je później w ustawieniach bazy danych.</string>
   <string name="AddTemplates_pref">Dodaj szablony do bazy danych</string>
-  <string name="PreviewWarning">Uwaga! To jest podglądowe wydanie i może posiadać wady! Jeżeli doświadczasz *czegokolwiek* niespodziewanego, daj mi znać (na Codeplex lub przez email).</string>
+  <string name="PreviewWarning">Uwaga! To jest wersja robocza. W związku z tym, może działać błędnie. Jeżeli zauważysz *jakiekolwiek* niespodziewane działanie, proszę daj mi znać (na grupie testów beta na Google+ lub e-mailem).</string>
   <string name="Continue">Kontynuuj</string>
   <string name="NoFilenameWarning">Wprowadzone URI nie wygląda jak nazwa pliku. Jesteś pewien, że to prawidłowy plik?</string>
   <string name="FirstInvalidCompositeKeyError">Błędny klucz zbiorowy! Spróbuj ponownie.</string>
@@ -824,4 +824,5 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Ostrzeż, gdy weryfikacja się nie powiedzie</item>
     <item>Nie akceptuj niezweryfikowanych certyfikatów</item>
   </string-array>
+  <string name="PluginDescription">Opis dostarczony przez wtyczkę:</string>
 </resources>

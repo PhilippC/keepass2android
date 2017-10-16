@@ -34,13 +34,13 @@
   <string name="afc_msg_failed_please_try_again">Αποτυχία. Προσπαθήστε ξανά.</string>
   <string name="afc_msg_loading">Φόρτωση&#8230;</string>
   <string name="afc_phone">Τηλέφωνο</string>
-  <string name="afc_pmsg_cannot_access_dir">Αδυναμία πρόσβασης του \"%1$s\"</string>
+  <string name="afc_pmsg_cannot_access_dir">Αδυναμία πρόσβασης στο \"%1$s\"</string>
   <string name="afc_pmsg_cannot_create_folder">Αδυναμία δημιουργίας φακέλου \"%1$s\"</string>
-  <string name="afc_pmsg_cannot_delete_file">Αδυναμία διαγραφής %1$s \"%2$s\"</string>
+  <string name="afc_pmsg_cannot_delete_file">Αδυναμία διαγραφής του %1$s \"%2$s\"</string>
   <string name="afc_pmsg_confirm_delete_file">Είστε βέβαιοι ότι θέλετε να διαγράψετε το %1$s %2$s;</string>
   <string name="afc_pmsg_confirm_replace_file">Το αρχείο \"%1$s\" υπάρχει ήδη.\n\nθέλετε να το αντικαταστήσετε;</string>
   <string name="afc_pmsg_deleting_file">Διαγραφή %1$s \"%2$s\"&#8230;</string>
-  <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" έχει διαγραφεί</string>
+  <string name="afc_pmsg_file_has_been_deleted">Το %1$s \"%2$s\" έχει διαγραφεί</string>
   <string name="afc_pmsg_filename_is_directory">\"%1$s\" είναι φάκελος</string>
   <string name="afc_pmsg_filename_is_invalid">Το όνομα αρχείου \"%1$s\" δεν είναι έγκυρο</string>
   <string name="afc_pmsg_max_file_count_allowed">&#8230;έχει περισσότερα αρχεία, μέγιστο επιτρεπόμενο: %1$,d</string>
