@@ -823,6 +823,7 @@ Erstes öffentliches Release</string>
     <item>Kennwort + OTP Secret (Recovery-Modus)</item>
     <item>Passwort + Challenge-Response</item>
     <item>Passwort + Challenge-Response-Secret (Recovery-Modus)</item>
+    <item>Passwort + Challenge-Response für KeepassXC-Datenbank</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Fehler bei Zertifikatsvalidierung ignorieren</item>

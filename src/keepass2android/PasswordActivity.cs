@@ -59,6 +59,8 @@ using Object = Java.Lang.Object;
 using Process = Android.OS.Process;
 
 using KeeChallenge;
+using KeePassLib.Cryptography.KeyDerivation;
+using KeePassLib.Security;
 using AlertDialog = Android.App.AlertDialog;
 using Enum = System.Enum;
 using Exception = System.Exception;
@@ -67,6 +69,71 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace keepass2android
 {
+	class ChallengeXCKey : IUserKey, ISeedBasedUserKey
+	{
+		private readonly Activity _activity;
+		private readonly int _requestCode;
+
+		public ProtectedBinary KeyData
+		{
+			get
+			{
+				
+				_activity.RunOnUiThread(
+					() =>
+					{
+						//TODO refactor to use code from PasswordActivity including notice to install Yubichallenge
+						Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
+						byte[] challenge = _masterSeed;
+						byte[] challenge64 = new byte[64];
+						for (int i = 0; i < 64; i++)
+						{
+							if (i < challenge.Length)
+							{
+								challenge64[i] = challenge[i];
+							}
+							else
+							{
+								challenge64[i] = (byte) (challenge64.Length - challenge.Length);
+							}
+							
+						}
+
+						Kp2aLog.Log(MemUtil.ByteArrayToHexString(challenge64));
+
+						chalIntent.PutExtra("challenge", challenge64);
+						chalIntent.PutExtra("slot", 2);
+						IList<ResolveInfo> activities = _activity.PackageManager.QueryIntentActivities(chalIntent, 0);
+						bool isIntentSafe = activities.Count > 0;
+						if (isIntentSafe)
+						{
+							_activity.StartActivityForResult(chalIntent, _requestCode);
+						}
+						else throw new Exception("TODO implement: you need YubiChallenge");
+					});
+				while (Response == null)
+					Thread.Sleep(100);
+
+				return new ProtectedBinary(true, Response);
+			}
+		}
+
+		private byte[] _masterSeed;
+
+		public ChallengeXCKey(Activity activity, int requestCode)
+		{
+			this._activity = activity;
+			_requestCode = requestCode;
+			Response = null;
+		}
+
+		public void SetParams(byte[] masterSeed)
+		{
+			_masterSeed = masterSeed;
+		}
+
+		public byte[] Response { get; set; }
+	}
 	[Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation,
 		LaunchMode = LaunchMode.SingleInstance,
@@ -84,7 +151,8 @@ namespace keepass2android
 			Otp = 2,
 			OtpRecovery = 3,
 			Challenge = 4,
-			ChalRecovery = 5
+			ChalRecovery = 5,
+			ChallengeXC = 6 //KeepassXC compatible Challenge-Response
 		}
 
 		public const String KeyDefaultFilename = "defaultFileName";
@@ -102,6 +170,8 @@ namespace keepass2android
 		private const string KeyProviderIdOtpRecovery = "KP2A-OTPSecret";
 		private const string KeyProviderIdChallenge = "KP2A-Chal";
 		private const string KeyProviderIdChallengeRecovery = "KP2A-ChalSecret";
+		private const string KeyProviderIdChallengeXC = "KP2A-ChalXC";
+		
 
 		private const int RequestCodePrepareDbFile = 1000;
 		private const int RequestCodePrepareOtpAuxFile = 1001;
@@ -113,6 +183,8 @@ namespace keepass2android
 
 		private Task<MemoryStream> _loadDbFileTask;
 		private bool _loadDbTaskOffline; //indicate if preloading was started with offline mode
+
+		private ChallengeXCKey _currentlyWaitingKey;
 
 		private IOConnectionInfo _ioConnection;
 		private String _keyFileOrProvider;
@@ -140,6 +212,8 @@ namespace keepass2android
 					return KeyProviders.Challenge;
 				if (_keyFileOrProvider == KeyProviderIdChallengeRecovery)
 					return KeyProviders.ChalRecovery;
+				if (_keyFileOrProvider == KeyProviderIdChallengeXC)
+					return KeyProviders.ChallengeXC;
 				return KeyProviders.KeyFile;
 			}
 		}
@@ -364,10 +438,19 @@ namespace keepass2android
 			{
 				try
 				{
-                    _challengeProv = new KeeChallengeProv();
 					byte[] challengeResponse = data.GetByteArrayExtra("response");
-					_challengeSecret = _challengeProv.GetSecret(_chalInfo, challengeResponse);
-					Array.Clear(challengeResponse, 0, challengeResponse.Length);
+					if (_currentlyWaitingKey != null)
+					{
+						_currentlyWaitingKey.Response = challengeResponse;
+						return;
+					}
+					else
+					{
+						_challengeProv = new KeeChallengeProv();
+						_challengeSecret = _challengeProv.GetSecret(_chalInfo, challengeResponse);
+						Array.Clear(challengeResponse, 0, challengeResponse.Length);	
+					}
+                    
 				}
 				catch (Exception e)
 				{
@@ -1250,6 +1333,9 @@ namespace keepass2android
 							case 5:
 								_keyFileOrProvider = KeyProviderIdChallengeRecovery;
 								break;
+							case 6:
+								_keyFileOrProvider = KeyProviderIdChallengeXC;
+								break;
 							default:
 								throw new Exception("Unexpected position " + args.Position + " / " +
 								                    ((ICursor) ((AdapterView) sender).GetItemAtPosition(args.Position)).GetString(1));
@@ -1336,6 +1422,9 @@ namespace keepass2android
 				case KeyProviders.ChalRecovery:				
 					enabled = FindViewById<EditText>(Resource.Id.pass_otpsecret).Text != "";
 					break;
+				case KeyProviders.ChallengeXC:
+					enabled = true;
+					break;
                 case KeyProviders.Challenge:
 					enabled = _challengeSecret != null;
                     break;
@@ -1378,6 +1467,7 @@ namespace keepass2android
 
 		private void PerformLoadDatabase()
 		{
+			_currentlyWaitingKey = null;
 			//put loading into background thread to allow loading the key file (potentially over network)
 			new SimpleLoadingDialog(this, GetString(Resource.String.loading),
 			                        true, () =>
@@ -1511,6 +1601,11 @@ namespace keepass2android
 			else if (KeyProviderType == KeyProviders.Challenge)
 			{
 				compositeKey.AddUserKey(new KcpCustomKey(KeeChallengeProv.Name, _challengeSecret, true));
+			} 
+			else if (KeyProviderType == KeyProviders.ChallengeXC)
+			{
+				_currentlyWaitingKey = new ChallengeXCKey(this, RequestCodeChallengeYubikey);
+				compositeKey.AddUserKey(_currentlyWaitingKey);
 			}
 			return true;
 		}
