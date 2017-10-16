@@ -86,7 +86,9 @@
 	<string name="TrayTotp_SettingsField_key">TrayTotp_SettingsField_key</string>
 	<string name="TrayTotp_SeedField_key">TrayTotp_SeedField_key</string>
 	<string name="TrayTotp_prefs_key">TrayTotp_prefs_key</string>
-	
+  <string name="DebugLog_key">DebugLog_key</string>
+  <string name="DebugLog_prefs_key">DebugLog_prefs_key</string>
+  <string name="DebugLog_send_key">DebugLog_send</string>
 	
 	<string name="password_access_prefs_key">password_access_prefs_key</string>
 	<string name="security_prefs_key">security_prefs_key</string>

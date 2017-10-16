@@ -552,8 +552,16 @@
 	<string name="TrayTotp_SettingsField_summary">Enter the field name of the settings field for TrayTotp here.</string>
 	
 	<string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Log-File for Debugging</string>
+  <string name="DebugLog_title">Use log file</string>
+  <string name="DebugLog_summary">Write app output to a local log file</string>
+  <string name="DebugLog_send">Send debug log...</string>
+  
+  
 
-	<string name="loading">Loading…</string>
+
+
+  <string name="loading">Loading…</string>
 		
 	<string name="plugins">Plug-ins</string>
 	<string name="plugin_packagename">Package name:</string>

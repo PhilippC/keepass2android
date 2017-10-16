@@ -356,6 +356,9 @@ namespace keepass2android
             // Re-use the change handlers for the application settings
             FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
             FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
+			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
+			FindPreference(GetString(Resource.String.DebugLog_key)).PreferenceChange += OnDebugLogChanged;
+			FindPreference(GetString(Resource.String.DebugLog_send_key)).PreferenceClick += OnSendDebug;
             PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
 			PrepareNoDonationReminderPreference(Activity, ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))), FindPreference(GetString(Resource.String.NoDonationReminder_key)));
 
@@ -446,6 +449,24 @@ namespace keepass2android
 
 			
         }
+
+	    private void OnSendDebug(object sender, Preference.PreferenceClickEventArgs e)
+	    {
+		    Kp2aLog.SendLog(this.Activity);
+	    }
+
+	    private void OnDebugLogChanged(object sender, Preference.PreferenceChangeEventArgs e)
+	    {
+		    if ((bool)e.NewValue)
+		    {
+			    Kp2aLog.CreateLogFile();
+		    }
+		    else
+		    {
+			    Kp2aLog.FinishLogFile();
+		    }
+
+	    }
 
 	    private void AlgorithmPrefChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
 	    {
