@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="keepass2android.AncientIconSet" android:versionCode="1" android:versionName="1.0">
-	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19" />
-	<application android:label="Keepass2Android Ancient Icon Set" android:icon="@drawable/ic00"></application>
-</manifest>
