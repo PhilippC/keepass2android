@@ -90,9 +90,6 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okhttp-3.4.1.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\okhttp-digest-1.7.jar" />
   </ItemGroup>
   <ItemGroup>
@@ -160,5 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedJar Include="Jars\dropbox-core-sdk-3.0.3.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\okhttp-3.9.0.jar" />
   </ItemGroup>
 </Project>
