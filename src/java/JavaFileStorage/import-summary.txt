@@ -1,0 +1,69 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+google-http-client-gson-1.16.0-rc.jar => com.google.http-client:google-http-client-gson:1.20.0
+gson-2.1.jar => com.google.code.gson:gson:2.1
+
+Potentially Missing Dependency:
+-------------------------------
+When we replaced the following .jar files with a Gradle dependency, we
+inferred the dependency version number from the filename. This
+specific version may not actually be available from the repository.
+If you get a build error stating that the dependency is missing, edit
+the version number to for example "+" to pick up the latest version
+instead. (This may require you to update your code if the library APIs
+have changed.)
+
+gson-2.1.jar => version 2.1 in com.google.code.gson:gson:2.1
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* libs\commons-logging-1.1.1.jar => app\libs\commons-logging-1.1.1.jar
+* libs\dropbox-android-sdk-1.6.2.jar => app\libs\dropbox-android-sdk-1.6.2.jar
+* libs\google-api-client-1.16.0-rc.jar => app\libs\google-api-client-1.16.0-rc.jar
+* libs\google-api-client-android-1.16.0-rc.jar => app\libs\google-api-client-android-1.16.0-rc.jar
+* libs\google-api-services-drive-v2-rev102-1.16.0-rc.jar => app\libs\google-api-services-drive-v2-rev102-1.16.0-rc.jar
+* libs\google-http-client-1.16.0-rc.jar => app\libs\google-http-client-1.16.0-rc.jar
+* libs\google-http-client-android-1.16.0-rc.jar => app\libs\google-http-client-android-1.16.0-rc.jar
+* libs\google-http-client-jackson-1.16.0-rc.jar => app\libs\google-http-client-jackson-1.16.0-rc.jar
+* libs\google-http-client-jackson2-1.16.0-rc.jar => app\libs\google-http-client-jackson2-1.16.0-rc.jar
+* libs\google-oauth-client-1.16.0-rc.jar => app\libs\google-oauth-client-1.16.0-rc.jar
+* libs\httpclient-4.0.3.jar => app\libs\httpclient-4.0.3.jar
+* libs\httpcore-4.0.1.jar => app\libs\httpcore-4.0.1.jar
+* libs\httpmime-4.0.3.jar => app\libs\httpmime-4.0.3.jar
+* libs\jackson-core-2.1.3.jar => app\libs\jackson-core-2.1.3.jar
+* libs\jackson-core-asl-1.9.11.jar => app\libs\jackson-core-asl-1.9.11.jar
+* libs\json_simple-1.1.jar => app\libs\json_simple-1.1.jar
+* libs\jsr305-1.3.9.jar => app\libs\jsr305-1.3.9.jar
+* proguard-project.txt => app\proguard-project.txt
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
