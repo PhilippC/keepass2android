@@ -78,12 +78,9 @@
     <Compile Include="Io\AndroidContentStorage.cs" />
     <Compile Include="Io\BuiltInFileStorage.cs" />
     <Compile Include="Io\CachingFileStorage.cs" />
-    <Compile Include="Io\DropboxFileStorage.cs" />
-    <Compile Include="Io\DropboxFileStorageKeys.cs" />
     <Compile Include="Io\FileDescription.cs" />
     <Compile Include="Io\FileStorageSetupActivity.cs" />
     <Compile Include="Io\FileStorageSetupInitiatorActivity.cs" />
-    <Compile Include="Io\GDriveFileStorage.cs" />
     <Compile Include="Io\IFileStorage.cs" />
     <Compile Include="Io\IoUtil.cs" />
     <Compile Include="Io\JavaFileStorage.cs" />

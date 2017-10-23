@@ -141,8 +141,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import keepass2android.javafilestorage.DropboxCloudRailStorage;
-import keepass2android.javafilestorage.DropboxV2Storage;
-import keepass2android.javafilestorage.ICertificateErrorHandler;
 import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
 import keepass2android.javafilestorage.OneDriveStorage;

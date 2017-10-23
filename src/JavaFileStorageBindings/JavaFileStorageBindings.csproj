@@ -108,57 +108,9 @@
     <EmbeddedReferenceJar Include="Jars\adal-1.1.19\classes-adal.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\commons-logging-1.1.1.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\google-api-client-1.16.0-rc.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\google-api-client-android-1.16.0-rc.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\google-api-services-drive-v2-rev102-1.16.0-rc.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-1.16.0-rc.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-android-1.16.0-rc.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-jackson-1.16.0-rc.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-jackson2-1.16.0-rc.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\google-oauth-client-1.16.0-rc.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\httpclient-4.0.3.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\httpcore-4.0.1.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\httpmime-4.0.3.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\json_simple-1.1.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\jsr305-1.3.9.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-gson-1.16.0-rc.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\jackson-core-2.7.4.jar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\okio-1.9.0.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedJar Include="Jars\dropbox-core-sdk-3.0.3.jar" />
   </ItemGroup>
 </Project>

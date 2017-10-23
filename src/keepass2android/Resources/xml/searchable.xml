@@ -4,7 +4,7 @@
     android:hint="@string/search_hint"
     android:searchSettingsDescription="Search database"
     android:searchMode="showSearchLabelAsBadge"
-    android:searchSuggestAuthority="kp2a.keepass2android.SearchProvider"
+    android:searchSuggestAuthority="kp2a.keepass2android_fdroid.SearchProvider"
     android:searchSuggestIntentAction="android.intent.action.VIEW"
     android:searchSuggestSelection=" ?"
     android:searchSuggestThreshold="2"  />

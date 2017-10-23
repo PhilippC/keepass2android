@@ -52,9 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\java\Keepass2AndroidPluginSDK2\app\build\outputs\aar\app-debug.aar">
+    <LibraryProjectZip Include="..\java\Keepass2AndroidPluginSDK2\app\build\outputs\aar\app-debug.aar">
       <Link>Jars\app-debug.aar</Link>
-    </EmbeddedJar>
+    </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
   </ItemGroup>

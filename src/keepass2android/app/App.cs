@@ -40,7 +40,6 @@ using keepass2android.Io;
 using keepass2android.addons.OtpKeyProv;
 #if !NoNet
 using Keepass2android.Javafilestorage;
-using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
 #endif
 namespace keepass2android
 {
@@ -80,7 +79,7 @@ namespace keepass2android
 		public const string PackagePart = "keepass2android_debug";
 		public const string Searchable = "@xml/searchable_debug";
 #else
-		public const string PackagePart = "keepass2android";
+		public const string PackagePart = "keepass2android_fdroid";
 		public const string Searchable = "@xml/searchable";
 #endif
 		public const int LauncherIcon = Resource.Drawable.ic_launcher_online;
@@ -511,9 +510,6 @@ namespace keepass2android
 							new AndroidContentStorage(Application.Context),
 #if !EXCLUDE_JAVAFILESTORAGE
 #if !NoNet
-							new DropboxFileStorage(Application.Context, this),
-							new DropboxAppFolderFileStorage(Application.Context, this),
-							new GoogleDriveFileStorage(Application.Context, this),
 							new OneDriveFileStorage(Application.Context, this),
 							new SftpFileStorage(this),
 							new NetFtpFileStorage(Application.Context, this),
