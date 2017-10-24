@@ -15,3 +15,5 @@ Beta-releases can be obtained by opting in to the [Beta testing channel](https:/
 
 # How do I learn more?
 Please see the [documentation](Documentation.md).
+
+[![Build Status](https://www.bitrise.io/app/43a23ab54dee9f7e/status.svg?token=2vryTsMQzTX3XRPikhgRwA&branch=master)](https://www.bitrise.io/app/43a23ab54dee9f7e)
