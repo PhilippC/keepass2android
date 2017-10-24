@@ -73,7 +73,7 @@ namespace PluginTOTP
 					}
 					try
 					{
-						IsLengthValid = (Settings[1] == "6") || (Settings[1] == "8"); //Length
+						IsLengthValid = (Settings[1] == "6") || (Settings[1] == "8") || (Settings[1] == "S"); //Length
 					}
 					catch (Exception)
 					{
@@ -115,11 +115,12 @@ namespace PluginTOTP
 					{
 						bool NoTimeCorrection = false;
 						string[] Settings = SettingsGet(entryFields);
-						res.Duration = Convert.ToInt16(Settings[0]);
-						res.Length = Convert.ToInt16(Settings[1]);
+						res.Duration = Settings[0];
+						res.Length = Settings[1];
 						if (ValidUrl)
 						{
 							NoTimeCorrection = true;
+							res.Url = Settings[2];
 							/*var CurrentTimeCorrection = TimeCorrections[Settings[2]];
 							if (CurrentTimeCorrection != null)
 							{
