@@ -74,7 +74,7 @@ namespace keepass2android
 				}
 					
 
-				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppGet, false))
+				if ((context.Intent.GetBooleanExtra(AllowThirdPartyAppGet, false)) && (Util.ActionGetContentAvailable))
 					_displayedProtocolIds.Add("androidget");
 				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppSend, false))
 					_displayedProtocolIds.Add("androidsend");

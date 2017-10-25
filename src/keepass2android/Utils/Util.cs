@@ -200,8 +200,10 @@ namespace keepass2android
 		/// is more for one-time access, but therefore allows possibly more available sources.</param>
 		public static void ShowBrowseDialog(Activity activity, int requestCodeBrowse, bool forSaving, bool tryGetPermanentAccess)
 		{
-			var loadAction = IsKitKatOrLater ? 
-							Intent.ActionOpenDocument : Intent.ActionGetContent;
+			var loadAction = (tryGetPermanentAccess && IsKitKatOrLater) || !ActionGetContentAvailable
+				? Intent.ActionOpenDocument
+				: Intent.ActionGetContent;
+
 			if ((!forSaving) && (IsIntentAvailable(activity, loadAction, "*/*", new List<string> { Intent.CategoryOpenable})))
 			{
 				Intent i = new Intent(loadAction);
@@ -228,6 +230,12 @@ namespace keepass2android
 				}
 				
 			}
+		}
+
+		public static bool ActionGetContentAvailable
+		{
+			//https://commonsware.com/Android/previews/appendix-b-android-70
+			get { return ((int) Build.VERSION.SdkInt < 24); }
 		}
 
 		public static bool IsKitKatOrLater
