@@ -52,7 +52,6 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -124,10 +123,6 @@
     <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
-      <Name>JavaFileStorageBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
@@ -135,10 +130,6 @@
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
       <Project>{70D3844A-D9FA-4A64-B205-A84C6A822196}</Project>
       <Name>KP2AKdbLibraryBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\netftpandroid\System.Net.FtpClient\System.Net.FtpClient.Android.csproj">
-      <Project>{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}</Project>
-      <Name>System.Net.FtpClient.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
       <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>
