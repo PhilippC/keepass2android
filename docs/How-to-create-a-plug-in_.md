@@ -13,10 +13,9 @@ Keepass2Android stores very sensitive user data and therefore implements a plug-
 
 To tell Kp2a that you're a plug-in, you need to add a simple BroadcastReceiver like this:
 
-{{
+```java
 
-public class PluginAAccessReceiver
- extends keepass2android.pluginsdk.PluginAccessBroadcastReceiver
+public class PluginAAccessReceiver extends keepass2android.pluginsdk.PluginAccessBroadcastReceiver
 {
 
 	@Override
@@ -29,29 +28,29 @@ public class PluginAAccessReceiver
 	}
 
 }
-}}
+```
 
 Here, you define the method getScopes where the list of scopes is created which must be granted by the user. The actual logic of the authorization process is implemented by the base class in the sdk.
 
 In order to make this broadcast receiver visible to KP2A, add the following lines (probably with the name adapted to your class name) in the AndroidManifest.xml:
 
-{{
-        <receiver android:name="PluginAAccessReceiver" android:exported="true">
-            <intent-filter>
-                <action android:name="keepass2android.ACTION_TRIGGER_REQUEST_ACCESS" />
+```xml
+<receiver android:name="PluginAAccessReceiver" android:exported="true">
+	<intent-filter>
+		<action android:name="keepass2android.ACTION_TRIGGER_REQUEST_ACCESS" />
                 <action android:name="keepass2android.ACTION_RECEIVE_ACCESS" />
                 <action android:name="keepass2android.ACTION_REVOKE_ACCESS" />
-            </intent-filter>
-        </receiver>
-}}
+	</intent-filter>
+</receiver>
+```
 
 Please also add a few strings in your resource files (e.g. strings.xml) with the following keys:
 
-{{
+```xml
 <string name="kp2aplugin_title">The Great PluginA</string>
-    <string name="kp2aplugin_shortdesc">Test plugin to demonstrate how plugins work</string>
-    <string name="kp2aplugin_author">[your name here](your-name-here)</string>
-}}
+<string name="kp2aplugin_shortdesc">Test plugin to demonstrate how plugins work</string>
+<string name="kp2aplugin_author">[your name here](your-name-here)</string>
+```
 These strings will be displayed to the user when KP2A asks if access should be granted.
 
 ## Modifying the entry view
@@ -64,7 +63,7 @@ KP2A 0.9.4 adds a great opportunity for third party apps: Instead of prompting t
 
 To implement this, simply follow the steps descrIbed above in the sections Preparation and Authorization. Then, wherever appropriate in your app, do something like this: 
 
-{{
+```java
 	try
 	{
 		PlaceholderFragment.this.startActivityForResult(
@@ -73,40 +72,44 @@ To implement this, simply follow the steps descrIbed above in the sections Prepa
 	}
 	catch (ActivityNotFoundException e)
 	{
-		Toast.makeText(PlaceholderFragment.this.getActivity(), "no KP2A host app found", Toast.LENGTH_SHORT).show();
+		Toast.makeText(
+			PlaceholderFragment.this.getActivity(), 
+			"no KP2A host app found", 
+			Toast.LENGTH_SHORT).show();
 	} 
 
-}}
+```
 
-(of course you can use PacketManager to check if the intent can be started instead of catching the Exception).
+(of course you can use `PacketManager` to check if the intent can be started instead of catching the `Exception`).
 
-Instead of querying credentials associated with your own app, you might want to query other credentials as well. instead of Kp2aControl.getQueryEntryIntentForOwnPackage() use
-{{
-Kp2aControl.getQueryEntryIntent("google.com")
-}}
-This requires {"SCOPE_QUERY_CREDENTIALS (whereas getQueryEntryIntentForOwnPackage() requires SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE)"}.
+Instead of querying credentials associated with your own app, you might want to query other credentials as well. instead of `KpControl.getQueryEntryIntentForOwnPackage()` use
+`Kp2aControl.getQueryEntryIntent("google.com")`
+This requires \{"SCOPE_QUERY_CREDENTIALS (whereas getQueryEntryIntentForOwnPackage() requires SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE)"\}.
 
 The credential data can be retrieved in onActivityResult():
 
-{{
+```java
 if ((requestCode == 1) //queryEntry for own package
-		&& (resultCode == RESULT_OK)) // ensure user granted access and selected something
+	&& (resultCode == RESULT_OK)) // ensure user granted access and selected something
 {
 	HashMap<String, String> credentials = Kp2aControl.getEntryFieldsFromIntent(data);
 	if (!credentials.isEmpty())
 	{
 		//here we go!
-		Toast.makeText(getActivity(), "retrieved credenitals! Username="+credentials.get(KeepassDefs.UserNameField), Toast.LENGTH_LONG).show();
+		Toast.makeText(
+			getActivity(), 
+			"retrieved credenitals! Username="+credentials.get(KeepassDefs.UserNameField),
+			Toast.LENGTH_LONG).show();
 	}
 }
-}}
+```
 
 Note that you get access to all strings (Title, Username, Password, URL, Notes + any user defined strings) in the entry. This may be in intersting in combination with the following section:
 
 ## Storing data in KP2A 
 If you allow the user to set up an account in your app or create a password, e.g. for encryption, please add an option to store this data in the Keepass2Android database, as this will lead to great workflows for the user. It's as simple as 
 
-{{
+```java
 try {
 	HashMap<String, String> fields = new HashMap<String, String>();
 	//standard fields
@@ -124,16 +127,15 @@ try {
 	
 	//add to KP2A
 	PlaceholderFragment.this.startActivityForResult(
-			Kp2aControl
-					.getAddEntryIntent(fields, protectedFields),
-			2);
+		Kp2aControl.getAddEntryIntent(fields, protectedFields),
+		2);
 } catch (ActivityNotFoundException e) {
 	Toast.makeText(
-			PlaceholderFragment.this.getActivity(),
-			"no KP2A host app found",
-			Toast.LENGTH_SHORT).show();
+		PlaceholderFragment.this.getActivity(),
+		"no KP2A host app found",
+		Toast.LENGTH_SHORT).show();
 }
-}}
+```
 
 Note that this does not even require access authorization because the user will actively save the entry anyways (after selecting the group where to create it.)
 
@@ -142,13 +144,13 @@ With {"SCOPE_DATABASE_ACTIONS"}, you will be informed when the user opens, close
 
 PluginA uses this to simply display a toast message in its ActionReceiver:
 
-{{
+```java
 @Override
 	protected void dbAction(DatabaseAction db) {
 		
 		Log.d("PluginA", db.getAction() + " in file " + db.getFileDisplayName() + " ("+db.getFilePath()+")");
 	}
-}}
+```
  
 
 ## Sample plugin
