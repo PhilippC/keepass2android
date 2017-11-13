@@ -687,7 +687,15 @@
   <string name="ActivateAutoFillService_btnAutoFill">Use AutoFill service</string>
   <string name="ActivateAutoFillService_toast">Please enable the Keepass2Android service.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
-  <string name="ChangeLog_1_02">
+  <string name="ChangeLog_1_03">
+    Version 1.03\n
+    * Added third party apps as storage option again\n
+    * Integrated image viewer for viewing attached images without transferring them to other apps\n
+    * Upgraded OkHttp to fix issues with some connections\n
+    * Support for KeeTrayTOTP entries, now supporting Steam entries\n
+  </string>
+
+    <string name="ChangeLog_1_02">
     Version 1.02\n
     * Several security improvements. Thanks a lot for the security report by jean-baptiste.cayrou@thalesgroup.com and vincent.fargues@thalesgroup.com and for their collaboration!\n
     * Support for KeyboardSwapPlugin (see password access options): allows to switch input method automatically on non-rooted devices. Thanks to Mishaal Rahman from XDA-Developers to make this possible.\n
