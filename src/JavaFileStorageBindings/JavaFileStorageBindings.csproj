@@ -153,12 +153,12 @@
     <EmbeddedReferenceJar Include="Jars\jackson-core-2.7.4.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okio-1.9.0.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedJar Include="Jars\dropbox-core-sdk-3.0.3.jar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\okhttp-3.9.0.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\okio-1.13.0.jar" />
   </ItemGroup>
 </Project>
