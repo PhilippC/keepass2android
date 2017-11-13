@@ -6,8 +6,8 @@ using Java.Util;
 using KeePassLib.Security;
 using KeePassLib.Utility;
 using Keepass2android.Pluginsdk;
-using OtpProviderClient;
 using keepass2android;
+using KeeTrayTOTP.Libraries;
 
 namespace PluginTOTP
 {
@@ -36,8 +36,8 @@ namespace PluginTOTP
 				if (totpData.IsTotpEnry)
 				{
 					//generate a new totp
-					Totp_Provider prov = new Totp_Provider(totpData.Duration, totpData.Length);
-					string totp = prov.Generate(Base32.Decode(totpData.TotpSeed));
+					TOTPProvider prov = new TOTPProvider(totpData.Settings);
+					string totp = prov.Generate(totpData.TotpSeed);
 					//update entry and keyboard
 					UpdateEntryData(totp);
 					//broadcast new field value (update EntryActivity). this might result in another keyboard 

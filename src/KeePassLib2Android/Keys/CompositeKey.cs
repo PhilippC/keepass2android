@@ -163,11 +163,12 @@ namespace KeePassLib.Keys
 		{
 			return (T) GetUserKey(typeof (T));
 		}
+
 		/// <summary>
 		/// Creates the composite key from the supplied user key sources (password,
 		/// key file, user account, computer ID, etc.).
 		/// </summary>
-		private byte[] CreateRawCompositeKey32()
+		private byte[] CreateRawCompositeKey32(byte[] mPbMasterSeed)
 		{
 			ValidateUserKeys();
 
@@ -176,6 +177,8 @@ namespace KeePassLib.Keys
 			int cbData = 0;
 			foreach(IUserKey pKey in m_vUserKeys)
 			{
+				if (pKey is ISeedBasedUserKey)
+					((ISeedBasedUserKey)pKey).SetParams(mPbMasterSeed);
 				ProtectedBinary b = pKey.KeyData;
 				if(b != null)
 				{
@@ -200,43 +203,15 @@ namespace KeePassLib.Keys
 			return pbHash;
 		}
 
-		public bool EqualsValue(CompositeKey ckOther)
-		{
-			if(ckOther == null) throw new ArgumentNullException("ckOther");
-
-			byte[] pbThis = CreateRawCompositeKey32();
-			byte[] pbOther = ckOther.CreateRawCompositeKey32();
-			bool bResult = MemUtil.ArraysEqual(pbThis, pbOther);
-			MemUtil.ZeroByteArray(pbOther);
-			MemUtil.ZeroByteArray(pbThis);
-
-			return bResult;
-		}
-
-		[Obsolete]
-		public ProtectedBinary GenerateKey32(byte[] pbKeySeed32, ulong uNumRounds)
-		{
-			Debug.Assert(pbKeySeed32 != null);
-			if(pbKeySeed32 == null) throw new ArgumentNullException("pbKeySeed32");
-			Debug.Assert(pbKeySeed32.Length == 32);
-			if(pbKeySeed32.Length != 32) throw new ArgumentException("pbKeySeed32");
-
-			AesKdf kdf = new AesKdf();
-			KdfParameters p = kdf.GetDefaultParameters();
-			p.SetUInt64(AesKdf.ParamRounds, uNumRounds);
-			p.SetByteArray(AesKdf.ParamSeed, pbKeySeed32);
-
-			return GenerateKey32(p);
-		}
 
 		/// <summary>
 		/// Generate a 32-byte (256-bit) key from the composite key.
 		/// </summary>
-		public ProtectedBinary GenerateKey32(KdfParameters p)
+		public ProtectedBinary GenerateKey32(KdfParameters p, byte[] mPbMasterSeed)
 		{
 			if(p == null) { Debug.Assert(false); throw new ArgumentNullException("p"); }
 
-			byte[] pbRaw32 = CreateRawCompositeKey32();
+			byte[] pbRaw32 = CreateRawCompositeKey32(mPbMasterSeed);
 			if((pbRaw32 == null) || (pbRaw32.Length != 32))
 				{ Debug.Assert(false); return null; }
 
@@ -277,6 +252,11 @@ namespace KeePassLib.Keys
 				throw new InvalidOperationException();
 			}
 		}
+	}
+
+	public interface ISeedBasedUserKey
+	{
+		void SetParams(byte[] masterSeed);
 	}
 
 	public sealed class InvalidCompositeKeyException : Exception
