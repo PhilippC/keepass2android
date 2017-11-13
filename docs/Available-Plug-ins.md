@@ -2,6 +2,10 @@
 Displays password entries as QR code; can be used to scan QR codes which can then be added to Keepass2Android.
 [https://play.google.com/store/apps/details?id=keepass2android.plugin.qr](https://play.google.com/store/apps/details?id=keepass2android.plugin.qr)
 
+# KeyboardSwap Plug-in
+Allows to switch input method automatically on non-rooted devices.
+[https://play.google.com/store/apps/details?id=keepass2android.plugin.keyboardswap2](https://play.google.com/store/apps/details?id=keepass2android.plugin.keyboardswap2)
+
 # InputStick Plug-in
 Allows to send text from KP2A via InputStick to your PC.
 [https://play.google.com/store/apps/details?id=com.inputstick.apps.kp2aplugin](https://play.google.com/store/apps/details?id=com.inputstick.apps.kp2aplugin)
