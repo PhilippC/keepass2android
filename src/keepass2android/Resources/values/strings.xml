@@ -683,11 +683,7 @@
   <string name="ErrorReportAsk">Ask after error</string>
   <string name="ErrorReportPrefTitle">Send error reports</string>
 
-  <string name="ActivateAutoFillService_title">Activate AutoFill?</string>
-  <string name="ActivateAutoFillService_message">Credentials can be transferred to other apps in several ways: You can copy values to clipboard, but please note that the clipboard is not secure in Android. The built-in keyboard gives full access to the selected entry but must be enabled each time you want to access the credentials. On Android 5 and later, Keepass2Android can enter username and password automatically using the AutoFill service.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Use built-in keyboard</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Use AutoFill service</string>
-  <string name="ActivateAutoFillService_toast">Please enable the Keepass2Android service.</string>
+  
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
   <string name="ChangeLog_1_03">
     Version 1.03\n
