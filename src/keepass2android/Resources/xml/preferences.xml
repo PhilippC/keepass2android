@@ -377,7 +377,7 @@
 
       <Preference android:title="@string/AccServiceAutoFill_prefs" >
         <intent android:action="android.intent.action.VIEW"
-                android:data="https://philippc.github.io/keepass2android/AccServiceAutoFill.md" />
+                android:data="https://philippc.github.io/keepass2android/AccServiceAutoFill.html" />
       </Preference>
 
       </PreferenceScreen>
