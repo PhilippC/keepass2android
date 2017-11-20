@@ -374,7 +374,13 @@
             />
 
 			</PreferenceScreen>
-		</PreferenceScreen>
+
+      <Preference android:title="@string/AccServiceAutoFill_prefs" >
+        <intent android:action="android.intent.action.VIEW"
+                android:data="https://philippc.github.io/keepass2android/AccServiceAutoFill.md" />
+      </Preference>
+
+      </PreferenceScreen>
 		<PreferenceScreen
 			  android:key="@string/QuickUnlock_prefs_key"
 			  android:title="@string/QuickUnlock_prefs"

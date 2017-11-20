@@ -366,9 +366,11 @@
 
 	<string name="ShowSeparateNotifications_title">Separate notifications</string>
 	<string name="ShowSeparateNotifications_summary">Show separate notifications for copying username and password to clipboard and activating the keyboard.</string>
+
+  <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
 	
-	<string name="ShowKp2aKeyboardNotification_title">Keyboard/AutoFill notification</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard and AutoFill service (recommended).</string>
+	<string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Switch keyboard</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Open keyboard selection dialog when entry is available through KP2A keyboard after search from the browser.</string>
 

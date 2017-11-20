@@ -6,6 +6,10 @@ Displays password entries as QR code; can be used to scan QR codes which can the
 Allows to switch input method automatically on non-rooted devices.
 [https://play.google.com/store/apps/details?id=keepass2android.plugin.keyboardswap2](https://play.google.com/store/apps/details?id=keepass2android.plugin.keyboardswap2)
 
+# AutoFill Plug-in
+Uses Android Accessibility Service to provide an option to AutoFill forms (e.g. on Chrome) or any Android app.
+[https://philippc.github.io/keepass2android/AccServiceAutoFill.md]
+
 # InputStick Plug-in
 Allows to send text from KP2A via InputStick to your PC.
 [https://play.google.com/store/apps/details?id=com.inputstick.apps.kp2aplugin](https://play.google.com/store/apps/details?id=com.inputstick.apps.kp2aplugin)

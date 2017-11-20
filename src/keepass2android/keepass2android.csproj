@@ -127,7 +127,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivateAutoFillActivity.cs" />
     <Compile Include="EntryActivityClasses\ViewImagePopupItem.cs" />
     <Compile Include="ImageViewActivity.cs" />
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
@@ -142,7 +141,6 @@
     <Compile Include="ChallengeInfo.cs" />
     <Compile Include="CreateDatabaseActivity.cs" />
     <Compile Include="CreateNewFilename.cs" />
-    <Compile Include="Credentials.cs" />
     <Compile Include="EntryActivityClasses\CopyToClipboardPopupMenuIcon.cs" />
     <Compile Include="EntryActivityClasses\ExtraStringView.cs" />
     <Compile Include="EntryActivityClasses\GotoUrlMenuItem.cs" />

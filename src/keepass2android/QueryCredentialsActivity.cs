@@ -32,6 +32,16 @@ namespace keepass2android
 		private string _requestedUrl;
 		private string _pluginPackage;
 
+		public QueryCredentialsActivity (IntPtr javaReference, JniHandleOwnership transfer)
+			: base(javaReference, transfer)
+		{
+			
+		}
+
+		public QueryCredentialsActivity()
+		{
+		}
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -164,6 +174,7 @@ namespace keepass2android
 					//return credentials to caller:
 					Intent credentialData = new Intent();
 					PluginHost.AddEntryToIntent(credentialData, App.Kp2a.GetDb().LastOpenedEntry);
+					credentialData.PutExtra(Strings.ExtraQueryString,_requestedUrl);
 					SetResult(Result.Ok, credentialData);
 					Finish();
 				}

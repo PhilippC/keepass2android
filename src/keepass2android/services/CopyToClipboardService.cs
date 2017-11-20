@@ -420,25 +420,24 @@ namespace keepass2android
 				if (hasKeyboardDataNow)
 				{
 					notBuilder.AddKeyboardAccess();
-
-					if (closeAfterCreate && Keepass2android.Autofill.AutoFillService.IsAvailable)
+					if (prefs.GetBoolean("kp2a_switch_rooted", false))
 					{
-						if (IsKp2aInputMethodEnabled)
+						//switch rooted
+						bool onlySwitchOnSearch = prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false);
+						if (closeAfterCreate || (!onlySwitchOnSearch))
 						{
-							ActivateKeyboardIfAppropriate(closeAfterCreate, prefs);
-						} else if (Keepass2android.Autofill.AutoFillService.IsRunning)
-						{
-							//don't do anything, service is notified
-						}
-						else //neither keyboard nor activity service are running/enabled. Ask the user what to do.
-						{
-							var i = new Intent(this, typeof(ActivateAutoFillActivity));
-							i.AddFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
-							StartActivity(i);
-							prefs.Edit().PutBoolean("has_asked_autofillservice", true).Commit();
+							ActivateKp2aKeyboard();
 						}
 					}
-					else ActivateKeyboardIfAppropriate(closeAfterCreate, prefs);
+					else
+					{
+						//if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
+						// automatically bring up the Keyboard selection dialog
+						if ((closeAfterCreate) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
+						{
+							ActivateKp2aKeyboard();
+						}
+					}
 
 				}
 
