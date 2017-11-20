@@ -722,6 +722,7 @@ namespace keepass2android
 
                 builder.SetNegativeButton(App.Kp2a.GetResourceString(UiStringKey.no), (o, args) =>
                 {
+	                ((CheckBoxPreference) e.Preference).Checked = true;
                 }
                 );
                 builder.SetCancelable(false);
