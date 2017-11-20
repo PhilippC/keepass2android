@@ -691,6 +691,7 @@
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
   <string name="ChangeLog_1_03">
     Version 1.03\n
+    * Removed accessibility service for AutoFill as requested by Google. Please see password access settings to find a plugin replicating the previous functionality.\n
     * Added third party apps as storage option again\n
     * Integrated image viewer for viewing attached images without transferring them to other apps\n
     * Upgraded OkHttp to fix issues with some connections\n
