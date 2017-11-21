@@ -26,7 +26,7 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	[Activity (Label = "@string/app_name", Theme="@style/Dialog")]			
+	[Activity(Label = "@string/app_name", Theme = "@style/Dialog")]			
 	public class GroupEditActivity : LifecycleDebugActivity
 	{
 		public const String KeyParent = "parent";
@@ -76,8 +76,9 @@ namespace keepass2android
 		
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
-			base.OnCreate (savedInstanceState);
 			_design.ApplyDialogTheme();
+
+			base.OnCreate (savedInstanceState);
 			SetContentView (Resource.Layout.group_edit);
 
 			ImageButton iconButton = (ImageButton)FindViewById (Resource.Id.icon_button);
