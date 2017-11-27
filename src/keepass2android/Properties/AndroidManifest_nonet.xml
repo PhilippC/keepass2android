@@ -118,7 +118,7 @@
 	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
   <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
-  <uses-permission android:name="keepass2android.keepass2android_debug.permission.KP2aInternalSearch" />
+  <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" />
 	<!-- Samsung Pass permission -->
 	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
 </manifest>

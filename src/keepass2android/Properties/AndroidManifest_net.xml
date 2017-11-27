@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="101" 
-			android:versionName="1.03-pre3" 
+			android:versionCode="102" 
+			android:versionName="1.03" 
 			package="keepass2android.keepass2android" 
 			android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
@@ -138,7 +138,7 @@
 	<uses-permission android:name="android.permission.USE_CREDENTIALS" />
 	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 	<uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
-  <uses-permission android:name="keepass2android.keepass2android_debug.permission.KP2aInternalSearch" />
+  <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" />
 	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
 	<!-- Samsung Pass permission -->
