@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android is een wachtwoordmanager met lees/schrijf toegang tot KeePass 2.x databases in Android.</string>
   <string name="CreditsText">De gebruikersinterface is gebaseerd op KeepassDroid, een port ontwikkeld door Brian Pellin. Code voor de database operaties is gebaseerd op KeePass door Dominik Reichl. De Android robot is gereproduceerd of aangepast van het werk gemaakt en gedeeld door Google en gebruikt in overeenstemming met de voorwaarden beschreven in de Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP ondersteuning is geïmplementeerd door middel van de JSch-bibliotheek onder BSD-licentie, gemaakt door JCraft, Inc.</string>
-  <string name="CreditsIcons">Het hamer-pictogram is gemaakt door John Caserta van het Noun Project. Het pinguïn-pictogram is gemaakt door Adriano Emerick van het Noun Project. Het veer-pictogram is gemaakt door Jon Testa van het Noun Project. Het Apple-pictogram is gemaakt door Ava Rowell van het Noun Project. </string>
+  <string name="CreditsIcons">Het hamer-pictogram is gemaakt door John Caserta van het Noun Project. Het pinguïn-pictogram is gemaakt door Adriano Emerick van het Noun Project. Het veer-pictogram is gemaakt door Jon Testa van het Noun Project. Het Apple-pictogram is gemaakt door Ava Rowell van het Noun Project. Het picture-pictogram komt van https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Accepteren</string>
   <string name="deny">Weigeren</string>
   <string name="add_entry">Record toevoegen</string>
@@ -287,6 +287,7 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="SaveAttachmentDialog_text">Selecteer waar u de bijlage wilt opslaan.</string>
   <string name="SaveAttachmentDialog_save">Opslaan op SD-kaart</string>
   <string name="SaveAttachmentDialog_open">Opslaan in de cache en openen</string>
+  <string name="ShowAttachedImage">Toon met interne afbeeldingsweergave</string>
   <string name="SaveAttachment_doneMessage">Bestand opgeslagen als %1$s.</string>
   <string name="SaveAttachment_Failed">Kon de bijlage niet opslaan in %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Onthoud zoektekst?</string>
@@ -330,8 +331,9 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="ShowCopyToClipboardNotification_summary">Maak gebruikersnaam en wachtwoord toegankelijk via de systeembalk en het Klembord. Pas op voor wachtwoordsniffers!</string>
   <string name="ShowSeparateNotifications_title">Afzonderlijke notificaties</string>
   <string name="ShowSeparateNotifications_summary">Toon afzonderlijke notificaties voor het kopiëren van gebruikersnaam en wachtwoord en voor het inschakelen van het toetsenbord.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Toetsenbord/AutoFill-notificatie</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Maak volledige element beschikbaar via het KP2A-toetsenbord en AutoFill-functionaliteit (aanbevolen).</string>
+  <string name="AccServiceAutoFill_prefs">Toegankelijkheid service voor AutoFill</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A toetsenbordmelding</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Maak volledige invoer mogelijk via het toetsenbord van de KP2A (aanbevolen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Wissel toetsenbord</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Open toetsenbord selectie venster als een regel beschikbaar is via KP2A toetsenbord na zoeken vanaf de browser of het toetsenbord.</string>
   <string name="kp2a_switch_rooted">Wissel toetsenbord</string>
@@ -477,6 +479,10 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="TrayTotp_SettingsField_title">Veldnaam TOTP-instellingen</string>
   <string name="TrayTotp_SettingsField_summary">Geef de veldnaam van het instellingenveld van TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Logboekbestand voor foutopsporing</string>
+  <string name="DebugLog_title">Gebruik logboekbestand</string>
+  <string name="DebugLog_summary">App uitvoer naar een lokaal logboekbestand schrijven</string>
+  <string name="DebugLog_send">Logboekbestand voor foutopsporing opsturen...</string>
   <string name="loading">Laden&#8230;</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Pakketnaam:</string>
@@ -568,6 +574,14 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="ActivateAutoFillService_btnAutoFill">Gebruik AutoFill-functionaliteit</string>
   <string name="ActivateAutoFillService_toast">Activeer aub de Keepass2Android-functionaliteit.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Toon zacht toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
+  <string name="ChangeLog_1_03">
+Versie 1.03\n
+  * Toegankelijkheid service voor AutoFill verwijderd zoals gevraagd door Google. Raadpleeg de wachtwoord toegangsinstellingen om een plugin te vinden die de vorige functionaliteit biedt.\n
+  * Derde partij apps weer toegevoegd als opslag optie\n
+  * Geïntegreerde afbeeldingsweergave van gekoppelde beelden zonder deze over te dragen aan andere apps\n
+  * OkHttp opgewaardeerd om problemen op te lossen met sommige verbindingen\n
+  * Steun voor KeeTrayTOTP items, ondersteund nu Steam items\n
+  </string>
   <string name="ChangeLog_1_02">
 Versie 1.02\n
     * Verschillende beveiligingsverbeteringen. Dank gaat uit naar jean-baptiste.cayrou@thalesgroup.com en vincent.fargues@thalesgroup.com voor hun veiligheidsrapport en samenwerking!\n
@@ -575,7 +589,7 @@ Versie 1.02\n
     * Fix voor toegankelijkheids service met recente Chrome versies.\n
     * Fix om onnodig wissen van de vingerafdrukdata te voorkomen\n
     * Fix voor onbelangrijke chrashes\n
-    * Dropbox SDK geupdated om compabiliteit in de toekomst te garanderen\n
+    * Dropbox SDK bijgewerkt om compabiliteit in de toekomst te garanderen\n
     * Fout rapporten van Xamarin Insights verwijderd\n
     * Ontwikkeltools geupdated\n  </string>
   <string name="ChangeLog_1_01g">

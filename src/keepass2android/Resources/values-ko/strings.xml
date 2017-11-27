@@ -35,6 +35,7 @@
   <string name="unknown_uri_scheme">죄송 합니다! Keepass2Android는 반환된 URI %1$s을 처리할 수 없습니다. 개발자에게 연락 하십시오!</string>
   <string name="Entry_singular">한개의 항목</string>
   <string name="Entry_plural">%1$d 항목들</string>
+  <string name="IconSet_title">아이콘 셋</string>
   <string name="security_prefs">보안</string>
   <string name="display_prefs">화면</string>
   <string name="password_access_prefs">비밀번호 항목 접속</string>
@@ -42,6 +43,15 @@
   <string name="FileHandling_prefs">파일 처리</string>
   <string name="keyboard_prefs">키보드</string>
   <string name="export_prefs">데이터베이스 내보내기...</string>
+  <string name="fingerprint_prefs">지문 인식 잠금 해제</string>
+  <string name="import_db_prefs">내부 폴더로 부터 데이터베이스 불러오기</string>
+  <string name="import_keyfile_prefs">내부 폴더로 키 파일 불러오기</string>
+  <string name="keyboardswitch_prefs">키보드 전환</string>
+  <string name="FileIsInInternalDirectory">파일은 내부 디렉토리 안에 저장됩니다.</string>
+  <string name="DatabaseFileMoved">데이터베이스는 내부 폴더로 복사되었습니다. 새 위치에서 열려면 확인을 누르세요. 참고: 안전한 보관을 위해 정기적으로 데이터베이스를 내보내는 것을 잊지마십시오!</string>
+  <string name="KeyfileMoved">키파일이 내부 폴더에 복사되었습니다. 현재 위치로부터 삭제하기 전에 안전한 백업을 가지고 있는지 확인하십시오!</string>
+  <string name="unlock_database_button">잠금해제</string>
+  <string name="unlock_database_title">데이터베이스 잠금해제</string>
   <string name="brackets">괄호</string>
   <string name="cancel">취소</string>
   <string name="ClearClipboard">클립보드를 비웠습니다.</string>
@@ -58,6 +68,16 @@
   <string name="database">데이터베이스</string>
   <string name="digits">숫자</string>
   <string name="disclaimer_formal">Keepass2Android는 절대 보증되지 않습니다. 이 앱은 무료 소프트웨어이며, the GPL 버전 2 또는 그 최근 버전의 조건 하에서 재배포가 가능합니다.</string>
+  <string name="copy_to_clipboard">클립보드에 복사</string>
+  <string name="fingerprint_hint">센서 접촉</string>
+  <string name="fingerprint_description">계속하려면 지문 확인</string>
+  <string name="fingerprint_success">지문 인식 완료</string>
+  <string name="fingerprint_os_error">지문 인식 잠금 해제는 안드로이드 6.0 이상이 필요합니다.</string>
+  <string name="fingerprint_hardware_error">감지된 지문인식 하드웨어가 없습니다.</string>
+  <string name="disable_fingerprint_unlock">지문 잠금 해제 사용안함</string>
+  <string name="enable_fingerprint_quickunlock">빠른 잠금해제를 위해 지문인식 잠금해제 사용</string>
+  <string name="fingerprint_unlock_hint">데이터베이스의 잠금을 해제하려면 센서에 접촉하십시오</string>
+  <string name="fingerprint_unlock_failed">지문 인식 잠금 해제에 실패했습니다. 안 드 로이드 OS에 의해 키 암호 해독이 무효화 됐습니다. 일반적으로 새로운 지문을 등록 했거나 보안 설정이 변경 된 경우 발생 합니다. 귀하의 비밀 번호로 잠금 해제를 한 후 데이터베이스 설정에서 다시 지문 인식 잠금 해제 설정에서 재활성화 하시기 바랍니다.</string>
   <string name="enter_filename">데이터베이스 파일 이름을 입력하세요.</string>
   <string name="entry_accessed">접속됨</string>
   <string name="entry_cancel">최소</string>
@@ -68,6 +88,7 @@
   <string name="entry_expires">만료</string>
   <string name="entry_group_name">그룹 이름</string>
   <string name="entry_keyfile">키 파일 (선택 사항)</string>
+  <string name="keyfile_heading">키 파일</string>
   <string name="entry_modified">수정됨</string>
   <string name="entry_password">비밀번호</string>
   <string name="entry_save">저장</string>
@@ -90,6 +111,7 @@
   <string name="error_pass_gen_type">하나 이상의 비밀번호 생성 종류를 선택해야 합니다.</string>
   <string name="error_pass_match">비밀번호가 맞지 않습니다.</string>
   <string name="error_rounds_not_number">정수는 숫자여야 합니다.</string>
+  <string name="error_param_not_number">매개 변수는 숫자여야 합니다.</string>
   <string name="error_title_required">제목이 필요합니다.</string>
   <string name="error_wrong_length">길이 필드에 양수를 입력하세요.</string>
   <string name="FileNotFound">파일을 찾을 수 없습니다.</string>
@@ -112,6 +134,7 @@
   <string name="invalid_algorithm">잘못된 알고리즘입니다.</string>
   <string name="invalid_db_sig">데이터베이스 형식을 인식할 수 없습니다.</string>
   <string name="keyfile_does_not_exist">키 파일이 존재하지 않습니다.</string>
+  <string name="no_keyfile_selected">선택된 키 파일이 없습니다</string>
   <string name="keyfile_is_empty">키 파일이 비어있습니다.</string>
   <string name="length">길이</string>
   <string name="list_size_title">그룹 목록 크기</string>
@@ -132,16 +155,18 @@
   <string name="menu_move">다른 그룹으로 이동</string>
   <string name="menu_move_light">이동</string>
   <string name="menu_navigate">상위 그룹으로 이동</string>
-  <string name="menu_donate">기부</string>
+  <string name="menu_donate">맥주 기부하기...</string>
   <string name="menu_edit">수정</string>
   <string name="menu_hide_password">비밀번호 숨기기</string>
   <string name="menu_lock">데이터베이스 잠금</string>
   <string name="menu_open">열기</string>
+  <string name="menu_close">닫기</string>
   <string name="menu_rename">이름 바꾸기</string>
   <string name="menu_search">검색</string>
   <string name="menu_search_advanced">고급검색</string>
   <string name="menu_url">URL로 이동</string>
   <string name="menu_change_db">데이터베이스 변경하기</string>
+  <string name="menu_show_all">모든 필드를 표시</string>
   <string name="minus">빼기(-)</string>
   <string name="never">없음</string>
   <string name="yes">네</string>
@@ -173,8 +198,11 @@
   <string name="space">빈칸</string>
   <string name="search_label">검색</string>
   <string name="show_password">비밀번호 표시</string>
+  <string name="sort_menu">정렬 기준...</string>
   <string name="sort_name">이름으로 정렬</string>
   <string name="sort_db">만든 날짜로 정렬</string>
+  <string name="sort_moddate">수정된 날짜순으로 정렬</string>
+  <string name="sort_default">기본 순서 유지</string>
   <string name="special">특수</string>
   <string name="search_hint">찾을 내용</string>
   <string name="search_results">검색 결과</string>
@@ -191,6 +219,7 @@
   <string name="version_history">버전 이력</string>
   <string name="author">Keepass2Android는 Philipp Crocoll에 의해 개발되었습니다.</string>
   <string name="further_authors">%1$ s 코드 제공에 감사합니다.</string>
+  <string name="designers">아이콘과 레이아웃 디자인을 기부해주신 %1$s에 감사드립니다.</string>
   <string name="credit_plugin1"> Keepass에 쓰이는 Twofish 암호화 플러그인은 Scott Greenberg에 의해 개발 되었고 KP2A에 포함됩니다.</string>
   <string name="credit_android_filechooser">안드로이드 파일선택기는 Hai Baison에 의해 개발되었습니다.</string>
   <string name="credit_keyboard">KP2A 키보드는 안드로이드 오픈소스 프로젝트에 따른 진저브레드 키보드를 기반으로 하고 Klaus Weidner에 의한 Hacker\'s Keyboard의 플러그인 매니저 코드를 사용합니다.</string>
@@ -219,10 +248,11 @@
   <string name="QuickUnlock_lockButton">데이터베이스 닫기</string>
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock 활성화를 기본설정으로</string>
   <string name="QuickUnlockDefaultEnabled_summary">QuickUnlock을 기본적으로 사용할지를 정의합니다.</string>
+  <string name="ViewDatabaseSecure_title">데이터베이스 표시 보호</string>
   <string name="ViewDatabaseSecure_summary">스크린샷 기능을 막고 최근 앱 리스트에 앱의 썸네일을 표시하지 않습니다.</string>
-  <string name="QuickUnlockIconHidden_title">QuickUnlock 아이콘 숨기기</string>
-  <string name="QuickUnlockIconHidden_summary">QuickUnlock은 알림 아이콘 표시 없이는 동작을 하지 않습니다. 투명한 아이콘을 사용하려면 이 옵션을 선택하세요.</string>
-  <string name="QuickUnlockIconHidden16_title">QuickUnlock 아이콘 숨기기</string>
+  <string name="QuickUnlockIconHidden_title">빠른 잠금해제 아이콘 숨기기</string>
+  <string name="QuickUnlockIconHidden_summary">빠른 잠금해제는 알림 아이콘 표시 없이는 동작을 하지 않습니다. 투명한 아이콘을 사용하려면 이 옵션을 선택하세요.</string>
+  <string name="QuickUnlockIconHidden16_title">빠른 잠금해제 아이콘 숨기기</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock이 제대로 작동 하려면 알림창 표시가 필요합니다. 아이콘 없이 알림창을 표시하려면 이 옵션을 선택합니다.</string>
   <string name="QuickUnlockLength_title">QuickUnlock 키 길이</string>
   <string name="QuickUnlockLength_summary">QuickUnlock 비밀번호로 사용될 최대 문자 수</string>
@@ -239,6 +269,7 @@
   <string name="AddUrlToEntryDialog_text">다음엔 자동으로 찾기 위해 선택된 항목에 있는 검색문자 \"%1$s\"를 저장할까요?</string>
   <string name="error_invalid_expiry_date">만료 날짜/시간이 잘못된 형식입니다.</string>
   <string name="error_string_key">필드 이름은 각각의 문자열이 필수입니다.</string>
+  <string name="error_string_duplicate_key">필드 이름을 두 번(%1$s) 사용할 수 없습니다.</string>
   <string name="field_name">필드이름</string>
   <string name="field_value">필드 값</string>
   <string name="protection">보호된 필드</string>
@@ -252,11 +283,16 @@
   <string name="UseFileTransactions_summary">데이터베이스 쓰기 사용</string>
   <string name="LockWhenScreenOff_title">화면 꺼질 때 잠그기</string>
   <string name="LockWhenScreenOff_summary">화면 꺼질 때 데이터베이스 잠그기</string>
+  <string name="ClearPasswordOnLeave_title">입력된 마스터 패스워드를 지우기</string>
+  <string name="ClearPasswordOnLeave_summary">데이터베이스를 잠금해제 하지 않고 화면을 떠날 경우 입력된 마스터 패스워드를 지웁니다.</string>
   <string name="LockWhenNavigateBack_title">앱을 닫을 때 잠금</string>
   <string name="LockWhenNavigateBack_summary">뒤로 버튼을 눌러 앱을 닫을 때 데이터베이스를 잠급니다.</string>
   <string name="NoDonateOption_title">기부 버튼 숨기기</string>
   <string name="NoDonateOption_summary">기부자를 위한 옵션입니다.
 이 앱을 한동안 사용한 후에만 설정이 가능합니다.</string>
+  <string name="NoDonateOption_question">기부가 없다면, 이 앱이 지속적으로 향상되지 못하는 것은 물론 존재하지 못합니다! 만약 귀하가 아직 기부를 하지 않았다면, 부디 지금 기부를 고려해주시기 바랍니다.</string>
+  <string name="NoDonationReminder_title">기부에 대해 다시는 묻지 않기</string>
+  <string name="NoDonationReminder_summary">나는 한 푼도 주지 않을 것이거나 이미 기증 했다. 제작자 생일에도 기부에 대한 요청 하지마라.</string>
   <string name="UseOfflineCache_title">데이터베이스 캐싱</string>
   <string name="UseOfflineCache_summary">원격 데이터베이스 파일 사본을 앱 캐시 폴더에 보관하기. 이를 허용하면 오프라인 시에도 원격 데이터베이스 파일을 활용할 수 있습니다.</string>
   <string name="AcceptAllServerCertificates_title">SSL 인증서</string>
@@ -265,6 +301,7 @@
   <string name="ClearOfflineCache_question">캐시된 모든 데이터베이스 파일을 지웁니다. 오프라인 시에 변경하여 동기화되지 않은 사항들은 모두 손실됩니다! 계속할까요?</string>
   <string name="CheckForFileChangesOnSave_title">수정 확인하기</string>
   <string name="CheckForFileChangesOnSave_summary">파일이 외부에서 수정되었는지 변경사항을 저장하기 전에 확인하기</string>
+  <string name="CheckForDuplicateUuids_title">중복된 UUID 확인</string>
   <string name="ShowCopyToClipboardNotification_title">클립보드 알림</string>
   <string name="ShowCopyToClipboardNotification_summary">계정과 비밀번호를 알림창과 클립보드를 통해 접근할 수 있도록 함. 비밀번호 유출 주의!</string>
   <string name="OpenKp2aKeyboardAutomatically_title">키보드 바꾸기</string>
@@ -384,8 +421,27 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="CertificateWarning">경고: 서버 인증서 유효성 검사에 실패했습니다: %1$s. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하세요!</string>
   <string name="CertificateFailure">오류: 서버 인증서 유효성 검사에 실패했습니다. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하세요!</string>
   <string name="export_fileformats_title">파일 형식 선택</string>
+  <string name="FileIsTemporarilyAvailable">Keepass2Android에서 일시적으로만 사용할 수 있는 파일입니다.</string>
+  <string name="FileIsReadOnly">귀하가 선택한 파일은 읽기 전용입니다.</string>
+  <string name="FileReadOnlyTitle">데이터베이스가 읽기 전용입니다</string>
+  <string name="AddCustomIcon">파일에서 아이콘을 추가...</string>
   <string name="CopyingFile">파일 복사 중...</string>
   <string name="ChangeLog_title">변경 로그</string>
+  <string name="ErrorReportAsk">오류 발견 시 묻기</string>
+  <string name="ErrorReportPrefTitle">오류 보고서 보내기</string>
+  <string name="ActivateAutoFillService_btnAutoFill">자동 완성 서비스 사용</string>
+  <string name="ChangeLog_1_0_0e">
+    버전 1.0.0e\n
+    * 안드로이드 6을 사용하는 구형 삼성 기기에서 지문인식 잠금해제 관련 수정\n
+    * x86기기에 대한 기본 지원 추가\n
+    * 지문인식하는 동안 소프트키를 숨길수 있게 허용\n
+    * 시스템 업데이트 구축
+  </string>
+  <string name="ChangeLog_keptDonate">맥주 또는 다른 것으로 기부가 가능하게 확장되었습니다</string>
+  <string name="ChangeLog_0_7"><b>버전 0.7</b>\n
+* 로깅 속도 증가: 키 변환이 지금 10배 더 빠릅니다!\n
+* Keepass2Android 소프트 키보드 추가: 자격증명을 입력하는 동안 이 키보드로 전환됩니다. 클립보드 기반의 패스워드 탈취기로 부터 당신을 보호합니다. (옵션에서 오래된 클립보드 알림 비활성화)\n
+* 맥주 또는 다른 것을 기부하는 옵션 추가(메뉴 참조)</string>
   <string-array name="clipboard_timeout_options">
     <item>30 초</item>
     <item>1 분</item>

@@ -8,7 +8,7 @@
   <string name="CreditsText">Die Benutzeroberfläche basiert auf einem Port von Keepassdroid (entwickelt von Brian Pellin) nach Mono for Android. Der Code für die Datenbank-Operationen nutzt eine angepasste Version einer Bibliothek aus KeePass (entwickelt von Dominik Reichl).
 Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird nach den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
   <string name="CreditsTextSFTP">SFTP-Unterstützung ist implementiert unter Nutzung der JSch-Bibliothek (BSD-Lizenz), erstellt durch JCraft, Inc.</string>
-  <string name="CreditsIcons">Das Hammer-Icon wurde von John Caserta aus dem Noun Project erstellt. Das Pinguin-Icon wurde von Adriano Emerick aus dem Noun Project erstellt. Das Feder-Icon wurde von Jon Testa aus dem Noun Project erstellt. Das Apfel-Icon wurde von Ava Rowell aus dem Noun Project erstellt. </string>
+  <string name="CreditsIcons">Das Hammer-Icon wurde von John Caserta aus dem Noun Project erstellt. Das Pinguin-Icon wurde von Adriano Emerick aus dem Noun Project erstellt. Das Feder-Icon wurde von Jon Testa aus dem Noun Project erstellt. Das Apfel-Icon wurde von Ava Rowell aus dem Noun Project erstellt. Das Bild-Icon stammt von https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Akzeptieren</string>
   <string name="deny">Verweigern</string>
   <string name="add_entry">Eintrag hinzufügen</string>
@@ -275,7 +275,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock standardmäßig aktiviert</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definiert, ob QuickUnlock standardmäßig aktiviert ist oder nicht.</string>
   <string name="ViewDatabaseSecure_title">Datenbankanzeige schützen</string>
-  <string name="ViewDatabaseSecure_summary">Wenn aktiviert, können keine Screenshots gemacht werden und es wird kein Vorschaubild der App ist Letzte-Apps-Liste angezeigt.</string>
+  <string name="ViewDatabaseSecure_summary">Wenn aktiviert, können keine Screenshots gemacht werden und es wird kein Vorschaubild der App in der Letzte-Apps-Liste angezeigt.</string>
   <string name="QuickUnlockIconHidden_title">QuickUnlock-Symbol verstecken</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock funktioniert leider nicht ohne ein Benachrichtigungssymbol. Wähle diese Option, um ein transparentes Symbol zu verwenden.</string>
   <string name="QuickUnlockIconHidden16_title">QuickUnlock-Symbol verstecken</string>
@@ -289,6 +289,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
   <string name="SaveAttachmentDialog_save">Auf SD-Karte speichern</string>
   <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
+  <string name="ShowAttachedImage">Mit internem Image-Viewer anzeigen</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
   <string name="SaveAttachment_Failed">Datei konnte nicht unter %1$s gespeichert werden.</string>
   <string name="AddUrlToEntryDialog_title">Suchtext merken?</string>
@@ -332,8 +333,9 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
   <string name="ShowSeparateNotifications_title">Separate Benachrichtigungen</string>
   <string name="ShowSeparateNotifications_summary">Zeige separate Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Tastatur/AutoEingabe-Benachrichtigung</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über KP2A-Tastatur und AutoFill zur Verfügung stellen (empfohlen).</string>
+  <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zum Auswählen der Eingabemethode öffnen wenn ein Eintrag nach Suche aus dem Browser heraus verfügbar ist.</string>
   <string name="kp2a_switch_rooted">Auto-Umschalten der Tastatur</string>
@@ -479,6 +481,10 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="TrayTotp_SettingsField_title">Feldname für TOTP-Einstellungen</string>
   <string name="TrayTotp_SettingsField_summary">Feldnamen für TOTP-Einstellungen entsprechend den TrayTotp-Einstellungen eingeben.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Log-Datei (für Debugging)</string>
+  <string name="DebugLog_title">Log-Datei benutzen</string>
+  <string name="DebugLog_summary">Ausgabe der Anwendung in eine lokale Log-Datei schreiben</string>
+  <string name="DebugLog_send">Debug-Log senden...</string>
   <string name="loading">Lade&#8230;</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Paketname:</string>
@@ -570,6 +576,13 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ActivateAutoFillService_btnAutoFill">AutoEingabe-Dienst benutzen</string>
   <string name="ActivateAutoFillService_toast">Bitte aktiviere den Keepass2Android-Dienst.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
+  <string name="ChangeLog_1_03">
+Version 1.03\n
+* Accessibility-Service für AutoFill entfernt, da dies von Google gefordert wurde. Gehe in die Passwort-Zugriff-Einstellungen für einen Link zu einem Plugin, das die zuvor integrierte Funktionalität wieder bereitstellen kann.\n
+* Drittanwendungen können wieder genutzt werden, um Dateien zu öffnen\n
+* Image-Viewer integriert, um angehängte Bilder zu öffnen, ohne diese in andere Apps übertragen zu müssen\n
+* OkHttp aktualisiert um Probleme mit manchen Verbindungen zu behoben.\n
+* Unterstützung für KeeTrayTOTP-Einträge, so dass jetzt aus Steam-Einträge möglich sind\n  </string>
   <string name="ChangeLog_1_02">
 Version 1.02\n 
  * mehrere Sicherheitsverbesserungen. Danke an jean-baptiste.cayrou@thalesgroup.com und vincent.fargues@thalesgroup.com für die Analyse und Zusammenarbeit! \n 
@@ -578,7 +591,7 @@ Version 1.02\n
  * Fix für unnötiges Löschen der Fingerabdruckdaten\n 
  * Fix für kleinere Crashes\n  
  * Dropbox-SDK aktualisiert, um zukünftige Kompatibilität zu gewährleisten \n 
- * Fehlerberichterstattung mittels durch Xamarin Insights entfernt\n 
+ * Fehlerberichterstattung mittels Xamarin Insights entfernt\n 
  * Build-Tools aktualisiert\n  </string>
   <string name="ChangeLog_1_01g">
 Version 1.01-g\n     
@@ -847,7 +860,6 @@ Erstes öffentliches Release</string>
     <item>Kennwort + OTP Secret (Recovery-Modus)</item>
     <item>Passwort + Challenge-Response</item>
     <item>Passwort + Challenge-Response-Secret (Recovery-Modus)</item>
-    <item>Passwort + Challenge-Response für KeepassXC-Datenbank</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Fehler bei Zertifikatsvalidierung ignorieren</item>

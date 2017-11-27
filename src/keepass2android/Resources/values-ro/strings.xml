@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android este un manager de parole ce oferă citire/scriere la baze de date KeePass 2.x pe Android.</string>
   <string name="CreditsText">Interfaţa cu utilizatorul este bazată pe un port al KeepassDroid dezvoltat de Brian Pellin. Codul pentru operaţiunile cu baza de date este bazat pe KeePass de Dominik Reichl. Robotul Android este reprodus sau modificate din materiale create şi împărtăşite de Google şi utilizate în conformitate cu condiţiile descrise de licenţa Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Suportul pentru SFTP este implementat folosind librăria JSch sub licență BDS, creată de JCraft, Inc.</string>
-  <string name="CreditsIcons">Sigla Hammer (ciocan) este creată de John Caserta de la Noun Project. Sigla Penguin (pinguin) este creată de Adriano Emerick de la Noun Project. Sigla Feather (pană) este creată de Jon Testa de la Noun Project. Sigla Apple (măr) este creată de Ava Rowell de la Noun Project. </string>
   <string name="accept">Accepta</string>
   <string name="deny">Interzice</string>
   <string name="add_entry">Adăugă o înregistrare</string>
@@ -331,8 +330,6 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="ShowCopyToClipboardNotification_summary">Oferă utilizatorul şi parolă prin bara de notificări şi clipboard. Atenţie la \"password sniffers\"!</string>
   <string name="ShowSeparateNotifications_title">Separă notificările</string>
   <string name="ShowSeparateNotifications_summary">Arată notificări separate pentru copierea numelui utilizatorului și a parolei în clipboard și activarea tastaturii.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notificare pentru tastatură/auto completare</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Face intrarea completă accesibila prin intermediul tastaturii KP2A si a serviciul de auto completare (recomandat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Comută tastatura</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Deschide fereastra de selecție a tastaturii când o înregistrare este disponibilă prin tastatura KP2A după căutarea din browser.</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Comută automat tastatura doar după căutare</string>

@@ -251,7 +251,6 @@
   <string name="CheckForFileChangesOnSave_title">Egiaztatu aldaketak</string>
   <string name="ShowCopyToClipboardNotification_title">Arbelaren jakinarazpenak</string>
   <string name="ShowSeparateNotifications_title">Banatutako jakinarazpenak</string>
-  <string name="ShowKp2aKeyboardNotification_title">Teklatua/Betetze automatikoaren jakinarazpena</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Aldatu teklatua</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatikoki aldatu bilaketa eta gero besterik ez</string>
   <string name="PreloadDatabaseEnabled_title">Aurrez kargatu datu-basearen fitxategia</string>

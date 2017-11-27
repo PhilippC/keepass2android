@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android egy jelszókezelő alkalmazás, amely KeePass 2.x adatbázisokhoz írás-olvasási hozzáférést biztosít Android eszközökön.</string>
   <string name="CreditsText">A felhasználói felület a Brian Pellin által feljesztett KeepassDroid portolásán alapul. Az adatbáziskód a KeePassen alapul, amely Dominik Reichl munkája. Az Android robot a Google által készített és megosztottság logo Creative Commons 3.0 licensz szerint újrapublikált és/vagy módosított verziója.</string>
   <string name="CreditsTextSFTP">Az SFTP támogatás a JCraft, Inc. által fejlesztett, BSD licensz szerint felhasználható JSch programkönyvtárra alapul.</string>
-  <string name="CreditsIcons">A kalapács ikon John Caserta, a pingvin ikon Adriano Emerick, a toll ikon Jon Testa, az alma ikon pedig Ava Rowell munkája. Mind a négy ikon elérhető a Noun Project keretein belül.</string>
+  <string name="CreditsIcons">A kalapács ikon John Caserta, a pingvin ikon Adriano Emerick, a toll ikon Jon Testa, az alma ikon pedig Ava Rowell munkája. Mind a négy ikon elérhető a Noun Project keretein belül. A kép ikon az alábbi helyről származik: https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Elfogadás</string>
   <string name="deny">Elutasít</string>
   <string name="add_entry">Bejegyzés hozzáadása</string>
@@ -291,6 +291,7 @@
   <string name="SaveAttachmentDialog_text">Adja meg, hová akarja menteni a csatolt fájlt.</string>
   <string name="SaveAttachmentDialog_save">Mentés SD kártyára</string>
   <string name="SaveAttachmentDialog_open">Átmeneti tárolóra mentés és megnyitás</string>
+  <string name="ShowAttachedImage">Megjelenítés a beépített képmegjelenítővel</string>
   <string name="SaveAttachment_doneMessage">A fájl elmentve: %1$s.</string>
   <string name="SaveAttachment_Failed">A csatolt fájlt nem sikerült elmenteni a megadott helyre (%1$s).</string>
   <string name="AddUrlToEntryDialog_title">A keresendő szöveg elmentése?</string>
@@ -334,8 +335,9 @@
   <string name="ShowCopyToClipboardNotification_summary">A felhasználónév és jelszó elérhetővé tétele az értesítési sávon és a vágólapon keresztül.  Ne feledkezzen meg a jelszógyűjtés veszélyéről!</string>
   <string name="ShowSeparateNotifications_title">Részletes értesítések</string>
   <string name="ShowSeparateNotifications_summary">Külön értesítés jelenjen meg a felhasználónév és a jelszó vágólapra másolásáról és a billentyűzet aktiválásáról.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Billentyűzet/automatikus kitöltés értesítés</string>
-  <string name="ShowKp2aKeyboardNotification_summary">A teljes bejegyzés elérhetővé tétele a KP2A billentyűzet és az Automatikus kitöltés szolgáltatás segítségével (ajánlott).</string>
+  <string name="AccServiceAutoFill_prefs">Automatikus kitöltés akadálymentesítési szolgáltatás</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A billentyűzet</string>
+  <string name="ShowKp2aKeyboardNotification_summary">A teljes bejegyzés elérhetővé tétele a KP2A billentyűzet segítségével (ajánlott).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Billentyűzetváltás</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Nyissa meg a bevitelimód-váltás párbeszédablakot, ha egy böngészőből indított keresés után a KP2A billentyűzet számára elérhető egy bejegyzés.</string>
   <string name="kp2a_switch_rooted">Automatikus billentyűzetváltás</string>
@@ -483,6 +485,10 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="TrayTotp_SettingsField_title">TOTP beállítások mező</string>
   <string name="TrayTotp_SettingsField_summary">Adja meg a TrayTotp beállítások mezőjének nevét.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Naplófájl a hibakereséshez</string>
+  <string name="DebugLog_title">Naplófájl használata</string>
+  <string name="DebugLog_summary">Az alkalmazás kimenetének egy helyi naplófájlba írása</string>
+  <string name="DebugLog_send">Hibakeresési naplóbejegyzések küldése...</string>
   <string name="loading">Betöltés...</string>
   <string name="plugins">Beépülő modulok</string>
   <string name="plugin_packagename">Csomag neve:</string>

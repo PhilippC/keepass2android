@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android est un gestionnaire de mot de passe pour Android permettant de lire et écrire des bases de données KeePass 2.x.</string>
   <string name="CreditsText">L\'interface est basée sur un port de KeepassDroid, développée par Brian Pellin. Le code pour les opérations sur la base de donnée est basé sur Keepass, de Dominik Reichl. Le robot Android est une modification d\'une œuvre de Google, utilisée selon les  termes de la licence Creative Commons 3.0 BY.</string>
   <string name="CreditsTextSFTP">Le support du protocole SFTP est implémenté à l\'aide de la bibliothèque JSch sous licence BSD, créée par JCraft, Inc.</string>
-  <string name="CreditsIcons">L\'icone marteau a été créée par John Caserta du projet Noun. L\'icone pinguin a été créée par Adriano Emerick du projet Noun. L\'icone plume a été créée par Jon Testa du projet Noun. L\'icone pomme a été créée par Ava Rowell du projet Noun. </string>
+  <string name="CreditsIcons">L’icône marteau a été créée par John Caserta du projet Noun. L’icône pingouin a été créée par Adriano Emerick du projet Noun. L’icône plume a été créée par Jon Testa du projet Noun. L’icône pomme a été créée par Ava Rowell du projet Noun.</string>
   <string name="accept">Accepter</string>
   <string name="deny">Rejeter</string>
   <string name="add_entry">Ajouter une entrée</string>
@@ -287,6 +287,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="SaveAttachmentDialog_text">Veuillez sélectionner où enregistrer la pièce jointe.</string>
   <string name="SaveAttachmentDialog_save">Enregistrer sur la carte SD</string>
   <string name="SaveAttachmentDialog_open">Enregistrer pour mettre en cache et ouvrir</string>
+  <string name="ShowAttachedImage">Afficher avec le visualiseur d\'images interne</string>
   <string name="SaveAttachment_doneMessage">Enregistrement du fichier dans %1$s.</string>
   <string name="SaveAttachment_Failed">Impossible d\'enregistrer la pièce jointe vers %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Se rappeler le texte de recherche ?</string>
@@ -330,8 +331,9 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="ShowCopyToClipboardNotification_summary">Rendre le nom d\'utilisateur et le mot de passe accessibles via la barre de notification et le presse-papiers. Attention au renifleurs de mot de passes !</string>
   <string name="ShowSeparateNotifications_title">Notifications séparées</string>
   <string name="ShowSeparateNotifications_summary">Afficher des notifications séparées pour copier le nom d\'utilisateur et le mot de passe dans le presse-papiers et l\'activer le clavier.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notification de saisie automatique</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Rendre l\'entrée pleinement accessible via le clavier KP2A et la saisie automatique (recommandé).</string>
+  <string name="AccServiceAutoFill_prefs">Service d\'accessibilité pour le remplissage automatique</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notification du clavier KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Rendre l\'entrée pleinement accessible via le clavier KP2A (recommandé).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Changer de clavier</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Ouvrir la boite de dialogue de sélection du clavier lorsque l\'entrée est disponible par le biais du clavier KP2A après une recherche à partir du navigateur.</string>
   <string name="kp2a_switch_rooted">Changer le clavier automatiquement</string>
@@ -477,6 +479,10 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="TrayTotp_SettingsField_title">Nom de domaine des paramètres TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Entrer ici le nom de domaine de la zone de paramètres pour TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Fichier journal pour le débogage</string>
+  <string name="DebugLog_title">Utiliser fichier de journal</string>
+  <string name="DebugLog_summary">Écrire la sortie de l’app dans un fichier journal local</string>
+  <string name="DebugLog_send">Envoyer le journal de débogage...</string>
   <string name="loading">Chargement...</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Nom du package :</string>
@@ -563,6 +569,8 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ActivateAutoFillService_btnAutoFill">Utiliser la fonction de remplissage automatique</string>
   <string name="ActivateAutoFillService_toast">Veuillez activer le service Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
+  <string name="ChangeLog_1_03">
+     Version 1.03\n * Suppression du service accessibilité pour le remplissage automatique tel que demandé par Google. Voir les paramètres d’accès mot de passe pour trouver un plugin reproduisant la fonctionnalité précédente. \n * Ajout des applications tierces comme option de stockage\n * Visionneuse intégrée pour le voir les images attachées sans les transférer sur d’autres apps\n * OkHttp mis à jour pour résoudre certains problèmes de connections\n * Support des entrées de KeeTrayTOTP, supporte désormais les entrées Steam\n  </string>
   <string name="ChangeLog_1_02">
     Version 1.02\n
     * Quelques améliorations liées à la sécurité. Merci beaucoup pour le rapport jean-baptiste.cayrou@thalesgroup.com et vincent.fargues@thalesgroup.com et aussi pour votre collaboration !\n

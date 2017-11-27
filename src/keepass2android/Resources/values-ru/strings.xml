@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android — это менеджер паролей, обеспечивающий полноценную работу с базами KeePass 2.x на Android.</string>
   <string name="CreditsText">Пользовательский интерфейс основан на портированной версии KeepassDroid, разработанной Brian Pellin. Код для операций с базой данных основан на KeePass от Dominik Reichl. Робот Android воссоздан или модифицирован на основе версии, созданной и опубликованной Google, и используются в соответствии с условиями, описанными в лицензии Creative Commons 3.0 Attribution.</string>
   <string name="CreditsTextSFTP">Поддержка SFTP реализована с использованием библиотеки JSch под лицензией BSD, созданной компанией JCraft, Inc.</string>
-  <string name="CreditsIcons">Иконка с Молотком создана John Caserta из Noun Project. Иконка с Пингвином создана Adriano Emerick из Noun Project. Иконка с Пером создана Jon Testa из Noun Project. Иконка с Яблоком создана Ava Rowell из Noun Project. </string>
+  <string name="CreditsIcons">Значок Hammer создан Джоном Казертой из проекта Noun. Значок Penguin создан Адриано Эмериком из проекта Noun. Значок Feather cоздан Джоном Теста из проекта Noun. Значок Apple создан Авой Роуэллом из проекта Noun. Значок Picture взят на странице https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Принять</string>
   <string name="deny">Отклонить</string>
   <string name="add_entry">Добавить запись</string>
@@ -272,7 +272,7 @@
   <string name="enable_quickunlock">Включить QuickUnlock</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
   <string name="QuickUnlock_button">БыстраяРазблокировка!</string>
-  <string name="QuickUnlock_lockButton">Закрыть базу данных</string>
+  <string name="QuickUnlock_lockButton">Закрыть БД</string>
   <string name="QuickUnlockDefaultEnabled_title">Включить БыструюРазблокировку по-умолчанию</string>
   <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли БыстраяРазблокировка по умолчанию или нет.</string>
   <string name="ViewDatabaseSecure_title">Защита отображения базы данных</string>
@@ -290,6 +290,7 @@
   <string name="SaveAttachmentDialog_text">Пожалуйста выберите, куда следует сохранить вложение.</string>
   <string name="SaveAttachmentDialog_save">Сохранить на карту памяти</string>
   <string name="SaveAttachmentDialog_open">Сохранить в кэш и открыть</string>
+  <string name="ShowAttachedImage">Показать с помощью встроенной программы просмотра изображений</string>
   <string name="SaveAttachment_doneMessage">Файл сохранён в %1$s.</string>
   <string name="SaveAttachment_Failed">Не удалось сохранить вложение в %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Сохранять поисковый запрос?</string>
@@ -333,8 +334,9 @@
   <string name="ShowCopyToClipboardNotification_summary">Сделать имя пользователя и пароль доступными через панель уведомлений и буфер обмена. Остерегайтесь перехватчиков паролей!</string>
   <string name="ShowSeparateNotifications_title">Раздельные уведомления</string>
   <string name="ShowSeparateNotifications_summary">Показывать отдельное уведомление для копирования в буфер обмена имени пользователя и пароля и для активации клавиатуры.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Уведомление Клавиатура/Автозаполнение</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Сделать запись полностью доступной через KP2A-клавиатуру и службу автозаполнения (рекомендуется).</string>
+  <string name="AccServiceAutoFill_prefs">Специальная служба автозаполнения</string>
+  <string name="ShowKp2aKeyboardNotification_title">Уведомления клавиатуры KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Сделать всю запись доступной через клавиатуру KP2A (рекомендуется).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Переключить клавиатуру</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Открыть диалог выбора клавиатуры, когда запись доступна через клавиатуру KP2A после поиска из браузера или с помощью клавиатуры.</string>
   <string name="kp2a_switch_rooted">Авто-переключение клавиатуры</string>
@@ -480,6 +482,10 @@
   <string name="TrayTotp_SettingsField_title">Имя поля параметров TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Введите сюда имя поля параметров настроек TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Log-файл для отладки</string>
+  <string name="DebugLog_title">Использовать log-файл</string>
+  <string name="DebugLog_summary">Записывать выходные данные приложения в локальный log-файл</string>
+  <string name="DebugLog_send">Отправить журнал отладки...</string>
   <string name="loading">Загрузка&#8230;</string>
   <string name="plugins">Плагины</string>
   <string name="plugin_packagename">Имя пакета:</string>
@@ -572,6 +578,13 @@
   <string name="ActivateAutoFillService_btnAutoFill">Использовать службу автозаполнения</string>
   <string name="ActivateAutoFillService_toast">Пожалуйста, включите службу Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показывать клавиатуру для ввода пароля, если сканер отпечатка пальца включен.</string>
+  <string name="ChangeLog_1_03">
+Версия 1.03\n
+  * Удалена спец. служба для автозаполнения в связи с запросом Google. Пожалуйста, просмотрите настройки доступа к паролю, чтобы найти плагин, воспроизводящий предыдущие функции.\n
+  * Добавлены сторонние приложения в качестве параметра хранения.\n
+  * Интегрированный просмотрщик изображений для просмотра прикрепленных изображений без переноса их в другие приложения.\n
+  * Обновлен OkHttp для исправления проблем с некоторыми соединениями.\n
+  * Поддержка записей KeeTrayTOTP, теперь поддерживающих записи Steam.\n  </string>
   <string name="ChangeLog_1_02">
     Версия 1.02\n
     * Некоторые улучшения безопасности. Большое спасибо за отчет по безопасности от jean-baptiste.cayrou@thalesgroup.com и vincent.fargues@thalesgroup.com и их сотрудничество!\n

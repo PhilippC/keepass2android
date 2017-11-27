@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android è un gestore di password per Android che supporta l\'accesso in lettura/scrittura ai database di KeePass 2.x.</string>
   <string name="CreditsText">L\'interfaccia utente è basata su KeepassDroid, sviluppato da Brian Pellin. Il codice per le operazioni del database si basa su KeePass di Dominik Reichl. Il robot Android è riprodotto o modificato dal lavoro creato e condiviso da Google e utilizzato secondo i termini descritti nella licenza Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Il supporto SFTP è implementato utilizzando la libreria JSch sotto licenza BSD, creata da JCraft, Inc.</string>
-  <string name="CreditsIcons">L\'icona del martello è stata creata da John Caserta del Progetto Noun. L\'icona del pinguino è stata creata da Adriano Emerick del Progetto Noun. L\'icona della piuma è stata creata da Jon Testa del Progetto Noun. L\'icona della mela è stata creata da Ava Rowell del Progetto Noun. </string>
+  <string name="CreditsIcons">L\'icona del Martello è stata creata da John Caserta del progetto Noun. L\'icona del Pinguino è stata creata da Adriano Emerick del progetto Noun. L\'icona della Piuma è stata creata da Jon Testa del progetto Noun. L\'icona Apple è stata creata da Ava Rowell del progetto Noun. L\'icona della Foto è presa da https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Accetta</string>
   <string name="deny">Nega</string>
   <string name="add_entry">Aggiungi voce</string>
@@ -98,7 +98,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="entry_cancel">Annulla</string>
   <string name="entry_comment">Note</string>
   <string name="entry_tags">Etichette</string>
-  <string name="entry_override_url">Sovrascivere l\'URL</string>
+  <string name="entry_override_url">Sovrascrivi l\'URL</string>
   <string name="entry_confpassword">Conferma password</string>
   <string name="entry_created">Creato</string>
   <string name="entry_expires">Scade</string>
@@ -123,13 +123,13 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="error_file_not_create">Impossibile creare il file</string>
   <string name="error_invalid_db">Database non valido.</string>
   <string name="error_invalid_path">Percorso non valido.</string>
-  <string name="error_no_name">E\' necessario un nome.</string>
+  <string name="error_no_name">E\' necessario immettere un nome.</string>
   <string name="error_nopass">E\' necessaria una password o un file chiave.</string>
   <string name="error_pass_gen_type">Devi indicare almeno un metodo di generazione della password</string>
   <string name="error_pass_match">Le password non corrispondono.</string>
-  <string name="error_rounds_not_number">Il livello deve essere un numero.</string>
+  <string name="error_rounds_not_number">I cicli devono essere un numero.</string>
   <string name="error_param_not_number">Il parametro deve essere un numero.</string>
-  <string name="error_title_required">E\' necessario un titolo.</string>
+  <string name="error_title_required">Devi specificare un titolo.</string>
   <string name="error_wrong_length">Inserisci un valore positivo come lunghezza del campo</string>
   <string name="FileNotFound">File non trovato.</string>
   <string name="file_browser">Sfoglia file</string>
@@ -160,7 +160,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="loading_database">Caricamento del database&#8230;</string>
   <string name="lowercase">Minuscolo</string>
   <string name="MaskedPassword">*****</string>
-  <string name="maskpass_title">Maschera password</string>
+  <string name="maskpass_title">Nascondi la password</string>
   <string name="maskpass_summary">Nascondi le password in modo predefinito</string>
   <string name="menu_about">Info</string>
   <string name="menu_change_key">Modifica la Chiave Principale</string>
@@ -263,7 +263,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="start_open_file">Apri file...</string>
   <string name="start_create">Crea un nuovo database...</string>
   <string name="start_open_url">Apri URL...</string>
-  <string name="start_create_import">Importa file nel nuovo database...</string>
+  <string name="start_create_import">Importa file in nuovo database...</string>
   <string name="enter_filename_details_url">È necessario specificare l\'URL completo, protocollo compreso, come http://.</string>
   <string name="enter_filename_details_create_import">Il file da importare verrà selezionato nel passo successivo.</string>
   <string name="enable_quickunlock">Abilita QuickUnlock</string>
@@ -287,6 +287,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="SaveAttachmentDialog_text">Per favore, scegli dove salvare l\'allegato.</string>
   <string name="SaveAttachmentDialog_save">Salva su scheda SD</string>
   <string name="SaveAttachmentDialog_open">Salva nella cache e apri</string>
+  <string name="ShowAttachedImage">Visualizza immagine con visualizzatore integrato</string>
   <string name="SaveAttachment_doneMessage">File salvato in %1$s.</string>
   <string name="SaveAttachment_Failed">Impossibile salvare l\'allegato in %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Ricordare il testo della ricerca?</string>
@@ -302,7 +303,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="delete_extra_string">Elimina campo</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Bloccato. QuickUnlock abilitato.</string>
   <string name="database_loaded_unlocked">%1$s: Sbloccato.</string>
-  <string name="credentials_dialog_title">Immettere le credenziali del server</string>
+  <string name="credentials_dialog_title">Immetti le credenziali del server</string>
   <string name="UseFileTransactions_title">Transazioni</string>
   <string name="UseFileTransactions_summary">Usa le transazioni del file per la scrittura dei database</string>
   <string name="LockWhenScreenOff_title">Blocca allo spegnimento dello schermo</string>
@@ -330,8 +331,9 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="ShowCopyToClipboardNotification_summary">Rendi accessibili nome utente e password tramite gli appunti nella barra delle notifiche. Fai attenzione agli sniffer delle password!</string>
   <string name="ShowSeparateNotifications_title">Notifiche separate</string>
   <string name="ShowSeparateNotifications_summary">Mostra notifiche separate per la copia di nome utente e password nella clipboard e per l\'attivazione della tastiera.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notifica Tastiera/Autoriempimento</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Rendi la voce selezionata accessibile tramite la tastiera KP2A e l\'Autoriempimento (raccomandato).</string>
+  <string name="AccServiceAutoFill_prefs">Servizio Accessibilità per riempimento automatico</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notifica della tastiera KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Rendi la voce selezionata accessibile tramite la tastiera KP2A (raccomandato).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Cambia tastiera</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Apri il dialogo di selezione della tastiera quando la voce è disponibile tramite la tastiera KP2A dopo una ricerca nel browser.</string>
   <string name="kp2a_switch_rooted">Cambia tastiera automaticamente</string>
@@ -355,7 +357,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="AskDeletePermanentlyEntry">Vuoi eliminare definitivamente questa voce? Premi No per cestinare.</string>
   <string name="AskDeletePermanentlyGroup">Vuoi eliminare definitivamente questo gruppo? Premi No per cestinare.</string>
   <string name="AskDeletePermanentlyItems">Vuoi eliminare definitivamente gli elementi selezionati? Premi No per cestinarli.</string>
-  <string name="AskDeletePermanentlyEntryNoRecycle">Vuoi eliminare definitivamente questa voce?</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Vuoi cancellare definitivamente questa voce?</string>
   <string name="AskDeletePermanentlyGroupNoRecycle">Vuoi cancellare definitivamente questo gruppo?</string>
   <string name="AskDeletePermanentlyItemsNoRecycle">Vuoi cancellare definitivamente gli elementi selezionati?</string>
   <string name="AskDeletePermanently_title">Eliminare definitivamente?</string>
@@ -387,14 +389,14 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="UseOfflineMode_Info">Evita il traffico di rete utilizzando la copia cache locale del file. Le modifiche vengono memorizzate nella cache locale e verranno caricate solo quando ritornerai in modalità online.</string>
   <string name="InOfflineMode">Modalità offline.</string>
   <string name="SynchronizingCachedDatabase">Sincronizzazione dei database nella cache&#8230;</string>
-  <string name="DownloadingRemoteFile">Download file remoto&#8230;</string>
+  <string name="DownloadingRemoteFile">Download del file remoto&#8230;</string>
   <string name="UploadingFile">Caricamento file&#8230;</string>
   <string name="RestoringRemoteFile">Ripristino del file remoto&#8230;</string>
   <string name="FilesInSync">I file sono sincronizzati.</string>
-  <string name="SynchronizedDatabaseSuccessfully">Database sincronizzati con successo!</string>
-  <string name="CheckingDatabaseForChanges">Controllo delle modifiche ai database&#8230;</string>
+  <string name="SynchronizedDatabaseSuccessfully">Database sincronizzato con successo!</string>
+  <string name="CheckingDatabaseForChanges">Controllo delle modifiche al database&#8230;</string>
   <string name="CouldNotSaveToRemote">Impossibile salvare in remoto: %1$s. Salva nuovamente o usa il menu Sincronizza quando la connessione remota sarà nuovamente disponibile.</string>
-  <string name="CouldNotLoadFromRemote">Impossibile aprire da remoto: %1$s. Caricato il file dalla cache locale. Puoi comunque effettuare modifiche al database e sincronizzarle successivamente.</string>
+  <string name="CouldNotLoadFromRemote">Impossibile aprire da remoto: %1$s. Ho caricato il file dalla cache locale. Puoi comunque effettuare modifiche al database e sincronizzarle successivamente.</string>
   <string name="UpdatedRemoteFileOnLoad">File remoto aggiornato.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Aperto il file locale a causa di conflitti con il file in remoto. Usa il menu Sincronizza per unire.</string>
   <string name="LoadedFromRemoteInSync">Il file remoto e la cache sono sincronizzati.</string>
@@ -477,6 +479,10 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="TrayTotp_SettingsField_title">Nome del campo \"impostazioni TOTP\"</string>
   <string name="TrayTotp_SettingsField_summary">Inserisci qui il nome del campo \"campo impostazioni\" per TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">File di log per il debug</string>
+  <string name="DebugLog_title">Usa il file di log</string>
+  <string name="DebugLog_summary">Scrive l\'output dell\'app in un file di log locale</string>
+  <string name="DebugLog_send">Invia il log di debug...</string>
   <string name="loading">Caricamento&#8230;</string>
   <string name="plugins">Plug-in</string>
   <string name="plugin_packagename">Nome pacchetto:</string>
@@ -514,7 +520,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="ReadOnlyReason_ReadOnlyFlag">È impostato il flag di sola lettura. Rimuovi il flag vuoi modificare il database.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">La scrittura non è possibile a causa delle restrizioni introdotte in Android KitKat. Se vuoi apportare modifiche al database, chiudilo e seleziona \"Cambia il database\". Quindi apri il file utilizzando il Selettore file di sistema.</string>
   <string name="AddCustomIcon">Aggiungi icona da file...</string>
-  <string name="CopyingFile">Copia dei file...</string>
+  <string name="CopyingFile">Copia del file...</string>
   <string name="DuplicateTitle">Copia</string>
   <string name="DefaultTemplate">Voce predefinita</string>
   <string name="TemplateGroupName">Modelli</string>
@@ -561,12 +567,19 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ErrorReportDisable">Disabilita</string>
   <string name="ErrorReportAsk">Chiedi dopo un errore</string>
   <string name="ErrorReportPrefTitle">Segnalazione errori</string>
-  <string name="ActivateAutoFillService_title">Attivare l\'autoriempimento?</string>
-  <string name="ActivateAutoFillService_message">Le credenziali possono essere trasferite ad altre app in modi differenti: puoi copiare i dati negli appunti, ma tieni presente che, in Android, gli appunti non sono sicuri. La tastiera incorporata fornisce accesso completo alla voce selezionata, ma deve essere abilitata ogni volta che devi accedere alle credenziali. Da Android 5, Keepass2Android può inserire automaticamente nome utente e password tramite il servizio di Autoriempimento.</string>
+  <string name="ActivateAutoFillService_title">Attivare il riempimento automatico?</string>
+  <string name="ActivateAutoFillService_message">Le credenziali possono essere trasferite ad altre app in modi differenti: puoi copiare i dati negli appunti, ma tieni presente che, in Android, gli appunti non sono sicuri. La tastiera incorporata fornisce accesso completo alla voce selezionata, ma deve essere abilitata ogni volta che devi accedere alle credenziali. Da Android 5, Keepass2Android può inserire automaticamente nome utente e password tramite il servizio di riempimento automatico.</string>
   <string name="ActivateAutoFillService_btnKeyboard">Usa tastiera incorporata</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Usa il servizio di autoriempimento</string>
+  <string name="ActivateAutoFillService_btnAutoFill">Usa il servizio di riempimento automatico</string>
   <string name="ActivateAutoFillService_toast">Per favore abilita il servizio di Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando la scansione dell\'impronta è attiva.</string>
+  <string name="ChangeLog_1_03">
+Versione 1.03\n
+    * Rimosso il servizio di Accessibilità per il riempimento automatico come richiesto da Google. Vedi le impostazioni di inserimento password per trovare un plugin con le stesse funzionalità precedenti.\n
+    * Aggiunto di nuovo app di terze parti come opzione di archiviazione\n
+    * Visualizzatore di immagini integrato per la visualizzazione delle immagini allegate senza trasferirle ad altre app\n
+    * Aggiornato OkHttp per risolvere problemi con alcune connessioni\n
+    * Supporto per le voci KeeTrayTOTP, ora supporta le voci di Steam\n  </string>
   <string name="ChangeLog_1_02">
     Versione 1.02\n
     * Diversi miglioramenti di sicurezza. Un sincero ringraziamento per i rapporti di sicurezza di jean-baptiste.cayrou@thalesgroup.com e vincent.fargues@thalesgroup.com e per la loro collaborazione!\n
@@ -593,7 +606,7 @@ Versione 1.01-d\n
   </string>
   <string name="ChangeLog_0_9_8c">
 Versione 0.9.8c\n
-* risolte la vulnerabilità SSL in Microsoft Live SDK (utilizzato per l\'accesso ai file via OneDrive)\n
+* risolve la vulnerabilità SSL in Microsoft Live SDK (utilizzato per l\'accesso ai file via OneDrive)\n
 * bugfix: la precedente release conteneva due metodi di input (una andava in crash)\n  </string>
   <string name="ChangeLog_1_01">
     Versione 1.01\n
@@ -650,8 +663,8 @@ Versione 0.9.8\n
 * bugfix: ora ricorda la password OTP</string>
   <string name="ChangeLog_0_9_7b">
 Versione 0.9.7b\n
-* aggiorna le traduzioni\n
-* bugfix: mancava il carattere Password nella versione 0.9.7; ordina per nome non ordinava i gruppi\n</string>
+* aggiornate le traduzioni\n
+* bugfix: mancava il font Password nella versione 0.9.7; ordina per nome non ordinava i gruppi\n</string>
   <string name="ChangeLog_0_9_7">
 Versione 0.9.7\n
 * aggiunge il supporto in scrittura per i database di Keepass 1 (kdb) (beta!)\n
@@ -785,7 +798,7 @@ Grazie a Niki Hüttner (www.close-cut.de) per il logo!\n</string>
 * sistemati alcuni errori nella finestra di modifica\n
 * probabilmente aggiunti nuovi errori :-)
 </string>
-  <string name="ChangeLog_keptDonate">Aggiunta la possibilità di donare una birra o qualcos\'altro</string>
+  <string name="ChangeLog_keptDonate">Estesa la possibilità di donare una birra o qualcos\'altro</string>
   <string name="ChangeLog_0_7"><b>Versione 0.7</b>\n
 * Aumentata la velocità di caricamento: l\'elaborazione delle chiavi ora è 10 volte più veloce!\n
 * Aggiunta la tastiera virtuale di Keepass2Android: usa questa tastiera quando inserisci le credenziali. Ti metterà al riparo dagli sniffer delle password basati sugli appunti (disabilita le vecchie notifiche degli appunti nelle impostazioni)\n

@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Andoird é un xestor de contrasinais que aporta acceso de lectura/escritura ás bases de datos KeePass 2.x de Android.</string>
   <string name="CreditsText">A interface de usuario está baseada en KeepassDroid desenvolvida por Brian Pellin. O código para as operacións da base de datos está baseada en KeePass, de Dominik Reichi. O robot Android é reproducido ou modificado por un traballo creado e compartido por Google e usado segundo os termos descritos na licenza Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Apoio de SFTP implementado co uso da libería JSch baixo licenza BSD, creada por JCraft, Inc.</string>
-  <string name="CreditsIcons">A icona do martelo foi creada por John Caserta do proxecto Noun. A icona do pingüín foi creada por Adriano Emerick do proxecto Noun. A icona da pluma foi creada por Jon Testa do proxecto Noun. A icona da mazá foi creada por Ava Rowell do proxecto Noun. </string>
   <string name="accept">Aceptar</string>
   <string name="deny">Denegar</string>
   <string name="add_entry">Engadir entrada</string>
@@ -329,10 +328,9 @@
   <string name="ShowCopyToClipboardNotification_summary">Fai posible o acceso ó nome de usuario e contrasinal a través da barra de notificacións. Coidado cos rastrexadores de contrasinais!</string>
   <string name="ShowSeparateNotifications_title">Notificacións por separado</string>
   <string name="ShowSeparateNotifications_summary">Amosar notificacións separadas para copiar o nome de usuario e o contrasinal ó portapapeis e para activar o teclado.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notificación de teclado/autocompletado</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Facer a entrada totalmente accesible a través do teclado KP2A e o servicio de autocompletado (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Cambiar teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abrir caixa de selección de teclado cando unha entrada estea dispoñible a través do teclado KP2A despois dunha busca do navegador.</string>
+  <string name="kp2a_switch_rooted">Cambiar teclado automaticamente</string>
   <string name="get_keyboardswap">Instalar o plugin KeyboardSwap</string>
   <string name="get_keyboardswap_summary">Este plugin permite cambiar automaticamente ao teclado de KP2A sen ser \"root\". Cómpre ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Cambio automático só despois dunha busca</string>
@@ -566,6 +564,18 @@
   <string name="ActivateAutoFillService_btnAutoFill">Usar o servizo de autocompletado</string>
   <string name="ActivateAutoFillService_toast">Por favor, habilite o servizo Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Amosar teclado para entradas de contrasinal cando o escaneo de pegada dixital está activo.</string>
+  <string name="ChangeLog_1_01g">
+    Version 1.01-g\n
+    * Solucionado o fallo canso se traballa sen conexión\n
+    * Solucionado a codificación incorrecta de credenciais de FTP(S)\n
+    * Solucionado os fallos cando se usa OneDrive nunha versión antiga de Android\n
+    * A hora móstrase no formato local na pantalla de entrada\n
+  </string>
+  <string name="ChangeLog_1_01d">
+Version 1.01-d\n
+     * Corrección da listaxe de ficheiros en OneDrive\n
+     * Permitir ignorar erros de certificados tamén cando a verificación do nome do  host falla (non recomendado para uso en produción)\n
+     * Corrección do fallo ocasional de QuickUnlock, a pesar de inserir o código de desbloqueo correcto\n  </string>
   <string name="ChangeLog_0_9_8c">
     Versión 0.9.8c\n
     * Arranxo de vulnerabilidade SSL en Microsoft Live SDK (usado no acceso ós arquivos por OneDrive)\n
@@ -845,4 +855,6 @@ Lanzamento público inicial
     <item>Avisar cando a validación falle</item>
     <item>Non aceptar certificados inválidos</item>
   </string-array>
+  <string name="ClearClipboardWarning">Asegúrese de que funciona correctamente no seu sistema e considere se debe utilizar o teclado integrado ou non.</string>
+  <string name="PluginDescription">Descrición facilitada polo plugin:</string>
 </resources>

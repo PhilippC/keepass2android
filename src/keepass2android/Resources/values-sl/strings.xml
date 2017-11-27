@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android je upravitelj gesel, ki omogoča branje/pisanje podatkovnih zbirk KeePass 2.x na Androidu.</string>
   <string name="CreditsText">Uporabniški vmesnik temelji na predelavi KeepassDroida, ki ga je razvil Brian Pellin. Koda za opravila podatkovnih zbirk temelji na KeePassu od Dominika Reickla. Robot Android je kopirano ali prirejeno delo izdelka, ki ga ustvarja in deli Google in je uporabljeno v skladu s pogoji opisanimi v licenci za priznanje avtorstva Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Podpora SFTP je izvedena z uporabo knjižnice JSch pod licenco BSD, ki jo je ustvaril JCraft, Inc.</string>
-  <string name="CreditsIcons">Ikono kladiva je oblikoval John Caserta, ikono pengvina Adriano Emerick, ikono peresa Jon Testa in ikono jabolka Ava Rowell, vsi iz projekta Noun. </string>
   <string name="accept">Sprejmi</string>
   <string name="deny">Zavrni</string>
   <string name="add_entry">Dodaj vnos</string>
@@ -333,8 +332,6 @@
   <string name="ShowCopyToClipboardNotification_summary">Naredi uporabniško ime in geslo dostopno preko vrstice za obvestila in odložišča. Pazite se vohljačev gesel!</string>
   <string name="ShowSeparateNotifications_title">Loči obvestila</string>
   <string name="ShowSeparateNotifications_summary">Prikaži ločena obvestila za kopiranje uporabniškega imena in gesla na odložišče in omogočanje tipkovnice.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Obvestilo o tipkovnici/samodejnem izpolnjevanju</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Naredi poln vnos dostopen preko tipkovnice KP2A in storitve samodejnega izpolnjevanja (priporočljivo).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Preklopi tipkovnico</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Odpri pogovorno okno za izbiro tipkovnice, ko je vnos na voljo preko tipkovnice KP2A po iskanju iz brskalnika.</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Samodejno preklopi samo po iskanju</string>

@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android هو مدير كلمات سر يتيح القراءة والكتابة على قواعد بيانات KeePass 2.x على نظام الـAndroid.</string>
   <string name="CreditsText">واجهة المستخدم مبنية على تطبيق KeepassDroid الذي طوّره Brian Pellin. الكود المستخدم لعمليات قاعدة البيانات مبني على برنامج KeePass الذي طوّرهDominik Reichl. تم تطوير أو تعديل برنامج Android باستخدام بعض من أعمال Google حسب شروط الاستخدام المذكورة في رخصة Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">دعم SFTP مطور باستخدام مكتبة JSch تحت رخصة BSD، التي تم إنشاؤها بواسطة شركة JCraft.</string>
-  <string name="CreditsIcons">تم إنشاء أيقونة \"المطرقة\" بواسطة John Caserta. تم إنشاء أيقونة \"البطريق\" بواسطة Adriano Emerick من مشروع \"Noun\". تم إنشاء أيقونة \"الريشة\" بواسطة Jon Testa من مشروع \"Noun\". تم إنشاء أيقونة \"آبل\" بواسطة Ava Rowell من مشروع \"Noun\". </string>
   <string name="accept">موافق</string>
   <string name="deny">منع</string>
   <string name="add_entry">إضافة قيد</string>
@@ -333,8 +332,6 @@
   <string name="ShowCopyToClipboardNotification_summary">إتاحة الوصول إلى اسم المستخدم وكلمة المرور من خلال شريط الإشعارات وحافظة لوحة المفاتيح. احذر من برامج التقاط كلمات المرور!</string>
   <string name="ShowSeparateNotifications_title">إشعارات منفصلة</string>
   <string name="ShowSeparateNotifications_summary">عرض إشعارات منفصلة عند \"نسخ اسم المستخدم وكلمة المرور إلى حافظة لوحة المفاتيح\" و \"تفعيل لوحة المفاتيح\".</string>
-  <string name="ShowKp2aKeyboardNotification_title">إشعار لوحة المفاتيح/التعبئة التلقائية</string>
-  <string name="ShowKp2aKeyboardNotification_summary">إتاحة القيد كاملًا من خلال لوحة مفاتيح KP2A وخدمة التعبئة التلقائية (مستحسن).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">تبديل لوحة المفاتيح</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">قم بفتح مربع حوار لتحديد لوحة المفاتيح عندما يتوفر قيد من خلال لوحة مفاتيح KP2A بعد البحث من المتصفح.</string>
   <string name="kp2a_switch_rooted">تبديل تلقائي للوحة المفاتيح</string>

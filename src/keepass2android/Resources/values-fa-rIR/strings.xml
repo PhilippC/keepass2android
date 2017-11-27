@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android یک برنامه مدیریت رمز عبور با قابلیت خواندن/نوشتن پایگاه داده های 2.x KeePass در اندروید است.</string>
   <string name="CreditsText">این رابط کاربری مبتنی بر نسخه ای از KeepassDroid توسعه یافته توسط Pellin Brian است. کد برای عملیات پایگاه داده مبتنی بر KeePass توسط Dominik Reichl است. ربات اندروید تکثیر یا تغییر یافته از کار ایجاد شده توسط گوگل به اشتراک گذاشته شده و با توجه به شرایط مجوز Creative Commons 3.0 استفاده می شود.</string>
   <string name="CreditsTextSFTP">پشتیبانی از SFTP با استفاده از کتابخانه JSch تحت مجوز BSD و توسط JCraft، Inc ایجاد شده است.</string>
-  <string name="CreditsIcons">نماد چکش توسط John Caserta از پروژه Noun ایجاد شده است. نماد پنگوئن توسط Adriano Emerick از پروژه Noun ایجاد شده است. نماد پر توسط  Jon Testa از پروژه Noun ایجاد شده است. آیکون اپل توسط Ava Rowell از  پروژه Noun ایجاد شده است. </string>
   <string name="accept">قبول</string>
   <string name="deny">رد کن</string>
   <string name="add_entry">اضافه کردن ورودی</string>

@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android er en android-utgave av KeePass passordbestyrer.</string>
   <string name="CreditsText">Brukergrensesnittet er basert på en port av KeepassDroid utviklet av Brian Pellin. Kildekode til databaseoperasjoner er basert på KeePass av Dominik Reichl. Android roboten, laget og delt av Google, er reprodusert og modifisert i henhold til Creative Commons 3.0 Navngivelse Lisensen.</string>
   <string name="CreditsTextSFTP">SFTP support er implementert ved hjelp av JSch biblioteket under BSD lisensen, laget av JCraft, Inc.</string>
-  <string name="CreditsIcons">Hammerikonet er laget av John Caserta fra \"the Noun Project\". Pingvinikonet er laget av Adriano Emerick fra \"the Noun Project\". Fjærikonet er laget av Jon Testa fra \"the Noun Project\". Eppleikonet er laget av Ava Rowell fra \"the Noun Project\". </string>
+  <string name="CreditsIcons">Hammerikonet er laget av John Caserta fra \"the Noun Project\". Pingvinikonet er laget av Adriano Emerick fra \"the Noun Project\". Fjærikonet er laget av Jon Testa fra \"the Noun Project\". Epleikonet er laget av Ava Rowell fra \"the Noun Project\". Bildeikonet er fra https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Godta</string>
   <string name="deny">Avslå</string>
   <string name="add_entry">Legg til oppføring</string>
@@ -30,7 +30,9 @@
   <string name="application">Program</string>
   <string name="application_settings">Programinnstillinger</string>
   <string name="ShowGroupnameInSearchResult_title">Viser gruppenavnet i søkeresultat</string>
+  <string name="ShowGroupnameInSearchResult_resume">Vis gruppenavn under oppføringstitler i søkeresultatene. Nyttig hvis flere oppføringer har samme navn.</string>
   <string name="NavigationToGroupCompleted_message">Visningsgruppe er nå: %1$s</string>
+  <string name="ShowGroupInEntry_title">Vis gruppenavn i oppføringsvisning</string>
   <string name="unknown_uri_scheme">Beklager! Keepass2Android kan ikke håndtere den returnerte URI %1$s. Vennligst kontakt utvikleren!</string>
   <string name="Entry_singular">En oppføring</string>
   <string name="Entry_plural">%1$d oppføringer</string>
@@ -38,6 +40,7 @@
   <string name="IconSet_install">Finn mer...</string>
   <string name="security_prefs">Sikkerhet</string>
   <string name="display_prefs">Vis</string>
+  <string name="password_access_prefs">Passord tilgang</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Filhåndtering</string>
   <string name="keyboard_prefs">Tastatur</string>
@@ -82,8 +85,11 @@
   <string name="fingerprint_no_enrolled">Du har ingen lagrede fingeravtrykk på denne enheten. Venligst gå til systeminnstillinger først.</string>
   <string name="disable_fingerprint_unlock">Deaktiver fingeravtrykk opplåsning</string>
   <string name="enable_fingerprint_unlock">Aktiver fingeravtrykk opplåsning</string>
+  <string name="enable_fingerprint_quickunlock">Slå på fingeravtrykk opplåsning i QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Trykk på sensoren for å låse opp databasen</string>
   <string name="fingerprint_unlock_failed">Opplåsing ved fingeravtrykk feilet. Dekrypteringsnøkkelen ble avbrutt av Android OS. Dette skjer vansligvis hvis et nytt fingeravtrykk ble registrert eller sikkerhetsinstillingene ble endret. Venligst lås opp vha passord og reaktiver opplåsning med fingeravtrykk i database-instillingene.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Opplåsning av databasen feilet: Ugyldig komposittnøkkel. Fingeravtrykksopplåsingen ble deaktivert fordi det lagrede hovedpassordet tilsynelatende ikke lenger er gyldig. Vennligst lås opp med passordet ditt og aktiver deretter fingeravtrykkslåsing i databasens innstillinger.</string>
+  <string name="fingerprint_reenable">Vennligst aktiver fingeravtrykk opplåsning for det nye master passordet.</string>
   <string name="enter_filename">Angi filnavnet for databasen</string>
   <string name="entry_accessed">Brukt</string>
   <string name="entry_cancel">Avbryt</string>

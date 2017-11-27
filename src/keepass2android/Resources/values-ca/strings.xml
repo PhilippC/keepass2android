@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android és una implementació per Android de KeePass password manager.</string>
   <string name="CreditsText">La interfície d\'usuari es basa en portar la de KeepassDroid, desenvolupada per Brian Pellin. El codi per a les operacions de base de dades es basa en KeePass de Dominik Reichle. El robot android és reproduïda o modificada del treball creat i compartit per Google i utilitzat en els termes descrits en el Creative Commons Attribution 3.0 License.</string>
   <string name="CreditsTextSFTP">El suport de SFTP s\'implementa utilitzant la biblioteca de JSch sota llicència BSD, creada per JCraft, Inc.</string>
-  <string name="CreditsIcons">La icona del martell és creat per John Caserta del Project Noun. La icona Penguin és creat per Adriano Emerick de Project Noun. La icona de plomes és creat per Jon Testa del Porject Noun. La icona d\'Apple és creat per Ava Rowell del Project Noun. </string>
+  <string name="CreditsIcons">La icona de martell està creada per John Caserta del projecte Noun. La icona Penguin està creada per Adriano Emerick del projecte Noun. La icona de plomes està creada per Jon Testa del projecte Noun. La icona d\'Apple està creada per Ava Rowell del projecte Noun. La icona d\'Imatge es de https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Accepta</string>
   <string name="deny">Denega</string>
   <string name="add_entry">Afegeix entrada</string>
@@ -290,6 +290,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="SaveAttachmentDialog_text">Si us plau seleccioneu on voleu desar el fitxer adjunt.</string>
   <string name="SaveAttachmentDialog_save">Desar a la targeta SD</string>
   <string name="SaveAttachmentDialog_open">Desa a la memòria cau i obre</string>
+  <string name="ShowAttachedImage">Mostra amb visualitzador d\'imatges intern</string>
   <string name="SaveAttachment_doneMessage">Desat l\'arxiu a %1$s.</string>
   <string name="SaveAttachment_Failed">No s\'ha pogut desar el fitxer adjunt a %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Recordeu el text de cerca?</string>
@@ -333,8 +334,9 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="ShowCopyToClipboardNotification_summary">Fer l\'usuari i contrasenya accessible a través de la barra de notificació i porta-retalls. Compte amb sniffers de contrasenya!</string>
   <string name="ShowSeparateNotifications_title">Notificacions independents</string>
   <string name="ShowSeparateNotifications_summary">Mostrar les notificacions separades per copiar el nom d\'usuari i contrasenya al porta-retalls i activant el teclat.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notificació de teclat/emplenament automàtic</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Fes entrada totalment accessible a través del teclat KP2A i servei d\'emplenament automàtic (recomanat).</string>
+  <string name="AccServiceAutoFill_prefs">Servei d\'accessibilitat d\'emplenament automàtic</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificació de teclat KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Fes entrada totalment accessible a través del teclat KP2A (recomanat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Canvi de teclat</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Diàleg de selecció de teclat obert quan l\'entrada està disponible a través de teclat KP2A després de cerca del navegador.</string>
   <string name="kp2a_switch_rooted">Canvi automàtic de teclat</string>
@@ -480,6 +482,10 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="TrayTotp_SettingsField_title">Ajustaments del nom del camp TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Introduïu aquí el nom del camp dels ajustaments del camp TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Fitxer de registre per depuració</string>
+  <string name="DebugLog_title">Fitxer de registre d\'ús</string>
+  <string name="DebugLog_summary">Escriure sortida de la app a un arxiu de registre local</string>
+  <string name="DebugLog_send">Envia els registres de depuració...</string>
   <string name="loading">Carregant&#8230;</string>
   <string name="plugins">Connectors</string>
   <string name="plugin_packagename">Nom del paquet:</string>
@@ -570,6 +576,13 @@ Arxiu està corrupte. \n
   <string name="ActivateAutoFillService_btnAutoFill">Utilitzar el servei d\'emplenament automàtic</string>
   <string name="ActivateAutoFillService_toast">Si us plau, habiliteu el servei Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostra el teclat per introduir la contrasenya quan l\'escàner d\'empremta digital és actiu.</string>
+  <string name="ChangeLog_1_03">
+Versió 1.03\n 
+* Eliminat servei d\'accessibilitat d\'emplenament automàtic a petició de Google. Si us plau, vegeu la configuració d\'accés de contrasenya per trobar un connector que repliqui l\'anterior funcionalitat. \n 
+* Afegides de nou apps de tercers com opció emmagatzematge\n 
+* Visualitzador d\'imatges integrat per veure imatges adjuntes sense transferir-les a altres apps\n
+* Actualitzat OkHttp que soluciona problemes amb algunes connexions\n 
+* Suport per a entrades de KeeTrayTOTP, ara suporta entrades Steam\n  </string>
   <string name="ChangeLog_1_02">
 Versió 1.02\n
      * Diverses millores de seguretat. Moltes gràcies per a l\'informe de seguretat de jean-baptiste.cayrou@thalesgroup.com i vincent.fargues@thalesgroup.com i per la seva col·laboració! \n

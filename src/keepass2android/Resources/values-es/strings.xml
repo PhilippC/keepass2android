@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android es una implementación completa para Android del gestor de contraseñas KeePass 2.x.</string>
   <string name="CreditsText">La interfaz de usuario se basa en un port de KeepassDroid, desarrollado por Brian Pellin. El código para las operaciones de la base de datos se basa en el KeePass de Dominik Reichl. El robot Android es reproducido o modificado sobre un trabajo creado y compartido por Google y utilizado según los términos descritos en la licencia de Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Soporte SFTP implementado por la biblioteca JSch bajo licencia BSD, creado por JCraft, Inc.</string>
-  <string name="CreditsIcons">El icono del martillo es obra de John Caserta del proyecto Noun. El icono del pingüino es obra de Adriano Emerick del proyecto Noun. El icono de la pluma es obra de Jon Testa del proyecto Noun. El icono de Apple es obra de Ava Rowell del proyecto Noun. </string>
+  <string name="CreditsIcons">El icono del martillo es obra de John Caserta del proyecto Noun. El icono del pingüino es obra de Adriano Emerick del proyecto Noun. El icono de la pluma es obra de Jon Testa del proyecto Noun. El icono de Apple es obra de Ava Rowell del proyecto Noun. El icono de la imagen es de https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Aceptar</string>
   <string name="deny">Denegar</string>
   <string name="add_entry">Añadir entrada</string>
@@ -289,6 +289,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="SaveAttachmentDialog_text">Por favor seleccione dónde guardar el archivo adjunto.</string>
   <string name="SaveAttachmentDialog_save">Guardar en la tarjeta SD</string>
   <string name="SaveAttachmentDialog_open">Guardar en la caché y abrir</string>
+  <string name="ShowAttachedImage">Mostrar con visor de imágenes interno</string>
   <string name="SaveAttachment_doneMessage">Archivo guardado en %1$s.</string>
   <string name="SaveAttachment_Failed">No se puede guardar el archivo adjunto en %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Recordar el texto de búsqueda?</string>
@@ -332,8 +333,9 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="ShowCopyToClipboardNotification_summary">Hacer accesible el nombre de usuario y contraseña a través de la barra de notificación y el portapapeles  ¡Cuidado con los sniffers!</string>
   <string name="ShowSeparateNotifications_title">notificaciones por separado</string>
   <string name="ShowSeparateNotifications_summary">Mostrar notificaciones separados para copiar el nombre del usuario y palabra clave al portapapeles y para activar el teclado.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notificación de teclado/autocompletado</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Hacer entrada accesible a través del teclado de KP2A y servicio de Auto Llenado (recomendado).</string>
+  <string name="AccServiceAutoFill_prefs">Servicio de accesibilidad AutoFill</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificación de teclado KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Hacer toda la entrada accesible a través del teclado de KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Cambiar Teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abrir diálogo de selección de teclado cuando la entrada este disponible a través del teclado KP2A después de una búsqueda desde el navegador.</string>
   <string name="kp2a_switch_rooted">Teclado Auto-intercambiable</string>
@@ -479,6 +481,10 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="TrayTotp_SettingsField_title">Nombre del campo \'TOTP Ajustes\'</string>
   <string name="TrayTotp_SettingsField_summary">Introduzca el nombre del campo del campo de configuración para TrayTotp aquí.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Fichero registro para Depuración</string>
+  <string name="DebugLog_title">Usar el archivo de registro</string>
+  <string name="DebugLog_summary">Escribir salida de app a fichero local de log</string>
+  <string name="DebugLog_send">Enviar registro de depuración...</string>
   <string name="loading">Cargando&#8230;</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Nombre del paquete:</string>
@@ -571,6 +577,13 @@ El Archivo está dañado. \n
   <string name="ActivateAutoFillService_btnAutoFill">Utilice el servicio de autocompletado</string>
   <string name="ActivateAutoFillService_toast">Por favor, active el servicio de Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
+  <string name="ChangeLog_1_03">
+Version 1.03\n
+     * Eliminado servicio de accesibilidad por AutoFill, tal y como solicitó Google. Por favor, comprueba la configuración de acceso por clave para encontrasr un plugin que replique la funcionalidad anterior.\n
+     * Añadido aplicaciones de terceras partes como opción de almacenamiento otra vez\n
+     * Visor de imáegenes integrado para ver imágenes adjuntadas sin transferirlas a otras apps\n
+     * Actualizado OkHttp para arreglar problemas con algunas conexiones\n
+     * Soporte de entradas KeeTrayTOTP, ahora con entradas Steam\n  </string>
   <string name="ChangeLog_1_02">
 Versión 1.02\n 
   * Mejoras de seguridad. ¡Muchas gracias por los reportes de seguridad de jean-baptiste.cayrou@thalesgroup.com y vincent.fargues@thalesgroup.com y por su colaboración!\n 

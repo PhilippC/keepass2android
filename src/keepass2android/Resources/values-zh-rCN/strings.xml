@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的密码管理应用。</string>
   <string name="CreditsText">用户界面基于由 Brian Pellin 开发的 KeepassDroid。数据库操作的代码是基于 Dominik Reichl 开发的KeePass。根据google的创作共用3.0许可中的条款中的创建和申请条例的描述对android机器人进行了转载或者修改。</string>
   <string name="CreditsTextSFTP">SFTP 由 JCraft，Inc. 创建的 JSch 库（基于BSD许可证）来支持</string>
-  <string name="CreditsIcons">锤子图标是由John Caserta通过Noun Project创建的.企鹅图标是由Adriano Emerick通过Noun Project创建的.羽毛图标是由 Jon Testa通过Noun Project创建的.苹果图标是由Ava Rowell通过Noun Project创建的.</string>
   <string name="accept">接受</string>
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
@@ -331,8 +330,6 @@
   <string name="ShowCopyToClipboardNotification_summary">让用户名和密码可通过通知栏和剪贴板访问。谨防密码嗅探器 ！</string>
   <string name="ShowSeparateNotifications_title">独立的通知</string>
   <string name="ShowSeparateNotifications_summary">为复制账户信息和激活键盘分别显示通知</string>
-  <string name="ShowKp2aKeyboardNotification_title">键盘/自动填充 通知</string>
-  <string name="ShowKp2aKeyboardNotification_summary">使用KP2A键盘全接通进入和自动填充服务(推荐)</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切换键盘</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">当从浏览器搜索或键盘后可用通过 KP2A 键盘输入时，打开键盘选择对话框。</string>
   <string name="kp2a_switch_rooted">自动切换键盘</string>
