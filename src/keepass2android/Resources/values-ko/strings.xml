@@ -429,7 +429,6 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="ChangeLog_title">변경 로그</string>
   <string name="ErrorReportAsk">오류 발견 시 묻기</string>
   <string name="ErrorReportPrefTitle">오류 보고서 보내기</string>
-  <string name="ActivateAutoFillService_btnAutoFill">자동 완성 서비스 사용</string>
   <string name="ChangeLog_1_0_0e">
     버전 1.0.0e\n
     * 안드로이드 6을 사용하는 구형 삼성 기기에서 지문인식 잠금해제 관련 수정\n

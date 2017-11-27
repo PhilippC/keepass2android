@@ -537,9 +537,6 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="ErrorReportDisable">Dezactivează</string>
   <string name="ErrorReportAsk">Intreaba după eroare</string>
   <string name="ErrorReportPrefTitle">Trimite raportul de eroare</string>
-  <string name="ActivateAutoFillService_title">Activati funcţia de completare automată?</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Utilizati tastatura existentă</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Utilizaţi funcţia de completare automată</string>
   <string name="ChangeLog_0_9_8c">
 Versiunea 0.9.8c\n * Fix pentru SSL vulnerabilitatea din Microsoft Live SDK (folosite la accesarea fişierelor prin intermediul OneDrive) \n * Bug fix: versiune anterioară conţinea două metode de intrare (unul nu functiona) \n  </string>
   <string name="ChangeLog_0_9_9">

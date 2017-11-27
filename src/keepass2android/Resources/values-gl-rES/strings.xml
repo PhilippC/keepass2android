@@ -558,11 +558,6 @@
   <string name="ErrorReportDisable">Deshabilitar</string>
   <string name="ErrorReportAsk">Preguntar despois do erro</string>
   <string name="ErrorReportPrefTitle">Enviar informes de erros</string>
-  <string name="ActivateAutoFillService_title">Activar autocompletado?</string>
-  <string name="ActivateAutoFillService_message">As credenciais poden ser transferidas a outras apps de diferentes maneiras: pode copiar os valores no portapapeis, pero teña en conta que este non é seguro en Android. O teclado incorporado dalle acceso completo á entrada seleccionada, pero debe ser habilitada cada vez que queira acceder ás credenciais. En Android 5 e versións posteriores, Keepass2Android pode introducir o nome de usuario e contrasinal automaticamente co servizo de autocompletado.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Usar o teclado incorporado</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Usar o servizo de autocompletado</string>
-  <string name="ActivateAutoFillService_toast">Por favor, habilite o servizo Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Amosar teclado para entradas de contrasinal cando o escaneo de pegada dixital está activo.</string>
   <string name="ChangeLog_1_01g">
     Version 1.01-g\n

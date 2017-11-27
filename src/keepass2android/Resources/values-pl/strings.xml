@@ -572,11 +572,6 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ErrorReportDisable">Wyłącz</string>
   <string name="ErrorReportAsk">Zapytaj po wystąpieniu błędu</string>
   <string name="ErrorReportPrefTitle">Wyślij raporty o błędach</string>
-  <string name="ActivateAutoFillService_title">Włączyć autouzupełnianie?</string>
-  <string name="ActivateAutoFillService_message">Poświadczenia mogą być przenoszone do innych aplikacji na kilka sposobów: możesz skopiować wartości do schowka, ale pamiętaj, że schowek w Androidzie nie jest bezpieczny. Wbudowana klawiatura daje pełny dostęp do wybranego wpisu, ale musi być włączona za każdym razem, gdy chcesz mieć dostęp do poświadczeń. W Androidzie 5 i późniejszych, Keepass2Android może wprowadzać nazwę użytkownika i hasło automatycznie, używając usługi AutoUzupełniania.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Użyj wbudowanej klawiatury</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Użyj usługi autouzupełniania</string>
-  <string name="ActivateAutoFillService_toast">Proszę włączyć usługę Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
   <string name="ChangeLog_1_03">
 Wersja 1.03\n

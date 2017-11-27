@@ -570,11 +570,6 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ErrorReportDisable">Deaktivieren</string>
   <string name="ErrorReportAsk">Nach Fehler fragen</string>
   <string name="ErrorReportPrefTitle">Fehlerbericht senden</string>
-  <string name="ActivateAutoFillService_title">AutoEingabe aktivieren?</string>
-  <string name="ActivateAutoFillService_message">Anmeldeinformationen können zu anderen Apps auf verschiedene Weise übertragen werden: Du kanst die Werte in die Zwischenablage kopieren - bedenke dabei aber, dass die Zwischenablage in Android nicht sicher ist. Die eingebaute Tastatur gibt dir vollen Zugriff auf den gewählten Eintrag, muss aber jedesmal aktiviert werden, wenn du auf die Anmeldeinformationen zugreifen möchtest. Unter Android 5 oder später kann Keepass2Android Benutzername und Passwort mit dem AutoEingabe-Dienst automatisch eintragen.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Integrierte Tastatur verwenden</string>
-  <string name="ActivateAutoFillService_btnAutoFill">AutoEingabe-Dienst benutzen</string>
-  <string name="ActivateAutoFillService_toast">Bitte aktiviere den Keepass2Android-Dienst.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
   <string name="ChangeLog_1_03">
 Version 1.03\n
@@ -582,7 +577,7 @@ Version 1.03\n
 * Drittanwendungen können wieder genutzt werden, um Dateien zu öffnen\n
 * Image-Viewer integriert, um angehängte Bilder zu öffnen, ohne diese in andere Apps übertragen zu müssen\n
 * OkHttp aktualisiert um Probleme mit manchen Verbindungen zu behoben.\n
-* Unterstützung für KeeTrayTOTP-Einträge, so dass jetzt aus Steam-Einträge möglich sind\n  </string>
+* Unterstützung für KeeTrayTOTP-Einträge, so dass jetzt auch Steam-Einträge möglich sind\n  </string>
   <string name="ChangeLog_1_02">
 Version 1.02\n 
  * mehrere Sicherheitsverbesserungen. Danke an jean-baptiste.cayrou@thalesgroup.com und vincent.fargues@thalesgroup.com für die Analyse und Zusammenarbeit! \n 

@@ -567,11 +567,6 @@
   <string name="ErrorReportDisable">無効にする</string>
   <string name="ErrorReportAsk">エラー発生時に確認する</string>
   <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
-  <string name="ActivateAutoFillService_title">オートフィルを有効にしますか?</string>
-  <string name="ActivateAutoFillService_message">いくつかの方法でアカウント情報を他のアプリに転送できます: 値をクリップボードにコピーすることもできますが、クリップボードは Android では安全ではないことに注意してください。統合ソフトウェアキーボードによって、選択したエントリの情報へ自由にアクセスすることができますが、アカウント情報にアクセスするたびに有効にする必要があります。Android 5 およびそれ以降では、自動入力サービスを使用してユーザー名とパスワードを自動入力することができます。</string>
-  <string name="ActivateAutoFillService_btnKeyboard">内蔵キーボードを使用する</string>
-  <string name="ActivateAutoFillService_btnAutoFill">オートフィル サービスを使用する</string>
-  <string name="ActivateAutoFillService_toast">Keepass2Android サービスを有効にしてください。</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
   <string name="ChangeLog_1_03">
     バージョン 1.03\n

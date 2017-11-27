@@ -568,11 +568,6 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="ErrorReportDisable">Uitschakelen</string>
   <string name="ErrorReportAsk">Vragen na het optreden van een fout</string>
   <string name="ErrorReportPrefTitle">Foutrapporten verzenden</string>
-  <string name="ActivateAutoFillService_title">AutoFill inschakelen?</string>
-  <string name="ActivateAutoFillService_message">Referenties kunnen op verschillende manieren aan andere apps worden overgedragen: U kunt de waarden naar het klembord kopiëren. Denk er echter om dat het klembord van Android niet erg veilig is. Het ingebouwde toetsenbord geeft u volledige toegang tot het gekozen element maar moet iedere keer opnieuw worden ingeschakeld. Bij Android 5 en hoger kan Keepass2Android de gebruikersnaam en wachtwoord automatisch invoeren met behulp van de AutoFill-functionaliteit.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Gebruik ingebouwd toetsenbord</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Gebruik AutoFill-functionaliteit</string>
-  <string name="ActivateAutoFillService_toast">Activeer aub de Keepass2Android-functionaliteit.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Toon zacht toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
   <string name="ChangeLog_1_03">
 Versie 1.03\n

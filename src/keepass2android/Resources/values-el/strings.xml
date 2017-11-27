@@ -569,11 +569,6 @@
   <string name="ErrorReportDisable">Απενεργοποίηση</string>
   <string name="ErrorReportAsk">Ερώτηση μετά από σφάλμα</string>
   <string name="ErrorReportPrefTitle">Αποστολή αναφοράς σφαλμάτων</string>
-  <string name="ActivateAutoFillService_title">Ενεργοποίηση αυτόματης συμπλήρωσης;</string>
-  <string name="ActivateAutoFillService_message">Διαπιστευτήρια μπορεί να μεταφερθούν σε άλλες εφαρμογές με διάφορους τρόπους: μπορείτε να αντιγράψετε τιμές στο πρόχειρο, αλλά σημειώστε ότι το πρόχειρο δεν είναι ασφαλές στο Android. Το ενσωματωμένο πληκτρολόγιο παρέχει πλήρη πρόσβαση στο επιλεγμένη καταχώριση, αλλά πρέπει να ενεργοποιείται κάθε φορά που θέλετε να έχετε πρόσβαση τα διαπιστευτήρια. Σε Android 5 και νεότερο, το Keepass2Android μπορεί να εισάγει όνομα χρήστη και συνθηματικό αυτόματα χρησιμοποιώντας την υπηρεσία αυτόματης συμπλήρωσης.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Χρησιμοποιήστε το ενσωματωμένο πληκτρολόγιο</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Χρησιμοποίηση της λειτουργίας αυτόματης συμπλήρωσης</string>
-  <string name="ActivateAutoFillService_toast">Ενεργοποιήστε την υπηρεσία Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Προβάλει το πληκτρολόγιο για εισαγωγή συνθηματικού όταν είναι ενεργή η σάρωση δακτυλικού αποτυπώματος.</string>
   <string name="ChangeLog_1_03">
 Έκδοση 1.03\n

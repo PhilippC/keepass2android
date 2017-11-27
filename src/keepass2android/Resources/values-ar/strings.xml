@@ -555,11 +555,6 @@
   <string name="ErrorReportDisable">تعطيل</string>
   <string name="ErrorReportAsk">اسأل بعد الخطأ</string>
   <string name="ErrorReportPrefTitle">إرسال تقارير الأخطاء</string>
-  <string name="ActivateAutoFillService_title">تنشيط ميزة التعبئة التلقائية؟</string>
-  <string name="ActivateAutoFillService_message">يمكن نقل بيانات الاعتماد لتطبيقات أخرى بعدة طرق: يمكنك نسخ المعلومات إلى الحافظة، ولكن الحافظة ليست آمنة في Android. لوحة المفاتيح المدمجة تتيح الوصول الكامل إلى السجلات المطلوبة ولكن يجب الإنتقال إليها في كل مرة تريد الحصول على بيانات الاعتماد. في Keepass2Android على Android 5 والإصدارات الأحدث، يمكن إدخال اسم المستخدم وكلمة المرور تلقائياً باستخدام خدمة التعبئة التلقائية.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">استخدام لوحة المفاتيح المُدمجة</string>
-  <string name="ActivateAutoFillService_btnAutoFill">استخدام خدمة التعبئة التلقائية</string>
-  <string name="ActivateAutoFillService_toast">الرجاء تمكين خدمة Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">إظهار لوحة المفاتيح على الشاشة لإدخال كلمة السر عند استعمال ماسح بصمات الأصابع.</string>
   <string name="ChangeLog_0_9_8c">
 الإصدار 0.9.8c

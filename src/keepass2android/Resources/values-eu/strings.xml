@@ -383,9 +383,6 @@
   <string name="ErrorReportDisable">Desgaitu</string>
   <string name="ErrorReportAsk">Galdetu errorea eta gero</string>
   <string name="ErrorReportPrefTitle">Bidali errore txostenak</string>
-  <string name="ActivateAutoFillService_title">Gaitu betetze automatikoa?</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Erabili barne teklatua</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Erabili osatze automatikoaren zerbitzua</string>
   <string name="ChangeLog_0_9_7">
 		0.9.7 bertsioa\n
 		* Keepass 1 (kdb) datu-baseak idazteko gaitasuna (beta!)\n

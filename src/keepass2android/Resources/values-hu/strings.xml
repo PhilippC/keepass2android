@@ -572,11 +572,6 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="ErrorReportDisable">Letiltás</string>
   <string name="ErrorReportAsk">Hiba esetén rákérdez</string>
   <string name="ErrorReportPrefTitle">Hibajelentések küldése</string>
-  <string name="ActivateAutoFillService_title">Automatikus kitöltés aktiválása?</string>
-  <string name="ActivateAutoFillService_message">A hitelesítő adatok más alkalmazás számára több módon is elérhetővé tehetők. Megtehető ez a vágólapon keresztül, bár az Android vágólapja nem biztonságos. A beépített billentyűzet a teljes bejegyzést elérhetővé teszi, de minden alkalommal kézzel át kell rá váltani, ha hozzá akar férni a hitelesítő adatokhoz. végül Android 5 és annál újabb verziójú eszközök esetén a Keepass2Android a felhasználónevet és a jelszót az Automatikus kitöltés szolgáltatás segítségével is elérhetővé tudja tenni.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Beépített billentyűzet használata</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Automatikus kitöltés szolgáltatás használata</string>
-  <string name="ActivateAutoFillService_toast">Kérjük, engedélyezze a Keepass2Android szolgáltatást.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">A billentyűzet megjelenítése a jelszóbeíráshoz ujjlenyomat-leolvasás közben.</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>

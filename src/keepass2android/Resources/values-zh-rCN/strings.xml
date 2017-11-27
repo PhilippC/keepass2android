@@ -556,11 +556,6 @@
   <string name="ErrorReportDisable">禁用</string>
   <string name="ErrorReportAsk">出错后询问</string>
   <string name="ErrorReportPrefTitle">发送错误报告</string>
-  <string name="ActivateAutoFillService_title">激活自动填充吗?</string>
-  <string name="ActivateAutoFillService_message">认证证书可以通过这几种方法转移到其他应用程序: 你可以将值复制到剪贴板上，但请注意，剪贴板在安卓系统中是不安全的。内置键盘给所选条目的完全访问权限，必须在每次你想要访问的时候启用认证证书。关于 Android 5 及更高版本，Keepass2Android 可以自动使用自动填充服务输入用户名和密码。</string>
-  <string name="ActivateAutoFillService_btnKeyboard">使用内置键盘</string>
-  <string name="ActivateAutoFillService_btnAutoFill">使用自动填充服务</string>
-  <string name="ActivateAutoFillService_toast">请启用 Keepass2Android 服务。</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
   <string name="ChangeLog_1_02">
   版本 1.02\n 

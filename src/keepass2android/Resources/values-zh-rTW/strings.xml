@@ -556,11 +556,6 @@
   <string name="ErrorReportDisable">關閉</string>
   <string name="ErrorReportAsk">每次詢問</string>
   <string name="ErrorReportPrefTitle">傳送錯誤報告</string>
-  <string name="ActivateAutoFillService_title">要啟用自動填滿嗎？</string>
-  <string name="ActivateAutoFillService_message">登入資訊可以通過以下幾種方式傳輸到其他應用程式：1. 您可以複製到剪貼板，但請注意：剪貼板在 Android 中並不安全。2. 使用 KP2A 內建的鍵盤，但必須在每次訪問登入資訊時切換。3. 在 Android 5 及更高版本上，Keepass2Android 可以使用自動填滿服務自動輸入用戶名和密碼。</string>
-  <string name="ActivateAutoFillService_btnKeyboard">使用內置鍵盤</string>
-  <string name="ActivateAutoFillService_btnAutoFill">使用自動填滿服務</string>
-  <string name="ActivateAutoFillService_toast">請啟用 Keepass2Android 服務。</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋掃描處於活動狀態時顯示軟鍵盤以輸入密碼。</string>
   <string name="ChangeLog_0_9_8c">
 版本0.9.8c\n

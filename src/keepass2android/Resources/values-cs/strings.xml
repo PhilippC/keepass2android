@@ -572,11 +572,6 @@
   <string name="ErrorReportDisable">Zakázat</string>
   <string name="ErrorReportAsk">Dotázat se po chybě</string>
   <string name="ErrorReportPrefTitle">Odeslat zprávu o chybách</string>
-  <string name="ActivateAutoFillService_title">Aktivovat automatické vyplňování?</string>
-  <string name="ActivateAutoFillService_message">Pověření lze přenést do jiné aplikace několika způsoby: můžete zkopírovat hodnoty do schránky, ale upozorňujeme, že v systému Android není schránka bezpečná. Vestavěná klávesnice poskytuje úplný přístup k vybrané položce, ale musí být povolena pokaždé, když chcete získat přístup k pověření. Na systému Android 5 a novějším může aplikace Keepass2Android zadat uživatelské jméno a heslo automaticky pomocí služby automatického vyplňování.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Použít vestavěnou klávesnici</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Použít službu automatického vyplňování</string>
-  <string name="ActivateAutoFillService_toast">Prosím povolte službu Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
   <string name="ChangeLog_1_03">
 Verze 1.03\n

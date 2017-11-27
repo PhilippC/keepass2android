@@ -561,11 +561,6 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ErrorReportDisable">Devre dışı bırak</string>
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
-  <string name="ActivateAutoFillService_title">Otomatik Doldur özelliği etkinleştirilsin mi?</string>
-  <string name="ActivateAutoFillService_message">Kimlik bilgileri diğer uygulmalara birkaç yolla transfer edilebilir: Değerleri panoya kopyalabilirsiniz ama panonun güvenli olmadığını unutmayın. Yerleşik klavye seçilen kayıt için tam erişim verir ama kimlik bilgilerine erişmek istediğiniz her seferinde etkinleştirilmiş olması gerekir. Android 5 ve sonrasında, Keepass2Android otomatik doldurma servisini kullanarak kullanıcı adı ve parolayı doldurabilir.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Dahili klavyeyi kullan</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Otomatik Doldur hizmetini kullan</string>
-  <string name="ActivateAutoFillService_toast">Lütfen Keepass2Android hizmetini etkinleştirin.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
   <string name="ChangeLog_1_02">
     Sürüm 1.02\n

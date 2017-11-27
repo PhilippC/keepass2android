@@ -572,11 +572,6 @@
   <string name="ErrorReportDisable">Отключить</string>
   <string name="ErrorReportAsk">Спросить после ошибки</string>
   <string name="ErrorReportPrefTitle">Отправить отчёт об ошибке</string>
-  <string name="ActivateAutoFillService_title">Активировать функцию автозаполнения?</string>
-  <string name="ActivateAutoFillService_message">Учетные данные могут быть переданы в другие приложения несколькими способами: можно копировать значения в буфер обмена, но пожалуйста, обратите внимание, что буфер обмена не является безопасным в Android. Встроенная клавиатура дает полный доступ к выбранной записи, но должна быть включена каждый раз, когда вы хотите получить доступ к учетным данным. На Android 5 и поздних версиях Keepass2Android может вводить имя и пароль пользователя автоматически с помощью службы автозаполнения.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Использовать встроенную клавиатуру</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Использовать службу автозаполнения</string>
-  <string name="ActivateAutoFillService_toast">Пожалуйста, включите службу Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показывать клавиатуру для ввода пароля, если сканер отпечатка пальца включен.</string>
   <string name="ChangeLog_1_03">
 Версия 1.03\n

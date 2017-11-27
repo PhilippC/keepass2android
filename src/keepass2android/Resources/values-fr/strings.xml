@@ -563,11 +563,6 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ErrorReportDisable">Désactiver</string>
   <string name="ErrorReportAsk">Demander après une erreur</string>
   <string name="ErrorReportPrefTitle">Envoyer des rapports d\'erreurs</string>
-  <string name="ActivateAutoFillService_title">Activer le remplissage automatique ?</string>
-  <string name="ActivateAutoFillService_message">Les informations d\'identification peuvent être transférées vers d\'autres applications de plusieurs façons : vous pouvez copier les valeurs dans le presse-papiers, mais veuillez noter que le presse-papiers n\'est pas sûr dans Android. Le clavier intégré donne un accès complet à l\'entrée sélectionnée, mais doit être activé à chaque fois que vous voulez accéder aux informations d\'identification. Avec Android 5 et plus, Keepass2Android peut saisir le nom d\'utilisateur et le mot de passe automatiquement à l\'aide de la fonction de remplissage automatique.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Utiliser le clavier intégré</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Utiliser la fonction de remplissage automatique</string>
-  <string name="ActivateAutoFillService_toast">Veuillez activer le service Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
   <string name="ChangeLog_1_03">
      Version 1.03\n * Suppression du service accessibilité pour le remplissage automatique tel que demandé par Google. Voir les paramètres d’accès mot de passe pour trouver un plugin reproduisant la fonctionnalité précédente. \n * Ajout des applications tierces comme option de stockage\n * Visionneuse intégrée pour le voir les images attachées sans les transférer sur d’autres apps\n * OkHttp mis à jour pour résoudre certains problèmes de connections\n * Support des entrées de KeeTrayTOTP, supporte désormais les entrées Steam\n  </string>

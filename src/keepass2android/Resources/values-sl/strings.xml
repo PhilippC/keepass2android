@@ -559,11 +559,6 @@
   <string name="ErrorReportDisable">Onemogoči</string>
   <string name="ErrorReportAsk">Vprašaj po napaki</string>
   <string name="ErrorReportPrefTitle">Pošiljaj poročila o napakah</string>
-  <string name="ActivateAutoFillService_title">Omogoči samodejno izpolnjevanje?</string>
-  <string name="ActivateAutoFillService_message">Poverila lahko prenesete v druge programa na več načinov: vrednosti lahko kopirate na odložišče, vendar upoštevajte, da v Androidu odložišče ni varno. Vgrajena tipkovnica omogoča poln dostop do izbranega vnosa, vendar jo je treba vsakič omogočiti, če želite dostop do poveril. Na Androidu 5 in kasnejših lahko Keepass2Android samodejno vnese uporabniško ime in geslo s storitvijo samodejnega izpolnjevanja.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Uporabi vgrajeno tipkovnico</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Uporabi storitev sam. izpolnjevanja</string>
-  <string name="ActivateAutoFillService_toast">Omogočite storitev Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Prikaži zaslonsko tipkovnico za vnos gesla, ko je dejavno branje prstnega odtisa.</string>
   <string name="ChangeLog_0_9_8c">
     Različica 0.9.8c\n

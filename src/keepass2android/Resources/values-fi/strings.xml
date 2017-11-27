@@ -572,11 +572,6 @@ Tässä vihjeitä, joiden avulla voit diagnosoida ongelmaa:\n
   <string name="ErrorReportDisable">Poista käytöstä</string>
   <string name="ErrorReportAsk">Kysy virheen jälkeen</string>
   <string name="ErrorReportPrefTitle">Lähetä virheraportit</string>
-  <string name="ActivateAutoFillService_title">Otetaanko automaattinen täyttö käyttöön?</string>
-  <string name="ActivateAutoFillService_message">Tunnistetiedot voidaan siirtää toisiin sovelluksiin useilla eri tavoilla: voit kopioida arvot leikepöydälle, mutta huomioi, että leikepöytä ei ole tietoturvallinen Androidilla. Sisäänrakennettu näppäimistö antaa täyden pääsyn valittuun merkintään, mutta se täytyy ottaa käyttöön joka kerta kun haluat käyttää kirjautumistietoja. Jos käytössä on Android 5 tai uudempi, Keepass2Android voi syöttää käyttäjätunnuksen ja salasanan automaattisesti käyttäen automaattitäyttö-palvelua.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Käytä sisäänrakennettua näppäimistöä</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Käytä automaattitäyttöä</string>
-  <string name="ActivateAutoFillService_toast">Ole hyvä ja ota käyttöön Keepass2Android-palvelu.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Näytä näppäimistö salasanan syöttöä varten sormenjälkien lukijan ollessa käytössä.</string>
   <string name="ChangeLog_1_03">
 Versio 1.03\n 

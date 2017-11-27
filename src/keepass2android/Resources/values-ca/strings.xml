@@ -570,11 +570,6 @@ Arxiu està corrupte. \n
   <string name="ErrorReportDisable">Deshabilita</string>
   <string name="ErrorReportAsk">Preguntar després d\'error</string>
   <string name="ErrorReportPrefTitle">Enviar registre d\'errors</string>
-  <string name="ActivateAutoFillService_title">Activar l\'emplenament automàtic?</string>
-  <string name="ActivateAutoFillService_message">Les credencials poden ser transferides a altres aplicacions de diverses maneres: es pot copiar valors al porta-retalls, però tingueu en compte que al porta-retalls d\'Android no és segur. El teclat incorporat dóna ple accés a l\'entrada seleccionada però s\'ha d\'habilitar cada vegada que vulgueu les credencials d\'accés. En Android 5 i més posteriors Keepass2Android pot introduir el nom d\'usuari i contrasenya automàticament utilitzant el servei d\'emplenament automàtic.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Ús de teclat incorporat</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Utilitzar el servei d\'emplenament automàtic</string>
-  <string name="ActivateAutoFillService_toast">Si us plau, habiliteu el servei Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostra el teclat per introduir la contrasenya quan l\'escàner d\'empremta digital és actiu.</string>
   <string name="ChangeLog_1_03">
 Versió 1.03\n 

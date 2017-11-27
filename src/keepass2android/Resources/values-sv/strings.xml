@@ -558,11 +558,6 @@ Filen är skadad. \n Här är några tips som kan hjälpa till att diagnostisera
   <string name="ErrorReportDisable">Inaktivera</string>
   <string name="ErrorReportAsk">Fråga efter fel</string>
   <string name="ErrorReportPrefTitle">Skicka felrapporter</string>
-  <string name="ActivateAutoFillService_title">Aktivera Autofyll?</string>
-  <string name="ActivateAutoFillService_message">Autentiseringsuppgifter kan överföras till andra appar på flera sätt: du kan kopiera värden till Urklipp, men observera att Urklipp inte är säkert i Android. Det inbyggda tangentbordet ger fullständig åtkomst till den markerade posten men måste aktiveras varje gång du vill komma åt autentiseringsuppgifterna. På Android 5 och senare kan Keepass2Android ange användarnamn och lösenord automatiskt med hjälp av tjänsten autofyll.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Använd inbyggt tangentbord</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Använd Autofyll-tjänsten</string>
-  <string name="ActivateAutoFillService_toast">Var god aktivera tjänsten Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visa Skärmtangentbordet för lösenordsindata när fingeravtrycks-scan är aktiv.</string>
   <string name="ChangeLog_1_03">
 Version 1.03

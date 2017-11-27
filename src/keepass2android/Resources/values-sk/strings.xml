@@ -573,11 +573,6 @@
   <string name="ErrorReportDisable">Vypnúť</string>
   <string name="ErrorReportAsk">Opýtať sa po výskyte chyby</string>
   <string name="ErrorReportPrefTitle">Odosielanie záznamov o chybe</string>
-  <string name="ActivateAutoFillService_title">Aktivovať automatické dopĺňanie?</string>
-  <string name="ActivateAutoFillService_message">Prihlasovacie údaje je možné prenášať do iných aplikácii viacerými spôsobmi. Môžete skopírovať hodnoty do schránky, ale pamätajte prosím na to, že schránka systému Android nie je bezpečná. Zabudovaná klávesnica vám tiež poskytne úplný prístup k danému záznamu, ale je potrebné zapnúť ju vždy vtedy, keď zadávate prihlasovacie údaje. Na systéme Android 5 a novšom, môže aplikácia Keepass2Android doplniť meno používateľa a heslo aj automaticky, pomocou služby pre automatické dopĺňanie.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Použiť vstavanú klávesnicu</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Použiť službu pre automatické doplňanie</string>
-  <string name="ActivateAutoFillService_toast">Prosím zapnite službu Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
   <string name="ChangeLog_1_03">
     Verzia 1.03\n
