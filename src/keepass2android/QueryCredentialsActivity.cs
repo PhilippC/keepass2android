@@ -102,6 +102,18 @@ namespace keepass2android
 			}
 		}
 
+		protected override void OnStart()
+		{
+			base.OnStart();
+			Kp2aLog.Log("Starting QueryCredentialsActivity");
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+			Kp2aLog.Log("Resuming QueryCredentialsActivity");
+		}
+
 		private void ShowToast()
 		{
 			string pluginDisplayName = _pluginPackage;

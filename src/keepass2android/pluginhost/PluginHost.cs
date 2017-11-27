@@ -72,13 +72,14 @@ namespace keepass2android
 			PluginDatabase pluginDb = new PluginDatabase(context);
 			if (intent.Action == Strings.ActionRequestAccess)
 			{
-				var senderPackage = intent.GetStringExtra(Strings.ExtraSender);
-				var requestToken = intent.GetStringExtra(Strings.ExtraRequestToken);
+				string senderPackage = intent.GetStringExtra(Strings.ExtraSender);
+				string requestToken = intent.GetStringExtra(Strings.ExtraRequestToken);
 
-				var requestedScopes = intent.GetStringArrayListExtra(Strings.ExtraScopes);
+				IList<string> requestedScopes = intent.GetStringArrayListExtra(Strings.ExtraScopes);
 
 				if (!AreScopesValid(requestedScopes))
 				{
+					Log.Debug(_tag, "requested scopes not valid");
 					return;
 				}
 

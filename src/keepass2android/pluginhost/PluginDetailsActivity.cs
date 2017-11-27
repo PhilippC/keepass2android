@@ -117,7 +117,7 @@ namespace keepass2android
 		private void UpdateView()
 		{
 			var scopesContainer = FindViewById<LinearLayout>(Resource.Id.scopes_list);
-			//scopesContainer.RemoveAllViews();
+			scopesContainer.RemoveAllViews();
 
 			var pluginDb = new PluginDatabase(this);
 			_checkbox.Checked = pluginDb.IsEnabled(_pluginPackageName);

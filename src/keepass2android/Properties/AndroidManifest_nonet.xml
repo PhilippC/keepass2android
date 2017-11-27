@@ -116,7 +116,7 @@
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
-	<uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+
   <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
   <uses-permission android:name="keepass2android.keepass2android_debug.permission.KP2aInternalSearch" />
 	<!-- Samsung Pass permission -->

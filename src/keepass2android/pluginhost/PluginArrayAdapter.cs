@@ -1,3 +1,4 @@
+using System;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.Graphics.Drawables;
@@ -6,6 +7,7 @@ using Android.Content;
 using Android.Views;
 using System.Collections.Generic;
 using Android.App;
+using Android.Runtime;
 
 namespace keepass2android
 {
@@ -79,6 +81,11 @@ namespace keepass2android
 		Context context;
 		int layoutResourceId;
 		IList<PluginItem> data = null;
+
+		public PluginArrayAdapter(IntPtr javaReference, JniHandleOwnership transfer)
+			: base(javaReference, transfer)
+		{
+		}
 
 		public PluginArrayAdapter(Context context, int layoutResourceId, IList<PluginItem> data) :
 			base(context, layoutResourceId, data)

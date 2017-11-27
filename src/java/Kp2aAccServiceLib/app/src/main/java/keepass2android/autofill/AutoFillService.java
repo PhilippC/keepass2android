@@ -11,6 +11,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
@@ -29,7 +30,7 @@ import keepass2android.kbbridge.KeyboardData;
 public class AutoFillService extends AccessibilityService {
 
 
-    private static boolean _hasUsedData = false;
+    private static boolean _hasUsedData = true;
     private static String _lastSearchUrl;
     private static final String _logTag = "KP2AAF";
     private static boolean _isRunning;
@@ -193,6 +194,7 @@ public class AutoFillService extends AccessibilityService {
                     if (ExistsNodeOrChildren(root, new PasswordFieldCondition()))
                     {
                         if ((getLastReceivedCredentialsUser() != null) &&
+                                (!_hasUsedData) &&
                                 (Objects.equals(url, _lastSearchUrl)
                                 || isSame(getCredentialsField("URL"), url)))
                         {
@@ -313,6 +315,7 @@ public class AutoFillService extends AccessibilityService {
     @TargetApi(21)
     private void FillPassword(String url, AccessibilityNodeInfo usernameEdit, List<AccessibilityNodeInfo> passwordFields)
     {
+        Log.d(_logTag, "_hasUsedData = " + _hasUsedData);
         if ((keepass2android.kbbridge.KeyboardData.hasData()) && (_hasUsedData == false))
         {
             fillDataInTextField(usernameEdit, getLastReceivedCredentialsUser());
