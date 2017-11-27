@@ -152,3 +152,4 @@ intermediates
 /src/java/Kp2aAccServiceLib/app/build
 /src/java/Kp2aAccServiceLib/app/app.iml
 /src/java/Kp2aAccServiceLib/gradle
+adbprompt.ps1

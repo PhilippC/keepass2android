@@ -8,7 +8,7 @@ Allows to switch input method automatically on non-rooted devices.
 
 # AutoFill Plug-in
 Uses Android Accessibility Service to provide an option to AutoFill forms (e.g. on Chrome) or any Android app.
-[https://philippc.github.io/keepass2android/AccServiceAutoFill.html]
+[https://philippc.github.io/keepass2android/AccServiceAutoFill.html](https://philippc.github.io/keepass2android/AccServiceAutoFill.html)
 
 # InputStick Plug-in
 Allows to send text from KP2A via InputStick to your PC.
