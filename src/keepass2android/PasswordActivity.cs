@@ -1054,10 +1054,19 @@ namespace keepass2android
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_success);
-			
-			var masterPassword = _fingerprintDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
-			_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
 
+			try
+			{
+				var masterPassword = _fingerprintDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
+				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
+
+			}
+			catch (Java.Security.GeneralSecurityException ex)
+			{
+				HandleFingerprintKeyInvalidated();
+				return;
+			}
+			
 			btn.PostDelayed(() =>
 			{
 				//re-init fingerprint unlock in case something goes wrong with opening the database 
@@ -1961,12 +1970,7 @@ namespace keepass2android
 				}
 				else
 				{
-					//key invalidated permanently
-					btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-					btn.Tag = GetString(Resource.String.fingerprint_unlock_failed);
-					_fingerprintDec = null;
-
-					ClearFingerprintUnlockData();
+					HandleFingerprintKeyInvalidated();
 					return false;
 				}
 			}
@@ -1980,6 +1984,17 @@ namespace keepass2android
 			}
 				
 				
+		}
+
+		private void HandleFingerprintKeyInvalidated()
+		{
+			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+//key invalidated permanently
+			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+			btn.Tag = GetString(Resource.String.fingerprint_unlock_failed);
+			_fingerprintDec = null;
+
+			ClearFingerprintUnlockData();
 		}
 
 		private void InitializeOptionCheckboxes() {
