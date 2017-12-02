@@ -413,12 +413,15 @@ namespace KeePassLib.Serialization
 				Debug.Assert(m_pbMasterSeed.Length == 32);
 				if(m_pbMasterSeed.Length != 32)
 					throw new FormatException(KLRes.MasterSeedLengthInvalid);
-				Array.Copy(m_pbMasterSeed, 0, pbCmp, 0, 32);
+				
 
 				Debug.Assert(m_pwDatabase != null);
 				Debug.Assert(m_pwDatabase.MasterKey != null);
-				ProtectedBinary pbinUser = m_pwDatabase.MasterKey.GenerateKey32(
-					m_pwDatabase.KdfParameters);
+				ProtectedBinary pbinUser = m_pwDatabase.MasterKey.GenerateKey32(m_pwDatabase.KdfParameters, 
+					m_pbMasterSeed);
+
+				Array.Copy(m_pbMasterSeed, 0, pbCmp, 0, 32);
+
 				Debug.Assert(pbinUser != null);
 				if(pbinUser == null)
 					throw new SecurityException(KLRes.InvalidCompositeKey);

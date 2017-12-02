@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android là một ứng dụng quản lý mật khẩu cung cấp quyền truy cập đọc/ghi vào cơ sở dữ liệu KeePass 2.x trên Android.</string>
   <string name="CreditsText">Giao diện người dùng dựa trên một bản chuyển thể từ ứng dụng KeepassDroid phát triển bởi Brian Pellin. Mã cho các thao tác cơ sở dữ liệu dựa trên KeePass bởi Dominik Reichl. Các người máy Android được sao chép hoặc sửa đổi từ công việc tạo ra và chia sẻ của Google và được sử dụng theo điều khoản được mô tả trong Giấy phép Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Hỗ trợ SFTP được thực hiện bằng cách sử dụng thư viện JSch theo giấy phép BSD, tạo ra bởi JCraft, Inc.</string>
-  <string name="CreditsIcons">Biểu tượng búa được tạo ra bởi John Caserta từ dự án Noun. Biểu tượng chim cánh cụt được tạo ra bởi Adriano Emerick từ dự án Noun. Biểu tượng lông vũ được tạo ra bởi Jon Testa từ dự án Noun. Biểu tượng quả táo được tạo ra bởi Ava Rowell từ dự án Noun. </string>
   <string name="accept">Đồng ý</string>
   <string name="deny">Từ chối</string>
   <string name="add_entry">Thêm mục nhập</string>
@@ -324,7 +323,6 @@
   <string name="ShowCopyToClipboardNotification_summary">Cho phép tên người dùng và mật mã có thể truy cập thông qua thanh thông báo và bộ nhớ nháp. Hãy cẩn thận với kỹ thuật nghe lén mật mã!</string>
   <string name="ShowSeparateNotifications_title">Thông báo riêng</string>
   <string name="ShowSeparateNotifications_summary">Hiện thông báo riêng cho việc sao chép tên người dùng và mật khẩu vào clipboard và bật bàn phím.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Thông báo bàn phím / tự động điền</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Chuyển đổi bàn phím</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Mở hộp thoại lựa chọn bàn phím khi mục có sẵn thông qua bàn phím KP2A sau khi tìm kiếm từ trình duyệt hoặc từ bàn phím.</string>
   <string name="ShowUnlockedNotification_title">Biểu tượng của thông báo khi mở khóa</string>

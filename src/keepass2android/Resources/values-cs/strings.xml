@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android je správce hesel pro práci se soubory KeePass 2.x. na platformě Android.</string>
   <string name="CreditsText">Uživatelské rozhraní je založeno na portu KeepassDroid (vyvinul Brian Pellin). Kód pro databázové operace vychází z kódu pro KeePass (napsal Dominik Reichl). Logo Android robota vychází z verze sdílené Googlem a je upraveno a použito dle podmínek popsaných v licenci Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">SFTP podpora je implementována pomocí knihovny JSch pod BSD licencí, vytvořenou JCraft, Inc.</string>
-  <string name="CreditsIcons">Ikonka kladívka je vytvořena Johnem Casertou z Noun Project. Ikonka tučňáka je vytvořena Adrianem Emerickem z Noun Project. Ikonka pírka je vytvořena Jonem Testou z Noun Project. </string>
+  <string name="CreditsIcons">Ikona kladiva je vytvořena Johnem Casertou z projektu Noun. Ikona tučňáka je vytvořena Adrianem Emerickem z projektu Noun. Ikona pera je vytvořena Jonem Testou z projektu Noun. Ikona jablka je vytvořena Avou Rowellem z projektu Noun. Ikona obrázku pochází z https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Přijmout</string>
   <string name="deny">Odmítnout</string>
   <string name="add_entry">Přidat položku</string>
@@ -290,6 +290,7 @@
   <string name="SaveAttachmentDialog_text">Prosím vyberte, kam chcete uložit přílohu.</string>
   <string name="SaveAttachmentDialog_save">Uložit na SD kartu</string>
   <string name="SaveAttachmentDialog_open">Uložit do mezipaměti a otevřít</string>
+  <string name="ShowAttachedImage">Zobrazit interní prohlížeč obrázků</string>
   <string name="SaveAttachment_doneMessage">Uložit soubor do %1$s.</string>
   <string name="SaveAttachment_Failed">Nelze uložit přílohu do %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Pamatovat si hledaný text?</string>
@@ -333,8 +334,9 @@
   <string name="ShowCopyToClipboardNotification_summary">Zpřístupnění uživatelského jména a hesla prostřednictvím oznamovací oblasti a schránky. Pozor na skenery hesel!</string>
   <string name="ShowSeparateNotifications_title">Samostatná oznámení</string>
   <string name="ShowSeparateNotifications_summary">Zobrazit oddělená upozornění pro kopírování uživatelského jména a hesla do schránky a pro aktivování klávesnice.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Oznámení Klávesnice/Automatické doplnění</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Zpřístupnit celou položku prostřednictvím KP2A klávesnice a služby Automatického vyplňování (doporučeno).</string>
+  <string name="AccServiceAutoFill_prefs">Služba automatického doplňování</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notifikace klávesnice KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Zpřístupnit celý záznam pomocí klávesnice KP2A (doporučeno).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Přepnout klávesnici</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Otevřít dialog pro výběr klávesnice je-li nalezena vhodná položka po hledání z prohlížeče.</string>
   <string name="kp2a_switch_rooted">Automatické přepínání klávesnice</string>
@@ -480,6 +482,10 @@
   <string name="TrayTotp_SettingsField_title">Nastavení jména TOTP položky</string>
   <string name="TrayTotp_SettingsField_summary">Zde zadejte název položky \"nastavení\" pro TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Logovací soubor pro ladění chyb</string>
+  <string name="DebugLog_title">Použít protokolovací soubor</string>
+  <string name="DebugLog_summary">Ulož výstup aplikace do lokálního souboru</string>
+  <string name="DebugLog_send">Pošli soubor s ladícími informacemi...</string>
   <string name="loading">Probíhá načítání&#8230;</string>
   <string name="plugins">Zásuvné moduly</string>
   <string name="plugin_packagename">Název balíčku:</string>
@@ -566,12 +572,15 @@
   <string name="ErrorReportDisable">Zakázat</string>
   <string name="ErrorReportAsk">Dotázat se po chybě</string>
   <string name="ErrorReportPrefTitle">Odeslat zprávu o chybách</string>
-  <string name="ActivateAutoFillService_title">Aktivovat automatické vyplňování?</string>
-  <string name="ActivateAutoFillService_message">Pověření lze přenést do jiné aplikace několika způsoby: můžete zkopírovat hodnoty do schránky, ale upozorňujeme, že v systému Android není schránka bezpečná. Vestavěná klávesnice poskytuje úplný přístup k vybrané položce, ale musí být povolena pokaždé, když chcete získat přístup k pověření. Na systému Android 5 a novějším může aplikace Keepass2Android zadat uživatelské jméno a heslo automaticky pomocí služby automatického vyplňování.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Použít vestavěnou klávesnici</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Použít službu automatického vyplňování</string>
-  <string name="ActivateAutoFillService_toast">Prosím povolte službu Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
+  <string name="ChangeLog_1_03">
+Verze 1.03\n
+* Odstraněny služby zpřístupnění pro AutoFill dle požadavku Googlu. Podívejte se do nastavení přistupu hesel k nalezení doplňku poskytujícího předchozí funkci.\n
+* Znovu povoleny aplikace třetích stran pro ukládání\n
+* Vestavěný prohlížeč obrázků pro prohlížení připojených obrázku bez přenosu do jiných aplikací\n
+* Aktualizované OkHttp pro opravu problémů s některými spojeními\n
+* Podpora pro KeeTrayTOTP položky, nyní podporuje i Stream\n
+  </string>
   <string name="ChangeLog_1_02">
     Verze 1.02\n
     * Různá bezpečnostní vylepšení. Děkuji za bezpečnostní hlášení od jean-baptiste.cayrou@thalesgroup.com a vincent.fargues@thalesgroup.com a za jejich spolupráci!\n

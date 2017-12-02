@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android 是 Android 版本的 KeePass 密碼管理軟體。</string>
   <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP 支援是使用 JCraft，inc. 的 JSch 資料庫所寫且授權於 BSD 授權。</string>
-  <string name="CreditsIcons">槌子圖示是由 Noun Project 的 John Caserta 所做。企鵝圖示是由 Noun Project 的 Adriano Emerick 所做。羽毛圖示是由 Noun Project 的 Jon Testa 所做。頻果圖樣是由 Noun Project 的 Ava Rowell 所做。 </string>
   <string name="accept">接受</string>
   <string name="deny">拒絕</string>
   <string name="add_entry">添加項目</string>
@@ -333,8 +332,6 @@
   <string name="ShowCopyToClipboardNotification_summary">使用者名稱和密碼可以藉由通知列和剪貼簿取得。謹防密碼竊取器！</string>
   <string name="ShowSeparateNotifications_title">分開的通知</string>
   <string name="ShowSeparateNotifications_summary">顯示分開的通知以便用於將使用者名和密碼複製到剪貼簿並啟動鍵盤。</string>
-  <string name="ShowKp2aKeyboardNotification_title">鍵盤/自動填滿通知</string>
-  <string name="ShowKp2aKeyboardNotification_summary">透過 KP2A 鍵盤及自動填滿服務（推薦）取得項目資訊。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切換鍵盤</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">從瀏覽器搜索後，當項目可透過KP2A 鍵盤取得時打開鍵盤選擇對話方塊 。</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">搜索後才自動切換</string>
@@ -559,11 +556,6 @@
   <string name="ErrorReportDisable">關閉</string>
   <string name="ErrorReportAsk">每次詢問</string>
   <string name="ErrorReportPrefTitle">傳送錯誤報告</string>
-  <string name="ActivateAutoFillService_title">要啟用自動填滿嗎？</string>
-  <string name="ActivateAutoFillService_message">登入資訊可以通過以下幾種方式傳輸到其他應用程式：1. 您可以複製到剪貼板，但請注意：剪貼板在 Android 中並不安全。2. 使用 KP2A 內建的鍵盤，但必須在每次訪問登入資訊時切換。3. 在 Android 5 及更高版本上，Keepass2Android 可以使用自動填滿服務自動輸入用戶名和密碼。</string>
-  <string name="ActivateAutoFillService_btnKeyboard">使用內置鍵盤</string>
-  <string name="ActivateAutoFillService_btnAutoFill">使用自動填滿服務</string>
-  <string name="ActivateAutoFillService_toast">請啟用 Keepass2Android 服務。</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋掃描處於活動狀態時顯示軟鍵盤以輸入密碼。</string>
   <string name="ChangeLog_0_9_8c">
 版本0.9.8c\n

@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android adalah pengatur password yang menyediakan akses membaca/menulis ke database KeePass 2.x pada Android.</string>
   <string name="CreditsText">Antarmuka pengguna didasarkan pada KeepassDroid yang dikembangkan oleh Brian Pellin. Kode untuk operasi database didasarkan pada KeePass oleh Dominik Reichl. Robot android direproduksi atau dimodifikasi dari karya yang  dibuat dan dibagi oleh Google dan digunakan sesuai dengan ketentuan yang dijelaskan dalam Lisensi Atribusi Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Dukungan SFTP diimplementasikan menggunakan pustaka JSch di bawah lisensi BSD, dibuat oleh JCraft, Inc.</string>
-  <string name="CreditsIcons">Ikon palu dibuat oleh John Caserta dari proyek kata benda. Ikon Penguin dibuat oleh Adriano Emerick dari proyek kata benda. Ikon bulu dibuat oleh Jon Testa dari proyek kata benda. Ikon Apple diciptakan oleh Ava Rowell dari proyek kata benda. </string>
   <string name="accept">Menerima</string>
   <string name="deny">Tolak</string>
   <string name="add_entry">Menambah entri</string>
@@ -330,8 +329,6 @@
 Hati-hati terhadap pengintip kata sandi!</string>
   <string name="ShowSeparateNotifications_title">Pemberitahuan terpisah</string>
   <string name="ShowSeparateNotifications_summary">Tampilkan pemberitahuan terpisah untuk menyalin nama pengguna dan kata sandi ke papan klip dan aktifkan papan ketik.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Pemberitahuan papan ketik/isi otomatis</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Buat isian seluruhnya dapat diakses melalui papan ketik KP2A dan layanan isi otomatis (disarankan).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Berpindah keyboard</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Buka dialog pemilih papan ketik saat isian tersedia melalui papan ketik KP2A setelah melakukan pencarian dari browser.</string>
   <string name="kp2a_switch_rooted">Ganti papan kunci otomatis</string>
@@ -434,4 +431,16 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Jika anda tidak menginginkan KP2A hak akses penuh terhadapa Dropbox anda, anda bisa memilih pilihan ini. KP2A hanya akan meminta akses ke folder Apps/Keepass2Android. hal ini cocok terutama saat dilakukan pembuatan basis data baru. jika anda sudah memiliki basis data, klik opsi ini untuk menciptakan folder, lalu letakan file anda ke dalam folder tersebut (dari komputer anda) dan pilih opsi ini lagi untuk membukan file tersebut.</string>
+  <string name="filestoragename_gdrive">Penyimpanan Google</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_sftp">TFS (Transfer File SSH)</string>
+  <string name="filestoragename_content">Pemilih file sistem</string>
+  <string name="filestorage_setup_title">Inisialisasi akses file</string>
+  <string name="database_location">Lokasi basis data</string>
+  <string name="help_database_location">Anda bisa menyimpan basis data anda secara lokal pada perangkat Android anda atau di dalam cloud (versi non-Offline saja). Keepass2Android membuat basis data tersedia bahkan ketika anda sedang offline. semenjak basis data di enkripsi mengunakan enkripsi AES 256, tidak ada siapapun yang bisa mengakses password anda kecuali anda. kami merekomendasikan anda memilih Dropbox: karena Dropbox bisa diakses menggunakan semua perangkan anda dan bahkan menyediakan cadangan dari versi file sebelumnya.</string>
+  <string name="hint_database_location">Pilih dimana anda ingin menyimpan basis data:</string>
+  <string name="button_change_location">Rubah lokasi</string>
+  <string name="help_quickunlock">Jika diaktifkan, Keepass2Android akan tetap berjalan di belakang layar bahkan ketika basis data terkunci. hal ini memungkinkan pembukaan basis data nanti hanya menggunakan bagian pendek dari password utama.</string>
+  <string name="master_password">Password utama</string>
 </resources>

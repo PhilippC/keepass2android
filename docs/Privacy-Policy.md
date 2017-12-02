@@ -11,9 +11,7 @@ is the author of Keepass2Android and Keepass2Android Offline.
 
 The contents of your password database is yours and is never collected by us. Keepass2Android stores this data on a location chosen by the user and encrypted in the Keepass database format. The app author does not have any access, neither to the files nor the contents. Depending on the user's choice of the storage location, the files may be stored on third-party servers like Dropbox or Google Drive. 
 
-Keepass2Android does not collect personal identifiable information. After unexpected errors or crashes of the app, the user may be asked if he/she whants to send an error report (Keepass2Android regular only). Error reports do not contain database contents, except (depending on the error message) UUIDs of entries. They may contain file paths if the error was related to a failed file operation. Error reports sent from inside the app are sent using Xamarin Insights.
-
-The app author does not pass any of this data to third parties.
+Keepass2Android does not collect personal identifiable information. For debugging purposes, the user may activate creating a debug log. This collects data inside the app and is not accessible to any other app nor the author of the app, unless the user explicitly sends the debug log to the author. Debug logs usually do not contain personal identifiable information, except if such information is part of file or folder names. Debug logs will not be shared with third parties unless explicitly authorized by the sender.
 
 # What Android permissions are required?
 
@@ -22,5 +20,4 @@ The app author does not pass any of this data to third parties.
 * **Storage**: Required to allow the user to read/store password databases or key files on the device locally.
 * **Fingerprint**: Required if you want to use fingerprint unlock.
 * **Vibrate**: Required by the built-in keyboard (vibrate on key press)
-* **Bind Accessibility service**: Required to provide the Auto-Fill accessibility service.
 

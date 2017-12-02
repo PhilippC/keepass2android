@@ -6,7 +6,7 @@
   <string name="AboutText">Keepass2Android is a password manager providing read/write access to KeePass 2.x databases on Android.</string>
   <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP support is implemented using the JSch library under BSD licence, created by JCraft, Inc.</string>
-  <string name="CreditsIcons">The Hammer Icon is Created by John Caserta from the Noun Project. The Penguin Icon is Created by Adriano Emerick from the Noun Project. The Feather icon is Created by Jon Testa from the Noun Project. The Apple icon is Created by Ava Rowell from the Noun Project. </string>
+  <string name="CreditsIcons">The Hammer Icon is Created by John Caserta from the Noun Project. The Penguin Icon is Created by Adriano Emerick from the Noun Project. The Feather icon is Created by Jon Testa from the Noun Project. The Apple icon is Created by Ava Rowell from the Noun Project. The Picture icon is from https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Accept</string>
   <string name="deny">Deny</string>
   <string name="add_entry">Add entry</string>
@@ -306,7 +306,9 @@
   <string name="SaveAttachmentDialog_text">Please select where to save the attachment.</string>
   <string name="SaveAttachmentDialog_save">Save to SD card</string>
   <string name="SaveAttachmentDialog_open">Save to cache and open</string>
+  <string name="ShowAttachedImage">Show with internal image viewer</string>
   
+
   <string name="SaveAttachment_doneMessage">Saved file to %1$s.</string>
   <string name="SaveAttachment_Failed">Could not save attachment to %1$s.</string>
 
@@ -364,9 +366,11 @@
 
 	<string name="ShowSeparateNotifications_title">Separate notifications</string>
 	<string name="ShowSeparateNotifications_summary">Show separate notifications for copying username and password to clipboard and activating the keyboard.</string>
+
+  <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
 	
-	<string name="ShowKp2aKeyboardNotification_title">Keyboard/AutoFill notification</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard and AutoFill service (recommended).</string>
+	<string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Switch keyboard</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Open keyboard selection dialog when entry is available through KP2A keyboard after search from the browser.</string>
 
@@ -550,8 +554,16 @@
 	<string name="TrayTotp_SettingsField_summary">Enter the field name of the settings field for TrayTotp here.</string>
 	
 	<string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Log-File for Debugging</string>
+  <string name="DebugLog_title">Use log file</string>
+  <string name="DebugLog_summary">Write app output to a local log file</string>
+  <string name="DebugLog_send">Send debug log...</string>
+  
+  
 
-	<string name="loading">Loading…</string>
+
+
+  <string name="loading">Loading…</string>
 		
 	<string name="plugins">Plug-ins</string>
 	<string name="plugin_packagename">Package name:</string>
@@ -671,13 +683,18 @@
   <string name="ErrorReportAsk">Ask after error</string>
   <string name="ErrorReportPrefTitle">Send error reports</string>
 
-  <string name="ActivateAutoFillService_title">Activate AutoFill?</string>
-  <string name="ActivateAutoFillService_message">Credentials can be transferred to other apps in several ways: You can copy values to clipboard, but please note that the clipboard is not secure in Android. The built-in keyboard gives full access to the selected entry but must be enabled each time you want to access the credentials. On Android 5 and later, Keepass2Android can enter username and password automatically using the AutoFill service.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Use built-in keyboard</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Use AutoFill service</string>
-  <string name="ActivateAutoFillService_toast">Please enable the Keepass2Android service.</string>
+  
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
-  <string name="ChangeLog_1_02">
+  <string name="ChangeLog_1_03">
+    Version 1.03\n
+    * Removed accessibility service for AutoFill as requested by Google. Please see password access settings to find a plugin replicating the previous functionality.\n
+    * Added third party apps as storage option again\n
+    * Integrated image viewer for viewing attached images without transferring them to other apps\n
+    * Upgraded OkHttp to fix issues with some connections\n
+    * Support for KeeTrayTOTP entries, now supporting Steam entries\n
+  </string>
+
+    <string name="ChangeLog_1_02">
     Version 1.02\n
     * Several security improvements. Thanks a lot for the security report by jean-baptiste.cayrou@thalesgroup.com and vincent.fargues@thalesgroup.com and for their collaboration!\n
     * Support for KeyboardSwapPlugin (see password access options): allows to switch input method automatically on non-rooted devices. Thanks to Mishaal Rahman from XDA-Developers to make this possible.\n

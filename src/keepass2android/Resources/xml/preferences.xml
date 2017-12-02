@@ -374,7 +374,13 @@
             />
 
 			</PreferenceScreen>
-		</PreferenceScreen>
+
+      <Preference android:title="@string/AccServiceAutoFill_prefs" >
+        <intent android:action="android.intent.action.VIEW"
+                android:data="https://philippc.github.io/keepass2android/AccServiceAutoFill.html" />
+      </Preference>
+
+      </PreferenceScreen>
 		<PreferenceScreen
 			  android:key="@string/QuickUnlock_prefs_key"
 			  android:title="@string/QuickUnlock_prefs"
@@ -510,10 +516,27 @@
 				 android:title="@string/TrayTotp_SettingsField_title"
 				 android:key="@string/TrayTotp_SettingsField_key" />
 	</PreferenceScreen>
-		
-			
-	</PreferenceScreen>
 
+    <PreferenceScreen
+	  android:key="@string/DebugLog_prefs_key"
+	  android:title="@string/DebugLog_prefs_prefs"
+		>
+      <CheckBoxPreference
+							android:enabled="true"
+							  android:persistent="true"
+							  android:summary="@string/DebugLog_summary"
+							  android:defaultValue="false"
+							  android:title="@string/DebugLog_title"
+							  android:key="@string/DebugLog_key" />
+      <Preference
+               android:enabled="true"
+               android:title="@string/DebugLog_send"
+               android:key="@string/DebugLog_send_key" />
+    </PreferenceScreen>
+    </PreferenceScreen>
+
+  
+  
 	<PreferenceScreen android:key="plugin_key" android:title="@string/plugins">
 		<intent android:action="kp2a.action.PluginListActivity"/>
 	</PreferenceScreen>

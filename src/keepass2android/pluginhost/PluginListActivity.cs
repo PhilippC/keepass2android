@@ -44,7 +44,7 @@ namespace keepass2android
 		}
 		protected override void OnResume()
 		{
-			base.OnResume();
+
 			PluginDatabase pluginDb = new PluginDatabase(this);
 
 			_items = (from pluginPackage in pluginDb.GetAllPluginPackages()
@@ -59,6 +59,13 @@ namespace keepass2android
 			 * */
 			_pluginArrayAdapter = new PluginArrayAdapter(this, Resource.Layout.ListViewPluginRow, _items);
 			ListAdapter = _pluginArrayAdapter;
+			base.OnResume();
+		}
+
+		protected override void OnPause()
+		{
+			base.OnPause();
+			ListAdapter = _pluginArrayAdapter = null;
 		}
 	}
 }

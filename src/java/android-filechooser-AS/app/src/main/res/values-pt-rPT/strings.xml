@@ -26,7 +26,7 @@
   <string name="afc_msg_app_doesnot_have_permission_to_create_files">Esta aplicação não tem permissão para criar ficheiros/pastas</string>
   <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Esta aplicação não tem permissão para apagar ficheiros/pastas</string>
   <string name="afc_msg_cancelled">Cancelada</string>
-  <string name="afc_msg_cannot_connect_to_file_provider_service">Não foi possível ligar ao serviço providenciador de ficheiros</string>
+  <string name="afc_msg_cannot_connect_to_file_provider_service">Não foi possível ligar ao serviço provedor de ficheiros</string>
   <string name="afc_msg_cannot_create_new_folder_here">Não pode criar uma nova pasta aqui</string>
   <string name="afc_msg_cannot_save_a_file_here">Não pode guardar um ficheiro aqui</string>
   <string name="afc_msg_done">Terminado</string>

@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android - це менеджер паролів, який забезпечує читання/запис баз даних KeePass 2.x на Android.</string>
   <string name="CreditsText">Інтерфейс користувача базується на портованій версії Keepassdroid, розробленої Брайаном Пелліном. Код для операцій з базами даних базується на KeePass від Домініка Райхля. Робот Android відтворений або модифікований на основі версії, створеної та опублікованої Google, і використовується на умовах, які описано в Creative Commons License 3.0 Attribution.</string>
   <string name="CreditsTextSFTP">Підтримка SFTP реалізована з використанням бібліотеки JSch за ліцензією BSD, створеної JCraft, Inc.</string>
-  <string name="CreditsIcons">Піктограма молотка створена Джоном Касерта з Noun Project. Піктограма пінгвіна створена Адріано Емеріком з Noun Project. Піктограма пера створена Джоном Теста з Noun Project. Піктограма яблука створена Ава Роуеллом з Noun Project. </string>
+  <string name="CreditsIcons">Піктограма у вигляді молотка створена Джоном Касерта з Noun Project. Піктограма у вигляді пінгвіна створена Адріано Емеріком з Noun Project. Піктограма у вигляді пера створена Джоном Теста з Noun Project. Піктограма у вигляді яблука створена Ава Роуеллом з Noun Project. Піктограма зображення з https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Прийняти</string>
   <string name="deny">Відхилити</string>
   <string name="add_entry">Додати запис</string>
@@ -180,7 +180,7 @@
   <string name="menu_donate">Зробити внесок на пиво...</string>
   <string name="menu_edit">Змінити</string>
   <string name="menu_hide_password">Приховати пароль</string>
-  <string name="menu_lock">Заблокувати базу</string>
+  <string name="menu_lock">Заблокувати</string>
   <string name="menu_open">Відкрити</string>
   <string name="menu_close">Закрити</string>
   <string name="menu_rename">Перейменувати</string>
@@ -290,6 +290,7 @@
   <string name="SaveAttachmentDialog_text">Будь ласка, виберіть місце для збереження вкладення.</string>
   <string name="SaveAttachmentDialog_save">Зберегти на карту SD</string>
   <string name="SaveAttachmentDialog_open">Зберегти до кешу й відкрити</string>
+  <string name="ShowAttachedImage">Показати за допомогою вбудованої програми перегляду зображень</string>
   <string name="SaveAttachment_doneMessage">Файл збережено до %1$s.</string>
   <string name="SaveAttachment_Failed">Не вдалося зберегти вкладення до %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Пам\'ятати текст пошуку?</string>
@@ -308,7 +309,7 @@
   <string name="credentials_dialog_title">Введіть облікові дані сервера</string>
   <string name="UseFileTransactions_title">Файлові транзакції</string>
   <string name="UseFileTransactions_summary">Використовувати файлові транзакції для запису баз даних</string>
-  <string name="LockWhenScreenOff_title">Блокування при вимкненні екрану</string>
+  <string name="LockWhenScreenOff_title">Блокувати при вимкненні екрану</string>
   <string name="LockWhenScreenOff_summary">Блокувати базу даних при вимкненні екрану.</string>
   <string name="ClearPasswordOnLeave_title">Стирати введений головний пароль</string>
   <string name="ClearPasswordOnLeave_summary">Стирати введений головний пароль, якщо база даних не розблокована.</string>
@@ -326,15 +327,16 @@
   <string name="ClearOfflineCache_title">Очистити кеш?</string>
   <string name="ClearOfflineCache_question">Це видалить всі кешовані файли баз даних. Будь-які зміни, що були внесені в автономному режимі та не були синхронізовані, будуть втрачені! Продовжити?</string>
   <string name="CheckForFileChangesOnSave_title">Перевіряти наявність змін</string>
-  <string name="CheckForFileChangesOnSave_summary">Перевірка, чи файл було змінено ззовні, перед збереженням змін.</string>
-  <string name="CheckForDuplicateUuids_title">Перевірка дублікатів UUID</string>
+  <string name="CheckForFileChangesOnSave_summary">Перевіряти, чи файл було змінено ззовні, перед збереженням змін.</string>
+  <string name="CheckForDuplicateUuids_title">Перевіряти наявність дублікатів UUID</string>
   <string name="CheckForDuplicateUuids_summary">Перевіряти, чи не пошкоджений файл бази даних наявністю багатьох записів з однаковим ID. Це може призвести до неочікуваної поведінки.</string>
   <string name="ShowCopyToClipboardNotification_title">Сповіщення буфера обміну</string>
   <string name="ShowCopyToClipboardNotification_summary">Зробити ім\'я користувача і пароль доступними через панель сповіщень і буфер обміну. Стережіться перехоплювачів паролів!</string>
   <string name="ShowSeparateNotifications_title">Окремі сповіщення</string>
   <string name="ShowSeparateNotifications_summary">Показувати окремі сповіщення для копіювання імені користувача й пароля до буфера обміну та активації клавіатури.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Сповіщення автозаповнення</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Зробити запис доступним через клавіатуру KP2A і службу автозаповнення (рекомендовано).</string>
+  <string name="AccServiceAutoFill_prefs">Служба доступності для автозаповнення</string>
+  <string name="ShowKp2aKeyboardNotification_title">Сповіщення клавіатури KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Зробити весь запис доступним через клавіатуру KP2A (рекомендовано).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Перемикати клавіатуру</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Відкривати діалогове вікно вибору клавіатури, коли запис доступний через клавіатуру KP2A після пошуку з веб-браузера.</string>
   <string name="kp2a_switch_rooted">Авто-перемикання клавіатури</string>
@@ -480,6 +482,10 @@
   <string name="TrayTotp_SettingsField_title">Назва поля параметрів TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Введіть сюди назву поля параметрів для TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Файл журналу для зневадження</string>
+  <string name="DebugLog_title">Використовувати файл журналу</string>
+  <string name="DebugLog_summary">Записувати дані програми в локальний файл журналу</string>
+  <string name="DebugLog_send">Надіслати журнал зневадження...</string>
   <string name="loading">Завантаження&#8230;</string>
   <string name="plugins">Плагіни</string>
   <string name="plugin_packagename">Ім\'я пакету:</string>
@@ -567,12 +573,15 @@
   <string name="ErrorReportDisable">Вимкнути</string>
   <string name="ErrorReportAsk">Запитати після помилки</string>
   <string name="ErrorReportPrefTitle">Надсилати звіти про помилки</string>
-  <string name="ActivateAutoFillService_title">Активувати функцію автозаповнення?</string>
-  <string name="ActivateAutoFillService_message">Облікові дані можуть передаватися до інших програм кількома способами: Ви можете копіювати значення до буфера обміну, але майте на увазі, що буфер обміну не є безпечним в Android. Вбудована клавіатура дає повний доступ до обраного запису, але повинна бути активованою щоразу, коли ви хочете отримати доступ до облікових даних. На Android 5 і новіших, Keepass2Android може вводити ім\'я користувача і пароль автоматично, використовуючи службу автозаповнення.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Використовувати вбудовану клавіатуру</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Використовувати службу автозаповнення</string>
-  <string name="ActivateAutoFillService_toast">Будь ласка, увімкніть службу Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
+  <string name="ChangeLog_1_03">
+    Версія 1.03\n
+    * Вилучено службу автозаповнення на запит Google. Дивіться налаштування доступності паролів, щоб знайти плагін, який відтворює попередню функціональність.\n
+    * Знову додано можливість сховища для сторонніх програм.\n
+    * Вбудований засіб перегляду зображень для перегляду зображень без передавання їх до сторонніх програм.\n
+    * Оновлено OkHttp з метою виправлення проблем з деякими з\'єднаннями.\n
+    * Підтримка записів KeeTrayTOTP, тепер з підтримкою записів Steam.\n
+  </string>
   <string name="ChangeLog_1_02">
     Версія 1.02\n
     * Вдосконалення безпеки. Велика подяка за звіт про безпеку та співпрацю jean-baptiste.cayrou@thalesgroup.com та vincent.fargues@thalesgroup.com!\n

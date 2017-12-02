@@ -7,7 +7,7 @@
   <string name="AboutText">Το KP2A είναι ένας διαχειριστής κωδικών, ο οποίος παρέχει την δυνατότητα ανάγνωσης/εγγραφής των βάσεων δεδομένων του KeePass 2.x στο Android.</string>
   <string name="CreditsText">Το περιβάλλον εργασίας χρήστη βασίζεται σε μια έκδοση του KeepassDroid που αναπτύχθηκε από τον Brian Pellin. Ο κώδικας για τις λειτουργίες της βάσης δεδομένων βασίζεται στο KeePass του Dominik Reichl. Το ρομπότ Android αναπαράγεται ή τροποποιείται από εργασία που δημιουργήθηκε και διαμοιράστηκε από την Google και χρησιμοποιείται σύμφωνα με τους όρους που περιγράφονται στο το Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">Το SFTP υποστηρίζεται με χρήση της βιβλιοθήκης JSch με άδεια BSD που δημιουργήθηκε από τη JCraft, Inc.</string>
-  <string name="CreditsIcons">Το εικονίδιο Σφυρί δημιουργήθηκε από τον John Caserta στο Noun Project. Το εικονίδιο Πιγκουίνος δημιουργήθηκε από τον Adriano Emerick στο Noun Project. Το εικονίδιο Φτερό δημιουργήθηκε από τον Jon Testa στο Noun Project. Το εικονίδιο της Apple δημιουργήθηκε από την Ava Rowell στο Noun Project. </string>
+  <string name="CreditsIcons">Το εικονίδιο Σφυρί δημιουργήθηκε από τον John Caserta, το εικονίδιο Πιγκουίνος δημιουργήθηκε από τον Adriano Emerick, το εικονίδιο Φτερό δημιουργήθηκε από τον Jon Testa και το εικονίδιο της Apple δημιουργήθηκε από την Ava Rowell. Όλα τα προηγούμενα εικονίδια είναι από το Noun Project. Το εικονίδιο της Εικόνας είναι από το https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Αποδοχή</string>
   <string name="deny">Απόρριψη</string>
   <string name="add_entry">Προσθήκη καταχώρισης</string>
@@ -289,6 +289,7 @@
   <string name="SaveAttachmentDialog_text">Παρακαλώ επιλέξτε πού θα αποθηκεύσετε το συνημμένο.</string>
   <string name="SaveAttachmentDialog_save">Αποθήκευση σε κάρτα SD</string>
   <string name="SaveAttachmentDialog_open">Αποθήκευση σε προσωρινή μνήμη και άνοιγμα</string>
+  <string name="ShowAttachedImage">Προβολή με εσωτερικό πρόγραμμα προβολής εικόνων</string>
   <string name="SaveAttachment_doneMessage">Αποθήκευση αρχείου σε %1$s.</string>
   <string name="SaveAttachment_Failed">Το συνημμένο δεν μπορεί να αποθηκευτεί στο %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Απομνημόνευση κειμένου αναζήτησης;</string>
@@ -332,8 +333,9 @@
   <string name="ShowCopyToClipboardNotification_summary">Κάντε προσβάσιμο το όνομα χρήστη και το συνθηματικό μέσω της γραμμής ειδοποιήσεων και του προχείρου.</string>
   <string name="ShowSeparateNotifications_title">Χωριστές ειδοποιήσεις</string>
   <string name="ShowSeparateNotifications_summary">Εμφάνιση χωριστών ειδοποιήσεων για την αντιγραφή του ονόματος χρήστη και του συνθηματικού στο πρόχειρο και ενεργοποίηση του πληκτρολογίου.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Ειδοποίηση πληκτρολόγιο / αυτόματη συμπλήρωση</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Κάντε προσβάσιμη την πλήρη καταχώριση μέσω του πληκτρολογίου KP2A και της υπηρεσίας αυτόματης συμπλήρωσης (συνιστάται).</string>
+  <string name="AccServiceAutoFill_prefs">Αυτόματη συμπλήρωση υπηρεσίας προσβασιμότητας</string>
+  <string name="ShowKp2aKeyboardNotification_title">Ειδοποίηση πληκτρολογίου KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Κάντε προσβάσιμη την πλήρη καταχώριση μέσω του πληκτρολογίου KP2A (συνιστάται).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Εναλλαγή πληκτρολογίου</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Ανοίξτε το διάλογο επιλογής πληκτρολογίου όταν είναι διαθέσιμη είσοδος μέσω του πληκτρολογίου KP2A μετά από αναζήτηση από το πρόγραμμα περιήγησης.</string>
   <string name="kp2a_switch_rooted">Αυτόματη εναλλαγή πληκτρολογίου</string>
@@ -479,6 +481,10 @@
   <string name="TrayTotp_SettingsField_title">Όνομα πεδίου στις ρυθμίσεις TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Εισάγετε όνομα πεδίου από ρυθμίσεις TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Αρχείο καταχώρησης για αποσφαλματοποίηση</string>
+  <string name="DebugLog_title">Χρήση αρχείου καταχώρησης</string>
+  <string name="DebugLog_summary">Καταγραφή στοιχείων εφαρμογής σε τοπικό αρχείο καταχώρησης</string>
+  <string name="DebugLog_send">Αποστολή αρχείων καταγραφής εκσφαλμάτωσης...</string>
   <string name="loading">Φόρτωση&#8230;</string>
   <string name="plugins">Πρόσθετα</string>
   <string name="plugin_packagename">Όνομα πακέτου:</string>
@@ -563,12 +569,15 @@
   <string name="ErrorReportDisable">Απενεργοποίηση</string>
   <string name="ErrorReportAsk">Ερώτηση μετά από σφάλμα</string>
   <string name="ErrorReportPrefTitle">Αποστολή αναφοράς σφαλμάτων</string>
-  <string name="ActivateAutoFillService_title">Ενεργοποίηση αυτόματης συμπλήρωσης;</string>
-  <string name="ActivateAutoFillService_message">Διαπιστευτήρια μπορεί να μεταφερθούν σε άλλες εφαρμογές με διάφορους τρόπους: μπορείτε να αντιγράψετε τιμές στο πρόχειρο, αλλά σημειώστε ότι το πρόχειρο δεν είναι ασφαλές στο Android. Το ενσωματωμένο πληκτρολόγιο παρέχει πλήρη πρόσβαση στο επιλεγμένη καταχώριση, αλλά πρέπει να ενεργοποιείται κάθε φορά που θέλετε να έχετε πρόσβαση τα διαπιστευτήρια. Σε Android 5 και νεότερο, το Keepass2Android μπορεί να εισάγει όνομα χρήστη και συνθηματικό αυτόματα χρησιμοποιώντας την υπηρεσία αυτόματης συμπλήρωσης.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Χρησιμοποιήστε το ενσωματωμένο πληκτρολόγιο</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Χρησιμοποίηση της λειτουργίας αυτόματης συμπλήρωσης</string>
-  <string name="ActivateAutoFillService_toast">Ενεργοποιήστε την υπηρεσία Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Προβάλει το πληκτρολόγιο για εισαγωγή συνθηματικού όταν είναι ενεργή η σάρωση δακτυλικού αποτυπώματος.</string>
+  <string name="ChangeLog_1_03">
+Έκδοση 1.03\n
+    * Αφαιρέθηκε η υπηρεσία προσβασιμότητας έπειτα από απαίτηση της Google. Δείτε τις ρυθμίσεις κωδικών προσβασιμότητας για να βρείτε ένα πρόσθετο που να αντικαθιστά την λειτουργικότητα.\n
+    * Προστέθηκαν ξανά εφαρμογές τρίτων σαν επιλογές αποθήκευσης\n
+    * Ενσωματωμένο πρόγραμμα προβολής εικόνων για την προβολή συνημμένων εικόνων χωρίς να χρειάζεται η μεταφορά τους σε άλλη εφαρμογή\n
+    * Αναβάθμιση του OkHttp για διόρθωση λαθών σε κάποιες συνδέσεις\n
+    * Υποστήριξη για καταχωρήσεις KeeTrayTOTP, με υποστήριξη καταχωρήσεων Steam\n
+  </string>
   <string name="ChangeLog_1_02">
 Έκδοση 1.02\n
 * Αρκετές βελτιώσεις ασφαλείας. Ευχαριστώ πολύ για την έκθεση ασφάλειας των jean-baptiste.cayrou@thalesgroup.com και vincent.fargues@thalesgroup.com και για τη συνεργασία τους! \n 

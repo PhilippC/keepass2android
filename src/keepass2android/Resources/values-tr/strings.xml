@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android Android üzerinde KeePass 2.x veritabanları için okuma/yazma erişimi sağlayan bir şifre yöneticisidir.</string>
   <string name="CreditsText">Kullanıcı ara yüzü Brian Pellin tarafından geliştirilen KeepasDroid\'e dayanmaktadır. Veritabanı işlemleri Dominik Reichl tarafından geliştirilen KeePass\'a dayanmaktadır. Google tarafından üretilen ve paylaşılan Android robot \"Creative Commons 3.0 Attribution Licence\" kurallarına göre yeniden üretilmiş yada değiştirilmiştir.</string>
   <string name="CreditsTextSFTP">SFTP desteği BSD lisanslıdır, JCraft, Inc. tarafından oluşturulmuştur.</string>
-  <string name="CreditsIcons">Çekiç simgesi Noun Project sitesinden John Caserta tarafından oluşturuldu. Penguen simgesi Noun Project sitesinden Adriano Emerick tarafından oluşturuldu. Tüy simgesi Noun Project sitesinden Jon Testa tarafından oluşturuldu. Elma simgesi Noun Project sitesinden Ava Rowell tarafından oluşturuldu. </string>
   <string name="accept">Kabul et</string>
   <string name="deny">Reddet</string>
   <string name="add_entry">Kayıt ekle</string>
@@ -330,8 +329,6 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ShowCopyToClipboardNotification_summary">Kullanıcı adı ve parola bildirim çubuğu ve Pano üzerinden erişilebilir hale getirir. Parola algılayıcılara dikkat edin!</string>
   <string name="ShowSeparateNotifications_title">Bildirimler</string>
   <string name="ShowSeparateNotifications_summary">Kullanıcı adıyla parolayı panoya kopyalamak ve klavyeyi etkinleştirmek için bildirimleri göster.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Klavye/otomatik doldurma bildirimi</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Tüm kayıtları KP2A klavyesi ve otomatik doldurma hizmeti üzerinden erişebilir hale getir(önerilir).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Klavyeyi değiştir</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Tarayıcıdan arama yaptıktan sonra KP2A klavyesinden giriş mümkünse klavye seçim iletişim kutusunu açın.</string>
   <string name="kp2a_switch_rooted">Klavyeyi otomatik değiştir</string>
@@ -564,11 +561,6 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ErrorReportDisable">Devre dışı bırak</string>
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
-  <string name="ActivateAutoFillService_title">Otomatik Doldur özelliği etkinleştirilsin mi?</string>
-  <string name="ActivateAutoFillService_message">Kimlik bilgileri diğer uygulmalara birkaç yolla transfer edilebilir: Değerleri panoya kopyalabilirsiniz ama panonun güvenli olmadığını unutmayın. Yerleşik klavye seçilen kayıt için tam erişim verir ama kimlik bilgilerine erişmek istediğiniz her seferinde etkinleştirilmiş olması gerekir. Android 5 ve sonrasında, Keepass2Android otomatik doldurma servisini kullanarak kullanıcı adı ve parolayı doldurabilir.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Dahili klavyeyi kullan</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Otomatik Doldur hizmetini kullan</string>
-  <string name="ActivateAutoFillService_toast">Lütfen Keepass2Android hizmetini etkinleştirin.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
   <string name="ChangeLog_1_02">
     Sürüm 1.02\n

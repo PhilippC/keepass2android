@@ -86,7 +86,9 @@
 	<string name="TrayTotp_SettingsField_key">TrayTotp_SettingsField_key</string>
 	<string name="TrayTotp_SeedField_key">TrayTotp_SeedField_key</string>
 	<string name="TrayTotp_prefs_key">TrayTotp_prefs_key</string>
-	
+  <string name="DebugLog_key">DebugLog_key</string>
+  <string name="DebugLog_prefs_key">DebugLog_prefs_key</string>
+  <string name="DebugLog_send_key">DebugLog_send</string>
 	
 	<string name="password_access_prefs_key">password_access_prefs_key</string>
 	<string name="security_prefs_key">security_prefs_key</string>
@@ -121,7 +123,7 @@
 	<string name="about_prefs_key">about_prefs</string>
 
 	<string name="MarketURL">market://details?id=</string>
-	<string name="SuggestionsURL">https://keepass2android.codeplex.com/workitem/list/basic</string>
+	<string name="SuggestionsURL">https://github.com/PhilippC/keepass2android/issues</string>
 	<string name="TranslationURL">http://crowdin.net/project/keepass2android</string>
 	
 	<string name="CopyToClipboardNotification_key">ShowCopyToClipboardNotification</string>

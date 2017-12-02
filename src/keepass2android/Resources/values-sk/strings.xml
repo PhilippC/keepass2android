@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android je správca hesiel umožňujúci čítanie/zápis do databáz KeePass 2.x, v systéme Android.</string>
   <string name="CreditsText">Používateľské rozhranie je založené na porte aplikácie KeepassDroid od Briana Pellina. Kód pre operácie v databáze je založený na programe KeePass od Dominika Reichla. Robot Android je reprodukovaný alebo modifikovaný na základe práce vytvorenej a zdieľanej spoločnosťou Google a je použitý podľa podmienok v Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">Podpora pre SFTP je implementovaná s využitím knižnice JSch (s licenciou BSD), vytvorenej JCraft, Inc.</string>
-  <string name="CreditsIcons">Ikonu kladiva vytvoril John Caserta z projektu Noun Project. Ikonu tučniaka vytvoril Adriano Emerick z projektu Noun. Ikonu pera vytvoril Jon Testa z projektu Noun Project. Ikonu jablka vytvoril Ava Rowell z projektu Noun Project. </string>
+  <string name="CreditsIcons">Ikonu kladiva vytvoril John Caserta z projektu Noun Project. Ikonu tučniaka vytvoril Adriano Emerick z projektu Noun. Ikonu pera vytvoril Jon Testa z projektu Noun Project. Ikonu jablka vytvoril Ava Rowell z projektu Noun Project. Ikona obrázka pochádza zo stránky https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Prijať</string>
   <string name="deny">Odmietnuť</string>
   <string name="add_entry">Pridať záznam</string>
@@ -290,6 +290,7 @@
   <string name="SaveAttachmentDialog_text">Prosím vyberte, kam sa príloha uloží.</string>
   <string name="SaveAttachmentDialog_save">Uložiť na kartu SD</string>
   <string name="SaveAttachmentDialog_open">Uložiť do vyr. pamäte a otvoriť</string>
+  <string name="ShowAttachedImage">Zobraziť pomocou interného prehliadača obrázkov</string>
   <string name="SaveAttachment_doneMessage">Súbor uložený do %1$s.</string>
   <string name="SaveAttachment_Failed">Prílohu nemožno uložiť do %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Pamätať si hľadaný text?</string>
@@ -333,8 +334,9 @@
   <string name="ShowCopyToClipboardNotification_summary">Sprístupniť meno a heslo používateľa cez notifikačný panel a schránku. Pozor na možnosť krádeže hesla!</string>
   <string name="ShowSeparateNotifications_title">Oddeliť notifikácie</string>
   <string name="ShowSeparateNotifications_summary">Zobraziť oddelené notifikácie pre kopírovanie mena používateľa a hesla do schránky a aktivovanie klávesnice.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notifikácia pre klávesnicu/automatické doplnenie</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Sprístupniť celý záznam cez klávesnicu KP2A a službu autom. doplnenia (odporúča sa).</string>
+  <string name="AccServiceAutoFill_prefs">Automatické dopĺňanie - služba pre prístupnosť</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notifikácia klávesnice KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Sprístupniť celý záznam cez klávesnicu KP2A (odporúča sa).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Prepnúť klávesnicu</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Otvoriť dialóg výberu klávesnice, ak je po vyhľadaní z prehliadača alebo klávesnice dostupný záznam zadávaný cez klávesnicu KP2A.</string>
   <string name="kp2a_switch_rooted">Aut. prepnutie klávesnice</string>
@@ -480,6 +482,10 @@
   <string name="TrayTotp_SettingsField_title">Názov poľa pre nastavenia TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Sem zadajte názov poľa s nastaveniami pre TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Súbor so záznamami pre ladenie</string>
+  <string name="DebugLog_title">Použiť súbor so záznamami</string>
+  <string name="DebugLog_summary">Zapísať výstup aplikácie do lokálneho súboru so záznamom</string>
+  <string name="DebugLog_send">Odoslať záznam pre ladenie...</string>
   <string name="loading">Načítava sa&#8230;</string>
   <string name="plugins">Prídavné moduly</string>
   <string name="plugin_packagename">Názov balíčka:</string>
@@ -567,12 +573,15 @@
   <string name="ErrorReportDisable">Vypnúť</string>
   <string name="ErrorReportAsk">Opýtať sa po výskyte chyby</string>
   <string name="ErrorReportPrefTitle">Odosielanie záznamov o chybe</string>
-  <string name="ActivateAutoFillService_title">Aktivovať automatické dopĺňanie?</string>
-  <string name="ActivateAutoFillService_message">Prihlasovacie údaje je možné prenášať do iných aplikácii viacerými spôsobmi. Môžete skopírovať hodnoty do schránky, ale pamätajte prosím na to, že schránka systému Android nie je bezpečná. Zabudovaná klávesnica vám tiež poskytne úplný prístup k danému záznamu, ale je potrebné zapnúť ju vždy vtedy, keď zadávate prihlasovacie údaje. Na systéme Android 5 a novšom, môže aplikácia Keepass2Android doplniť meno používateľa a heslo aj automaticky, pomocou služby pre automatické dopĺňanie.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Použiť vstavanú klávesnicu</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Použiť službu pre automatické doplňanie</string>
-  <string name="ActivateAutoFillService_toast">Prosím zapnite službu Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
+  <string name="ChangeLog_1_03">
+    Verzia 1.03\n
+    * Odstránená služba pre prístupnosť pre funkciu automatického dopĺňania, podľa požiadavky Google. Ak chcete nájsť prídavný modul poskytujúci túto funkciu, prosím pozrite si nastavenia prístupu k heslu.\n
+    * Opätovné pridanie aplikácií tretích strán ako možnosť uloženia\n
+    * Integrovaný prehliadač obrázkov na prehliadanie pripojených obrázkov bez prenosu do iných aplikácií\n
+    * Aktualizácia pre OkHttp, kvôli oprave problémov s niektorými pripojeniami\n
+    * Podpora pre záznamy KeeTrayTOTP, teraz aj podpora záznamov Steam\n
+  </string>
   <string name="ChangeLog_1_02">
     Verzia 1.02\n
     * Niekoľko vylepšení zabezpečenia. Veľká vďaka za správu ohľadom zabezpečenia od jean-baptiste.cayrou@thalesgroup.com a vincent.fargues@thalesgroup.com a za ich spoluprácu!\n

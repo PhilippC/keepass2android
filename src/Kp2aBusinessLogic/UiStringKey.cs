@@ -84,10 +84,6 @@ namespace keepass2android
 		AskAddTemplatesMessage,
 		ReadOnlyReason_PreKitKat,
 		ReadOnlyReason_ReadOnlyFlag,
-		ReadOnlyReason_ReadOnlyKitKat,
-		ActivateAutoFillService_title,
-		ActivateAutoFillService_message,
-		ActivateAutoFillService_btnKeyboard,
-		ActivateAutoFillService_btnAutoFill
+		ReadOnlyReason_ReadOnlyKitKat
     }
 }

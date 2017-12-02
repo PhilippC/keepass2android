@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android to menedżer haseł umożliwiający odczyt i zapis baz danych programu KeePass 2.x w systemie Android.</string>
   <string name="CreditsText">Interfejs użytkownika jest wzorowany na aplikacji KeepassDroid opracowanej przez Briana Pellina. Kod źródłowy operacji na bazach danych jest oparty na aplikacji KeePass  Dominika Reichla. Robot Android jest kopią lub modyfikacją wizerunku stworzonego i udostępnianego przez Google i jest wykorzystywany zgodnie z zasadami opisanymi w Licencji Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Wsparcie SFTP jest zaimplementowane przy użyciu biblioteki JSch objętej licencją BSD, stworzonej przez JCraft, Inc.</string>
-  <string name="CreditsIcons">Ikona młota została stworzona przez Johna Caserta z Noun Project. Ikona pingwina została stworzona przez Adriano Emericka z Noun Project. Ikona pióra została stworzona przez Jona Testa z Noun Project. Ikona jabłka została stworzona przez Ava Rowell z Noun Project. </string>
+  <string name="CreditsIcons">Ikona młota została stworzona przez Johna Caserta z Noun Project. Ikona pingwina została stworzona przez Adriano Emericka z Noun Project. Ikona pióra została stworzona przez Jona Testa z Noun Project. Ikona jabłka została stworzona przez Ava Rowell z Noun Project. Ikona obrazka pochodzi z https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Akceptuj</string>
   <string name="deny">Zabroń</string>
   <string name="add_entry">Dodaj wpis</string>
@@ -289,6 +289,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="SaveAttachmentDialog_text">Wybierz gdzie zapisać załącznik.</string>
   <string name="SaveAttachmentDialog_save">Zapisz na karcie SD</string>
   <string name="SaveAttachmentDialog_open">Zapisz do pamięci podręcznej i otwórz</string>
+  <string name="ShowAttachedImage">Pokaż w wewnętrznej przeglądarce obrazów</string>
   <string name="SaveAttachment_doneMessage">Zapisano plik w %1$s.</string>
   <string name="SaveAttachment_Failed">Nie można zapisać załącznika do %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Zapamiętać wyszukiwany tekst?</string>
@@ -331,18 +332,20 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ShowCopyToClipboardNotification_title">Kopiuj dane do schowka</string>
   <string name="ShowCopyToClipboardNotification_summary">Udostępnienie nazwy użytkownika i hasła za pośrednictwem schowka i paska powiadomień. Uwaga na sniffery haseł!</string>
   <string name="ShowSeparateNotifications_title">Oddzielne powiadomienia</string>
-  <string name="ShowSeparateNotifications_summary">Pokaż oddzielne powiadomienia dla kopiowania nazwę użytkownika i hasła do schowka i aktywacji klawiatury.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Powiadomienie z klawiatury/autouzupełniania</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Utwórz pełny wpis dostępny przez klawiaturę KP2A i usługę autouzupełniania (zalecane).</string>
+  <string name="ShowSeparateNotifications_summary">Pokaż oddzielne powiadomienia dla kopiowania nazwy użytkownika i hasła do schowka oraz aktywacji klawiatury.</string>
+  <string name="AccServiceAutoFill_prefs">AutoUzupełnienie – usługa dostępności</string>
+  <string name="ShowKp2aKeyboardNotification_title">Powiadomienie klawiatury KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Udostępnij pełny wpis przez klawiaturę KP2A (zalecane).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Przełącz klawiaturę</string>
-  <string name="OpenKp2aKeyboardAutomatically_summary">Otwórz dialog wyboru klawiatury gdy wpis jest dostępny przez klawiaturę KP2A po wyszukiwaniu z przeglądarki lub z klawiatury.</string>
-  <string name="kp2a_switch_rooted">Pokaż klawiaturę</string>
-  <string name="get_keyboardswap">Zainstaluj wtyczkę KeyboardSwap</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Otwórz dialog wyboru klawiatury, gdy wpis jest dostępny przez klawiaturę KP2A po wyszukiwaniu z przeglądarki.</string>
+  <string name="kp2a_switch_rooted">Auto-przełącz klawiaturę</string>
+  <string name="kp2a_switch_rooted_summary">Automatycznie przełącz na klawiaturę KP2A po otwarciu wpisu. Wymaga poprawnie przygotowanej aplikacji KeyboardSwap Plugin lub urządzenia z dostępem root i aplikacji Secure Settings i System+.</string>
+  <string name="get_keyboardswap">Zainstaluj aplikację KeyboardSwap Plugin</string>
   <string name="get_keyboardswap_summary">Wtyczka umożliwia przełączanie do klawiatury KP2A na urządzeniu bez roota. Wymaga ADB. </string>
-  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatycznie przełącz tylko po szukaniu</string>
-  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Tylko przełącz klawiaturę automatycznie KP2A po użyciu funkcja Wyślij adresu URL (ale nie wtedy, gdy otwarto wpis w inny sposób)</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Auto-przełącz tylko po szukaniu</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Automatycznie przełącz na klawiaturę KP2A tylko po użyciu funkcji udostępniania URL (a nie, jeśli wpis otwierany jest w inny sposób)</string>
   <string name="AutoSwitchBackKeyboard_title">Przełącz klawiaturę z powrotem</string>
-  <string name="AutoSwitchBackKeyboard_summary">Przełączy do poprzedniej klawiatury jeśli nie otwarto wpisu.</string>
+  <string name="AutoSwitchBackKeyboard_summary">Przełącz do poprzedniej klawiatury, jeśli nie otwarto wpisu.</string>
   <string name="ShowUnlockedNotification_title">Ikona powiadomienia podczas blokady</string>
   <string name="ShowUnlockedNotification_summary">Pokazuje powiadomienie gdy baza danych gdy jest odblokowana.</string>
   <string name="PreloadDatabaseEnabled_title">Wstępnie wczytuj bazę danych</string>
@@ -478,6 +481,10 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="TrayTotp_SettingsField_title">Nazwa pola ustawień TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Podaj tutaj nazwę pola dla pola ustawień TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Plik dziennika do debugowania</string>
+  <string name="DebugLog_title">Użyj pliku dziennika</string>
+  <string name="DebugLog_summary">Zapisuj dane wyjściowe aplikacji do lokalnego pliku dziennika</string>
+  <string name="DebugLog_send">Wyślij dziennik debugowania...</string>
   <string name="loading">Ładowanie&#8230;</string>
   <string name="plugins">Wtyczki</string>
   <string name="plugin_packagename">Nazwa pakietu:</string>
@@ -565,12 +572,38 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ErrorReportDisable">Wyłącz</string>
   <string name="ErrorReportAsk">Zapytaj po wystąpieniu błędu</string>
   <string name="ErrorReportPrefTitle">Wyślij raporty o błędach</string>
-  <string name="ActivateAutoFillService_title">Włączyć autouzupełnianie?</string>
-  <string name="ActivateAutoFillService_message">Poświadczenia mogą być przenoszone do innych aplikacji na kilka sposobów: możesz skopiować wartości do schowka, ale pamiętaj, że schowek w Androidzie nie jest bezpieczny. Wbudowana klawiatura daje pełny dostęp do wybranego wpisu, ale musi być włączona za każdym razem, gdy chcesz mieć dostęp do poświadczeń. W Androidzie 5 i późniejszych, Keepass2Android może wprowadzać nazwę użytkownika i hasło automatycznie, używając usługi autouzupełniania.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Użyj wbudowanej klawiatury</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Użyj usługi autouzupełniania</string>
-  <string name="ActivateAutoFillService_toast">Proszę włączyć usługę Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
+  <string name="ChangeLog_1_03">
+Wersja 1.03\n
+    * Usunięto usługę dostępności AutoUzupełniania, zgodnie z żądaniem Google. Proszę zobaczyć ustawienia dostępu do hasła, gdzie można znaleźć plugin replikujący poprzednią funkcjonalność.\n
+    * Dodane ponownie aplikacje firm trzecich jako opcję przechowywania\n
+    * Zintegrowana przeglądarka obrazów do przeglądania bez przesyłania do innych aplikacji\n
+    * Uaktualnienie OkHttp rozwiązuje problemy z niektórymi połączeniami\n
+    * Wsparcie dla wpisów KeeTrayTOTP, teraz obsługuje wpisy Steam\n
+  </string>
+  <string name="ChangeLog_1_02">
+Wersja 1.02\n
+    * Kilka ulepszeń zabezpieczeń. Dzięki raportowi bezpieczeństwa jean-baptiste.cayrou@thalesgroup.com i vincent.fargues@thalesgroup.com oraz ich współpracy!\n
+    * Wsparcie dla KeyboardSwapPlugin (zobacz Opcje dostępu do hasła): pozwala przełączać metody wprowadzania automatycznie na urządzeniach bez root-a. Podziękowania dla Mishaal Rahman z XDA-Developers za uczynienie tego możliwym.\n
+    * Poprawki dla usługi ułatwień dostępu w ostatnich wersjach Chrome\n
+    * Poprawka dla niepotrzebnego czyszczenie danych linii papilarnych\n
+    * Poprawki drobnych awarii\n
+    * Zaktualizowane SDK Dropbox do zapewnienia przyszłej zgodności\n
+    * Usunięte raportowania błędów za pośrednictwem Xamarin Insights\n
+    * Aktualizacja narzędzi kompilacji\n
+  </string>
+  <string name="ChangeLog_1_01g">
+Wersja 1.01-g\n
+    * Poprawka do awarii podczas próby pracy offline\n
+    * Poprawka do nieprawidłowego kodowania poświadczeń FTP(S)\n
+    * Poprawka do awarii podczas korzystania z usługi OneDrive i na starszych wersjach Androida\n
+    * Wyświetlanie czasu jako czas lokalny na ekranie wpisu\n
+  </string>
+  <string name="ChangeLog_1_01d">
+Wersja 1.01-d\n
+    * Poprawka do listy plików OneDrive\n
+    * Zezwolenie, aby zignorować błędy certyfikatu również kiedy weryfikacji nazwy hosta nie powiedzie się, (nie zaleca się w wersji produkcyjnej)\n
+    * Poprawka do okazjonalnych problemów z SzybkieOdblokowanie pomimo prawidłowego kodu\n  </string>
   <string name="ChangeLog_0_9_8c">
 Wersja 0.9.8c\n
     * Poprawka luki bezpieczeństwa protokołu SSL w Microsoft Live SDK (używany podczas uzyskiwania dostępu do plików za pośrednictwem OneDrive)\n
@@ -824,5 +857,6 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Ostrzeż, gdy weryfikacja się nie powiedzie</item>
     <item>Nie akceptuj niezweryfikowanych certyfikatów</item>
   </string-array>
+  <string name="ClearClipboardWarning">Upewnij się, że to działa na twoim systemie, a jeśli nie to rozważ użycie wbudowanej klawiatury.</string>
   <string name="PluginDescription">Opis dostarczony przez wtyczkę:</string>
 </resources>

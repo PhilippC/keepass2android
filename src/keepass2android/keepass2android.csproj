@@ -115,7 +115,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivateAutoFillActivity.cs" />
+    <Compile Include="EntryActivityClasses\ViewImagePopupItem.cs" />
+    <Compile Include="ImageViewActivity.cs" />
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
     <Compile Include="addons\OtpKeyProv\OathHotpKeyProv.cs" />
     <Compile Include="addons\OtpKeyProv\OtpAuxCachingFileStorage.cs" />
@@ -128,7 +129,6 @@
     <Compile Include="ChallengeInfo.cs" />
     <Compile Include="CreateDatabaseActivity.cs" />
     <Compile Include="CreateNewFilename.cs" />
-    <Compile Include="Credentials.cs" />
     <Compile Include="EntryActivityClasses\CopyToClipboardPopupMenuIcon.cs" />
     <Compile Include="EntryActivityClasses\ExtraStringView.cs" />
     <Compile Include="EntryActivityClasses\GotoUrlMenuItem.cs" />
@@ -182,11 +182,14 @@
     <Compile Include="GroupBaseActivity.cs" />
     <Compile Include="LockCloseListActivity.cs" />
     <Compile Include="LockingListActivity.cs" />
+    <Compile Include="Totp\Base32.cs" />
     <Compile Include="Totp\ITotpPluginAdapter.cs" />
     <Compile Include="Totp\KeeOtpPluginAdapter.cs" />
     <Compile Include="Totp\Kp2aTotp.cs" />
+    <Compile Include="Totp\TimeCorrectionProvider.cs" />
     <Compile Include="Totp\TotpData.cs" />
-    <Compile Include="Totp\Totp_Client.cs" />
+    <Compile Include="Totp\TOTPEncoder.cs" />
+    <Compile Include="Totp\TOTPProvider.cs" />
     <Compile Include="Totp\TrayTotpPluginAdapter.cs" />
     <Compile Include="Totp\UpdateTotpTimerTask.cs" />
     <Compile Include="Utils\ActivityDesign.cs" />
@@ -689,7 +692,9 @@
     <AndroidResource Include="Resources\values-fi\strings.xml" />
     <AndroidResource Include="Resources\values-in\strings.xml" />
     <AndroidResource Include="Resources\values-ko\strings.xml" />
-    <AndroidResource Include="Resources\values-no\strings.xml" />
+    <AndroidResource Include="Resources\values-no\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\values-pt-rPT\strings.xml" />
     <AndroidResource Include="Resources\values-ro\strings.xml" />
     <AndroidResource Include="Resources\values-sl\strings.xml">
@@ -1688,6 +1693,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\owncloudcredentials.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ImageViewActivity.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_picture.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

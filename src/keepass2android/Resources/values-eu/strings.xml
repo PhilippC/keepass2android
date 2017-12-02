@@ -251,7 +251,6 @@
   <string name="CheckForFileChangesOnSave_title">Egiaztatu aldaketak</string>
   <string name="ShowCopyToClipboardNotification_title">Arbelaren jakinarazpenak</string>
   <string name="ShowSeparateNotifications_title">Banatutako jakinarazpenak</string>
-  <string name="ShowKp2aKeyboardNotification_title">Teklatua/Betetze automatikoaren jakinarazpena</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Aldatu teklatua</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatikoki aldatu bilaketa eta gero besterik ez</string>
   <string name="PreloadDatabaseEnabled_title">Aurrez kargatu datu-basearen fitxategia</string>
@@ -384,9 +383,6 @@
   <string name="ErrorReportDisable">Desgaitu</string>
   <string name="ErrorReportAsk">Galdetu errorea eta gero</string>
   <string name="ErrorReportPrefTitle">Bidali errore txostenak</string>
-  <string name="ActivateAutoFillService_title">Gaitu betetze automatikoa?</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Erabili barne teklatua</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Erabili osatze automatikoaren zerbitzua</string>
   <string name="ChangeLog_0_9_7">
 		0.9.7 bertsioa\n
 		* Keepass 1 (kdb) datu-baseak idazteko gaitasuna (beta!)\n

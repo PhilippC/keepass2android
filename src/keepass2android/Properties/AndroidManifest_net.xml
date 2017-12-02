@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="98" 
-			android:versionName="1.02" 
+			android:versionCode="102" 
+			android:versionName="1.03" 
 			package="keepass2android.keepass2android" 
 			android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
@@ -35,16 +35,6 @@
 				<category android:name="android.intent.category.OPENABLE" />
 			</intent-filter>
 		</activity>
-		<service android:name="keepass2android.autofill.AutoFillService"
-             android:enabled="true"
-			android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
-		  <intent-filter>
-			<action android:name="android.accessibilityservice.AccessibilityService" />
-		  </intent-filter>
-		  <meta-data
-		 android:name="android.accessibilityservice"
-		 android:resource="@xml/accserviceconfig" />
-		</service>
 
 		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">
 			<intent-filter>
@@ -148,9 +138,8 @@
 	<uses-permission android:name="android.permission.USE_CREDENTIALS" />
 	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 	<uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
-  <uses-permission android:name="keepass2android.keepass2android_debug.permission.KP2aInternalSearch" />
+  <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" />
 	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
-	<uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
 
 	<!-- Samsung Pass permission -->
 	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />

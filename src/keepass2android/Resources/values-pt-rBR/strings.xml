@@ -7,7 +7,7 @@
   <string name="AboutText">Keepass2Android é uma implementação do gerenciador de senhas KeePass.</string>
   <string name="CreditsText">A Interface do usuário baseia-se no KeepassDroid desenvolvido por Brian Pellin. Código para manipulação do banco de dados baseia-se no KeePass por Dominik Reichl. O robô Android é reproduzido ou modificado do trabalho criado e compartilhado pelo Google e utilizado de acordo com os termos descritos na licença Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">O suporte ao SFTP é implementado utilizando a biblioteca JSch sob licença BSD, criada por JCraft, Inc.</string>
-  <string name="CreditsIcons">O ícone do martelo foi criado por John Caserta do Projeto \"Noun\". O ícone do pinguim foi criado por Adriano Emerick do Projeto \"Noun\". O ícone da pena foi criado por Jon Testa do Projeto \"Noun\". O ícone da maçã foi criado por Ava Rowell do Projeto \"Noun\". </string>
+  <string name="CreditsIcons">O ícone do Martelo foi criado por John Caserta do Noun Project. O ícone do Pinguim foi criado por Adriano Emerick do Noun Project. O ícone da Pena foi criado por Jon Testa do Noun Project. O ícone da Maçã foi criado por Ava Rowell do Noun Project. O ícone da Imagem é de https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Aceitar</string>
   <string name="deny">Negar</string>
   <string name="add_entry">Adicionar entrada</string>
@@ -289,6 +289,7 @@
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja salvar o anexo.</string>
   <string name="SaveAttachmentDialog_save">Salvar para o cartão SD</string>
   <string name="SaveAttachmentDialog_open">Armazenar em cache e abrir</string>
+  <string name="ShowAttachedImage">Mostrar com visualizador de imagens interno</string>
   <string name="SaveAttachment_doneMessage">Salvo o arquivo em %1$s.</string>
   <string name="SaveAttachment_Failed">Não foi possível salvar o anexo em %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Lembrar do texto de pesquisa?</string>
@@ -332,8 +333,9 @@
   <string name="ShowCopyToClipboardNotification_summary">Tornar usuários e senhas disponíveis através da barra de notificações e da área de transferência. Cuidado com sniffers de senhas!</string>
   <string name="ShowSeparateNotifications_title">Notificações separadas</string>
   <string name="ShowSeparateNotifications_summary">Exibir notificações separadas para copiar nome de usuário e senha para área de transferência e ativar o teclado.</string>
-  <string name="ShowKp2aKeyboardNotification_title">Notificação do Teclado/Preenchimento Automático</string>
-  <string name="ShowKp2aKeyboardNotification_summary">Fazer a entrada inteira acessível através do teclado KP2A e do serviço de Preenchimento Automático (recomendado).</string>
+  <string name="AccServiceAutoFill_prefs">Serviço de Acessibilidade para Preenchimento Automático</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificação do teclado KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Tornar toda a entrada disponível através do teclado KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Trocar teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abre a seleção de teclados quando a inserção estiver disponível através do teclado KP2A após busca do navegador ou do teclado.</string>
   <string name="kp2a_switch_rooted">Trocar teclado automaticamente</string>
@@ -479,6 +481,10 @@
   <string name="TrayTotp_SettingsField_title">TOTP configurações nome do campo</string>
   <string name="TrayTotp_SettingsField_summary">Digite o nome do campo do campo de configurações para TrayTotp aqui.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Arquivo de Log para Depuração</string>
+  <string name="DebugLog_title">Usar arquivo de log</string>
+  <string name="DebugLog_summary">Escrever a saída da App em arquivo de log local</string>
+  <string name="DebugLog_send">Enviar log de depuração...</string>
   <string name="loading">Carregando&#8230;</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Nome do pacote:</string>
@@ -566,12 +572,15 @@
   <string name="ErrorReportDisable">Desabilitar</string>
   <string name="ErrorReportAsk">Perguntar após erro</string>
   <string name="ErrorReportPrefTitle">Enviar relatórios de erros</string>
-  <string name="ActivateAutoFillService_title">Ativar preenchimento automático?</string>
-  <string name="ActivateAutoFillService_message">As credenciais podem ser transferidas para outros apps de várias maneiras: você pode copiar os valores de transferência, mas por favor, note que a área de transferência não é segura no Android. O teclado embutido dá acesso completo a entrada selecionada, mas deve ser habilitado para cada vez que você deseja acessar as credenciais. No Android 5 e posteriores, Keepass2Android pode inserir nome de usuário e senha automaticamente usando o serviço de preenchimento automático.</string>
-  <string name="ActivateAutoFillService_btnKeyboard">Utilizar teclado nativo</string>
-  <string name="ActivateAutoFillService_btnAutoFill">Utilizar o serviço de preenchimento automático</string>
-  <string name="ActivateAutoFillService_toast">Favor habilitar o serviço Keepass2Android.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostre o teclado compacto para senhas quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_03">
+    Versão 1.03\n
+    * Remoção do Serviço de Acessibilidade para Preenchimento Automático conforme requisitado pelo Google. Favor consultar as Configuraçãoes de acesso à senha para encontrar um plugin que replica a funcionalidade anterior\n
+    * Adição de Apps de terceiros como opção de armazenamento novamente\n
+    * Visualizador de imagens integrado para visualização de imagens anexadas sem transferí-las para outros Apps\n
+    * Atualização da biblioteca OkHttp para correção de problemas com algumas conexões\n
+    * Suporte para entradas KeeTrayTOTP, agora com suporte a entradas Steam\n
+  </string>
   <string name="ChangeLog_1_02">
 Versão 1.02\n
   * Diversas melhorias de segurança. Muito obrigado pelo informe de segurança de jean-baptiste.cayrou@thalesgroup.com e  vincent.fargues@thalesgroup.com e sua colaboração!\n

@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android е мениджър за пароли който осигурява достъп четене/записване до KeePass 2.x база данни на Android.</string>
   <string name="CreditsText">Потребителският интерфейс е базиран на KeepassDroid създаден от Brian Pellin. Кода действие на базите данни е базиран на KeePass на Dominik Reichl. Робота Android е репродукция или модифициран от разработения и споделен от Google и се използва в съответствие с  лиценза Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP поддръжка се осъществява чрез използване на библиотеката на JSch под BSD лиценз, създаден от JCraft, Inc.</string>
-  <string name="CreditsIcons">Иконата на чук е създадена от Джон Казерта от проекта \"Съществително\". Иконата на пингвин е създадена от Адриано Емерик от проекта \"Съществително\". Иконата на перо е създадена от Джон Теста от проекта \"Съществително\". Иконата на ябълка е създадена от Ава Роуел от проекта \"Съществително\". </string>
   <string name="accept">Приемам</string>
   <string name="deny">Отказано</string>
   <string name="add_entry">Добавям запис</string>

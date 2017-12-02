@@ -7,7 +7,6 @@
   <string name="AboutText">Keepass2Android је управљач лозинкама који пружа читање и уписивање у KeePass 2.x базе података на Android-у.</string>
   <string name="CreditsText">Кориснички интерфејс је базиран на порту KeepassDroid апликације коју је направио Brian Pellin. Изворни код операција над базом података је заснован на коду KeePass апликације Dominik Reichl-а. Android робот икона је репродукована или измењена према делу креираном и дељеном од стране Google-а и коришћена је у складу са условима описаним у Creative Commons 3.0 Attribution лиценци.</string>
   <string name="CreditsTextSFTP">Подршка за SFTP је имплементирана користећи библиотеку \"JSch\" под BSD лиценцом, креирао JCraft, Inc.</string>
-  <string name="CreditsIcons">Hamмer икону je креирао John Caserta из Ноун пројекта. Пингвин икону је креирао Adriano Emerick из Noun пројекта. Перо икону је креирао Jon Testa из Noun пројекта. Apple икону је креирао Ava Rowell из Noun пројекта. </string>
   <string name="accept">Прихвати</string>
   <string name="deny">Одбиј</string>
   <string name="add_entry">Додај ставку</string>

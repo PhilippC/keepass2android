@@ -18,6 +18,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Android;
+using Android.App;
+using Android.Content;
 using Android.Preferences;
 using KeePassLib.Serialization;
 
@@ -57,7 +60,7 @@ namespace keepass2android
 
 		private static string LogFilename
 		{
-			get { return "/mnt/sdcard/keepass2android.log"; }
+			get { return Application.Context.FilesDir.CanonicalPath +"/keepass2android.log"; }
 		}
 
 		private static bool LogToFile
@@ -76,6 +79,44 @@ namespace keepass2android
 			Log(exception.ToString());
 			if (OnUnexpectedError != null)
 				OnUnexpectedError(null, exception);
+		}
+
+		public static void CreateLogFile()
+		{
+			if (!File.Exists(LogFilename))
+			{
+				File.Create(LogFilename);
+				_logToFile = true;
+			}
+			
+
+		}
+
+		public static void FinishLogFile()
+		{
+			if (File.Exists(LogFilename))
+			{
+				_logToFile = false;
+				int count = 0;
+				while (File.Exists(LogFilename + "." + count))
+					count++;
+				File.Move(LogFilename, LogFilename + "." + count);
+				
+			}
+				
+		}
+
+		public static void SendLog(Context ctx)
+		{
+			if (!File.Exists(LogFilename))
+				return;
+			Intent sendIntent = new Intent();
+			sendIntent.SetAction(Intent.ActionSend);
+			sendIntent.PutExtra(Intent.ExtraText, File.ReadAllText(LogFilename));
+			sendIntent.PutExtra(Intent.ExtraEmail, "crocoapps@gmail.com");
+			sendIntent.PutExtra(Intent.ExtraSubject, "Keepass2Android log");
+			sendIntent.SetType("text/plain");
+			ctx.StartActivity(Intent.CreateChooser(sendIntent, "Send log to..."));
 		}
 	}
 }

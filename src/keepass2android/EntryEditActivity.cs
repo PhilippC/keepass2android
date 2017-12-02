@@ -805,7 +805,7 @@ namespace keepass2android
 				addBinaryButton.Enabled = !State.Entry.Binaries.Any();
 			addBinaryButton.Click += (sender, e) => 
 			{
-				Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForBinary, false, false);
+				Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForBinary, false, true /*force OpenDocument if available, GetContent is not well support starting with Android 7 */);
 
 			};
 			binariesGroup.AddView(addBinaryButton,layoutParams);
