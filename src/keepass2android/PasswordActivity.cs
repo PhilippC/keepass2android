@@ -1976,8 +1976,15 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
+                //exception can happen here if the app was restored from Google Backup (including preferences) but no fingerprint data is there.
 				btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-				btn.Tag = "Error initializing Fingerprint Unlock: " + e;
+			    Kp2aLog.Log("failed to init fingerprint unlock:" + e.ToString());
+                string error = GetString(Resource.String.FingerprintInitFailed) + " " +
+			                   GetString(Resource.String.fingerprint_reenable2);
+			    
+                btn.Tag = error;
+
+			    Toast.MakeText(this, Resource.String.fingerprint_reenable2, ToastLength.Long).Show();
 
 				_fingerprintDec = null;
 				return false;
@@ -1991,7 +1998,7 @@ namespace keepass2android
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 //key invalidated permanently
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-			btn.Tag = GetString(Resource.String.fingerprint_unlock_failed);
+			btn.Tag = GetString(Resource.String.fingerprint_unlock_failed) + " " + GetString(Resource.String.fingerprint_reenable2);
 			_fingerprintDec = null;
 
 			ClearFingerprintUnlockData();
@@ -2122,7 +2129,7 @@ namespace keepass2android
 						_act.ClearFingerprintUnlockData();
 						_act.InitFingerprintUnlock();
 
-						Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey);
+						Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey) + " " + _act.GetString(Resource.String.fingerprint_reenable2);
 					}
 					else
 					{

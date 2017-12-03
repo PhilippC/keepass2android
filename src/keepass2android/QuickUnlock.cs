@@ -305,8 +305,8 @@ namespace keepass2android
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 //key invalidated permanently
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-			btn.Tag = GetString(Resource.String.fingerprint_unlock_failed);
-			_fingerprintIdentifier = null;
+		    btn.Tag = GetString(Resource.String.fingerprint_unlock_failed) + " " + GetString(Resource.String.fingerprint_reenable2);
+            _fingerprintIdentifier = null;
 		}
 
 		private void ClearFingerprintUnlockData()
