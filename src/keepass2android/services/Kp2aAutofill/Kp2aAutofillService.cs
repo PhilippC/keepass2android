@@ -3,6 +3,7 @@ using Android;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
+using keepass2android.services.AutofillBase;
 using AutofillServiceBase = keepass2android.services.AutofillBase.AutofillServiceBase;
 
 namespace keepass2android.services
@@ -23,16 +24,6 @@ namespace keepass2android.services
         {
         }
 
-        public override IntentSender GetAuthIntentSenderForResponse(Context context)
-        {
-            Intent intent = new Intent(context, typeof(KeePass));
-            return PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.CancelCurrent).IntentSender;
-        }
-
-        public override IntentSender GetAuthIntentSenderForDataset(Context context, string dataset)
-        {
-            //TODO implement
-            return GetAuthIntentSenderForResponse(context);
-        }
+        public override IAutofillIntentBuilder IntentBuilder => new Kp2aAutofillIntentBuilder();
     }
 }

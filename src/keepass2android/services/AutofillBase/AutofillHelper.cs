@@ -72,7 +72,7 @@ namespace keepass2android.services.AutofillBase
 	    /// <param name="autofillFields">Autofill fields.</param>
 	    /// <param name="clientFormDataMap">Client form data map.</param>
 	    /// <param name="intentBuilder"></param>
-	    public static FillResponse NewResponse(Context context, bool datasetAuth, keepass2android.services.AutofillBase.AutofillFieldMetadataCollection autofillFields, Dictionary<string, FilledAutofillFieldCollection> clientFormDataMap, IAutofillIntentBuilder intentBuilder)
+	    public static FillResponse NewResponse(Context context, bool datasetAuth, AutofillFieldMetadataCollection autofillFields, Dictionary<string, FilledAutofillFieldCollection> clientFormDataMap, IAutofillIntentBuilder intentBuilder)
 		{
 			var responseBuilder = new FillResponse.Builder();
 			if (clientFormDataMap != null)

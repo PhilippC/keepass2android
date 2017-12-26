@@ -9,11 +9,12 @@ namespace keepass2android.services.AutofillBase
 {
     public interface IAutofillIntentBuilder
     {
-        IntentSender GetAuthIntentSenderForResponse(Context context);
+        IntentSender GetAuthIntentSenderForResponse(Context context, string query);
         IntentSender GetAuthIntentSenderForDataset(Context context, string dataset);
+        Intent GetRestartAppIntent(Context context);
     }
 
-    public abstract class AutofillServiceBase: AutofillService, IAutofillIntentBuilder
+    public abstract class AutofillServiceBase: AutofillService
     {
         public AutofillServiceBase()
         {
@@ -41,10 +42,11 @@ namespace keepass2android.services.AutofillBase
                 Log.Warn(CommonUtil.Tag, "Cancel autofill not implemented yet.");
             };
             // Parse AutoFill data in Activity
+            string query = null;
             var parser = new StructureParser(this, structure);
             try
             {
-                parser.ParseForFill();
+                query = parser.ParseForFill();
             }
             catch (Java.Lang.SecurityException e)
             {
@@ -53,7 +55,7 @@ namespace keepass2android.services.AutofillBase
                 return;
             }
             
-            keepass2android.services.AutofillBase.AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
+            AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
             var responseBuilder = new FillResponse.Builder();
             // Check user's settings for authenticating Responses and Datasets.
             bool responseAuth = true;
@@ -62,7 +64,7 @@ namespace keepass2android.services.AutofillBase
             {
                 // If the entire Autofill Response is authenticated, AuthActivity is used
                 // to generate Response.
-                var sender = GetAuthIntentSenderForResponse(this);
+                var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query);
                 var presentation = keepass2android.services.AutofillBase.AutofillHelper
                     .NewRemoteViews(PackageName, GetString(Resource.String.autofill_sign_in_prompt),
                         Resource.Drawable.ic_launcher);
@@ -73,7 +75,7 @@ namespace keepass2android.services.AutofillBase
             else
             {
                 var datasetAuth = true;
-                var response = keepass2android.services.AutofillBase.AutofillHelper.NewResponse(this, datasetAuth, autofillFields, null, this);
+                var response = AutofillHelper.NewResponse(this, datasetAuth, autofillFields, null, IntentBuilder);
                 callback.OnSuccess(response);
             }
         }
@@ -95,7 +97,6 @@ namespace keepass2android.services.AutofillBase
             Log.Debug(CommonUtil.Tag, "onDisconnected");
         }
 
-        public abstract IntentSender GetAuthIntentSenderForResponse(Context context);
-        public abstract IntentSender GetAuthIntentSenderForDataset(Context context, string dataset);
+        public abstract IAutofillIntentBuilder IntentBuilder{get;}
     }
 }

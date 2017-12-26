@@ -6,22 +6,22 @@ using Android.Views.Autofill;
 
 namespace keepass2android.services.AutofillBase.model
 {
-	/// <summary>
-	/// FilledAutofillFieldCollection is the model that holds all of the data on a client app's page,
-	/// plus the dataset name associated with it.
-	/// </summary>
-	public class FilledAutofillFieldCollection
+    /// <summary>
+    /// FilledAutofillFieldCollection is the model that holds all of the data on a client app's page,
+    /// plus the dataset name associated with it.
+    /// </summary>
+    public class FilledAutofillFieldCollection
 	{
-		public Dictionary<string, keepass2android.services.AutofillBase.model.FilledAutofillField> HintMap { get; set; }
+		public Dictionary<string, FilledAutofillField> HintMap { get; set; }
 		public string DatasetName { get; set; }
 
-		public FilledAutofillFieldCollection(Dictionary<string, keepass2android.services.AutofillBase.model.FilledAutofillField> hintMap, string datasetName = "")
+		public FilledAutofillFieldCollection(Dictionary<string, FilledAutofillField> hintMap, string datasetName = "")
 		{
 			HintMap = hintMap;
 			DatasetName = datasetName;
 		}
 
-		public FilledAutofillFieldCollection() : this(new Dictionary<string, keepass2android.services.AutofillBase.model.FilledAutofillField>()) 
+		public FilledAutofillFieldCollection() : this(new Dictionary<string, FilledAutofillField>()) 
 		{}
 
 		/// <summary>
@@ -29,7 +29,7 @@ namespace keepass2android.services.AutofillBase.model
 		/// </summary>
 		/// <returns>The add.</returns>
 		/// <param name="filledAutofillField">Filled autofill field.</param>
-		public void Add(keepass2android.services.AutofillBase.model.FilledAutofillField filledAutofillField)
+		public void Add(FilledAutofillField filledAutofillField)
 		{
 			string[] autofillHints = filledAutofillField.AutofillHints;
 		    //TODO apply W3C transformation
