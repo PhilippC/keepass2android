@@ -3,19 +3,12 @@ using Android.Views.Autofill;
 
 namespace keepass2android.services.AutofillBase.model
 {
-	/// <summary>
-	/// JSON serializable data class containing the same data as an {@link AutofillValue}.
-	/// </summary>
 	public class FilledAutofillField
 	{
 		public string TextValue { get; set; }
 		public long? DateValue { get; set; }
 		public bool? ToggleValue { get; set; }
-
-		/// <summary>
-		/// Does not need to be serialized into persistent storage, so it's not exposed.
-		/// </summary>
-		/// <value>The autofill hints.</value>
+        
 		public string[] AutofillHints { get; set; }
 
 		public FilledAutofillField()
@@ -44,8 +37,6 @@ namespace keepass2android.services.AutofillBase.model
 				}
 				else if (autofillValue.IsText)
 				{
-					// Using toString of AutofillValue.getTextValue in order to save it to
-					// SharedPreferences.
 					TextValue = autofillValue.TextValue;
 				}
 			}
@@ -63,7 +54,7 @@ namespace keepass2android.services.AutofillBase.model
 
 			FilledAutofillField that = (FilledAutofillField)obj;
 
-			if (TextValue != null ? !TextValue.Equals(that.TextValue) : that.TextValue != null)
+			if (!TextValue?.Equals(that.TextValue) ?? that.TextValue != null)
 				return false;
 			if (DateValue != null ? !DateValue.Equals(that.DateValue) : that.DateValue != null)
 				return false;

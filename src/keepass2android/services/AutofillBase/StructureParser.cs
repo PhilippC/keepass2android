@@ -25,14 +25,14 @@ namespace keepass2android.services.AutofillBase
 			AutofillFields = new keepass2android.services.AutofillBase.AutofillFieldMetadataCollection();
 		}
 
-		public void ParseForFill()
+		public string ParseForFill()
 		{
-			Parse(true);
+			return Parse(true);
 		}
 
-		public void ParseForSave()
+		public string ParseForSave()
 		{
-			Parse(false);
+			return Parse(false);
 		}
 
 		/// <summary>
@@ -40,7 +40,7 @@ namespace keepass2android.services.AutofillBase
 		/// </summary>
 		/// <returns>The parse.</returns>
 		/// <param name="forFill">If set to <c>true</c> for fill.</param>
-		void Parse(bool forFill)
+		string Parse(bool forFill)
 		{
 			Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, "Parsing structure for " + Structure.ActivityComponent);
 			var nodes = Structure.WindowNodeCount;
@@ -67,7 +67,8 @@ namespace keepass2android.services.AutofillBase
 		    {
 		        Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, "no web domain");
 		    }
-        }
+		    return webDomain;
+		}
 
 		void ParseLocked(bool forFill, AssistStructure.ViewNode viewNode, ref string validWebdomain)
 		{
