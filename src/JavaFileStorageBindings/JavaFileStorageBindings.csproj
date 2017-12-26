@@ -50,15 +50,6 @@
     <Reference Include="GooglePlayServicesLib">
       <HintPath>..\Components\googleplayservices-19.0.0\lib\android\GooglePlayServicesLib.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\Components\googleplayservices-19.0.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>..\Components\googleplayservices-19.0.0\lib\android\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
-      <HintPath>..\Components\googleplayservices-19.0.0\lib\android\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
