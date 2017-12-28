@@ -65,17 +65,13 @@ namespace keepass2android.services.AutofillBase
             if (responseAuth && autofillIds.Length != 0)
             {
                 var responseBuilder = new FillResponse.Builder();
-                // If the entire Autofill Response is authenticated, AuthActivity is used
-                // to generate Response.
+                
                 var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query);
-                RemoteViews presentation = keepass2android.services.AutofillBase.AutofillHelper
-                    .NewRemoteViews(PackageName, GetString(Resource.String.autofill_sign_in_prompt),
-                        Resource.Drawable.ic_launcher);
+                RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName, GetString(Resource.String.autofill_sign_in_prompt),Resource.Drawable.ic_launcher);
 
                 var datasetBuilder = new Dataset.Builder(presentation);
-
-                datasetBuilder
-                    .SetAuthentication(sender);
+                datasetBuilder.SetAuthentication(sender);
+                //need to add placeholders so we can directly fill after ChooseActivity
                 foreach (var autofillId in autofillIds)
                 {
                     datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));

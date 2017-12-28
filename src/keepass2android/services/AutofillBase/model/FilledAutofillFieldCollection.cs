@@ -139,8 +139,7 @@ namespace keepass2android.services.AutofillBase.model
         /// <returns><c>true</c>, if to fields was applyed, <c>false</c> otherwise.</returns>
         /// <param name="autofillFieldMetadataCollection">Autofill field metadata collection.</param>
         /// <param name="datasetBuilder">Dataset builder.</param>
-        public bool ApplyToFields(AutofillFieldMetadataCollection autofillFieldMetadataCollection,
-			Dataset.Builder datasetBuilder)
+        public bool ApplyToFields(AutofillFieldMetadataCollection autofillFieldMetadataCollection, Dataset.Builder datasetBuilder)
 		{
 			bool setValueAtLeastOnce = false;
 			List<string> allHints = autofillFieldMetadataCollection.AllAutofillHints;
@@ -152,14 +151,14 @@ namespace keepass2android.services.AutofillBase.model
 				{
 					continue;
 				}
-				for (int autofillFieldIndex = 0; autofillFieldIndex < fillableAutofillFields.Count; autofillFieldIndex++)
+				foreach (AutofillFieldMetadata autofillFieldMetadata in fillableAutofillFields)
 				{
 					FilledAutofillField filledAutofillField;
 					if (!HintMap.TryGetValue(hint, out filledAutofillField) || (filledAutofillField == null))
 					{
 						continue;
 					}
-					AutofillFieldMetadata autofillFieldMetadata = fillableAutofillFields[autofillFieldIndex];
+				    
 					var autofillId = autofillFieldMetadata.AutofillId;
 					var autofillType = autofillFieldMetadata.AutofillType;
 					switch (autofillType)

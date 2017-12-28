@@ -48,11 +48,6 @@ namespace keepass2android.services.AutofillBase
             StartActivityForResult(i, RequestCodeQuery);
         }
 
-        protected override void OnStart()
-        {
-            base.OnStart();
-        }
-
         protected abstract Intent GetQueryIntent(string requestedUrl);
 
         protected void RestartApp()
