@@ -217,6 +217,7 @@
     <Compile Include="services\AutofillBase\AutofillFieldMetadata.cs" />
     <Compile Include="services\AutofillBase\AutofillFieldMetadataCollection.cs" />
     <Compile Include="services\AutofillBase\AutofillHelper.cs" />
+    <Compile Include="services\AutofillBase\AutofillHintsHelper.cs" />
     <Compile Include="services\AutofillBase\AutofillServiceBase.cs" />
     <Compile Include="services\AutofillBase\ChooseForAutofillActivityBase.cs" />
     <Compile Include="services\AutofillBase\CommonUtil.cs" />

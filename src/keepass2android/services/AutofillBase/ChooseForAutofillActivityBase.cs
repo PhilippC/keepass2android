@@ -22,7 +22,7 @@ namespace keepass2android.services.AutofillBase
 
         public static string ExtraQueryString => "EXTRA_QUERY_STRING";
 
-        public int RequestCodeQuery => 663245;
+        public int RequestCodeQuery => 6245;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -46,6 +46,11 @@ namespace keepass2android.services.AutofillBase
 
             var i = GetQueryIntent(requestedUrl);
             StartActivityForResult(i, RequestCodeQuery);
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
         }
 
         protected abstract Intent GetQueryIntent(string requestedUrl);
@@ -80,21 +85,12 @@ namespace keepass2android.services.AutofillBase
         protected void OnSuccess(FilledAutofillFieldCollection clientFormDataMap)
         {
             var intent = Intent;
-            var forResponse = intent.GetBooleanExtra(CommonUtil.EXTRA_FOR_RESPONSE, true);
             AssistStructure structure = (AssistStructure)intent.GetParcelableExtra(AutofillManager.ExtraAssistStructure);
             StructureParser parser = new StructureParser(this, structure);
             parser.ParseForFill();
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
             ReplyIntent = new Intent();
-            if (forResponse)
-            {
-                Dictionary<string, FilledAutofillFieldCollection> dict = new Dictionary<string, FilledAutofillFieldCollection> { {clientFormDataMap.DatasetName, clientFormDataMap }};
-                SetResponseIntent(AutofillHelper.NewResponse(this, false, autofillFields, dict, IntentBuilder));
-            }
-            else
-            {
-                SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, clientFormDataMap, false, IntentBuilder));
-            }
+            SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, clientFormDataMap, false, IntentBuilder));
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -103,14 +99,19 @@ namespace keepass2android.services.AutofillBase
 
             if (requestCode == RequestCodeQuery)
             {
-                if (resultCode != Result.Ok)
-                    OnFailure();
-                else
+                if (resultCode == ExpectedActivityResult)
                     OnSuccess(GetDataset(data));
+                else
+                OnFailure(); 
                 Finish();
 
             }
 
+        }
+
+        protected virtual Result ExpectedActivityResult
+        {
+            get { return Result.Ok; }
         }
 
         /// <summary>

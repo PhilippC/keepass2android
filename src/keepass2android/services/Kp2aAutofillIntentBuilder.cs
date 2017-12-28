@@ -9,6 +9,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using keepass2android.services.AutofillBase;
+using keepass2android.services.Kp2aAutofill;
 
 namespace keepass2android.services
 {
@@ -17,7 +18,8 @@ namespace keepass2android.services
 
         public IntentSender GetAuthIntentSenderForResponse(Context context, string query)
         {
-            Intent intent = new Intent(context, typeof(KeePass));
+            Intent intent = new Intent(context, typeof(ChooseForAutofillActivity));
+            intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryString, query);
             return PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.CancelCurrent).IntentSender;
         }
 

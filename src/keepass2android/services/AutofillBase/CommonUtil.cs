@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Android.OS;
+using Android.Util;
 using Java.Util;
 
 namespace keepass2android.services.AutofillBase
@@ -9,8 +10,6 @@ namespace keepass2android.services.AutofillBase
     {
         public const string Tag = "Kp2aAutofill";
         public const bool Debug = true;
-        public const string EXTRA_DATASET_NAME = "dataset_name";
-        public const string EXTRA_FOR_RESPONSE = "for_response";
 
         static void BundleToString(StringBuilder builder, Bundle data)
         {
@@ -42,6 +41,18 @@ namespace keepass2android.services.AutofillBase
             StringBuilder builder = new StringBuilder();
             BundleToString(builder, data);
             return builder.ToString();
+        }
+
+        public static void logd(string s)
+        {
+#if DEBUG
+            Log.Debug(Tag, s);
+#endif
+        }
+
+        public static void loge(string s)
+        {
+            Kp2aLog.Log(s);
         }
     }
 }

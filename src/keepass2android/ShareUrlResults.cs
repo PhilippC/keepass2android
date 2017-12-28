@@ -142,8 +142,13 @@ namespace keepass2android
             FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 
 			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
-			selectOtherEntry.Click += (sender, e) => {
-				GroupActivity.Launch (this, new SelectEntryForUrlTask(url));
+
+		    var newTask = new SelectEntryForUrlTask(url);
+		    if (AppTask is SelectEntryTask currentSelectTask)
+		        newTask.ShowUserNotifications = currentSelectTask.ShowUserNotifications;
+            
+            selectOtherEntry.Click += (sender, e) => {
+				GroupActivity.Launch (this, newTask);
 			};
 
 			

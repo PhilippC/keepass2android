@@ -40,7 +40,7 @@ namespace keepass2android.services.AutofillBase
 			{
 				if (!AutofillHintsToFieldsMap.ContainsKey(hint))
 				{
-					AutofillHintsToFieldsMap.Add(hint, new List<keepass2android.services.AutofillBase.AutofillFieldMetadata>());
+					AutofillHintsToFieldsMap.Add(hint, new List<AutofillFieldMetadata>());
 				}
 				AutofillHintsToFieldsMap[hint].Add(autofillFieldMetadata);
 			}
@@ -51,7 +51,7 @@ namespace keepass2android.services.AutofillBase
 			return AutofillIds.ToArray();
 		}
 
-		public List<keepass2android.services.AutofillBase.AutofillFieldMetadata> GetFieldsForHint(String hint)
+		public List<AutofillFieldMetadata> GetFieldsForHint(String hint)
 		{
 			return AutofillHintsToFieldsMap[hint];
 		}

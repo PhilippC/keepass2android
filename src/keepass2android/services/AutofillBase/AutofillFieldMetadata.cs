@@ -28,9 +28,11 @@ namespace keepass2android.services.AutofillBase
 			AutofillType = view.AutofillType;
 			AutofillOptions = view.GetAutofillOptions();
 			Focused = view.IsFocused;
-            //TODO port and use AutoFillHints
-			SetHints(AutofillHelper.FilterForSupportedHints(view.GetAutofillHints()));
-		}
+		    var supportedHints = AutofillHintsHelper.FilterForSupportedHints(view.GetAutofillHints());
+		    var storedHints = AutofillHintsHelper.ConvertToStoredHints(supportedHints);
+            SetHints(storedHints.ToArray());
+
+        }
 
 		void SetHints(string[] value)
 		{
@@ -58,6 +60,7 @@ namespace keepass2android.services.AutofillBase
 
 		void UpdateSaveTypeFromHints()
 		{
+            //TODO future add savetypes for W3cHints
 			SaveType = 0;
 			if (AutofillHints == null)
 			{

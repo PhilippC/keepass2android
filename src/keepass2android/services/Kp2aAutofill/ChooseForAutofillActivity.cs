@@ -34,6 +34,8 @@ namespace keepass2android.services.Kp2aAutofill
             return i;
         }
 
+        protected override Result ExpectedActivityResult => KeePass.ExitCloseAfterTaskComplete;
+
         protected override FilledAutofillFieldCollection GetDataset(Intent data)
         {
             if (!App.Kp2a.GetDb().Loaded || (App.Kp2a.QuickLocked))
@@ -45,13 +47,13 @@ namespace keepass2android.services.Kp2aAutofill
             FilledAutofillField pwdField =
                 new FilledAutofillField
                 {
-                    AutofillHints = new[] {W3cHints.NAME, W3cHints.EMAIL},
+                    AutofillHints = new[] {View.AutofillHintPassword},
                     TextValue = password
                 };
 
             FilledAutofillField userField = new FilledAutofillField
             {
-                AutofillHints = new[] {W3cHints.NEW_PASSWORD, W3cHints.CURRENT_PASSWORD},
+                AutofillHints = new[] {View.AutofillHintUsername},
                 TextValue = username
             };
 

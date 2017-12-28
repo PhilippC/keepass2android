@@ -52,20 +52,21 @@ namespace keepass2android.services.AutofillBase
 				var view = node.RootViewNode;
 				ParseLocked(forFill, view, ref webDomain);
 			}
-		    if (!string.IsNullOrEmpty(webDomain))
+		    String packageName = Structure.ActivityComponent.PackageName;
+            if (!string.IsNullOrEmpty(webDomain))
 		    {
-		        String packageName = Structure.ActivityComponent.PackageName;
 		        bool valid = Kp2aDigitalAssetLinksDataSource.Instance.IsValid(mContext, webDomain, packageName);
 		        if (!valid)
 		        {
 		            throw new Java.Lang.SecurityException(mContext.GetString(
 		                Resource.String.invalid_link_association, webDomain, packageName));
 		        }
-		        Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, $"Domain {webDomain} is valid for {packageName}");
+                Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, $"Domain {webDomain} is valid for {packageName}");
 		    }
 		    else
 		    {
-		        Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, "no web domain");
+		        webDomain = "androidapp://" + packageName;
+                Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, "no web domain. Using package name.");
 		    }
 		    return webDomain;
 		}
@@ -93,7 +94,7 @@ namespace keepass2android.services.AutofillBase
 			{
 				if (forFill)
 				{
-					AutofillFields.Add(new keepass2android.services.AutofillBase.AutofillFieldMetadata(viewNode));
+					AutofillFields.Add(new AutofillFieldMetadata(viewNode));
 				}
 				else
 				{

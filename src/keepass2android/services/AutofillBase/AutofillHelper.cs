@@ -7,7 +7,6 @@ using Android.Views;
 using Android.Widget;
 using FilledAutofillFieldCollection = keepass2android.services.AutofillBase.model.FilledAutofillFieldCollection;
 
-//TODO compare port
 namespace keepass2android.services.AutofillBase
 {
 	/// <summary>
@@ -93,6 +92,7 @@ namespace keepass2android.services.AutofillBase
 			}
 			if (autofillFields.SaveType != 0)
 			{
+                //TODO implement save 
 				var autofillIds = autofillFields.GetAutofillIds();
 				responseBuilder.SetSaveInfo
 				               (new SaveInfo.Builder(autofillFields.SaveType, autofillIds).Build());
@@ -105,47 +105,5 @@ namespace keepass2android.services.AutofillBase
 			}
 		}
 
-		public static string[] FilterForSupportedHints(string[] hints)
-		{
-			var filteredHints = new string[hints.Length];
-			int i = 0;
-			foreach (var hint in hints)
-			{
-				if (IsValidHint(hint))
-				{
-					filteredHints[i++] = hint;
-				}
-				else
-				{
-					Log.Debug(CommonUtil.Tag, "Invalid autofill hint: " + hint);
-				}
-			}
-			var finalFilteredHints = new string[i];
-			Array.Copy(filteredHints, 0, finalFilteredHints, 0, i);
-			return finalFilteredHints;
-		}
-
-		public static bool IsValidHint(String hint)
-		{
-			switch (hint)
-			{
-				case View.AutofillHintCreditCardExpirationDate:
-				case View.AutofillHintCreditCardExpirationDay:
-				case View.AutofillHintCreditCardExpirationMonth:
-				case View.AutofillHintCreditCardExpirationYear:
-				case View.AutofillHintCreditCardNumber:
-				case View.AutofillHintCreditCardSecurityCode:
-				case View.AutofillHintEmailAddress:
-				case View.AutofillHintPhone:
-				case View.AutofillHintName:
-				case View.AutofillHintPassword:
-				case View.AutofillHintPostalAddress:
-				case View.AutofillHintPostalCode:
-				case View.AutofillHintUsername:
-					return true;
-				default:
-					return false;
-			}
-		}
 	}
 }

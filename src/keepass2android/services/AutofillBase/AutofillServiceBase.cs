@@ -4,6 +4,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Service.Autofill;
 using Android.Util;
+using Android.Views.Autofill;
+using Android.Widget;
 
 namespace keepass2android.services.AutofillBase
 {
@@ -47,6 +49,7 @@ namespace keepass2android.services.AutofillBase
             try
             {
                 query = parser.ParseForFill();
+                
             }
             catch (Java.Lang.SecurityException e)
             {
@@ -56,20 +59,30 @@ namespace keepass2android.services.AutofillBase
             }
             
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
-            var responseBuilder = new FillResponse.Builder();
-            // Check user's settings for authenticating Responses and Datasets.
+            
             bool responseAuth = true;
             var autofillIds = autofillFields.GetAutofillIds();
             if (responseAuth && autofillIds.Length != 0)
             {
+                var responseBuilder = new FillResponse.Builder();
                 // If the entire Autofill Response is authenticated, AuthActivity is used
                 // to generate Response.
                 var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query);
-                var presentation = keepass2android.services.AutofillBase.AutofillHelper
+                RemoteViews presentation = keepass2android.services.AutofillBase.AutofillHelper
                     .NewRemoteViews(PackageName, GetString(Resource.String.autofill_sign_in_prompt),
                         Resource.Drawable.ic_launcher);
-                responseBuilder
-                    .SetAuthentication(autofillIds, sender, presentation);
+
+                var datasetBuilder = new Dataset.Builder(presentation);
+
+                datasetBuilder
+                    .SetAuthentication(sender);
+                foreach (var autofillId in autofillIds)
+                {
+                    datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
+                }
+
+                responseBuilder.AddDataset(datasetBuilder.Build());
+
                 callback.OnSuccess(responseBuilder.Build());
             }
             else

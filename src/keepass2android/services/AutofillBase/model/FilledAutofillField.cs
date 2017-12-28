@@ -11,12 +11,13 @@ namespace keepass2android.services.AutofillBase.model
         
 		public string[] AutofillHints { get; set; }
 
+        
 		public FilledAutofillField()
 		{}
 
-		public FilledAutofillField(AssistStructure.ViewNode viewNode)
+		/*public FilledAutofillField(AssistStructure.ViewNode viewNode)
 		{
-			AutofillHints = AutofillHelper.FilterForSupportedHints(viewNode.GetAutofillHints());
+			AutofillHintsHelper = AutofillHelper.FilterForSupportedHints(viewNode.GetAutofillHints());
 
             //TODO port updated FilledAutofillField?
 			AutofillValue autofillValue = viewNode.AutofillValue;
@@ -40,7 +41,7 @@ namespace keepass2android.services.AutofillBase.model
 					TextValue = autofillValue.TextValue;
 				}
 			}
-		}
+		}*/
 
 		public bool IsNull()
 		{

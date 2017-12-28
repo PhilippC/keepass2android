@@ -32,26 +32,114 @@ namespace keepass2android.services.AutofillBase.model
 		public void Add(FilledAutofillField filledAutofillField)
 		{
 			string[] autofillHints = filledAutofillField.AutofillHints;
-		    //TODO apply W3C transformation
-            foreach (string hint in autofillHints)
-			{
-				HintMap.Add(hint, filledAutofillField);
-			}
+            
+		    string nextHint = null;
+		    for (int i = 0; i < autofillHints.Length; i++)
+		    {
+		        string hint = autofillHints[i];
+		        if (i < autofillHints.Length - 1)
+		        {
+		            nextHint = autofillHints[i + 1];
+		        }
+		        // First convert the compound W3C autofill hints
+		        if (isW3cSectionPrefix(hint) && i < autofillHints.Length - 1)
+		        {
+		            hint = autofillHints[++i];
+		            CommonUtil.logd($"Hint is a W3C section prefix; using {hint} instead");
+		            if (i < autofillHints.Length - 1)
+		            {
+		                nextHint = autofillHints[i + 1];
+		            }
+		        }
+		        if (isW3cTypePrefix(hint) && nextHint != null && isW3cTypeHint(nextHint))
+		        {
+		            hint = nextHint;
+		            i++;
+		            CommonUtil.logd($"Hint is a W3C type prefix; using {hint} instead");
+		        }
+		        if (isW3cAddressType(hint) && nextHint != null)
+		        {
+		            hint = nextHint;
+		            i++;
+		            CommonUtil.logd($"Hint is a W3C address prefix; using  {hint} instead");
+		        }
+
+		        // Then check if the "actual" hint is supported.
+		        if (AutofillHintsHelper.IsValidHint(hint))
+		        {
+		            HintMap.Add(hint, filledAutofillField);
+		        }
+		        else
+		        {
+		            CommonUtil.loge($"Invalid hint: {autofillHints[i]}");
+		        }
+		    }
+            
 		}
 
-		/// <summary>
-		/// Populates a Dataset.Builder with appropriate values for each AutofillId
-		/// in a AutofillFieldMetadataCollection.
-		/// 
-		/// In other words, it constructs an autofill Dataset.Builder 
-		/// by applying saved values (from this FilledAutofillFieldCollection)
-		/// to Views specified in a AutofillFieldMetadataCollection, which represents the current
-		/// page the user is on.
-		/// </summary>
-		/// <returns><c>true</c>, if to fields was applyed, <c>false</c> otherwise.</returns>
-		/// <param name="autofillFieldMetadataCollection">Autofill field metadata collection.</param>
-		/// <param name="datasetBuilder">Dataset builder.</param>
-		public bool ApplyToFields(AutofillFieldMetadataCollection autofillFieldMetadataCollection,
+
+	    private static bool isW3cSectionPrefix(string hint)
+	    {
+	        return hint.StartsWith(W3cHints.PREFIX_SECTION);
+	    }
+
+	    private static bool isW3cAddressType(string hint)
+	    {
+	        switch (hint)
+	        {
+	            case W3cHints.SHIPPING:
+	            case W3cHints.BILLING:
+	                return true;
+	        }
+	        return false;
+	    }
+
+	    private static bool isW3cTypePrefix(string hint)
+	    {
+	        switch (hint)
+	        {
+	            case W3cHints.PREFIX_WORK:
+	            case W3cHints.PREFIX_FAX:
+	            case W3cHints.PREFIX_HOME:
+	            case W3cHints.PREFIX_PAGER:
+	                return true;
+	        }
+	        return false;
+	    }
+
+	    private static bool isW3cTypeHint(string hint)
+	    {
+	        switch (hint)
+	        {
+	            case W3cHints.TEL:
+	            case W3cHints.TEL_COUNTRY_CODE:
+	            case W3cHints.TEL_NATIONAL:
+	            case W3cHints.TEL_AREA_CODE:
+	            case W3cHints.TEL_LOCAL:
+	            case W3cHints.TEL_LOCAL_PREFIX:
+	            case W3cHints.TEL_LOCAL_SUFFIX:
+	            case W3cHints.TEL_EXTENSION:
+	            case W3cHints.EMAIL:
+	            case W3cHints.IMPP:
+	                return true;
+	        }
+	        Log.Warn(CommonUtil.Tag, "Invalid W3C type hint: " + hint);
+	        return false;
+	    }
+
+        /// <summary>
+        /// Populates a Dataset.Builder with appropriate values for each AutofillId
+        /// in a AutofillFieldMetadataCollection.
+        /// 
+        /// In other words, it constructs an autofill Dataset.Builder 
+        /// by applying saved values (from this FilledAutofillFieldCollection)
+        /// to Views specified in a AutofillFieldMetadataCollection, which represents the current
+        /// page the user is on.
+        /// </summary>
+        /// <returns><c>true</c>, if to fields was applyed, <c>false</c> otherwise.</returns>
+        /// <param name="autofillFieldMetadataCollection">Autofill field metadata collection.</param>
+        /// <param name="datasetBuilder">Dataset builder.</param>
+        public bool ApplyToFields(AutofillFieldMetadataCollection autofillFieldMetadataCollection,
 			Dataset.Builder datasetBuilder)
 		{
 			bool setValueAtLeastOnce = false;
@@ -66,8 +154,8 @@ namespace keepass2android.services.AutofillBase.model
 				}
 				for (int autofillFieldIndex = 0; autofillFieldIndex < fillableAutofillFields.Count; autofillFieldIndex++)
 				{
-					keepass2android.services.AutofillBase.model.FilledAutofillField filledAutofillField = HintMap[hint];
-					if (filledAutofillField == null)
+					FilledAutofillField filledAutofillField;
+					if (!HintMap.TryGetValue(hint, out filledAutofillField) || (filledAutofillField == null))
 					{
 						continue;
 					}
