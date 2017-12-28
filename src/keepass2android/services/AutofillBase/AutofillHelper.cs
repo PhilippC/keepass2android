@@ -24,7 +24,7 @@ namespace keepass2android.services.AutofillBase
 		/// <param name="filledAutofillFieldCollection">Filled autofill field collection.</param>
 		/// <param name="datasetAuth">If set to <c>true</c> dataset auth.</param>
 		public static Dataset NewDataset(Context context,
-				keepass2android.services.AutofillBase.AutofillFieldMetadataCollection autofillFields, FilledAutofillFieldCollection filledAutofillFieldCollection, bool datasetAuth, IAutofillIntentBuilder intentBuilder) 
+				AutofillFieldMetadataCollection autofillFields, FilledAutofillFieldCollection filledAutofillFieldCollection, bool datasetAuth, IAutofillIntentBuilder intentBuilder) 
 		{
 			var datasetName = filledAutofillFieldCollection.DatasetName;
 			if (datasetName != null)

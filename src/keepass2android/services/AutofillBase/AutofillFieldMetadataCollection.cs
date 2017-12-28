@@ -12,7 +12,7 @@ namespace keepass2android.services.AutofillBase
 	public class AutofillFieldMetadataCollection
 	{
 		List<AutofillId> AutofillIds = new List<AutofillId>();
-		Dictionary<string, List<keepass2android.services.AutofillBase.AutofillFieldMetadata>> AutofillHintsToFieldsMap = new Dictionary<string, List<AutofillBase.AutofillFieldMetadata>>();
+		Dictionary<string, List<AutofillFieldMetadata>> AutofillHintsToFieldsMap = new Dictionary<string, List<AutofillFieldMetadata>>();
 		public List<string> AllAutofillHints { get; }
 		public List<string> FocusedAutofillHints { get; }
 		int Size = 0;

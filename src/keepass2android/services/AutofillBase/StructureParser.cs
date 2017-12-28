@@ -14,7 +14,7 @@ namespace keepass2android.services.AutofillBase
 	public sealed class StructureParser
 	{
 	    public Context mContext { get; }
-	    public keepass2android.services.AutofillBase.AutofillFieldMetadataCollection AutofillFields { get; set; }
+	    public AutofillFieldMetadataCollection AutofillFields { get; set; }
 		AssistStructure Structure;
 		public FilledAutofillFieldCollection ClientFormData { get; set; }
 
@@ -22,7 +22,7 @@ namespace keepass2android.services.AutofillBase
 		{
 		    mContext = context;
 		    Structure = structure;
-			AutofillFields = new keepass2android.services.AutofillBase.AutofillFieldMetadataCollection();
+			AutofillFields = new AutofillFieldMetadataCollection();
 		}
 
 		public string ParseForFill()
@@ -42,7 +42,7 @@ namespace keepass2android.services.AutofillBase
 		/// <param name="forFill">If set to <c>true</c> for fill.</param>
 		string Parse(bool forFill)
 		{
-			Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, "Parsing structure for " + Structure.ActivityComponent);
+			Log.Debug(CommonUtil.Tag, "Parsing structure for " + Structure.ActivityComponent);
 			var nodes = Structure.WindowNodeCount;
 			ClientFormData = new FilledAutofillFieldCollection();
 		    String webDomain = null;
@@ -61,12 +61,12 @@ namespace keepass2android.services.AutofillBase
 		            throw new Java.Lang.SecurityException(mContext.GetString(
 		                Resource.String.invalid_link_association, webDomain, packageName));
 		        }
-                Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, $"Domain {webDomain} is valid for {packageName}");
+                Log.Debug(CommonUtil.Tag, $"Domain {webDomain} is valid for {packageName}");
 		    }
 		    else
 		    {
 		        webDomain = "androidapp://" + packageName;
-                Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, "no web domain. Using package name.");
+                Log.Debug(CommonUtil.Tag, "no web domain. Using package name.");
 		    }
 		    return webDomain;
 		}
@@ -76,7 +76,7 @@ namespace keepass2android.services.AutofillBase
 		    String webDomain = viewNode.WebDomain;
 		    if (webDomain != null)
 		    {
-		        Log.Debug(keepass2android.services.AutofillBase.CommonUtil.Tag, $"child web domain: {webDomain}");
+		        Log.Debug(CommonUtil.Tag, $"child web domain: {webDomain}");
 		        if (!string.IsNullOrEmpty(validWebdomain))
 		        {
 		            if (webDomain == validWebdomain)
