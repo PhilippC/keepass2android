@@ -1,25 +1,89 @@
-﻿using Android.App.Assist;
+﻿using System.Collections.Generic;
+using Android.App.Assist;
 using Android.Views.Autofill;
 
 namespace keepass2android.services.AutofillBase.model
 {
 	public class FilledAutofillField
 	{
-		public string TextValue { get; set; }
+	    private string[] _autofillHints;
+	    public string TextValue { get; set; }
 		public long? DateValue { get; set; }
 		public bool? ToggleValue { get; set; }
-        
-		public string[] AutofillHints { get; set; }
 
-        
-		public FilledAutofillField()
+        /// <summary>
+        /// returns the autofill hints for the filled field. These are always lowercased for simpler string comparison.
+        /// </summary>
+	    public string[] AutofillHints
+	    {
+	        get
+	        {
+	            return _autofillHints;
+	        }
+	        set
+	        {
+	            _autofillHints = value;
+	            for (int i = 0; i < _autofillHints.Length; i++)
+	                _autofillHints[i] = _autofillHints[i].ToLower();
+            }
+	    }
+
+	    public bool Protected { get; set; }
+
+
+	    public FilledAutofillField()
 		{}
+        
+        public FilledAutofillField(AssistStructure.ViewNode viewNode)
+        {
+            
+			string[] rawHints = AutofillHintsHelper.FilterForSupportedHints(viewNode.GetAutofillHints());
+            List<string> hintList = new List<string>();
+            
+		    string nextHint = null;
+		    for (int i = 0; i < rawHints.Length; i++)
+		    {
+		        string hint = rawHints[i];
+		        if (i < rawHints.Length - 1)
+		        {
+		            nextHint = rawHints[i + 1];
+		        }
+		        // First convert the compound W3C autofill hints
+		        if (W3cHints.isW3cSectionPrefix(hint) && i < rawHints.Length - 1)
+		        {
+		            hint = rawHints[++i];
+		            CommonUtil.logd($"Hint is a W3C section prefix; using {hint} instead");
+		            if (i < rawHints.Length - 1)
+		            {
+		                nextHint = rawHints[i + 1];
+		            }
+		        }
+		        if (W3cHints.isW3cTypePrefix(hint) && nextHint != null && W3cHints.isW3cTypeHint(nextHint))
+		        {
+		            hint = nextHint;
+		            i++;
+		            CommonUtil.logd($"Hint is a W3C type prefix; using {hint} instead");
+		        }
+		        if (W3cHints.isW3cAddressType(hint) && nextHint != null)
+		        {
+		            hint = nextHint;
+		            i++;
+		            CommonUtil.logd($"Hint is a W3C address prefix; using  {hint} instead");
+		        }
 
-		/*public FilledAutofillField(AssistStructure.ViewNode viewNode)
-		{
-			AutofillHintsHelper = AutofillHelper.FilterForSupportedHints(viewNode.GetAutofillHints());
+		        // Then check if the "actual" hint is supported.
+		        if (AutofillHintsHelper.IsSupportedHint(hint))
+		        {
+		            hintList.Add(hint);
+		        }
+		        else
+		        {
+		            CommonUtil.loge($"Invalid hint: {rawHints[i]}");
+		        }
+		    }
+            AutofillHints = hintList.ToArray();
 
-            //TODO port updated FilledAutofillField?
+            //TODO port updated FilledAutofillField
 			AutofillValue autofillValue = viewNode.AutofillValue;
 			if (autofillValue != null)
 			{
@@ -41,9 +105,9 @@ namespace keepass2android.services.AutofillBase.model
 					TextValue = autofillValue.TextValue;
 				}
 			}
-		}*/
+		}
 
-		public bool IsNull()
+        public bool IsNull()
 		{
 			return TextValue == null && DateValue == null && ToggleValue == null;
 		}

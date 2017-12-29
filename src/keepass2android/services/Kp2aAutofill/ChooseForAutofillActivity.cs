@@ -41,30 +41,42 @@ namespace keepass2android.services.Kp2aAutofill
             if (!App.Kp2a.GetDb().Loaded || (App.Kp2a.QuickLocked))
                 return null;
 
-            string username = App.Kp2a.GetDb().LastOpenedEntry.Entry.Strings.ReadSafe(PwDefs.UserNameField);
-            string password = App.Kp2a.GetDb().LastOpenedEntry.Entry.Strings.ReadSafe(PwDefs.PasswordField);
-
-            FilledAutofillField pwdField =
-                new FilledAutofillField
-                {
-                    AutofillHints = new[] {View.AutofillHintPassword},
-                    TextValue = password
-                };
-
-            FilledAutofillField userField = new FilledAutofillField
-            {
-                AutofillHints = new[] {View.AutofillHintUsername},
-                TextValue = username
-            };
-
             FilledAutofillFieldCollection fieldCollection = new FilledAutofillFieldCollection();
-            fieldCollection.HintMap = new Dictionary<string, FilledAutofillField>();
-            fieldCollection.Add(userField);
-            fieldCollection.Add(pwdField);
 
-            fieldCollection.DatasetName = App.Kp2a.GetDb().LastOpenedEntry.Entry.Strings.ReadSafe(PwDefs.TitleField);
+            var pwEntry = App.Kp2a.GetDb().LastOpenedEntry.Entry;
+            foreach (string key in pwEntry.Strings.GetKeys())
+            {
+                FilledAutofillField field =
+                    new FilledAutofillField
+                    {
+                        AutofillHints = new[] { GetCanonicalHintFromKp2aField(pwEntry, key) },
+                        TextValue = pwEntry.Strings.ReadSafe(key),
+                        Protected = pwEntry.Strings.Get(key).IsProtected
+                    };
+                fieldCollection.Add(field);
+            }
+            //TODO add support for Keepass templates
+            //TODO add values like expiration?
+            //TODO if cc-exp is there, also set cc-exp-month etc.
+
+            fieldCollection.DatasetName = pwEntry.Strings.ReadSafe(PwDefs.TitleField);
 
             return fieldCollection;
+        }
+
+        private static readonly Dictionary<string, string> keyToHint = new Dictionary<string, string>()
+        {
+            {PwDefs.UserNameField, View.AutofillHintUsername },
+            {PwDefs.PasswordField, View.AutofillHintPassword },
+            {PwDefs.UrlField, W3cHints.URL },
+        };
+
+        private string GetCanonicalHintFromKp2aField(PwEntry pwEntry, string key)
+        {
+            if (!keyToHint.TryGetValue(key, out string result))
+                result = key;
+            result = result.ToLower();
+            return result;
         }
 
         public override IAutofillIntentBuilder IntentBuilder => new Kp2aAutofillIntentBuilder();

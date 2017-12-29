@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Android.Service.Autofill;
 using Android.Util;
 using Android.Views;
@@ -12,120 +13,47 @@ namespace keepass2android.services.AutofillBase.model
     /// </summary>
     public class FilledAutofillFieldCollection
 	{
-		public Dictionary<string, FilledAutofillField> HintMap { get; set; }
+		public Dictionary<string, FilledAutofillField> HintMap { get; }
 		public string DatasetName { get; set; }
 
 		public FilledAutofillFieldCollection(Dictionary<string, FilledAutofillField> hintMap, string datasetName = "")
 		{
-			HintMap = hintMap;
+            //recreate hint map making sure we compare case insensitive
+			HintMap = BuildHintMap();
+            foreach (var p in hintMap)
+                HintMap.Add(p.Key, p.Value);
 			DatasetName = datasetName;
 		}
 
-		public FilledAutofillFieldCollection() : this(new Dictionary<string, FilledAutofillField>()) 
+		public FilledAutofillFieldCollection() : this(BuildHintMap()) 
 		{}
 
-		/// <summary>
+	    private static Dictionary<string, FilledAutofillField> BuildHintMap()
+	    {
+	        return new Dictionary<string, FilledAutofillField>(StringComparer.OrdinalIgnoreCase);
+	    }
+
+	    /// <summary>
 		/// Adds a filledAutofillField to the collection, indexed by all of its hints.
 		/// </summary>
 		/// <returns>The add.</returns>
 		/// <param name="filledAutofillField">Filled autofill field.</param>
 		public void Add(FilledAutofillField filledAutofillField)
 		{
-			string[] autofillHints = filledAutofillField.AutofillHints;
-            
-		    string nextHint = null;
-		    for (int i = 0; i < autofillHints.Length; i++)
-		    {
-		        string hint = autofillHints[i];
-		        if (i < autofillHints.Length - 1)
-		        {
-		            nextHint = autofillHints[i + 1];
-		        }
-		        // First convert the compound W3C autofill hints
-		        if (isW3cSectionPrefix(hint) && i < autofillHints.Length - 1)
-		        {
-		            hint = autofillHints[++i];
-		            CommonUtil.logd($"Hint is a W3C section prefix; using {hint} instead");
-		            if (i < autofillHints.Length - 1)
-		            {
-		                nextHint = autofillHints[i + 1];
-		            }
-		        }
-		        if (isW3cTypePrefix(hint) && nextHint != null && isW3cTypeHint(nextHint))
-		        {
-		            hint = nextHint;
-		            i++;
-		            CommonUtil.logd($"Hint is a W3C type prefix; using {hint} instead");
-		        }
-		        if (isW3cAddressType(hint) && nextHint != null)
-		        {
-		            hint = nextHint;
-		            i++;
-		            CommonUtil.logd($"Hint is a W3C address prefix; using  {hint} instead");
-		        }
-
-		        // Then check if the "actual" hint is supported.
-		        if (AutofillHintsHelper.IsValidHint(hint))
+            foreach (string hint in filledAutofillField.AutofillHints)
+            { 
+		        if (AutofillHintsHelper.IsSupportedHint(hint))
 		        {
 		            HintMap.Add(hint, filledAutofillField);
 		        }
 		        else
 		        {
-		            CommonUtil.loge($"Invalid hint: {autofillHints[i]}");
+		            CommonUtil.loge($"Invalid hint: {hint}");
 		        }
 		    }
             
 		}
 
-
-	    private static bool isW3cSectionPrefix(string hint)
-	    {
-	        return hint.StartsWith(W3cHints.PREFIX_SECTION);
-	    }
-
-	    private static bool isW3cAddressType(string hint)
-	    {
-	        switch (hint)
-	        {
-	            case W3cHints.SHIPPING:
-	            case W3cHints.BILLING:
-	                return true;
-	        }
-	        return false;
-	    }
-
-	    private static bool isW3cTypePrefix(string hint)
-	    {
-	        switch (hint)
-	        {
-	            case W3cHints.PREFIX_WORK:
-	            case W3cHints.PREFIX_FAX:
-	            case W3cHints.PREFIX_HOME:
-	            case W3cHints.PREFIX_PAGER:
-	                return true;
-	        }
-	        return false;
-	    }
-
-	    private static bool isW3cTypeHint(string hint)
-	    {
-	        switch (hint)
-	        {
-	            case W3cHints.TEL:
-	            case W3cHints.TEL_COUNTRY_CODE:
-	            case W3cHints.TEL_NATIONAL:
-	            case W3cHints.TEL_AREA_CODE:
-	            case W3cHints.TEL_LOCAL:
-	            case W3cHints.TEL_LOCAL_PREFIX:
-	            case W3cHints.TEL_LOCAL_SUFFIX:
-	            case W3cHints.TEL_EXTENSION:
-	            case W3cHints.EMAIL:
-	            case W3cHints.IMPP:
-	                return true;
-	        }
-	        Log.Warn(CommonUtil.Tag, "Invalid W3C type hint: " + hint);
-	        return false;
-	    }
 
         /// <summary>
         /// Populates a Dataset.Builder with appropriate values for each AutofillId
@@ -142,16 +70,10 @@ namespace keepass2android.services.AutofillBase.model
         public bool ApplyToFields(AutofillFieldMetadataCollection autofillFieldMetadataCollection, Dataset.Builder datasetBuilder)
 		{
 			bool setValueAtLeastOnce = false;
-			List<string> allHints = autofillFieldMetadataCollection.AllAutofillHints;
-			for (int hintIndex = 0; hintIndex < allHints.Count; hintIndex++)
+			
+			foreach (string hint in autofillFieldMetadataCollection.AllAutofillCanonicalHints)
 			{
-				string hint = allHints[hintIndex];
-				List<AutofillFieldMetadata> fillableAutofillFields = autofillFieldMetadataCollection.GetFieldsForHint(hint);
-				if (fillableAutofillFields == null)
-				{
-					continue;
-				}
-				foreach (AutofillFieldMetadata autofillFieldMetadata in fillableAutofillFields)
+				foreach (AutofillFieldMetadata autofillFieldMetadata in autofillFieldMetadataCollection.GetFieldsForHint(hint))
 				{
 					FilledAutofillField filledAutofillField;
 					if (!HintMap.TryGetValue(hint, out filledAutofillField) || (filledAutofillField == null))

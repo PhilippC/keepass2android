@@ -1,4 +1,6 @@
-﻿namespace keepass2android.services.AutofillBase.model
+﻿using Android.Util;
+
+namespace keepass2android.services.AutofillBase.model
 {
     public class W3cHints
     {
@@ -69,6 +71,57 @@
 
         private W3cHints()
         {
+        }
+
+
+
+        public static bool isW3cSectionPrefix(string hint)
+        {
+            return hint.ToLower().StartsWith(W3cHints.PREFIX_SECTION);
+        }
+
+        public static bool isW3cAddressType(string hint)
+        {
+            switch (hint.ToLower())
+            {
+                case W3cHints.SHIPPING:
+                case W3cHints.BILLING:
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool isW3cTypePrefix(string hint)
+        {
+            switch (hint.ToLower())
+            {
+                case W3cHints.PREFIX_WORK:
+                case W3cHints.PREFIX_FAX:
+                case W3cHints.PREFIX_HOME:
+                case W3cHints.PREFIX_PAGER:
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool isW3cTypeHint(string hint)
+        {
+            switch (hint.ToLower())
+            {
+                case W3cHints.TEL:
+                case W3cHints.TEL_COUNTRY_CODE:
+                case W3cHints.TEL_NATIONAL:
+                case W3cHints.TEL_AREA_CODE:
+                case W3cHints.TEL_LOCAL:
+                case W3cHints.TEL_LOCAL_PREFIX:
+                case W3cHints.TEL_LOCAL_SUFFIX:
+                case W3cHints.TEL_EXTENSION:
+                case W3cHints.EMAIL:
+                case W3cHints.IMPP:
+                    return true;
+            }
+            Log.Warn(CommonUtil.Tag, "Invalid W3C type hint: " + hint);
+            return false;
         }
     }
 }

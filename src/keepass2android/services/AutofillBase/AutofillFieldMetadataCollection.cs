@@ -12,17 +12,19 @@ namespace keepass2android.services.AutofillBase
 	public class AutofillFieldMetadataCollection
 	{
 		List<AutofillId> AutofillIds = new List<AutofillId>();
-		Dictionary<string, List<AutofillFieldMetadata>> AutofillHintsToFieldsMap = new Dictionary<string, List<AutofillFieldMetadata>>();
-		public List<string> AllAutofillHints { get; }
-		public List<string> FocusedAutofillHints { get; }
+        
+		Dictionary<string, List<AutofillFieldMetadata>> AutofillCanonicalHintsToFieldsMap = new Dictionary<string, List<AutofillFieldMetadata>>();
+        
+		public List<string> AllAutofillCanonicalHints { get; }
+		public List<string> FocusedAutofillCanonicalHints { get; }
 		int Size = 0;
 		public SaveDataType SaveType { get; set; }
 
 		public AutofillFieldMetadataCollection()
 		{
 			SaveType = 0;
-			FocusedAutofillHints = new List<string>();
-			AllAutofillHints = new List<string>();
+			FocusedAutofillCanonicalHints = new List<string>();
+			AllAutofillCanonicalHints = new List<string>();
 		}
 
 		public void Add(AutofillFieldMetadata autofillFieldMetadata)
@@ -30,19 +32,19 @@ namespace keepass2android.services.AutofillBase
 			SaveType |= autofillFieldMetadata.SaveType;
 			Size++;
 			AutofillIds.Add(autofillFieldMetadata.AutofillId);
-			var hintsList = autofillFieldMetadata.AutofillHints;
-			AllAutofillHints.AddRange(hintsList);
+			var hintsList = autofillFieldMetadata.AutofillCanonicalHints;
+			AllAutofillCanonicalHints.AddRange(hintsList);
 			if (autofillFieldMetadata.Focused)
 			{
-				FocusedAutofillHints.AddRange(hintsList);
+				FocusedAutofillCanonicalHints.AddRange(hintsList);
 			}
-			foreach (var hint in autofillFieldMetadata.AutofillHints)
+			foreach (var hint in autofillFieldMetadata.AutofillCanonicalHints)
 			{
-				if (!AutofillHintsToFieldsMap.ContainsKey(hint))
+				if (!AutofillCanonicalHintsToFieldsMap.ContainsKey(hint))
 				{
-					AutofillHintsToFieldsMap.Add(hint, new List<AutofillFieldMetadata>());
+					AutofillCanonicalHintsToFieldsMap.Add(hint, new List<AutofillFieldMetadata>());
 				}
-				AutofillHintsToFieldsMap[hint].Add(autofillFieldMetadata);
+				AutofillCanonicalHintsToFieldsMap[hint].Add(autofillFieldMetadata);
 			}
 		}
 
@@ -51,9 +53,17 @@ namespace keepass2android.services.AutofillBase
 			return AutofillIds.ToArray();
 		}
 
-		public List<AutofillFieldMetadata> GetFieldsForHint(String hint)
+        /// <summary>
+        /// returns the fields for the given hint or an empty list.
+        /// </summary>
+		public List<AutofillFieldMetadata> GetFieldsForHint(String canonicalHint)
 		{
-			return AutofillHintsToFieldsMap[hint];
+		    List<AutofillFieldMetadata> result;
+		    if (!AutofillCanonicalHintsToFieldsMap.TryGetValue(canonicalHint, out result))
+		    {
+		        result = new List<AutofillFieldMetadata>();
+		    }
+            return result;
 		}
 
 

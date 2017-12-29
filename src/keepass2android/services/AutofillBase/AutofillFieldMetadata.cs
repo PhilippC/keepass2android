@@ -14,8 +14,8 @@ namespace keepass2android.services.AutofillBase
 	public class AutofillFieldMetadata
 	{
 		public SaveDataType SaveType { get; set; }
-
-		public string[] AutofillHints { get; set; }
+        
+		public string[] AutofillCanonicalHints { get; set; }
 
 		public AutofillId AutofillId { get; }
 		public AutofillType AutofillType { get; }
@@ -29,14 +29,14 @@ namespace keepass2android.services.AutofillBase
 			AutofillOptions = view.GetAutofillOptions();
 			Focused = view.IsFocused;
 		    var supportedHints = AutofillHintsHelper.FilterForSupportedHints(view.GetAutofillHints());
-		    var storedHints = AutofillHintsHelper.ConvertToStoredHints(supportedHints);
-            SetHints(storedHints.ToArray());
+		    var canonicalHints = AutofillHintsHelper.ConvertToCanonicalHints(supportedHints);
+            SetHints(canonicalHints.ToArray());
 
         }
 
 		void SetHints(string[] value)
 		{
-			AutofillHints = value;
+			AutofillCanonicalHints = value;
 			UpdateSaveTypeFromHints();
 		}
 
@@ -62,11 +62,11 @@ namespace keepass2android.services.AutofillBase
 		{
             //TODO future add savetypes for W3cHints
 			SaveType = 0;
-			if (AutofillHints == null)
+			if (AutofillCanonicalHints == null)
 			{
 				return;
 			}
-			foreach (var hint in AutofillHints)
+			foreach (var hint in AutofillCanonicalHints)
 			{
 				switch (hint)
 				{
