@@ -11,6 +11,7 @@ using Android.Widget;
 using Java.Util;
 using keepass2android.services.AutofillBase.model;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace keepass2android.services.AutofillBase
 {
@@ -84,8 +85,11 @@ namespace keepass2android.services.AutofillBase
             StructureParser parser = new StructureParser(this, structure);
             parser.ParseForFill();
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
+            int partitionIndex = AutofillHintsHelper.GetPartitionIndex(autofillFields.FocusedAutofillCanonicalHints.First());
+            FilledAutofillFieldCollection partitionData =
+                AutofillHintsHelper.FilterForPartition(clientFormDataMap, partitionIndex);
             ReplyIntent = new Intent();
-            SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, clientFormDataMap, false, IntentBuilder));
+            SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, false, IntentBuilder));
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
