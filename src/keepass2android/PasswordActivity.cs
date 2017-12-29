@@ -841,6 +841,8 @@ namespace keepass2android
 			behavior.OnNestedFling(FindViewById<CoordinatorLayout>(Resource.Id.main_content), appbarLayout, null, 0, 200, true);
 		}
 
+        
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			_activityDesign.ApplyTheme();
@@ -2055,6 +2057,7 @@ namespace keepass2android
 
 		protected override void OnDestroy()
 		{
+		    UnregisterReceiver(_intentReceiver);
 			base.OnDestroy();
 			if (_killOnDestroy)
 				Process.KillProcess(Process.MyPid());
