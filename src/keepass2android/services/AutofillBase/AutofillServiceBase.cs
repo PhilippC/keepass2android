@@ -34,7 +34,7 @@ namespace keepass2android.services.AutofillBase
             CommonUtil.logd( "onFillRequest");
             var structure = request.FillContexts[request.FillContexts.Count - 1].Structure;
 
-            //TODO package signature verification?
+            //TODO support package signature verification as soon as this is supported in Keepass storage
 
             var clientState = request.ClientState;
             CommonUtil.logd( "onFillRequest(): data=" + CommonUtil.BundleToString(clientState));
@@ -96,8 +96,8 @@ namespace keepass2android.services.AutofillBase
 
         public override void OnSaveRequest(SaveRequest request, SaveCallback callback)
         {
-            //TODO implement
-            callback.OnFailure("not implemented");
+            //TODO implement save
+            callback.OnFailure("Saving data is currently not implemented in Keepass2Android.");
         }
 
 

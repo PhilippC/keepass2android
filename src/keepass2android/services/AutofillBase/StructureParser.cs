@@ -103,13 +103,12 @@ namespace keepass2android.services.AutofillBase
 		        bool valid = Kp2aDigitalAssetLinksDataSource.Instance.IsValid(mContext, webDomain, packageName);
 		        if (!valid)
 		        {
-		            throw new Java.Lang.SecurityException(mContext.GetString(
-		                Resource.String.invalid_link_association, webDomain, packageName));
+		            CommonUtil.loge($"DAL verification failed for {packageName}/{webDomain}");
+		            webDomain = null;
 		        }
-                Log.Debug(CommonUtil.Tag, $"Domain {webDomain} is valid for {packageName}");
 		    }
-		    else
-		    {
+		    if (string.IsNullOrEmpty(webDomain))
+            {
 		        webDomain = "androidapp://" + packageName;
                 Log.Debug(CommonUtil.Tag, "no web domain. Using package name.");
 		    }
@@ -143,7 +142,7 @@ namespace keepass2android.services.AutofillBase
 				}
 				else
 				{
-                    //TODO implement
+                    //TODO implement save
                     throw new NotImplementedException("TODO: Port and use AutoFill hints");
 					//ClientFormData.Add(new FilledAutofillField(viewNode));
 				}
