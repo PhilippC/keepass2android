@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Android.App.Assist;
 using Android.Content;
+using Android.Text;
 using Android.Util;
+using Android.Views;
 using FilledAutofillFieldCollection = keepass2android.services.AutofillBase.model.FilledAutofillFieldCollection;
 
 namespace keepass2android.services.AutofillBase
@@ -16,7 +20,8 @@ namespace keepass2android.services.AutofillBase
 	    public Context mContext { get; }
 	    public AutofillFieldMetadataCollection AutofillFields { get; set; }
 		AssistStructure Structure;
-		public FilledAutofillFieldCollection ClientFormData { get; set; }
+	    private List<AssistStructure.ViewNode> _editTextsWithoutHint = new List<AssistStructure.ViewNode>();
+	    public FilledAutofillFieldCollection ClientFormData { get; set; }
 
 		public StructureParser(Context context, AssistStructure structure)
 		{
@@ -46,12 +51,52 @@ namespace keepass2android.services.AutofillBase
 			var nodes = Structure.WindowNodeCount;
 			ClientFormData = new FilledAutofillFieldCollection();
 		    String webDomain = null;
-			for (int i = 0; i < nodes; i++)
+		    _editTextsWithoutHint.Clear();
+
+            for (int i = 0; i < nodes; i++)
 			{
 				var node = Structure.GetWindowNodeAt(i);
 				var view = node.RootViewNode;
 				ParseLocked(forFill, view, ref webDomain);
 			}
+
+		    if (AutofillFields.Empty)
+		    {
+                var passwordFields = _editTextsWithoutHint
+		            .Where(f =>
+		                (!f.IdEntry?.ToLowerInvariant().Contains("search") ?? true) &&
+		                (!f.Hint?.ToLowerInvariant().Contains("search") ?? true) &&
+		                (
+		                    f.InputType.HasFlag(InputTypes.TextVariationPassword) ||
+		                    f.InputType.HasFlag(InputTypes.TextVariationVisiblePassword) ||
+		                    f.InputType.HasFlag(InputTypes.TextVariationWebPassword) ||
+                            (f.HtmlInfo?.Attributes.Any(p => p.First.ToString() == "type" && p.Second.ToString() == "password") ?? false)
+		                )
+		            ).ToList();
+		        if (!_editTextsWithoutHint.Any())
+		        {
+		            passwordFields = _editTextsWithoutHint.Where(f =>
+		                (f.IdEntry?.ToLowerInvariant().Contains("password") ?? false)
+		                || (f.Hint?.ToLowerInvariant().Contains("password") ?? false)).ToList();
+
+		            
+                }
+		        foreach (var passwordField in passwordFields)
+		        {
+		            AutofillFields.Add(new AutofillFieldMetadata(passwordField, new[] { View.AutofillHintPassword }));
+                    var usernameField = _editTextsWithoutHint.TakeWhile(f => f.AutofillId != passwordField.AutofillId).LastOrDefault();
+		            if (usernameField != null)
+		            {
+		                AutofillFields.Add(new AutofillFieldMetadata(usernameField, new[] {View.AutofillHintUsername}));
+		            }
+		        }
+
+
+
+
+            }
+
+
 		    String packageName = Structure.ActivityComponent.PackageName;
             if (!string.IsNullOrEmpty(webDomain))
 		    {
@@ -103,6 +148,10 @@ namespace keepass2android.services.AutofillBase
 					//ClientFormData.Add(new FilledAutofillField(viewNode));
 				}
 			}
+            else if (viewNode.ClassName == "android.widget.EditText" || viewNode?.HtmlInfo?.Tag == "input")
+            {
+                _editTextsWithoutHint.Add(viewNode);
+            }
 			var childrenSize = viewNode.ChildCount;
 			if (childrenSize > 0)
 			{

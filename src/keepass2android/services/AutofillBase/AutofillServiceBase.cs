@@ -31,13 +31,13 @@ namespace keepass2android.services.AutofillBase
 
         public override void OnFillRequest(FillRequest request, CancellationSignal cancellationSignal, FillCallback callback)
         {
-            Log.Debug(CommonUtil.Tag, "onFillRequest");
+            CommonUtil.logd( "onFillRequest");
             var structure = request.FillContexts[request.FillContexts.Count - 1].Structure;
 
             //TODO package signature verification?
 
             var clientState = request.ClientState;
-            Log.Debug(CommonUtil.Tag, "onFillRequest(): data=" + CommonUtil.BundleToString(clientState));
+            CommonUtil.logd( "onFillRequest(): data=" + CommonUtil.BundleToString(clientState));
 
 
             cancellationSignal.CancelEvent += (sender, e) => {
@@ -62,7 +62,7 @@ namespace keepass2android.services.AutofillBase
             
             bool responseAuth = true;
             var autofillIds = autofillFields.GetAutofillIds();
-            if (responseAuth && autofillIds.Length != 0)
+            if (responseAuth && autofillIds.Length != 0 && CanAutofill(query))
             {
                 var responseBuilder = new FillResponse.Builder();
                 
@@ -89,6 +89,11 @@ namespace keepass2android.services.AutofillBase
             }
         }
 
+        private bool CanAutofill(string query)
+        {
+            return !(query == "androidapp://android" || query == "androidapp://"+this.PackageName);
+        }
+
         public override void OnSaveRequest(SaveRequest request, SaveCallback callback)
         {
             //TODO implement
@@ -98,12 +103,12 @@ namespace keepass2android.services.AutofillBase
 
         public override void OnConnected()
         {
-            Log.Debug(CommonUtil.Tag, "onConnected");
+            CommonUtil.logd( "onConnected");
         }
 
         public override void OnDisconnected()
         {
-            Log.Debug(CommonUtil.Tag, "onDisconnected");
+            CommonUtil.logd( "onDisconnected");
         }
 
         public abstract IAutofillIntentBuilder IntentBuilder{get;}

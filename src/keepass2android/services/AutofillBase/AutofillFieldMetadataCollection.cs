@@ -20,7 +20,12 @@ namespace keepass2android.services.AutofillBase
 		int Size = 0;
 		public SaveDataType SaveType { get; set; }
 
-		public AutofillFieldMetadataCollection()
+	    public bool Empty   
+	    {
+	        get { return Size == 0; }
+	    }
+
+	    public AutofillFieldMetadataCollection()
 		{
 			SaveType = 0;
 			FocusedAutofillCanonicalHints = new List<string>();

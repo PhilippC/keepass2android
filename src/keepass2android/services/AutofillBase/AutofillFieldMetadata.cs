@@ -22,13 +22,20 @@ namespace keepass2android.services.AutofillBase
 		string[] AutofillOptions { get; }
 		public bool Focused { get; }
 
-		public AutofillFieldMetadata(AssistStructure.ViewNode view)
+	    public AutofillFieldMetadata(AssistStructure.ViewNode view)
+            : this(view, view.GetAutofillHints())
+	    {
+	        
+	    }
+
+        
+        public AutofillFieldMetadata(AssistStructure.ViewNode view, string[] autofillHints)
 		{
 			AutofillId = view.AutofillId;
 			AutofillType = view.AutofillType;
 			AutofillOptions = view.GetAutofillOptions();
 			Focused = view.IsFocused;
-		    var supportedHints = AutofillHintsHelper.FilterForSupportedHints(view.GetAutofillHints());
+		    var supportedHints = AutofillHintsHelper.FilterForSupportedHints(autofillHints);
 		    var canonicalHints = AutofillHintsHelper.ConvertToCanonicalHints(supportedHints);
             SetHints(canonicalHints.ToArray());
 
