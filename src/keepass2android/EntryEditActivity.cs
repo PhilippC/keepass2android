@@ -91,6 +91,12 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+
+			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean
+					(GetString(Resource.String.ViewDatabaseSecure_key), true))
+			{
+				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
+			}
 			
 			if (LastNonConfigurationInstance != null)
 			{

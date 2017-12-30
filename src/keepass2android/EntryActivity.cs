@@ -321,7 +321,10 @@ namespace keepass2android
 			_activityDesign.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
 			
-
+			if (prefs.GetBoolean(GetString(Resource.String.ViewDatabaseSecure_key), true))
+			{
+				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
+			}
 			
 
 			SetEntryView();
