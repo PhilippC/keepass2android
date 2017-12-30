@@ -36,5 +36,10 @@ namespace keepass2android.services
             intent.AddFlags(ActivityFlags.ForwardResult);
             return intent;
         }
+
+        public int AppIconResource
+        {
+            get { return AppNames.LauncherIcon; }
+        }
     }
 }

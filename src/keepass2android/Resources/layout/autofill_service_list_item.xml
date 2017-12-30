@@ -36,6 +36,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+      
+        android:maxWidth="28dp"
+        android:maxHeight="28dp"
+        android:adjustViewBounds="true"
+        
         android:layout_marginEnd="?android:attr/listPreferredItemPaddingEnd"
         android:src="@drawable/ic_launcher" />
 </LinearLayout>

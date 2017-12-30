@@ -14,6 +14,7 @@ using keepass2android.services.AutofillBase;
 using keepass2android.services.AutofillBase.model;
 using Keepass2android.Pluginsdk;
 using KeePassLib;
+using KeePassLib.Utility;
 
 namespace keepass2android.services.Kp2aAutofill
 {
@@ -55,21 +56,82 @@ namespace keepass2android.services.Kp2aAutofill
                     };
                 fieldCollection.Add(field);
             }
-            //TODO add support for Keepass templates
-            //TODO add values like expiration?
-            //TODO if cc-exp is there, also set cc-exp-month etc.
+            if (IsCreditCard(pwEntry) && pwEntry.Expires)
+            {
+                DateTime expTime = pwEntry.ExpiryTime;
+                FilledAutofillField field =
+                    new FilledAutofillField
+                    {
+                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationDate },
+                        DateValue = (long)(1000*TimeUtil.SerializeUnix(expTime)),
+                        Protected = false
+                    };
+                fieldCollection.Add(field);
+
+                field =
+                    new FilledAutofillField
+                    {
+                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationDay },
+                        TextValue = expTime.Day.ToString(),
+                        Protected = false
+                    };
+                fieldCollection.Add(field);
+
+                field =
+                    new FilledAutofillField
+                    {
+                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationMonth },
+                        TextValue = expTime.Month.ToString(),
+                        Protected = false
+                    };
+                fieldCollection.Add(field);
+
+                field =
+                    new FilledAutofillField
+                    {
+                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationYear },
+                        TextValue = expTime.Year.ToString(),
+                        Protected = false
+                    };
+                fieldCollection.Add(field);
+            }
+            
+
 
             fieldCollection.DatasetName = pwEntry.Strings.ReadSafe(PwDefs.TitleField);
 
             return fieldCollection;
         }
 
-        private static readonly Dictionary<string, string> keyToHint = new Dictionary<string, string>()
+        private bool IsCreditCard(PwEntry pwEntry)
         {
-            {PwDefs.UserNameField, View.AutofillHintUsername },
-            {PwDefs.PasswordField, View.AutofillHintPassword },
-            {PwDefs.UrlField, W3cHints.URL },
-        };
+            return pwEntry.Strings.Exists("cc-number")
+                || pwEntry.Strings.Exists("cc-csc")
+                || pwEntry.Strings.Exists(GetString(Resource.String.TemplateField_CreditCard_CVV));
+        }
+
+        private static readonly Dictionary<string, string> keyToHint = BuildKeyToHint();
+
+        private static Dictionary<string, string> BuildKeyToHint()
+        {
+            var result = new Dictionary<string, string>
+            {
+                {PwDefs.UserNameField, View.AutofillHintUsername},
+                {PwDefs.PasswordField, View.AutofillHintPassword},
+                {PwDefs.UrlField, W3cHints.URL},
+                {
+                    Android.App.Application.Context.GetString(Resource.String.TemplateField_CreditCard_CVV),
+                    View.AutofillHintCreditCardSecurityCode
+                },
+                {
+                    Android.App.Application.Context.GetString(Resource.String.TemplateField_CreditCard_Owner),
+                    W3cHints.CC_NAME
+                },
+                {Android.App.Application.Context.GetString(Resource.String.TemplateField_Number), View.AutofillHintCreditCardNumber},
+                {Android.App.Application.Context.GetString(Resource.String.TemplateField_IdCard_Name), View.AutofillHintName},
+            };
+            return result;
+        }
 
         private string GetCanonicalHintFromKp2aField(PwEntry pwEntry, string key)
         {

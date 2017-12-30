@@ -69,15 +69,16 @@ namespace keepass2android
 	{
 #if DEBUG
 		public const string AppName = "@string/app_name_debug";
+	    public const int AppNameResource = Resource.String.app_name_debug;
 #else
 		public const string AppName = "@string/app_name";
+        public const int AppNameResource = Resource.String.app_name;
 #endif
 
-		public const int AppNameResource = Resource.String.app_name;
-		public const string AppNameShort = "@string/short_app_name" + "DBG";
-		public const string AppLauncherTitle = "@string/app_name" + " Debug";
+
+
 #if DEBUG
-		public const string PackagePart = "keepass2android_debug";
+        public const string PackagePart = "keepass2android_debug";
 		public const string Searchable = "@xml/searchable_debug";
 #else
 		public const string PackagePart = "keepass2android";

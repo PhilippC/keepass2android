@@ -33,16 +33,14 @@ namespace keepass2android.services.AutofillBase
 				if (datasetAuth)
 				{
 					datasetBuilder = new Dataset.Builder
-					                            (NewRemoteViews(context.PackageName, datasetName,
-													Resource.Drawable.ic_launcher));
+					                            (NewRemoteViews(context.PackageName, datasetName, intentBuilder.AppIconResource));
 					IntentSender sender = intentBuilder.GetAuthIntentSenderForDataset(context, datasetName);
 					datasetBuilder.SetAuthentication(sender);
 				}
 				else
 				{
 					datasetBuilder = new Dataset.Builder
-												(NewRemoteViews(context.PackageName, datasetName,
-													Resource.Drawable.ic_launcher));
+												(NewRemoteViews(context.PackageName, datasetName, intentBuilder.AppIconResource));
 				}
 				var setValueAtLeastOnce = filledAutofillFieldCollection.ApplyToFields(autofillFields, datasetBuilder);
 				if (setValueAtLeastOnce)

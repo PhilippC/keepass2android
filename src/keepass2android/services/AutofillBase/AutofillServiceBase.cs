@@ -14,6 +14,8 @@ namespace keepass2android.services.AutofillBase
         IntentSender GetAuthIntentSenderForResponse(Context context, string query);
         IntentSender GetAuthIntentSenderForDataset(Context context, string dataset);
         Intent GetRestartAppIntent(Context context);
+
+        int AppIconResource { get; }
     }
 
     public abstract class AutofillServiceBase: AutofillService
@@ -67,7 +69,7 @@ namespace keepass2android.services.AutofillBase
                 var responseBuilder = new FillResponse.Builder();
                 
                 var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query);
-                RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName, GetString(Resource.String.autofill_sign_in_prompt),Resource.Drawable.ic_launcher);
+                RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName, GetString(Resource.String.autofill_sign_in_prompt), AppNames.LauncherIcon);
 
                 var datasetBuilder = new Dataset.Builder(presentation);
                 datasetBuilder.SetAuthentication(sender);
