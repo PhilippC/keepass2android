@@ -688,7 +688,13 @@
 
   
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
-  <string name="ChangeLog_1_03">
+  <string name="ChangeLog_1_04">
+    Version 1.04\n
+    * Added Autofill service for Android 8.0 and later.\n
+    * Upgraded libraries, build tools and Target SDK version.\n
+  </string>
+
+    <string name="ChangeLog_1_03">
     Version 1.03\n
     * Removed accessibility service for AutoFill as requested by Google. Please see password access settings to find a plugin replicating the previous functionality.\n
     * Added third party apps as storage option again\n
