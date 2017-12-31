@@ -30,22 +30,23 @@ namespace keepass2android.services.AutofillBase
 			AutofillFields = new AutofillFieldMetadataCollection();
 		}
 
-		public string ParseForFill()
+		public string ParseForFill(bool isManual)
 		{
-			return Parse(true);
+			return Parse(true, isManual);
 		}
 
 		public string ParseForSave()
 		{
-			return Parse(false);
+			return Parse(false, true);
 		}
 
-		/// <summary>
-		/// Traverse AssistStructure and add ViewNode metadata to a flat list.
-		/// </summary>
-		/// <returns>The parse.</returns>
-		/// <param name="forFill">If set to <c>true</c> for fill.</param>
-		string Parse(bool forFill)
+	    /// <summary>
+	    /// Traverse AssistStructure and add ViewNode metadata to a flat list.
+	    /// </summary>
+	    /// <returns>The parse.</returns>
+	    /// <param name="forFill">If set to <c>true</c> for fill.</param>
+	    /// <param name="isManualRequest"></param>
+	    string Parse(bool forFill, bool isManualRequest)
 		{
 			Log.Debug(CommonUtil.Tag, "Parsing structure for " + Structure.ActivityComponent);
 			var nodes = Structure.WindowNodeCount;
@@ -57,44 +58,52 @@ namespace keepass2android.services.AutofillBase
 			{
 				var node = Structure.GetWindowNodeAt(i);
 				var view = node.RootViewNode;
-				ParseLocked(forFill, view, ref webDomain);
+				ParseLocked(forFill, isManualRequest, view, ref webDomain);
 			}
+
+		    
 
 		    if (AutofillFields.Empty)
 		    {
                 var passwordFields = _editTextsWithoutHint
-		            .Where(f =>
-		                (!f.IdEntry?.ToLowerInvariant().Contains("search") ?? true) &&
-		                (!f.Hint?.ToLowerInvariant().Contains("search") ?? true) &&
-		                (
-		                    f.InputType.HasFlag(InputTypes.TextVariationPassword) ||
-		                    f.InputType.HasFlag(InputTypes.TextVariationVisiblePassword) ||
-		                    f.InputType.HasFlag(InputTypes.TextVariationWebPassword) ||
-                            (f.HtmlInfo?.Attributes.Any(p => p.First.ToString() == "type" && p.Second.ToString() == "password") ?? false)
-		                )
-		            ).ToList();
-		        if (!_editTextsWithoutHint.Any())
+		            .Where(IsPassword).ToList();
+		        if (!passwordFields.Any())
 		        {
-		            passwordFields = _editTextsWithoutHint.Where(f =>
-		                (f.IdEntry?.ToLowerInvariant().Contains("password") ?? false)
-		                || (f.Hint?.ToLowerInvariant().Contains("password") ?? false)).ToList();
-
-		            
+		            passwordFields = _editTextsWithoutHint.Where(HasPasswordHint).ToList();
                 }
 		        foreach (var passwordField in passwordFields)
 		        {
-		            AutofillFields.Add(new AutofillFieldMetadata(passwordField, new[] { View.AutofillHintPassword }));
+                    AutofillFields.Add(new AutofillFieldMetadata(passwordField, new[] { View.AutofillHintPassword }));
                     var usernameField = _editTextsWithoutHint.TakeWhile(f => f.AutofillId != passwordField.AutofillId).LastOrDefault();
 		            if (usernameField != null)
 		            {
 		                AutofillFields.Add(new AutofillFieldMetadata(usernameField, new[] {View.AutofillHintUsername}));
 		            }
 		        }
+                //for some pages with two-step login, we don't see a password field and don't display the autofill for non-manual requests. But if the user forces autofill, 
+                //let's assume it is a username field:
+		        if (isManualRequest && !passwordFields.Any() && _editTextsWithoutHint.Count == 1)
+		        {
+		            AutofillFields.Add(new AutofillFieldMetadata(_editTextsWithoutHint.First(), new[] { View.AutofillHintUsername }));
 
-
-
-
+                }
+                
             }
+		    
+            //force focused fields to be included in autofill fields when request was triggered manually. This allows to fill fields which are "off" or don't have a hint (in case there are hints)
+		    if (isManualRequest)
+		    {
+		        foreach (AssistStructure.ViewNode editText in _editTextsWithoutHint)
+		        {
+		            if (editText.IsFocused)
+		            {
+		                AutofillFields.Add(new AutofillFieldMetadata(editText, new[] { IsPassword(editText) || HasPasswordHint(editText) ? View.AutofillHintPassword : View.AutofillHintUsername }));
+		                break;
+		            }
+
+		        }
+		    }
+            
 
 
 		    String packageName = Structure.ActivityComponent.PackageName;
@@ -115,7 +124,26 @@ namespace keepass2android.services.AutofillBase
 		    return webDomain;
 		}
 
-		void ParseLocked(bool forFill, AssistStructure.ViewNode viewNode, ref string validWebdomain)
+	    private static bool HasPasswordHint(AssistStructure.ViewNode f)
+	    {
+	        return (f.IdEntry?.ToLowerInvariant().Contains("password") ?? false)
+	               || (f.Hint?.ToLowerInvariant().Contains("password") ?? false);
+	    }
+
+	    private static bool IsPassword(AssistStructure.ViewNode f)
+	    {
+	        return 
+	            (!f.IdEntry?.ToLowerInvariant().Contains("search") ?? true) &&
+	            (!f.Hint?.ToLowerInvariant().Contains("search") ?? true) &&
+	            (
+	                f.InputType.HasFlag(InputTypes.TextVariationPassword) ||
+	                f.InputType.HasFlag(InputTypes.TextVariationVisiblePassword) ||
+	                f.InputType.HasFlag(InputTypes.TextVariationWebPassword) ||
+	                (f.HtmlInfo?.Attributes.Any(p => p.First.ToString() == "type" && p.Second.ToString() == "password") ?? false)
+	            );
+	    }
+
+	    void ParseLocked(bool forFill, bool isManualRequest, AssistStructure.ViewNode viewNode, ref string validWebdomain)
 		{
 		    String webDomain = viewNode.WebDomain;
 		    if (webDomain != null)
@@ -134,7 +162,19 @@ namespace keepass2android.services.AutofillBase
 		        }
 		    }
 
-            if (viewNode.GetAutofillHints() != null && viewNode.GetAutofillHints().Length > 0)
+		    string[] viewHints = viewNode.GetAutofillHints();
+		    if (viewHints != null && viewHints.Length == 1 && viewHints.First() == "off" && viewNode.IsFocused &&
+		        isManualRequest)
+		        viewHints[0] = "on";
+		    CommonUtil.logd("viewHints=" + viewHints);
+            CommonUtil.logd("class=" + viewNode.ClassName);
+		    CommonUtil.logd("tag=" + (viewNode?.HtmlInfo?.Tag ?? "(null)"));
+		    if (viewNode?.HtmlInfo?.Tag == "input")
+		    {
+		        foreach (var p in viewNode.HtmlInfo.Attributes)
+                CommonUtil.logd("attr="+p.First + "/" + p.Second);
+		    }
+            if (viewHints != null && viewHints.Length > 0 && viewHints.First() != "on" /*if hint is "on", treat as if there is no hint*/)
 			{
 				if (forFill)
 				{
@@ -147,16 +187,21 @@ namespace keepass2android.services.AutofillBase
 					//ClientFormData.Add(new FilledAutofillField(viewNode));
 				}
 			}
-            else if (viewNode.ClassName == "android.widget.EditText" || viewNode?.HtmlInfo?.Tag == "input")
+            else
             {
-                _editTextsWithoutHint.Add(viewNode);
+                
+                if (viewNode.ClassName == "android.widget.EditText" || viewNode?.HtmlInfo?.Tag == "input")
+                {
+                    _editTextsWithoutHint.Add(viewNode);
+                }
+                
             }
 			var childrenSize = viewNode.ChildCount;
 			if (childrenSize > 0)
 			{
 				for (int i = 0; i < childrenSize; i++)
 				{
-					ParseLocked(forFill, viewNode.GetChildAt(i), ref validWebdomain);
+					ParseLocked(forFill, isManualRequest, viewNode.GetChildAt(i), ref validWebdomain);
 				}
 			}
 		}

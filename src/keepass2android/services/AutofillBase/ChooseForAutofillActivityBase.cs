@@ -22,6 +22,7 @@ namespace keepass2android.services.AutofillBase
 
 
         public static string ExtraQueryString => "EXTRA_QUERY_STRING";
+        public static string ExtraIsManualRequest => "EXTRA_IS_MANUAL_REQUEST";
 
         public int RequestCodeQuery => 6245;
 
@@ -78,18 +79,18 @@ namespace keepass2android.services.AutofillBase
             ReplyIntent = null;
         }
 
-        protected void OnSuccess(FilledAutofillFieldCollection clientFormDataMap)
+        protected void OnSuccess(FilledAutofillFieldCollection clientFormDataMap, bool isManual)
         {
             var intent = Intent;
             AssistStructure structure = (AssistStructure)intent.GetParcelableExtra(AutofillManager.ExtraAssistStructure);
             StructureParser parser = new StructureParser(this, structure);
-            parser.ParseForFill();
+            parser.ParseForFill(isManual);
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
-            int partitionIndex = AutofillHintsHelper.GetPartitionIndex(autofillFields.FocusedAutofillCanonicalHints.First());
+            int partitionIndex = AutofillHintsHelper.GetPartitionIndex(autofillFields.FocusedAutofillCanonicalHints.FirstOrDefault());
             FilledAutofillFieldCollection partitionData =
                 AutofillHintsHelper.FilterForPartition(clientFormDataMap, partitionIndex);
             ReplyIntent = new Intent();
-            SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, false, IntentBuilder));
+            SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, IntentBuilder));
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -99,7 +100,7 @@ namespace keepass2android.services.AutofillBase
             if (requestCode == RequestCodeQuery)
             {
                 if (resultCode == ExpectedActivityResult)
-                    OnSuccess(GetDataset(data));
+                    OnSuccess(GetDataset(data), Intent.GetBooleanExtra(ExtraIsManualRequest, false));
                 else
                 OnFailure(); 
                 Finish();

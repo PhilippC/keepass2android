@@ -11,8 +11,7 @@ namespace keepass2android.services.AutofillBase
 {
     public interface IAutofillIntentBuilder
     {
-        IntentSender GetAuthIntentSenderForResponse(Context context, string query);
-        IntentSender GetAuthIntentSenderForDataset(Context context, string dataset);
+        IntentSender GetAuthIntentSenderForResponse(Context context, string query, bool isManualRequest);
         Intent GetRestartAppIntent(Context context);
 
         int AppIconResource { get; }
@@ -33,7 +32,8 @@ namespace keepass2android.services.AutofillBase
 
         public override void OnFillRequest(FillRequest request, CancellationSignal cancellationSignal, FillCallback callback)
         {
-            CommonUtil.logd( "onFillRequest");
+            bool isManual = (request.Flags & FillRequest.FlagManualRequest) != 0;
+            CommonUtil.logd( "onFillRequest " + (isManual ? "manual" : "auto"));
             var structure = request.FillContexts[request.FillContexts.Count - 1].Structure;
 
             //TODO support package signature verification as soon as this is supported in Keepass storage
@@ -50,7 +50,7 @@ namespace keepass2android.services.AutofillBase
             var parser = new StructureParser(this, structure);
             try
             {
-                query = parser.ParseForFill();
+                query = parser.ParseForFill(isManual);
                 
             }
             catch (Java.Lang.SecurityException e)
@@ -68,7 +68,7 @@ namespace keepass2android.services.AutofillBase
             {
                 var responseBuilder = new FillResponse.Builder();
                 
-                var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query);
+                var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query, isManual);
                 RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName, GetString(Resource.String.autofill_sign_in_prompt), AppNames.LauncherIcon);
 
                 var datasetBuilder = new Dataset.Builder(presentation);

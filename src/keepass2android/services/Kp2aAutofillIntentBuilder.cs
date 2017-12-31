@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Android.App;
@@ -16,18 +15,12 @@ namespace keepass2android.services
     class Kp2aAutofillIntentBuilder: IAutofillIntentBuilder
     {
 
-        public IntentSender GetAuthIntentSenderForResponse(Context context, string query)
+        public IntentSender GetAuthIntentSenderForResponse(Context context, string query, bool isManualRequest)
         {
             Intent intent = new Intent(context, typeof(ChooseForAutofillActivity));
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryString, query);
+            intent.PutExtra(ChooseForAutofillActivityBase.ExtraIsManualRequest, isManualRequest);
             return PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.CancelCurrent).IntentSender;
-        }
-
-        public IntentSender GetAuthIntentSenderForDataset(Context context, string dataset)
-        {
-            //TODO implement
-            //return GetAuthIntentSenderForResponse(context, null);
-            throw new NotImplementedException();
         }
 
         public Intent GetRestartAppIntent(Context context)

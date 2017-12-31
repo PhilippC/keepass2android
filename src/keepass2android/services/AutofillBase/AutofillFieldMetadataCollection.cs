@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.Service.Autofill;
 using Android.Views.Autofill;
 
@@ -11,9 +12,9 @@ namespace keepass2android.services.AutofillBase
 	/// </summary>
 	public class AutofillFieldMetadataCollection
 	{
-		List<AutofillId> AutofillIds = new List<AutofillId>();
-        
-		Dictionary<string, List<AutofillFieldMetadata>> AutofillCanonicalHintsToFieldsMap = new Dictionary<string, List<AutofillFieldMetadata>>();
+	    readonly List<AutofillId> AutofillIds = new List<AutofillId>();
+
+	    readonly Dictionary<string, List<AutofillFieldMetadata>> AutofillCanonicalHintsToFieldsMap = new Dictionary<string, List<AutofillFieldMetadata>>();
         
 		public List<string> AllAutofillCanonicalHints { get; }
 		public List<string> FocusedAutofillCanonicalHints { get; }
@@ -34,16 +35,21 @@ namespace keepass2android.services.AutofillBase
 
 		public void Add(AutofillFieldMetadata autofillFieldMetadata)
 		{
-			SaveType |= autofillFieldMetadata.SaveType;
+		    var hintsList = autofillFieldMetadata.AutofillCanonicalHints;
+		    if (!hintsList.Any())
+		        return;
+		    if (AutofillIds.Contains(autofillFieldMetadata.AutofillId))
+		        return;
+            SaveType |= autofillFieldMetadata.SaveType;
 			Size++;
 			AutofillIds.Add(autofillFieldMetadata.AutofillId);
-			var hintsList = autofillFieldMetadata.AutofillCanonicalHints;
+			
 			AllAutofillCanonicalHints.AddRange(hintsList);
 			if (autofillFieldMetadata.Focused)
 			{
 				FocusedAutofillCanonicalHints.AddRange(hintsList);
 			}
-			foreach (var hint in autofillFieldMetadata.AutofillCanonicalHints)
+			foreach (var hint in hintsList)
 			{
 				if (!AutofillCanonicalHintsToFieldsMap.ContainsKey(hint))
 				{

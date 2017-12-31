@@ -14,34 +14,22 @@ namespace keepass2android.services.AutofillBase
 	/// </summary>
 	public class AutofillHelper
 	{
-		/// <summary>
-		/// Wraps autofill data in a LoginCredential  Dataset object which can then be sent back to the
-		/// client View.
-		/// </summary>
-		/// <returns>The dataset.</returns>
-		/// <param name="context">Context.</param>
-		/// <param name="autofillFields">Autofill fields.</param>
-		/// <param name="filledAutofillFieldCollection">Filled autofill field collection.</param>
-		/// <param name="datasetAuth">If set to <c>true</c> dataset auth.</param>
-		public static Dataset NewDataset(Context context,
-				AutofillFieldMetadataCollection autofillFields, FilledAutofillFieldCollection filledAutofillFieldCollection, bool datasetAuth, IAutofillIntentBuilder intentBuilder) 
+	    /// <summary>
+	    /// Wraps autofill data in a LoginCredential  Dataset object which can then be sent back to the
+	    /// client View.
+	    /// </summary>
+	    /// <returns>The dataset.</returns>
+	    /// <param name="context">Context.</param>
+	    /// <param name="autofillFields">Autofill fields.</param>
+	    /// <param name="filledAutofillFieldCollection">Filled autofill field collection.</param>
+	    public static Dataset NewDataset(Context context,
+				AutofillFieldMetadataCollection autofillFields, FilledAutofillFieldCollection filledAutofillFieldCollection, IAutofillIntentBuilder intentBuilder) 
 		{
 			var datasetName = filledAutofillFieldCollection.DatasetName;
 			if (datasetName != null)
 			{
-				Dataset.Builder datasetBuilder;
-				if (datasetAuth)
-				{
-					datasetBuilder = new Dataset.Builder
-					                            (NewRemoteViews(context.PackageName, datasetName, intentBuilder.AppIconResource));
-					IntentSender sender = intentBuilder.GetAuthIntentSenderForDataset(context, datasetName);
-					datasetBuilder.SetAuthentication(sender);
-				}
-				else
-				{
-					datasetBuilder = new Dataset.Builder
-												(NewRemoteViews(context.PackageName, datasetName, intentBuilder.AppIconResource));
-				}
+			    var datasetBuilder = new Dataset.Builder(NewRemoteViews(context.PackageName, datasetName, intentBuilder.AppIconResource));
+				
 				var setValueAtLeastOnce = filledAutofillFieldCollection.ApplyToFields(autofillFields, datasetBuilder);
 				if (setValueAtLeastOnce)
 				{
@@ -80,7 +68,7 @@ namespace keepass2android.services.AutofillBase
 					var filledAutofillFieldCollection = clientFormDataMap[datasetName];
 					if (filledAutofillFieldCollection != null)
 					{
-						var dataset = NewDataset(context, autofillFields, filledAutofillFieldCollection, datasetAuth, intentBuilder);
+						var dataset = NewDataset(context, autofillFields, filledAutofillFieldCollection, intentBuilder);
 						if (dataset != null)
 						{
 							responseBuilder.AddDataset(dataset);
