@@ -159,7 +159,7 @@ namespace keepass2android
 				createUrlEntry.Visibility = ViewStates.Visible;
 				createUrlEntry.Click += (sender, e) =>
 				{
-					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url });
+					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? true });
 					Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
 				};
 			}
