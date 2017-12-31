@@ -181,6 +181,7 @@ namespace keepass2android
 					PwDeletedObject pdo = new PwDeletedObject(pe.Uuid, dtNow);
 					pd.DeletedObjects.Add(pdo);
 					touchedGroups.Add(pgParent);
+				    Db.Entries.Remove(pe.Uuid);
 				}
 				else // Recycle
 				{
