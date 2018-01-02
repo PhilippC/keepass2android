@@ -80,8 +80,9 @@ namespace keepass2android
 			_db = App.Kp2a.GetDb();
 			if (App.Kp2a.DatabaseIsUnlocked)
 			{
-				String searchUrl = ((SearchUrlTask)AppTask).UrlToSearchFor;
-				Query(searchUrl);	
+			    var searchUrlTask = ((SearchUrlTask)AppTask);
+			    String searchUrl = searchUrlTask.UrlToSearchFor;
+				Query(searchUrl, searchUrlTask.AutoReturnFromQuery);	
 			}
 			// else: LockCloseListActivity.OnResume will trigger a broadcast (LockDatabase) which will cause the activity to be finished.
 			
@@ -93,7 +94,7 @@ namespace keepass2android
 			AppTask.ToBundle(outState);
 		}
 
-		private void Query(String url)
+		private void Query(string url, bool autoReturnFromQuery)
 		{	
 			try
 			{
@@ -125,7 +126,7 @@ namespace keepass2android
 			}
 			
 			//if there is exactly one match: open the entry
-			if (Group.Entries.Count() == 1)
+			if ((Group.Entries.Count() == 1) && autoReturnFromQuery)
 			{
 				LaunchActivityForEntry(Group.Entries.Single(),0);
 				return;

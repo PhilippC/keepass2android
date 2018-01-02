@@ -15,11 +15,12 @@ namespace keepass2android.services
     class Kp2aAutofillIntentBuilder: IAutofillIntentBuilder
     {
 
-        public IntentSender GetAuthIntentSenderForResponse(Context context, string query, bool isManualRequest)
+        public IntentSender GetAuthIntentSenderForResponse(Context context, string query, bool isManualRequest, bool autoReturnFromQuery)
         {
             Intent intent = new Intent(context, typeof(ChooseForAutofillActivity));
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryString, query);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraIsManualRequest, isManualRequest);
+            intent.PutExtra(ChooseForAutofillActivityBase.ExtraAutoReturnFromQuery, autoReturnFromQuery);
             return PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.CancelCurrent).IntentSender;
         }
 

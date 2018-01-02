@@ -289,6 +289,7 @@ namespace keepass2android
 			CanWrite = true;
 			_reloadRequested = false;
 			OtpAuxFileIoc = null;
+		    LastOpenedEntry = null;
 		}
 		
 		public void MarkAllGroupsAsDirty() {

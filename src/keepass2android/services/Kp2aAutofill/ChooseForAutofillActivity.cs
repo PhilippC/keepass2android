@@ -24,13 +24,13 @@ namespace keepass2android.services.Kp2aAutofill
         Permission = "keepass2android." + AppNames.PackagePart + ".permission.Kp2aChooseAutofill")]
     public class ChooseForAutofillActivity : ChooseForAutofillActivityBase
     {
-        protected override Intent GetQueryIntent(string requestedUrl)
+        protected override Intent GetQueryIntent(string requestedUrl, bool autoReturnFromQuery)
         {
             //launch FileSelectActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
             //will return the results later
             Intent i = new Intent(this, typeof(FileSelectActivity));
             //don't show user notifications when an entry is opened.
-            var task = new SearchUrlTask() { UrlToSearchFor = requestedUrl, ShowUserNotifications = false };
+            var task = new SearchUrlTask() { UrlToSearchFor = requestedUrl, ShowUserNotifications = false, AutoReturnFromQuery = autoReturnFromQuery };
             task.ToIntent(i);
             return i;
         }
@@ -41,29 +41,37 @@ namespace keepass2android.services.Kp2aAutofill
         {
             if (!App.Kp2a.GetDb().Loaded || (App.Kp2a.QuickLocked))
                 return null;
+            var entryOutput = App.Kp2a.GetDb().LastOpenedEntry;
 
+            return GetFilledAutofillFieldCollectionFromEntry(entryOutput, this);
+        }
+
+        public static FilledAutofillFieldCollection GetFilledAutofillFieldCollectionFromEntry(PwEntryOutput pwEntryOutput, Context context)
+        {
+            if (pwEntryOutput == null)
+                return null;
             FilledAutofillFieldCollection fieldCollection = new FilledAutofillFieldCollection();
+            var pwEntry = pwEntryOutput.Entry;
 
-            var pwEntry = App.Kp2a.GetDb().LastOpenedEntry.Entry;
             foreach (string key in pwEntry.Strings.GetKeys())
             {
                 FilledAutofillField field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] { GetCanonicalHintFromKp2aField(pwEntry, key) },
+                        AutofillHints = new[] {GetCanonicalHintFromKp2aField(pwEntry, key)},
                         TextValue = pwEntry.Strings.ReadSafe(key),
                         Protected = pwEntry.Strings.Get(key).IsProtected
                     };
                 fieldCollection.Add(field);
             }
-            if (IsCreditCard(pwEntry) && pwEntry.Expires)
+            if (IsCreditCard(pwEntry, context) && pwEntry.Expires)
             {
                 DateTime expTime = pwEntry.ExpiryTime;
                 FilledAutofillField field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationDate },
-                        DateValue = (long)(1000*TimeUtil.SerializeUnix(expTime)),
+                        AutofillHints = new[] {View.AutofillHintCreditCardExpirationDate},
+                        DateValue = (long) (1000 * TimeUtil.SerializeUnix(expTime)),
                         Protected = false
                     };
                 fieldCollection.Add(field);
@@ -71,7 +79,7 @@ namespace keepass2android.services.Kp2aAutofill
                 field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationDay },
+                        AutofillHints = new[] {View.AutofillHintCreditCardExpirationDay},
                         TextValue = expTime.Day.ToString(),
                         Protected = false
                     };
@@ -80,7 +88,7 @@ namespace keepass2android.services.Kp2aAutofill
                 field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationMonth },
+                        AutofillHints = new[] {View.AutofillHintCreditCardExpirationMonth},
                         TextValue = expTime.Month.ToString(),
                         Protected = false
                     };
@@ -89,13 +97,12 @@ namespace keepass2android.services.Kp2aAutofill
                 field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationYear },
+                        AutofillHints = new[] {View.AutofillHintCreditCardExpirationYear},
                         TextValue = expTime.Year.ToString(),
                         Protected = false
                     };
                 fieldCollection.Add(field);
             }
-            
 
 
             fieldCollection.DatasetName = pwEntry.Strings.ReadSafe(PwDefs.TitleField);
@@ -103,11 +110,11 @@ namespace keepass2android.services.Kp2aAutofill
             return fieldCollection;
         }
 
-        private bool IsCreditCard(PwEntry pwEntry)
+        private static bool IsCreditCard(PwEntry pwEntry, Context context)
         {
             return pwEntry.Strings.Exists("cc-number")
                 || pwEntry.Strings.Exists("cc-csc")
-                || pwEntry.Strings.Exists(GetString(Resource.String.TemplateField_CreditCard_CVV));
+                || pwEntry.Strings.Exists(context.GetString(Resource.String.TemplateField_CreditCard_CVV));
         }
 
         private static readonly Dictionary<string, string> keyToHint = BuildKeyToHint();
@@ -133,7 +140,7 @@ namespace keepass2android.services.Kp2aAutofill
             return result;
         }
 
-        private string GetCanonicalHintFromKp2aField(PwEntry pwEntry, string key)
+        private static string GetCanonicalHintFromKp2aField(PwEntry pwEntry, string key)
         {
             if (!keyToHint.TryGetValue(key, out string result))
                 result = key;

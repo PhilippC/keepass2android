@@ -23,6 +23,7 @@ namespace keepass2android.services.AutofillBase
 
         public static string ExtraQueryString => "EXTRA_QUERY_STRING";
         public static string ExtraIsManualRequest => "EXTRA_IS_MANUAL_REQUEST";
+        public static string ExtraAutoReturnFromQuery => "EXTRA_AUTO_RETURN_FROM_QUERY";
 
         public int RequestCodeQuery => 6245;
 
@@ -46,11 +47,11 @@ namespace keepass2android.services.AutofillBase
                 return;
             }
 
-            var i = GetQueryIntent(requestedUrl);
+            var i = GetQueryIntent(requestedUrl, Intent.GetBooleanExtra(ExtraAutoReturnFromQuery, true));
             StartActivityForResult(i, RequestCodeQuery);
         }
 
-        protected abstract Intent GetQueryIntent(string requestedUrl);
+        protected abstract Intent GetQueryIntent(string requestedUrl, bool autoReturnFromQuery);
 
         protected void RestartApp()
         {
@@ -59,7 +60,7 @@ namespace keepass2android.services.AutofillBase
             Finish();
         }
 
-        /*
+        
         public override void Finish()
         {
             if (ReplyIntent != null)
@@ -71,7 +72,7 @@ namespace keepass2android.services.AutofillBase
                 SetResult(Result.Canceled);
             }
             base.Finish();
-        }*/
+        }
 
         void OnFailure()
         {
@@ -87,8 +88,7 @@ namespace keepass2android.services.AutofillBase
             parser.ParseForFill(isManual);
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
             int partitionIndex = AutofillHintsHelper.GetPartitionIndex(autofillFields.FocusedAutofillCanonicalHints.FirstOrDefault());
-            FilledAutofillFieldCollection partitionData =
-                AutofillHintsHelper.FilterForPartition(clientFormDataMap, partitionIndex);
+            FilledAutofillFieldCollection partitionData = AutofillHintsHelper.FilterForPartition(clientFormDataMap, partitionIndex);
             ReplyIntent = new Intent();
             SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, IntentBuilder));
         }
@@ -121,6 +121,7 @@ namespace keepass2android.services.AutofillBase
 
         public abstract IAutofillIntentBuilder IntentBuilder { get; }
 
+        
         protected void SetResponseIntent(FillResponse fillResponse)
         {
             ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, fillResponse);

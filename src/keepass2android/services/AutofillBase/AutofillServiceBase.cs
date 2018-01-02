@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -6,12 +7,13 @@ using Android.Service.Autofill;
 using Android.Util;
 using Android.Views.Autofill;
 using Android.Widget;
+using keepass2android.services.AutofillBase.model;
 
 namespace keepass2android.services.AutofillBase
 {
     public interface IAutofillIntentBuilder
     {
-        IntentSender GetAuthIntentSenderForResponse(Context context, string query, bool isManualRequest);
+        IntentSender GetAuthIntentSenderForResponse(Context context, string query, bool isManualRequest, bool autoReturnFromQuery);
         Intent GetRestartAppIntent(Context context);
 
         int AppIconResource { get; }
@@ -67,19 +69,13 @@ namespace keepass2android.services.AutofillBase
             if (responseAuth && autofillIds.Length != 0 && CanAutofill(query))
             {
                 var responseBuilder = new FillResponse.Builder();
-                
-                var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query, isManual);
-                RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName, GetString(Resource.String.autofill_sign_in_prompt), AppNames.LauncherIcon);
 
-                var datasetBuilder = new Dataset.Builder(presentation);
-                datasetBuilder.SetAuthentication(sender);
-                //need to add placeholders so we can directly fill after ChooseActivity
-                foreach (var autofillId in autofillIds)
-                {
-                    datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
-                }
+                var entryDataset = AddEntryDataset(query, parser);
+                bool hasEntryDataset = entryDataset != null;
+                if (entryDataset != null)
+                    responseBuilder.AddDataset(entryDataset);
 
-                responseBuilder.AddDataset(datasetBuilder.Build());
+                AddQueryDataset(query, isManual, autofillIds, responseBuilder, !hasEntryDataset);
 
                 callback.OnSuccess(responseBuilder.Build());
             }
@@ -89,6 +85,36 @@ namespace keepass2android.services.AutofillBase
                 var response = AutofillHelper.NewResponse(this, datasetAuth, autofillFields, null, IntentBuilder);
                 callback.OnSuccess(response);
             }
+        }
+
+        private Dataset AddEntryDataset(string query, StructureParser parser)
+        {
+            var filledAutofillFieldCollection = GetSuggestedEntry(query);
+            if (filledAutofillFieldCollection == null)
+                return null;
+            int partitionIndex = AutofillHintsHelper.GetPartitionIndex(parser.AutofillFields.FocusedAutofillCanonicalHints.FirstOrDefault());
+            FilledAutofillFieldCollection partitionData = AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, partitionIndex);
+
+            return AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder);
+        }
+
+        protected abstract FilledAutofillFieldCollection GetSuggestedEntry(string query);
+
+        private void AddQueryDataset(string query, bool isManual, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool autoReturnFromQuery)
+        {
+            var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query, isManual, autoReturnFromQuery);
+            RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName,
+                GetString(Resource.String.autofill_sign_in_prompt), AppNames.LauncherIcon);
+
+            var datasetBuilder = new Dataset.Builder(presentation);
+            datasetBuilder.SetAuthentication(sender);
+            //need to add placeholders so we can directly fill after ChooseActivity
+            foreach (var autofillId in autofillIds)
+            {
+                datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
+            }
+
+            responseBuilder.AddDataset(datasetBuilder.Build());
         }
 
         private bool CanAutofill(string query)

@@ -361,6 +361,7 @@ namespace keepass2android
 		{
 			base.Setup(b);
 			UrlToSearchFor = b.GetString(UrlToSearchKey);
+		    AutoReturnFromQuery = b.GetBoolean(AutoReturnFromQueryKey, true);
 		}
 		public override IEnumerable<IExtra> Extras 
 		{ 
@@ -369,9 +370,15 @@ namespace keepass2android
 				foreach (IExtra e in base.Extras)
 					yield return e;
 				yield return new StringExtra { Key=UrlToSearchKey, Value = UrlToSearchFor };
-			}
+			    yield return new BoolExtra { Key = AutoReturnFromQueryKey, Value = AutoReturnFromQuery };
+            }
 		}
-		public override void AfterUnlockDatabase(PasswordActivity act)
+
+	    public const String AutoReturnFromQueryKey = "AutoReturnFromQuery";
+
+        public bool AutoReturnFromQuery { get; set; }
+
+	    public override void AfterUnlockDatabase(PasswordActivity act)
 		{
 			if (String.IsNullOrEmpty(UrlToSearchFor))
 			{
@@ -403,6 +410,12 @@ namespace keepass2android
 			base.PopulatePasswordAccessServiceIntent(intent);
 			intent.PutExtra(UrlToSearchKey, UrlToSearchFor);
 		}
+
+	    public override void CompleteOnCreateEntryActivity(EntryActivity activity)
+	    {
+	        App.Kp2a.GetDb().LastOpenedEntry.SearchUrl = UrlToSearchFor;
+	        base.CompleteOnCreateEntryActivity(activity);
+	    }
 	}
 
 	
@@ -516,15 +529,18 @@ namespace keepass2android
 
 		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
-			//if the database is readonly (or no URL exists), don't offer to modify the URL
-			if ((App.Kp2a.GetDb().CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor)))
+		    App.Kp2a.GetDb().LastOpenedEntry.SearchUrl = UrlToSearchFor;
+
+            //if the database is readonly (or no URL exists), don't offer to modify the URL
+            if ((App.Kp2a.GetDb().CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor)))
 			{
 				base.CompleteOnCreateEntryActivity(activity);
 				return;
 			}
+		    
 
 
-			AskAddUrlThenCompleteCreate(activity, UrlToSearchFor);
+            AskAddUrlThenCompleteCreate(activity, UrlToSearchFor);
 
 		}
 
