@@ -191,7 +191,7 @@ namespace keepass2android.services.AutofillBase
                 }
                 else
                 {
-                    Log.Debug(CommonUtil.Tag, "Invalid autofill hint: " + hint);
+                    CommonUtil.logd("Invalid autofill hint: " + hint);
                 }
             }
             var finalFilteredHints = new string[i];

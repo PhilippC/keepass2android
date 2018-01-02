@@ -59,7 +59,7 @@ namespace keepass2android.services.AutofillBase
             Finish();
         }
 
-
+        /*
         public override void Finish()
         {
             if (ReplyIntent != null)
@@ -71,7 +71,7 @@ namespace keepass2android.services.AutofillBase
                 SetResult(Result.Canceled);
             }
             base.Finish();
-        }
+        }*/
 
         void OnFailure()
         {

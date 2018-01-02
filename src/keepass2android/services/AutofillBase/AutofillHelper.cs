@@ -86,7 +86,7 @@ namespace keepass2android.services.AutofillBase
 			}
 			else
 			{
-				Log.Debug(CommonUtil.Tag, "These fields are not meant to be saved by autofill.");
+				CommonUtil.logd("These fields are not meant to be saved by autofill.");
 				return null;
 			}
 		}

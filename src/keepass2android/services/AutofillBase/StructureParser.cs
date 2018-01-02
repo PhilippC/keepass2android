@@ -48,7 +48,7 @@ namespace keepass2android.services.AutofillBase
 	    /// <param name="isManualRequest"></param>
 	    string Parse(bool forFill, bool isManualRequest)
 		{
-			Log.Debug(CommonUtil.Tag, "Parsing structure for " + Structure.ActivityComponent);
+			CommonUtil.logd("Parsing structure for " + Structure.ActivityComponent);
 			var nodes = Structure.WindowNodeCount;
 			ClientFormData = new FilledAutofillFieldCollection();
 		    String webDomain = null;
@@ -119,7 +119,7 @@ namespace keepass2android.services.AutofillBase
 		    if (string.IsNullOrEmpty(webDomain))
             {
 		        webDomain = "androidapp://" + packageName;
-                Log.Debug(CommonUtil.Tag, "no web domain. Using package name.");
+                CommonUtil.logd("no web domain. Using package name.");
 		    }
 		    return webDomain;
 		}
@@ -148,7 +148,7 @@ namespace keepass2android.services.AutofillBase
 		    String webDomain = viewNode.WebDomain;
 		    if (webDomain != null)
 		    {
-		        Log.Debug(CommonUtil.Tag, $"child web domain: {webDomain}");
+		        CommonUtil.logd($"child web domain: {webDomain}");
 		        if (!string.IsNullOrEmpty(validWebdomain))
 		        {
 		            if (webDomain == validWebdomain)
