@@ -76,6 +76,8 @@ namespace keepass2android.services.AutofillBase
                     responseBuilder.AddDataset(entryDataset);
 
                 AddQueryDataset(query, isManual, autofillIds, responseBuilder, !hasEntryDataset);
+                responseBuilder.SetSaveInfo(new SaveInfo.Builder(parser.AutofillFields.SaveType,
+                    parser.AutofillFields.GetAutofillIds()).Build());
 
                 callback.OnSuccess(responseBuilder.Build());
             }
@@ -122,9 +124,28 @@ namespace keepass2android.services.AutofillBase
 
         public override void OnSaveRequest(SaveRequest request, SaveCallback callback)
         {
-            //TODO implement save
-            callback.OnFailure("Saving data is currently not implemented in Keepass2Android.");
+
+            var structure = request.FillContexts?.LastOrDefault()?.Structure;
+            if (structure == null)
+            {
+                return;
+            }
+
+            var parser = new StructureParser(this, structure);
+            string query = parser.ParseForSave();
+            try
+            {
+                HandleSaveRequest(parser, query);
+                callback.OnSuccess();
+            }
+            catch (Exception e)
+            {
+                callback.OnFailure(e.Message);   
+            }
+            
         }
+
+        protected abstract void HandleSaveRequest(StructureParser parser, string query);
 
 
         public override void OnConnected()

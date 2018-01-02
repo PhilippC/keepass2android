@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Android.App.Assist;
 using Android.Service.Autofill;
 using Android.Views;
@@ -65,47 +67,48 @@ namespace keepass2android.services.AutofillBase
 			return -1;
 		}
 
+        static readonly HashSet<string> _creditCardHints = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            View.AutofillHintCreditCardExpirationDate,
+            View.AutofillHintCreditCardExpirationDay,
+            View.AutofillHintCreditCardExpirationMonth,
+            View.AutofillHintCreditCardExpirationYear,
+            View.AutofillHintCreditCardNumber,
+            View.AutofillHintCreditCardSecurityCode
+        };
+
+	    static readonly HashSet<string> _addressHints = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+	    {
+	        View.AutofillHintPostalAddress,
+	        View.AutofillHintPostalCode
+        };
+        
 		void UpdateSaveTypeFromHints()
 		{
-            //TODO future add savetypes for W3cHints
 			SaveType = 0;
 			if (AutofillCanonicalHints == null)
 			{
 				return;
 			}
-			foreach (var hint in AutofillCanonicalHints)
-			{
-				switch (hint)
-				{
-					case View.AutofillHintCreditCardExpirationDate:
-					case View.AutofillHintCreditCardExpirationDay:
-					case View.AutofillHintCreditCardExpirationMonth:
-					case View.AutofillHintCreditCardExpirationYear:
-					case View.AutofillHintCreditCardNumber:
-					case View.AutofillHintCreditCardSecurityCode:
-						SaveType |= SaveDataType.CreditCard;
-						break;
-					case View.AutofillHintEmailAddress:
-						SaveType |= SaveDataType.EmailAddress;
-						break;
-					case View.AutofillHintPhone:
-					case View.AutofillHintName:
-						SaveType |= SaveDataType.Generic;
-						break;
-					case View.AutofillHintPassword:
-						SaveType |= SaveDataType.Password;
-						SaveType &= ~SaveDataType.EmailAddress;
-						SaveType &= ~SaveDataType.Username;
-						break;
-					case View.AutofillHintPostalAddress:
-					case View.AutofillHintPostalCode:
-						SaveType |= SaveDataType.Address;
-						break;
-					case View.AutofillHintUsername:
-						SaveType |= SaveDataType.Username;
-						break;
-				}
-			}
+		    if (AutofillCanonicalHints.Any(h => _creditCardHints.Contains(h)))
+		    {
+		        SaveType |= SaveDataType.CreditCard;
+            }
+		    if (AutofillCanonicalHints.Any(h => h.Equals(View.AutofillHintEmailAddress, StringComparison.OrdinalIgnoreCase)))
+		        SaveType |= SaveDataType.EmailAddress;
+		    if (AutofillCanonicalHints.Any(h => _addressHints.Contains(h)))
+		    {
+		        SaveType |= SaveDataType.Address;
+		    }
+		    if (AutofillCanonicalHints.Any(h => h.Equals(View.AutofillHintUsername, StringComparison.OrdinalIgnoreCase)))
+		        SaveType |= SaveDataType.Username;
+
+		    if (AutofillCanonicalHints.Any(h => h.Equals(View.AutofillHintPassword, StringComparison.OrdinalIgnoreCase)))
+            {
+		        SaveType |= SaveDataType.Password;
+		        SaveType &= ~SaveDataType.EmailAddress;
+		        SaveType &= ~SaveDataType.Username;
+            }
 		}
 	}
 }

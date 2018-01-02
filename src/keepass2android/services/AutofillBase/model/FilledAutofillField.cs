@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Android.App.Assist;
 using Android.Views.Autofill;
+using KeePassLib.Utility;
 
 namespace keepass2android.services.AutofillBase.model
 {
@@ -10,6 +11,17 @@ namespace keepass2android.services.AutofillBase.model
 	    public string TextValue { get; set; }
 		public long? DateValue { get; set; }
 		public bool? ToggleValue { get; set; }
+
+	    public string ValueToString()
+	    {
+	        if (DateValue != null)
+	        {
+	            return TimeUtil.ConvertUnixTime((long)DateValue / 1000.0).ToLongDateString();
+	        }
+	        if (ToggleValue != null)
+	            return ToggleValue.ToString();
+	        return TextValue;
+	    }
 
         /// <summary>
         /// returns the autofill hints for the filled field. These are always lowercased for simpler string comparison.
@@ -33,11 +45,17 @@ namespace keepass2android.services.AutofillBase.model
 
 	    public FilledAutofillField()
 		{}
-        
-        public FilledAutofillField(AssistStructure.ViewNode viewNode)
+
+	    public FilledAutofillField(AssistStructure.ViewNode viewNode)
+            : this(viewNode, viewNode.GetAutofillHints())
+	    {
+	        
+	    }
+
+        public FilledAutofillField(AssistStructure.ViewNode viewNode, string[] hints)
         {
             
-			string[] rawHints = AutofillHintsHelper.FilterForSupportedHints(viewNode.GetAutofillHints());
+			string[] rawHints = AutofillHintsHelper.FilterForSupportedHints(hints);
             List<string> hintList = new List<string>();
             
 		    string nextHint = null;
@@ -81,9 +99,8 @@ namespace keepass2android.services.AutofillBase.model
 		            CommonUtil.loge($"Invalid hint: {rawHints[i]}");
 		        }
 		    }
-            AutofillHints = hintList.ToArray();
-
-            //TODO port updated FilledAutofillField for saving
+            AutofillHints = AutofillHintsHelper.ConvertToCanonicalHints(hintList.ToArray()).ToArray();
+            
 			AutofillValue autofillValue = viewNode.AutofillValue;
 			if (autofillValue != null)
 			{

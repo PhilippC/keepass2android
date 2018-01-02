@@ -119,6 +119,14 @@ namespace keepass2android.services.Kp2aAutofill
 
         private static readonly Dictionary<string, string> keyToHint = BuildKeyToHint();
 
+        public static string GetKp2aKeyFromHint(string canonicalHint)
+        {
+            var key = keyToHint.FirstOrDefault(p => p.Value.Equals(canonicalHint, StringComparison.OrdinalIgnoreCase)).Key;
+            if (string.IsNullOrWhiteSpace(key))
+                return canonicalHint;
+            return key;
+        }
+
         private static Dictionary<string, string> BuildKeyToHint()
         {
             var result = new Dictionary<string, string>
@@ -127,15 +135,15 @@ namespace keepass2android.services.Kp2aAutofill
                 {PwDefs.PasswordField, View.AutofillHintPassword},
                 {PwDefs.UrlField, W3cHints.URL},
                 {
-                    Android.App.Application.Context.GetString(Resource.String.TemplateField_CreditCard_CVV),
+                    Application.Context.GetString(Resource.String.TemplateField_CreditCard_CVV),
                     View.AutofillHintCreditCardSecurityCode
                 },
                 {
-                    Android.App.Application.Context.GetString(Resource.String.TemplateField_CreditCard_Owner),
+                    Application.Context.GetString(Resource.String.TemplateField_CreditCard_Owner),
                     W3cHints.CC_NAME
                 },
-                {Android.App.Application.Context.GetString(Resource.String.TemplateField_Number), View.AutofillHintCreditCardNumber},
-                {Android.App.Application.Context.GetString(Resource.String.TemplateField_IdCard_Name), View.AutofillHintName},
+                {Application.Context.GetString(Resource.String.TemplateField_Number), View.AutofillHintCreditCardNumber},
+                {Application.Context.GetString(Resource.String.TemplateField_IdCard_Name), View.AutofillHintName},
             };
             return result;
         }

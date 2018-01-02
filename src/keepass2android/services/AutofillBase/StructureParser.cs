@@ -6,6 +6,8 @@ using Android.Content;
 using Android.Text;
 using Android.Util;
 using Android.Views;
+using Android.Views.Autofill;
+using keepass2android.services.AutofillBase.model;
 using FilledAutofillFieldCollection = keepass2android.services.AutofillBase.model.FilledAutofillFieldCollection;
 
 namespace keepass2android.services.AutofillBase
@@ -61,32 +63,33 @@ namespace keepass2android.services.AutofillBase
 				ParseLocked(forFill, isManualRequest, view, ref webDomain);
 			}
 
-		    
 
-		    if (AutofillFields.Empty)
+
+		    List<AssistStructure.ViewNode> passwordFields = new List<AssistStructure.ViewNode>();
+		    List<AssistStructure.ViewNode> usernameFields = new List<AssistStructure.ViewNode>();
+            if (AutofillFields.Empty)
 		    {
-                var passwordFields = _editTextsWithoutHint
-		            .Where(IsPassword).ToList();
+                passwordFields = _editTextsWithoutHint.Where(IsPassword).ToList();
 		        if (!passwordFields.Any())
 		        {
 		            passwordFields = _editTextsWithoutHint.Where(HasPasswordHint).ToList();
                 }
+		        
 		        foreach (var passwordField in passwordFields)
 		        {
-                    AutofillFields.Add(new AutofillFieldMetadata(passwordField, new[] { View.AutofillHintPassword }));
                     var usernameField = _editTextsWithoutHint.TakeWhile(f => f.AutofillId != passwordField.AutofillId).LastOrDefault();
 		            if (usernameField != null)
 		            {
-		                AutofillFields.Add(new AutofillFieldMetadata(usernameField, new[] {View.AutofillHintUsername}));
+		                usernameFields.Add(usernameField);
 		            }
 		        }
                 //for some pages with two-step login, we don't see a password field and don't display the autofill for non-manual requests. But if the user forces autofill, 
                 //let's assume it is a username field:
 		        if (isManualRequest && !passwordFields.Any() && _editTextsWithoutHint.Count == 1)
 		        {
-		            AutofillFields.Add(new AutofillFieldMetadata(_editTextsWithoutHint.First(), new[] { View.AutofillHintUsername }));
-
+		            usernameFields.Add(_editTextsWithoutHint.First());
                 }
+
                 
             }
 		    
@@ -97,12 +100,30 @@ namespace keepass2android.services.AutofillBase
 		        {
 		            if (editText.IsFocused)
 		            {
-		                AutofillFields.Add(new AutofillFieldMetadata(editText, new[] { IsPassword(editText) || HasPasswordHint(editText) ? View.AutofillHintPassword : View.AutofillHintUsername }));
+		                if (IsPassword(editText) || HasPasswordHint(editText))
+		                    passwordFields.Add(editText);
+		                else
+		                    usernameFields.Add(editText);
 		                break;
 		            }
 
 		        }
 		    }
+
+		    if (forFill)
+		    {
+		        foreach (var pf in passwordFields)
+		            AutofillFields.Add(new AutofillFieldMetadata(pf, new[] { View.AutofillHintPassword }));
+		        foreach (var uf in usernameFields)
+		            AutofillFields.Add(new AutofillFieldMetadata(uf, new[] { View.AutofillHintUsername }));
+            }
+		    else
+		    {
+		        foreach (var pf in passwordFields)
+		            ClientFormData.Add(new FilledAutofillField(pf, new[] { View.AutofillHintPassword }));
+		        foreach (var uf in usernameFields)
+		            ClientFormData.Add(new FilledAutofillField(uf, new[] { View.AutofillHintUsername }));
+            }
             
 
 
@@ -182,10 +203,9 @@ namespace keepass2android.services.AutofillBase
 				}
 				else
 				{
-                    //TODO implement save
-                    throw new NotImplementedException("TODO: Port and use AutoFill hints");
-					//ClientFormData.Add(new FilledAutofillField(viewNode));
-				}
+				    FilledAutofillField filledAutofillField = new FilledAutofillField(viewNode);
+				    ClientFormData.Add(filledAutofillField);
+                }
 			}
             else
             {

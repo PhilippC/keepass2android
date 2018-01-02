@@ -44,7 +44,7 @@ namespace keepass2android.services.AutofillBase.model
             { 
 		        if (AutofillHintsHelper.IsSupportedHint(hint))
 		        {
-		            HintMap.Add(hint, filledAutofillField);
+		            HintMap.TryAdd(hint, filledAutofillField);
 		        }
 		        else
 		        {
