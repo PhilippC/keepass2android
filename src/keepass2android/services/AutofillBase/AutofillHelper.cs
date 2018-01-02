@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Android.Content;
 using Android.Service.Autofill;
 using Android.Util;
@@ -46,50 +45,5 @@ namespace keepass2android.services.AutofillBase
 			presentation.SetImageViewResource(Resource.Id.icon, drawableId);
 			return presentation;
 		}
-
-	    /// <summary>
-	    /// Wraps autofill data in a Response object (essentially a series of Datasets) which can then
-	    /// be sent back to the client View.
-	    /// </summary>
-	    /// <returns>The response.</returns>
-	    /// <param name="context">Context.</param>
-	    /// <param name="datasetAuth">If set to <c>true</c> dataset auth.</param>
-	    /// <param name="autofillFields">Autofill fields.</param>
-	    /// <param name="clientFormDataMap">Client form data map.</param>
-	    /// <param name="intentBuilder"></param>
-	    public static FillResponse NewResponse(Context context, bool datasetAuth, AutofillFieldMetadataCollection autofillFields, Dictionary<string, FilledAutofillFieldCollection> clientFormDataMap, IAutofillIntentBuilder intentBuilder)
-		{
-			var responseBuilder = new FillResponse.Builder();
-			if (clientFormDataMap != null)
-			{
-				var datasetNames = clientFormDataMap.Keys;
-				foreach (var datasetName in datasetNames)
-				{
-					var filledAutofillFieldCollection = clientFormDataMap[datasetName];
-					if (filledAutofillFieldCollection != null)
-					{
-						var dataset = NewDataset(context, autofillFields, filledAutofillFieldCollection, intentBuilder);
-						if (dataset != null)
-						{
-							responseBuilder.AddDataset(dataset);
-						}
-					}
-				}
-			}
-			if (autofillFields.SaveType != 0)
-			{
-                //TODO implement save 
-				var autofillIds = autofillFields.GetAutofillIds();
-				responseBuilder.SetSaveInfo
-				               (new SaveInfo.Builder(autofillFields.SaveType, autofillIds).Build());
-				return responseBuilder.Build();
-			}
-			else
-			{
-				CommonUtil.logd("These fields are not meant to be saved by autofill.");
-				return null;
-			}
-		}
-
 	}
 }

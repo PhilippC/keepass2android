@@ -64,9 +64,9 @@ namespace keepass2android.services.AutofillBase
             
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
             
-            bool responseAuth = true;
+            
             var autofillIds = autofillFields.GetAutofillIds();
-            if (responseAuth && autofillIds.Length != 0 && CanAutofill(query))
+            if (autofillIds.Length != 0 && CanAutofill(query))
             {
                 var responseBuilder = new FillResponse.Builder();
 
@@ -81,9 +81,7 @@ namespace keepass2android.services.AutofillBase
             }
             else
             {
-                var datasetAuth = true;
-                var response = AutofillHelper.NewResponse(this, datasetAuth, autofillFields, null, IntentBuilder);
-                callback.OnSuccess(response);
+                callback.OnSuccess(null);
             }
         }
 
