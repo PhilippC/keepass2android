@@ -112,22 +112,23 @@ namespace keepass2android.services.AutofillBase
 
 		    if (forFill)
 		    {
-		        foreach (var pf in passwordFields)
-		            AutofillFields.Add(new AutofillFieldMetadata(pf, new[] { View.AutofillHintPassword }));
 		        foreach (var uf in usernameFields)
 		            AutofillFields.Add(new AutofillFieldMetadata(uf, new[] { View.AutofillHintUsername }));
-            }
-		    else
-		    {
 		        foreach (var pf in passwordFields)
-		            ClientFormData.Add(new FilledAutofillField(pf, new[] { View.AutofillHintPassword }));
+		            AutofillFields.Add(new AutofillFieldMetadata(pf, new[] { View.AutofillHintPassword }));
+
+            }
+            else
+		    {
 		        foreach (var uf in usernameFields)
 		            ClientFormData.Add(new FilledAutofillField(uf, new[] { View.AutofillHintUsername }));
+		        foreach (var pf in passwordFields)
+		            ClientFormData.Add(new FilledAutofillField(pf, new[] { View.AutofillHintPassword }));
             }
-            
 
 
-		    String packageName = Structure.ActivityComponent.PackageName;
+
+            String packageName = Structure.ActivityComponent.PackageName;
             if (!string.IsNullOrEmpty(webDomain))
 		    {
 		        bool valid = Kp2aDigitalAssetLinksDataSource.Instance.IsValid(mContext, webDomain, packageName);

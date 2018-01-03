@@ -30,9 +30,11 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Widget;
 using Android.Preferences;
+using Android.Provider;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
+using Android.Views.Autofill;
 using Java.IO;
 using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
@@ -347,6 +349,13 @@ namespace keepass2android
             App.Kp2a.UpdateOngoingNotification();
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+
+            UpdateAutofillPref();
+        }
+
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -359,6 +368,10 @@ namespace keepass2android
 			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
 			FindPreference(GetString(Resource.String.DebugLog_key)).PreferenceChange += OnDebugLogChanged;
 			FindPreference(GetString(Resource.String.DebugLog_send_key)).PreferenceClick += OnSendDebug;
+
+            UpdateAutofillPref();
+
+
             PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
 			PrepareNoDonationReminderPreference(Activity, ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))), FindPreference(GetString(Resource.String.NoDonationReminder_key)));
 
@@ -450,7 +463,32 @@ namespace keepass2android
 			
         }
 
-	    private void OnSendDebug(object sender, Preference.PreferenceClickEventArgs e)
+        private void UpdateAutofillPref()
+        {
+            var autofillPref = FindPreference(GetString(Resource.String.AutoFill_prefs_key));
+            if ((Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.O) ||
+                !((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
+                    .IsAutofillSupported)
+            {
+                var passwordAccessScreen =
+                    (PreferenceScreen) FindPreference(Activity.GetString(Resource.String.password_access_prefs_key));
+                passwordAccessScreen.RemovePreference(autofillPref);
+            }
+            else
+            {
+                if (((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
+                    .HasEnabledAutofillServices)
+                    autofillPref.Summary = Activity.GetString(Resource.String.plugin_enabled);
+                else
+                {
+                    autofillPref.Summary = Activity.GetString(Resource.String.not_enabled);
+                }
+                autofillPref.Intent = new Intent(Settings.ActionRequestSetAutofillService);
+                autofillPref.Intent.SetData(Android.Net.Uri.Parse("package:" + Activity.PackageName));
+            }
+        }
+
+        private void OnSendDebug(object sender, Preference.PreferenceClickEventArgs e)
 	    {
 		    Kp2aLog.SendLog(this.Activity);
 	    }

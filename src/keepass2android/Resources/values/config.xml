@@ -96,6 +96,8 @@
 	<string name="QuickUnlock_prefs_key">QuickUnlock_prefs_key</string>
 	<string name="FileHandling_prefs_key">FileHandling_prefs_key</string>
 	<string name="keyboardswitch_prefs_key">keyboardswitch_prefs_key</string>
+  <string name="AutoFill_prefs_key">AutoFill_prefs_key</string>
+  
 
   <string name="OfflineMode_key">OfflineMode_key</string>
 

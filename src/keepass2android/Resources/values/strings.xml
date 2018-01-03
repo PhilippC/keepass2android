@@ -371,6 +371,7 @@
 	<string name="ShowSeparateNotifications_summary">Show separate notifications for copying username and password to clipboard and activating the keyboard.</string>
 
   <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
+  <string name="AutoFill_prefs">AutoFill Service</string>
 	
 	<string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
   <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
@@ -576,6 +577,9 @@
 	<string name="plugin_disabled">disabled</string>
 	<string name="plugin_web">Find plug-ins online</string>
 	<string name="plugin_scopes">Scopes</string>
+  
+  
+  <string name="not_enabled">not enabled</string>
 
 	<string name="query_credentials_for_url">%1$s is requesting credentials for %2$s.</string>
 	<string name="query_credentials">%1$s is requesting credentials. Please select an entry.</string>

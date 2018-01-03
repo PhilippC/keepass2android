@@ -40,8 +40,6 @@ namespace keepass2android.services.AutofillBase.model
             }
 	    }
 
-	    public bool Protected { get; set; }
-
 
 	    public FilledAutofillField()
 		{}
