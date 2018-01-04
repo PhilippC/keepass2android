@@ -1040,6 +1040,8 @@ Initial public release
   <string name="ClearClipboardWarning">Make sure this works on your system and consider using the built-in keyboard if not.</string>
   <string name="PluginDescription">Description provided by the plugin:</string>
 
+  <string name="autofill_hint">Keepass2Android supports Android\'s Autofill feature but it looks like you haven\'t enabled it yet.</string>
+  <string name="autofill_enable">Enable Autofill</string>
   <string name="autofill_sign_in_prompt">Fill with Keepass2Android</string>
   <string name="invalid_link_association">Could not associate web domain %1$s with app %2$s</string>
 

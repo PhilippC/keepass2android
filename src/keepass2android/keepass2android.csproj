@@ -267,7 +267,6 @@
     <Compile Include="Utils\Util.cs" />
     <Compile Include="views\ClickView.cs" />
     <Compile Include="views\GroupListItemView.cs" />
-    <Compile Include="views\GroupView.cs" />
     <Compile Include="PwGroupListAdapter.cs" />
     <Compile Include="views\Kp2aShortHelpView.cs" />
     <Compile Include="views\PwGroupView.cs" />

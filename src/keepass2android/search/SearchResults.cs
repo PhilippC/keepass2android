@@ -50,8 +50,8 @@ namespace keepass2android.search
 			if ( IsFinishing ) {
 				return;
 			}
-			
-			SetResult(KeePass.ExitNormal);
+
+            SetResult(KeePass.ExitNormal);
 
 			ProcessIntent(Intent);
 		}

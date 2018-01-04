@@ -34,7 +34,9 @@ using keepass2android.Io;
 using keepass2android.database.edit;
 using keepass2android.view;
 using Android.Graphics.Drawables;
+using Android.Provider;
 using Android.Support.V4.View;
+using Android.Views.Autofill;
 using CursorAdapter = Android.Support.V4.Widget.CursorAdapter;
 using Object = Java.Lang.Object;
 
@@ -45,6 +47,17 @@ namespace keepass2android
 	{
 		public const String KeyEntry = "entry";
 		public const String KeyMode = "mode";
+
+        static readonly Dictionary<int /*resource id*/, int /*prio*/> bottomBarElementsPriority = new Dictionary<int, int>()
+        {
+            { Resource.Id.cancel_insert_element, 20 },
+            { Resource.Id.insert_element, 20 },
+            { Resource.Id.autofill_infotext, 10 },
+            { Resource.Id.select_other_entry, 20},
+            { Resource.Id.add_url_entry, 20},
+        };
+
+	    private readonly HashSet<int /*resource id*/> showableBottomBarElements = new HashSet<int>();
 
 		private ActivityDesign _design;
 
@@ -87,14 +100,6 @@ namespace keepass2android
 
 		public void SetNormalButtonVisibility(bool showAddGroup, bool showAddEntry)
 		{
-			//check for null in the following because the "empty" layouts may not have all views
-
-			if (FindViewById(Resource.Id.bottom_bar) != null)
-				FindViewById(Resource.Id.bottom_bar).Visibility = BottomBarAlwaysVisible ? ViewStates.Visible : ViewStates.Gone;
-
-			if (FindViewById(Resource.Id.divider2) != null)
-				FindViewById(Resource.Id.divider2).Visibility = BottomBarAlwaysVisible ? ViewStates.Visible : ViewStates.Gone;
-
 			if (FindViewById(Resource.Id.fabCancelAddNew) != null)
 			{
 				FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Gone;
@@ -104,16 +109,53 @@ namespace keepass2android
 				FindViewById(Resource.Id.fabAddNew).Visibility = (showAddGroup || showAddEntry) ? ViewStates.Visible : ViewStates.Gone;
 			}
 
+		    UpdateBottomBarElementVisibility(Resource.Id.insert_element, false);
+		    UpdateBottomBarElementVisibility(Resource.Id.cancel_insert_element, false);
 
-		}
+        }
 
-		public virtual bool BottomBarAlwaysVisible
-		{
-			get { return false; }
-		}
+        void UpdateBottomBarVisibility()
+	    {
+	        var bottomBar = FindViewById<RelativeLayout>(Resource.Id.bottom_bar);
+	        //check for null because the "empty" layouts may not have all views
+	        int highestPrio = -1;
+	        HashSet<int> highestPrioElements = new HashSet<int>();
+            if (bottomBar != null)
+	        {
+	            for (int i = 0; i < bottomBar.ChildCount; i++)
+	            {
+	                int id = bottomBar.GetChildAt(i).Id;
+	                if (!showableBottomBarElements.Contains(id))
+	                    continue;
+	                int myPrio = bottomBarElementsPriority[id];
+
+                    if (!highestPrioElements.Any() || highestPrio < myPrio)
+	                {
+	                    highestPrioElements.Clear();
+	                    highestPrio = myPrio;
+	                }
+	                if (highestPrio == myPrio)
+	                {
+	                    highestPrioElements.Add(id);
+                    }
+                }
+
+	            bottomBar.Visibility = highestPrioElements.Any() ? ViewStates.Visible : ViewStates.Gone;
+
+	            for (int i = 0; i < bottomBar.ChildCount; i++)
+	            {
+	                int id = bottomBar.GetChildAt(i).Id;
+	                bottomBar.GetChildAt(i).Visibility =
+	                    highestPrioElements.Contains(id) ? ViewStates.Visible : ViewStates.Gone;
+	            }
+
+	            if (FindViewById(Resource.Id.divider2) != null)
+	                FindViewById(Resource.Id.divider2).Visibility = highestPrioElements.Any() ? ViewStates.Visible : ViewStates.Gone;
+	        }
+	    }
 
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+	    protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
@@ -194,7 +236,9 @@ namespace keepass2android
 			AppTask.StartInGroupActivity(this);
 			AppTask.SetupGroupBaseActivityButtons(this);
 
-			RefreshIfDirty();
+		    UpdateAutofillInfo();
+
+            RefreshIfDirty();
 		}
 
 		public override bool OnSearchRequested()
@@ -244,10 +288,20 @@ namespace keepass2android
 
 			_prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 
+		    
+            SetContentView(ContentResourceId);
 
-			SetContentView(ContentResourceId);
+		    if (FindViewById(Resource.Id.enable_autofill) != null)
+		    {
+		        FindViewById(Resource.Id.enable_autofill).Click += (sender, args) =>
+		        {
+		            var intent = new Intent(Settings.ActionRequestSetAutofillService);
+		            intent.SetData(Android.Net.Uri.Parse("package:" + PackageName));
+		            StartActivity(intent);
+		        };
+		    }
 
-			if (FindViewById(Resource.Id.fabCancelAddNew) != null)
+            if (FindViewById(Resource.Id.fabCancelAddNew) != null)
 			{
 				FindViewById(Resource.Id.fabAddNew).Click += (sender, args) =>
 				{
@@ -276,6 +330,10 @@ namespace keepass2android
 				Util.MoveBottomBarButtons(Resource.Id.cancel_insert_element, Resource.Id.insert_element, Resource.Id.bottom_bar, this);
 			}
 
+		    
+
+		    
+
 
 			SetResult(KeePass.ExitNormal);
 
@@ -283,7 +341,40 @@ namespace keepass2android
 
 		}
 
-		protected virtual int ContentResourceId
+	    private void UpdateAutofillInfo()
+	    {
+	        bool canShowAutofillInfo = false;
+	        
+	        if (!((Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.O) ||
+	              !((AutofillManager) GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
+	                  .IsAutofillSupported))
+	        {
+	            const string autofillservicewasenabled = "AutofillServiceWasEnabled";
+	            if (!((AutofillManager) GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
+	                .HasEnabledAutofillServices)
+	            {
+                    //if (!_prefs.GetBoolean(autofillservicewasenabled, false))
+	                canShowAutofillInfo = true;
+	            }
+	            else
+	            {
+	                _prefs.Edit().PutBoolean(autofillservicewasenabled, true).Commit();
+
+	            }
+	        }
+	        UpdateBottomBarElementVisibility(Resource.Id.autofill_infotext, canShowAutofillInfo);
+        }
+
+	    protected void UpdateBottomBarElementVisibility(int resourceId, bool canShow)
+	    {
+            if (canShow)
+                showableBottomBarElements.Add(resourceId);
+            else
+                showableBottomBarElements.Remove(resourceId);
+            UpdateBottomBarVisibility();
+	    }
+
+	    protected virtual int ContentResourceId
 		{
 			get { return Resource.Layout.group; }
 		}
@@ -732,8 +823,9 @@ namespace keepass2android
 			FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
 			FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
 
-			FindViewById(Resource.Id.bottom_bar).Visibility = ViewStates.Visible;
-			FindViewById(Resource.Id.divider2).Visibility = ViewStates.Visible;
+		    UpdateBottomBarElementVisibility(Resource.Id.insert_element, true);
+		    UpdateBottomBarElementVisibility(Resource.Id.cancel_insert_element, true);
+
 		}
 
 		public void StopMovingElements()

@@ -78,17 +78,25 @@ namespace keepass2android
 			SetResult(Result.Canceled);
 
 			_db = App.Kp2a.GetDb();
-			if (App.Kp2a.DatabaseIsUnlocked)
+
+
+		    UpdateBottomBarElementVisibility(Resource.Id.select_other_entry, true);
+		    UpdateBottomBarElementVisibility(Resource.Id.add_url_entry, true);
+
+
+            if (App.Kp2a.DatabaseIsUnlocked)
 			{
 			    var searchUrlTask = ((SearchUrlTask)AppTask);
 			    String searchUrl = searchUrlTask.UrlToSearchFor;
 				Query(searchUrl, searchUrlTask.AutoReturnFromQuery);	
 			}
-			// else: LockCloseListActivity.OnResume will trigger a broadcast (LockDatabase) which will cause the activity to be finished.
-			
-		}
+            // else: LockCloseListActivity.OnResume will trigger a broadcast (LockDatabase) which will cause the activity to be finished.
 
-		protected override void OnSaveInstanceState(Bundle outState)
+
+
+        }
+
+        protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
 			AppTask.ToBundle(outState);
@@ -179,11 +187,6 @@ namespace keepass2android
 			i.SetFlags(ActivityFlags.ForwardResult);
 			StartActivity(i);
 			return true;
-		}
-
-		public override bool BottomBarAlwaysVisible
-		{
-			get { return true; }
 		}
 
 	    protected override int ContentResourceId
