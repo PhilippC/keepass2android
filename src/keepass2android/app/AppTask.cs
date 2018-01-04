@@ -349,7 +349,12 @@ namespace keepass2android
 	/// ExitAfterTaskComplete. This also allows te specify the flag if we need to display the user notifications.
 	public class SearchUrlTask: SelectEntryTask
 	{
-		public const String UrlToSearchKey = "UrlToSearch";
+	    public SearchUrlTask()
+	    {
+	        AutoReturnFromQuery = true;
+	    }
+
+        public const String UrlToSearchKey = "UrlToSearch";
 
 		public string UrlToSearchFor
 		{
