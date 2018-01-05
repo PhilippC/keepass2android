@@ -466,6 +466,8 @@ namespace keepass2android
         private void UpdateAutofillPref()
         {
             var autofillPref = FindPreference(GetString(Resource.String.AutoFill_prefs_key));
+            if (autofillPref == null)
+                return;
             if ((Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.O) ||
                 !((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
                     .IsAutofillSupported)
