@@ -51,14 +51,31 @@
                   android:layout_margin="6dp"
                   android:layout_marginBottom="2dp"
         />
-        <Button
-          android:id="@+id/enable_autofill"
-          android:layout_width="wrap_content"
+
+        <RelativeLayout
+          android:id="@+id/autofill_buttons"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"
-          android:paddingTop="4dp"
-          android:text="@string/autofill_enable"
-          style="@style/BottomBarButton" />
+          android:orientation="horizontal"
+          android:baselineAligned="false">
+
+          <Button
+            android:id="@+id/enable_autofill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="4dp"
+            android:text="@string/autofill_enable"
+            style="@style/BottomBarButton" />
+          <Button
+            android:id="@+id/show_autofill_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="4dp"
+            android:text="@string/show_autofill_help"
+            style="@style/BottomBarButton" />
+        </RelativeLayout>
       </LinearLayout>
     </RelativeLayout>
   

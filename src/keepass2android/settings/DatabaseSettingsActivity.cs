@@ -480,13 +480,18 @@ namespace keepass2android
             {
                 if (((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
                     .HasEnabledAutofillServices)
+                {
                     autofillPref.Summary = Activity.GetString(Resource.String.plugin_enabled);
+                    autofillPref.Intent = new Intent(Intent.ActionView);
+                    autofillPref.Intent.SetData(Android.Net.Uri.Parse("https://philippc.github.io/keepass2android/OreoAutoFill.html"));
+                }
                 else
                 {
                     autofillPref.Summary = Activity.GetString(Resource.String.not_enabled);
+                    autofillPref.Intent = new Intent(Settings.ActionRequestSetAutofillService);
+                    autofillPref.Intent.SetData(Android.Net.Uri.Parse("package:" + Activity.PackageName));
                 }
-                autofillPref.Intent = new Intent(Settings.ActionRequestSetAutofillService);
-                autofillPref.Intent.SetData(Android.Net.Uri.Parse("package:" + Activity.PackageName));
+
             }
         }
 

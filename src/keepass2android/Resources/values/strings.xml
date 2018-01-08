@@ -1042,6 +1042,7 @@ Initial public release
 
   <string name="autofill_hint">Keepass2Android supports Android\'s Autofill feature but it looks like you haven\'t enabled it yet.</string>
   <string name="autofill_enable">Enable Autofill</string>
+  <string name="show_autofill_help">Show Autofill help</string>
   <string name="autofill_sign_in_prompt">Fill with Keepass2Android</string>
   <string name="invalid_link_association">Could not associate web domain %1$s with app %2$s</string>
 

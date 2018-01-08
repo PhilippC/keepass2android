@@ -330,12 +330,16 @@ namespace keepass2android
 				Util.MoveBottomBarButtons(Resource.Id.cancel_insert_element, Resource.Id.insert_element, Resource.Id.bottom_bar, this);
 			}
 
-		    
+		    if (FindViewById(Resource.Id.show_autofill_info) != null)
+		    {
+		        FindViewById(Resource.Id.show_autofill_info).Click += (sender, args) => Util.GotoUrl(this, "https://philippc.github.io/keepass2android/OreoAutoFill.html");
+                Util.MoveBottomBarButtons(Resource.Id.show_autofill_info, Resource.Id.enable_autofill, Resource.Id.autofill_buttons, this);
+		    }
 
-		    
 
 
-			SetResult(KeePass.ExitNormal);
+
+		    SetResult(KeePass.ExitNormal);
 
 
 
