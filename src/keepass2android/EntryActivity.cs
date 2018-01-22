@@ -91,7 +91,14 @@ namespace keepass2android
 		private int _pos;
 
 		AppTask _appTask;
-		private List<TextView> _protectedTextViews;
+
+	    struct ProtectedTextviewGroup
+	    {
+	        public TextView ProtectedField;
+	        public TextView VisibleProtectedField;
+        }
+
+		private List<ProtectedTextviewGroup> _protectedTextViews;
 		private IMenu _menu;
 
 		private readonly Dictionary<string, List<IPopupMenuItem>> _popupMenuItems =
@@ -476,14 +483,24 @@ namespace keepass2android
 			RelativeLayout valueViewContainer =
 				(RelativeLayout) LayoutInflater.Inflate(Resource.Layout.entry_extrastring_value, null);
 			var valueView = valueViewContainer.FindViewById<TextView>(Resource.Id.entry_extra);
-			if (value != null)
-				valueView.Text = value;
-			SetPasswordTypeface(valueView);
-			if (isProtected)
-			{
-				RegisterProtectedTextView(valueView);
-				valueView.TransformationMethod = PasswordTransformationMethod.Instance;
-			}
+		    var valueViewVisible = valueViewContainer.FindViewById<TextView>(Resource.Id.entry_extra_visible);
+		    if (value != null)
+		    {
+		        valueView.Text = value;
+                valueViewVisible.Text = value;
+
+            }
+		    SetPasswordTypeface(valueViewVisible);
+		    if (isProtected)
+		    {
+		        RegisterProtectedTextView(valueView, valueViewVisible);
+		        //valueView.TransformationMethod = PasswordTransformationMethod.Instance;
+                
+		    }
+		    else
+		    {
+		        valueView.Visibility = ViewStates.Gone;
+		    }
 
 			layout.AddView(valueViewContainer);
 			var stringView = new ExtraStringView(layout, valueView, keyView);
@@ -599,9 +616,9 @@ namespace keepass2android
 
 
 
-		private void RegisterProtectedTextView(TextView protectedTextView)
+		private void RegisterProtectedTextView(TextView protectedTextView, TextView visibleTextView)
 		{
-			_protectedTextViews.Add(protectedTextView);
+			_protectedTextViews.Add(new ProtectedTextviewGroup { ProtectedField = protectedTextView, VisibleProtectedField = visibleTextView});
 		}
 
 
@@ -687,7 +704,7 @@ namespace keepass2android
 
 		protected void FillData()
 		{
-			_protectedTextViews = new List<TextView>();
+			_protectedTextViews = new List<ProtectedTextviewGroup>();
 			ImageView iv = (ImageView) FindViewById(Resource.Id.icon);
 			if (iv != null)
 			{
@@ -704,9 +721,9 @@ namespace keepass2android
 
 			PopulateStandardText(Resource.Id.entry_user_name, Resource.Id.entryfield_container_username, PwDefs.UserNameField);
 			PopulateStandardText(Resource.Id.entry_url, Resource.Id.entryfield_container_url, PwDefs.UrlField);
-			PopulateStandardText(Resource.Id.entry_password, Resource.Id.entryfield_container_password, PwDefs.PasswordField);
-			RegisterProtectedTextView(FindViewById<TextView>(Resource.Id.entry_password));
-			SetPasswordTypeface(FindViewById<TextView>(Resource.Id.entry_password));
+			PopulateStandardText(new List<int> { Resource.Id.entry_password, Resource.Id.entry_password_visible}, Resource.Id.entryfield_container_password, PwDefs.PasswordField);
+		    
+            RegisterProtectedTextView(FindViewById<TextView>(Resource.Id.entry_password), FindViewById<TextView>(Resource.Id.entry_password_visible));
 
 			RegisterTextPopup(FindViewById<RelativeLayout> (Resource.Id.groupname_container),
 				              FindViewById (Resource.Id.entry_group_name), KeyGroupFullPath);
@@ -820,28 +837,43 @@ namespace keepass2android
 			textView.Typeface = _passwordFont;	
 		}
 
-		private void PopulateText(int viewId, int containerViewId, String text)
+	    private void PopulateText(int viewId, int containerViewId, String text)
+	    {
+	        PopulateText(new List<int> {viewId}, containerViewId, text);
+	    }
+
+
+        private void PopulateText(List<int> viewIds, int containerViewId, String text)
 		{
 			View container = FindViewById(containerViewId);
-			TextView tv = (TextView) FindViewById(viewId);
-			if (String.IsNullOrEmpty(text))
-			{
-				container.Visibility = tv.Visibility = ViewStates.Gone;
-			}
-			else
-			{
-				container.Visibility = tv.Visibility = ViewStates.Visible;
-				tv.Text = text;
+		    foreach (int viewId in viewIds)
+		    {
+		        TextView tv = (TextView) FindViewById(viewId);
+		        if (String.IsNullOrEmpty(text))
+		        {
+		            container.Visibility = tv.Visibility = ViewStates.Gone;
+		        }
+		        else
+		        {
+		            container.Visibility = tv.Visibility = ViewStates.Visible;
+		            tv.Text = text;
 
-			}
+		        }
+		    }
 		}
 
-		private void PopulateStandardText(int viewId, int containerViewId, String key)
+	    private void PopulateStandardText(int viewId, int containerViewId, String key)
+	    {
+	        PopulateStandardText(new List<int> {viewId}, containerViewId, key);
+	    }
+
+
+        private void PopulateStandardText(List<int> viewIds, int containerViewId, String key)
 		{
 			String value = Entry.Strings.ReadSafe(key);
 			value = SprEngine.Compile(value, new SprContext(Entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
-			PopulateText(viewId, containerViewId, value);
-			_stringViews.Add(key, new StandardStringView(viewId, containerViewId, this));
+			PopulateText(viewIds, containerViewId, value);
+			_stringViews.Add(key, new StandardStringView(viewIds, containerViewId, this));
 		}
 
 		private void PopulateGroupText(int viewId, int containerViewId, String key)
@@ -853,7 +885,7 @@ namespace keepass2android
 				groupName = Entry.ParentGroup.GetFullPath();
 			}
 			PopulateText(viewId, containerViewId, groupName);
-			_stringViews.Add (key, new StandardStringView (viewId, containerViewId, this));
+			_stringViews.Add (key, new StandardStringView (new List<int>{viewId}, containerViewId, this));
 		}
 
 		private void RequiresRefresh()
@@ -932,20 +964,15 @@ namespace keepass2android
 
 		private void SetPasswordStyle()
 		{
-			foreach (TextView password in _protectedTextViews)
+			foreach (ProtectedTextviewGroup group in _protectedTextViews)
 			{
 
-				if (_showPassword)
-				{
-					//password.TransformationMethod = null;
-					password.InputType = password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-					SetPasswordTypeface(password);
-				}
-				else
-				{
-					//password.TransformationMethod = PasswordTransformationMethod.Instance;
-					password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-				}
+                group.VisibleProtectedField.Visibility = _showPassword ? ViewStates.Visible : ViewStates.Gone;
+                group.ProtectedField.Visibility = !_showPassword ? ViewStates.Visible : ViewStates.Gone;
+
+				SetPasswordTypeface(group.VisibleProtectedField);
+
+                group.ProtectedField.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 			}
 		}
 

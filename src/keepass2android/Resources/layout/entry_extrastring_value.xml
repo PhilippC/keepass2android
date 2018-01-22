@@ -22,4 +22,11 @@
 		android:typeface="monospace"
 		android:layout_toLeftOf="@id/extra_vdots"
 		style="@style/EntryItem" />
+  <TextView
+    android:id="@+id/entry_extra_visible"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:typeface="monospace"
+    android:layout_toLeftOf="@id/extra_vdots"
+    style="@style/EntryItem" />
 </RelativeLayout>
