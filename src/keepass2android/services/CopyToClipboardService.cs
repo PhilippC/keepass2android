@@ -212,8 +212,8 @@ namespace keepass2android
 			private PendingIntent GetPendingIntent(string intentText, int descResId)
 			{
 				PendingIntent pending;
-				Intent intent = new Intent(intentText);
-				intent.SetPackage(_ctx.PackageName);
+				Intent intent = new Intent(_ctx, typeof(CopyToClipboardBroadcastReceiver));
+			    intent.SetAction(intentText);
 				pending = PendingIntent.GetBroadcast(_ctx, descResId, intent, PendingIntentFlags.CancelCurrent);
 				return pending;
 			}
@@ -454,12 +454,7 @@ namespace keepass2android
 				StopSelf();
 				return;
 			}
-
-			IntentFilter filter = new IntentFilter();
-			filter.AddAction(Intents.CopyUsername);
-			filter.AddAction(Intents.CopyPassword);
-			filter.AddAction(Intents.CheckKeyboard);
-
+            
 			//register receiver to get notified when notifications are discarded in which case we can shutdown the service
 			_notificationDeletedBroadcastReceiver = new NotificationDeletedBroadcastReceiver(this);
 			IntentFilter deletefilter = new IntentFilter();
@@ -757,7 +752,6 @@ namespace keepass2android
 	}
 
 	[BroadcastReceiver(Permission = "keepass2android." + AppNames.PackagePart + ".permission.CopyToClipboard")]
-	[IntentFilter(new[] { Intents.CopyUsername, Intents.CopyPassword, Intents.CheckKeyboard })]
 	class CopyToClipboardBroadcastReceiver : BroadcastReceiver
 	{
 		public CopyToClipboardBroadcastReceiver(IntPtr javaReference, JniHandleOwnership transfer)

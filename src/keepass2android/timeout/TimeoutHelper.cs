@@ -35,7 +35,7 @@ namespace keepass2android
 			
 			private static PendingIntent BuildIntent(Context ctx)
 			{
-				return PendingIntent.GetBroadcast(ctx, 0, new Intent(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent);
+				return PendingIntent.GetBroadcast(ctx, 0, new Intent(ctx, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent);
 			}
 
 			public static void Start(Context ctx)
