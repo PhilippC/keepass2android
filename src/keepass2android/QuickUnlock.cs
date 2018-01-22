@@ -340,8 +340,13 @@ namespace keepass2android
 			{
 				KcpPassword kcpPassword = (KcpPassword) App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof (KcpPassword));
 				String password = kcpPassword.Password.ReadString();
-				String expectedPasswordPart = password.Substring(Math.Max(0, password.Length - _quickUnlockLength),
-					Math.Min(password.Length, _quickUnlockLength));
+
+			    var passwordStringInfo = new System.Globalization.StringInfo(password);
+
+			    int passwordLength = passwordStringInfo.LengthInTextElements;
+                
+                String expectedPasswordPart = passwordStringInfo.SubstringByTextElements(Math.Max(0, passwordLength - _quickUnlockLength),
+                    Math.Min(passwordLength, _quickUnlockLength));
 				return expectedPasswordPart;
 			}
 		}
