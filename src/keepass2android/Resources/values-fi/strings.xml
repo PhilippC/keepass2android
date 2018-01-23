@@ -7,13 +7,13 @@
   <string name="AboutText">Keepass2Android on salasanojen hallintaohjelma, jolla voit katsella ja muokata KeePass 2.x tietokantoja Androidilla.</string>
   <string name="CreditsText">Käyttöliittymä perustuu Brian Pellinin kehittämään KeepassDroid-porttaukseen. Tietokantatoimintojen lähdekoodi perustuu Dominik Reichlin KeePass-sovellukseen. Android robot on kopioitu tai muokattu Googlen jakamista julkaisuista ja sitä käytetään Creative Commons 3.0 Attribution -lisenssissä kuvattujen ehtojen mukaisesti.</string>
   <string name="CreditsTextSFTP">SFTP-tuki on toteutettu käyttämällä JCraft, Inc.:in luomaa BSD-lisenssin alaista JSch-kirjastoa.</string>
-  <string name="CreditsIcons">Vasara kuvake jonka on luonut John Caserta Noun Projektista. Pingviini-kuvake jonka on luonut Adriano Emerick Noun Projektista. Sulka-kuvake jonka on luonut Jon Testa Noun Projektista. Apple-kuvake jonka on luonut Ava Rowell Noun Projektista. Kuva kuvake on 
+  <string name="CreditsIcons">Vasara-kuvake jonka on luonut John Caserta, Noun Projektista. Pingviini-kuvake jonka on luonut Adriano Emerick, Noun Projektista. Sulka-kuvake jonka on luonut Jon Testa, Noun Projektista. Apple-kuvake jonka on luonut Ava Rowell, Noun Projektista. Kuva kuvakkeesta on 
 osoitteesta https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Hyväksy</string>
   <string name="deny">Älä hyväksy</string>
   <string name="add_entry">Lisää merkintä</string>
   <string name="edit_entry">Muokkaa merkintää</string>
-  <string name="add_url_entry">Luo merkintä URL:lle</string>
+  <string name="add_url_entry">Luo URL-merkintä</string>
   <string name="add_group">Lisää ryhmä</string>
   <string name="add_group_title">Lisää ryhmä</string>
   <string name="edit_group_title">Muokkaa ryhmää</string>
@@ -23,9 +23,9 @@ osoitteesta https://icons8.com/icon/5570/Picture.</string>
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Aikakatkaisu</string>
+  <string name="app_timeout">Sovelluksen aikakatkaisu</string>
   <string name="app_timeout_summary">Aika, jonka jälkeen tietokanta lukkiutuu automaattisesti jos ohjelmaa ei käytetä.</string>
-  <string name="kill_app_label">Tapa prosessi</string>
+  <string name="kill_app_label">Lopeta sovelluksen prosessi</string>
   <string name="show_kill_app">Sulje-painike</string>
   <string name="show_kill_app_summary">Näytä painike \"Tapa prosessi\" (vainoharhaisille käyttäjille)</string>
   <string name="application">Sovellus</string>
@@ -62,8 +62,8 @@ osoitteesta https://icons8.com/icon/5570/Picture.</string>
   <string name="ClearClipboard">Leikepöytä tyhjennetty.</string>
   <string name="clipboard_timeout">Leikepöydän aikakatkaisu</string>
   <string name="clipboard_timeout_summary">Viive ennen kopioidun käyttäjänimen tai salasanan poistamista leikepöydältä</string>
-  <string name="copy_username">Valitse kopioidaksesi käyttäjänimen leikepöydälle</string>
-  <string name="copy_password">Valitse kopioidaksesi salasanan leikepöydälle</string>
+  <string name="copy_username">Valitse kopioidaksesi käyttäjänimi leikepöydälle</string>
+  <string name="copy_password">Valitse ja kopioi salasana leikepöydälle</string>
   <string name="available_through_keyboard">Merkintä on saatavana KP2A näppäimistöllä</string>
   <string name="entry_is_available">on saatavilla</string>
   <string name="not_possible_im_picker">Näppäimistön valinta -ikkunaa ei voitu avata. Valitse näppäimistö manuaalisesti.</string>
@@ -88,8 +88,6 @@ osoitteesta https://icons8.com/icon/5570/Picture.</string>
   <string name="enable_fingerprint_unlock">Ota käyttöön täysi sormenjälkiavaus</string>
   <string name="enable_fingerprint_quickunlock">Ota käyttöön pika-avaus sormenjäljellä</string>
   <string name="fingerprint_unlock_hint">Kosketa sormenjälkitunnistinta avataksesi tietokannan</string>
-  <string name="fingerprint_unlock_failed">Sormenjälkiavaus epäonnistui. Android-käyttöjärjestelmä ei hyväksynyt sormenjälkeä. Tämä tapahtuu yleensä silloin, kun uusi sormenjälki on lisätty, tai turvallisuusasetuksia on muutettu. Ole hyvä ja avaa tietokanta salasanallasi, ja ota sormenjälkiavaus uudelleen käyttöön tietokanta-asetuksista.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Tietokannan avaus epäonnistui: virheellinen yhdistelmäavain. Sormenjälkitunnistus on poisttettu, koska ilmeisesti tallennettu pääsalasana ei ole enää voimassa. Ole hyvä ja avaa tietokanta salasanallasi ja ota sormenjälkiavaus uudelleen käyttöön tietokanta-asetuksista.</string>
   <string name="fingerprint_reenable">Ole hyvä ja ota sormenjälkitunnistus käyttöön uudelle pääsalasanalle.</string>
   <string name="enable_fingerprint_unlock_Info">
     Tämä tallentaa pääsalasanasi laitteeseen,
@@ -137,7 +135,7 @@ osoitteesta https://icons8.com/icon/5570/Picture.</string>
   <string name="error_wrong_length">Kirjoita Pituus-kenttään positiivinen kokonaisluku</string>
   <string name="FileNotFound">Tiedostoa ei löydy.</string>
   <string name="file_browser">Tiedostoselain</string>
-  <string name="generate_password">Generoi salasana</string>
+  <string name="generate_password">Luo salasana</string>
   <string name="group">Ryhmä</string>
   <string name="hint_comment">muistiinpanot</string>
   <string name="hint_conf_pass">Vahvista salasana</string>
@@ -336,6 +334,7 @@ osoitteesta https://icons8.com/icon/5570/Picture.</string>
   <string name="ShowSeparateNotifications_title">Erilliset ilmoitukset</string>
   <string name="ShowSeparateNotifications_summary">Näytä erilliset ilmoitukset kun käyttäjätunnus ja salasana kopioidaan leikepöydälle ja aktivoitaessa näppäimistö.</string>
   <string name="AccServiceAutoFill_prefs">Automaattinen täyttö esteettömyyspalvelu</string>
+  <string name="AutoFill_prefs">Automaattitäyttö-palvelu</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A-näppäimistön ilmoitus</string>
   <string name="ShowKp2aKeyboardNotification_summary">Salli koko merkinnän syöttäminen KP2A-näppäimistön kautta (suositus).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Vaihda näppäimistö</string>
@@ -497,6 +496,7 @@ osoitteesta https://icons8.com/icon/5570/Picture.</string>
   <string name="plugin_disabled">ei käytössä</string>
   <string name="plugin_web">Etsi liitännäisiä verkosta</string>
   <string name="plugin_scopes">Käyttöalueet</string>
+  <string name="not_enabled">ei käytössä</string>
   <string name="query_credentials_for_url">%1$s pyytää tunnuksia merkinnälle %2$s.</string>
   <string name="query_credentials">%1$s pyytää tunnuksia. Valitse merkintä.</string>
   <string name="plugin_enabled_checkbox">Käytössä</string>
@@ -863,4 +863,6 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   </string-array>
   <string name="ClearClipboardWarning">Varmista että tämä toimii järjestelmässäsi ja harkitse sisäänrakennetun näppäimistön käyttöä, jos se ei toimi.</string>
   <string name="PluginDescription">Laajennuksen antama kuvaus:</string>
+  <string name="autofill_enable">Ota automaattitäyttö käyttöön</string>
+  <string name="autofill_sign_in_prompt">Täytä Keepass2Androidilla</string>
 </resources>

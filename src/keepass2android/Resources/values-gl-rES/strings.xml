@@ -86,8 +86,6 @@
   <string name="enable_fingerprint_unlock">Habilitar desbloqueo completo con pegada dixital</string>
   <string name="enable_fingerprint_quickunlock">Habilitar desbloqueo con pegada dixital para QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Toque o sensor para desbloquear a base de datos</string>
-  <string name="fingerprint_unlock_failed">Fallou o desbloqueo por pegada dixital. A clave de descifrado foi invalidada por Android. Isto pode ocorrer se se rexistrou unha nova pegada ou se modificarou a configuración de seguridade. Desbloquee co seu contrasinal e volva a habilitar o desbloqueo por pegada dixital na configuración da base de datos.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Fallou o desbloqueo da base de datos: clave composta non válida. O desbloqueo por pegada dixital foi deshabilitado, probablemente porque o contrasinal maestro xa non é válido. Desbloquee co seu contrasinal e volva a habilitar o desbloqueo por pegada dixital na configuración da base de datos.</string>
   <string name="fingerprint_reenable">Volva a habilitar o desbloqueo por pegada dixital para o novo contrasinal mestre.</string>
   <string name="enable_fingerprint_unlock_Info">Isto gardará o seu contrasinal mestre no dispositivo, encriptado co Android Keystore e protexido por autenticación de pegada dixital. Permítelle desbloquear a base de datos tan só ca súa pegada dixital.</string>
   <string name="enable_fingerprint_quickunlock_Info">Permite o uso da autenticación con pegada dixital no canto do seu código QuickUnlock. Non require a almacenaxe de ningunha información relacionada co seu contrasinal mestre.</string>

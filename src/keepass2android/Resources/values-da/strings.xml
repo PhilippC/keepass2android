@@ -87,8 +87,6 @@ Gå venligst til systemindstillinger først.</string>
   <string name="enable_fingerprint_unlock">Slå fuld Fingeraftryksoplåsning til</string>
   <string name="enable_fingerprint_quickunlock">Slå Fingeraftryksoplåsning til for hurtigoplåsning</string>
   <string name="fingerprint_unlock_hint">Rør sensoren for at låse databasen op</string>
-  <string name="fingerprint_unlock_failed">Fingerprint Unlock mislykkedes. Krypteringsnøglen blev ugyldiggjort af Android OS. Dette sker normalt, hvis et nyt fingeraftryk blev tilmeldt eller sikkerhedsindstillinger blev ændret. Venligst lås op med din adgangskode og derefter genaktivér Fingeraftryksoplåsning i databaseindstillingerne.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Oplåsning af databasen mislykkedes: Ugyldig kombinationsnøgle. Fingeraftryksoplåsning blev deaktiveret, formodentligt fordi den lagrede hovedadgangskode ikke længere er gyldig. Lås venligst op med dit kodeord og genaktivér Fingeraftrykslås i databaseindstillingerne.</string>
   <string name="fingerprint_reenable">Genaktiver venligst Fingeraftryksoplåsning for den nye hovedadgangskode.</string>
   <string name="enable_fingerprint_unlock_Info">Dette gemmer din hovedadgangskode på denne enhed, krypteret med Android Keystore og beskyttet ved brug af fingeraftryksautentificering. Tillader kun at låse din database op med dit fingeraftryk.</string>
   <string name="enable_fingerprint_quickunlock_Info">Tillader at bruge fingeraftryksgodkendelse i stedet for Hurtigoplåsningskoden. Gemmer ikke nogen information relateret til din hovedadgangskode.</string>

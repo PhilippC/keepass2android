@@ -8,7 +8,7 @@
   <string name="CreditsText">Die Benutzeroberfläche basiert auf einem Port von Keepassdroid (entwickelt von Brian Pellin) nach Mono for Android. Der Code für die Datenbank-Operationen nutzt eine angepasste Version einer Bibliothek aus KeePass (entwickelt von Dominik Reichl).
 Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird nach den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
   <string name="CreditsTextSFTP">SFTP-Unterstützung ist implementiert unter Nutzung der JSch-Bibliothek (BSD-Lizenz), erstellt durch JCraft, Inc.</string>
-  <string name="CreditsIcons">Das Hammer-Icon wurde von John Caserta aus dem Noun Project erstellt. Das Pinguin-Icon wurde von Adriano Emerick aus dem Noun Project erstellt. Das Feder-Icon wurde von Jon Testa aus dem Noun Project erstellt. Das Apfel-Icon wurde von Ava Rowell aus dem Noun Project erstellt. Das Bild-Icon stammt von https://icons8.com/icon/5570/Picture.</string>
+  <string name="CreditsIcons">Das Hammer-Icon wurde von John Caserta (Noun Project) erstellt. Das Pinguin-Icon wurde von Adriano Emerick (Noun Project) erstellt. Das Feder-Icon wurde von Jon Testa (Noun Project) erstellt. Das Apfel-Icon wurde von Ava Rowell (Noun Project) erstellt. Das Bild-Icon stammt von https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Akzeptieren</string>
   <string name="deny">Verweigern</string>
   <string name="add_entry">Eintrag hinzufügen</string>
@@ -88,9 +88,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="enable_fingerprint_unlock">Volles Entsperren mit Fingerabdruck aktivieren</string>
   <string name="enable_fingerprint_quickunlock">Entsperren mit Fingerabdruck für QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Sensor zum Entsperren berühren</string>
-  <string name="fingerprint_unlock_failed">Entsperren mit Fingerabdruck fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn ein neuer Fingerabdruck hinzugefügt wurde oder die Sicherheitseinstellungen geändert wurden. Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Öffnen mit Fingerabdruck erneut aktivieren.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Entsperren per Fingerabdruck wurde deaktiviert, da das gespeicherte Masterpasswort nicht länger gültig ist. Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Entsperren per Fingerabdruck erneut aktivieren.</string>
+  <string name="fingerprint_unlock_failed">Entsperren mit Fingerabdruck fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn ein neuer Fingerabdruck hinzugefügt wurde oder die Sicherheitseinstellungen geändert wurden.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Entsperren per Fingerabdruck wurde deaktiviert, da das gespeicherte Masterpasswort nicht länger gültig ist.</string>
   <string name="fingerprint_reenable">Bitte Fingerabdruck für das neue Masterpasswort erneut aktivieren.</string>
+  <string name="fingerprint_reenable2">Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Entsperren per Fingerabdruck erneut aktivieren.</string>
+  <string name="FingerprintInitFailed">Fehler beim Initialisieren des Fingerabdruck-Sensors. </string>
   <string name="enable_fingerprint_unlock_Info">
 Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Ermöglicht es, die Datenbank per Fingerabdruck zu entsperren.
   </string>
@@ -289,7 +291,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
   <string name="SaveAttachmentDialog_save">Auf SD-Karte speichern</string>
   <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
-  <string name="ShowAttachedImage">Mit internem Image-Viewer anzeigen</string>
+  <string name="ShowAttachedImage">Mit internem Bildbetrachter anzeigen</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
   <string name="SaveAttachment_Failed">Datei konnte nicht unter %1$s gespeichert werden.</string>
   <string name="AddUrlToEntryDialog_title">Suchtext merken?</string>
@@ -308,7 +310,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="credentials_dialog_title">Serverzugangsdaten eingeben</string>
   <string name="UseFileTransactions_title">Dateitransaktionen</string>
   <string name="UseFileTransactions_summary">Dateitransaktionen beim Schreiben von Datenbank-Dateien verwenden</string>
-  <string name="LockWhenScreenOff_title">Sperren bei Ausschalten</string>
+  <string name="LockWhenScreenOff_title">Sperren, wenn Bildschirm ausgeschaltet</string>
   <string name="LockWhenScreenOff_summary">Sperre die Datenbank wenn der Bildschirm ausgeschaltet wird.</string>
   <string name="ClearPasswordOnLeave_title">Eingegebenes Master-Passwort-Feld leeren</string>
   <string name="ClearPasswordOnLeave_summary">Leere das Eingabefeld für das Master-Passwort, wenn der Passwort-Eingabebildschirm verlassen wird, ohne dass die Datenbank entsperrt wurde.</string>
@@ -322,9 +324,9 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
   <string name="UseOfflineCache_summary">Speichere eine Kopie der Remote-Datenbank-Dateien im Cache-Verzeichnis der App. Das erlaubt die Nutzung von Remote-Datenbanken auch wenn du offline bist.</string>
   <string name="AcceptAllServerCertificates_title">SSL-Zertifikate</string>
-  <string name="AcceptAllServerCertificates_summary">Bestimme das Verhalten, wenn Zertifikate nicht validiert werden können. Hinweis: du kannst  auf deinem Android-Gerät Root-Zertifikate installieren, damit die Validierung gelingt!</string>
+  <string name="AcceptAllServerCertificates_summary">Bestimme das Verhalten, wenn Zertifikate nicht validiert werden können. Hinweis: du kannst auf deinem Android-Gerät Root-Zertifikate installieren, damit die Validierung gelingt!</string>
   <string name="ClearOfflineCache_title">Cache löschen?</string>
-  <string name="ClearOfflineCache_question">Alle Datenbank-Dateien im Cache werden gelöscht. Änderungen, die du gemacht hast während du offline warst und die noch nicht synchronisiert wurden, werden verloren gehen! Fortfahren?</string>
+  <string name="ClearOfflineCache_question">Alle Datenbank-Dateien im Cache werden gelöscht. Nicht synchronisierte Änderungen, die du offline gemacht hast, gehen verloren! Fortfahren?</string>
   <string name="CheckForFileChangesOnSave_title">Auf Änderungen prüfen</string>
   <string name="CheckForFileChangesOnSave_summary">Vor dem Speichern prüfen, ob die Datei von außerhalb geändert wurde.</string>
   <string name="CheckForDuplicateUuids_title">Prüfe auf doppelte UUIDs</string>
@@ -334,6 +336,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="ShowSeparateNotifications_title">Separate Benachrichtigungen</string>
   <string name="ShowSeparateNotifications_summary">Zeige separate Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode.</string>
   <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
+  <string name="AutoFill_prefs">AutoFill-Dienst</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
   <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
@@ -494,6 +497,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="plugin_disabled">deaktiviert</string>
   <string name="plugin_web">Plugins online finden</string>
   <string name="plugin_scopes">Bereiche</string>
+  <string name="not_enabled">nicht aktiviert</string>
   <string name="query_credentials_for_url">%1$s fordert die Anmeldeinformationen für %2$s an.</string>
   <string name="query_credentials">%1$s fordert Anmeldeinformationen an. Bitte Eintrag wählen.</string>
   <string name="plugin_enabled_checkbox">Aktiviert</string>
@@ -571,6 +575,11 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ErrorReportAsk">Nach Fehler fragen</string>
   <string name="ErrorReportPrefTitle">Fehlerbericht senden</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
+  <string name="ChangeLog_1_04">
+    Version 1.04\n
+    * Autofill-Dienst für Android 8.0 und höher implementiert.\n
+    * Bibliotheken und Build-Tools aktualisiert.\n
+  </string>
   <string name="ChangeLog_1_03">
 Version 1.03\n
 * Accessibility-Service für AutoFill entfernt, da dies von Google gefordert wurde. Gehe in die Passwort-Zugriff-Einstellungen für einen Link zu einem Plugin, das die zuvor integrierte Funktionalität wieder bereitstellen kann.\n
@@ -863,4 +872,9 @@ Erstes öffentliches Release</string>
   </string-array>
   <string name="ClearClipboardWarning">Bitte stelle sicher, dass dies auf deinem System funktioniert; falls nicht, nutze bitte die standard Tastatur.</string>
   <string name="PluginDescription">Vom Plugin gelieferte Beschreibung:</string>
+  <string name="autofill_hint">Keepass2Android unterstützt das Autofill-Feature von Android, aber du hast es anscheinend noch nicht aktiviert.</string>
+  <string name="autofill_enable">Autofill aktivieren</string>
+  <string name="show_autofill_help">Autofill-Hilfe anzeigen</string>
+  <string name="autofill_sign_in_prompt">Mit Keepass2Android ausfüllen</string>
+  <string name="invalid_link_association">Webdomain %1$s konnte nicht mit App %2$s in Verbindung gebracht werden</string>
 </resources>

@@ -87,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Aktiver fingeravtrykk opplåsning</string>
   <string name="enable_fingerprint_quickunlock">Slå på fingeravtrykk opplåsning i QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Trykk på sensoren for å låse opp databasen</string>
-  <string name="fingerprint_unlock_failed">Opplåsing ved fingeravtrykk feilet. Dekrypteringsnøkkelen ble avbrutt av Android OS. Dette skjer vansligvis hvis et nytt fingeravtrykk ble registrert eller sikkerhetsinstillingene ble endret. Venligst lås opp vha passord og reaktiver opplåsning med fingeravtrykk i database-instillingene.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Opplåsning av databasen feilet: Ugyldig komposittnøkkel. Fingeravtrykksopplåsingen ble deaktivert fordi det lagrede hovedpassordet tilsynelatende ikke lenger er gyldig. Vennligst lås opp med passordet ditt og aktiver deretter fingeravtrykkslåsing i databasens innstillinger.</string>
   <string name="fingerprint_reenable">Vennligst aktiver fingeravtrykk opplåsning for det nye master passordet.</string>
   <string name="enter_filename">Angi filnavnet for databasen</string>
   <string name="entry_accessed">Brukt</string>

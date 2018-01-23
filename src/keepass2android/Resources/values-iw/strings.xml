@@ -5,4 +5,14 @@
   <string name="about_feedback">משוב</string>
   <string name="about_homepage">עמוד הבית</string>
   <string name="edit_entry">ערוך רשומה</string>
+  <string name="add_group_title">הוסף קבוצה</string>
+  <string name="edit_group_title">ערוך קבוצה</string>
+  <string name="algorithm">אלגוריתם</string>
+  <string name="algorithm_colon">אלגוריתם</string>
+  <string name="app_name">Keepass2Android</string>
+  <string name="short_app_name">KP2A</string>
+  <string name="app_name_nonet">Keepass2Android במצב לא מקוון</string>
+  <string name="short_app_name_nonet">KP2A במצב לא מקוון</string>
+  <string name="app_timeout">פג תוקפו של הישום</string>
+  <string name="app_timeout_summary">פרק זמן לפני נעילת מסד הנתונים כאשר היישום אינו פעיל.</string>
 </resources>

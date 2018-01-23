@@ -87,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Povolit úplné odemknutí otiskem prstu</string>
   <string name="enable_fingerprint_quickunlock">Povolit odemknutí otiskem prstu pro rychlé odemknutí</string>
   <string name="fingerprint_unlock_hint">Dotkněte se snímače pro odemknutí databáze</string>
-  <string name="fingerprint_unlock_failed">Odemknutí otiskem prstu selhalo. Dešifrovací klíč byl zneplatněn systémem Android. Toto se nejčastěji stává, pokud byl zaregistrovaný nový otisk prostu nebo bylo změněno nastavení zabezpečení. Prosím odemkněte pomocí svého hesla a potom znovu povolte odemknutí otiskem prstu v nastavení databáze.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Odemknutí databáze se nezdařilo: neplatný složený klíč. Odemknutí otiskem prstu bylo zakázáno z důvodu pravděpodobného vypršení platnosti hlavního hesla. Prosím, odemkněte pomocí vašeho hesla a potom znovu povolte odemknutí otiskem prstu v nastavení databáze.</string>
   <string name="fingerprint_reenable">Prosím, povolte znovu odemknutí otiskem prstu pro nové hlavní heslo.</string>
   <string name="enable_fingerprint_unlock_Info">
     Toto uloží vaše hlavní heslo na toto zařízení,

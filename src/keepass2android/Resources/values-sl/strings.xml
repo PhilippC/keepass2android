@@ -86,8 +86,6 @@
   <string name="enable_fingerprint_unlock">Omogoči popolno odklepanje s prstnim odtisom</string>
   <string name="enable_fingerprint_quickunlock">Omogoči odklepanje s prstnim odtisom za Hitro odklepanje</string>
   <string name="fingerprint_unlock_hint">Tipalo dotika za odklepanje podatkovne zbirke</string>
-  <string name="fingerprint_unlock_failed">Odklepanje s prstnim odtisom je spodletelo. OS Android je razveljavil odšifrirni ključ. To se običajno zgodi, če vpišete nov prstni odtis ali spremenite varnostne nastavitve. Odklenite z geslom in ponovno omogočite odklepanje s prtnim odtisom v nastavitvah podatkovne zbirke.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Odklepanje podatkovne zbirke je spodletelo: neveljaven sestavljen ključ. Odklepanje s prstnim odtisom je bilo onemogočeno, ker je očitno shranjeno glavno geslo neveljavno. Odklenite s svojim geslom in ponovno omogočite odklepanje s prstnim odtisom v nastavitvah podatkovne zbirke.</string>
   <string name="fingerprint_reenable">Ponovno omogočite odklepanje s prstnim odtisom za novo glavno geslo.</string>
   <string name="enable_fingerprint_unlock_Info">
     To bo shranilo glavno geslo na tej napravi, ki bo

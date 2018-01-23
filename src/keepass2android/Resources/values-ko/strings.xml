@@ -77,7 +77,6 @@
   <string name="disable_fingerprint_unlock">지문 잠금 해제 사용안함</string>
   <string name="enable_fingerprint_quickunlock">빠른 잠금해제를 위해 지문인식 잠금해제 사용</string>
   <string name="fingerprint_unlock_hint">데이터베이스의 잠금을 해제하려면 센서에 접촉하십시오</string>
-  <string name="fingerprint_unlock_failed">지문 인식 잠금 해제에 실패했습니다. 안 드 로이드 OS에 의해 키 암호 해독이 무효화 됐습니다. 일반적으로 새로운 지문을 등록 했거나 보안 설정이 변경 된 경우 발생 합니다. 귀하의 비밀 번호로 잠금 해제를 한 후 데이터베이스 설정에서 다시 지문 인식 잠금 해제 설정에서 재활성화 하시기 바랍니다.</string>
   <string name="enter_filename">데이터베이스 파일 이름을 입력하세요.</string>
   <string name="entry_accessed">접속됨</string>
   <string name="entry_cancel">최소</string>

@@ -74,7 +74,7 @@
   <string name="digits">Cijfers</string>
   <string name="disclaimer_formal">Keepass2Android biedt GEEN ENKELE GARANTIE; Dit is gratis software, u mag deze software verspreiden onder de voorwaarden van de GPL versie 2 of recenter.</string>
   <string name="ellipsis">\u2026</string>
-  <string name="copy_to_clipboard">Kopieer_naar_klembord</string>
+  <string name="copy_to_clipboard">Kopieer naar klembord</string>
   <string name="fingerprint_hint">Sensor</string>
   <string name="fingerprint_description">Bevestig vingerafdruk om verder te gaan</string>
   <string name="fingerprint_fatal">Vingerafdrukontgrendeling kan niet worden ingesteld:</string>
@@ -87,9 +87,11 @@
   <string name="enable_fingerprint_unlock">Vingerafdrukontgrendeling inschakelen</string>
   <string name="enable_fingerprint_quickunlock">Vingerafdrukontgrendeling voor QuickUnlock inschakelen</string>
   <string name="fingerprint_unlock_hint">Raak de sensor aan om database te ontgrendelen</string>
-  <string name="fingerprint_unlock_failed">Vingerafdruk-unlock is mislikt. Decryptie sleutel is niet geaccepteerd door het OS. Dit gebeurt meestal als u een nieuwe vingerprint hebt ingesteld. Heractiveer vingerafdruk-unlock alstublieft in de instellingen.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Ontgrendelen van de database mislukt: Ongeldige sleutelcombinatie. Vingerafdruk-ontgrendelen is uitgeschakeld omdat het hoofdwachtwoord niet meer geldig is. Ontgrendel aub met uw wachtwoord en schakel daarna Vingerafdruk-ontgrendelen weer in. U vindt dit onder database-instellingen.</string>
+  <string name="fingerprint_unlock_failed">Ontgrendelen via vingerafdruk mislukt. De sleutel is door Android als ongeldig gemarkeerd. Dit is meestal het geval als er een nieuwe vingerafdruk is ingesteld of als de beveiligingsinstellingen zijn gewijzigd. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Ontgrendelen van de database mislukt: Ongeldige sleutel. Vingerafdruk-ontgrendeling is uitgeschakeld want het opgeslagen hoofdwachtwoord is niet meer geldig. </string>
   <string name="fingerprint_reenable">Schakel aub vingerafdruk-ontgrendelen opnieuw in voor het nieuwe hoofdwachtwoord.</string>
+  <string name="fingerprint_reenable2">Ontgrendel aub met uw wachtwoord en schakel dan vingerafdruk-ontgrendeling weer in via de instellingen van de database.</string>
+  <string name="FingerprintInitFailed">Niet gelukt om de vingerafdruk-sensor te initialiseren. </string>
   <string name="enable_fingerprint_unlock_Info">
 Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met uw vingerafdruk. Dit geeft de mogelijkheid uw database enkel met uw vingerafdruk te ontgrendelen.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Gebruik authenticatie dmv vingerafdruk in plaats van QuckUnlock. U hoeft geen informatie met betrekking tot uw hoofdwachtwoord op te slaan.</string>
@@ -276,8 +278,8 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="ViewDatabaseSecure_summary">Wanneer ingeschakeld is het maken van screenshots niet toegestaan en zal geen miniatuur van de app worden weergegeven in de lijst met recente apps.</string>
   <string name="QuickUnlockIconHidden_title">QuickUnlock pictogram verbergen</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock helaas werkt niet zonder een notificatiepictogram weer te geven. Selecteer deze optie om een transparant pictogram te gebruiken.</string>
-  <string name="QuickUnlockIconHidden16_title">Verberg SnelOntlokken picto</string>
-  <string name="QuickUnlockIconHidden16_summary">SnelOntlokken vereist een notificatie om goed te werken. Selecteer deze optie om de notificatie picto niet te tonen.</string>
+  <string name="QuickUnlockIconHidden16_title">Verberg QuickUnlock pictogram</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock vereist een notificatie om goed te werken. Selecteer deze optie om de notificatie pictogram niet te tonen.</string>
   <string name="QuickUnlockLength_title">Lengte van QuickUnlock-sleutel</string>
   <string name="QuickUnlockLength_summary">Maximum aantal tekens gebruikt voor QuickUnlock wachtwoord.</string>
   <string name="QuickUnlock_fail">QuickUnlock is mislukt: verkeerd wachtwoord!</string>
@@ -332,6 +334,7 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="ShowSeparateNotifications_title">Afzonderlijke notificaties</string>
   <string name="ShowSeparateNotifications_summary">Toon afzonderlijke notificaties voor het kopiëren van gebruikersnaam en wachtwoord en voor het inschakelen van het toetsenbord.</string>
   <string name="AccServiceAutoFill_prefs">Toegankelijkheid service voor AutoFill</string>
+  <string name="AutoFill_prefs">Service voor automatisch aanvullen</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A toetsenbordmelding</string>
   <string name="ShowKp2aKeyboardNotification_summary">Maak volledige invoer mogelijk via het toetsenbord van de KP2A (aanbevolen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Wissel toetsenbord</string>
@@ -356,7 +359,7 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="RecycleBin">Prullenbak</string>
   <string name="AskDeletePermanentlyEntry">Wilt u dit item permanent verwijderen? Druk op \"nee\" om te herstellen.</string>
   <string name="AskDeletePermanentlyGroup">Wilt u deze groep permanent verwijderen? Druk op \"nee\" om te recyclen.</string>
-  <string name="AskDeletePermanentlyItems">Wilt u de geselecteerde elementen permanent verwijderen? Druk op Neen om te behouden.</string>
+  <string name="AskDeletePermanentlyItems">Wilt u de geselecteerde elementen permanent verwijderen? Druk op Nee om te behouden.</string>
   <string name="AskDeletePermanentlyEntryNoRecycle">Wilt u dit element permanent verwijderen?</string>
   <string name="AskDeletePermanentlyGroupNoRecycle">Wilt u deze groep permanent verwijderen?</string>
   <string name="AskDeletePermanentlyItemsNoRecycle">Wilt u de geselecteerde elementen permanent verwijderen?</string>
@@ -492,6 +495,7 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="plugin_disabled">uitgeschakeld</string>
   <string name="plugin_web">Zoek plug-ins online</string>
   <string name="plugin_scopes">Reikwijdte</string>
+  <string name="not_enabled">niet ingeschakeld</string>
   <string name="query_credentials_for_url">%1$s vraagt gegevens voor %2$s.</string>
   <string name="query_credentials">%1$s vraagt om gegevens. Selecteer aub een invoer.</string>
   <string name="plugin_enabled_checkbox">Ingeschakeld</string>
@@ -568,7 +572,12 @@ Dit zal uw hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door d
   <string name="ErrorReportDisable">Uitschakelen</string>
   <string name="ErrorReportAsk">Vragen na het optreden van een fout</string>
   <string name="ErrorReportPrefTitle">Foutrapporten verzenden</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Toon zacht toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Toon het toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
+  <string name="ChangeLog_1_04">
+Versie 1.04\n
+   * Automatisch aanvullen toegevoegd voor Android 8.0 en hoger.\n
+   * Bibliotheken, gereedschap en SDK-versie bijgewerkt.\n
+  </string>
   <string name="ChangeLog_1_03">
 Versie 1.03\n
   * Toegankelijkheid service voor AutoFill verwijderd zoals gevraagd door Google. Raadpleeg de wachtwoord toegangsinstellingen om een plugin te vinden die de vorige functionaliteit biedt.\n
@@ -868,4 +877,9 @@ Eerste publieke publicatie
   </string-array>
   <string name="ClearClipboardWarning">Controleer of dit werkt op uw systeem. Zo niet, overweeg dan het gebruik van het ingebouwde toetsenbord.</string>
   <string name="PluginDescription">Beschrijving door de plugin:</string>
+  <string name="autofill_hint">Keepass2Android ondersteunt de functionaliteit voor automatisch aanvullen van Android, maar het lijkt er op dat u dit nog niet hebt ingeschakeld.</string>
+  <string name="autofill_enable">Automatisch aanvullen inschakelen</string>
+  <string name="show_autofill_help">Toon help voor automatisch aanvullen</string>
+  <string name="autofill_sign_in_prompt">Vullen met Keepass2Android</string>
+  <string name="invalid_link_association">Kon domein %1$s niet koppelen met app %2$s</string>
 </resources>

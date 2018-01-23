@@ -54,7 +54,7 @@
   <string name="afc_title_name">Nimi</string>
   <string name="afc_title_save_as">Tallenna nimellä...</string>
   <string name="afc_title_size">Koko</string>
-  <string name="afc_title_sort_by">Järjestele&#8230;</string>
+  <string name="afc_title_sort_by">Lajittele&#8230;</string>
   <string name="afc_yesterday">Eilen</string>
   <plurals name="afc_title_choose_directories">
     <item quantity="one">Valitse kansio...</item>
