@@ -896,5 +896,5 @@ Initial public release
   <string name="autofill_enable">Otomatik Doldurmayı Etkinleştir</string>
   <string name="show_autofill_help">Otomatik doldurma yardımını göster</string>
   <string name="autofill_sign_in_prompt">Keepass2Android ile doldurun</string>
-  <string name="invalid_link_association">Web alanı ilişkilendirmek Could % 1 $ s uygulaması ile % 2 $ s</string>
+  <string name="invalid_link_association">Web alanı ilişkilendirmek Could %1$s uygulaması ile %2$s</string>
 </resources>
