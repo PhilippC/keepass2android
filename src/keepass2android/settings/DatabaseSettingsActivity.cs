@@ -863,7 +863,9 @@ namespace keepass2android
         {
             //Import db/key file preferences:
             Preference importDb = FindPreference("import_db_prefs");
-            if (!App.Kp2a.GetDb().Ioc.IsLocalFile())
+            bool isLocalOrContent =
+                App.Kp2a.GetDb().Ioc.IsLocalFile() || App.Kp2a.GetDb().Ioc.Path.StartsWith("content://");
+            if (!isLocalOrContent)
             {
                 importDb.Summary = GetString(Resource.String.OnlyAvailableForLocalFiles);
                 importDb.Enabled = false;
