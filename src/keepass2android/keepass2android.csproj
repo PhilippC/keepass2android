@@ -102,6 +102,7 @@
     <Reference Include="Java.Interop" />
     <Reference Include="System" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
@@ -255,6 +256,7 @@
     <Compile Include="Totp\Base32.cs" />
     <Compile Include="Totp\ITotpPluginAdapter.cs" />
     <Compile Include="Totp\KeeOtpPluginAdapter.cs" />
+    <Compile Include="Totp\KeeWebOtpPluginAdapter.cs" />
     <Compile Include="Totp\Kp2aTotp.cs" />
     <Compile Include="Totp\TimeCorrectionProvider.cs" />
     <Compile Include="Totp\TotpData.cs" />
