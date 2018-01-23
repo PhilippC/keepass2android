@@ -494,7 +494,6 @@ namespace keepass2android
 		    if (isProtected)
 		    {
 		        RegisterProtectedTextView(valueView, valueViewVisible);
-		        //valueView.TransformationMethod = PasswordTransformationMethod.Instance;
                 
 		    }
 		    else
@@ -503,7 +502,7 @@ namespace keepass2android
 		    }
 
 			layout.AddView(valueViewContainer);
-			var stringView = new ExtraStringView(layout, valueView, keyView);
+			var stringView = new ExtraStringView(layout, valueView, valueViewVisible, keyView);
 
 			_stringViews.Add(key, stringView);
 			RegisterTextPopup(valueViewContainer, valueViewContainer.FindViewById(Resource.Id.extra_vdots), key, isProtected);
@@ -618,7 +617,9 @@ namespace keepass2android
 
 		private void RegisterProtectedTextView(TextView protectedTextView, TextView visibleTextView)
 		{
-			_protectedTextViews.Add(new ProtectedTextviewGroup { ProtectedField = protectedTextView, VisibleProtectedField = visibleTextView});
+		    var protectedTextviewGroup = new ProtectedTextviewGroup { ProtectedField = protectedTextView, VisibleProtectedField = visibleTextView};
+		    _protectedTextViews.Add(protectedTextviewGroup);
+            SetPasswordStyle(protectedTextviewGroup);
 		}
 
 
@@ -965,18 +966,22 @@ namespace keepass2android
 		private void SetPasswordStyle()
 		{
 			foreach (ProtectedTextviewGroup group in _protectedTextViews)
-			{
+            {
+                SetPasswordStyle(group);
+            }
+        }
 
-                group.VisibleProtectedField.Visibility = _showPassword ? ViewStates.Visible : ViewStates.Gone;
-                group.ProtectedField.Visibility = !_showPassword ? ViewStates.Visible : ViewStates.Gone;
+        private void SetPasswordStyle(ProtectedTextviewGroup group)
+        {
+            group.VisibleProtectedField.Visibility = _showPassword ? ViewStates.Visible : ViewStates.Gone;
+            group.ProtectedField.Visibility = !_showPassword ? ViewStates.Visible : ViewStates.Gone;
 
-				SetPasswordTypeface(group.VisibleProtectedField);
+            SetPasswordTypeface(group.VisibleProtectedField);
 
-                group.ProtectedField.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-			}
-		}
+            group.ProtectedField.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+        }
 
-		protected override void OnResume()
+        protected override void OnResume()
 		{
 			ClearCache();
 			base.OnResume();
