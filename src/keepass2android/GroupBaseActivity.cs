@@ -357,8 +357,8 @@ namespace keepass2android
 	            if (!((AutofillManager) GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
 	                .HasEnabledAutofillServices)
 	            {
-                    //if (!_prefs.GetBoolean(autofillservicewasenabled, false))
-	                canShowAutofillInfo = true;
+                    if (!_prefs.GetBoolean(autofillservicewasenabled, false))
+	                    canShowAutofillInfo = true;
 	            }
 	            else
 	            {
