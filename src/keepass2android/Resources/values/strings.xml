@@ -290,6 +290,7 @@
   <string name="enter_filename_details_create_import">File to import will be selected in the next step.</string>
   <string name="enable_quickunlock">Enable QuickUnlock</string>
   <string name="QuickUnlock_label">Enter last %1$d characters of your password:</string>
+  <string name="QuickUnlock_label_secure">Enter QuickUnlock code:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Close database</string>
   <string name="QuickUnlockDefaultEnabled_title">Enable QuickUnlock by default</string>
@@ -302,6 +303,9 @@
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock requires a notification to work properly. Select this option to display a notification without an icon.</string>
   <string name="QuickUnlockLength_title">Length of QuickUnlock key</string>
   <string name="QuickUnlockLength_summary">Maximum number of characters used as QuickUnlock password.</string>
+  <string name="QuickUnlockHideLength_title">Hide QuickUnlock length</string>
+  <string name="QuickUnlockHideLength_summary">If enabled, the length of the QuickUnlock code is not displayed on the QuickUnlock screen.</string>
+  
   <string name="QuickUnlock_fail">QuickUnlock failed: incorrect password!</string>
   <string name="BinaryDirectory_title">File attachments directory</string>
   <string name="BinaryDirectory_summary">Directory where file attachments are saved to.</string>

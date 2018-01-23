@@ -107,7 +107,16 @@ namespace keepass2android
 
 			_quickUnlockLength = App.Kp2a.QuickUnlockKeyLength;
 
-			txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[] {_quickUnlockLength});
+		    if (PreferenceManager.GetDefaultSharedPreferences(this)
+		        .GetBoolean(GetString(Resource.String.QuickUnlockHideLength_key), false))
+		    {
+		        txtLabel.Text = GetString(Resource.String.QuickUnlock_label_secure);
+            }
+		    else
+		    {
+		        txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[] { _quickUnlockLength });
+            }
+			
 
 			EditText pwd = (EditText) FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.SetEms(_quickUnlockLength);

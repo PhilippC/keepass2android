@@ -423,6 +423,14 @@
 				 android:defaultValue="true"
 				 android:title="@string/QuickUnlockIconHidden16_title"
 				 android:key="@string/QuickUnlockIconHidden16_key" />
+		  <CheckBoxPreference
+		    android:enabled="true"
+		    android:persistent="true"
+		    android:summary="@string/QuickUnlockHideLength_summary"
+		    android:defaultValue="false"
+		    android:title="@string/QuickUnlockHideLength_title"
+		    android:key="@string/QuickUnlockHideLength_key" />
+      
 		</PreferenceScreen>
 		<PreferenceScreen
 	  android:key="@string/FileHandling_prefs_key"
