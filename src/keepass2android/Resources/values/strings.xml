@@ -1050,4 +1050,19 @@ Initial public release
   <string name="autofill_sign_in_prompt">Fill with Keepass2Android</string>
   <string name="invalid_link_association">Could not associate web domain %1$s with app %2$s</string>
 
+  <string name="understand">I understand</string>
+  <string name="dont_show_again">Do not show again</string>
+
+  <string name="masterkey_infotext_head">Do you remember your master password?</string>
+  <string name="masterkey_infotext_main">Note that you will not be able to open your database without the master key. There is no way to "reset" the master password.</string>
+  <string name="masterkey_infotext_fingerprint_note">Also note that fingerprint unlock might be disabled by Android at any time.</string>
+
+  <string name="backup_infotext_head">Is your database backed up?</string>
+  <string name="backup_infotext_main">Keepass2Android stores your passwords in a file on a location of your choice. Are you sure you can still access this file when your phone gets lost or stolen, or when the file gets destroyed or deleted? Please make sure you always have an up-to-date backup at a safe place!</string>
+  <string name="backup_infotext_note">To create a backup now, go to %1$s > %2$s > %3$s.</string>
+
+  <string name="emergency_infotext_head">Are you prepared for emergency cases?</string>
+  <string name="emergency_infotext_main">Did you ever consider what happens if you are no longer able to access your password database? What if you have an accident? It is good practice to pass your master key to some trusted person for emergency cases. Nobody will have access to your passwords otherwise.</string>
+  
+
 </resources>

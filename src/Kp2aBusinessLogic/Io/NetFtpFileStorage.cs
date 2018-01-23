@@ -161,7 +161,12 @@ namespace keepass2android.Io
 			}
 		}
 
-		public void Delete(IOConnectionInfo ioc)
+	    public bool UserShouldBackup
+	    {
+	        get { return true; }
+	    }
+
+	    public void Delete(IOConnectionInfo ioc)
 		{
 			try
 			{

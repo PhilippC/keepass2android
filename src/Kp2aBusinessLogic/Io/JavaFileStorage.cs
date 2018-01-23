@@ -22,9 +22,10 @@ namespace keepass2android.Io
 		protected string Protocol { get { return _jfs.ProtocolId; } }
 
 		public virtual IEnumerable<string> SupportedProtocols { get { yield return Protocol; } }
+	    public abstract bool UserShouldBackup { get; }
 
 
-		private readonly IJavaFileStorage _jfs;
+	    private readonly IJavaFileStorage _jfs;
 		private readonly IKp2aApp _app;
 
 		public JavaFileStorage(IJavaFileStorage jfs, IKp2aApp app)

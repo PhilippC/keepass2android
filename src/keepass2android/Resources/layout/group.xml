@@ -77,6 +77,63 @@
             style="@style/BottomBarButton" />
         </RelativeLayout>
       </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/info_head"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="18sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <TextView android:id="@+id/info_main"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="14sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <TextView android:id="@+id/info_additional" 
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="14sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <RelativeLayout
+          android:id="@+id/info_buttons"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:baselineAligned="false">
+
+          <Button
+            android:id="@+id/info_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="4dp"
+            android:text="@string/understand"
+            style="@style/BottomBarButton" />
+          <Button
+            android:id="@+id/info_dont_show_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="4dp"
+            android:text="@string/dont_show_again"
+            style="@style/BottomBarButton" />
+        </RelativeLayout>
+      </LinearLayout>
     </RelativeLayout>
   
 

@@ -32,7 +32,12 @@ namespace keepass2android.Io
 			get { return _baseStorage.SupportedProtocols; }
 		}
 
-		public void Delete(IOConnectionInfo ioc)
+	    public bool UserShouldBackup
+	    {
+	        get { return _baseStorage.UserShouldBackup; }
+	    }
+
+	    public void Delete(IOConnectionInfo ioc)
 		{
 			_baseStorage.Delete(ioc);
 		}

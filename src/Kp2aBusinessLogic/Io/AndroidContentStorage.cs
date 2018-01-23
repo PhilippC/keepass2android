@@ -28,7 +28,12 @@ namespace keepass2android.Io
 			get { yield return "content"; }
 		}
 
-		public void Delete(IOConnectionInfo ioc)
+	    public bool UserShouldBackup
+	    {
+	        get { return true; }
+	    }
+
+	    public void Delete(IOConnectionInfo ioc)
 		{
 			throw new NotImplementedException();
 		}

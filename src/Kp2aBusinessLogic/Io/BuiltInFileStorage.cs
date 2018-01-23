@@ -59,7 +59,12 @@ namespace keepass2android.Io
 
 		public abstract IEnumerable<string> SupportedProtocols { get; }
 
-		public void Delete(IOConnectionInfo ioc)
+	    public bool UserShouldBackup
+	    {
+	        get { return true; }
+	    }
+
+	    public void Delete(IOConnectionInfo ioc)
 		{
 			//todo check if directory
 			IOConnection.DeleteFile(ioc);

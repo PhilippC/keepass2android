@@ -84,7 +84,12 @@ namespace keepass2android.Io
 
 		public IEnumerable<string> SupportedProtocols { get { return _cachedStorage.SupportedProtocols; } }
 
-		public void DeleteFile(IOConnectionInfo ioc)
+	    public bool UserShouldBackup
+	    {
+	        get { return _cachedStorage.UserShouldBackup; }
+	    }
+
+	    public void DeleteFile(IOConnectionInfo ioc)
 		{
 			if (IsCached(ioc))
 			{
