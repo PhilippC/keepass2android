@@ -87,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Ativar por completo o Desbloqueio de Digital</string>
   <string name="enable_fingerprint_quickunlock">Ativar o Desbloqueio de Digital para o QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Sensor de toque para desbloquear a base de dados</string>
-  <string name="fingerprint_unlock_failed">Falha ao desbloquear com impressão digital. A chave de decodificação foi invalidada pelo sistema operacional Android. Isso geralmente acontece se uma nova impressão digital foi registrada ou configurações de segurança alteradas. Por favor, desbloqueie com a sua senha e então reative o Desbloquear com Impressão Digital nas configurações da base de dados.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Falha ao desbloquear a base de dados: Chave composta inválida. Desbloquear com Impressão Digital foi desativada porque, aparentemente, a senha mestre armazenada não é mais válida. Por favor, desbloqueie com a sua senha e então, reative o Desbloquear com Impressão Digital nas configurações da base de dados.</string>
   <string name="fingerprint_reenable">Por favor, reative o Desbloquear com Impressão Digital para a nova senha mestre.</string>
   <string name="enable_fingerprint_unlock_Info">
     Isto armazenará a sua senha mestre neste dispositivo, criptografada com a Armazenagem

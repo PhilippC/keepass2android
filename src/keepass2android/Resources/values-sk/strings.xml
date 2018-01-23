@@ -87,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Zapnúť úplné odomknutie odtlačkom</string>
   <string name="enable_fingerprint_quickunlock">Zapnúť odomykanie odtlačkom pre rýchle odomknutie</string>
   <string name="fingerprint_unlock_hint">Dotykový senzor pre odomknutie databázy</string>
-  <string name="fingerprint_unlock_failed">Odomknutie pomocou odtlačku bolo neúspešné. Dešifrovací kľúč bol zneplatnený systémom Android. To sa stáva väčšinou pri zápise nového odtlačku alebo zmene nastavení zabezpečenia. Prosím odomknite pomocou hesla a potom opätovne zapnite odomknutie odtlačkom. Môžete to urobiť v nastaveniach databázy.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Odomykanie databázy bolo neúspešné: kompozitný kľúč nie je platný. Odomknutie odtlačkom bolo zablokované pretože zrejme nie je už platné uložené primárne heslo. Prosím odomknite pomocou hesla a potom opäť zapnite odomknutie odtlačkom. Môžete to urobiť v nastaveniach databázy.</string>
   <string name="fingerprint_reenable">Prosím zapnite Odomknutie odtlačkom pre nové primárne heslo.</string>
   <string name="enable_fingerprint_unlock_Info">
     Týmto uložíte vaše primárne heslo na tomto zariadení,

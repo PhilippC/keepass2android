@@ -87,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Habilitar desbloqueig per empremta dactilar</string>
   <string name="enable_fingerprint_quickunlock">Habilitar desbloqueig per empremta dactilar per DesbloqueigRàpid</string>
   <string name="fingerprint_unlock_hint">Tocar sensor per desbloquejar la base de dades</string>
-  <string name="fingerprint_unlock_failed">Ha fallat el desbloqueig d\'empremta. La clau de desxifrat ha sigut invalidada per el SO Android. Normalment això passa si es va inscriure una empremta dactilar nova o la configuració de seguretat s\'ha canviat. Si us plau, obriu amb la contrasenya i després torneu a habilitar Desblocatge amb empremta en la configuració de la base de dades.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Ha fallat el desbloqueig de la base de dades: clau composta no vàlida. El desbloqueig d\'empremta ha sigut desactivat perquè aparentment la contrasenya mestra emmagatzemada ja no és vàlida. Si us plau entreu amb la contrasenya i després torneu a habilitar Desblocatge amb empremta en la configuració de la base de dades.</string>
   <string name="fingerprint_reenable">Si us plau, torneu a activar Desblocatge amb empremta per la nova contrasenya mestra.</string>
   <string name="enable_fingerprint_unlock_Info">
 Això emmagatzemarà la contrasenya mestra d\'aquest 

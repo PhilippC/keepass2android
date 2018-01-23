@@ -87,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Włącz odblokowywanie odciskiem palca</string>
   <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie odciskiem palca dla QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Czujnik dotykowy do odblokowania bazy danych</string>
-  <string name="fingerprint_unlock_failed">Nie udało się odblokować odciskiem palca. Klucz odszyfrowujący został odrzucony przez system operacyjny Android. To się zazwyczaj zdarza, jeżeli został zapisany nowy odcisk palca lub ustawienia zabezpieczeń zostały zmienione. Proszę odblokować przy pomocy swojego hasła, a następnie ponownie aktywować odblokowywanie odciskiem palca w ustawieniach bazy danych.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Nie udało się odblokować bazy danych: Nieprawidłowy klucz złożony. Odblokowywanie odciskiem palca zostało zablokowane, ponieważ prawdopodobnie zapisane hasło główne nie jest już ważne. Proszę odblokować przy pomocy swojego hasła, a następnie ponownie aktywować odblokowywanie przy pomocy odcisku palca w ustawieniach bazy danych.</string>
   <string name="fingerprint_reenable">Proszę ponownie aktywować odblokowywanie przy pomocy odcisku palca dla nowego hasła głównego.</string>
   <string name="enable_fingerprint_unlock_Info">
 To zachowa twoje hasła główne na tym urządzeniu.

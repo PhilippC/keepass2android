@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android adalah pengatur password yang menyediakan akses membaca/menulis ke database KeePass 2.x pada Android.</string>
   <string name="CreditsText">Antarmuka pengguna didasarkan pada KeepassDroid yang dikembangkan oleh Brian Pellin. Kode untuk operasi database didasarkan pada KeePass oleh Dominik Reichl. Robot android direproduksi atau dimodifikasi dari karya yang  dibuat dan dibagi oleh Google dan digunakan sesuai dengan ketentuan yang dijelaskan dalam Lisensi Atribusi Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Dukungan SFTP diimplementasikan menggunakan pustaka JSch di bawah lisensi BSD, dibuat oleh JCraft, Inc.</string>
+  <string name="CreditsIcons">Ikon palu dibuat oleh John Caserta dari proyek kata benda. Ikon penguin adalah buatan dari Adriano Emeric dari sebuah proyek kata benda. Ikon bulu adalah buatan dari Jon Testa dari sebuah proyek kata benda. Ikon apel adalah buatan dari Ava Rowell dari sebuah proyek kata benda. picture ikon adalah dari https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Menerima</string>
   <string name="deny">Tolak</string>
   <string name="add_entry">Menambah entri</string>
@@ -86,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Mengaktifkan penuh pembuka sidik jari</string>
   <string name="enable_fingerprint_quickunlock">Mengaktifkan pembuka sidik jari untuk PembukaCepat</string>
   <string name="fingerprint_unlock_hint">Sensor Sentuh untuk membuka basis data</string>
-  <string name="fingerprint_unlock_failed">Pembuka sidik jari gagal. Kunci dekripsi dibatalkan oleh OS Android. Hal ini biasanya terjadi jika sidik jari baru didaftarkan atau pengaturan keamanan berubah. Silahkan membuka dengan kata kunci Anda dan kemudian aktifkan kembali membuka sidik jari di pengaturan basis data.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Membuka basis data gagal: kunci komposit tidak valid. Pembuka sidik jari dinonaktifkan karena tampaknya sandi tersimpan tidak lagi berlaku. Silahkan membuka dengan password Anda dan kemudian aktifkan kembali membuka sidik jari di pengaturan basis data.</string>
   <string name="fingerprint_reenable">Silakan aktifkan kembali pembuka sidik jari untuk sandi utama yang baru.</string>
   <string name="enable_fingerprint_unlock_Info">     Ini akan menyimpan sandi utama Anda pada perangkat ini, dienkripsi dengan Android Keystore dan dilindungi menggunakan otentikasi sidik jari. Memungkinkan untuk membuka basis data Anda hanya dengan sidik jari.   </string>
   <string name="enable_fingerprint_quickunlock_Info">Memungkinkan untuk menggunakan otentikasi sidik jari dari pada kode PembukaCepat. Tidak membutuhkan untuk menyimpan informasi terkait dengan sandi utama Anda.</string>
@@ -285,6 +284,7 @@
   <string name="SaveAttachmentDialog_text">Silakan pilih tempat untuk menyimpan lampiran.</string>
   <string name="SaveAttachmentDialog_save">Simpan ke kartu SD</string>
   <string name="SaveAttachmentDialog_open">Simpan di tembolok dan buka</string>
+  <string name="ShowAttachedImage">Tampilan dengan penampilan gambar internal</string>
   <string name="SaveAttachment_doneMessage">Simpan file ke %1$s.</string>
   <string name="SaveAttachment_Failed">Tidak bisa menyimpan lampiran ke %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Ingat teks pencarian?</string>
@@ -329,6 +329,9 @@
 Hati-hati terhadap pengintip kata sandi!</string>
   <string name="ShowSeparateNotifications_title">Pemberitahuan terpisah</string>
   <string name="ShowSeparateNotifications_summary">Tampilkan pemberitahuan terpisah untuk menyalin nama pengguna dan kata sandi ke papan klip dan aktifkan papan ketik.</string>
+  <string name="AccServiceAutoFill_prefs">Otomatis mengisi Layanan-Aksesibilitas</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A pemberitahuan keyboard</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Membuat entri dapat diakses penuh melalui keyboard KP2A (disarankan).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Berpindah keyboard</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Buka dialog pemilih papan ketik saat isian tersedia melalui papan ketik KP2A setelah melakukan pencarian dari browser.</string>
   <string name="kp2a_switch_rooted">Ganti papan kunci otomatis</string>
@@ -443,4 +446,412 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="button_change_location">Rubah lokasi</string>
   <string name="help_quickunlock">Jika diaktifkan, Keepass2Android akan tetap berjalan di belakang layar bahkan ketika basis data terkunci. hal ini memungkinkan pembukaan basis data nanti hanya menggunakan bagian pendek dari password utama.</string>
   <string name="master_password">Password utama</string>
+  <string name="help_master_password">Database anda dienkripsi dengan password yang anda masukkan disini. pilih sebuah pasword yang kuat untuk menjaga Database tetap aman! Tip: memuat naik sebuah atau dua buah kalimat dan gunakan huruf pertama dari kata-kata sebagai kata sandi. Sertakan tanda baca.</string>
+  <string name="hint_master_password">Pilih kata sandi utama untuk melindungi database Anda:</string>
+  <string name="key_file">Berkas kunci</string>
+  <string name="help_key_file">Berkas kunci pada dasarnya adalah kata sandi yang tersimpan dalam sebuah berkas. berkas kunci adalah lebih kuat daripada kata sandi utama, karena kuncinya dapat menjadi jauh lebih rumit; namun itu juga sulit untuk menjaga rahasia mereka. jika anda menyimpan database anda di cloud, jangan menyimpan berkas kunci disana juga! ini akan membuat itu sama sekali tidak berguna! penting: jangan mengubah isi dari berkas kunci setelah membuat database!</string>
+  <string name="hint_key_file">Pilih apakah Anda ingin menggunakan berkas kunci selain kata sandi utama Anda:</string>
+  <string name="use_key_file">Gunakan berkas kunci</string>
+  <string name="error_adding_keyfile">Kesalahan saat menambahkan berkas kunci!</string>
+  <string name="init_otp">Memuat berkas bantu OTP&#8230;</string>
+  <string name="otp_explanation">Masukkan kata sandi One-time-password berikutnya (OTPs). Gesek NEO Yubikey Anda di bagian belakang perangkat Anda untuk masuk melalui NFC.</string>
+  <string name="otp_hint">OTP%1$d</string>
+  <string name="YubiChallengeNotInstalled">Tidak dapat menemukan aplikasi yang dapat menangani tantangan tersebut. Harap instal Yubichallenge dari Google Play.</string>
+  <string name="CouldntLoadOtpAuxFile">Tidak bisa memuat file OTP tambahan!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Silakan gunakan plugin OtpKeyProv di KeePass 2.x (PC) untuk mengkonfigurasi database Anda untuk digunakan dengan OTPs!</string>
+  <string name="otp_discarded_because_no_db">Silahkan pilih database dulu. OTP dibuang karena alasan keamanan.</string>
+  <string name="otp_discarded_no_space">OTP discarded: All OTPs already entered!</string>
+  <string name="otp_discarded_because_db_open">Silahkan tutup database dulu. OTP dibuang.</string>
+  <string name="otps_pending">(Satu atau beberapa OTP sudah tersedia)</string>
+  <string name="otpsecret_hint">Rahasia OTP (misal 01 23 ab cd...)</string>
+  <string name="CouldntParseOtpSecret">Kesalahan mengurai rahasia OTP!</string>
+  <string name="OtpKeyError">Gagal membuat kunci OTP! Pastikan Anda telah memasukkan OTPs yang benar.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Kesalahan memperbarui file bantu OTP!</string>
+  <string name="SavingOtpAuxFile">Menyimpan file OTP tambahan&#8230;</string>
+  <string name="bad_resp">Respons tantangannya salah.</string>
+  <string name="CouldntLoadChalAuxFile">Tidak dapat memuat berkas tantangan tambahan!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Silakan gunakan plugin KeeChallenge di KeePass 2.x (PC) untuk mengkonfigurasi database Anda untuk digunakan dengan respon tantangan!</string>
+  <string name="ErrorUpdatingChalAuxFile">Kesalahan memperbarui berkas bantu OTP!</string>
+  <string name="TrayTotp_SeedField_title">Nama bidang benih TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Jika Anda menggunakan plugin Keepass 2 \"TrayTotp\" dengan pengaturan non-standar, masukkan nama berkas untuk bidang benih di sini sesuai dengan pengaturan pada PC.</string>
+  <string name="TrayTotp_SettingsField_title">Nama bidang TOTP pengaturan</string>
+  <string name="TrayTotp_SettingsField_summary">Masukkan nama bidang bidang pengaturan untuk TrayTotp di sini.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Log-File untuk Debugging</string>
+  <string name="DebugLog_title">Gunakan berkas log</string>
+  <string name="DebugLog_summary">Tuliskan hasil aplikasi ke berkas log lokal</string>
+  <string name="DebugLog_send">Kirim log debug...</string>
+  <string name="loading">Memuat&#8230;</string>
+  <string name="plugins">Plug-ins</string>
+  <string name="plugin_packagename">Nama paket:</string>
+  <string name="plugin_description">Deskripsi (tidak diverifikasi):</string>
+  <string name="plugin_author">Penulis (tidak diverifikasi):</string>
+  <string name="plugin_enabled">diaktifkan</string>
+  <string name="plugin_disabled">cacat</string>
+  <string name="plugin_web">Temukan plug-in secara online</string>
+  <string name="plugin_scopes">Lingkaran</string>
+  <string name="query_credentials_for_url">% 1 $ s meminta kredensial sebesar% 2 $ s.</string>
+  <string name="query_credentials">% 1 $ s meminta kredensial. Silahkan pilih sebuah entri.</string>
+  <string name="plugin_enabled_checkbox">Diaktifkan</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Notifikasi tindakan database</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Plugin akan diberitahu saat database dibuka, ditutup atau disimpan.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Data entri saat ini</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin akan menerima semua data tentang entri database saat ini dan akan diizinkan untuk menawarkan tindakan dan memodifikasi tampilan itu.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Permintaan kredensial sendiri</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin akan diizinkan untuk menanyakan kredensial yang terkait dengan paket aplikasinya sendiri.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Kredensial permintaan</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin akan diizinkan untuk meminta kredensial untuk situs web atau aplikasi yang disengaja.</string>
+  <string name="get_regular_version">Dapatkan lebih banyak jenis penyimpanan</string>
+  <string name="CertificateWarning">Peringatan: validasi sertifikat server gagal:% 1 $ s. Instal sertifikat root yang sesuai pada perangkat Anda atau lihat pengaturan!</string>
+  <string name="CertificateFailure">Kesalahan: validasi sertifikat server gagal! Instal sertifikat root yang sesuai pada perangkat Anda atau lihat pengaturan!</string>
+  <string name="export_fileformats_title">Pilih format berkas</string>
+  <string name="killed_by_os">Maaf! Keepass2Android mati oleh OS Android! Untuk alasan keamanan, Keepass2Android tidak mempertahankan kredensial pilihan Anda pada disk, jadi Anda perlu membuka kembali database Anda. Catatan: Hal ini harus terjadi sangat jarang. Jika ya, tolong kirimi saya pesan di crocoapps@gmail.com.</string>
+  <string name="FileIsTemporarilyAvailable">File ini hanya sementara tersedia untuk Keepass2Android.</string>
+  <string name="FileIsReadOnly">Berkas yang Anda pilih hanya bisa dibaca.</string>
+  <string name="FileIsReadOnlyOnKitkat">Berkas yang Anda pilih hanya bisa dibaca untuk Keepass2Android karena pembatasan pada Android 4.4+.</string>
+  <string name="CopyFileRequired">Untuk menggunakannya, Anda harus menyalinnya ke lokasi lain.</string>
+  <string name="CopyFileRequiredForEditing">Untuk mengeditnya, Anda harus menyalin berkas ke lokasi lain.</string>
+  <string name="ClickOkToSelectLocation">Klik OK untuk memilih lokasi dimana berkas tersebut harus disalin.</string>
+  <string name="FileReadOnlyTitle">Database hanya bisa dibaca</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android telah membuka database saat ini dalam mode read-only.</string>
+  <string name="ReadOnlyReason_PreKitKat">Sepertinya Anda membuka file dari aplikasi eksternal. Dengan cara ini tidak mendukung penulisan. Jika Anda ingin membuat perubahan pada database, tutup database dan pilih Change database. Kemudian buka file dari salah satu pilihan yang tersedia jika memungkinkan.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Flag read-only diset. Hapus bendera ini jika ingin melakukan perubahan pada database.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Menulis tidak mungkin karena pembatasan diperkenalkan di Android KitKat. Jika Anda ingin membuat perubahan pada database, tutup database dan pilih Change database. Kemudian buka file tersebut menggunakan System File Picker.</string>
+  <string name="AddCustomIcon">Tambahkan ikon dari berkas...</string>
+  <string name="CopyingFile">Menyalin berkas...</string>
+  <string name="DuplicateTitle">Salin</string>
+  <string name="DefaultTemplate">Entri standar</string>
+  <string name="TemplateGroupName">Templet</string>
+  <string name="TemplateTitle_IdCard">ID kartu</string>
+  <string name="TemplateField_IdCard_Name">Nama</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Tempat masalah</string>
+  <string name="TemplateField_IdCard_IssueDate">Tanggal pengeluaran</string>
+  <string name="TemplateTitle_EMail">E-Mail</string>
+  <string name="TemplateField_EMail_EMail">Alamat E-Mail</string>
+  <string name="TemplateTitle_WLan">LAN nirkabel</string>
+  <string name="TemplateTitle_Notes">Catatan aman</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Nomor</string>
+  <string name="TemplateField_CreditCard_CVV">CW</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Pemegang kartu</string>
+  <string name="TemplateTitle_CreditCard">Kartu kredit</string>
+  <string name="TemplateTitle_Membership">Keanggotaan</string>
+  <string name="ChangeLog_title">Ubah log</string>
+  <string name="AskAddTemplatesTitle">Tambahkan templet?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android berisi template entri untuk akun E-Mail, kata sandi Wireless-LAN, catatan aman dan banyak lagi. Apakah Anda ingin menambahkan ini ke database Anda? Jika Anda memilih Tidak, Anda dapat menambahkannya nanti dalam pengaturan database.</string>
+  <string name="AddTemplates_pref">Tambahkan template ke database</string>
+  <string name="PreviewWarning">Tolong dicatat! Ini adalah rilis preview dan mungkin datang dengan beberapa kekurangan! Jika Anda mengalami * sesuatu yang tidak diharapkan, beri tahu saya (di grup penguji Google+ beta atau melalui email).</string>
+  <string name="Continue">Terus</string>
+  <string name="NoFilenameWarning">URI yang Anda masukkan tidak terlihat seperti nama berkas. Apakah Anda yakin ini adalah berkas yang valid?</string>
+  <string name="FirstInvalidCompositeKeyError">Kunci komposit tidak lengkap Silahkan coba lagi.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Kunci komposit tidak valid Silakan coba langkah-langkah berikut untuk membuka basis data Anda: \ n
+  
+    • Pastikan Anda telah memasukkan kata sandi yang benar. Gunakan ikon mata untuk mengungkapkan kata sandi yang dimasukkan. \ N
+   • Pastikan Anda telah memilih jenis kata sandi yang benar. Pastikan ini cocok dengan tipe yang digunakan saat membuat database. \ N
+   • Pastikan Anda telah memilih file database yang benar.
+</string>
+  <string name="CorruptDatabaseHelp">
+File rusak\n
+    Berikut adalah beberapa petunjuk yang mungkin membantu untuk mendiagnosis masalah ini:\n
+    
+    • Jika Anda menyalin file melalui USB (MTP-Mode), coba lagi dengan alat seperti MyPhoneExplorer. MTP memotong file dalam kasus tertentu.\n
+    • Jika Anda tidak dapat membuka file dari lokasi yang sama di PC Anda, kemungkinan besar file tersebut benar-benar rusak. Silahkan gunakan backup database saja. Jika Anda menganggap bahwa Keepass2Android telah merusak file tersebut, hubungi dukungan.\n
+    • Jika Anda masih dapat membuka file di PC Anda, hubungi dukungan. Anda dapat mencoba menyimpannya dengan setelan yang berbeda (misalnya membuka ritsleting) pada PC dan mencoba lagi untuk membuka di Keepass2Android.  </string>
+  <string name="ErrorReportTitle">Keepass2Android: Terjadi kesalahan.</string>
+  <string name="ErrorReportText">Terjadi kesalahan tak terduga saat menjalankan Keepass2Android. Tolong bantu kami memperbaikinya dengan mengizinkan aplikasi mengirim laporan kesalahan.</string>
+  <string name="ErrorReportPromise">Laporan kesalahan tidak akan berisi isi database atau kata sandi utama Anda. Anda bisa menonaktifkannya di setting aplikasi.</string>
+  <string name="ErrorReportEnable">Memungkinkan</string>
+  <string name="ErrorReportDisable">Nonaktifkan</string>
+  <string name="ErrorReportAsk">Tanyakan setelah kesalahan</string>
+  <string name="ErrorReportPrefTitle">Kirim laporan kesalahan</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Tampilkan soft keyboard untuk input kata sandi saat pemindaian sidik jari aktif.</string>
+  <string name="ChangeLog_1_03">
+Versi 1.03\n
+    * Layanan aksesibilitas yang telah dihapus untuk IsiOtomatis sesuai permintaan Google. Silakan lihat pengaturan akses kata sandi untuk menemukan plugin yang mereplikasi fungsi sebelumnya.\n
+    * Menambahkan aplikasi pihak ketiga sebagai opsi penyimpanan lagi\n
+    * Penampil gambar terpadu untuk melihat gambar terlampir tanpa mentransfernya ke aplikasi lain\n
+    * Upgrade OkHttp untuk memperbaiki masalah dengan beberapa koneksi\n
+    * Dukungan untuk entri KeeTrayTOTP, sekarang mendukung entri Uap\n  </string>
+  <string name="ChangeLog_1_02">
+Versi 1.02 \ n
+    * Beberapa perbaikan keamanan. Terima kasih banyak atas laporan keamanan oleh jean-baptiste.cayrou@thalesgroup.com dan vincent.fargues@thalesgroup.com dan untuk kolaborasi mereka! \ N
+    * Dukungan untuk KeyboardSwapPlugin (lihat opsi akses kata sandi): memungkinkan untuk mengubah metode input secara otomatis pada perangkat yang tidak berakar. Berkat Mishaal Rahman dari XDA-Developers untuk membuat ini mungkin. \ N
+    * Perbaiki untuk Layanan Aksesibilitas dengan versi Chrome terbaru \ n
+    * Perbaiki untuk pembersihan data sidik jari yang tidak perlu \ n
+    * Perbaiki crash minor \ n
+    * Diperbarui Dropbox SDK untuk memastikan kompatibilitas di masa depan \ n
+    * Laporan kesalahan yang dihapus melalui Wawasan Xamarin \ n
+    * Alat pembuatan yang diperbarui \ n  </string>
+  <string name="ChangeLog_1_01g">
+Versi 1.01-g \ n
+    * Perbaiki untuk mogok saat mencoba bekerja secara offline \ n
+    * Perbaiki untuk penyandian yang salah dari kredensial FTP (S) \ n
+    * Perbaiki untuk mogok saat menggunakan OneDrive dan versi Android yang lebih tua \ n
+    * Tampilan kali sebagai waktu setempat di layar masuk \ n  </string>
+  <string name="ChangeLog_1_01d">
+Versi 1.01-d \ n
+    Perbaiki untuk daftar file OneDrive \ n
+    * Izinkan untuk mengabaikan kesalahan sertifikat juga saat verifikasi nama host gagal (tidak disarankan untuk penggunaan produksi) \ n
+    * Perbaiki untuk QuickUnlock terkadang gagal walaupun benar membuka kode \ n  </string>
+  <string name="ChangeLog_0_9_8c">
+Versi 0.9.8c \ n
+    * Perbaiki kerentanan SSL di Microsoft Live SDK (digunakan saat mengakses file melalui OneDrive) \ n
+    * Bug fix: Pelepasan sebelumnya berisi dua metode masukan (one crashing) \ n  </string>
+  <string name="ChangeLog_1_01">
+Versi 1.01 \ n
+    * Dukungan tambahan untuk KDBX-4-format baru (kompatibel dengan Keepass 2.35) termasuk derivasi kunci Argon2 dan enkripsi ChaCha20. \ n
+    * Mengarsipkan penyimpanan file WebDav, sekarang memungkinkan file browsing dan mendukung enkripsi modern. \ N
+    * Penyimpanan file FTP yang terisi penuh, sekarang memungkinkan file browsing dan mendukung enkripsi (FTPS). \ N
+    * Diperbarui ke OneDrive SDK (sebelumnya digunakan Live SDK tidak lagi diperbarui) \ n
+    * Diperbarui ke Dropbox SDK versi 2 (sebelumnya menggunakan versi 1 SDK sudah usang). \ N
+    * Ditambahkan dukungan untuk OwnCloud. \ N
+    * Meminta izin penyimpanan sebelum membuka file lokal  </string>
+  <string name="ChangeLog_1_0_0e">
+Versi 1.0.0e \ n
+    * Perbaiki untuk Unlock Sidik Jari pada perangkat Samsung yang lebih tua dengan Android 6 \ n
+    * menambahkan dukungan asli untuk perangkat x86 \ n
+    * Biarkan menyembunyikan softkeyboard selama pemindaian sidik jari \ n
+    * membangun update sistem  </string>
+  <string name="ChangeLog_1_0_0">
+Versi 1.0.0 \ n
+    * Sidik Jari (memerlukan perangkat Android 6.0+ atau perangkat Samsung) \ n
+    * Ditambahkan layanan IsiOtomatis (memerlukan Android 5.0 +) \ n
+    * Ditambahkan dukungan untuk template entri \ n
+    * Ditambahkan mode \"bekerja offline\" \ n
+    * Memungkinkan untuk menyalin entri \ n
+    * Auto-complete mode untuk nama field \ n
+    * Memungkinkan untuk menghapus item dari daftar file terakhir \ n
+    * Meminta izin saat runtime di Android 6.0 \ n
+    * Perbaikan bug (pada keyboard built-in, saat memilih ikon) \ n
+    * Termasuk pilihan untuk mengirim laporan kesalahan \ n
+    * Ditambahkan help messages di beberapa titik \ n  </string>
+  <string name="ChangeLog_0_9_9">
+Versi 0.9.9 \ n
+* Desain ulang UI lengkap. Terima kasih banyak kepada Stefano Pignataro (http://www.spstudio.at) atas dukungannya! \ N
+    * Izinkan menambahkan ikon khusus \ n
+    * Dukungan untuk mode Multi Window pada perangkat Samsung \ n
+    * Menambah jumlah default putaran enkripsi untuk database baru \ n
+    * Periksa kunci duplikat bidang tambahan agar tidak kehilangan data \ n</string>
+  <string name="ChangeLog_0_9_9c">
+Versi 0.9.9c \ n
+    * Tema gelap sudah kembali \ n
+    * Anda dapat menginstal paket ikon lainnya (ikon bergaya Windows kuno tersedia di Play Store) \ n
+    * Ditambahkan konfirmasi pertanyaan saat menghapus elemen tanpa recycle bin \ n
+    * Perbaikan bug (salah tampilan encoding rahasia OTP, ikon aplikasi yang salah di beberapa tempat) \ n  </string>
+  <string name="ChangeLog_0_9_8b">
+Versi 0.9.8b \ n
+* Perbaikan bug (Menyimpan gagal untuk beberapa database, mengekspor ke perangkat lokal yang tidak berfungsi, memilih beberapa opsi preferensi yang mogok aplikasi) \ n</string>
+  <string name="ChangeLog_0_9_8">
+Versi 0.9.8 \ n
+* Dukungan untuk Storage Access Framework (memungkinkan menulis ke kartu SD dan Google Drive di KP2A Offline) \ n
+* Cobalah untuk mendeteksi masukan pengguna yang salah saat memasukkan URL WebDAV (direktori dan bukan file) \ n
+* Berubah font kata kunci \ n
+* Izinkan untuk mengubah akun Dropbox \ n
+* Fixed bug: Sekarang teringat password OTP</string>
+  <string name="ChangeLog_0_9_7b">
+Versi 0.9.7b \ n
+* terjemahan yang diperbarui \ n
+* Perbaikan bug: Font kata sandi hilang pada 0.9.7, urutkan menurut nama tidak mengelompokkan kelompok \ n</string>
+  <string name="ChangeLog_0_9_7">
+Versi 0.9.7 \ n
+* tulis dukungan untuk database Keepass 1 (kdb) (beta!) \ n
+* Lebih baik beralih kembali ke keyboard sebelumnya (juga bekerja pada perangkat yang tidak berakar) \ n
+* Mendukung KeeChallenge dengan tantangan panjang variabel \ n
+* mencegah pengambilan tangkapan layar dari layar QuickUnlock dan sandi \ n
+* Urutan urutan terbalik untuk Sortir berdasarkan Tanggal Modifikasi (sekarang turun) \ n
+* Perbaikan bug: Tampilan catatan sekarang diperbarui dengan benar setelah perubahan, Tampilan kata sandi sekarang menyembunyikan kata sandi dengan benar (semoga) semua perangkat, masalah tetap yang memungkinkan untuk menambahkan entri dua kali, masalah tetap dengan menunjukkan peringatan UUID Duplikat bahkan setelah memperbaiki database \ n</string>
+  <string name="ChangeLog_0_9_6">
+Versi 0.9.6 \ n
+* Mengijinkan untuk mengimpor file utama dan / atau file database lokal ke direktori internal aplikasi (lihat pengaturan) \ n
+* memungkinkan pilihan sortir yang berbeda \ n
+* Peningkatan preferensi untuk penggantian keyboard otomatis \ n
+* Logo aplikasi dan desain notifikasi yang diperbarui, disain oleh Stefano Pignataro (http://www.spstudio.at) \ n
+* Generator kata sandi ingat pengaturan terakhir \ n
+* menetapkan keterlihatan pemberitahuan untuk layar kunci Android 5 \ n
+* Sekarang kliring field master password saat meninggalkan aplikasi tanpa mengklik OK \ n
+* masalah tetap dengan bahasa input yang hilang dalam pengaturan keyboard pada beberapa perangkat \ n
+* masalah tetap dengan keyboard otomatis yang beralih pada perangkat yang di-root \ n
+* tambah cek untuk database yang korup (duplicate UUIDs) \ n
+* Secara otomatis memuat ulang database saat perubahan terdeteksi, memecahkan kekhawatiran keamanan tentang mengungkapkan kata kunci utama \ n
+* Perbaikan tata letak keyboard poles yang bagus, tema pengaturan keyboard tetap (berkat Wiktor Ławski) \ n
+
+ 
+ChangeLog_0_9_6</string>
+  <string name="ChangeLog_0_9_5">
+<b> Versi 0.9.5 </ b> \ n
+* Masalah tetap dengan file browsing (terutama di Android 4.4) \ n
+* Masalah tetap dengan file pemuatan .kdb (Keepass 1) di Nexus 5 dengan Android Lollipop \ n
+* Ditambahkan pilihan untuk mencegah pengambilan tangkapan layar / menampilkan aplikasi di daftar aplikasi terbaru \ n
+* Masalah tetap dengan penyimpanan file Google Drive (edisi reguler) \ n
+* Izinkan file kunci pada jenis penyimpanan yang disengaja (edisi reguler) \ n
+* Diperbarui Dropbox SDK untuk menyertakan patch keamanan resmi (regular edition) \ n
+* Alat pembuatan yang diperbarui - &amp; gt; ukuran apk meningkat: - (\ n
+Saya telah berjanji beberapa perubahan lagi. Mereka akan datang dengan rilis berikutnya - maaf. Saya ingin mempublikasikan perbaikan panas ini sesegera mungkin.</string>
+  <string name="ChangeLog_0_9_4">
+<b> Versi 0.9.4 </ b> \ n
+* Dukungan plug-in yang ditambahkan: Lihat pengaturan cara mendapatkan plug-in! \ n
+* Ditampilkan QR plug-in (memindai password, menampilkan password sebagai kode QR, mentransfer entri ke perangkat KP2A lainnya) \ n
+* Publikasikan plugin InputStick (mentransfer kredensial ke PC Anda melalui bluetooth - memerlukan stik USB InputStick) \ n
+* Aplikasi pihak ketiga sekarang dapat menerapkan kueri KP2A untuk kredensial. Apakah kamu seorang pengembang Harap tambahkan ini ke aplikasi Anda jika sesuai! \ N
+* ditambahkan dukungan TOTP (kompatibel dengan KeeOTP dan TrayTotp) \ n
+* Aplikasi seharusnya tidak lagi dibunuh oleh Android saat database terbuka \ n
+* Database tidak lagi terkunci saat meninggalkan aplikasi dengan tombol kembali (lihat pengaturan) \ n
+* tampilkan nama grup di tampilan hasil pencarian (*) \ n
+* menu konteks ditambahkan di tampilan hasil pencarian termasuk \"Navigasikan ke induk\" pilihan (*) \ n
+* opsi tambah untuk menampilkan nama grup di tampilan entri (*) \ n
+* (*) berkat Matthieu untuk mengimplementasikan fitur ini! \ n
+* Dukungan KeeChallenge (dengan Yubikey NEO). Berkat Ben Rush untuk mengimplementasikan konektornya! \ N
+* peningkatan antarmuka pengguna \ n
+* memperbaiki bug di antarmuka Google Drive \ n
+* opsi tambahan untuk menonaktifkan opsi \"donate\" \ n
+* Ikon QuickUnlock sekarang disembunyikan di perangkat Android 4.2+ secara default \ n</string>
+  <string name="ChangeLog_0_9_3_r5">
+<b> Versi 0.9.3 r5 </ b> \ n
+* Perbaikan yang dilakukan dari Xamarin: Keepass2Android sekarang kompatibel dengan ART di Android 4.4.2. Akhirnya! \ N
+* Perbaikan bug: bug dalam sinkronisasi (tampilan refresh, periksa perubahan yang benar pada http), bug pada perangkat Android 2.x, bug pada implementasi penyimpanan Google Drive dan OneDrive, bersihkan clipboard pada database dekat, lampiran pembuka bug, masalah tampilan dengan keyboard \ n</string>
+  <string name="ChangeLog_0_9_3">
+<b> Versi 0.9.3 </ b> \ n
+* Keyboard baru dengan banyak perbaikan. Lihat pengaturan untuk disesuaikan. \ N
+* Read-only support untuk kdb (Keepass 1 files). Eksperimental! \ N
+* Ditambahkan dukungan SFTP \ n
+* Solusi tambahan untuk bug dalam ART (Android 4.4.2) \ n
+* Perbaikan bug \ n</string>
+  <string name="ChangeLog_0_9_2">
+<b> Versi 0.9.2 </ b> \ n
+* Dukungan OTP yang ditambahkan (kompatibel dengan plugin OtpKeyProv) \ n
+* Dukungan NFC terintegrasi untuk OTPs dari YubiKey NEO \ n
+* Beberapa peningkatan UI \ n
+* Integrated Keepass 2.24 perpustakaan \ n
+* Ditambahkan pilihan untuk membunuh proses aplikasi (lihat pengaturan) \ n
+* Peningkatan validasi sertifikat SSL \ n
+* Perbaikan bug \ n</string>
+  <string name="ChangeLog_0_9_1">
+<b> Versi 0.9.1 </ b> \ n
+* Dukungan SkyDrive terintegrasi (hanya edisi reguler Keepass2Android) \ n
+* Masalah tetap dengan integrasi Google Drive \ n
+* Ditambahkan dukungan NTLM</string>
+  <string name="ChangeLog_0_9">
+<b> Versi 0.9 </ b> \ n
+* Dukungan Dropbox dan Google Drive terintegrasi (baca / tulis basis data; Keepass2Android edisi reguler saja) \ n
+* Browser file kustom terintegrasi (berdasarkan android-filechooser oleh HBA) \ n
+* Peningkatan antarmuka pengguna untuk membuat database baru \ n
+* Termasuk font kustom DejaVu Sans Mono untuk menampilkan kata sandi \ n
+* Perbaikan kerusakan</string>
+  <string name="ChangeLog_0_8_6">
+<b>Versi 0.8.6</b>\n
+* Dukungan untuk Twofish cipher\n
+* Izinkan pengeditan kelompok\n
+* Izinkan pemindahan entri dan grup\n
+* Ikon QuickUnlock dapat dibuat transparan (lihat pengaturan)\n
+* Perbaikan kerusakan</string>
+  <string name="ChangeLog_0_8_5">
+<b>Versi 0.8.5</b>\n
+* File jarak jauh disimpan di cache aplikasi lokal untuk memungkinkan penggunaan offline (termasuk pengeditan dan sinkronisasi nanti). Lihat pengaturan\n
+* Ikon notifikasi untuk memvisualisasikan status kunci database (lihat pengaturan)\n
+* Peningkatan penentuan lock-state dalam beberapa situasi\n
+* File database dimuat ke memori saat Anda mengetik kata sandi untuk meningkatkan kecepatan pemuatan (lihat pengaturan)\n
+* Entri dapat ditambahkan ke grup akar\n
+* Perbaikan bug (menyelesaikan bidang referensi, masalah dengan keyboard pada perangkat Cina Italia</string>
+  <string name="ChangeLog_0_8_4">
+<b> Versi 0.8.4 </ b> \ n
+* Perubahan database eksternal terdeteksi dan digabungkan saat menyimpan \ n
+* Peningkatan kinerja pemuatan \ n
+* Toolbar pencarian yang disempurnakan dengan saran \ n
+* Logo Aplikasi Baru! \ N
+* Ditambahkan dukungan untuk format .kdbp untuk pemuatan / penghematan lebih cepat \ n
+* Peningkatan pengeditan string tambahan dan tampilan tersembunyi saat dilindungi \ n
+Terima kasih kepada Alex Vallat atas kontribusi kode-nya! \ N
+Terima kasih kepada Niki Hüttner (www.close-cut.de) untuk logo baru! \ N</string>
+  <string name="ChangeLog_0_8_3"><b>Versi 0.8.3</b>\n
+* Nama pengguna/indeks TAN ditampilkan dalam daftar entri (lihat pengaturan)\n
+* Entri dapat dibuat jika pencarian dari browser tidak mengembalikan hasil\n
+* Keyboard KP2A menyediakan kemungkinan untuk mencari kredensial untuk aplikasi saat ini\n
+* Apl otomatis ditutup setelah memilih entri untuk digunakan di keyboard\n
+* Ikon pemilihan keyboard secara otomatis terbuka setelah mencari URL (lihat pengaturan)\n
+* Placeholders di bidang entri diganti sebelum menyalin (kebanyakan placeholder didukung)\n
+* perbaikan bug kecil  </string>
+  <string name="ChangeLog_0_8_2"><b>Versi 0.8.2</b>\n
+* Dukungan untuk Digest Authentication in WebDAV\n
+* Bugfixes (OI File manager, Open URL)
+</string>
+  <string name="ChangeLog_0_8_1"><b>Versi 0.8.1</b>\n
+* KP2A Offline dan \"Online\" dapat diinstal lagi\n
+* Ditambahkan terjemahan baru (terima kasih kepada semua kontributor!)
+</string>
+  <string name="ChangeLog_0_8"><b>Versi 0.8 </b>\n
+* Peningkatan antarmuka pengguna terutama untuk perangkat Android 4.x\n
+* Izinkan menggunakan pengelola file yang disengaja untuk memilih file yang ada\n
+* Ditambahkan cara yang lebih aman untuk membuka lampiran (melalui direktori cache)\n
+* bug tetap dalam aktivitas Edit\n
+* Mungkin dikenalkan bug baru :-)
+</string>
+  <string name="ChangeLog_keptDonate">Diperluas kemungkinan untuk menyumbangkan bir atau sesuatu yang lain</string>
+  <string name="ChangeLog_0_7"><b> Versi 0.7 </ b> \ n
+* Peningkatan kecepatan pemuatan: transformasi kunci sekarang 10x lebih cepat! \ N
+* Ditambahkan Keepass2Android soft-keyboard: Beralih ke keyboard ini untuk memasukkan kredensial. Melindungi Anda dari sniffer sandi clipboard (menonaktifkan notifikasi clipboard lama di opsi) \ n
+* Ditambahkan pilihan untuk menyumbangkan bir atau yang lainnya (lihat menu)</string>
+  <string name="ChangeLog"><b>Versi 0.6.2</b>\n
+* Google Drive/Dropbox/... integrasi: Gunakan Aplikasi Google Drive atau Dropbox resmi dan buka file .kdbx. Ini sekarang akan menampilkan KP2A.\n
+* Dialog Pencarian yang Disempurnakan\n
+* Peningkatan hasil pencarian untuk Share URL dengan subdomain\n
+* Ditambahkan pilihan untuk memberi umpan balik, dan menilai dan menerjemahkan aplikasi di menu\n
+\n
+<b>Versi 0.6.1</b>\n
+* Mendeteksi saat perubahan database di latar belakang (yaitu karena aktivitas aplikasi sinkronisasi)\n
+* Peningkatan pencarian URL dari browser\n
+* Konfirmasikan dialog saat membuang perubahan\n
+\n
+<b>Versi 0.6 </b>\n
+Rilis publik awal  </string>
+  <string-array name="clipboard_timeout_options">
+    <item>30 detik</item>
+    <item>1 menit</item>
+    <item>5 menit</item>
+    <item>10 menit</item>
+    <item>15 menit</item>
+    <item>30 menit</item>
+    <item>1 jam</item>
+    <item>Tidak pernah</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Keepass 2 database (.kdbx)</item>
+    <item>Keepass 2 XML (tidak terenkripsi) (.xml)</item>
+    <item>Keepass CSV (tidak terenkripsi) (.csv)</item>
+  </string-array>
+  <string-array name="list_size_options">
+    <item>Kecil</item>
+    <item>Sedang</item>
+    <item>Besar</item>
+  </string-array>
+  <string-array name="design_options">
+    <item>Terang</item>
+    <item>Gelap</item>
+  </string-array>
+  <string name="design_title">Desain</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Tidak ada enkripsi (FTP)</item>
+    <item>Implicit enkripsi (FTP over TLS, FTPS)</item>
+    <item>Eksplisit enkripsi (FTP over TLS, FTPS)</item>
+  </string-array>
+  <string-array name="cred_remember_modes">
+    <item>Tidak ingat nama pengguna atau kata sandi</item>
+    <item>Hanya ingat nama pengguna</item>
+    <item>Ingat nama pengguna dan kata sandi</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Hanya kata sandi</item>
+    <item>Kata sandi + berkas kunci</item>
+    <item>Kata sandi + OTP</item>
+    <item>Kata sandi + OTP rahasia (mode pemulihan)</item>
+    <item>Kata sandi + Tantangan-Tanggapan</item>
+    <item>Kata sandi + Tantangan-Tanggapan rahasia (mode pemulihan)</item>
+  </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Mengabaikan kegagalan validasi sertifikat</item>
+    <item>Memperingatkan saat validasi gagal</item>
+    <item>Jangan terima sertifikat yang tidak sah</item>
+  </string-array>
+  <string name="ClearClipboardWarning">Pastikan ini bekerja pada sistem anda dan pertimbangkan jika tidak untuk menggunakan built-in keyboard.</string>
+  <string name="PluginDescription">Deskripsi disediakan oleh plugin:</string>
 </resources>

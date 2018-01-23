@@ -86,8 +86,6 @@
   <string name="enable_fingerprint_unlock">啟用完整指紋解鎖</string>
   <string name="enable_fingerprint_quickunlock">啟用指紋解鎖進行快速解鎖</string>
   <string name="fingerprint_unlock_hint">觸碰指紋感應器以解鎖資料庫</string>
-  <string name="fingerprint_unlock_failed">指紋解鎖失敗。解密金鑰已被 Android 系統無效化。這通常是因為有新的指紋被加入或是安全性設定被變更了。請以密碼解鎖並於資料庫設定中重新啟用指紋解鎖。</string>
-  <string name="fingerprint_disabled_wrong_masterkey">資料庫解鎖失敗：無效的金鑰組合。指紋解鎖已被關閉，因為先前所存的主密碼已失效。請以密碼解鎖並於資料庫設定中重新啟用指紋解鎖。</string>
   <string name="fingerprint_reenable">請重新為新的主密碼啟用指紋解鎖</string>
   <string name="enable_fingerprint_unlock_Info">
     這將把主密碼存在你裝置上，

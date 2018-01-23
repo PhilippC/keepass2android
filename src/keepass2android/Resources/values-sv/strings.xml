@@ -60,7 +60,7 @@
   <string name="cancel">Avbryt</string>
   <string name="ClearClipboard">Urklippshanteraren rensad.</string>
   <string name="clipboard_timeout">Tidsgräns för urklipp</string>
-  <string name="clipboard_timeout_summary">Tiden innan användarnamn och lösenord rensas från urklipp</string>
+  <string name="clipboard_timeout_summary">Tid innan urklipp rensas efter att användarnamn eller lösenord har kopierats</string>
   <string name="copy_username">Kopiera användarnamnet till urklipp</string>
   <string name="copy_password">Kopiera lösenordet till urklipp</string>
   <string name="available_through_keyboard">Posten är tillgänglig via KP2A tangentbord</string>
@@ -87,9 +87,11 @@
   <string name="enable_fingerprint_unlock">Aktivera full fingeravtrycksupplåsning</string>
   <string name="enable_fingerprint_quickunlock">Aktivera fingeravtrycksupplåsning för Snabbupplåsning</string>
   <string name="fingerprint_unlock_hint">Vidrör sensor för att låsa upp databasen</string>
-  <string name="fingerprint_unlock_failed">Fingeravtrycksupplåsning misslyckades. Dekrypteringsnyckeln ogiltligförklarades av Android OS. Detta händer vanligtvis om ett nytt fingeravtryck registrerats eller om säkerhetsinställningarna ändrats. Var god lås upp med ditt lösenord och återaktivera sedan fingeravtrycksupplåsning i databasinställningarna.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Upplåsning av databasen misslyckades: ogiltig nyckel. Fingeravtrycksupplåsning inaktiverades eftersom det lagrade huvudlösenordet är inte längre giltigt. Vänligen lås upp med ditt lösenord och sedan aktivera fingeravtrycksupplåsning i databasinställningarna.</string>
+  <string name="fingerprint_unlock_failed">Fingeravtrycksupplåsning misslyckades. Dekrypteringsnyckeln blev ogiltigförklarad av Android. Det händer ofta om ett nytt fingeravtryck har blivit tillagt eller om säkerhetsinställningar har ändrats. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Upplåsning av databas misslyckades: felaktig nyckel. Fingeravtrycksupplåsning inaktiverades eftersom att det lagrade huvudlösenordet inte längre är giltigt. </string>
   <string name="fingerprint_reenable">Vänligen återaktivera fingeravtrycksupplåsning för det nya huvudlösenordet.</string>
+  <string name="fingerprint_reenable2">Vänligen lås upp med ditt lösenord och återaktivera sedan fingeravtrycksupplåsning i databasinställningarna.</string>
+  <string name="FingerprintInitFailed">Misslyckades att initiera fingeravtrycksavläsare. </string>
   <string name="enable_fingerprint_unlock_Info">
 Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androids nyckelförvaring och skyddat med fingeravtrycksautenticering. Gör det möjligt att låsa upp din databas endast med ditt fingeravtryck.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Tillåter att använda fingeravtrycksautenticering istället för snabbupplåsningskod. Lagrar inte någon information relaterat till ditt huvudlösenord.</string>
@@ -332,6 +334,7 @@ Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androi
   <string name="ShowSeparateNotifications_title">Separera aviseringar</string>
   <string name="ShowSeparateNotifications_summary">Visa separata aviseringar för att kopiera användarnamn och lösenord till urklipp och aktivera tangentbordet.</string>
   <string name="AccServiceAutoFill_prefs">Autofyll tillgänglighetstjänst</string>
+  <string name="AutoFill_prefs">Autofyll-tjänst</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A tangentbordsavisering</string>
   <string name="ShowKp2aKeyboardNotification_summary">Gör hela posten tillgänglig genom KP2A-tangentbordet(rekommenderas).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Byt tangentbord</string>
@@ -492,6 +495,7 @@ Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androi
   <string name="plugin_disabled">inaktiverad</string>
   <string name="plugin_web">Hitta pluginer online</string>
   <string name="plugin_scopes">Rättighetsnivåer</string>
+  <string name="not_enabled">ej aktiverad</string>
   <string name="query_credentials_for_url">%1$s begär autentiseringsuppgifter för %2$s.</string>
   <string name="query_credentials">%1$s begär autentiseringsuppgifter. Vänligen välj en post.</string>
   <string name="plugin_enabled_checkbox">Aktiverad</string>
@@ -559,6 +563,10 @@ Filen är skadad. \n Här är några tips som kan hjälpa till att diagnostisera
   <string name="ErrorReportAsk">Fråga efter fel</string>
   <string name="ErrorReportPrefTitle">Skicka felrapporter</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visa Skärmtangentbordet för lösenordsindata när fingeravtrycks-scan är aktiv.</string>
+  <string name="ChangeLog_1_04">
+    Version 1.04\n
+    * Lade till Autofyll-service for Android 8.0 and senare.\n
+    * Uppgraderade bibliotek, byggverktyg och mål-SDK-version.\n  </string>
   <string name="ChangeLog_1_03">
 Version 1.03
 * Tog bort tillgänglighetsservicess för Autofyll vilket var efterfrågat av Google. Var god se lösenordstillgänglighetsinställningen för att hitta ett plugin som återskapar den tidigare funktionen.
@@ -680,4 +688,9 @@ Version 0.9.6\n * Tillåt att importera nyckelfil och/eller lokala databasfil ti
   </string-array>
   <string name="ClearClipboardWarning">Se till att detta fungerar på ditt system och överväg att använda det inbyggda tangentbordet om inte.</string>
   <string name="PluginDescription">Beskrivning av plugin:</string>
+  <string name="autofill_hint">Keepass2Android stödjer Androids Autofyll-funktion men det ser ut som du inte har aktiverat det ännu.</string>
+  <string name="autofill_enable">Aktivera Autofyll</string>
+  <string name="show_autofill_help">Visa Autofyll-hjälp</string>
+  <string name="autofill_sign_in_prompt">Fyll med Keepass2Android</string>
+  <string name="invalid_link_association">Kunde inte associera webbdomän %1$s med app %2$s</string>
 </resources>

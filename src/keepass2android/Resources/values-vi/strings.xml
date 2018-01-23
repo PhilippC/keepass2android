@@ -7,14 +7,15 @@
   <string name="AboutText">Keepass2Android là một ứng dụng quản lý mật khẩu cung cấp quyền truy cập đọc/ghi vào cơ sở dữ liệu KeePass 2.x trên Android.</string>
   <string name="CreditsText">Giao diện người dùng dựa trên một bản chuyển thể từ ứng dụng KeepassDroid phát triển bởi Brian Pellin. Mã cho các thao tác cơ sở dữ liệu dựa trên KeePass bởi Dominik Reichl. Các người máy Android được sao chép hoặc sửa đổi từ công việc tạo ra và chia sẻ của Google và được sử dụng theo điều khoản được mô tả trong Giấy phép Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Hỗ trợ SFTP được thực hiện bằng cách sử dụng thư viện JSch theo giấy phép BSD, tạo ra bởi JCraft, Inc.</string>
+  <string name="CreditsIcons">Biểu tượng búa được tạo ra bởi John Caserta từ dự án Noun. Biểu tượng chim cánh cụt được tạo ra bởi Adriano Emerick từ dự án Noun. Biểu tượng lông vũ được tạo ra bởi Jon Testa từ dự án Noun. Biểu tượng Apple được tạo ra bởi Ava Rowell từ dự án Noun.</string>
   <string name="accept">Đồng ý</string>
   <string name="deny">Từ chối</string>
   <string name="add_entry">Thêm mục nhập</string>
   <string name="edit_entry">Sửa mục</string>
   <string name="add_url_entry">Tạo mục cho liên kết URL</string>
   <string name="add_group">Thêm nhóm</string>
-  <string name="add_group_title">Thêm Nhóm</string>
-  <string name="edit_group_title">Sửa Nhóm</string>
+  <string name="add_group_title">Thêm nhóm</string>
+  <string name="edit_group_title">Sửa nhóm</string>
   <string name="algorithm">Thuật toán</string>
   <string name="algorithm_colon">Thuật toán</string>
   <string name="app_name">Keepass2Android</string>
@@ -86,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Bật Mở khoá vân tay đầy đủ</string>
   <string name="enable_fingerprint_quickunlock">Bật Mở khoá vân tay cho Mở khoá nhanh</string>
   <string name="fingerprint_unlock_hint">Chạm vào cảm biến để mở khoá cơ sở dữ liệu</string>
-  <string name="fingerprint_unlock_failed">Mở khóa vân tay thất bại. Mật khẩu giải mã bị vô hiệu bởi hệ điều hành Android. Điều này thường xảy ra nếu một dấu vân tay mới được đăng ký hoặc cài đặt bảo mật đã được thay đổi. Xin vui lòng mở khóa bằng mật khẩu của bạn và sau đó bật lại mở khóa bằng vân tay trong cài đặt cơ sở dữ liệu.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Mở khóa cơ sở dữ liệu không thành công: khóa tổng hợp không hợp lệ. Mở khóa vân tay bị vô hiệu hóa vì dường như mật khẩu chủ được lưu trữ không còn hợp lệ. Xin vui lòng mở khóa bằng mật khẩu của bạn và sau đó bật lại dấu vân tay mở khóa trong các cài đặt cơ sở dữ liệu.</string>
   <string name="fingerprint_reenable">Xin vui lòng kích hoạt lại mở khóa vân tay cho mật khẩu chủ mới.</string>
   <string name="enable_fingerprint_unlock_Info">
      Điều này sẽ lưu trữ mật khẩu chủ của bạn trên thiết bị này,
@@ -209,9 +208,11 @@
   <string name="remove_from_filelist">Loại bỏ</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Thư mục gốc</string>
+  <string name="KeyDerivFunc">Hàm dẫn xuất khóa</string>
   <string name="rounds">Số lần lặp mã hóa</string>
   <string name="rounds_explaination">số lần lặp mã hóa cao cung cấp thêm bảo vệ chống lại cuộc tấn công bạo lực, nhưng có thể làm chậm quá trình tải và lưu.</string>
   <string name="rounds_hint">số lần lặp</string>
+  <string name="argon2memory">Bộ nhớ cho Argon 2 (bytes)</string>
   <string name="database_name">Tên cơ sở dữ liệu</string>
   <string name="default_username">Tên người dùng mặc định cho các mục mới</string>
   <string name="saving_database">Đang lưu cơ sở dữ liệu&#8230;</string>
@@ -242,6 +243,7 @@
   <string name="version_history">Lịch sử các phiên bản</string>
   <string name="author">Keepass2Android được phát triển bởi Philipp Crocoll.</string>
   <string name="further_authors">Cám ơn những đóng góp của %1$s.</string>
+  <string name="designers">Cảm ơn những sự đóp góp biểu tượng và thiết kế bố cục bởi %1$s.</string>
   <string name="credit_plugin1">Thư viện mã hóa Twofish cho Keepass được phát triển bởi Scott Greenberg và có sẵn trong KP2A.</string>
   <string name="credit_android_filechooser">android-filechooser được phát triển bởi Hai Bison</string>
   <string name="credit_keyboard">Bàn phím KP2A dựa trên bàn phím Gingerbread của Dự án mã nguồn mở Android và sử dụng mã Plugin Manager từ bàn phím của Hacker bởi Klaus Weidner.</string>
@@ -270,6 +272,7 @@
   <string name="QuickUnlock_lockButton">Đóng cơ sở dữ liệu</string>
   <string name="QuickUnlockDefaultEnabled_title">Bật QuickUnlock theo mặc định</string>
   <string name="QuickUnlockDefaultEnabled_summary">Tùy chọn để QuickUnlock được kích hoạt theo mặc định hay không.</string>
+  <string name="ViewDatabaseSecure_title">Bảo vệ hiển thị tập tin dữ liệu</string>
   <string name="ViewDatabaseSecure_summary">Khi bật, chụp màn hình sẽ bị vô hiệu hoá và ứng dụng không xuất hiện trong danh sách Ứng dụng gần đây.</string>
   <string name="QuickUnlockIconHidden_title">Dấu biểu tượng QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">Tiếc là QuickUnlock không làm việc mà không hiển thị biểu tượng thông báo. Chọn tùy chọn này để sử dụng một biểu tượng trong suốt.</string>
@@ -284,6 +287,7 @@
   <string name="SaveAttachmentDialog_text">Xin vui lòng chọn nơi lưu tập tin đính kèm.</string>
   <string name="SaveAttachmentDialog_save">Lưu vô thẻ nhớ SD</string>
   <string name="SaveAttachmentDialog_open">Lưu vô bộ nhớ đệm và mở ra</string>
+  <string name="ShowAttachedImage">Mở bằng trình xem ảnh sẵn có trong ứng dụng</string>
   <string name="SaveAttachment_doneMessage">Đã lưu tập tin vô %1$s.</string>
   <string name="SaveAttachment_Failed">Không thể lưu tập tin đính kèm vô %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Nhớ văn bản tìm kiếm?</string>
@@ -304,11 +308,15 @@
   <string name="UseFileTransactions_summary">Sử dụng giao dịch đồng bộ khi ghi cơ sở dữ liệu</string>
   <string name="LockWhenScreenOff_title">Khóa khi tắt màn hình</string>
   <string name="LockWhenScreenOff_summary">Khóa cơ sở dữ liệu khi tắt màn hình.</string>
+  <string name="ClearPasswordOnLeave_title">Xóa mật khẩu chủ đã nhập</string>
+  <string name="ClearPasswordOnLeave_summary">Xóa mật khẩu chủ đã nhập khi rời màn hình mà không mở tập tin dữ liệu.</string>
   <string name="LockWhenNavigateBack_title">Khóa khi thoát ứng dụng</string>
   <string name="LockWhenNavigateBack_summary">Khóa cơ sở dữ liệu khi thoát ứng dụng bằng cách nhấn nút quay lại.</string>
   <string name="NoDonateOption_title">Dấu tùy chọn quyên góp</string>
   <string name="NoDonateOption_summary">Thiết lập này dành cho các nhà tài trợ. Nó được bật lên sau khi sử dụng Keepass2Android trong một thời gian ngắn.</string>
   <string name="NoDonateOption_question">Nếu không có quyên góp, ứng dụng này sẽ không tồn tại và sẽ không được cải thiện liên tục! Nếu bạn chưa quyên góp, xin vui lòng xem xét làm điều đó bây giờ.</string>
+  <string name="NoDonationReminder_title">Không bao giờ yêu cầu quyên góp</string>
+  <string name="NoDonationReminder_summary">Tôi sẽ không cho bạn một xu nào hoặc tôi đã tặng. Đừng yêu cầu đóng góp, ngay cả trong ngày sinh nhật của tác giả.</string>
   <string name="UseOfflineCache_title">Bộ nhớ đệm cho cơ sở dữ liệu</string>
   <string name="UseOfflineCache_summary">Giữ một bản sao của tập tin cơ sở dữ liệu từ xa trong thư mục bộ nhớ đệm của ứng dụng. Điều này cho phép sử dụng cơ sở dữ liệu từ xa trong trường hợp không có kết nối mạng.</string>
   <string name="AcceptAllServerCertificates_title">Giấy chứng nhận SSL</string>
@@ -323,8 +331,19 @@
   <string name="ShowCopyToClipboardNotification_summary">Cho phép tên người dùng và mật mã có thể truy cập thông qua thanh thông báo và bộ nhớ nháp. Hãy cẩn thận với kỹ thuật nghe lén mật mã!</string>
   <string name="ShowSeparateNotifications_title">Thông báo riêng</string>
   <string name="ShowSeparateNotifications_summary">Hiện thông báo riêng cho việc sao chép tên người dùng và mật khẩu vào clipboard và bật bàn phím.</string>
+  <string name="AccServiceAutoFill_prefs">Dịch vụ Trợ năng tự động điền</string>
+  <string name="ShowKp2aKeyboardNotification_title">Thông báo của bàn phím KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Cho phép các mục nhập có thể truy cập hoàn toàn thông qua bàn phím KP2A (khuyến khích).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Chuyển đổi bàn phím</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Mở hộp thoại lựa chọn bàn phím khi mục có sẵn thông qua bàn phím KP2A sau khi tìm kiếm từ trình duyệt hoặc từ bàn phím.</string>
+  <string name="kp2a_switch_rooted">Tự động chuyển đổi bàn phím</string>
+  <string name="kp2a_switch_rooted_summary">Chuyển sang bàn phím KP2A một cách tự động khi một tài khoản được chọn. Yêu cầu thiết lập trước KeyboardSwap Plugin một cách chính xác hoặc một thiết bị với quyền root và ứng dụng Secure Settings được thiết lập System+. </string>
+  <string name="get_keyboardswap">Cài đặt KeybaordSwap Plugin</string>
+  <string name="get_keyboardswap_summary">Plugin này cho phép chuyển đổi sang bàn phím KP2A mà không cần quyền root. Yêu cầu cần có ADB. </string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Tự động chuyển chỉ sau khi tìm kiếm</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Chỉ chuyển sang bàn phím KP2A một cách tự động sau khi sử dụng phương pháp Chia sẻ đường link URL (nhưng không chuyển khi xem một mục theo bất kỳ cách nào khác)</string>
+  <string name="AutoSwitchBackKeyboard_title">Chuyển lại bàn phím</string>
+  <string name="AutoSwitchBackKeyboard_summary">Chuyển lại bàn phím trước đó khi không có mục nào được mở.</string>
   <string name="ShowUnlockedNotification_title">Biểu tượng của thông báo khi mở khóa</string>
   <string name="ShowUnlockedNotification_summary">Hiển thị một thông báo đang diễn ra trong khi cơ sở dữ liệu được mở khóa.</string>
   <string name="PreloadDatabaseEnabled_title">Tải tập tin cơ sở dữ liệu trước</string>
@@ -337,6 +356,7 @@
   <string name="RecycleBin">Thùng rác</string>
   <string name="AskDeletePermanentlyEntry">Bạn có muốn xóa mục này vĩnh viễn không? Bấm Không để tái chế.</string>
   <string name="AskDeletePermanentlyGroup">Bạn có muốn xóa nhóm này vĩnh viễn không? Bấm Không để tái chế.</string>
+  <string name="AskDeletePermanentlyItems">Bạn có muốn xóa những phần tử này vĩnh viễn không? Bấm Không để đưa vào thùng rác.</string>
   <string name="AskDeletePermanentlyEntryNoRecycle">Bạn có muốn xoá vĩnh viễn mục này không?</string>
   <string name="AskDeletePermanentlyGroupNoRecycle">Bạn có muốn xoá vĩnh viễn nhóm này không?</string>
   <string name="AskDeletePermanentlyItemsNoRecycle">Bạn có muốn xoá vĩnh viễn các mục đã chọn không?</string>
@@ -459,6 +479,10 @@
   <string name="TrayTotp_SettingsField_title">Tên cài đặt của mục gốc TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Nhập tên của mục cài đặt cho TrayTotp ở đây.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Tập tin log để debug</string>
+  <string name="DebugLog_title">Dùng tập tin log</string>
+  <string name="DebugLog_summary">Viết đầu ra của ứng dụng vào một tệp nhật ký cục bộ</string>
+  <string name="DebugLog_send">Gửi nhật ký gỡ lỗi...</string>
   <string name="loading">Đang tải&#8230;</string>
   <string name="plugins">Các tiện ích bổ sung</string>
   <string name="plugin_packagename">Tên kiện hàng:</string>
@@ -467,6 +491,7 @@
   <string name="plugin_enabled">đã kích hoạt</string>
   <string name="plugin_disabled">không kích hoạt</string>
   <string name="plugin_web">Tìm các công cụ trực tuyến</string>
+  <string name="plugin_scopes">Phạm vi</string>
   <string name="query_credentials_for_url">%1$s đang yêu cầu thông tin đăng nhập cho %2$s.</string>
   <string name="query_credentials">%1$s đang yêu cầu thông tin đăng nhập. Vui lòng chọn một mục.</string>
   <string name="plugin_enabled_checkbox">Đã kích hoạt</string>
@@ -483,17 +508,87 @@
   <string name="CertificateFailure">Lỗi: Chứng chỉ máy chủ xác nhận không thành công! Hãy cài đặt chứng chỉ gốc phù hợp lên thiết bị của bạn hoặc xem cài đặt!</string>
   <string name="export_fileformats_title">Chọn định dạng tập tin</string>
   <string name="killed_by_os">Xin lỗi! Keepass2Android đã bị tắt bởi hệ điều hành Android! Vì lý do an ninh, Keepass2Android đã không lưu thông tin đăng nhập bạn đã chọn trên thiết bị, do đó bạn cần phải mở lại cơ sở dữ liệu của bạn. Lưu ý: Chuyện này rất ít khi xảy ra. Nếu có, xin vui lòng gởi cho tôi một tin nhắn tại crocoapps@gmail.com.</string>
+  <string name="FileIsTemporarilyAvailable">Tập tin này chỉ tạm thời khả dụng cho Keepass2Android.</string>
   <string name="FileIsReadOnly">Tập tin bạn đã chọn chỉ có thể đọc.</string>
   <string name="FileIsReadOnlyOnKitkat">Tập tin bạn chọn đang ở chế độ chỉ đọc cho Keepass2Android do các giới hạn của hệ điều hành Android 4.4 trở lên.</string>
   <string name="CopyFileRequired">Để sử dụng nó, bạn phải sao chép sang vị trí khác.</string>
   <string name="CopyFileRequiredForEditing">Để sửa nó, bạn phải sao chép sang vị trí khác.</string>
   <string name="ClickOkToSelectLocation">Nhấn OK để chọn nơi sao chép tập tin.</string>
   <string name="FileReadOnlyTitle">Cơ sở dữ liệu chỉ có thể đọc</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android đã mở dữ liệu trong chế độ chỉ đọc.</string>
+  <string name="ReadOnlyReason_PreKitKat">Có vẻ như bạn đã mở tệp từ ứng dụng bên ngoài. Bằng cách này không hỗ trợ ghi. Nếu bạn muốn thay đổi cơ sở dữ liệu, vui lòng đóng cơ sở dữ liệu và chọn Thay đổi cơ sở dữ liệu. Sau đó, mở tập tin từ một trong những tuỳ chọn có sẵn nếu có thể.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Cờ chỉ đọc được đặt. Xóa cờ này nếu bạn muốn sửa cơ sở dữ liệu.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Không thể ghi được vì giới hạn được giới thiệu trong Android KitKat. Nếu bạn muốn chỉnh sửa cơ sở dữ liệu, hãy đóng cơ sở dữ liệu và chọn Thay đổi cơ sở dữ liệu. Sau đó, mở tập tin bằng cách sử dụng Lựa chọn tập tin hệ thống.</string>
   <string name="AddCustomIcon">Thêm biểu tượng từ tập tin...</string>
   <string name="CopyingFile">Đang sao chép tập tin...</string>
+  <string name="DuplicateTitle">Bản sao</string>
+  <string name="DefaultTemplate">Mục tiêu chuẩn</string>
+  <string name="TemplateGroupName">Mẫu</string>
+  <string name="TemplateTitle_IdCard">Thẻ căn cước</string>
+  <string name="TemplateField_IdCard_Name">Tên</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Nơi cấp</string>
+  <string name="TemplateField_IdCard_IssueDate">Ngày cấp</string>
+  <string name="TemplateTitle_EMail">E-mail</string>
+  <string name="TemplateField_EMail_EMail">Địa chỉ e-mail</string>
+  <string name="TemplateTitle_WLan">Wi-Fi</string>
+  <string name="TemplateTitle_Notes">Ghi chú bảo mật</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Số</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Chủ thẻ</string>
+  <string name="TemplateTitle_CreditCard">Thẻ tín dụng</string>
+  <string name="TemplateTitle_Membership">Thành viên</string>
   <string name="ChangeLog_title">Nhật ký các thay đổi</string>
+  <string name="AskAddTemplatesTitle">Thêm những mẫu?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android chứa các mẫu nhập cho tài khoản E-Mail, mật khẩu không dây-LAN, ghi chú bảo mật và hơn thế nữa. Bạn có muốn thêm vào tập tin dữ liệu của bạn? Nếu bạn chọn Không, bạn có thể thêm chúng vào cài đặt cơ sở dữ liệu sau.</string>
+  <string name="AddTemplates_pref">Thêm các mẫu vào tập tin dữ liệu</string>
+  <string name="PreviewWarning">Xin lưu ý! Đây là bản phát hành bản xem trước và có thể có một số lỗi! Nếu bạn gặp *bất cứ điều gì* không mong đợi, vui lòng cho tôi biết (trong nhóm thử nghiệm beta trên Google+ hoặc qua email).</string>
   <string name="Continue">Tiếp tục</string>
   <string name="NoFilenameWarning">URI bạn đã nhập không có dạng tên tập tin. Bạn có chắc chắn đây là tập tin hợp lệ không?</string>
+  <string name="FirstInvalidCompositeKeyError">Khoá hỗn hợp không hợp lệ. Xin thử lại.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Khóa hỗn hợp không hợp lệ! Vui lòng thử các bước sau để mở khóa cơ sở dữ liệu của bạn:\n
+  
+    • Đảm bảo bạn đã nhập đúng mật khẩu. Sử dụng biểu tượng mắt để hiển thị mật khẩu đã nhập.\n
+   • Đảm bảo bạn đã chọn đúng loại mật khẩu. Đảm bảo khớp với loại được sử dụng khi tạo tập tin dữ liệu.\n
+   • Đảm bảo bạn đã chọn đúng tệp tập tin dữ liệu.
+</string>
+  <string name="CorruptDatabaseHelp">
+    Tập tin bị hỏng. \n
+    Dưới đây là một số gợi ý có thể giúp chẩn đoán vấn đề:\n
+    
+    • Nếu bạn đã sao chép tệp trên USB (Chế độ MTP), vui lòng thử lại với các công cụ như MyPhoneExplorer. MTP cắt  bớt các tập tin trong trường hợp nhất định.\n
+    • Nếu bạn không thể mở tệp từ cùng một vị trí trên máy tính của bạn, rất có thể tệp đó thực sự bị hỏng. Hãy sử dụng một bản sao lưu cơ sở dữ liệu sau đó. Nếu bạn cho rằng Keepass2Android đã làm hỏng tệp, hãy liên hệ với bộ phận hỗ trợ.\n
+    • Nếu bạn vẫn có thể mở tệp trên máy tính của mình, vui lòng liên hệ với bộ phận hỗ trợ. Bạn có thể thử lưu nó bằng các cài đặt khác nhau (ví dụ như chưa giải nén) trên máy tính cá nhân và thử mở lại trong Keepass2Android.
+
+  </string>
+  <string name="ErrorReportTitle">Keepass2Android: Đã xảy ra lỗi.</string>
+  <string name="ErrorReportText">Đã xảy ra lỗi không mong muốn trong khi chạy Keepass2Android. Vui lòng giúp chúng tôi khắc phục sự cố này bằng cách cho phép ứng dụng gửi báo cáo lỗi.</string>
+  <string name="ErrorReportPromise">Các báo cáo lỗi sẽ không bao giờ chứa bất kỳ nội dung nào của cơ sở dữ liệu hoặc mật khẩu chủ. Bạn có thể tắt chúng trong cài đặt ứng dụng.</string>
+  <string name="ErrorReportEnable">Bật</string>
+  <string name="ErrorReportDisable">Tắt</string>
+  <string name="ErrorReportAsk">Hỏi sau khi gặp lỗi</string>
+  <string name="ErrorReportPrefTitle">Gửi báo cáo lỗi</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Hiển thị bàn phím ảo để nhập mật khẩu khi quét vân tay đang hoạt động.</string>
+  <string name="ChangeLog_1_03">
+    Phiên bản1.03\n
+    * Đã xóa dịch vụ trợ năng cho Tự động điền theo yêu cầu của Google. Vui lòng xem các cài đặt truy cập mật khẩu để tìm một plugin sao chép các chức năng trước đó.\n
+    * Đã thêm ứng dụng của bên thứ ba làm tuỳ chọn lưu trữ một lần nữa\n
+    * Trình xem ảnh tích hợp để xem các hình ảnh đính kèm mà không chuyển chúng sang các ứng dụng khác\n
+    * Nâng cấp OkHttp để khắc phục sự cố với một số kết nối\n
+    * Hỗ trợ cho các mục KeeTrayTOTP, hiện đang hỗ trợ các mục Steam\n
+  </string>
+  <string name="ChangeLog_1_02">
+    Phiên bản 1.02\n
+    * Một số cải tiến về bảo mật. Cảm ơn rất nhiều về báo cáo bảo mật của jean-baptiste.cayrou@thalesgroup.com và vincent.fargues@thalesgroup.com và về sự hợp tác của họ!\n
+    * Hỗ trợ KeyboardSwapPlugin (xem các tùy chọn truy cập mật khẩu): cho phép tự động chuyển đổi phương thức nhập vào các thiết bị không được root. Cảm ơn Mishaal Rahman từ XDA-Developers để làm điều này có thể thực hiện được.\n
+    * Khắc phục sự cố với Dịch vụ Truy cập với các phiên bản Chrome gần đây\n
+    * Khắc phục sự xóa dữ liệu vân tay không cần thiết\n
+    * Sửa lỗi nhỏ\n
+    * Cập nhật Dropbox SDK để đảm bảo tính tương thích trong tương lai\n
+    * Xóa báo cáo lỗi thông qua Xamarin Insights\n
+    * Cập nhật Công cụ xây dựng\n
+  </string>
   <string name="ChangeLog_0_9_4">
 		<b>Phiên bản 0.9.4</b>\n
 		* thêm hỗ trợ cho công cụ gắn rời: Xem cài đặt để biết cách tải các công cụ!\n
@@ -630,7 +725,16 @@ Bản phát hành chính thức đầu tiên</string>
     <item>Trung bình</item>
     <item>Lớn</item>
   </string-array>
+  <string-array name="design_options">
+    <item>Sáng</item>
+    <item>Tối</item>
+  </string-array>
   <string name="design_title">Thiết kế</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Không mã hoá (FTP)</item>
+    <item>Mã hoá ngầm (FTP qua TLS, FTPS)</item>
+    <item>Mã hoá rõ ràng (FTP qua TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Không nhớ tên người dùng và mật mã</item>
     <item>Chỉ nhớ tên người dùng thôi</item>
