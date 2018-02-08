@@ -12,7 +12,7 @@ As of January 2018, the following browsers are known to have Android Autofill su
 These browsers do not (yet) have autofill support:
 
 * Google Chrome
-* Firefox for Android
+* Firefox for Android ([bugzilla entry](https://bugzilla.mozilla.org/show_bug.cgi?id=1352011))
 * Brave-Browser
 * Opera
 
