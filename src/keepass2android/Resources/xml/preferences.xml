@@ -268,6 +268,14 @@
 					 android:title="@string/ViewDatabaseSecure_title"
 					 android:key="@string/ViewDatabaseSecure_key" />
 
+		  <CheckBoxPreference
+		    android:enabled="true"
+		    android:persistent="true"
+		    android:summary="@string/ActivateSearchViewOnStart_summary"
+		    android:defaultValue="false"
+		    android:title="@string/ActivateSearchViewOnStart_title"
+		    android:key="ActivateSearchView" />
+      
 			<CheckBoxPreference
 				android:enabled="true"
 					 android:persistent="true"

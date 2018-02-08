@@ -1700,7 +1700,8 @@ namespace keepass2android
 			base.OnStart();
 			_starting = true;
 
-			DonateReminder.ShowDonateReminderIfAppropriate(this);
+		    AppTask.CanActivateSearchViewOnStart = true;
+            DonateReminder.ShowDonateReminderIfAppropriate(this);
 			
 			
 		}

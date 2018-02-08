@@ -215,6 +215,7 @@ namespace keepass2android
         private IMenuItem _offlineItem;
         private IMenuItem _onlineItem;
         private IMenuItem _syncItem;
+        private Android.Support.V7.Widget.SearchView searchView;
 
 
         public String UuidGroup
@@ -240,6 +241,8 @@ namespace keepass2android
             UpdateAutofillInfo();
 
             RefreshIfDirty();
+
+            
         }
 
         public override bool OnSearchRequested()
@@ -443,7 +446,7 @@ namespace keepass2android
 
 
         }
-
+        
         private bool IsTimeForInfotext(out string lastInfoText)
         {
             DateTime lastDisplayTime = new DateTime(_prefs.GetLong("LastInfoTextTime", 0));
@@ -636,15 +639,27 @@ namespace keepass2android
             var searchManager = (SearchManager)GetSystemService(Context.SearchService);
             IMenuItem searchItem = menu.FindItem(Resource.Id.menu_search);
             var view = MenuItemCompat.GetActionView(searchItem);
-            var searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
+
+            searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
 
             searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
             searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
             searchView.SetOnQueryTextListener(new OnQueryTextListener(this));
 
+            if (_prefs.GetBoolean("ActivateSearchView", false) && AppTask.CanActivateSearchViewOnStart)
+            {
+                //need to use PostDelayed, otherwise the menu_lock item completely disappears
+                searchView.PostDelayed(() =>
+                {
+                    searchView.Iconified = false;
+                    AppTask.CanActivateSearchViewOnStart = false;
+                }, 500);
+            }
+
             ActionBar.LayoutParams lparams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MatchParent,
                 ActionBar.LayoutParams.MatchParent);
             searchView.LayoutParameters = lparams;
+
 
             _syncItem = menu.FindItem(Resource.Id.menu_sync);
 
