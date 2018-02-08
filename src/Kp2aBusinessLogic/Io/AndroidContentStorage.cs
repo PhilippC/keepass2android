@@ -6,6 +6,7 @@ using Android.Content;
 using Android.Database;
 using Android.OS;
 using Android.Provider;
+using Java.IO;
 using KeePassLib.Serialization;
 
 namespace keepass2android.Io
@@ -291,11 +292,15 @@ namespace keepass2android.Io
 
 		public void CommitWrite()
 		{
-			using (Stream outputStream = _ctx.ContentResolver.OpenOutputStream(Android.Net.Uri.Parse(_path)))
+		    ParcelFileDescriptor fileDescriptor = _ctx.ContentResolver.OpenFileDescriptor(Android.Net.Uri.Parse(_path), "w");
+            
+            using (var outputStream = new FileOutputStream(fileDescriptor.FileDescriptor))
 			{
 				byte[] data = _memoryStream.ToArray();
 				outputStream.Write(data, 0, data.Length);
+			    outputStream.Close();
 			}
+            fileDescriptor.Close();
 			
 			
 		}
