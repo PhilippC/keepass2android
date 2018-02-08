@@ -3,4 +3,4 @@
 	url = https://github.com/PhilippC/Xamarin-Samsung-Pass.git
 [submodule "src/netftpandroid"]
 	path = src/netftpandroid
-	url = https://git01.codeplex.com/forks/philippc/netftpandroid
+	url = https://github.com/PhilippC/netftpandroid.git
