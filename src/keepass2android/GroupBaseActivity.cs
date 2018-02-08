@@ -438,6 +438,8 @@ namespace keepass2android
 
             SetResult(KeePass.ExitNormal);
 
+            
+
 
 
         }
@@ -1125,10 +1127,16 @@ namespace keepass2android
             Android.Util.Log.Debug("KP2A", "Prepare action mode" + mode);
             ((PwGroupListAdapter)ListView.Adapter).InActionMode = mode != null;
             ((PwGroupListAdapter)ListView.Adapter).NotifyDataSetChanged();
+            UpdateMenuItemVisibilities(mode);
             return true;
         }
 
         public void OnItemCheckedStateChanged(ActionMode mode, int position, long id, bool @checked)
+        {
+            UpdateMenuItemVisibilities(mode);
+        }
+
+        private void UpdateMenuItemVisibilities(ActionMode mode)
         {
             var menuItem = mode.Menu.FindItem(Resource.Id.menu_edit);
             if (menuItem != null)
@@ -1139,7 +1147,7 @@ namespace keepass2android
             menuItem = mode.Menu.FindItem(Resource.Id.menu_navigate);
             if (menuItem != null)
             {
-                menuItem.SetVisible(((GroupBaseActivity)Activity).IsSearchResult && IsOnlyOneItemChecked());
+                menuItem.SetVisible(((GroupBaseActivity) Activity).IsSearchResult && IsOnlyOneItemChecked());
             }
 
             menuItem = mode.Menu.FindItem(Resource.Id.menu_copy);
