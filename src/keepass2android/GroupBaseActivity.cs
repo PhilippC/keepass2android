@@ -297,7 +297,23 @@ namespace keepass2android
 		        {
 		            var intent = new Intent(Settings.ActionRequestSetAutofillService);
 		            intent.SetData(Android.Net.Uri.Parse("package:" + PackageName));
-		            StartActivity(intent);
+		            try
+		            {
+		                StartActivity(intent);
+		            }
+		            catch (ActivityNotFoundException e)
+		            {
+                        //this exception was reported by many Huawei users
+		                Kp2aLog.LogUnexpectedError(e);
+		                new AlertDialog.Builder(this)
+		                    .SetTitle(Resource.String.autofill_enable)
+		                    .SetMessage(Resource.String.autofill_enable_failed)
+		                    .SetPositiveButton(Resource.String.ok, (o, eventArgs) => { })
+		                    .Show();
+		                const string autofillservicewasenabled = "AutofillServiceWasEnabled";
+		                _prefs.Edit().PutBoolean(autofillservicewasenabled, true).Commit();
+		                UpdateBottomBarElementVisibility(Resource.Id.autofill_infotext, false);
+                    }
 		        };
 		    }
 
