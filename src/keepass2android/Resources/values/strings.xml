@@ -689,6 +689,15 @@
 
   </string>
 
+  <string name="DbUnlockedChannel_name">Database unlocked</string>
+  <string name="DbUnlockedChannel_desc">Notification about the database being unlocked</string>
+  
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Notification about the database being locked with QuickUnlock</string>
+  
+  <string name="EntryChannel_name">Entry notifications</string>
+  <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
+
   <string name="ErrorReportTitle">Keepass2Android: An error occurred.</string>
   <string name="ErrorReportText">An unexpected error occurred while running Keepass2Android. Please help us fix this by allowing the app to send error reports.</string>
   <string name="ErrorReportPromise">Error reports will never contain any contents of your database or master password. You can disable them in the application settings.</string>

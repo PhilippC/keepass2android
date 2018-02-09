@@ -21,6 +21,7 @@ using System.IO;
 using System.Net.Security;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
@@ -845,7 +846,11 @@ namespace keepass2android
 #endif
 	public class App : Application {
 
-		public App (IntPtr javaReference, JniHandleOwnership transfer)
+	    public const string NotificationChannelIdUnlocked = "channel_db_unlocked_3";
+	    public const string NotificationChannelIdQuicklocked = "channel_db_quicklocked_3";
+	    public const string NotificationChannelIdEntry = "channel_db_entry_3";
+
+        public App (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 		}
@@ -857,14 +862,53 @@ namespace keepass2android
 
 			Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 
+		    CreateNotificationChannels();
+
             Kp2a.OnCreate(this);
 			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
 		}
 
+	    private void CreateNotificationChannels()
+	    {
+	        NotificationManager mNotificationManager =
+	            (NotificationManager)GetSystemService(Context.NotificationService);
 
-		
-		
-		public override void OnTerminate() {
+	        {
+	            string name = GetString(Resource.String.DbUnlockedChannel_name);
+	            string desc = GetString(Resource.String.DbUnlockedChannel_desc);
+	            NotificationChannel mChannel =
+	                new NotificationChannel(NotificationChannelIdUnlocked, name, NotificationImportance.Low);
+	            mChannel.Description = desc;
+	            mChannel.EnableLights(false);
+	            mChannel.EnableVibration(false);
+	            mNotificationManager.CreateNotificationChannel(mChannel);
+	        }
+
+	        {
+	            string name = GetString(Resource.String.DbQuicklockedChannel_name);
+	            string desc = GetString(Resource.String.DbQuicklockedChannel_desc);
+	            NotificationChannel mChannel =
+	                new NotificationChannel(NotificationChannelIdQuicklocked, name, NotificationImportance.Min);
+	            mChannel.Description = desc;
+	            mChannel.EnableLights(false);
+	            mChannel.EnableVibration(false);
+	            mNotificationManager.CreateNotificationChannel(mChannel);
+	        }
+
+	        {
+	            string name = GetString(Resource.String.EntryChannel_name);
+	            string desc = GetString(Resource.String.EntryChannel_desc);
+	            NotificationChannel mChannel =
+	                new NotificationChannel(NotificationChannelIdEntry, name, NotificationImportance.None);
+	            mChannel.Description = desc;
+	            mChannel.EnableLights(false);
+	            mChannel.EnableVibration(false);
+	            mNotificationManager.CreateNotificationChannel(mChannel);
+	        }
+        }
+
+
+        public override void OnTerminate() {
 			base.OnTerminate();
 			Kp2aLog.Log("Terminating application");
             Kp2a.OnTerminate();

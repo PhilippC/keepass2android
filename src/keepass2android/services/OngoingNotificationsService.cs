@@ -139,7 +139,7 @@ namespace keepass2android
 				grayIconResouceId = Resource.Drawable.transparent;
 			}
 			NotificationCompat.Builder builder = 
-				new NotificationCompat.Builder(this)
+				new NotificationCompat.Builder(this, App.NotificationChannelIdQuicklocked)
 					.SetSmallIcon(grayIconResouceId)
 					.SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationLockedIcon)))
 					.SetVisibility((int)Android.App.NotificationVisibility.Secret)
@@ -183,7 +183,7 @@ namespace keepass2android
 		private Notification GetUnlockedNotification()
 		{
 			NotificationCompat.Builder builder =
-				new NotificationCompat.Builder(this)
+				new NotificationCompat.Builder(this, App.NotificationChannelIdUnlocked)
 					.SetOngoing(true)
 					.SetSmallIcon(Resource.Drawable.ic_notify)
 					.SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationUnlockedIcon)))

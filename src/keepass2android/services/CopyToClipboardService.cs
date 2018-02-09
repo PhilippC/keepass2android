@@ -198,7 +198,7 @@ namespace keepass2android
 					pending = GetPendingIntent(intentText, descResId);
 				}
 
-				var builder = new NotificationCompat.Builder(_ctx);
+				var builder = new NotificationCompat.Builder(_ctx, App.NotificationChannelIdEntry);
 				builder.SetSmallIcon(drawableResId)
 					   .SetContentText(desc)
 					   .SetContentTitle(entryName)
