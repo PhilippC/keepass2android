@@ -846,9 +846,9 @@ namespace keepass2android
 #endif
 	public class App : Application {
 
-	    public const string NotificationChannelIdUnlocked = "channel_db_unlocked_3";
-	    public const string NotificationChannelIdQuicklocked = "channel_db_quicklocked_3";
-	    public const string NotificationChannelIdEntry = "channel_db_entry_3";
+	    public const string NotificationChannelIdUnlocked = "channel_db_unlocked_5";
+	    public const string NotificationChannelIdQuicklocked = "channel_db_quicklocked_5";
+	    public const string NotificationChannelIdEntry = "channel_db_entry_5";
 
         public App (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
@@ -877,7 +877,7 @@ namespace keepass2android
 	            string name = GetString(Resource.String.DbUnlockedChannel_name);
 	            string desc = GetString(Resource.String.DbUnlockedChannel_desc);
 	            NotificationChannel mChannel =
-	                new NotificationChannel(NotificationChannelIdUnlocked, name, NotificationImportance.Low);
+	                new NotificationChannel(NotificationChannelIdUnlocked, name, NotificationImportance.Min);
 	            mChannel.Description = desc;
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
@@ -899,7 +899,7 @@ namespace keepass2android
 	            string name = GetString(Resource.String.EntryChannel_name);
 	            string desc = GetString(Resource.String.EntryChannel_desc);
 	            NotificationChannel mChannel =
-	                new NotificationChannel(NotificationChannelIdEntry, name, NotificationImportance.None);
+	                new NotificationChannel(NotificationChannelIdEntry, name, NotificationImportance.Default);
 	            mChannel.Description = desc;
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
