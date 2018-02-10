@@ -364,9 +364,16 @@ namespace keepass2android
 
             // Re-use the change handlers for the application settings
             FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
-            FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
-			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
-			FindPreference(GetString(Resource.String.DebugLog_key)).PreferenceChange += OnDebugLogChanged;
+            var unlockedNotificationPref = FindPreference(GetString(Resource.String.ShowUnlockedNotification_key));
+            unlockedNotificationPref.PreferenceChange += OnShowUnlockedNotificationChanged;
+            if ((int)Build.VERSION.SdkInt >= 26)
+            {
+                //use system notification channels to control notification visibility
+                unlockedNotificationPref.Parent.RemovePreference(unlockedNotificationPref);
+            }
+            
+
+            FindPreference(GetString(Resource.String.DebugLog_key)).PreferenceChange += OnDebugLogChanged;
 			FindPreference(GetString(Resource.String.DebugLog_send_key)).PreferenceClick += OnSendDebug;
 
             UpdateAutofillPref();
@@ -422,10 +429,16 @@ namespace keepass2android
                 Preference hideQuickUnlockTranspIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key));
                 Preference hideQuickUnlockIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden16_key));
                 var quickUnlockScreen = ((PreferenceScreen)FindPreference(GetString(Resource.String.QuickUnlock_prefs_key)));
-                if ((int)Android.OS.Build.VERSION.SdkInt >= 16)
+                if ((int)Android.OS.Build.VERSION.SdkInt >= 26)
+                {
+                    //use notification channels
+                    quickUnlockScreen.RemovePreference(hideQuickUnlockTranspIconPref);
+                    quickUnlockScreen.RemovePreference(hideQuickUnlockIconPref);
+                }
+                else if ((int)Android.OS.Build.VERSION.SdkInt >= 16)
                 {
                     quickUnlockScreen.RemovePreference(hideQuickUnlockTranspIconPref);
-                    FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += (sender, args) => App.Kp2a.UpdateOngoingNotification();
+                    unlockedNotificationPref.PreferenceChange += (sender, args) => App.Kp2a.UpdateOngoingNotification();
                     hideQuickUnlockIconPref.PreferenceChange += delegate { App.Kp2a.UpdateOngoingNotification(); };
                 }
                 else
@@ -436,7 +449,7 @@ namespace keepass2android
                         delegate { App.Kp2a.UpdateOngoingNotification(); };
 
                     ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))).RemovePreference(
-                        FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)));
+                        unlockedNotificationPref);
                 }
             }
             catch (Exception ex)

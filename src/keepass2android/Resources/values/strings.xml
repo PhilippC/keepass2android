@@ -398,6 +398,10 @@
 
 	<string name="ShowUnlockedNotification_title">Notification icon while unlocked</string>
 	<string name="ShowUnlockedNotification_summary">Show a notification icon while the database is unlocked.</string>
+  
+  <string name="IconVisibilityInfo_Android8_text">Android 8 has introduced new behavior for notifications. If you want to hide the icon for Keepass2Android\'s notifications, please configure this through the system settings. Set the importance of the notification category to Minimum.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Open settings</string>
+  <string name="DontCare">I don\'t care</string>
 
 	<string name="PreloadDatabaseEnabled_title">Pre-load database file</string>
 	<string name="PreloadDatabaseEnabled_summary">Start background loading or downloading of the database file during password entry.</string>

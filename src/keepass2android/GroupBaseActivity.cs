@@ -53,6 +53,7 @@ namespace keepass2android
             { Resource.Id.cancel_insert_element, 20 },
             { Resource.Id.insert_element, 20 },
             { Resource.Id.autofill_infotext, 10 },
+            { Resource.Id.notification_info_android8_infotext, 10 },
             { Resource.Id.infotext, 11 },
             { Resource.Id.select_other_entry, 20},
             { Resource.Id.add_url_entry, 20},
@@ -240,9 +241,26 @@ namespace keepass2android
 
             UpdateAutofillInfo();
 
+            UpdateAndroid8NotificationInfo();
+
             RefreshIfDirty();
 
             
+        }
+
+        private void UpdateAndroid8NotificationInfo(bool hideForever = false)
+        {
+            const string prefsKey = "DidShowAndroid8NotificationInfo";
+            
+            bool canShowNotificationInfo = (Build.VERSION.SdkInt >= BuildVersionCodes.O) && (!_prefs.GetBoolean(prefsKey, false));
+            if ((canShowNotificationInfo) && hideForever)
+            {
+                _prefs.Edit().PutBoolean(prefsKey, true).Commit();
+                canShowNotificationInfo = false;
+            }
+            UpdateBottomBarElementVisibility(Resource.Id.notification_info_android8_infotext, canShowNotificationInfo);
+            
+
         }
 
         public override bool OnSearchRequested()
@@ -339,6 +357,35 @@ namespace keepass2android
                 FindViewById(Resource.Id.show_autofill_info).Click += (sender, args) => Util.GotoUrl(this, "https://philippc.github.io/keepass2android/OreoAutoFill.html");
                 Util.MoveBottomBarButtons(Resource.Id.show_autofill_info, Resource.Id.enable_autofill, Resource.Id.autofill_buttons, this);
             }
+
+            if (FindViewById(Resource.Id.configure_notification_channels) != null)
+            {
+                FindViewById(Resource.Id.configure_notification_channels).Click += (sender, args) =>
+                {
+                    Intent intent = new Intent(Settings.ActionChannelNotificationSettings);
+                    intent.PutExtra(Settings.ExtraChannelId, App.NotificationChannelIdQuicklocked);
+                    intent.PutExtra(Settings.ExtraAppPackage, PackageName);
+                    try
+                    {
+                        StartActivity(intent);
+                    }
+                    catch (Exception e)
+                    {
+                        new AlertDialog.Builder(this)
+                            .SetTitle("Unexpected error")
+                            .SetMessage(
+                                "Opening the settings failed. Please report this to crocoapps@gmail.com including information about your device vendor and OS. Please try to configure the notifications by long pressing a KP2A notification. Details: " + e.ToString())
+                            .Show();
+                    }
+                    UpdateAndroid8NotificationInfo(true);
+                };
+                FindViewById(Resource.Id.ignore_notification_channel).Click += (sender, args) =>
+                {
+                    UpdateAndroid8NotificationInfo(true);
+                };
+
+            }
+
 
 
             string lastInfoText;
