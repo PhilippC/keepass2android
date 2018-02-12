@@ -1071,14 +1071,11 @@ namespace keepass2android
 			
 			btn.PostDelayed(() =>
 			{
-				//re-init fingerprint unlock in case something goes wrong with opening the database 
-				InitFingerprintUnlock(); 
 				//fire
 				OnOk(true);	
-			}, 1000);
+			}, 500);
 
-			
-		}
+        }
 
 		private void InitializeNavDrawerButtons()
 	    {
@@ -1479,8 +1476,11 @@ namespace keepass2android
 		private void PerformLoadDatabase()
 		{
 			_currentlyWaitingKey = null;
-			//put loading into background thread to allow loading the key file (potentially over network)
-			new SimpleLoadingDialog(this, GetString(Resource.String.loading),
+		    if (_performingLoad)
+		        return;
+		    _performingLoad = true;
+            //put loading into background thread to allow loading the key file (potentially over network)
+            new SimpleLoadingDialog(this, GetString(Resource.String.loading),
 			                        true, () =>
 				                        {
 					                        CompositeKey compositeKey;
@@ -1488,7 +1488,8 @@ namespace keepass2android
 					                        if (!CreateCompositeKey(out compositeKey, out errorMessage)) return (() =>
 						                        {
 							                        Toast.MakeText(this, errorMessage, ToastLength.Long).Show();
-						                        });
+						                            _performingLoad = false;
+                                                });
 											return () => { PerformLoadDatabaseWithCompositeKey(compositeKey); };
 				                        }).Execute();
 			
@@ -1525,7 +1526,6 @@ namespace keepass2android
 
 				Handler handler = new Handler();
 				OnFinish onFinish = new AfterLoad(handler, this);
-				_performingLoad = true;
 				LoadDb task = (KeyProviderType == KeyProviders.Otp)
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider,
 						onFinish, this)
@@ -2179,8 +2179,12 @@ namespace keepass2android
 
 				}
 
+			    //re-init fingerprint unlock in case something went wrong with opening the database 
+                if (!Success)
+                    _act.InitFingerprintUnlock();
 
-				_act._performingLoad = false;
+
+                _act._performingLoad = false;
 
 			}
 		}
