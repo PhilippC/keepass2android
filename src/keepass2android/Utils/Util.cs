@@ -39,8 +39,8 @@ namespace keepass2android
 {
 	
 	public class Util {
-
-		public static Bitmap DrawableToBitmap(Drawable drawable)
+	    
+	    public static Bitmap DrawableToBitmap(Drawable drawable)
 		{
 			Bitmap bitmap = null;
 
@@ -64,12 +64,30 @@ namespace keepass2android
 
 			Canvas canvas = new Canvas(bitmap);
 			drawable.SetBounds(0, 0, canvas.Width, canvas.Height);
-			drawable.Draw(canvas);
-			return bitmap;
+
+            drawable.Draw(canvas);
+
+		    
+
+            return bitmap;
 		}
 
+	    public static Bitmap ChangeImageColor(Bitmap sourceBitmap, Color color)
+	    {
+	        Bitmap temp = Bitmap.CreateBitmap(sourceBitmap, 0, 0,
+	            sourceBitmap.Width, sourceBitmap.Height);
+	        Bitmap resultBitmap = temp.Copy(Bitmap.Config.Argb8888, true);
+            Paint p = new Paint();
+	        ColorFilter filter = new LightingColorFilter(color.ToArgb(), 0);
+	        p.SetColorFilter(filter);
 
-		public static float convertDpToPixel(float dp, Context context)
+	        Canvas canvas = new Canvas(resultBitmap);
+	        canvas.DrawBitmap(resultBitmap, 0, 0, p);
+	        return resultBitmap;
+	    }
+
+
+        public static float convertDpToPixel(float dp, Context context)
 		{
 			Resources resources = context.Resources;
 			DisplayMetrics metrics = resources.DisplayMetrics;
@@ -505,6 +523,13 @@ namespace keepass2android
 			return memoryStream;
 		
 		}
+
+	    public static Bitmap MakeLargeIcon(Bitmap unscaled, Context context)
+	    {
+	        int height = (int)(0.9 * context.Resources.GetDimension(Android.Resource.Dimension.NotificationLargeIconHeight));
+	        int width = (int)(0.9 * context.Resources.GetDimension(Android.Resource.Dimension.NotificationLargeIconWidth));
+	        return Bitmap.CreateScaledBitmap(unscaled, width, height, true);
+        }
 	}
 }
 
