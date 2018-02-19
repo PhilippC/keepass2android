@@ -171,9 +171,7 @@ namespace keepass2android
 
 		private Bitmap MakeLargeIcon(Bitmap unscaled)
 		{
-			int height = (int)(0.9*Resources.GetDimension(Android.Resource.Dimension.NotificationLargeIconHeight));
-			int width = (int)(0.9*Resources.GetDimension(Android.Resource.Dimension.NotificationLargeIconWidth));
-			return Bitmap.CreateScaledBitmap(unscaled, width, height, true);
+		    return Util.MakeLargeIcon(unscaled, this);
 		}
 
 		#endregion

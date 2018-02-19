@@ -24,6 +24,8 @@ using Java.Util;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
@@ -75,23 +77,23 @@ namespace keepass2android
 				_hasKeyboard = true;
 			}
 
-			public int CreateNotifications(string entryName)
+			public int CreateNotifications(string entryName, Bitmap entryIcon)
 			{
 				if (((int)Build.VERSION.SdkInt < 16) ||
 					(PreferenceManager.GetDefaultSharedPreferences(_ctx)
 									  .GetBoolean(_ctx.GetString(Resource.String.ShowSeparateNotifications_key),
 												  _ctx.Resources.GetBoolean(Resource.Boolean.ShowSeparateNotifications_default))))
 				{
-					return CreateSeparateNotifications(entryName);
+					return CreateSeparateNotifications(entryName, entryIcon);
 				}
 				else
 				{
-					return CreateCombinedNotification(entryName);
+					return CreateCombinedNotification(entryName, entryIcon);
 				}
 
 			}
 
-			private int CreateCombinedNotification(string entryName)
+			private int CreateCombinedNotification(string entryName, Bitmap entryIcon)
 			{
 				if ((!_hasUsername) && (!_hasPassword) && (!_hasKeyboard))
 					return 0;
@@ -100,12 +102,12 @@ namespace keepass2android
 				if (_hasKeyboard)
 				{
 					notificationBuilder = GetNotificationBuilder(Intents.CheckKeyboard, Resource.String.available_through_keyboard,
-															Resource.Drawable.ic_notify_keyboard, entryName);
+															Resource.Drawable.ic_notify_keyboard, entryName, entryIcon);
 				}
 				else
 				{
 					notificationBuilder = GetNotificationBuilder(null, Resource.String.entry_is_available, Resource.Drawable.ic_launcher_gray,
-													   entryName);
+													   entryName, entryIcon);
 				}
 
 				//add action buttons to base notification:
@@ -127,14 +129,14 @@ namespace keepass2android
 				return 1;
 			}
 
-			private int CreateSeparateNotifications(string entryName)
+			private int CreateSeparateNotifications(string entryName, Bitmap entryIcon)
 			{
 				int numNotifications = 0;
 				if (_hasPassword)
 				{
 					// only show notification if password is available
 					Notification password = GetNotification(Intents.CopyPassword, Resource.String.copy_password,
-															Resource.Drawable.ic_action_password, entryName);
+															Resource.Drawable.ic_action_password, entryName, entryIcon);
 					numNotifications++;
 					password.DeleteIntent = CreateDeleteIntent(NotifyPassword);
 					_notificationManager.Notify(NotifyPassword, password);
@@ -143,7 +145,7 @@ namespace keepass2android
 				{
 					// only show notification if username is available
 					Notification username = GetNotification(Intents.CopyUsername, Resource.String.copy_username,
-															Resource.Drawable.ic_action_username, entryName);
+															Resource.Drawable.ic_action_username, entryName, entryIcon);
 					username.DeleteIntent = CreateDeleteIntent(NotifyUsername);
 					_notificationManager.Notify(NotifyUsername, username);
 					numNotifications++;
@@ -152,7 +154,7 @@ namespace keepass2android
 				{
 					// only show notification if username is available
 					Notification keyboard = GetNotification(Intents.CheckKeyboard, Resource.String.available_through_keyboard,
-															Resource.Drawable.ic_notify_keyboard, entryName);
+															Resource.Drawable.ic_notify_keyboard, entryName, entryIcon);
 					keyboard.DeleteIntent = CreateDeleteIntent(NotifyKeyboard);
 					_notificationManager.Notify(NotifyKeyboard, keyboard);
 					numNotifications++;
@@ -173,14 +175,14 @@ namespace keepass2android
 			}
 
 
-			private Notification GetNotification(String intentText, int descResId, int drawableResId, String entryName)
+			private Notification GetNotification(string intentText, int descResId, int drawableResId, string entryName, Bitmap entryIcon)
 			{
-				var builder = GetNotificationBuilder(intentText, descResId, drawableResId, entryName);
+				var builder = GetNotificationBuilder(intentText, descResId, drawableResId, entryName, entryIcon);
 
 				return builder.Build();
 			}
 
-			private NotificationCompat.Builder GetNotificationBuilder(string intentText, int descResId, int drawableResId, string entryName)
+			private NotificationCompat.Builder GetNotificationBuilder(string intentText, int descResId, int drawableResId, string entryName, Bitmap entryIcon)
 			{
 				String desc = _ctx.GetString(descResId);
 
@@ -202,10 +204,12 @@ namespace keepass2android
 				builder.SetSmallIcon(drawableResId)
 					   .SetContentText(desc)
 					   .SetContentTitle(entryName)
-					   .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
+                       .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
 					   .SetTicker(entryName + ": " + desc)
 					   .SetVisibility((int)Android.App.NotificationVisibility.Secret)
 					   .SetContentIntent(pending);
+			    if (entryIcon != null)
+			        builder.SetLargeIcon(entryIcon);
 				return builder;
 			}
 
@@ -388,13 +392,29 @@ namespace keepass2android
 		private const string ActionNotificationCancelled = "notification_cancelled";
 
 
-		public void DisplayAccessNotifications(PwEntryOutput entry, bool closeAfterCreate, string searchUrl)
+        
+
+
+        public void DisplayAccessNotifications(PwEntryOutput entry, bool closeAfterCreate, string searchUrl)
 		{
 			var hadKeyboardData = ClearNotifications();
 
 			String entryName = entry.OutputStrings.ReadSafe(PwDefs.TitleField);
 
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+		    var bmp = Util.DrawableToBitmap(App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(this,
+		        App.Kp2a.GetDb().KpDatabase, entry.Entry.IconId, entry.Entry.CustomIconUuid, false));
+
+		    
+		    if (!(((entry.Entry.CustomIconUuid != null) && (!entry.Entry.CustomIconUuid.Equals(PwUuid.Zero))))
+                && PreferenceManager.GetDefaultSharedPreferences(this).GetString("IconSetKey", PackageName) == PackageName)
+		    {
+		        Color drawingColor = new Color(189, 189, 189);
+		        bmp = Util.ChangeImageColor(bmp, drawingColor);
+		    }
+		        
+            Bitmap entryIcon = Util.MakeLargeIcon(bmp, this);
+
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			var notBuilder = new PasswordAccessNotificationBuilder(this, _notificationManager);
 			if (prefs.GetBoolean(GetString(Resource.String.CopyToClipboardNotification_key), Resources.GetBoolean(Resource.Boolean.CopyToClipboardNotification_default)))
 			{
@@ -447,7 +467,7 @@ namespace keepass2android
 			{
 				ClearKeyboard(true); //this clears again and then (this is the point) broadcasts that we no longer have keyboard data
 			}
-			_numElementsToWaitFor = notBuilder.CreateNotifications(entryName);
+			_numElementsToWaitFor = notBuilder.CreateNotifications(entryName, entryIcon);
 
 			if (_numElementsToWaitFor == 0)
 			{
