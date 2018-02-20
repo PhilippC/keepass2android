@@ -645,22 +645,22 @@ namespace keepass2android
 			}
 
 			public override void Run()
-            {
-                String currentClip = Util.GetClipboard(_service);
-                _handler.Post(NewMethod());
-                if (currentClip.Equals(_clearText))
-                {
-                    Util.CopyToClipboard(_service, "");
-                    _handler.Post(ShowClipboardWarning);
-                }
-            }
+			{
+				String currentClip = Util.GetClipboard(_service);
+				_handler.Post(DoClearClipboard);
+				if (currentClip.Equals(_clearText))
+				{
+					Util.CopyToClipboard(_service, "");
+					_handler.Post(ShowClipboardWarning);
+				}
+			}
 
-            private System.Action NewMethod()
-            {
-                return () => _service.OnWaitElementDeleted(ClearClipboard);
-            }
+		    private void DoClearClipboard()
+		    {
+		        _service.OnWaitElementDeleted(CopyToClipboardService.ClearClipboard);
+		    }
 
-            private void ShowClipboardWarning()
+		    private void ShowClipboardWarning()
 		    {
 		        string message = _service.GetString(Resource.String.ClearClipboard) + " "
 		                         + _service.GetString(Resource.String.ClearClipboardWarning);
