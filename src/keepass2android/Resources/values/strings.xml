@@ -712,6 +712,16 @@
 
   
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
+  <string name="ChangeLog_1_05">
+    Version 1.05-pre1\n
+    * Use notification channels for Android 8, allowing configuration through system settings\n
+    * Show entry icon in notication\n
+    * Use Adaptive Icons for Android 8, use round launcher icon for Android 7\n
+    * Allow to activate search upon unlock (see settings)\n
+    * Change the way files are written through Storage Access Framework, fixes issues with updating files on Google Drive opened through System file picker\n
+    * add some info texts to avoid some common misunderstandings\n
+    * bug fixes\n
+  </string>
   <string name="ChangeLog_1_04">
     Version 1.04\n
     * Added Autofill service for Android 8.0 and later.\n

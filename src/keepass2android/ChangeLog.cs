@@ -26,7 +26,8 @@ namespace keepass2android
 			AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(ctx, Android.Resource.Style.ThemeHoloLightDialog));
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
-			    ctx.GetString(Resource.String.ChangeLog_1_04),
+			    ctx.GetString(Resource.String.ChangeLog_1_05),
+                ctx.GetString(Resource.String.ChangeLog_1_04),
                 ctx.GetString(Resource.String.ChangeLog_1_03),
 				ctx.GetString(Resource.String.ChangeLog_1_02),
 #if !NoNet
