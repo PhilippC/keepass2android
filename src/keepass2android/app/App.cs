@@ -870,6 +870,8 @@ namespace keepass2android
 
 	    private void CreateNotificationChannels()
 	    {
+	        if ((int)Build.VERSION.SdkInt < 26)
+	            return;
 	        NotificationManager mNotificationManager =
 	            (NotificationManager)GetSystemService(Context.NotificationService);
 
