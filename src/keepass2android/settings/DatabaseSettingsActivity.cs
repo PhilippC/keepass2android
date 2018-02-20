@@ -378,6 +378,32 @@ namespace keepass2android
 
             UpdateAutofillPref();
 
+            var autofillPref = FindPreference(GetString(Resource.String.AutoFill_prefs_key));
+            if (autofillPref != null)
+            {
+                autofillPref.PreferenceClick += (sender, args) =>
+                {
+
+                    var intent = new Intent(Settings.ActionRequestSetAutofillService);
+                    intent.SetData(Android.Net.Uri.Parse("package:" + Context.PackageName));
+                    try
+                    {
+                        Context.StartActivity(intent);
+                    }
+                    catch (ActivityNotFoundException e)
+                    {
+                        //this exception was reported by many Huawei users
+                        Kp2aLog.LogUnexpectedError(e);
+                        new AlertDialog.Builder(Context)
+                            .SetTitle(Resource.String.autofill_enable)
+                            .SetMessage(Resource.String.autofill_enable_failed)
+                            .SetPositiveButton(Resource.String.ok, (o, eventArgs) => { })
+                            .Show();
+
+                    }
+                };
+            }
+
 
             PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
 			PrepareNoDonationReminderPreference(Activity, ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))), FindPreference(GetString(Resource.String.NoDonationReminder_key)));
@@ -501,8 +527,11 @@ namespace keepass2android
                 else
                 {
                     autofillPref.Summary = Activity.GetString(Resource.String.not_enabled);
-                    autofillPref.Intent = new Intent(Settings.ActionRequestSetAutofillService);
-                    autofillPref.Intent.SetData(Android.Net.Uri.Parse("package:" + Activity.PackageName));
+
+
+
+
+
                 }
 
             }
@@ -1005,7 +1034,9 @@ namespace keepass2android
 
         
     }
-	/// <summary>
+    
+
+    /// <summary>
 	/// Activity to configure the application and database settings. The database must be unlocked, and this activity will close if it becomes locked.
 	/// </summary>
     [Activity(Label = "@string/app_name", Theme = "@style/MyTheme")]			
