@@ -56,5 +56,10 @@ namespace keepass2android
 		{
 			get { return _entry; }
 		}
+
+        /// <summary>
+        /// if the entry was selected by searching for a URL, the query URL is returned here.
+        /// </summary>
+	    public string SearchUrl { get; set; }
 	}
 }

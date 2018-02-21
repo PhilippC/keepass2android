@@ -86,8 +86,6 @@
   <string name="enable_fingerprint_unlock">Activează deblocarea completă prin amprentă</string>
   <string name="enable_fingerprint_quickunlock">Activeaza deblocarea cu amprentă pentru Deblocare rapida</string>
   <string name="fingerprint_unlock_hint">Atinge sensorul pentru a debloca baza de date</string>
-  <string name="fingerprint_unlock_failed">Deblocarea cu amprentă nu a reuşit. Cheia de decriptare a fost infirmată de sistem de operare Android. Acest lucru se întâmplă de obicei în cazul în care o nouă amprentă a fost înregistrata sau setările de securitate s-au schimbat. Vă rugăm să deblocati cu parolă şi apoi să re-activati Deblocare cu amprenta in setarile pentru baza de date.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Deblocarea bazei de date a eşuat: Cheie compozită invalida. Deblocarea cu amprentă a fost dezactivată, deoarece aparent parola principala nu mai este valabilă. Vă rugăm să deblocati cu parola şi apoi sa re-activati Deblocarea cu amprentă in setarile pentru baza de date.</string>
   <string name="fingerprint_reenable">Vă rugăm să re-activati deblocarea cu amprenta pentru noua parola principala.</string>
   <string name="enable_fingerprint_unlock_Info">
 Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore şi protejata utilizând autentificarea cu amprentă. Permite deblocarea bazei de date numai cu amprenta dvs.  </string>

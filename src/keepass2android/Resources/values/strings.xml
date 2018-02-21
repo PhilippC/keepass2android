@@ -95,9 +95,12 @@
   <string name="enable_fingerprint_unlock">Enable full Fingerprint Unlock</string>
   <string name="enable_fingerprint_quickunlock">Enable Fingerprint Unlock for QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Touch sensor to unlock database</string>
-  <string name="fingerprint_unlock_failed">Fingerprint Unlock failed. Decryption key was invalidated by Android OS. This usually happens if a new fingerprint was enrolled or security settings were changed. Please unlock with your password and then re-enabled Fingerprint Unlock in the database settings.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Unlocking the database failed: Invalid composite key. Fingerprint Unlock was disabled because apparently the stored master password is no longer valid. Please unlock with your password and then re-enabled Fingerprint Unlock in the database settings.</string>
+  <string name="fingerprint_unlock_failed">Fingerprint Unlock failed. Decryption key was invalidated by Android OS. This usually happens if a new fingerprint was enrolled or security settings were changed. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Unlocking the database failed: Invalid composite key. Fingerprint Unlock was disabled because apparently the stored master password is no longer valid. </string>
   <string name="fingerprint_reenable">Please re-enable Fingerprint Unlock for the new master password.</string>
+  <string name="fingerprint_reenable2">Please unlock with your password and then re-enable Fingerprint Unlock in the database settings.</string>
+  <string name="FingerprintInitFailed">Failed to initialize fingerprint sensor. </string>
+  
 
   <string name="enable_fingerprint_unlock_Info">This will store your master password on this device, encrypted with the Android Keystore and protected using fingerprint authentication. Allows to unlock your database only with your fingerprint.</string>
   <string name="enable_fingerprint_quickunlock_Info">Allows to use fingerprint authentication instead of the QuickUnlock code. Does not store any information related to your master password.</string>
@@ -368,6 +371,7 @@
 	<string name="ShowSeparateNotifications_summary">Show separate notifications for copying username and password to clipboard and activating the keyboard.</string>
 
   <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
+  <string name="AutoFill_prefs">AutoFill Service</string>
 	
 	<string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
   <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
@@ -573,6 +577,9 @@
 	<string name="plugin_disabled">disabled</string>
 	<string name="plugin_web">Find plug-ins online</string>
 	<string name="plugin_scopes">Scopes</string>
+  
+  
+  <string name="not_enabled">not enabled</string>
 
 	<string name="query_credentials_for_url">%1$s is requesting credentials for %2$s.</string>
 	<string name="query_credentials">%1$s is requesting credentials. Please select an entry.</string>
@@ -685,7 +692,20 @@
 
   
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
-  <string name="ChangeLog_1_03">
+
+  <string name="ChangeLog_1_04b">
+    Version 1.04b\n
+    * Avoid crash when user tries to enable Autofill on Huawei devices.\n
+  </string>
+  <string name="ChangeLog_1_04">
+    Version 1.04\n
+    * Added Autofill service for Android 8.0 and later.\n
+    * Upgraded libraries, build tools and Target SDK version.\n
+  </string>
+  
+  
+
+    <string name="ChangeLog_1_03">
     Version 1.03\n
     * Removed accessibility service for AutoFill as requested by Google. Please see password access settings to find a plugin replicating the previous functionality.\n
     * Added third party apps as storage option again\n
@@ -1026,5 +1046,12 @@ Initial public release
 
   <string name="ClearClipboardWarning">Make sure this works on your system and consider using the built-in keyboard if not.</string>
   <string name="PluginDescription">Description provided by the plugin:</string>
+
+  <string name="autofill_hint">Keepass2Android supports Android\'s Autofill feature but it looks like you haven\'t enabled it yet.</string>
+  <string name="autofill_enable">Enable Autofill</string>
+  <string name="autofill_enable_failed">Sorry, it looks like your device does not support opening the settings from inside the app. Please go manually to the system settings for AutoFill to enable the service.</string>
+  <string name="show_autofill_help">Show Autofill help</string>
+  <string name="autofill_sign_in_prompt">Fill with Keepass2Android</string>
+  <string name="invalid_link_association">Could not associate web domain %1$s with app %2$s</string>
 
 </resources>

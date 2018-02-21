@@ -380,6 +380,12 @@
                 android:data="https://philippc.github.io/keepass2android/AccServiceAutoFill.html" />
       </Preference>
 
+      <Preference 
+        android:key="@string/AutoFill_prefs_key"
+        android:title="@string/AutoFill_prefs">
+        
+      </Preference>
+
       </PreferenceScreen>
 		<PreferenceScreen
 			  android:key="@string/QuickUnlock_prefs_key"

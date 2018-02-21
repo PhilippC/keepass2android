@@ -87,9 +87,11 @@
   <string name="enable_fingerprint_unlock">指紋認証によるデータベースのロック解除を有効にする</string>
   <string name="enable_fingerprint_quickunlock">指紋認証によるクイック解除を有効にする</string>
   <string name="fingerprint_unlock_hint">ロック解除のためにセンターにタッチしてください</string>
-  <string name="fingerprint_unlock_failed">指紋認証によるロック解除に失敗しました。Android OS によって復号化キーが無効化されました。これは通常、新しい指紋の登録時やセキュリティ設定の変更時に発生します。パスワードによってロックを解除し、データベースの設定から指紋認証によるロックを再度有効化してください。</string>
-  <string name="fingerprint_disabled_wrong_masterkey">データベースのロック解除に失敗しました: 無効な複合キーです。端末に保存されたマスターパスワードが有効ではないと思われるため、指紋認証によるロック解除は無効化されました。パスワードによりロックを解除し、データベースの設定から再度指紋認証によるロック解除を有効にしてください。</string>
+  <string name="fingerprint_unlock_failed">指紋認証のロック解除に失敗しました。Android OS によって復号鍵が無効にされました。これは通常、新しい指紋の登録、またはセキュリティ設定が変更された場合に発生します。 </string>
+  <string name="fingerprint_disabled_wrong_masterkey">データベースのロックに失敗しました: 無効な複合鍵です。マスターパスワードが無効になったため、指紋認証のロック解除が無効にされたようです。 </string>
   <string name="fingerprint_reenable">新しいパスワードのための指紋認証によるロック解除を再度有効にしてください。</string>
+  <string name="fingerprint_reenable2">パスワードでロックを解除して、データベースの設定でもう一度指紋認証のロック解除を有効にしてください。</string>
+  <string name="FingerprintInitFailed">指紋センサーの初期化に失敗しました。 </string>
   <string name="enable_fingerprint_unlock_Info">
 マスターパスワードを Android キーストアで暗号化した状態で端末に保存し、指紋認証で保護します。指紋認証のみで、データベースのロックを解除できるようになります</string>
   <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに指紋認証を利用するようにします。マスターパスワードに関連する情報を格納する必要はありません。</string>
@@ -332,6 +334,7 @@
   <string name="ShowSeparateNotifications_title">通知を分割する</string>
   <string name="ShowSeparateNotifications_summary">ユーザー名やパスワードをクリップボードへコピーするための通知とキーボード変更のための通知を分割して表示します。</string>
   <string name="AccServiceAutoFill_prefs">オートフィル ユーザー補助サービス</string>
+  <string name="AutoFill_prefs">オートフィル サービス</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A キーボードの通知</string>
   <string name="ShowKp2aKeyboardNotification_summary">KP2Aのキーボードを介して全エントリにアクセスできるようにする (推奨)。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">キーボード切り替え</string>
@@ -492,6 +495,7 @@
   <string name="plugin_disabled">無効</string>
   <string name="plugin_web">オンラインでプラグインを見つける</string>
   <string name="plugin_scopes">スコープ</string>
+  <string name="not_enabled">有効になっていません</string>
   <string name="query_credentials_for_url">%1$s は、%2$s のアカウント情報を要求しています。</string>
   <string name="query_credentials">%1$s は、アカウント情報を要求しています。エントリーを選択してください。</string>
   <string name="plugin_enabled_checkbox">有効</string>
@@ -568,6 +572,11 @@
   <string name="ErrorReportAsk">エラー発生時に確認する</string>
   <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
+  <string name="ChangeLog_1_04">
+    バージョン 1.04\n
+    * Android 8.0 以降でオートフィルサービスを追加しました。\n
+    * ライブラリー、ビルドツール、ターゲット SDK バージョンをアップグレードしました。\n
+  </string>
   <string name="ChangeLog_1_03">
     バージョン 1.03\n
     * Googleからの要請により、オートフィルのためのアクセシビリティサービスを削除しました。パスワードアクセス設定から前の機能を再現するプラグインを見てみて下さい。.\n
@@ -856,4 +865,9 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   </string-array>
   <string name="ClearClipboardWarning">お使いのシステムでこれが機能していることを確認してください。そうでない場合は、内蔵キーボードの使用を考慮してください。</string>
   <string name="PluginDescription">プラグインによって提供される説明:</string>
+  <string name="autofill_hint">Keepass2Android は Android のオートフィル機能をサポートしていますが、まだ有効にしていないようです。</string>
+  <string name="autofill_enable">オートフィルを有効にする</string>
+  <string name="show_autofill_help">オートフィルのヘルプを表示</string>
+  <string name="autofill_sign_in_prompt">Keepass2Android で入力</string>
+  <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
 </resources>

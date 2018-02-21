@@ -78,22 +78,31 @@ namespace keepass2android
 			SetResult(Result.Canceled);
 
 			_db = App.Kp2a.GetDb();
-			if (App.Kp2a.DatabaseIsUnlocked)
-			{
-				String searchUrl = ((SearchUrlTask)AppTask).UrlToSearchFor;
-				Query(searchUrl);	
-			}
-			// else: LockCloseListActivity.OnResume will trigger a broadcast (LockDatabase) which will cause the activity to be finished.
-			
-		}
 
-		protected override void OnSaveInstanceState(Bundle outState)
+
+		    UpdateBottomBarElementVisibility(Resource.Id.select_other_entry, true);
+		    UpdateBottomBarElementVisibility(Resource.Id.add_url_entry, true);
+
+
+            if (App.Kp2a.DatabaseIsUnlocked)
+			{
+			    var searchUrlTask = ((SearchUrlTask)AppTask);
+			    String searchUrl = searchUrlTask.UrlToSearchFor;
+				Query(searchUrl, searchUrlTask.AutoReturnFromQuery);	
+			}
+            // else: LockCloseListActivity.OnResume will trigger a broadcast (LockDatabase) which will cause the activity to be finished.
+
+
+
+        }
+
+        protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
 			AppTask.ToBundle(outState);
 		}
 
-		private void Query(String url)
+		private void Query(string url, bool autoReturnFromQuery)
 		{	
 			try
 			{
@@ -125,7 +134,7 @@ namespace keepass2android
 			}
 			
 			//if there is exactly one match: open the entry
-			if (Group.Entries.Count() == 1)
+			if ((Group.Entries.Count() == 1) && autoReturnFromQuery)
 			{
 				LaunchActivityForEntry(Group.Entries.Single(),0);
 				return;
@@ -142,8 +151,13 @@ namespace keepass2android
             FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 
 			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
-			selectOtherEntry.Click += (sender, e) => {
-				GroupActivity.Launch (this, new SelectEntryForUrlTask(url));
+
+		    var newTask = new SelectEntryForUrlTask(url);
+		    if (AppTask is SelectEntryTask currentSelectTask)
+		        newTask.ShowUserNotifications = currentSelectTask.ShowUserNotifications;
+            
+            selectOtherEntry.Click += (sender, e) => {
+				GroupActivity.Launch (this, newTask);
 			};
 
 			
@@ -154,7 +168,7 @@ namespace keepass2android
 				createUrlEntry.Visibility = ViewStates.Visible;
 				createUrlEntry.Click += (sender, e) =>
 				{
-					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url });
+					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? true });
 					Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
 				};
 			}
@@ -173,11 +187,6 @@ namespace keepass2android
 			i.SetFlags(ActivityFlags.ForwardResult);
 			StartActivity(i);
 			return true;
-		}
-
-		public override bool BottomBarAlwaysVisible
-		{
-			get { return true; }
 		}
 
 	    protected override int ContentResourceId

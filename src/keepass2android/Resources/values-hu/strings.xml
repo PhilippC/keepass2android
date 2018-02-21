@@ -87,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Ujjlenyomattal való feloldás engedélyezése</string>
   <string name="enable_fingerprint_quickunlock">Ujjlenyomat alapú GyorsFeloldás engedélyezése</string>
   <string name="fingerprint_unlock_hint">Érintse meg az érzékelőt az adatbázis feloldásához</string>
-  <string name="fingerprint_unlock_failed">Ujjlenyomat feloldása nem sikerült. Visszafejtési kulcsot az operációs rendszer érvénytelenítette. Ez általában akkor történik, ha egy új ujjlenyomat lett regisztrálva vagy megváltoztatta biztonsági beállításokat. Kérjük nyissa meg az adatbázist jelszó segítségével, majd engedélyezze újra az ujjlenyomat alapú feloldást az adatbázisbeállításoknál.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Az adatbázis feloldása nem sikerült: az összetett kulcs érvénytelen. Ujjlenyomat alapú feloldás le lett tiltva, mert a tárolt főkulcs (jelszó) a jelek szerint már nem érvényes. Használja a főkulcsot az adatbázis feloldásához, majd engedélyezze újra az ujjlenyomat alapú feloldást.</string>
   <string name="fingerprint_reenable">Engedélyezze újra az ujjlenyomat alapú feloldást az új főkulccsal (jelszóval).</string>
   <string name="enable_fingerprint_unlock_Info">
     Ez a funkció le fogja tárolni a főkulcsot (jelszót) az 

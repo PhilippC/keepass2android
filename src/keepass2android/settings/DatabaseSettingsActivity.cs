@@ -30,9 +30,11 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Widget;
 using Android.Preferences;
+using Android.Provider;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
+using Android.Views.Autofill;
 using Java.IO;
 using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
@@ -347,6 +349,13 @@ namespace keepass2android
             App.Kp2a.UpdateOngoingNotification();
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+
+            UpdateAutofillPref();
+        }
+
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -359,6 +368,36 @@ namespace keepass2android
 			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
 			FindPreference(GetString(Resource.String.DebugLog_key)).PreferenceChange += OnDebugLogChanged;
 			FindPreference(GetString(Resource.String.DebugLog_send_key)).PreferenceClick += OnSendDebug;
+
+            UpdateAutofillPref();
+
+            var autofillPref = FindPreference(GetString(Resource.String.AutoFill_prefs_key));
+            if (autofillPref != null)
+            {
+                autofillPref.PreferenceClick += (sender, args) =>
+                {
+
+                    var intent = new Intent(Settings.ActionRequestSetAutofillService);
+                    intent.SetData(Android.Net.Uri.Parse("package:" + Context.PackageName));
+                    try
+                    {
+                        Context.StartActivity(intent);
+                    }
+                    catch (ActivityNotFoundException e)
+                    {
+                        //this exception was reported by many Huawei users
+                        Kp2aLog.LogUnexpectedError(e);
+                        new AlertDialog.Builder(Context)
+                            .SetTitle(Resource.String.autofill_enable)
+                            .SetMessage(Resource.String.autofill_enable_failed)
+                            .SetPositiveButton(Resource.String.ok, (o, eventArgs) => { })
+                            .Show();
+
+                    }
+                };
+            }
+
+
             PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
 			PrepareNoDonationReminderPreference(Activity, ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))), FindPreference(GetString(Resource.String.NoDonationReminder_key)));
 
@@ -450,7 +489,42 @@ namespace keepass2android
 			
         }
 
-	    private void OnSendDebug(object sender, Preference.PreferenceClickEventArgs e)
+        private void UpdateAutofillPref()
+        {
+            var autofillPref = FindPreference(GetString(Resource.String.AutoFill_prefs_key));
+            if (autofillPref == null)
+                return;
+            if ((Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.O) ||
+                !((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
+                    .IsAutofillSupported)
+            {
+                var passwordAccessScreen =
+                    (PreferenceScreen) FindPreference(Activity.GetString(Resource.String.password_access_prefs_key));
+                passwordAccessScreen.RemovePreference(autofillPref);
+            }
+            else
+            {
+                if (((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
+                    .HasEnabledAutofillServices)
+                {
+                    autofillPref.Summary = Activity.GetString(Resource.String.plugin_enabled);
+                    autofillPref.Intent = new Intent(Intent.ActionView);
+                    autofillPref.Intent.SetData(Android.Net.Uri.Parse("https://philippc.github.io/keepass2android/OreoAutoFill.html"));
+                }
+                else
+                {
+                    autofillPref.Summary = Activity.GetString(Resource.String.not_enabled);
+
+
+
+
+
+                }
+
+            }
+        }
+
+        private void OnSendDebug(object sender, Preference.PreferenceClickEventArgs e)
 	    {
 		    Kp2aLog.SendLog(this.Activity);
 	    }
@@ -945,7 +1019,9 @@ namespace keepass2android
 
         
     }
-	/// <summary>
+    
+
+    /// <summary>
 	/// Activity to configure the application and database settings. The database must be unlocked, and this activity will close if it becomes locked.
 	/// </summary>
     [Activity(Label = "@string/app_name", Theme = "@style/MyTheme")]			

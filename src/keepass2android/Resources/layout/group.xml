@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal" />
+ 
     <RelativeLayout
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
@@ -17,10 +18,12 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:baselineAligned="false">
+      
         <Button
             android:id="@+id/insert_element"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_alignParentLeft="true"
             android:text="@string/insert_element_here"
             style="@style/BottomBarButton" />
@@ -28,16 +31,62 @@
             android:id="@+id/cancel_insert_element"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+          android:visibility="gone"
             android:layout_alignParentRight="true"
             android:text="@string/cancel"
             style="@style/BottomBarButton" />
+
+      <LinearLayout
+        android:id="@+id/autofill_infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+
+        <TextView android:id="@+id/myinfotext" android:text="@string/autofill_hint"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="16sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <RelativeLayout
+          android:id="@+id/autofill_buttons"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:baselineAligned="false">
+
+          <Button
+            android:id="@+id/enable_autofill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="4dp"
+            android:text="@string/autofill_enable"
+            style="@style/BottomBarButton" />
+          <Button
+            android:id="@+id/show_autofill_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="4dp"
+            android:text="@string/show_autofill_help"
+            style="@style/BottomBarButton" />
+        </RelativeLayout>
+      </LinearLayout>
     </RelativeLayout>
-    <View
+  
+
+  <View
         android:id="@+id/divider2"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_above="@id/bottom_bar"
         android:background="#b8b8b8" />
+  
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"

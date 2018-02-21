@@ -11,7 +11,7 @@
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
   <string name="edit_entry">编辑项目</string>
-  <string name="add_url_entry">为 URL 创建条目</string>
+  <string name="add_url_entry">创建URL条目</string>
   <string name="add_group">添加群组</string>
   <string name="add_group_title">添加群组</string>
   <string name="edit_group_title">编辑群组</string>
@@ -20,7 +20,7 @@
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android 离线版</string>
-  <string name="short_app_name_nonet">KP2A 离线版</string>
+  <string name="short_app_name_nonet">KP2A 离线</string>
   <string name="app_timeout">应用程序超时</string>
   <string name="app_timeout_summary">应用程序处于非活动时锁定数据库。</string>
   <string name="kill_app_label">结束应用程序进程</string>
@@ -86,8 +86,6 @@
   <string name="enable_fingerprint_unlock">启用完整的指纹解锁</string>
   <string name="enable_fingerprint_quickunlock">对快速解锁启用指纹解锁</string>
   <string name="fingerprint_unlock_hint">触摸感应解锁数据库</string>
-  <string name="fingerprint_unlock_failed">指纹解锁失败.解锁密钥无法通过android操作系统.这一情况通常是在一个新的指纹被设入系统或者在修改过安全设置后产生.请使用你的密码解锁然后在数据库的设置处重新启动指纹解锁.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">解锁数据库失败:无效的复合密钥.因为很明显主密码已经不再有效了,指纹解锁已被禁用.请用你的密码解锁然后去数据库设置去重新启用指纹解锁.</string>
   <string name="fingerprint_reenable">请为这个新的主密码重新启用指纹解锁.</string>
   <string name="enable_fingerprint_unlock_Info">这将保存你的主密码在这台设备上.
 使用android密码存储库来解密和保护
@@ -109,7 +107,7 @@
   <string name="entry_password">密码</string>
   <string name="entry_save">保存</string>
   <string name="entry_title">名称</string>
-  <string name="entry_url">链接地址</string>
+  <string name="entry_url">网址：</string>
   <string name="entry_user_name">用户名</string>
   <string name="entry_extra_strings">额外的字符串字段</string>
   <string name="entry_binaries">文件附件</string>
@@ -190,7 +188,7 @@
   <string name="never">从不</string>
   <string name="yes">是</string>
   <string name="no">否</string>
-  <string name="no_keys">数据库或群组中无条目。</string>
+  <string name="no_keys">数据库或群组中无条目</string>
   <string name="no_results">无匹配结果</string>
   <string name="no_url_handler">没有处理这个链接地址的程序。</string>
   <string name="open_recent">打开最近数据库（点击打开）</string>

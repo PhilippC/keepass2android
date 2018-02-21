@@ -87,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Abilita lo Sblocco totale con Impronta</string>
   <string name="enable_fingerprint_quickunlock">Abilita lo sblocco con Impronta per QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Tocca il sensore per sbloccare il database</string>
-  <string name="fingerprint_unlock_failed">Sblocco con Impronta digitali non riuscita. La chiave di decodifica è stata invalidata dal sistema operativo. Questo solitamente accade se una nuova impronta digitale è stata registrata o sono state modificate le impostazioni di protezione. Sblocca con la password e quindi riattiva lo sblocco con Impronta nelle impostazioni del database.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Sblocco del database fallito: chiave composita non valida. Lo sblocco con Impronta è stato disabilitato perché sembra che la password principale memorizzata non sia più valida. Sblocca con la password e poi riattiva lo Sblocco con Impronta nelle impostazioni del database.</string>
   <string name="fingerprint_reenable">Per favore riattiva lo Sblocco con Impronta per la nuova password principale.</string>
   <string name="enable_fingerprint_unlock_Info">
 Questo memorizzerà la password principale su questo dispositivo, cifrata con il Keystore Android e protetta tramite autenticazione con impronta digitale. Permette di sbloccare il database solo con l\'impronta digitale.  </string>

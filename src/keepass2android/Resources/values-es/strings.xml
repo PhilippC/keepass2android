@@ -69,7 +69,7 @@
   <string name="please_activate_keyboard">Por favor habilita el teclado de Keepass2Android en la configuración del sistema.</string>
   <string name="creating_db_key">Creando clave de la base de datos&#8230;</string>
   <string name="current_group">Grupo actual</string>
-  <string name="current_group_root">Grupo actual: Raíz</string>
+  <string name="current_group_root">Grupo actual: Root</string>
   <string name="database">Base de datos</string>
   <string name="digits">Dígitos</string>
   <string name="disclaimer_formal">Keepass2Android NO TIENE TOTAL GARANTÍA; Este es software libre, y puedes redristribuirlo bajo las condiciones de la licencia GPL version 2 o posterior.</string>
@@ -86,15 +86,15 @@
   <string name="disable_fingerprint_unlock">Desactivar desbloqueo con huella dactilar</string>
   <string name="enable_fingerprint_unlock">Habilitar desbloqueo completo con huella dactilar</string>
   <string name="enable_fingerprint_quickunlock">Habilitar desbloqueo con huella dactilar para QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Sensor táctil para desbloqueo de base de datos</string>
-  <string name="fingerprint_unlock_failed">El desbloqueo mediante huella dactilar ha fallado. La clave de descifrado fue invalidada por el sistema operativo Android. Esto suele pasar si se guardó una nueva huella o se cambió la configuración de seguridad. Por favor, desbloquee con contraseña y luego vuelva habilitar el desbloqueo con huella en la configuración de la base de datos.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Fallo en el desbloqueo de la base de datos: clave compuesta no válida. Desbloqueo de huellas dactilares ha sido desactivado debido a que al parecer la contraseña maestra almacenada ya no es válida. Por favor desbloquee con la contraseña y luego vuelva a habilitar el desbloqueo con la huella dactilar en la configuración de la base de datos.</string>
-  <string name="fingerprint_reenable">Por favor, vuelva a activar el desbloqueo con la huella dactilar para la nueva contraseña maestra.</string>
-  <string name="enable_fingerprint_unlock_Info">
-Esto almacenará tu contraseña maestra en este dispositivo,
-cifrada con las claves de Android Keystore y protegidos
-mediante la autenticación de huellas dactilares. Esto permite desbloquear la base de datos solamente con su huella digital.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación de la huella digital en lugar del código de QuickUnlock. No requiere almacenar información relacionada con su contraseña maestra.</string>
+  <string name="fingerprint_unlock_hint">Utiliza el sensor táctil para desbloquear la base de datos</string>
+  <string name="fingerprint_unlock_failed">Falló el Desbloqueo con huella dactilar. La clave de descifrado fue invalidada por el SO Android. Esto sucede generalmente si se inscribió una nueva huella o se cambió la configuración de seguridad. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">No se pudo desbloquear la base de datos: clave compuesta no válida. El Desbloqueo con huellas dactilares fue desactivado debido a que al parecer ya no es válida la contraseña maestra almacenada. </string>
+  <string name="fingerprint_reenable">Por favor, vuelve a activar el desbloqueo con la huella dactilar para la nueva contraseña maestra.</string>
+  <string name="fingerprint_reenable2">Por favor, desbloquée con contraseña y luego vuelva a activar Desbloquear con huella en la configuración de la base de datos.</string>
+  <string name="FingerprintInitFailed">Error al inicializar el sensor de huellas dactilares. </string>
+  <string name="enable_fingerprint_unlock_Info">Esto almacenará tu contraseña maestra en este dispositivo, cifrada con las claves de Android Keystore y protegidos
+mediante la autenticación de huellas dactilares. Esto permite desbloquear la base de datos solamente con la huella dactilar.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación de la huella dactilar en lugar del código de QuickUnlock. No requiere almacenar ninguna información relacionada con la contraseña maestra.</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Accedido</string>
   <string name="entry_cancel">Cancelar</string>
@@ -106,7 +106,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="entry_expires">Caducidad</string>
   <string name="entry_group_name">Nombre del Grupo</string>
   <string name="entry_keyfile">Archivo de clave (opcional)</string>
-  <string name="keyfile_heading">Archivo de la clave</string>
+  <string name="keyfile_heading">Archivo de clave</string>
   <string name="entry_modified">Modificado</string>
   <string name="entry_password">Contraseña</string>
   <string name="entry_save">Guardar</string>
@@ -115,7 +115,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="entry_user_name">Nombre de usuario</string>
   <string name="entry_extra_strings">Campos adicionales</string>
   <string name="entry_binaries">Archivos adjuntos</string>
-  <string name="error_can_not_handle_uri">Keepass2Android no puede manejar este URL.</string>
+  <string name="error_can_not_handle_uri">Keepass2Android no puede utilizar este URL.</string>
   <string name="error_could_not_create_group">Error creando grupo.</string>
   <string name="error_could_not_create_parent">No pudo crearse el directorio padre.</string>
   <string name="error_database_exists">Este archivo ya existe.</string>
@@ -126,7 +126,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="error_invalid_db">Base de datos no válida.</string>
   <string name="error_invalid_path">Ruta no válida.</string>
   <string name="error_no_name">Se necesita un nombre.</string>
-  <string name="error_nopass">Se necesita una contraseña o un archivo de clave.</string>
+  <string name="error_nopass">Se requiere una contraseña o un archivo de clave.</string>
   <string name="error_pass_gen_type">Debe seleccionar al menos un tipo de generación de contraseñas</string>
   <string name="error_pass_match">Las contraseñas no coinciden.</string>
   <string name="error_rounds_not_number">Pasadas debe de ser un número.</string>
@@ -141,8 +141,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="hint_conf_pass">confirmar contraseña</string>
   <string name="hint_generated_password">contraseña generada</string>
   <string name="hint_group_name">Nombre de grupo</string>
-  <string name="hint_keyfile">archivo clave</string>
-  <string name="hint_length">longitud</string>
+  <string name="hint_keyfile">archivo de clave</string>
+  <string name="hint_length">tamaño</string>
   <string name="hint_pass">contraseña</string>
   <string name="hint_login_pass">Contraseña</string>
   <string name="hint_title">nombre</string>
@@ -154,7 +154,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="invalid_algorithm">Algoritmo no válido.</string>
   <string name="invalid_db_sig">Formato de base de datos no reconocido.</string>
   <string name="keyfile_does_not_exist">El archivo clave no existe.</string>
-  <string name="no_keyfile_selected">Ningún archivo clave seleccionado.</string>
+  <string name="no_keyfile_selected">Ningún archivo de clave seleccionado.</string>
   <string name="keyfile_is_empty">El archivo clave está vacío.</string>
   <string name="length">Longitud</string>
   <string name="list_size_title">Tamaño de la lista de Grupo</string>
@@ -175,7 +175,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="menu_copy">Crear duplicado</string>
   <string name="menu_move">Mover a otro grupo</string>
   <string name="menu_move_light">Mover</string>
-  <string name="menu_navigate">Desplazarse al grupo de padres</string>
+  <string name="menu_navigate">Navegar al grupo padre</string>
   <string name="menu_donate">Donar una cerveza...</string>
   <string name="menu_edit">Editar</string>
   <string name="menu_hide_password">Ocultar Contraseña</string>
@@ -186,7 +186,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="menu_search">Buscar</string>
   <string name="menu_search_advanced">Búsqueda Avanzada</string>
   <string name="menu_url">Ir a URL</string>
-  <string name="menu_change_db">Cambiar base de datos…</string>
+  <string name="menu_change_db">Cambiar base de datos</string>
   <string name="menu_show_all">Mostrar todos los campos</string>
   <string name="minus">Menos</string>
   <string name="never">Nunca</string>
@@ -216,12 +216,12 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="argon2memory">Memoria para Argon 2 (bytes)</string>
   <string name="argon2parallelism">Paralelismo para Argon 2</string>
   <string name="database_name">Nombre de la base de datos</string>
-  <string name="default_username">Nombre de usuario predeterminado para las nuevas entradas</string>
+  <string name="default_username">Nombre de usuario predeterminado para nuevas entradas</string>
   <string name="saving_database">Guardando base de datos&#8230;</string>
   <string name="exporting_database">Exportando base de datos&#8230;</string>
   <string name="export_database_successful">Base de datos exportada con éxito!</string>
   <string name="space">Espacio</string>
-  <string name="search_label">Búsqueda</string>
+  <string name="search_label">Buscar</string>
   <string name="show_password">Mostrar contraseña</string>
   <string name="sort_menu">Ordenado por...</string>
   <string name="sort_name">Ordenar por nombre</string>
@@ -233,7 +233,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="search_results">Resultados de búsqueda</string>
   <string name="search_in">Buscar en</string>
   <string name="select_other_entry">Seleccione otra entrada</string>
-  <string name="select_group_then_add">Abrir el grupo deseado, luego presione \"%1$s\"!</string>
+  <string name="select_group_then_add">Abre el grupo deseado y luego presiona \"%1$s\"!</string>
   <string name="insert_element_here">Insertar aquí</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Subrayar</string>
@@ -247,7 +247,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="further_authors">Gracias a las contribuciones de código de %1$s.</string>
   <string name="designers">Gracias a las contribuciones de diseño del ícono y del diseño gráfico por %1$s.</string>
   <string name="credit_plugin1">El Plugin de cifrado Twofish para Keepass fue desarrollado por Scott Greenberg y se incluye en KP2A.</string>
-  <string name="credit_android_filechooser">El selector de ficheros de Andorid ha sido desarrollado por Hai Bison</string>
+  <string name="credit_android_filechooser">android-filechooser fue desarrollado por Hai Bison</string>
   <string name="credit_keyboard">El teclado de KP2A se basa en el teclado de Gingerbread de Android Open Source Project y utiliza el código del  Administrador de Plugins del teclado hacker por Klaus Weidner.</string>
   <string name="please_note">Tenga en cuenta</string>
   <string name="contributors">Colaboradores</string>
@@ -275,7 +275,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por defecto</string>
   <string name="QuickUnlockDefaultEnabled_summary">Determina si QuickUnlock está habilitado de forma predeterminada o no.</string>
   <string name="ViewDatabaseSecure_title">Evitar visualización de la base de datos</string>
-  <string name="ViewDatabaseSecure_summary">Si está activado no se permite realizar pantallazos y no se muestra la miniatura de la app en la lista de las applicaciones recientes.</string>
+  <string name="ViewDatabaseSecure_summary">Si se encuentra activado, no se permiten realizar tomas de plantallas y no se muestra el thumbnail de la app en la lista de applicaciones recientes.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar el icono de QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock lamentablemente no funciona sin mostrar un icono de notificación. Seleccione esta opción para utilizar un icono transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar icono de QuickUnlock</string>
@@ -284,9 +284,9 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="QuickUnlockLength_summary">Número máximo de caracteres que se utiliza para la contraseña QuickUnlock.</string>
   <string name="QuickUnlock_fail">¡Error de QuickUnlock: contraseña incorrecta!</string>
   <string name="BinaryDirectory_title">Ubicación de archivos adjuntos</string>
-  <string name="BinaryDirectory_summary">Ubicación donde se guardan los archivos adjuntos.</string>
+  <string name="BinaryDirectory_summary">Directorio en donde se guardan los archivos adjuntos.</string>
   <string name="SaveAttachmentDialog_title">Guardar datos adjuntos</string>
-  <string name="SaveAttachmentDialog_text">Por favor seleccione dónde guardar el archivo adjunto.</string>
+  <string name="SaveAttachmentDialog_text">Por favor selecciona la ubicacíon donde guardar el archivo adjunto.</string>
   <string name="SaveAttachmentDialog_save">Guardar en la tarjeta SD</string>
   <string name="SaveAttachmentDialog_open">Guardar en la caché y abrir</string>
   <string name="ShowAttachedImage">Mostrar con visor de imágenes interno</string>
@@ -294,15 +294,15 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="SaveAttachment_Failed">No se puede guardar el archivo adjunto en %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Recordar el texto de búsqueda?</string>
   <string name="AddUrlToEntryDialog_text">¿Quiere guardar el texto de buqueda \"%1$s\" en la entrada seleccionada para encontrarlo automáticamente la próxima vez?</string>
-  <string name="error_invalid_expiry_date">¡Formato de fecha/hora no válida para establecer fecha de caducidad!</string>
+  <string name="error_invalid_expiry_date">¡Formato de fecha/hora inválida para establecer fecha de caducidad!</string>
   <string name="error_string_key">Se requiere un nombre por cada entrada.</string>
   <string name="error_string_duplicate_key">Un nombre de campo no puede utilizarse dos veces (%1$s).</string>
   <string name="field_name">Nombre del campo</string>
   <string name="field_value">Valor del campo</string>
   <string name="protection">Campo protegido</string>
   <string name="add_binary">Agregar archivo adjunto...</string>
-  <string name="add_extra_string">Agregar una cadena</string>
-  <string name="delete_extra_string">Eliminar cadena adicional</string>
+  <string name="add_extra_string">Agregar campo adicional</string>
+  <string name="delete_extra_string">Eliminar campo adicional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: bloqueado. QuickUnlock habilitado.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
   <string name="credentials_dialog_title">Escriba las credenciales de servidor</string>
@@ -316,37 +316,38 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="LockWhenNavigateBack_summary">Bloquear base de datos al salir de la aplicación presionando el botón \"atrás\".</string>
   <string name="NoDonateOption_title">Esconder opción de donación</string>
   <string name="NoDonateOption_summary">Este ajuste es para donantes. Está disponible después de usar Keepass2Android por un tiempo sólo.</string>
-  <string name="NoDonateOption_question">Sin donaciones, esta aplicación no existiría y no podría ser mejorada continuamente. Si usted aún no ha donado, por favor considere hacer una donación ahora.</string>
+  <string name="NoDonateOption_question">Sin donaciones, esta aplicación no existiría y no podría ser mejorada continuamente. Si tu aún no has donado, por favor considera hacer una donación ahora.</string>
   <string name="NoDonationReminder_title">No solicitar nunca una donación</string>
-  <string name="NoDonationReminder_summary">No le voy a dar un céntimo o ya he donado. No solicite una donación, ni en el cumpleaños del autor.</string>
+  <string name="NoDonationReminder_summary">No le voy a dar un céntimo o ya he donado. No solicitar una donación, ni en el cumpleaños del autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
-  <string name="UseOfflineCache_summary">Mantiene una copia de los archivos de base de datos remota en el directorio de caché de la aplicación. Esto permite utilizar bases de datos remotos fuera de línea.</string>
+  <string name="UseOfflineCache_summary">Mantiene una copia de los archivos de base de datos remota en el directorio del caché de la aplicación. Esto permite utilizar bases de datos remotas sin conexión a internet.</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
-  <string name="AcceptAllServerCertificates_summary">Definir el comportamiento cuando falla la validación de un certificado. Nota: puede instalar certificados en su dispositivo si la validación falla!</string>
+  <string name="AcceptAllServerCertificates_summary">Definir el comportamiento cuando falla la validación de un certificado. Nota: puedes instalar certificados en tu dispositivo si la validación falla!</string>
   <string name="ClearOfflineCache_title">¿Limpiar Cache?</string>
   <string name="ClearOfflineCache_question">Esto borrará todos los archivos de base de datos en caché. ¡Se perderán los cambios que hizo estando fuera de línea que todavía no se ha sincronizado! ¿Continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Comprobar modificaciones</string>
   <string name="CheckForFileChangesOnSave_summary">Compruebe si el archivo fue modificado externamente antes de guardar los cambios.</string>
   <string name="CheckForDuplicateUuids_title">Buscar UUIDs duplicados</string>
-  <string name="CheckForDuplicateUuids_summary">Verificar si el archivo con la base de datos esta corrupto por tener varias entradas con el mismo ID. Esto puede producir un comportamiento inesperado.</string>
+  <string name="CheckForDuplicateUuids_summary">Verificar si el archivo con la base de datos está corrompido por tener multiples entradas con el mismo ID. Esto puede producir comportamientos inesperados.</string>
   <string name="ShowCopyToClipboardNotification_title">Notificaciones del portapapeles</string>
   <string name="ShowCopyToClipboardNotification_summary">Hacer accesible el nombre de usuario y contraseña a través de la barra de notificación y el portapapeles  ¡Cuidado con los sniffers!</string>
-  <string name="ShowSeparateNotifications_title">notificaciones por separado</string>
-  <string name="ShowSeparateNotifications_summary">Mostrar notificaciones separados para copiar el nombre del usuario y palabra clave al portapapeles y para activar el teclado.</string>
+  <string name="ShowSeparateNotifications_title">Separar notificaciones</string>
+  <string name="ShowSeparateNotifications_summary">Mostrar notificaciones por separado para copiar el nombre del usuario y palabra clave al portapapeles y para activar el teclado.</string>
   <string name="AccServiceAutoFill_prefs">Servicio de accesibilidad AutoFill</string>
+  <string name="AutoFill_prefs">Servicio de autocompletado</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificación de teclado KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Hacer toda la entrada accesible a través del teclado de KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Cambiar Teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abrir diálogo de selección de teclado cuando la entrada este disponible a través del teclado KP2A después de una búsqueda desde el navegador.</string>
-  <string name="kp2a_switch_rooted">Teclado Auto-intercambiable</string>
-  <string name="kp2a_switch_rooted_summary">Automáticamente cambia al teclado de KP2A cuando una entrada esté disponible. Esto requiere del plugin KeyboardSwap o de un dispositivo con acceso Root y la app Secure Settings con System+. </string>
+  <string name="kp2a_switch_rooted">Teclado auto-intercambiable</string>
+  <string name="kp2a_switch_rooted_summary">Automáticamente cambia al teclado de KP2A cuando una entrada está disponible. Esto requiere del plugin KeyboardSwap o de un dispositivo con acceso Root y la app Secure Settings con System+. </string>
   <string name="get_keyboardswap">Instalar el plugin KeyboardSwap</string>
   <string name="get_keyboardswap_summary">Este plugin permite cambiar automáticamente al teclado de KP2A sin Root. Requiere ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Cambio automático solo después de busqueda</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Sólo cambiar automáticamente al teclado de KP2A después de utilizar la función Compatir URL (pero no cuando abrir la introducción de datos de otra forma)</string>
   <string name="AutoSwitchBackKeyboard_title">Volver al teclado anterior</string>
   <string name="AutoSwitchBackKeyboard_summary">Volver al teclado anterior si no se abre ninguna introducción de datos.</string>
-  <string name="ShowUnlockedNotification_title">Icono de notificación mientras desbloqueado</string>
+  <string name="ShowUnlockedNotification_title">Icono de notificación durante el desbloqueado</string>
   <string name="ShowUnlockedNotification_summary">Mostrar una notificación en curso mientras la base de datos está desbloqueada.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-cargar archivo de base de datos</string>
   <string name="PreloadDatabaseEnabled_summary">Empezar a descargar del archivo de base de datos durante la entrada de contraseña.</string>
@@ -356,7 +357,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="AskOverwriteBinary_no">Renombrar</string>
   <string name="AttachFailed">Error al agregar el archivo adjunto.</string>
   <string name="RecycleBin">Papelera de reciclaje</string>
-  <string name="AskDeletePermanentlyEntry">¿Desea eliminar esta entrada de forma permanente? Presione No para mover a la Papelera de reciclaje.</string>
+  <string name="AskDeletePermanentlyEntry">¿Deseas eliminar esta entrada de forma permanente? Presiona No para mover a la Papelera de reciclaje.</string>
   <string name="AskDeletePermanentlyGroup">¿Desea eliminar este grupo de forma permanente? Presione No para reciclar.</string>
   <string name="AskDeletePermanentlyItems">¿Desea eliminar permanentemente los elementos seleccionados? Presione No para reciclar.</string>
   <string name="AskDeletePermanentlyEntryNoRecycle">¿Desea eliminar esta entrada de forma permanente?</string>
@@ -364,7 +365,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="AskDeletePermanentlyItemsNoRecycle">¿Desea eliminar permanentemente los elementos seleccionados?</string>
   <string name="AskDeletePermanently_title">¿Borrar permanentemente?</string>
   <string name="AskReloadFile_title">¿Volver a cargar el archivo?</string>
-  <string name="AskReloadFile">El archivo que está actualmente abierto fue modificado por otro programa. ¿Desea la recarga?</string>
+  <string name="AskReloadFile">El archivo que está actualmente abierto fue modificado por otro programa. ¿Deseas recargarlo?</string>
   <string name="AskDiscardChanges">¿Realmente desea descartar los cambios realizados? (El botón Guardar se encuentra en la parte superior del formulario.)</string>
   <string name="AskDiscardChanges_title">¿Descartar cambios?</string>
   <string name="suggest_improvements">Sugerir o votar para mejoras</string>
@@ -376,7 +377,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="DeletingGroup">Eliminando grupo&#8230;</string>
   <string name="DeletingItems">Eliminando elementos&#8230;</string>
   <string name="SettingPassword">Estableciendo contraseña&#8230;</string>
-  <string name="UndoingChanges">Deshaciendo cambios&#8230;</string>
+  <string name="UndoingChanges">Descartando cambios&#8230;</string>
   <string name="TransformingKey">Transformación de llave maestra&#8230;</string>
   <string name="DecodingDatabase">Decodificando base de datos&#8230;</string>
   <string name="ParsingDatabase">Análisis de base de datos&#8230;</string>
@@ -387,15 +388,15 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="YesSynchronize">Si, combinar</string>
   <string name="NoOverwrite">No, sobreescribir</string>
   <string name="UseOfflineMode">Trabajar sin conexión</string>
-  <string name="UseOnlineMode">Trabajar en línea</string>
-  <string name="UseOfflineMode_Info">Evitar cualquier tráfico de red usando la copia local del archivo. Los cambios se almacenan en la memoria local sólo y sólo se cargarán cuando se vuelva al modo en línea.</string>
+  <string name="UseOnlineMode">Trabajar con conexíon</string>
+  <string name="UseOfflineMode_Info">Evitar cualquier tráfico de red usando la copia local del archivo. Los cambios se almacenan en la memoria local y se cargarán cuando se vuelva al modo con conexión.</string>
   <string name="InOfflineMode">Trabajar sin conexión.</string>
   <string name="SynchronizingCachedDatabase">Sincronización de base de datos en caché&#8230;</string>
   <string name="DownloadingRemoteFile">Descargando archivo remoto&#8230;</string>
   <string name="UploadingFile">Cargando archivo&#8230;</string>
   <string name="RestoringRemoteFile">Restaurando archivo remoto&#8230;</string>
   <string name="FilesInSync">Los archivos están sincronizados.</string>
-  <string name="SynchronizedDatabaseSuccessfully">Base de datos sincronizada correctamente!</string>
+  <string name="SynchronizedDatabaseSuccessfully">¡Base de datos sincronizada correctamente!</string>
   <string name="CheckingDatabaseForChanges">Comprobando la base de datos por si hay cambios&#8230;</string>
   <string name="CouldNotSaveToRemote">No se pudo salvar al remoto: %1$s. Guarde de nuevo o utilice el menú Sincronizar cuando conexión remota esté disponible de nuevo.</string>
   <string name="CouldNotLoadFromRemote">No se pudo abrir del remoto: %1$s. Se ha cargado el archivo de la memoria caché local. Aun puede hacer cambios en la base de datos y sincronizarlos posteriormente.</string>
@@ -494,6 +495,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="plugin_disabled">deshabilitado</string>
   <string name="plugin_web">Encontrar plug-ins en línea</string>
   <string name="plugin_scopes">ámbitos</string>
+  <string name="not_enabled">no habilitado</string>
   <string name="query_credentials_for_url">%1$s está solicitando credenciales para %2$s.</string>
   <string name="query_credentials">%1$s está solicitando credenciales. Por favor, seleccionar una entrada.</string>
   <string name="plugin_enabled_checkbox">Habilitado</string>
@@ -837,7 +839,7 @@ Publicación inicial</string>
     <item>Nunca</item>
   </string-array>
   <string-array name="export_fileformat_options">
-    <item>Base de datos de KeePass 2 (.kdbx)</item>
+    <item>Base de datos KeePass 2 (.kdbx)</item>
     <item>KeePass 2 XML (no encriptado) (.xml)</item>
     <item>KeePass CSV (no encriptado) (.csv)</item>
   </string-array>
@@ -857,7 +859,7 @@ Publicación inicial</string>
     <item>Cifrado explícito (FTP sobre TLS, FTPS)</item>
   </string-array>
   <string-array name="cred_remember_modes">
-    <item>No recordar el nombre de usuario y contraseña</item>
+    <item>No recordaré nombre de usuario y contraseña</item>
     <item>Recordar sólo el nombre de usuario</item>
     <item>Recordar nombre de usuario y contraseña</item>
   </string-array>
@@ -876,4 +878,9 @@ Publicación inicial</string>
   </string-array>
   <string name="ClearClipboardWarning">Asegúrese de que esto funciona en su dispositivo y si no es así, use el teclado incorporado.</string>
   <string name="PluginDescription">Descripción proporcionada por el plugin:</string>
+  <string name="autofill_hint">Keepass2Android soporta la función de Autocompletado de Android pero parece que no lo has habilitado aún.</string>
+  <string name="autofill_enable">Activar Autocompletado</string>
+  <string name="show_autofill_help">Mostrar ayuda de Autocompletado</string>
+  <string name="autofill_sign_in_prompt">Completar con Keepass2Android</string>
+  <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
 </resources>

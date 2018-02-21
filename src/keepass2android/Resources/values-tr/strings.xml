@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android Android üzerinde KeePass 2.x veritabanları için okuma/yazma erişimi sağlayan bir şifre yöneticisidir.</string>
   <string name="CreditsText">Kullanıcı ara yüzü Brian Pellin tarafından geliştirilen KeepasDroid\'e dayanmaktadır. Veritabanı işlemleri Dominik Reichl tarafından geliştirilen KeePass\'a dayanmaktadır. Google tarafından üretilen ve paylaşılan Android robot \"Creative Commons 3.0 Attribution Licence\" kurallarına göre yeniden üretilmiş yada değiştirilmiştir.</string>
   <string name="CreditsTextSFTP">SFTP desteği BSD lisanslıdır, JCraft, Inc. tarafından oluşturulmuştur.</string>
+  <string name="CreditsIcons">Çekiç simgesi Noun Project sitesinden John Caserta tarafından oluşturuldu. Penguen simgesi Noun Project sitesinden Adriano Emerick tarafından oluşturuldu. Tüy simgesi Noun Project sitesinden Jon Testa tarafından oluşturuldu. Elma simgesi Noun Project sitesinden Ava Rowell tarafından oluşturuldu. Resim simgesi https://icons8.com/icon/5570/Picture adresinden alınmıştır.</string>
   <string name="accept">Kabul et</string>
   <string name="deny">Reddet</string>
   <string name="add_entry">Kayıt ekle</string>
@@ -86,9 +87,11 @@
   <string name="enable_fingerprint_unlock">Parmak iziyle açma etkin</string>
   <string name="enable_fingerprint_quickunlock">Hızlı açma için parmak izi etkin</string>
   <string name="fingerprint_unlock_hint">Veritabanını açmak için dokunmatik sensör</string>
-  <string name="fingerprint_unlock_failed">Parmak iziyle açma başarısız oldu. Şifre çözme anahtarı Android tarafından iptal edildi. Bu genellikle yeni bir parmak izi alındığında veya güvenlik ayarları değiştirildiğinde olur. Lütfen kilidi parolanızla açın ve veritabanı ayarlarından parmak iziyle açmayı yeniden etkinleştirin.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Veritabanı açma başarısız oldu: Geçersiz bileşik anahtar. Ana parola artık geçerli olmadığından parmak iziyle açma devre dışı bıraklıdı. Lütfen kilidi parolanızla açın ve veritabanı ayarlarından parmak iziyle açmayı yeniden etkinleştirin.</string>
+  <string name="fingerprint_unlock_failed">Parmak izi kilidi açma işlemi başarısız oldu. Şifre çözme anahtarı Android OS tarafından geçersiz kılınmıştır. Bu genellikle yeni bir parmak izinin kaydedilmesi veya güvenlik ayarlarının değiştirilmesi durumunda olur. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Veritabanının kilidini açma başarısız oldu: Geçersiz bileşik anahtar. Görünen olarak saklanan ana parola artık geçerli olmadığından, Parmak İzi Anahtarı kilidi devre dışı bırakıldı. </string>
   <string name="fingerprint_reenable">Yeni ana parola için parmak izi kilidini yeniden etkinleştirin.</string>
+  <string name="fingerprint_reenable2">Lütfen şifrenizin kilidini açın ve ardından veritabanı ayarlarında Parmak İzi Anahtarı\'nı tekrar etkinleştirin.</string>
+  <string name="FingerprintInitFailed">Parmak izi sensörünü başlatamadı. </string>
   <string name="enable_fingerprint_unlock_Info">
 Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle korunacak şekilde saklar. Veritabanınızı sadece parmak izi ile açmanıza izin verir.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Çabuk Açma kodu yerine parmak izi doğrulamasına izin verir. Ana parolanız ile ilgili hiçbir verinin depolanmasını gerektirmez.</string>
@@ -286,6 +289,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="SaveAttachmentDialog_text">Ek dosyayı kaydedecek konumu seç.</string>
   <string name="SaveAttachmentDialog_save">Ek dosyayı SD karta kaydedin</string>
   <string name="SaveAttachmentDialog_open">Ek dosyayı önbelleke kaydet ve aç</string>
+  <string name="ShowAttachedImage">Dahili resim görüntüleyici ile göster</string>
   <string name="SaveAttachment_doneMessage">Ek dosya %1$s \'e kaydedildi.</string>
   <string name="SaveAttachment_Failed">Ek dosya %1$s konumuna kaydedilemedi.</string>
   <string name="AddUrlToEntryDialog_title">Arama metni hatırlansınmı?</string>
@@ -329,6 +333,10 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ShowCopyToClipboardNotification_summary">Kullanıcı adı ve parola bildirim çubuğu ve Pano üzerinden erişilebilir hale getirir. Parola algılayıcılara dikkat edin!</string>
   <string name="ShowSeparateNotifications_title">Bildirimler</string>
   <string name="ShowSeparateNotifications_summary">Kullanıcı adıyla parolayı panoya kopyalamak ve klavyeyi etkinleştirmek için bildirimleri göster.</string>
+  <string name="AccServiceAutoFill_prefs">Otomatik Doldur Erişilebilirlik Hizmeti</string>
+  <string name="AutoFill_prefs">Otomatik Doldurma Hizmeti</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A klavye bildirimi</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Tam girişi KP2A klavyesinden erişilebilir yapın (önerilir).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Klavyeyi değiştir</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Tarayıcıdan arama yaptıktan sonra KP2A klavyesinden giriş mümkünse klavye seçim iletişim kutusunu açın.</string>
   <string name="kp2a_switch_rooted">Klavyeyi otomatik değiştir</string>
@@ -474,6 +482,10 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="TrayTotp_SettingsField_title">TOTP ayarları alan adı</string>
   <string name="TrayTotp_SettingsField_summary">TrayTotp için ayarlar alanının adını buraya girin.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Hata ayıklama günlük dosyası</string>
+  <string name="DebugLog_title">Günlük dosyası kullan</string>
+  <string name="DebugLog_summary">Uygulama çıktısını yerel bir günlük dosyasına yazın</string>
+  <string name="DebugLog_send">Hata ayıklama günlüğü gönder...</string>
   <string name="loading">Yükleniyor&#8230;</string>
   <string name="plugins">Eklentiler</string>
   <string name="plugin_packagename">Paket adı:</string>
@@ -483,6 +495,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="plugin_disabled">devre dışı</string>
   <string name="plugin_web">Eklentileri online bul</string>
   <string name="plugin_scopes">Kapsam</string>
+  <string name="not_enabled">etkin değil</string>
   <string name="query_credentials_for_url">%1$s %2$s için kimlik bilgileri talep ediyor.</string>
   <string name="query_credentials">%1$s kimlik bilgileri talep ediyor. Lütfen bir kaydı seçin.</string>
   <string name="plugin_enabled_checkbox">Etkin</string>
@@ -562,6 +575,20 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
+  <string name="ChangeLog_1_04">
+Sürüm 1.04 \ n
+     * Android 8.0 ve sonrası için Otomatik Doldurma hizmeti eklendi. \ n
+     * Yükseltilmiş kütüphaneler, araçlar oluşturun ve Target SDK sürümü. \ n
+  
+  </string>
+  <string name="ChangeLog_1_03">
+Sürüm 1.03 \ n
+     * Otomatik Doldurma için Google tarafından istenen erişilebilirlik hizmetini kaldırdı. Önceki işlevleri çoğaltan bir eklenti bulmak için lütfen şifre erişim ayarlarına bakın. \ n
+     * Tekrar depolama seçeneği olarak üçüncü taraf uygulamaları eklendi \ n
+     * Ekli resimleri başka uygulamalara aktarmadan görüntüleyebilmek için tümleşik resim görüntüleyici \ n
+     * Bazı bağlantılarla sorunları düzeltmek için OkHttp\'yi geliştirildi \ n
+     * Buhar girişlerini destekleyen KeeTrayTOTP girdileri için destek \ n
+  </string>
   <string name="ChangeLog_1_02">
     Sürüm 1.02\n
     * Birkaç güvenlik iyileştirmesi. jean-baptiste.cayrou@thalesgroup.com ve vincent.fargues@thalesgroup.com tarafından hazırlanan güvenlik raporu ve işbirliği için teşekkürler!\n
@@ -865,4 +892,9 @@ Initial public release
   </string-array>
   <string name="ClearClipboardWarning">Bunun sisteminizde çalıştığından emin olun, eğer çalışmıyorsa yerleşik klavyeyi kullanın.</string>
   <string name="PluginDescription">Eklenti tarafından sağlanan açıklama:</string>
+  <string name="autofill_hint">Keepass2Android, Android\'in Otomatik Doldurma özelliğini destekliyor ancak henüz etkinleştirilmemişe benziyor.</string>
+  <string name="autofill_enable">Otomatik Doldurmayı Etkinleştir</string>
+  <string name="show_autofill_help">Otomatik doldurma yardımını göster</string>
+  <string name="autofill_sign_in_prompt">Keepass2Android ile doldurun</string>
+  <string name="invalid_link_association">Web alanı ilişkilendirmek Could %1$s uygulaması ile %2$s</string>
 </resources>

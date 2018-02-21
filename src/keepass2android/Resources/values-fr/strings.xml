@@ -87,8 +87,6 @@
   <string name="enable_fingerprint_unlock">Activer le déverrouillage par empreinte digitale</string>
   <string name="enable_fingerprint_quickunlock">Activer le déverrouillage par empreinte digitale pour QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Capteur tactile pour déverrouiller la base de données</string>
-  <string name="fingerprint_unlock_failed">Le déverrouillage de l\'empreinte digitale a échoué. La clé de décryptage a été invalidée par Android OS. Cela se produit généralement si une nouvelle empreinte a été inscrit ou si les paramètres de sécurité ont été changés. S\'il vous plaît débloquer avec votre mot de passe, puis réactiver le déverrouillage d\'empreintes digitales dans les paramètres de base de données.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">La déverrouillage de la base de données a échoué : clé composite non valide. Le déverrouillage de l\'empreinte digitale a été désactivé car apparemment le mot de passe stocké n\'est plus valide. S\'il vous plaît débloquer avec votre mot de passe, puis réactiver le déverrouillage d\'empreintes digitales dans les paramètres de base de données.</string>
   <string name="fingerprint_reenable">Veuillez ré-activer le déverrouillage d\'empreintes digitales pour le nouveau mot de passe maître.</string>
   <string name="enable_fingerprint_unlock_Info">
 Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Android Keystore et protégé à l\'aide de l\'authentification d\'empreintes digitales. Cela permet de déverrouiller votre base de données uniquement avec vos empreintes digitales.  </string>

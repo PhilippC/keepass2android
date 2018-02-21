@@ -36,7 +36,7 @@ namespace keepass2android
 		private const String FileTable = "files";
 		private const int DatabaseVersion = 1;
 		
-		private const int MaxFiles = 5;
+		private const int MaxFiles = 15;
 		
 		public const String KeyFileId = "_id";
 		public const String KeyFileFilename = "fileName";
@@ -142,7 +142,7 @@ namespace keepass2android
 				result = mDb.Insert(FileTable, null, vals);
 				
 			}
-			// Delete all but the last five records
+			// Delete all but the last X records
 			try {
 				DeleteAllBut(MaxFiles);
 			} catch (Exception ex) {

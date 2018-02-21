@@ -841,6 +841,8 @@ namespace keepass2android
 			behavior.OnNestedFling(FindViewById<CoordinatorLayout>(Resource.Id.main_content), appbarLayout, null, 0, 200, true);
 		}
 
+        
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			_activityDesign.ApplyTheme();
@@ -1054,10 +1056,19 @@ namespace keepass2android
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_success);
-			
-			var masterPassword = _fingerprintDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
-			_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
 
+			try
+			{
+				var masterPassword = _fingerprintDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
+				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
+
+			}
+			catch (Java.Security.GeneralSecurityException ex)
+			{
+				HandleFingerprintKeyInvalidated();
+				return;
+			}
+			
 			btn.PostDelayed(() =>
 			{
 				//re-init fingerprint unlock in case something goes wrong with opening the database 
@@ -1961,25 +1972,38 @@ namespace keepass2android
 				}
 				else
 				{
-					//key invalidated permanently
-					btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-					btn.Tag = GetString(Resource.String.fingerprint_unlock_failed);
-					_fingerprintDec = null;
-
-					ClearFingerprintUnlockData();
+					HandleFingerprintKeyInvalidated();
 					return false;
 				}
 			}
 			catch (Exception e)
 			{
+                //exception can happen here if the app was restored from Google Backup (including preferences) but no fingerprint data is there.
 				btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-				btn.Tag = "Error initializing Fingerprint Unlock: " + e;
+			    Kp2aLog.Log("failed to init fingerprint unlock:" + e.ToString());
+                string error = GetString(Resource.String.FingerprintInitFailed) + " " +
+			                   GetString(Resource.String.fingerprint_reenable2);
+			    
+                btn.Tag = error;
+
+			    Toast.MakeText(this, Resource.String.fingerprint_reenable2, ToastLength.Long).Show();
 
 				_fingerprintDec = null;
 				return false;
 			}
 				
 				
+		}
+
+		private void HandleFingerprintKeyInvalidated()
+		{
+			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+//key invalidated permanently
+			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+			btn.Tag = GetString(Resource.String.fingerprint_unlock_failed) + " " + GetString(Resource.String.fingerprint_reenable2);
+			_fingerprintDec = null;
+
+			ClearFingerprintUnlockData();
 		}
 
 		private void InitializeOptionCheckboxes() {
@@ -2033,6 +2057,7 @@ namespace keepass2android
 
 		protected override void OnDestroy()
 		{
+		    UnregisterReceiver(_intentReceiver);
 			base.OnDestroy();
 			if (_killOnDestroy)
 				Process.KillProcess(Process.MyPid());
@@ -2107,7 +2132,7 @@ namespace keepass2android
 						_act.ClearFingerprintUnlockData();
 						_act.InitFingerprintUnlock();
 
-						Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey);
+						Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey) + " " + _act.GetString(Resource.String.fingerprint_reenable2);
 					}
 					else
 					{

@@ -153,3 +153,8 @@ intermediates
 /src/java/Kp2aAccServiceLib/app/app.iml
 /src/java/Kp2aAccServiceLib/gradle
 adbprompt.ps1
+/src/java/KP2ASoftkeyboard_AS/build/android-profile/*.rawproto
+src/java/KP2ASoftkeyboard_AS/build/generated/mockable-android-23.jar
+*.rawproto
+src/java/Keepass2AndroidPluginSDK2/build/generated/mockable-Google-Inc.-Google-APIs-23.jar
+/src/.vs

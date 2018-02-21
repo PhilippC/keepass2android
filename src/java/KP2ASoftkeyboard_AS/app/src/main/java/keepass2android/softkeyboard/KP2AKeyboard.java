@@ -778,8 +778,8 @@ public class KP2AKeyboard extends InputMethodService
 
 		if ((editorInfo.imeOptions&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) == EditorInfo.IME_ACTION_NEXT)
 		{
-			Log.d("KP2AK", "action is NEXT");
-			getCurrentInputConnection().performEditorAction(editorInfo.actionId);
+			Log.d("KP2AK", "action is NEXT ");
+			getCurrentInputConnection().performEditorAction(EditorInfo.IME_ACTION_NEXT);
 		}
 	}
 
