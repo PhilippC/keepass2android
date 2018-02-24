@@ -1770,10 +1770,9 @@ namespace keepass2android
 			if ((intent != null) && (intent.HasExtra(Intents.OtpExtraKey)))
 			{
 				string otp = intent.GetStringExtra(Intents.OtpExtraKey);
-					
+				_keepPasswordInOnResume = true;
 				if (this.KeyProviderType == KeyProviders.Otp)
 				{
-					_keepPasswordInOnResume = true;
 				
 					if (_otpInfo == null)
 					{
