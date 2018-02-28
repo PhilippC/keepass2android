@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePassLib2Android", "KeePassLib2Android\KeePassLib2Android.csproj", "{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}"
 EndProject
@@ -105,8 +105,8 @@ Global
 		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.Release|Win32.Build.0 = Release|Any CPU
 		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.Release|x64.ActiveCfg = Release|Any CPU
 		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.Release|x64.Build.0 = Release|Any CPU
-		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.ReleaseNoNet|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.ReleaseNoNet|Any CPU.Build.0 = Debug|Any CPU
+		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.ReleaseNoNet|Any CPU.ActiveCfg = ReleaseNoNet|Any CPU
+		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.ReleaseNoNet|Any CPU.Build.0 = ReleaseNoNet|Any CPU
 		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.ReleaseNoNet|Mixed Platforms.ActiveCfg = ReleaseNoNet|Any CPU
 		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
 		{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
@@ -159,8 +159,8 @@ Global
 		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.Release|Win32.ActiveCfg = Release|Any CPU
 		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.Release|x64.ActiveCfg = Release|Any CPU
-		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
-		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
+		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|Any CPU.ActiveCfg = ReleaseNoNet|Any CPU
+		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|Any CPU.Build.0 = ReleaseNoNet|Any CPU
 		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|Mixed Platforms.ActiveCfg = ReleaseNoNet|Any CPU
 		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
 		{3C0F7FE5-639F-4422-A087-8B26CF862D1B}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
@@ -177,8 +177,8 @@ Global
 		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Release|Win32.ActiveCfg = Release|Any CPU
 		{70D3844A-D9FA-4A64-B205-A84C6A822196}.Release|x64.ActiveCfg = Release|Any CPU
-		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
-		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Any CPU.ActiveCfg = ReleaseNoNet|Any CPU
+		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Any CPU.Build.0 = ReleaseNoNet|Any CPU
 		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Mixed Platforms.ActiveCfg = ReleaseNoNet|Any CPU
 		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
 		{70D3844A-D9FA-4A64-B205-A84C6A822196}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
@@ -195,8 +195,8 @@ Global
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.Release|Win32.ActiveCfg = Release|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.Release|x64.ActiveCfg = Release|Any CPU
-		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
-		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
+		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Any CPU.ActiveCfg = ReleaseNoNet|Any CPU
+		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Any CPU.Build.0 = ReleaseNoNet|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Mixed Platforms.ActiveCfg = ReleaseNoNet|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
 		{3DA3911E-36DE-465E-8F15-F1991B6437E5}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU

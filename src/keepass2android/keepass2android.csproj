@@ -65,7 +65,7 @@
       </CustomCommands>
     </CustomCommands>
     <DeployExternal>True</DeployExternal>
-    <DefineConstants>RELEASE</DefineConstants>
+    <DefineConstants>RELEASE;NoNet</DefineConstants>
     <AndroidLinkSkip>System.Core%3b</AndroidLinkSkip>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
@@ -100,6 +100,7 @@
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
+    <EnableProguard>true</EnableProguard>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Java.Interop" />
