@@ -1089,7 +1089,7 @@ Initial public release
 
   <string name="masterkey_infotext_head">Do you remember your master password?</string>
   <string name="masterkey_infotext_main">Note that you will not be able to open your database without the master key. There is no way to "reset" the master password.</string>
-  <string name="masterkey_infotext_fingerprint_note">Also note that fingerprint unlock works by storing your master key in Android's secure storage. This storage may be deleted by Android at any time, e.g. if you add a new fingerprint in the system settings. So don't rely on your fingerprint but remember your master password, please!</string>
+  <string name="masterkey_infotext_fingerprint_note">Also note that fingerprint unlock works by storing your master key in Android\'s secure storage. This storage may be deleted by Android at any time, e.g. if you add a new fingerprint in the system settings. So don\'t rely on your fingerprint but remember your master password, please!</string>
 
   <string name="backup_infotext_head">Is your database backed up?</string>
   <string name="backup_infotext_main">Keepass2Android stores your passwords in a file on a location of your choice. Are you sure you can still access this file when your phone gets lost or stolen, or when the file gets destroyed or deleted? Please make sure you always have an up-to-date backup at a safe place!</string>
