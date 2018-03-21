@@ -405,7 +405,7 @@ namespace keepass2android
 
 
             string lastInfoText;
-            if (IsTimeForInfotext(out lastInfoText))
+            if (IsTimeForInfotext(out lastInfoText) && (FindViewById<TextView>(Resource.Id.info_head) != null))
             {
 
                 FingerprintUnlockMode um;
