@@ -189,9 +189,17 @@ namespace keepass2android
 
 		private bool ReturnFileOrStartFileChooser(string filename)
 		{
-			int lastSlashPos = filename.LastIndexOf('/');
-			int lastDotPos = filename.LastIndexOf('.');
-			if (lastSlashPos >= lastDotPos) //no dot after last slash or == in case neither / nor .
+		    string filenameWithoutProt = filename;
+		    if (filenameWithoutProt.Contains("://"))
+		    {
+		        filenameWithoutProt =
+		            filenameWithoutProt.Substring(filenameWithoutProt.IndexOf("://", StringComparison.Ordinal) + 3);
+		    }
+
+            int lastSlashPos = filenameWithoutProt.LastIndexOf('/');
+			int lastDotPos = filenameWithoutProt.LastIndexOf('.');
+			if ((lastSlashPos < 0 ) //no slash, probably only a server address (my.server.com)
+                || (lastSlashPos >= lastDotPos)) //no dot after last slash or == in case neither / nor .
 			{
 				//looks like a folder.
 				return StartFileChooser(filename);
