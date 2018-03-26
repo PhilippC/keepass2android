@@ -339,6 +339,17 @@ namespace keepass2android
                 };
             }
 
+            _prefs.Edit().PutBoolean(autofillservicewasenabled_prefskey, false).Commit();
+
+            if (FindViewById(Resource.Id.info_dont_show_autofill_again) != null)
+            {
+                FindViewById(Resource.Id.info_dont_show_autofill_again).Click += (sender, args) =>
+                {
+                    _prefs.Edit().PutBoolean(autofillservicewasenabled_prefskey, true).Commit();
+                    UpdateAutofillInfo();
+                };
+            }
+
             if (FindViewById(Resource.Id.fabCancelAddNew) != null)
             {
                 FindViewById(Resource.Id.fabAddNew).Click += (sender, args) =>
@@ -545,6 +556,8 @@ namespace keepass2android
             return _prefs.GetBoolean("InfoTextDisabled_" + infoTextKey, false);
         }
 
+        const string autofillservicewasenabled_prefskey = "AutofillServiceWasEnabled";
+
         private void UpdateAutofillInfo()
         {
             bool canShowAutofillInfo = false;
@@ -553,16 +566,15 @@ namespace keepass2android
                   !((AutofillManager)GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
                       .IsAutofillSupported))
             {
-                const string autofillservicewasenabled = "AutofillServiceWasEnabled";
                 if (!((AutofillManager)GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
                     .HasEnabledAutofillServices)
                 {
-                    if (!_prefs.GetBoolean(autofillservicewasenabled, false))
+                    if (!_prefs.GetBoolean(autofillservicewasenabled_prefskey, false))
                         canShowAutofillInfo = true;
                 }
                 else
                 {
-                    _prefs.Edit().PutBoolean(autofillservicewasenabled, true).Commit();
+                    _prefs.Edit().PutBoolean(autofillservicewasenabled_prefskey, true).Commit();
 
                 }
             }

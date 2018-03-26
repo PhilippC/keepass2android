@@ -76,6 +76,14 @@
             android:text="@string/show_autofill_help"
             style="@style/BottomBarButton" />
         </RelativeLayout>
+
+        <Button
+          android:id="@+id/info_dont_show_autofill_again"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="4dp"
+          android:text="@string/dont_show_again"
+          style="@style/BottomBarButton" />
       </LinearLayout>
       <LinearLayout
         android:id="@+id/notification_info_android8_infotext"
