@@ -22,6 +22,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using KeePassLib;
+using Object = Java.Lang.Object;
 
 namespace keepass2android.view
 {
@@ -91,11 +92,15 @@ namespace keepass2android.view
 				_textview.SetTextColor(new Color((int)_defaultTextColor));
 
 			_label.Text = _groupBaseActivity.GetString (Resource.String.group)+" - ";
-			uint numEntries = CountEntries (pw);
-			if (numEntries == 1)
-				_label.Text += Context.GetString (Resource.String.Entry_singular);
-			else
-				_label.Text += Context.GetString (Resource.String.Entry_plural, new Java.Lang.Object[] { numEntries });
+            uint numEntries = CountEntries (pw);
+		    if (numEntries == 1)
+		        _label.Text += Context.GetString(Resource.String.Entry_singular);
+		    else
+		    {
+		        Java.Lang.Object obj = (int)numEntries;
+		        _label.Text += Context.GetString(Resource.String.Entry_plural, obj);
+            }
+				
 		}
 
 		uint CountEntries(PwGroup g)
@@ -159,5 +164,26 @@ namespace keepass2android.view
             LaunchGroup();
         }
 	}
+
+    
+    internal class JavaObjectAdapter : Java.Lang.Object
+    {
+        private readonly uint _value;
+        public JavaObjectAdapter(uint value)
+        {
+            _value = value;
+        }
+
+        public JavaObjectAdapter(System.IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
+            : base(handle, transfer)
+        {
+            
+        }
+
+        public override string ToString()
+        {
+            return _value.ToString();
+        }
+    }
 }
 

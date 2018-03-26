@@ -1771,20 +1771,6 @@
     <AndroidResource Include="Resources\layout\autofill_service_list_item.xml" />
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="xamandroidsupportdesign">
-      <Visible>False</Visible>
-      <Version>25.1.1.0</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="xamandroidsupportv13-18">
-      <Visible>False</Visible>
-      <Version>25.1.1.0</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="xamandroidsupportv7appcompat">
-      <Visible>False</Visible>
-      <Version>25.1.1.0</Version>
-    </XamarinComponentReference>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_launcher_background_blue.xml" />
   </ItemGroup>
   <ItemGroup>
