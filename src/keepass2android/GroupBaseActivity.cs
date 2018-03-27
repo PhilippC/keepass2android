@@ -338,8 +338,7 @@ namespace keepass2android
                     }
                 };
             }
-
-            _prefs.Edit().PutBoolean(autofillservicewasenabled_prefskey, false).Commit();
+            
 
             if (FindViewById(Resource.Id.info_dont_show_autofill_again) != null)
             {
