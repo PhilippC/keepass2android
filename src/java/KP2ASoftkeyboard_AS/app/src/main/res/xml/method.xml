@@ -22,5 +22,10 @@
 
 <input-method xmlns:android="http://schemas.android.com/apk/res/android"
         android:settingsActivity="keepass2android.softkeyboard.LatinIMESettings"
-        android:isDefault="@bool/im_is_default"
-/>
+        android:isDefault="@bool/im_is_default">
+    <subtype
+        android:label="Keepass2Android"
+        android:imeSubtypeMode="keyboard"
+        />
+
+</input-method>
