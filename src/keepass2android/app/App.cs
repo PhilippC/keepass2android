@@ -891,6 +891,7 @@ namespace keepass2android
 	            mChannel.Description = desc;
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
+	            mChannel.SetSound(null, null);
 	            mNotificationManager.CreateNotificationChannel(mChannel);
 	        }
 
@@ -902,7 +903,8 @@ namespace keepass2android
 	            mChannel.Description = desc;
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
-	            mNotificationManager.CreateNotificationChannel(mChannel);
+	            mChannel.SetSound(null, null);
+                mNotificationManager.CreateNotificationChannel(mChannel);
 	        }
 
 	        {
@@ -913,7 +915,8 @@ namespace keepass2android
 	            mChannel.Description = desc;
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
-	            mNotificationManager.CreateNotificationChannel(mChannel);
+	            mChannel.SetSound(null, null);
+                mNotificationManager.CreateNotificationChannel(mChannel);
 	        }
         }
 
