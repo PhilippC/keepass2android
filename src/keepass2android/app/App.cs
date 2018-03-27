@@ -866,9 +866,17 @@ namespace keepass2android
 
             Kp2a.OnCreate(this);
 			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
-		}
 
-	    private void CreateNotificationChannels()
+		    IntentFilter intentFilter = new IntentFilter();
+		    intentFilter.AddAction(Intents.LockDatabase);
+		    intentFilter.AddAction(Intents.CloseDatabase);
+            Context.RegisterReceiver(broadcastReceiver, intentFilter);
+        }
+
+	    private ApplicationBroadcastReceiver broadcastReceiver = new ApplicationBroadcastReceiver();
+
+
+        private void CreateNotificationChannels()
 	    {
 	        if ((int)Build.VERSION.SdkInt < 26)
 	            return;
@@ -914,6 +922,7 @@ namespace keepass2android
 			base.OnTerminate();
 			Kp2aLog.Log("Terminating application");
             Kp2a.OnTerminate();
+            Context.UnregisterReceiver(broadcastReceiver);
 		}
 
 		private void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
