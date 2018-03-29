@@ -94,17 +94,23 @@ namespace keepass2android
 			float px = dp * metrics.Density;
 			return px;
 		}
-		public static String GetClipboard(Context context) {
-			Android.Text.ClipboardManager clipboard = (Android.Text.ClipboardManager) context.GetSystemService(Context.ClipboardService);
-			return clipboard.Text;
-		}
+		public static String GetClipboard(Context context)
+        {
+            Android.Content.ClipboardManager clipboardManager = (ClipboardManager)context.GetSystemService(Context.ClipboardService);
+            var clip = clipboardManager.PrimaryClip;
+            if (clip != null && clip.ItemCount > 0)
+            {
+                return clip.GetItemAt(0).CoerceToText(context);
+            }
+            return "";
+        }
 		
 		public static void CopyToClipboard(Context context, String text) {
-			Android.Text.ClipboardManager clipboard = (Android.Text.ClipboardManager) context.GetSystemService(Context.ClipboardService);
-			clipboard.Text = text;
-			//some devices don't accept empty strings. Replace with *** then.
-			if (clipboard.Text == "")
-				clipboard.Text = "***";
+            Android.Content.ClipboardManager clipboardManager = (ClipboardManager)context.GetSystemService(Context.ClipboardService);
+		    if (text == "")
+		        text = "***";
+            ClipData clipData = Android.Content.ClipData.NewPlainText("KP2A", text);
+            clipboardManager.PrimaryClip = clipData;
 		}
 		
 		public static void GotoUrl(Context context, String url) {
