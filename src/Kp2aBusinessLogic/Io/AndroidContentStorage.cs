@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using Android;
 using Android.Content;
 using Android.Database;
 using Android.OS;
 using Android.Provider;
 using Java.IO;
 using KeePassLib.Serialization;
+using Console = System.Console;
 
 namespace keepass2android.Io
 {
@@ -51,7 +54,20 @@ namespace keepass2android.Io
 
 		public Stream OpenFileForRead(IOConnectionInfo ioc)
 		{
-			return _ctx.ContentResolver.OpenInputStream(Android.Net.Uri.Parse(ioc.Path));
+		    try
+            { 
+		        return _ctx.ContentResolver.OpenInputStream(Android.Net.Uri.Parse(ioc.Path));
+		    }
+		    catch (Exception e)
+		    {
+		        if (e.Message.Contains("requires that you obtain access using ACTION_OPEN_DOCUMENT"))
+		        {
+		            //looks like permission was revoked.
+		            throw new DocumentAccessRevokedException();
+		        }
+		        throw;
+		    }
+			
 		}
 
 		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
@@ -267,7 +283,26 @@ namespace keepass2android.Io
 
 	}
 
-	class AndroidContentWriteTransaction : IWriteTransaction
+    public class DocumentAccessRevokedException : Exception
+    {
+        public DocumentAccessRevokedException()
+        {
+        }
+
+        public DocumentAccessRevokedException(string message) : base(message)
+        {
+        }
+
+        public DocumentAccessRevokedException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected DocumentAccessRevokedException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+    }
+
+    class AndroidContentWriteTransaction : IWriteTransaction
 	{
 		private readonly string _path;
 		private readonly Context _ctx;

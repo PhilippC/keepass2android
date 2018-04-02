@@ -403,6 +403,8 @@
   <string name="IconVisibilityInfo_Android8_btnSettings">Open settings</string>
   <string name="DontCare">I don\'t care</string>
 
+  <string name="DocumentAccessRevoked">The file is no longer accessible to Keepass2Android. Either it was removed or the access permissions have been revoked. Please use re-open the file, e.g. using Change database.</string>
+
 	<string name="PreloadDatabaseEnabled_title">Pre-load database file</string>
 	<string name="PreloadDatabaseEnabled_summary">Start background loading or downloading of the database file during password entry.</string>
 

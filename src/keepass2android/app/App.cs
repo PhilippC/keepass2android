@@ -714,7 +714,10 @@ namespace keepass2android
 			string errorMessage = e.Message;
 			if (e is OfflineModeException)
 				errorMessage = GetResourceString(UiStringKey.InOfflineMode);
-			return errorMessage;
+		    if (e is DocumentAccessRevokedException)
+		        errorMessage = GetResourceString(UiStringKey.DocumentAccessRevoked);
+
+            return errorMessage;
 		}
 
 
