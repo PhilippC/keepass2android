@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2012 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -35,12 +35,6 @@ public
 class KnownHosts implements HostKeyRepository{
   private static final String _known_hosts="known_hosts";
 
-  /*
-  static final int SSHDSS=0;
-  static final int SSHRSA=1;
-  static final int UNKNOWN=2;
-  */
-
   private JSch jsch=null;
   private String known_hosts=null;
   private java.util.Vector pool=null;
@@ -50,26 +44,28 @@ class KnownHosts implements HostKeyRepository{
   KnownHosts(JSch jsch){
     super();
     this.jsch=jsch;
+    this.hmacsha1 = getHMACSHA1();
     pool=new java.util.Vector();
   }
 
-  void setKnownHosts(String foo) throws JSchException{
+  void setKnownHosts(String filename) throws JSchException{
     try{
-      known_hosts = foo;
-      FileInputStream fis=new FileInputStream(Util.checkTilde(foo));
+      known_hosts = filename;
+      FileInputStream fis=new FileInputStream(Util.checkTilde(filename));
       setKnownHosts(fis);
     }
     catch(FileNotFoundException e){
+      // The non-existing file should be allowed.
     } 
   }
-  void setKnownHosts(InputStream foo) throws JSchException{
+  void setKnownHosts(InputStream input) throws JSchException{
     pool.removeAllElements();
     StringBuffer sb=new StringBuffer();
     byte i;
     int j;
     boolean error=false;
     try{
-      InputStream fis=foo;
+      InputStream fis=input;
       String host;
       String key=null;
       int type;
@@ -158,8 +154,10 @@ loop:
           if(i==0x20 || i=='\t'){ break; }
           sb.append((char)i);
 	}
-	if(sb.toString().equals("ssh-dss")){ type=HostKey.SSHDSS; }
-	else if(sb.toString().equals("ssh-rsa")){ type=HostKey.SSHRSA; }
+	String tmp = sb.toString();
+	if(HostKey.name2type(tmp)!=HostKey.UNKNOWN){
+	  type=HostKey.name2type(tmp);
+	}
 	else { j=bufl; }
 	if(j>=bufl){
 	  addInvalidLine(Util.byte2str(buf, 0, bufl));
@@ -223,7 +221,6 @@ loop:
                                                key.length()), comment);
 	pool.addElement(hk);
       }
-      fis.close();
       if(error){
 	throw new JSchException("KnownHosts: invalid format");
       }
@@ -234,6 +231,12 @@ loop:
       if(e instanceof Throwable)
         throw new JSchException(e.toString(), (Throwable)e);
       throw new JSchException(e.toString());
+    }
+    finally {
+      try{ input.close(); }
+      catch(IOException e){
+        throw new JSchException(e.toString(), (Throwable)e);
+      }
     }
   }
   private void addInvalidLine(String line) throws JSchException {
@@ -249,14 +252,19 @@ loop:
       return result;
     }
 
-    int type=getType(key);
-    HostKey hk;
+    HostKey hk = null;
+    try {
+      hk = new HostKey(host, HostKey.GUESS, key);
+    }
+    catch(JSchException e){  // unsupported key
+      return result;
+    }
 
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        hk=(HostKey)(pool.elementAt(i));
-        if(hk.isMatched(host) && hk.type==type){
-          if(Util.array_equals(hk.key, key)){
+        HostKey _hk=(HostKey)(pool.elementAt(i));
+        if(_hk.isMatched(host) && _hk.type==hk.type){
+          if(Util.array_equals(_hk.key, key)){
             return OK;
           }
           else{
@@ -347,27 +355,29 @@ loop:
   }
   public HostKey[] getHostKey(String host, String type){
     synchronized(pool){
-      int count=0;
+      java.util.ArrayList v = new java.util.ArrayList();
       for(int i=0; i<pool.size(); i++){
 	HostKey hk=(HostKey)pool.elementAt(i);
 	if(hk.type==HostKey.UNKNOWN) continue;
 	if(host==null || 
 	   (hk.isMatched(host) && 
 	    (type==null || hk.getType().equals(type)))){
-	  count++;
+          v.add(hk);
 	}
       }
-      if(count==0)return null;
-      HostKey[] foo=new HostKey[count];
-      int j=0;
-      for(int i=0; i<pool.size(); i++){
-	HostKey hk=(HostKey)pool.elementAt(i);
-	if(hk.type==HostKey.UNKNOWN) continue;
-	if(host==null || 
-	   (hk.isMatched(host) && 
-	    (type==null || hk.getType().equals(type)))){
-	  foo[j++]=hk;
-	}
+      HostKey[] foo = new HostKey[v.size()];
+      for(int i=0; i<v.size(); i++){
+        foo[i] = (HostKey)v.get(i);
+      }
+      if(host != null && host.startsWith("[") && host.indexOf("]:")>1){
+        HostKey[] tmp =
+          getHostKey(host.substring(1, host.indexOf("]:")), type);
+        if(tmp.length > 0){
+          HostKey[] bar = new HostKey[foo.length + tmp.length];
+          System.arraycopy(foo, 0, bar, 0, foo.length);
+          System.arraycopy(tmp, 0, bar, foo.length, tmp.length);
+          foo = bar;
+        }
       }
       return foo;
     }
@@ -452,11 +462,7 @@ loop:
       System.err.println(e);
     }
   }
-  private int getType(byte[] key){
-    if(key[8]=='d') return HostKey.SSHDSS;
-    if(key[8]=='r') return HostKey.SSHRSA;
-    return HostKey.UNKNOWN;
-  }
+
   private String deleteSubString(String hosts, String host){
     int i=0;
     int hostlen=host.length();
@@ -477,7 +483,7 @@ loop:
     return hosts;
   }
 
-  private synchronized MAC getHMACSHA1(){
+  private MAC getHMACSHA1(){
     if(hmacsha1==null){
       try{
         Class c=Class.forName(jsch.getConfig("hmac-sha1"));
@@ -502,7 +508,6 @@ loop:
     private boolean hashed=false;
     byte[] salt=null;
     byte[] hash=null;
-
 
     HashedHostKey(String host, byte[] key) throws JSchException {
       this(host, GUESS, key);

@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2012 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -66,7 +66,8 @@ class UserAuthPublicKey extends UserAuth{
           // string    service name ("ssh-connection")
           // string    "publickey"
           // boolen    FALSE
-          // string    plaintext password (ISO-10646 UTF-8)
+          // string    public key algorithm name
+          // string    public key blob
           packet.reset();
           buf.putByte((byte)SSH_MSG_USERAUTH_REQUEST);
           buf.putString(_username);
@@ -154,13 +155,15 @@ class UserAuthPublicKey extends UserAuth{
 
         if(pubkeyblob==null) continue;
 
-      // send
-      // byte      SSH_MSG_USERAUTH_REQUEST(50)
-      // string    user name
-      // string    service name ("ssh-connection")
-      // string    "publickey"
-      // boolen    TRUE
-      // string    plaintext password (ISO-10646 UTF-8)
+        // send
+        // byte      SSH_MSG_USERAUTH_REQUEST(50)
+        // string    user name
+        // string    service name ("ssh-connection")
+        // string    "publickey"
+        // boolen    TRUE
+        // string    public key algorithm name
+        // string    public key blob
+        // string    signature
         packet.reset();
         buf.putByte((byte)SSH_MSG_USERAUTH_REQUEST);
         buf.putString(_username);

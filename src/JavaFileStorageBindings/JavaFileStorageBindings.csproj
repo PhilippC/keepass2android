@@ -60,6 +60,7 @@
     </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
+    <LibraryProjectZip Include="Jars\adal-1.14.0.aar" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
@@ -91,9 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\onedrive-sdk-android-1.2.2\classes-onedrive-sdk.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\adal-1.1.19\classes-adal.jar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\gdrive\commons-logging-1.1.1.jar" />

@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2012 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -648,7 +648,6 @@ public class ChannelSftp extends ChannelSession{
           if((seq-1)==startid ||
              ((seq-startid)-ackcount)>=bulk_requests){
             while(((seq-startid)-ackcount)>=bulk_requests){
-              if(this.rwsize>=foo) break;
               if(checkStatus(ackid, header)){
                 int _ackid = ackid[0];
                 if(startid>_ackid || _ackid>seq-1){
@@ -666,7 +665,16 @@ public class ChannelSftp extends ChannelSession{
               }
             }
           }
-          foo-=sendWRITE(handle, offset, data, 0, foo);
+          if(dontcopy){
+            foo-=sendWRITE(handle, offset, data, 0, foo);
+            if(data!=obuf.buffer){
+              data=obuf.buffer;
+              _datalen=obuf.buffer.length-_s-Session.buffer_margin;
+            }
+          }
+          else {
+            foo-=sendWRITE(handle, offset, data, _s, foo);
+          }
         }
         offset+=count;
 	if(monitor!=null && !monitor.count(count)){
@@ -734,6 +742,12 @@ public class ChannelSftp extends ChannelSession{
 	catch(Exception eee){
 	  //System.err.println(eee);
 	}
+      }
+
+      if(monitor!=null){
+        monitor.init(SftpProgressMonitor.PUT,
+                     "-", dst,
+                     SftpProgressMonitor.UNKNOWN_SIZE);
       }
 
       if(mode==OVERWRITE){ sendOPENW(dstb); }
@@ -923,6 +937,15 @@ public class ChannelSftp extends ChannelSession{
 	  if(i==-1) dstsb.append(_src);
 	  else dstsb.append(_src.substring(i + 1));
           _dst=dstsb.toString();
+          if(_dst.indexOf("..")!=-1){
+            String dstc = (new java.io.File(dst)).getCanonicalPath();
+            String _dstc = (new java.io.File(_dst)).getCanonicalPath();
+            if(!(_dstc.length()>dstc.length() &&
+                 _dstc.substring(0, dstc.length()+1).equals(dstc+file_separator))){
+              throw new SftpException(SSH_FX_FAILURE,
+                                      "writing to an unexpected file "+_src);
+            }
+          }
           dstsb.delete(dst.length(), _dst.length());
 	}
         else{
@@ -1375,7 +1398,10 @@ public class ChannelSftp extends ChannelSession{
                len=1024; 
              }
 
-             if(rq.count()==0) {
+             if(rq.count()==0
+                || true // working around slow transfer speed for
+                        // some sftp servers including Titan FTP.
+               ) {
                int request_len = buf.buffer.length-13;
                if(server_version==0){ request_len=1024; }
 
@@ -1782,10 +1808,17 @@ public class ChannelSftp extends ChannelSession{
      try{
        ((MyPipedInputStream)io_in).updateReadSide();
 
-       oldpath=remoteAbsolutePath(oldpath);
+       String _oldpath=remoteAbsolutePath(oldpath);
        newpath=remoteAbsolutePath(newpath);
 
-       oldpath=isUnique(oldpath);
+       _oldpath=isUnique(_oldpath);
+       if(oldpath.charAt(0)!='/'){ // relative path
+         String cwd=getCwd();
+         oldpath=_oldpath.substring(cwd.length()+(cwd.endsWith("/")?0:1));
+       }
+       else {
+         oldpath=_oldpath;
+       }
 
        if(isPattern(newpath)){
          throw new SftpException(SSH_FX_FAILURE, newpath);
@@ -1827,10 +1860,17 @@ public class ChannelSftp extends ChannelSession{
      try{
        ((MyPipedInputStream)io_in).updateReadSide();
 
-       oldpath=remoteAbsolutePath(oldpath);
+       String _oldpath=remoteAbsolutePath(oldpath);
        newpath=remoteAbsolutePath(newpath);
 
-       oldpath=isUnique(oldpath);
+       _oldpath=isUnique(_oldpath);
+       if(oldpath.charAt(0)!='/'){ // relative path
+         String cwd=getCwd();
+         oldpath=_oldpath.substring(cwd.length()+(cwd.endsWith("/")?0:1));
+       }
+       else {
+         oldpath=_oldpath;
+       }
 
        if(isPattern(newpath)){
          throw new SftpException(SSH_FX_FAILURE, newpath);
