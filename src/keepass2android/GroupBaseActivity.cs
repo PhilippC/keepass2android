@@ -147,8 +147,7 @@ namespace keepass2android
                 for (int i = 0; i < bottomBar.ChildCount; i++)
                 {
                     int id = bottomBar.GetChildAt(i).Id;
-                    bottomBar.GetChildAt(i).Visibility =
-                        highestPrioElements.Contains(id) ? ViewStates.Visible : ViewStates.Gone;
+                    bottomBar.GetChildAt(i).Visibility = highestPrioElements.Any() && (highestPrioElements.First() == id) ? ViewStates.Visible : ViewStates.Gone;
                 }
 
                 if (FindViewById(Resource.Id.divider2) != null)
