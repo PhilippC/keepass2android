@@ -788,7 +788,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		else
 		{
 			logDebug("denied");
-			finishWithError(setupAct, new Exception("You must grant the requested permissions to continue."));
+			finishWithError(setupAct, new Exception("Please grant the requested permissions. Access to your accounts is required to let you choose from the available Google accounts on this device."));
 		}
 	}
 
@@ -847,13 +847,21 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		if (Build.VERSION.SDK_INT >= 23)
 		{
 			Activity act = (Activity)activity;
-			int permissionRes = act.checkSelfPermission(Manifest.permission.GET_ACCOUNTS);
-			logDebug("permissionRes="+permissionRes);
-			if (permissionRes == PackageManager.PERMISSION_DENIED)
+
+			String[] permissions = new String[] {Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+			boolean allOk = true;
+			for (String s: permissions)
+			{
+				int permissionRes = act.checkSelfPermission(Manifest.permission.GET_ACCOUNTS);
+				logDebug("permissionRes="+permissionRes);
+				allOk = false;
+			}
+
+			if (!allOk)
 			{
 				logDebug("requestPermissions");
 				mRequiresRuntimePermissions = true;
-				act.requestPermissions(new String[] {Manifest.permission.GET_ACCOUNTS}, 0);
+				act.requestPermissions(permissions, 0);
 			}
 		}
 

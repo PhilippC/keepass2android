@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 
 using System.Security;
@@ -10,10 +11,12 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.V13.App;
+using Android.Support.V4.App;
 using Java.IO;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
-
+using ActivityCompat = Android.Support.V13.App.ActivityCompat;
 using File = System.IO.File;
 using FileNotFoundException = System.IO.FileNotFoundException;
 using IOException = System.IO.IOException;
@@ -258,10 +261,14 @@ namespace keepass2android.Io
 
 				if (requiresPermission && (Build.VERSION.SdkInt >= BuildVersionCodes.M))
 				{
-					if (activity.Activity.CheckSelfPermission(Manifest.Permission.WriteExternalStorage) ==
+					if ((activity.Activity.CheckSelfPermission(Manifest.Permission.WriteExternalStorage) ==
 						Permission.Denied)
-					{
-						activity.StartFileUsageProcess(ioc, requestCode, alwaysReturnSuccess);
+                        ||
+					    (activity.Activity.CheckSelfPermission(Manifest.Permission.ReadExternalStorage) ==
+					     Permission.Denied))
+
+                    {
+                        activity.StartFileUsageProcess(ioc, requestCode, alwaysReturnSuccess);
 						return;
 					}	
 				}
@@ -279,7 +286,7 @@ namespace keepass2android.Io
 
 		public void OnCreate(IFileStorageSetupActivity fileStorageSetupActivity, Bundle savedInstanceState)
 		{
-			((Activity)fileStorageSetupActivity).RequestPermissions(new[] { Manifest.Permission.WriteExternalStorage }, 0);
+		    Android.Support.V4.App.ActivityCompat.RequestPermissions(((Activity)fileStorageSetupActivity), new[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.ReadExternalStorage }, 0);
 		}
 
 		public void OnResume(IFileStorageSetupActivity activity)
@@ -417,7 +424,7 @@ namespace keepass2android.Io
 		public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
 			string[] permissions, Permission[] grantResults)
 		{
-			fileStorageSetupActivity.State.PutBoolean(PermissionGrantedKey, grantResults[0] == Permission.Granted);
+			fileStorageSetupActivity.State.PutBoolean(PermissionGrantedKey, grantResults.All(res => res == Permission.Granted));
 		}
 	}
 
