@@ -218,6 +218,7 @@
   <string name="remember_keyfile_summary">Remembers the location of key files</string>
   <string name="remember_keyfile_title">Save key file</string>
   <string name="remove_from_filelist">Remove</string>
+  <string name="edit">Edit</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
 

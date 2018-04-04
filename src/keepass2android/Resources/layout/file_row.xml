@@ -17,10 +17,28 @@
   You should have received a copy of the GNU General Public License
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<TextView android:id="@+id/file_filename" xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:textColor="#cccccc"
-    android:paddingTop="4sp"
-    android:paddingBottom="4sp"
-    />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/groupname_container"
+  android:layout_height="wrap_content"
+  android:layout_width="fill_parent"
+  android:orientation="horizontal"
+  >
+  <ImageView
+    android:id="@+id/group_name_vdots"
+    android:layout_width="wrap_content"
+    android:layout_height="20dp"
+    android:src="@drawable/vdots"
+    android:gravity="right|bottom"
+    android:layout_alignParentRight="true" 
+    android:paddingTop="4sp"/>
+
+  <TextView android:id="@+id/file_filename"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#cccccc"
+            android:paddingTop="4sp"
+            android:paddingBottom="4sp"            
+            android:layout_toLeftOf="@id/group_name_vdots"
+
+  />
+</RelativeLayout>
