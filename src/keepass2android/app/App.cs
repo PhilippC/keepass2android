@@ -859,9 +859,21 @@ namespace keepass2android
 		}
 
         public static readonly Kp2aApp Kp2a = new Kp2aApp();
-        
-		public override void OnCreate() {
-			base.OnCreate();
+
+	    private static void InitThaiCalendarCrashFix()
+	    {
+	        var localeIdentifier = Java.Util.Locale.Default.ToString();
+	        if (localeIdentifier == "th_TH")
+	        {
+	            new System.Globalization.ThaiBuddhistCalendar();
+	        }
+	    }
+
+        public override void OnCreate()
+        {
+            InitThaiCalendarCrashFix();
+
+            base.OnCreate();
 
 			Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 
