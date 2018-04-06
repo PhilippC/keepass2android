@@ -231,7 +231,7 @@ namespace keepass2android.Io
 
 		
 
-		internal Uri IocToUri(IOConnectionInfo ioc)
+		public static Uri IocToUri(IOConnectionInfo ioc)
 		{
 			if (!string.IsNullOrEmpty(ioc.UserName))
 			{
@@ -575,7 +575,7 @@ namespace keepass2android.Io
 			{
 
 				_client = _fileStorage.GetClient(_ioc, false);
-				_stream = _client.OpenWrite(_fileStorage.IocToUri(_iocTemp).PathAndQuery);
+				_stream = _client.OpenWrite(NetFtpFileStorage.IocToUri(_iocTemp).PathAndQuery);
 				return _stream;
 			}
 			catch (FtpCommandException ex)
@@ -595,8 +595,8 @@ namespace keepass2android.Io
 				//make sure target file does not exist:
 				//try
 				{
-					if (_client.FileExists(_fileStorage.IocToUri(_ioc).PathAndQuery))
-						_client.DeleteFile(_fileStorage.IocToUri(_ioc).PathAndQuery);
+					if (_client.FileExists(NetFtpFileStorage.IocToUri(_ioc).PathAndQuery))
+						_client.DeleteFile(NetFtpFileStorage.IocToUri(_ioc).PathAndQuery);
 
 				}
 				//catch (FtpCommandException)
@@ -604,8 +604,8 @@ namespace keepass2android.Io
 					//TODO get a new clien? might be stale
 				}
 
-				_client.Rename(_fileStorage.IocToUri(_iocTemp).PathAndQuery,
-					_fileStorage.IocToUri(_ioc).PathAndQuery);
+				_client.Rename(NetFtpFileStorage.IocToUri(_iocTemp).PathAndQuery,
+				    NetFtpFileStorage.IocToUri(_ioc).PathAndQuery);
 				
 			}
 			catch (FtpCommandException ex)

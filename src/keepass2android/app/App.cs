@@ -611,11 +611,7 @@ namespace keepass2android
 		{
 			get { return new CertificateErrorHandlerImpl(this); }
 		}
-	    public bool CanEditIoc(IOConnectionInfo ioc)
-	    {
-	        return false;
-	    }
-
+	    
 
 	    public class CertificateErrorHandlerImpl : Java.Lang.Object, Keepass2android.Javafilestorage.ICertificateErrorHandler
 		{

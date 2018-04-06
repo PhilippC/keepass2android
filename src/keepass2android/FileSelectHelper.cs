@@ -14,6 +14,7 @@ using Android.Views;
 using Android.Widget;
 using Java.IO;
 using keepass2android.Io;
+using Keepass2android.Javafilestorage;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 
@@ -24,8 +25,9 @@ namespace keepass2android
 		private readonly Activity _activity;
 		private readonly bool _isForSave;
 		private readonly int _requestCode;
+	    private readonly string _schemeSeparator = "://";
 
-		public string DefaultExtension { get; set; }
+	    public string DefaultExtension { get; set; }
 
 		public FileSelectHelper(Activity activity, bool isForSave, int requestCode)
 		{
@@ -34,11 +36,23 @@ namespace keepass2android
 			_requestCode = requestCode;
 		}
 
-		private void ShowSftpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel)
+		private void ShowSftpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
 		{
 #if !EXCLUDE_JAVAFILESTORAGE && !NoNet
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.sftpcredentials, null);
+
+		    if (!defaultPath.EndsWith(_schemeSeparator))
+		    {
+		        var fileStorage = new Keepass2android.Javafilestorage.SftpStorage();
+                SftpStorage.ConnectionInfo ci = fileStorage.SplitStringToConnectionInfo(defaultPath);
+		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_host).Text = ci.Host;
+		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_port).Text = ci.Port.ToString();
+		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_user).Text = ci.Username;
+		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Text = ci.Password;
+		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text = ci.LocalPath;
+            }
+
 			builder.SetView(dlgContents);
 			builder.SetPositiveButton(Android.Resource.String.Ok,
 									  (sender, args) =>
@@ -70,6 +84,16 @@ namespace keepass2android
 #if !EXCLUDE_JAVAFILESTORAGE && !NoNet
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.httpcredentials, null);
+		    if (!defaultPath.EndsWith(_schemeSeparator))
+		    {
+		        var webdavStorage = new Keepass2android.Javafilestorage.WebDavStorage(App.Kp2a.CertificateErrorHandler);
+		        var connInfo = webdavStorage.SplitStringToConnectionInfo(defaultPath);
+		        dlgContents.FindViewById<EditText>(Resource.Id.http_url).Text = connInfo.Url;
+		        dlgContents.FindViewById<EditText>(Resource.Id.http_user).Text = connInfo.Username;
+		        dlgContents.FindViewById<EditText>(Resource.Id.http_password).Text = connInfo.Password;
+
+
+            }
 			builder.SetView(dlgContents);
 			builder.SetPositiveButton(Android.Resource.String.Ok,
 									  (sender, args) =>
@@ -79,9 +103,9 @@ namespace keepass2android
 										  string user = dlgContents.FindViewById<EditText>(Resource.Id.http_user).Text;
 										  string password = dlgContents.FindViewById<EditText>(Resource.Id.http_password).Text;
 
-										  string scheme = defaultPath.Substring(0, defaultPath.IndexOf("://", StringComparison.Ordinal));
-										  if (host.Contains("://") == false)
-											  host = scheme + "://" + host;
+										  string scheme = defaultPath.Substring(0, defaultPath.IndexOf(_schemeSeparator, StringComparison.Ordinal));
+										  if (host.Contains(_schemeSeparator) == false)
+											  host = scheme + _schemeSeparator + host;
 										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(host, user,
 																										  password);
 										  onStartBrowse(httpPath);
@@ -96,12 +120,35 @@ namespace keepass2android
 #endif
 		}
 
-		private void ShowFtpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel)
+		private void ShowFtpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
 		{
 #if !NoNet
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.ftpcredentials, null);
-			builder.SetView(dlgContents);
+		    if (!defaultPath.EndsWith(_schemeSeparator))
+		    {
+		        var connection = NetFtpFileStorage.ConnectionSettings.FromIoc(IOConnectionInfo.FromPath(defaultPath));
+		        dlgContents.FindViewById<EditText>(Resource.Id.ftp_user).Text = connection.Username;
+		        dlgContents.FindViewById<EditText>(Resource.Id.ftp_password).Text = connection.Password;
+		        dlgContents.FindViewById<Spinner>(Resource.Id.ftp_encryption).SetSelection((int)connection.EncryptionMode);
+
+		        var uri = NetFtpFileStorage.IocToUri(IOConnectionInfo.FromPath(defaultPath));
+                string pathAndQuery = uri.PathAndQuery;
+
+		        var host = uri.Host;
+		        var localPath = pathAndQuery;
+
+                
+		        if (!uri.IsDefaultPort)
+		        {
+		            dlgContents.FindViewById<EditText>(Resource.Id.ftp_port).Text = uri.Port.ToString();
+		        }
+		        dlgContents.FindViewById<EditText>(Resource.Id.ftp_host).Text = host;
+                dlgContents.FindViewById<EditText>(Resource.Id.ftp_initial_dir).Text = localPath;
+
+
+            }
+            builder.SetView(dlgContents);
 			builder.SetPositiveButton(Android.Resource.String.Ok,
 									  (sender, args) =>
 									  {
@@ -133,9 +180,9 @@ namespace keepass2android
 		public void PerformManualFileSelect(string defaultPath)
 		{
 			if (defaultPath.StartsWith("sftp://"))
-				ShowSftpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel);
+				ShowSftpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
 			else if ((defaultPath.StartsWith("ftp://")) || (defaultPath.StartsWith("ftps://")))
-				ShowFtpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel);
+				ShowFtpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
 			else if ((defaultPath.StartsWith("http://")) || (defaultPath.StartsWith("https://")))
 				ShowHttpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
 			else if (defaultPath.StartsWith("owncloud://"))
@@ -169,9 +216,9 @@ namespace keepass2android
 										  string user = dlgContents.FindViewById<EditText>(Resource.Id.http_user).Text;
 										  string password = dlgContents.FindViewById<EditText>(Resource.Id.http_password).Text;
 
-										  string scheme = defaultPath.Substring(defaultPath.IndexOf("://", StringComparison.Ordinal));
-										  if (host.Contains("://") == false)
-											  host = scheme + "://" + host;
+										  string scheme = defaultPath.Substring(defaultPath.IndexOf(_schemeSeparator, StringComparison.Ordinal));
+										  if (host.Contains(_schemeSeparator) == false)
+											  host = scheme + _schemeSeparator + host;
 										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(WebDavFileStorage.Owncloud2Webdav(host), user,
 																										  password);
 										  onStartBrowse(httpPath);
@@ -190,10 +237,10 @@ namespace keepass2android
 		private bool ReturnFileOrStartFileChooser(string filename)
 		{
 		    string filenameWithoutProt = filename;
-		    if (filenameWithoutProt.Contains("://"))
+		    if (filenameWithoutProt.Contains(_schemeSeparator))
 		    {
 		        filenameWithoutProt =
-		            filenameWithoutProt.Substring(filenameWithoutProt.IndexOf("://", StringComparison.Ordinal) + 3);
+		            filenameWithoutProt.Substring(filenameWithoutProt.IndexOf(_schemeSeparator, StringComparison.Ordinal) + 3);
 		    }
 
             int lastSlashPos = filenameWithoutProt.LastIndexOf('/');
@@ -365,5 +412,13 @@ namespace keepass2android
 		public event EventHandler OnCancel;
 
 		public event EventHandler<IOConnectionInfo> OnOpen;
+
+	    public static bool CanEditIoc(IOConnectionInfo ioc)
+	    {
+	        return ioc.Path.StartsWith("http")
+	               || ioc.Path.StartsWith("ftp")
+	               || ioc.Path.StartsWith("sftp");
+
+	    }
 	}
 }

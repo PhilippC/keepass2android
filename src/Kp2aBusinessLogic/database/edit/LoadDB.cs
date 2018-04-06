@@ -53,9 +53,10 @@ namespace keepass2android
 			{
 				try
 				{
+				    SaveFileData(_ioc, _keyfileOrProvider);
 
 
-					StatusLogger.UpdateMessage(UiStringKey.loading_database);
+                    StatusLogger.UpdateMessage(UiStringKey.loading_database);
 					//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
 					MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
 					MemoryStream databaseStream;
@@ -134,8 +135,7 @@ namespace keepass2android
 			//now let's go:
 			try
 			{
-				_app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
-				SaveFileData(_ioc, _keyfileOrProvider);
+                _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
 				Kp2aLog.Log("LoadDB OK");
 				Finish(true, _format.SuccessMessage);
 			}

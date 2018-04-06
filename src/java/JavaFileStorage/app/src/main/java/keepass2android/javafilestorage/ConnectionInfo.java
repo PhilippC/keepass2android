@@ -1,4 +1,4 @@
-package keepass2android.javafilestorage.webdav;
+package keepass2android.javafilestorage;
 
 /**
  * Created by Philipp on 22.11.2016.

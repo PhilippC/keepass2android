@@ -72,8 +72,9 @@ namespace keepass2android
 		
 		internal AppTask AppTask;
 		private const int RequestCodeSelectIoc = 456;
+	    private const int RequestCodeEditIoc = 457;
 
-		public const string NoForwardToPasswordActivity = "NoForwardToPasswordActivity";
+        public const string NoForwardToPasswordActivity = "NoForwardToPasswordActivity";
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -204,14 +205,16 @@ namespace keepass2android
 	    class MyCursorAdapter: CursorAdapter
 	    {
 	        private LayoutInflater cursorInflater;
+	        private readonly FileSelectActivity _activity;
 	        private IKp2aApp _app;
 
 	        public MyCursorAdapter(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
 	        {
 	        }
 
-	        public MyCursorAdapter(Context context, ICursor c, IKp2aApp app) : base(context, c)
+	        public MyCursorAdapter(FileSelectActivity activity, ICursor c, IKp2aApp app) : base(activity, c)
 	        {
+	            _activity = activity;
 	            _app = app;
 	        }
 
@@ -258,19 +261,29 @@ namespace keepass2android
                         
 	                    String filename = (string)textView.Tag;
                         IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
-	                    if (_app.CanEditIoc(ioc))
+	                    if (FileSelectHelper.CanEditIoc(ioc))
 	                    {
 	                        popupMenu.Menu.Add(0, edit, 0, context.GetString(Resource.String.edit)).SetIcon(Resource.Drawable.ic_menu_edit_grey);
                         }
 
 
-                        popupMenu.MenuItemClick += delegate (object sender2, PopupMenu.MenuItemClickEventArgs args2)
+	                    popupMenu.MenuItemClick += delegate(object sender2, PopupMenu.MenuItemClickEventArgs args2)
 	                    {
 	                        if (args2.Item.ItemId == remove)
 	                        {
 	                            App.Kp2a.FileDbHelper.DeleteFile(filename);
 
 	                            cursor.Requery();
+	                        }
+	                        if (args2.Item.ItemId == edit)
+	                        {
+	                            var fsh = new FileSelectHelper(_activity, false, RequestCodeEditIoc);
+	                            fsh.OnOpen += (o, newConnectionInfo) =>
+	                            {
+	                                _activity.EditFileEntry(filename, newConnectionInfo);
+	                            };
+                                fsh.PerformManualFileSelect(filename);
+
 	                        }
 	                    };
 	                    popupMenu.Show();
@@ -279,7 +292,18 @@ namespace keepass2android
 
                 return view;
 	        }
+
+	        
 	    }
+
+	    private void EditFileEntry(string filename, IOConnectionInfo newConnectionInfo)
+	    {
+            _dbHelper.CreateFile(newConnectionInfo, _dbHelper.GetKeyFileForFile(filename));
+	        _dbHelper.DeleteFile(filename);
+
+            LaunchPasswordActivityForIoc(newConnectionInfo);
+	        
+        }
 
 
 	    private void FillData()
@@ -382,8 +406,15 @@ namespace keepass2android
 				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
 				LaunchPasswordActivityForIoc(ioc);
 			}
-			
-		}
+		    
+		    if ((resultCode == Result.Ok) && (requestCode == RequestCodeEditIoc))
+		    {
+		        string filename = Util.IntentToFilename(data, this);
+		        
+		        LaunchPasswordActivityForIoc(IOConnectionInfo.FromPath(filename));
+		    }
+
+        }
 
 		protected override void OnResume()
 		{

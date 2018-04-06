@@ -112,6 +112,5 @@ namespace keepass2android
 #if !NoNet
 		ICertificateErrorHandler CertificateErrorHandler { get; }
 #endif
-	    bool CanEditIoc(IOConnectionInfo ioc);
 	}
 }
