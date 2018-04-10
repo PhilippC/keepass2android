@@ -20,11 +20,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-
 using KeePassLib.Cryptography;
 using KeePassLib.Cryptography.KeyDerivation;
-using KeePassLib.Native;
 using KeePassLib.Resources;
 using KeePassLib.Security;
 using KeePassLib.Utility;
@@ -168,7 +165,7 @@ namespace KeePassLib.Keys
 		/// Creates the composite key from the supplied user key sources (password,
 		/// key file, user account, computer ID, etc.).
 		/// </summary>
-		private byte[] CreateRawCompositeKey32(byte[] mPbMasterSeed)
+		private byte[] CreateRawCompositeKey32(byte[] mPbMasterSeed, byte[] mPbKdfSeed)
 		{
 			ValidateUserKeys();
 
@@ -178,7 +175,7 @@ namespace KeePassLib.Keys
 			foreach(IUserKey pKey in m_vUserKeys)
 			{
 				if (pKey is ISeedBasedUserKey)
-					((ISeedBasedUserKey)pKey).SetParams(mPbMasterSeed);
+					((ISeedBasedUserKey)pKey).SetParams(mPbMasterSeed, mPbKdfSeed);
 				ProtectedBinary b = pKey.KeyData;
 				if(b != null)
 				{
@@ -211,15 +208,17 @@ namespace KeePassLib.Keys
 		{
 			if(p == null) { Debug.Assert(false); throw new ArgumentNullException("p"); }
 
-			byte[] pbRaw32 = CreateRawCompositeKey32(mPbMasterSeed);
+
+		    KdfEngine kdf = KdfPool.Get(p.KdfUuid);
+		    if (kdf == null) // CryptographicExceptions are translated to "file corrupted"
+		        throw new Exception(KLRes.UnknownKdf + MessageService.NewParagraph +
+		                            KLRes.FileNewVerOrPlgReq + MessageService.NewParagraph +
+		                            "UUID: " + p.KdfUuid.ToHexString() + ".");
+
+            byte[] pbRaw32 = CreateRawCompositeKey32(mPbMasterSeed, kdf.GetSeed(p));
 			if((pbRaw32 == null) || (pbRaw32.Length != 32))
 				{ Debug.Assert(false); return null; }
 
-			KdfEngine kdf = KdfPool.Get(p.KdfUuid);
-			if(kdf == null) // CryptographicExceptions are translated to "file corrupted"
-				throw new Exception(KLRes.UnknownKdf + MessageService.NewParagraph +
-					KLRes.FileNewVerOrPlgReq + MessageService.NewParagraph +
-					"UUID: " + p.KdfUuid.ToHexString() + ".");
 
 			byte[] pbTrf32 = kdf.Transform(pbRaw32, p);
 			if(pbTrf32 == null) { Debug.Assert(false); return null; }
@@ -256,7 +255,7 @@ namespace KeePassLib.Keys
 
 	public interface ISeedBasedUserKey
 	{
-		void SetParams(byte[] masterSeed);
+		void SetParams(byte[] masterSeed, byte[] mPbKdfSeed);
 	}
 
 	public sealed class InvalidCompositeKeyException : Exception

@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
@@ -60,7 +61,6 @@ using Process = Android.OS.Process;
 
 using KeeChallenge;
 using KeePassLib.Cryptography.KeyDerivation;
-using KeePassLib.Security;
 using AlertDialog = Android.App.AlertDialog;
 using Enum = System.Enum;
 using Exception = System.Exception;
@@ -69,72 +69,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace keepass2android
 {
-	class ChallengeXCKey : IUserKey, ISeedBasedUserKey
-	{
-		private readonly Activity _activity;
-		private readonly int _requestCode;
-
-		public ProtectedBinary KeyData
-		{
-			get
-			{
-				
-				_activity.RunOnUiThread(
-					() =>
-					{
-						//TODO refactor to use code from PasswordActivity including notice to install Yubichallenge
-						Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
-						byte[] challenge = _masterSeed;
-						byte[] challenge64 = new byte[64];
-						for (int i = 0; i < 64; i++)
-						{
-							if (i < challenge.Length)
-							{
-								challenge64[i] = challenge[i];
-							}
-							else
-							{
-								challenge64[i] = (byte) (challenge64.Length - challenge.Length);
-							}
-							
-						}
-
-						Kp2aLog.Log(MemUtil.ByteArrayToHexString(challenge64));
-
-						chalIntent.PutExtra("challenge", challenge64);
-						chalIntent.PutExtra("slot", 2);
-						IList<ResolveInfo> activities = _activity.PackageManager.QueryIntentActivities(chalIntent, 0);
-						bool isIntentSafe = activities.Count > 0;
-						if (isIntentSafe)
-						{
-							_activity.StartActivityForResult(chalIntent, _requestCode);
-						}
-						else throw new Exception("TODO implement: you need YubiChallenge");
-					});
-				while (Response == null)
-					Thread.Sleep(100);
-
-				return new ProtectedBinary(true, Response);
-			}
-		}
-
-		private byte[] _masterSeed;
-
-		public ChallengeXCKey(Activity activity, int requestCode)
-		{
-			this._activity = activity;
-			_requestCode = requestCode;
-			Response = null;
-		}
-
-		public void SetParams(byte[] masterSeed)
-		{
-			_masterSeed = masterSeed;
-		}
-
-		public byte[] Response { get; set; }
-	}
-	[Activity(Label = "@string/app_name",
+    [Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation,
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
@@ -434,69 +369,91 @@ namespace keepass2android
 				
 				GetAuxFileLoader().LoadAuxFile(false);
 			}
-            if (requestCode == RequestCodeChallengeYubikey && resultCode == Result.Ok) 
-			{
-				try
-				{
-					byte[] challengeResponse = data.GetByteArrayExtra("response");
-					if (_currentlyWaitingKey != null)
-					{
-						_currentlyWaitingKey.Response = challengeResponse;
-						return;
-					}
-					else
-					{
-						_challengeProv = new KeeChallengeProv();
-						_challengeSecret = _challengeProv.GetSecret(_chalInfo, challengeResponse);
-						Array.Clear(challengeResponse, 0, challengeResponse.Length);	
-					}
-                    
-				}
-				catch (Exception e)
-				{
-					Kp2aLog.Log(e.ToString());
-					Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
-					return;
-				}
-				
-                UpdateOkButtonState();
-				FindViewById(Resource.Id.otpInitView).Visibility = ViewStates.Gone;
-			
-				if (_challengeSecret != null)
-                {
-					new LoadingDialog<object, object, object>(this, true,
-						//doInBackground
-					delegate
-					{
-						//save aux file
-						try
-						{
-							ChallengeInfo temp = _challengeProv.Encrypt(_challengeSecret);
-							if (!temp.Save(_otpAuxIoc))
-							{
-								Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long).Show();
-								return false;
-							}
-							
-						}
-						catch (Exception e)
-						{
-							Kp2aLog.LogUnexpectedError(e);
-						}
-						return null;
-					}
-					, delegate
-					{
-						
-					}).Execute();
-            
-                }
-                else
-                {
-                    Toast.MakeText(this, Resource.String.bad_resp, ToastLength.Long).Show();
-                    return;
-                }
-			}
+		    if (requestCode == RequestCodeChallengeYubikey)
+		    {
+		        if (resultCode == Result.Ok)
+		        {
+
+
+		            try
+		            {
+		                byte[] challengeResponse = data.GetByteArrayExtra("response");
+		                if (_currentlyWaitingKey != null)
+		                {
+		                    if ((challengeResponse != null) && (challengeResponse.Length > 0))
+		                    {
+		                        _currentlyWaitingKey.Response = challengeResponse;
+		                    }
+		                    else
+		                        _currentlyWaitingKey.Error = "Did not receive a valid response.";
+
+		                    return;
+
+		                }
+		                else
+		                {
+		                    _challengeProv = new KeeChallengeProv();
+		                    _challengeSecret = _challengeProv.GetSecret(_chalInfo, challengeResponse);
+		                    Array.Clear(challengeResponse, 0, challengeResponse.Length);
+		                }
+
+		            }
+		            catch (Exception e)
+		            {
+		                if (_currentlyWaitingKey != null)
+		                {
+		                    _currentlyWaitingKey.Error = e.Message;
+		                }
+		                Kp2aLog.Log(e.ToString());
+		                Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
+		                return;
+		            }
+
+		            UpdateOkButtonState();
+		            FindViewById(Resource.Id.otpInitView).Visibility = ViewStates.Gone;
+
+		            if (_challengeSecret != null)
+		            {
+		                new LoadingDialog<object, object, object>(this, true,
+		                    //doInBackground
+		                    delegate
+		                    {
+		                        //save aux file
+		                        try
+		                        {
+		                            ChallengeInfo temp = _challengeProv.Encrypt(_challengeSecret);
+		                            if (!temp.Save(_otpAuxIoc))
+		                            {
+		                                Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long)
+		                                    .Show();
+		                                return false;
+		                            }
+
+		                        }
+		                        catch (Exception e)
+		                        {
+		                            Kp2aLog.LogUnexpectedError(e);
+		                        }
+		                        return null;
+		                    }
+		                    , delegate
+		                    {
+
+		                    }).Execute();
+
+		            }
+		            else
+		            {
+		                Toast.MakeText(this, Resource.String.bad_resp, ToastLength.Long).Show();
+		                return;
+		            }
+		        }
+		    }
+		    else
+		    {
+		        if (_currentlyWaitingKey != null)
+		            _currentlyWaitingKey.Error = "Cancelled Yubichallenge.";
+		    }
 		}
 
 		private AuxFileLoader GetAuxFileLoader()
@@ -690,27 +647,12 @@ namespace keepass2android
 
 			protected override void HandleSuccess()
 			{
-				Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
-				chalIntent.PutExtra("challenge", Activity._chalInfo.Challenge);
-				chalIntent.PutExtra("slot", 2);
-				IList<ResolveInfo> activities = Activity.PackageManager.QueryIntentActivities(chalIntent, 0);
-				bool isIntentSafe = activities.Count > 0;
-				if (isIntentSafe)
-				{
-					Activity.StartActivityForResult(chalIntent, RequestCodeChallengeYubikey);
-				}
-				else
-				{
-					AlertDialog.Builder b = new AlertDialog.Builder(Activity);
-					b.SetMessage(Resource.String.YubiChallengeNotInstalled);
-					b.SetPositiveButton(Android.Resource.String.Ok,
-										delegate
-										{
-											Util.GotoUrl(Activity, Activity.GetString(Resource.String.MarketURL) + "com.yubichallenge");
-										});
-					b.SetNegativeButton(Resource.String.cancel, delegate { });
-					b.Create().Show();
-				}
+			    var chalIntent = Activity.TryGetYubichallengeIntentOrPrompt(Activity._chalInfo.Challenge, true);
+
+                if (chalIntent != null)
+			    {
+			        Activity.StartActivityForResult(chalIntent, RequestCodeChallengeYubikey);
+                }
 			}
 
 			protected override string GetErrorMessage()
@@ -746,7 +688,8 @@ namespace keepass2android
 			}
 		}
 
-		private void ShowOtpEntry(IList<string> prefilledOtps)
+
+	    private void ShowOtpEntry(IList<string> prefilledOtps)
 		{
 			FindViewById(Resource.Id.otpInitView).Visibility = ViewStates.Gone;
 			FindViewById(Resource.Id.otpEntry).Visibility = ViewStates.Visible;

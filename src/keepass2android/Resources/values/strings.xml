@@ -1069,6 +1069,7 @@ Initial public release
 		<item>Password + OTP secret (recovery mode)</item>
 		<item>Password + Challenge-Response</item>
 		<item>Password + Challenge-Response secret (recovery mode)</item>
+	  <item>Password + Challenge-Response for KeepassXC database</item>
 	</string-array>
 	<string-array name="AcceptAllServerCertificates_options">
 		<item>Ignore certificate validation failures</item>
