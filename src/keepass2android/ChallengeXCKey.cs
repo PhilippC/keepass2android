@@ -6,7 +6,7 @@ using Exception = System.Exception;
 
 namespace keepass2android
 {
-    class ChallengeXCKey : IUserKey, ISeedBasedUserKey
+    public class ChallengeXCKey : IUserKey, ISeedBasedUserKey
     {
         private readonly int _requestCode;
 
@@ -51,9 +51,15 @@ namespace keepass2android
                     Thread.Sleep(50);
                 }
                 if (Error != null)
-                    throw new Exception("YubiChallenge failed: " + Error);
+                {
+                    var error = Error;
+                    Error = null;
+                    throw new Exception("YubiChallenge failed: " + error);
+                }
 
-                return new ProtectedBinary(true, CryptoUtil.HashSha256(Response));
+                var result = CryptoUtil.HashSha256(Response);
+                Response = null;
+                return new ProtectedBinary(true, result);
             }
         }
 

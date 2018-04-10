@@ -167,7 +167,7 @@ namespace keepass2android
 
             }
 
-            if (resultCode == Result.Ok)
+            if ((GroupEditActivity.RequestCodeGroupEdit == requestCode) && (resultCode == Result.Ok))
             {
                 String groupName = data.Extras.GetString(GroupEditActivity.KeyName);
                 int groupIconId = data.Extras.GetInt(GroupEditActivity.KeyIconId);

@@ -110,7 +110,7 @@ namespace keepass2android
 
 		private const int RequestCodePrepareDbFile = 1000;
 		private const int RequestCodePrepareOtpAuxFile = 1001;
-        private const int RequestCodeChallengeYubikey = 1002;
+        
 		private const int RequestCodeSelectKeyfile = 1003;
 		private const int RequestCodePrepareKeyFile = 1004;
 		private const int RequestCodeSelectAuxFile = 1005;
@@ -118,8 +118,6 @@ namespace keepass2android
 
 		private Task<MemoryStream> _loadDbFileTask;
 		private bool _loadDbTaskOffline; //indicate if preloading was started with offline mode
-
-		private ChallengeXCKey _currentlyWaitingKey;
 
 		private IOConnectionInfo _ioConnection;
 		private String _keyFileOrProvider;
@@ -371,39 +369,24 @@ namespace keepass2android
 			}
 		    if (requestCode == RequestCodeChallengeYubikey)
 		    {
-		        if (resultCode == Result.Ok)
+		        if (_currentlyWaitingKey != null)
 		        {
+                    //ActivityResult was handled in base class already
+		            return;
+		        }
 
+                if (resultCode == Result.Ok)
+		        {
 
 		            try
 		            {
 		                byte[] challengeResponse = data.GetByteArrayExtra("response");
-		                if (_currentlyWaitingKey != null)
-		                {
-		                    if ((challengeResponse != null) && (challengeResponse.Length > 0))
-		                    {
-		                        _currentlyWaitingKey.Response = challengeResponse;
-		                    }
-		                    else
-		                        _currentlyWaitingKey.Error = "Did not receive a valid response.";
-
-		                    return;
-
-		                }
-		                else
-		                {
-		                    _challengeProv = new KeeChallengeProv();
-		                    _challengeSecret = _challengeProv.GetSecret(_chalInfo, challengeResponse);
-		                    Array.Clear(challengeResponse, 0, challengeResponse.Length);
-		                }
-
+		                _challengeProv = new KeeChallengeProv();
+		                _challengeSecret = _challengeProv.GetSecret(_chalInfo, challengeResponse);
+		                Array.Clear(challengeResponse, 0, challengeResponse.Length);
 		            }
 		            catch (Exception e)
 		            {
-		                if (_currentlyWaitingKey != null)
-		                {
-		                    _currentlyWaitingKey.Error = e.Message;
-		                }
 		                Kp2aLog.Log(e.ToString());
 		                Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
 		                return;
@@ -448,11 +431,6 @@ namespace keepass2android
 		                return;
 		            }
 		        }
-		    }
-		    else
-		    {
-		        if (_currentlyWaitingKey != null)
-		            _currentlyWaitingKey.Error = "Cancelled Yubichallenge.";
 		    }
 		}
 

@@ -49,6 +49,8 @@ namespace keepass2android
 	            if (xcKey != null)
 	            {
 	                xcKey.Activity = this;
+	                _currentlyWaitingKey = xcKey;
+
 	            }
 
 	        }
@@ -64,7 +66,8 @@ namespace keepass2android
 	            if (xcKey != null)
 	            {
                     //don't store a pointer to this activity in the static database object to avoid memory leak
-	                xcKey.Activity = null;
+                    if (xcKey.Activity == this) //don't reset if another activity has come to foreground already
+	                    xcKey.Activity = null;
 	            }
 
 	        }
@@ -87,6 +90,37 @@ namespace keepass2android
 			
 			TimeoutHelper.Resume(this);
 		}
+
+	    public const int RequestCodeChallengeYubikey = 793;
+
+	    protected ChallengeXCKey _currentlyWaitingKey;
+
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+	    {
+	        base.OnActivityResult(requestCode, resultCode, data);
+	        if ((requestCode == RequestCodeChallengeYubikey) && (_currentlyWaitingKey != null))
+	        {
+	            if (resultCode == Result.Ok)
+	            {
+	                byte[] challengeResponse = data.GetByteArrayExtra("response");
+	                if ((challengeResponse != null) && (challengeResponse.Length > 0))
+	                {
+	                    _currentlyWaitingKey.Response = challengeResponse;
+	                }
+	                else
+	                    _currentlyWaitingKey.Error = "Did not receive a valid response.";
+	                    
+
+	            }
+	            else
+                {
+                    _currentlyWaitingKey.Error = "Cancelled Yubichallenge.";
+                }
+	            
+            }
+
+	    }
 
 
 	    public Intent TryGetYubichallengeIntentOrPrompt(byte[] challenge, bool promptToInstall)
