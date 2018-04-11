@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using Android.Content;
 using Android.OS;
 using Java.IO;
 using KeePassLib.Serialization;
+using KeePassLib.Utility;
 
 namespace keepass2android.Io
 {
@@ -125,5 +127,53 @@ namespace keepass2android.Io
 				return ctx.FilesDir;
 		}
 
-	}
+        //creates a local ioc where the sourceIoc can be stored to
+	    public static IOConnectionInfo GetInternalIoc(IOConnectionInfo sourceIoc, Context ctx)
+	    {
+	        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(ctx);
+	        string targetPath = UrlUtil.GetFileName(sourceIoc.Path);
+	        targetPath = targetPath.Trim("|\\?*<\":>+[]/'".ToCharArray());
+	        if (targetPath == "")
+	            targetPath = "internal";
+	        if (new File(internalDirectory, targetPath).Exists())
+	        {
+	            int c = 1;
+	            var ext = UrlUtil.GetExtension(targetPath);
+	            var filenameWithoutExt = UrlUtil.StripExtension(targetPath);
+	            do
+	            {
+	                c++;
+	                targetPath = filenameWithoutExt + c;
+	                if (!String.IsNullOrEmpty(ext))
+	                    targetPath += "." + ext;
+	            } while (new File(internalDirectory, targetPath).Exists());
+	        }
+	        return IOConnectionInfo.FromPath(new File(internalDirectory, targetPath).CanonicalPath);
+        }
+
+	    public static IOConnectionInfo ImportFileToInternalDirectory(IOConnectionInfo sourceIoc, Context ctx, IKp2aApp app)
+	    {
+	        var targetIoc = GetInternalIoc(sourceIoc, ctx);
+
+
+            IoUtil.Copy(targetIoc, sourceIoc, app);
+	        return targetIoc;
+	    }
+
+	    public static string GetIocPrefKey(IOConnectionInfo ioc, string suffix)
+	    {
+	        var iocAsHexString = IocAsHexString(ioc);
+
+	        return "kp2a_ioc_key_" + iocAsHexString + suffix;
+	    }
+
+
+	    public static string IocAsHexString(IOConnectionInfo ioc)
+	    {
+	        SHA256Managed sha256 = new SHA256Managed();
+	        string iocAsHexString =
+	            MemUtil.ByteArrayToHexString(sha256.ComputeHash(Encoding.Unicode.GetBytes(ioc.Path.ToCharArray())));
+	        return iocAsHexString;
+	    }
+    }
 }

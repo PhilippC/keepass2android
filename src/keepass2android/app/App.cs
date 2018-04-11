@@ -39,6 +39,8 @@ using TwofishCipher;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
 using keepass2android.addons.OtpKeyProv;
+using KeePassLib.Interfaces;
+using KeePassLib.Utility;
 #if !NoNet
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
@@ -160,11 +162,68 @@ namespace keepass2android
 
 
 
-		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
-		{
-			_db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
+	    public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey,
+	        ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
+	    {
+	        var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+	        var createBackup = prefs.GetBoolean(Application.Context.GetString(Resource.String.CreateBackups_key), true);
 
-			UpdateOngoingNotification();
+	        MemoryStream backupCopy = new MemoryStream();
+	        if (createBackup)
+	        {
+
+	            memoryStream.CopyTo(backupCopy);
+	            backupCopy.Seek(0, SeekOrigin.Begin);
+	            //reset stream if we need to reuse it later:
+	            memoryStream.Seek(0, SeekOrigin.Begin);
+	        }
+
+
+	        _db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
+
+		    if (createBackup)
+            { 
+		        statusLogger.UpdateMessage(Application.Context.GetString(Resource.String.UpdatingBackup));
+		        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(Application.Context);
+                string baseDisplayName = App.Kp2a.GetFileStorage(ioConnectionInfo).GetDisplayName(ioConnectionInfo);
+                string targetPath = baseDisplayName;
+		        var charsToRemove = "|\\?*<\":>+[]/'";
+		        foreach (char c in charsToRemove)
+		        {
+		            targetPath = targetPath.Replace(c.ToString(), string.Empty);
+		        }
+                if (targetPath == "")
+		            targetPath = "local_backup";
+		       
+		        var targetIoc = IOConnectionInfo.FromPath(new Java.IO.File(internalDirectory, targetPath).CanonicalPath);
+
+                using (var transaction = new LocalFileStorage(App.Kp2a).OpenWriteTransaction(targetIoc, false))
+		        {
+		            var file = transaction.OpenFile();
+		            backupCopy.CopyTo(file);
+		            transaction.CommitWrite();
+		        }
+                Java.Lang.Object baseIocDisplayName = baseDisplayName;
+
+                string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(ioConnectionInfo.Path);
+		        App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, Application.Context.
+                    GetString(Resource.String.LocalBackupOf, new Java.Lang.Object[]{baseIocDisplayName}));
+
+                prefs.Edit()
+                    .PutBoolean(IoUtil.GetIocPrefKey(ioConnectionInfo, "has_local_backup"), true)
+                    .PutBoolean(IoUtil.GetIocPrefKey(targetIoc, "is_local_backup"), true)
+                    .Commit();
+
+
+            }
+		    else
+		    {
+		        prefs.Edit()
+		            .PutBoolean(IoUtil.GetIocPrefKey(ioConnectionInfo, "has_local_backup"), false) //there might be an older local backup, but we won't "advertise" this anymore
+		            .Commit();
+            }
+
+            UpdateOngoingNotification();
 		}
 
 		internal void UnlockDatabase()
@@ -301,9 +360,9 @@ namespace keepass2android
 			dialog.Show();
 		}
 
-		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile)
+		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, string displayName = "")
         {
-            FileDbHelper.CreateFile(ioc, keyfile);
+            FileDbHelper.CreateFile(ioc, keyfile, displayName);
         }
 
         public string GetResourceString(UiStringKey key)

@@ -11,9 +11,11 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Preferences;
 using Android.Support.V13.App;
 using Android.Support.V4.App;
 using Java.IO;
+using Java.Util;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using ActivityCompat = Android.Support.V13.App.ActivityCompat;
@@ -379,7 +381,14 @@ namespace keepass2android.Io
 		{
 			if (ioc.IsLocalFile())
 			{
-				if (IsLocalFileFlaggedReadOnly(ioc))
+			    if (IsLocalBackup(ioc))
+			    {
+			        if (reason != null)
+			            reason.Result = UiStringKey.ReadOnlyReason_LocalBackup;
+			        return true;
+			    }
+
+                    if (IsLocalFileFlaggedReadOnly(ioc))
 				{
 					if (reason != null)
 						reason.Result = UiStringKey.ReadOnlyReason_ReadOnlyFlag;
@@ -400,7 +409,20 @@ namespace keepass2android.Io
 			return false;
 		}
 
-		private bool IsLocalFileFlaggedReadOnly(IOConnectionInfo ioc)
+	    private readonly Dictionary<string, bool> _isLocalBackupCache = new Dictionary<string, bool>();
+	    private bool IsLocalBackup(IOConnectionInfo ioc)
+	    {
+	        bool result;
+	        if (_isLocalBackupCache.TryGetValue(ioc.Path, out result))
+	            return result;
+
+	        result = (PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+	            .GetBoolean(IoUtil.GetIocPrefKey(ioc, "is_local_backup"), false));
+	        _isLocalBackupCache[ioc.Path] = result;
+	        return result;
+	    }
+
+	    private bool IsLocalFileFlaggedReadOnly(IOConnectionInfo ioc)
 		{
 			//see http://stackoverflow.com/a/33292700/292233
 			try

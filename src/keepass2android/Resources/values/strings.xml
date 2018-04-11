@@ -360,7 +360,14 @@
   <string name="UseOfflineCache_title">Database caching</string>
 	<string name="UseOfflineCache_summary">Keep a copy of remote database files in the application cache directory. This allows to use remote databases even when offline.</string>
 
-	<string name="AcceptAllServerCertificates_title">SSL certificates</string>
+  <string name="CreateBackups_title">Local backups</string>
+  <string name="CreateBackups_summary">Create a local backup copy after successfully loading a database.</string>
+  <string name="UpdatingBackup">Updating local backup...</string>
+  <string name="LocalBackupOf">Local backup of %1$s</string>
+
+  
+
+  <string name="AcceptAllServerCertificates_title">SSL certificates</string>
 	<string name="AcceptAllServerCertificates_summary">Define the behavior when certificate validation fails. Note: you can install certificates on your device if validation fails!</string>
 	
 	
@@ -636,6 +643,7 @@
   <string name="ReadOnlyReason_PreKitKat">It seems like you opened the file from an external app. This way does not support writing. If you want to make changes to the database, please close the database and select Change database. Then open the file from one of the available options if possible.</string>
 	<string name="ReadOnlyReason_ReadOnlyFlag">The read-only flag is set. Remove this flag if you want to make changes to the database.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Writing is not possible because of restrictions introduced in Android KitKat. If you want to make changes to the database, close the database and select Change database. Then open the file using System file picker.</string>
+  <string name="ReadOnlyReason_LocalBackup">Local backups cannot be modified. You can use Database settings - Export database to export this backup to another location from which you can re-open it. It will then be writable again.</string>
   
   <string name="AddCustomIcon">Add icon from file...</string>
 	
@@ -685,6 +693,15 @@
    &#8226; Make sure you have selected the correct database file.
  
 </string>
+
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+   &#8226; Hint: If you think your database file might be corrupt or you do not remember the master key after modifying it, you can try with the last successfully opened file version by clicking "%1$s" and selecting the local backup.</string>
+
+  <string name="HintLocalBackupOtherError">
+    \n
+    &#8226; Hint: Keepass2Android has stored the last successfully opened file version in internal memory. You can open it by clicking "%1$s" and selecting the local backup.
+  </string>
   
   <string name="CorruptDatabaseHelp">
     File is corrupted. \n

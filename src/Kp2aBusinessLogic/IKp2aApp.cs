@@ -52,7 +52,7 @@ namespace keepass2android
 		/// <summary>
 		/// Tell the app that the file from ioc was opened with keyfile.
 		/// </summary>
-		void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile);
+		void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, string displayName = "");
 
 		/// <summary>
 		/// Creates a new database and returns it

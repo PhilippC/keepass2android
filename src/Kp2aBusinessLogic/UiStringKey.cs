@@ -85,6 +85,7 @@ namespace keepass2android
 		AskAddTemplatesMessage,
 		ReadOnlyReason_PreKitKat,
 		ReadOnlyReason_ReadOnlyFlag,
-		ReadOnlyReason_ReadOnlyKitKat
+		ReadOnlyReason_ReadOnlyKitKat,
+        ReadOnlyReason_LocalBackup
     }
 }
