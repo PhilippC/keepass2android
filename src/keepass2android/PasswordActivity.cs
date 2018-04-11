@@ -308,7 +308,7 @@ namespace keepass2android
 						// to retry with typing the full password, but that's intended to avoid showing the password to a 
 						// a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
 						Handler handler = new Handler();
-						OnFinish onFinish = new AfterLoad(handler, this);
+						OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 						_performingLoad = true;
 						LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider, onFinish);
 						_loadDbFileTask = null; // prevent accidental re-use
@@ -1446,7 +1446,7 @@ namespace keepass2android
 				MakePasswordMaskedOrVisible();
 
 				Handler handler = new Handler();
-				OnFinish onFinish = new AfterLoad(handler, this);
+				OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 				LoadDb task = (KeyProviderType == KeyProviders.Otp)
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider,
 						onFinish, this)
@@ -2023,11 +2023,13 @@ namespace keepass2android
 
 		private class AfterLoad : OnFinish {
 			readonly PasswordActivity _act;
+		    private readonly IOConnectionInfo _ioConnection;
 
-			public AfterLoad(Handler handler, PasswordActivity act):base(handler)
-			{
-				_act = act;
-			}
+		    public AfterLoad(Handler handler, PasswordActivity act, IOConnectionInfo ioConnection):base(handler)
+		    {
+		        _act = act;
+		        _ioConnection = ioConnection;
+		    }
 				
 
 			public override void Run()
@@ -2038,41 +2040,63 @@ namespace keepass2android
 					_act.ClearEnteredPassword();
 					_act.BroadcastOpenDatabase();
 					_act.InvalidCompositeKeyCount = 0;
+				    _act.LoadingErrorCount = 0;
 
 
-					GC.Collect(); // Ensure temporary memory used while loading is collected
+                    GC.Collect(); // Ensure temporary memory used while loading is collected
 				}
 
+			    if (Exception != null)
+			    {
+			        _act.LoadingErrorCount++;
+			    }
 
-				if (Exception is InvalidCompositeKeyException)
-				{
-					_act.InvalidCompositeKeyCount++;
-					if (_act.UsedFingerprintUnlock)
-					{
-						//disable fingerprint unlock if master password changed
-						_act.ClearFingerprintUnlockData();
-						_act.InitFingerprintUnlock();
+			    if ((Exception != null) && (Exception.Message == KeePassLib.Resources.KLRes.FileCorrupted))
+			    {
+			        Message = _act.GetString(Resource.String.CorruptDatabaseHelp);
+			    }
 
-						Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey) + " " + _act.GetString(Resource.String.fingerprint_reenable2);
-					}
-					else
-					{
-						if (_act.InvalidCompositeKeyCount > 1)
-						{
-							Message = _act.GetString(Resource.String.RepeatedInvalidCompositeKeyHelp);
-						}
-						else
-						{
-							Message = _act.GetString(Resource.String.FirstInvalidCompositeKeyError);
-						}
-					}
-					
+                if (Exception is InvalidCompositeKeyException)
+			    {
+			        _act.InvalidCompositeKeyCount++;
+			        if (_act.UsedFingerprintUnlock)
+			        {
+			            //disable fingerprint unlock if master password changed
+			            _act.ClearFingerprintUnlockData();
+			            _act.InitFingerprintUnlock();
 
-				}
-				if ((Exception != null) && (Exception.Message == KeePassLib.Resources.KLRes.FileCorrupted))
-				{
-					Message = _act.GetString(Resource.String.CorruptDatabaseHelp);
-				}
+			            Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey) + " " +
+			                      _act.GetString(Resource.String.fingerprint_reenable2);
+			        }
+			        else
+			        {
+			            if (_act.InvalidCompositeKeyCount > 1)
+			            {
+			                Message = _act.GetString(Resource.String.RepeatedInvalidCompositeKeyHelp);
+			                if (_act._prefs.GetBoolean(IoUtil.GetIocPrefKey(_ioConnection, "has_local_backup"), false))
+			                {
+			                    Java.Lang.Object changeDb = _act.GetString(Resource.String.menu_change_db);
+			                    Message += _act.GetString(Resource.String.HintLocalBackupInvalidCompositeKey, new Java.Lang.Object[] {changeDb});
+			                }
+			            }
+			            else
+			            {
+			                Message = _act.GetString(Resource.String.FirstInvalidCompositeKeyError);
+			            }
+			        }
+
+
+			    }
+			    else if (_act.LoadingErrorCount > 1)
+			    {
+			        if (_act._prefs.GetBoolean(IoUtil.GetIocPrefKey(_ioConnection, "has_local_backup"), false))
+			        {
+			            Java.Lang.Object changeDb = _act.GetString(Resource.String.menu_change_db);
+			            Message += _act.GetString(Resource.String.HintLocalBackupOtherError, new Java.Lang.Object[] { changeDb });
+			        }
+
+                }
+				
 				
 				
 				if ((Message != null) && (Message.Length > 150)) //show long messages as dialog
@@ -2113,8 +2137,12 @@ namespace keepass2android
 		{
 			get; set;
 		}
+	    public int LoadingErrorCount
+	    {
+	        get; set;
+	    }
 
-		private void BroadcastOpenDatabase()
+        private void BroadcastOpenDatabase()
 		{
 			App.Kp2a.BroadcastDatabaseAction(this, Strings.ActionOpenDatabase);
 		}

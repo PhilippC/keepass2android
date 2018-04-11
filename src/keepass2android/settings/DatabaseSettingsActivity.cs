@@ -865,7 +865,7 @@ namespace keepass2android
                 {
                     CompositeKey masterKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
                     var sourceIoc = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
-                    var newIoc = ImportFileToInternalDirectory(sourceIoc);
+                    var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                     ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).ResetIoc(newIoc);
                     var keyfileString = IOConnectionInfo.SerializeToString(newIoc);
                     App.Kp2a.StoreOpenedFileAsRecent(App.Kp2a.GetDb().Ioc, keyfileString);
@@ -934,7 +934,7 @@ namespace keepass2android
                 try
                 {
                     var sourceIoc = App.Kp2a.GetDb().Ioc;
-                    var newIoc = ImportFileToInternalDirectory(sourceIoc);
+                    var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                     return () =>
                     {
                         var builder = new AlertDialog.Builder(Activity);
@@ -966,32 +966,6 @@ namespace keepass2android
                                   copyAndReturnPostExecute
                 ).Execute();
 
-        }
-
-        private IOConnectionInfo ImportFileToInternalDirectory(IOConnectionInfo sourceIoc)
-        {
-	        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(Activity);
-            string targetPath = UrlUtil.GetFileName(sourceIoc.Path);
-            targetPath = targetPath.Trim("|\\?*<\":>+[]/'".ToCharArray());
-            if (targetPath == "")
-                targetPath = "imported";
-			if (new File(internalDirectory, targetPath).Exists())
-            {
-                int c = 1;
-                var ext = UrlUtil.GetExtension(targetPath);
-                var filenameWithoutExt = UrlUtil.StripExtension(targetPath);
-                do
-                {
-                    c++;
-                    targetPath = filenameWithoutExt + c;
-                    if (!String.IsNullOrEmpty(ext))
-                        targetPath += "." + ext;
-				} while (new File(internalDirectory, targetPath).Exists());
-            }
-			var targetIoc = IOConnectionInfo.FromPath(new File(internalDirectory, targetPath).CanonicalPath);
-
-            IoUtil.Copy(targetIoc, sourceIoc, App.Kp2a);
-            return targetIoc;
         }
 
 		

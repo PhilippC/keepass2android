@@ -462,6 +462,15 @@
 				  android:defaultValue="true"
 				  android:title="@string/UseOfflineCache_title"
 				  android:key="@string/UseOfflineCache_key" />
+
+		  <CheckBoxPreference
+		    android:enabled="true"
+		    android:persistent="true"
+		    android:summary="@string/CreateBackups_summary"
+		    android:defaultValue="true"
+		    android:title="@string/CreateBackups_title"
+		    android:key="@string/CreateBackups_key" />
+      
 			<ListPreference
 			  android:key="@string/AcceptAllServerCertificates_key"
 			  android:title="@string/AcceptAllServerCertificates_title"

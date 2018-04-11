@@ -229,12 +229,21 @@ namespace keepass2android
 
 	        public override void BindView(View view, Context context, ICursor cursor)
 	        {
+	            
 	            String path = cursor.GetString(1);
 
 	            TextView textView = view.FindViewById<TextView>(Resource.Id.file_filename);
 	            IOConnectionInfo ioc = new IOConnectionInfo { Path = path };
 	            var fileStorage = _app.GetFileStorage(ioc);
-                textView.Text = fileStorage.GetDisplayName(ioc);
+
+	            String displayName = cursor.GetString(6);
+	            if (string.IsNullOrEmpty(displayName))
+	            {
+	                displayName = fileStorage.GetDisplayName(ioc);
+
+	            }
+
+                textView.Text = displayName;
 	            textView.Tag = ioc.Path;
                 
 	        }
