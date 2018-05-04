@@ -7,11 +7,12 @@ If you think something is missing in the documentation, please create an issue a
 If you store important information using Keepass2Android, you should know a little bit about what's going on:
 * Keepass2Android stores your password in an encrypted file. It is *your responsibility* to backup this file regularly and safely.
 * There is no way for anyone, including the app's author, to access the information stored in your password database without 
-** having the database file
-** knowing the master password (and additional second factor if you chose one)
-This means that **if you forget the master password, your database is lost**! So make sure you remember the password. You might also want to think about:
-** What happens if I have an accident? Should any trusted person be able to access my database?
-** What happens if my phone gets lost or stolen? Do I know how to recover my database from a backup or the cloud?
+  * having the database file
+  * knowing the master password (and additional second factor if you chose one)
+  This means that **if you forget the master password, your database is lost**! So make sure you remember the password and retain any second factor method (if one is used).
+* You might also want to think about:
+  * What happens if I have an accident? Should any trusted person be able to access my database?
+  * What happens if my phone gets lost or stolen? Do I know how to recover my database from a backup or the cloud?
 
 
 # Getting started
