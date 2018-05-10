@@ -77,20 +77,20 @@
   <string name="fingerprint_hint">触摸传感器</string>
   <string name="fingerprint_description">确认以指纹继续</string>
   <string name="fingerprint_fatal">不能安装指纹解锁:</string>
-  <string name="fingerprint_not_recognized">指纹无法识别.请重试</string>
+  <string name="fingerprint_not_recognized">指纹无法识别。请再试一次</string>
   <string name="fingerprint_success">指纹识别成功</string>
-  <string name="fingerprint_os_error">指纹识别需要android 6.0或更新的版本.</string>
-  <string name="fingerprint_hardware_error">未检测到指纹识别硬件.</string>
-  <string name="fingerprint_no_enrolled">你还未在这个设备上登记过指纹.请先去系统中进行设置.</string>
+  <string name="fingerprint_os_error">指纹识别需要 Android 6.0 或更新的版本。</string>
+  <string name="fingerprint_hardware_error">未检测到指纹识别硬件。</string>
+  <string name="fingerprint_no_enrolled">你还未在这个设备上登记过指纹。请先去系统中进行设置。</string>
   <string name="disable_fingerprint_unlock">禁用指纹解锁</string>
   <string name="enable_fingerprint_unlock">启用完整的指纹解锁</string>
   <string name="enable_fingerprint_quickunlock">对快速解锁启用指纹解锁</string>
   <string name="fingerprint_unlock_hint">触摸感应解锁数据库</string>
-  <string name="fingerprint_reenable">请为这个新的主密码重新启用指纹解锁.</string>
-  <string name="enable_fingerprint_unlock_Info">这将保存你的主密码在这台设备上.
-使用android密码存储库来解密和保护
-使用指纹认证.只允许通过你的指纹来解锁你的数据库.</string>
-  <string name="enable_fingerprint_quickunlock_Info">允许使用指纹认证来代替快速解锁代码.不再需要保存任何与你的主密码关联的信息.</string>
+  <string name="fingerprint_reenable">请为这个新的主密码重新启用指纹解锁。</string>
+  <string name="enable_fingerprint_unlock_Info">这将保存你的主密码在这台设备上，
+使用 Android 密码存储库来解密和保护。
+允许通过你的指纹来解锁你的数据库。</string>
+  <string name="enable_fingerprint_quickunlock_Info">允许使用指纹认证来代替快速解锁代码，不再需要保存任何与你的主密码关联的信息。</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间</string>
   <string name="entry_cancel">取消</string>
@@ -144,7 +144,7 @@
   <string name="hint_title">名称</string>
   <string name="hint_url">链接地址</string>
   <string name="hint_override_url">覆盖链接地址</string>
-  <string name="hint_tags">标签1,标签2 </string>
+  <string name="hint_tags">标签1，标签2 </string>
   <string name="hint_username">用户名</string>
   <string name="InvalidPassword">密码或密钥文件无效。</string>
   <string name="invalid_algorithm">无效的算法</string>
@@ -241,7 +241,7 @@
   <string name="version_history">版本历史记录</string>
   <string name="author">Keepass2Android 由 Philipp Crocoll 开发。</string>
   <string name="further_authors">感谢 %1$s 贡献的代码。</string>
-  <string name="designers">感谢  %1$s 提供的图标和界面设计.</string>
+  <string name="designers">感谢  %1$s 提供的图标和界面设计。</string>
   <string name="credit_plugin1">包含在 KP2A 中的双鱼算法插件是由 Scott Greenberg 为 Keepass 开发的。</string>
   <string name="credit_android_filechooser">Android 文件选择器是由 Hai Bison 开发的</string>
   <string name="credit_keyboard">KP2A 键盘基于 Android 开放源代码项目的姜饼键盘，并使用黑客 Klaus Weidner 的键盘插件管理器代码。</string>
@@ -311,9 +311,9 @@
   <string name="LockWhenNavigateBack_summary">当通过点按返回键离开本应用时锁定数据库</string>
   <string name="NoDonateOption_title">隐藏捐赠选项</string>
   <string name="NoDonateOption_summary">本设置为捐赠者设定。只有当使用 Keepass2Android 一段时间后才可用。</string>
-  <string name="NoDonateOption_question">若没有捐款，本应用就不存在也不会有不断地改进！若您尚未捐赠，请考虑现在捐赠吧！</string>
+  <string name="NoDonateOption_question">若没有捐款，本应用就不会存在，且不会不断地改进！若您尚未捐赠，请考虑现在捐赠吧！</string>
   <string name="NoDonationReminder_title">不再要求捐赠</string>
-  <string name="NoDonationReminder_summary">我不会捐赠或已经捐赠. 请不要继续要求捐赠, 即便是在开发者的生日.</string>
+  <string name="NoDonationReminder_summary">我不想捐赠或已经捐赠过了。哪怕今天是开发者的生日也一样，别再问我捐赠的问题了。</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
   <string name="UseOfflineCache_summary">在程序缓存目录保存一份远程数据库文件副本。这允许离线的时候使用远程数据库。</string>
   <string name="AcceptAllServerCertificates_title">SSL 证书</string>
@@ -437,10 +437,10 @@
   <string name="filestoragename_content">系统文件选择器</string>
   <string name="filestorage_setup_title">初始化文件访问</string>
   <string name="database_location">数据库位置</string>
-  <string name="help_database_location">您可以在您的 Andr​​oid 设备或云端存储你的数据库（非离线版本）。 即使您处于脱机状态 Keepass2Android 也依然可以使用。数据库采用安全的 AES 256 位加密，若没有您的密码任何人都无法访问它。我们建议选择存储在 Dropbox：在所有设备上皆可访问，甚至还提供了文件的早期版本备份。</string>
+  <string name="help_database_location">您可以在您的 Android 设备或云端存储你的数据库（非离线版本）。 即使您处于脱机状态 Keepass2Android 也依然可以使用。数据库采用安全的 AES 256 位加密，若没有您的密码任何人都无法访问它。我们建议选择存储在 Dropbox：在所有设备上皆可访问，甚至还提供了文件的早期版本备份。</string>
   <string name="hint_database_location">选择数据库存储的位置：</string>
   <string name="button_change_location">更改位置</string>
-  <string name="help_quickunlock">一旦启用,即便数据库被锁定,Keepass2Android将停在后台运行.这样允许仅用主密码的一小部分来解锁数据库.</string>
+  <string name="help_quickunlock">一旦启用，即便数据库被锁定，Keepass2Android 将仍在后台运行。这样允许仅用主密码的一小部分来解锁数据库。</string>
   <string name="master_password">主密码</string>
   <string name="help_master_password">您的数据库是使用您在此处输入的密码进行加密的。为了保证数据库的安全请选择强密码 ！建议：同时使用大小写英文字母、数字及特殊字符。</string>
   <string name="hint_master_password">请选择一个主密码来保护您的数据库：</string>
@@ -498,17 +498,17 @@
   <string name="CertificateFailure">错误： 服务器证书验证失败！在您的设备上安装相应的根证书，或请参阅设置 ！</string>
   <string name="export_fileformats_title">选择文件格式</string>
   <string name="killed_by_os">对不起 ！Keepass2Android 被系统结束进程！出于安全原因，Keepass2Android 不在磁盘上存留证书，所以您需要重新打开您的数据库。注：出现该问题的几率极低。如果出现了，请给我发送我邮件至 crocoapps@gmail.com</string>
-  <string name="FileIsTemporarilyAvailable">该文件暂时仅供 Keepass2Android使用。</string>
+  <string name="FileIsTemporarilyAvailable">该文件暂时仅供 Keepass2Android 使用。</string>
   <string name="FileIsReadOnly">您选择的文件是只读的。</string>
-  <string name="FileIsReadOnlyOnKitkat">在 Keepass2Android中，由于 Android 4.4 + 的限制，您选定的文件是只读的 。</string>
+  <string name="FileIsReadOnlyOnKitkat">在 Keepass2Android 中，由于 Android 4.4 + 的限制，您选定的文件是只读的。</string>
   <string name="CopyFileRequired">若要使用它，您必须将其复制到另一个位置。</string>
   <string name="CopyFileRequiredForEditing">若要编辑它，必须将该文件复制到另一个位置。</string>
   <string name="ClickOkToSelectLocation">单击确定以选择要复制文件的位置。</string>
   <string name="FileReadOnlyTitle">数据库时只读的.</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android 已在只读模式打开当前数据库.</string>
-  <string name="ReadOnlyReason_PreKitKat">这看起来像你从一个外部app打开这个文件.这种方式不支持写入.如果你想修改数据库,请先关闭数据库并且选择修改数据库.然后如果可能的话从一个可用的选项打开这个文件.</string>
-  <string name="ReadOnlyReason_ReadOnlyFlag">已经设置了只读标记.如果你想修改数据库请解除这个标记.</string>
-  <string name="ReadOnlyReason_ReadOnlyKitKat">因为引入了android KitKat 的限制不能进行写入.如果你想对数据库进行修改,请先关闭数据库然后选择修改数据库.接下来使用文件系统选择器打开文件.</string>
+  <string name="ReadOnlyReason_PreKitKat">看起来你是从一个外部应用打开的这个文件，这种方式不支持写入。如果你想修改数据库，请先关闭数据库并且选择修改数据库，然后再通过其他方式打开这个文件。</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">已经设置了只读标记。如果你想修改数据库，请先解除这个标记。</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">因为 Android KitKat 的限制，无法进行写入。如果你想对数据库进行修改，请先关闭数据库然后选择修改数据库，然后使用文件系统选择器打开本文件。</string>
   <string name="AddCustomIcon">从文件添加图标...</string>
   <string name="CopyingFile">正在复制文件...</string>
   <string name="DuplicateTitle">副本</string>
@@ -532,16 +532,16 @@
 </string>
   <string name="ChangeLog_title">更新记录</string>
   <string name="AskAddTemplatesTitle">增加模板</string>
-  <string name="AskAddTemplatesMessage">Keepass2Android包含了将电子邮箱账户,无线局域网密码,安全记录和别的更多的连入数据库模板.你想把这些加入你的数据库吗?如果你选择了否,你可以稍后在数据库设置中添加它们.</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android 包含了电子邮箱账户，无线局域网密码，安全记事等模板。想把这些加入你的数据库吗？如果不想的话，你可以稍后在数据库设置中添加它们。</string>
   <string name="AddTemplates_pref">添加模板到数据库中</string>
   <string name="PreviewWarning">请注意！这是一个预览版本，可能会有一些缺陷！如果您遇到“任何”意外，请告诉我（通过Google+ beta tester group或电子邮件）。</string>
   <string name="Continue">继续</string>
   <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
-  <string name="FirstInvalidCompositeKeyError">无效的组合键!请重试.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">无效的组合键!请按照下面的步骤解锁你的数据库:
- •确保你输入了正确的密码.使用眼睛图标即可显示你输入的密码.
- •确保你已经选择了正确的密码格式.确保使用的类型与创建的数据库匹配.
- •确保你已经选择了正确的数据库文件.</string>
+  <string name="FirstInvalidCompositeKeyError">无效的组合键！请重试。</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">无效的组合键！请按照下面的步骤解锁你的数据库：
+ •确保你输入了正确的密码。使用眼睛图标可显示你输入的密码。
+ •确保你已经选择了正确的密码格式。确保使用的类型与创建的数据库匹配。
+ •确保你已经选择了正确的数据库文件。</string>
   <string name="CorruptDatabaseHelp">文件已损坏。\n
  在这里是一些提示，这可能会有助于诊断问题: \n 
 • 如果您通过 USB (MTP 模式)复制该文件，请用类型 MyPhoneExplorer 这样的工具再试一次。在某些情况下MTP会 截断文件 \n
@@ -554,7 +554,7 @@
   <string name="ErrorReportDisable">禁用</string>
   <string name="ErrorReportAsk">出错后询问</string>
   <string name="ErrorReportPrefTitle">发送错误报告</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入。</string>
   <string name="ChangeLog_1_02">
   版本 1.02\n 
   * 几项安全改进。非常感谢jean-baptiste.cayrou@thalesgroup.com 和 vincent.fargues@thalesgroup.com 的安全报告与合作 ！ \n 
@@ -606,7 +606,7 @@
  * 允许复制多个登入数据库条目 \n 
  *  名字字段自动填充模式\n
  * 允许从最近的文件删除项目 \n 
- * 在 Android 6.0运行时请求权限\n 
+ * 在 Android 6.0 运行时请求权限\n 
  * Bug 修复 (在内置键盘选择图标时) \n 
  * 包括了发送错误 reports 选项 \n
  * 增加帮助消息在几个地方\n  </string>
