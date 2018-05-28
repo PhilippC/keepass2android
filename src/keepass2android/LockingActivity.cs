@@ -123,27 +123,12 @@ namespace keepass2android
 	    }
 
 
-	    public Intent TryGetYubichallengeIntentOrPrompt(byte[] challenge, bool promptToInstall)
+	    public Intent GetYubichallengeIntent(byte[] challenge)
 	    {
-	        Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
+	        Intent chalIntent = new Intent(this, typeof(YubiChallengeActivity));
 	        chalIntent.PutExtra("challenge", challenge);
-	        chalIntent.PutExtra("slot", 2);
-	        IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
-	        bool isIntentSafe = activities.Count > 0;
-	        if (isIntentSafe)
-	        {
-	            return chalIntent;
-	        }
-	        if (promptToInstall)
-	        {
-	            AlertDialog.Builder b = new AlertDialog.Builder(this);
-	            b.SetMessage(Resource.String.YubiChallengeNotInstalled);
-	            b.SetPositiveButton(Android.Resource.String.Ok,
-	                delegate { Util.GotoUrl(this, GetString(Resource.String.MarketURL) + "com.yubichallenge"); });
-	            b.SetNegativeButton(Resource.String.cancel, delegate { });
-	            b.Create().Show();
-	        }
-	        return null;
+	        return chalIntent;
+	        
 	    }
     }
 }

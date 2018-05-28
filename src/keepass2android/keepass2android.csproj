@@ -307,6 +307,7 @@
     <Compile Include="AttachmentContentProvider.cs" />
     <Compile Include="app\AppTask.cs" />
     <Compile Include="views\TextWithHelp.cs" />
+    <Compile Include="YubiChallengeActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\searchable.xml">

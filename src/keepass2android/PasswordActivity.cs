@@ -625,7 +625,7 @@ namespace keepass2android
 
 			protected override void HandleSuccess()
 			{
-			    var chalIntent = Activity.TryGetYubichallengeIntentOrPrompt(Activity._chalInfo.Challenge, true);
+			    var chalIntent = Activity.GetYubichallengeIntent(Activity._chalInfo.Challenge);
 
                 if (chalIntent != null)
 			    {
