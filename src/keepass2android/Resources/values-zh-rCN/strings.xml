@@ -7,10 +7,11 @@
   <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的密码管理应用。</string>
   <string name="CreditsText">用户界面基于由 Brian Pellin 开发的 KeepassDroid。数据库操作的代码是基于 Dominik Reichl 开发的KeePass。根据google的创作共用3.0许可中的条款中的创建和申请条例的描述对android机器人进行了转载或者修改。</string>
   <string name="CreditsTextSFTP">SFTP 由 JCraft，Inc. 创建的 JSch 库（基于BSD许可证）来支持</string>
+  <string name="CreditsIcons">锤子图标是由John Caserta通过Noun Project创建的。企鹅图标是由Adriano Emerick通过Noun Project创建的。羽毛图标是由 Jon Testa通过Noun Project创建的。苹果图标是由Ava Rowell通过Noun Project创建的。图片图标来自 https://icons8.com/icon/5570/Picture 。</string>
   <string name="accept">接受</string>
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
-  <string name="edit_entry">编辑项目</string>
+  <string name="edit_entry">编辑条目</string>
   <string name="add_url_entry">创建URL条目</string>
   <string name="add_group">添加群组</string>
   <string name="add_group_title">添加群组</string>
@@ -30,7 +31,7 @@
   <string name="application_settings">应用程序设置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜索结果中显示群组名</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜索结果中条目标题下显示群组名。如果几个条目具有相同的名称时会很有用。</string>
-  <string name="NavigationToGroupCompleted_message">显示当前群组：%1$s</string>
+  <string name="NavigationToGroupCompleted_message">当前显示群组：%1$s</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
   <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
   <string name="Entry_singular">1个项目</string>
@@ -39,7 +40,7 @@
   <string name="IconSet_install">发现更多...</string>
   <string name="security_prefs">安全</string>
   <string name="display_prefs">显示</string>
-  <string name="password_access_prefs">密码输入口</string>
+  <string name="password_access_prefs">密码输入接口</string>
   <string name="QuickUnlock_prefs">快速解锁</string>
   <string name="FileHandling_prefs">文件操作</string>
   <string name="keyboard_prefs">键盘</string>
@@ -75,22 +76,24 @@
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">复制到剪贴板</string>
   <string name="fingerprint_hint">触摸传感器</string>
-  <string name="fingerprint_description">确认以指纹继续</string>
-  <string name="fingerprint_fatal">不能安装指纹解锁:</string>
-  <string name="fingerprint_not_recognized">指纹无法识别.请重试</string>
+  <string name="fingerprint_description">确认指纹以继续</string>
+  <string name="fingerprint_fatal">无法设置指纹解锁：</string>
+  <string name="fingerprint_not_recognized">指纹无法识别。请重试</string>
   <string name="fingerprint_success">指纹识别成功</string>
-  <string name="fingerprint_os_error">指纹识别需要android 6.0或更新的版本.</string>
-  <string name="fingerprint_hardware_error">未检测到指纹识别硬件.</string>
-  <string name="fingerprint_no_enrolled">你还未在这个设备上登记过指纹.请先去系统中进行设置.</string>
+  <string name="fingerprint_os_error">指纹识别需要Android 6.0或更新的版本。</string>
+  <string name="fingerprint_hardware_error">未检测到指纹识别硬件。</string>
+  <string name="fingerprint_no_enrolled">你还未在这个设备上录入过指纹。请先前往系统设置。</string>
   <string name="disable_fingerprint_unlock">禁用指纹解锁</string>
   <string name="enable_fingerprint_unlock">启用完整的指纹解锁</string>
   <string name="enable_fingerprint_quickunlock">对快速解锁启用指纹解锁</string>
   <string name="fingerprint_unlock_hint">触摸感应解锁数据库</string>
-  <string name="fingerprint_reenable">请为这个新的主密码重新启用指纹解锁.</string>
-  <string name="enable_fingerprint_unlock_Info">这将保存你的主密码在这台设备上.
-使用android密码存储库来解密和保护
-使用指纹认证.只允许通过你的指纹来解锁你的数据库.</string>
-  <string name="enable_fingerprint_quickunlock_Info">允许使用指纹认证来代替快速解锁代码.不再需要保存任何与你的主密码关联的信息.</string>
+  <string name="fingerprint_unlock_failed">指纹解锁失败。解密密钥已被 Android 操作系统标记为失效。这通常发生在注册了新的指纹或更改了安全设置后。 </string>
+  <string name="fingerprint_disabled_wrong_masterkey">解锁数据库失败：复合密钥无效。由于存储的主密钥不再有效，指纹解锁已被禁用。 </string>
+  <string name="fingerprint_reenable">请为这个新的主密码重新启用指纹解锁。</string>
+  <string name="fingerprint_reenable2">请用密码解锁，然后在数据库设置中重新启用指纹解锁。</string>
+  <string name="FingerprintInitFailed">初始化指纹传感器失败。 </string>
+  <string name="enable_fingerprint_unlock_Info">此选项将会把主密码保存在这台设备上，使用Android密钥库加密，并使用指纹授权进行保护。只有你的指纹才能解锁数据库。</string>
+  <string name="enable_fingerprint_quickunlock_Info">允许使用指纹认证来代替快速解锁代码。不再需要保存任何与你的主密码关联的信息。</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间</string>
   <string name="entry_cancel">取消</string>
@@ -123,7 +126,7 @@
   <string name="error_invalid_path">路径无效。</string>
   <string name="error_no_name">用户名不能为空。</string>
   <string name="error_nopass">密码或者密钥文件不能为空。</string>
-  <string name="error_pass_gen_type">至少必须选择一个密码生成类型</string>
+  <string name="error_pass_gen_type">必须选择至少一个密码生成类型</string>
   <string name="error_pass_match">密码不匹配。</string>
   <string name="error_rounds_not_number">密钥加密次数必须为数字。</string>
   <string name="error_param_not_number">参数必须是一个数字</string>
@@ -203,6 +206,7 @@
   <string name="remember_keyfile_summary">记住密钥文件的位置</string>
   <string name="remember_keyfile_title">保存密钥文件</string>
   <string name="remove_from_filelist">移除</string>
+  <string name="edit">编辑</string>
   <string name="rijndael">Rijndael 加密（AES）</string>
   <string name="root">管理员权限</string>
   <string name="KeyDerivFunc">密匙派生函数</string>
@@ -244,7 +248,7 @@
   <string name="designers">感谢  %1$s 提供的图标和界面设计.</string>
   <string name="credit_plugin1">包含在 KP2A 中的双鱼算法插件是由 Scott Greenberg 为 Keepass 开发的。</string>
   <string name="credit_android_filechooser">Android 文件选择器是由 Hai Bison 开发的</string>
-  <string name="credit_keyboard">KP2A 键盘基于 Android 开放源代码项目的姜饼键盘，并使用黑客 Klaus Weidner 的键盘插件管理器代码。</string>
+  <string name="credit_keyboard">KP2A 键盘基于 Android 开放源代码项目的姜饼键盘，并使用 Klaus Weidner 的黑客键盘插件管理器代码。</string>
   <string name="please_note">请注意</string>
   <string name="contributors">贡献者</string>
   <string name="regular_expression">正则表达式</string>
@@ -266,6 +270,7 @@
   <string name="enter_filename_details_create_import">所导入的文件将在下一步被选中</string>
   <string name="enable_quickunlock">启用快速解锁</string>
   <string name="QuickUnlock_label">输入你密码的最后  %1$d 个字符</string>
+  <string name="QuickUnlock_label_secure">输入快速解锁密码：</string>
   <string name="QuickUnlock_button">快速解锁！</string>
   <string name="QuickUnlock_lockButton">关闭数据库</string>
   <string name="QuickUnlockDefaultEnabled_title">默认启用快速解锁</string>
@@ -278,6 +283,8 @@
   <string name="QuickUnlockIconHidden16_summary">快速解锁需要一条通知以能正常运行。选中本选项以显示一条不带图标的通知。</string>
   <string name="QuickUnlockLength_title">快速解锁密钥的长度</string>
   <string name="QuickUnlockLength_summary">快速解锁密码的最大长度</string>
+  <string name="QuickUnlockHideLength_title">隐藏快速解锁密码长度</string>
+  <string name="QuickUnlockHideLength_summary">若启用，快速解锁所需的密码长度不会再显示在快速解锁界面上。</string>
   <string name="QuickUnlock_fail">解锁失败：密码错误！</string>
   <string name="BinaryDirectory_title">文件附件目录</string>
   <string name="BinaryDirectory_summary">附件所保存到的目录位置</string>
@@ -285,6 +292,7 @@
   <string name="SaveAttachmentDialog_text">请选择保存该附件的位置。</string>
   <string name="SaveAttachmentDialog_save">保存到 SD 卡</string>
   <string name="SaveAttachmentDialog_open">保存到缓存并打开</string>
+  <string name="ShowAttachedImage">在内部图像查看器中显示</string>
   <string name="SaveAttachment_doneMessage">保存文件到 %1$s 。</string>
   <string name="SaveAttachment_Failed">无法保存附件到  %1$s 。</string>
   <string name="AddUrlToEntryDialog_title">记忆搜索文本？</string>
@@ -309,6 +317,8 @@
   <string name="ClearPasswordOnLeave_summary">当没有解锁数据库就退出时，清除已输入的主密码。</string>
   <string name="LockWhenNavigateBack_title">离开应用时锁定</string>
   <string name="LockWhenNavigateBack_summary">当通过点按返回键离开本应用时锁定数据库</string>
+  <string name="ActivateSearchViewOnStart_title">启动时自动激活搜索区域</string>
+  <string name="ActivateSearchViewOnStart_summary">当进入分组视图或开始搜索条目时自动将焦点转至搜索区域</string>
   <string name="NoDonateOption_title">隐藏捐赠选项</string>
   <string name="NoDonateOption_summary">本设置为捐赠者设定。只有当使用 Keepass2Android 一段时间后才可用。</string>
   <string name="NoDonateOption_question">若没有捐款，本应用就不存在也不会有不断地改进！若您尚未捐赠，请考虑现在捐赠吧！</string>
@@ -316,6 +326,10 @@
   <string name="NoDonationReminder_summary">我不会捐赠或已经捐赠. 请不要继续要求捐赠, 即便是在开发者的生日.</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
   <string name="UseOfflineCache_summary">在程序缓存目录保存一份远程数据库文件副本。这允许离线的时候使用远程数据库。</string>
+  <string name="CreateBackups_title">本地备份</string>
+  <string name="CreateBackups_summary">在成功进入数据库后创建本地备份。</string>
+  <string name="UpdatingBackup">正在更新本地备份...</string>
+  <string name="LocalBackupOf">本地备份：%1$s</string>
   <string name="AcceptAllServerCertificates_title">SSL 证书</string>
   <string name="AcceptAllServerCertificates_summary">定义当证书验证失败时的行为。注意：如果验证失败您可以在您的设备上安装证书！</string>
   <string name="ClearOfflineCache_title">清除缓存？</string>
@@ -324,10 +338,14 @@
   <string name="CheckForFileChangesOnSave_summary">检查文件是否在保存变更之前被外部修改。</string>
   <string name="CheckForDuplicateUuids_title">检查重复的 UUID</string>
   <string name="CheckForDuplicateUuids_summary">通过检查数据库文件是否有多个相同 ID 的项目，来判断数据库是否损坏。这可能会导致意外的行为。</string>
-  <string name="ShowCopyToClipboardNotification_title">剪贴板的通知</string>
+  <string name="ShowCopyToClipboardNotification_title">剪贴板通知</string>
   <string name="ShowCopyToClipboardNotification_summary">让用户名和密码可通过通知栏和剪贴板访问。谨防密码嗅探器 ！</string>
   <string name="ShowSeparateNotifications_title">独立的通知</string>
   <string name="ShowSeparateNotifications_summary">为复制账户信息和激活键盘分别显示通知</string>
+  <string name="AccServiceAutoFill_prefs">自动填充服务（辅助功能）</string>
+  <string name="AutoFill_prefs">自动填充服务</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A 键盘通知</string>
+  <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取 （推荐）。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切换键盘</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">当从浏览器搜索或键盘后可用通过 KP2A 键盘输入时，打开键盘选择对话框。</string>
   <string name="kp2a_switch_rooted">自动切换键盘</string>
@@ -340,6 +358,10 @@
   <string name="AutoSwitchBackKeyboard_summary">没有打开条目时，切换回原来的键盘。</string>
   <string name="ShowUnlockedNotification_title">解锁时通知图标</string>
   <string name="ShowUnlockedNotification_summary">当数据库处于解锁状态栏持续显示通知。</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8.0的通知引入了新的行为。若你想隐藏Keepass2Android的通知图标，请前往系统设置，将通知的重要性设为中等。</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">打开设置</string>
+  <string name="DontCare">无所谓</string>
+  <string name="DocumentAccessRevoked">Keepass2Android无法访问此文件。文件可能已被删除，或其访问权限受限。请使用“更改数据库”重新打开文件。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
   <string name="PreloadDatabaseEnabled_summary">当输入密码项时启动后台加载或下载数据库文件。</string>
   <string name="AskOverwriteBinary">是否要以相同的名字覆盖现有的文件？</string>
@@ -349,7 +371,7 @@
   <string name="AttachFailed">未能添加附件。</string>
   <string name="RecycleBin">回收站</string>
   <string name="AskDeletePermanentlyEntry">是否要永久删除此条目？按否取消。</string>
-  <string name="AskDeletePermanentlyGroup">是否要永久删除此群组？按否取消操作。</string>
+  <string name="AskDeletePermanentlyGroup">是否要永久删除此群组？按否将其放入回收站。</string>
   <string name="AskDeletePermanentlyItems">你想要永久删除选定的元素？选否回到垃圾箱。</string>
   <string name="AskDeletePermanentlyEntryNoRecycle">你想完全的删除这个登陆记录吗?</string>
   <string name="AskDeletePermanentlyGroupNoRecycle">你想永久的删除这个组吗?</string>
@@ -369,7 +391,7 @@
   <string name="DeletingItems">删除元素中&#8230;</string>
   <string name="SettingPassword">设置密码...</string>
   <string name="UndoingChanges">撤消更改...</string>
-  <string name="TransformingKey">变更主键...</string>
+  <string name="TransformingKey">变更主密钥...</string>
   <string name="DecodingDatabase">解码数据库...</string>
   <string name="ParsingDatabase">解析数据库...</string>
   <string name="CheckingTargetFileForChanges">检查目标文件的更改...</string>
@@ -440,13 +462,13 @@
   <string name="help_database_location">您可以在您的 Andr​​oid 设备或云端存储你的数据库（非离线版本）。 即使您处于脱机状态 Keepass2Android 也依然可以使用。数据库采用安全的 AES 256 位加密，若没有您的密码任何人都无法访问它。我们建议选择存储在 Dropbox：在所有设备上皆可访问，甚至还提供了文件的早期版本备份。</string>
   <string name="hint_database_location">选择数据库存储的位置：</string>
   <string name="button_change_location">更改位置</string>
-  <string name="help_quickunlock">一旦启用,即便数据库被锁定,Keepass2Android将停在后台运行.这样允许仅用主密码的一小部分来解锁数据库.</string>
+  <string name="help_quickunlock">一旦启用，即便数据库被锁定，Keepass2Android将仍然后台运行。这样允许仅用主密码的一小部分来解锁数据库。</string>
   <string name="master_password">主密码</string>
   <string name="help_master_password">您的数据库是使用您在此处输入的密码进行加密的。为了保证数据库的安全请选择强密码 ！建议：同时使用大小写英文字母、数字及特殊字符。</string>
   <string name="hint_master_password">请选择一个主密码来保护您的数据库：</string>
   <string name="key_file">密钥文件</string>
-  <string name="help_key_file">密钥文件基本上是存储在一个文件中。密钥文件通常比密码复杂和可靠得多，但是也难以保持机密。如果您的密钥保存在云端，这将使得安全性大大降低。重要提示：创建密钥文件后不要修改它。</string>
-  <string name="hint_key_file">选择是否用密钥文件而不是您的主密码：</string>
+  <string name="help_key_file">密钥文件简单来说就是保存成文件的密码。密钥文件通常比密码复杂和可靠得多，但是也更难将其隐藏。如果您将数据库保存在云端，千万不要把密钥文件也放上去！这样做会使密钥文件变得毫无意义！重要提示：创建数据库后，不要对密钥文件做出修改。</string>
+  <string name="hint_key_file">勾选以在使用主密码之余额外使用一个密钥文件：</string>
   <string name="use_key_file">使用密钥文件</string>
   <string name="error_adding_keyfile">添加密钥文件时出错 ！</string>
   <string name="init_otp">加载一次性密码辅助文件......</string>
@@ -473,6 +495,10 @@
   <string name="TrayTotp_SettingsField_title">TOTP 字段名称设置</string>
   <string name="TrayTotp_SettingsField_summary">在这里输入设置字段的字段名称 TrayTotp</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">调试用日志文件</string>
+  <string name="DebugLog_title">使用日志文件</string>
+  <string name="DebugLog_summary">将应用输出写入本地日志文件</string>
+  <string name="DebugLog_send">发送调试日志...</string>
   <string name="loading">载入中...</string>
   <string name="plugins">插件</string>
   <string name="plugin_packagename">包名称：</string>
@@ -482,6 +508,7 @@
   <string name="plugin_disabled">已禁用</string>
   <string name="plugin_web">发现在线插件</string>
   <string name="plugin_scopes">作用域</string>
+  <string name="not_enabled">未启用</string>
   <string name="query_credentials_for_url">%1$s 正在请求 %2$s 的证书</string>
   <string name="query_credentials">%1$s 正在请求证书。请选择一个条目。</string>
   <string name="plugin_enabled_checkbox">已启用</string>
@@ -509,6 +536,7 @@
   <string name="ReadOnlyReason_PreKitKat">这看起来像你从一个外部app打开这个文件.这种方式不支持写入.如果你想修改数据库,请先关闭数据库并且选择修改数据库.然后如果可能的话从一个可用的选项打开这个文件.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">已经设置了只读标记.如果你想修改数据库请解除这个标记.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">因为引入了android KitKat 的限制不能进行写入.如果你想对数据库进行修改,请先关闭数据库然后选择修改数据库.接下来使用文件系统选择器打开文件.</string>
+  <string name="ReadOnlyReason_LocalBackup">无法修改本地备份。你可以使用“数据库设置 - 导出数据库”将此备份导出至一个你可以重新打开的位置，之后便可进行修改。</string>
   <string name="AddCustomIcon">从文件添加图标...</string>
   <string name="CopyingFile">正在复制文件...</string>
   <string name="DuplicateTitle">副本</string>
@@ -537,24 +565,70 @@
   <string name="PreviewWarning">请注意！这是一个预览版本，可能会有一些缺陷！如果您遇到“任何”意外，请告诉我（通过Google+ beta tester group或电子邮件）。</string>
   <string name="Continue">继续</string>
   <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
-  <string name="FirstInvalidCompositeKeyError">无效的组合键!请重试.</string>
+  <string name="FirstInvalidCompositeKeyError">复合密钥无效！请重试。</string>
   <string name="RepeatedInvalidCompositeKeyHelp">无效的组合键!请按照下面的步骤解锁你的数据库:
  •确保你输入了正确的密码.使用眼睛图标即可显示你输入的密码.
  •确保你已经选择了正确的密码格式.确保使用的类型与创建的数据库匹配.
  •确保你已经选择了正确的数据库文件.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+\n
+ • 提示：如果你认为数据库已损坏，或你在更改主密钥后把它忘了，你可以点击“%1$s”并选择本地备份以尝试最后一次成功打开的文件版本。</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    • 提示：Keepass2Android已将最后一次成功打开版本保存到内部存储中。点击“%1$s”并选择本地备份以打开它。
+  </string>
   <string name="CorruptDatabaseHelp">文件已损坏。\n
  在这里是一些提示，这可能会有助于诊断问题: \n 
 • 如果您通过 USB (MTP 模式)复制该文件，请用类型 MyPhoneExplorer 这样的工具再试一次。在某些情况下MTP会 截断文件 \n
  • 如果您无法在您的 PC 上相同的位置打开该文件，很有可能该文件实际上已损坏。请使用数据库备份。如果你假设 Keepass2Android 的文件已损坏，请联系开发者 \n 
 • 如果你仍然可以打开您的 PC 上的文件，请与支持人员联系。你可以尝试以不同的设置 (例如解压缩)将其保存到 PC，然后重试，再在 Keepass2Android 中打开。   </string>
+  <string name="DbUnlockedChannel_name">数据库已解锁</string>
+  <string name="DbUnlockedChannel_desc">数据库解锁通知</string>
+  <string name="DbQuicklockedChannel_name">快速解锁</string>
+  <string name="DbQuicklockedChannel_desc">数据库以快速解锁方式锁定通知</string>
+  <string name="EntryChannel_name">密码条目通知</string>
+  <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="ErrorReportTitle">Keepass2Android: 出现一个错误。</string>
   <string name="ErrorReportText">运行 Keepass2Android 时出现意外的错误。请通过允许应用程序发送错误报告来帮助我们进行修复。</string>
-  <string name="ErrorReportPromise">错误报告绝对不会包含任何内容的数据库或主密码。您可以在应用程序设置中禁用它们。</string>
+  <string name="ErrorReportPromise">错误报告绝对不会包含数据库或主密码的任何内容。您可以在应用程序设置中禁用它们。</string>
   <string name="ErrorReportEnable">启用</string>
   <string name="ErrorReportDisable">禁用</string>
   <string name="ErrorReportAsk">出错后询问</string>
   <string name="ErrorReportPrefTitle">发送错误报告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
+  <string name="ChangeLog_1_05">
+    版本 1.05\n
+    * 采用Android 8的通知通道，接受系统设置的控制\n
+    * 在通知中显示条目图标\n
+    * 采用Android 8的自适应图标，在Android 7的启动器中显示为圆形图标\n
+    * 允许在解锁后自动进入搜索状态（详见设置）\n
+    * 更改在存储访问框架中的写文件方式，修复了通过系统文件浏览器中选择Google云端硬盘文件时的文件更新问题\n
+    * 加入了一些说明文字避免误解\n
+    * 为成功打开的数据库实行本地备份，避免数据丢失\n
+    * 更新JSch以支持更多SSH加密协议\n
+    * 允许更改连接设置，如修改WebDAV密码\n
+    * 加入Yubikey Neo的静态密码模式支持\n
+    * 允许禁用自动填充建议\n
+    * 修复logcat的数据泄露\n    
+    * 错误修复\n
+  </string>
+  <string name="ChangeLog_1_04b">
+    版本 1.04b\n
+    * 华为设备用户在启用自动填充功能时不再崩溃。\n
+  </string>
+  <string name="ChangeLog_1_04">
+  1.04版\n
+  * 为 Android 8.0 及以上版本添加了自动填充服务。\n
+  * 升级了库、构建工具和目标 SDK 版本。\n
+  </string>
+  <string name="ChangeLog_1_03">
+  1.03版\n
+    * 根据 Google 的请求，移除了用于自动填充的辅助功能服务。请参阅密码权限设置以查找复现以前功能的插件。\n
+    * 重新添加了第三方应用作为存储选项的功能。\n
+    * 内置了无需将附加的图片传输至其他应用即可查看图片的图片查看器。\n
+    * 升级了 OkHttp 以修复一些连接问题\n
+    * 添加了 KeeTrayTOTP 条目的支持，现在支持了 Steam 条目。\n
+  </string>
   <string name="ChangeLog_1_02">
   版本 1.02\n 
   * 几项安全改进。非常感谢jean-baptiste.cayrou@thalesgroup.com 和 vincent.fargues@thalesgroup.com 的安全报告与合作 ！ \n 
@@ -829,4 +903,20 @@ Initial public release
   </string-array>
   <string name="ClearClipboardWarning">请确认您的系统可以使用，否则请使用内置键盘。</string>
   <string name="PluginDescription">为插件提供说明：</string>
+  <string name="autofill_hint">Keepass2Android 支持 Android 的自动填充功能，但看起来你还没有启用它。</string>
+  <string name="autofill_enable">启用自动填充</string>
+  <string name="autofill_enable_failed">抱歉，你的设备貌似不支持直接在应用内唤出系统设置。请亲自前往系统设置，启动自动填充服务。</string>
+  <string name="show_autofill_help">显示自动填充帮助</string>
+  <string name="autofill_sign_in_prompt">使用 Keepass2Android 填充</string>
+  <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
+  <string name="understand">我明白了</string>
+  <string name="dont_show_again">不再显示</string>
+  <string name="masterkey_infotext_head">你还记得你的主密码吗？</string>
+  <string name="masterkey_infotext_main">请注意，没有主密钥，你将无法打开数据库。不存在任何“重置”主密钥的方法。</string>
+  <string name="masterkey_infotext_fingerprint_note">另外需要注意的是，指纹解锁是通过将主密钥保存在Android的安全存储中而实现的。安全存储会随时被Android删除，例如当你在系统设置中添加了新指纹时。因此，不要依赖指纹解锁，请千万记住你的主密钥！</string>
+  <string name="backup_infotext_head">你的数据库备份过了吗？</string>
+  <string name="backup_infotext_main">Keepass2Android将会在指定位置处保存一个密码数据文件。你确定在你手机丢失、失窃，或文件遭到破坏和丢失的情况下，你还能找到这个文件吗？请确保你在安全的地方留有一份及时更新的数据备份！</string>
+  <string name="backup_infotext_note">要立即创建备份，前往 %1$s &gt; %2$s &gt; %3$s。</string>
+  <string name="emergency_infotext_head">你准备好应对突发情况了吗？</string>
+  <string name="emergency_infotext_main">你是否考虑过，当你突然无法打开你的密码数据库时，该怎么办？万一你不幸发生事故，又该怎么办？你应该将主密钥托付给一个值得信任的人，以应对突发情况。除此以外的其他人都无法查看你的密码。</string>
 </resources>

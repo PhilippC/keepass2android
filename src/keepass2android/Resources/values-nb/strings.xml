@@ -87,7 +87,13 @@
   <string name="enable_fingerprint_unlock">Aktiver fingeravtrykk opplåsning</string>
   <string name="enable_fingerprint_quickunlock">Slå på fingeravtrykk opplåsning i QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Trykk på sensoren for å låse opp databasen</string>
+  <string name="fingerprint_unlock_failed">Opplåsing med fingeravtrykk mislyktes. Dekrypteringsnøkkelen har blitt trukket tilbake av Android OS. Dette skjer vanligvis dersom et nytt fingeravtrykk har blitt registrert eller sikkerhetsinnstillingene har blitt endret.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Kunne ikke låse opp databasen: Ugyldig sammensatt nøkkel. Opplåsing med fingeravtrykk har blitt deaktivert fordi det lagrede hovedpassordet tilsynelatende ikke er gyldig lenger. </string>
   <string name="fingerprint_reenable">Vennligst aktiver fingeravtrykk opplåsning for det nye master passordet.</string>
+  <string name="fingerprint_reenable2">Vennligst benytt passord for å låse opp og deretter slå på opplåsing med fingeravtrykk igjen i databaseinnstillingene.</string>
+  <string name="FingerprintInitFailed">Kunne ikke initialisere fingeravtrykksensoren. </string>
+  <string name="enable_fingerprint_unlock_Info">Dette vil lagre hovedpassordet ditt på enheten, kryptert med Android nøkkelring og beskyttet av fingeravtrykksautentisering. Dette gjør det mulig å låse opp databasen din ved bruk av ditt fingeravtrykk.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Tillater opplåsing ved hjelp av fingeravtrykk i stedet for QuickUnlock. Lagrer ingen informasjon relatert til hovedpassordet ditt.</string>
   <string name="enter_filename">Angi filnavnet for databasen</string>
   <string name="entry_accessed">Brukt</string>
   <string name="entry_cancel">Avbryt</string>
@@ -123,6 +129,7 @@
   <string name="error_pass_gen_type">Du må velge minst én passordlagingstype</string>
   <string name="error_pass_match">Passordene samsvarer ikke.</string>
   <string name="error_rounds_not_number">Omganger må være et tall.</string>
+  <string name="error_param_not_number">Parameter må være et tall.</string>
   <string name="error_title_required">Trenger en tittel.</string>
   <string name="error_wrong_length">Bruk et positivt heltall i lengde-feltet</string>
   <string name="FileNotFound">Finner ikke filen.</string>
@@ -199,11 +206,15 @@
   <string name="remember_keyfile_summary">Husker plasseringen av nøkkelfilene</string>
   <string name="remember_keyfile_title">Lagre nøkkelfilen</string>
   <string name="remove_from_filelist">Fjern</string>
+  <string name="edit">Rediger</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Rot</string>
+  <string name="KeyDerivFunc">Nøkkelavledningsfunksjon</string>
   <string name="rounds">Krypteringsomganger</string>
   <string name="rounds_explaination">Flere krypteringsomganger gir bedre beskyttelse mot rå-makt-angrep, men kan også gjøre lasting og lagring mye tregere.</string>
   <string name="rounds_hint">omganger</string>
+  <string name="argon2memory">Minne for Argon 2 (byte)</string>
+  <string name="argon2parallelism">Parallellitet for Argon 2</string>
   <string name="database_name">Databasenavn</string>
   <string name="default_username">Standard brukernavn for nye oppføringer</string>
   <string name="saving_database">Lagrer databasen&#8230;</string>
@@ -259,6 +270,7 @@
   <string name="enter_filename_details_create_import">Velg fil å importere i det neste steget.</string>
   <string name="enable_quickunlock">Aktiver QuickUnlock</string>
   <string name="QuickUnlock_label">Angi de siste %1$d tegnene i passordet:</string>
+  <string name="QuickUnlock_label_secure">Angi QuickUnlock-kode:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Lukk database</string>
   <string name="QuickUnlockDefaultEnabled_title">Aktiver QuickUnlock som standard</string>
@@ -271,6 +283,8 @@
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock trenger et varsel for å fungere ordentlig. Velg dette alternativet for å vise meldingen uten ikonet.</string>
   <string name="QuickUnlockLength_title">Lengde på QuickUnlock-nøkkel</string>
   <string name="QuickUnlockLength_summary">Maksimalt antall tegn som brukes som QuickUnlock-passord.</string>
+  <string name="QuickUnlockHideLength_title">Skjul QuickUnlock-lengde</string>
+  <string name="QuickUnlockHideLength_summary">Dersom aktivert, vil ikke lengden på QuickUnlock-koden vises på skjermbildet for QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock mislyktes: feil passord.</string>
   <string name="BinaryDirectory_title">Filvedleggsmappe</string>
   <string name="BinaryDirectory_summary">Mappen der filvedlegg lagres.</string>
@@ -278,6 +292,7 @@
   <string name="SaveAttachmentDialog_text">Velg hvor du vil lagre vedlegget.</string>
   <string name="SaveAttachmentDialog_save">Lagre på SD-kortet</string>
   <string name="SaveAttachmentDialog_open">Lagre til hurtiglager og åpne</string>
+  <string name="ShowAttachedImage">Vis med internt bildeprogram</string>
   <string name="SaveAttachment_doneMessage">Lagret filen til %1$s.</string>
   <string name="SaveAttachment_Failed">Klarte ikke lagre vedlegg til %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Huske søketekst?</string>
@@ -302,12 +317,21 @@
   <string name="ClearPasswordOnLeave_summary">Fjern det innskrevne hovedpassordet når du forlater skjermen uten å låse opp databasen.</string>
   <string name="LockWhenNavigateBack_title">Lås når du forlater appen</string>
   <string name="LockWhenNavigateBack_summary">Lås databasen når du forlater appen ved å trykke på tilbake-knappen.</string>
+  <string name="ActivateSearchViewOnStart_title">Aktiver søkefelt ved oppstart</string>
+  <string name="ActivateSearchViewOnStart_summary">Aktiverer søkefeltet i gruppevisningen etter opplåsing eller når du søker etter en oppføring</string>
   <string name="NoDonateOption_title">Skjul donasjonsknapp</string>
   <string name="NoDonateOption_summary">Denne innstillingen er for donorer. Den er kun tilgjengelig etter å ha brukt Keepass2Android en stund.</string>
   <string name="NoDonateOption_question">Uten donasjoner ville ikke denne appen eksistert, og den ville ikke fått stadige forbedringer. Hvis du ikke har donert enda, vurder å gjøre det nå.</string>
+  <string name="NoDonationReminder_title">Aldri spør etter donasjon</string>
+  <string name="NoDonationReminder_summary">Jeg vil ikke gi deg en krone eller jeg har allerede donert. Ikke spør etter donasjon, ikke en gang på forfatterens bursdag.</string>
   <string name="UseOfflineCache_title">Hurtiglagring av databaser</string>
   <string name="UseOfflineCache_summary">Behold en kopi av eksterne databasefiler i hurtiglageret. Dette lar deg bruke eksterne databaser uten nett.</string>
+  <string name="CreateBackups_title">Lokale sikkerhetskopier</string>
+  <string name="CreateBackups_summary">Opprette en lokal sikkerhetskopi etter fullført innlasting av en database.</string>
+  <string name="UpdatingBackup">Oppdaterer lokal sikkerhetskopi...</string>
+  <string name="LocalBackupOf">Lokal sikkerhetskopi av %1$s</string>
   <string name="AcceptAllServerCertificates_title">SSL-sertifikater</string>
+  <string name="AcceptAllServerCertificates_summary">Definere oppførselen når sertifikatbekreftelse misslykkes. Merk: Du kan installere sertifikater på din enhet dersom bekreftelse feiler!</string>
   <string name="ClearOfflineCache_title">Tømme hurtiglager?</string>
   <string name="ClearOfflineCache_question">Dette sletter alle hurtiglagrede databasefiler. Eventuelle usynkroniserte endringer du har foretatt mens du var frakoblet går tapt. Fortsette?</string>
   <string name="CheckForFileChangesOnSave_title">Se etter endringer</string>
@@ -318,7 +342,28 @@
   <string name="ShowCopyToClipboardNotification_summary">Gjør brukernavn og passord tilgjengelige fra varslingsfeltet og utklippstavlen. Vokt deg for passordsniffere!</string>
   <string name="ShowSeparateNotifications_title">Separate varsler</string>
   <string name="ShowSeparateNotifications_summary">Vis separate varsler for å kopiere brukernavn og passord til utklippstavlen og for å vise tastaturet.</string>
+  <string name="AccServiceAutoFill_prefs">Tilgjengelighetstjeneste for AutoFill</string>
+  <string name="AutoFill_prefs">Tjeneste for AutoFill</string>
+  <string name="ShowKp2aKeyboardNotification_title">Varsel for KP2A-tastatur</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Gjør hele oppføringen tilgjengelig gjennom KP2A-tastaturet (anbefales).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Bytt tastatur</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Åpne tastatur dialog når en oppføring er tilgjengelig gjennom KP2A tastaturet etter søk fra nettleseren.</string>
+  <string name="kp2a_switch_rooted">Automatisk bytte av tastatur</string>
+  <string name="kp2a_switch_rooted_summary">Bytt automatisk til KP2A-tastatur når oppføringen åpnes. Krever korrekt oppsatt KeyboardSwap Plugin eller en rootet enhet samt en Secure Settings-app med System+. </string>
+  <string name="get_keyboardswap">Installer KeyboardSwap Plugin</string>
+  <string name="get_keyboardswap_summary">Dette programtillegget tillater bytte til KP2A-tastatur uten root. Krever ADB. </string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatisk bytte bare etter søk</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Bare bytte automatisk til KP2A-tastatur etter å ha brukt funksjonen Del URL (men ikke når du åpner en oppføring på en annen måte)</string>
+  <string name="AutoSwitchBackKeyboard_title">Bytt tilbake tastatur</string>
+  <string name="AutoSwitchBackKeyboard_summary">Bytt tilbake til forrige tastatur når ingen oppføring åpnes.</string>
+  <string name="ShowUnlockedNotification_title">Varselikon mens ulåst</string>
+  <string name="ShowUnlockedNotification_summary">Vis et varselikon mens databasen er ulåst.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 har introdusert ny oppførsel for varsler. Dersom du ønsker å skjule ikonet for Keepass2Androids varsel, vennligst sett opp dette i systeminnstillingene. Sett viktigheten av varselet til kategori Minimum.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Åpne innstillinger</string>
+  <string name="DontCare">Jeg bryr meg ikke</string>
+  <string name="DocumentAccessRevoked">Filen er ikke lenger tilgjengelig for Keepass2Android. Den har enten blitt fjernet eller tilgangen er opphevet. Vennligst gjenåpne filen, f.eks ved å velge Endre database.</string>
+  <string name="PreloadDatabaseEnabled_title">Last inn databasefil på forhånd</string>
+  <string name="PreloadDatabaseEnabled_summary">Begynn å hente eller laste ned databasefilen mens inntasting av passordet pågår.</string>
   <string name="AskOverwriteBinary">Overskrive eksisterende binærfil med samme navn?</string>
   <string name="AskOverwriteBinary_title">Overskrive eksisterende binærfil?</string>
   <string name="AskOverwriteBinary_yes">Overskriv</string>
@@ -327,6 +372,10 @@
   <string name="RecycleBin">Papirkurv</string>
   <string name="AskDeletePermanentlyEntry">Slette denne oppføringen permanent? Trykk Nei for å flytte til papirkurven.</string>
   <string name="AskDeletePermanentlyGroup">Slette denne gruppen permanent? Trykk Nei for å flytte til papirkurven.</string>
+  <string name="AskDeletePermanentlyItems">Ønsker du å slette de valgte oppføringene permanent? Trykk Nei for å flytte til papirkurven.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Ønsker du å slette denne oppføringen permanent?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Ønsker du å slette denne gruppen permanent?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Ønsker du å slette de valgte oppføringene permanent?</string>
   <string name="AskDeletePermanently_title">Slette permanent?</string>
   <string name="AskReloadFile_title">Laste inn filen på nytt?</string>
   <string name="AskReloadFile">Den åpne filen ble endret av et annet program. Vil du laste den inn på nytt?</string>
@@ -351,6 +400,10 @@
   <string name="SynchronizingDatabase">Fletter sammen endringer&#8230;</string>
   <string name="YesSynchronize">Ja, flett</string>
   <string name="NoOverwrite">Nei, overskriv</string>
+  <string name="UseOfflineMode">Arbeid frakoblet</string>
+  <string name="UseOnlineMode">Arbeid tilkoblet</string>
+  <string name="UseOfflineMode_Info">Unngå all nettverkstrafikk ved å benytte en lokal hurtiglagret kopi av filen. Endringer lagres kun i det lokale hurtiglageret og lastes først opp når du bytter tilbake til tilkoblet modus.</string>
+  <string name="InOfflineMode">Arbeider frakoblet.</string>
   <string name="SynchronizingCachedDatabase">Synkroniserer hurtiglagret database&#8230;</string>
   <string name="DownloadingRemoteFile">Laster ned ekstern fil&#8230;</string>
   <string name="UploadingFile">Laster opp fil&#8230;</string>
@@ -365,19 +418,30 @@
   <string name="LoadedFromRemoteInSync">Ekstern fil og hurtiglageret er synkronisert.</string>
   <string name="UpdatedCachedFileOnLoad">Oppdaterte lokalt hurtiglagret kopi av %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Ingen endringer funnet.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Oppdaterte hurtiglagret tilleggsfil for engangspassord: Ekstern teller var høyere.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Oppdaterte hurtiglagret tilleggsfil for engangspassord: Lokal teller var høyere.</string>
+  <string name="SynchronizingOtpAuxFile">Synkroniserer tilleggsfil for engangspassord&#8230;</string>
   <string name="database_file">databasefil</string>
+  <string name="otp_aux_file">Tilleggsfil for engangspassord</string>
   <string name="ErrorOcurred">Feil:</string>
   <string name="DuplicateUuidsError">Databasen er korrupt: Duplikate id\'er funnet. (lagret du med Minikeepass?) Vennligst importer på nytt til en ny database med Keepass 2 for PC og velg \'Create new IDs\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Du kan slå av denne feilmeldingen i Innstillinger/Applikasjonsinnstillinger/Filhåndtering/Sjekk for duplikate UUIDer. Merk at du kan oppleve uventet oppførsel. Det anbefales å reparere databasen.</string>
   <string name="synchronize_database_menu">Synkroniser databasen&#8230;</string>
+  <string name="CannotMoveGroupHere">Kan ikke flytte gruppe til denne gruppen.</string>
+  <string name="donate_question">I dag er det Oktoberfest! Dersom du liker Keepass2Android: Ville det ikke være en bra dag å kjøpe meg en øl?</string>
   <string name="donate_bday_question">10. mai? Det er bursdagen min! Hvis du liker denne appen, hvorfor ikke sende meg bursdagsønsker med en liten bursdagsgave? Dette ville gjort meg veldig glad! :-)</string>
   <string name="donate_missedbday_question">Å nei, du glemte bursdagen min den 10. mai! Hvis du liker denne appen, hvorfor ikke sende meg bursdagsønsker med en liten bursdagsgave? Det er ikke for sent å gjøre meg veldig glad! :-)</string>
   <string name="ok_donate">Fortell meg mer!</string>
   <string name="no_thanks">Nei, jeg liker den ikke så mye</string>
+  <string name="enter_http_login_title">Angi innloggingsinformasjon for WebDav:</string>
+  <string name="hint_http_url">URL til mappe eller fil (f.eks. mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Angi OwnCloud innloggingsinformasjon:</string>
   <string name="hint_owncloud_url">OwnCloud URL (eks: owncloud.me.com)</string>
   <string name="hint_sftp_host">vert (f.eks. 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Første katalog (valgfritt):</string>
+  <string name="enter_sftp_login_title">Angi innloggingsinformasjon for SFTP:</string>
+  <string name="enter_ftp_login_title">Angi innloggingsinformasjon for FTP:</string>
   <string name="select_storage_type">Velg lagringstype:</string>
   <string name="filestoragename_file">Lokal fil</string>
   <string name="filestoragename_androidget">Få fra tredjeparts app</string>
@@ -392,7 +456,13 @@
   <string name="filestoragename_gdrive">Google Disk</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_content">Systemfilvelger</string>
+  <string name="filestorage_setup_title">Filtilgang initialiseres</string>
   <string name="database_location">Lagringssted for databasen</string>
+  <string name="help_database_location">Du kan lagre databasen lokalt på din Android-enhet eller i skyen (gjelder ikke for Offline-versjon). Keepass2Android gjør databasen tilgjengelig til og med når du er frakoblet nett. Siden databasen er trygt kryptert med AES 256-bit kryptering, ingen vil kunne få tilgang til passordene bortsett fra du. Vi anbefaler å velge Dropbox: Den er tilgjengelig på alle dine enheter og sørger for automatisk sikkerhetskopiering av tidligere filversjoner.</string>
+  <string name="hint_database_location">Velg hvor du vil lagre databasen:</string>
+  <string name="button_change_location">Endre plassering</string>
+  <string name="help_quickunlock">Dersom aktivert, vil Keepass2Android kjøre i bakgrunnen selv når databasen er låst. Dette gjør det mulig å låse opp databasen igjen senere bare ved å bruke en kort del av hovedpassordet.</string>
   <string name="master_password">Hovedpassord</string>
   <string name="help_master_password">Databasen din er kryptert med passordet du angir her. Velg et sterkt passord for å sikre databasen! Tips: Lag en setning eller to og bruk de første bokstavene til ordene som et passord. Inkluder skilletegn.</string>
   <string name="hint_master_password">Velg et hovedpassord for å beskytte databasen:</string>
@@ -401,9 +471,34 @@
   <string name="hint_key_file">Velg hvis du vil bruke en nøkkelfil i tillegg til hovedpassordet:</string>
   <string name="use_key_file">Bruk nøkkelfil</string>
   <string name="error_adding_keyfile">Feil ved opprettelse av nøkkelfil.</string>
+  <string name="init_otp">Last tilleggsfil for engangspassord&#8230;</string>
+  <string name="otp_explanation">Angi neste engangspassord (OPT). Swipe din Youbikey NEO på baksiden av enheten for å angi via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="YubiChallengeNotInstalled">Fant ingen app som kan håndtere utfordringen. Installer YubiChallenge fra Play Butikk og prøv igjen.</string>
+  <string name="CouldntLoadOtpAuxFile">Kunne ikke laste tilleggsfil for engangspassord!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Vennligst bruk tillegget OtpKeyProv i KeePass 2.x (PC) for å sette opp databasen til bruk av engangspassord!</string>
+  <string name="otp_discarded_because_no_db">Vennligst velg database først. Engangspassord forkastet av sikkerhetshensyn.</string>
+  <string name="otp_discarded_no_space">Engangspassord forkastet: Alle engangspassordene allerede angitt!</string>
+  <string name="otp_discarded_because_db_open">Vennligst steng databasen først. Engangspassordet er forkastet.</string>
+  <string name="otps_pending">(Ett eller flere engangspassord allerede tilgjengelig)</string>
+  <string name="otpsecret_hint">Hemmelig nøkkel for engangspassord (f.eks. 01 23 ab cd&#8230;)</string>
+  <string name="CouldntParseOtpSecret">Feilet under analyse av hemmelig nøkkel for engangspassord!</string>
+  <string name="OtpKeyError">Oppretting av engangspassord misslyktes! Kontroller at du har angitt korrekt engangspassord.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Oppdatering av tilleggsfil for engangspassord misslyktes!</string>
+  <string name="SavingOtpAuxFile">Lagrer tilleggsfil for engangspassord&#8230;</string>
+  <string name="bad_resp">Utfordring-respons er feil.</string>
+  <string name="CouldntLoadChalAuxFile">Kunne ikke laste tilleggsfil for utfordring!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Vennligst bruk tillegget KeyChallenge i KeePass 2.x (PC) for å sette opp databasen til bruk av utfordring-respons!</string>
+  <string name="ErrorUpdatingChalAuxFile">Oppdatering av tilleggsfil for engangspassord misslyktes!</string>
+  <string name="TrayTotp_SeedField_title">TOTP Seed feltnavn</string>
+  <string name="TrayTotp_SeedField_summary">Dersom du benytter tillegget \"TrayTotp\" til Keypass 2 uten standard innstillinger, angi feltnavnet til seed-feltet her i samsvar med innstillingen på PCen.</string>
+  <string name="TrayTotp_SettingsField_title">TOTP Innstilling feltnavn</string>
+  <string name="TrayTotp_SettingsField_summary">Angi feltnavnet for innstillingsfeltet til TrayTotp her.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Loggfilen for feilsøking</string>
+  <string name="DebugLog_title">Bruk loggfil</string>
+  <string name="DebugLog_summary">Skriv utdata fra app til en lokal loggfil</string>
+  <string name="DebugLog_send">Send feilsøkingslogg...</string>
   <string name="loading">Laster inn&#8230;</string>
   <string name="plugins">Programtillegg</string>
   <string name="plugin_packagename">Pakkenavn:</string>
@@ -413,13 +508,21 @@
   <string name="plugin_disabled">deaktivert</string>
   <string name="plugin_web">Finn tillegg på nettet</string>
   <string name="plugin_scopes">Omfang</string>
+  <string name="not_enabled">ikke aktivert</string>
   <string name="query_credentials_for_url">%1$s ber om legitimasjon for %2$s.</string>
   <string name="query_credentials">%1$s ber om legitimasjon. Velg en oppføring.</string>
   <string name="plugin_enabled_checkbox">Aktivert</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Varsel for databasehendelser</string>
   <string name="SCOPE_DATABASE_ACTIONS_explanation">Tillegget vil bli varslet når en database åpnes, lukkes eller lagres.</string>
   <string name="SCOPE_CURRENT_ENTRY_title">Gjeldende oppføringsdata</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Tillegget vil motta alle data om denne databaseoppføringen, og vil kunne tilby handlinger og endre visningen av den.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Be om egen legitimasjon</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Tillegget vil kunne be om legitimasjonen knyttet til sin egen programpakke.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Be om legitimasjon</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Tillegget vil kunne be om legitimasjon for tilsiktede webområder eller programmer.</string>
   <string name="get_regular_version">Få flere lagringstyper</string>
+  <string name="CertificateWarning">Advarsel: Bekreftelse av tjenersertifikatet feilet: %1$s. Installer rotsertifikat på enheten din eller sjekk innstillingene!</string>
+  <string name="CertificateFailure">En feil oppsto: Kunne ikke bekrefte tjenersertifikatet! Installer passende rotsertifikat på din enhet eller sjekk innstillingene!</string>
   <string name="export_fileformats_title">Velg filformat</string>
   <string name="killed_by_os">Keepass2Android ble avsluttet av systemet. Av sikkerhetsmessige årsaker beholdt ikke Keepass2Android den valgte legitimasjon i lageret, så du må åpne databasen på nytt. Merk: dette skjer svært sjelden. Hvis problemet vedvarer, send en melding om det til crocoapps@gmail.com.</string>
   <string name="FileIsTemporarilyAvailable">Filen er bare midlertidig tilgjengelig for Keepass2Android.</string>
@@ -428,14 +531,190 @@
   <string name="CopyFileRequired">For å bruke filen må du kopiere den til en annen plassering.</string>
   <string name="CopyFileRequiredForEditing">For å redigere filen, må du kopiere den til en annen plassering.</string>
   <string name="ClickOkToSelectLocation">Trykk på OK for å velge en plassering filen skal kopieres til.</string>
+  <string name="FileReadOnlyTitle">Databasen er skrivebeskyttet</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android har åpnet gjeldende database i skrivebeskyttet modus.</string>
+  <string name="ReadOnlyReason_PreKitKat">Det virker som du åpnet filen fra et eksternt program. Denne måten støtter ikke skriving. Dersom du ønsker å gjøre endringer i databasen, lukk databasen og velg Bytt database. Åpne deretter filen fra en av de tilgjengelige alternativene hvis mulig.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Flagget for skrivebeskyttelse er satt. Fjern dette flagget dersom du ønsker å gjøre endringer i databasen.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Skriving er ikke mulig grunnet restriksjoner introdusert i Android KitKat. Dersom du ønsker å gjøre endringer i databasen, lukk databasen og velg Bytt database. Åpne deretter filen vha. systemets filvelger.</string>
+  <string name="ReadOnlyReason_LocalBackup">Lokale sikkerhetskopier kan ikke endres. Du kan benytte Databaseinnstillinger - Eksporter database for å eksportere denne sikkerhetskopien til en annen plassering. Derfra kan du gjenåpne den, og den vil da være skrivbar igjen.</string>
   <string name="AddCustomIcon">Legg til ikon fra fil...</string>
   <string name="CopyingFile">Kopierer filen...</string>
+  <string name="DuplicateTitle">Kopier</string>
+  <string name="DefaultTemplate">Standardoppføring</string>
   <string name="TemplateGroupName">Maler</string>
+  <string name="TemplateTitle_IdCard">ID-kort</string>
+  <string name="TemplateField_IdCard_Name">Navn</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Utstedelsessted</string>
+  <string name="TemplateField_IdCard_IssueDate">Utstedelsesdato</string>
+  <string name="TemplateTitle_EMail">E-post</string>
+  <string name="TemplateField_EMail_EMail">E-postadresse</string>
+  <string name="TemplateTitle_WLan">Trådløst nett</string>
+  <string name="TemplateTitle_Notes">Sikker notis</string>
   <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Nummer</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Kortholder</string>
+  <string name="TemplateTitle_CreditCard">Kredittkort</string>
+  <string name="TemplateTitle_Membership">Medlemskap</string>
   <string name="ChangeLog_title">Endringslogg</string>
+  <string name="AskAddTemplatesTitle">Legge til mal?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android inneholder oppføringsmaler for e-postkontoer, trådløse nettverkspassord, sikre notater og mer. Ønsker du å legge disse til din database? Dersom du velger Nei, kan du legge dem til senere i databaseinnstillingene.</string>
+  <string name="AddTemplates_pref">Legg til maler i database</string>
+  <string name="PreviewWarning">Merk! Dette er en forhåndsutgivelse og kan inneholde feil! Hvis du opplever *noe som helst* uventet, vennligst gi meg beskjed (på beta-testergruppen i Google+ eller via e-post).</string>
   <string name="Continue">Fortsett</string>
+  <string name="NoFilenameWarning">URIen du tastet inn ser ikke ut som et filnavn. Er du sikker på at dette er en gyldig fil?</string>
+  <string name="FirstInvalidCompositeKeyError">Ugyldig sammensatt nøkkel! Vennligst prøv igjen.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Ugyldig sammensatt nøkkel! Vennligst forsøk følgende for å låse opp databasen:\n
+ 
+  • Kontroller at du har skrevet inn korrekt passord. Benytt øyeikonet for å vise passordet i klartekst.\n
+  • Kontroller at du har valgt korrekt passordtype. Sjekk at denne stemmer overens med typen som ble valgt når databasen ble opprettet.\n
+  • Kontroller at du har valgt korrekt databasefil.
+</string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+\n
+  • Tips: Dersom du mistenker at databasefilen kan ha blitt korrupt eller du ikke husker korrekt hovedpassord etter å ha endret det, kan du forsøke den sist fungerende filversjonen ved å klikke \"%1$s\" og velge den lokale sikkerhetskopien.</string>
+  <string name="HintLocalBackupOtherError">
+\n
+• Tips: Keepass2Android har lagret den sist fungerende filversjonen i internt minne. Du kan åpne den ved å klikke på \"%1$s\" og velge den lokale sikkerhetskopien.  </string>
+  <string name="CorruptDatabaseHelp">
+Filen er korrupt. \n
+Her er noen tips som kan hjelpe med å feilsøke problemet:\n
+
+• Dersom du kopierte filen over USB (MTP-modus), vennligst forsøk på nytt med et verktøy som MyPhoneExplorer. MTP kan forkorte filer under enkelte omstendigheter.\n
+•  Dersom du ikke får åpnet filen fra den samme posisjonen på PCen, er det svært sannsynlig at den faktisk har blitt korrupt. I så fall, benytt en sikkerhetskopi av databasen. Dersom du antar at det er Keepass2Android som har skyld i dette, vennligst kontakt kundestøtte.\n
+• Dersom du fortsatt er i stand til å åpne filen på din PC, vennligst kontakt kundestøtte. Du kan forsøke å lagre den med andre innstillinger (f.eks. upakket) på PCen også forsøke å åpne den på nytt i Keepass2Android.  </string>
+  <string name="DbUnlockedChannel_name">Ulåst database</string>
+  <string name="DbUnlockedChannel_desc">Varsel om at databasen har blitt låst opp</string>
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Varsel om at databasen har blitt låst med QuickUnlock</string>
+  <string name="EntryChannel_name">Varsel om oppføring</string>
+  <string name="EntryChannel_desc">Varsel for å forenkle tilgangen til den valgte oppføringen.</string>
+  <string name="ErrorReportTitle">Keepass2Android: En feil oppstod.</string>
+  <string name="ErrorReportText">En uventet feil oppstod mens Keepass2Android kjørte. Vennligst hjelp oss å rette denne ved å tillate at appen sender feilrapporter.</string>
+  <string name="ErrorReportPromise">Feilrapporter vil aldri inneholde noe innhold fra din database eller hovedpassord. Du kan deaktivere dem i applikasjonsinnstillingene.</string>
   <string name="ErrorReportEnable">Aktiver</string>
   <string name="ErrorReportDisable">Deaktiver</string>
+  <string name="ErrorReportAsk">Spør etter feil</string>
+  <string name="ErrorReportPrefTitle">Send feilrapporter</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Vis skjermtastatur for passordinntasting når fingeravtrykkleser er aktiv.</string>
+  <string name="ChangeLog_1_05">
+Versjon 1.05\n
+* Benytter varslingskanaler på Android 8, slik at oppsett kan gjøres i systeminnstillingene\n
+* Viser varsel for oppføring\n
+* Benytter Adaptive Ikoner på Android 8, benytter rundt oppstartsikon på Android 7\n
+* Mulig å aktivere søk ved opplåsing (se innstillinger)\n
+* Endrer måten filer blir skrevet til gjennom Storage Access Framework, retter problemer med oppdatering av filer på Google Drive når disse ble åpnet med systemfilvelgeren\n
+* Lagt til noen informasjonstekster for å forhindre vanlige misforståelser\n
+* Oppretter lokale sikkerhetskopier av åpnede databaser for å redusere risiko for datatap\n
+* JSch oppdatert for å støtte nyere SSH-siffer\n
+* Mulig å endre tilkoblingsinnstillinger, f.eks. når WebDav-passordet har blitt byttet\n
+* Lagt til støtte for Yubikey Neos statiske passordmodus\n
+* Mulig å slå av forslag til Autofill-funksjonen\n
+* Fikser datalekkasje til logcat\n
+* Feilrettinger\n  </string>
+  <string name="ChangeLog_1_04b">
+Versjon 1.04b\n
+* Unngå krasj når brukeren velger å benytte Autofill-funksjonen på Huawei-enheter.\n  </string>
+  <string name="ChangeLog_1_04">
+Versjon 1.04\n
+* Lagt til Autofill-tjeneste for Android 8.0 og senere.\n
+* Oppgradert biblioteker, byggeverktøy og Target SDK-versjon.\n  </string>
+  <string name="ChangeLog_1_03">
+Versjon 1.03\n
+* Tatt bort tilgjengelighetstjeneste for AutoFill etter anmodning fra Google. Se innstillingene for passordtilgang for å finne et programtillegg som utfyller denne oppgaven.\n
+* Tredjepartsapper kan brukes som lagringsalternativ igjen\n
+* Integrert bildeprogram for å vise vedlagte bilder uten å overføre de til andre apper\n
+* OkHttp oppgradert for å håndtere problemer med enkelte tilkoblinger\n
+* Støtte for KeeTrayTOTP-oppføringer, støtter nå Stream-oppføringer\n  </string>
+  <string name="ChangeLog_1_02">
+Versjon 1.02\n
+* Flere sikkerhetsforbedringer. Takker så mye for sikkerhetsrapporten til jean-baptiste.cayrou@thalesgroup.com og vincent.fargues@thalesgroup.com og for deres samarbeid!\n
+* Støtte for KeyboardSwapPlugin (se valgene for passordtilgang): Mulig å bytte inntastingsmetode automatisk på enheter uten root-tilgang. Takk til Mishaal Rahman fra XDA-Developers for å gjøre dete mulig.\n
+* Feilretting i Tilgjengelighetstjenesten  for nylighe Chrome-versjoner\n
+* Feilretting for unødvendig tømming av fingeravtrykksdata\n
+* Feilrettinger av mindre krasjer\n
+* Dropbox SDK oppdatert for å sørge for fremtidig kompatibilitet\n
+* Fjernet feilrapportering gjennom Xamarin Insights\n
+* Oppdatert byggeverktøy\n  </string>
+  <string name="ChangeLog_1_01g">
+Versjon 1.01-g\n
+* Feilretting for krasj når man forsøker å jobbe frakoblet\n
+* Feilretting for feil koding av FTP(S) påloggingsinformasjon\n
+* Feilretting for krasjer når man bruker OneDrive og på eldre Android-versjoner\n
+* Viser tidspunkter som lokal tid på oppføringssider\n  </string>
+  <string name="ChangeLog_1_01d">
+Versjon 1.01-d\n
+* Feilretting for filopplisting på OneDrive\n
+* Mulig å overse sertifikatfeil også når bekreftelse av vertsnavn feiler (anbefales ikke for bruk i produksjon)\n
+* Feilretting for QuickUnlock, der den feiler til tross for at korrekt kode er angitt\n  </string>
+  <string name="ChangeLog_0_9_8c">
+Versjon 0.9.8c\n
+* Feilretting for SSL-sikkerhetsproblem i Microsoft Live SDK (brukes for å få tilgang til filer i OneDrive)\n
+* Feilretting: Tidligere utgivelser inneholdt to inntastingsmetoder (der en krasjer)\n  </string>
+  <string name="ChangeLog_1_01">
+Versjon 1.01\n
+* Lagt til støtte for det nye KDBX-4-formatet (kompatibelt med Keepass 2.35) inkludert Argon 2-nøkkelavledning og ChaCha20-kryptering.\n
+* Omskriving av WebDav fillagring. Mulig å liste filer og støtter moderne kryptering.\n
+* Omskriving av FTP fillagring. Mulig å liste filer og støtter kryptering (FTPS).\n
+* Oppdatert til OneDrive SDK (det tidligere benyttede Live SDK oppdateres ikke lenger)\n
+* Oppdatert til versjon 2 av Dropbox SDK  (det tidligere benyttede versjon 1 er ikke lenger understøttet).\n
+* Støtte for OwnCloud lagt til.\n
+* Spør etter lagringstilgang før åpning av lokale filer  </string>
+  <string name="ChangeLog_1_0_0e">
+Versjon 1.0.0e\n
+* Feilretting for opplåsing med fingeravtrykk på eldre Samsung-enheter med Android 6\n
+* Støtte for x86-enheter lagt til\n
+* Mulig å skjule skjermtastatur mens man leser fingeravtrykk\n
+* Byggesystem oppdatert  </string>
+  <string name="ChangeLog_1_0_0">
+Versjon 1.0.0\n
+* Opplåsing vha. fingeravtrykk (krever Anroid 6.0+ eller en Samsung-enhet)\n
+* Tjeneste for Auto-Fill lagt til (krever Android 5.0+)\n
+* Støtte for oppføringsmaler\n
+* \"Arbeid frakoblet\"-modus lagt til\n
+* Mulig å kopiere oppføringer\n
+* Modus for autokomplettering for feltnavn\n
+* Mulig å fjerne element fra liste over siste brukte filer\n
+* Be om tillatelser forløpende ved behov under Android 6.0\n
+* Feilrettinger (i det innebygde tastaturet, når du velger ikoner)\n
+* Inneholder valg for å sende feilrapporter\n
+* Hjelpemeldinger lagt til på flere steder\n  </string>
+  <string name="ChangeLog_0_9_9">
+Versjon 0.9.9\n
+* Helt nytt design av brukergrensesnitt. Takk så mye til Stefano Pignataro (http://www.spstudio.at) for hans støtte!\n
+* Mulig med egendefinerte ikoner\n
+* Støtte for flervindumodus på Samsung-enheter\n
+* Økt standard antall runder med kryptering for nye databaser\n
+* Sjekk for duplikate nøkler for tilleggsfelter for å unngå tap av data\n</string>
+  <string name="ChangeLog_0_9_9c">
+Version 0.9.9c\n
+* Mørkt tema er tilbake\n
+* Du kan installere andre ikonpakker (eldgamle Windows-type ikoner er tilgjengelig i Play store)\n
+* Spørsmål om bekreftelse lagt til når elementer slettes uten søppelkurv\n
+* Feilrettinger (feil visning av hemmelig koding av engangspassord, feil appikon noen steder)\n  </string>
+  <string name="ChangeLog_0_9_8b">
+Versjon 0.9.8b\n
+* Feilrettinger (lagring feilet for enkelte databaser, eksport til lokal enhet virket ikke, valg av enkelte innstillingsalternativer krasjet appen)\n</string>
+  <string name="ChangeLog_0_9_8">
+Versjon 0.9.8\n
+* Støtte for Storage Access Framework (tillater skriving til SD-kort og Google Drive i KP2A Offline)\n
+* Prøver å oppdage feil ved inntasting av WebDAV URLer (katalog istedet for fil)\n
+* Endret skrifttype for passord\n
+* Mulig å bytte Dropbox-konto\n
+* Feilretting: Husker engangspassord</string>
+  <string name="ChangeLog_0_9_7b">
+Versjon 0.9.7b\n
+* Oversettelser oppdatert\n
+* Feilrettinger: Skrifttype for passord manglet i 0.9.7, sorter etter navn sorterte ikke grupper\n</string>
+  <string name="ChangeLog_0_9_7">
+Versjon 0.9.7\n
+* Støtte for skriving av Keepass 1 (kdb)-database (beta!)\n
+* Bedre bytting tilbake til forrige tastatur (virker også på ikke-rootede enheter)\n
+* Støtte for KeyChallenge med variabel lengde\n
+* Forhindre skjermdump av skjermbildene for QuickUnlock og passord\n
+* Revers sorteringsrekkefølge for Sorter etter modifikasjonsdato (nå synkende)\n
+* Feilrettinger: Notatvisning oppdateres nå korrekt etter endringer, Passordvisning skjuler nå passordet korrekt (forhåpentligvis) på alle enheter, fikser problemet som gjorde det mulig å legge til en oppføring to ganger, fikser problemet med visning av advarsel om Duplikat UUID selv etter å ha reparert databasen\n</string>
   <string name="ChangeLog_keptDonate">Utvidet mulighet til å donere en øl, eller noe annet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
@@ -457,6 +736,16 @@
     <item>Middels</item>
     <item>Stor</item>
   </string-array>
+  <string-array name="design_options">
+    <item>Lyst</item>
+    <item>Mørkt</item>
+  </string-array>
+  <string name="design_title">Utseende</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Ingen kryptering (FTP)</item>
+    <item>Implisitt kryptering (FTP over TLS, FTPS)</item>
+    <item>Eksplisitt kryptering (FTP over TLS, FTPS)</item>
+  </string-array>
   <string-array name="cred_remember_modes">
     <item>Ikke husk brukernavn og passord</item>
     <item>Husk kun brukernavn</item>
@@ -470,4 +759,27 @@
     <item>Passord + utfordring-respons</item>
     <item>Passord + utfordring-respons-nøkkel (gjenopprettingsmodus)</item>
   </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Overse bekreftelsesfeil i sertifikater</item>
+    <item>Advare når bekreftelsen feiler</item>
+    <item>Ikke godta ugyldige sertifikater</item>
+  </string-array>
+  <string name="ClearClipboardWarning">Kontroller at dette fungerer på ditt system og vurder å benytte det innebygde tastaturet dersom ikke.</string>
+  <string name="PluginDescription">Beskrivelse gitt av tillegget:</string>
+  <string name="autofill_hint">Keepass2Android støtter Androids Autofill-funksjon, men det ser ikke ut til at du har aktivert den ennå.</string>
+  <string name="autofill_enable">Aktiver Autofill</string>
+  <string name="autofill_enable_failed">Beklager, det ser ikke ut til at din enhet støtter å åpne innstillingene direkte fra appen. Vennligst åpne systeminnstillingene for Autofill manuelt for å aktivere tjenesten.</string>
+  <string name="show_autofill_help">Vis Autofill hjelp</string>
+  <string name="autofill_sign_in_prompt">Fyll inn med Keepass2Android</string>
+  <string name="invalid_link_association">Kunne ikke knytte webdomenet %1$s til appen %2$s</string>
+  <string name="understand">Jeg skjønner</string>
+  <string name="dont_show_again">Ikke vis dette igjen</string>
+  <string name="masterkey_infotext_head">Husker du hovedpassordet?</string>
+  <string name="masterkey_infotext_main">Vær oppmerksom på at du ikke vil kunne åpne databasen uten hovednøkkelen. Det finnes ingen måte å \"nullstille\" hovedpassordet på.</string>
+  <string name="masterkey_infotext_fingerprint_note">Vær også oppmerksom på at opplåsing med fingeravtrykk fungerer ved at hovedpassordet lagres i Androids sikre lager. Dette lageret kan slettes av Android når som helst, f.eks. dersom du legger inn nytt fingeravtrykk i systeminnstillingene. Du kan ikke basere deg kun på fingeravtrykket, men vær så snill å sørge for å huske hovedpassordet!</string>
+  <string name="backup_infotext_head">Har du sikkerhetskopiert databasen?</string>
+  <string name="backup_infotext_main">Keepass2Android lagrer dine passord i en fil på valgfritt sted. Er du sikker på at du fortsatt har tilgang på denne filen dersom du mister telefonene eller den blir stålet, eller dersom filen blir ødelagt eller slettet? Vennligst kontroller at du alltid har en oppdatert sikkerhetskopi på et trygt sted!</string>
+  <string name="backup_infotext_note">For å opprette en sikkerhetskopi nå, gå til %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Er du forberedt på nødssituasjoner?</string>
+  <string name="emergency_infotext_main">Har du noen gang vurdert hva som skjer dersom du ikke lenger har tilgang til passorddatabasen? Hva om du blir utsatt for en ulykke? Det er god praksis å overlate hovednøkkelen til en person du stoler helt på i tilfelle en nødssituasjon. Ellers vil ingen ha tilgang til dine passord.</string>
 </resources>

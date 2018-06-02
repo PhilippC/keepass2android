@@ -9,10 +9,10 @@
   <string name="CreditsTextSFTP">Το SFTP υποστηρίζεται με χρήση της βιβλιοθήκης JSch με άδεια BSD που δημιουργήθηκε από τη JCraft, Inc.</string>
   <string name="CreditsIcons">Το εικονίδιο Σφυρί δημιουργήθηκε από τον John Caserta, το εικονίδιο Πιγκουίνος δημιουργήθηκε από τον Adriano Emerick, το εικονίδιο Φτερό δημιουργήθηκε από τον Jon Testa και το εικονίδιο της Apple δημιουργήθηκε από την Ava Rowell. Όλα τα προηγούμενα εικονίδια είναι από το Noun Project. Το εικονίδιο της Εικόνας είναι από το https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Αποδοχή</string>
-  <string name="deny">Απόρριψη</string>
-  <string name="add_entry">Προσθήκη καταχώρισης</string>
-  <string name="edit_entry">Επεξεργασία καταχώρισης</string>
-  <string name="add_url_entry">Δημιουργία καταχώρισης για URL</string>
+  <string name="deny">Άρνηση</string>
+  <string name="add_entry">Προσθήκη εγγραφής</string>
+  <string name="edit_entry">Επεξεργασία εγγραφής</string>
+  <string name="add_url_entry">Δημιουργία εγγραφής για URL</string>
   <string name="add_group">Προσθήκη ομάδας</string>
   <string name="add_group_title">Προσθήκη Ομάδας</string>
   <string name="edit_group_title">Επεξεργασία Ομάδας</string>
@@ -87,7 +87,11 @@
   <string name="enable_fingerprint_unlock">Ενεργοποίηση ξεκλειδώματος με δακτυλικό αποτύπωμα</string>
   <string name="enable_fingerprint_quickunlock">Ενεργοποίηση ξεκλειδώματος με δακτυλικό αποτύπωμα για QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Αγγίξτε αισθητήρα αφής για ξεκλείδωμα της βάσης δεδομένων</string>
+  <string name="fingerprint_unlock_failed">Το ξεκλείδωμα με δακτυλικό αποτύπωμα απέτυχε. Το κλειδί αποκρυπτογράφησης ακυρώθηκε από το Android. Αυτό συμβαίνει συνήθως όταν δηλωθεί νέο δακτυλικό αποτύπωμα ή αλλάξουν οι ρυθμίσεςι ασφαλείας. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Το ξεκλείδωμα της βάσης δεδομένων απέτυχε: άκυρο σύνθετο κλειδί. Το ξεκλείδωμα με δακτυλικό αποτύπωμα απενεργοποιήθηκε, προφανώς επειδή το κύριο κλειδί δεν είναι πλέον έγκυρο. </string>
   <string name="fingerprint_reenable">Επενενεργοποιήστε το ξεκλείδωμα με δακτυλικό αποτύπωμα για το νέο βασικό συνθηματικό.</string>
+  <string name="fingerprint_reenable2">Ξεκλειδώστε με το συνθηματικό σας και έπειτα ενεργοποιήστε το ξεκλείδωμα με δακτυλικό αποτύπωμα στις ρυθμίσεις της βάσης δεδομένων.</string>
+  <string name="FingerprintInitFailed">Αποτυχία αρχικοποίησης του αισθητήρα δακτυλικού αποτυπώματος </string>
   <string name="enable_fingerprint_unlock_Info">
 Το βασικό συνθηματικό θα αποθηκευτεί σε αυτή τη συσκευή,
 κρυπτογραφημένο στην αποθήκη κλειδιών του Android και προστατευμένο 
@@ -205,6 +209,7 @@
   <string name="remember_keyfile_summary">Απομνημονεύει τη θέση των αρχείων κλειδιού.</string>
   <string name="remember_keyfile_title">Αποθήκευση αρχείου κλειδιού</string>
   <string name="remove_from_filelist">Κατάργηση</string>
+  <string name="edit">Επεξεργασία</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Ρίζα</string>
   <string name="KeyDerivFunc">Συνάρτηση παραγωγής κλειδιού</string>
@@ -268,6 +273,7 @@
   <string name="enter_filename_details_create_import">Το αρχείο προς εισαγωγή θα επιλεγεί στο επόμενο βήμα.</string>
   <string name="enable_quickunlock">Ενεργοποίηση QuickUnlock</string>
   <string name="QuickUnlock_label">Εισάγετε τους %1$d χαρακτήρες του συνθηματικού σας:</string>
+  <string name="QuickUnlock_label_secure">Εισάγετε τον κωδικό QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Κλείσιμο βάσης δεδομένων</string>
   <string name="QuickUnlockDefaultEnabled_title">Ενεργοποίηση QuickUnlock εξ ορισμού</string>
@@ -280,6 +286,8 @@
   <string name="QuickUnlockIconHidden16_summary">Το QuickUnlock απαιτεί μια ειδοποίηση για να λειτουργήσει σωστά. Επιλέξτε αυτήν την επιλογή για να εμφανίσετε ειδοποίηση χωρίς εικονίδιο.</string>
   <string name="QuickUnlockLength_title">Μήκος του κλειδιού QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Μέγιστος αριθμός χαρακτήρων που χρησιμοποιούνται στο συνθηματικό QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_title">Απόκρυψη μήκους QuickUnlock</string>
+  <string name="QuickUnlockHideLength_summary">Αν ενεργοποιηθεί, αποκρύπτει το μήκος του κωδικού QuickUnlock στη σχετική οθόνη.</string>
   <string name="QuickUnlock_fail">Αποτυχία QuickUnlock: λανθασμένο συνθηματικό!</string>
   <string name="BinaryDirectory_title">Φάκελος για συνημμένα αρχεία</string>
   <string name="BinaryDirectory_summary">Φάκελος όπου αποθηκεύονται τα συνημμένα αρχεία.</string>
@@ -312,6 +320,8 @@
   <string name="ClearPasswordOnLeave_summary">Κατά την έξοδο από την οθόνη καθαρίζει το κύριο συνθηματικό που εισάγατε χωρίς να ξεκλειδώνει τη βάση δεδομένων.</string>
   <string name="LockWhenNavigateBack_title">Κλείδωμα με την έξοδο από την εφαρμογή</string>
   <string name="LockWhenNavigateBack_summary">Κλειδώνει τη βάση δεδομένων όταν βγείτε από την εφαρμογή με το πλήκτρο επιστροφής.</string>
+  <string name="ActivateSearchViewOnStart_title">Ενεργοποίηση του πεδίου αναζήτησης στην αρχή</string>
+  <string name="ActivateSearchViewOnStart_summary">Ενεργοποιεί το πεδίο αναζήτησης για τις ομάδες μετά το ξεκλείδωμα ή κατά την αναζήτηση</string>
   <string name="NoDonateOption_title">Απόκρυψη της επιλογής Δωρεά</string>
   <string name="NoDonateOption_summary">Αυτή η ρύθμιση είναι για δωρητές. Είναι διαθέσιμο μετά τη χρήση του Keepass2Android για λίγο μόνο.</string>
   <string name="NoDonateOption_question">Χωρίς δωρεές, αυτή η εφαρμογή δεν θα υπήρχε και δεν θα βελτιωνόταν συνεχώς! Αν δεν έχετε προσφέρει, σκεφτείτε να κάνετε μια δωρεά τώρα.</string>
@@ -319,6 +329,10 @@
   <string name="NoDonationReminder_summary">Δε δίνω δυάρα ή έχω ήδη κάνει προσφορά. Μη ζητάς προσφορά, ούτε καν στα γενέθλια του κατασκευαστή.</string>
   <string name="UseOfflineCache_title">Προσωρινή αποθήκευση βάσης δεδομένων</string>
   <string name="UseOfflineCache_summary">Διατηρεί αντίγραφο των απομακρυσμένων αρχείων βάσεων δεδομένων στο φάκελο προσωρινής αποθήκευσης της εφαρμογής. Αυτό επιτρέπει τη χρησιμοποίηση απομακρυσμένων βάσεων δεδομένων ακόμα και όταν είναι εκτός σύνδεσης.</string>
+  <string name="CreateBackups_title">Τοπικά αντίγραφα</string>
+  <string name="CreateBackups_summary">Δημιουργία τοπικού αντιγράφου μετά την επιτυχή φόρτωση της βάσης δεδομένων</string>
+  <string name="UpdatingBackup">Ενημέρωση τοπικού αντιγράφου...</string>
+  <string name="LocalBackupOf">Τοπικό αντίγραφο στο %1$s</string>
   <string name="AcceptAllServerCertificates_title">Πιστοποιητικά SSL</string>
   <string name="AcceptAllServerCertificates_summary">Καθορίστε τη συμπεριφορά αν αποτύχει η επικύρωση πιστοποιητικού. Σημείωση: μπορείτε να εγκαταστήσετε πιστοποιητικά στη συσκευή σας, εάν αποτύχει η επικύρωση!</string>
   <string name="ClearOfflineCache_title">Εκκαθάριση προσωρινής μνήμης;</string>
@@ -332,6 +346,7 @@
   <string name="ShowSeparateNotifications_title">Χωριστές ειδοποιήσεις</string>
   <string name="ShowSeparateNotifications_summary">Εμφάνιση χωριστών ειδοποιήσεων για την αντιγραφή του ονόματος χρήστη και του συνθηματικού στο πρόχειρο και ενεργοποίηση του πληκτρολογίου.</string>
   <string name="AccServiceAutoFill_prefs">Αυτόματη συμπλήρωση υπηρεσίας προσβασιμότητας</string>
+  <string name="AutoFill_prefs">Λειτουργία αυτόματης συμπλήρωσης</string>
   <string name="ShowKp2aKeyboardNotification_title">Ειδοποίηση πληκτρολογίου KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Κάντε προσβάσιμη την πλήρη καταχώριση μέσω του πληκτρολογίου KP2A (συνιστάται).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Εναλλαγή πληκτρολογίου</string>
@@ -346,6 +361,10 @@
   <string name="AutoSwitchBackKeyboard_summary">Επαναφορά στο προηγούμενο πληκτρολόγιο όταν δεν είναι ανοικτή μια καταχώριση.</string>
   <string name="ShowUnlockedNotification_title">Εικονίδιο ειδοποίησης ενόσω ξεκλείδωτη</string>
   <string name="ShowUnlockedNotification_summary">Προβολή εικονιδίου ειδοποίησης, ενόσω η βάση δεδομένων είναι ξεκλείδωτη.</string>
+  <string name="IconVisibilityInfo_Android8_text">Το Android 8 εισήγαγε νέα συμπεριφορά για τις ειδοποιήσεις. Απόκρυψη του εικονιδίου των ειδοποιήσεων του Keepass2Android γίνεται από τις ρυθμίσεις συστήματος. Ορίστε τη σημαντικότητα της κατηγορίας ειδοποιήσεων στο Ελάχιστο.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Άνοιγμα ρυθμίσεων</string>
+  <string name="DontCare">Δεν με νοιάζει</string>
+  <string name="DocumentAccessRevoked">Το αρχείο δεν είναι πλέον προσπελάσιμο στο Keepass2Android. Είτε διαγράφτηκε ή ανακηθηκαν τα δικαιώματα πρόσβασης. Δοκιμάστε να ξανα-ανοίξετε το αρχείο, πχ με Αλλαγή βάσης δεδομένων.</string>
   <string name="PreloadDatabaseEnabled_title">Προ-φόρτωση αρχείου βάσης δεδομένων</string>
   <string name="PreloadDatabaseEnabled_summary">Ξεκίνημα φόρτωσης στο παρασκήνιο ή λήψη του αρχείου της βάσης δεδομένων κατά την εισαγωγή του συνθηματικού.</string>
   <string name="AskOverwriteBinary">Θέλετε να αντικαταστήσετε το υπάρχον δυαδικό αρχείο με το ίδιο όνομα;</string>
@@ -492,6 +511,7 @@
   <string name="plugin_disabled">ανενεργό</string>
   <string name="plugin_web">Βρείτε πρόσθετα από το δίκτυο</string>
   <string name="plugin_scopes">Εμβέλεια</string>
+  <string name="not_enabled">δεν είναι ενεργοποιημένο</string>
   <string name="query_credentials_for_url">%1$s ζητά πιστοποιητικά για %2$s.</string>
   <string name="query_credentials">%1$s ζητά πιστοποιητικά. Παρακαλώ επιλέξτε μια καταχώριση.</string>
   <string name="plugin_enabled_checkbox">Ενεργό</string>
@@ -519,6 +539,7 @@
   <string name="ReadOnlyReason_PreKitKat">Φαίνεται πως ανοίξατε το αρχείο από μια εξωτερική εφαρμογή. Γι αυτό δεν υποστηρίζεται η τροποποίηση. Αν θέλετε να κάνετε αλλαγές στη βάση δεδομένων, κλείστε τη βάση δεδομένων και επιλέξτε Αλλαγή βάσης δεδομένων. Στη συνέχεια ανοίξτε το αρχείο με μια από τις διαθέσιμες επιλογές αν είναι δυνατόν.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Ισχύει ρύθμιση μόνο για ανάγνωση. Αλλάξτε τη ρύθμιση αν θέλετε να κάνετε αλλαγές στη βάση δεδομένων.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Τροποποιήσεις δεν είναι δυνατές εξαιτίας περιορισμών που εισήγαγε το Android KitKat. Αν θέλετε να κάνετε αλλαγές στη βάση δεδομένων, κλείστε τη βάση δεδομένων και επιλέξτε \'Αλλαγή βάσης δεδομένων\'. Στη συνέχεια, ανοίξτε το αρχείο χρησιμοποιώντας τον επιλογέα αρχείων.</string>
+  <string name="ReadOnlyReason_LocalBackup">Τοπικά αντίγραφα δεν τροποποιούνται. Μπορείτε να εξάγετε το αντίγραφο σε άλλη τοποθεσία από Ρυθμίσεις - Βάση δεδομένων - Εξαγωγή βάσης δεδομένων... Έτσι μπορείτε να την ανοίξετε για εγγραφή πάλι.</string>
   <string name="AddCustomIcon">Προσθήκη εικονιδίου από αρχείο...</string>
   <string name="CopyingFile">Αντιγραφή αρχείου...</string>
   <string name="DuplicateTitle">Αντιγραφή</string>
@@ -553,6 +574,13 @@
 * Βεβαιωθείτε ότι έχετε επιλέξει σωστό τύπο συνθηματικού. Βεβαιωθείτε ότι ταιριάζει με τον τύπο που χρησιμοποιήθηκε κατά τη δημιουργία της βάσης δεδομένων. \n
 * Βεβαιωθείτε ότι έχετε επιλέξει το σωστό αρχείο βάσης δεδομένων.
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+   • Υπόδειξη: Αν καταστράφηκε η βάση δεδομένων ή ξεχάσατε το κύριο συνθηματικό μετά την τροποποίησή του, δοκιμάστε την τελευταία έκδοση που ανοίξατε επιτυχώς με \"%1$s\", και επιλέγοντας το τοπικό αντίγραφο.</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    • Υπόδειξη: Το Keepass2Android αποθήκευσε την τελευταία έκδοση που άνοιξε επιτυχώς στην εσωτερική μνήμη. Μπορείτε να την ανοίξετε με \"%1$s\" και επιλέγοντας το τοπικό αντίγραφο.
+  </string>
   <string name="CorruptDatabaseHelp">
 Το αρχείο είναι κατεστραμμένο. \n
 Ακολουθούν υποδείξεις για να διαγνώσετε το πρόβλημα: \n
@@ -560,6 +588,12 @@
 Αν αντιγράψατε το αρχείο μέσω USB (MTP-Mode), παρακαλώ προσπαθήστε ξανά με εργαλεία όπως το MyPhoneExplorer. Το MTP περικόπτει τα αρχεία σε ορισμένες περιπτώσεις. \n
 Αν δεν μπορείτε να ανοίξετε το αρχείο από την ίδια θέση στον υπολογιστή σας, είναι πολύ πιθανό ότι το αρχείο είναι πράγματι κατεστραμμένο. Χρησιμοποιήστε αντίγραφο ασφαλείας της βάσης δεδομένων. Αν ΄πιστεύετε ότι το Keepass2Android καταστρέφει το αρχείο, επικοινωνήστε με την υποστήριξη. \n
 Αν μπορείτε να ανοίξετε το αρχείο στον υπολογιστή σας, επικοινωνήστε με την υποστήριξη. Μπορείτε να δοκιμάσετε να το αποθηκεύσετε με διαφορετικές ρυθμίσεις (π.χ. unzipped) στο PC και προσπαθήστε ξανά να ανοίξετε στο Keepass2Android.  </string>
+  <string name="DbUnlockedChannel_name">Βάση δεδομένων ξεκλείδωτη</string>
+  <string name="DbUnlockedChannel_desc">Η ειδοποίηση για τη βάση δεδομένων ξεκλειδώνεται</string>
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Ειδοποίηση για τη βάση δεδομένων που κλειδώνεται με QuickUnlock</string>
+  <string name="EntryChannel_name">Ειδοποιήσεις</string>
+  <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="ErrorReportTitle">Keepass2Android: Παρουσιάστηκε ένα σφάλμα.</string>
   <string name="ErrorReportText">Παρουσιάστηκε απροσδόκητο σφάλμα κατά την εκτέλεση του Keepass2Android. Βοηθήστε να το διορθώσω αυτό, επιτρέποντας την εφαρμογή να στέλνει αναφορές σφαλμάτων.</string>
   <string name="ErrorReportPromise">Οι αναφορές σφαλμάτων δεν θα περιέχουν οποιαδήποτε περιεχόμενα της βάσης δεδομένων ή το κύριο συνθηματικό σας. Μπορείτε να τις απενεργοποιήσετε στις ρυθμίσεις της εφαρμογής.</string>
@@ -568,6 +602,31 @@
   <string name="ErrorReportAsk">Ερώτηση μετά από σφάλμα</string>
   <string name="ErrorReportPrefTitle">Αποστολή αναφοράς σφαλμάτων</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Προβάλει το πληκτρολόγιο για εισαγωγή συνθηματικού όταν είναι ενεργή η σάρωση δακτυλικού αποτυπώματος.</string>
+  <string name="ChangeLog_1_05">
+    Έκδοση 1.05\n
+    * Χρήση ειδοποιήσεων του Android 8, που επιτρέπει προσαρμογή μέσω των ρυθμίσεων συστήματος\n
+    * Προβολή εικονιδίου εισόδου στις ειδοποιήσεις\n
+    * Χρήση Adaptive Icons για το Android 8, χρήση στρογγυλού εικονιδίου για το Android 7\n
+    * Επιτρέπει ενεργοποίηση αναζήτησης κατά το ξεκλείδωμα\n
+    * Αλλαγή στον τρόπο εγγραφής των αρχείων μέσω Storage Access Framework, διορθώνει ζητήματα ενημέρωσης αρχείων στο Google Drive όταν ανοίγονται μέσω του System file picker\n
+    * Προσθήκη πληροφοριακών κειμένων προς αποφυγή κοινών παρεξηγήσεων\n
+    * Δημιουργία τοπικών αντιγράφων των βάσεων δεδομένων που ανοίχθηκαν επιτυχώς προς αποφυγή απώλειας δεδομένων\n
+    * Ενημερωμένο JSch για υποστήριξη πρόσφατων SSH ciphers\n
+    * Επιτρέπει διόρθωση ρυθμίσεων σύνδεσης, πχ όταν αλλάζει το συνθηματικό WebDav\n
+    * Added support for Yubikey Neo\'s static password mode\n
+    * Allow to disable Autofill suggestion\n
+    * Fixed data leakage to logcat\n    
+    * bug fixes\n
+  </string>
+  <string name="ChangeLog_1_04b">
+    Έκδοση 1.04b\n
+    * Αποφυγή κρασαρίσματος κατά την ενεργοποίηση Autofill σε συσκευές Huawei.\n
+  </string>
+  <string name="ChangeLog_1_04">
+    Έκδοση 1.04\n
+    * Προσθήκη υπηρεσίας Autofill για Android 8.0 και επόμενα.\n
+    * Αναβαθμισμένες βιβλιοθήκες, εργαλεία ανάπτυξης και έκδοση Target SDK.\n
+  </string>
   <string name="ChangeLog_1_03">
 Έκδοση 1.03\n
     * Αφαιρέθηκε η υπηρεσία προσβασιμότητας έπειτα από απαίτηση της Google. Δείτε τις ρυθμίσεις κωδικών προσβασιμότητας για να βρείτε ένα πρόσθετο που να αντικαθιστά την λειτουργικότητα.\n
@@ -859,4 +918,20 @@ Initial public release
   </string-array>
   <string name="ClearClipboardWarning">Βεβαιωθείτε ότι αυτό λειτουργεί στο σύστημά σας, αλλιώς χρησιμοποιήστε το ενσωματωμένο πληκτρολόγιο.</string>
   <string name="PluginDescription">Περιγραφή που παρέχεται από το πρόσθετο:</string>
+  <string name="autofill_hint">Το Keepass2Android υποστηρίζει το χαρακτηριστικό Autofill του Android, αλλά φαίνεται ότι δεν το έχετε ενεργοποιήσει ακόμη.</string>
+  <string name="autofill_enable">Ενεργοποίηση αυτόματης συμπλήρωσης</string>
+  <string name="autofill_enable_failed">Λυπάμαι, αλλά η συσκευή σας δεν υποστηρίζει άνοιγμα των ρυθμίσεων μέσα από την εφαρμογή. Παρακαλώ ενεργοποιήστε την υπηρεσία από τις ρυθμίσεις συστήματος.</string>
+  <string name="show_autofill_help">Εμφάνιση βοήθειας Αυτόματης συμπλήρωσης</string>
+  <string name="autofill_sign_in_prompt">Συμπλήρωση με Keepass2Android</string>
+  <string name="invalid_link_association">Δεν σχετίζεται το web domain %1$s με την εφαρμογή %2$s</string>
+  <string name="understand">Καταλαβαίνω</string>
+  <string name="dont_show_again">Να μην εμφανιστεί ξανά</string>
+  <string name="masterkey_infotext_head">Θυμάστε το κύριο συνθηματικό σας;</string>
+  <string name="masterkey_infotext_main">Είναι αδύνατο να ανοίξετε τη βάση δεδομένων δίχως το κύριο συνθηματικό.</string>
+  <string name="masterkey_infotext_fingerprint_note">Το ξεκλείδωμα δακτυλικού αποτυπώματος λειτουργεί αποθηκεύοντας το κύριο κλειδί στο χώρο ασφαλούς αποθήκευσης του Android. Αυτός μπορεί να διαγραφτεί ανά πάσα στιγμή, πχ όταν προστίθεται νέο δακτυλικό αποτύπωμα στις ρυθμίσεις συστήματος. Γι αυτό μην βασίζεστε στο δακτυλικό αποτύπωμα, αλλά να θυμάστε το κύριο συνθηματικό!</string>
+  <string name="backup_infotext_head">Έχετε αντίγραφο ασφαλείας της βάσης δεδομένων;</string>
+  <string name="backup_infotext_main">Το Keepass2Android αποθηκεύει τα συνθηματικά σας σε αρχείο σε τοποθεσία επιλογής σας. Είναι σίγουρο ότι μπορείτε να βρείτε αυτό το αρχείο σε περίπτωση απώλειας του κινητού σας; Βεβαιωθείτε ότι έχετε ενημερωμένο αντίγραφο σε ασφαλή τοποθεσία!</string>
+  <string name="backup_infotext_note">Για αντίγραφο ασφαλείας, %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Είστε προετοιμασμένοι για έκτακτα περιστατικά;</string>
+  <string name="emergency_infotext_main">Αναρωτηθήκατε τι συμβαίνει αν δεν είνα δυνατόν να προσπελάσετε τη βάση δεδομένων με τα συνθηματικά σας; Ή στην περίπτωση που έχετε ένα ατύχημα; Συνιστάται να μοιράζεστε το κύριο συνθηματικό σας με κάποιο έμπιστο άτομο. Διαφορετικά, κανένας δεν θα προσπελάσει στα συνθηματικά σας.</string>
 </resources>

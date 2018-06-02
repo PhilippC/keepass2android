@@ -88,6 +88,7 @@
   <string name="enable_fingerprint_quickunlock">Bật Mở khoá vân tay cho Mở khoá nhanh</string>
   <string name="fingerprint_unlock_hint">Chạm vào cảm biến để mở khoá cơ sở dữ liệu</string>
   <string name="fingerprint_reenable">Xin vui lòng kích hoạt lại mở khóa vân tay cho mật khẩu chủ mới.</string>
+  <string name="FingerprintInitFailed">Khởi động cảm biến vân tay thất bại. </string>
   <string name="enable_fingerprint_unlock_Info">
      Điều này sẽ lưu trữ mật khẩu chủ của bạn trên thiết bị này,
     được mã hóa với Android Keystore và được bảo vệ
@@ -753,4 +754,10 @@ Bản phát hành chính thức đầu tiên</string>
     <item>Cảnh báo khi xác nhận không thành công</item>
     <item>Không chấp nhận các chứng chỉ không hợp lệ</item>
   </string-array>
+  <string name="PluginDescription">Mô tả của phần mở rộng:</string>
+  <string name="autofill_hint">Keepass2Android hỗ trợ chức năng Tự động điền của Android nhưng có vẻ bạn chưa bật chức năng này.</string>
+  <string name="autofill_enable">Bật Tự động điền</string>
+  <string name="show_autofill_help">Xem trợ giúp về Tự động điền</string>
+  <string name="autofill_sign_in_prompt">Điền vào với Keepass2Android</string>
+  <string name="invalid_link_association">Không thể liên kết tên miền trang web %1$s với ứng dụng %2$s</string>
 </resources>

@@ -207,6 +207,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="remember_keyfile_summary">Lembrar localização dos ficheiros-chave</string>
   <string name="remember_keyfile_title">Guardar ficheiro-chave</string>
   <string name="remove_from_filelist">Remover</string>
+  <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Raiz</string>
   <string name="KeyDerivFunc">Função de derivação de chave</string>
@@ -270,6 +271,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="enter_filename_details_create_import">O ficheiro a ser importado será selecionado na próxima etapa.</string>
   <string name="enable_quickunlock">Ativar o Desbloqueio-Rápido</string>
   <string name="QuickUnlock_label">Insira os últimos %1$d caracteres de sua palavra-passe:</string>
+  <string name="QuickUnlock_label_secure">Introduza o código de desbloqueio rápido:</string>
   <string name="QuickUnlock_button">Desbloqueio-Rápido!</string>
   <string name="QuickUnlock_lockButton">Fechar base de dados</string>
   <string name="QuickUnlockDefaultEnabled_title">Ativar Desbloqueio-Rápido por defeito</string>
@@ -282,6 +284,8 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="QuickUnlockIconHidden16_summary">O Desbloqueio-Rápido exige uma notificação para funcionar corretamente. Selecione esta opção para mostrar uma notificação sem um ícone.</string>
   <string name="QuickUnlockLength_title">Comprimento da chave do Desbloqueio-Rápido</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres usado como palavra-passe de Desbloqueio-Rápido.</string>
+  <string name="QuickUnlockHideLength_title">Esconder o comprimento do código de desbloqueio rápido</string>
+  <string name="QuickUnlockHideLength_summary">Se ativo, o comprimento do código de desbloqueio rápido não será exibido no ecrã de desbloqueio rápido.</string>
   <string name="QuickUnlock_fail">Desbloqueio-Rápido falhou: palavra-passe incorreta!</string>
   <string name="BinaryDirectory_title">Pasta para os anexos</string>
   <string name="BinaryDirectory_summary">Pasta para onde os anexos são guardados.</string>
@@ -314,6 +318,8 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="ClearPasswordOnLeave_summary">Limpe a palavra-passe mestra quando abandonar o ecrã sem desbloquear a base de dados.</string>
   <string name="LockWhenNavigateBack_title">Bloquear ao sair da aplicação</string>
   <string name="LockWhenNavigateBack_summary">Bloquear a base de dados ao fechar a aplicação pressionando o botão voltar.</string>
+  <string name="ActivateSearchViewOnStart_title">Ativar campo de procura ao iniciar</string>
+  <string name="ActivateSearchViewOnStart_summary">Ativa o campo de procura na vista de grupo após desbloquear ou quando procura por uma entrada</string>
   <string name="NoDonateOption_title">Esconder opção para doar</string>
   <string name="NoDonateOption_summary">Esta configuração é para doadores. Estará disponível após usar o Keepass2Android por algum tempo.</string>
   <string name="NoDonateOption_question">Sem doações, esta aplicação não existiria e nem poderia ser melhorada continuamente! Se ainda não doou, por favor, considere fazer uma doação agora.</string>
@@ -321,6 +327,10 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="NoDonationReminder_summary">Não vou doar um cêntimo ou já doei. Não voltar a pedir uma doação, nem no aniversário do autor.</string>
   <string name="UseOfflineCache_title">Cache da base de dados</string>
   <string name="UseOfflineCache_summary">Guardar uma cópia das bases de dados remotas no diretório de cache da aplicação. Isto permite para usar bases de dados remotas, mesmo offline.</string>
+  <string name="CreateBackups_title">Copias de segurança local</string>
+  <string name="CreateBackups_summary">Cria uma cópia de segurança local após carregar com sucesso a base de dados.</string>
+  <string name="UpdatingBackup">Atualizando a cópia de segurança local...</string>
+  <string name="LocalBackupOf">Cópia de segurança local de %1$s</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Defina o comportamento quando a validação do certificado falhar. Atenção: pode instalar certificados no seu dispositivo se a validação falhar!</string>
   <string name="ClearOfflineCache_title">Eliminar a cache?</string>
@@ -349,6 +359,10 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="AutoSwitchBackKeyboard_summary">Alternar para teclado anterior se não houver entrada aberta.</string>
   <string name="ShowUnlockedNotification_title">Ícone de notificação enquanto desbloqueado</string>
   <string name="ShowUnlockedNotification_summary">Mostrar uma notificação em curso enquanto a base de dados está desbloqueada.</string>
+  <string name="IconVisibilityInfo_Android8_text">O android 8 introduziu um novo comportamento para notificações. Se quiser pode esconder o icon das notificações do Keepass2Android, por favor configure isto através das configurações do sistema. Defina a importância das notificações para o mínimo.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Abrir configurações</string>
+  <string name="DontCare">Não quero saber</string>
+  <string name="DocumentAccessRevoked">O ficheiro já não está acessível pelo Kepass2Android. Ou foi removido ou as permissões de acesso foram revogadas. Por favor reabra o ficheiro, por exemplo altere a base de dados.</string>
   <string name="PreloadDatabaseEnabled_title">Pré-carregar o ficheiro da base de dados</string>
   <string name="PreloadDatabaseEnabled_summary">Iniciar o carregamento ou transferência em segundo plano do ficheiro da base de dados durante a inserção da palavra-passe.</string>
   <string name="AskOverwriteBinary">Pretende substituir o binário existente com o mesmo nome?</string>
@@ -523,6 +537,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="ReadOnlyReason_PreKitKat">Parece que abriu o ficheiro a partir de uma aplicação externa. Desta forma não oferece suporte para escrita. Se quiser fazer alterações na base de dados, feche a base de dados e selecione Alterar base de dados. De seguida, abra o ficheiro com uma das opções disponíveis, se possível.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Está ativado o indicador somente leitura. Remova-o se desejar fazer alterações na base de dados.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Escrever não é possível devido a restrições introduzidas no Android KitKat. Se você quiser fazer alterações no banco de dados, feche o banco de dados e selecione o banco de dados de alteração. De seguida, abra o arquivo usando o seletor de arquivo de sistema.</string>
+  <string name="ReadOnlyReason_LocalBackup">Backup local não pode ser modificado. Você pode usar as configurações da base de dados - Exportar base de dados para exportar esta cópia de segurança para outra localização a partir da qual você pode-a abrir. Irá permitir a escrita novamente.</string>
   <string name="AddCustomIcon">Adicionar ícone a partir de um ficheiro...</string>
   <string name="CopyingFile">A copiar ficheiro...</string>
   <string name="DuplicateTitle">Cópia</string>
@@ -558,6 +573,12 @@ Muito útil se existirem muitos resultados iguais.</string>
    • Certifique ter selecionado o ficheiro correto da base de dados.
  
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+\n 
+ • Dica: se você acha que seu ficheiro de base de dados possa estar corrompido ou não se lembra da chave mestra após modificá-la, você pode tentar com a última versão do ficheiro aberto com sucesso, clicando em \"%1$s\" e selecionando a cópia de segurança local.</string>
+  <string name="HintLocalBackupOtherError">
+\n
+ • Dica: Keepass2Android guardou com sucesso a versão do último ficheiro aberto com sucesso na memória interna. Você pode abri-lo clicando em \"%1$s\" e selecionado a cópia de segurança local.  </string>
   <string name="CorruptDatabaseHelp">
     O ficheiro está corrupto.\n
     Aqui estão algumas dicas que podem ajudar a diagnosticar o problema:\n
@@ -567,6 +588,12 @@ Muito útil se existirem muitos resultados iguais.</string>
     • Se é capaz de abrir o ficheiro no seu computador, entre em contacto com o suporte. Pode tentar grava-lo com definições diferentes (p.e. descompactado) no computador e tentar abri-lo novamente com o Keepass2Android.
 
   </string>
+  <string name="DbUnlockedChannel_name">Base de dados debloqueada</string>
+  <string name="DbUnlockedChannel_desc">Notificação acerca da base de dados sendo desbloqueada</string>
+  <string name="DbQuicklockedChannel_name">Desbloqueio rápido</string>
+  <string name="DbQuicklockedChannel_desc">Notificação acerca da base de dados sendo desbloqueada com desbloqueio rápido</string>
+  <string name="EntryChannel_name">Entrada de notificações</string>
+  <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="ErrorReportTitle">Keepass2Android: Ocorreu um erro.</string>
   <string name="ErrorReportText">Ocorreu um erro inesperado durante a execução do Keepass2Android. Por favor ajude-nos a corrigir, permitindo que a aplicação envie relatórios de erros.</string>
   <string name="ErrorReportPromise">Relatórios de erros nunca irão conter nenhum conteúdo de sua base de dados ou palavra-passe mestra. Pode desativa-los nas definições da aplicação.</string>
@@ -575,6 +602,24 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="ErrorReportAsk">Perguntar depois do erro</string>
   <string name="ErrorReportPrefTitle">Enviar relatórios de erro</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para inserção de palavra-passe quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_05">
+Versão 1.05\n
+* Usa o canal de notificações para o Android 8, permitindo configuração através das configurações do sistema\n
+* Mostra o icon da entrada na notificação\n
+* Uso de icons adaptativos para Android 8, usa icon de lançamento redondo para Android 7\n
+* Permite ativar a procura após desbloqueio (ver configurações)\n
+* Alterada a maneira que os ficheiros são escritos através da framework de acesso ao armazenamento, corrigidos problemas com a atualização de ficheiros na Google Drive abertos através do sistema de escolha de ficheiros\n
+* Adicionados textos informativos sobre confusões comuns\n
+* Criação de cópia de segurança local de base de dados aberta com sucesso para reduzir o risco de perda de dados\n
+* Atualizado JSch para suportar as cifras SSH mais recentes\n
+* Permite editar configurações de ligações, por exemplo quando a password WebDav é alterada\n
+* Adicionado suporte para YubiKey Neo\'s modo de password estática\n
+* Permite desligar a sugestão de Auto preenchimento\n
+* Corrigido a fuga de dados para o logcat\n
+* Correção de bugs\n  </string>
+  <string name="ChangeLog_1_04b">
+Versão 1.04b\n
+* Evita a falha da aplicação quando o utilizador tenta ativar o auto preenchimento em equipamentos Huawei.\n  </string>
   <string name="ChangeLog_1_04">
 Versão 1.04\n
     * Adicionado serviço de auto preenchimento para android 8.0 e posterior.\n
@@ -880,7 +925,19 @@ Lançamento público inicial
   <string name="PluginDescription">Descrição fornecida pela extensão:</string>
   <string name="autofill_hint">Keepass2Android suporta o Auto preenchimento do sistema Android mas parece que ainda não o ativou.</string>
   <string name="autofill_enable">Ativar o auto preenchimento</string>
+  <string name="autofill_enable_failed">Lamento, parece que o seu dispositivo não suporta abrir as configurações dentro da aplicação. Por favor vá manualmente às configurações do sistema para auto preenchimento para ativar o serviço.</string>
   <string name="show_autofill_help">Mostrar ajuda para auto preenchimento</string>
   <string name="autofill_sign_in_prompt">Preencher com Keepass2Android</string>
   <string name="invalid_link_association">Não foi possível associar o domínio %1$s com a aplicação %2$s</string>
+  <string name="understand">Eu entendo</string>
+  <string name="dont_show_again">Não mostrar novamente</string>
+  <string name="masterkey_infotext_head">Recorda-se da sua chave mestra?</string>
+  <string name="masterkey_infotext_main">Note que não vai conseguir abrir a sua base de dados sem a sua chave mestra.
+Não há forma de fazer \"reset\" à chave mestra.</string>
+  <string name="masterkey_infotext_fingerprint_note">Também note que o desbloqueio por impressão digital funciona por guardar a sua chave mestra no armazenamento seguro do Android. Este armazenamento pode ser apagado pelo Android a qualquer altura, por exemplo se adicionar uma nova impressão digital ao sistema. Portanto não dependa apenas da sua impressão digital, lembre-se sempre da sua chave mestra, por favor!</string>
+  <string name="backup_infotext_head">Fez cópia de segurança da sua base de dados?</string>
+  <string name="backup_infotext_main">Keepass2Android guarda as suas passwords num ficheiro numa localização do seu dispositivo à sua escolha. Tem a certeza que consegue aceder ao ficheiro caso o seu telemóvel seja perdido ou roubado, ou caso o ficheiro seja destruído ou apagado? Por favor, tenha a certeza que tem uma cópia de segurança atualizada num local seguro!</string>
+  <string name="backup_infotext_note">Para criar uma cópia de segurança agora, por favor ir a %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Está preparado para casos de emergência?</string>
+  <string name="emergency_infotext_main">Já considerou em o que acontece caso você não consiga aceder à sua base de dados? E se tem um acidente? É uma boa prática dar a sua senha mestra a alguém de sua confiança para situações de emergência. Ninguém vai conseguir aceder às suas passwords de outra forma.</string>
 </resources>
