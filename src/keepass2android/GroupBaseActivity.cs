@@ -54,7 +54,7 @@ namespace keepass2android
             { Resource.Id.insert_element, 20 },
             { Resource.Id.autofill_infotext, 10 },
             { Resource.Id.notification_info_android8_infotext, 10 },
-            { Resource.Id.infotext, 11 },
+            { Resource.Id.infotext, 9 },
             { Resource.Id.select_other_entry, 20},
             { Resource.Id.add_url_entry, 20},
         };
@@ -239,12 +239,111 @@ namespace keepass2android
             AppTask.SetupGroupBaseActivityButtons(this);
 
             UpdateAutofillInfo();
-
             UpdateAndroid8NotificationInfo();
+            UpdateInfotexts();
 
             RefreshIfDirty();
 
             
+        }
+
+        private void UpdateInfotexts()
+        {
+
+            string lastInfoText;
+            if (IsTimeForInfotext(out lastInfoText) && (FindViewById<TextView>(Resource.Id.info_head) != null))
+            {
+
+                FingerprintUnlockMode um;
+                Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.GetDb().Ioc), ""), out um);
+                bool isFingerprintEnabled = (um == FingerprintUnlockMode.FullUnlock);
+
+                string masterKeyKey = "MasterKey" + isFingerprintEnabled;
+                string emergencyKey = "Emergency";
+                string backupKey = "Backup";
+
+                List<string> applicableInfoTextKeys = new List<string> { masterKeyKey };
+
+                if (App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc).UserShouldBackup)
+                {
+                    applicableInfoTextKeys.Add(backupKey);
+                }
+                if (App.Kp2a.GetDb().Entries.Count > 15)
+                {
+                    applicableInfoTextKeys.Add(emergencyKey);
+                }
+
+                List<string> enabledInfoTextKeys = new List<string>();
+                foreach (string key in applicableInfoTextKeys)
+                {
+                    if (!InfoTextWasDisabled(key))
+                        enabledInfoTextKeys.Add(key);
+                }
+
+                if (enabledInfoTextKeys.Any())
+                {
+                    string infoTextKey = "", infoHead = "", infoMain = "", infoNote = "";
+
+                    if (enabledInfoTextKeys.Count > 1)
+                    {
+                        foreach (string key in enabledInfoTextKeys)
+                            if (key == lastInfoText)
+                            {
+                                enabledInfoTextKeys.Remove(key);
+                                break;
+                            }
+                        infoTextKey = enabledInfoTextKeys[new Random().Next(enabledInfoTextKeys.Count)];
+                    }
+
+                    if (infoTextKey == masterKeyKey)
+                    {
+                        infoHead = GetString(Resource.String.masterkey_infotext_head);
+                        infoMain = GetString(Resource.String.masterkey_infotext_main);
+                        if (isFingerprintEnabled)
+                            infoNote = GetString(Resource.String.masterkey_infotext_fingerprint_note);
+                    }
+                    else if (infoTextKey == emergencyKey)
+                    {
+                        infoHead = GetString(Resource.String.emergency_infotext_head);
+                        infoMain = GetString(Resource.String.emergency_infotext_main);
+                    }
+                    else if (infoTextKey == backupKey)
+                    {
+                        infoHead = GetString(Resource.String.backup_infotext_head);
+                        infoMain = GetString(Resource.String.backup_infotext_main);
+                        infoNote = GetString(Resource.String.backup_infotext_note, GetString(Resource.String.menu_app_settings), GetString(Resource.String.menu_db_settings), GetString(Resource.String.export_prefs));
+                    }
+
+
+
+                    FindViewById<TextView>(Resource.Id.info_head).Text = infoHead;
+                    FindViewById<TextView>(Resource.Id.info_main).Text = infoMain;
+                    var additionalInfoText = FindViewById<TextView>(Resource.Id.info_additional);
+                    additionalInfoText.Text = infoNote;
+                    additionalInfoText.Visibility = string.IsNullOrEmpty(infoNote) ? ViewStates.Gone : ViewStates.Visible;
+
+                    if (infoTextKey != "")
+                    {
+
+                        RegisterInfoTextDisplay(infoTextKey);
+                        FindViewById(Resource.Id.info_ok).Click += (sender, args) =>
+                        {
+                            UpdateBottomBarElementVisibility(Resource.Id.infotext, false);
+                        };
+                        FindViewById(Resource.Id.info_dont_show_again).Click += (sender, args) =>
+                        {
+                            UpdateBottomBarElementVisibility(Resource.Id.infotext, false);
+                            DisableInfoTextDisplay(infoTextKey);
+                        };
+
+                        UpdateBottomBarElementVisibility(Resource.Id.infotext, true);
+                    }
+
+                }
+
+
+
+            }
         }
 
         private void UpdateAndroid8NotificationInfo(bool hideForever = false)
@@ -256,6 +355,10 @@ namespace keepass2android
             {
                 _prefs.Edit().PutBoolean(prefsKey, true).Commit();
                 canShowNotificationInfo = false;
+            }
+            if (canShowNotificationInfo)
+            {
+                RegisterInfoTextDisplay("Android8Notification"); //this ensures that we don't show the general info texts too soon
             }
             UpdateBottomBarElementVisibility(Resource.Id.notification_info_android8_infotext, canShowNotificationInfo);
             
@@ -413,100 +516,6 @@ namespace keepass2android
 
 
 
-            string lastInfoText;
-            if (IsTimeForInfotext(out lastInfoText) && (FindViewById<TextView>(Resource.Id.info_head) != null))
-            {
-
-                FingerprintUnlockMode um;
-                Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.GetDb().Ioc), ""), out um);
-                bool isFingerprintEnabled = (um == FingerprintUnlockMode.FullUnlock);
-
-                string masterKeyKey = "MasterKey" + isFingerprintEnabled;
-                string emergencyKey = "Emergency";
-                string backupKey = "Backup";
-
-                List<string> applicableInfoTextKeys = new List<string> {masterKeyKey};
-
-                if (App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc).UserShouldBackup)
-                {
-                    applicableInfoTextKeys.Add(backupKey);
-                }
-                if (App.Kp2a.GetDb().Entries.Count > 15)
-                {
-                    applicableInfoTextKeys.Add(emergencyKey);
-                }
-
-                List<string> enabledInfoTextKeys = new List<string>();
-                foreach (string key in applicableInfoTextKeys)
-                {
-                    if (!InfoTextWasDisabled(key))
-                        enabledInfoTextKeys.Add(key);
-                }
-
-                if (enabledInfoTextKeys.Any())
-                {
-                    string infoTextKey = "", infoHead = "", infoMain = "", infoNote = "";
-
-                    if (enabledInfoTextKeys.Count > 1)
-                    {
-                        foreach (string key in enabledInfoTextKeys)
-                            if (key == lastInfoText)
-                            {
-                                enabledInfoTextKeys.Remove(key);
-                                break;
-                            }
-                        infoTextKey = enabledInfoTextKeys[new Random().Next(enabledInfoTextKeys.Count)];
-                    }
-
-                    if (infoTextKey == masterKeyKey)
-                    {
-                        infoHead = GetString(Resource.String.masterkey_infotext_head);
-                        infoMain = GetString(Resource.String.masterkey_infotext_main);
-                        if (isFingerprintEnabled)
-                            infoNote = GetString(Resource.String.masterkey_infotext_fingerprint_note);
-                    }
-                    else if (infoTextKey == emergencyKey)
-                    {
-                        infoHead = GetString(Resource.String.emergency_infotext_head);
-                        infoMain = GetString(Resource.String.emergency_infotext_main);
-                    }
-                    else if (infoTextKey == backupKey)
-                    {
-                        infoHead = GetString(Resource.String.backup_infotext_head);
-                        infoMain = GetString(Resource.String.backup_infotext_main);
-                        infoNote = GetString(Resource.String.backup_infotext_note, GetString(Resource.String.menu_app_settings), GetString(Resource.String.menu_db_settings), GetString(Resource.String.export_prefs));
-                    }
-
-
-
-                    FindViewById<TextView>(Resource.Id.info_head).Text = infoHead;
-                    FindViewById<TextView>(Resource.Id.info_main).Text = infoMain;
-                    var additionalInfoText = FindViewById<TextView>(Resource.Id.info_additional);
-                    additionalInfoText.Text = infoNote;
-                    additionalInfoText.Visibility = string.IsNullOrEmpty(infoNote) ? ViewStates.Gone : ViewStates.Visible;
-
-                    if (infoTextKey != "")
-                    {
-
-                        RegisterInfoTextDisplay(infoTextKey);
-                        FindViewById(Resource.Id.info_ok).Click += (sender, args) =>
-                        {
-                            UpdateBottomBarElementVisibility(Resource.Id.infotext, false);
-                        };
-                        FindViewById(Resource.Id.info_dont_show_again).Click += (sender, args) =>
-                        {
-                            UpdateBottomBarElementVisibility(Resource.Id.infotext, false);
-                            DisableInfoTextDisplay(infoTextKey);
-                        };
-
-                        UpdateBottomBarElementVisibility(Resource.Id.infotext, true);
-                    }
-
-                }
-
-
-
-            }
 
 
 
@@ -575,6 +584,11 @@ namespace keepass2android
                     _prefs.Edit().PutBoolean(autofillservicewasenabled_prefskey, true).Commit();
 
                 }
+            }
+            if (canShowAutofillInfo)
+            {
+                RegisterInfoTextDisplay("AutofillSuggestion"); //this ensures that we don't show the general info texts too soon
+                
             }
             UpdateBottomBarElementVisibility(Resource.Id.autofill_infotext, canShowAutofillInfo);
         }
