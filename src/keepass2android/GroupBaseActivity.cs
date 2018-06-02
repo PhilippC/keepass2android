@@ -52,7 +52,8 @@ namespace keepass2android
         {
             { Resource.Id.cancel_insert_element, 20 },
             { Resource.Id.insert_element, 20 },
-            { Resource.Id.autofill_infotext, 10 },
+            //only use the same id if elements can be shown simultaneously!
+            { Resource.Id.autofill_infotext, 11 },
             { Resource.Id.notification_info_android8_infotext, 10 },
             { Resource.Id.infotext, 9 },
             { Resource.Id.select_other_entry, 20},
@@ -147,7 +148,7 @@ namespace keepass2android
                 for (int i = 0; i < bottomBar.ChildCount; i++)
                 {
                     int id = bottomBar.GetChildAt(i).Id;
-                    bottomBar.GetChildAt(i).Visibility = highestPrioElements.Any() && (highestPrioElements.First() == id) ? ViewStates.Visible : ViewStates.Gone;
+                    bottomBar.GetChildAt(i).Visibility = highestPrioElements.Contains(id) ? ViewStates.Visible : ViewStates.Gone;
                 }
 
                 if (FindViewById(Resource.Id.divider2) != null)
