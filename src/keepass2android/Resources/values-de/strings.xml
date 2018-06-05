@@ -539,7 +539,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="ReadOnlyReason_PreKitKat">Es scheint als hättest du die Datei über eine externe App geöffnet. Diese Vorgehensweise unterstützt keinen Schreibzugriff. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne dann die Datei mit einer der angebotenen Optionen.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Entferne das Attribut, um Änderungen an der Datenbank vorzunehmen.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne die Datei dann über die System-Dateiauswahl.</string>
-  <string name="ReadOnlyReason_LocalBackup">Lokale Sicherungskopien können nicht bearbeitet wedren. Du kannst über \"Datenbank-Einstellungen\" - \"Datenbank exportieren\" dieses Backup an einen anderen Ort exportieren und dann von dort öffnen. Dann kannst du auch wieder Änderungen vornehmen.</string>
+  <string name="ReadOnlyReason_LocalBackup">Lokale Sicherungskopien können nicht bearbeitet werden. Du kannst über \"Datenbank-Einstellungen\" - \"Datenbank exportieren\" dieses Backup an einen anderen Ort exportieren und dann von dort öffnen. Dann kannst du auch wieder Änderungen vornehmen.</string>
   <string name="AddCustomIcon">Icon aus Datei hinzufügen...</string>
   <string name="CopyingFile">Kopiere Datei...</string>
   <string name="DuplicateTitle">Kopie</string>
@@ -923,11 +923,11 @@ Erstes öffentliches Release</string>
   <string name="understand">Ich verstehe</string>
   <string name="dont_show_again">Nicht erneut anzeigen</string>
   <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
-  <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank nicht ohne Master-Passwort öffnen kannst. Es gibt kein Möglichkeit, das Passwort zurückzusetzen.</string>
+  <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank nicht ohne Master-Passwort öffnen kannst. Es gibt keine Möglichkeit, das Passwort zurückzusetzen.</string>
   <string name="masterkey_infotext_fingerprint_note">Beachte auch, dass für das Entsperren mit Fingerabdruck dein Master-Passwort durch Android in einem gesicherten Speicher abgelegt wird. Dieser Speicher kann aber von Android gelöscht oder ungültig gemacht werden, z.B. wenn du einen Fingerabdruck in den Systemeinstellungen hinterlegst. Verlass dich daher bitte nicht auf den Fingerabdruck, sondern merke dir dein Master-Passwort!</string>
   <string name="backup_infotext_head">Ist deine Datenbank gesichert?</string>
   <string name="backup_infotext_main">Keepass2Android speichert deine Passwörter in eine Datei an einem Ort deiner Wahl. Bist du sicher, dass du auf diese Datei auch noch Zugriff hast wenn dein Telefon verloren geht oder gestohlen wird? Oder wenn die Datei zerstört oder gelöscht wird? Bitte stelle sicher, dass du immer eine aktuelle Kopie an einem sichern Ort aufbewahrst!</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, gehe nach %1$s &gt; %2$s &gt; %3$s.</string>
-  <string name="emergency_infotext_head">Hast du für Notfälle vorgesort?</string>
-  <string name="emergency_infotext_main">Hast du je darüber nachgedacht, was passiert, wenn du nicht mehr auf deine Passwort-Datenbank zugreifen kannst? Was, wenn du einen Unfall hast? Ein bewährtes Verfahren ist, einer vertrauenswürdigen Person dein Masterpasswort für Notfälle zu mitzuteilen. Ansonsten wird niemand auf deine Passwörter Zugriff haben.</string>
+  <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
+  <string name="emergency_infotext_main">Hast du je darüber nachgedacht, was passiert, wenn du nicht mehr auf deine Passwort-Datenbank zugreifen kannst? Was, wenn du einen Unfall hast? Ein bewährtes Verfahren ist, einer vertrauenswürdigen Person dein Masterpasswort für Notfälle mitzuteilen. Ansonsten wird niemand auf deine Passwörter Zugriff haben.</string>
 </resources>
