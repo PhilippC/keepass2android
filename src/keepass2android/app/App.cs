@@ -33,6 +33,7 @@ using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
 using Android.Support.V4.App;
+using Android.Support.V4.Content;
 #if !EXCLUDE_TWOFISH
 using TwofishCipher;
 #endif
@@ -244,7 +245,7 @@ namespace keepass2android
 
 		public static void StartOnGoingService(Context ctx)
 		{
-			ctx.StartService(new Intent(ctx, typeof (OngoingNotificationsService)));
+			ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof (OngoingNotificationsService)));
 		}
 
 		public bool DatabaseIsUnlocked

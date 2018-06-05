@@ -65,11 +65,11 @@ namespace keepass2android
 			// Set the icon to reflect the current state
 			if (App.Kp2a.DatabaseIsUnlocked)
 			{
-				// Clear current foreground status and QuickUnlock icon
-				StopForeground(true);
+                // Clear QuickUnlock icon
+			    notificationManager.Cancel(QuickUnlockId);
 
-				//use foreground again to let the app not be killed too easily.
-				StartForeground(UnlockedWarningId, GetUnlockedNotification());
+                //use foreground again to let the app not be killed too easily.
+                StartForeground(UnlockedWarningId, GetUnlockedNotification());
 			}
 			else 
 			{
