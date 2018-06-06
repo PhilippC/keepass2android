@@ -30,6 +30,11 @@ namespace keepass2android
                 res.TotpSeed = parsedQuery.Get("secret");
                 res.Length = parsedQuery.Get("digits");
                 res.Duration = parsedQuery.Get("period");
+                //set defaults according to https://github.com/google/google-authenticator/wiki/Key-Uri-Format
+                if (res.Length == null)
+                    res.Length = "6";
+                if (res.Duration == null)
+                    res.Duration = "30";
             }
             catch (Exception)
             {
