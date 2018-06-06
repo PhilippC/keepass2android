@@ -48,7 +48,7 @@ namespace keepass2android
 		public override void OnCreate()
 		{
 			base.OnCreate();
-			
+		
 			_screenOffReceiver = new ScreenOffReceiver();
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
@@ -104,24 +104,30 @@ namespace keepass2android
 		{
 			base.OnDestroy();
 
-			var notificationManager = (NotificationManager)GetSystemService(NotificationService);
-			notificationManager.Cancel(UnlockedWarningId);
-			// Quick Unlock notification should be removed automatically by the service (if present), as it was the foreground notification.
+			CancelNotifications(this);
 
-			Kp2aLog.Log("OngoingNotificationsService.OnDestroy");
+		    Kp2aLog.Log("OngoingNotificationsService.OnDestroy");
 
 			// If the service is killed, then lock the database immediately
 			if (App.Kp2a.DatabaseIsUnlocked)
 			{
 				App.Kp2a.LockDatabase();
 			}
-			//also remove any notifications of the app
-			notificationManager.CancelAll();
 
 			UnregisterReceiver(_screenOffReceiver);
 		}
-		
-		public override IBinder OnBind(Intent intent)
+
+	    public static void CancelNotifications(Context ctx)
+	    {
+	        var notificationManager = (NotificationManager) ctx.GetSystemService(NotificationService);
+	        notificationManager.Cancel(UnlockedWarningId);
+	        // Quick Unlock notification should be removed automatically by the service (if present), as it was the foreground notification.
+
+	        //also remove any notifications of the app
+	        notificationManager.CancelAll();
+	    }
+
+	    public override IBinder OnBind(Intent intent)
 		{
 			return null;
 		}
