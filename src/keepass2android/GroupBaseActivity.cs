@@ -1108,15 +1108,21 @@ namespace keepass2android
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
+
+            ListView.SetMultiChoiceModeListener(this);
             if (App.Kp2a.GetDb().CanWrite)
             {
                 ListView.ChoiceMode = ChoiceMode.MultipleModal;
-                ListView.SetMultiChoiceModeListener(this);
-                ListView.ItemLongClick += delegate (object sender, AdapterView.ItemLongClickEventArgs args)
+
+                ListView.ItemLongClick += delegate(object sender, AdapterView.ItemLongClickEventArgs args)
                 {
                     ListView.SetItemChecked(args.Position, true);
                 };
 
+            }
+            else
+            {
+                ListView.ChoiceMode = ChoiceMode.None;
             }
 
             ListView.ItemClick += (sender, args) => ((GroupListItemView)args.View).OnClick();

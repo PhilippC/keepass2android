@@ -111,7 +111,7 @@ namespace keepass2android
 			// If the service is killed, then lock the database immediately
 			if (App.Kp2a.DatabaseIsUnlocked)
 			{
-				App.Kp2a.LockDatabase();
+				App.Kp2a.LockDatabase(false);
 			}
 
 			UnregisterReceiver(_screenOffReceiver);

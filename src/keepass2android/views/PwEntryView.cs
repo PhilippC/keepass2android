@@ -103,8 +103,11 @@ namespace keepass2android.view
 		{
 			_entry = pw;
 			_pos = pos;
-			
-			ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
+		    ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
+		    ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
+
+
+            ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
 			if (isExpired)
 			{

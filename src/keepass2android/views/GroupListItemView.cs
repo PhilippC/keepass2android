@@ -20,6 +20,7 @@ namespace keepass2android.view
             : base(context)
         {
             _groupBaseActivity = context;
+
         }
 
         public GroupListItemView(Context context, IAttributeSet attrs)

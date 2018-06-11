@@ -65,7 +65,10 @@ namespace keepass2android.view
 
 			gv.FindViewById(Resource.Id.group_icon_bkg).Visibility = App.Kp2a.GetDb().DrawableFactory.IsWhiteIconSet ? ViewStates.Visible : ViewStates.Gone;
 
-			PopulateView(gv, pw);
+		    gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
+		    gv.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
+
+            PopulateView(gv, pw);
 			
 			LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.FillParent, ViewGroup.LayoutParams.WrapContent);
 			
@@ -77,8 +80,11 @@ namespace keepass2android.view
 			
 			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
 			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, _groupBaseActivity, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid, true);
-			
-			_textview.Text = pw.Name;
+		    gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
+		    gv.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
+
+
+            _textview.Text = pw.Name;
 
 			if (_defaultTextColor == null)
 				_defaultTextColor = _textview.TextColors.DefaultColor;
