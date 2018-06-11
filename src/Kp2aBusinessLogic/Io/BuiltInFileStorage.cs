@@ -410,8 +410,10 @@ namespace keepass2android.Io
 		}
 
 	    private readonly Dictionary<string, bool> _isLocalBackupCache = new Dictionary<string, bool>();
-	    private bool IsLocalBackup(IOConnectionInfo ioc)
+	    public bool IsLocalBackup(IOConnectionInfo ioc)
 	    {
+	        if (!ioc.IsLocalFile())
+                return false;
 	        bool result;
 	        if (_isLocalBackupCache.TryGetValue(ioc.Path, out result))
 	            return result;

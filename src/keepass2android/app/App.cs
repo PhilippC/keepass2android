@@ -167,7 +167,8 @@ namespace keepass2android
 	        ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
 	    {
 	        var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
-	        var createBackup = prefs.GetBoolean(Application.Context.GetString(Resource.String.CreateBackups_key), true);
+	        var createBackup = prefs.GetBoolean(Application.Context.GetString(Resource.String.CreateBackups_key), true)
+                && !(new LocalFileStorage(this).IsLocalBackup(ioConnectionInfo));
 
 	        MemoryStream backupCopy = new MemoryStream();
 	        if (createBackup)
