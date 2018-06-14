@@ -456,7 +456,6 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="init_otp">Charger le fichier OTP auxiliaire...</string>
   <string name="otp_explanation">Entrez le prochain One-time-passwords (OTP). Glissez votre NEO Yubikey au dos de votre appareil pour y accéder via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Impossible de trouver une application qui peut convenir. Installer Yubichallenge de Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Impossible de charger le fichier auxiliaire OTP !</string>
   <string name="CouldntLoadOtpAuxFile_Hint">S\'il vous plaît utilisez le plugin OtpKeyProv dans KeePass 2.x (PC) pour configurer votre base de données pour une utilisation avec OTPs !</string>
   <string name="otp_discarded_because_no_db">Veuillez d\'abord sélectionner la base de données. OTP est écarté pour des raisons de sécurité.</string>

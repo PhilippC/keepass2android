@@ -462,7 +462,6 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="init_otp">OTP kiegészítő fájl betöltése&#8230;</string>
   <string name="otp_explanation">Adja meg a következő egyszer használatos jelszót/jelszavakat (OTP).  Húzza el a Yubikey NEO eszközt a telefon hátlapja fölött a jelszó/jelszavak NFC-n keresztüli beviteléhez.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">A szükséges alkalmazás detektálása sikertelen!  Telepítse a Yubichallenge alkalmazást Google Play áruházból!</string>
   <string name="CouldntLoadOtpAuxFile">OTP kiegészítő fájl betöltése nem sikerült!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Kérjük, konfigurálja az adatbázist OTP használthoz a KeePass 2.x (PC-s verzió) OtpKeyProv beépülő modulja segítségével.</string>
   <string name="otp_discarded_because_no_db">Kérjük, először az adatbázist válassza ki.  Az OTP biztonsági okokból figyelmen kívül hagyva.</string>

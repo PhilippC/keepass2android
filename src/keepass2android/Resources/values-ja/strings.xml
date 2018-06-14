@@ -461,7 +461,6 @@
   <string name="init_otp">OTP 補助ファイルの読み込み&#8230;</string>
   <string name="otp_explanation">次のワンタイム パスワード (OTP) を入力してください。NFC 経由で入力するには、お使いのデバイスの背面にある Yubikey NEO をスワイプします。</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">チャレンジを処理できるアプリケーションが見つかりませんでした。Google Play から Yubichallenge をインストールしてください。</string>
   <string name="CouldntLoadOtpAuxFile">補助 OTP ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">KeePass 2.x (PC) の OtpKeyProv プラグインを使用して、OTP を使うようにデータベースを構成してください!</string>
   <string name="otp_discarded_because_no_db">最初のデータベースを選択してください。OTP は、セキュリティ上の理由から破棄されます。</string>

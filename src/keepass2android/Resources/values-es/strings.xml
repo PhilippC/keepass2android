@@ -461,7 +461,6 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="init_otp">Cargar archivo auxiliar de OTP&#8230;</string>
   <string name="otp_explanation">Introduzca la siguiente contraseña de único uso (OTPs). Pase su Yubikey NEO en la parte trasera de su dispositivo para introducirse a través de NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">No se pudo encontrar una aplicación que puede manejar el desafío. Por favor, instale el Yubichallenge de Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">No se pudo cargar el archivo auxiliar de OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Por favor utilice el plugin OtpKeyProv en KeePass 2.x (PC) para configurar la base de datos para su uso con OTPs!</string>
   <string name="otp_discarded_because_no_db">Primero seleccione base de datos. OTP es descartada por razones de seguridad.</string>

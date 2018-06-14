@@ -463,7 +463,6 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="init_otp">OTP-Hilfsdatei laden&#8230;</string>
   <string name="otp_explanation">Nächste One-Time-Passwörter (OTPs) eingeben. Halten deinen YubiKey NEO hinten an dein Gerät um über NFC einzugeben.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Es wurde keine App gefunden, die die Challenge behandeln kann. Bitte installiere Yubichallenge von Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Bitte nutze das OtpKeyProv-Plugin in Keepass 2.x a PC um deine Datenbank zur Verwendung von One-Time-Passwords einzureichten!</string>
   <string name="otp_discarded_because_no_db">Bitte erst Datenbank laden. OTP wird aus Sicherheitsgründen verworfen.</string>
