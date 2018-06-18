@@ -207,6 +207,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="remember_keyfile_summary">Recordar la ubicación de archivos de clave</string>
   <string name="remember_keyfile_title">Guardar archivo clave</string>
   <string name="remove_from_filelist">Borrar</string>
+  <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
   <string name="KeyDerivFunc">Función de derivación de claves</string>
@@ -270,6 +271,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="enter_filename_details_create_import">El archivo que va a importar será seleccionado en el paso siguiente.</string>
   <string name="enable_quickunlock">Habilitar QuickUnlock</string>
   <string name="QuickUnlock_label">Escribe los últimos %1$d caracteres de tu contraseña:</string>
+  <string name="QuickUnlock_label_secure">Introduzca el código de QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Cerrar la base de datos</string>
   <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por defecto</string>
@@ -282,6 +284,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock requiere una notificación para funcionar correctamente. Seleccione esta opción para mostrar la notificación sin icono.</string>
   <string name="QuickUnlockLength_title">Longitud de la clave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres que se utiliza para la contraseña QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_title">Ocultar longitud de QuickUnlock</string>
+  <string name="QuickUnlockHideLength_summary">Si está habilitado, la longitud del código de QuickUnlock no aparece en la pantalla de QuickUnlock.</string>
   <string name="QuickUnlock_fail">¡Error de QuickUnlock: contraseña incorrecta!</string>
   <string name="BinaryDirectory_title">Ubicación de archivos adjuntos</string>
   <string name="BinaryDirectory_summary">Directorio en donde se guardan los archivos adjuntos.</string>
@@ -314,6 +318,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="ClearPasswordOnLeave_summary">Limpiar contraseña maestra ingresada al salir de la pantalla, sin desbloquear la base de datos.</string>
   <string name="LockWhenNavigateBack_title">Bloquear al salir de la aplicación</string>
   <string name="LockWhenNavigateBack_summary">Bloquear base de datos al salir de la aplicación presionando el botón \"atrás\".</string>
+  <string name="ActivateSearchViewOnStart_title">Activar campo de búsqueda en inicio</string>
+  <string name="ActivateSearchViewOnStart_summary">Activa el campo de búsqueda en la vista de grupo después de desbloquear o al buscar una entrada</string>
   <string name="NoDonateOption_title">Esconder opción de donación</string>
   <string name="NoDonateOption_summary">Este ajuste es para donantes. Está disponible después de usar Keepass2Android por un tiempo sólo.</string>
   <string name="NoDonateOption_question">Sin donaciones, esta aplicación no existiría y no podría ser mejorada continuamente. Si tu aún no has donado, por favor considera hacer una donación ahora.</string>
@@ -321,6 +327,10 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="NoDonationReminder_summary">No le voy a dar un céntimo o ya he donado. No solicitar una donación, ni en el cumpleaños del autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
   <string name="UseOfflineCache_summary">Mantiene una copia de los archivos de base de datos remota en el directorio del caché de la aplicación. Esto permite utilizar bases de datos remotas sin conexión a internet.</string>
+  <string name="CreateBackups_title">Copias de seguridad locales</string>
+  <string name="CreateBackups_summary">Crear una copia de local después de cargar con éxito una base de datos.</string>
+  <string name="UpdatingBackup">Actualizando copia de seguridad local...</string>
+  <string name="LocalBackupOf">Copia de seguridad local de %1$s</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definir el comportamiento cuando falla la validación de un certificado. Nota: puedes instalar certificados en tu dispositivo si la validación falla!</string>
   <string name="ClearOfflineCache_title">¿Limpiar Cache?</string>
@@ -349,6 +359,10 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="AutoSwitchBackKeyboard_summary">Volver al teclado anterior si no se abre ninguna introducción de datos.</string>
   <string name="ShowUnlockedNotification_title">Icono de notificación durante el desbloqueado</string>
   <string name="ShowUnlockedNotification_summary">Mostrar una notificación en curso mientras la base de datos está desbloqueada.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 ha introducido nuevo comportamiento para notificaciones. Si desea ocultar el icono de notificaciones de Keepass2Android, por favor configúrelo en ajustes del sistema. Establezca la importancia de la categoría de notificación al mínimo.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Abrir ajustes</string>
+  <string name="DontCare">No me interesa</string>
+  <string name="DocumentAccessRevoked">El archivo ya no es accesible a Keepass2Android. Ha sido eliminado o han sido revocados los permisos de acceso. Por favor use re-abrir el archivo, por ejemplo, con Cambiar base de datos.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-cargar archivo de base de datos</string>
   <string name="PreloadDatabaseEnabled_summary">Empezar a descargar del archivo de base de datos durante la entrada de contraseña.</string>
   <string name="AskOverwriteBinary">¿Desea sobrescribir el binario existente con el mismo nombre?</string>
@@ -523,6 +537,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="ReadOnlyReason_PreKitKat">Parece que abrió el archivo desde una aplicación externa. De esta manera no admite escritura. Si desea realizar cambios en la base de datos, cierre la base de datos y seleccione Cambiar Base de Datos. Luego, si es posible, abra el archivo desde una de las opciones disponibles.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Está activado el indicador de sólo lectura. Quite este indicador si desea realizar cambios en la base de datos.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">La escritura no es posible debido a restricciones en Android KitKat. Si desea realizar cambios en la base de datos, cierre la base de datos y seleccione Cambiar Base de Datos. A continuación, abra el archivo usando el selector de archivos del sistema.</string>
+  <string name="ReadOnlyReason_LocalBackup">Las copias de seguridad locales no pueden ser modificadas. Puede utilizar Ajustes de base de datos - Exportar base de datos para exportar esta copia de seguridad a otra ubicación desde de la que se pueda volver a abrir. Entonces será escribible de nuevo.</string>
   <string name="AddCustomIcon">Agregar icono desde archivo...</string>
   <string name="CopyingFile">Copiando archivos...</string>
   <string name="DuplicateTitle">Copiar</string>
@@ -557,6 +572,11 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
    • Asegúrese que haya seleccionado el tipo correcto de contraseña. Asegúrese que este tipo concuerde con el tipo usado al crear la base de datos.\n
    • Asegúrese que haya seleccionado el archivo de base de datos correcto.
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n • Sugerencia: Si crees que el archivo de base de datos puede estar corrupto o no recuerdas la contraseña maestra después de modificarla, puedes probar con la última versión del fichero abierto con éxito haciendo clic en \"%1$s\" y seleccionando la copia de seguridad local.</string>
+  <string name="HintLocalBackupOtherError">
+    \n • Sugerencia: Keepass2Android ha almacenado la última versión del fichero abierto con éxito en la memoria interna. Puedes abrirlo haciendo clic en \"%1$s\" y seleccionando  la copia de seguridad local.
+  </string>
   <string name="CorruptDatabaseHelp">
 El Archivo está dañado. \n
     Estas son algunas sugerencias que pueden ayudarle a diagnosticar el problema:\n
@@ -566,6 +586,12 @@ El Archivo está dañado. \n
     • Si usted aún puede abrir el archivo en su PC, por favor contacte a soporte. Intente guardar el archivo con una configuración distinta (por ejemplo, descomprimido) en la PC y vuelva a intentar abrirlo en Keepass2Android.
 
   </string>
+  <string name="DbUnlockedChannel_name">Base de datos desbloqueada</string>
+  <string name="DbUnlockedChannel_desc">Notificación acerca de que la base de datos está siendo desbloqueada</string>
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Notificación acerca de que la base de datos está siendo bloqueada con QuickUnlock</string>
+  <string name="EntryChannel_name">Notificaciones de entrada</string>
+  <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="ErrorReportTitle">Keepass2Android: Se produjo un error.</string>
   <string name="ErrorReportText">Se ha producido un error inesperado durante la ejecución de Keepass2Android. Por favor ayúdenos a solucionar este problema permitiendo que la aplicación envíe informes de errores.</string>
   <string name="ErrorReportPromise">Los informes de error no tienen contenido de su base de datos o contraseña maestra. Puede desactivarlas en la configuración de la aplicación.</string>
@@ -574,6 +600,30 @@ El Archivo está dañado. \n
   <string name="ErrorReportAsk">Preguntar después del error</string>
   <string name="ErrorReportPrefTitle">Enviar informe de errores</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
+  <string name="ChangeLog_1_05">
+Versión 1.05\n
+    * Uso de canales de notificación para Android 8, que permite la configuración a través de los ajustes del sistema\n
+    * Mostrar el icono de la entrada en notificación\n
+    * Uso de iconos adaptables para Android 8, uso de icono redondo del launcher para Android 7\n
+    * Permitir activar la búsqueda tras desbloquear (ver ajustes)\n
+    * Cambiada la manera en que se escriben los archivos a través del Storage Access Framework, lo que soluciona problemas al actualizar archivos en Google Drive abiertos a través de la selección de archivos del sistema\n
+    * Añadidos algunos textos informativos para evitar algunos malentendidos comunes\n
+    * Crear copias de seguridad locales de las bases de datos abiertas con éxito para reducir el riesgo de pérdida de datos\n
+    * JSch actualizado para soportar el cifrado SSH más reciente\n
+    * Permitir editar ajustes de conexión, por ejemplo cuando la contraseña WebDav  ha cambiado\n
+    * Añadido soporte para modo de contraseña estática de Yubikey Neo\n
+    * Permitir desactivar sugerencia de Autorrelleno\n
+    * Reparada la salida de datos a logcat\n    
+    * Arreglo de errores\n
+  </string>
+  <string name="ChangeLog_1_04b">
+    Versión 1.04b\n * Evitar cierre erróneo cuando el usuario intenta activar Autorrelleno en dispositivos Huawei. \n
+  </string>
+  <string name="ChangeLog_1_04">
+    Versión 1.04\n
+    *Agregado servicio de relleno automático para Android 8.0 y superiores.\n
+    *Liberías actualizadas, herramientas de construcción y versión de SDK.\n
+  </string>
   <string name="ChangeLog_1_03">
 Version 1.03\n
      * Eliminado servicio de accesibilidad por AutoFill, tal y como solicitó Google. Por favor, comprueba la configuración de acceso por clave para encontrasr un plugin que replique la funcionalidad anterior.\n
@@ -880,7 +930,18 @@ Publicación inicial</string>
   <string name="PluginDescription">Descripción proporcionada por el plugin:</string>
   <string name="autofill_hint">Keepass2Android soporta la función de Autocompletado de Android pero parece que no lo has habilitado aún.</string>
   <string name="autofill_enable">Activar Autocompletado</string>
+  <string name="autofill_enable_failed">Lo sentimos, parece que el dispositivo no es compatible con abrir la configuración desde dentro de la aplicación. Por favor vaya manualmente a los ajustes del sistema para Autorrelleno para activar el servicio.</string>
   <string name="show_autofill_help">Mostrar ayuda de Autocompletado</string>
   <string name="autofill_sign_in_prompt">Completar con Keepass2Android</string>
   <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
+  <string name="understand">Entiendo</string>
+  <string name="dont_show_again">No volver a mostrar</string>
+  <string name="masterkey_infotext_head">¿Recuerda su contraseña maestra?</string>
+  <string name="masterkey_infotext_main">Tenga en cuenta que no será capaz de abrir la base de datos sin la contraseña maestra. No hay manera de reiniciar o \"resetear\" la contraseña maestra.</string>
+  <string name="masterkey_infotext_fingerprint_note">También tenga en cuenta que el desbloqueo por huella dactilar funciona almacenando su clave maestra en un almacenamiento seguro de Android. Este almacenamiento puede ser borrado por Android en cualquier momento, por ejemplo, si agrega una nueva huella en la configuración del sistema. Así que no confíe en su huella dactilar ¡pero recuerde su contraseña maestra, por favor!</string>
+  <string name="backup_infotext_head">¿Se está haciendo copia de seguridad de su base de datos?</string>
+  <string name="backup_infotext_main">Keepass2Android guarda sus contraseñas en un archivo en una ubicación de su elección. ¿Está seguro de que aún puede acceder a este archivo cuando su teléfono se pierde o lo roban, o cuando el archivo es destruido o borrado? ¡Por favor, asegúrese de que siempre tiene una copia de seguridad actualizada en un lugar seguro!</string>
+  <string name="backup_infotext_note">Para crear una copia de seguridad ahora, vaya a %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">¿Está preparado para casos de emergencia?</string>
+  <string name="emergency_infotext_main">¿Ha considerado alguna vez qué pasa si ya no eres capaz de acceder a su base de datos de contraseñas? ¿Qué pasa si tienes un accidente? Es una buena práctica pasar su llave maestra a alguna persona de confianza para casos de emergencia. Nadie tendrá acceso a sus contraseñas de otra manera.</string>
 </resources>

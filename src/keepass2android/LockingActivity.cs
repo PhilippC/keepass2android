@@ -16,6 +16,10 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections.Generic;
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
 using Android.Runtime;
 
 namespace keepass2android
@@ -35,7 +39,41 @@ namespace keepass2android
 		{
 		}
 
-		protected override void OnPause() {
+	    protected override void OnStart()
+	    {
+	        base.OnStart();
+
+	        if (App.Kp2a.GetDb().Loaded)
+	        {
+	            var xcKey = App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+	            if (xcKey != null)
+	            {
+	                xcKey.Activity = this;
+	                _currentlyWaitingKey = xcKey;
+
+	            }
+
+	        }
+
+        }
+
+	    protected override void OnStop()
+	    {
+	        base.OnStop();
+	        if (App.Kp2a.GetDb().Loaded)
+	        {
+	            var xcKey = App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+	            if (xcKey != null)
+	            {
+                    //don't store a pointer to this activity in the static database object to avoid memory leak
+                    if (xcKey.Activity == this) //don't reset if another activity has come to foreground already
+	                    xcKey.Activity = null;
+	            }
+
+	        }
+        }
+
+	    protected override void OnPause() {
 			base.OnPause();
 			
 			TimeoutHelper.Pause(this);
@@ -52,6 +90,61 @@ namespace keepass2android
 			
 			TimeoutHelper.Resume(this);
 		}
-	}
+
+	    public const int RequestCodeChallengeYubikey = 793;
+
+	    protected ChallengeXCKey _currentlyWaitingKey;
+
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+	    {
+	        base.OnActivityResult(requestCode, resultCode, data);
+	        if ((requestCode == RequestCodeChallengeYubikey) && (_currentlyWaitingKey != null))
+	        {
+	            if (resultCode == Result.Ok)
+	            {
+	                byte[] challengeResponse = data.GetByteArrayExtra("response");
+	                if ((challengeResponse != null) && (challengeResponse.Length > 0))
+	                {
+	                    _currentlyWaitingKey.Response = challengeResponse;
+	                }
+	                else
+	                    _currentlyWaitingKey.Error = "Did not receive a valid response.";
+	                    
+
+	            }
+	            else
+                {
+                    _currentlyWaitingKey.Error = "Cancelled Yubichallenge.";
+                }
+	            
+            }
+
+	    }
+
+
+	    public Intent TryGetYubichallengeIntentOrPrompt(byte[] challenge, bool promptToInstall)
+	    {
+	        Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
+	        chalIntent.PutExtra("challenge", challenge);
+	        chalIntent.PutExtra("slot", 2);
+	        IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
+	        bool isIntentSafe = activities.Count > 0;
+	        if (isIntentSafe)
+	        {
+	            return chalIntent;
+	        }
+	        if (promptToInstall)
+	        {
+	            AlertDialog.Builder b = new AlertDialog.Builder(this);
+	            b.SetMessage(Resource.String.YubiChallengeNotInstalled);
+	            b.SetPositiveButton(Android.Resource.String.Ok,
+	                delegate { Util.GotoUrl(this, GetString(Resource.String.MarketURL) + "com.yubichallenge"); });
+	            b.SetNegativeButton(Resource.String.cancel, delegate { });
+	            b.Create().Show();
+	        }
+	        return null;
+	    }
+    }
 }
 

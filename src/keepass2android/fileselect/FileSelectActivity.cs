@@ -72,8 +72,9 @@ namespace keepass2android
 		
 		internal AppTask AppTask;
 		private const int RequestCodeSelectIoc = 456;
+	    private const int RequestCodeEditIoc = 457;
 
-		public const string NoForwardToPasswordActivity = "NoForwardToPasswordActivity";
+        public const string NoForwardToPasswordActivity = "NoForwardToPasswordActivity";
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -200,35 +201,121 @@ namespace keepass2android
 			outState.PutBoolean(BundleKeyRecentMode, _recentMode);
 			
 		}
-		
-		
-		class MyViewBinder: Java.Lang.Object, SimpleCursorAdapter.IViewBinder
-		{
-			private readonly Kp2aApp _app;
 
-			public MyViewBinder(Kp2aApp app)
-			{
-				_app = app;
-			}
+	    class MyCursorAdapter: CursorAdapter
+	    {
+	        private LayoutInflater cursorInflater;
+	        private readonly FileSelectActivity _activity;
+	        private IKp2aApp _app;
 
-			public bool SetViewValue(View view, ICursor cursor, int columnIndex)
-			{
-				if (columnIndex == 1)
-				{
-					String path = cursor.GetString(columnIndex);
-					TextView textView = (TextView)view;
-					IOConnectionInfo ioc = new IOConnectionInfo {Path = path};
-					var fileStorage = _app.GetFileStorage(ioc);
-					textView.Text = fileStorage.GetDisplayName(ioc);
-					textView.Tag = ioc.Path;
-					return true;
-				}
+	        public MyCursorAdapter(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+	        {
+	        }
 
-				return false;
-			}
-		}
-		
-		private void FillData()
+	        public MyCursorAdapter(FileSelectActivity activity, ICursor c, IKp2aApp app) : base(activity, c)
+	        {
+	            _activity = activity;
+	            _app = app;
+	        }
+
+	        public MyCursorAdapter(Context context, ICursor c, bool autoRequery) : base(context, c, autoRequery)
+	        {
+	        }
+
+	        public MyCursorAdapter(Context context, ICursor c, CursorAdapterFlags flags) : base(context, c, flags)
+	        {
+	            
+            }
+
+	        public override void BindView(View view, Context context, ICursor cursor)
+	        {
+	            
+	            String path = cursor.GetString(1);
+
+	            TextView textView = view.FindViewById<TextView>(Resource.Id.file_filename);
+	            IOConnectionInfo ioc = new IOConnectionInfo { Path = path };
+	            var fileStorage = _app.GetFileStorage(ioc);
+
+	            String displayName = cursor.GetString(6);
+	            if (string.IsNullOrEmpty(displayName))
+	            {
+	                displayName = fileStorage.GetDisplayName(ioc);
+
+	            }
+
+                textView.Text = displayName;
+	            textView.Tag = ioc.Path;
+                
+	        }
+
+	        public override View NewView(Context context, ICursor cursor, ViewGroup parent)
+	        {
+                if (cursorInflater == null)
+                    cursorInflater = (LayoutInflater)context.GetSystemService( Context.LayoutInflaterService);
+                View view = cursorInflater.Inflate(Resource.Layout.file_row, parent, false);
+
+	            view.FindViewById(Resource.Id.group_name_vdots).Click += (sender, args) =>
+	            {
+	                Handler handler = new Handler(Looper.MainLooper);
+	                handler.Post(() =>
+	                {
+	                    PopupMenu popupMenu = new PopupMenu(context, view.FindViewById(Resource.Id.group_name_vdots));
+
+	                    AccessManager.PreparePopup(popupMenu);
+	                    int remove = 0;
+	                    int edit = 1;
+	                    popupMenu.Menu.Add(0, remove, 0, context.GetString(Resource.String.remove_from_filelist)).SetIcon(Resource.Drawable.ic_menu_delete_grey);
+
+	                    TextView textView = view.FindViewById<TextView>(Resource.Id.file_filename);
+                        
+	                    String filename = (string)textView.Tag;
+                        IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
+	                    if (FileSelectHelper.CanEditIoc(ioc))
+	                    {
+	                        popupMenu.Menu.Add(0, edit, 0, context.GetString(Resource.String.edit)).SetIcon(Resource.Drawable.ic_menu_edit_grey);
+                        }
+
+
+	                    popupMenu.MenuItemClick += delegate(object sender2, PopupMenu.MenuItemClickEventArgs args2)
+	                    {
+	                        if (args2.Item.ItemId == remove)
+	                        {
+	                            App.Kp2a.FileDbHelper.DeleteFile(filename);
+
+	                            cursor.Requery();
+	                        }
+	                        if (args2.Item.ItemId == edit)
+	                        {
+	                            var fsh = new FileSelectHelper(_activity, false, RequestCodeEditIoc);
+	                            fsh.OnOpen += (o, newConnectionInfo) =>
+	                            {
+	                                _activity.EditFileEntry(filename, newConnectionInfo);
+	                            };
+                                fsh.PerformManualFileSelect(filename);
+
+	                        }
+	                    };
+	                    popupMenu.Show();
+	                });
+	            };
+
+                return view;
+	        }
+
+	        
+	    }
+
+	    private void EditFileEntry(string filename, IOConnectionInfo newConnectionInfo)
+	    {
+            _dbHelper.CreateFile(newConnectionInfo, _dbHelper.GetKeyFileForFile(filename));
+	        _dbHelper.DeleteFile(filename);
+
+            LaunchPasswordActivityForIoc(newConnectionInfo);
+	        
+        }
+
+
+	    private void FillData()
 		{
 			// Get all of the rows from the database and create the item list
 			ICursor filesCursor = _dbHelper.FetchAllFiles();
@@ -241,15 +328,15 @@ namespace keepass2android
 			// and an array of the fields we want to bind those fields to (in this
 			// case just text1)
 			int[] to = new[] { Resource.Id.file_filename };
-			
+			/*
 			// Now create a simple cursor adapter and set it to display
 			SimpleCursorAdapter recentFilesAdapter = new SimpleCursorAdapter(this,
 			                                                    Resource.Layout.file_row, filesCursor, from, to);
 
 
 			recentFilesAdapter.ViewBinder = new MyViewBinder(App.Kp2a);
-
-		    FragmentManager.FindFragmentById<RecentFilesFragment>(Resource.Id.recent_files).SetAdapter(recentFilesAdapter);
+            */
+		    FragmentManager.FindFragmentById<RecentFilesFragment>(Resource.Id.recent_files).SetAdapter(new MyCursorAdapter(this, filesCursor,App.Kp2a));
 
 		    
 		}
@@ -284,9 +371,9 @@ namespace keepass2android
 			Finish();
 		}
 
-		public void OnListItemClick(ListView l, View v, int position, long id) {
-			
-			ICursor cursor = _dbHelper.FetchFile(id);
+		public void OnListItemClick(ListView l, View v, int position, long id)
+        {
+            ICursor cursor = _dbHelper.FetchFile(id);
 			StartManagingCursor(cursor);
 			
 			IOConnectionInfo ioc = _dbHelper.CursorToIoc(cursor);
@@ -328,8 +415,15 @@ namespace keepass2android
 				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
 				LaunchPasswordActivityForIoc(ioc);
 			}
-			
-		}
+		    
+		    if ((resultCode == Result.Ok) && (requestCode == RequestCodeEditIoc))
+		    {
+		        string filename = Util.IntentToFilename(data, this);
+		        
+		        LaunchPasswordActivityForIoc(IOConnectionInfo.FromPath(filename));
+		    }
+
+        }
 
 		protected override void OnResume()
 		{
@@ -462,30 +556,7 @@ namespace keepass2android
             cursor.Requery();
         }
 
-	    public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
-	    {
-		    base.OnCreateContextMenu(menu, v, menuInfo);
-			menu.Add(0, Menu.First, 0, Resource.String.remove_from_filelist);
-	    }
-
-	    public override bool OnContextItemSelected(IMenuItem item)
-	    {
-			if (item.ItemId == Menu.First)
-			{
-				AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
-
-				TextView tv = (TextView)acmi.TargetView;
-				String filename = (string)tv.Tag;
-				App.Kp2a.FileDbHelper.DeleteFile(filename);
-
-				RefreshList();
-
-
-				return true;
-			}
-			return base.OnContextItemSelected(item);
-
-	    }
+	    
 		
     }
 }

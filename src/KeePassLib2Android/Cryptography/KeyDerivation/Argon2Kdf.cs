@@ -68,7 +68,10 @@ namespace KeePassLib.Cryptography.KeyDerivation
 			get { return "Argon2"; }
 		}
 
-		public Argon2Kdf()
+        public override byte[] GetSeed(KdfParameters p)
+        { return p.GetByteArray(ParamSalt); }
+
+        public Argon2Kdf()
 		{
 		}
 

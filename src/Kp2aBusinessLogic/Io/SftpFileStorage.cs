@@ -10,7 +10,11 @@ namespace keepass2android.Io
 		{
 		}
 
-		
+
+	    public override bool UserShouldBackup
+	    {
+	        get { return true; }
+	    }
 	}
 
 	

@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2012 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -38,11 +38,13 @@ public abstract class KeyPair{
   public static final int ERROR=0;
   public static final int DSA=1;
   public static final int RSA=2;
-  public static final int UNKNOWN=3;
+  public static final int ECDSA=3;
+  public static final int UNKNOWN=4;
 
   static final int VENDOR_OPENSSH=0;
   static final int VENDOR_FSECURE=1;
   static final int VENDOR_PUTTY=2;
+  static final int VENDOR_PKCS8=3;
 
   int vendor=VENDOR_OPENSSH;
 
@@ -55,6 +57,7 @@ public abstract class KeyPair{
     KeyPair kpair=null;
     if(type==DSA){ kpair=new KeyPairDSA(jsch); }
     else if(type==RSA){ kpair=new KeyPairRSA(jsch); }
+    else if(type==ECDSA){ kpair=new KeyPairECDSA(jsch); }
     if(kpair!=null){
       kpair.generate(key_size);
     }
@@ -338,6 +341,22 @@ public abstract class KeyPair{
     return index;
   }
 
+  int writeOCTETSTRING(byte[] buf, int index, byte[] data){
+    buf[index++]=0x04;
+    index=writeLength(buf, index, data.length);
+    System.arraycopy(data, 0, buf, index, data.length);
+    index+=data.length;
+    return index;
+  }
+
+ int writeDATA(byte[] buf, byte n, int index, byte[] data){
+    buf[index++]=n;
+    index=writeLength(buf, index, data.length);
+    System.arraycopy(data, 0, buf, index, data.length);
+    index+=data.length;
+    return index;
+  }
+
   int countLength(int len){
     int i=1;
     if(len<=0x7f) return i;
@@ -474,8 +493,8 @@ public abstract class KeyPair{
     this.passphrase=passphrase;
   }
 
-  private boolean encrypted=false;
-  private byte[] data=null;
+  protected boolean encrypted=false;
+  protected byte[] data=null;
   private byte[] iv=null;
   private byte[] publickeyblob=null;
 
@@ -563,7 +582,8 @@ public abstract class KeyPair{
     if(pubkey==null &&
        prvkey!=null && 
        (prvkey.length>11 &&
-        prvkey[0]==0 && prvkey[1]==0 && prvkey[2]==0 && prvkey[3]==7)){
+        prvkey[0]==0 && prvkey[1]==0 && prvkey[2]==0 &&
+        (prvkey[3]==7 || prvkey[3]==19))){
 
       Buffer buf=new Buffer(prvkey);
       buf.skip(prvkey.length);  // for using Buffer#available()
@@ -576,6 +596,11 @@ public abstract class KeyPair{
       }
       else if(_type.equals("ssh-dss")){
         kpair=KeyPairDSA.fromSSHAgent(jsch, buf);
+      }
+      else if(_type.equals("ecdsa-sha2-nistp256") ||
+              _type.equals("ecdsa-sha2-nistp384") ||
+              _type.equals("ecdsa-sha2-nistp512")){
+        kpair=KeyPairECDSA.fromSSHAgent(jsch, buf);
       }
       else{
         throw new JSchException("privatekey: invalid key "+new String(prvkey, 4, 7));
@@ -612,9 +637,28 @@ public abstract class KeyPair{
 	    throw new JSchException("invalid privatekey: "+prvkey);
           if(buf[i]=='D'&& buf[i+1]=='S'&& buf[i+2]=='A'){ type=DSA; }
 	  else if(buf[i]=='R'&& buf[i+1]=='S'&& buf[i+2]=='A'){ type=RSA; }
+	  else if(buf[i]=='E'&& buf[i+1]=='C'){ type=ECDSA; }
 	  else if(buf[i]=='S'&& buf[i+1]=='S'&& buf[i+2]=='H'){ // FSecure
 	    type=UNKNOWN;
 	    vendor=VENDOR_FSECURE;
+	  }
+	  else if(i+6 < len &&
+                  buf[i]=='P' && buf[i+1]=='R' &&
+                  buf[i+2]=='I' && buf[i+3]=='V' &&
+                  buf[i+4]=='A' && buf[i+5]=='T' && buf[i+6]=='E'){
+	    type=UNKNOWN;
+	    vendor=VENDOR_PKCS8;
+            encrypted=false;
+            i+=3;
+	  }
+	  else if(i+8 < len &&
+                  buf[i]=='E' && buf[i+1]=='N' &&
+                  buf[i+2]=='C' && buf[i+3]=='R' &&
+                  buf[i+4]=='Y' && buf[i+5]=='P' && buf[i+6]=='T' &&
+                  buf[i+7]=='E' && buf[i+8]=='D'){
+	    type=UNKNOWN;
+	    vendor=VENDOR_PKCS8;
+            i+=5;
 	  }
 	  else{
 	    throw new JSchException("invalid privatekey: "+prvkey);
@@ -689,7 +733,8 @@ public abstract class KeyPair{
 	  }
 	  if(!inheader){
 	    i++; 
-	    encrypted=false;    // no passphrase
+	    if(vendor!=VENDOR_PKCS8)
+              encrypted=false;    // no passphrase
 	    break;
 	  }
 	}
@@ -724,12 +769,8 @@ public abstract class KeyPair{
         while(i<_len){
           if(_buf[i]==0x0a){
             boolean xd=(_buf[i-1]==0x0d);
-            // move 0x0a (or 0x0d0x0a) to the end of '_buf'.
-            System.arraycopy(_buf, i+1, 
-                             _buf, 
-                             i-(xd ? 1 : 0), 
-                             _len-i-1-(xd ? 1 : 0)
-                             );
+            // ignore 0x0a (or 0x0d0x0a)
+            System.arraycopy(_buf, i+1, _buf, i-(xd ? 1 : 0), _len-(i+1));
             if(xd)_len--;
             _len--;
             continue;
@@ -841,11 +882,32 @@ public abstract class KeyPair{
               if(i++<len){
                 int start=i;
                 while(i<len){ if(buf[i]=='\n')break; i++;}
-                if(i<len){
+                if(i>0 && buf[i-1]==0x0d) i--;
+                if(start<i){
                   publicKeyComment = new String(buf, start, i-start);
                 }
               } 
 	    }
+            else if(buf[0]=='e'&& buf[1]=='c'&& buf[2]=='d' && buf[3]=='s'){
+              if(prvkey==null && buf.length>7){
+               type=ECDSA;
+              }
+              i=0;
+              while(i<len){ if(buf[i]==' ')break; i++;} i++;
+              if(i<len){
+                int start=i;
+                while(i<len){ if(buf[i]==' ')break; i++;}
+                publickeyblob=Util.fromBase64(buf, start, i-start);
+              }
+              if(i++<len){
+                int start=i;
+                while(i<len){ if(buf[i]=='\n')break; i++;}
+                if(i>0 && buf[i-1]==0x0d) i--;
+                if(start<i){
+                  publicKeyComment = new String(buf, start, i-start);
+                }
+              } 
+            }
 	  }
 	}
 	catch(Exception ee){
@@ -862,6 +924,8 @@ public abstract class KeyPair{
     KeyPair kpair=null;
     if(type==DSA){ kpair=new KeyPairDSA(jsch); }
     else if(type==RSA){ kpair=new KeyPairRSA(jsch); }
+    else if(type==ECDSA){ kpair=new KeyPairECDSA(jsch); }
+    else if(vendor==VENDOR_PKCS8){ kpair = new KeyPairPKCS8(jsch); }
 
     if(kpair!=null){
       kpair.encrypted=encrypted;
@@ -1100,5 +1164,92 @@ public abstract class KeyPair{
     }
 
     return (key != null && value != null);
+  }
+
+  void copy(KeyPair kpair){
+    this.publickeyblob=kpair.publickeyblob;
+    this.vendor=kpair.vendor;
+    this.publicKeyComment=kpair.publicKeyComment;
+    this.cipher=kpair.cipher;
+  }
+
+  class ASN1Exception extends Exception {
+  }
+
+  class ASN1 {
+    byte[] buf;
+    int start;
+    int length;
+    ASN1(byte[] buf) throws ASN1Exception {
+      this(buf, 0, buf.length);
+    }
+    ASN1(byte[] buf, int start, int length) throws ASN1Exception {
+      this.buf = buf;
+      this.start = start;
+      this.length = length;
+      if(start+length>buf.length)
+        throw new ASN1Exception();
+    }
+    int getType() {
+      return buf[start]&0xff;
+    }
+    boolean isSEQUENCE() {
+      return getType()==(0x30&0xff);
+    }
+    boolean isINTEGER() {
+      return getType()==(0x02&0xff);
+    }
+    boolean isOBJECT() {
+      return getType()==(0x06&0xff);
+    }
+    boolean isOCTETSTRING() {
+      return getType()==(0x04&0xff);
+    }
+    private int getLength(int[] indexp) {
+      int index=indexp[0];
+      int length=buf[index++]&0xff;
+      if((length&0x80)!=0) {
+        int foo=length&0x7f; length=0;
+        while(foo-->0){ length=(length<<8)+(buf[index++]&0xff); }
+      }
+      indexp[0]=index;
+      return length;
+    }
+    byte[] getContent() {
+      int[] indexp=new int[1];
+      indexp[0]=start+1;
+      int length = getLength(indexp);
+      int index=indexp[0];
+      byte[] tmp = new byte[length];
+      System.arraycopy(buf, index, tmp, 0, tmp.length);
+      return tmp;
+    }
+    ASN1[] getContents() throws ASN1Exception {
+      int typ = buf[start];
+      int[] indexp=new int[1];
+      indexp[0]=start+1;
+      int length = getLength(indexp);
+      if(typ == 0x05){
+        return new ASN1[0];
+      }
+      int index=indexp[0];
+      java.util.Vector values = new java.util.Vector();
+      while(length>0) {
+        index++; length--;
+        int tmp=index;
+        indexp[0]=index;
+        int l=getLength(indexp);
+        index=indexp[0];
+        length-=(index-tmp);
+        values.addElement(new ASN1(buf, tmp-1, 1+(index-tmp)+l));
+        index+=l;
+        length-=l;
+      }
+      ASN1[] result = new ASN1[values.size()];
+      for(int  i = 0; i <values.size(); i++) {
+        result[i]=(ASN1)values.elementAt(i);
+      }
+      return result;
+    }
   }
 }

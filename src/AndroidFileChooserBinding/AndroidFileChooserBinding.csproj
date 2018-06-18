@@ -10,7 +10,7 @@
     <RootNamespace>AndroidFileChooserBinding</RootNamespace>
     <AssemblyName>AndroidFileChooserBinding</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

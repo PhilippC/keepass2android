@@ -101,7 +101,21 @@ private static Drawable _blank;
 			{
 				string packageName = PreferenceManager.GetDefaultSharedPreferences(Application.Context).GetString("IconSetKey", context.PackageName);
 
-				Resources res = context.PackageManager.GetResourcesForApplication(packageName);
+				Resources res;
+			    try
+			    {
+                    res = context.PackageManager.GetResourcesForApplication(packageName);
+                }
+			    catch (Exception)
+			    {
+                    //can happen after uninstalling icons
+                    packageName = context.PackageName;
+			        res = context.PackageManager.GetResourcesForApplication(packageName);
+			        PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+                        .Edit()
+			            .PutString("IconSetKey", packageName)
+                        .Commit();
+                }
 
 				try
 				{

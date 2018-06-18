@@ -364,9 +364,16 @@ namespace keepass2android
 
             // Re-use the change handlers for the application settings
             FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
-            FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
-			FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += OnShowUnlockedNotificationChanged;
-			FindPreference(GetString(Resource.String.DebugLog_key)).PreferenceChange += OnDebugLogChanged;
+            var unlockedNotificationPref = FindPreference(GetString(Resource.String.ShowUnlockedNotification_key));
+            unlockedNotificationPref.PreferenceChange += OnShowUnlockedNotificationChanged;
+            if ((int)Build.VERSION.SdkInt >= 26)
+            {
+                //use system notification channels to control notification visibility
+                unlockedNotificationPref.Parent.RemovePreference(unlockedNotificationPref);
+            }
+            
+
+            FindPreference(GetString(Resource.String.DebugLog_key)).PreferenceChange += OnDebugLogChanged;
 			FindPreference(GetString(Resource.String.DebugLog_send_key)).PreferenceClick += OnSendDebug;
 
             UpdateAutofillPref();
@@ -448,10 +455,16 @@ namespace keepass2android
                 Preference hideQuickUnlockTranspIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden_key));
                 Preference hideQuickUnlockIconPref = FindPreference(GetString(Resource.String.QuickUnlockIconHidden16_key));
                 var quickUnlockScreen = ((PreferenceScreen)FindPreference(GetString(Resource.String.QuickUnlock_prefs_key)));
-                if ((int)Android.OS.Build.VERSION.SdkInt >= 16)
+                if ((int)Android.OS.Build.VERSION.SdkInt >= 26)
+                {
+                    //use notification channels
+                    quickUnlockScreen.RemovePreference(hideQuickUnlockTranspIconPref);
+                    quickUnlockScreen.RemovePreference(hideQuickUnlockIconPref);
+                }
+                else if ((int)Android.OS.Build.VERSION.SdkInt >= 16)
                 {
                     quickUnlockScreen.RemovePreference(hideQuickUnlockTranspIconPref);
-                    FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)).PreferenceChange += (sender, args) => App.Kp2a.UpdateOngoingNotification();
+                    unlockedNotificationPref.PreferenceChange += (sender, args) => App.Kp2a.UpdateOngoingNotification();
                     hideQuickUnlockIconPref.PreferenceChange += delegate { App.Kp2a.UpdateOngoingNotification(); };
                 }
                 else
@@ -462,7 +475,7 @@ namespace keepass2android
                         delegate { App.Kp2a.UpdateOngoingNotification(); };
 
                     ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))).RemovePreference(
-                        FindPreference(GetString(Resource.String.ShowUnlockedNotification_key)));
+                        unlockedNotificationPref);
                 }
             }
             catch (Exception ex)
@@ -852,7 +865,7 @@ namespace keepass2android
                 {
                     CompositeKey masterKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
                     var sourceIoc = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
-                    var newIoc = ImportFileToInternalDirectory(sourceIoc);
+                    var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                     ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).ResetIoc(newIoc);
                     var keyfileString = IOConnectionInfo.SerializeToString(newIoc);
                     App.Kp2a.StoreOpenedFileAsRecent(App.Kp2a.GetDb().Ioc, keyfileString);
@@ -892,7 +905,9 @@ namespace keepass2android
         {
             //Import db/key file preferences:
             Preference importDb = FindPreference("import_db_prefs");
-            if (!App.Kp2a.GetDb().Ioc.IsLocalFile())
+            bool isLocalOrContent =
+                App.Kp2a.GetDb().Ioc.IsLocalFile() || App.Kp2a.GetDb().Ioc.Path.StartsWith("content://");
+            if (!isLocalOrContent)
             {
                 importDb.Summary = GetString(Resource.String.OnlyAvailableForLocalFiles);
                 importDb.Enabled = false;
@@ -919,7 +934,7 @@ namespace keepass2android
                 try
                 {
                     var sourceIoc = App.Kp2a.GetDb().Ioc;
-                    var newIoc = ImportFileToInternalDirectory(sourceIoc);
+                    var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                     return () =>
                     {
                         var builder = new AlertDialog.Builder(Activity);
@@ -951,32 +966,6 @@ namespace keepass2android
                                   copyAndReturnPostExecute
                 ).Execute();
 
-        }
-
-        private IOConnectionInfo ImportFileToInternalDirectory(IOConnectionInfo sourceIoc)
-        {
-	        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(Activity);
-            string targetPath = UrlUtil.GetFileName(sourceIoc.Path);
-            targetPath = targetPath.Trim("|\\?*<\":>+[]/'".ToCharArray());
-            if (targetPath == "")
-                targetPath = "imported";
-			if (new File(internalDirectory, targetPath).Exists())
-            {
-                int c = 1;
-                var ext = UrlUtil.GetExtension(targetPath);
-                var filenameWithoutExt = UrlUtil.StripExtension(targetPath);
-                do
-                {
-                    c++;
-                    targetPath = filenameWithoutExt + c;
-                    if (!String.IsNullOrEmpty(ext))
-                        targetPath += "." + ext;
-				} while (new File(internalDirectory, targetPath).Exists());
-            }
-			var targetIoc = IOConnectionInfo.FromPath(new File(internalDirectory, targetPath).CanonicalPath);
-
-            IoUtil.Copy(targetIoc, sourceIoc, App.Kp2a);
-            return targetIoc;
         }
 
 		

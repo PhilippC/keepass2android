@@ -150,7 +150,7 @@ namespace keepass2android
 				var bmp =
 					Bitmap.CreateScaledBitmap(
 						Util.DrawableToBitmap(App.Kp2a.GetDb()
-							.DrawableFactory.GetIconDrawable(Context, App.Kp2a.GetDb().KpDatabase, templateEntry.IconId, PwUuid.Zero, false)),
+						    .DrawableFactory.GetIconDrawable(Context, App.Kp2a.GetDb().KpDatabase, templateEntry.IconId, PwUuid.Zero, false)),
 						size, size,
 						true);
 				

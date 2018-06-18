@@ -22,9 +22,9 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android в автономном режиме</string>
   <string name="short_app_name_nonet">KP2A в автономном режиме</string>
-  <string name="app_timeout">Блокировка базы</string>
+  <string name="app_timeout">Таймаут блокировки базы</string>
   <string name="app_timeout_summary">Задержка блокировки при бездействии</string>
-  <string name="kill_app_label">Закрыть приложение</string>
+  <string name="kill_app_label">Принудительно закрыть приложение</string>
   <string name="show_kill_app">Кнопка закрытия</string>
   <string name="show_kill_app_summary">Показать кнопку закрытия приложения на экране с паролем (для параноиков)</string>
   <string name="application">Приложение</string>
@@ -78,26 +78,22 @@
   <string name="fingerprint_hint">Коснитесь датчика</string>
   <string name="fingerprint_description">Подтвердите отпечатком пальца, чтобы продолжить</string>
   <string name="fingerprint_fatal">Не удалось установить разблокировку отпечатком пальца:</string>
-  <string name="fingerprint_not_recognized">Отпечатки пальцев не распознаны. Повторите еще раз</string>
+  <string name="fingerprint_not_recognized">Отпечаток не распознан. Повторите ещё раз</string>
   <string name="fingerprint_success">Отпечаток пальца распознан</string>
   <string name="fingerprint_os_error">Для разблокировки отпечатком пальца требуется Android 6.0 или более поздней версии.</string>
-  <string name="fingerprint_hardware_error">Не найдено устройство для распознавания отпечатков пальцев.</string>
+  <string name="fingerprint_hardware_error">Сканер отпечатка пальцев на обнаружен.</string>
   <string name="fingerprint_no_enrolled">У вас не зарегистрированы отпечатки пальцев на этом устройстве. Пожалуйста, сначала перейдите в системные настройки.</string>
-  <string name="disable_fingerprint_unlock">Отключить разблокировку отпечатками пальцев</string>
-  <string name="enable_fingerprint_unlock">Включить полную разблокировку отпечатками пальцев</string>
-  <string name="enable_fingerprint_quickunlock">Включить разблокировку отпечатками пальцев для БыстройРазблокировки</string>
-  <string name="fingerprint_unlock_hint">Прикоснуться к датчику, чтобы разблокировать базу данных</string>
+  <string name="disable_fingerprint_unlock">Отключить доступ по отпечатку пальца</string>
+  <string name="enable_fingerprint_unlock">Включить полную разблокировку отпечатком пальца</string>
+  <string name="enable_fingerprint_quickunlock">Включить разблокировку отпечатком пальца для БыстройРазблокировки</string>
+  <string name="fingerprint_unlock_hint">Прикоснуться к датчику, чтобы разблокировать БД</string>
   <string name="fingerprint_unlock_failed">Ошибка разблокировки отпечатком пальца. Ключ дешифрования был сброшен операционной системой. Это происходит, если был зарегистрирован новый отпечаток пальца или были изменены настройки безопасности. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Ошибка при разблокировании базы данных: неверный составной ключ. Разблокирование с помощью отпечатка пальца было отключено, так как хранящийся мастер-пароль больше не работает. </string>
-  <string name="fingerprint_reenable">Пожалуйста включите разблокировку отпечатками пальцев для нового мастер-пароля.</string>
+  <string name="fingerprint_reenable">Для установки нового мастер-пароля активируйте повторно доступ по отпечатку пальца.</string>
   <string name="fingerprint_reenable2">Пожалуйста, разблокируйте с помощью вашего пароля и затем заново включите функцию разблокирования с помощью отпечатка пальца в настройках базы данных.</string>
   <string name="FingerprintInitFailed">Не получилось запустить сенсор отпечатков пальцев. </string>
-  <string name="enable_fingerprint_unlock_Info">
-    Это сохранит ваш мастер-пароль на этом устройстве,
-    зашифрует при помощи Android Keystore и защитит
-    используя аутентификацию по отпечаткам пальцев. Позволит разблокировать базу данных отпечатком пальца.
-  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Разрешить использовать отпечаток пальца вместо кода QuickUnlock. Это не потребует хранения информации, связанной с вашим мастер-паролем.</string>
+  <string name="enable_fingerprint_unlock_Info">Ваш мастер-пароль будет сохранен на данном устройстве в Хранилище учетных данных с доступом по отпечатку пальца. Доступ к базе паролей будет разрешен только по отпечатку пальца.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Разрешить использовать отпечаток пальца вместо кода QuickUnlock. Информация связанная с вашим мастер-паролем не сохраняется.</string>
   <string name="enter_filename">Введите имя файла базы данных</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Отмена</string>
@@ -175,7 +171,7 @@
   <string name="menu_app_settings">Настройки</string>
   <string name="menu_db_settings">Настройки базы данных</string>
   <string name="menu_delete">Удалить</string>
-  <string name="menu_copy">Создать дубликат</string>
+  <string name="menu_copy">Дублировать</string>
   <string name="menu_move">Переместить в другую группу</string>
   <string name="menu_move_light">Переместить</string>
   <string name="menu_navigate">Перейти к родительской группе</string>
@@ -210,6 +206,7 @@
   <string name="remember_keyfile_summary">Запоминать пути к файлам-ключам</string>
   <string name="remember_keyfile_title">Сохранить файл-ключ</string>
   <string name="remove_from_filelist">Удалить из списка</string>
+  <string name="edit">Изменить</string>
   <string name="rijndael">Алгоритм шифрования Rijndael (AES)</string>
   <string name="root">Корень</string>
   <string name="KeyDerivFunc">Функция деривации ключа</string>
@@ -232,7 +229,7 @@
   <string name="sort_moddate">Сортировка по дате изменения</string>
   <string name="sort_default">Оставить порядок по-умолчанию</string>
   <string name="special">Особые</string>
-  <string name="search_hint">Что найти</string>
+  <string name="search_hint">Что ищем</string>
   <string name="search_results">Результаты поиска</string>
   <string name="search_in">Поиск в</string>
   <string name="select_other_entry">Выбрать другую запись</string>
@@ -273,6 +270,7 @@
   <string name="enter_filename_details_create_import">В следующем шаге будет выбран файл для импортирования.</string>
   <string name="enable_quickunlock">Включить QuickUnlock</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
+  <string name="QuickUnlock_label_secure">Ввести код для БыстройРазблокировки:</string>
   <string name="QuickUnlock_button">БыстраяРазблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть БД</string>
   <string name="QuickUnlockDefaultEnabled_title">Включить БыструюРазблокировку по-умолчанию</string>
@@ -282,9 +280,11 @@
   <string name="QuickUnlockIconHidden_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden_summary">К сожалению, БыстраяРазблокировка не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
-  <string name="QuickUnlockIconHidden16_summary">БыстраяРазблокировка требует уведомления для правильной работы. Выберите этот параметр для отображения уведомления без значка.</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock требует уведомления для своей работы. Выберите этот параметр чтобы отображать уведомление без иконки.</string>
   <string name="QuickUnlockLength_title">Длина ключа БыстройРазблокировки</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
+  <string name="QuickUnlockHideLength_title">Скрыть значок БыстройРазблокировки</string>
+  <string name="QuickUnlockHideLength_summary">Если включено, длина кода для БыстройРазблокировки не будет отображаться на экране.</string>
   <string name="QuickUnlock_fail">БыстраяРазблокировка не удалась: неправильный пароль!</string>
   <string name="BinaryDirectory_title">Каталог файлов-вложений</string>
   <string name="BinaryDirectory_summary">Каталог для сохранения вложенных файлов.</string>
@@ -317,13 +317,19 @@
   <string name="ClearPasswordOnLeave_summary">Очистить введенный мастер-пароль при покидании экрана без разблокировки базы данных.</string>
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
   <string name="LockWhenNavigateBack_summary">Блокировать БД при выходе кнопкой \"назад\".</string>
+  <string name="ActivateSearchViewOnStart_title">Активировать поле поиска при старте</string>
+  <string name="ActivateSearchViewOnStart_summary">Активировать поле поиска в группе после разблокировки или когда ищем значение</string>
   <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
   <string name="NoDonateOption_summary">Эта настройка предназначена для тех, кто пожертвовал. Она доступна только после использования Keepass2Android какое-то время.</string>
-  <string name="NoDonateOption_question">Без пожертвования это приложение не будет существовать и постоянно совершенствоваться! Если вы еще этого не сделали, пожалуйста, пожертвуйте сейчас.</string>
+  <string name="NoDonateOption_question">Без пожертвования это приложение не будет существовать и постоянно совершенствоваться! Если вы еще этого не сделали, сейчас самое время.</string>
   <string name="NoDonationReminder_title">Никогда не спрашивать о пожертвовании</string>
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
   <string name="UseOfflineCache_summary">Сохранять копию удалённой базы данных в папке кэша приложения. Это даст возможность использовать удалённые базы в даже без доступа к сети.</string>
+  <string name="CreateBackups_title">Локальные резервные копии</string>
+  <string name="CreateBackups_summary">Создать локальную резервную копию после успешной загрузки БД.</string>
+  <string name="UpdatingBackup">Обновление локальной резервной копии...</string>
+  <string name="LocalBackupOf">Локальная резервная копия %1$s</string>
   <string name="AcceptAllServerCertificates_title">SSL-сертификаты</string>
   <string name="AcceptAllServerCertificates_summary">Определите поведение при сбое проверки сертификата. Примечание: Вы можете установить сертификаты на вашем устройстве, если проверка не пройдена!</string>
   <string name="ClearOfflineCache_title">Очистить кэш?</string>
@@ -350,8 +356,12 @@
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Переключаться автоматически на клавиатуру KP2A только после использования функции \"Отправить URL\" (но не в других вариантах открытия записи)</string>
   <string name="AutoSwitchBackKeyboard_title">Переключить клавиатуру обратно</string>
   <string name="AutoSwitchBackKeyboard_summary">Переключиться назад на предыдущую клавиатуру, когда ни одна запись не открыта.</string>
-  <string name="ShowUnlockedNotification_title">Значок уведомления при разблокировке</string>
+  <string name="ShowUnlockedNotification_title">Уведомление, когда база разблокирована</string>
   <string name="ShowUnlockedNotification_summary">Показывать уведомление, когда база разблокирована.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 представил нововведение для уведомлений. Если Вы хотите скрыть значок уведомлений Keepass2Android, настройте его с помощью системных настроек. Установите значение категории уведомлений как Минимум.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Открыть настройки</string>
+  <string name="DontCare">Мне всё равно</string>
+  <string name="DocumentAccessRevoked">Файл больше недоступен для Keepass2Android. Либо он был удален, либо разрешения доступа были отменены. Пожалуйста, откройте файл еще раз, например, используя Изменить БД.</string>
   <string name="PreloadDatabaseEnabled_title">Предварительная загрузка файла базы данных</string>
   <string name="PreloadDatabaseEnabled_summary">Запуск фоновой загрузки или скачивания файла базы данных во время ввода пароля.</string>
   <string name="AskOverwriteBinary">Вы хотите перезаписать существующий двоичный файл с тем же именем?</string>
@@ -362,7 +372,7 @@
   <string name="RecycleBin">Корзина</string>
   <string name="AskDeletePermanentlyEntry">Вы хотите окончательно удалить эту запись? Нажмите Нет, чтобы переместить в корзину.</string>
   <string name="AskDeletePermanentlyGroup">Вы хотите окончательно удалить эту группу? Нажмите Нет, чтобы переместить в корзину.</string>
-  <string name="AskDeletePermanentlyItems">Вы хотите удалить навсегда выбранные элементы? Нажмите No для отмены.</string>
+  <string name="AskDeletePermanentlyItems">Вы хотите окончательно удалить эту запись? Нажмите Нет, чтобы переместить в корзину.</string>
   <string name="AskDeletePermanentlyEntryNoRecycle">Вы хотите навсегда удалить эту запись?</string>
   <string name="AskDeletePermanentlyGroupNoRecycle">Вы хотите навсегда удалить эту группу?</string>
   <string name="AskDeletePermanentlyItemsNoRecycle">Вы хотите навсегда удалить выбранные элементы?</string>
@@ -393,7 +403,7 @@
   <string name="UseOfflineMode">Работать в автономном режиме</string>
   <string name="UseOnlineMode">Работать онлайн</string>
   <string name="UseOfflineMode_Info">Использование локальной копии файла в кэше позволит избежать трат сетевого трафика. Изменения сохраняются в локальном кэше и будут загружены только при переключении обратно в онлайн-режим.</string>
-  <string name="InOfflineMode">Работаем в автономном режиме.</string>
+  <string name="InOfflineMode">Работать в автономном режиме.</string>
   <string name="SynchronizingCachedDatabase">Синхронизация кэшированной базы данных&#8230;</string>
   <string name="DownloadingRemoteFile">Скачивание удалённого файла&#8230;</string>
   <string name="UploadingFile">Загрузка файла&#8230;</string>
@@ -476,9 +486,9 @@
   <string name="OtpKeyError">Не удалось создать ключ одноразовых паролей! Убедитесь, что вы ввели корректные одноразовые пароли.</string>
   <string name="ErrorUpdatingOtpAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей!</string>
   <string name="SavingOtpAuxFile">Сохранение вспомогательного файла одноразовых паролей&#8230;</string>
-  <string name="bad_resp">Ответа на запрос является неправильным.</string>
+  <string name="bad_resp">Ответ на запрос является неправильным.</string>
   <string name="CouldntLoadChalAuxFile">Не удалось загрузить файл вспомогательной задачи!</string>
-  <string name="CouldntLoadChalAuxFile_Hint">Пожалуйста, используйте плагин KeeChallenge в KeePass 2.x (ПК) для настройки базы данных для использования с ответом на запрос!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Пожалуйста, используйте плагин KeeChallenge в KeePass 2.x (ПК) для настройки базы данных для использования одноразового пароля!</string>
   <string name="ErrorUpdatingChalAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей (OTP)!</string>
   <string name="TrayTotp_SeedField_title">Имя поля начального значения TOTP</string>
   <string name="TrayTotp_SeedField_summary">Если вы используете плагин Keepass 2 \"TrayTotp\" с нестандартными настройками, введите имя поля для поля начального значения в соответствии с настройками на ПК.</string>
@@ -502,7 +512,7 @@
   <string name="query_credentials_for_url">%1$s запрашивает учетные данные для %2$s.</string>
   <string name="query_credentials">%1$s запрашивает учетные данные. Пожалуйста, выберите запись.</string>
   <string name="plugin_enabled_checkbox">Включено</string>
-  <string name="SCOPE_DATABASE_ACTIONS_title">Уведомления при действиях с базой данных</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Уведомления при действиях с базой</string>
   <string name="SCOPE_DATABASE_ACTIONS_explanation">Плагин будет уведомлять при открытии, закрытии и сохранении базы данных.</string>
   <string name="SCOPE_CURRENT_ENTRY_title">Текущая запись данных</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Плагин будет получать всю информацию о текущей записи базы данных и получит разрешение на предложение операций и модификацию внешнего вида этой записи.</string>
@@ -526,6 +536,7 @@
   <string name="ReadOnlyReason_PreKitKat">Кажется, вы открыли файл из внешнего приложения. Поэтому запись не поддерживается. Если вы хотите внести изменения в базу данных, пожалуйста, закройте ее и выберите пункт изменить базу данных. Затем откройте файл одним из доступных вариантов, если это возможно.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Установлен флаг только для чтения. Удалите этот флаг, если вы хотите внести изменения в базу данных.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Запись невозможна из-за ограничения, введенного в Android KitKat. Если вы хотите внести изменения в базу данных, закройте ее и выберите пункт изменить базу данных. Затем откройте файл с помощью системного средства выбора файлов.</string>
+  <string name="ReadOnlyReason_LocalBackup">Локальные резервные копии не могут быть изменены. Вы можете использовать Настройки БД - Экспорт БД для выгрузки этой резервной копии в другое место, из которого Вы можете ее повторно открыть.</string>
   <string name="AddCustomIcon">Добавить значок из файла...</string>
   <string name="CopyingFile">Копируем файл...</string>
   <string name="DuplicateTitle">Копировать</string>
@@ -560,6 +571,13 @@
    • Убедитесь, что вы выбрали правильный тип пароля. Убедитесь, что он совпадает с тем типом, который вы указывали при создании базы данных.\n
    • Убедитесь, что вы выбрали правильный файл с базой данных.
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+   • Подсказка: Если Вы думаете, что файл БД может быть поврежден, или Вы не помните мастер-пароль после его изменения, то Вы можете попробовать последнюю успешно открытую версию файла, нажав на \"%1$s\", и выбрать локальную резервную копию.</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    • Подсказка: Keepass2Android сохранил последнюю успешно открытую версию файла во внутреннюю память. Вы можете открыть его, нажав на \"%1$s\", и выбрать локальную резервную копию.
+  </string>
   <string name="CorruptDatabaseHelp">
     Файл поврежден. \n
     Тут приведены несколько подсказок, которые могут помочь в решении этой проблемы:\n
@@ -569,14 +587,40 @@
     • Если файл открывается с вашего персонального компьютера, свяжитесь с нами. Вы можете сохранить его с разными параметрами (например, в распакованном виде) и попробовать открыть его снова в Keepass2Android.
 
   </string>
+  <string name="DbUnlockedChannel_name">БД разблокирована</string>
+  <string name="DbUnlockedChannel_desc">Уведомление о том, что БД разблокирована</string>
+  <string name="DbQuicklockedChannel_name">БыстраяРазблокировка</string>
+  <string name="DbQuicklockedChannel_desc">Уведомление о том, что БД будет заблокирована БыстройРазблокировкой</string>
+  <string name="EntryChannel_name">Уведомление о записи</string>
+  <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="ErrorReportTitle">Keepass2Android: Произошла ошибка.</string>
-  <string name="ErrorReportText">Непредвиденная ошибка произошла при запуске Keepass2Android. Пожалуйста, помогите нам исправить это, позвольте приложению отправлять отчеты об ошибках.</string>
+  <string name="ErrorReportText">Непредвиденная ошибка произошла при запуске Keepass2Android. Пожалуйста, помогите нам исправить это, разрешив приложению отправлять отчеты об ошибках.</string>
   <string name="ErrorReportPromise">Отчеты об ошибках никогда не будут содержать любое содержимое базы данных или мастер-пароль. Вы можете отключить их в настройках приложения.</string>
   <string name="ErrorReportEnable">Включить</string>
   <string name="ErrorReportDisable">Отключить</string>
   <string name="ErrorReportAsk">Спросить после ошибки</string>
   <string name="ErrorReportPrefTitle">Отправить отчёт об ошибке</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показывать клавиатуру для ввода пароля, если сканер отпечатка пальца включен.</string>
+  <string name="ChangeLog_1_05">
+    Версия 1.05\n
+    * Использование каналов уведомлений для Android 8 можно включить в системных настройках\n
+    * Показ иконки записи в строке уведомления\n
+    * Использование адаптивных иконок для Android 8, для Android 7 - круглая иконка лаунчера\n
+    * Можно активировать поиск при разблокировке (см. Настройки)\n
+    * Изменен способ записи файлов через Storage Access Framework, устраняет проблемы с обновлением файлов на Google.Диске, открытых с помощью системного \"Выбора файлов\"\n
+    * Добавлен некоторый информационный текст, чтобы избежать некоторых распространенных заблуждений\n
+    * Создание локальных резервных копий успешно открытых БД для снижения риска потери данных\n
+    * Обновлен JSch для поддержки последних шифров SSH\n
+    * Возможность редактирования параметров подключения, например, при изменении пароля WebDav\n
+    * Добавлена поддержка режима статического пароля Yubikey Neo\n
+    * Возможность отключить предложение АвтоЗаполнения\n
+    * Исправлена утечка данных в logcat\n    
+    * Другие исправления\n
+  </string>
+  <string name="ChangeLog_1_04b">
+    Версия 1.04b\n
+    * Исправление сбоев, когда пользователь пытается включить АвтоЗаполнение на устройствах Huawei.\n
+  </string>
   <string name="ChangeLog_1_04">
 Версия 1.04\n  * Добавлена функция автоматического ввода для Андроида версий 8.0 и выше.\n  * Обновлены библиотеки, инструменты создания и Target SDK версия.\n  </string>
   <string name="ChangeLog_1_03">
@@ -867,8 +911,19 @@
   <string name="ClearClipboardWarning">Убедитесь, что это работает на вашей системе и используйте встроенную клавиатуру, если нет.</string>
   <string name="PluginDescription">Описание предоставлено плагином:</string>
   <string name="autofill_hint">Keepass2Android поддерживает функцию автоматического ввода, но, вероятно, вы ещё не включили её.</string>
-  <string name="autofill_enable">Включить Автоввод</string>
-  <string name="show_autofill_help">Показать помощь по автоматическому вводу</string>
-  <string name="autofill_sign_in_prompt">Вставить с Keepass2Android</string>
+  <string name="autofill_enable">Включить автозаполнение</string>
+  <string name="autofill_enable_failed">Извините, похоже, что Ваше устройство не поддерживает открытие настроек внутри приложения. Перейдите в системные настройки и вручную включите службу АвтоЗаполнения.</string>
+  <string name="show_autofill_help">Показать помощь по автозаполнению</string>
+  <string name="autofill_sign_in_prompt">Автозаполнить при помощи Keepass2Android</string>
   <string name="invalid_link_association">Не получается ассоциировать домен %1$s с приложением %2$s</string>
+  <string name="understand">Я понял</string>
+  <string name="dont_show_again">Больше не показывать</string>
+  <string name="masterkey_infotext_head">Вы помните Ваш мастер-пароль?</string>
+  <string name="masterkey_infotext_main">Обратите внимание, что Вы не сможете открыть БД без мастер-ключа. Не существует никакого способа \"сбросить\"мастер-пароль.</string>
+  <string name="masterkey_infotext_fingerprint_note">Также обратите внимание, что разблокировка по отпечатку пальца работает, сохраняя Ваш мастер-ключ в безопасном хранилище Android. Это хранилище может быть удалено самой системой Android в любое время, например, если Вы добавите новый отпечаток пальца в системные настройки. Так что не полагайтесь только на отпечаток пальца, помните свой мастер-пароль, пожалуйста!</string>
+  <string name="backup_infotext_head">У Вас есть резервная копия БД?</string>
+  <string name="backup_infotext_main">Keepass2Android хранит Ваши пароли в файле в выбранном Вами месте. Вы уверены, что можете получить доступ к этому файлу, если Ваш телефон будет потерян или украден, или когда файл будет уничтожен или удален? Пожалуйста, убедитесь, что у Вас есть резервная копия в надежном месте!</string>
+  <string name="backup_infotext_note">Для создания резервной копии, перейдите %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">А Вы готовы к чрезвычайным ситуациям?</string>
+  <string name="emergency_infotext_main">Вы когда-нибудь задумывались, что произойдет, если Вы больше не сможете получить доступ к БД с паролями? Что делать, если это произойдет? Хорошим способом будет передача Вашего мастер-ключа нескольким доверенным лицам как раз для таких чрезвычайных ситуаций. В противном случае никто не будет иметь доступ к Вашим паролям.</string>
 </resources>

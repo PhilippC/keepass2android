@@ -36,7 +36,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import keepass2android.javafilestorage.webdav.ConnectionInfo;
+import keepass2android.javafilestorage.ConnectionInfo;
 import keepass2android.javafilestorage.webdav.DecoratedHostnameVerifier;
 import keepass2android.javafilestorage.webdav.DecoratedTrustManager;
 import keepass2android.javafilestorage.webdav.PropfindXmlParser;
@@ -64,7 +64,7 @@ public class WebDavStorage extends JavaFileStorageBase {
         return scheme + "://" + encode(username)+":"+encode(password)+"@"+url;
     }
 
-    private ConnectionInfo splitStringToConnectionInfo(String filename)
+    public ConnectionInfo splitStringToConnectionInfo(String filename)
             throws UnsupportedEncodingException {
         ConnectionInfo ci = new ConnectionInfo();
 

@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2012 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -36,17 +36,16 @@ public class JSch{
   /**
    * The version number.
    */
-  public static final String VERSION  = "0.1.50";
+  public static final String VERSION  = "0.1.54";
 
   static java.util.Hashtable config=new java.util.Hashtable();
   static{
-    config.put("kex", "diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1");
-    config.put("server_host_key", "ssh-rsa,ssh-dss");
-
+    config.put("kex", "ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1");
+    config.put("server_host_key", "ssh-rsa,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521");
     config.put("cipher.s2c", 
-               "aes128-ctr,aes128-cbc,3des-ctr,3des-cbc,blowfish-cbc,aes192-cbc,aes256-cbc");
+               "aes128-ctr,aes128-cbc,3des-ctr,3des-cbc,blowfish-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc");
     config.put("cipher.c2s",
-               "aes128-ctr,aes128-cbc,3des-ctr,3des-cbc,blowfish-cbc,aes192-cbc,aes256-cbc");
+               "aes128-ctr,aes128-cbc,3des-ctr,3des-cbc,blowfish-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc");
 
     config.put("mac.s2c", "hmac-md5,hmac-sha1,hmac-sha2-256,hmac-sha1-96,hmac-md5-96");
     config.put("mac.c2s", "hmac-md5,hmac-sha1,hmac-sha2-256,hmac-sha1-96,hmac-md5-96");
@@ -63,9 +62,19 @@ public class JSch{
     config.put("diffie-hellman-group1-sha1", 
 	                        "com.jcraft.jsch.DHG1");
     config.put("diffie-hellman-group14-sha1", 
-	                        "com.jcraft.jsch.DHG14");
+               "com.jcraft.jsch.DHG14");    // available since JDK8.
     config.put("diffie-hellman-group-exchange-sha256", 
-               "com.jcraft.jsch.DHGEX256"); // avaibale since JDK1.4.2.
+               "com.jcraft.jsch.DHGEX256"); // available since JDK1.4.2.
+                                            // On JDK8, 2048bits will be used.
+    config.put("ecdsa-sha2-nistp256", "com.jcraft.jsch.jce.SignatureECDSA");
+    config.put("ecdsa-sha2-nistp384", "com.jcraft.jsch.jce.SignatureECDSA");
+    config.put("ecdsa-sha2-nistp521", "com.jcraft.jsch.jce.SignatureECDSA");
+
+    config.put("ecdh-sha2-nistp256", "com.jcraft.jsch.DHEC256");
+    config.put("ecdh-sha2-nistp384", "com.jcraft.jsch.DHEC384");
+    config.put("ecdh-sha2-nistp521", "com.jcraft.jsch.DHEC521");
+
+    config.put("ecdh-sha2-nistp", "com.jcraft.jsch.jce.ECDHN");
 
     config.put("dh",            "com.jcraft.jsch.jce.DH");
     config.put("3des-cbc",      "com.jcraft.jsch.jce.TripleDESCBC");
@@ -80,11 +89,15 @@ public class JSch{
     config.put("hmac-md5-96",   "com.jcraft.jsch.jce.HMACMD596");
     config.put("sha-1",         "com.jcraft.jsch.jce.SHA1");
     config.put("sha-256",         "com.jcraft.jsch.jce.SHA256");
+    config.put("sha-384",         "com.jcraft.jsch.jce.SHA384");
+    config.put("sha-512",         "com.jcraft.jsch.jce.SHA512");
     config.put("md5",           "com.jcraft.jsch.jce.MD5");
     config.put("signature.dss", "com.jcraft.jsch.jce.SignatureDSA");
     config.put("signature.rsa", "com.jcraft.jsch.jce.SignatureRSA");
+    config.put("signature.ecdsa", "com.jcraft.jsch.jce.SignatureECDSA");
     config.put("keypairgen.dsa",   "com.jcraft.jsch.jce.KeyPairGenDSA");
     config.put("keypairgen.rsa",   "com.jcraft.jsch.jce.KeyPairGenRSA");
+    config.put("keypairgen.ecdsa", "com.jcraft.jsch.jce.KeyPairGenECDSA");
     config.put("random",        "com.jcraft.jsch.jce.Random");
 
     config.put("none",           "com.jcraft.jsch.CipherNone");
@@ -111,13 +124,16 @@ public class JSch{
     config.put("zlib",             "com.jcraft.jsch.jcraft.Compression");
     config.put("zlib@openssh.com", "com.jcraft.jsch.jcraft.Compression");
 
+    config.put("pbkdf", "com.jcraft.jsch.jce.PBKDF");
+
     config.put("StrictHostKeyChecking",  "ask");
     config.put("HashKnownHosts",  "no");
 
     config.put("PreferredAuthentications", "gssapi-with-mic,publickey,keyboard-interactive,password");
 
     config.put("CheckCiphers", "aes256-ctr,aes192-ctr,aes128-ctr,aes256-cbc,aes192-cbc,aes128-cbc,3des-ctr,arcfour,arcfour128,arcfour256");
-    config.put("CheckKexes", "diffie-hellman-group14-sha1");
+    config.put("CheckKexes", "diffie-hellman-group14-sha1,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521");
+    config.put("CheckSignatures", "ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521");
 
     config.put("MaxAuthTries", "6");
     config.put("ClearAllForwardings", "no");
@@ -171,7 +187,9 @@ public class JSch{
   static Logger logger=DEVNULL;
 
   public JSch(){
-
+    /*
+    // The JCE of Sun's Java5 on Mac OS X has the resource leak bug
+    // in calculating HMAC, so we need to use our own implementations.
     try{
       String osname=(String)(System.getProperties().get("os.name"));
       if(osname!=null && osname.equals("Mac OS X")){
@@ -183,7 +201,7 @@ public class JSch{
     }
     catch(Exception e){
     }
-
+    */
   }
 
   /**

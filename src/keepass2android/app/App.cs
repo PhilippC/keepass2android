@@ -21,6 +21,7 @@ using System.IO;
 using System.Net.Security;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
@@ -32,12 +33,15 @@ using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
 using Android.Support.V4.App;
+using Android.Support.V4.Content;
 #if !EXCLUDE_TWOFISH
 using TwofishCipher;
 #endif
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
 using keepass2android.addons.OtpKeyProv;
+using KeePassLib.Interfaces;
+using KeePassLib.Utility;
 #if !NoNet
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
@@ -84,7 +88,7 @@ namespace keepass2android
 		public const string PackagePart = "keepass2android";
 		public const string Searchable = "@xml/searchable";
 #endif
-		public const int LauncherIcon = Resource.Drawable.ic_launcher_online;
+		public const int LauncherIcon = Resource.Mipmap.ic_launcher_online;
 		public const int NotificationLockedIcon = Resource.Drawable.ic_notify_loaded;
 		public const int NotificationUnlockedIcon = Resource.Drawable.ic_notify_locked;
 
@@ -159,11 +163,69 @@ namespace keepass2android
 
 
 
-		public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
-		{
-			_db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
+	    public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey,
+	        ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
+	    {
+	        var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+	        var createBackup = prefs.GetBoolean(Application.Context.GetString(Resource.String.CreateBackups_key), true)
+                && !(new LocalFileStorage(this).IsLocalBackup(ioConnectionInfo));
 
-			UpdateOngoingNotification();
+	        MemoryStream backupCopy = new MemoryStream();
+	        if (createBackup)
+	        {
+
+	            memoryStream.CopyTo(backupCopy);
+	            backupCopy.Seek(0, SeekOrigin.Begin);
+	            //reset stream if we need to reuse it later:
+	            memoryStream.Seek(0, SeekOrigin.Begin);
+	        }
+
+
+	        _db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
+
+		    if (createBackup)
+            { 
+		        statusLogger.UpdateMessage(Application.Context.GetString(Resource.String.UpdatingBackup));
+		        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(Application.Context);
+                string baseDisplayName = App.Kp2a.GetFileStorage(ioConnectionInfo).GetDisplayName(ioConnectionInfo);
+                string targetPath = baseDisplayName;
+		        var charsToRemove = "|\\?*<\":>+[]/'";
+		        foreach (char c in charsToRemove)
+		        {
+		            targetPath = targetPath.Replace(c.ToString(), string.Empty);
+		        }
+                if (targetPath == "")
+		            targetPath = "local_backup";
+		       
+		        var targetIoc = IOConnectionInfo.FromPath(new Java.IO.File(internalDirectory, targetPath).CanonicalPath);
+
+                using (var transaction = new LocalFileStorage(App.Kp2a).OpenWriteTransaction(targetIoc, false))
+		        {
+		            var file = transaction.OpenFile();
+		            backupCopy.CopyTo(file);
+		            transaction.CommitWrite();
+		        }
+                Java.Lang.Object baseIocDisplayName = baseDisplayName;
+
+                string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(ioConnectionInfo.Path);
+		        App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, Application.Context.
+                    GetString(Resource.String.LocalBackupOf, new Java.Lang.Object[]{baseIocDisplayName}));
+
+                prefs.Edit()
+                    .PutBoolean(IoUtil.GetIocPrefKey(ioConnectionInfo, "has_local_backup"), true)
+                    .PutBoolean(IoUtil.GetIocPrefKey(targetIoc, "is_local_backup"), true)
+                    .Commit();
+
+
+            }
+		    else
+		    {
+		        prefs.Edit()
+		            .PutBoolean(IoUtil.GetIocPrefKey(ioConnectionInfo, "has_local_backup"), false) //there might be an older local backup, but we won't "advertise" this anymore
+		            .Commit();
+            }
+
+            UpdateOngoingNotification();
 		}
 
 		internal void UnlockDatabase()
@@ -179,14 +241,21 @@ namespace keepass2android
 		{
 			// Start or update the notification icon service to reflect the current state
 			var ctx = Application.Context;
-			StartOnGoingService(ctx);
-		}
+		    if (DatabaseIsUnlocked || QuickLocked)
+		    {
+		        ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof(OngoingNotificationsService)));
+            }
+		    else
+		    {
+                //Anrdoid 8 requires that we call StartForeground() shortly after starting the service with StartForegroundService.
+                //This is not possible when we're closing the service. In this case we don't use the StopSelf in the OngoingNotificationsService.OnStartCommand() anymore but directly stop the service.
 
-		public static void StartOnGoingService(Context ctx)
-		{
-			ctx.StartService(new Intent(ctx, typeof (OngoingNotificationsService)));
-		}
+                OngoingNotificationsService.CancelNotifications(ctx); //The docs are not 100% clear if OnDestroy() will be called immediately. So make sure the notifications are up to date.
 
+		        ctx.StopService(new Intent(ctx, typeof(OngoingNotificationsService)));
+		    }
+		}
+        
 		public bool DatabaseIsUnlocked
 		{
 			get { return _db.Loaded && !QuickLocked; }
@@ -300,9 +369,9 @@ namespace keepass2android
 			dialog.Show();
 		}
 
-		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile)
+		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, string displayName = "")
         {
-            FileDbHelper.CreateFile(ioc, keyfile);
+            FileDbHelper.CreateFile(ioc, keyfile, displayName);
         }
 
         public string GetResourceString(UiStringKey key)
@@ -610,9 +679,9 @@ namespace keepass2android
 		{
 			get { return new CertificateErrorHandlerImpl(this); }
 		}
+	    
 
-
-		public class CertificateErrorHandlerImpl : Java.Lang.Object, Keepass2android.Javafilestorage.ICertificateErrorHandler
+	    public class CertificateErrorHandlerImpl : Java.Lang.Object, Keepass2android.Javafilestorage.ICertificateErrorHandler
 		{
 			private readonly Kp2aApp _app;
 
@@ -713,7 +782,10 @@ namespace keepass2android
 			string errorMessage = e.Message;
 			if (e is OfflineModeException)
 				errorMessage = GetResourceString(UiStringKey.InOfflineMode);
-			return errorMessage;
+		    if (e is DocumentAccessRevokedException)
+		        errorMessage = GetResourceString(UiStringKey.DocumentAccessRevoked);
+
+            return errorMessage;
 		}
 
 
@@ -845,29 +917,98 @@ namespace keepass2android
 #endif
 	public class App : Application {
 
-		public App (IntPtr javaReference, JniHandleOwnership transfer)
+	    public const string NotificationChannelIdUnlocked = "channel_db_unlocked_5";
+	    public const string NotificationChannelIdQuicklocked = "channel_db_quicklocked_5";
+	    public const string NotificationChannelIdEntry = "channel_db_entry_5";
+
+        public App (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 		}
 
         public static readonly Kp2aApp Kp2a = new Kp2aApp();
-        
-		public override void OnCreate() {
-			base.OnCreate();
+
+	    private static void InitThaiCalendarCrashFix()
+	    {
+	        var localeIdentifier = Java.Util.Locale.Default.ToString();
+	        if (localeIdentifier == "th_TH")
+	        {
+	            new System.Globalization.ThaiBuddhistCalendar();
+	        }
+	    }
+
+        public override void OnCreate()
+        {
+            InitThaiCalendarCrashFix();
+
+            base.OnCreate();
 
 			Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 
+		    CreateNotificationChannels();
+
             Kp2a.OnCreate(this);
 			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
-		}
+
+		    IntentFilter intentFilter = new IntentFilter();
+		    intentFilter.AddAction(Intents.LockDatabase);
+		    intentFilter.AddAction(Intents.CloseDatabase);
+            Context.RegisterReceiver(broadcastReceiver, intentFilter);
+        }
+
+	    private ApplicationBroadcastReceiver broadcastReceiver = new ApplicationBroadcastReceiver();
 
 
-		
-		
-		public override void OnTerminate() {
+        private void CreateNotificationChannels()
+	    {
+	        if ((int)Build.VERSION.SdkInt < 26)
+	            return;
+	        NotificationManager mNotificationManager =
+	            (NotificationManager)GetSystemService(Context.NotificationService);
+
+	        {
+	            string name = GetString(Resource.String.DbUnlockedChannel_name);
+	            string desc = GetString(Resource.String.DbUnlockedChannel_desc);
+	            NotificationChannel mChannel =
+	                new NotificationChannel(NotificationChannelIdUnlocked, name, NotificationImportance.Min);
+	            mChannel.Description = desc;
+	            mChannel.EnableLights(false);
+	            mChannel.EnableVibration(false);
+	            mChannel.SetSound(null, null);
+	            mNotificationManager.CreateNotificationChannel(mChannel);
+	        }
+
+	        {
+	            string name = GetString(Resource.String.DbQuicklockedChannel_name);
+	            string desc = GetString(Resource.String.DbQuicklockedChannel_desc);
+	            NotificationChannel mChannel =
+	                new NotificationChannel(NotificationChannelIdQuicklocked, name, NotificationImportance.Min);
+	            mChannel.Description = desc;
+	            mChannel.EnableLights(false);
+	            mChannel.EnableVibration(false);
+	            mChannel.SetSound(null, null);
+                mNotificationManager.CreateNotificationChannel(mChannel);
+	        }
+
+	        {
+	            string name = GetString(Resource.String.EntryChannel_name);
+	            string desc = GetString(Resource.String.EntryChannel_desc);
+	            NotificationChannel mChannel =
+	                new NotificationChannel(NotificationChannelIdEntry, name, NotificationImportance.Default);
+	            mChannel.Description = desc;
+	            mChannel.EnableLights(false);
+	            mChannel.EnableVibration(false);
+	            mChannel.SetSound(null, null);
+                mNotificationManager.CreateNotificationChannel(mChannel);
+	        }
+        }
+
+
+        public override void OnTerminate() {
 			base.OnTerminate();
 			Kp2aLog.Log("Terminating application");
             Kp2a.OnTerminate();
+            Context.UnregisterReceiver(broadcastReceiver);
 		}
 
 		private void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)

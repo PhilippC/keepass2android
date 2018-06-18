@@ -8,13 +8,13 @@
   <string name="kp2a_password">Salasana</string>
   <string name="kp2a_prefs">Tietojen syötön asetukset</string>
   <string name="kp2a_auto_fill">Automaattinen täyttö</string>
-  <string name="kp2a_auto_fill_summary">Täytä kenttä automaattiseti kun siirrytään tyhjään kenttään, jos löytyy sekä Keepass2Android näppäimistölle merkintä että kentän vihjetekstiä vastaava arvo.</string>
+  <string name="kp2a_auto_fill_summary">Kun siirrytään tyhjään kenttään, täytä se automaattiseti kenttään mikäli Keepass2Android näppäimistölle löytyy merkintä, jonka vihjeteksti vastaa kenttää.</string>
   <string name="kp2a_remember_auto_fill">Muista kenttien vihjetekstit</string>
-  <string name="kp2a_remember_auto_fill_summary">Jos tekstikenttä täytetään manuaalisesti valitsemalla Keepass2Androidin tarjoama arvo, muista mikä arvo kenttään syötettiin. Kenttä tunnistetaan uudelleen myöhemmin vihjetekstin perusteella.</string>
+  <string name="kp2a_remember_auto_fill_summary">Jos tekstikenttä täytetään manuaalisesti valitsemalla Keepass2Androidin tarjoama arvo, muista mikä arvo kenttään syötettiin. Kenttä voidaan sitten tunnistetaa myöhemmin uudelleen tämän vihjetekstin perusteella.</string>
   <string name="kp2a_simple_keyboard">Yksirivinen näppäimistö</string>
   <string name="kp2a_simple_keyboard_summary">Näytä yksirivinen näppäimistö jos näppäimistölle on saatavilla merkintä. Jos asetus ei ole käytössä, näytetään valintaruutu Keepass2Android näppäimistön kuvaketta painettaessa.</string>
   <string name="kp2a_lock_on_sendgodone">Lukitse tietokanta kun valmista</string>
   <string name="kp2a_lock_on_sendgodone_summary">Lukitse tietokanta automaattisesti kun painetaan yksinkertaisen 1-rivisen näppäimistön Valmis/Lähetä/Mene näppäintä.</string>
-  <string name="kp2a_switch_on_sendgodone">Näppäimistön vaihto</string>
+  <string name="kp2a_switch_on_sendgodone">Näppäimistön vaihtaminen kun valmista</string>
   <string name="kp2a_switch_on_sendgodone_summary">Vaihda näppäimistö kun painetaan yksinkertaisen yksirivisen näppäimistön Valmis/Lähetä/Siirry näppäintä.</string>
 </resources>

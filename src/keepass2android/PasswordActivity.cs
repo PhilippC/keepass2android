@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
@@ -60,7 +61,6 @@ using Process = Android.OS.Process;
 
 using KeeChallenge;
 using KeePassLib.Cryptography.KeyDerivation;
-using KeePassLib.Security;
 using AlertDialog = Android.App.AlertDialog;
 using Enum = System.Enum;
 using Exception = System.Exception;
@@ -69,72 +69,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace keepass2android
 {
-	class ChallengeXCKey : IUserKey, ISeedBasedUserKey
-	{
-		private readonly Activity _activity;
-		private readonly int _requestCode;
-
-		public ProtectedBinary KeyData
-		{
-			get
-			{
-				
-				_activity.RunOnUiThread(
-					() =>
-					{
-						//TODO refactor to use code from PasswordActivity including notice to install Yubichallenge
-						Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
-						byte[] challenge = _masterSeed;
-						byte[] challenge64 = new byte[64];
-						for (int i = 0; i < 64; i++)
-						{
-							if (i < challenge.Length)
-							{
-								challenge64[i] = challenge[i];
-							}
-							else
-							{
-								challenge64[i] = (byte) (challenge64.Length - challenge.Length);
-							}
-							
-						}
-
-						Kp2aLog.Log(MemUtil.ByteArrayToHexString(challenge64));
-
-						chalIntent.PutExtra("challenge", challenge64);
-						chalIntent.PutExtra("slot", 2);
-						IList<ResolveInfo> activities = _activity.PackageManager.QueryIntentActivities(chalIntent, 0);
-						bool isIntentSafe = activities.Count > 0;
-						if (isIntentSafe)
-						{
-							_activity.StartActivityForResult(chalIntent, _requestCode);
-						}
-						else throw new Exception("TODO implement: you need YubiChallenge");
-					});
-				while (Response == null)
-					Thread.Sleep(100);
-
-				return new ProtectedBinary(true, Response);
-			}
-		}
-
-		private byte[] _masterSeed;
-
-		public ChallengeXCKey(Activity activity, int requestCode)
-		{
-			this._activity = activity;
-			_requestCode = requestCode;
-			Response = null;
-		}
-
-		public void SetParams(byte[] masterSeed)
-		{
-			_masterSeed = masterSeed;
-		}
-
-		public byte[] Response { get; set; }
-	}
-	[Activity(Label = "@string/app_name",
+    [Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation,
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
@@ -175,7 +110,7 @@ namespace keepass2android
 
 		private const int RequestCodePrepareDbFile = 1000;
 		private const int RequestCodePrepareOtpAuxFile = 1001;
-        private const int RequestCodeChallengeYubikey = 1002;
+        
 		private const int RequestCodeSelectKeyfile = 1003;
 		private const int RequestCodePrepareKeyFile = 1004;
 		private const int RequestCodeSelectAuxFile = 1005;
@@ -183,8 +118,6 @@ namespace keepass2android
 
 		private Task<MemoryStream> _loadDbFileTask;
 		private bool _loadDbTaskOffline; //indicate if preloading was started with offline mode
-
-		private ChallengeXCKey _currentlyWaitingKey;
 
 		private IOConnectionInfo _ioConnection;
 		private String _keyFileOrProvider;
@@ -375,7 +308,7 @@ namespace keepass2android
 						// to retry with typing the full password, but that's intended to avoid showing the password to a 
 						// a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
 						Handler handler = new Handler();
-						OnFinish onFinish = new AfterLoad(handler, this);
+						OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 						_performingLoad = true;
 						LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider, onFinish);
 						_loadDbFileTask = null; // prevent accidental re-use
@@ -434,69 +367,71 @@ namespace keepass2android
 				
 				GetAuxFileLoader().LoadAuxFile(false);
 			}
-            if (requestCode == RequestCodeChallengeYubikey && resultCode == Result.Ok) 
-			{
-				try
-				{
-					byte[] challengeResponse = data.GetByteArrayExtra("response");
-					if (_currentlyWaitingKey != null)
-					{
-						_currentlyWaitingKey.Response = challengeResponse;
-						return;
-					}
-					else
-					{
-						_challengeProv = new KeeChallengeProv();
-						_challengeSecret = _challengeProv.GetSecret(_chalInfo, challengeResponse);
-						Array.Clear(challengeResponse, 0, challengeResponse.Length);	
-					}
-                    
-				}
-				catch (Exception e)
-				{
-					Kp2aLog.Log(e.ToString());
-					Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
-					return;
-				}
-				
-                UpdateOkButtonState();
-				FindViewById(Resource.Id.otpInitView).Visibility = ViewStates.Gone;
-			
-				if (_challengeSecret != null)
-                {
-					new LoadingDialog<object, object, object>(this, true,
-						//doInBackground
-					delegate
-					{
-						//save aux file
-						try
-						{
-							ChallengeInfo temp = _challengeProv.Encrypt(_challengeSecret);
-							if (!temp.Save(_otpAuxIoc))
-							{
-								Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long).Show();
-								return false;
-							}
-							
-						}
-						catch (Exception e)
-						{
-							Kp2aLog.LogUnexpectedError(e);
-						}
-						return null;
-					}
-					, delegate
-					{
-						
-					}).Execute();
-            
-                }
-                else
-                {
-                    Toast.MakeText(this, Resource.String.bad_resp, ToastLength.Long).Show();
-                    return;
-                }
-			}
+		    if (requestCode == RequestCodeChallengeYubikey)
+		    {
+		        if (_currentlyWaitingKey != null)
+		        {
+                    //ActivityResult was handled in base class already
+		            return;
+		        }
+
+                if (resultCode == Result.Ok)
+		        {
+
+		            try
+		            {
+		                byte[] challengeResponse = data.GetByteArrayExtra("response");
+		                _challengeProv = new KeeChallengeProv();
+		                _challengeSecret = _challengeProv.GetSecret(_chalInfo, challengeResponse);
+		                Array.Clear(challengeResponse, 0, challengeResponse.Length);
+		            }
+		            catch (Exception e)
+		            {
+		                Kp2aLog.Log(e.ToString());
+		                Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
+		                return;
+		            }
+
+		            UpdateOkButtonState();
+		            FindViewById(Resource.Id.otpInitView).Visibility = ViewStates.Gone;
+
+		            if (_challengeSecret != null)
+		            {
+		                new LoadingDialog<object, object, object>(this, true,
+		                    //doInBackground
+		                    delegate
+		                    {
+		                        //save aux file
+		                        try
+		                        {
+		                            ChallengeInfo temp = _challengeProv.Encrypt(_challengeSecret);
+		                            if (!temp.Save(_otpAuxIoc))
+		                            {
+		                                Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long)
+		                                    .Show();
+		                                return false;
+		                            }
+
+		                        }
+		                        catch (Exception e)
+		                        {
+		                            Kp2aLog.LogUnexpectedError(e);
+		                        }
+		                        return null;
+		                    }
+		                    , delegate
+		                    {
+
+		                    }).Execute();
+
+		            }
+		            else
+		            {
+		                Toast.MakeText(this, Resource.String.bad_resp, ToastLength.Long).Show();
+		                return;
+		            }
+		        }
+		    }
 		}
 
 		private AuxFileLoader GetAuxFileLoader()
@@ -690,27 +625,12 @@ namespace keepass2android
 
 			protected override void HandleSuccess()
 			{
-				Intent chalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
-				chalIntent.PutExtra("challenge", Activity._chalInfo.Challenge);
-				chalIntent.PutExtra("slot", 2);
-				IList<ResolveInfo> activities = Activity.PackageManager.QueryIntentActivities(chalIntent, 0);
-				bool isIntentSafe = activities.Count > 0;
-				if (isIntentSafe)
-				{
-					Activity.StartActivityForResult(chalIntent, RequestCodeChallengeYubikey);
-				}
-				else
-				{
-					AlertDialog.Builder b = new AlertDialog.Builder(Activity);
-					b.SetMessage(Resource.String.YubiChallengeNotInstalled);
-					b.SetPositiveButton(Android.Resource.String.Ok,
-										delegate
-										{
-											Util.GotoUrl(Activity, Activity.GetString(Resource.String.MarketURL) + "com.yubichallenge");
-										});
-					b.SetNegativeButton(Resource.String.cancel, delegate { });
-					b.Create().Show();
-				}
+			    var chalIntent = Activity.TryGetYubichallengeIntentOrPrompt(Activity._chalInfo.Challenge, true);
+
+                if (chalIntent != null)
+			    {
+			        Activity.StartActivityForResult(chalIntent, RequestCodeChallengeYubikey);
+                }
 			}
 
 			protected override string GetErrorMessage()
@@ -746,7 +666,8 @@ namespace keepass2android
 			}
 		}
 
-		private void ShowOtpEntry(IList<string> prefilledOtps)
+
+	    private void ShowOtpEntry(IList<string> prefilledOtps)
 		{
 			FindViewById(Resource.Id.otpInitView).Visibility = ViewStates.Gone;
 			FindViewById(Resource.Id.otpEntry).Visibility = ViewStates.Visible;
@@ -1071,14 +992,11 @@ namespace keepass2android
 			
 			btn.PostDelayed(() =>
 			{
-				//re-init fingerprint unlock in case something goes wrong with opening the database 
-				InitFingerprintUnlock(); 
 				//fire
 				OnOk(true);	
-			}, 1000);
+			}, 500);
 
-			
-		}
+        }
 
 		private void InitializeNavDrawerButtons()
 	    {
@@ -1152,12 +1070,15 @@ namespace keepass2android
 
 	    public override void OnBackPressed()
 	    {
-	        if (_drawerLayout.IsDrawerOpen((int) GravityFlags.Start))
+	        if (_drawerLayout != null)
 	        {
-                _drawerLayout.CloseDrawer((int)GravityFlags.Start);
-	            return;
+	            if (_drawerLayout.IsDrawerOpen((int) GravityFlags.Start))
+	            {
+	                _drawerLayout.CloseDrawer((int) GravityFlags.Start);
+	                return;
+	            }
 	        }
-            base.OnBackPressed();
+	        base.OnBackPressed();
 	    }
 
 	    private void InitializeOtpSecretSpinner()
@@ -1479,8 +1400,11 @@ namespace keepass2android
 		private void PerformLoadDatabase()
 		{
 			_currentlyWaitingKey = null;
-			//put loading into background thread to allow loading the key file (potentially over network)
-			new SimpleLoadingDialog(this, GetString(Resource.String.loading),
+		    if (_performingLoad)
+		        return;
+		    _performingLoad = true;
+            //put loading into background thread to allow loading the key file (potentially over network)
+            new SimpleLoadingDialog(this, GetString(Resource.String.loading),
 			                        true, () =>
 				                        {
 					                        CompositeKey compositeKey;
@@ -1488,7 +1412,8 @@ namespace keepass2android
 					                        if (!CreateCompositeKey(out compositeKey, out errorMessage)) return (() =>
 						                        {
 							                        Toast.MakeText(this, errorMessage, ToastLength.Long).Show();
-						                        });
+						                            _performingLoad = false;
+                                                });
 											return () => { PerformLoadDatabaseWithCompositeKey(compositeKey); };
 				                        }).Execute();
 			
@@ -1524,8 +1449,7 @@ namespace keepass2android
 				MakePasswordMaskedOrVisible();
 
 				Handler handler = new Handler();
-				OnFinish onFinish = new AfterLoad(handler, this);
-				_performingLoad = true;
+				OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 				LoadDb task = (KeyProviderType == KeyProviders.Otp)
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider,
 						onFinish, this)
@@ -1700,7 +1624,8 @@ namespace keepass2android
 			base.OnStart();
 			_starting = true;
 
-			DonateReminder.ShowDonateReminderIfAppropriate(this);
+		    AppTask.CanActivateSearchViewOnStart = true;
+            DonateReminder.ShowDonateReminderIfAppropriate(this);
 			
 			
 		}
@@ -1769,10 +1694,9 @@ namespace keepass2android
 			if ((intent != null) && (intent.HasExtra(Intents.OtpExtraKey)))
 			{
 				string otp = intent.GetStringExtra(Intents.OtpExtraKey);
-					
+				_keepPasswordInOnResume = true;
 				if (this.KeyProviderType == KeyProviders.Otp)
 				{
-					_keepPasswordInOnResume = true;
 				
 					if (_otpInfo == null)
 					{
@@ -2102,11 +2026,13 @@ namespace keepass2android
 
 		private class AfterLoad : OnFinish {
 			readonly PasswordActivity _act;
+		    private readonly IOConnectionInfo _ioConnection;
 
-			public AfterLoad(Handler handler, PasswordActivity act):base(handler)
-			{
-				_act = act;
-			}
+		    public AfterLoad(Handler handler, PasswordActivity act, IOConnectionInfo ioConnection):base(handler)
+		    {
+		        _act = act;
+		        _ioConnection = ioConnection;
+		    }
 				
 
 			public override void Run()
@@ -2117,41 +2043,63 @@ namespace keepass2android
 					_act.ClearEnteredPassword();
 					_act.BroadcastOpenDatabase();
 					_act.InvalidCompositeKeyCount = 0;
+				    _act.LoadingErrorCount = 0;
 
 
-					GC.Collect(); // Ensure temporary memory used while loading is collected
+                    GC.Collect(); // Ensure temporary memory used while loading is collected
 				}
 
+			    if (Exception != null)
+			    {
+			        _act.LoadingErrorCount++;
+			    }
 
-				if (Exception is InvalidCompositeKeyException)
-				{
-					_act.InvalidCompositeKeyCount++;
-					if (_act.UsedFingerprintUnlock)
-					{
-						//disable fingerprint unlock if master password changed
-						_act.ClearFingerprintUnlockData();
-						_act.InitFingerprintUnlock();
+			    if ((Exception != null) && (Exception.Message == KeePassLib.Resources.KLRes.FileCorrupted))
+			    {
+			        Message = _act.GetString(Resource.String.CorruptDatabaseHelp);
+			    }
 
-						Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey) + " " + _act.GetString(Resource.String.fingerprint_reenable2);
-					}
-					else
-					{
-						if (_act.InvalidCompositeKeyCount > 1)
-						{
-							Message = _act.GetString(Resource.String.RepeatedInvalidCompositeKeyHelp);
-						}
-						else
-						{
-							Message = _act.GetString(Resource.String.FirstInvalidCompositeKeyError);
-						}
-					}
-					
+                if (Exception is InvalidCompositeKeyException)
+			    {
+			        _act.InvalidCompositeKeyCount++;
+			        if (_act.UsedFingerprintUnlock)
+			        {
+			            //disable fingerprint unlock if master password changed
+			            _act.ClearFingerprintUnlockData();
+			            _act.InitFingerprintUnlock();
 
-				}
-				if ((Exception != null) && (Exception.Message == KeePassLib.Resources.KLRes.FileCorrupted))
-				{
-					Message = _act.GetString(Resource.String.CorruptDatabaseHelp);
-				}
+			            Message = _act.GetString(Resource.String.fingerprint_disabled_wrong_masterkey) + " " +
+			                      _act.GetString(Resource.String.fingerprint_reenable2);
+			        }
+			        else
+			        {
+			            if (_act.InvalidCompositeKeyCount > 1)
+			            {
+			                Message = _act.GetString(Resource.String.RepeatedInvalidCompositeKeyHelp);
+			                if (_act._prefs.GetBoolean(IoUtil.GetIocPrefKey(_ioConnection, "has_local_backup"), false))
+			                {
+			                    Java.Lang.Object changeDb = _act.GetString(Resource.String.menu_change_db);
+			                    Message += _act.GetString(Resource.String.HintLocalBackupInvalidCompositeKey, new Java.Lang.Object[] {changeDb});
+			                }
+			            }
+			            else
+			            {
+			                Message = _act.GetString(Resource.String.FirstInvalidCompositeKeyError);
+			            }
+			        }
+
+
+			    }
+			    else if (_act.LoadingErrorCount > 1)
+			    {
+			        if (_act._prefs.GetBoolean(IoUtil.GetIocPrefKey(_ioConnection, "has_local_backup"), false))
+			        {
+			            Java.Lang.Object changeDb = _act.GetString(Resource.String.menu_change_db);
+			            Message += _act.GetString(Resource.String.HintLocalBackupOtherError, new Java.Lang.Object[] { changeDb });
+			        }
+
+                }
+				
 				
 				
 				if ((Message != null) && (Message.Length > 150)) //show long messages as dialog
@@ -2178,8 +2126,12 @@ namespace keepass2android
 
 				}
 
+			    //re-init fingerprint unlock in case something went wrong with opening the database 
+                if (!Success)
+                    _act.InitFingerprintUnlock();
 
-				_act._performingLoad = false;
+
+                _act._performingLoad = false;
 
 			}
 		}
@@ -2188,8 +2140,12 @@ namespace keepass2android
 		{
 			get; set;
 		}
+	    public int LoadingErrorCount
+	    {
+	        get; set;
+	    }
 
-		private void BroadcastOpenDatabase()
+        private void BroadcastOpenDatabase()
 		{
 			App.Kp2a.BroadcastDatabaseAction(this, Strings.ActionOpenDatabase);
 		}

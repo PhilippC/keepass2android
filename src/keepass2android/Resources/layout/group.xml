@@ -76,6 +76,111 @@
             android:text="@string/show_autofill_help"
             style="@style/BottomBarButton" />
         </RelativeLayout>
+
+        <Button
+          android:id="@+id/info_dont_show_autofill_again"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="4dp"
+          android:text="@string/dont_show_again"
+          style="@style/BottomBarButton" />
+      </LinearLayout>
+      <LinearLayout
+        android:id="@+id/notification_info_android8_infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+
+        <TextView android:id="@+id/myinfotext" android:text="@string/IconVisibilityInfo_Android8_text"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="16sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <RelativeLayout
+          android:id="@+id/notification_channels_buttons"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:baselineAligned="false">
+
+          <Button
+            android:id="@+id/configure_notification_channels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="4dp"
+            android:text="@string/IconVisibilityInfo_Android8_btnSettings"
+            style="@style/BottomBarButton" />
+          <Button
+            android:id="@+id/ignore_notification_channel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="4dp"
+            android:text="@string/DontCare"
+            style="@style/BottomBarButton" />
+        </RelativeLayout>
+      </LinearLayout>
+      <LinearLayout
+        android:id="@+id/infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/info_head"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="18sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <TextView android:id="@+id/info_main"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="14sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <TextView android:id="@+id/info_additional" 
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="14sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <RelativeLayout
+          android:id="@+id/info_buttons"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:baselineAligned="false">
+
+          <Button
+            android:id="@+id/info_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="4dp"
+            android:text="@string/understand"
+            style="@style/BottomBarButton" />
+          <Button
+            android:id="@+id/info_dont_show_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="4dp"
+            android:text="@string/dont_show_again"
+            style="@style/BottomBarButton" />
+        </RelativeLayout>
       </LinearLayout>
     </RelativeLayout>
   

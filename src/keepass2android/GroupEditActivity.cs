@@ -52,6 +52,8 @@ namespace keepass2android
 			
 		}
 
+	    public const int RequestCodeGroupEdit = 9713;
+
 
 		public static void Launch(Activity act, PwGroup parentGroup)
 		{
@@ -60,7 +62,7 @@ namespace keepass2android
 			PwGroup parent = parentGroup;
 			i.PutExtra(KeyParent, parent.Uuid.ToHexString());
 			
-			act.StartActivityForResult(i, 0);
+			act.StartActivityForResult(i, RequestCodeGroupEdit);
 		}
 
 		public static void Launch(Activity act, PwGroup parentGroup, PwGroup groupToEdit)

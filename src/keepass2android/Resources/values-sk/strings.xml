@@ -87,7 +87,11 @@
   <string name="enable_fingerprint_unlock">Zapnúť úplné odomknutie odtlačkom</string>
   <string name="enable_fingerprint_quickunlock">Zapnúť odomykanie odtlačkom pre rýchle odomknutie</string>
   <string name="fingerprint_unlock_hint">Dotykový senzor pre odomknutie databázy</string>
+  <string name="fingerprint_unlock_failed">Odomykanie odtlačkom prsta zlyhalo. OS Android zneplatnil dešifrovací kľúč. Toto sa stáva väčšinou vtedy, keď bol zapísaný nový odtlačok prsta alebo došlo k zmene bezpečnostných nastavení. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Odomknutie databázy bolo neúspešné: neplatný kompozitný kľúč. Odomknutie odtlačkom prsta bolo deaktivované, pretože uložené primárne heslo už zjavne nie je platné. </string>
   <string name="fingerprint_reenable">Prosím zapnite Odomknutie odtlačkom pre nové primárne heslo.</string>
+  <string name="fingerprint_reenable2">Prosím vykonajte odomknutie pomocou hesla a potom v nastaveniach databázy opäť aktivujte odomykanie odtlačkom prsta.</string>
+  <string name="FingerprintInitFailed">Inicializácia snímača odtlačkov prsta bola neúspešná. </string>
   <string name="enable_fingerprint_unlock_Info">
     Týmto uložíte vaše primárne heslo na tomto zariadení,
     v šifrovanej podobe, s použitím Android Keystore a s ochranou
@@ -206,6 +210,7 @@
   <string name="remember_keyfile_summary">Zapamätať si umiestnenie súboru s kľúčom</string>
   <string name="remember_keyfile_title">Uložiť súbor s kľúčom</string>
   <string name="remove_from_filelist">Odstrániť</string>
+  <string name="edit">Upraviť</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Hlavný</string>
   <string name="KeyDerivFunc">Funkcia odvodenia kľúča</string>
@@ -269,6 +274,7 @@
   <string name="enter_filename_details_create_import">Súbor na importovanie bude vybraný v ďalšom kroku.</string>
   <string name="enable_quickunlock">Zapnúť rýchle odomknutie</string>
   <string name="QuickUnlock_label">Zadajte posledných %1$d znakov z hesla:</string>
+  <string name="QuickUnlock_label_secure">Zadajte kód QuickUnlock:</string>
   <string name="QuickUnlock_button">Rýchle odomknutie!</string>
   <string name="QuickUnlock_lockButton">Zatvoriť databázu</string>
   <string name="QuickUnlockDefaultEnabled_title">Zapnúť rýchle odomknutie</string>
@@ -281,6 +287,8 @@
   <string name="QuickUnlockIconHidden16_summary">Rýchle odomknutie vyžaduje korektné fungovanie notifikácií. Ak chcete zobraziť notifikáciu bez ikony, prosím vyberte túto možnosť.</string>
   <string name="QuickUnlockLength_title">Dĺžka kľúča na rýchle odomknutie</string>
   <string name="QuickUnlockLength_summary">Max. počet znakov použitých ako heslo na rýchle odomknutie.</string>
+  <string name="QuickUnlockHideLength_title">Skryť dĺžku QuickUnlock</string>
+  <string name="QuickUnlockHideLength_summary">Ak je zapnuté, nezobrazí sa dĺžka kódu QuickUnlick a obrazovke pre funkciu QuickUnlock.</string>
   <string name="QuickUnlock_fail">Rýchle odomknutie zlyhalo: nesprávne heslo!</string>
   <string name="BinaryDirectory_title">Priečinok pre prílohy</string>
   <string name="BinaryDirectory_summary">Priečinok, do ktorého sa uložia prílohy.</string>
@@ -313,6 +321,8 @@
   <string name="ClearPasswordOnLeave_summary">Pri opustení obrazovky bez odomknutia databázy vyčistiť zadané primárne heslo.</string>
   <string name="LockWhenNavigateBack_title">Uzamknúť pri opustení aplikácie</string>
   <string name="LockWhenNavigateBack_summary">Uzamknúť databázu pri opustení aplikácie stlačením tlačidla Späť.</string>
+  <string name="ActivateSearchViewOnStart_title">Aktivovať vyhľadávacie pole pri spustení</string>
+  <string name="ActivateSearchViewOnStart_summary">Aktivuje pole pre vyhľadávanie v zobrazení skupiny, hneď po odomknutí alebo pri hľadaní záznamu</string>
   <string name="NoDonateOption_title">Skryť možnosti prispenia</string>
   <string name="NoDonateOption_summary">Toto nastavenie je určené pre sponzorov. Je dostupné po použití Keepass2Android, len na chvíľu.</string>
   <string name="NoDonateOption_question">Bez príspevkov by táto aplikácia neexistovala a nebolo by možné ju neustále vylepšovať! Ak ste ešte neprispeli na jej vývoj, prosím zvážte možnosť prispenia teraz.</string>
@@ -320,6 +330,10 @@
   <string name="NoDonationReminder_summary">Nechcem prispieť ničím alebo som už prispel. Nepýtať sa na príspevok, ani na autorove narodeniny.</string>
   <string name="UseOfflineCache_title">Ukladať do vyr. pamäte</string>
   <string name="UseOfflineCache_summary">Zachovať kópiu súborov vzdialenej databázy v priečinku vyr. pamäte programu. Takto môžete používať vzdialené databázy aj v režime offline.</string>
+  <string name="CreateBackups_title">Lokálne zálohy</string>
+  <string name="CreateBackups_summary">Po úspešnom načítaní databázy vytvoriť lokálnu záložnú kópiu.</string>
+  <string name="UpdatingBackup">Aktualizovanie lokálnej zálohy...</string>
+  <string name="LocalBackupOf">Lokálna záloha %1$s</string>
   <string name="AcceptAllServerCertificates_title">Certifikáty SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definujte postup pri zlyhaní overenia certifikátu. Poznámka: pri zlyhaní overenia môžete na zariadenie nainštalovať certifikáty!</string>
   <string name="ClearOfflineCache_title">Vymazať vyrovnávaciu pamäť?</string>
@@ -333,6 +347,7 @@
   <string name="ShowSeparateNotifications_title">Oddeliť notifikácie</string>
   <string name="ShowSeparateNotifications_summary">Zobraziť oddelené notifikácie pre kopírovanie mena používateľa a hesla do schránky a aktivovanie klávesnice.</string>
   <string name="AccServiceAutoFill_prefs">Automatické dopĺňanie - služba pre prístupnosť</string>
+  <string name="AutoFill_prefs">Služba automatického dopĺňania</string>
   <string name="ShowKp2aKeyboardNotification_title">Notifikácia klávesnice KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Sprístupniť celý záznam cez klávesnicu KP2A (odporúča sa).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Prepnúť klávesnicu</string>
@@ -347,6 +362,10 @@
   <string name="AutoSwitchBackKeyboard_summary">Prepnúť späť na predchádzajúcu klávesnicu, ak nebol otvorený záznam.</string>
   <string name="ShowUnlockedNotification_title">Notifikačná ikona počas odomknutia</string>
   <string name="ShowUnlockedNotification_summary">Zobraziť prichádzajúcu notifikáciu aj pri odomknutej databáze.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 obsahuje nové postupy pre notifikácie. Ak chcete skryť ikonu pre notifikácie aplikácie Keepass2Android, prosím nakonfigurujte ich cez nastavenia systému. Dôležitosť kategórie notifikácií nastavte na minimum.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Otvoriť nastavenia</string>
+  <string name="DontCare">Nezaujíma ma to</string>
+  <string name="DocumentAccessRevoked">Súbor už nie je dostupný pre Keepass2Android. Buď bol odstránený alebo boli zrušené prístupové oprávnenia. Prosím znovu otvorte súbor, napríklad príkazom pre zmenu databázy.</string>
   <string name="PreloadDatabaseEnabled_title">Vopred načítať databázu</string>
   <string name="PreloadDatabaseEnabled_summary">Spustiť načítavanie alebo sťahovanie databázového súboru na pozadí, počas záznamu hesla.</string>
   <string name="AskOverwriteBinary">Chcete prepísať existujúci binárny súbor s použitím rovnakého názvu?</string>
@@ -493,6 +512,7 @@
   <string name="plugin_disabled">vypnuté</string>
   <string name="plugin_web">Vyhľadať prídavné moduly online</string>
   <string name="plugin_scopes">Úrovne oprávnení</string>
+  <string name="not_enabled">neaktívne</string>
   <string name="query_credentials_for_url">%1$s požaduje prihlasovacie údaje pre %2$s.</string>
   <string name="query_credentials">%1$s požaduje prihlasovacie údaje. Prosím vyberte záznam.</string>
   <string name="plugin_enabled_checkbox">Zapnuté</string>
@@ -520,6 +540,7 @@
   <string name="ReadOnlyReason_PreKitKat">Zdá sa, že ste súbor otvorili z externej aplikácie. Takýmto spôsobom však nie je podporovaný zápis. Ak chcete v databáze niečo zmeniť, prosím zatvorte ju a vyberte možnosť Zmeniť databázu. Potom súbor otvorte pomocou jednej z dostupných možností.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Je nastavený príznak: Len na čítanie. Ak chcete niečo v databáze zmeniť, odstráňte ho.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Zápis nie je možný z dôvodu obmedzení v systéme Android KitKat. Ak chcete databázu upraviť, zatvorte ju a vyberte možnosť Zmeniť databázu. Potom otvorte súbor pomocou systémovej súčasti na výber súboru.</string>
+  <string name="ReadOnlyReason_LocalBackup">Lokálne zálohy nemožno upraviť. Môžete použiť príkaz Nastavenia databázy - Export databázy na vyexportovanie tejto zálohy na iné miesto, z ktorého ju môžete znovu otvoriť. Potom bude zápis opäť povolený.</string>
   <string name="AddCustomIcon">Pridať ikonu zo súboru...</string>
   <string name="CopyingFile">Prebieha kopírovanie súboru...</string>
   <string name="DuplicateTitle">Kopírovanie</string>
@@ -555,6 +576,13 @@
    • Uistite sa, že je vybraný správny súbor s databázou.
  
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+   • Pomôcka: Ak si myslíte, že je Vaša databáza poškodená alebo si nepamätáte primárny kľúč po úprave, môžete to skúsiť s naposledy otvorenou verziou súboru, kliknutím na \"%1$s\" a vybraním lokálnej zálohy.</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    • Pomôcka: Keepass2Android uložil naposledy otvorenú verziu súboru v internej pamäti. Môžete ju otvoriť kliknutím na \"%1$s\" a výberom lokálnej zálohy.
+  </string>
   <string name="CorruptDatabaseHelp">
     Súbor je poškodený. \n
     Tu je niekoľko nápadov, ktoré vám môžu pomôcť odhaliť problém:\n
@@ -564,6 +592,12 @@
     • Ak je možné otvoriť súbor na počítači, prosím kontaktujte podporu. Môžete sa pokúsiť uložiť ho s rôznymi nastaveniami (napríklad v nezbalenom stave) an počítači a potom sa pokúsiť otvoriť ho v aplikácii Keepass2Android.
 
   </string>
+  <string name="DbUnlockedChannel_name">Databáza odomknutá</string>
+  <string name="DbUnlockedChannel_desc">Notifikácia o odomknutí databázy</string>
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Notifikácia o uzamknutí databázy pomocou funkcie QuickUnlock</string>
+  <string name="EntryChannel_name">Notifikácie záznamu</string>
+  <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="ErrorReportTitle">Keepass2Android: Došlo k nejakej chybe.</string>
   <string name="ErrorReportText">Počas behu aplikácie Keepass2Android došlo k neočakávanej chybe. Prosím pomôžte nám s jej opravou tým, že umožníte aplikácii odosielať záznamy o chybách.</string>
   <string name="ErrorReportPromise">Záznamy o chybách nikdy nebudú obsahovať nič z vašej databázy a ani primárne heslo. Túto funkciu môžete zablokovať v nastaveniach aplikácie.</string>
@@ -572,6 +606,31 @@
   <string name="ErrorReportAsk">Opýtať sa po výskyte chyby</string>
   <string name="ErrorReportPrefTitle">Odosielanie záznamov o chybe</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
+  <string name="ChangeLog_1_05">
+    Verzia 1.05\n
+    * Použitie notifikačných kanálov pre Android 8, umožňujúce konfigurovanie pomocou nastavení systému\n
+    * Zobrazenie ikony záznamu v notifikácii\n
+    * Použitie adaptívnych ikon pre Android 8, použitie zaoblených ikon spúšťača pre Android 7\n
+    * Možné aktivovanie vyhľadávania po odomknutí (pozrite si nastavenia)\n
+    * Zmena spôsobu zapisovania súborov cez Storage Access Framework, opravené problémy s aktualizovaním súborov v Google Drive, otvorených cez súčasť System file picker\n
+    * Pridanie niekoľkých informačných textov, aby sa zabránilo nejasnostiam\n
+    * Vytváranie lokálnych záloh úspešne otvorených databáz, aby sa znížilo riziko straty údajov\n
+    * Aktualizované JSch pre podporu viacerých posledných šifier SSH\n
+    * Umožnenie úpravy nastavení pripojenia, napríklad po zmene hesla WebDav\n
+    * Pridaná podpora pre režim statického hesla Yubikey Neo\n
+    * Umožnenie zablokovania automatických návrhov\n
+    * Zablokovaný únik dát do logcat\n    
+    * Opravy chýb\n
+  </string>
+  <string name="ChangeLog_1_04b">
+    Verzia 1.04b\n
+    * Riešenie pádu v prípade, že sa používateľ pokúsi o zapnutie automatického dopĺňania za zariadeniach Huawei.\n
+  </string>
+  <string name="ChangeLog_1_04">
+    Verzia 1.04\n
+    * Pridaná služba automatického dopĺňania pre Android 8.0 a novší.\n
+    * Aktualizované knižnice, nástroje na zostavenie a cieľová verzia SDK.\n
+  </string>
   <string name="ChangeLog_1_03">
     Verzia 1.03\n
     * Odstránená služba pre prístupnosť pre funkciu automatického dopĺňania, podľa požiadavky Google. Ak chcete nájsť prídavný modul poskytujúci túto funkciu, prosím pozrite si nastavenia prístupu k heslu.\n
@@ -884,4 +943,20 @@ Prvé verejné vydanie
   </string-array>
   <string name="ClearClipboardWarning">Uistite sa, že to funguje na vašom systéme a v prípade nefunkčnosti zvážte použitie integrovanej klávesnice.</string>
   <string name="PluginDescription">Popis poskytovaný prídavným modulom:</string>
+  <string name="autofill_hint">Keepass2Android podporuje automatické dopĺňanie systému Android, ale zdá sa, že ste ho ešte neaktivovali.</string>
+  <string name="autofill_enable">Zapnúť automatické dopĺňanie</string>
+  <string name="autofill_enable_failed">Prepáčte, zdá sa, že Vaše zariadenie nepodporuje otvorenie nastavení priamo z aplikácie. Prosím prejdite na nastavenia systému manuálne a zapnite službu pre automatické dopĺňanie.</string>
+  <string name="show_autofill_help">Zobraziť pomocníka pre automatické dopĺňanie</string>
+  <string name="autofill_sign_in_prompt">Doplniť s Keepass2Android</string>
+  <string name="invalid_link_association">Nemožno asociovať webové doménu %1$s s aplikáciou %2$s</string>
+  <string name="understand">Rozumiem</string>
+  <string name="dont_show_again">Už nezobrazovať</string>
+  <string name="masterkey_infotext_head">Pamätáte si svoje primárne heslo?</string>
+  <string name="masterkey_infotext_main">Pamätajte na to, že bez svojho primárneho kľúča nebudete môcť otvoriť databázu. Neexistuje žiadny \"reset\" primárneho hesla.</string>
+  <string name="masterkey_infotext_fingerprint_note">Pozn.: odomykanie odtlačkom prsta funguje s uložením prim. kľúča v bezpečnom úložisku pre Android. Toto úložisko môže systém Android kedykoľvek vymazať, napr. ak do nastavení systému pridáte nový odtlačok. Takže sa nespoliehajte na odtlačok prsta, ale zapamätajte si primárne heslo!</string>
+  <string name="backup_infotext_head">Je Vaša databáza zálohovaná?</string>
+  <string name="backup_infotext_main">Keepass2Android ukladá Vaše heslá do súboru vo vybranom umiestnení. Ste si istí, že k tomuto miestu budete mať prístup aj po strate či krádeži telefónu, alebo keď sa súbor zničí či poškodí? Prosím uistite sa, že vždy máte aktuálnu zálohu na bezpečnom mieste!</string>
+  <string name="backup_infotext_note">Zálohu vytvoríte prejdením na %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Ste pripravení na núdzové prípady?</string>
+  <string name="emergency_infotext_main">Premýšľali ste niekedy nad tým, čo sa stane, keby ste nemali prístup ku svojej databáze hesiel? Čo keď sa niečo stane? Je dobré poskytnúť svoj primárny kľúč nejakej dôveryhodnej osobe, pre núdzové prípady. V opačnom prípade by nikto nemal prístup k Vaším heslám.</string>
 </resources>

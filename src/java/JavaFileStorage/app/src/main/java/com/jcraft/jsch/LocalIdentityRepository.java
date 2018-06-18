@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2012 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2012-2016 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -50,6 +50,7 @@ class LocalIdentityRepository implements IdentityRepository {
   }
 
   public synchronized Vector getIdentities() {
+    removeDupulicates();
     Vector v = new Vector();
     for(int i=0; i<identities.size(); i++){
       v.addElement(identities.elementAt(i));
@@ -59,6 +60,23 @@ class LocalIdentityRepository implements IdentityRepository {
 
   public synchronized void add(Identity identity) {
     if(!identities.contains(identity)) {
+      byte[] blob1 = identity.getPublicKeyBlob();
+      if(blob1 == null) {
+        identities.addElement(identity);
+        return;
+      }
+      for(int i = 0; i<identities.size(); i++){
+        byte[] blob2 = ((Identity)identities.elementAt(i)).getPublicKeyBlob();
+        if(blob2 != null && Util.array_equals(blob1, blob2)){
+          if(!identity.isEncrypted() && 
+             ((Identity)identities.elementAt(i)).isEncrypted()){
+            remove(blob2);
+          }
+          else {  
+            return;
+          }
+        }
+      }
       identities.addElement(identity);
     }
   }
@@ -67,7 +85,7 @@ class LocalIdentityRepository implements IdentityRepository {
     try{
       Identity _identity =
         IdentityFile.newInstance("from remote:", identity, null, jsch);
-      identities.addElement(_identity);
+      add(_identity);
       return true;
     }
     catch(JSchException e){
@@ -76,7 +94,13 @@ class LocalIdentityRepository implements IdentityRepository {
   }
 
   synchronized void remove(Identity identity) {
-    identities.removeElement(identity);
+    if(identities.contains(identity)) {
+      identities.removeElement(identity);
+      identity.clear();
+    }
+    else {
+      remove(identity.getPublicKeyBlob());
+    }
   }
 
   public synchronized boolean remove(byte[] blob) {
@@ -100,4 +124,28 @@ class LocalIdentityRepository implements IdentityRepository {
     }
     identities.removeAllElements();
   } 
+
+  private void removeDupulicates(){
+    Vector v = new Vector();
+    int len = identities.size();
+    if(len == 0) return;
+    for(int i=0; i<len; i++){
+      Identity foo = (Identity)identities.elementAt(i);
+      byte[] foo_blob = foo.getPublicKeyBlob();
+      if(foo_blob == null) continue;
+      for(int j=i+1; j<len; j++){
+        Identity bar = (Identity)identities.elementAt(j);
+        byte[] bar_blob = bar.getPublicKeyBlob();
+        if(bar_blob == null) continue;
+        if(Util.array_equals(foo_blob, bar_blob) &&
+           foo.isEncrypted() == bar.isEncrypted()){
+          v.addElement(foo_blob);
+          break;
+        }
+      }
+    }
+    for(int i=0; i<v.size(); i++){
+      remove((byte[])v.elementAt(i));
+    }
+  }
 }

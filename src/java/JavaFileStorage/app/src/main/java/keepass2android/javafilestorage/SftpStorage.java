@@ -26,14 +26,14 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	public static final int DEFAULT_SFTP_PORT = 22;
 	JSch jsch;
-	
-	class ConnectionInfo
+
+	public class ConnectionInfo
 	{
-		String host;
-		String username;
-		String password;
-		String localPath;
-		int port;
+		public String host;
+		public String username;
+		public String password;
+		public String localPath;
+		public int port;
 	}
 
 	public SftpStorage() {
@@ -333,7 +333,7 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	}
 
-	private ConnectionInfo splitStringToConnectionInfo(String filename)
+	public ConnectionInfo splitStringToConnectionInfo(String filename)
 			throws UnsupportedEncodingException {
 		ConnectionInfo ci = new ConnectionInfo();
 		ci.host = extractUserPwdHost(filename);
@@ -348,6 +348,7 @@ public class SftpStorage extends JavaFileStorageBase {
 			ci.port = Integer.parseInt(ci.host.substring(portSeparatorIndex+1));
 			ci.host = ci.host.substring(0, portSeparatorIndex);
 		}
+		ci.localPath = extractSessionPath(filename);
 		return ci;
 	}
 
@@ -384,7 +385,7 @@ public class SftpStorage extends JavaFileStorageBase {
 		try
 		{
 			ConnectionInfo ci = splitStringToConnectionInfo(path);
-			return getProtocolPrefix()+ci.username+"@"+ci.host+extractSessionPath(path);
+			return getProtocolPrefix()+ci.username+"@"+ci.host+ci.localPath;
 		}
 		catch (Exception e)
 		{
@@ -414,7 +415,7 @@ public class SftpStorage extends JavaFileStorageBase {
 		
 
 	}
-	
+
 	public String buildFullPath( String host, int port, String localPath, String username, String password) throws UnsupportedEncodingException
 	{
 		if (port != DEFAULT_SFTP_PORT)
@@ -422,6 +423,7 @@ public class SftpStorage extends JavaFileStorageBase {
 		return getProtocolPrefix()+encode(username)+":"+encode(password)+"@"+host+localPath;
 		
 	}
+
 
 	@Override
 	public void prepareFileUsage(Context appContext, String path) {
