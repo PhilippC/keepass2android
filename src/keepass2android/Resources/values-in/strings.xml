@@ -454,7 +454,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="init_otp">Memuat berkas bantu OTP&#8230;</string>
   <string name="otp_explanation">Masukkan kata sandi One-time-password berikutnya (OTPs). Gesek NEO Yubikey Anda di bagian belakang perangkat Anda untuk masuk melalui NFC.</string>
   <string name="otp_hint">OTP%1$d</string>
-  <string name="YubiChallengeNotInstalled">Tidak dapat menemukan aplikasi yang dapat menangani tantangan tersebut. Harap instal Yubichallenge dari Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Tidak bisa memuat file OTP tambahan!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Silakan gunakan plugin OtpKeyProv di KeePass 2.x (PC) untuk mengkonfigurasi database Anda untuk digunakan dengan OTPs!</string>
   <string name="otp_discarded_because_no_db">Silahkan pilih database dulu. OTP dibuang karena alasan keamanan.</string>

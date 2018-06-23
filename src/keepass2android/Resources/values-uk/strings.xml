@@ -459,7 +459,6 @@
   <string name="init_otp">Завантажити допоміжний файл одноразових паролів&#8230;</string>
   <string name="otp_explanation">Введіть наступний одноразовий пароль (OTP). Проведіть ваш Yubikey NEO по задній панелі пристрою для введення за допомогою NFC.</string>
   <string name="otp_hint">Одноразовий пароль %1$d</string>
-  <string name="YubiChallengeNotInstalled">Не вдалося знайти програму, що може впоратися із завданням. Встановіть Yubichallenge із Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Не вдалося завантажити допоміжний файл одноразових паролів!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Використайте плагін OtpKeyProv в KeePass 2.x (ПК), щоб налаштувати базу даних для використання з одноразовими паролями!</string>
   <string name="otp_discarded_because_no_db">Спочатку виберіть базу даних. Одноразовий пароль відхилено з міркувань безпеки.</string>

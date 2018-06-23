@@ -450,7 +450,6 @@
   <string name="init_otp">載入一次性密碼輔助檔...</string>
   <string name="otp_explanation">由 NFC 刷入您的 Yubikey NEO 裝置來輸入下一個一次性密碼 (OTPs)。</string>
   <string name="otp_hint">一次性密碼 %1$d</string>
-  <string name="YubiChallengeNotInstalled">無應用程式可以處理。請從 Google Play 安裝 Yubichallenge。</string>
   <string name="CouldntLoadOtpAuxFile">無法載入輔助一次性密碼檔!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">欲使用一次性密碼請使用 KeePass 2.x (電腦版) 的 OtpKeyProv 外掛程式來配置資料庫!</string>
   <string name="otp_discarded_because_no_db">請先選擇資料庫。出於安全原因，一次性密碼將被丟棄。</string>

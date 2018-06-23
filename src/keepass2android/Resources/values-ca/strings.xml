@@ -459,7 +459,6 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="init_otp">Càrrega arxiu OTP auxiliar&#8230;</string>
   <string name="otp_explanation">Introduïu la següent Contrasenya-d\'un-sol-us (One-time-passwords OTPs). Llisca la teva Yubikey NEO al darrere el seu dispositiu per entrar mitjançant NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">No puc trobar un aplicació que pugui manegar el desafiament. Si us plau instal·la Yubichallenge del Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">No s\'ha pogut carregar el fitxer OTP auxiliar!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Si us plau, utilitzeu el connector OtpKeyProv de KeePass 2. x (PC) per configurar la base de dades per usar amb OTPs!</string>
   <string name="otp_discarded_because_no_db">Seleccioneu primer de base de dades. OTP es descarta per motius de seguretat.</string>

@@ -33,7 +33,7 @@ namespace keepass2android
                             }
 
                         }
-                        var chalIntent = Activity.TryGetYubichallengeIntentOrPrompt(challenge64, true);
+                        var chalIntent = Activity.TryGetYubiKeyChallengeResponseIntentOrPrompt(challenge64, true);
 
                         if (chalIntent == null)
                             throw new Exception("YubiChallenge not installed.");

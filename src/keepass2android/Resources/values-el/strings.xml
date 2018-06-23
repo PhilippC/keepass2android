@@ -458,7 +458,6 @@
   <string name="init_otp">Φόρτωση βοηθητικού αρχείου OTP&#8230;</string>
   <string name="otp_explanation">Εισάγετε τα επόμενα συνθηματικά μοναδικής χρήσης (OTP). Σαρώστε το ΝΕΟ Yubikey στο πίσω μέρος της συσκευής σας να εισέλθετε μέσω NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Δεν βρέθηκε εφαρμογή που μπορεί να χειριστεί την πρόκληση. Εγκαταστήσετε το Yubichallenge από το Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Δεν ήταν δυνατή η φόρτωση του βοηθητικού αρχείου OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Χρησιμοποιήστε το πρόσθετο OtpKeyProv σε KeePass 2.x (PC) για να ρυθμίσετε τη βάση δεδομένων για χρήση με OTP!</string>
   <string name="otp_discarded_because_no_db">Επιλέξτε πρώτα την βάση δεδομένων. Το OTP απορρίπτεται για λόγους ασφαλείας.</string>

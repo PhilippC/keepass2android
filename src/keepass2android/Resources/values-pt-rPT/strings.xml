@@ -461,7 +461,6 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="init_otp">Carregar o ficheiro auxiliar OTP&#8230;</string>
   <string name="otp_explanation">Introduza o One-time-passwords (OTPs) seguinte. Passe o seu Yubikey NEO na parte traseira de seu dispositivo para entrar através de NFC.</string>
   <string name="otp_hint">%1$d OTP</string>
-  <string name="YubiChallengeNotInstalled">Não foi possível encontrar uma aplicação que possa lidar com o desafio. Por favor, instale o Yubichallenge no Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Não foi possível carregar o ficheiro auxiliar OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Por favor, use a extensão OtpKeyProv no KeePass 2.x (PC) para configurar a sua base de dados para uso com as OTPs!</string>
   <string name="otp_discarded_because_no_db">Por favor, selecione a base de dados primeiro. OTP foi descartada por motivos de segurança.</string>

@@ -450,7 +450,6 @@
   <string name="init_otp">Naloži pomožno datoteko OTP &#8230;</string>
   <string name="otp_explanation">Vnesite naslednja gesla za enkratno uporabo (OTP-je). Potegnite svoj ključ Yubikey NEO na zadnji strani svoje naprave, da vnesete preko NFC-ja.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Programa, ki lahko opravi preizkus, ni bilo mogoče najti. Namestite Yubichallenge iz trgovine Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Pomožne datoteke OTP ni mogoče naložiti!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Uporabite vtičnik OtpKeyProv v KeePassu 2.x (PC), da nastavite svojo podatkovno zbirko za uporabo z OTP-ji!</string>
   <string name="otp_discarded_because_no_db">Najprej izberite podatkovno zbirko. OTP je zavržen zaradi varnostnih razlogov.</string>

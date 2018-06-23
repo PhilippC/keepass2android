@@ -402,7 +402,6 @@
   <string name="use_key_file">Bruk nøkkelfil</string>
   <string name="error_adding_keyfile">Feil ved opprettelse av nøkkelfil.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Fant ingen app som kan håndtere utfordringen. Installer YubiChallenge fra Play Butikk og prøv igjen.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="loading">Laster inn&#8230;</string>
   <string name="plugins">Programtillegg</string>
