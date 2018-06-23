@@ -322,6 +322,9 @@ public class SftpStorage extends JavaFileStorageBase {
 		UserInfo ui = new SftpUserInfo(ci.password);
 		session.setUserInfo(ui);
 
+		session.setConfig("PreferredAuthentications",
+				"password,publickey");
+
 		session.connect();
 
 		Channel channel = session.openChannel("sftp");
