@@ -14,9 +14,9 @@
   <string name="afc_cmd_home">Etusivu</string>
   <string name="afc_cmd_list_view">Luettelonäkymä</string>
   <string name="afc_cmd_new_folder">Uusi kansio&#8230;</string>
-  <string name="afc_cmd_select_all_files">Valitse kaikki</string>
+  <string name="afc_cmd_select_all_files">Valitse kaikki tiedostot</string>
   <string name="afc_cmd_select_all_folders">Valitse kaikki kansiot</string>
-  <string name="afc_cmd_sort">Lajittele</string>
+  <string name="afc_cmd_sort">Lajittele&#8230;</string>
   <string name="afc_file">tiedosto</string>
   <string name="afc_folder">kansio</string>
   <string name="afc_hint_clear">tyhjennä</string>
@@ -26,7 +26,7 @@
   <string name="afc_msg_app_doesnot_have_permission_to_create_files">Sovelluksella ei ole oikeutta luoda tiedostoja/kansioita</string>
   <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Sovelluksella ei ole oikeutta poistaa tiedostoja/kansioita</string>
   <string name="afc_msg_cancelled">Peruutettu</string>
-  <string name="afc_msg_cannot_connect_to_file_provider_service">Ei voida yhdistää tiedoston palveluntarjoajaan</string>
+  <string name="afc_msg_cannot_connect_to_file_provider_service">Ei voida yhdistää tiedoston tarjoavaan palveluun</string>
   <string name="afc_msg_cannot_create_new_folder_here">Uutta kansiota ei voi luoda tänne</string>
   <string name="afc_msg_cannot_save_a_file_here">Tiedostoa ei voi tallentaa tänne</string>
   <string name="afc_msg_done">Valmis</string>

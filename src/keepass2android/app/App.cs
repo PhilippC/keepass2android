@@ -33,6 +33,7 @@ using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
 using Android.Support.V4.App;
+using Android.Support.V4.Content;
 #if !EXCLUDE_TWOFISH
 using TwofishCipher;
 #endif
@@ -166,7 +167,8 @@ namespace keepass2android
 	        ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
 	    {
 	        var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
-	        var createBackup = prefs.GetBoolean(Application.Context.GetString(Resource.String.CreateBackups_key), true);
+	        var createBackup = prefs.GetBoolean(Application.Context.GetString(Resource.String.CreateBackups_key), true)
+                && !(new LocalFileStorage(this).IsLocalBackup(ioConnectionInfo));
 
 	        MemoryStream backupCopy = new MemoryStream();
 	        if (createBackup)
@@ -239,14 +241,21 @@ namespace keepass2android
 		{
 			// Start or update the notification icon service to reflect the current state
 			var ctx = Application.Context;
-			StartOnGoingService(ctx);
-		}
+		    if (DatabaseIsUnlocked || QuickLocked)
+		    {
+		        ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof(OngoingNotificationsService)));
+            }
+		    else
+		    {
+                //Anrdoid 8 requires that we call StartForeground() shortly after starting the service with StartForegroundService.
+                //This is not possible when we're closing the service. In this case we don't use the StopSelf in the OngoingNotificationsService.OnStartCommand() anymore but directly stop the service.
 
-		public static void StartOnGoingService(Context ctx)
-		{
-			ctx.StartService(new Intent(ctx, typeof (OngoingNotificationsService)));
-		}
+                OngoingNotificationsService.CancelNotifications(ctx); //The docs are not 100% clear if OnDestroy() will be called immediately. So make sure the notifications are up to date.
 
+		        ctx.StopService(new Intent(ctx, typeof(OngoingNotificationsService)));
+		    }
+		}
+        
 		public bool DatabaseIsUnlocked
 		{
 			get { return _db.Loaded && !QuickLocked; }

@@ -1070,12 +1070,15 @@ namespace keepass2android
 
 	    public override void OnBackPressed()
 	    {
-	        if (_drawerLayout.IsDrawerOpen((int) GravityFlags.Start))
+	        if (_drawerLayout != null)
 	        {
-                _drawerLayout.CloseDrawer((int)GravityFlags.Start);
-	            return;
+	            if (_drawerLayout.IsDrawerOpen((int) GravityFlags.Start))
+	            {
+	                _drawerLayout.CloseDrawer((int) GravityFlags.Start);
+	                return;
+	            }
 	        }
-            base.OnBackPressed();
+	        base.OnBackPressed();
 	    }
 
 	    private void InitializeOtpSecretSpinner()

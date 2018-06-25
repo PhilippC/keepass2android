@@ -87,7 +87,11 @@
   <string name="enable_fingerprint_unlock">Habilitar desbloqueig per empremta dactilar</string>
   <string name="enable_fingerprint_quickunlock">Habilitar desbloqueig per empremta dactilar per DesbloqueigRàpid</string>
   <string name="fingerprint_unlock_hint">Tocar sensor per desbloquejar la base de dades</string>
+  <string name="fingerprint_unlock_failed">Ha fallat el desbloqueig per empremta digital. La clau de desxifratge ha estat invalidada per Android OS. Això sol passar si s\'ha registrat una nova empremta digital o si s\'han fet canvias a les preferències de seguretat. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Ha fallat el desbloqueig de la base de dades: clau composta invàlida. El desbloqueig per empremta digital s\'ha deshabilitat perquè aparentment la contrasenya mestra enmagatzemada ja no és vàlida. </string>
   <string name="fingerprint_reenable">Si us plau, torneu a activar Desblocatge amb empremta per la nova contrasenya mestra.</string>
+  <string name="fingerprint_reenable2">Si us plau, desbloqueja amb la contrasenya i llavors re activa el desblocatge amb empremta en la configuració de base de dades.</string>
+  <string name="FingerprintInitFailed">No s\'ha pogut inicialitzar el sensor d\'empremta digital. </string>
   <string name="enable_fingerprint_unlock_Info">
 Això emmagatzemarà la contrasenya mestra d\'aquest 
     dispositiu, xifrat amb el magatzem de claus d\'Android i 
@@ -206,6 +210,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="remember_keyfile_summary">Recorda la localització d\'arxius clau</string>
   <string name="remember_keyfile_title">Guarda arxiu clau</string>
   <string name="remove_from_filelist">Elimina</string>
+  <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Arrel</string>
   <string name="KeyDerivFunc">Funció clau de derivació</string>
@@ -267,21 +272,24 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="start_create_import">Importar fitxer a nova base de dades...</string>
   <string name="enter_filename_details_url">Cal especificar l\'URL complet incloent protocol com http://.</string>
   <string name="enter_filename_details_create_import">En el següent pas serà seleccionat fitxer que voleu importar.</string>
-  <string name="enable_quickunlock">Permetre QuickUnlock</string>
+  <string name="enable_quickunlock">Permetre DesbloqueigRàpid</string>
   <string name="QuickUnlock_label">Introduir últims %1$d caràcters de la seva contrasenya:</string>
-  <string name="QuickUnlock_button">QuickUnlock!</string>
+  <string name="QuickUnlock_label_secure">Introduïu el codi de DesbloqueigRàpid:</string>
+  <string name="QuickUnlock_button">DesbloqueigRàpid!</string>
   <string name="QuickUnlock_lockButton">Tancar base de dades</string>
-  <string name="QuickUnlockDefaultEnabled_title">Permetre QuickUnlock per defecte</string>
-  <string name="QuickUnlockDefaultEnabled_summary">Defineix si QuickUnlock està habilitada per defecte o no.</string>
+  <string name="QuickUnlockDefaultEnabled_title">Permetre DesbloqueigRàpid per defecte</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Defineix si DesbloqueigRàpid està habilitada per defecte o no.</string>
   <string name="ViewDatabaseSecure_title">Protegir l\'exhibició de base de dades</string>
   <string name="ViewDatabaseSecure_summary">Si està activat, no s\'admeten cap captura de pantalla i cap miniatura de l\'aplicació es mostra a la llista d\'aplicacions recents.</string>
-  <string name="QuickUnlockIconHidden_title">Amagar icona de QuickUnlock</string>
-  <string name="QuickUnlockIconHidden_summary">Malauradament QuickUnlock no funciona sense mostrar una icona de notificació. Seleccioneu aquesta opció per utilitzar una icona transparent.</string>
-  <string name="QuickUnlockIconHidden16_title">Amagar icona de QuickUnlock</string>
-  <string name="QuickUnlockIconHidden16_summary">QuickUnlock requereix una notificació per treballar pròpiament. Seleccioneu aquesta opció per mostrar una notificació sense una icona.</string>
-  <string name="QuickUnlockLength_title">Longitud de clau QuickUnlock</string>
-  <string name="QuickUnlockLength_summary">Nombre màxim de caràcters utilitzats com a contrasenya de QuickUnlock.</string>
-  <string name="QuickUnlock_fail">QuickUnlock ha fallat: Contrasenya incorrecta!</string>
+  <string name="QuickUnlockIconHidden_title">Amagar icona de DesbloqueigRàpid</string>
+  <string name="QuickUnlockIconHidden_summary">Malauradament DesbloqueigRàpid no funciona sense mostrar una icona de notificació. Seleccioneu aquesta opció per utilitzar una icona transparent.</string>
+  <string name="QuickUnlockIconHidden16_title">Amagar icona de DesbloqueigRàpid</string>
+  <string name="QuickUnlockIconHidden16_summary">DesbloqueigRàpid requereix una notificació per treballar pròpiament. Seleccioneu aquesta opció per mostrar una notificació sense una icona.</string>
+  <string name="QuickUnlockLength_title">Longitud de clau DesbloqueigRàpid</string>
+  <string name="QuickUnlockLength_summary">Nombre màxim de caràcters utilitzats com a contrasenya de DesbloqueigRàpid.</string>
+  <string name="QuickUnlockHideLength_title">Amagar longitud de DesbloqueigRàpid</string>
+  <string name="QuickUnlockHideLength_summary">Si està activat, la longitud del codi de DesbloqueigRàpid no apareix a la pantalla de DesbloqueigRàpid.</string>
+  <string name="QuickUnlock_fail">DesbloqueigRàpid ha fallat: Contrasenya incorrecta!</string>
   <string name="BinaryDirectory_title">Directori d\'arxius adjunts</string>
   <string name="BinaryDirectory_summary">Directori on es guarden els fitxers adjunts.</string>
   <string name="SaveAttachmentDialog_title">Deseu el fitxer adjunt</string>
@@ -302,7 +310,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="add_binary">Afegir el fitxer adjunt...</string>
   <string name="add_extra_string">Afegir la cadena addicional</string>
   <string name="delete_extra_string">Suprimir la corda addicional</string>
-  <string name="database_loaded_quickunlock_enabled">%1$s: bloquejat. QuickUnlock activat.</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: bloquejat. DesbloqueigRàpid activat.</string>
   <string name="database_loaded_unlocked">%1$s: desbloquejat.</string>
   <string name="credentials_dialog_title">Introduïu les credencials del servidor</string>
   <string name="UseFileTransactions_title">Operacions d\'arxiu</string>
@@ -313,6 +321,8 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="ClearPasswordOnLeave_summary">Esborra la contrasenya mestra introduïda en deixar la pantalla sense obrir la base de dades.</string>
   <string name="LockWhenNavigateBack_title">Bloqueja quan surtis de l\'aplicació</string>
   <string name="LockWhenNavigateBack_summary">Tancar la base de dades en deixar l\'aplicació prement el botó endarrere.</string>
+  <string name="ActivateSearchViewOnStart_title">Activar el camp de cerca al Inici</string>
+  <string name="ActivateSearchViewOnStart_summary">Activa el camp de cerca a la visualització de grup després de desbloquejar o en buscar una entrada</string>
   <string name="NoDonateOption_title">Amagar l\'opció de donació</string>
   <string name="NoDonateOption_summary">Aquesta configuració és pels donants. Està disponible després d\'utilitzar Keepass2Android durant un temps només.</string>
   <string name="NoDonateOption_question">Sense les donacions, aquest aplicació no existiria i no milloraria contínuament! Si vostè encara no ha donat, si us plau consideri fer una donació ara.</string>
@@ -320,6 +330,10 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="NoDonationReminder_summary">Jo no li donaria un cèntim o ja he fet donació. No demanar donació, ni tan sols a l\'aniversari de l\'autor.</string>
   <string name="UseOfflineCache_title">Posant en memòria cau la base de dades</string>
   <string name="UseOfflineCache_summary">Manté una còpia de la base de dades remota en el directori de memòria cau de l\'aplicació. Això permet utilitzar bases de dades remotes fins i tot quan esteu fora de línia.</string>
+  <string name="CreateBackups_title">Còpia de seguretat local</string>
+  <string name="CreateBackups_summary">Crea una còpia local després de carregar correctament una base de dades.</string>
+  <string name="UpdatingBackup">Actualitzar la còpia de seguretat local...</string>
+  <string name="LocalBackupOf">Còpia de seguretat local de %1$s</string>
   <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
   <string name="AcceptAllServerCertificates_summary">Defineix el comportament quan fracassa validació de certificat. Nota: podeu instal·lar certificats en el dispositiu si fracassa la validació!</string>
   <string name="ClearOfflineCache_title">Neteja la memòria cau?</string>
@@ -333,6 +347,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="ShowSeparateNotifications_title">Notificacions independents</string>
   <string name="ShowSeparateNotifications_summary">Mostrar les notificacions separades per copiar el nom d\'usuari i contrasenya al porta-retalls i activant el teclat.</string>
   <string name="AccServiceAutoFill_prefs">Servei d\'accessibilitat d\'emplenament automàtic</string>
+  <string name="AutoFill_prefs">Servei d\'emplenament automàtic</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificació de teclat KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Fes entrada totalment accessible a través del teclat KP2A (recomanat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Canvi de teclat</string>
@@ -347,6 +362,10 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="AutoSwitchBackKeyboard_summary">Canviar altra vegada a teclat previ quan no s\'obre cap entrada.</string>
   <string name="ShowUnlockedNotification_title">Icona de notificació mentre estigui desbloquejat</string>
   <string name="ShowUnlockedNotification_summary">Mostra una icona de notificació mentre la base de dades està desbloquejada.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 ha introduït un nou comportament de les notificacions. Si voleu amagar la icona de les notificacions de Keepass2Android, si us plau, s\'ha de fer a través de la configuració del sistema. Estableix la importància de la categoria de les notificacions al Mínim.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Obrir la configuració</string>
+  <string name="DontCare">No m\'importa</string>
+  <string name="DocumentAccessRevoked">L\'arxiu ja no és accessible a Keepass2Android. O ha sigut eliminat o els permisos d\'accés han estat revocats. Si us plau utilitzeu re-obre l\'arxiu, per exemple, utilitzant el canvi de base de dades.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-carregar el fitxer de base de dades</string>
   <string name="PreloadDatabaseEnabled_summary">Comença carregant de fons o descàrrega de l\'arxiu de base de dades durant l\'entrada de contrasenya d\'inici.</string>
   <string name="AskOverwriteBinary">Voleu sobreescriure el binari existent amb el mateix nom?</string>
@@ -493,6 +512,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="plugin_disabled">desactivat</string>
   <string name="plugin_web">Trobar connectors en línia</string>
   <string name="plugin_scopes">Permisos de nivell</string>
+  <string name="not_enabled">no activat</string>
   <string name="query_credentials_for_url">%1$s sol·licita credencials per %2$s.</string>
   <string name="query_credentials">%1$s sol·licita credencials. Si us plau seleccioni una entrada.</string>
   <string name="plugin_enabled_checkbox">Activat</string>
@@ -520,6 +540,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="ReadOnlyReason_PreKitKat">Sembla que vostè ha obert l\'arxiu des d\'una aplicació externa. D\'aquesta manera no s\'admet el suport d\'escriptura. Si voleu fer canvis a la base de dades, tanqueu la base de dades i seleccioneu Canviar base de dades. Llavors obri l\'arxiu des d\'una de les opcions disponibles si és possible.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">L\'indicador de només lectura està establert. Treu l\'indicador si voleu fer canvis a la base de dades.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Escriure no és possible a causa de restriccions introduïdes en Android KitKat. Si voleu fer canvis a la base de dades, tanqueu la base de dades i seleccioneu canvi de base de dades. Obriu el fitxer amb el selector de fitxers de sistema.</string>
+  <string name="ReadOnlyReason_LocalBackup">Les còpies de seguretat local no es poden modificar. Pots utilitzar la configuració de base de dades - exportar base de dades per exportar aquesta còpia de seguretat a un altre lloc des del qual pots re-obrir-la. Llavors es podrà escriure una altra vegada.</string>
   <string name="AddCustomIcon">Afegir una icona d\'arxiu...</string>
   <string name="CopyingFile">Copiant el fitxer...</string>
   <string name="DuplicateTitle">Copiar</string>
@@ -554,6 +575,13 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
    • Assegureu-vos que ha seleccionat el tipus de contrasenya correcta. Assegureu-vos que correspongui el tipus utilitzada en la creació de la base de dades.\n
    • Assegureu-vos que ha seleccionat l\'arxiu de base de dades correcte.
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n 
+ • Suggeriment: si pensa que el seu arxiu de base de dades podria estar corrupte o no recordes la clau mestra després de modificar-lo, pot provar amb l\'última versió d\'arxiu obert satisfactòriament fent clic \"%1$s\" i seleccionant la còpia de seguretat local.</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+ • Suggeriment: Keepass2Android ha emmagatzemat l\'última versió d\'arxiu obert satisfactòriament a la memòria interna. Podeu obrir-lo fent clic \"%1$s\" i seleccionant la còpia de seguretat local.
+  </string>
   <string name="CorruptDatabaseHelp">
 Arxiu està corrupte. \n 
     aquí hi ha alguns consells que poden ajudar a diagnosticar el problema: \n
@@ -561,6 +589,12 @@ Arxiu està corrupte. \n
      • si vostè va copiar l\'arxiu mitjançant USB (MTP Mode), intenteu-ho novament amb eines com MyPhoneExplorer. MTP trunca arxius en certs casos. \n
     • si no es pot obrir el fitxer des del mateix emplaçament en el seu PC, és molt probable que l\'arxiu estigui corrupte. Si us plau utilitzi una còpia de seguretat de la base de dades. Si vostè creu que Keepass2Android ha malmès el fitxer, si us plau contacte amb suport. \n
     • si encara pots obrir l\'arxiu en el seu PC, contacteu amb suport. Podria intentar guardar-lo amb diferents configuracions (p. ex. descomprimit) en el PC i provar a obrir-lo de nou en Keepass2Android.  </string>
+  <string name="DbUnlockedChannel_name">Base de dades desbloquejada</string>
+  <string name="DbUnlockedChannel_desc">Notificació sobre la base de dades que s\'està desbloquejant</string>
+  <string name="DbQuicklockedChannel_name">DesbloqueigRàpid</string>
+  <string name="DbQuicklockedChannel_desc">Notificació sobre la base de dades bloquejada amb DesbloqueigRàpid</string>
+  <string name="EntryChannel_name">Notificacions de les entrades</string>
+  <string name="EntryChannel_desc">Notificació per simplificar l\'accés a l\'entrada seleccionada actualment.</string>
   <string name="ErrorReportTitle">Keepass2Android: Ha ocorregut un error.</string>
   <string name="ErrorReportText">S\'ha produït un error inesperat mentre s\'executava Keepass2Android. Si us plau, ajudeu-nos a arreglar això permetent a l\'aplicació enviar informes d\'errors.</string>
   <string name="ErrorReportPromise">Els informes d\'error mai contindrà cap contingut de la seva base de dades o la contrasenya mestra. Podeu desactivar-los en la configuració de l\'aplicació.</string>
@@ -569,6 +603,30 @@ Arxiu està corrupte. \n
   <string name="ErrorReportAsk">Preguntar després d\'error</string>
   <string name="ErrorReportPrefTitle">Enviar registre d\'errors</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostra el teclat per introduir la contrasenya quan l\'escàner d\'empremta digital és actiu.</string>
+  <string name="ChangeLog_1_05">
+Versió 1.05\n
+     * Utilitzeu canals de notificació per a Android 8, que permeten la configuració a través de la configuració del sistema\n
+     * Mostra la icona d\'entrada a la notificació\n
+     * Utilitzeu icones adaptables per a Android 8, utilitzeu la icona de llançador rodó per a Android 7\n
+     * Permet activar la cerca desbloquejada (veure configuració)\n
+     * S\'ha canviat la manera en què els fitxers s\'escriuen a través d\'Access Storage Framework, es solucionen problemes amb l\'actualització de fitxers a Google Drive oberts a través del selector de fitxers del sistema\n
+     * S\'han afegit alguns textos d\'informació per evitar alguns malentesos comuns\n
+     * Crea còpies de seguretat locals de bases de dades obertes amb èxit per reduir el risc de pèrdua de dades\n
+     * Actualitzat JSch per donar suport als xifrats SSH més recents\n
+     * Permet editar la configuració de la connexió, p. Ex. quan la contrasenya del WebDav ha canviat\n
+     * S\'ha afegit suport per al mode de contrasenya estàtica de Yubikey Neo\n
+     * Permet desactivar el suggeriment d\'emplenament automàtic\n
+     * S\'ha solucionat la fuga de dades al logcat\n
+     * correccions d\'errors\n
+  </string>
+  <string name="ChangeLog_1_04b">
+Versió 1.04b\n
+     * Evita errada quan l\'usuari intenta activar l\'emplenament automàtic als dispositius Huawei.\n  </string>
+  <string name="ChangeLog_1_04">
+    Versió 1.04\n
+    * Afegit servei d\'emplenament automàtic per Android 8.0 i posteriors.\n
+    * Actualitzades les biblioteques, utilitats de compilació i versió de SDK.\n
+  </string>
   <string name="ChangeLog_1_03">
 Versió 1.03\n 
 * Eliminat servei d\'accessibilitat d\'emplenament automàtic a petició de Google. Si us plau, vegeu la configuració d\'accés de contrasenya per trobar un connector que repliqui l\'anterior funcionalitat. \n 
@@ -593,6 +651,13 @@ Versió 1.01-g\n
 * Arreglat codificació incorrecta de credencials d\'FTP(S)\n
 * Arreglat incident quan s\'utilitza OneDrive en una versió antiga d\'Android\n
 * Mostrar hora local en pantalla d\'entrada\n  </string>
+  <string name="ChangeLog_1_01d">
+    Versió 1.01-d\n
+   * Arreglat fallo en llistat a OneDrive\n
+   * Permetre ignorar errors de certificat també quan la verificació del nom del domini falla (no recomanat per a ús en producció)\n
+   * Arreglat el desblocatge ràpid que fallava malgrat el codi era correcte\n
+  
+  </string>
   <string name="ChangeLog_0_9_8c">
     Versió 0.9.8c\n
      * Arreglat vulnerabilitat SSL en el Microsoft Live SDK (utilitzat en accedir a arxius mitjançant OneDrive) \n 
@@ -668,14 +733,126 @@ Versió 1.0.0e\n
 		* suport per escriure a bases de dades Keepass 1 (kdb) (beta!) \n 
 		* millor canviar a teclat anterior (també treballa en dispositius que no disposin d\'accés de superusuari - rootejats)\n
 		* suport per a KeeChallenge amb challenges\n de longitud variable\n
-		* evitar prendre captures de pantalla des de les pantalles de QuickUnlock i contrasenya\n
+		* evitar prendre captures de pantalla des de les pantalles de DesbloqueigRàpid i contrasenya\n
 		* ordenació inversa per Ordena per data de modificació (ara descendent) \n
-		* errors arreglats: vista de notes ara actualitzada correctament després de canvis, vistes de contrasenyes ara amaga contrasenya correctament en (esperançadorament) tots els dispositius, arreglat problema que li permetia afegir una entrada doble , solucionat el problema que mostrava avís de duplicat UUID fins i tot després d\'arreglar la base de dades\n 
+		* errors arreglats: vista de notes ara actualitzada correctament després de canvis, vistes de contrasenyes ara amaga contrasenya correctament en (esperançadament) tots els dispositius, arreglat problema que li permetia afegir una entrada doble , solucionat el problema que mostrava avís de duplicat UUID fins i tot després d\'arreglar la base de dades\n 
 	</string>
   <string name="ChangeLog_0_9_6"> Version 0.9.6\n * allow to import key file and/or local database file to app internal directory (see settings)\n * allow different sorting options\n * improved preferences for automatic keyboard switching\n * updated application logo and notification design, design by Stefano Pignataro (http://www.spstudio.at)\n * password generator remembers last settings\n * set notification visibility for Android 5 lock screen\n * now clearing master password field when leaving the app without clicking OK\n * fixed issue with missing input languages in keyboard setting on some devices\n * fixed issue with automatic keyboard switching on rooted devices\n * added check for corrupt databases (duplicate UUIDs)\n * automatically reload database when change detected, solves security concern about revealing master password\n * improved polish small keyboard layout, fixed keyboard settings theme (thanks to Wiktor Ławski)\n 	</string>
   <string name="ChangeLog_0_9_5">
 <b>Versió 0.9.5</b> \n * Arreglat problemes amb arxiu de navegació (especialment en Android 4.4) \n * Solucionat el problema amb la càrrega d\'arxius .kdb (Keepass 1) amb el Nexus 5 amb Android Lollipop\n * afegit l\'opció per evitar prendre screenshots/mostrant app a la llista d\'aplicacions recents\n * Solucionat el problema amb Google Drive arxiu d\'emmagatzematge (edició regular) \n * Permeten arxius clau en emmagatzematge deliberada tipus (edició regular) \n * SDK de Dropbox actualitzat per incloure un pedaç de seguretat oficial (edició regular) \n * Actualitzades eines de construcció--&gt; mida dels apk augmentada:-(\ n He promès alguns canvis més. Vindran amb el pròxim llançament- Ho sentim. Volia publicar aquests destrets calents tan aviat com sigui possible.</string>
+  <string name="ChangeLog_0_9_4">
+		<b>Version 0.9.4</b>\n
+		* added plug-in support: See settings for how to get plug-ins!\n
+		*  published QR plug-in (scan passwords, display passwords as QR code, transfer entries to other KP2A devices)\n
+		*  published InputStick plugin (transfer credentials to your PC via bluetooth - requires InputStick USB stick)\n
+		*  Third party apps can now simply implement querying KP2A for credentials. Are you a developer? Please add this to your app if suitable!\n
+		* added TOTP support (compatible with KeeOTP and TrayTotp)\n
+		* app should no longer be killed by Android when database is open\n
+		* database is no longer locked when leaving the app with the back button (see settings)\n
+		* display group names in search results view (*)\n
+		* added context menu in search results view including \"Navigate to parent\" option (*)\n
+		* added option to display group name in entry view (*)\n
+		* (*) thanks to Matthieu for implementing these features!\n
+		* support KeeChallenge (with Yubikey NEO). Thanks to Ben Rush for implementing the connector!\n
+		* improved user interface\n
+		* fixed a bug in Google Drive interface\n
+		* added option to disable the \"donate\" option\n
+		* QuickUnlock icon now hidden on Android 4.2+ devices by default\n 
+	</string>
+  <string name="ChangeLog_0_9_3_r5">
+		<b>Version 0.9.3 r5</b>\n
+		* Incorporated fixes from Xamarin: Keepass2Android now compatible with ART on Android 4.4.2. Finally!\n
+		* Bug fixes: bugs in synchronization (refresh display, correct check for changes on http), bugs on Android 2.x devices, bugs in Google Drive and OneDrive storage implementations, clear clipboard on close database, bug opening attachments, display problems with keyboard\n
+	</string>
+  <string name="ChangeLog_0_9_3">
+		<b>Version 0.9.3</b>\n
+		* New keyboard with many improvements. See settings to customize.\n
+		* Read-only support for kdb (Keepass 1 files). Experimental!\n
+		* Added SFTP support\n
+		* Added workaround for bug in ART (Android 4.4.2)\n
+		* Bug fixes\n
+	</string>
+  <string name="ChangeLog_0_9_2">
+		<b>Version 0.9.2</b>\n
+		* Added OTP support (compatible with OtpKeyProv plugin)\n
+		* Integrated NFC support for OTPs from YubiKey NEO \n
+		* Several UI improvements\n
+		* Integrated Keepass 2.24 library\n
+		* Added option to kill the app process (see settings)\n
+		* Improved SSL certificate validation\n
+		* Bug fixes\n
+	</string>
+  <string name="ChangeLog_0_9_1">
+		<b>Version 0.9.1</b>\n
+		* Integrated SkyDrive support (Keepass2Android regular edition only)\n
+		* Fixed problems with Google Drive integration\n
+		* Added NTLM support
+	</string>
+  <string name="ChangeLog_0_9">
+		<b>Version 0.9</b>\n
+		* Integrated Dropbox and Google Drive support (read/write databases; Keepass2Android regular edition only)\n
+		* Integrated custom file browser (based on android-filechooser by HBA)\n
+		* Improved user interface for creating new databases\n
+		* Included custom font DejaVu Sans Mono for displaying passwords\n
+		* Bug fixes
+	</string>
+  <string name="ChangeLog_0_8_6">
+		<b>Version 0.8.6</b>\n
+		* Support for Twofish cipher\n
+		* Allow editing of groups\n
+		* Allow moving of entries and groups\n
+		* QuickUnlock icon can be made transparent (see settings)\n
+		* Bug fixes
+	</string>
+  <string name="ChangeLog_0_8_5">
+		<b>Version 0.8.5</b>\n
+		* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
+		* Notification icon to visualize the lock-state of the database (see settings)\n
+		* Improved determination of lock-state in some situations\n
+		* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
+		* Entries can be added to root group\n
+		* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)
+	</string>
+  <string name="ChangeLog_0_8_4">
+		<b>Version 0.8.4</b>\n
+		* External database changes are detected and merged when saving\n
+		* Improved loading performance\n
+		* Improved search toolbar with suggestions\n
+		* New App logo!\n
+		* Added support for .kdbp format for faster loading/saving\n
+		* Improved editing of extra strings and hidden display when protected\n
+		Thanks to Alex Vallat for his code contributions!\n
+		Thanks to Niki Hüttner (www.close-cut.de) for the new logo!\n
+	</string>
+  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
+* Username/TAN index displayed in entry list (see settings)\n
+* Entries can be created if search from browser doesn\'t return results\n
+* KP2A keyboard provides possibility to search for credentials for current app\n
+* App automatically closes after selecting an entry for use in keyboard\n
+* Keyboard selection dialog automatically opens after search for URL (see settings)\n
+* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
+* minor bug fixes
+  </string>
+  <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
+* Support for Digest Authentication in WebDAV\n
+* Bugfixes (OI File manager, Open URL)
+</string>
+  <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n
+* KP2A Offline and \"Online\" can be installed both again\n
+* Added new translations (thanks to all contributors!)
+</string>
+  <string name="ChangeLog_0_8"><b>Version 0.8</b>\n
+* Improved user interface especially for Android 4.x devices\n
+* Allow using deliberate file managers for selecting existing files\n
+* Added safer way for opening attachments (through cache directory)\n
+* fixed bugs in Edit activity\n
+* probably introduced new bugs :-)
+</string>
   <string name="ChangeLog_keptDonate">Estesa possibilitat de donar una cervesa o una altra cosa</string>
+  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
+* Increased loading speed: key transformations now 10x faster!\n
+* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
+* Added option to donate a beer or something else (see menu)</string>
   <string name="ChangeLog"><b>Version 0.6.2</b>\n
 * Integració amb Google Drive/Dropbox/... : Compatible amb l\'APP oficial Google Drive o Dropbox i permet obrir el fitxer .kdbx que necessitis. Suport el teclat KP2A.\n
 * Dialeg de cerca millorat \n
@@ -740,4 +917,20 @@ Revisió inicial per al públic
   </string-array>
   <string name="ClearClipboardWarning">Assegureu-vos que això funciona en el seu sistema i consideri si ha de fer ús o no del teclat incorporat.</string>
   <string name="PluginDescription">Descripció proporcionada pel connector:</string>
+  <string name="autofill_hint">Keepass2Android suporta la funció d\'emplenament automàtic d\'Android, però sembla que no l\'has activat encara.</string>
+  <string name="autofill_enable">Activar l\'emplenament automàtic</string>
+  <string name="autofill_enable_failed">Ho sentim, però sembla que el vostre dispositiu no és compatible amb l\'obertura de la configuració des de l\'interior de l\'aplicació. Aneu manualment a la configuració del sistema per a l\'emplenament automàtic per habilitar el servei.</string>
+  <string name="show_autofill_help">Mostra l\'ajuda de l\'emplenament automàtic</string>
+  <string name="autofill_sign_in_prompt">Omplir amb Keepass2Android</string>
+  <string name="invalid_link_association">No es pot associar amb el domini web %1$s amb l\'app %2$s</string>
+  <string name="understand">Ho entenc</string>
+  <string name="dont_show_again">No mostrar de nou</string>
+  <string name="masterkey_infotext_head">Recordes la teva contrasenya mestra?</string>
+  <string name="masterkey_infotext_main">Tingueu en compte que no podreu obrir la vostra base de dades sense la clau mestra. No hi ha manera de \"restablir\" la contrasenya mestra.</string>
+  <string name="masterkey_infotext_fingerprint_note">Tingueu en compte també que el desbloqueig d\'empremta dactilar funciona mitjançant l\'emmagatzematge de la clau mestra en l\'emmagatzematge segur d\'Android. Android pot eliminar aquest emmagatzematge en qualsevol moment, p. Ex. si afegiu una empremta digital nova a la configuració del sistema. Així que no confieu en la vostra empremta digital, recordeu la vostra contrasenya mestra, si us plau!</string>
+  <string name="backup_infotext_head">Ha fet còpia de seguretat de la vostra base de dades?</string>
+  <string name="backup_infotext_main">Keepass2Android emmagatzema les vostres contrasenyes en un fitxer en una ubicació que vulgueu. Estàs segur que pots accedir a aquest fitxer quan el telèfon es perd o el robat, o quan el fitxer es destrueix o s\'elimina? Assegureu-vos que sempre teniu una còpia de seguretat actualitzada en un lloc segur!</string>
+  <string name="backup_infotext_note">Per crear una còpia de seguretat ara, ves a %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Esteu preparat per a casos d\'emergència?</string>
+  <string name="emergency_infotext_main">Alguna vegada vau considerar què passaria si ja no podeu accedir a la vostra base de dades de contrasenyes? Què passaria si tens un accident? És convenient donar la vostra clau mestra a una persona de confiança en casos d\'emergència. Ningú tindrà accés a les contrasenyes d\'una altra manera.</string>
 </resources>

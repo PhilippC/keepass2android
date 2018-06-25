@@ -178,7 +178,7 @@ namespace keepass2android
 					else
 					{
 						w = w.Replace("\\n", "<br />");
-						if (w.StartsWith("*"))
+						if ((w.StartsWith("*") || (w.StartsWith("•"))))
 						{
 							if (!inList)
 							{

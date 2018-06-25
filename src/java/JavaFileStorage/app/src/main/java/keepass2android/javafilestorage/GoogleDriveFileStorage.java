@@ -38,6 +38,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+
 
 public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
@@ -780,7 +782,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	public void onRequestPermissionsResult(FileStorageSetupActivity setupAct, int requestCode, String[] permissions, int[] grantResults)
 	{
 		logDebug("onRequestPermissionsResult");
-		if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+		if (grantResults[0] == PERMISSION_GRANTED)
 		{
 			logDebug("granted");
 			initFileStorage(setupAct);
@@ -852,9 +854,10 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			boolean allOk = true;
 			for (String s: permissions)
 			{
-				int permissionRes = act.checkSelfPermission(Manifest.permission.GET_ACCOUNTS);
-				logDebug("permissionRes="+permissionRes);
-				allOk = false;
+				int permissionRes = act.checkSelfPermission(s);
+				logDebug("permissionRes "+s+"="+permissionRes);
+				if (permissionRes != PERMISSION_GRANTED)
+					allOk = false;
 			}
 
 			if (!allOk)

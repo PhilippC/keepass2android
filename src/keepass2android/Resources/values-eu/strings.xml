@@ -42,6 +42,7 @@
   <string name="import_keyfile_prefs">Inportatu gakoa barne karpetara</string>
   <string name="keyboardswitch_prefs">Teklatu aldaketa</string>
   <string name="OnlyAvailableForLocalFiles">Tokiko fitxategientzat besterik ez.</string>
+  <string name="FileIsInInternalDirectory">Fitxategia barne memorian gordeta dago.</string>
   <string name="unlock_database_button">Desblokeatu</string>
   <string name="unlock_database_title">Desblokeatu datu-basea</string>
   <string name="brackets">Parentesiak</string>
@@ -59,8 +60,12 @@
   <string name="copy_to_clipboard">Kopiatu arbelean</string>
   <string name="fingerprint_hint">Ukitze-sentsorea</string>
   <string name="fingerprint_description">Berretsi hatz-marka jarraitzeko</string>
+  <string name="fingerprint_fatal">Ezin izan da hatz-marka bidezko desblokeoa ezarri:</string>
   <string name="fingerprint_not_recognized">Ez da hatz-mark ezagutu. Saiatu berriro</string>
   <string name="fingerprint_success">Hatz-marka ezagutu da</string>
+  <string name="fingerprint_os_error">Hatz-marka bidezko desblokeoak Android 6.0 edo berriagoa behar du.</string>
+  <string name="fingerprint_hardware_error">Ez da hatz-markak irakurtzeko harware-a aurkitu.</string>
+  <string name="fingerprint_no_enrolled">Ez duzu hatz-markarik erregistratu gailu honetan. Zoaz Android sistemaren ezarpenetara aurretik.</string>
   <string name="disable_fingerprint_unlock">Desgaitu hatz-marka bidezko desblokeatzea</string>
   <string name="enable_fingerprint_unlock">Gaitu hatz-marka bidezko desblokeo osoa</string>
   <string name="enable_fingerprint_quickunlock">Gaitu haz-marka bidezko desblokeoa QuickUnlocken</string>

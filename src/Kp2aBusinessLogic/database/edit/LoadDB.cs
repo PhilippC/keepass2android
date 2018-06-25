@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using KeePassLib;
 using KeePassLib.Keys;
@@ -53,6 +54,7 @@ namespace keepass2android
 			{
 				try
 				{
+                    //make sure the file data is stored in the recent files list even if loading fails
 				    SaveFileData(_ioc, _keyfileOrProvider);
 
 
@@ -137,7 +139,12 @@ namespace keepass2android
 			{
                 _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
 				Kp2aLog.Log("LoadDB OK");
-				Finish(true, _format.SuccessMessage);
+
+			    //make sure the stored access time for the actual file is more recent than that of its backup
+			    Thread.Sleep(10);
+                SaveFileData(_ioc, _keyfileOrProvider);
+
+                Finish(true, _format.SuccessMessage);
 			}
 			catch (OldFormatException)
 			{

@@ -216,7 +216,7 @@ namespace keepass2android
 										  string user = dlgContents.FindViewById<EditText>(Resource.Id.http_user).Text;
 										  string password = dlgContents.FindViewById<EditText>(Resource.Id.http_password).Text;
 
-										  string scheme = defaultPath.Substring(defaultPath.IndexOf(_schemeSeparator, StringComparison.Ordinal));
+										  string scheme = defaultPath.Substring(0,defaultPath.IndexOf(_schemeSeparator, StringComparison.Ordinal));
 										  if (host.Contains(_schemeSeparator) == false)
 											  host = scheme + _schemeSeparator + host;
 										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(WebDavFileStorage.Owncloud2Webdav(host), user,

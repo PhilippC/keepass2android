@@ -209,6 +209,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="remember_keyfile_summary">Schlüsseldatei anlegen und ihr Speicherort merken</string>
   <string name="remember_keyfile_title">Schlüsseldatei speichern</string>
   <string name="remove_from_filelist">Löschen</string>
+  <string name="edit">Bearbeiten</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Start</string>
   <string name="KeyDerivFunc">Schlüsselableitungsfunktion</string>
@@ -272,6 +273,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="enter_filename_details_create_import">Zu importierende Datei wird im nächsten Schritt gewählt.</string>
   <string name="enable_quickunlock">QuickUnlock aktivieren</string>
   <string name="QuickUnlock_label">Gib die letzten %1$d Zeichen deines Passworts ein:</string>
+  <string name="QuickUnlock_label_secure">QuickUnlock-Code eingeben:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Datenbank schließen</string>
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock standardmäßig aktiviert</string>
@@ -284,6 +286,8 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock benötigt eine Benachrichtigung um richtig zu funktionieren. Wähle diese Option um eine Benachrichtigung ohne Symbol anzuzeigen.</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
+  <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
+  <string name="QuickUnlockHideLength_summary">Wenn aktiviert, wird die Länge des QuickUnlock-Codes nicht auf dem QuickUnlock-Bildschirm angezeigt.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
   <string name="BinaryDirectory_title">Verzeichnis für Datei-Anhänge</string>
   <string name="BinaryDirectory_summary">Verzeichnis, in dem Datei-Anhänge gespeichert werden.</string>
@@ -316,6 +320,8 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="ClearPasswordOnLeave_summary">Leere das Eingabefeld für das Master-Passwort, wenn der Passwort-Eingabebildschirm verlassen wird, ohne dass die Datenbank entsperrt wurde.</string>
   <string name="LockWhenNavigateBack_title">Beim Verlassen der App sperren</string>
   <string name="LockWhenNavigateBack_summary">Datenbank sperren, wenn die App mit dem Zurück-Knopf verlassen wird.</string>
+  <string name="ActivateSearchViewOnStart_title">Suchfeld beim Start aktivieren</string>
+  <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
   <string name="NoDonateOption_summary">Diese Einstellung ist ein Dankeschön an alle, die gespendet haben. Sie steht erst nach einer gewissen Zeit der Benutzung von Keepass2Android zur Verfügung.</string>
   <string name="NoDonateOption_question">Ohne Spenden würden diese App nicht existieren und würde nicht laufend verbessert! Wenn Sie noch nicht gespendet haben, erwägen Sie bitte jetzt eine Spende.</string>
@@ -323,6 +329,10 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="NoDonationReminder_summary">Ich werde keinen Cent spenden oder habe bereits gespendet. Bitte niemals um eine Spende, nicht einmal am Geburtstag des Autors.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
   <string name="UseOfflineCache_summary">Speichere eine Kopie der Remote-Datenbank-Dateien im Cache-Verzeichnis der App. Das erlaubt die Nutzung von Remote-Datenbanken auch wenn du offline bist.</string>
+  <string name="CreateBackups_title">Lokale Backups</string>
+  <string name="CreateBackups_summary">Erstelle eine lokale Sicherungskopie der Datenbank, nachdem diese erfolgreich geladen wurde.</string>
+  <string name="UpdatingBackup">Aktualisiere lokale Sicherungskopie...</string>
+  <string name="LocalBackupOf">Lokale Sicherung von %1$s</string>
   <string name="AcceptAllServerCertificates_title">SSL-Zertifikate</string>
   <string name="AcceptAllServerCertificates_summary">Bestimme das Verhalten, wenn Zertifikate nicht validiert werden können. Hinweis: du kannst auf deinem Android-Gerät Root-Zertifikate installieren, damit die Validierung gelingt!</string>
   <string name="ClearOfflineCache_title">Cache löschen?</string>
@@ -351,6 +361,10 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="AutoSwitchBackKeyboard_summary">Wechsel zur vorigen Eingabemethode wenn kein Eintrag ausgewählt ist</string>
   <string name="ShowUnlockedNotification_title">Benachrichtungssymbol anzeigen, solange entsperrt</string>
   <string name="ShowUnlockedNotification_summary">Zeige ein Symbol in der Benachrichtigungsleiste, solange die Datenbank entsperrt ist.</string>
+  <string name="IconVisibilityInfo_Android8_text">Mit Android 8 wurde ein neues Verhalten für Benachrichtigungen eingeführt. Wenn du das Icon für die Benachrichtigungen von Keepass2Android ausblenden möchtest, konfiguriere dies bitte in den Systemeinstellungen. Setze dazu die Wichtigkeit der Benachrichtigungskategorie auf Minimum.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Einstellungen öffnen</string>
+  <string name="DontCare">Ist mir egal</string>
+  <string name="DocumentAccessRevoked">Keepass2Android kann nicht mehr auf die Datei zugreifen. Entweder wurde sie entfernt oder die Zugriffsrechte wurden entzogen. Bitte öffne sie erneut, z.B. durch Klick auf \"Datenbank wechseln\".</string>
   <string name="PreloadDatabaseEnabled_title">Datenbank vor-laden</string>
   <string name="PreloadDatabaseEnabled_summary">Starte das Laden oder Herunterladen von Datenbank-Dateien im Hintergrund während dem Eingeben des Passworts.</string>
   <string name="AskOverwriteBinary">Möchtest du den vorhandenen Anhang mit dem gleichen Namen überschreiben?</string>
@@ -525,6 +539,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="ReadOnlyReason_PreKitKat">Es scheint als hättest du die Datei über eine externe App geöffnet. Diese Vorgehensweise unterstützt keinen Schreibzugriff. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne dann die Datei mit einer der angebotenen Optionen.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Entferne das Attribut, um Änderungen an der Datenbank vorzunehmen.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne die Datei dann über die System-Dateiauswahl.</string>
+  <string name="ReadOnlyReason_LocalBackup">Lokale Sicherungskopien können nicht bearbeitet werden. Du kannst über \"Datenbank-Einstellungen\" - \"Datenbank exportieren\" dieses Backup an einen anderen Ort exportieren und dann von dort öffnen. Dann kannst du auch wieder Änderungen vornehmen.</string>
   <string name="AddCustomIcon">Icon aus Datei hinzufügen...</string>
   <string name="CopyingFile">Kopiere Datei...</string>
   <string name="DuplicateTitle">Kopie</string>
@@ -560,6 +575,10 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
    • Stelle sicher, dass du die richtige Datenbankdatei gewählt hast.
  
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+\n    • Hinweis: Wenn du denkst dass deine Datenbank-Datei beschädigt sein könnte oder du das Passwort nicht mehr weißt, nachdem du es geändert hast, kannst du zur zuletzt erfolgreich geöffnete Datei wechseln. Klicke dazu auf \"%1$s\" und wähle das lokale Backup.</string>
+  <string name="HintLocalBackupOtherError">
+\n     • Hinweis: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Diese kannst du öffnen, indem du \"%1$s\" klickst und das lokale Backup wählst.  </string>
   <string name="CorruptDatabaseHelp">
 Die Datei ist beschädigt.\n
 Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
@@ -567,6 +586,12 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 • Wenn du die Datei über USB kopiert hast (MTP-Modus), versuche es noch einmal mit Tools wie MyPhoneExplorer. MTP schneidet die Dateien in manchen Fällen ab.\n
 • Wenn du die Datei nicht von der gleichen Stelle auf deinem PC öffnen kannst, ist es sehr wahrscheinlich, dass die Datei tatsächlich beschädigt ist. Bitte verwende in diesem Fall eine Datenbanksicherung. Wenn du annimmst, dass Keepass2Android die Datei beschädigt hat, nimm bitte Kontakt mit dem Support auf.\n
 • Wenn du die Datei auf dem PC noch öffnen kannst, nimm Sie bitte Kontakt mit dem Suppot auf. Du kannst versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z.B. nicht ZIP-komprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
+  <string name="DbUnlockedChannel_name">Datenbank entsperrt</string>
+  <string name="DbUnlockedChannel_desc">Benachritigung wenn die Datenbank entsperrt ist</string>
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Benachrichtigung wenn die Datenbank mit QuickUnlock gesperrt ist</string>
+  <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
+  <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="ErrorReportTitle">Keepass2Android: Ein Fehler ist aufgetreten.</string>
   <string name="ErrorReportText">Ein unerwarteter Fehler ist während der Ausführung von Keepass2Android aufgetreten. Bitte hilf uns indem du erlaubst, einen Fehlerbericht zu senden.</string>
   <string name="ErrorReportPromise">Fehlerberichte werden nie den Inhalt deiner Datenbank oder des Master-Passworts enthalten. Du kannst sie in den Anwendungseinstellungen deaktivieren.</string>
@@ -575,10 +600,27 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ErrorReportAsk">Nach Fehler fragen</string>
   <string name="ErrorReportPrefTitle">Fehlerbericht senden</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
+  <string name="ChangeLog_1_05">
+Version 1.05\n
+  • Verwendung von Benachrichtigungskanälen in Android 8. So können Benachrichtigungen über die Systemeinstellungen konfiguriert werden.\n
+  • Eintrags-Icon wird in Benachrichtigungen angezeigt\n
+  • Adaptive App-Launcher-Icons für Android 8 und rundes App-Launcher-Icon für Android 7\n
+  • Suche kann nach dem Entsperren aktiviert werden (s. Einstellungen)\n
+  • Fehler beim Schreiben von Dateien über das Storage-Access-Framework behoben. Dadurch wird ein Problem behoben, wenn Dateien über den Android-Dateibrowser aus Google Drive geöffnet werden.\n
+  • Einige Infotexte ergänzt, um häufig auftretende Missverständnisse zu vermeiden.\n
+  • Nach erfolgreichem Öffnen wird eine lokale Sicherungskopie der Datenbank angelegt, um das Risiko von Datenverlust zu reduzieren.\n
+  • JSch aktualisiert um aktuelle SSH-Verschlüsselungsalgorithmen zu unterstützen\n
+  • Unterstützung für den statischen Passwortmodus des Yubikey Neo integriert.\n
+  • Die Autofill-Empfehlung kann leichter deaktiviert werden\n
+  • Fix für u.U. nach Logcat geschriebene private Daten.\n
+  • Bugfixes\n  </string>
+  <string name="ChangeLog_1_04b">
+Version 1.04b\n     
+• Fix für App-Crash beim Aktivieren von Autofill auf Huawei-Geräten.\n  </string>
   <string name="ChangeLog_1_04">
     Version 1.04\n
-    * Autofill-Dienst für Android 8.0 und höher implementiert.\n
-    * Bibliotheken und Build-Tools aktualisiert.\n
+    • Autofill-Dienst für Android 8.0 und höher implementiert.\n
+    • Bibliotheken und Build-Tools aktualisiert.\n
   </string>
   <string name="ChangeLog_1_03">
 Version 1.03\n
@@ -874,7 +916,18 @@ Erstes öffentliches Release</string>
   <string name="PluginDescription">Vom Plugin gelieferte Beschreibung:</string>
   <string name="autofill_hint">Keepass2Android unterstützt das Autofill-Feature von Android, aber du hast es anscheinend noch nicht aktiviert.</string>
   <string name="autofill_enable">Autofill aktivieren</string>
+  <string name="autofill_enable_failed">Sorry, anscheinend unterstützt dein Gerät es nicht, dass man die Einstellungen aus einer App heraus öffnet. Bitte gehe in die Systemeinstellungen und suche dort nach Autofill, um den Dienst zu aktivieren.</string>
   <string name="show_autofill_help">Autofill-Hilfe anzeigen</string>
   <string name="autofill_sign_in_prompt">Mit Keepass2Android ausfüllen</string>
   <string name="invalid_link_association">Webdomain %1$s konnte nicht mit App %2$s in Verbindung gebracht werden</string>
+  <string name="understand">Ich verstehe</string>
+  <string name="dont_show_again">Nicht erneut anzeigen</string>
+  <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
+  <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank nicht ohne Master-Passwort öffnen kannst. Es gibt keine Möglichkeit, das Passwort zurückzusetzen.</string>
+  <string name="masterkey_infotext_fingerprint_note">Beachte auch, dass für das Entsperren mit Fingerabdruck dein Master-Passwort durch Android in einem gesicherten Speicher abgelegt wird. Dieser Speicher kann aber von Android gelöscht oder ungültig gemacht werden, z.B. wenn du einen Fingerabdruck in den Systemeinstellungen hinterlegst. Verlass dich daher bitte nicht auf den Fingerabdruck, sondern merke dir dein Master-Passwort!</string>
+  <string name="backup_infotext_head">Ist deine Datenbank gesichert?</string>
+  <string name="backup_infotext_main">Keepass2Android speichert deine Passwörter in eine Datei an einem Ort deiner Wahl. Bist du sicher, dass du auf diese Datei auch noch Zugriff hast wenn dein Telefon verloren geht oder gestohlen wird? Oder wenn die Datei zerstört oder gelöscht wird? Bitte stelle sicher, dass du immer eine aktuelle Kopie an einem sichern Ort aufbewahrst!</string>
+  <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, gehe nach %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
+  <string name="emergency_infotext_main">Hast du je darüber nachgedacht, was passiert, wenn du nicht mehr auf deine Passwort-Datenbank zugreifen kannst? Was, wenn du einen Unfall hast? Ein bewährtes Verfahren ist, einer vertrauenswürdigen Person dein Masterpasswort für Notfälle mitzuteilen. Ansonsten wird niemand auf deine Passwörter Zugriff haben.</string>
 </resources>

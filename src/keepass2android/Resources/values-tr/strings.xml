@@ -45,7 +45,7 @@
   <string name="FileHandling_prefs">Dosya işlemleri</string>
   <string name="keyboard_prefs">Klavye</string>
   <string name="export_prefs">Veriyi dışarı aktar...</string>
-  <string name="fingerprint_prefs">Parmak izi açma</string>
+  <string name="fingerprint_prefs">Parmak iziyle açma</string>
   <string name="import_db_prefs">Veri tabanını iç klasöre aktar</string>
   <string name="import_keyfile_prefs">Anahtar dosyasını iç klasöre aktar</string>
   <string name="keyboardswitch_prefs">Klavye değişimi</string>
@@ -143,8 +143,8 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="hint_group_name">Grup adı</string>
   <string name="hint_keyfile">Anahtar dosyası</string>
   <string name="hint_length">Uzunluk</string>
-  <string name="hint_pass">şifre</string>
-  <string name="hint_login_pass">Şifre</string>
+  <string name="hint_pass">parola</string>
+  <string name="hint_login_pass">Parola</string>
   <string name="hint_title">Başlık</string>
   <string name="hint_url">İnternet adresi</string>
   <string name="hint_override_url">İnternet adresinin yerine geçin</string>
@@ -176,9 +176,9 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="menu_move">Başka bir gruba taşı</string>
   <string name="menu_move_light">Taşı</string>
   <string name="menu_navigate">Üst gruba git</string>
-  <string name="menu_donate">Bır bira ısmarla...</string>
+  <string name="menu_donate">Bir bira ısmarla...</string>
   <string name="menu_edit">Düzenle</string>
-  <string name="menu_hide_password">Şifreyi gizle</string>
+  <string name="menu_hide_password">Parolayı gizle</string>
   <string name="menu_lock">Veritabanını kilitle</string>
   <string name="menu_open">Aç</string>
   <string name="menu_close">Kapat</string>
@@ -207,9 +207,10 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="remember_keyfile_summary">Anahtar dosyalarının konumunu hatırlar</string>
   <string name="remember_keyfile_title">Anahtar dosyasını kaydet</string>
   <string name="remove_from_filelist">Kaldır</string>
+  <string name="edit">Düzenle</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Kök</string>
-  <string name="KeyDerivFunc">English</string>
+  <string name="KeyDerivFunc">Anahtar türetme fonksiyonu</string>
   <string name="rounds">Şifreleme tur sayısı</string>
   <string name="rounds_explaination">Fazla tur sayısı kaba kuvvet saldırılarına karşı ek koruma sağlar, ama yüklemeyi ve kaydetmeyi epeyce yavaşlatır.</string>
   <string name="rounds_hint">Tur sayısı</string>
@@ -229,7 +230,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="sort_moddate">Değiştirme tarihine göre sırala</string>
   <string name="sort_default">Varsayılan düzeni koru</string>
   <string name="special">Özel</string>
-  <string name="search_hint">Ne bul</string>
+  <string name="search_hint">Bul</string>
   <string name="search_results">Arama sonuçları</string>
   <string name="search_in">Arama yeri</string>
   <string name="select_other_entry">Başka bir kayıt seçin</string>
@@ -270,6 +271,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="enter_filename_details_create_import">Alınacak dosya bir sonraki ekranda seçilecektir.</string>
   <string name="enable_quickunlock">ÇabukAç etkinleştir</string>
   <string name="QuickUnlock_label">Parolanızın son %1$d karakterini girin:</string>
+  <string name="QuickUnlock_label_secure">Hızlı açma kodunu girin:</string>
   <string name="QuickUnlock_button">Kilidi ÇabukAç!</string>
   <string name="QuickUnlock_lockButton">Veritabanı kapat</string>
   <string name="QuickUnlockDefaultEnabled_title">ÇabukAç varsayılan olarak etkinleştir</string>
@@ -282,8 +284,10 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="QuickUnlockIconHidden16_summary">Çabuk açın düzgün çalışması için bir bildirim gerekir. Bir simge olmadan bildirim görüntülenmesi için bu seçeneği seçin.</string>
   <string name="QuickUnlockLength_title">ÇabukAç anahtar uzunluğu</string>
   <string name="QuickUnlockLength_summary">ÇabukAç anahtar uzunluğu karakter sayısının üst sınırı.</string>
+  <string name="QuickUnlockHideLength_title">Hızlı Açma kodunun uzunluğunu gizle</string>
+  <string name="QuickUnlockHideLength_summary">Etkinse, Hızlı Açma kodunun uzunluğu ekranda görüntülenmez.</string>
   <string name="QuickUnlock_fail">ÇabukAç başarısız oldu: yanlış şifre!</string>
-  <string name="BinaryDirectory_title">Ek dosyaları klasörü</string>
+  <string name="BinaryDirectory_title">Ek dosyalar klasörü</string>
   <string name="BinaryDirectory_summary">Ek dosyalarının kaydedileceği klasör.</string>
   <string name="SaveAttachmentDialog_title">Ek dosyayı kaydet</string>
   <string name="SaveAttachmentDialog_text">Ek dosyayı kaydedecek konumu seç.</string>
@@ -314,13 +318,19 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ClearPasswordOnLeave_summary">Veri tabanı açılmadan parola ekranından ayrılırsam girilmiş ana parolayı temizle.</string>
   <string name="LockWhenNavigateBack_title">Uygulamadan ayrılınca kilitle</string>
   <string name="LockWhenNavigateBack_summary">Geri düğmesine basarak uygulamadan ayrılırken veri tabanını kilitle.</string>
+  <string name="ActivateSearchViewOnStart_title">Başlangıçta arama alanını etkinleştir</string>
+  <string name="ActivateSearchViewOnStart_summary">Kilit açıldıktan sonra veya kayıt aranırken grup görünümündeki arama alanını etkinleştirir</string>
   <string name="NoDonateOption_title">Bağış seçeneğini gizle</string>
   <string name="NoDonateOption_summary">Bu ayar bağışçılar içindir. Sadece Keepass2Android bir süre kullandıktan sonra geçerlidir.</string>
   <string name="NoDonateOption_question">Bağışlar olmadan, bu uygulama var olamazdı ve sürekli olarak geliştirilemezdi! Henüz bağış yapmadıysan, lütfen şimdi bir bağış yapmayı düşün.</string>
   <string name="NoDonationReminder_title">Asla bağış isteme</string>
   <string name="NoDonationReminder_summary">Sana bir kuruş bile vermeyeceğim ya da zaten bağış yapmıştım. Yazarın doğum gününde bile bağış isteme.</string>
-  <string name="UseOfflineCache_title">Veritabanı önbelleğe al</string>
+  <string name="UseOfflineCache_title">Veritabanını önbelleğe al</string>
   <string name="UseOfflineCache_summary">Uzak veritabanı dosyalarının bir kopyası uygulama önbellek klasöründe tutulur. Bu uzak veritabanlarını çevrimdışı iken bile kullanmanıza izin verir.</string>
+  <string name="CreateBackups_title">Yerel yedekler</string>
+  <string name="CreateBackups_summary">Bir veritabanı başarıyla yükledikten sonra yerel bir yedek kopyasını oluştur.</string>
+  <string name="UpdatingBackup">Yerel yedek güncelleştiriliyor...</string>
+  <string name="LocalBackupOf">%1$s yerel yedeği</string>
   <string name="AcceptAllServerCertificates_title">SSL sertifikalar</string>
   <string name="AcceptAllServerCertificates_summary">Sertifika doğrulaması başarısız olduğunda ne yapılacak! Not: Doğrulama başarısız olduğunda sertifikaları aygıtınıza yükleyebilirsiniz. </string>
   <string name="ClearOfflineCache_title">Önbelleği temizle?</string>
@@ -333,7 +343,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ShowCopyToClipboardNotification_summary">Kullanıcı adı ve parola bildirim çubuğu ve Pano üzerinden erişilebilir hale getirir. Parola algılayıcılara dikkat edin!</string>
   <string name="ShowSeparateNotifications_title">Bildirimler</string>
   <string name="ShowSeparateNotifications_summary">Kullanıcı adıyla parolayı panoya kopyalamak ve klavyeyi etkinleştirmek için bildirimleri göster.</string>
-  <string name="AccServiceAutoFill_prefs">Otomatik Doldur Erişilebilirlik Hizmeti</string>
+  <string name="AccServiceAutoFill_prefs">Otomatik Doldurma Erişilebilirlik Hizmeti</string>
   <string name="AutoFill_prefs">Otomatik Doldurma Hizmeti</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A klavye bildirimi</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tam girişi KP2A klavyesinden erişilebilir yapın (önerilir).</string>
@@ -349,6 +359,10 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="AutoSwitchBackKeyboard_summary">Bir kayıt açılmadığında önceki klavyeye döner.</string>
   <string name="ShowUnlockedNotification_title">Kilitli değilken bildirim simgesi</string>
   <string name="ShowUnlockedNotification_summary">Veritabanı kilitli değilken devam eden bir bildirim gösterir.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8, bildirimler için yeni davranışlar getirdi. Keepass2Android\'in bildirimleri için simgeyi gizlemek istiyorsanız, lütfen bunu sistem ayarlarından yapılandırın. Bildirim kategorisinin önemini Minimum olarak ayarlayın.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Ayarları aç</string>
+  <string name="DontCare">Umrumda değil</string>
+  <string name="DocumentAccessRevoked">Keepass2Android artık dosyaya erişemiyor. Dosya ya silindi yada erişim izinleri iptal edildi. Lütfen Veritabanını değiştir seçeneğiyle dosyayı yeniden açın.</string>
   <string name="PreloadDatabaseEnabled_title">Veritabanı dosyasını önceden yükleme</string>
   <string name="PreloadDatabaseEnabled_summary">Veritabanı dosyası yükleme veya indirmeyi şifre girişi sırasında arka planda başlatın.</string>
   <string name="AskOverwriteBinary">Varolan ek dosyayı aynı isim ile üzerine yazmak mı istiyorsunuz?</string>
@@ -367,9 +381,9 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="AskReloadFile_title">Dosyayı yeniden yükle?</string>
   <string name="AskReloadFile">Şu anda açık olan dosya başka bir program tarafından değiştirildi. Yeniden yüklemek istiyor musunuz?</string>
   <string name="AskDiscardChanges">Yaptığınız değişiklikleri atmak istiyor musunuz? (Kaydet düğmesi formun üst kısmında.)</string>
-  <string name="AskDiscardChanges_title">Değişiklikler atılsın mı?</string>
-  <string name="suggest_improvements">Önermek veya iyileştirmeler için oy</string>
-  <string name="rate_app">Bu app değerini biç</string>
+  <string name="AskDiscardChanges_title">Değişiklikler iptal edilsin mi?</string>
+  <string name="suggest_improvements">İyileştirme öner</string>
+  <string name="rate_app">Bu uygulamayı puanla</string>
   <string name="translate_app">KP2A\'yı tercüme et</string>
   <string name="AddingEntry">Kayıt ekleniyor&#8230;</string>
   <string name="AddingGroup">Grup ekleniyor&#8230;</string>
@@ -523,6 +537,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ReadOnlyReason_PreKitKat">Görünüşe göre bir dış uygulamadan dosya açıldı. Bu şekilde yazma desteklenmiyor. Veritabanında değişiklik yapmak istiyorsanız, lütfen veritabanını kapatın ve veritabanı değiştiri seçin. Mümkünse kullanılabilir seçeneklerden biriyle dosyayı açın.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Salt okunur bayrağı ayarlandı. Veritabanında değişiklik yapmak istiyorsanız, bu bayrağı kaldırın.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Android KitKat sürümündeki kısıtlamalar nedeniyle yazma mümkün değil. Veri tabanında değişiklik yapmak istiyorsanız, veri tabanını kapatın ve veri tabanı değiştir seçeneğini seçin. Sonra sistem dosya seçicisini kullanarak dosyayı açın.</string>
+  <string name="ReadOnlyReason_LocalBackup">Yerel yedeklemeler değiştirilemez. Bu yedeği yeniden açabileceğiniz bir alana aktarmak için, Veritabanı Ayarları - Veri Tabanını Dışa Aktar yolunu kullanabilirsiniz. Böylece değiştirilebilir olacaktır.</string>
   <string name="AddCustomIcon">Dosyadan simge ekle...</string>
   <string name="CopyingFile">Dosyalar kopyalanıyor...</string>
   <string name="DuplicateTitle">Kopyala</string>
@@ -558,6 +573,12 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
    • Doğru veri tabanı dosyasını seçtiğinizden emin olun.
  
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+   • İpucu: Veritabanı dosyanız bozulduysa veya ana anahtarınızı değiştirdikten sonra hatırlamıyorsanız, \"%1$s\" tıklayarak başarıyla açılan son yerel yedeklemenizi kullanmayı deneyebilirsiniz.</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    • İpucu: Keepass2Android başarıyla açılan son dosya sürümünü dahili hafızaya kaydeder.  \"%1$s\" öğesine tıklayıp yerel yedeği seçerek açabilirsiniz.  </string>
   <string name="CorruptDatabaseHelp">
     Dosya bozulmuş. \n
     Sorunu teşhis etmek için size yardımcı olabilecek bazı ipuçları:\n
@@ -567,6 +588,12 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     • Aynı dosyayı bilgisayaranızda açabiliyorsanız, desteğe başvurun. Dosyayı farklı ayarlarla (örn. zipden çıkarılmış şekilde) kaydedebilir ve Keepass2Android ile yeniden açmayı deneyebilirsiniz.
 
   </string>
+  <string name="DbUnlockedChannel_name">Veritabanı açıldı</string>
+  <string name="DbUnlockedChannel_desc">Açılan veritabanıyla ilgili bildirim</string>
+  <string name="DbQuicklockedChannel_name">Hızlı Aç</string>
+  <string name="DbQuicklockedChannel_desc">Çabuk Aç ile kilitlenen veritabanı hakkında bildirim</string>
+  <string name="EntryChannel_name">Kayıt bildirimleri</string>
+  <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
   <string name="ErrorReportTitle">Keepass2Android: Bir hata oluştu.</string>
   <string name="ErrorReportText">Keepass2Android çalışırken beklenmeyen bir hata oluştu. Lütfen uygulamadan hata raporlarını göndermek için izin vererek düzeltmemize yardımcı olun.</string>
   <string name="ErrorReportPromise">Hata raporları asla herhangi bir veri tabanı içeriğinizi veya ana parolanızı içermez. Hata raporlarını uygulama ayarlarından devre dışı bırakabilirsiniz.</string>
@@ -575,19 +602,38 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
+  <string name="ChangeLog_1_05">
+    Sürüm 1.05\n
+    * Android 8 için, sistem ayarlarından yapılandırmaya izin verilen bildirim kanalları kullanıldı\n
+    * Bildirimlerde kayıt simgesi gösterildi\n
+    * Android 7 için yuvarlak başlatıcı simgeleri, 8 içinse uyarlanabilir simgeler kullanıldı\n
+    * Kilit açıldıktan sonra aramayı etkinleştirmeye izin ver (ayarlara bakın)\n
+    * Dosyaların Storage Access Framework aracılığıyla yazılma şekli değiştirildi, sistem dosya seçicisiyle açılan Google Drive\'daki dosyaların güncellenmesiyle ilgili sorunlar giderildi\n
+    * Bazı yanlış anlamaları önlemek için bilgi metinleri eklendi\n
+    * Veri kaybı riskini azaltmak için başarıyla açılan veritabanlarının yerel yedeklerini oluşturma\n
+    * Daha yeni SSH şifrelemelerini desteklemek için JSch güncellendi\n
+    * Bağlantı ayarlarını düzenlemeye izin verildi, ör. WebDav şifresi değiştiğinde\n
+    * Yubikey Neo\'nun statik şifre modu desteklendi\n
+    * Otomatik doldurma önerisini devre dışı bırakmaya izin verildi\n
+    * Logcat veri sızıntısı düzeltildi\n    
+    * Hata düzeltmeleri\n
+  </string>
+  <string name="ChangeLog_1_04b">
+    Sürüm 1.04b\n
+    * Kullanıcı otomatik doldurmayı seçtiğinde Huawei cihazlarda oluşan çökme giderildi.\n
+  </string>
   <string name="ChangeLog_1_04">
-Sürüm 1.04 \ n
-     * Android 8.0 ve sonrası için Otomatik Doldurma hizmeti eklendi. \ n
-     * Yükseltilmiş kütüphaneler, araçlar oluşturun ve Target SDK sürümü. \ n
-  
+    Sürüm 1.04\n
+    * Android 8.0 ve sonrası için Otomatik Doldurma hizmeti eklendi.\n
+    * Yükseltilmiş kütüphaneler, araçlar ve Target SDK sürümü.\n
   </string>
   <string name="ChangeLog_1_03">
-Sürüm 1.03 \ n
-     * Otomatik Doldurma için Google tarafından istenen erişilebilirlik hizmetini kaldırdı. Önceki işlevleri çoğaltan bir eklenti bulmak için lütfen şifre erişim ayarlarına bakın. \ n
-     * Tekrar depolama seçeneği olarak üçüncü taraf uygulamaları eklendi \ n
-     * Ekli resimleri başka uygulamalara aktarmadan görüntüleyebilmek için tümleşik resim görüntüleyici \ n
-     * Bazı bağlantılarla sorunları düzeltmek için OkHttp\'yi geliştirildi \ n
-     * Buhar girişlerini destekleyen KeeTrayTOTP girdileri için destek \ n
+    Sürüm 1.03\n
+    * Google tarafından istenen şekilde Otomatik Doldurma için erişilebilirlik hizmeti kaldırıldı. Önceki işlevselliği sağlayan bir eklenti bulmak için lütfen şifre erişim ayarlarına bakın.\n
+    * Depolama seçeneği olarak tekrar üçüncü taraf uygulamaları eklendi\n
+    * Ekli resimleri başka uygulamalara aktarmadan görüntüleyebilmek için tümleşik resim görüntüleyici eklendi\n
+    * Bazı bağlantılarla ilgili sorunları düzeltmek için OkHttp yükseltildi\n
+    * KeeTrayTOTP kayıt desteği, artık Steam kayıtları destekleniyor\n
   </string>
   <string name="ChangeLog_1_02">
     Sürüm 1.02\n
@@ -707,61 +753,63 @@ Sürüm 1.03 \ n
 		* Polonya küçük klavye düzeni, klavye ayarları teması düzeltilerek geliştirildi(Wiktor Ławski\'ye teşekkürler)\n
 	</string>
   <string name="ChangeLog_0_9_5">
-		<b>Version 0.9.5</b>\n
-		* Fixed issues with file browsing (especially on Android 4.4)\n
-		* Fixed issue with loading .kdb files (Keepass 1) on Nexus 5 with Android Lollipop\n
-		* Added option to prevent taking screenshots/displaying app in recent apps list\n
-		* Fixed issue with Google Drive file storage\n
-		* Allow key files on deliberate storage types\n
-		* Updated build tools --&gt; apk size increased :-(\n
-		I have promised some more changes. They will come with the next release - sorry. I wanted to publish these hot fixes as soon as possible.
+		<b>Sürüm 0.9.5</b>\n
+		* Dosya taraması ile ilgili sorunlar düzeltildi (özellikle Android 4.4 sürümünde)\n
+		* Android Lollipop sürümlü Nexus 5 cihazlardaki .kdb dosya yükleme sorunu düzeltildi\n 
+		* Son uygulamalar listesinden görüntüleme ve ekran görüntüsü almayı engelleme seçeneği eklendi\n
+		* Google Drive depolama alanıyla ilgili sorun düzeltildi (normal sürüm)\n
+		* Güvenli depolama türlerinde anahtar dosyalarına izin verildi (normal sürüm)\n
+		* Resmi güvenlik yamasını içeren Dropbox SDK güncellendi (normal sürüm)\n
+		* --&gt; yapım araçları güncellendi, uygulama boyutu arttırıldı :-(\n
+		Daha fazla değişiklik için söz vermiştim fakat onlar sonraki sürümle gelecekler. Bu sıcak düzeltmeleri en kısa sürede yayınlamak istedim.
 	</string>
   <string name="ChangeLog_0_9_4">
-		<b>Version 0.9.4</b>\n
-		* added plug-in support: See settings for how to get plug-ins!\n
-		*  published QR plug-in (scan passwords, display passwords as QR code, transfer entries to other KP2A devices)\n
-		*  published InputStick plugin (transfer credentials to your PC via bluetooth - requires InputStick USB stick)\n
-		*  Third party apps can now simply implement querying KP2A for credentials. Are you a developer? Please add this to your app if suitable!\n
-		* added TOTP support (compatible with KeeOTP and TrayTotp)\n
-		* app should no longer be killed by Android when database is open\n
-		* database is no longer locked when leaving the app with the back button (see settings)\n
-		* display group names in search results view (*)\n
-		* added context menu in search results view including \"Navigate to parent\" option (*)\n
-		* added option to display group name in entry view (*)\n
-		* (*) thanks to Matthieu for implementing these features!\n
-		* support KeeChallenge (with Yubikey NEO). Thanks to Ben Rush for implementing the connector!\n
-		* improved user interface\n
-		* fixed a bug in Google Drive interface\n
-		* added option to disable the \"donate\" option\n
-		* QuickUnlock icon now hidden on Android 4.2+ devices by default\n 
+		<b>Sürüm 0.9.4</b>\n
+		* Eklenti desteği eklendi: Eklentileri nasıl edineceğinize ayarlardan bakın!\n
+		* QR eklentisini yayınladı (şifreleri tarayın, QR kodu olarak şifreleri görüntüleyin, diğer KP2A cihazlarınıza kayıtları aktarın)\n
+		* InputStick eklentisi yayınlandı (Bluetooth üzerinden bilgisayarınıza kimlik bilgilerini transfer edin  -  InputStick USB cihazı gerekir)\n
+		* Üçüncü taraf uygulamaları kimlik bilgileri için KP2A sorgusu yapabilir. Bir geliştirici misiniz? Lütfen uygunsa bunu uygulamanıza ekleyin!\n
+		* TOTP desteği eklendi (KeeOTP ve TrayTotp ile uyumlu)\n
+		* Veritabanı açıkken uygulama Android tarafından kapatılmıyor\n
+		* Uygulamadan geri tuşuyla ayrıldığınızda veritabanı artık kilitlenmiyor (ayarkara bakın)\n
+		* Arama sonuçlarında grup adları gösteriliyor (*)\n
+		* Arama sonuçları görünümünde  \"Navigate to parent\" seçeneğini içeren menü eklendi (*)\n
+		* Kayıt görünümünde grup adını görüntülemek için seçenek eklendi (*)\n
+		* (*) bu özellikler için Matthieu\' ya teşekkürler!\n
+		* KeeChallenge desteği (Yubikey NEO ile). Ben Rush \' a teşekkürler!\n
+		* Geliştirilmiş kullanıcı arayüzü\n
+		* Google Drive arayüzündeki bir hata düzeltildi\n
+		* \"bağış\" seçeneğini devre dışı bırakmak için seçenek eklendi\n
+		* ÇabukAç simgesi Android 4.2+ cihazlarda varsayılan olarak gizlendi\n 
 	</string>
   <string name="ChangeLog_0_9_3_r5">
-		<b>Version 0.9.3 r5</b>\n
-		* Incorporated fixes from Xamarin: Keepass2Android now compatible with ART on Android 4.4.2. Finally!\n
-		* Bug fixes: bugs in synchronization (refresh display, correct check for changes on http), bugs on Android 2.x devices, bugs in Google Drive and OneDrive storage implementations, clear clipboard on close database, bug opening attachments, display problems with keyboard\n
+		<b>Sürüm 0.9.3 r5</b>\n
+		* Xamarin’den gelen düzeltmeler: Keepass2Android artık Android 4.4.2’de ART ile uyumlu. Nihayet!\n
+		* Hata düzeltmeleri: Senkronizasyondaki hatalar (ekranı yenileme, http değişikliklerini doğru olarak kontrol etme), Android 2.x cihazlarındaki hatalar, Google Drive ve OneDrive depolama uygulamalarındaki hatalar, kapanan veritabanında pano temizlenmesi, ekleri açma hatası, klavye ile ilgili görüntüleme sorunları\n
 	</string>
   <string name="ChangeLog_0_9_3">
-		<b>Version 0.9.3</b>\n
-		* New keyboard with many improvements. See settings to customize.\n
-		* Read-only support for kdb (Keepass 1 files). Experimental!\n
-		* Added SFTP support\n
-		* Added workaround for bug in ART (Android 4.4.2)\n
-		* Bug fixes\n
+		<b>Sürüm 0.9.3</b>\n
+		* Bir çok geliştirmeler ile yeni klavye. Özelleştirme ayarlarına bakın\n
+		* Salt okunur kdb desteği (Keepass 1 dosyaları). Deneysel!\n
+		* SFTP desteği eklendi\n
+		* ART (Android 4.4.2) \' deki hata için geçici çözüm eklendi\n
+		* Hata düzeltmeleri\n
 	</string>
   <string name="ChangeLog_0_9_2">
-		<b>Version 0.9.2</b>\n
-		* Added OTP support (compatible with OtpKeyProv plugin)\n
-		* Integrated NFC support for OTPs from YubiKey NEO \n
-		* Several UI improvements\n
-		* Integrated Keepass 2.24 library\n
-		* Added option to kill the app process (see settings)\n
-		* Bug fixes\n
+		<b>Sürüm 0.9.2</b>\n
+		* OTP desteği eklendi (OtpKeyProv eklentisi ile uyumlu)\n
+		* YubiKey NEO dan OTPs için entegre NFC desteği\n
+		* Birkaç UI geliştirmesi\n
+		* Entegre Keepass 2.24 kütüphanesi\n
+		* Uygulamayı sonlandırmak için seçenek eklendi (ayarlara bakın)\n
+		* Geliştirilmiş SSL sertifikası doğrulaması\n
+		* Hata düzeltmeleri\n
 	</string>
   <string name="ChangeLog_0_9_1">
-		<b>Version 0.9.1</b>\n
-		* Integrated SkyDrive support (Keepass2Android regular edition only)\n
-		* Fixed problems with Google Drive integration\n
-		* Added NTLM support
+		<b>Sürüm 0.9.1</b>\n
+		* Entegre SkyDrive desteği (yalnızca Keepass2Android normal sürümü)\n
+		* Google Drive entegrasyonu ile ilgili sorunlar düzeltildi\n
+		* NTLM desteği eklendi
 	</string>
   <string name="ChangeLog_0_9">
 		<b>Sürüm 0.9</b>\n
@@ -780,68 +828,68 @@ Sürüm 1.03 \ n
 		* Hata düzeltmeleri
 	</string>
   <string name="ChangeLog_0_8_5">
-		<b>Version 0.8.5</b>\n
-		* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
-		* Notification icon to visualize the lock-state of the database (see settings)\n
-		* Improved determination of lock-state in some situations\n
-		* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
-		* Entries can be added to root group\n
-		* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)
+		<b>Sürüm 0.8.5</b>\n
+		* Çevrimdışı kullanımda uzak dosyalar yerel uygulama önbelleğinde depolanıyor (düzenleme ve daha sonra senkronizasyon içerir). Ayarlara bakın.\n
+		* Veritabanının kilit durumunu görmek için bildirim simgesi eklendi (ayarlara bakın)\n
+		* Bazı durumlarda kilit durumunun daha iyi belirlenmesi\n
+		* Yükleme hızının artması için parolanızı yazarken veritabanı dosyaları belleğe yüklenir (ayarlara bakın)\n
+		* Kayıtlar kök gurubuna eklenebiliyor\n
+		* Hata düzeltmeleri ( İtalyanca ve Çince cihazlardaki klavye ile ilgili referans alanlarının çözümlenmesi)
 	</string>
   <string name="ChangeLog_0_8_4">
-		<b>Version 0.8.4</b>\n
-		* External database changes are detected and merged when saving\n
-		* Improved loading performance\n
-		* Improved search toolbar with suggestions\n
-		* New App logo!\n
-		* Added support for .kdbp format for faster loading/saving\n
-		* Improved editing of extra strings and hidden display when protected\n
-		Thanks to Alex Vallat for his code contributions!\n
-		Thanks to Niki Hüttner (www.close-cut.de) for the new logo!\n
+		<b>Sürüm 0.8.4</b>\n
+		* Harici veritabanı değişiklikleri algılanır ve kaydedilirken birleştirilir\n
+		* Geliştirilmiş yükleme performansı\n
+		* Önerili arama çubuğu geliştirildi\n
+		* Yeni uygulama logosu!\n
+		* .kdbp formatı için daha hızlı yükleme / kaydetme desteği\n
+		* Korunurken ekstra dizelerde ve gizli ekranda iyileştirmeler\n
+		Kod katkılarından dolayı Alex Vallat\'a teşekkürler!\n
+		Yeni logo için Niki Hüttner\'e (www.close-cut.de) teşekkürler!\n
 	</string>
-  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
-* Username/TAN index displayed in entry list (see settings)\n
-* Entries can be created if search from browser doesn\'t return results\n
-* KP2A keyboard provides possibility to search for credentials for current app\n
-* App automatically closes after selecting an entry for use in keyboard\n
-* Keyboard selection dialog automatically opens after search for URL (see settings)\n
-* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
-* minor bug fixes
-  </string>
-  <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
-* Support for Digest Authentication in WebDAV\n
-* Bugfixes (OI File manager, Open URL)
+  <string name="ChangeLog_0_8_3"><b>Sürüm 0.8.3</b>\n
+* Kayıt listesinde Kullanıcı adı/TAN dizini görüntülenir (ayarlara bakın)\n
+* Tarayıcıdan arama sonuçları dönmezse, kayıtlar oluşturulabilir\n
+* KP2A klavye, geçerli uygulamada kimlik bilgilerini arama olanağı sağlar\n
+* Klavyeden kullanmak için bir kayıt seçildiğinde uygulama otomatik kapanır\n
+* URL için arama yaptıktan sonra klavye seçimi iletişim kutusu otomatik olarak açılır (ayarlara bakın)\n
+* Kayıt alanlarındaki değişkenler kopyalanmadan önce yenilendi (daha fazlası destekleniyor)\n
+* Küçük hata düzeltmeleri
+  </string>
+  <string name="ChangeLog_0_8_2"><b>Sürüm 0.8.2</b>\n
+* WebDAV\'da Özet Kimlik Doğrulama Desteği\n
+* Hata düzeltmeleri (OI Dosya yöneticisi, Open URL)
 </string>
-  <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n
-* KP2A Offline and \"Online\" can be installed both again\n
-* Added new translations (thanks to all contributors!)
+  <string name="ChangeLog_0_8_1"><b>Sürüm 0.8.1</b>\n
+* KP2A Çevrimdışı ve \"Çevrimiçi\" tekrar yüklenebilir\n
+* Yeni çeviriler eklendi (tüm katkıda bulunanlara teşekkürler!)
 </string>
   <string name="ChangeLog_0_8"><b>Sürüm 0.8</b>\n
-* Improved user interface especially for Android 4.x devices\n
-* Allow using deliberate file managers for selecting existing files\n
-* Added safer way for opening attachments (through cache directory)\n
-* fixed bugs in Edit activity\n
-* probably introduced new bugs :-)
+* Özellikle Android 4.x cihazlar için geliştirilmiş kullanıcı arayüzü\n
+* Mevcut dosyaları seçmek için güvenli dosya yöneticilerini kullanmaya izin verildi\n
+* Ekleri açmak için daha güvenli bir yol eklendi (önbellek dizini aracılığıyla)\n
+* Düzenle kısmındaki hatalar düzeltildi\n
+* Muhtemelen yeni hatalar gelecek :-)
 </string>
   <string name="ChangeLog_keptDonate">Bir bira veya başka bir bağış için genişletilmiş imkanı</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
-* Increased loading speed: key transformations now 10x faster!\n
-* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
-* Added option to donate a beer or something else (see menu)</string>
-  <string name="ChangeLog"><b>Version 0.6.2</b>\n
-* Google Drive/Dropbox/... integration: Use the official Google Drive or Dropbox App and open any .kdbx-file. This will now bring up KP2A.\n
-* Improved Search Dialog \n
-* Improved search results for Share URL with subdomains\n
-* Added options to give feedback, and rate and translate the app in the menu\n
+  <string name="ChangeLog_0_7"><b>Sürüm 0.7</b>\n
+* Artan yükleme hızı: anahtar dönüşümleri artık 10 kat daha hızlı!\n
+* Keepass2Android klavye eklendi: Kimlik bilgilerini girmek için bu klavyeye geçin. Panoya dayalı şifre avcılarından sizi korur (seçeneklerden eski pano bildirimlerini devre dışı bırakın)\n
+* Bir bira ya da başka bir şey bağışlamak için seçenek eklendi (menüye bakın)</string>
+  <string name="ChangeLog"><b>Sürüm 0.6.2</b>\n
+* Google Drive/Dropbox/... entegrasyonu: Resmi Google Drive or Dropbox uygulamalarıyla .kdbx dosyaları açılabilecek.\n
+* Geliştirilmiş Arama İletişim Kutusu\n
+* Alt alan adlarına sahip URL için geliştirilmiş arama sonuçları\n
+* Geri bildirimde bulunmak, uygulamayı derecelendirmek ve çevirmek için seçenekler eklendi\n
 \n
-<b>Version 0.6.1</b>\n
-* Detect when database changes in the background (i.e. due to activity of a sync app)\n
-* Improved searching for URLs from the browser\n
-* Confirm dialog when discarding changes\n
+<b>Sürüm 0.6.1</b>\n
+* Veritabanının arka planda ne zaman değiştiğini algılanması\n
+* Tarayıcıdan gelen URL’lerin aranması iyileştirildi\n
+* Değişiklikler iptal edilirken onay iletişim kutusu eklendi\n
 \n
-<b>Version 0.6</b>\n
-Initial public release
-  </string>
+<b>Sürüm 0.6</b>\n
+İlk sürüm
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 saniye</item>
     <item>1 dakika</item>
@@ -894,7 +942,18 @@ Initial public release
   <string name="PluginDescription">Eklenti tarafından sağlanan açıklama:</string>
   <string name="autofill_hint">Keepass2Android, Android\'in Otomatik Doldurma özelliğini destekliyor ancak henüz etkinleştirilmemişe benziyor.</string>
   <string name="autofill_enable">Otomatik Doldurmayı Etkinleştir</string>
+  <string name="autofill_enable_failed">Üzgünüz, cihazınız uygulamanın içinden ayarları açmayı desteklemiyor. Otomatik Doldurma hizmetini etkinleştirmek için sistem ayarlarına girin.</string>
   <string name="show_autofill_help">Otomatik doldurma yardımını göster</string>
   <string name="autofill_sign_in_prompt">Keepass2Android ile doldurun</string>
   <string name="invalid_link_association">Web alanı ilişkilendirmek Could %1$s uygulaması ile %2$s</string>
+  <string name="understand">Anladım</string>
+  <string name="dont_show_again">Tekrar gösterme</string>
+  <string name="masterkey_infotext_head">Ana parolanızı hatırlıyor musunuz?</string>
+  <string name="masterkey_infotext_main">Veritabanınızı ana anahtar olmadan açamayacağınızı unutmayın. Ana şifrenin \"sıfırlanmasının\" bir yolu yoktur.</string>
+  <string name="masterkey_infotext_fingerprint_note">Ayrıca parmak izi kilidinin, ana anahtarınızı Android\'in güvenli deposunda saklayarak çalıştığını unutmayın. Sistem ayarlarına yeni bir parmak izi eklediğinizde bu depolama alanı Android tarafından silinebilir. Bu yüzden parmak izine güvenip, ana şifrenizi unutmayın!</string>
+  <string name="backup_infotext_head">Veritabanınız yedeklendi mi?</string>
+  <string name="backup_infotext_main">Keepass2Android, şifrelerinizi seçtiğiniz konumda bir dosyada saklar. Telefonunuz kaybolduğunda, çalındığında, dosya bozulduğunda veya silindiğinde bu dosyaya hala erişebileceğinizden emin misiniz? Lütfen daima güvenli bir yerde güncel bir yedeğinizin olduğundan emin olun!</string>
+  <string name="backup_infotext_note">Şimdi bir yedek oluşturmak için %1$s &gt; %2$s &gt; %3$s \'e gidin.</string>
+  <string name="emergency_infotext_head">Acil durumlar için hazır mısın?</string>
+  <string name="emergency_infotext_main">Şifre veritabanınıza erişmediğinizde ne olacağını hiç düşündünüz mü? Ya bir kaza geçirirsen? Acil durumlar için ana anahtarınızı güvenilir bir kişiye iletmek iyi bir yöntemdir. Aksi halde şifrelerinize kimse erişemez.</string>
 </resources>
