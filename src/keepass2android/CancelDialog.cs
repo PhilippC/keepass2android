@@ -22,8 +22,12 @@ namespace keepass2android
 {
 	
 	public class CancelDialog : Dialog {
-		public CancelDialog(Context context): base(context) {
-		}
+	    protected readonly Activity _activity;
+
+	    public CancelDialog(Activity activity): base(activity)
+	    {
+	        _activity = activity;
+	    }
 
 		public bool Canceled { get; private set; }
 

@@ -413,20 +413,20 @@ namespace keepass2android
 			
 			RunnableOnFinish runnable;
 
-			ActionOnFinish closeOrShowError = new ActionOnFinish((success, message) => {
+			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) => {
 				if (success)
 				{
-					Finish();
+				    activity.Finish();
 				} else
 				{
-					OnFinish.DisplayMessage(this, message);
+					OnFinish.DisplayMessage(activity, message);
 				}
 			});
 
-			ActionOnFinish afterAddEntry = new ActionOnFinish((success, message) => 
+			ActionOnFinish afterAddEntry = new ActionOnFinish(this, (success, message, activity) => 
 			{
 				if (success)
-					_appTask.AfterAddNewEntry(this, newEntry);
+					_appTask.AfterAddNewEntry((EntryEditActivity)activity, newEntry);
 			},closeOrShowError);
 
 			if ( State.IsNew ) {

@@ -230,11 +230,8 @@ namespace keepass2android
 							{
 								//yes
 								ProgressTask pt = new ProgressTask(App.Kp2a, this,
-									new AddTemplateEntries(this, App.Kp2a, new ActionOnFinish(
-										delegate
-										{
-											StartAddEntry();
-										})));
+									new AddTemplateEntries(this, App.Kp2a, new ActionOnFinish(this,
+									    (success, message, activity) => ((GroupActivity)activity)?.StartAddEntry())));
 								pt.Run();		
 							},
 							(o, args) =>

@@ -21,7 +21,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
-using Android.Content;
 using Java.Lang;
 using KeePassLib;
 using KeePassLib.Keys;
@@ -218,7 +217,7 @@ namespace keepass2android
 		}
 
 
-		public void SaveData(Context ctx)  {
+		public void SaveData()  {
             
 			KpDatabase.UseFileTransactions = _app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
 			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, KpDatabase.UseFileTransactions))

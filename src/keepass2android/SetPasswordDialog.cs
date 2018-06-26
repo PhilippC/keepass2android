@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Preferences;
@@ -25,10 +26,13 @@ namespace keepass2android
 	
 	public class SetPasswordDialog : CancelDialog 
 	{
+	    
+
+	    internal String Keyfile;
 		
-		internal String Keyfile;
-		
-		public SetPasswordDialog(Context context):base(context) {
+		public SetPasswordDialog(Activity activity):base(activity)
+		{
+		    
 		}
 		
 		
@@ -67,8 +71,8 @@ namespace keepass2android
 					
 				}
 				
-				SetPassword sp = new SetPassword(Context, App.Kp2a, pass, keyfile, new AfterSave(this, null, new Handler()));
-				ProgressTask pt = new ProgressTask(App.Kp2a, Context, sp);
+				SetPassword sp = new SetPassword(_activity, App.Kp2a, pass, keyfile, new AfterSave(_activity, this, null, new Handler()));
+				ProgressTask pt = new ProgressTask(App.Kp2a, _activity, sp);
 				pt.Run();
 			};
 				
@@ -88,7 +92,7 @@ namespace keepass2android
 
 			readonly SetPasswordDialog _dlg;
 			
-			public AfterSave(SetPasswordDialog dlg, FileOnFinish finish, Handler handler): base(finish, handler) {
+			public AfterSave(Activity activity, SetPasswordDialog dlg, FileOnFinish finish, Handler handler): base(activity, finish, handler) {
 				_finish = finish;
 				_dlg = dlg;
 			}

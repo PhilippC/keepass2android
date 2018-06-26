@@ -24,15 +24,15 @@ using Android.Support.V7.App;
 namespace keepass2android
 {
 				
-	public abstract class LifecycleDebugActivity : AppCompatActivity
+	public abstract class LifecycleAwareActivity : AppCompatActivity
 	{
-		protected LifecycleDebugActivity (IntPtr javaReference, JniHandleOwnership transfer)
+		protected LifecycleAwareActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 			
 		}
 
-		protected LifecycleDebugActivity()
+		protected LifecycleAwareActivity()
 		{
 		}
 
@@ -63,6 +63,7 @@ namespace keepass2android
 
 		protected override void OnStart()
 		{
+		    ProgressTask.SetNewActiveActivity(this);
 			base.OnStart();
 			Kp2aLog.Log(ClassName+".OnStart");
 		}
@@ -90,7 +91,8 @@ namespace keepass2android
 		{
 			base.OnStop();
 			Kp2aLog.Log(ClassName+".OnStop");
-		}
+		    ProgressTask.RemoveActiveActivity(this);
+        }
 	}
 }
 

@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 
@@ -28,10 +29,10 @@ namespace keepass2android
 		private PwGroup _group;
 		protected bool DontSave;
 
-        public DeleteGroup(Context ctx, IKp2aApp app, PwGroup group, OnFinish finish)
-            : base(finish, app)
+        public DeleteGroup(Activity activity, IKp2aApp app, PwGroup group, OnFinish finish)
+            : base(activity, finish, app)
         {
-			SetMembers(ctx, app, group, false);
+			SetMembers(activity, app, group, false);
 		}
         /*
         public DeleteGroup(Context ctx, Database db, PwGroup group, Activity act, OnFinish finish, bool dontSave)
@@ -44,9 +45,9 @@ namespace keepass2android
 			SetMembers(ctx, db, group, null, dontSave);
 		}
         */
-        private void SetMembers(Context ctx, IKp2aApp app, PwGroup group, bool dontSave)
+        private void SetMembers(Activity activity, IKp2aApp app, PwGroup group, bool dontSave)
         {
-			base.SetMembers(ctx, app.GetDb());
+			base.SetMembers(activity, app.GetDb());
 
 			_group = group;
 	        DontSave = dontSave;

@@ -303,7 +303,7 @@
     <Compile Include="services\CopyToClipboardService.cs" />
     <Compile Include="search\SearchActivity.cs" />
     <Compile Include="QuickUnlock.cs" />
-    <Compile Include="LifecycleDebugActivity.cs" />
+    <Compile Include="LifecycleAwareActivity.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="EntryEditActivityState.cs" />
     <Compile Include="AttachmentContentProvider.cs" />

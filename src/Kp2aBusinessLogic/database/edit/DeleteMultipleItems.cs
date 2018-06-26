@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 using KeePassLib.Interfaces;
@@ -11,11 +12,11 @@ namespace keepass2android
 		private readonly List<IStructureItem> _elementsToDelete;
 		private readonly bool _canRecycle;
 
-		public DeleteMultipleItems(Context ctx, Database db, List<IStructureItem> elementsToDelete, OnFinish finish, IKp2aApp app)
-			: base(finish, app)
+		public DeleteMultipleItems(Activity activity, Database db, List<IStructureItem> elementsToDelete, OnFinish finish, IKp2aApp app)
+			: base(activity, finish, app)
 		{
 			_elementsToDelete = elementsToDelete;
-			SetMembers(ctx, db);
+			SetMembers(activity, db);
 
 			//determine once. The property is queried for each delete operation, but might return false
 			//after one entry/group is deleted (and thus in recycle bin and thus can't be recycled anymore)

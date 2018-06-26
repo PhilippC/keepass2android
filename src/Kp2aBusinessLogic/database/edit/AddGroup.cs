@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 
@@ -34,16 +35,16 @@ namespace keepass2android
 		internal PwGroup Group;
 		internal PwGroup Parent;
 		protected bool DontSave;
-		readonly Context _ctx;
+		readonly Activity _ctx;
 		
 		
-		public static AddGroup GetInstance(Context ctx, IKp2aApp app, string name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave) {
+		public static AddGroup GetInstance(Activity ctx, IKp2aApp app, string name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave) {
 			return new AddGroup(ctx, app, name, iconid, groupCustomIconId, parent, finish, dontSave);
 		}
 
 
-		private AddGroup(Context ctx, IKp2aApp app, String name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave)
-			: base(finish)
+		private AddGroup(Activity ctx, IKp2aApp app, String name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave)
+			: base(ctx, finish)
 		{
 			_ctx = ctx;
 			_name = name;
@@ -53,7 +54,7 @@ namespace keepass2android
 			DontSave = dontSave;
 			_app = app;
 
-			_onFinishToRun = new AfterAdd(this, OnFinishToRun);
+			_onFinishToRun = new AfterAdd(ctx, this, OnFinishToRun);
 		}
 		
 		
@@ -76,7 +77,7 @@ namespace keepass2android
 		private class AfterAdd : OnFinish {
 			readonly AddGroup _addGroup;
 
-			public AfterAdd(AddGroup addGroup,OnFinish finish): base(finish) {
+			public AfterAdd(Activity activity, AddGroup addGroup,OnFinish finish): base(activity, finish) {
 				_addGroup = addGroup;
 			}
 				

@@ -27,7 +27,7 @@ namespace keepass2android
 	/// <summary>
 	/// Base class for activities. Notifies the TimeoutHelper whether the app is active or not.
 	/// </summary>
-	public class LockingActivity : LifecycleDebugActivity {
+	public class LockingActivity : LifecycleAwareActivity {
 	
 		public LockingActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)

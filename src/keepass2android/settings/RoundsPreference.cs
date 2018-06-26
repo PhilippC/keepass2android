@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 using System;
 using System.Globalization;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
@@ -88,8 +89,8 @@ namespace keepass2android.settings
 				ParamValue = paramValue;
 
 				Handler handler = new Handler();
-				SaveDb save = new SaveDb(Context, App.Kp2a, new KdfNumberParamPreference.AfterSave(Context, handler, oldValue, this));
-				ProgressTask pt = new ProgressTask(App.Kp2a, Context, save);
+				SaveDb save = new SaveDb((Activity)Context, App.Kp2a, new KdfNumberParamPreference.AfterSave((Activity)Context, handler, oldValue, this));
+				ProgressTask pt = new ProgressTask(App.Kp2a, (Activity)Context, save);
 				pt.Run();
 				
 			}
@@ -101,7 +102,7 @@ namespace keepass2android.settings
 			private readonly Context _ctx;
 			private readonly KdfNumberParamPreference _pref;
 			
-			public AfterSave(Context ctx, Handler handler, ulong oldRounds, KdfNumberParamPreference pref):base(handler) {
+			public AfterSave(Activity ctx, Handler handler, ulong oldRounds, KdfNumberParamPreference pref):base(ctx, handler) {
 
 				_pref = pref;
 				_ctx = ctx;

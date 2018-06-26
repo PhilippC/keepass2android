@@ -1056,7 +1056,7 @@ namespace keepass2android
 
 		
 		
-		internal void AddUrlToEntry(string url, Action finishAction)
+		internal void AddUrlToEntry(string url, Action<EntryActivity> finishAction)
 		{
 			PwEntry initialEntry = Entry.CloneDeep();
 
@@ -1084,10 +1084,10 @@ namespace keepass2android
 
 			//save the entry:
 
-			ActionOnFinish closeOrShowError = new ActionOnFinish((success, message) =>
+			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) =>
 			{
 				OnFinish.DisplayMessage(this, message);
-				finishAction();
+			    finishAction((EntryActivity)activity);
 			});
 
 
