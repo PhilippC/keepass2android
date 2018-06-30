@@ -616,7 +616,13 @@ namespace keepass2android
 
 
 
-            var moveElement = new MoveElements(elementsToMove.ToList(), Group, this, App.Kp2a, new ActionOnFinish((success, message) => { StopMovingElements(); if (!String.IsNullOrEmpty(message)) Toast.MakeText(this, message, ToastLength.Long).Show(); }));
+            var moveElement = new MoveElements(elementsToMove.ToList(), Group, this, App.Kp2a, new ActionOnFinish(this,
+                (success, message, activity) =>
+                {
+                    ((GroupBaseActivity)activity)?.StopMovingElements();
+                    if (!String.IsNullOrEmpty(message))
+                        Toast.MakeText(activity, message, ToastLength.Long).Show();
+                }));
             var progressTask = new ProgressTask(App.Kp2a, this, moveElement);
             progressTask.Run();
 
@@ -867,8 +873,8 @@ namespace keepass2android
         {
             private readonly IOConnectionInfo _ioc;
 
-            public SyncOtpAuxFile(IOConnectionInfo ioc)
-                : base(null)
+            public SyncOtpAuxFile(Activity activity, IOConnectionInfo ioc)
+                : base(activity,null)
             {
                 _ioc = ioc;
             }
@@ -900,19 +906,19 @@ namespace keepass2android
         {
             var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc);
             RunnableOnFinish task;
-            OnFinish onFinish = new ActionOnFinish((success, message) =>
+            OnFinish onFinish = new ActionOnFinish(this, (success, message, activity) =>
             {
                 if (!String.IsNullOrEmpty(message))
-                    Toast.MakeText(this, message, ToastLength.Long).Show();
+                    Toast.MakeText(activity, message, ToastLength.Long).Show();
 
                 // Tell the adapter to refresh it's list
-                BaseAdapter adapter = (BaseAdapter)ListAdapter;
-                adapter.NotifyDataSetChanged();
+                BaseAdapter adapter = (BaseAdapter)((GroupBaseActivity)activity)?.ListAdapter;
+                adapter?.NotifyDataSetChanged();
 
                 if (App.Kp2a.GetDb().OtpAuxFileIoc != null)
                 {
-                    var task2 = new SyncOtpAuxFile(App.Kp2a.GetDb().OtpAuxFileIoc);
-                    new ProgressTask(App.Kp2a, this, task2).Run();
+                    var task2 = new SyncOtpAuxFile(this, App.Kp2a.GetDb().OtpAuxFileIoc);
+                    new ProgressTask(App.Kp2a, activity, task2).Run(true);
                 }
             });
 
@@ -982,33 +988,28 @@ namespace keepass2android
 
         public class RefreshTask : OnFinish
         {
-            readonly GroupBaseActivity _act;
             public RefreshTask(Handler handler, GroupBaseActivity act)
-                : base(handler)
+                : base(act, handler)
             {
-                _act = act;
             }
 
             public override void Run()
             {
                 if (Success)
                 {
-                    _act.RefreshIfDirty();
+                    ((GroupBaseActivity)ActiveActivity)?.RefreshIfDirty();
                 }
                 else
                 {
-                    DisplayMessage(_act);
+                    DisplayMessage(ActiveActivity);
                 }
             }
         }
         public class AfterDeleteGroup : OnFinish
         {
-            readonly GroupBaseActivity _act;
-
             public AfterDeleteGroup(Handler handler, GroupBaseActivity act)
-                : base(handler)
+                : base(act, handler)
             {
-                _act = act;
             }
 
 
@@ -1016,13 +1017,13 @@ namespace keepass2android
             {
                 if (Success)
                 {
-                    _act.RefreshIfDirty();
+                    ((GroupBaseActivity)ActiveActivity)?.RefreshIfDirty();
                 }
                 else
                 {
                     Handler.Post(() =>
                     {
-                        Toast.MakeText(_act, "Unrecoverable error: " + Message, ToastLength.Long).Show();
+                        Toast.MakeText(ActiveActivity, "Unrecoverable error: " + Message, ToastLength.Long).Show();
                     });
 
                     App.Kp2a.LockDatabase(false);

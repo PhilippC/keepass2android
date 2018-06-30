@@ -11,12 +11,12 @@ namespace keepass2android
 {
 	public class SynchronizeCachedDatabase: RunnableOnFinish 
 	{
-		private readonly Context _context;
+		private readonly Activity _context;
 		private readonly IKp2aApp _app;
 		private SaveDb _saveDb;
 
-		public SynchronizeCachedDatabase(Context context, IKp2aApp app, OnFinish finish)
-			: base(finish)
+		public SynchronizeCachedDatabase(Activity context, IKp2aApp app, OnFinish finish)
+			: base(context, finish)
 		{
 			_context = context;
 			_app = app;
@@ -59,7 +59,7 @@ namespace keepass2android
 					if (cachingFileStorage.HasLocalChanges(ioc))
 					{
 						//conflict! need to merge
-						_saveDb = new SaveDb(_context, _app, new ActionOnFinish((success, result) =>
+						_saveDb = new SaveDb(_context, _app, new ActionOnFinish(ActiveActivity, (success, result, activity) =>
 							{
 								if (!success)
 								{

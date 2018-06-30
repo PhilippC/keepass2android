@@ -218,14 +218,18 @@ namespace keepass2android
 			}
 
 			//update the Entry output in the App database and notify the CopyToClipboard service
-			App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
-			Intent updateKeyboardIntent = new Intent(this, typeof(CopyToClipboardService));
-			updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
-			updateKeyboardIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
-			StartService(updateKeyboardIntent);
 
-			//notify plugins
-			NotifyPluginsOnModification(Strings.PrefixString+key);
+		    if (App.Kp2a.GetDb()?.LastOpenedEntry != null)
+		    {
+		        App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
+		        Intent updateKeyboardIntent = new Intent(this, typeof(CopyToClipboardService));
+		        updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
+		        updateKeyboardIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
+		        StartService(updateKeyboardIntent);
+
+		        //notify plugins
+		        NotifyPluginsOnModification(Strings.PrefixString + key);
+		    }
 		}
 
 		private void AddPluginAction(string pluginPackage, string fieldId, string popupItemId, string displayText, int iconId, Bundle bundleExtra)
@@ -1052,7 +1056,7 @@ namespace keepass2android
 
 		
 		
-		internal void AddUrlToEntry(string url, Action finishAction)
+		internal void AddUrlToEntry(string url, Action<EntryActivity> finishAction)
 		{
 			PwEntry initialEntry = Entry.CloneDeep();
 
@@ -1080,10 +1084,10 @@ namespace keepass2android
 
 			//save the entry:
 
-			ActionOnFinish closeOrShowError = new ActionOnFinish((success, message) =>
+			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) =>
 			{
 				OnFinish.DisplayMessage(this, message);
-				finishAction();
+			    finishAction((EntryActivity)activity);
 			});
 
 

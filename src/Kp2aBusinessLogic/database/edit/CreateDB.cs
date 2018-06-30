@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System.Collections.Generic;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 using KeePassLib.Cryptography.KeyDerivation;
@@ -31,19 +32,19 @@ namespace keepass2android
 		
 		private readonly IOConnectionInfo _ioc;
 		private readonly bool _dontSave;
-		private readonly Context _ctx;
+		private readonly Activity _ctx;
         private readonly IKp2aApp _app;
 		private CompositeKey _key;
 
-		public CreateDb(IKp2aApp app, Context ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave): base(finish) {
+		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave): base(ctx, finish) {
 			_ctx = ctx;
 			_ioc = ioc;
 			_dontSave = dontSave;
             _app = app;
 		}
 
-		public CreateDb(IKp2aApp app, Context ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, CompositeKey key)
-			: base(finish)
+		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, CompositeKey key)
+			: base(ctx, finish)
 		{
 			_ctx = ctx;
 			_ioc = ioc;

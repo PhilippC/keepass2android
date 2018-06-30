@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
@@ -31,27 +32,47 @@ namespace keepass2android
 		protected OnFinish BaseOnFinish;
 		protected Handler Handler;
 		private ProgressDialogStatusLogger _statusLogger = new ProgressDialogStatusLogger(); //default: no logging but not null -> can be used whenever desired
-		
+	    private Activity _activeActivity;
 
-		public ProgressDialogStatusLogger StatusLogger
+
+	    public ProgressDialogStatusLogger StatusLogger
 		{
 			get { return _statusLogger; }
 			set { _statusLogger = value; }
 		}
 
+	    public Activity ActiveActivity
+	    {
+	        get { return _activeActivity; }
+	        set
+	        {
+	            _activeActivity = value;
+	            if (BaseOnFinish != null)
+	            {
+	                BaseOnFinish.ActiveActivity = value;
+	            }
+	        }
+	    }
 
-		protected OnFinish(Handler handler) {
+
+	    protected OnFinish(Activity activeActivity, Handler handler)
+	    {
+	        ActiveActivity = activeActivity;
 			BaseOnFinish = null;
 			Handler = handler;
 			
 		}
 
-		protected OnFinish(OnFinish finish, Handler handler) {
+		protected OnFinish(Activity activeActivity, OnFinish finish, Handler handler)
+		{
+		    ActiveActivity = activeActivity;
 			BaseOnFinish = finish;
 			Handler = handler;
 		}
 
-		protected OnFinish(OnFinish finish) {
+		protected OnFinish(Activity activeActivity, OnFinish finish)
+		{
+		    ActiveActivity = activeActivity;
 			BaseOnFinish = finish;
 			Handler = null;
 		}

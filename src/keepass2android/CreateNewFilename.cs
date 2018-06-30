@@ -1,4 +1,5 @@
 using System;
+using Android.App;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -7,8 +8,8 @@ namespace keepass2android
 	{
 		private readonly string _filename;
 
-		public CreateNewFilename(OnFinish finish, string filename)
-			: base(finish)
+		public CreateNewFilename(Activity activity, OnFinish finish, string filename)
+			: base(activity,finish)
 		{
 			_filename = filename;
 		}

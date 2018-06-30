@@ -310,7 +310,7 @@ namespace keepass2android
 						Handler handler = new Handler();
 						OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 						_performingLoad = true;
-						LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider, onFinish);
+						LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider, onFinish);
 						_loadDbFileTask = null; // prevent accidental re-use
 						new ProgressTask(App.Kp2a, this, task).Run();
 					}
@@ -625,7 +625,7 @@ namespace keepass2android
 
 			protected override void HandleSuccess()
 			{
-			    var chalIntent = Activity.TryGetYubichallengeIntentOrPrompt(Activity._chalInfo.Challenge, true);
+			    var chalIntent = Activity.GetYubichallengeIntent(Activity._chalInfo.Challenge);
 
                 if (chalIntent != null)
 			    {
@@ -1453,7 +1453,7 @@ namespace keepass2android
 				LoadDb task = (KeyProviderType == KeyProviders.Otp)
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider,
 						onFinish, this)
-					: new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider, onFinish);
+					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, _keyFileOrProvider, onFinish);
 				_loadDbFileTask = null; // prevent accidental re-use
 
 				SetNewDefaultFile();
@@ -2028,7 +2028,7 @@ namespace keepass2android
 			readonly PasswordActivity _act;
 		    private readonly IOConnectionInfo _ioConnection;
 
-		    public AfterLoad(Handler handler, PasswordActivity act, IOConnectionInfo ioConnection):base(handler)
+		    public AfterLoad(Handler handler, PasswordActivity act, IOConnectionInfo ioConnection):base(act, handler)
 		    {
 		        _act = act;
 		        _ioConnection = ioConnection;
@@ -2172,7 +2172,7 @@ namespace keepass2android
 			private readonly PasswordActivity _act;
 
 
-			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnFinish finish, PasswordActivity act) : base(app, ioc, databaseData, compositeKey, keyfileOrProvider, finish)
+			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnFinish finish, PasswordActivity act) : base(act, app, ioc, databaseData, compositeKey, keyfileOrProvider, finish)
 			{
 				_act = act;
 			}

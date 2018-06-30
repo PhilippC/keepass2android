@@ -37,7 +37,7 @@ namespace keepass2android
 		WindowSoftInputMode = SoftInput.AdjustResize,
 		MainLauncher = false,
         Theme = "@style/MyTheme_Blue")]
-	public class QuickUnlock : LifecycleDebugActivity, IFingerprintAuthCallback
+	public class QuickUnlock : LifecycleAwareActivity, IFingerprintAuthCallback
 	{
 		private IOConnectionInfo _ioc;
 		private QuickUnlockBroadcastReceiver _intentReceiver;

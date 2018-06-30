@@ -15,6 +15,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
+using Android.App;
+using Android.Content;
 
 namespace keepass2android
 {
@@ -23,8 +25,11 @@ namespace keepass2android
 		
 		protected OnFinish _onFinishToRun;
 		public ProgressDialogStatusLogger StatusLogger = new ProgressDialogStatusLogger(); //default: empty but not null
+	    private Activity _activeActivity;
 
-		protected RunnableOnFinish(OnFinish finish) {
+	    protected RunnableOnFinish(Activity activeActivity, OnFinish finish)
+	    {
+	        _activeActivity = activeActivity;
 			_onFinishToRun = finish;
 		}
 
@@ -34,7 +39,18 @@ namespace keepass2android
 			set { _onFinishToRun = value; }
 		}
 
-		protected void Finish(bool result, String message, Exception exception = null) {
+	    public Activity ActiveActivity
+	    {
+	        get { return _activeActivity; }
+	        set
+            {
+	            _activeActivity = value;
+	            if (_onFinishToRun != null)
+	                _onFinishToRun.ActiveActivity = _activeActivity;
+	        }
+	    }
+
+        protected void Finish(bool result, String message, Exception exception = null) {
 			if ( OnFinishToRun != null ) {
 				OnFinishToRun.SetResult(result, message, exception);
 				OnFinishToRun.Run();
@@ -56,7 +72,7 @@ namespace keepass2android
 			StatusLogger = status;
 		}
 		
-		abstract public void Run();
+		public abstract void Run();
 	}
 }
 

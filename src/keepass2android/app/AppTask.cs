@@ -489,6 +489,10 @@ namespace keepass2android
 
 		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
+		    Context ctx = activity;
+		    if (ctx == null)
+		        ctx = Application.Context;
+
 			if (ShowUserNotifications)
 			{
 				//show the notifications
@@ -579,7 +583,7 @@ namespace keepass2android
 
 			builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
 			{
-				activity.AddUrlToEntry(url, () => base.CompleteOnCreateEntryActivity(activity));
+				activity.AddUrlToEntry(url, (EntryActivity thenActiveActivity) => base.CompleteOnCreateEntryActivity(thenActiveActivity));
 			});
 
 			builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>

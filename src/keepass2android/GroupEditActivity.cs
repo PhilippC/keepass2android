@@ -27,7 +27,7 @@ using KeePassLib.Utility;
 namespace keepass2android
 {
 	[Activity(Label = "@string/app_name", Theme = "@style/Dialog")]			
-	public class GroupEditActivity : LifecycleDebugActivity
+	public class GroupEditActivity : LifecycleAwareActivity
 	{
 		public const String KeyParent = "parent";
 		public const String KeyName = "name";
@@ -144,7 +144,8 @@ namespace keepass2android
 		
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
-			switch ((int)resultCode)
+		    base.OnActivityResult(requestCode, resultCode, data);
+            switch ((int)resultCode)
 			{
 				case EntryEditActivity.ResultOkIconPicker:
 					_selectedIconId = data.Extras.GetInt(IconPickerActivity.KeyIconId, (int) PwIcon.Key);

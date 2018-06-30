@@ -312,6 +312,8 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			String driveId = path.getGDriveId();
 			logDebug("id"+driveId);
 			File file = driveService.files().get(driveId).execute();
+			if (file.getLabels().getTrashed())
+				throw new FileNotFoundException(path.getDisplayName() + " is trashed!");
 			logDebug("...done.");
 			return file;
 		}

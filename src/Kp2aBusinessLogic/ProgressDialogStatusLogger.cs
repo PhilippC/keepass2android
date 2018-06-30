@@ -30,8 +30,12 @@ namespace keepass2android
 		readonly IKp2aApp _app;
 		private readonly Handler _handler;
 		private string _message = "";
+	    private string _submessage;
 
-		public ProgressDialogStatusLogger() {
+        public String SubMessage => _submessage;
+	    public String Message => _message;
+
+        public ProgressDialogStatusLogger() {
 			
 		}
 		
@@ -56,6 +60,7 @@ namespace keepass2android
 
 		public void UpdateSubMessage(String submessage)
 		{
+		    _submessage = submessage;
 			if (_app != null && _progressDialog != null && _handler != null)
 			{
 				_handler.Post(() => 

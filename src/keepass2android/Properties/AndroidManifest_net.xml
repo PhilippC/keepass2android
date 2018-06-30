@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="119" 
-			android:versionName="1.05e" 
+			android:versionCode="120" 
+			android:versionName="1.06-pre1" 
 			package="keepass2android.keepass2android" 
 			android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="26" />
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher" android:label="KP2A entry search" android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
   
-	<application android:label="keepass2android" android:icon="@mipmap/ic_launcher_online">
+	<application android:label="keepass2android" 
+	android:icon="@mipmap/ic_launcher_online"
+	android:roundIcon="@mipmap/ic_launcher_online_round"
+	>
 		<activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
 				<data android:scheme="db-i8shu7v1hgh7ynt" />
@@ -139,6 +142,7 @@
 		<meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="426.0dip" />
 		<meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="360.0dip" />
 	</application>
+	<uses-permission android:name="android.permission.NFC" />
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

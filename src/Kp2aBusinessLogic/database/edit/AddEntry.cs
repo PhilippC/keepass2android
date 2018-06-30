@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using Android.App;
 using Android.Content;
 using KeePassLib;
 
@@ -29,20 +30,20 @@ namespace keepass2android
 		private readonly IKp2aApp _app;
 		private readonly PwEntry _entry;
 		private readonly PwGroup _parentGroup;
-		private readonly Context _ctx;
+		private readonly Activity _ctx;
 		
-		public static AddEntry GetInstance(Context ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish) {
+		public static AddEntry GetInstance(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish) {
 
 			return new AddEntry(ctx, app, entry, parentGroup, finish);
 		}
 		
-		protected AddEntry(Context ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(finish) {
+		protected AddEntry(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
 			_ctx = ctx;
 			_parentGroup = parentGroup;
 			_app = app;
 			_entry = entry;
 			
-			_onFinishToRun = new AfterAdd(app.GetDb(), entry, OnFinishToRun);
+			_onFinishToRun = new AfterAdd(ctx, app.GetDb(), entry, OnFinishToRun);
 		}
 		
 		
@@ -68,7 +69,7 @@ namespace keepass2android
 			private readonly Database _db;
 			private readonly PwEntry _entry;
 
-			public AfterAdd(Database db, PwEntry entry, OnFinish finish):base(finish) {
+			public AfterAdd(Activity activity, Database db, PwEntry entry, OnFinish finish):base(activity, finish) {
 				_db = db;
 				_entry = entry;
 
