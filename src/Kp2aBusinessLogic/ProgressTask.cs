@@ -95,7 +95,15 @@ namespace keepass2android
 	            currentMessage = _progressDialogStatusLogger.Message;
 	            currentSubmessage = _progressDialogStatusLogger.SubMessage;
 	        }
-	            
+
+	        if (_progressDialog != null)
+	        {
+	            var pd = _progressDialog;
+                app.UiThreadHandler.Post(() =>
+                {
+                    pd.Dismiss();
+                });
+	        }
 
             // Show process dialog
             _progressDialog = app.CreateProgressDialog(_activeActivity);
@@ -118,7 +126,6 @@ namespace keepass2android
 			// Start Thread to Run task
 			_thread = new Thread(_task.Run);
 			_thread.Start();
-			
 		}
 
 		public void JoinWorkerThread()
@@ -140,7 +147,10 @@ namespace keepass2android
 				if (Handler != null) //can be null in tests
 				{
 					// Remove the progress dialog
-					Handler.Post(delegate { _progressTask._progressDialog.Dismiss(); });
+					Handler.Post(delegate
+					{
+					    _progressTask._progressDialog.Dismiss();
+					});
 				}
 				else
 				{
