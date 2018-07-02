@@ -209,6 +209,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="remember_keyfile_summary">Zapamiętaj ścieżkę do plików kluczy</string>
   <string name="remember_keyfile_title">Zapamiętaj plik klucza</string>
   <string name="remove_from_filelist">Usuń</string>
+  <string name="edit">Edycja</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Katalog główny</string>
   <string name="KeyDerivFunc">Funkcja generująca klucze</string>
@@ -272,6 +273,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="enter_filename_details_create_import">W następnym kroku zostanie wybrany plik do zaimportowania.</string>
   <string name="enable_quickunlock">Włącz SzybkieOdblokowanie</string>
   <string name="QuickUnlock_label">Wprowadź %1$d ostatnie znaki hasła:</string>
+  <string name="QuickUnlock_label_secure">Wpisz kod QuickUnlock:</string>
   <string name="QuickUnlock_button">SzybkieOdblokowanie!</string>
   <string name="QuickUnlock_lockButton">Zamknij bazę danych</string>
   <string name="QuickUnlockDefaultEnabled_title">Domyślnie włącz SzybkieOdblokowanie</string>
@@ -284,6 +286,8 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="QuickUnlockIconHidden16_summary">Szybkie odblokowanie potrzebuje androidowego powiadomienia aby działało poprawnie. Wybierz tę opcję aby użyć powiadomienia bez ikonki.</string>
   <string name="QuickUnlockLength_title">Długość klucza SzybkiegoOdblokowania</string>
   <string name="QuickUnlockLength_summary">Maksymalna liczba znaków używanych jako hasło SzybkiegoOdblokowania.</string>
+  <string name="QuickUnlockHideLength_title">Ukryj długość QuickUnlock</string>
+  <string name="QuickUnlockHideLength_summary">Jeśli zaznaczone, długość kodu QuickUnlock nie jest wyświetlana na ekranie QuickUnlock.</string>
   <string name="QuickUnlock_fail">Nie powiodło się SzybkieOdblokowanie: niepoprawne hasło!</string>
   <string name="BinaryDirectory_title">Katalog plików załączników</string>
   <string name="BinaryDirectory_summary">Katalog w którym są zapisywane pliki załączników.</string>
@@ -316,6 +320,8 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ClearPasswordOnLeave_summary">Wyczyść wpisane hasło główne podczas opuszczania aplikacji bez odblokowywania bazy danych.</string>
   <string name="LockWhenNavigateBack_title">Zablokuj po opuszczeniu aplikacji</string>
   <string name="LockWhenNavigateBack_summary">Zablokuj bazę danych kiedy opuścisz aplikację poprzez naciśnięcie przycisku wstecz.</string>
+  <string name="ActivateSearchViewOnStart_title">Aktywuj wyszukiwanie przy starcie</string>
+  <string name="ActivateSearchViewOnStart_summary">Aktywuje pole wyszukiwania w widoku grupy po odblokowaniu lub w trakcie przeglądania wpisu</string>
   <string name="NoDonateOption_title">Ukryj opcję dotacji</string>
   <string name="NoDonateOption_summary">Ta opcja jest dla ludzi którzy złożyli dotację.</string>
   <string name="NoDonateOption_question">Bez dotacji nieistniałaby ta aplikacja albo niebyłaby rozwijana. Jeśli jeszcze nie złozyłeś dotacji proszę rozważ to. </string>
@@ -323,6 +329,10 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="NoDonationReminder_summary">Nie chcę dać Ci kasy albo już to zrobiłem. Nie pytaj o darowiznę, nawet na urodziny autora.</string>
   <string name="UseOfflineCache_title">Pamięć podręczna baz danych</string>
   <string name="UseOfflineCache_summary">Przechowuj kopię zdalnych baz danych w katalogu pamięci podręcznej aplikacji. Pozwala to na wykorzystanie zdalnych baz danych, nawet w trybie offline.</string>
+  <string name="CreateBackups_title">Lokalne kopie zapasowe</string>
+  <string name="CreateBackups_summary">Twórz lokalną kopię zapasową po pomyślnym załadowaniu bazy danych.</string>
+  <string name="UpdatingBackup">Aktualizacja lokalnej kopii zapasowej...</string>
+  <string name="LocalBackupOf">Lokalna kopia zapasowa %1$s</string>
   <string name="AcceptAllServerCertificates_title">Certyfikaty SSL</string>
   <string name="AcceptAllServerCertificates_summary">Zdefiniuj zachowanie, gdy weryfikacja certyfikatu się nie powiedzie. Uwaga: jeżeli weryfikacja się nie powiedzie, możesz zainstalować certyfikat na swoim urządzeniu!</string>
   <string name="ClearOfflineCache_title">Wyczyścić pamięć podręczną?</string>
@@ -351,6 +361,10 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="AutoSwitchBackKeyboard_summary">Przełącz do poprzedniej klawiatury, jeśli nie otwarto wpisu.</string>
   <string name="ShowUnlockedNotification_title">Ikona powiadomienia podczas blokady</string>
   <string name="ShowUnlockedNotification_summary">Pokazuje powiadomienie gdy baza danych gdy jest odblokowana.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 wprowadził nowe zachowanie dla powiadomień. Jeśli chcesz schować ikonę powiadomień Keepass2Android, skonfiguruj to w ustawieniach systemu. Ustaw ważność kategorii powiadomień na Minimum.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Otwórz ustawienia</string>
+  <string name="DontCare">Nie obchodzi mnie to</string>
+  <string name="DocumentAccessRevoked">Plik nie jest już dostępny dla Keepass2Android. Został usunięty lub uprawnienia do niego zostały cofnięte. Użyj opcji ponownego otwarcia pliku, np. przełączając bazę danych.</string>
   <string name="PreloadDatabaseEnabled_title">Wstępnie wczytuj bazę danych</string>
   <string name="PreloadDatabaseEnabled_summary">Rozpocznij ładowanie w tle lub pobieranie pliku bazy danych podczas wprowadzania hasła.</string>
   <string name="AskOverwriteBinary">Czy chcesz zastąpić istniejący plik binarny o tej samej nazwie?</string>
@@ -463,7 +477,6 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="init_otp">Ładowanie pomocniczego pliku OTP&#8230;</string>
   <string name="otp_explanation">Wprowadź kolejne hasła jednorazowe (OTPs). Zbliż swój Yubikey NEO do tylnej części swojego urządzenia aby wprowadzić przez NFC.</string>
   <string name="otp_hint">Hasło jednorazowe (OTP) %1$d</string>
-  <string name="YubiChallengeNotInstalled">Nie można znaleźć aplikacji, która potrafi obsłużyć wyzwanie. Proszę zainstalować Yubichallenge z Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Nie można załadować pomocniczego pliku OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Proszę użyć wtyczki OtpKeyProv w KeePass 2.x (PC) aby skonfigurować swoją bazę danych do korzystania z haseł jednorazowych (OTP)!</string>
   <string name="otp_discarded_because_no_db">Proszę najpierw wybrać bazę danych. Hasło jednorazowe (OTP) odrzucone ze względów bezpieczeństwa.</string>
@@ -525,6 +538,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ReadOnlyReason_PreKitKat">Wygląda na to, że otworzyłeś plik z zewnętrznej aplikacji. Ta metoda nie wspiera zapisywania. Jeśli chcesz wprowadzić zmiany w bazie danych, zamknij proszę bazę danych i wybierz Zmień bazę danych. Następnie otwórz plik używając jednej z dostępnych opcji, jeżeli to możliwe.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Ustawiono flagę tylko do odczytu. Usuń flagę, jeśli chcesz wprowadzić zmiany w bazie danych.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Zapisywanie nie jest możliwe z powodu restrykcji wprowadzonych w Androidzie KitKat. Jeśli chcesz wprowadzić zmiany w bazie danych, zamknij bazę danych i wybierz Zmień bazę danych. Następnie otwórz plik używając systemowego selektora plików.</string>
+  <string name="ReadOnlyReason_LocalBackup">Lokalne kopie zapasowe nie mogą być zmieniane. Możesz użyć opcji Ustawienia bazy danych - Eksportuj bazę danych, aby wyeksportować tę kopię zapasową do innej lokacji, z której możesz ją otworzyć ponownie. Zostanie po tym zapisana ponownie.</string>
   <string name="AddCustomIcon">Dodaj ikonę z pliku...</string>
   <string name="CopyingFile">Kopiowanie plików...</string>
   <string name="DuplicateTitle">Kopiuj</string>
@@ -560,6 +574,13 @@ To zachowa twoje hasła główne na tym urządzeniu.
    • Upewnij się, że wybrałeś odpowiedni plik bazy danych.
  
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+   • Wskazówka: Jeśli podejrzewasz, że twój plik z bazą danych mógł zostać uszkodzony lub nie pamiętasz klucza głównego po jego zmodyfikowaniu, możesz spróbować poprawnie otwartej wersji pliku, klikając w \"%1$s\" i wybierając lokalną kopię zapasową.</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    • Wskazówka: Keepass2Android zachował ostatnią poprawnie otwartą wersję pliku w swojej wewnętrznej pamięci. Możesz ją otworzyć, klikając w \"%1$s\" i wybierając lokalną kopię zapasową.
+  </string>
   <string name="CorruptDatabaseHelp">
     Plik jest uszkodzony. \n
     Tu są wskazówki, które mogą pomóc zdiagnozować usterkę:\n
@@ -569,6 +590,12 @@ To zachowa twoje hasła główne na tym urządzeniu.
     • Jeśli możesz otworzyć plik na swoim komputerze, skontaktuj się z pomocą. Możesz spróbować zapisać go z innymi ustawieniami (np. rozpakowany) na komputerze i spróbować ponownie otworzyć w Keepass2Android.
 
   </string>
+  <string name="DbUnlockedChannel_name">Baza danych odblokowana</string>
+  <string name="DbUnlockedChannel_desc">Powiadomienie o odblokowanej bazie danych</string>
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Powiadomienie o odblokowaniu bazy danych przy pomocy QuickUnlock</string>
+  <string name="EntryChannel_name">Powiadomienia wpisów</string>
+  <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="ErrorReportTitle">Keepass2Android: Wystąpił błąd.</string>
   <string name="ErrorReportText">Wystąpił nieoczekiwany błąd podczas działania Keepass2Android. Proszę, pomóż nam go naprawić, umożliwiając aplikacji wysyłanie raportów o błędach.</string>
   <string name="ErrorReportPromise">Raporty błędów nie będą zawierały żadnych treści z twojej bazy danych lub hasła głównego. Możesz je wyłączyć w ustawieniach aplikacji.</string>
@@ -577,6 +604,10 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ErrorReportAsk">Zapytaj po wystąpieniu błędu</string>
   <string name="ErrorReportPrefTitle">Wyślij raporty o błędach</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
+  <string name="ChangeLog_1_04b">
+    Version 1.04b\n
+    * Usunięcie crasha, gdy użytkownik próbuje włączyć autouzupełnianie na urządzeniach Huawei.\n
+  </string>
   <string name="ChangeLog_1_04">Wersja 1.0.4 \n
   * dodano serwis autowypełniania dla Android\'a 8.0 i dalej. \n
   * ulepszono biblioteki, narzędzia budownicze oraz wersję Cela SDK \n</string>
@@ -858,6 +889,7 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Hasło + OTP (tryb odzyskiwania)</item>
     <item>Hasło + odpowiedź na wyzwanie</item>
     <item>Hasło + sekret Challenge-Response (tryb odzyskiwania)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoruj niepowodzenia weryfikacji certyfikatów</item>
@@ -868,6 +900,18 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="PluginDescription">Opis dostarczony przez wtyczkę:</string>
   <string name="autofill_hint">Keepass2Android wspiera funkcję autowypełnianie Androida, ale widać że nie włączyłeś jej.</string>
   <string name="autofill_enable">Włącz Autowypełnianie</string>
+  <string name="autofill_enable_failed">Niestety wygląda na to, że twoje urządzenie nie wspiera otwierania ustawień z wnętrza aplikacji. Przejdź ręcznie do ustawień systemu dla autouzupełniania, aby włączyć tą usługę.</string>
   <string name="show_autofill_help">Pokaż pomoc autowypełniania</string>
   <string name="autofill_sign_in_prompt">Wypełnij z Keepass2Android</string>
+  <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
+  <string name="understand">Rozumiem</string>
+  <string name="dont_show_again">Nie pokazuj ponownie</string>
+  <string name="masterkey_infotext_head">Czy pamiętasz swoje hasło główne?</string>
+  <string name="masterkey_infotext_main">Pamiętaj, że nie będziesz mógł otworzyć swojej bazy danych bez klucza głównego. Zresetowanie hasła głównego jest niemożliwe.</string>
+  <string name="masterkey_infotext_fingerprint_note">Pamiętaj też, że odblokowywanie przy pomocy odcisku palca działa przechowując klucz główny w bezpiecznej magazynie systemu operacyjnego Android. Ten magazyn może być usunięty przez system w dowolnym momencie, np. jeśli dodasz nowy odcisk palca w ustawieniach systemu. Więc proszę, nie polegaj na odcisku palca, tylko pamiętaj swoje hasło główne!</string>
+  <string name="backup_infotext_head">Czy posiadasz kopię zapasową swojej bazy danych?</string>
+  <string name="backup_infotext_main">Keepass2Android przechowuje twoje hasło w pliku w wybranej lokacji. Czy masz pewność, że wciąż będziesz mieć dostęp do tego pliku, gdy zgubisz telefon lub zostanie on skradziony albo plik zostanie zniszczony lub usunięty? Upewnij się, że zawsze masz aktualną kopię zapasową w bezpiecznym miejscu!</string>
+  <string name="backup_infotext_note">Aby stworzyć kopię zapasową, przejdź do %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Czy jesteś gotowy/a na sytuacje awaryjne?</string>
+  <string name="emergency_infotext_main">Czy zastanawiałeś/aś się co się stanie, jeśli nie będziesz w stanie uzyskać dostępu do bazy haseł? Co zrobić, jeśli masz wypadek? Dobrą praktyką jest przekazanie swojego klucza głównego do niektórych zaufanych osób na wypadek sytuacji nadzwyczajnych. Inaczej nikt nie będzie mieć dostępu do haseł.</string>
 </resources>

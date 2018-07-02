@@ -475,7 +475,6 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="init_otp">Carico il file OTP ausiliario&#8230;</string>
   <string name="otp_explanation">Inserisci i successivi One-time-password (OTP). Scorri il tuo Yubikey NEO sul retro del tuo dispositivo per inserirli via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Impossibile trovare un\'app che può gestire il challenge. Installa Yubichallenge da Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Impossibile caricare il file OTP ausiliario!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Devi utilizzare il plugin OtpKeyProv per KeePass 2.x (PC) per poter configurare il database per l\'utilizzo con OTP!</string>
   <string name="otp_discarded_because_no_db">Prima seleziona un database. L\'OTP viene scartata per motivi di sicurezza.</string>
@@ -911,6 +910,7 @@ Prima release pubblica
     <item>Password + OTP-secret (modalità di ripristino)</item>
     <item>Password + Challenge-Response</item>
     <item>Password + Challenge-Response secret (modalità di ripristino)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignora gli errori di convalida del certificato</item>

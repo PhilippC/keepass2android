@@ -206,6 +206,7 @@
   <string name="remember_keyfile_summary">Zapamtite mjesto ključnih datoteka</string>
   <string name="remember_keyfile_title">Spremi ključnu datoteku</string>
   <string name="remove_from_filelist">Ukloni</string>
+  <string name="edit">Uredi</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
   <string name="KeyDerivFunc">Funkcije za izvođenje ključa</string>
@@ -269,6 +270,7 @@
   <string name="enter_filename_details_create_import">Datoteka za uvoz bit će odabrana u sljedećem koraku.</string>
   <string name="enable_quickunlock">Omogućite QuickUnlock</string>
   <string name="QuickUnlock_label">Unesite zadnjih %1$d znakova Vaše lozinke:</string>
+  <string name="QuickUnlock_label_secure">Unesite QuickUnlock kod:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Zatvori bazu podataka</string>
   <string name="QuickUnlockDefaultEnabled_title">Omogućite QuickUnlock prema zadanim postavkama</string>
@@ -281,6 +283,8 @@
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock zahtijeva da obavijest ispravno funkcionira. Odaberite ovu opciju za prikaz obavijesti bez ikone.</string>
   <string name="QuickUnlockLength_title">Dužina QuickUnlock ključa</string>
   <string name="QuickUnlockLength_summary">Maksimalni broj znakova koji se koristi kao lozinka QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_title">Sakrij QuickUnlock duljinu</string>
+  <string name="QuickUnlockHideLength_summary">Ako je omogućeno, duljina koda QuickUnlock neće biti prikazana na QuickUnlock zaslonu.</string>
   <string name="QuickUnlock_fail">QuickUnlock nije uspio: netočna lozinka!</string>
   <string name="BinaryDirectory_title">Mapa za privitke</string>
   <string name="BinaryDirectory_summary">Mapa u kojoj će biti spremljeni privici.</string>
@@ -313,6 +317,8 @@
   <string name="ClearPasswordOnLeave_summary">Očisti unesenu glavnu lozinku prilikom napuštanja zaslona bez otključavanja baze podataka.</string>
   <string name="LockWhenNavigateBack_title">Zaključaj pri napuštanju aplikacije</string>
   <string name="LockWhenNavigateBack_summary">Zaključaj bazu podataka pri napuštanju aplikacije pritiskom na gumb za povratak.</string>
+  <string name="ActivateSearchViewOnStart_title">Aktiviraj polje za pretraživanje na početku</string>
+  <string name="ActivateSearchViewOnStart_summary">Aktivira polje za pretraživanje u prikazu grupe nakon otključavanja ili kada traži unos</string>
   <string name="NoDonateOption_title">Sakrij opciju donacije</string>
   <string name="NoDonateOption_summary">Ova je postavka namijenjena donatorima. Dostupno je nakon upotrebe Keepass2Android neko vrijeme.</string>
   <string name="NoDonateOption_question">Bez donacija, ova aplikacija ne bi postojala i ne bi se trajno poboljšala! Ako još niste donirali, razmislite o doniranju.</string>
@@ -320,6 +326,10 @@
   <string name="NoDonationReminder_summary">Neću donirati ni centa ili sam već donirao. Nemoj tražiti donaciju, čak ni autorov rođendan.</string>
   <string name="UseOfflineCache_title">Predmemoriranje baza podataka</string>
   <string name="UseOfflineCache_summary">Zadrži kopiju datoteka udaljenih baza podataka u direktoriju predmemorije aplikacije. To omogućuje korištenje udaljenih baza podataka čak i izvan mreže.</string>
+  <string name="CreateBackups_title">Lokalna sigurnosna kopija</string>
+  <string name="CreateBackups_summary">Izradite lokalnu sigurnosnu kopiju nakon uspješnog učitavanja baze podataka.</string>
+  <string name="UpdatingBackup">Ažuriranje lokalne sigurnosne kopije...</string>
+  <string name="LocalBackupOf">Lokalna sigurnosna kopija od %1$s</string>
   <string name="AcceptAllServerCertificates_title">SSL certifikati</string>
   <string name="AcceptAllServerCertificates_summary">Odredite ponašanje kada se certifikati ne mogu potvrditi. Napomena: možete instalirati certifikate na Vašem uređaju ukoliko se ne mogu potvrditi!</string>
   <string name="ClearOfflineCache_title">Očisti predmemoriju?</string>
@@ -348,6 +358,10 @@
   <string name="AutoSwitchBackKeyboard_summary">Vrati se na prethodnu tipkovnicu kada se ne otvori nikakav unos.</string>
   <string name="ShowUnlockedNotification_title">Prikaži ikonu obavijesti dok je otključana</string>
   <string name="ShowUnlockedNotification_summary">Prikaži ikonu obavijesti dok je baza podataka otključana.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 uveo je novo ponašanje za obavijesti. Ako želite sakriti ikonu za obavijesti usluge Keepass2Android, konfigurirajte ovo putem postavki sustava. Postavite važnost kategorije obavijesti na minimum.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Otvori postavke</string>
+  <string name="DontCare">Ne zanima me</string>
+  <string name="DocumentAccessRevoked">Datoteka više nije dostupna za Keepass2Android. Bila je uklonjena ili su dozvole za pristup ukinute. Ponovno otvorite datoteku, npr. pomoću stavke Promjena baze podataka.</string>
   <string name="PreloadDatabaseEnabled_title">Prethodno učitaj datoteku baze podataka</string>
   <string name="PreloadDatabaseEnabled_summary">Pokrenite pozadinsko učitavanje ili preuzimanje datoteke baze podataka tijekom unosa lozinke.</string>
   <string name="AskOverwriteBinary">Želite li prebrisati postojeću datoteku koristeći isti naziv?</string>
@@ -460,7 +474,6 @@
   <string name="init_otp">Učitavanje pomoćne datoteke OTP&#8230;</string>
   <string name="otp_explanation">Unesite sljedeće jednokratne zaporke (OTPs). Prijeđite prstom po Yubikey NEO na stražnjoj strani uređaja da bi unijeli preko NFC-a.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Nije pronađena nijedna aplikacija koja može podnijeti izazov. Instalirajte Yubichallenge s usluge Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Nije moguće učitati pomoćnu OTP datoteku!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Koristite dodatak OtpKeyProv na KeePass 2.x (PC) da biste konfigurirali svoju bazu podataka za korištenje s OTP-ovima!</string>
   <string name="otp_discarded_because_no_db">Najprije odaberite bazu podataka. OTP je odbačen iz sigurnosnih razloga.</string>
@@ -852,6 +865,7 @@ Prvotna javna verzija  </string>
     <item>Lozinka + OTP tajna (način oporavka)</item>
     <item>Lozinka + Challenge-Response</item>
     <item>Lozinka + Challenge-Response tajna (način oporavka)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Zanemari pogreške potvrda certifikata</item>

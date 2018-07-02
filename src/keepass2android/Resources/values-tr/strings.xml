@@ -475,7 +475,6 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="init_otp">tek kullanımlık şifre yedek dosyasını yükle&#8230;</string>
   <string name="otp_explanation">Bir sonraki tek kullanımlık şifreyi (OTPs) girin. NFC ile girmek için Yubikey NEO aygıtınızın arkasına dokunun.</string>
   <string name="otp_hint">tek kullanımlık şifre %1$d</string>
-  <string name="YubiChallengeNotInstalled">Parola işleyici bir uygulama bulunamadı. Lütfen Google Play üzerinden YubiChallenge uygulamasını yükleyin.</string>
   <string name="CouldntLoadOtpAuxFile">Yedek tek kullanımlık şifre dosya yüklenemedi!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Veri tabanını tek kullanımlık şifre ile kullanıma ayarlamak için lütfen KeePass 2.x (PC) üzerinde OtpKeyProv eklentisini kullanın!</string>
   <string name="otp_discarded_because_no_db">Lütfen önce veritabanı seçin. tek kullanımlık şifre, güvenlik nedenleriyle atılır.</string>
@@ -932,6 +931,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     <item>Şifre + tek kullanımlık şifre sırrı (kurtarma modu)</item>
     <item>Şifre + sınama-yanıtlama</item>
     <item>Şifre + sınama-yanıt gizli (kurtarma modu)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Sertifika doğrulama hatalarını yoksay</item>

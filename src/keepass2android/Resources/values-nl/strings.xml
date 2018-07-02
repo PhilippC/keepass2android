@@ -4,10 +4,10 @@
 <resources>
   <string name="about_feedback">Feedback</string>
   <string name="about_homepage">Startpagina</string>
-  <string name="AboutText">Keepass2Android is een wachtwoordmanager met lees/schrijf toegang tot KeePass 2.x databases in Android.</string>
+  <string name="AboutText">Keepass2Android is een wachtwoordmanager voor Android die KeePass 2.x databases kan lezen en schrijven.</string>
   <string name="CreditsText">De gebruikersinterface is gebaseerd op KeepassDroid, een port ontwikkeld door Brian Pellin. Code voor de database operaties is gebaseerd op KeePass door Dominik Reichl. De Android robot is gereproduceerd of aangepast van het werk gemaakt en gedeeld door Google en gebruikt in overeenstemming met de voorwaarden beschreven in de Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP ondersteuning is geïmplementeerd door middel van de JSch-bibliotheek onder BSD-licentie, gemaakt door JCraft, Inc.</string>
-  <string name="CreditsIcons">Het hamer-pictogram is gemaakt door John Caserta van het Noun Project. Het pinguïn-pictogram is gemaakt door Adriano Emerick van het Noun Project. Het veer-pictogram is gemaakt door Jon Testa van het Noun Project. Het Apple-pictogram is gemaakt door Ava Rowell van het Noun Project. Het pictogram-pictogram komt van https://icons8.com/icon/5570/Picture.</string>
+  <string name="CreditsIcons">Het hamer-pictogram is gemaakt door John Caserta van het Noun Project. Het pinguïn-pictogram is gemaakt door Adriano Emerick van het Noun Project. Het veer-pictogram is gemaakt door Jon Testa van het Noun Project. Het Apple-pictogram is gemaakt door Ava Rowell van het Noun Project. Het afbeelding-pictogram komt van https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Accepteren</string>
   <string name="deny">Weigeren</string>
   <string name="add_entry">Nieuw item</string>
@@ -474,7 +474,6 @@
   <string name="init_otp">Laad OTP hulpbestand&#8230;</string>
   <string name="otp_explanation">Geef de volgende eenmalige wachtwoorden (OTPs). Veeg je Yubikey NEO langs de achterkant van het apparaat voor NFC invoer.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Kon geen app vinden die deze Challenge-Response kan verwerken. Installeer alsjeblieft Yubichallenge via Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Kan het OTP hulpbestand niet laden!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Gebruik de OtpKeyProv plugin in KeePass 2.x (PC) om jouw database in te stellen voor gebruik met OTPs!</string>
   <string name="otp_discarded_because_no_db">Selecteer eerst de database. OTP is om veiligheidsredenen verwijderd.</string>
@@ -918,6 +917,7 @@ Eerste publieke publicatie
     <item>Wachtwoord + OTP (veilige modus)</item>
     <item>Wachtwoord + Challenge-Response</item>
     <item>Wachtwoord + Challenge-Response (veilige modus)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Negeer mislukte certificaat validaties</item>

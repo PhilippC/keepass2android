@@ -744,6 +744,15 @@
 
   
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
+  <string name="ChangeLog_1_06">
+    Version 1.06 preview 1\n
+    * Integrate (improved) Yubichallenge functionality into the app (requires new permission but might me removed after preview again)\n
+    * Implement support for KeepassXC-style Challenge-Response. Note: Database format must be KDBX4!\n
+    * Refuse to load trashed files from Google Drive\n
+    * Switch TLS implementation for FTPS, add workaround to JSch bug with servers supporting gssapi-with-mic\n
+    * bug fixes\n
+  </string>
+  
   <string name="ChangeLog_1_05">
     Version 1.05\n
     * Use notification channels for Android 8, allowing configuration through system settings\n

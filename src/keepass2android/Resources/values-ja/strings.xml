@@ -207,6 +207,7 @@
   <string name="remember_keyfile_summary">キーファイルの場所を記憶します。</string>
   <string name="remember_keyfile_title">キーファイルを記憶する</string>
   <string name="remove_from_filelist">削除</string>
+  <string name="edit">編集</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">ルート</string>
   <string name="KeyDerivFunc">キー派生関数</string>
@@ -270,6 +271,7 @@
   <string name="enter_filename_details_create_import">インポートするファイルは、次の手順で選択します。</string>
   <string name="enable_quickunlock">クイック解除を有効にする</string>
   <string name="QuickUnlock_label">パスワードの最後の %1$d 文字を入力:</string>
+  <string name="QuickUnlock_label_secure">クイック解除コードを入力:</string>
   <string name="QuickUnlock_button">クイック解除!</string>
   <string name="QuickUnlock_lockButton">データベースを閉じる</string>
   <string name="QuickUnlockDefaultEnabled_title">クイック解除をデフォルトで有効にする</string>
@@ -282,6 +284,8 @@
   <string name="QuickUnlockIconHidden16_summary">クイック解除が正しく機能するには、通知を必要とします。アイコンなしで通知を表示するには、このオプションを選択します。</string>
   <string name="QuickUnlockLength_title">クイック解除キーの長さ</string>
   <string name="QuickUnlockLength_summary">クイック解除時のパスワードの最大文字数</string>
+  <string name="QuickUnlockHideLength_title">クイック解除の長さを表示しない</string>
+  <string name="QuickUnlockHideLength_summary">有効にすると、クイック解除コードの長さをクイック解除の画面に表示しません。</string>
   <string name="QuickUnlock_fail">クイック解除に失敗しました: パスワードが正しくありません!</string>
   <string name="BinaryDirectory_title">添付ファイルのディレクトリ</string>
   <string name="BinaryDirectory_summary">添付ファイルが保存されるディレクトリ。</string>
@@ -314,6 +318,8 @@
   <string name="ClearPasswordOnLeave_summary">データベースのロック解除をせずに画面を離れると、入力済みのマスターパスワードをクリアします。</string>
   <string name="LockWhenNavigateBack_title">アプリから抜けたときにロックする</string>
   <string name="LockWhenNavigateBack_summary">戻るボタンを押してこのアプリから抜けたときにデータベースをロックします。</string>
+  <string name="ActivateSearchViewOnStart_title">開始時に検索フィールドを有効にする</string>
+  <string name="ActivateSearchViewOnStart_summary">ロック解除後または入力を検索中、グループ表示に検索フィールドを有効にします</string>
   <string name="NoDonateOption_title">寄付オプションを表示しない</string>
   <string name="NoDonateOption_summary">この設定は寄贈者向けです。Keepass2Android をしばらく使用した後でのみ利用可能です。</string>
   <string name="NoDonateOption_question">寄付がなければ、このアプリは存在しないかもしれないし、継続的な改善を行うことができないかもしれません! まだ寄付を頂いていなければ、今すぐ寄付をご検討ください。</string>
@@ -321,6 +327,10 @@
   <string name="NoDonationReminder_summary">ダイムを与えないまたはすでに寄付されました。著者の誕生日でさえ、寄付金を求めません。</string>
   <string name="UseOfflineCache_title">データベース キャッシュ</string>
   <string name="UseOfflineCache_summary">アプリケーション キャッシュ ディレクトリにリモート データベース ファイルのコピーを保存します。これによりオフライン時でもリモート データベースを使用することができます。</string>
+  <string name="CreateBackups_title">ローカルバックアップ</string>
+  <string name="CreateBackups_summary">データベースを読み込んだ後、ローカルバックアップを作成します。</string>
+  <string name="UpdatingBackup">ローカルバックアップを更新しています...</string>
+  <string name="LocalBackupOf">%1$s のローカルバックアップ</string>
   <string name="AcceptAllServerCertificates_title">SSL 証明書</string>
   <string name="AcceptAllServerCertificates_summary">証明書の検証に失敗したときの動作を指定します。注:検証に失敗したときは、デバイスに証明書をインストールすることができます。</string>
   <string name="ClearOfflineCache_title">キャッシュをクリアしますか？</string>
@@ -349,6 +359,10 @@
   <string name="AutoSwitchBackKeyboard_summary">何もエントリーが開かれていない場合、前回のキーボードに戻します。</string>
   <string name="ShowUnlockedNotification_title">ロック解除中に通知アイコンを表示する</string>
   <string name="ShowUnlockedNotification_summary">データベースのロックが解除されている間、通知アイコンを表示します。</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8では、通知の新しい動作が導入されました。 Keepass2Androidの通知のアイコンを非表示にするには、システム設定で設定してください。 通知カテゴリーの重要度を最小に設定します。</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">設定を開く</string>
+  <string name="DontCare">不要</string>
+  <string name="DocumentAccessRevoked">ファイルに Keepass2Android がアクセスできません。削除されたか、アクセス許可が無効になっています。データベースの変更などを使用して、ファイルを再度開いてください。</string>
   <string name="PreloadDatabaseEnabled_title">データベース ファイルの事前読み込み</string>
   <string name="PreloadDatabaseEnabled_summary">パスワード入力中に、データベースファイルのバックグラウンドでの読み込みやダウンロードを開始します。</string>
   <string name="AskOverwriteBinary">同じ名前を持つ既存のバイナリを上書きしますか。</string>
@@ -461,7 +475,6 @@
   <string name="init_otp">OTP 補助ファイルの読み込み&#8230;</string>
   <string name="otp_explanation">次のワンタイム パスワード (OTP) を入力してください。NFC 経由で入力するには、お使いのデバイスの背面にある Yubikey NEO をスワイプします。</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">チャレンジを処理できるアプリケーションが見つかりませんでした。Google Play から Yubichallenge をインストールしてください。</string>
   <string name="CouldntLoadOtpAuxFile">補助 OTP ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">KeePass 2.x (PC) の OtpKeyProv プラグインを使用して、OTP を使うようにデータベースを構成してください!</string>
   <string name="otp_discarded_because_no_db">最初のデータベースを選択してください。OTP は、セキュリティ上の理由から破棄されます。</string>
@@ -857,6 +870,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>パスワード + OTP secret (回復モード)</item>
     <item>パスワード + チャレンジ/レスポンス</item>
     <item>パスワード + チャレンジ/レスポンス secret (回復モード)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>証明書検証エラーを無視する</item>

@@ -478,7 +478,6 @@
   <string name="init_otp">Otevřít pomocný soubor OTP&#8230;</string>
   <string name="otp_explanation">Zadejte další jednorázová hesla (OTP). Přejeďte po zadní straně vašeho Yubikey NEO zařízení pro vložení pomocí NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Nelze najít aplikaci, která dokáže zpracovat tuto výzvu. Prosím, nainstalujte Yubichallenge z Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Nelze načíst pomocný soubor OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Použijte OtpKeyProv plugin v KeePass 2.x (PC) pro konfiguraci databáze pro použití s OTP!</string>
   <string name="otp_discarded_because_no_db">Prosím nejprve vyberte databázi. OTP je z bezpečnostních důvodů vyřazen.</string>
@@ -902,6 +901,7 @@ První veřejné vydání
     <item>Heslo + OTP heslo (režim obnovení)</item>
     <item>Heslo + Odpověď výzvy</item>
     <item>Heslo + Odpověď výzvy (režim obnovení)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovat neúspěšné ověření certifikátu</item>

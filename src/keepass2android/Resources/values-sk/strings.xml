@@ -478,7 +478,6 @@
   <string name="init_otp">Načítať doplnkový súbor pre jednorazové heslá&#8230;</string>
   <string name="otp_explanation">Zadajte ďalšie jednorazové heslá (OTP). Priložte Yubikey NEO na zadnú stranu zariadenia alebo zadajte prostredníctvom NFC.</string>
   <string name="otp_hint">Jednorazové heslo %1$d</string>
-  <string name="YubiChallengeNotInstalled">Nepodarilo sa nájsť aplikáciu pre spracovanie tejto výzvy. Prosím nainštalujte si Yubichallenge z obchodu Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Nemožno načítať doplnkový súbor pre jednorazové heslá!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Na použitie jednorazových hesiel v databáze prosím použite prídavný modul OtpKeyProv v programe keePass 2.x (PC)!</string>
   <string name="otp_discarded_because_no_db">Najskôr vyberte databázu. Jednorazové heslo bolo vymazané z bezpečnostných dôvodov.</string>
@@ -935,6 +934,7 @@ Prvé verejné vydanie
     <item>Heslo + jadro OTP (režim obnovy)</item>
     <item>Heslo + odpoveď na výzvu</item>
     <item>Heslo + tajná odpoveď na výzvu (režim obnovenia)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovať zlyhania pri overení certifikátu</item>

@@ -447,7 +447,6 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="init_otp">Se încarcă fișierul auxiliar OTP&#8230;</string>
   <string name="otp_explanation">Introduceți următorul One-time-passwords (OTP). Puneți Youbikey NEO-ul vostru pe spatele aparatului pentru a introduce prin NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Nu s-a găsit o aplicație care să se ocupe de această provocare. Te rog să instalezi Yubichallenge de pe Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Nu se poate încărca fișierul auxiliar OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Te rugăm să folosești plugin-ul OtpKeyProv în KeePass 2.x (PC) pentru a configura baza de date pentru OTP-uri!</string>
   <string name="otp_discarded_because_no_db">Te rugăm să selectezi baza de date întâi. OTP este ignorat pentru motive de securitate.</string>
@@ -726,6 +725,7 @@ Versiunea publică iniţială
     <item>Parolă + OTP secret (modul de recuperare)</item>
     <item>Parolă + Challenge-Response</item>
     <item>Parolă +  Challenge-Response secret (modul de recuperare)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoră eșecuri de validare a certificatului</item>

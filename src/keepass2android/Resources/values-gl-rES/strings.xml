@@ -465,7 +465,6 @@
   <string name="init_otp">Cargar arquivo auxiliar OTP&#8230;</string>
   <string name="otp_explanation">Intrduza os seguintes contrasinais de un uso (OTPs). Faga pasar o seu Yubikey NEO pola parte traseira do seu dispositivo para entrar por NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Non se puido atopar unha app que poida xestionar o reto. Instale Yubichallenge desde Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Non se puido cargar o arquivo auxiliar OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Utilice o plugin OtpKeyProv en KeePass 2.x (PC) para configurar a súa base de datos para o uso con OTPs!</string>
   <string name="otp_discarded_because_no_db">Seleccione primeiro a base de datos. A OTP é descartada por razóns de seguridade.</string>
@@ -904,6 +903,7 @@ Lanzamento público inicial
     <item>Contradinal e OTP segredo (modo de recuperación)</item>
     <item>Contrasinal e reto-resposta</item>
     <item>Contrasinal e reto-resposta segredo (modo de recuperación)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar fallos de validación de certificados</item>

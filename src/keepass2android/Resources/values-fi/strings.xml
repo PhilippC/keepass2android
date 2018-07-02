@@ -479,7 +479,6 @@
   <string name="init_otp">Lataa OTP-aputiedosto&#8230;</string>
   <string name="otp_explanation">Syötä seuraava kertakäyttösalasana (OTP). Pyyhkäise Yubikey NEO:asi laitteesi selkämystä vasten syöttääksesi salasanasi NFC:n kautta.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Sopivaa sovellusta ei löytynyt. Asenna Yubichallenge Google Playsta.</string>
   <string name="CouldntLoadOtpAuxFile">OTP-aputiedostoa ei voitu ladata!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Käytä OtpKeyProv-laajennusta KeePass 2.x:n PC-versiossa, ja määritä tietokanta käyttämään OTP-kertakäyttösalasanoja!</string>
   <string name="otp_discarded_because_no_db">Valitse ensin tietokanta. OTP hylätään turvallisuussyistä.</string>
@@ -910,6 +909,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
     <item>Salasana + OTP salaus (Palautustila)</item>
     <item>Salasana + Haastemenetelmä</item>
     <item>Salasana + Haastemenetelmä (palautustila)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ohita varmenteiden virheet</item>

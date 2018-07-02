@@ -475,7 +475,6 @@ Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androi
   <string name="init_otp">Ladda engångslösenordsfil&#8230;</string>
   <string name="otp_explanation">Ange nästa engångslösenord. Svep din Yubikey NEO på baksidan av enheten att gå in via NFC.</string>
   <string name="otp_hint">Engångslåsenord %1$d</string>
-  <string name="YubiChallengeNotInstalled">Kunde inte hitta en app som klarar utmaningen. Installera Yubichallenge från Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Kunde inte ladda engångslösenordsfil!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Vänligen använd OtpKeyProv plugin i KeePass 2.x (PC) för att konfigurera din databas för användning med engångslåsenord!</string>
   <string name="otp_discarded_because_no_db">Välj databas först. OTP ignorerades av säkerhetsskäl.</string>
@@ -727,6 +726,7 @@ Version 0.9.6\n * Tillåt att importera nyckelfil och/eller lokala databasfil ti
     <item>Lösenord + engångslösenordshemlighet (återställningsläge)</item>
     <item>Lösenord + Utmaning-Svar</item>
     <item>Lösenord + Utmaning-Svar hemlighet (återställningsläge)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorera certifikatvalideringsfel</item>

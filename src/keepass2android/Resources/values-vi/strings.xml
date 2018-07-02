@@ -459,7 +459,6 @@
   <string name="init_otp">Tải tập tin phụ trợ OTP&#8230;</string>
   <string name="otp_explanation">Nhập mật-mã-một-lần tiếp theo (OTPs). Trượt NEO Yubikey của bạn ở mặt sau của điện thoại để nhập qua NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Không thể tìm thấy ứng dụng có thể xử lý những thách thức. Xin vui lòng cài đặt Yubichallenge từ Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Không thể tải tập tin phụ trợ OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Xin vui lòng sử dụng công cụ OtpKeyProv trong KeePass 2.x (PC) để cài đặt cấu hình cơ sở dữ liệu của bạn để sử dụng với OTPs!</string>
   <string name="otp_discarded_because_no_db">Xin vui lòng chọn cơ sở dữ liệu trước. OTP bị loại bỏ vì lý do an ninh.</string>
@@ -748,6 +747,7 @@ Bản phát hành chính thức đầu tiên</string>
     <item>Mật mã + bí mật OTP (chế độ phục hồi)</item>
     <item>Mật mã + trả lời-thách thức</item>
     <item>Mật mã + trả lời-thách thức bí mật (chế độ phục hồi)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Bỏ qua các thất bại khi xác nhận chứng chỉ</item>

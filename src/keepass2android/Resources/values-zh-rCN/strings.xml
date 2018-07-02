@@ -474,7 +474,6 @@
   <string name="init_otp">加载一次性密码辅助文件......</string>
   <string name="otp_explanation">通过 NFC 刷您的 Yubikey NEO 设备来输入下一个一次性密码。</string>
   <string name="otp_hint">一次性密码 %1$d</string>
-  <string name="YubiChallengeNotInstalled">无应用程序可以处理该操作。请从 Play 商店中安装 Yubichallenge</string>
   <string name="CouldntLoadOtpAuxFile">不能加载一次性密码文件 ！</string>
   <string name="CouldntLoadOtpAuxFile_Hint">请使用 KeePass 2.x（电脑端）的 OtpKeyProv 插件来配置您的数据库使用 OTPs ！</string>
   <string name="otp_discarded_because_no_db">请先选择数据库。出于安全原因，一次性密码将被丢弃。</string>
@@ -895,6 +894,7 @@ Initial public release
     <item>密码 + 一次性密码 （恢复模式）</item>
     <item>密码 + 挑战—响应</item>
     <item>密码 + 挑战—响应（恢复模式）</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>忽略证书验证失败</item>

@@ -475,7 +475,6 @@ Gå venligst til systemindstillinger først.</string>
   <string name="init_otp">Indlæs OTP-hjælpefil&#8230;</string>
   <string name="otp_explanation">Indtast de næste En-Gangs-Adgangskoder (OTP\'er). Stryg din Yubikey NEO på bagsiden af din enhed for at indtaste via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Kunne ikke finde en app, der kan klare udfordringen. Installer Yubichallenge fra Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Kunne ikke indlæse OTP-hjælpefil!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Brug venligst OtpKeyProv plugin\'en i KeePass 2.x (PC) til at konfigurere din database til brug med OTP\'er!</string>
   <string name="otp_discarded_because_no_db">Vælg venligst databasen først. OTP er kasseret af sikkerhedsmæssige årsager.</string>

@@ -453,7 +453,6 @@
   <string name="init_otp">تحميل الملف الخارجي الخاص بكلمة المرور لمرة واحدة OTP&#8230;</string>
   <string name="otp_explanation">(12345) emad.</string>
   <string name="otp_hint">كلمة مرور مؤقتة %1$d</string>
-  <string name="YubiChallengeNotInstalled">تعذر العثور على تطبيق يمكنه التعامل مع هذا التحدي. يرجى تثبيت تطبيق يوبيتشالينج Yubichallenge من متجر  Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">تعذر تحميل الملف الخارجي الخاص ب \"كلمة المرور لمرة واحدة\"  OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">الرجاء استخدام ألأضافة \"أوتبكييبروف\" OtpKeyProv في  KeePass 2.x (نسخة PC) لتمكين قاعدة بياناتك مناستخدام \"كلمة المرور لمرة واحدة\" OTP !</string>
   <string name="otp_discarded_because_no_db">الرجاء تحديد قاعدة البيانات أولاً. سيتم تجاهل كلمة المرور لمرة واحدة لدواعي ألأمان.</string>
@@ -673,6 +672,7 @@
     <item>كلمة السر + سر \"كلمة السر أحادية الاستخدام\" (وضع الاسترجاع)</item>
     <item>كلمة السر + إجابة السؤال الشخصي</item>
     <item>كلمة السر + سر إجابة السؤال الشخصي (وضع الاسترجاع)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>تجاهل فشل التحقق من صحة الشهادة</item>

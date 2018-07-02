@@ -466,6 +466,7 @@
     <item>Password + OTP secret (recovery mode)</item>
     <item>Pasahitza + Galdera-erantzuna</item>
     <item>Password + Challenge-Response secret (recovery mode)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignore certificate validation failures</item>
