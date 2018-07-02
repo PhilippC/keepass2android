@@ -125,10 +125,26 @@ namespace keepass2android
 
 	    public Intent GetYubichallengeIntent(byte[] challenge)
 	    {
-	        Intent chalIntent = new Intent(this, typeof(YubiChallengeActivity));
-	        chalIntent.PutExtra("challenge", challenge);
-	        return chalIntent;
-	        
+	        {
+	            Intent chalIntent = new Intent("net.pp3345.ykdroid.intent.action.CHALLENGE_RESPONSE");
+	            chalIntent.PutExtra("challenge", challenge);
+
+	            IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
+	            bool isIntentSafe = activities.Count > 0;
+	            if (isIntentSafe)
+	            {
+	                return chalIntent;
+	            }
+            }
+            
+	        {
+	            Intent chalIntent = new Intent(this, typeof(YubiChallengeActivity));
+	            chalIntent.PutExtra("challenge", challenge);
+
+
+	            return chalIntent;
+	        }
+
 	    }
     }
 }
