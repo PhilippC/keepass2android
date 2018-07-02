@@ -73,7 +73,7 @@ namespace keepass2android
 			i.PutExtra(KeyParent, parent.Uuid.ToHexString());
 			i.PutExtra(KeyGroupUuid, groupToEdit.Uuid.ToHexString());
 
-			act.StartActivityForResult(i, 0);
+			act.StartActivityForResult(i, GroupEditActivity.RequestCodeGroupEdit);
 		}
 		
 		protected override void OnCreate (Bundle savedInstanceState)
