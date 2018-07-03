@@ -130,7 +130,7 @@ namespace keepass2android.search
 						ThreadPool.QueueUserWorkItem(state =>
 							{
                                 var original = iconDrawable.Bitmap;
-                                Bitmap copy = Bitmap.CreateBitmap(original.Width, original.Height, original.GetConfig());
+                                Bitmap copy = Bitmap.CreateBitmap(original.Width, original.Height, original.GetConfig() ?? Bitmap.Config.Argb8888);
                                 Canvas copiedCanvas = new Canvas(copy);
                                 copiedCanvas.DrawBitmap(original, 0f, 0f, null);
 
