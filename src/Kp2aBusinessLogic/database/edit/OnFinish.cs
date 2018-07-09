@@ -107,7 +107,7 @@ namespace keepass2android
 		{
 			if ( !String.IsNullOrEmpty(message) ) {
 				Kp2aLog.Log("OnFinish message: "+message);
-				Toast.MakeText(ctx, message, ToastLength.Long).Show();
+				Toast.MakeText(ctx ?? Application.Context, message, ToastLength.Long).Show();
 			}
 		}
 	}
