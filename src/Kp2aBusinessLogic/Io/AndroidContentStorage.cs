@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Provider;
 using Java.IO;
 using KeePassLib.Serialization;
+using KeePassLib.Utility;
 using Console = System.Console;
 
 namespace keepass2android.Io
@@ -77,8 +78,9 @@ namespace keepass2android.Io
 
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{
-			return "";
-		}
+		    return UrlUtil.StripExtension(
+		        UrlUtil.GetFileName(ioc.Path));
+        }
 
 		public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
