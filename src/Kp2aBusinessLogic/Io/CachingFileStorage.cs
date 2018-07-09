@@ -345,57 +345,7 @@ namespace keepass2android.Io
 
 		private class CachedWriteTransaction: IWriteTransaction
 		{
-			private class CachedWriteMemoryStream : MemoryStream
-			{
-				private readonly IOConnectionInfo ioc;
-				private readonly CachingFileStorage _cachingFileStorage;
-				private readonly bool _useFileTransaction;
-				private bool _closed;
-
-				public CachedWriteMemoryStream(IOConnectionInfo ioc, CachingFileStorage cachingFileStorage, bool useFileTransaction)
-				{
-					this.ioc = ioc;
-					_cachingFileStorage = cachingFileStorage;
-					_useFileTransaction = useFileTransaction;
-				}
-
-
-				public override void Close()
-				{
-					if (_closed) return;
-
-					//write file to cache:
-					//(note: this might overwrite local changes. It's assumed that a sync operation or check was performed before
-					string hash;
-					using (var hashingStream = new HashingStreamEx(File.Create(_cachingFileStorage.CachedFilePath(ioc)), true, new SHA256Managed()))
-					{
-						Position = 0;
-						CopyTo(hashingStream);
-
-						hashingStream.Close();
-						hash = MemUtil.ByteArrayToHexString(hashingStream.Hash);
-					}
-
-					File.WriteAllText(_cachingFileStorage.VersionFilePath(ioc), hash);
-					//update file on remote. This might overwrite changes there as well, see above.
-					Position = 0;
-					if (_cachingFileStorage.IsCached(ioc))
-					{
-						//if the file already is in the cache, it's ok if writing to remote fails.
-						_cachingFileStorage.TryUpdateRemoteFile(this, ioc, _useFileTransaction, hash);
-					}
-					else
-					{
-						//if not, we don't accept a failure (e.g. invalid credentials would always remain a problem)
-						_cachingFileStorage.UpdateRemoteFile(this, ioc, _useFileTransaction, hash);
-					}
-
-					base.Close();
-
-					_closed = true;
-				}
-
-			}
+			
 
 			private readonly IOConnectionInfo _ioc;
 			private readonly bool _useFileTransaction;
@@ -429,17 +379,48 @@ namespace keepass2android.Io
 
 			public Stream OpenFile()
 			{
-				_memoryStream = new CachedWriteMemoryStream(_ioc, _cachingFileStorage, _useFileTransaction);
+				_memoryStream = new MemoryStream();
 				return _memoryStream;
 			}
 
 			public void CommitWrite()
 			{	
-				//the transaction is committed in the stream's Close
 				_committed = true;
+			    _memoryStream.Close();
+
+			    //write file to cache:
+			    //(note: this might overwrite local changes. It's assumed that a sync operation or check was performed before
+
+			    byte[] output = _memoryStream.ToArray();
+
+			    string hash;
+			    using (var hashingStream = new HashingStreamEx(File.Create(_cachingFileStorage.CachedFilePath(_ioc)), true, new SHA256Managed()))
+			    {
+			        hashingStream.Write(output, 0, output.Length);
+
+			        hashingStream.Close();
+			        hash = MemUtil.ByteArrayToHexString(hashingStream.Hash);
+			    }
+
+			    File.WriteAllText(_cachingFileStorage.VersionFilePath(_ioc), hash);
+                //create another memory stream which is open for reading again
+                MemoryStream openMemStream = new MemoryStream(output);
+                //update file on remote. This might overwrite changes there as well, see above.
+                if (_cachingFileStorage.IsCached(_ioc))
+			    {
+			        //if the file already is in the cache, it's ok if writing to remote fails.
+			        _cachingFileStorage.TryUpdateRemoteFile(openMemStream, _ioc, _useFileTransaction, hash);
+			    }
+			    else
+			    {
+			        //if not, we don't accept a failure (e.g. invalid credentials would always remain a problem)
+			        _cachingFileStorage.UpdateRemoteFile(openMemStream, _ioc, _useFileTransaction, hash);
+			    }
+			    
+                openMemStream.Dispose();
 			}
 
-		}
+        }
 
 
 		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
