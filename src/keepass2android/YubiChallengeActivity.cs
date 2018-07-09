@@ -61,6 +61,7 @@ namespace keepass2android
                 try
                 {
                     isoTag.Connect();
+                    isoTag.Timeout = 30000;
                     byte[] resp = isoTag.Transceive(selectCommand);
                     int length = resp.Length;
                     if (resp[length - 2] == (byte)0x90 && resp[length - 1] == 0x00)
