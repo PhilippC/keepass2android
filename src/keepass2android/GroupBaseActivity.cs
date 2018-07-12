@@ -53,6 +53,7 @@ namespace keepass2android
             { Resource.Id.cancel_insert_element, 20 },
             { Resource.Id.insert_element, 20 },
             //only use the same id if elements can be shown simultaneously!
+            { Resource.Id.fingerprint_infotext, 12 },
             { Resource.Id.autofill_infotext, 11 },
             { Resource.Id.notification_info_android8_infotext, 10 },
             { Resource.Id.infotext, 9 },
@@ -239,6 +240,7 @@ namespace keepass2android
             AppTask.StartInGroupActivity(this);
             AppTask.SetupGroupBaseActivityButtons(this);
 
+            UpdateFingerprintInfo();
             UpdateAutofillInfo();
             UpdateAndroid8NotificationInfo();
             UpdateInfotexts();
@@ -441,7 +443,33 @@ namespace keepass2android
                     }
                 };
             }
-            
+
+            if (FindViewById(Resource.Id.info_dont_show_fingerprint_again) != null)
+            {
+                FindViewById(Resource.Id.info_dont_show_fingerprint_again).Click += (sender, args) =>
+                {
+                    _prefs.Edit().PutBoolean(fingerprintinfohidden_prefskey, true).Commit();
+                    UpdateFingerprintInfo();
+                };
+            }
+
+
+            if (FindViewById(Resource.Id.hide_fingerprint_info) != null)
+            {
+                FindViewById(Resource.Id.hide_fingerprint_info).Click += (sender, args) =>
+                {
+                    _prefs.Edit().PutBoolean(fingerprintinfohidden_prefskey + App.Kp2a.GetDb().CurrentFingerprintPrefKey, true).Commit(); 
+                    UpdateFingerprintInfo();
+                };
+            }
+
+            if (FindViewById(Resource.Id.enable_fingerprint) != null)
+            {
+                FindViewById(Resource.Id.enable_fingerprint).Click += (sender, args) =>
+                {
+                    StartActivity(typeof(FingerprintSetupActivity));
+                };
+            }
 
             if (FindViewById(Resource.Id.info_dont_show_autofill_again) != null)
             {
@@ -565,6 +593,7 @@ namespace keepass2android
         }
 
         const string autofillservicewasenabled_prefskey = "AutofillServiceWasEnabled";
+        const string fingerprintinfohidden_prefskey = "fingerprintinfohidden_prefskey";
 
         private void UpdateAutofillInfo()
         {
@@ -592,6 +621,33 @@ namespace keepass2android
                 
             }
             UpdateBottomBarElementVisibility(Resource.Id.autofill_infotext, canShowAutofillInfo);
+        }
+
+        private void UpdateFingerprintInfo()
+        {
+            bool canShowFingerprintInfo = false;
+
+            bool disabledForDatabase = _prefs.GetBoolean(fingerprintinfohidden_prefskey + App.Kp2a.GetDb().CurrentFingerprintPrefKey, false);
+            bool disabledForAll = _prefs.GetBoolean(fingerprintinfohidden_prefskey, false);
+            if (!disabledForAll && !disabledForDatabase)
+            {
+
+                FingerprintModule fpModule = new FingerprintModule(this);
+                if (fpModule.FingerprintManager.IsHardwareDetected)
+                {
+                    FingerprintUnlockMode um;
+                    Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.GetDb().Ioc), ""), out um);
+                    canShowFingerprintInfo = um == FingerprintUnlockMode.Disabled;
+                }
+            }
+
+
+            if (canShowFingerprintInfo)
+            {
+                RegisterInfoTextDisplay("FingerprintSuggestion"); //this ensures that we don't show the general info texts too soon
+
+            }
+            UpdateBottomBarElementVisibility(Resource.Id.fingerprint_infotext, canShowFingerprintInfo);
         }
 
         protected void UpdateBottomBarElementVisibility(int resourceId, bool canShow)
