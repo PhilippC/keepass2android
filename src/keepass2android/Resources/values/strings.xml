@@ -358,7 +358,7 @@
 
   
   <string name="UseOfflineCache_title">Database caching</string>
-	<string name="UseOfflineCache_summary">Keep a copy of original database files in the application cache directory. This allows to use remote databases even when offline.</string>
+	<string name="UseOfflineCache_summary">Keep a copy of the database files in the application cache directory. This allows to use databases even while the database file is not accessible.</string>
 
   <string name="CreateBackups_title">Local backups</string>
   <string name="CreateBackups_summary">Create a local backup copy after successfully loading a database.</string>
@@ -372,7 +372,7 @@
 	
 	
 	<string name="ClearOfflineCache_title">Clear cache?</string>
-	<string name="ClearOfflineCache_question">This will delete all cached database files. Any changes you made while being offline which have not yet been synchronized will be lost! Continue?</string>
+	<string name="ClearOfflineCache_question">This will delete all cached database files. Any changes you made while having no access to the original database and which have not yet been synchronized will be lost! Continue?</string>
   <string name="CheckForFileChangesOnSave_title">Check for modifications</string>
   <string name="CheckForFileChangesOnSave_summary">Check whether the file was modified externally before saving changes.</string>
 	
@@ -457,27 +457,27 @@
   
   <string name="UseOfflineMode">Work on internal cache only</string>
   <string name="UseOnlineMode">Synchronize cache copy with source</string>
-  <string name="UseOfflineMode_Info">Avoid any network traffic by using the local cache copy of the file. Changes are stored in the local cache only and will only be uploaded when switching back to online mode.</string>
+  <string name="UseOfflineMode_Info">Database is loaded from internal cache. Changes are stored in the internal cache only and will only be synchronized when switching selecting Synchronize cache copy with source.</string>
   <string name="InOfflineMode">Working on internal cache only.</string>
 
 	<string name="SynchronizingCachedDatabase">Synchronizing cached database…</string>
 	<string name="DownloadingRemoteFile">Loading source file…</string>
-	<string name="UploadingFile">Uploading file…</string>
+	<string name="UploadingFile">Save file…</string>
 	<string name="RestoringRemoteFile">Restoring source file…</string>
 	<string name="FilesInSync">Files are in sync.</string>
 	<string name="SynchronizedDatabaseSuccessfully">Database synchronized successfully!</string>
 	<string name="CheckingDatabaseForChanges">Checking database for changes…</string>
 
-	<string name="CouldNotSaveToRemote">Could not save to remote: %1$s. Save again or use the Synchronize menu when remote connection is available again.</string>
-	<string name="CouldNotLoadFromRemote">Could not open from remote: %1$s. Loaded file from local cache. You can still make changes in the database and synchronize them later.</string>
+	<string name="CouldNotSaveToRemote">Could not save to source file: %1$s. Save again or use the Synchronize menu when file is accessible again.</string>
+	<string name="CouldNotLoadFromRemote">Could not access source file: %1$s. Loaded file from internal cache. You can still make changes in the database and synchronize them later.</string>
 	<string name="UpdatedRemoteFileOnLoad">Updated source file.</string>
 	<string name="NotifyOpenFromLocalDueToConflict">Opened internally cached file due to conflict with changes in source file. Use Synchronize menu to merge.</string>
 	<string name="LoadedFromRemoteInSync">Source file and cache are synchronized.</string>
-	<string name="UpdatedCachedFileOnLoad">Updated local cache copy of %1$s.</string>
+	<string name="UpdatedCachedFileOnLoad">Updated internal cache copy of %1$s.</string>
 	<string name="RemoteDatabaseUnchanged">No changes detected.</string>
 
 	<string name="ResolvedCacheConflictByUsingRemoteOtpAux">Updated cached OTP auxiliary file: Source counter was higher.</string>
-	<string name="ResolvedCacheConflictByUsingLocalOtpAux">Updated remote OTP auxiliary file: Local counter was higher.</string>
+	<string name="ResolvedCacheConflictByUsingLocalOtpAux">Updated original OTP auxiliary file: Local counter was higher.</string>
 
 	<string name="SynchronizingOtpAuxFile">Synchronizing OTP auxiliary file…</string>
 	
