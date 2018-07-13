@@ -372,7 +372,7 @@
 	
 	
 	<string name="ClearOfflineCache_title">Clear cache?</string>
-	<string name="ClearOfflineCache_question">This will delete all cached database files. Any changes you made while having no access to the original database and which have not yet been synchronized will be lost! Continue?</string>
+	<string name="ClearOfflineCache_question">This will delete all cached database files. Any changes you made while having no access to the source database and which have not yet been synchronized will be lost! Continue?</string>
   <string name="CheckForFileChangesOnSave_title">Check for modifications</string>
   <string name="CheckForFileChangesOnSave_summary">Check whether the file was modified externally before saving changes.</string>
 	
@@ -477,7 +477,7 @@
 	<string name="RemoteDatabaseUnchanged">No changes detected.</string>
 
 	<string name="ResolvedCacheConflictByUsingRemoteOtpAux">Updated cached OTP auxiliary file: Source counter was higher.</string>
-	<string name="ResolvedCacheConflictByUsingLocalOtpAux">Updated original OTP auxiliary file: Local counter was higher.</string>
+	<string name="ResolvedCacheConflictByUsingLocalOtpAux">Updated source OTP auxiliary file: Local counter was higher.</string>
 
 	<string name="SynchronizingOtpAuxFile">Synchronizing OTP auxiliary file…</string>
 	
