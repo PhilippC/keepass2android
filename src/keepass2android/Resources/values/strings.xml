@@ -457,7 +457,7 @@
   
   <string name="UseOfflineMode">Work on internal cache only</string>
   <string name="UseOnlineMode">Synchronize cache copy with source</string>
-  <string name="UseOfflineMode_Info">Database is loaded from internal cache. Changes are stored in the internal cache only and will only be synchronized when switching selecting Synchronize cache copy with source.</string>
+  <string name="UseOfflineMode_Info">Database is loaded from internal cache. Changes are stored in the internal cache only and will only be synchronized when selecting Synchronize cache copy with source.</string>
   <string name="InOfflineMode">Working on internal cache only.</string>
 
 	<string name="SynchronizingCachedDatabase">Synchronizing cached database…</string>
