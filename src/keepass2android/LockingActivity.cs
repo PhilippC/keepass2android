@@ -123,29 +123,37 @@ namespace keepass2android
 	    }
 
 
-	    public Intent GetYubichallengeIntent(byte[] challenge)
+
+	    public Intent TryGetYubichallengeIntentOrPrompt(byte[] challenge, bool promptToInstall)
 	    {
+	        Intent chalIntent = new Intent("net.pp3345.ykdroid.intent.action.CHALLENGE_RESPONSE");
+	        chalIntent.PutExtra("challenge", challenge);
+
+            IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
+	        bool isIntentSafe = activities.Count > 0;
+	        if (isIntentSafe)
 	        {
-	            Intent chalIntent = new Intent("net.pp3345.ykdroid.intent.action.CHALLENGE_RESPONSE");
-	            chalIntent.PutExtra("challenge", challenge);
-
-	            IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
-	            bool isIntentSafe = activities.Count > 0;
-	            if (isIntentSafe)
-	            {
-	                return chalIntent;
-	            }
-            }
-            
-	        {
-	            Intent chalIntent = new Intent(this, typeof(YubiChallengeActivity));
-	            chalIntent.PutExtra("challenge", challenge);
-
-
 	            return chalIntent;
 	        }
+	        if (promptToInstall)
+	        {
+	            AlertDialog.Builder b = new AlertDialog.Builder(this);
+	            string message = GetString(Resource.String.NoChallengeApp) + " " + GetString(Resource.String.PleaseInstallApp, new Java.Lang.Object[]{"ykDroid"});
 
+	            Intent yubichalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
+	            IList<ResolveInfo> yubichallengeactivities = PackageManager.QueryIntentActivities(yubichalIntent, 0);
+	            bool hasYubichallenge = yubichallengeactivities.Count > 0;
+	            if (hasYubichallenge)
+	                message += " " + GetString(Resource.String.AppOutdated, new Java.Lang.Object[] {"YubiChallenge"});
+
+                b.SetMessage(message);
+	            b.SetPositiveButton(Android.Resource.String.Ok,
+	                delegate { Util.GotoUrl(this, GetString(Resource.String.MarketURL) + "net.pp3345.ykdroid"); });
+	            b.SetNegativeButton(Resource.String.cancel, delegate { });
+	            b.Create().Show();
+	        }
+	        return null;
 	    }
-    }
+	}
 }
 

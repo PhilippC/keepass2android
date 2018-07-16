@@ -33,17 +33,16 @@ namespace keepass2android
                             }
 
                         }
-                        var chalIntent = Activity.GetYubichallengeIntent(challenge64);
+                        var chalIntent = Activity.TryGetYubichallengeIntentOrPrompt(challenge64, true);
 
                         if (chalIntent == null)
-                            throw new Exception("YubiChallenge not installed.");
-
-                        Activity.StartActivityForResult(chalIntent, _requestCode);
-		                
-		                
-
-
-
+                        {
+                            Error = Activity.GetString(Resource.String.NoChallengeApp);
+                        }
+                        else
+                        {
+                            Activity.StartActivityForResult(chalIntent, _requestCode);
+                        }
 
                     });
                 while ((Response == null) && (Error == null))

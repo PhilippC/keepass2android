@@ -566,18 +566,9 @@
 	<string name="ErrorUpdatingOtpAuxFile">Error updating OTP auxiliary file!</string>
 	<string name="SavingOtpAuxFile">Saving auxiliary OTP file…</string>
 
-  <string name="yubichallenge_title_activity_nfc">NFC Challenge-Response</string>
-  <string name="yubichallenge_challenging">Challenging</string>
-  <string name="yubichallenge_swipe">Please swipe your YubiKey NEO</string>
-  <string name="yubichallenge_swipe_and_hold">Please swipe and hold your YubiKey NEO</string>
-  <string name="yubichallenge_challenge_failed">Failed getting response, is the YubiKey and/or YubiChallenge configured correctly?</string>
-  <string name="yubichallenge_lost_tag">YubiKey NEO lost during operation</string>
-  <string name="yubichallenge_tag_error">Error communicating with YubiKey.</string>
-  <string name="yubichallenge_nfc_off">NFC seems to be off, turn on?</string>
-  <string name="yubichallenge_no_nfc">This device seems to not support NFC</string>
-  <string name="yubichallenge_response_error">YubiKey Error</string>
-  <string name="yubichallenge_bad_resp">The response from the YubiKey is incorrect</string>
-  
+  <string name="NoChallengeApp">Could not find an app that can handle the challenge.</string>
+  <string name="PleaseInstallApp">Please install %1$s from Google Play.</string>
+  <string name="AppOutdated">%1$s is no longer supported.</string>
 
     <string name="bad_resp">The challenge response is incorrect.</string>
   <string name="CouldntLoadChalAuxFile">Could not load auxiliary challenge file!</string>
