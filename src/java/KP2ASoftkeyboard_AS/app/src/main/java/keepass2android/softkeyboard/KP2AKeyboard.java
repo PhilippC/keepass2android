@@ -1423,7 +1423,7 @@ public class KP2AKeyboard extends InputMethodService
 				try
 				{
 					searchEntry.key = searchEntry.displayName
-						= getString(R.string.open_entry_for_app, clientPackageName);
+						= getString(R.string.open_entry_for_app, new Object[]{clientPackageName});
 				}
 				catch (java.util.FormatFlagsConversionMismatchException e) //buggy crowdin support for Arabic? 
 				{
