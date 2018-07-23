@@ -585,6 +585,14 @@
   <string name="ErrorReportAsk">Dotázat se po chybě</string>
   <string name="ErrorReportPrefTitle">Odeslat zprávu o chybách</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
+  <string name="ChangeLog_1_06">
+    Verze 1.06\n
+    * Změna na ykDroid místo YubiChallenge pro Yubikey Výzva-Odpověď.\n
+    * Implementována podpora pro Výzva-Odpověď typu KeepassXC. Poznámka: Databáze musí být ve formátu KDBX4!\n
+    * Odmítání načtení souborů z Google Drive přesunutých do koše\n
+    * Změna implementace TLS pro FTPS, přidán workaround pro JSch bug pro servery podporující gssapi-with-mic\n
+    * Opravy chyb\n
+  </string>
   <string name="ChangeLog_1_05">
     Verze 1.05\n
     * Použití kanálů upozornění pro Android 8. Toto umožní nastavení skrz nastavení systému.\n
