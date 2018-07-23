@@ -67,7 +67,7 @@
   <string name="entry_is_available">er tilgængelig</string>
   <string name="not_possible_im_picker">Kunne ikke åbne dialogboksen for valg af inputmetode. Aktiver venligst tastaturet manuelt.</string>
   <string name="please_activate_keyboard">Aktiver venligst Keepass2Android-tastaturet i systemindstillingerne.</string>
-  <string name="creating_db_key">Opretter databasenøgle&#8230;</string>
+  <string name="creating_db_key">Opretter databasenøgle…</string>
   <string name="current_group">Aktuel gruppe</string>
   <string name="current_group_root">Aktuel gruppe: Roden</string>
   <string name="database">Database</string>
@@ -159,7 +159,7 @@ Gå venligst til systemindstillinger først.</string>
   <string name="length">Længde</string>
   <string name="list_size_title">Gruppeliste størrelse</string>
   <string name="list_size_summary">Tekststørrelse i gruppelisten</string>
-  <string name="loading_database">Indlæser database&#8230;</string>
+  <string name="loading_database">Indlæser database…</string>
   <string name="lowercase">Små bogstaver</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Skjul adgangskode</string>
@@ -201,13 +201,13 @@ Gå venligst til systemindstillinger først.</string>
   <string name="pass_filename">KeePass database filnavn</string>
   <string name="password_title">Angiv database adgangskode</string>
   <string name="master_key_type">Vælg type af hovednøgle:</string>
-  <string name="progress_create">Opretter ny database&#8230;</string>
+  <string name="progress_create">Opretter ny database…</string>
   <string name="create_database">Opret database</string>
-  <string name="progress_title">Arbejder&#8230;</string>
+  <string name="progress_title">Arbejder…</string>
   <string name="remember_keyfile_summary">Husker placeringen af nøglefiler</string>
   <string name="remember_keyfile_title">Gem nøglefil</string>
   <string name="remove_from_filelist">Fjern</string>
-  <string name="edit">Ret</string>
+  <string name="edit">Rediger</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Rod</string>
   <string name="KeyDerivFunc">Nøgleafledningsfunktion</string>
@@ -218,8 +218,8 @@ Gå venligst til systemindstillinger først.</string>
   <string name="argon2parallelism">Parallelisme for Argon 2</string>
   <string name="database_name">Databasenavn</string>
   <string name="default_username">Standardbrugernavn for nye poster</string>
-  <string name="saving_database">Gemmer database&#8230;</string>
-  <string name="exporting_database">Eksporterer database&#8230;</string>
+  <string name="saving_database">Gemmer database…</string>
+  <string name="exporting_database">Eksporterer database…</string>
   <string name="export_database_successful">Database eksporteret med succes!</string>
   <string name="space">Mellemrum</string>
   <string name="search_label">Søg</string>
@@ -326,7 +326,6 @@ Gå venligst til systemindstillinger først.</string>
   <string name="NoDonationReminder_title">Bed aldrig nogensinde om at donere</string>
   <string name="NoDonationReminder_summary">Jeg vil ikke give dem en krone; eller jeg har allerede doneret. Bed ikke om en donation, ikke engang på skribentens fødselsdag.</string>
   <string name="UseOfflineCache_title">Databasemellemlager</string>
-  <string name="UseOfflineCache_summary">Gem en kopi af fjerndatabasefiler i programmets mellemlager. Dette gør det muligt at bruge eksterne databaser selv når de er offline.</string>
   <string name="CreateBackups_title">Lokale sikkerhedskopier</string>
   <string name="CreateBackups_summary">Opret en lokal sikkerhedskopi, efter at du vellykket har hentet en database.</string>
   <string name="UpdatingBackup">Opdaterer lokal sikkerhedskopi…</string>
@@ -334,7 +333,6 @@ Gå venligst til systemindstillinger først.</string>
   <string name="AcceptAllServerCertificates_title">SSL-certifikater</string>
   <string name="AcceptAllServerCertificates_summary">Definer adfærden, når certifikatvalidering mislykkes. Bemærk: Du kan installere certifikater på din enhed, hvis validering mislykkes!</string>
   <string name="ClearOfflineCache_title">Slet samling?</string>
-  <string name="ClearOfflineCache_question">Dette vil slette alle mellemlagrede databasefiler. Eventuelle ændringer, du har foretaget mens de er offline, som endnu ikke er synkroniseret, vil gå tabt! Vil du fortsætte?</string>
   <string name="CheckForFileChangesOnSave_title">Kontroller for ændringer</string>
   <string name="CheckForFileChangesOnSave_summary">Kontroller, om filen er blevet ændret eksternt, før du gemmer ændringer.</string>
   <string name="CheckForDuplicateUuids_title">Kontroller for UUID-dubletter</string>
@@ -368,7 +366,7 @@ Gå venligst til systemindstillinger først.</string>
   <string name="AskOverwriteBinary">Vil du overskrive det eksisterende binære, med samme navn?</string>
   <string name="AskOverwriteBinary_title">Overskriv eksisterende binære?</string>
   <string name="AskOverwriteBinary_yes">Overskriv</string>
-  <string name="AskOverwriteBinary_no">Navneskifte</string>
+  <string name="AskOverwriteBinary_no">Omdøb</string>
   <string name="AttachFailed">Den vedhæftede fil kunne ikke indlæses.</string>
   <string name="RecycleBin">Papirkurv</string>
   <string name="AskDeletePermanentlyEntry">Vil du slette denne post permanent? Vælg Nej for at bruge papirkurven.</string>
@@ -385,49 +383,34 @@ Gå venligst til systemindstillinger først.</string>
   <string name="suggest_improvements">Forslå eller stem for forbedringer</string>
   <string name="rate_app">Bedøm denne app</string>
   <string name="translate_app">Oversæt KP2A</string>
-  <string name="AddingEntry">Tilføj post&#8230;</string>
-  <string name="AddingGroup">Tilføj gruppe&#8230;</string>
-  <string name="DeletingEntry">Sletter emne&#8230;</string>
-  <string name="DeletingGroup">Sletter gruppe&#8230;</string>
-  <string name="DeletingItems">Sletter elementer&#8230;</string>
-  <string name="SettingPassword">Adgangskode for indstillinger&#8230;</string>
-  <string name="UndoingChanges">Fortryd ændringer&#8230;</string>
-  <string name="TransformingKey">Transformering af hovednøgle&#8230;</string>
-  <string name="DecodingDatabase">Afkodning af database&#8230;</string>
-  <string name="ParsingDatabase">Fortolker database&#8230;</string>
-  <string name="CheckingTargetFileForChanges">Kontrollerer målfil for ændringer&#8230;</string>
+  <string name="AddingEntry">Tilføj post…</string>
+  <string name="AddingGroup">Tilføj gruppe…</string>
+  <string name="DeletingEntry">Sletter emne…</string>
+  <string name="DeletingGroup">Sletter gruppe…</string>
+  <string name="DeletingItems">Sletter elementer…</string>
+  <string name="SettingPassword">Adgangskode for indstillinger…</string>
+  <string name="UndoingChanges">Fortryd ændringer…</string>
+  <string name="TransformingKey">Transformering af hovednøgle…</string>
+  <string name="DecodingDatabase">Afkodning af database…</string>
+  <string name="ParsingDatabase">Fortolker database…</string>
+  <string name="CheckingTargetFileForChanges">Kontrollerer målfil for ændringer…</string>
   <string name="TitleSyncQuestion">Flette ændringer?</string>
   <string name="MessageSyncQuestion">Databasefilen blev ændret eksternt. Vil du indlæse og flette ændringerne før du gemmer? Vælg Nej, hvis du vil overskrive de eksterne ændringer.</string>
-  <string name="SynchronizingDatabase">Flet ændringer&#8230;</string>
+  <string name="SynchronizingDatabase">Flet ændringer…</string>
   <string name="YesSynchronize">Ja, flet</string>
   <string name="NoOverwrite">Nej, overskriv</string>
-  <string name="UseOfflineMode">Arbejd offline</string>
-  <string name="UseOnlineMode">Arbejd online</string>
-  <string name="UseOfflineMode_Info">Undgå al netværkstrafik ved at bruge den lokale kopi af filen. Ændringer gemmes kun i det lokale mellemlager og vil kun blive uploadet, når du skifter tilbage til online-tilstand.</string>
-  <string name="InOfflineMode">Arbejder offline.</string>
-  <string name="SynchronizingCachedDatabase">Synkroniserer cache kopien af databasen&#8230;</string>
-  <string name="DownloadingRemoteFile">Henter fil fra netværket&#8230;</string>
-  <string name="UploadingFile">Uploader fil&#8230;</string>
-  <string name="RestoringRemoteFile">Genopretter fil fra netværket&#8230;</string>
+  <string name="SynchronizingCachedDatabase">Synkroniserer cache kopien af databasen…</string>
   <string name="FilesInSync">Filerne er ajour.</string>
   <string name="SynchronizedDatabaseSuccessfully">Succesfuld synkronisering af database!</string>
-  <string name="CheckingDatabaseForChanges">Kontrollerer databasen for ændringer&#8230;</string>
-  <string name="CouldNotSaveToRemote">Kunne ikke gemme filen på netværket: %1$s. Gem igen eller brug menuen Synkroniser når netværket er tilgængeligt igen.</string>
-  <string name="CouldNotLoadFromRemote">Kunne ikke åbne filen fra netværket: %1$s. Hentede filen fra den lokale cache. Du kan stadigvæk foretage ændringer i databasen og synkronisere den senere.</string>
-  <string name="UpdatedRemoteFileOnLoad">Opdaterede filen fra netværket.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Åbnede den lokale fil på grund af modstridende ændringer i filen på netværket. Brug menupunktet Synkroniser til at sammenflette.</string>
-  <string name="LoadedFromRemoteInSync">Filen på netværket og cachen er ajour.</string>
-  <string name="UpdatedCachedFileOnLoad">Opdaterede den lokale cache kopi af %1$s.</string>
+  <string name="CheckingDatabaseForChanges">Kontrollerer databasen for ændringer…</string>
   <string name="RemoteDatabaseUnchanged">Der blev ikke fundet nogen ændringer.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Opdaterede OTP hjælp filen: Filen fra netværkets tæller var større.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Opdaterede OTP hjælp filen fra netværket: Den lokale tæller var større.</string>
-  <string name="SynchronizingOtpAuxFile">Synkroniserer OTP hjælp filen&#8230;</string>
+  <string name="SynchronizingOtpAuxFile">Synkroniserer OTP hjælp filen…</string>
   <string name="database_file">databasefilen</string>
   <string name="otp_aux_file">OTP hjælp fil</string>
   <string name="ErrorOcurred">Der opstod en fejl:</string>
   <string name="DuplicateUuidsError">Databasen er beskadiget: Dubletter af nøgleværdier fundet. (Har du gemt med Minikeepass?) Importer venligst til en ny database igen med Keepass 2 til PC og vælg \'Opret nye ID\'er\'.</string>
   <string name="DuplicateUuidsErrorAdditional">Du kan deaktivere denne fejlmeddelelse i Indstillinger/Programindstillinger/Filhåndtering/Kontroller for UUID-dubletter. Vær opmærksom på at programmet kan opføre sig uventet. Det anbefales at reparere databasen.</string>
-  <string name="synchronize_database_menu">Synkroniserer databasen&#8230;</string>
+  <string name="synchronize_database_menu">Synkroniserer databasen…</string>
   <string name="CannotMoveGroupHere">Kan ikke flytte gruppen til denne gruppe.</string>
   <string name="donate_question">I dag er det Oktoberfest! Ville i dag ikke være en god dag at købe mig en øl, hvis du kan lide Keepass2Android?</string>
   <string name="donate_bday_question">Den 10. maj? Det er min fødselsdag! Hvad med at sende mig nogle fødselsdagshilsener sammen med en lille fødselsdagsgave, hvis du kan lide dette program? Det ville virkelig gøre mig glad! :-)</string>
@@ -472,7 +455,7 @@ Gå venligst til systemindstillinger først.</string>
   <string name="hint_key_file">Vælg, hvis du vil bruge en nøglefil ud over dit hovedadgangskode:</string>
   <string name="use_key_file">Brug nøgle fil</string>
   <string name="error_adding_keyfile">Fejl under tilføjelse af nøglefilen!</string>
-  <string name="init_otp">Indlæs OTP-hjælpefil&#8230;</string>
+  <string name="init_otp">Indlæs OTP-hjælpefil…</string>
   <string name="otp_explanation">Indtast de næste En-Gangs-Adgangskoder (OTP\'er). Stryg din Yubikey NEO på bagsiden af din enhed for at indtaste via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Kunne ikke indlæse OTP-hjælpefil!</string>
@@ -481,11 +464,13 @@ Gå venligst til systemindstillinger først.</string>
   <string name="otp_discarded_no_space">OTP kasseret: Alle OTP\'er er allerede indtastet!</string>
   <string name="otp_discarded_because_db_open">Luk venligst databasen først. OTP er kasseret.</string>
   <string name="otps_pending">(En eller flere OTP\'er er allerede tilgængelige)</string>
-  <string name="otpsecret_hint">OTP-hemmelighed (f.eks. 01 23 ab cd&#8230;)</string>
+  <string name="otpsecret_hint">OTP-hemmelighed (f.eks. 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">Fejl ved analyse af OTP-hemmelighed!</string>
   <string name="OtpKeyError">Kunne ikke oprette OTP-nøgle! Vær sikker på, at du har indtastet de korrekte OTP\'er.</string>
   <string name="ErrorUpdatingOtpAuxFile">Fejl ved opdatering af OTP-hjælpefil!</string>
+  <string name="ErrorUpdatingChalAuxFile">Fejl ved opdatering af OTP-hjælpefil!</string>
   <string name="DebugLog_title">Brug logfil</string>
+  <string name="loading">Indlæser…</string>
   <string name="plugin_web">Find plug-ins på nettet</string>
   <string name="plugin_scopes">Scopes</string>
   <string name="query_credentials_for_url">%1$s anmoder om adgangsoplysninger for %2$s.</string>
@@ -549,7 +534,7 @@ Filen er beskadiget.\n
     <item>15 minutes</item>
     <item>30 minutes</item>
     <item>1 hour</item>
-    <item>Never</item>
+    <item>Aldrig</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Lille</item>
