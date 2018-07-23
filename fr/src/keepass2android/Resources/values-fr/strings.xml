@@ -582,6 +582,13 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="ErrorReportAsk">Demander après une erreur</string>
   <string name="ErrorReportPrefTitle">Envoyer des rapports d\'erreurs</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
+  <string name="ChangeLog_1_06">
+Version 1.06\n
+* Changement vers ykDroid au lieu de YubiChallenge comme application pour la réponse-de-requête Yubikey.\n
+* implémentation du support de réponse-de-requête compatible KeepassXC. Note : Le format de base de données doit être KDBX4 !\n
+* Blocage du chargement de fichiers supprimés depuis Google Drive\n
+* Changement d\'implémentation TLS pour FTPS, ajout d\'un contournement du bug JSch avec les serveurs compatibles avec gssapi-with-mic\n
+* Correction de bugs\n  </string>
   <string name="ChangeLog_1_05">
     Version 1.05\n * Utilisation des canaux de notification Android 8, ce qui permet la configuration via les paramètres système\n * Affichage de l’icône entrée dans la notification\n * Utilisation d\'icônes adaptatifs pour Android 8, utilisez l\'icône arrondi du lanceur pour Android 7\n * Permet d’activer la recherche au déverrouillage (voir réglages) \n * Modification de comment les fichiers sont écrits en utilisant le framework Storage Access, corrections de problèmes sur les mises à jour des fichiers ouvert sur Google Drive avec le sélecteur du système fichier\n * Ajout de textes d’informations afin d’éviter certaines incompréhensions commune \n * Création de sauvegardes locales pour les bases ouvertes avec succès pour réduire le risque de perte de donnée\n * Mise à jour de JSch pour supporté les derniers chiffrements SSH\n * Permettre la modification des paramètres de connexion, par exemple lorsque le mot de passe WebDav a changé\n * Ajout du support pour mot de passe statique Yubikey Neo\n * Permettre de désactiver les suggestions automatiques\n * Correction des fuites de données vers logcat\n * Corrections d\'anomalies\n
   </string>
