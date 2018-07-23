@@ -44,9 +44,9 @@
   <string name="QuickUnlock_prefs">Snel Openen</string>
   <string name="FileHandling_prefs">Omgang met bestanden</string>
   <string name="keyboard_prefs">Toetsenbord</string>
-  <string name="export_prefs">Exporteer database...</string>
+  <string name="export_prefs">Database exporteren...</string>
   <string name="fingerprint_prefs">Ontgrendelen met vingerafdruk</string>
-  <string name="import_db_prefs">Database importeren</string>
+  <string name="import_db_prefs">Database importeren naar interne map</string>
   <string name="import_keyfile_prefs">Sleutelbestand importeren</string>
   <string name="keyboardswitch_prefs">Toetsenbord wisselen</string>
   <string name="OnlyAvailableForLocalFiles">Alleen beschikbaar voor lokale bestanden.</string>
@@ -67,7 +67,7 @@
   <string name="entry_is_available">is beschikbaar</string>
   <string name="not_possible_im_picker">Kan venster om invoermethode te selecteren niet openen. Activeer toetsenbord handmatig.</string>
   <string name="please_activate_keyboard">Activeer het Keepass2Android-toetsenbord in de systeeminstellingen.</string>
-  <string name="creating_db_key">Databasesleutel wordt aangemaakt&#8230;</string>
+  <string name="creating_db_key">Databasesleutel wordt aangemaakt…</string>
   <string name="current_group">Huidige groep</string>
   <string name="current_group_root">Huidige groep: Root</string>
   <string name="database">Database</string>
@@ -75,7 +75,7 @@
   <string name="disclaimer_formal">Keepass2Android biedt GEEN ENKELE GARANTIE; Dit is gratis software, je mag deze software verspreiden onder de voorwaarden van de GPL versie 2 of recenter.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopieer naar klembord</string>
-  <string name="fingerprint_hint">Sensor</string>
+  <string name="fingerprint_hint">Raak de sensor aan</string>
   <string name="fingerprint_description">Bevestig vingerafdruk om verder te gaan</string>
   <string name="fingerprint_fatal">Vingerafdrukontgrendeling kan niet worden ingesteld:</string>
   <string name="fingerprint_not_recognized">Vingerafdruk niet herkend. Probeer opnieuw</string>
@@ -95,7 +95,7 @@
   <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid uw database enkel met jouw vingerafdruk te ontgrendelen.</string>
   <string name="enable_fingerprint_quickunlock_Info">Gebruik authenticatie d.m.v. vingerafdruk in plaats van de Snel Openen code. Dit slaat geen informatie op die gerelateerd is aan jouw hoofdwachtwoord.</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
-  <string name="entry_accessed">Benaderd</string>
+  <string name="entry_accessed">Geopend op</string>
   <string name="entry_cancel">Annuleren</string>
   <string name="entry_comment">Notities</string>
   <string name="entry_tags">Tags</string>
@@ -158,7 +158,7 @@
   <string name="length">Lengte</string>
   <string name="list_size_title">Grootte van de groepslijst</string>
   <string name="list_size_summary">Grootte van de tekst in de groepslijst</string>
-  <string name="loading_database">Database wordt geladen&#8230;</string>
+  <string name="loading_database">Database wordt geladen…</string>
   <string name="lowercase">Kleine letters</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Maskeer wachtwoord</string>
@@ -200,9 +200,9 @@
   <string name="pass_filename">KeePass databasebestandsnaam</string>
   <string name="password_title">Geef databasewachtwoord</string>
   <string name="master_key_type">Selecteer hoofdsleutel type:</string>
-  <string name="progress_create">Nieuwe database wordt aangemaakt&#8230;</string>
+  <string name="progress_create">Nieuwe database wordt aangemaakt…</string>
   <string name="create_database">Database maken</string>
-  <string name="progress_title">Bezig&#8230;</string>
+  <string name="progress_title">Bezig…</string>
   <string name="remember_keyfile_summary">Onthoudt de locatie van de sleutelbestanden</string>
   <string name="remember_keyfile_title">Sleutelbestand opslaan</string>
   <string name="remove_from_filelist">Verwijder</string>
@@ -217,8 +217,8 @@
   <string name="argon2parallelism">Parallellisme voor Argon 2</string>
   <string name="database_name">Databasenaam</string>
   <string name="default_username">Standaard gebruikersnaam voor nieuwe items</string>
-  <string name="saving_database">Database wordt opgeslagen&#8230;</string>
-  <string name="exporting_database">Database exporteren&#8230;</string>
+  <string name="saving_database">Database wordt opgeslagen…</string>
+  <string name="exporting_database">Database exporteren…</string>
   <string name="export_database_successful">Database succesvol geëxporteerd!</string>
   <string name="space">Spatie</string>
   <string name="search_label">Zoeken</string>
@@ -232,7 +232,7 @@
   <string name="search_hint">Zoeken</string>
   <string name="search_results">Zoekresultaten</string>
   <string name="search_in">Zoeken in</string>
-  <string name="select_other_entry">Maak een andere keuze</string>
+  <string name="select_other_entry">Kies een andere regel</string>
   <string name="select_group_then_add">Open de gewenste groep en druk op \"%1$s\"!</string>
   <string name="insert_element_here">Hier invoegen</string>
   <string name="twofish">Twofish</string>
@@ -279,7 +279,7 @@
   <string name="ViewDatabaseSecure_summary">Wanneer ingeschakeld is het maken van screenshots niet toegestaan en zal geen miniatuur van de app worden weergegeven in de lijst met recente apps.</string>
   <string name="QuickUnlockIconHidden_title">Snel Openen pictogram verbergen</string>
   <string name="QuickUnlockIconHidden_summary">Snel Openen helaas werkt niet zonder een notificatiepictogram weer te geven. Selecteer deze optie om een transparant pictogram te gebruiken.</string>
-  <string name="QuickUnlockIconHidden16_title">Verberg Snel Openen pictogram</string>
+  <string name="QuickUnlockIconHidden16_title">Snel Openen pictogram verbergen</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock vereist een notificatie om goed te werken. Selecteer deze optie om de notificatie pictogram niet te tonen.</string>
   <string name="QuickUnlockLength_title">Lengte van sleutel voor Snel Openen</string>
   <string name="QuickUnlockLength_summary">Maximum aantal tekens gebruikt voor Snel Openen wachtwoord.</string>
@@ -320,12 +320,12 @@
   <string name="ActivateSearchViewOnStart_title">Activeer zoekveld vanaf start</string>
   <string name="ActivateSearchViewOnStart_summary">Activeert het zoekveld in de groepsweergave na ontgrendelen of bij het zoeken voor een item</string>
   <string name="NoDonateOption_title">Verberg donatie-optie</string>
-  <string name="NoDonateOption_summary">Deze instelling is voor donateurs. Die is pas beschikbaar nadat Keepass2Android een tijdje wordt gebruikt.</string>
+  <string name="NoDonateOption_summary">Deze instelling komt beschikbaar als je donateur bent geworden en Keepass2Android een tijdje hebt gebruikt.</string>
   <string name="NoDonateOption_question">Zonder donaties zou deze app niet kunnen bestaan en constant verbeterd worden! Wanneer je nog niet gedoneerd hebt, overweeg dan dat nu te doen.</string>
   <string name="NoDonationReminder_title">Nooit vragen om een donatie</string>
   <string name="NoDonationReminder_summary">Ik geef je nog geen dubbeltje of ik heb al gedoneerd. Niet vragen om een donatie, zelfs niet op de verjaardag van de auteur.</string>
   <string name="UseOfflineCache_title">Database caching</string>
-  <string name="UseOfflineCache_summary">Houd een kopie van externe databasebestanden in de cachemap van de toepassing. Hierdoor kunt u ook externe databases gebruiken wanneer u offline bent.</string>
+  <string name="UseOfflineCache_summary">Houd een kopie van de databasebestanden in de app cache map. Hierdoor kan de database gebruikt worden, zelfs als het databasebestand niet toegankelijk is.</string>
   <string name="CreateBackups_title">Lokale back-ups</string>
   <string name="CreateBackups_summary">Maak een lokale back-up na het goed openen van een database.</string>
   <string name="UpdatingBackup">Lokale back-up bijwerken...</string>
@@ -333,9 +333,9 @@
   <string name="AcceptAllServerCertificates_title">SSL certificaten</string>
   <string name="AcceptAllServerCertificates_summary">Bepaal het gedrag wanneer de certificaatvalidatie mislukt. Merk op: Je kunt certificaten installeren op jouw apparaat als de validatie mislukt!</string>
   <string name="ClearOfflineCache_title">Cache wissen?</string>
-  <string name="ClearOfflineCache_question">Dit zal alle databasebestanden in de cache verwijderen. Eventuele wijzigingen die je hebt aangebracht terwijl je offline was en die nog niet zijn gesynchroniseerd zullen verloren gaan! Doorgaan?</string>
+  <string name="ClearOfflineCache_question">Dit zal alle gecachte databasebestanden verwijderen. Wijzigingen die zijn gemaakt toen er geen toegang was tot de brondatabase, en die nog niet zijn gesynchroniseerd, zullen verloren gaan! Doorgaan?</string>
   <string name="CheckForFileChangesOnSave_title">Controleer op wijzigingen</string>
-  <string name="CheckForFileChangesOnSave_summary">Controleer of het bestand extern is bewerkt voordat u wijzigingen opslaat.</string>
+  <string name="CheckForFileChangesOnSave_summary">Controleer of het bronbestand is bewerkt voordat u wijzigingen opslaat.</string>
   <string name="CheckForDuplicateUuids_title">Controleren op dubbele UUIDs</string>
   <string name="CheckForDuplicateUuids_summary">Controleer of de database beschadigd is door meerdere records met dezelfde ID. Dit kan tot onverwacht gedrag leiden.</string>
   <string name="ShowCopyToClipboardNotification_title">Klembordmeldingen</string>
@@ -384,49 +384,49 @@
   <string name="suggest_improvements">Geef suggesties of stem voor verbeteringen</string>
   <string name="rate_app">Waardeer deze app</string>
   <string name="translate_app">KP2A vertalen</string>
-  <string name="AddingEntry">Item toevoegen&#8230;</string>
-  <string name="AddingGroup">Groep toevoegen&#8230;</string>
-  <string name="DeletingEntry">Item verwijderen&#8230;</string>
-  <string name="DeletingGroup">Groep verwijderen&#8230;</string>
-  <string name="DeletingItems">Elementen verwijderen&#8230;</string>
-  <string name="SettingPassword">Wachtwoord instellen&#8230;</string>
-  <string name="UndoingChanges">Wijzigingen ongedaan maken&#8230;</string>
-  <string name="TransformingKey">Hoofdsleutel transformeren&#8230;</string>
-  <string name="DecodingDatabase">Database ontsleutelen&#8230;</string>
-  <string name="ParsingDatabase">Leest database&#8230;</string>
-  <string name="CheckingTargetFileForChanges">Doelbestand op veranderingen controleren&#8230;</string>
+  <string name="AddingEntry">Item toevoegen…</string>
+  <string name="AddingGroup">Groep toevoegen…</string>
+  <string name="DeletingEntry">Item verwijderen…</string>
+  <string name="DeletingGroup">Groep verwijderen…</string>
+  <string name="DeletingItems">Elementen verwijderen…</string>
+  <string name="SettingPassword">Wachtwoord instellen…</string>
+  <string name="UndoingChanges">Wijzigingen ongedaan maken…</string>
+  <string name="TransformingKey">Hoofdsleutel transformeren…</string>
+  <string name="DecodingDatabase">Database ontsleutelen…</string>
+  <string name="ParsingDatabase">Leest database…</string>
+  <string name="CheckingTargetFileForChanges">Doelbestand op veranderingen controleren…</string>
   <string name="TitleSyncQuestion">Wijzigingen samenvoegen?</string>
-  <string name="MessageSyncQuestion">Het databasebestand is extern bewerkt. Wil je de wijzigingen ophalen en samenvoegen voordat je opslaat? Selecteer Nee als je de externe wijzigingen wilt overschrijven.</string>
-  <string name="SynchronizingDatabase">Samenvoegen van wijzigingen&#8230;</string>
+  <string name="MessageSyncQuestion">Het database bronbestand is bewerkt. Wil je de wijzigingen ophalen en samenvoegen voordat je opslaat? Selecteer Nee als je de wijzigingen in het bronbestand wilt overschrijven.</string>
+  <string name="SynchronizingDatabase">Samenvoegen van wijzigingen…</string>
   <string name="YesSynchronize">Ja, samenvoegen</string>
   <string name="NoOverwrite">Nee, overschrijven</string>
-  <string name="UseOfflineMode">Offline werken</string>
-  <string name="UseOnlineMode">Online werken</string>
-  <string name="UseOfflineMode_Info">Vermijd elk netwerkverkeer door de lokale kopie van het bestand te gebruiken. Wijzigingen worden enkel lokaal opgeslagen en zullen worden geüpload wanneer naar de online-modus teruggeschakeld wordt.</string>
-  <string name="InOfflineMode">Offline werken.</string>
-  <string name="SynchronizingCachedDatabase">Tijdelijk opgeslagen database aan het synchroniseren&#8230;</string>
-  <string name="DownloadingRemoteFile">Downloaden van extern bestand&#8230;</string>
-  <string name="UploadingFile">Uploaden van bestand&#8230;</string>
-  <string name="RestoringRemoteFile">Herstellen externe bestand&#8230;</string>
+  <string name="UseOfflineMode">Werk alleen op de interne cache</string>
+  <string name="UseOnlineMode">Synchroniseer de interne cache met de bron</string>
+  <string name="UseOfflineMode_Info">Database is geladen uit interne cache. Wijzigingen worden alleen opgeslagen in de interne cache en worden alleen gesynchroniseerd bij het selecteren van Synchroniseer de cache kopie met de bron.</string>
+  <string name="InOfflineMode">Er wordt alleen uit de interne cache gewerkt.</string>
+  <string name="SynchronizingCachedDatabase">Tijdelijk opgeslagen database aan het synchroniseren…</string>
+  <string name="DownloadingRemoteFile">Bronbestand laden…</string>
+  <string name="UploadingFile">Bestand opslaan…</string>
+  <string name="RestoringRemoteFile">Bronbestand herstellen…</string>
   <string name="FilesInSync">Bestanden zijn aan het synchroniseren.</string>
   <string name="SynchronizedDatabaseSuccessfully">Database met succes gesynchroniseerd!</string>
-  <string name="CheckingDatabaseForChanges">Databases op veranderingen aan het controleren&#8230;</string>
-  <string name="CouldNotSaveToRemote">Kan niet extern opslaan naar: %1$s. Sla opnieuw op of gebruik het menu synchroniseren wanneer externe verbinding weer beschikbaar is.</string>
-  <string name="CouldNotLoadFromRemote">Kan niet extern openen: %1$s. Bestand geladen vanuit lokale cache. Je kunt nog steeds wijzigingen aanbrengen in de database en deze later synchroniseren.</string>
-  <string name="UpdatedRemoteFileOnLoad">Extern bestand bijgewerkt.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Lokaal bestand geopend in verband met een conflict met veranderingen in extern bestand. Gebruik het menu Synchroniseren om samen te voegen.</string>
-  <string name="LoadedFromRemoteInSync">Extern bestand en cache zijn gesynchroniseerd.</string>
-  <string name="UpdatedCachedFileOnLoad">Lokale cache kopie van %1$s is bijgewerkt.</string>
+  <string name="CheckingDatabaseForChanges">Databases op veranderingen aan het controleren…</string>
+  <string name="CouldNotSaveToRemote">Kan niet bewaren naar bronbestand: %1$s. Bewaar opnieuw of gebruik \'Database synchroniseren\' in het menu wanneer het bronbestand weer beschikbaar is.</string>
+  <string name="CouldNotLoadFromRemote">Geen toegang tot bronbestand: %1$s. Het bestand is geladen vanuit de interne cache. Je kunt nog steeds wijzigingen aanbrengen in de database en deze later synchroniseren.</string>
+  <string name="UpdatedRemoteFileOnLoad">Bronbestand bijgewerkt.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Bestand geopend uit de interne cache omdat er een conflict is met veranderingen in het bronbestand. Gebruik \'Database synchroniseren\' in het menu om samen te voegen.</string>
+  <string name="LoadedFromRemoteInSync">Bronbestand en interne cache zijn gesynchroniseerd.</string>
+  <string name="UpdatedCachedFileOnLoad">De kopie van %1$s in de interne cache is bijgewerkt.</string>
   <string name="RemoteDatabaseUnchanged">Geen veranderingen geconstateerd.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Gecachete OTP hulpbestand bijgewerkt: Externe teller was hoger.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Externe OTP hulpbestand bijgewerkt: Lokale teller was hoger.</string>
-  <string name="SynchronizingOtpAuxFile">OTP hulpbestand synchroniseren&#8230;</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">OTP hulpbestand in de cache is bijgewerkt: de teller in het bronbestand was hoger.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">OTP hulpbestand in de bronlocatie is bijgewerkt: de teller in de interne cache was hoger.</string>
+  <string name="SynchronizingOtpAuxFile">OTP hulpbestand synchroniseren…</string>
   <string name="database_file">database bestand</string>
   <string name="otp_aux_file">OTP hulpbestand</string>
   <string name="ErrorOcurred">Een fout is opgetreden:</string>
   <string name="DuplicateUuidsError">Database is corrupt: dubbele IDs gevonden. (Heb je het opgeslagen met Minikeepass?) Importeer alstublieft opnieuw in een nieuwe database met Keepass 2 voor PC en selecteer \'Nieuwe id\'s maken\'.</string>
   <string name="DuplicateUuidsErrorAdditional">Deze foutmelding kun je uitschakelen in Instellingen/Applicatie-instellingen/Omgang met bestanden/Controleren op dubbele UUIDs. Houd er rekening mee dat onverwacht gedrag kan optreden. Het is aanbevolen om de database te repareren.</string>
-  <string name="synchronize_database_menu">Database synchroniseren&#8230;</string>
+  <string name="synchronize_database_menu">Database synchroniseren…</string>
   <string name="CannotMoveGroupHere">Kan de groep niet naar deze groep verplaatsen.</string>
   <string name="donate_question">Vandaag is het Oktoberfeest! Als je Keepass2Android leuk vind: zou het niet de uitgelezen dag zijn om mij te trakteren op een biertje?</string>
   <string name="donate_bday_question">10 mei? Het is mijn verjaardag! Als je deze app waardeert, stuur me eens een verjaardagskaartje met een leuk cadeautje! Dit zou ik heel erg waarderen! :-)</string>
@@ -471,7 +471,7 @@
   <string name="hint_key_file">Kies als je gebruik wilt maken van een sleutelbestand naast het hoofdwachtwoord:</string>
   <string name="use_key_file">Gebruik sleutelbestand</string>
   <string name="error_adding_keyfile">Fout tijdens het toevoegen van het sleutelbestand!</string>
-  <string name="init_otp">Laad OTP hulpbestand&#8230;</string>
+  <string name="init_otp">Laad OTP hulpbestand…</string>
   <string name="otp_explanation">Geef de volgende eenmalige wachtwoorden (OTPs). Veeg je Yubikey NEO langs de achterkant van het apparaat voor NFC invoer.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Kan het OTP hulpbestand niet laden!</string>
@@ -480,15 +480,18 @@
   <string name="otp_discarded_no_space">OTP verwijderd: alle OTPs al ingevoerd!</string>
   <string name="otp_discarded_because_db_open">Sluit eerst de database. OTP is verwijderd.</string>
   <string name="otps_pending">(Een of meerdere OTPs reeds beschikbaar)</string>
-  <string name="otpsecret_hint">OTP-geheim (bijv. 01 23 ab cd&#8230;)</string>
+  <string name="otpsecret_hint">OTP-geheim (bijv. 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">Fout bij verwerken van OTP-geheim!</string>
   <string name="OtpKeyError">OTP sleutel maken mislukt! Zorg ervoor dat je de juiste OTPs hebt ingevoerd.</string>
   <string name="ErrorUpdatingOtpAuxFile">Fout bijwerken OTP hulpbestand!</string>
-  <string name="SavingOtpAuxFile">OTP hulpbestand opslaan&#8230;</string>
+  <string name="SavingOtpAuxFile">OTP hulpbestand opslaan…</string>
+  <string name="NoChallengeApp">Kan geen app vinden die kan werken met deze challenge.</string>
+  <string name="PleaseInstallApp">Installeer %1$s met Google Play.</string>
+  <string name="AppOutdated">%1$s wordt niet langer ondersteund.</string>
   <string name="bad_resp">De Challenge-Response was incorrect.</string>
   <string name="CouldntLoadChalAuxFile">Kon het hulpbestand voor Challenge-Response niet laden!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Gebruik de KeeChallenge plugin in KeePass 2.x (PC) om de database in te stellen voor gebruik met Challenge-Response!</string>
-  <string name="ErrorUpdatingChalAuxFile">Fout bij updaten van OTP-hulpbestand!</string>
+  <string name="ErrorUpdatingChalAuxFile">Fout bijwerken OTP hulpbestand!</string>
   <string name="TrayTotp_SeedField_title">Veldnaam van TOTP-bron</string>
   <string name="TrayTotp_SeedField_summary">Wanneer je met Keepass 2 (PC) de plugin \"TrayTotp\" met afwijkende instellingen gebruikt, geef dan hier de naam van de willekeurige bron.</string>
   <string name="TrayTotp_SettingsField_title">Veldnaam TOTP-instellingen</string>
@@ -498,7 +501,7 @@
   <string name="DebugLog_title">Gebruik logboekbestand</string>
   <string name="DebugLog_summary">App uitvoer naar een lokaal logboekbestand schrijven</string>
   <string name="DebugLog_send">Logboekbestand voor foutopsporing opsturen...</string>
-  <string name="loading">Laden&#8230;</string>
+  <string name="loading">Laden…</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Pakketnaam:</string>
   <string name="plugin_description">Beschrijving (niet geverifieerd):</string>
@@ -538,7 +541,7 @@
   <string name="ReadOnlyReason_LocalBackup">Lokale back-ups kunnen niet gewijzigd worden. Je kunt Database instellingen - Exporteer database gebruiken om deze back-up naar een andere locatie te exporteren en te heropenen. Dan zal deze beschrijfbaar zijn.</string>
   <string name="AddCustomIcon">Pictogram toevoegen uit bestand...</string>
   <string name="CopyingFile">Bestand kopiëren...</string>
-  <string name="DuplicateTitle">Kopiëren</string>
+  <string name="DuplicateTitle">kopie</string>
   <string name="DefaultTemplate">Standaardtekst</string>
   <string name="TemplateGroupName">Sjablonen</string>
   <string name="TemplateTitle_IdCard">ID-kaart</string>
@@ -599,6 +602,14 @@ Het bestand is beschadigd. \n
   <string name="ErrorReportAsk">Vragen na het optreden van een fout</string>
   <string name="ErrorReportPrefTitle">Foutrapporten verzenden</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Toon het toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
+  <string name="ChangeLog_1_06">
+  Versie 1.06\n
+  * Gebruikt ykDroid in plaats van YubiChallenge als app voor Yubikey Challenge-Response.\n
+  * Ondersteuning voor KeepassXC-stijl Challenge-Response. Merk op: de database-indeling moet KDBX4 zijn!\n
+  * Weiger verwijderde bestanden te laden van Google Drive\n
+  * Andere TLS implementatie voor FTPS, om een JSch bug heen gewerkt voor servers die gssapi-with-mic ondersteunen\n
+  * problemen opgelost\n
+  </string>
   <string name="ChangeLog_1_05">
     Version 1.05\n
     * Gebruik melding kanalen op Android 8 met configuratie via systeem instellingen\n
@@ -609,7 +620,7 @@ Het bestand is beschadigd. \n
     * Informatie teksten toegevoegd om vaak voorkomende misverstanden te voorkomen\n
     * Maak lokaal een back-up van correct geopende databases om kans op dataverlies te verkleinen\n
     * JSch geüpdatet om recentere SSH ciphers te ondersteunen\n
-    * Mogelijk gemaakt om verbindingsinstellingen te wijzigen, bijvoorbeeld als WebDav wachtwoord veranderde\n
+    * Mogelijk gemaakt om verbindingsinstellingen te wijzigen, bijvoorbeeld als het WebDav wachtwoord veranderde\n
     * Ondersteuning voor Yubikey Neo\'s static password mode toegevoegd\n
     * Automatisch aanvullen suggestie kan uitgezet worden\n
     * Data lek naar logcat opgelost\n    
@@ -709,10 +720,10 @@ Versie 0.9.8b\n
  * Bug oplossingen(opslaan mislukte voor sommige databases, exporteren naar lokale apparaat werkt niet, selecteren van bepaalde voorkeursopties crashte de app) \n</string>
   <string name="ChangeLog_0_9_8">
 Versie 0.9.8\n 
- * Steun voor Storage Access Framework (staat toe te schrijven naar SD-kaart en Google Drive in KP2A Offline) \n
- * probeer foutieve gebruikersinvoer te detecteren bij het invoeren van WebDAV URLs (map in plaats van bestand) \n
- * gewijzigde wachtwoord font\n
- * toestaan om Dropbox account te veranderen\n
+ * Ondersteuning voor Storage Access Framework (kan nu schrijven naar SD-kaart en Google Drive in KP2A Offline) \n
+ * Probeer foutieve gebruikersinvoer te detecteren bij het invoeren van WebDAV URLs (map in plaats van bestand) \n
+ * Wachtwoord lettertype gewijzigd\n
+ * Toestaan om Dropbox account te veranderen\n
  * Opgeloste fout: herinneren OTP password nu\n</string>
   <string name="ChangeLog_0_9_7b">
 Versie 0.9.7b\n
@@ -746,11 +757,11 @@ Versie 0.9.7b\n
 		<b>Versie 0.9.5</b>\n
 		* Opgelost: problemen met bestanden selecteren (vooral op Android 4.4)\n
 		* Opgelost: probleem met laden van kdb-bestanden (Keepass 1) op Nexus 5 met Android Lollipop\n
-		* Toegevoegd: optie om het nemen van schermafbeeldingen en het tonen van de app in de lijst met recent geopende apps te verhinderen.\n
-		* Opgelost: probleem met opslag op Google Drive.\n
-		* Toestaan van sleutelbestanden op speciale opslagtypen\n
-		* Dropbox SDK opgewaardeerd vanwege een beveiligingslek\n
-		* Build tools bijgewerkt -->; installatiebestand groter geworden :-(\n
+		* Toegevoegd: optie om het nemen van schermafbeeldingen en het tonen van de app in de lijst met recent geopende apps te verhinderen\n
+		* Opgelost: probleem met opslag op Google Drive (gewone versie)\n
+		* Toestaan van sleutelbestanden op speciale opslagtypen (gewone versie)\n
+		* Dropbox SDK opgewaardeerd vanwege een beveiligingslek (gewone versie)\n
+		* Build tools bijgewerkt --&gt; installatiebestand groter geworden :-(\n
 		Ik heb nog meer wijzigingen beloofd. Deze zullen in de volgende versie verschijnen - sorry. De oplossingen voor bovenstaande problemen wou ik zo snel mogelijk uitbrengen.
 	</string>
   <string name="ChangeLog_0_9_4">
@@ -862,19 +873,19 @@ Versie 0.9.7b\n
 * Keepass2Android soft-keyboard toegevoegd: Schakel naar dit toetsenbord over voor het invoeren van inloggegevens. Beschermt je tegen klembord gebaseerde wachtwoord afluisterapps (schakel oude klembord meldingen uit in de instellingen)\n
 * Optie toegevoegd om een biertje te doneren of iets anders (Zie menu)</string>
   <string name="ChangeLog"><b>Versie 0.6.2</b>\n
-* Google Drive/Dropbox/... integratie: Gebruik de officiële Google Drive or Dropbox App en open elke .kdbx-file. Dat zal nu KP2A openen.\n
+* Google Drive/Dropbox/... integratie: Gebruik de officiële Google Drive of Dropbox App en open een .kdbx-file. Dit zal nu KP2A openen.\n
 * Verbeterd zoekvenster \n
 * Verbeterde zoekresultaten voor Deel URL met subdomeinen\n
-* Opties toegevoegd om feedback te  geven en het waarderen of vertalen van de app in het menu\n
+* Opties toegevoegd om feedback te geven en het waarderen of vertalen van de app in het menu\n
 \n
 <b>Versie 0.6.1</b>\n
-* Detecteer als een database wijzigt in de achtergrond (d.w.z. door activiteit van een synchronisatie app)\n
+* Detecteer het als een database wijzigt in de achtergrond (d.w.z. door activiteit van een synchronisatie app)\n
 * Verbeterd zoeken voor URLs van de browser\n
 * Bevestigingsvensters voor het weggooien van wijzigingen\n
 \n
 <b>Versie 0.6</b>\n
 Eerste publieke publicatie
-  </string>
+    </string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconden</item>
     <item>1 minuut</item>
@@ -917,7 +928,7 @@ Eerste publieke publicatie
     <item>Wachtwoord + OTP (veilige modus)</item>
     <item>Wachtwoord + Challenge-Response</item>
     <item>Wachtwoord + Challenge-Response (veilige modus)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Wachtwoord + Challenge-Response voor Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Negeer mislukte certificaat validaties</item>
@@ -932,6 +943,7 @@ Eerste publieke publicatie
   <string name="show_autofill_help">Toon help voor automatisch aanvullen</string>
   <string name="autofill_sign_in_prompt">Vullen met Keepass2Android</string>
   <string name="invalid_link_association">Kon domein %1$s niet koppelen met app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android heeft vingerafdruk hardware gedetecteerd. Wil je je vingerafdruk gebruiken voor het ontgrendelen van deze database?</string>
   <string name="understand">Ik begrijp het</string>
   <string name="dont_show_again">Niet meer tonen</string>
   <string name="masterkey_infotext_head">Weet je het hoofdwachtwoord nog?</string>
