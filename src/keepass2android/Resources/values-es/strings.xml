@@ -67,7 +67,7 @@
   <string name="entry_is_available">está disponible</string>
   <string name="not_possible_im_picker">No se puede abrir el cuadro de diálogo para seleccionar el método de entrada. Por favor, active el teclado manualmente.</string>
   <string name="please_activate_keyboard">Por favor habilita el teclado de Keepass2Android en la configuración del sistema.</string>
-  <string name="creating_db_key">Creando clave de la base de datos&#8230;</string>
+  <string name="creating_db_key">Creando clave de la base de datos…</string>
   <string name="current_group">Grupo actual</string>
   <string name="current_group_root">Grupo actual: Root</string>
   <string name="database">Base de datos</string>
@@ -106,7 +106,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="entry_expires">Caducidad</string>
   <string name="entry_group_name">Nombre del Grupo</string>
   <string name="entry_keyfile">Archivo de clave (opcional)</string>
-  <string name="keyfile_heading">Archivo de clave</string>
+  <string name="keyfile_heading">Archivo llave</string>
   <string name="entry_modified">Modificado</string>
   <string name="entry_password">Contraseña</string>
   <string name="entry_save">Guardar</string>
@@ -159,7 +159,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="length">Longitud</string>
   <string name="list_size_title">Tamaño de la lista de Grupo</string>
   <string name="list_size_summary">Tamaño del texto de la lista de grupo</string>
-  <string name="loading_database">Cargando base de datos&#8230;</string>
+  <string name="loading_database">Cargando base de datos…</string>
   <string name="lowercase">Minúsculas</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Ocultar contraseña</string>
@@ -201,9 +201,9 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="pass_filename">Nombre de archivo de base de datos de KeePass</string>
   <string name="password_title">Introduzca la contraseña de la base de datos</string>
   <string name="master_key_type">Seleccione el tipo de llave maestra:</string>
-  <string name="progress_create">Creando nueva base de datos&#8230;</string>
+  <string name="progress_create">Creando nueva base de datos…</string>
   <string name="create_database">Crear base de datos</string>
-  <string name="progress_title">Trabajando&#8230;</string>
+  <string name="progress_title">Trabajando…</string>
   <string name="remember_keyfile_summary">Recordar la ubicación de archivos de clave</string>
   <string name="remember_keyfile_title">Guardar archivo clave</string>
   <string name="remove_from_filelist">Borrar</string>
@@ -218,8 +218,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="argon2parallelism">Paralelismo para Argon 2</string>
   <string name="database_name">Nombre de la base de datos</string>
   <string name="default_username">Nombre de usuario predeterminado para nuevas entradas</string>
-  <string name="saving_database">Guardando base de datos&#8230;</string>
-  <string name="exporting_database">Exportando base de datos&#8230;</string>
+  <string name="saving_database">Guardando base de datos…</string>
+  <string name="exporting_database">Exportando base de datos…</string>
   <string name="export_database_successful">Base de datos exportada con éxito!</string>
   <string name="space">Espacio</string>
   <string name="search_label">Buscar</string>
@@ -280,7 +280,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="ViewDatabaseSecure_summary">Si se encuentra activado, no se permiten realizar tomas de plantallas y no se muestra el thumbnail de la app en la lista de applicaciones recientes.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar el icono de QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock lamentablemente no funciona sin mostrar un icono de notificación. Seleccione esta opción para utilizar un icono transparente.</string>
-  <string name="QuickUnlockIconHidden16_title">Ocultar icono de QuickUnlock</string>
+  <string name="QuickUnlockIconHidden16_title">Ocultar el icono de QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock requiere una notificación para funcionar correctamente. Seleccione esta opción para mostrar la notificación sin icono.</string>
   <string name="QuickUnlockLength_title">Longitud de la clave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres que se utiliza para la contraseña QuickUnlock.</string>
@@ -326,7 +326,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="NoDonationReminder_title">No solicitar nunca una donación</string>
   <string name="NoDonationReminder_summary">No le voy a dar un céntimo o ya he donado. No solicitar una donación, ni en el cumpleaños del autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
-  <string name="UseOfflineCache_summary">Mantiene una copia de los archivos de base de datos remota en el directorio del caché de la aplicación. Esto permite utilizar bases de datos remotas sin conexión a internet.</string>
+  <string name="UseOfflineCache_summary">Mantener una copia de los ficheros de base de datos en el directorio caché de la aplicación. Esto permite usar las bases de datos incluso cuando el fichero no esté accesible.</string>
   <string name="CreateBackups_title">Copias de seguridad locales</string>
   <string name="CreateBackups_summary">Crear una copia de local después de cargar con éxito una base de datos.</string>
   <string name="UpdatingBackup">Actualizando copia de seguridad local...</string>
@@ -334,7 +334,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definir el comportamiento cuando falla la validación de un certificado. Nota: puedes instalar certificados en tu dispositivo si la validación falla!</string>
   <string name="ClearOfflineCache_title">¿Limpiar Cache?</string>
-  <string name="ClearOfflineCache_question">Esto borrará todos los archivos de base de datos en caché. ¡Se perderán los cambios que hizo estando fuera de línea que todavía no se ha sincronizado! ¿Continuar?</string>
+  <string name="ClearOfflineCache_question">Esto borrará todos los ficheros de base de datos cacheados. ¡Cualquier cambio que hubieras hecho mientras no tuvieras acceso a la base de datos fuentes y que no se hubiera sincronizado se perderá! ¿Continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Comprobar modificaciones</string>
   <string name="CheckForFileChangesOnSave_summary">Compruebe si el archivo fue modificado externamente antes de guardar los cambios.</string>
   <string name="CheckForDuplicateUuids_title">Buscar UUIDs duplicados</string>
@@ -368,7 +368,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="AskOverwriteBinary">¿Desea sobrescribir el binario existente con el mismo nombre?</string>
   <string name="AskOverwriteBinary_title">¿Sobrescribir binario existente?</string>
   <string name="AskOverwriteBinary_yes">Sobrescribir</string>
-  <string name="AskOverwriteBinary_no">Renombrar</string>
+  <string name="AskOverwriteBinary_no">Renombar</string>
   <string name="AttachFailed">Error al agregar el archivo adjunto.</string>
   <string name="RecycleBin">Papelera de reciclaje</string>
   <string name="AskDeletePermanentlyEntry">¿Deseas eliminar esta entrada de forma permanente? Presiona No para mover a la Papelera de reciclaje.</string>
@@ -385,49 +385,49 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="suggest_improvements">Sugerir o votar para mejoras</string>
   <string name="rate_app">Calificar esta aplicación</string>
   <string name="translate_app">Traducir KP2A</string>
-  <string name="AddingEntry">Añadiendo entrada&#8230;</string>
-  <string name="AddingGroup">Añadiendo grupo&#8230;</string>
-  <string name="DeletingEntry">Eliminando entrada&#8230;</string>
-  <string name="DeletingGroup">Eliminando grupo&#8230;</string>
-  <string name="DeletingItems">Eliminando elementos&#8230;</string>
-  <string name="SettingPassword">Estableciendo contraseña&#8230;</string>
-  <string name="UndoingChanges">Descartando cambios&#8230;</string>
-  <string name="TransformingKey">Transformación de llave maestra&#8230;</string>
-  <string name="DecodingDatabase">Decodificando base de datos&#8230;</string>
-  <string name="ParsingDatabase">Análisis de base de datos&#8230;</string>
-  <string name="CheckingTargetFileForChanges">Comprobando el archivo de destino por si hay cambios&#8230;</string>
+  <string name="AddingEntry">Añadiendo entrada…</string>
+  <string name="AddingGroup">Añadiendo grupo…</string>
+  <string name="DeletingEntry">Eliminando entrada…</string>
+  <string name="DeletingGroup">Eliminando grupo…</string>
+  <string name="DeletingItems">Eliminando elementos…</string>
+  <string name="SettingPassword">Estableciendo contraseña…</string>
+  <string name="UndoingChanges">Descartando cambios…</string>
+  <string name="TransformingKey">Transformación de llave maestra…</string>
+  <string name="DecodingDatabase">Decodificando base de datos…</string>
+  <string name="ParsingDatabase">Análisis de base de datos…</string>
+  <string name="CheckingTargetFileForChanges">Comprobando el archivo de destino por si hay cambios…</string>
   <string name="TitleSyncQuestion">¿Combinar cambios?</string>
   <string name="MessageSyncQuestion">El archivo de base de datos fue modificado externamente. ¿Quieres cargar y combinar los cambios antes de guardar? Seleccione No si desea sobrescribir los cambios externos.</string>
-  <string name="SynchronizingDatabase">Combinando cambios&#8230;</string>
+  <string name="SynchronizingDatabase">Combinando cambios…</string>
   <string name="YesSynchronize">Si, combinar</string>
   <string name="NoOverwrite">No, sobreescribir</string>
-  <string name="UseOfflineMode">Trabajar sin conexión</string>
-  <string name="UseOnlineMode">Trabajar con conexíon</string>
-  <string name="UseOfflineMode_Info">Evitar cualquier tráfico de red usando la copia local del archivo. Los cambios se almacenan en la memoria local y se cargarán cuando se vuelva al modo con conexión.</string>
-  <string name="InOfflineMode">Trabajar sin conexión.</string>
-  <string name="SynchronizingCachedDatabase">Sincronización de base de datos en caché&#8230;</string>
-  <string name="DownloadingRemoteFile">Descargando archivo remoto&#8230;</string>
-  <string name="UploadingFile">Cargando archivo&#8230;</string>
-  <string name="RestoringRemoteFile">Restaurando archivo remoto&#8230;</string>
+  <string name="UseOfflineMode">Trabajar con caché interna sólo</string>
+  <string name="UseOnlineMode">Sincronizar la copia caché con la fuente</string>
+  <string name="UseOfflineMode_Info">Se ha cargado la base de datos de la caché interna. Los cambios se almacenan en la caché interna sólo y sólamente se sincronizarán cuando seleccione Sincronizar copia caché con fuente.</string>
+  <string name="InOfflineMode">Trabajando con la cache interna sólo.</string>
+  <string name="SynchronizingCachedDatabase">Sincronización de base de datos en caché…</string>
+  <string name="DownloadingRemoteFile">Cargando fichero fuente…</string>
+  <string name="UploadingFile">Guardar archivo…</string>
+  <string name="RestoringRemoteFile">Restaurando archivo origen…</string>
   <string name="FilesInSync">Los archivos están sincronizados.</string>
   <string name="SynchronizedDatabaseSuccessfully">¡Base de datos sincronizada correctamente!</string>
-  <string name="CheckingDatabaseForChanges">Comprobando la base de datos por si hay cambios&#8230;</string>
-  <string name="CouldNotSaveToRemote">No se pudo salvar al remoto: %1$s. Guarde de nuevo o utilice el menú Sincronizar cuando conexión remota esté disponible de nuevo.</string>
-  <string name="CouldNotLoadFromRemote">No se pudo abrir del remoto: %1$s. Se ha cargado el archivo de la memoria caché local. Aun puede hacer cambios en la base de datos y sincronizarlos posteriormente.</string>
-  <string name="UpdatedRemoteFileOnLoad">Archivo remoto actualizado.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Se ha abierto el archivo local debido a un conflicto con los cambios en el archivo remoto. Use el Menú Sincronizar para combinarlos.</string>
-  <string name="LoadedFromRemoteInSync">Memoria caché y archivos remotos están sincronizandos.</string>
-  <string name="UpdatedCachedFileOnLoad">Copia caché local de %1$s actualizada.</string>
+  <string name="CheckingDatabaseForChanges">Comprobando la base de datos por si hay cambios…</string>
+  <string name="CouldNotSaveToRemote">No se puedo guardar fichero fuente: %1$s. Salve de nuevo o use el menú Sincronizar cuando el fichero vuelva a estar accesible.</string>
+  <string name="CouldNotLoadFromRemote">No se pudo acceder al fichero fuente: %1$s. Fichero cargado desde la caché interna. Todavía puedes hacer cambios en la base de datos y sincronizar más tarde.</string>
+  <string name="UpdatedRemoteFileOnLoad">Archivo fuente actualizado.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Abierto el archivo cacheado internamente debido a conflicto con los cambios en el archivo fuente. Use el menú Sincronizar para combinar.</string>
+  <string name="LoadedFromRemoteInSync">Ficheros fuente y cache estan sincronizados.</string>
+  <string name="UpdatedCachedFileOnLoad">Actualizada copia de caché interna de %1$s.</string>
   <string name="RemoteDatabaseUnchanged">No se han detectado cambios.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Archivo auxiliar OTP en caché actualizado: el contador remoto fue mayor.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Archivo auxiliar OTP en caché actualizado: el contador local fue mayor.</string>
-  <string name="SynchronizingOtpAuxFile">Sincronizando archivo auxiliar OTP&#8230;</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Actualizado fichero auxiliar OTP cacheado: Contador fuente era superior.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Actualizado fichero auxiliar de fuente OTP: Contador local era superior.</string>
+  <string name="SynchronizingOtpAuxFile">Sincronizando archivo auxiliar OTP…</string>
   <string name="database_file">base de datos</string>
   <string name="otp_aux_file">Archivo auxiliar OTP</string>
   <string name="ErrorOcurred">Se ha producido un error:</string>
   <string name="DuplicateUuidsError">Base de datos corupta: Se han encontrado indices duplicados. (Se guardó con Minikeepass?) Por favor, volver a importar en una base de datos nueva con Keepass 2 para PC y elegir \'crear indices nuevos\'.</string>
   <string name="DuplicateUuidsErrorAdditional">Puede deshabilitar este mensaje de error en Configuración/Configuración de la Aplicación/Manejo de archivos/Buscar UUIDs duplicados. Por favor tenga en cuenta que es posible que experimente un comportamiento inesperado. Se recomienda reparar la base de datos.</string>
-  <string name="synchronize_database_menu">Sincronizar base de datos&#8230;</string>
+  <string name="synchronize_database_menu">Sincronizar base de datos…</string>
   <string name="CannotMoveGroupHere">No se puede mover el grupo a este grupo.</string>
   <string name="donate_question">¡Hoy es Oktoberfest! Si te gusta Keepass2Android: ¿no sería un buen día para invitarme a una cerveza?</string>
   <string name="donate_bday_question">¿10 de mayo? Es mi cumpleaños! Si te gusta esta aplicación, ¿por qué no enviarme una felicitación de cumpleaños junto con un pequeño regalo de cumpleaños? Esto realmente me haría feliz! :-)</string>
@@ -472,7 +472,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="hint_key_file">Elija si desea utilizar un archivo llave además su contraseña maestra:</string>
   <string name="use_key_file">Usar el archivo llave</string>
   <string name="error_adding_keyfile">¡Error al añadir el archivo llave!</string>
-  <string name="init_otp">Cargar archivo auxiliar de OTP&#8230;</string>
+  <string name="init_otp">Cargar archivo auxiliar de OTP…</string>
   <string name="otp_explanation">Introduzca la siguiente contraseña de único uso (OTPs). Pase su Yubikey NEO en la parte trasera de su dispositivo para introducirse a través de NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">No se pudo cargar el archivo auxiliar de OTP!</string>
@@ -485,7 +485,10 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="CouldntParseOtpSecret">Error al analizar el secreto OTP!</string>
   <string name="OtpKeyError">Error al crear la clave OTP. Asegúrese de que ha introducido las OTPs correctas.</string>
   <string name="ErrorUpdatingOtpAuxFile">¡Error actualizando el archivo OTP auxiliar!</string>
-  <string name="SavingOtpAuxFile">Guardando el archivo auxiliar OTP&#8230;</string>
+  <string name="SavingOtpAuxFile">Guardando el archivo auxiliar OTP…</string>
+  <string name="NoChallengeApp">No se pudo encontrar una aplicación que puede manejar el desafio.</string>
+  <string name="PleaseInstallApp">Por favor instale %1$s desde Google Play.</string>
+  <string name="AppOutdated">%1$s ya no está soportado.</string>
   <string name="bad_resp">La respuesta correspondiente al desafío es incorrecta.</string>
   <string name="CouldntLoadChalAuxFile">No se pudo cargar el archivo auxiliar de desafío!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Por favor utilice el plugin KeeChallenge en KeePass 2.x (PC) para configurar la base de datos para su uso con el protocolo desafío-respuesta!</string>
@@ -499,7 +502,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="DebugLog_title">Usar el archivo de registro</string>
   <string name="DebugLog_summary">Escribir salida de app a fichero local de log</string>
   <string name="DebugLog_send">Enviar registro de depuración...</string>
-  <string name="loading">Cargando&#8230;</string>
+  <string name="loading">Cargando…</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Nombre del paquete:</string>
   <string name="plugin_description">Descripción (no verificada):</string>
@@ -599,6 +602,14 @@ El Archivo está dañado. \n
   <string name="ErrorReportAsk">Preguntar después del error</string>
   <string name="ErrorReportPrefTitle">Enviar informe de errores</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
+  <string name="ChangeLog_1_06">
+    Versión 1.06\n
+    * Cambio a ykDroid en lugar de YubiChallenge como aplicación para Desafio-Respuesta Yubikey.\n
+    * Implementado soporte para Desafio-Respuesta estilo KeepassXC. Nota: Formato de base de datos debe ser KDBX4!\n
+    * Evitar cargar ficheros en papelera de Google Drive\n
+    * Cambiada implmementación TLS por FTPS, añadida solución alternativa al error JSch con servidores soportando gssapi-with-mic\n
+    * correción de errores\n
+  </string>
   <string name="ChangeLog_1_05">
 Versión 1.05\n
     * Uso de canales de notificación para Android 8, que permite la configuración a través de los ajustes del sistema\n
@@ -919,7 +930,7 @@ Publicación inicial</string>
     <item>Contraseña + secreto OTP (modo de recuperación)</item>
     <item>Contraseña + desafío-respuesta</item>
     <item>Contraseña + secreto de desafío-respuesta (modo de recuperación)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Contraseña + Desafio-Respuesta para Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar errores de validación de certificado</item>
@@ -934,6 +945,7 @@ Publicación inicial</string>
   <string name="show_autofill_help">Mostrar ayuda de Autocompletado</string>
   <string name="autofill_sign_in_prompt">Completar con Keepass2Android</string>
   <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android ha detectado hardware de huellas dactilares. ¿Desea activar desbloqueo de esta base de datos mediante huella digital?</string>
   <string name="understand">Entiendo</string>
   <string name="dont_show_again">No volver a mostrar</string>
   <string name="masterkey_infotext_head">¿Recuerda su contraseña maestra?</string>
