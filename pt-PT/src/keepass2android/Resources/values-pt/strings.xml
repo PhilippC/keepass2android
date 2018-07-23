@@ -582,6 +582,15 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="ErrorReportAsk">Perguntar depois do erro</string>
   <string name="ErrorReportPrefTitle">Enviar relatórios de erro</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para inserção de palavra-passe quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_06">
+Versão 1.06\n
+    * Alterado para ykDroid em vez de YubiChallenge como aplicação para  Yubikey Challenge-Response.\n
+    * Implementado suporte para KeepassXC-style Challenge-Response. Nota: Formato da base de dados tem que ser KDBX4!\n
+    * Recusa em carregar ficheiros deitados ao lixo do Google Drive\n
+    * Alteração da implementação TLS para FTPS, adicionada alternativa para o JSch bug com servidores a suportar gssapi-with-mic\n
+    * correção de bugs\n
+  
+  </string>
   <string name="ChangeLog_1_05">
 Versão 1.05\n
 * Usa o canal de notificações para o Android 8, permitindo configuração através das configurações do sistema\n
