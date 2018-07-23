@@ -67,7 +67,7 @@
   <string name="entry_is_available">доступно</string>
   <string name="not_possible_im_picker">Не удалось открыть диалоговое окно для выбора метода ввода. Пожалуйста, активируйте клавиатуру вручную.</string>
   <string name="please_activate_keyboard">Пожалуйста, включите клавиатуру Keepass2Android в системных настройках.</string>
-  <string name="creating_db_key">Создание ключа базы данных&#8230;</string>
+  <string name="creating_db_key">Создание ключа базы данных…</string>
   <string name="current_group">Текущая группа</string>
   <string name="current_group_root">Текущая группа: корневая</string>
   <string name="database">База данных</string>
@@ -158,7 +158,7 @@
   <string name="length">Длина пароля</string>
   <string name="list_size_title">Размер списка группы</string>
   <string name="list_size_summary">Размер текста в списке группы</string>
-  <string name="loading_database">Загрузка базы данных&#8230;</string>
+  <string name="loading_database">Загрузка базы данных…</string>
   <string name="lowercase">Нижний регистр</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Скрыть пароль</string>
@@ -200,9 +200,9 @@
   <string name="pass_filename">Имя файла базы данных KeePass</string>
   <string name="password_title">Изменение пароля базы данных</string>
   <string name="master_key_type">Выберите тип мастер-ключа:</string>
-  <string name="progress_create">Создание новой базы данных&#8230;</string>
+  <string name="progress_create">Создание новой базы данных…</string>
   <string name="create_database">Создать базу данных</string>
-  <string name="progress_title">Обработка&#8230;</string>
+  <string name="progress_title">Обработка…</string>
   <string name="remember_keyfile_summary">Запоминать пути к файлам-ключам</string>
   <string name="remember_keyfile_title">Сохранить файл-ключ</string>
   <string name="remove_from_filelist">Удалить из списка</string>
@@ -217,8 +217,8 @@
   <string name="argon2parallelism">Параллелизм для Argon 2</string>
   <string name="database_name">Имя базы данных</string>
   <string name="default_username">Имя пользователя по-умолчанию для новых записей</string>
-  <string name="saving_database">Сохранение базы данных&#8230;</string>
-  <string name="exporting_database">Экспорт базы данных&#8230;</string>
+  <string name="saving_database">Сохранение базы данных…</string>
+  <string name="exporting_database">Экспорт базы данных…</string>
   <string name="export_database_successful">База данных успешно экспортирована!</string>
   <string name="space">Пробел</string>
   <string name="search_label">Поиск</string>
@@ -325,7 +325,7 @@
   <string name="NoDonationReminder_title">Никогда не спрашивать о пожертвовании</string>
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
-  <string name="UseOfflineCache_summary">Сохранять копию удалённой базы данных в папке кэша приложения. Это даст возможность использовать удалённые базы в даже без доступа к сети.</string>
+  <string name="UseOfflineCache_summary">Сохранить копии файлов баз данных в папке кэша приложения. Это позволяет использовать базы данных, даже тогда, когда файл базы данных не доступен.</string>
   <string name="CreateBackups_title">Локальные резервные копии</string>
   <string name="CreateBackups_summary">Создать локальную резервную копию после успешной загрузки БД.</string>
   <string name="UpdatingBackup">Обновление локальной резервной копии...</string>
@@ -333,7 +333,7 @@
   <string name="AcceptAllServerCertificates_title">SSL-сертификаты</string>
   <string name="AcceptAllServerCertificates_summary">Определите поведение при сбое проверки сертификата. Примечание: Вы можете установить сертификаты на вашем устройстве, если проверка не пройдена!</string>
   <string name="ClearOfflineCache_title">Очистить кэш?</string>
-  <string name="ClearOfflineCache_question">Это удалит все кэшированные файлы баз данных. Любые несинхронизированные изменения, внесённые в автономном режиме, будут потеряны! Продолжить?</string>
+  <string name="ClearOfflineCache_question">Это удалит все кэшированные копии баз данных. Любые несинхронизированные изменения, внесённые в автономном режиме, будут потеряны! Продолжить?</string>
   <string name="CheckForFileChangesOnSave_title">Проверить на наличие изменений</string>
   <string name="CheckForFileChangesOnSave_summary">Проверка был ли файл изменен извне до сохранения изменений.</string>
   <string name="CheckForDuplicateUuids_title">Проверить на наличие повторяющихся идентификаторов UUID</string>
@@ -384,49 +384,49 @@
   <string name="suggest_improvements">Предложить или голосовать за улучшения</string>
   <string name="rate_app">Оцените это приложение</string>
   <string name="translate_app">Переведите KP2A</string>
-  <string name="AddingEntry">Добавление записи&#8230;</string>
-  <string name="AddingGroup">Добавление группы&#8230;</string>
-  <string name="DeletingEntry">Удаление записи&#8230;</string>
-  <string name="DeletingGroup">Удаление группы&#8230;</string>
-  <string name="DeletingItems">Удаление элементов&#8230;</string>
-  <string name="SettingPassword">Установка пароля&#8230;</string>
-  <string name="UndoingChanges">Отмена изменений&#8230;</string>
-  <string name="TransformingKey">Преобразование мастер-ключа&#8230;</string>
-  <string name="DecodingDatabase">Декодирование базы данных&#8230;</string>
-  <string name="ParsingDatabase">Анализ базы данных&#8230;</string>
-  <string name="CheckingTargetFileForChanges">Проверка целевого файла на наличие изменений&#8230;</string>
+  <string name="AddingEntry">Добавление записи…</string>
+  <string name="AddingGroup">Добавление группы…</string>
+  <string name="DeletingEntry">Удаление записи…</string>
+  <string name="DeletingGroup">Удаление группы…</string>
+  <string name="DeletingItems">Удаление элементов…</string>
+  <string name="SettingPassword">Установка пароля…</string>
+  <string name="UndoingChanges">Отмена изменений…</string>
+  <string name="TransformingKey">Преобразование мастер-ключа…</string>
+  <string name="DecodingDatabase">Декодирование базы данных…</string>
+  <string name="ParsingDatabase">Анализ базы данных…</string>
+  <string name="CheckingTargetFileForChanges">Проверка целевого файла на наличие изменений…</string>
   <string name="TitleSyncQuestion">Объединить изменения?</string>
   <string name="MessageSyncQuestion">Файл базы данных был изменен извне. Вы хотите загрузить и объединить изменения перед сохранением? Выберите Нет, если вы хотите перезаписать внешние изменения.</string>
-  <string name="SynchronizingDatabase">Объединение изменений&#8230;</string>
+  <string name="SynchronizingDatabase">Объединение изменений…</string>
   <string name="YesSynchronize">Да, объединить</string>
   <string name="NoOverwrite">Нет, перезаписать</string>
-  <string name="UseOfflineMode">Работать в автономном режиме</string>
-  <string name="UseOnlineMode">Работать онлайн</string>
-  <string name="UseOfflineMode_Info">Использование локальной копии файла в кэше позволит избежать трат сетевого трафика. Изменения сохраняются в локальном кэше и будут загружены только при переключении обратно в онлайн-режим.</string>
-  <string name="InOfflineMode">Работать в автономном режиме.</string>
-  <string name="SynchronizingCachedDatabase">Синхронизация кэшированной базы данных&#8230;</string>
-  <string name="DownloadingRemoteFile">Скачивание удалённого файла&#8230;</string>
-  <string name="UploadingFile">Загрузка файла&#8230;</string>
-  <string name="RestoringRemoteFile">Восстановление удалённого файла&#8230;</string>
+  <string name="UseOfflineMode">Работать только с локальной кэшированной копия файла</string>
+  <string name="UseOnlineMode">Синхронизировать кэшированную копию с удалённым файлом</string>
+  <string name="UseOfflineMode_Info">База данных загружена из внутреннего кэша. Изменения сохраняются только во внутреннем кэше и будут синхронизироваться только при выборе Синхронизация кэшированной копии с удалённым файлом.</string>
+  <string name="InOfflineMode">Работа только с локальной кэшированной копией файла.</string>
+  <string name="SynchronizingCachedDatabase">Синхронизация кэшированной базы данных…</string>
+  <string name="DownloadingRemoteFile">Загружается удалённый файл…</string>
+  <string name="UploadingFile">Сохранить файл…</string>
+  <string name="RestoringRemoteFile">Загружается удалённый файл…</string>
   <string name="FilesInSync">Файлы синхронизируются.</string>
   <string name="SynchronizedDatabaseSuccessfully">База данных успешно синхронизирована!</string>
-  <string name="CheckingDatabaseForChanges">Проверка базы данных на наличие изменений&#8230;</string>
+  <string name="CheckingDatabaseForChanges">Проверка базы данных на наличие изменений…</string>
   <string name="CouldNotSaveToRemote">Не удаётся сохранить удалённый файл: %1$s. Повторите сохранение или используйте меню Синхронизация, когда появится доступ к сети.</string>
-  <string name="CouldNotLoadFromRemote">Не удалось открыть удалённый файл: %1$s. Загружена локальная кэшированная копия. Вы можете вносить изменения в базу данных и синхронизировать их позже.</string>
-  <string name="UpdatedRemoteFileOnLoad">Обновление удалённого файла.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Открыт локальный файл из-за конфликта с изменениями в удалённом файле. Используйте меню Синхронизация для объединения.</string>
-  <string name="LoadedFromRemoteInSync">Удалённый файл и кэш синхронизированы.</string>
-  <string name="UpdatedCachedFileOnLoad">Обновлённая локальная кэшированная копия %1$s.</string>
+  <string name="CouldNotLoadFromRemote">Не удаётся получить доступ к удалённому файлу: %1$s. Загружена локальная кэшированная копия файла. Вы можете вносить изменения в базу данных и синхронизировать их позже.</string>
+  <string name="UpdatedRemoteFileOnLoad">Обновленный удалённый файл.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Открыта локальный кэшированная копия файла из-за конфликта с изменениями в удалённом файле. Используйте меню Синхронизация для объединения.</string>
+  <string name="LoadedFromRemoteInSync">Удалённый файл и кэшированный файл синхронизированы.</string>
+  <string name="UpdatedCachedFileOnLoad">Обновлена локальная кэшированная копия %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Изменений не обнаружено.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Обновлен кэшированный вспомогательный файл одноразовых паролей: удаленный счетчик имел большее значение.</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">Обновлен локальный вспомогательный файл одноразовых паролей: локальный счетчик имел большее значение.</string>
-  <string name="SynchronizingOtpAuxFile">Синхронизируем вспомогательный файл одноразовых паролей&#8230;</string>
+  <string name="SynchronizingOtpAuxFile">Синхронизируем вспомогательный файл одноразовых паролей…</string>
   <string name="database_file">файл базы данных</string>
   <string name="otp_aux_file">Вспомогательный файл одноразовых паролей</string>
   <string name="ErrorOcurred">Произошла ошибка:</string>
   <string name="DuplicateUuidsError">База данных повреждена: найдены дублирующиеся ID. (Сохранялись в Minikeepass?) Пожалуйста импортируйте данные в новую базу данных при помощи Keepass 2 для ПК и выберите \'Создать новые ID\'.</string>
   <string name="DuplicateUuidsErrorAdditional">Вы можете отключить это сообщение об ошибке в пункте Настройки/Настройки приложения/Обработка файлов/Проверка на дубликаты UUID. Имейте в виду, что это может повлечь неожиданные результаты. Рекомендуется исправление базы данных.</string>
-  <string name="synchronize_database_menu">Синхронизировать базу данных&#8230;</string>
+  <string name="synchronize_database_menu">Синхронизировать базу данных…</string>
   <string name="CannotMoveGroupHere">Не удается переместить группу в эту группу.</string>
   <string name="donate_question">Сегодня Октоберфест! Если вам нравится Keepass2Android, не лучший ли это день, чтобы купить мне пива?</string>
   <string name="donate_bday_question">10 мая? Это мой день рождения! Если вам нравится это приложение, то почему бы не отправить мне поздравления с днём рождения вместе с небольшим подарком? Это несказанно осчастливит меня! :-)</string>
@@ -471,7 +471,7 @@
   <string name="hint_key_file">Выберите, если вы хотите использовать файл-ключ в дополнение к мастер-паролю:</string>
   <string name="use_key_file">Использовать файл-ключ</string>
   <string name="error_adding_keyfile">Ошибка при добавлении файла-ключа!</string>
-  <string name="init_otp">Загрузить вспомогательный файл одноразовых паролей&#8230;</string>
+  <string name="init_otp">Загрузить вспомогательный файл одноразовых паролей…</string>
   <string name="otp_explanation">Введите следующий одноразовый пароль (OTP). Проведите ваш Yubikey NEO на задней панели устройства через датчик NFC.</string>
   <string name="otp_hint">Одноразовый пароль %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Не удалось загрузить вспомогательный файл одноразовых паролей!</string>
@@ -480,15 +480,18 @@
   <string name="otp_discarded_no_space">Одноразовый пароль не принят: все одноразовые пароли были использованы!</string>
   <string name="otp_discarded_because_db_open">Пожалуйста, сначала закройте базу данных. Одноразовый пароль не принят.</string>
   <string name="otps_pending">(Один или несколько одноразовых паролей уже доступны)</string>
-  <string name="otpsecret_hint">Секретные одноразовые пароли (например 01 23 ab cd&#8230;)</string>
+  <string name="otpsecret_hint">Секретные одноразовые пароли (например 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">Ошибка синтаксического анализа секретных одноразовых паролей!</string>
   <string name="OtpKeyError">Не удалось создать ключ одноразовых паролей! Убедитесь, что вы ввели корректные одноразовые пароли.</string>
   <string name="ErrorUpdatingOtpAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей!</string>
-  <string name="SavingOtpAuxFile">Сохранение вспомогательного файла одноразовых паролей&#8230;</string>
+  <string name="SavingOtpAuxFile">Сохранение вспомогательного файла одноразовых паролей…</string>
+  <string name="NoChallengeApp">Не удалось найти приложение, которое может справиться с задачей.</string>
+  <string name="PleaseInstallApp">Пожалуйста, установите %1$s из Google Play.</string>
+  <string name="AppOutdated">%1$s больше не поддерживается.</string>
   <string name="bad_resp">Ответ на запрос является неправильным.</string>
   <string name="CouldntLoadChalAuxFile">Не удалось загрузить файл вспомогательной задачи!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Пожалуйста, используйте плагин KeeChallenge в KeePass 2.x (ПК) для настройки базы данных для использования одноразового пароля!</string>
-  <string name="ErrorUpdatingChalAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей (OTP)!</string>
+  <string name="ErrorUpdatingChalAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей!</string>
   <string name="TrayTotp_SeedField_title">Имя поля начального значения TOTP</string>
   <string name="TrayTotp_SeedField_summary">Если вы используете плагин Keepass 2 \"TrayTotp\" с нестандартными настройками, введите имя поля для поля начального значения в соответствии с настройками на ПК.</string>
   <string name="TrayTotp_SettingsField_title">Имя поля параметров TOTP</string>
@@ -498,7 +501,7 @@
   <string name="DebugLog_title">Использовать log-файл</string>
   <string name="DebugLog_summary">Записывать выходные данные приложения в локальный log-файл</string>
   <string name="DebugLog_send">Отправить журнал отладки...</string>
-  <string name="loading">Загрузка&#8230;</string>
+  <string name="loading">Загрузка…</string>
   <string name="plugins">Плагины</string>
   <string name="plugin_packagename">Имя пакета:</string>
   <string name="plugin_description">Описание (не проверено):</string>
@@ -542,7 +545,7 @@
   <string name="DefaultTemplate">Стандартная запись</string>
   <string name="TemplateGroupName">Шаблоны</string>
   <string name="TemplateTitle_IdCard">ID карты</string>
-  <string name="TemplateField_IdCard_Name">Имя</string>
+  <string name="TemplateField_IdCard_Name">Название</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Место выдачи</string>
   <string name="TemplateField_IdCard_IssueDate">Дата выпуска</string>
   <string name="TemplateTitle_EMail">Электронная почта</string>
@@ -588,7 +591,7 @@
   </string>
   <string name="DbUnlockedChannel_name">БД разблокирована</string>
   <string name="DbUnlockedChannel_desc">Уведомление о том, что БД разблокирована</string>
-  <string name="DbQuicklockedChannel_name">БыстраяРазблокировка</string>
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="DbQuicklockedChannel_desc">Уведомление о том, что БД будет заблокирована БыстройРазблокировкой</string>
   <string name="EntryChannel_name">Уведомление о записи</string>
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
@@ -600,6 +603,9 @@
   <string name="ErrorReportAsk">Спросить после ошибки</string>
   <string name="ErrorReportPrefTitle">Отправить отчёт об ошибке</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показывать клавиатуру для ввода пароля, если сканер отпечатка пальца включен.</string>
+  <string name="ChangeLog_1_06">
+    Версия 1.06\n * Переключиться на ykDroid вместо YubiChallenge как приложение для Yubikey вызов-ответ. \n *, Реализуют поддержку для стиля KeepassXC вызов-ответ. Примечание: Формат базы данных должен быть KDBX4! \n * Отказ от загрузки файлов корзины из Google Drive\n * Реализация переключателя TLS для FTPS, добавлен обход ошибки JSch с серверов, поддерживающих gssapi с mic\n * Исправление ошибок\n
+  </string>
   <string name="ChangeLog_1_05">
     Версия 1.05\n
     * Использование каналов уведомлений для Android 8 можно включить в системных настройках\n
@@ -901,7 +907,7 @@
     <item>Пароль + секретные OTP (одноразовые пароли) (режим восстановления)</item>
     <item>Пароль + Вызов-Ответ</item>
     <item>Пароль + секретный Вызов-Ответ (режим восстановления)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Challenge-Response для Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Игнорировать ошибки проверки сертификата</item>
@@ -916,6 +922,7 @@
   <string name="show_autofill_help">Показать помощь по автозаполнению</string>
   <string name="autofill_sign_in_prompt">Автозаполнить при помощи Keepass2Android</string>
   <string name="invalid_link_association">Не получается ассоциировать домен %1$s с приложением %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android обнаружил сканер отпечатка пальцев. Вы хотите включить разблокировку отпечатком пальца для этой базы данных?</string>
   <string name="understand">Я понял</string>
   <string name="dont_show_again">Больше не показывать</string>
   <string name="masterkey_infotext_head">Вы помните Ваш мастер-пароль?</string>
