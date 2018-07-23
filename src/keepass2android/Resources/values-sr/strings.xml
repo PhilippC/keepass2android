@@ -66,7 +66,7 @@
   <string name="entry_is_available">доступно</string>
   <string name="not_possible_im_picker">Није могуће отворити дијалог за избор метода уноса. Ручно активирајте тастатуру.</string>
   <string name="please_activate_keyboard">Молимо омогућите Keepass2Android тастатуру у вашим поставкама система.</string>
-  <string name="creating_db_key">Креирање кључа базе података&#8230;</string>
+  <string name="creating_db_key">Креирање кључа базе података…</string>
   <string name="current_group">Тренутна група</string>
   <string name="current_group_root">Тренутна група: Root</string>
   <string name="database">База података</string>
@@ -101,7 +101,6 @@
   <string name="entry_expires">Истиче</string>
   <string name="entry_group_name">Назив групе</string>
   <string name="entry_keyfile">Кључ (опционо)</string>
-  <string name="keyfile_heading">Кључ</string>
   <string name="entry_modified">Измењено</string>
   <string name="entry_password">Лозинка</string>
   <string name="entry_save">Сачувај</string>
@@ -154,7 +153,7 @@
   <string name="length">Дужина</string>
   <string name="list_size_title">Величина листе групе</string>
   <string name="list_size_summary">Величина текста у листи групе</string>
-  <string name="loading_database">Учитавање базе података&#8230;</string>
+  <string name="loading_database">Учитавање базе података…</string>
   <string name="lowercase">Мала слова</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Сакриј лозинку</string>
@@ -196,12 +195,13 @@
   <string name="pass_filename">Име датотеке базе података KeePass</string>
   <string name="password_title">Унесите лозинку базе података</string>
   <string name="master_key_type">Изаберите врсту главног кључа:</string>
-  <string name="progress_create">Креирање нове базе података&#8230;</string>
+  <string name="progress_create">Креирање нове базе података…</string>
   <string name="create_database">Креирање базе података</string>
-  <string name="progress_title">У раду&#8230;</string>
+  <string name="progress_title">У раду…</string>
   <string name="remember_keyfile_summary">Запамти локацију кључева</string>
   <string name="remember_keyfile_title">Сачувај кључ</string>
   <string name="remove_from_filelist">Уклони</string>
+  <string name="edit">Уреди</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
   <string name="KeyDerivFunc">Функција извођења кључева</string>
@@ -212,8 +212,8 @@
   <string name="argon2parallelism">Паралелизам за Argon 2</string>
   <string name="database_name">Име базе података</string>
   <string name="default_username">Подразумевано корисничко име за нове уносе</string>
-  <string name="saving_database">Чување базе података&#8230;</string>
-  <string name="exporting_database">Извоз базе података&#8230;</string>
+  <string name="saving_database">Чување базе података…</string>
+  <string name="exporting_database">Извоз базе података…</string>
   <string name="export_database_successful">База података успешно извезена!</string>
   <string name="space">Размак</string>
   <string name="search_label">Претрага</string>
@@ -227,7 +227,6 @@
   <string name="search_hint">Пронађи</string>
   <string name="search_results">Резултати претраге</string>
   <string name="search_in">Тражи у</string>
-  <string name="select_other_entry">Изаберите други унос</string>
   <string name="select_group_then_add">Отворите жељену групу, онда притисните \"%1$s\"!</string>
   <string name="insert_element_here">Убаците овде</string>
   <string name="twofish">Twofish</string>
@@ -287,4 +286,17 @@
   <string name="SaveAttachment_doneMessage">Сачувај датотеку у %1$s.</string>
   <string name="SaveAttachment_Failed">Није могуће сачувати датотеку у %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Запамти текст претраге?</string>
+  <string name="AskOverwriteBinary_no">Преименуј</string>
+  <string name="TemplateField_IdCard_Name">Име</string>
+  <string name="DbQuicklockedChannel_name">Брзо откључавање</string>
+  <string-array name="clipboard_timeout_options">
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>5 minutes</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
+    <item>Никад</item>
+  </string-array>
 </resources>
