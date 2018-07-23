@@ -582,6 +582,14 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="ErrorReportAsk">Chiedi dopo un errore</string>
   <string name="ErrorReportPrefTitle">Segnalazione errori</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando la scansione dell\'impronta è attiva.</string>
+  <string name="ChangeLog_1_06">
+Versione 1.06\n
+* passato a ykDroid al posto di YubiChallenge come app per Yubikey Challenge-Response.\n
+* implementato il supporto per il Challenge-Response di KeepassXC. Nota: Il formato del database deve essere KDBX4!\n
+* blocco al caricamento dei file cestinati da Google Drive\n
+* scambiato implementazioneTLS per FTPS, aggiunto un rimedio al bug JSch con server che supportano gssapi-with-mic\n
+* bugfix\n
+  </string>
   <string name="ChangeLog_1_05">
 Versione 1.05\n
     * Utilizzo dei canali di notifica per Android 8, permettendo la configurazione tramite le impostazioni di sistema\n 
