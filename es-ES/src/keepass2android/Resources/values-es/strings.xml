@@ -582,6 +582,14 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="ErrorReportAsk">Preguntar después del error</string>
   <string name="ErrorReportPrefTitle">Enviar informe de errores</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
+  <string name="ChangeLog_1_06">
+    Versión 1.06\n
+    * Cambio a ykDroid en lugar de YubiChallenge como aplicación para Desafio-Respuesta Yubikey.\n
+    * Implementado soporte para Desafio-Respuesta estilo KeepassXC. Nota: Formato de base de datos debe ser KDBX4!\n
+    * Evitar cargar ficheros en papelera de Google Drive\n
+    * Cambiada implmementación TLS por FTPS, añadida solución alternativa al error JSch con servidores soportando gssapi-with-mic\n
+    * correción de errores\n
+  </string>
   <string name="ChangeLog_1_05">
 Versión 1.05\n
     * Uso de canales de notificación para Android 8, que permite la configuración a través de los ajustes del sistema\n
