@@ -582,6 +582,14 @@ Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androi
   <string name="ErrorReportAsk">Fråga efter fel</string>
   <string name="ErrorReportPrefTitle">Skicka felrapporter</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visa skärmtangentbordet för lösenordsindata när fingeravtrycksläsning är aktiv.</string>
+  <string name="ChangeLog_1_06">
+    Version 1.06\n
+    * Byte till ykDroid istället för YubiChallenge som app för Yubikey Challenge-Response.\n
+    * Implementerat stöd för KeepassXC-typ Challenge-Response. OBS: Databasformatet måste vara KDBX4!\n
+    * Vägra ladda förstörda filer från Google Drive\n
+    * Byte av TLS-implementation för FTPS, lade till fix för JSch-bugg med servrar som stödjer gssapi-with-mic\n
+    * Buggfixar\n
+  </string>
   <string name="ChangeLog_1_05">
     Version 1.05\n
     * Använd Android 8s avisteringskanaler, möjliggör inställning genom systeminställningar\n
