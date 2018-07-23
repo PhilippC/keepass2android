@@ -67,7 +67,7 @@
   <string name="entry_is_available">elérhető</string>
   <string name="not_possible_im_picker">Nem lehet megnyitni a dialógust a kiválasztott módszerrel. Aktiválja a billentyűzetet manuálisan.</string>
   <string name="please_activate_keyboard">Kérem engedélyezze a Keepass2Android billentyűzetet a rendszer beállításokban.</string>
-  <string name="creating_db_key">Adatbázis létrehozása&#8230;</string>
+  <string name="creating_db_key">Adatbázis létrehozása…</string>
   <string name="current_group">Jelenlegi csoport</string>
   <string name="current_group_root">Jelenlegi csoport: Gyökérkönyvtár</string>
   <string name="database">Adatbázis</string>
@@ -163,7 +163,7 @@
   <string name="length">Hossz</string>
   <string name="list_size_title">Csoportlistázás betűmérete</string>
   <string name="list_size_summary">Beállítja a csoportok betűméretét</string>
-  <string name="loading_database">Adatbázis betöltése&#8230;</string>
+  <string name="loading_database">Adatbázis betöltése…</string>
   <string name="lowercase">Kisbetűk</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Jelszó elrejtése</string>
@@ -205,9 +205,9 @@
   <string name="pass_filename">KeePass adatbázisfájl</string>
   <string name="password_title">Adatbázis-jelszó megadása</string>
   <string name="master_key_type">A főkulcs típusának kiválasztása:</string>
-  <string name="progress_create">Új adatbázis létrehozása&#8230;</string>
+  <string name="progress_create">Új adatbázis létrehozása…</string>
   <string name="create_database">Adatbázis létrehozása</string>
-  <string name="progress_title">Feldolgozás&#8230;</string>
+  <string name="progress_title">Feldolgozás…</string>
   <string name="remember_keyfile_summary">A kulcsfájlok elérhetőségének tárolása.</string>
   <string name="remember_keyfile_title">Kulcsfájl mentése</string>
   <string name="remove_from_filelist">Eltávolítás</string>
@@ -222,8 +222,8 @@
   <string name="argon2parallelism">Párhuzamosság Argon 2-höz</string>
   <string name="database_name">Adatbázis neve</string>
   <string name="default_username">Alapértelmezett felhasználónév az új bejegyzésekhez</string>
-  <string name="saving_database">Adatbázis mentése&#8230;</string>
-  <string name="exporting_database">Adatbázis exportálása&#8230;</string>
+  <string name="saving_database">Adatbázis mentése…</string>
+  <string name="exporting_database">Adatbázis exportálása…</string>
   <string name="export_database_successful">Adatbázis exportálása sikerült!</string>
   <string name="space">Szóköz</string>
   <string name="search_label">Keresés</string>
@@ -237,7 +237,7 @@
   <string name="search_hint">Keresendő szöveg</string>
   <string name="search_results">Keresési eredmények</string>
   <string name="search_in">Keresendő mezők</string>
-  <string name="select_other_entry">Válasszon másik bejegyzést</string>
+  <string name="select_other_entry">Válasszon egy másik bejegyzést</string>
   <string name="select_group_then_add">Nyissa meg a kívánt csoportot, majd nyomja meg a \"%1$s\" gombot!</string>
   <string name="insert_element_here">Beillesztés ide</string>
   <string name="twofish">Twofish</string>
@@ -391,15 +391,15 @@
   <string name="translate_app">Fordítsa le a KP2A-t!</string>
   <string name="AddingEntry">Bejegyzés hozzáadása...</string>
   <string name="AddingGroup">Csoport hozzáadása...</string>
-  <string name="DeletingEntry">Bejegyzés törlése&#8230;</string>
-  <string name="DeletingGroup">Csoport törlése&#8230;</string>
-  <string name="DeletingItems">Elemek törlése&#8230;</string>
-  <string name="SettingPassword">Jelszó beállítása&#8230;</string>
-  <string name="UndoingChanges">Módosítások visszavonása&#8230;</string>
-  <string name="TransformingKey">Főkulcs átalakítása&#8230;</string>
-  <string name="DecodingDatabase">Adatbázis dekódolása&#8230;</string>
-  <string name="ParsingDatabase">Adatbázis elemzése&#8230;</string>
-  <string name="CheckingTargetFileForChanges">Változások keresése a távoli fájlban&#8230;</string>
+  <string name="DeletingEntry">Bejegyzés törlése…</string>
+  <string name="DeletingGroup">Csoport törlése…</string>
+  <string name="DeletingItems">Elemek törlése…</string>
+  <string name="SettingPassword">Jelszó beállítása…</string>
+  <string name="UndoingChanges">Módosítások visszavonása…</string>
+  <string name="TransformingKey">Főkulcs átalakítása…</string>
+  <string name="DecodingDatabase">Adatbázis dekódolása…</string>
+  <string name="ParsingDatabase">Adatbázis elemzése…</string>
+  <string name="CheckingTargetFileForChanges">Változások keresése a távoli fájlban…</string>
   <string name="TitleSyncQuestion">Változások egyesítése?</string>
   <string name="MessageSyncQuestion">Az adatbázis-fájlt más alkalmazás módosította. Szeretné betölteni és egyesíteni a változásokat a mentés előtt? Válassza a \"nem\"-t, ha felül kívánja írni a külső változtatásokat! </string>
   <string name="SynchronizingDatabase">Módosítások egyesítése...</string>
@@ -409,13 +409,13 @@
   <string name="UseOnlineMode">Az átmeneti tárolóban lévő másolat szinkronizálása a forrással(eredetivel)</string>
   <string name="UseOfflineMode_Info">Az adatbázis az átmeneti tárolóból lett betöltve. A változtatások csak az átmeneti tárolóban lévő másolatban tárolódnak és csak akkor szinkronizálódnak az eredetivel, amikor kiválasztja Az átmeneti tárolóban lévő másolat szinkronizálását az eredetivel funkciót.</string>
   <string name="InOfflineMode">Csak az átmeneti tárolóban lévő másolaton dolgozik.</string>
-  <string name="SynchronizingCachedDatabase">Az adatbázis helyi másolatának szinkronizálása&#8230;</string>
-  <string name="DownloadingRemoteFile">Forrás (eredeti) fájl betöltése&#8230;</string>
-  <string name="UploadingFile">Fájl mentése&#8230;</string>
-  <string name="RestoringRemoteFile">Forrás (eredeti) fájl visszaállítása&#8230;</string>
+  <string name="SynchronizingCachedDatabase">Az adatbázis helyi másolatának szinkronizálása…</string>
+  <string name="DownloadingRemoteFile">Forrás (eredeti) fájl betöltése…</string>
+  <string name="UploadingFile">Fájl mentése…</string>
+  <string name="RestoringRemoteFile">Forrás (eredeti) fájl visszaállítása…</string>
   <string name="FilesInSync">A fájlok szinkronban vannak.</string>
   <string name="SynchronizedDatabaseSuccessfully">Az adatbázis szinkronizálása sikeres!</string>
-  <string name="CheckingDatabaseForChanges">Változások keresése a célfájlban&#8230;</string>
+  <string name="CheckingDatabaseForChanges">Változások keresése a célfájlban…</string>
   <string name="CouldNotSaveToRemote">Nem sikerült a forrás (eredeti) fájlba mentés: %1$s. Mentsen újra vagy használja a Szinkronizálás menüt, ha a fájl már újra elérhető.</string>
   <string name="CouldNotLoadFromRemote">A forrás(eredeti) fájl nem elérhető: %1$s. Fájl betöltve az átmeneti tárolóból. Az adatbázist továbbra is megváltoztathatja és szinkronizálhatja a változtatásokat később.</string>
   <string name="UpdatedRemoteFileOnLoad">Forrás(eredeti) fájl frissítve.</string>
@@ -425,13 +425,13 @@
   <string name="RemoteDatabaseUnchanged">Nincs változás.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Az OTP kiegészítő fájl helyi másolata frissítve lett: a forrás(eredeti) példány számlálója magasabb volt.</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">Az OTP kiegészítő forrás(eredeti) fájl frissítve lett: a helyi másolat számlálója magasabb volt.</string>
-  <string name="SynchronizingOtpAuxFile">Az OTP kiegészítő fájl szinkronizálása&#8230;</string>
+  <string name="SynchronizingOtpAuxFile">Az OTP kiegészítő fájl szinkronizálása…</string>
   <string name="database_file">adatbázisfájl</string>
   <string name="otp_aux_file">OTP kiegészítő fájl</string>
   <string name="ErrorOcurred">Hiba történt:</string>
   <string name="DuplicateUuidsError">Az adatbázis sérült: ütköző egyedi azonosítókat tartalmaz.  (Minikeepass alkalmazással lett elmentve?)  Importálja az adatbázist a Keepass 2 PC alkalmazásba és használja annak \"Új azonosítók létrehozása\" funkcióját.</string>
   <string name="DuplicateUuidsErrorAdditional">Ez a hibaüzenet kikapcsolható a Beállítások/Alkalmazás/Fájlkezelés/Ütköző egyedi azonosítók keresése opció segítségével.  Az ütköző egyedi azonosítók azonban nem várt viselkedést okozhatnak, ezért javasoljuk inkább az adatbázis javítását.</string>
-  <string name="synchronize_database_menu">Az adatbázis szinkronizálása&#8230;</string>
+  <string name="synchronize_database_menu">Az adatbázis szinkronizálása…</string>
   <string name="CannotMoveGroupHere">A csoportot nem lehet ebbe a csoportba mozgatni.</string>
   <string name="donate_question">Ma kezdődik az Oktoberfest!  Ha kedveli ezt az alkalmazást, nem lenne ez egy jó alkalom, hogy fizessen nekem egy sört?</string>
   <string name="donate_bday_question">Május 10?  A születésnapom!  Ha kedveli ezt az alkalmazást, miért nem küld valamiféle születésnapi üdvözletet, esetleg némi ajándékkel megtoldva?  Igazán örülnék neki!  :-)</string>
@@ -477,7 +477,7 @@
   <string name="hint_key_file">Adja meg, kíván-e a mesterjelszó mellett kulcsfájlt is használni:</string>
   <string name="use_key_file">Kulcsfájl használata</string>
   <string name="error_adding_keyfile">A kulcsfájl hozzáadása közben hiba történt!</string>
-  <string name="init_otp">OTP kiegészítő fájl betöltése&#8230;</string>
+  <string name="init_otp">OTP kiegészítő fájl betöltése…</string>
   <string name="otp_explanation">Adja meg a következő egyszer használatos jelszót/jelszavakat (OTP).  Húzza el a Yubikey NEO eszközt a telefon hátlapja fölött a jelszó/jelszavak NFC-n keresztüli beviteléhez.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP kiegészítő fájl betöltése nem sikerült!</string>
@@ -486,11 +486,11 @@
   <string name="otp_discarded_no_space">Az OTP figyelmen kívül hagyva: minden OTP meg lett már adva!</string>
   <string name="otp_discarded_because_db_open">Kérjük, először az adatbázist zárja be.  Az OTP figyelmen kívül hagyva.</string>
   <string name="otps_pending">(Egy vagy több OTP már elérhető)</string>
-  <string name="otpsecret_hint">OTP titkos kód (pl. 01 23 ab cd&#8230;)</string>
+  <string name="otpsecret_hint">OTP titkos kód (pl. 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">Az OTP titkos kód értelmezése sikertelen!</string>
   <string name="OtpKeyError">Az OTP kulcs létrehozása nem sikerült!  Ellenőrizze, hogy a megfelelő OTP-t vagy OTP-ket adta-e meg.</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP kiegészítő fájl frissítése közben hiba történt!</string>
-  <string name="SavingOtpAuxFile">OTP kiegészítő fájl mentése&#8230;</string>
+  <string name="SavingOtpAuxFile">OTP kiegészítő fájl mentése…</string>
   <string name="NoChallengeApp">A szükséges alkalmazás detektálása sikertelen.</string>
   <string name="PleaseInstallApp">Kérem telepítse a %1$s alkalmazást a Google Play áruházból.</string>
   <string name="AppOutdated">%1$s már nem támogatott.</string>
@@ -507,7 +507,7 @@
   <string name="DebugLog_title">Naplófájl használata</string>
   <string name="DebugLog_summary">Az alkalmazás kimenetének egy helyi naplófájlba írása</string>
   <string name="DebugLog_send">Hibakeresési naplóbejegyzések küldése...</string>
-  <string name="loading">Betöltés...</string>
+  <string name="loading">Töltés...</string>
   <string name="plugins">Beépülő modulok</string>
   <string name="plugin_packagename">Csomag neve:</string>
   <string name="plugin_description">Leírás (ellenőrizetlen):</string>
@@ -649,7 +649,7 @@
     <item>Jelszó + OTP titkos kód (helyreállítás)</item>
     <item>Jelszó + hitelesítő kérdés-válasz</item>
     <item>Jelszó + hitelesítő kérdés-válasz titkos kód (helyreállítás)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Jelszó + hitelesítő kérdés-válasz Kepass XC-hez</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Továbblépés, figyelmeztetés nélkül</item>
@@ -664,6 +664,7 @@
   <string name="show_autofill_help">Automatikus kitöltés segítség megjelenítése</string>
   <string name="autofill_sign_in_prompt">Kitöltés Keepass2Androiddal</string>
   <string name="invalid_link_association">Nem sikerült összerendelni a %1$s web domaint a %2$s alkalmazással</string>
+  <string name="enable_fingerprint_hint">Ujjlenyomatleolvasó eszköz detektálva. Szeretné engedélyezni az adatbázis ujjlenyomattal való feloldását?</string>
   <string name="understand">Értem</string>
   <string name="dont_show_again">Ne mutassa többet</string>
   <string name="masterkey_infotext_head">Emlékszik a főkulcsra (jelszó)?</string>
