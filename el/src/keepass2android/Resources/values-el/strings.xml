@@ -584,6 +584,11 @@
   <string name="ErrorReportAsk">Ερώτηση μετά από σφάλμα</string>
   <string name="ErrorReportPrefTitle">Αποστολή αναφοράς σφαλμάτων</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Προβάλει το πληκτρολόγιο για εισαγωγή συνθηματικού όταν είναι ενεργή η σάρωση δακτυλικού αποτυπώματος.</string>
+  <string name="ChangeLog_1_06">Έκδοση 1.06\n
+* Χρήση του ykDroid αντί του YubiChallenge ως εφαρμογή για Yubikey Πρόκληση-Απόκριση.\n
+* Υλοποίηση υποστήριξης για KeepassXC-style Challenge-Response. Σημείωση: Το φορμάτ της βάσης δεδομένων πρέπει να είναι KDBX4!\n     * Άρνηση φόρτωσης πεταμένων αρχείων από το Google Drive\n
+ * Αλλαγή της υλοποίησης TLS για το FTPS, προσθήκη λύσης του σφάλματος JSch για εξυπηρετητές που υποστηρίζουν gssapi-with-mic\n
+* Διορθώσεις σφαλμάτων\n</string>
   <string name="ChangeLog_1_05">
     Έκδοση 1.05\n
     * Χρήση ειδοποιήσεων του Android 8, που επιτρέπει προσαρμογή μέσω των ρυθμίσεων συστήματος\n
