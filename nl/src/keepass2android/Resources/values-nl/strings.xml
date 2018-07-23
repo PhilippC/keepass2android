@@ -581,6 +581,14 @@
   <string name="ErrorReportAsk">Vragen na het optreden van een fout</string>
   <string name="ErrorReportPrefTitle">Foutrapporten verzenden</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Toon het toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
+  <string name="ChangeLog_1_06">
+  Versie 1.06\n
+  * Gebruikt ykDroid in plaats van YubiChallenge als app voor Yubikey Challenge-Response.\n
+  * Ondersteuning voor KeepassXC-stijl Challenge-Response. Merk op: de database-indeling moet KDBX4 zijn!\n
+  * Weiger verwijderde bestanden te laden van Google Drive\n
+  * Andere TLS implementatie voor FTPS, om een JSch bug heen gewerkt voor servers die gssapi-with-mic ondersteunen\n
+  * problemen opgelost\n
+  </string>
   <string name="ChangeLog_1_05">
     Version 1.05\n
     * Gebruik melding kanalen op Android 8 met configuratie via systeem instellingen\n
