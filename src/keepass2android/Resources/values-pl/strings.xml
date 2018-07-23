@@ -328,7 +328,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="NoDonationReminder_title">Nigdy nie proś o darowiznę</string>
   <string name="NoDonationReminder_summary">Nie chcę dać Ci kasy albo już to zrobiłem. Nie pytaj o darowiznę, nawet na urodziny autora.</string>
   <string name="UseOfflineCache_title">Pamięć podręczna baz danych</string>
-  <string name="UseOfflineCache_summary">Przechowuj kopię zdalnych baz danych w katalogu pamięci podręcznej aplikacji. Pozwala to na wykorzystanie zdalnych baz danych, nawet w trybie offline.</string>
+  <string name="UseOfflineCache_summary">Trzymaj kopię plików bazy danych w pamięci podręcznej aplikacji. Dzięki temu można korzystać z baz danych gdy ich pliki nie są dostępne.</string>
   <string name="CreateBackups_title">Lokalne kopie zapasowe</string>
   <string name="CreateBackups_summary">Twórz lokalną kopię zapasową po pomyślnym załadowaniu bazy danych.</string>
   <string name="UpdatingBackup">Aktualizacja lokalnej kopii zapasowej...</string>
@@ -336,7 +336,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="AcceptAllServerCertificates_title">Certyfikaty SSL</string>
   <string name="AcceptAllServerCertificates_summary">Zdefiniuj zachowanie, gdy weryfikacja certyfikatu się nie powiedzie. Uwaga: jeżeli weryfikacja się nie powiedzie, możesz zainstalować certyfikat na swoim urządzeniu!</string>
   <string name="ClearOfflineCache_title">Wyczyścić pamięć podręczną?</string>
-  <string name="ClearOfflineCache_question">Spowoduje to usunięcie wszystkich plików pamięci podręcznej baz danych. Wszelkie zmiany dokonane będąc offline, które nie zostały jeszcze zsynchronizowane zostaną utracone! Kontynuować?</string>
+  <string name="ClearOfflineCache_question">Spowoduje to usunięcie wszystkich plików pamięci podręcznej baz danych. Wszelkie zmiany dokonane będąc offline, które nie zostały jeszcze zsynchronizowane, zostaną utracone! Kontynuować?</string>
   <string name="CheckForFileChangesOnSave_title">Sprawdź, czy zmodyfikowano</string>
   <string name="CheckForFileChangesOnSave_summary">Sprawdzenie, czy plik został zmodyfikowany zewnętrznie przed zapisaniem zmian.</string>
   <string name="CheckForDuplicateUuids_title">Wyszukaj duplikatów UUID</string>
@@ -403,26 +403,26 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="SynchronizingDatabase">Scalanie zmian...</string>
   <string name="YesSynchronize">Tak, scal</string>
   <string name="NoOverwrite">Nie, nadpisz</string>
-  <string name="UseOfflineMode">Pracuj offline</string>
-  <string name="UseOnlineMode">Pracuj online</string>
-  <string name="UseOfflineMode_Info">Unikaj jakiegokolwiek ruchu sieciowego, używając lokalnej kopii pliku. Zmiany są przechowywane tylko w lokalnej pamięci podręcznej i będą udostępnione tylko, gdy przełączysz ponownie do trybu online.</string>
-  <string name="InOfflineMode">Pracujesz offline.</string>
+  <string name="UseOfflineMode">Korzystaj wyłącznie z wewnętrznej pamięci podręcznej</string>
+  <string name="UseOnlineMode">Synchronizuj kopię z pamięci podręcznej z jej źródłem</string>
+  <string name="UseOfflineMode_Info">Baza danych jest załadowana z wewnętrznej pamięci podręcznej. Zmiany są przechowywane wyłącznie w pamięci podręcznej i będą zsynchronizowane wyłącznie po wybraniu opcji \"Synchronizuj kopię z pamięci podręcznej z jej źródłem\".</string>
+  <string name="InOfflineMode">Korzystanie wyłącznie z wewnętrznej pamięci podręcznej.</string>
   <string name="SynchronizingCachedDatabase">Synchronizacji pamięć podręczną baz danych...</string>
-  <string name="DownloadingRemoteFile">Pobieranie pliku zdalnego...</string>
-  <string name="UploadingFile">Przesyłanie pliku...</string>
-  <string name="RestoringRemoteFile">Przywracanie pliku zdalnego...</string>
+  <string name="DownloadingRemoteFile">Ładowanie pliku źródłowego&#8230;</string>
+  <string name="UploadingFile">Zapisz plik&#8230;</string>
+  <string name="RestoringRemoteFile">Przywracanie pliku źródłowego&#8230;</string>
   <string name="FilesInSync">Pliki są zsynchronizowane.</string>
   <string name="SynchronizedDatabaseSuccessfully">Baza danych pomyślnie zsynchronizowana!</string>
   <string name="CheckingDatabaseForChanges">Sprawdzania bazy danych pod kątem zmian...</string>
-  <string name="CouldNotSaveToRemote">Nie można zapisać zdalnego pliku: %1$s. Zapisz ponownie lub użyj menu Synchronizuj gdy połączenie będzie ponownie dostępne.</string>
-  <string name="CouldNotLoadFromRemote">Nie można otworzyć z zdalnego: %1$s. Załadowano plik z lokalnej pamięci podręcznej. Można jeszcze wprowadzić zmiany w bazie danych i zsynchronizować je później.</string>
-  <string name="UpdatedRemoteFileOnLoad">Zaktualizowany plik zdalny.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Otwarto lokalny plik ze względu na konflikt ze zmianami w pliku zdalnym. Użyj menu Synchronizuj do połączenia obydwu plików.</string>
-  <string name="LoadedFromRemoteInSync">Zdalny plik i pamięć podręczna są zsynchronizowane.</string>
-  <string name="UpdatedCachedFileOnLoad">Aktualizacja lokalnej pamięci podręcznej: %1$s.</string>
+  <string name="CouldNotSaveToRemote">Nie można zapisać pliku źródłowego: %1$s. Zapisz ponownie lub użyj menu Synchronizacji, gdy plik będzie ponownie dostępny.</string>
+  <string name="CouldNotLoadFromRemote">Nie można uzyskać dostępu do pliku źródłowego: %1$s. Załadowany plik z wewnętrznej pamięci podręcznej. Można nadal wprowadzać zmiany w bazie danych i zsynchronizować je później.</string>
+  <string name="UpdatedRemoteFileOnLoad">Zaktualizowano plik źródłowy.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Otwarto lokalny plik ze względu na konflikt ze zmianami w pliku zdalnym. Użyj menu Synchronizacji do połączenia obydwu plików.</string>
+  <string name="LoadedFromRemoteInSync">Plik źródłowy i pamięć podręczna są zsynchronizowane.</string>
+  <string name="UpdatedCachedFileOnLoad">Zaktualizowano kopię %1$s w pamięci podręcznej.</string>
   <string name="RemoteDatabaseUnchanged">Nie wykryto żadnych zmian.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Zaktualizowano zbuforowany pomocniczy plik OTP: Zdalny licznik był wyższy.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Zaktualizowano zdalny plik pomocniczy OTP: lokalny licznik był wyższy.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Zaktualizowano plik pomocniczy OTP w pamięci podręcznej: źródłowy licznik był wyższy.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Zaktualizowano źródłowy plik pomocniczy OTP: lokalny licznik był wyższy.</string>
   <string name="SynchronizingOtpAuxFile">Synchronizacja pliku pomocniczego OTP&#8230;</string>
   <string name="database_file">plik bazy danych</string>
   <string name="otp_aux_file">Pomocniczy plik OTP</string>
@@ -488,6 +488,8 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="OtpKeyError">Nie można utworzyć klucza OTP! Upewnij się, że wprowadziłeś poprawne hasła jednorazowe (OTPs).</string>
   <string name="ErrorUpdatingOtpAuxFile">Błąd aktualizacji pomocniczego pliku OTP!</string>
   <string name="SavingOtpAuxFile">Zapisywanie pomocniczego pliku OTP&#8230;</string>
+  <string name="PleaseInstallApp">Proszę zainstalować %1$s z Google Play.</string>
+  <string name="AppOutdated">%1$s nie jest obsługiwane.</string>
   <string name="bad_resp">Odpowiedź na wyzwanie jest nieprawidłowa.</string>
   <string name="CouldntLoadChalAuxFile">Nie można załadować pomocniczego pliku wyzwania!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Proszę użyć wtyczki KeeChallenge w KeePass 2.x (PC) do konfiguracji twojej bazy danych dla używania z twoją odpowiedzią na wyzwanie!</string>
@@ -889,7 +891,7 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Hasło + OTP (tryb odzyskiwania)</item>
     <item>Hasło + odpowiedź na wyzwanie</item>
     <item>Hasło + sekret Challenge-Response (tryb odzyskiwania)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Hasło + Challenge-Response dla Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoruj niepowodzenia weryfikacji certyfikatów</item>
@@ -904,6 +906,7 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="show_autofill_help">Pokaż pomoc autowypełniania</string>
   <string name="autofill_sign_in_prompt">Wypełnij z Keepass2Android</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android wykrył czytnik odcisków palców. Czy chcesz odblokowywać tę bazę danych odciskiem palca?</string>
   <string name="understand">Rozumiem</string>
   <string name="dont_show_again">Nie pokazuj ponownie</string>
   <string name="masterkey_infotext_head">Czy pamiętasz swoje hasło główne?</string>

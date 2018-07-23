@@ -328,7 +328,6 @@
   <string name="NoDonationReminder_title">Nunca pedir doações</string>
   <string name="NoDonationReminder_summary">Já doei ou não doarei nenhum centavo. Não me peça doação novamente, nem no aniversário do criador.</string>
   <string name="UseOfflineCache_title">Cache do banco de dados</string>
-  <string name="UseOfflineCache_summary">Mantém uma cópia de arquivos remotos de banco de dados no diretório de cache do aplicativo. Isto permite o uso de bancos de dados remotos mesmo desconectado.</string>
   <string name="CreateBackups_title">Cópias de segurança locais</string>
   <string name="CreateBackups_summary">Cria um backup local após carregar com sucesso o banco de dados.</string>
   <string name="UpdatingBackup">Atualizando a cópia de segurança local...</string>
@@ -336,7 +335,6 @@
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definir o comportamento quando uma validação de certificado falhar. Nota: você pode instalar certificados no seu dispositivo se a validação falhar!</string>
   <string name="ClearOfflineCache_title">Limpar o cache?</string>
-  <string name="ClearOfflineCache_question">Isto irá apagar todos os arquivos de banco de dados salvos em cache. Quaisquer modificações que você tenha feito enquanto esteve desconectado que não tenham sido sincronizadas serão perdidas! Continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Verificar modificações</string>
   <string name="CheckForFileChangesOnSave_summary">Verifica se o arquivo foi modificado externamente antes de salvar as alterações.</string>
   <string name="CheckForDuplicateUuids_title">Verificar UUIDs duplicados</string>
@@ -403,26 +401,11 @@
   <string name="SynchronizingDatabase">Mesclando alterações&#8230;</string>
   <string name="YesSynchronize">Sim, mesclar</string>
   <string name="NoOverwrite">Não, substituir</string>
-  <string name="UseOfflineMode">Trabalhar offline</string>
-  <string name="UseOnlineMode">Trabalhar online</string>
-  <string name="UseOfflineMode_Info">Impedir qualquer tráfego de rede usando a cópia do cache local do arquivo. As alterações são armazenadas somente no cache local e somente serão enviadas quando se alterna de volta para o modo online.</string>
-  <string name="InOfflineMode">Funcionando offline.</string>
   <string name="SynchronizingCachedDatabase">Sincronizando banco de dados em cache&#8230;</string>
-  <string name="DownloadingRemoteFile">Baixando arquivo remoto&#8230;</string>
-  <string name="UploadingFile">Enviando arquivo&#8230;</string>
-  <string name="RestoringRemoteFile">Restaurando arquivo remoto&#8230;</string>
   <string name="FilesInSync">Os arquivos estão sincronizados.</string>
   <string name="SynchronizedDatabaseSuccessfully">Banco de dados sincronizado com sucesso!</string>
   <string name="CheckingDatabaseForChanges">Verificando mudanças no banco de dados&#8230;</string>
-  <string name="CouldNotSaveToRemote">Não foi possível salvar remotamente: %1$s. Salve novamente ou use o menu Sincronizar quando a conexão remota estiver disponível novamente.</string>
-  <string name="CouldNotLoadFromRemote">Não foi possível abrir remotamente: %1$s. Arquivo carregado do cache local. Você ainda pode fazer alterações no banco de dados e sincronizá-las mais tarde.</string>
-  <string name="UpdatedRemoteFileOnLoad">Arquivo remoto atualizado.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Aberto arquivo local devido a um conflito com as alterações no arquivo remoto. Use o menu Sincronizar para mesclar.</string>
-  <string name="LoadedFromRemoteInSync">Arquivo remoto e cache estão sincronizados.</string>
-  <string name="UpdatedCachedFileOnLoad">Cópia de cache local de %1$s atualizada.</string>
   <string name="RemoteDatabaseUnchanged">Nenhuma alteração detectada.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Arquivo auxiliar da OTP em cache atualizado: Contador remoto era maior.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Atualizado arquivo auxiliar remoto de OTP: Contador local era maior.</string>
   <string name="SynchronizingOtpAuxFile">Sincronizando arquivos auxiliares OTP&#8230;</string>
   <string name="database_file">arquivo de banco de dados</string>
   <string name="otp_aux_file">Arquivo auxiliar de OTP</string>
@@ -917,7 +900,7 @@ Lançamento público inicial
     <item>Senha + OTP secreto (modo de recuperação)</item>
     <item>Senha + desafio-resposta</item>
     <item>Senha + Desafio-resposta secreto (modo de recuperação)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Senha + Desafio-resposta para o Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar falhas de validação de certificado</item>

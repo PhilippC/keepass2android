@@ -8,7 +8,7 @@
   <string name="kp2a_password">密码</string>
   <string name="kp2a_prefs">输入凭据设置</string>
   <string name="kp2a_auto_fill">自动填充已启用</string>
-  <string name="kp2a_auto_fill_summary">当进入一个空白字段时自动填充文字，如果 Keepass2Android 是激活键盘，且有一个相匹配字段的提示文本。</string>
+  <string name="kp2a_auto_fill_summary">当填充区域为空白、键盘有待输入条目、且有字段匹配填充区域的提示文本时，自动将其填入。</string>
   <string name="kp2a_remember_auto_fill">记忆字段提示文本</string>
   <string name="kp2a_remember_auto_fill_summary">如果通过手动选择 Keepass2Android 填充字段，请记住哪个字段在对应字段中输入。该字段是后来由其提示文本重新检测到。</string>
   <string name="kp2a_simple_keyboard">简易键盘</string>

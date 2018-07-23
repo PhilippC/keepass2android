@@ -307,11 +307,9 @@
   <string name="NoDonateOption_summary">Тази настройка е за дарители. Тя е достъпна след използване на Keepass2Android за известно време.</string>
   <string name="NoDonateOption_question">Без дарения това приложение не може да съществува и няма да се подобрява непрекъснато! Ако сте все още не сте дарили, моля обмислете да го направите сега.</string>
   <string name="UseOfflineCache_title">Кеширане на базатаданни</string>
-  <string name="UseOfflineCache_summary">Запази копие на отдалечената база данни в кеф папката. Това позволява да се използва отдалечена база данни когато сте офлайн.</string>
   <string name="AcceptAllServerCertificates_title">SSL сертификати</string>
   <string name="AcceptAllServerCertificates_summary">Дефинирайте поведението когато сертифицирането пропадне. Бел.: вие можете да инсталирате сертификати ако валидирането пропадне!</string>
   <string name="ClearOfflineCache_title">Изчисване на кеша?</string>
-  <string name="ClearOfflineCache_question">Това ще изтрие всички кефирани бази данни. Всички промени докато сте били офлайн които не са синхронизиране ще бъдат изгубени! Продължаване?</string>
   <string name="CheckForFileChangesOnSave_title">Провери за промени</string>
   <string name="CheckForFileChangesOnSave_summary">Проверява дали файлът е променен външно преди записване на промените.</string>
   <string name="CheckForDuplicateUuids_title">Проверка за дублирани UUID</string>
@@ -352,8 +350,6 @@
   <string name="MessageSyncQuestion">Файлът на базата данни беше променен външно. Искате ли да заредите и да обедините промените преди записване? Изберете \"не\" ако искате да замените външните промени.</string>
   <string name="SynchronizingDatabase">Добавя промените&#8230;</string>
   <string name="NoOverwrite">Не, презапиши</string>
-  <string name="UseOfflineMode">Работа офлайн</string>
-  <string name="UseOnlineMode">Работа онлайн</string>
   <string name="SynchronizedDatabaseSuccessfully">Базата данни е синхронизирана успешно!</string>
   <string name="DuplicateUuidsError">Базата данни е повредена: дубликат идентификатори намерени. (Знаете запишете с Minikeepass?) Моля да импортирате отново в нова база данни с Keepass 2 за PC и изберете \"Създай нов ИД\".</string>
   <string name="DuplicateUuidsErrorAdditional">Можете да забраните това съобщение за грешка в приложението настройки/настройки/файл обработка/проверка за дублирани UUID. Моля, обърнете внимание, че е възможно да имате неочаквано поведение. Препоръчително е да се определи на базата данни.</string>

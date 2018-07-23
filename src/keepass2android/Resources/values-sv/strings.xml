@@ -326,7 +326,7 @@ Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androi
   <string name="NoDonationReminder_title">Be aldrig om donation</string>
   <string name="NoDonationReminder_summary">Jag kommer inte ge dig ett öre eller jag har redan donerat. Be inte om en donation, inte ens på utvecklarens födelsedag.</string>
   <string name="UseOfflineCache_title">Databascachning</string>
-  <string name="UseOfflineCache_summary">Behåll en kopia av fjärrdatabasfiler i programmets cachekatalog. Detta gör det möjligt för att använda fjärrdatabaser även när du är offline.</string>
+  <string name="UseOfflineCache_summary">Håll en kopia av databasfilerna i programmets cachekatalog. Detta möjliggör att använda databaser även när databasfilen inte är tillgänglig.</string>
   <string name="CreateBackups_title">Lokala säkerhetskopior</string>
   <string name="CreateBackups_summary">Skapa en lokal säkerhetskopia efter framgångsrikt ha laddat en databas.</string>
   <string name="UpdatingBackup">Uppdatera lokal säkerhetskopia...</string>
@@ -401,26 +401,26 @@ Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androi
   <string name="SynchronizingDatabase">Sammanfoga ändringar&#8230;</string>
   <string name="YesSynchronize">Ja, slå samman</string>
   <string name="NoOverwrite">Nej, skriv över</string>
-  <string name="UseOfflineMode">Arbeta offline</string>
-  <string name="UseOnlineMode">Arbeta online</string>
-  <string name="UseOfflineMode_Info">Undvik all nätverkstrafik med hjälp av den lokala cachede kopian av filen. Ändringarna lagras i den lokala cachen endast och kommer endast att laddas upp när du växlar tillbaka till online-läge.</string>
-  <string name="InOfflineMode">Arbetar offline.</string>
+  <string name="UseOfflineMode">Arbeta med enbart intern cache</string>
+  <string name="UseOnlineMode">Synkronisera cachekopia med källa</string>
+  <string name="UseOfflineMode_Info">Databasen är laddad från interna cache. Ändringar lagras endast internt i cacheminnet och endast kommer att synkroniseras när du väljer Synkronisera cache kopia med orginal.</string>
+  <string name="InOfflineMode">Arbeta enbart med intern cache.</string>
   <string name="SynchronizingCachedDatabase">Synkronisering cachad databas&#8230;</string>
-  <string name="DownloadingRemoteFile">Laddar ner fjärrfil&#8230;</string>
-  <string name="UploadingFile">Laddar upp fil&#8230;</string>
-  <string name="RestoringRemoteFile">Återställer fjärrfil&#8230;</string>
+  <string name="DownloadingRemoteFile">Samlar in källfiler&#8230;</string>
+  <string name="UploadingFile">Spara fil&#8230;</string>
+  <string name="RestoringRemoteFile">Återställer källfil&#8230;</string>
   <string name="FilesInSync">Filerna är synkroniserade.</string>
   <string name="SynchronizedDatabaseSuccessfully">Databasen synkroniseras framgångsrikt!</string>
   <string name="CheckingDatabaseForChanges">Kontrollerar förändringar av databas&#8230;</string>
-  <string name="CouldNotSaveToRemote">Kunde inte spara till fjärranslutning: %1$s. Spara igen eller använd menyn synkronisera när fjärranslutning är tillgänglig igen.</string>
-  <string name="CouldNotLoadFromRemote">Kunde inte öppna fjärrfil: %1$s. Fil laddad från lokal cache. Du kan fortfarande göra ändringar i databasen och synkronisera dessa senare.</string>
-  <string name="UpdatedRemoteFileOnLoad">Fjärrfil uppdaterad.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Öppnade lokal fil på grund till konflikt med ändringar i fjärrfil. Använd synkronisera-menyn att sammanfoga.</string>
-  <string name="LoadedFromRemoteInSync">Fjärrfilen och cache är synkroniserade.</string>
-  <string name="UpdatedCachedFileOnLoad">Uppdaterade lokal cache kopia av %1$s.</string>
+  <string name="CouldNotSaveToRemote">Kunde inte spara till källfil: %1$s. Spara igen eller använd menyn Synkronisera när filen är tillgänglig igen.</string>
+  <string name="CouldNotLoadFromRemote">Kunde inte öppna källfil: %1$s. Fil laddad från lokal cache. Du kan fortfarande göra ändringar i databasen och synkronisera dessa senare.</string>
+  <string name="UpdatedRemoteFileOnLoad">Källfil uppdaterad.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Öppnade internt cachad fil på grund till konflikt med ändringar i källfil. Använd Synkronisera-menyn att sammanfoga.</string>
+  <string name="LoadedFromRemoteInSync">Källfilen och cache är synkroniserade.</string>
+  <string name="UpdatedCachedFileOnLoad">Uppdaterade intern cachekopia av %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Inga ändringar upptäcktes.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Uppdaterade cachad fil med engångslösenord: Fjärräknaren hade högre värde.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Uppdaterade fjärrfil med engångslösenord: Lokala räknaren hade högre värde.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Uppdaterade cachad fil med engångslösenord: Källräknaren hade högre värde.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Uppdaterade källfil med engångslösenord: Lokalräknaren hade högre värde.</string>
   <string name="SynchronizingOtpAuxFile">Synkronisera fil med engångslösenord&#8230;</string>
   <string name="database_file">databasfil</string>
   <string name="otp_aux_file">Engångslösenordsfil</string>
@@ -486,6 +486,9 @@ Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androi
   <string name="OtpKeyError">Det gick inte att skapa en engångslösenords-nyckel! Kontrollera att du har angett ett korrekt engångslösenord.</string>
   <string name="ErrorUpdatingOtpAuxFile">Fel vid uppdatering av engångslösenordsfil!</string>
   <string name="SavingOtpAuxFile">Sparar engångslösenordsfil&#8230;</string>
+  <string name="NoChallengeApp">Kunde inte hitta en app som klarar utmaningen.</string>
+  <string name="PleaseInstallApp">Var god installera %1$s från Google Play.</string>
+  <string name="AppOutdated">%1$s stöds ej längre.</string>
   <string name="bad_resp">Utmaningssvaret är felaktigt.</string>
   <string name="CouldntLoadChalAuxFile">Kunde inte ladda utmaningsfil!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Vänligen Använd KeeChallenge plugin i KeePass 2.x (PC) till konfigurera din databas för användning med utmanings-svar!</string>
@@ -589,6 +592,14 @@ Filen är skadad. \n Här är några tips som kan hjälpa till att diagnostisera
   <string name="ErrorReportAsk">Fråga efter fel</string>
   <string name="ErrorReportPrefTitle">Skicka felrapporter</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visa skärmtangentbordet för lösenordsindata när fingeravtrycksläsning är aktiv.</string>
+  <string name="ChangeLog_1_06">
+    Version 1.06\n
+    * Byte till ykDroid istället för YubiChallenge som app för Yubikey Challenge-Response.\n
+    * Implementerat stöd för KeepassXC-typ Challenge-Response. OBS: Databasformatet måste vara KDBX4!\n
+    * Vägra ladda förstörda filer från Google Drive\n
+    * Byte av TLS-implementation för FTPS, lade till fix för JSch-bugg med servrar som stödjer gssapi-with-mic\n
+    * Buggfixar\n
+  </string>
   <string name="ChangeLog_1_05">
     Version 1.05\n
     * Använd Android 8s avisteringskanaler, möjliggör inställning genom systeminställningar\n
@@ -726,7 +737,7 @@ Version 0.9.6\n * Tillåt att importera nyckelfil och/eller lokala databasfil ti
     <item>Lösenord + engångslösenordshemlighet (återställningsläge)</item>
     <item>Lösenord + Utmaning-Svar</item>
     <item>Lösenord + Utmaning-Svar hemlighet (återställningsläge)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Lösenord + Challenge-Response för Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorera certifikatvalideringsfel</item>
@@ -741,6 +752,7 @@ Version 0.9.6\n * Tillåt att importera nyckelfil och/eller lokala databasfil ti
   <string name="show_autofill_help">Visa hjälp för autofyll</string>
   <string name="autofill_sign_in_prompt">Fyll med Keepass2Android</string>
   <string name="invalid_link_association">Kunde inte associera webbdomän %1$s med app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android har upptäckt fingeravtryckshårdvara. Vill du aktivera fingeravtrycksupplåsning för denna databas?</string>
   <string name="understand">Jag förstår</string>
   <string name="dont_show_again">Visa inte igen</string>
   <string name="masterkey_infotext_head">Kommer du ihåg ditt huvudlösenord?</string>

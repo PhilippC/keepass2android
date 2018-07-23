@@ -328,7 +328,7 @@
   <string name="NoDonationReminder_title">Μην ζητάς προσφορά</string>
   <string name="NoDonationReminder_summary">Δε δίνω δυάρα ή έχω ήδη κάνει προσφορά. Μη ζητάς προσφορά, ούτε καν στα γενέθλια του κατασκευαστή.</string>
   <string name="UseOfflineCache_title">Προσωρινή αποθήκευση βάσης δεδομένων</string>
-  <string name="UseOfflineCache_summary">Διατηρεί αντίγραφο των απομακρυσμένων αρχείων βάσεων δεδομένων στο φάκελο προσωρινής αποθήκευσης της εφαρμογής. Αυτό επιτρέπει τη χρησιμοποίηση απομακρυσμένων βάσεων δεδομένων ακόμα και όταν είναι εκτός σύνδεσης.</string>
+  <string name="UseOfflineCache_summary">Διατήρηση αντιγράφου των αρχείων της βάσης δεδομένων στο φάκελο cache της εφαρμογής. Επιτρέπει τη χρήση των βάσεων δεδομένων ακόμη και όταν δεν είναι προσπελάσιμα.</string>
   <string name="CreateBackups_title">Τοπικά αντίγραφα</string>
   <string name="CreateBackups_summary">Δημιουργία τοπικού αντιγράφου μετά την επιτυχή φόρτωση της βάσης δεδομένων</string>
   <string name="UpdatingBackup">Ενημέρωση τοπικού αντιγράφου...</string>
@@ -336,7 +336,7 @@
   <string name="AcceptAllServerCertificates_title">Πιστοποιητικά SSL</string>
   <string name="AcceptAllServerCertificates_summary">Καθορίστε τη συμπεριφορά αν αποτύχει η επικύρωση πιστοποιητικού. Σημείωση: μπορείτε να εγκαταστήσετε πιστοποιητικά στη συσκευή σας, εάν αποτύχει η επικύρωση!</string>
   <string name="ClearOfflineCache_title">Εκκαθάριση προσωρινής μνήμης;</string>
-  <string name="ClearOfflineCache_question">Διαγραφή όλων των αρχείων προσωρινής αποθήκευσης βάσεων δεδομένων. Τυχόν αλλαγές που κάνατε εκτός σύνδεσης και δεν έχουν συγχρονιστεί, θα χαθούν! Συνέχεια;</string>
+  <string name="ClearOfflineCache_question">Διαγράφει όλα τα αρχεία βάσεων δεδομένων στην cache. Αλλαγές που έγιναν όσο δεν υπήρχε πρόσβαση στην πηγαία βάση δεδομένων και δεν έχουν συγχρονιστεί, θα χαθούν. Συνέχεια;</string>
   <string name="CheckForFileChangesOnSave_title">Έλεγχος για τροποποιήσεις</string>
   <string name="CheckForFileChangesOnSave_summary">Έλεγχος αν το αρχείο τροποποιήθηκε εξωτερικά πριν την αποθήκευση αλλαγών.</string>
   <string name="CheckForDuplicateUuids_title">Έλεγχος για διπλότυπα αναγνωριστικά</string>
@@ -403,26 +403,26 @@
   <string name="SynchronizingDatabase">Συγχώνευση αλλαγών&#8230;</string>
   <string name="YesSynchronize">Ναι, συγχώνευση</string>
   <string name="NoOverwrite">Οχι, αντικατάσταση</string>
-  <string name="UseOfflineMode">Εργασία χωρίς σύνδεση</string>
-  <string name="UseOnlineMode">Εργασία με σύνδεση</string>
-  <string name="UseOfflineMode_Info">Αποφύγετε οποιαδήποτε κίνηση του δικτύου, χρησιμοποιώντας τοπικό αντίγραφο του αρχείου. Οι αλλαγές αποθηκεύονται στη τοπικά στη μνήμη cache μόνον και θα μεταφερθούν κατά τη μετάβαση σε λειτουργία σύνδεσης.</string>
-  <string name="InOfflineMode">Εργασία χωρίς σύνδεση.</string>
+  <string name="UseOfflineMode">Λειτουργία στην τοπική cache μόνον </string>
+  <string name="UseOnlineMode">Συγχρονισμός του αντιγράφου της cache με την πηγή</string>
+  <string name="UseOfflineMode_Info">Η βάση δεδομένων φορτώνεται από την cache. Οι αλλαγές αποθηκεύονται μόνο στην cache και θα συγχρονιστούν όταν επιλέξετε Συγχρονισμός.</string>
+  <string name="InOfflineMode">Λειτουργία στην cache μόνον</string>
   <string name="SynchronizingCachedDatabase">Συγχρονισμός προσωρινού αντίγραφου βάσης δεδομένων&#8230;</string>
-  <string name="DownloadingRemoteFile">Λήψη απομακρυσμένού αρχείου&#8230;</string>
-  <string name="UploadingFile">Ανέβασμα αρχείου&#8230;</string>
-  <string name="RestoringRemoteFile">Αποκατάσταση απομακρυσμένου αρχείου&#8230;</string>
+  <string name="DownloadingRemoteFile">Φόρτωση αρχείου πηγής...</string>
+  <string name="UploadingFile">Αποθήκευση αρχείου...</string>
+  <string name="RestoringRemoteFile">Επαναφορά αρχείου πηγής...</string>
   <string name="FilesInSync">Τα αρχεία είναι συγχρονισμένα.</string>
   <string name="SynchronizedDatabaseSuccessfully">Η βάση δεδομένων συγχρονίστηκε με επιτυχία!</string>
   <string name="CheckingDatabaseForChanges">Έλεγχος βάσης δεδομένων για αλλαγές&#8230;</string>
-  <string name="CouldNotSaveToRemote">Αποτυχία αποθήκευσης απομακρυσμένα: %1$s. Αποθηκεύστε ξανά ή χρησιμοποιήστε το μενού Συγχρονισμός, όταν η απομακρυσμένη σύνδεση είναι και πάλι διαθέσιμη.</string>
-  <string name="CouldNotLoadFromRemote">Αποτυχία ανοίγματος απομακρυσμένης: %1$s. Το αρχείο φορτώθηκε από την τοπική μνήμη. Μπορείτε να κάνετε αλλαγές στη βάση δεδομένων και να τη συγχρονίσετε αργότερα.</string>
-  <string name="UpdatedRemoteFileOnLoad">Ενημέρωση του απομακρυσμένου αρχείου.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Άνοιγμα τοπικού αρχείου εξαιτίας σύγκρουσης με αλλαγές στο απομακρυσμένο αρχείο. Χρησιμοποιήστε το μενού Συγχρονισμός για συγχώνευση.</string>
-  <string name="LoadedFromRemoteInSync">Το απομακρυσμένο αρχείο και το αντίγραφο στην προσωρινή μνήμη είναι συγχρονισμένα.</string>
-  <string name="UpdatedCachedFileOnLoad">Ενημερώνεται το τοπικό αντίγραφο του %1$s cache.</string>
+  <string name="CouldNotSaveToRemote">Αδυναμία αποθήκευσης του αρχείου πηγής %1$s. Δοκιμάστε ξανά ή χρησιμοποιήστε το μενού Συγχρονισμός όταν το αρχείο είναι διαθέσιμο.</string>
+  <string name="CouldNotLoadFromRemote">Αδυναμία προσπέλασης του αρχείου πηγής %1$s. Φορτώθηκε το αρχείο από την cache. Μπορείτε να κάνετε αλλαγές στη βάση δεδομένων και να τις συγχρονίσετε αργότερα.</string>
+  <string name="UpdatedRemoteFileOnLoad">Ενημερώθηκε το αρχείο πηγής.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Άνοιγμα τοπικού αρχείου εξαιτίας σύγκρουσης με αλλαγές στο αρχείο πηγής. Χρησιμοποιήστε το μενού Συγχρονισμός για συγχώνευση.</string>
+  <string name="LoadedFromRemoteInSync">Αρχείο πηγής και cache συγχρονίστηκαν. </string>
+  <string name="UpdatedCachedFileOnLoad">Ενημερώθηκε το αρχείο %1$s στην cache.</string>
   <string name="RemoteDatabaseUnchanged">Δεν εντοπίστηκαν αλλαγές.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Ενημερώθηκε το βοηθητικό αρχείο OTP στην προσωρινή μνήμη: ο απομακρυσμένος μετρητής ήταν υψηλότερος.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Ενημερώθηκε η απομακρυσμένη έκδοση του βοηθητικού αρχείου OTP: ο τοπικός μετρητής ήταν υψηλότερος.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Ενημερώθηκε το βοηθητικό αρχείο OTP στην cache: Ο μετρητής στην πηγή ήταν υψηλότερος.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Ενημερώθηκε το βοηθητικό αρχείο OTP στην πηγή: Ο τοπικός μετρητής ήταν υψηλότερος.</string>
   <string name="SynchronizingOtpAuxFile">Συγχρονισμός βοηθητικού αρχείου OTP&#8230;</string>
   <string name="database_file">αρχείο βάσης δεδομένων</string>
   <string name="otp_aux_file">Βοηθητικό αρχείο OTP</string>
@@ -488,9 +488,12 @@
   <string name="OtpKeyError">Απέτυχε η δημιουργία κλειδιού OTP! Βεβαιωθείτε ότι έχετε εισάγει σωστά OTP.</string>
   <string name="ErrorUpdatingOtpAuxFile">Σφάλμα ενημέρωσης βοηθητικού αρχείου OTP!</string>
   <string name="SavingOtpAuxFile">Αποθηκεύεται το βοηθητικό αρχείο OTP&#8230;</string>
-  <string name="bad_resp">Εσφαλμένη απόκριση στο ερώτημα.</string>
-  <string name="CouldntLoadChalAuxFile">Δεν ήταν δυνατή η φόρτωση του βοηθητικού αρχείου ερωτήματος!</string>
-  <string name="CouldntLoadChalAuxFile_Hint">Χρησιμοποιήστε το πρόσθετο KeeChallenge σε KeePass 2.x (PC) για να ρυθμίσετε τη βάση δεδομένων για χρήση με ερώτημα-απόκριση!</string>
+  <string name="NoChallengeApp">Δεν βρέθηκε εφαρμογή που μπορεί να χειριστεί την πρόκληση.</string>
+  <string name="PleaseInstallApp">Παρακαλώ εγκαταστήσετε %1$s από το Google Play.</string>
+  <string name="AppOutdated">Το %1$s δεν υποστηρίζεται πλέον.</string>
+  <string name="bad_resp">Εσφαλμένη απόκριση στην πρόκληση.</string>
+  <string name="CouldntLoadChalAuxFile">Δεν ήταν δυνατή η φόρτωση του βοηθητικού αρχείου πρόκλησης!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Χρησιμοποιήστε το πρόσθετο KeeChallenge σε KeePass 2.x (PC) για να ρυθμίσετε τη βάση δεδομένων για χρήση με Πρόκληση-Απόκριση!</string>
   <string name="ErrorUpdatingChalAuxFile">Σφάλμα ενημέρωσης βοηθητικού αρχείου OTP!</string>
   <string name="TrayTotp_SeedField_title">Όνομα πεδίου για seed του TOTP</string>
   <string name="TrayTotp_SeedField_summary">Εάν χρησιμοποιείτε το πρόσθετο \"TrayTotp\" του Keepass 2 με μη προεπιλεγμένες ρυθμίσεις, πληκτρολογήστε το όνομα του πεδίου για το πεδίο seed σύμφωνα με τις ρυθμίσεις στον υπολογιστή.</string>
@@ -601,6 +604,11 @@
   <string name="ErrorReportAsk">Ερώτηση μετά από σφάλμα</string>
   <string name="ErrorReportPrefTitle">Αποστολή αναφοράς σφαλμάτων</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Προβάλει το πληκτρολόγιο για εισαγωγή συνθηματικού όταν είναι ενεργή η σάρωση δακτυλικού αποτυπώματος.</string>
+  <string name="ChangeLog_1_06">Έκδοση 1.06\n
+* Χρήση του ykDroid αντί του YubiChallenge ως εφαρμογή για Yubikey Πρόκληση-Απόκριση.\n
+* Υλοποίηση υποστήριξης για KeepassXC-style Challenge-Response. Σημείωση: Το φορμάτ της βάσης δεδομένων πρέπει να είναι KDBX4!\n     * Άρνηση φόρτωσης πεταμένων αρχείων από το Google Drive\n
+ * Αλλαγή της υλοποίησης TLS για το FTPS, προσθήκη λύσης του σφάλματος JSch για εξυπηρετητές που υποστηρίζουν gssapi-with-mic\n
+* Διορθώσεις σφαλμάτων\n</string>
   <string name="ChangeLog_1_05">
     Έκδοση 1.05\n
     * Χρήση ειδοποιήσεων του Android 8, που επιτρέπει προσαρμογή μέσω των ρυθμίσεων συστήματος\n
@@ -715,7 +723,7 @@
 Έκδοση 0.9.7\n
 * Υποστήριξη εγγραφής για βάσεις δεδομένων Keepass 1 (kdb) (σε beta!)\n
 * Καλύτερη εναλλαγή πληκτρολογίου (λειτουργεί σε μη root συσκευές)\n
-* υποστήριξη του KeeChallenge με ερωτήματα μεταβλητού μήκους\n
+* υποστήριξη του KeeChallenge με αποκρίσεις μεταβλητού μήκους\n
 * απαγορεύει τη λήψη screenshots των οθονών QuickUnlock και συνθηματικού\n 
 * ανάστροφη ταξινόμηση κατά ημερομηνία τροποποίησης (τώρα φθίνουσα)\n
 * διορθώσεις σφαλμάτων: προβολή σημειώσεων ενημερώνεται σωστά μετά από αλλαγές, προβολή συνθηματικού αποκρύπτει το συνθηματικό σε όλες τις συσκευές, απαγορεύει τη διπλή εισαγωγή καταχώρισης, διόρθωση στην προειδοποίηση διπλότυπων αναγνωριστικών ακόμα και μετά την επιδιόρθωση της βάσης δεδομένων\n 	</string>
@@ -907,9 +915,9 @@ Initial public release
     <item>Συνθηματικό + αρχείο κλειδιού</item>
     <item>Συνθηματικό + OTP</item>
     <item>Συνθηματικό + μυστικό OTP (λειτουργία ανάκτησης)</item>
-    <item>Συνθηματικό + Ερώτημα-Απάντηση</item>
-    <item>Συνθηματικό + μυστικό Ερώτημα-Απάντηση (λειτουργία ανάκτησης)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Συνθηματικό + Πρόκληση-Απόκριση</item>
+    <item>Συνθηματικό + μυστική Πρόκληση-Απόκριση (λειτουργία ανάκτησης)</item>
+    <item>Συνθηματικό + Πρόκληση-Απόκριση για το Keypass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Παράβλεψη αποτυχιών επικύρωσης πιστοποιητικού</item>
@@ -924,6 +932,7 @@ Initial public release
   <string name="show_autofill_help">Εμφάνιση βοήθειας Αυτόματης συμπλήρωσης</string>
   <string name="autofill_sign_in_prompt">Συμπλήρωση με Keepass2Android</string>
   <string name="invalid_link_association">Δεν σχετίζεται το web domain %1$s με την εφαρμογή %2$s</string>
+  <string name="enable_fingerprint_hint">Το Keepass2Android ανίχνευσε εξοπλισμό δακτυλικού αποτυπώματος. Θέλετε να ενεργοποιήσετε το ξεκλείδωμα με δακτυλικό αποτύπωμα για αυτή τη βάση δεδομένων;</string>
   <string name="understand">Καταλαβαίνω</string>
   <string name="dont_show_again">Να μην εμφανιστεί ξανά</string>
   <string name="masterkey_infotext_head">Θυμάστε το κύριο συνθηματικό σας;</string>

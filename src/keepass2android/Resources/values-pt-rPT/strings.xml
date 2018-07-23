@@ -326,7 +326,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="NoDonationReminder_title">Nunca pedir doações</string>
   <string name="NoDonationReminder_summary">Não vou doar um cêntimo ou já doei. Não voltar a pedir uma doação, nem no aniversário do autor.</string>
   <string name="UseOfflineCache_title">Cache da base de dados</string>
-  <string name="UseOfflineCache_summary">Guardar uma cópia das bases de dados remotas no diretório de cache da aplicação. Isto permite para usar bases de dados remotas, mesmo offline.</string>
+  <string name="UseOfflineCache_summary">Manter uma cópia dos ficheiros da base de dados no diretório de cache da aplicação. Isto permite o uso das base de dados mesmo quando os ficheiros das base de dados não estão acessíveis.</string>
   <string name="CreateBackups_title">Copias de segurança local</string>
   <string name="CreateBackups_summary">Cria uma cópia de segurança local após carregar com sucesso a base de dados.</string>
   <string name="UpdatingBackup">Atualizando a cópia de segurança local...</string>
@@ -334,7 +334,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Defina o comportamento quando a validação do certificado falhar. Atenção: pode instalar certificados no seu dispositivo se a validação falhar!</string>
   <string name="ClearOfflineCache_title">Eliminar a cache?</string>
-  <string name="ClearOfflineCache_question">Isto irá apagar todos os ficheiros de bases de dados em cache. Irá perder todas as alterações que fez enquanto trabalhava em modo offline, que não foram sincronizadas! Continuar?</string>
+  <string name="ClearOfflineCache_question">Isto irá apagar todos os ficheiros das bases de dados em cache. Qualquer alteração feita enquanto não tem acesso à fonte da base de dados e cuja sincronização ainda não tenha sido feita será perdida! Continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Verificar alterações</string>
   <string name="CheckForFileChangesOnSave_summary">Verificar se o ficheiro foi modificado externamente antes de guardar as alterações.</string>
   <string name="CheckForDuplicateUuids_title">Verificação de UUIDs duplicados</string>
@@ -401,26 +401,26 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="SynchronizingDatabase">A juntar alterações&#8230;</string>
   <string name="YesSynchronize">Sim, juntar</string>
   <string name="NoOverwrite">Não, sobrescrever</string>
-  <string name="UseOfflineMode">Funcionar offline</string>
-  <string name="UseOnlineMode">Funcionar online</string>
-  <string name="UseOfflineMode_Info">Impedir qualquer tráfego de rede ao usar a cópia do cache local do ficheiro. As alterações são armazenadas somente no cache local e somente serão enviadas ao alternar de volta para o modo online.</string>
-  <string name="InOfflineMode">A funcionar offline.</string>
+  <string name="UseOfflineMode">Trabalhar apenas com a cache interna</string>
+  <string name="UseOnlineMode">Sincronizar copia em cache com a fonte</string>
+  <string name="UseOfflineMode_Info">Base de dados carregada a partir da cache interna. Alterações serão gravadas na cache interna apenas e apenas serão sincronizadas quando selecionar Sincronizar cópia em cache com a fonte.</string>
+  <string name="InOfflineMode">A trabalhar apenas com a cache interna.</string>
   <string name="SynchronizingCachedDatabase">Sincronização da base de dados em cache&#8230;</string>
-  <string name="DownloadingRemoteFile">A carregar ficheiro remoto&#8230;</string>
-  <string name="UploadingFile">A enviar ficheiro&#8230;</string>
-  <string name="RestoringRemoteFile">A restaurar ficheiro remoto&#8230;</string>
+  <string name="DownloadingRemoteFile">A carregar o ficheiro fonte&#8230;</string>
+  <string name="UploadingFile">Salvar ficheiro&#8230;</string>
+  <string name="RestoringRemoteFile">Restaurando o ficheiro fonte&#8230;</string>
   <string name="FilesInSync">Os ficheiros estão sincronizados.</string>
   <string name="SynchronizedDatabaseSuccessfully">Base de dados sincronizada com sucesso!</string>
   <string name="CheckingDatabaseForChanges">A verificar alterações na base de dados&#8230;</string>
-  <string name="CouldNotSaveToRemote">Não foi possível guardar remotamente: %1$s. Guarde novamente ou use o menu Sincronizar quando a ligação remota estiver disponível novamente.</string>
-  <string name="CouldNotLoadFromRemote">Não foi possível abrir remotamente: %1$s. Ficheiro carregado do cache local. Ainda pode fazer alterações na base de dados e sincronizá-las mais tarde.</string>
-  <string name="UpdatedRemoteFileOnLoad">Atualizar ficheiro remoto.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Aberto ficheiro local devido a um conflito com as alterações no ficheiro remoto. Use o menu Sincronizar para juntar.</string>
-  <string name="LoadedFromRemoteInSync">O ficheiro remoto e a cache estão sincronizados.</string>
-  <string name="UpdatedCachedFileOnLoad">Cópia atualizada de cache do local %1$s.</string>
+  <string name="CouldNotSaveToRemote">Não foi possível salvar para o ficheiro fonte: %1$s. Salvar novamente ou usar o menu de sincronização quando o ficheiro estiver acessível novamente.</string>
+  <string name="CouldNotLoadFromRemote">Não foi possível aceder ao ficheiro fonte: %1$s. Carregado o ficheiro a partir da cache interna. Você pode fazer alterações à base de dados e sincronizar mais tarde.</string>
+  <string name="UpdatedRemoteFileOnLoad">Ficheiro fonte atualizado.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Aberto ficheiro em cache interna devido a conflito com alterações no ficheiro fonte. Use o menu sincronização para unir.</string>
+  <string name="LoadedFromRemoteInSync">Ficheiro fonte e cache estão sincronizados.</string>
+  <string name="UpdatedCachedFileOnLoad">Atualizada copia em cache interna de %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Nenhuma alteração detetada.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Ficheiro auxiliar da OTP em cache atualizado: Contador remoto era maior.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Atualizado ficheiro auxiliar remoto de OTP: Contador local era maior.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Atualizado cache OTP de ficheiro auxiliar: Contador fonte era mais elevado.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Atualizada fonte OTP de ficheiro auxiliar: Contador fonte era mais elevado.</string>
   <string name="SynchronizingOtpAuxFile">A sincronizar o ficheiro auxiliar OTP&#8230;</string>
   <string name="database_file">ficheiro de base de dados</string>
   <string name="otp_aux_file">Ficheiro auxiliar do OTP</string>
@@ -486,6 +486,9 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="OtpKeyError">Falha ao criar a chave OTP! Verifique se que digitou as OTPs corretamente.</string>
   <string name="ErrorUpdatingOtpAuxFile">Erro ao atualizar o ficheiro OTP auxiliar!</string>
   <string name="SavingOtpAuxFile">A gravar o ficheiro OTP auxiliar&#8230;</string>
+  <string name="NoChallengeApp">Não foi possível encontrar uma aplicação que possa lidar com o desafio.</string>
+  <string name="PleaseInstallApp">Por favor instale %1$s a partir do Google Play.</string>
+  <string name="AppOutdated">%1$s já não é suportado.</string>
   <string name="bad_resp">O resposta de desafio está incorreta.</string>
   <string name="CouldntLoadChalAuxFile">Não foi possível carregar o ficheiro de desafio auxiliar!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Por favor, use a extensão KeeChallenge no KeePass 2.x (PC) para configurar a sua base de dados para uso com desafio-resposta!</string>
@@ -601,6 +604,15 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="ErrorReportAsk">Perguntar depois do erro</string>
   <string name="ErrorReportPrefTitle">Enviar relatórios de erro</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para inserção de palavra-passe quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_06">
+Versão 1.06\n
+    * Alterado para ykDroid em vez de YubiChallenge como aplicação para  Yubikey Challenge-Response.\n
+    * Implementado suporte para KeepassXC-style Challenge-Response. Nota: Formato da base de dados tem que ser KDBX4!\n
+    * Recusa em carregar ficheiros deitados ao lixo do Google Drive\n
+    * Alteração da implementação TLS para FTPS, adicionada alternativa para o JSch bug com servidores a suportar gssapi-with-mic\n
+    * correção de bugs\n
+  
+  </string>
   <string name="ChangeLog_1_05">
 Versão 1.05\n
 * Usa o canal de notificações para o Android 8, permitindo configuração através das configurações do sistema\n
@@ -914,7 +926,7 @@ Lançamento público inicial
     <item>Palavra-passe + OTP secreto (modo de recuperação)</item>
     <item>Palavra-passe + Desafio-Resposta</item>
     <item>Palavra-passe + Desafio-Resposta secreto (modo de recuperação)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Palavra-chave e resposta de desafio para o Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar falhas de validação de certificado</item>
@@ -929,6 +941,7 @@ Lançamento público inicial
   <string name="show_autofill_help">Mostrar ajuda para auto preenchimento</string>
   <string name="autofill_sign_in_prompt">Preencher com Keepass2Android</string>
   <string name="invalid_link_association">Não foi possível associar o domínio %1$s com a aplicação %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android detetou hardware de impressões digitais. Deseja ativar a impressão digital para desbloquear a base de dados?</string>
   <string name="understand">Eu entendo</string>
   <string name="dont_show_again">Não mostrar novamente</string>
   <string name="masterkey_infotext_head">Recorda-se da sua chave mestra?</string>

@@ -321,13 +321,11 @@
   <string name="NoDonationReminder_title">Nunca solicitar doazóns</string>
   <string name="NoDonationReminder_summary">Non che darei un céntimo ou xa doei. Non preguntar por doazóns, nin sequera no aniversario do autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
-  <string name="UseOfflineCache_summary">Manter unha copia dos arquivos da base de datos remota no directorio da caché da app. Isto permite usar base de datos remotas incluso sen conexión.</string>
   <string name="CreateBackups_title">Copias de seguranza locais</string>
   <string name="UpdatingBackup">Actualizando copia de seguranza local...</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definir o comportamento no caso de que falle a validación dun certificado. Nota: pode instalar certificados no seu dispositivo se a validación falla!</string>
   <string name="ClearOfflineCache_title">Eliminar caché?</string>
-  <string name="ClearOfflineCache_question">Isto eliminará todos os arquivos de bases de datos na caché. Perderase calquera cambio feito sen conexión que aínda non se sincronizara! Quere continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Comprobar modificacións</string>
   <string name="CheckForFileChangesOnSave_summary">Comprobar se o arquivo foi modificado externamente antes de gardar cambios.</string>
   <string name="CheckForDuplicateUuids_title">Buscar UUIDs duplicados</string>
@@ -391,26 +389,11 @@
   <string name="SynchronizingDatabase">Fusionando cambios&#8230;</string>
   <string name="YesSynchronize">Si, fusionar</string>
   <string name="NoOverwrite">Non, sobrescribir</string>
-  <string name="UseOfflineMode">Traballar sen conexión</string>
-  <string name="UseOnlineMode">Traballar con conexión</string>
-  <string name="UseOfflineMode_Info">Evite calquera tráfico de rede usando unha copia local de caché do arquivo. As modificacións serán gardadas na caché local e só serán subidas cando se cambie de modo.</string>
-  <string name="InOfflineMode">Traballando sen conexión.</string>
   <string name="SynchronizingCachedDatabase">Sincronizando caché da base de datos&#8230;</string>
-  <string name="DownloadingRemoteFile">Descargando arquivo remoto&#8230;</string>
-  <string name="UploadingFile">Subindo arquivo&#8230;</string>
-  <string name="RestoringRemoteFile">Restablecendo arquivo remoto&#8230;</string>
   <string name="FilesInSync">Os arquivos están sincronizados.</string>
   <string name="SynchronizedDatabaseSuccessfully">A base datos sincronizouse satisfactoriamente!</string>
   <string name="CheckingDatabaseForChanges">Comprobando cambios na base de datos&#8230;</string>
-  <string name="CouldNotSaveToRemote">Non se puido gardar o arquivo remoto %1$s. Garde outra vez ou empregue o menú de sincronización cando a conexión estea de novo dispoñible.</string>
-  <string name="CouldNotLoadFromRemote">Non se puido abrir o arquivo remoto %1$s. Cargouse o arquivo dende a cache local. Pode seguir facendo cambios na base de datos e sincronizalos despois.</string>
-  <string name="UpdatedRemoteFileOnLoad">Arquivo remoto actualizado.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Abriuse o arquivo local xa que hai un conflito cos cambios do arquivo remoto. Empregue o menú Sincronizar para fusionar cambios.</string>
-  <string name="LoadedFromRemoteInSync">Arquivo remoto e caché sincronizados.</string>
-  <string name="UpdatedCachedFileOnLoad">Copia do caché local de %1$s actualizada.</string>
   <string name="RemoteDatabaseUnchanged">Non se atoparon cambios.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Arquivo auxiliar do OTP en caché actualizado: o contador remoto era maior.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Arquivo auxiliar do OTP remoto actualizado: o contador local era maior.</string>
   <string name="SynchronizingOtpAuxFile">Sincronizando arquivo auxiliar OTP&#8230;</string>
   <string name="database_file">arquivo da base de datos</string>
   <string name="otp_aux_file">Arquivo auxiliar OTP</string>
@@ -580,6 +563,7 @@
   </string>
   <string name="DbUnlockedChannel_name">Base de datos desbloqueada</string>
   <string name="DbUnlockedChannel_desc">Notificación de que a base de datos está a ser desbloqueada</string>
+  <string name="DbQuicklockedChannel_name">Desbloqueo rápido</string>
   <string name="EntryChannel_name">Entrada de notificacións</string>
   <string name="EntryChannel_desc">Notificación para simplificar o acceso á entrada seleccionada.</string>
   <string name="ErrorReportTitle">Keepass2Android: ocorreu un erro.</string>
@@ -918,6 +902,7 @@ Lanzamento público inicial
   <string name="show_autofill_help">Amosar axuda do autocompletado</string>
   <string name="autofill_sign_in_prompt">Completar con Keepass2Android</string>
   <string name="invalid_link_association">Non se puido asociar o dominio web %1$s ca app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android detectou hárdware de impresións dixitais. Queres activar o desbloqueo desta base de datos mediante a túa impresión dixital?</string>
   <string name="understand">Entendo</string>
   <string name="dont_show_again">Non mostrar máis</string>
   <string name="masterkey_infotext_head">Lembras o teu contrasinal mestre?</string>

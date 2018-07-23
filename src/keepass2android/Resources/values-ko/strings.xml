@@ -324,7 +324,6 @@
   <string name="NoDonationReminder_title">기부에 대해 다시는 묻지 않기</string>
   <string name="NoDonationReminder_summary">나는 한 푼도 주지 않을 것이거나 이미 기증 했다. 제작자 생일에도 기부에 대한 요청 하지마라.</string>
   <string name="UseOfflineCache_title">데이터베이스 캐싱</string>
-  <string name="UseOfflineCache_summary">원격 데이터베이스 파일 사본을 앱 캐시 폴더에 보관하기. 이를 허용하면 오프라인 시에도 원격 데이터베이스 파일을 활용할 수 있습니다.</string>
   <string name="CreateBackups_title">기기 내부 백업</string>
   <string name="CreateBackups_summary">성공적으로 데이터베이스를 불러온 후 기기 내부 백업의 복사본을 만듭니다.</string>
   <string name="UpdatingBackup">기기 내부 백업을 업데이트중...</string>
@@ -332,7 +331,6 @@
   <string name="AcceptAllServerCertificates_title">SSL 인증서</string>
   <string name="AcceptAllServerCertificates_summary">인증서 유효성 검사 실패 시 동작을 정의합니다. 참고: 유효성 검사가 실패하면 인증서를 장치에 설치할 수 있습니다.</string>
   <string name="ClearOfflineCache_title">캐시를 지울까요?</string>
-  <string name="ClearOfflineCache_question">캐시된 모든 데이터베이스 파일을 지웁니다. 오프라인 시에 변경하여 동기화되지 않은 사항들은 모두 손실됩니다! 계속할까요?</string>
   <string name="CheckForFileChangesOnSave_title">수정 확인하기</string>
   <string name="CheckForFileChangesOnSave_summary">파일이 외부에서 수정되었는지 변경사항을 저장하기 전에 확인하기</string>
   <string name="CheckForDuplicateUuids_title">중복된 UUID 확인</string>
@@ -399,26 +397,11 @@
   <string name="SynchronizingDatabase">변경사항 통합...</string>
   <string name="YesSynchronize">네</string>
   <string name="NoOverwrite">아니요</string>
-  <string name="UseOfflineMode">오프라인으로 작업</string>
-  <string name="UseOnlineMode">온라인으로 작업</string>
-  <string name="UseOfflineMode_Info">파일의 내부 캐시 복사본을 사용하며 네트워크 트래픽은 무시됩니다. 변경 사항은 내부 캐시에만 저장되며 다시 온라인 모드로 전환 할 때 업로드됩니다.</string>
-  <string name="InOfflineMode">오프라인으로 작업.</string>
   <string name="SynchronizingCachedDatabase">캐시된 데이터베이스를 동기화...</string>
-  <string name="DownloadingRemoteFile">원격 파일 다운로드...</string>
-  <string name="UploadingFile">파일 업로드...</string>
-  <string name="RestoringRemoteFile">원격 파일 복구...</string>
   <string name="FilesInSync">파일이 동기화 됩니다.</string>
   <string name="SynchronizedDatabaseSuccessfully">데이터베이스가 성공적으로 동기화되었습니다!</string>
   <string name="CheckingDatabaseForChanges">변경사항을 위한 데이터베이스 검사...</string>
-  <string name="CouldNotSaveToRemote">원격 %1$s에 저장하지 못했습니다. 원격접속이 원활할 때 다시 저장하거나 동기화 메뉴를 사용해보세요.</string>
-  <string name="CouldNotLoadFromRemote">원격 %1$s에서 열 수 없습니다. 로컬 캐시에서 로드된 파일입니다. 데이터베이스를 변경하고 나중에 동기화할 수 있습니다.</string>
-  <string name="UpdatedRemoteFileOnLoad">원격 파일이 갱신되었습니다.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">원격 파일에서 변경사항이 충돌하여 로컬 파일이 열렸습니다. 동기화 메뉴를 사용해서 병합하세요.</string>
-  <string name="LoadedFromRemoteInSync">원격 파일과 캐쉬가 동기화 됩니다.</string>
-  <string name="UpdatedCachedFileOnLoad">%1$s의 로컬 개시 사본이 갱신되었습니다.</string>
   <string name="RemoteDatabaseUnchanged">변경사항이 없습니다.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">원격 카운트가 더 높아서 캐시된 OTP 보조 파일이 갱신되었습니다.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">로컬 카운트가 더 높아서 원격 OTP 보조 파일이 갱신되었습니다.</string>
   <string name="SynchronizingOtpAuxFile">OTP 보조 파일 동기화...</string>
   <string name="database_file">데이터베이스 파일</string>
   <string name="otp_aux_file">OTP 보조 파일</string>
@@ -934,7 +917,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     <item>비밀번호 + OTP 비밀 (복구 모드)</item>
     <item>비밀번호 + 시도-응답 인증</item>
     <item>비밀번호 + 시도-응답 (복구 모드)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Keepass XC를 위한 비밀번호 + 시도-응답 인증</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>인증서 유효성 검사 오류를 무시</item>
@@ -949,6 +932,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="show_autofill_help">자동 완성 도움말 보기</string>
   <string name="autofill_sign_in_prompt">Keepass2Android로 입력</string>
   <string name="invalid_link_association">웹 도메인 %1$s를 앱 %2$s에 연결 할 수 없습니다.</string>
+  <string name="enable_fingerprint_hint">Keepass2Android가 지문인식장치를 발견했습니다. 데이터베이스를 지문인식으로 잠금 해제하시겠습니까?</string>
   <string name="understand">이해했습니다.</string>
   <string name="dont_show_again">다시 보지 않기</string>
   <string name="masterkey_infotext_head">마스터 비밀번호를 기억하고 계십니까?</string>

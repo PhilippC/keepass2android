@@ -329,7 +329,6 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="NoDonationReminder_title">No demanar mai donació</string>
   <string name="NoDonationReminder_summary">Jo no li donaria un cèntim o ja he fet donació. No demanar donació, ni tan sols a l\'aniversari de l\'autor.</string>
   <string name="UseOfflineCache_title">Posant en memòria cau la base de dades</string>
-  <string name="UseOfflineCache_summary">Manté una còpia de la base de dades remota en el directori de memòria cau de l\'aplicació. Això permet utilitzar bases de dades remotes fins i tot quan esteu fora de línia.</string>
   <string name="CreateBackups_title">Còpia de seguretat local</string>
   <string name="CreateBackups_summary">Crea una còpia local després de carregar correctament una base de dades.</string>
   <string name="UpdatingBackup">Actualitzar la còpia de seguretat local...</string>
@@ -337,7 +336,6 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
   <string name="AcceptAllServerCertificates_summary">Defineix el comportament quan fracassa validació de certificat. Nota: podeu instal·lar certificats en el dispositiu si fracassa la validació!</string>
   <string name="ClearOfflineCache_title">Neteja la memòria cau?</string>
-  <string name="ClearOfflineCache_question">Se suprimiran tots els arxius de base de dades en memòria cau. Els canvis que heu realitzat mentre sou fora de línia i que encara no han estat sincronitzat es perdran! Voleu continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Comprovar per modificacions</string>
   <string name="CheckForFileChangesOnSave_summary">Comprovar si l\'arxiu va ser modificat externament abans de desar els canvis.</string>
   <string name="CheckForDuplicateUuids_title">Comprovar per duplicats de UUIDs</string>
@@ -404,26 +402,19 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="SynchronizingDatabase">Fusionant canvis&#8230;</string>
   <string name="YesSynchronize">Sí, fusionar</string>
   <string name="NoOverwrite">No, sobreescriure</string>
-  <string name="UseOfflineMode">Treballa fora de línia</string>
-  <string name="UseOnlineMode">Treball en línia</string>
-  <string name="UseOfflineMode_Info">Evitar qualsevol tràfic de xarxa mitjançant la còpia de la memòria cau local de l\'arxiu. Els canvis s\'emmagatzemen a la memòria cau local només i es només es pugen en canviar a mode en línia.</string>
-  <string name="InOfflineMode">Treballar fora de línia.</string>
+  <string name="UseOfflineMode">Treballar només en memòria cau interna</string>
+  <string name="UseOnlineMode">Sincronitza la còpia de la memòria cau amb l\'origen</string>
+  <string name="UseOfflineMode_Info">La base de dades es carrega de la memòria cau interna. Els canvis s\'emmagatzemen a la memòria cau interna i només es sincronitzaran quan es seleccioni Sincronitzar la còpia cau amb l\'origen.</string>
+  <string name="InOfflineMode">Treballant només a la memòria cau interna.</string>
   <string name="SynchronizingCachedDatabase">Sincronitzar la base de dades en memòria cau&#8230;</string>
-  <string name="DownloadingRemoteFile">Descarregar fitxer remot&#8230;</string>
-  <string name="UploadingFile">Carregant arxiu&#8230;</string>
-  <string name="RestoringRemoteFile">Restaurant fitxer remot&#8230;</string>
+  <string name="UploadingFile">Desa el fitxer&#8230;</string>
+  <string name="RestoringRemoteFile">Restaurant el fitxer d\'origen&#8230;</string>
   <string name="FilesInSync">Els arxius estan sincronitzats.</string>
   <string name="SynchronizedDatabaseSuccessfully">Base de dades se sincronitzada amb èxit!</string>
   <string name="CheckingDatabaseForChanges">Comprovació de la base de dades per canvis&#8230;</string>
-  <string name="CouldNotSaveToRemote">No s\'ha pogut desar a remot: %1$s. Torneu a desar o utilitzeu el menú sincronitza quan la connexió remota estigui disponible una altra vegada.</string>
-  <string name="CouldNotLoadFromRemote">No es pot obrir remot: %1$s. Carregat el fitxer de memòria cau local. Encara podeu fer canvis a la base de dades i sincronitzar-los més tard.</string>
-  <string name="UpdatedRemoteFileOnLoad">Actualitzat fitxer remot.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Obert arxiu local degut al conflicte amb els canvis en el fitxer remot. Fes servir menú de Sincronitzar per fusionar.</string>
-  <string name="LoadedFromRemoteInSync">Fitxer remot i memòria cau estan sincronitzats.</string>
-  <string name="UpdatedCachedFileOnLoad">Actualitzat la còpia de la memòria cau local de %1$s.</string>
+  <string name="UpdatedRemoteFileOnLoad">Fitxer origen actualitzat.</string>
+  <string name="UpdatedCachedFileOnLoad">Actualitza la còpia de la memòria cau interna de %1$s.</string>
   <string name="RemoteDatabaseUnchanged">No s\'han detectat canvis.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Actualitzada memòria cau del fitxer auxiliar OTP: Comptador remot era més alt.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Actualitzada memòria cau del fitxer auxiliar OTP: Comptador local era més alt.</string>
   <string name="SynchronizingOtpAuxFile">S\'estan sincronitzant els fitxers auxiliars OTP&#8230;</string>
   <string name="database_file">l\'arxiu de base de dades</string>
   <string name="otp_aux_file">Arxiu auxiliar OTP</string>
@@ -489,6 +480,8 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="OtpKeyError">No ha pogut crear la clau OTP! Assegureu-vos que ha introduït els OTPs correctes.</string>
   <string name="ErrorUpdatingOtpAuxFile">Error actualitzant fitxer OTP auxiliar!</string>
   <string name="SavingOtpAuxFile">Salvant arxiu OTP auxiliar&#8230;</string>
+  <string name="PleaseInstallApp">Si us plau instal·la %1$s des de Google Play.</string>
+  <string name="AppOutdated">%1$s ja no és compatible.</string>
   <string name="bad_resp">La resposta de desafiament és incorrecte.</string>
   <string name="CouldntLoadChalAuxFile">No s\'ha pogut carregar el fitxer de repte auxiliar!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Utilitzeu el connector KeeChallenge de KeePass 2. x (PC) per configurar la base de dades per al seu ús amb repte-resposta!</string>
@@ -908,7 +901,7 @@ Revisió inicial per al públic
     <item>Contrasenya + OTP secret (mode de recuperació)</item>
     <item>Contrasenya + repte-resposta</item>
     <item>Contrasenya + resposta repte secret (mode de recuperació)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Contrasenya + Repte-Resposta per Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignora els errors de validació de certificat</item>
@@ -923,6 +916,7 @@ Revisió inicial per al públic
   <string name="show_autofill_help">Mostra l\'ajuda de l\'emplenament automàtic</string>
   <string name="autofill_sign_in_prompt">Omplir amb Keepass2Android</string>
   <string name="invalid_link_association">No es pot associar amb el domini web %1$s amb l\'app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android ha detectat disponibilitat d\'ús d\'empremtes dactilars. Voleu permetre l\'ús de l\'empremta per obrir aquesta base de dades?</string>
   <string name="understand">Ho entenc</string>
   <string name="dont_show_again">No mostrar de nou</string>
   <string name="masterkey_infotext_head">Recordes la teva contrasenya mestra?</string>

@@ -329,7 +329,7 @@
   <string name="NoDonationReminder_title">Nikdy se neptat na darování</string>
   <string name="NoDonationReminder_summary">Nedám ti ani korunu, případně jsem už jsem daroval. Neptej se na darování, ani v den autorových narozenin.</string>
   <string name="UseOfflineCache_title">Ukládání databáze do mezipaměti</string>
-  <string name="UseOfflineCache_summary">Ukládat kopií vzdálených databázových souborů v adresáři aplikace. Toto umožňuje používat vzdálené databáze i v offline režimu.</string>
+  <string name="UseOfflineCache_summary">Uchovat kopii databázových souborů v dočasném úložišti aplikace. To umožňuje používat databáze, i když databázový soubor není dostupný.</string>
   <string name="CreateBackups_title">Místní zálohy</string>
   <string name="CreateBackups_summary">Vytvoř místní zálohu po úspěšném načtení databáze.</string>
   <string name="UpdatingBackup">Aktualizuji místní zálohu...</string>
@@ -337,7 +337,7 @@
   <string name="AcceptAllServerCertificates_title">SSL certifikáty</string>
   <string name="AcceptAllServerCertificates_summary">Definujte chování při neúspěšném ověření certifikátu. Poznámka: pokud ověření selže, můžete nainstalovat certifikáty do vašeho zařízení.</string>
   <string name="ClearOfflineCache_title">Vyčistit mezipaměť?</string>
-  <string name="ClearOfflineCache_question">Tímto odstraníte všechny soubory v mezipaměti. Veškeré změny, které jste provedli v době bez internetového připojení a nebyly dosud synchronizovány, budou ztraceny! Chcete pokračovat?</string>
+  <string name="ClearOfflineCache_question">Tato akce odstraní všechny databázové soubory v dočasné paměti aplikace. Veškeré změny, které jste provedli v době bez internetového připojení a nebyly dosud synchronizovány, budou ztraceny! Chcete pokračovat?</string>
   <string name="CheckForFileChangesOnSave_title">Kontrola změn</string>
   <string name="CheckForFileChangesOnSave_summary">Před uložením zkontrolovat, zda byl soubor změněn na jiném zařízení.</string>
   <string name="CheckForDuplicateUuids_title">Kontrolovat duplikátní UUID</string>
@@ -404,26 +404,26 @@
   <string name="SynchronizingDatabase">Slučování změn&#8230;</string>
   <string name="YesSynchronize">Ano, sloučit</string>
   <string name="NoOverwrite">Ne, přepsat</string>
-  <string name="UseOfflineMode">Pracovat offline</string>
-  <string name="UseOnlineMode">Pracovat online</string>
-  <string name="UseOfflineMode_Info">Vyhněte se jakémukoliv síťovému provozu při používání lokální kopie souboru v místní mezipaměti. Změny se ukládají pouze do lokální mezipaměti a budou nahrány při přepnutí zpět do režimu online.</string>
-  <string name="InOfflineMode">Práce v režimu offline.</string>
+  <string name="UseOfflineMode">Pracovat pouze v dočasné paměti aplikace</string>
+  <string name="UseOnlineMode">Synchronizovat kopii databáze v dočasné paměti aplikace se zdrojovou databázi</string>
+  <string name="UseOfflineMode_Info">Databáze je načtena z vnitřní dočasné paměti. Změny jsou ukládány pouze v dočasné paměti aplikace a budou synchronizovány pouze při výběru Synchronizovat dočasnou kopii se zdrojovou databázi.</string>
+  <string name="InOfflineMode">Pracovat pouze v dočasné paměti aplikace.</string>
   <string name="SynchronizingCachedDatabase">Synchronizuji databázi v mezipaměti&#8230;</string>
-  <string name="DownloadingRemoteFile">Stahuji vzdálený soubor&#8230;</string>
-  <string name="UploadingFile">Nahrávám soubor&#8230;</string>
-  <string name="RestoringRemoteFile">Obnovuji vzdálený soubor&#8230;</string>
+  <string name="DownloadingRemoteFile">Načítání zdrojového souboru&#8230;</string>
+  <string name="UploadingFile">Uložit soubor&#8230;</string>
+  <string name="RestoringRemoteFile">Probíhá obnovení zdrojového souboru&#8230;</string>
   <string name="FilesInSync">Soubory jsou synchronizovány.</string>
   <string name="SynchronizedDatabaseSuccessfully">Databáze úspěšně synchronizována!</string>
   <string name="CheckingDatabaseForChanges">Kontrola změn v databázi&#8230;</string>
-  <string name="CouldNotSaveToRemote">Nelze uložit na vzdálený: %1$s. Uložte znovu nebo použijte nabídku synchronizovat, až bude vzdálené připojení opět k dispozici.</string>
-  <string name="CouldNotLoadFromRemote">Nelze otevřít ze vzdáleného umístění: %1$s. Načítám soubor z místní mezipaměti. Stále můžete provádět změny v databázi a synchronizovat později.</string>
-  <string name="UpdatedRemoteFileOnLoad">Vzdálený soubor byl aktualizován.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Otevřen místní soubor kvůli kolizi se změnami ve vzdáleném souboru. Proveďte sloučení pomocí nabídky synchronizace.</string>
-  <string name="LoadedFromRemoteInSync">Vzdálený soubor a soubor v místní mezipaměti jsou synchronizovány.</string>
-  <string name="UpdatedCachedFileOnLoad">Aktualizována kopie v místní mezipaměti %1$s.</string>
+  <string name="CouldNotSaveToRemote">Nelze uložit do cílového souboru: %1$s. Uložte znovu nebo použijte nabídku Synchronizovat, až bude vzdálené připojení opět k dispozici.</string>
+  <string name="CouldNotLoadFromRemote">Nelze získat přístup k zdrojovému souboru: %1$s. Byl načten soubor z dočasné paměti aplikace, stále můžete provádět změny v databázi a později je synchronizovat.</string>
+  <string name="UpdatedRemoteFileOnLoad">Aktualizovaný zdrojový soubor.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Otevřen místní soubor kvůli kolizi se změnami ve vzdáleném souboru. Proveďte sloučení změn pomocí nabídky Synchronizace.</string>
+  <string name="LoadedFromRemoteInSync">Zdrojový soubor a soubor v v dočasné paměti aplikace jsou synchronizovány.</string>
+  <string name="UpdatedCachedFileOnLoad">Aktualizována kopie v dočasné paměti aplikace %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Nebyly zjištěny žádné změny.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Aktualizován pomocný OTP soubor v mezipaměti: vzdálený čítač byl vyšší.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Aktualizován vzdálený pomocný OTP soubor: místní čítač byl vyšší.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Aktualizován dočasný pomocný OTP soubor: zdrojový čítač měl vyšší hodnotu.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Aktualizován zdrojový pomocný OTP soubor: lokální dočasný čítač měl vyšší hodnotu.</string>
   <string name="SynchronizingOtpAuxFile">Synchronizace pomocného OTP souboru&#8230;</string>
   <string name="database_file">databázový soubor</string>
   <string name="otp_aux_file">Pomocný OTP soubor</string>
@@ -489,6 +489,9 @@
   <string name="OtpKeyError">Nepodařilo se vytvořit OTP klíč! Zkontrolujte, zda že jste zadali správné OTP.</string>
   <string name="ErrorUpdatingOtpAuxFile">Chyba při aktualizaci pomocného souboru OTP!</string>
   <string name="SavingOtpAuxFile">Ukládám pomocný soubor OTP&#8230;</string>
+  <string name="NoChallengeApp">Nepodařilo se najít aplikaci pro obsloužení výzvy.</string>
+  <string name="PleaseInstallApp">Nainstalujte si prosím %1$s z Google Play.</string>
+  <string name="AppOutdated">%1$s již není podporován.</string>
   <string name="bad_resp">Odpověď na výzvu není správná.</string>
   <string name="CouldntLoadChalAuxFile">Nelze načíst pomocný soubor výzvy!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Použijte zásuvný modul KeeChallenge v KeePass 2.x (PC) pro konfiguraci databáze k používání s odpověďmi na výzvy!</string>
@@ -604,6 +607,14 @@
   <string name="ErrorReportAsk">Dotázat se po chybě</string>
   <string name="ErrorReportPrefTitle">Odeslat zprávu o chybách</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
+  <string name="ChangeLog_1_06">
+    Verze 1.06\n
+    * Změna na ykDroid místo YubiChallenge pro Yubikey Výzva-Odpověď.\n
+    * Implementována podpora pro Výzva-Odpověď typu KeepassXC. Poznámka: Databáze musí být ve formátu KDBX4!\n
+    * Odmítání načtení souborů z Google Drive přesunutých do koše\n
+    * Změna implementace TLS pro FTPS, přidán workaround pro JSch bug pro servery podporující gssapi-with-mic\n
+    * Opravy chyb\n
+  </string>
   <string name="ChangeLog_1_05">
     Verze 1.05\n
     * Použití kanálů upozornění pro Android 8. Toto umožní nastavení skrz nastavení systému.\n
@@ -901,7 +912,7 @@ První veřejné vydání
     <item>Heslo + OTP heslo (režim obnovení)</item>
     <item>Heslo + Odpověď výzvy</item>
     <item>Heslo + Odpověď výzvy (režim obnovení)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Heslo + Výzva-Odpověď pro Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovat neúspěšné ověření certifikátu</item>
@@ -916,6 +927,7 @@ První veřejné vydání
   <string name="show_autofill_help">Ukázat nápovědu automatického doplňování</string>
   <string name="autofill_sign_in_prompt">Doplnit s Keepass2Android</string>
   <string name="invalid_link_association">Nedaří se spojit doménu %1$s s aplikací %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android nalezl hardwarovou čtečku otisků prstů. Chcete pro tuto databázi povolit odemykání pomocí otisku prstu?</string>
   <string name="understand">Rozumím</string>
   <string name="dont_show_again">Vícekrát neukazuj</string>
   <string name="masterkey_infotext_head">Pamatujete si Vaše hlavní heslo?</string>

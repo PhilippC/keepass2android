@@ -285,16 +285,9 @@
   <string name="SynchronizingDatabase">Aldaketak bateratzen&#8230;</string>
   <string name="YesSynchronize">Bai, bateratu</string>
   <string name="NoOverwrite">Ez, gainidatzi</string>
-  <string name="UseOfflineMode">Egin lan deskonektatua</string>
-  <string name="UseOnlineMode">Egin lan sarean</string>
-  <string name="InOfflineMode">Egin lan deskonektatuta.</string>
   <string name="SynchronizingCachedDatabase">Katxeatutako datu-basea sinkronizatzen&#8230;</string>
-  <string name="DownloadingRemoteFile">Urruneko fitxategia deskargatzen&#8230;</string>
-  <string name="UploadingFile">Fitxategia igotzen&#8230;</string>
-  <string name="RestoringRemoteFile">Urruneko fitxategia berreskuratzen&#8230;</string>
   <string name="FilesInSync">Fitxategiak sinkronizatuta daude</string>
   <string name="CheckingDatabaseForChanges">Datu-basean aldaketarik dagoen egiaztatzen&#8230;</string>
-  <string name="UpdatedRemoteFileOnLoad">Igo urruneko fitxategia.</string>
   <string name="RemoteDatabaseUnchanged">Ez da aldaketarik antzeman.</string>
   <string name="database_file">datu-basearen fitxategia</string>
   <string name="otp_aux_file">OTP fitxategi lagungarria</string>
