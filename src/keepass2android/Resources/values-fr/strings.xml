@@ -17,7 +17,7 @@
   <string name="add_group_title">Ajouter un groupe</string>
   <string name="edit_group_title">Modifier le groupe</string>
   <string name="algorithm">Algorithme</string>
-  <string name="algorithm_colon">Algorithme </string>
+  <string name="algorithm_colon">Algorithme</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Hors-ligne</string>
@@ -106,7 +106,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="entry_expires">Expire</string>
   <string name="entry_group_name">Nom du groupe</string>
   <string name="entry_keyfile">Clé (facultative)</string>
-  <string name="keyfile_heading">Fichier clé</string>
+  <string name="keyfile_heading">Fichier de clé</string>
   <string name="entry_modified">Modifié</string>
   <string name="entry_password">Mot de passe</string>
   <string name="entry_save">Enregistrer</string>
@@ -159,7 +159,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="length">Longueur</string>
   <string name="list_size_title">Taille de la liste des groupes</string>
   <string name="list_size_summary">Taille du texte dans la liste des groupes</string>
-  <string name="loading_database">Chargement de la base de données&#8230;</string>
+  <string name="loading_database">Chargement de la base de données…</string>
   <string name="lowercase">Minuscule</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Cacher le mot de passe</string>
@@ -201,13 +201,13 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="pass_filename">Base de données KeePass</string>
   <string name="password_title">Entrez le mot de passe de la base de données</string>
   <string name="master_key_type">Sélectionner le type de la Clé maître :</string>
-  <string name="progress_create">Création d\'une nouvelle base de données&#8230;</string>
+  <string name="progress_create">Création d\'une nouvelle base de données…</string>
   <string name="create_database">Créer une base de données</string>
-  <string name="progress_title">En cours&#8230;</string>
+  <string name="progress_title">En cours…</string>
   <string name="remember_keyfile_summary">Se rappeler l\'emplacement des fichiers clés</string>
   <string name="remember_keyfile_title">Enregistrer le fichier clé</string>
   <string name="remove_from_filelist">Supprimer</string>
-  <string name="edit">Éditer</string>
+  <string name="edit">Modifier</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Racine</string>
   <string name="KeyDerivFunc">Fonction de dérivation de clés</string>
@@ -218,7 +218,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="argon2parallelism">Parallélisme pour Argon 2</string>
   <string name="database_name">Nom de la base de données</string>
   <string name="default_username">Nom d\'utilisateur par défaut pour les nouvelles entrées</string>
-  <string name="saving_database">Enregistrement de la base de données&#8230;</string>
+  <string name="saving_database">Enregistrement de la base de données…</string>
   <string name="exporting_database">Export de la base de données en cours...</string>
   <string name="export_database_successful">Base de données exportée avec succès !</string>
   <string name="space">Espace</string>
@@ -233,7 +233,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="search_hint">Rechercher</string>
   <string name="search_results">Résultats de la recherche</string>
   <string name="search_in">Chercher dans</string>
-  <string name="select_other_entry">Sélectionner une autre entrée</string>
+  <string name="select_other_entry">Choisir une autre entrée</string>
   <string name="select_group_then_add">Ouvrez le groupe désiré, puis appuyez sur \"%1$s\" !</string>
   <string name="insert_element_here">Insérer ici</string>
   <string name="twofish">Twofish</string>
@@ -326,7 +326,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="NoDonationReminder_title">Ne jamais demander de donation</string>
   <string name="NoDonationReminder_summary">Je ne donnerai pas un sou, ou j’ai déjà donné. Ne demandez rien, même pas à l’anniversaire de l’auteur.</string>
   <string name="UseOfflineCache_title">Mise en cache de la base de données</string>
-  <string name="UseOfflineCache_summary">Conserver une copie des bases de données distantes dans le cache de l\'application. Ceci permet d\'utiliser les bases de données distantes même en mode hors connexion.</string>
+  <string name="UseOfflineCache_summary">Garder une copie des fichiers de base de données dans le répertoire de cache de l’application. Ceci permet d’utiliser des bases de données même lorsque le fichier de base de données n’est pas accessible.</string>
   <string name="CreateBackups_title">Sauvegardes locales</string>
   <string name="CreateBackups_summary">Créer une copie de sauvegarde locale après le chargement réussi d’une base de données.</string>
   <string name="UpdatingBackup">Mise à jour de la sauvegarde locale...</string>
@@ -334,7 +334,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
   <string name="AcceptAllServerCertificates_summary">Définir le comportement lorsque la validation du certificat échoue. Remarque : vous pouvez installer les certificats sur votre appareil si la validation échoue !</string>
   <string name="ClearOfflineCache_title">Vider le cache ?</string>
-  <string name="ClearOfflineCache_question">Cela supprimera toutes les bases de données mises en cache. Toutes les modifications faites en étant hors ligne et qui n\'ont pas encore été synchronisées seront perdues ! Continuer ?</string>
+  <string name="ClearOfflineCache_question">Cela supprimera tous les fichier de bases de données mis en cache. Toutes les modifications faites sans accès à la base de données source et qui n\'ont pas encore été synchronisées seront perdues ! Continuer ?</string>
   <string name="CheckForFileChangesOnSave_title">Rechercher des modifications</string>
   <string name="CheckForFileChangesOnSave_summary">Vérifie si le fichier a été modifié par ailleurs avant d\'enregistrer les modifications.</string>
   <string name="CheckForDuplicateUuids_title">Vérifier les UUID en double</string>
@@ -385,49 +385,49 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="suggest_improvements">Faire des suggestions ou voter pour des améliorations</string>
   <string name="rate_app">Noter cette application</string>
   <string name="translate_app">Traduire KP2A</string>
-  <string name="AddingEntry">Ajout de l\'entrée en cours&#8230;</string>
-  <string name="AddingGroup">Ajout du groupe en cours&#8230;</string>
-  <string name="DeletingEntry">Suppression de l\'entrée&#8230;</string>
-  <string name="DeletingGroup">Suppression du groupe&#8230;</string>
-  <string name="DeletingItems">Suppression des éléments&#8230;</string>
-  <string name="SettingPassword">Prise en compte du mot de passe&#8230;</string>
-  <string name="UndoingChanges">Annulation de modifications&#8230;</string>
-  <string name="TransformingKey">Changement de la clé principale&#8230;</string>
-  <string name="DecodingDatabase">Décodage de la base de données&#8230;</string>
-  <string name="ParsingDatabase">Analyse de la base de données&#8230;</string>
-  <string name="CheckingTargetFileForChanges">Vérification des modifications dans le fichier&#8230;</string>
+  <string name="AddingEntry">Ajout de l\'entrée en cours…</string>
+  <string name="AddingGroup">Ajout du groupe en cours…</string>
+  <string name="DeletingEntry">Suppression de l\'entrée…</string>
+  <string name="DeletingGroup">Suppression du groupe…</string>
+  <string name="DeletingItems">Suppression des éléments…</string>
+  <string name="SettingPassword">Prise en compte du mot de passe…</string>
+  <string name="UndoingChanges">Annulation de modifications…</string>
+  <string name="TransformingKey">Changement de la clé principale…</string>
+  <string name="DecodingDatabase">Décodage de la base de données…</string>
+  <string name="ParsingDatabase">Analyse de la base de données…</string>
+  <string name="CheckingTargetFileForChanges">Vérification des modifications dans le fichier…</string>
   <string name="TitleSyncQuestion">Fusionner les modifications ?</string>
   <string name="MessageSyncQuestion">La base de données a été modifiée par une source tierce. Voulez-vous charger et fusionner les changements avant de sauvegarder ? Sélectionnez \"Non\" si vous voulez écraser les changements externes.</string>
-  <string name="SynchronizingDatabase">Importation des modifications&#8230;</string>
+  <string name="SynchronizingDatabase">Importation des modifications…</string>
   <string name="YesSynchronize">Oui, fusionner</string>
   <string name="NoOverwrite">Non, l\'écraser</string>
-  <string name="UseOfflineMode">Travailler en mode hors connexion</string>
-  <string name="UseOnlineMode">Travailler en ligne</string>
-  <string name="UseOfflineMode_Info">Éviter tout trafic réseau en utilisant la copie du fichier du cache local. Les changements sont stockés uniquement dans le cache local et seront téléchargés uniquement lors du retour au mode connecté.</string>
-  <string name="InOfflineMode">Travail hors connexion.</string>
-  <string name="SynchronizingCachedDatabase">Synchronisation de la base de données mise en cache&#8230;</string>
-  <string name="DownloadingRemoteFile">Téléchargement du fichier distant&#8230;</string>
-  <string name="UploadingFile">Téléchargement du fichier&#8230;</string>
-  <string name="RestoringRemoteFile">Restauration du fichier distant&#8230;</string>
+  <string name="UseOfflineMode">Utiliser uniquement le cache interne</string>
+  <string name="UseOnlineMode">Synchroniser la copie en cache avec la source</string>
+  <string name="UseOfflineMode_Info">La base de données est chargée depuis le cache interne. Les changements sont enregistrée dans le cache interne uniquement et ne seront synchronisés qu\'à partir de l\'usage de la fonction \"Synchroniser la copie en cache avec la source\".</string>
+  <string name="InOfflineMode">Utilisation en cours du cache interne uniquement.</string>
+  <string name="SynchronizingCachedDatabase">Synchronisation de la base de données mise en cache…</string>
+  <string name="DownloadingRemoteFile">Chargement du fichier source…</string>
+  <string name="UploadingFile">Enregistrer le fichier…</string>
+  <string name="RestoringRemoteFile">Restoration du fichier source…</string>
   <string name="FilesInSync">Les fichiers sont synchronisés.</string>
   <string name="SynchronizedDatabaseSuccessfully">Base de données a été synchronisée avec succès !</string>
-  <string name="CheckingDatabaseForChanges">Vérification des changements dans la base de données&#8230;</string>
-  <string name="CouldNotSaveToRemote">Impossible d\'enregistrer le fichier distant %1$s. Réessayer ou utiliser le menu synchroniser lorsque la connexion est à nouveau disponible.</string>
-  <string name="CouldNotLoadFromRemote">Impossible d\'ouvrir le fichier distant %1$s. Fichier chargé à partir du cache local. Vous pouvez néanmoins modifier la base de données et la synchroniser par la suite.</string>
-  <string name="UpdatedRemoteFileOnLoad">Fichier distant a été mis à jour.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Fichier local utilisé en raison d\'un conflit avec les modifications apportées au fichier distant. Utiliser le menu Synchroniser pour fusionner.</string>
-  <string name="LoadedFromRemoteInSync">Le cache et le fichier distant sont synchronisés.</string>
-  <string name="UpdatedCachedFileOnLoad">La copie du cache local de %1$s a été mis à jour.</string>
+  <string name="CheckingDatabaseForChanges">Vérification des changements dans la base de données…</string>
+  <string name="CouldNotSaveToRemote">Impossible d\'enregistrer sur le fichier source : %1$s. Enregistrer à nouveau ou utiliser le menu de synchronisation quand le fichier sera de nouveau accessible.</string>
+  <string name="CouldNotLoadFromRemote">Impossible d\'enregistrer sur le fichier source : %1$s. Changement du fichier depuis le cache interne. Vous pouvez toujours faire des modifications dans la base de données et les synchroniser plus tard.</string>
+  <string name="UpdatedRemoteFileOnLoad">Fichier source mis à jour.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Ouverture du fichier en cache interne à cause de conflits de modifications avec le fichier source. Utilisez le menu de synchronisation pour fusionner.</string>
+  <string name="LoadedFromRemoteInSync">Le fichier source et le cache sont synchronisés.</string>
+  <string name="UpdatedCachedFileOnLoad">Mise à jour de la copie en cache interne de %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Aucun changement détecté.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Le cache du fichier auxiliaire OTP a été mis à jour : le compteur distant était plus élevé.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Le fichier auxiliaire OTP distant a été mis à jour : le compteur local était plus élevé.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Mise à jour du cache du fichier OTP auxiliaire : le compteur de la source était plus élevé.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Mise à jour de la source du fichier OTP auxiliaire : le compteur local était plus élevé.</string>
   <string name="SynchronizingOtpAuxFile">Synchronisation du fichier auxiliaire OTP...</string>
   <string name="database_file">fichier de base de données</string>
   <string name="otp_aux_file">fichier auxiliaire OTP</string>
   <string name="ErrorOcurred">Une erreur est survenue :</string>
   <string name="DuplicateUuidsError">Base de données corrompue : des IDs dupliqués ont été trouvés. (Avez-vous sauvegardé avec Minikeepass ?) S\'il vous plait ré-importez vers une nouvelle base de données avec Keepass 2 pour PC et sélectionnez \'Créer de nouveaux IDs\'.</string>
   <string name="DuplicateUuidsErrorAdditional">Vous pouvez désactiver ce message d\'erreur dans les Préférences de l\'application/Application/Vérifier les UUID en double. Veuillez noter que vous pouvez rencontrer un comportement inattendu. Il est recommandé de corriger la base de données.</string>
-  <string name="synchronize_database_menu">Synchroniser la base de données&#8230;</string>
+  <string name="synchronize_database_menu">Synchroniser la base de données…</string>
   <string name="CannotMoveGroupHere">Impossible de déplacer le groupe vers ce groupe.</string>
   <string name="donate_question">Aujourd\'hui, c\'est Oktoberfest ! Si vous aimez Keepass2Android ne serait-ce pas une bonne occasion de m\'offrir une bière ?</string>
   <string name="donate_bday_question">Le 10 mai ? C\'est mon anniversaire ! Si vous aimez cette application, pourquoi ne pas m\'envoyer des vœux d\'anniversaire avec un petit cadeau d\'anniversaire ? Cela me rendrait vraiment heureux ! :-)</string>
@@ -486,10 +486,13 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="OtpKeyError">Impossible de créer la clé OTP ! Assurez-vous d\'avoir saisi le bon OTP.</string>
   <string name="ErrorUpdatingOtpAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="SavingOtpAuxFile">Enregistrement du fichier OTP auxiliaire...</string>
+  <string name="NoChallengeApp">Impossible de trouver une application compatible avec cette requête.</string>
+  <string name="PleaseInstallApp">Veuillez installer %1$s depuis le Google Play Store.</string>
+  <string name="AppOutdated">%1$s n\'est plus compatible.</string>
   <string name="bad_resp">La réponse au challenge est incorrecte.</string>
   <string name="CouldntLoadChalAuxFile">Impossible de charger le fichier de challenge auxiliaire!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Utiliser le plugin KeeChallenge de KeePass 2.x (version PC) pour configurer votre base de données pour une utilisation avec challenge-réponse!</string>
-  <string name="ErrorUpdatingChalAuxFile">Erreur de mise à jour du fichier auxiliaire OTP!</string>
+  <string name="ErrorUpdatingChalAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="TrayTotp_SeedField_title">Nom de domaine des semences TOTP</string>
   <string name="TrayTotp_SeedField_summary">Si vous utilisez le plug-in Keepass 2 \"TrayTotp\" avec les paramètres par défaut, entrez le même nom de domaine pour le domaine des semences que sur le PC.</string>
   <string name="TrayTotp_SettingsField_title">Nom de domaine des paramètres TOTP</string>
@@ -499,7 +502,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="DebugLog_title">Utiliser fichier de journal</string>
   <string name="DebugLog_summary">Écrire la sortie de l’app dans un fichier journal local</string>
   <string name="DebugLog_send">Envoyer le journal de débogage...</string>
-  <string name="loading">Chargement...</string>
+  <string name="loading">Chargement en cours…</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Nom du package :</string>
   <string name="plugin_description">Description (non vérifiée) :</string>
@@ -594,6 +597,13 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ErrorReportAsk">Demander après une erreur</string>
   <string name="ErrorReportPrefTitle">Envoyer des rapports d\'erreurs</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
+  <string name="ChangeLog_1_06">
+Version 1.06\n
+* Changement vers ykDroid au lieu de YubiChallenge comme application pour la réponse-de-requête Yubikey.\n
+* implémentation du support de réponse-de-requête compatible KeepassXC. Note : Le format de base de données doit être KDBX4 !\n
+* Blocage du chargement de fichiers supprimés depuis Google Drive\n
+* Changement d\'implémentation TLS pour FTPS, ajout d\'un contournement du bug JSch avec les serveurs compatibles avec gssapi-with-mic\n
+* Correction de bugs\n  </string>
   <string name="ChangeLog_1_05">
     Version 1.05\n * Utilisation des canaux de notification Android 8, ce qui permet la configuration via les paramètres système\n * Affichage de l’icône entrée dans la notification\n * Utilisation d\'icônes adaptatifs pour Android 8, utilisez l\'icône arrondi du lanceur pour Android 7\n * Permet d’activer la recherche au déverrouillage (voir réglages) \n * Modification de comment les fichiers sont écrits en utilisant le framework Storage Access, corrections de problèmes sur les mises à jour des fichiers ouvert sur Google Drive avec le sélecteur du système fichier\n * Ajout de textes d’informations afin d’éviter certaines incompréhensions commune \n * Création de sauvegardes locales pour les bases ouvertes avec succès pour réduire le risque de perte de donnée\n * Mise à jour de JSch pour supporté les derniers chiffrements SSH\n * Permettre la modification des paramètres de connexion, par exemple lorsque le mot de passe WebDav a changé\n * Ajout du support pour mot de passe statique Yubikey Neo\n * Permettre de désactiver les suggestions automatiques\n * Correction des fuites de données vers logcat\n * Corrections d\'anomalies\n
   </string>
@@ -832,7 +842,7 @@ Première version publique</string>
     <item>Mot de passe + OTP secret (mode de récupération)</item>
     <item>Mot de passe + Challenge-Réponse</item>
     <item>Mot de passe + Challenge-Réponse secret (mode de récupération)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Mot de passe + réponse-de-requête pour Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorer les échecs de validation de certificat</item>
@@ -847,6 +857,7 @@ Première version publique</string>
   <string name="show_autofill_help">Montrer l\'aide du remplissage automatique</string>
   <string name="autofill_sign_in_prompt">Remplir avec Keepass2Android</string>
   <string name="invalid_link_association">Impossible d\'associer le domaine web %1$s avec l\'application %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android a détecté un capteur d\'empreinte. Voulez-vous activer le capteur d\'empreinte pour déverrouiller la base de données ?</string>
   <string name="understand">Je comprends</string>
   <string name="dont_show_again">Ne plus afficher</string>
   <string name="masterkey_infotext_head">Vous rappelez-vous de votre mot de passe principal ?</string>
