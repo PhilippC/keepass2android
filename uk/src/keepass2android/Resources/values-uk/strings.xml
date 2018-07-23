@@ -585,6 +585,14 @@
   <string name="ErrorReportAsk">Запитати після помилки</string>
   <string name="ErrorReportPrefTitle">Надсилати звіти про помилки</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
+  <string name="ChangeLog_1_06">
+    Версія 1.06\n
+    * Перемикання на ykDroid замість YubiChallenge в якості застосунку для Yubikey Challenge-Response.\n
+    * Впроваджено підтримку для KeepassXC-style Challenge-Response. Примітка: Формат бази даних повинен бути KDBX4!\n
+    * Відхилення завантаження файлів кошика з Google Диска\n
+    * Зміна впровадження TLS для FTPS, додано спосіб обходу помилки JSch з серверами, що підтримують gssapi-with-mic\n
+    * Виправлення інших помилок\n
+  </string>
   <string name="ChangeLog_1_05">
     Версія 1.05\n
     * Використання каналів сповіщень для Android 8 з можливістю керування через системні налаштування\n
