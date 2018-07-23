@@ -582,6 +582,14 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
+  <string name="ChangeLog_1_06">
+    Sürüm 1.06\n
+    * Yubikey Challenge-Response için uygulama olarak YubiChallenge yerine ykDroid\'e geçildi.\n
+    * KeepassXC-style Challenge-Response desteklendi. Not: Veritabanı türü KDBX4 olmalı!\n
+    * Google Drive\'daki silinmiş dosyaların yüklenmesi reddedildi\n
+    * FTPS için TLS uygulaması değiştirildi, gssapi-with-mic destekleyen sunuculardaki JSch hatası için geçici çözüm eklendi\n
+    * hata düzeltmeleri\n
+  </string>
   <string name="ChangeLog_1_05">
     Sürüm 1.05\n
     * Android 8 için, sistem ayarlarından yapılandırmaya izin verilen bildirim kanalları kullanıldı\n
