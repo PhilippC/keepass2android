@@ -582,6 +582,14 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="HintLocalBackupOtherError">
 \n
     &#8226; Keepass2Android guardou com sucesso a versão do último ficheiro aberto com sucesso na memória interna. Você pode abri-lo clicando em \"%1$s\" e seleccionado a cópia de segurança local.  </string>
+  <string name="CorruptDatabaseHelp">
+    O ficheiro está corrompido.\n
+    Aqui estão algumas dicas que podem ajudar a diagnosticar o problema:\n
+    &#8226; Se copiou o ficheiro através de USB (MTP-Mode), tente novamente com ferramentas como o MyPhoneExplorer. O MTP por vezes corrompe o ficheiro.\n
+    &#8226;  Se não é capaz de abrir o ficheiro no seu computador, é muito provável que o ficheiro esteja corrompido. Utilize um backup do ficheiro. Se acredita que foi o Keepass2Android que corrompeu o ficheiro, entre em contacto com o suporte.\n
+    &#8226;  Se consegue abrir o ficheiro no seu computador, entre em contacto com o suporte. Pode tentar gravá-lo com definições diferentes (Ex. descompactado) no computador e tentar abri-lo novamente com o Keepass2Android.
+
+  </string>
   <string name="DbUnlockedChannel_name">Base de dados debloqueada</string>
   <string name="DbUnlockedChannel_desc">Notificação acerca da base de dados sendo desbloqueada</string>
   <string name="DbQuicklockedChannel_name">Desbloqueio-Rápido</string>
