@@ -568,7 +568,7 @@ Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androi
   <string name="Continue">Fortsätt</string>
   <string name="NoFilenameWarning">Den URI som du har angett ser inte ut som ett filnamn. Är du säker på att detta är en giltig fil?</string>
   <string name="FirstInvalidCompositeKeyError">Ogiltig sammansatt nyckel! Vänligen försök igen.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Ogiltig sammansatt nyckel! Vänligen prova följande steg för att låsa upp din databas: \n • Se till att du har angett rätt lösenord. Använd ögonikonen för att visa det inmatade lösenordet. \n • Se till att du har valt rätt lösenordstyp. Kontrollera den matcher den typ som används när du skapade databasen. \n • Se till att du har valt rätt databasfil.
+  <string name="RepeatedInvalidCompositeKeyHelp">Ogiltig sammansatt nyckel! Vänligen prova följande steg för att låsa upp din databas:\n\n &#8226; Se till att du har angett rätt lösenord. Använd ögonikonen för att visa det inmatade lösenordet.\n &#8226; Se till att du har valt rätt lösenordstyp. Kontrollera att den matchar den typ som användes när databasen skapades. &#8226; Se till att du har valt rätt databasfil.
 </string>
   <string name="HintLocalBackupInvalidCompositeKey">
 \n
