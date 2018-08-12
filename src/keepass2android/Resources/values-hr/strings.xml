@@ -325,6 +325,7 @@
   <string name="NoDonationReminder_title">Nikada nemojte tražiti donaciju</string>
   <string name="NoDonationReminder_summary">Neću donirati ni centa ili sam već donirao. Nemoj tražiti donaciju, čak ni autorov rođendan.</string>
   <string name="UseOfflineCache_title">Predmemoriranje baza podataka</string>
+  <string name="UseOfflineCache_summary">Zadržite kopiju datoteka baze podataka u direktoriju predmemorije aplikacije. To omogućuje korištenje baze podataka čak i dok datoteka baze podataka nije dostupna.</string>
   <string name="CreateBackups_title">Lokalna sigurnosna kopija</string>
   <string name="CreateBackups_summary">Izradite lokalnu sigurnosnu kopiju nakon uspješnog učitavanja baze podataka.</string>
   <string name="UpdatingBackup">Ažuriranje lokalne sigurnosne kopije...</string>
@@ -332,6 +333,7 @@
   <string name="AcceptAllServerCertificates_title">SSL certifikati</string>
   <string name="AcceptAllServerCertificates_summary">Odredite ponašanje kada se certifikati ne mogu potvrditi. Napomena: možete instalirati certifikate na Vašem uređaju ukoliko se ne mogu potvrditi!</string>
   <string name="ClearOfflineCache_title">Očisti predmemoriju?</string>
+  <string name="ClearOfflineCache_question">Time će se izbrisati sve datoteke baze podataka spremljene u memoriji. Izbrisat će se sve promjene koje ste napravili dok ste izvan mreže, a još nisu sinkronizirane! Nastaviti?</string>
   <string name="CheckForFileChangesOnSave_title">Provjeri ima li promjena</string>
   <string name="CheckForFileChangesOnSave_summary">Provjerite je li datoteka izmijenjena izvana prije spremanja promjena.</string>
   <string name="CheckForDuplicateUuids_title">Provjeru UUID duplikate</string>
@@ -398,6 +400,8 @@
   <string name="SynchronizingDatabase">Spajanje izmjena…</string>
   <string name="YesSynchronize">Da, spoji</string>
   <string name="NoOverwrite">Ne, prebriši</string>
+  <string name="UseOfflineMode">Radi samo na internoj memoriji</string>
+  <string name="UseOnlineMode">Sinkronizirajte kopiju predmemorije s izvorom</string>
   <string name="SynchronizingCachedDatabase">Sinkronizacija baze podataka spremljene u memoriju…</string>
   <string name="FilesInSync">Datoteke su sinkronizirane.</string>
   <string name="SynchronizedDatabaseSuccessfully">Baza podataka je uspješno sinkronizirana!</string>
@@ -546,6 +550,25 @@
   <string name="Continue">Nastavi</string>
   <string name="NoFilenameWarning">URI koji ste unijeli ne izgleda kao naziv datoteke. Jeste li sigurni da je to važeća datoteka?</string>
   <string name="FirstInvalidCompositeKeyError">Nevažeći kompozitni ključ! Molim te pokušaj ponovno.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Nevažeći kompozitni ključ! Pokušajte sljedeće korake da biste otključali bazu podataka:\n
+
+&#8226; Provjerite jeste li unijeli ispravnu lozinku. Upotrijebite ikonu oka kako biste otkrili unesenu zaporku.\n
+&#8226; Provjerite jeste li odabrali ispravnu vrstu zaporke. Provjerite odgovara li tipu koji se koristio prilikom izrade baze podataka.\n
+&#8226; Provjerite jeste li odabrali ispravnu datoteku baze podataka.
+</string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+\n
+&#8226; Savjet: Ako mislite da je Vaša datoteka baze podataka možda oštećena ili se ne sjećate glavne lozinke nakon što ste istu modificirali, možete pokušati s posljednjom uspješno otvorenom verzijom datoteke klikom na \"%1$s\" i odabirom lokalne sigurnosne kopije.</string>
+  <string name="HintLocalBackupOtherError">
+\n
+&#8226; Savjet: Keepass2Android je pohranio posljednju uspješno otvorenu verziju datoteke u internu memoriju. Možete je otvoriti klikom na \"%1$s\" i odabirom lokalne sigurnosne kopije.  </string>
+  <string name="CorruptDatabaseHelp">
+Datoteka je oštećena. \n
+Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
+
+&#8226; Ako ste kopirali datoteku preko USB-a (MTP-način rada), pokušajte ponovno pomoću alata poput MyPhoneExplorer. MTP skraćuje datoteke u određenim slučajevima.\n
+&#8226; Ako ne možete otvoriti datoteku s istog mjesta na računalu, vrlo je vjerojatno da je datoteka doista oštećena. Upotrijebite sigurnosnu kopiju baze podataka. Ako pretpostavite da je Keepass2Android oštetio datoteku, kontaktirajte podršku.\n
+&#8226; Ako još uvijek možete otvoriti datoteku na računalu, obratite se službi za korisnike. Možete je pokušati spremiti s različitim postavkama (npr. nearhiviranu) na računalu i pokušajte ponovno otvoriti pomoću aplikacije Keepass2Android.  </string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="ErrorReportTitle">Keepass2Android: Došlo je do pogreške.</string>
   <string name="ErrorReportText">Došlo je do neočekivane pogreške prilikom pokretanja programa Keepass2Android. Pomozite nam da to riješimo dopuštajući aplikaciji slanje izvješća o pogrešci.</string>
