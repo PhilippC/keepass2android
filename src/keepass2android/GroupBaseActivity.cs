@@ -633,7 +633,7 @@ namespace keepass2android
             {
 
                 FingerprintModule fpModule = new FingerprintModule(this);
-                if (fpModule.FingerprintManager.IsHardwareDetected)
+                if (fpModule.FingerprintManager != null && fpModule.FingerprintManager.IsHardwareDetected)
                 {
                     FingerprintUnlockMode um;
                     Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.GetDb().Ioc), ""), out um);

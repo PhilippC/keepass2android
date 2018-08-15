@@ -34,7 +34,7 @@ namespace keepass2android
 
 		public FingerprintManager FingerprintManager 
 		{
-			get { return (FingerprintManager) Context.GetSystemService(Context.FingerprintService); }
+			get { return Context.GetSystemService(Context.FingerprintService) as FingerprintManager; }
 		}
 
 		public KeyguardManager KeyguardManager 

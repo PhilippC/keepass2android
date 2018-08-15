@@ -223,7 +223,7 @@ namespace keepass2android
 			if (requestCode == FingerprintPermissionRequestCode && grantResults[0] == Permission.Granted) 
 			{
 				FingerprintModule fpModule = new FingerprintModule(this);
-				if (!fpModule.FingerprintManager.IsHardwareDetected)
+				if (fpModule.FingerprintManager == null || (!fpModule.FingerprintManager.IsHardwareDetected))
 				{
 					//seems like not all Samsung Devices (e.g. Note 4) don't support the Android 6 fingerprint API
 					if (!TrySetupSamsung())
