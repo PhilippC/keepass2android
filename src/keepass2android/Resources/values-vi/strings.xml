@@ -537,6 +537,13 @@
    • Đảm bảo bạn đã chọn đúng loại mật khẩu. Đảm bảo khớp với loại được sử dụng khi tạo tập tin dữ liệu.\n
    • Đảm bảo bạn đã chọn đúng tệp tập tin dữ liệu.
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+   &#8226; gợi ý: nếu bạn nghĩ rằng tập tin cơ sở dữ liệu của bạn có thể bị hỏng hoặc bạn không nhớ mật khẩu chủ sau khi sửa đổi nó, bạn có thể thử với phiên bản tập tin cuối cùng được mở thành công bằng cách nhấp vào \"%1$s\" và chọn bản sao lưu cục bộ.</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    &#8226; Gợi ý: Keepass2Android đã lưu trữ phiên bản tập tin cuối cùng được mở thành công trong bộ nhớ. Bạn có thể mở nó bằng cách nhấp vào \"%1$s\" và chọn bản sao lưu cục bộ.
+  </string>
   <string name="CorruptDatabaseHelp">
     Tập tin bị hỏng. \n
     Dưới đây là một số gợi ý có thể giúp chẩn đoán vấn đề:\n
