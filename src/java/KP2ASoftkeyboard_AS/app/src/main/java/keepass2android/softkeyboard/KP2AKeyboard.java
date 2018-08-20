@@ -17,6 +17,7 @@
 package keepass2android.softkeyboard;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,21 +28,26 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
+import android.graphics.drawable.BitmapDrawable;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.media.AudioManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Debug;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.PrintWriterPrinter;
 import android.util.Printer;
+import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.View;
@@ -54,6 +60,7 @@ import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import keepass2android.kbbridge.StringForTyping;
 import keepass2android.softkeyboard.LatinIMEUtil.RingCharBuffer;
@@ -70,12 +77,21 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+interface IKeyboardService
+{
+    void commitStringForTyping(StringForTyping stringForTyping);
+}
+
 /**
  * Input method implementation for Qwerty'ish keyboard.
  */
 public class KP2AKeyboard extends InputMethodService
         implements LatinKeyboardBaseView.OnKeyboardActionListener,
+        IKeyboardService,
         SharedPreferences.OnSharedPreferenceChangeListener {
+
+    public static IKeyboardService CurrentlyRunningService;
+
     private static String get_KEEPASS2ANDROID_KEYBOARD_CLEARED(Context ctx)
     {
     	return ctx.getPackageName()+".keyboard_cleared";
@@ -311,6 +327,7 @@ public class KP2AKeyboard extends InputMethodService
 
     @Override
     public void onCreate() {
+        CurrentlyRunningService = this;
         LatinImeLogger.init(this);
         KeyboardSwitcher.init(this);
         super.onCreate();
@@ -330,6 +347,8 @@ public class KP2AKeyboard extends InputMethodService
         }
         mReCorrectionEnabled = prefs.getBoolean(PREF_RECORRECTION_ENABLED,
                 getResources().getBoolean(R.bool.default_recorrection_enabled));
+
+
         
         Log.d("KP2AK","finding plugin dicts...");
         PluginManager.getPluginDictionaries(getApplicationContext());
@@ -358,7 +377,7 @@ public class KP2AKeyboard extends InputMethodService
 
         // register to receive ringer mode changes for silent mode
         IntentFilter filter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
-        registerReceiver(mReceiver, filter);
+        registerReceiver(mSilentModeReceiver, filter);
        
         prefs.registerOnSharedPreferenceChangeListener(this);
         
@@ -467,12 +486,14 @@ public class KP2AKeyboard extends InputMethodService
         if (mContactsDictionary != null) {
             mContactsDictionary.close();
         }*/
-        unregisterReceiver(mReceiver);
+        unregisterReceiver(mSilentModeReceiver);
         unregisterReceiver(mPluginManager);        
         unregisterReceiver(mClearKeyboardReceiver);
         
         LatinImeLogger.commit();
         LatinImeLogger.onDestroy();
+
+        CurrentlyRunningService = null;
         super.onDestroy();
     }
 
@@ -1376,132 +1397,28 @@ public class KP2AKeyboard extends InputMethodService
 		setCandidatesViewShown(false);		
 	}
 
+
+
+    private void openOverlaySettings() {
+        final Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:" + getPackageName()));
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+
 	private void showKp2aDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		String title = "Keepass2Android";
-		List<StringForTyping> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
-		
-		final EditorInfo attribute = getCurrentInputEditorInfo();
-		Log.d("KP2AK", "hint: "+attribute.hintText);
-		Log.d("KP2AK", "field name: "+attribute.fieldName);
-		Log.d("KP2AK", "label: "+attribute.label);
-		attribute.dump(new Printer() {
-			
-			@Override
-			public void println(String x) {
-				Log.d("KP2AK", x);
-				
-			}
-		},"");
-		final ArrayList<StringForTyping> items = new ArrayList<StringForTyping>();
-		for (StringForTyping entry : availableFields) 
-		{
-			Log.d("KP2AK", entry.displayName);
-			items.add(entry.clone());
-		}
+        final EditorInfo attribute = getCurrentInputEditorInfo();
+        final String clientPackageName = attribute.packageName;
 
-		
-		
-		StringForTyping openOrChangeEntry = new StringForTyping();
-		if (keepass2android.kbbridge.KeyboardData.entryName == null)
-		{
-			openOrChangeEntry.displayName = openOrChangeEntry.key = getString(R.string.open_entry);
-		}
-		else
-		{
-			openOrChangeEntry.displayName = openOrChangeEntry.key = getString(R.string.change_entry);
-		}
-		openOrChangeEntry.value = "KP2ASPECIAL_SelectEntryTask";
-		items.add(openOrChangeEntry);
-	
-		
-		final String clientPackageName = attribute.packageName;
+        Intent i = new Intent(this, Kp2aDialog.class);
+        i.putExtra("clientPackageName", clientPackageName);
+        startActivity(i);
 
-			if ((clientPackageName != null) && (clientPackageName != ""))
-			{
-				StringForTyping searchEntry = new StringForTyping();
-				try
-				{
-					searchEntry.key = searchEntry.displayName
-						= getString(R.string.open_entry_for_app, new Object[]{clientPackageName});
-				}
-				catch (java.util.FormatFlagsConversionMismatchException e) //buggy crowdin support for Arabic? 
-				{
-		    		android.util.Log.e("KP2A", "Please report this error to crocoapps@gmail.com");
-		    		android.util.Log.e("KP2A", e.toString());
-
-					searchEntry.key = searchEntry.displayName
-							= "Search entry for app";
-				}
-				
-				searchEntry.value = "KP2ASPECIAL_SearchUrlTask";
-				items.add(searchEntry);
-			}
-		
-		
-		builder.setTitle(title);
-
-		CharSequence[] itemNames = new CharSequence[items.size()];
-		int i=0;
-		for (StringForTyping sft: items)
-			itemNames[i++] = sft.displayName;
-		
-		builder.setItems(itemNames,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int item) {
-
-						Log.d("KP2AK", "clicked item: " + items.get(item).key);
-						
-						if (items.get(item).value.startsWith("KP2ASPECIAL")) {
-							//change entry
-							Log.d("KP2AK", "clicked item: " + items.get(item).value);
-
-							String packageName = getApplicationContext().getPackageName();
-							Intent startKp2aIntent = getPackageManager().getLaunchIntentForPackage(packageName);
-							if (startKp2aIntent != null)
-							{
-								startKp2aIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-								startKp2aIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |  Intent.FLAG_ACTIVITY_CLEAR_TASK);
-								String value = items.get(item).value;
-								String taskName = value.substring("KP2ASPECIAL_".length()); 
-								startKp2aIntent.putExtra("KP2A_APPTASK", taskName);
-								if (taskName.equals("SearchUrlTask"))
-								{
-									startKp2aIntent.putExtra("UrlToSearch", "androidapp://"+clientPackageName);
-								}
-								startActivity(startKp2aIntent);
-							} else Log.w("KP2AK", "didn't find intent for "+packageName);
-						} else {
-							
-							StringForTyping theItem = items.get(item);
-							
-							commitStringForTyping(theItem);
-							
-						}
-					}
-
-									});
-
-		builder.setNegativeButton(android.R.string.cancel,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						// User cancelled the dialog
-					}
-				});
-
-		// Create the AlertDialog
-		AlertDialog dialog = builder.create();
-		Window window = dialog.getWindow();
-		WindowManager.LayoutParams lp = window.getAttributes();
-		LatinKeyboardView inputView = mKeyboardSwitcher.getInputView();
-		lp.token = inputView.getWindowToken();
-		lp.type = WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG;
-		window.setAttributes(lp);
-		window.addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-
-		dialog.show();
 	}
-	private void commitStringForTyping(StringForTyping theItem) {
+	public void commitStringForTyping(StringForTyping theItem) {
 		
 		if ((mKp2aRememberAutoFill) && (!TextUtils.isEmpty(getCurrentInputEditorInfo().hintText)))
 		{
@@ -2358,10 +2275,23 @@ public class KP2AKeyboard extends InputMethodService
         
     
     // receive ringer mode changes to detect silent mode
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mSilentModeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             updateRingerMode();
+        }
+    };
+
+
+    private BroadcastReceiver mCommitForTypingReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            StringForTyping stringForTyping = new StringForTyping();
+            stringForTyping.key = intent.getStringExtra("key");
+            stringForTyping.value = intent.getStringExtra("value");
+
+            KP2AKeyboard.this.commitStringForTyping(stringForTyping);
+
         }
     };
 
