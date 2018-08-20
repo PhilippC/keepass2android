@@ -74,7 +74,8 @@
                             android:paddingTop="0dp"
                             android:singleLine="true"
                             android:inputType="textPassword"
-                            android:hint="password" />
+                            android:hint="password"
+                          android:importantForAccessibility="no"/>
                     </android.support.design.widget.TextInputLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -110,7 +111,8 @@
                     android:paddingTop="0dp"
                     android:singleLine="true"
                     android:inputType="textPassword"
-                    android:hint="confirm password" />
+                    android:hint="confirm password"
+                  android:importantForAccessibility="no"/>
             </LinearLayout>
         </LinearLayout>
     <!-- URL -->
