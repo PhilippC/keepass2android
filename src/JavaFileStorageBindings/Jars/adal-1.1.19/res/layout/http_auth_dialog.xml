@@ -26,6 +26,7 @@
         android:hint="@string/http_auth_dialog_password"
         android:inputType="textPassword"
         android:paddingTop="10dp"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="20dp"
+        android:importantForAccessibility="no" />
 
 </LinearLayout>
