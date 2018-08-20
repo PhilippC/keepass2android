@@ -23,6 +23,9 @@ public class Kp2aDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+
         setContentView(R.layout.activity_kp2a_dialog);
         ListView listview = ((ListView)findViewById(R.id.mylist));
         final String clientPackageName = getIntent().getStringExtra("clientPackageName");
@@ -83,7 +86,7 @@ public class Kp2aDialog extends Activity {
             itemNames[i++] = sft.displayName;
 
         listview.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
+                R.layout.kp2a_textview,
                 itemNames));
         listview.setClickable(true);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -114,7 +117,9 @@ public class Kp2aDialog extends Activity {
 
                     StringForTyping theItem = items.get(item);
 
+                    Kp2aDialog.this.finish();
                     KP2AKeyboard.CurrentlyRunningService.commitStringForTyping(theItem);
+
 
                 }
             }
