@@ -67,7 +67,7 @@
   <string name="entry_is_available">使用可能</string>
   <string name="not_possible_im_picker">「入力方法の選択」ダイアログを開けません。手動でキーボードを有効にしてください。</string>
   <string name="please_activate_keyboard">システム設定で Keepass2Android キーボードを有効にしてください。</string>
-  <string name="creating_db_key">データベース認証中&#8230;</string>
+  <string name="creating_db_key">データベース認証中…</string>
   <string name="current_group">現在のグループ</string>
   <string name="current_group_root">現在のグループ: Root</string>
   <string name="database">データベース</string>
@@ -106,7 +106,7 @@
   <string name="entry_expires">有効期限</string>
   <string name="entry_group_name">グループ名</string>
   <string name="entry_keyfile">キーファイル(オプション)</string>
-  <string name="keyfile_heading">キーファイル</string>
+  <string name="keyfile_heading">キー ファイル</string>
   <string name="entry_modified">更新日</string>
   <string name="entry_password">パスワード</string>
   <string name="entry_save">保存</string>
@@ -159,7 +159,7 @@
   <string name="length">生成するパスワードの長さ</string>
   <string name="list_size_title">グループ一覧サイズ</string>
   <string name="list_size_summary">グループ一覧の文字サイズ</string>
-  <string name="loading_database">データベース読込中&#8230;</string>
+  <string name="loading_database">データベース読込中…</string>
   <string name="lowercase">英数小文字</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">パスワードを隠す</string>
@@ -201,9 +201,9 @@
   <string name="pass_filename">KeePassデータベースファイル</string>
   <string name="password_title">データベースのパスワード設定</string>
   <string name="master_key_type">マスターキーの種類を選択:</string>
-  <string name="progress_create">データベースファイルを作成中&#8230;</string>
+  <string name="progress_create">データベースファイルを作成中…</string>
   <string name="create_database">データベースを作成</string>
-  <string name="progress_title">実行中&#8230;</string>
+  <string name="progress_title">実行中…</string>
   <string name="remember_keyfile_summary">キーファイルの場所を記憶します。</string>
   <string name="remember_keyfile_title">キーファイルを記憶する</string>
   <string name="remove_from_filelist">削除</string>
@@ -218,8 +218,8 @@
   <string name="argon2parallelism">アルゴン 2 の並列処理</string>
   <string name="database_name">データベース名</string>
   <string name="default_username">新しいエントリーのデフォルトユーザー名</string>
-  <string name="saving_database">データベースを保存中&#8230;</string>
-  <string name="exporting_database">データベースをエクスポート中&#8230;</string>
+  <string name="saving_database">データベースを保存中…</string>
+  <string name="exporting_database">データベースをエクスポート中…</string>
   <string name="export_database_successful">データベースのエクスポートが完了しました。</string>
   <string name="space">半角スペース</string>
   <string name="search_label">検索</string>
@@ -366,7 +366,7 @@
   <string name="AskOverwriteBinary">同じ名前を持つ既存のバイナリを上書きしますか。</string>
   <string name="AskOverwriteBinary_title">既存のバイナリを上書きしますか。</string>
   <string name="AskOverwriteBinary_yes">上書き</string>
-  <string name="AskOverwriteBinary_no">名前の変更</string>
+  <string name="AskOverwriteBinary_no">タイトルの変更</string>
   <string name="AttachFailed">添付ファイルを追加できませんでした。</string>
   <string name="RecycleBin">ごみ箱</string>
   <string name="AskDeletePermanentlyEntry">このエントリーを完全に削除しますか？ごみ箱へ移動する場合はいいえを押してください。</string>
@@ -391,7 +391,7 @@
   <string name="SettingPassword">パスワードの設定</string>
   <string name="UndoingChanges">変更を元に戻しています。</string>
   <string name="TransformingKey">マスターキーを変換しています。</string>
-  <string name="DecodingDatabase">データーベースの復号中&#8230;</string>
+  <string name="DecodingDatabase">データーベースの復号中…</string>
   <string name="ParsingDatabase">データベースを解析しています.</string>
   <string name="CheckingTargetFileForChanges">対象ファイルの変更を確認中...</string>
   <string name="TitleSyncQuestion">変更をマージしますか？</string>
@@ -399,12 +399,12 @@
   <string name="SynchronizingDatabase">変更をマージしています...</string>
   <string name="YesSynchronize">はい、マージします</string>
   <string name="NoOverwrite">いいえ、上書きします</string>
-  <string name="SynchronizingCachedDatabase">キャッシュされたデータベースを同期中&#8230;</string>
+  <string name="SynchronizingCachedDatabase">キャッシュされたデータベースを同期中…</string>
   <string name="FilesInSync">ファイルは同期中です。</string>
   <string name="SynchronizedDatabaseSuccessfully">データベースは正常に同期されました。</string>
   <string name="CheckingDatabaseForChanges">データベースの変更を確認しています。</string>
   <string name="RemoteDatabaseUnchanged">変更は検出されませんでした。</string>
-  <string name="SynchronizingOtpAuxFile">OTP 補助ファイルを同期中&#8230;</string>
+  <string name="SynchronizingOtpAuxFile">OTP 補助ファイルを同期中…</string>
   <string name="database_file">データベースファイル</string>
   <string name="otp_aux_file">OTP 補助ファイル</string>
   <string name="ErrorOcurred">エラーが発生しました</string>
@@ -455,7 +455,7 @@
   <string name="hint_key_file">マスター パスワードに加えてキー ファイルを使用するかを選択してください:</string>
   <string name="use_key_file">キーファイルを使用する</string>
   <string name="error_adding_keyfile">キー ファイル追加エラー!</string>
-  <string name="init_otp">OTP 補助ファイルの読み込み&#8230;</string>
+  <string name="init_otp">OTP 補助ファイルの読み込み…</string>
   <string name="otp_explanation">次のワンタイム パスワード (OTP) を入力してください。NFC 経由で入力するには、お使いのデバイスの背面にある Yubikey NEO をスワイプします。</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">補助 OTP ファイルを読み込みできませんでした!</string>
@@ -464,11 +464,11 @@
   <string name="otp_discarded_no_space">OTP 破棄されました: すべての OTP はすでに入力されました!</string>
   <string name="otp_discarded_because_db_open">最初にデータベースを閉じてください。OTP は破棄されます。</string>
   <string name="otps_pending">(1 または複数の OTP が既に利用可能)</string>
-  <string name="otpsecret_hint">OTP secret (例: 01 23 ab cd&#8230;)</string>
+  <string name="otpsecret_hint">OTP secret (例: 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">OTP secret 解析エラー!</string>
   <string name="OtpKeyError">OTP キーの作成に失敗しました! 正しい OTP を入力したか確認してください。</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP 補助ファイル更新エラー!</string>
-  <string name="SavingOtpAuxFile">OTP 補助ファイルを保存中&#8230;</string>
+  <string name="SavingOtpAuxFile">OTP 補助ファイルを保存中…</string>
   <string name="bad_resp">チャレンジ応答が正しくありません。</string>
   <string name="CouldntLoadChalAuxFile">補助チャレンジ ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadChalAuxFile_Hint">KeePass 2.x (PC) の KeeChallenge プラグインを使用して、チャレンジ レスポンスを使うようにデータベースを構成してください!</string>
@@ -482,7 +482,7 @@
   <string name="DebugLog_title">ログファイルを使用する</string>
   <string name="DebugLog_summary">アプリの出力をローカルのログファイルへ書き込む</string>
   <string name="DebugLog_send">デバッグログを送信する...</string>
-  <string name="loading">読み込み中&#8230;</string>
+  <string name="loading">読み込み中…</string>
   <string name="plugins">プラグイン</string>
   <string name="plugin_packagename">パッケージ名:</string>
   <string name="plugin_description">説明 (未検証):</string>
@@ -525,7 +525,7 @@
   <string name="DefaultTemplate">標準的な登録</string>
   <string name="TemplateGroupName">テンプレート</string>
   <string name="TemplateTitle_IdCard">ID カード</string>
-  <string name="TemplateField_IdCard_Name">名前</string>
+  <string name="TemplateField_IdCard_Name">タイトル</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">発行地</string>
   <string name="TemplateField_IdCard_IssueDate">発行日</string>
   <string name="TemplateTitle_EMail">メール</string>
@@ -560,6 +560,7 @@
  • USB (MTP モード) でファイルをコピーした場合、MyPhoneExplorer のようなツールでもう一度やり直してください。特定の場合 MTP はファイルが切り捨てられます。\n
  • お使いの PC で同じ場所からファイルを開くことができない場合、ファイルが実際に破損している可能性が高いです。その場合は、データベースのバックアップを使用してください。Keepass2Android がファイルを破損すると思われる場合は、サポートにお問い合わせください。\n
  • お使いの PC でファイルを開くことができる場合は、サポートにお問い合わせください。PC で、(解凍してなど) 異なる設定でそれを保存して、Keepass2Android で再度開いてみることも試してください。  </string>
+  <string name="DbQuicklockedChannel_name">クイック解除</string>
   <string name="ErrorReportTitle">Keepass2Android: エラーが発生しました。</string>
   <string name="ErrorReportText">Keepass2Android の実行中に予期しないエラーが発生しました。エラーレポートの送信を有効にし、この問題の解決にご協力ください。</string>
   <string name="ErrorReportPromise">エラーレポートにはデータベースやマスターパスワードの内容は一切含まれません。アプリケーション設定でエラーレポートを無効にできます。</string>
@@ -819,7 +820,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>15分</item>
     <item>30分</item>
     <item>1時間</item>
-    <item>無期限</item>
+    <item>期限なし</item>
   </string-array>
   <string-array name="export_fileformat_options">
     <item>Keepass 2 データベース (.kdbx)</item>

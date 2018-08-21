@@ -67,7 +67,7 @@
   <string name="entry_is_available">jest dostępny</string>
   <string name="not_possible_im_picker">Nie można otworzyć okna dialogowego wyboru metody wprowadzania. Aktywuj klawiaturę ręcznie w ustawieniach systemu.</string>
   <string name="please_activate_keyboard">Proszę włączyć obsługę klawiatury Keepass2Android w ustawieniach systemu.</string>
-  <string name="creating_db_key">Tworzenie klucza bazy danych&#8230;</string>
+  <string name="creating_db_key">Tworzenie klucza bazy danych…</string>
   <string name="current_group">Aktualna grupa</string>
   <string name="current_group_root">Aktualna grupa: Katalog głowny</string>
   <string name="database">Baza danych</string>
@@ -161,7 +161,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="length">Długość</string>
   <string name="list_size_title">Wielkość tekstu listy grup</string>
   <string name="list_size_summary">Wielkość czcionki w liście grup</string>
-  <string name="loading_database">Wczytywanie bazy danych&#8230;</string>
+  <string name="loading_database">Wczytywanie bazy danych…</string>
   <string name="lowercase">Małe litery</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Ukryj hasło</string>
@@ -203,13 +203,13 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="pass_filename">Ścieżka do pliku bazy danych KeePass</string>
   <string name="password_title">Wprowadź hasło bazy danych</string>
   <string name="master_key_type">Wybierz rodzaj klucza głównego:</string>
-  <string name="progress_create">Tworzenie nowej bazy danych&#8230;</string>
+  <string name="progress_create">Tworzenie nowej bazy danych…</string>
   <string name="create_database">Stwórz bazę danych</string>
-  <string name="progress_title">Pracuję&#8230;</string>
+  <string name="progress_title">Pracuję…</string>
   <string name="remember_keyfile_summary">Zapamiętaj ścieżkę do plików kluczy</string>
   <string name="remember_keyfile_title">Zapamiętaj plik klucza</string>
   <string name="remove_from_filelist">Usuń</string>
-  <string name="edit">Edycja</string>
+  <string name="edit">Edytuj</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Katalog główny</string>
   <string name="KeyDerivFunc">Funkcja generująca klucze</string>
@@ -220,8 +220,8 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="argon2parallelism">Równoległość dla Argon 2</string>
   <string name="database_name">Nazwa bazy danych</string>
   <string name="default_username">Domyślna nazwa użytkownika dla nowych wpisów</string>
-  <string name="saving_database">Zapisywanie bazy danych&#8230;</string>
-  <string name="exporting_database">Eksportowanie bazy danych&#8230;</string>
+  <string name="saving_database">Zapisywanie bazy danych…</string>
+  <string name="exporting_database">Eksportowanie bazy danych…</string>
   <string name="export_database_successful">Baza danych wyeksportowana pomyślnie!</string>
   <string name="space">Spacja</string>
   <string name="search_label">Szukaj</string>
@@ -235,7 +235,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="search_hint">Znajdź</string>
   <string name="search_results">Wyniki wyszukiwania</string>
   <string name="search_in">Szukaj w</string>
-  <string name="select_other_entry">Wybierz inny wpis</string>
+  <string name="select_other_entry">Wybierz inną pozycję</string>
   <string name="select_group_then_add">Otwórz żądaną grupę, a następnie naciśnij \"%1$s\"!</string>
   <string name="insert_element_here">Wstaw tutaj</string>
   <string name="twofish">Twofish</string>
@@ -282,7 +282,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ViewDatabaseSecure_summary">Jeśli opcja jest włączona, screenshoty nie są dozwolone i nie ma miniatury aplikacji na liście ostatnich aplikacji.</string>
   <string name="QuickUnlockIconHidden_title">Ukryj ikonę SzybkiegoOdblokowania</string>
   <string name="QuickUnlockIconHidden_summary">SzybkieOdblokowanie niestety nie może działać bez wyświetlania ikony w obszarze powiadomień. Wybierz tę opcję, aby użyć ikony przeźroczystej.</string>
-  <string name="QuickUnlockIconHidden16_title">Ukryj ikonę szybkiego odblokowania</string>
+  <string name="QuickUnlockIconHidden16_title">Ukryj ikonę SzybkiegoOdblokowania</string>
   <string name="QuickUnlockIconHidden16_summary">Szybkie odblokowanie potrzebuje androidowego powiadomienia aby działało poprawnie. Wybierz tę opcję aby użyć powiadomienia bez ikonki.</string>
   <string name="QuickUnlockLength_title">Długość klucza SzybkiegoOdblokowania</string>
   <string name="QuickUnlockLength_summary">Maksymalna liczba znaków używanych jako hasło SzybkiegoOdblokowania.</string>
@@ -391,7 +391,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="AddingGroup">Dodawanie grupy...</string>
   <string name="DeletingEntry">Usuwanie wpisu...</string>
   <string name="DeletingGroup">Usuwanie grupy...</string>
-  <string name="DeletingItems">Usuwanie elementów&#8230;</string>
+  <string name="DeletingItems">Usuwanie elementów…</string>
   <string name="SettingPassword">Ustawianie hasła...</string>
   <string name="UndoingChanges">Cofanie zmian...</string>
   <string name="TransformingKey">Przekształcenie klucza głównego...</string>
@@ -408,9 +408,9 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="UseOfflineMode_Info">Baza danych jest załadowana z wewnętrznej pamięci podręcznej. Zmiany są przechowywane wyłącznie w pamięci podręcznej i będą zsynchronizowane wyłącznie po wybraniu opcji \"Synchronizuj kopię z pamięci podręcznej z jej źródłem\".</string>
   <string name="InOfflineMode">Korzystanie wyłącznie z wewnętrznej pamięci podręcznej.</string>
   <string name="SynchronizingCachedDatabase">Synchronizacji pamięć podręczną baz danych...</string>
-  <string name="DownloadingRemoteFile">Ładowanie pliku źródłowego&#8230;</string>
-  <string name="UploadingFile">Zapisz plik&#8230;</string>
-  <string name="RestoringRemoteFile">Przywracanie pliku źródłowego&#8230;</string>
+  <string name="DownloadingRemoteFile">Ładowanie pliku źródłowego…</string>
+  <string name="UploadingFile">Zapisz plik…</string>
+  <string name="RestoringRemoteFile">Przywracanie pliku źródłowego…</string>
   <string name="FilesInSync">Pliki są zsynchronizowane.</string>
   <string name="SynchronizedDatabaseSuccessfully">Baza danych pomyślnie zsynchronizowana!</string>
   <string name="CheckingDatabaseForChanges">Sprawdzania bazy danych pod kątem zmian...</string>
@@ -423,7 +423,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="RemoteDatabaseUnchanged">Nie wykryto żadnych zmian.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Zaktualizowano plik pomocniczy OTP w pamięci podręcznej: źródłowy licznik był wyższy.</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">Zaktualizowano źródłowy plik pomocniczy OTP: lokalny licznik był wyższy.</string>
-  <string name="SynchronizingOtpAuxFile">Synchronizacja pliku pomocniczego OTP&#8230;</string>
+  <string name="SynchronizingOtpAuxFile">Synchronizacja pliku pomocniczego OTP…</string>
   <string name="database_file">plik bazy danych</string>
   <string name="otp_aux_file">Pomocniczy plik OTP</string>
   <string name="ErrorOcurred">Wystąpił błąd:</string>
@@ -474,7 +474,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="hint_key_file">Wybierz, jeśli chcesz użyć pliku klucza oprócz hasła głównego:</string>
   <string name="use_key_file">Użyj pliku klucza</string>
   <string name="error_adding_keyfile">Wystąpił błąd podczas dodawania pliku klucza!</string>
-  <string name="init_otp">Ładowanie pomocniczego pliku OTP&#8230;</string>
+  <string name="init_otp">Ładowanie pomocniczego pliku OTP…</string>
   <string name="otp_explanation">Wprowadź kolejne hasła jednorazowe (OTPs). Zbliż swój Yubikey NEO do tylnej części swojego urządzenia aby wprowadzić przez NFC.</string>
   <string name="otp_hint">Hasło jednorazowe (OTP) %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nie można załadować pomocniczego pliku OTP!</string>
@@ -483,11 +483,12 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="otp_discarded_no_space">Hasło jednorazowe (OTP) odrzucone: Wszystkie hasła jednorazowe (OTPs) zostały już wprowadzone!</string>
   <string name="otp_discarded_because_db_open">Proszę najpierw zamknąć bazę danych. Hasło jednorazowe (OTP) odrzucone.</string>
   <string name="otps_pending">(Jedno lub więcej haseł jednorazowych jest już dostępne)</string>
-  <string name="otpsecret_hint">Tajny klucz OTP (np. 01 23 ab cd&#8230;)</string>
+  <string name="otpsecret_hint">Tajny klucz OTP (np. 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">Błąd przetwarzania tajnego klucza OTP!</string>
   <string name="OtpKeyError">Nie można utworzyć klucza OTP! Upewnij się, że wprowadziłeś poprawne hasła jednorazowe (OTPs).</string>
   <string name="ErrorUpdatingOtpAuxFile">Błąd aktualizacji pomocniczego pliku OTP!</string>
-  <string name="SavingOtpAuxFile">Zapisywanie pomocniczego pliku OTP&#8230;</string>
+  <string name="SavingOtpAuxFile">Zapisywanie pomocniczego pliku OTP…</string>
+  <string name="NoChallengeApp">Nie udało się odnaleźć aplikacji, która podołałaby temu zadaniu.</string>
   <string name="PleaseInstallApp">Proszę zainstalować %1$s z Google Play.</string>
   <string name="AppOutdated">%1$s nie jest obsługiwane.</string>
   <string name="bad_resp">Odpowiedź na wyzwanie jest nieprawidłowa.</string>
@@ -503,7 +504,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="DebugLog_title">Użyj pliku dziennika</string>
   <string name="DebugLog_summary">Zapisuj dane wyjściowe aplikacji do lokalnego pliku dziennika</string>
   <string name="DebugLog_send">Wyślij dziennik debugowania...</string>
-  <string name="loading">Ładowanie&#8230;</string>
+  <string name="loading">Ładowanie…</string>
   <string name="plugins">Wtyczki</string>
   <string name="plugin_packagename">Nazwa pakietu:</string>
   <string name="plugin_description">Opis (niezweryfikowany):</string>
@@ -594,7 +595,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   </string>
   <string name="DbUnlockedChannel_name">Baza danych odblokowana</string>
   <string name="DbUnlockedChannel_desc">Powiadomienie o odblokowanej bazie danych</string>
-  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_name">SzybkieOdblokowanie</string>
   <string name="DbQuicklockedChannel_desc">Powiadomienie o odblokowaniu bazy danych przy pomocy QuickUnlock</string>
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
