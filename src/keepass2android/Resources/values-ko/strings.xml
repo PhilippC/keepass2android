@@ -96,7 +96,7 @@
   <string name="enable_fingerprint_quickunlock_Info">QuickUnlock 코드 대신 지문 인증을 사용할 수 있습니다. 마스터 비밀번호와 관련된 정보는 저장하지 않습니다.</string>
   <string name="enter_filename">데이터베이스 파일 이름을 입력하세요.</string>
   <string name="entry_accessed">접속됨</string>
-  <string name="entry_cancel">최소</string>
+  <string name="entry_cancel">취소</string>
   <string name="entry_comment">노트</string>
   <string name="entry_tags">태그</string>
   <string name="entry_override_url">URL 덮어쓰기</string>
@@ -230,7 +230,7 @@
   <string name="search_hint">찾을 내용</string>
   <string name="search_results">검색 결과</string>
   <string name="search_in">검색</string>
-  <string name="select_other_entry">다른 항목을 선택</string>
+  <string name="select_other_entry">다른 항목 선택</string>
   <string name="select_group_then_add">원하는 그룹을 연 다음, \"%1$s\"!</string>
   <string name="insert_element_here">여기에 넣으세요.</string>
   <string name="twofish">Twofish</string>
@@ -385,7 +385,7 @@
   <string name="AddingGroup">그룹 추가...</string>
   <string name="DeletingEntry">항목 삭제...</string>
   <string name="DeletingGroup">그룹 삭제...</string>
-  <string name="DeletingItems">요소 삭제중&#8230;</string>
+  <string name="DeletingItems">요소 삭제중…</string>
   <string name="SettingPassword">비밀번호 설정...</string>
   <string name="UndoingChanges">변경 취소...</string>
   <string name="TransformingKey">마스터키 변경...</string>
@@ -468,7 +468,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="otp_discarded_no_space">모든 OTPs가 이미 입력되었기 때문에 OTP는 폐기되었습니다.</string>
   <string name="otp_discarded_because_db_open">데이터베이스부터 닫아주세요. OTP는 폐기됩니다.</string>
   <string name="otps_pending">(하나 이상의 OTPs가 이미 사용 가능)</string>
-  <string name="otpsecret_hint">OTP 비밀 (e.g. 01 23 ab cd&#8230;)</string>
+  <string name="otpsecret_hint">OTP 비밀 (e.g. 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">OTP secret 분석 오류!</string>
   <string name="OtpKeyError">OTP 키 생성에 실패했습니다! 정확한 OTPs를 입력하세요.</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP 보조 파일 갱신 오류!</string>
@@ -476,7 +476,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="bad_resp">시도-응답이 잘못되었습니다.</string>
   <string name="CouldntLoadChalAuxFile">보조 시도 파일을 불러올 수 없습니다!</string>
   <string name="CouldntLoadChalAuxFile_Hint">KeeChallenge 플러그인을 KeePass 2.x (PC)에서 사용하여 시도-응답에 사용할 데이터베이스를 구성하십시오!</string>
-  <string name="ErrorUpdatingChalAuxFile">OTP 보조 파일 업데이트 오류!</string>
+  <string name="ErrorUpdatingChalAuxFile">OTP 보조 파일 갱신 오류!</string>
   <string name="TrayTotp_SeedField_title">TOTP 시드 필드 이름</string>
   <string name="TrayTotp_SeedField_summary">기본값이 아닌 설정으로 Keepass 2 플러그인인 \"TrayTotp\" 를 사용하는 경우 PC의 설정에 따라 여기에 시드 필드의 필드 이름을 입력하십시오.</string>
   <string name="TrayTotp_SettingsField_title">TOTP 설정 필드 이름</string>
@@ -486,7 +486,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="DebugLog_title">로그 파일 사용</string>
   <string name="DebugLog_summary">앱의 출력을 내부 로그 파일에 쓰기</string>
   <string name="DebugLog_send">디버그 로그 보내기...</string>
-  <string name="loading">불러오기...</string>
+  <string name="loading">로딩 중…</string>
   <string name="plugins">플러그 인</string>
   <string name="plugin_packagename">패키지 이름:</string>
   <string name="plugin_description">설명 (확인 되지 않음):</string>

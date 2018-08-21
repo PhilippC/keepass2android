@@ -24,7 +24,7 @@
   <string name="clipboard_timeout_summary">Tid før utklippstavla blir tømt etter at brukarnamnet eller passordet er kopiert.</string>
   <string name="copy_username">Kopier brukarnamnet til utklippstavla</string>
   <string name="copy_password">Kopier passordet til utklippstavla</string>
-  <string name="creating_db_key">Lagar databasenøkkelen &#8230;</string>
+  <string name="creating_db_key">Lagar databasenøkkelen …</string>
   <string name="current_group">Gjeldande gruppe</string>
   <string name="current_group_root">Gjeldande gruppe: Rot</string>
   <string name="digits">Tal</string>
@@ -78,7 +78,7 @@
   <string name="length">Lengd</string>
   <string name="list_size_title">Gruppelistestorleik</string>
   <string name="list_size_summary">Tekststorleik i gruppelista</string>
-  <string name="loading_database">Lastar databasen &#8230;</string>
+  <string name="loading_database">Lastar databasen …</string>
   <string name="lowercase">Små bokstavar</string>
   <string name="maskpass_title">Masker passord</string>
   <string name="maskpass_summary">Gøym passorda (standardval)</string>
@@ -108,17 +108,18 @@
   <string name="omitbackup_summary">Søkjeresultatet inneheld ikkje oppføringar frå \'Backup\' eller søppelbøtta</string>
   <string name="pass_filename">Filnamnet til KeePass-databasen</string>
   <string name="password_title">Skriv databasepassordet</string>
-  <string name="progress_create">Lager ny database &#8230;</string>
-  <string name="progress_title">Arbeider &#8230;</string>
+  <string name="progress_create">Lager ny database …</string>
+  <string name="progress_title">Arbeider …</string>
   <string name="remember_keyfile_summary">Hugsar staden til nøkkelfilene</string>
   <string name="remember_keyfile_title">Lagra nøkkelfila</string>
   <string name="remove_from_filelist">Ta vekk</string>
+  <string name="edit">Endra</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Rot</string>
   <string name="rounds">Krypteringsomgangar</string>
   <string name="rounds_explaination">Fleire krypteringsomgangar gjev tilleggsvern mot rå makt-åtak, men kan òg gjera lasting og lagring mykje tregare.</string>
   <string name="rounds_hint">omgangar</string>
-  <string name="saving_database">Lagrar databasen &#8230;</string>
+  <string name="saving_database">Lagrar databasen …</string>
   <string name="space">Mellomrom</string>
   <string name="search_label">Søk</string>
   <string name="show_password">Syn passordet</string>
@@ -132,6 +133,8 @@
   <string name="warning_read_only">SD-kortet ditt kan berre lesast. Det kan vera at du ikkje kan lagra endringar i databasen.</string>
   <string name="warning_unmounted">SD-kortet er ikkje montert i eininga di. Du kan verken henta eller laga databasen din.</string>
   <string name="version_label">Utgåve</string>
+  <string name="AskOverwriteBinary_no">Gje nytt namn</string>
+  <string name="TemplateField_IdCard_Name">Namn</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
     <item>1 minutt</item>
@@ -140,7 +143,7 @@
     <item>15 minutes</item>
     <item>30 minutes</item>
     <item>1 hour</item>
-    <item>Never</item>
+    <item>Aldri</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Liten</item>
