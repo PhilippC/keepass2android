@@ -208,7 +208,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="progress_title">In Bearbeitung\u2026</string>
   <string name="remember_keyfile_summary">Schlüsseldatei anlegen und ihr Speicherort merken</string>
   <string name="remember_keyfile_title">Schlüsseldatei speichern</string>
-  <string name="remove_from_filelist">Löschen</string>
+  <string name="remove_from_filelist">Entfernen</string>
   <string name="edit">Bearbeiten</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Start</string>
@@ -405,6 +405,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="NoOverwrite">Nein, überschreiben</string>
   <string name="UseOfflineMode">Nur internen Zwischenspeicher verwenden</string>
   <string name="UseOnlineMode">Zwischengespeicherte Kopie mit der Quelldatei synchronisieren</string>
+  <string name="UseOfflineMode_Info">Datenbank wird vom internen Cache geladen. Änderungen werden nur im internen Cache gespeichert und nur synchronisiert, wenn eine Datenbanksynchronisierung manuell ausgewählt wird.</string>
   <string name="InOfflineMode">Nur internen Zwischenspeicher verwenden.</string>
   <string name="SynchronizingCachedDatabase">Synchronisiere gecachte Datenbank…</string>
   <string name="DownloadingRemoteFile">Quelldatei wird geladen …</string>
