@@ -486,12 +486,12 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="OtpKeyError">Impossible de créer la clé OTP ! Assurez-vous d\'avoir saisi le bon OTP.</string>
   <string name="ErrorUpdatingOtpAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="SavingOtpAuxFile">Enregistrement du fichier OTP auxiliaire...</string>
-  <string name="NoChallengeApp">Impossible de trouver une application compatible avec cette requête.</string>
+  <string name="NoChallengeApp">Impossible de trouver une application qui peut répondre à ce défi.</string>
   <string name="PleaseInstallApp">Veuillez installer %1$s depuis le Google Play Store.</string>
   <string name="AppOutdated">%1$s n\'est plus compatible.</string>
-  <string name="bad_resp">La réponse au challenge est incorrecte.</string>
-  <string name="CouldntLoadChalAuxFile">Impossible de charger le fichier de challenge auxiliaire!</string>
-  <string name="CouldntLoadChalAuxFile_Hint">Utiliser le plugin KeeChallenge de KeePass 2.x (version PC) pour configurer votre base de données pour une utilisation avec challenge-réponse!</string>
+  <string name="bad_resp">La réponse au défi est incorrecte.</string>
+  <string name="CouldntLoadChalAuxFile">Impossible de charger le fichier de défi auxiliaire!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Utiliser le plugin KeeChallenge de KeePass 2.x (version PC) pour configurer votre base de données pour une utilisation avec défi-réponse!</string>
   <string name="ErrorUpdatingChalAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="TrayTotp_SeedField_title">Nom de domaine des semences TOTP</string>
   <string name="TrayTotp_SeedField_summary">Si vous utilisez le plug-in Keepass 2 \"TrayTotp\" avec les paramètres par défaut, entrez le même nom de domaine pour le domaine des semences que sur le PC.</string>
@@ -599,8 +599,8 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
   <string name="ChangeLog_1_06">
 Version 1.06\n
-* Changement vers ykDroid au lieu de YubiChallenge comme application pour la réponse-de-requête Yubikey.\n
-* implémentation du support de réponse-de-requête compatible KeepassXC. Note : Le format de base de données doit être KDBX4 !\n
+* Changement vers ykDroid au lieu de YubiChallenge comme application pour le défi-réponse de Yubikey.\n
+* implémentation du support de défi-réponse compatible KeepassXC. Note : Le format de base de données doit être KDBX4 !\n
 * Blocage du chargement de fichiers supprimés depuis Google Drive\n
 * Changement d\'implémentation TLS pour FTPS, ajout d\'un contournement du bug JSch avec les serveurs compatibles avec gssapi-with-mic\n
 * Correction de bugs\n  </string>
@@ -682,7 +682,7 @@ Version 1.0.0\n * Déverrouiller par empreinte digitale (nécessite Android 6.0+
 		Version 0.9.7\n
 		* Support de l\'écriture des base de données Keepass 1 (kdb) (beta!)\n
 		* Meilleur retour au clavier précédent (fonctionne également sur les appareils non rootés)\n
-		* Support de KeeChallenge\n
+		* Support de KeeChallenge avec des défis à longueur variable\n
 		* Interdit les captures d\'écran à partir des écrans de déverrouillage et de saisie de mots de passe\n
 		* Inverse le tri par date de modification (maintenant descendant)\n
 		* Diverses corrections de bogues\n</string>
@@ -840,9 +840,9 @@ Première version publique</string>
     <item>Mot de passe + fichier de clé</item>
     <item>Mot de passe + OTP</item>
     <item>Mot de passe + OTP secret (mode de récupération)</item>
-    <item>Mot de passe + Challenge-Réponse</item>
-    <item>Mot de passe + Challenge-Réponse secret (mode de récupération)</item>
-    <item>Mot de passe + réponse-de-requête pour Keepass XC</item>
+    <item>Mot de passe + Défi-Réponse</item>
+    <item>Mot de passe + Défi-Réponse secret (mode de récupération)</item>
+    <item>Mot de passe + Défi-réponse pour Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorer les échecs de validation de certificat</item>
