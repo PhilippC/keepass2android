@@ -488,6 +488,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="OtpKeyError">Nie można utworzyć klucza OTP! Upewnij się, że wprowadziłeś poprawne hasła jednorazowe (OTPs).</string>
   <string name="ErrorUpdatingOtpAuxFile">Błąd aktualizacji pomocniczego pliku OTP!</string>
   <string name="SavingOtpAuxFile">Zapisywanie pomocniczego pliku OTP…</string>
+  <string name="NoChallengeApp">Nie udało się odnaleźć aplikacji, która podołałaby temu zadaniu.</string>
   <string name="PleaseInstallApp">Proszę zainstalować %1$s z Google Play.</string>
   <string name="AppOutdated">%1$s nie jest obsługiwane.</string>
   <string name="bad_resp">Odpowiedź na wyzwanie jest nieprawidłowa.</string>
