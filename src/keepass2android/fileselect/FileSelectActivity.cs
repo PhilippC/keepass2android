@@ -26,6 +26,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using Android.Support.V7.App;
+using Java.IO;
 using KeePassLib.Serialization;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
@@ -154,7 +155,7 @@ namespace keepass2android
 				};
 			createNewButton.Click += createNewButtonClick;
 
-			/*//CREATE + IMPORT
+            /*//CREATE + IMPORT
 			Button createImportButton = (Button)FindViewById(Resource.Id.start_create_import);
 			createImportButton.Click += (object sender, EventArgs e) => 
 			{
@@ -168,7 +169,9 @@ namespace keepass2android
 
 			};*/
 
-			FillData();
+            FindViewById<Switch>(Resource.Id.local_backups_switch).CheckedChange += (sender, args) => {FillData();};
+
+            FillData();
 			
 			if (savedInstanceState != null)
 			{
@@ -178,7 +181,7 @@ namespace keepass2android
 
 		}
 
-		private bool ShowRecentFiles()
+        private bool ShowRecentFiles()
 		{
 			if (!RememberRecentFiles())
 			{
@@ -280,6 +283,19 @@ namespace keepass2android
 	                    {
 	                        if (args2.Item.ItemId == remove)
 	                        {
+	                            if (new LocalFileStorage(App.Kp2a).IsLocalBackup(IOConnectionInfo.FromPath(filename)))
+	                            {
+	                                try
+	                                {
+	                                    Java.IO.File file = new File(filename);
+	                                    file.Delete();
+	                                }
+	                                catch (Exception exception)
+	                                {
+	                                    Kp2aLog.LogUnexpectedError(exception);
+	                                }
+	                            }
+
 	                            App.Kp2a.FileDbHelper.DeleteFile(filename);
 
 	                            cursor.Requery();
@@ -319,24 +335,18 @@ namespace keepass2android
 		{
 			// Get all of the rows from the database and create the item list
 			ICursor filesCursor = _dbHelper.FetchAllFiles();
-			StartManagingCursor(filesCursor);
 			
-			// Create an array to specify the fields we want to display in the list
-			// (only TITLE)
-			String[] from = new[] { FileDbHelper.KeyFileFilename };
 			
-			// and an array of the fields we want to bind those fields to (in this
-			// case just text1)
-			int[] to = new[] { Resource.Id.file_filename };
-			/*
-			// Now create a simple cursor adapter and set it to display
-			SimpleCursorAdapter recentFilesAdapter = new SimpleCursorAdapter(this,
-			                                                    Resource.Layout.file_row, filesCursor, from, to);
 
+		    if (FindViewById<Switch>(Resource.Id.local_backups_switch).Checked == false)
+		    {
+		        var fileStorage = new LocalFileStorage(App.Kp2a);
+		        filesCursor = new FilteredCursor(filesCursor, cursor => !fileStorage.IsLocalBackup(IOConnectionInfo.FromPath(cursor.GetString(1))));
+		    }
 
-			recentFilesAdapter.ViewBinder = new MyViewBinder(App.Kp2a);
-            */
-		    FragmentManager.FindFragmentById<RecentFilesFragment>(Resource.Id.recent_files).SetAdapter(new MyCursorAdapter(this, filesCursor,App.Kp2a));
+		    StartManagingCursor(filesCursor);
+
+            FragmentManager.FindFragmentById<RecentFilesFragment>(Resource.Id.recent_files).SetAdapter(new MyCursorAdapter(this, filesCursor,App.Kp2a));
 
 		    
 		}

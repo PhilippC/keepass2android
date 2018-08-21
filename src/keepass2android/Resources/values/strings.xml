@@ -364,6 +364,7 @@
   <string name="CreateBackups_summary">Create a local backup copy after successfully loading a database.</string>
   <string name="UpdatingBackup">Updating local backup...</string>
   <string name="LocalBackupOf">Local backup of %1$s</string>
+  <string name="show_local_backups">Show local backups</string>
 
   
 

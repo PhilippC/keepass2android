@@ -24,7 +24,7 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	/// <summary>
+    /// <summary>
 	/// Class to store the recent files in a database
 	/// </summary>
 	public class FileDbHelper {

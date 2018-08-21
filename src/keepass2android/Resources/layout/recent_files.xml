@@ -22,4 +22,13 @@
             android:paddingRight="0dp"
             android:paddingLeft="0dp" />
 
+    <Switch
+      android:id="@+id/local_backups_switch"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/show_local_backups"
+      android:checked="false"
+      android:textColor="#fff"
+      android:gravity="left"/>
+
   </LinearLayout>
