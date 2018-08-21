@@ -1415,6 +1415,7 @@ public class KP2AKeyboard extends InputMethodService
 
         Intent i = new Intent(this, Kp2aDialog.class);
         i.putExtra("clientPackageName", clientPackageName);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
 
 	}
