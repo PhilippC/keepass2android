@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="121" 
-			android:versionName="1.06-pre2" 
+			android:versionCode="123" 
+			android:versionName="1.06b" 
 			package="keepass2android.keepass2android" 
 			android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="26" />
