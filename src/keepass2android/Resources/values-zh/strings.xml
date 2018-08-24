@@ -325,13 +325,16 @@
   <string name="NoDonationReminder_title">不再要求捐赠</string>
   <string name="NoDonationReminder_summary">我不打算捐赠或已经捐赠过。即使是在作者生日当天，也不要再向我请求捐赠。</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
+  <string name="UseOfflineCache_summary">在应用内部缓存中存放一份数据库文件。当数据库文件源无法访问时，仍可打开数据库。</string>
   <string name="CreateBackups_title">本地备份</string>
   <string name="CreateBackups_summary">在成功进入数据库后创建本地备份。</string>
   <string name="UpdatingBackup">正在更新本地备份...</string>
   <string name="LocalBackupOf">本地备份：%1$s</string>
+  <string name="show_local_backups">显示本地备份</string>
   <string name="AcceptAllServerCertificates_title">SSL 证书</string>
   <string name="AcceptAllServerCertificates_summary">定义当证书验证失败时的行为。注意：如果验证失败您可以在您的设备上安装证书！</string>
   <string name="ClearOfflineCache_title">清除缓存？</string>
+  <string name="ClearOfflineCache_question">此操作将删除所有缓存数据库文件。你的所有未与文件源同步的修改将会丢失！继续？</string>
   <string name="CheckForFileChangesOnSave_title">检查修改</string>
   <string name="CheckForFileChangesOnSave_summary">检查文件是否在保存变更之前被外部修改。</string>
   <string name="CheckForDuplicateUuids_title">检查重复的 UUID</string>
@@ -398,11 +401,26 @@
   <string name="SynchronizingDatabase">合并更改...</string>
   <string name="YesSynchronize">是的，合并</string>
   <string name="NoOverwrite">不，覆盖</string>
+  <string name="UseOfflineMode">仅使用本地缓存</string>
+  <string name="UseOnlineMode">缓存副本同步至文件源</string>
+  <string name="UseOfflineMode_Info">已从内部缓存加载数据库。数据库的更改将只会保存在内部缓存中，且只在点击“缓存副本同步至文件源”后才会进行同步。</string>
+  <string name="InOfflineMode">仅使用内部缓存。</string>
   <string name="SynchronizingCachedDatabase">同步缓存的数据库...</string>
+  <string name="DownloadingRemoteFile">正在从文件源加载…</string>
+  <string name="UploadingFile">保存文件…</string>
+  <string name="RestoringRemoteFile">正在从文件源恢复...</string>
   <string name="FilesInSync">文件同步中。</string>
   <string name="SynchronizedDatabaseSuccessfully">数据库同步成功 ！</string>
   <string name="CheckingDatabaseForChanges">检查数据库更改...</string>
+  <string name="CouldNotSaveToRemote">无法保存至文件源：%1$s。请重试，或在文件可用后使用同步菜单。</string>
+  <string name="CouldNotLoadFromRemote">无法读取文件源：%1$s。已从本地缓存中加载。你仍可修改数据库，并稍后进行同步。</string>
+  <string name="UpdatedRemoteFileOnLoad">已从文件源更新。</string>
+  <string name="NotifyOpenFromLocalDueToConflict">因与文件源冲突，已从内部缓存加载文件。使用同步菜单进行合并操作。</string>
+  <string name="LoadedFromRemoteInSync">文件源与缓存已同步。</string>
+  <string name="UpdatedCachedFileOnLoad">已更新%1$s的内部缓存副本。</string>
   <string name="RemoteDatabaseUnchanged">未检测到变化。</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">已更新OTP辅助文件本地缓存：文件源版本更高。</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">已更新OTP辅助文件源：本地缓存版本更高。</string>
   <string name="SynchronizingOtpAuxFile">正在同步一次性密码辅助文件…</string>
   <string name="database_file">数据库文件</string>
   <string name="otp_aux_file">一次性密码辅助文件</string>
@@ -468,6 +486,9 @@
   <string name="OtpKeyError">无法创建一次性密码密钥！确保你输入了正确的 OTPs。</string>
   <string name="ErrorUpdatingOtpAuxFile">更新一次性密码辅助文件时出错 ！</string>
   <string name="SavingOtpAuxFile">正在保存一次性密码辅助文件...</string>
+  <string name="NoChallengeApp">无法找到处理此挑战请求的应用。</string>
+  <string name="PleaseInstallApp">请于Google Play安装%1$s。</string>
+  <string name="AppOutdated">不再支持%1$s。</string>
   <string name="bad_resp">挑战响应不正确</string>
   <string name="CouldntLoadChalAuxFile">无法加载辅助挑战文件！</string>
   <string name="CouldntLoadChalAuxFile_Hint">请在 KeePass 2.x (PC) 中使用 KeeChallenge 插件，以使用挑战—响应配置您的数据库！</string>
@@ -548,6 +569,19 @@
   <string name="Continue">继续</string>
   <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
   <string name="FirstInvalidCompositeKeyError">复合密钥无效！请重试。</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">无效的数据库密钥！请尝试以下步骤解锁数据库：\n
+
+ &#8226; 检查密码是否正确。使用眼睛图标查看已输入的密码。\n
+ &#8226; 检查密码类型是否正确。密码类型必须与创建数据库时的设置相同。\n
+ &#8226; 检查数据库文件是否正确。\n
+</string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+\n
+   &#8226; 提示：如果你认为数据库已损坏，或你在更改主密钥后把它忘了，你可以点击“%1$s”并选择本地备份以尝试最后一次成功打开的文件版本。</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    &#8226; 提示：Keepass2Android已将最后一次成功打开版本保存到内部存储中。点击“%1$s”并选择本地备份以打开它。
+  </string>
   <string name="DbUnlockedChannel_name">数据库已解锁</string>
   <string name="DbUnlockedChannel_desc">数据库解锁通知</string>
   <string name="DbQuicklockedChannel_name">快速解锁</string>
@@ -876,6 +910,7 @@ Initial public release
   <string name="show_autofill_help">显示自动填充帮助</string>
   <string name="autofill_sign_in_prompt">使用 Keepass2Android 填充</string>
   <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android检测到指纹传感器。你想为此数据库启用指纹解锁吗？</string>
   <string name="understand">我明白了</string>
   <string name="dont_show_again">不再显示</string>
   <string name="masterkey_infotext_head">你还记得你的主密码吗？</string>
