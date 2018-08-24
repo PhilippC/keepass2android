@@ -582,6 +582,15 @@
     \n
     &#8226; 提示：Keepass2Android已将最后一次成功打开版本保存到内部存储中。点击“%1$s”并选择本地备份以打开它。
   </string>
+  <string name="CorruptDatabaseHelp">
+文件已损坏。\n
+    以下是诊断问题的一些提示：\n
+    
+    &#8226; 如果使用USB（MTP模式）传输文件，请使用诸如MyPhoneExplorer的工具再试一次。MTP在特定情况下会截断文件。\n
+    &#8226; 如果你打开的是PC上的同一个文件，那么文件可能真的损坏了。请使用数据库备份。如果你认为是Keepass2Android损坏了文件，请联系技术支持。\n
+    &#8226;如果你可以在PC上打开这个文件，请联系技术支持。你也可以尝试在PC上使用不同参数（如不压缩）另存一份文件，再尝试在Keepass2Android上打开。
+
+  </string>
   <string name="DbUnlockedChannel_name">数据库已解锁</string>
   <string name="DbUnlockedChannel_desc">数据库解锁通知</string>
   <string name="DbQuicklockedChannel_name">快速解锁</string>
