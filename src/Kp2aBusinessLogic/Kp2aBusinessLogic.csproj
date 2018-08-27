@@ -117,6 +117,7 @@
     <Compile Include="Io\JavaFileStorage.cs" />
     <Compile Include="Io\NetFtpFileStorage.cs" />
     <Compile Include="Io\OfflineSwitchableFileStorage.cs" />
+    <Compile Include="Io\PCloudFileStorage.cs" />
     <Compile Include="Io\SftpFileStorage.cs" />
     <Compile Include="Io\OneDriveFileStorage.cs" />
     <Compile Include="Io\WebDavFileStorage.cs" />
