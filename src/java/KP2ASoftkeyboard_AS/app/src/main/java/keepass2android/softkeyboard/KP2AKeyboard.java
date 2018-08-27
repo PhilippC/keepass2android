@@ -62,6 +62,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import keepass2android.kbbridge.KeyboardData;
 import keepass2android.kbbridge.StringForTyping;
 import keepass2android.softkeyboard.LatinIMEUtil.RingCharBuffer;
 
@@ -71,16 +72,13 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-interface IKeyboardService
-{
-    void commitStringForTyping(StringForTyping stringForTyping);
-}
+import java.util.Objects;
 
 /**
  * Input method implementation for Qwerty'ish keyboard.
@@ -1086,6 +1084,7 @@ public class KP2AKeyboard extends InputMethodService
     private void reloadKeyboards() {
         mKeyboardSwitcher.setLanguageSwitcher(mLanguageSwitcher);
         mKeyboardSwitcher.makeKeyboards(true);
+        updateKp2aKeyLabels();
     }
 
     private void commitTyped(InputConnection inputConnection) {
@@ -1275,6 +1274,9 @@ public class KP2AKeyboard extends InputMethodService
             case LatinKeyboardView.KEYCODE_OPTIONS:
                 onOptionKeyPressed();
                 break;
+            case LatinKeyboardView.KEYCODE_KP2A_NEXTFIELDS:
+                onKp2aNextFieldsPressed();
+                break;
             case LatinKeyboardView.KEYCODE_KP2A:
                 onKp2aKeyPressed();
                 break;
@@ -1363,28 +1365,72 @@ public class KP2AKeyboard extends InputMethodService
 	}
 
 	private void onKp2aPasswordKeyPressed() {
-		commitStringForTyping(findStringForTyping("Password"));
+		commitStringForTyping(KeyboardData.availableFields.get(KeyboardData.kp2aFieldIndex+1));
 	}
 
-	private StringForTyping findStringForTyping(String key) {
-		
-		for (StringForTyping s: keepass2android.kbbridge.KeyboardData.availableFields)
-		{
-			if (key.equals(s.key))
-			{
-				return s;
-			}
-		}
-		//found nothing: return empty struct:
-		return new StringForTyping();
-	}
 
 	private void onKp2aUserKeyPressed() {
-		commitStringForTyping(findStringForTyping("UserName"));
+        commitStringForTyping(KeyboardData.availableFields.get(KeyboardData.kp2aFieldIndex));
 		
 	}
 
-	private void onKp2aKeyPressed() {
+
+
+    private void onKp2aNextFieldsPressed()
+    {
+
+        List<StringForTyping> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
+        if (KeyboardData.kp2aFieldIndex >= availableFields.size()-2)
+        {
+            KeyboardData.kp2aFieldIndex = 0;
+        }
+        else if (KeyboardData.kp2aFieldIndex == availableFields.size()-3)
+        {
+            KeyboardData.kp2aFieldIndex++;
+        }
+        else
+            KeyboardData.kp2aFieldIndex += 2;
+
+        updateKp2aKeyLabels();
+    }
+
+    private void updateKp2aKeyLabels() {
+        for (Keyboard.Key key : mKeyboardSwitcher.getInputView().getKeyboard().getKeys()) {
+
+            boolean isFirstKey = false;
+            boolean isSecondKey = false;
+            for (int code : key.codes) {
+                if (code == -201)
+                    isFirstKey = true;
+                if (code == -202)
+                    isSecondKey = true;
+            }
+
+
+            int fieldIndex = -1;
+            if (isFirstKey) {
+                fieldIndex = KeyboardData.kp2aFieldIndex;
+            }
+            if (isSecondKey)
+            {
+                fieldIndex = KeyboardData.kp2aFieldIndex+1;
+            }
+            if (fieldIndex >= 0)
+            {
+                String displayName = KeyboardData.availableFields.get(fieldIndex).displayName;
+                if ("Password".equals(KeyboardData.availableFields.get(fieldIndex).key))
+                    displayName = getString(R.string.kp2a_password); //might be a shorter variant
+                if ("UserName".equals(KeyboardData.availableFields.get(fieldIndex).key ))
+                    displayName = getString(R.string.kp2a_user); //might be a shorter variant
+                key.label = displayName;
+            }
+            mKeyboardSwitcher.getInputView().invalidateAllKeys();
+        }
+    }
+
+    private void onKp2aKeyPressed() {
+
+
 		if ((mKeyboardSwitcher.getKeyboardMode() == KeyboardSwitcher.MODE_KP2A) 
 				|| (!mKp2aEnableSimpleKeyboard)
 				|| (!keepass2android.kbbridge.KeyboardData.hasData()))
@@ -1417,7 +1463,6 @@ public class KP2AKeyboard extends InputMethodService
         i.putExtra("clientPackageName", clientPackageName);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
-
 	}
 	public void commitStringForTyping(StringForTyping theItem) {
 		
@@ -1439,8 +1484,13 @@ public class KP2AKeyboard extends InputMethodService
 		commitKp2aString(theItem.value, getCurrentInputEditorInfo());
 	}
 
-	
-	public void onText(CharSequence text) {
+    @Override
+    public void onNewData() {
+        updateKp2aKeyLabels();
+    }
+
+
+    public void onText(CharSequence text) {
         InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
         if (text == null)

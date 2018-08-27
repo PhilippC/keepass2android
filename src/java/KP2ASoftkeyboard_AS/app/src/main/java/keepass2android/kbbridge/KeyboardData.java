@@ -10,20 +10,18 @@ public class KeyboardData
 	public static List<StringForTyping> availableFields = new ArrayList<StringForTyping>();
 	public static String entryName;
 	public static String entryId;
+
+	public static int kp2aFieldIndex = 0;
 	
 	public static boolean hasData()
 	{
 		return !TextUtils.isEmpty(entryId); 
-	}
-
-	public static boolean bla2()
-	{
-		return !TextUtils.isEmpty(entryId);
 	}
 	 
 	public static void clear()
 	{
 		 availableFields.clear();
 		 entryName = entryId = "";
+		kp2aFieldIndex = 0;
 	}
 }

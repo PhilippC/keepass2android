@@ -12,32 +12,37 @@
     	<Key
             android:codes="@integer/key_kp2a_alpha"
             android:keyLabel="@string/label_alpha_key"
-            android:keyWidth="12%p"
+            android:keyWidth="10%p"
             android:isModifier="true"
             android:keyEdgeFlags="left" />
         <Key
             android:codes="@integer/key_kp2a_user"
             android:keyLabel="@string/kp2a_user"
-            android:keyWidth="20%p"
-             />
+            android:keyWidth="19%p"
+            />
         <Key
             android:codes="@integer/key_kp2a_pass"
             android:keyLabel="@string/kp2a_password"
-            android:keyWidth="20%p"
-             />
+            android:keyWidth="19%p"
+            />
+        <Key
+            android:codes="@integer/key_kp2a_nextfields"
+            android:keyLabel="@string/kp2a_nextfields"
+            android:keyWidth="8%p"
+            />
         <Key
             android:codes="@integer/key_kp2a"
             android:keyIcon="@drawable/sym_bkeyboard_kp2a"
 			android:iconPreview="@drawable/sym_keyboard_feedback_kp2a"
             android:popupKeyboard="@xml/popup_kp2a"
-            android:keyWidth="12%p" 
+            android:keyWidth="10%p"
             android:isModifier="true" />
         
         <Key
             android:codes="@integer/key_delete"
             android:keyIcon="@drawable/sym_bkeyboard_delete"
             android:iconPreview="@drawable/sym_keyboard_feedback_delete"
-            android:keyWidth="12%p"
+            android:keyWidth="10%p"
             android:isRepeatable="true"
              />
         <Key

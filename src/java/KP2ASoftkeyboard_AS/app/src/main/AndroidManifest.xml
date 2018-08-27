@@ -19,6 +19,7 @@
                 android:resource="@xml/accserviceconfig" />
         </service-->
         <activity android:excludeFromRecents="true"
+            android:taskAffinity=""
             android:theme="@android:style/Theme.Dialog"
             android:name=".Kp2aDialog"></activity>
     </application>

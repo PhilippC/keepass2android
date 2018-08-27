@@ -26,19 +26,13 @@ public class Kp2aDialog extends Activity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
 
+
         setContentView(R.layout.activity_kp2a_dialog);
         ListView listview = ((ListView)findViewById(R.id.mylist));
         final String clientPackageName = getIntent().getStringExtra("clientPackageName");
 
-        List<StringForTyping> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
-
-
-
         final ArrayList<StringForTyping> items = new ArrayList<StringForTyping>();
-        for (StringForTyping entry : availableFields)
-        {
-            items.add(entry.clone());
-        }
+
 
 
 
@@ -117,11 +111,11 @@ public class Kp2aDialog extends Activity {
 
                     StringForTyping theItem = items.get(item);
 
-                    Kp2aDialog.this.finish();
                     KP2AKeyboard.CurrentlyRunningService.commitStringForTyping(theItem);
 
-
                 }
+                Kp2aDialog.this.finish();
+
             }
         });
 
