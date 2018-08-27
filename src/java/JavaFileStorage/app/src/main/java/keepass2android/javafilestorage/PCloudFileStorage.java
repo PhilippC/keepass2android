@@ -69,8 +69,9 @@ public class PCloudFileStorage extends JavaFileStorageBase
     }
 
     @Override
-    public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode, boolean alwaysReturnSuccess) {
-        if (isConnected()) {
+    public void prepareFileUsage(FileStorageSetupInitiatorActivity activity, String path, int requestCode,
+                                 boolean alwaysReturnSuccess) {
+        if (this.isConnected()) {
             Intent intent = new Intent();
             intent.putExtra(EXTRA_PATH, path);
             activity.onImmediateResult(requestCode, RESULT_FILEUSAGE_PREPARED, intent);
@@ -159,9 +160,10 @@ public class PCloudFileStorage extends JavaFileStorageBase
     @Override
     public String createFilePath(String parentPath, String newFileName) throws Exception {
         return (
-        this.getProtocolId() + "://" +
-        this.cleanPath(parentPath) +
-        ("".equals(newFileName) ? "" : "/") + newFileName
+            this.getProtocolId() + "://" +
+            this.cleanPath(parentPath) +
+            ("".equals(newFileName) ? "" : "/") +
+            newFileName
         );
     }
 
@@ -216,14 +218,14 @@ public class PCloudFileStorage extends JavaFileStorageBase
             activity.getState().putString(EXTRA_PATH, activity.getPath());
         }
 
-    if (this.isConnected()) {
+        if (this.isConnected()) {
             finishActivityWithSuccess(activity);
-    } else if (!activity.getState().getBoolean("hasStartedAuth", false)) {
+        } else if (!activity.getState().getBoolean("hasStartedAuth", false)) {
             Activity castedActivity = (Activity)activity;
             Intent authIntent = AuthorizationActivity.createIntent(castedActivity, this.clientId);
             castedActivity.startActivityForResult(authIntent, PCLOUD_AUTHORIZATION_REQUEST_CODE);
             activity.getState().putBoolean("hasStartedAuth", true);
-    }
+        }
 
     }
 
@@ -333,7 +335,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
         }
 
         if ("/".equals(path)) {
-                return folder;
+            return folder;
         }
 
         String[] fileNames = path.substring(1).split("/");
@@ -341,7 +343,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
         Iterator<String> fileNamesIterator = Arrays.asList(fileNames).iterator();
         while (true) {
             String fileName = fileNamesIterator.next();
-            
+
             Iterator<RemoteEntry> entryIterator = currentFolder.children().iterator();
             while (true) {
                 RemoteEntry remoteEntry;
@@ -387,7 +389,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
         fileEntry.path = (
             this.getProtocolId() + "://" +
             ("/".equals(parentPath) ? "" : parentPath) +
-        "/" + remoteEntry.name()
+            "/" + remoteEntry.name()
         );
         fileEntry.displayName = remoteEntry.name();
         fileEntry.isDirectory = !remoteEntry.isFile();
