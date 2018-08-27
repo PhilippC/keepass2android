@@ -7,20 +7,34 @@ namespace keepass2android
 {
     public class FilteredCursor : CursorWrapper
     {
-        private readonly List<int> _indicesToKeep;
+        private readonly Predicate<ICursor> _filter;
+        private List<int> _indicesToKeep;
         private int _pos;
+
+        public override bool Requery()
+        {
+            bool result = base.Requery();
+            UpdateFilterIndices();
+            return result;
+        }
 
         protected FilteredCursor(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
         }
-
+        
         public FilteredCursor(ICursor cursor, Predicate<ICursor> filter) : base(cursor)
+        {
+            _filter = filter;
+            UpdateFilterIndices();
+        }
+
+        private void UpdateFilterIndices()
         {
             _indicesToKeep = new List<int>();
             int index = 0;
-            for (cursor.MoveToFirst(); !cursor.IsAfterLast; cursor.MoveToNext())
+            for (base.WrappedCursor.MoveToFirst(); !base.WrappedCursor.IsAfterLast; base.WrappedCursor.MoveToNext())
             {
-                if (filter(cursor))
+                if (_filter(base.WrappedCursor))
                     _indicesToKeep.Add(index);
                 index++;
             }
