@@ -45,6 +45,7 @@ using KeePassLib.Utility;
 #if !NoNet
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
+using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
 #endif
 namespace keepass2android
 {
@@ -588,6 +589,7 @@ namespace keepass2android
 							new SftpFileStorage(this),
 							new NetFtpFileStorage(Application.Context, this),
 							new WebDavFileStorage(this),
+							new PCloudFileStorage(Application.Context, this),
 							//new LegacyWebDavStorage(this),
 							//new LegacyFtpStorage(this),
 #endif

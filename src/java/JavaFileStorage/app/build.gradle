@@ -35,6 +35,8 @@ dependencies {
     compile('com.onedrive.sdk:onedrive-sdk-android:1.2.0') {
         transitive = false
     }
+    compile 'com.pcloud.sdk:java-core:1.0.1'
+    compile 'com.pcloud.sdk:android:1.0.1'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.microsoft.services.msa:msa-auth:0.8.6'
     compile 'com.microsoft.aad:adal:1.14.0'

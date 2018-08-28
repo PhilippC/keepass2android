@@ -488,6 +488,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_androidsend.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_content.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_dropbox.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_storage_pcloud.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_dropboxKP2A.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_file.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_ftp.png" />
@@ -831,6 +832,10 @@
       <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
       <Name>JavaFileStorageBindings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj">
+      <Project>{2DB80C77-D46F-4970-B967-E9FFA9B2AC2E}</Project>
+      <Name>PCloudBindings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
       <Name>KeePassLib2Android</Name>
@@ -1145,6 +1150,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_dropboxKP2A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_pcloud.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_file.png" />
