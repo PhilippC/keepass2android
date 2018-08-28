@@ -1417,7 +1417,7 @@ public class KP2AKeyboard extends InputMethodService
             {
                 fieldIndex = KeyboardData.kp2aFieldIndex+1;
             }
-            if (fieldIndex >= 0)
+            if ((fieldIndex >= 0) && (fieldIndex < KeyboardData.availableFields.size()))
             {
                 String displayName = "";
                 StringForTyping fieldData = KeyboardData.availableFields.get(fieldIndex);
