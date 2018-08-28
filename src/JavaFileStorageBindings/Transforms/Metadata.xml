@@ -11,6 +11,8 @@
 	<remove-node path="/api/package[@name='com.jcraft.jsch.jcraft']" />
 	<remove-node path="/api/package[@name='com.jcraft.jzlib']" />
 
+  <remove-node path="/api/package[@name='com.pcloud.sdk']" />
+
   <remove-node path="/api/package[@name='com.dropbox.core']" />
   <remove-node path="/api/package[@name='com.dropbox.core.util']" />
   <remove-node path="/api/package[@name='com.dropbox.core.http']" />
