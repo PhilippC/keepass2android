@@ -327,10 +327,11 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="NoDonationReminder_summary">Não vou doar um cêntimo ou já doei. Não voltar a pedir uma doação, nem no aniversário do autor.</string>
   <string name="UseOfflineCache_title">Cache da base de dados</string>
   <string name="UseOfflineCache_summary">Manter uma cópia dos ficheiros da base de dados no diretório de cache da aplicação. Isto permite o uso das base de dados mesmo quando os ficheiros das base de dados não estão acessíveis.</string>
-  <string name="CreateBackups_title">Copias de segurança local</string>
+  <string name="CreateBackups_title">Cópias de segurança local</string>
   <string name="CreateBackups_summary">Cria uma cópia de segurança local após carregar com sucesso a base de dados.</string>
   <string name="UpdatingBackup">Atualizando a cópia de segurança local...</string>
   <string name="LocalBackupOf">Cópia de segurança local de %1$s</string>
+  <string name="show_local_backups">Mostrar cópias de segurança locais</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Defina o comportamento quando a validação do certificado falhar. Atenção: pode instalar certificados no seu dispositivo se a validação falhar!</string>
   <string name="ClearOfflineCache_title">Eliminar a cache?</string>
