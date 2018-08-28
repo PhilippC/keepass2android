@@ -1395,6 +1395,8 @@ public class KP2AKeyboard extends InputMethodService
     }
 
     private void updateKp2aKeyLabels() {
+        if ((mKeyboardSwitcher.getInputView() != null)
+            && (mKeyboardSwitcher.getInputView().getKeyboard() != null))
         for (Keyboard.Key key : mKeyboardSwitcher.getInputView().getKeyboard().getKeys()) {
 
             boolean isFirstKey = false;
@@ -1417,11 +1419,16 @@ public class KP2AKeyboard extends InputMethodService
             }
             if (fieldIndex >= 0)
             {
-                String displayName = KeyboardData.availableFields.get(fieldIndex).displayName;
-                if ("Password".equals(KeyboardData.availableFields.get(fieldIndex).key))
-                    displayName = getString(R.string.kp2a_password); //might be a shorter variant
-                if ("UserName".equals(KeyboardData.availableFields.get(fieldIndex).key ))
-                    displayName = getString(R.string.kp2a_user); //might be a shorter variant
+                String displayName = "";
+                StringForTyping fieldData = KeyboardData.availableFields.get(fieldIndex);
+                if (fieldData != null)
+                {
+                    displayName = fieldData.displayName;
+                    if ("Password".equals(fieldData.key))
+                        displayName = getString(R.string.kp2a_password); //might be a shorter variant
+                    if ("UserName".equals(fieldData.key))
+                        displayName = getString(R.string.kp2a_user); //might be a shorter variant
+                }
                 key.label = displayName;
             }
             mKeyboardSwitcher.getInputView().invalidateAllKeys();
