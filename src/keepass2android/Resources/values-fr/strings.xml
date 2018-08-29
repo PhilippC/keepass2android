@@ -331,6 +331,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="CreateBackups_summary">Créer une copie de sauvegarde locale après le chargement réussi d’une base de données.</string>
   <string name="UpdatingBackup">Mise à jour de la sauvegarde locale...</string>
   <string name="LocalBackupOf">Sauvegarde locale de %1$s</string>
+  <string name="show_local_backups">Voir les sauvegardes locales</string>
   <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
   <string name="AcceptAllServerCertificates_summary">Définir le comportement lorsque la validation du certificat échoue. Remarque : vous pouvez installer les certificats sur votre appareil si la validation échoue !</string>
   <string name="ClearOfflineCache_title">Vider le cache ?</string>
