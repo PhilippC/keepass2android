@@ -331,6 +331,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="CreateBackups_summary">Crear una copia de local después de cargar con éxito una base de datos.</string>
   <string name="UpdatingBackup">Actualizando copia de seguridad local...</string>
   <string name="LocalBackupOf">Copia de seguridad local de %1$s</string>
+  <string name="show_local_backups">Mostrar copias de seguridad locales</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definir el comportamiento cuando falla la validación de un certificado. Nota: puedes instalar certificados en tu dispositivo si la validación falla!</string>
   <string name="ClearOfflineCache_title">¿Limpiar Cache?</string>
