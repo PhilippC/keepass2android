@@ -331,6 +331,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="CreateBackups_summary">Bir veritabanı başarıyla yükledikten sonra yerel bir yedek kopyasını oluştur.</string>
   <string name="UpdatingBackup">Yerel yedek güncelleştiriliyor...</string>
   <string name="LocalBackupOf">%1$s yerel yedeği</string>
+  <string name="show_local_backups">Yerel yedekleri göster</string>
   <string name="AcceptAllServerCertificates_title">SSL sertifikalar</string>
   <string name="AcceptAllServerCertificates_summary">Sertifika doğrulaması başarısız olduğunda ne yapılacak! Not: Doğrulama başarısız olduğunda sertifikaları aygıtınıza yükleyebilirsiniz. </string>
   <string name="ClearOfflineCache_title">Önbelleği temizle?</string>
