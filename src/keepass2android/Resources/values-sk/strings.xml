@@ -215,7 +215,7 @@
   <string name="root">Hlavný</string>
   <string name="KeyDerivFunc">Funkcia odvodenia kľúča</string>
   <string name="rounds">Opakovania pri šifrovaní</string>
-  <string name="rounds_explaination">Vyššie opakovania šifrovania dávajú vyššiu ochranu proti útokom hrubou silou, ale môžu spomaliť načítavanie a ukladanie.</string>
+  <string name="rounds_explaination">Viac kôl šifrovania poskytuje vyššiu ochranu proti útokom hrubou silou, ale môže spomaliť načítavanie a ukladanie.</string>
   <string name="rounds_hint">opakovania</string>
   <string name="argon2memory">Pamäť pre Argon 2 (bajty)</string>
   <string name="argon2parallelism">Parallelism pre Argon 2</string>
@@ -334,6 +334,7 @@
   <string name="CreateBackups_summary">Po úspešnom načítaní databázy vytvoriť lokálnu záložnú kópiu.</string>
   <string name="UpdatingBackup">Aktualizovanie lokálnej zálohy...</string>
   <string name="LocalBackupOf">Lokálna záloha %1$s</string>
+  <string name="show_local_backups">Zobraziť lokálne zálohy</string>
   <string name="AcceptAllServerCertificates_title">Certifikáty SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definujte postup pri zlyhaní overenia certifikátu. Poznámka: pri zlyhaní overenia môžete na zariadenie nainštalovať certifikáty!</string>
   <string name="ClearOfflineCache_title">Vymazať vyrovnávaciu pamäť?</string>
