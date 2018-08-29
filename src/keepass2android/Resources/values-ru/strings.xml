@@ -330,6 +330,7 @@
   <string name="CreateBackups_summary">Создать локальную резервную копию после успешной загрузки БД.</string>
   <string name="UpdatingBackup">Обновление локальной резервной копии...</string>
   <string name="LocalBackupOf">Локальная резервная копия %1$s</string>
+  <string name="show_local_backups">Показать локальные резервные копии</string>
   <string name="AcceptAllServerCertificates_title">SSL-сертификаты</string>
   <string name="AcceptAllServerCertificates_summary">Определите поведение при сбое проверки сертификата. Примечание: Вы можете установить сертификаты на вашем устройстве, если проверка не пройдена!</string>
   <string name="ClearOfflineCache_title">Очистить кэш?</string>
