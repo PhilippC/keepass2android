@@ -333,6 +333,7 @@
   <string name="CreateBackups_summary">Δημιουργία τοπικού αντιγράφου μετά την επιτυχή φόρτωση της βάσης δεδομένων</string>
   <string name="UpdatingBackup">Ενημέρωση τοπικού αντιγράφου...</string>
   <string name="LocalBackupOf">Τοπικό αντίγραφο στο %1$s</string>
+  <string name="show_local_backups">Εμφάνιση τοπικών αντιγράφων</string>
   <string name="AcceptAllServerCertificates_title">Πιστοποιητικά SSL</string>
   <string name="AcceptAllServerCertificates_summary">Καθορίστε τη συμπεριφορά αν αποτύχει η επικύρωση πιστοποιητικού. Σημείωση: μπορείτε να εγκαταστήσετε πιστοποιητικά στη συσκευή σας, εάν αποτύχει η επικύρωση!</string>
   <string name="ClearOfflineCache_title">Εκκαθάριση προσωρινής μνήμης;</string>
@@ -457,6 +458,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (φάκελος KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Αν δεν θέλετε να δώσετε πλήρη πρόσβαση KP2A στο Dropbox, μπορείτε να επιλέξετε αυτήν την επιλογή. Έτσι θα ζητήσει πρόσβαση μόνο στο φάκελο Apps/Keepass2Android. Ιδιαίτερα κατάλληλο όταν δημιουργείτε μια νέα βάση δεδομένων. Αν ήδη έχετε μια βάση δεδομένων, κάντε αυτήν την επιλογή για να δημιουργήσετε το φάκελο, έπειτα τοποθετήστε το αρχείο μέσα στο φάκελο (από το PC σας) και, τέλος, ενεργοποιήστε αυτή την επιλογή ξανά κατά το άνοιγμα του αρχείου.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (μεταφορά αρχείων SSH)</string>
   <string name="filestoragename_content">Επιλογέας αρχείων συστήματος</string>
