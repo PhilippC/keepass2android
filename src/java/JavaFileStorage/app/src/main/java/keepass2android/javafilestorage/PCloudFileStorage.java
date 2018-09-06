@@ -52,7 +52,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     @Override
     public boolean requiresSetup(String path) {
-        return true;
+        return !this.isConnected();
     }
 
     @Override
@@ -372,7 +372,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     private Exception convertApiError(ApiError e) {
         String strErrorCode = String.valueOf(e.errorCode());
-        if (strErrorCode.startsWith("1") || "2000".equals(strErrorCode)) {
+        if (strErrorCode.startsWith("1") || "2000".equals(strErrorCode) || "2095".equals(strErrorCode)) {
             this.clearAuthToken();
             return new UserInteractionRequiredException("Unlinked from PCloud! User must re-link.", e);
         } else if (strErrorCode.startsWith("2")) {
