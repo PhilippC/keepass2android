@@ -333,6 +333,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="CreateBackups_summary">Twórz lokalną kopię zapasową po pomyślnym załadowaniu bazy danych.</string>
   <string name="UpdatingBackup">Aktualizacja lokalnej kopii zapasowej...</string>
   <string name="LocalBackupOf">Lokalna kopia zapasowa %1$s</string>
+  <string name="show_local_backups">Pokaż lokalne kopie zapasowe</string>
   <string name="AcceptAllServerCertificates_title">Certyfikaty SSL</string>
   <string name="AcceptAllServerCertificates_summary">Zdefiniuj zachowanie, gdy weryfikacja certyfikatu się nie powiedzie. Uwaga: jeżeli weryfikacja się nie powiedzie, możesz zainstalować certyfikat na swoim urządzeniu!</string>
   <string name="ClearOfflineCache_title">Wyczyścić pamięć podręczną?</string>
@@ -457,6 +458,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (transfer plików przez SSH)</string>
   <string name="filestoragename_content">Systemowa przeglądarka plików</string>
