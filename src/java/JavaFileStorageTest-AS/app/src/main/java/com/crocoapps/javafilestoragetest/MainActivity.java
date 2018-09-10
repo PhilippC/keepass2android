@@ -526,9 +526,9 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 	}
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext, boolean simulateRestart) {
-		//storageToTest = new SftpStorage();
+		storageToTest = new SftpStorage(ctx.getApplicationContext());
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
-		storageToTest = new OneDriveStorage(appContext, "000000004010C234");
+		//storageToTest = new OneDriveStorage(appContext, "000000004010C234");
 		//storageToTest = new GoogleDriveFileStorage();
 		/*storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
 			@Override

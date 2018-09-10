@@ -1,3 +1,5 @@
 <resources>
 
+
+    <string name="title_activity_notif_slave">Keepass2Android</string>
 </resources>

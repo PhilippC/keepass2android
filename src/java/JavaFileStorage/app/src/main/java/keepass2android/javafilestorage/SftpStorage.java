@@ -35,8 +35,10 @@ public class SftpStorage extends JavaFileStorageBase {
 		public String localPath;
 		public int port;
 	}
+	Context _appContext;
 
-	public SftpStorage() {
+	public SftpStorage(Context appContext) {
+		_appContext = appContext;
 
 	}
 
@@ -318,8 +320,10 @@ public class SftpStorage extends JavaFileStorageBase {
 		jsch = new JSch();
 		ConnectionInfo ci = splitStringToConnectionInfo(filename);
 
+		jsch.setKnownHosts(_appContext.getFilesDir().getAbsolutePath() + "/known_hosts");
+
 		Session session = jsch.getSession(ci.username, ci.host, ci.port);
-		UserInfo ui = new SftpUserInfo(ci.password);
+		UserInfo ui = new SftpUserInfo(ci.password,_appContext);
 		session.setUserInfo(ui);
 
 		session.setConfig("PreferredAuthentications",

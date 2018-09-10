@@ -55,8 +55,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\java\JavaFileStorage\app\build\outputs\aar\JavaFileStorage-debug.aar">
-      <Link>Jars\JavaFileStorage-debug.aar</Link>
+    <LibraryProjectZip Include="..\java\JavaFileStorage\app\build\outputs\aar\JavaFileStorage-release.aar">
+      <Link>Jars\JavaFileStorage-release.aar</Link>
     </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
