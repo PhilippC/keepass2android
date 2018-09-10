@@ -15,7 +15,7 @@
     <application>
         <activity
             android:name=".NotifSlave"
-            android:label="@string/title_activity_notif_slave"></activity>
+            android:label="Keepass2Android"></activity>
     </application>
 
 </manifest>
