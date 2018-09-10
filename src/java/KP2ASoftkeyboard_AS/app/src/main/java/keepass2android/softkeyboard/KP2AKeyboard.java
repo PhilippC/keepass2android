@@ -521,6 +521,7 @@ public class KP2AKeyboard extends InputMethodService
             mOrientation = conf.orientation;
             reloadKeyboards();
         }
+        updateKp2aKeyLabels();
         mConfigurationChanging = true;
         super.onConfigurationChanged(conf);
         mConfigurationChanging = false;
@@ -545,6 +546,7 @@ public class KP2AKeyboard extends InputMethodService
         	mKeyboardSwitcher.setKeyboardMode(
                     KeyboardSwitcher.MODE_TEXT, 0);
         }
+        updateKp2aKeyLabels();
         
         return mKeyboardSwitcher.getInputView();
     }
@@ -706,6 +708,7 @@ public class KP2AKeyboard extends InputMethodService
 	                        attribute.imeOptions);
 	        }
         }
+        updateKp2aKeyLabels();
 	}
 
 	private void updateShowKp2aMode() {
@@ -1394,45 +1397,61 @@ public class KP2AKeyboard extends InputMethodService
         updateKp2aKeyLabels();
     }
 
+    String makeShort(String input, int lineLength)
+    {
+        String result = input;
+        if (input.length() > lineLength)
+        {
+            result = input.substring(0,lineLength-1)+"…";
+        }
+        return result;
+    }
+
     private void updateKp2aKeyLabels() {
+
         if ((mKeyboardSwitcher.getInputView() != null)
             && (mKeyboardSwitcher.getInputView().getKeyboard() != null))
-        for (Keyboard.Key key : mKeyboardSwitcher.getInputView().getKeyboard().getKeys()) {
+        {
+            for (Keyboard.Key key : mKeyboardSwitcher.getInputView().getKeyboard().getKeys()) {
 
-            boolean isFirstKey = false;
-            boolean isSecondKey = false;
-            for (int code : key.codes) {
-                if (code == -201)
-                    isFirstKey = true;
-                if (code == -202)
-                    isSecondKey = true;
-            }
-
-
-            int fieldIndex = -1;
-            if (isFirstKey) {
-                fieldIndex = KeyboardData.kp2aFieldIndex;
-            }
-            if (isSecondKey)
-            {
-                fieldIndex = KeyboardData.kp2aFieldIndex+1;
-            }
-            if ((fieldIndex >= 0) && (fieldIndex < KeyboardData.availableFields.size()))
-            {
-                String displayName = "";
-                StringForTyping fieldData = KeyboardData.availableFields.get(fieldIndex);
-                if (fieldData != null)
-                {
-                    displayName = fieldData.displayName;
-                    if ("Password".equals(fieldData.key))
-                        displayName = getString(R.string.kp2a_password); //might be a shorter variant
-                    if ("UserName".equals(fieldData.key))
-                        displayName = getString(R.string.kp2a_user); //might be a shorter variant
+                boolean isFirstKey = false;
+                boolean isSecondKey = false;
+                for (int code : key.codes) {
+                    if (code == -201)
+                        isFirstKey = true;
+                    if (code == -202)
+                        isSecondKey = true;
                 }
-                key.label = displayName;
+
+
+                int fieldIndex = -1;
+                if (isFirstKey) {
+                    fieldIndex = KeyboardData.kp2aFieldIndex;
+                }
+                if (isSecondKey) {
+                    fieldIndex = KeyboardData.kp2aFieldIndex + 1;
+                }
+
+                if (fieldIndex >= 0) {
+                    key.label = "";
+                    if (fieldIndex < KeyboardData.availableFields.size()) {
+                        String displayName = "";
+                        StringForTyping fieldData = KeyboardData.availableFields.get(fieldIndex);
+                        if (fieldData != null) {
+                            displayName = makeShort(fieldData.displayName, 10);
+
+                            if ("Password".equals(fieldData.key))
+                                displayName = getString(R.string.kp2a_password); //might be a shorter variant
+                            if ("UserName".equals(fieldData.key))
+                                displayName = getString(R.string.kp2a_user); //might be a shorter variant
+                        }
+                        key.label = displayName;
+                    }
+                }
             }
             mKeyboardSwitcher.getInputView().invalidateAllKeys();
         }
+
     }
 
     private void onKp2aKeyPressed() {
@@ -1462,14 +1481,135 @@ public class KP2AKeyboard extends InputMethodService
         }
     }
 
-	private void showKp2aDialog() {
-        final EditorInfo attribute = getCurrentInputEditorInfo();
-        final String clientPackageName = attribute.packageName;
+	private void showKp2aDialog()
+    {
+        boolean androidP = android.os.Build.VERSION.SDK_INT >= 28;
+        //due to a change in Android P, showing the dialog as dialog does not work (only visible
+        // above the keyboard, not above the target application). Use an activity here.
+        // However, this is not perfect as it has another behavior regarding which task is
+        // in foreground, e.g. Chrome closes the IME when the activity is brought up which causes
+        // trouble entering data. So we still use the dialog in previous android versions.
+        if (androidP)
+        {
+            final EditorInfo attribute = getCurrentInputEditorInfo();
+            final String clientPackageName = attribute.packageName;
 
-        Intent i = new Intent(this, Kp2aDialog.class);
-        i.putExtra("clientPackageName", clientPackageName);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
+            Intent i = new Intent(this, Kp2aDialog.class);
+            i.putExtra("clientPackageName", clientPackageName);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+        }
+        else
+        {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            String title = "Keepass2Android";
+            List<StringForTyping> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
+
+            final EditorInfo attribute = getCurrentInputEditorInfo();
+            attribute.dump(new Printer() {
+
+                @Override
+                public void println(String x) {
+                    Log.d("KP2AK", x);
+
+                }
+            }, "");
+            final ArrayList<StringForTyping> items = new ArrayList<StringForTyping>();
+            for (StringForTyping entry : availableFields) {
+                items.add(entry.clone());
+            }
+
+
+            StringForTyping openOrChangeEntry = new StringForTyping();
+            if (keepass2android.kbbridge.KeyboardData.entryName == null) {
+                openOrChangeEntry.displayName = openOrChangeEntry.key = getString(R.string.open_entry);
+            } else {
+                openOrChangeEntry.displayName = openOrChangeEntry.key = getString(R.string.change_entry);
+            }
+            openOrChangeEntry.value = "KP2ASPECIAL_SelectEntryTask";
+            items.add(openOrChangeEntry);
+
+
+            final String clientPackageName = attribute.packageName;
+
+            if ((clientPackageName != null) && (clientPackageName != "")) {
+                StringForTyping searchEntry = new StringForTyping();
+                try {
+                    searchEntry.key = searchEntry.displayName
+                            = getString(R.string.open_entry_for_app, new Object[]{clientPackageName});
+                } catch (java.util.FormatFlagsConversionMismatchException e) //buggy crowdin support for Arabic?
+                {
+                    android.util.Log.e("KP2A", "Please report this error to crocoapps@gmail.com");
+                    android.util.Log.e("KP2A", e.toString());
+
+                    searchEntry.key = searchEntry.displayName
+                            = "Search entry for app";
+                }
+
+                searchEntry.value = "KP2ASPECIAL_SearchUrlTask";
+                items.add(searchEntry);
+            }
+
+
+            builder.setTitle(title);
+
+            CharSequence[] itemNames = new CharSequence[items.size()];
+            int i = 0;
+            for (StringForTyping sft : items)
+                itemNames[i++] = sft.displayName;
+
+            builder.setItems(itemNames,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int item) {
+
+
+                            if (items.get(item).value.startsWith("KP2ASPECIAL")) {
+                                //change entry
+                                String packageName = getApplicationContext().getPackageName();
+                                Intent startKp2aIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+                                if (startKp2aIntent != null) {
+                                    startKp2aIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                                    startKp2aIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    String value = items.get(item).value;
+                                    String taskName = value.substring("KP2ASPECIAL_".length());
+                                    startKp2aIntent.putExtra("KP2A_APPTASK", taskName);
+                                    if (taskName.equals("SearchUrlTask")) {
+                                        startKp2aIntent.putExtra("UrlToSearch", "androidapp://" + clientPackageName);
+                                    }
+                                    startActivity(startKp2aIntent);
+                                } else Log.w("KP2AK", "didn't find intent for " + packageName);
+                            } else {
+
+                                StringForTyping theItem = items.get(item);
+
+                                commitStringForTyping(theItem);
+
+                            }
+                        }
+
+                    });
+
+            builder.setNegativeButton(android.R.string.cancel,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+
+            // Create the AlertDialog
+            AlertDialog dialog = builder.create();
+            Window window = dialog.getWindow();
+            WindowManager.LayoutParams lp = window.getAttributes();
+            LatinKeyboardView inputView = mKeyboardSwitcher.getInputView();
+            lp.token = inputView.getWindowToken();
+            lp.type = WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG;
+            window.setAttributes(lp);
+            window.addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+
+            dialog.show();
+        }
+
 	}
 	public void commitStringForTyping(StringForTyping theItem) {
 		
@@ -1487,7 +1627,7 @@ public class KP2AKeyboard extends InputMethodService
 		
 		
 										
-		Log.d("KP2AK", "committing text for " + theItem.key);
+
 		commitKp2aString(theItem.value, getCurrentInputEditorInfo());
 	}
 
@@ -1796,6 +1936,7 @@ public class KP2AKeyboard extends InputMethodService
               }
               setCandidatesViewShown(true);
               updateInputViewShown();
+              updateKp2aKeyLabels();
               postUpdateSuggestions();
           }
       });
