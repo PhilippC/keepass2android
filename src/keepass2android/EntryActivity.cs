@@ -30,6 +30,7 @@ using Android.Widget;
 using Android.Preferences;
 using Android.Text.Method;
 using System.Globalization;
+using System.Net;
 using Android.Content.PM;
 using Android.Webkit;
 using Android.Graphics;
@@ -540,9 +541,12 @@ namespace keepass2android
 				binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
 
 			string filepart = key;
-			if (writeToCacheDirectory)
-				filepart = filepart.Replace(" ", "");
-			var targetFile = new File(binaryDirectory, filepart);
+		    if (writeToCacheDirectory)
+		    {
+		        Java.Lang.String javaFilename = new Java.Lang.String(filepart);
+                filepart = javaFilename.ReplaceAll("[^a-zA-Z0-9.-]", "_");
+            }
+		    var targetFile = new File(binaryDirectory, filepart);
 
 			File parent = targetFile.ParentFile;
 
