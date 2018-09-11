@@ -200,6 +200,14 @@
 				 android:title="@string/ClearPasswordOnLeave_title"
 				 android:key="@string/ClearPasswordOnLeave_key" />
 
+		  <CheckBoxPreference
+		    android:enabled="true"
+		    android:persistent="true"
+		    android:summary="@string/UseKp2aKeyboardInKp2a_summary"
+		    android:defaultValue="false"
+		    android:title="@string/UseKp2aKeyboardInKp2a_title"
+		    android:key="@string/UseKp2aKeyboardInKp2a_key" />
+
 
 		</PreferenceScreen>
 		<PreferenceScreen

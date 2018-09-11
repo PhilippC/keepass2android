@@ -346,6 +346,11 @@
 	<string name="LockWhenNavigateBack_title">Lock when leaving app</string>
 	<string name="LockWhenNavigateBack_summary">Lock the database when leaving the app by pressing the back button.</string>
 
+  <string name="UseKp2aKeyboardInKp2a_title">Use built-in keyboard inside Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">If you do not trust your standard keyboard provider, check this option to use the built-in keyboard when entering your master password or editing entries.</string>
+
+  
+
   <string name="ActivateSearchViewOnStart_title">Activate search field on start</string>
   <string name="ActivateSearchViewOnStart_summary">Activates search field in the group view after unlocking or when searching for an entry</string>
 

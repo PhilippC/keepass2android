@@ -1625,7 +1625,13 @@ namespace keepass2android
 			base.OnStart();
 			_starting = true;
 
-		    AppTask.CanActivateSearchViewOnStart = true;
+		    if (PreferenceManager.GetDefaultSharedPreferences(this)
+		        .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false))
+		    {
+		        CopyToClipboardService.ActivateKeyboard(this);
+		    }
+
+                AppTask.CanActivateSearchViewOnStart = true;
             DonateReminder.ShowDonateReminderIfAppropriate(this);
 			
 			
