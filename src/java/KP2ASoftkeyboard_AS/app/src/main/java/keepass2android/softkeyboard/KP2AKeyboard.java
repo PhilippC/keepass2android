@@ -1368,7 +1368,8 @@ public class KP2AKeyboard extends InputMethodService
 	}
 
 	private void onKp2aPasswordKeyPressed() {
-		commitStringForTyping(KeyboardData.availableFields.get(KeyboardData.kp2aFieldIndex+1));
+        if (KeyboardData.availableFields.size() > KeyboardData.kp2aFieldIndex+1) //some entries may have only title, then there are no two buttons available
+		    commitStringForTyping(KeyboardData.availableFields.get(KeyboardData.kp2aFieldIndex+1));
 	}
 
 
