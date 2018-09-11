@@ -1022,7 +1022,12 @@ namespace keepass2android
 			{
 				case Resource.Id.menu_donate:
 					return Util.GotoDonateUrl(this);
-				case Resource.Id.menu_toggle_pass:
+                case Resource.Id.menu_delete:
+                    DeleteEntry task = new DeleteEntry(this, App.Kp2a, Entry,
+                        new ActionOnFinish(this, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
+                    task.Start();
+                    break;
+                case Resource.Id.menu_toggle_pass:
 					if (_showPassword)
 					{
 						item.SetTitle(Resource.String.show_password);
