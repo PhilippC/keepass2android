@@ -101,7 +101,7 @@ namespace keepass2android
 										  string initialPath = dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text;
 									      if (string.IsNullOrEmpty(initialPath))
 									          initialPath = "/";
-                                          string sftpPath = new Keepass2android.Javafilestorage.SftpStorage().BuildFullPath(host, port, initialPath, user,
+                                          string sftpPath = new Keepass2android.Javafilestorage.SftpStorage(activity.ApplicationContext).BuildFullPath(host, port, initialPath, user,
 																										  password);
 										  onStartBrowse(sftpPath);
 									  });

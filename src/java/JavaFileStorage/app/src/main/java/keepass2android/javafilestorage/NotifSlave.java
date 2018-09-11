@@ -116,7 +116,7 @@ public class NotifSlave extends Activity {
             });
             AlertDialog alert = builder.create();
             showDialog(alert);
-        } else if (reqtype.equals("password")) {
+        } /*else if (reqtype.equals("password")) {
             final Dialog d = new Dialog(this);
 
             d.setContentView(R.layout.notfif_slave);
@@ -162,7 +162,7 @@ public class NotifSlave extends Activity {
 
 
             showDialog(d);
-        } else {
+        } */else {
             Log.e("KP2AJ.NotifSlave", "What's a "+reqtype+"?");
         }
     }
