@@ -253,7 +253,6 @@ namespace keepass2android
 
 			AppTask.TryGetFromActivityResult(data, ref AppTask);
 
-			//NOTE: original code from k eepassdroid used switch ((Android.App.Result)requestCode) { (but doesn't work here, although k eepassdroid works)
 			switch(resultCode) {
 
 				case KeePass.ExitNormal: // Returned to this screen using the Back key
@@ -982,8 +981,9 @@ namespace keepass2android
 			{
 				var masterPassword = _fingerprintDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
 				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
+			    FindViewById<EditText>(Resource.Id.password_edit).Enabled = false; //prevent accidental modification of password
 
-			}
+            }
 			catch (Java.Security.GeneralSecurityException ex)
 			{
 				HandleFingerprintKeyInvalidated();
@@ -992,8 +992,9 @@ namespace keepass2android
 			
 			btn.PostDelayed(() =>
 			{
-				//fire
-				OnOk(true);	
+                //fire
+                OnOk(true);
+			    FindViewById<EditText>(Resource.Id.password_edit).Enabled = true;
 			}, 500);
 
         }
