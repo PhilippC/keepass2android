@@ -907,6 +907,11 @@ Prvotna javna verzija  </string>
     <item>Lozinka + Challenge-Response</item>
     <item>Lozinka + Challenge-Response tajna (način oporavka)</item>
     <item>Lozinka + Challenge-Response za Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Lozinka</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Zanemari pogreške potvrda certifikata</item>
