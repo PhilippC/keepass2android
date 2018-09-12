@@ -135,7 +135,12 @@ package com.crocoapps.javafilestoragetest;
 import group.pals.android.lib.ui.filechooser.FileChooserActivity;
 import group.pals.android.lib.ui.filechooser.providers.BaseFileProviderUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -526,9 +531,9 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 	}
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext, boolean simulateRestart) {
-		//storageToTest = new SftpStorage();
+		storageToTest = new SftpStorage(ctx.getApplicationContext());
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
-		storageToTest = new OneDriveStorage(appContext, "000000004010C234");
+		//storageToTest = new OneDriveStorage(appContext, "000000004010C234");
 		//storageToTest = new GoogleDriveFileStorage();
 		/*storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
 			@Override
@@ -662,6 +667,20 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 		return this;
 	}
 
+	public static String readStream(InputStream is) {
+		StringBuilder sb = new StringBuilder(512);
+		try {
+			Reader r = new InputStreamReader(is, "UTF-8");
+			int c = 0;
+			while ((c = r.read()) != -1) {
+				sb.append((char) c);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		return sb.toString();
+	}
+
 	@Override
 	public void performManualFileSelect(boolean isForSave, final int requestCode,
 			String protocolId)
@@ -669,6 +688,30 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 		if (protocolId.equals("sftp"))
 		{
 			final View view = getLayoutInflater().inflate(R.layout.sftp_credentials, null);
+
+			view.findViewById(R.id.send_public_key).setOnClickListener(v -> {
+				Intent sendIntent = new Intent();
+
+
+                SftpStorage sftpStorage = (SftpStorage)storageToTest;
+                try {
+                    String pub_filename = sftpStorage.createKeyPair();
+
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, readStream(new FileInputStream(pub_filename)));
+
+                    sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Keepass2Android sftp public key");
+                    sendIntent.setType("text/plain");
+                    this.startActivity(Intent.createChooser(sendIntent, "Send public key to..."));
+                }
+                catch (Exception ex)
+                {
+                    Toast.makeText(this,"Failed to create key pair: " + ex.getMessage(), Toast.LENGTH_LONG);
+                    return;
+                }
+
+
+			});
 			new AlertDialog.Builder(this)
 					.setView(view)
 					.setTitle("Enter SFTP credentials")

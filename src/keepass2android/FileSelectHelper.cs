@@ -42,15 +42,49 @@ namespace keepass2android
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.sftpcredentials, null);
 
-		    if (!defaultPath.EndsWith(_schemeSeparator))
+		    var spinner = dlgContents.FindViewById<Spinner>(Resource.Id.sftp_auth_mode_spinner);
+		    dlgContents.FindViewById<Button>(Resource.Id.send_public_key_button).Click += (sender, args) =>
 		    {
-		        var fileStorage = new Keepass2android.Javafilestorage.SftpStorage();
+		        var fileStorage = new Keepass2android.Javafilestorage.SftpStorage(activity.ApplicationContext);
+		        string pub_filename = fileStorage.CreateKeyPair();
+
+		        Intent sendIntent = new Intent();
+                sendIntent.SetAction(Intent.ActionSend);
+		        sendIntent.PutExtra(Intent.ExtraText, System.IO.File.ReadAllText(pub_filename));
+
+		        sendIntent.PutExtra(Intent.ExtraSubject, "Keepass2Android sftp public key");
+		        sendIntent.SetType("text/plain");
+		        activity.StartActivity(Intent.CreateChooser(sendIntent, "Send public key to..."));
+            };
+
+
+            spinner.ItemSelected += (sender, args) =>
+		    {
+		        if (spinner.SelectedItemPosition == 0)
+		        {
+		            dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Visibility = ViewStates.Visible;
+		            dlgContents.FindViewById<Button>(Resource.Id.send_public_key_button).Visibility = ViewStates.Gone;
+                }
+		        else
+		        {
+		            dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Visibility = ViewStates.Gone;
+		            dlgContents.FindViewById<Button>(Resource.Id.send_public_key_button).Visibility = ViewStates.Visible;
+                }
+		    };
+
+            if (!defaultPath.EndsWith(_schemeSeparator))
+		    {
+		        var fileStorage = new Keepass2android.Javafilestorage.SftpStorage(activity.ApplicationContext);
                 SftpStorage.ConnectionInfo ci = fileStorage.SplitStringToConnectionInfo(defaultPath);
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_host).Text = ci.Host;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_port).Text = ci.Port.ToString();
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_user).Text = ci.Username;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Text = ci.Password;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text = ci.LocalPath;
+		        if (string.IsNullOrEmpty(ci.Password))
+		        {
+		            spinner.SetSelection(1);
+		        }
             }
 
 			builder.SetView(dlgContents);
@@ -67,7 +101,7 @@ namespace keepass2android
 										  string initialPath = dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text;
 									      if (string.IsNullOrEmpty(initialPath))
 									          initialPath = "/";
-                                          string sftpPath = new Keepass2android.Javafilestorage.SftpStorage().BuildFullPath(host, port, initialPath, user,
+                                          string sftpPath = new Keepass2android.Javafilestorage.SftpStorage(activity.ApplicationContext).BuildFullPath(host, port, initialPath, user,
 																										  password);
 										  onStartBrowse(sftpPath);
 									  });

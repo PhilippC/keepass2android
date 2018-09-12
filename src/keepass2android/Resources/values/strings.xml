@@ -346,6 +346,11 @@
 	<string name="LockWhenNavigateBack_title">Lock when leaving app</string>
 	<string name="LockWhenNavigateBack_summary">Lock the database when leaving the app by pressing the back button.</string>
 
+  <string name="UseKp2aKeyboardInKp2a_title">Use built-in keyboard inside Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">If you do not trust your standard keyboard provider, check this option to use the built-in keyboard when entering your master password or editing entries.</string>
+
+  
+
   <string name="ActivateSearchViewOnStart_title">Activate search field on start</string>
   <string name="ActivateSearchViewOnStart_summary">Activates search field in the group view after unlocking or when searching for an entry</string>
 
@@ -510,6 +515,8 @@
 	<string name="hint_sftp_port">port</string>
 	<string name="initial_directory">Initial directory (optional):</string>
 	<string name="enter_sftp_login_title">Enter SFTP login data:</string>
+  <string name="sftp_auth_mode">Authentication mode</string>
+  <string name="send_public_key">Send public key...</string>
 
   <string name="enter_ftp_login_title">Enter FTP login data:</string>
 
@@ -1107,7 +1114,12 @@ Initial public release
 		<item>Password + Challenge-Response</item>
 		<item>Password + Challenge-Response secret (recovery mode)</item>
 	  <item>Password + Challenge-Response for Keepass XC</item>
+	  <item>Password + Key file + Challenge-Response for Keepass XC</item>
 	</string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Password</item>
+    <item>Private/Public key</item>
+  </string-array>
 	<string-array name="AcceptAllServerCertificates_options">
 		<item>Ignore certificate validation failures</item>
 		<item>Warn when validation fails</item>

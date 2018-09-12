@@ -279,7 +279,17 @@ namespace keepass2android
 
 		}
 
-		private void CreateNewFromKpEntryTemplate(Database db, PwEntry templateEntry)
+	    protected override void OnStart()
+	    {
+	        base.OnStart();
+	        if (PreferenceManager.GetDefaultSharedPreferences(this)
+	            .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false))
+	        {
+	            CopyToClipboardService.ActivateKeyboard(this);
+	        }
+        }
+
+	    private void CreateNewFromKpEntryTemplate(Database db, PwEntry templateEntry)
 		{
 			var entry = new PwEntry(true, true);
 			KpEntryTemplatedEdit.InitializeEntry(entry, templateEntry);

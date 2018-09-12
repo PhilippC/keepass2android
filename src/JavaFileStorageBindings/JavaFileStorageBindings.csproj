@@ -60,7 +60,6 @@
     </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
-    <LibraryProjectZip Include="Jars\adal-1.14.0.aar" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
@@ -82,6 +81,10 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdalBindings\AdalBindings.csproj">
+      <Project>{0b109c0e-0514-4340-8779-5bd6a0dde84e}</Project>
+      <Name>AdalBindings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj" />
   </ItemGroup>
   <ItemGroup>
