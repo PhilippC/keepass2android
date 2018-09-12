@@ -928,6 +928,11 @@ Lançamento público inicial
     <item>Palavra-passe + Desafio-Resposta</item>
     <item>Palavra-passe + Desafio-Resposta secreto (modo de recuperação)</item>
     <item>Palavra-chave e resposta de desafio para o Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Palavra-passe</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar falhas de validação de certificado</item>
