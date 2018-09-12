@@ -874,6 +874,11 @@
     <item>密碼 + 質詢-回應</item>
     <item>密碼 + 質詢 - 回應 (復原模式)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>密碼：</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>忽略憑證驗證失敗</item>
