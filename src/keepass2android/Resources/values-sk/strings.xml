@@ -947,6 +947,11 @@ Prvé verejné vydanie
     <item>Heslo + odpoveď na výzvu</item>
     <item>Heslo + tajná odpoveď na výzvu (režim obnovenia)</item>
     <item>Heslo + odpoveď na výzvu ke Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Heslo</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovať zlyhania pri overení certifikátu</item>
