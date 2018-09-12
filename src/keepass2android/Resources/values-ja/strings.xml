@@ -318,6 +318,7 @@
   <string name="ClearPasswordOnLeave_summary">データベースのロック解除をせずに画面を離れると、入力済みのマスターパスワードをクリアします。</string>
   <string name="LockWhenNavigateBack_title">アプリから抜けたときにロックする</string>
   <string name="LockWhenNavigateBack_summary">戻るボタンを押してこのアプリから抜けたときにデータベースをロックします。</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android の内蔵キーボードを使用</string>
   <string name="ActivateSearchViewOnStart_title">開始時に検索フィールドを有効にする</string>
   <string name="ActivateSearchViewOnStart_summary">ロック解除後または入力を検索中、グループ表示に検索フィールドを有効にします</string>
   <string name="NoDonateOption_title">寄付オプションを表示しない</string>
@@ -425,6 +426,8 @@
   <string name="hint_sftp_port">ポート</string>
   <string name="initial_directory">初期ディレクトリ (省略可能):</string>
   <string name="enter_sftp_login_title">SFTP のログイン データを入力してください:</string>
+  <string name="sftp_auth_mode">認証方式</string>
+  <string name="send_public_key">公開鍵を送信</string>
   <string name="enter_ftp_login_title">FTP のログイン データを入力してください:</string>
   <string name="select_storage_type">ストレージタイプの選択</string>
   <string name="filestoragename_file">ローカルファイル</string>
@@ -438,6 +441,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A フォルダー)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox の全てに KP2A がアクセスできるようにしたくない場合にこのオプションを選択してください。このオプションを選択すると、Apps/Keepass2Android フォルダーだけにアクセスを要求します。これは特に新しいデータベースを作成するときに向いています。既にデータベースがある場合は、このオプションを選択してフォルダーを作成し、その後 (PC から) フォルダー内にファイルを配置し、そのファイルを開く際にもう一度このオプションを選択します。</string>
   <string name="filestoragename_gdrive">Google ドライブ</string>
+  <string name="filestoragename_pcloud">pCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH ファイル転送)</string>
   <string name="filestoragename_content">システムファイルピッカー</string>
@@ -855,6 +859,11 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>パスワード + チャレンジ/レスポンス</item>
     <item>パスワード + チャレンジ/レスポンス secret (回復モード)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>パスワード</item>
+    <item>秘密/公開鍵</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>証明書検証エラーを無視する</item>
