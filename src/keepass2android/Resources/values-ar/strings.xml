@@ -658,6 +658,11 @@
     <item>كلمة السر + إجابة السؤال الشخصي</item>
     <item>كلمة السر + سر إجابة السؤال الشخصي (وضع الاسترجاع)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>كلمة السر</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>تجاهل فشل التحقق من صحة الشهادة</item>
