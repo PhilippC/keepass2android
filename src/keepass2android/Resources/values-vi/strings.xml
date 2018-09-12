@@ -740,6 +740,11 @@ Bản phát hành chính thức đầu tiên</string>
     <item>Mật mã + trả lời-thách thức</item>
     <item>Mật mã + trả lời-thách thức bí mật (chế độ phục hồi)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Mật mã</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Bỏ qua các thất bại khi xác nhận chứng chỉ</item>
