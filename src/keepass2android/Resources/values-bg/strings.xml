@@ -396,4 +396,8 @@
     <item>1 hour</item>
     <item>Никога</item>
   </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Парола</item>
+    <item>Private/Public key</item>
+  </string-array>
 </resources>
