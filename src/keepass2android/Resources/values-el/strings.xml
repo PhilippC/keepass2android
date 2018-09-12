@@ -920,6 +920,11 @@ Initial public release
     <item>Συνθηματικό + Πρόκληση-Απόκριση</item>
     <item>Συνθηματικό + μυστική Πρόκληση-Απόκριση (λειτουργία ανάκτησης)</item>
     <item>Συνθηματικό + Πρόκληση-Απόκριση για το Keypass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Συνθηματικό</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Παράβλεψη αποτυχιών επικύρωσης πιστοποιητικού</item>
