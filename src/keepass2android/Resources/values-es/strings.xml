@@ -932,6 +932,11 @@ Publicación inicial</string>
     <item>Contraseña + desafío-respuesta</item>
     <item>Contraseña + secreto de desafío-respuesta (modo de recuperación)</item>
     <item>Contraseña + Desafio-Respuesta para Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Contraseña</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar errores de validación de certificado</item>
