@@ -319,6 +319,7 @@
   <string name="LockWhenNavigateBack_title">アプリから抜けたときにロックする</string>
   <string name="LockWhenNavigateBack_summary">戻るボタンを押してこのアプリから抜けたときにデータベースをロックします。</string>
   <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android の内蔵キーボードを使用</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">マスターパスワードの入力またはエントリー編集時に、標準キーボードプロバイダーを信頼しない場合、このオプションをチェックし内蔵キーボードを使用してください。</string>
   <string name="ActivateSearchViewOnStart_title">開始時に検索フィールドを有効にする</string>
   <string name="ActivateSearchViewOnStart_summary">ロック解除後または入力を検索中、グループ表示に検索フィールドを有効にします</string>
   <string name="NoDonateOption_title">寄付オプションを表示しない</string>
@@ -327,10 +328,12 @@
   <string name="NoDonationReminder_title">絶対に寄付を求めない</string>
   <string name="NoDonationReminder_summary">ダイムを与えないまたはすでに寄付されました。著者の誕生日でさえ、寄付金を求めません。</string>
   <string name="UseOfflineCache_title">データベース キャッシュ</string>
+  <string name="UseOfflineCache_summary">アプリのキャッシュディレクトリにデータベースファイルのコピーを保持してください。これにより、データベースファイルにアクセスできない間もデータベースを使用することができます。</string>
   <string name="CreateBackups_title">ローカルバックアップ</string>
   <string name="CreateBackups_summary">データベースを読み込んだ後、ローカルバックアップを作成します。</string>
   <string name="UpdatingBackup">ローカルバックアップを更新しています...</string>
   <string name="LocalBackupOf">%1$s のローカルバックアップ</string>
+  <string name="show_local_backups">ローカルバックアップを表示</string>
   <string name="AcceptAllServerCertificates_title">SSL 証明書</string>
   <string name="AcceptAllServerCertificates_summary">証明書の検証に失敗したときの動作を指定します。注:検証に失敗したときは、デバイスに証明書をインストールすることができます。</string>
   <string name="ClearOfflineCache_title">キャッシュをクリアしますか？</string>
@@ -557,6 +560,12 @@
  • 正しいパスワードの種類を選択したことを確認してください。データベースを作成するときに使用した種類と一致することを確認してください。\n
  • 正しいデータベースファイルが選択されていることを確認してください。 
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+   &#8226; ヒント: データベースファイルが破損したとみられる場合、または、マスターキー変更後に忘れてしまった場合は、\"%1$s\" をクリックしてローカルバックアップを選択し、最後に開けたバージョンのファイルを試すことができます。</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    &#8226; ヒント: Keepass2Android は、内部メモリーに最後に開くことができたファイルのバージョン保持しています。\"%1$s\" をクリックして、ローカルバックアップからそれを開くことができます。  </string>
   <string name="CorruptDatabaseHelp">
 ファイルが壊れています。\n
 ここに、問題を診断するために役立ついくつかのヒントがあります:\n
@@ -859,7 +868,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>パスワード + チャレンジ/レスポンス</item>
     <item>パスワード + チャレンジ/レスポンス secret (回復モード)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Keepass XC のパスワード + キーファイル + チャレンジレスポンス</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>パスワード</item>
