@@ -812,6 +812,11 @@ Začetna javna izdaja
     <item>Geslo in odgovor izziva</item>
     <item>Geslo in skriv. odg. izziva (način obn.)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Geslo</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Prezri spodletela preverjanja veljavnosti potrdil</item>
