@@ -299,4 +299,8 @@
     <item>1 hour</item>
     <item>Никад</item>
   </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Лозинка</item>
+    <item>Private/Public key</item>
+  </string-array>
 </resources>
