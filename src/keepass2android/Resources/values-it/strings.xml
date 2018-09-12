@@ -331,6 +331,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="CreateBackups_summary">Creare una copia di backup locale dopo aver caricato correttamente un database.</string>
   <string name="UpdatingBackup">Aggiornamento del backup locale...</string>
   <string name="LocalBackupOf">Backup locale di %1$s</string>
+  <string name="show_local_backups">Visualizza i backup locali</string>
   <string name="AcceptAllServerCertificates_title">Certificati SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definisci cosa fare quando la convalida del certificato fallisce. Nota: puoi installare i certificati sul dispositivo se la validazione fallisce!</string>
   <string name="ClearOfflineCache_title">Svuotare la cache?</string>
@@ -922,6 +923,11 @@ Prima release pubblica
     <item>Password + Challenge-Response</item>
     <item>Password + Challenge-Response secret (modalità di ripristino)</item>
     <item>Password + Challenge-Response per Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Password</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignora gli errori di convalida del certificato</item>
