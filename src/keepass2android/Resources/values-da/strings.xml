@@ -541,4 +541,8 @@ Filen er beskadiget.\n
     <item>Mellem</item>
     <item>Stor</item>
   </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Adgangskode</item>
+    <item>Private/Public key</item>
+  </string-array>
 </resources>
