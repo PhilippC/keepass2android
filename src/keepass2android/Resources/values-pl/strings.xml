@@ -75,7 +75,7 @@
   <string name="disclaimer_formal">Keepass2Android jest udostępniany BEZ JAKIEJKOLWIEK GWARANCJI. Niniejszy program jest wolnym oprogramowaniem: możesz go swobodnie rozpowszechniać na warunkach licencji GNU General Public License w wersji 2 lub późniejszej.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiuj do schowka</string>
-  <string name="fingerprint_hint">Czujnik dotykowy</string>
+  <string name="fingerprint_hint">Dotknij czytnik linii papilarnych</string>
   <string name="fingerprint_description">Potwierdź odciskiem palca, aby kontynuować</string>
   <string name="fingerprint_fatal">Nie można ustawić odblokowywania odciskiem palca:</string>
   <string name="fingerprint_not_recognized">Odcisk palca nie rozpoznany. Spróbuj ponownie</string>
@@ -86,12 +86,12 @@
   <string name="disable_fingerprint_unlock">Wyłącz odblokowywanie odciskiem palca</string>
   <string name="enable_fingerprint_unlock">Włącz odblokowywanie odciskiem palca</string>
   <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie odciskiem palca dla QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Czujnik dotykowy do odblokowania bazy danych</string>
+  <string name="fingerprint_unlock_hint">Dotknij czytnika do odblokowania bazy danych</string>
   <string name="fingerprint_unlock_failed">Odblokowanie linii papilarnych nie powiodło Klucz deszyfrowania został unieważniony przez system operacyjny Android. Zwykle dzieje się tak, gdy zarejestrowano nowy odcisk palca lub zmieniono ustawienia zabezpieczeń. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Odblokowywanie bazy danych nie powiodło się: nieprawidłowy klucz złożony. Linii papilarnych Unlock została wyłączona, ponieważ najwyraźniej zapisane hasła głównego nie jest już prawidłowy. </string>
   <string name="fingerprint_reenable">Proszę ponownie aktywować odblokowywanie przy pomocy odcisku palca dla nowego hasła głównego.</string>
   <string name="fingerprint_reenable2">Proszę odblokować używając twojego hasła, następnie restart Skanera Odcisków pałcow w bazie ustawień.</string>
-  <string name="FingerprintInitFailed">Nie udało się zainicować sensora czujnika linii papilarnych.</string>
+  <string name="FingerprintInitFailed">Nie udało się zainicować czytnika linii papilarnych. </string>
   <string name="enable_fingerprint_unlock_Info">
 To zachowa twoje hasła główne na tym urządzeniu.
     zaszyfrowane przy pomocy zestawu kluczy Androida i chronione
@@ -347,7 +347,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ShowSeparateNotifications_title">Oddzielne powiadomienia</string>
   <string name="ShowSeparateNotifications_summary">Pokaż oddzielne powiadomienia dla kopiowania nazwy użytkownika i hasła do schowka oraz aktywacji klawiatury.</string>
   <string name="AccServiceAutoFill_prefs">AutoUzupełnienie – usługa dostępności</string>
-  <string name="AutoFill_prefs">Serwis autowypwłnienia</string>
+  <string name="AutoFill_prefs">Serwis autowypełniania</string>
   <string name="ShowKp2aKeyboardNotification_title">Powiadomienie klawiatury KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Udostępnij pełny wpis przez klawiaturę KP2A (zalecane).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Przełącz klawiaturę</string>
@@ -609,6 +609,30 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ErrorReportAsk">Zapytaj po wystąpieniu błędu</string>
   <string name="ErrorReportPrefTitle">Wyślij raporty o błędach</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
+  <string name="ChangeLog_1_06">
+Wersja 1.06\n
+    * Zmieniono aplikację do obsługi Yubikey Challenge-Response z YubiChallenge na ykDroid.\n
+    * Dodano wsparcie dla Challenge-Response w formacie KeepassXC. Uwaga: Baza danych musi być w formacie KDBX4!\n
+    * Dodano opcję odrzucania ładowania plików z kosza w Google Drive\n
+    * Zmieniono implementację TLS dla FTPS, dodano obejście do błędu JSch z serwerami obsługującymi gssapi-with-mic\n
+    * poprawki błędów\n
+  </string>
+  <string name="ChangeLog_1_05">
+Wersja 1.05\n
+    * Użyj kanału powiadomień w Androidzie 8 do konfiguracji, poprzez ustawienia systemu\n
+    * Ikona wpisu jest pokazywana w powiadomieniu\n
+    * Użyto adaptacyjnej ikony aplikacji dla Androida 8, używaj zestawu okrągłych ikon dla Androida 7\n
+    * Możliwość aktywnego wyszukiwania po odblokowaniu (patrz ustawienia)\n
+    * Zmieniono sposób w jaki pliki są zapisywane przez Storage Access Framework, rozwiązano problemy z aktualizowaniem plików na Dysku Google otwieranych przez systemowy menadżer plików\n
+    * Dodano kilka tekstów informacyjnych, aby uniknąć częstych nieporozumień\n
+    * Tworzone są lokalne kopie zapasowe pomyślnie otwartych baz danych, aby zmniejszyć ryzyko utraty danych\n
+    * Zaktualizowano JSch do obsługi nowszych szyfrów SSH\n
+    * Zezwolono na edycję ustawień połączeń, na przykład kiedy hasło do WebDav zostanie zmienione\n
+    * Dodano wsparcie dla Yubikey Neo w trybie hasła statycznego\n
+    * Dodano możliwość wyłączenia sugestii autouzupełniania\n
+    * Naprawiono wyciek danych do logcat\n    
+    * poprawki błędów\n
+  </string>
   <string name="ChangeLog_1_04b">
     Version 1.04b\n
     * Usunięcie crasha, gdy użytkownik próbuje włączyć autouzupełnianie na urządzeniach Huawei.\n
@@ -892,9 +916,14 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Hasło + plik klucz</item>
     <item>Hasło + OTP</item>
     <item>Hasło + OTP (tryb odzyskiwania)</item>
-    <item>Hasło + odpowiedź na wyzwanie</item>
+    <item>Hasło + Challenge-Response</item>
     <item>Hasło + sekret Challenge-Response (tryb odzyskiwania)</item>
     <item>Hasło + Challenge-Response dla Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Hasło</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoruj niepowodzenia weryfikacji certyfikatów</item>
