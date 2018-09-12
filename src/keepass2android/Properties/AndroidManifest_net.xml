@@ -11,6 +11,8 @@
 	<application android:label="keepass2android" 
 	android:icon="@mipmap/ic_launcher_online"
 	android:roundIcon="@mipmap/ic_launcher_online_round"
+	android:networkSecurityConfig="@xml/network_security_config"
+
 	>
 		<activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>

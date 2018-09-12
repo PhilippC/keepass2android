@@ -828,6 +828,10 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdalBindings\AdalBindings.csproj">
+      <Project>{0b109c0e-0514-4340-8779-5bd6a0dde84e}</Project>
+      <Name>AdalBindings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
       <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
       <Name>JavaFileStorageBindings</Name>
@@ -1868,6 +1872,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\vdots_bright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\network_security_config.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
