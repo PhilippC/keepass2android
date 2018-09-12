@@ -320,6 +320,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ClearPasswordOnLeave_summary">Wyczyść wpisane hasło główne podczas opuszczania aplikacji bez odblokowywania bazy danych.</string>
   <string name="LockWhenNavigateBack_title">Zablokuj po opuszczeniu aplikacji</string>
   <string name="LockWhenNavigateBack_summary">Zablokuj bazę danych kiedy opuścisz aplikację poprzez naciśnięcie przycisku wstecz.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Używaj wbudowanej klawiatury w aplikacji Keepass2Android</string>
   <string name="ActivateSearchViewOnStart_title">Aktywuj wyszukiwanie przy starcie</string>
   <string name="ActivateSearchViewOnStart_summary">Aktywuje pole wyszukiwania w widoku grupy po odblokowaniu lub w trakcie przeglądania wpisu</string>
   <string name="NoDonateOption_title">Ukryj opcję dotacji</string>
@@ -445,6 +446,8 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Katalog początkowy (opcjonalne):</string>
   <string name="enter_sftp_login_title">Wprowadź dane loginu SFTP:</string>
+  <string name="sftp_auth_mode">Tryb uwierzytelniania</string>
+  <string name="send_public_key">Wyślij klucz publiczny...</string>
   <string name="enter_ftp_login_title">Wprowadź dane logowania FTP:</string>
   <string name="select_storage_type">Wybierz miejsce zapisu:</string>
   <string name="filestoragename_file">Plik lokalny</string>
@@ -919,11 +922,11 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Hasło + Challenge-Response</item>
     <item>Hasło + sekret Challenge-Response (tryb odzyskiwania)</item>
     <item>Hasło + Challenge-Response dla Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Hasło + Plik klucza + Challenge-Response dla Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Hasło</item>
-    <item>Private/Public key</item>
+    <item>Klucz Prywatny/Publiczny</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoruj niepowodzenia weryfikacji certyfikatów</item>
