@@ -918,6 +918,11 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     <item>비밀번호 + 시도-응답 인증</item>
     <item>비밀번호 + 시도-응답 (복구 모드)</item>
     <item>Keepass XC를 위한 비밀번호 + 시도-응답 인증</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>비밀번호</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>인증서 유효성 검사 오류를 무시</item>
