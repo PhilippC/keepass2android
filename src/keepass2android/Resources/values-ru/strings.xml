@@ -909,6 +909,11 @@
     <item>Пароль + Вызов-Ответ</item>
     <item>Пароль + секретный Вызов-Ответ (режим восстановления)</item>
     <item>Password + Challenge-Response для Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Пароль</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Игнорировать ошибки проверки сертификата</item>
