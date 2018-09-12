@@ -948,6 +948,11 @@ Initial public release
     <item>Пароль + Виклик-Відповідь</item>
     <item>Пароль + секрет Виклику-Відповіді (режим відновлення)</item>
     <item>Password + Challenge-Response для Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Пароль</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ігнорувати помилки перевірки сертифіката</item>
