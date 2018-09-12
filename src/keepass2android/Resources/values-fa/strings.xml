@@ -730,6 +730,11 @@ mycloud.me.com/webdav/‎ )</string>
     <item>گذرواژه + چالش-پاسخ</item>
     <item>گذرواژه + رمزینهٔ چالش-پاسخ (حالت بازیابی)</item>
     <item>گذرواژه + چالش-پاسخ برای Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>گذرواژه</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>شکست‌های اعتبارسنجی گواهینامه را نادیده بگیرد</item>
