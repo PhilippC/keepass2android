@@ -1114,6 +1114,7 @@ Initial public release
 		<item>Password + Challenge-Response</item>
 		<item>Password + Challenge-Response secret (recovery mode)</item>
 	  <item>Password + Challenge-Response for Keepass XC</item>
+	  <item>Password + Key file + Challenge-Response for Keepass XC</item>
 	</string-array>
   <string-array name="sftp_auth_modes">
     <item>Password</item>
