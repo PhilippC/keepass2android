@@ -711,6 +711,11 @@ Versiunea publică iniţială
     <item>Parolă + Challenge-Response</item>
     <item>Parolă +  Challenge-Response secret (modul de recuperare)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Parola</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoră eșecuri de validare a certificatului</item>
