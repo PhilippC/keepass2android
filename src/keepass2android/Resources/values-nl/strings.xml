@@ -929,6 +929,11 @@ Eerste publieke publicatie
     <item>Wachtwoord + Challenge-Response</item>
     <item>Wachtwoord + Challenge-Response (veilige modus)</item>
     <item>Wachtwoord + Challenge-Response voor Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Wachtwoord</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Negeer mislukte certificaat validaties</item>
