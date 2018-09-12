@@ -738,6 +738,11 @@ Version 0.9.6\n * Tillåt att importera nyckelfil och/eller lokala databasfil ti
     <item>Lösenord + Utmaning-Svar</item>
     <item>Lösenord + Utmaning-Svar hemlighet (återställningsläge)</item>
     <item>Lösenord + Challenge-Response för Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Lösenord</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorera certifikatvalideringsfel</item>
