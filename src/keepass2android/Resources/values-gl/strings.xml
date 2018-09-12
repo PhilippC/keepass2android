@@ -865,6 +865,11 @@ Lanzamento público inicial
     <item>Contrasinal e reto-resposta</item>
     <item>Contrasinal e reto-resposta segredo (modo de recuperación)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Contrasinal</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar fallos de validación de certificados</item>
