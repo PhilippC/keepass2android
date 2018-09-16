@@ -321,6 +321,8 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="ClearPasswordOnLeave_summary">Esborra la contrasenya mestra introduïda en deixar la pantalla sense obrir la base de dades.</string>
   <string name="LockWhenNavigateBack_title">Bloqueja quan surtis de l\'aplicació</string>
   <string name="LockWhenNavigateBack_summary">Tancar la base de dades en deixar l\'aplicació prement el botó endarrere.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Utilitza el teclat integrat dins de Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Si no confieu en el seu proveïdor de teclat estàndard, comprovar aquesta opció d\'utilitzar el teclat integrat quan introdueixi la contrasenya mestra o al editar entrades.</string>
   <string name="ActivateSearchViewOnStart_title">Activar el camp de cerca al Inici</string>
   <string name="ActivateSearchViewOnStart_summary">Activa el camp de cerca a la visualització de grup després de desbloquejar o en buscar una entrada</string>
   <string name="NoDonateOption_title">Amagar l\'opció de donació</string>
