@@ -317,6 +317,7 @@
   <string name="ClearPasswordOnLeave_summary">Het ingevoerde hoofdwachtwoord wissen bij het verlaten van het scherm als de database niet is ontgrendeld.</string>
   <string name="LockWhenNavigateBack_title">Vergrendel zodra app wordt verlaten</string>
   <string name="LockWhenNavigateBack_summary">Vergrendel de database wanneer de app via de knop \'vorige\' verlaten wordt.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Gebruik ingebouwde toetsenbord binnen Keepass2Android</string>
   <string name="ActivateSearchViewOnStart_title">Activeer zoekveld vanaf start</string>
   <string name="ActivateSearchViewOnStart_summary">Activeert het zoekveld in de groepsweergave na ontgrendelen of bij het zoeken voor een item</string>
   <string name="NoDonateOption_title">Verberg donatie-optie</string>
@@ -330,6 +331,7 @@
   <string name="CreateBackups_summary">Maak een lokale back-up na het goed openen van een database.</string>
   <string name="UpdatingBackup">Lokale back-up bijwerken...</string>
   <string name="LocalBackupOf">Lokale back-up van %1$s</string>
+  <string name="show_local_backups">Toon lokale back-ups</string>
   <string name="AcceptAllServerCertificates_title">SSL certificaten</string>
   <string name="AcceptAllServerCertificates_summary">Bepaal het gedrag wanneer de certificaatvalidatie mislukt. Merk op: Je kunt certificaten installeren op jouw apparaat als de validatie mislukt!</string>
   <string name="ClearOfflineCache_title">Cache wissen?</string>
