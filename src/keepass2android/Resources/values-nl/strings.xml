@@ -494,9 +494,9 @@
   <string name="NoChallengeApp">Kan geen app vinden die kan werken met deze challenge.</string>
   <string name="PleaseInstallApp">Installeer %1$s met Google Play.</string>
   <string name="AppOutdated">%1$s wordt niet langer ondersteund.</string>
-  <string name="bad_resp">De Challenge-Response was incorrect.</string>
-  <string name="CouldntLoadChalAuxFile">Kon het hulpbestand voor Challenge-Response niet laden!</string>
-  <string name="CouldntLoadChalAuxFile_Hint">Gebruik de KeeChallenge plugin in KeePass 2.x (PC) om de database in te stellen voor gebruik met Challenge-Response!</string>
+  <string name="bad_resp">De challenge/response was incorrect.</string>
+  <string name="CouldntLoadChalAuxFile">Kon het hulpbestand voor challenge/response niet laden!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Gebruik de KeeChallenge plugin in KeePass 2.x (PC) om de database in te stellen voor gebruik met challenge/response!</string>
   <string name="ErrorUpdatingChalAuxFile">Fout bijwerken OTP hulpbestand!</string>
   <string name="TrayTotp_SeedField_title">Veldnaam van TOTP-bron</string>
   <string name="TrayTotp_SeedField_summary">Wanneer je met Keepass 2 (PC) de plugin \"TrayTotp\" met afwijkende instellingen gebruikt, geef dan hier de naam van de willekeurige bron.</string>
@@ -610,8 +610,8 @@ Het bestand is beschadigd. \n
   <string name="ShowKeyboardDuringFingerprintAuth">Toon het toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
   <string name="ChangeLog_1_06">
   Versie 1.06\n
-  * Gebruikt ykDroid in plaats van YubiChallenge als app voor Yubikey Challenge-Response.\n
-  * Ondersteuning voor KeepassXC-stijl Challenge-Response. Merk op: de database-indeling moet KDBX4 zijn!\n
+  * Gebruikt ykDroid in plaats van YubiChallenge als app voor Yubikey challenge/response.\n
+  * Ondersteuning voor KeepassXC-stijl challenge/response. Merk op: de database-indeling moet KDBX4 zijn!\n
   * Weiger verwijderde bestanden te laden van Google Drive\n
   * Andere TLS implementatie voor FTPS, om een JSch bug heen gewerkt voor servers die gssapi-with-mic ondersteunen\n
   * problemen opgelost\n
@@ -932,10 +932,10 @@ Eerste publieke publicatie
     <item>Wachtwoord + sleutelbestand</item>
     <item>Wachtwoord + OTP</item>
     <item>Wachtwoord + OTP (veilige modus)</item>
-    <item>Wachtwoord + Challenge-Response</item>
-    <item>Wachtwoord + Challenge-Response (veilige modus)</item>
-    <item>Wachtwoord + Challenge-Response voor Keepass XC</item>
-    <item>Wachtwoord + Sleutel bestand + Test-Antwoord voor Keepass XC</item>
+    <item>Wachtwoord + Challenge/response</item>
+    <item>Wachtwoord + Challenge/response (veilige modus)</item>
+    <item>Wachtwoord + Challenge/response voor Keepass XC</item>
+    <item>Wachtwoord + Sleutel bestand + Challenge/response voor Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Wachtwoord</item>
