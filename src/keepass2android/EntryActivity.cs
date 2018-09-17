@@ -30,22 +30,61 @@ using Android.Widget;
 using Android.Preferences;
 using Android.Text.Method;
 using System.Globalization;
+using System.IO;
 using System.Net;
 using Android.Content.PM;
 using Android.Webkit;
 using Android.Graphics;
-using Java.IO;
 using keepass2android.EntryActivityClasses;
 using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Utility;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
+using KeePass.DataExchange;
 using KeePass.Util.Spr;
+using KeePassLib.Interfaces;
+using KeePassLib.Serialization;
+using File = Java.IO.File;
 using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
+    public class ExportBinaryProcessManager : FileSaveProcessManager
+    {
+        private readonly string _binaryToSave;
+
+        public ExportBinaryProcessManager(int requestCode, Activity activity, string key) : base(requestCode, activity)
+        {
+            _binaryToSave = key;
+        }
+
+        public ExportBinaryProcessManager(int requestCode, EntryActivity activity, Bundle savedInstanceState) : base(requestCode, activity)
+        {
+            _binaryToSave = savedInstanceState.GetString("BinaryToSave", null);
+        }
+
+        protected override void SaveFile(IOConnectionInfo ioc)
+        {
+            var task = new EntryActivity.WriteBinaryTask(_activity, App.Kp2a, new ActionOnFinish(_activity, (success, message, activity) =>
+                {
+                    if (!success)
+                        Toast.MakeText(activity, message, ToastLength.Long).Show();
+                }
+            ), ((EntryActivity)_activity).Entry.Binaries.Get(_binaryToSave), ioc);
+            ProgressTask pt = new ProgressTask(App.Kp2a, _activity, task);
+            pt.Run();
+
+        }
+
+        public override void OnSaveInstanceState(Bundle outState)
+        {
+            outState.PutString("BinaryToSave", _binaryToSave);
+        }
+        
+
+    }
+
 
 	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden,
         Theme = "@style/MyTheme_ActionBar")]
@@ -56,7 +95,12 @@ namespace keepass2android
 		public const String KeyCloseAfterCreate = "close_after_create";
 		public const String KeyGroupFullPath = "groupfullpath_key";
 
-		public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null)
+	    public const int requestCodeBinaryFilename = 42376;
+        public const int requestCodeSelFileStorageForWriteAttachment = 42377;
+	    
+
+
+        public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null)
 		{
 			Intent i = new Intent(act, typeof(EntryActivity));
 
@@ -84,7 +128,7 @@ namespace keepass2android
 			_activityDesign = new ActivityDesign(this);
 		}
 
-		protected PwEntry Entry;
+	    public PwEntry Entry;
 
 		private static Typeface _passwordFont;
 
@@ -113,9 +157,10 @@ namespace keepass2android
 		private PluginActionReceiver _pluginActionReceiver;
 		private PluginFieldReceiver _pluginFieldReceiver;
 		private ActivityDesign _activityDesign;
+	    
 
 
-		protected void SetEntryView()
+	    protected void SetEntryView()
 		{
 			SetContentView(Resource.Layout.entry_view);
 		}
@@ -316,8 +361,14 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
+		    if (savedInstanceState != null)
+		    {
+		        _exportBinaryProcessManager =
+		            new ExportBinaryProcessManager(requestCodeSelFileStorageForWriteAttachment, this, savedInstanceState);
 
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+		    }
+
+		    ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 
 			long usageCount = prefs.GetLong(GetString(Resource.String.UsageCount_key), 0);
 
@@ -527,74 +578,83 @@ namespace keepass2android
 			_popupMenuItems[popupKey] = new List<IPopupMenuItem>();
 			return _popupMenuItems[popupKey];
 		}
-				internal Uri WriteBinaryToFile(string key, bool writeToCacheDirectory)
-		{
-			ProtectedBinary pb = Entry.Binaries.Get(key);
-			System.Diagnostics.Debug.Assert(pb != null);
-			if (pb == null)
-				throw new ArgumentException();
+
+	    internal Uri WriteBinaryToFile(string key, bool writeToCacheDirectory)
+	    {
+	        ProtectedBinary pb = Entry.Binaries.Get(key);
+	        System.Diagnostics.Debug.Assert(pb != null);
+	        if (pb == null)
+	            throw new ArgumentException();
 
 
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-			string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key), GetString(Resource.String.BinaryDirectory_default));
-			if (writeToCacheDirectory)
-				binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
+	        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+	        string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key),
+	            GetString(Resource.String.BinaryDirectory_default));
+	        if (writeToCacheDirectory)
+	        {
+	            binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
 
-			string filepart = key;
-		    if (writeToCacheDirectory)
-		    {
-		        Java.Lang.String javaFilename = new Java.Lang.String(filepart);
-                filepart = javaFilename.ReplaceAll("[^a-zA-Z0-9.-]", "_");
-            }
-		    var targetFile = new File(binaryDirectory, filepart);
+	            string filepart = key;
+	            Java.Lang.String javaFilename = new Java.Lang.String(filepart);
+	            filepart = javaFilename.ReplaceAll("[^a-zA-Z0-9.-]", "_");
 
-			File parent = targetFile.ParentFile;
+	            var targetFile = new File(binaryDirectory, filepart);
 
-			if (parent == null || (parent.Exists() && !parent.IsDirectory))
-			{
-				Toast.MakeText(this,
-							   Resource.String.error_invalid_path,
-							   ToastLength.Long).Show();
-				return null;
-			}
+	            File parent = targetFile.ParentFile;
 
-			if (!parent.Exists())
-			{
-				// Create parent directory
-				if (!parent.Mkdirs())
-				{
-					Toast.MakeText(this,
-								   Resource.String.error_could_not_create_parent,
-								   ToastLength.Long).Show();
-					return null;
+	            if (parent == null || (parent.Exists() && !parent.IsDirectory))
+	            {
+	                Toast.MakeText(this,
+	                    Resource.String.error_invalid_path,
+	                    ToastLength.Long).Show();
+	                return null;
+	            }
 
-				}
-			}
-			string filename = targetFile.AbsolutePath;
-			Uri fileUri = Uri.FromFile(targetFile);
+	            if (!parent.Exists())
+	            {
+	                // Create parent directory
+	                if (!parent.Mkdirs())
+	                {
+	                    Toast.MakeText(this,
+	                        Resource.String.error_could_not_create_parent,
+	                        ToastLength.Long).Show();
+	                    return null;
 
-			byte[] pbData = pb.ReadData();
-			try
-			{
-				System.IO.File.WriteAllBytes(filename, pbData);
-			}
-			catch (Exception exWrite)
-			{
-				Toast.MakeText(this, GetString(Resource.String.SaveAttachment_Failed, new Java.Lang.Object[] { filename })
-					+ exWrite.Message, ToastLength.Long).Show();
-				return null;
-			}
-			finally
-			{
-				MemUtil.ZeroByteArray(pbData);
-			}
-			Toast.MakeText(this, GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[] { filename }), ToastLength.Short).Show();
-			if (writeToCacheDirectory)
-			{
-				return Uri.Parse("content://" + AttachmentContentProvider.Authority + "/"
-											  + filename);
-			}
-			return fileUri;
+	                }
+	            }
+	            string filename = targetFile.AbsolutePath;
+
+	            byte[] pbData = pb.ReadData();
+	            try
+	            {
+	                System.IO.File.WriteAllBytes(filename, pbData);
+	            }
+	            catch (Exception exWrite)
+	            {
+	                Toast.MakeText(this,
+	                    GetString(Resource.String.SaveAttachment_Failed, new Java.Lang.Object[] {filename})
+	                    + exWrite.Message, ToastLength.Long).Show();
+	                return null;
+	            }
+	            finally
+	            {
+	                MemUtil.ZeroByteArray(pbData);
+	            }
+	            Toast.MakeText(this,
+	                GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[] {filename}),
+	                ToastLength.Short).Show();
+	            return Uri.Parse("content://" + AttachmentContentProvider.Authority + "/"
+	                             + filename);
+	        }
+	        else
+	        {
+	            _exportBinaryProcessManager =
+	                new ExportBinaryProcessManager(requestCodeSelFileStorageForWriteAttachment, this, key);
+                _exportBinaryProcessManager.StartProcess();
+	            return null;
+	        }
+	    
+    	    
 		}
 
 		internal void OpenBinaryFile(Android.Net.Uri uri)
@@ -904,10 +964,16 @@ namespace keepass2android
 			_appTask.ToIntent(ret);
 			SetResult(KeePass.ExitRefresh, ret);
 		}
-
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
+        
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
 			base.OnActivityResult(requestCode, resultCode, data);
-			if (AppTask.TryGetFromActivityResult(data, ref _appTask))
+
+            if (_exportBinaryProcessManager?.OnActivityResult(requestCode, resultCode, data) == true)
+            {
+                return;
+            }
+
+            if (AppTask.TryGetFromActivityResult(data, ref _appTask))
 			{
 				//make sure app task is passed to calling activity.
 				//the result code might be modified later.
@@ -927,7 +993,71 @@ namespace keepass2android
 			}
 		}
 
-		public override bool OnCreateOptionsMenu(IMenu menu)
+
+	    public class WriteBinaryTask : RunnableOnFinish
+	    {
+	        private readonly IKp2aApp _app;
+	        private readonly ProtectedBinary _data;
+	        private IOConnectionInfo _targetIoc;
+
+	        public WriteBinaryTask(Activity activity, IKp2aApp app, OnFinish onFinish, ProtectedBinary data, IOConnectionInfo targetIoc) : base(activity, onFinish)
+	        {
+	            _app = app;
+	            _data = data;
+	            _targetIoc = targetIoc;
+	        }
+
+	        public override void Run()
+	        {
+	            try
+	            {
+	                var fileStorage = _app.GetFileStorage(_targetIoc);
+	                if (fileStorage is IOfflineSwitchable)
+	                {
+	                    ((IOfflineSwitchable)fileStorage).IsOffline = false;
+	                }
+	                using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetDb().KpDatabase.UseFileTransactions))
+	                {
+	                    Stream sOut = writeTransaction.OpenFile();
+
+	                    byte[] byteArray = _data.ReadData();
+	                    sOut.Write(byteArray, 0, byteArray.Length);
+
+                        sOut.Close();
+
+	                    writeTransaction.CommitWrite();
+
+	                }
+	                if (fileStorage is IOfflineSwitchable)
+	                {
+	                    ((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
+	                }
+
+	                Finish(true);
+
+
+	            }
+	            catch (Exception ex)
+	            {
+	                Finish(false, ex.Message);
+	            }
+
+
+	        }
+	    }
+        
+	    private ExportBinaryProcessManager _exportBinaryProcessManager;
+
+	    protected override void OnSaveInstanceState(Bundle outState)
+	    {
+	        
+	        
+	        _exportBinaryProcessManager?.OnSaveInstanceState(outState);
+	        
+	        base.OnSaveInstanceState(outState);
+	    }
+
+	    public override bool OnCreateOptionsMenu(IMenu menu)
 		{
 			_menu = menu;
 			base.OnCreateOptionsMenu(menu);
