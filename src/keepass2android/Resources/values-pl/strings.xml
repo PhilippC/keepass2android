@@ -293,7 +293,6 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="BinaryDirectory_summary">Katalog w którym są zapisywane pliki załączników.</string>
   <string name="SaveAttachmentDialog_title">Zapisz załącznik</string>
   <string name="SaveAttachmentDialog_text">Wybierz gdzie zapisać załącznik.</string>
-  <string name="SaveAttachmentDialog_save">Zapisz na karcie SD</string>
   <string name="SaveAttachmentDialog_open">Zapisz do pamięci podręcznej i otwórz</string>
   <string name="ShowAttachedImage">Pokaż w wewnętrznej przeglądarce obrazów</string>
   <string name="SaveAttachment_doneMessage">Zapisano plik w %1$s.</string>
