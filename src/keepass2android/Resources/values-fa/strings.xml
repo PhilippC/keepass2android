@@ -293,7 +293,6 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="BinaryDirectory_summary">پوشه‌ای که پیوست‌ها در آن ذخیره می‌شود.</string>
   <string name="SaveAttachmentDialog_title">ذخیرهٔ پیوست</string>
   <string name="SaveAttachmentDialog_text">لطفاً محل ذخیره‌سازی پیوست را انتخاب کنید.</string>
-  <string name="SaveAttachmentDialog_save">ذخیره در کارت SD</string>
   <string name="SaveAttachmentDialog_open">در نهانگاه ذخیره و سپس باز شود</string>
   <string name="ShowAttachedImage">عکس را با نمایشگر داخلی نشان بده</string>
   <string name="SaveAttachment_doneMessage">فایل ذخیره شد. در:\n
