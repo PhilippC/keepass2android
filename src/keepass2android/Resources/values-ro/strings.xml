@@ -284,7 +284,6 @@ Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore
   <string name="BinaryDirectory_summary">Folder în care se salvează ataşamentele.</string>
   <string name="SaveAttachmentDialog_title">Salvaţi ataşament</string>
   <string name="SaveAttachmentDialog_text">Selectaţi unde se salvează ataşamentul.</string>
-  <string name="SaveAttachmentDialog_save">Salvaţi pe cardul SD</string>
   <string name="SaveAttachmentDialog_open">Salvează în cache și deschide</string>
   <string name="SaveAttachment_doneMessage">Fișierul salvat ca %1$s.</string>
   <string name="SaveAttachment_Failed">Nu s-a putut salva atașamentul la %1$s.</string>
