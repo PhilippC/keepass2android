@@ -222,8 +222,10 @@ namespace keepass2android
 			else if ((defaultPath.StartsWith("http://")) || (defaultPath.StartsWith("https://")))
 				ShowHttpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
 			else if (defaultPath.StartsWith("owncloud://"))
-				ShowOwncloudDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
-			else
+				ShowOwncloudDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath, "owncloud");
+			else if (defaultPath.StartsWith("nextcloud://"))
+			    ShowOwncloudDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath, "nextcloud");
+            else
 			{
 				Func<string, Dialog, bool> onOpen = OnOpenButton;
 				Util.ShowFilenameDialog(_activity,
@@ -238,12 +240,13 @@ namespace keepass2android
 			}
 		}
 
-		private void ShowOwncloudDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
+		private void ShowOwncloudDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath, string subtype)
 		{
 #if !EXCLUDE_JAVAFILESTORAGE && !NoNet
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.owncloudcredentials, null);
 			builder.SetView(dlgContents);
+
 			builder.SetPositiveButton(Android.Resource.String.Ok,
 									  (sender, args) =>
 									  {
@@ -255,17 +258,17 @@ namespace keepass2android
 										  string scheme = defaultPath.Substring(0,defaultPath.IndexOf(_schemeSeparator, StringComparison.Ordinal));
 										  if (host.Contains(_schemeSeparator) == false)
 											  host = scheme + _schemeSeparator + host;
-										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(WebDavFileStorage.Owncloud2Webdav(host), user,
+										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(WebDavFileStorage.Owncloud2Webdav(host, subtype == "owncloud" ? WebDavFileStorage.owncloudPrefix : WebDavFileStorage.nextcloudPrefix), user,
 																										  password);
 										  onStartBrowse(httpPath);
 									  });
 			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
-			builder.SetTitle(activity.GetString(Resource.String.enter_owncloud_login_title));
+			builder.SetTitle(activity.GetString(subtype == "owncloud" ?  Resource.String.enter_owncloud_login_title : Resource.String.enter_nextcloud_login_title));
 			Dialog dialog = builder.Create();
-
-			dialog.Show();
+		    dlgContents.FindViewById<EditText>(Resource.Id.owncloud_url).SetHint(subtype == "owncloud" ? Resource.String.hint_owncloud_url : Resource.String.hint_nextcloud_url);
+            dialog.Show();
 #endif
 
 		}

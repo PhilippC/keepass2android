@@ -30,7 +30,8 @@ namespace keepass2android.Io
 				yield return "http";
 				yield return "https";
 				yield return "owncloud";
-			}
+			    yield return "nextcloud";
+            }
 		}
 
 	    public override bool UserShouldBackup
@@ -38,12 +39,15 @@ namespace keepass2android.Io
 	        get { return true; }
 	    }
 
-	    public static string Owncloud2Webdav(string owncloudUrl)
+	    public static string owncloudPrefix = "owncloud://";
+	    public static string nextcloudPrefix = "nextcloud://";
+
+        public static string Owncloud2Webdav(string owncloudUrl, string prefix)
 		{
-			string owncloudPrefix = "owncloud://";
-			if (owncloudUrl.StartsWith(owncloudPrefix))
+			
+			if (owncloudUrl.StartsWith(prefix))
 			{
-				owncloudUrl = owncloudUrl.Substring(owncloudPrefix.Length);
+				owncloudUrl = owncloudUrl.Substring(prefix.Length);
 			}
 			if (!owncloudUrl.Contains("://"))
 				owncloudUrl = "https://" + owncloudUrl;
