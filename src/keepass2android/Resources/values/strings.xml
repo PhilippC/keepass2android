@@ -314,7 +314,7 @@
   <string name="BinaryDirectory_summary">Directory where file attachments are saved to.</string>
   <string name="SaveAttachmentDialog_title">Save attachment</string>
   <string name="SaveAttachmentDialog_text">Please select where to save the attachment.</string>
-  <string name="SaveAttachmentDialog_save">Save to SD card</string>
+  <string name="SaveAttachmentDialog_save">Export to file...</string>
   <string name="SaveAttachmentDialog_open">Save to cache and open</string>
   <string name="ShowAttachedImage">Show with internal image viewer</string>
   

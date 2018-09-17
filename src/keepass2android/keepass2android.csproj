@@ -175,6 +175,7 @@
   <ItemGroup>
     <Compile Include="ChallengeXCKey.cs" />
     <Compile Include="EntryActivityClasses\ViewImagePopupItem.cs" />
+    <Compile Include="FileSaveProcessManager.cs" />
     <Compile Include="fileselect\FilteredCursor.cs" />
     <Compile Include="ImageViewActivity.cs" />
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
