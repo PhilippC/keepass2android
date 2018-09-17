@@ -15,12 +15,6 @@
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.localfile" android:exported="false" />
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.history" android:exported="false" />
 		<activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light">
-			<intent-filter>
-				<action android:name="android.intent.action.GET_CONTENT" />
-				<data android:mimeType="*/*" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.OPENABLE" />
-			</intent-filter>
 		</activity>
 
 		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">

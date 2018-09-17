@@ -221,6 +221,8 @@
   <string name="edit">Edit</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="AutoReturnFromQuery_title">Automatically return from query screen</string>
+  <string name="AutoReturnFromQuery_summary">When looking up an entry for an app or website: automatically return from query screen if there is only one matching entry in the database.</string>
 
   <string name="KeyDerivFunc">Key derivation function</string>
   

@@ -289,6 +289,52 @@ namespace keepass2android
 	        }
         }
 
+	    void AddBinaryOrAsk(Uri filename)
+	    {
+
+	        string strItem = GetFileName(filename);
+	        if (String.IsNullOrEmpty(strItem))
+	            strItem = "attachment.bin";
+
+	        if (State.Entry.Binaries.Get(strItem) != null)
+	        {
+	            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	            builder.SetTitle(GetString(Resource.String.AskOverwriteBinary_title));
+
+	            builder.SetMessage(GetString(Resource.String.AskOverwriteBinary));
+
+	            builder.SetPositiveButton(GetString(Resource.String.AskOverwriteBinary_yes), (dlgSender, dlgEvt) =>
+	            {
+	                AddBinary(filename, true);
+	            });
+
+	            builder.SetNegativeButton(GetString(Resource.String.AskOverwriteBinary_no), (dlgSender, dlgEvt) =>
+	            {
+	                AddBinary(filename, false);
+	            });
+
+	            builder.SetNeutralButton(GetString(Android.Resource.String.Cancel),
+	                (dlgSender, dlgEvt) => { });
+
+	            Dialog dialog = builder.Create();
+	            dialog.Show();
+
+
+	        }
+	        else
+	            AddBinary(filename, true);
+	    }
+
+        protected override void OnResume()
+	    {
+	        if (_uriToAddOrAsk != null)
+	        {
+                AddBinaryOrAsk(_uriToAddOrAsk);
+	            _uriToAddOrAsk = null;
+	        }
+            base.OnResume();
+	    }
+
 	    private void CreateNewFromKpEntryTemplate(Database db, PwEntry templateEntry)
 		{
 			var entry = new PwEntry(true, true);
@@ -574,41 +620,7 @@ namespace keepass2android
 			return result;
 		}
 
-		void AddBinaryOrAsk(Uri filename)
-		{
-
-			string strItem = GetFileName(filename);
-			if (String.IsNullOrEmpty(strItem))
-				strItem = "attachment.bin";
-
-			if(State.Entry.Binaries.Get(strItem) != null)
-			{
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.SetTitle(GetString(Resource.String.AskOverwriteBinary_title));
-
-				builder.SetMessage(GetString(Resource.String.AskOverwriteBinary));
-
-				builder.SetPositiveButton(GetString(Resource.String.AskOverwriteBinary_yes), (dlgSender, dlgEvt) => 
-				                                                                                                         {
-						AddBinary(filename, true);
-					});
-
-				builder.SetNegativeButton(GetString(Resource.String.AskOverwriteBinary_no), (dlgSender, dlgEvt) => 
-				                                                                                                         {
-						AddBinary(filename, false);
-					});
-
-				builder.SetNeutralButton(GetString(Android.Resource.String.Cancel), 
-				                         (dlgSender, dlgEvt) => {});
-
-				Dialog dialog = builder.Create();
-				dialog.Show();
-
-
-			} else
-				AddBinary(filename, true);
-		}
-
+		
 		void AddBinary(Uri filename, bool overwrite)
 		{
 			string strItem = GetFileName(filename);
@@ -762,12 +774,8 @@ namespace keepass2android
 						}
 						uri = Uri.Parse(s);
 					}
-					AddBinaryOrAsk(uri);
-						
+				    _uriToAddOrAsk = uri; //we can't launch a dialog in onActivityResult, so delay this to onResume		
 				}
-				Reload();
-
-
 				break;
 			case Result.Canceled:
 				Reload();
@@ -905,6 +913,7 @@ namespace keepass2android
 
 	    private string[] _additionalKeys = null;
 	    private List<View> _editModeHiddenViews;
+	    private Uri _uriToAddOrAsk;
 
 	    public string[] AdditionalKeys
 	    {

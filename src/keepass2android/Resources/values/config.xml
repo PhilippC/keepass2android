@@ -48,7 +48,8 @@
   
 
   <!--  Preference settings -->
-    <string name="algorithm_key">algorithm</string>
+  <string name="AutoReturnFromQuery_key">AutoReturnFromQuery_key</string>
+  <string name="algorithm_key">algorithm</string>
     <string name="app_key">app</string>
     <string name="app_timeout_key">app_timeout_key</string>
 	<string name="show_kill_app_key">show_kill_app_key</string>

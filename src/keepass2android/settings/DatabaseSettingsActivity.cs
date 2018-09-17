@@ -385,7 +385,16 @@ namespace keepass2android
                 {
 
                     var intent = new Intent(Settings.ActionRequestSetAutofillService);
-                    intent.SetData(Android.Net.Uri.Parse("package:" + Context.PackageName));
+                    if (((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
+                        .HasEnabledAutofillServices)
+                    {
+                        intent.SetData(Android.Net.Uri.Parse("package:" + Context.PackageName + "notexisting")); //if we use our package name, the activity won't launch
+                    }
+                    else
+                    {
+                        intent.SetData(Android.Net.Uri.Parse("package:" + Context.PackageName));
+                    }
+
                     try
                     {
                         Context.StartActivity(intent);
@@ -400,6 +409,10 @@ namespace keepass2android
                             .SetPositiveButton(Resource.String.ok, (o, eventArgs) => { })
                             .Show();
 
+                    }
+                    catch (Exception e)
+                    {
+                        Kp2aLog.LogUnexpectedError(e);
                     }
                 };
             }
@@ -527,11 +540,6 @@ namespace keepass2android
                 else
                 {
                     autofillPref.Summary = Activity.GetString(Resource.String.not_enabled);
-
-
-
-
-
                 }
 
             }
