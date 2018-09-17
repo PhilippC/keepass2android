@@ -25,6 +25,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Preferences;
 using KeePassLib.Utility;
 
 namespace keepass2android
@@ -134,7 +135,7 @@ namespace keepass2android
 			}
 			
 			//if there is exactly one match: open the entry
-			if ((Group.Entries.Count() == 1) && autoReturnFromQuery)
+			if ((Group.Entries.Count() == 1) && autoReturnFromQuery && PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.AutoReturnFromQuery_key),true))
 			{
 				LaunchActivityForEntry(Group.Entries.Single(),0);
 				return;
