@@ -286,7 +286,6 @@
   <string name="BinaryDirectory_summary">المجلد حيث يتم حفظ المرفقات.</string>
   <string name="SaveAttachmentDialog_title">حفظ المرفقات</string>
   <string name="SaveAttachmentDialog_text">الرجاء تحديد مكان حفظ المرفقات.</string>
-  <string name="SaveAttachmentDialog_save">حفظ في كرت الذاكرة SD</string>
   <string name="SaveAttachmentDialog_open">حفظ في ذاكرة التخزين المؤقت، ثم فتح المرفق</string>
   <string name="SaveAttachment_doneMessage">حفظ الملف في %1$s.</string>
   <string name="SaveAttachment_Failed">لا يمكن حفظ المرفق في %1$s.</string>
