@@ -337,6 +337,8 @@
   <string name="AcceptAllServerCertificates_title">SSL 証明書</string>
   <string name="AcceptAllServerCertificates_summary">証明書の検証に失敗したときの動作を指定します。注:検証に失敗したときは、デバイスに証明書をインストールすることができます。</string>
   <string name="ClearOfflineCache_title">キャッシュをクリアしますか？</string>
+  <string name="ClearOfflineCache_question">これはすべてのキャッシュされたデータベースファイルを削除します。元のデータベースにアクセスできない間に行ったすべての同期されていない変更は失われます。
+続けますか？</string>
   <string name="CheckForFileChangesOnSave_title">変更をチェック</string>
   <string name="CheckForFileChangesOnSave_summary">変更を保存する前に、ファイルが外部から変更されているか確認します。</string>
   <string name="CheckForDuplicateUuids_title">UUID の重複をチェック</string>
@@ -403,11 +405,26 @@
   <string name="SynchronizingDatabase">変更をマージしています...</string>
   <string name="YesSynchronize">はい、マージします</string>
   <string name="NoOverwrite">いいえ、上書きします</string>
+  <string name="UseOfflineMode">内部キャッシュのみで動作</string>
+  <string name="UseOnlineMode">ソースのキャッシュコピーを同期</string>
+  <string name="UseOfflineMode_Info">データベースは内部キャッシュから読み込まれます。変更は内部キャッシュのみに保存され、ソースとキャッシュコピーを同期を選択時した場合のみ同期されます。</string>
+  <string name="InOfflineMode">内部キャッシュのみで動作</string>
   <string name="SynchronizingCachedDatabase">キャッシュされたデータベースを同期中…</string>
+  <string name="DownloadingRemoteFile">ソースファイルを読み込んでいます…</string>
+  <string name="UploadingFile">ファイルを保存しています…</string>
+  <string name="RestoringRemoteFile">ソースファイルを復元しています…</string>
   <string name="FilesInSync">ファイルは同期中です。</string>
   <string name="SynchronizedDatabaseSuccessfully">データベースは正常に同期されました。</string>
   <string name="CheckingDatabaseForChanges">データベースの変更を確認しています。</string>
+  <string name="CouldNotSaveToRemote">ソースファイルへ保存できませんでした: %1$s。ファイルへアクセス可能になったら、再度保存するか、同期メニューを使用してください。</string>
+  <string name="CouldNotLoadFromRemote">ソースファイルへアクセスできませんでした: %1$s。内部キャッシュより読み込みました。データベースを変更し、あとで同期することができます。</string>
+  <string name="UpdatedRemoteFileOnLoad">ソースファイルを更新しました。</string>
+  <string name="NotifyOpenFromLocalDueToConflict">ソースファイルの変更とコンフリクトしたため、内部キャッシュを開きました。同期メニューを使ってマージしてください。</string>
+  <string name="LoadedFromRemoteInSync">ソースファイルとキャッシュが同期されます。</string>
+  <string name="UpdatedCachedFileOnLoad">%1$s の内部キャッシュコピーを更新しました。</string>
   <string name="RemoteDatabaseUnchanged">変更は検出されませんでした。</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">キャッシュされた予備のワンタイムパスワードキャッシュを更新しました: ソースカウンターが高いため。</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">予備のワンタイムパスワードファイルソースを更新しました: ローカルカウンターが高いため。</string>
   <string name="SynchronizingOtpAuxFile">OTP 補助ファイルを同期中…</string>
   <string name="database_file">データベースファイル</string>
   <string name="otp_aux_file">OTP 補助ファイル</string>
@@ -476,6 +493,9 @@
   <string name="OtpKeyError">OTP キーの作成に失敗しました! 正しい OTP を入力したか確認してください。</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP 補助ファイル更新エラー!</string>
   <string name="SavingOtpAuxFile">OTP 補助ファイルを保存中…</string>
+  <string name="NoChallengeApp">チャレンジを扱うことができるアプリが見つかりませんでした。</string>
+  <string name="PleaseInstallApp">Google Play から %1$s をインストールしてください。</string>
+  <string name="AppOutdated">%1$s はサポートされていません。</string>
   <string name="bad_resp">チャレンジ応答が正しくありません。</string>
   <string name="CouldntLoadChalAuxFile">補助チャレンジ ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadChalAuxFile_Hint">KeePass 2.x (PC) の KeeChallenge プラグインを使用して、チャレンジ レスポンスを使うようにデータベースを構成してください!</string>
@@ -526,6 +546,7 @@
   <string name="ReadOnlyReason_PreKitKat">外部アプリからファイルを開いたようです。この方法は、書き込みをサポートしません。データベースを変更したい場合は、データベースを閉じて、データベースの変更を選択してください。可能であれば、いずれかの利用可能なオプションからファイルを開いてください。</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">読み取り専用フラグが設定されます。データベースを変更したい場合は、このフラグを削除してください。</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Android KitKat で導入された制限のため、書き込みは不可能です。データベースを変更したい場合は、データベースを閉じて、データベースの変更を選択してください。その後、システムのファイル選択を使用してファイルを開いてください。</string>
+  <string name="ReadOnlyReason_LocalBackup">ローカルバックアップは変更できません。データベース設定 - エクスポートデータベースを使用して、このバックアップを開くことができる別の場所へエクスポートすることができます。その後、再び書き込み可能になります。</string>
   <string name="AddCustomIcon">ファイルからアイコンを追加する</string>
   <string name="CopyingFile">ファイルをコピーしています</string>
   <string name="DuplicateTitle">コピー</string>
@@ -573,7 +594,12 @@
  • USB (MTP モード) でファイルをコピーした場合、MyPhoneExplorer のようなツールでもう一度やり直してください。特定の場合 MTP はファイルが切り捨てられます。\n
  • お使いの PC で同じ場所からファイルを開くことができない場合、ファイルが実際に破損している可能性が高いです。その場合は、データベースのバックアップを使用してください。Keepass2Android がファイルを破損すると思われる場合は、サポートにお問い合わせください。\n
  • お使いの PC でファイルを開くことができる場合は、サポートにお問い合わせください。PC で、(解凍してなど) 異なる設定でそれを保存して、Keepass2Android で再度開いてみることも試してください。  </string>
+  <string name="DbUnlockedChannel_name">データベースがアンロックされました</string>
+  <string name="DbUnlockedChannel_desc">データベースのアンロックに関する通知</string>
   <string name="DbQuicklockedChannel_name">クイック解除</string>
+  <string name="DbQuicklockedChannel_desc">クイック解除でデータベースがロックされていることに関する通知</string>
+  <string name="EntryChannel_name">エントリーの通知</string>
+  <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="ErrorReportTitle">Keepass2Android: エラーが発生しました。</string>
   <string name="ErrorReportText">Keepass2Android の実行中に予期しないエラーが発生しました。エラーレポートの送信を有効にし、この問題の解決にご協力ください。</string>
   <string name="ErrorReportPromise">エラーレポートにはデータベースやマスターパスワードの内容は一切含まれません。アプリケーション設定でエラーレポートを無効にできます。</string>
@@ -867,7 +893,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>パスワード + OTP secret (回復モード)</item>
     <item>パスワード + チャレンジ/レスポンス</item>
     <item>パスワード + チャレンジ/レスポンス secret (回復モード)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>KeepassXC のパスワード + チャレンジレスポンス</item>
     <item>Keepass XC のパスワード + キーファイル + チャレンジレスポンス</item>
   </string-array>
   <string-array name="sftp_auth_modes">
@@ -883,7 +909,15 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="PluginDescription">プラグインによって提供される説明:</string>
   <string name="autofill_hint">Keepass2Android は Android のオートフィル機能をサポートしていますが、まだ有効にしていないようです。</string>
   <string name="autofill_enable">オートフィルを有効にする</string>
+  <string name="autofill_enable_failed">お使いのデバイスでは、アプリから設定を開くことができないようです。システム設定を開いて、オートフィルを有効にしてください。</string>
   <string name="show_autofill_help">オートフィルのヘルプを表示</string>
   <string name="autofill_sign_in_prompt">Keepass2Android で入力</string>
   <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
+  <string name="understand">理解しました</string>
+  <string name="dont_show_again">二度と表示しない</string>
+  <string name="masterkey_infotext_head">マスターパスワードを思い出せますか？</string>
+  <string name="masterkey_infotext_main">マスターキー無しにデータベースを開くことはできません。マスターパスワードをリセットする方法はありません。</string>
+  <string name="backup_infotext_head">データベースはバックアップされていますか？</string>
+  <string name="backup_infotext_note">バックアップを作成するには、%1$s&gt;%2$s&gt;%3$s へアクセスしてください。</string>
+  <string name="emergency_infotext_head">緊急時の準備はできていますか？</string>
 </resources>
