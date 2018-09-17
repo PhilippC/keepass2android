@@ -290,7 +290,6 @@
   <string name="BinaryDirectory_summary">Mappen der filvedlegg lagres.</string>
   <string name="SaveAttachmentDialog_title">Lagre vedlegg</string>
   <string name="SaveAttachmentDialog_text">Velg hvor du vil lagre vedlegget.</string>
-  <string name="SaveAttachmentDialog_save">Lagre på SD-kortet</string>
   <string name="SaveAttachmentDialog_open">Lagre til hurtiglager og åpne</string>
   <string name="ShowAttachedImage">Vis med internt bildeprogram</string>
   <string name="SaveAttachment_doneMessage">Lagret filen til %1$s.</string>
