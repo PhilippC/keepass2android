@@ -286,7 +286,6 @@
   <string name="BinaryDirectory_summary">Mapa, kamor se shranjujejo datotečne priponke.</string>
   <string name="SaveAttachmentDialog_title">Shrani priponko</string>
   <string name="SaveAttachmentDialog_text">Izberite, kam naj se shranjujejo priponke.</string>
-  <string name="SaveAttachmentDialog_save">Shrani na kartico SD</string>
   <string name="SaveAttachmentDialog_open">Shrani v predpomnilnik in odpri</string>
   <string name="SaveAttachment_doneMessage">Datoteka shranjena v %1$s.</string>
   <string name="SaveAttachment_Failed">Datoteke ni bilo mogoče shraniti v %1$s.</string>
