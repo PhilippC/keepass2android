@@ -231,7 +231,6 @@
   <string name="QuickUnlock_fail">QuickUnlock errorea: pasahitz okerra!</string>
   <string name="BinaryDirectory_title">Eranskinen karpeta</string>
   <string name="SaveAttachmentDialog_title">Gorde eranskina</string>
-  <string name="SaveAttachmentDialog_save">Gorde SD txartelean</string>
   <string name="SaveAttachmentDialog_open">Gorde katxean eta ireki</string>
   <string name="SaveAttachment_doneMessage">Gorde fitxategia hemen: %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Gogoratu bilaketaren testua?</string>
