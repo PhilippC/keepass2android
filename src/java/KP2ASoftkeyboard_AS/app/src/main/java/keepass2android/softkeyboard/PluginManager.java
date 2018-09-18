@@ -2,10 +2,14 @@ package keepass2android.softkeyboard;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.channels.Channels;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -17,9 +21,11 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.util.Log;
 
+//based on https://github.com/klausw/hackerskeyboard/blob/master/java/src/org/pocketworkstation/pckeyboard/PluginManager.java
 public class PluginManager extends BroadcastReceiver {
     private static String TAG = "PCKeyboard";
     private static String HK_INTENT_DICT = "org.pocketworkstation.DICT";
@@ -120,6 +126,46 @@ public class PluginManager extends BroadcastReceiver {
             }
         }
     }
+
+    static private class DictPluginSpecResourceSoftKeyboard
+            extends DictPluginSpecBase {
+
+
+        int[] resId;
+        Resources pluginRes;
+
+        public DictPluginSpecResourceSoftKeyboard(String pkg, int[] resId, Resources pluginRes) {
+            mPackageName = pkg;
+            this.resId = resId;
+            this.pluginRes = pluginRes;
+
+        }
+
+        @Override
+        InputStream[] getStreams(Resources res) {
+            final InputStream[] is = new InputStream[resId.length];
+
+            try {
+                // merging separated dictionary into one if dictionary is separated
+                int total = 0;
+                for (int i = 0; i < resId.length; i++) {
+                    
+                    // http://ponystyle.com/blog/2010/03/26/dealing-with-asset-compression-in-android-apps/
+                    // NOTE: the resource file can not be larger than 1MB
+                    is[i] = pluginRes.openRawResource(resId[i]);
+                    final int dictSize = is[i].available();
+                    Log.d(TAG, "Will load a resource dictionary id " + resId[i] + " whose size is " + dictSize + " bytes.");
+                    total += dictSize;
+                }
+                return is;
+
+            } catch (IOException e) {
+                Log.w(TAG, "No available memory for binary dictionary: " + e.getMessage());
+            }
+            return null;
+        }
+    }
+
     
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -129,21 +175,59 @@ public class PluginManager extends BroadcastReceiver {
         mIME.toggleLanguage(true, true);
     }
 
+    public interface MemRelatedOperation {
+        void operation();
+    }
+
+    static final int GC_TRY_LOOP_MAX = 5;
+
+    static void doGarbageCollection(final String tag) {
+        System.gc();
+        try {
+            Thread.sleep(1000 /*ms*/);
+        } catch (InterruptedException e) {
+            Log.e(tag, "Sleep was interrupted.");
+        }
+    }
+
+    static public void performOperationWithMemRetry(final String tag, MemRelatedOperation operation) {
+        int retryCount = GC_TRY_LOOP_MAX;
+        while (true) {
+            try {
+                operation.operation();
+                return;
+            } catch (OutOfMemoryError e) {
+                if (retryCount == 0) throw e;
+
+                retryCount--;
+                Log.w(tag, "WOW! No memory for operation... I'll try to release some.");
+                doGarbageCollection(tag);
+            }
+        }
+    }
+
+
     static void getSoftKeyboardDictionaries(PackageManager packageManager) {
         Intent dictIntent = new Intent(SOFTKEYBOARD_INTENT_DICT);
         List<ResolveInfo> dictPacks = packageManager.queryBroadcastReceivers(
         		dictIntent, PackageManager.GET_RECEIVERS);
         for (ResolveInfo ri : dictPacks) {
             ApplicationInfo appInfo = ri.activityInfo.applicationInfo;
-            String pkgName = appInfo.packageName;
-            boolean success = false;
+            final String pkgName = appInfo.packageName;
+            final boolean[] success = {false};
             try {
-                Resources res = packageManager.getResourcesForApplication(appInfo);
+                final Resources res = packageManager.getResourcesForApplication(appInfo);
                 Log.i("KP2AK", "Found dictionary plugin package: " + pkgName);
                 int dictId = res.getIdentifier("dictionaries", "xml", pkgName);
-                if (dictId == 0) continue;
+
+                if (dictId == 0)
+                {
+                    Log.i("KP2AK", "dictId == 0");
+                    continue;
+                }
                 XmlResourceParser xrp = res.getXml(dictId);
 
+                int dictResourceId = 0;
                 String assetName = null;
                 String lang = null;
                 try {
@@ -157,12 +241,21 @@ public class PluginManager extends BroadcastReceiver {
                                     String convLang = SOFTKEYBOARD_LANG_MAP.get(lang);
                                     if (convLang != null) lang = convLang;
                                     String type = xrp.getAttributeValue(null, "type");
-                                    if (type == null || type.equals("raw") || type.equals("binary")) {
+
+                                    if (type == null || type.equals("raw") || type.equals("binary"))
+                                    {
                                         assetName = xrp.getAttributeValue(null, "dictionaryAssertName"); // sic
-                                    } else {
+                                        if (assetName != null) {
+                                            Log.i(TAG, "asset=" + assetName + " lang=" + lang);
+                                        }
+                                    } else if (type.equals("binary_resource"))
+                                    {
+                                        dictResourceId = xrp.getAttributeResourceValue(null, "dictionaryResourceId",0);
+                                    }
+                                    else {
                                         Log.w(TAG, "Unsupported AnySoftKeyboard dict type " + type);
                                     }
-                                    //Log.i(TAG, "asset=" + assetName + " lang=" + lang);
+
                                 }
                             }
                         }
@@ -175,15 +268,55 @@ public class PluginManager extends BroadcastReceiver {
                     Log.e(TAG, "Dictionary XML IOException");
                 }
 
-                if (assetName == null || lang == null) continue;
-                DictPluginSpec spec = new DictPluginSpecSoftKeyboard(pkgName, assetName);
-                mPluginDicts.put(lang, spec);
-                Log.i("KP2AK", "Found plugin dictionary: lang=" + lang + ", pkg=" + pkgName);
-                success = true;
+                if (lang == null)
+                    continue;
+                if (assetName != null) {
+                    DictPluginSpec spec = new DictPluginSpecSoftKeyboard(pkgName, assetName);
+                    mPluginDicts.put(lang, spec);
+                    Log.i("KP2AK", "Found plugin dictionary: lang=" + lang + ", pkg=" + pkgName);
+                    success[0] = true;
+                }
+                else if (dictResourceId != 0)
+                {
+
+                    Resources pkgRes = packageManager.getResourcesForApplication(appInfo);
+                    final int[] resId;
+                    // is it an array of dictionaries? Or a ref to raw?
+                    final String dictResType = pkgRes.getResourceTypeName(dictResourceId);
+                    if (dictResType.equalsIgnoreCase("raw")) {
+                        resId = new int[]{dictResourceId};
+                    } else {
+                        TypedArray a = pkgRes.obtainTypedArray(dictResourceId);
+                        resId = new int[a.length()];
+                        for (int index = 0; index < a.length(); index++)
+                            resId[index] = a.getResourceId(index, 0);
+
+                        a.recycle();
+                    }
+
+                    final String finalLang = lang;
+                    performOperationWithMemRetry(TAG, new MemRelatedOperation() {
+                        @Override
+                        public void operation() {
+                            // The try-catch is for issue 878:
+                            // http://code.google.com/p/softkeyboard/issues/detail?id=878
+                            try {
+                                DictPluginSpec spec = new DictPluginSpecResourceSoftKeyboard(pkgName, resId, res);
+                                mPluginDicts.put(finalLang, spec);
+                                Log.i("KP2AK", "Found plugin dictionary: lang=" + finalLang + ", pkg=" + pkgName);
+                                success[0] = true;
+                            } catch (UnsatisfiedLinkError ex) {
+                                Log.w(TAG, "Failed to load binary JNI connection! Error: " + ex.getMessage());
+                            }
+                        }
+                    });
+                }
+
+
             } catch (NameNotFoundException e) {
                 Log.i("KP2AK", "bad");
             } finally {
-                if (!success) {
+                if (!success[0]) {
                     Log.i("KP2AK", "failed to load plugin dictionary spec from " + pkgName);
                 }
             }
@@ -193,6 +326,7 @@ public class PluginManager extends BroadcastReceiver {
     static void getHKDictionaries(PackageManager packageManager) {
         Intent dictIntent = new Intent(HK_INTENT_DICT);
         List<ResolveInfo> dictPacks = packageManager.queryIntentActivities(dictIntent, 0);
+        Log.i("KP2AK", "Searching for HK dictionaries. Found " + dictPacks.size() + " packages");
         for (ResolveInfo ri : dictPacks) {
             ApplicationInfo appInfo = ri.activityInfo.applicationInfo;
             String pkgName = appInfo.packageName;
