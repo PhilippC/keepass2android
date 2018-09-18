@@ -291,7 +291,6 @@
   <string name="BinaryDirectory_summary">添付ファイルが保存されるディレクトリ。</string>
   <string name="SaveAttachmentDialog_title">添付ファイルを保存</string>
   <string name="SaveAttachmentDialog_text">添付ファイルを保存する場所を選択してください。</string>
-  <string name="SaveAttachmentDialog_save">SDカードに保存</string>
   <string name="SaveAttachmentDialog_open">キャッシュに保存して開く</string>
   <string name="ShowAttachedImage">内部の画像ビューアーで表示</string>
   <string name="SaveAttachment_doneMessage">ファイルを%1$sに保存しました。</string>
