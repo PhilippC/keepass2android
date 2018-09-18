@@ -294,7 +294,6 @@
   <string name="BinaryDirectory_summary">Priečinok, do ktorého sa uložia prílohy.</string>
   <string name="SaveAttachmentDialog_title">Uložiť prílohu</string>
   <string name="SaveAttachmentDialog_text">Prosím vyberte, kam sa príloha uloží.</string>
-  <string name="SaveAttachmentDialog_save">Uložiť na kartu SD</string>
   <string name="SaveAttachmentDialog_open">Uložiť do vyr. pamäte a otvoriť</string>
   <string name="ShowAttachedImage">Zobraziť pomocou interného prehliadača obrázkov</string>
   <string name="SaveAttachment_doneMessage">Súbor uložený do %1$s.</string>
