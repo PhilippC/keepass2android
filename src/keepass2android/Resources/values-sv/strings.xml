@@ -291,7 +291,6 @@ Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androi
   <string name="BinaryDirectory_summary">Katalog där bifogade filer sparas.</string>
   <string name="SaveAttachmentDialog_title">Spara bilaga</string>
   <string name="SaveAttachmentDialog_text">Var god välj var den bifogade filen ska sparas.</string>
-  <string name="SaveAttachmentDialog_save">Spara till SD-kort</string>
   <string name="SaveAttachmentDialog_open">Spara tillfälligt och öppna</string>
   <string name="ShowAttachedImage">Visa med intern bildvisare</string>
   <string name="SaveAttachment_doneMessage">Filen sparad till %1$s.</string>
