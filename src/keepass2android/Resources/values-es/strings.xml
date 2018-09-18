@@ -291,7 +291,6 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="BinaryDirectory_summary">Directorio en donde se guardan los archivos adjuntos.</string>
   <string name="SaveAttachmentDialog_title">Guardar datos adjuntos</string>
   <string name="SaveAttachmentDialog_text">Por favor selecciona la ubicacíon donde guardar el archivo adjunto.</string>
-  <string name="SaveAttachmentDialog_save">Guardar en la tarjeta SD</string>
   <string name="SaveAttachmentDialog_open">Guardar en la caché y abrir</string>
   <string name="ShowAttachedImage">Mostrar con visor de imágenes interno</string>
   <string name="SaveAttachment_doneMessage">Archivo guardado en %1$s.</string>
