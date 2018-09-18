@@ -294,7 +294,6 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="BinaryDirectory_summary">Directori on es guarden els fitxers adjunts.</string>
   <string name="SaveAttachmentDialog_title">Deseu el fitxer adjunt</string>
   <string name="SaveAttachmentDialog_text">Si us plau seleccioneu on voleu desar el fitxer adjunt.</string>
-  <string name="SaveAttachmentDialog_save">Desar a la targeta SD</string>
   <string name="SaveAttachmentDialog_open">Desa a la memòria cau i obre</string>
   <string name="ShowAttachedImage">Mostra amb visualitzador d\'imatges intern</string>
   <string name="SaveAttachment_doneMessage">Desat l\'arxiu a %1$s.</string>
