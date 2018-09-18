@@ -291,7 +291,6 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="BinaryDirectory_summary">Ek dosyalarının kaydedileceği klasör.</string>
   <string name="SaveAttachmentDialog_title">Ek dosyayı kaydet</string>
   <string name="SaveAttachmentDialog_text">Ek dosyayı kaydedecek konumu seç.</string>
-  <string name="SaveAttachmentDialog_save">Ek dosyayı SD karta kaydedin</string>
   <string name="SaveAttachmentDialog_open">Ek dosyayı önbelleke kaydet ve aç</string>
   <string name="ShowAttachedImage">Dahili resim görüntüleyici ile göster</string>
   <string name="SaveAttachment_doneMessage">Ek dosya %1$s \'e kaydedildi.</string>
