@@ -281,7 +281,6 @@
   <string name="BinaryDirectory_summary">Директоријум чувања датотека прилога.</string>
   <string name="SaveAttachmentDialog_title">Сачувај прилог</string>
   <string name="SaveAttachmentDialog_text">Молимо изаберите где желите да сачувате прилог.</string>
-  <string name="SaveAttachmentDialog_save">Сачувај на SD картицу</string>
   <string name="SaveAttachmentDialog_open">Сачувај у кешу и отвори</string>
   <string name="SaveAttachment_doneMessage">Сачувај датотеку у %1$s.</string>
   <string name="SaveAttachment_Failed">Није могуће сачувати датотеку у %1$s.</string>
