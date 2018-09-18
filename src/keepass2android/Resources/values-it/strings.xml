@@ -291,7 +291,6 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="BinaryDirectory_summary">Cartella dove vengono salvati i file allegati.</string>
   <string name="SaveAttachmentDialog_title">Salva allegato</string>
   <string name="SaveAttachmentDialog_text">Per favore, scegli dove salvare l\'allegato.</string>
-  <string name="SaveAttachmentDialog_save">Salva su scheda SD</string>
   <string name="SaveAttachmentDialog_open">Salva nella cache e apri</string>
   <string name="ShowAttachedImage">Visualizza immagine con visualizzatore integrato</string>
   <string name="SaveAttachment_doneMessage">File salvato in %1$s.</string>
