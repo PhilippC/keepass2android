@@ -288,7 +288,6 @@
   <string name="BinaryDirectory_summary">첨부파일이 저장될 폴더</string>
   <string name="SaveAttachmentDialog_title">첨부파일 저장</string>
   <string name="SaveAttachmentDialog_text">첨부파일을 저장할 위치를 선택하세요.</string>
-  <string name="SaveAttachmentDialog_save">SD 카드에 저장</string>
   <string name="SaveAttachmentDialog_open">캐시에 저장하고 열기</string>
   <string name="ShowAttachedImage">내부 이미지 뷰어로 보기</string>
   <string name="SaveAttachment_doneMessage">%1$s에 파일을 저장합니다.</string>
