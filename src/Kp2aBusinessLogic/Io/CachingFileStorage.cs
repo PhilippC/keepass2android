@@ -65,22 +65,28 @@ namespace keepass2android.Io
 		
 		protected readonly OfflineSwitchableFileStorage _cachedStorage;
 		private readonly ICacheSupervisor _cacheSupervisor;
-		private readonly string _streamCacheDir;
+		private readonly string _legacyCacheDir;
+	    private readonly string _cacheDir;
 
-		public CachingFileStorage(IFileStorage cachedStorage, string cacheDir, ICacheSupervisor cacheSupervisor)
+        public CachingFileStorage(IFileStorage cachedStorage, Context cacheDirContext, ICacheSupervisor cacheSupervisor)
 		{
 			_cachedStorage = new OfflineSwitchableFileStorage(cachedStorage);
 			_cacheSupervisor = cacheSupervisor;
-			_streamCacheDir = cacheDir + Java.IO.File.Separator + "OfflineCache" + Java.IO.File.Separator;
-			if (!Directory.Exists(_streamCacheDir))
-				Directory.CreateDirectory(_streamCacheDir);
-			
-		}
+			_legacyCacheDir = cacheDirContext.CacheDir.Path + Java.IO.File.Separator + "OfflineCache" + Java.IO.File.Separator;
+			if (!Directory.Exists(_legacyCacheDir))
+				Directory.CreateDirectory(_legacyCacheDir);
+
+		    _cacheDir = IoUtil.GetInternalDirectory(cacheDirContext).Path + Java.IO.File.Separator + "OfflineCache" + Java.IO.File.Separator;
+		    if (!Directory.Exists(_cacheDir))
+		        Directory.CreateDirectory(_cacheDir);
+
+        }
 
 		public void ClearCache()
 		{
-			IoUtil.DeleteDir(new Java.IO.File(_streamCacheDir), true);
-		}
+			IoUtil.DeleteDir(new Java.IO.File(_legacyCacheDir), true);
+		    IoUtil.DeleteDir(new Java.IO.File(_cacheDir), true);
+        }
 
 		public IEnumerable<string> SupportedProtocols { get { return _cachedStorage.SupportedProtocols; } }
 
@@ -105,7 +111,11 @@ namespace keepass2android.Io
 		{
 			SHA256Managed sha256 = new SHA256Managed();
 			string iocAsHexString = MemUtil.ByteArrayToHexString(sha256.ComputeHash(Encoding.Unicode.GetBytes(ioc.Path.ToCharArray())))+".cache";
-			return _streamCacheDir + iocAsHexString;
+		    if (File.Exists(_legacyCacheDir + iocAsHexString))
+		        return _legacyCacheDir + iocAsHexString;
+
+		    return _cacheDir + iocAsHexString;
+
 		}
 
 		public bool IsCached(IOConnectionInfo ioc)

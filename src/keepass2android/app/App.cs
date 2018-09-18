@@ -541,7 +541,7 @@ namespace keepass2android
 
 				if (DatabaseCacheEnabled && allowCache)
 				{
-					fileStorage = new CachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, this);
+					fileStorage = new CachingFileStorage(innerFileStorage, Application.Context, this);
 				}
 				else
 				{
@@ -820,7 +820,7 @@ namespace keepass2android
 
 		public void ClearOfflineCache()
 		{
-			new CachingFileStorage(new LocalFileStorage(this), Application.Context.CacheDir.Path, this).ClearCache();
+			new CachingFileStorage(new LocalFileStorage(this), Application.Context, this).ClearCache();
 		}
 
 		public IFileStorage GetFileStorage(string protocolId)
@@ -844,7 +844,7 @@ namespace keepass2android
 				
 				if (DatabaseCacheEnabled)
 				{
-					return new OtpAuxCachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, new OtpAuxCacheSupervisor(this));
+					return new OtpAuxCachingFileStorage(innerFileStorage, Application.Context, new OtpAuxCacheSupervisor(this));
 				}
 				else
 				{
