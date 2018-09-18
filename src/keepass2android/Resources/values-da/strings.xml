@@ -291,7 +291,6 @@ Gå venligst til systemindstillinger først.</string>
   <string name="BinaryDirectory_summary">Mappe, hvor vedhæftede filer gemmes.</string>
   <string name="SaveAttachmentDialog_title">Gem vedhæftet fil</string>
   <string name="SaveAttachmentDialog_text">Vælg hvor du vil gemme den vedhæftede fil.</string>
-  <string name="SaveAttachmentDialog_save">Gem på SD-kort</string>
   <string name="SaveAttachmentDialog_open">Gem til cache og åben</string>
   <string name="ShowAttachedImage">Vis med intern billedfremviser</string>
   <string name="SaveAttachment_doneMessage">Gemt fil som %1$s.</string>
