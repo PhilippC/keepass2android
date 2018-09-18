@@ -294,7 +294,6 @@
   <string name="BinaryDirectory_summary">Каталог збереження вкладених файлів.</string>
   <string name="SaveAttachmentDialog_title">Збереження вкладення</string>
   <string name="SaveAttachmentDialog_text">Будь ласка, виберіть місце для збереження вкладення.</string>
-  <string name="SaveAttachmentDialog_save">Зберегти на карту SD</string>
   <string name="SaveAttachmentDialog_open">Зберегти до кешу й відкрити</string>
   <string name="ShowAttachedImage">Показати за допомогою вбудованої програми перегляду зображень</string>
   <string name="SaveAttachment_doneMessage">Файл збережено до %1$s.</string>
