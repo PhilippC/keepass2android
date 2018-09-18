@@ -278,7 +278,6 @@
   <string name="BinaryDirectory_summary">Папка където се записват приложените файлове.</string>
   <string name="SaveAttachmentDialog_title">Запази приложен файл</string>
   <string name="SaveAttachmentDialog_text">Моля изберете къде да се запише приложения файл.</string>
-  <string name="SaveAttachmentDialog_save">Запази в SD картата</string>
   <string name="SaveAttachmentDialog_open">Запази в кеша и отвори</string>
   <string name="SaveAttachment_doneMessage">Файла е запазен в %1$s.</string>
   <string name="SaveAttachment_Failed">Не може да запази приложения файл в %1$s.</string>
