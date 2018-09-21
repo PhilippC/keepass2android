@@ -294,7 +294,6 @@
   <string name="BinaryDirectory_summary">Liitetiedostojen tallennushakemisto.</string>
   <string name="SaveAttachmentDialog_title">Tallenna liite</string>
   <string name="SaveAttachmentDialog_text">Valitse liitteen tallennuspaikka.</string>
-  <string name="SaveAttachmentDialog_save">Tallenna SD-kortille</string>
   <string name="SaveAttachmentDialog_open">Tallenna välimuistiin ja avaa</string>
   <string name="ShowAttachedImage">Näytä sisäisellä kuvankatselusovelluksella</string>
   <string name="SaveAttachment_doneMessage">Tiedosto tallennettiin kohteeseen %1$s.</string>
