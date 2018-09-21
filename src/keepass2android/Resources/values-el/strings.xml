@@ -293,7 +293,6 @@
   <string name="BinaryDirectory_summary">Φάκελος όπου αποθηκεύονται τα συνημμένα αρχεία.</string>
   <string name="SaveAttachmentDialog_title">Αποθήκευση συνημμένου</string>
   <string name="SaveAttachmentDialog_text">Παρακαλώ επιλέξτε πού θα αποθηκεύσετε το συνημμένο.</string>
-  <string name="SaveAttachmentDialog_save">Αποθήκευση σε κάρτα SD</string>
   <string name="SaveAttachmentDialog_open">Αποθήκευση σε προσωρινή μνήμη και άνοιγμα</string>
   <string name="ShowAttachedImage">Προβολή με εσωτερικό πρόγραμμα προβολής εικόνων</string>
   <string name="SaveAttachment_doneMessage">Αποθήκευση αρχείου σε %1$s.</string>
