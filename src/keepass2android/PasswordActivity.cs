@@ -143,7 +143,7 @@ namespace keepass2android
 
 		private bool _performingLoad;
 		private bool _keepPasswordInOnResume;
-	    private Typeface _passwordFont;
+	    
 
         private ActionBarDrawerToggle mDrawerToggle;
 	    private DrawerLayout _drawerLayout;
@@ -724,7 +724,7 @@ namespace keepass2android
 			behavior.OnNestedFling(FindViewById<CoordinatorLayout>(Resource.Id.main_content), appbarLayout, null, 0, 200, true);
 		}
 
-        
+	    readonly PasswordFont _passwordFont = new PasswordFont();
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -871,31 +871,30 @@ namespace keepass2android
 
 
 			mDrawerTitle = Title;
-			FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-			var rootview = FindViewById<MeasuringRelativeLayout>(Resource.Id.relative_layout);
-			rootview.ViewTreeObserver.GlobalLayout += (sender, args2) =>
-			{
-				Android.Util.Log.Debug("KP2A", "GlobalLayout");
-				var args = _measureArgs;
-				if (args == null)
-					return;
-				Android.Util.Log.Debug("KP2A", "ActualHeight=" + args.ActualHeight);
-				Android.Util.Log.Debug("KP2A", "ProposedHeight=" + args.ProposedHeight);
-				if (args.ActualHeight < args.ProposedHeight)
-					UncollapseToolbar();
-				if (args.ActualHeight > args.ProposedHeight)
-					CollapseToolbar();
-			};
-			rootview.MeasureEvent += (sender, args) =>
-			{
-				//Snackbar.Make(rootview, "height="+args.ActualHeight, Snackbar.LengthLong).Show();
-				_measureArgs = args;
-			};
+			InitializeToolbarCollapsing();
 
-			if ((int)Build.VERSION.SdkInt >= 23)
+		    if ((int)Build.VERSION.SdkInt >= 23)
 				RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);
 			
 		}
+
+	    private void InitializeToolbarCollapsing()
+	    {
+	        var rootview = FindViewById<MeasuringRelativeLayout>(Resource.Id.relative_layout);
+	        rootview.ViewTreeObserver.GlobalLayout += (sender, args2) =>
+	        {
+	            Android.Util.Log.Debug("KP2A", "GlobalLayout");
+	            if (_measureArgs == null)
+	                return;
+	            Android.Util.Log.Debug("KP2A", "ActualHeight=" + _measureArgs.ActualHeight);
+	            Android.Util.Log.Debug("KP2A", "ProposedHeight=" + _measureArgs.ProposedHeight);
+	            if (_measureArgs.ActualHeight < _measureArgs.ProposedHeight)
+	                UncollapseToolbar();
+	            if (_measureArgs.ActualHeight > _measureArgs.ProposedHeight)
+	                CollapseToolbar();
+	        };
+	        rootview.MeasureEvent += (sender, args) => { _measureArgs = args; };
+	    }
 
 	    private const string Kp2aKeyProviderStringPrefix = "_KP2A_KEYTYPES:";
 
@@ -1570,7 +1569,7 @@ namespace keepass2android
 					var ioc = IOConnectionInfo.UnserializeFromString(_keyFile);
 					using (var stream = App.Kp2a.GetFileStorage(ioc).OpenFileForRead(ioc))
 					{
-						byte[] keyfileData = StreamToMemoryStream(stream).ToArray();
+						byte[] keyfileData = Util.StreamToMemoryStream(stream).ToArray();
 						compositeKey.AddUserKey(new KcpKeyFile(keyfileData, ioc, true));
 					}
 				}
@@ -1651,7 +1650,7 @@ namespace keepass2android
 			if (_showPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-                SetPasswordTypeface(password);
+                _passwordFont.ApplyTo(password);
 			}
 			else
 			{
@@ -1662,21 +1661,9 @@ namespace keepass2android
 
 		protected override void OnPause()
 		{
-			if (_fingerprintDec != null)
-			{
-				_fingerprintDec.StopListening();
-			}
-			base.OnPause();
+		    _fingerprintDec?.StopListening();
+		    base.OnPause();
 		}
-
-		private void SetPasswordTypeface(TextView textView)
-	    {
-            if (_passwordFont == null)
-            {
-                _passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
-            }
-            textView.Typeface = _passwordFont;	
-	    }
 
 	    private void SetNewDefaultFile()
 		{
@@ -1735,16 +1722,11 @@ namespace keepass2android
 			var fileStorage = App.Kp2a.GetFileStorage(_ioConnection);
 			var stream = fileStorage.OpenFileForRead(_ioConnection);
 
-			var memoryStream = StreamToMemoryStream(stream);
+			var memoryStream = Util.StreamToMemoryStream(stream);
 
 			Kp2aLog.Log("Pre-loading database file completed");
 
 			return memoryStream;
-		}
-
-		private static MemoryStream StreamToMemoryStream(Stream stream)
-		{
-			return Util.StreamToMemoryStream(stream);
 		}
 
 		protected override void OnSaveInstanceState(Bundle outState)

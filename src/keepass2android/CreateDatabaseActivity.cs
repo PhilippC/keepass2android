@@ -144,6 +144,8 @@ namespace keepass2android
 			
 		}
 
+	    readonly PasswordFont _passwordFont = new PasswordFont();
+
 		private void MakePasswordMaskedOrVisible()
 		{
 			TextView password = (TextView)FindViewById(Resource.Id.entry_password);
@@ -151,6 +153,7 @@ namespace keepass2android
 			if (_showPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
+			    _passwordFont.ApplyTo(password);
 				confpassword.Visibility = ViewStates.Gone;
 			}
 			else

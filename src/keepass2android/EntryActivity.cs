@@ -130,7 +130,7 @@ namespace keepass2android
 
 	    public PwEntry Entry;
 
-		private static Typeface _passwordFont;
+		private PasswordFont _passwordFont = new PasswordFont();
 
 		internal bool _showPassword;
 		private int _pos;
@@ -899,11 +899,7 @@ namespace keepass2android
 		
 		private void SetPasswordTypeface(TextView textView)
 		{
-			if (_passwordFont == null)
-			{
-				_passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
-			}
-			textView.Typeface = _passwordFont;	
+			_passwordFont.ApplyTo(textView);	
 		}
 
 	    private void PopulateText(int viewId, int containerViewId, String text)
