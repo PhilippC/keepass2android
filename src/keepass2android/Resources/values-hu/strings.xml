@@ -295,7 +295,6 @@
   <string name="BinaryDirectory_summary">A könyvtár, ahová a csatolt fájlok mentésre kerülnek.</string>
   <string name="SaveAttachmentDialog_title">Csatolt fájl mentése</string>
   <string name="SaveAttachmentDialog_text">Adja meg, hová akarja menteni a csatolt fájlt.</string>
-  <string name="SaveAttachmentDialog_save">Mentés SD kártyára</string>
   <string name="SaveAttachmentDialog_open">Átmeneti tárolóra mentés és megnyitás</string>
   <string name="ShowAttachedImage">Megjelenítés a beépített képmegjelenítővel</string>
   <string name="SaveAttachment_doneMessage">A fájl elmentve: %1$s.</string>
