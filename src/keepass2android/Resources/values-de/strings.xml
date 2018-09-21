@@ -293,7 +293,6 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="BinaryDirectory_summary">Verzeichnis, in dem Datei-Anhänge gespeichert werden.</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
   <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
-  <string name="SaveAttachmentDialog_save">Auf SD-Karte speichern</string>
   <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
   <string name="ShowAttachedImage">Mit internem Bildbetrachter anzeigen</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
