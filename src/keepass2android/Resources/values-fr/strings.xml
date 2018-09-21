@@ -210,6 +210,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="edit">Modifier</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Racine</string>
+  <string name="AutoReturnFromQuery_title">Retour automatique depuis l\'écran de requête</string>
   <string name="KeyDerivFunc">Fonction de dérivation de clés</string>
   <string name="rounds">Niveau du chiffrement</string>
   <string name="rounds_explaination">Un niveau de chiffrement supérieur assure une protection supplémentaire contre les attaques de force brute, mais peut considérablement ralentir le chargement et la sauvegarde.</string>
@@ -291,7 +292,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="BinaryDirectory_summary">Répertoire où les fichiers joints seront sauvegardés.</string>
   <string name="SaveAttachmentDialog_title">Enregistrer la pièce jointe</string>
   <string name="SaveAttachmentDialog_text">Veuillez sélectionner où enregistrer la pièce jointe.</string>
-  <string name="SaveAttachmentDialog_save">Enregistrer sur la carte SD</string>
+  <string name="SaveAttachmentDialog_save">Exporter vers un fichier...</string>
   <string name="SaveAttachmentDialog_open">Enregistrer pour mettre en cache et ouvrir</string>
   <string name="ShowAttachedImage">Afficher avec le visualiseur d\'images interne</string>
   <string name="SaveAttachment_doneMessage">Enregistrement du fichier dans %1$s.</string>
@@ -318,6 +319,8 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="ClearPasswordOnLeave_summary">Effacer le mot de passe principal entré lorsque vous quittez l\'écran sans déverrouiller la base de données.</string>
   <string name="LockWhenNavigateBack_title">Verrouiller lors de la fermeture de l\'application</string>
   <string name="LockWhenNavigateBack_summary">Verrouiller la base de données lors de la fermeture de l\'application via le bouton back.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Utiliser le clavier intégré dans Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Si vous ne faites pas confiance à votre fournisseur de clavier standard, cocher cette option pour utiliser le clavier intégré lors de la saisie de votre mot de passe maître ou de l\'édition des entrées.</string>
   <string name="ActivateSearchViewOnStart_title">Activer le champ de recherche au démarrage</string>
   <string name="ActivateSearchViewOnStart_summary">Active le champ de recherche dans la vue groupée après le déverrouillage ou lors de la recherche d\'une entrée</string>
   <string name="NoDonateOption_title">Masquer l\'option de donation</string>
