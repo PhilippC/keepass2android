@@ -290,7 +290,6 @@
   <string name="BinaryDirectory_summary">Map waar bestandsbijlagen worden opgeslagen.</string>
   <string name="SaveAttachmentDialog_title">Bijlage opslaan</string>
   <string name="SaveAttachmentDialog_text">Selecteer waar u de bijlage wilt opslaan.</string>
-  <string name="SaveAttachmentDialog_save">Opslaan op SD-kaart</string>
   <string name="SaveAttachmentDialog_open">Opslaan in de cache en openen</string>
   <string name="ShowAttachedImage">Toon met interne afbeeldingsweergave</string>
   <string name="SaveAttachment_doneMessage">Bestand opgeslagen als %1$s.</string>
