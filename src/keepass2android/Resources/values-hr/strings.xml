@@ -290,7 +290,6 @@
   <string name="BinaryDirectory_summary">Mapa u kojoj će biti spremljeni privici.</string>
   <string name="SaveAttachmentDialog_title">Spremi privitak</string>
   <string name="SaveAttachmentDialog_text">Odaberite mjesto za spremanje privitka.</string>
-  <string name="SaveAttachmentDialog_save">Spremi na SD karticu</string>
   <string name="SaveAttachmentDialog_open">Spremi u predmemoriju i otvori</string>
   <string name="ShowAttachedImage">Prikaz slike s ugrađenim preglednikom</string>
   <string name="SaveAttachment_doneMessage">Datoteka spremljena u %1$s.</string>
