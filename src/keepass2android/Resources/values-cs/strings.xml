@@ -294,7 +294,6 @@
   <string name="BinaryDirectory_summary">Adresář, do kterého jsou ukládány přílohy souborů.</string>
   <string name="SaveAttachmentDialog_title">Uložit přílohu</string>
   <string name="SaveAttachmentDialog_text">Prosím vyberte, kam chcete uložit přílohu.</string>
-  <string name="SaveAttachmentDialog_save">Uložit na SD kartu</string>
   <string name="SaveAttachmentDialog_open">Uložit do mezipaměti a otevřít</string>
   <string name="ShowAttachedImage">Zobrazit interní prohlížeč obrázků</string>
   <string name="SaveAttachment_doneMessage">Uložit soubor do %1$s.</string>
