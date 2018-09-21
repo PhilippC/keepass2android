@@ -283,7 +283,6 @@
   <string name="BinaryDirectory_summary">Direktori dimana lampiran file disimpan.</string>
   <string name="SaveAttachmentDialog_title">Simpan lampiran</string>
   <string name="SaveAttachmentDialog_text">Silakan pilih tempat untuk menyimpan lampiran.</string>
-  <string name="SaveAttachmentDialog_save">Simpan ke kartu SD</string>
   <string name="SaveAttachmentDialog_open">Simpan di tembolok dan buka</string>
   <string name="ShowAttachedImage">Tampilan dengan penampilan gambar internal</string>
   <string name="SaveAttachment_doneMessage">Simpan file ke %1$s.</string>
