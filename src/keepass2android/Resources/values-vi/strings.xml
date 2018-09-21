@@ -287,7 +287,6 @@
   <string name="BinaryDirectory_summary">Thư mục nơi tập tin đính kèm được lưu.</string>
   <string name="SaveAttachmentDialog_title">Lưu tập tin đính kèm</string>
   <string name="SaveAttachmentDialog_text">Xin vui lòng chọn nơi lưu tập tin đính kèm.</string>
-  <string name="SaveAttachmentDialog_save">Lưu vô thẻ nhớ SD</string>
   <string name="SaveAttachmentDialog_open">Lưu vô bộ nhớ đệm và mở ra</string>
   <string name="ShowAttachedImage">Mở bằng trình xem ảnh sẵn có trong ứng dụng</string>
   <string name="SaveAttachment_doneMessage">Đã lưu tập tin vô %1$s.</string>
