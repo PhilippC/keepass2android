@@ -211,6 +211,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Racine</string>
   <string name="AutoReturnFromQuery_title">Retour automatique depuis l\'écran de requête</string>
+  <string name="AutoReturnFromQuery_summary">Lors de la recherche d\'une entrée pour une application ou un site web : envoi automatique depuis l\'écran de recherche s\'il y a seulement une entrée correspondante dans la base de données.</string>
   <string name="KeyDerivFunc">Fonction de dérivation de clés</string>
   <string name="rounds">Niveau du chiffrement</string>
   <string name="rounds_explaination">Un niveau de chiffrement supérieur assure une protection supplémentaire contre les attaques de force brute, mais peut considérablement ralentir le chargement et la sauvegarde.</string>
@@ -442,10 +443,14 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="hint_http_url">URL du dossier ou du fichier (ex : mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Entrez le nom d\'utilisateur d\'OwnCloud:</string>
   <string name="hint_owncloud_url">URL d\'OwnCloud (ex: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Entrez le nom d\'utilisateur NextCloud :</string>
+  <string name="hint_nextcloud_url">Adresse URL Nextcloud (ex:nextcloud.me.com)</string>
   <string name="hint_sftp_host">Adresse IP du serveur (ex : 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Répertoire initial (facultatif) :</string>
   <string name="enter_sftp_login_title">Entrez les données de connexion SFTP :</string>
+  <string name="sftp_auth_mode">Mode d\'authentification</string>
+  <string name="send_public_key">Envoyez la clé publique...</string>
   <string name="enter_ftp_login_title">Saisir les données de connexion FTP :</string>
   <string name="select_storage_type">Sélectionner le type de stockage :</string>
   <string name="filestoragename_file">Fichier local</string>
@@ -455,10 +460,12 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (dossier KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Sélecteur de fichier système</string>
@@ -572,7 +579,11 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="Continue">Suivant</string>
   <string name="NoFilenameWarning">L\'URI que vous avez entré ne ressemble pas à un nom de fichier. Etes-vous sûr qu\'il s\'agit d\'un fichier valide ?</string>
   <string name="FirstInvalidCompositeKeyError">Clé composite invalide ! S\'il vous plaît essayez encore.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Clé composite non valide ! S\'il vous plaît essayez les étapes suivantes pour débloquer votre base de données : \n • Assurez-vous que vous avez entré le bon mot de passe. Utiliser l\'icône \"œil\" pour afficher le mot de passe saisie. \n • Assurez-vous que vous avez sélectionné le type de mot de passe correct. Assurez-vous que ce type est le même que celui utilisé lors de la création de la base de données. \n • Assurez-vous que vous ont sélectionné le bon fichier de base de données.
+  <string name="RepeatedInvalidCompositeKeyHelp">Clé composite non valide ! S\'il vous plaît essayez les étapes suivantes pour débloquer votre base de données : \n
+  
+    &#8226; Assurez-vous que vous avez entré le bon mot de passe. Utiliser l\'icône \"œil\" pour afficher le mot de passe saisi.\n
+   &#8226; Assurez-vous que vous avez sélectionné le type de mot de passe correct. Assurez-vous que ce type est le même que celui utilisé lors de la création de la base de données.\n
+   &#8226; Assurez-vous que vous avez sélectionné le bon fichier de base de données.
 </string>
   <string name="HintLocalBackupInvalidCompositeKey">
     \n
@@ -847,11 +858,11 @@ Première version publique</string>
     <item>Mot de passe + Défi-Réponse</item>
     <item>Mot de passe + Défi-Réponse secret (mode de récupération)</item>
     <item>Mot de passe + Défi-réponse pour Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Mot de passe + fichier de clé + défi-réponse pour Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Mot de passe</item>
-    <item>Private/Public key</item>
+    <item>Clé privée/publique</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorer les échecs de validation de certificat</item>
