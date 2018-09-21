@@ -288,7 +288,6 @@
   <string name="BinaryDirectory_summary">Directorio no que se gardarán os arquivos adxuntos.</string>
   <string name="SaveAttachmentDialog_title">Gardar arquivo adxunto</string>
   <string name="SaveAttachmentDialog_text">Seleccione onde gardar o arquivo adxunto.</string>
-  <string name="SaveAttachmentDialog_save">Gardar na tarxeta SD</string>
   <string name="SaveAttachmentDialog_open">Gardar na caché e abrir</string>
   <string name="ShowAttachedImage">Amosar co visor interno de imaxes</string>
   <string name="SaveAttachment_doneMessage">Arquivo gardado en %1$s.</string>
