@@ -214,6 +214,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Arrel</string>
   <string name="AutoReturnFromQuery_title">Tornar automàticament des de la pantalla de consulta</string>
+  <string name="AutoReturnFromQuery_summary">Quan es cerca una entrada per a una aplicació o lloc web: automàticament retorna des de la pantalla de consulta si hi ha una única entrada coincident a la base de dades.</string>
   <string name="KeyDerivFunc">Funció clau de derivació</string>
   <string name="rounds">Passades d\'encriptació</string>
   <string name="rounds_explaination">Més passades d\'encriptació dónen protecció adicional contra atacs de força bruta, però poden alentir molt carregar i guardar la base de dades.</string>
