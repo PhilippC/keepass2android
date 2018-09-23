@@ -213,6 +213,8 @@
   <string name="edit">Upraviť</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Hlavný</string>
+  <string name="AutoReturnFromQuery_title">Automatický návrat z obrazovky s dopytom</string>
+  <string name="AutoReturnFromQuery_summary">Pri hľadaní záznamu pre aplikáciu alebo webovú stránku: automaticky sa vrátiť z obrazovky s dopytom, ak zodpovedá iba jeden záznam v databáze.</string>
   <string name="KeyDerivFunc">Funkcia odvodenia kľúča</string>
   <string name="rounds">Opakovania pri šifrovaní</string>
   <string name="rounds_explaination">Viac kôl šifrovania poskytuje vyššiu ochranu proti útokom hrubou silou, ale môže spomaliť načítavanie a ukladanie.</string>
@@ -321,6 +323,8 @@
   <string name="ClearPasswordOnLeave_summary">Pri opustení obrazovky bez odomknutia databázy vyčistiť zadané primárne heslo.</string>
   <string name="LockWhenNavigateBack_title">Uzamknúť pri opustení aplikácie</string>
   <string name="LockWhenNavigateBack_summary">Uzamknúť databázu pri opustení aplikácie stlačením tlačidla Späť.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Použiť klávesnicu integrovanú v Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Ak nedôverujete poskytovateľovi štandardnej klávesnice, výberom tejto možnosti si zvolíte použitie integrovanej klávesnice pri zadávaní primárneho hesla alebo úprave záznamov.</string>
   <string name="ActivateSearchViewOnStart_title">Aktivovať vyhľad. pri spustení</string>
   <string name="ActivateSearchViewOnStart_summary">Aktivuje pole pre vyhľadávanie v zobrazení skupiny, hneď po odomknutí alebo pri hľadaní záznamu</string>
   <string name="NoDonateOption_title">Skryť možnosti prispenia</string>
@@ -442,10 +446,14 @@
   <string name="hint_http_url">URL priečinka alebo súboru (napr.: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Vložte OwnCloud prihlasovacie údaje:</string>
   <string name="hint_owncloud_url">URL pre OwnCloud (napr.: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Zadajte prihlasovacie údaje pre Nextcloud:</string>
+  <string name="hint_nextcloud_url">Adresa URL Nextcloud (napríklad: nextcloud.me.com)</string>
   <string name="hint_sftp_host">host (napr: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Počiatočný priečinok (voliteľne):</string>
   <string name="enter_sftp_login_title">Zadajte SFTP login:</string>
+  <string name="sftp_auth_mode">Spôsob autentifikácie</string>
+  <string name="send_public_key">Odoslať verejný kľúč...</string>
   <string name="enter_ftp_login_title">Zadajte prihlas. údaje pre FTP:</string>
   <string name="select_storage_type">Vyberte spôsob uloženia:</string>
   <string name="filestoragename_file">Lokálny súbor</string>
@@ -455,10 +463,12 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (priečinok KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Túto možnosť si môžete vybrať, ak nechcete, aby mal KP2A úplný prístup k úložisku Dropbox. Bude sa vyžadovať iba prístup k priečinku Apps/Keepass2Android. Táto možnosť je vhodná pri vytváraní novej databázy. Ak už máte nejakú databázu, kliknite na túto možnosť pre vytvorenie nového priečinka, potom vložte súbor do priečinka (z PC) a potom znovu vyberte túto možnosť pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Systémový prehliadač súborov</string>
@@ -947,11 +957,11 @@ Prvé verejné vydanie
     <item>Heslo + odpoveď na výzvu</item>
     <item>Heslo + tajná odpoveď na výzvu (režim obnovenia)</item>
     <item>Heslo + odpoveď na výzvu ke Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Heslo + súbor s kľúčom + odpoveď na výzvu pre Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Heslo</item>
-    <item>Private/Public key</item>
+    <item>Súkromný/verejný kľúč</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovať zlyhania pri overení certifikátu</item>
