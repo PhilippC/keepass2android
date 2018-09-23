@@ -213,6 +213,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Arrel</string>
+  <string name="AutoReturnFromQuery_title">Tornar automàticament des de la pantalla de consulta</string>
   <string name="KeyDerivFunc">Funció clau de derivació</string>
   <string name="rounds">Passades d\'encriptació</string>
   <string name="rounds_explaination">Més passades d\'encriptació dónen protecció adicional contra atacs de força bruta, però poden alentir molt carregar i guardar la base de dades.</string>
@@ -294,6 +295,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="BinaryDirectory_summary">Directori on es guarden els fitxers adjunts.</string>
   <string name="SaveAttachmentDialog_title">Deseu el fitxer adjunt</string>
   <string name="SaveAttachmentDialog_text">Si us plau seleccioneu on voleu desar el fitxer adjunt.</string>
+  <string name="SaveAttachmentDialog_save">Exportar a fitxer...</string>
   <string name="SaveAttachmentDialog_open">Desa a la memòria cau i obre</string>
   <string name="ShowAttachedImage">Mostra amb visualitzador d\'imatges intern</string>
   <string name="SaveAttachment_doneMessage">Desat l\'arxiu a %1$s.</string>
@@ -443,6 +445,8 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="hint_http_url">URL de la carpeta o arxiu (ex: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Introduir dades de connexió de OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Introduir dades de connexió de Nextcloud:</string>
+  <string name="hint_nextcloud_url">URL de Nextcloud (ex: nextcloud.me.com)</string>
   <string name="hint_sftp_host">amfitrió (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Directori inicial (opcional):</string>
@@ -458,6 +462,7 @@ Això emmagatzemarà la contrasenya mestra d\'aquest
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta de KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no voleu donar accés KP2A al seu Dropbox complet, podeu seleccionar aquesta opció. Es sol·licitarà només l\'accés a la carpeta Apps/Keepass2Android. Això és especialment adequat quan es crea una nova base de dades. Si ja teniu una base de dades, feu clic a aquesta opció per crear la carpeta, a continuació, posar el seu arxiu dins la carpeta (des del seu PC) i llavors seleccioni aquesta opció nou per obrir l\'arxiu.</string>
