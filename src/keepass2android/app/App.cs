@@ -338,7 +338,6 @@ namespace keepass2android
 	                LockDatabase(false);
                     activity.SetResult(KeePass.ExitReloadDb);
                     activity.Finish();
-					//todo: return?
                 }
 	            AskForReload(activity);
             }
@@ -977,6 +976,7 @@ namespace keepass2android
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
 	            mChannel.SetSound(null, null);
+	            mChannel.SetShowBadge(false);
 	            mNotificationManager.CreateNotificationChannel(mChannel);
 	        }
 
@@ -989,6 +989,7 @@ namespace keepass2android
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
 	            mChannel.SetSound(null, null);
+	            mChannel.SetShowBadge(false);
                 mNotificationManager.CreateNotificationChannel(mChannel);
 	        }
 
@@ -1001,6 +1002,7 @@ namespace keepass2android
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
 	            mChannel.SetSound(null, null);
+	            mChannel.SetShowBadge(false);
                 mNotificationManager.CreateNotificationChannel(mChannel);
 	        }
         }
