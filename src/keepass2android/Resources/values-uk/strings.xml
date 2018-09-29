@@ -338,7 +338,7 @@
   <string name="CreateBackups_summary">Створювати локальну резервну копію після успішного завантаження бази.</string>
   <string name="UpdatingBackup">Оновлення локальної резервної копії...</string>
   <string name="LocalBackupOf">Локальна резервна копія %1$s</string>
-  <string name="show_local_backups">Показати резервні копії</string>
+  <string name="show_local_backups">Показати локальні резервні копії</string>
   <string name="AcceptAllServerCertificates_title">SSL-сертифікати</string>
   <string name="AcceptAllServerCertificates_summary">Визначають поведінку, коли перевірка сертифікату не вдалася. Примітка: ви можете встановити сертифікати на пристрої, якщо перевірка не вдалася!</string>
   <string name="ClearOfflineCache_title">Очистити кеш?</string>
