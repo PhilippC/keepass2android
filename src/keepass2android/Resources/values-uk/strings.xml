@@ -213,6 +213,8 @@
   <string name="edit">Змінити</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Корінь</string>
+  <string name="AutoReturnFromQuery_title">Автоматично повертати з екрана черги</string>
+  <string name="AutoReturnFromQuery_summary">При пошуку запису для програми чи веб-сайту: автоматично повертати з екрана черги, якщо там лише один відповідний запис бази даних.</string>
   <string name="KeyDerivFunc">Функція походження ключа</string>
   <string name="rounds">Циклів шифрування</string>
   <string name="rounds_explaination">Більша кількість циклів шифрування забезпечує додатковий захист від грубих атак, але може значно сповільнити завантаження та збереження.</string>
@@ -294,6 +296,7 @@
   <string name="BinaryDirectory_summary">Каталог збереження вкладених файлів.</string>
   <string name="SaveAttachmentDialog_title">Збереження вкладення</string>
   <string name="SaveAttachmentDialog_text">Будь ласка, виберіть місце для збереження вкладення.</string>
+  <string name="SaveAttachmentDialog_save">Експорт у файл...</string>
   <string name="SaveAttachmentDialog_open">Зберегти до кешу й відкрити</string>
   <string name="ShowAttachedImage">Показати за допомогою вбудованої програми перегляду зображень</string>
   <string name="SaveAttachment_doneMessage">Файл збережено до %1$s.</string>
@@ -320,6 +323,8 @@
   <string name="ClearPasswordOnLeave_summary">Стирати введений головний пароль, якщо база даних не розблокована.</string>
   <string name="LockWhenNavigateBack_title">Блокувати при виході з програми</string>
   <string name="LockWhenNavigateBack_summary">Блокувати базу даних при виході з програми натисканням кнопки \"назад\".</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Використовувати вбудовану клавіатуру Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Якщо ви не довіряєте провайдеру вашої клавіатури, встановіть цю опцію, щоб використовувати вбудовану клавіатуру для введення головного пароля чи редагування записів.</string>
   <string name="ActivateSearchViewOnStart_title">Активувати поле пошуку при запуску</string>
   <string name="ActivateSearchViewOnStart_summary">Активує поле пошуку в груповому вигляді після розблокування чи пошуку запису</string>
   <string name="NoDonateOption_title">Приховати опцію внеску</string>
@@ -441,10 +446,14 @@
   <string name="hint_http_url">URL-адреса теки чи файлу (н-д: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Введіть дані входу OwnCloud:</string>
   <string name="hint_owncloud_url">URL-адреса OwnCloud (н-д: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Введіть облікові дані Nextcloud:</string>
+  <string name="hint_nextcloud_url">URL-адреса Nextcloud (наприклад: nextcloud.me.com)</string>
   <string name="hint_sftp_host">хост (наприклад: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
   <string name="initial_directory">Початковий каталог (необов\'язково):</string>
   <string name="enter_sftp_login_title">Введіть дані входу SFTP:</string>
+  <string name="sftp_auth_mode">Режим перевірки</string>
+  <string name="send_public_key">Надіслати публічний ключ...</string>
   <string name="enter_ftp_login_title">Введіть дані входу FTP:</string>
   <string name="select_storage_type">Виберіть тип сховища:</string>
   <string name="filestoragename_file">Локальний файл</string>
@@ -454,6 +463,7 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
@@ -947,11 +957,11 @@ Initial public release
     <item>Пароль + Виклик-Відповідь</item>
     <item>Пароль + секрет Виклику-Відповіді (режим відновлення)</item>
     <item>Password + Challenge-Response для Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Пароль + Ключовий файл + Challenge-Response для Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Пароль</item>
-    <item>Private/Public key</item>
+    <item>Приватний/Публічний ключ</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ігнорувати помилки перевірки сертифіката</item>
