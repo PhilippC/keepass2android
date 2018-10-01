@@ -39,8 +39,30 @@ namespace keepass2android
 {
 	
 	public class Util {
-	    
-	    public static Bitmap DrawableToBitmap(Drawable drawable)
+
+	    public const String KeyFilename = "fileName";
+	    public const String KeyServerusername = "serverCredUser";
+	    public const String KeyServerpassword = "serverCredPwd";
+	    public const String KeyServercredmode = "serverCredRememberMode";
+
+
+        public static void PutIoConnectionToIntent(IOConnectionInfo ioc, Intent i)
+	    {
+	        i.PutExtra(KeyFilename, ioc.Path);
+	        i.PutExtra(KeyServerusername, ioc.UserName);
+	        i.PutExtra(KeyServerpassword, ioc.Password);
+	        i.PutExtra(KeyServercredmode, (int)ioc.CredSaveMode);
+	    }
+
+	    public static void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent i)
+	    {
+	        ioc.Path = i.GetStringExtra(KeyFilename);
+	        ioc.UserName = i.GetStringExtra(KeyServerusername) ?? "";
+	        ioc.Password = i.GetStringExtra(KeyServerpassword) ?? "";
+	        ioc.CredSaveMode = (IOCredSaveMode)i.GetIntExtra(KeyServercredmode, (int)IOCredSaveMode.NoSave);
+	    }
+
+        public static Bitmap DrawableToBitmap(Drawable drawable)
 		{
 			Bitmap bitmap = null;
 

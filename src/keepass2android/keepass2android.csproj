@@ -254,6 +254,7 @@
     <Compile Include="settings\Argon2Preference.cs" />
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
     <Compile Include="intents\Intents.cs" />
+    <Compile Include="StackBaseActivity.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="GroupActivity.cs" />
     <Compile Include="GroupBaseActivity.cs" />

@@ -86,7 +86,7 @@ namespace keepass2android
 
 		protected override void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent data)
 		{
-			PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+			Util.SetIoConnectionFromIntent(ioc, data);
 		}
 
 		protected override Result ExitFileStorageSelectionOk
@@ -148,7 +148,7 @@ namespace keepass2android
 		protected override void ReturnOk(IOConnectionInfo ioc)
 		{
 			Intent intent = new Intent();
-			PasswordActivity.PutIoConnectionToIntent(ioc, intent);
+			Util.PutIoConnectionToIntent(ioc, intent);
 			SetResult(Result.Ok, intent);
 			Finish();
 		}

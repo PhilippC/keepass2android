@@ -110,6 +110,7 @@ namespace keepass2android
 		{
 			base.OnResume();
 			_design.ReapplyTheme();
-		}
+		}
+
 	}
 }

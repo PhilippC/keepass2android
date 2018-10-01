@@ -84,14 +84,10 @@ namespace keepass2android
 
 		public const String KeyDefaultFilename = "defaultFileName";
 
-		public const String KeyFilename = "fileName";
-		private const String KeyKeyfile = "keyFile";
-		private const String KeyPassword = "password";
-		public const String KeyServerusername = "serverCredUser";
-		public const String KeyServerpassword = "serverCredPwd";
-		public const String KeyServercredmode = "serverCredRememberMode";
+	    private const String KeyKeyfile = "keyFile";
+	    private const String KeyPassword = "password";
 
-		private const String ViewIntent = "android.intent.action.VIEW";
+        private const String ViewIntent = "android.intent.action.VIEW";
 		private const string ShowpasswordKey = "ShowPassword";
 		private const string KeyProviderIdOtp = "KP2A-OTP";
 		private const string KeyProviderIdOtpRecovery = "KP2A-OTPSecret";
@@ -161,23 +157,17 @@ namespace keepass2android
 		}
 
 
-		public static void PutIoConnectionToIntent(IOConnectionInfo ioc, Intent i)
-		{
-			i.PutExtra(KeyFilename, ioc.Path);
-			i.PutExtra(KeyServerusername, ioc.UserName);
-			i.PutExtra(KeyServerpassword, ioc.Password);
-			i.PutExtra(KeyServercredmode, (int)ioc.CredSaveMode);
-		}
-		
-		public static void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent i)
-		{
-			ioc.Path = i.GetStringExtra(KeyFilename);
-			ioc.UserName = i.GetStringExtra(KeyServerusername) ?? "";
-			ioc.Password = i.GetStringExtra(KeyServerpassword) ?? "";
-			ioc.CredSaveMode  = (IOCredSaveMode)i.GetIntExtra(KeyServercredmode, (int) IOCredSaveMode.NoSave);
-		}
+        //can be set before launching the Activity. Will be used once to immediately open the database
+        static CompositeKey compositeKeyForImmediateLoad = null;
 
-		public static void Launch(Activity act, String fileName, AppTask appTask)  {
+	    public static void Launch(Activity act, IOConnectionInfo ioc, AppTask appTask, CompositeKey compositeKey)
+	    {
+	        compositeKeyForImmediateLoad = compositeKey;
+	        Launch(act, ioc, appTask);
+	    }
+
+        public static void Launch(Activity act, String fileName, AppTask appTask)
+        {
 			File dbFile = new File(fileName);
 			if ( ! dbFile.Exists() ) {
 				throw new FileNotFoundException();
@@ -186,7 +176,7 @@ namespace keepass2android
 			
 			Intent i = new Intent(act, typeof(PasswordActivity));
 			i.SetFlags(ActivityFlags.ForwardResult);
-			i.PutExtra(KeyFilename, fileName);
+			i.PutExtra(Util.KeyFilename, fileName);
 			appTask.ToIntent(i);
 
 			act.StartActivity(i);
@@ -203,8 +193,8 @@ namespace keepass2android
 			}
 
 			Intent i = new Intent(act, typeof(PasswordActivity));
-			
-			PutIoConnectionToIntent(ioc, i);
+
+		    Util.PutIoConnectionToIntent(ioc, i);
 			i.SetFlags(ActivityFlags.ForwardResult);
 
 			appTask.ToIntent(i);
@@ -215,7 +205,8 @@ namespace keepass2android
 
 		public void LaunchNextActivity()
 		{
-			AppTask.AfterUnlockDatabase(this);
+            //StackBaseActivity will launch the next activity
+		    Finish();
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -228,71 +219,12 @@ namespace keepass2android
 
 			switch(resultCode) {
 
-				case KeePass.ExitNormal: // Returned to this screen using the Back key
-					if (PreferenceManager.GetDefaultSharedPreferences(this)
-						                 .GetBoolean(GetString(Resource.String.LockWhenNavigateBack_key), false))
-					{
-						App.Kp2a.LockDatabase();	
-					}
-					//by leaving the app with the back button, the user probably wants to cancel the task
-					//The activity might be resumed (through Android's recent tasks list), then use a NullTask:
-					AppTask = new NullTask();
-					Finish();
-					break;
-				case KeePass.ExitLock:
-					// The database has already been locked, and the quick unlock screen will be shown if appropriate
-
-					_rememberKeyfile = _prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default)); //update value
-					if (KeyProviderHasKeyFile() && (_rememberKeyfile))
-					{
-						//check if the keyfile was changed (by importing to internal directory)
-						var newKeyProviderString = LoadKeyProviderStringForIoc(_ioConnection.Path);
-						if (newKeyProviderString != GetKeyProviderString())
-						{
-							SetKeyProviderFromString(newKeyProviderString);
-							UpdateKeyfileIocView();
-						}
-					}
-					break;
-				case KeePass.ExitCloseAfterTaskComplete:
-					// Do not lock the database
-					SetResult(KeePass.ExitCloseAfterTaskComplete);
-					Finish();
-					break;
-				case KeePass.ExitClose:
-					SetResult(KeePass.ExitClose);
-					Finish();
-					break;
-				case KeePass.ExitReloadDb:
-					
-					if (App.Kp2a.GetDb().Loaded)
-					{
-						//remember the composite key for reloading:
-						var compositeKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
-
-						//lock the database:
-						App.Kp2a.LockDatabase(false);
-
-
-						//reload the database (without most other stuff performed in PerformLoadDatabase.
-						// We're assuming that the db file (and if appropriate also the key file) are still available 
-						// and there's no need to re-init the file storage. if it is, loading will fail and the user has 
-						// to retry with typing the full password, but that's intended to avoid showing the password to a 
-						// a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
-						Handler handler = new Handler();
-						OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
-						_performingLoad = true;
-						LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish);
-						_loadDbFileTask = null; // prevent accidental re-use
-						new ProgressTask(App.Kp2a, this, task).Run();
-					}
-					
-					break;
+				
 				case Result.Ok:
 					if (requestCode == RequestCodeSelectKeyfile) 
 					{
 						IOConnectionInfo ioc = new IOConnectionInfo();
-						SetIoConnectionFromIntent(ioc, data);
+					    Util.SetIoConnectionFromIntent(ioc, data);
 						_keyFile = IOConnectionInfo.SerializeToString(ioc);
 						UpdateKeyfileIocView();
 					}
@@ -330,7 +262,7 @@ namespace keepass2android
 			if (requestCode == RequestCodeSelectAuxFile && resultCode == Result.Ok)
 			{
 				IOConnectionInfo auxFileIoc = new IOConnectionInfo();
-				SetIoConnectionFromIntent(auxFileIoc, data);
+			    Util.SetIoConnectionFromIntent(auxFileIoc, data);
 				
 				PreferenceManager.GetDefaultSharedPreferences(this).Edit()
 				                 .PutString("KP2A.PasswordAct.AuxFileIoc" + IOConnectionInfo.SerializeToString(_ioConnection), 
@@ -779,7 +711,7 @@ namespace keepass2android
 			}
 			else
 			{
-				SetIoConnectionFromIntent(_ioConnection, i);
+			    Util.SetIoConnectionFromIntent(_ioConnection, i);
 				var keyFileFromIntent = i.GetStringExtra(KeyKeyfile);
 				if (keyFileFromIntent != null)
 				{
@@ -1886,14 +1818,11 @@ namespace keepass2android
 			{
 				if (App.Kp2a.DatabaseIsUnlocked)
 				{
-					LaunchNextActivity();
+					Finish();
 				}
 				else if (App.Kp2a.QuickUnlockEnabled && App.Kp2a.QuickLocked)
 				{
-					var i = new Intent(this, typeof (QuickUnlock));
-					PutIoConnectionToIntent(_ioConnection, i);
-					Kp2aLog.Log("Starting QuickUnlock");
-					StartActivityForResult(i, 0);
+				    Finish();
 				}
 				else
 				{
@@ -1917,30 +1846,52 @@ namespace keepass2android
 				}
 			}
 
-			bool showKeyboard = (Util.GetShowKeyboardDuringFingerprintUnlock(this));
+		    if (compositeKeyForImmediateLoad != null)
+		    {
+		        //reload the database (without most other stuff performed in PerformLoadDatabase.
+		        // We're assuming that the db file (and if appropriate also the key file) are still available 
+		        // and there's no need to re-init the file storage. if it is, loading will fail and the user has 
+		        // to retry with typing the full password, but that's intended to avoid showing the password to a 
+		        // a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
+		        Handler handler = new Handler();
+		        OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
+		        _performingLoad = true;
+		        LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
+		            onFinish);
+		        _loadDbFileTask = null; // prevent accidental re-use
+		        new ProgressTask(App.Kp2a, this, task).Run();
+		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
+
+		    }
+		    else
+		    {
 
 
-			if (_fingerprintPermissionGranted)
-			{
-				if (!InitFingerprintUnlock())
-					showKeyboard = true;
-			}
-			else
-			{
-				FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
-				showKeyboard = true;
-			}
-			
-			
-			EditText pwd = (EditText)FindViewById(Resource.Id.password_edit);
-			pwd.PostDelayed(() =>
-			{
-				InputMethodManager keyboard = (InputMethodManager)GetSystemService(InputMethodService);
-				if (showKeyboard)
-					keyboard.ShowSoftInput(pwd, 0);
-				else
-					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
-			}, 50);
+		        bool showKeyboard = (Util.GetShowKeyboardDuringFingerprintUnlock(this));
+
+
+		        if (_fingerprintPermissionGranted)
+		        {
+		            if (!InitFingerprintUnlock())
+		                showKeyboard = true;
+		        }
+		        else
+		        {
+		            FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
+		            showKeyboard = true;
+		        }
+
+
+		        EditText pwd = (EditText) FindViewById(Resource.Id.password_edit);
+		        pwd.PostDelayed(() =>
+		        {
+		            InputMethodManager keyboard = (InputMethodManager) GetSystemService(InputMethodService);
+		            if (showKeyboard)
+		                keyboard.ShowSoftInput(pwd, 0);
+		            else
+		                keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
+		        }, 50);
+		    }
 		}
 
 		private bool InitFingerprintUnlock()
@@ -2283,6 +2234,7 @@ namespace keepass2android
 				_fingerprintDec.StopListening();
 			
 		}
+
 	}
 
 

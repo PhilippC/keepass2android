@@ -62,14 +62,14 @@ namespace keepass2android
                 if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
                 {
                     var ioc = new IOConnectionInfo();
-                    PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+                    Util.SetIoConnectionFromIntent(ioc, data);
                     SaveFile(ioc);
                     return true;
                 }
                 if (resultCode == (Result)FileStorageResults.FileChooserPrepared)
                 {
                     IOConnectionInfo ioc = new IOConnectionInfo();
-                    PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+                    Util.SetIoConnectionFromIntent(ioc, data);
                     new FileSelectHelper(_activity, true, _requestCode).StartFileChooser(ioc.Path);
                     return true;
                 }

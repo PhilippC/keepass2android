@@ -949,7 +949,7 @@ namespace keepass2android
                         builder
                             .SetMessage(Resource.String.DatabaseFileMoved);
                         builder.SetPositiveButton(Android.Resource.String.Ok, (sender, args) =>
-                                                                              PasswordActivity.Launch(Activity, newIoc, new NullTask()));
+                                                                              PasswordActivity.Launch(Activity, newIoc, new NullTask(), App.Kp2a.GetDb().KpDatabase.MasterKey));
                         builder.Show();
 
                     };

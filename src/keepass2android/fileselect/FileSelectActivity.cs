@@ -415,14 +415,14 @@ namespace keepass2android
 			if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
-				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+				Util.SetIoConnectionFromIntent(ioc, data);
 				LaunchPasswordActivityForIoc(ioc);
 			}
 
 			if ((resultCode == Result.Ok) && (requestCode == RequestCodeSelectIoc))
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
-				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+				Util.SetIoConnectionFromIntent(ioc, data);
 				LaunchPasswordActivityForIoc(ioc);
 			}
 		    

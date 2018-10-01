@@ -44,10 +44,10 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			outState.PutString(PasswordActivity.KeyFilename, _ioc.Path);
-			outState.PutString(PasswordActivity.KeyServerusername, _ioc.UserName);
-			outState.PutString(PasswordActivity.KeyServerpassword, _ioc.Password);
-			outState.PutInt(PasswordActivity.KeyServercredmode, (int)_ioc.CredSaveMode);
+			outState.PutString(Util.KeyFilename, _ioc.Path);
+			outState.PutString(Util.KeyServerusername, _ioc.UserName);
+			outState.PutString(Util.KeyServerpassword, _ioc.Password);
+			outState.PutInt(Util.KeyServercredmode, (int)_ioc.CredSaveMode);
 
 			if (_keyfileFilename != null)
 				outState.PutString(KeyfilefilenameBundleKey, _keyfileFilename);
@@ -82,14 +82,14 @@ namespace keepass2android
 					keyfileCheckbox.Checked = true;
 				}
 
-				if (bundle.GetString(PasswordActivity.KeyFilename, null) != null)
+				if (bundle.GetString(Util.KeyFilename, null) != null)
 				{
 					_ioc = new IOConnectionInfo
 						{
-							Path = bundle.GetString(PasswordActivity.KeyFilename),
-							UserName = bundle.GetString(PasswordActivity.KeyServerusername),
-							Password = bundle.GetString(PasswordActivity.KeyServerpassword),
-							CredSaveMode = (IOCredSaveMode) bundle.GetInt(PasswordActivity.KeyServercredmode),
+							Path = bundle.GetString(Util.KeyFilename),
+							UserName = bundle.GetString(Util.KeyServerusername),
+							Password = bundle.GetString(Util.KeyServerpassword),
+							CredSaveMode = (IOCredSaveMode) bundle.GetInt(Util.KeyServercredmode),
 						};
 				}
 			}
@@ -435,13 +435,13 @@ namespace keepass2android
 			if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
 			{
 				_ioc = new IOConnectionInfo();
-				PasswordActivity.SetIoConnectionFromIntent(_ioc, data);
+				Util.SetIoConnectionFromIntent(_ioc, data);
 				UpdateIocView();
 			}
 			if (resultCode == (Result)FileStorageResults.FileChooserPrepared)
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
-				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+				Util.SetIoConnectionFromIntent(ioc, data);
 				
 				new FileSelectHelper(this, true, RequestCodeDbFilename) { DefaultExtension = "kdbx" }
 					.StartFileChooser(ioc.Path);

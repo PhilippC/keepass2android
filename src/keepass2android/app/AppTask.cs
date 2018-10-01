@@ -185,9 +185,7 @@ namespace keepass2android
 	        }
 	    }
 
-        
-
-		public virtual void AfterUnlockDatabase(PasswordActivity act)
+		public virtual void LaunchFirstGroupActivity(Activity act)
 		{
 			GroupActivity.Launch(act, this);
 		}
@@ -401,7 +399,7 @@ namespace keepass2android
 
         public bool AutoReturnFromQuery { get; set; }
 
-	    public override void AfterUnlockDatabase(PasswordActivity act)
+	    public override void LaunchFirstGroupActivity(Activity act)
 		{
 			if (String.IsNullOrEmpty(UrlToSearchFor))
 			{

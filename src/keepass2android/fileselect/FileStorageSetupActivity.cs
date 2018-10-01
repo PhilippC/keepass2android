@@ -42,7 +42,7 @@ namespace keepass2android.fileselect
 			SetContentView(Resource.Layout.file_storage_setup);
 
 			Ioc = new IOConnectionInfo();
-			PasswordActivity.SetIoConnectionFromIntent(Ioc, Intent);
+			Util.SetIoConnectionFromIntent(Ioc, Intent);
 
 			Kp2aLog.Log("FSSA.OnCreate with " + Ioc.Path);
 

@@ -236,44 +236,10 @@ namespace keepass2android
 			}
 		}
 
-		IOConnectionInfo LoadIoc(string defaultFileName)
-		{
-			return App.Kp2a.FileDbHelper.CursorToIoc(App.Kp2a.FileDbHelper.FetchFileByName(defaultFileName));
-		}
 
 		private void LaunchNextActivity() {
 
-			
-
-			if (!App.Kp2a.GetDb().Loaded)
-			{
-				// Load default database
-				ISharedPreferences prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(this);
-				String defaultFileName = prefs.GetString(PasswordActivity.KeyDefaultFilename, "");
-
-				if (defaultFileName.Length > 0)
-				{
-					try
-					{
-						PasswordActivity.Launch(this, LoadIoc(defaultFileName), _appTask);
-						Finish();
-						return;
-					}
-					catch (Exception e)
-					{
-						Toast.MakeText(this, e.Message, ToastLength.Long);
-						// Ignore exception
-					}
-				}
-			}
-			else
-			{
-				PasswordActivity.Launch(this, App.Kp2a.GetDb().Ioc, _appTask);
-				Finish();
-				return;
-			}
-
-			Intent intent = new Intent(this, typeof(FileSelectActivity));
+            Intent intent = new Intent(this, typeof(StackBaseActivity));
 			_appTask.ToIntent(intent);
 			intent.AddFlags(ActivityFlags.ForwardResult);
 			StartActivity(intent);
