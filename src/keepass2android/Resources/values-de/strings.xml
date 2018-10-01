@@ -212,6 +212,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="edit">Bearbeiten</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Start</string>
+  <string name="AutoReturnFromQuery_title">Kehre automatisch vom Abfragebildschirm zurück</string>
   <string name="KeyDerivFunc">Schlüsselableitungsfunktion</string>
   <string name="rounds">Schlüsseltransformationen</string>
   <string name="rounds_explaination">Je höher die Anzahl der Schlüsseltransformationen, desto besser ist der Schutz gegen Wörterbuch- oder Brute-Force-Angriffe. Allerdings dauert dann auch das Laden und Speichern der Datenbank entsprechend länger.</string>
@@ -293,6 +294,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="BinaryDirectory_summary">Verzeichnis, in dem Datei-Anhänge gespeichert werden.</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
   <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
+  <string name="SaveAttachmentDialog_save">In Datei exportieren...</string>
   <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
   <string name="ShowAttachedImage">Mit internem Bildbetrachter anzeigen</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
@@ -319,6 +321,8 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="ClearPasswordOnLeave_summary">Leere das Eingabefeld für das Master-Passwort, wenn der Passwort-Eingabebildschirm verlassen wird, ohne dass die Datenbank entsperrt wurde.</string>
   <string name="LockWhenNavigateBack_title">Beim Verlassen der App sperren</string>
   <string name="LockWhenNavigateBack_summary">Datenbank sperren, wenn die App mit dem Zurück-Knopf verlassen wird.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Benutze Built-In-Tastatur in Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Wenn Sie ihrer Standardtastatur nicht vertrauen, setzen Sie diese Option, um die Built-In-Tastatur beim Eingeben des Masterpassworts oder beim Bearbeiten von Einträgen zu benutzen.</string>
   <string name="ActivateSearchViewOnStart_title">Suchfeld beim Start aktivieren</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
@@ -440,10 +444,14 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="hint_http_url">URL des Ordners oder der Datei (z.B. mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloud-Zugangsdaten eingeben:</string>
   <string name="hint_owncloud_url">OwnCloud-URL (z.B. owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Nextcloud Logindaten eingeben:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (Beispiel: nextcloud.me.com)</string>
   <string name="hint_sftp_host">Host (z.B. 192.168.0.1)</string>
   <string name="hint_sftp_port">Port</string>
   <string name="initial_directory">Startverzeichnis (optional):</string>
   <string name="enter_sftp_login_title">SFTP-Zugangsdaten eingeben:</string>
+  <string name="sftp_auth_mode">Authentifizierungsmodus</string>
+  <string name="send_public_key">Sende öffentlichen Schlüssel...</string>
   <string name="enter_ftp_login_title">FTP-Zugangsdaten eingeben:</string>
   <string name="select_storage_type">Speichertyp wählen:</string>
   <string name="filestoragename_file">Lokale Datei</string>
@@ -453,6 +461,7 @@ Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, kannst du diese Option wählen um den Ordner anzulegen, und dann die Datei (vom PC aus) in den neuen Ordner kopieren. Wähle die Option dann nochmal zum Laden der Datei.</string>
