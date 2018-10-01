@@ -290,6 +290,7 @@
   <string name="BinaryDirectory_summary">Каталог для сохранения вложенных файлов.</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
   <string name="SaveAttachmentDialog_text">Пожалуйста выберите, куда следует сохранить вложение.</string>
+  <string name="SaveAttachmentDialog_save">Экспорт в файл...</string>
   <string name="SaveAttachmentDialog_open">Сохранить в кэш и открыть</string>
   <string name="ShowAttachedImage">Показать с помощью встроенной программы просмотра изображений</string>
   <string name="SaveAttachment_doneMessage">Файл сохранён в %1$s.</string>
@@ -441,6 +442,7 @@
   <string name="hint_sftp_port">порт</string>
   <string name="initial_directory">Исходный каталог (необязательно):</string>
   <string name="enter_sftp_login_title">Введите данные SFTP логина:</string>
+  <string name="send_public_key">Отправить публичный ключ...</string>
   <string name="enter_ftp_login_title">Введите данные входа (FTP):</string>
   <string name="select_storage_type">Выберите тип хранилища:</string>
   <string name="filestoragename_file">Локальный файл</string>
@@ -908,11 +910,11 @@
     <item>Пароль + Вызов-Ответ</item>
     <item>Пароль + секретный Вызов-Ответ (режим восстановления)</item>
     <item>Password + Challenge-Response для Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Пароль+ Ключ файл + Challenge-Response для Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Пароль</item>
-    <item>Private/Public key</item>
+    <item>Приватный/Публичный ключ</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Игнорировать ошибки проверки сертификата</item>
