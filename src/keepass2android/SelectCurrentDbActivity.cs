@@ -20,7 +20,7 @@ using KeePassLib.Serialization;
 namespace keepass2android
 {
     [Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue", LaunchMode = LaunchMode.SingleInstance)]
-    public class StackBaseActivity : Activity
+    public class SelectCurrentDbActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

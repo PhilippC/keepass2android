@@ -239,7 +239,7 @@ namespace keepass2android
 
 		private void LaunchNextActivity() {
 
-            Intent intent = new Intent(this, typeof(StackBaseActivity));
+            Intent intent = new Intent(this, typeof(SelectCurrentDbActivity));
 			_appTask.ToIntent(intent);
 			intent.AddFlags(ActivityFlags.ForwardResult);
 			StartActivity(intent);

@@ -27,10 +27,7 @@ namespace keepass2android
 {
 	
 	public class CreateDb : RunnableOnFinish {
-		
-		private const ulong DefaultEncryptionRounds = PwDefs.DefaultKeyEncryptionRounds;
-		
-		private readonly IOConnectionInfo _ioc;
+	    private readonly IOConnectionInfo _ioc;
 		private readonly bool _dontSave;
 		private readonly Activity _ctx;
         private readonly IKp2aApp _app;
