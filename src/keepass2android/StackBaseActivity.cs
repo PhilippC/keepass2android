@@ -46,7 +46,7 @@ namespace keepass2android
             base.OnResume();
             if (!IsFinishing)
             {
-                if (!App.Kp2a.GetDb().Loaded)
+                if (App.Kp2a.GetDb() == null)
                 {
                     // Load default database
                     ISharedPreferences prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(this);
@@ -128,7 +128,7 @@ namespace keepass2android
                     break;
                 case KeePass.ExitReloadDb:
 
-                    if (App.Kp2a.GetDb().Loaded)
+                    if (App.Kp2a.GetDb() != null)
                     {
                         //remember the composite key for reloading:
                         var compositeKey = App.Kp2a.GetDb().KpDatabase.MasterKey;

@@ -427,7 +427,7 @@ namespace keepass2android
 
 		private void CheckIfUnloaded()
 		{
-			if ((App.Kp2a.GetDb() == null) || (App.Kp2a.GetDb().Loaded == false))
+			if (App.Kp2a.GetDb() == null)
 			{
 				Finish();
 			}

@@ -83,7 +83,7 @@ namespace keepass2android
 		
 		public static void Resume(Activity act) 
 		{
-			if ( App.Kp2a.GetDb().Loaded ) 
+			if ( App.Kp2a.GetDb() != null) 
 			{
 				Timeout.Cancel(act);
 			}

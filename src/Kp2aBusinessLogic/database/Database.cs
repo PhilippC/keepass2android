@@ -45,7 +45,7 @@ namespace keepass2android
 		{
 			get
 			{
-				return KpDatabase == null ? null : KpDatabase.IOConnectionInfo;
+				return KpDatabase?.IOConnectionInfo;
 			}
 		}
 
@@ -73,8 +73,6 @@ namespace keepass2android
             _app = app;
 			CanWrite = true; //default
         }
-		
-		private bool _loaded;
 
         private bool _reloadRequested;
 		private IDatabaseFormat _databaseFormat = new KdbxDatabaseFormat(KdbxFormat.Default);
@@ -85,19 +83,9 @@ namespace keepass2android
             set { _reloadRequested = value; }
         }
 
-		public bool Loaded {
-			get { return _loaded;}
-			set { _loaded = value; }
-		}
-
 		public bool DidOpenFileChange()
 		{
-			if (Loaded == false)
-			{
-				return false;
-			}
 			return _app.GetFileStorage(Ioc).CheckForFileChangeFast(Ioc, LastFileVersion);
-			
 		}
 
 
@@ -112,32 +100,20 @@ namespace keepass2android
 			Stream s = databaseData ?? fileStorage.OpenFileForRead(iocInfo);
 			var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
 			PopulateDatabaseFromStream(pwDatabase, s, iocInfo, compositeKey, status, databaseFormat);
-			try
-			{
-				LastFileVersion = fileVersion;
+		    LastFileVersion = fileVersion;
 
-				status.UpdateSubMessage("");
+		    status.UpdateSubMessage("");
 
-				Root = pwDatabase.RootGroup;
-				PopulateGlobals(Root);
+		    Root = pwDatabase.RootGroup;
+		    PopulateGlobals(Root);
 
 				
-				KpDatabase = pwDatabase;
-				SearchHelper = new SearchDbHelper(app);
+		    KpDatabase = pwDatabase;
+		    SearchHelper = new SearchDbHelper(app);
 
-				_databaseFormat = databaseFormat;
+		    _databaseFormat = databaseFormat;
 
-				CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
-				Loaded = true;
-			}
-			catch (Exception)
-			{
-				Clear();				
-				throw;
-			}
-			
-
-			
+		    CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
 		}
 
 		/// <summary>
@@ -266,25 +242,8 @@ namespace keepass2android
 		{
 			PopulateGlobals(currentGroup, _app.CheckForDuplicateUuids);
 		}
-		
-		public void Clear() {
-			_loaded = false; 
-			
-			Groups.Clear();
-			Entries.Clear();
-			Dirty.Clear();
-			DrawableFactory.Clear();
-			
-			Root = null;
-			KpDatabase = null;
-			
-			CanWrite = true;
-			_reloadRequested = false;
-			OtpAuxFileIoc = null;
-		    LastOpenedEntry = null;
-		}
-		
-		public void MarkAllGroupsAsDirty() {
+
+	    public void MarkAllGroupsAsDirty() {
 			foreach ( PwGroup group in Groups.Values ) {
 				Dirty.Add(group);
 			}

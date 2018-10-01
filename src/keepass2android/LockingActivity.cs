@@ -43,35 +43,30 @@ namespace keepass2android
 	    {
 	        base.OnStart();
 
-	        if (App.Kp2a.GetDb().Loaded)
+	        var xcKey = App.Kp2a.GetDb()?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+	        if (xcKey != null)
 	        {
-	            var xcKey = App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
-	            if (xcKey != null)
-	            {
-	                xcKey.Activity = this;
-	                _currentlyWaitingKey = xcKey;
-
-	            }
+	            xcKey.Activity = this;
+	            _currentlyWaitingKey = xcKey;
 
 	        }
 
-        }
+
+
+	    }
 
 	    protected override void OnStop()
 	    {
 	        base.OnStop();
-	        if (App.Kp2a.GetDb().Loaded)
+	        var xcKey = App.Kp2a.GetDb()?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+	        if (xcKey != null)
 	        {
-	            var xcKey = App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
-	            if (xcKey != null)
-	            {
-                    //don't store a pointer to this activity in the static database object to avoid memory leak
-                    if (xcKey.Activity == this) //don't reset if another activity has come to foreground already
-	                    xcKey.Activity = null;
-	            }
-
+	            //don't store a pointer to this activity in the static database object to avoid memory leak
+	            if (xcKey.Activity == this) //don't reset if another activity has come to foreground already
+	                xcKey.Activity = null;
 	        }
-        }
+
+	    }
 
 	    protected override void OnPause() {
 			base.OnPause();

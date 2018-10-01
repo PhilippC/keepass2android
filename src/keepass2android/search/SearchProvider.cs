@@ -48,8 +48,6 @@ namespace keepass2android.search
 		private const string IconIdParameter = "IconId";
 		private const string CustomIconUuidParameter = "CustomIconUuid";
 
-		private Database _db;
-
 		private static UriMatcher UriMatcher = BuildUriMatcher();
 
 		static UriMatcher BuildUriMatcher()
@@ -65,7 +63,6 @@ namespace keepass2android.search
 
 		public override bool OnCreate()
 		{
-			_db = App.Kp2a.GetDb();
 			return true;
 		}
 
@@ -82,7 +79,7 @@ namespace keepass2android.search
 							try
 							{
 								var resultsContexts = new Dictionary<PwUuid, KeyValuePair<string, string>>();
-								var result = _db.Search(new SearchParameters { SearchString = searchString }, resultsContexts );
+								var result = App.Kp2a.GetDb().Search(new SearchParameters { SearchString = searchString }, resultsContexts );
 								return new GroupCursor(result, resultsContexts);
 							}
 							catch (Exception e)
@@ -120,8 +117,8 @@ namespace keepass2android.search
 					var iconId = (PwIcon)Enum.Parse(typeof(PwIcon), uri.GetQueryParameter(IconIdParameter));
 					var customIconUuid = new PwUuid(MemUtil.HexStringToByteArray(uri.GetQueryParameter(CustomIconUuidParameter)));
 
-					var iconDrawable = _db.DrawableFactory.GetIconDrawable(App.Context, _db.KpDatabase, iconId, customIconUuid, false) as BitmapDrawable;
-					if ((iconDrawable != null) && (iconDrawable.Bitmap != null))
+					var iconDrawable = App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(App.Context, App.Kp2a.GetDb().KpDatabase, iconId, customIconUuid, false) as BitmapDrawable;
+					if (iconDrawable?.Bitmap != null)
 
                     {
 						var pipe = ParcelFileDescriptor.CreatePipe();

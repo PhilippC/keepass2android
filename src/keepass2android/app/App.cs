@@ -102,19 +102,18 @@ namespace keepass2android
 	{
 		public void LockDatabase(bool allowQuickUnlock = true)
 		{
-			if (GetDb().Loaded)
+			if (GetDb() != null)
 			{
 				if (QuickUnlockEnabled && allowQuickUnlock &&
-					_db.KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&
+					GetDb().KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&
 					!((KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword))).Password.IsEmpty)
 				{
 					if (!QuickLocked)
 					{
 						Kp2aLog.Log("QuickLocking database");
-						BroadcastDatabaseAction(Application.Context, Strings.ActionLockDatabase);
-
-						QuickLocked = true;
-						_db.LastOpenedEntry = null;
+					    QuickLocked = true;
+					    GetDb().LastOpenedEntry = null;
+                        BroadcastDatabaseAction(Application.Context, Strings.ActionLockDatabase);
 					}
 					else
 					{
@@ -127,8 +126,8 @@ namespace keepass2android
 
 					BroadcastDatabaseAction(Application.Context, Strings.ActionCloseDatabase);
 
-					// Couldn't quick-lock, so unload database instead
-					_db.Clear();
+                    // Couldn't quick-lock, so unload database instead
+				    _db = null;
 					QuickLocked = false;
 				}
 			}
@@ -181,7 +180,7 @@ namespace keepass2android
 	            memoryStream.Seek(0, SeekOrigin.Begin);
 	        }
 
-
+	        _db = CreateNewDatabase();
 	        _db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
 
 		    if (createBackup)
@@ -259,7 +258,7 @@ namespace keepass2android
         
 		public bool DatabaseIsUnlocked
 		{
-			get { return _db.Loaded && !QuickLocked; }
+			get { return GetDb() != null && !QuickLocked; }
 		}
 
 		#region QuickUnlock
@@ -300,11 +299,6 @@ namespace keepass2android
 
 		public Database GetDb()
         {
-            if (_db == null)
-            {
-                _db = CreateNewDatabase();
-            }
-
             return _db;
         }
 
@@ -331,9 +325,9 @@ namespace keepass2android
 
         public void CheckForOpenFileChanged(Activity activity)
         {
-            if (_db.DidOpenFileChange())
+            if (GetDb()?.DidOpenFileChange() == true)
             {
-                if (_db.ReloadRequested)
+                if (GetDb().ReloadRequested)
                 {
 	                LockDatabase(false);
                     activity.SetResult(KeePass.ExitReloadDb);
@@ -353,7 +347,7 @@ namespace keepass2android
 			builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes),
 				(dlgSender, dlgEvt) =>
 				{
-					_db.ReloadRequested = true;
+				    GetDb().ReloadRequested = true;
 					activity.SetResult(KeePass.ExitReloadDb);
 					activity.Finish();
 
@@ -729,15 +723,14 @@ namespace keepass2android
 
 		internal void OnTerminate()
         {
-            if (_db != null)
-            {
-                _db.Clear();
-            }
-
+            
+            _db = null;
+            
             if (FileDbHelper != null && FileDbHelper.IsOpen())
             {
                 FileDbHelper.Close();
             }
+            GC.Collect();
         }
 
         internal void OnCreate(Application app)

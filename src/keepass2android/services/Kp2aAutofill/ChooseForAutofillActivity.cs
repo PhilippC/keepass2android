@@ -39,7 +39,7 @@ namespace keepass2android.services.Kp2aAutofill
 
         protected override FilledAutofillFieldCollection GetDataset(Intent data)
         {
-            if (!App.Kp2a.GetDb().Loaded || (App.Kp2a.QuickLocked))
+            if (App.Kp2a.GetDb()==null || (App.Kp2a.QuickLocked))
                 return null;
             var entryOutput = App.Kp2a.GetDb().LastOpenedEntry;
 

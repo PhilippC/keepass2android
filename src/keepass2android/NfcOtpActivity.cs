@@ -93,7 +93,7 @@ namespace keepass2android
 				return;
 			}
 
-			if (App.Kp2a.GetDb().Loaded)
+			if (App.Kp2a.GetDb() != null)
 			{
 				Toast.MakeText(this, GetString(Resource.String.otp_discarded_because_db_open), ToastLength.Long).Show();
 			}

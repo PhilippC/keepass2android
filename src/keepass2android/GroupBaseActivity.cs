@@ -407,7 +407,7 @@ namespace keepass2android
             AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
             // Likely the app has been killed exit the activity 
-            if (!App.Kp2a.GetDb().Loaded)
+            if (App.Kp2a.GetDb() == null)
             {
                 Finish();
                 return;

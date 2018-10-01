@@ -461,7 +461,7 @@ namespace keepass2android
 			Kp2aLog.Log("FileSelect.OnStart");
 
 			var db = App.Kp2a.GetDb();
-			if (db.Loaded)
+			if (db != null)
 			{
 				LaunchPasswordActivityForIoc(db.Ioc);
 			}

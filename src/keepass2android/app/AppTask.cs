@@ -943,7 +943,7 @@ namespace keepass2android
 					PwUuid nextGroupPwUuid = new PwUuid (MemUtil.HexStringToByteArray (nextGroupUuid));
 
 					// Create Group Activity
-					PwGroup nextGroup = App.Kp2a.GetDb ().Groups [nextGroupPwUuid];
+					PwGroup nextGroup = App.Kp2a.GetDb ().Groups[nextGroupPwUuid];
 					GroupActivity.Launch (groupBaseActivity, nextGroup, this);
 				}
 				return;

@@ -424,7 +424,7 @@ namespace keepass2android
 	        FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) => Activity.Recreate();
             
             Database db = App.Kp2a.GetDb();
-            if (db.Loaded)
+            if (db != null)
             {
 	            ListPreference kdfPref = (ListPreference) FindPreference(GetString(Resource.String.kdf_key));
 	            kdfPref.SetEntries(KdfPool.Engines.Select(eng => eng.Name).ToArray());
@@ -791,7 +791,7 @@ namespace keepass2android
         private void OnUseOfflineCacheChanged(object sender, Preference.PreferenceChangeEventArgs e)
         {
             //ensure the user gets a matching database
-            if (App.Kp2a.GetDb().Loaded && !App.Kp2a.GetDb().Ioc.IsLocalFile())
+            if (App.Kp2a.GetDb() != null && !App.Kp2a.GetDb().Ioc.IsLocalFile())
                 App.Kp2a.LockDatabase(false);
 
             if (!(bool)e.NewValue)

@@ -737,8 +737,7 @@ namespace keepass2android
 				}
 			}
 
-			if (App.Kp2a.GetDb().Loaded && App.Kp2a.GetDb().Ioc != null &&
-				App.Kp2a.GetDb().Ioc.GetDisplayName() != _ioConnection.GetDisplayName())
+			if (App.Kp2a.GetDb()?.Ioc != null && App.Kp2a.GetDb().Ioc.GetDisplayName() != _ioConnection.GetDisplayName())
 			{
 				// A different database is currently loaded, unload it before loading the new one requested
 				App.Kp2a.LockDatabase(false);
