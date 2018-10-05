@@ -291,6 +291,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="BinaryDirectory_summary">Directorio en donde se guardan los archivos adjuntos.</string>
   <string name="SaveAttachmentDialog_title">Guardar datos adjuntos</string>
   <string name="SaveAttachmentDialog_text">Por favor selecciona la ubicacíon donde guardar el archivo adjunto.</string>
+  <string name="SaveAttachmentDialog_save">Exportar a archivo...</string>
   <string name="SaveAttachmentDialog_open">Guardar en la caché y abrir</string>
   <string name="ShowAttachedImage">Mostrar con visor de imágenes interno</string>
   <string name="SaveAttachment_doneMessage">Archivo guardado en %1$s.</string>
@@ -962,5 +963,5 @@ Publicación inicial</string>
   <string name="backup_infotext_main">Keepass2Android guarda sus contraseñas en un archivo en una ubicación de su elección. ¿Está seguro de que aún puede acceder a este archivo cuando su teléfono se pierde o lo roban, o cuando el archivo es destruido o borrado? ¡Por favor, asegúrese de que siempre tiene una copia de seguridad actualizada en un lugar seguro!</string>
   <string name="backup_infotext_note">Para crear una copia de seguridad ahora, vaya a %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">¿Está preparado para casos de emergencia?</string>
-  <string name="emergency_infotext_main">¿Ha considerado alguna vez qué pasa si ya no eres capaz de acceder a su base de datos de contraseñas? ¿Qué pasa si tienes un accidente? Es una buena práctica pasar su llave maestra a alguna persona de confianza para casos de emergencia. Nadie tendrá acceso a sus contraseñas de otra manera.</string>
+  <string name="emergency_infotext_main">¿Ha considerado alguna vez qué pasa si ya no es capaz de acceder a su base de datos de contraseñas? ¿Qué pasa si tiene un accidente? Es una buena práctica pasar su llave maestra a alguna persona de confianza para casos de emergencia. Nadie tendrá acceso a sus contraseñas de otra manera.</string>
 </resources>
