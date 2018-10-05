@@ -443,6 +443,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="initial_directory">Directorio inicial (opcional):</string>
   <string name="enter_sftp_login_title">Introduzca los datos de acceso SFTP:</string>
   <string name="sftp_auth_mode">Modo de autenticación</string>
+  <string name="send_public_key">Enviar llave pública...</string>
   <string name="enter_ftp_login_title">Introducir datos de acceso FTP:</string>
   <string name="select_storage_type">Seleccione el tipo de almacenamiento:</string>
   <string name="filestoragename_file">Archivo local</string>
