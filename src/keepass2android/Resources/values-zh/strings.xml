@@ -209,6 +209,8 @@
   <string name="edit">编辑</string>
   <string name="rijndael">Rijndael 加密（AES）</string>
   <string name="root">管理员权限</string>
+  <string name="AutoReturnFromQuery_title">从查询屏幕自动返回</string>
+  <string name="AutoReturnFromQuery_summary">查找应用程序或网站的条目时：如果数据库中只有一个匹配的条目，则自动从查询屏幕返回。</string>
   <string name="KeyDerivFunc">密匙派生函数</string>
   <string name="rounds">加密次数</string>
   <string name="rounds_explaination">更高的加密次数能对暴力攻击提供额外保护，但也会增加加载和保存的时间。</string>
@@ -290,6 +292,7 @@
   <string name="BinaryDirectory_summary">附件所保存到的目录位置</string>
   <string name="SaveAttachmentDialog_title">保存附件</string>
   <string name="SaveAttachmentDialog_text">请选择保存该附件的位置。</string>
+  <string name="SaveAttachmentDialog_save">导出到文件...</string>
   <string name="SaveAttachmentDialog_open">保存到缓存并打开</string>
   <string name="ShowAttachedImage">在内部图像查看器中显示</string>
   <string name="SaveAttachment_doneMessage">保存文件到 %1$s 。</string>
@@ -316,6 +319,8 @@
   <string name="ClearPasswordOnLeave_summary">当没有解锁数据库就退出时，清除已输入的主密码。</string>
   <string name="LockWhenNavigateBack_title">离开应用时锁定</string>
   <string name="LockWhenNavigateBack_summary">当通过点按返回键离开本应用时锁定数据库</string>
+  <string name="UseKp2aKeyboardInKp2a_title">在Keepass2Android中使用内置键盘</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">如果您不信任标准键盘提供商，请在输入主密码或编辑条目时选中此选项以使用内置键盘。</string>
   <string name="ActivateSearchViewOnStart_title">启动时自动激活搜索区域</string>
   <string name="ActivateSearchViewOnStart_summary">当进入分组视图或开始搜索条目时自动将焦点转至搜索区域</string>
   <string name="NoDonateOption_title">隐藏捐赠选项</string>
@@ -437,10 +442,14 @@
   <string name="hint_http_url">文件夹或文件 URL (如: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">输入 OwnCloud 登录信息:</string>
   <string name="hint_owncloud_url">OwnCloud 地址 (例如: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">输入Nextcloud登录信息：</string>
+  <string name="hint_nextcloud_url">Nextcloud 网址(例如:nextcloud.me.com)</string>
   <string name="hint_sftp_host">主机（比如: 192.168.0.1）</string>
   <string name="hint_sftp_port">端口</string>
   <string name="initial_directory">初始目录 （可选）：</string>
   <string name="enter_sftp_login_title">输入 SFTP 登录数据：</string>
+  <string name="sftp_auth_mode">身份验证模式</string>
+  <string name="send_public_key">发送公钥...</string>
   <string name="enter_ftp_login_title">输入 FTP 登录数据:</string>
   <string name="select_storage_type">选择存储类型：</string>
   <string name="filestoragename_file">本地文件</string>
@@ -908,7 +917,7 @@ Initial public release
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>密码</item>
-    <item>Private/Public key</item>
+    <item>私钥/公钥</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>忽略证书验证失败</item>
