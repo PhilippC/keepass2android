@@ -915,7 +915,7 @@ Initial public release
     <item>密码 + 挑战—响应</item>
     <item>密码 + 挑战—响应（恢复模式）</item>
     <item>密码 + 挑战-应答（Keepass XC）</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>密码 + 密钥文件 + 挑战-应答（Keepass XC）</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>密码</item>
