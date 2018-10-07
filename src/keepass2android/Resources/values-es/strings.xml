@@ -210,6 +210,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="AutoReturnFromQuery_title">Volver automáticamente desde la pantalla de consulta</string>
+  <string name="AutoReturnFromQuery_summary">Al buscar una entrada para una aplicación o sitio web: volver automáticamente desde la pantalla de consulta si hay sólo una entrada coincidente en la base de datos.</string>
   <string name="KeyDerivFunc">Función de derivación de claves</string>
   <string name="rounds">Pasadas de Cifrado</string>
   <string name="rounds_explaination">Un alto número de pasadas de cifrado proporciona protección adicional contra ataques de fuerza bruta, pero puede ralentizar mucho el cargado y el guardado.</string>
@@ -318,6 +320,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="ClearPasswordOnLeave_summary">Limpiar contraseña maestra ingresada al salir de la pantalla, sin desbloquear la base de datos.</string>
   <string name="LockWhenNavigateBack_title">Bloquear al salir de la aplicación</string>
   <string name="LockWhenNavigateBack_summary">Bloquear base de datos al salir de la aplicación presionando el botón \"atrás\".</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Usar teclado incorporado dentro de Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Si usted no confía en su proveedor de teclado estándar, marque esta opción para utilizar el teclado incorporado para introducir su contraseña maestra o editar las entradas.</string>
   <string name="ActivateSearchViewOnStart_title">Activar campo de búsqueda en inicio</string>
   <string name="ActivateSearchViewOnStart_summary">Activa el campo de búsqueda en la vista de grupo después de desbloquear o al buscar una entrada</string>
   <string name="NoDonateOption_title">Esconder opción de donación</string>
@@ -439,6 +443,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="hint_http_url">URL de la carpeta o del archivo (ex: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Introduzca datos de usuario de OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ej: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Introducir datos de inicio de sesión de Nextcloud:</string>
+  <string name="hint_nextcloud_url">URL de OwnCloud (ej: owncloud.me.com)</string>
   <string name="hint_sftp_host">host (ejemplo: 192.168.0.1)</string>
   <string name="hint_sftp_port">Puerto</string>
   <string name="initial_directory">Directorio inicial (opcional):</string>
@@ -454,10 +460,12 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no quieres que KP2A acceda a todo tu contenido en Dropbox, selecciona esta opción. Solicitará acceso sólo a la carpeta Apps/Keepass2Android. Esta opción esta especialmente pensada para cuándo se crea una nueva base de datos. Si tienes una base de datos pre-existente, haz click en esta opción para crear la carpeta. Luego mueve el archivo hasta esta carpeta (desde tu computador) y finalmente selecciona esta opción nuevamente para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferencia de archivos)</string>
   <string name="filestoragename_content">Selector de archivo del sistema</string>
@@ -934,11 +942,11 @@ Publicación inicial</string>
     <item>Contraseña + desafío-respuesta</item>
     <item>Contraseña + secreto de desafío-respuesta (modo de recuperación)</item>
     <item>Contraseña + Desafio-Respuesta para Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Contraseña + archivo llave + Pregunta-Respuesta para Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Contraseña</item>
-    <item>Private/Public key</item>
+    <item>Clave pública/privada</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar errores de validación de certificado</item>
