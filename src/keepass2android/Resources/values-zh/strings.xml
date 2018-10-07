@@ -459,10 +459,12 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
   <string name="filestoragehelp_dropboxKP2A">如果你不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 应用/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，点击此选项将创建该新文件夹，然后将你在电脑上的数据库文件放在此文件夹内，然后再选该选项，并以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP（SSH 文件传输）</string>
   <string name="filestoragename_content">系统文件选择器</string>
