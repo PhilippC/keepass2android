@@ -293,6 +293,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="BinaryDirectory_summary">Katalog w którym są zapisywane pliki załączników.</string>
   <string name="SaveAttachmentDialog_title">Zapisz załącznik</string>
   <string name="SaveAttachmentDialog_text">Wybierz gdzie zapisać załącznik.</string>
+  <string name="SaveAttachmentDialog_save">Eksportuj do pliku...</string>
   <string name="SaveAttachmentDialog_open">Zapisz do pamięci podręcznej i otwórz</string>
   <string name="ShowAttachedImage">Pokaż w wewnętrznej przeglądarce obrazów</string>
   <string name="SaveAttachment_doneMessage">Zapisano plik w %1$s.</string>
@@ -441,6 +442,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="hint_http_url">Adres URL folderu lub pliku (np.: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Wpisz dane do logowania OwnCloud:</string>
   <string name="hint_owncloud_url">Adres URL OwnCloud (np: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Wpisz login Nextcloud:</string>
   <string name="hint_nextcloud_url">Nextcloud URL (np: nextcloud.me.com)</string>
   <string name="hint_sftp_host">host (np: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
