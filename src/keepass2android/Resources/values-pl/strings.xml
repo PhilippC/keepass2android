@@ -212,6 +212,8 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="edit">Edytuj</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Katalog główny</string>
+  <string name="AutoReturnFromQuery_title">Automatycznie wracaj z ekranu zapytania</string>
+  <string name="AutoReturnFromQuery_summary">Podczas wyszukiwania wpisu dotyczącego aplikacji lub strony internetowej: automatycznie powraca z ekranu zapytania, jeśli w bazie danych znajduje się tylko jeden pasujący wpis.</string>
   <string name="KeyDerivFunc">Funkcja generująca klucze</string>
   <string name="rounds">Złożoność szyfrowania</string>
   <string name="rounds_explaination">Większa złożoność zapewnia dodatkowe zabezpieczenie przed atakiem brute force ale może spowolnić wczytywanie i zapisywanie bazy danych.</string>
@@ -321,6 +323,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="LockWhenNavigateBack_title">Zablokuj po opuszczeniu aplikacji</string>
   <string name="LockWhenNavigateBack_summary">Zablokuj bazę danych kiedy opuścisz aplikację poprzez naciśnięcie przycisku wstecz.</string>
   <string name="UseKp2aKeyboardInKp2a_title">Używaj wbudowanej klawiatury w aplikacji Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Jeśli nie ufasz standardowemu dostawcy klawiatury, zaznacz tę opcję, aby użyć wbudowanej klawiatury podczas wprowadzania hasła głównego lub edytowania wpisów.</string>
   <string name="ActivateSearchViewOnStart_title">Aktywuj wyszukiwanie przy starcie</string>
   <string name="ActivateSearchViewOnStart_summary">Aktywuje pole wyszukiwania w widoku grupy po odblokowaniu lub w trakcie przeglądania wpisu</string>
   <string name="NoDonateOption_title">Ukryj opcję dotacji</string>
