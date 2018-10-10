@@ -96,7 +96,7 @@
 To zachowa twoje hasła główne na tym urządzeniu.
     zaszyfrowane przy pomocy zestawu kluczy Androida i chronione
     używając autoryzacji odciskiem palca. Umożliwia odblokowywanie twojej bazy danych tylko przy pomocy odcisku palca.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Umożliwia użycie autoryzacji odciskiem palca zamiast kodu QuickUnlock. Nie wymaga przechowywania żadnych informacji powiązanych z twoich hasłem głównym.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Umożliwia użycie autoryzacji odciskiem palca zamiast kodu SzybkieOdblokowanie. Nie wymaga przechowywania żadnych informacji powiązanych z twoich hasłem głównym.</string>
   <string name="enter_filename">Wprowadź nazwę pliku bazy danych</string>
   <string name="entry_accessed">Ostatni dostęp</string>
   <string name="entry_cancel">Anuluj</string>
@@ -283,11 +283,11 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="QuickUnlockIconHidden_title">Ukryj ikonę SzybkiegoOdblokowania</string>
   <string name="QuickUnlockIconHidden_summary">SzybkieOdblokowanie niestety nie może działać bez wyświetlania ikony w obszarze powiadomień. Wybierz tę opcję, aby użyć ikony przeźroczystej.</string>
   <string name="QuickUnlockIconHidden16_title">Ukryj ikonę SzybkiegoOdblokowania</string>
-  <string name="QuickUnlockIconHidden16_summary">Szybkie odblokowanie potrzebuje androidowego powiadomienia aby działało poprawnie. Wybierz tę opcję aby użyć powiadomienia bez ikonki.</string>
+  <string name="QuickUnlockIconHidden16_summary">SzybkieOdblokowanie potrzebuje androidowego powiadomienia aby działało poprawnie. Wybierz tę opcję aby użyć powiadomienia bez ikonki.</string>
   <string name="QuickUnlockLength_title">Długość klucza SzybkiegoOdblokowania</string>
   <string name="QuickUnlockLength_summary">Maksymalna liczba znaków używanych jako hasło SzybkiegoOdblokowania.</string>
   <string name="QuickUnlockHideLength_title">Ukryj długość QuickUnlock</string>
-  <string name="QuickUnlockHideLength_summary">Jeśli zaznaczone, długość kodu QuickUnlock nie jest wyświetlana na ekranie QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_summary">Jeśli zaznaczone, długość kodu SzybkieOdblokowanie nie jest wyświetlana na ekranie SzybkieOdblokowanie.</string>
   <string name="QuickUnlock_fail">Nie powiodło się SzybkieOdblokowanie: niepoprawne hasło!</string>
   <string name="BinaryDirectory_title">Katalog plików załączników</string>
   <string name="BinaryDirectory_summary">Katalog w którym są zapisywane pliki załączników.</string>
@@ -347,7 +347,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="ShowSeparateNotifications_title">Oddzielne powiadomienia</string>
   <string name="ShowSeparateNotifications_summary">Pokaż oddzielne powiadomienia dla kopiowania nazwy użytkownika i hasła do schowka oraz aktywacji klawiatury.</string>
   <string name="AccServiceAutoFill_prefs">AutoUzupełnienie – usługa dostępności</string>
-  <string name="AutoFill_prefs">Serwis autowypełniania</string>
+  <string name="AutoFill_prefs">Usługa autouzupełnienia</string>
   <string name="ShowKp2aKeyboardNotification_title">Powiadomienie klawiatury KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Udostępnij pełny wpis przez klawiaturę KP2A (zalecane).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Przełącz klawiaturę</string>
@@ -441,6 +441,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="hint_http_url">Adres URL folderu lub pliku (np.: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Wpisz dane do logowania OwnCloud:</string>
   <string name="hint_owncloud_url">Adres URL OwnCloud (np: owncloud.me.com)</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (np: nextcloud.me.com)</string>
   <string name="hint_sftp_host">host (np: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Katalog początkowy (opcjonalne):</string>
@@ -456,6 +457,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie aby otworzyć plik.</string>
@@ -600,7 +602,7 @@ To zachowa twoje hasła główne na tym urządzeniu.
   <string name="DbUnlockedChannel_name">Baza danych odblokowana</string>
   <string name="DbUnlockedChannel_desc">Powiadomienie o odblokowanej bazie danych</string>
   <string name="DbQuicklockedChannel_name">SzybkieOdblokowanie</string>
-  <string name="DbQuicklockedChannel_desc">Powiadomienie o odblokowaniu bazy danych przy pomocy QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Powiadomienie o odblokowaniu bazy danych przy pomocy SzybkiegoOdblokowania</string>
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="ErrorReportTitle">Keepass2Android: Wystąpił błąd.</string>
