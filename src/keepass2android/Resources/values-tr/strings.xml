@@ -210,6 +210,8 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="edit">Düzenle</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Kök</string>
+  <string name="AutoReturnFromQuery_title">Sorgu ekranından otomatik olarak geri dön</string>
+  <string name="AutoReturnFromQuery_summary">Bir uygulama veya web sitesi için bir girdi ararken: veritabanında yalnızca bir eşleşen girdi varsa sorgu ekranından otomatik olarak geri döner.</string>
   <string name="KeyDerivFunc">Anahtar türetme fonksiyonu</string>
   <string name="rounds">Şifreleme tur sayısı</string>
   <string name="rounds_explaination">Fazla tur sayısı kaba kuvvet saldırılarına karşı ek koruma sağlar, ama yüklemeyi ve kaydetmeyi epeyce yavaşlatır.</string>
@@ -291,6 +293,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="BinaryDirectory_summary">Ek dosyalarının kaydedileceği klasör.</string>
   <string name="SaveAttachmentDialog_title">Ek dosyayı kaydet</string>
   <string name="SaveAttachmentDialog_text">Ek dosyayı kaydedecek konumu seç.</string>
+  <string name="SaveAttachmentDialog_save">Dosyaya aktar...</string>
   <string name="SaveAttachmentDialog_open">Ek dosyayı önbelleke kaydet ve aç</string>
   <string name="ShowAttachedImage">Dahili resim görüntüleyici ile göster</string>
   <string name="SaveAttachment_doneMessage">Ek dosya %1$s \'e kaydedildi.</string>
@@ -317,6 +320,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ClearPasswordOnLeave_summary">Veri tabanı açılmadan parola ekranından ayrılırsam girilmiş ana parolayı temizle.</string>
   <string name="LockWhenNavigateBack_title">Uygulamadan ayrılınca kilitle</string>
   <string name="LockWhenNavigateBack_summary">Geri düğmesine basarak uygulamadan ayrılırken veri tabanını kilitle.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android içindeki dahili klavyeyi kullan</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Standart klavye sağlayıcınıza güvenmiyorsanız, ana parolanızı girerken veya girdileri düzenlerken yerleşik klavyeyi kullanmak için bu seçeneği kontrol edin.</string>
   <string name="ActivateSearchViewOnStart_title">Başlangıçta arama alanını etkinleştir</string>
   <string name="ActivateSearchViewOnStart_summary">Kilit açıldıktan sonra veya kayıt aranırken grup görünümündeki arama alanını etkinleştirir</string>
@@ -439,11 +443,14 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="hint_http_url">Klasör veya dosyanın URL (örn: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloud oturum açma verilerini girin:</string>
   <string name="hint_owncloud_url">OwnCloud URL (örn: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Nextcloud oturum açma verilerini girin:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (örn: nextcloud.me.com)</string>
   <string name="hint_sftp_host">sunucu (ör: 192.168.0.1)</string>
   <string name="hint_sftp_port">bağlantı noktası</string>
   <string name="initial_directory">Başlangıç dizini (isteğe bağlı):</string>
   <string name="enter_sftp_login_title">SFTP oturum açma verilerini girin:</string>
   <string name="sftp_auth_mode">Kimlik doğrulama modu</string>
+  <string name="send_public_key">Ortak anahtar gönder...</string>
   <string name="enter_ftp_login_title">FTP oturum açma verilerini girin:</string>
   <string name="select_storage_type">Depolama türünü seçin:</string>
   <string name="filestoragename_file">Yerel dosya</string>
@@ -951,7 +958,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Parola</item>
-    <item>Private/Public key</item>
+    <item>Özel/Ortak anahtar</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Sertifika doğrulama hatalarını yoksay</item>
