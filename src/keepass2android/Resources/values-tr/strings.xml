@@ -954,7 +954,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     <item>Şifre + sınama-yanıtlama</item>
     <item>Şifre + sınama-yanıt gizli (kurtarma modu)</item>
     <item>Keepass XC için Parola + Sınama-Yanıt</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Keepass XC için Parola +Anahtar dosyası + Sınama -Yanıt</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Parola</item>
