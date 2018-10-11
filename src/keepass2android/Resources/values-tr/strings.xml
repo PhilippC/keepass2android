@@ -317,6 +317,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ClearPasswordOnLeave_summary">Veri tabanı açılmadan parola ekranından ayrılırsam girilmiş ana parolayı temizle.</string>
   <string name="LockWhenNavigateBack_title">Uygulamadan ayrılınca kilitle</string>
   <string name="LockWhenNavigateBack_summary">Geri düğmesine basarak uygulamadan ayrılırken veri tabanını kilitle.</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Standart klavye sağlayıcınıza güvenmiyorsanız, ana parolanızı girerken veya girdileri düzenlerken yerleşik klavyeyi kullanmak için bu seçeneği kontrol edin.</string>
   <string name="ActivateSearchViewOnStart_title">Başlangıçta arama alanını etkinleştir</string>
   <string name="ActivateSearchViewOnStart_summary">Kilit açıldıktan sonra veya kayıt aranırken grup görünümündeki arama alanını etkinleştirir</string>
   <string name="NoDonateOption_title">Bağış seçeneğini gizle</string>
@@ -442,6 +443,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="hint_sftp_port">bağlantı noktası</string>
   <string name="initial_directory">Başlangıç dizini (isteğe bağlı):</string>
   <string name="enter_sftp_login_title">SFTP oturum açma verilerini girin:</string>
+  <string name="sftp_auth_mode">Kimlik doğrulama modu</string>
   <string name="enter_ftp_login_title">FTP oturum açma verilerini girin:</string>
   <string name="select_storage_type">Depolama türünü seçin:</string>
   <string name="filestoragename_file">Yerel dosya</string>
@@ -451,10 +453,12 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox(KP2A Klasörü)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH dosya aktarımı)</string>
   <string name="filestoragename_content">Sistem dosyası seçicisi</string>
