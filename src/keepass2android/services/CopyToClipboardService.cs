@@ -35,6 +35,7 @@ using KeePassLib;
 using KeePassLib.Utility;
 using Android.Views.InputMethods;
 using KeePass.Util.Spr;
+using KeePassLib.Serialization;
 
 namespace keepass2android
 {
@@ -283,7 +284,7 @@ namespace keepass2android
 			if ((intent.Action == Intents.ShowNotification) || (intent.Action == Intents.UpdateKeyboard))
 			{
 				String uuidBytes = intent.GetStringExtra(EntryActivity.KeyEntry);
-				String searchUrl = intent.GetStringExtra(SearchUrlTask.UrlToSearchKey);
+                String searchUrl = intent.GetStringExtra(SearchUrlTask.UrlToSearchKey);
 
 				PwUuid entryId = PwUuid.Zero;
 				if (uuidBytes != null)
@@ -292,19 +293,21 @@ namespace keepass2android
 				PwEntryOutput entry;
 				try
 				{
-					if ((App.Kp2a.GetDb().LastOpenedEntry != null)
-						&& (entryId.Equals(App.Kp2a.GetDb().LastOpenedEntry.Uuid)))
+					if ((App.Kp2a.LastOpenedEntry != null)
+						&& (entryId.Equals(App.Kp2a.LastOpenedEntry.Uuid)))
 					{
-						entry = App.Kp2a.GetDb().LastOpenedEntry;
+						entry = App.Kp2a.LastOpenedEntry;
 					}
 					else
 					{
-						entry = new PwEntryOutput(App.Kp2a.GetDb().Entries[entryId], App.Kp2a.GetDb().KpDatabase);
+					    Database entryDb = App.Kp2a.FindDatabaseForEntryId(entryId);
+						entry = new PwEntryOutput(entryDb.Entries[entryId], entryDb);
 					}
 
 				}
-				catch (Exception)
+				catch (Exception e)
 				{
+				    Kp2aLog.LogUnexpectedError(e);
 					//seems like restarting the service happened after closing the DB
 					StopSelf();
 					return StartCommandResult.NotSticky;
@@ -400,9 +403,10 @@ namespace keepass2android
 			var hadKeyboardData = ClearNotifications();
 
 			String entryName = entry.OutputStrings.ReadSafe(PwDefs.TitleField);
+		    Database db = App.Kp2a.FindDatabaseForEntryId(entry.Uuid);
 
-		    var bmp = Util.DrawableToBitmap(App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(this,
-		        App.Kp2a.GetDb().KpDatabase, entry.Entry.IconId, entry.Entry.CustomIconUuid, false));
+		    var bmp = Util.DrawableToBitmap(db.DrawableFactory.GetIconDrawable(this,
+		        db.KpDatabase, entry.Entry.IconId, entry.Entry.CustomIconUuid, false));
 
 		    
 		    if (!(((entry.Entry.CustomIconUuid != null) && (!entry.Entry.CustomIconUuid.Equals(PwUuid.Zero))))
@@ -807,7 +811,7 @@ namespace keepass2android
 
 			//check if we have a last opened entry
 			//this should always be non-null, but if the OS has killed the app, it might occur.
-			if (App.Kp2a.GetDb().LastOpenedEntry == null)
+			if (App.Kp2a.LastOpenedEntry == null)
 			{
 				Intent i = new Intent(context, typeof(AppKilledInfo));
 				i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
@@ -817,7 +821,7 @@ namespace keepass2android
 
 			if (action.Equals(Intents.CopyUsername))
 			{
-				String username = App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.ReadSafe(PwDefs.UserNameField);
+				String username = App.Kp2a.LastOpenedEntry.OutputStrings.ReadSafe(PwDefs.UserNameField);
 				if (username.Length > 0)
 				{
 					CopyToClipboardService.CopyValueToClipboardWithTimeout(context, username);
@@ -826,7 +830,7 @@ namespace keepass2android
 			}
 			else if (action.Equals(Intents.CopyPassword))
 			{
-				String password = App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.ReadSafe(PwDefs.PasswordField);
+				String password = App.Kp2a.LastOpenedEntry.OutputStrings.ReadSafe(PwDefs.PasswordField);
 				if (password.Length > 0)
 				{
 					CopyToClipboardService.CopyValueToClipboardWithTimeout(context, password);

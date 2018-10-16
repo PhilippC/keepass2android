@@ -56,17 +56,12 @@ namespace keepass2android.search
 			ProcessIntent(Intent);
 		}
 
-	    protected override bool AddEntryEnabled
+	    public override bool EntriesBelongToCurrentDatabaseOnly
 	    {
 	        get { return false; }
 	    }
-        protected override bool AddGroupEnabled
-        {
-            get { return false; }
-        }
 
-        
-        
+
 	    protected override void OnNewIntent(Intent intent)
 		{
 			ProcessIntent(intent);
@@ -84,7 +79,7 @@ namespace keepass2android.search
 			{
 				var entryIntent = new Intent(this, typeof(EntryActivity));
 				entryIntent.PutExtra(EntryActivity.KeyEntry, intent.Data.LastPathSegment);
-				entryIntent.AddFlags(ActivityFlags.ForwardResult);
+                entryIntent.AddFlags(ActivityFlags.ForwardResult);
 				Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
 				StartActivity(entryIntent);
 			}
@@ -97,9 +92,22 @@ namespace keepass2android.search
 
 		private void Query (SearchParameters searchParams)
 		{
-			try {
-				Group = App.Kp2a.GetDb().Search (searchParams, null);
-			} catch (Exception e) {
+		    Group = null;
+            try {
+                foreach (var db in App.Kp2a.OpenDatabases)
+                {
+                    PwGroup resultsForThisDb = db.Search(searchParams, null);
+                    if (Group == null)
+                        Group = resultsForThisDb;
+                    else
+                    {
+                        foreach (var entry in resultsForThisDb.Entries)
+                        {
+                            Group.AddEntry(entry, false);
+                        }
+                    }
+                }
+            } catch (Exception e) {
 				Kp2aLog.LogUnexpectedError(e);
 				Toast.MakeText(this,e.Message, ToastLength.Long).Show();
 				Finish();

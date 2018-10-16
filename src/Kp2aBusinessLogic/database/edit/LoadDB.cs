@@ -21,6 +21,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
+using keepass2android.database.edit;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -47,7 +48,8 @@ namespace keepass2android
 
 			_rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
 		}
-		
+
+	    protected bool success = false;
 		
 		public override void Run()
 		{
@@ -78,6 +80,10 @@ namespace keepass2android
 					//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
 					_format = new KdbxDatabaseFormat(KdbpFile.GetFormatToUse(_ioc));
 					TryLoad(databaseStream);
+
+
+
+				    success = true;
 				}
 				catch (Exception e)
 				{
@@ -125,7 +131,7 @@ namespace keepass2android
 		/// </summary>
 		public Exception Exception { get; set; }
 
-		private void TryLoad(MemoryStream databaseStream)
+		Database TryLoad(MemoryStream databaseStream)
 		{
 			//create a copy of the stream so we can try again if we get an exception which indicates we should change parameters
 			//This is not optimal in terms of (short-time) memory usage but is hard to avoid because the Keepass library closes streams also in case of errors.
@@ -138,19 +144,89 @@ namespace keepass2android
 			//now let's go:
 			try
 			{
-                _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
+                Database newDb = _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
 				Kp2aLog.Log("LoadDB OK");
 
 			    //make sure the stored access time for the actual file is more recent than that of its backup
 			    Thread.Sleep(10);
                 SaveFileData(_ioc, _keyfileOrProvider);
 
-                Finish(true, _format.SuccessMessage);
+
+			    bool hasLegacyTemplateIds = false;
+			    //make sure we never have entries with same Uuids
+			    foreach (var entryKey in newDb.Entries.Keys)
+			    {
+                    foreach (Database otherDb in _app.OpenDatabases)
+                    {
+                        if (otherDb == newDb)
+                            continue;
+			            if (otherDb.Entries.ContainsKey(entryKey))
+			            {
+			                if (AddTemplateEntries.IsTemplateId(entryKey))
+			                {
+			                    hasLegacyTemplateIds = true;
+			                }
+			                else
+			                {
+			                    _app.CloseDatabase(newDb);
+			                    throw new Exception("Database contains entry id " + entryKey.ToHexString() + "(" +
+			                                        newDb.Entries[entryKey].Strings.ReadSafe(PwDefs.TitleField)
+			                                        + ") which is already contained in " +
+			                                        _app.GetFileStorage(otherDb.Ioc).GetDisplayName(otherDb.Ioc) +
+			                                        "! Please close the other database before opening this one.");
+			                }
+			            }
+			        }
+			    }
+
+
+			    foreach (var groupKey in newDb.Groups.Keys)
+			    {
+			        foreach (Database otherDb in _app.OpenDatabases)
+			        {
+			            if (otherDb == newDb)
+			                continue;
+			            if (otherDb.Groups.ContainsKey(groupKey))
+			            {
+			                throw new Exception("Database contains group id " + groupKey.ToHexString() + "(" +
+			                                    newDb.Groups[groupKey].Name + ") which is already contained in " +
+			                                    _app.GetFileStorage(otherDb.Ioc).GetDisplayName(otherDb.Ioc) +
+			                                    "! Please close the other database before opening this one.");
+			            }
+			        }
+			    }
+
+			    if (hasLegacyTemplateIds)
+			    {
+                    _app.AskYesNoCancel(UiStringKey.ChangleLegacyTemplateIds_Title, UiStringKey.ChangleLegacyTemplateIds_Message,UiStringKey.Ok, UiStringKey.cancel,
+                        /*yes*/
+                        (sender, args) =>
+                        {
+                            ChangeTemplateIds cti = new ChangeTemplateIds(ActiveActivity, _app, newDb, new ActionOnFinish(ActiveActivity, (b, message, activity) => Finish(b, message)));
+                            cti.Run();
+                        },
+                        /*no*/
+                        (sender, args) =>
+                        {
+                            _app.CloseDatabase(newDb);
+                            Finish(false);
+                        }, 
+                        null,
+                        ActiveActivity
+                        
+                    );
+			        
+
+
+			    }
+                else
+                    Finish(true, _format.SuccessMessage);
+			    return newDb;
 			}
 			catch (OldFormatException)
 			{
 				_format = new KdbDatabaseFormat(_app);
-				TryLoad(databaseStream);
+				return TryLoad(databaseStream);
 			}
 			catch (InvalidCompositeKeyException)
 			{
@@ -162,7 +238,7 @@ namespace keepass2android
 					//retry without password:
 					_compositeKey.RemoveUserKey(passwordKey);
 					//retry:
-					TryLoad(databaseStream);
+					return TryLoad(databaseStream);
 				}
 				else throw;
 			}

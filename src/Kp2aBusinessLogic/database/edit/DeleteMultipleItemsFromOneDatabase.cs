@@ -7,12 +7,12 @@ using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
-	public class DeleteMultipleItems : DeleteRunnable
+	public class DeleteMultipleItemsFromOneDatabase : DeleteRunnable
 	{
 		private readonly List<IStructureItem> _elementsToDelete;
 		private readonly bool _canRecycle;
 
-		public DeleteMultipleItems(Activity activity, Database db, List<IStructureItem> elementsToDelete, OnFinish finish, IKp2aApp app)
+		public DeleteMultipleItemsFromOneDatabase(Activity activity, Database db, List<IStructureItem> elementsToDelete, OnFinish finish, IKp2aApp app)
 			: base(activity, finish, app)
 		{
 			_elementsToDelete = elementsToDelete;
@@ -26,7 +26,7 @@ namespace keepass2android
 		private bool DetermineCanRecycle()
 		{
 			Android.Util.Log.Debug("KP2A", "CanRecycle?");
-			if (!App.GetDb().DatabaseFormat.CanRecycle)
+			if (!Db.DatabaseFormat.CanRecycle)
 			{
 				Android.Util.Log.Debug("KP2A", "CanRecycle? No because of DB format.");
 				return false;

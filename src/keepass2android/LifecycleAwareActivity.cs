@@ -51,7 +51,7 @@ namespace keepass2android
 		{
 			base.OnResume();
 			Kp2aLog.Log(ClassName+".OnResume");
-			if (App.Kp2a.GetDb() == null)
+			if (App.Kp2a.CurrentDb== null)
 			{
 				Kp2aLog.Log(" DB null");
 			}

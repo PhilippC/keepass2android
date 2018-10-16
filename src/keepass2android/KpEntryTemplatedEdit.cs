@@ -38,7 +38,7 @@ namespace keepass2android
 			return res;
 		}
 
-		private const string EtmTemplateUuid = "_etm_template_uuid";
+		public const string EtmTemplateUuid = "_etm_template_uuid";
 		private const string EtmTitle = "_etm_title_";
 		private readonly Database _db;
 		private readonly PwEntry _entry;

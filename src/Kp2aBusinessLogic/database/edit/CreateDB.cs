@@ -84,7 +84,7 @@ namespace keepass2android
 			addTemplates.AddTemplates(out addedEntries);
 			
 			// Commit changes
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, _dontSave);
+			SaveDb save = new SaveDb(_ctx, _app, db, OnFinishToRun, _dontSave);
 			save.SetStatusLogger(StatusLogger);
 			_onFinishToRun = null;
 			save.Run();

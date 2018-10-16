@@ -53,8 +53,8 @@ namespace keepass2android.database.edit
 		    foreach (var elementToMove in _elementsToMove)
 		    {
 
-                _app.GetDb().Dirty.Add(elementToMove.ParentGroup);
-
+                _app.DirtyGroups.Add(elementToMove.ParentGroup);
+                //TODO is this safe when transferring between databases?
                 PwGroup pgParent = elementToMove.ParentGroup;
                 if (pgParent != _targetGroup)
                 {
@@ -87,12 +87,15 @@ namespace keepass2android.database.edit
 			{
 				if (!success)
 				{	// Let's not bother recovering from a failure.
-					_app.LockDatabase(false);
+					_app.Lock(false);
 				}
 			}, OnFinishToRun);
 
+            //Unchecked
+            //TODO save the right database
+
 			// Save
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, false);
+			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun, false);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}

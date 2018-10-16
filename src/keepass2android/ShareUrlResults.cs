@@ -26,6 +26,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using Android.Preferences;
+using KeePassLib;
 using KeePassLib.Utility;
 
 namespace keepass2android
@@ -63,9 +64,6 @@ namespace keepass2android
 		}
 
 
-		private Database _db;
-        
-
         public override bool IsSearchResult
         {
             get { return true; }
@@ -77,9 +75,7 @@ namespace keepass2android
 
 			//if user presses back to leave this activity:
 			SetResult(Result.Canceled);
-
-			_db = App.Kp2a.GetDb();
-
+            
 
 		    UpdateBottomBarElementVisibility(Resource.Id.select_other_entry, true);
 		    UpdateBottomBarElementVisibility(Resource.Id.add_url_entry, true);
@@ -107,24 +103,41 @@ namespace keepass2android
 		{	
 			try
 			{
-				//first: search for exact url
-				Group = _db.SearchForExactUrl(url);
-				if (!url.StartsWith("androidapp://"))
-				{
-					//if no results, search for host (e.g. "accounts.google.com")
-					if (!Group.Entries.Any())
-						Group = _db.SearchForHost(url, false);
-					//if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
-					if (!Group.Entries.Any())
-						Group = _db.SearchForHost(url, true);
-					
-				}
-				//if no results returned up to now, try to search through other fields as well:
-				if (!Group.Entries.Any())
-					Group = _db.SearchForText(url);
-				//search for host as text
-				if (!Group.Entries.Any())
-					Group = _db.SearchForText(UrlUtil.GetHost(url.Trim()));
+			    foreach (var db in App.Kp2a.OpenDatabases)
+			    {
+			        PwGroup resultsForThisDb;
+			        //first: search for exact url
+			        resultsForThisDb = db.SearchForExactUrl(url);
+			        if (!url.StartsWith("androidapp://"))
+			        {
+			            //if no results, search for host (e.g. "accounts.google.com")
+			            if (!resultsForThisDb.Entries.Any())
+			                resultsForThisDb = db.SearchForHost(url, false);
+			            //if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
+			            if (!resultsForThisDb.Entries.Any())
+			                resultsForThisDb = db.SearchForHost(url, true);
+
+			        }
+			        //if no results returned up to now, try to search through other fields as well:
+			        if (!resultsForThisDb.Entries.Any())
+			            resultsForThisDb = db.SearchForText(url);
+			        //search for host as text
+			        if (!resultsForThisDb.Entries.Any())
+			            resultsForThisDb = db.SearchForText(UrlUtil.GetHost(url.Trim()));
+
+			        if (Group == null)
+			        {
+			            Group = resultsForThisDb;
+			        }
+			        else
+                    {
+                        foreach (var entry in resultsForThisDb.Entries)
+                        {
+                            Group.AddEntry(entry, false,false);
+                        }
+                    }
+                    
+			    }
 
 			} catch (Exception e)
 			{
@@ -164,7 +177,7 @@ namespace keepass2android
 			
 			View createUrlEntry = FindViewById (Resource.Id.add_url_entry);
 
-			if (App.Kp2a.GetDb().CanWrite)
+			if (App.Kp2a.OpenDatabases.Any(db => db.CanWrite))
 			{
 				createUrlEntry.Visibility = ViewStates.Visible;
 				createUrlEntry.Click += (sender, e) =>
@@ -193,6 +206,11 @@ namespace keepass2android
 	    protected override int ContentResourceId
 	    {
 			get { return Resource.Layout.searchurlresults; }
+	    }
+
+	    public override bool EntriesBelongToCurrentDatabaseOnly
+	    {
+	        get { return false; }
 	    }
 	}}
 

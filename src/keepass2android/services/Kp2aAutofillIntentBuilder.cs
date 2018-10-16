@@ -26,7 +26,7 @@ namespace keepass2android.services
 
         public Intent GetRestartAppIntent(Context context)
         {
-            var intent = new Intent(context, typeof(FileSelectActivity));
+            var intent = new Intent(context, typeof(SelectCurrentDbActivity));
             intent.AddFlags(ActivityFlags.ForwardResult);
             return intent;
         }

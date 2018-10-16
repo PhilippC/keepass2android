@@ -737,12 +737,6 @@ namespace keepass2android
 				}
 			}
 
-			if (App.Kp2a.GetDb()?.Ioc != null && App.Kp2a.GetDb().Ioc.GetDisplayName() != _ioConnection.GetDisplayName())
-			{
-				// A different database is currently loaded, unload it before loading the new one requested
-				App.Kp2a.LockDatabase(false);
-			}
-
 			SetContentView(Resource.Layout.password);
 
 			InitializeToolbar();
@@ -806,6 +800,14 @@ namespace keepass2android
 
 		    if ((int)Build.VERSION.SdkInt >= 23)
 				RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);
+
+            
+		    var matchingOpenDb = App.Kp2a.OpenDatabases.FirstOrDefault(db => db.Ioc.IsSameFileAs(_ioConnection));
+		    if (matchingOpenDb != null)
+		    {
+		        App.Kp2a.CurrentDb = matchingOpenDb;
+		        Finish();
+		    }
 			
 		}
 
@@ -1473,9 +1475,7 @@ namespace keepass2android
 					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish);
 				_loadDbFileTask = null; // prevent accidental re-use
 
-				SetNewDefaultFile();
-
-				new ProgressTask(App.Kp2a, this, task).Run();
+			    new ProgressTask(App.Kp2a, this, task).Run();
 			}
 			catch (Exception e)
 			{
@@ -1596,35 +1596,7 @@ namespace keepass2android
 		    base.OnPause();
 		}
 
-	    private void SetNewDefaultFile()
-		{
-//Don't allow the current file to be the default if we don't have stored credentials
-			bool makeFileDefault;
-			if ((_ioConnection.IsLocalFile() == false) && (_ioConnection.CredSaveMode != IOCredSaveMode.SaveCred))
-			{
-				makeFileDefault = false;
-			}
-			else
-			{
-				makeFileDefault = true;
-			}
-			String newDefaultFileName;
-
-			if (makeFileDefault)
-			{
-				newDefaultFileName = _ioConnection.Path;
-			}
-			else
-			{
-				newDefaultFileName = "";
-			}
-
-			ISharedPreferencesEditor editor = _prefs.Edit();
-			editor.PutString(KeyDefaultFilename, newDefaultFileName);
-			EditorCompat.Apply(editor);
-		}
-
-		protected override void OnStart()
+	    protected override void OnStart()
 		{
 			base.OnStart();
 			_starting = true;
@@ -1815,34 +1787,27 @@ namespace keepass2android
 			//use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
 			if ( !IsFinishing && !_performingLoad)  
 			{
-				if (App.Kp2a.DatabaseIsUnlocked)
-				{
-					Finish();
-				}
-				else if (App.Kp2a.QuickUnlockEnabled && App.Kp2a.QuickLocked)
-				{
-				    Finish();
-				}
-				else
-				{
-					// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
-					// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
-					if (_starting)
-					{
+				
+				
+			    // OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
+				// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
+			    if (_starting)
+			    {
 
-						_starting = false;
+			        _starting = false;
 
-						//database not yet loaded.
+			        //database not yet loaded.
 
-						//check if pre-loading is enabled but wasn't started yet:
-						if (_loadDbFileTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
-						{
-							// Create task to kick off file loading while the user enters the password
-							_loadDbFileTask = Task.Factory.StartNew(PreloadDbFile);
-							_loadDbTaskOffline = App.Kp2a.OfflineMode;
-						}
-					}
-				}
+			        //check if pre-loading is enabled but wasn't started yet:
+			        if (_loadDbFileTask == null &&
+			            _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+			        {
+			            // Create task to kick off file loading while the user enters the password
+			            _loadDbFileTask = Task.Factory.StartNew(PreloadDbFile);
+			            _loadDbTaskOffline = App.Kp2a.OfflineMode;
+			        }
+			    }
+
 			}
 
 		    if (compositeKeyForImmediateLoad != null)
@@ -2049,6 +2014,7 @@ namespace keepass2android
 					_act.BroadcastOpenDatabase();
 					_act.InvalidCompositeKeyCount = 0;
 				    _act.LoadingErrorCount = 0;
+                    _act.Finish();
 
 
                     GC.Collect(); // Ensure temporary memory used while loading is collected
@@ -2193,7 +2159,7 @@ namespace keepass2android
 					if (!OathHotpKeyProv.CreateAuxFile(_act._otpInfo, ctx, _act._otpAuxIoc))
 						Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile), ToastLength.Long).Show();
 
-					App.Kp2a.GetDb().OtpAuxFileIoc = _act._otpAuxIoc;
+					
 				}
 				catch (Exception e)
 				{
@@ -2206,7 +2172,14 @@ namespace keepass2android
 
 				base.Run();
 
-			}
+			    if (success)
+			    {
+			        App.Kp2a.CurrentDb.OtpAuxFileIoc = _act._otpAuxIoc;
+                }
+
+                
+            }
+            
 		}
 		private class PasswordActivityBroadcastReceiver : BroadcastReceiver
 		{

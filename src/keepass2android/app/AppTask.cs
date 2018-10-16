@@ -344,7 +344,7 @@ namespace keepass2android
 			activity.StartNotificationsService(false);
 		}
 
-		virtual public void PopulatePasswordAccessServiceIntent(Intent intent)
+		public virtual void PopulatePasswordAccessServiceIntent(Intent intent)
 		{
 			
 		}
@@ -434,7 +434,8 @@ namespace keepass2android
 
 	    public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 	    {
-	        App.Kp2a.GetDb().LastOpenedEntry.SearchUrl = UrlToSearchFor;
+            if (App.Kp2a.LastOpenedEntry != null)
+	            App.Kp2a.LastOpenedEntry.SearchUrl = UrlToSearchFor;
 	        base.CompleteOnCreateEntryActivity(activity);
 	    }
 	}
@@ -554,10 +555,11 @@ namespace keepass2android
 
 		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
-		    App.Kp2a.GetDb().LastOpenedEntry.SearchUrl = UrlToSearchFor;
+            if (App.Kp2a.LastOpenedEntry != null)
+		        App.Kp2a.LastOpenedEntry.SearchUrl = UrlToSearchFor;
 
             //if the database is readonly (or no URL exists), don't offer to modify the URL
-            if ((App.Kp2a.GetDb().CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor)))
+            if ((App.Kp2a.CurrentDb.CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor)))
 			{
 				base.CompleteOnCreateEntryActivity(activity);
 				return;
@@ -790,7 +792,8 @@ namespace keepass2android
 		#endif
 
 		private LinkedList<string> _groupUuid;
-		protected AppTask TaskToBeLaunchedAfterNavigation;
+	    private readonly Database _db;
+	    protected AppTask TaskToBeLaunchedAfterNavigation;
 
 		protected String FullGroupName {
 			get ;
@@ -814,8 +817,9 @@ namespace keepass2android
 		/// <param name="groups">Groups.</param>
 		/// <param name="taskToBeLaunchedAfterNavigation">Task to be launched after navigation.</param>
 		/// <param name="toastEnable">If set to <c>true</c>, toast will be displayed after navigation.</param>
-		protected NavigateAndLaunchTask(PwGroup groups, AppTask taskToBeLaunchedAfterNavigation, bool toastEnable = false) {
-			TaskToBeLaunchedAfterNavigation = taskToBeLaunchedAfterNavigation;
+		protected NavigateAndLaunchTask(Database db, PwGroup groups, AppTask taskToBeLaunchedAfterNavigation, bool toastEnable = false) {
+		    _db = db;
+		    TaskToBeLaunchedAfterNavigation = taskToBeLaunchedAfterNavigation;
 			PopulateGroups (groups);
 			ToastEnable = toastEnable;
 		}
@@ -943,7 +947,7 @@ namespace keepass2android
 					PwUuid nextGroupPwUuid = new PwUuid (MemUtil.HexStringToByteArray (nextGroupUuid));
 
 					// Create Group Activity
-					PwGroup nextGroup = App.Kp2a.GetDb ().Groups[nextGroupPwUuid];
+					PwGroup nextGroup = _db.Groups[nextGroupPwUuid];
 					GroupActivity.Launch (groupBaseActivity, nextGroup, this);
 				}
 				return;
@@ -968,12 +972,9 @@ namespace keepass2android
 
 	public class NavigateToFolder: NavigateAndLaunchTask {
 
-		public NavigateToFolder()
-		{
-		}
 
-		public NavigateToFolder(PwGroup groups, bool toastEnable = false)
-			: base(groups, new NullTask(), toastEnable) 
+		public NavigateToFolder(Database db, PwGroup groups, bool toastEnable = false)
+			: base(db, groups, new NullTask(), toastEnable) 
 		{
 		}
 
@@ -981,14 +982,9 @@ namespace keepass2android
 
 	public class NavigateToFolderAndLaunchMoveElementTask: NavigateAndLaunchTask {
 	
-		public NavigateToFolderAndLaunchMoveElementTask()
-		{
 
-		}
-
-
-		public NavigateToFolderAndLaunchMoveElementTask(PwGroup groups, List<PwUuid> uuids, bool toastEnable = false)
-			:base(groups, new MoveElementsTask() { Uuids = uuids }, toastEnable) {
+		public NavigateToFolderAndLaunchMoveElementTask(Database db, PwGroup groups, List<PwUuid> uuids, bool toastEnable = false)
+			:base(db, groups, new MoveElementsTask() { Uuids = uuids }, toastEnable) {
 		}
 
 		public override void Setup(Bundle b) {

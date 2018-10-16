@@ -38,7 +38,6 @@ namespace keepass2android
 
 		public Dictionary<PwUuid, PwGroup> Groups = new Dictionary<PwUuid, PwGroup>(new PwUuidEqualityComparer());
 		public Dictionary<PwUuid, PwEntry> Entries = new Dictionary<PwUuid, PwEntry>(new PwUuidEqualityComparer());
-		public HashSet<PwGroup> Dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
 		public PwGroup Root;
 		public PwDatabase KpDatabase;
 		public IOConnectionInfo Ioc 
@@ -48,11 +47,6 @@ namespace keepass2android
 				return KpDatabase?.IOConnectionInfo;
 			}
 		}
-
-		/// <summary>
-		/// Information about the last opened entry. Includes the entry but also transformed fields.
-		/// </summary>
-		public PwEntryOutput LastOpenedEntry { get; set; }
 
 		/// <summary>
 		/// if an OTP key was used, this property tells the location of the OTP auxiliary file.
@@ -74,16 +68,11 @@ namespace keepass2android
 			CanWrite = true; //default
         }
 
-        private bool _reloadRequested;
-		private IDatabaseFormat _databaseFormat = new KdbxDatabaseFormat(KdbxFormat.Default);
+	    private IDatabaseFormat _databaseFormat = new KdbxDatabaseFormat(KdbxFormat.Default);
 
-		public bool ReloadRequested
-        {
-            get { return _reloadRequested; }
-            set { _reloadRequested = value; }
-        }
+		public bool ReloadRequested { get; set; }
 
-		public bool DidOpenFileChange()
+	    public bool DidOpenFileChange()
 		{
 			return _app.GetFileStorage(Ioc).CheckForFileChangeFast(Ioc, LastFileVersion);
 		}
@@ -195,8 +184,7 @@ namespace keepass2android
 
 		public void SaveData()  {
             
-			KpDatabase.UseFileTransactions = _app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
-			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, KpDatabase.UseFileTransactions))
+			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
 			{
 				DatabaseFormat.Save(KpDatabase, trans.OpenFile());
 				
@@ -243,14 +231,6 @@ namespace keepass2android
 			PopulateGlobals(currentGroup, _app.CheckForDuplicateUuids);
 		}
 
-	    public void MarkAllGroupsAsDirty() {
-			foreach ( PwGroup group in Groups.Values ) {
-				Dirty.Add(group);
-			}
-			
-
-		}
-		
 		
 	}
 

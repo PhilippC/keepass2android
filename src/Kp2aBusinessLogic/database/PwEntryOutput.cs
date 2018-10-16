@@ -14,13 +14,13 @@ namespace keepass2android
 	public class PwEntryOutput
 	{
 		private readonly PwEntry _entry;
-		private readonly PwDatabase _db;
+		private readonly Database _db;
 		private readonly ProtectedStringDictionary _outputStrings = new ProtectedStringDictionary();
 
 		/// <summary>
 		/// Constructs the PwEntryOutput by replacing the placeholders
 		/// </summary>
-		public PwEntryOutput(PwEntry entry, PwDatabase db)
+		public PwEntryOutput(PwEntry entry, Database db)
 		{
 			_entry = entry;
 			_db = db;
@@ -34,7 +34,7 @@ namespace keepass2android
 		string GetStringAndReplacePlaceholders(string key)
 		{
 			String value = Entry.Strings.ReadSafe(key);
-			value = SprEngine.Compile(value, new SprContext(Entry, _db, SprCompileFlags.All));
+			value = SprEngine.Compile(value, new SprContext(Entry, _db.KpDatabase, SprCompileFlags.All));
 			return value;
 		}
 

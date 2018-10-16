@@ -38,8 +38,8 @@ using String = System.String;
  * Keepass2Android comprises quite a number of different activities and entry points: The app can be started 
  * using the launcher icon (-> Activity "Keepass"), or by sending a URL (-> FileSelect), opening a .kdb(x)-file (->Password),
  * swiping a YubikeyNEO (NfcOtpActivity).
- * While the database is closed, there is only one activity on the stack: Keepass -> FileSelect <-> Password.
- * After opening an database (in Password), Password is always the root of the stack (exception: after creating a database, 
+ * There is either only the KeePass activity on stack (no db loaded then) or the first activity 
+ * After opening a database (in Password), Password is always the root of the stack (exception: after creating a database, 
  * FileSelect is the root without Password being open). 
  * Another exception: QueryCredentialsActivity is root of the stack if an external app is querying credentials.
  * QueryCredentialsActivity checks the plugin access permissions, then launches FileSelectActivity (which starts
@@ -86,8 +86,10 @@ namespace keepass2android
 		public const Result ExitClose = Result.FirstUser + 7;
 		public const Result ExitFileStorageSelectionOk = Result.FirstUser + 8;
 		public const Result ResultOkPasswordGenerator = Result.FirstUser + 9;
+	    public const Result ExitLoadAnotherDb = Result.FirstUser + 10;
+        
 
-		public const string TagsKey = "@tags";
+        public const string TagsKey = "@tags";
 		public const string OverrideUrlKey = "@override";
 		public const string ExpDateKey = "@exp_date";
 

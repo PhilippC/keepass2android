@@ -29,7 +29,7 @@ namespace keepass2android
 		{
 			try
 			{
-				IOConnectionInfo ioc = _app.GetDb().Ioc;
+				IOConnectionInfo ioc = _app.CurrentDb.Ioc;
 				IFileStorage fileStorage = _app.GetFileStorage(ioc);
 				if (fileStorage is CachingFileStorage)
 				{
@@ -49,7 +49,7 @@ namespace keepass2android
 					hashingRemoteStream.CopyTo(remoteData);
 					hashingRemoteStream.Close();
 					
-					if (!MemUtil.ArraysEqual(_app.GetDb().KpDatabase.HashOfFileOnDisk, hashingRemoteStream.Hash))
+					if (!MemUtil.ArraysEqual(_app.CurrentDb.KpDatabase.HashOfFileOnDisk, hashingRemoteStream.Hash))
 					{
 						_app.TriggerReload(_context);
 						Finish(true);

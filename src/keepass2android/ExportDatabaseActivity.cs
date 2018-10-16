@@ -107,7 +107,7 @@ namespace keepass2android
 			public override void Run()
 			{
 				StatusLogger.UpdateMessage(UiStringKey.exporting_database);
-				var pd = _app.GetDb().KpDatabase;
+				var pd = _app.CurrentDb.KpDatabase;
 				PwExportInfo pwInfo = new PwExportInfo(pd.RootGroup, pd, true);
 				
 				try
@@ -117,7 +117,7 @@ namespace keepass2android
 					{
 						((IOfflineSwitchable) fileStorage).IsOffline = false;
 					}
-					using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetDb().KpDatabase.UseFileTransactions))
+					using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
 					{
 						Stream sOut = writeTransaction.OpenFile();
 						_fileFormat.Export(pwInfo, sOut, new NullStatusLogger());

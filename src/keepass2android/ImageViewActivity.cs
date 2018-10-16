@@ -317,7 +317,7 @@ namespace keepass2android
 			SetContentView(Resource.Layout.ImageViewActivity);
 			var uuid = new PwUuid(MemUtil.HexStringToByteArray(Intent.GetStringExtra("EntryId")));
 			string key = Intent.GetStringExtra("EntryKey");
-			var binary = App.Kp2a.GetDb().Entries[uuid].Binaries.Get(key);
+			var binary = App.Kp2a.FindDatabaseForEntryId(uuid).Entries[uuid].Binaries.Get(key);
 			SupportActionBar.Title = key;
 			byte[] pbdata = binary.ReadData();
 

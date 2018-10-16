@@ -120,7 +120,7 @@ namespace keepass2android
 
 			} else
 			{
-				Database db = App.Kp2a.GetDb();
+				Database db = App.Kp2a.CurrentDb;
 
 				App.Kp2a.EntryEditActivityState = new EntryEditActivityState();
 				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
@@ -199,7 +199,7 @@ namespace keepass2android
 			
 			if (State.SelectedIcon)
 			{
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iconButton, this, App.Kp2a.GetDb().KpDatabase, (PwIcon)State.SelectedIconId, State.SelectedCustomIconId, false);
+				App.Kp2a.CurrentDb.DrawableFactory.AssignDrawableTo(iconButton, this, App.Kp2a.CurrentDb.KpDatabase, (PwIcon)State.SelectedIconId, State.SelectedCustomIconId, false);
 			}
 			iconButton.Click += (sender, evt) => {
 				UpdateEntryFromUi(State.Entry);
@@ -371,7 +371,7 @@ namespace keepass2android
 
 		private void SetAddExtraStringEnabled()
 		{
-			if (!App.Kp2a.GetDb().DatabaseFormat.CanHaveCustomFields)
+			if (!App.Kp2a.CurrentDb.DatabaseFormat.CanHaveCustomFields)
 				((Button)FindViewById(Resource.Id.add_advanced)).Visibility = ViewStates.Gone;
 		}
 
@@ -393,7 +393,7 @@ namespace keepass2android
 
 		void SaveEntry()
 		{
-			Database db = App.Kp2a.GetDb();
+			Database db = App.Kp2a.CurrentDb;
 			EntryEditActivity act = this;
 			
 			if (!ValidateBeforeSaving())
@@ -498,7 +498,7 @@ namespace keepass2android
 
 		void UpdateEntryFromUi(PwEntry entry)
 		{
-			Database db = App.Kp2a.GetDb();
+			Database db = App.Kp2a.CurrentDb;
 			EntryEditActivity act = this;
 
 			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectTitle,
@@ -753,7 +753,7 @@ namespace keepass2android
 				String generatedPassword = data.GetStringExtra("keepass2android.password.generated_password");
 				
 				byte[] password = StrUtil.Utf8.GetBytes(generatedPassword);
-				State.Entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(App.Kp2a.GetDb().KpDatabase.MemoryProtection.ProtectPassword,
+				State.Entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(App.Kp2a.CurrentDb.KpDatabase.MemoryProtection.ProtectPassword,
 			                                                            password));
 				MemUtil.ZeroByteArray(password);
 
@@ -792,7 +792,7 @@ namespace keepass2android
 			{
 				String key = pair.Key;
 				String label = key;
-				if ((String.IsNullOrEmpty(label) || (!App.Kp2a.GetDb().DatabaseFormat.SupportsAttachmentKeys)))
+				if ((String.IsNullOrEmpty(label) || (!App.Kp2a.CurrentDb.DatabaseFormat.SupportsAttachmentKeys)))
 				{
 					label = "<attachment>";
 				}
@@ -820,7 +820,7 @@ namespace keepass2android
 
 			addBinaryButton.Enabled = true;
             
-			if (!App.Kp2a.GetDb().DatabaseFormat.CanHaveMultipleAttachments)
+			if (!App.Kp2a.CurrentDb.DatabaseFormat.CanHaveMultipleAttachments)
 				addBinaryButton.Enabled = !State.Entry.Binaries.Any();
 			addBinaryButton.Click += (sender, e) => 
 			{
@@ -921,7 +921,7 @@ namespace keepass2android
 		    {
 			    if (_additionalKeys == null)
 			    {
-				    _additionalKeys = App.Kp2a.GetDb().Entries
+				    _additionalKeys = App.Kp2a.CurrentDb.Entries
 						.Select(kvp => kvp.Value)
 						.SelectMany(x => x.Strings.GetKeys().Where(k => !PwDefs.IsStandardField(k)))
 						.Where(k => (k != null) && !k.StartsWith("_etm_") )
@@ -999,7 +999,7 @@ namespace keepass2android
 		{
 			_editModeHiddenViews = new List<View>();
 			ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, this, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid, false);
+			App.Kp2a.CurrentDb.DrawableFactory.AssignDrawableTo(currIconButton, this, App.Kp2a.CurrentDb.KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid, false);
 			
 			PopulateText(Resource.Id.entry_title, State.Entry.Strings.ReadSafe (PwDefs.TitleField));
 			PopulateText(Resource.Id.entry_user_name, State.Entry.Strings.ReadSafe (PwDefs.UserNameField));
@@ -1028,7 +1028,7 @@ namespace keepass2android
 
 			PopulateBinaries();
 
-			if (App.Kp2a.GetDb().DatabaseFormat.SupportsOverrideUrl)
+			if (App.Kp2a.CurrentDb.DatabaseFormat.SupportsOverrideUrl)
 			{
 				PopulateText(Resource.Id.entry_override_url, State.Entry.OverrideUrl);
 			}
@@ -1037,7 +1037,7 @@ namespace keepass2android
 				FindViewById(Resource.Id.entry_override_url_container).Visibility = ViewStates.Gone;
 			}
 			
-			if (App.Kp2a.GetDb().DatabaseFormat.SupportsTags)
+			if (App.Kp2a.CurrentDb.DatabaseFormat.SupportsTags)
 			{
 				PopulateText(Resource.Id.entry_tags, StrUtil.TagsToString(State.Entry.Tags, true));	
 			}

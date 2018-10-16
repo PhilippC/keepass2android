@@ -130,6 +130,7 @@ namespace keepass2android
 						DeletePermanently = true;
 						ProgressTask pt = new ProgressTask(App, Ctx, this);
 						pt.Run();
+
 					},
 				(dlgSender, dlgEvt) =>
 				{
@@ -215,11 +216,11 @@ namespace keepass2android
 				if (success)
 				{
 					foreach (var g in touchedGroups)
-						Db.Dirty.Add(g);
+						App.DirtyGroups.Add(g);
 					foreach (var g in permanentlyDeletedGroups)
 					{
-						//remove groups from global lists if present there
-						Db.Dirty.Remove(g);
+                        //remove groups from global lists if present there
+					    App.DirtyGroups.Remove(g);
 						Db.Groups.Remove(g.Uuid);
 					}
 
@@ -227,12 +228,12 @@ namespace keepass2android
 				else
 				{
 					// Let's not bother recovering from a failure to save.  It is too much work.
-					App.LockDatabase(false);
+					App.Lock(false);
 				}
 			}, OnFinishToRun);
 
 			// Commit database
-			SaveDb save = new SaveDb(Ctx, App, OnFinishToRun, false);
+			SaveDb save = new SaveDb(Ctx, App, Db, OnFinishToRun, false);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 

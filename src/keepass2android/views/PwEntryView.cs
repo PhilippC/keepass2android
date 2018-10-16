@@ -71,8 +71,9 @@ namespace keepass2android.view
 			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
 			_textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
 
+		    Database db = App.Kp2a.FindDatabaseForEntryId(pw.Uuid);
 			
-			ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = App.Kp2a.GetDb().DrawableFactory.IsWhiteIconSet ?  ViewStates.Visible : ViewStates.Gone;
+			ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ?  ViewStates.Visible : ViewStates.Gone;
 
 			_textviewDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
 			_textviewDetails.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
@@ -106,15 +107,16 @@ namespace keepass2android.view
 		    ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
 
+		    Database db = App.Kp2a.FindDatabaseForEntryId(_entry.Uuid);
 
             ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
 			if (isExpired)
 			{
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Context, App.Kp2a.GetDb().KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
+				db.DrawableFactory.AssignDrawableTo(iv, Context, db.KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
 			} else
 			{
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Context, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid, false);
+				db.DrawableFactory.AssignDrawableTo(iv, Context, db.KpDatabase, pw.IconId, pw.CustomIconUuid, false);
 			}
 
 			String title = pw.Strings.ReadSafe(PwDefs.TitleField);
@@ -138,7 +140,7 @@ namespace keepass2android.view
 				_textView.SetTextColor(new Color((int)_defaultTextColor));
 
 			String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
-			detail = SprEngine.Compile(detail, new SprContext(_entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
+			detail = SprEngine.Compile(detail, new SprContext(_entry, db.KpDatabase, SprCompileFlags.All));
 
 			if ((_showDetail == false) || (String.IsNullOrEmpty(detail)))
 			{

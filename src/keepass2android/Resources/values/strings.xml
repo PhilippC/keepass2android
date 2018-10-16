@@ -63,8 +63,9 @@
   <string name="unlock_database_title">Unlock database</string>
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Clipboard cleared.</string>
-  
+    
   
   
   <string name="clipboard_timeout">Clipboard timeout</string>
@@ -210,7 +211,7 @@
   <string name="omitbackup_title">Don\'t search backup and recycle bin entries</string>
   <string name="omitbackup_summary">Omit \'Backup\' and Recycle Bin group from search results</string>
   <string name="pass_filename">KeePass database filename</string>
-  <string name="password_title">Enter database password</string>
+  <string name="password_title">Enter databoase password</string>
   <string name="master_key_type">Select master key type:</string>
   <string name="progress_create">Creating new database…</string>
   <string name="create_database">Create database</string>
@@ -430,6 +431,10 @@
   <string name="AskOverwriteBinary_no">Rename</string>
   <string name="AttachFailed">Failed to add file attachment.</string>
   <string name="RecycleBin">Recycle Bin</string>
+
+  <string name="UpdatingTemplateIds">Updating template entries </string>
+
+
   <string name="AskDeletePermanentlyEntry">Do you want to delete this entry permanently? Press No to recycle.</string>
   <string name="AskDeletePermanentlyGroup">Do you want to delete this group permanently? Press No to recycle.</string>
   <string name="AskDeletePermanentlyItems">Do you want to delete the selected elements permanently? Press No to recycle.</string>
@@ -730,6 +735,12 @@
     &#8226; If you can still open the file on your PC, please contact support. You might try to save it with different settings (e.g. unzipped) on the PC and retry to open in Keepass2Android.
 
   </string>
+
+  <string name="open_other_db">Open another database…</string>
+  <string name="select_database">Select database</string>
+
+  <string name="ChangleLegacyTemplateIds_Title">Identical template entry ids</string>
+  <string name="ChangleLegacyTemplateIds_Message">Your database contains template entries with the same UUIDs as template entries in another open database. In order to use both databases simultaneously, Keepass2Android will modify the IDs of the database you are about to open.</string>
 
   <string name="DbUnlockedChannel_name">Database unlocked</string>
   <string name="DbUnlockedChannel_desc">Notification about the database being unlocked</string>

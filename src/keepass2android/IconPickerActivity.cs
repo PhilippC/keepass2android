@@ -51,7 +51,7 @@ namespace keepass2android
 			SetContentView(Resource.Layout.icon_picker);
 			
 			GridView currIconGridView = (GridView)FindViewById(Resource.Id.IconGridView);
-			currIconGridView.Adapter = new ImageAdapter(this, App.Kp2a.GetDb().KpDatabase);
+			currIconGridView.Adapter = new ImageAdapter(this, App.Kp2a.CurrentDb.KpDatabase);
 			
 			currIconGridView.ItemClick += (sender, e) =>
 			{
@@ -134,7 +134,7 @@ namespace keepass2android
 						bitmap.Compress(Bitmap.CompressFormat.Png, 90, ms);
 						PwCustomIcon pwci = new PwCustomIcon(new PwUuid(true), ms.ToArray());
 
-						App.Kp2a.GetDb().KpDatabase.CustomIcons.Add(pwci);
+						App.Kp2a.CurrentDb.KpDatabase.CustomIcons.Add(pwci);
 						
 					}
 					var gridView = ((GridView)FindViewById(Resource.Id.IconGridView));
@@ -198,8 +198,7 @@ namespace keepass2android
 				if (position < (int)PwIcon.Count)
 				{
 					tv.Text = "" + position;
-					var drawable = App.Kp2a.GetDb()
-						.DrawableFactory.GetIconDrawable(_act, App.Kp2a.GetDb().KpDatabase, (KeePassLib.PwIcon) position, null, false);
+					var drawable = App.Kp2a.CurrentDb						.DrawableFactory.GetIconDrawable(_act, App.Kp2a.CurrentDb.KpDatabase, (KeePassLib.PwIcon) position, null, false);
 					drawable = new BitmapDrawable(Util.DrawableToBitmap(drawable));
 					iv.SetImageDrawable(drawable);
 					//App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, _act, App.Kp2a.GetDb().KpDatabase, (KeePassLib.PwIcon) position, null, false);

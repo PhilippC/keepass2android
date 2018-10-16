@@ -26,9 +26,12 @@ namespace keepass2android
 	public class AddGroup : RunnableOnFinish {
 		internal Database Db
 		{
-			get { return _app.GetDb(); }
+			get { return _app.CurrentDb; }
 		}
-		private IKp2aApp _app;
+
+        public IKp2aApp App { get => _app; }
+
+        private IKp2aApp _app;
 		private readonly String _name;
 		private readonly int _iconId;
 		private readonly PwUuid _groupCustomIconId;
@@ -69,7 +72,7 @@ namespace keepass2android
 			Parent.AddGroup(Group, true);
 
 			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, DontSave);
+			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun, DontSave);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
@@ -86,7 +89,7 @@ namespace keepass2android
 				
 				if ( Success ) {
 					// Mark parent group dirty
-					_addGroup.Db.Dirty.Add(_addGroup.Parent);
+					_addGroup.App.DirtyGroups.Add(_addGroup.Parent);
 					
 					// Add group to global list
 					_addGroup.Db.Groups[_addGroup.Group.Uuid] = _addGroup.Group;

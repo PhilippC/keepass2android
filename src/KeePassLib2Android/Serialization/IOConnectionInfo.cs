@@ -360,5 +360,12 @@ namespace KeePassLib.Serialization
 				m_ioCredProtMode = IOCredProtMode.None;
 			}
 		}
+
+	    public bool IsSameFileAs(IOConnectionInfo other)
+	    {
+	        if (other == null)
+	            return false;
+	        return Path == other.Path && UserName == other.UserName;
+	    }
 	}
 }

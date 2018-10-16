@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using Android.App;
@@ -33,26 +34,37 @@ namespace keepass2android
 	/// This also contains methods which are UI specific and should be replacable for testing.
 	public interface IKp2aApp : ICertificateValidationHandler
 	{
-		/// <summary>
-		/// Locks the currently open database, quicklocking if available (unless false is passed for allowQuickUnlock)
-		/// </summary>
-		void LockDatabase(bool allowQuickUnlock = true);
+        /// <summary>
+        /// Locks all currently open databases, quicklocking if available (unless false is passed for allowQuickUnlock)
+        /// </summary>
+        void Lock(bool allowQuickUnlock);
 
-		/// <summary>
-		/// Loads the specified data as the currently open database, as unlocked.
-		/// </summary>
-		void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey,
-		                  ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat);
 
-		/// <summary>
-		/// Returns the current database
-		/// </summary>
-		Database GetDb();
+        /// <summary>
+        /// Loads the specified data as the currently open database, as unlocked.
+        /// </summary>
+        Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat);
 
-		/// <summary>
-		/// Tell the app that the file from ioc was opened with keyfile.
-		/// </summary>
-		void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, string displayName = "");
+
+	    HashSet<PwGroup> DirtyGroups { get; }
+
+	    void MarkAllGroupsAsDirty();
+
+        /// <summary>
+        /// Returns the current database
+        /// </summary>
+	    Database CurrentDb { get; }
+
+	    IEnumerable<Database> OpenDatabases { get; }
+	    void CloseDatabase(Database db);
+
+        Database FindDatabaseForGroupId(PwUuid groupKey);
+	    Database FindDatabaseForEntryId(PwUuid entryId);
+
+        /// <summary>
+        /// Tell the app that the file from ioc was opened with keyfile.
+        /// </summary>
+        void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, string displayName = "");
 
 		/// <summary>
 		/// Creates a new database and returns it
@@ -111,6 +123,10 @@ namespace keepass2android
 		bool CheckForDuplicateUuids { get; }
 #if !NoNet
 		ICertificateErrorHandler CertificateErrorHandler { get; }
+	    
+
+
 #endif
-	}
+
+    }
 }

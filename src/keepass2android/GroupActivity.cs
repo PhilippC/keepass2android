@@ -69,15 +69,6 @@ namespace keepass2android
 		
 		public static void Launch (Activity act, PwGroup g, AppTask appTask)
 		{
-			// Need to use PwDatabase since group may be null
-            PwDatabase db = App.Kp2a.GetDb().KpDatabase;
-
-			if (db == null) {
-				// Reached if db is null
-				Log.Debug (Tag, "Tried to launch with null db");
-				return;
-			}
-
 			Intent i = new Intent(act, typeof(GroupActivity));
 				
 			if ( g != null ) {
@@ -105,10 +96,15 @@ namespace keepass2android
 
         protected override bool AddEntryEnabled
 		{
-			get { return App.Kp2a.GetDb().CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.GetDb().DatabaseFormat.CanHaveEntriesInRootGroup); }
+			get { return App.Kp2a.CurrentDb.CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.CurrentDb.DatabaseFormat.CanHaveEntriesInRootGroup); }
 		}
 
-		private class TemplateListAdapter : ArrayAdapter<PwEntry>
+	    protected override bool AddGroupEnabled
+	    {
+	        get { return App.Kp2a.CurrentDb.CanWrite; }
+	    }
+
+	    private class TemplateListAdapter : ArrayAdapter<PwEntry>
 		{
 			public TemplateListAdapter(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
 			{
@@ -149,8 +145,7 @@ namespace keepass2android
 				int size = (int)(Util.convertDpToPixel(Util.convertDpToPixel(20, Context), Context));
 				var bmp =
 					Bitmap.CreateScaledBitmap(
-						Util.DrawableToBitmap(App.Kp2a.GetDb()
-						    .DrawableFactory.GetIconDrawable(Context, App.Kp2a.GetDb().KpDatabase, templateEntry.IconId, PwUuid.Zero, false)),
+						Util.DrawableToBitmap(App.Kp2a.CurrentDb						    .DrawableFactory.GetIconDrawable(Context, App.Kp2a.CurrentDb.KpDatabase, templateEntry.IconId, PwUuid.Zero, false)),
 						size, size,
 						true);
 				
@@ -193,7 +188,7 @@ namespace keepass2android
 			
 			PwUuid id = RetrieveGroupId (intent);
 			
-			Database db = App.Kp2a.GetDb();
+			Database db = App.Kp2a.CurrentDb;
 			if (id == null) {
 				Group = db.Root;
 			} else {
@@ -221,8 +216,8 @@ namespace keepass2android
 				View addEntry = FindViewById (Resource.Id.fabAddNewEntry);
 				addEntry.Click += (sender, e) =>
 				{
-					if (App.Kp2a.GetDb().DatabaseFormat.SupportsTemplates &&
-						!AddTemplateEntries.ContainsAllTemplates(App.Kp2a) &&
+					if (App.Kp2a.CurrentDb.DatabaseFormat.SupportsTemplates &&
+						!AddTemplateEntries.ContainsAllTemplates(App.Kp2a.CurrentDb) &&
 						PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(Askaddtemplates, true))
 					{
 						App.Kp2a.AskYesNoCancel(UiStringKey.AskAddTemplatesTitle, UiStringKey.AskAddTemplatesMessage,UiStringKey.yes, UiStringKey.no,
@@ -256,14 +251,14 @@ namespace keepass2android
 			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 			Log.Warn(Tag, "Finished creating group");
 
-		    var ioc = App.Kp2a.GetDb().Ioc;
+		    var ioc = App.Kp2a.CurrentDb.Ioc;
 		    OptionalOut<UiStringKey> reason = new OptionalOut<UiStringKey>();
 		    
 		    if (App.Kp2a.GetFileStorage(ioc).IsReadOnly(ioc, reason))
 		    {
 				bool hasShownReadOnlyReason =
 					PreferenceManager.GetDefaultSharedPreferences(this)
-						.GetBoolean(App.Kp2a.GetDb().IocAsHexString() + "_readonlyreason", false);
+						.GetBoolean(App.Kp2a.CurrentDb.IocAsHexString() + "_readonlyreason", false);
 			    if (!hasShownReadOnlyReason)
 			    {
 				    var b = new AlertDialog.Builder(this);
@@ -273,7 +268,7 @@ namespace keepass2android
 					    (sender, args) =>
 					    {
 							PreferenceManager.GetDefaultSharedPreferences(this).
-						Edit().PutBoolean(App.Kp2a.GetDb().IocAsHexString() + "_readonlyreason", true).Commit();
+						Edit().PutBoolean(App.Kp2a.CurrentDb.IocAsHexString() + "_readonlyreason", true).Commit();
 					    });
 				    b.Show();
 			    }
@@ -287,11 +282,11 @@ namespace keepass2android
 			defaultTemplate.IconId = PwIcon.Key;
 			defaultTemplate.Strings.Set(PwDefs.TitleField, new ProtectedString(false, GetString(Resource.String.DefaultTemplate)));
 			List<PwEntry> templates = new List<PwEntry>() {defaultTemplate};
-			if ((!PwUuid.Zero.Equals(App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup))
-				&& (App.Kp2a.GetDb().KpDatabase.RootGroup.FindGroup(App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup, true) != null))
+			if ((!PwUuid.Zero.Equals(App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup))
+				&& (App.Kp2a.CurrentDb.KpDatabase.RootGroup.FindGroup(App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup, true) != null))
 			{
 				templates.AddRange(
-					App.Kp2a.GetDb().Groups[App.Kp2a.GetDb().KpDatabase.EntryTemplatesGroup].Entries.OrderBy(
+					App.Kp2a.CurrentDb.Groups[App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup].Entries.OrderBy(
 						entr => entr.Strings.ReadSafe(PwDefs.TitleField)));
 			}
 			if (templates.Count > 1)
@@ -315,8 +310,13 @@ namespace keepass2android
 			ClickView cv = (ClickView) acmi.TargetView;
 			cv.OnCreateMenu(menu, menuInfo);
 		}
-		
-		public override void OnBackPressed()
+
+	    public override bool EntriesBelongToCurrentDatabaseOnly
+	    {
+	        get { return true; }
+	    }
+
+	    public override void OnBackPressed()
 		{
 			base.OnBackPressed();
 			//if ((Group != null) && (Group.ParentGroup != null))

@@ -47,7 +47,7 @@ namespace keepass2android
         */
         private void SetMembers(Activity activity, IKp2aApp app, PwGroup group, bool dontSave)
         {
-			base.SetMembers(activity, app.GetDb());
+			base.SetMembers(activity, app.FindDatabaseForGroupId(group.Uuid));
 
 			_group = group;
 	        DontSave = dontSave;
@@ -58,7 +58,7 @@ namespace keepass2android
 		{
 			get
 			{
-				return App.GetDb().DatabaseFormat.CanRecycle && CanRecycleGroup(_group);
+				return Db.DatabaseFormat.CanRecycle && CanRecycleGroup(_group);
 			}
 		}
 

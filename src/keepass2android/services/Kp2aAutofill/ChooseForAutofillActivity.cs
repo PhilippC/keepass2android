@@ -28,7 +28,7 @@ namespace keepass2android.services.Kp2aAutofill
         {
             //launch FileSelectActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
             //will return the results later
-            Intent i = new Intent(this, typeof(FileSelectActivity));
+            Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
             //don't show user notifications when an entry is opened.
             var task = new SearchUrlTask() { UrlToSearchFor = requestedUrl, ShowUserNotifications = false, AutoReturnFromQuery = autoReturnFromQuery };
             task.ToIntent(i);
@@ -39,9 +39,9 @@ namespace keepass2android.services.Kp2aAutofill
 
         protected override FilledAutofillFieldCollection GetDataset(Intent data)
         {
-            if (App.Kp2a.GetDb()==null || (App.Kp2a.QuickLocked))
+            if (App.Kp2a.CurrentDb==null || (App.Kp2a.QuickLocked))
                 return null;
-            var entryOutput = App.Kp2a.GetDb().LastOpenedEntry;
+            var entryOutput = App.Kp2a.LastOpenedEntry;
 
             return GetFilledAutofillFieldCollectionFromEntry(entryOutput, this);
         }

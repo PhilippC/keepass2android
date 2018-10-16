@@ -91,7 +91,7 @@ namespace keepass2android
 	public class EntryActivity : LockCloseActivity 
 	{
 		public const String KeyEntry = "entry";
-		public const String KeyRefreshPos = "refresh_pos";
+        public const String KeyRefreshPos = "refresh_pos";
 		public const String KeyCloseAfterCreate = "close_after_create";
 		public const String KeyGroupFullPath = "groupfullpath_key";
 
@@ -106,6 +106,11 @@ namespace keepass2android
 
 			i.PutExtra(KeyEntry, pw.Uuid.ToHexString());
 			i.PutExtra(KeyRefreshPos, pos);
+
+		    if (!App.Kp2a.CurrentDb.Entries.ContainsKey(pw.Uuid))
+		    {
+		        App.Kp2a.CurrentDb = App.Kp2a.FindDatabaseForEntryId(pw.Uuid);
+		    }
 
 			if (flags != null)
 				i.SetFlags((ActivityFlags) flags);
@@ -167,7 +172,7 @@ namespace keepass2android
 
 		protected void SetupEditButtons() {
 			View edit =  FindViewById(Resource.Id.entry_edit);
-			if (App.Kp2a.GetDb().CanWrite)
+			if (App.Kp2a.CurrentDb.CanWrite)
 			{
 				edit.Visibility = ViewStates.Visible;
 				edit.Click += (sender, e) =>
@@ -265,9 +270,9 @@ namespace keepass2android
 
 			//update the Entry output in the App database and notify the CopyToClipboard service
 
-		    if (App.Kp2a.GetDb()?.LastOpenedEntry != null)
+		    if (App.Kp2a.LastOpenedEntry != null)
 		    {
-		        App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
+		        App.Kp2a.LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
 		        Intent updateKeyboardIntent = new Intent(this, typeof(CopyToClipboardService));
 		        updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
 		        updateKeyboardIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
@@ -323,7 +328,7 @@ namespace keepass2android
 				i.SetPackage(pluginPackage);
 				i.PutExtra(Strings.ExtraActionData, bundleExtra);
 				i.PutExtra(Strings.ExtraSender, PackageName);
-				PluginHost.AddEntryToIntent(i, App.Kp2a.GetDb().LastOpenedEntry);
+				PluginHost.AddEntryToIntent(i, App.Kp2a.LastOpenedEntry);
 
 				var menuOption = new PluginMenuOption()
 					{
@@ -389,7 +394,7 @@ namespace keepass2android
 
 			SetEntryView();
 
-			Database db = App.Kp2a.GetDb();
+			Database db = App.Kp2a.CurrentDb;
 			// Likely the app has been killed exit the activity 
 			if (db == null || (App.Kp2a.QuickLocked))
 			{
@@ -428,7 +433,7 @@ namespace keepass2android
 
 			SetupEditButtons();
 			
-			App.Kp2a.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.GetDb().KpDatabase);
+			App.Kp2a.LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.CurrentDb);
 
 			_pluginActionReceiver = new PluginActionReceiver(this);
 			RegisterReceiver(_pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction));
@@ -508,8 +513,8 @@ namespace keepass2android
 			ViewGroup extraGroup = (ViewGroup) FindViewById(Resource.Id.extra_strings);
 		    bool hasExtras = false;
 			IEditMode editMode = new DefaultEdit();
-			if (KpEntryTemplatedEdit.IsTemplated(App.Kp2a.GetDb(), this.Entry))
-				editMode = new KpEntryTemplatedEdit(App.Kp2a.GetDb(), this.Entry);
+			if (KpEntryTemplatedEdit.IsTemplated(App.Kp2a.CurrentDb, this.Entry))
+				editMode = new KpEntryTemplatedEdit(App.Kp2a.CurrentDb, this.Entry);
 			foreach (var key in  editMode.SortExtraFieldKeys(Entry.Strings.GetKeys().Where(key=> !PwDefs.IsStandardField(key))))
 			{
 				if (editMode.IsVisible(key))
@@ -936,7 +941,7 @@ namespace keepass2android
         private void PopulateStandardText(List<int> viewIds, int containerViewId, String key)
 		{
 			String value = Entry.Strings.ReadSafe(key);
-			value = SprEngine.Compile(value, new SprContext(Entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
+			value = SprEngine.Compile(value, new SprContext(Entry, App.Kp2a.CurrentDb.KpDatabase, SprCompileFlags.All));
 			PopulateText(viewIds, containerViewId, value);
 			_stringViews.Add(key, new StandardStringView(viewIds, containerViewId, this));
 		}
@@ -1012,7 +1017,7 @@ namespace keepass2android
 	                {
 	                    ((IOfflineSwitchable)fileStorage).IsOffline = false;
 	                }
-	                using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetDb().KpDatabase.UseFileTransactions))
+	                using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
 	                {
 	                    Stream sOut = writeTransaction.OpenFile();
 
@@ -1173,7 +1178,7 @@ namespace keepass2android
 					return true;
 
 				case Resource.Id.menu_lock:
-					App.Kp2a.LockDatabase();
+					App.Kp2a.Lock();
 					return true;
 				case Android.Resource.Id.Home:
 					//Currently the action bar only displays the home button when we come from a previous activity.
@@ -1264,7 +1269,7 @@ namespace keepass2android
 
 		public void AddEntryToIntent(Intent intent)
 		{
-			PluginHost.AddEntryToIntent(intent, App.Kp2a.GetDb().LastOpenedEntry);
+			PluginHost.AddEntryToIntent(intent, App.Kp2a.LastOpenedEntry);
 		}
 
 		public void CloseAfterTaskComplete()

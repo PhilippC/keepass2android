@@ -83,7 +83,7 @@ namespace keepass2android
 		
 		public static void Resume(Activity act) 
 		{
-			if ( App.Kp2a.GetDb() != null) 
+			if ( App.Kp2a.CurrentDb!= null) 
 			{
 				Timeout.Cancel(act);
 			}
@@ -92,14 +92,13 @@ namespace keepass2android
 		static bool IocChanged(IOConnectionInfo ioc, IOConnectionInfo other)
 		{
 			if ((ioc == null) || (other == null)) return false;
-			return ioc.GetDisplayName() != other.GetDisplayName();
+			return !ioc.IsSameFileAs(other);
 		}
 		
-		public static bool CheckShutdown(Activity act, IOConnectionInfo ioc) {
+		public static bool CheckDbChanged(Activity act, IOConnectionInfo ioc) {
 			if ((  !App.Kp2a.DatabaseIsUnlocked ) 
-			    || (IocChanged(ioc, App.Kp2a.GetDb().Ioc))) //file was changed from ActionSend-Intent
+			    || (IocChanged(ioc, App.Kp2a.CurrentDb.Ioc))) //file was changed from ActionSend-Intent
 			{
-				App.Kp2a.LockDatabase();
 				return true;
 			}
 			return false;

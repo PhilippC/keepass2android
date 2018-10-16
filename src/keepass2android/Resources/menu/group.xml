@@ -57,11 +57,16 @@
     app:showAsAction="never"
     />
 
-	<item android:id="@+id/menu_sort"
+  <item android:id="@+id/menu_sort"
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="@string/sort_menu"
       app:showAsAction="never"
     />
-    
-    
+  <item android:id="@+id/menu_open_other_db"
+        android:title="@string/open_other_db"
+        app:showAsAction="never"
+  />
+
+
+
 </menu>

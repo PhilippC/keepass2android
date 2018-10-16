@@ -43,7 +43,7 @@ namespace keepass2android
 	    {
 	        base.OnStart();
 
-	        var xcKey = App.Kp2a.GetDb()?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+	        var xcKey = App.Kp2a.CurrentDb?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
 	        if (xcKey != null)
 	        {
 	            xcKey.Activity = this;
@@ -58,7 +58,7 @@ namespace keepass2android
 	    protected override void OnStop()
 	    {
 	        base.OnStop();
-	        var xcKey = App.Kp2a.GetDb()?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+	        var xcKey = App.Kp2a.CurrentDb?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
 	        if (xcKey != null)
 	        {
 	            //don't store a pointer to this activity in the static database object to avoid memory leak
