@@ -67,8 +67,7 @@ namespace keepass2android
 		ConfigurationChanges = ConfigChanges.Orientation,
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
-		Theme = "@style/MyTheme_Blue")] /*caution: also contained in AndroidManifest.xml*/
-	//CAUTION: don't add intent filters here, they must be set in the manifest xml file
+		Theme = "@style/MyTheme_Blue")] 
 	public class PasswordActivity : LockingActivity, IFingerprintAuthCallback
 	{
 
@@ -84,10 +83,9 @@ namespace keepass2android
 
 		public const String KeyDefaultFilename = "defaultFileName";
 
-	    private const String KeyKeyfile = "keyFile";
-	    private const String KeyPassword = "password";
+	    public const String KeyKeyfile = "keyFile";
+	    public const String KeyPassword = "password";
 
-        private const String ViewIntent = "android.intent.action.VIEW";
 		private const string ShowpasswordKey = "ShowPassword";
 		private const string KeyProviderIdOtp = "KP2A-OTP";
 		private const string KeyProviderIdOtpRecovery = "KP2A-OTPSecret";
@@ -103,15 +101,16 @@ namespace keepass2android
 		private const int RequestCodePrepareKeyFile = 1004;
 		private const int RequestCodeSelectAuxFile = 1005;
 
+	    public const int ResultSelectOtherFile = (int) Result.FirstUser;
 
-		private Task<MemoryStream> _loadDbFileTask;
+
+        private Task<MemoryStream> _loadDbFileTask;
 		private bool _loadDbTaskOffline; //indicate if preloading was started with offline mode
 
 		private IOConnectionInfo _ioConnection;
 		private String _keyFile;
 		bool _showPassword;
 
-		internal AppTask AppTask;
 		private bool _killOnDestroy;
 		private string _password = "";
 		//OTPs which should be entered into the OTP fields as soon as these become visible
@@ -160,52 +159,31 @@ namespace keepass2android
         //can be set before launching the Activity. Will be used once to immediately open the database
         static CompositeKey compositeKeyForImmediateLoad = null;
 
-	    public static void Launch(Activity act, IOConnectionInfo ioc, AppTask appTask, CompositeKey compositeKey)
+
+        public static void Launch(Activity act, IOConnectionInfo ioc, CompositeKey compositeKey, ActivityLaunchMode launchMode)
 	    {
 	        compositeKeyForImmediateLoad = compositeKey;
-	        Launch(act, ioc, appTask);
+	        Launch(act, ioc, launchMode);
 	    }
 
-        public static void Launch(Activity act, String fileName, AppTask appTask)
-        {
-			File dbFile = new File(fileName);
-			if ( ! dbFile.Exists() ) {
-				throw new FileNotFoundException();
-			}
-	
-			
-			Intent i = new Intent(act, typeof(PasswordActivity));
-			i.SetFlags(ActivityFlags.ForwardResult);
-			i.PutExtra(Util.KeyFilename, fileName);
-			appTask.ToIntent(i);
-
-			act.StartActivity(i);
-			
-		}
 		
 
-		public static void Launch(Activity act, IOConnectionInfo ioc, AppTask appTask)
+		public static void Launch(Activity act, IOConnectionInfo ioc, ActivityLaunchMode launchMode)
 		{
-			if (ioc.IsLocalFile())
-			{
-				Launch(act, ioc.Path, appTask);
-				return;
-			}
-
 			Intent i = new Intent(act, typeof(PasswordActivity));
-
 		    Util.PutIoConnectionToIntent(ioc, i);
-			i.SetFlags(ActivityFlags.ForwardResult);
 
-			appTask.ToIntent(i);
-
-			act.StartActivity(i);
-			
+		    launchMode.Launch(act, i);
 		}
 
 		public void LaunchNextActivity()
 		{
             //StackBaseActivity will launch the next activity
+            Intent data = new Intent();
+		    data.PutExtra("ioc", IOConnectionInfo.SerializeToString(_ioConnection));
+
+		    SetResult(Result.Ok, data);
+
 		    Finish();
 		}
 
@@ -214,8 +192,6 @@ namespace keepass2android
 			base.OnActivityResult(requestCode, resultCode, data);
 			_keepPasswordInOnResume = true; 
 			Kp2aLog.Log("PasswordActivity.OnActivityResult "+resultCode+"/"+requestCode);
-
-			AppTask.TryGetFromActivityResult(data, ref AppTask);
 
 			switch(resultCode) {
 
@@ -663,7 +639,7 @@ namespace keepass2android
 			_activityDesign.ApplyTheme();
 			base.OnCreate(savedInstanceState);
 
-			_intentReceiver = new PasswordActivityBroadcastReceiver(this);
+		    _intentReceiver = new PasswordActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
 			RegisterReceiver(_intentReceiver, filter);
@@ -678,19 +654,6 @@ namespace keepass2android
 
 			Intent i = Intent;
 
-			//only load the AppTask if this is the "first" OnCreate (not because of kill/resume, i.e. savedInstanceState==null)
-			// and if the activity is not launched from history (i.e. recent tasks) because this would mean that
-			// the Activity was closed already (user cancelling the task or task complete) but is restarted due recent tasks.
-			// Don't re-start the task (especially bad if tak was complete already)
-			if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
-			{
-				AppTask = new NullTask();
-			}
-			else
-			{
-				AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
-			}
-
 
 			String action = i.Action;
 
@@ -700,11 +663,7 @@ namespace keepass2android
 			_ioConnection = new IOConnectionInfo();
 
 
-			if (action != null && action.Equals(ViewIntent))
-			{
-				if (!GetIocFromViewIntent(i)) return;
-			}
-			else if ((action != null) && (action.Equals(Intents.StartWithOtp)))
+            if ((action != null) && (action.Equals(Intents.StartWithOtp)))
 			{
 				if (!GetIocFromOtpIntent(savedInstanceState, i)) return;
 				_keepPasswordInOnResume = true;
@@ -802,11 +761,10 @@ namespace keepass2android
 				RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);
 
             
-		    var matchingOpenDb = App.Kp2a.OpenDatabases.FirstOrDefault(db => db.Ioc.IsSameFileAs(_ioConnection));
-		    if (matchingOpenDb != null)
-		    {
-		        App.Kp2a.CurrentDb = matchingOpenDb;
-		        Finish();
+		    if (App.Kp2a.TrySelectCurrentDb(_ioConnection))
+            { 
+                //database already opened. return the ioc and we're good.
+		        LaunchNextActivity();
 		    }
 			
 		}
@@ -1137,50 +1095,6 @@ namespace keepass2android
 			return true;
 		}
 
-		private bool GetIocFromViewIntent(Intent i)
-		{
-			//started from "view" intent (e.g. from file browser)
-			_ioConnection.Path = i.DataString;
-
-			if (_ioConnection.Path.StartsWith("file://"))
-			{
-				_ioConnection.Path = URLDecoder.Decode(_ioConnection.Path.Substring(7));
-
-				if (_ioConnection.Path.Length == 0)
-				{
-					// No file name
-					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
-					Finish();
-					return false;
-				}
-
-				File dbFile = new File(_ioConnection.Path);
-				if (!dbFile.Exists())
-				{
-					// File does not exist
-					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
-					Finish();
-					return false;
-				}
-			}
-			else
-			{
-				if (!_ioConnection.Path.StartsWith("content://"))
-				{
-			
-					Toast.MakeText(this, Resource.String.error_can_not_handle_uri, ToastLength.Long).Show();
-					Finish();
-					return false;
-				}
-				IoUtil.TryTakePersistablePermissions(this.ContentResolver, i.Data);
-
-
-			}
-
-			
-			SetKeyProviderFromString(LoadKeyProviderStringForIoc(_ioConnection.Path));
-			return true;
-		}
 
 		private void InitializeBottomBarButtons()
 		{
@@ -1607,7 +1521,6 @@ namespace keepass2android
 		        CopyToClipboardService.ActivateKeyboard(this);
 		    }
 
-                AppTask.CanActivateSearchViewOnStart = true;
             DonateReminder.ShowDonateReminderIfAppropriate(this);
 			
 			
@@ -1635,7 +1548,6 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			AppTask.ToBundle(outState);
 			outState.PutBoolean(ShowpasswordKey, _showPassword);
 
 			outState.PutString(KeyFileOrProviderKey, GetKeyProviderString());
@@ -1751,6 +1663,7 @@ namespace keepass2android
 				killButton.Click += (sender, args) =>
 				{
 					_killOnDestroy = true;
+                    SetResult(Result.Canceled);
 					Finish();
 
 				};
@@ -1856,9 +1769,9 @@ namespace keepass2android
 		                keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
 		        }, 50);
 		    }
-		}
+        }
 
-		private bool InitFingerprintUnlock()
+        private bool InitFingerprintUnlock()
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 			try
@@ -1986,12 +1899,8 @@ namespace keepass2android
 
 		private void GoToFileSelectActivity()
 		{
-			Intent intent = new Intent(this, typeof (FileSelectActivity));
-			intent.PutExtra(FileSelectActivity.NoForwardToPasswordActivity, true);
-			AppTask.ToIntent(intent);
-			intent.AddFlags(ActivityFlags.ForwardResult);
-			StartActivity(intent);
-			Finish();
+		    SetResult((Result) ResultSelectOtherFile);
+            Finish();
 		}
 
 		private class AfterLoad : OnFinish {
@@ -2014,7 +1923,6 @@ namespace keepass2android
 					_act.BroadcastOpenDatabase();
 					_act.InvalidCompositeKeyCount = 0;
 				    _act.LoadingErrorCount = 0;
-                    _act.Finish();
 
 
                     GC.Collect(); // Ensure temporary memory used while loading is collected
@@ -2080,20 +1988,22 @@ namespace keepass2android
 					                                                (sender, args) =>
 						                                                {
 							                                                ((Dialog) sender).Dismiss();
-																			_act.LaunchNextActivity();
-						                                                })
+						                                                    if (Success)
+						                                                    {
+						                                                        _act.LaunchNextActivity();
+						                                                    }
+                                                                        })
 												.SetCancelable(false)
 												.Show();
 					
 				}
 				else
 				{
-					DisplayMessage(_act);	
-					if (Success)
-					{
-						_act.LaunchNextActivity();
-					}
-						
+					DisplayMessage(_act);
+				    if (Success)
+				    {
+				        _act.LaunchNextActivity();
+				    }
 
 				}
 
@@ -2207,6 +2117,7 @@ namespace keepass2android
 			
 		}
 
+	    
 	}
 
 

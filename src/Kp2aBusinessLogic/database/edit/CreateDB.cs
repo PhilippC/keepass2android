@@ -88,8 +88,10 @@ namespace keepass2android
 			save.SetStatusLogger(StatusLogger);
 			_onFinishToRun = null;
 			save.Run();
-			
-			
+
+		    db.UpdateGlobals();
+
+
 		}
 		
 	}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Android.App;
@@ -50,11 +51,20 @@ namespace keepass2android.database.edit
 
             }
 
+		    HashSet<Database> removeDatabases = new HashSet<Database>();
+            Database addDatabase = _app.FindDatabaseForGroupId(_targetGroup.Uuid);
+		    if (addDatabase == null)
+		    {
+		        Finish(false, "Did not find target database. Did you lock it?");
+		        return;
+		    }
+
 		    foreach (var elementToMove in _elementsToMove)
 		    {
 
                 _app.DirtyGroups.Add(elementToMove.ParentGroup);
-                //TODO is this safe when transferring between databases?
+                
+
                 PwGroup pgParent = elementToMove.ParentGroup;
                 if (pgParent != _targetGroup)
                 {
@@ -63,8 +73,12 @@ namespace keepass2android.database.edit
                         PwEntry entry = elementToMove as PwEntry;
                         if (entry != null)
                         {
+                            var dbRem = _app.FindDatabaseForEntryId(entry.Uuid);
+                            removeDatabases.Add(dbRem);
+                            dbRem.Entries.Remove(entry.Uuid);
                             pgParent.Entries.Remove(entry);
                             _targetGroup.AddEntry(entry, true, true);
+                            addDatabase.Entries.Add(entry.Uuid, entry);
                         }
                         else
                         {
@@ -74,30 +88,58 @@ namespace keepass2android.database.edit
                                 Finish(false, _app.GetResourceString(UiStringKey.CannotMoveGroupHere));
                                 return;
                             }
+
+                            var dbRem = _app.FindDatabaseForEntryId(@group.Uuid);
+                            if (dbRem == null)
+                            {
+                                Finish(false, "Did not find source database. Did you lock it?");
+                                return;
+                            }
+
+                            dbRem.Groups.Remove(group.Uuid);
+                            removeDatabases.Add(dbRem);
                             pgParent.Groups.Remove(group);
                             _targetGroup.AddGroup(group, true, true);
+                            addDatabase.Groups.Add(group.Uuid, group);
                         }
                     }
+
                 }
 
 		    }
-			
-			
-			_onFinishToRun = new ActionOnFinish(ActiveActivity, (success, message, activity) =>
-			{
-				if (!success)
-				{	// Let's not bother recovering from a failure.
-					_app.Lock(false);
-				}
-			}, OnFinishToRun);
 
-            //Unchecked
-            //TODO save the right database
+		    
+            
+		    
+		    //first save the database where we added the elements
+            var allDatabasesToSave = new List<Database> {addDatabase};
+            //then all databases where we removed elements:
+		    removeDatabases.RemoveWhere(db => db == addDatabase);
+            allDatabasesToSave.AddRange(removeDatabases);
 
-			// Save
-			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun, false);
-			save.SetStatusLogger(StatusLogger);
-			save.Run();
+		    int indexToSave = 0;
+		    bool allSavesSuccess = true;
+		    void ContinueSave(bool success, string message, Activity activeActivity)
+		    {
+		        allSavesSuccess &= success;
+                indexToSave++;
+		        if (indexToSave == allDatabasesToSave.Count)
+		        {
+		            OnFinishToRun.SetResult(allSavesSuccess);
+		            OnFinishToRun.Run();
+		            return;
+		        }
+		        SaveDb saveDb = new SaveDb(_ctx, _app, allDatabasesToSave[indexToSave], new ActionOnFinish(activeActivity, ContinueSave), false);
+		        saveDb.SetStatusLogger(StatusLogger);
+		        saveDb.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
+		        saveDb.Run();
+		    }
+
+
+		    SaveDb save = new SaveDb(_ctx, _app, allDatabasesToSave[0], new ActionOnFinish(ActiveActivity, ContinueSave), false);
+            save.SetStatusLogger(StatusLogger);
+		    save.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
+            save.Run();
 		}
 	}
 }

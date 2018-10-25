@@ -497,8 +497,13 @@ namespace keepass2android
 						dbHelper.CreateFile(_ioc, Filename);
 					}
 
-					GroupActivity.Launch(_activity, _activity._appTask);
-					_activity.Finish();
+				    Intent data = new Intent();
+				    data.PutExtra("ioc", IOConnectionInfo.SerializeToString(_ioc));
+
+				    _activity.SetResult(Result.Ok, data);
+
+				    
+                    _activity.Finish();
 
 				}
 				else

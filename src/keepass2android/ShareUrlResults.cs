@@ -56,11 +56,11 @@ namespace keepass2android
 		{
 		}
 
-		public static void Launch(Activity act, SearchUrlTask task)
+		public static void Launch(Activity act, SearchUrlTask task, ActivityLaunchMode launchMode)
 		{
 			Intent i = new Intent(act, typeof(ShareUrlResults));
 			task.ToIntent(i);
-			act.StartActivityForResult(i, 0);
+		    launchMode.Launch(act, i);
 		}
 
 
@@ -171,7 +171,8 @@ namespace keepass2android
 		        newTask.ShowUserNotifications = currentSelectTask.ShowUserNotifications;
             
             selectOtherEntry.Click += (sender, e) => {
-				GroupActivity.Launch (this, newTask);
+				GroupActivity.Launch (this, newTask, new ActivityLaunchModeRequestCode(0));
+
 			};
 
 			
@@ -182,7 +183,7 @@ namespace keepass2android
 				createUrlEntry.Visibility = ViewStates.Visible;
 				createUrlEntry.Click += (sender, e) =>
 				{
-					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? true });
+					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? true }, new ActivityLaunchModeRequestCode(0));
 					Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
 				};
 			}

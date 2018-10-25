@@ -199,6 +199,12 @@ namespace keepass2android
                 Finish();
             }
 
+            if (resultCode == KeePass.ExitLoadAnotherDb)
+            {
+                AppTask.SetActivityResult(this, KeePass.ExitLoadAnotherDb);
+                Finish();
+            }
+
             if (resultCode == KeePass.ExitReloadDb)
             {
                 AppTask.SetActivityResult(this, KeePass.ExitReloadDb);

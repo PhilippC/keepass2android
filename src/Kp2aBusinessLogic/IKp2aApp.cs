@@ -88,7 +88,8 @@ namespace keepass2android
 		                    EventHandler<DialogClickEventArgs> yesHandler,
 		                    EventHandler<DialogClickEventArgs> noHandler,
 		                    EventHandler<DialogClickEventArgs> cancelHandler,
-		                    Context ctx);
+		                    Context ctx,
+                            string messageSuffix = "");
 
 		/// <summary>
 		/// Asks the user the question "messageKey" with the options Yes/No/Cancel, but the yes/no strings can be selected freely, calls the handler corresponding to the answer.
@@ -98,7 +99,8 @@ namespace keepass2android
 		                    EventHandler<DialogClickEventArgs> yesHandler,
 		                    EventHandler<DialogClickEventArgs> noHandler,
 		                    EventHandler<DialogClickEventArgs> cancelHandler,
-		                    Context ctx);
+		                    Context ctx,
+		                    string messageSuffix = "");
 
 		/// <summary>
 		/// Returns a Handler object which can run tasks on the UI thread
@@ -127,6 +129,5 @@ namespace keepass2android
 
 
 #endif
-
-    }
+	}
 }

@@ -207,7 +207,14 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("FP: StopListening ");
 				_selfCancelled = true;
-				_cancellationSignal.Cancel();
+			    try
+			    {
+			        _cancellationSignal.Cancel();
+                }
+			    catch (System.ObjectDisposedException e)
+			    {
+			        Kp2aLog.LogUnexpectedError(e);
+			    }
 				_cancellationSignal = null;
 			}
 		}

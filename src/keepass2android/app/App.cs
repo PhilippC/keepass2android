@@ -500,14 +500,10 @@ namespace keepass2android
 			return Application.Context.Resources.GetDrawable((int)field.GetValue(null));
 		}
 
-		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
-			EventHandler<DialogClickEventArgs> yesHandler,
-			EventHandler<DialogClickEventArgs> noHandler,
-			EventHandler<DialogClickEventArgs> cancelHandler,
-			Context ctx)
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler, EventHandler<DialogClickEventArgs> cancelHandler, Context ctx, string messageSuffix)
 		{
 			AskYesNoCancel(titleKey, messageKey, UiStringKey.yes, UiStringKey.no,
-				yesHandler, noHandler, cancelHandler, ctx);
+				yesHandler, noHandler, cancelHandler, ctx, messageSuffix);
 		}
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
@@ -515,9 +511,9 @@ namespace keepass2android
 			EventHandler<DialogClickEventArgs> yesHandler,
 			EventHandler<DialogClickEventArgs> noHandler,
 			EventHandler<DialogClickEventArgs> cancelHandler,
-			Context ctx)
+			Context ctx, string messageSuffix = "")
 		{
-			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, ctx);
+			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, ctx, messageSuffix);
 		}
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
@@ -526,7 +522,7 @@ namespace keepass2android
             EventHandler<DialogClickEventArgs> noHandler,
             EventHandler<DialogClickEventArgs> cancelHandler,
 			EventHandler dismissHandler,
-            Context ctx)
+            Context ctx, string messageSuffix = "")
         {
 	        Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>
@@ -534,7 +530,7 @@ namespace keepass2android
 					AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 					builder.SetTitle(GetResourceString(titleKey));
 
-					builder.SetMessage(GetResourceString(messageKey));
+					builder.SetMessage(GetResourceString(messageKey)+(messageSuffix != "" ? " " + messageSuffix: ""));
 
 					string yesText = GetResourceString(yesString);
 					builder.SetPositiveButton(yesText, yesHandler);
@@ -787,6 +783,7 @@ namespace keepass2android
 		}
 	    
 
+
 	    public class CertificateErrorHandlerImpl : Java.Lang.Object, Keepass2android.Javafilestorage.ICertificateErrorHandler
 		{
 			private readonly Kp2aApp _app;
@@ -1022,9 +1019,9 @@ namespace keepass2android
 
 	    public PwGroup FindGroup(PwUuid uuid)
 	    {
-	        PwGroup result;
 	        foreach (Database db in OpenDatabases)
 	        {
+	            PwGroup result;
 	            if (db.Groups.TryGetValue(uuid, out result))
 	                return result;
 	        }
@@ -1044,7 +1041,19 @@ namespace keepass2android
             }
 	        return null;
 	    }
-    }
+
+	    public bool TrySelectCurrentDb(IOConnectionInfo ioConnection)
+	    {
+	        var matchingOpenDb = App.Kp2a.OpenDatabases.FirstOrDefault(db => db.Ioc.IsSameFileAs(ioConnection));
+	        if (matchingOpenDb != null)
+	        {
+	            CurrentDb = matchingOpenDb;
+	            return true;
+            }
+            return false;
+	        
+	    }
+	}
 
 
 	///Application class for Keepass2Android: Contains static Database variable to be used by all components.

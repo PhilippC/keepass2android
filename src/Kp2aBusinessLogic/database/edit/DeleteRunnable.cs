@@ -121,25 +121,27 @@ namespace keepass2android
 
 		public void Start()
 		{
-			if (CanRecycle)
+            string messageSuffix = ShowDatabaseIocInStatus ? "(" + App.GetFileStorage(Db.Ioc).GetDisplayName(Db.Ioc) + ")" : "";
+
+            if (CanRecycle)
 			{
 				App.AskYesNoCancel(UiStringKey.AskDeletePermanently_title,
 					QuestionRecycleResourceId,
 					(dlgSender, dlgEvt) =>
 					{
-						DeletePermanently = true;
-						ProgressTask pt = new ProgressTask(App, Ctx, this);
-						pt.Run();
+					    DeletePermanently = true;
+					    ProgressTask pt = new ProgressTask(App, Ctx, this);
+					    pt.Run();
 
 					},
 				(dlgSender, dlgEvt) =>
 				{
-					DeletePermanently = false;
-					ProgressTask pt = new ProgressTask(App, Ctx, this);
-					pt.Run();
+				    DeletePermanently = false;
+				    ProgressTask pt = new ProgressTask(App, Ctx, this);
+				    pt.Run();
 				},
 				(dlgSender, dlgEvt) => { },
-				Ctx);
+				Ctx, messageSuffix);
 
 
 
@@ -150,12 +152,12 @@ namespace keepass2android
 					QuestionNoRecycleResourceId,
 					(dlgSender, dlgEvt) =>
 					{
-						ProgressTask pt = new ProgressTask(App, Ctx, this);
-						pt.Run();
+					    ProgressTask pt = new ProgressTask(App, Ctx, this);
+					    pt.Run();
 					},
 				null,
 				(dlgSender, dlgEvt) => { },
-				Ctx);
+				Ctx, messageSuffix);
 
 				
 			}
@@ -234,13 +236,21 @@ namespace keepass2android
 
 			// Commit database
 			SaveDb save = new SaveDb(Ctx, App, Db, OnFinishToRun, false);
-			save.SetStatusLogger(StatusLogger);
+		    save.ShowDatabaseIocInStatus = ShowDatabaseIocInStatus;
+
+            save.SetStatusLogger(StatusLogger);
 			save.Run();
 
 
 		}
 
-		protected abstract void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups);
+	    public bool ShowDatabaseIocInStatus
+	    {
+	        get;
+	        set;
+	    }
+
+	    protected abstract void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups);
 
 		public abstract UiStringKey StatusMessage { get; }
 

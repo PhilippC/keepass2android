@@ -79,9 +79,10 @@ namespace keepass2android
 		    _db = db;
 		    _dontSave = false;
 		}
-		
-		
-		public override void Run ()
+
+	    public bool ShowDatabaseIocInStatus { get; set; }
+	    
+	    public override void Run ()
 		{
 
 			if (!_dontSave)
@@ -95,7 +96,13 @@ namespace keepass2android
 						return;
 					}
 
-					StatusLogger.UpdateMessage(UiStringKey.saving_database);
+				    string message = _app.GetResourceString(UiStringKey.saving_database);
+
+				    if (ShowDatabaseIocInStatus)
+				        message += " (" + _app.GetFileStorage(_db.Ioc).GetDisplayName(_db.Ioc) + ")";
+
+                    StatusLogger.UpdateMessage(message);
+                    
 					IOConnectionInfo ioc = _db.Ioc;
 					IFileStorage fileStorage = _app.GetFileStorage(ioc);
 

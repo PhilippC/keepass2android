@@ -21,6 +21,7 @@ namespace keepass2android
 			//determine once. The property is queried for each delete operation, but might return false
 			//after one entry/group is deleted (and thus in recycle bin and thus can't be recycled anymore)
 			_canRecycle = DetermineCanRecycle();
+		    ShowDatabaseIocInStatus = true;
 		}
 
 		private bool DetermineCanRecycle()

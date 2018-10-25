@@ -16,6 +16,8 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Java.IO;
+using Java.Net;
 using keepass2android.Io;
 using keepass2android.Utils;
 using KeePassLib.Keys;
@@ -24,9 +26,12 @@ using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
-    [Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue", LaunchMode = LaunchMode.SingleInstance)]
+    [Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue", LaunchMode = LaunchMode.SingleInstance)] //caution, see manifest file
     public class SelectCurrentDbActivity : AppCompatActivity
     {
+        private int ReqCodeOpenNewDb = 1;
+        
+
         public class OpenDatabaseAdapter : BaseAdapter
         {
 
@@ -135,12 +140,13 @@ namespace keepass2android
 
         private void OnOpenOther()
         {
-            StartFileSelect();
+            StartFileSelect(true);
         }
 
         private void OnItemSelected(Database selectedDatabase)
         {
             App.Kp2a.CurrentDb = selectedDatabase;
+            LaunchingOther = true;
             AppTask.LaunchFirstGroupActivity(this);
         }
 
@@ -155,7 +161,12 @@ namespace keepass2android
 
             SupportActionBar.Title = GetString(Resource.String.select_database);
 
-            if ((AppTask == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
+
+            //only load the AppTask if this is the "first" OnCreate (not because of kill/resume, i.e. savedInstanceState==null)
+            // and if the activity is not launched from history (i.e. recent tasks) because this would mean that
+            // the Activity was closed already (user cancelling the task or task complete) but is restarted due recent tasks.
+            // Don't re-start the task (especially bad if tak was complete already)
+            if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
                 AppTask = new NullTask();
             }
@@ -168,30 +179,95 @@ namespace keepass2android
             var gridView = FindViewById<GridView>(Resource.Id.gridview);
             gridView.ItemClick += (sender, args) => OnItemSelected(_adapter._displayedDatabases[args.Position]);
             gridView.Adapter = _adapter;
-            
+
+            if (!string.IsNullOrEmpty(Intent.GetStringExtra(Util.KeyFilename)))
+            {
+                //forward to password activity
+                Intent i = new Intent(this, typeof(PasswordActivity));
+                IOConnectionInfo ioc = new IOConnectionInfo();
+                Util.SetIoConnectionFromIntent(ioc, Intent);
+                Util.PutIoConnectionToIntent(ioc, i);
+                i.PutExtra(PasswordActivity.KeyKeyfile, i.GetStringExtra(PasswordActivity.KeyKeyfile));
+                i.PutExtra(PasswordActivity.KeyPassword, i.GetStringExtra(PasswordActivity.KeyPassword));
+                LaunchingOther = true;
+                StartActivityForResult(i, ReqCodeOpenNewDb);
+            }
+            else
+            {
+                if (Intent.Action == Intent.ActionView)
+                {
+                    GetIocFromViewIntent(Intent);
+                }
+                else if (Intent.Action == Intent.ActionSend)
+                {
+                    AppTask = new SearchUrlTask { UrlToSearchFor = Intent.GetStringExtra(Intent.ExtraText) };
+                }
+            }
+
+            _intentReceiver = new MyBroadcastReceiver(this);
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(Intents.DatabaseLocked);
+            RegisterReceiver(_intentReceiver, filter);
+
         }
 
-
-        IOConnectionInfo LoadIoc(string defaultFileName)
+        private bool GetIocFromViewIntent(Intent intent)
         {
-            return App.Kp2a.FileDbHelper.CursorToIoc(App.Kp2a.FileDbHelper.FetchFileByName(defaultFileName));
-        }
+            IOConnectionInfo ioc = new IOConnectionInfo();
 
+            //started from "view" intent (e.g. from file browser)
+            ioc.Path = intent.DataString;
+
+            if (ioc.Path.StartsWith("file://"))
+            {
+                ioc.Path = URLDecoder.Decode(ioc.Path.Substring(7));
+
+                if (ioc.Path.Length == 0)
+                {
+                    // No file name
+                    Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
+                    return false;
+                }
+
+                File dbFile = new File(ioc.Path);
+                if (!dbFile.Exists())
+                {
+                    // File does not exist
+                    Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
+                    return false;
+                }
+            }
+            else
+            {
+                if (!ioc.Path.StartsWith("content://"))
+                {
+                    Toast.MakeText(this, Resource.String.error_can_not_handle_uri, ToastLength.Long).Show();
+                    return false;
+                }
+                IoUtil.TryTakePersistablePermissions(this.ContentResolver, intent.Data);
+
+
+            }
+
+            {
+                Intent launchIntent = new Intent(this, typeof(PasswordActivity));
+                Util.PutIoConnectionToIntent(ioc, launchIntent);
+                LaunchingOther = true;
+                StartActivityForResult(launchIntent, ReqCodeOpenNewDb);
+            }
+
+
+            return true;
+        }
+        
         protected override void OnResume()
         {
             base.OnResume();
-            if (!IsFinishing && !LaunchingPasswordActivity)
+            if (!IsFinishing && !LaunchingOther)
             {
                 if (App.Kp2a.OpenDatabases.Any() == false)
                 {
                     StartFileSelect();
-                    return;
-                }
-
-                if (_loadAnotherDatabase)
-                {
-                    StartFileSelect();
-                    _loadAnotherDatabase = false;
                     return;
                 }
 
@@ -208,6 +284,7 @@ namespace keepass2android
                 //database(s) unlocked
                 if (App.Kp2a.OpenDatabases.Count() == 1)
                 {
+                    LaunchingOther = true;
                     AppTask.LaunchFirstGroupActivity(this);
                     return;
                 }
@@ -223,21 +300,23 @@ namespace keepass2android
 
         protected override void OnPause()
         {
-            LaunchingPasswordActivity = false;
+            LaunchingOther = false;
             base.OnPause();
         }
 
-        private void StartFileSelect()
+        private void StartFileSelect(bool noForwardToPassword = false)
         {
             Intent intent = new Intent(this, typeof(FileSelectActivity));
             AppTask.ToIntent(intent);
-            intent.AddFlags(ActivityFlags.ForwardResult);
-            StartActivity(intent);
+            intent.PutExtra(FileSelectActivity.NoForwardToPasswordActivity, noForwardToPassword);
+            LaunchingOther = true;
+            StartActivityForResult(intent, ReqCodeOpenNewDb);
         }
 
         internal AppTask AppTask;
         private bool _loadAnotherDatabase;
         private OpenDatabaseAdapter _adapter;
+        private MyBroadcastReceiver _intentReceiver;
 
         public override void OnBackPressed()
         {
@@ -260,6 +339,40 @@ namespace keepass2android
             Kp2aLog.Log("StackBaseActivity.OnActivityResult " + resultCode + "/" + requestCode);
 
             AppTask.TryGetFromActivityResult(data, ref AppTask);
+
+            if (requestCode == ReqCodeOpenNewDb)
+            {
+                switch ((int)resultCode)
+                {
+                    case (int)Result.Ok:
+
+                        string iocString = data?.GetStringExtra("ioc");
+                        IOConnectionInfo ioc = IOConnectionInfo.UnserializeFromString(iocString);
+                        if (App.Kp2a.TrySelectCurrentDb(ioc))
+                        {
+                            LaunchingOther = true;
+                            AppTask.CanActivateSearchViewOnStart = true;
+                            AppTask.LaunchFirstGroupActivity(this);
+                        }
+
+
+                        break;
+                    case PasswordActivity.ResultSelectOtherFile:
+                        StartFileSelect(true);
+                        break;
+                    case (int)Result.Canceled:
+                        if (App.Kp2a.OpenDatabases.Any() == false)
+                        {
+                            //don't open fileselect/password activity again
+                            OnBackPressed();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                return;
+            }
 
             switch (resultCode)
             {
@@ -297,7 +410,7 @@ namespace keepass2android
 
                     break;
                 case KeePass.ExitLoadAnotherDb:
-                    _loadAnotherDatabase = true;
+                    StartFileSelect(true);
                     break;
             }
         
@@ -305,10 +418,39 @@ namespace keepass2android
 
         private void LaunchPasswordActivityForReload(IOConnectionInfo ioc, CompositeKey compositeKey)
         {
-            LaunchingPasswordActivity = true;
-            PasswordActivity.Launch(this, ioc, AppTask, compositeKey);
+            LaunchingOther = true;
+            PasswordActivity.Launch(this, ioc, compositeKey, new ActivityLaunchModeRequestCode(ReqCodeOpenNewDb));
         }
 
-        public bool LaunchingPasswordActivity { get; set; }
+        public bool LaunchingOther { get; set; }
+
+
+        private class MyBroadcastReceiver : BroadcastReceiver
+        {
+            readonly SelectCurrentDbActivity _activity;
+            public MyBroadcastReceiver(SelectCurrentDbActivity activity)
+            {
+                _activity = activity;
+            }
+
+            public override void OnReceive(Context context, Intent intent)
+            {
+                switch (intent.Action)
+                {
+                    case Intents.DatabaseLocked:
+                        _activity.OnLockDatabase();
+                        break;
+                    case Intent.ActionScreenOff:
+                        App.Kp2a.OnScreenOff();
+                        break;
+                }
+            }
+        }
+
+        private void OnLockDatabase()
+        {
+            //app tasks are assumed to be finished/cancelled when the database is locked
+            AppTask = new NullTask();
+        }
     }
 }

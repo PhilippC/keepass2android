@@ -44,12 +44,6 @@ namespace keepass2android
 	           ConfigurationChanges=ConfigChanges.Orientation|
 	           ConfigChanges.KeyboardHidden,
                Theme = "@style/MyTheme_Blue")]
-	[IntentFilter(new [] { Intent.ActionSend }, 
-		Label = "@string/kp2a_findUrl", 
-		Categories=new[]{Intent.CategoryDefault}, 
-		DataMimeType="text/plain")]
-	[IntentFilter(new[] { Strings.ActionStartWithTask },
-		Categories = new[] { Intent.CategoryDefault })]
 	public class FileSelectActivity : AppCompatActivity
 	{
 		private readonly ActivityDesign _design;
@@ -72,7 +66,7 @@ namespace keepass2android
 
 		private bool _recentMode;
 		
-		internal AppTask AppTask;
+		
 		private const int RequestCodeSelectIoc = 456;
 	    private const int RequestCodeEditIoc = 457;
 
@@ -85,24 +79,7 @@ namespace keepass2android
 			
 
 			Kp2aLog.Log("FileSelect.OnCreate");
-			Kp2aLog.Log("FileSelect:apptask="+Intent.GetStringExtra("KP2A_APPTASK"));
-
-			if (Intent.Action == Intent.ActionSend)
-			{
-				AppTask = new SearchUrlTask { UrlToSearchFor = Intent.GetStringExtra(Intent.ExtraText) };
-			}
-			else
-			{
-				//see PasswordActivity for an explanation
-				if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
-				{
-					AppTask = new NullTask();
-				}
-				else
-				{
-					AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
-				}
-			}
+			
 
 
 			_dbHelper = App.Kp2a.FileDbHelper;
@@ -150,7 +127,7 @@ namespace keepass2android
 				{
 					//ShowFilenameDialog(false, true, true, Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path), "", Intents.RequestCodeFileBrowseForCreate)
 					Intent i = new Intent(this, typeof (CreateDatabaseActivity));
-					this.AppTask.ToIntent(i);
+					
 				    i.SetFlags(ActivityFlags.ForwardResult);
 					StartActivity(i);
 				    Finish();
@@ -177,7 +154,6 @@ namespace keepass2android
 			
 			if (savedInstanceState != null)
 			{
-				AppTask = AppTask.CreateFromBundle(savedInstanceState);
 				_recentMode = savedInstanceState.GetBoolean(BundleKeyRecentMode, _recentMode);
 			}
 
@@ -202,7 +178,7 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			AppTask.ToBundle(outState);
+		
 			outState.PutBoolean(BundleKeyRecentMode, _recentMode);
 			
 		}
@@ -366,7 +342,7 @@ namespace keepass2android
 			{
 				try
 				{
-					PasswordActivity.Launch(this, ioc, AppTask);
+					PasswordActivity.Launch(this, ioc, new ActivityLaunchModeForward());
 					Finish();
 				} catch (Java.IO.FileNotFoundException)
 				{
@@ -379,7 +355,7 @@ namespace keepass2android
 
 		private void AfterQueryCredentials(IOConnectionInfo ioc)
 		{
-			PasswordActivity.Launch(this, ioc, AppTask);
+			PasswordActivity.Launch(this, ioc, new ActivityLaunchModeForward());
 			Finish();
 		}
 
@@ -398,11 +374,6 @@ namespace keepass2android
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
-
-			//update app task.
-			//this is important even if we're about to close, because then we should get a NullTask here 
-			//in order not to do the same task next time again!
-			AppTask.TryGetFromActivityResult(data, ref AppTask);
 
 			if (resultCode == KeePass.ExitCloseAfterTaskComplete)
 			{

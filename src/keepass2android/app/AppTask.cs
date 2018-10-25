@@ -187,7 +187,7 @@ namespace keepass2android
 
 		public virtual void LaunchFirstGroupActivity(Activity act)
 		{
-			GroupActivity.Launch(act, this);
+			GroupActivity.Launch(act, this, new ActivityLaunchModeRequestCode(0));
 		}
 
 		public virtual void AfterAddNewEntry(EntryEditActivity entryEditActivity, PwEntry newEntry)
@@ -403,11 +403,11 @@ namespace keepass2android
 		{
 			if (String.IsNullOrEmpty(UrlToSearchFor))
 			{
-				GroupActivity.Launch(act, new SelectEntryTask() { ShowUserNotifications =  ShowUserNotifications});
+				GroupActivity.Launch(act, new SelectEntryTask() { ShowUserNotifications =  ShowUserNotifications}, new ActivityLaunchModeRequestCode(0));
 			}
 			else
 			{
-				ShareUrlResults.Launch(act, this);
+				ShareUrlResults.Launch(act, this, new ActivityLaunchModeRequestCode(0));
 			}
 			
 
@@ -792,7 +792,6 @@ namespace keepass2android
 		#endif
 
 		private LinkedList<string> _groupUuid;
-	    private readonly Database _db;
 	    protected AppTask TaskToBeLaunchedAfterNavigation;
 
 		protected String FullGroupName {
@@ -817,8 +816,7 @@ namespace keepass2android
 		/// <param name="groups">Groups.</param>
 		/// <param name="taskToBeLaunchedAfterNavigation">Task to be launched after navigation.</param>
 		/// <param name="toastEnable">If set to <c>true</c>, toast will be displayed after navigation.</param>
-		protected NavigateAndLaunchTask(Database db, PwGroup groups, AppTask taskToBeLaunchedAfterNavigation, bool toastEnable = false) {
-		    _db = db;
+		protected NavigateAndLaunchTask(PwGroup groups, AppTask taskToBeLaunchedAfterNavigation, bool toastEnable = false) {
 		    TaskToBeLaunchedAfterNavigation = taskToBeLaunchedAfterNavigation;
 			PopulateGroups (groups);
 			ToastEnable = toastEnable;
@@ -935,7 +933,7 @@ namespace keepass2android
 				groupBaseActivity.StartTask (TaskToBeLaunchedAfterNavigation);
 				return;
 
-			} else if (_groupUuid.Contains(groupBaseActivity.UuidGroup)) { // Need to go up in groups tree
+			} else if (_groupUuid.Contains(groupBaseActivity.UuidGroup)) { // Need to down up in groups tree
 
 				// Get next Group Uuid
 				var linkedListNode = _groupUuid.Find(groupBaseActivity.UuidGroup);
@@ -947,16 +945,27 @@ namespace keepass2android
 					PwUuid nextGroupPwUuid = new PwUuid (MemUtil.HexStringToByteArray (nextGroupUuid));
 
 					// Create Group Activity
-					PwGroup nextGroup = _db.Groups[nextGroupPwUuid];
-					GroupActivity.Launch (groupBaseActivity, nextGroup, this);
+					PwGroup nextGroup = App.Kp2a.CurrentDb.Groups[nextGroupPwUuid];
+					GroupActivity.Launch (groupBaseActivity, nextGroup, this, new ActivityLaunchModeRequestCode(0));
 				}
 				return;
 
-			} else { // Need to go down in groups tree
-				SetActivityResult(groupBaseActivity, KeePass.ExitNormal);
-				groupBaseActivity.Finish();
+			} else { // Need to go up in groups tree
+			    var targetUuid = new PwUuid(MemUtil.HexStringToByteArray(_groupUuid.Last.Value));
+			    var targetDb = App.Kp2a.FindDatabaseForGroupId(targetUuid);
+			    if (App.Kp2a.CurrentDb != targetDb)
+			    {
+			        App.Kp2a.CurrentDb = targetDb;
+                    GroupActivity.Launch(groupBaseActivity,targetDb.Root,this,new ActivityLaunchModeForward());
+			    }
+			    else
+			    {
+			        SetActivityResult(groupBaseActivity, KeePass.ExitNormal);
+                }
+			    groupBaseActivity.Finish();
 
-			} 
+
+            } 
 
 		}
 		public override void SetupGroupBaseActivityButtons(GroupBaseActivity groupBaseActivity)
@@ -972,19 +981,29 @@ namespace keepass2android
 
 	public class NavigateToFolder: NavigateAndLaunchTask {
 
+	    public NavigateToFolder()
+	    {
+	        
+	    }
 
-		public NavigateToFolder(Database db, PwGroup groups, bool toastEnable = false)
-			: base(db, groups, new NullTask(), toastEnable) 
+
+        public NavigateToFolder(Database db, PwGroup groups, bool toastEnable = false)
+			: base(groups, new NullTask(), toastEnable) 
 		{
 		}
 
 	}
 
 	public class NavigateToFolderAndLaunchMoveElementTask: NavigateAndLaunchTask {
-	
 
-		public NavigateToFolderAndLaunchMoveElementTask(Database db, PwGroup groups, List<PwUuid> uuids, bool toastEnable = false)
-			:base(db, groups, new MoveElementsTask() { Uuids = uuids }, toastEnable) {
+
+	    public NavigateToFolderAndLaunchMoveElementTask()
+	    {
+	        
+	    }
+
+        public NavigateToFolderAndLaunchMoveElementTask(Database db, PwGroup groups, List<PwUuid> uuids, bool toastEnable = false)
+			:base(groups, new MoveElementsTask() { Uuids = uuids }, toastEnable) {
 		}
 
 		public override void Setup(Bundle b) {

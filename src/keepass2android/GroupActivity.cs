@@ -63,11 +63,11 @@ namespace keepass2android
 		private const String Tag = "Group Activity:";
 		private const string Askaddtemplates = "AskAddTemplates";
 
-		public static void Launch(Activity act, AppTask appTask) {
-			Launch(act, null, appTask);
+		public static void Launch(Activity act, AppTask appTask, ActivityLaunchMode launchMode) {
+			Launch(act, null, appTask, launchMode);
 		}
 		
-		public static void Launch (Activity act, PwGroup g, AppTask appTask)
+		public static void Launch (Activity act, PwGroup g, AppTask appTask, ActivityLaunchMode launchMode)
 		{
 			Intent i = new Intent(act, typeof(GroupActivity));
 				
@@ -76,7 +76,7 @@ namespace keepass2android
 			}
 			appTask.ToIntent(i);
 
-			act.StartActivityForResult(i,0);
+		    launchMode.Launch(act, i);
 		}
 
 		protected PwUuid RetrieveGroupId(Intent i)

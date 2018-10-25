@@ -952,7 +952,7 @@ namespace keepass2android
                         {
                             var key = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
                             App.Kp2a.CloseDatabase(App.Kp2a.CurrentDb);
-                            PasswordActivity.Launch(Activity, newIoc, new NullTask(), key);
+                            PasswordActivity.Launch(Activity, newIoc, key, new ActivityLaunchModeSimple());
 
                         });
                         builder.Show();
@@ -1021,8 +1021,8 @@ namespace keepass2android
 
         
     }
-    
 
+    
     /// <summary>
 	/// Activity to configure the application and database settings. The database must be unlocked, and this activity will close if it becomes locked.
 	/// </summary>
