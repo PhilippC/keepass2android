@@ -761,6 +761,20 @@
 
   
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
+  <string name="ChangeLog_1_07">
+    Version 1.07-pre1\n
+    !!! Caution! This release comes with major changes under the hood. Please report any undesired behavior changes to crocoapps@gmail.com !!!\n
+    * Allow to open more than one database, allow to move entries between databases.\n
+    * SFTP: Allow public key authentication, check if host key changed\n
+    * Introduce pCloud support\n
+    * Make Nextcloud support explicit\n
+    * Improve saving and updating of entry attachments\n
+    * More options for adapting behavior to personal preferences\n
+    * SSL: Trust user certificates\n
+    * bug fixes\n
+  </string>
+
+
   <string name="ChangeLog_1_06">
     Version 1.06\n
     * Switch to ykDroid instead of YubiChallenge as app for Yubikey Challenge-Response.\n
