@@ -220,7 +220,6 @@
     <Compile Include="FixedDrawerLayout.cs" />
     <Compile Include="KpEntryTemplatedEdit.cs" />
     <Compile Include="MeasuringRelativeLayout.cs" />
-    <Compile Include="NfcOtpActivity.cs" />
     <Compile Include="PasswordFont.cs" />
     <Compile Include="pluginhost\PluginArrayAdapter.cs" />
     <Compile Include="pluginhost\PluginDatabase.cs" />
