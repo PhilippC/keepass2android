@@ -764,9 +764,9 @@
   <string name="ChangeLog_1_07">
     Version 1.07-pre1\n
     !!! Caution! This release comes with major changes under the hood. Please report any undesired behavior changes to crocoapps@gmail.com !!!\n
-    * Allow to open more than one database, allow to move entries between databases.\n
+    * Allow to open more than one database, allow to move entries between databases\n
     * SFTP: Allow public key authentication, check if host key changed\n
-    * Introduce pCloud support\n
+    * Introduce pCloud support - thanks to gilbsgilbs!\n
     * Make Nextcloud support explicit\n
     * Improve saving and updating of entry attachments\n
     * More options for adapting behavior to personal preferences\n
