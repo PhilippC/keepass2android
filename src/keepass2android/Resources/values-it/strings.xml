@@ -210,6 +210,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="edit">Modifica</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Radice</string>
+  <string name="AutoReturnFromQuery_summary">Quando cerchi una voce per un\'app o un sito web: ritorna automaticamente dalla schermata della query se c\'è una sola voce corrispondente nel database.</string>
   <string name="KeyDerivFunc">Funzione di derivazione chiave</string>
   <string name="rounds">Cicli di cifratura</string>
   <string name="rounds_explaination">Un livello di cifratura elevato fornisce una protezione maggiore contro attacchi di tipo \"forza bruta\", ma può rallentare di molto sia il caricamento che il salvataggio.</string>
@@ -319,6 +320,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="LockWhenNavigateBack_title">Blocca quando lasci l\'app</string>
   <string name="LockWhenNavigateBack_summary">Blocca il database quando si lascia l\'app premendo il tasto \"indietro\".</string>
   <string name="UseKp2aKeyboardInKp2a_title">Usa la tastiera integrata all\'interno di Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Se non ti fidi del fornitore della tua tastiere standard, seleziona questa opzione per utilizzare la tastiera integrata quando inserisci la tua password principale o modifica le voci.</string>
   <string name="ActivateSearchViewOnStart_title">Attivare il campo di ricerca all\'avvio</string>
   <string name="ActivateSearchViewOnStart_summary">Attiva il campo di ricerca nella vista gruppo, dopo lo sblocco o durante la ricerca di una voce</string>
   <string name="NoDonateOption_title">Nascondi l\'opzione della donazione</string>
@@ -440,10 +442,13 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="hint_http_url">URL della cartella o del file (es: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Inserisci i dati di accesso OwnCloud:</string>
   <string name="hint_owncloud_url">URL di OwnCloud (esempio: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Inserisci i dati di login di Nextcloud:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (es: nextcloud.me.com)</string>
   <string name="hint_sftp_host">host (es: 192.168.0.1)</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Cartella iniziale (opzionale):</string>
   <string name="enter_sftp_login_title">Inserisci i dati di accesso SFTP:</string>
+  <string name="sftp_auth_mode">Modalità di autenticazione</string>
   <string name="send_public_key">Invio chiave pubblica...</string>
   <string name="enter_ftp_login_title">Inserisci i dati di accesso FTP:</string>
   <string name="select_storage_type">Seleziona il tipo di archiviazione:</string>
@@ -454,10 +459,12 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (cartella KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Apps/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (dal PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selettore file di sistema</string>
@@ -929,7 +936,7 @@ Prima release pubblica
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Password</item>
-    <item>Private/Public key</item>
+    <item>chiave Privata/Pubblica</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignora gli errori di convalida del certificato</item>
