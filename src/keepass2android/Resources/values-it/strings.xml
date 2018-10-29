@@ -291,6 +291,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="BinaryDirectory_summary">Cartella dove vengono salvati i file allegati.</string>
   <string name="SaveAttachmentDialog_title">Salva allegato</string>
   <string name="SaveAttachmentDialog_text">Per favore, scegli dove salvare l\'allegato.</string>
+  <string name="SaveAttachmentDialog_save">Esporta nel file...</string>
   <string name="SaveAttachmentDialog_open">Salva nella cache e apri</string>
   <string name="ShowAttachedImage">Visualizza immagine con visualizzatore integrato</string>
   <string name="SaveAttachment_doneMessage">File salvato in %1$s.</string>
@@ -317,6 +318,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="ClearPasswordOnLeave_summary">Cancella la password principale inserita quando cambi schermata senza aver sbloccato il database.</string>
   <string name="LockWhenNavigateBack_title">Blocca quando lasci l\'app</string>
   <string name="LockWhenNavigateBack_summary">Blocca il database quando si lascia l\'app premendo il tasto \"indietro\".</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Usa la tastiera integrata all\'interno di Keepass2Android</string>
   <string name="ActivateSearchViewOnStart_title">Attivare il campo di ricerca all\'avvio</string>
   <string name="ActivateSearchViewOnStart_summary">Attiva il campo di ricerca nella vista gruppo, dopo lo sblocco o durante la ricerca di una voce</string>
   <string name="NoDonateOption_title">Nascondi l\'opzione della donazione</string>
@@ -442,6 +444,7 @@ Questo memorizzerà la password principale su questo dispositivo, cifrata con il
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Cartella iniziale (opzionale):</string>
   <string name="enter_sftp_login_title">Inserisci i dati di accesso SFTP:</string>
+  <string name="send_public_key">Invio chiave pubblica...</string>
   <string name="enter_ftp_login_title">Inserisci i dati di accesso FTP:</string>
   <string name="select_storage_type">Seleziona il tipo di archiviazione:</string>
   <string name="filestoragename_file">File locale</string>
