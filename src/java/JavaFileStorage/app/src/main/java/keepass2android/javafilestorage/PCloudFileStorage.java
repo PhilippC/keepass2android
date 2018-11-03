@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import com.pcloud.sdk.ApiClient;
@@ -135,8 +136,10 @@ public class PCloudFileStorage extends JavaFileStorageBase
         String filePath = path.substring(0, path.lastIndexOf("/") + 1);
         RemoteFolder remoteFolder = this.getRemoteFolderByPath(filePath);
 
+        String tempName = "." + UUID.randomUUID().toString();
         try {
-            this.apiClient.createFile(remoteFolder, filename, dataSource).execute();
+            RemoteFile remoteFile = this.apiClient.createFile(remoteFolder, tempName, dataSource).execute();
+            this.apiClient.rename(remoteFile, filename).execute();
         } catch (ApiError e) {
             throw convertApiError(e);
         }
