@@ -317,6 +317,8 @@
   <string name="ClearPasswordOnLeave_summary">Töm det angivna huvudlösenordet när du lämnar skärmen utan att låsa upp databasen.</string>
   <string name="LockWhenNavigateBack_title">Lås när du lämnar programmet</string>
   <string name="LockWhenNavigateBack_summary">Lås databasen när programmet stängs av genom att trycka på bakåtknappen.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Använd inbyggt tangentbord inuti Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Om du inte litar på leverantören av ditt standardtangentbord, markera det här alternativet för att använda det inbyggda tangentbordet när du anger ditt huvudlösenord eller redigerar poster.</string>
   <string name="ActivateSearchViewOnStart_title">Aktiva sökfält vid start</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiverar sökfältet i gruppvyn efter upplåsning eller vid sökning efter en post</string>
   <string name="NoDonateOption_title">Dölja donationsalternativ</string>
@@ -437,10 +439,14 @@
   <string name="hint_http_url">Webbadressen till mapp eller fil (ex: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Ange OwnCloud inloggnings-data:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Ange Nextcloud inloggnings-data:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (ex: nextcloud.me.com)</string>
   <string name="hint_sftp_host">värd (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Startkatalog (valfritt):</string>
   <string name="enter_sftp_login_title">Ange SFTP inloggnings-data:</string>
+  <string name="sftp_auth_mode">Autentiseringsläge</string>
+  <string name="send_public_key">Skicka offentlig nyckel...</string>
   <string name="enter_ftp_login_title">Ange FTP inloggnings-data:</string>
   <string name="select_storage_type">Välj lagringtyp:</string>
   <string name="filestoragename_file">Lokal fil</string>
@@ -450,10 +456,12 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mapp)</string>
   <string name="filestoragehelp_dropboxKP2A">Om du inte vill ge KP2A tillgång till din hela Dropbox, kan du välja detta alternativ. Den kommer då endast att begära tillgång till mappen Apps/Keepass2Android. Detta är särskilt lämpligt när du skapar en ny databas. Om du redan har en databas, klicka på detta alternativ för att skapa mappen, placera sedan filen i mappen (från datorn) och välj därefter alternativet igen för att öppna filen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">System-filväljare</string>
