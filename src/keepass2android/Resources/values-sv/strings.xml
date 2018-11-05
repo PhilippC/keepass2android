@@ -704,11 +704,11 @@
     <item>Lösenord + Utmaning-Svar</item>
     <item>Lösenord + Utmaning-Svar hemlighet (återställningsläge)</item>
     <item>Lösenord + Challenge-Response för Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Lösenord + Nyckelfil + Challenge-Response för Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Lösenord</item>
-    <item>Private/Public key</item>
+    <item>Privat/offentlig nyckel</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorera certifikatvalideringsfel</item>
