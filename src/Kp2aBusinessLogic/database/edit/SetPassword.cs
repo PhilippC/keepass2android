@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 using KeePassLib.Keys;
@@ -27,9 +28,9 @@ namespace keepass2android
 		private readonly String _keyfile;
 		private readonly IKp2aApp _app;
 		private readonly bool _dontSave;
-		private readonly Context _ctx;
+		private readonly Activity _ctx;
 		
-		public SetPassword(Context ctx, IKp2aApp app, String password, String keyfile, OnFinish finish): base(finish) {
+		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnFinish finish): base(ctx, finish) {
 			_ctx = ctx;
 			_app = app;
 			_password = password;
@@ -37,8 +38,8 @@ namespace keepass2android
 			_dontSave = false;
 		}
 
-		public SetPassword(Context ctx, IKp2aApp app, String password, String keyfile, OnFinish finish, bool dontSave)
-			: base(finish)
+		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnFinish finish, bool dontSave)
+			: base(ctx, finish)
 		{
 			_ctx = ctx;
 			_app = app;
@@ -72,7 +73,7 @@ namespace keepass2android
 			pm.MasterKey = newKey;
 
 			// Save Database
-			_onFinishToRun = new AfterSave(previousKey, previousMasterKeyChanged, pm, OnFinishToRun);
+			_onFinishToRun = new AfterSave(ActiveActivity, previousKey, previousMasterKeyChanged, pm, OnFinishToRun);
 			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, _dontSave);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
@@ -83,7 +84,7 @@ namespace keepass2android
 			private readonly DateTime _previousKeyChanged;
 			private readonly PwDatabase _db;
 			
-			public AfterSave(CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnFinish finish): base(finish) {
+			public AfterSave(Activity activity, CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnFinish finish): base(activity, finish) {
 				_previousKeyChanged = previousKeyChanged;
 				_backup = backup;
 				_db = db;

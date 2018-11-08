@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Android.App;
@@ -11,7 +10,7 @@ namespace keepass2android
 	class Kp2aTotp
 	{
 
-		readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[] { new TrayTotpPluginAdapter(), new KeeOtpPluginAdapter() };
+		readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[] { new TrayTotpPluginAdapter(), new KeeOtpPluginAdapter(), new KeeWebOtpPluginAdapter() };
 
 		public void OnOpenEntry()
 		{

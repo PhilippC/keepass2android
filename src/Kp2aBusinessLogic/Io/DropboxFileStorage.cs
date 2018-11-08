@@ -10,7 +10,11 @@ namespace keepass2android.Io
 		{
 		}
 
-		
+
+	    public override bool UserShouldBackup
+	    {
+	        get { return false; }
+	    }
 	}
 
 	public partial class DropboxAppFolderFileStorage: JavaFileStorage
@@ -20,8 +24,12 @@ namespace keepass2android.Io
 		{
 		}
 
-		
-	}
+	    public override bool UserShouldBackup
+	    {
+	        get { return false; }
+	    }
+
+    }
 	
 }
 #endif

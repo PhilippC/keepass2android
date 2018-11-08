@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 using KeePassLib.Interfaces;
@@ -28,8 +29,8 @@ namespace keepass2android
         private readonly PwEntry _entry;
 	    private UiStringKey _statusMessage;
 
-	    public DeleteEntry(Context ctx, IKp2aApp app, PwEntry entry, OnFinish finish):base(finish, app) {
-			Ctx = ctx;
+	    public DeleteEntry(Activity activiy, IKp2aApp app, PwEntry entry, OnFinish finish):base(activiy, finish, app) {
+			Ctx = activiy;
 			Db = app.GetDb();
 			_entry = entry;
 			

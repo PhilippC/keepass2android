@@ -34,7 +34,7 @@ namespace keepass2android
 
 		public FingerprintManager FingerprintManager 
 		{
-			get { return (FingerprintManager) Context.GetSystemService(Context.FingerprintService); }
+			get { return Context.GetSystemService(Context.FingerprintService) as FingerprintManager; }
 		}
 
 		public KeyguardManager KeyguardManager 
@@ -264,6 +264,11 @@ namespace keepass2android
 			_context = context;
 			_iv = Base64.Decode(PreferenceManager.GetDefaultSharedPreferences(context).GetString(GetIvPrefKey(prefKey), null), 0);
 		}
+
+	    public static bool IsSetUp(Context context, string prefKey)
+	    {
+	        return PreferenceManager.GetDefaultSharedPreferences(context).GetString(GetIvPrefKey(prefKey), null) != null;
+	    }
 
 		public override bool Init()
 		{

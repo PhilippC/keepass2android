@@ -7,6 +7,7 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Views.Autofill;
+using Android.Views.InputMethods;
 using keepass2android.services.AutofillBase.model;
 using FilledAutofillFieldCollection = keepass2android.services.AutofillBase.model.FilledAutofillFieldCollection;
 
@@ -152,16 +153,36 @@ namespace keepass2android.services.AutofillBase
 	               || (f.Hint?.ToLowerInvariant().Contains("password") ?? false);
 	    }
 
-	    private static bool IsPassword(AssistStructure.ViewNode f)
+	    private static bool IsInputTypeClass(InputTypes inputType, InputTypes inputTypeClass)
 	    {
-	        return 
+            if (!InputTypes.MaskClass.HasFlag(inputTypeClass))
+                throw new Exception("invalid inputTypeClas");
+	        return (((int)inputType) & (int)InputTypes.MaskClass) == (int) (inputTypeClass);
+	    }
+	    private static bool IsInputTypeVariation(InputTypes inputType, InputTypes inputTypeVariation)
+	    {
+	        if (!InputTypes.MaskVariation.HasFlag(inputTypeVariation))
+	            throw new Exception("invalid inputTypeVariation");
+            return (((int)inputType) & (int)InputTypes.MaskVariation) == (int)(inputTypeVariation);
+	    }
+
+        private static bool IsPassword(AssistStructure.ViewNode f)
+	    {
+	        InputTypes inputType = f.InputType;
+            
+            return 
 	            (!f.IdEntry?.ToLowerInvariant().Contains("search") ?? true) &&
 	            (!f.Hint?.ToLowerInvariant().Contains("search") ?? true) &&
 	            (
-	                f.InputType.HasFlag(InputTypes.TextVariationPassword) ||
-	                f.InputType.HasFlag(InputTypes.TextVariationVisiblePassword) ||
-	                f.InputType.HasFlag(InputTypes.TextVariationWebPassword) ||
-	                (f.HtmlInfo?.Attributes.Any(p => p.First.ToString() == "type" && p.Second.ToString() == "password") ?? false)
+	               (IsInputTypeClass(inputType, InputTypes.ClassText)
+                        && 
+                        (
+                      IsInputTypeVariation(inputType, InputTypes.TextVariationPassword)
+	                  || IsInputTypeVariation(inputType, InputTypes.TextVariationVisiblePassword)
+	                  || IsInputTypeVariation(inputType, InputTypes.TextVariationWebPassword)
+                      )
+                      )
+	                || (f.HtmlInfo?.Attributes.Any(p => p.First.ToString() == "type" && p.Second.ToString() == "password") ?? false)
 	            );
 	    }
 

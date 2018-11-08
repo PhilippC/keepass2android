@@ -5,8 +5,9 @@
   <string name="about_feedback">回饋意見：</string>
   <string name="about_homepage">主頁：</string>
   <string name="AboutText">Keepass2Android 是 Android 版本的 KeePass 密碼管理軟體。</string>
-  <string name="CreditsText">The User Interface is based on a port of KeepassDroid developed by Brian Pellin. Code for database operations is based on KeePass by Dominik Reichl. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
+  <string name="CreditsText">界面基於由 Brian Pellin 所移植的 KeepassDroid。資料庫操作代碼基於由 Dominik Reichl 開發的 KeePass。Android 機器人圖示是以 Google 所創作及分享的作品，依據創用CC-姓名標示 3.0 授權條款而衍生及修改而成。</string>
   <string name="CreditsTextSFTP">SFTP 支援是使用 JCraft，inc. 的 JSch 資料庫所寫且授權於 BSD 授權。</string>
+  <string name="CreditsIcons">錘子圖示由來自 Noun Project 的 John Caserta 所製作。企鵝圖示由來自 Noun Project 的 Adriano Emerick 所製作。羽毛圖示由來自 Noun Project 的 Jon Testa 所製作。蘋果圖示由來自 Noun Project 的 Ava Rowell 所製作。而圖片圖示則來自 https://icons8.com/icon/5570/Picture 。</string>
   <string name="accept">接受</string>
   <string name="deny">拒絕</string>
   <string name="add_entry">添加項目</string>
@@ -71,7 +72,7 @@
   <string name="current_group_root">當前群：Root</string>
   <string name="database">資料庫</string>
   <string name="digits">數字</string>
-  <string name="disclaimer_formal">Keepass2Android版權歸Philipp Crocoll；軟體不帶有絕對擔保；是自由軟體，您可在遵循GPL 2或者更高版本的情況下重新發佈。中文簡繁體翻譯：wangkf@gmail.com</string>
+  <string name="disclaimer_formal">Keepass2Android 版權歸 Philipp Crocoll；軟體不帶有絕對擔保；是自由軟體，您可在遵循 GPL 2 或者更高版本的情況下重新發佈。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">複製到剪切簿</string>
   <string name="fingerprint_hint">觸控感應器</string>
@@ -86,7 +87,11 @@
   <string name="enable_fingerprint_unlock">啟用完整指紋解鎖</string>
   <string name="enable_fingerprint_quickunlock">啟用指紋解鎖進行快速解鎖</string>
   <string name="fingerprint_unlock_hint">觸碰指紋感應器以解鎖資料庫</string>
+  <string name="fingerprint_unlock_failed">指紋解鎖失敗。解密金鑰被系統證明無效，你可能註冊了新的指紋或更改了安全設置。 </string>
+  <string name="fingerprint_disabled_wrong_masterkey">解鎖資料庫失敗：無效的複合金鑰。由於已儲存的主密碼不再有效，指紋解鎖亦無效。 </string>
   <string name="fingerprint_reenable">請重新為新的主密碼啟用指紋解鎖</string>
+  <string name="fingerprint_reenable2">請使用你的密碼解鎖並於資料庫設置中重新啟用指紋解鎖。</string>
+  <string name="FingerprintInitFailed">初始化指紋感測器失敗。 </string>
   <string name="enable_fingerprint_unlock_Info">
     這將把主密碼存在你裝置上，
     並透過 Android Keystore 加密
@@ -287,6 +292,7 @@
   <string name="SaveAttachmentDialog_text">請選擇保存該附件的位置。</string>
   <string name="SaveAttachmentDialog_save">保存到 SD 卡</string>
   <string name="SaveAttachmentDialog_open">保存占存並打開</string>
+  <string name="ShowAttachedImage">以內部圖片瀏覽器顯示</string>
   <string name="SaveAttachment_doneMessage">將檔案保存到 %1$s。</string>
   <string name="SaveAttachment_Failed">可不保存附件到 %1$s。</string>
   <string name="AddUrlToEntryDialog_title">還記得搜索的文字嗎?</string>
@@ -317,11 +323,9 @@
   <string name="NoDonationReminder_title">別再跟我講捐贈的事啦</string>
   <string name="NoDonationReminder_summary">我不會給你一毛錢的，或者我之前就捐贈過了。就算是你生日也一樣，別問我捐贈的問題了。</string>
   <string name="UseOfflineCache_title">資料庫緩存中</string>
-  <string name="UseOfflineCache_summary">在應用程式暫存目錄下保存遠端資料庫檔的副本。這允許在離線時使用遠端資料庫。</string>
   <string name="AcceptAllServerCertificates_title">SSL 憑證</string>
   <string name="AcceptAllServerCertificates_summary">定義憑證驗證失敗時的行為。注意: 如果驗證失敗，您可以安裝憑證您的設備上!</string>
   <string name="ClearOfflineCache_title">清除緩存？</string>
-  <string name="ClearOfflineCache_question">這將刪除所有暫存的資料庫檔案。離線尚未同步時所做的任何更改將會丟失！要繼續嗎？</string>
   <string name="CheckForFileChangesOnSave_title">檢查有無修改</string>
   <string name="CheckForFileChangesOnSave_summary">儲存前檢查是否有外部修改該檔案。</string>
   <string name="CheckForDuplicateUuids_title">檢查有重複的 UUID</string>
@@ -330,8 +334,16 @@
   <string name="ShowCopyToClipboardNotification_summary">使用者名稱和密碼可以藉由通知列和剪貼簿取得。謹防密碼竊取器！</string>
   <string name="ShowSeparateNotifications_title">分開的通知</string>
   <string name="ShowSeparateNotifications_summary">顯示分開的通知以便用於將使用者名和密碼複製到剪貼簿並啟動鍵盤。</string>
+  <string name="AccServiceAutoFill_prefs">自動填入 無障礙輔助服務</string>
+  <string name="AutoFill_prefs">自動填入服務</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A 鍵盤通知</string>
+  <string name="ShowKp2aKeyboardNotification_summary">透過 KP2A 鍵盤取得項目資訊（推薦）。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切換鍵盤</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">從瀏覽器搜索後，當項目可透過KP2A 鍵盤取得時打開鍵盤選擇對話方塊 。</string>
+  <string name="kp2a_switch_rooted">自動切換鍵盤</string>
+  <string name="kp2a_switch_rooted_summary">項目打開時自動切換為 KP2A 鍵盤。需設定好 KeybrardSwap（鍵盤切換）外掛程式，或在已 ROOT 的設備中授予權限許可。</string>
+  <string name="get_keyboardswap">安裝 KeyboardSwap（鍵盤切換）外掛程式</string>
+  <string name="get_keyboardswap_summary">該外掛程式無需 ROOT 即可自動切換 KP2A 鍵盤，但需要透過 ADB（偵錯介面）授予權限。</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">搜索後才自動切換</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">僅由分享連結方式自動切換到 KP2A 鍵盤（但不包括其他打開項目的方式）</string>
   <string name="AutoSwitchBackKeyboard_title">鍵盤切換回來</string>
@@ -376,26 +388,11 @@
   <string name="SynchronizingDatabase">合併更改中...</string>
   <string name="YesSynchronize">是的，合併</string>
   <string name="NoOverwrite">不，覆蓋</string>
-  <string name="UseOfflineMode">離線操作</string>
-  <string name="UseOnlineMode">在線操作</string>
-  <string name="UseOfflineMode_Info">通過使用資料檔的本機快取副本以避免產生網路流量。更改僅存儲在本機快取中，只有切換回線上模式時才會上傳。</string>
-  <string name="InOfflineMode">離線操作中。</string>
   <string name="SynchronizingCachedDatabase">同步已暫存的資料庫中...</string>
-  <string name="DownloadingRemoteFile">下載遠端檔案中...</string>
-  <string name="UploadingFile">上傳檔案中...</string>
-  <string name="RestoringRemoteFile">還原遠端檔案中...</string>
   <string name="FilesInSync">檔案是同步的。</string>
   <string name="SynchronizedDatabaseSuccessfully">資料庫同步成功!</string>
   <string name="CheckingDatabaseForChanges">更改並檢查資料庫中...</string>
-  <string name="CouldNotSaveToRemote">無法保存到遠端: %1$s。再次保存或等到遠端連線再次可用時再使用同步。</string>
-  <string name="CouldNotLoadFromRemote">不能從遠端打開: %1$s。從本機快取載入檔案。您仍可以之後在資料庫中進行更改並同步它們。</string>
-  <string name="UpdatedRemoteFileOnLoad">遠端檔案已更新。</string>
-  <string name="NotifyOpenFromLocalDueToConflict">由於已打開的本地檔案與遠端檔案變更不一致。使用同步功能表來合併。</string>
-  <string name="LoadedFromRemoteInSync">遠端檔案和暫存已同步。</string>
-  <string name="UpdatedCachedFileOnLoad">更新 %1$s 的本機快取副本。</string>
   <string name="RemoteDatabaseUnchanged">未檢測到更改。</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">更新暫存的一次性密碼輔助檔: 遠端版本較新。</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">更新遠端一次性密碼輔助檔: 當地版本較新。</string>
   <string name="SynchronizingOtpAuxFile">同步一次性密碼輔助檔中...</string>
   <string name="database_file">資料庫檔案</string>
   <string name="otp_aux_file">一次性密碼輔助檔</string>
@@ -450,7 +447,6 @@
   <string name="init_otp">載入一次性密碼輔助檔...</string>
   <string name="otp_explanation">由 NFC 刷入您的 Yubikey NEO 裝置來輸入下一個一次性密碼 (OTPs)。</string>
   <string name="otp_hint">一次性密碼 %1$d</string>
-  <string name="YubiChallengeNotInstalled">無應用程式可以處理。請從 Google Play 安裝 Yubichallenge。</string>
   <string name="CouldntLoadOtpAuxFile">無法載入輔助一次性密碼檔!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">欲使用一次性密碼請使用 KeePass 2.x (電腦版) 的 OtpKeyProv 外掛程式來配置資料庫!</string>
   <string name="otp_discarded_because_no_db">請先選擇資料庫。出於安全原因，一次性密碼將被丟棄。</string>
@@ -471,6 +467,10 @@
   <string name="TrayTotp_SettingsField_title">TOTP 欄位名稱設置</string>
   <string name="TrayTotp_SettingsField_summary">為 TrayTotp 在這裡輸入設置欄位的欄位名稱。</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">偵錯用運行日誌</string>
+  <string name="DebugLog_title">啟用運行日誌</string>
+  <string name="DebugLog_summary">記錄應用程式輸出至本地日誌檔案</string>
+  <string name="DebugLog_send">發送偵錯日誌…</string>
   <string name="loading">載入中&#8230;</string>
   <string name="plugins">外掛程式</string>
   <string name="plugin_packagename">套件名稱：</string>
@@ -480,6 +480,7 @@
   <string name="plugin_disabled">禁用</string>
   <string name="plugin_web">查找線上外掛程式</string>
   <string name="plugin_scopes">範圍</string>
+  <string name="not_enabled">未啟用</string>
   <string name="query_credentials_for_url">%1$s 正在請求 %2$s 的憑証。</string>
   <string name="query_credentials">%1$s 正在請求的憑証。請選擇一個項目。</string>
   <string name="plugin_enabled_checkbox">啟用</string>
@@ -531,6 +532,7 @@
   <string name="AskAddTemplatesTitle">新增樣本?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android 有附些 E-Mail 帳號、無線網路密碼、安全記事等樣本。想把這些加到資料庫中嗎？如果不想的話，你待會可以在資料庫設定中加入。</string>
   <string name="AddTemplates_pref">添加範本到資料庫</string>
+  <string name="PreviewWarning">請注意！你正使用預覽版本，使用時可能會出現問題！如果你遇到任何問題，煩請以 Google+ 測試者群組或電子郵件告知。</string>
   <string name="Continue">繼續</string>
   <string name="NoFilenameWarning">您輸入的 URI 不像一個檔案名。你確定這是一個有效的檔?</string>
   <string name="FirstInvalidCompositeKeyError">複合金鑰無效！請重試。</string>
@@ -555,6 +557,43 @@
   <string name="ErrorReportAsk">每次詢問</string>
   <string name="ErrorReportPrefTitle">傳送錯誤報告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋掃描處於活動狀態時顯示軟鍵盤以輸入密碼。</string>
+  <string name="ChangeLog_1_04">
+    版本 1.04\n
+    * 新增 Android 8.0 或以上的自動填入服務。\n
+    * 升級函式庫、構建工具以及目標 SDK 版本。\n
+  </string>
+  <string name="ChangeLog_1_03">
+    版本 1.03\n
+    * 依據 Google 請求移除自動填入用的無障礙輔助服務。請至「密碼輸入訪問」設定尋找復現該功能的插件。\n
+    * 再次加入第三方應用程式作爲存儲選項\n
+    * 內建圖片瀏覽器用以瀏覽附帶圖片，免於把圖片轉移至其他應用程式\n
+    * 升級 OkHttp 以修復一些連線問題\n
+    * 支援 KeeTrayTOTP 項目, 現已支援 Steam 項目\n
+  </string>
+  <string name="ChangeLog_1_02">
+    Version 1.02\n
+    * 數個安全性改進。萬分感謝來自 jean-baptiste.cayrou@thalesgroup.com和vincent.fargues@thalesgroup.com 二位的安全性報告及合作！\n
+    * 支援 KeyboardSwapPlugin (見「密碼輸入訪問」設置): 允許在非 Root 裝置上自動切換輸入法。感謝來自 XDA-Developers 的 Mishaal Rahman 使其可行。\n
+    * 修復無障礙輔助服務與最近數版 Chrome 的兼容性\n
+    * 修復不必的指紋數據清除\n
+    * 修復崩潰\n
+    * 升級 Dropbox SDK 確定未來的兼容性\n
+    * 透過 Xamarin Insights 移除錯誤回報\n
+    * 升級構建工具\n
+  </string>
+  <string name="ChangeLog_1_01g">
+    版本 1.01-g\n
+    * 修復嘗試離線操作時的崩潰\n
+    * 修復不正確的 FTP(S) 身份驗證資訊編碼\n
+    * 修復在舊 Android 版本使用 OneDrive 發生的崩潰\n
+    * 在項目畫面以本地時間顯示時間\n
+  </string>
+  <string name="ChangeLog_1_01d">
+    版本 1.01-d\n
+    * 修復 OneDrive 檔案清單\n
+    * 在主機名稱驗證失敗時，允許忽略證書錯誤 (不推薦用於生產用途)\n
+    * 修復有時候輸入正確解鎖密碼而 QuickUnlock 失敗的問題\n
+  </string>
   <string name="ChangeLog_0_9_8c">
 版本0.9.8c\n
 * 修補 Microsoft Live SDK (用於 OneDrive) 的 SSL 漏洞。\n
@@ -574,7 +613,197 @@
 * 原生支持 x86 設備。\n
 * 允許在指紋掃描期間隱藏軟鍵盤。\n
 * 構建系統更新。  </string>
+  <string name="ChangeLog_1_0_0">
+    版本 1.0.0\n
+    * 指紋解鎖 (需要 Android 6.0+ 或 Samsung 裝置)\n
+    * 新增自動填入服務 (需要 Android 5.0+)\n
+    * 新增項目範本支援\n
+    * 新增「離線操作」模式\n
+    * 允許複製項目\n
+    * 欄位名稱的自動完成模式\n
+    * 允許從最近文件列表中移除項目\n
+    * 在 Android 6.0 運行時請求權限\n
+    * 錯誤修復 (在內建鍵盤, 選擇圖示時)\n
+    * 包含發送錯誤報告的選項\n
+    * 在數處新增幫助訊息\n
+  </string>
+  <string name="ChangeLog_0_9_9">
+		版本 0.9.9\n
+		* 完成使用者介面的重新設計。萬分感謝 Stefano Pignataro (http://www.spstudio.at) 的幫助！\n
+    * 允許新增自定義圖示\n
+    * 支援在 Samsung 裝置上的多視窗模式\n
+    * 增加了新資料庫的加密默認回數\n
+    * 檢查額外欄位的重複項目以免丟失數據\n
+    
+	</string>
+  <string name="ChangeLog_0_9_9c">
+版本 0.9.9c \n
+* 夜間佈景回顧 \n
+* 您可安裝其他圖示包（Play 商店可下載到經典 Windows 風格的圖示） \n
+* 直接移除條目而不放入回收桶時添加確認提示 \n 
+* 錯誤修正：因一次性密碼檔編碼問題所致的錯誤顯示、某些場景下顯示錯誤的圖示 \n  </string>
+  <string name="ChangeLog_0_9_8b">
+版本 0.9.8b \n 
+* 錯誤修正：某些資料庫存取失敗、匯出至本機運作異常、個別偏好設定導致無回應之情形。\n</string>
+  <string name="ChangeLog_0_9_8">
+版本 0.9.8 \n
+* 支持存貯訪問框架（KP2A 離線版允許寫入記憶卡或 Google Drive） \n
+* 當使用者鍵入 WebDAV 連結（定向至資料夾而非檔案）時，嘗試偵錯 \n
+* 變更密碼字體 \n
+* 允許更改 Dropbox 帳戶 \ n
+* 錯誤修正：現可記取一次性密碼 \n</string>
+  <string name="ChangeLog_0_9_7b">
+版本 0.9.7b \n
+* 更新翻譯 \n 
+* 錯誤修正：0.9.7 版本中缺少密碼字體、按名稱排序沒有排序分組 \n</string>
+  <string name="ChangeLog_0_9_7">
+版本 0.9.7 \n
+* 支援讀寫 Keepass 1 (kdb) 資料庫（測試版）\n
+* 更完美的切回原先的鍵盤（無需 ROOT）\n
+* 支援 KeeChallenge 外掛程式與可變長度的金鑰檔 \n
+* 阻止在快速解鎖和鍵入密碼介面截取熒幕 \n
+* 修改按日期排序的反向順序為降序 \n
+* 錯誤修正：註釋現可正確更新、密碼現可在所有設備上隱藏顯示（但願如此）、修正同一條目可添加兩次的問題、修正即便在修復資料庫後仍然多次彈出 UUID 警示的問題 \n</string>
+  <string name="ChangeLog_0_9_6">
+版本 0.9.6 \n
+* 允許將金鑰檔或本機資料庫檔案導入到應用程式內部資料夾（參見設定）\n
+* 支援多種排序方法 \n
+* 改進了自動鍵盤切換的偏好 \n
+* 更新了應用程式徽標和通知欄設計，由 Pignataro (http://www.spstudio.at) 提供 \n
+* 密碼產生器記住上次的設定 \n
+* 為 Android 5 熒幕鎖定時的通知消息設定可見性 \n
+* 離開應用程式但未按下「確定」時清除主密碼欄位 \n 
+* 修正部分設備的鍵盤設定中缺少輸入語言的問題 \n
+* 修正已 ROOT 設備上自動鍵盤切換的問題 \n
+* 添加資料庫檢查功能（重複的 UUID）\n
+* 在檢測到更改時自動重新載入資料庫，解決了顯示主密碼的安全隱患 \n
+* 改進了波蘭語小鍵盤布局，修正鍵盤設定佈景（感謝 Wiktor Ławski） \n </string>
+  <string name="ChangeLog_0_9_5">
+版本 0.9.5 \n
+* 修正檔案查看（特別是 Android 4.4）中的問題 \n
+* 修正運行 Android Lollipop 的 Nexus 5 載入 .kbd (keepass 1) 檔的問題 \n
+* 增加設定以在總覽列表中隱藏快照或應用程式 \n
+* 修正 Google Drive 檔案存取的問題（常規版）\n
+* 允許金鑰檔按指定的檔案類型存取（常規版）\n
+* 更新 DropBox SDK 與安全性修補程式（常規版）\n
+* 更新構建工具 --&gt; APK 程式檔體積增加 :-( \n
+我保證還會有更多的更新，它們將在下個版本中到來。-- 抱歉，我想先盡快推送這些熱修補程式。</string>
+  <string name="ChangeLog_0_9_4">
+版本 0.9.4 \n
+* 支援外掛程式：參閱設定以獲取外掛程式 \n
+* 發表 QR 碼外掛（掃描密碼、以 QR 碼顯示密碼、將條目傳送到其他 KP2A 設備）\n
+* 發表 InputStick 外掛（透過藍牙將數位憑證傳送到您的電腦 - 需搭配 InputStick USB 外設）\n
+* 第三方應用程式現可輕鬆查詢 KP2A 的憑證。你是開發者嗎？若合適請為您的應用增設這一支援！\n
+* 支援 TOTP 兩步驟驗證（與 KeeOTP 和 TrayTotp 外掛相容）\n
+* 打開資料庫時，應用程序不再被 Android 休眠 \n
+* 使用後退按鈕離開程式時，數據庫不再被鎖定（參閱設定）\ n
+* 搜索視圖中顯示分組 (*)\n
+* 搜索視圖中添加上下文選單，包括「返回主選單」 (*)\n
+* 條目視圖中顯示分組 (*)\n
+* (*) 感謝 Matthieu 落實這些功能！\n
+* 支援 KeeChallenge 與 Yubikey NEO 外掛。感謝 Ben Rush 實現這一功能！\n
+* 改進使用者介面 \n
+* 修正 Google 雲端硬碟介面中的錯誤 \n </string>
+  <string name="ChangeLog_0_9_3_r5">
+版本 0.9.3 r5 \n
+* 合併來自 Xamarin 的修補程式：Keepass2Android 現在與 Android 4.4.2 上的 ART 虛擬機相容。\n
+* 修正：同步過程中的錯誤（刷新顯示，正確檢測 HTTP 上的更改）、Android 2.x 設備上的問題、Google 雲端硬碟與微軟
+ OneDrive 的存取問題、關閉資料庫同時清除剪貼板、打開附加檔案時的錯誤、鍵盤顯示的問題 \n</string>
+  <string name="ChangeLog_0_9_3">
+版本 0.9.3 \n
+* 新鍵盤包含許多改進，參閱設定。 \n 
+* 新增 kdb (Keepass 1) 檔案的唯讀支援。實驗中！ \n 
+* 新增 SFTP 支援 \n 
+* 添加 ART 虛擬機環境出錯的解決辦法 (Android 4.4.2)\n
+* 其它修正 \n</string>
+  <string name="ChangeLog_0_9_2">
+版本 0.9.2 \n
+* 新增 OTP 支援（相容於 OtpKeyProv 外掛程式）\n
+* 內建 NFC 支援，可从 YubiKey NEO 外掛獲取一次性密碼 \n
+* 多處介面改進 \n
+* 集成 Keepass 2.24 程式庫 \n
+* 新增結束程式選單（參閱設定）\n
+* 改進 SSL 電子憑證校驗 \n
+* 其它問題修正 \n</string>
+  <string name="ChangeLog_0_9_1">
+版本 0.9.1 \n
+*內建 SkyDrive 支援（僅適用於 Keepass2Android 常規版）\n
+*修正 Google 雲端硬碟的問題 \n
+*新增 NTLM 支援</string>
+  <string name="ChangeLog_0_9">
+版本 0.9 \n
+* 內建 Dropbox 與 Google Drive 支援（存取資料庫，僅 Keepass2Android 常規版支援）\n
+* 內建檔案管理器（仰賴於 HBA 的 android-filechooser）\n
+* 改進新增資料庫時的使用者介面 \n
+* 自定義字體 DejaVu Sans Mono 用於顯示密碼 \n
+* 其它問題修正</string>
+  <string name="ChangeLog_0_8_6">
+版本 0.8.6 \n
+* 支援 Twofish 加密算法 \n
+* 允許編輯分組 \n
+* 允許移動條目和分組 \n
+* 快速解鎖圖示可以變成透明（參閱設定）\n
+* 其它問題修正</string>
+  <string name="ChangeLog_0_8_5">
+版本 0.8.5 \n
+* 遠端檔案存儲於程式快取中以允許離線使用（包括編輯和後續的同步），詳情參閱設定 \n
+* 通知圖示展現資料庫的鎖定狀態（參閱設定）\ n
+* 在某些情況下改進了鎖定狀態的確定 \n
+* 鍵入密碼時，資料庫會加載到記憶體中以提升解鎖速度（參閱設定）\ n
+* 條目可添加到根目錄 \n
+* 修正錯誤：解析引用欄位、意大利語和漢語設備上的鍵盤問題</string>
+  <string name="ChangeLog_0_8_4">
+版本 0.8.4\n
+* 保存資料庫時會檢測並合併外部更改 \n
+* 改進加載性能 \n
+* 改進搜索欄建議 \n
+* 新的程式徽標！\n
+* 新增 .kdbp 支援以加快資料存取效率 \n
+* 改進了附加欄位的編輯，並在受保護的情況下隱藏顯示 \n
+感謝 Alex Vallat 貢獻程式碼！\n
+感謝 NikiHüttner (www.close-cut.de) 提供的新徽標！\n</string>
+  <string name="ChangeLog_0_8_3">版本 0.8.3 \n
+* 條目列表中顯示使用者名稱與 TAN 索引（参阅設定）\n
+* 若檢索沒有返回結果，則可直接新建條目 \n
+* KP2A 鍵盤提供了便捷查詢當前程式憑據的入口 \n
+* 點選要用於鍵盤自動鍵入的條目後，程式自動關閉 \n
+* 檢索超連結後會自動打開鍵盤的選取介面（參閱設定）\n
+* 鍵入字段中的佔位符在粘貼前被替換（支援多佔位符）\n
+* 修正了一些小錯誤  </string>
+  <string name="ChangeLog_0_8_2">版本 0.8.2 \n 
+* 支援 WebDAV 中的摘要式身份校驗 \n
+* 修正：OI 檔案管理器、打開超連結
+</string>
+  <string name="ChangeLog_0_8_1">版本 0.8.1 \n
+* KP2A 離線版和常規版可同時被安裝 \n
+* 新增翻譯（感謝所有譯者！）
+</string>
+  <string name="ChangeLog_0_8">版本 0.8版 \n
+* 改進使用者介面，特別是 Android 4.x 設備 \n
+* 可使用指定的檔案管理器 \n
+* 新增更安全的方式打開附加檔案（透過快取）\n
+* 修正編輯器中的錯誤 \n
+* 可能引入了新的 Bug :-)
+</string>
   <string name="ChangeLog_keptDonate">捐出一瓶啤酒或別的東西以擴展K2A的可能性</string>
+  <string name="ChangeLog_0_7">版本 0.7 \n
+* 提高載入速度：金鑰轉換現在快了十倍！\n
+* 添加 Keepass2Android 虛擬鍵盤：切換到此鍵盤鍵入憑據，可規避基於剪貼簿的密碼監聽器（在設定中禁用舊的剪貼簿通知）\n
+* 新增捐贈啤酒或其他東西的選單</string>
+  <string name="ChangeLog"><b>版本 0.6.2</b>\n
+* Google Drive/Dropbox/... 整合：使用官方 Google Drive 或 Dropbox 應用程式並開啟任何 .kdbx 檔案，將自動開啟 KP2A。\n
+* 改善搜索的對話方塊 \n
+* 改善帶子域的分享鏈接的搜索結果\n
+* 在選單新增回饋、評價以及翻譯本應用程式的選項\n
+\n
+<b>版本 0.6.1</b>\n
+* 偵測背景中的資料庫變更 (i.e. 由應用程式的同步活動所引致的)\n
+* 改善瀏覽器鏈接的搜索\n
+* 放棄變更時的確認對話方塊\n
+\n
+<b>版本 0.6</b>\n
+首個公眾發放版本
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30秒</item>
     <item>1分鐘</item>
@@ -617,10 +846,18 @@
     <item>密碼 + 一次性密碼 (復原模式)</item>
     <item>密碼 + 質詢-回應</item>
     <item>密碼 + 質詢 - 回應 (復原模式)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>忽略憑證驗證失敗</item>
     <item>當驗證失敗時發出警告</item>
     <item>不接受不正確憑證</item>
   </string-array>
+  <string name="ClearClipboardWarning">請確保它適用於您的系統，否則請考慮使用內建鍵盤。</string>
+  <string name="PluginDescription">外掛程式提供的說明檔：</string>
+  <string name="autofill_hint">Keepass2Android 支援 Android 的自動填入功能, 你要啟用它嗎？</string>
+  <string name="autofill_enable">啟用自動填入</string>
+  <string name="show_autofill_help">顯示有關自動填入的說明</string>
+  <string name="autofill_sign_in_prompt">以 Keepass2Android 填入</string>
+  <string name="invalid_link_association">無法關聯網域 %1$s 與應用程式 %2$s</string>
 </resources>

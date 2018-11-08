@@ -11,7 +11,7 @@
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
-		<activity android:configChanges="keyboardHidden|orientation" android:label="@string/app_name" android:theme="@style/MyTheme" android:name="keepass2android.PasswordActivity">
+		<activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme" android:name="keepass2android.PasswordActivity">
 			<intent-filter android:label="@string/app_name">
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT" />
@@ -39,6 +39,14 @@
 				<data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbx" />
 				<data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbx" />
 				<data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbx" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data
+					android:scheme="https"
+					android:host="my.yubico.com"
+					android:pathPrefix="/neo"/>
 			</intent-filter>
 		</activity>
 	</application>

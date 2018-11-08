@@ -38,6 +38,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+
 
 public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
@@ -310,6 +312,8 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			String driveId = path.getGDriveId();
 			logDebug("id"+driveId);
 			File file = driveService.files().get(driveId).execute();
+			if (file.getLabels().getTrashed())
+				throw new FileNotFoundException(path.getDisplayName() + " is trashed!");
 			logDebug("...done.");
 			return file;
 		}
@@ -780,7 +784,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	public void onRequestPermissionsResult(FileStorageSetupActivity setupAct, int requestCode, String[] permissions, int[] grantResults)
 	{
 		logDebug("onRequestPermissionsResult");
-		if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+		if (grantResults[0] == PERMISSION_GRANTED)
 		{
 			logDebug("granted");
 			initFileStorage(setupAct);
@@ -788,7 +792,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		else
 		{
 			logDebug("denied");
-			finishWithError(setupAct, new Exception("You must grant the requested permissions to continue."));
+			finishWithError(setupAct, new Exception("Please grant the requested permissions. Access to your accounts is required to let you choose from the available Google accounts on this device."));
 		}
 	}
 
@@ -847,13 +851,22 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		if (Build.VERSION.SDK_INT >= 23)
 		{
 			Activity act = (Activity)activity;
-			int permissionRes = act.checkSelfPermission(Manifest.permission.GET_ACCOUNTS);
-			logDebug("permissionRes="+permissionRes);
-			if (permissionRes == PackageManager.PERMISSION_DENIED)
+
+			String[] permissions = new String[] {Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+			boolean allOk = true;
+			for (String s: permissions)
+			{
+				int permissionRes = act.checkSelfPermission(s);
+				logDebug("permissionRes "+s+"="+permissionRes);
+				if (permissionRes != PERMISSION_GRANTED)
+					allOk = false;
+			}
+
+			if (!allOk)
 			{
 				logDebug("requestPermissions");
 				mRequiresRuntimePermissions = true;
-				act.requestPermissions(new String[] {Manifest.permission.GET_ACCOUNTS}, 0);
+				act.requestPermissions(permissions, 0);
 			}
 		}
 

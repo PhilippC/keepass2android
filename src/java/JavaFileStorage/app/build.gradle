@@ -32,11 +32,11 @@ dependencies {
     compile 'com.google.apis:google-api-services-drive:v2-rev102-1.16.0-rc'
     compile 'com.dropbox.core:dropbox-core-sdk:3.0.3'
     //onedrive:
-    compile('com.onedrive.sdk:onedrive-sdk-android:1.2+') {
+    compile('com.onedrive.sdk:onedrive-sdk-android:1.2.0') {
         transitive = false
     }
     compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.microsoft.services.msa:msa-auth:0.8.+'
-    compile 'com.microsoft.aad:adal:1.1.+'
+    compile 'com.microsoft.services.msa:msa-auth:0.8.6'
+    compile 'com.microsoft.aad:adal:1.14.0'
 
 }

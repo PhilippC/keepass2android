@@ -18,7 +18,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Android.App;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -34,7 +36,7 @@ namespace keepass2android
 		private readonly bool _rememberKeyfile;
 		IDatabaseFormat _format;
 		
-		public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish): base(finish)
+		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish): base(activity, finish)
 		{
 			_app = app;
 			_ioc = ioc;
@@ -53,9 +55,11 @@ namespace keepass2android
 			{
 				try
 				{
+                    //make sure the file data is stored in the recent files list even if loading fails
+				    SaveFileData(_ioc, _keyfileOrProvider);
 
 
-					StatusLogger.UpdateMessage(UiStringKey.loading_database);
+                    StatusLogger.UpdateMessage(UiStringKey.loading_database);
 					//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
 					MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
 					MemoryStream databaseStream;
@@ -134,10 +138,14 @@ namespace keepass2android
 			//now let's go:
 			try
 			{
-				_app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
-				SaveFileData(_ioc, _keyfileOrProvider);
+                _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
 				Kp2aLog.Log("LoadDB OK");
-				Finish(true, _format.SuccessMessage);
+
+			    //make sure the stored access time for the actual file is more recent than that of its backup
+			    Thread.Sleep(10);
+                SaveFileData(_ioc, _keyfileOrProvider);
+
+                Finish(true, _format.SuccessMessage);
 			}
 			catch (OldFormatException)
 			{

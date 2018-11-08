@@ -74,7 +74,7 @@ namespace keepass2android
 	/// </summary>
 	[Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue")]
 	[IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "android.intent.category.LAUNCHER", "android.intent.category.MULTIWINDOW_LAUNCHER" })]
-	public class KeePass : LifecycleDebugActivity, IDialogInterfaceOnDismissListener
+	public class KeePass : LifecycleAwareActivity, IDialogInterfaceOnDismissListener
 	{
 		public const Result ExitNormal = Result.FirstUser;
 		public const Result ExitLock = Result.FirstUser+1;

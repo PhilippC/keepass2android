@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 
@@ -7,8 +8,8 @@ namespace keepass2android
 {
 	public abstract class DeleteRunnable : RunnableOnFinish
 	{
-		protected DeleteRunnable(OnFinish finish, IKp2aApp app)
-			: base(finish)
+		protected DeleteRunnable(Activity activity, OnFinish finish, IKp2aApp app)
+			: base(activity, finish)
 		{
 			App = app;
 		}
@@ -17,11 +18,11 @@ namespace keepass2android
 
 		protected Database Db;
 
-		protected Context Ctx;
+		protected Activity Ctx;
 
-		protected void SetMembers(Context ctx, Database db)
+		protected void SetMembers(Activity activity, Database db)
 		{
-			Ctx = ctx;
+			Ctx = activity;
 			Db = db;
 		}
 
@@ -209,7 +210,7 @@ namespace keepass2android
 			Android.Util.Log.Debug("KP2A", "Calling PerformDelete..");
 			PerformDelete(touchedGroups, permanentlyDeletedGroups);
 
-			_onFinishToRun = new ActionOnFinish((success, message) =>
+			_onFinishToRun = new ActionOnFinish(ActiveActivity,(success, message, activity) =>
 			{
 				if (success)
 				{

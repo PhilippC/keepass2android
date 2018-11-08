@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 
@@ -32,10 +33,10 @@ namespace keepass2android
 		private readonly PwIcon _iconId;
 		private readonly PwUuid _customIconId;
 		internal PwGroup Group;
-		readonly Context _ctx;
+		readonly Activity _ctx;
 
-		public EditGroup(Context ctx, IKp2aApp app, String name, PwIcon iconid, PwUuid customIconId, PwGroup group, OnFinish finish)
-			: base(finish)
+		public EditGroup(Activity ctx, IKp2aApp app, String name, PwIcon iconid, PwUuid customIconId, PwGroup group, OnFinish finish)
+			: base(ctx, finish)
 		{
 			_ctx = ctx;
 			_name = name;
@@ -44,7 +45,7 @@ namespace keepass2android
 			_customIconId = customIconId;
 			_app = app;
 
-			_onFinishToRun = new AfterEdit(this, OnFinishToRun);
+			_onFinishToRun = new AfterEdit(ctx, this, OnFinishToRun);
 		}
 		
 		
@@ -64,8 +65,8 @@ namespace keepass2android
 		private class AfterEdit : OnFinish {
 			readonly EditGroup _editGroup;
 
-			public AfterEdit(EditGroup editGroup, OnFinish finish)
-				: base(finish)
+			public AfterEdit(Activity ctx, EditGroup editGroup, OnFinish finish)
+				: base(ctx, finish)
 			{
 				_editGroup = editGroup;
 			}

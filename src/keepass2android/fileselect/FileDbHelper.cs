@@ -24,7 +24,7 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	/// <summary>
+    /// <summary>
 	/// Class to store the recent files in a database
 	/// </summary>
 	public class FileDbHelper {
@@ -34,13 +34,14 @@ namespace keepass2android
 		
 		private const String DatabaseName = "keepass2android";
 		private const String FileTable = "files";
-		private const int DatabaseVersion = 1;
+		private const int DatabaseVersion = 2;
 		
 		private const int MaxFiles = 15;
 		
 		public const String KeyFileId = "_id";
 		public const String KeyFileFilename = "fileName";
-		public const String KeyFileUsername = "username";
+	    public const String KeyFileDisplayname = "displayname";
+        public const String KeyFileUsername = "username";
 		public const String KeyFilePassword = "password";
 		public const String KeyFileCredsavemode = "credSaveMode";
 		public const String KeyFileKeyfile = "keyFile";
@@ -48,12 +49,14 @@ namespace keepass2android
 		
 		private const String DatabaseCreate = 
 			"create table " + FileTable + " ( " + KeyFileId + " integer primary key autoincrement, " 
-				+ KeyFileFilename + " text not null, " 
-				+ KeyFileKeyfile + " text, "
+				+ KeyFileFilename + " text not null, "
+                + KeyFileKeyfile + " text, "
 				+ KeyFileUsername + " text, "
 				+ KeyFilePassword + " text, "
 				+ KeyFileCredsavemode + " integer not null,"
-				+ KeyFileUpdated + " integer not null);";
+				+ KeyFileUpdated + " integer not null,"
+			    + KeyFileDisplayname + " text "
+                +");";
 		
 		private readonly Context mCtx;
 		private DatabaseHelper mDbHelper;
@@ -71,7 +74,11 @@ namespace keepass2android
 			
 			
 			public override void OnUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-				// Only one database version so far
+			    if (oldVersion == 1)
+			    {
+			        db.ExecSQL("alter table " + FileTable + " add column " + KeyFileDisplayname + " text ");
+                }
+                
 			}
 
 		}
@@ -94,7 +101,7 @@ namespace keepass2android
 			mDb.Close();
 		}
 		
-		public long CreateFile(IOConnectionInfo ioc, String keyFile) {
+		public long CreateFile(IOConnectionInfo ioc, string keyFile, string displayName = "") {
 			
 			// Check to see if this filename is already used
 			ICursor cursor;
@@ -126,6 +133,7 @@ namespace keepass2android
 				vals.Put(KeyFileUsername, iocToStore.UserName);
 				vals.Put(KeyFilePassword, iocToStore.Password);
 				vals.Put(KeyFileCredsavemode, (int)iocToStore.CredSaveMode);
+			    vals.Put(KeyFileDisplayname, displayName);
 				
 				result = mDb.Update(FileTable, vals, KeyFileId + " = " + id, null);
 				
@@ -138,8 +146,9 @@ namespace keepass2android
 				vals.Put(KeyFilePassword, iocToStore.Password);
 				vals.Put(KeyFileCredsavemode, (int)iocToStore.CredSaveMode);
 				vals.Put(KeyFileUpdated, Java.Lang.JavaSystem.CurrentTimeMillis());
-				
-				result = mDb.Insert(FileTable, null, vals);
+			    vals.Put(KeyFileDisplayname, displayName);
+
+                result = mDb.Insert(FileTable, null, vals);
 				
 			}
 			// Delete all but the last X records
@@ -193,7 +202,8 @@ namespace keepass2android
 				KeyFileKeyfile,
 				KeyFileUsername,
 				KeyFilePassword,
-				KeyFileCredsavemode
+				KeyFileCredsavemode,
+                KeyFileDisplayname
 			};
 		}		
 		

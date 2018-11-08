@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 using KeePassLib.Interfaces;
@@ -12,10 +13,10 @@ namespace keepass2android.database.edit
 	{
 		private readonly List<IStructureItem> _elementsToMove;
 		private readonly PwGroup _targetGroup;
-		private readonly Context _ctx;
+		private readonly Activity _ctx;
 		private readonly IKp2aApp _app;
 
-		public MoveElements(List<IStructureItem> elementsToMove, PwGroup targetGroup, Context ctx, IKp2aApp app, OnFinish finish) : base(finish)
+		public MoveElements(List<IStructureItem> elementsToMove, PwGroup targetGroup, Activity ctx, IKp2aApp app, OnFinish finish) : base(ctx, finish)
 		{
 			_elementsToMove = elementsToMove;
 			_targetGroup = targetGroup;
@@ -82,7 +83,7 @@ namespace keepass2android.database.edit
 		    }
 			
 			
-			_onFinishToRun = new ActionOnFinish((success, message) =>
+			_onFinishToRun = new ActionOnFinish(ActiveActivity, (success, message, activity) =>
 			{
 				if (!success)
 				{	// Let's not bother recovering from a failure.

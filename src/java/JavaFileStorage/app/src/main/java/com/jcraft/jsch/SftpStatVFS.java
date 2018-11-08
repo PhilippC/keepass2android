@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2012 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -35,20 +35,8 @@ import java.util.Date;
 public class SftpStatVFS {
 
   /*
-  from "man statvfs"
-  struct statvfs {
-    unsigned long  f_bsize;    // file system block size
-    unsigned long  f_frsize;   // fragment size
-    fsblkcnt_t     f_blocks;   // size of fs in f_frsize units
-    fsblkcnt_t     f_bfree;    // # free blocks
-    fsblkcnt_t     f_bavail;   // # free blocks for non-root
-    fsfilcnt_t     f_files;    // # inodes
-    fsfilcnt_t     f_ffree;    // # free inodes
-    fsfilcnt_t     f_favail;   // # free inodes for non-root
-    unsigned long  f_fsid;     // file system ID
-    unsigned long  f_flag;     // mount flags
-    unsigned long  f_namemax;  // maximum filename length
-  };
+   It seems data is serializsed according to sys/statvfs.h; for example,
+   http://pubs.opengroup.org/onlinepubs/009604499/basedefs/sys/statvfs.h.html  
   */
 
   private long bsize;

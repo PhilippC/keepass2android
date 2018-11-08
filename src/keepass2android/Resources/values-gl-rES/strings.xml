@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Andoird é un xestor de contrasinais que aporta acceso de lectura/escritura ás bases de datos KeePass 2.x de Android.</string>
   <string name="CreditsText">A interface de usuario está baseada en KeepassDroid desenvolvida por Brian Pellin. O código para as operacións da base de datos está baseada en KeePass, de Dominik Reichi. O robot Android é reproducido ou modificado por un traballo creado e compartido por Google e usado segundo os termos descritos na licenza Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Apoio de SFTP implementado co uso da libería JSch baixo licenza BSD, creada por JCraft, Inc.</string>
+  <string name="CreditsIcons">A icona do martelo foi creada por John Caserta do proxecto Noun. A icona do pingüín foi creada por Adriano Emerick do proxecto Noun. A icona da pluma foi creada por Jon Testa do proxecto Noun. A icona da mazá foi creada por Ava Rowell do proxecto Noun. A icona provén de https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Aceptar</string>
   <string name="deny">Denegar</string>
   <string name="add_entry">Engadir entrada</string>
@@ -86,7 +87,11 @@
   <string name="enable_fingerprint_unlock">Habilitar desbloqueo completo con pegada dixital</string>
   <string name="enable_fingerprint_quickunlock">Habilitar desbloqueo con pegada dixital para QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Toque o sensor para desbloquear a base de datos</string>
+  <string name="fingerprint_unlock_failed">Fallou o desbloqueo por pegada. O sistema Android OS invalidou a chave descritiva. Isto pasa cando se engadiu unha nova pegada dactilar ou se cambiou a configuración de seguridade. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Fallou o desbloqueo da base de datos: chave composta inválida. Deshabilitouse o desbloqueo por pegada debido a que o contrasinal maestro gardado xa non é válido. </string>
   <string name="fingerprint_reenable">Volva a habilitar o desbloqueo por pegada dixital para o novo contrasinal mestre.</string>
+  <string name="fingerprint_reenable2">Tente a desbloquear co contrasinal e volver a habilitar o Desbloqueo por Pegada na configuración da base de datos, por favor.</string>
+  <string name="FingerprintInitFailed">Fallou a inicialización do sensor de pegada. </string>
   <string name="enable_fingerprint_unlock_Info">Isto gardará o seu contrasinal mestre no dispositivo, encriptado co Android Keystore e protexido por autenticación de pegada dixital. Permítelle desbloquear a base de datos tan só ca súa pegada dixital.</string>
   <string name="enable_fingerprint_quickunlock_Info">Permite o uso da autenticación con pegada dixital no canto do seu código QuickUnlock. Non require a almacenaxe de ningunha información relacionada co seu contrasinal mestre.</string>
   <string name="enter_filename">Introduza o nome do arquivo da súa base de datos</string>
@@ -201,6 +206,7 @@
   <string name="remember_keyfile_summary">Lembrar localización dos arquivos chave</string>
   <string name="remember_keyfile_title">Gardar arquivo chave</string>
   <string name="remove_from_filelist">Eliminar</string>
+  <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Raíz</string>
   <string name="KeyDerivFunc">Función de derivación de claves</string>
@@ -264,6 +270,7 @@
   <string name="enter_filename_details_create_import">O arquivo a importar será seleccionado no seguinte paso.</string>
   <string name="enable_quickunlock">Habilitar QuickUnlock</string>
   <string name="QuickUnlock_label">Introduza os últimos %1$d caracteres do seu contrasinal:</string>
+  <string name="QuickUnlock_label_secure">Insire o código de desbloqueo rápido:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Pechar base de datos</string>
   <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por defecto</string>
@@ -283,6 +290,7 @@
   <string name="SaveAttachmentDialog_text">Seleccione onde gardar o arquivo adxunto.</string>
   <string name="SaveAttachmentDialog_save">Gardar na tarxeta SD</string>
   <string name="SaveAttachmentDialog_open">Gardar na caché e abrir</string>
+  <string name="ShowAttachedImage">Amosar co visor interno de imaxes</string>
   <string name="SaveAttachment_doneMessage">Arquivo gardado en %1$s.</string>
   <string name="SaveAttachment_Failed">Non se puido gardar arquivo adxunto en %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Lembrar texto de busca?</string>
@@ -313,11 +321,11 @@
   <string name="NoDonationReminder_title">Nunca solicitar doazóns</string>
   <string name="NoDonationReminder_summary">Non che darei un céntimo ou xa doei. Non preguntar por doazóns, nin sequera no aniversario do autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
-  <string name="UseOfflineCache_summary">Manter unha copia dos arquivos da base de datos remota no directorio da caché da app. Isto permite usar base de datos remotas incluso sen conexión.</string>
+  <string name="CreateBackups_title">Copias de seguranza locais</string>
+  <string name="UpdatingBackup">Actualizando copia de seguranza local...</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definir o comportamento no caso de que falle a validación dun certificado. Nota: pode instalar certificados no seu dispositivo se a validación falla!</string>
   <string name="ClearOfflineCache_title">Eliminar caché?</string>
-  <string name="ClearOfflineCache_question">Isto eliminará todos os arquivos de bases de datos na caché. Perderase calquera cambio feito sen conexión que aínda non se sincronizara! Quere continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Comprobar modificacións</string>
   <string name="CheckForFileChangesOnSave_summary">Comprobar se o arquivo foi modificado externamente antes de gardar cambios.</string>
   <string name="CheckForDuplicateUuids_title">Buscar UUIDs duplicados</string>
@@ -326,9 +334,14 @@
   <string name="ShowCopyToClipboardNotification_summary">Fai posible o acceso ó nome de usuario e contrasinal a través da barra de notificacións. Coidado cos rastrexadores de contrasinais!</string>
   <string name="ShowSeparateNotifications_title">Notificacións por separado</string>
   <string name="ShowSeparateNotifications_summary">Amosar notificacións separadas para copiar o nome de usuario e o contrasinal ó portapapeis e para activar o teclado.</string>
+  <string name="AccServiceAutoFill_prefs">Servizo de accesibilidade de autocompletado</string>
+  <string name="AutoFill_prefs">Servizo de autocompletado</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificación teclado KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Facer toda a entrada accesible a través do teclado KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Cambiar teclado</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Abrir caixa de selección de teclado cando unha entrada estea dispoñible a través do teclado KP2A despois dunha busca do navegador.</string>
   <string name="kp2a_switch_rooted">Cambiar teclado automaticamente</string>
+  <string name="kp2a_switch_rooted_summary">Cambiar automaticamente ó teclado KP2A cando a entrada estea aberta. Isto precisa do Plug-in KeyboardSwap ou un dispositivo con acceso \'Root\' e a aplicación Secure Settings con System+. </string>
   <string name="get_keyboardswap">Instalar o plugin KeyboardSwap</string>
   <string name="get_keyboardswap_summary">Este plugin permite cambiar automaticamente ao teclado de KP2A sen ser \"root\". Cómpre ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Cambio automático só despois dunha busca</string>
@@ -337,6 +350,7 @@
   <string name="AutoSwitchBackKeyboard_summary">Cambiar ó teclado anterior cando non haxa ningunha entrada aberta.</string>
   <string name="ShowUnlockedNotification_title">Icona de notificación mentres estea desbloqueado</string>
   <string name="ShowUnlockedNotification_summary">Amosar a icona de notificación mentres a base de datos estea desbloqueada.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Abrir axustes</string>
   <string name="PreloadDatabaseEnabled_title">Pre-cargar o arquivo da base de datos</string>
   <string name="PreloadDatabaseEnabled_summary">Comezar a carga ou descarga en segundo plano do arquivo da base de datos mentres se introduce o contrasinal.</string>
   <string name="AskOverwriteBinary">Desexa sobrescribir o binario existente co mesmo nome?</string>
@@ -375,26 +389,11 @@
   <string name="SynchronizingDatabase">Fusionando cambios&#8230;</string>
   <string name="YesSynchronize">Si, fusionar</string>
   <string name="NoOverwrite">Non, sobrescribir</string>
-  <string name="UseOfflineMode">Traballar sen conexión</string>
-  <string name="UseOnlineMode">Traballar con conexión</string>
-  <string name="UseOfflineMode_Info">Evite calquera tráfico de rede usando unha copia local de caché do arquivo. As modificacións serán gardadas na caché local e só serán subidas cando se cambie de modo.</string>
-  <string name="InOfflineMode">Traballando sen conexión.</string>
   <string name="SynchronizingCachedDatabase">Sincronizando caché da base de datos&#8230;</string>
-  <string name="DownloadingRemoteFile">Descargando arquivo remoto&#8230;</string>
-  <string name="UploadingFile">Subindo arquivo&#8230;</string>
-  <string name="RestoringRemoteFile">Restablecendo arquivo remoto&#8230;</string>
   <string name="FilesInSync">Os arquivos están sincronizados.</string>
   <string name="SynchronizedDatabaseSuccessfully">A base datos sincronizouse satisfactoriamente!</string>
   <string name="CheckingDatabaseForChanges">Comprobando cambios na base de datos&#8230;</string>
-  <string name="CouldNotSaveToRemote">Non se puido gardar o arquivo remoto %1$s. Garde outra vez ou empregue o menú de sincronización cando a conexión estea de novo dispoñible.</string>
-  <string name="CouldNotLoadFromRemote">Non se puido abrir o arquivo remoto %1$s. Cargouse o arquivo dende a cache local. Pode seguir facendo cambios na base de datos e sincronizalos despois.</string>
-  <string name="UpdatedRemoteFileOnLoad">Arquivo remoto actualizado.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Abriuse o arquivo local xa que hai un conflito cos cambios do arquivo remoto. Empregue o menú Sincronizar para fusionar cambios.</string>
-  <string name="LoadedFromRemoteInSync">Arquivo remoto e caché sincronizados.</string>
-  <string name="UpdatedCachedFileOnLoad">Copia do caché local de %1$s actualizada.</string>
   <string name="RemoteDatabaseUnchanged">Non se atoparon cambios.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Arquivo auxiliar do OTP en caché actualizado: o contador remoto era maior.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Arquivo auxiliar do OTP remoto actualizado: o contador local era maior.</string>
   <string name="SynchronizingOtpAuxFile">Sincronizando arquivo auxiliar OTP&#8230;</string>
   <string name="database_file">arquivo da base de datos</string>
   <string name="otp_aux_file">Arquivo auxiliar OTP</string>
@@ -449,7 +448,6 @@
   <string name="init_otp">Cargar arquivo auxiliar OTP&#8230;</string>
   <string name="otp_explanation">Intrduza os seguintes contrasinais de un uso (OTPs). Faga pasar o seu Yubikey NEO pola parte traseira do seu dispositivo para entrar por NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Non se puido atopar unha app que poida xestionar o reto. Instale Yubichallenge desde Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Non se puido cargar o arquivo auxiliar OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Utilice o plugin OtpKeyProv en KeePass 2.x (PC) para configurar a súa base de datos para o uso con OTPs!</string>
   <string name="otp_discarded_because_no_db">Seleccione primeiro a base de datos. A OTP é descartada por razóns de seguridade.</string>
@@ -470,6 +468,10 @@
   <string name="TrayTotp_SettingsField_title">Nome do campo configuración TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Introduza aquí o nome do campo configuración para  TrayTotp</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Ficheiro de rexistro para depuración</string>
+  <string name="DebugLog_title">Usar ficheiro de rexistro</string>
+  <string name="DebugLog_summary">Escribir a saída da app a un ficheiro de rexistro local</string>
+  <string name="DebugLog_send">Enviar rexistro de depuración...</string>
   <string name="loading">Cargando&#8230;</string>
   <string name="plugins">Plugins</string>
   <string name="plugin_packagename">Nome do paquete:</string>
@@ -479,6 +481,7 @@
   <string name="plugin_disabled">deshabilitado</string>
   <string name="plugin_web">Buscar plugins na liña</string>
   <string name="plugin_scopes">Permisos de nivel</string>
+  <string name="not_enabled">non habilitado</string>
   <string name="query_credentials_for_url">%1$s está solicitando credenciais para %2$s.</string>
   <string name="query_credentials">%1$s está solicitando credenciais. Por favor, seleccione unha entrada.</string>
   <string name="plugin_enabled_checkbox">Habilitado</string>
@@ -506,6 +509,7 @@
   <string name="ReadOnlyReason_PreKitKat">Debeu de abrir o arquivo dende unha app externa. Isto non permite a escritura. Se quere facer modificacións á base de datos, peche a base de datos e seleccione Cambiar base de datos. Despois abra o arquivo dende unha das opcións dispoñibles.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Opción só lectura activada. Desactíveo se quere facer cambios na base de datos.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">A escritura non é posible debido ás restricións de Android KitKat. Se quere facer cambios na base de datos, péchea e seleccione Cambiar base de datos. Logo abra o arquivo utilizando o Selector de arquivos do sistema.</string>
+  <string name="ReadOnlyReason_LocalBackup">As copias de seguranza locais non poden ser modificadas. Nos axustes da base de datos podes exportar unha copia a outra localización desde onde poder abrila. Isto permitirá escribir nela novamente.</string>
   <string name="AddCustomIcon">Engadir icona dende arquivo...</string>
   <string name="CopyingFile">Copiando arquivo...</string>
   <string name="DuplicateTitle">Copia</string>
@@ -530,6 +534,7 @@
   <string name="AskAddTemplatesTitle">Engadir modelos?</string>
   <string name="AskAddTemplatesMessage">KeepassAndroid contén modelos de entradas para contas de e-mail, contrasinais de LANs inalámbricas, notas seguras e máis. Quere engadir unha destas á súa base de datos? Se selecciona Non, poderaas engadir máis tarde dende a configuración da base de datos.</string>
   <string name="AddTemplates_pref">Engadir modelo á base de datos</string>
+  <string name="PreviewWarning">Teña en conta que esta é unha entrega previa e podería ter algúns erros! Se experimenta *algo* inesperado, fágamo saber por favor (no grupo beta tester de Google+ ou por email).</string>
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">A URI que introduciu non se asemella a un nome de arquivo. Está seguro que este é un arquivo válido?</string>
   <string name="FirstInvalidCompositeKeyError">Clave composta inválida! Ténteo de novo.</string>
@@ -540,6 +545,13 @@
    • Asegúrese de que seleccionou o arquivo de base de datos correcto.
  
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+\n 
+ • Consello: se pensas que o ficheiro da base de datos poida estar danado ou non lembras a chave mestra despois de modificala, podes tentar coa última versión do ficheiro aberta tocando en \"%1$s\" e seleccionando a copia de seguranza local.</string>
+  <string name="HintLocalBackupOtherError">
+    \n
+    • Consello: Keepass2Android gardou satisfactoriamente na memoria interna a versión do último ficheiro aberto. Podes abrila tocando en \"%1$s\" e seleccionando a copia de seguranza local.
+  </string>
   <string name="CorruptDatabaseHelp">
     Arquivo corrupto. \n
     Probe o seguinte para detectar o problema:\n
@@ -549,6 +561,11 @@
     • Se aínda así non pode abrir o arquivo dende o seu PC, contacte con soporte. Tente gardar o arquivo con outras configuracións (como por exemplo, descomprimido) no PC e tente abrilo de novo en Keepass2Android.
 
   </string>
+  <string name="DbUnlockedChannel_name">Base de datos desbloqueada</string>
+  <string name="DbUnlockedChannel_desc">Notificación de que a base de datos está a ser desbloqueada</string>
+  <string name="DbQuicklockedChannel_name">Desbloqueo rápido</string>
+  <string name="EntryChannel_name">Entrada de notificacións</string>
+  <string name="EntryChannel_desc">Notificación para simplificar o acceso á entrada seleccionada.</string>
   <string name="ErrorReportTitle">Keepass2Android: ocorreu un erro.</string>
   <string name="ErrorReportText">Ocorreu un erro inesperado durante a execución de Keepass2Android. Por favor, axúdenos a solucionar estes erros permitindo á app enviar informes de erros.</string>
   <string name="ErrorReportPromise">Os informes de erros nunca conterán ningún tipo de contido da súa base de datos ou contrasinal mestre. Pode deshabilitalos na configuración da app.</string>
@@ -557,6 +574,34 @@
   <string name="ErrorReportAsk">Preguntar despois do erro</string>
   <string name="ErrorReportPrefTitle">Enviar informes de erros</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Amosar teclado para entradas de contrasinal cando o escaneo de pegada dixital está activo.</string>
+  <string name="ChangeLog_1_04b">
+    Versión 1.04b\n
+    * Evita o fallo da aplicación cando o usuario tenta activar o autocompletado en dispositivos Huawei.\n
+  </string>
+  <string name="ChangeLog_1_04">
+    Versión 1.04\n
+    * Servizo de autocompletado engadido para Android 8.0 ou posterior.\n
+    * Actualización de bibliotecas, ferramentas de compilación e versión de SDK.\n
+  </string>
+  <string name="ChangeLog_1_03">
+    Version 1.03\n
+    * Eliminación do servizo de accesibilidade par ao autocompletado a petición de Google. Vexa a configuración de acceso para atopar o plugin que replica a mesma funcionalidade.\n
+    * Apps de terceiras partes engadidas como opción de almacenaxe\n
+    * Integración de visor de imaxes para ver as adxuntas sen telas que abrir mediante outras apps\n
+    * Actualización de OkHttp para resolver problemas con algunhas conexións\n
+    * Soporte para entradas KeeTrayTOTP, agora soporta entradas de Steam\n
+  </string>
+  <string name="ChangeLog_1_02">
+    Versión 1.02\n
+    * Melloras de seguridade varias. Grazas polo parte de seguridade de jean-baptiste.cayrou@thalesgroup.com e vincent.fargues@thalesgroup.com e a súa colaboración!\n
+    * Soporte ó plug-in KeyboardSwap (vexa opcións de acceso por contrasinal): permite cambiar de método de introdución automaticamente en  dispositivos sen acceso \'Root\'. Grazas a Mishaal Rahman de XDA-Developers por face-lo posible.\n
+    * Arranxo do servizo de accesibilidade na versión recente de Chrome\n
+    * Arranxo de limpeza innecesaria dos datos da pegada dactilar\n
+    * Arranxo de bloqueos menores\n
+    * Actualización de Dropbox SDK para asegurar futuras compatibilidades\n
+    * Eliminado o o sitema de reportes de erro de Xamarin \n
+    * Actualización de ferramentas de compilación\n
+  </string>
   <string name="ChangeLog_1_01g">
     Version 1.01-g\n
     * Solucionado o fallo canso se traballa sen conexión\n
@@ -677,7 +722,7 @@ Version 1.01-d\n
 		<b>Versión 0.9.4</b>\n
 		* engadido plugin de soporte: vaia á configuración para saber como obter plugins!\n
 		*  publicado plugin QR (escanea contrasinais, amósaos en formato QR, transfire entradas a outros dispositivos KP2A)\n
-		*  publicado plugin InputStick (transfira credenciais ó seu PC por bluetooth - require un lápis USB InputStick)\n
+		*  publicado plugin InputStick (transfira credenciais ó seu PC por bluetooth - require un lapis USB InputStick)\n
 		*  Outras apps poderán pedir credenciais a KP2A. Es desenrolador? Engádeo á túa app!\n
 		* engadido soporte TOTP (compatible con KeeOTP e TrayTotp)\n
 		* agora a app xa non debería ser rematada por Android cando estea aberta\n
@@ -842,6 +887,7 @@ Lanzamento público inicial
     <item>Contradinal e OTP segredo (modo de recuperación)</item>
     <item>Contrasinal e reto-resposta</item>
     <item>Contrasinal e reto-resposta segredo (modo de recuperación)</item>
+    <item>Password + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar fallos de validación de certificados</item>
@@ -850,4 +896,21 @@ Lanzamento público inicial
   </string-array>
   <string name="ClearClipboardWarning">Asegúrese de que funciona correctamente no seu sistema e considere se debe utilizar o teclado integrado ou non.</string>
   <string name="PluginDescription">Descrición facilitada polo plugin:</string>
+  <string name="autofill_hint">Keepass2Android permite a característica de autocompletado de Android, pero seica aínda non está habilitado.</string>
+  <string name="autofill_enable">Habilitar autocompletado</string>
+  <string name="autofill_enable_failed">Sentímolo, mais semella que o teu dispositivo non admite abrir os axustes desde a aplicación. Manualmente, vai aos axustes do sistema para activar o servizo de autocompletado.</string>
+  <string name="show_autofill_help">Amosar axuda do autocompletado</string>
+  <string name="autofill_sign_in_prompt">Completar con Keepass2Android</string>
+  <string name="invalid_link_association">Non se puido asociar o dominio web %1$s ca app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android detectou hárdware de impresións dixitais. Queres activar o desbloqueo desta base de datos mediante a túa impresión dixital?</string>
+  <string name="understand">Entendo</string>
+  <string name="dont_show_again">Non mostrar máis</string>
+  <string name="masterkey_infotext_head">Lembras o teu contrasinal mestre?</string>
+  <string name="masterkey_infotext_main">Repara en que non hai forma de abrir a túa base de datos sen a chave mestra. Non hai xeito de \"restablecer\" o contrasinal mestre.</string>
+  <string name="masterkey_infotext_fingerprint_note">Repara tamén en que o desbloqueo coa impresión dixital funciona almacenando a chave mestra no almacenamento seguro de Android, o cal podería ser eliminado por Android en calquera momento (ex.: se engade unha nova configuración da impresión dixital). Por tanto, non confíes todo na impresión dixital e lembra o contrasinal mestre!</string>
+  <string name="backup_infotext_head">A túa base de datos ten copia de seguranza?</string>
+  <string name="backup_infotext_main">Keepass2Android almacena os teus contrasinais nun ficheiro localizado onde elixas. Tes a certeza de permitir que se poida acceder a el en caso de perda ou roubo do teléfono ou cando o ficheiro se destrúa ou elimine? Asegúrate sempre de teres unha copia de seguranza del nun sitio seguro!</string>
+  <string name="backup_infotext_note">Para crear unha copia de seguranza, vai a %1$s&gt;%2$s&gt;%3$s.</string>
+  <string name="emergency_infotext_head">Estás preparado para unha emerxencia?</string>
+  <string name="emergency_infotext_main">Pensaches no que sucedería se non puideses acceder máis á tua base de datos de contrasinais? E se tes un accidente? É recomendable darlle o teu contrasinal mestre a unha persoa de confianza para casos de emerxencia. De non o faceres, ninguén terá acceso aos contrasinais.</string>
 </resources>

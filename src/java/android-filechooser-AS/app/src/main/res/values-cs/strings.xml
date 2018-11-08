@@ -24,7 +24,7 @@
   <string name="afc_hint_save_as_filename">název souboru</string>
   <string name="afc_hint_search">hledat</string>
   <string name="afc_msg_app_doesnot_have_permission_to_create_files">Tato aplikace nemá oprávnění pro vytváření souborů/složek</string>
-  <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Tato aplikace nemá oprávnění pro odstraňování souborů/složek</string>
+  <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Tato aplikace nemá oprávnění odstraňovat soubory/složky</string>
   <string name="afc_msg_cancelled">Zrušeno</string>
   <string name="afc_msg_cannot_connect_to_file_provider_service">Nelze se připojit ke službě poskytovatele souborů</string>
   <string name="afc_msg_cannot_create_new_folder_here">Novou složku zde nelze vytvořit</string>
@@ -58,17 +58,20 @@
   <string name="afc_yesterday">Včera</string>
   <plurals name="afc_title_choose_directories">
     <item quantity="one">Vybrat složku &#8230;</item>
-    <item quantity="few">Vyberte složku &#8230;</item>
-    <item quantity="other">Vyberte složky &#8230;</item>
+    <item quantity="few">Vyberte složku&#8230;</item>
+    <item quantity="many">Vyberte složky&#8230;</item>
+    <item quantity="other">Vyberte složky&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files">
     <item quantity="one">Vyberte soubor&#8230;</item>
     <item quantity="few">Vyberte soubor&#8230;</item>
+    <item quantity="many">Vyberte soubory&#8230;</item>
     <item quantity="other">Vyberte soubory&#8230;</item>
   </plurals>
   <plurals name="afc_title_choose_files_directories">
-    <item quantity="one">Vyberte soubor/ složku &#8230;</item>
-    <item quantity="few">Vyberte soubor/ složku &#8230;</item>
-    <item quantity="other">Vyberte soubory/ složky &#8230;</item>
+    <item quantity="one">Vyberte soubor/složku&#8230;</item>
+    <item quantity="few">Vyberte soubor/složku&#8230;</item>
+    <item quantity="many">Vyberte soubory/složky&#8230;</item>
+    <item quantity="other">Vyberte soubory/složky&#8230;</item>
   </plurals>
 </resources>

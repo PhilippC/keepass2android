@@ -411,15 +411,15 @@ namespace keepass2android
 					}
 					else
 					{
-						var task = new CreateNewFilename(new ActionOnFinish((success, messageOrFilename) =>
+						var task = new CreateNewFilename(this, new ActionOnFinish(this, (success, messageOrFilename, activity) =>
 							{
 								if (!success)
 								{
-									Toast.MakeText(this, messageOrFilename, ToastLength.Long).Show();
+									Toast.MakeText(activity, messageOrFilename, ToastLength.Long).Show();
 									return;
 								}
 								_ioc = new IOConnectionInfo { Path = ConvertFilenameToIocPath(messageOrFilename) };
-								UpdateIocView();
+							    ((CreateDatabaseActivity)activity)?.UpdateIocView();
 								
 							}), filename);
 
@@ -471,7 +471,7 @@ namespace keepass2android
 			private readonly IOConnectionInfo _ioc;
 
 			public LaunchGroupActivity(IOConnectionInfo ioc, CreateDatabaseActivity activity)
-				: base(null)
+				: base(activity, null)
 			{
 				_activity = activity;
 				_ioc = ioc;

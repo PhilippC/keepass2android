@@ -67,7 +67,7 @@
   <string name="entry_is_available">elérhető</string>
   <string name="not_possible_im_picker">Nem lehet megnyitni a dialógust a kiválasztott módszerrel. Aktiválja a billentyűzetet manuálisan.</string>
   <string name="please_activate_keyboard">Kérem engedélyezze a Keepass2Android billentyűzetet a rendszer beállításokban.</string>
-  <string name="creating_db_key">Adatbázis létrehozása&#8230;</string>
+  <string name="creating_db_key">Adatbázis létrehozása…</string>
   <string name="current_group">Jelenlegi csoport</string>
   <string name="current_group_root">Jelenlegi csoport: Gyökérkönyvtár</string>
   <string name="database">Adatbázis</string>
@@ -87,7 +87,11 @@
   <string name="enable_fingerprint_unlock">Ujjlenyomattal való feloldás engedélyezése</string>
   <string name="enable_fingerprint_quickunlock">Ujjlenyomat alapú GyorsFeloldás engedélyezése</string>
   <string name="fingerprint_unlock_hint">Érintse meg az érzékelőt az adatbázis feloldásához</string>
+  <string name="fingerprint_unlock_failed">Ujjlenyomattal való feloldás nem sikerült. A titkosító kulcsot az Android OS érvénytelenítette. Ez általában akkor történik, ha új ujjlenyomat készült vagy a biztonsági beállítások megváltoztak. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Az adatbázis feloldása nem sikerült: Az összetett kulcs érvénytelen. Az ujjlenyomat alapú feloldás le lett tiltva, mert úgy tűnik a tárolt főkulcs (jelszó) már nem érvényes. </string>
   <string name="fingerprint_reenable">Engedélyezze újra az ujjlenyomat alapú feloldást az új főkulccsal (jelszóval).</string>
+  <string name="fingerprint_reenable2">Kérem oldja fel a jelszavával és ezután kapcsolja be újra az Ujjlenyomat Feloldást az adatbázis-beállításokban.</string>
+  <string name="FingerprintInitFailed">Nem sikerült az ujjlenyomat olvasó inicializálása. </string>
   <string name="enable_fingerprint_unlock_Info">
     Ez a funkció le fogja tárolni a főkulcsot (jelszót) az 
     eszközön, az Android Kulcstár által titkosítva, és 
@@ -159,7 +163,7 @@
   <string name="length">Hossz</string>
   <string name="list_size_title">Csoportlistázás betűmérete</string>
   <string name="list_size_summary">Beállítja a csoportok betűméretét</string>
-  <string name="loading_database">Adatbázis betöltése&#8230;</string>
+  <string name="loading_database">Adatbázis betöltése…</string>
   <string name="lowercase">Kisbetűk</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Jelszó elrejtése</string>
@@ -201,24 +205,25 @@
   <string name="pass_filename">KeePass adatbázisfájl</string>
   <string name="password_title">Adatbázis-jelszó megadása</string>
   <string name="master_key_type">A főkulcs típusának kiválasztása:</string>
-  <string name="progress_create">Új adatbázis létrehozása&#8230;</string>
+  <string name="progress_create">Új adatbázis létrehozása…</string>
   <string name="create_database">Adatbázis létrehozása</string>
-  <string name="progress_title">Feldolgozás&#8230;</string>
+  <string name="progress_title">Feldolgozás…</string>
   <string name="remember_keyfile_summary">A kulcsfájlok elérhetőségének tárolása.</string>
   <string name="remember_keyfile_title">Kulcsfájl mentése</string>
   <string name="remove_from_filelist">Eltávolítás</string>
+  <string name="edit">Szerkesztés</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Gyökérkönyvár</string>
   <string name="KeyDerivFunc">Kulcsszármaztatási függvény</string>
   <string name="rounds">Titkosítási menetek száma</string>
-  <string name="rounds_explaination">A titkosítási menetek számának növelésével extra védelemet kaphat a brute force támadások ellen, ugyanakkor jelentősen lassíthatja az adatbázis betöltését vagy mentését.</string>
+  <string name="rounds_explaination">A titkosítási menetek számának növelésével extra védelmet kaphat a brute force támadások ellen, ugyanakkor jelentősen lassíthatja az adatbázis betöltését vagy mentését.</string>
   <string name="rounds_hint">Menetek száma</string>
   <string name="argon2memory">Argon 2 memória (byte)</string>
   <string name="argon2parallelism">Párhuzamosság Argon 2-höz</string>
   <string name="database_name">Adatbázis neve</string>
   <string name="default_username">Alapértelmezett felhasználónév az új bejegyzésekhez</string>
-  <string name="saving_database">Adatbázis mentése&#8230;</string>
-  <string name="exporting_database">Adatbázis exportálása&#8230;</string>
+  <string name="saving_database">Adatbázis mentése…</string>
+  <string name="exporting_database">Adatbázis exportálása…</string>
   <string name="export_database_successful">Adatbázis exportálása sikerült!</string>
   <string name="space">Szóköz</string>
   <string name="search_label">Keresés</string>
@@ -232,7 +237,7 @@
   <string name="search_hint">Keresendő szöveg</string>
   <string name="search_results">Keresési eredmények</string>
   <string name="search_in">Keresendő mezők</string>
-  <string name="select_other_entry">Válasszon másik bejegyzést</string>
+  <string name="select_other_entry">Válasszon egy másik bejegyzést</string>
   <string name="select_group_then_add">Nyissa meg a kívánt csoportot, majd nyomja meg a \"%1$s\" gombot!</string>
   <string name="insert_element_here">Beillesztés ide</string>
   <string name="twofish">Twofish</string>
@@ -270,6 +275,7 @@
   <string name="enter_filename_details_create_import">Az importálandó fájlt a következő lépésben kell kiválasztani.</string>
   <string name="enable_quickunlock">GyorsFeloldás engedélyezése</string>
   <string name="QuickUnlock_label">Adja meg a jelszó utolsó %1$d karakterét:</string>
+  <string name="QuickUnlock_label_secure">Adja meg a GyorsFeloldás kódot:</string>
   <string name="QuickUnlock_button">GyorsFeloldás!</string>
   <string name="QuickUnlock_lockButton">Adatbázis bezárása</string>
   <string name="QuickUnlockDefaultEnabled_title">GyorsFeloldás alapértelmezés szerinti engedélyezése</string>
@@ -282,6 +288,8 @@
   <string name="QuickUnlockIconHidden16_summary">A GyorsFeloldás megfelelő működéséhez szükség van értesítés megjelenítésére.  Ezzel a beállítással az ikont tüntetheti el.</string>
   <string name="QuickUnlockLength_title">A GyorsFeloldás kulcs hossza</string>
   <string name="QuickUnlockLength_summary">A GyorsFeloldás jelszó maximális hossza.</string>
+  <string name="QuickUnlockHideLength_title">Rejtse el a GyorsFeloldás kód hosszát</string>
+  <string name="QuickUnlockHideLength_summary">Ha engedélyezve van, a GyorsFeloldás kód hossza nem jelenik meg a GyorsFeloldás képernyőn.</string>
   <string name="QuickUnlock_fail">A GyorsFeloldás nem sikerült: a jelszó helytelen!</string>
   <string name="BinaryDirectory_title">Csatolt fájlok könyvtára</string>
   <string name="BinaryDirectory_summary">A könyvtár, ahová a csatolt fájlok mentésre kerülnek.</string>
@@ -314,17 +322,23 @@
   <string name="ClearPasswordOnLeave_summary">A beírt főkulcs (jelszó) törlése, ha az adatbázis-feloldó képernyőt az adatbázis feloldása nélkül hagyja el.</string>
   <string name="LockWhenNavigateBack_title">Zárolás kilépéskor</string>
   <string name="LockWhenNavigateBack_summary">Zárolódjon az adatbázis, ha az alkalmazásból a vissza gomb segítségével kilép.</string>
+  <string name="ActivateSearchViewOnStart_title">Aktiválja a kereső mezőt indításkor</string>
+  <string name="ActivateSearchViewOnStart_summary">Aktiválja a keresőmezőt a csoport nézetben feloldás után, vagy bejegyzés keresésekor</string>
   <string name="NoDonateOption_title">Támogatás-opció elrejtése</string>
   <string name="NoDonateOption_summary">Ez a beállítás a támogatók számára készült, és csak akkor érhető el, ha a Keepass2Android-ot már egy ideje használja.</string>
   <string name="NoDonateOption_question">Támogatások nélkül ez az alkalmazás nem létezne, és nem lehetne folyamatosan továbbfejleszteni!  Ha még nem támogatta a fejlesztést, kérjük, tegye meg azt most!</string>
   <string name="NoDonationReminder_title">Soha ne kérjen adományt</string>
   <string name="NoDonationReminder_summary">Nem adok egy fillér hozzájárulást se vagy pedig már adtam. Nem kérek emlékeztetőt a hozzájárulásról, még a szerző születésnapján se.</string>
   <string name="UseOfflineCache_title">Helyi másolatok</string>
-  <string name="UseOfflineCache_summary">Készüljön helyi másolat a távoli adatbázisokról, hogy azokat hálózati kapcsolat hiányában is lehessen használni.</string>
+  <string name="UseOfflineCache_summary">Készüljön másolat az adatbázis fájlokról az alkalmazás átmeneti tárolójában. Így az adatbázis akkor is használható, ha az adatbázis fájl nem elérhető.</string>
+  <string name="CreateBackups_title">Helyi biztonsági mentések</string>
+  <string name="CreateBackups_summary">Hozzon létre helyi biztonsági mentés másolatot sikeres adatbázis betöltés után.</string>
+  <string name="UpdatingBackup">Helyi biztonsági másolat frissítése...</string>
+  <string name="LocalBackupOf">%1$s helyi biztonsági mentése</string>
   <string name="AcceptAllServerCertificates_title">SSL tanúsítványok</string>
   <string name="AcceptAllServerCertificates_summary">Adja meg, mi történjen, ha a tanúsítvány ellenőrzése nem sikerül.  Megjegyzés: sikertelen ellenőrzés esetén van lehetőség az eszközre a megfelelő tanúsítvány telepítésére!</string>
   <string name="ClearOfflineCache_title">Helyi másolatok törlése?</string>
-  <string name="ClearOfflineCache_question">Ez a funkció az összes távoli adatbázis helyi másolatát törli.  Minden hálózati kapcsolat hiányában végzett és még szinkronizálásra nem került változás elveszik!  Mehet?</string>
+  <string name="ClearOfflineCache_question">Ez a funkció az összes adatbázis fájlt törölni fogja az átmeneti tárolóról. Minden változtatás - ami akkor készült, amikor az eredeti adatbázis nem volt elérhető és ami így nem lett szinkronizálva - el fog veszni. Folytatja?</string>
   <string name="CheckForFileChangesOnSave_title">Változások ellenőrzése</string>
   <string name="CheckForFileChangesOnSave_summary">Mentés előtt kerüljön ellenőrzésre, hogy a fájlt más módosította-e.</string>
   <string name="CheckForDuplicateUuids_title">Ütköző egyedi azonosítók keresése</string>
@@ -334,6 +348,7 @@
   <string name="ShowSeparateNotifications_title">Részletes értesítések</string>
   <string name="ShowSeparateNotifications_summary">Külön értesítés jelenjen meg a felhasználónév és a jelszó vágólapra másolásáról és a billentyűzet aktiválásáról.</string>
   <string name="AccServiceAutoFill_prefs">Automatikus kitöltés akadálymentesítési szolgáltatás</string>
+  <string name="AutoFill_prefs">Automatikus kitöltés szolgáltatás</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A billentyűzet</string>
   <string name="ShowKp2aKeyboardNotification_summary">A teljes bejegyzés elérhetővé tétele a KP2A billentyűzet segítségével (ajánlott).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Billentyűzetváltás</string>
@@ -348,6 +363,10 @@
   <string name="AutoSwitchBackKeyboard_summary">Visszaváltás az előző billentyűzetre ha nem lett bejegyzés megnyitva.</string>
   <string name="ShowUnlockedNotification_title">Értesítés az adatbázis hozzáférhetőségéről</string>
   <string name="ShowUnlockedNotification_summary">Egy értesítési ikon megjelenítése, amíg az adatbázis hozzáférhető.</string>
+  <string name="IconVisibilityInfo_Android8_text">Az Android 8 bevezetett egy új működési módot az értesítésekhez. Ha el akarja rejteni a Keepass2Android értesítési ikonját, kérjük ezt a rendszer beállításokban tegye meg. Állítsa az értesítési kategória fontosságát Minimum-ra.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Beállítások megnyitása</string>
+  <string name="DontCare">Nem érdekel</string>
+  <string name="DocumentAccessRevoked">A fájl már nem elérhető a Keepass2Android által. Vagy el lett távolítva, vagy a hozzáférési jogosultságok vissza lettek vonva. Kérjük használja a Fájl újra megnyitását, pl. az Adatbázis-váltást használva.</string>
   <string name="PreloadDatabaseEnabled_title">Adatbázisok előrehozott betöltése</string>
   <string name="PreloadDatabaseEnabled_summary">A jelszó bekérésével egyidejűleg kezdődjön el az adatbázis betöltése vagy letöltése.</string>
   <string name="AskOverwriteBinary">Szeretné felülírni a meglévő, azonos nevű bináris fájlt?</string>
@@ -372,48 +391,47 @@
   <string name="translate_app">Fordítsa le a KP2A-t!</string>
   <string name="AddingEntry">Bejegyzés hozzáadása...</string>
   <string name="AddingGroup">Csoport hozzáadása...</string>
-  <string name="DeletingEntry">Bejegyzés törlése&#8230;</string>
-  <string name="DeletingGroup">Csoport törlése&#8230;</string>
-  <string name="DeletingItems">Elemek törlése&#8230;</string>
-  <string name="SettingPassword">Jelszó beállítása&#8230;</string>
-  <string name="UndoingChanges">Módosítások visszavonása&#8230;</string>
-  <string name="TransformingKey">Főkulcs átalakítása&#8230;</string>
-  <string name="DecodingDatabase">Adatbázis dekódolása&#8230;</string>
-  <string name="ParsingDatabase">Adatbázis elemzése&#8230;</string>
-  <string name="CheckingTargetFileForChanges">Változások keresése a távoli fájlban&#8230;</string>
+  <string name="DeletingEntry">Bejegyzés törlése…</string>
+  <string name="DeletingGroup">Csoport törlése…</string>
+  <string name="DeletingItems">Elemek törlése…</string>
+  <string name="SettingPassword">Jelszó beállítása…</string>
+  <string name="UndoingChanges">Módosítások visszavonása…</string>
+  <string name="TransformingKey">Főkulcs átalakítása…</string>
+  <string name="DecodingDatabase">Adatbázis dekódolása…</string>
+  <string name="ParsingDatabase">Adatbázis elemzése…</string>
+  <string name="CheckingTargetFileForChanges">Változások keresése a távoli fájlban…</string>
   <string name="TitleSyncQuestion">Változások egyesítése?</string>
   <string name="MessageSyncQuestion">Az adatbázis-fájlt más alkalmazás módosította. Szeretné betölteni és egyesíteni a változásokat a mentés előtt? Válassza a \"nem\"-t, ha felül kívánja írni a külső változtatásokat! </string>
   <string name="SynchronizingDatabase">Módosítások egyesítése...</string>
   <string name="YesSynchronize">Igen, egyesítse!</string>
   <string name="NoOverwrite">Nem, írja felül!</string>
-  <string name="UseOfflineMode">Kapcsolat nélküli munka</string>
-  <string name="UseOnlineMode">Online munka</string>
-  <string name="UseOfflineMode_Info">Teljesen hálózati forgalom nélküli működés, a helyi másolatok kizárólagos használatával. A változások a helyi másolatban rögzítődnek, de csak a hálózati módra történő visszaváltás után lesznek felmásolva a szerverre.</string>
-  <string name="InOfflineMode">Kapcsolat nélküli munka bekapcsolva.</string>
-  <string name="SynchronizingCachedDatabase">Az adatbázis helyi másolatának szinkronizálása&#8230;</string>
-  <string name="DownloadingRemoteFile">Távoli fájl letöltése&#8230;</string>
-  <string name="UploadingFile">Fájl feltöltése&#8230;</string>
-  <string name="RestoringRemoteFile">Távoli fájl helyreállítása&#8230;</string>
+  <string name="UseOfflineMode">Csak az átmeneti tárolóban lévő másolaton dolgozik</string>
+  <string name="UseOnlineMode">Az átmeneti tárolóban lévő másolat szinkronizálása a forrással(eredetivel)</string>
+  <string name="UseOfflineMode_Info">Az adatbázis az átmeneti tárolóból lett betöltve. A változtatások csak az átmeneti tárolóban lévő másolatban tárolódnak és csak akkor szinkronizálódnak az eredetivel, amikor kiválasztja Az átmeneti tárolóban lévő másolat szinkronizálását az eredetivel funkciót.</string>
+  <string name="InOfflineMode">Csak az átmeneti tárolóban lévő másolaton dolgozik.</string>
+  <string name="SynchronizingCachedDatabase">Az adatbázis helyi másolatának szinkronizálása…</string>
+  <string name="DownloadingRemoteFile">Forrás (eredeti) fájl betöltése…</string>
+  <string name="UploadingFile">Fájl mentése…</string>
+  <string name="RestoringRemoteFile">Forrás (eredeti) fájl visszaállítása…</string>
   <string name="FilesInSync">A fájlok szinkronban vannak.</string>
   <string name="SynchronizedDatabaseSuccessfully">Az adatbázis szinkronizálása sikeres!</string>
-  <string name="CheckingDatabaseForChanges">Változások keresése a célfájlban&#8230;</string>
-  <string name="CouldNotSaveToRemote">A távoli fájl mentése nem sikerült: %1$s.  Ismételje meg a mentést vagy használja a Szinkronizálás menüt, amikor a távoli elérés ismét elérhetővé válik.</string>
-  <string name="CouldNotLoadFromRemote">Nem sikerült megnyitni a távoli fájlt: %1$s. A fájl a készükéken tárolt másolata lett betöltve.  
-Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség.</string>
-  <string name="UpdatedRemoteFileOnLoad">A távoli fájl frissítve lett.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">A fájl a készüléken tárolt másolata lett betöltve, mivel eltérés volt a távoli fájl és a helyi másolat között.  Használja az adatbázis szinkronizálása funkciót a változások összefésüléséhez.</string>
-  <string name="LoadedFromRemoteInSync">A távoli fájl és a helyi másolat szinkronban vannak.</string>
-  <string name="UpdatedCachedFileOnLoad">%1$s a készüléken tárolt másolata frissítve lett.</string>
+  <string name="CheckingDatabaseForChanges">Változások keresése a célfájlban…</string>
+  <string name="CouldNotSaveToRemote">Nem sikerült a forrás (eredeti) fájlba mentés: %1$s. Mentsen újra vagy használja a Szinkronizálás menüt, ha a fájl már újra elérhető.</string>
+  <string name="CouldNotLoadFromRemote">A forrás(eredeti) fájl nem elérhető: %1$s. Fájl betöltve az átmeneti tárolóból. Az adatbázist továbbra is megváltoztathatja és szinkronizálhatja a változtatásokat később.</string>
+  <string name="UpdatedRemoteFileOnLoad">Forrás(eredeti) fájl frissítve.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Az átmeneti tárolóban lévő másolat lett megnyitva, mert eltérés volt a forrás(eredeti) fájlhoz képest. Használja az Szinkronizálás funkciót a változtatások összefésüléséhez.</string>
+  <string name="LoadedFromRemoteInSync">Forrás(eredeti) fájl és az átmeneti tárolóban lévő másolat szinkronizálva.</string>
+  <string name="UpdatedCachedFileOnLoad">A %1$s átmeneti tárolóban lévő másolata frissítve.</string>
   <string name="RemoteDatabaseUnchanged">Nincs változás.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Az OTP kiegészítő fájl helyi másolata frissítve lett: a távoli példány számlálója magasabb volt.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Az OTP kiegészítő fájl távoli másolata frissítve lett: a készüléken tárolt példány számlálója magasabb volt.</string>
-  <string name="SynchronizingOtpAuxFile">Az OTP kiegészítő fájl szinkronizálása&#8230;</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Az OTP kiegészítő fájl helyi másolata frissítve lett: a forrás(eredeti) példány számlálója magasabb volt.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Az OTP kiegészítő forrás(eredeti) fájl frissítve lett: a helyi másolat számlálója magasabb volt.</string>
+  <string name="SynchronizingOtpAuxFile">Az OTP kiegészítő fájl szinkronizálása…</string>
   <string name="database_file">adatbázisfájl</string>
   <string name="otp_aux_file">OTP kiegészítő fájl</string>
   <string name="ErrorOcurred">Hiba történt:</string>
   <string name="DuplicateUuidsError">Az adatbázis sérült: ütköző egyedi azonosítókat tartalmaz.  (Minikeepass alkalmazással lett elmentve?)  Importálja az adatbázist a Keepass 2 PC alkalmazásba és használja annak \"Új azonosítók létrehozása\" funkcióját.</string>
   <string name="DuplicateUuidsErrorAdditional">Ez a hibaüzenet kikapcsolható a Beállítások/Alkalmazás/Fájlkezelés/Ütköző egyedi azonosítók keresése opció segítségével.  Az ütköző egyedi azonosítók azonban nem várt viselkedést okozhatnak, ezért javasoljuk inkább az adatbázis javítását.</string>
-  <string name="synchronize_database_menu">Az adatbázis szinkronizálása&#8230;</string>
+  <string name="synchronize_database_menu">Az adatbázis szinkronizálása…</string>
   <string name="CannotMoveGroupHere">A csoportot nem lehet ebbe a csoportba mozgatni.</string>
   <string name="donate_question">Ma kezdődik az Oktoberfest!  Ha kedveli ezt az alkalmazást, nem lenne ez egy jó alkalom, hogy fizessen nekem egy sört?</string>
   <string name="donate_bday_question">Május 10?  A születésnapom!  Ha kedveli ezt az alkalmazást, miért nem küld valamiféle születésnapi üdvözletet, esetleg némi ajándékkel megtoldva?  Igazán örülnék neki!  :-)</string>
@@ -459,21 +477,23 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="hint_key_file">Adja meg, kíván-e a mesterjelszó mellett kulcsfájlt is használni:</string>
   <string name="use_key_file">Kulcsfájl használata</string>
   <string name="error_adding_keyfile">A kulcsfájl hozzáadása közben hiba történt!</string>
-  <string name="init_otp">OTP kiegészítő fájl betöltése&#8230;</string>
+  <string name="init_otp">OTP kiegészítő fájl betöltése…</string>
   <string name="otp_explanation">Adja meg a következő egyszer használatos jelszót/jelszavakat (OTP).  Húzza el a Yubikey NEO eszközt a telefon hátlapja fölött a jelszó/jelszavak NFC-n keresztüli beviteléhez.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">A szükséges alkalmazás detektálása sikertelen!  Telepítse a Yubichallenge alkalmazást Google Play áruházból!</string>
   <string name="CouldntLoadOtpAuxFile">OTP kiegészítő fájl betöltése nem sikerült!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Kérjük, konfigurálja az adatbázist OTP használthoz a KeePass 2.x (PC-s verzió) OtpKeyProv beépülő modulja segítségével.</string>
   <string name="otp_discarded_because_no_db">Kérjük, először az adatbázist válassza ki.  Az OTP biztonsági okokból figyelmen kívül hagyva.</string>
   <string name="otp_discarded_no_space">Az OTP figyelmen kívül hagyva: minden OTP meg lett már adva!</string>
   <string name="otp_discarded_because_db_open">Kérjük, először az adatbázist zárja be.  Az OTP figyelmen kívül hagyva.</string>
   <string name="otps_pending">(Egy vagy több OTP már elérhető)</string>
-  <string name="otpsecret_hint">OTP titkos kód (pl. 01 23 ab cd&#8230;)</string>
+  <string name="otpsecret_hint">OTP titkos kód (pl. 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">Az OTP titkos kód értelmezése sikertelen!</string>
   <string name="OtpKeyError">Az OTP kulcs létrehozása nem sikerült!  Ellenőrizze, hogy a megfelelő OTP-t vagy OTP-ket adta-e meg.</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP kiegészítő fájl frissítése közben hiba történt!</string>
-  <string name="SavingOtpAuxFile">OTP kiegészítő fájl mentése&#8230;</string>
+  <string name="SavingOtpAuxFile">OTP kiegészítő fájl mentése…</string>
+  <string name="NoChallengeApp">A szükséges alkalmazás detektálása sikertelen.</string>
+  <string name="PleaseInstallApp">Kérem telepítse a %1$s alkalmazást a Google Play áruházból.</string>
+  <string name="AppOutdated">%1$s már nem támogatott.</string>
   <string name="bad_resp">A hitelesítő válasz nem megfelelő.</string>
   <string name="CouldntLoadChalAuxFile">A kiegészítő hitelesítőkérdés-fájl betöltése nem sikerült!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Kérjük, konfigurálja az adatbázist hitelesítő kérdés-válasszal való használthoz a KeePass 2.x (PC-s verzió) KeeChallenge beépülő modulja segítségével.</string>
@@ -487,7 +507,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="DebugLog_title">Naplófájl használata</string>
   <string name="DebugLog_summary">Az alkalmazás kimenetének egy helyi naplófájlba írása</string>
   <string name="DebugLog_send">Hibakeresési naplóbejegyzések küldése...</string>
-  <string name="loading">Betöltés...</string>
+  <string name="loading">Töltés...</string>
   <string name="plugins">Beépülő modulok</string>
   <string name="plugin_packagename">Csomag neve:</string>
   <string name="plugin_description">Leírás (ellenőrizetlen):</string>
@@ -496,6 +516,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="plugin_disabled">letiltva</string>
   <string name="plugin_web">Beépülő modulok letöltése</string>
   <string name="plugin_scopes">Lehetőségek</string>
+  <string name="not_enabled">nincs engedélyezve</string>
   <string name="query_credentials_for_url">%1$s hitelesítő adatokat kér %2$s számára.</string>
   <string name="query_credentials">%1$s hitelesítő adatokat igényel.  Válasszon egy bejegyzést!</string>
   <string name="plugin_enabled_checkbox">Engedélyezve</string>
@@ -523,6 +544,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="ReadOnlyReason_PreKitKat">Úgy tűnik, hogy a fájlt egy külső alkalmazásból nyitotta meg. Ily módon történő megnyitás esetén a fájl módosítása nem lehetséges. Ha módosítani szeretné az adatbázist, először zárja azt be, majd az Adatbázis-váltás funkció valamelyik opciója segítségével nyissa meg újra az adatbázist.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Az adatbázis csak olvashatónak van beállítva. Ha módosítani szeretné az adatbázist, módosítsa a beállítást.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Az Android KitKat bevezetett korlátozások miatt az írás nem lehetséges. Ha módosítani kívánja az adatbázist, zárja azt be, majd az Adatbázis-váltás funkció Alapértelmezett fájlválasztójával nyissa meg újra az adatbázist.</string>
+  <string name="ReadOnlyReason_LocalBackup">A helyi biztonsági másolatok nem módosíthatóak. Használhatja az Adatbázis beállítások - Adatbázis exportálása menüpontot a biztonsági másolat másik helyre való exportálásához, ahonnan már újra megnyithatja. Ezután ez már újra írható lesz.</string>
   <string name="AddCustomIcon">Ikon hozzáadása fájlból...</string>
   <string name="CopyingFile">Fájl másolása...</string>
   <string name="DuplicateTitle">Másolás</string>
@@ -547,6 +569,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="AskAddTemplatesTitle">Sablonok hozzáadása?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android részét képezi néhány beépített sablon, egyebek mellett e-mail fiókok, WLAN jelszavak és titkosított jegyzetek számára. Kívánja ezeket hozzáadni az adatbázishoz? Ha most nem teszi ezt meg, később pótolhatja, a megfelelő adatbázis-beállítás segítségével.</string>
   <string name="AddTemplates_pref">Sablonok hozzáadása az adatbázishoz</string>
+  <string name="PreviewWarning">Figyelem! Ez egy előzetes kiadás és mint ilyen, hibákat tartalmazhat! Ha *bármi* szokatlant tapasztal, kérjük, jelezze (a Google+ béta tesztelő csoportban vagy e-mail-en keresztül).</string>
   <string name="Continue">Folytatás</string>
   <string name="NoFilenameWarning">A megadott URI nem tűnik fájlnévnek. Biztos benne, hogy jó URI-t adott meg?</string>
   <string name="FirstInvalidCompositeKeyError">Az összetett kulcs érvénytelen! Próbálkozzon újra.</string>
@@ -556,6 +579,12 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
     • Ellenőrizze, hogy a helyes jelszótípust adott-e meg. Ellenőrizze, hogy ez ugyan az a típus-e, mint amit az adatbázis létrehozásakor megadott.\n
     • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+\n
+    Útmutatás: Ha úgy gondolja, hogy az adatbázis fájl sérült, vagy nem emlékszik a főkulcsra (jelszó) miután megváltoztatta, megpróbálhatja az utolsó sikeresen megnyitott fájl verziót ide klikkelve \"%1$s\" és kiválasztva a helyi biztonsági másolatot.</string>
+  <string name="HintLocalBackupOtherError">
+\n
+Útmutatás: Keepass2Android eltárolta az utolsó sikeresen megnyitott fájl verziót a belső memóriában. Megnyithatja ide klikkelve \"%1$s\" és kiválasztva a helyi biztonsági másolatot.  </string>
   <string name="CorruptDatabaseHelp">
     A fájl sérült. \n 
     Néhány javaslat a probléma felderítésére:\n
@@ -563,6 +592,12 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
     • Ha a fájlt USB kapcsolaton keresztül másolta át (MTP-mód), próbáljon meg egy másik alkalmazást, például a MyPhoneExplorert használni, mert az MTP egyes esetekben a fájlok végét levágja.\n
     • Ha a fájlt a korábbi helyről asztali számítógépről sem tudja megnyitni, nagyon valószínű, hogy a fájl ténylegesen megsérült.  Próbálja meg az adatbázist mentésből visszaállítani.  Ha úgy gondolja, hogy a fájl sérülését a Keepass2Android okozta, kérjük, értesítse a fejlesztőket.\n
     •  Ha a fájlt a korábbi helyről asztali számítógépről meg tudja megnyitni, kérjük, értesítse a fejlesztőket.  Átmeneti megoldásként megpróbálhatja az asztali számítógépen a fájlt más formátumban kimenteni (például tömörítés nélkül), hátha talál olyan formátumot, amit a Keepass2Android meg tud nyitni.  </string>
+  <string name="DbUnlockedChannel_name">Adatbázis feloldva</string>
+  <string name="DbUnlockedChannel_desc">Értesítés az adatbázis feloldásáról</string>
+  <string name="DbQuicklockedChannel_name">GyorsFeloldás</string>
+  <string name="DbQuicklockedChannel_desc">Értesítés az adatbázis GyorsFeloldással való zárolásáról</string>
+  <string name="EntryChannel_name">Bejegyzés értesítések</string>
+  <string name="EntryChannel_desc">Értesítés a jelenleg kiválasztott bejegyzés egyszerűsített eléréséhez.</string>
   <string name="ErrorReportTitle">Keepass2Android: Hiba történt.</string>
   <string name="ErrorReportText">Váratlan hiba történt a Keepass2Android futtatása közben. Kérjük, engedélyezze a hibajelentés küldését, segítve ezzel a hiba kijavítását.</string>
   <string name="ErrorReportPromise">A hibajelentések soha nem tartalmaznak az adatbázisból származó információt vagy a főkulcsot (jelszót). Az alkalmazásbeállítások segítségével tilthatók.</string>
@@ -571,6 +606,7 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
   <string name="ErrorReportAsk">Hiba esetén rákérdez</string>
   <string name="ErrorReportPrefTitle">Hibajelentések küldése</string>
   <string name="ShowKeyboardDuringFingerprintAuth">A billentyűzet megjelenítése a jelszóbeíráshoz ujjlenyomat-leolvasás közben.</string>
+  <string name="ChangeLog_keptDonate">Lehetőségek kiterjesztése, hogy egy sörrel vagy valami mással támogasson</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>
     <item>1 perc</item>
@@ -613,11 +649,30 @@ Az adatbázist módosíthatja, a szinkronizálásra később is lesz lehetőség
     <item>Jelszó + OTP titkos kód (helyreállítás)</item>
     <item>Jelszó + hitelesítő kérdés-válasz</item>
     <item>Jelszó + hitelesítő kérdés-válasz titkos kód (helyreállítás)</item>
+    <item>Jelszó + hitelesítő kérdés-válasz Kepass XC-hez</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Továbblépés, figyelmeztetés nélkül</item>
     <item>Figyelmeztetés a problémára</item>
     <item>Ne fogadjon el érvénytelen tanúsítványt</item>
   </string-array>
+  <string name="ClearClipboardWarning">Ellenőrizze, hogy ez működik az ön rendszerén, amennyiben nem működik, használja a beépített billentyűzetet.</string>
   <string name="PluginDescription">A beépülő modul által nyújtott leírás:</string>
+  <string name="autofill_hint">A Keepass2Android támogatja az Android Automatikus Kitöltés szolgáltatását, de úgy tűnik ez még nincs bekapcsolva.</string>
+  <string name="autofill_enable">Automatikus kitöltés engedélyezése</string>
+  <string name="autofill_enable_failed">Elnézést, úgy tűnik az ön készüléke nem támogatja a rendszer beállítások megnyitását az app-ból. Kérjük indítsa el a rendszer beállításokat és engedélyezze az Automatikus kitöltés szolgáltatást.</string>
+  <string name="show_autofill_help">Automatikus kitöltés segítség megjelenítése</string>
+  <string name="autofill_sign_in_prompt">Kitöltés Keepass2Androiddal</string>
+  <string name="invalid_link_association">Nem sikerült összerendelni a %1$s web domaint a %2$s alkalmazással</string>
+  <string name="enable_fingerprint_hint">Ujjlenyomatleolvasó eszköz detektálva. Szeretné engedélyezni az adatbázis ujjlenyomattal való feloldását?</string>
+  <string name="understand">Értem</string>
+  <string name="dont_show_again">Ne mutassa többet</string>
+  <string name="masterkey_infotext_head">Emlékszik a főkulcsra (jelszó)?</string>
+  <string name="masterkey_infotext_main">Vegye figyelembe, hogy nem fogja tudni megnyitni az adatbázisát a főkulcs (jelszó) nélkül. Nincs lehetőség a főkulcs (jelszó) visszaállítására.</string>
+  <string name="masterkey_infotext_fingerprint_note">Azt is vegye figyelembe, hogy az ujjlenyomattal való feloldás úgy működik, hogy a főkulcs (jelszó) az Android biztonsági tárolójában tárolódik. Ezt a tárolót az Android bármikor törölheti. Pl.: amikor hozzáad egy új ujjlenyomatot a rendszer beállításokban. Emiatt, kérjük, ne hagyatkozzon az ujjlenyomattal való feloldásra, hanem jegyezze meg a főkulcsot (jelszó)!</string>
+  <string name="backup_infotext_head">Van biztonsági mentése az adatbázisról?</string>
+  <string name="backup_infotext_main">Keepass2Android az ön által választott helyen, egy fájlban tárolja az ön jelszavait. Biztos benne, hogy akkor is hozzá tud férni ehhez a fájlhoz ha a telefonját elhagyja, ellopják, vagy a fájl megsemmisül vagy letörlődik? Kérjük gondoskodjon róla, hogy mindig van naprakész biztonsági másolata egy biztonságos helyen!</string>
+  <string name="backup_infotext_note">Biztonsági másolat készítéséhez menjen ide %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Felkészült vészhelyzeti esetekre?</string>
+  <string name="emergency_infotext_main">Gondolkozott már azon, hogy mi történne, ha nem tudna többé a jelszó adatbázisához hozzáférni? Mi történik, ha baleset éri? Hasznos lehet vészhelyzet esetére a főkulcsot (jelszó) megosztani egy olyan személlyel, akiben megbízik. Különben senki sem fog tudni hozzáférni a jelszavaihoz.</string>
 </resources>

@@ -33,7 +33,12 @@ namespace keepass2android.Io
 			}
 		}
 
-		public static string Owncloud2Webdav(string owncloudUrl)
+	    public override bool UserShouldBackup
+	    {
+	        get { return true; }
+	    }
+
+	    public static string Owncloud2Webdav(string owncloudUrl)
 		{
 			string owncloudPrefix = "owncloud://";
 			if (owncloudUrl.StartsWith(owncloudPrefix))

@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.IO;
 using System.Security.Cryptography;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Java.Lang;
@@ -42,8 +43,8 @@ namespace keepass2android
 		private readonly Context _ctx;
 		private Thread _workerThread;
 
-		public SaveDb(Context ctx, IKp2aApp app, OnFinish finish, bool dontSave)
-			: base(finish)
+		public SaveDb(Activity ctx, IKp2aApp app, OnFinish finish, bool dontSave)
+			: base(ctx, finish)
 		{
 			_ctx = ctx;
 			_app = app;
@@ -58,8 +59,8 @@ namespace keepass2android
 		/// <param name="finish"></param>
 		/// <param name="dontSave"></param>
 		/// <param name="streamForOrigFile">Stream for reading the data from the (changed) original location</param>
-		public SaveDb(Context ctx, IKp2aApp app, OnFinish finish, bool dontSave, Stream streamForOrigFile)
-			: base(finish)
+		public SaveDb(Activity ctx, IKp2aApp app, OnFinish finish, bool dontSave, Stream streamForOrigFile)
+			: base(ctx, finish)
 		{
 			_ctx = ctx;
 			_app = app;
@@ -67,8 +68,8 @@ namespace keepass2android
 			_streamForOrigFile = streamForOrigFile;
 		}
 
-		public SaveDb(Context ctx, IKp2aApp app, OnFinish finish)
-			: base(finish)
+		public SaveDb(Activity ctx, IKp2aApp app, OnFinish finish)
+			: base(ctx, finish)
 		{
 			_ctx = ctx;
 			_app = app;
@@ -248,7 +249,7 @@ namespace keepass2android
 		private void PerformSaveWithoutCheck(IFileStorage fileStorage, IOConnectionInfo ioc)
 		{
 			StatusLogger.UpdateSubMessage("");
-			_app.GetDb().SaveData(_ctx);
+			_app.GetDb().SaveData();
 			_app.GetDb().LastFileVersion = fileStorage.GetCurrentFileVersionFast(ioc);
 		}
 

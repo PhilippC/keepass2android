@@ -8,13 +8,15 @@ namespace keepass2android
 	{
 		private readonly View _container;
 		private readonly TextView _valueView;
-		private readonly TextView _keyView;
+	    private readonly TextView _visibleValueView;
+        private readonly TextView _keyView;
 
-		public ExtraStringView(LinearLayout container, TextView valueView, TextView keyView)
+		public ExtraStringView(LinearLayout container, TextView valueView, TextView visibleValueView, TextView keyView)
 		{
 			_container = container;
 			_valueView = valueView;
-			_keyView = keyView;
+		    _visibleValueView = visibleValueView;
+		    _keyView = keyView;
 		}
 
 		public View View
@@ -29,16 +31,15 @@ namespace keepass2android
 			{
 				if (String.IsNullOrEmpty(value))
 				{
-					_valueView.Visibility = ViewStates.Gone;
-					_keyView.Visibility = ViewStates.Gone;
 					_container.Visibility = ViewStates.Gone;
 				}
 				else
 				{
-					_valueView.Visibility = ViewStates.Visible;
-					_keyView.Visibility = ViewStates.Visible;
 					_container.Visibility = ViewStates.Visible;
 					_valueView.Text = value;
+				    if (_visibleValueView != null)
+				        _visibleValueView.Text = value;
+
 				}
 			}
 		}

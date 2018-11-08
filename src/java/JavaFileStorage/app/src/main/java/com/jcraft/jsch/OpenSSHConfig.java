@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2013 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2013-2016 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -30,10 +30,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.jcraft.jsch;
 
 import java.io.InputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Hashtable;
@@ -78,12 +77,12 @@ public class OpenSSHConfig implements ConfigRepository {
    * @return an instanceof OpenSSHConfig
    */
   public static OpenSSHConfig parse(String conf) throws IOException {
-    InputStream in = new ByteArrayInputStream(Util.str2byte(conf));
+    Reader r = new StringReader(conf);
     try {
-      return new OpenSSHConfig(in);
+      return new OpenSSHConfig(r);
     }
     finally {
-      in.close();
+      r.close();
     }
   }
 
@@ -94,25 +93,24 @@ public class OpenSSHConfig implements ConfigRepository {
    * @return an instanceof OpenSSHConfig
    */
   public static OpenSSHConfig parseFile(String file) throws IOException {
-    byte[] conf = Util.fromFile(file);
-    InputStream in = new ByteArrayInputStream(conf);
+    Reader r = new FileReader(Util.checkTilde(file));
     try {
-      return new OpenSSHConfig(in);
+      return new OpenSSHConfig(r);
     }
     finally {
-      in.close();
+      r.close();
     }
   }
 
-  OpenSSHConfig(InputStream in) throws IOException {
-    _parse(in);
+  OpenSSHConfig(Reader r) throws IOException {
+    _parse(r);
   }
 
   private final Hashtable config = new Hashtable();
   private final Vector hosts = new Vector();
 
-  private void _parse(InputStream in) throws IOException {
-    BufferedReader br = new BufferedReader(new InputStreamReader(in));
+  private void _parse(Reader r) throws IOException {
+    BufferedReader br = new BufferedReader(r);
 
     String host = "";
     Vector/*<String[]>*/ kv = new Vector();
@@ -200,12 +198,13 @@ public class OpenSSHConfig implements ConfigRepository {
       if(keymap.get(key)!=null) {
         key = (String)keymap.get(key);
       }
+      key = key.toUpperCase();
       String value = null;
       for(int i = 0; i < _configs.size(); i++) {
         Vector v = (Vector)_configs.elementAt(i);
         for(int j = 0; j < v.size(); j++) {
           String[] kv = (String[])v.elementAt(j);
-          if(kv[0].equals(key)) {
+          if(kv[0].toUpperCase().equals(key)) {
             value = kv[1];
             break;
           }
@@ -217,12 +216,13 @@ public class OpenSSHConfig implements ConfigRepository {
     }
 
     private String[] multiFind(String key) {
+      key = key.toUpperCase();
       Vector value = new Vector();
       for(int i = 0; i < _configs.size(); i++) {
         Vector v = (Vector)_configs.elementAt(i);
         for(int j = 0; j < v.size(); j++) {
           String[] kv = (String[])v.elementAt(j);
-          if(kv[0].equals(key)) {
+          if(kv[0].toUpperCase().equals(key)) {
             String foo = kv[1];
             if(foo != null) {
               value.remove(foo);

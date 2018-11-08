@@ -119,11 +119,11 @@ namespace keepass2android
 					}
 					else
 					{
-						var task = new CreateNewFilename(new ActionOnFinish((success, messageOrFilename) =>
+						var task = new CreateNewFilename(this, new ActionOnFinish(this, (success, messageOrFilename, activity) =>
 						{
 							if (!success)
 							{
-								Toast.MakeText(this, messageOrFilename, ToastLength.Long).Show();
+								Toast.MakeText(activity, messageOrFilename, ToastLength.Long).Show();
 								return;
 							}
 							ExportTo(new IOConnectionInfo { Path = ConvertFilenameToIocPath(messageOrFilename) });
@@ -162,15 +162,15 @@ namespace keepass2android
 
 		private void ExportTo(IOConnectionInfo ioc)
 		{
-			var exportDb = new ExportDb(App.Kp2a, new ActionOnFinish(delegate(bool success, string message)
-				{
-					if (!success)
-						Toast.MakeText(this, message, ToastLength.Long).Show();
-					else
-						Toast.MakeText(this, GetString(Resource.String.export_database_successful), ToastLength.Long).Show();
-					Finish();
-				}
-				), _ffp[_fileFormatIndex], ioc);
+			var exportDb = new ExportDb(this, App.Kp2a, new ActionOnFinish(this, (success, message, activity) =>
+			    {
+			        if (!success)
+			            Toast.MakeText(activity, message, ToastLength.Long).Show();
+			        else
+			            Toast.MakeText(activity, GetString(Resource.String.export_database_successful), ToastLength.Long).Show();
+			        activity.Finish();
+			    }
+			), _ffp[_fileFormatIndex], ioc);
 			ProgressTask pt = new ProgressTask(App.Kp2a, this, exportDb);
 			pt.Run();
 		}
@@ -196,7 +196,7 @@ namespace keepass2android
 			private readonly FileFormatProvider _fileFormat;
 			private IOConnectionInfo _targetIoc;
 
-			public ExportDb(IKp2aApp app, OnFinish onFinish, FileFormatProvider fileFormat, IOConnectionInfo targetIoc) : base(onFinish)
+			public ExportDb(Activity activity, IKp2aApp app, OnFinish onFinish, FileFormatProvider fileFormat, IOConnectionInfo targetIoc) : base(activity, onFinish)
 			{
 				_app = app;
 				this._fileFormat = fileFormat;

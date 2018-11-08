@@ -108,7 +108,8 @@ android:layout_height="wrap_content">
 			android:hint="@string/hint_pass"
 			android:inputType="textPassword"
 			android:singleLine="true"
-			android:typeface="monospace" />
+			android:typeface="monospace" 
+		  android:importantForAccessibility="no" />
 		<!-- Confirm Password -->
 		<EditText
 			android:id="@+id/entry_confpassword"
@@ -119,7 +120,8 @@ android:layout_height="wrap_content">
 			android:hint="@string/hint_conf_pass"
 			android:inputType="textPassword"
 			android:singleLine="true"
-			android:typeface="monospace" />
+			android:typeface="monospace"
+		  android:importantForAccessibility="no"/>
 
 		</RelativeLayout>
 

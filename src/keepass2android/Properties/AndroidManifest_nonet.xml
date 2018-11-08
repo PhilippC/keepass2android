@@ -6,8 +6,8 @@
 			android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher_offline" android:label="KP2A entry search" android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalSearch" android:protectionLevel="signature" />
-  <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher_online" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android_nonet.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
-	<application android:label="keepass2android" android:icon="@drawable/ic_launcher_offline">
+  <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher_offline" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android_nonet.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
+	<application android:label="keepass2android" android:icon="@mipmap/ic_launcher_offline">
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.localfile" android:exported="false" />
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.history" android:exported="false" />
 		<activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light">
@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
  
-		<activity android:configChanges="orientation" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.PasswordActivity" android:windowSoftInputMode="adjustResize">
+		<activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.PasswordActivity" android:windowSoftInputMode="adjustResize">
       <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -105,6 +105,14 @@
         <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
         <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
         <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data
+          android:scheme="https"
+          android:host="my.yubico.com"
+          android:pathPrefix="/neo"/>
       </intent-filter>
 		</activity>
 		<uses-library required="false" name="com.sec.android.app.multiwindow" />

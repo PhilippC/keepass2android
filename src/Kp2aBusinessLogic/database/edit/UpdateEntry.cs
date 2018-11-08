@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using Android.App;
 using Android.Content;
 using KeePassLib;
 
@@ -23,13 +24,13 @@ namespace keepass2android
 
 	public class UpdateEntry : RunnableOnFinish {
 		private readonly IKp2aApp _app;
-		private readonly Context _ctx;
+		private readonly Activity _ctx;
 		
-		public UpdateEntry(Context ctx, IKp2aApp app, PwEntry oldE, PwEntry newE, OnFinish finish):base(finish) {
+		public UpdateEntry(Activity ctx, IKp2aApp app, PwEntry oldE, PwEntry newE, OnFinish finish):base(ctx, finish) {
 			_ctx = ctx;
 			_app = app;
 
-			_onFinishToRun = new AfterUpdate(oldE, newE, app, finish);
+			_onFinishToRun = new AfterUpdate(ctx, oldE, newE, app, finish);
 		}
 		
 		
@@ -45,7 +46,7 @@ namespace keepass2android
 			private readonly PwEntry _updatedEntry;
 			private readonly IKp2aApp _app;
 			
-			public AfterUpdate(PwEntry backup, PwEntry updatedEntry, IKp2aApp app, OnFinish finish):base(finish) {
+			public AfterUpdate(Activity activity, PwEntry backup, PwEntry updatedEntry, IKp2aApp app, OnFinish finish):base(activity, finish) {
 				_backup = backup;
 				_updatedEntry = updatedEntry;
 				_app = app;

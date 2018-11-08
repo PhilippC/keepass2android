@@ -46,9 +46,14 @@ namespace keepass2android.Io
 		/// <summary>
 		/// returns the protocol ids supported by this FileStorage. Can return pseudo-protocols like "dropbox" or real protocols like "ftp"
 		/// </summary>
-		IEnumerable<string> SupportedProtocols { get; } 
+		IEnumerable<string> SupportedProtocols { get; }
 
-		/// <summary>
+        /// <summary>
+        /// returns true if users should backup files on this file storage (if the file is important). Can be false for cloud providers with built-in versioning or backups.
+        /// </summary>
+	    bool UserShouldBackup { get; }
+
+	    /// <summary>
 		/// Deletes the given file or directory.
 		/// </summary>
 		void Delete(IOConnectionInfo ioc);

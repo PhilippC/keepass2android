@@ -17,7 +17,7 @@
   <string name="add_group_title">Ajouter un groupe</string>
   <string name="edit_group_title">Modifier le groupe</string>
   <string name="algorithm">Algorithme</string>
-  <string name="algorithm_colon">Algorithme </string>
+  <string name="algorithm_colon">Algorithme</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Hors-ligne</string>
@@ -87,7 +87,11 @@
   <string name="enable_fingerprint_unlock">Activer le déverrouillage par empreinte digitale</string>
   <string name="enable_fingerprint_quickunlock">Activer le déverrouillage par empreinte digitale pour QuickUnlock</string>
   <string name="fingerprint_unlock_hint">Capteur tactile pour déverrouiller la base de données</string>
+  <string name="fingerprint_unlock_failed">Le déverrouillage par empreinte digitale a échoué. La clé de décryptage a été invalidée par l\'OS Android. Ceci se produit généralement quand une nouvelle empreinte a été enregistrée ou quand les paramètres de sécurité ont changés. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Le déverrouillage de la base de données a échoué: la clé composite est invalide. Le déverrouillage par empreinte digitale a été désactivé car apparemment le mot de passe maître stocké n\'est plus valide. </string>
   <string name="fingerprint_reenable">Veuillez ré-activer le déverrouillage d\'empreintes digitales pour le nouveau mot de passe maître.</string>
+  <string name="fingerprint_reenable2">Merci de déverrouiller avec votre mot de passe et ensuite de réactiver le déverrouillage par empreinte digitale dans les paramètres de la base de données.</string>
+  <string name="FingerprintInitFailed">Échec lors de l\'initialisation du capteur d\'empreinte digitale. </string>
   <string name="enable_fingerprint_unlock_Info">
 Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Android Keystore et protégé à l\'aide de l\'authentification d\'empreintes digitales. Cela permet de déverrouiller votre base de données uniquement avec vos empreintes digitales.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Permet d\'utiliser l\'authentification par empreinte au lieu du code QuickUnlock. Ne nécessite pas de stocker des informations liées à votre mot de passe principal.</string>
@@ -102,7 +106,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="entry_expires">Expire</string>
   <string name="entry_group_name">Nom du groupe</string>
   <string name="entry_keyfile">Clé (facultative)</string>
-  <string name="keyfile_heading">Fichier clé</string>
+  <string name="keyfile_heading">Fichier de clé</string>
   <string name="entry_modified">Modifié</string>
   <string name="entry_password">Mot de passe</string>
   <string name="entry_save">Enregistrer</string>
@@ -155,7 +159,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="length">Longueur</string>
   <string name="list_size_title">Taille de la liste des groupes</string>
   <string name="list_size_summary">Taille du texte dans la liste des groupes</string>
-  <string name="loading_database">Chargement de la base de données&#8230;</string>
+  <string name="loading_database">Chargement de la base de données…</string>
   <string name="lowercase">Minuscule</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Cacher le mot de passe</string>
@@ -197,12 +201,13 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="pass_filename">Base de données KeePass</string>
   <string name="password_title">Entrez le mot de passe de la base de données</string>
   <string name="master_key_type">Sélectionner le type de la Clé maître :</string>
-  <string name="progress_create">Création d\'une nouvelle base de données&#8230;</string>
+  <string name="progress_create">Création d\'une nouvelle base de données…</string>
   <string name="create_database">Créer une base de données</string>
-  <string name="progress_title">En cours&#8230;</string>
+  <string name="progress_title">En cours…</string>
   <string name="remember_keyfile_summary">Se rappeler l\'emplacement des fichiers clés</string>
   <string name="remember_keyfile_title">Enregistrer le fichier clé</string>
   <string name="remove_from_filelist">Supprimer</string>
+  <string name="edit">Modifier</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Racine</string>
   <string name="KeyDerivFunc">Fonction de dérivation de clés</string>
@@ -213,7 +218,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="argon2parallelism">Parallélisme pour Argon 2</string>
   <string name="database_name">Nom de la base de données</string>
   <string name="default_username">Nom d\'utilisateur par défaut pour les nouvelles entrées</string>
-  <string name="saving_database">Enregistrement de la base de données&#8230;</string>
+  <string name="saving_database">Enregistrement de la base de données…</string>
   <string name="exporting_database">Export de la base de données en cours...</string>
   <string name="export_database_successful">Base de données exportée avec succès !</string>
   <string name="space">Espace</string>
@@ -228,7 +233,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="search_hint">Rechercher</string>
   <string name="search_results">Résultats de la recherche</string>
   <string name="search_in">Chercher dans</string>
-  <string name="select_other_entry">Sélectionner une autre entrée</string>
+  <string name="select_other_entry">Choisir une autre entrée</string>
   <string name="select_group_then_add">Ouvrez le groupe désiré, puis appuyez sur \"%1$s\" !</string>
   <string name="insert_element_here">Insérer ici</string>
   <string name="twofish">Twofish</string>
@@ -266,6 +271,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="enter_filename_details_create_import">Les fichiers à importer seront choisis à la prochaine étape.</string>
   <string name="enable_quickunlock">Activer DéverrouillageRapide</string>
   <string name="QuickUnlock_label">Entrez les %1$d derniers caractères de votre mot de passe :</string>
+  <string name="QuickUnlock_label_secure">Saisir le code QuickUnlock :</string>
   <string name="QuickUnlock_button">QuickUnlock !</string>
   <string name="QuickUnlock_lockButton">Fermer la base de données</string>
   <string name="QuickUnlockDefaultEnabled_title">Activer QuickUnlock par défaut</string>
@@ -278,6 +284,8 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock nécessite une notification pour travailler correctement. Sélectionnez cette option pour afficher une notification sans icône.</string>
   <string name="QuickUnlockLength_title">Longueur de la clé QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Nombre maximal de caractères utilisés comme mot de passe QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_title">Masquer la longueur du code QuickUnlock</string>
+  <string name="QuickUnlockHideLength_summary">Si activé, la longueur du code QuickUnlock n’est pas affichée sur l’écran QuickUnlock.</string>
   <string name="QuickUnlock_fail">Échec de QuickUnlock : mot de passe incorrect !</string>
   <string name="BinaryDirectory_title">Dossier des pièces jointes</string>
   <string name="BinaryDirectory_summary">Répertoire où les fichiers joints seront sauvegardés.</string>
@@ -310,17 +318,23 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="ClearPasswordOnLeave_summary">Effacer le mot de passe principal entré lorsque vous quittez l\'écran sans déverrouiller la base de données.</string>
   <string name="LockWhenNavigateBack_title">Verrouiller lors de la fermeture de l\'application</string>
   <string name="LockWhenNavigateBack_summary">Verrouiller la base de données lors de la fermeture de l\'application via le bouton back.</string>
+  <string name="ActivateSearchViewOnStart_title">Activer le champ de recherche au démarrage</string>
+  <string name="ActivateSearchViewOnStart_summary">Active le champ de recherche dans la vue groupée après le déverrouillage ou lors de la recherche d\'une entrée</string>
   <string name="NoDonateOption_title">Masquer l\'option de donation</string>
   <string name="NoDonateOption_summary">Ce réglage est réservé aux donateurs. Il n\'est disponible qu\'après une durée minimale d\'utilisation de Keepass2Android .</string>
   <string name="NoDonateOption_question">Sans vos dons, cette application n\'existerait pas et ne serait pas améliorée. Si vous n\'avez pas encore donné, merci de l\'envisager dès maintenant.</string>
   <string name="NoDonationReminder_title">Ne jamais demander de donation</string>
   <string name="NoDonationReminder_summary">Je ne donnerai pas un sou, ou j’ai déjà donné. Ne demandez rien, même pas à l’anniversaire de l’auteur.</string>
   <string name="UseOfflineCache_title">Mise en cache de la base de données</string>
-  <string name="UseOfflineCache_summary">Conserver une copie des bases de données distantes dans le cache de l\'application. Ceci permet d\'utiliser les bases de données distantes même en mode hors connexion.</string>
+  <string name="UseOfflineCache_summary">Garder une copie des fichiers de base de données dans le répertoire de cache de l’application. Ceci permet d’utiliser des bases de données même lorsque le fichier de base de données n’est pas accessible.</string>
+  <string name="CreateBackups_title">Sauvegardes locales</string>
+  <string name="CreateBackups_summary">Créer une copie de sauvegarde locale après le chargement réussi d’une base de données.</string>
+  <string name="UpdatingBackup">Mise à jour de la sauvegarde locale...</string>
+  <string name="LocalBackupOf">Sauvegarde locale de %1$s</string>
   <string name="AcceptAllServerCertificates_title">Certificats SSL</string>
   <string name="AcceptAllServerCertificates_summary">Définir le comportement lorsque la validation du certificat échoue. Remarque : vous pouvez installer les certificats sur votre appareil si la validation échoue !</string>
   <string name="ClearOfflineCache_title">Vider le cache ?</string>
-  <string name="ClearOfflineCache_question">Cela supprimera toutes les bases de données mises en cache. Toutes les modifications faites en étant hors ligne et qui n\'ont pas encore été synchronisées seront perdues ! Continuer ?</string>
+  <string name="ClearOfflineCache_question">Cela supprimera tous les fichier de bases de données mis en cache. Toutes les modifications faites sans accès à la base de données source et qui n\'ont pas encore été synchronisées seront perdues ! Continuer ?</string>
   <string name="CheckForFileChangesOnSave_title">Rechercher des modifications</string>
   <string name="CheckForFileChangesOnSave_summary">Vérifie si le fichier a été modifié par ailleurs avant d\'enregistrer les modifications.</string>
   <string name="CheckForDuplicateUuids_title">Vérifier les UUID en double</string>
@@ -330,6 +344,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="ShowSeparateNotifications_title">Notifications séparées</string>
   <string name="ShowSeparateNotifications_summary">Afficher des notifications séparées pour copier le nom d\'utilisateur et le mot de passe dans le presse-papiers et l\'activer le clavier.</string>
   <string name="AccServiceAutoFill_prefs">Service d\'accessibilité pour le remplissage automatique</string>
+  <string name="AutoFill_prefs">Service de saisie automatique</string>
   <string name="ShowKp2aKeyboardNotification_title">Notification du clavier KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Rendre l\'entrée pleinement accessible via le clavier KP2A (recommandé).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Changer de clavier</string>
@@ -344,6 +359,10 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="AutoSwitchBackKeyboard_summary">Basculer vers le clavier précédent lors-qu’aucune entrée n\'est ouverte.</string>
   <string name="ShowUnlockedNotification_title">Icône de notification si déverrouillé</string>
   <string name="ShowUnlockedNotification_summary">Afficher une notification pendant que la base de données est déverrouillée.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 a introduit un nouveau comportement pour les notifications. Si vous souhaitez masquer l’icône pour les notifications de Keepass2Android, veuillez le configurer via le panneau de configuration. Définissez l’importance de la catégorie de notification à Minimum.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Ouvrir les paramètres</string>
+  <string name="DontCare">Peu importe</string>
+  <string name="DocumentAccessRevoked">Le fichier n\'est plus accessible pour Keepass2Android. Soit il a été supprimé ou les permissions d\'accès ont été révoquées. Merci de ré-ouvrir le fichier, par exemple en utilisant Changer de base de données.</string>
   <string name="PreloadDatabaseEnabled_title">Préchargement de la base de données</string>
   <string name="PreloadDatabaseEnabled_summary">Démarrer le chargement ou de téléchargement en arrière-plan de la base de données pendant la saisie du mot de passe.</string>
   <string name="AskOverwriteBinary">Voulez-vous écraser le fichier existant en utilisant le même nom ?</string>
@@ -366,49 +385,49 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="suggest_improvements">Faire des suggestions ou voter pour des améliorations</string>
   <string name="rate_app">Noter cette application</string>
   <string name="translate_app">Traduire KP2A</string>
-  <string name="AddingEntry">Ajout de l\'entrée en cours&#8230;</string>
-  <string name="AddingGroup">Ajout du groupe en cours&#8230;</string>
-  <string name="DeletingEntry">Suppression de l\'entrée&#8230;</string>
-  <string name="DeletingGroup">Suppression du groupe&#8230;</string>
-  <string name="DeletingItems">Suppression des éléments&#8230;</string>
-  <string name="SettingPassword">Prise en compte du mot de passe&#8230;</string>
-  <string name="UndoingChanges">Annulation de modifications&#8230;</string>
-  <string name="TransformingKey">Changement de la clé principale&#8230;</string>
-  <string name="DecodingDatabase">Décodage de la base de données&#8230;</string>
-  <string name="ParsingDatabase">Analyse de la base de données&#8230;</string>
-  <string name="CheckingTargetFileForChanges">Vérification des modifications dans le fichier&#8230;</string>
+  <string name="AddingEntry">Ajout de l\'entrée en cours…</string>
+  <string name="AddingGroup">Ajout du groupe en cours…</string>
+  <string name="DeletingEntry">Suppression de l\'entrée…</string>
+  <string name="DeletingGroup">Suppression du groupe…</string>
+  <string name="DeletingItems">Suppression des éléments…</string>
+  <string name="SettingPassword">Prise en compte du mot de passe…</string>
+  <string name="UndoingChanges">Annulation de modifications…</string>
+  <string name="TransformingKey">Changement de la clé principale…</string>
+  <string name="DecodingDatabase">Décodage de la base de données…</string>
+  <string name="ParsingDatabase">Analyse de la base de données…</string>
+  <string name="CheckingTargetFileForChanges">Vérification des modifications dans le fichier…</string>
   <string name="TitleSyncQuestion">Fusionner les modifications ?</string>
   <string name="MessageSyncQuestion">La base de données a été modifiée par une source tierce. Voulez-vous charger et fusionner les changements avant de sauvegarder ? Sélectionnez \"Non\" si vous voulez écraser les changements externes.</string>
-  <string name="SynchronizingDatabase">Importation des modifications&#8230;</string>
+  <string name="SynchronizingDatabase">Importation des modifications…</string>
   <string name="YesSynchronize">Oui, fusionner</string>
   <string name="NoOverwrite">Non, l\'écraser</string>
-  <string name="UseOfflineMode">Travailler en mode hors connexion</string>
-  <string name="UseOnlineMode">Travailler en ligne</string>
-  <string name="UseOfflineMode_Info">Éviter tout trafic réseau en utilisant la copie du fichier du cache local. Les changements sont stockés uniquement dans le cache local et seront téléchargés uniquement lors du retour au mode connecté.</string>
-  <string name="InOfflineMode">Travail hors connexion.</string>
-  <string name="SynchronizingCachedDatabase">Synchronisation de la base de données mise en cache&#8230;</string>
-  <string name="DownloadingRemoteFile">Téléchargement du fichier distant&#8230;</string>
-  <string name="UploadingFile">Téléchargement du fichier&#8230;</string>
-  <string name="RestoringRemoteFile">Restauration du fichier distant&#8230;</string>
+  <string name="UseOfflineMode">Utiliser uniquement le cache interne</string>
+  <string name="UseOnlineMode">Synchroniser la copie en cache avec la source</string>
+  <string name="UseOfflineMode_Info">La base de données est chargée depuis le cache interne. Les changements sont enregistrée dans le cache interne uniquement et ne seront synchronisés qu\'à partir de l\'usage de la fonction \"Synchroniser la copie en cache avec la source\".</string>
+  <string name="InOfflineMode">Utilisation en cours du cache interne uniquement.</string>
+  <string name="SynchronizingCachedDatabase">Synchronisation de la base de données mise en cache…</string>
+  <string name="DownloadingRemoteFile">Chargement du fichier source…</string>
+  <string name="UploadingFile">Enregistrer le fichier…</string>
+  <string name="RestoringRemoteFile">Restoration du fichier source…</string>
   <string name="FilesInSync">Les fichiers sont synchronisés.</string>
   <string name="SynchronizedDatabaseSuccessfully">Base de données a été synchronisée avec succès !</string>
-  <string name="CheckingDatabaseForChanges">Vérification des changements dans la base de données&#8230;</string>
-  <string name="CouldNotSaveToRemote">Impossible d\'enregistrer le fichier distant %1$s. Réessayer ou utiliser le menu synchroniser lorsque la connexion est à nouveau disponible.</string>
-  <string name="CouldNotLoadFromRemote">Impossible d\'ouvrir le fichier distant %1$s. Fichier chargé à partir du cache local. Vous pouvez néanmoins modifier la base de données et la synchroniser par la suite.</string>
-  <string name="UpdatedRemoteFileOnLoad">Fichier distant a été mis à jour.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Fichier local utilisé en raison d\'un conflit avec les modifications apportées au fichier distant. Utiliser le menu Synchroniser pour fusionner.</string>
-  <string name="LoadedFromRemoteInSync">Le cache et le fichier distant sont synchronisés.</string>
-  <string name="UpdatedCachedFileOnLoad">La copie du cache local de %1$s a été mis à jour.</string>
+  <string name="CheckingDatabaseForChanges">Vérification des changements dans la base de données…</string>
+  <string name="CouldNotSaveToRemote">Impossible d\'enregistrer sur le fichier source : %1$s. Enregistrer à nouveau ou utiliser le menu de synchronisation quand le fichier sera de nouveau accessible.</string>
+  <string name="CouldNotLoadFromRemote">Impossible d\'enregistrer sur le fichier source : %1$s. Changement du fichier depuis le cache interne. Vous pouvez toujours faire des modifications dans la base de données et les synchroniser plus tard.</string>
+  <string name="UpdatedRemoteFileOnLoad">Fichier source mis à jour.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Ouverture du fichier en cache interne à cause de conflits de modifications avec le fichier source. Utilisez le menu de synchronisation pour fusionner.</string>
+  <string name="LoadedFromRemoteInSync">Le fichier source et le cache sont synchronisés.</string>
+  <string name="UpdatedCachedFileOnLoad">Mise à jour de la copie en cache interne de %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Aucun changement détecté.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Le cache du fichier auxiliaire OTP a été mis à jour : le compteur distant était plus élevé.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Le fichier auxiliaire OTP distant a été mis à jour : le compteur local était plus élevé.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Mise à jour du cache du fichier OTP auxiliaire : le compteur de la source était plus élevé.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Mise à jour de la source du fichier OTP auxiliaire : le compteur local était plus élevé.</string>
   <string name="SynchronizingOtpAuxFile">Synchronisation du fichier auxiliaire OTP...</string>
   <string name="database_file">fichier de base de données</string>
   <string name="otp_aux_file">fichier auxiliaire OTP</string>
   <string name="ErrorOcurred">Une erreur est survenue :</string>
   <string name="DuplicateUuidsError">Base de données corrompue : des IDs dupliqués ont été trouvés. (Avez-vous sauvegardé avec Minikeepass ?) S\'il vous plait ré-importez vers une nouvelle base de données avec Keepass 2 pour PC et sélectionnez \'Créer de nouveaux IDs\'.</string>
   <string name="DuplicateUuidsErrorAdditional">Vous pouvez désactiver ce message d\'erreur dans les Préférences de l\'application/Application/Vérifier les UUID en double. Veuillez noter que vous pouvez rencontrer un comportement inattendu. Il est recommandé de corriger la base de données.</string>
-  <string name="synchronize_database_menu">Synchroniser la base de données&#8230;</string>
+  <string name="synchronize_database_menu">Synchroniser la base de données…</string>
   <string name="CannotMoveGroupHere">Impossible de déplacer le groupe vers ce groupe.</string>
   <string name="donate_question">Aujourd\'hui, c\'est Oktoberfest ! Si vous aimez Keepass2Android ne serait-ce pas une bonne occasion de m\'offrir une bière ?</string>
   <string name="donate_bday_question">Le 10 mai ? C\'est mon anniversaire ! Si vous aimez cette application, pourquoi ne pas m\'envoyer des vœux d\'anniversaire avec un petit cadeau d\'anniversaire ? Cela me rendrait vraiment heureux ! :-)</string>
@@ -423,7 +442,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Répertoire initial (facultatif) :</string>
   <string name="enter_sftp_login_title">Entrez les données de connexion SFTP :</string>
-  <string name="enter_ftp_login_title">Entrez les données de connexion FTP:</string>
+  <string name="enter_ftp_login_title">Saisir les données de connexion FTP :</string>
   <string name="select_storage_type">Sélectionner le type de stockage :</string>
   <string name="filestoragename_file">Fichier local</string>
   <string name="filestoragename_androidget">Recevoir depuis une application tierce</string>
@@ -456,7 +475,6 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="init_otp">Charger le fichier OTP auxiliaire...</string>
   <string name="otp_explanation">Entrez le prochain One-time-passwords (OTP). Glissez votre NEO Yubikey au dos de votre appareil pour y accéder via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="YubiChallengeNotInstalled">Impossible de trouver une application qui peut convenir. Installer Yubichallenge de Google Play.</string>
   <string name="CouldntLoadOtpAuxFile">Impossible de charger le fichier auxiliaire OTP !</string>
   <string name="CouldntLoadOtpAuxFile_Hint">S\'il vous plaît utilisez le plugin OtpKeyProv dans KeePass 2.x (PC) pour configurer votre base de données pour une utilisation avec OTPs !</string>
   <string name="otp_discarded_because_no_db">Veuillez d\'abord sélectionner la base de données. OTP est écarté pour des raisons de sécurité.</string>
@@ -468,10 +486,13 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="OtpKeyError">Impossible de créer la clé OTP ! Assurez-vous d\'avoir saisi le bon OTP.</string>
   <string name="ErrorUpdatingOtpAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="SavingOtpAuxFile">Enregistrement du fichier OTP auxiliaire...</string>
-  <string name="bad_resp">La réponse au challenge est incorrecte.</string>
-  <string name="CouldntLoadChalAuxFile">Impossible de charger le fichier de challenge auxiliaire!</string>
-  <string name="CouldntLoadChalAuxFile_Hint">Utiliser le plugin KeeChallenge de KeePass 2.x (version PC) pour configurer votre base de données pour une utilisation avec challenge-réponse!</string>
-  <string name="ErrorUpdatingChalAuxFile">Erreur de mise à jour du fichier auxiliaire OTP!</string>
+  <string name="NoChallengeApp">Impossible de trouver une application qui peut répondre à ce défi.</string>
+  <string name="PleaseInstallApp">Veuillez installer %1$s depuis le Google Play Store.</string>
+  <string name="AppOutdated">%1$s n\'est plus compatible.</string>
+  <string name="bad_resp">La réponse au défi est incorrecte.</string>
+  <string name="CouldntLoadChalAuxFile">Impossible de charger le fichier de défi auxiliaire!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Utiliser le plugin KeeChallenge de KeePass 2.x (version PC) pour configurer votre base de données pour une utilisation avec défi-réponse!</string>
+  <string name="ErrorUpdatingChalAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="TrayTotp_SeedField_title">Nom de domaine des semences TOTP</string>
   <string name="TrayTotp_SeedField_summary">Si vous utilisez le plug-in Keepass 2 \"TrayTotp\" avec les paramètres par défaut, entrez le même nom de domaine pour le domaine des semences que sur le PC.</string>
   <string name="TrayTotp_SettingsField_title">Nom de domaine des paramètres TOTP</string>
@@ -481,7 +502,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="DebugLog_title">Utiliser fichier de journal</string>
   <string name="DebugLog_summary">Écrire la sortie de l’app dans un fichier journal local</string>
   <string name="DebugLog_send">Envoyer le journal de débogage...</string>
-  <string name="loading">Chargement...</string>
+  <string name="loading">Chargement en cours…</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Nom du package :</string>
   <string name="plugin_description">Description (non vérifiée) :</string>
@@ -490,6 +511,7 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="plugin_disabled">désactivé</string>
   <string name="plugin_web">Trouver des plug-ins en ligne</string>
   <string name="plugin_scopes">Portées</string>
+  <string name="not_enabled">désactivé</string>
   <string name="query_credentials_for_url">%1$s requiert des informations d\'identification pour %2$s.</string>
   <string name="query_credentials">%1$s demande des informations d\'identification. Sélectionner une entrée.</string>
   <string name="plugin_enabled_checkbox">Activé</string>
@@ -517,11 +539,12 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="ReadOnlyReason_PreKitKat">Il semble que vous avez ouvert le fichier depuis une application externe. Cette utilisation ne supporte pas l\'écriture. Si vous souhaitez apporter des modifications à la base de données, fermez la base de données et sélectionnez Changer de base de données. Ensuite, si possible, ouvrez le fichier en utilisant une des options disponibles.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">L\'indicateur de lecture seule est activé. Supprimer cette option si vous souhaitez apporter des modifications à la base de données.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">L\'écriture n\'est pas possible en raison de restrictions introduites dans Android KitKat. Si vous souhaitez apporter des modifications à la base de données, fermez la base de données et sélectionnez Changer de base de données. Ensuite, ouvrez le fichier à l\'aide du sélecteur de fichier système.</string>
+  <string name="ReadOnlyReason_LocalBackup">Les sauvegardes locales ne peuvent être modifiées. Vous pouvez utiliser les Paramètres de base de données - Export de la base pour exporter cette sauvegarde vers un autre emplacement à partir duquel vous pourrez la ré-ouvrir. Elle sera à nouveau accessible en écriture.</string>
   <string name="AddCustomIcon">Ajouter un icône à partir d\'un fichier...</string>
   <string name="CopyingFile">Copie des fichiers...</string>
   <string name="DuplicateTitle">Copier</string>
   <string name="DefaultTemplate">Entrée standard</string>
-  <string name="TemplateGroupName">Templates</string>
+  <string name="TemplateGroupName">Modèles </string>
   <string name="TemplateTitle_IdCard">Carte d\'identité</string>
   <string name="TemplateField_IdCard_Name">Nom</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Lieu de délivrance</string>
@@ -547,6 +570,12 @@ Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Andro
   <string name="FirstInvalidCompositeKeyError">Clé composite invalide ! S\'il vous plaît essayez encore.</string>
   <string name="RepeatedInvalidCompositeKeyHelp">Clé composite non valide ! S\'il vous plaît essayez les étapes suivantes pour débloquer votre base de données : \n • Assurez-vous que vous avez entré le bon mot de passe. Utiliser l\'icône \"œil\" pour afficher le mot de passe saisie. \n • Assurez-vous que vous avez sélectionné le type de mot de passe correct. Assurez-vous que ce type est le même que celui utilisé lors de la création de la base de données. \n • Assurez-vous que vous ont sélectionné le bon fichier de base de données.
 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+  • Conseil : si vous pensez que votre base de données est probablement corrompue ou que vous ne vous souvenez plus du mot de passe maître après l\'avoir modifié, vous pouvez essayer la dernière version avec succès d\'ouverture en cliquant \"%1$s\" et en sélectionnant la sauvegarde locale.</string>
+  <string name="HintLocalBackupOtherError">
+    \n • Astuce : Keepass2Android a placé la dernière version du fichier ouvert avec succès en mémoire interne. Vous pouvez l’ouvrir en cliquant sur «%1$s» et en sélectionnant la sauvegarde locale.
+  </string>
   <string name="CorruptDatabaseHelp">
 Le fichier est corrompu. \n
 Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
@@ -554,6 +583,12 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
 • Si vous avez copié le fichier via le port USB (Mode MTP), essayez à nouveau avec des outils comme MyPhoneExplorer. MTP tronque les fichiers dans certains cas.\n
 • Si vous ne pouvez pas ouvrir le fichier sur votre PC, à partir du même endroit, il est très probable que le fichier soit corrompu. Utilisez alors une sauvegarde de base de données. Si vous supposez que Keepass2Android a corrompu le fichier, s\'il vous plaît contactez le support. \n
 • Si vous pouvez toujours ouvrir le fichier sur votre PC, veuillez contacter le support. Vous pouvez essayer de l\'enregistrer avec des paramètres différents (ex. le décompresser) sur le PC et réessayer de l\'ouvrir dans Keepass2Android.  </string>
+  <string name="DbUnlockedChannel_name">Base de données déverrouillée</string>
+  <string name="DbUnlockedChannel_desc">Notification à propos de la base de données en train d\'être déverrouillée</string>
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Notification à propos de la base de données en cours de verrouillage avec QuickUnlock</string>
+  <string name="EntryChannel_name">Notifications d\'entrée</string>
+  <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="ErrorReportTitle">Keepass2Android : Une erreur s\'est produite.</string>
   <string name="ErrorReportText">Une erreur inattendue s\'est produite lors de l\'exécution de Keepass2Android. S\'il vous plaît aidez-nous à résoudre ce problème en permettant à l\'application d\'envoyer des rapports d\'erreurs.</string>
   <string name="ErrorReportPromise">Les rapports d\'erreur ne contiendront jamais le contenu de votre base de données ou le mot de passe principal. Vous pouvez les désactiver dans les paramètres de l\'application.</string>
@@ -562,6 +597,24 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ErrorReportAsk">Demander après une erreur</string>
   <string name="ErrorReportPrefTitle">Envoyer des rapports d\'erreurs</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
+  <string name="ChangeLog_1_06">
+Version 1.06\n
+* Changement vers ykDroid au lieu de YubiChallenge comme application pour le défi-réponse de Yubikey.\n
+* implémentation du support de défi-réponse compatible KeepassXC. Note : Le format de base de données doit être KDBX4 !\n
+* Blocage du chargement de fichiers supprimés depuis Google Drive\n
+* Changement d\'implémentation TLS pour FTPS, ajout d\'un contournement du bug JSch avec les serveurs compatibles avec gssapi-with-mic\n
+* Correction de bugs\n  </string>
+  <string name="ChangeLog_1_05">
+    Version 1.05\n * Utilisation des canaux de notification Android 8, ce qui permet la configuration via les paramètres système\n * Affichage de l’icône entrée dans la notification\n * Utilisation d\'icônes adaptatifs pour Android 8, utilisez l\'icône arrondi du lanceur pour Android 7\n * Permet d’activer la recherche au déverrouillage (voir réglages) \n * Modification de comment les fichiers sont écrits en utilisant le framework Storage Access, corrections de problèmes sur les mises à jour des fichiers ouvert sur Google Drive avec le sélecteur du système fichier\n * Ajout de textes d’informations afin d’éviter certaines incompréhensions commune \n * Création de sauvegardes locales pour les bases ouvertes avec succès pour réduire le risque de perte de donnée\n * Mise à jour de JSch pour supporté les derniers chiffrements SSH\n * Permettre la modification des paramètres de connexion, par exemple lorsque le mot de passe WebDav a changé\n * Ajout du support pour mot de passe statique Yubikey Neo\n * Permettre de désactiver les suggestions automatiques\n * Correction des fuites de données vers logcat\n * Corrections d\'anomalies\n
+  </string>
+  <string name="ChangeLog_1_04b">
+    Version 1.04b\n * Évite les plantages lorsque l’utilisateur essaie d’activer la fonctionnalité de remplissage automatique sur les appareils Huawei.\n
+  </string>
+  <string name="ChangeLog_1_04">
+Version 1.04
+* Ajout du service de saisie automatique pour Android 8.0 et plus. 
+* Mise à niveau des librairies, des outils de build et de la version du sdk cible
+  </string>
   <string name="ChangeLog_1_03">
      Version 1.03\n * Suppression du service accessibilité pour le remplissage automatique tel que demandé par Google. Voir les paramètres d’accès mot de passe pour trouver un plugin reproduisant la fonctionnalité précédente. \n * Ajout des applications tierces comme option de stockage\n * Visionneuse intégrée pour le voir les images attachées sans les transférer sur d’autres apps\n * OkHttp mis à jour pour résoudre certains problèmes de connections\n * Support des entrées de KeeTrayTOTP, supporte désormais les entrées Steam\n  </string>
   <string name="ChangeLog_1_02">
@@ -629,7 +682,7 @@ Version 1.0.0\n * Déverrouiller par empreinte digitale (nécessite Android 6.0+
 		Version 0.9.7\n
 		* Support de l\'écriture des base de données Keepass 1 (kdb) (beta!)\n
 		* Meilleur retour au clavier précédent (fonctionne également sur les appareils non rootés)\n
-		* Support de KeeChallenge\n
+		* Support de KeeChallenge avec des défis à longueur variable\n
 		* Interdit les captures d\'écran à partir des écrans de déverrouillage et de saisie de mots de passe\n
 		* Inverse le tri par date de modification (maintenant descendant)\n
 		* Diverses corrections de bogues\n</string>
@@ -774,7 +827,7 @@ Première version publique</string>
   <string name="design_title">Conception</string>
   <string-array name="ftp_encryption_modes">
     <item>Aucun chiffrement (FTP)</item>
-    <item>Chiffrement Implicit (FTP sur TLS, FTPS)</item>
+    <item>Chiffrement implicite (FTP sur TLS, FTPS)</item>
     <item>Chiffrement Explicit (FTP sur TLS, FTPS)</item>
   </string-array>
   <string-array name="cred_remember_modes">
@@ -787,8 +840,9 @@ Première version publique</string>
     <item>Mot de passe + fichier de clé</item>
     <item>Mot de passe + OTP</item>
     <item>Mot de passe + OTP secret (mode de récupération)</item>
-    <item>Mot de passe + Challenge-Réponse</item>
-    <item>Mot de passe + Challenge-Réponse secret (mode de récupération)</item>
+    <item>Mot de passe + Défi-Réponse</item>
+    <item>Mot de passe + Défi-Réponse secret (mode de récupération)</item>
+    <item>Mot de passe + Défi-réponse pour Keepass XC</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorer les échecs de validation de certificat</item>
@@ -797,4 +851,21 @@ Première version publique</string>
   </string-array>
   <string name="ClearClipboardWarning">Assurez vous que ceci fonctionne sur votre système ou sinon considérez d\'utiliser le clavier fourni.</string>
   <string name="PluginDescription">Description fournie par le plugin:</string>
+  <string name="autofill_hint">Keepass2Android supporte la fonctionnalité de remplissage automatique d\'Android mais il semble que vous ne l\'avez pas encore activé.</string>
+  <string name="autofill_enable">Activer le remplissage automatique</string>
+  <string name="autofill_enable_failed">Désolé, il semble que votre appareil ne supporte pas l\'ouverture des paramètres depuis l\'application. Merci d\'aller manuellement dans les paramètres système liées au remplissage automatique pour activer ce service.</string>
+  <string name="show_autofill_help">Montrer l\'aide du remplissage automatique</string>
+  <string name="autofill_sign_in_prompt">Remplir avec Keepass2Android</string>
+  <string name="invalid_link_association">Impossible d\'associer le domaine web %1$s avec l\'application %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android a détecté un capteur d\'empreinte. Voulez-vous activer le capteur d\'empreinte pour déverrouiller la base de données ?</string>
+  <string name="understand">Je comprends</string>
+  <string name="dont_show_again">Ne plus afficher</string>
+  <string name="masterkey_infotext_head">Vous rappelez-vous de votre mot de passe principal ?</string>
+  <string name="masterkey_infotext_main">Notez que vous ne serez pas en mesure d’ouvrir votre base de données sans la clé principale. Il n’y a aucun moyen de « réinitialiser » le mot de passe.</string>
+  <string name="masterkey_infotext_fingerprint_note">Notez également que pour fonctionner le déverrouillage par empreintes digitales stocke votre clé principale dans le stockage sécurisé d’Android. Ce stockage peut être supprimé par Android à tout moment, par exemple si vous ajoutez une nouvelle empreinte dans les paramètres système. Ne comptez donc pas uniquement sur vos empreintes digitales, et retenez pas votre mot de passe principal, s’il vous plaît !</string>
+  <string name="backup_infotext_head">Votre base de données est-elle sauvegardée ?</string>
+  <string name="backup_infotext_main">Keepass2Android stocke vos mots de passe dans un fichier à l\'emplacement de votre choix. Êtes-vous sûr que vous pourrez toujours accéder à ce fichier si votre téléphone est perdu ou volé, ou quand le fichier est détruit ou supprimé ? S’il vous plaît assurez-vous que vous disposez d’une sauvegarde à jour dans un lieu sûr !</string>
+  <string name="backup_infotext_note">Pour créer une sauvegarde maintenant, allez dans %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Êtes-vous prêt pour les cas d’urgence ?</string>
+  <string name="emergency_infotext_main">Avez-vous déjà envisagé ce qui se passerait si vous ne pouviez plus accéder à votre base de données de mots de passe ? Et si vous avez un accident ? Il est recommandé de transmettre votre clé principale à une personne de confiance pour les cas d\'urgence. Sinon, personne n\'aura accès à vos mots de passe.</string>
 </resources>

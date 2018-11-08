@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2016 Philipp Crocoll. This file 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.App;
 using Android.Content;
 using KeePassLib;
 using KeePassLib.Security;
@@ -128,10 +129,10 @@ namespace keepass2android
 		}
 
 		private readonly IKp2aApp _app;
-		private readonly Context _ctx;
+		private readonly Activity _ctx;
 		
-		public AddTemplateEntries(Context ctx, IKp2aApp app, OnFinish finish)
-			: base(finish)
+		public AddTemplateEntries(Activity ctx, IKp2aApp app, OnFinish finish)
+			: base(ctx, finish)
 		{
 			_ctx = ctx;
 			_app = app;
@@ -358,7 +359,7 @@ namespace keepass2android
 			private readonly Database _db;
 			private readonly List<PwEntry> _entries;
 
-			public AfterAdd(Database db, List<PwEntry> entries, OnFinish finish):base(finish) {
+			public AfterAdd(Activity activity, Database db, List<PwEntry> entries, OnFinish finish):base(activity, finish) {
 				_db = db;
 				_entries = entries;
 

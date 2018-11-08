@@ -21,7 +21,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
-using Android.Content;
 using Java.Lang;
 using KeePassLib;
 using KeePassLib.Keys;
@@ -152,27 +151,20 @@ namespace keepass2android
 			set { _databaseFormat = value; }
 		}
 
-		public static string GetFingerprintPrefKey(IOConnectionInfo ioc)
-		{
-			var iocAsHexString = IocAsHexString(ioc);
+	    public string IocAsHexString()
+	    {
+	        return IoUtil.IocAsHexString(Ioc);
+	    }
 
-			return "kp2a_ioc_" + iocAsHexString;
-		}
+        public static string GetFingerprintPrefKey(IOConnectionInfo ioc)
+	    {
+	        var iocAsHexString = IoUtil.IocAsHexString(ioc);
 
-		public string IocAsHexString()
-		{
-			return IocAsHexString(Ioc);
-		}
+	        return "kp2a_ioc_" + iocAsHexString;
+	    }
 
-		private static string IocAsHexString(IOConnectionInfo ioc)
-		{
-			SHA256Managed sha256 = new SHA256Managed();
-			string iocAsHexString =
-				MemUtil.ByteArrayToHexString(sha256.ComputeHash(Encoding.Unicode.GetBytes(ioc.Path.ToCharArray())));
-			return iocAsHexString;
-		}
 
-		public static string GetFingerprintModePrefKey(IOConnectionInfo ioc)
+        public static string GetFingerprintModePrefKey(IOConnectionInfo ioc)
 		{
 			return GetFingerprintPrefKey(ioc) + "_mode";
 		}
@@ -225,7 +217,7 @@ namespace keepass2android
 		}
 
 
-		public void SaveData(Context ctx)  {
+		public void SaveData()  {
             
 			KpDatabase.UseFileTransactions = _app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
 			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, KpDatabase.UseFileTransactions))

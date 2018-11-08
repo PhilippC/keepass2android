@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2012 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -108,12 +108,12 @@ public class SftpATTRS {
   }
 
   public String  getAtimeString(){
-    SimpleDateFormat locale=new SimpleDateFormat();
-    return (locale.format(new Date(atime)));
+    Date date= new Date(((long)atime)*1000L);
+    return (date.toString());
   }
 
   public String  getMtimeString(){
-    Date date= new Date(((long)mtime)*1000);
+    Date date= new Date(((long)mtime)*1000L);
     return (date.toString());
   }
 

@@ -8,7 +8,6 @@ using Android.Preferences;
 namespace keepass2android
 {
 	[BroadcastReceiver]
-	[IntentFilter(new[] { Intents.LockDatabase, Intents.CloseDatabase })]
 	public class ApplicationBroadcastReceiver : BroadcastReceiver
 	{
 		public override void OnReceive(Context context, Intent intent)

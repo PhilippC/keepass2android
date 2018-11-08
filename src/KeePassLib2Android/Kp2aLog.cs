@@ -100,7 +100,8 @@ namespace keepass2android
 				int count = 0;
 				while (File.Exists(LogFilename + "." + count))
 					count++;
-				File.Move(LogFilename, LogFilename + "." + count);
+                if (count > 0)
+				    File.Move(LogFilename, LogFilename + "." + count);
 				
 			}
 				

@@ -152,22 +152,40 @@ namespace keepass2android
 	/// Activities call the task at special points so tasks can change the behaviour at these points.
 	public abstract class AppTask
 	{
-		/// <summary>
-		/// Loads the parameters of the task from the given bundle
-		/// </summary>
-		public virtual void Setup(Bundle b)
-		{}
+	    /// <summary>
+	    /// Loads the parameters of the task from the given bundle
+	    /// </summary>
+	    public virtual void Setup(Bundle b)
+	    {
+	        CanActivateSearchViewOnStart = b.GetBoolean(CanActivateSearchViewOnStartKey, true);
 
-		/// <summary>
-		/// Returns the parameters of the task for storage in a bundle or intent
-		/// </summary>
-		/// <value>The extras.</value>
-		public virtual IEnumerable<IExtra> Extras { 
-			get
-			{
-				yield break;
-			}
-		}
+        }
+
+	    public const String CanActivateSearchViewOnStartKey = "CanActivateSearchViewOnStart";
+
+        /// <summary>
+        /// Can be overwritten to indicate that it is not desired to bring up the search view when starting a groupactivity
+        /// </summary>
+	    public virtual bool CanActivateSearchViewOnStart
+	    {
+	        get;
+	        set;
+	    }
+
+
+	    /// <summary>
+	    /// Returns the parameters of the task for storage in a bundle or intent
+	    /// </summary>
+	    /// <value>The extras.</value>
+        public virtual IEnumerable<IExtra> Extras
+	    {
+	        get
+	        {
+	            yield return new BoolExtra { Key = CanActivateSearchViewOnStartKey, Value = CanActivateSearchViewOnStart };
+	        }
+	    }
+
+        
 
 		public virtual void AfterUnlockDatabase(PasswordActivity act)
 		{
@@ -471,6 +489,10 @@ namespace keepass2android
 
 		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
 		{
+		    Context ctx = activity;
+		    if (ctx == null)
+		        ctx = Application.Context;
+
 			if (ShowUserNotifications)
 			{
 				//show the notifications
@@ -561,7 +583,7 @@ namespace keepass2android
 
 			builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
 			{
-				activity.AddUrlToEntry(url, () => base.CompleteOnCreateEntryActivity(activity));
+				activity.AddUrlToEntry(url, (EntryActivity thenActiveActivity) => base.CompleteOnCreateEntryActivity(thenActiveActivity));
 			});
 
 			builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>
@@ -581,7 +603,13 @@ namespace keepass2android
 	/// </summary>
 	public class MoveElementsTask: AppTask
 	{
-		public const String UuidsKey = "MoveElement_Uuids";
+	    public override bool CanActivateSearchViewOnStart
+	    {
+	        get { return false; }
+	        set { }
+	    }
+
+        public const String UuidsKey = "MoveElement_Uuids";
 
 		public IEnumerable<PwUuid> Uuids
 		{
@@ -632,10 +660,16 @@ namespace keepass2android
 			ShowUserNotifications = true;
 		}
 
-		/// <summary>
-		/// extra key if only a URL is passed. optional.
-		/// </summary>
-		public const String UrlKey = "CreateEntry_Url";
+	    public override bool CanActivateSearchViewOnStart
+	    {
+	        get { return false; }
+	        set { }
+	    }
+
+	    /// <summary>
+        /// extra key if only a URL is passed. optional.
+        /// </summary>
+        public const String UrlKey = "CreateEntry_Url";
 		
 		/// <summary>
 		/// extra key if a json serialized key/value mapping is passed. optional.
@@ -739,9 +773,15 @@ namespace keepass2android
 	/// </summary>
 	public abstract class NavigateAndLaunchTask: AppTask
 	{
-		// All group Uuid are stored in guuidKey + indice
-		// The last one is the destination group 
-		public const String NumberOfGroupsKey = "NumberOfGroups";
+	    public override bool CanActivateSearchViewOnStart
+	    {
+	        get { return false; }
+	        set { }
+	    }
+
+        // All group Uuid are stored in guuidKey + indice
+        // The last one is the destination group 
+        public const String NumberOfGroupsKey = "NumberOfGroups";
 		public const String GUuidKey = "gUuidKey"; 
 		public const String FullGroupNameKey = "fullGroupNameKey";
 		public const String ToastEnableKey = "toastEnableKey";

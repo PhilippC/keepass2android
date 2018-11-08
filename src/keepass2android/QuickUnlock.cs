@@ -37,7 +37,7 @@ namespace keepass2android
 		WindowSoftInputMode = SoftInput.AdjustResize,
 		MainLauncher = false,
         Theme = "@style/MyTheme_Blue")]
-	public class QuickUnlock : LifecycleDebugActivity, IFingerprintAuthCallback
+	public class QuickUnlock : LifecycleAwareActivity, IFingerprintAuthCallback
 	{
 		private IOConnectionInfo _ioc;
 		private QuickUnlockBroadcastReceiver _intentReceiver;
@@ -107,7 +107,16 @@ namespace keepass2android
 
 			_quickUnlockLength = App.Kp2a.QuickUnlockKeyLength;
 
-			txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[] {_quickUnlockLength});
+		    if (PreferenceManager.GetDefaultSharedPreferences(this)
+		        .GetBoolean(GetString(Resource.String.QuickUnlockHideLength_key), false))
+		    {
+		        txtLabel.Text = GetString(Resource.String.QuickUnlock_label_secure);
+            }
+		    else
+		    {
+		        txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[] { _quickUnlockLength });
+            }
+			
 
 			EditText pwd = (EditText) FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.SetEms(_quickUnlockLength);
@@ -252,7 +261,7 @@ namespace keepass2android
 						_fingerprintIdentifier = new FingerprintDecryption(fpModule, App.Kp2a.GetDb().CurrentFingerprintPrefKey, this,
 							App.Kp2a.GetDb().CurrentFingerprintPrefKey);
 				}
-				if (_fingerprintIdentifier == null)
+				if ((_fingerprintIdentifier == null) && (!FingerprintDecryption.IsSetUp(this, App.Kp2a.GetDb().CurrentFingerprintPrefKey)))
 				{
 					try
 					{
@@ -268,12 +277,15 @@ namespace keepass2android
 					catch (Exception)
 					{
 						Kp2aLog.Log("trying Samsung Fingerprint API...failed.");
-						FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
 						_fingerprintIdentifier = null;
-						return false;	
 					}
 				}
-				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
+			    if (_fingerprintIdentifier == null)
+			    {
+			        FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
+			        return false;
+                }
+                btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
 
 				if (_fingerprintIdentifier.Init())
 				{
@@ -340,8 +352,13 @@ namespace keepass2android
 			{
 				KcpPassword kcpPassword = (KcpPassword) App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof (KcpPassword));
 				String password = kcpPassword.Password.ReadString();
-				String expectedPasswordPart = password.Substring(Math.Max(0, password.Length - _quickUnlockLength),
-					Math.Min(password.Length, _quickUnlockLength));
+
+			    var passwordStringInfo = new System.Globalization.StringInfo(password);
+
+			    int passwordLength = passwordStringInfo.LengthInTextElements;
+                
+                String expectedPasswordPart = passwordStringInfo.SubstringByTextElements(Math.Max(0, passwordLength - _quickUnlockLength),
+                    Math.Min(passwordLength, _quickUnlockLength));
 				return expectedPasswordPart;
 			}
 		}

@@ -22,6 +22,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using KeePassLib;
+using Object = Java.Lang.Object;
 
 namespace keepass2android.view
 {
@@ -64,7 +65,10 @@ namespace keepass2android.view
 
 			gv.FindViewById(Resource.Id.group_icon_bkg).Visibility = App.Kp2a.GetDb().DrawableFactory.IsWhiteIconSet ? ViewStates.Visible : ViewStates.Gone;
 
-			PopulateView(gv, pw);
+		    gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
+		    gv.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
+
+            PopulateView(gv, pw);
 			
 			LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.FillParent, ViewGroup.LayoutParams.WrapContent);
 			
@@ -76,8 +80,11 @@ namespace keepass2android.view
 			
 			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
 			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, _groupBaseActivity, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid, true);
-			
-			_textview.Text = pw.Name;
+		    gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
+		    gv.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
+
+
+            _textview.Text = pw.Name;
 
 			if (_defaultTextColor == null)
 				_defaultTextColor = _textview.TextColors.DefaultColor;
@@ -91,11 +98,15 @@ namespace keepass2android.view
 				_textview.SetTextColor(new Color((int)_defaultTextColor));
 
 			_label.Text = _groupBaseActivity.GetString (Resource.String.group)+" - ";
-			uint numEntries = CountEntries (pw);
-			if (numEntries == 1)
-				_label.Text += Context.GetString (Resource.String.Entry_singular);
-			else
-				_label.Text += Context.GetString (Resource.String.Entry_plural, new Java.Lang.Object[] { numEntries });
+            uint numEntries = CountEntries (pw);
+		    if (numEntries == 1)
+		        _label.Text += Context.GetString(Resource.String.Entry_singular);
+		    else
+		    {
+		        Java.Lang.Object obj = (int)numEntries;
+		        _label.Text += Context.GetString(Resource.String.Entry_plural, obj);
+            }
+				
 		}
 
 		uint CountEntries(PwGroup g)
@@ -159,5 +170,26 @@ namespace keepass2android.view
             LaunchGroup();
         }
 	}
+
+    
+    internal class JavaObjectAdapter : Java.Lang.Object
+    {
+        private readonly uint _value;
+        public JavaObjectAdapter(uint value)
+        {
+            _value = value;
+        }
+
+        public JavaObjectAdapter(System.IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
+            : base(handle, transfer)
+        {
+            
+        }
+
+        public override string ToString()
+        {
+            return _value.ToString();
+        }
+    }
 }
 

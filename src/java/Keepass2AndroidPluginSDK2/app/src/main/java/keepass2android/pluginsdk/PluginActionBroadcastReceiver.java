@@ -54,7 +54,6 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 				for(Iterator<String> iter = json.keys();iter.hasNext();) {
 				    String key = iter.next();
 				    String value = json.get(key).toString();
-				    Log.d("KP2APluginSDK", "received " + key+"/"+value);
 				    res.put(key, value);
 				}
 				

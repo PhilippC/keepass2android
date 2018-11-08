@@ -48,7 +48,7 @@ namespace keepass2android
 		public override void OnCreate()
 		{
 			base.OnCreate();
-			
+		
 			_screenOffReceiver = new ScreenOffReceiver();
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
@@ -65,11 +65,11 @@ namespace keepass2android
 			// Set the icon to reflect the current state
 			if (App.Kp2a.DatabaseIsUnlocked)
 			{
-				// Clear current foreground status and QuickUnlock icon
-				StopForeground(true);
+                // Clear QuickUnlock icon
+			    notificationManager.Cancel(QuickUnlockId);
 
-				//use foreground again to let the app not be killed too easily.
-				StartForeground(UnlockedWarningId, GetUnlockedNotification());
+                //use foreground again to let the app not be killed too easily.
+                StartForeground(UnlockedWarningId, GetUnlockedNotification());
 			}
 			else 
 			{
@@ -104,24 +104,30 @@ namespace keepass2android
 		{
 			base.OnDestroy();
 
-			var notificationManager = (NotificationManager)GetSystemService(NotificationService);
-			notificationManager.Cancel(UnlockedWarningId);
-			// Quick Unlock notification should be removed automatically by the service (if present), as it was the foreground notification.
+			CancelNotifications(this);
 
-			Kp2aLog.Log("OngoingNotificationsService.OnDestroy");
+		    Kp2aLog.Log("OngoingNotificationsService.OnDestroy");
 
 			// If the service is killed, then lock the database immediately
 			if (App.Kp2a.DatabaseIsUnlocked)
 			{
-				App.Kp2a.LockDatabase();
+				App.Kp2a.LockDatabase(false);
 			}
-			//also remove any notifications of the app
-			notificationManager.CancelAll();
 
 			UnregisterReceiver(_screenOffReceiver);
 		}
-		
-		public override IBinder OnBind(Intent intent)
+
+	    public static void CancelNotifications(Context ctx)
+	    {
+	        var notificationManager = (NotificationManager) ctx.GetSystemService(NotificationService);
+	        notificationManager.Cancel(UnlockedWarningId);
+	        // Quick Unlock notification should be removed automatically by the service (if present), as it was the foreground notification.
+
+	        //also remove any notifications of the app
+	        notificationManager.CancelAll();
+	    }
+
+	    public override IBinder OnBind(Intent intent)
 		{
 			return null;
 		}
@@ -139,7 +145,7 @@ namespace keepass2android
 				grayIconResouceId = Resource.Drawable.transparent;
 			}
 			NotificationCompat.Builder builder = 
-				new NotificationCompat.Builder(this)
+				new NotificationCompat.Builder(this, App.NotificationChannelIdQuicklocked)
 					.SetSmallIcon(grayIconResouceId)
 					.SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationLockedIcon)))
 					.SetVisibility((int)Android.App.NotificationVisibility.Secret)
@@ -163,7 +169,7 @@ namespace keepass2android
 			builder.SetContentIntent(GetSwitchToAppPendingIntent());
 			// Additional action to allow locking the database
 			builder.AddAction(Android.Resource.Drawable.IcLockLock, GetString(Resource.String.QuickUnlock_lockButton), 
-				PendingIntent.GetBroadcast(this, 0, new Intent(Intents.CloseDatabase), PendingIntentFlags.UpdateCurrent));
+				PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.CloseDatabase), PendingIntentFlags.UpdateCurrent));
 			
 
 			return builder.Build();
@@ -171,9 +177,7 @@ namespace keepass2android
 
 		private Bitmap MakeLargeIcon(Bitmap unscaled)
 		{
-			int height = (int)(0.9*Resources.GetDimension(Android.Resource.Dimension.NotificationLargeIconHeight));
-			int width = (int)(0.9*Resources.GetDimension(Android.Resource.Dimension.NotificationLargeIconWidth));
-			return Bitmap.CreateScaledBitmap(unscaled, width, height, true);
+		    return Util.MakeLargeIcon(unscaled, this);
 		}
 
 		#endregion
@@ -183,7 +187,7 @@ namespace keepass2android
 		private Notification GetUnlockedNotification()
 		{
 			NotificationCompat.Builder builder =
-				new NotificationCompat.Builder(this)
+				new NotificationCompat.Builder(this, App.NotificationChannelIdUnlocked)
 					.SetOngoing(true)
 					.SetSmallIcon(Resource.Drawable.ic_notify)
 					.SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationUnlockedIcon)))
@@ -208,7 +212,7 @@ namespace keepass2android
 			// Default action is to show Kp2A
 			builder.SetContentIntent(GetSwitchToAppPendingIntent());
 			// Additional action to allow locking the database
-			builder.AddAction(Resource.Drawable.ic_action_lock, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent));
+			builder.AddAction(Resource.Drawable.ic_action_lock, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent));
 			
 			return builder.Build();
 		}

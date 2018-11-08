@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using Android.App;
 
 namespace keepass2android
 {
@@ -23,7 +24,7 @@ namespace keepass2android
 	public abstract class FileOnFinish : OnFinish {
 		private String _filename = "";
 
-		protected FileOnFinish(FileOnFinish finish):base(finish) {
+		protected FileOnFinish(Activity activity, FileOnFinish finish):base(activity, finish) {
 		}
 
 		public string Filename

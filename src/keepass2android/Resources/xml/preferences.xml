@@ -268,6 +268,14 @@
 					 android:title="@string/ViewDatabaseSecure_title"
 					 android:key="@string/ViewDatabaseSecure_key" />
 
+		  <CheckBoxPreference
+		    android:enabled="true"
+		    android:persistent="true"
+		    android:summary="@string/ActivateSearchViewOnStart_summary"
+		    android:defaultValue="false"
+		    android:title="@string/ActivateSearchViewOnStart_title"
+		    android:key="ActivateSearchView" />
+      
 			<CheckBoxPreference
 				android:enabled="true"
 					 android:persistent="true"
@@ -423,6 +431,14 @@
 				 android:defaultValue="true"
 				 android:title="@string/QuickUnlockIconHidden16_title"
 				 android:key="@string/QuickUnlockIconHidden16_key" />
+		  <CheckBoxPreference
+		    android:enabled="true"
+		    android:persistent="true"
+		    android:summary="@string/QuickUnlockHideLength_summary"
+		    android:defaultValue="false"
+		    android:title="@string/QuickUnlockHideLength_title"
+		    android:key="@string/QuickUnlockHideLength_key" />
+      
 		</PreferenceScreen>
 		<PreferenceScreen
 	  android:key="@string/FileHandling_prefs_key"
@@ -446,6 +462,15 @@
 				  android:defaultValue="true"
 				  android:title="@string/UseOfflineCache_title"
 				  android:key="@string/UseOfflineCache_key" />
+
+		  <CheckBoxPreference
+		    android:enabled="true"
+		    android:persistent="true"
+		    android:summary="@string/CreateBackups_summary"
+		    android:defaultValue="true"
+		    android:title="@string/CreateBackups_title"
+		    android:key="@string/CreateBackups_key" />
+      
 			<ListPreference
 			  android:key="@string/AcceptAllServerCertificates_key"
 			  android:title="@string/AcceptAllServerCertificates_title"

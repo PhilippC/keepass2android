@@ -16,41 +16,37 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   */
 
 using System;
+using Android.App;
 using Android.OS;
 
 namespace keepass2android
 {
 	public class ActionOnFinish: OnFinish
 	{
-		public delegate void ActionToPerformOnFinsh(bool success, String message);
+		public delegate void ActionToPerformOnFinsh(bool success, String message, Activity activeActivity);
 
 		readonly ActionToPerformOnFinsh _actionToPerform;
 
-		public ActionOnFinish(ActionToPerformOnFinsh actionToPerform) : base(null, null)
+		public ActionOnFinish(Activity activity, ActionToPerformOnFinsh actionToPerform) : base(activity, null, null)
 		{
 			_actionToPerform = actionToPerform;
 		}
 
-		public ActionOnFinish(ActionToPerformOnFinsh actionToPerform, OnFinish finish) : base(finish)
+		public ActionOnFinish(Activity activity, ActionToPerformOnFinsh actionToPerform, OnFinish finish) : base(activity, finish)
 		{
 			_actionToPerform = actionToPerform;
 		}
-
-		public ActionOnFinish(ActionToPerformOnFinsh actionToPerform, Handler handler) : base(handler)
-		{
-			_actionToPerform = actionToPerform;
-		}
-
+        
 		public override void Run()
 		{
 			if (Message == null)
 				Message = "";
 			if (Handler != null)
 			{
-				Handler.Post(() => {_actionToPerform(Success, Message);});
+				Handler.Post(() => {_actionToPerform(Success, Message, ActiveActivity);});
 			}
 			else
-				_actionToPerform(Success, Message);
+				_actionToPerform(Success, Message, ActiveActivity);
 			base.Run();
 		}
 	}

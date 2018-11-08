@@ -63,7 +63,8 @@ namespace keepass2android
 		AskDeletePermanentlyItems,
 		AskDeletePermanentlyItemsNoRecycle,
 		InOfflineMode,
-		DuplicateTitle,
+        DocumentAccessRevoked,
+        DuplicateTitle,
 		TemplateTitle_IdCard,
 		TemplateField_IdCard_Name,
 		TemplateField_IdCard_PlaceOfIssue,
@@ -84,6 +85,7 @@ namespace keepass2android
 		AskAddTemplatesMessage,
 		ReadOnlyReason_PreKitKat,
 		ReadOnlyReason_ReadOnlyFlag,
-		ReadOnlyReason_ReadOnlyKitKat
+		ReadOnlyReason_ReadOnlyKitKat,
+        ReadOnlyReason_LocalBackup
     }
 }

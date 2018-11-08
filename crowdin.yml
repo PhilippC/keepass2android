@@ -1,0 +1,6 @@
+files:
+  - source: src/keepass2android/Resources/values/strings.xml
+    translation: >-
+      /src/keepass2android/Resources/values-%two_letters_code%/%original_file_name%
+    translate_attributes: '0'
+    content_segmentation: '0'

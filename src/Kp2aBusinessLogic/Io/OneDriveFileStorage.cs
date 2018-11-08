@@ -33,6 +33,11 @@ namespace keepass2android.Io
 				yield return "onedrive";
 			}
 		}
+
+	    public override bool UserShouldBackup
+	    {
+	        get { return false; }
+	    }
 	}
 }
 #endif

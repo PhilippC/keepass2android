@@ -18,8 +18,8 @@ namespace keepass2android
 		private readonly IKp2aApp _app;
 
 
-		public CheckDatabaseForChanges(Context context, IKp2aApp app, OnFinish finish)
-			: base(finish)
+		public CheckDatabaseForChanges(Activity context, IKp2aApp app, OnFinish finish)
+			: base(context, finish)
 		{
 			_context = context;
 			_app = app;

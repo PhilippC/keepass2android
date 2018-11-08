@@ -2,11 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using Android;
 using Android.Content;
 using Android.Database;
 using Android.OS;
 using Android.Provider;
+using Java.IO;
 using KeePassLib.Serialization;
+using KeePassLib.Utility;
+using Console = System.Console;
 
 namespace keepass2android.Io
 {
@@ -28,7 +33,12 @@ namespace keepass2android.Io
 			get { yield return "content"; }
 		}
 
-		public void Delete(IOConnectionInfo ioc)
+	    public bool UserShouldBackup
+	    {
+	        get { return true; }
+	    }
+
+	    public void Delete(IOConnectionInfo ioc)
 		{
 			throw new NotImplementedException();
 		}
@@ -45,7 +55,20 @@ namespace keepass2android.Io
 
 		public Stream OpenFileForRead(IOConnectionInfo ioc)
 		{
-			return _ctx.ContentResolver.OpenInputStream(Android.Net.Uri.Parse(ioc.Path));
+		    try
+            { 
+		        return _ctx.ContentResolver.OpenInputStream(Android.Net.Uri.Parse(ioc.Path));
+		    }
+		    catch (Exception e)
+		    {
+		        if (e.Message.Contains("requires that you obtain access using ACTION_OPEN_DOCUMENT"))
+		        {
+		            //looks like permission was revoked.
+		            throw new DocumentAccessRevokedException();
+		        }
+		        throw;
+		    }
+			
 		}
 
 		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
@@ -55,8 +78,9 @@ namespace keepass2android.Io
 
 		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
 		{
-			return "";
-		}
+		    return UrlUtil.StripExtension(
+		        UrlUtil.GetFileName(ioc.Path));
+        }
 
 		public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
@@ -261,7 +285,26 @@ namespace keepass2android.Io
 
 	}
 
-	class AndroidContentWriteTransaction : IWriteTransaction
+    public class DocumentAccessRevokedException : Exception
+    {
+        public DocumentAccessRevokedException()
+        {
+        }
+
+        public DocumentAccessRevokedException(string message) : base(message)
+        {
+        }
+
+        public DocumentAccessRevokedException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected DocumentAccessRevokedException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+    }
+
+    class AndroidContentWriteTransaction : IWriteTransaction
 	{
 		private readonly string _path;
 		private readonly Context _ctx;
@@ -286,11 +329,15 @@ namespace keepass2android.Io
 
 		public void CommitWrite()
 		{
-			using (Stream outputStream = _ctx.ContentResolver.OpenOutputStream(Android.Net.Uri.Parse(_path)))
+		    ParcelFileDescriptor fileDescriptor = _ctx.ContentResolver.OpenFileDescriptor(Android.Net.Uri.Parse(_path), "w");
+            
+            using (var outputStream = new FileOutputStream(fileDescriptor.FileDescriptor))
 			{
 				byte[] data = _memoryStream.ToArray();
 				outputStream.Write(data, 0, data.Length);
+			    outputStream.Close();
 			}
+            fileDescriptor.Close();
 			
 			
 		}
