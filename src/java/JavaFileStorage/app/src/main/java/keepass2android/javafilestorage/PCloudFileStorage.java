@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import com.pcloud.sdk.ApiClient;
@@ -52,7 +53,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     @Override
     public boolean requiresSetup(String path) {
-        return true;
+        return !this.isConnected();
     }
 
     @Override
@@ -135,8 +136,10 @@ public class PCloudFileStorage extends JavaFileStorageBase
         String filePath = path.substring(0, path.lastIndexOf("/") + 1);
         RemoteFolder remoteFolder = this.getRemoteFolderByPath(filePath);
 
+        String tempName = "." + UUID.randomUUID().toString();
         try {
-            this.apiClient.createFile(remoteFolder, filename, dataSource).execute();
+            RemoteFile remoteFile = this.apiClient.createFile(remoteFolder, tempName, dataSource).execute();
+            this.apiClient.rename(remoteFile, filename).execute();
         } catch (ApiError e) {
             throw convertApiError(e);
         }
@@ -372,7 +375,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     private Exception convertApiError(ApiError e) {
         String strErrorCode = String.valueOf(e.errorCode());
-        if (strErrorCode.startsWith("1") || "2000".equals(strErrorCode)) {
+        if (strErrorCode.startsWith("1") || "2000".equals(strErrorCode) || "2095".equals(strErrorCode)) {
             this.clearAuthToken();
             return new UserInteractionRequiredException("Unlinked from PCloud! User must re-link.", e);
         } else if (strErrorCode.startsWith("2")) {

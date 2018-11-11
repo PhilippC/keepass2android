@@ -44,7 +44,7 @@ namespace keepass2android.fileselect
 			Ioc = new IOConnectionInfo();
 			Util.SetIoConnectionFromIntent(Ioc, Intent);
 
-			Kp2aLog.Log("FSSA.OnCreate with " + Ioc.Path);
+			Kp2aLog.Log("FSSA.OnCreate");
 
 			ProcessName = Intent.GetStringExtra(FileStorageSetupDefs.ExtraProcessName);
 			IsForSave = Intent.GetBooleanExtra(FileStorageSetupDefs.ExtraIsForSave, false);

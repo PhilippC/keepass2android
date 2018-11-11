@@ -515,8 +515,8 @@
   <string name="enter_owncloud_login_title">Enter OwnCloud login data:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
 
-  <string name="enter_nextcloud_login_title">Enter NextCloud login data:</string>
-  <string name="hint_nextcloud_url">NextCloud URL (ex: nextcloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Enter Nextcloud login data:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (ex: nextcloud.me.com)</string>
   
   <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
 	<string name="hint_sftp_port">port</string>
@@ -538,7 +538,7 @@
 	<string name="filestoragename_http">HTTP (WebDav)</string>
 	<string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
-  <string name="filestoragename_nextcloud">NextCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
 	<string name="filestoragename_dropboxKP2A">Dropbox (KP2A folder)</string>
 	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, click this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
