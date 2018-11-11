@@ -15,4 +15,8 @@ pushd Keepass2AndroidPluginSDK2
 ./gradlew assemble
 popd
 
+pushd PluginQR
+./gradlew assemble
+popd
+
 popd
