@@ -67,5 +67,4 @@
   <ItemGroup>
     <Folder Include="libs\" />
   </ItemGroup>
-  
 </Project>

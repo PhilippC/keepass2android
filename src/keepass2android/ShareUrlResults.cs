@@ -213,5 +213,10 @@ namespace keepass2android
 	    {
 	        get { return false; }
 	    }
+
+	    public override ElementAndDatabaseId FullGroupId
+	    {
+	        get { return null; }
+	    }
 	}}
 

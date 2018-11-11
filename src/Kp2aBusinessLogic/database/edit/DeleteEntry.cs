@@ -31,7 +31,7 @@ namespace keepass2android
 
 	    public DeleteEntry(Activity activiy, IKp2aApp app, PwEntry entry, OnFinish finish):base(activiy, finish, app) {
 			Ctx = activiy;
-			Db = app.FindDatabaseForEntryId(entry.Uuid);
+			Db = app.FindDatabaseForElement(entry);
 			_entry = entry;
 			
 		}

@@ -283,25 +283,34 @@ namespace keepass2android
 
 			if ((intent.Action == Intents.ShowNotification) || (intent.Action == Intents.UpdateKeyboard))
 			{
-				String uuidBytes = intent.GetStringExtra(EntryActivity.KeyEntry);
+				String entryId = intent.GetStringExtra(EntryActivity.KeyEntry);
                 String searchUrl = intent.GetStringExtra(SearchUrlTask.UrlToSearchKey);
 
-				PwUuid entryId = PwUuid.Zero;
-				if (uuidBytes != null)
-					entryId = new PwUuid(MemUtil.HexStringToByteArray(uuidBytes));
+			    if (entryId == null)
+			    {
+			        Kp2aLog.Log("received intent " + intent.Action + " without KeyEntry!");
+#if DEBUG
+			        throw new Exception("invalid intent received!");
+#endif
+                    return StartCommandResult.NotSticky;
+			    }
+                
 
 				PwEntryOutput entry;
 				try
 				{
-					if ((App.Kp2a.LastOpenedEntry != null)
-						&& (entryId.Equals(App.Kp2a.LastOpenedEntry.Uuid)))
+				    ElementAndDatabaseId fullId = new ElementAndDatabaseId(entryId);
+
+
+                    if (((App.Kp2a.LastOpenedEntry != null)
+					                       && (fullId.ElementId.Equals(App.Kp2a.LastOpenedEntry.Uuid))))
 					{
 						entry = App.Kp2a.LastOpenedEntry;
 					}
 					else
 					{
-					    Database entryDb = App.Kp2a.FindDatabaseForEntryId(entryId);
-						entry = new PwEntryOutput(entryDb.Entries[entryId], entryDb);
+					    Database entryDb = App.Kp2a.GetDatabase(fullId.DatabaseId);
+						entry = new PwEntryOutput(entryDb.EntriesById[fullId.ElementId], entryDb);
 					}
 
 				}
@@ -403,7 +412,7 @@ namespace keepass2android
 			var hadKeyboardData = ClearNotifications();
 
 			String entryName = entry.OutputStrings.ReadSafe(PwDefs.TitleField);
-		    Database db = App.Kp2a.FindDatabaseForEntryId(entry.Uuid);
+		    Database db = App.Kp2a.FindDatabaseForElement(entry.Entry);
 
 		    var bmp = Util.DrawableToBitmap(db.DrawableFactory.GetIconDrawable(this,
 		        db.KpDatabase, entry.Entry.IconId, entry.Entry.CustomIconUuid, false));

@@ -151,76 +151,7 @@ namespace keepass2android
 			    Thread.Sleep(10);
                 SaveFileData(_ioc, _keyfileOrProvider);
 
-
-			    bool hasLegacyTemplateIds = false;
-			    //make sure we never have entries with same Uuids
-			    foreach (var entryKey in newDb.Entries.Keys)
-			    {
-                    foreach (Database otherDb in _app.OpenDatabases)
-                    {
-                        if (otherDb == newDb)
-                            continue;
-			            if (otherDb.Entries.ContainsKey(entryKey))
-			            {
-			                if (AddTemplateEntries.IsTemplateId(entryKey))
-			                {
-			                    hasLegacyTemplateIds = true;
-			                }
-			                else
-			                {
-			                    _app.CloseDatabase(newDb);
-			                    throw new Exception("Database contains entry id " + entryKey.ToHexString() + "(" +
-			                                        newDb.Entries[entryKey].Strings.ReadSafe(PwDefs.TitleField)
-			                                        + ") which is already contained in " +
-			                                        _app.GetFileStorage(otherDb.Ioc).GetDisplayName(otherDb.Ioc) +
-			                                        "! Please close the other database before opening this one.");
-			                }
-			            }
-			        }
-			    }
-
-
-			    foreach (var groupKey in newDb.Groups.Keys)
-			    {
-			        foreach (Database otherDb in _app.OpenDatabases)
-			        {
-			            if (otherDb == newDb)
-			                continue;
-			            if (otherDb.Groups.ContainsKey(groupKey))
-			            {
-			                throw new Exception("Database contains group id " + groupKey.ToHexString() + "(" +
-			                                    newDb.Groups[groupKey].Name + ") which is already contained in " +
-			                                    _app.GetFileStorage(otherDb.Ioc).GetDisplayName(otherDb.Ioc) +
-			                                    "! Please close the other database before opening this one.");
-			            }
-			        }
-			    }
-
-			    if (hasLegacyTemplateIds)
-			    {
-                    _app.AskYesNoCancel(UiStringKey.ChangleLegacyTemplateIds_Title, UiStringKey.ChangleLegacyTemplateIds_Message,UiStringKey.Ok, UiStringKey.cancel,
-                        /*yes*/
-                        (sender, args) =>
-                        {
-                            ChangeTemplateIds cti = new ChangeTemplateIds(ActiveActivity, _app, newDb, new ActionOnFinish(ActiveActivity, (b, message, activity) => Finish(b, message)));
-                            cti.Run();
-                        },
-                        /*no*/
-                        (sender, args) =>
-                        {
-                            _app.CloseDatabase(newDb);
-                            Finish(false);
-                        }, 
-                        null,
-                        ActiveActivity
-                        
-                    );
-			        
-
-
-			    }
-                else
-                    Finish(true, _format.SuccessMessage);
+                Finish(true, _format.SuccessMessage);
 			    return newDb;
 			}
 			catch (OldFormatException)

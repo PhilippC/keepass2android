@@ -47,7 +47,7 @@ namespace keepass2android
         */
         private void SetMembers(Activity activity, IKp2aApp app, PwGroup group, bool dontSave)
         {
-			base.SetMembers(activity, app.FindDatabaseForGroupId(group.Uuid));
+			base.SetMembers(activity, app.FindDatabaseForElement(group));
 
 			_group = group;
 	        DontSave = dontSave;

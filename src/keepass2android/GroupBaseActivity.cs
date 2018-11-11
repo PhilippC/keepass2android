@@ -277,7 +277,7 @@ namespace keepass2android
                 {
                     applicableInfoTextKeys.Add(backupKey);
                 }
-                if (App.Kp2a.CurrentDb.Entries.Count > 15)
+                if (App.Kp2a.CurrentDb.EntriesById.Count > 15)
                 {
                     applicableInfoTextKeys.Add(emergencyKey);
                 }
@@ -741,9 +741,10 @@ namespace keepass2android
             {
                 var cursor = _suggestionsAdapter.Cursor;
                 cursor.MoveToPosition(position);
-                string entryIdAsHexString = cursor.GetString(cursor.GetColumnIndexOrThrow(SearchManager.SuggestColumnIntentDataId));
-                var entryId = new PwUuid(MemUtil.HexStringToByteArray(entryIdAsHexString));
-                EntryActivity.Launch(_activity, App.Kp2a.FindDatabaseForEntryId(entryId).Entries[entryId], -1, _activity.AppTask);
+                
+                ElementAndDatabaseId fullId = new ElementAndDatabaseId(cursor.GetString(cursor.GetColumnIndexOrThrow(SearchManager.SuggestColumnIntentDataId)));
+                var entryId = fullId.ElementId;
+                EntryActivity.Launch(_activity, App.Kp2a.GetDatabase(fullId.DatabaseId).EntriesById[entryId], -1, _activity.AppTask);
                 return true;
             }
 
@@ -860,6 +861,8 @@ namespace keepass2android
         }
 
         public abstract bool EntriesBelongToCurrentDatabaseOnly { get; }
+
+        public abstract ElementAndDatabaseId FullGroupId { get; }
 
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
@@ -1390,7 +1393,7 @@ namespace keepass2android
                 new List<KeyValuePair<Database, List<IStructureItem>>>();
             foreach (var item in checkedItems)
             {
-                var db = app.FindDatabaseForEntryId(item.Uuid) ?? app.FindDatabaseForGroupId(item.Uuid);
+                var db = app.FindDatabaseForElement(item);
                 if (db != null)
                 {
                     bool foundDatabase = false;

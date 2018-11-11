@@ -63,7 +63,7 @@ namespace keepass2android.view
 			_label = (TextView) gv.FindViewById(Resource.Id.group_label);
 			_label.TextSize = size-8;
 
-		    Database db = App.Kp2a.FindDatabaseForGroupId(pw.Uuid);
+		    Database db = App.Kp2a.FindDatabaseForElement(pw);
 
             gv.FindViewById(Resource.Id.group_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ? ViewStates.Visible : ViewStates.Gone;
 
@@ -81,7 +81,7 @@ namespace keepass2android.view
 			_pwGroup = pw;
 			
 			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
-		    Database db = App.Kp2a.FindDatabaseForGroupId(pw.Uuid);
+		    Database db = App.Kp2a.FindDatabaseForElement(pw);
             db.DrawableFactory.AssignDrawableTo(iv, _groupBaseActivity, db.KpDatabase, pw.IconId, pw.CustomIconUuid, true);
 		    gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    gv.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;

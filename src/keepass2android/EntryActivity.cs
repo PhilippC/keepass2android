@@ -104,12 +104,13 @@ namespace keepass2android
 		{
 			Intent i = new Intent(act, typeof(EntryActivity));
 
-			i.PutExtra(KeyEntry, pw.Uuid.ToHexString());
+            var db = App.Kp2a.FindDatabaseForElement(pw);
+			i.PutExtra(KeyEntry, new ElementAndDatabaseId(db, pw).FullId);
 			i.PutExtra(KeyRefreshPos, pos);
 
-		    if (!App.Kp2a.CurrentDb.Entries.ContainsKey(pw.Uuid))
+		    if (App.Kp2a.CurrentDb != db)
 		    {
-		        App.Kp2a.CurrentDb = App.Kp2a.FindDatabaseForEntryId(pw.Uuid);
+		        App.Kp2a.CurrentDb = db;
 		    }
 
 			if (flags != null)
@@ -275,7 +276,7 @@ namespace keepass2android
 		        App.Kp2a.LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
 		        Intent updateKeyboardIntent = new Intent(this, typeof(CopyToClipboardService));
 		        updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
-		        updateKeyboardIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
+		        updateKeyboardIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 		        StartService(updateKeyboardIntent);
 
 		        //notify plugins
@@ -405,12 +406,13 @@ namespace keepass2android
 			SetResult(KeePass.ExitNormal);
 
 			Intent i = Intent;
-			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(i.GetStringExtra(KeyEntry)));
+            ElementAndDatabaseId dbAndElementId = new ElementAndDatabaseId(i.GetStringExtra(KeyEntry));
+			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(dbAndElementId.ElementIdString));
 			_pos = i.GetIntExtra(KeyRefreshPos, -1);
 
 			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
-			Entry = db.Entries[uuid];
+			Entry = db.EntriesById[uuid];
 			
 			// Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
 			ActivityCompat.InvalidateOptionsMenu(this);
@@ -482,7 +484,7 @@ namespace keepass2android
 		{
 			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
 			showNotIntent.SetAction(Intents.ShowNotification);
-			showNotIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
+			showNotIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 			_appTask.PopulatePasswordAccessServiceIntent(showNotIntent);
 			showNotIntent.PutExtra(KeyCloseAfterCreate, closeAfterCreate);
 
@@ -1303,7 +1305,7 @@ namespace keepass2android
 			byte[] pbData = pb.ReadData();		
 
 			Intent imageViewerIntent = new Intent(this, typeof(ImageViewActivity));
-			imageViewerIntent.PutExtra("EntryId", Entry.Uuid.ToHexString());
+			imageViewerIntent.PutExtra("EntryId", new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 			imageViewerIntent.PutExtra("EntryKey", key);
 			StartActivity(imageViewerIntent);
 		}

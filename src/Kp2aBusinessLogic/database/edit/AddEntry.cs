@@ -87,8 +87,9 @@ namespace keepass2android
 					_app.DirtyGroups.Add(parent);
 					
 					// Add entry to global
-					_db.Entries[_entry.Uuid] = _entry;
-					
+					_db.EntriesById[_entry.Uuid] = _entry;
+				    _db.Elements.Add(_entry);
+
 				} else
 				{
 					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);

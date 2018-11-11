@@ -100,7 +100,8 @@ namespace keepass2android
 						};
 
 				Db.KpDatabase.RootGroup.AddGroup(pgRecycleBin, true);
-				Db.Groups[pgRecycleBin.Uuid] = pgRecycleBin;
+				Db.GroupsById[pgRecycleBin.Uuid] = pgRecycleBin;
+			    Db.Elements.Add(pgRecycleBin);
 				Db.KpDatabase.RecycleBinUuid = pgRecycleBin.Uuid;
 
 				bGroupListUpdateRequired = true;
@@ -185,7 +186,8 @@ namespace keepass2android
 					PwDeletedObject pdo = new PwDeletedObject(pe.Uuid, dtNow);
 					pd.DeletedObjects.Add(pdo);
 					touchedGroups.Add(pgParent);
-				    Db.Entries.Remove(pe.Uuid);
+				    Db.EntriesById.Remove(pe.Uuid);
+				    Db.Elements.Remove(pe);
 				}
 				else // Recycle
 				{
@@ -223,7 +225,9 @@ namespace keepass2android
 					{
                         //remove groups from global lists if present there
 					    App.DirtyGroups.Remove(g);
-						Db.Groups.Remove(g.Uuid);
+						Db.GroupsById.Remove(g.Uuid);
+					    Db.Elements.Remove(g);
+
 					}
 
 				}

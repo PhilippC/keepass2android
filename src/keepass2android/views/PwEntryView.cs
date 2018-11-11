@@ -72,7 +72,7 @@ namespace keepass2android.view
 			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
 			_textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
 
-		    Database db = App.Kp2a.FindDatabaseForEntryId(pw.Uuid);
+		    Database db = App.Kp2a.FindDatabaseForElement(pw);
 			
 			ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ?  ViewStates.Visible : ViewStates.Gone;
 
@@ -108,7 +108,7 @@ namespace keepass2android.view
 		    ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
 
-		    Database db = App.Kp2a.FindDatabaseForEntryId(_entry.Uuid);
+		    Database db = App.Kp2a.FindDatabaseForElement(_entry);
 
             ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;

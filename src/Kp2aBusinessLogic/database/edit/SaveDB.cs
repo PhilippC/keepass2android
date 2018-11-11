@@ -139,6 +139,7 @@ namespace keepass2android
 										//small.
 										MergeIn(fileStorage, ioc);
 										PerformSaveWithoutCheck(fileStorage, ioc);
+                                        _db.UpdateGlobals();
 										Finish(true);
 									};
 								RunInWorkerThread(runHandler);

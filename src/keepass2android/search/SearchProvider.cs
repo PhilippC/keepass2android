@@ -303,7 +303,7 @@ namespace keepass2android.search
 					    builder.AppendQueryParameter(DatabaseIndexParameter, _entriesWithContexts[MPos].DatabaseIndex.ToString());
                         return builder.Build().ToString();
 					case 4: // SuggestColumnIntentDataId
-						return CurrentEntry.Uuid.ToHexString();
+						return new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(CurrentEntry),CurrentEntry).FullId;
 					default:
 						return null;
 				}

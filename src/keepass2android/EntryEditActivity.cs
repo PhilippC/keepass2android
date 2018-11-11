@@ -144,7 +144,7 @@ namespace keepass2android
 					PwEntry templateEntry = null;
 					if (!PwUuid.Zero.Equals(templateId))
 					{
-						templateEntry = db.Entries[templateId];
+						templateEntry = db.EntriesById[templateId];
 					}
 					
 					if (KpEntryTemplatedEdit.IsTemplate(templateEntry))
@@ -170,7 +170,7 @@ namespace keepass2android
 					
 					Debug.Assert(entryId != null);
 					
-					State.EntryInDatabase = db.Entries [entryId];
+					State.EntryInDatabase = db.EntriesById [entryId];
 					State.IsNew = false;
 					
 					
@@ -921,7 +921,7 @@ namespace keepass2android
 		    {
 			    if (_additionalKeys == null)
 			    {
-				    _additionalKeys = App.Kp2a.CurrentDb.Entries
+				    _additionalKeys = App.Kp2a.CurrentDb.EntriesById
 						.Select(kvp => kvp.Value)
 						.SelectMany(x => x.Strings.GetKeys().Where(k => !PwDefs.IsStandardField(k)))
 						.Where(k => (k != null) && !k.StartsWith("_etm_") )

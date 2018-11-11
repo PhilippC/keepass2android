@@ -216,6 +216,7 @@
     <Compile Include="ChangeLog.cs" />
     <Compile Include="FingerprintUnlockMode.cs" />
     <Compile Include="icons\DrawableFactory.cs" />
+    <Compile Include="KeeAutoExec.cs" />
     <Compile Include="KeeChallenge.cs" />
     <Compile Include="FixedDrawerLayout.cs" />
     <Compile Include="KpEntryTemplatedEdit.cs" />

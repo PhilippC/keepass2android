@@ -292,7 +292,7 @@ namespace keepass2android
 			{
 			    string hexId = t.Uuid.ToHexString();
                 
-                return db.Entries.Any(kvp => kvp.Key.Equals(t.Uuid) ||
+                return db.EntriesById.Any(kvp => kvp.Key.Equals(t.Uuid) ||
                     kvp.Value.Strings.ReadSafe(TemplateIdStringKey) == hexId);
 			});
 		}
@@ -327,7 +327,7 @@ namespace keepass2android
 			}
 
 			PwGroup templateGroup;
-			if (!_app.CurrentDb.Groups.TryGetValue(_app.CurrentDb.KpDatabase.EntryTemplatesGroup, out templateGroup))
+			if (!_app.CurrentDb.GroupsById.TryGetValue(_app.CurrentDb.KpDatabase.EntryTemplatesGroup, out templateGroup))
 			{
 				//create template group
 				templateGroup = new PwGroup(true, true, _app.GetResourceString(UiStringKey.TemplateGroupName), PwIcon.Folder);
@@ -335,30 +335,31 @@ namespace keepass2android
 				_app.CurrentDb.KpDatabase.EntryTemplatesGroup = templateGroup.Uuid;
 				_app.CurrentDb.KpDatabase.EntryTemplatesGroupChanged = DateTime.Now;
 				_app.DirtyGroups.Add(_app.CurrentDb.KpDatabase.RootGroup);
-				_app.CurrentDb.Groups[templateGroup.Uuid] = templateGroup;
+				_app.CurrentDb.GroupsById[templateGroup.Uuid] = templateGroup;
+			    _app.CurrentDb.Elements.Add(templateGroup);
+
 			}
 			addedEntries = new List<PwEntry>();
 
 			foreach (var template in TemplateEntries)
 			{
-				if (_app.CurrentDb.Entries.ContainsKey(template.Uuid))
+				if (_app.CurrentDb.EntriesById.ContainsKey(template.Uuid))
 					continue;
 				PwEntry entry = CreateEntry(template);
 				templateGroup.AddEntry(entry, true);
 				addedEntries.Add(entry);
-				_app.CurrentDb.Entries[entry.Uuid] = entry;
+				_app.CurrentDb.EntriesById[entry.Uuid] = entry;
 			}
 			return templateGroup;
 		}
 
 		private PwEntry CreateEntry(TemplateEntry template)
 		{
-			PwEntry entry = new PwEntry(true, true);
-			
+			PwEntry entry = new PwEntry(false, true);
+			entry.Uuid = template.Uuid;
 			entry.IconId = template.Icon;
 			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(false, _app.GetResourceString(template.Title)));
 			entry.Strings.Set("_etm_template", new ProtectedString(false, "1"));
-            entry.Strings.Set(TemplateIdStringKey, new ProtectedString(false, template.Uuid.ToHexString()));
 			int position = 0;
 			foreach (var field in template.Fields)
 			{

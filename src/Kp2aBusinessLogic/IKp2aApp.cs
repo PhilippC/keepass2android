@@ -10,6 +10,7 @@ using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using KeePassLib.Interfaces;
 #if !NoNet
 using Keepass2android.Javafilestorage;
 #endif 
@@ -58,9 +59,8 @@ namespace keepass2android
 	    IEnumerable<Database> OpenDatabases { get; }
 	    void CloseDatabase(Database db);
 
-        Database FindDatabaseForGroupId(PwUuid groupKey);
-	    Database FindDatabaseForEntryId(PwUuid entryId);
-
+	    Database FindDatabaseForElement(IStructureItem element);
+        
         /// <summary>
         /// Tell the app that the file from ioc was opened with keyfile.
         /// </summary>
@@ -129,5 +129,6 @@ namespace keepass2android
 
 
 #endif
+	    
 	}
 }

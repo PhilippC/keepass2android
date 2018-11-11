@@ -73,6 +73,8 @@ namespace keepass2android
 							}), _app.CurrentDb, false, remoteData);
 						_saveDb.Run();
 
+                        _app.CurrentDb.UpdateGlobals();
+
 						_app.MarkAllGroupsAsDirty();
 					}
 					else

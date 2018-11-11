@@ -250,16 +250,7 @@ namespace keepass2android
 	        return newDb;
 	    }
 
-	    public Database FindDatabaseForEntryId(PwUuid entryKey)
-	    {
-	        foreach (Database db in OpenDatabases)
-	        {
-	            if (db.Entries.ContainsKey(entryKey))
-	                return db;
-	        }
-	        return null;
-	    }
-
+	    
 
 	    public void CloseDatabase(Database db)
 	    {
@@ -270,7 +261,7 @@ namespace keepass2android
 	            Lock(false);
                 return;
 	        }
-	        if (LastOpenedEntry != null && db.Entries.ContainsKey(LastOpenedEntry.Uuid))
+	        if (LastOpenedEntry != null && db.EntriesById.ContainsKey(LastOpenedEntry.Uuid))
 	        {
 	            LastOpenedEntry = null;
 	        }
@@ -282,16 +273,7 @@ namespace keepass2android
             //TODO broadcast event so affected activities can close/update? 
 	    }
 
-	    public Database FindDatabaseForGroupId(PwUuid groupKey)
-	    {
-	        foreach (Database db in OpenDatabases)
-	        {
-	            if (db.Groups.ContainsKey(groupKey))
-	                return db;
-	        }
-	        return null;
-	    }
-
+	    
         internal void UnlockDatabase()
 		{
 			QuickLocked = false;
@@ -374,7 +356,7 @@ namespace keepass2android
         public void MarkAllGroupsAsDirty()
 	    {
             foreach (var db in OpenDatabases)
-	        foreach (PwGroup group in db.Groups.Values)
+	        foreach (PwGroup group in db.GroupsById.Values)
 	        {
 	            DirtyGroups.Add(group);
 	        }
@@ -1017,12 +999,22 @@ namespace keepass2android
 	        throw new Exception("Database not found for dbIoc!");
 	    }
 
-	    public PwGroup FindGroup(PwUuid uuid)
+	    public Database GetDatabase(string databaseId)
+	    {
+	        foreach (Database db in OpenDatabases)
+	        {
+	            if (IoUtil.IocAsHexString(db.Ioc) == databaseId)
+	                return db;
+	        }
+	        throw new Exception("Database not found for databaseId!");
+        }
+
+        public PwGroup FindGroup(PwUuid uuid)
 	    {
 	        foreach (Database db in OpenDatabases)
 	        {
 	            PwGroup result;
-	            if (db.Groups.TryGetValue(uuid, out result))
+	            if (db.GroupsById.TryGetValue(uuid, out result))
 	                return result;
 	        }
 	        return null;
@@ -1033,10 +1025,10 @@ namespace keepass2android
 	        foreach (Database db in OpenDatabases)
 	        {
 	            PwGroup resultGroup;
-                if (db.Groups.TryGetValue(uuid, out resultGroup))
+                if (db.GroupsById.TryGetValue(uuid, out resultGroup))
 	                return resultGroup;
 	            PwEntry resultEntry;
-	            if (db.Entries.TryGetValue(uuid, out resultEntry))
+	            if (db.EntriesById.TryGetValue(uuid, out resultEntry))
 	                return resultEntry;
             }
 	        return null;
@@ -1052,6 +1044,24 @@ namespace keepass2android
             }
             return false;
 	        
+	    }
+
+	    public Database FindDatabaseForElement(IStructureItem element)
+	    {
+	        var db = TryFindDatabaseForElement(element);
+            if (db == null)
+                throw new Exception("Database element not found!");
+	        return db;
+	    }
+
+	    public Database TryFindDatabaseForElement(IStructureItem element)
+	    {
+            foreach (var db in OpenDatabases)
+            {
+                if (db.Elements.Contains(element))
+                    return db;
+            }
+	        return null;
 	    }
 	}
 

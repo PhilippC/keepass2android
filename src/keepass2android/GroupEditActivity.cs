@@ -118,7 +118,7 @@ namespace keepass2android
 			if (Intent.HasExtra(KeyGroupUuid))
 			{
 				string groupUuid = Intent.Extras.GetString(KeyGroupUuid);
-				_groupToEdit = App.Kp2a.CurrentDb.Groups[new PwUuid(MemUtil.HexStringToByteArray(groupUuid))];
+				_groupToEdit = App.Kp2a.CurrentDb.GroupsById[new PwUuid(MemUtil.HexStringToByteArray(groupUuid))];
 				_selectedIconId = (int) _groupToEdit.IconId;
 				_selectedCustomIconId = _groupToEdit.CustomIconUuid;
 				TextView nameField = (TextView)FindViewById(Resource.Id.group_name);

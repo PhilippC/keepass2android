@@ -192,7 +192,7 @@ namespace keepass2android
 			if (id == null) {
 				Group = db.Root;
 			} else {
-				Group = db.Groups[id];
+				Group = db.GroupsById[id];
 			}
 			
 			Log.Warn (Tag, "Retrieved group");
@@ -286,7 +286,7 @@ namespace keepass2android
 				&& (App.Kp2a.CurrentDb.KpDatabase.RootGroup.FindGroup(App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup, true) != null))
 			{
 				templates.AddRange(
-					App.Kp2a.CurrentDb.Groups[App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup].Entries.OrderBy(
+					App.Kp2a.CurrentDb.GroupsById[App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup].Entries.OrderBy(
 						entr => entr.Strings.ReadSafe(PwDefs.TitleField)));
 			}
 			if (templates.Count > 1)
@@ -314,6 +314,11 @@ namespace keepass2android
 	    public override bool EntriesBelongToCurrentDatabaseOnly
 	    {
 	        get { return true; }
+	    }
+
+	    public override ElementAndDatabaseId FullGroupId
+	    {
+	        get  { return new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(Group), Group); } 
 	    }
 
 	    public override void OnBackPressed()

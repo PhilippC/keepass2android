@@ -782,7 +782,7 @@ namespace keepass2android
         // All group Uuid are stored in guuidKey + indice
         // The last one is the destination group 
         public const String NumberOfGroupsKey = "NumberOfGroups";
-		public const String GUuidKey = "gUuidKey"; 
+		public const String GFullIdKey = "gFullIdKey"; 
 		public const String FullGroupNameKey = "fullGroupNameKey";
 		public const String ToastEnableKey = "toastEnableKey";
 
@@ -791,7 +791,7 @@ namespace keepass2android
 		private LinkedList<string> groupNameList;
 		#endif
 
-		private LinkedList<string> _groupUuid;
+		private LinkedList<string> _fullGroupIds;
 	    protected AppTask TaskToBeLaunchedAfterNavigation;
 
 		protected String FullGroupName {
@@ -824,7 +824,7 @@ namespace keepass2android
 
 		public void PopulateGroups(PwGroup groups) {
 
-			_groupUuid = new LinkedList<String>();
+			_fullGroupIds = new LinkedList<String>();
 
 			#if INCLUDE_DEBUG_MOVE_GROUPNAME
 			groupNameList = new LinkedList<String>{};
@@ -839,7 +839,7 @@ namespace keepass2android
 					FullGroupName = readGroup.Name + "." + FullGroupName;
 				}
 
-				_groupUuid.AddFirst (MemUtil.ByteArrayToHexString (readGroup.Uuid.UuidBytes));
+				_fullGroupIds.AddFirst(new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(readGroup),readGroup).FullId);
 
 				#if INCLUDE_DEBUG_MOVE_GROUPNAME
 				groupNameList.AddFirst (readGroup.Name);
@@ -860,16 +860,17 @@ namespace keepass2android
 		{
 			int numberOfGroups = b.GetInt(NumberOfGroupsKey);
 
-			_groupUuid = new LinkedList<String>();
+			_fullGroupIds = new LinkedList<String>();
 			#if INCLUDE_DEBUG_MOVE_GROUPNAME 
 			groupNameList = new LinkedList<String>{};
 			#endif 
 
 			int i = 0;
 
-			while (i < numberOfGroups) {
+			while (i < numberOfGroups)
+            {
 
-				_groupUuid.AddLast ( b.GetString (GUuidKey + i) ) ;
+				_fullGroupIds.AddLast ( b.GetString (GFullIdKey + i.ToString(CultureInfo.InvariantCulture)) ) ;
 
 				#if INCLUDE_DEBUG_MOVE_GROUPNAME 
 				groupNameList.AddLast ( b.GetString (gNameKey + i);
@@ -887,15 +888,16 @@ namespace keepass2android
 			get
 			{
 				// Return Navigate group Extras
-				IEnumerator<String> eGroupKeys = _groupUuid.GetEnumerator ();
+				
 
 				#if INCLUDE_DEBUG_MOVE_GROUPNAME
 				IEnumerator<String> eGroupName = groupNameList.GetEnumerator ();
 				#endif
 
 				int i = 0;
-				while (eGroupKeys.MoveNext()) {
-					yield return new StringExtra { Key = GUuidKey + i.ToString (CultureInfo.InvariantCulture), Value = eGroupKeys.Current };
+				foreach (var fullGroupId in _fullGroupIds)
+                {
+					yield return new StringExtra { Key = GFullIdKey + i.ToString (CultureInfo.InvariantCulture), Value = fullGroupId };
 
 					#if INCLUDE_DEBUG_MOVE_GROUPNAME
 					eGroupName.MoveNext();
@@ -933,26 +935,29 @@ namespace keepass2android
 				groupBaseActivity.StartTask (TaskToBeLaunchedAfterNavigation);
 				return;
 
-			} else if (_groupUuid.Contains(groupBaseActivity.UuidGroup)) { // Need to down up in groups tree
+			} else if ((groupBaseActivity.FullGroupId != null) && _fullGroupIds.Contains(groupBaseActivity.FullGroupId.FullId)) { // Need to down up in groups tree
 
 				// Get next Group Uuid
-				var linkedListNode = _groupUuid.Find(groupBaseActivity.UuidGroup);
+				var linkedListNode = _fullGroupIds.Find(groupBaseActivity.FullGroupId.FullId);
 				if (linkedListNode != null)
 				{
 					//Note: Resharper says there is a possible NullRefException.
 					//This is not the case because it was checked above if we're already there or not.
-					String nextGroupUuid = linkedListNode.Next.Value;
-					PwUuid nextGroupPwUuid = new PwUuid (MemUtil.HexStringToByteArray (nextGroupUuid));
+					String nextGroupFullId = linkedListNode.Next.Value;
+
+                    ElementAndDatabaseId fullId = new ElementAndDatabaseId(nextGroupFullId);
+
+					PwUuid nextGroupPwUuid = new PwUuid (MemUtil.HexStringToByteArray (fullId.ElementIdString));
 
 					// Create Group Activity
-					PwGroup nextGroup = App.Kp2a.CurrentDb.Groups[nextGroupPwUuid];
+					PwGroup nextGroup = App.Kp2a.GetDatabase(fullId.DatabaseId).GroupsById[nextGroupPwUuid];
 					GroupActivity.Launch (groupBaseActivity, nextGroup, this, new ActivityLaunchModeRequestCode(0));
 				}
 				return;
 
 			} else { // Need to go up in groups tree
-			    var targetUuid = new PwUuid(MemUtil.HexStringToByteArray(_groupUuid.Last.Value));
-			    var targetDb = App.Kp2a.FindDatabaseForGroupId(targetUuid);
+			    ElementAndDatabaseId fullId = new ElementAndDatabaseId(_fullGroupIds.Last.Value);
+			    var targetDb = App.Kp2a.GetDatabase(fullId.DatabaseId);
 			    if (App.Kp2a.CurrentDb != targetDb)
 			    {
 			        App.Kp2a.CurrentDb = targetDb;
@@ -975,7 +980,8 @@ namespace keepass2android
 
 		public bool GroupIsFound(GroupBaseActivity groupBaseActivity)
 		{
-			return _groupUuid.Last.Value.Equals (groupBaseActivity.UuidGroup);
+		    var fullId = groupBaseActivity.FullGroupId;
+            return fullId != null && _fullGroupIds.Last.Value.Equals (fullId.FullId);
 		}
 	}
 

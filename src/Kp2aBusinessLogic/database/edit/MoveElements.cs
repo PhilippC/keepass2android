@@ -52,7 +52,7 @@ namespace keepass2android.database.edit
             }
 
 		    HashSet<Database> removeDatabases = new HashSet<Database>();
-            Database addDatabase = _app.FindDatabaseForGroupId(_targetGroup.Uuid);
+            Database addDatabase = _app.FindDatabaseForElement(_targetGroup);
 		    if (addDatabase == null)
 		    {
 		        Finish(false, "Did not find target database. Did you lock it?");
@@ -73,12 +73,14 @@ namespace keepass2android.database.edit
                         PwEntry entry = elementToMove as PwEntry;
                         if (entry != null)
                         {
-                            var dbRem = _app.FindDatabaseForEntryId(entry.Uuid);
+                            var dbRem = _app.FindDatabaseForElement(entry);
                             removeDatabases.Add(dbRem);
-                            dbRem.Entries.Remove(entry.Uuid);
+                            dbRem.EntriesById.Remove(entry.Uuid);
+                            dbRem.Elements.Remove(entry);
                             pgParent.Entries.Remove(entry);
                             _targetGroup.AddEntry(entry, true, true);
-                            addDatabase.Entries.Add(entry.Uuid, entry);
+                            addDatabase.EntriesById.Add(entry.Uuid, entry);
+                            addDatabase.Elements.Add(entry);
                         }
                         else
                         {
@@ -89,18 +91,20 @@ namespace keepass2android.database.edit
                                 return;
                             }
 
-                            var dbRem = _app.FindDatabaseForEntryId(@group.Uuid);
+                            var dbRem = _app.FindDatabaseForElement(@group);
                             if (dbRem == null)
                             {
                                 Finish(false, "Did not find source database. Did you lock it?");
                                 return;
                             }
 
-                            dbRem.Groups.Remove(group.Uuid);
+                            dbRem.GroupsById.Remove(group.Uuid);
+                            dbRem.Elements.Remove(group);
                             removeDatabases.Add(dbRem);
                             pgParent.Groups.Remove(group);
                             _targetGroup.AddGroup(group, true, true);
-                            addDatabase.Groups.Add(group.Uuid, group);
+                            addDatabase.GroupsById.Add(group.Uuid, group);
+                            addDatabase.Elements.Add(group);
                         }
                     }
 

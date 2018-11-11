@@ -26,7 +26,7 @@ namespace keepass2android
 	public class EditGroup : RunnableOnFinish {
 		internal Database Db
 		{
-			get { return _app.FindDatabaseForGroupId(Group.Uuid); }
+			get { return _app.FindDatabaseForElement(Group); }
 		}
 
         public IKp2aApp App { get => _app; }

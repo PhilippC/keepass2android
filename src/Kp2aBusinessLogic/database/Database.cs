@@ -26,6 +26,7 @@ using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using KeePassLib.Interfaces;
 using KeePassLib.Utility;
 using Exception = System.Exception;
 using String = System.String;
@@ -33,18 +34,20 @@ using String = System.String;
 namespace keepass2android
 {
 
-	public class Database {
-		
-
-		public Dictionary<PwUuid, PwGroup> Groups = new Dictionary<PwUuid, PwGroup>(new PwUuidEqualityComparer());
-		public Dictionary<PwUuid, PwEntry> Entries = new Dictionary<PwUuid, PwEntry>(new PwUuidEqualityComparer());
+	public class Database
+	{
+	    public HashSet<IStructureItem> Elements = new HashSet<IStructureItem>();
+		public Dictionary<PwUuid, PwGroup> GroupsById = new Dictionary<PwUuid, PwGroup>(new PwUuidEqualityComparer());
+		public Dictionary<PwUuid, PwEntry> EntriesById = new Dictionary<PwUuid, PwEntry>(new PwUuidEqualityComparer());
 		public PwGroup Root;
 		public PwDatabase KpDatabase;
 		public IOConnectionInfo Ioc 
 		{
 			get
 			{
-				return KpDatabase?.IOConnectionInfo;
+                
+                return KpDatabase?.IOConnectionInfo;
+                
 			}
 		}
 
@@ -203,16 +206,18 @@ namespace keepass2android
 			{
 				if (checkForDuplicateUuids)
 				{
-					if (Entries.ContainsKey(e.Uuid))
+					if (EntriesById.ContainsKey(e.Uuid))
 					{
-						throw new DuplicateUuidsException("Same UUID for entries '"+Entries[e.Uuid].Strings.ReadSafe(PwDefs.TitleField)+"' and '"+e.Strings.ReadSafe(PwDefs.TitleField)+"'.");
+						throw new DuplicateUuidsException("Same UUID for entries '"+EntriesById[e.Uuid].Strings.ReadSafe(PwDefs.TitleField)+"' and '"+e.Strings.ReadSafe(PwDefs.TitleField)+"'.");
 					}
 					
 				}
-				Entries [e.Uuid] = e;
+				EntriesById [e.Uuid] = e;
+			    Elements.Add(e);
 			}
 
-		    Groups[currentGroup.Uuid] = currentGroup;
+		    GroupsById[currentGroup.Uuid] = currentGroup;
+		    Elements.Add(currentGroup);
 			foreach (PwGroup g in childGroups) 
 			{
 				if (checkForDuplicateUuids)
@@ -235,8 +240,9 @@ namespace keepass2android
 
 	    public void UpdateGlobals()
 	    {
-	        Entries.Clear();
-	        Groups.Clear();
+	        EntriesById.Clear();
+	        GroupsById.Clear();
+	        Elements.Clear();
             PopulateGlobals(Root);
 	    }
 	}

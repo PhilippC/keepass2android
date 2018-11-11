@@ -52,7 +52,7 @@ namespace keepass2android
 				if (uuidBytes != null)
 				{
 						PwUuid templateUuid = new PwUuid(uuidBytes);
-						return db.Entries.ContainsKey(templateUuid);
+						return db.EntriesById.ContainsKey(templateUuid);
 				}
 			}
 			return false;
@@ -63,7 +63,7 @@ namespace keepass2android
 			_db = db;
 			_entry = entry;
 			PwUuid templateUuid = new PwUuid(MemUtil.HexStringToByteArray(entry.Strings.ReadSafe(EtmTemplateUuid)));
-			_templateEntry = db.Entries[templateUuid];
+			_templateEntry = db.EntriesById[templateUuid];
 		}
 
 		public static void InitializeEntry(PwEntry entry, PwEntry templateEntry)

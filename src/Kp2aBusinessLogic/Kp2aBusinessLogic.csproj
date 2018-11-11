@@ -90,7 +90,6 @@
   <ItemGroup>
     <Compile Include="database\CheckDatabaseForChanges.cs" />
     <Compile Include="database\edit\AddTemplateEntries.cs" />
-    <Compile Include="database\edit\ChangeTemplateIds.cs" />
     <Compile Include="database\edit\CopyEntry.cs" />
     <Compile Include="database\edit\DeleteMultipleItemsFromOneDatabase.cs" />
     <Compile Include="database\edit\EditGroup.cs" />
@@ -104,6 +103,7 @@
     <Compile Include="DataExchange\Formats\KeePassKdb2x.cs" />
     <Compile Include="DataExchange\Formats\KeePassXml2x.cs" />
     <Compile Include="DataExchange\PwExportInfo.cs" />
+    <Compile Include="ElementAndDatabaseId.cs" />
     <Compile Include="Io\AndroidContentStorage.cs" />
     <Compile Include="Io\BuiltInFileStorage.cs" />
     <Compile Include="Io\CachingFileStorage.cs" />

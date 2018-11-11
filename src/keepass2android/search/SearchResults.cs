@@ -61,6 +61,11 @@ namespace keepass2android.search
 	        get { return false; }
 	    }
 
+	    public override ElementAndDatabaseId FullGroupId
+	    {
+	        get { return null; }
+	    }
+
 
 	    protected override void OnNewIntent(Intent intent)
 		{
