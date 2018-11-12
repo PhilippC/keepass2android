@@ -92,8 +92,7 @@
   <string name="fingerprint_reenable">Engedélyezze újra az ujjlenyomat alapú feloldást az új főkulccsal (jelszóval).</string>
   <string name="fingerprint_reenable2">Kérem oldja fel a jelszavával és ezután kapcsolja be újra az Ujjlenyomat Feloldást az adatbázis-beállításokban.</string>
   <string name="FingerprintInitFailed">Nem sikerült az ujjlenyomat olvasó inicializálása. </string>
-  <string name="enable_fingerprint_unlock_Info">
-    Ez a funkció le fogja tárolni a főkulcsot (jelszót) az 
+  <string name="enable_fingerprint_unlock_Info">    Ez a funkció le fogja tárolni a főkulcsot (jelszót) az 
     eszközön, az Android Kulcstár által titkosítva, és 
     ujjlenyomat alapú authentikációval védve. Ez lehetővé
     teszi, hogy az adatbázist ujjlenyomat segítségével
@@ -203,7 +202,6 @@
   <string name="omitbackup_title">Keresési kivételek</string>
   <string name="omitbackup_summary">A Backup és Lomtár csoportok kihagyása a keresésből</string>
   <string name="pass_filename">KeePass adatbázisfájl</string>
-  <string name="password_title">Adatbázis-jelszó megadása</string>
   <string name="master_key_type">A főkulcs típusának kiválasztása:</string>
   <string name="progress_create">Új adatbázis létrehozása…</string>
   <string name="create_database">Adatbázis létrehozása</string>
@@ -576,16 +574,12 @@
   
     • Ellenőrizze, hogy a helyes jelszót adta-e meg.  A szem ikon megérintésével megjelenítheti a beírt jelszót.\n
     • Ellenőrizze, hogy a helyes jelszótípust adott-e meg. Ellenőrizze, hogy ez ugyan az a típus-e, mint amit az adatbázis létrehozásakor megadott.\n
-    • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.
-</string>
-  <string name="HintLocalBackupInvalidCompositeKey">
-\n
+    • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n
     Útmutatás: Ha úgy gondolja, hogy az adatbázis fájl sérült, vagy nem emlékszik a főkulcsra (jelszó) miután megváltoztatta, megpróbálhatja az utolsó sikeresen megnyitott fájl verziót ide klikkelve \"%1$s\" és kiválasztva a helyi biztonsági másolatot.</string>
-  <string name="HintLocalBackupOtherError">
-\n
+  <string name="HintLocalBackupOtherError">\n
 Útmutatás: Keepass2Android eltárolta az utolsó sikeresen megnyitott fájl verziót a belső memóriában. Megnyithatja ide klikkelve \"%1$s\" és kiválasztva a helyi biztonsági másolatot.  </string>
-  <string name="CorruptDatabaseHelp">
-    A fájl sérült. \n 
+  <string name="CorruptDatabaseHelp">    A fájl sérült. \n 
     Néhány javaslat a probléma felderítésére:\n
     
     • Ha a fájlt USB kapcsolaton keresztül másolta át (MTP-mód), próbáljon meg egy másik alkalmazást, például a MyPhoneExplorert használni, mert az MTP egyes esetekben a fájlok végét levágja.\n
