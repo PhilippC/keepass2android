@@ -199,7 +199,6 @@ Gå venligst til systemindstillinger først.</string>
   <string name="omitbackup_title">Søg ikke efter backup poster og poster i papirkurven</string>
   <string name="omitbackup_summary">Udelad \'Backup\' og papirkurvs-gruppen i søgeresultater</string>
   <string name="pass_filename">KeePass database filnavn</string>
-  <string name="password_title">Angiv database adgangskode</string>
   <string name="master_key_type">Vælg type af hovednøgle:</string>
   <string name="progress_create">Opretter ny database…</string>
   <string name="create_database">Opret database</string>
@@ -503,16 +502,12 @@ Gå venligst til systemindstillinger først.</string>
   
     • Sørg for, at du har indtastet den korrekte adgangskode. Brug øjenikonet til at afsløre det indtastede kodeord.\n
     • Kontroller, at du har valgt den korrekte adgangskode type. Sørg for, at dette svarer til den type, der blev brugt, da du oprettede databasen.\n
-    • Kontroller, at du har valgt den rigtige databasefil.
-</string>
-  <string name="HintLocalBackupInvalidCompositeKey">
-\n
+    • Kontroller, at du har valgt den rigtige databasefil.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n
    • Tip: Hvis du mener, at din databasefil muligvis er ødelagt, eller du ikke kan huske masternøglen, efterat have ændret den, kan du prøve den sidste vellykkede filversion ved at klikke på \"%1$s\" og vælge den lokale sikkerhedkopi.</string>
-  <string name="HintLocalBackupOtherError">
-\n
+  <string name="HintLocalBackupOtherError">\n
      • Tip: Keepass2Android har gemt den sidste vellykkede filversion i intern hukommelse. Du kan åbne den ved at klikke på \"%1$s\" og vælge den lokale sikkerhedskopi.  </string>
-  <string name="CorruptDatabaseHelp">
-Filen er beskadiget.\n
+  <string name="CorruptDatabaseHelp">Filen er beskadiget.\n
     Her er nogle tip, der kan hjælpe med at diagnosticere problemet:\n
     
     • Hvis du kopierede filen over USB (MTP-tilstand), skal du prøve igen med værktøjer som MyPhoneExplorer. MTP afkorter filer i visse tilfælde.\n
