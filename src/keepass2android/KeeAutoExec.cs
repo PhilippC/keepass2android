@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Android.Webkit;
+using KeePass.DataExchange;
 using KeePass.Util.Spr;
 using KeePassLib;
 using KeePassLib.Keys;
@@ -29,6 +30,8 @@ namespace keepass2android
         public bool Visible = true;
 
         public long Priority = 0;
+
+        public string IfDevice = null;
 
         public AutoExecItem(PwEntry pe, PwDatabase pdContext)
         {
@@ -60,6 +63,49 @@ namespace keepass2android
                 foreach (PwGroup pgSub in pg.Groups)
                     AddAutoExecEntries(l, pgSub);
             }
+        }
+
+        public static bool IsDeviceEnabled(AutoExecItem a, string strDevice, out bool isExplicit)
+        {
+            string strList = a.IfDevice;
+            isExplicit = false;
+            if (string.IsNullOrEmpty(strList) || string.IsNullOrEmpty(strDevice))
+                return true;
+
+            CsvOptions opt = new CsvOptions();
+            opt.BackslashIsEscape = false;
+            opt.TrimFields = true;
+
+            CsvStreamReaderEx csv = new CsvStreamReaderEx(strList, opt);
+            string[] vFlt = csv.ReadLine();
+            if (vFlt == null) { Debug.Assert(false); return true; }
+
+            bool bHasIncl = false, bHasExcl = false;
+            foreach (string strFlt in vFlt)
+            {
+                if (string.IsNullOrEmpty(strFlt)) continue;
+
+                if (strFlt[0] == '!') // Exclusion
+                {
+                    if (strDevice.Equals(strFlt.Substring(1), StrUtil.CaseIgnoreCmp))
+                    {
+                        isExplicit = true; 
+                        return false;
+                    }
+                    bHasExcl = true;
+                }
+                else // Inclusion
+                {
+                    if (strDevice.Equals(strFlt, StrUtil.CaseIgnoreCmp))
+                    {
+                        isExplicit = true;
+                        return true;
+                    }
+                    bHasIncl = true;
+                }
+            }
+
+            return (bHasExcl || !bHasIncl);
         }
 
         private static List<AutoExecItem> GetAutoExecItems(PwDatabase pd)
@@ -98,6 +144,9 @@ namespace keepass2android
                 if (GetString(pe, "Priority", ctx, true, out str))
                     long.TryParse(str, out lItemPri);
                 a.Priority = lItemPri;
+
+                if (GetString(pe, "IfDevice", ctx, true, out str))
+                    a.IfDevice = str;
 
                 ++lPriStd;
             }
