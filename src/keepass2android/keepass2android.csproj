@@ -176,6 +176,7 @@
     <Compile Include="ActivityLaunchMode.cs" />
     <Compile Include="addons\CsvStreamReaderEx.cs" />
     <Compile Include="ChallengeXCKey.cs" />
+    <Compile Include="ConfigureChildDatabasesActivity.cs" />
     <Compile Include="EntryActivityClasses\ViewImagePopupItem.cs" />
     <Compile Include="FileSaveProcessManager.cs" />
     <Compile Include="fileselect\FilteredCursor.cs" />
@@ -821,7 +822,9 @@
     <AndroidResource Include="Resources\layout\searchurlresults.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\searchurlresults_empty.xml" />
+    <AndroidResource Include="Resources\layout\searchurlresults_empty.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="libs\" />
@@ -1889,6 +1892,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\open_db_selection.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\child_db_config_row.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\config_child_db.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

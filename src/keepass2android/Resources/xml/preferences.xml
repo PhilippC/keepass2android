@@ -112,6 +112,13 @@
 			<intent android:action="kp2a.action.ExportDatabaseActivity"/>
 		</PreferenceScreen>
 
+    <PreferenceScreen
+      android:key="configure_child_dbs_prefs"
+      android:title="@string/configure_child_dbs"
+    >
+      <intent android:action="kp2a.action.ConfigureChildDatabasesActivity"/>
+    </PreferenceScreen>
+
 		<Preference
 	  android:key="import_db_prefs"
 	  android:title="@string/import_db_prefs"

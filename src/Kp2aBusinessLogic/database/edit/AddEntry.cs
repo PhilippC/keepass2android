@@ -37,7 +37,7 @@ namespace keepass2android
 			return new AddEntry(ctx, app, entry, parentGroup, finish);
 		}
 		
-		protected AddEntry(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
+		public AddEntry(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
 			_ctx = ctx;
 			_parentGroup = parentGroup;
 			_app = app;

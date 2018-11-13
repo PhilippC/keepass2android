@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
+using Android.App;
+using Android.OS;
+using Android.Provider;
 using Android.Webkit;
+using Java.Nio.FileNio;
 using KeePass.DataExchange;
 using KeePass.Util.Spr;
 using KeePassLib;
@@ -9,6 +13,7 @@ using KeePassLib.Keys;
 using KeePassLib.Security;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
+using Debug = System.Diagnostics.Debug;
 
 namespace keepass2android
 {
@@ -44,6 +49,23 @@ namespace keepass2android
 
     public sealed class KeeAutoExecExt
     {
+        public const string _ifDevice = "IfDevice";
+
+        public static string ThisDeviceId   
+        {
+            get {
+                String android_id = Settings.Secure.GetString(Application.Context.ContentResolver, Settings.Secure.AndroidId);
+
+                string deviceName = Build.Manufacturer+" "+Build.Model;
+                string deviceId = deviceName + " (" + android_id + ")";
+
+                deviceId = deviceId.Replace("!", "_");
+                deviceId = deviceId.Replace(",", "_");
+                deviceId = deviceId.Replace(";", "_");
+                return deviceId;
+            }
+            
+        }
 
 
         private static int PrioritySort(AutoExecItem x, AutoExecItem y)
@@ -108,7 +130,72 @@ namespace keepass2android
             return (bHasExcl || !bHasIncl);
         }
 
-        private static List<AutoExecItem> GetAutoExecItems(PwDatabase pd)
+
+
+        public static void SetDeviceEnabled(AutoExecItem a, string strDevice, bool enabled=true)
+        {
+            string strList = a.IfDevice;
+
+            string deviceEntry = (enabled ? "" : "!") + strDevice;
+
+            if (string.IsNullOrEmpty(strList) || string.IsNullOrEmpty(strDevice))
+            {
+                a.Entry.Strings.Set(_ifDevice, new ProtectedString(false,deviceEntry));
+                return;
+            }
+                
+            
+
+            CsvOptions opt = new CsvOptions();
+            opt.BackslashIsEscape = false;
+            opt.TrimFields = true;
+
+            CsvStreamReaderEx csv = new CsvStreamReaderEx(strList, opt);
+            string[] vFlt = csv.ReadLine();
+            if (vFlt == null) { Debug.Assert(false); a.Entry.Strings.Set(_ifDevice, new ProtectedString(false, deviceEntry)); return; }
+
+            string result = "";
+            bool hasDevice = false;
+            foreach (string strFlt in vFlt)
+            {
+                string modifiedValue = strFlt;
+                if (string.IsNullOrEmpty(strFlt)) continue;
+                if ((strFlt == strDevice) || (strFlt == "!" + strDevice))
+                {
+                    modifiedValue = deviceEntry;
+                    hasDevice = true;
+                }
+
+                if (result != "")
+                {
+                    result += opt.FieldSeparator;
+                }
+                if (modifiedValue.Contains(opt.FieldSeparator) || modifiedValue.Contains("\\") ||
+                    modifiedValue.Contains("\""))
+                {
+                    //add escaping:
+                    modifiedValue = modifiedValue.Replace("\"","\\\"");
+                    modifiedValue = "\""+modifiedValue+"\"";
+                }
+                result += modifiedValue;
+
+            }
+
+            if (!hasDevice)
+            {
+                if (result != "")
+                {
+                    result += opt.FieldSeparator;
+                }
+                result += deviceEntry;
+            }
+            a.Entry.Strings.Set(_ifDevice, new ProtectedString(false,result));
+        }
+
+
+
+
+        public static List<AutoExecItem> GetAutoExecItems(PwDatabase pd)
         {
             List<AutoExecItem> l = new List<AutoExecItem>();
             if (pd == null) { Debug.Assert(false); return l; }
@@ -145,7 +232,8 @@ namespace keepass2android
                     long.TryParse(str, out lItemPri);
                 a.Priority = lItemPri;
 
-                if (GetString(pe, "IfDevice", ctx, true, out str))
+                
+                if (GetString(pe, _ifDevice, ctx, true, out str))
                     a.IfDevice = str;
 
                 ++lPriStd;

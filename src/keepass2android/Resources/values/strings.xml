@@ -736,6 +736,16 @@
   <string name="open_other_db">Open another database…</string>
   <string name="select_database">Select database</string>
 
+  <string name="configure_child_dbs">Configure child databases…</string>
+  <string name="child_dbs_title">Child databases</string>
+  <string name="unspecified">unspecified</string>
+
+  <string name="child_db_enabled_on_this_device">Enabled on this device</string>
+  <string name="child_db_enable_on_this_device">Enable on this device</string>
+  <string name="child_db_disable_on_this_device">Disable on this device</string>
+  <string name="child_db_enable_a_copy_for_this_device">Copy for this device</string>
+  <string name="EnableCopyForThisDevice_Info">This will create and enable a copy of the child database settings. These copied settings can then be adjusted specifically for this device.</string>
+
   
   <string name="DbUnlockedChannel_name">Database unlocked</string>
   <string name="DbUnlockedChannel_desc">Notification about the database being unlocked</string>
