@@ -293,7 +293,7 @@
   <string name="BinaryDirectory_summary">Cartella dove vengono salvati i file allegati.</string>
   <string name="SaveAttachmentDialog_title">Salva allegato</string>
   <string name="SaveAttachmentDialog_text">Per favore, scegli dove salvare l\'allegato.</string>
-  <string name="SaveAttachmentDialog_save">Esporta nel file...</string>
+  <string name="SaveAttachmentDialog_save">Esporta su file...</string>
   <string name="SaveAttachmentDialog_open">Salva nella cache e apri</string>
   <string name="ShowAttachedImage">Visualizza immagine con visualizzatore integrato</string>
   <string name="SaveAttachment_doneMessage">File salvato in %1$s.</string>
@@ -321,7 +321,7 @@
   <string name="LockWhenNavigateBack_title">Blocca quando lasci l\'app</string>
   <string name="LockWhenNavigateBack_summary">Blocca il database quando si lascia l\'app premendo il tasto \"indietro\".</string>
   <string name="UseKp2aKeyboardInKp2a_title">Usa la tastiera integrata all\'interno di Keepass2Android</string>
-  <string name="UseKp2aKeyboardInKp2a_summary">Se non ti fidi del fornitore della tua tastiere standard, seleziona questa opzione per utilizzare la tastiera integrata quando inserisci la tua password principale o modifica le voci.</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Se non ti fidi del fornitore della tua tastiera standard, seleziona quest\'opzione per utilizzare la tastiera integrata quando inserisci la tua password principale o modifichi le voci.</string>
   <string name="ActivateSearchViewOnStart_title">Attivare il campo di ricerca all\'avvio</string>
   <string name="ActivateSearchViewOnStart_summary">Attiva il campo di ricerca nella vista gruppo, dopo lo sblocco o durante la ricerca di una voce</string>
   <string name="NoDonateOption_title">Nascondi l\'opzione della donazione</string>
@@ -443,8 +443,8 @@
   <string name="hint_http_url">URL della cartella o del file (es: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Inserisci i dati di accesso OwnCloud:</string>
   <string name="hint_owncloud_url">URL di OwnCloud (esempio: owncloud.me.com)</string>
-  <string name="enter_nextcloud_login_title">Inserisci i dati di login di Nextcloud:</string>
-  <string name="hint_nextcloud_url">Nextcloud URL (es: nextcloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Inserisci i dati di accesso Nextcloud:</string>
+  <string name="hint_nextcloud_url">URL di Nextcloud (esempio: nextcloud.me.com)</string>
   <string name="hint_sftp_host">host (es: 192.168.0.1)</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Cartella iniziale (opzionale):</string>
@@ -596,6 +596,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 • se non puoi aprire il file dallo stesso percorso sul tuo PC, è molto probabile che il file sia effettivamente danneggiato. Per favore usa un backup del database. Se credi che Keepass2Android abbia corrotto il file, contatta il supporto.\n
 • se puoi ancora aprire il file sul tuo PC, contatta il supporto. Puoi provare a salvarlo con impostazioni differenti (es: non compresso) sul PC e, poi, riprovare ad aprirlo in Keepass2Android.  </string>
   <string name="open_other_db">Apri un altro database…</string>
+  <string name="select_database">Seleziona database</string>
   <string name="DbUnlockedChannel_name">Database sbloccato</string>
   <string name="DbUnlockedChannel_desc">Notifica dello sblocco del database</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
