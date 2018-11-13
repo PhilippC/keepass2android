@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Lås upp databas</string>
   <string name="brackets">Parenteser</string>
   <string name="cancel">Avbryt</string>
+  <string name="Ok">Okej</string>
   <string name="ClearClipboard">Urklippshanteraren rensad.</string>
   <string name="clipboard_timeout">Tidsgräns för urklipp</string>
   <string name="clipboard_timeout_summary">Tid innan urklipp rensas efter att användarnamn eller lösenord har kopierats</string>
@@ -198,6 +199,7 @@
   <string name="omitbackup_title">Sök ej backup- eller papperskorgs-poster</string>
   <string name="omitbackup_summary">Utelämna \'backup\' och papperskorgs-grupp från sökresultaten</string>
   <string name="pass_filename">KeePass-databasens filnamn</string>
+  <string name="password_title">Ange lösenord för databasen</string>
   <string name="master_key_type">Välj huvudnyckeltyp:</string>
   <string name="progress_create">Skapar ny databas…</string>
   <string name="create_database">Skapa databas</string>
@@ -580,6 +582,7 @@
   <string name="HintLocalBackupOtherError">\n
     • Tips: Keepass2Androi har sparat den senast lyckade öppnade filversionen i internminnet. Du kan öppna den genom att klicka \"%1$s\" och välja lokal säkerhetskopia.  </string>
   <string name="CorruptDatabaseHelp">Filen är skadad. \n Här är några tips som kan hjälpa till att diagnostisera ärendet: \n-• Om du har kopierat filen via USB (MTP-läge), var god försök igen med verktyg som MyPhoneExplorer. MTP trunkerar filer i vissa fall. \n-• Om du inte kan öppna filen från samma plats på din dator, är det mycket troligt att filen faktiskt är skadad. Använd en säkerhetskopia av databasen. Om du antar att Keepass2Android har skadat filen, vänligen kontakta support. \n • Om du fortfarande kan öppna filen på din dator, vänligen kontakta support. Du kan försöka spara den med olika inställningar (t.ex. uppzippad) på datorn och försöka att öppna den i Keepass2Android igen.  </string>
+  <string name="select_database">Välj databas</string>
   <string name="DbUnlockedChannel_name">Databas upplåst</string>
   <string name="DbUnlockedChannel_desc">Avisering om att databasen blivit upplåst</string>
   <string name="DbQuicklockedChannel_name">Snabbupplåsning</string>
