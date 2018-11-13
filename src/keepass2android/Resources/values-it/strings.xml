@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Sblocca il database</string>
   <string name="brackets">Parentesi</string>
   <string name="cancel">Annulla</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Appunti eliminati.</string>
   <string name="clipboard_timeout">Scadenza appunti</string>
   <string name="clipboard_timeout_summary">Durata degli appunti dopo la copia di nome utente o password</string>
@@ -198,6 +199,7 @@
   <string name="omitbackup_title">Non cercare tra le voci di backup e cestino</string>
   <string name="omitbackup_summary">Escludi i gruppi \'Backup\' e Cestino dai risultati di ricerca</string>
   <string name="pass_filename">Nome file del database di KeePass</string>
+  <string name="password_title">Inserisci la password del database</string>
   <string name="master_key_type">Seleziona il tipo di chiave principale:</string>
   <string name="progress_create">Creazione del nuovo database…</string>
   <string name="create_database">Crea database</string>
@@ -593,6 +595,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 • se hai copiato il file tramite USB (MTP-Mode), riprova usando uno strumento come MyPhoneExplorer. MTP, a volte, tronca i file.\n
 • se non puoi aprire il file dallo stesso percorso sul tuo PC, è molto probabile che il file sia effettivamente danneggiato. Per favore usa un backup del database. Se credi che Keepass2Android abbia corrotto il file, contatta il supporto.\n
 • se puoi ancora aprire il file sul tuo PC, contatta il supporto. Puoi provare a salvarlo con impostazioni differenti (es: non compresso) sul PC e, poi, riprovare ad aprirlo in Keepass2Android.  </string>
+  <string name="open_other_db">Apri un altro database…</string>
   <string name="DbUnlockedChannel_name">Database sbloccato</string>
   <string name="DbUnlockedChannel_desc">Notifica dello sblocco del database</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
