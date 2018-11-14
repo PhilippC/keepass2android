@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Veritabanı aç</string>
   <string name="brackets">Köşeli parantezler</string>
   <string name="cancel">İptal</string>
+  <string name="Ok">Tamam</string>
   <string name="ClearClipboard">Pano temizlendi.</string>
   <string name="clipboard_timeout">Pano zaman aşımı</string>
   <string name="clipboard_timeout_summary">Kullanıcı adını yada parolayı panoya kopyaladıktan sonra panoyu temizleme zaman aşımı</string>
@@ -198,6 +199,7 @@
   <string name="omitbackup_title">Yedek grubundaki ve geri dönüşümdeki kayıtları arama</string>
   <string name="omitbackup_summary">Yedek grubundaki ve geri dönüşümdeki kayıtları arama sonuçlarına eklenmesin</string>
   <string name="pass_filename">KeePass veritabanının dosya adı</string>
+  <string name="password_title">Veritabanı parolasını girin</string>
   <string name="master_key_type">Ana anahtar türünü seçin:</string>
   <string name="progress_create">Yeni veritabanı oluşturuluyor…</string>
   <string name="create_database">Veritabanı oluştur</string>
@@ -595,6 +597,8 @@
     • Aynı dosyayı bilgisayaranızda açabiliyorsanız, desteğe başvurun. Dosyayı farklı ayarlarla (örn. zipden çıkarılmış şekilde) kaydedebilir ve Keepass2Android ile yeniden açmayı deneyebilirsiniz.
 
   </string>
+  <string name="open_other_db">Başka bir veritabanı açın…</string>
+  <string name="select_database">Veritabanını seçin</string>
   <string name="DbUnlockedChannel_name">Veritabanı açıldı</string>
   <string name="DbUnlockedChannel_desc">Açılan veritabanıyla ilgili bildirim</string>
   <string name="DbQuicklockedChannel_name">Kilidi ÇabukAç</string>
