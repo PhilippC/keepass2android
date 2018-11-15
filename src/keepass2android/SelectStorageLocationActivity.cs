@@ -96,7 +96,7 @@ namespace keepass2android
 
 		protected override void StartSelectFile( bool isForSave, int browseRequestCode, string protocolId)
 		{
-			FileSelectHelper fileSelectHelper = new FileSelectHelper(this, isForSave, browseRequestCode);
+			FileSelectHelper fileSelectHelper = new FileSelectHelper(this, isForSave, true, browseRequestCode);
 			fileSelectHelper.OnOpen += (sender, ioc) =>
 			{
 				IocSelected(ioc,browseRequestCode);
@@ -197,7 +197,7 @@ namespace keepass2android
 
 		protected override void StartFileChooser(string defaultPath, int requestCode, bool forSave)
 		{
-			new FileSelectHelper(this, forSave, requestCode).StartFileChooser(defaultPath);
+			new FileSelectHelper(this, forSave, true, requestCode).StartFileChooser(defaultPath);
 		}
 
 

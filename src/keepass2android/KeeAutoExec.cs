@@ -316,6 +316,7 @@ namespace keepass2android
                 ob = GetBoolEx(pe, "Skip if not exists", ctxNoEsc);
             if (ob.HasValue && ob.Value)
             {
+				//TODO adjust to KP2A
                 if (!IOConnection.FileExists(ioc)) return;
             }
 
@@ -339,7 +340,8 @@ namespace keepass2android
                 if (ob.HasValue && ob.Value)
                 {
                     IOConnectionInfo iocKeyAbs = IOConnectionInfo.FromPath(strAbs);
-                    if (!IOConnection.FileExists(iocKeyAbs)) return;
+                    //TODO adjust to KP2A
+					if (!IOConnection.FileExists(iocKeyAbs)) return;
                 }
 
                 try { ck.AddUserKey(new KcpKeyFile(strAbs)); }

@@ -280,7 +280,7 @@ namespace keepass2android
 	                        }
 	                        if (args2.Item.ItemId == edit)
 	                        {
-	                            var fsh = new FileSelectHelper(_activity, false, RequestCodeEditIoc);
+	                            var fsh = new FileSelectHelper(_activity, false, false, RequestCodeEditIoc);
 	                            fsh.OnOpen += (o, newConnectionInfo) =>
 	                            {
 	                                _activity.EditFileEntry(filename, newConnectionInfo);

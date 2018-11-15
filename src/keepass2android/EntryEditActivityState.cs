@@ -30,6 +30,9 @@ namespace keepass2android
 		internal bool EntryModified;
 
 		public IEditMode EditMode { get; set; }
+		
+		//the key of the extra field to which the last triggered file selection process belongs
+		string LastTriggeredFileSelectionProcessKey;
 	}
 }
 

@@ -22,12 +22,21 @@
     android:orientation="vertical"
     android:layout_toLeftOf="@id/edit_extra">
 
+	
+    <TextView
+          android:id="@+id/extrakey"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="0dip"
+		 android:visibility="gone" />
+
     <TextView
           android:id="@+id/title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginRight="0dip"
-        style="@style/EntryFieldHeader" />
+        style="@style/EntryFieldHeader"
+		  />
 
       <EditText
           android:id="@+id/value"
