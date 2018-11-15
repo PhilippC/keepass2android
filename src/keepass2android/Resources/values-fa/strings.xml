@@ -61,6 +61,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="unlock_database_title">قفل‌گشایی پایگاه‌داده</string>
   <string name="brackets">پرانتزها</string>
   <string name="cancel">لغو</string>
+  <string name="Ok">تأیید</string>
   <string name="ClearClipboard">بریده‌دان پاک شد.</string>
   <string name="clipboard_timeout">مهلت بریده‌دان</string>
   <string name="clipboard_timeout_summary">پس از کپی‌کردن نام کاربری و گذرواژه تا این مدت در بریده‌دان باقی می‌مانند و سپس پاک می‌شوند</string>
@@ -201,6 +202,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="omitbackup_title">در مدخل‌های پشتیبان و سطل بازیافت نگرد</string>
   <string name="omitbackup_summary">چیزی از گروه‌های پشتیبان و سطل بازیافت در نتایج جست‌وجو نباشد</string>
   <string name="pass_filename">نام فایل پایگاه‌دادهٔ KeePass</string>
+  <string name="password_title">گذرواژهٔ پایگاه‌داده را وارد کنید</string>
   <string name="master_key_type">نوع شاه‌کلید را انتخاب کنید:</string>
   <string name="progress_create">در حال ساخت پایگاه‌دادهٔ جدید…</string>
   <string name="create_database">ساخت پایگاه‌داده</string>
@@ -321,6 +323,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ClearPasswordOnLeave_summary">اگر بدون گشودن قفل پایگاه‌داده، صفحه را ترک کردم شاه‌رمز واردشده پاک شود.</string>
   <string name="LockWhenNavigateBack_title">با رفتن از برنامه قفل شود</string>
   <string name="LockWhenNavigateBack_summary">هنگامی که با زدن کلید برگشت برنامه را ترک کردم، پایگاه‌داده قفل شود.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">استفاده از صفحه‌کلید توکار Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">اگر به ارائه‌دهندهٔ صفحه‌کلید پیش‌فرض خود اعتماد ندارید، این گزینه را علامت بزنید تا هنگام واردکردن شاه‌کلید یا ویرایش مدخل‌ها صفحه‌کلید توکار بالا بیاید.</string>
   <string name="ActivateSearchViewOnStart_title">تمرکز روی فیلد جستجو هنگام شروع</string>
   <string name="ActivateSearchViewOnStart_summary">هنگام جستجوی مدخل‌ها یا پس از قفل‌گشایی پایگاه، فیلد جستجو فعال می‌شود</string>
   <string name="NoDonateOption_title">مخفی‌کردن گزینهٔ هدیه</string>
