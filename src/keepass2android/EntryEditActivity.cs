@@ -963,18 +963,18 @@ namespace keepass2android
 				ees.FindViewById(Resource.Id.filestorage_display).Visibility = (string.IsNullOrEmpty(newValue) && fileStorage != null) ? ViewStates.Gone : ViewStates.Visible;
 			if (fileStorage != null)
 			{
-				
-				string displayPath = fileStorage.GetDisplayName(ioc);
-				int protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
+				int protocolSeparatorPos = ioc.Path.IndexOf("://", StringComparison.Ordinal);
 				string protocolId = protocolSeparatorPos < 0 ?
-					"file" : displayPath.Substring(0, protocolSeparatorPos);
+					"file" : ioc.Path.Substring(0, protocolSeparatorPos);
 				Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
 				ees.FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
 
 				String fs_title = App.Kp2a.GetResourceString("filestoragename_" + protocolId);
 				ees.FindViewById<TextView>(Resource.Id.filestorage_label).Text = fs_title;
 
-			    ees.FindViewById<TextView>(Resource.Id.label_filename).Text = protocolSeparatorPos < 0 ?
+			    string displayPath = fileStorage.GetDisplayName(ioc);
+                protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
+                ees.FindViewById<TextView>(Resource.Id.label_filename).Text = protocolSeparatorPos < 0 ?
 					displayPath :
 					displayPath.Substring(protocolSeparatorPos + 3);
 					
