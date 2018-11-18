@@ -87,42 +87,96 @@ namespace keepass2android
             }
         }
 
-        public static bool IsDeviceEnabled(AutoExecItem a, string strDevice, out bool isExplicit)
+        public static Dictionary<string, bool> GetIfDevice(AutoExecItem item)
         {
-            string strList = a.IfDevice;
-            isExplicit = false;
-            if (string.IsNullOrEmpty(strList) || string.IsNullOrEmpty(strDevice))
-                return true;
+            Dictionary<string, bool> result = new Dictionary<string, bool>();
 
-            CsvOptions opt = new CsvOptions();
-            opt.BackslashIsEscape = false;
-            opt.TrimFields = true;
+            string strList = item.IfDevice;
+
+            if (string.IsNullOrEmpty(strList))
+                return result;
+
+            CsvOptions opt = new CsvOptions
+            {
+                BackslashIsEscape = false,
+                TrimFields = true
+            };
 
             CsvStreamReaderEx csv = new CsvStreamReaderEx(strList, opt);
             string[] vFlt = csv.ReadLine();
-            if (vFlt == null) { Debug.Assert(false); return true; }
+            if (vFlt == null) { Debug.Assert(false); return result; }
 
-            bool bHasIncl = false, bHasExcl = false;
             foreach (string strFlt in vFlt)
             {
                 if (string.IsNullOrEmpty(strFlt)) continue;
 
                 if (strFlt[0] == '!') // Exclusion
                 {
-                    if (strDevice.Equals(strFlt.Substring(1), StrUtil.CaseIgnoreCmp))
-                    {
-                        isExplicit = true; 
-                        return false;
-                    }
-                    bHasExcl = true;
+                    result[strFlt.Substring(1).TrimStart()] = false;
                 }
                 else // Inclusion
                 {
-                    if (strDevice.Equals(strFlt, StrUtil.CaseIgnoreCmp))
-                    {
-                        isExplicit = true;
-                        return true;
-                    }
+                    result[strFlt] = true;
+                }
+            }
+            
+            return result;
+        }
+
+        public static string BuildIfDevice(Dictionary<string, bool> devices)
+        {
+            CsvOptions opt = new CsvOptions
+            {
+                BackslashIsEscape = false,
+                TrimFields = true
+            };
+
+            string result = "";
+            foreach (var deviceWithEnabled in devices)
+            {
+                if (result != "")
+                {
+                    result += opt.FieldSeparator;
+                }
+                string deviceValue = (deviceWithEnabled.Value ? "" : "!") + deviceWithEnabled.Key;
+                if (deviceValue.Contains(opt.FieldSeparator) || deviceValue.Contains("\\") ||
+                    deviceValue.Contains("\""))
+                {
+                    //add escaping:
+                    deviceValue = deviceValue.Replace("\"", "\\\"");
+                    deviceValue = "\"" + deviceValue + "\"";
+                }
+                result += deviceValue;
+
+            }
+            return result;
+        }
+
+        public static bool IsDeviceEnabled(AutoExecItem a, string strDevice, out bool isExplicit)
+        {
+            isExplicit = false;
+            var ifDevices = GetIfDevice(a);
+            
+            if (!ifDevices.Any() ||  string.IsNullOrEmpty(strDevice))
+                return true;
+
+            bool bHasIncl = false, bHasExcl = false;
+            foreach (var kvp in ifDevices)
+            {
+                if (string.IsNullOrEmpty(kvp.Key)) continue;
+
+                if (strDevice.Equals(kvp.Key, StrUtil.CaseIgnoreCmp))
+                {
+                    isExplicit = true;
+                    return kvp.Value;
+                }
+
+                if (kvp.Value == false)
+                {
+                    bHasExcl = true;
+                }
+                else
+                {
                     bHasIncl = true;
                 }
             }
@@ -134,61 +188,16 @@ namespace keepass2android
 
         public static void SetDeviceEnabled(AutoExecItem a, string strDevice, bool enabled=true)
         {
-            string strList = a.IfDevice;
-
-            string deviceEntry = (enabled ? "" : "!") + strDevice;
-
-            if (string.IsNullOrEmpty(strList) || string.IsNullOrEmpty(strDevice))
+            if (string.IsNullOrEmpty(strDevice))
             {
-                a.Entry.Strings.Set(_ifDevice, new ProtectedString(false,deviceEntry));
                 return;
             }
-                
+
+            var devices = GetIfDevice(a);
+
+            devices[strDevice] = enabled;
             
-
-            CsvOptions opt = new CsvOptions();
-            opt.BackslashIsEscape = false;
-            opt.TrimFields = true;
-
-            CsvStreamReaderEx csv = new CsvStreamReaderEx(strList, opt);
-            string[] vFlt = csv.ReadLine();
-            if (vFlt == null) { Debug.Assert(false); a.Entry.Strings.Set(_ifDevice, new ProtectedString(false, deviceEntry)); return; }
-
-            string result = "";
-            bool hasDevice = false;
-            foreach (string strFlt in vFlt)
-            {
-                string modifiedValue = strFlt;
-                if (string.IsNullOrEmpty(strFlt)) continue;
-                if ((strFlt == strDevice) || (strFlt == "!" + strDevice))
-                {
-                    modifiedValue = deviceEntry;
-                    hasDevice = true;
-                }
-
-                if (result != "")
-                {
-                    result += opt.FieldSeparator;
-                }
-                if (modifiedValue.Contains(opt.FieldSeparator) || modifiedValue.Contains("\\") ||
-                    modifiedValue.Contains("\""))
-                {
-                    //add escaping:
-                    modifiedValue = modifiedValue.Replace("\"","\\\"");
-                    modifiedValue = "\""+modifiedValue+"\"";
-                }
-                result += modifiedValue;
-
-            }
-
-            if (!hasDevice)
-            {
-                if (result != "")
-                {
-                    result += opt.FieldSeparator;
-                }
-                result += deviceEntry;
-            }
+            string result = BuildIfDevice(devices);
             a.Entry.Strings.Set(_ifDevice, new ProtectedString(false,result));
         }
 
@@ -210,37 +219,45 @@ namespace keepass2android
             long lPriStd = 0;
             foreach (PwEntry pe in lAutoEntries)
             {
-                string str = pe.Strings.ReadSafe(PwDefs.UrlField);
-                if (str.Length == 0) continue;
-
-                AutoExecItem a = new AutoExecItem(pe, pd);
-                l.Add(a);
-
-                SprContext ctx = new SprContext(pe, pd, SprCompileFlags.All);
-
-                if (pe.Expires && (pe.ExpiryTime <= DateTime.UtcNow))
-                    a.Enabled = false;
-
-                bool? ob = GetBoolEx(pe, "Enabled", ctx);
-                if (ob.HasValue) a.Enabled = ob.Value;
-
-                ob = GetBoolEx(pe, "Visible", ctx);
-                if (ob.HasValue) a.Visible = ob.Value;
-
-                long lItemPri = lPriStd;
-                if (GetString(pe, "Priority", ctx, true, out str))
-                    long.TryParse(str, out lItemPri);
-                a.Priority = lItemPri;
-
                 
-                if (GetString(pe, _ifDevice, ctx, true, out str))
-                    a.IfDevice = str;
+                if (pe.Strings.ReadSafe(PwDefs.UrlField).Length == 0) continue;
 
+                var a = MakeAutoExecItem(pd, pe, lPriStd);
+
+                l.Add(a);
                 ++lPriStd;
             }
 
             l.Sort(KeeAutoExecExt.PrioritySort);
             return l;
+        }
+
+        public static AutoExecItem MakeAutoExecItem(PwDatabase pd, PwEntry pe, long lPriStd)
+        {
+            string str = pe.Strings.ReadSafe(PwDefs.UrlField);
+            AutoExecItem a = new AutoExecItem(pe, pd);
+
+
+            SprContext ctx = new SprContext(pe, pd, SprCompileFlags.All);
+
+            if (pe.Expires && (pe.ExpiryTime <= DateTime.UtcNow))
+                a.Enabled = false;
+
+            bool? ob = GetBoolEx(pe, "Enabled", ctx);
+            if (ob.HasValue) a.Enabled = ob.Value;
+
+            ob = GetBoolEx(pe, "Visible", ctx);
+            if (ob.HasValue) a.Visible = ob.Value;
+
+            long lItemPri = lPriStd;
+            if (GetString(pe, "Priority", ctx, true, out str))
+                long.TryParse(str, out lItemPri);
+            a.Priority = lItemPri;
+
+
+            if (GetString(pe, _ifDevice, ctx, true, out str))
+                a.IfDevice = str;
+            return a;
         }
 
         private void OnFileOpen(PwDatabase db)
@@ -260,58 +277,13 @@ namespace keepass2android
 
         private void AutoOpenEntryPriv(AutoExecItem a, bool bManual)
         {
-            PwEntry pe = a.Entry;
-            PwDatabase pdContext = a.Database;
-
-            SprContext ctxNoEsc = new SprContext(pe, pdContext, SprCompileFlags.All);
-            SprContext ctxEsc = new SprContext(pe, pdContext, SprCompileFlags.All,
-                false, true);
-
-            string strDb;
-            if (!GetString(pe, PwDefs.UrlField, ctxEsc, true, out strDb)) return;
-
-            IOConnectionInfo ioc = IOConnectionInfo.FromPath(strDb);
-            //TODO
-            /*if (ioc.IsLocalFile() && !UrlUtil.IsAbsolutePath(strDb))
-                ioc = IOConnectionInfo.FromPath(UrlUtil.MakeAbsolutePath(
-                    WinUtil.GetExecutable(), strDb));*/
-            if (ioc.Path.Length == 0) return;
-
-            string strIocUserName;
-            if (GetString(pe, "IocUserName", ctxNoEsc, true, out strIocUserName))
-                ioc.UserName = strIocUserName;
-
-            string strIocPassword;
-            if (GetString(pe, "IocPassword", ctxNoEsc, true, out strIocPassword))
-                ioc.Password = strIocPassword;
-
-            if ((strIocUserName.Length != 0) && (strIocPassword.Length != 0))
-                ioc.IsComplete = true;
-
             string str;
-            if (GetString(pe, "IocTimeout", ctxNoEsc, true, out str))
-            {
-                long l;
-                if (long.TryParse(str, out l))
-                    ioc.Properties.SetLong(IocKnownProperties.Timeout, l);
-            }
+            PwEntry pe = a.Entry;
+            SprContext ctxNoEsc = new SprContext(pe, a.Database, SprCompileFlags.All);
+            IOConnectionInfo ioc;
+            if (!TryGetDatabaseIoc(a, out ioc)) return;
 
-            bool? ob = GetBoolEx(pe, "IocPreAuth", ctxNoEsc);
-            if (ob.HasValue)
-                ioc.Properties.SetBool(IocKnownProperties.PreAuth, ob.Value);
-
-            if (GetString(pe, "IocUserAgent", ctxNoEsc, true, out str))
-                ioc.Properties.Set(IocKnownProperties.UserAgent, str);
-
-            ob = GetBoolEx(pe, "IocExpect100Continue", ctxNoEsc);
-            if (ob.HasValue)
-                ioc.Properties.SetBool(IocKnownProperties.Expect100Continue, ob.Value);
-
-            ob = GetBoolEx(pe, "IocPassive", ctxNoEsc);
-            if (ob.HasValue)
-                ioc.Properties.SetBool(IocKnownProperties.Passive, ob.Value);
-
-            ob = GetBoolEx(pe, "SkipIfNotExists", ctxNoEsc);
+            var ob = GetBoolEx(pe, "SkipIfNotExists", ctxNoEsc);
             if (!ob.HasValue) // Backw. compat.
                 ob = GetBoolEx(pe, "Skip if not exists", ctxNoEsc);
             if (ob.HasValue && ob.Value)
@@ -401,6 +373,63 @@ namespace keepass2android
                 if (docPrev != null) m_host.MainWindow.MakeDocumentActive(docPrev);
                 else { Debug.Assert(false); }
             }*/
+        }
+
+        public static bool TryGetDatabaseIoc(AutoExecItem a, out IOConnectionInfo ioc)
+        {
+            PwEntry pe = a.Entry;
+            PwDatabase pdContext = a.Database;
+
+            SprContext ctxNoEsc = new SprContext(pe, pdContext, SprCompileFlags.All);
+            SprContext ctxEsc = new SprContext(pe, pdContext, SprCompileFlags.All,
+                false, true);
+
+            ioc = null;
+
+            string strDb;
+            if (!GetString(pe, PwDefs.UrlField, ctxEsc, true, out strDb)) return false;
+
+            ioc = IOConnectionInfo.FromPath(strDb);
+            //TODO
+            /*if (ioc.IsLocalFile() && !UrlUtil.IsAbsolutePath(strDb))
+                ioc = IOConnectionInfo.FromPath(UrlUtil.MakeAbsolutePath(
+                    WinUtil.GetExecutable(), strDb));*/
+            if (ioc.Path.Length == 0) return false;
+
+            string strIocUserName;
+            if (GetString(pe, "IocUserName", ctxNoEsc, true, out strIocUserName))
+                ioc.UserName = strIocUserName;
+
+            string strIocPassword;
+            if (GetString(pe, "IocPassword", ctxNoEsc, true, out strIocPassword))
+                ioc.Password = strIocPassword;
+
+            if ((strIocUserName.Length != 0) && (strIocPassword.Length != 0))
+                ioc.IsComplete = true;
+
+            string str;
+            if (GetString(pe, "IocTimeout", ctxNoEsc, true, out str))
+            {
+                long l;
+                if (long.TryParse(str, out l))
+                    ioc.Properties.SetLong(IocKnownProperties.Timeout, l);
+            }
+
+            bool? ob = GetBoolEx(pe, "IocPreAuth", ctxNoEsc);
+            if (ob.HasValue)
+                ioc.Properties.SetBool(IocKnownProperties.PreAuth, ob.Value);
+
+            if (GetString(pe, "IocUserAgent", ctxNoEsc, true, out str))
+                ioc.Properties.Set(IocKnownProperties.UserAgent, str);
+
+            ob = GetBoolEx(pe, "IocExpect100Continue", ctxNoEsc);
+            if (ob.HasValue)
+                ioc.Properties.SetBool(IocKnownProperties.Expect100Continue, ob.Value);
+
+            ob = GetBoolEx(pe, "IocPassive", ctxNoEsc);
+            if (ob.HasValue)
+                ioc.Properties.SetBool(IocKnownProperties.Passive, ob.Value);
+            return true;
         }
 
         private static bool GetString(PwEntry pe, string strName, SprContext ctx,

@@ -17,12 +17,18 @@
           android:id="@+id/extrakey"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginRight="0dip"
-		 android:visibility="gone" />
+      android:visibility="gone"
+		  />
+    <TextView
+      android:id="@+id/value"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone" />
 
     <CheckBox
-        android:id="@+id/value"
-        android:layout_width="0dip"
-        android:layout_height="0dip"/>
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+        android:id="@+id/checkbox"
+        />
   </LinearLayout>
 </RelativeLayout>

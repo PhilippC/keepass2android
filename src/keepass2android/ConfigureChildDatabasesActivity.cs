@@ -140,10 +140,11 @@ namespace keepass2android
                                 : _context.GetString(Resource.String.no)));
                 }
 
-                view.FindViewById<Button>(Resource.Id.child_db_enable_on_this_device).Visibility = !deviceEnabled && autoExecItem.Enabled ? ViewStates.Gone : ViewStates.Visible;
-                view.FindViewById<Button>(Resource.Id.child_db_disable_on_this_device).Visibility = deviceEnabled && autoExecItem.Enabled ? ViewStates.Visible : ViewStates.Gone;
-                view.FindViewById<Button>(Resource.Id.child_db_enable_a_copy_for_this_device_container).Visibility = !deviceEnabled && autoExecItem.Enabled ? ViewStates.Visible : ViewStates.Gone;
-                
+                view.FindViewById(Resource.Id.child_db_enable_on_this_device).Visibility = !deviceEnabled && autoExecItem.Enabled ? ViewStates.Visible : ViewStates.Gone;
+                view.FindViewById(Resource.Id.child_db_disable_on_this_device).Visibility = (deviceEnabled || !deviceEnabledExplict) && autoExecItem.Enabled ? ViewStates.Visible : ViewStates.Gone;
+                view.FindViewById(Resource.Id.child_db_enable_a_copy_for_this_device_container).Visibility = !deviceEnabled && autoExecItem.Enabled ? ViewStates.Visible : ViewStates.Gone;
+                view.FindViewById(Resource.Id.child_db_edit).Visibility = deviceEnabledExplict || !autoExecItem.Enabled  ? ViewStates.Visible : ViewStates.Gone;
+
 
                 Database db = App.Kp2a.FindDatabaseForElement(pw);
 
@@ -218,17 +219,28 @@ namespace keepass2android
 
         private void OnEdit(AutoExecItem item)
         {
-            EntryActivity.Launch(this,item.Entry,0,new NullTask());
+            App.Kp2a.CurrentDb = App.Kp2a.FindDatabaseForElement(item.Entry);
+            EntryEditActivity.Launch(this,item.Entry,new NullTask());
         }
 
         private void OnDisable(AutoExecItem item)
         {
             KeeAutoExecExt.SetDeviceEnabled(item,KeeAutoExecExt.ThisDeviceId, false);
+            Save(item);
         }
 
         private void OnEnable(AutoExecItem item)
         {
             KeeAutoExecExt.SetDeviceEnabled(item, KeeAutoExecExt.ThisDeviceId, true);
+            Save(item);
+        }
+
+        private void Save(AutoExecItem item)
+        {
+            var addTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(item.Entry), new ActionOnFinish(this, (success, message, activity) => ((ConfigureChildDatabasesActivity)activity).Update()));
+
+            ProgressTask pt = new ProgressTask(App.Kp2a, this, addTask);
+            pt.Run();
         }
 
         protected override void OnResume()

@@ -175,6 +175,7 @@
   <ItemGroup>
     <Compile Include="ActivityLaunchMode.cs" />
     <Compile Include="addons\CsvStreamReaderEx.cs" />
+    <Compile Include="AutoOpenEdit.cs" />
     <Compile Include="ChallengeXCKey.cs" />
     <Compile Include="ConfigureChildDatabasesActivity.cs" />
     <Compile Include="EntryActivityClasses\ViewImagePopupItem.cs" />
@@ -757,6 +758,12 @@
     <AndroidResource Include="Resources\drawable\section_header.xml" />
     <AndroidResource Include="Resources\drawable\extra_string_header.xml" />
     <AndroidResource Include="Resources\layout\entry_edit_section.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\entry_edit_section_bool.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\entry_edit_section_file.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values-af\strings.xml" />

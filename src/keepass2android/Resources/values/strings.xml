@@ -746,6 +746,12 @@
   <string name="child_db_enable_a_copy_for_this_device">Copy for this device</string>
   <string name="EnableCopyForThisDevice_Info">This will create and enable a copy of the child database settings. These copied settings can then be adjusted specifically for this device.</string>
 
+  <string name="Visible_title">Visible</string>
+  <string name="Enabled_title">Enabled</string>
+  <string name="database_file_heading">Database file</string>
+  <string name="if_device_text">Enable for %1$s</string>
+  
+
   
   <string name="DbUnlockedChannel_name">Database unlocked</string>
   <string name="DbUnlockedChannel_desc">Notification about the database being unlocked</string>

@@ -514,7 +514,7 @@ namespace keepass2android
 		{
 			ViewGroup extraGroup = (ViewGroup) FindViewById(Resource.Id.extra_strings);
 		    bool hasExtras = false;
-			IEditMode editMode = new DefaultEdit();
+			EditModeBase editMode = new DefaultEdit();
 			if (KpEntryTemplatedEdit.IsTemplated(App.Kp2a.CurrentDb, this.Entry))
 				editMode = new KpEntryTemplatedEdit(App.Kp2a.CurrentDb, this.Entry);
 			foreach (var key in  editMode.SortExtraFieldKeys(Entry.Strings.GetKeys().Where(key=> !PwDefs.IsStandardField(key))))

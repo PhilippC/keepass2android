@@ -117,7 +117,7 @@ namespace keepass2android
 			FindViewById(Resource.Id.btn_change_location).Click += (sender, args) =>
 			{
 				Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
-				StartActivityForResult(intent, 0);
+				StartActivityForResult(intent, RequestCodeDbFilename);
 			};
 
 			Button generatePassword = (Button)FindViewById(Resource.Id.generate_button);

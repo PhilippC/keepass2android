@@ -36,6 +36,7 @@ namespace keepass2android
 		private readonly bool _isForSave;
 		private readonly int _requestCode;
 	    private readonly string _schemeSeparator = "://";
+	    private bool _tryGetPermanentAccess;
 
 	    public string DefaultExtension { get; set; }
 
@@ -408,7 +409,7 @@ namespace keepass2android
 			}
 			if (fileStorage.RequiresCredentials(ioc))
 			{
-				Util.QueryCredentials(ioc, IocSelected, _activity);
+				Util.QueryCredentials(ioc, iocResult => IocSelected(null, iocResult), _activity);
 			}
 			else
 			{
@@ -470,9 +471,11 @@ namespace keepass2android
 	               || ioc.Path.StartsWith("sftp");
 
 	    }
-		
-		bool HandleActivityResult(Activity activity, int requestCode, Result resultCode, Intent data)
-		{
+
+	    public bool HandleActivityResult(Activity activity, int requestCode, Result resultCode, Intent data)
+	    {
+	        if (requestCode != _requestCode)
+	            return false;
 			
 			if (resultCode == KeePass.ExitFileStorageSelectionOk)
 			{
@@ -484,15 +487,14 @@ namespace keepass2android
 				else
 				{					
 					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(
-							new FileStorageSetupInitiatorActivity(activity,(i, result, arg3) =>activity.OnActivityResult(i, result, arg3),s => PerformManualFileSelect(s)), 
+							new FileStorageSetupInitiatorActivity(activity,(i, result, arg3) =>HandleActivityResult(activity, i, result, arg3),s => PerformManualFileSelect(s)), 
 							_isForSave, 
 							_requestCode, 
 							protocolId);	
 				}
-				
 			}
 			
-			if ((resultCode == Result.Ok) && (requestCode == _requestCode))
+			if (resultCode == Result.Ok)
 				{
 					
 					if (data.Data.Scheme == "content")
@@ -506,7 +508,7 @@ namespace keepass2android
 								var takeFlags = data.Flags
 										& (ActivityFlags.GrantReadUriPermission
 										| ActivityFlags.GrantWriteUriPermission);
-								this.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
+								activity.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
 							}
 							catch (Exception e)
 							{
@@ -517,7 +519,7 @@ namespace keepass2android
 					}
 
 					
-					string filename = Util.IntentToFilename(data, this);
+					string filename = Util.IntentToFilename(data, activity);
 					if (filename == null)
 						filename = data.DataString;
 
@@ -525,43 +527,44 @@ namespace keepass2android
 
 					if (fileExists)
 					{
-						_ioc = new IOConnectionInfo { Path = ConvertFilenameToIocPath(filename) };
-						UpdateIocView();
+						var ioc = new IOConnectionInfo { Path = ConvertFilenameToIocPath(filename) };
+						IocSelected(activity,ioc);
 					}
 					else
 					{
-						var task = new CreateNewFilename(this, new ActionOnFinish(this, (success, messageOrFilename, activity) =>
+						var task = new CreateNewFilename(activity, new ActionOnFinish(activity, (success, messageOrFilename, newActivity) =>
 							{
 								if (!success)
 								{
-									Toast.MakeText(activity, messageOrFilename, ToastLength.Long).Show();
+									Toast.MakeText(newActivity, messageOrFilename, ToastLength.Long).Show();
 									return;
 								}
 								var ioc = new IOConnectionInfo { Path = ConvertFilenameToIocPath(messageOrFilename) };
-							    IocSelected(activity, ioc);
+							    IocSelected(newActivity, ioc);
 								
 							}), filename);
 
-						new ProgressTask(App.Kp2a, this, task).Run();
+						new ProgressTask(App.Kp2a, activity, task).Run();
 					}
 
 				}
 				
 				
-			if ((resultCode == Result.Ok) && (resultCode == (Result)FileStorageResults.FileUsagePrepared))
+			if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
 			{
 				var ioc = new IOConnectionInfo();
 				Util.SetIoConnectionFromIntent(ioc, data);
 				IocSelected(null, ioc);
 			}
-			if ((resultCode == Result.Ok) && (resultCode == (Result)FileStorageResults.FileChooserPrepared) )
+			if (resultCode == (Result)FileStorageResults.FileChooserPrepared )
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
 				Util.SetIoConnectionFromIntent(ioc, data);
 				StartFileChooser(ioc.Path);
 				
 			}
-			
-		}
-	}
+	        return true;
+
+        }
+    }
 }
