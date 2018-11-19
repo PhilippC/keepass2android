@@ -128,7 +128,7 @@ namespace keepass2android
 
 			FindViewById(Resource.Id.btn_create).Click += (sender, evt) => 
 			{
-				CreateDatabase();
+				CreateDatabase(Intent.GetBooleanExtra("MakeCurrent",true));
 			};
 
 			ImageButton btnTogglePassword = (ImageButton)FindViewById(Resource.Id.toggle_password);
@@ -164,7 +164,7 @@ namespace keepass2android
 			
 		}
 
-		private void CreateDatabase()
+		private void CreateDatabase(bool makeCurrent)
 		{
 			var keyfileCheckbox = FindViewById<CheckBox>(Resource.Id.use_keyfile);
 			string password;
@@ -204,7 +204,7 @@ namespace keepass2android
 			}
 
 			// Create the new database
-			CreateDb create = new CreateDb(App.Kp2a, this, _ioc, new LaunchGroupActivity(_ioc, this), false, newKey);
+			CreateDb create = new CreateDb(App.Kp2a, this, _ioc, new LaunchGroupActivity(_ioc, this), false, newKey, makeCurrent);
 			ProgressTask createTask = new ProgressTask(
 				App.Kp2a,
 				this, create);
@@ -416,9 +416,7 @@ namespace keepass2android
 						// Add to recent files
 						FileDbHelper dbHelper = App.Kp2a.FileDbHelper;
 
-
-						//TODO: getFilename always returns "" -> bug?
-						dbHelper.CreateFile(_ioc, Filename);
+						dbHelper.CreateFile(_ioc, Filename, true);
 					}
 
 				    Intent data = new Intent();
@@ -446,7 +444,7 @@ namespace keepass2android
 			}
 		}
 
-
+	    
 	    public override bool OnOptionsItemSelected(IMenuItem item)
 	    {
 	        switch (item.ItemId)

@@ -160,18 +160,19 @@ namespace keepass2android
         static CompositeKey compositeKeyForImmediateLoad = null;
 
 
-        public static void Launch(Activity act, IOConnectionInfo ioc, CompositeKey compositeKey, ActivityLaunchMode launchMode)
+        public static void Launch(Activity act, IOConnectionInfo ioc, CompositeKey compositeKey, ActivityLaunchMode launchMode, bool makeCurrent)
 	    {
 	        compositeKeyForImmediateLoad = compositeKey;
-	        Launch(act, ioc, launchMode);
+	        Launch(act, ioc, launchMode, makeCurrent);
 	    }
 
 		
 
-		public static void Launch(Activity act, IOConnectionInfo ioc, ActivityLaunchMode launchMode)
+		public static void Launch(Activity act, IOConnectionInfo ioc, ActivityLaunchMode launchMode, bool makeCurrent)
 		{
 			Intent i = new Intent(act, typeof(PasswordActivity));
 		    Util.PutIoConnectionToIntent(ioc, i);
+		    i.PutExtra("MakeCurrent", makeCurrent);
 
 		    launchMode.Launch(act, i);
 		}
@@ -1385,8 +1386,8 @@ namespace keepass2android
 				OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 				LoadDb task = (KeyProviderTypes.Contains(KeyProviders.Otp))
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(),
-						onFinish, this)
-					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish);
+						onFinish, this, true, Intent.GetBooleanExtra("MakeCurrent", true))
+					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish,true, Intent.GetBooleanExtra("MakeCurrent",true));
 				_loadDbFileTask = null; // prevent accidental re-use
 
 			    new ProgressTask(App.Kp2a, this, task).Run();
@@ -1734,7 +1735,7 @@ namespace keepass2android
 		        OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 		        _performingLoad = true;
 		        LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
-		            onFinish);
+		            onFinish, false, Intent.GetBooleanExtra("MakeCurrent",false));
 		        _loadDbFileTask = null; // prevent accidental re-use
 		        new ProgressTask(App.Kp2a, this, task).Run();
 		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
@@ -2053,7 +2054,7 @@ namespace keepass2android
 			private readonly PasswordActivity _act;
 
 
-			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnFinish finish, PasswordActivity act) : base(act, app, ioc, databaseData, compositeKey, keyfileOrProvider, finish)
+			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnFinish finish, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(act, app, ioc, databaseData, compositeKey, keyfileOrProvider, finish,updateLastUsageTimestamp,makeCurrent)
 			{
 				_act = act;
 			}

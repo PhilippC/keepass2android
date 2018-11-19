@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Android.App;
 using Android.OS;
 using Android.Provider;
 using Android.Webkit;
+using Android.Widget;
 using Java.Nio.FileNio;
 using KeePass.DataExchange;
 using KeePass.Util.Spr;
@@ -260,36 +262,20 @@ namespace keepass2android
             return a;
         }
 
-        private void OnFileOpen(PwDatabase db)
-        {
-            List<AutoExecItem> l = GetAutoExecItems(db);
-            foreach (AutoExecItem a in l)
-            {
-                if (!a.Enabled) continue;
-
-                try { AutoOpenEntryPriv(a, false); }
-                catch (Exception ex)
-                {
-                    MessageService.ShowWarning(ex);
-                }
-            }
-        }
-
-        private void AutoOpenEntryPriv(AutoExecItem a, bool bManual)
+        public static bool AutoOpenEntry(Activity activity, AutoExecItem item, bool bManual)
         {
             string str;
-            PwEntry pe = a.Entry;
-            SprContext ctxNoEsc = new SprContext(pe, a.Database, SprCompileFlags.All);
+            PwEntry pe = item.Entry;
+            SprContext ctxNoEsc = new SprContext(pe, item.Database, SprCompileFlags.All);
             IOConnectionInfo ioc;
-            if (!TryGetDatabaseIoc(a, out ioc)) return;
+            if (!TryGetDatabaseIoc(item, out ioc)) return false;
 
             var ob = GetBoolEx(pe, "SkipIfNotExists", ctxNoEsc);
             if (!ob.HasValue) // Backw. compat.
                 ob = GetBoolEx(pe, "Skip if not exists", ctxNoEsc);
             if (ob.HasValue && ob.Value)
             {
-				//TODO adjust to KP2A
-                if (!IOConnection.FileExists(ioc)) return;
+                if (!CheckFileExsts(ioc)) return false;
             }
 
             CompositeKey ck = new CompositeKey();
@@ -303,8 +289,8 @@ namespace keepass2android
                 IOConnectionInfo iocKey = IOConnectionInfo.FromPath(strAbs);
                 if (iocKey.IsLocalFile() && !UrlUtil.IsAbsolutePath(strAbs))
                 {
-                    //TODO
-                    /*      strAbs = UrlUtil.MakeAbsolutePath(WinUtil.GetExecutable(), strAbs);*/
+                    //local relative paths not supported on Android
+                    return false;
                 }
 
 
@@ -312,16 +298,14 @@ namespace keepass2android
                 if (ob.HasValue && ob.Value)
                 {
                     IOConnectionInfo iocKeyAbs = IOConnectionInfo.FromPath(strAbs);
-                    //TODO adjust to KP2A
-					if (!IOConnection.FileExists(iocKeyAbs)) return;
+                    if (!CheckFileExsts(iocKeyAbs)) return false;
                 }
 
                 try { ck.AddUserKey(new KcpKeyFile(strAbs)); }
                 catch (InvalidOperationException)
                 {
-                    //TODO
-                    throw new Exception("TODO");
-                    //throw new Exception(strAbs + MessageService.NewParagraph + KPRes.KeyFileError);
+                    Toast.MakeText(Application.Context,Resource.String.error_adding_keyfile,ToastLength.Long).Show();
+                    return false;
                 }
                 catch (Exception) { throw; }
             }
@@ -333,46 +317,32 @@ namespace keepass2android
                         StrUtil.DataToDataUri(pBin.ReadData(), null))));
             }
 
-            if (GetString(pe, "KeyProvider", ctxNoEsc, true, out str))
-            {
-                /*TODO KeyProvider kp = m_host.KeyProviderPool.Get(str);
-                if (kp == null)
-                    throw new Exception(@"Unknown key provider: '" + str + @"'!");
-
-                KeyProviderQueryContext ctxKP = new KeyProviderQueryContext(
-                    ioc, false, false);
-
-                bool bPerformHash = !kp.DirectKey;
-                byte[] pbProvKey = kp.GetKey(ctxKP);
-                if ((pbProvKey != null) && (pbProvKey.Length != 0))
-                {
-                    ck.AddUserKey(new KcpCustomKey(str, pbProvKey, bPerformHash));
-                    MemUtil.ZeroByteArray(pbProvKey);
-                }
-                else return; // Provider has shown error message*/
-                throw new Exception("KeyProvider not supported");
-            }
-
-            ob = GetBoolEx(pe, "UserAccount", ctxNoEsc);
-            if (ob.HasValue && ob.Value)
-                ck.AddUserKey(new KcpUserAccount());
-
-            if (ck.UserKeyCount == 0) return;
-
             GetString(pe, "Focus", ctxNoEsc, true, out str);
             bool bRestoreFocus = str.Equals("Restore", StrUtil.CaseIgnoreCmp);
-            /*TODO
-             * PwDatabase pdPrev = m_host.MainWindow.ActiveDatabase;
 
-            m_host.MainWindow.OpenDatabase(ioc, ck, true);
+            PasswordActivity.Launch(activity,ioc,ck,new ActivityLaunchModeSimple(), !
+                bRestoreFocus);
+            return true;
+        }
 
-            if (bRestoreFocus && (pdPrev != null) && !bManual)
+        private static bool CheckFileExsts(IOConnectionInfo ioc)
+        {
+            try
             {
-                PwDocument docPrev = m_host.MainWindow.DocumentManager.FindDocument(
-                    pdPrev);
-                if (docPrev != null) m_host.MainWindow.MakeDocumentActive(docPrev);
-                else { Debug.Assert(false); }
-            }*/
+                var fileStorage = App.Kp2a.GetFileStorage(ioc);
+                using (var stream = fileStorage.OpenFileForRead(ioc))
+                {
+                }
+            }
+            catch (NoFileStorageFoundException e)
+            {
+                return false;
+            }
+            catch (FileNotFoundException)
+            {
+                return false;
+            }
+            return true;
         }
 
         public static bool TryGetDatabaseIoc(AutoExecItem a, out IOConnectionInfo ioc)

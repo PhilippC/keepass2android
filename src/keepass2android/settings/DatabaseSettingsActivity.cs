@@ -876,7 +876,7 @@ namespace keepass2android
                     var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                     ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).ResetIoc(newIoc);
                     var keyfileString = IOConnectionInfo.SerializeToString(newIoc);
-                    App.Kp2a.StoreOpenedFileAsRecent(App.Kp2a.CurrentDb.Ioc, keyfileString);
+                    App.Kp2a.StoreOpenedFileAsRecent(App.Kp2a.CurrentDb.Ioc, keyfileString, false);
                     return () =>
                     {
                         UpdateImportKeyfilePref();
@@ -952,7 +952,7 @@ namespace keepass2android
                         {
                             var key = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
                             App.Kp2a.CloseDatabase(App.Kp2a.CurrentDb);
-                            PasswordActivity.Launch(Activity, newIoc, key, new ActivityLaunchModeSimple());
+                            PasswordActivity.Launch(Activity, newIoc, key, new ActivityLaunchModeSimple(), false);
 
                         });
                         builder.Show();

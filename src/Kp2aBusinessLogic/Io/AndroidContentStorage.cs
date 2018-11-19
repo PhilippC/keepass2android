@@ -207,8 +207,7 @@ namespace keepass2android.Io
 
 		public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
 		{
-			//TODO: required for OTP Aux file retrieval
-			throw new NotImplementedException();
+		    return IoUtil.GetParentPath(ioc);
 		}
 
 		public IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename)

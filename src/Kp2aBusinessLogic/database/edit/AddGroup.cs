@@ -35,7 +35,7 @@ namespace keepass2android
 		private readonly String _name;
 		private readonly int _iconId;
 		private readonly PwUuid _groupCustomIconId;
-		internal PwGroup Group;
+	    public PwGroup Group;
 		internal PwGroup Parent;
 		protected bool DontSave;
 		readonly Activity _ctx;

@@ -37,21 +37,25 @@ namespace keepass2android
 		private readonly bool _rememberKeyfile;
 		IDatabaseFormat _format;
 		
-		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish): base(activity, finish)
+		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish, bool updateLastUsageTimestamp, bool makeCurrent): base(activity, finish)
 		{
 			_app = app;
 			_ioc = ioc;
 			_databaseData = databaseData;
 			_compositeKey = compositeKey;
 			_keyfileOrProvider = keyfileOrProvider;
+		    _updateLastUsageTimestamp = updateLastUsageTimestamp;
+		    _makeCurrent = makeCurrent;
 
 
-			_rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
+		    _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
 		}
 
 	    protected bool success = false;
-		
-		public override void Run()
+	    private bool _updateLastUsageTimestamp;
+	    private readonly bool _makeCurrent;
+
+	    public override void Run()
 		{
 			try
 			{
@@ -144,12 +148,8 @@ namespace keepass2android
 			//now let's go:
 			try
 			{
-                Database newDb = _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
+                Database newDb = _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format, _makeCurrent);
 				Kp2aLog.Log("LoadDB OK");
-
-			    //make sure the stored access time for the actual file is more recent than that of its backup
-			    Thread.Sleep(10);
-                SaveFileData(_ioc, _keyfileOrProvider);
 
                 Finish(true, _format.SuccessMessage);
 			    return newDb;
@@ -182,7 +182,7 @@ namespace keepass2android
             {
                 keyfileOrProvider = "";
             }
-            _app.StoreOpenedFileAsRecent(ioc, keyfileOrProvider);
+            _app.StoreOpenedFileAsRecent(ioc, keyfileOrProvider, _updateLastUsageTimestamp);
 		}
 		
 		

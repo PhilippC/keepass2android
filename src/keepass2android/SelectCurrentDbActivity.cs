@@ -140,7 +140,7 @@ namespace keepass2android
 
         private void OnOpenOther()
         {
-            StartFileSelect(true);
+            StartFileSelect(true, true);
         }
 
         private void OnItemSelected(Database selectedDatabase)
@@ -267,7 +267,7 @@ namespace keepass2android
             {
                 if (App.Kp2a.OpenDatabases.Any() == false)
                 {
-                    StartFileSelect();
+                    StartFileSelect(true);
                     return;
                 }
 
@@ -279,6 +279,13 @@ namespace keepass2android
                     Kp2aLog.Log("Starting QuickUnlock");
                     StartActivityForResult(i, 0);
                     return;
+                }
+
+                //see if there are any AutoOpen items to open
+                
+                foreach (var db in App.Kp2a.OpenDatabases)
+                {
+                    if (OpenAutoExecEntries(db)) return;
                 }
 
                 //database(s) unlocked
@@ -293,9 +300,36 @@ namespace keepass2android
                 _adapter.Update();
                 _adapter.NotifyDataSetChanged();
 
+                
+
 
             }
             base.OnResume();
+        }
+
+        private bool OpenAutoExecEntries(Database db)
+        {
+            string thisDevice = KeeAutoExecExt.ThisDeviceId;
+            foreach (var autoOpenItem in KeeAutoExecExt.GetAutoExecItems(db.KpDatabase))
+            {
+                if (!autoOpenItem.Enabled)
+                    continue;
+                if (!KeeAutoExecExt.IsDeviceEnabled(autoOpenItem, thisDevice, out _))
+                    continue;
+                IOConnectionInfo dbIoc;
+                if (KeeAutoExecExt.TryGetDatabaseIoc(autoOpenItem, out dbIoc) &&
+                    App.Kp2a.TryGetDatabase(dbIoc) == null &&
+                    App.Kp2a.AttemptedToOpenBefore(dbIoc) == false
+                    )
+                {
+                    if (KeeAutoExecExt.AutoOpenEntry(this, autoOpenItem, false))
+                    {
+                        LaunchingOther = true;
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         protected override void OnPause()
@@ -304,17 +338,17 @@ namespace keepass2android
             base.OnPause();
         }
 
-        private void StartFileSelect(bool noForwardToPassword = false)
+        private void StartFileSelect(bool makeCurrent, bool noForwardToPassword = false)
         {
             Intent intent = new Intent(this, typeof(FileSelectActivity));
             AppTask.ToIntent(intent);
             intent.PutExtra(FileSelectActivity.NoForwardToPasswordActivity, noForwardToPassword);
+            intent.PutExtra("MakeCurrent", makeCurrent);
             LaunchingOther = true;
             StartActivityForResult(intent, ReqCodeOpenNewDb);
         }
 
         internal AppTask AppTask;
-        private bool _loadAnotherDatabase;
         private OpenDatabaseAdapter _adapter;
         private MyBroadcastReceiver _intentReceiver;
 
@@ -350,6 +384,7 @@ namespace keepass2android
                         IOConnectionInfo ioc = IOConnectionInfo.UnserializeFromString(iocString);
                         if (App.Kp2a.TrySelectCurrentDb(ioc))
                         {
+                            if (OpenAutoExecEntries(App.Kp2a.CurrentDb)) return;
                             LaunchingOther = true;
                             AppTask.CanActivateSearchViewOnStart = true;
                             AppTask.LaunchFirstGroupActivity(this);
@@ -358,7 +393,7 @@ namespace keepass2android
 
                         break;
                     case PasswordActivity.ResultSelectOtherFile:
-                        StartFileSelect(true);
+                        StartFileSelect(true, true);
                         break;
                     case (int)Result.Canceled:
                         if (App.Kp2a.OpenDatabases.Any() == false)
@@ -410,7 +445,7 @@ namespace keepass2android
 
                     break;
                 case KeePass.ExitLoadAnotherDb:
-                    StartFileSelect(true);
+                    StartFileSelect(true, true);
                     break;
             }
         
@@ -419,7 +454,7 @@ namespace keepass2android
         private void LaunchPasswordActivityForReload(IOConnectionInfo ioc, CompositeKey compositeKey)
         {
             LaunchingOther = true;
-            PasswordActivity.Launch(this, ioc, compositeKey, new ActivityLaunchModeRequestCode(ReqCodeOpenNewDb));
+            PasswordActivity.Launch(this, ioc, compositeKey, new ActivityLaunchModeRequestCode(ReqCodeOpenNewDb), false);
         }
 
         public bool LaunchingOther { get; set; }

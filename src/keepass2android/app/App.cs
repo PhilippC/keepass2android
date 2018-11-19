@@ -129,6 +129,7 @@ namespace keepass2android
 					BroadcastDatabaseAction(Application.Context, Strings.ActionCloseDatabase);
 
                     // Couldn't quick-lock, so unload database(s) instead
+                    _openAttempts.Clear();
 				    _openDatabases.Clear();
 				    _currentDatabase = null;
 				    LastOpenedEntry = null;
@@ -164,7 +165,7 @@ namespace keepass2android
 
 
 
-	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
+	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent)
 	    {
 	        var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
 	        var createBackup = prefs.GetBoolean(Application.Context.GetString(Resource.String.CreateBackups_key), true)
@@ -190,12 +191,14 @@ namespace keepass2android
 	            
 	        }
 
+	        _openAttempts.Add(ioConnectionInfo);
 	        var newDb = new Database(new DrawableFactory(), this);
             newDb.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
 
 
 
-            _currentDatabase = newDb;
+            if ((_currentDatabase == null) || makeCurrent)
+                _currentDatabase = newDb;
 	        _openDatabases.Add(newDb);
 
 
@@ -228,8 +231,8 @@ namespace keepass2android
                 Java.Lang.Object baseIocDisplayName = baseDisplayName;
 
                 string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(ioConnectionInfo.Path);
-		        App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, Application.Context.
-                    GetString(Resource.String.LocalBackupOf, new Java.Lang.Object[]{baseIocDisplayName}));
+		        App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, false, Application.Context.
+		            GetString(Resource.String.LocalBackupOf, new Java.Lang.Object[]{baseIocDisplayName}));
 
                 prefs.Edit()
                     .PutBoolean(IoUtil.GetIocPrefKey(ioConnectionInfo, "has_local_backup"), true)
@@ -341,6 +344,7 @@ namespace keepass2android
         public FileDbHelper FileDbHelper;
 		private List<IFileStorage> _fileStorages;
 
+        private readonly List<IOConnectionInfo> _openAttempts = new List<IOConnectionInfo>(); //stores which files have been attempted to open. Used to avoid that we repeatedly try to load files which failed to load.
 	    private readonly List<Database> _openDatabases = new List<Database>();
 	    private Database _currentDatabase;
 
@@ -351,6 +355,16 @@ namespace keepass2android
 
 	    public readonly HashSet<PwGroup> dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
 	    public HashSet<PwGroup> DirtyGroups {  get { return dirty; } }
+
+	    public bool AttemptedToOpenBefore(IOConnectionInfo ioc)
+	    {
+	        foreach (var attemptedIoc in _openAttempts)
+	        {
+                if (attemptedIoc.IsSameFileAs(ioc))
+                    return true;
+	        }
+	        return false;
+	    }
 
 
         public void MarkAllGroupsAsDirty()
@@ -456,9 +470,9 @@ namespace keepass2android
 			dialog.Show();
 		}
 
-		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, string displayName = "")
+		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, bool updateTimestamp, string displayName = "")
         {
-            FileDbHelper.CreateFile(ioc, keyfile, displayName);
+            FileDbHelper.CreateFile(ioc, keyfile, updateTimestamp, displayName);
         }
 
         public string GetResourceString(UiStringKey key)
@@ -841,11 +855,13 @@ namespace keepass2android
         }
 
         
-        public Database CreateNewDatabase()
+        public Database CreateNewDatabase(bool makeCurrent)
         {
-            _currentDatabase = new Database(new DrawableFactory(), this);
-            _openDatabases.Add(_currentDatabase);
-            return _currentDatabase;
+            Database newDatabase = new Database(new DrawableFactory(), this);
+            if ((_currentDatabase == null) || makeCurrent)
+                _currentDatabase = newDatabase;
+            _openDatabases.Add(newDatabase);
+            return newDatabase;
         }
 
 		internal void ShowToast(string message)
@@ -989,14 +1005,22 @@ namespace keepass2android
 			}
 		}
 
-	    public Database GetDatabase(IOConnectionInfo dbIoc)
+	    public Database TryGetDatabase(IOConnectionInfo dbIoc)
 	    {
 	        foreach (Database db in OpenDatabases)
 	        {
-                if (db.Ioc.IsSameFileAs(dbIoc))
-                    return db;
+	            if (db.Ioc.IsSameFileAs(dbIoc))
+	                return db;
 	        }
-	        throw new Exception("Database not found for dbIoc!");
+	        return null;
+	    }
+
+	    public Database GetDatabase(IOConnectionInfo dbIoc)
+	    {
+	        Database result = TryGetDatabase(dbIoc);
+            if (result == null)
+	            throw new Exception("Database not found for dbIoc!");
+	        return result;
 	    }
 
 	    public Database GetDatabase(string databaseId)

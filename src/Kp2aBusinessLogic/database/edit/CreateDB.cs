@@ -32,15 +32,17 @@ namespace keepass2android
 		private readonly Activity _ctx;
         private readonly IKp2aApp _app;
 		private CompositeKey _key;
+	    private readonly bool _makeCurrent;
 
-		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave): base(ctx, finish) {
+	    public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, bool makeCurrent): base(ctx, finish) {
 			_ctx = ctx;
 			_ioc = ioc;
 			_dontSave = dontSave;
-            _app = app;
+	        _makeCurrent = makeCurrent;
+	        _app = app;
 		}
 
-		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, CompositeKey key)
+		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, CompositeKey key, bool makeCurrent)
 			: base(ctx, finish)
 		{
 			_ctx = ctx;
@@ -48,12 +50,13 @@ namespace keepass2android
 			_dontSave = dontSave;
 			_app = app;
 			_key = key;
+		    _makeCurrent = makeCurrent;
 		}
 		
 
 		public override void Run() {
 			StatusLogger.UpdateMessage(UiStringKey.progress_create);
-			Database db = _app.CreateNewDatabase();
+			Database db = _app.CreateNewDatabase(_makeCurrent);
 
 			db.KpDatabase = new KeePassLib.PwDatabase();
 			

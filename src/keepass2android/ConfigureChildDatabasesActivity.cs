@@ -20,7 +20,10 @@ using Android.Widget;
 using keepass2android.database.edit;
 using KeePass.Util.Spr;
 using KeePassLib;
+using KeePassLib.Keys;
 using KeePassLib.Security;
+using KeePassLib.Serialization;
+using AlertDialog = Android.App.AlertDialog;
 using Object = Java.Lang.Object;
 
 namespace keepass2android
@@ -92,6 +95,13 @@ namespace keepass2android
                     };
 
 
+                    view.FindViewById<Button>(Resource.Id.child_db_open).Click += (sender, args) =>
+                    {
+                        View sending_view = (View)sender;
+                        _context.OnOpen(_displayedChildDatabases[GetClickedPos(sending_view)]);
+                    };
+
+
                     view.FindViewById<Button>(Resource.Id.child_db_enable_a_copy_for_this_device).Click += (sender, args) =>
                     {
                         View sending_view = (View)sender;
@@ -144,6 +154,12 @@ namespace keepass2android
                 view.FindViewById(Resource.Id.child_db_disable_on_this_device).Visibility = (deviceEnabled || !deviceEnabledExplict) && autoExecItem.Enabled ? ViewStates.Visible : ViewStates.Gone;
                 view.FindViewById(Resource.Id.child_db_enable_a_copy_for_this_device_container).Visibility = !deviceEnabled && autoExecItem.Enabled ? ViewStates.Visible : ViewStates.Gone;
                 view.FindViewById(Resource.Id.child_db_edit).Visibility = deviceEnabledExplict || !autoExecItem.Enabled  ? ViewStates.Visible : ViewStates.Gone;
+                IOConnectionInfo ioc;
+                if ((KeeAutoExecExt.TryGetDatabaseIoc(autoExecItem, out ioc)) && App.Kp2a.TryGetDatabase(ioc) == null)
+                {
+                    view.FindViewById(Resource.Id.child_db_open).Visibility = ViewStates.Visible;
+                }
+                else view.FindViewById(Resource.Id.child_db_open).Visibility = ViewStates.Gone;
 
 
                 Database db = App.Kp2a.FindDatabaseForElement(pw);
@@ -181,11 +197,19 @@ namespace keepass2android
 
             public void Update()
             {
-                _displayedChildDatabases = App.Kp2a.OpenDatabases.SelectMany(db => KeeAutoExecExt.GetAutoExecItems(db.KpDatabase)
+
+                _displayedChildDatabases = KeeAutoExecExt.GetAutoExecItems(App.Kp2a.CurrentDb.KpDatabase)
+                    .Where(e => App.Kp2a.TryFindDatabaseForElement(e.Entry) != null) //Update() can be called while we're adding entries to the database. They may be part of the group but without saving complete
                     .OrderBy(e => SprEngine.Compile(e.Entry.Strings.ReadSafe(PwDefs.TitleField),new SprContext(e.Entry, App.Kp2a.FindDatabaseForElement(e.Entry).KpDatabase, SprCompileFlags.All)))
-                    .ThenByDescending(e => e.Entry.LastModificationTime))
+                    .ThenByDescending(e => e.Entry.LastModificationTime)
                   .ToList();
             }
+        }
+
+        private void OnOpen(AutoExecItem item)
+        {
+            KeeAutoExecExt.AutoOpenEntry(this, item, true);
+
         }
 
         private void OnEnableCopy(AutoExecItem item)
@@ -219,7 +243,6 @@ namespace keepass2android
 
         private void OnEdit(AutoExecItem item)
         {
-            App.Kp2a.CurrentDb = App.Kp2a.FindDatabaseForElement(item.Entry);
             EntryEditActivity.Launch(this,item.Entry,new NullTask());
         }
 
@@ -263,6 +286,151 @@ namespace keepass2android
             listView.Adapter = _adapter;
 
             SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar));
+
+            FindViewById<Button>(Resource.Id.add_child_db_button).Click += (sender, args) =>
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.SetTitle(Resource.String.add_child_db);
+
+                List<string> items = new List<string>();
+                Dictionary<int, Database> indexToDb = new Dictionary<int, Database>();
+
+                foreach (var db in App.Kp2a.OpenDatabases)
+                {
+                    if (db != App.Kp2a.CurrentDb)
+                    {
+                        indexToDb[items.Count] = db;
+                        items.Add(App.Kp2a.GetFileStorage(db.Ioc).GetDisplayName(db.Ioc));
+                    }
+                }
+                indexToDb[items.Count] = null;
+                items.Add(GetString(Resource.String.open_other_db));
+
+                builder.SetItems(items.ToArray(), (o, eventArgs) =>
+                {
+                    Database db;
+                    if (!indexToDb.TryGetValue(eventArgs.Which, out db) || (db == null))
+                    {
+                        StartFileSelect();
+                    }
+                    else
+                    {
+                        AddAutoOpenEntryForDatabase(db);
+                    }
+
+                });
+                
+
+                
+                AlertDialog dialog = builder.Create();
+                dialog.Show();
+            };
         }
+
+        private void AddAutoOpenEntryForDatabase(Database db)
+        {
+            PwGroup autoOpenGroup = null;
+            var rootGroup = App.Kp2a.CurrentDb.KpDatabase.RootGroup;
+            foreach (PwGroup pgSub in rootGroup.Groups)
+            {
+                if (pgSub.Name == "AutoOpen")
+                {
+                    autoOpenGroup = pgSub;
+                    break;
+
+                }
+                    
+            }
+            if (autoOpenGroup == null)
+            {
+                AddGroup addGroupTask = AddGroup.GetInstance(this, App.Kp2a, "AutoOpen", 1, null, rootGroup, null, true);
+                addGroupTask.Run();
+                autoOpenGroup = addGroupTask.Group;
+            }
+
+            PwEntry newEntry = new PwEntry(true, true);
+            newEntry.Strings.Set(PwDefs.TitleField, new ProtectedString(false, App.Kp2a.GetFileStorage(db.Ioc).GetDisplayName(db.Ioc)));
+            newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, TryMakeRelativePath(App.Kp2a.CurrentDb, db.Ioc)));
+            var password = db.KpDatabase.MasterKey.GetUserKey<KcpPassword>();
+            newEntry.Strings.Set(PwDefs.PasswordField, password == null ? new ProtectedString(true, "") : password.Password);
+
+            var keyfile = db.KpDatabase.MasterKey.GetUserKey<KcpKeyFile>();
+            if ((keyfile != null) && (keyfile.Ioc != null))
+            {
+                newEntry.Strings.Set(PwDefs.UserNameField, new ProtectedString(false, TryMakeRelativePath(App.Kp2a.CurrentDb, keyfile.Ioc)));
+            }
+
+            newEntry.Strings.Set(KeeAutoExecExt._ifDevice,
+                new ProtectedString(false,
+                    KeeAutoExecExt.BuildIfDevice(new Dictionary<string, bool>()
+                    {
+                        {KeeAutoExecExt.ThisDeviceId, true}
+                    })));
+
+            var addTask = new AddEntry(this, App.Kp2a, newEntry, autoOpenGroup, new ActionOnFinish(this, (success, message, activity) => (activity as ConfigureChildDatabasesActivity)?.Update()));
+
+            ProgressTask pt = new ProgressTask(App.Kp2a, this, addTask);
+            pt.Run();
+        }
+
+        private string TryMakeRelativePath(Database db, IOConnectionInfo ioc)
+        {
+            try
+            {
+                var fsDb = App.Kp2a.GetFileStorage(db.Ioc);
+                var dbParent = fsDb.GetParentPath(db.Ioc).Path + "/";
+                if (ioc.Path.StartsWith(dbParent))
+                {
+                    return "{DB_DIR}{ENV_DIRSEP}" + ioc.Path.Substring(dbParent.Length);
+                }
+
+            }
+            catch (NoFileStorageFoundException)
+            {
+            }
+            return ioc.Path;
+
+        }
+
+        private void StartFileSelect(bool noForwardToPassword = false)
+        {
+            Intent intent = new Intent(this, typeof(FileSelectActivity));
+            intent.PutExtra(FileSelectActivity.NoForwardToPasswordActivity, noForwardToPassword);
+            intent.PutExtra("MakeCurrent", false);
+            StartActivityForResult(intent, ReqCodeOpenNewDb);
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == ReqCodeOpenNewDb)
+            {
+                switch ((int)resultCode)
+                {
+                    case (int)Result.Ok:
+
+                        string iocString = data?.GetStringExtra("ioc");
+                        IOConnectionInfo ioc = IOConnectionInfo.UnserializeFromString(iocString);
+                        var db = App.Kp2a.TryGetDatabase(ioc);
+                        if (db != null)
+                            AddAutoOpenEntryForDatabase(db);
+
+                        break;
+                    case PasswordActivity.ResultSelectOtherFile:
+                        StartFileSelect(true);
+                        break;
+                    default:
+                        break;
+                }
+
+                return;
+            }
+        }
+
+        public const int ReqCodeOpenNewDb = 1;
+
+
+
     }
 }

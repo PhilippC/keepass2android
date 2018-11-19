@@ -110,11 +110,19 @@ namespace keepass2android
             if (!KeeAutoExecExt.TryGetDatabaseIoc(autoExecItem, out ioc))
                 ioc = IOConnectionInfo.FromPath(entry.Strings.ReadSafe(PwDefs.UrlField));
             string path = ioc.Path;
-            var filestorage = App.Kp2a.GetFileStorage(ioc);
-            if (filestorage != null)
+            try
             {
-                path = filestorage.IocToPath(ioc);
+                var filestorage = App.Kp2a.GetFileStorage(ioc);
+                if (filestorage != null)
+                {
+                    path = filestorage.IocToPath(ioc);
+                }
             }
+            catch (NoFileStorageFoundException)
+            {
+                
+            }
+            
 
             entry.Strings.Set(strUiDatabaseFile, new ProtectedString(false, path));
             entry.Strings.Set(strUiKeyFile,new ProtectedString(false,entry.Strings.ReadSafe(PwDefs.UserNameField)));

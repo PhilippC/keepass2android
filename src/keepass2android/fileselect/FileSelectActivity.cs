@@ -301,7 +301,7 @@ namespace keepass2android
 
 	    private void EditFileEntry(string filename, IOConnectionInfo newConnectionInfo)
 	    {
-            _dbHelper.CreateFile(newConnectionInfo, _dbHelper.GetKeyFileForFile(filename));
+            _dbHelper.CreateFile(newConnectionInfo, _dbHelper.GetKeyFileForFile(filename), false);
 	        _dbHelper.DeleteFile(filename);
 
             LaunchPasswordActivityForIoc(newConnectionInfo);
@@ -342,7 +342,7 @@ namespace keepass2android
 			{
 				try
 				{
-					PasswordActivity.Launch(this, ioc, new ActivityLaunchModeForward());
+					PasswordActivity.Launch(this, ioc, new ActivityLaunchModeForward(), Intent.GetBooleanExtra("MakeCurrent",true));
 					Finish();
 				} catch (Java.IO.FileNotFoundException)
 				{
@@ -355,7 +355,7 @@ namespace keepass2android
 
 		private void AfterQueryCredentials(IOConnectionInfo ioc)
 		{
-			PasswordActivity.Launch(this, ioc, new ActivityLaunchModeForward());
+			PasswordActivity.Launch(this, ioc, new ActivityLaunchModeForward(), Intent.GetBooleanExtra("MakeCurrent", true));
 			Finish();
 		}
 
@@ -437,14 +437,19 @@ namespace keepass2android
 			//if no database is loaded: load the most recent database
 			if ( (Intent.GetBooleanExtra(NoForwardToPasswordActivity, false)==false) &&  _dbHelper.HasRecentFiles() && !App.Kp2a.OpenDatabases.Any())
 			{
-				ICursor filesCursor = _dbHelper.FetchAllFiles();
-				StartManagingCursor(filesCursor);
-				filesCursor.MoveToFirst();
-				IOConnectionInfo ioc = _dbHelper.CursorToIoc(filesCursor);
-				if (App.Kp2a.GetFileStorage(ioc).RequiresSetup(ioc) == false)
-				{
-					LaunchPasswordActivityForIoc(ioc);
-				}
+			    var fileStorage = new LocalFileStorage(App.Kp2a);
+                ICursor filesCursor = _dbHelper.FetchAllFiles();
+                filesCursor = new FilteredCursor(filesCursor, cursor => !fileStorage.IsLocalBackup(IOConnectionInfo.FromPath(cursor.GetString(1))));
+		        StartManagingCursor(filesCursor);
+			    if (filesCursor.Count > 0)
+			    {
+                    filesCursor.MoveToFirst();
+			        IOConnectionInfo ioc = _dbHelper.CursorToIoc(filesCursor);
+			        if (App.Kp2a.GetFileStorage(ioc).RequiresSetup(ioc) == false)
+			        {
+			            LaunchPasswordActivityForIoc(ioc);
+			        }
+			    }
 			}
 			
 

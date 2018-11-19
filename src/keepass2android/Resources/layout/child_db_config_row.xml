@@ -80,6 +80,11 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/edit"/>
+      <Button
+        android:id="@+id/child_db_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_open"/>
 
       <LinearLayout
         android:id="@+id/child_db_enable_a_copy_for_this_device_container"

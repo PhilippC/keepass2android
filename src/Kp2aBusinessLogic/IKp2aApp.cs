@@ -44,7 +44,7 @@ namespace keepass2android
         /// <summary>
         /// Loads the specified data as the currently open database, as unlocked.
         /// </summary>
-        Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat);
+        Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent);
 
 
 	    HashSet<PwGroup> DirtyGroups { get; }
@@ -64,12 +64,12 @@ namespace keepass2android
         /// <summary>
         /// Tell the app that the file from ioc was opened with keyfile.
         /// </summary>
-        void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, string displayName = "");
+        void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, bool updateTimestamp, string displayName = "");
 
 		/// <summary>
 		/// Creates a new database and returns it
 		/// </summary>
-		Database CreateNewDatabase();
+		Database CreateNewDatabase(bool makeCurrent);
 
 		/// <summary>
 		/// Returns the user-displayable string identified by stringKey
