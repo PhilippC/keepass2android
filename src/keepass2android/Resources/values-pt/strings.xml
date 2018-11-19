@@ -200,6 +200,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="omitbackup_title">Não pesquisar registos nas cópias de segurança e na reciclagem</string>
   <string name="omitbackup_summary">Omitir o grupo \'Backup\' e \' Reciclagem \' dos resultados de pesquisa</string>
   <string name="pass_filename">Nome do ficheiro de base de dados do KeePass</string>
+  <string name="password_title">Introduza password da base de dados</string>
   <string name="master_key_type">Selecionar o tipo de palavra-passe mestra:</string>
   <string name="progress_create">A criar nova base de dados…</string>
   <string name="create_database">Criar base de dados</string>
@@ -592,6 +593,7 @@ Muito útil se existirem muitos resultados iguais.</string>
 
   </string>
   <string name="open_other_db">Abrir outra base de dados…</string>
+  <string name="select_database">Escolha base de dados</string>
   <string name="DbUnlockedChannel_name">Base de dados debloqueada</string>
   <string name="DbUnlockedChannel_desc">Notificação acerca da base de dados sendo desbloqueada</string>
   <string name="DbQuicklockedChannel_name">Desbloqueio-Rápido</string>
