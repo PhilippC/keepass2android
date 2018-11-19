@@ -59,6 +59,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="unlock_database_title">Desbloquear base de dados</string>
   <string name="brackets">Parêntesis</string>
   <string name="cancel">Cancelar</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Área de transferência limpa.</string>
   <string name="clipboard_timeout">Tempo limite da área de transferência</string>
   <string name="clipboard_timeout_summary">Tempo até limpar a área de transferência após copiar utilizador ou palavra-passe</string>
@@ -290,6 +291,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="BinaryDirectory_summary">Pasta para onde os anexos são guardados.</string>
   <string name="SaveAttachmentDialog_title">Guardar anexo</string>
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja guardar o anexo.</string>
+  <string name="SaveAttachmentDialog_save">Exportar para ficheiro...</string>
   <string name="SaveAttachmentDialog_open">Guardar para a cache e abrir</string>
   <string name="ShowAttachedImage">Mostrar com visualizador de imagens interno</string>
   <string name="SaveAttachment_doneMessage">Ficheiro guardado em %1$s.</string>
@@ -441,6 +443,8 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Pasta inicial (opcional):</string>
   <string name="enter_sftp_login_title">Insira os dados de acesso SFTP:</string>
+  <string name="sftp_auth_mode">Modo de autenticação</string>
+  <string name="send_public_key">Enviar chave pública...</string>
   <string name="enter_ftp_login_title">Insira os dados de acesso FTP:</string>
   <string name="select_storage_type">Selecione o tipo de armazenamento:</string>
   <string name="filestoragename_file">Ficheiro local</string>
@@ -450,10 +454,12 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se não quiser dar acesso completo do Dropbox ao KP2A, pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar uma nova base de dados. Se já tiver uma base de dados, clique nesta opção para criar a pasta, em seguida, colocar o ficheiro dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o ficheiro.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (transferência de ficheiros por SSH)</string>
   <string name="filestoragename_content">Gestor de ficheiros de sistema</string>
@@ -585,6 +591,7 @@ Muito útil se existirem muitos resultados iguais.</string>
     &#8226;  Se consegue abrir o ficheiro no seu computador, entre em contacto com o suporte. Pode tentar gravá-lo com definições diferentes (Ex. descompactado) no computador e tentar abri-lo novamente com o Keepass2Android.
 
   </string>
+  <string name="open_other_db">Abrir outra base de dados…</string>
   <string name="DbUnlockedChannel_name">Base de dados debloqueada</string>
   <string name="DbUnlockedChannel_desc">Notificação acerca da base de dados sendo desbloqueada</string>
   <string name="DbQuicklockedChannel_name">Desbloqueio-Rápido</string>
@@ -885,7 +892,7 @@ Lançamento público inicial
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Palavra-passe</item>
-    <item>Private/Public key</item>
+    <item>Chave pública/privada</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar falhas de validação de certificado</item>
