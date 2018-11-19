@@ -346,7 +346,8 @@ namespace keepass2android
 
         private readonly List<IOConnectionInfo> _openAttempts = new List<IOConnectionInfo>(); //stores which files have been attempted to open. Used to avoid that we repeatedly try to load files which failed to load.
 	    private readonly List<Database> _openDatabases = new List<Database>();
-	    private Database _currentDatabase;
+	    private readonly List<IOConnectionInfo> _childDatabases = new List<IOConnectionInfo>(); //list of databases which were opened as child databases
+        private Database _currentDatabase;
 
 	    public IEnumerable<Database> OpenDatabases
 	    {
@@ -354,6 +355,7 @@ namespace keepass2android
 	    }
 
 	    public readonly HashSet<PwGroup> dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
+	    
 	    public HashSet<PwGroup> DirtyGroups {  get { return dirty; } }
 
 	    public bool AttemptedToOpenBefore(IOConnectionInfo ioc)
@@ -1086,6 +1088,16 @@ namespace keepass2android
                     return db;
             }
 	        return null;
+	    }
+
+	    public void RegisterChildDatabase(IOConnectionInfo ioc)
+	    {
+	        _childDatabases.Add(ioc);
+	    }
+
+	    public bool IsChildDatabase(Database db)
+	    {
+	        return _childDatabases.Any(ioc => ioc.IsSameFileAs(db.Ioc));
 	    }
 	}
 

@@ -68,7 +68,7 @@ namespace keepass2android
             if (key == strVisible)
                 return Application.Context.GetString(Resource.String.Visible_title);
             if (key == strEnabled)
-                return Application.Context.GetString(Resource.String.Enabled_title);
+                return Application.Context.GetString(Resource.String.child_db_Enabled_title);
             if (key == strUiKeyFile)
                 return Application.Context.GetString(Resource.String.keyfile_heading);
             if (key == strUiDatabaseFile)

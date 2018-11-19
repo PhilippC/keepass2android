@@ -127,6 +127,7 @@ namespace keepass2android
 				{
 					//ShowFilenameDialog(false, true, true, Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path), "", Intents.RequestCodeFileBrowseForCreate)
 					Intent i = new Intent(this, typeof (CreateDatabaseActivity));
+				    i.PutExtra("MakeCurrent", Intent.GetBooleanExtra("MakeCurrent", true));
 					
 				    i.SetFlags(ActivityFlags.ForwardResult);
 					StartActivity(i);

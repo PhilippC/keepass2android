@@ -322,6 +322,9 @@ namespace keepass2android
 
             PasswordActivity.Launch(activity,ioc,ck,new ActivityLaunchModeSimple(), !
                 bRestoreFocus);
+
+            App.Kp2a.RegisterChildDatabase(ioc);
+
             return true;
         }
 

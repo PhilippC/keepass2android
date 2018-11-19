@@ -20,6 +20,7 @@ using Java.IO;
 using Java.Net;
 using keepass2android.Io;
 using keepass2android.Utils;
+using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Object = Java.Lang.Object;
@@ -37,6 +38,7 @@ namespace keepass2android
 
             private readonly SelectCurrentDbActivity _context;
             internal List<Database> _displayedDatabases;
+            internal List<AutoExecItem> _autoExecItems;
 
             public OpenDatabaseAdapter(SelectCurrentDbActivity context)
             {
@@ -75,7 +77,7 @@ namespace keepass2android
                     btn = new Button(_context);
                     btn.LayoutParameters = new GridView.LayoutParams((int) convertDpToPixel(140, _context),
                         (int) convertDpToPixel(150, _context));
-                    btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg);
+                    
                     btn.SetPadding((int) convertDpToPixel(4, _context),
                         (int) convertDpToPixel(20, _context),
                         (int) convertDpToPixel(4, _context),
@@ -89,11 +91,12 @@ namespace keepass2android
                         int pos;
                         int.TryParse(((Button) sender).Tag.ToString(), out pos);
                         if (pos < _displayedDatabases.Count)
-                            _context.OnItemSelected(_displayedDatabases[pos]);
+                            _context.OnDatabaseSelected(_displayedDatabases[pos]);
+                        else if (pos < _displayedDatabases.Count + _autoExecItems.Count)
+                            _context.OnAutoExecItemSelected(_autoExecItems[pos - _displayedDatabases.Count]);
                         else
-                        {
                             _context.OnOpenOther();
-                        }
+
                     };
                 }
                 else
@@ -111,9 +114,18 @@ namespace keepass2android
                     drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + Util.GetProtocolId(db.Ioc));
                     displayName = db.KpDatabase.Name;
                     displayName += "\n" + App.Kp2a.GetFileStorage(db.Ioc).GetDisplayName(db.Ioc);
+                    btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg);
+                }
+                else if (position < _displayedDatabases.Count + _autoExecItems.Count)
+                {
+                    var item = _autoExecItems[position - _displayedDatabases.Count];
+                    drawable = App.Kp2a.GetResourceDrawable("ic_nav_changedb");
+                    displayName = item.Entry.Strings.ReadSafe(PwDefs.TitleField);
+                    btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg_dark);
                 }
                 else
                 {
+                    btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg);
                     displayName = _context.GetString(Resource.String.start_open_file);
                     drawable = App.Kp2a.GetResourceDrawable("ic_nav_changedb");
                 }
@@ -129,13 +141,33 @@ namespace keepass2android
 
             public override int Count
             {
-                get { return _displayedDatabases.Count+1; }
+                get { return _displayedDatabases.Count+_autoExecItems.Count+1; }
             }
 
             public void Update()
             {
+                string thisDevice = KeeAutoExecExt.ThisDeviceId;
                 _displayedDatabases = App.Kp2a.OpenDatabases.ToList();
+                _autoExecItems = App.Kp2a.OpenDatabases
+                    .SelectMany(db => KeeAutoExecExt.GetAutoExecItems(db.KpDatabase))
+                    .Where(item =>
+                        item.Visible
+                        &&
+                        KeeAutoExecExt.IsDeviceEnabled(item, thisDevice, out _)
+                        &&
+                        !_displayedDatabases.Any(displayedDb =>
+                        {
+                            IOConnectionInfo itemIoc;
+                            return KeeAutoExecExt.TryGetDatabaseIoc(item, out itemIoc) &&
+                                   displayedDb.Ioc.IsSameFileAs(itemIoc);
+                        }))
+                    .ToList();
             }
+        }
+
+        private void OnAutoExecItemSelected(AutoExecItem autoExecItem)
+        {
+            KeeAutoExecExt.AutoOpenEntry(this, autoExecItem, true);
         }
 
         private void OnOpenOther()
@@ -143,7 +175,7 @@ namespace keepass2android
             StartFileSelect(true, true);
         }
 
-        private void OnItemSelected(Database selectedDatabase)
+        private void OnDatabaseSelected(Database selectedDatabase)
         {
             App.Kp2a.CurrentDb = selectedDatabase;
             LaunchingOther = true;
@@ -177,7 +209,7 @@ namespace keepass2android
 
             _adapter = new OpenDatabaseAdapter(this);
             var gridView = FindViewById<GridView>(Resource.Id.gridview);
-            gridView.ItemClick += (sender, args) => OnItemSelected(_adapter._displayedDatabases[args.Position]);
+            
             gridView.Adapter = _adapter;
 
             if (!string.IsNullOrEmpty(Intent.GetStringExtra(Util.KeyFilename)))

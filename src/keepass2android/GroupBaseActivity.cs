@@ -634,7 +634,7 @@ namespace keepass2android
 
             bool disabledForDatabase = _prefs.GetBoolean(fingerprintinfohidden_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, false);
             bool disabledForAll = _prefs.GetBoolean(fingerprintinfohidden_prefskey, false);
-            if (!disabledForAll && !disabledForDatabase)
+            if (!disabledForAll && !disabledForDatabase && !App.Kp2a.IsChildDatabase(App.Kp2a.CurrentDb))
             {
 
                 FingerprintModule fpModule = new FingerprintModule(this);
