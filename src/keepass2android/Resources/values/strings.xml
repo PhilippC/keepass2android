@@ -744,6 +744,7 @@
   <string name="child_db_enable_on_this_device">Enable on this device</string>
   <string name="child_db_disable_on_this_device">Disable on this device</string>
   <string name="child_db_enable_a_copy_for_this_device">Copy for this device</string>
+  <string name="unconfigured_child_dbs">Your database contains new child databases in the "AutoOpen" group. Please specify if these child databases should be used on this device.</string>
   <string name="add_child_db">Add child database...</string>
   <string name="EnableCopyForThisDevice_Info">This will create and enable a copy of the child database settings. These copied settings can then be adjusted specifically for this device.</string>
 

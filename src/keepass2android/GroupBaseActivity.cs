@@ -53,6 +53,7 @@ namespace keepass2android
             { Resource.Id.cancel_insert_element, 20 },
             { Resource.Id.insert_element, 20 },
             //only use the same id if elements can be shown simultaneously!
+            { Resource.Id.child_db_infotext, 13 },
             { Resource.Id.fingerprint_infotext, 12 },
             { Resource.Id.autofill_infotext, 11 },
             { Resource.Id.notification_info_android8_infotext, 10 },
@@ -246,6 +247,7 @@ namespace keepass2android
             AppTask.StartInGroupActivity(this);
             AppTask.SetupGroupBaseActivityButtons(this);
 
+            UpdateChildDbInfo();
             UpdateFingerprintInfo();
             UpdateAutofillInfo();
             UpdateAndroid8NotificationInfo();
@@ -485,6 +487,23 @@ namespace keepass2android
                 };
             }
 
+            if (FindViewById(Resource.Id.configure_child_db) != null)
+            {
+                FindViewById(Resource.Id.configure_child_db).Click += (sender, args) =>
+                {
+                    StartActivity(typeof(ConfigureChildDatabasesActivity));
+                };
+            }
+
+            if (FindViewById(Resource.Id.info_dont_show_child_db_again) != null)
+            {
+                FindViewById(Resource.Id.info_dont_show_child_db_again).Click += (sender, args) =>
+                {
+                    _prefs.Edit().PutBoolean(childdb_ignore_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, true).Commit();
+                    UpdateAutofillInfo();
+                };
+            }
+
             if (FindViewById(Resource.Id.fabCancelAddNew) != null)
             {
                 FindViewById(Resource.Id.fabAddNew).Click += (sender, args) =>
@@ -597,6 +616,7 @@ namespace keepass2android
             return _prefs.GetBoolean("InfoTextDisabled_" + infoTextKey, false);
         }
 
+        const string childdb_ignore_prefskey = "childdb_ignore_prefskey";
         const string autofillservicewasenabled_prefskey = "AutofillServiceWasEnabled";
         const string fingerprintinfohidden_prefskey = "fingerprintinfohidden_prefskey";
 
@@ -654,6 +674,27 @@ namespace keepass2android
             }
             UpdateBottomBarElementVisibility(Resource.Id.fingerprint_infotext, canShowFingerprintInfo);
         }
+
+        private void UpdateChildDbInfo()
+        {
+            bool canShow = Group == App.Kp2a.CurrentDb.Root
+                && KeeAutoExecExt.GetAutoExecItems(App.Kp2a.CurrentDb.KpDatabase).Any(item =>
+            {
+                bool isexplicit;
+                KeeAutoExecExt.IsDeviceEnabled(item, KeeAutoExecExt.ThisDeviceId, out isexplicit);
+                return !isexplicit;
+            });
+
+            bool disabledForDatabase = _prefs.GetBoolean(childdb_ignore_prefskey+ App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, false);
+
+            if (canShow && !disabledForDatabase)
+            {
+                RegisterInfoTextDisplay("ChildDb"); //this ensures that we don't show the general info texts too soon
+
+            }
+            UpdateBottomBarElementVisibility(Resource.Id.child_db_infotext, canShow);
+        }
+
 
         protected void UpdateBottomBarElementVisibility(int resourceId, bool canShow)
         {

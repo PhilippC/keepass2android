@@ -53,18 +53,23 @@ namespace keepass2android
     {
         public const string _ifDevice = "IfDevice";
 
+        private static string _thisDevice = null;
+
         public static string ThisDeviceId   
         {
-            get {
+            get
+            {
+                if (_thisDevice != null)
+                    return _thisDevice;
                 String android_id = Settings.Secure.GetString(Application.Context.ContentResolver, Settings.Secure.AndroidId);
 
                 string deviceName = Build.Manufacturer+" "+Build.Model;
-                string deviceId = deviceName + " (" + android_id + ")";
+                _thisDevice = deviceName + " (" + android_id + ")";
 
-                deviceId = deviceId.Replace("!", "_");
-                deviceId = deviceId.Replace(",", "_");
-                deviceId = deviceId.Replace(";", "_");
-                return deviceId;
+                _thisDevice = _thisDevice.Replace("!", "_");
+                _thisDevice = _thisDevice.Replace(",", "_");
+                _thisDevice = _thisDevice.Replace(";", "_");
+                return _thisDevice;
             }
             
         }
