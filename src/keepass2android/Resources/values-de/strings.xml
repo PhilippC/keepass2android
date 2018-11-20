@@ -59,6 +59,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="unlock_database_title">Datenbank entsperren</string>
   <string name="brackets">Klammern</string>
   <string name="cancel">Abbrechen</string>
+  <string name="Ok">Okay</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
   <string name="clipboard_timeout">Zwischenablagesperre</string>
   <string name="clipboard_timeout_summary">Zeit bis zum Löschen der Zwischenablage nach dem Kopieren von Benutzername oder Passwort</string>
@@ -593,6 +594,11 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 • Wenn du die Datei über USB kopiert hast (MTP-Modus), versuche es noch einmal mit Tools wie MyPhoneExplorer. MTP schneidet die Dateien in manchen Fällen ab.\n
 • Wenn du die Datei nicht von der gleichen Stelle auf deinem PC öffnen kannst, ist es sehr wahrscheinlich, dass die Datei tatsächlich beschädigt ist. Bitte verwende in diesem Fall eine Datenbanksicherung. Wenn du annimmst, dass Keepass2Android die Datei beschädigt hat, nimm bitte Kontakt mit dem Support auf.\n
 • Wenn du die Datei auf dem PC noch öffnen kannst, nimm Sie bitte Kontakt mit dem Suppot auf. Du kannst versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z.B. nicht ZIP-komprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
+  <string name="open_other_db">Öffne weitere Datenbank…</string>
+  <string name="select_database">Datenbank auswählen</string>
+  <string name="Visible_title">Sichtbar</string>
+  <string name="child_db_Enabled_title">Automatisch öffnen</string>
+  <string name="database_file_heading">Datenbankdatei</string>
   <string name="DbUnlockedChannel_name">Datenbank entsperrt</string>
   <string name="DbUnlockedChannel_desc">Benachritigung wenn die Datenbank entsperrt ist</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
