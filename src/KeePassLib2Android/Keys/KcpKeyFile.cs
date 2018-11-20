@@ -64,7 +64,12 @@ namespace KeePassLib.Keys
 			get { return m_pbKeyData; }
 		}
 
-		public IOConnectionInfo Ioc
+	    public uint GetMinKdbxVersion()
+	    {
+	        return 0;
+	    }
+
+	    public IOConnectionInfo Ioc
 		{
 			get { return m_ioc; }
 		}

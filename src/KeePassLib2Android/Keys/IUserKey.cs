@@ -38,9 +38,11 @@ namespace KeePassLib.Keys
 			get;
 		}
 
-		// /// <summary>
-		// /// Clear the key and securely erase all security-critical information.
-		// /// </summary>
-		// void Clear();
+        // /// <summary>
+        // /// Clear the key and securely erase all security-critical information.
+        // /// </summary>
+        // void Clear();
+
+        uint GetMinKdbxVersion();
 	}
 }

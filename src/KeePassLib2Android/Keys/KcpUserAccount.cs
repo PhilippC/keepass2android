@@ -60,7 +60,12 @@ namespace KeePassLib.Keys
 			get { return m_pbKeyData; }
 		}
 
-		/// <summary>
+	    public uint GetMinKdbxVersion()
+	    {
+	        return 0;
+	    }
+
+	    /// <summary>
 		/// Construct a user account key.
 		/// </summary>
 		public KcpUserAccount()
