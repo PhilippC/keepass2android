@@ -439,6 +439,8 @@
   <string name="hint_http_url">URL-адрес файла или папки (например: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Введите регистрационные данные OwnCloud:</string>
   <string name="hint_owncloud_url">URL-адрес OwnCloud (например: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Введите Nextcloud логин:</string>
+  <string name="hint_nextcloud_url">URL-адрес Nextcloud (например: nextcloud.me.com)</string>
   <string name="hint_sftp_host">хост (например: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
   <string name="initial_directory">Исходный каталог (необязательно):</string>
@@ -454,6 +456,7 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если Вы не хотите предоставлять полный доступ к Dropbox, то можете выбрать эту опцию. Будет запрошен доступ только к папке Apps/Keepass2Android. Это особенно удобно при создании нового файла. Если у вас уже есть файл с данными, выберите этот параметр, чтобы создать папку. После скопируйте базу в папку (с компьютера) и повторно выберите эту опцию для открытия файла.</string>
@@ -598,6 +601,8 @@
   <string name="child_db_enable_a_copy_for_this_device">Копировать для этого устройства</string>
   <string name="Visible_title">Видимость</string>
   <string name="child_db_Enabled_title">Открыть автоматически</string>
+  <string name="database_file_heading">Файл базы данных</string>
+  <string name="if_device_text">Включить для %1$s</string>
   <string name="DbUnlockedChannel_name">БД разблокирована</string>
   <string name="DbUnlockedChannel_desc">Уведомление о том, что БД разблокирована</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
