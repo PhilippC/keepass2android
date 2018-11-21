@@ -501,7 +501,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoChallengeApp">Es konnte keine App gefunden werden, die diese Anforderung erfüllt.</string>
   <string name="PleaseInstallApp">Bitte installiere %1$s von Google Play.</string>
   <string name="AppOutdated">%1$s wird nicht mehr unterstützt.</string>
-  <string name="bad_resp">The Challenge-Antwort ist falsch.</string>
+  <string name="bad_resp">Die Challenge-Antwort ist falsch.</string>
   <string name="CouldntLoadChalAuxFile">Die externe Challenge-Datei konnte nicht geladen werden!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Bitte verwende das KeeChallenge-Plugin in KeePass 2.x (PC) um die Datenbank für die Verwendung von Challenge-Response zu konfigurieren!</string>
   <string name="ErrorUpdatingChalAuxFile">Fehler beim Aktualisieren der OTP-Hilfsdatei!</string>
@@ -596,6 +596,10 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 • Wenn du die Datei auf dem PC noch öffnen kannst, nimm Sie bitte Kontakt mit dem Suppot auf. Du kannst versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z.B. nicht ZIP-komprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
   <string name="open_other_db">Öffne weitere Datenbank…</string>
   <string name="select_database">Datenbank auswählen</string>
+  <string name="unspecified">nicht spezifiziert</string>
+  <string name="child_db_enabled_on_this_device">Auf diesem Gerät aktiviert</string>
+  <string name="child_db_enable_on_this_device">Auf diesem Gerät aktivieren</string>
+  <string name="child_db_disable_on_this_device">Auf diesem Gerät deaktivieren</string>
   <string name="Visible_title">Sichtbar</string>
   <string name="child_db_Enabled_title">Automatisch öffnen</string>
   <string name="database_file_heading">Datenbankdatei</string>
