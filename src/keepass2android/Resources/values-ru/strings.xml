@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Разблокировать БД</string>
   <string name="brackets">Скобки</string>
   <string name="cancel">Отмена</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Буфер обмена очищен.</string>
   <string name="clipboard_timeout">Тайм-аут очистки буфера обмена</string>
   <string name="clipboard_timeout_summary">Задержка очистки после копирования в буфер обмена логина или пароля</string>
@@ -198,6 +199,7 @@
   <string name="omitbackup_title">Не искать в зарезервированных записях и корзине</string>
   <string name="omitbackup_summary">Пропускать \"Зарезервированные\" и \"Корзина\" в результатах поиска</string>
   <string name="pass_filename">Имя файла базы данных KeePass</string>
+  <string name="password_title">Введите пароль для базы данных</string>
   <string name="master_key_type">Выберите тип мастер-ключа:</string>
   <string name="progress_create">Создание новой базы данных…</string>
   <string name="create_database">Создать базу данных</string>
@@ -456,6 +458,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если Вы не хотите предоставлять полный доступ к Dropbox, то можете выбрать эту опцию. Будет запрошен доступ только к папке Apps/Keepass2Android. Это особенно удобно при создании нового файла. Если у вас уже есть файл с данными, выберите этот параметр, чтобы создать папку. После скопируйте базу в папку (с компьютера) и повторно выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлов)</string>
   <string name="filestoragename_content">Системное средство выбора файлов</string>
@@ -587,6 +590,14 @@
     • Если файл открывается с вашего персонального компьютера, свяжитесь с нами. Вы можете сохранить его с разными параметрами (например, в распакованном виде) и попробовать открыть его снова в Keepass2Android.
 
   </string>
+  <string name="open_other_db">Открыть другую базу данных…</string>
+  <string name="select_database">Выбрать базу данных</string>
+  <string name="child_db_enabled_on_this_device">Включен на этом устройстве</string>
+  <string name="child_db_enable_on_this_device">Включить на этом устройстве</string>
+  <string name="child_db_disable_on_this_device">Выключить на этом устройстве</string>
+  <string name="child_db_enable_a_copy_for_this_device">Копировать для этого устройства</string>
+  <string name="Visible_title">Видимость</string>
+  <string name="child_db_Enabled_title">Открыть автоматически</string>
   <string name="DbUnlockedChannel_name">БД разблокирована</string>
   <string name="DbUnlockedChannel_desc">Уведомление о том, что БД разблокирована</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
