@@ -64,7 +64,7 @@ using String = System.String;
 namespace keepass2android
 {
     [Activity(Label = "@string/app_name",
-		ConfigurationChanges = ConfigChanges.Orientation,
+		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
 		Theme = "@style/MyTheme_Blue")] 
@@ -250,7 +250,7 @@ namespace keepass2android
 			}
 		    if (requestCode == RequestCodeChallengeYubikey)
 		    {
-		        if (_currentlyWaitingKey != null)
+		        if (CurrentlyWaitingKey != null)
 		        {
                     //ActivityResult was handled in base class already
 		            return;
@@ -1333,10 +1333,10 @@ namespace keepass2android
 
 	    private void PerformLoadDatabase()
 		{
-			_currentlyWaitingKey = null;
 		    if (_performingLoad)
 		        return;
-		    _performingLoad = true;
+		    CurrentlyWaitingKey = null;
+            _performingLoad = true;
             //put loading into background thread to allow loading the key file (potentially over network)
             new SimpleLoadingDialog(this, GetString(Resource.String.loading),
 			                        true, () =>
@@ -1471,8 +1471,8 @@ namespace keepass2android
 			} 
 			if (KeyProviderTypes.Contains(KeyProviders.ChallengeXC))
 			{
-				_currentlyWaitingKey = new ChallengeXCKey(this, RequestCodeChallengeYubikey);
-				compositeKey.AddUserKey(_currentlyWaitingKey);
+				CurrentlyWaitingKey = new ChallengeXCKey(this, RequestCodeChallengeYubikey);
+				compositeKey.AddUserKey(CurrentlyWaitingKey);
 			}
 			return true;
 		}

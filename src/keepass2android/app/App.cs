@@ -140,6 +140,7 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("Database not loaded, couldn't lock");
 			}
+	        _currentlyWaitingXcKey = null;
 
 			UpdateOngoingNotification();
 			Application.Context.SendBroadcast(new Intent(Intents.DatabaseLocked));
@@ -353,6 +354,8 @@ namespace keepass2android
 	    {
 	        get { return _openDatabases; }
 	    }
+
+	    internal ChallengeXCKey _currentlyWaitingXcKey;
 
 	    public readonly HashSet<PwGroup> dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
 	    
