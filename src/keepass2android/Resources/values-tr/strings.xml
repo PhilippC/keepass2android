@@ -607,9 +607,11 @@
   <string name="child_db_disable_on_this_device">Bu cihazda devre dışı</string>
   <string name="child_db_enable_a_copy_for_this_device">Bu cihaz için kopyala</string>
   <string name="add_child_db">Alt veritabanı ekle...</string>
+  <string name="EnableCopyForThisDevice_Info">Bu seçenek alt veritabanı ayarlarının bir kopyasını oluşturup etkinleştirecek. Bu kopyalanan ayarlar daha sonra bu cihaz için özel olarak ayarlanabilir.</string>
   <string name="Visible_title">Görünür</string>
   <string name="child_db_Enabled_title">Otomatik aç</string>
   <string name="database_file_heading">Veritabanı dosyası</string>
+  <string name="if_device_text">%1$s etkinleştir</string>
   <string name="DbUnlockedChannel_name">Veritabanı açıldı</string>
   <string name="DbUnlockedChannel_desc">Açılan veritabanıyla ilgili bildirim</string>
   <string name="DbQuicklockedChannel_name">Kilidi ÇabukAç</string>
