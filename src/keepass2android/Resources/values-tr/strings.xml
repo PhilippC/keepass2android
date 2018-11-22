@@ -599,6 +599,17 @@
   </string>
   <string name="open_other_db">Başka bir veritabanı açın…</string>
   <string name="select_database">Veritabanını seçin</string>
+  <string name="configure_child_dbs">Alt veritabanlarını yapılandır…</string>
+  <string name="child_dbs_title">Alt veritabanları</string>
+  <string name="unspecified">tanımsız</string>
+  <string name="child_db_enabled_on_this_device">Bu cihazda etkinleştirildi</string>
+  <string name="child_db_enable_on_this_device">Bu cihazda etkin</string>
+  <string name="child_db_disable_on_this_device">Bu cihazda devre dışı</string>
+  <string name="child_db_enable_a_copy_for_this_device">Bu cihaz için kopyala</string>
+  <string name="add_child_db">Alt veritabanı ekle...</string>
+  <string name="Visible_title">Görünür</string>
+  <string name="child_db_Enabled_title">Otomatik aç</string>
+  <string name="database_file_heading">Veritabanı dosyası</string>
   <string name="DbUnlockedChannel_name">Veritabanı açıldı</string>
   <string name="DbUnlockedChannel_desc">Açılan veritabanıyla ilgili bildirim</string>
   <string name="DbQuicklockedChannel_name">Kilidi ÇabukAç</string>
