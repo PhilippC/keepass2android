@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Desbloca la base de dades</string>
   <string name="brackets">Parèntesis</string>
   <string name="cancel">Cancel·la</string>
+  <string name="Ok">D\'acord</string>
   <string name="ClearClipboard">Porta-retalls netejat.</string>
   <string name="clipboard_timeout">Temps actiu del porta-retalls</string>
   <string name="clipboard_timeout_summary">Temps disponible abans de netejar el porta-retalls després de copiar un usuari o contrasenya</string>
@@ -201,6 +202,7 @@
   <string name="omitbackup_title">No cerquis entrades a còpia de seguretat ni paperera</string>
   <string name="omitbackup_summary">Omet els grups \'Còpia de seguretat\' i paperera dels resultats de cerca</string>
   <string name="pass_filename">Nom de base de dades KeePass</string>
+  <string name="password_title">Introduïu la contrasenya de la base de dades</string>
   <string name="master_key_type">Seleccioneu el tipus de clau mestra:</string>
   <string name="progress_create">Creant nova base de dades…</string>
   <string name="create_database">Crear base de dades</string>
@@ -596,6 +598,21 @@
      • si vostè va copiar l\'arxiu mitjançant USB (MTP Mode), intenteu-ho novament amb eines com MyPhoneExplorer. MTP trunca arxius en certs casos. \n
     • si no es pot obrir el fitxer des del mateix emplaçament en el seu PC, és molt probable que l\'arxiu estigui corrupte. Si us plau utilitzi una còpia de seguretat de la base de dades. Si vostè creu que Keepass2Android ha malmès el fitxer, si us plau contacte amb suport. \n
     • si encara pots obrir l\'arxiu en el seu PC, contacteu amb suport. Podria intentar guardar-lo amb diferents configuracions (p. ex. descomprimit) en el PC i provar a obrir-lo de nou en Keepass2Android.  </string>
+  <string name="open_other_db">Obrir una altra base de dades…</string>
+  <string name="select_database">Seleccioneu la base de dades</string>
+  <string name="configure_child_dbs">Configura bases de dades fills…</string>
+  <string name="child_dbs_title">Bases de dades fill</string>
+  <string name="unspecified">sense especificar</string>
+  <string name="child_db_enabled_on_this_device">Activat en aquest dispositiu</string>
+  <string name="child_db_enable_on_this_device">Activa en aquest dispositiu</string>
+  <string name="child_db_disable_on_this_device">Desactiva en aquest dispositiu</string>
+  <string name="child_db_enable_a_copy_for_this_device">Còpia per a aquest dispositiu</string>
+  <string name="add_child_db">Afegeix base de dades fill...</string>
+  <string name="EnableCopyForThisDevice_Info">Això crearà i activarà una còpia de la configuració de base de dades fill. Aquestes configuracions copiades poden ajustar-se específicament per a aquest dispositiu.</string>
+  <string name="Visible_title">Visible</string>
+  <string name="child_db_Enabled_title">Obrir automàticament</string>
+  <string name="database_file_heading">L\'arxiu de base de dades</string>
+  <string name="if_device_text">Habilita per a %1$s</string>
   <string name="DbUnlockedChannel_name">Base de dades desbloquejada</string>
   <string name="DbUnlockedChannel_desc">Notificació sobre la base de dades que s\'està desbloquejant</string>
   <string name="DbQuicklockedChannel_name">Desbloqueig ràpid</string>
