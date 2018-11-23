@@ -627,6 +627,17 @@
   <string name="ErrorReportAsk">Preguntar després d\'error</string>
   <string name="ErrorReportPrefTitle">Enviar registre d\'errors</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostra el teclat per introduir la contrasenya quan l\'escàner d\'empremta digital és actiu.</string>
+  <string name="ChangeLog_1_07">    Versió 1.07-pre1\n
+    Precaució! Aquesta versió inclou importants canvis sota el capot. Si us plau, reporteu qualsevol canvi de comportament no desitjat a crocoapps@gmail.com!!!\n
+    * permetre obrir més d\'una base de dades, permet moure les entrades entre bases de dades\n
+    * SFTP: permet autenticació de clau pública, comprovar si la clau del servidor ha canviat\n clau
+    * Suport a pCloud - gràcies a gilbsgilbs! \n
+    * Suport a Nextcloud explicit\n
+    * Millora la guarda i actualització d\'adjunts a les entrades\n
+    * Més opcions d\'adaptació de comportament les preferències\n
+    * SSL: confiar en certificat de l\'usuari\n
+    * arregla errors\n
+  </string>
   <string name="ChangeLog_1_06">Versió 1.06\n
 * Canvieu a ykDroid en comptes de YubiChallenge com a aplicació de Desafiament-Resposta de Yubikey.\n
 * Implementat suport per a KeepassXC Desafiament-Resposta. Nota: El format de la base de dades ha de ser KDBX4!\n
