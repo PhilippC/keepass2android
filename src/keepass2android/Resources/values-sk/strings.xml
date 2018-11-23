@@ -603,6 +603,19 @@
   </string>
   <string name="open_other_db">Otvoriť inú databázu…</string>
   <string name="select_database">Vybrať databázu</string>
+  <string name="configure_child_dbs">Konfigurovať sekundárne databázy…</string>
+  <string name="child_dbs_title">Sekundárne databázy</string>
+  <string name="unspecified">nešpecifikované</string>
+  <string name="child_db_enabled_on_this_device">Zapnuté na tomto zariadení</string>
+  <string name="child_db_enable_on_this_device">Zapnúť na tomto zariadení</string>
+  <string name="child_db_disable_on_this_device">Vypnúť na tomto zariadení</string>
+  <string name="child_db_enable_a_copy_for_this_device">Kopírovať pre toto zariadenie</string>
+  <string name="add_child_db">Pridať sekundárnu databázu...</string>
+  <string name="EnableCopyForThisDevice_Info">Týmto vytvoríte a aktivujete kópiu nastavení sekundárnej databázy. Tieto skopírované nastavenia sa potom dajú upraviť špeciálne pre toto zariadenie.</string>
+  <string name="Visible_title">Viditeľné</string>
+  <string name="child_db_Enabled_title">Otvoriť automaticky</string>
+  <string name="database_file_heading">Databázový súbor</string>
+  <string name="if_device_text">Zapnúť pre %1$s</string>
   <string name="DbUnlockedChannel_name">Databáza odomknutá</string>
   <string name="DbUnlockedChannel_desc">Notifikácia o odomknutí databázy</string>
   <string name="DbQuicklockedChannel_name">Rýchle odomknutie</string>
@@ -617,6 +630,17 @@
   <string name="ErrorReportAsk">Opýtať sa po výskyte chyby</string>
   <string name="ErrorReportPrefTitle">Odosielanie záznamov o chybe</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
+  <string name="ChangeLog_1_07">    Verzia 1.07-pre1\n
+    !!! Pozor! Toto vydanie obsahuje významné zmeny. Prípadné nechcené zmeny správania sa aplikácie prosím ohláste na adrese crocoapps@gmail.com !!!\n
+    * Umožnenie otvorenia viac ako jednej databázy, umožnenie presúvania záznamov medzi databázami\n
+    * SFTP: umožnenie overenia verejného kľúča, kontroly či sa zmenil hostiteľský kľúč\n
+    * Zavedenie podpory pre pCloud - vďaka gilbsgilbs!\n
+    * Vytvorenie explicitnej podpory pre Nextcloud\n
+    * Vylepšenie ukladania a aktualizovania príloh k záznamu\n
+    * Viac možností úpravy správania, podľa osobných preferencií\n
+    * SSL: certifikáty pre dôveryhodného používateľa (Trust user)\n
+    * opravy chýb\n
+  </string>
   <string name="ChangeLog_1_06">    Verzia 1.06\n
     * Prechod na ykDroid namiesto YubiChallenge ako aplikácie pre odpoveď na výzvu Yubikey.\n
     * Implementovaná podpora odpoveď na výzvu v štýle KeepassXC. Poznámka: Formát databázy musí byť KDBX4!\n
