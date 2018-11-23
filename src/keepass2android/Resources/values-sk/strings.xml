@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Odomknúť databázu</string>
   <string name="brackets">Zátvorky</string>
   <string name="cancel">Zrušiť</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Schránka vyčistená.</string>
   <string name="clipboard_timeout">Časový limit schránky</string>
   <string name="clipboard_timeout_summary">Čas pred vyčistením schránky po skopírovaní mena alebo hesla</string>
@@ -201,6 +202,7 @@
   <string name="omitbackup_title">Neprehľadávať záznamy v zálohách alebo v koši</string>
   <string name="omitbackup_summary">Vynechať skupinu \'Backup\' a kôš z výsledkov vyhľadávania</string>
   <string name="pass_filename">Súbor s databázou KeePass</string>
+  <string name="password_title">Zadajte heslo k databáze</string>
   <string name="master_key_type">Vyberte typ primárneho kľúča:</string>
   <string name="progress_create">Vytvára sa nová databáza…</string>
   <string name="create_database">Vytvoriť databázu</string>
@@ -599,6 +601,8 @@
     • Ak je možné otvoriť súbor na počítači, prosím kontaktujte podporu. Môžete sa pokúsiť uložiť ho s rôznymi nastaveniami (napríklad v nezbalenom stave) an počítači a potom sa pokúsiť otvoriť ho v aplikácii Keepass2Android.
 
   </string>
+  <string name="open_other_db">Otvoriť inú databázu…</string>
+  <string name="select_database">Vybrať databázu</string>
   <string name="DbUnlockedChannel_name">Databáza odomknutá</string>
   <string name="DbUnlockedChannel_desc">Notifikácia o odomknutí databázy</string>
   <string name="DbQuicklockedChannel_name">Rýchle odomknutie</string>
