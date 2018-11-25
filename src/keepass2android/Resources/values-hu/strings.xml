@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Adatbázis feloldása</string>
   <string name="brackets">Zárójelek</string>
   <string name="cancel">Mégsem</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Vágólap törölve.</string>
   <string name="clipboard_timeout">Vágólap időkorlátja</string>
   <string name="clipboard_timeout_summary">Beállíthatja, mennyi idő után kerüljön törlésre a vágólap</string>
@@ -332,6 +333,7 @@
   <string name="CreateBackups_summary">Hozzon létre helyi biztonsági mentés másolatot sikeres adatbázis betöltés után.</string>
   <string name="UpdatingBackup">Helyi biztonsági másolat frissítése...</string>
   <string name="LocalBackupOf">%1$s helyi biztonsági mentése</string>
+  <string name="show_local_backups">Helyi archívok mutatása</string>
   <string name="AcceptAllServerCertificates_title">SSL tanúsítványok</string>
   <string name="AcceptAllServerCertificates_summary">Adja meg, mi történjen, ha a tanúsítvány ellenőrzése nem sikerül.  Megjegyzés: sikertelen ellenőrzés esetén van lehetőség az eszközre a megfelelő tanúsítvány telepítésére!</string>
   <string name="ClearOfflineCache_title">Helyi másolatok törlése?</string>
@@ -600,6 +602,19 @@
   <string name="ErrorReportPrefTitle">Hibajelentések küldése</string>
   <string name="ShowKeyboardDuringFingerprintAuth">A billentyűzet megjelenítése a jelszóbeíráshoz ujjlenyomat-leolvasás közben.</string>
   <string name="ChangeLog_keptDonate">Lehetőségek kiterjesztése, hogy egy sörrel vagy valami mással támogasson</string>
+  <string name="ChangeLog"><b>Version 0.6.2</>
+* Google Drive/Dropbox/... integráció: Ha a hivatalos Google Drive vagy Dropbox applikációból nyit meg egy .kdbx fájlt, akkor az autómatikusan a KP2A-val kerül megnyitásra.
+* Továbbfejlesztett kereső dialógus
+* Továbbfejlesztett keresési eredmények ha a megosztott URL aldomaint tartalmaz
+* Menüelemek hozzáadása: visszajelzéshez, értékeléshez és fordításhoz
+
+<b>Version 0.6.1</b>
+* Háttérben történő adatbázis változások érzékelése (pl szinkronizáló alkalmazás hatására)
+* Továbbfejlesztett URL keresés a böngészőből
+* Változások elvetésekor párbeszéd ablak kér megerősítést
+
+<b>Version 0.6</b>
+Kezdeti közösségi kiadás</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>
     <item>1 perc</item>
