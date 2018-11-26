@@ -443,7 +443,7 @@
   <string name="hint_http_url">URL-адрес файла или папки (например: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Введите регистрационные данные OwnCloud:</string>
   <string name="hint_owncloud_url">URL-адрес OwnCloud (например: owncloud.me.com)</string>
-  <string name="enter_nextcloud_login_title">Введите Nextcloud логин:</string>
+  <string name="enter_nextcloud_login_title">Введите логин для Nextcloud:</string>
   <string name="hint_nextcloud_url">URL-адрес Nextcloud (например: nextcloud.me.com)</string>
   <string name="hint_sftp_host">хост (например: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
