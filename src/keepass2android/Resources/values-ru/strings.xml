@@ -607,6 +607,7 @@
   <string name="child_db_disable_on_this_device">Выключить на этом устройстве</string>
   <string name="child_db_enable_a_copy_for_this_device">Копировать для этого устройства</string>
   <string name="add_child_db">Добавить дочернюю базу данных...</string>
+  <string name="EnableCopyForThisDevice_Info">Это создаст и включит копию настроек дочерней базы данных. После этого эти настройки могут быть специально настроены для этого устройства.</string>
   <string name="Visible_title">Видимость</string>
   <string name="child_db_Enabled_title">Открыть автоматически</string>
   <string name="database_file_heading">Файл базы данных</string>
