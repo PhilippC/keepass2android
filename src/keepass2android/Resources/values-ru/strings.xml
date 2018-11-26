@@ -318,6 +318,8 @@
   <string name="ClearPasswordOnLeave_summary">Очистить введенный мастер-пароль при покидании экрана без разблокировки базы данных.</string>
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
   <string name="LockWhenNavigateBack_summary">Блокировать БД при выходе кнопкой \"назад\".</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Используйте встроенную клавиатуру Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Если Вы не доверяете своей стандартной клавиатуре, установите этот параметр, чтобы использовать встроенную клавиатуру при вводе мастер-пароля или редактирования записей.</string>
   <string name="ActivateSearchViewOnStart_title">Активировать поле поиска при старте</string>
   <string name="ActivateSearchViewOnStart_summary">Активировать поле поиска в группе после разблокировки или когда ищем значение</string>
   <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
@@ -595,6 +597,7 @@
   </string>
   <string name="open_other_db">Открыть другую базу данных…</string>
   <string name="select_database">Выбрать базу данных</string>
+  <string name="unspecified">не определено</string>
   <string name="child_db_enabled_on_this_device">Включен на этом устройстве</string>
   <string name="child_db_enable_on_this_device">Включить на этом устройстве</string>
   <string name="child_db_disable_on_this_device">Выключить на этом устройстве</string>
