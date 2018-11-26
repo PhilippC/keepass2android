@@ -210,6 +210,8 @@
   <string name="edit">Изменить</string>
   <string name="rijndael">Алгоритм шифрования Rijndael (AES)</string>
   <string name="root">Корень</string>
+  <string name="AutoReturnFromQuery_title">Автоматически вернуться с экрана запроса</string>
+  <string name="AutoReturnFromQuery_summary">При поиске записи для приложения или веб-сайта: автоматически вернуться с экрана запроса, если в БД имеется только одна соответствующая запись.</string>
   <string name="KeyDerivFunc">Функция деривации ключа</string>
   <string name="rounds">Циклов шифрования</string>
   <string name="rounds_explaination">Чем больше циклов шифрования, тем меньше база данных подвержена к подбору пароля. Скорость открытия и сохранения при этом ниже.</string>
