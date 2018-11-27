@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Розблокувати</string>
   <string name="brackets">Дужки</string>
   <string name="cancel">Скасувати</string>
+  <string name="Ok">Гаразд</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
   <string name="clipboard_timeout">Очищення буфера обміну</string>
   <string name="clipboard_timeout_summary">Час очищення буфера обміну після копіювання імені користувача або пароля</string>
