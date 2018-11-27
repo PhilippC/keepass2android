@@ -58,7 +58,7 @@
   <string name="unlock_database_title">Розблокувати</string>
   <string name="brackets">Дужки</string>
   <string name="cancel">Скасувати</string>
-  <string name="Ok">Гаразд</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
   <string name="clipboard_timeout">Очищення буфера обміну</string>
   <string name="clipboard_timeout_summary">Час очищення буфера обміну після копіювання імені користувача або пароля</string>
@@ -202,6 +202,7 @@
   <string name="omitbackup_title">Не шукати в записах резервних копій та смітника</string>
   <string name="omitbackup_summary">Не показувати групи Резервна копія і Смітник в результатах пошуку</string>
   <string name="pass_filename">Назва файлу бази даних KeePass</string>
+  <string name="password_title">Введіть пароль бази даних</string>
   <string name="master_key_type">Виберіть тип головного ключа:</string>
   <string name="progress_create">Створення нової бази даних…</string>
   <string name="create_database">Створити базу даних</string>
@@ -600,6 +601,21 @@
     • Якщо ви можете відкрити цей файл на комп\'ютері, будь ласка, зв\'яжіться з технічною підтримкою. Ви можете спробувати зберегти його з іншими налаштуваннями (наприклад, незапакованим) на комп\'ютері та відкрити в Keepass2Android.
 
   </string>
+  <string name="open_other_db">Відкрити іншу базу даних…</string>
+  <string name="select_database">Обрати базу даних</string>
+  <string name="configure_child_dbs">Налаштувати дочірні бази даних…</string>
+  <string name="child_dbs_title">Дочірні бази даних</string>
+  <string name="unspecified">не вказано</string>
+  <string name="child_db_enabled_on_this_device">Увімкнено на цьому пристрої</string>
+  <string name="child_db_enable_on_this_device">Увімкнути на цьому пристрої</string>
+  <string name="child_db_disable_on_this_device">Вимкнути на цьому пристрої</string>
+  <string name="child_db_enable_a_copy_for_this_device">Копіювати для цього пристрою</string>
+  <string name="add_child_db">Додати дочірню базу даних...</string>
+  <string name="EnableCopyForThisDevice_Info">Ця дія створить і увімкне копію налаштувань дочірньої бази даних. Ці скопійовані налаштування потім можуть бути спеціально налаштовані для цього пристрою.</string>
+  <string name="Visible_title">Видимість</string>
+  <string name="child_db_Enabled_title">Відкривати автоматично</string>
+  <string name="database_file_heading">Файл бази даних</string>
+  <string name="if_device_text">Увімкнути для %1$s</string>
   <string name="DbUnlockedChannel_name">База даних розблокована</string>
   <string name="DbUnlockedChannel_desc">Сповіщення про розблокування бази даних</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
