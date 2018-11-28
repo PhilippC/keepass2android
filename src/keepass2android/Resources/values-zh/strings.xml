@@ -58,6 +58,7 @@
   <string name="unlock_database_title">解锁数据库</string>
   <string name="brackets">括号</string>
   <string name="cancel">取消</string>
+  <string name="Ok">确定</string>
   <string name="ClearClipboard">剪贴板已清除。</string>
   <string name="clipboard_timeout">剪贴板超时</string>
   <string name="clipboard_timeout_summary">复制用户名或密码到剪贴板后清除的时间</string>
@@ -198,6 +199,7 @@
   <string name="omitbackup_title">不搜索备份和回收站中的条目</string>
   <string name="omitbackup_summary">从搜索结果中忽略备份和回收站群组</string>
   <string name="pass_filename">KeePass 数据库文件名</string>
+  <string name="password_title">输入数据库密码</string>
   <string name="master_key_type">选择主密钥类型：</string>
   <string name="progress_create">创建新数据库中…</string>
   <string name="create_database">创建数据库</string>
@@ -595,6 +597,21 @@
     &#8226;如果你可以在PC上打开这个文件，请联系技术支持。你也可以尝试在PC上使用不同参数（如不压缩）另存一份文件，再尝试在Keepass2Android上打开。
 
   </string>
+  <string name="open_other_db">打开另一个数据库...</string>
+  <string name="select_database">选择数据库</string>
+  <string name="configure_child_dbs">配置子数据库...</string>
+  <string name="child_dbs_title">子数据库</string>
+  <string name="unspecified">未指定</string>
+  <string name="child_db_enabled_on_this_device">在此设备上启用</string>
+  <string name="child_db_enable_on_this_device">在此设备上启用</string>
+  <string name="child_db_disable_on_this_device">在此设备上禁用</string>
+  <string name="child_db_enable_a_copy_for_this_device">复制此设备</string>
+  <string name="add_child_db">添加子数据库...</string>
+  <string name="EnableCopyForThisDevice_Info">这将创建并启用子数据库设置的副本。然后可以专门为此设备调整这些复制的设置。</string>
+  <string name="Visible_title">可见</string>
+  <string name="child_db_Enabled_title">自动打开</string>
+  <string name="database_file_heading">数据库文件</string>
+  <string name="if_device_text">启用%1$s</string>
   <string name="DbUnlockedChannel_name">数据库已解锁</string>
   <string name="DbUnlockedChannel_desc">数据库解锁通知</string>
   <string name="DbQuicklockedChannel_name">快速解锁</string>
@@ -609,6 +626,7 @@
   <string name="ErrorReportAsk">出错后询问</string>
   <string name="ErrorReportPrefTitle">发送错误报告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
+  <string name="ChangeLog_1_07">< div class="notranslate">0 </div> 版本 1.07-预 1\ n class="notranslate">1 </div>!!!谨慎！此版本附带引擎盖下的重大更改。请将任何不希望的行为更改报告到 crocoapps@gmail.com!!!\ n < div class="notranslate">2 </div> * 允许打开多个数据库, 允许在数据库之间移动条目 \ n div class="notranslate">3 </div> * sftp: 允许公钥身份验证, 检查主机密钥更改 \ n div class="notranslate">4 </div> *引入 pcloud 支持-感谢 gilbsgilb! \ n div class="notranslate">5 </div> * 使 nextcloud 支持明确地说明 \ n div class="notranslate">6 </div> * 改进入门级附件的保存和更新 < div class="notranslate">7 </div> * 更多使行为适应个人偏好的选项 \ n < div class="notranslate">8 </div> * sssl: 信任用户证书 \ n class="notranslate">9 </div> * bug 修复 \ n div < div < class="notranslate">10 </div>  </string>
   <string name="ChangeLog_1_06">    1.06版本\n
     *切换到ykDroid而不是YubiChallenge作为Yubikey Challenge-Response的应用程序。\n
     *实施对KeepassXC挑战应答的支持。 注意：数据库格式必须是KDBX4！\n
