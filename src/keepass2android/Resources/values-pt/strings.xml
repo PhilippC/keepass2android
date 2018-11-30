@@ -594,7 +594,13 @@ Muito útil se existirem muitos resultados iguais.</string>
   </string>
   <string name="open_other_db">Abrir outra base de dados…</string>
   <string name="select_database">Escolha base de dados</string>
+  <string name="configure_child_dbs">Configurar bases de dados filhas…</string>
+  <string name="child_dbs_title">Bases de dados filhas</string>
   <string name="unspecified">não especificado</string>
+  <string name="child_db_enabled_on_this_device">Ativado neste dispositivo</string>
+  <string name="child_db_enable_on_this_device">Ativar neste dispositivo</string>
+  <string name="child_db_disable_on_this_device">Desativar neste dispositivo</string>
+  <string name="child_db_enable_a_copy_for_this_device">Copiar para este dispositivo</string>
   <string name="Visible_title">Visível</string>
   <string name="child_db_Enabled_title">Abrir automaticamente</string>
   <string name="database_file_heading">Ficheiro de Base de Dados</string>
