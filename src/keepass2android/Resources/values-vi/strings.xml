@@ -208,6 +208,7 @@
   <string name="edit">Chỉnh sửa</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Thư mục gốc</string>
+  <string name="AutoReturnFromQuery_title">Automatically return from query screen</string>
   <string name="KeyDerivFunc">Hàm dẫn xuất khóa</string>
   <string name="rounds">Số lần lặp mã hóa</string>
   <string name="rounds_explaination">số lần lặp mã hóa cao cung cấp thêm bảo vệ chống lại cuộc tấn công bạo lực, nhưng có thể làm chậm quá trình tải và lưu.</string>
