@@ -21,7 +21,7 @@ using Exception = System.Exception;
 namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
-		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
+	    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
 		Theme = "@style/MyTheme_ActionBar", MainLauncher = false)]
 	[IntentFilter(new[] { "kp2a.action.FingerprintSetupActivity" }, Categories = new[] { Intent.CategoryDefault })]
 	public class FingerprintSetupActivity : LockCloseActivity, IFingerprintAuthCallback

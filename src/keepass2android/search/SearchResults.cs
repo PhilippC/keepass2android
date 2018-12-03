@@ -18,6 +18,7 @@ using System;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -29,7 +30,7 @@ namespace keepass2android.search
 	/// <summary>
 	/// Activity to show search results
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Permission="keepass2android."+AppNames.PackagePart+".permission.KP2aInternalSearch")]
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Permission="keepass2android."+AppNames.PackagePart+".permission.KP2aInternalSearch", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else

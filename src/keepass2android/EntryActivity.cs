@@ -86,7 +86,7 @@ namespace keepass2android
     }
 
 
-	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden,
+	[Activity (Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
         Theme = "@style/MyTheme_ActionBar")]
 	public class EntryActivity : LockCloseActivity 
 	{

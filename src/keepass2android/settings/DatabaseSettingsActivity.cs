@@ -1026,7 +1026,7 @@ namespace keepass2android
     /// <summary>
 	/// Activity to configure the application and database settings. The database must be unlocked, and this activity will close if it becomes locked.
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme")]			
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
 	public class DatabaseSettingsActivity : LockCloseActivity 
 	{
 

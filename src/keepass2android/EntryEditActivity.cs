@@ -46,7 +46,7 @@ using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]			
+	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]			
 	public class EntryEditActivity : LockCloseActivity {
 	    
 

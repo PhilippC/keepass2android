@@ -293,7 +293,7 @@ namespace keepass2android
 			return 0;
 		}
 	}
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
+	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
 		Theme = "@style/MyTheme_ActionBar")]
 	public class ImageViewActivity : LockCloseActivity
 	{

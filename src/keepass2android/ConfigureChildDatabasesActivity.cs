@@ -28,7 +28,7 @@ using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/child_dbs_title", MainLauncher = false, Theme = "@style/MyTheme_Blue", LaunchMode = LaunchMode.SingleInstance)]
+    [Activity(Label = "@string/child_dbs_title", MainLauncher = false, Theme = "@style/MyTheme_Blue", LaunchMode = LaunchMode.SingleInstance, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
     [IntentFilter(new[] { "kp2a.action.ConfigureChildDatabasesActivity" }, Categories = new[] { Intent.CategoryDefault })]
     public class ConfigureChildDatabasesActivity : LockCloseActivity
     {
