@@ -65,7 +65,16 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		
 		protected String[] getProtectedFieldsListFromIntent()
 		{
-			return _intent.getStringArrayExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST);
+			try {
+				JSONArray json = new JSONArray(_intent.getStringExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST));
+				String[] res = new String[json.length()];
+				for(int i = 0; i < json.length(); i++)
+					res[i] = json.getString(i);
+				return res;
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return null;
+			}
 		}
 		
 
