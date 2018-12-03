@@ -607,6 +607,7 @@
   <string name="child_db_enable_on_this_device">Activa en aquest dispositiu</string>
   <string name="child_db_disable_on_this_device">Desactiva en aquest dispositiu</string>
   <string name="child_db_enable_a_copy_for_this_device">Còpia per a aquest dispositiu</string>
+  <string name="unconfigured_child_dbs">La teva base de dades conté una nova base de dades fill en el grup \"AutoOpen\". Especifiqueu si aquestes bases de dades fill ha de ser utilitzada en aquest dispositiu.</string>
   <string name="add_child_db">Afegeix base de dades fill...</string>
   <string name="EnableCopyForThisDevice_Info">Això crearà i activarà una còpia de la configuració de base de dades fill. Aquestes configuracions copiades poden ajustar-se específicament per a aquest dispositiu.</string>
   <string name="Visible_title">Visible</string>
