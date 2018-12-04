@@ -610,6 +610,7 @@
   <string name="child_db_enable_on_this_device">Zapnúť na tomto zariadení</string>
   <string name="child_db_disable_on_this_device">Vypnúť na tomto zariadení</string>
   <string name="child_db_enable_a_copy_for_this_device">Kopírovať pre toto zariadenie</string>
+  <string name="unconfigured_child_dbs">Vaša databáza obsahuje nové sekundárne databázy v skupine \"AutoOpen\". Určite, či sa na tomto zariadení majú tieto databázy používať.</string>
   <string name="add_child_db">Pridať sekundárnu databázu...</string>
   <string name="EnableCopyForThisDevice_Info">Týmto vytvoríte a aktivujete kópiu nastavení sekundárnej databázy. Tieto skopírované nastavenia sa potom dajú upraviť špeciálne pre toto zariadenie.</string>
   <string name="Visible_title">Viditeľné</string>
