@@ -1204,7 +1204,7 @@ namespace keepass2android
 			
 		}
 		private String getDateTime(DateTime dt) {
-			return dt.ToString ("g", CultureInfo.CurrentUICulture);
+			return dt.ToLocalTime().ToString ("g", CultureInfo.CurrentUICulture);
 		}
 
 
