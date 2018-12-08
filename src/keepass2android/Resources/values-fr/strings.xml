@@ -603,6 +603,7 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="child_db_enable_on_this_device">Activer sur cet appareil</string>
   <string name="child_db_disable_on_this_device">Désactiver sur cet appareil</string>
   <string name="child_db_enable_a_copy_for_this_device">Copier pour cet appareil</string>
+  <string name="unconfigured_child_dbs">Votre base de données contient de nouvelles bases de données filles dans le groupe « AutoOpen ». Veuillez préciser si ces bases de données filles doivent être utilisées sur cet appareil.</string>
   <string name="add_child_db">Ajouter une base de données fille...</string>
   <string name="EnableCopyForThisDevice_Info">Cela va créer et activer une copie des paramètres de la base de données fille. Ces paramètres copiés peuvent ensuite être adaptés spécialement pour cet appareil.</string>
   <string name="Visible_title">Visible</string>
