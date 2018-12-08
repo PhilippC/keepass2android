@@ -598,6 +598,8 @@
     • Jeśli możesz otworzyć plik na swoim komputerze, skontaktuj się z pomocą. Możesz spróbować zapisać go z innymi ustawieniami (np. rozpakowany) na komputerze i spróbować ponownie otworzyć w Keepass2Android.
 
   </string>
+  <string name="open_other_db">Otwórz inną bazę danych…</string>
+  <string name="select_database">Wybierz bazę danych</string>
   <string name="DbUnlockedChannel_name">Baza danych odblokowana</string>
   <string name="DbUnlockedChannel_desc">Powiadomienie o odblokowanej bazie danych</string>
   <string name="DbQuicklockedChannel_name">SzybkieOdblokowanie</string>
