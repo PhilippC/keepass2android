@@ -193,6 +193,7 @@
   <string name="omitbackup_title">Nu căuta înregistrări în backup şi coşul de gunoi</string>
   <string name="omitbackup_summary">Omite grupurile \'Backup\' şi \'Coş de gunoi\' din toate căutările</string>
   <string name="pass_filename">Nume fişier bază de date KeePass</string>
+  <string name="password_title">Introduceţi parola bazei de date</string>
   <string name="master_key_type">Selectează tipul cheii principale:</string>
   <string name="progress_create">Se creează baza de date nouă…</string>
   <string name="create_database">Creare bază de date</string>
