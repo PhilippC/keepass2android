@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Odblokowanie bazy danych</string>
   <string name="brackets">Nawiasy</string>
   <string name="cancel">Anuluj</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Schowek wyczyszczony.</string>
   <string name="clipboard_timeout">Czas wygaśnięcia schowka</string>
   <string name="clipboard_timeout_summary">Czas po skopiowaniu nazwy użytkownika lub hasła, po którym zostaną one usunięte ze schowka</string>
@@ -200,6 +201,7 @@
   <string name="omitbackup_title">Nie szukaj w kopiach zapasowych i koszu</string>
   <string name="omitbackup_summary">Pomiń \'Backup\' i kosz przy wyszukiwaniu</string>
   <string name="pass_filename">Ścieżka do pliku bazy danych KeePass</string>
+  <string name="password_title">Wpisz hasło bazy danych</string>
   <string name="master_key_type">Wybierz rodzaj klucza głównego:</string>
   <string name="progress_create">Tworzenie nowej bazy danych…</string>
   <string name="create_database">Stwórz bazę danych</string>
@@ -600,6 +602,8 @@
   </string>
   <string name="open_other_db">Otwórz inną bazę danych…</string>
   <string name="select_database">Wybierz bazę danych</string>
+  <string name="child_db_Enabled_title">Otwórz automatycznie</string>
+  <string name="database_file_heading">Plik bazy danych</string>
   <string name="DbUnlockedChannel_name">Baza danych odblokowana</string>
   <string name="DbUnlockedChannel_desc">Powiadomienie o odblokowanej bazie danych</string>
   <string name="DbQuicklockedChannel_name">SzybkieOdblokowanie</string>
