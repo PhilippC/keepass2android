@@ -107,6 +107,7 @@
   <string name="omitbackup_title">Søk ikkje i kopipostane eller søppelbøtta</string>
   <string name="omitbackup_summary">Søkjeresultatet inneheld ikkje oppføringar frå \'Backup\' eller søppelbøtta</string>
   <string name="pass_filename">Filnamnet til KeePass-databasen</string>
+  <string name="password_title">Skriv databasepassordet</string>
   <string name="progress_create">Lager ny database …</string>
   <string name="progress_title">Arbeider …</string>
   <string name="remember_keyfile_summary">Hugsar staden til nøkkelfilene</string>
