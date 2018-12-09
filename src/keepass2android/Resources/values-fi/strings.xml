@@ -201,6 +201,7 @@
   <string name="omitbackup_title">Älä etsi varmuuskopioista ja roskakorista</string>
   <string name="omitbackup_summary">Jätä varmuuskopiot ja roskakori pois hakutuloksista</string>
   <string name="pass_filename">KeePass-tietokannan tiedostonimi</string>
+  <string name="password_title">Syötä tietokannan salasana</string>
   <string name="master_key_type">Valitse pääavaimen tyyppi:</string>
   <string name="progress_create">Luodaan uutta tietokantaa...</string>
   <string name="create_database">Luo tietokanta</string>
