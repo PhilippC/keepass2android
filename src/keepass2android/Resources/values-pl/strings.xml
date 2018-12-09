@@ -602,9 +602,11 @@
   </string>
   <string name="open_other_db">Otwórz inną bazę danych…</string>
   <string name="select_database">Wybierz bazę danych</string>
+  <string name="child_dbs_title">Podrzędna baza danych</string>
   <string name="child_db_enabled_on_this_device">Włączone na tym urządzeniu</string>
   <string name="child_db_enable_on_this_device">Włącz na tym urządzeniu</string>
   <string name="child_db_disable_on_this_device">Wyłącz na tym urządzeniu</string>
+  <string name="add_child_db">Dodaj podrzędną bazę danych...</string>
   <string name="child_db_Enabled_title">Otwórz automatycznie</string>
   <string name="database_file_heading">Plik bazy danych</string>
   <string name="DbUnlockedChannel_name">Baza danych odblokowana</string>
