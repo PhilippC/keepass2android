@@ -199,7 +199,7 @@
   <string name="omitbackup_title">Ne pas chercher dans les sauvegardes et la corbeille</string>
   <string name="omitbackup_summary">Omettre les groupes \"Sauvegarde\" et \"Corbeille\" des résultats de recherche</string>
   <string name="pass_filename">Base de données KeePass</string>
-  <string name="password_title">Entrer le mot de passe de la base de données</string>
+  <string name="password_title">Entrez le mot de passe de la base de données</string>
   <string name="master_key_type">Sélectionner le type de la Clé maître :</string>
   <string name="progress_create">Création d\'une nouvelle base de données…</string>
   <string name="create_database">Créer une base de données</string>
@@ -624,17 +624,6 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ErrorReportAsk">Demander après une erreur</string>
   <string name="ErrorReportPrefTitle">Envoyer des rapports d\'erreurs</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
-  <string name="ChangeLog_1_07">    Version 1.07-pre1\n
-    !!! Mise en garde ! Cette version contient des changements majeurs sous le capot. Veuillez signaler tout changement de comportement non désirable à crocoapps@gmail.com !!! \n
-    * Autorise l\'ouverture de plusieurs bases de données, permet de déplacer les entrées entre bases de données\n
-    * SFTP : permettre l’authentification par clé publique, vérifie si la clé d\'hébergement a changé\n
-    * Ajoute le support de pCloud - Merci à gilbsgilbs ! \n
-    * Ajoute le support explicite de Nextcloud\n
-    * Améliore l\'enregistrement et la mise à jour des pièces jointes de l\'entrée\n
-    * Plus options pour adapter le comportement aux préférences personnelles\n
-    * SSL : Fais confiance aus certificats de l\'utilisateur\n
-    * bug fixes\n
-  </string>
   <string name="ChangeLog_1_06">Version 1.06\n
 * Changement vers ykDroid au lieu de YubiChallenge comme application pour le défi-réponse de Yubikey.\n
 * implémentation du support de défi-réponse compatible KeepassXC. Note : Le format de base de données doit être KDBX4 !\n
