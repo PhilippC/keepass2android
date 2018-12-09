@@ -198,6 +198,7 @@
   <string name="omitbackup_title">백업과 휴지통 항목은 검색하지 않습니다.</string>
   <string name="omitbackup_summary">백업과 휴지통은 검색결과에서 생략합니다.</string>
   <string name="pass_filename">KeePass 데이터베이스 파일 이름</string>
+  <string name="password_title">데이터베이스 비밀번호를 입력하세요.</string>
   <string name="master_key_type">마스터 키 유형을 선택합니다.</string>
   <string name="progress_create">새 데이터베이스 만들기...</string>
   <string name="create_database">데이터베이스 만들기</string>
