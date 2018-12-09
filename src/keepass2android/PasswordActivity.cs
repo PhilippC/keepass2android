@@ -695,7 +695,10 @@ namespace keepass2android
 				{
 					_keepPasswordInOnResume = true;
 				}
+
 			}
+
+		    App.Kp2a.RegisterOpenAttempt(_ioConnection);
 
 			SetContentView(Resource.Layout.password);
 

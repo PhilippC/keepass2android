@@ -361,7 +361,13 @@ namespace keepass2android
 	    
 	    public HashSet<PwGroup> DirtyGroups {  get { return dirty; } }
 
-	    public bool AttemptedToOpenBefore(IOConnectionInfo ioc)
+	    public void RegisterOpenAttempt(IOConnectionInfo ioc)
+	    {
+	        _openAttempts.Add(ioc);
+	    }
+
+
+        public bool AttemptedToOpenBefore(IOConnectionInfo ioc)
 	    {
 	        foreach (var attemptedIoc in _openAttempts)
 	        {
