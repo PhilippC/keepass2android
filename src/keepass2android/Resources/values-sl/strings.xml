@@ -196,6 +196,7 @@
   <string name="omitbackup_title">Ne išči po vnosih varnostne kopije in Koša</string>
   <string name="omitbackup_summary">Izpusti skupini \'Varnostna kopija\' in Koš iz rezultatov iskanja</string>
   <string name="pass_filename">Ime datoteke podatkovne zbirke KeePass</string>
+  <string name="password_title">Vnesite geslo podatkovne zbirke</string>
   <string name="master_key_type">Izberite vrsto glavnega ključa:</string>
   <string name="progress_create">Ustvarjanje nove podatkovne zbirke …</string>
   <string name="create_database">Ustvari podatkovno zbirko</string>
