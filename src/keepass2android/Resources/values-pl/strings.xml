@@ -507,9 +507,9 @@
   <string name="CouldntLoadChalAuxFile_Hint">Proszę użyć wtyczki KeeChallenge w KeePass 2.x (PC) do konfiguracji twojej bazy danych dla używania z twoją odpowiedzią na wyzwanie!</string>
   <string name="ErrorUpdatingChalAuxFile">Błąd aktualizacji pomocniczego pliku OTP!</string>
   <string name="TrayTotp_SeedField_title">Nazwa pola ziarna TOTP</string>
-  <string name="TrayTotp_SeedField_summary">Jeżeli używasz wtyczki \"TrayTotp\" dla Keepass2 z ustawieniami innymi niż domyślne, podaj tu nazwę pola dla pola ziarna zgodnie z ustawieniami na komputerze.</string>
+  <string name="TrayTotp_SeedField_summary">Jeżeli używasz wtyczki \"TrayTotp\" dla Keepass2 z ustawieniami innymi niż domyślne, wpisz tutaj nazwę pola dla pola ziarna zgodnie z ustawieniami na komputerze.</string>
   <string name="TrayTotp_SettingsField_title">Nazwa pola ustawień TOTP</string>
-  <string name="TrayTotp_SettingsField_summary">Podaj tutaj nazwę pola dla pola ustawień TrayTotp.</string>
+  <string name="TrayTotp_SettingsField_summary">Wpisz tutaj nazwę pola dla pola ustawień TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Plik dziennika do debugowania</string>
   <string name="DebugLog_title">Użyj pliku dziennika</string>
@@ -630,6 +630,16 @@
   <string name="ErrorReportAsk">Zapytaj po wystąpieniu błędu</string>
   <string name="ErrorReportPrefTitle">Wyślij raporty o błędach</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
+  <string name="ChangeLog_1_07">Wersja 1.07-pre2\n
+    * Możliwość otwierania więcej niż jednej bazy danych, kompatybilna z KeeAutoExec\n
+    * SFTP: Możliwość uwierzytelniania kluczem publicznym, sprawdzanie czy klucz hosta został zmieniony\n
+    * Wsparcie do pCloud - podziękowania dla gilbsgilbs!\n
+    * Wsparcie do Nextcloud\n
+    * Udoskonalenie zapisu i aktualizacji załączników we wpisach\n
+    * Więcej opcji dostosowania zachowania do osobistych preferencji\n
+    * SSL: Obsługa certyfikatów użytkownika\n
+    * Poprawy błędów\n
+  </string>
   <string name="ChangeLog_1_06">Wersja 1.06\n
     * Zmieniono aplikację do obsługi Yubikey Challenge-Response z YubiChallenge na ykDroid.\n
     * Dodano wsparcie dla Challenge-Response w formacie KeepassXC. Uwaga: Baza danych musi być w formacie KDBX4!\n
