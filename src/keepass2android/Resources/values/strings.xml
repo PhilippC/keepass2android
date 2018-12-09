@@ -211,7 +211,7 @@
   <string name="omitbackup_title">Don\'t search backup and recycle bin entries</string>
   <string name="omitbackup_summary">Omit \'Backup\' and Recycle Bin group from search results</string>
   <string name="pass_filename">KeePass database filename</string>
-  <string name="password_title">Enter databoase password</string>
+  <string name="password_title">Enter database password</string>
   <string name="master_key_type">Select master key type:</string>
   <string name="progress_create">Creating new database…</string>
   <string name="create_database">Create database</string>
