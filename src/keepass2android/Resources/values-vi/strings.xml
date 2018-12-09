@@ -198,6 +198,7 @@
   <string name="omitbackup_title">Không tìm kiếm các mục sao lưu và trong thùng rác</string>
   <string name="omitbackup_summary">Bỏ qua nhóm \'Dự phòng\' và thùng rác khỏi kết quả tìm kiếm</string>
   <string name="pass_filename">Tên tập tin cơ sở dữ liệu KeePass</string>
+  <string name="password_title">Nhập mật mã cơ sở dữ liệu</string>
   <string name="master_key_type">Chọn kiểu của khóa chính:</string>
   <string name="progress_create">Tạo cơ sở dữ liệu mới…</string>
   <string name="create_database">Tạo cơ sở dữ liệu</string>
