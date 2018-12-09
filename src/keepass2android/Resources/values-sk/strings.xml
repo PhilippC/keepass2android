@@ -202,7 +202,7 @@
   <string name="omitbackup_title">Neprehľadávať záznamy v zálohách alebo v koši</string>
   <string name="omitbackup_summary">Vynechať skupinu \'Backup\' a kôš z výsledkov vyhľadávania</string>
   <string name="pass_filename">Súbor s databázou KeePass</string>
-  <string name="password_title">Zadajte heslo k databáze</string>
+  <string name="password_title">Zadajte heslo databázy</string>
   <string name="master_key_type">Vyberte typ primárneho kľúča:</string>
   <string name="progress_create">Vytvára sa nová databáza…</string>
   <string name="create_database">Vytvoriť databázu</string>
@@ -631,16 +631,15 @@
   <string name="ErrorReportAsk">Opýtať sa po výskyte chyby</string>
   <string name="ErrorReportPrefTitle">Odosielanie záznamov o chybe</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
-  <string name="ChangeLog_1_07">    Verzia 1.07-pre1\n
-    !!! Pozor! Toto vydanie obsahuje významné zmeny. Prípadné nechcené zmeny správania sa aplikácie prosím ohláste na adrese crocoapps@gmail.com !!!\n
-    * Umožnenie otvorenia viac ako jednej databázy, umožnenie presúvania záznamov medzi databázami\n
-    * SFTP: umožnenie overenia verejného kľúča, kontroly či sa zmenil hostiteľský kľúč\n
+  <string name="ChangeLog_1_07">    Verzia 1.07-pre2\n
+    * Umožnenie otvorenia viac ako jednej databázy, kompatibilné s KeeAutoExec\n
+    * SFTP: umožnenie overenia verejného kľúča, kontrola zmeny kľúča hostiteľa\n
     * Zavedenie podpory pre pCloud - vďaka gilbsgilbs!\n
-    * Vytvorenie explicitnej podpory pre Nextcloud\n
-    * Vylepšenie ukladania a aktualizovania príloh k záznamu\n
-    * Viac možností úpravy správania, podľa osobných preferencií\n
-    * SSL: certifikáty pre dôveryhodného používateľa (Trust user)\n
-    * opravy chýb\n
+    * Explicitná podpora Nextcloud\n
+    * Vylepšenie ukladania a aktualizovania príloh záznamu\n
+    * Viac možností pre úpravu správania podľa osobných preferencií\n
+    * SSL: certifikáty dôveryhodného používateľa\n
+    * Opravy chýb\n
   </string>
   <string name="ChangeLog_1_06">    Verzia 1.06\n
     * Prechod na ykDroid namiesto YubiChallenge ako aplikácie pre odpoveď na výzvu Yubikey.\n
