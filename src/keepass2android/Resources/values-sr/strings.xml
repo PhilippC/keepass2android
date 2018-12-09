@@ -192,6 +192,7 @@
   <string name="omitbackup_title">Не претражуј реззервне копије и уносе корпе за отпатке</string>
   <string name="omitbackup_summary">Изоставите резервну копију и групу Корпе за Отпатке из резултата претраге</string>
   <string name="pass_filename">Име датотеке базе података KeePass</string>
+  <string name="password_title">Унесите лозинку базе података</string>
   <string name="master_key_type">Изаберите врсту главног кључа:</string>
   <string name="progress_create">Креирање нове базе података…</string>
   <string name="create_database">Креирање базе података</string>
