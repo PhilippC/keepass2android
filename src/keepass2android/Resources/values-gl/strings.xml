@@ -198,6 +198,7 @@
   <string name="omitbackup_title">Non buscar en entradas de copias de seguridade nin papeleiras de reciclaxe</string>
   <string name="omitbackup_summary">Omitir os grupos de \'Copia de seguridade\' e papeleira de reciclaxe nos resultados de busca</string>
   <string name="pass_filename">Nome do arquivo da base de datos KeePass</string>
+  <string name="password_title">Introduza o contrasinal da base de datos</string>
   <string name="master_key_type">Seleccione o tipo de clave mestra:</string>
   <string name="progress_create">Creando unha nova base de datos…</string>
   <string name="create_database">Crear base de datos</string>
