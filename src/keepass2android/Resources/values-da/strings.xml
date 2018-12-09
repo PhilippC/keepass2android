@@ -199,6 +199,7 @@ Gå venligst til systemindstillinger først.</string>
   <string name="omitbackup_title">Søg ikke efter backup poster og poster i papirkurven</string>
   <string name="omitbackup_summary">Udelad \'Backup\' og papirkurvs-gruppen i søgeresultater</string>
   <string name="pass_filename">KeePass database filnavn</string>
+  <string name="password_title">Angiv database adgangskode</string>
   <string name="master_key_type">Vælg type af hovednøgle:</string>
   <string name="progress_create">Opretter ny database…</string>
   <string name="create_database">Opret database</string>
