@@ -198,6 +198,7 @@
   <string name="omitbackup_title">Ikke søk i sikkerhetskopieringer eller papirkurven</string>
   <string name="omitbackup_summary">Søkeresultatet inneholder ikke oppføringer fra \'Backup\' eller papirkurven</string>
   <string name="pass_filename">Filnavnet til KeePass-databasen</string>
+  <string name="password_title">Angi databasepassordet</string>
   <string name="master_key_type">Velg type hovednøkkel:</string>
   <string name="progress_create">Oppretter ny database…</string>
   <string name="create_database">Opprett database</string>
