@@ -203,6 +203,7 @@
   <string name="omitbackup_title">Keresési kivételek</string>
   <string name="omitbackup_summary">A Backup és Lomtár csoportok kihagyása a keresésből</string>
   <string name="pass_filename">KeePass adatbázisfájl</string>
+  <string name="password_title">Adatbázis-jelszó megadása</string>
   <string name="master_key_type">A főkulcs típusának kiválasztása:</string>
   <string name="progress_create">Új adatbázis létrehozása…</string>
   <string name="create_database">Adatbázis létrehozása</string>
