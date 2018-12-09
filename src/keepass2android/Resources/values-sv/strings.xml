@@ -199,7 +199,7 @@
   <string name="omitbackup_title">Sök ej backup- eller papperskorgs-poster</string>
   <string name="omitbackup_summary">Utelämna \'backup\' och papperskorgs-grupp från sökresultaten</string>
   <string name="pass_filename">KeePass-databasens filnamn</string>
-  <string name="password_title">Ange lösenord för databasen</string>
+  <string name="password_title">Ange lösenord för databas</string>
   <string name="master_key_type">Välj huvudnyckeltyp:</string>
   <string name="progress_create">Skapar ny databas…</string>
   <string name="create_database">Skapa databas</string>
