@@ -201,7 +201,7 @@
   <string name="omitbackup_title">Nie szukaj w kopiach zapasowych i koszu</string>
   <string name="omitbackup_summary">Pomiń \'Backup\' i kosz przy wyszukiwaniu</string>
   <string name="pass_filename">Ścieżka do pliku bazy danych KeePass</string>
-  <string name="password_title">Wpisz hasło bazy danych</string>
+  <string name="password_title">Wprowadź hasło bazy danych</string>
   <string name="master_key_type">Wybierz rodzaj klucza głównego:</string>
   <string name="progress_create">Tworzenie nowej bazy danych…</string>
   <string name="create_database">Stwórz bazę danych</string>
@@ -630,17 +630,6 @@
   <string name="ErrorReportAsk">Zapytaj po wystąpieniu błędu</string>
   <string name="ErrorReportPrefTitle">Wyślij raporty o błędach</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
-  <string name="ChangeLog_1_07">Wersja 1.07-pre1\n
-    !!! Uwaga! To wydanie zawiera duże zmiany pod maską. Prosimy o zgłaszanie wszelkich niepożądanych zachowania na crocoapps@gmail.com !!!\n
-    * Możliwość otwierania więcej niż jednej bazy danych, możliwość przenoszenia wpisów między bazami danych\n
-    * SFTP: Możliwość na uwierzytelniania kluczem publicznym, sprawdzanie czy klucz hosta został zmieniony\n
-    * Wsparcie do pCloud - podziękowania dla gilbsgilbs!\n
-    * Wsparcie do Nextcloud\n
-    * Udoskonalenie zapisu i aktualizacji załączników we wpisach\n
-    * Więcej opcji dostosowania zachowania do osobistych preferencji\n
-    * SSL: Obsługa certyfikatów użytkownika\n
-    * Poprawy błędów\n
-  </string>
   <string name="ChangeLog_1_06">Wersja 1.06\n
     * Zmieniono aplikację do obsługi Yubikey Challenge-Response z YubiChallenge na ykDroid.\n
     * Dodano wsparcie dla Challenge-Response w formacie KeepassXC. Uwaga: Baza danych musi być w formacie KDBX4!\n
