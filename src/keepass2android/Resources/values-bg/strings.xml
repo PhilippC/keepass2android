@@ -192,6 +192,7 @@
   <string name="omitbackup_title">Не търси в бекъпа и кошчето</string>
   <string name="omitbackup_summary">Пропусни \'Backup\' и Recycle Bin групите от търсенето</string>
   <string name="pass_filename">Име на KeePass файл за базата данни</string>
+  <string name="password_title">Въведете паролата на базата данни</string>
   <string name="master_key_type">Изберете вид на главния ключ:</string>
   <string name="progress_create">Създаване на нова база данни…</string>
   <string name="create_database">Създаване на база данни</string>
