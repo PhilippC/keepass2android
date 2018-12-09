@@ -199,7 +199,7 @@
   <string name="omitbackup_title">Не искать в зарезервированных записях и корзине</string>
   <string name="omitbackup_summary">Пропускать \"Зарезервированные\" и \"Корзина\" в результатах поиска</string>
   <string name="pass_filename">Имя файла базы данных KeePass</string>
-  <string name="password_title">Введите пароль для базы данных</string>
+  <string name="password_title">Изменение пароля базы данных</string>
   <string name="master_key_type">Выберите тип мастер-ключа:</string>
   <string name="progress_create">Создание новой базы данных…</string>
   <string name="create_database">Создать базу данных</string>
@@ -626,17 +626,6 @@
   <string name="ErrorReportAsk">Спросить после ошибки</string>
   <string name="ErrorReportPrefTitle">Отправить отчёт об ошибке</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показывать клавиатуру для ввода пароля, если сканер отпечатка пальца включен.</string>
-  <string name="ChangeLog_1_07">Версия 1.07-pre1\n
-!!! Внимание! Этот выпуск содержит серьезные изменения. Пожалуйста, сообщайте о любых нежелательных изменениях на crocoapps@gmail.com !!!\n
-* Разрешено открыть несколько баз данных, разрешено перемещать записи между базами данных\n
-* SFTP: Разрешена аутентификация публичного ключа, проверка на изменение ключа хоста\n
-* Внедрена поддержка pCloud - благодаря gilbsgilbs!\n
-* Сделана поддержка Nextcloud\n
-* Улучшено сохранение и обновление аттачей в записях\n
-* Появилось больше вариантов для личных настроек\n
-* SSL: Можно доверять сертификатам пользователя\n
-* исправлены ошибки\n
-  </string>
   <string name="ChangeLog_1_06">    Версия 1.06\n * Переключиться на ykDroid вместо YubiChallenge как приложение для Yubikey вызов-ответ. \n *, Реализуют поддержку для стиля KeepassXC вызов-ответ. Примечание: Формат базы данных должен быть KDBX4! \n * Отказ от загрузки файлов корзины из Google Drive\n * Реализация переключателя TLS для FTPS, добавлен обход ошибки JSch с серверов, поддерживающих gssapi с mic\n * Исправление ошибок\n
   </string>
   <string name="ChangeLog_1_05">    Версия 1.05\n
