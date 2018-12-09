@@ -200,6 +200,7 @@
   <string name="omitbackup_title">Δίχως αναζήτηση σε διαγραμμένες και εφεδρικές εγγραφές</string>
   <string name="omitbackup_summary">Παράλειψη ομάδων \'Backup\' και \'Recycle Bin\' στην αναζήτηση</string>
   <string name="pass_filename">Όνομα αρχείου βάσης δεδομένων KeePass</string>
+  <string name="password_title">Εισάγετε συνθηματικό βάσης δεδομένων</string>
   <string name="master_key_type">Επιλέξτε τύπο πρωτεύοντος κλειδιού:</string>
   <string name="progress_create">Δημιουργία νέας βάσης δεδομένων…</string>
   <string name="create_database">Δημιουργία βάσης δεδομένων</string>
