@@ -194,6 +194,7 @@
   <string name="omitbackup_title">Jangan Cari backup dan recycle bin entri</string>
   <string name="omitbackup_summary">Menghilangkan grup \'Backup\' dan Recycle Bin dari hasil pencarian</string>
   <string name="pass_filename">Nama berkas KeePass basis data</string>
+  <string name="password_title">Masukkan kata kunci basis data</string>
   <string name="master_key_type">Pilih jenis kunci master:</string>
   <string name="progress_create">Menciptakan basis data baru…</string>
   <string name="create_database">Menciptakan basis data</string>
