@@ -198,6 +198,7 @@
   <string name="omitbackup_title">Ne pretražujte smeće i sigurnosne kopije</string>
   <string name="omitbackup_summary">Zapisi o otpadu i sigurnosne kopije nisu uključene u pretraživanje</string>
   <string name="pass_filename">Naziv KeePass datoteke baze podataka</string>
+  <string name="password_title">Unesite lozinku baze podataka</string>
   <string name="master_key_type">Odaberite vrstu glavnog ključa:</string>
   <string name="progress_create">Stvaranje nove baze podataka…</string>
   <string name="create_database">Stvori bazu podataka</string>
