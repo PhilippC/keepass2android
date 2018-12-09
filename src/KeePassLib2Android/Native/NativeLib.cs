@@ -302,7 +302,7 @@ namespace KeePassLib.Native
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.Log(e.Message);
+				Kp2aLog.Log(e.ToString());
 				return false;
 			}
 
