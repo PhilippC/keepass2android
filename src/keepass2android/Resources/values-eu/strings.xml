@@ -163,6 +163,7 @@
   <string name="no">Ez</string>
   <string name="no_results">Ez dago bilaketa-emaitzarik</string>
   <string name="pass_filename">KeePass datu-basearen fitxategi-izena</string>
+  <string name="password_title">Idatzi datu-basearen pashitza</string>
   <string name="master_key_type">Hautatu gako nagusi mota:</string>
   <string name="progress_create">Datu-base berria sortzen…</string>
   <string name="create_database">Sortu datu-basea</string>
