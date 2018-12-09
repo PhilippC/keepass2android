@@ -196,6 +196,7 @@
   <string name="omitbackup_title">عدم البحث عن القيود في النسخ الاحتياطي وسلة المحذوفات</string>
   <string name="omitbackup_summary">تجاهل \"النسخ الاحتياطية\" و\"مجموعة سلة المحذوفات\" من نتائج البحث</string>
   <string name="pass_filename">اسم ملف قاعدة بيانات KeePass</string>
+  <string name="password_title">أدخل كلمة مرور قاعدة البيانات</string>
   <string name="master_key_type">اختر نوع المفتاح الرئيسي:</string>
   <string name="progress_create">إنشاء قاعدة بيانات جديدة...</string>
   <string name="create_database">إنشاء قاعدة بيانات</string>
