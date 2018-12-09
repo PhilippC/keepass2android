@@ -608,6 +608,7 @@
   <string name="child_db_enable_on_this_device">Włącz na tym urządzeniu</string>
   <string name="child_db_disable_on_this_device">Wyłącz na tym urządzeniu</string>
   <string name="child_db_enable_a_copy_for_this_device">Kopiuj na to urządzenie</string>
+  <string name="unconfigured_child_dbs">Twoja baza danych zawiera nową podrzędną bazę danych w grupie \"AutoOpen\". Określ, czy ta podrzędna baza danych powinna być używana na tym urządzeniu.</string>
   <string name="add_child_db">Dodaj podrzędną bazę danych...</string>
   <string name="EnableCopyForThisDevice_Info">Spowoduje to utworzenie i włączenie kopii ustawień podrzędnej bazy danych. Te skopiowane ustawienia można następnie dostosować specjalnie dla tego urządzenia.</string>
   <string name="child_db_Enabled_title">Otwórz automatycznie</string>
