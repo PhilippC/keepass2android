@@ -191,10 +191,9 @@ namespace keepass2android.services.AutofillBase
 		    String webDomain = viewNode.WebDomain;
 		    if (webDomain != null)
 		    {
-		        CommonUtil.logd($"child web domain: {webDomain}");
-		        if (!string.IsNullOrEmpty(validWebdomain))
+                if (!string.IsNullOrEmpty(validWebdomain))
 		        {
-		            if (webDomain == validWebdomain)
+		            if (webDomain != validWebdomain)
 		            {
 		                throw new Java.Lang.SecurityException($"Found multiple web domains: valid= {validWebdomain}, child={webDomain}");
 		            }
