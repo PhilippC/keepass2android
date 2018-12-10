@@ -259,6 +259,7 @@
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
     <Compile Include="intents\Intents.cs" />
     <Compile Include="SelectCurrentDbActivity.cs" />
+    <Compile Include="SwitchImeActivity.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="GroupActivity.cs" />
     <Compile Include="GroupBaseActivity.cs" />
