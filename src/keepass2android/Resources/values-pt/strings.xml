@@ -445,6 +445,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="enter_owncloud_login_title">Insira os dados de acesso do OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Insira os dados de acesso do Nextcloud:</string>
+  <string name="hint_nextcloud_url">URL do Nextcloud (ex: nextcloud.me.com)</string>
   <string name="hint_sftp_host">hospedeiro (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Pasta inicial (opcional):</string>
@@ -606,7 +607,9 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="child_db_enable_on_this_device">Ativar neste dispositivo</string>
   <string name="child_db_disable_on_this_device">Desativar neste dispositivo</string>
   <string name="child_db_enable_a_copy_for_this_device">Copiar para este dispositivo</string>
+  <string name="unconfigured_child_dbs">A sua base de dados contém novas bases de dados filhas no grupo \"AutoOpen\". Por favor especifique se estas bases de dados filhas devem ser usadas neste dispositivo.</string>
   <string name="add_child_db">Adicionar base de dados filha...</string>
+  <string name="EnableCopyForThisDevice_Info">Isto irá criar e aplicar uma cópia das definições da base de dados filha. Estas definições copiadas podem então ser ajustadas especificamente para este dispositivo.</string>
   <string name="Visible_title">Visível</string>
   <string name="child_db_Enabled_title">Abrir automaticamente</string>
   <string name="database_file_heading">Ficheiro de Base de Dados</string>
@@ -625,6 +628,15 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="ErrorReportAsk">Perguntar depois do erro</string>
   <string name="ErrorReportPrefTitle">Enviar relatórios de erro</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para inserção de palavra-passe quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_07">Versão 1.07-pre2\n
+* Permitir a abertura de mais de uma base de dados, compatíveis com KeeAutoExec\n
+* SFTP: Permitir autenticação de chave pública, verificar se a chave do host foi alterada\n
+* Introduzir suporte para pCloud - graças a gilbsgilbs!\n
+* Tornar o suporte para Nextcloud explícito\n
+* Melhorar armazenamento e atualização de anexos de entradas\n
+* Mais opções para adaptar o comportamento às preferências pessoais\n
+* SSL: Confiar em certificados de utilizador\n
+* correção de bugs\n  </string>
   <string name="ChangeLog_1_06">Versão 1.06\n
     * Alterado para ykDroid em vez de YubiChallenge como aplicação para  Yubikey Challenge-Response.\n
     * Implementado suporte para KeepassXC-style Challenge-Response. Nota: Formato da base de dados tem que ser KDBX4!\n
