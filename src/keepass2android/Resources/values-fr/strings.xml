@@ -624,6 +624,16 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ErrorReportAsk">Demander après une erreur</string>
   <string name="ErrorReportPrefTitle">Envoyer des rapports d\'erreurs</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
+  <string name="ChangeLog_1_07">    Version 1.07-pre1\n
+    * Autorise l\'ouverture de plusieurs bases de données, compatible avec KeeAutoExec\n
+    * SFTP : permettre l’authentification par clé publique, vérifie si la clé d\'hébergement a changé\n
+    * Ajoute le support de pCloud - Merci à gilbsgilbs ! \n
+    * Ajoute le support de Nextcloud\n
+    * Améliore l\'enregistrement et la mise à jour des pièces jointes de l\'entrée\n
+    * Plus d\'options pour adapter le comportement aux préférences personnelles\n
+    * SSL : Fais confiance aux certificats de l\'utilisateur\n
+    * bug fixes\n
+  </string>
   <string name="ChangeLog_1_06">Version 1.06\n
 * Changement vers ykDroid au lieu de YubiChallenge comme application pour le défi-réponse de Yubikey.\n
 * implémentation du support de défi-réponse compatible KeepassXC. Note : Le format de base de données doit être KDBX4 !\n
