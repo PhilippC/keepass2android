@@ -610,6 +610,7 @@
   <string name="child_db_enable_on_this_device">Увімкнути на цьому пристрої</string>
   <string name="child_db_disable_on_this_device">Вимкнути на цьому пристрої</string>
   <string name="child_db_enable_a_copy_for_this_device">Копіювати для цього пристрою</string>
+  <string name="unconfigured_child_dbs">Ваша база даних містить нові дочірні бази даних в групі \"AutoOpen\". Будь ласка, визначте, чи ці дочірні бази даних слід використовувати на цьому пристрої.</string>
   <string name="add_child_db">Додати дочірню базу даних...</string>
   <string name="EnableCopyForThisDevice_Info">Ця дія створить і увімкне копію налаштувань дочірньої бази даних. Ці скопійовані налаштування потім можуть бути спеціально налаштовані для цього пристрою.</string>
   <string name="Visible_title">Видимість</string>
@@ -630,6 +631,16 @@
   <string name="ErrorReportAsk">Запитати після помилки</string>
   <string name="ErrorReportPrefTitle">Надсилати звіти про помилки</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
+  <string name="ChangeLog_1_07">    Версія 1.07-pre2\n
+    * Можливість відкриття більш, ніж одну базу даних, сумісних з KeeAutoExec\n
+    * SFTP: Дозвіл авторизації публічних ключів, перевірка чи змінився розміщений ключ\n
+    * Впровадження підтримки pCloud - подяка gilbsgilbs!\n
+    * Явна підтримка Nextcloud\n
+    * Вдосконалення збереження та оновлення вкладень записів\n
+    * Більше можливостей налаштування поведінки програми\n
+    * SSL: Довірені користувацькі сертифікати\n
+    * виправлення помилок\n
+  </string>
   <string name="ChangeLog_1_06">    Версія 1.06\n
     * Перемикання на ykDroid замість YubiChallenge в якості застосунку для Yubikey Challenge-Response.\n
     * Впроваджено підтримку для KeepassXC-style Challenge-Response. Примітка: Формат бази даних повинен бути KDBX4!\n
