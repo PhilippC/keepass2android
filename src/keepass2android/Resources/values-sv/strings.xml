@@ -210,6 +210,7 @@
   <string name="edit">Ändra</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="AutoReturnFromQuery_title">Återgå automatiskt från söksida</string>
   <string name="KeyDerivFunc">Nyckelhärledningsfunktion</string>
   <string name="rounds">Krypteringsomgångar</string>
   <string name="rounds_explaination">Fler krypteringsomgångar ger ytterligare skydd mot råstyrke-attacker, men kan verkligen sakta ned laddning och sparning.</string>
