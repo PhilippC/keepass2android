@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Otključaj bazu podataka</string>
   <string name="brackets">Zagrade</string>
   <string name="cancel">Otkaži</string>
+  <string name="Ok">U redu</string>
   <string name="ClearClipboard">Međuspremnik je izbrisan.</string>
   <string name="clipboard_timeout">Vremensko ograničenje međuspremnika</string>
   <string name="clipboard_timeout_summary">Vrijeme prije brisanja međuspremnika nakon kopiranja korisničkog imena ili lozinke</string>
@@ -209,6 +210,8 @@
   <string name="edit">Uredi</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="AutoReturnFromQuery_title">Automatski se vrati iz zaslona upita</string>
+  <string name="AutoReturnFromQuery_summary">Prilikom traženja unosa za aplikaciju ili web-lokaciju: automatski se vraća iz zaslona upita ako postoji samo jedan podudarni unos u bazi podataka.</string>
   <string name="KeyDerivFunc">Funkcije za izvođenje ključa</string>
   <string name="rounds">Broj šifriranja</string>
   <string name="rounds_explaination">Veći broj iteracija šifriranja povećati će sigurnost od napada rječnikom, ali može značajno usporiti učitavanje i spremanje.</string>
@@ -290,6 +293,7 @@
   <string name="BinaryDirectory_summary">Mapa u kojoj će biti spremljeni privici.</string>
   <string name="SaveAttachmentDialog_title">Spremi privitak</string>
   <string name="SaveAttachmentDialog_text">Odaberite mjesto za spremanje privitka.</string>
+  <string name="SaveAttachmentDialog_save">Izvoz u datoteku...</string>
   <string name="SaveAttachmentDialog_open">Spremi u predmemoriju i otvori</string>
   <string name="ShowAttachedImage">Prikaz slike s ugrađenim preglednikom</string>
   <string name="SaveAttachment_doneMessage">Datoteka spremljena u %1$s.</string>
@@ -316,6 +320,8 @@
   <string name="ClearPasswordOnLeave_summary">Očisti unesenu glavnu lozinku prilikom napuštanja zaslona bez otključavanja baze podataka.</string>
   <string name="LockWhenNavigateBack_title">Zaključaj pri napuštanju aplikacije</string>
   <string name="LockWhenNavigateBack_summary">Zaključaj bazu podataka pri napuštanju aplikacije pritiskom na gumb za povratak.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Koristite ugrađenu tipkovnicu unutar Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Ako ne vjerujete svom standardnom pružatelju tipkovnice, provjerite ovu opciju za korištenje ugrađene tipkovnice prilikom unosa glavne lozinke ili uređivanja unosa.</string>
   <string name="ActivateSearchViewOnStart_title">Aktiviraj polje za pretraživanje na početku</string>
   <string name="ActivateSearchViewOnStart_summary">Aktivira polje za pretraživanje u prikazu grupe nakon otključavanja ili kada traži unos</string>
   <string name="NoDonateOption_title">Sakrij opciju donacije</string>
@@ -329,6 +335,7 @@
   <string name="CreateBackups_summary">Izradite lokalnu sigurnosnu kopiju nakon uspješnog učitavanja baze podataka.</string>
   <string name="UpdatingBackup">Ažuriranje lokalne sigurnosne kopije...</string>
   <string name="LocalBackupOf">Lokalna sigurnosna kopija od %1$s</string>
+  <string name="show_local_backups">Prikaži lokalne sigurnosne kopije</string>
   <string name="AcceptAllServerCertificates_title">SSL certifikati</string>
   <string name="AcceptAllServerCertificates_summary">Odredite ponašanje kada se certifikati ne mogu potvrditi. Napomena: možete instalirati certifikate na Vašem uređaju ukoliko se ne mogu potvrditi!</string>
   <string name="ClearOfflineCache_title">Očisti predmemoriju?</string>
@@ -436,10 +443,14 @@
   <string name="hint_http_url">URL mape ili datoteke (npr: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Unesite podatke za prijavu OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (primjer: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Unesite podatke za prijavu na Nextcloud:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (primjer: nextcloud.me.com)</string>
   <string name="hint_sftp_host">host (primjer: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Inicijalni direktorij (opcionalno):</string>
   <string name="enter_sftp_login_title">Unesite podatke za prijavu SFTP:</string>
+  <string name="sftp_auth_mode">Način provjere autentičnosti</string>
+  <string name="send_public_key">Pošalji javni ključ...</string>
   <string name="enter_ftp_login_title">Unesite podatke za prijavu FTP:</string>
   <string name="select_storage_type">Odaberite vrstu pohrane:</string>
   <string name="filestoragename_file">Lokalna datoteka</string>
@@ -449,10 +460,12 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A mapa)</string>
   <string name="filestoragehelp_dropboxKP2A">Ako ne želite dati KP2A puni pristup svom Dropboxu, možete odabrati ovu opciju. Tražit će samo pristup mapi Apps/Keepass2Android. To je posebno pogodno prilikom izrade nove baze podataka. Ako već imate bazu podataka, kliknite ovu opciju za stvaranje mape, a zatim stavite datoteku unutar mape (s računala) te ponovo odaberite ovu opciju za otvaranje datoteke.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH prijenos datoteka)</string>
   <string name="filestoragename_content">Birač datoteka sustava</string>
@@ -581,6 +594,20 @@ Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
 &#8226; Ako ste kopirali datoteku preko USB-a (MTP-način rada), pokušajte ponovno pomoću alata poput MyPhoneExplorer. MTP skraćuje datoteke u određenim slučajevima.\n
 &#8226; Ako ne možete otvoriti datoteku s istog mjesta na računalu, vrlo je vjerojatno da je datoteka doista oštećena. Upotrijebite sigurnosnu kopiju baze podataka. Ako pretpostavite da je Keepass2Android oštetio datoteku, kontaktirajte podršku.\n
 &#8226; Ako još uvijek možete otvoriti datoteku na računalu, obratite se službi za korisnike. Možete je pokušati spremiti s različitim postavkama (npr. nearhiviranu) na računalu i pokušajte ponovno otvoriti pomoću aplikacije Keepass2Android.  </string>
+  <string name="open_other_db">Otvori drugu bazu podataka…</string>
+  <string name="select_database">Odaberi bazu podataka</string>
+  <string name="configure_child_dbs">Postavljanje sekundarnih baza podataka…</string>
+  <string name="child_dbs_title">Sekundarne baze podataka</string>
+  <string name="unspecified">neodređen</string>
+  <string name="child_db_enabled_on_this_device">Omogućeno na ovom uređaju</string>
+  <string name="child_db_enable_on_this_device">Omogući na ovom uređaju</string>
+  <string name="child_db_disable_on_this_device">Onemogući na ovom uređaju</string>
+  <string name="child_db_enable_a_copy_for_this_device">Kopiraj za ovaj uređaj</string>
+  <string name="unconfigured_child_dbs">Vaša baza podataka sadrži nove sekundarne baze podataka u grupi \"AutoOpen\". Navedite trebaju li se ove sekundarne baze podataka koristiti na ovom uređaju.</string>
+  <string name="add_child_db">Dodaj sekundarnu bazu podataka...</string>
+  <string name="EnableCopyForThisDevice_Info">Ovo će stvoriti i omogućiti kopiju postavki sekundarne baze podataka. Ove kopirane postavke mogu se prilagoditi specifično za ovaj uređaj.</string>
+  <string name="Visible_title">Vidljiv</string>
+  <string name="child_db_Enabled_title">Otvori automatski</string>
   <string name="DbUnlockedChannel_name">Baza podataka otključana</string>
   <string name="DbUnlockedChannel_desc">Obavijest o otključanoj bazi podataka</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
