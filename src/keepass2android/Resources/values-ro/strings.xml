@@ -426,7 +426,6 @@
   <string name="use_key_file">Foloseşte fişier cheie</string>
   <string name="error_adding_keyfile">Eroare la adăugarea fişierului cheie!</string>
   <string name="init_otp">Se încarcă fișierul auxiliar OTP…</string>
-  <string name="otp_explanation">Introduceți următorul One-time-passwords (OTP). Puneți Youbikey NEO-ul vostru pe spatele aparatului pentru a introduce prin NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nu se poate încărca fișierul auxiliar OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Te rugăm să folosești plugin-ul OtpKeyProv în KeePass 2.x (PC) pentru a configura baza de date pentru OTP-uri!</string>
