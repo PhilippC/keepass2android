@@ -478,7 +478,6 @@
   <string name="use_key_file">Kulcsfájl használata</string>
   <string name="error_adding_keyfile">A kulcsfájl hozzáadása közben hiba történt!</string>
   <string name="init_otp">OTP kiegészítő fájl betöltése…</string>
-  <string name="otp_explanation">Adja meg a következő egyszer használatos jelszót/jelszavakat (OTP).  Húzza el a Yubikey NEO eszközt a telefon hátlapja fölött a jelszó/jelszavak NFC-n keresztüli beviteléhez.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP kiegészítő fájl betöltése nem sikerült!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Kérjük, konfigurálja az adatbázist OTP használthoz a KeePass 2.x (PC-s verzió) OtpKeyProv beépülő modulja segítségével.</string>
