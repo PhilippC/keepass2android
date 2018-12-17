@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -28,8 +29,14 @@ namespace keepass2android
 		protected bool Success;
 		protected String Message;
 		protected Exception Exception;
-		
-		protected OnFinish BaseOnFinish;
+
+	    protected bool ImportantMessage
+	    {
+	        get;
+	        set;
+	    }
+
+        protected OnFinish BaseOnFinish;
 		protected Handler Handler;
 		private ProgressDialogStatusLogger _statusLogger = new ProgressDialogStatusLogger(); //default: no logging but not null -> can be used whenever desired
 	    private Activity _activeActivity;
@@ -77,20 +84,22 @@ namespace keepass2android
 			Handler = null;
 		}
 
-		public void SetResult(bool success, string message, Exception exception) {
+		public void SetResult(bool success, string message, bool importantMessage, Exception exception) {
 			Success = success;
 			Message = message;
+		    ImportantMessage = importantMessage;
 			Exception = exception;
 		}
-		
-		public void SetResult(bool success) {
+
+
+	    public void SetResult(bool success) {
 			Success = success;
 		}
 		
 		public virtual void Run() {
 			if (BaseOnFinish == null) return;
 			// Pass on result on call finish
-			BaseOnFinish.SetResult(Success, Message, Exception);
+			BaseOnFinish.SetResult(Success, Message, ImportantMessage, Exception);
 				
 			if ( Handler != null ) {
 				Handler.Post(BaseOnFinish.Run); 
@@ -100,14 +109,31 @@ namespace keepass2android
 		}
 		
 		protected void DisplayMessage(Context ctx) {
-			DisplayMessage(ctx, Message);
+			DisplayMessage(ctx, Message, ImportantMessage);
 		}
 
-		public static void DisplayMessage(Context ctx, string message)
+		public static void DisplayMessage(Context ctx, string message, bool makeDialog)
 		{
 			if ( !String.IsNullOrEmpty(message) ) {
-				Kp2aLog.Log("OnFinish message: "+message);
-				Toast.MakeText(ctx ?? Application.Context, message, ToastLength.Long).Show();
+			    Kp2aLog.Log("OnFinish message: " + message);
+                if (makeDialog && ctx != null)
+			    {
+			        try
+			        {
+			            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+			            
+			            builder.SetMessage(message)
+			                .SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ((Dialog)sender).Dismiss())
+			                .Show();
+
+                    }
+                    catch (Exception)
+			        {
+			            Toast.MakeText(ctx, message, ToastLength.Long).Show();
+			        }
+			    }
+                else
+                    Toast.MakeText(ctx ?? Application.Context, message, ToastLength.Long).Show();
 			}
 		}
 	}

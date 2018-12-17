@@ -491,7 +491,7 @@ namespace keepass2android
 				    activity.Finish();
 				} else
 				{
-				    OnFinish.DisplayMessage(activity, message);
+				    OnFinish.DisplayMessage(activity, message, true);
                     //Re-initialize for editing:
                     State.EditMode.InitializeEntry(State.Entry);
 				}

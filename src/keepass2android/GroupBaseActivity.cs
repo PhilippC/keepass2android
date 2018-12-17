@@ -1512,7 +1512,7 @@ namespace keepass2android
                 }
                 else
                 {
-                    onFinish.SetResult(false, message, null);
+                    onFinish.SetResult(false, message, true, null);
                 }
             };
 

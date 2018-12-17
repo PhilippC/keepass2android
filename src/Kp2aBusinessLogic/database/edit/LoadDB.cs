@@ -99,7 +99,7 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("KeyFileException");
 				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/
-				       _app.GetResourceString(UiStringKey.keyfile_does_not_exist), Exception);
+				       _app.GetResourceString(UiStringKey.keyfile_does_not_exist), false, Exception);
 			}
 			catch (AggregateException e)
 			{
@@ -110,20 +110,20 @@ namespace keepass2android
 					// Override the message shown with the last (hopefully most recent) inner exception
 					Kp2aLog.LogUnexpectedError(innerException);
 				}
-				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message, Exception);
+				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message, false, Exception);
 				return;
 			}
 			catch (DuplicateUuidsException e)
 			{
 				Kp2aLog.Log(e.ToString());
-				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + e.Message + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), Exception);
+				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + e.Message + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), false, Exception);
 				return;
 			}
 			catch (Exception e)
 			{
 				if (!(e is InvalidCompositeKeyException))
 					Kp2aLog.LogUnexpectedError(e);
-				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, Exception);
+				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, false, Exception);
 				return;
 			}
 			

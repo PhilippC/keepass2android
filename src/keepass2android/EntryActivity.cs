@@ -1228,7 +1228,7 @@ namespace keepass2android
 
 			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) =>
 			{
-				OnFinish.DisplayMessage(this, message);
+				OnFinish.DisplayMessage(this, message, true);
 			    finishAction((EntryActivity)activity);
 			});
 

@@ -50,9 +50,9 @@ namespace keepass2android
 	        }
 	    }
 
-        protected void Finish(bool result, String message, Exception exception = null) {
+        protected void Finish(bool result, String message, bool importantMessage = false, Exception exception = null) {
 			if ( OnFinishToRun != null ) {
-				OnFinishToRun.SetResult(result, message, exception);
+				OnFinishToRun.SetResult(result, message, importantMessage, exception);
 				OnFinishToRun.Run();
 			}
 		}
