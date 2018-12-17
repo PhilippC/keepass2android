@@ -319,6 +319,8 @@
   <string name="ClearPasswordOnLeave_summary">離開螢幕沒有解鎖資料庫時，清除輸入的主密碼。</string>
   <string name="LockWhenNavigateBack_title">離開應用時上鎖</string>
   <string name="LockWhenNavigateBack_summary">按後退按鈕離開應用程式時，鎖定資料庫。</string>
+  <string name="UseKp2aKeyboardInKp2a_title">在 Keepass2Android 內使用內建鍵盤</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">若你不相信你手機上標準鍵盤的開發者，啟用這選項可在輸入主密碼和編輯項目時使用內建鍵盤。</string>
   <string name="ActivateSearchViewOnStart_title">啟動時激活搜索欄</string>
   <string name="ActivateSearchViewOnStart_summary">解鎖或搜尋項目後，在群組視圖中開啟搜索欄</string>
   <string name="NoDonateOption_title">隱藏捐贈選項</string>
@@ -581,6 +583,14 @@
    &#8226; 提示：如果你認爲資料庫檔案可能會受損，或你有可能忘記修改後的主金鑰，你可以嘗試點擊「%1$s」開啓最後一個成功開啓的版本並選擇本機備份。</string>
   <string name="HintLocalBackupOtherError">    \n
     &#8226; 提示：Keepass2Android已經把最後一個開啓成功的檔案版本存儲在內部儲存裝置中。你可以點擊「%1$s」開啓它並選擇本機備份。 
+  </string>
+  <string name="CorruptDatabaseHelp">    資料檔已損壞。\n
+    以下是一些有助於診斷問題的提示：\n
+    
+    &#8226; 若您通過 USB (MTP 模式) 複製資料庫檔案，請嘗試使用 MyPhoneExplorer 等工具。在某些情況下，MTP 會截斷文件。\n
+    &#8226; 若您使用 PC 仍然無法打開該檔案，則該檔案很可能已損壞。請使用資料庫備份檔。如果您懷疑是 Keepass2Android 損壞了該檔，請聯絡開發者。\n
+    &#8226; 若您仍可在 PC 上打開該檔案，請將這一情況告知開發者。您還可以嘗試使用不同的設置 (例如：不壓縮) 將其保存在 PC 上，再使用 Keepass2Android 打開。 
+
   </string>
   <string name="DbUnlockedChannel_name">資料庫已解鎖</string>
   <string name="DbUnlockedChannel_desc">有關資料庫已解鎖的通知</string>
@@ -881,7 +891,7 @@
     <item>密碼 + 質詢-回應</item>
     <item>密碼 + 質詢 - 回應 (復原模式)</item>
     <item>密碼 + Keepass XC 的質詢-回應</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>密碼 + 金鑰檔 + Keepass XC 的質詢-回應</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>密碼：</item>
