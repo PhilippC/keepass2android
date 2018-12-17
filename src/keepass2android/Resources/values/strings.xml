@@ -1178,6 +1178,8 @@ Initial public release
   <string name="autofill_enable_failed">Sorry, it looks like your device does not support opening the settings from inside the app. Please go manually to the system settings for AutoFill to enable the service.</string>
   <string name="show_autofill_help">Show Autofill help</string>
   <string name="autofill_sign_in_prompt">Fill with Keepass2Android</string>
+  <string name="autofill_disable">Disable AutoFill for %1$s</string>
+  <string name="autofill_enable">Enable AutoFill for %1$s</string>
   <string name="invalid_link_association">Could not associate web domain %1$s with app %2$s</string>
 
   <string name="enable_fingerprint_hint">Keepass2Android has detected fingerprint hardware. Do you want to enable fingerprint unlock for this database?</string>
