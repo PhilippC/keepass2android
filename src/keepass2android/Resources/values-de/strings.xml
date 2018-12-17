@@ -486,7 +486,6 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="use_key_file">Schlüsseldatei benutzen</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
   <string name="init_otp">OTP-Hilfsdatei laden…</string>
-  <string name="otp_explanation">Nächste One-Time-Passwörter (OTPs) eingeben. Halten deinen YubiKey NEO hinten an dein Gerät um über NFC einzugeben.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Bitte nutze das OtpKeyProv-Plugin in Keepass 2.x a PC um deine Datenbank zur Verwendung von One-Time-Passwords einzureichten!</string>
