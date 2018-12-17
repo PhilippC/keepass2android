@@ -474,7 +474,6 @@
   <string name="use_key_file">Käytä avaintiedostoa</string>
   <string name="error_adding_keyfile">Virhe avaintiedoston lisäämisessä!</string>
   <string name="init_otp">Lataa OTP-aputiedosto…</string>
-  <string name="otp_explanation">Syötä seuraava kertakäyttösalasana (OTP). Pyyhkäise Yubikey NEO:asi laitteesi selkämystä vasten syöttääksesi salasanasi NFC:n kautta.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP-aputiedostoa ei voitu ladata!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Käytä OtpKeyProv-laajennusta KeePass 2.x:n PC-versiossa, ja määritä tietokanta käyttämään OTP-kertakäyttösalasanoja!</string>
