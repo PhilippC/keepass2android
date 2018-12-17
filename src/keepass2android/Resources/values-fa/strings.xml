@@ -493,7 +493,6 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="use_key_file">استفاده از فایل کلید</string>
   <string name="error_adding_keyfile">هنگام افزودن فایل کلید خطایی رخ داد!</string>
   <string name="init_otp">بارگذاری فایل کمکی OTP…</string>
-  <string name="otp_explanation">رمزهای یک‌بارمصرف (OTP) بعدی را وارد کنید. یوبیکی‌نئو را پشت دستگاهتان بکشید تا از طریق NFC وارد شود.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">بارگذاری فایل کمکی OTP ناموفق بود!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">لطفاً با استفاده از افزونهٔ OtpKeyProv در نسخهٔ کامپیوتری نرم‌افزار KeePass 2.x پایگاه‌داده‌تان را برای کار با رمزهای یک‌بارمصرف (OTP) آماده کنید!</string>
