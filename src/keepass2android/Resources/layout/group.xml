@@ -136,6 +136,32 @@
           style="@style/BottomBarButton" />
       </LinearLayout>
 
+
+      <LinearLayout
+        android:id="@+id/dbreadonly_infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+
+        <TextView android:id="@+id/dbreadonly_infotext_text"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="16sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <Button
+          android:id="@+id/info_dont_show_dbreadonly_again"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="4dp"
+          android:text="@string/dont_show_again"
+          style="@style/BottomBarButton" />
+      </LinearLayout>
+
       <LinearLayout
         android:id="@+id/child_db_infotext"
         android:layout_width="match_parent"
