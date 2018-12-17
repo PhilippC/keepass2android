@@ -484,7 +484,6 @@
   <string name="use_key_file">Usa file chiave</string>
   <string name="error_adding_keyfile">Errore nell\'aggiunta del file chiave!</string>
   <string name="init_otp">Carico il file OTP ausiliario…</string>
-  <string name="otp_explanation">Inserisci i successivi One-time-password (OTP). Scorri il tuo Yubikey NEO sul retro del tuo dispositivo per inserirli via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Impossibile caricare il file OTP ausiliario!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Devi utilizzare il plugin OtpKeyProv per KeePass 2.x (PC) per poter configurare il database per l\'utilizzo con OTP!</string>
