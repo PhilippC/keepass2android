@@ -58,6 +58,7 @@
   <string name="unlock_database_title">解鎖資料庫</string>
   <string name="brackets">括弧</string>
   <string name="cancel">取消</string>
+  <string name="Ok">確定</string>
   <string name="ClearClipboard">剪貼板已清除。</string>
   <string name="clipboard_timeout">剪貼板超時。</string>
   <string name="clipboard_timeout_summary">複製用戶名或密碼到剪貼板後清除的時間</string>
@@ -445,6 +446,8 @@
   <string name="hint_http_url">資料夾或檔案的連結（例：mycloud.me.com/webdav/）</string>
   <string name="enter_owncloud_login_title">輸入 OwnCloud 登入資訊︰</string>
   <string name="hint_owncloud_url">OwnCloud 連結（例：owncloud.me.com）</string>
+  <string name="enter_nextcloud_login_title">輸入 Nextcloud 登入資訊:</string>
+  <string name="hint_nextcloud_url">Nextcloud 連結 (如: nextcloud.me.com)</string>
   <string name="hint_sftp_host">主機 (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">連接埠</string>
   <string name="initial_directory">初始目錄 (可選):</string>
@@ -460,6 +463,7 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A 資料夾)</string>
   <string name="filestoragehelp_dropboxKP2A">如果你不想要給 KP2A 你完整的 Dropbox 訪問權限，您可以選擇此選項。它將請求只訪問應用程式/Keepass2Android 資料夾。這特別適合創建新資料庫時。如果你已經有一個資料庫，請按一下此選項可創建該資料夾，然後 (從您的 PC) 將檔放在資料夾的內部，然後選擇此選項用，再打開檔案。</string>
@@ -597,6 +601,14 @@
     &#8226; 若您仍可在 PC 上打開該檔案，請將這一情況告知開發者。您還可以嘗試使用不同的設置 (例如：不壓縮) 將其保存在 PC 上，再使用 Keepass2Android 打開。 
 
   </string>
+  <string name="open_other_db">打開其他資料庫…</string>
+  <string name="select_database">選擇資料庫</string>
+  <string name="configure_child_dbs">配置子資料庫…</string>
+  <string name="child_dbs_title">子資料庫</string>
+  <string name="unspecified">未指定</string>
+  <string name="child_db_enabled_on_this_device">已在這設備上啟用</string>
+  <string name="child_db_enable_on_this_device">在這設備上啟用</string>
+  <string name="child_db_disable_on_this_device">在這設備上禁用</string>
   <string name="DbUnlockedChannel_name">資料庫已解鎖</string>
   <string name="DbUnlockedChannel_desc">有關資料庫已解鎖的通知</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
