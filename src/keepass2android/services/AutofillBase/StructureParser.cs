@@ -163,7 +163,11 @@ namespace keepass2android.services.AutofillBase
 	    {
 	        if (!InputTypes.MaskVariation.HasFlag(inputTypeVariation))
 	            throw new Exception("invalid inputTypeVariation");
-            return (((int)inputType) & (int)InputTypes.MaskVariation) == (int)(inputTypeVariation);
+	        bool result = (((int)inputType) & (int)InputTypes.MaskVariation) == (int)(inputTypeVariation);
+	        if (result)
+	            Kp2aLog.Log("found " + ((int)inputTypeVariation).ToString("X") + " in " + ((int)inputType).ToString("X"));
+            return result;
+            
 	    }
 
         private static bool IsPassword(AssistStructure.ViewNode f)
