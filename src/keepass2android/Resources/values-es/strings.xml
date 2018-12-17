@@ -485,7 +485,6 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="use_key_file">Usar el archivo llave</string>
   <string name="error_adding_keyfile">¡Error al añadir el archivo llave!</string>
   <string name="init_otp">Cargar archivo auxiliar de OTP…</string>
-  <string name="otp_explanation">Introduzca la siguiente contraseña de único uso (OTPs). Pase su Yubikey NEO en la parte trasera de su dispositivo para introducirse a través de NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">No se pudo cargar el archivo auxiliar de OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Por favor utilice el plugin OtpKeyProv en KeePass 2.x (PC) para configurar la base de datos para su uso con OTPs!</string>
