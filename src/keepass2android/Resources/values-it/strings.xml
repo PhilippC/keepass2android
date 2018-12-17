@@ -597,6 +597,20 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 • se puoi ancora aprire il file sul tuo PC, contatta il supporto. Puoi provare a salvarlo con impostazioni differenti (es: non compresso) sul PC e, poi, riprovare ad aprirlo in Keepass2Android.  </string>
   <string name="open_other_db">Apri un altro database…</string>
   <string name="select_database">Seleziona database</string>
+  <string name="configure_child_dbs">Configurare i database figlio…</string>
+  <string name="child_dbs_title">Database figlio</string>
+  <string name="unspecified">non specificato</string>
+  <string name="child_db_enabled_on_this_device">Abilitato su questo dispositivo</string>
+  <string name="child_db_enable_on_this_device">Abilita su questo dispositivo</string>
+  <string name="child_db_disable_on_this_device">Disabilita su questo dispositivo</string>
+  <string name="child_db_enable_a_copy_for_this_device">Copia per questo dispositivo</string>
+  <string name="unconfigured_child_dbs">Il database contiene nuovi database figlio nel gruppo \"AutoOpen\". Si prega di specificare se questi database figlio devono essere utilizzati su questo dispositivo.</string>
+  <string name="add_child_db">Aggiungere database figlio...</string>
+  <string name="EnableCopyForThisDevice_Info">Questo creerà e abiliterà una copia delle impostazioni del database figlio. Queste impostazioni copiate possono quindi essere regolate specificamente per questo dispositivo.</string>
+  <string name="Visible_title">Visibile</string>
+  <string name="child_db_Enabled_title">Apri automaticamente</string>
+  <string name="database_file_heading">File Database</string>
+  <string name="if_device_text">Abilita per %1$s</string>
   <string name="DbUnlockedChannel_name">Database sbloccato</string>
   <string name="DbUnlockedChannel_desc">Notifica dello sblocco del database</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
