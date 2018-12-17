@@ -214,7 +214,7 @@
   <string name="rijndael">Rijndael加密(AES)</string>
   <string name="root">根目錄</string>
   <string name="AutoReturnFromQuery_title">自動從查詢畫面返回</string>
-  <string name="AutoReturnFromQuery_summary">查找應用或網站的項目時：如果在資料庫裡只有一個匹配的項目，則從查詢畫面自動返回</string>
+  <string name="AutoReturnFromQuery_summary">查找應用或網站的項目時：如果在資料庫裡只有一個匹配的項目，則從查詢畫面自動返回。</string>
   <string name="KeyDerivFunc">金鑰派生函數</string>
   <string name="rounds">加密次數</string>
   <string name="rounds_explaination">更高級的加密次數對暴力攻擊能提供額外保護，但也會增加載入和保存的時間。</string>
@@ -296,7 +296,7 @@
   <string name="BinaryDirectory_summary">指定檔案附件保存到的位置。</string>
   <string name="SaveAttachmentDialog_title">儲存附件</string>
   <string name="SaveAttachmentDialog_text">請選擇保存該附件的位置。</string>
-  <string name="SaveAttachmentDialog_save">儲存到檔案...</string>
+  <string name="SaveAttachmentDialog_save">匯出到檔案...</string>
   <string name="SaveAttachmentDialog_open">保存到緩存並打開</string>
   <string name="ShowAttachedImage">以內部圖片瀏覽器顯示</string>
   <string name="SaveAttachment_doneMessage">將檔案保存到 %1$s。</string>
@@ -447,7 +447,7 @@
   <string name="enter_owncloud_login_title">輸入 OwnCloud 登入資訊︰</string>
   <string name="hint_owncloud_url">OwnCloud 連結（例：owncloud.me.com）</string>
   <string name="enter_nextcloud_login_title">輸入 Nextcloud 登入資訊:</string>
-  <string name="hint_nextcloud_url">Nextcloud 連結 (如: nextcloud.me.com)</string>
+  <string name="hint_nextcloud_url">Nextcloud 連結 (例: nextcloud.me.com)</string>
   <string name="hint_sftp_host">主機 (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">連接埠</string>
   <string name="initial_directory">初始目錄 (可選):</string>
@@ -610,7 +610,8 @@
   <string name="child_db_enable_on_this_device">在此設備上啟用</string>
   <string name="child_db_disable_on_this_device">在此設備上禁用</string>
   <string name="child_db_enable_a_copy_for_this_device">為此設備建立副本</string>
-  <string name="add_child_db">添加子資料庫</string>
+  <string name="unconfigured_child_dbs">你的資料庫包含在「AutoOpen」群組裡的新子資料庫。請指明是否在此設備上使用這些子資料庫。</string>
+  <string name="add_child_db">添加子資料庫...</string>
   <string name="EnableCopyForThisDevice_Info">這將創建並啟用該子資料庫設定的副本，使得設置可針對此設備特別調整。</string>
   <string name="Visible_title">可見</string>
   <string name="child_db_Enabled_title">自動開啟</string>
@@ -631,7 +632,7 @@
   <string name="ErrorReportPrefTitle">傳送錯誤報告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋掃描處於活動狀態時顯示軟鍵盤以輸入密碼。</string>
   <string name="ChangeLog_1_07">    版本 1.07-pre2\n
-    * ，允許打開多於一個資料庫兼容 KeeAutoExec\n
+    * 允許打開多於一個資料庫，兼容 KeeAutoExec\n
     * SFTP: 允許驗證公鑰，檢查主機密鑰是否已更改\n
     * 加入 pCloud 支援 - 感謝 gilbsgilbs！\n
     * 使 Nextcloud 支援更明確\n
