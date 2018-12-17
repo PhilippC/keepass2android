@@ -487,7 +487,6 @@
   <string name="use_key_file">Použiť súbor s kľúčom</string>
   <string name="error_adding_keyfile">Chyba pri pridávaní súboru s kľúčom!</string>
   <string name="init_otp">Načítať doplnkový súbor pre jednorazové heslá…</string>
-  <string name="otp_explanation">Zadajte ďalšie jednorazové heslá (OTP). Priložte Yubikey NEO na zadnú stranu zariadenia alebo zadajte prostredníctvom NFC.</string>
   <string name="otp_hint">Jednorazové heslo %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nemožno načítať doplnkový súbor pre jednorazové heslá!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Na použitie jednorazových hesiel v databáze prosím použite prídavný modul OtpKeyProv v programe keePass 2.x (PC)!</string>
