@@ -482,7 +482,6 @@
   <string name="use_key_file">Använd nyckelfil</string>
   <string name="error_adding_keyfile">Fel vid skapandet av nyckelfilen!</string>
   <string name="init_otp">Ladda engångslösenordsfil…</string>
-  <string name="otp_explanation">Ange nästa engångslösenord. Svep din Yubikey NEO på baksidan av enheten att gå in via NFC.</string>
   <string name="otp_hint">Engångslåsenord %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Kunde inte ladda engångslösenordsfil!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Vänligen använd OtpKeyProv plugin i KeePass 2.x (PC) för att konfigurera din databas för användning med engångslåsenord!</string>
