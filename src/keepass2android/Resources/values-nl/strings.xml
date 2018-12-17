@@ -484,7 +484,6 @@
   <string name="use_key_file">Gebruik sleutelbestand</string>
   <string name="error_adding_keyfile">Fout tijdens het toevoegen van het sleutelbestand!</string>
   <string name="init_otp">Laad OTP hulpbestand…</string>
-  <string name="otp_explanation">Geef de volgende eenmalige wachtwoorden (OTPs). Veeg je Yubikey NEO langs de achterkant van het apparaat voor NFC invoer.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Kan het OTP hulpbestand niet laden!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Gebruik de OtpKeyProv plugin in KeePass 2.x (PC) om jouw database in te stellen voor gebruik met OTPs!</string>
