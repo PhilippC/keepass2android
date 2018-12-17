@@ -862,6 +862,8 @@ Première version publique</string>
   <string name="autofill_enable_failed">Désolé, il semble que votre appareil ne supporte pas l\'ouverture des paramètres depuis l\'application. Merci d\'aller manuellement dans les paramètres système liées au remplissage automatique pour activer ce service.</string>
   <string name="show_autofill_help">Montrer l\'aide du remplissage automatique</string>
   <string name="autofill_sign_in_prompt">Remplir avec Keepass2Android</string>
+  <string name="autofill_disable">Désactiver le remplissage automatique pour %1$s</string>
+  <string name="autofill_enable">Activer le remplissage automatique pour %1$s</string>
   <string name="invalid_link_association">Impossible d\'associer le domaine web %1$s avec l\'application %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android a détecté un capteur d\'empreinte. Voulez-vous activer le capteur d\'empreinte pour déverrouiller la base de données ?</string>
   <string name="understand">Je comprends</string>
