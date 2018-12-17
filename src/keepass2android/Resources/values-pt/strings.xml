@@ -485,7 +485,6 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="use_key_file">Utilizar ficheiro-chave</string>
   <string name="error_adding_keyfile">Erro ao adicionar o ficheiro-chave!</string>
   <string name="init_otp">Carregar o ficheiro auxiliar OTP…</string>
-  <string name="otp_explanation">Introduza o One-time-passwords (OTPs) seguinte. Passe o seu Yubikey NEO na parte traseira de seu dispositivo para entrar através de NFC.</string>
   <string name="otp_hint">%1$d OTP</string>
   <string name="CouldntLoadOtpAuxFile">Não foi possível carregar o ficheiro auxiliar OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Por favor, use a extensão OtpKeyProv no KeePass 2.x (PC) para configurar a sua base de dados para uso com as OTPs!</string>
