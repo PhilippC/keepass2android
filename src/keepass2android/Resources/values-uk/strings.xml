@@ -487,7 +487,6 @@
   <string name="use_key_file">Використовувати ключовий файл</string>
   <string name="error_adding_keyfile">Помилка при додаванні ключового файлу!</string>
   <string name="init_otp">Завантажити допоміжний файл одноразових паролів…</string>
-  <string name="otp_explanation">Введіть наступний одноразовий пароль (OTP). Проведіть ваш Yubikey NEO по задній панелі пристрою для введення за допомогою NFC.</string>
   <string name="otp_hint">Одноразовий пароль %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Не вдалося завантажити допоміжний файл одноразових паролів!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Використайте плагін OtpKeyProv в KeePass 2.x (ПК), щоб налаштувати базу даних для використання з одноразовими паролями!</string>
