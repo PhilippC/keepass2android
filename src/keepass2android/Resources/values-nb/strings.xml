@@ -454,7 +454,6 @@
   <string name="use_key_file">Bruk nøkkelfil</string>
   <string name="error_adding_keyfile">Feil ved opprettelse av nøkkelfil.</string>
   <string name="init_otp">Last tilleggsfil for engangspassord…</string>
-  <string name="otp_explanation">Angi neste engangspassord (OPT). Swipe din Youbikey NEO på baksiden av enheten for å angi via NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Kunne ikke laste tilleggsfil for engangspassord!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Vennligst bruk tillegget OtpKeyProv i KeePass 2.x (PC) for å sette opp databasen til bruk av engangspassord!</string>
