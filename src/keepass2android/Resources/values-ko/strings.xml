@@ -475,7 +475,6 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="use_key_file">키 파일 사용</string>
   <string name="error_adding_keyfile">키 파일을 추가하는 동안 오류가 발생했습니다!</string>
   <string name="init_otp">OTP 보조 파일 불러오기...</string>
-  <string name="otp_explanation">그 다음의 OTPs를 입력합니다. NFC를 통해 입력하려면 장치의 뒷면에 있는 Yubikey NEO를 밀어 스치세요.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP 보조 파일을 불러올 수 없습니다!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">OTPs를 사용하기 위해 데이터베이스를 설정하려면 KeePass 2.x (PC)에서 OtpKeyProv 플러그인을 사용하세요.</string>
