@@ -480,7 +480,6 @@
   <string name="use_key_file">キーファイルを使用する</string>
   <string name="error_adding_keyfile">キー ファイル追加エラー!</string>
   <string name="init_otp">OTP 補助ファイルの読み込み…</string>
-  <string name="otp_explanation">次のワンタイム パスワード (OTP) を入力してください。NFC 経由で入力するには、お使いのデバイスの背面にある Yubikey NEO をスワイプします。</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">補助 OTP ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">KeePass 2.x (PC) の OtpKeyProv プラグインを使用して、OTP を使うようにデータベースを構成してください!</string>
