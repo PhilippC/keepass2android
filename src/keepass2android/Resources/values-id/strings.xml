@@ -438,7 +438,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="use_key_file">Gunakan berkas kunci</string>
   <string name="error_adding_keyfile">Kesalahan saat menambahkan berkas kunci!</string>
   <string name="init_otp">Memuat berkas bantu OTP…</string>
-  <string name="otp_explanation">Masukkan kata sandi One-time-password berikutnya (OTPs). Gesek NEO Yubikey Anda di bagian belakang perangkat Anda untuk masuk melalui NFC.</string>
   <string name="otp_hint">OTP%1$d</string>
   <string name="CouldntLoadOtpAuxFile">Tidak bisa memuat file OTP tambahan!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Silakan gunakan plugin OtpKeyProv di KeePass 2.x (PC) untuk mengkonfigurasi database Anda untuk digunakan dengan OTPs!</string>
