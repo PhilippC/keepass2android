@@ -433,7 +433,6 @@
   <string name="use_key_file">استخدم ملف المفتاح</string>
   <string name="error_adding_keyfile">حدث خطأ أثناء إضافة ملف المفتاح!</string>
   <string name="init_otp">تحميل الملف الخارجي الخاص بكلمة المرور لمرة واحدة OTP…</string>
-  <string name="otp_explanation">(12345) emad.</string>
   <string name="otp_hint">كلمة مرور مؤقتة %1$d</string>
   <string name="CouldntLoadOtpAuxFile">تعذر تحميل الملف الخارجي الخاص ب \"كلمة المرور لمرة واحدة\"  OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">الرجاء استخدام ألأضافة \"أوتبكييبروف\" OtpKeyProv في  KeePass 2.x (نسخة PC) لتمكين قاعدة بياناتك مناستخدام \"كلمة المرور لمرة واحدة\" OTP !</string>
