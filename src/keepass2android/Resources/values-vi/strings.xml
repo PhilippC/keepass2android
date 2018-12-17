@@ -440,7 +440,6 @@
   <string name="use_key_file">Sử dụng tập tin khóa</string>
   <string name="error_adding_keyfile">Lỗi trong khi thêm tập tin khoá!</string>
   <string name="init_otp">Tải tập tin phụ trợ OTP…</string>
-  <string name="otp_explanation">Nhập mật-mã-một-lần tiếp theo (OTPs). Trượt NEO Yubikey của bạn ở mặt sau của điện thoại để nhập qua NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Không thể tải tập tin phụ trợ OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Xin vui lòng sử dụng công cụ OtpKeyProv trong KeePass 2.x (PC) để cài đặt cấu hình cơ sở dữ liệu của bạn để sử dụng với OTPs!</string>
