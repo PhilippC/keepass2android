@@ -475,7 +475,6 @@
   <string name="use_key_file">Χρήση αρχείου κλειδιού</string>
   <string name="error_adding_keyfile">Παρουσιάστηκε σφάλμα κατά την προσθήκη του αρχείου κλειδιού!</string>
   <string name="init_otp">Φόρτωση βοηθητικού αρχείου OTP…</string>
-  <string name="otp_explanation">Εισάγετε τα επόμενα συνθηματικά μοναδικής χρήσης (OTP). Σαρώστε το ΝΕΟ Yubikey στο πίσω μέρος της συσκευής σας να εισέλθετε μέσω NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Δεν ήταν δυνατή η φόρτωση του βοηθητικού αρχείου OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Χρησιμοποιήστε το πρόσθετο OtpKeyProv σε KeePass 2.x (PC) για να ρυθμίσετε τη βάση δεδομένων για χρήση με OTP!</string>
