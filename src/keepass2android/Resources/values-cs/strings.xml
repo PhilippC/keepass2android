@@ -214,7 +214,7 @@
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Kořen</string>
   <string name="AutoReturnFromQuery_title">Automatický návrat z obrazovky s dotazem</string>
-  <string name="AutoReturnFromQuery_summary">Při vyhledávání položky pro aplikaci nebo webovou stránku: automaticky navrátit z obrazovky dotazu při právě jedné odpovídající položce.</string>
+  <string name="AutoReturnFromQuery_summary">Při vyhledávání položky pro aplikaci nebo webovou stránku: automatický návrat z obrazovky dotazu při právě jedné odpovídající položce.</string>
   <string name="KeyDerivFunc">Funkce pro odvození klíče</string>
   <string name="rounds">Počet zašifrování</string>
   <string name="rounds_explaination">Vyšší počet opakování šifrování zvýší bezpečnost proti hrubému útoku, ale může výrazně zpomalit načítání a ukládání.</string>
@@ -296,6 +296,7 @@
   <string name="BinaryDirectory_summary">Adresář, do kterého jsou ukládány přílohy souborů.</string>
   <string name="SaveAttachmentDialog_title">Uložit přílohu</string>
   <string name="SaveAttachmentDialog_text">Prosím vyberte, kam chcete uložit přílohu.</string>
+  <string name="SaveAttachmentDialog_save">Export do souboru...</string>
   <string name="SaveAttachmentDialog_open">Uložit do mezipaměti a otevřít</string>
   <string name="ShowAttachedImage">Zobrazit interní prohlížeč obrázků</string>
   <string name="SaveAttachment_doneMessage">Uložit soubor do %1$s.</string>
@@ -322,6 +323,8 @@
   <string name="ClearPasswordOnLeave_summary">Vymazat zadané hlavní heslo při opuštění obrazovky bez odemčení databáze.</string>
   <string name="LockWhenNavigateBack_title">Uzamknout při odchodu z aplikace</string>
   <string name="LockWhenNavigateBack_summary">Uzamknout databázi při opouštění aplikace stisknutím tlačítka zpět.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Použít vestavěnou klávesnici v Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Pokud nedůvěřujete poskytovateli Vaší klávesnice, použitím této volby bude využita zabudovaná klávesnice při zadávání hlavního hesla a úpravě položek.</string>
   <string name="ActivateSearchViewOnStart_title">Pole hledání má být po startu aktivní</string>
   <string name="ActivateSearchViewOnStart_summary">Aktivuje pole hledání v přehledu skupin po odemknutí, nebo při hledání položky</string>
   <string name="NoDonateOption_title">Skrýt možnost přispění</string>
@@ -443,6 +446,7 @@
   <string name="hint_http_url">URL nebo adresář se souborem (např. mycloud.me.com/webdaw/)</string>
   <string name="enter_owncloud_login_title">Zadejte přihlašovací údaje pro OwnCloud:</string>
   <string name="hint_owncloud_url">URL adresa OwnCloud (např. owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Zadejte údaje pro Nextcloud:</string>
   <string name="hint_sftp_host">počítač (např: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Počáteční adresář (nepovinné):</string>
