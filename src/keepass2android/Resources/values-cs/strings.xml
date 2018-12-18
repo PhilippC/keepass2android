@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Odemknout databázi</string>
   <string name="brackets">Závorky</string>
   <string name="cancel">Storno</string>
+  <string name="Ok">OK</string>
   <string name="ClearClipboard">Schránka vyčištěna.</string>
   <string name="clipboard_timeout">Časový limit schránky</string>
   <string name="clipboard_timeout_summary">Čas před vyčištěním schránky po zkopírování jména nebo hesla</string>
@@ -212,6 +213,8 @@
   <string name="edit">Změnit</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Kořen</string>
+  <string name="AutoReturnFromQuery_title">Automatický návrat z obrazovky s dotazem</string>
+  <string name="AutoReturnFromQuery_summary">Při vyhledávání položky pro aplikaci nebo webovou stránku: automaticky navrátit z obrazovky dotazu při právě jedné odpovídající položce.</string>
   <string name="KeyDerivFunc">Funkce pro odvození klíče</string>
   <string name="rounds">Počet zašifrování</string>
   <string name="rounds_explaination">Vyšší počet opakování šifrování zvýší bezpečnost proti hrubému útoku, ale může výrazně zpomalit načítání a ukládání.</string>
