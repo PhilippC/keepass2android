@@ -602,6 +602,14 @@
   </string>
   <string name="open_other_db">Otevřít další databázi…</string>
   <string name="select_database">Vybrat databázi</string>
+  <string name="configure_child_dbs">Konfigurace dceřiné databáze…</string>
+  <string name="child_dbs_title">Dceřiná databáze</string>
+  <string name="unspecified">nespecifikováno</string>
+  <string name="child_db_enabled_on_this_device">Povoleno na tomto zařízení</string>
+  <string name="child_db_enable_on_this_device">Povolit na tomto zařízení</string>
+  <string name="child_db_disable_on_this_device">Zakázat na tomto zařízení</string>
+  <string name="child_db_enable_a_copy_for_this_device">Kopírování na tomto zařízení</string>
+  <string name="if_device_text">Povolit pro %1$s</string>
   <string name="DbUnlockedChannel_name">Databáze odemknuta</string>
   <string name="DbUnlockedChannel_desc">Upozornění o odemykání databáze</string>
   <string name="DbQuicklockedChannel_name">Rychlé odemknutí</string>
@@ -889,7 +897,7 @@ První veřejné vydání
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Heslo</item>
-    <item>Private/Public key</item>
+    <item>Soukromý/Veřejný klíč</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovat neúspěšné ověření certifikátu</item>
@@ -903,6 +911,8 @@ První veřejné vydání
   <string name="autofill_enable_failed">Omlouváme se, zdá se že Vaše zařízení nepodporuje otevírání nastavení z aplikace. Prosím navštivte nastavení systému, pro automatické vyplňování, aby jste aktivovali službu.</string>
   <string name="show_autofill_help">Ukázat nápovědu automatického doplňování</string>
   <string name="autofill_sign_in_prompt">Doplnit s Keepass2Android</string>
+  <string name="autofill_disable">Vypnout Automatické doplnění pro %1$s</string>
+  <string name="autofill_enable">Povolit Automatické doplnění pro %1$s</string>
   <string name="invalid_link_association">Nedaří se spojit doménu %1$s s aplikací %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android nalezl hardwarovou čtečku otisků prstů. Chcete pro tuto databázi povolit odemykání pomocí otisku prstu?</string>
   <string name="understand">Rozumím</string>
