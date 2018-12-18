@@ -611,6 +611,7 @@
   <string name="child_db_enable_a_copy_for_this_device">Kopírování na tomto zařízení</string>
   <string name="unconfigured_child_dbs">Vaše databáze obsahuje nové dceřiné databáze pro automatické otevření. Které z nich by se měly používat na tomto zařízení?</string>
   <string name="add_child_db">Přidat dceřinou databázi...</string>
+  <string name="EnableCopyForThisDevice_Info">Toto vytvoří a povolí kopii nastavení dceřiné databáze. Kopie nastavení může poté být upravena pro toto zařízení.</string>
   <string name="Visible_title">Viditelné</string>
   <string name="child_db_Enabled_title">Otevřít automaticky</string>
   <string name="database_file_heading">Databázový soubor</string>
@@ -898,7 +899,7 @@ První veřejné vydání
     <item>Heslo + Odpověď výzvy</item>
     <item>Heslo + Odpověď výzvy (režim obnovení)</item>
     <item>Heslo + Výzva-Odpověď pro Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Heslo + Klíčový soubor + výzva-odpověď (Challenge-response) pro KeePassXC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Heslo</item>
