@@ -447,10 +447,13 @@
   <string name="enter_owncloud_login_title">Zadejte přihlašovací údaje pro OwnCloud:</string>
   <string name="hint_owncloud_url">URL adresa OwnCloud (např. owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Zadejte údaje pro Nextcloud:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (např: nextcloud.me.com)</string>
   <string name="hint_sftp_host">počítač (např: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Počáteční adresář (nepovinné):</string>
   <string name="enter_sftp_login_title">Zadejte přihlašovací údaje k SFTP:</string>
+  <string name="sftp_auth_mode">Režim ověření</string>
+  <string name="send_public_key">Odeslat veřejný klíč...</string>
   <string name="enter_ftp_login_title">Zadejte přihlašovací údaje pro FTP:</string>
   <string name="select_storage_type">Vyberte typ úložiště:</string>
   <string name="filestoragename_file">Místní soubor</string>
@@ -460,6 +463,7 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A složka)</string>
   <string name="filestoragehelp_dropboxKP2A">Pokud nechcete, aby měl KP2A plný přístup k vašemu Dropbox účtu, může vybrat tuto možnost. Bude vyžadován pouze přístup ke složce Apps/Keepass2Android. Toto je vhodné zejména při vytváření nové databáze. Pokud již máte databázi, zvolte na tuto možnost pro vytvoření složky, poté umístěte soubor (z PC) do této složky a zvolte tuto možnost znovu pro otevření souboru.</string>
@@ -483,6 +487,7 @@
   <string name="use_key_file">Použít klíčový soubor</string>
   <string name="error_adding_keyfile">Chyba při přidávání klíčového souboru!</string>
   <string name="init_otp">Otevřít pomocný soubor OTP…</string>
+  <string name="otp_explanation">Zadejte další jednorázové heslo (OTP). Dotkněte se zad telefonu s Yubikey NEO pro zadání pomocí NFC (vyžaduje aplikaci Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nelze načíst pomocný soubor OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Použijte OtpKeyProv plugin v KeePass 2.x (PC) pro konfiguraci databáze pro použití s OTP!</string>
@@ -595,6 +600,8 @@
     • Jestliže můžete otevřít soubor na vašem PC, kontaktujte, prosím, podporu. Můžete se pokusit na vašem PC uložit soubor s rozdílným nastavením (např. nezazipovaný) a znovu se jej pokusit otevřít v Keepass2Android.
 
   </string>
+  <string name="open_other_db">Otevřít další databázi…</string>
+  <string name="select_database">Vybrat databázi</string>
   <string name="DbUnlockedChannel_name">Databáze odemknuta</string>
   <string name="DbUnlockedChannel_desc">Upozornění o odemykání databáze</string>
   <string name="DbQuicklockedChannel_name">Rychlé odemknutí</string>
