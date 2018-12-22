@@ -486,6 +486,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="use_key_file">Schlüsseldatei benutzen</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
   <string name="init_otp">OTP-Hilfsdatei laden…</string>
+  <string name="otp_explanation">Geben Sie die nächste One-time-Passwörter (OTPs) an. Bewegen Sie Ihren Yubikey NEO an der Rückseite Ihres Gerätes, um via NFC eingeben (erfordert Yubiclip app).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Bitte nutze das OtpKeyProv-Plugin in Keepass 2.x a PC um deine Datenbank zur Verwendung von One-Time-Passwords einzureichten!</string>
@@ -603,6 +604,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="child_db_enable_on_this_device">Auf diesem Gerät aktivieren</string>
   <string name="child_db_disable_on_this_device">Auf diesem Gerät deaktivieren</string>
   <string name="child_db_enable_a_copy_for_this_device">Kopie für dieses Gerät</string>
+  <string name="unconfigured_child_dbs">Ihre Datenbank enthält neue Unter-Datenbanken in der Gruppe \"AutoOpen\". Bitte geben Sie an, wenn diese Unter-Datenbanken auf diesem Gerät verwendet werden soll.</string>
   <string name="add_child_db">Füge Kinddatenbank hinzu...</string>
   <string name="EnableCopyForThisDevice_Info">Hiermit wird eine Kopie der Kinddatenbankeinstellungen erstellt und aktiviert. Diese kopierten Einstellungen können dann speziell für dieses Gerät verändert werden.</string>
   <string name="Visible_title">Sichtbar</string>
@@ -917,6 +919,8 @@ Erstes öffentliches Release</string>
   <string name="autofill_enable_failed">Sorry, anscheinend unterstützt dein Gerät es nicht, dass man die Einstellungen aus einer App heraus öffnet. Bitte gehe in die Systemeinstellungen und suche dort nach Autofill, um den Dienst zu aktivieren.</string>
   <string name="show_autofill_help">Autofill-Hilfe anzeigen</string>
   <string name="autofill_sign_in_prompt">Mit Keepass2Android ausfüllen</string>
+  <string name="autofill_disable">AutoFill für %1$s deaktivieren</string>
+  <string name="autofill_enable">AutoFill für %1$s aktivieren</string>
   <string name="invalid_link_association">Webdomain %1$s konnte nicht mit App %2$s in Verbindung gebracht werden</string>
   <string name="enable_fingerprint_hint">Keepass2Android hat einen Fingerabdrucksensor gefunden. Möchtest du das Entsperren mit Fingerabdruck für diese Datenbank aktivieren?</string>
   <string name="understand">Ich verstehe</string>
