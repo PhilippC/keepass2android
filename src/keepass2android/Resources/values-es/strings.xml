@@ -485,6 +485,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="use_key_file">Usar el archivo llave</string>
   <string name="error_adding_keyfile">¡Error al añadir el archivo llave!</string>
   <string name="init_otp">Cargar archivo auxiliar de OTP…</string>
+  <string name="otp_explanation">Introduzca la siguiente contraseña de único uso (OTPs). Pase su Yubikey NEO en la parte trasera de su dispositivo para introducirse a través de NFC (requiere la aplicación Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">No se pudo cargar el archivo auxiliar de OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Por favor utilice el plugin OtpKeyProv en KeePass 2.x (PC) para configurar la base de datos para su uso con OTPs!</string>
@@ -604,6 +605,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="child_db_enable_on_this_device">Habilitar en este dispositivo</string>
   <string name="child_db_disable_on_this_device">Inhabilitar en este dispositivo</string>
   <string name="child_db_enable_a_copy_for_this_device">Copiar para este dispositivo</string>
+  <string name="unconfigured_child_dbs">La base de datos contiene nuevas bases de datos descendientes en el grupo de \"Autorun\". Por favor especifique si se deben utilizar estas bases de datos descendientes en este dispositivo.</string>
   <string name="add_child_db">Añadir base de datos hija...</string>
   <string name="EnableCopyForThisDevice_Info">Esto creará y habilitará una copia de la configuración de la base de datos hija. Esta configuración copiada se puede ajustar específicamente para este dispositivo.</string>
   <string name="Visible_title">Visible</string>
@@ -930,6 +932,8 @@ Publicación inicial</string>
   <string name="autofill_enable_failed">Lo sentimos, parece que el dispositivo no es compatible con abrir la configuración desde dentro de la aplicación. Por favor vaya manualmente a los ajustes del sistema para Autorrelleno para activar el servicio.</string>
   <string name="show_autofill_help">Mostrar ayuda de Autocompletado</string>
   <string name="autofill_sign_in_prompt">Completar con Keepass2Android</string>
+  <string name="autofill_disable">Desactivar Autorrelleno para %1$s</string>
+  <string name="autofill_enable">Activar Autorrelleno para %1$s</string>
   <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha detectado hardware de huellas dactilares. ¿Desea activar desbloqueo de esta base de datos mediante huella digital?</string>
   <string name="understand">Entiendo</string>
