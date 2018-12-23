@@ -605,10 +605,10 @@
   <string name="child_db_enabled_on_this_device">在此设备上启用</string>
   <string name="child_db_enable_on_this_device">在此设备上启用</string>
   <string name="child_db_disable_on_this_device">在此设备上禁用</string>
-  <string name="child_db_enable_a_copy_for_this_device">复制此设备</string>
+  <string name="child_db_enable_a_copy_for_this_device">为此设备创建副本</string>
   <string name="unconfigured_child_dbs">您的数据库包含“AutoOpen”组中的新子数据库。 请指定是否应在此设备上使用这些子数据库。</string>
   <string name="add_child_db">添加子数据库...</string>
-  <string name="EnableCopyForThisDevice_Info">这将创建并启用子数据库设置的副本。然后可以专门为此设备调整这些复制的设置。</string>
+  <string name="EnableCopyForThisDevice_Info">这将创建并启用子数据库设置的副本。然后可以专门为此设备调整这些副本的设置。</string>
   <string name="Visible_title">可见</string>
   <string name="child_db_Enabled_title">自动打开</string>
   <string name="database_file_heading">数据库文件</string>
