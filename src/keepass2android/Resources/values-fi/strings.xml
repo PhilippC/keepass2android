@@ -484,6 +484,7 @@
   <string name="use_key_file">Käytä avaintiedostoa</string>
   <string name="error_adding_keyfile">Virhe avaintiedoston lisäämisessä!</string>
   <string name="init_otp">Lataa OTP-aputiedosto…</string>
+  <string name="otp_explanation">Syötä seuraavat kertakäyttösalasanat (OTP). Pyyhkäise Yubikey NEO:asi laitteesi takaosaa vasten syöttääksesi salasanasi lähiluvun (NFC) avulla.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP-aputiedostoa ei voitu ladata!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Käytä OtpKeyProv-laajennusta KeePass 2.x:n PC-versiossa, ja määritä tietokanta käyttämään OTP-kertakäyttösalasanoja!</string>
@@ -596,6 +597,14 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
 • Jos saat vielä tiedoston auki PC:lläsi, ota yhteyttä tukeen. Voit kokeilla tallentaa sen eri asetuksilla (esim. purettuna) PC:llä ja kokeilla sitten avata se uudelleen Keepass2Androidilla.  </string>
   <string name="open_other_db">Avaa toinen tietokanta…</string>
   <string name="select_database">Valitse tietokanta</string>
+  <string name="unspecified">määrittämätön</string>
+  <string name="child_db_enabled_on_this_device">Käytössä tällä laitteella</string>
+  <string name="child_db_enable_on_this_device">Ota käyttöön tällä laitteella</string>
+  <string name="child_db_disable_on_this_device">Poista käytöstä tällä laitteella</string>
+  <string name="child_db_enable_a_copy_for_this_device">Kopioi tälle laitteelle</string>
+  <string name="Visible_title">Näkyvissä</string>
+  <string name="child_db_Enabled_title">Avaa automaattisesti</string>
+  <string name="database_file_heading">Tietokantatiedosto</string>
   <string name="DbUnlockedChannel_name">Tietokanta avattu</string>
   <string name="DbUnlockedChannel_desc">Ilmoitus, että tietokannan on auki</string>
   <string name="DbQuicklockedChannel_name">Pika-avaus</string>
