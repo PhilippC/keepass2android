@@ -605,6 +605,7 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="Visible_title">Näkyvissä</string>
   <string name="child_db_Enabled_title">Avaa automaattisesti</string>
   <string name="database_file_heading">Tietokantatiedosto</string>
+  <string name="if_device_text">Ota käyttöön %1$s:lle</string>
   <string name="DbUnlockedChannel_name">Tietokanta avattu</string>
   <string name="DbUnlockedChannel_desc">Ilmoitus, että tietokannan on auki</string>
   <string name="DbQuicklockedChannel_name">Pika-avaus</string>
@@ -619,6 +620,16 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="ErrorReportAsk">Kysy virheen jälkeen</string>
   <string name="ErrorReportPrefTitle">Lähetä virheraportit</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Näytä näppäimistö salasanan syöttöä varten sormenjälkilukijan ollessa käytössä.</string>
+  <string name="ChangeLog_1_07">    Versio 1.07-pre2\n
+    * Useiden tietokantojen avaaminen, yhteensopiva KeeAutoExec:n kanssa\n
+    * SFTP: Julkisen avaimen todennus, isäntä avaimen muutoksen tarkistus\n
+    * pCloud tuki - Kiitos gilbsgilbs!\n
+    * Nextcloud tuen virallistaminen\n
+    * Merkintöjen liitetiedostojen tallentamisen ja päivittämisen parannuksia\n
+    * Enemmän vaihtoehtoja mukauttaa käyttäytymistä\n
+    * SSL: Luotto käyttäjäsertifikaatteihin\n
+    * bugi korjauksia\n
+  </string>
   <string name="ChangeLog_1_05">    Versio 1.05\n
     * Käyttä Android 8:n tarjoamia ilmoituskanavia (notification channels), jotka ovat muokattavissa järjestelmäasetusten kautta\n
     * Näytä merkintäkuvake sovellusilmoituksessa\n
@@ -893,11 +904,11 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
     <item>Salasana + Haastemenetelmä</item>
     <item>Salasana + Haastemenetelmä (palautustila)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Salasana + Avaintiedosto + Haastemenetelmä Keepass XC:n kanssa</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Salasana</item>
-    <item>Private/Public key</item>
+    <item>Yksityinen/Julkinen avain</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ohita varmenteiden virheet</item>
@@ -911,6 +922,8 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="autofill_enable_failed">Olemme pahoillamme, näyttää siltä, että laitteesi ei tue asetusten avaamista sovelluksesta käsin. Ole hyvä ja ota palvelu käyttöön järjestelmän AutoFill -asetuksista.</string>
   <string name="show_autofill_help">Automaattisen täytön apu</string>
   <string name="autofill_sign_in_prompt">Täytä Keepass2Androidilla</string>
+  <string name="autofill_disable">Poista automaattinen täyttö %1$s:ltä</string>
+  <string name="autofill_enable">Ota käyttöön automaattinen täyttö %1$s:lle</string>
   <string name="invalid_link_association">Liittäminen ei onnistunut web verkkotunnuksen %1$s kanssa sovelluksessa %2$s</string>
   <string name="understand">Minä ymmärrän</string>
   <string name="dont_show_again">Älä näytä uudestaan</string>
