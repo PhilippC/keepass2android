@@ -293,6 +293,7 @@
   <string name="BinaryDirectory_summary">Mappe, hvori filvedhæftninger gemmes.</string>
   <string name="SaveAttachmentDialog_title">Gem vedhæftning</string>
   <string name="SaveAttachmentDialog_text">Vælg, hvor vedhæftningen skal gemmes.</string>
+  <string name="SaveAttachmentDialog_save">Eksportér til fil...</string>
   <string name="SaveAttachmentDialog_open">Cache-lagre og åbn</string>
   <string name="ShowAttachedImage">Vis med intern billedfremviser</string>
   <string name="SaveAttachment_doneMessage">Fil gemt til %1$s.</string>
@@ -319,6 +320,8 @@
   <string name="ClearPasswordOnLeave_summary">Ryd den angivne Hovedadgangskode, når skærmen forlades uden at oplåse databasen.</string>
   <string name="LockWhenNavigateBack_title">Lås, når app\'en forlades</string>
   <string name="LockWhenNavigateBack_summary">Når app\'en forlades, lås databasen ved at trykke på Tilbage-knappen.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Benyt indbygget tastatur i Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Stoler du ikke på din standardtastaturudbyder, så afkryds denne indstilling for at benytte det indbyggede tastatur, når du angiver dit hovedadgangskode eller redigerer poster.</string>
   <string name="ActivateSearchViewOnStart_title">Aktivér søgefelt ved start</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiverer søgefelt i gruppevisningen efter oplåsning, eller når du søger efter en post</string>
   <string name="NoDonateOption_title">Skjul donationsforslag</string>
@@ -440,10 +443,14 @@
   <string name="hint_http_url">URL til mappe eller fil (f.eks.: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Angiv OwnCloud-login:</string>
   <string name="hint_owncloud_url">OwnCloud-URL (f.eks.: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Angiv NextCloud-login:</string>
+  <string name="hint_nextcloud_url">Nextcloud-URL (f.eks.: nextcloud.me.com)</string>
   <string name="hint_sftp_host">vært (f.eks.: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Startmappe (valgfri):</string>
   <string name="enter_sftp_login_title">Angiv SFTP-login:</string>
+  <string name="sftp_auth_mode">Godkendelsestilstand</string>
+  <string name="send_public_key">Send offentlig nøgle...</string>
   <string name="enter_ftp_login_title">Angiv FTP-login:</string>
   <string name="select_storage_type">Vælg lagerpladstype:</string>
   <string name="filestoragename_file">Lokal fil</string>
@@ -453,10 +460,12 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
   <string name="filestoragehelp_dropboxKP2A">Vil du ikke give KP2A adgang til din fulde Dropbox, kan du vælge denne indstilling. Der vil kun anmodes om adgang til mappen Apps/Keepass2Android. Dette er særligt velegnet ved oprettelse af en ny database. Har du allerede en database, så klik på denne indstilling for at oprette mappen, placér dernæst din fil i mappen (fra din PC) og vælge så denne indstilling igen for at åbne filen.</string>
   <string name="filestoragename_gdrive">Google Drev</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH-filoverførsel)</string>
   <string name="filestoragename_content">Systemfilvælger</string>
@@ -475,6 +484,7 @@
   <string name="use_key_file">Benyt nøglefil</string>
   <string name="error_adding_keyfile">Fejl under tilføjelse af nøglefilen!</string>
   <string name="init_otp">Indlæs OTP-hjælpefil…</string>
+  <string name="otp_explanation">Angiv de næste engangsadgangskoder (OTP\'er). Stryg din Yubikey NEO på bagsiden af din enhed for at angive via NFC (kræver Yubiclip-app).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Kunne ikke indlæse OTP-hjælpefil!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Benyt OtpKeyProv-plugin\'et i KeePass 2.x (PC) for opsætning af din database til brug med OTP\'er!</string>
