@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Avaa tietokanta</string>
   <string name="brackets">Hakasulkeet</string>
   <string name="cancel">Peruuta</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Leikepöytä tyhjennetty.</string>
   <string name="clipboard_timeout">Leikepöydän aikakatkaisu</string>
   <string name="clipboard_timeout_summary">Viive ennen kopioidun käyttäjänimen tai salasanan poistamista leikepöydältä</string>
@@ -293,6 +294,7 @@
   <string name="BinaryDirectory_summary">Liitetiedostojen tallennushakemisto.</string>
   <string name="SaveAttachmentDialog_title">Tallenna liite</string>
   <string name="SaveAttachmentDialog_text">Valitse liitteen tallennuspaikka.</string>
+  <string name="SaveAttachmentDialog_save">Vie tiedostoon...</string>
   <string name="SaveAttachmentDialog_open">Tallenna välimuistiin ja avaa</string>
   <string name="ShowAttachedImage">Näytä sisäisellä kuvankatselusovelluksella</string>
   <string name="SaveAttachment_doneMessage">Tiedosto tallennettiin kohteeseen %1$s.</string>
@@ -319,6 +321,8 @@
   <string name="ClearPasswordOnLeave_summary">Tyhjennä syötetty pääsalasana, kun näkymästä poistutaan tietokantaa avaamatta.</string>
   <string name="LockWhenNavigateBack_title">Lukitse, kun sovellus suljetaan</string>
   <string name="LockWhenNavigateBack_summary">Lukitse tietokanta kun sovelluksesta poistutaan painamalla Takaisin-painiketta.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Käytä sisäänrakennettua näppäimistöä Keepass2Androidissa</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Jos et luota vakionäppäimistön tarjoajaan, valitse tämä asetus jotta voit käyttää sisäänrakennettua näppäimistöä kun kirjoitat pääsalasanaa tai muokkaat merkintöjä.</string>
   <string name="ActivateSearchViewOnStart_title">Aktivoi hakukenttä käynnistäessä</string>
   <string name="ActivateSearchViewOnStart_summary">Aktivoi hakukentän ryhmänäkymässä, kun avaa tietotakannan tai etsit merkintää</string>
   <string name="NoDonateOption_title">Piilota lahjoituspyynnöt</string>
@@ -439,10 +443,14 @@
   <string name="hint_http_url">Kansion tai tiedoston URL (esim. mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Syötä OwnCloudin kirjautumistiedot:</string>
   <string name="hint_owncloud_url">OwnCloud-osoite (URL, esim. owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Syötä NextCloudin kirjautumistiedot:</string>
+  <string name="hint_nextcloud_url">Nextcloud-osoite (URL, esim: nextcloud.me.com)</string>
   <string name="hint_sftp_host">palvelimen osoite (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">Portti</string>
   <string name="initial_directory">Aloitushakemisto (valinnainen):</string>
   <string name="enter_sftp_login_title">Syötä SFTP:n kirjautumistiedot:</string>
+  <string name="sftp_auth_mode">Todentamistapa</string>
+  <string name="send_public_key">Lähetä julkinen avain...</string>
   <string name="enter_ftp_login_title">Syötä FTP:n kirjautumistiedot:</string>
   <string name="select_storage_type">Valitse tallennustyyppi:</string>
   <string name="filestoragename_file">Paikallinen tiedosto</string>
@@ -452,10 +460,12 @@
   <string name="filestoragename_http">HTTP (WebDAV)</string>
   <string name="filestoragename_https">HTTPS (WebDAV)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A kansio)</string>
   <string name="filestoragehelp_dropboxKP2A">Jos et halua antaa KP2A:lle pääsyä koko Dropboxiisi, voit valita tämän vaihtoehdon. Se pyytää käyttöoikeuksia vain \"Apps/Keepass2Android\" kansioon. Tämä soveltuu erityisesti tilanteeseen jossa luodaan uusi tietokanta. Jos sinulla on jo tietokanta, valitse tämä vaihtoehto luodaksesi kansion, ja sijoita sen jälkeen tietokantatiedosto kansioon (tietokoneestasi). Valitse sitten tämä vaihtoehto uudestaan avataksesi tietokannan.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH-tiedostonsiirto)</string>
   <string name="filestoragename_content">Järjestelmän tiedostonvalitsin</string>
@@ -584,6 +594,8 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
 • Jos kopioit tiedoston USB:n yli (MTP-tilassa), kokeile uudelleen käyttämällä työkaluja kuten MyPhoneExplorer. MTP rikkoo tiedostoja joissain tapauksissa.\n
 • Jos et voi avata tiedostoa edes samasta sijainnista PC:lläsi, on hyvin todennäköistä, että tiedosto on oikeasti vioittunut. Tässä tilanteessa, käytä tietokannan varmuuskopiota. Jos epäilet Keepass2Androidin rikkoneen tietokantatiedostosi, ota yhteyttä tukeen.\n
 • Jos saat vielä tiedoston auki PC:lläsi, ota yhteyttä tukeen. Voit kokeilla tallentaa sen eri asetuksilla (esim. purettuna) PC:llä ja kokeilla sitten avata se uudelleen Keepass2Androidilla.  </string>
+  <string name="open_other_db">Avaa toinen tietokanta…</string>
+  <string name="select_database">Valitse tietokanta</string>
   <string name="DbUnlockedChannel_name">Tietokanta avattu</string>
   <string name="DbUnlockedChannel_desc">Ilmoitus, että tietokannan on auki</string>
   <string name="DbQuicklockedChannel_name">Pika-avaus</string>
