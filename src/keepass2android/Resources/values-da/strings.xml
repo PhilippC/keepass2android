@@ -715,11 +715,11 @@
     <item>Adgangskode + Udfordring-Svar</item>
     <item>Adgangskode + Udfordring-Svar hemmelighed (genoprettelsestilstand)</item>
     <item>Adgangskode + Udfordring-Svar til Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Adgangskode + Nøglefil + Udfordring-Svar til Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Adgangskode</item>
-    <item>Private/Public key</item>
+    <item>Privat/Offentlig nøgle</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorér certifikatgodkendelsesfejl</item>
@@ -733,6 +733,8 @@
   <string name="autofill_enable_failed">Beklager, din enhed synes ikke at understøtter åbning af indstillingerne inde fra app\'en. Gå manuelt til systemindstillingerne, så Autoudfyld kan aktivere tjenesten.</string>
   <string name="show_autofill_help">Vis Aotoudfyld-hjælp</string>
   <string name="autofill_sign_in_prompt">Udfyld med Keepass2Android</string>
+  <string name="autofill_disable">Deaktivér Auto-udfyld for %1$s</string>
+  <string name="autofill_enable">Aktivér Auto-udfyld for %1$s</string>
   <string name="invalid_link_association">Kunne ikke tilknytte webdomæne %1$s med app\'en %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android har registreret fingeraftryk-hardware. Aktivér fingeraftryksoplåsning for denne database?</string>
   <string name="understand">Jeg forstår</string>
