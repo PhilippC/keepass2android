@@ -605,6 +605,13 @@
   <string name="child_db_enable_on_this_device">Aktivér på denne enhed</string>
   <string name="child_db_disable_on_this_device">Deaktivér på denne enhed</string>
   <string name="child_db_enable_a_copy_for_this_device">Kopiér på denne enhed</string>
+  <string name="unconfigured_child_dbs">Din database indeholder nye underordnede databaser i gruppen \"AutoÅbn\". Angiv, hvorvidt disse underordnede databaser skal benyttes på denne enhed.</string>
+  <string name="add_child_db">Tilføj underordnede databaser...</string>
+  <string name="EnableCopyForThisDevice_Info">Dette vil oprette og aktivere en kopi af indstillingerne for underordnede databaser. Disse kopierede indstillinger kan derefter justeres til netop denne enhed.</string>
+  <string name="Visible_title">Synlig</string>
+  <string name="child_db_Enabled_title">Åbn automatisk</string>
+  <string name="database_file_heading">Databasefil</string>
+  <string name="if_device_text">Aktivér for %1$s</string>
   <string name="DbUnlockedChannel_name">Database oplåst</string>
   <string name="DbUnlockedChannel_desc">Notificering om oplåsning af databasen</string>
   <string name="DbQuicklockedChannel_name">Hurtigoplåsning</string>
@@ -619,6 +626,16 @@
   <string name="ErrorReportAsk">Spørg efter fejl</string>
   <string name="ErrorReportPrefTitle">Indsend fejlrapporter</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Vis soft-tastatur til adgangskodeinput, når fingeraftrykaflæsning er aktiv.</string>
+  <string name="ChangeLog_1_07">    Version 1.07-pre2\n
+    * Tillader at åbne flereend én database, kompatibel med KeeAutoExec\n
+    * SFTP: Tillader offentlig nøglegodkendelse, tjekker om værtsnøgle er ændret\n
+    * Introducerer pCloud-understøttelse - tak til gilbsgilbs!\n
+    * Gør Nextcloud-support eksplicit\n
+    * Forbedrer lagring og opdaterng af delpostvedhæftninger\n
+    * Flere muligheder for at tilpasse adfærd til personlige præferencer\n
+    * SSL: Stol på brugercertifikater\n
+    * fejlretninger\n
+  </string>
   <string name="ChangeLog_1_06">    Version 1.06\n
     * Skift til ykDroid i stedet for YubiChallenge som app til Yubikey Udfordring-Svar.\n
     * Implementér understøttelse for KeepassXC-agtig Udfordring-Svar. Bemærk: Databaseformatet skal være KDBX4!\n
