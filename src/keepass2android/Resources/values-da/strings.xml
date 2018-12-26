@@ -596,6 +596,15 @@
     • Hvis du stadig kan åbne filen på din pc, så kontakt venligst support. Du kan eventuelt forsøge at gemme den med forskellige indstillinger (fx unzipped) på pc\'en og forsøg igen at åbne den i KP2A.
 
   </string>
+  <string name="open_other_db">Åbn en anden database…</string>
+  <string name="select_database">Vælg database</string>
+  <string name="configure_child_dbs">Opsæt underordnet databases…</string>
+  <string name="child_dbs_title">Underordnede databaser</string>
+  <string name="unspecified">uspecificeret</string>
+  <string name="child_db_enabled_on_this_device">Aktivér på denne enhed</string>
+  <string name="child_db_enable_on_this_device">Aktivér på denne enhed</string>
+  <string name="child_db_disable_on_this_device">Deaktivér på denne enhed</string>
+  <string name="child_db_enable_a_copy_for_this_device">Kopiér på denne enhed</string>
   <string name="DbUnlockedChannel_name">Database oplåst</string>
   <string name="DbUnlockedChannel_desc">Notificering om oplåsning af databasen</string>
   <string name="DbQuicklockedChannel_name">Hurtigoplåsning</string>
