@@ -487,6 +487,7 @@
   <string name="use_key_file">Fes servir la clau</string>
   <string name="error_adding_keyfile">Error en afegir l\'arxiu clau!</string>
   <string name="init_otp">Càrrega arxiu OTP auxiliar…</string>
+  <string name="otp_explanation">Introduïu la següent Contrasenya-d\'un-sol-us (One-time-passwords OTPs). Llisca la teva Yubikey NEO al darrere del teu dispositiu per entrar mitjançant NFC (requereix la app Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">No s\'ha pogut carregar el fitxer OTP auxiliar!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Si us plau, utilitzeu el connector OtpKeyProv de KeePass 2. x (PC) per configurar la base de dades per usar amb OTPs!</string>
@@ -923,6 +924,7 @@ Revisió inicial per al públic
   <string name="show_autofill_help">Mostra l\'ajuda de l\'emplenament automàtic</string>
   <string name="autofill_sign_in_prompt">Omplir amb Keepass2Android</string>
   <string name="autofill_disable">Desactiva l\'emplenament automàtic per %1$s</string>
+  <string name="autofill_enable">Permet l\'emplenament automàtic per %1$s</string>
   <string name="invalid_link_association">No es pot associar amb el domini web %1$s amb l\'app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha detectat disponibilitat d\'ús d\'empremtes dactilars. Voleu permetre l\'ús de l\'empremta per obrir aquesta base de dades?</string>
   <string name="understand">Ho entenc</string>
