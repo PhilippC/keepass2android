@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.onedrive.sdk.authentication.ADALAuthenticator;
+import com.onedrive.sdk.authentication.MSAAuthenticator;
 import com.onedrive.sdk.concurrency.ICallback;
 import com.onedrive.sdk.core.ClientException;
 import com.onedrive.sdk.core.DefaultClientConfig;
@@ -26,6 +28,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by Philipp on 20.11.2016.
@@ -33,12 +36,27 @@ import java.util.List;
 public class OneDriveStorage extends JavaFileStorageBase
 {
     final IClientConfig oneDriveConfig;
-    final keepass2android.javafilestorage.onedrive.MyMSAAuthenticator msaAuthenticator;
+    final MSAAuthenticator msaAuthenticator;
+
+
+
+
+    final ADALAuthenticator adalAuthenticator = new ADALAuthenticator() {
+        @Override
+        public String getClientId() {
+            return "8374f801-0f55-407d-80cc-9a04fe86d9b2";
+        }
+
+        @Override
+        protected String getRedirectUrl() {
+            return "https://login.microsoftonline.com/common/oauth2/nativeclient";
+        }
+    };
 
     IOneDriveClient oneDriveClient;
 
-    public OneDriveStorage(final Context context, final String clientId) {
-        msaAuthenticator = new keepass2android.javafilestorage.onedrive.MyMSAAuthenticator(context) {
+    public OneDriveStorage(final Activity context, final String clientId) {
+        msaAuthenticator = new MSAAuthenticator() {
             @Override
             public String getClientId() {
                 return clientId;
@@ -49,8 +67,8 @@ public class OneDriveStorage extends JavaFileStorageBase
                 return new String[] { "offline_access", "onedrive.readwrite" };
             }
         };
-        oneDriveConfig = DefaultClientConfig.createWithAuthenticator(msaAuthenticator);
-        initAuthenticator(null);
+        oneDriveConfig = DefaultClientConfig.createWithAuthenticator(adalAuthenticator);
+        initAuthenticator((Activity) context);
 
 
     }
@@ -106,11 +124,13 @@ public class OneDriveStorage extends JavaFileStorageBase
     }
 
     private void initAuthenticator(Activity activity) {
+        Log.d("KP2AJ", "initAuth");
         msaAuthenticator.init(
                 oneDriveConfig.getExecutors(),
                 oneDriveConfig.getHttpProvider(),
                 activity,
                 oneDriveConfig.getLogger());
+        Log.d("KP2AJ", "initAuthDone");
     }
 
 
@@ -159,11 +179,42 @@ public class OneDriveStorage extends JavaFileStorageBase
 
     }
 
-    private IOneDriveClient buildClient(Activity activity) {
+    public class BuildClientHandler implements ICallback<IOneDriveClient> {
+        private final CountDownLatch loginLatch = new CountDownLatch(1);
 
-        return new OneDriveClient.Builder()
-                .fromConfig(oneDriveConfig)
-                .loginAndBuildClient(activity);
+        private IOneDriveClient callbackResults;
+
+        private ClientException exception = null;
+
+        public IOneDriveClient buildClient(Activity activity) throws ClientException, InterruptedException {
+            new OneDriveClient.Builder()
+                    .fromConfig(oneDriveConfig)
+                    .loginAndBuildClient(activity, this);
+
+            loginLatch.await();
+            if (exception != null)
+                throw exception;
+            return callbackResults;
+        }
+
+        @Override
+        public void success(IOneDriveClient iOneDriveClient) {
+            callbackResults = iOneDriveClient;
+            exception = null;
+            loginLatch.countDown ();
+        }
+
+        @Override
+        public void failure(ClientException ex) {
+            this.exception = ex;
+            loginLatch.countDown ();
+        }
+    }
+
+    private IOneDriveClient buildClient(Activity activity) throws InterruptedException {
+
+        return new BuildClientHandler().buildClient(activity);
+
 
     }
 
