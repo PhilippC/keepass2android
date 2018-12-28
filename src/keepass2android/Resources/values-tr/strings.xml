@@ -484,6 +484,7 @@
   <string name="use_key_file">Anahtar dosyası kullan</string>
   <string name="error_adding_keyfile">Anahtar dosyası ekleme hatası!</string>
   <string name="init_otp">tek kullanımlık şifre yedek dosyasını yükle…</string>
+  <string name="otp_explanation">Bir sonraki tek kullanımlık şifreyi (OTPs) girin. NFC ile girmek için Yubikey NEO aygıtınızın arkasına dokunun (Yubiclip uygulaması gerekir).</string>
   <string name="otp_hint">tek kullanımlık şifre %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Yedek tek kullanımlık şifre dosya yüklenemedi!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Veri tabanını tek kullanımlık şifre ile kullanıma ayarlamak için lütfen KeePass 2.x (PC) üzerinde OtpKeyProv eklentisini kullanın!</string>
@@ -605,6 +606,7 @@
   <string name="child_db_enable_on_this_device">Bu cihazda etkin</string>
   <string name="child_db_disable_on_this_device">Bu cihazda devre dışı</string>
   <string name="child_db_enable_a_copy_for_this_device">Bu cihaz için kopyala</string>
+  <string name="unconfigured_child_dbs">Veritabanınız \"AutoOpen\" grubunda yeni alt veritabanları içeriyor. Lütfen bu alt veritabanlarının cihazda kullanılıp kullanılmayacağını belirtin.</string>
   <string name="add_child_db">Alt veritabanı ekle...</string>
   <string name="EnableCopyForThisDevice_Info">Bu seçenek alt veritabanı ayarlarının bir kopyasını oluşturup etkinleştirecek. Bu kopyalanan ayarlar daha sonra bu cihaz için özel olarak ayarlanabilir.</string>
   <string name="Visible_title">Görünür</string>
@@ -625,6 +627,16 @@
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
+  <string name="ChangeLog_1_07">    Sürüm 1.07-ön2\n
+    * KeeAutoExec ile uyumlu birden fazla veritabanı açmanıza izin verildi\n
+    * SFTP: Genel anahtar kimlik doğrulamasına izin ver, sunucu anahtarının değişip değişmediğini kontrol et\n
+    * pCloud desteği - gilbsgilbs\' e teşekkürler!\n
+    * Nextcloud desteği \n
+    * Girdi eklerinin kaydedilmesi ve güncellenmesi geliştirildi\n
+    * Kişiselleştirme için daha fazla seçenek sunuldu\n
+    * SSL: Güvenilir kullanıcı sertifikaları\n
+    * hata düzeltmeleri\n
+  </string>
   <string name="ChangeLog_1_06">    Sürüm 1.06\n
     * Yubikey Challenge-Response için uygulama olarak YubiChallenge yerine ykDroid\'e geçildi.\n
     * KeepassXC-style Challenge-Response desteklendi. Not: Veritabanı türü KDBX4 olmalı!\n
