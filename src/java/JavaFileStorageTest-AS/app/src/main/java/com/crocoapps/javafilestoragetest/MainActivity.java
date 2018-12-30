@@ -135,7 +135,6 @@ package com.crocoapps.javafilestoragetest;
 import group.pals.android.lib.ui.filechooser.FileChooserActivity;
 import group.pals.android.lib.ui.filechooser.providers.BaseFileProviderUtils;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -146,11 +145,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import keepass2android.javafilestorage.DropboxCloudRailStorage;
-import keepass2android.javafilestorage.DropboxV2Storage;
-import keepass2android.javafilestorage.ICertificateErrorHandler;
 import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
-import keepass2android.javafilestorage.OneDriveStorage;
+import keepass2android.javafilestorage.OneDriveStorage2;
 import keepass2android.javafilestorage.SftpStorage;
 import keepass2android.javafilestorage.UserInteractionRequiredException;
 import keepass2android.javafilestorage.WebDavStorage;
@@ -206,10 +203,17 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 				}
 				catch (Exception e)
 				{
+					Log.d("KP2AJ",e.toString());
 					//if exception because folder exists
 					path = fs.createFilePath(parentPath, testPath);
 				}
 
+				String textToUpload2 = "abcdefg";
+				String filename2 = fs.createFilePath(parentPath, "file.txt");
+				/*if (!path.endsWith("/"))
+					path += "/";
+				String filename = path+"file.text";*/
+				fs.uploadFile(filename2,textToUpload2.getBytes(),true);
 
 				FileEntry e1 = fs.getFileEntry(parentPath);
 				FileEntry e2 = fs.getFileEntry(path);
@@ -531,9 +535,11 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 	}
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext, boolean simulateRestart) {
-		storageToTest = new SftpStorage(ctx.getApplicationContext());
+		//storageToTest = new SftpStorage(ctx.getApplicationContext());
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
-		//storageToTest = new OneDriveStorage(appContext, "000000004010C234");
+		storageToTest = new OneDriveStorage2((Activity) ctx, "8374f801-0f55-407d-80cc-9a04fe86d9b2");
+
+
 		//storageToTest = new GoogleDriveFileStorage();
 		/*storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
 			@Override
@@ -620,7 +626,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 		Toast.makeText(this, "requestCode: "+requestCode, Toast.LENGTH_LONG).show();
 		if (requestCode == 1)
 			//new PerformTestTask().execute(path,"TestFileStorage�", storageToTest); //use an umlaut to see how that works
-			new PerformTestTask().execute(path,"TestFileStorage", storageToTest); 
+			new PerformTestTask().execute(path,"TestFileStorage", storageToTest);
 		else
 		if (requestCode == 2)
 		{
