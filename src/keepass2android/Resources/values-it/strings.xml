@@ -938,6 +938,8 @@ Prima release pubblica
   <string name="autofill_enable_failed">Spiacente, sembra che il tuo dispositivo non supporti l\'apertura delle impostazioni dall\'applicazione. Si prega di modificare manualmente le impostazioni di sistema per abilitare il servizio di Compilazione automatica.</string>
   <string name="show_autofill_help">Mostra aiuto per Compilazione automatica</string>
   <string name="autofill_sign_in_prompt">Compila con Keepass2Android</string>
+  <string name="autofill_disable">Disattiva Compilazione automatica per %1$s</string>
+  <string name="autofill_enable">Attiva Compilazione automatica per %1$s</string>
   <string name="invalid_link_association">Non è possibile associare il dominio web %1$s con l\'app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha rilevato un lettore di impronte digitali. Desideri attivare lo sblocco con impronta digitale per questo database?</string>
   <string name="understand">Ho capito</string>
