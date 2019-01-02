@@ -484,6 +484,7 @@
   <string name="use_key_file">Usa file chiave</string>
   <string name="error_adding_keyfile">Errore nell\'aggiunta del file chiave!</string>
   <string name="init_otp">Carico il file OTP ausiliario…</string>
+  <string name="otp_explanation">Immetti le successive One-time-password (OTP). Scorri il tuo Yubikey NEO sul retro del dispositivo per inserirle via NFC (richiede l\'app Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Impossibile caricare il file OTP ausiliario!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Devi utilizzare il plugin OtpKeyProv per KeePass 2.x (PC) per poter configurare il database per l\'utilizzo con OTP!</string>
@@ -710,16 +711,16 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   </string>
   <string name="ChangeLog_1_0_0">Versione 1.0.0\n
 * sblocco con impronta (richiede Android 6.0+ o un dispositivo Samsung)\n
-* aggiunge autoriempimento (richiede Android 5.0+)\n
-* aggiunge supporto per i modelli delle voci\n
-* aggiunge \"modalità non in linea\"\n
+* aggiunto servizio Compilazione automatica (richiede Android 5.0+)\n
+* aggiunto supporto per i modelli delle voci\n
+* aggiunto \"modalità non in linea\"\n
 * consente di copiare le voci\n
 * completamento automatico per i nomi dei campi\n
 * consente di rimuovere gli elementi dalla lista dei file recenti\n
 * richiede le autorizzazioni in fase di esecuzione in Android 6.0\n
 * bugfix (nella tastiera incorporata, su selezione di icone)\n
-* aggiunge opzione per la segnalazione di errori\n
-* aggiunge messaggi di aiuto in vari punti\n  </string>
+* aggiunto opzione per la segnalazione di errori\n
+* aggiunto messaggi di aiuto in vari punti\n  </string>
   <string name="ChangeLog_0_9_9">Versione 0.9.9\n
 * interfaccia completamente riprogettata. Grazie mille a Stefano Pignataro (l\'http://www.spstudio.at) per il suo supporto!\n
 * consente di aggiungere icone personalizzate\n
