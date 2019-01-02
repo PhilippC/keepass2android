@@ -487,6 +487,7 @@
   <string name="use_key_file">Použiť súbor s kľúčom</string>
   <string name="error_adding_keyfile">Chyba pri pridávaní súboru s kľúčom!</string>
   <string name="init_otp">Načítať doplnkový súbor pre jednorazové heslá…</string>
+  <string name="otp_explanation">Zadajte ďalšie jednorazové heslá (OTP). Zadanie cez NFC vykonáte priložením Yubikey NEO na zadnú časť vášho zariadenia (vyžaduje apl. Yubiclip).</string>
   <string name="otp_hint">Jednorazové heslo %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nemožno načítať doplnkový súbor pre jednorazové heslá!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Na použitie jednorazových hesiel v databáze prosím použite prídavný modul OtpKeyProv v programe keePass 2.x (PC)!</string>
@@ -948,6 +949,8 @@ Prvé verejné vydanie
   <string name="autofill_enable_failed">Prepáčte, zdá sa, že Vaše zariadenie nepodporuje otvorenie nastavení priamo z aplikácie. Prosím prejdite na nastavenia systému manuálne a zapnite službu pre automatické dopĺňanie.</string>
   <string name="show_autofill_help">Zobraziť pomocníka pre automatické dopĺňanie</string>
   <string name="autofill_sign_in_prompt">Doplniť s Keepass2Android</string>
+  <string name="autofill_disable">Vypnúť automatické dopĺňanie pre %1$s</string>
+  <string name="autofill_enable">Zapnúť automatické dopĺňanie pre %1$s</string>
   <string name="invalid_link_association">Nemožno asociovať webové doménu %1$s s aplikáciou %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android rozpoznal snímač odtlačkov prstov. Chcete zapnúť odomykanie databázy odtlačkom prsta?</string>
   <string name="understand">Rozumiem</string>
