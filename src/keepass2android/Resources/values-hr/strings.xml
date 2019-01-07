@@ -58,7 +58,7 @@
   <string name="unlock_database_title">Otključaj bazu podataka</string>
   <string name="brackets">Zagrade</string>
   <string name="cancel">Otkaži</string>
-  <string name="Ok">U redu</string>
+  <string name="Ok">\"Ok\"</string>
   <string name="ClearClipboard">Međuspremnik je izbrisan.</string>
   <string name="clipboard_timeout">Vremensko ograničenje međuspremnika</string>
   <string name="clipboard_timeout_summary">Vrijeme prije brisanja međuspremnika nakon kopiranja korisničkog imena ili lozinke</string>
@@ -925,6 +925,8 @@ Prvotna javna verzija  </string>
   <string name="autofill_enable_failed">Nažalost, izgleda da Vaš uređaj ne podržava otvaranje postavki unutar aplikacije. Idite ručno na postavke sustava za AutoFill kako biste omogućili uslugu.</string>
   <string name="show_autofill_help">Prikaži pomoć automatskog popunjavanja</string>
   <string name="autofill_sign_in_prompt">Ispuni pomoću Keepass2Android</string>
+  <string name="autofill_disable">Onemogući automatsko izpunjavanje za %1$s</string>
+  <string name="autofill_enable">Omogući automatsko izpunjavanje za %1$s</string>
   <string name="invalid_link_association">Nije moguće povezati web domenu %1$s s aplikacijom %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android otkrio je hardver za otisak prsta. Želite li omogućiti otključavanje otiskom prsta za ovu bazu podataka?</string>
   <string name="understand">Razumijem</string>
