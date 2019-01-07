@@ -484,6 +484,7 @@
   <string name="use_key_file">Koristi ključnu datoteku</string>
   <string name="error_adding_keyfile">Pogreška prilikom dodavanja ključne datoteke!</string>
   <string name="init_otp">Učitavanje pomoćne datoteke OTP…</string>
+  <string name="otp_explanation">Upišite sljedeće jednokratne zaporke (One-time-passwords - OTPs). Mrdnute vaš Yubikey NEO na pozadini vašega uređaja za ulazak preko NFC (zahtjeva Yubiclip aplikaciju).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nije moguće učitati pomoćnu OTP datoteku!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Koristite dodatak OtpKeyProv na KeePass 2.x (PC) da biste konfigurirali svoju bazu podataka za korištenje s OTP-ovima!</string>
