@@ -625,6 +625,16 @@
   <string name="ErrorReportAsk">エラー発生時に確認する</string>
   <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
+  <string name="ChangeLog_1_07">    バージョン 1.07 pre2\n
+    * KeeAutoExec と互換性のある 1 つ以上のデータベースを開くことができます\n
+    * SFTP: 公開鍵認証を許可。ホスト鍵が変更された場合にチェック\n
+    * pCloud サポートの導入 - gilbsgilbs に感謝!\n
+    * 明示的に Nextcloud サポート\n
+    * エントリ添付ファイルの保存と更新を改善\n
+    * 個人設定の動作を適応させるためのオプションを追加\n
+    * SSL: ユーザー証明書の信頼\n
+    * バグフィックス\n
+  </string>
   <string name="ChangeLog_1_04b">    バージョン 1.04b\n
     * Huawei デバイスでオートフィルを有効にしようとするときにクラッシュを回避。\n
   </string>
