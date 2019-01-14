@@ -212,6 +212,8 @@
   <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Raiz</string>
+  <string name="AutoReturnFromQuery_title">Automaticamente retornar da tela de consulta</string>
+  <string name="AutoReturnFromQuery_summary">Ao procurar uma entrada para um aplicativo ou site: retornar automaticamente da tela de consulta se houver apenas uma entrada correspondente no banco de dados.</string>
   <string name="KeyDerivFunc">Função chave da derivação</string>
   <string name="rounds">Rodadas de criptografia</string>
   <string name="rounds_explaination">Maior número de rodadas de criptografia adiciona mais proteção contra ataques de força bruta, porém pode tornar o processo de carregar e salvar mais lentos.</string>
@@ -293,6 +295,7 @@
   <string name="BinaryDirectory_summary">Pasta onde os anexos de arquivos são salvos.</string>
   <string name="SaveAttachmentDialog_title">Salvar anexo</string>
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja salvar o anexo.</string>
+  <string name="SaveAttachmentDialog_save">Exportar para arquivo...</string>
   <string name="SaveAttachmentDialog_open">Armazenar em cache e abrir</string>
   <string name="ShowAttachedImage">Mostrar com visualizador de imagens interno</string>
   <string name="SaveAttachment_doneMessage">Salvo o arquivo em %1$s.</string>
@@ -319,6 +322,8 @@
   <string name="ClearPasswordOnLeave_summary">Limpar a senha mestra digitada ao sair da tela sem desbloquear a base de dados.</string>
   <string name="LockWhenNavigateBack_title">Bloquear quando deixar o app</string>
   <string name="LockWhenNavigateBack_summary">Feche o banco de dados quando sair do app pressionando o botão voltar.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Usar o teclado embutido dentro do Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Se você não confia em seu provedor de teclado padrão, marque esta opção para usar o teclado embutido quando estiver inserindo sua senha mestra ou editando as entradas.</string>
   <string name="ActivateSearchViewOnStart_title">Ativar campo de procura ao iniciar</string>
   <string name="ActivateSearchViewOnStart_summary">Ativa o campo de pesquisa no modo de exibição de grupo após o desbloqueio ou quando à procura de um registro</string>
   <string name="NoDonateOption_title">Ocultar a opção de doação</string>
@@ -439,10 +444,14 @@
   <string name="hint_http_url">URL do arquivo ou pasta (ex: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Insira os dados de login do OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Insira os dados de acesso do Nextcloud:</string>
+  <string name="hint_nextcloud_url">URL do Nextcloud (ex: nextcloud.me.com)</string>
   <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Diretório inicial (opcional):</string>
   <string name="enter_sftp_login_title">Insira os dados de login SFTP:</string>
+  <string name="sftp_auth_mode">Modo de autenticação</string>
+  <string name="send_public_key">Enviar chave pública...</string>
   <string name="enter_ftp_login_title">Insira os dados de login FTP:</string>
   <string name="select_storage_type">Selecione o tipo de armazenamento:</string>
   <string name="filestoragename_file">Arquivo local</string>
@@ -476,6 +485,7 @@
   <string name="use_key_file">Usar arquivo de chave</string>
   <string name="error_adding_keyfile">Erro ao adicionar o arquivo de chave!</string>
   <string name="init_otp">Carregar o arquivo auxiliar OTP…</string>
+  <string name="otp_explanation">Digite a seguinte One-time-passwords (OTPs). Deslize seu Yubikey NEO na parte traseira de seu dispositivo para entrar via NFC (requer Yubiclip app).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Não foi possível carregar arquivo OTP auxiliar!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Por favor, use o plugin OtpKeyProv no KeePass 2.x (PC) para configurar seu banco de dados para uso com as OTPs!</string>
