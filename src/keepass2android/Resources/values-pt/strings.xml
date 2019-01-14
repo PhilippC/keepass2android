@@ -427,6 +427,7 @@
   <string name="UpdatedCachedFileOnLoad">Cópia de cache interna atualizada de %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Nenhuma alteração detectada.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Arquivo auxiliar OTP em cache atualizado: O contador de origem era maior.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Arquivo auxiliar de fonte OTP atualizada: Contador local era maior.</string>
   <string name="SynchronizingOtpAuxFile">Sincronizando arquivos auxiliares OTP…</string>
   <string name="database_file">arquivo de banco de dados</string>
   <string name="otp_aux_file">Arquivo auxiliar de OTP</string>
@@ -498,6 +499,7 @@
   <string name="OtpKeyError">Falha ao criar a chave OTP! Verifique se que você digitou as corretas OTPs.</string>
   <string name="ErrorUpdatingOtpAuxFile">Erro ao atualizar o arquivo OTP auxiliar!</string>
   <string name="SavingOtpAuxFile">Salvar arquivo OTP auxiliar…</string>
+  <string name="NoChallengeApp">Não foi possível encontrar um app que pode lidar com o desafio.</string>
   <string name="bad_resp">O resposta de desafio está incorreta.</string>
   <string name="CouldntLoadChalAuxFile">Não foi possível carregar o arquivo de desafio auxiliar!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Por favor, use o plugin KeeChallenge no KeePass 2.x (PC) para configurar seu banco de dados para uso com desafio-resposta!</string>
@@ -601,7 +603,16 @@
   <string name="child_dbs_title">Bancos de dados filhos</string>
   <string name="unspecified">não especificado</string>
   <string name="child_db_enabled_on_this_device">Habilitado neste dispositivo</string>
+  <string name="child_db_enable_on_this_device">Habilitar neste dispositivo</string>
+  <string name="child_db_disable_on_this_device">Desativar neste dispositivo</string>
+  <string name="child_db_enable_a_copy_for_this_device">Copiar para este dispositivo</string>
+  <string name="unconfigured_child_dbs">Seu banco de dados contém novos bancos de dados filho no grupo \"AutoOpen\". Por favor especifique se esses bancos de dados filho devem ser usados nesse aparelho.</string>
+  <string name="add_child_db">Adicionar banco de dados filho...</string>
+  <string name="EnableCopyForThisDevice_Info">Isto irá criar e habilitar uma cópia das definições do banco de dados filho. Estas definições copiadas podem então ser ajustadas especificamente para este dispositivo.</string>
+  <string name="Visible_title">Visível</string>
+  <string name="child_db_Enabled_title">Abrir automaticamente</string>
   <string name="database_file_heading">Arquivo do banco de dados</string>
+  <string name="if_device_text">Ativar para %1$s</string>
   <string name="DbUnlockedChannel_name">Banco de dados desbloqueado</string>
   <string name="DbUnlockedChannel_desc">Notificação sobre o banco de dados sendo desbloqueado</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
@@ -616,6 +627,15 @@
   <string name="ErrorReportAsk">Perguntar após erro</string>
   <string name="ErrorReportPrefTitle">Enviar relatórios de erros</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostre o teclado compacto para senhas quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_07">Versão 1.07-pre2\n
+* Permitir a abertura de mais de um banco de dados, compatível com KeeAutoExec\n
+* SFTP: Permitir autenticação de chave pública, verificar se a chave do host foi alterada\n
+* Introduzir suporte para pCloud - agradecimentos a gilbsgilbs!\n
+* Tornar o suporte para Nextcloud explícito\n
+* Melhorar armazenamento e atualização de anexos de entradas\n
+* Mais opções para adaptar o comportamento às preferências pessoais\n
+* SSL: Certificados de confiança do utilizador\n
+* correção de bugs\n  </string>
   <string name="ChangeLog_1_05">Versão 1.05\n
 * Usa o canal de notificações para o Android 8, permitindo configuração através das configurações do sistema\n
 * Mostra o ícone nas notificações\n
@@ -891,7 +911,7 @@ Lançamento público inicial
     <item>Senha + desafio-resposta</item>
     <item>Senha + Desafio-resposta secreto (modo de recuperação)</item>
     <item>Senha + Desafio-resposta para o Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Senha + Arquivo de chave + Desafio-resposta para o Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Senha</item>
@@ -909,6 +929,8 @@ Lançamento público inicial
   <string name="autofill_enable_failed">Desculpe, parece que seu dispositivo não tem suporte para abrir as configurações de dentro do aplicativo. Acesse manualmente as configurações do sistema para habilitar o serviço de preenchimento automático.</string>
   <string name="show_autofill_help">Mostrar ajuda de preenchimento automático</string>
   <string name="autofill_sign_in_prompt">Preencher com Keepass2Android</string>
+  <string name="autofill_disable">Desativar Auto-Preenchimento para %1$s</string>
+  <string name="autofill_enable">Ativar Auto-Preenchimento para %1$s</string>
   <string name="invalid_link_association">Não foi possível associar o domínio %1$s com a aplicação %2$s</string>
   <string name="understand">Entendido</string>
   <string name="dont_show_again">Não mostrar novamente</string>
