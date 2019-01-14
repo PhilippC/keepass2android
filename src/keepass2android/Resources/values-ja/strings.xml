@@ -444,6 +444,8 @@
   <string name="hint_http_url">フォルダーまたはファイルの URL (例: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloudのログイン情報を入力:</string>
   <string name="hint_owncloud_url">OwnCloudのURL (例: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Nextcloud ログイン データを入力:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (例: nextcloud.me.com)</string>
   <string name="hint_sftp_host">ホスト(例: 192.168.0.1)</string>
   <string name="hint_sftp_port">ポート</string>
   <string name="initial_directory">初期ディレクトリ (省略可能):</string>
@@ -483,6 +485,7 @@
   <string name="use_key_file">キーファイルを使用する</string>
   <string name="error_adding_keyfile">キー ファイル追加エラー!</string>
   <string name="init_otp">OTP 補助ファイルの読み込み…</string>
+  <string name="otp_explanation">次のワンタイム パスワード (OTP) を入力してください。NFC 経由で入力するには、お使いのデバイスの背面にある Yubikey NEO をスワイプします (Yubiclip アプリが必要です)。</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">補助 OTP ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">KeePass 2.x (PC) の OtpKeyProv プラグインを使用して、OTP を使うようにデータベースを構成してください!</string>
@@ -592,7 +595,22 @@
  • USB (MTP モード) でファイルをコピーした場合、MyPhoneExplorer のようなツールでもう一度やり直してください。特定の場合 MTP はファイルが切り捨てられます。\n
  • お使いの PC で同じ場所からファイルを開くことができない場合、ファイルが実際に破損している可能性が高いです。その場合は、データベースのバックアップを使用してください。Keepass2Android がファイルを破損すると思われる場合は、サポートにお問い合わせください。\n
  • お使いの PC でファイルを開くことができる場合は、サポートにお問い合わせください。PC で、(解凍してなど) 異なる設定でそれを保存して、Keepass2Android で再度開いてみることも試してください。  </string>
+  <string name="open_other_db">別のデータベースを開く…</string>
+  <string name="select_database">データベースを選択</string>
+  <string name="configure_child_dbs">子データベースを設定…</string>
+  <string name="child_dbs_title">子データベース</string>
+  <string name="unspecified">未指定</string>
+  <string name="child_db_enabled_on_this_device">このデバイスで有効です</string>
+  <string name="child_db_enable_on_this_device">このデバイスで有効にする</string>
+  <string name="child_db_disable_on_this_device">このデバイスで無効にする</string>
+  <string name="child_db_enable_a_copy_for_this_device">このデバイスのコピー</string>
+  <string name="unconfigured_child_dbs">お使いのデータベースの \"AutoOpen\" グループに新しい子データベースが含まれています。このデバイスでこれらの子データベースを使用するかどうか指定してください。</string>
+  <string name="add_child_db">子データベースを追加...</string>
+  <string name="EnableCopyForThisDevice_Info">これにより子データベース設定のコピーを作成して有効にします。このコピーされた設定は、このデバイス用に調整されます。</string>
+  <string name="Visible_title">参照可能</string>
+  <string name="child_db_Enabled_title">自動的に開く</string>
   <string name="database_file_heading">データベースファイル</string>
+  <string name="if_device_text">%1$s 用に有効にする</string>
   <string name="DbUnlockedChannel_name">データベースがアンロックされました</string>
   <string name="DbUnlockedChannel_desc">データベースのアンロックに関する通知</string>
   <string name="DbQuicklockedChannel_name">クイック解除</string>
@@ -885,6 +903,8 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="autofill_enable_failed">お使いのデバイスでは、アプリから設定を開くことができないようです。システム設定を開いて、オートフィルを有効にしてください。</string>
   <string name="show_autofill_help">オートフィルのヘルプを表示</string>
   <string name="autofill_sign_in_prompt">Keepass2Android で入力</string>
+  <string name="autofill_disable">%1$s の自動入力を無効にする</string>
+  <string name="autofill_enable">%1$s の自動入力を有効にする</string>
   <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
   <string name="enable_fingerprint_hint">Keepass2Android は指紋認証ハードウェアを検出しました。指紋認証を有効にして、このデータベースのロックを解除しますか?</string>
   <string name="understand">理解しました</string>
