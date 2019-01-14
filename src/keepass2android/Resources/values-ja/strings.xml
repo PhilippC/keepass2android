@@ -210,6 +210,8 @@
   <string name="edit">編集</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">ルート</string>
+  <string name="AutoReturnFromQuery_title">クエリ画面から自動的に戻る</string>
+  <string name="AutoReturnFromQuery_summary">アプリまたは web サイトのエントリを検索するとき: データベースに 1 つだけ一致するエントリがある場合、クエリ画面から自動的に戻ります。</string>
   <string name="KeyDerivFunc">キー派生関数</string>
   <string name="rounds">暗号化レベル</string>
   <string name="rounds_explaination">暗号化レベルを高く設定するとブルートフォース(総当り)攻撃に強くなりますが、保存や読込に時間が掛かります。</string>
@@ -291,6 +293,7 @@
   <string name="BinaryDirectory_summary">添付ファイルが保存されるディレクトリ。</string>
   <string name="SaveAttachmentDialog_title">添付ファイルを保存</string>
   <string name="SaveAttachmentDialog_text">添付ファイルを保存する場所を選択してください。</string>
+  <string name="SaveAttachmentDialog_save">ファイルへエクスポート...</string>
   <string name="SaveAttachmentDialog_open">キャッシュに保存して開く</string>
   <string name="ShowAttachedImage">内部の画像ビューアーで表示</string>
   <string name="SaveAttachment_doneMessage">ファイルを%1$sに保存しました。</string>
@@ -604,6 +607,9 @@
   <string name="ErrorReportAsk">エラー発生時に確認する</string>
   <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
+  <string name="ChangeLog_1_04b">    バージョン 1.04b\n
+    * Huawei デバイスでオートフィルを有効にしようとするときにクラッシュを回避。\n
+  </string>
   <string name="ChangeLog_1_04">    バージョン 1.04\n
     * Android 8.0 以降でオートフィルサービスを追加しました。\n
     * ライブラリー、ビルドツール、ターゲット SDK バージョンをアップグレードしました。\n
@@ -880,11 +886,15 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="show_autofill_help">オートフィルのヘルプを表示</string>
   <string name="autofill_sign_in_prompt">Keepass2Android で入力</string>
   <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
+  <string name="enable_fingerprint_hint">Keepass2Android は指紋認証ハードウェアを検出しました。指紋認証を有効にして、このデータベースのロックを解除しますか?</string>
   <string name="understand">理解しました</string>
   <string name="dont_show_again">二度と表示しない</string>
   <string name="masterkey_infotext_head">マスターパスワードを思い出せますか？</string>
   <string name="masterkey_infotext_main">マスターキー無しにデータベースを開くことはできません。マスターパスワードをリセットする方法はありません。</string>
+  <string name="masterkey_infotext_fingerprint_note">また、指紋認証のロック解除は Android のセキュリティで保護されたストレージにマスター鍵を格納することにご注意ください。例えばシステムの設定に新しい指紋を追加する場合など、Android はいつでもこのストレージを削除することができます。そのため、指紋に頼らず、マスターパスワードを覚えておいてください!</string>
   <string name="backup_infotext_head">データベースはバックアップされていますか？</string>
+  <string name="backup_infotext_main">Keepass2Android は、お好みの場所でファイルにパスワードを格納します。お使いの携帯電話を紛失したり盗難されたとき、またはファイルが破壊されたり削除されたときに、このファイルにアクセスできますか？常に安全な場所に最新のバックアップがあることを確認してください!</string>
   <string name="backup_infotext_note">バックアップを作成するには、%1$s&gt;%2$s&gt;%3$s へアクセスしてください。</string>
   <string name="emergency_infotext_head">緊急時の準備はできていますか？</string>
+  <string name="emergency_infotext_main">パスワードデータベースにアクセスできなくなった場合にどうなるかを考えたことはありますか？ アクシデントが発生したら？ 緊急事態に備えて、マスター鍵を信頼できる人に渡すことをお勧めします。 そうでなければ誰もあなたのパスワードにアクセスすることはできなくなります。</string>
 </resources>
