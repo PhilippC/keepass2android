@@ -422,7 +422,7 @@
   <string name="UpdatedRemoteFileOnLoad">Обновленный удалённый файл.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Открыта локальный кэшированная копия файла из-за конфликта с изменениями в удалённом файле. Используйте меню Синхронизация для объединения.</string>
   <string name="LoadedFromRemoteInSync">Удалённый файл и кэшированный файл синхронизированы.</string>
-  <string name="UpdatedCachedFileOnLoad">Обновлена локальная кэшированная копия %1$s.</string>
+  <string name="UpdatedCachedFileOnLoad">Локальная копия базы «%1$s» обновлена.</string>
   <string name="RemoteDatabaseUnchanged">Изменений не обнаружено.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Обновлен кэшированный вспомогательный файл одноразовых паролей: удаленный счетчик имел большее значение.</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">Обновлен локальный вспомогательный файл одноразовых паролей: локальный счетчик имел большее значение.</string>
@@ -605,6 +605,7 @@
   <string name="child_db_enable_on_this_device">Включить на этом устройстве</string>
   <string name="child_db_disable_on_this_device">Выключить на этом устройстве</string>
   <string name="child_db_enable_a_copy_for_this_device">Копировать для этого устройства</string>
+  <string name="unconfigured_child_dbs">Эта база содержит в группе «AutoOpen» другие вложенные базы. Укажите, следует ли открывать такие вложенные базы на этом устройстве.</string>
   <string name="add_child_db">Добавить дочернюю базу данных...</string>
   <string name="EnableCopyForThisDevice_Info">Это создаст и включит копию настроек дочерней базы данных. После этого эти настройки могут быть специально настроены для этого устройства.</string>
   <string name="Visible_title">Видимость</string>
