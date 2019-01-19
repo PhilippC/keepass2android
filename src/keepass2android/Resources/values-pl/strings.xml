@@ -350,7 +350,7 @@
   <string name="ShowCopyToClipboardNotification_summary">Udostępnienie nazwy użytkownika i hasła za pośrednictwem schowka i paska powiadomień. Uwaga na sniffery haseł!</string>
   <string name="ShowSeparateNotifications_title">Oddzielne powiadomienia</string>
   <string name="ShowSeparateNotifications_summary">Pokaż oddzielne powiadomienia dla kopiowania nazwy użytkownika i hasła do schowka oraz aktywacji klawiatury.</string>
-  <string name="AccServiceAutoFill_prefs">AutoUzupełnienie – usługa dostępności</string>
+  <string name="AccServiceAutoFill_prefs">Autouzupełnienie – usługa dostępności</string>
   <string name="AutoFill_prefs">Usługa autouzupełnienia</string>
   <string name="ShowKp2aKeyboardNotification_title">Powiadomienie klawiatury KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Udostępnij pełny wpis przez klawiaturę KP2A (zalecane).</string>
@@ -486,6 +486,7 @@
   <string name="use_key_file">Użyj pliku klucza</string>
   <string name="error_adding_keyfile">Wystąpił błąd podczas dodawania pliku klucza!</string>
   <string name="init_otp">Ładowanie pomocniczego pliku OTP…</string>
+  <string name="otp_explanation">Wpisz kolejne hasła jednorazowe (OTP). Zbliż YubiKey NEO do tylnej części swojego urządzenia, aby wprowadzić hasło przez NFC.</string>
   <string name="otp_hint">Hasło jednorazowe (OTP) %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nie można załadować pomocniczego pliku OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Proszę użyć wtyczki OtpKeyProv w KeePass 2.x (PC) aby skonfigurować swoją bazę danych do korzystania z haseł jednorazowych (OTP)!</string>
@@ -925,10 +926,12 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="ClearClipboardWarning">Upewnij się, że to działa na twoim systemie, a jeśli nie to rozważ użycie wbudowanej klawiatury.</string>
   <string name="PluginDescription">Opis dostarczony przez wtyczkę:</string>
   <string name="autofill_hint">Keepass2Android wspiera funkcję autowypełnianie Androida, ale widać że nie włączyłeś jej.</string>
-  <string name="autofill_enable">Włącz Autowypełnianie</string>
+  <string name="autofill_enable">Włącz autouzupełnianie</string>
   <string name="autofill_enable_failed">Niestety wygląda na to, że twoje urządzenie nie wspiera otwierania ustawień z wnętrza aplikacji. Przejdź ręcznie do ustawień systemu dla autouzupełniania, aby włączyć tą usługę.</string>
-  <string name="show_autofill_help">Pokaż pomoc autowypełniania</string>
+  <string name="show_autofill_help">Pokaż pomoc autouzupełniania</string>
   <string name="autofill_sign_in_prompt">Wypełnij z Keepass2Android</string>
+  <string name="autofill_disable">Włącz autouzupełnianie dla %1$s</string>
+  <string name="autofill_enable">Wyłącz autouzupełnianie dla %1$s</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android wykrył czytnik odcisków palców. Czy chcesz odblokowywać tę bazę danych odciskiem palca?</string>
   <string name="understand">Rozumiem</string>
