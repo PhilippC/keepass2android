@@ -484,6 +484,7 @@
   <string name="use_key_file">Gebruik sleutelbestand</string>
   <string name="error_adding_keyfile">Fout tijdens het toevoegen van het sleutelbestand!</string>
   <string name="init_otp">Laad OTP hulpbestand…</string>
+  <string name="otp_explanation">Voer de volgende One-time-passwords (OTPs) in. Veeg je Yubikey NEO langs de achterkant van het apparaat om via NFC in te voeren (Yubiclip app vereist).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Kan het OTP hulpbestand niet laden!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Gebruik de OtpKeyProv plugin in KeePass 2.x (PC) om jouw database in te stellen voor gebruik met OTPs!</string>
@@ -940,6 +941,8 @@ Eerste publieke publicatie
   <string name="autofill_enable_failed">Sorry, jouw apparaat ondersteund het openen van systeem instellingen vanuit de app niet. Ga zelf naar de systeem instellingen voor automatisch aanvullen om deze dienst te activeren.</string>
   <string name="show_autofill_help">Toon help voor automatisch aanvullen</string>
   <string name="autofill_sign_in_prompt">Vullen met Keepass2Android</string>
+  <string name="autofill_disable">Automatisch invoeren uitschakelen voor %1$s</string>
+  <string name="autofill_enable">Automatisch invoeren inschakelen voor %1$s</string>
   <string name="invalid_link_association">Kon domein %1$s niet koppelen met app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android heeft vingerafdruk hardware gedetecteerd. Wil je je vingerafdruk gebruiken voor het ontgrendelen van deze database?</string>
   <string name="understand">Ik begrijp het</string>
