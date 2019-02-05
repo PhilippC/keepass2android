@@ -406,10 +406,10 @@
   <string name="SynchronizingDatabase">Объединение изменений…</string>
   <string name="YesSynchronize">Да, объединить</string>
   <string name="NoOverwrite">Нет, перезаписать</string>
-  <string name="UseOfflineMode">Работать только с локальной кэшированной копия файла</string>
+  <string name="UseOfflineMode">Работать только с локальной копией базы</string>
   <string name="UseOnlineMode">Синхронизировать кэшированную копию с удалённым файлом</string>
   <string name="UseOfflineMode_Info">База данных загружена из внутреннего кэша. Изменения сохраняются только во внутреннем кэше и будут синхронизироваться только при выборе Синхронизация кэшированной копии с удалённым файлом.</string>
-  <string name="InOfflineMode">Работа только с локальной кэшированной копией файла.</string>
+  <string name="InOfflineMode">Работа только с локальной копией базы.</string>
   <string name="SynchronizingCachedDatabase">Синхронизация кэшированной базы данных…</string>
   <string name="DownloadingRemoteFile">Загружается удалённый файл…</string>
   <string name="UploadingFile">Сохранить файл…</string>
@@ -420,8 +420,8 @@
   <string name="CouldNotSaveToRemote">Не удаётся сохранить удалённый файл: %1$s. Повторите сохранение или используйте меню Синхронизация, когда появится доступ к сети.</string>
   <string name="CouldNotLoadFromRemote">Не удаётся получить доступ к удалённому файлу: %1$s. Загружена локальная кэшированная копия файла. Вы можете вносить изменения в базу данных и синхронизировать их позже.</string>
   <string name="UpdatedRemoteFileOnLoad">Обновленный удалённый файл.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Открыта локальный кэшированная копия файла из-за конфликта с изменениями в удалённом файле. Используйте меню Синхронизация для объединения.</string>
-  <string name="LoadedFromRemoteInSync">Удалённый файл и кэшированный файл синхронизированы.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">В файл, расположенный на сервере, были внесены изменения. Для предотвращения конфликта была открыта сохранённая на устройстве копия файла. Используйте пункт меню «Синхронизировать базу данных…» для синхронизации изменений.</string>
+  <string name="LoadedFromRemoteInSync">Файл на сервере и его копия на устройстве синхронизированы.</string>
   <string name="UpdatedCachedFileOnLoad">Локальная копия базы «%1$s» обновлена.</string>
   <string name="RemoteDatabaseUnchanged">Изменений не обнаружено.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Обновлен кэшированный вспомогательный файл одноразовых паролей: удаленный счетчик имел большее значение.</string>
@@ -432,7 +432,7 @@
   <string name="ErrorOcurred">Произошла ошибка:</string>
   <string name="DuplicateUuidsError">База данных повреждена: найдены дублирующиеся ID. (Сохранялись в Minikeepass?) Пожалуйста импортируйте данные в новую базу данных при помощи Keepass 2 для ПК и выберите \'Создать новые ID\'.</string>
   <string name="DuplicateUuidsErrorAdditional">Вы можете отключить это сообщение об ошибке в пункте Настройки/Настройки приложения/Обработка файлов/Проверка на дубликаты UUID. Имейте в виду, что это может повлечь неожиданные результаты. Рекомендуется исправление базы данных.</string>
-  <string name="synchronize_database_menu">Синхронизировать базу данных…</string>
+  <string name="synchronize_database_menu">Синхронизировать базу…</string>
   <string name="CannotMoveGroupHere">Не удается переместить группу в эту группу.</string>
   <string name="donate_question">Сегодня Октоберфест! Если вам нравится Keepass2Android, не лучший ли это день, чтобы купить мне пива?</string>
   <string name="donate_bday_question">10 мая? Это мой день рождения! Если вам нравится это приложение, то почему бы не отправить мне поздравления с днём рождения вместе с небольшим подарком? Это несказанно осчастливит меня! :-)</string>
