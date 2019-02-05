@@ -283,12 +283,13 @@
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock require unha notificación para traballar correctamente. Seleccione esta opción para amosar unha notificacíon sen icona.</string>
   <string name="QuickUnlockLength_title">Lonxitude da clave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres usados como contrasinal QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_title">Ocultar lonxitude de QuickUnlock</string>
+  <string name="QuickUnlockHideLength_summary">Se activo, a lonxitude do código QuickUnlock non se amosará na pantalla de QuickUnlock.</string>
   <string name="QuickUnlock_fail">Fallou o QuickUnlock: contrasinal incorrecto!</string>
   <string name="BinaryDirectory_title">Directorio de arquivos adxuntos</string>
   <string name="BinaryDirectory_summary">Directorio no que se gardarán os arquivos adxuntos.</string>
   <string name="SaveAttachmentDialog_title">Gardar arquivo adxunto</string>
   <string name="SaveAttachmentDialog_text">Seleccione onde gardar o arquivo adxunto.</string>
-  <string name="SaveAttachmentDialog_save">Gardar na tarxeta SD</string>
   <string name="SaveAttachmentDialog_open">Gardar na caché e abrir</string>
   <string name="ShowAttachedImage">Amosar co visor interno de imaxes</string>
   <string name="SaveAttachment_doneMessage">Arquivo gardado en %1$s.</string>
@@ -315,17 +316,24 @@
   <string name="ClearPasswordOnLeave_summary">Limpar contrasinal mestre introducido ó saír da pantalla sen desbloquear a base de datos.</string>
   <string name="LockWhenNavigateBack_title">Bloquear ó saír da app</string>
   <string name="LockWhenNavigateBack_summary">Bloquear a base de datos ó saír da app pulsando o botón Atrás.</string>
+  <string name="ActivateSearchViewOnStart_title">Activar campo de busca ó iniciar</string>
+  <string name="ActivateSearchViewOnStart_summary">Activar o campo de busca na vista de grupo despois de desbloquear ou ó buscar unha entrada</string>
   <string name="NoDonateOption_title">Ocultar opción de doazón</string>
   <string name="NoDonateOption_summary">Esta opción é para doadores. Só dispoñible despois de usar Keepass2Android un tempo.</string>
   <string name="NoDonateOption_question">Sen doazóns, esta app non existiría e non se melloraría continuamente! Se aínda non doou, considere facerlo agora.</string>
   <string name="NoDonationReminder_title">Nunca solicitar doazóns</string>
   <string name="NoDonationReminder_summary">Non che darei un céntimo ou xa doei. Non preguntar por doazóns, nin sequera no aniversario do autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
+  <string name="UseOfflineCache_summary">Manter unha copia dos arquivos da base de datos no directorio da cache da aplicación. Isto permitirá utilizar a base de datos incluso cando esta non é accesible.</string>
   <string name="CreateBackups_title">Copias de seguranza locais</string>
+  <string name="CreateBackups_summary">Crea unha copia local despois de cargar correctamente a base de datos.</string>
   <string name="UpdatingBackup">Actualizando copia de seguranza local...</string>
+  <string name="LocalBackupOf">Copia local de %1$s</string>
+  <string name="show_local_backups">Amosar copias locais</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definir o comportamento no caso de que falle a validación dun certificado. Nota: pode instalar certificados no seu dispositivo se a validación falla!</string>
   <string name="ClearOfflineCache_title">Eliminar caché?</string>
+  <string name="ClearOfflineCache_question">Eliminaranse todos os arquivos da base de datos na caché. Todo cambio feito mentres non houbo acceso á base de datos de orixe e que non foi sincronizado, perderase. Quere continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Comprobar modificacións</string>
   <string name="CheckForFileChangesOnSave_summary">Comprobar se o arquivo foi modificado externamente antes de gardar cambios.</string>
   <string name="CheckForDuplicateUuids_title">Buscar UUIDs duplicados</string>
@@ -350,7 +358,10 @@
   <string name="AutoSwitchBackKeyboard_summary">Cambiar ó teclado anterior cando non haxa ningunha entrada aberta.</string>
   <string name="ShowUnlockedNotification_title">Icona de notificación mentres estea desbloqueado</string>
   <string name="ShowUnlockedNotification_summary">Amosar a icona de notificación mentres a base de datos estea desbloqueada.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 introduciu un novo comportamento para as notificacións. Se quere ocultar a icona de notificacións de Keepass2Android, configúreo mediante a configuración do sistema. Estableza a importancia da categoría de notificacións ó mínimo.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Abrir axustes</string>
+  <string name="DontCare">Non me importa</string>
+  <string name="DocumentAccessRevoked">Arquivo non accesible para Keepass2Android. Ou foi eliminado ou perdéronse os permisos de acceso. Reabra o arquivo, por favor, mediante, p.ex. Cambiar base de datos.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-cargar o arquivo da base de datos</string>
   <string name="PreloadDatabaseEnabled_summary">Comezar a carga ou descarga en segundo plano do arquivo da base de datos mentres se introduce o contrasinal.</string>
   <string name="AskOverwriteBinary">Desexa sobrescribir o binario existente co mesmo nome?</string>
@@ -389,11 +400,26 @@
   <string name="SynchronizingDatabase">Fusionando cambios…</string>
   <string name="YesSynchronize">Si, fusionar</string>
   <string name="NoOverwrite">Non, sobrescribir</string>
+  <string name="UseOfflineMode">Traballar só ca caché interna</string>
+  <string name="UseOnlineMode">Sincronizar copia da caché ca orixe</string>
+  <string name="UseOfflineMode_Info">A base de datos é cargada da caché interna. Os cambios son gardados só aí e só serán sincronizados ó premer Sincronizar copia caché ca orixe.</string>
+  <string name="InOfflineMode">Traballar só ca copia caché interna.</string>
   <string name="SynchronizingCachedDatabase">Sincronizando caché da base de datos…</string>
+  <string name="DownloadingRemoteFile">Cargando arquivo de orixe…</string>
+  <string name="UploadingFile">Gardando arquivo…</string>
+  <string name="RestoringRemoteFile">Restablecendo arquivo de orixe…</string>
   <string name="FilesInSync">Os arquivos están sincronizados.</string>
   <string name="SynchronizedDatabaseSuccessfully">A base datos sincronizouse satisfactoriamente!</string>
   <string name="CheckingDatabaseForChanges">Comprobando cambios na base de datos…</string>
+  <string name="CouldNotSaveToRemote">Non se puido gardar no arquivo de orixe: %1$s. Garde de novo ou vaia ó menú Sincronizar cando o arquivo volva a estar dispoñible.</string>
+  <string name="CouldNotLoadFromRemote">Non se puido abrir o arquivo de orixe: %1$s. Cargouse o arquivo dende a cache local. Pode seguir facendo cambios na base de datos e sincronizalos despois.</string>
+  <string name="UpdatedRemoteFileOnLoad">Arquivo de orixe actualizado.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Abriuse o arquivo local xa que hai un conflito cos cambios do arquivo de orixe. Empregue o menú Sincronizar para fusionar cambios.</string>
+  <string name="LoadedFromRemoteInSync">Arquivo de orixe e caché sincronizados.</string>
+  <string name="UpdatedCachedFileOnLoad">Copia do caché interna de %1$s actualizada.</string>
   <string name="RemoteDatabaseUnchanged">Non se atoparon cambios.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Arquivo auxiliar do OTP en caché actualizado: o contador da orixe era maior.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Arquivo auxiliar do OTP da orixe actualizado: o contador local era maior.</string>
   <string name="SynchronizingOtpAuxFile">Sincronizando arquivo auxiliar OTP…</string>
   <string name="database_file">arquivo da base de datos</string>
   <string name="otp_aux_file">Arquivo auxiliar OTP</string>
@@ -446,7 +472,6 @@
   <string name="use_key_file">Usar arquivo chave</string>
   <string name="error_adding_keyfile">Erro ó engadir arquivo chave!</string>
   <string name="init_otp">Cargar arquivo auxiliar OTP…</string>
-  <string name="otp_explanation">Intrduza os seguintes contrasinais de un uso (OTPs). Faga pasar o seu Yubikey NEO pola parte traseira do seu dispositivo para entrar por NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Non se puido cargar o arquivo auxiliar OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Utilice o plugin OtpKeyProv en KeePass 2.x (PC) para configurar a súa base de datos para o uso con OTPs!</string>
@@ -459,6 +484,9 @@
   <string name="OtpKeyError">Erro na creación da clave OTP! Asegúrese que introduciu os OTPs correctos.</string>
   <string name="ErrorUpdatingOtpAuxFile">Erro ó actualizar o arquivo auxiliar OTP!</string>
   <string name="SavingOtpAuxFile">Gardando arquivo auxiliar OTP…</string>
+  <string name="NoChallengeApp">Non se atopou ningunha app que poida xestionar o desafío.</string>
+  <string name="PleaseInstallApp">Instale %1$s dende Google Play.</string>
+  <string name="AppOutdated">%1$s deixou de ser compatible.</string>
   <string name="bad_resp">A resposta do reto é incorrecta.</string>
   <string name="CouldntLoadChalAuxFile">Non se puido cargar o arquivo do reto!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Utilice o plugin KeeChallenge en KeePass 2.x (PC) para configurar a súa base de datos para o uso con reto!</string>
@@ -541,6 +569,7 @@
   <string name="DbUnlockedChannel_name">Base de datos desbloqueada</string>
   <string name="DbUnlockedChannel_desc">Notificación de que a base de datos está a ser desbloqueada</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Notificacións sobre a base de datos están sendo bloqueadas por QuickUnlock</string>
   <string name="EntryChannel_name">Entrada de notificacións</string>
   <string name="EntryChannel_desc">Notificación para simplificar o acceso á entrada seleccionada.</string>
   <string name="ErrorReportTitle">Keepass2Android: ocorreu un erro.</string>
@@ -551,25 +580,43 @@
   <string name="ErrorReportAsk">Preguntar despois do erro</string>
   <string name="ErrorReportPrefTitle">Enviar informes de erros</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Amosar teclado para entradas de contrasinal cando o escaneo de pegada dixital está activo.</string>
-  <string name="ChangeLog_1_04b">
-    Versión 1.04b\n
+  <string name="ChangeLog_1_06">    Versión 1.06\n
+    * Cambiar a ykDroid en vez de YubiChallenge como app para Yubikey Challenge-Response.\n
+    * Implementacióm do soporte para KeepassXC-style Challenge-Response. Nota: o formato da base de datos ten que ser KDBX4!\n
+    * Impedir cargar arquivos eliminados dende Google Drive\n
+    * Cambiar implementacióm TLS para FTPS, engadida solución alternativa para o erro JSch com servidores quebsoportan gssapi-with-mic\n
+    * Corrección de erros varias\n
+  </string>
+  <string name="ChangeLog_1_05">Versión 1.05\n
+    * Uso de canaes de notificación para Android 8, que permite a configuración a través dos axustes do sistema\n
+    * Amosar icona da entrada en notificacións\n
+    * Uso de iconas adaptables para Android 8, uso de icona redonda para o lanzador para Android 7\n
+    * Permitir activar a busca logo de desbloquear (ver axustes)\n
+    * Cambiada a maneira de escribir os arquivos a través do Storage Access Framework, o que soluciona problemas ó actualizar arquivos en Google Drive abertos a través da selección de arquios do sistema\n
+    * Engadidos algúns textos informativos para evitar algúns malentendidos comúns\n
+    * Crear copias de seguridade locais das bases de datos abertas correctamente para reducir o risco de perda de datos\n
+    * JSch actualizado para soportar o cifrado SSH máis recente\n
+    * Permitir editar axustes de conexión, por exemplo cando o contrasinal WebDav foi cambiado\n
+    * Engadido soporte para modo de contrasinal estático de Yubikey Neo\n
+    * Permitir desactivar suxerencia de Autorrecheo\n
+    * Reparada a saída de datos a logcat\n    
+    * Correccións varias de erros\n
+  </string>
+  <string name="ChangeLog_1_04b">    Versión 1.04b\n
     * Evita o fallo da aplicación cando o usuario tenta activar o autocompletado en dispositivos Huawei.\n
   </string>
-  <string name="ChangeLog_1_04">
-    Versión 1.04\n
+  <string name="ChangeLog_1_04">    Versión 1.04\n
     * Servizo de autocompletado engadido para Android 8.0 ou posterior.\n
     * Actualización de bibliotecas, ferramentas de compilación e versión de SDK.\n
   </string>
-  <string name="ChangeLog_1_03">
-    Version 1.03\n
+  <string name="ChangeLog_1_03">    Version 1.03\n
     * Eliminación do servizo de accesibilidade par ao autocompletado a petición de Google. Vexa a configuración de acceso para atopar o plugin que replica a mesma funcionalidade.\n
     * Apps de terceiras partes engadidas como opción de almacenaxe\n
     * Integración de visor de imaxes para ver as adxuntas sen telas que abrir mediante outras apps\n
     * Actualización de OkHttp para resolver problemas con algunhas conexións\n
     * Soporte para entradas KeeTrayTOTP, agora soporta entradas de Steam\n
   </string>
-  <string name="ChangeLog_1_02">
-    Versión 1.02\n
+  <string name="ChangeLog_1_02">    Versión 1.02\n
     * Melloras de seguridade varias. Grazas polo parte de seguridade de jean-baptiste.cayrou@thalesgroup.com e vincent.fargues@thalesgroup.com e a súa colaboración!\n
     * Soporte ó plug-in KeyboardSwap (vexa opcións de acceso por contrasinal): permite cambiar de método de introdución automaticamente en  dispositivos sen acceso \'Root\'. Grazas a Mishaal Rahman de XDA-Developers por face-lo posible.\n
     * Arranxo do servizo de accesibilidade na versión recente de Chrome\n
@@ -579,25 +626,21 @@
     * Eliminado o o sitema de reportes de erro de Xamarin \n
     * Actualización de ferramentas de compilación\n
   </string>
-  <string name="ChangeLog_1_01g">
-    Version 1.01-g\n
+  <string name="ChangeLog_1_01g">    Version 1.01-g\n
     * Solucionado o fallo canso se traballa sen conexión\n
     * Solucionado a codificación incorrecta de credenciais de FTP(S)\n
     * Solucionado os fallos cando se usa OneDrive nunha versión antiga de Android\n
     * A hora móstrase no formato local na pantalla de entrada\n
   </string>
-  <string name="ChangeLog_1_01d">
-Version 1.01-d\n
+  <string name="ChangeLog_1_01d">Version 1.01-d\n
      * Corrección da listaxe de ficheiros en OneDrive\n
      * Permitir ignorar erros de certificados tamén cando a verificación do nome do  host falla (non recomendado para uso en produción)\n
      * Corrección do fallo ocasional de QuickUnlock, a pesar de inserir o código de desbloqueo correcto\n  </string>
-  <string name="ChangeLog_0_9_8c">
-    Versión 0.9.8c\n
+  <string name="ChangeLog_0_9_8c">    Versión 0.9.8c\n
     * Arranxo de vulnerabilidade SSL en Microsoft Live SDK (usado no acceso ós arquivos por OneDrive)\n
     * Arranxo de bug: o lanzamento anterior contiña dous métodos de input (un fallaba)\n
   </string>
-  <string name="ChangeLog_1_01">
-    Versión 1.01\n
+  <string name="ChangeLog_1_01">    Versión 1.01\n
     * engade soporte para o novo formato KDBX-4 (compatible con Keepass 2.35). Inclúe a derivación de claves Argon2 e a encriptación ChaCha20.\n
     * Reimplementación de almacenaxe de arquivos WebDav, agora permite navegar polos arquivos e soporta encriptacións modernas.\n
     * Reimplementación de almacenaxe de arquivos FTP, agora permite navegar polos arquivos e soporta encriptacións modernas (FTPS).\n
@@ -606,15 +649,13 @@ Version 1.01-d\n
     * Engadido soporte para OwnCloud.\n
     * Petición de permisos de almacenaxe antes de abrir arquivos locais
   </string>
-  <string name="ChangeLog_1_0_0e">
-    Versión 1.0.0e\n
+  <string name="ChangeLog_1_0_0e">    Versión 1.0.0e\n
     * desbloqueo por pegada dixital arranxado para dispositivos Samsung vellos con Android 6\n
     * engadido soporte nativo para dispositivos x86\n
     * permite ocultar o teclado mentres se escanea a pegada dixital\n
     * actualización do sistema
   </string>
-  <string name="ChangeLog_1_0_0">
-    Versión 1.0.0\n
+  <string name="ChangeLog_1_0_0">    Versión 1.0.0\n
     * Desbloqueo por pegada dixital (require Android 6.0+ ou un dispositivo Samsung)\n
     * Engadido servizo de autocompletado (require Android 5.0+)\n
     * Engadido soporte para modelos de entradas\n
@@ -627,50 +668,38 @@ Version 1.01-d\n
     * Engadida opción para enviar informes de erros\n
     * Engadidos mensaxes de axuda\n
   </string>
-  <string name="ChangeLog_0_9_9">
-		Versión 0.9.9\n
+  <string name="ChangeLog_0_9_9">Versión 0.9.9\n
 		* Redeseño completo da interface. Moitísimas grazas a Stefano Pignataro (http://www.spstudio.at) pola súa axuda!\n
     * Permite engadir iconas personalizadas\n
     * Soporte para ventá múltiple en dispositivos Samsung\n
     * Aumentouse o valor predeterminado do número de series de encriptación para bases de datos novas\n
     * Comprobación de chaves duplicadas en campos adicionais, para impedir a perda de datos\n
-    
-	</string>
-  <string name="ChangeLog_0_9_9c">
-    Versión 0.9.9c\n
+    </string>
+  <string name="ChangeLog_0_9_9c">    Versión 0.9.9c\n
     * Volveu a temática escura\n
     * Pódense instalar packs de iconas (dispoñibles en Play Store as iconas estilo antigo Windows)\n
     * Engadida confirmación de eliminación dos elementos que non vaian á papeleira de reciclaxe\n
     * Arranxo de bugs (mostra errónea da codificación segreda OTP, nalgúns lugares a icona da app estaba mal)\n
   </string>
-  <string name="ChangeLog_0_9_8b">
-		Versión 0.9.8b\n
-		* Arranxo de bugs (ás veces fallaba o gardado da base de datos, a exportación ó dispositivo local e tamén ó escoller certas opcións)\n
-	</string>
-  <string name="ChangeLog_0_9_8">
-		Versión 0.9.8\n
+  <string name="ChangeLog_0_9_8b">Versión 0.9.8b\n
+		* Arranxo de bugs (ás veces fallaba o gardado da base de datos, a exportación ó dispositivo local e tamén ó escoller certas opcións)\n</string>
+  <string name="ChangeLog_0_9_8">Versión 0.9.8\n
 		* Soporte para o entorno de acceso á almacenaxe (permite escribir na tarxeta SD e Google Drive en KP2A Offline)\n
 		* Trata de detectar erros na introdución de URLs WebDAV (directorio en vez dun arquivo)\n
 		* Cambiouse a fonte dos contrasinais\n
 		* Permite cambiar de conta de Dropbox\n
-		* Bug arranxado: agora lembra o contrasinal OTP
-	</string>
-  <string name="ChangeLog_0_9_7b">
-		Versión 0.9.7b\n
+		* Bug arranxado: agora lembra o contrasinal OTP</string>
+  <string name="ChangeLog_0_9_7b">Versión 0.9.7b\n
 		* traducións actualizadas\n
-		* arranxo de bugs: faltaba a fonte dos contrasinais na 0.9.7, a ordenación por nomes non ordenaba os grupos\n
-	</string>
-  <string name="ChangeLog_0_9_7">
-		Versión 0.9.7\n
+		* arranxo de bugs: faltaba a fonte dos contrasinais na 0.9.7, a ordenación por nomes non ordenaba os grupos\n</string>
+  <string name="ChangeLog_0_9_7">Versión 0.9.7\n
 		* soporte de escritura par aas bases de datos Keepass 1 (kdb) (beta!)\n
 		* mellora do cambio ó teclado previo (tamén funciona en dispositivos sen root)\n
 		* soporte para KeeChallenge con lonxitude variable de retos\n
 		* evita capturas de pantalla de QuickUnlock ou de contrasinais\n
 		* orde inversa para as datas de modificación (agora descendentes)\n
-		* arranxo de bugs: visualización de notas correcta despois de facer cambios, os contrasinais ocúltanse correctamente en (espero) todos os dispositivos, arranxado bug que permitía escribir unha entrada dúas veces, bug arranxado que amosaba advertencia de UUID duplicada incluso despois de arranxar a base de datos\n
-	</string>
-  <string name="ChangeLog_0_9_6">
-		Versión 0.9.6\n
+		* arranxo de bugs: visualización de notas correcta despois de facer cambios, os contrasinais ocúltanse correctamente en (espero) todos os dispositivos, arranxado bug que permitía escribir unha entrada dúas veces, bug arranxado que amosaba advertencia de UUID duplicada incluso despois de arranxar a base de datos\n</string>
+  <string name="ChangeLog_0_9_6">Versión 0.9.6\n
 		* permite importar o arquivo chave e/ou base de datos local ó directorio interno da app (véxase configuración)\n
 		* permite múltiples opcións de ordenación\n
 		* mellora das preferencias no cambio automático de teclado\n
@@ -682,10 +711,8 @@ Version 1.01-d\n
 		* arranxado o erro no cambio automático de teclado nos dispositivos root\n
 		* engadida verificación para bases de datos corruptas (UUIDs duplicados)\n
 		* recargar automaticamente a base de datos ó detectar cambios, resolve o problema de seguridade que revelaba o contrasinal mestre\n
-		* mellora do teclado polaco, corrección dos parámetros da temática poara o mesmo (grazas a Wiktor Ławski)\n
-	</string>
-  <string name="ChangeLog_0_9_5">
-		<b>Versión 0.9.5</b>\n
+		* mellora do teclado polaco, corrección dos parámetros da temática poara o mesmo (grazas a Wiktor Ławski)\n</string>
+  <string name="ChangeLog_0_9_5"><b>Versión 0.9.5</b>\n
 		* Arranxado problema ca navegación de arquivos (especialmente en Android 4.4)\n
 		* Arranxado problema ca carga de arquivos .kdb (Keepass 1) nos Nexus 5 con Android Lollipop\n
 		* Engadida opción que prevén a captura de pantalla/amosar a app na liste recente de apps\n
@@ -693,10 +720,8 @@ Version 1.01-d\n
 		* Permite arquivos chave en tipos de almacenaxe deliberados\n
 		* Actualización do Dropbox SDK para incluir un camiño seguro oficial\n
 		* Actualizadas ferramentas de creación--&gt; aumentou o tamaño da apk :-(\n
-		Prometín máis cambios, e virán no próximo lanzamento... síntoo. Gustaríame publicar os problemas urxentes o máis cedo posible.
-	</string>
-  <string name="ChangeLog_0_9_4">
-		<b>Versión 0.9.4</b>\n
+		Prometín máis cambios, e virán no próximo lanzamento... síntoo. Gustaríame publicar os problemas urxentes o máis cedo posible.</string>
+  <string name="ChangeLog_0_9_4"><b>Versión 0.9.4</b>\n
 		* engadido plugin de soporte: vaia á configuración para saber como obter plugins!\n
 		*  publicado plugin QR (escanea contrasinais, amósaos en formato QR, transfire entradas a outros dispositivos KP2A)\n
 		*  publicado plugin InputStick (transfira credenciais ó seu PC por bluetooth - require un lapis USB InputStick)\n
@@ -712,64 +737,48 @@ Version 1.01-d\n
 		* mellora da interface\n
 		* resolto bug ca itnerface de Google Drive\n
 		* engadida a opción que permite deshabilitar a opción \"Doar\"\n
-		* A icona de QuickUnlock estará agora oculta nos dispositivos Android 4.2+ por defecto\n 
-	</string>
-  <string name="ChangeLog_0_9_3_r5">
-		<b>Versión 0.9.3 r5</b>\n
+		* A icona de QuickUnlock estará agora oculta nos dispositivos Android 4.2+ por defecto\n </string>
+  <string name="ChangeLog_0_9_3_r5"><b>Versión 0.9.3 r5</b>\n
 		* Incorparación de correcións de Xamarin: Keepass2Android é agora compatible con ART en Android 4.4.2. Por fin!\n
-		* Arranxo de bugs: bugs na sincronización (actualización da visualización, verificación correcta nos cambios en http), bugs en dispoisitovs Android 2.x, bugs nas implementacións de almacenaxe de Google Drive e OneDrive, baleiro do portapapeis ó pechar a base de datos, bug ó abrir adxuntos, problemas á hora de amosar o teclado\n
-	</string>
-  <string name="ChangeLog_0_9_3">
-		<b>Versión 0.9.3</b>\n
+		* Arranxo de bugs: bugs na sincronización (actualización da visualización, verificación correcta nos cambios en http), bugs en dispoisitovs Android 2.x, bugs nas implementacións de almacenaxe de Google Drive e OneDrive, baleiro do portapapeis ó pechar a base de datos, bug ó abrir adxuntos, problemas á hora de amosar o teclado\n</string>
+  <string name="ChangeLog_0_9_3"><b>Versión 0.9.3</b>\n
 		* Novo teclado con moitas melloras. Vexa Configuración para persoalizar.\n
 		* Soporte de só lectura para kdb (arquivos Keepass 1). Experimental!\n
 		* Engadido soporte SFTP\n
 		* Engadida outra solución para o bug en ART (Android 4.4.2)\n
-		* Arranxo de bugs\n
-	</string>
-  <string name="ChangeLog_0_9_2">
-		<b>Versión 0.9.2</b>\n
+		* Arranxo de bugs\n</string>
+  <string name="ChangeLog_0_9_2"><b>Versión 0.9.2</b>\n
 		* Engadido soporte OTP (compatible co plugin OtpKeyProv)\n
 		* Soporte integrado de NFC para OTPs de YubiKey NEO \n
 		* Varias melloras na interface\n
 		* Librería Keepass 2.24 integrada\n
 		* Engadida opción para rematar a execución da app (vexa configración)\n
 		* Mellora da validación do certificado SSL\n
-		* Arranxo de bugs\n
-	</string>
-  <string name="ChangeLog_0_9_1">
-		<b>Versión 0.9.1</b>\n
+		* Arranxo de bugs\n</string>
+  <string name="ChangeLog_0_9_1"><b>Versión 0.9.1</b>\n
 		* Soporte SkyDrive integrado (só edición regular de Keepass2Android)\n
 		* Arranxo problemas coa integración de Google Drive\n
-		* Engadido soporte NTLM
-	</string>
-  <string name="ChangeLog_0_9">
-		<b>Versión 0.9</b>\n
+		* Engadido soporte NTLM</string>
+  <string name="ChangeLog_0_9"><b>Versión 0.9</b>\n
 		* Soporte para integración de Dropbox e Google Drive (lectura/escritura de bases de datos só na edición regular de Keepass2Android)\n
 		* Navegación persoalizada de arquivos (baseado en android-filechooser por HBA)\n
 		* Melloraa da interface na creación dunha nova base de datos\n
 		* Inclúe fonte persoalizada  DejaVu Sans Mono para os contrasinais\n
-		* Arranxo de bugs
-	</string>
-  <string name="ChangeLog_0_8_6">
-		<b>Versión 0.8.6</b>\n
+		* Arranxo de bugs</string>
+  <string name="ChangeLog_0_8_6"><b>Versión 0.8.6</b>\n
 		* Soporte para o cifrado Twofish \n
 		* Permite a edición de grupos\n
 		* Permite mover entradas e grupos\n
 		* A icona de QuickUnlock xa pode ser transparente (vexa configuración)\n
-		* Arranxo de bugs
-	</string>
-  <string name="ChangeLog_0_8_5">
-		<b>Versión 0.8.5</b>\n
+		* Arranxo de bugs</string>
+  <string name="ChangeLog_0_8_5"><b>Versión 0.8.5</b>\n
 		* Os arquivos remotos serán gardados no caché local da app para permitir o uso sen conexión (inclúe a edición e posterior sincronización). Vexa configuración. \n
 		* Icona de notificación para ver o estado de bloqueo da base de datos (vexa configuración)\n
 		* Mellora da daterminación do estado de bloqueo nalgunhas situacións\n
 		* Os arquivos da base de datos cárganse na memoria mentres se introduce o contrasinal para aumentar a velocidade de carga (vexa configuración)\n
 		* Pódense engadir entradas ó grupo raíz\n
-		* Arranxo de bugs (resolución de campos de referencia, problemas co teclado en dispositivos italianos e chineses)
-	</string>
-  <string name="ChangeLog_0_8_4">
-		<b>Versión 0.8.4</b>\n
+		* Arranxo de bugs (resolución de campos de referencia, problemas co teclado en dispositivos italianos e chineses)</string>
+  <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\n
 		* Cambios na base de datos externa serán detectados e fusionados antes de se gardaren\n
 		* Mellora do rendemento da carga\n
 		* Mellora da barra de busca, con suxestións\n
@@ -777,8 +786,7 @@ Version 1.01-d\n
 		* Engadido soporte para o formato .kdbp para aumentar a velocidade de carga/garda\n
 		* Mellora da edición para datos extra e da visualización de datos ocutlos\n
 		Grazas a Alex Vallat polas súas contribucións de código!\n
-		Grazas a Niki Hüttner (www.close-cut.de) polo novo logo!\n
-	</string>
+		Grazas a Niki Hüttner (www.close-cut.de) polo novo logo!\n</string>
   <string name="ChangeLog_0_8_3"><b>Versión 0.8.3</b>\n
 * Nome de usurio/índice TAN amosado na lista de entradas (vexa configuración)\n
 * Pódense crear entradas se a lista de resultados non atopou nada\n
@@ -790,19 +798,16 @@ Version 1.01-d\n
   </string>
   <string name="ChangeLog_0_8_2"><b>Versión 0.8.2</b>\n
 * Soporte para Digest Authentication no WebDAV\n
-* Arranxo de bugs (xestor de arquivos OI, Open URL)
-</string>
+* Arranxo de bugs (xestor de arquivos OI, Open URL)</string>
   <string name="ChangeLog_0_8_1"><b>Versión 0.8.1</b>\n
 * Xa se poden volver a instalar os KP2A con e sen conexión\n
-* Engadidas novas traducións (grazas a todos os colaboradores!)
-</string>
+* Engadidas novas traducións (grazas a todos os colaboradores!)</string>
   <string name="ChangeLog_0_8"><b>Versión 0.8</b>\n
 * Mellora da interface de usuario, especialmente para dispositivos Android 4.x\n
 * Permite usar xestores de arquivos deliberados para seleccionar arquivos existentes\n
 * Engadida unha forma máis segura de abrir adxuntos (a través do directorio da caché)\n
 * Bugs arranxados na Edición de actividades\n
-* É posible que se introduciran novos bugs :-)
-</string>
+* É posible que se introduciran novos bugs :-)</string>
   <string name="ChangeLog_keptDonate">Posibilidade extendida de doar unha cervexa ou calquera outra cousa</string>
   <string name="ChangeLog_0_7"><b>Versión 0.7</b>\n
 * Incremento da velocidade de carga: a tranformación de claves é 10 veces máis rápida!\n
@@ -864,7 +869,12 @@ Lanzamento público inicial
     <item>Contradinal e OTP segredo (modo de recuperación)</item>
     <item>Contrasinal e reto-resposta</item>
     <item>Contrasinal e reto-resposta segredo (modo de recuperación)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Comtrasinal e desfíoa de respostas para Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Contrasinal</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar fallos de validación de certificados</item>
