@@ -638,6 +638,13 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
     * SSL: Luotto käyttäjäsertifikaatteihin\n
     * bugi korjauksia\n
   </string>
+  <string name="ChangeLog_1_06">    Versio 1.06\n
+    * Vaihto ykDroid sovellukseen YubiChallengen sijaan Yubikey haastemenetelmssä.\n
+    * Tuki KeepassXC-muotoiselle haastemenetelmälle. Huom!: Tietokannan muoto on oltava KDBX4!\n
+    * Roskakorin tiedostojen lataus Google Drive:stä evätty\n
+    * TLS toteutus vaihdettu FTPS:lle, tällä kierretään JSch bugi gssapi-with-mic tukevien palvelimien kanssa\n
+    * Bugi korjauksia\n
+  </string>
   <string name="ChangeLog_1_05">    Versio 1.05\n
     * Käyttä Android 8:n tarjoamia ilmoituskanavia (notification channels), jotka ovat muokattavissa järjestelmäasetusten kautta\n
     * Näytä merkintäkuvake sovellusilmoituksessa\n
@@ -911,7 +918,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
     <item>Salasana + OTP salaus (Palautustila)</item>
     <item>Salasana + Haastemenetelmä</item>
     <item>Salasana + Haastemenetelmä (palautustila)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Salasana + Avaintiedosto + Haastemenetelmä Keepass XC:n kanssa</item>
     <item>Salasana + Avaintiedosto + Haastemenetelmä Keepass XC:n kanssa</item>
   </string-array>
   <string-array name="sftp_auth_modes">
@@ -933,6 +940,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="autofill_disable">Poista automaattinen täyttö %1$s:ltä</string>
   <string name="autofill_enable">Ota käyttöön automaattinen täyttö %1$s:lle</string>
   <string name="invalid_link_association">Liittäminen ei onnistunut web verkkotunnuksen %1$s kanssa sovelluksessa %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android on havainnut sormenjälkitunnistuksen. Haluatko ottaa käyttöön sormenjälkitunnistuksen tämän tietokannan kanssa?</string>
   <string name="understand">Minä ymmärrän</string>
   <string name="dont_show_again">Älä näytä uudestaan</string>
   <string name="masterkey_infotext_head">Muistatko pääsalasanasi?</string>
