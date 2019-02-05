@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -149,13 +150,19 @@ public class WebDavStorage extends JavaFileStorageBase {
             sslContext.init(null, new TrustManager[] { trustManager }, null);
             SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
+
             builder = builder.sslSocketFactory(sslSocketFactory, trustManager)
                              .hostnameVerifier(new DecoratedHostnameVerifier(OkHostnameVerifier.INSTANCE, mCertificateErrorHandler));
 
 
+            builder.connectTimeout(25, TimeUnit.SECONDS);
+            builder.readTimeout(25, TimeUnit.SECONDS);
+            builder.writeTimeout(25, TimeUnit.SECONDS);
         }
 
         OkHttpClient client =  builder.build();
+
+
         return client;
     }
 
